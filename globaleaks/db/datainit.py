@@ -13,7 +13,7 @@ from globaleaks.models import Node
 
 
 @transact
-def initialize_node(store, results, only_node, email_templates):
+def initialize_node(store, results, only_node, templates):
     """
     TODO refactor with languages the email_template, develop a dedicated
     function outside the node, and inquire fucking YHWH about the
@@ -63,24 +63,28 @@ def initialize_node(store, results, only_node, email_templates):
     notification.source_name = "Default GlobaLeaks sender"
     notification.source_email = notification.username
 
-    # Those fields are sets as default in order to show to the Admin the various 'variables'
-    # used in the template.
-    notification.tip_template = { GLSetting.memory_copy.default_language:
-                                      email_templates['tip'] }
-    notification.tip_mail_title = { GLSetting.memory_copy.default_language:
-                                        "From %NodeName% a new Tip" }
-    notification.file_template = { GLSetting.memory_copy.default_language:
-                                       email_templates['file'] }
+    # Those fields are sets as default in order to show to the Admin the various
+    # 'variables' used in the template.
+    notification.encrypted_tip_template = { GLSetting.memory_copy.default_language:
+                                            templates['encrypted_tip'] }
+    notification.encrypted_tip_mail_title = { GLSetting.memory_copy.default_language:
+                                              "[%NodeName%] Encrypted Tip" }
+    notification.message_template = { GLSetting.memory_copy.default_language: templates['message'] }
+    notification.message_mail_title = { GLSetting.memory_copy.default_language:
+                                         "[%NodeName%] New Message received" }
+    notification.file_template = { GLSetting.memory_copy.default_language: templates['file'] }
     notification.file_mail_title = { GLSetting.memory_copy.default_language:
-                                         "From %NodeName% a new file appended to a tip" }
-    notification.comment_template = { GLSetting.memory_copy.default_language:
-                                          email_templates['comment'] }
+                                     "[%NodeName%] New file added" }
+    notification.comment_template = { GLSetting.memory_copy.default_language: templates['comment'] }
     notification.comment_mail_title = { GLSetting.memory_copy.default_language:
-                                            "From %NodeName% a new comment" }
-    notification.activation_template = { GLSetting.memory_copy.default_language:
-                                             "*Not Yet implemented*" }
-    notification.activation_mail_title = { GLSetting.memory_copy.default_language:
-                                               "**Not Yet implemented" }
+                                        "[%NodeName%] New comment added" }
+    notification.plaintext_tip_template= { GLSetting.memory_copy.default_language:
+                                           templates['plaintext_tip'] }
+    notification.plaintext_tip_mail_title = { GLSetting.memory_copy.default_language:
+                                              "[%NodeName%] Plaintext Tip" }
+
+    notification.zip_description = { GLSetting.memory_copy.default_language:
+                                     templates['zip_collection'] }
 
     store.add(notification)
 
@@ -100,7 +104,6 @@ def import_memory_variables(store):
 
         GLSetting.memory_copy.tor2web_admin = node.tor2web_admin
         GLSetting.memory_copy.tor2web_submission = node.tor2web_submission
-        GLSetting.memory_copy.tor2web_tip = node.tor2web_tip
         GLSetting.memory_copy.tor2web_receiver = node.tor2web_receiver
         GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
 

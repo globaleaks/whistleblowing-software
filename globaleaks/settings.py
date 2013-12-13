@@ -157,7 +157,6 @@ class GLSettingsClass:
         # the admin using the Admin interface (advanced settings)
         self.defaults.tor2web_admin = False
         self.defaults.tor2web_submission = False
-        self.defaults.tor2web_tip = False
         self.defaults.tor2web_receiver = False
         self.defaults.tor2web_unauth = True
         self.defaults.maximum_namesize = 128
@@ -179,7 +178,6 @@ class GLSettingsClass:
         self.memory_copy.maximum_namesize = self.defaults.maximum_namesize
         self.memory_copy.tor2web_admin = self.defaults.tor2web_admin
         self.memory_copy.tor2web_submission = self.defaults.tor2web_submission
-        self.memory_copy.tor2web_tip = self.defaults.tor2web_tip
         self.memory_copy.tor2web_receiver = self.defaults.tor2web_receiver
         self.memory_copy.tor2web_unauth = self.defaults.tor2web_unauth
         self.memory_copy.exception_email = self.defaults.exception_email

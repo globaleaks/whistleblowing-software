@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import re
 
 from twisted.internet import threads
@@ -7,7 +8,7 @@ from globaleaks.tests import helpers
 
 from globaleaks.rest import requests
 from globaleaks.rest.base import uuid_regexp
-from globaleaks.handlers import tip, base, admin, submission, files
+from globaleaks.handlers import base, admin, submission, files
 from globaleaks.jobs import delivery_sched, cleaning_sched
 from globaleaks import models
 from globaleaks.utils.utility import is_expired
@@ -60,7 +61,6 @@ class TTip(helpers.TestWithDB):
 
 
 class TestCleaning(TTip):
-    _handler = tip.TipInstance
 
     # Test model is a prerequisite for create e valid environment where Tip lives
 
@@ -109,18 +109,26 @@ class TestCleaning(TTip):
 
         basehandler = MockHandler()
 
+        for attrname in models.Context.localized_strings:
+            self.tipContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
+
         basehandler.validate_jmessage(self.tipContext, requests.adminContextDesc)
         self.context_desc = yield admin.create_context(self.tipContext)
 
         self.tipReceiver1['contexts'] = self.tipReceiver2['contexts'] = [ self.context_desc['context_gus'] ]
+
+        for attrname in models.Receiver.localized_strings:
+            self.tipReceiver2[attrname] = u'222222’‘ª‘ª’‘ÐŊ'
+            self.tipReceiver1[attrname] = u'⅛¡⅜⅛’ŊÑŦŊ1111111’‘ª‘ª’‘ÐŊ'
+
         basehandler.validate_jmessage( self.tipReceiver1, requests.adminReceiverDesc )
         basehandler.validate_jmessage( self.tipReceiver2, requests.adminReceiverDesc )
 
         try:
             self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1)
             self.receiver2_desc = yield admin.create_receiver(self.tipReceiver2)
-        except Exception, e:
-            print e
+        except Exception as exxxx:
+            print exxxx
             self.assertTrue(False)
 
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['context_gus']])

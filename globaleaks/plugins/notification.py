@@ -8,8 +8,9 @@
 # When new Notification/Delivery will starts to exists, this code would come back to be
 # one of the various plugins (used by default, but still an optional adoptions)
 
-from globaleaks.utils.utility import log, very_pretty_date_time
+from globaleaks.utils.utility import log
 from globaleaks.utils.mailutils import sendmail, MIME_mail_build
+from globaleaks.utils.templating import Templating
 from globaleaks.plugins.base import Notification
 from globaleaks.security import GLBGPG
 from globaleaks.models import Receiver
@@ -39,117 +40,6 @@ class MailNotification(Notification):
         log.debug("[%s] receiver_fields %s (with admin %s)" % ( self.__class__.__name__, receiver_fields, admin_fields))
         return True
 
-
-    def _iterkeywords(self, template, keywords):
-        if isinstance(template, dict):
-            partial_template = template[GLSetting.memory_copy.default_language]
-        else:
-            partial_template = template
-            # this is wrong!
-
-        for key, var in keywords.iteritems():
-            partial_template = partial_template.replace(key, var)
-
-        return partial_template
-
-
-    # XXX shall be moved in notification_sched ? with the event selection ?
-    # ---> yes!
-    def format_template(self, template, event_dicts):
-        """
-        TODO use http://docs.python.org/2/library/email
-        """
-
-        node_desc = event_dicts.node_info
-        assert node_desc.has_key('name')
-        receiver_desc = event_dicts.receiver_info
-        assert receiver_desc.has_key('name')
-        context_desc = event_dicts.context_info
-        assert context_desc.has_key('name')
-
-        template_keyword = {
-            '%NodeName%': node_desc['name'],
-            '%HiddenService%': node_desc['hidden_service'],
-            '%PublicSite%': node_desc['public_site'],
-            '%ReceiverName%': receiver_desc['name'],
-            '%ReceiverUsername%': receiver_desc['username'],
-            # context_name contains localized data, ad the moment
-            # exported only with default language, because Receiver
-            # can't yet configure its hown lang.
-            '%ContextName%' : context_desc['name'],
-        }
-
-        if event_dicts.type == u'tip':
-
-            tip_template_keyword = {}
-
-            if len(node_desc['hidden_service']):
-                tip_template_keyword.update({
-                    '%TipTorURL%':
-                        '%s/#/status/%s' %
-                            ( node_desc['hidden_service'],
-                              event_dicts.trigger_info['id']),
-                    })
-            else:
-                tip_template_keyword.update({
-                    '%TipTorURL%':
-                        'ADMIN, CONFIGURE YOUR HIDDEN SERVICE (Advanced configuration)!'
-                    })
-
-            if not GLSetting.memory_copy.tor2web_tip:
-                tip_template_keyword.update({
-                    '%TipT2WURL%': "Ask to your admin about Tor"})
-                    # https://github.com/globaleaks/GlobaLeaks/issues/268
-            elif len(node_desc['public_site']):
-                tip_template_keyword.update({
-                    '%TipT2WURL%':
-                        '%s/#/status/%s' %
-                            ( node_desc['public_site'],
-                              event_dicts.trigger_info['id'] ),
-                    })
-            else:
-                tip_template_keyword.update({
-                    '%TipT2WURL%':
-                        'ADMIN, CONFIGURE YOUR PUBLIC SITE (Advanced configuration)'
-                    })
-
-            tip_template_keyword.update({
-                '%EventTime%':
-                    very_pretty_date_time(event_dicts.trigger_info['creation_date']),
-            })
-
-            partial = self._iterkeywords(template, template_keyword)
-            body = self._iterkeywords(partial, tip_template_keyword)
-            return body
-
-        if event_dicts.type == u'comment':
-
-            comment_template_keyword = {
-                '%CommentSource%': event_dicts.trigger_info['source'],
-                '%EventTime%':
-                       very_pretty_date_time(event_dicts.trigger_info['creation_date']),
-            }
-
-            partial = self._iterkeywords(template, template_keyword)
-            body = self._iterkeywords(partial, comment_template_keyword)
-            return body
-
-        if event_dicts.type == u'file':
-
-            file_template_keyword = {
-                '%FileName%': event_dicts.trigger_info['name'],
-                '%EventTime%':
-                    very_pretty_date_time(event_dicts.trigger_info['creation_date']),
-                '%FileSize%': event_dicts.trigger_info['size'],
-                '%FileType%': event_dicts.trigger_info['content_type'],
-            }
-
-            partial = self._iterkeywords(template, template_keyword)
-            body = self._iterkeywords(partial, file_template_keyword)
-            return body
-
-        raise AssertionError("Tip/Comment/File at the moment supported")
-
     def do_notify(self, event):
 
         # check if exists the conf
@@ -159,21 +49,31 @@ class MailNotification(Notification):
 
         # At the moment the language used is a system language, not
         # Receiver preferences language ?
-        if event.type == u'tip':
-            body = self.format_template(
-                event.notification_settings['tip_template'], event)
-            title = self.format_template(
-                event.notification_settings['tip_mail_title'], event)
+        if event.type == u'encrypted_tip':
+            body = Templating().format_template(
+                event.notification_settings['encrypted_tip_template'], event)
+            title = Templating().format_template(
+                event.notification_settings['encrypted_tip_mail_title'], event)
+        elif event.type == u'plaintext_tip':
+            body = Templating().format_template(
+                event.notification_settings['plaintext_tip_template'], event)
+            title = Templating().format_template(
+                event.notification_settings['plaintext_tip_mail_title'], event)
         elif event.type == u'comment':
-            body = self.format_template(
+            body = Templating().format_template(
                 event.notification_settings['comment_template'], event)
-            title = self.format_template(
+            title = Templating().format_template(
                 event.notification_settings['comment_mail_title'], event)
         elif event.type == u'file':
-            body = self.format_template(
+            body = Templating().format_template(
                 event.notification_settings['file_template'], event)
-            title = self.format_template(
+            title = Templating().format_template(
                 event.notification_settings['file_mail_title'], event)
+        elif event.type == u'message':
+            body = Templating().format_template(
+                event.notification_settings['message_template'], event)
+            title = Templating().format_template(
+                event.notification_settings['message_mail_title'], event)
         else:
             raise NotImplementedError("At the moment, only Tip expected")
 
@@ -197,7 +97,7 @@ class MailNotification(Notification):
                         (event.receiver_info['username'], str(excep) ))
                 return None
 
-        receiver_mail = event.receiver_info['notification_fields']['mail_address']
+        receiver_mail = event.receiver_info['mail_address']
 
         # XXX here can be catch the subject (may change if encrypted or whatever)
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,

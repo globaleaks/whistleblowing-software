@@ -1,0 +1,14 @@
+The following files may contain sensitive information, for the Whistleblower
+and for the involved person and organization.
+
+Please, do never disclose these files until an appropriate analysis and 
+redaction.
+
+Files number: %FilesNumber%
+Total uncompressed size: %TotalSize%
+
+File details and integrity checksum:
+
+%FileList%
+
+

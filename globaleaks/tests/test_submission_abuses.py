@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- encoding: utf-8 -*-
 
 from twisted.internet.defer import inlineCallbacks
 
@@ -9,6 +9,7 @@ from globaleaks.rest.errors import GLException, InvalidInputFormat
 from globaleaks.handlers import base, admin, submission
 from globaleaks.utils.utility import log
 from globaleaks.tests.test_tip import TTip
+from globaleaks.models import Context, Receiver
 
 class MockHandler(base.BaseHandler):
 
@@ -43,11 +44,17 @@ class SubmissionTest(helpers.TestGL):
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
         'receivers': [], 'fields': sample_context_fields, 'submission_timetolive': 100,
         'receipt_regexp': u"[0-9]{10}",
-        'receipt_description': u"blah",
-        'submission_introduction': u"bleh",
-        'submission_disclaimer': u"bloh",
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
         'select_all_receivers': True,
+        'receiver_introduction': u"bleh",
+        'fields_introduction': u"dcsdcsdc¼¼",
+        'postpone_superpower': False,
+        'can_delete_submission': False,
+        'maximum_selectable_receivers': 0,
+        'require_file_description': False,
+        'delete_consensus_percentage': 0,
+        'require_pgp': False,
+        'show_small_cards': False,
     }
 
     aReceiver1 = TTip.tipReceiver1
@@ -62,16 +69,27 @@ class TestTipInstance(SubmissionTest):
         
         basehandler = MockHandler()
 
-        # context creation
+        stuff = u"AAA :P ³²¼½¬¼³²"
+
         try:
+            for attrname in Context.localized_strings:
+                SubmissionTest.aContext1[attrname] = stuff
+
             basehandler.validate_jmessage( SubmissionTest.aContext1, adminContextDesc)
             SubmissionTest.context_used = yield admin.create_context(SubmissionTest.aContext1)
+
             # Correctly, TTip.tipContext has not selectable receiver, and we want test it in the 2nd test
             SubmissionTest.context_used['selectable_receiver'] = True
+
+            for attrname in Context.localized_strings:
+                SubmissionTest.context_used[attrname] = stuff
+
             SubmissionTest.context_used = yield admin.update_context(SubmissionTest.context_used['context_gus'],
                 SubmissionTest.context_used)
+
             basehandler.validate_jmessage( SubmissionTest.aContext2, adminContextDesc)
             SubmissionTest.context_unused = yield admin.create_context(SubmissionTest.aContext2)
+
         except Exception as excep:
             log.err("Unable to create context used/unused in UT: %s" % excep.message)
             raise excep
@@ -80,6 +98,11 @@ class TestTipInstance(SubmissionTest):
         self.assertTrue(len(SubmissionTest.context_unused['context_gus']) > 1)
 
         SubmissionTest.aReceiver1['contexts'] = [ SubmissionTest.context_used['context_gus'] ]
+
+        for attrname in Receiver.localized_strings:
+            SubmissionTest.aReceiver1[attrname] = stuff * 2
+            SubmissionTest.aReceiver2[attrname] = stuff * 4
+
         basehandler.validate_jmessage( SubmissionTest.aReceiver1, adminReceiverDesc )
         SubmissionTest.receiver_used = yield admin.create_receiver(SubmissionTest.aReceiver1)
 
@@ -104,7 +127,7 @@ class TestTipInstance(SubmissionTest):
 
         try:
             r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Unexpected Success in creation: %s" % str(r))
+            log.debug("Unexpected Success in submission creation: <%s>\n<%s>" % (str(r), submission_request))
             self.assertTrue(False)
         except GLException, e:
             log.debug("GLException %s %s" % (str(e), e.message) )
@@ -126,7 +149,7 @@ class TestTipInstance(SubmissionTest):
 
         try:
             r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Unexpected Success in creation: %s" % str(r))
+            log.debug("Unexpected Success in submission creation: <%s>\n<%s>" % (str(r), submission_request))
             self.assertTrue(False)
         except GLException, e:
             log.debug("GLException %s %s" % (str(e), e.reason) )
@@ -149,7 +172,7 @@ class TestTipInstance(SubmissionTest):
 
         try:
             r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Unexpected Success in creation: %s" % str(r))
+            log.debug("Unexpected Success in submission creation: <%s>\n<%s>" % (str(r), submission_request))
             self.assertTrue(False, msg="Created!")
         except GLException, e:
             log.debug("GLException %s %s" % (str(e), e.reason) )

@@ -169,10 +169,7 @@ def get_tor2web_header(request_headers):
     return True if key_content else False
 
 def accept_tor2web(role):
-    if role == 'tip' or role == 'wb':
-        return GLSetting.memory_copy.tor2web_tip
-
-    elif role == 'submission':
+    if role == 'wb':
         return GLSetting.memory_copy.tor2web_submission
 
     elif role == 'receiver':
@@ -197,7 +194,7 @@ def transport_security_check(wrapped_handler_role):
             enhance performance instead of searching in te DB at every handler
             connection.
             """
-            tor2web_roles = ['tip', 'submission', 'receiver', 'admin', 'unauth']
+            tor2web_roles = ['wb', 'receiver', 'admin', 'unauth']
 
             assert wrapped_handler_role in tor2web_roles
 

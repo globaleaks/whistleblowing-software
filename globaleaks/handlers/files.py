@@ -206,17 +206,17 @@ class FileAdd(FileHandler):
     WhistleBlower interface for upload a new file in an already completed submission
     """
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('wb')
     @inlineCallbacks
-    def post(self, wb_tip_id, *args):
+    def post(self, *args):
         """
         Parameter: submission_gus
         Request: Unknown
         Response: Unknown
         Errors: SubmissionGusNotFound, SubmissionConcluded
         """
-        itip_id = yield get_tip_by_wbtip(wb_tip_id)
+        itip_id = yield get_tip_by_wbtip(self.current_user['user_id'])
 
         # Call the master class method
         yield self.handle_file_upload(itip_id)
@@ -227,7 +227,7 @@ class FileInstance(FileHandler):
     WhistleBlower interface for upload a new file in a not yet completed submission
     """
 
-    @transport_security_check('submission')
+    @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
     def post(self, submission_id, *args):
@@ -288,7 +288,7 @@ def download_all_files(store, user_id, tip_id):
 class Download(BaseHandler):
     auth_type = "COOKIE"
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_gus, file_gus, *uriargs):

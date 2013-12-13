@@ -15,6 +15,19 @@ CREATE TABLE user (
     UNIQUE (username)
 );
 
+CREATE TABLE message (
+    id VARCHAR NOT NULL,
+    visualized INTEGER NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    author VARCHAR NOT NULL,
+    receivertip_id VARCHAR NOT NULL,
+    type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower' )),
+    mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled', 'skipped')),
+    content VARCHAR NOT NULL,
+    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE comment (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
@@ -44,11 +57,17 @@ CREATE TABLE context (
     tip_timetolive INTEGER NOT NULL,
     submission_timetolive INTEGER NOT NULL,
     receipt_regexp VARCHAR NOT NULL,
-    receipt_description BLOB NOT NULL,
-    submission_introduction BLOB NOT NULL,
-    submission_disclaimer BLOB NOT NULL,
+    receiver_introduction BLOB NOT NULL,
+    fields_introduction BLOB NOT NULL,
     tags BLOB,
-    select_all_receivers INTEGER,
+    select_all_receivers INTEGER NOT NULL,
+    postpone_superpower INTEGER NOT NULL,
+    can_delete_submission INTEGER NOT NULL,
+    maximum_selectable_receivers INTEGER,
+    require_file_description INTEGER NOT NULL,
+    delete_consensus_percentage INTEGER,
+    require_pgp INTEGER NOT NULL,
+    show_small_cards INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -59,6 +78,7 @@ CREATE TABLE internalfile (
     file_path VARCHAR,
     mark VARCHAR NOT NULL CHECK (mark IN ('not processed', 'locked', 'ready', 'delivered')),
     name VARCHAR NOT NULL,
+    description VARCHAR,
     sha2sum VARCHAR,
     size INTEGER NOT NULL,
     internaltip_id VARCHAR NOT NULL,
@@ -106,6 +126,7 @@ CREATE TABLE node (
     creation_date VARCHAR NOT NULL,
     description BLOB NOT NULL,
     presentation BLOB NOT NULL,
+    subtitle BLOB NOT NULL,
     footer BLOB NOT NULL,
     email VARCHAR NOT NULL,
     hidden_service VARCHAR NOT NULL,
@@ -121,10 +142,10 @@ CREATE TABLE node (
     maximum_filesize INTEGER NOT NULL,
     tor2web_admin INTEGER NOT NULL,
     tor2web_submission INTEGER NOT NULL,
-    tor2web_tip INTEGER NOT NULL,
     tor2web_receiver INTEGER NOT NULL,
     tor2web_unauth INTEGER NOT NULL,
-    postpone_superpower INTEGER,
+    postpone_superpower INTEGER NOT NULL,
+    can_delete_submission INTEGER NOT NULL,
     exception_email VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
@@ -139,14 +160,17 @@ CREATE TABLE notification (
     source_name VARCHAR NOT NULL,
     source_email VARCHAR NOT NULL,
     security VARCHAR NOT NULL CHECK (security IN ('TLS', 'SSL')),
-    tip_template BLOB,
-    tip_mail_title BLOB,
     file_template BLOB,
     file_mail_title BLOB,
+    message_template BLOB,
+    message_mail_title BLOB,
     comment_template BLOB,
     comment_mail_title BLOB,
-    activation_template BLOB,
-    activation_mail_title BLOB,
+    encrypted_tip_template BLOB,
+    encrypted_tip_mail_title BLOB,
+    plaintext_tip_template BLOB,
+    plaintext_tip_mail_title BLOB,
+    zip_description BLOB,
     PRIMARY KEY (id)
 );
 
@@ -155,6 +179,7 @@ CREATE TABLE receiver (
     user_id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
     can_delete_submission INTEGER NOT NULL,
+    postpone_superpower INTEGER NOT NULL,
     description BLOB NOT NULL,
     last_update VARCHAR,
     name VARCHAR NOT NULL,
@@ -162,7 +187,8 @@ CREATE TABLE receiver (
     comment_notification INTEGER NOT NULL,
     file_notification INTEGER NOT NULL,
     tip_notification INTEGER NOT NULL,
-    notification_fields BLOB NOT NULL,
+    message_notification INTEGER NOT NULL,
+    mail_address VARCHAR NOT NULL,
     gpg_key_status VARCHAR NOT NULL CHECK (gpg_key_status IN ('Disabled', 'Enabled')),
     gpg_key_info VARCHAR,
     gpg_key_fingerprint VARCHAR,

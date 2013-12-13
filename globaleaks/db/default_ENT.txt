@@ -1,0 +1,17 @@
+Dear %ReceiverName%,
+
+You're received in %EventTime%, a new Submission.
+
+This tip-off has been sent to you by an anonymous whistleblower. 
+You can download the material from the following URLs:
+
+via Tor: %TipTorURL%
+via https: %TipT2WURL%
+
+Submission content:
+
+%TipFields%
+
+Best,
+your faithful GlobaLeaks node (%NodeName%)
+
