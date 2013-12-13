@@ -355,6 +355,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
         // Set the currently selected receivers
         self.receivers = [];
+        // remind this clean the collected list of receiver_id
+        self.current_submission.receivers = [];
         _.each(self.receivers_selected, function(selected, receiver_gus){
           if (selected) {
             self.current_submission.receivers.push(receiver_gus);
