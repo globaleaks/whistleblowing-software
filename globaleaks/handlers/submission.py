@@ -105,11 +105,15 @@ def import_receivers(store, submission, receiver_id_list, required=False):
 
     store.commit()
 
-    # without contexts policies, import WB requests and checks consistency
-
+    # and now clean the received list and import the new Receiver set.
     receiver_id_list = set(receiver_id_list)
-    if (not context.select_all_receivers) \
-        and len(receiver_id_list) > context.maximum_selectable_receivers:
+
+    if required and (not len(receiver_id_list)):
+        log.err("Receivers required to be selected, not empty")
+        raise errors.SubmissionFailFields("Needed almost one Receiver selected [1]")
+
+    if context.maximum_selectable_receivers and \
+                    len(receiver_id_list) > context.maximum_selectable_receivers:
         raise errors.InvalidInputFormat("Provided an invalid number of Receivers")
 
     for receiver_id in receiver_id_list:
@@ -134,7 +138,7 @@ def import_receivers(store, submission, receiver_id_list, required=False):
 
     if required and submission.receivers.count() == 0:
         log.err("Receivers required to be selected, not empty")
-        raise errors.SubmissionFailFields("Needed almost one Receiver selected")
+        raise errors.SubmissionFailFields("Needed almost one Receiver selected [2]")
 
 
 # Remind: it's a store without @transaction because called by a @ŧransact
