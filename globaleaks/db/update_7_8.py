@@ -283,7 +283,7 @@ class Replacer78(TableReplacer):
                 continue
             if v.name == 'encrypted_tip_mail_title':
                 new_notification.encrypted_tip_mail_title = every_language(
-                    "[%NodeName%][%TipUN%] Encrypted Tip")
+                    "[%NodeName%] Encrypted Tip")
                 continue
             if v.name == 'plaintext_tip_template':
                 new_notification.plaintext_tip_template  = old_notification.tip_template
@@ -298,11 +298,10 @@ class Replacer78(TableReplacer):
                             "default Zip Collection template not available! %NodeName% configure this!"))
                 continue
             if v.name == 'message_template':
-                new_notification.message_template = every_language("Whistleblower: %MessageContent%")
-                # This IS NOT TO BE THE DEFAULT
+                new_notification.message_template = every_language("This is an E-Mail message to notify you about a new Message from the Whisleblower.")
                 continue
             if v.name == 'message_mail_title':
-                new_notification.message_mail_title = every_language("[%NodeName%][%TipUN%] Message")
+                new_notification.message_mail_title = every_language("[%NodeName%] Message")
                 continue
 
             setattr(new_notification, v.name, getattr(old_notification, v.name) )

@@ -68,20 +68,20 @@ def initialize_node(store, results, only_node, templates):
     notification.encrypted_tip_template = { GLSetting.memory_copy.default_language:
                                             templates['encrypted_tip'] }
     notification.encrypted_tip_mail_title = { GLSetting.memory_copy.default_language:
-                                              "[%NodeName%][%TipUN%] Encrypted Tip" }
+                                              "[%NodeName%] Encrypted Tip" }
     notification.message_template = { GLSetting.memory_copy.default_language: templates['message'] }
     notification.message_mail_title = { GLSetting.memory_copy.default_language:
-                                         "[%NodeName%][%TipUN%] New Message received" }
+                                         "[%NodeName%] New Message received" }
     notification.file_template = { GLSetting.memory_copy.default_language: templates['file'] }
     notification.file_mail_title = { GLSetting.memory_copy.default_language:
-                                     "[%NodeName%][%TipUN%] New file added" }
+                                     "[%NodeName%] New file added" }
     notification.comment_template = { GLSetting.memory_copy.default_language: templates['comment'] }
     notification.comment_mail_title = { GLSetting.memory_copy.default_language:
-                                        "[%NodeName%][%TipUN%] New comment added" }
+                                        "[%NodeName%] New comment added" }
     notification.plaintext_tip_template= { GLSetting.memory_copy.default_language:
                                            templates['plaintext_tip'] }
     notification.plaintext_tip_mail_title = { GLSetting.memory_copy.default_language:
-                                              "[%NodeName%][%TipUN%] Plaintext Tip" }
+                                              "[%NodeName%] Plaintext Tip" }
 
     notification.zip_description = { GLSetting.memory_copy.default_language:
                                      templates['zip_collection'] }
