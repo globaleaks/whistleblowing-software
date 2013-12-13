@@ -212,10 +212,10 @@ class TestTipInstance(TTip):
     @inlineCallbacks
     def access_receivers_tip(self):
 
-        auth1, _ = yield authentication.login_receiver(self.receiver1_desc['username'], STATIC_PASSWORD)
+        auth1 = yield authentication.login_receiver(self.receiver1_desc['username'], STATIC_PASSWORD)
         self.assertEqual(auth1, self.receiver1_desc['receiver_gus'])
 
-        auth2, _ = yield authentication.login_receiver(self.receiver2_desc['username'], STATIC_PASSWORD)
+        auth2 = yield authentication.login_receiver(self.receiver2_desc['username'], STATIC_PASSWORD)
         self.assertEqual(auth2, self.receiver2_desc['receiver_gus'])
 
         # we does not know the association auth# sefl.rtip#_id
