@@ -46,11 +46,12 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
   }
 
   $scope.selectable = function() {
-    if ($scope.current_context.maximum_selectable_receivers == 0) {
+
+    if ($scope.submission.current_context.maximum_selectable_receivers == 0) {
       return true;
     }
 
-    return $scope.selected_receivers_count() < $scope.current_context.maximum_selectable_receivers;
+    return $scope.selected_receivers_count() < $scope.submission.current_context.maximum_selectable_receivers;
   }
 
   $scope.switch_selection = function(receiver_gus) {
