@@ -1,3 +1,9 @@
+globaleaks (2.50.1) unstable; urgency=low
+
+  * GlobaLeaks 2.50.1 Release (Updated Translations)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 13 Dec 2013 19:32:59 +0002
+
 globaleaks (2.50.0) unstable; urgency=low
 
   * GlobaLeaks 2.50.0 Release (2.40 + 1 = 2.50 ¹²³)
