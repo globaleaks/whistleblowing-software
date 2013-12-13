@@ -90,7 +90,9 @@ class Templating:
             raise AssertionError("%s at the moment supported: %s is NOT " % (supported_event_types, event_dicts.type))
 
         tip_template_keyword = {}
-        if event_dicts.type in high_level_clearance: # only crypto tip + zip files
+        if event_dicts.type == u'encrypted_tip':# high_level_clearance REMOVED: no zip has not wb_fields and fail test_gpg!
+
+            assert (event_dicts.trigger_info.has_key('wb_fields'))
 
             # GLSetting.memory_copy.default_language is ignored here
             # because the context_info is already localized
