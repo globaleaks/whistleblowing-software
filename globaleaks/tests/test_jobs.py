@@ -31,6 +31,8 @@ class TestJobs(helpers.TestGL):
                          'files_number',
                          'context_name',
                          'preview', 'read_messages',
+                         'can_delete_submission',
+                         'postpone_superpower',
                          'unread_messages',
                          'your_messages']
 
