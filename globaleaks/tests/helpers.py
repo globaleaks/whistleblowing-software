@@ -388,6 +388,8 @@ class MockDict():
                                               self.generic_template_keywords, "Comment"),
             'file_template':template_keys(self.file_template_keywords,
                                           self.generic_template_keywords, "File"),
+            'message_template': u'%B EventTime% %TipUN%',
+            'message_mail_title': u'T %EventTime %TipUN',
             'encrypted_tip_mail_title': u'xXx',
             'plaintext_tip_mail_title': u'XxX',
             'zip_description': u'TODO',

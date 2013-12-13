@@ -82,7 +82,7 @@ class Templating:
             '%ContextName%' : context_desc['name'],
             }
 
-        supported_event_types = [ u'file', u'comment', u'encrypted_tip', u'plaintext_tip', u'zip_collection' ]
+        supported_event_types = [ u'file', u'comment', u'encrypted_tip', u'plaintext_tip', u'zip_collection', u'message' ]
         high_level_clearance = [ u'zip_collection', u'encrypted_tip' ]
         if event_dicts.type not in supported_event_types:
             raise AssertionError("%s at the moment supported: %s is NOT " % (supported_event_types, event_dicts.type))
@@ -152,7 +152,7 @@ class Templating:
         if event_dicts.type == u'comment':
 
             comment_template_keyword = {
-                '%CommentSource%': event_dicts.trigger_info['source'],
+                '%CommentSource%': event_dicts.trigger_info['type'],
                 '%EventTime%':
                     very_pretty_date_time(event_dicts.trigger_info['creation_date']),
                 }
@@ -174,6 +174,19 @@ class Templating:
             partial = self._iterkeywords(template, template_keyword)
             body = self._iterkeywords(partial, file_template_keyword)
             return body
+
+        if event_dicts.type == u'message':
+
+            message_template_keyword = {
+                '%EventTime%':
+                    very_pretty_date_time(event_dicts.trigger_info['creation_date']),
+                '%MessageContent%': event_dicts.trigger_info['content']
+            }
+
+            partial = self._iterkeywords(template, template_keyword)
+            body = self._iterkeywords(partial, message_template_keyword)
+            return body
+
 
         raise AssertionError("No one can access to this section of code: has to be returned before!")
 

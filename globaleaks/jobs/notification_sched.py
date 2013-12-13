@@ -223,9 +223,9 @@ class APSNotification(GLJob):
             context_desc = admin.admin_serialize_context(context, GLSetting.memory_copy.default_language)
 
             message_desc = rtip.receiver_serialize_message(message)
-            message.mark = models.Message._marker[1] # 'notified'
+            message.mark = u'notified' # models.Message._marker[1]
 
-            if message._types == u"receiver":
+            if message.type == u"receiver":
                 log.debug("Receiver is the Author (%s): skipped" % receiver.user.username)
                 continue
 
@@ -571,4 +571,11 @@ class APSNotification(GLJob):
                 yield self.do_receiverfile_notification(file_events)
         except Exception as excep:
             log.err("Error in File notification: %s" % excep)
+            log.debug(sys.exc_info())
+
+        try:
+            if message_events:
+                yield self.do_message_notification(message_events)
+        except Exception as excep:
+            log.err("Error in Message notification: %s" % excep)
             log.debug(sys.exc_info())

@@ -161,6 +161,8 @@ CREATE TABLE notification (
     security VARCHAR NOT NULL CHECK (security IN ('TLS', 'SSL')),
     file_template BLOB,
     file_mail_title BLOB,
+    message_template BLOB,
+    message_mail_title BLOB,
     comment_template BLOB,
     comment_mail_title BLOB,
     encrypted_tip_template BLOB,

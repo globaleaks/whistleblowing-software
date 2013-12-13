@@ -457,17 +457,20 @@ class Notification(Model):
     zip_description = Pickle(validator=longlocal_v)
     file_template = Pickle(validator=longlocal_v)
     comment_template = Pickle(validator=longlocal_v)
+    message_template = Pickle(validator=longlocal_v)
 
     encrypted_tip_mail_title = Pickle(validator=longlocal_v)
     plaintext_tip_mail_title = Pickle(validator=longlocal_v)
     file_mail_title = Pickle(validator=longlocal_v)
     comment_mail_title = Pickle(validator=longlocal_v)
+    message_mail_title = Pickle(validator=longlocal_v)
 
     unicode_keys = ['server', 'username', 'password', 'source_name', 'source_email' ]
     localized_strings = [ 'encrypted_tip_template', 'file_template',
                           'comment_template', 'plaintext_tip_template',
                           'encrypted_tip_mail_title', 'comment_mail_title',
                           'file_mail_title', 'plaintext_tip_mail_title',
+                          'message_template', 'message_mail_title',
                           'zip_description' ]
     int_keys = [ 'port' ]
 

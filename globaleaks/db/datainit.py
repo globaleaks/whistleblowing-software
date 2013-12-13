@@ -69,6 +69,9 @@ def initialize_node(store, results, only_node, templates):
                                             templates['encrypted_tip'] }
     notification.encrypted_tip_mail_title = { GLSetting.memory_copy.default_language:
                                               "[%NodeName%][%TipUN%] Encrypted Tip" }
+    notification.message_template = { GLSetting.memory_copy.default_language: templates['message'] }
+    notification.message_mail_title = { GLSetting.memory_copy.default_language:
+                                         "[%NodeName%][%TipUN%] New Message received" }
     notification.file_template = { GLSetting.memory_copy.default_language: templates['file'] }
     notification.file_mail_title = { GLSetting.memory_copy.default_language:
                                      "[%NodeName%][%TipUN%] New file added" }
