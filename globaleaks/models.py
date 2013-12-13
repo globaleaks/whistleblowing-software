@@ -189,6 +189,7 @@ class Context(Model):
     require_file_description = Bool()
     delete_consensus_percentage = Int()
     require_pgp = Bool()
+    show_small_cards = Bool()
 
     unicode_keys = [ 'receipt_regexp' ]
     localized_strings = ['name', 'description',
@@ -197,7 +198,7 @@ class Context(Model):
                  'maximum_selectable_receivers', 'delete_consensus_percentage' ]
     bool_keys = [ 'selectable_receiver', 'file_required', 'select_all_receivers',
                   'postpone_superpower', 'can_delete_submission',
-                  'require_file_description', 'require_pgp' ]
+                  'require_file_description', 'require_pgp', 'show_small_cards' ]
 
 
 class InternalTip(Model):

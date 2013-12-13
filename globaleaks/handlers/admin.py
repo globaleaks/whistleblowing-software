@@ -81,6 +81,7 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
         "delete_consensus_percentage": context.delete_consensus_percentage,
         "maximum_selectable_receivers": context.maximum_selectable_receivers,
         "require_pgp": context.require_pgp,
+        "show_small_cards": context.show_small_cards,
     }
 
     mo = structures.Rosetta()

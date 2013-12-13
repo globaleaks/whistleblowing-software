@@ -69,6 +69,7 @@ class TTip(helpers.TestWithDB):
         'require_file_description': False,
         'delete_consensus_percentage': 0,
         'require_pgp': False,
+        'show_small_cards': False,
     }
 
     tipReceiver1 = {
@@ -458,7 +459,7 @@ class TestTipInstance(TTip):
         sys_comm = cl[3]
 
         self.assertEqual(sys_comm['system_content']['receiver_name'], self.receiver2_desc['name'])
-        self.assertTrue(sys_comm['system_content'].has_key('now'))
+        # self.assertTrue(sys_comm['system_content'].has_key('now'))
         self.assertEqual(sys_comm['system_content']['type'], u"1")
         new_expire = sys_comm['system_content']['expire_on']
         new_expiration_date = vptd_dirty_copy(new_expire)
@@ -494,7 +495,7 @@ class TestTipInstance(TTip):
 
         self.assertEqual(cl[3]['type'], models.Comment._types[2]) # System (date extension)
         self.assertEqual(cl[3]['system_content']['receiver_name'], self.receiver2_desc['name'])
-        self.assertTrue(cl[3]['system_content'].has_key('now'))
+        # self.assertTrue(cl[3]['system_content'].has_key('now'))
 
         self.assertEqual(cl[4]['type'], models.Comment._types[2]) # System
 
