@@ -22,7 +22,7 @@
     "angular-translate": "1.1.1",
     "angular-translate-loader-url": "0.1.5",
     "angular-translate-loader-static-files": "0.1.6",
-    "angular-ui-bootstrap-bower": "0.6.0",
+    "angular-ui-bootstrap-bower": "0.7.0",
     "jquery": "2.0.3",
     "jquery.cookie": "1.4.0",
     "jquery-file-upload": "9.5.1",

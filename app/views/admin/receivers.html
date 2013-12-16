@@ -20,7 +20,7 @@ This comment is needed in order to push the following strings on transifex
 
         <div class="row receiverList" ng-repeat="receiver in admin.receivers">
 
-          <form name="receiverForm" ng-controller="AdminReceiversEditorCtrl">
+          <form name="receiverForm" ng-controller="AdminReceiversEditorCtrl" novalidate>
             <div class="configItem receiverItem" ng-class="{'configItemLast': $last}">
               <div class="row" ng-click="toggleEditing()">
                 <div class="editorHeader receiverEditorHeader">
@@ -69,14 +69,14 @@ This comment is needed in order to push the following strings on transifex
 
                     <div class="form-group">
                       <label>{{ "Name" | translate }}</label>
-                      <input class="form-control" name="name" ng-maxlength="40" ng-model="receiver.name" type="text">
+                      <input class="form-control" name="name" ng-maxlength="40" ng-model="receiver.name" type="text" required>
                       <p class="has-error" ng-show="receiverForm.name.$error.maxlength">
                         {{ "Receiver name too long" | translate }}
                       </p>
                     </div>
                     <div class="form-group">
                       <label>{{ "Email Address (Username)" | translate }}</label>
-                      <input class="form-control" name="email" ng-model="receiver.mail_address" type="email">
+                      <input class="form-control" name="email" ng-model="receiver.mail_address" type="email" required>
                       <p class="has-error" ng-show="receiverForm.email.$error.email">
                         {{ "Invalid email address" | translate }}
                       </p>
@@ -86,7 +86,7 @@ This comment is needed in order to push the following strings on transifex
                         {{ "Password" | translate }}
                       </label>
                       <!-- remind: this need to be random & mailed to the inactive user -->
-                      <input class="form-control" ng-model="receiver.password" type="password">
+                      <input class="form-control" ng-model="receiver.password" type="password" required>
                       <p class="has-error" ng-show="unsafe_password">
                         {{ "The choosen password is unsafe, it should have" | translate }}:
                       </p>
@@ -244,14 +244,14 @@ This comment is needed in order to push the following strings on transifex
 
       <div ng-controller="AdminReceiverAddCtrl">
         <div class="row">
-          <form name="newReceiver">
+          <form name="newReceiver" novalidate>
             <div class="addReceiver col-md-9">
               <h4>{{ "Add new receiver" | translate }}</h4>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>{{ "Name" | translate }}</label>
-                    <input class="form-control" name="name" ng-maxlength="40" ng-model="new_receiver.name" type="text">
+                    <input class="form-control" name="name" ng-maxlength="40" ng-model="new_receiver.name" type="text" required>
                     <p class="has-error" ng-show="newReceiver.name.$error.maxlength">
                       {{ "Receiver name too long" | translate }}
                     </p>
@@ -262,7 +262,7 @@ This comment is needed in order to push the following strings on transifex
                       {{ "Email Address" | translate }} 
                       ({{ "Username" | translate }})
                     </label>
-                    <input class="form-control" name="email" ng-model="new_receiver.email" type="email">
+                    <input class="form-control" name="email" ng-model="new_receiver.email" type="email" required>
                     <p class="has-error" ng-show="newReceiver.email.$error.email">
                       {{ "Invalid email address" | translate }}
                     </p>
@@ -274,7 +274,7 @@ This comment is needed in order to push the following strings on transifex
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>{{ "Password" | translate }}</label>
-                    <input class="form-control" ng-model="new_receiver.password" type="password">
+                    <input class="form-control" ng-model="new_receiver.password" type="password" required>
                     <p class="has-error" ng-show="unsafe_password">
                       {{ "The choosen password is unsafe, it should have" | translate }}:
                     </p>

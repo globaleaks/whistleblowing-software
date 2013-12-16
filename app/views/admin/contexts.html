@@ -19,7 +19,7 @@ This comment is needed in order to push the following strings on transifex
       <div ng-controller="AdminContextsCtrl">
 
         <div class="row" ng-repeat="context in admin.contexts">
-          <form name="contextForm" ng-controller="AdminContextsEditorCtrl">
+          <form name="contextForm" ng-controller="AdminContextsEditorCtrl" novalidate>
             <div class="configItem contextItem"  ng-class="{'configItemLast': $last}">
 
               <div class="row" ng-click="toggleEditing()">
@@ -144,25 +144,26 @@ This comment is needed in order to push the following strings on transifex
           </form>
         </div>
 
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <h4>{{ "Add new context" | translate }}</h4>
-              <input class="form-control" ng-model="new_context_name" type="text">
+        <form name="newContext" novalidate>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <h4>{{ "Add new context" | translate }}</h4>
+                <input class="form-control" ng-model="new_context_name" type="text" required>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <button class="btn btn-success" ng-disabled="newContext.$invalid" ng-click="admin.create_context(new_context_name)">
-                <i class="glyphicon glyphicon-ok"></i>
-                {{ "Add" | translate }}
-              </button>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <button class="btn btn-success" ng-disabled="newContext.$invalid" ng-click="admin.create_context(new_context_name)">
+                  <i class="glyphicon glyphicon-ok"></i>
+                  {{ "Add" | translate }}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
 
       </div>
     </div>
