@@ -124,7 +124,7 @@
 
 .imageUpload .profile .changePicture {
   position: absolute;
-  bottom: 0px;
+  top: 0px;
   padding: 5px;
   text-align: center;
   background-color: #0088cc;

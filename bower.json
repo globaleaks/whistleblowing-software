@@ -1,6 +1,6 @@
 {
   "name": "GLClient",
-  "version": "2.50.1",
+  "version": "2.50.2",
   "homepage": "https://github.com/globaleaks/GLClient",
   "authors": [
     "Random GlobaLeaks Developers <info@globaleaks.org>"
@@ -25,7 +25,7 @@
     "angular-ui-bootstrap-bower": "0.7.0",
     "jquery": "2.0.3",
     "jquery.cookie": "1.4.0",
-    "jquery-file-upload": "9.5.1",
+    "jquery-file-upload": "9.5.2",
     "jquery-ui": "1.10.3",
     "bootstrap": "3.0.3",
     "underscore": "1.5.2"
