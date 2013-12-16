@@ -1,3 +1,15 @@
+globaleaks (2.50.3) unstable; urgency=low
+
+  * GlobaLeaks 2.50.3 Release (Minor UI Fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 16 Dec 2013 20:07:59 +0002
+
+globaleaks (2.50.2) unstable; urgency=low
+
+  * GlobaLeaks 2.50.2 Release (Minor UI Fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 16 Dec 2013 19:46:59 +0002
+
 globaleaks (2.50.1) unstable; urgency=low
 
   * GlobaLeaks 2.50.1 Release (Updated Translations)
