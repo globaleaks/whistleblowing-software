@@ -1,5 +1,9 @@
 /** Receiver selection page **/
 
+#ContextIntroductionBox, #ReceiverIntroductionBox {
+  margin-bottom: 30px;
+}
+
 .receiverCards {
   position: relative;
 }
