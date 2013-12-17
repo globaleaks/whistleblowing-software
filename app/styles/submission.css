@@ -1,6 +1,6 @@
 /** Receiver selection page **/
 
-#ContextIntroductionBox, #ReceiverIntroductionBox {
+#ContextPickSelector, #ContextIntroductionBox, #ReceiverIntroductionBox {
   margin-bottom: 30px;
 }
 
