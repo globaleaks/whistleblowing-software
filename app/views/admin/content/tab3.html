@@ -2,7 +2,7 @@
   <div class="col-md-6">
     <div class="form-group">
       <label>{{ "Languages Configuration" | translate }}</label>
-      <div ng-repeat="language in admin.node.languages_supported">
+      <div ng-repeat="language in admin.node.languages_supported | orderBy:'name'">
         <div>
           <input ng-model="languages_enabled_edit[language.code]" type="checkbox">
           <label>{{language.name}}</label>
@@ -40,7 +40,7 @@
 
     <div class="form-group">
       <label>{{ "Default language" | translate }}</label>
-      <select class="form-control" ng-model="admin.node.default_language" ng-options="code as name for (code, name) in languages_default_selector"></select>
+      <select class="form-control" ng-model="admin.node.default_language" ng-options="item.code as item.name for item in languages_default_selector | orderBy:'name'"></select>
     </div>
   </div>
 </div>

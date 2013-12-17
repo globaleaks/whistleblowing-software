@@ -157,7 +157,7 @@
   position: relative;
   opacity: 0;
   height: 100%;
-  z-index: 4;
+  z-index: 2147483647;
 }
 
 
