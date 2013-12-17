@@ -193,7 +193,7 @@ This comment is needed in order to push the following strings on transifex
         {{ "Add Comment" | translate }}
       </button>
       <br /><br />
-      <div ng-repeat="comment in tip.comments">
+      <div ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
         <div ng-switch="" on="comment.type">
 
           <div ng-switch-when="whistleblower" class="alert alert-info">
@@ -271,7 +271,7 @@ This comment is needed in order to push the following strings on transifex
         {{ "Send Private Message" | translate }}
       </button>
       <br /><br />
-      <div ng-repeat="message in tip.messages">
+      <div ng-repeat="message in tip.messages | orderBy:'creation_date':true">
         <div ng-switch="" on="message.type">
 
           <div ng-switch-when="whistleblower" class="alert alert-info">
