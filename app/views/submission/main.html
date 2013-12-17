@@ -46,7 +46,7 @@
 
       <!-- First Step -->
       <div ng-switch-when="1" class="receiverCards">
-        <div class="contextPick" ng-show="submission.contexts.length > 1">
+        <div id="ContextPickSelector" ng-show="submission.contexts.length > 1">
             <div class="lead">
               {{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}
             </div>
@@ -55,7 +55,7 @@
               {{ "I want to report on" | translate }}
             </span>
 
-            <select class="form-control contexts" ng-model="submission.current_context" ng-options="context as context.name for context in submission.contexts">
+            <select class="form-control contexts" ng-model="submission.current_context" ng-options="context as context.name for context in submission.contexts | orderBy:'name'">
             </select>
 
         </div>
