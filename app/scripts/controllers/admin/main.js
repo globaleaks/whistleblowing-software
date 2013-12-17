@@ -42,7 +42,7 @@ function($rootScope, $scope, $http, $route, $location, Admin) {
 
   $scope.$watch('languages_enabled_edit', function() {
     if ($rootScope.languages_enabled) {
-      var languages_default_selector = {};
+      var languages_default_selector = [];
       var change_default = false;
       var language_selected = $scope.admin.node.default_language;
       if (! $scope.languages_enabled_edit[$scope.admin.node.default_language]) {
@@ -51,7 +51,7 @@ function($rootScope, $scope, $http, $route, $location, Admin) {
 
       $.each($rootScope.languages_supported, function(lang) {
         if ($scope.languages_enabled_edit[lang]) {
-          languages_default_selector[lang] = $scope.languages_supported[lang];
+          languages_default_selector.push({'name': $scope.languages_supported[lang], 'code': lang});
 
           if (change_default === true) {
             language_selected = lang;

@@ -8,6 +8,6 @@
     </button>
   </div>
   <div id="LanguagePickerBox" class="languagePick alert alert-warning" ng-hide="!show_language_selector">
-    <select ng-model="language" ng-options="lang_code as lang_name for (lang_code, lang_name) in languages_enabled" class="form-control"></select>
+    <select ng-model="language" ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'" class="form-control"></select>
   </div>
 </div>

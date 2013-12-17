@@ -1,28 +1,26 @@
-<form name="contentForm" novalidate>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="row">
-        <div class="form-group">
-          <label>{{ "Current initiative logo" | translate }}</label>
-          <div class="imageUpload" ng-controller="FileUploadCtrl">
-            <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
-              <div ng-show="uploadfile" class="uploadfile">
-                <span class="col-md-12 changePicture">
-                  {{ "Change picture" | translate }}
-                </span>
-                <div pragmatic-file-upload="" ng-src="/admin/staticfiles/globaleaks_logo">
-                  <div class="fileselector">
-                    <input type="file">
-                  </div>
-                </div>
-                <div class="uploadProgress hide">
-                  <div class="progress progress-striped">
-                    <div class="progress-bar" style="width: 0%"></div>
-                  </div>
+<div class="row">
+  <div class="col-md-6">
+    <form name="contentForm" novalidate>
+      <div class="form-group">
+        <label>{{ "Current initiative logo" | translate }}</label>
+        <div class="imageUpload" ng-controller="FileUploadCtrl">
+          <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
+            <div ng-show="uploadfile" class="uploadfile">
+              <span class="col-md-12 changePicture">
+                {{ "Change picture" | translate }}
+              </span>
+              <div pragmatic-file-upload="" ng-src="/admin/staticfiles/globaleaks_logo">
+                <div class="fileselector">
+                  <input type="file" style="z-index: 2147483647">
                 </div>
               </div>
-              <img ng-src="/static/globaleaks_logo.png" class="img-thumbnail baseimage">
+              <div class="uploadProgress hide">
+                <div class="progress progress-striped">
+                  <div class="progress-bar" style="width: 0%"></div>
+                </div>
+              </div>
             </div>
+            <img ng-src="/static/globaleaks_logo.png" class="img-thumbnail baseimage" style="z-index: 0">
           </div>
         </div>
       </div>
@@ -73,6 +71,6 @@
           {{ "Invalid format for public site (should be https://thirteenchars123.tor2web.org)" | translate }}
         </p>
       </div>
-    </div>
+    </form>
   </div>
-</form>
+</div>

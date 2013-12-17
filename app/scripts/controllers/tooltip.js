@@ -25,12 +25,14 @@ function($scope, $rootScope, Authentication, $location,
 
     var language_count = 0;
     $rootScope.languages_supported = {};
-    $rootScope.languages_enabled = {};
+    $rootScope.languages_enabled = [];
+    $rootScope.languages_enabled_selector = [];
     $.each(node.languages_supported, function(idx) {
       var code = node.languages_supported[idx]['code'];
       $rootScope.languages_supported[code] = node.languages_supported[idx]['name'];
       if ($.inArray(code, node.languages_enabled) != -1) {
         $rootScope.languages_enabled[code] = node.languages_supported[idx]['name'];
+        $rootScope.languages_enabled_selector.push({"name": node.languages_supported[idx]['name'],"code": code});
         language_count += 1;
       }
     });
