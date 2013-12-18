@@ -115,15 +115,21 @@ angular.module('resourceServices.authentication', [])
         }
 
         self.logout = function() {
-
-            $http.delete('/authentication').then(self.logout_performed,
-                                                 self.logout_performed);
+          $http.delete('/authentication').then(self.logout_performed,
+                                               self.logout_performed);
 
         };
 
-        $http.get('/authentication').success(function(response){
-            $rootScope.session = response;
-        });
+        if ($.cookie('session_id')) {
+          $http.get('/authentication').then(
+            function(response){
+              $rootScope.session = response;
+            },
+            function(response){
+              $.removeCookie('session_id');
+            }
+          );
+        }
 
       };
 
@@ -144,8 +150,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       $http = $http || $injector.get('$http');
 
       $rootScope.pendingRequests = function () {
-        console.log($http.pendingRequests.length);
-        return new Array($http.pendingRequests);
+        return $http.pendingRequests.length;
       }
 
       var Fairy = function(promise) {
@@ -183,7 +188,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       window.setTimeout(timedOut(fairy), requestTimeout);
 
       return promise.then(function(response) {
-        console.log(response);
 
         fairy.timeout = function() {
           // We override the instance method if the promise actually works.
@@ -200,32 +204,31 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
            When the response has failed write the rootScope
            errors array the error message.
         */
-        var error = {},
-          source_path = $location.path();
+
+        var error = {}
+        var source_path = $location.path();
 
         error.message = response.data.error_message;
         error.code = response.data.error_code;
         error.url = response.config.url;
         error.arguments = response.data.arguments;
 
-        if (!((response.config.url == '/authentication') && (error.code == 30))) {
+        if (error.code == 30) {
+          $.removeCookie('session_id');
 
-          if (error.code == 30) {
-            $.removeCookie('session_id');
-            // Only redirect if we are not on the login page
-            if ($location.path().indexOf('/login') === -1) {
-              $location.path('/login');
-              $location.search('src='+source_path);
-            };
+          // Only redirect if we are not on the login page
+          if ($location.path().indexOf('/login') === -1) {
+            $location.path('/login');
+            $location.search('src='+source_path);
+            $route.reload();
           };
+        };
 
-          if (!$rootScope.errors) {
-            $rootScope.errors = [];
-          }
-
-          $rootScope.errors.push(error);
-
+        if (!$rootScope.errors) {
+          $rootScope.errors = [];
         }
+
+        $rootScope.errors.push(error);
 
         return $q.reject(response);
       });

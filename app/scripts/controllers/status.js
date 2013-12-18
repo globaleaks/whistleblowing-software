@@ -63,9 +63,7 @@ GLClient.controller('StatusCtrl',
         }
       }, true);
 
-    }
-
-    if ($.cookie('role') === 'receiver') {
+    } else if ($.cookie('role') === 'receiver') {
       $scope.preferences = ReceiverPreferences.get();
     
       var TipID = {tip_id: $scope.tip_id};
@@ -110,6 +108,8 @@ GLClient.controller('StatusCtrl',
 
         });
       });
+    } else {
+      $location.path('/');
     }
 
     $scope.newComment = function() {
