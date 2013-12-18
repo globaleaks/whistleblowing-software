@@ -48,14 +48,14 @@
         </div>
        
         <div class="pending-requests" ng-cloak="" ng-hide="!showRequestBox">
-          <div class="spinner" spinner=""></div>
 
           <div class="message">
             <h1>{{ "Please wait" | translate }}...</h1>
+            <div class="spinner" spinner=""></div>
             <p class="lead">
               {{ "Loading" | translate }}...
             </p>
-            <i class="icon-star" ng-repeat="request in pendingRequests"></i>
+            <i class="glyphicon glyphicon-transfer" ng-repeat="request in pendingRequests()"></i>
           </div>
         </div>
 

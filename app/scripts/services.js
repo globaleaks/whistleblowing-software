@@ -130,17 +130,23 @@ angular.module('resourceServices.authentication', [])
       return new Session;
 }]);
 angular.module('resourceServices', ['ngResource', 'resourceServices.authentication']).
-  factory('globaleaksInterceptor', ['$q', '$rootScope', '$location',
-  function($q, $rootScope, $location) {
+  factory('globaleaksInterceptor', ['$q', '$injector', '$rootScope', '$location',
+  function($q, $injector, $rootScope, $location) {
     var requestTimeout = 30000;
+    var $http = null;
 
     $rootScope.showRequestBox = false;
 
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
     return function(promise) {
-      if (!$rootScope.pendingRequests)
-        $rootScope.pendingRequests = [];
+
+      $http = $http || $injector.get('$http');
+
+      $rootScope.pendingRequests = function () {
+        console.log($http.pendingRequests.length);
+        return new Array($http.pendingRequests);
+      }
 
       var Fairy = function(promise) {
         this.promise = promise;
@@ -171,27 +177,23 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           $rootScope.$digest();
         }
       }
-      
-      $rootScope.$watch('pendingRequests', function(){
-        if ($rootScope.pendingRequests.length === 0) {
-          $rootScope.showRequestBox = false;
-        } else {
-          $rootScope.showRequestBox = true;
-        }
-      }, true);
-
-      $rootScope.pendingRequests.push(promise);
+     
+      $rootScope.showRequestBox = true;
 
       window.setTimeout(timedOut(fairy), requestTimeout);
 
       return promise.then(function(response) {
+        console.log(response);
 
         fairy.timeout = function() {
           // We override the instance method if the promise actually works.
           return true;
         };
 
-        $rootScope.pendingRequests.pop(promise);
+        if ($http.pendingRequests.length < 1) {
+          $rootScope.showRequestBox = false;
+        }
+
         return response;
       }, function(response) {
         /* 
@@ -225,7 +227,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
         }
 
-        $rootScope.pendingRequests.pop(promise);
         return $q.reject(response);
       });
     }
@@ -773,8 +774,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
 }]).
   config(['$httpProvider', function($httpProvider) {
-    var $rootScope = angular.injector(['ng']).get('$rootScope'),
-      globaleaksRequestInterceptor = function(data, headers) {
+    var globaleaksRequestInterceptor = function(data, headers) {
 
         var extra_headers = {};
 
@@ -793,6 +793,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         headers = angular.extend(headers(), extra_headers);
         return data;
     };
+
     $httpProvider.responseInterceptors.push('globaleaksInterceptor');
     $httpProvider.defaults.transformRequest.push(globaleaksRequestInterceptor);
 }]);
