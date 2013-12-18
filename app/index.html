@@ -55,7 +55,7 @@
             <p class="lead">
               {{ "Loading" | translate }}...
             </p>
-            <i class="glyphicon glyphicon-transfer" ng-repeat="request in pendingRequests()"></i>
+            <i class="glyphicon glyphicon-transfer" ng-repeat="n in [] | range:pendingRequests()"></i>
           </div>
         </div>
 
