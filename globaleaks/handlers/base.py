@@ -193,6 +193,7 @@ class BaseHandler(RequestHandler):
 
         # to reduce possibility for XSS attacks.
         self.set_header("X-Content-Type-Options", "nosniff")
+        self.set_header("X-XSS-Protection", "1; mode=block")
 
         # to mitigate information leakage on Browser/Proxy Cache
         self.set_header("Cache-control", "no-cache, no-store")
