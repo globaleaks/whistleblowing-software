@@ -1,3 +1,9 @@
+globaleaks (2.50.6) unstable; urgency=low
+
+  * GlobaLeaks 2.50.6 Release (Re-Added German Translation, now at 90%, thanks to an adopter effort)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 19 Dec 2013 09:18:59 +0002
+
 globaleaks (2.50.5) unstable; urgency=low
 
   * GlobaLeaks 2.50.5 Release (Minor UI Fixes)
