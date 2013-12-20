@@ -50,7 +50,7 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher',
         $scope.receiver.gpg_key_remove = false;
       }
 
-      $scope.receiver.$update();
+      $scope.update($scope.receiver);
 
     }
 
