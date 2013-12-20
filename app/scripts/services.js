@@ -205,6 +205,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
            errors array the error message.
         */
 
+        if ($http.pendingRequests.length < 1) {
+          $rootScope.showRequestBox = false;
+        }
+
         var error = {}
         var source_path = $location.path();
 
@@ -671,10 +675,12 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             scope.pwdHasNumber = true;
         }
 
-        if (password === undefined || password === '' || (scope.$eval(password) == scope.$eval(check_password))) {
+        if (scope.$eval(password) === undefined ||
+            scope.$eval(password) === '' ||
+            scope.$eval(password) === scope.$eval(check_password)) {
             scope.mismatch_password = false;
         } else {
-            scope.mismatch_password = true;                
+            scope.mismatch_password = true;
         }
 
         if (scope.$eval(old_password) !== undefined && (scope.$eval(old_password)).length >= 1 )  {
