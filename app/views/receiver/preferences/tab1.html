@@ -1,8 +1,8 @@
-<div class="col-md-4">
+<div class="col-md-8">
   <div class="form-group">
     <label><b>{{ "Current Password" | translate }}</b></label>
     <input class="form-control" ng-model="preferences.old_password" type="password">
-    <p class="has-error" ng-show="missing_old_password">
+    <p class="has-error" ng-show="missing_old_password && preferences.password">
       {{ "Old password confirmation required" | translate }}
     </p>
   </div>
