@@ -104,8 +104,8 @@ class TestTransaction(helpers.TestGL):
         context.tags = self.dummyContext['tags']
         context.submission_timetolive = context.tip_timetolive = 1000
         context.description = context.name = \
-            context.submission_disclaimer = context.submission_introduction = \
-            context.receipt_description = { "en" : u'Localized723' }
+            context.submission_disclaimer = \
+            context.submission_introduction = { "en" : u'Localized723' }
         context.receipt_regexp = u"unipop547"
         store.add(context)
         return context.id

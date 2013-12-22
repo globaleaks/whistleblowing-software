@@ -68,6 +68,7 @@ CREATE TABLE context (
     delete_consensus_percentage INTEGER,
     require_pgp INTEGER NOT NULL,
     show_small_cards INTEGER NOT NULL,
+    presentation_order INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -197,9 +198,9 @@ CREATE TABLE receiver (
     gpg_enable_notification INTEGER,
     gpg_enable_files INTEGER,
     receiver_level INTEGER NOT NULL,
+    presentation_order INTEGER NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE
-
 );
 
 CREATE TABLE receiver_context (
