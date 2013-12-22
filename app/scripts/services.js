@@ -762,6 +762,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 	context.require_pgp = false;
         context.tags = [];
         context.show_small_cards = false;
+        context.presentation_order = 0;
 
         context.$save(function(new_context){
           self.contexts.push(new_context);

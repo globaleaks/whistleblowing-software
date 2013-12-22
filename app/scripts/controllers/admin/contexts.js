@@ -2,6 +2,11 @@ GLClient.controller('AdminContextsCtrl',
     ['$scope', '$rootScope', 'Admin',
     function($scope, $rootScope, Admin) {
 
+  $scope.save_all = function() {
+    angular.forEach($scope.admin.contexts, function(context, key) {
+        $scope.update(context);
+    });
+  }
 
   $scope.delete = function(context) {
     var idx = _.indexOf($scope.admin.contexts, context);
@@ -25,6 +30,39 @@ GLClient.controller('AdminContextsCtrl',
                         preview: false,
                         required: false});
   }
+
+  $scope.sortableOptions = {
+    stop: function(e, ui) {
+      $scope.update_contexts_order();
+    }
+  };
+
+  $scope.reorder_contexts_alphabetically = function() {
+    $scope.admin.contexts = _($scope.admin.contexts).sortBy(function(context) {
+      return context.name;
+    });
+
+    $scope.update_contexts_order();
+  }
+
+  $scope.update_contexts_order = function() {
+    var i = 0;
+    angular.forEach($scope.admin.contexts, function(context, key) {
+        context.presentation_order = i + 1;
+        i += 1;
+    });
+  }
+
+  $scope.fieldsSortableOptions = {
+    stop: function(e, ui) {
+      var i = 0;
+      angular.forEach(ui.item.scope().context.fields, function(field, key) {
+          field.presentation_order = i + 1;
+          i += 1;
+      });
+    }
+  }
+
 
 }]);
 

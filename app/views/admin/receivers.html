@@ -18,228 +18,250 @@ This comment is needed in order to push the following strings on transifex
 
       <div ng-controller="AdminReceiversCtrl">
 
-        <div class="row receiverList" ng-repeat="receiver in admin.receivers">
+        <button class="btn btn-success" ng-click="reorder_receivers_alphabetically()">
+          <i class="glyphicon glyphicon-sort-by-alphabet"></i>
+          {{ "Reorder Receivers alphabetically" | translate }}
+        </button>
+        <button class="btn btn-success" ng-click="save_all()">
+          <i class="glyphicon glyphicon-ok"></i>
+          {{ "Save All" | translate }}
+        </button>
 
-          <form name="receiverForm" ng-controller="AdminReceiversEditorCtrl" novalidate>
-            <div class="configItem receiverItem" ng-class="{'configItemLast': $last}">
-              <div class="row" ng-click="toggleEditing()">
-                <div class="editorHeader receiverEditorHeader">
-                  <div class="col-md-6">
-                    <span>{{receiver.name}}</span>
-                  </div>
+        <div ui-sortable="sortableOptions" ng-model="admin.receivers">
 
-                  <div class="col-md-6 editButtons" ng-show="editing">
-                    <button class="btn btn-success saveReceiver" ng-disabled="receiverForm.$invalid || unsafe_password" ng-click="save_receiver()">
-                      <i class="glyphicon glyphicon-ok"></i>
-                      {{ "Save" | translate }}
-                    </button>
+          <div class="row receiverList" ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'">
 
-                    <button class="btn btn-danger deleteReceiver" ng-click="delete(receiver)">
-                      <i class="glyphicon glyphicon-remove"></i>
-                      {{ "Delete" | translate }}
-                    </button>
-                  </div>
+            <form name="receiverForm" ng-controller="AdminReceiversEditorCtrl" novalidate>
+              <div class="configItem receiverItem" ng-class="{'configItemLast': $last}">
+                <div class="row" ng-click="toggleEditing()" ng-mouseenter="show_hint=true" ng-mouseleave="show_hint=false">
+                  <div class="editorHeader receiverEditorHeader">
+                    <div class="col-md-12" ng-show="!editing">
+                      <span class="col-md-6">{{receiver.name}}</span>
+                      <span class="pull-right" ng-show="show_hint">Click to edit, Drag to order</span>
+                    </div>
 
-                </div>
-              </div>
+                    <div class="col-md-12" ng-show="editing">
+                      <span class="col-md-6">{{receiver.name}}</span>
 
-              <div class="editor receiverEditor" ng-show="editing">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="imageUpload" ng-controller="FileUploadCtrl">
-                      <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
-                        <div ng-show="uploadfile" class="uploadfile">
-                          <span class="col-md-12 changePicture">
-                            {{ "Change picture" | translate }}
-                          </span>
-                          <div pragmatic-file-upload ng-src="{{receiverImgUrl()}}">
-                            <div class="fileselector">
-                              <input type="file" style="z-index: 2147483647">
-                            </div>
-                          </div>
-                          <div class="uploadProgress hide">
-                            <div class="progress progress-striped">
-                              <div class="progress-bar" style="width: 0%;"></div>
-                            </div>
-                          </div>
-                        </div>
-                        <img ng-src="{{receiverImgReloadUrl()}}" class="img-thumbnail baseimage" style="z-index: 0">
+                      <div class="col-md-6 editButtons" ng-show="editing">
+                        <button class="btn btn-success saveReceiver" ng-disabled="receiverForm.$invalid || unsafe_password" ng-click="save_receiver()">
+                          <i class="glyphicon glyphicon-ok"></i>
+                          {{ "Save" | translate }}
+                        </button>
+
+                        <button class="btn btn-danger deleteReceiver" ng-click="delete(receiver)">
+                          <i class="glyphicon glyphicon-remove"></i>
+                          {{ "Delete" | translate }}
+                        </button>
                       </div>
+
                     </div>
 
-                    <div class="form-group">
-                      <label>{{ "Name" | translate }}</label>
-                      <input class="form-control" name="name" ng-maxlength="40" ng-model="receiver.name" type="text" required>
-                      <p class="has-error" ng-show="receiverForm.name.$error.maxlength">
-                        {{ "Receiver name too long" | translate }}
-                      </p>
-                    </div>
-                    <div class="form-group">
-                      <label>{{ "Email Address (Username)" | translate }}</label>
-                      <input class="form-control" name="email" ng-model="receiver.mail_address" type="email" required>
-                      <p class="has-error" ng-show="receiverForm.email.$error.email">
-                        {{ "Invalid email address" | translate }}
-                      </p>
-                    </div>
-                    <div class="form-group">
-                      <label>
-                        {{ "Password" | translate }}
-                      </label>
-                      <!-- remind: this need to be random & mailed to the inactive user -->
-                      <input class="form-control" ng-model="receiver.password" type="password">
-                      <p class="has-error" ng-show="unsafe_password">
-                        {{ "The choosen password is unsafe, it should have" | translate }}:
-                      </p>
-                      <li class="has-error" ng-hide="pwdHasLetter">
-                        {{ "At least one letter" | translate }}
-                      </li>
-                      <li class="has-error" ng-hide="pwdHasNumber">
-                        {{ "At least one number" | translate }}
-                      </li>
-                      <li class="has-error" ng-hide="pwdValidLength">
-                        {{ "At least 8 keypress long" | translate }}
-                      </li>
-                    </div>
-                    <div class="form-group">
-                      <label>{{ "Description" | translate }}</label>
-                      <div>
-                        <textarea class="form-control" ng-model="receiver.description">{{receiver.description}}</textarea>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <label>{{ "Contexts" | translate }}</label>
-                    <div class="selectionList">
-                      <div ng-repeat="context in admin.contexts">
-                        <div class="row" ng-click="toggle(context)">
-                          <span class="col-md-1">
-                            <span ng-show="isSelected(context)">
-                              <i class="glyphicon glyphicon-check"></i>
-                            </span>
-                            <span ng-show="!isSelected(context)">
-                              <i class="glyphicon glyphicon-unchecked"></i>
-                            </span>
-                          </span>
-                          <span class="col-md-10">{{context.name}}</span>
-                        </div>
-                      </ul>
-                    </div>
                   </div>
                 </div>
-              </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group table-bordered">
-                      <input ng-model="receiver.postpone_superpower" type="checkbox" ng-disabled="node.postpone_superpower">
-                      <label>{{ "Permit the Receiver to postpone expiration date of the Tips" | translate }}</label>
-                      <div ng-show="receiver.postpone_superpower && !node.postpone_superpower">
-                        <span class="label label-info">
-                          {{ "now Enabled:" | translate }}
-                        </span>
-                        {{ "The Receiver will be now able to postpone Tip expiration." | translate }}
+
+                <div class="editor receiverEditor" ng-show="editing">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="imageUpload" ng-controller="FileUploadCtrl">
+                        <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
+                          <div ng-show="uploadfile" class="uploadfile">
+                            <span class="col-md-12 changePicture">
+                              {{ "Change picture" | translate }}
+                            </span>
+                            <div pragmatic-file-upload ng-src="{{receiverImgUrl()}}">
+                              <div class="fileselector">
+                                <input type="file" style="z-index: 2147483647">
+                              </div>
+                            </div>
+                            <div class="uploadProgress hide">
+                              <div class="progress progress-striped">
+                                <div class="progress-bar" style="width: 0%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <img ng-src="{{receiverImgReloadUrl()}}" class="img-thumbnail baseimage" style="z-index: 0">
+                        </div>
                       </div>
-                      <div ng-show="node.postpone_superpower">
-                        <span class="label label-info">
-                          {{ "now Enabled:" | translate }}
-                        </span>
-                        {{ "The setting is enabled at Node level."}}
+
+                      <div class="form-group">
+                        <label>{{ "Name" | translate }}</label>
+                        <input class="form-control" name="name" ng-maxlength="40" ng-model="receiver.name" type="text" required>
+                        <p class="has-error" ng-show="receiverForm.name.$error.maxlength">
+                          {{ "Receiver name too long" | translate }}
+                        </p>
+                      </div>
+                      <div class="form-group">
+                        <label>{{ "Email Address (Username)" | translate }}</label>
+                        <input class="form-control" name="email" ng-model="receiver.mail_address" type="email" required>
+                        <p class="has-error" ng-show="receiverForm.email.$error.email">
+                          {{ "Invalid email address" | translate }}
+                        </p>
+                      </div>
+                      <div class="form-group">
+                        <label>
+                          {{ "Password" | translate }}
+                        </label>
+                        <!-- remind: this need to be random & mailed to the inactive user -->
+                        <input class="form-control" ng-model="receiver.password" type="password">
+                        <p class="has-error" ng-show="unsafe_password">
+                          {{ "The choosen password is unsafe, it should have" | translate }}:
+                        </p>
+                        <li class="has-error" ng-hide="pwdHasLetter">
+                          {{ "At least one letter" | translate }}
+                        </li>
+                        <li class="has-error" ng-hide="pwdHasNumber">
+                          {{ "At least one number" | translate }}
+                        </li>
+                        <li class="has-error" ng-hide="pwdValidLength">
+                          {{ "At least 8 keypress long" | translate }}
+                        </li>
+                      </div>
+                      <div class="form-group">
+                        <label>{{ "Description" | translate }}</label>
+                        <div>
+                          <textarea class="form-control" ng-model="receiver.description">{{receiver.description}}</textarea>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>{{ "Presentation Order" | translate }}</label>
+                        <input class="form-control" ng-model="receiver.presentation_order" type="number">
                       </div>
                     </div>
 
-                    <div class="form-group table-bordered">
-                      <input ng-model="receiver.can_delete_submission" type="checkbox" ng-disabled="node.can_delete_submission">
-                      <label>{{ "Permit the Receiver to delete Tips" | translate }}</label>
-                      <div ng-show="receiver.can_delete_submission && !node.can_delete_submission">
-                        <span class="label label-info">
-                          {{ "now Enabled:" | translate }}
-                        </span>
-                        {{ "The Receiver will be now able to delete Tips and their content." | translate }}
-                      </div>
-                      <div ng-show="node.can_delete_submission">
-                        <span class="label label-info">
-                          {{ "now Enabled:" | translate }}
-                        </span>
-                        {{ "The setting is enabled at Node level."}}
+                    <div class="col-md-6">
+                      <label>{{ "Contexts" | translate }}</label>
+                      <div class="selectionList">
+                        <div ng-repeat="context in admin.contexts">
+                          <div class="row" ng-click="toggle(context)">
+                            <span class="col-md-1">
+                              <span ng-show="isSelected(context)">
+                                <i class="glyphicon glyphicon-check"></i>
+                              </span>
+                              <span ng-show="!isSelected(context)">
+                                <i class="glyphicon glyphicon-unchecked"></i>
+                              </span>
+                            </span>
+                            <span class="col-md-10">{{context.name}}</span>
+                          </div>
+                        </ul>
                       </div>
                     </div>
-
-                    <div class="form-group" ng-show="receiver.gpg_key_info">
-                      <p>
-                        {{ "PGP Key details" | translate }}
-                        <br />
-                        {{ "The fingerprint is:" | translate }}
-                        <b>{{receiver.gpg_key_fingerprint}}</b>
-                      </p>
-
-                      <div>
-                        <pre>{{receiver.gpg_key_info}}</pre>
-                      </div>
-
+                  </div>
+                </div>
+                  <div class="row">
+                    <div class="col-md-12">
                       <div class="form-group table-bordered">
-                        <input ng-model="receiver.gpg_enable_notification" type="checkbox">
-                        <label>{{ "Enable encrypted notification" | translate }}</label>
-                        <div ng-show="receiver.gpg_enable_notification">
-                          <span class="label label-success">
+                        <input ng-model="receiver.postpone_superpower" type="checkbox" ng-disabled="node.postpone_superpower">
+                        <label>{{ "Permit the Receiver to postpone expiration date of the Tips" | translate }}</label>
+                        <div ng-show="receiver.postpone_superpower && !node.postpone_superpower">
+                          <span class="label label-info">
                             {{ "now Enabled:" | translate }}
                           </span>
-                          {{ "Every notification will be encrypted with the PGP key." | translate }}
+                          {{ "The Receiver will be now able to postpone Tip expiration." | translate }}
                         </div>
-                        <div ng-show="!receiver.gpg_enable_notification">
-                          <span class="label label-danger">
-                            {{ "now Disabled:" | translate }}
-                          </span>
-                          {{ "Every notification won't be encrypted." | translate }}
-                        </div>
-                      </div>
-
-                      <div class="form-group table-bordered">
-                        <input ng-model="receiver.gpg_enable_files" type="checkbox">
-                        <label>{{ "Enable file encryption" | translate }}</label>
-                        <div ng-show="receiver.gpg_enable_files">
-                          <span class="label label-success">
+                        <div ng-show="node.postpone_superpower">
+                          <span class="label label-info">
                             {{ "now Enabled:" | translate }}
                           </span>
-                          {{ "Every downloaded file will be encrypted with the PGP key." | translate }}
-                        </div>
-                        <div ng-show="!receiver.gpg_enable_files">
-                          <span class="label label-danger">
-                            {{ "now Disabled:" | translate }}
-                          </span>
-                          {{ "Every downloaded file won't be encrypted." | translate }}
+                          {{ "The setting is enabled at Node level."}}
                         </div>
                       </div>
 
                       <div class="form-group table-bordered">
-                        <input ng-model="receiver.gpg_key_remove" type="checkbox">
-                        <label>{{ "Remove the PGP key" | translate }}</label>
+                        <input ng-model="receiver.can_delete_submission" type="checkbox" ng-disabled="node.can_delete_submission">
+                        <label>{{ "Permit the Receiver to delete Tips" | translate }}</label>
+                        <div ng-show="receiver.can_delete_submission && !node.can_delete_submission">
+                          <span class="label label-info">
+                            {{ "now Enabled:" | translate }}
+                          </span>
+                          {{ "The Receiver will be now able to delete Tips and their content." | translate }}
+                        </div>
+                        <div ng-show="node.can_delete_submission">
+                          <span class="label label-info">
+                            {{ "now Enabled:" | translate }}
+                          </span>
+                          {{ "The setting is enabled at Node level."}}
+                        </div>
                       </div>
 
-                    </div>
+                      <div class="form-group" ng-show="receiver.gpg_key_info">
+                        <p>
+                          {{ "PGP Key details" | translate }}
+                          <br />
+                          {{ "The fingerprint is:" | translate }}
+                          <b>{{receiver.gpg_key_fingerprint}}</b>
+                        </p>
 
-                    <div class="form-group" ng-hide="receiver.gpg_key_fingerprint">
-                      <div class="alert alert-danger" ng-hide="preferences.gpg_key_fingerprint">
-                        <b>{{ "Encryption not enabled!" | translate }}</b>
+                        <div>
+                          <pre>{{receiver.gpg_key_info}}</pre>
+                        </div>
+
+                        <div class="form-group table-bordered">
+                          <input ng-model="receiver.gpg_enable_notification" type="checkbox">
+                          <label>{{ "Enable encrypted notification" | translate }}</label>
+                          <div ng-show="receiver.gpg_enable_notification">
+                            <span class="label label-success">
+                              {{ "now Enabled:" | translate }}
+                            </span>
+                            {{ "Every notification will be encrypted with the PGP key." | translate }}
+                          </div>
+                          <div ng-show="!receiver.gpg_enable_notification">
+                            <span class="label label-danger">
+                              {{ "now Disabled:" | translate }}
+                            </span>
+                            {{ "Every notification won't be encrypted." | translate }}
+                          </div>
+                        </div>
+
+                        <div class="form-group table-bordered">
+                          <input ng-model="receiver.gpg_enable_files" type="checkbox">
+                          <label>{{ "Enable file encryption" | translate }}</label>
+                          <div ng-show="receiver.gpg_enable_files">
+                            <span class="label label-success">
+                              {{ "now Enabled:" | translate }}
+                            </span>
+                            {{ "Every downloaded file will be encrypted with the PGP key." | translate }}
+                          </div>
+                          <div ng-show="!receiver.gpg_enable_files">
+                            <span class="label label-danger">
+                              {{ "now Disabled:" | translate }}
+                            </span>
+                            {{ "Every downloaded file won't be encrypted." | translate }}
+                          </div>
+                        </div>
+
+                        <div class="form-group table-bordered">
+                          <input ng-model="receiver.gpg_key_remove" type="checkbox">
+                          <label>{{ "Remove the PGP key" | translate }}</label>
+                        </div>
+
                       </div>
 
-                      <button class="btn btn-info" ng-init="send_key=false" ng-click="send_key = !send_key">
-                        <i class="glyphicon glyphicon-plus" ng-hide="send_key"></i>
-                        <i class="glyphicon glyphicon-minus" ng-show="send_key"></i>
-                        {{ "Configure a PGP key" | translate }}
-                      </button>
+                      <div class="form-group" ng-hide="receiver.gpg_key_fingerprint">
+                        <div class="alert alert-danger" ng-hide="preferences.gpg_key_fingerprint">
+                          <b>{{ "Encryption not enabled!" | translate }}</b>
+                        </div>
 
-                      <div ng-show="send_key">
-                        <br />
-                        <label>{{ "Copy and Paste here the PGP Key:" | translate }}</label>
-                        <textarea class="form-control" ng-model="receiver.gpg_key_armor"></textarea>
+                        <button class="btn btn-info" ng-init="send_key=false" ng-click="send_key = !send_key">
+                          <i class="glyphicon glyphicon-plus" ng-hide="send_key"></i>
+                          <i class="glyphicon glyphicon-minus" ng-show="send_key"></i>
+                          {{ "Configure a PGP key" | translate }}
+                        </button>
+
+                        <div ng-show="send_key">
+                          <br />
+                          <label>{{ "Copy and Paste here the PGP Key:" | translate }}</label>
+                          <textarea class="form-control" ng-model="receiver.gpg_key_armor"></textarea>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
 
       <div ng-controller="AdminReceiverAddCtrl">

@@ -8,6 +8,7 @@
     </a>
   </div>
 </div>
+<div ui-sortable="fieldsSortableOptions" ng-model="context.fields">
 <div ng-repeat="field in context.fields | orderBy:'presentation_order'" class="contextFields" ng-controller="AdminFieldEditorCtrl">
   <div class="field" ng-hide="editing" ng-click="editing=true">
     {{field.name}}&nbsp;
@@ -94,5 +95,6 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 <br />
