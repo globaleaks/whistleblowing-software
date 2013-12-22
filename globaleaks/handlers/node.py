@@ -78,7 +78,6 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         "selectable_receiver": bool(context.selectable_receiver),
         "tip_max_access": int(context.tip_max_access),
         "tip_timetolive": int(context.tip_timetolive),
-        "receipt_description": u'NYI', # unicode(context.receipt_description), # optlang
         "submission_introduction": u'NYI', # unicode(context.submission_introduction), # optlang
         "submission_disclaimer": u'NYI', # unicode(context.submission_disclaimer), # optlang
         "select_all_receivers": context.select_all_receivers,

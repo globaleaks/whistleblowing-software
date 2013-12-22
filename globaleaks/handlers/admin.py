@@ -83,6 +83,7 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
         "maximum_selectable_receivers": context.maximum_selectable_receivers,
         "require_pgp": context.require_pgp,
         "show_small_cards": context.show_small_cards,
+        "presentation_order": context.presentation_order,
     }
 
     mo = structures.Rosetta()
@@ -124,6 +125,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "tip_notification": True if receiver.tip_notification else False,
         "file_notification": True if receiver.file_notification else False,
         "message_notification": True if receiver.message_notification else False,
+        "presentation_order": receiver.presentation_order,
     }
 
     # only 'description' at the moment is a localized object here

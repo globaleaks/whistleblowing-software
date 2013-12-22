@@ -294,7 +294,8 @@ class MockDict():
             'gpg_key_armor' : u'',
             'gpg_enable_notification': False,
             'gpg_enable_files': False,
-            'gpg_key_remove': False
+            'gpg_key_remove': False,
+            'presentation_order': 0,
         }
 
         self.dummyContext = {
@@ -325,7 +326,8 @@ class MockDict():
             'require_file_description': False,
             'delete_consensus_percentage': 0,
             'require_pgp': False,
-            'show_small_cards': False
+            'show_small_cards': False,
+            'presentation_order': 0,
         }
 
         self.dummySubmission = {

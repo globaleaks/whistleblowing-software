@@ -191,11 +191,14 @@ class Context(Model):
     require_pgp = Bool()
     show_small_cards = Bool()
 
+    presentation_order = Int()
+
     unicode_keys = [ 'receipt_regexp' ]
     localized_strings = ['name', 'description',
                          'receiver_introduction', 'fields_introduction' ]
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'file_max_download',
-                 'maximum_selectable_receivers', 'delete_consensus_percentage' ]
+                 'maximum_selectable_receivers', 'delete_consensus_percentage',
+                 'presentation_order' ]
     bool_keys = [ 'selectable_receiver', 'file_required', 'select_all_receivers',
                   'postpone_superpower', 'can_delete_submission',
                   'require_file_description', 'require_pgp', 'show_small_cards' ]
@@ -529,9 +532,11 @@ class Receiver(Model):
     #                         "ReceiverContext.receiver_id",
     #                         "Receiver.id")
 
+    presentation_order = Int()
+
     unicode_keys = ['name', 'mail_address' ]
     localized_strings = [ 'description' ]
-    int_keys = [ 'receiver_level' ]
+    int_keys = [ 'receiver_level', 'presentation_order' ]
     bool_keys = [ 'can_delete_submission', 'tip_notification',
                   'comment_notification', 'file_notification',
                   'message_notification', 'postpone_superpower' ]
