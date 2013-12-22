@@ -1,6 +1,13 @@
 GLClient.controller('AdminReceiversCtrl', ['$scope',
 function($scope) {
   $scope.randomFluff = Math.round(Math.random()*1000000);
+
+  $scope.save_all = function() {
+    angular.forEach($scope.admin.receivers, function(receiver, key) {
+        $scope.update(receiver);
+    });
+  }
+
   $scope.delete = function(receiver) {
     var idx = _.indexOf($scope.admin.receivers, receiver);
 
@@ -9,6 +16,29 @@ function($scope) {
     });
 
   };
+
+  $scope.sortableOptions = {
+    stop: function(e, ui) {
+      $scope.update_receivers_order();
+    }
+  };
+
+  $scope.reorder_receivers_alphabetically = function() {
+    $scope.admin.receivers = _($scope.admin.receivers).sortBy(function(receiver) {
+      return receiver.name;
+    });
+
+    $scope.update_receivers_order();
+  }
+
+  $scope.update_receivers_order = function() {
+    var i = 0;
+    angular.forEach($scope.admin.receivers, function(receiver, key) {
+        receiver.presentation_order = i + 1;
+        i += 1;
+    });
+  }
+
 }]);
 
 GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher',
@@ -88,6 +118,7 @@ GLClient.controller('AdminReceiverAddCtrl', ['$scope', 'passwordWatcher',
     receiver.gpg_key_status = 'ignored';
     receiver.gpg_enable_notification = false;
     receiver.gpg_enable_files = false;
+    receiver.presentation_order = 0;
     receiver.$save(function(added_receiver){
       $scope.admin.receivers.push(added_receiver);
       $scope.new_receiver = {};

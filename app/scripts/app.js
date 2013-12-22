@@ -3,6 +3,7 @@
 var GLClient = angular.module('GLClient', [
     'ngRoute',
     'ui.bootstrap',
+    'ui.sortable',
     'resourceServices',
     'submissionUI',
     'GLClientFilters',
