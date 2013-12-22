@@ -37,7 +37,9 @@ This comment is needed in order to push the following strings on transifex
                   <div class="editorHeader contextEditorHeader">
                     <div class="col-md-12" ng-show="!editing">
                       <span class="col-md-6">{{context.name}}</span>
-                      <span class="pull-right" ng-show="show_hint">Click to edit, Drag to order</span>
+                      <span class="pull-right" ng-show="show_hint">
+                        {{ "Click to edit, Drag to order" | translate }}
+                      </span>
                     </div>
 
                     <div class="col-md-12" ng-show="editing">
