@@ -42,7 +42,7 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "message_notification" : receiver.message_notification,
         "mail_address": receiver.mail_address,
         "failed_login": receiver.user.failed_login_count,
-        "contexts": []
+        "contexts": [],
     }
 
     mo = Rosetta()
