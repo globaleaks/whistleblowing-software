@@ -9,92 +9,96 @@
   </div>
 </div>
 <div ui-sortable="fieldsSortableOptions" ng-model="context.fields">
-<div ng-repeat="field in context.fields | orderBy:'presentation_order'" class="contextFields" ng-controller="AdminFieldEditorCtrl">
-  <div class="field" ng-hide="editing" ng-click="editing=true">
-    {{field.name}}&nbsp;
-    <a href="" data-content="{{field.hint}}" popover="{{field.name}}" popover-placement="right" popover-trigger="mouseenter">
-      <i class="glyphicon glyphicon-question-sign"></i>
-    </a>
-  </div>
-  <div class="fieldEditor" ng-show="editing">
-    <div class="fieldEditorHeader field" ng-click="editing=false" ng-class="{invalid: newField.$invalid}">
-      {{field.name}}&nbsp;<span>{{ "click to close" | translate }}</span>
-    </div>
+  <div ng-repeat="field in context.fields | orderBy:'presentation_order'" class="contextFieldsa" ng-controller="AdminFieldEditorCtrl">
+    <div class="field">
+      <div class="fieldEditorHeader" ng-init="editing=false" ng-click="editing=!editing">
+        {{field.name}}&nbsp;
+        <a href="" data-content="{{field.hint}}" popover="{{field.name}}" popover-placement="right" popover-trigger="mouseenter">
+          <i class="glyphicon glyphicon-question-sign"></i>
+        </a>
+        <div class="pull-right" ng-show="editing" ng-class="{invalid: newField.$invalid}">
+          <button class="btn btn-xs btn-danger" ng-click="deleteField(field)">
+            <i class="glyphicon glyphicon-remove"></i>
+            {{ "Delete" | translate }}
+          </button>
+        </div>
+      </div>
 
-    <div ng-form="" name="newField">
-      <div class="row fieldEditorBody">
-          <a ng-click="deleteField(field)" class="delete">
-            {{ "delete" | translate }}
-          </a>
-          <div class="row col-md-offset-1 col-md-10">
-            <label>{{ "Name" | translate }}</label>
-            <input class="form-control" ng-model="field.name" type="text">
-          </div>
-          <div class="row col-md-offset-1 col-md-10">
-            <label>{{ "Hint" | translate }}</label>
-            <input class="form-control" ng-model="field.hint" type="text">
-          </div>
-          <div class="row col-md-offset-1 col-md-10">
-            <input ng-model="field.required" type="checkbox">
-            <label>{{ "Required" | translate }}</label>
-          </div>
-          <div class="row col-md-offset-1 col-md-10">
-            <input ng-model="field.preview" type="checkbox">
-            <label>{{ "Show in preview" | translate }}</label>
-          </div>
-          <div class="row col-md-offset-1 col-md-10">
-            <label>{{ "Type" | translate }}</label>
-            <select id="editFieldType" class="form-control" ng-model="field.type" ng-required="">
-              <option value="text">
-             {{ "Text" | translate }}</option>
-              <option value="radio">
-              {{ "Radio Buttons" | translate }}</option>
-              <option value="select">
-              {{ "Drop Menu (Select)" | translate }}</option>
-              <option value="multiple">
-              {{ "Multi-Select" | translate }}</option>
-              <option value="checkboxes">
-              {{ "Checkboxes" | translate }}</option>
-              <option value="textarea">
-              {{ "Paragraph(s)" | translate }}</option>
-              <option value="number">
-              {{ "Number" | translate }}</option>
-              <option value="url">
-              {{ "Url" | translate }}</option>
-              <option value="phone">
-              {{ "Phone" | translate }}</option>
-              <option value="email">
-              {{ "Email" | translate }}</option>
-            </select>
-          </div>
-          <div class="row col-md-offset-1 col-md-10">
-            <label>{{ "Presentation Order" | translate }}</label>
-            <input class="form-control" ng-model="field.presentation_order" type="number">
-          </div>
+      <div ng-form="" name="newField" class="fieldEditorBody" ng-show=editing>
+        <div class="form-group">
+          <label>{{ "Name" | translate }}</label>
+          <input class="form-control" ng-model="field.name" type="text">
+        </div>
+        <div class="form-group">
+          <label>{{ "Hint" | translate }}</label>
+          <input class="form-control" ng-model="field.hint" type="text">
+        </div>
+        <div class="form-group">
+          <input ng-model="field.required" type="checkbox">
+          <label>{{ "Required" | translate }}</label>
+        </div>
+        <div class="form-group">
+          <input ng-model="field.preview" type="checkbox">
+          <label>{{ "Show in preview" | translate }}</label>
+        </div>
+        <div class="form-group">
+          <label>{{ "Type" | translate }}</label>
+          <select id="editFieldType" class="form-control" ng-model="field.type" ng-required="">
+            <option value="text">
+              {{ "Text" | translate }}
+            </option>
+            <option value="radio">
+              {{ "Radio Buttons" | translate }}
+            </option>
+            <option value="select">
+              {{ "Drop Menu (Select)" | translate }}
+            </option>
+            <option value="multiple">
+              {{ "Multi-Select" | translate }}
+            </option>
+            <option value="checkboxes">
+              {{ "Checkboxes" | translate }}
+            </option>
+            <option value="textarea">
+              {{ "Paragraph(s)" | translate }}
+            </option>
+            <option value="number">
+              {{ "Number" | translate }}
+            </option>
+            <option value="url">
+              {{ "Url" | translate }}
+            </option>
+            <option value="phone">
+              {{ "Phone" | translate }}
+            </option>
+            <option value="email">
+              {{ "Email" | translate }}
+            </option>
+          </select>
+        </div>
 
-          <div ng-switch="" on="typeSwitch(field.type)">
-            <div ng-switch-default=""></div>
+        <div ng-switch="" on="typeSwitch(field.type)">
+          <div ng-switch-default=""></div>
 
-            <div ng-switch-when="multiple">
-              <div class="row col-md-offset-1 col-md-10" ng-repeat="option in field.options">
-                <form class="form-inline">
-                  <div class="form-group">
-                    <label>{{ "Name" | translate }}</label>
-                    <input class="form-control" placeholder="name" ng-model="option.name" ng-change="updateValue(option)" type="text">
-                  </div>
-                </form>
-              </div>
-              <div class="row col-md-offset-1 col-md-10">
-                <button class="btn btn-info" ng-click="addOption(field)">
-                  <i class="glyphicon glyphicon-plus-sign"></i> 
-                  {{ "Add option" | translate }}
-                </button>
-              </div>
+          <div ng-switch-when="multiple">
+            <div class="row col-md-offset-1 col-md-10" ng-repeat="option in field.options">
+              <form class="form-inline">
+                <div class="form-group">
+                  <label>{{ "Name" | translate }}</label>
+                  <input class="form-control" placeholder="name" ng-model="option.name" ng-change="updateValue(option)" type="text">
+                </div>
+              </form>
+            </div>
+            <div class="row col-md-offset-1 col-md-10">
+              <button class="btn btn-info" ng-click="addOption(field)">
+                <i class="glyphicon glyphicon-plus-sign"></i> 
+                {{ "Add option" | translate }}
+              </button>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 <br />

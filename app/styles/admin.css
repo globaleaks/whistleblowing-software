@@ -32,55 +32,24 @@
 }
 
 .field {
-  padding-left: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
   position: relative;
-
   border: 1px solid rgb(204, 204, 204);
-}
-
-.field:hover {
-  background-color: rgb(250, 250, 250);
-}
-
-.field .type {
-  position: absolute;
-  right: 20px;
+  margin-bottom: 20px;
 }
 
 .contextFields {
   margin-top: 10px;
 }
 
-.fieldEditorHeader span {
-  margin-right: 10px;
-  font-style: italic;
-  float: right;
-}
-
-.fieldEditorHeader.invalid {
-  background-color: #EB6C6C;
+.fieldEditorHeader {
+  padding: 20px;
 }
 
 .fieldEditorBody {
-
-  border: 1px solid rgb(204, 204, 204);
-  background-color: rgb(252, 252, 248);
-  margin-top: -20px;
-  margin-left: 20px;
-  padding-bottom: 10px;
-  padding-top: 20px;
+  background-color: rgb(250, 250, 250);
+  padding: 20px;
 }
 
-
-.fieldEditorBody a.delete {
-  float: right;
-  margin-right: 68px;
-  font-weight: bold;
-  color: #ee5f5b;
-}
 
 .editorHeader {
   background-color: rgb(252, 252, 252);
