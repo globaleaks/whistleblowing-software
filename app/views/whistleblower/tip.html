@@ -77,7 +77,7 @@ This comment is needed in order to push the following strings on transifex
             </tr>
           </thead>
           <tbody id="receiverListBody">
-            <tr ng-repeat="receiver in tip.receivers">
+            <tr ng-repeat="receiver in tip.receivers | orderBy:'name'">
               <td>{{receiver.name}}</td>
               <td>{{receiver.description}}</td>
               <td>{{receiver.access_counter}}</td>

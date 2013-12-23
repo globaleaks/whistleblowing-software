@@ -55,7 +55,7 @@
               {{ "I want to report on" | translate }}
             </span>
 
-            <select class="form-control contexts" ng-model="submission.current_context" ng-options="context as context.name for context in submission.contexts | orderBy:'name'">
+            <select class="form-control contexts" ng-model="submission.current_context" ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'">
             </select>
 
         </div>
@@ -73,7 +73,7 @@
           <div>{{ "Receivers selected:" | translate }} {{selected_receivers_count()}}</div>
         </div>
 
-        <div id="ReceiverSelectionBoxBig" ng-repeat="receiver in submission.current_context_receivers | orderBy:'name'" ng-show="!submission.current_context.show_small_cards">
+        <div id="ReceiverSelectionBoxBig" ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" ng-show="!submission.current_context.show_small_cards">
           <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}" ng-click="switch_selection(receiver.receiver_gus)">
             <div class="row receiverCardTitle">
               <div class="col-md-10">
@@ -100,7 +100,7 @@
           <div class="clearfix" ng-show="$index % 2"></div>
         </div>
 
-        <div id="ReceiverSelectionBoxSmall" ng-repeat="receiver in submission.current_context_receivers | orderBy:'name'" ng-show="submission.current_context.show_small_cards">
+        <div id="ReceiverSelectionBoxSmall" ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" ng-show="submission.current_context.show_small_cards">
           <div class="form-group col-md-3">
             <div ng-click="switch_selection(receiver.receiver_gus)" class="receiverCard" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}">
               <div class="row receiverCardTitle">
