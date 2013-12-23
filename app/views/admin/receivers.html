@@ -5,6 +5,9 @@ This comment is needed in order to push the following strings on transifex
 {{ "Receivers Configuration" | translate }}
 {{ "Administration Interface" | translate }}
 
+{{ "Presentation Order" | translate }} <- this has been removed by the way we
+                                          do not want to loose present translations
+
 -->
 <div ng-include="'views/partials/header.html'"
      onload="header_subsection='Receivers Configuration';
@@ -124,10 +127,6 @@ This comment is needed in order to push the following strings on transifex
                         <div>
                           <textarea class="form-control" ng-model="receiver.description">{{receiver.description}}</textarea>
                         </div>
-                      </div>
-                      <div class="form-group">
-                        <label>{{ "Presentation Order" | translate }}</label>
-                        <input class="form-control" ng-model="receiver.presentation_order" type="number">
                       </div>
                     </div>
 

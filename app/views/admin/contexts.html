@@ -5,6 +5,9 @@ This comment is needed in order to push the following strings on transifex
 {{ "Contexts Configuration" | translate }}
 {{ "Administration Interface" | translate }}
 
+{{ "Presentation Order" | translate }} <- this has been removed by the way we
+                                          do not want to loose present translations
+
 -->
 <div ng-include="'views/partials/header.html'"
      onload="header_subsection='Contexts Configuration';
@@ -74,10 +77,6 @@ This comment is needed in order to push the following strings on transifex
                           <textarea class="form-control" ng-model="context.description">{{context.description}}</textarea>
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label>{{ "Presentation Order" | translate }}</label>
-                        <input class="form-control" ng-model="context.presentation_order" type="number">
-                      </div>
                       <div ng-include="'views/admin/fieldeditor.html'"></div>
                     </div>
                     <div class="col-md-6">
@@ -93,7 +92,7 @@ This comment is needed in order to push the following strings on transifex
                                 <i class="glyphicon glyphicon-unchecked"></i>
                               </span>
                             </span>
-                            <span class="col-md-11">{{receiver.name}}</span>
+                            <span class="col-md-10">{{receiver.name}}</span>
                           </div>
                         </div>
                       </div>
