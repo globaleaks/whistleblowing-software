@@ -84,6 +84,7 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         "maximum_selectable_receivers": context.maximum_selectable_receivers,
         'require_pgp': context.require_pgp,
         "show_small_cards": context.show_small_cards,
+        "presentation_order": context.presentation_order,
     })
 
     mo = Rosetta()
@@ -121,6 +122,7 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
         "tags": receiver.tags,
+        "presentation_order": receiver.presentation_order,
     })
 
     mo = Rosetta()
