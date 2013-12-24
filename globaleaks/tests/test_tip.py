@@ -24,11 +24,11 @@ def vptd_dirty_copy(isowhen):
         I've found/looked for because I'm silly.
     """
     x = datetime(year=int(isowhen[0:4]),
-                    month=int(isowhen[5:7]),
-                    day=int(isowhen[8:10]),
-                    hour=int(isowhen[11:13]),
-                    minute=int(isowhen[14:16]),
-                    second=int(isowhen[17:19]) )
+                 month=int(isowhen[5:7]),
+                 day=int(isowhen[8:10]),
+                 hour=int(isowhen[11:13]),
+                 minute=int(isowhen[14:16]),
+                 second=int(isowhen[17:19]))
     return x
 
 class MockHandler(base.BaseHandler):

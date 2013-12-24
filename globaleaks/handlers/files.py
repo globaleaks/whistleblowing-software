@@ -7,11 +7,12 @@
 # classes executed when an HTTP client contact /files/* URI
 
 from __future__ import with_statement
+import os
 import time
 
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
-from cyclone.web import os, StaticFileHandler
+from cyclone.web import StaticFileHandler
 from Crypto.Hash import SHA256
 
 from globaleaks.settings import transact, transact_ro, GLSetting
