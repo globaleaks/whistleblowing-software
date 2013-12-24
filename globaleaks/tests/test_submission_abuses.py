@@ -55,6 +55,7 @@ class SubmissionTest(helpers.TestGL):
         'delete_consensus_percentage': 0,
         'require_pgp': False,
         'show_small_cards': False,
+        'presentation_order': 0,
     }
 
     aReceiver1 = TTip.tipReceiver1
