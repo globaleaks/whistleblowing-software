@@ -70,6 +70,7 @@ class TTip(helpers.TestWithDB):
         'delete_consensus_percentage': 0,
         'require_pgp': False,
         'show_small_cards': False,
+        'presentation_order': 0,
     }
 
     tipReceiver1 = {
@@ -82,6 +83,7 @@ class TTip(helpers.TestWithDB):
         'postpone_superpower': False,
         'gpg_key_info': None, 'gpg_key_fingerprint': None, 'gpg_key_remove': False,
         'gpg_enable_files': False, 'gpg_enable_notification': False, 'gpg_key_armor': None,
+        'presentation_order': 0,
     }
 
     tipReceiver2 = {
@@ -94,6 +96,7 @@ class TTip(helpers.TestWithDB):
         'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
         'gpg_key_info': None, 'gpg_key_fingerprint': None, 'gpg_key_remove': False,
         'gpg_enable_files': False, 'gpg_enable_notification': False, 'gpg_key_armor': None,
+        'presentation_order': 0,
     }
 
     tipOptions = {
