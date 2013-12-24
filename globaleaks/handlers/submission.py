@@ -84,8 +84,6 @@ def import_receivers(store, submission, receiver_id_list, required=False):
             if not check:
                 submission.receivers.add(receiver)
 
-        store.commit()
-
         reloaded_submission = store.find(InternalTip, InternalTip.id == submission.id).one()
         log.debug("Context [%s] has a fixed receivers corpus #%d SID = %s" %
                 (reloaded_submission.context.name[GLSetting.memory_copy.default_language],
@@ -102,8 +100,6 @@ def import_receivers(store, submission, receiver_id_list, required=False):
         except Exception as excep:
             log.err("Unable to remove receiver from Tip, before new reassignment")
             raise excep
-
-    store.commit()
 
     # and now clean the received list and import the new Receiver set.
     receiver_id_list = set(receiver_id_list)
@@ -165,9 +161,6 @@ def import_files(store, submission, files, finalize):
         log.debug("Missing file for a submission in context %s" %
                   submission.context.name)
         raise errors.FileRequiredMissing
-
-    # commit before return
-    store.commit()
 
 
 @transact

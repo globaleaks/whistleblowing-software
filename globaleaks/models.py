@@ -458,24 +458,36 @@ class Notification(Model):
     _security_types = [ u'TLS', u'SSL' ]
 
     encrypted_tip_template = Pickle(validator=longlocal_v)
-    plaintext_tip_template = Pickle(validator=longlocal_v)
-    zip_description = Pickle(validator=longlocal_v)
-    file_template = Pickle(validator=longlocal_v)
-    comment_template = Pickle(validator=longlocal_v)
-    message_template = Pickle(validator=longlocal_v)
-
     encrypted_tip_mail_title = Pickle(validator=longlocal_v)
+    plaintext_tip_template = Pickle(validator=longlocal_v)
     plaintext_tip_mail_title = Pickle(validator=longlocal_v)
-    file_mail_title = Pickle(validator=longlocal_v)
-    comment_mail_title = Pickle(validator=longlocal_v)
-    message_mail_title = Pickle(validator=longlocal_v)
+
+    encrypted_file_template = Pickle(validator=longlocal_v)
+    encrypted_file_mail_title = Pickle(validator=longlocal_v)
+    plaintext_file_template = Pickle(validator=longlocal_v)
+    plaintext_file_mail_title = Pickle(validator=longlocal_v)
+
+    encrypted_comment_template = Pickle(validator=longlocal_v)
+    encrypted_comment_mail_title = Pickle(validator=longlocal_v)
+    plaintext_comment_template = Pickle(validator=longlocal_v)
+    plaintext_comment_mail_title = Pickle(validator=longlocal_v)
+
+    encrypted_message_template = Pickle(validator=longlocal_v)
+    encrypted_message_mail_title = Pickle(validator=longlocal_v)
+    plaintext_message_template = Pickle(validator=longlocal_v)
+    plaintext_message_mail_title = Pickle(validator=longlocal_v)
+
+    zip_description = Pickle(validator=longlocal_v)
 
     unicode_keys = ['server', 'username', 'password', 'source_name', 'source_email' ]
-    localized_strings = [ 'encrypted_tip_template', 'file_template',
-                          'comment_template', 'plaintext_tip_template',
-                          'encrypted_tip_mail_title', 'comment_mail_title',
-                          'file_mail_title', 'plaintext_tip_mail_title',
-                          'message_template', 'message_mail_title',
+    localized_strings = [ 'encrypted_tip_template', 'encrypted_tip_mail_title',
+                          'plaintext_tip_template', 'plaintext_tip_mail_title',
+                          'encrypted_file_template', 'encrypted_file_mail_title',
+                          'plaintext_file_template', 'plaintext_file_mail_title',
+                          'encrypted_comment_template', 'encrypted_comment_mail_title',
+                          'plaintext_comment_template', 'plaintext_comment_mail_title',
+                          'encrypted_message_template', 'encrypted_message_mail_title',
+                          'plaintext_message_template', 'plaintext_message_mail_title',
                           'zip_description' ]
     int_keys = [ 'port' ]
 

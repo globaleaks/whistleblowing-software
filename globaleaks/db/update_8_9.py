@@ -67,6 +67,44 @@ class Receiver_version_8(Model):
     # + is added
     # presentation_order = Int()
 
+class Notification_version_8(Model):
+    __storm_table__ = 'notification'
+    server = Unicode()
+    port = Int()
+    username = Unicode()
+    password = Unicode()
+    source_name = Unicode()
+    source_email = Unicode()
+    security = Unicode()
+    encrypted_tip_template = Pickle()
+    encrypted_tip_mail_title = Pickle()
+    plaintext_tip_template = Pickle()
+    plaintext_tip_mail_title = Pickle()
+    zip_description = Pickle()
+
+    # - these existent templates are renamed and duplicated
+    file_template = Pickle()
+    file_mail_title = Pickle()
+    comment_template = Pickle()
+    comment_mail_title = Pickle()
+    message_template = Pickle()
+    message_mail_title = Pickle()
+
+    # + these are the new ones:
+    # encrypted_file_mail_template = Pickle()
+    # encrypted_file_mail_title = Pickle()
+    # plaintext_file_mail_template = Pickle()
+    # plaintext_file_mail_title = Pickle()
+    # encrypted_comment_template = Pickle()
+    # encrypted_comment_mail_title = Pickle()
+    # plaintext_comment_template = Pickle()
+    # plaintext_comment_mail_title = Pickle()
+    # encrypted_message_template = Pickle()
+    # encrypted_message_mail_title = Pickle()
+    # plaintext_message_template = Pickle()
+    # plaintext_message_mail_title = Pickle()
+
+
 
 class Replacer89(TableReplacer):
 
@@ -86,7 +124,7 @@ class Replacer89(TableReplacer):
                     new_obj.presentation_order = 0
                     continue
 
-                setattr(new_obj, v.name, getattr(old_obj, v.name) )
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
         self.store_new.commit()
@@ -108,7 +146,61 @@ class Replacer89(TableReplacer):
                     new_obj.presentation_order = 0
                     continue
 
-                setattr(new_obj, v.name, getattr(old_obj, v.name) )
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
+        self.store_new.commit()
+
+    def migrate_Notification(self):
+        print "%s Notification migration assistant: (encrypted/plaintext duplication)" % self.std_fancy
+
+        old_notification = self.store_old.find(self.get_right_model("Notification", 8)).one()
+        new_notification = self.get_right_model("Notification", 9)()
+
+        for k, v in new_notification._storm_columns.iteritems():
+            print v.name
+
+            if v.name == 'encrypted_file_template':
+                new_notification.encrypted_file_template = old_notification.file_template
+                continue
+            if v.name == 'encrypted_file_mail_title':
+                new_notification.encrypted_file_mail_title  = old_notification.file_mail_title
+                continue
+            if v.name == 'plaintext_file_template':
+                new_notification.plaintext_file_template  = old_notification.file_template
+                continue
+            if v.name == 'plaintext_file_mail_title':
+                new_notification.plaintext_file_mail_title  = old_notification.file_mail_title
+                continue
+
+            if v.name == 'encrypted_comment_template':
+                new_notification.encrypted_comment_template = old_notification.comment_template
+                continue
+            if v.name == 'encrypted_comment_mail_title':
+                new_notification.encrypted_comment_mail_title  = old_notification.comment_mail_title
+                continue
+            if v.name == 'plaintext_comment_template':
+                new_notification.plaintext_comment_template  = old_notification.comment_template
+                continue
+            if v.name == 'plaintext_comment_mail_title':
+                new_notification.plaintext_comment_mail_title  = old_notification.comment_mail_title
+                continue
+
+            if v.name == 'encrypted_message_template':
+                new_notification.encrypted_message_template = old_notification.message_template
+                continue
+            if v.name == 'encrypted_message_mail_title':
+                new_notification.encrypted_message_mail_title  = old_notification.message_mail_title
+                continue
+            if v.name == 'plaintext_message_template':
+                new_notification.plaintext_message_template  = old_notification.message_template
+                continue
+            if v.name == 'plaintext_message_mail_title':
+                new_notification.plaintext_message_mail_title  = old_notification.message_mail_title
+                continue
+
+
+            setattr(new_notification, v.name, getattr(old_notification, v.name))
+
+        self.store_new.add(new_notification)
         self.store_new.commit()
