@@ -216,8 +216,13 @@ GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http)
       ctrl: TabCtrl
     },
     {
-      title:"Notification Templates",
+      title:"Plaintext Notification Templates",
       template:"views/admin/mail/tab2.html",
+      ctrl: TabCtrl
+    },
+    {
+      title:"Encrypted Notification Templates",
+      template:"views/admin/mail/tab3.html",
       ctrl: TabCtrl
     }
   ];

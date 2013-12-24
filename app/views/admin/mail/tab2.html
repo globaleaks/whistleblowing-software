@@ -1,73 +1,70 @@
 <div class="row">
   <div class="col-md-8">
-
-    <div class="form-group">
-      <label>{{ "Encrypted Tip Email Subject" | translate }}</label>
-      <input ng-model="admin.notification.encrypted_tip_mail_title" class="input-xlarge form-control" type="text">
+    <div>
+      {{ "This interface permits to configure email templates used for unsecure mail notifications." | translate }}
     </div>
 
-    <div class="form-group">
-      <label>{{ "Encrypted Tip Email template" | translate }}</label>
-      <div>
-        <textarea class="form-control mobileTextArea" ng-model="admin.notification.encrypted_tip_template"></textarea>
-      </div>
-    </div>
+    <br /><br />
 
     <div class="form-group">
-      <label>{{ "Plaintext Tip Email Subject" | translate }}</label>
+      <label>{{ "Tip Email Subject" | translate }}</label>
       <input ng-model="admin.notification.plaintext_tip_mail_title" class="input-xlarge form-control" type="text">
     </div>
 
     <div class="form-group">
-      <label>{{ "Plaintext Tip Email template" | translate }}</label>
+      <label>{{ "Tip Email Template" | translate }}</label>
       <div>
-        <textarea class="form-control mobileTextArea" ng-model="admin.notification.plaintext_tip_template"></textarea>
+        <textarea ng-model="admin.notification.plaintext_tip_template" class="form-control mobileTextArea"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{ "Tip Email Subject" | translate }}</label>
+      <input ng-model="admin.notification.plaintext_tip_mail_title" class="input-xlarge form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>{{ "Tip Email Template" | translate }}</label>
+      <div>
+        <textarea ng-model="admin.notification.plaintext_tip_template" class="form-control mobileTextArea"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <label>{{ "Comment Email Subject" | translate }}</label>
-      <input ng-model="admin.notification.comment_mail_title" class="input-xlarge form-control" type="text">
+      <input ng-model="admin.notification.plaintext_comment_mail_title" class="input-xlarge form-control" type="text">
     </div>
 
     <div class="form-group">
-      <label>{{ "Comment Email template" | translate }}</label>
+      <label>{{ "Comment Email Template" | translate }}</label>
       <div>
-        <textarea class="form-control mobileTextArea" ng-model="admin.notification.comment_template"></textarea>
+        <textarea ng-model="admin.notification.plaintext_comment_template" class="form-control mobileTextArea"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <label>{{ "File Email Subject" | translate }}</label>
-      <input ng-model="admin.notification.file_mail_title" class="input-xlarge form-control" type="text">
+      <input ng-model="admin.notification.plaintext_file_mail_title" class="input-xlarge form-control" type="text">
     </div>
 
     <div class="form-group">
-      <label>{{ "File Email template" | translate }}</label>
+      <label>{{ "File Email Template" | translate }}</label>
       <div>
-        <textarea class="form-control mobileTextArea" ng-model="admin.notification.file_template"></textarea>
+        <textarea ng-model="admin.notification.plaintext_file_template" class="form-control mobileTextArea"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <label>{{ "Message Email Subject" | translate }}</label>
-      <input ng-model="admin.notification.message_mail_title" class="input-xlarge form-control" type="text">
+      <input ng-model="admin.notification.plaintext_message_mail_title" class="input-xlarge form-control" type="text">
     </div>
 
     <div class="form-group">
-      <label>{{ "Message Email template" | translate }}</label>
+      <label>{{ "Message Email Template" | translate }}</label>
       <div>
-        <textarea class="form-control mobileTextArea" ng-model="admin.notification.message_template"></textarea>
+        <textarea ng-model="admin.notification.plaintext_message_template" class="form-control mobileTextArea"></textarea>
       </div>
     </div>
 
-    <div class="form-group">
-      <label>{{ "Zip Description template" | translate }}</label>
-      <div>
-        <textarea class="form-control mobileTextArea" ng-model="admin.notification.zip_description"></textarea>
-      </div>
-    </div>
-
-      <div class="form-group">
   </div>
 </div>
