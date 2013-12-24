@@ -16,6 +16,18 @@ from globaleaks.utils.templating import Templating
 
 class notifTemplateTest(TestWithDB):
 
+    templates_list = [
+        'default_ETNT.txt',
+        'default_PTNT.txt',
+        'default_ECNT.txt',
+        'default_PCNT.txt',
+        'default_EMNT.txt',
+        'default_PMNT.txt',
+        'default_EFNT.txt',
+        'default_PFNT.txt',
+        'default_ZCT.txt'
+    ]
+
     generic_keyword_list = [
         '%NodeName%',
         '%HiddenService%',
@@ -43,6 +55,7 @@ class notifTemplateTest(TestWithDB):
         '%FileSize%',
     ]
 
+    templates = {}
 
     @transact_ro
     def get_a_fucking_random_submission(self, store):
@@ -103,26 +116,17 @@ class notifTemplateTest(TestWithDB):
 
     def _load_defaults(self):
         # CWD is on _trial_temp
-        CNT = os.path.join(os.getcwd(), '..', 'globaleaks', 'db', 'default_CNT.txt')
-        TNT = os.path.join(os.getcwd(), '..', 'globaleaks', 'db', 'default_TNT.txt')
-        FNT = os.path.join(os.getcwd(), '..', 'globaleaks', 'db', 'default_FNT.txt')
 
-        if not os.path.isfile(CNT):
-            raise AssertionError("path mistake ?")
+        tps_path = 'globaleaks/db/templates'
 
-        # here is fine the localization, it's DB feeding
-        with open(CNT) as f:
-            self.Comment_notif_template = { "en" : f.read() }
+        for t in self.templates_list:
+            tp_path = os.path.join(os.getcwd(), '..', tps_path, t)
 
-        with open(TNT) as f:
-            self.Tip_notifi_template = { "en" : f.read() }
-
-        with open(FNT) as f:
-            self.File_notifi_template = { "en" : f.read() }
-
-        self.assertGreater(self.Comment_notif_template['en'], 0)
-        self.assertGreater(self.Tip_notifi_template['en'], 0)
-        self.assertGreater(self.File_notifi_template['en'], 0)
+            # we simply check for file opening while translation
+            # related things happen at db level
+            with open(tp_path) as f:
+                self.templates[t] = { "en" : f.read() }
+                self.assertGreater(self.templates[t]['en'], 0)
 
     @inlineCallbacks
     def test_keywords_conversion(self):
@@ -153,26 +157,27 @@ class notifTemplateTest(TestWithDB):
             raise excep
         ### END OF THE INITIALIZE BLOCK
 
-        self.Comment_notif_template = { 'en': u"" }
-        self.Tip_notifi_template = { 'en' : u"" }
-        self.File_notifi_template = { 'en' : u"" }
+        self.templates = {}
+        for t in self.templates_list:
+            self.templates[t] = { 'en': u"" }
 
-        for k in notifTemplateTest.generic_keyword_list:
-            self.Comment_notif_template['en'] += " " + k
-            self.Tip_notifi_template['en'] += " " + k
-            self.File_notifi_template['en'] += " " + k
+            for k in notifTemplateTest.generic_keyword_list:
+                self.templates[t]['en'] += " " + k
 
         for k in notifTemplateTest.tip_keyword_list:
-            self.Tip_notifi_template['en'] += " " + k
+            self.templates['default_ETNT.txt']['en'] += " " + k
+            self.templates['default_PTNT.txt']['en'] += " " + k
 
         for k in notifTemplateTest.protected_keyword_list:
-            self.Tip_notifi_template['en'] += " " + k
+            self.templates['default_ETNT.txt']['en'] += " " + k
 
         for k in notifTemplateTest.comment_keyword_list:
-            self.Comment_notif_template['en'] += " " + k
+            self.templates['default_ECNT.txt']['en'] += " " + k
+            self.templates['default_PCNT.txt']['en'] += " " + k
 
         for k in notifTemplateTest.file_keyword_list:
-            self.File_notifi_template['en'] += " " + k
+            self.templates['default_EFNT.txt']['en'] += " " + k
+            self.templates['default_PFNT.txt']['en'] += " " + k
 
         # THE REAL CONVERSION TEST START HERE:
         self.mockSubmission = MockDict().dummySubmission
@@ -190,7 +195,7 @@ class notifTemplateTest(TestWithDB):
             print excep; raise excep
 
         # with the event, we can finally call the template filler
-        gentext = Templating().format_template(self.Tip_notifi_template, self.event)
+        gentext = Templating().format_template(self.templates['default_ETNT.txt']['en'], self.event)
 
         self.assertSubstring(self.createdContext['name'], gentext)
         self.assertSubstring(created_rtip[0], gentext)
@@ -248,7 +253,7 @@ class notifTemplateTest(TestWithDB):
             print excep; raise excep
 
         # with the event, we can finally call the template filler
-        gentext = Templating().format_template(self.Tip_notifi_template, self.event)
+        gentext = Templating().format_template(self.templates['default_ETNT.txt'], self.event)
 
         self.assertSubstring(self.createdContext['name'], gentext)
         self.assertSubstring(created_rtip[0], gentext)
@@ -308,7 +313,7 @@ class notifTemplateTest(TestWithDB):
         yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
 
         # with the event, we can finally call the format checks
-        gentext = Templating().format_template(self.Tip_notifi_template, self.event)
+        gentext = Templating().format_template(self.templates['default_ETNT.txt'], self.event)
 
         self.assertSubstring(self.createdContext['name'], gentext)
         self.assertSubstring(created_rtip[0], gentext)

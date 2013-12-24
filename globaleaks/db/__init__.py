@@ -101,17 +101,29 @@ def create_tables(create_node=True):
 
         templates = {}
 
-        templates['encrypted_tip'] = acquire_email_templates('default_ENT.txt',
+        templates['encrypted_tip'] = acquire_email_templates('default_ETNT.txt',
             "default Encrypted Tip notification not available! %NodeName% configure this!")
-        templates['plaintext_tip'] = acquire_email_templates('default_TNT.txt',
+        templates['plaintext_tip'] = acquire_email_templates('default_PTNT.txt',
             "default Plaintext Tip notification not available! %NodeName% configure this!")
-        templates['comment'] = acquire_email_templates('default_CNT.txt',
-            "default Comment notification not available! %NodeName% configure this!")
-        templates['message'] = acquire_email_templates('default_MNT.txt',
-             "default Message notification not available! %NodeName% configure this!")
-        templates['file'] = acquire_email_templates('default_FNT.txt',
-            "default File notification not available! %NodeName% configure this!")
-        templates['zip_collection'] = acquire_email_templates('default_ZFC.txt',
+
+        templates['encrypted_comment'] = acquire_email_templates('default_ECNT.txt',
+            "default Encrypted Comment notification not available! %NodeName% configure this!")
+        templates['plaintext_comment'] = acquire_email_templates('default_PCNT.txt',
+            "default Plaintext Comment notification not available! %NodeName% configure this!")
+
+        templates['encrypted_message'] = acquire_email_templates('default_EMNT.txt',
+             "default Encrypted Message notification not available! %NodeName% configure this!")
+        templates['plaintext_message'] = acquire_email_templates('default_PMNT.txt',
+             "default Plaintext Message notification not available! %NodeName% configure this!")
+
+        templates['encrypted_file'] = acquire_email_templates('default_EFNT.txt',
+            "default Encrypted File notification not available! %NodeName% configure this!")
+        templates['plaintext_file'] = acquire_email_templates('default_PFNT.txt',
+            "default Plaintext File notification not available! %NodeName% configure this!")
+
+        # This specific template do not need different threatment as it is used to write some
+        # data inside zip files.  
+        templates['zip_collection'] = acquire_email_templates('default_ZCT.txt',
             "default Zip Collection template not available! %NodeName% configure this!")
 
         # Initialize the node + notification table
