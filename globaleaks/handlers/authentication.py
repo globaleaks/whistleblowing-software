@@ -247,7 +247,7 @@ def login_receiver(store, username, password):
 
     if not receiver_user or receiver_user.role != 'receiver':
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
-        return (False, None)
+        return False
 
     if not security.check_password(password, receiver_user.password, receiver_user.salt):
         receiver_user.failed_login_count += 1
@@ -257,15 +257,13 @@ def login_receiver(store, username, password):
         else:
             GLSetting.failed_login_attempts[username] = 1
 
-        return (False, None)
+        return False
     else:
         log.debug("Receiver: Authorized receiver %s" % username)
         receiver_user.last_login = datetime_now()
         receiver = store.find(Receiver, (Receiver.user_id == receiver_user.id)).one()
 
-        permissions = { 'can_delete_submission': receiver.can_delete_submission }
-
-        return (receiver.id, permissions)
+        return receiver.id
 
 @transact
 def login_admin(store, username, password):
@@ -334,7 +332,6 @@ class AuthenticationHandler(BaseHandler):
             'session_id': self.current_user.id,
             'user_id': unicode(self.current_user.user_id),
             'session_expiration': int(self.current_user.expirydate),
-            'permissions': self.current_user.permissions
         }
 
         self.write(auth_answer)
@@ -351,8 +348,7 @@ class AuthenticationHandler(BaseHandler):
         username = request['username']
         password = request['password']
         role = request['role']
-        permissions = None
-        
+
         delay = random_login_delay(username)
         if delay:
             yield security_sleep(delay)
@@ -375,19 +371,20 @@ class AuthenticationHandler(BaseHandler):
             # username is ignored
             user_id = yield login_wb(password)
         elif role == 'receiver':
-            user_id, permissions = yield login_receiver(username, password)
+            user_id = yield login_receiver(username, password)
+        else:
+            log.err("Invalid role proposed to authenticate!")
+            raise errors.InvalidAuthRequest
 
         if not user_id:
             raise errors.InvalidAuthRequest
 
         new_session_id = self.generate_session(role, user_id)
-        GLSetting.sessions[new_session_id].permissions = permissions
 
         auth_answer = {
             'session_id': new_session_id,
             'user_id': unicode(user_id),
             'session_expiration': int(GLSetting.sessions[new_session_id].expirydate),
-            'permissions': GLSetting.sessions[new_session_id].permissions
         }
 
         self.write(auth_answer)

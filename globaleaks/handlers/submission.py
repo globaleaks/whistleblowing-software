@@ -92,10 +92,8 @@ def import_receivers(store, submission, receiver_id_list, required=False):
                  reloaded_submission.receivers.count(), submission.id) )
         return
 
-    else:
-       if not context.select_all_receivers and \
-          len(receiver_id_list) > context.maximum_selectable_receivers:
-            raise errors.InvalidInputFormat("Provided an invalid number of Receivers")
+    # Before has been handled the 'fixed receiver corpus',
+    # Below we handle receiver personal selection
 
     # Clean the previous list of selected Receiver
     for prevrec in submission.receivers:
@@ -107,9 +105,18 @@ def import_receivers(store, submission, receiver_id_list, required=False):
 
     store.commit()
 
-    # without contexts policies, import WB requests and checks consistency
-    sorted_receiver_id_list = list(set(receiver_id_list))
-    for receiver_id in sorted_receiver_id_list:
+    # and now clean the received list and import the new Receiver set.
+    receiver_id_list = set(receiver_id_list)
+
+    if required and (not len(receiver_id_list)):
+        log.err("Receivers required to be selected, not empty")
+        raise errors.SubmissionFailFields("Needed almost one Receiver selected [1]")
+
+    if context.maximum_selectable_receivers and \
+                    len(receiver_id_list) > context.maximum_selectable_receivers:
+        raise errors.InvalidInputFormat("Provided an invalid number of Receivers")
+
+    for receiver_id in receiver_id_list:
         try:
             receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         except Exception as excep:
@@ -131,7 +138,7 @@ def import_receivers(store, submission, receiver_id_list, required=False):
 
     if required and submission.receivers.count() == 0:
         log.err("Receivers required to be selected, not empty")
-        raise errors.SubmissionFailFields("Needed almost one Receiver selected")
+        raise errors.SubmissionFailFields("Needed almost one Receiver selected [2]")
 
 
 # Remind: it's a store without @transaction because called by a @ŧransact

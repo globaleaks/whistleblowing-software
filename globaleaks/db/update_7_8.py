@@ -93,6 +93,8 @@ class Node_version_7(Model):
     # can_delete_submission = Bool()
     # + is added
     # subtitle = Unicode()
+    # + is added
+    # ahmia = Bool()
 
 
 class Notification_version_7(Model):
@@ -289,7 +291,7 @@ class Replacer78(TableReplacer):
                 continue
             if v.name == 'encrypted_tip_mail_title':
                 new_notification.encrypted_tip_mail_title = every_language(
-                    "[%NodeName%][%TipUN%] Encrypted Tip")
+                    "[%NodeName%] Encrypted Tip")
                 continue
             if v.name == 'plaintext_tip_template':
                 new_notification.plaintext_tip_template  = old_notification.tip_template
@@ -304,11 +306,10 @@ class Replacer78(TableReplacer):
                             "default Zip Collection template not available! %NodeName% configure this!"))
                 continue
             if v.name == 'message_template':
-                new_notification.message_template = every_language("Whistleblower: %MessageContent%")
-                # This IS NOT TO BE THE DEFAULT
+                new_notification.message_template = every_language("This is an E-Mail message to notify you about a new Message from the Whisleblower.")
                 continue
             if v.name == 'message_mail_title':
-                new_notification.message_mail_title = every_language("[%NodeName%][%TipUN%] Message")
+                new_notification.message_mail_title = every_language("[%NodeName%] Message")
                 continue
 
             setattr(new_notification, v.name, getattr(old_notification, v.name) )
@@ -330,6 +331,9 @@ class Replacer78(TableReplacer):
                 continue
             if v.name == 'subtitle':
                 new_node.subtitle = every_language(u"Optionally you can put a subtitle")
+                continue
+            if v.name == 'ahmia':
+                new_node.ahmia = False
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name) )

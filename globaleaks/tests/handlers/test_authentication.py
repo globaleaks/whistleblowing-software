@@ -269,7 +269,7 @@ class TestAuthentication(helpers.TestHandler):
 
     def test_invalid_receiver_login_wrong_password(self):
         handler = self.request({
-           'username': 'receiver',
+           'username': 'scemo',
            'password': 'INVALIDPASSWORD',
            'role': 'receiver'
         })

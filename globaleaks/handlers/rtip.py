@@ -32,10 +32,6 @@ def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.
         'escalation_threshold' : unicode(internaltip.escalation_threshold),
         'fields' : dict(internaltip.wb_fields),
 
-        # This field is used angualar.js side, to know if show the option at
-        # users interfaces. It's enabled node level by the admin
-        'im_receiver_postponer' : False,
-
         # these two fields are at the moment unsent by the client, but kept
         # maintained in unitTest. (tickets in wishlist)
         'is_pertinent' : False,
@@ -105,9 +101,9 @@ def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_c
 
     node = store.find(Node).one()
 
-    tip_desc['im_receiver_postponer'] = (node.postpone_superpower or
-                                         rtip.internaltip.context.postpone_superpower or
-                                         rtip.receiver.postpone_superpower)
+    tip_desc['postpone_superpower'] = (node.postpone_superpower or
+                                       rtip.internaltip.context.postpone_superpower or
+                                       rtip.receiver.postpone_superpower)
 
     tip_desc['can_delete_submission'] = (node.can_delete_submission or
                                          rtip.internaltip.context.can_delete_submission or

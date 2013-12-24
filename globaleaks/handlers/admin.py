@@ -47,6 +47,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
         'postpone_superpower': node.postpone_superpower,
         'can_delete_submission': node.can_delete_submission,
+        'ahmia': node.ahmia,
         'reset_css': False,
     }
 
@@ -82,6 +83,7 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
         "maximum_selectable_receivers": context.maximum_selectable_receivers,
         "require_pgp": context.require_pgp,
         "show_small_cards": context.show_small_cards,
+        "presentation_order": context.presentation_order,
     }
 
     mo = structures.Rosetta()
@@ -123,6 +125,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "tip_notification": True if receiver.tip_notification else False,
         "file_notification": True if receiver.file_notification else False,
         "message_notification": True if receiver.message_notification else False,
+        "presentation_order": receiver.presentation_order,
     }
 
     # only 'description' at the moment is a localized object here
@@ -343,6 +346,12 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
         log.err("Parameter conflict in context creation")
         raise errors.ContextParameterConflict
 
+    if request['select_all_receivers']:
+        if request['maximum_selectable_receivers']:
+            log.debug("Resetting maximum_selectable_receivers (%d) because 'select_all_receivers' is True" %
+                      request['maximum_selectable_receivers'])
+        request['maximum_selectable_receivers'] = 0
+
     for receiver_id in receivers:
         receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         if not receiver:
@@ -417,6 +426,12 @@ def update_context(store, context_gus, request, language=GLSetting.memory_copy.d
     if len(context.receipt_regexp) < 4:
         log.err("Fixing receipt regexp < 4 byte with fixme-[0-9]{13}-please")
         context.receipt_regexp = u"fixme-[0-9]{13}-please"
+
+    if request['select_all_receivers']:
+        if request['maximum_selectable_receivers']:
+            log.debug("Resetting maximum_selectable_receivers (%d) because 'select_all_receivers' is True" %
+                       request['maximum_selectable_receivers'])
+        request['maximum_selectable_receivers'] = 0
 
     try:
         fo = structures.Fields(context.localized_fields, context.unique_fields)
@@ -728,10 +743,7 @@ class ContextsCollection(BaseHandler):
         Response: adminContextDesc
         Errors: InvalidInputFormat, ReceiverGusNotFound
         """
-        #request = self.validate_message(self.request.body, requests.adminContextDesc)
-        import json
-        request = json.loads(self.request.body)
-        # AAA TODO REMIND CRITIC TEST
+        request = self.validate_message(self.request.body, requests.adminContextDesc)
 
         response = yield create_context(request, self.request.language)
 

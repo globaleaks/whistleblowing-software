@@ -42,6 +42,7 @@ def anon_serialize_node(store, user, language=GLSetting.memory_copy.default_lang
       'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
       'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
       'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
+      'ahmia': node.ahmia,
       'postpone_superpower': node.postpone_superpower,
       'can_delete_submission': node.can_delete_submission
     }
@@ -77,13 +78,13 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         "selectable_receiver": bool(context.selectable_receiver),
         "tip_max_access": int(context.tip_max_access),
         "tip_timetolive": int(context.tip_timetolive),
-        "receipt_description": u'NYI', # unicode(context.receipt_description), # optlang
         "submission_introduction": u'NYI', # unicode(context.submission_introduction), # optlang
         "submission_disclaimer": u'NYI', # unicode(context.submission_disclaimer), # optlang
         "select_all_receivers": context.select_all_receivers,
         "maximum_selectable_receivers": context.maximum_selectable_receivers,
         'require_pgp': context.require_pgp,
         "show_small_cards": context.show_small_cards,
+        "presentation_order": context.presentation_order,
     })
 
     mo = Rosetta()
@@ -115,13 +116,13 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
         return None
 
     receiver_dict.update({
-        "can_delete_submission": receiver.can_delete_submission,
         "creation_date": pretty_date_time(receiver.creation_date),
         "update_date": pretty_date_time(receiver.last_update),
         "name": unicode(receiver.name),
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
         "tags": receiver.tags,
+        "presentation_order": receiver.presentation_order,
     })
 
     mo = Rosetta()

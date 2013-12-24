@@ -11,7 +11,7 @@ from storm.expr import Desc
 from globaleaks.utils.utility import pretty_date_time, acquire_mail_address, acquire_bool, log
 from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests, errors
@@ -42,7 +42,7 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "message_notification" : receiver.message_notification,
         "mail_address": receiver.mail_address,
         "failed_login": receiver.user.failed_login_count,
-        "contexts": []
+        "contexts": [],
     }
 
     mo = Rosetta()
@@ -151,9 +151,19 @@ def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default
     rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == user_id)
     rtiplist.order_by(Desc(ReceiverTip.creation_date))
 
+    node = store.find(Node).one()
+
     rtip_summary_list = []
 
     for rtip in rtiplist:
+
+        postpone_superpower = (node.postpone_superpower or
+                               rtip.internaltip.context.postpone_superpower or
+                               rtip.receiver.postpone_superpower)
+
+        can_delete_submission = (node.can_delete_submission or
+                                 rtip.internaltip.context.can_delete_submission or
+                                 rtip.receiver.can_delete_submission)
 
         rfiles_n = store.find(ReceiverFile,
             (ReceiverFile.internaltip_id == rtip.internaltip.id,
@@ -184,7 +194,9 @@ def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default
             'comments_number': rtip.internaltip.comments.count(),
             'unread_messages' : unread_messages,
             'read_messages' : read_messages,
-            'your_messages' : your_messages
+            'your_messages' : your_messages,
+            'postpone_superpower': postpone_superpower,
+            'can_delete_submission': can_delete_submission,
         })
 
         mo = Rosetta()

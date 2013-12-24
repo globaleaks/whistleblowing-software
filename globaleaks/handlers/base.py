@@ -193,11 +193,15 @@ class BaseHandler(RequestHandler):
 
         # to reduce possibility for XSS attacks.
         self.set_header("X-Content-Type-Options", "nosniff")
+        self.set_header("X-XSS-Protection", "1; mode=block")
 
         # to mitigate information leakage on Browser/Proxy Cache
         self.set_header("Cache-control", "no-cache, no-store")
         self.set_header("Pragma", "no-cache")
         self.set_header("Expires", "Mon, 01-Jan-1990 00:00:00")
+
+        # to avoid Robots spidering, indexing, caching
+        self.set_header("X-Robots-Tag", "noindex")
 
         if not GLSetting.devel_mode:
             # to mitigate clickjaking attacks on iframes

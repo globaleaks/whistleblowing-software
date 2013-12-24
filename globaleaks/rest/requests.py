@@ -77,6 +77,7 @@ adminNodeDesc = {
     'subtitle': unicode,
     'exception_email': unicode,
     'reset_css': bool,
+    'ahmia': bool,
 }
 
 adminNotificationDesc = {
@@ -122,6 +123,7 @@ adminContextDesc = {
     'tags' : [ unicode ],
     'select_all_receivers': bool,
     'show_small_cards': bool,
+    'presentation_order': int,
 }
 
 adminReceiverDesc =  {
@@ -141,8 +143,9 @@ adminReceiverDesc =  {
     'gpg_key_remove': bool,
     'gpg_key_fingerprint': unicode,
     'gpg_key_info': unicode,
-    "gpg_key_armor": unicode,
-    "gpg_key_status": unicode,
-    "gpg_enable_notification": bool,
-    "gpg_enable_files": bool,
+    'gpg_key_armor': unicode,
+    'gpg_key_status': unicode,
+    'gpg_enable_notification': bool,
+    'gpg_enable_files': bool,
+    'presentation_order': int,
 }
