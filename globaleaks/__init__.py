@@ -5,27 +5,27 @@
 
 import operator
 
-__version__ = '2.40'
-DATABASE_VERSION = 8
+__version__ = '2.50.7'
+DATABASE_VERSION = 9
 
 # Add here by hand the languages supported!
 # copy paste format from 'grunt makeTranslations'
 LANGUAGES_SUPPORTED = [
+ { "code": "en", "name": "English" },
+ { "code": "bg", "name": "Bulgarian" },
  { "code": "ar", "name": "Arabic" },
  { "code": "cs", "name": "Czech" },
  { "code": "nl", "name": "Dutch" },
- { "code": "fr", "name": "French" },
- { "code": "bg", "name": "Bulgarian" },
- { "code": "en", "name": "English" },
- { "code": "hu_HU", "name": "Hungarian (Hungary)" },
- { "code": "it", "name": "Italian" },
  { "code": "de", "name": "German" },
- { "code": "sr_RS", "name": "Serbian (Serbia)" },
- { "code": "ru", "name": "Russian" },
- { "code": "es", "name": "Spanish" },
+ { "code": "hu_HU", "name": "Hungarian (Hungary)" },
+ { "code": "fr", "name": "French" },
  { "code": "pt_BR", "name": "Portuguese (Brazil)" },
- { "code": "vi", "name": "Vietnamese" },
  { "code": "sr_RS@latin", "name": "Serbian (Latin) (Serbia)" },
+ { "code": "it", "name": "Italian" },
+ { "code": "ru", "name": "Russian" },
+ { "code": "sr_RS", "name": "Serbian (Serbia)" },
+ { "code": "vi", "name": "Vietnamese" },
+ { "code": "es", "name": "Spanish" },
 ]
 
 # Sorting the list of dict using the key 'code'

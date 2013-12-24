@@ -1,15 +1,6 @@
 Esteemed %ReceiverName%,
 
-This is an E-Mail message to notify you about a new Message.
-
-This message is from the Whistleblower, at Tip %TipUN%.
-
-(spoiler!) the message is:
-
-%MessageContent%
-
-and if you see this string, your Node Administrator has not yet tuned this
-feature. please notify her/him. 
+This is an E-Mail message to notify you about a new Message from the Whisleblower.
 
 Take Care,
 A Random GlobaLeaks Node
