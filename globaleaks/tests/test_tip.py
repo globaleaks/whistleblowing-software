@@ -557,7 +557,7 @@ class TestTipInstance(TTip):
         before = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
 
 
-        # the direct message has been send to the receiver 1, and receiver 1
+        # the direct message has been sent to the receiver 1, and receiver 1
         # is on the element [0] of the list.
         self.assertEqual(len(before), 2)
         self.assertEqual(before[0]['your_messages'], 0)
@@ -570,7 +570,11 @@ class TestTipInstance(TTip):
 
         after = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
 
-        self.assertEqual(after[0]['your_messages'], 1)
+        for receivers_messages in after:
+            if (after[0]['receiver_gus'] == self.receiver1_desc['receiver_gus']):
+                self.assertEqual(after[0]['your_messages'], 1)
+            else:
+                self.assertEqual(after[0]['your_messages'], 0)
 
         # and now, two messages for the second receiver
         msgrequest = { 'content': u'#1/2 msg from wb to receiver2' }
@@ -580,15 +584,17 @@ class TestTipInstance(TTip):
         yield wbtip.create_message_wb(self.wb_tip_id,
                                           self.receiver2_desc['receiver_gus'], msgrequest)
 
-        final = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
-        self.assertEqual(final[1]['your_messages'], 2)
-        # the messages from Receiver1 are not changed, right ?
-        self.assertEqual(final[0]['your_messages'], 1)
+        end = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
+
+        for receivers_messages in end:
+            if (end[0]['receiver_gus'] == self.receiver2_desc['receiver_gus']):
+                self.assertEqual(end[0]['your_messages'], 2)
+            else: # the messages from Receiver1 are not changed, right ?
+                self.assertEqual(end[0]['your_messages'], 1)
 
     @inlineCallbacks
     def do_receivers_messages_and_unread_verification(self):
 
-        import pdb
         # Receiver1 check the presence of the whistleblower message (only 1)
         x = yield receiver.get_receiver_tip_list(self.receiver1_desc['receiver_gus'])
         self.assertEqual(x[0]['unread_messages'], 1)
@@ -602,13 +608,16 @@ class TestTipInstance(TTip):
 
         # Whistleblower check the presence of receiver1 unread message
         receiver_info_list = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
-        self.assertEqual(receiver_info_list[0]['name'], self.receiver1_desc['name'])
-        self.assertEqual(receiver_info_list[0]['unread_messages'], 1)
-        self.assertEqual(receiver_info_list[0]['your_messages'], 1)
 
-        self.assertEqual(receiver_info_list[1]['name'], self.receiver2_desc['name'])
-        self.assertEqual(receiver_info_list[1]['unread_messages'], 0)
-        self.assertEqual(receiver_info_list[1]['your_messages'], 2)
+        for r in receiver_info_list:
+            if r['receiver_gus'] == self.receiver1_desc['receiver_gus']:
+                self.assertEqual(r['name'], self.receiver1_desc['name'])
+                self.assertEqual(r['unread_messages'], 1)
+                self.assertEqual(r['your_messages'], 1)
+            else:
+                self.assertEqual(r['name'], self.receiver2_desc['name'])
+                self.assertEqual(r['unread_messages'], 0)
+                self.assertEqual(r['your_messages'], 2)
 
         # Receiver2 check the presence of the whistleblower message (2 expected)
         a = yield receiver.get_receiver_tip_list(self.receiver1_desc['receiver_gus'])
@@ -645,9 +654,14 @@ class TestTipInstance(TTip):
         self.assertTrue(wreaded[3]['visualized'])
 
         # Whistleblower check 0 unread messages from Receiver2, and still 1 from R1
-        lc = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
-        self.assertEqual(lc[0]['unread_messages'], 1)
-        self.assertEqual(lc[1]['unread_messages'], 0)
+        end = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
+        
+
+        for recv in end:
+            if recv['receiver_gus'] == self.receiver2_desc['receiver_gus']:
+                self.assertEqual(recv['unread_messages'], 0)
+            else:
+                self.assertEqual(recv['unread_messages'], 1)
 
 
     @inlineCallbacks
