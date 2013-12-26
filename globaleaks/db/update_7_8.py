@@ -286,7 +286,7 @@ class Replacer78(TableReplacer):
             if v.name == 'encrypted_tip_template':
                 new_notification.encrypted_tip_template = every_language(
                         acquire_email_templates(
-                            'default_ENT.txt',
+                            'default_ETNT.txt',
                             "default Encrypted Tip notification not available! %NodeName% configure this!"))
                 continue
             if v.name == 'encrypted_tip_mail_title':
@@ -302,7 +302,7 @@ class Replacer78(TableReplacer):
             if v.name == 'zip_description':
                 new_notification.zip_description = every_language(
                         acquire_email_templates(
-                            'default_ZFC.txt',
+                            'default_ZCT.txt',
                             "default Zip Collection template not available! %NodeName% configure this!"))
                 continue
             if v.name == 'message_template':
