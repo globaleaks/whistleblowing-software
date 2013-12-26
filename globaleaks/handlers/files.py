@@ -76,18 +76,8 @@ def register_file_db(store, uploaded_file, filepath, cksum, internaltip_id):
         new_file.file_path = filepath
 
         store.add(new_file)
-        store.commit()
     except Exception as excep:
         log.err("Unable to commit new InternalFile %s: %s" % (original_fname.encode('utf-8'), excep))
-        raise excep
-
-    # I'm forcing commits because I've got some inconsistencies
-    # in this ReferenceSets. need to be investigated if needed.
-    try:
-        #internaltip.internalfiles.add(new_file)
-        store.commit()
-    except Exception as excep:
-        log.err("Unable to reference InternalFile %s in InternalTip: %s" % (original_fname, excep))
         raise excep
 
     log.debug("=> Recorded new InternalFile %s (%s)" % (original_fname, cksum))

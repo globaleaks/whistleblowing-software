@@ -468,7 +468,7 @@ def receiver_serialize_message(msg):
         'mark' : unicode(msg.mark)
     }
 
-@transact_ro
+@transact
 def get_messages_list(store, user_id, tip_id):
 
     rtip = access_tip(store, user_id, tip_id)
@@ -484,7 +484,6 @@ def get_messages_list(store, user_id, tip_id):
             log.debug("Marking as readed message [%s] from %s" % (msg.content, msg.author))
             msg.visualized = True
 
-    store.commit()
     return content_list
 
 @transact

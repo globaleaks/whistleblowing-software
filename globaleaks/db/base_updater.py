@@ -106,7 +106,7 @@ class TableReplacer:
         from globaleaks.db.update_6_7 import Node_version_6, Context_version_6
         from globaleaks.db.update_7_8 import Node_version_7, Notification_version_7, Context_version_7, \
             Receiver_version_7, InternalFile_version_7
-        from globaleaks.db.update_8_9 import Context_version_8, Receiver_version_8
+        from globaleaks.db.update_8_9 import Context_version_8, Receiver_version_8, Notification_version_8
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -121,7 +121,7 @@ class TableReplacer:
             'Context' : [ Context_version_6, None, Context_version_7, Context_version_8, models.Context ],
             'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, models.Receiver ],
             'ReceiverFile' : [ models.ReceiverFile, None, None, None, None ],
-            'Notification': [ Notification_version_7, None, None, models.Notification, None ],
+            'Notification': [ Notification_version_7, None, None, Notification_version_8, models.Notification ],
             'Comment': [ Comment_version_5, models.Comment, None, None, None ],
             'InternalTip' : [ models.InternalTip, None, None, None, None ],
             'InternalFile' : [ InternalFile_version_7, None, None, models.InternalFile, None ],
