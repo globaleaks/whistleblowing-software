@@ -38,14 +38,22 @@ def longtext_v(_self, attr, value):
     Validator for every generic text element stored in the DB,
     in future may check for markdown
     """
+    if not attr:
+        print "attr is None!", value
+        return value
+
     if isinstance(value, str):
         value = unicode(value)
 
     if not isinstance(value, unicode):
-        raise errors.InvalidInputFormat("Text expected unicode (%s)" % value)
+        print "attr %s: Text expected unicode (%s)" % (attr, value)
+
+        raise errors.InvalidInputFormat("attr %s: Text expected unicode (%s)" % 
+                         ( attr, value ) )
 
     if len(value) > GLSetting.memory_copy.maximum_textsize:
-        raise errors.InvalidInputFormat("Text unicode in %s overcome length " \
+        raise errors.InvalidInputFormat("Text unicode in %s " \
+					"overcome length " \
                                         "limit %d" % (attr, GLSetting.memory_copy.maximum_textsize))
 
     return value
