@@ -65,7 +65,6 @@ angular.module('resourceServices.authentication', [])
 
               $rootScope.session_id = self.id;
               $rootScope.auth_role = role;
-              $rootScope.permissions = response.permissions;
               $rootScope.session = response;
               
               setCookie('session_id', response.session_id);
@@ -224,7 +223,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           if ($location.path().indexOf('/login') === -1) {
             $location.path('/login');
             $location.search('src='+source_path);
-            $route.reload();
           };
         };
 
