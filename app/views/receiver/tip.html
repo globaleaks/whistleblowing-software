@@ -126,7 +126,7 @@ This comment is needed in order to push the following strings on transifex
         {{ "Files" | translate }}
       </h3>
       <div class="well" ng-show="tip.files">
-        <a class="input-small" ng-href="/rtip/{{tip.id}}/collection" ng-show="show_download_all()" ng-click="increaseDownloadCounts()">
+        <a class="input-small" ng-href="{{tip.collection}}" ng-show="show_download_all()" ng-click="increaseDownloadCounts()">
           {{ "download all the files" | translate }}
         </a>
         <br />
