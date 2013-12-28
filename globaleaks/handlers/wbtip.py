@@ -61,6 +61,7 @@ def get_files_wb(store, wb_tip_id):
         file_list.append(wb_serialize_file(internalfile))
 
     file_list.reverse()
+
     return file_list
 
 

@@ -131,6 +131,9 @@ class GLSettingsClass:
         self.failed_login_attempts = dict() # statisticals, referred to latest_period
         self.failed_login_attempts_wb = 0   # and resetted by session_management sched
 
+        # download tocken trackin
+        self.download_tokens = dict()
+
         # static file rules
         self.staticfile_regexp = r'(.*)'
         self.staticfile_overwrite = False

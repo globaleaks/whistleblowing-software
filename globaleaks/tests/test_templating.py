@@ -117,7 +117,7 @@ class notifTemplateTest(TestWithDB):
     def _load_defaults(self):
         # CWD is on _trial_temp
 
-        tps_path = 'globaleaks/db/templates'
+        tps_path = 'globaleaks/db/'
 
         for t in self.templates_list:
             tp_path = os.path.join(os.getcwd(), '..', tps_path, t)
