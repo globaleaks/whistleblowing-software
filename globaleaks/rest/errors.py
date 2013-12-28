@@ -424,3 +424,11 @@ class DirectoryTraversalError(GLException):
    error_code = 53
    status_code = 403
 
+class UnexistentDownloadToken(GLException):
+   """
+   The requested download token does not exists or is expired.
+   """
+   reason = "The requested download token does not exists or is expired"
+   error_code = 54
+   status_code = 404
+

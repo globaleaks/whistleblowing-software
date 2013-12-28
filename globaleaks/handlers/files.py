@@ -16,13 +16,13 @@ from cyclone.web import StaticFileHandler
 from Crypto.Hash import SHA256
 
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler
+from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler, DownloadToken
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils.utility import log, pretty_date_time
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, ReceiverTip, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.third_party import rstr
-from globaleaks.security import access_tip, access_file
+from globaleaks.security import access_tip
 
 def serialize_file(internalfile):
 
@@ -51,6 +51,7 @@ def serialize_receiver_file(receiverfile):
         'path' : receiverfile.file_path,
         'sha2sum' : internalfile.sha2sum,
     }
+
     return file_desc
 
 @transact
@@ -235,16 +236,17 @@ class FileInstance(FileHandler):
 
 
 @transact
-def download_file(store, user_id, tip_id, file_id):
+def download_file(store, file_id):
     """
     Auth temporary disabled, just Tip_id and File_id required
     """
 
-    rfile = access_file(store, user_id, tip_id, file_id)
+    rfile = store.find(ReceiverFile,
+                       ReceiverFile.id == unicode(file_id)).one()
 
     log.debug("Download of %s downloads: %d with limit of %s for %s" %
               (rfile.internalfile.name, rfile.downloads,
-               rfile.internalfile.internaltip.download_limit, rfile.receiver.name) )
+               rfile.internalfile.internaltip.download_limit, rfile.receiver.name))
 
     if rfile.downloads == rfile.internalfile.internaltip.download_limit:
         raise errors.DownloadLimitExceeded
@@ -255,11 +257,10 @@ def download_file(store, user_id, tip_id, file_id):
 
 
 @transact
-def download_all_files(store, user_id, tip_id):
+def download_all_files(store, tip_id):
 
     rfiles = store.find(ReceiverFile,
-                        ReceiverFile.receiver_tip_id == unicode(tip_id),
-                        ReceiverFile.receiver_id == user_id)
+                        ReceiverFile.receiver_tip_id == unicode(tip_id))
 
     files_list = []
     for sf in rfiles:
@@ -277,40 +278,45 @@ def download_all_files(store, user_id, tip_id):
 
 
 class Download(BaseHandler):
-    auth_type = "COOKIE"
 
     @transport_security_check('wb')
-    @authenticated('receiver')
+    @unauthenticated
     @inlineCallbacks
-    def get(self, tip_gus, file_gus, *uriargs):
+    def get(self, tip_id, rfile_token, *uriargs):
 
-        # tip_gus needed to authorized the download
+        # tip_id needed to authorized the download
 
-        rfile = yield download_file(self.current_user['user_id'],
-                                    tip_gus,
-                                    file_gus)
+        (id_type, id_val) = DownloadToken.get(rfile_token)
 
-        # keys:  'file_path'  'sha2sum'  'size' : 'content_type' 'file_name'
+        if id_type == 'rfile' and id_val is not None:
 
-        self.set_status(200)
+            rfile = yield download_file(id_val)
 
-        self.set_header('X-Download-Options', 'noopen')
-        self.set_header('Content-Type', 'application/octet-stream')
-        self.set_header('Content-Length', rfile['size'])
-        self.set_header('Etag', '"%s"' % rfile['sha2sum'])
-        self.set_header('Content-Disposition','attachment; filename=\"%s\"' % rfile['name'])
+            # keys:  'file_path'  'sha2sum'  'size' : 'content_type' 'file_name'
 
-        filelocation = os.path.join(GLSetting.submission_path, rfile['path'])
+            self.set_status(200)
 
-        with open(filelocation, "rb") as requestf:
-            chunk_size = 8192
-            while True:
-                chunk = requestf.read(chunk_size)
-                if len(chunk) == 0:
-                    break
-                self.write(chunk)
+            self.set_header('X-Download-Options', 'noopen')
+            self.set_header('Content-Type', 'application/octet-stream')
+            self.set_header('Content-Length', rfile['size'])
+            self.set_header('Etag', '"%s"' % rfile['sha2sum'])
+            self.set_header('Content-Disposition','attachment; filename=\"%s\"' % rfile['name'])
 
-        self.finish()
+            filelocation = os.path.join(GLSetting.submission_path, rfile['path'])
+
+            with open(filelocation, "rb") as requestf:
+                chunk_size = 8192
+                while True:
+                    chunk = requestf.read(chunk_size)
+                    if len(chunk) == 0:
+                        break
+                    self.write(chunk)
+
+            self.finish()
+
+        else:
+
+            raise errors.UnexistentDownloadToken
 
 
 class CSSStaticFileHandler(BaseStaticFileHandler):

@@ -451,11 +451,3 @@ def access_tip(store, user_id, tip_id):
         raise errors.TipGusNotFound
 
     return rtip
-
-def access_file(store, user_id, tip_id, file_id):
-    rfile = store.find(ReceiverFile, ReceiverFile.id == unicode(file_id),
-                                     ReceiverFile.receiver_id == user_id).one()
-    if not rfile:
-        raise errors.FileGusNotFound
-
-    return rfile

@@ -9,7 +9,7 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, DownloadToken
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.rest import requests
 from globaleaks.utils.utility import log, pretty_date_time, utc_future_date, datetime_now
@@ -19,8 +19,8 @@ from globaleaks.models import Node, Comment, ReceiverFile, Message
 from globaleaks.rest import errors
 from globaleaks.security import access_tip
 
-
 def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.default_language):
+
     itip_dict = {
         'context_gus': unicode(internaltip.context.id),
         'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
@@ -58,8 +58,9 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     and the Receiver-dependent, and for the client sake receivertip_id is
     required to create the download link
     """
+
     rfile_dict = {
-        'href' : unicode("/rtip/" + receivertip_id + "/download/" + receiverfile.id),
+        'href' : unicode("/rtip/" + receivertip_id + "/download/" + DownloadToken(receiverfile.id).id),
         # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
         'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == ReceiverFile._status_list[2] else internalfile.name,
         'encrypted': True if receiverfile.status == ReceiverFile._status_list[2] else False,
@@ -276,6 +277,7 @@ class RTipInstance(BaseHandler):
 
         yield increment_receiver_access_count(self.current_user['user_id'], tip_id)
         answer = yield get_internaltip_receiver(self.current_user['user_id'], tip_id, self.request.language)
+        answer['collection'] = '/rtip/' + DownloadToken(tip_id, 'rtip').id + '/collection'
         answer['files'] = yield get_files_receiver(self.current_user['user_id'], tip_id)
 
         self.set_status(200)

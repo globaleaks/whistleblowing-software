@@ -11,9 +11,9 @@ import os
 import tarfile
 import StringIO
 
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, DownloadToken
 from globaleaks.handlers.files import download_all_files, serialize_file
-from globaleaks.handlers.authentication import transport_security_check, authenticated
+from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.handlers import admin
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting, transact_ro
@@ -50,6 +50,16 @@ def get_collection_info(store, rtip_id):
     rtip_dict['etag_hash'] = unicode(str(rtip_dict['total_size'] * rtip_dict['files_number']))
     return rtip_dict
 
+@transact_ro
+def get_receiver_from_rtip(store, rtip_id):
+    rtip = store.find(ReceiverTip, ReceiverTip.id == rtip_id).one()
+
+    if not rtip:
+        log.err("Download of a Zip file without ReceiverTip associated!")
+        raise errors.TipGusNotFound
+
+    return admin.admin_serialize_receiver(rtip.receiver, GLSetting.memory_copy.default_language)
+
 
 class CollectionStreamer(object):
     def __init__(self, handler):
@@ -61,12 +71,11 @@ class CollectionStreamer(object):
 
 
 class CollectionDownload(BaseHandler):
-    auth_type = "COOKIE"
 
     @transport_security_check('wb')
-    @authenticated('receiver')
+    @unauthenticated
     @inlineCallbacks
-    def get(self, tip_gus, path, compression):
+    def get(self, token, path, compression):
 
         if compression is None:
             # Forcing the default to be zip without compression
@@ -96,14 +105,22 @@ class CollectionDownload(BaseHandler):
             # the regexp of rest/api.py should prevent this.
             raise errors.InvalidInputFormat("collection compression type not supported")
 
-        files_dict = yield download_all_files(self.current_user['user_id'], tip_gus)
+        (id_type, id_val) = DownloadToken.get(token)
 
-        if not files_dict:
-            raise errors.DownloadLimitExceeded
+        if id_type == 'rtip' and id_val is not None:
+
+            files_dict = yield download_all_files(id_val)
+
+            if not files_dict:
+                raise errors.DownloadLimitExceeded
+
+        else:
+
+            raise errors.UnexistentDownloadToken
 
         node_dict = yield admin.get_node()
-        receiver_dict = yield admin.get_receiver(self.current_user['user_id'])
-        collection_tip_dict = yield get_collection_info(tip_gus)
+        receiver_dict = yield get_receiver_from_rtip(id_val)
+        collection_tip_dict = yield get_collection_info(id_val)
         context_dict = yield admin.get_context(collection_tip_dict['context_id'])
         notif_dict = yield admin.get_notification()
 

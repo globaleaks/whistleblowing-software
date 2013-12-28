@@ -16,8 +16,11 @@ import sys
 import os
 from io import BytesIO as StringIO
 from tempfile import TemporaryFile
+from uuid import uuid4
 
+from twisted.python import components
 from twisted.python.failure import Failure
+
 from twisted.internet import fdesc
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
@@ -594,3 +597,56 @@ class BaseRedirectHandler(BaseHandler, RedirectHandler):
         """
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
+
+
+class DownloadToken(components.Componentized):
+    """
+    An object that expire after a configurable amount of time.
+    Inspired to twisted.web.server.Session
+    """
+    tokenTimeout = 600
+    
+    _expireCall = None
+
+    def __init__(self, id_val, id_type='rfile', reactor=None):
+        """
+        Initialize the object
+        """
+        components.Componentized.__init__(self)
+
+        self.id = unicode(uuid4())
+
+        self.id_val = id_val
+        self.id_type = id_type
+
+        if reactor is None:
+            from twisted.internet import reactor
+        self._reactor = reactor
+
+        self.expireCallbacks = []
+
+        GLSetting.download_tokens[self.id] = self
+
+        self._expireCall = self._reactor.callLater(
+            self.tokenTimeout, self.expire)
+
+    @staticmethod
+    def get(temporary_download_id):
+        if temporary_download_id in GLSetting.download_tokens:
+            id_type = GLSetting.download_tokens[temporary_download_id].id_type
+            id_val = GLSetting.download_tokens[temporary_download_id].id_val
+            return (id_type, id_val)
+        return (None, None)
+
+    def expire(self):
+        """
+        Expire/Delete the object.
+        """
+        del GLSetting.download_tokens[self.id]
+        for c in self.expireCallbacks:
+            c()
+        self.expireCallbacks = []
+        if self._expireCall and self._expireCall.active():
+            self._expireCall.cancel()
+            # Break reference cycle.
+            self._expireCall = None
