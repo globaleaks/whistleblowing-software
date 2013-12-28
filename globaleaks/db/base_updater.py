@@ -2,7 +2,7 @@
 import os
 
 from storm.exceptions import OperationalError
-from storm.locals import *
+from storm.locals import create_database, Store
 from storm.properties import PropertyColumn
 from storm.variables import BoolVariable, DateTimeVariable
 from storm.variables import EnumVariable, IntVariable, RawStrVariable
