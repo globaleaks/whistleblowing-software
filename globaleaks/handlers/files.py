@@ -288,35 +288,32 @@ class Download(BaseHandler):
 
         (id_type, id_val) = DownloadToken.get(rfile_token)
 
-        if id_type == 'rfile' and id_val is not None:
-
-            rfile = yield download_file(id_val)
-
-            # keys:  'file_path'  'sha2sum'  'size' : 'content_type' 'file_name'
-
-            self.set_status(200)
-
-            self.set_header('X-Download-Options', 'noopen')
-            self.set_header('Content-Type', 'application/octet-stream')
-            self.set_header('Content-Length', rfile['size'])
-            self.set_header('Etag', '"%s"' % rfile['sha2sum'])
-            self.set_header('Content-Disposition','attachment; filename=\"%s\"' % rfile['name'])
-
-            filelocation = os.path.join(GLSetting.submission_path, rfile['path'])
-
-            with open(filelocation, "rb") as requestf:
-                chunk_size = 8192
-                while True:
-                    chunk = requestf.read(chunk_size)
-                    if len(chunk) == 0:
-                        break
-                    self.write(chunk)
-
-            self.finish()
-
-        else:
-
+        if id_type != 'rfile' or id_val is None:
             raise errors.UnexistentDownloadToken
+
+        rfile = yield download_file(id_val)
+
+        # keys:  'file_path'  'sha2sum'  'size' : 'content_type' 'file_name'
+
+        self.set_status(200)
+
+        self.set_header('X-Download-Options', 'noopen')
+        self.set_header('Content-Type', 'application/octet-stream')
+        self.set_header('Content-Length', rfile['size'])
+        self.set_header('Etag', '"%s"' % rfile['sha2sum'])
+        self.set_header('Content-Disposition','attachment; filename=\"%s\"' % rfile['name'])
+
+        filelocation = os.path.join(GLSetting.submission_path, rfile['path'])
+
+        with open(filelocation, "rb") as requestf:
+            chunk_size = 8192
+            while True:
+                chunk = requestf.read(chunk_size)
+                if len(chunk) == 0:
+                    break
+                self.write(chunk)
+
+        self.finish()
 
 
 class CSSStaticFileHandler(BaseStaticFileHandler):
