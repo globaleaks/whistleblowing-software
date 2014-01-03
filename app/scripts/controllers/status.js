@@ -1,13 +1,15 @@
 GLClient.controller('StatusCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', 'Tip', 'WBTip', 'Contexts', 'ReceiverPreferences',
-  function($scope, $rootScope, $location, $route, $routeParams, $http, Tip, WBTip, Contexts, ReceiverPreferences) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', 'Authentication', 'Tip', 'WBTip', 'Contexts', 'ReceiverPreferences',
+  function($scope, $rootScope, $location, $route, $routeParams, $http, Authentication, Tip, WBTip, Contexts, ReceiverPreferences) {
     $scope.tip_id = $routeParams.tip_id;
 
-    if ($.cookie('role') === 'wb') {
+    $scope.auth_landing_page = Authentication.auth_landing_page;
+
+    if (Authentication.role === 'wb') {
       var url = '/wbtip/upload',
         headers = {};
-      if ($.cookie('session_id')) {
-        headers['X-Session'] = $.cookie('session_id');
+      if (Authentication.id) {
+        headers['X-Session'] = Authentication.id;
       };
 
       if ($.cookie('XSRF-TOKEN')) {
@@ -15,7 +17,7 @@ GLClient.controller('StatusCtrl',
       }
 
       if ($.cookie('language')) {
-        headers['GL-Language'] = $.cookie('language');
+        headers['GL-Language'] = $rootScope.language;
       };
 
       $scope.options = {
@@ -63,7 +65,7 @@ GLClient.controller('StatusCtrl',
         }
       }, true);
 
-    } else if ($.cookie('role') === 'receiver') {
+    } else if (Authentication.role === 'receiver') {
       $scope.preferences = ReceiverPreferences.get();
     
       var TipID = {tip_id: $scope.tip_id};

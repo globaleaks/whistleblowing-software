@@ -91,4 +91,46 @@ var GLClient = angular.module('GLClient', [
       $translateProvider.uses('en');
 
       $tooltipProvider.options( {appendToBody: true} );
+}]).
+  run(['$http', '$rootScope', '$route', 'Authentication', function ($http, $rootScope, $route, Authentication) {
+
+     var globaleaksRequestInterceptor = function(data, headers) {
+
+        var extra_headers = {};
+
+        if (Authentication.id) {
+          extra_headers['X-Session'] = Authentication.id;
+        };
+
+        if ($.cookie('XSRF-TOKEN')) {
+          extra_headers['X-XSRF-TOKEN'] = $.cookie('XSRF-TOKEN');
+        }
+
+        if ($rootScope.language) {
+          extra_headers['GL-Language'] = $rootScope.language;
+        };
+
+        headers = angular.extend(headers(), extra_headers);
+
+        return data;
+    };
+
+    $http.defaults.transformRequest.push(globaleaksRequestInterceptor);
+
+    var reload = function() {
+        $route.reload();
+    }
+
+    function overloadReload(e) {
+       if (((e.which || e.keyCode) == 116) || /* F5       */
+           ((e.which || e.keyCode) == 82)) {  /* R */ 
+           e.preventDefault();
+           reload();
+       }
+    };
+
+    $(document).bind("keydown", overloadReload);
+
+    $rootScope.reload = reload;
+
 }]);
