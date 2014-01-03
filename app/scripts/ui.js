@@ -14,8 +14,7 @@ angular.module('submissionUI', []).
       link: function(scope, element, attrs) {
         var selectFileButton = element.find('button.selectFile'),
           uploadButton = element.find('button.upload'),
-          headers = {'X-Session': $.cookie('session_id'),
-                     'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')};
+          headers = {'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')};
 
         function progressMeter(e, data) {
           var progress_percent = parseInt(data.loaded / data.total * 100, 10);
@@ -61,8 +60,7 @@ angular.module('submissionUI', []).
         var selectFileButton = element.find('button.selectFile'),
           uploadButton = element.find('button.upload'),
           img = element.parent().parent().find('img.baseimage')[0],
-          headers = {'X-Session': $.cookie('session_id'),
-                     'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')};
+          headers = {'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')};
 
         function progressMeter(e, data) {
           var progress_percent = parseInt(data.loaded / data.total * 100, 10);

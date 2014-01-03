@@ -3,10 +3,9 @@
 angular.module('resourceServices.authentication', [])
   .factory('Authentication', ['$http', '$location', '$routeParams',
                               '$rootScope', '$timeout',
-    function($http, $location, $routeParams, $rootScope, $timeout){
+    function($http, $location, $routeParams, $rootScope, $timeout) {
       function Session(){
-        var self = this,
-          auth_landing_page;
+        var self = this;
 
         var setCookie = function(name, value) {
           /**
@@ -25,14 +24,13 @@ angular.module('resourceServices.authentication', [])
         setExpiration = function(expirationDate) {
           var current_date = new Date();
 
-          setCookie('session_expiration', expirationDate);
           $rootScope.session_expiration = expirationDate;
           $timeout(checkExpiration, expirationDate - current_date);
         },
 
         checkExpiration = function() {
           var current_date = new Date();
-          var expiration_date = $.cookie('session_expiration');
+          var expiration_date = $rootScope.session_expiration;
 
           if (expiration_date >= current_date) {
             var error = {
@@ -57,22 +55,19 @@ angular.module('resourceServices.authentication', [])
           return $http.post('/authentication', {'username': username,
                                                 'password': password,
                                                 'role': role})
-            .success(function(response){
+            .success(function(response) {
               self.id = response.session_id;
               self.user_id = response.user_id;
               self.username = username;
-              self.role = role
+              self.role = role;
+              self.session = response.session;
 
-              $rootScope.session_id = self.id;
-              $rootScope.auth_role = role;
-              $rootScope.session = response;
-              
-              setCookie('session_id', response.session_id);
+              var auth_landing_page = "";
+
               setExpiration(response.session_expiration);
-              setCookie('role', self.role);
 
               if (role == 'admin') {
-                  if ( password == 'globaleaks') {
+                  if (password == 'globaleaks') {
                     auth_landing_page = "/admin/password";
                   } else {
                     auth_landing_page = "/admin/overview/tips";
@@ -85,11 +80,12 @@ angular.module('resourceServices.authentication', [])
                 auth_landing_page = "/status";
               }
 
-              setCookie('auth_landing_page', "/#" + auth_landing_page);
+              self.auth_landing_page = "/#" + auth_landing_page;
 
               if ($routeParams['src']) {
                 $location.path($routeParams['src']);
               } else {
+                console.log(self.auth_landing_page);
                 $location.path(auth_landing_page);
               }
 
@@ -97,15 +93,13 @@ angular.module('resourceServices.authentication', [])
         };
 
         self.logout_performed = function() {
-            var role = $.cookie('role');
+            var role = self.role;
 
             self.id = null;
-            self.username = null;
             self.user_id = null;
-
-            $.removeCookie('session_id');
-            $.removeCookie('role');
-            $.removeCookie('auth_landing_page');
+            self.username = null;
+            self.role = null;
+            self.session = null;
 
             if (role === 'wb')
               $location.path('/');
@@ -118,17 +112,6 @@ angular.module('resourceServices.authentication', [])
                                                self.logout_performed);
 
         };
-
-        if ($.cookie('session_id')) {
-          $http.get('/authentication').then(
-            function(response){
-              $rootScope.session = response;
-            },
-            function(response){
-              $.removeCookie('session_id');
-            }
-          );
-        }
 
       };
 
@@ -217,7 +200,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         error.arguments = response.data.arguments;
 
         if (error.code == 30) {
-          $.removeCookie('session_id');
 
           // Only redirect if we are not on the login page
           if ($location.path().indexOf('/login') === -1) {
@@ -782,26 +764,5 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
 }]).
   config(['$httpProvider', function($httpProvider) {
-    var globaleaksRequestInterceptor = function(data, headers) {
-
-        var extra_headers = {};
-
-        if ($.cookie('session_id')) {
-          extra_headers['X-Session'] = $.cookie('session_id');
-        };
-
-        if ($.cookie('XSRF-TOKEN')) {
-          extra_headers['X-XSRF-TOKEN'] = $.cookie('XSRF-TOKEN');
-        }
-
-        if ($.cookie('language')) {
-          extra_headers['GL-Language'] = $.cookie('language');
-        };
-
-        headers = angular.extend(headers(), extra_headers);
-        return data;
-    };
-
     $httpProvider.responseInterceptors.push('globaleaksInterceptor');
-    $httpProvider.defaults.transformRequest.push(globaleaksRequestInterceptor);
 }]);

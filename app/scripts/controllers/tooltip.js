@@ -6,19 +6,19 @@ function($scope, $rootScope, Authentication, $location,
 
   application_default_lang = 'en';
 
-  if ($.cookie('language')) {
-    $scope.language = $.cookie('language');
+  if ($rootScope.language) {
+    $scope.language = $rootScope.language;
   } else {
     $scope.language = application_default_lang;
   }
 
-  $scope.session_id = $.cookie('session_id');
-  $scope.auth_landing_page = $.cookie('auth_landing_page');
-  $scope.role = $.cookie('role');
+  $scope.session_id = Authentication.id;
+  $scope.auth_landing_page = Authentication.auth_landing_page;
+  $scope.role = Authentication.role;
  
   Node.get(function(node) {
     if ($.inArray($scope.language, node.languages_enabled) == -1) {
-      $.cookie('language', node.default_language);  
+      $rootScope.language = node.default_language;
       $scope.language = node.default_language;
       $translate.uses($scope.language);
     }
@@ -46,7 +46,7 @@ function($scope, $rootScope, Authentication, $location,
 
     if (newVal && newVal !== oldVal) {
 
-      $.cookie('language', $scope.language);
+      $rootScope.language = $scope.language;
 
       $translate.uses($scope.language);
 
@@ -58,11 +58,11 @@ function($scope, $rootScope, Authentication, $location,
   });
 
   $scope.$watch(function(scope) {
-    return $.cookie('session_id');
+    return Authentication.id;
   }, function(newVal, oldVal){
-    $scope.session_id = $.cookie('session_id');
-    $scope.auth_landing_page = $.cookie('auth_landing_page');
-    $scope.role = $.cookie('role');
+    $scope.session_id = Authentication.id;
+    $scope.auth_landing_page = Authentication.auth_landing_page;
+    $scope.role = Authentication.role;
   });
 
   $translate.uses($scope.language);
