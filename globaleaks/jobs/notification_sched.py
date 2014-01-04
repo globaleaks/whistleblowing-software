@@ -235,7 +235,12 @@ class APSNotification(GLJob):
                     receiver.user.username, message.author))
                 continue
 
-            event = Event(type=u'message', trigger='Message',
+            if  receiver_desc['gpg_key_status'] == u'Enabled': # Receiver._gpg_types[1]
+                template_type = u'encrypted_message'
+            else:
+                template_type = u'plaintext_message'
+
+            event = Event(type=template_type, trigger='Message',
                           notification_settings=self.notification_settings,
                           trigger_info=message_desc,
                           node_info=node_desc,
@@ -342,7 +347,7 @@ class APSNotification(GLJob):
                 # ----- BUG, remind,
                 # if two receiver has the same name, and one has notification disabled
                 # also the homonymous would get the notification dropped.
-                if comment._types == models.Comment._types[0] and comment.author == receiver.name:
+                if comment.type == models.Comment._types[0] and comment.author == receiver.name:
                     log.debug("Receiver is the Author (%s): skipped" % receiver.user.username)
                     continue
 
@@ -352,7 +357,12 @@ class APSNotification(GLJob):
                         receiver.user.username, comment.author))
                     continue
 
-                event = Event(type=u'comment', trigger='Comment',
+                if  receiver_desc['gpg_key_status'] == u'Enabled': # Receiver._gpg_types[1]
+                    template_type = u'encrypted_comment'
+                else:
+                    template_type = u'plaintext_comment'
+
+                event = Event(type=template_type, trigger='Comment',
                     notification_settings=self.notification_settings,
                     trigger_info=comment_desc,
                     node_info=node_desc,
@@ -464,7 +474,12 @@ class APSNotification(GLJob):
                 store.commit()
                 continue
 
-            event = Event(type=u'file', trigger='File',
+            if  receiver_desc['gpg_key_status'] == u'Enabled': # Receiver._gpg_types[1]
+                template_type = u'encrypted_file'
+            else:
+                template_type = u'plaintext_file'
+
+            event = Event(type=template_type, trigger='File',
                 notification_settings=self.notification_settings,
                 trigger_info=file_desc,
                 node_info=node_desc,
