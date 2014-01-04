@@ -106,10 +106,12 @@ class notifTemplateTest(TestWithDB):
                 trigger_info = tip_dict
             )
 
-        elif type == u'comment' and trigger == 'Comment':
-            raise AssertionError("Not yet managed Mock comments")
-        elif type == u'file' and trigger == 'File':
+        elif (type == u'encrypted_file' or type == u'plaintext_comment') and trigger == 'File':
             raise AssertionError("Not yet managed Mock files")
+        elif (type == u'encrypted_comment' or type == u'plaintext_comment') and trigger == 'Comment':
+            raise AssertionError("Not yet managed Mock comments")
+        elif (type == u'encrypted_message' or type == u'plaintext_message') and trigger == 'Message':
+            raise AssertionError("Not yet managed Mock messages")
         else:
             raise AssertionError("Invalid combo: %s ~ %s" % (type, trigger))
 

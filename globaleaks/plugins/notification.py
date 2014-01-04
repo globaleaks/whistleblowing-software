@@ -59,21 +59,36 @@ class MailNotification(Notification):
                 event.notification_settings['plaintext_tip_template'], event)
             title = Templating().format_template(
                 event.notification_settings['plaintext_tip_mail_title'], event)
-        elif event.type == u'comment':
+        elif event.type == u'encrypted_file':
             body = Templating().format_template(
-                event.notification_settings['comment_template'], event)
+                event.notification_settings['encrypted_file_template'], event)
             title = Templating().format_template(
-                event.notification_settings['comment_mail_title'], event)
-        elif event.type == u'file':
+                event.notification_settings['encrypted_file_mail_title'], event)
+        elif event.type == u'plaintext_file':
             body = Templating().format_template(
-                event.notification_settings['file_template'], event)
+                event.notification_settings['plaintext_file_template'], event)
             title = Templating().format_template(
-                event.notification_settings['file_mail_title'], event)
-        elif event.type == u'message':
+                event.notification_settings['plaintext_file_mail_title'], event)
+        elif event.type == u'encrypted_comment':
             body = Templating().format_template(
-                event.notification_settings['message_template'], event)
+                event.notification_settings['encrypted_comment_template'], event)
             title = Templating().format_template(
-                event.notification_settings['message_mail_title'], event)
+                event.notification_settings['encrypted_comment_mail_title'], event)
+        elif event.type == u'plaintext_comment':
+            body = Templating().format_template(
+                event.notification_settings['plaintext_comment_template'], event)
+            title = Templating().format_template(
+                event.notification_settings['plaintext_comment_mail_title'], event)
+        elif event.type == u'encrypted_message':
+            body = Templating().format_template(
+                event.notification_settings['encrypted_message_template'], event)
+            title = Templating().format_template(
+                event.notification_settings['encrypted_message_mail_title'], event)
+        elif event.type == u'plaintext_message':
+            body = Templating().format_template(
+                event.notification_settings['plaintext_message_template'], event)
+            title = Templating().format_template(
+                event.notification_settings['plaintext_message_mail_title'], event)
         else:
             raise NotImplementedError("At the moment, only Tip expected")
 

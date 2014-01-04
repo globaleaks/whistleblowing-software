@@ -84,13 +84,24 @@ class Templating:
             '%ContextName%' : context_desc['name'],
             }
 
-        supported_event_types = [ u'file', u'comment', u'encrypted_tip', u'plaintext_tip', u'zip_collection', u'message' ]
-        high_level_clearance = [ u'zip_collection', u'encrypted_tip' ]
+        supported_event_types = [ u'encrypted_tip',
+                                  u'plaintext_tip',
+                                  u'encrypted_file',
+                                  u'plaintext_file',
+                                  u'encrypted_comment',
+                                  u'plaintext_comment',
+                                  u'encrypted_message',
+                                  u'plaintext_message',
+                                  u'zip_collection' ]
+
+        high_level_clearance = [ u'encrypted_tip',
+                                 u'zip_collection' ]
+
         if event_dicts.type not in supported_event_types:
             raise AssertionError("%s at the moment supported: %s is NOT " % (supported_event_types, event_dicts.type))
 
         tip_template_keyword = {}
-        if event_dicts.type == u'encrypted_tip':# high_level_clearance REMOVED: no zip has not wb_fields and fail test_gpg!
+        if event_dicts.type == u'encrypted_tip': # high_level_clearance REMOVED: no zip has not wb_fields and fail test_gpg!
 
             assert (event_dicts.trigger_info.has_key('wb_fields'))
 
@@ -153,19 +164,7 @@ class Templating:
             body = self._iterkeywords(partial, tip_template_keyword)
             return body
 
-        if event_dicts.type == u'comment':
-
-            comment_template_keyword = {
-                '%CommentSource%': event_dicts.trigger_info['type'],
-                '%EventTime%':
-                    very_pretty_date_time(event_dicts.trigger_info['creation_date']),
-                }
-
-            partial = self._iterkeywords(template, template_keyword)
-            body = self._iterkeywords(partial, comment_template_keyword)
-            return body
-
-        if event_dicts.type == u'file':
+        if event_dicts.type == u'encrypted_file' or event_dicts.type == u'plaintext_file':
 
             file_template_keyword = {
                 '%FileName%': event_dicts.trigger_info['name'],
@@ -179,7 +178,19 @@ class Templating:
             body = self._iterkeywords(partial, file_template_keyword)
             return body
 
-        if event_dicts.type == u'message':
+        if event_dicts.type == u'encrypted_comment' or event_dicts.type == u'plaintext_comment':
+
+            comment_template_keyword = {
+                '%CommentSource%': event_dicts.trigger_info['type'],
+                '%EventTime%':
+                    very_pretty_date_time(event_dicts.trigger_info['creation_date']),
+                }
+
+            partial = self._iterkeywords(template, template_keyword)
+            body = self._iterkeywords(partial, comment_template_keyword)
+            return body
+
+        if event_dicts.type == u'encrypted_message' or event_dicts.type == u'plaintext_message':
 
             message_template_keyword = {
                 '%EventTime%':
@@ -190,7 +201,6 @@ class Templating:
             partial = self._iterkeywords(template, template_keyword)
             body = self._iterkeywords(partial, message_template_keyword)
             return body
-
 
         raise AssertionError("No one can access to this section of code: has to be returned before!")
 
