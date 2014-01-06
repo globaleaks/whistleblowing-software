@@ -39,15 +39,12 @@ def longtext_v(_self, attr, value):
     in future may check for markdown
     """
     if not attr:
-        print "attr is None!", value
         return value
 
     if isinstance(value, str):
         value = unicode(value)
 
     if not isinstance(value, unicode):
-        print "attr %s: Text expected unicode (%s)" % (attr, value)
-
         raise errors.InvalidInputFormat("attr %s: Text expected unicode (%s)" % 
                          ( attr, value ) )
 
@@ -109,7 +106,7 @@ def longlocal_v(_self, attr, value):
         if lang not in LANGUAGES_SUPPORTED_CODES:
             raise errors.InvalidInputFormat("(%s) Invalid language code in %s" % (lang, attr) )
 
-        longtext_v(None, None, text)
+        longtext_v(None, attr, text)
 
     return value
 
