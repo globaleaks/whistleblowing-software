@@ -153,20 +153,20 @@ class Replacer89(TableReplacer):
 
 
     def migrate_InternalFile(self):
-	"""
-	The integration of 'description' happen between the v 7 and 8, but
-	InternalFile.description has been set with storm validator after the 
-	release.
+        """
+        The integration of 'description' happen between the v 7 and 8, but
+        InternalFile.description has been set with storm validator after the
+        release.
 
-	This mean that old DB can't be converted anymore because description was
-	accepted empty (at the moment, from the GLC UI, can't be set a file desc)
+        This mean that old DB can't be converted anymore because description was
+        accepted empty (at the moment, from the GLC UI, can't be set a file desc)
 
-	This migrate_InternalFile do not require an update of the version table:
-	self.get_right_model("InternalFile", 8)
-	and
-	self.get_right_model("InternalFile", 9)
-	return the same object, and is fine so.
-	"""
+        This migrate_InternalFile do not require an update of the version table:
+        self.get_right_model("InternalFile", 8)
+        and
+        self.get_right_model("InternalFile", 9)
+        return the same object, and is fine so.
+        """
         print "%s InternalFile migration assistant: (file description is mandatory !?) #%d" % (
             self.std_fancy, self.store_old.find(self.get_right_model("InternalFile", 8)).count() )
 
