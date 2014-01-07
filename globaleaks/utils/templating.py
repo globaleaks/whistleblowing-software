@@ -49,11 +49,18 @@ class Templating:
 
         # The receiver preferred language is not yet collected, or can be used instead of default
 
-        if not template.has_key(GLSetting.memory_copy.default_language):
-            log.err("Missing notification template in the default language!")
-            raise Exception("Missing notification template in the default language")
+        if isinstance(template, dict):
 
-        raw_template = template[GLSetting.memory_copy.default_language]
+            if template.has_key(GLSetting.memory_copy.default_language):
+                log.err("Missing notification template in the default language!")
+                raise Exception("Missing notification template in the default language")
+
+            raw_template = template[GLSetting.memory_copy.default_language]
+        else:
+            # TODO This is bad and happen in unitTest
+            # globaleaks.tests.test_templating.notifTemplateTest.test_keywords_conversion
+            # need to be fixed
+            raw_template = template
 
         for kw in keyword_converter.keyword_list:
 
