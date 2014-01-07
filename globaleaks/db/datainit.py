@@ -68,36 +68,36 @@ def initialize_node(store, results, only_node, templates):
     notification.encrypted_tip_template = { GLSetting.memory_copy.default_language:
                                             templates['encrypted_tip'] }
     notification.encrypted_tip_mail_title = { GLSetting.memory_copy.default_language:
-                                              "[%NodeName%] Encrypted Tip" }
+                                              "[%NodeName%] for %ReceiverName% in %ContextName%: Encrypted Tip" }
 
     notification.plaintext_tip_template= { GLSetting.memory_copy.default_language:
                                            templates['plaintext_tip'] }
     notification.plaintext_tip_mail_title = { GLSetting.memory_copy.default_language:
-                                              "[%NodeName%] Plaintext Tip" }
+                                              "[%NodeName%] for %ReceiverName% in %ContextName%: ClearText Tip" }
 
     notification.encrypted_message_template = { GLSetting.memory_copy.default_language: templates['encrypted_message'] }
     notification.encrypted_message_mail_title = { GLSetting.memory_copy.default_language:
-                                                  "[%NodeName%] New Message received" }
+                                                  "[%NodeName%] for %ReceiverName% in %ContextName%: New Message" }
 
     notification.plaintext_message_template = { GLSetting.memory_copy.default_language: templates['plaintext_message'] }
     notification.plaintext_message_mail_title = { GLSetting.memory_copy.default_language:
-                                                  "[%NodeName%] New Message received" }
+                                                  "[%NodeName%] for %ReceiverName% in %ContextName%: New Message" }
 
     notification.encrypted_file_template = { GLSetting.memory_copy.default_language: templates['encrypted_file'] }
     notification.encrypted_file_mail_title = { GLSetting.memory_copy.default_language:
-                                               "[%NodeName%] New file added" }
+                                               "[%NodeName%] for %ReceiverName% in %ContextName%: New file added" }
 
     notification.plaintext_file_template = { GLSetting.memory_copy.default_language: templates['plaintext_file'] }
     notification.plaintext_file_mail_title = { GLSetting.memory_copy.default_language:
-                                               "[%NodeName%] New file added" }
+                                               "[%NodeName%] for %ReceiverName% in %ContextName%: New file added" }
 
     notification.encrypted_comment_template = { GLSetting.memory_copy.default_language: templates['encrypted_comment'] }
     notification.encrypted_comment_mail_title = { GLSetting.memory_copy.default_language:
-                                                  "[%NodeName%] New comment added" }
+                                                  "[%NodeName%] for %ReceiverName% in %ContextName%: New comment added" }
 
     notification.plaintext_comment_template = { GLSetting.memory_copy.default_language: templates['plaintext_comment'] }
     notification.plaintext_comment_mail_title = { GLSetting.memory_copy.default_language:
-                                                  "[%NodeName%] New comment added" }
+                                                  "[%NodeName%] for %ReceiverName% in %ContextName%: New comment added" }
 
     notification.zip_description = { GLSetting.memory_copy.default_language:
                                      templates['zip_collection'] }
