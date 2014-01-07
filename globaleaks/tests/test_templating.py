@@ -39,6 +39,7 @@ class notifTemplateTest(TestWithDB):
     tip_keyword_list = [
         '%TipTorURL%',
         '%TipT2WURL%',
+        '%TipNum%',
     ]
 
     protected_keyword_list = [
@@ -206,6 +207,15 @@ class notifTemplateTest(TestWithDB):
 
         ## HERE ARE ADDED SOME CHECK
         self.assertSubstring("=================", gentext)
+
+        # http://witchwind.wordpress.com/2013/12/15/piv-is-always-rape-ok/
+        # wtf has the internet in those days ? bwahahaah
+        tip_num_test = Templating().format_template("%TipNum%", self.event)
+        new_id = self.event.trigger_info['id'].replace('1', '2')
+        new_id.replace('3', '4')
+        self.event.trigger_info['id'] = new_id.replace('5', '6')
+        different_num = Templating().format_template("%TipNum%", self.event)
+        self.assertNotEqual(tip_num_test, different_num)
 
 
     @inlineCallbacks
