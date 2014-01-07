@@ -51,7 +51,7 @@ class Templating:
 
         if isinstance(template, dict):
 
-            if template.has_key(GLSetting.memory_copy.default_language):
+            if not template.has_key(GLSetting.memory_copy.default_language):
                 log.err("Missing notification template in the default language!")
                 raise Exception("Missing notification template in the default language")
 
@@ -180,7 +180,7 @@ class TipKeyword(_KeyWord):
                 retval *= 2
 
         retval = (retval % 1000) + 1
-        return retval
+        return unicode(retval)
 
     def EventTime(self):
         return very_pretty_date_time(self.tip['creation_date'])
