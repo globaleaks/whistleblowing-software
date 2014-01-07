@@ -339,25 +339,25 @@ def acquire_bool(boolvalue):
 
 def caller_name(skip=2):
     """Get a name of a caller in the format module.class.method
-    
+
        `skip` specifies how many levels of stack to skip while getting caller
        name. skip=1 means "who calls me", skip=2 "who calls my caller" etc.
-       
+
        An empty string is returned if skipped levels exceed stack height
     """
     stack = inspect.stack()
     start = 0 + skip
     if len(stack) < start + 1:
-      return ''
-    parentframe = stack[start][0]    
-    
+        return ''
+    parentframe = stack[start][0]
+
     name = []
     module = inspect.getmodule(parentframe)
     # `modname` can be None when frame is executed directly in console
     # TODO(techtonik): consider using __main__
     if module:
         name.append(module.__name__)
-    # detect classname
+        # detect classname
     if 'self' in parentframe.f_locals:
         # I don't know any way to detect call from the object method
         # XXX: there seems to be no way to detect static method call - it will
@@ -369,3 +369,36 @@ def caller_name(skip=2):
     del parentframe
     return ".".join(name)
 
+# Dumping utility
+
+def dump_submission_fields(fields, wb_fields):
+
+    dumptext = u""
+    for sf in fields:
+        if sf['type'] != 'text':
+            log.debug("Ignored dump of field %s because is not a Text" % sf['name'])
+            continue
+
+        fnl = len(sf['name'])
+        # dumptext += ("="*fnl)+"\n"+sf['name']+"\n("+sf['hint']+")\n"+("="*fnl)+"\n"
+        dumptext += ("="*fnl)+"\n"+sf['name']+"\n"+("="*fnl)+"\n"
+        dumptext += wb_fields[ fields[0]['key'] ]+"\n\n"
+
+    return dumptext
+
+def dump_file_list(filelist, files_n):
+
+    info = "%s%s%s%s%s\n" % ("Filename",
+                             " "*(40-len("Filename")),
+                             "Size (Bytes)",
+                             " "*(15-len("Size (Bytes)")),
+                             "sha256")
+
+    for i in xrange(files_n):
+        length1 = 40 - len(filelist[i]['name'])
+        length2 = 15 - len(str(filelist[i]['size']))
+        info += "%s%s%i%s%s\n" % (filelist[i]['name'], " "*length1,
+                                  filelist[i]['size'], " "*length2,
+                                  filelist[i]['sha2sum'])
+
+    return info

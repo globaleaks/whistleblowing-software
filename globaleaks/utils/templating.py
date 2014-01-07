@@ -9,199 +9,337 @@
 # https://github.com/globaleaks/GlobaLeaks/wiki/Customization-guide#customize-notification
 
 from globaleaks.settings import GLSetting
-from globaleaks.utils.utility import log
-from globaleaks.utils.utility import very_pretty_date_time
+from globaleaks.utils.utility import dump_file_list, dump_submission_fields, very_pretty_date_time, log
 
 class Templating:
-
-
-    def dump_file_list(self, filelist, files_n):
-
-        info = "%s%s%s%s%s\n" % ("Filename",
-                                 " "*(40-len("Filename")),
-                                 "Size (Bytes)",
-                                 " "*(15-len("Size (Bytes)")),
-                                 "sha256")
-
-        for i in xrange(files_n):
-            length1 = 40 - len(filelist[i]['name'])
-            length2 = 15 - len(str(filelist[i]['size']))
-            info += "%s%s%i%s%s\n" % (filelist[i]['name'], " "*length1,
-                                      filelist[i]['size'], " "*length2,
-                                      filelist[i]['sha2sum'])
-
-        return info
-
-    def dump_submission_fields(self, fields, wb_fields):
-
-        dumptext = u""
-        for sf in fields:
-            if sf['type'] != 'text':
-                log.debug("Ignored dump of field %s because is not a Text" % sf['name'])
-                continue
-
-            fnl = len(sf['name'])
-            # dumptext += ("="*fnl)+"\n"+sf['name']+"\n("+sf['hint']+")\n"+("="*fnl)+"\n"
-            dumptext += ("="*fnl)+"\n"+sf['name']+"\n"+("="*fnl)+"\n"
-            dumptext += wb_fields[ fields[0]['key'] ]+"\n\n"
-
-        return dumptext
-
-    def _iterkeywords(self, template, keywords):
-        if isinstance(template, dict):
-            partial_template = template[GLSetting.memory_copy.default_language]
-        else:
-            partial_template = template
-            # this is wrong!
-
-        for key, var in keywords.iteritems():
-            partial_template = partial_template.replace(key, var)
-
-        return partial_template
 
     def format_template(self, template, event_dicts):
         """
         TODO research on integration of http://docs.python.org/2/library/email
         """
 
-        node_desc = event_dicts.node_info
-        assert node_desc.has_key('name')
-        receiver_desc = event_dicts.receiver_info
-        assert receiver_desc.has_key('name')
-        context_desc = event_dicts.context_info
-        assert context_desc.has_key('name')
+        supported_event_types = { u'encrypted_tip' : EncryptedTipKeyword,
+                                  u'plaintext_tip' : TipKeyword,
+                                  # different events, some classes
+                                  u'encrypted_expiring_tip' : EncryptedTipKeyword,
+                                  u'plaintext_expiring_tip' : TipKeyword,
+                                  u'encrypted_file' : EncryptedFileKeyword,
+                                  u'plaintext_file' : FileKeyword,
+                                  u'encrypted_comment' : EncryptedCommentKeyword,
+                                  u'plaintext_comment' : CommentKeyword,
+                                  u'encrypted_message' : EncryptedMessageKeyword,
+                                  u'plaintext_message' : MessageKeyword,
+                                  u'zip_collection' : ZipFileKeyword,
+                                }
 
-        template_keyword = {
-            '%NodeName%': node_desc['name'],
-            '%HiddenService%': node_desc['hidden_service'],
-            '%PublicSite%': node_desc['public_site'],
-            '%ReceiverName%': receiver_desc['name'],
-            # context_name contains localized data, ad the moment
-            # exported only with default language, need to be changed
-            # notification_sched, checking the langage configured by
-            # the receiver. this would serialize correctly and make
-            # the variables come HERE/QUI/ICI
-            '%ContextName%' : context_desc['name'],
-            }
+        if event_dicts.type not in supported_event_types.keys():
+            raise AssertionError("%s at the moment supported: %s is NOT " %
+                                 (supported_event_types, event_dicts.type))
 
-        supported_event_types = [ u'encrypted_tip',
-                                  u'plaintext_tip',
-                                  u'encrypted_file',
-                                  u'plaintext_file',
-                                  u'encrypted_comment',
-                                  u'plaintext_comment',
-                                  u'encrypted_message',
-                                  u'plaintext_message',
-                                  u'zip_collection' ]
+        # For each Event type, we've to dispatch the right _KeyWord class
+        keyword_converter = supported_event_types[event_dicts.type](event_dicts.node_info,
+                                                                    event_dicts.context_info,
+                                                                    event_dicts.receiver_info,
+                                                                    event_dicts.trigger_info)
+        # Each event has the same initializer, also if trigger_info differs :)
 
-        high_level_clearance = [ u'encrypted_tip',
-                                 u'zip_collection' ]
+        # we've now:
+        # 1) template => directly from Notification.*_template
+        # 2) keyword_converter => object aligned with Event type and data
 
-        if event_dicts.type not in supported_event_types:
-            raise AssertionError("%s at the moment supported: %s is NOT " % (supported_event_types, event_dicts.type))
+        # The receiver preferred language is not yet collected, or can be used instead of default
 
-        tip_template_keyword = {}
-        if event_dicts.type == u'encrypted_tip': # high_level_clearance REMOVED: no zip has not wb_fields and fail test_gpg!
+        if not template.has_key(GLSetting.memory_copy.default_language):
+            log.err("Missing notification template in the default language!")
+            raise Exception("Missing notification template in the default language")
 
-            assert (event_dicts.trigger_info.has_key('wb_fields'))
+        raw_template = template[GLSetting.memory_copy.default_language]
 
-            # GLSetting.memory_copy.default_language is ignored here
-            # because the context_info is already localized
-            tip_template_keyword.update({
-                '%TipFields%':
-                    self.dump_submission_fields(event_dicts.context_info['fields'],
-                                                event_dicts.trigger_info['wb_fields'])
-            })
+        for kw in keyword_converter.keyword_list:
 
-        if event_dicts.type == u"zip_collection": # only zip files
+            if raw_template.count(kw):
+                # if %SomeKeyword% matches, call keyword_converter.SomeKeyword function
+                variable_content = getattr(keyword_converter, kw[1:-1])()
 
-            tip_template_keyword.update({
-                '%FileList%':
-                    self.dump_file_list(event_dicts.trigger_info['files'],
-                                        event_dicts.trigger_info['files_number']),
-                '%FilesNumber%': str(event_dicts.trigger_info['files_number']),
-                '%TotalSize%': str(event_dicts.trigger_info['total_size']),
-            })
+                # TODO: test with recursion, what if Node.name contain %NodeName% ?
+                raw_template = raw_template.replace(kw, variable_content)
 
-        if event_dicts.type in high_level_clearance or event_dicts.type == u'plaintext_tip':
+        # Is no more Raw, because all the keywords that shall be converted in
+        # the Event.type, has been converted. So if you have request %TipFields% in
+        # a Comment notification template, you would get just a message with a not
+        # converted keyword.
+        return raw_template
 
-            if len(node_desc['hidden_service']):
-                tip_template_keyword.update({
-                    '%TipTorURL%':
-                        '%s/#/status/%s' %
-                        ( node_desc['hidden_service'],
-                          event_dicts.trigger_info['id']),
-                    })
-            else:
-                tip_template_keyword.update({
-                    '%TipTorURL%':
-                        'ADMIN, CONFIGURE YOUR HIDDEN SERVICE (Advanced configuration)!'
-                })
 
-            if not GLSetting.memory_copy.tor2web_receiver:
-                tip_template_keyword.update({
-                    '%TipT2WURL%': "Ask to your admin about Tor"})
-                # https://github.com/globaleaks/GlobaLeaks/issues/268
-            elif len(node_desc['public_site']):
-                tip_template_keyword.update({
-                    '%TipT2WURL%':
-                        '%s/#/status/%s' %
-                        ( node_desc['public_site'],
-                          event_dicts.trigger_info['id'] ),
-                    })
-            else:
-                tip_template_keyword.update({
-                    '%TipT2WURL%':
-                        'ADMIN, CONFIGURE YOUR PUBLIC SITE (Advanced configuration)'
-                })
 
-            tip_template_keyword.update({
-                '%EventTime%':
-                    very_pretty_date_time(event_dicts.trigger_info['creation_date']),
-                })
+# Below you can see an inheritance dance!¹!!eleven!
 
-            partial = self._iterkeywords(template, template_keyword)
-            body = self._iterkeywords(partial, tip_template_keyword)
-            return body
+class _KeyWord(object):
+    """
+    This class define the base keyword list supported by all the events,
+    in example, %NodeName% is a keyword always available. Other keywords can
+    be used only in specific Event.
+    """
 
-        if event_dicts.type == u'encrypted_file' or event_dicts.type == u'plaintext_file':
+    shared_keywords = [
+        '%NodeName%',
+        '%HiddenService%',
+        '%PublicSite%',
+        '%ReceiverName%',
+        '%ContextName%'
+    ]
 
-            file_template_keyword = {
-                '%FileName%': event_dicts.trigger_info['name'],
-                '%EventTime%':
-                    very_pretty_date_time(event_dicts.trigger_info['creation_date']),
-                '%FileSize%': event_dicts.trigger_info['size'],
-                '%FileType%': event_dicts.trigger_info['content_type'],
-                }
+    def __init__(self, node_desc, context_desc, receiver_desc):
 
-            partial = self._iterkeywords(template, template_keyword)
-            body = self._iterkeywords(partial, file_template_keyword)
-            return body
+        self.keyword_list = _KeyWord.shared_keywords
 
-        if event_dicts.type == u'encrypted_comment' or event_dicts.type == u'plaintext_comment':
+        self.node = node_desc
+        self.context = context_desc
+        self.receiver = receiver_desc
 
-            comment_template_keyword = {
-                '%CommentSource%': event_dicts.trigger_info['type'],
-                '%EventTime%':
-                    very_pretty_date_time(event_dicts.trigger_info['creation_date']),
-                }
+        # basic assumption that can eventually be removed...
+        assert self.node.has_key('name')
+        assert self.context.has_key('name')
+        assert self.receiver.has_key('name')
 
-            partial = self._iterkeywords(template, template_keyword)
-            body = self._iterkeywords(partial, comment_template_keyword)
-            return body
 
-        if event_dicts.type == u'encrypted_message' or event_dicts.type == u'plaintext_message':
+    def NodeName(self):
+        return self.node['name']
 
-            message_template_keyword = {
-                '%EventTime%':
-                    very_pretty_date_time(event_dicts.trigger_info['creation_date']),
-                '%MessageContent%': event_dicts.trigger_info['content']
-            }
+    def HiddenService(self):
+        return self.node['hidden_service']
 
-            partial = self._iterkeywords(template, template_keyword)
-            body = self._iterkeywords(partial, message_template_keyword)
-            return body
+    def PublicSite(self):
+        return self.node['public_site']
 
-        raise AssertionError("No one can access to this section of code: has to be returned before!")
+    def ReceiverName(self):
+        return self.receiver['name']
 
+    def ContextName(self):
+        return self.context['name']
+
+class TipKeyword(_KeyWord):
+
+    tip_keywords = [
+        '%TipTorURL%',
+        '%TipT2WURL%',
+        '%TipNum%',
+        '%EventTime%'
+    ]
+
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc):
+
+        super(TipKeyword, self).__init__(node_desc, context_desc, receiver_desc)
+
+        self.keyword_list += TipKeyword.tip_keywords
+        self.tip = tip_desc
+
+    def TipTorURL(self):
+        if len(self.node['hidden_service']):
+            retstr = '%s/#/status/%s' % (self.node['hidden_service'], self.tip['id'])
+        else:
+            retstr = 'ADMIN, CONFIGURE YOUR HIDDEN SERVICE (Advanced configuration)!'
+        return retstr
+
+    def TipT2WURL(self):
+        """
+        we shall enhance this issue:
+        https://github.com/globaleaks/GlobaLeaks/issues/268
+        making that if one of these function return None, the entire line is stripped.
+        This can avoid the awkward effect of 'Public Url: [Ask to your admin about Tor]'
+        """
+        if not GLSetting.memory_copy.tor2web_receiver:
+            retstr = "[Ask to your admin about Tor]"
+        elif len(self.node['public_site']):
+            retstr =  '%s/#/status/%s' % ( self.node['public_site'], self.tip['id'] )
+        else:
+            retstr = 'ADMIN, CONFIGURE YOUR PUBLIC SITE (Advanced configuration)'
+
+        return retstr
+
+    def TipNum(self):
+        """
+        This is just an hack to create a random number from a TipId,
+        from 1 to 1000, that shall be the same among time, and
+        (without caring on collisions) different from others Tips
+        """
+        uuid_derived_string = self.tip['id'].replace('-', '')
+        retval = 1
+        for x in xrange(len(uuid_derived_string)):
+            try:
+                retval += int(uuid_derived_string[x])
+            except Exception:
+                # this happen when an ascii letter is converted
+                retval *= 2
+
+        retval = (retval % 1000) + 1
+        return retval
+
+    def EventTime(self):
+        return very_pretty_date_time(self.tip['creation_date'])
+
+
+class EncryptedTipKeyword(TipKeyword):
+
+    encrypted_tip_keywords = [
+        '%TipFields%'
+    ]
+
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc):
+
+        super(EncryptedTipKeyword, self).__init__(node_desc, context_desc, receiver_desc, tip_desc)
+        self.keyword_list += EncryptedTipKeyword.encrypted_tip_keywords
+
+    def TipFields(self):
+        return dump_submission_fields(self.context['fields'], self.tip['wb_fields'])
+
+
+class CommentKeyword(_KeyWord):
+
+    comment_keywords = [
+        '%CommentSource%',
+        '%EventTime%'
+    ]
+
+    def __init__(self, node_desc, context_desc, receiver_desc, comment_desc):
+
+        super(CommentKeyword, self).__init__(node_desc, context_desc, receiver_desc)
+
+        self.keyword_list += CommentKeyword.comment_keywords
+        self.comment = comment_desc
+
+    def CommentSource(self):
+        return self.comment['type']
+
+    def EventTime(self):
+        return very_pretty_date_time(self.comment['creation_date'])
+
+
+class EncryptedCommentKeyword(CommentKeyword):
+
+    encrypted_comment_keywords = [
+        '%CommentContent%',
+    ]
+
+    def __init__(self, node_desc, context_desc, receiver_desc, comment_desc):
+
+        super(EncryptedCommentKeyword, self).__init__(node_desc, context_desc,
+                                                      receiver_desc, comment_desc)
+        self.keyword_list += EncryptedCommentKeyword.encrypted_comment_keywords
+
+    def CommentContent(self):
+        """
+        Think about Comment.system_content before document and insert this
+        feature in the default templates
+        """
+        return self.comment['content']
+
+
+class MessageKeyword(_KeyWord):
+
+    message_keywords = [
+        '%MessageSource%',
+        '%EventTime%'
+    ]
+
+    def __init__(self, node_desc, context_desc, receiver_desc, message_desc):
+
+        super(MessageKeyword, self).__init__(node_desc, context_desc, receiver_desc)
+
+        self.keyword_list += MessageKeyword.message_keywords
+        self.message = message_desc
+
+    def MessageSource(self):
+        pass
+
+    def EventTime(self):
+        return very_pretty_date_time(self.message['creation_date'])
+
+
+class EncryptedMessageKeyword(MessageKeyword):
+
+    encrypted_message_keywords = [
+        '%MessageContent%',
+        ]
+
+    def __init__(self, node_desc, context_desc, receiver_desc, message_desc):
+
+        super(EncryptedMessageKeyword, self).__init__(node_desc, context_desc,
+                                                      receiver_desc, message_desc)
+        self.keyword_list += EncryptedMessageKeyword.encrypted_message_keywords
+
+    def MessageContent(self):
+        return self.message['content']
+
+
+class FileKeyword(_KeyWord):
+
+    file_keywords = [
+        '%FileName%',
+        '%EventTime%',
+        '%FileSize%',
+        '%FileType%'
+    ]
+
+    def __init__(self, node_desc, context_desc, receiver_desc, file_desc):
+
+        super(FileKeyword, self).__init__(node_desc, context_desc, receiver_desc)
+
+        self.keyword_list += FileKeyword.file_keywords
+        self.file = file_desc
+
+    def FileName(self):
+        return self.file['name']
+
+    def EventTime(self):
+        return very_pretty_date_time(self.file['creation_date'])
+
+    def FileSize(self):
+        return self.file['size']
+
+    def FileType(self):
+        return self.file['content_type']
+
+
+class EncryptedFileKeyword(FileKeyword):
+    """
+    FileDescription not yet implemented in UI, but here has to go
+    """
+
+    encrypted_file_keywords = [
+        '%FileDescription%'
+    ]
+
+    def __init__(self, node_desc, context_desc, receiver_desc, file_desc):
+
+        super(EncryptedFileKeyword, self).__init__(node_desc, context_desc, receiver_desc, file_desc)
+        self.keyword_list += EncryptedFileKeyword.encrypted_file_keywords
+
+    def FileDescription(self):
+        pass
+
+
+class ZipFileKeyword(_KeyWord):
+
+    zip_file_keywords = [
+        '%FileList%',
+        '%FilesNumber%',
+        '%TotalSize%'
+    ]
+
+    def __init__(self, node_desc, context_desc, receiver_desc, zip_desc):
+
+        super(ZipFileKeyword, self).__init__(node_desc, context_desc, receiver_desc)
+
+        self.keyword_list += ZipFileKeyword.zip_file_keywords
+        self.zip = zip_desc
+
+    def FileList(self):
+        return dump_file_list(self.zip['files'], self.zip['files_number'])
+
+    def FilesNumber(self):
+        return str(self.zip['files_number'])
+
+    def TotalSize(self):
+        return str(self.zip['total_size'])
 
