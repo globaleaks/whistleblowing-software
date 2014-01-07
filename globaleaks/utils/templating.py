@@ -257,7 +257,8 @@ class MessageKeyword(_KeyWord):
         self.message = message_desc
 
     def MessageSource(self):
-        pass
+        # well... it's obviously always WhistleBlower at the moment...
+        return self.message['author']
 
     def EventTime(self):
         return very_pretty_date_time(self.message['creation_date'])
