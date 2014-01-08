@@ -21,7 +21,7 @@ from uuid import uuid4
 from twisted.python import components
 from twisted.python.failure import Failure
 
-from twisted.internet import fdesc
+from twisted.internet import reactor, fdesc
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone import escape, httputil
@@ -608,7 +608,7 @@ class DownloadToken(components.Componentized):
     
     _expireCall = None
 
-    def __init__(self, id_val, id_type='rfile', reactor=None):
+    def __init__(self, id_val, id_type):
         """
         Initialize the object
         """
@@ -619,23 +619,19 @@ class DownloadToken(components.Componentized):
         self.id_val = id_val
         self.id_type = id_type
 
-        if reactor is None:
-            from twisted.internet import reactor
-        self._reactor = reactor
-
         self.expireCallbacks = []
 
         GLSetting.download_tokens[self.id] = self
 
-        self._expireCall = self._reactor.callLater(
+        self._expireCall = reactor.callLater(
             self.tokenTimeout, self.expire)
 
     @staticmethod
     def get(temporary_download_id):
         if temporary_download_id in GLSetting.download_tokens:
-            id_type = GLSetting.download_tokens[temporary_download_id].id_type
             id_val = GLSetting.download_tokens[temporary_download_id].id_val
-            return (id_type, id_val)
+            id_type = GLSetting.download_tokens[temporary_download_id].id_type
+            return (id_val, id_type)
         return (None, None)
 
     def expire(self):

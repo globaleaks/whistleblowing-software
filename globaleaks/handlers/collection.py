@@ -105,7 +105,7 @@ class CollectionDownload(BaseHandler):
             # the regexp of rest/api.py should prevent this.
             raise errors.InvalidInputFormat("collection compression type not supported")
 
-        (id_type, id_val) = DownloadToken.get(token)
+        (id_val, id_type) = DownloadToken.get(token)
 
         if id_type == 'rtip' and id_val is not None:
 

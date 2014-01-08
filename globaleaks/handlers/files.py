@@ -286,7 +286,7 @@ class Download(BaseHandler):
 
         # tip_id needed to authorized the download
 
-        (id_type, id_val) = DownloadToken.get(rfile_token)
+        (id_val, id_type) = DownloadToken.get(rfile_token, 'rfile')
 
         if id_type != 'rfile' or id_val is None:
             raise errors.UnexistentDownloadToken

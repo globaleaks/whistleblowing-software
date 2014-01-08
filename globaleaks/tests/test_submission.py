@@ -11,11 +11,14 @@ from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import files, authentication, submission, wbtip
+from globaleaks.handlers.base import DownloadToken
 from globaleaks.handlers.admin import create_context, update_context, create_receiver, get_receiver_list
 from globaleaks.rest import errors
 from globaleaks.models import InternalTip
 
 from io import BytesIO as StringIO
+
+import time
 
 @transact_ro
 def collect_ifile_as_wb_without_wbtip(store, internaltip_id):
@@ -126,14 +129,14 @@ class TestSubmission(helpers.TestGL):
         yield self._force_finalize(self.dummySubmission['submission_gus'])
 
         # create receivertip its NEEDED to create receiverfile
-        rt = yield delivery_sched.tip_creation()
-        self.assertTrue(isinstance(rt, list))
+        self.rt = yield delivery_sched.tip_creation()
+        self.assertTrue(isinstance(self.rt, list))
 
-        rfileslist = yield delivery_sched.receiverfile_planning()
+        self.rfileslist = yield delivery_sched.receiverfile_planning()
         # return a list of lists [ "file_id", status, "f_path", len, "receiver_desc" ]
-        self.assertTrue(isinstance(rfileslist, list))
+        self.assertTrue(isinstance(self.rfileslist, list))
 
-        for (fid, status, fpath, flen, receiver_desc) in rfileslist:
+        for (fid, status, fpath, flen, receiver_desc) in self.rfileslist:
 
             rfdesc = yield delivery_sched.receiverfile_create(fid,
                                     status, fpath, flen, receiver_desc)
@@ -141,26 +144,25 @@ class TestSubmission(helpers.TestGL):
             self.assertEqual(rfdesc['receiver_id'], receiver_desc['receiver_gus'])
             self.assertEqual(rfdesc['internalfile_id'], fid)
 
-        fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['submission_gus'])
-        self.assertTrue(isinstance(fil, list))
-        self.assertEqual(len(fil), 2)
+        self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['submission_gus'])
+        self.assertTrue(isinstance(self.fil, list))
+        self.assertEqual(len(self.fil), 2)
 
-        rfi = yield delivery_sched.get_receiverfile_by_itip(self.dummySubmission['submission_gus'])
-        self.assertTrue(isinstance(rfi, list))
-        self.assertEqual(len(rfi), 2)
-        self.assertEqual(rfi[0]['mark'], u'not notified')
-        self.assertEqual(rfi[1]['mark'], u'not notified')
-        self.assertEqual(rfi[0]['status'], u'reference')
-        self.assertEqual(rfi[1]['status'], u'reference')
+        self.rfi = yield delivery_sched.get_receiverfile_by_itip(self.dummySubmission['submission_gus'])
+        self.assertTrue(isinstance(self.rfi, list))
+        self.assertEqual(len(self.rfi), 2)
+        self.assertEqual(self.rfi[0]['mark'], u'not notified')
+        self.assertEqual(self.rfi[1]['mark'], u'not notified')
+        self.assertEqual(self.rfi[0]['status'], u'reference')
+        self.assertEqual(self.rfi[1]['status'], u'reference')
 
         # verify the checksum returned by whistleblower POV, I'm not using
         #  wfv = yield tip.get_files_wb()
         # because is not generated a WhistleblowerTip in this test
-        wbfls = yield collect_ifile_as_wb_without_wbtip(self.dummySubmission['submission_gus'])
-        self.assertEqual(len(wbfls), 2)
-        self.assertEqual(wbfls[0]['sha2sum'], fil[0]['sha2sum'])
-        self.assertEqual(wbfls[1]['sha2sum'], fil[1]['sha2sum'])
-
+        self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.dummySubmission['submission_gus'])
+        self.assertEqual(len(self.wbfls), 2)
+        self.assertEqual(self.wbfls[0]['sha2sum'], self.fil[0]['sha2sum'])
+        self.assertEqual(self.wbfls[1]['sha2sum'], self.fil[1]['sha2sum'])
 
     @inlineCallbacks
     def test_access_from_receipt(self):
@@ -322,3 +324,36 @@ class TestSubmission(helpers.TestGL):
             self.assertTrue(False)
         except Exception as excep:
             self.assertTrue(excep.reason.startswith(u"Submission do not validate the input fields [Missing field"))
+
+    def download_token_test(self, id_val, id_type):
+         # test token generation
+         d = DownloadToken(id_val, id_type)
+         self.assertNotEqual(d.id, None)
+
+         # test token use during token validity
+         (id_val_check, id_type_check) = DownloadToken.get(d.id)
+         self.assertEqual(id_val_check, id_val)
+         self.assertEqual(id_type_check, id_type)
+
+         # emulate reactor.callLater on Download Token
+         d.expire()
+
+         # test token use after token validity;
+         # n.b. this is equal of testing not existent token
+         (id_val_check, id_type_check) = DownloadToken.get(d.id)
+         self.assertEqual(id_val_check, None)
+         self.assertEqual(id_type_check, None)
+
+    @inlineCallbacks
+    def test_download_tokens(self):
+
+         yield self.test_create_receiverfiles()
+
+         # Test Download Token Creation/Access for rtip
+         for rtip in self.rt:
+             self.download_token_test(rtip, 'rtip')
+
+         # Test Download Token Creation/Access for rfile
+         for rfile in self.rfi:
+             self.download_token_test(rfile['id'], 'rfile')
+
