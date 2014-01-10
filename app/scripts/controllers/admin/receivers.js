@@ -1,5 +1,5 @@
-GLClient.controller('AdminReceiversCtrl', ['$scope',
-function($scope) {
+GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal',
+function($scope, $modal) {
   $scope.randomFluff = Math.round(Math.random()*1000000);
 
   $scope.save_all = function() {
@@ -15,6 +15,24 @@ function($scope) {
       $scope.admin.receivers.splice(idx, 1);
     });
 
+  };
+
+  $scope.deleteDialog = function(receiver){
+    var modalInstance = $modal.open({
+        templateUrl:  'views/partials/receiver_delete.html',
+        controller: 'ConfirmableDialogCtrl',
+        resolve: {
+          object: function () {
+            return receiver;
+          }
+        }
+
+    });
+
+    modalInstance.result.then(
+       function(result) { $scope.delete(result); },
+       function(result) { }
+    );
   };
 
   $scope.sortableOptions = {

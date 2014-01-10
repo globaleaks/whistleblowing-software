@@ -85,7 +85,6 @@ angular.module('resourceServices.authentication', [])
               if ($routeParams['src']) {
                 $location.path($routeParams['src']);
               } else {
-                console.log(self.auth_landing_page);
                 $location.path(auth_landing_page);
               }
 

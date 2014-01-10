@@ -4,14 +4,14 @@
       <button type="button" class="close" aria-hidden="true" ng-click="cancel()">
         <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
       </button>
-      <h2>{{ "Delete Tip" | translate }}</h2>
+      <h2>{{ "Delete Context" | translate }}</h2>
     </div>
     <div class="modal-body">
       <div class="alert alert-danger">
-        <div ng-show="global_delete">
-          {{ "Are you sure you want to delete the tip globally?" | translate }}
+        <div>
+          {{ "Are you sure you want to delete the context?" | translate }}
           <br />
-          {{ "Please take care that all associated data will be properly deleted and all receivers won't be able to further access to it." | translate}}
+          {{ "Please take care that all associated data will be properly deleted." | translate}}
         </div>
     </div>
     <div class="modal-footer">
