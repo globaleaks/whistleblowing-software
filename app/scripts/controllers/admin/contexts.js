@@ -1,6 +1,6 @@
 GLClient.controller('AdminContextsCtrl',
-    ['$scope', '$rootScope', 'Admin',
-    function($scope, $rootScope, Admin) {
+    ['$scope', '$rootScope', '$modal', 'Admin',
+    function($scope, $rootScope, $modal, Admin) {
 
   $scope.save_all = function() {
     angular.forEach($scope.admin.contexts, function(context, key) {
@@ -63,7 +63,24 @@ GLClient.controller('AdminContextsCtrl',
     }
   }
 
+  $scope.deleteDialog = function(context){
+    var modalInstance = $modal.open({
+        templateUrl:  'views/partials/context_delete.html',
+        controller: 'ConfirmableDialogCtrl',
+        resolve: {
+          object: function () {
+            return context;
+          }
+        }
 
+    });
+
+    modalInstance.result.then(
+       function(result) { $scope.delete(result); },
+       function(result) { }
+    );
+  };
+  
 }]);
 
 GLClient.controller('AdminFieldEditorCtrl', ['$scope',
