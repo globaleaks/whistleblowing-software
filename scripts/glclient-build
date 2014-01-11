@@ -10,10 +10,11 @@ cat << EOF
 usage: ./build-custom-glclient.sh options
 
 OPTIONS:
-    -h                         Show this message
-    -r                         Restore to default GLClient installation
-    -p <path to custom-gl>     Build custom GLCLient version
-    -i                         Install GLClient dependencies
+    -h                                Show this message
+    -i                                Install GLClient dependencies
+    -b <path to custom-gl> [-v tag ]  Build custom GLCLient version
+    -d <path to custom-gl-build>      Deploy custom GLClient version
+    -r                                Restore to default GLClient installation
 EOF
 }
 
@@ -86,17 +87,15 @@ build_custom_glclient()
   npm install -d
   bower update -f
   grunt build
+}
 
+deploy_custom_glclient()
+{
   echo "[+] Cleaning up currently installed custom build... "
   sudo rm -rf $GLCLIENT_INSTALL_DIR
 
-  sudo mv build $GLCLIENT_INSTALL_DIR
-  #rm -rf $TMP_DIR
+  sudo cp -r CUSTOM_GLCLIENT_BUILD_DIR $GLCLIENT_$GLCLIENT_INSTALL_DIR
 }
-
-if [ ! $1 ];then
-  usage
-fi
 
 if [[ $EUID -eq 0 ]]; then
   echo "!! This script must not be run as root. Please execute it as a normal user with sudo!"
@@ -104,7 +103,9 @@ if [[ $EUID -eq 0 ]]; then
   exit 1
 fi
 
-while getopts "hrp:v:i" OPTION
+COUNTER=0
+
+while getopts "hrp:d:v:i" OPTION
 do
   case $OPTION in
     h)
@@ -112,10 +113,13 @@ do
       exit 1
       ;;
     r)
-      restore_default_glclient
+      COUNTER=$((COUNTER+1))
+      RESTORE=1
       exit 0
       ;;
     p)
+      COUNTER=$((COUNTER+1))
+
       if [ ! $2 ];then
         echo "[!] Missing custom-gl path."
         usage
@@ -123,13 +127,27 @@ do
       fi
 
       CUSTOM_GLCLIENT_DIR=$2
+      BUILD=1
+      ;;
+    d)
+      COUNTER=$((COUNTER+1))
+
+      if [ ! $2 ];then
+        echo "[!] Missing custom-gl-build path."
+        usage
+        exit 1
+      fi
+
+      CUSTOM_GLCLIENT_BUILD_DIR=$2
+      DEPLOY=1
       ;;
     v)
+      COUNTER=$((COUNTER+1))
       GLCLIENT_TAG=$OPTARG
       ;;
     i)
-      get_sudo
-      install_glclient_dependencies
+      COUNTER=$((COUNTER+1))
+      INSTALLDEP=1
       ;;
     ?)
       usage
@@ -138,9 +156,30 @@ do
   esac
 done
 
-if [ ! $GLCLIENT_TAG ];then
-  GLCLIENT_TAG="v"`python -c 'import globaleaks;print globaleaks.__version__'`
+if [ ! $GLCLIENT_TAG ]; then
+  GLCLIENT_TAG="master"
+fi
+
+echo $COUNTER
+if [ $COUNTER != 1 ]; then
+  usage
+  exit 1
 fi
 
 get_sudo
-build_custom_glclient
+
+if [ $RESTORE ]; then
+  restore_default_glclient
+fi
+
+if [ $INSTALLDEP ]; then
+  install_glclient_dependencies
+fi
+
+if [ $BUILD ]; then
+  build_custom_glclient
+fi
+
+if [ $DEPLOY ]; then
+  deploy_custom_glclient
+fi 
