@@ -7,7 +7,7 @@ from globaleaks.rest.errors import InvalidInputFormat
 from globaleaks.tests import helpers
 from globaleaks.rest import errors
 from globaleaks.handlers import admin, admstaticfiles
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import GLSetting, transact
 from globaleaks import __version__
 from globaleaks.models import Node, Context, Receiver
 
@@ -470,7 +470,6 @@ class TestAdminStaticFileList(helpers.TestHandler):
             self.assertTrue(f['size'] > 0)
             files_dict[f['filename']] = f['size']
 
-        print files_dict.keys()
         for system_names in self.default_files:
             self.assertTrue(system_names in files_dict.keys())
 
