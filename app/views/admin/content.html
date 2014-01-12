@@ -19,7 +19,7 @@ This comment is needed in order to push the following strings on transifex
     <div id="ConfigSidebarBox" class="col-md-3" ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
       <div class="row">
-        <form class="config-form" ng-controller="AdminContentCtrl">
+        <form name="contentForm" ng-controller="AdminContentCtrl">
 
           <tabset class="tab-content">
             <tab ng-repeat="tab in tabs" heading="{{ tab.title | translate }}" active="tab.active" disabled="tab.disabled">

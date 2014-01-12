@@ -20,7 +20,7 @@ This comment is needed in order to push the following strings on transifex
     <div class="col-md-9">
 
       <div class="row tab-content">
-        <form class="config-form">
+        <form name="receiverPreferencesForm">
           <tabset>
             <tab ng-repeat="tab in tabs" heading="{{ tab.title | translate }}" active="tab.active" disabled="tab.disabled">
             <div ng-include="tab.template" ng-controller="tab.ctrl"></div>

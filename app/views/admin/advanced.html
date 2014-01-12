@@ -17,7 +17,7 @@ This comment is needed in order to push the following strings on transifex
     <div class="col-md-9">
 
       <div class="row">
-        <form class="config-form" ng-controller="AdminAdvancedCtrl">
+        <form name="advancedForm" ng-controller="AdminAdvancedCtrl">
 
           <tabset class="tab-content">
             <tab ng-repeat="tab in tabs" heading="{{ tab.title | translate }}" active="tab.active" disabled="tab.disabled">
@@ -26,7 +26,7 @@ This comment is needed in order to push the following strings on transifex
           </tabset>
 
           <div class="form-group">
-            <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
+            <button class="btn btn-success" ng-disabled="advancedForm.$invalid " ng-click="updateNode(admin.node)">
               <i class="glyphicon glyphicon-ok"></i>
               {{ "Save" | translate }}
             </button>
