@@ -16,9 +16,9 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.2.7",
-    "angular-resource": "1.2.7",
-    "angular-route": "1.2.7",
+    "angular": "1.2.8",
+    "angular-resource": "1.2.8",
+    "angular-route": "1.2.8",
     "angular-translate": "1.1.1",
     "angular-translate-loader-url": "0.1.5",
     "angular-translate-loader-static-files": "0.1.6",
