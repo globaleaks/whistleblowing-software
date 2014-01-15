@@ -196,7 +196,6 @@ class Replacer89(TableReplacer):
         new_notification = self.get_right_model("Notification", 9)()
 
         for k, v in new_notification._storm_columns.iteritems():
-            print v.name
 
             if v.name == 'encrypted_file_template':
                 new_notification.encrypted_file_template = old_notification.file_template
