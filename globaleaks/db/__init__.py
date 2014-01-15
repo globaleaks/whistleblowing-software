@@ -77,7 +77,7 @@ def create_tables(create_node=True):
             'presentation':  dict({ GLSetting.memory_copy.default_language :
                                         u"Welcome to GlobaLeaks™" }),
             'footer': dict({ GLSetting.memory_copy.default_language :
-                                 u"Copyright 2011-2013 Hermes Center for Transparency and Digital Human Rights" }),
+                                 u"Copyright 2011-2014 Hermes Center for Transparency and Digital Human Rights" }),
             'subtitle': dict({ GLSetting.memory_copy.default_language :
                                    u"Hi! I'm the subtitle ð <: change me" }),
             'hidden_service':  u"",
