@@ -143,7 +143,7 @@ class Replacer67(TableReplacer):
         new_node = self.get_right_model("Node", 7)()
 
         # the new entry
-        new_node.footer = { 'en' : u"Copyright 2011-2013 Hermes Center for Transparency and Digital Human Rights" }
+        new_node.footer = { 'en' : u"Copyright 2011-2014 Hermes Center for Transparency and Digital Human Rights" }
 
         # the removed entry
         # new_node.maximum_descsize = old_node.maximum_descsize
