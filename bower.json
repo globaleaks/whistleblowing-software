@@ -22,13 +22,16 @@
     "angular-translate": "1.1.1",
     "angular-translate-loader-url": "0.1.5",
     "angular-translate-loader-static-files": "0.1.6",
-    "angular-ui-bootstrap-bower": "0.9.0",
-    "angular-ui-sortable": "0.0.1",
+    "angular-ui-bootstrap-bower": "0.10.0",
+    "angular-ui-sortable": "0.10.0",
     "jquery": "2.0.3",
     "jquery.cookie": "1.4.0",
     "jquery-file-upload": "9.5.2",
     "jquery-ui": "1.10.3",
     "bootstrap": "3.0.3",
     "underscore": "1.5.2"
+  },
+  "resolutions": {
+    "angular": ">=1"
   }
 }
