@@ -1,0 +1,26 @@
+## Dev Notes
+
+### Setting up development environment
+
+   npm install -d
+   bower update -f
+
+   more infos at: https://github.com/globaleaks/GlobaLeaks/wiki/Setting-up-development-environment
+
+### Build compressed and uglified GLClient:
+
+   grunt build
+
+### Fetch updated translation
+
+   $ grunt updateTranslations
+
+   in case of:
+      Warning: ENOENT, no such file or directory 'pot/en.po' Use --force to continue.
+      Aborted due to warnings.
+
+   the fix is:
+      wget https://www.transifex.com/projects/p/globaleaks/resource/glclient-02-enpo/download/pot/
+      mv globaleaks_glclient-02-enpo.pot pot/en.po
+
+
