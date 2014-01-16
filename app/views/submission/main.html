@@ -196,29 +196,28 @@
     </div>
 
     <!-- END steps -->
-    <div class="clearfix"></div>
-    <ul class="pager pull-left">
 
-      <li ng-class="{disabled: !hasPreviousStep() || uploading}" class="previous">
+    <div class="clearfix"></div>
+
+    <ul class="pager pull-left">
+      <li ng-class="{disabled: uploading}" class="previous" ng-hide="!hasPreviousStep()">
         <a ng-click="decrementStep()">
           <i class="glyphicon glyphicon-arrow-left"></i>
           {{ "Previous Step" | translate }}
         </a>
       </li>
-      <li class="next" ng-class="{disabled: uploading}" ng-hide="!hasNextStep()">
+      <li ng-class="{disabled: uploading}" class="next" ng-hide="!hasNextStep()">
         <a ng-click="incrementStep()">
           {{ "Next Step" | translate }}
           <i class="glyphicon glyphicon-arrow-right"></i>
         </a>
       </li>
-
     </ul>
-
-    <div class="pull-right">
-      <button class="btn btn-success" style="margin: 20px 0;" ng-click="submit()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
+    <div class="pager pull-left" style="margin-left: 20px">
+      <div class="btn btn-success" ng-click="submit()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
         <i class="glyphicon glyphicon-ok"></i>
         {{ "Submit" | translate }}
-      </button>
+      </div>
     </div>
 
     <div class="clearfix"></div>

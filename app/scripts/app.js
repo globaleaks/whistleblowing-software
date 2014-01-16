@@ -88,8 +88,6 @@ var GLClient = angular.module('GLClient', [
         suffix: '.json'
       });
 
-      $translateProvider.uses('en');
-
       $tooltipProvider.options( {appendToBody: true} );
 }]).
   run(['$http', '$rootScope', '$route', 'Authentication', function ($http, $rootScope, $route, Authentication) {
