@@ -32,6 +32,6 @@
     "underscore": "1.5.2"
   },
   "resolutions": {
-    "angular": ">=1"
+    "angular": "1.2.8"
   }
 }

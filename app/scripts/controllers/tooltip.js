@@ -4,12 +4,8 @@ GLClient.controller('toolTipCtrl',
 function($scope, $rootScope, Authentication, $location,
          Node, $route, $translate) {
 
-  application_default_lang = 'en';
-
   if ($rootScope.language) {
     $scope.language = $rootScope.language;
-  } else {
-    $scope.language = application_default_lang;
   }
 
   $scope.session_id = Authentication.id;
@@ -17,9 +13,11 @@ function($scope, $rootScope, Authentication, $location,
   $scope.role = Authentication.role;
  
   Node.get(function(node) {
-    if ($.inArray($scope.language, node.languages_enabled) == -1) {
+
+    if ($rootScope.language == undefined || $.inArray($scope.language, node.languages_enabled) == -1) {
       $rootScope.language = node.default_language;
       $scope.language = node.default_language;
+      alert($scope.language);
       $translate.uses($scope.language);
     }
 
