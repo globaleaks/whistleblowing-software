@@ -148,34 +148,43 @@ def apply_cli_options(store):
     checked until this function!
     """
 
+    node = store.find(Node).one()
+
     verb = "Hardwriting"
     accepted = {}
     if GLSetting.unchecked_tor_input.has_key('hostname_tor_content'):
         composed_hs_url = 'http://%s' % GLSetting.unchecked_tor_input['hostname_tor_content']
         composed_t2w_url = 'https://%s.to' % GLSetting.unchecked_tor_input['hostname_tor_content']
+
         if not acquire_url_address(composed_hs_url, hidden_service=True, http=True) or \
                 not acquire_url_address(composed_t2w_url, hidden_service=False, http=True):
             print "[!!] Invalid content found in the 'hostname' file specified (%s): Ignored" % \
                   GLSetting.unchecked_tor_input['hostname_tor_content']
         else:
-            accepted.update({ 'public_site' : unicode(composed_t2w_url) })
             accepted.update({ 'hidden_service' : unicode(composed_hs_url) })
-            print "[+] %s hidden service in DB: %s" % (verb, composed_hs_url)
-            print "[+] %s tor2web in DB: %s" % (verb, composed_t2w_url)
+            print "[+] %s hidden service in the DB: %s" % (verb, composed_hs_url)
+
+            if node.public_site:
+                print "[!!] Public Website (%s) is not automatically overwritten by (%s)" % \
+                      (node.public_site, composed_t2w_url)
+            else:
+                accepted.update({ 'public_site' : unicode(composed_t2w_url) })
+                print "[+] %s public site in the DB: %s" % (verb, composed_t2w_url)
+
             verb = "Overwritting"
 
     if GLSetting.cmdline_options.public_website:
         if not acquire_url_address(GLSetting.cmdline_options.public_website, hidden_service=False, http=True):
             print "[!!] Invalid public site: %s: Ignored" % GLSetting.cmdline_options.public_website
         else:
-            print "[+] %s tor2web in DB: %s" % (verb, GLSetting.cmdline_options.public_website)
+            print "[+] %s public site in the DB: %s" % (verb, GLSetting.cmdline_options.public_website)
             accepted.update({ 'public_site' : unicode(GLSetting.cmdline_options.public_website) })
 
     if GLSetting.cmdline_options.hidden_service:
         if not acquire_url_address(GLSetting.cmdline_options.hidden_service, hidden_service=True, http=True):
             print "[!!] Invalid hidden service: %s: Ignored" % GLSetting.cmdline_options.hidden_service
         else:
-            print "[+] %s hidden service in DB: %s" % (verb, GLSetting.cmdline_options.hidden_service)
+            print "[+] %s hidden service in the DB: %s" % (verb, GLSetting.cmdline_options.hidden_service)
             accepted.update({ 'hidden_service' : unicode(GLSetting.cmdline_options.hidden_service) })
 
     if accepted:
