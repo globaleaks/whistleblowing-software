@@ -17,7 +17,6 @@ function($scope, $rootScope, Authentication, $location,
     if ($rootScope.language == undefined || $.inArray($scope.language, node.languages_enabled) == -1) {
       $rootScope.language = node.default_language;
       $scope.language = node.default_language;
-      alert($scope.language);
       $translate.uses($scope.language);
     }
 
