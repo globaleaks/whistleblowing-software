@@ -201,7 +201,7 @@ class EncryptedTipKeyword(TipKeyword):
         return dump_submission_fields(self.context['fields'], self.tip['wb_fields'])
 
 
-class CommentKeyword(_KeyWord):
+class CommentKeyword(TipKeyword):
 
     comment_keywords = [
         '%CommentSource%',
@@ -242,7 +242,7 @@ class EncryptedCommentKeyword(CommentKeyword):
         return self.comment['content']
 
 
-class MessageKeyword(_KeyWord):
+class MessageKeyword(TipKeyword):
 
     message_keywords = [
         '%MessageSource%',
@@ -280,7 +280,7 @@ class EncryptedMessageKeyword(MessageKeyword):
         return self.message['content']
 
 
-class FileKeyword(_KeyWord):
+class FileKeyword(TipKeyword):
 
     file_keywords = [
         '%FileName%',
