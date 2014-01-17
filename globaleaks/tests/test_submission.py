@@ -11,7 +11,7 @@ from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import files, authentication, submission, wbtip
-from globaleaks.handlers.base import DownloadToken
+from globaleaks.handlers.base import CollectionToken, FileToken
 from globaleaks.handlers.admin import create_context, update_context, create_receiver, get_receiver_list
 from globaleaks.rest import errors
 from globaleaks.models import InternalTip
@@ -325,24 +325,39 @@ class TestSubmission(helpers.TestGL):
         except Exception as excep:
             self.assertTrue(excep.reason.startswith(u"Submission do not validate the input fields [Missing field"))
 
-    def download_token_test(self, id_val, id_type):
+    def download_collection_token_test(self, rtip_id):
+        # test token generation
+        d = CollectionToken(rtip_id)
+        self.assertNotEqual(d.id, None)
+
+        # test token use during token validity
+        id_val_check = CollectionToken.get(d.id)
+        self.assertEqual(id_val_check, rtip_id)
+
+        # emulate reactor.callLater on Download Token
+        d.expire()
+
+        # test token use after token validity;
+        # n.b. this is equal of testing not existent token
+        id_val_check = CollectionToken.get(d.id)
+        self.assertEqual(id_val_check, None)
+
+    def download_file_token_test(self, file_id):
          # test token generation
-         d = DownloadToken(id_val, id_type)
+         d = FileToken(file_id)
          self.assertNotEqual(d.id, None)
 
          # test token use during token validity
-         (id_val_check, id_type_check) = DownloadToken.get(d.id)
-         self.assertEqual(id_val_check, id_val)
-         self.assertEqual(id_type_check, id_type)
+         id_val_check = FileToken.get(d.id)
+         self.assertEqual(id_val_check, file_id)
 
          # emulate reactor.callLater on Download Token
          d.expire()
 
          # test token use after token validity;
          # n.b. this is equal of testing not existent token
-         (id_val_check, id_type_check) = DownloadToken.get(d.id)
+         id_val_check = FileToken.get(d.id)
          self.assertEqual(id_val_check, None)
-         self.assertEqual(id_type_check, None)
 
     @inlineCallbacks
     def test_download_tokens(self):
@@ -351,9 +366,9 @@ class TestSubmission(helpers.TestGL):
 
          # Test Download Token Creation/Access for rtip
          for rtip in self.rt:
-             self.download_token_test(rtip, 'rtip')
+             self.download_collection_token_test(rtip)
 
          # Test Download Token Creation/Access for rfile
          for rfile in self.rfi:
-             self.download_token_test(rfile['id'], 'rfile')
+             self.download_file_token_test(rfile['id'])
 

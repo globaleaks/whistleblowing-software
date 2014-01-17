@@ -11,7 +11,7 @@ import os
 import tarfile
 import StringIO
 
-from globaleaks.handlers.base import BaseHandler, DownloadToken
+from globaleaks.handlers.base import BaseHandler, CollectionToken
 from globaleaks.handlers.files import download_all_files, serialize_file
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.handlers import admin
@@ -105,22 +105,20 @@ class CollectionDownload(BaseHandler):
             # the regexp of rest/api.py should prevent this.
             raise errors.InvalidInputFormat("collection compression type not supported")
 
-        (id_val, id_type) = DownloadToken.get(token)
+        original_rtip_id = CollectionToken.get(token)
 
-        if id_type == 'rtip' and id_val is not None:
-
-            files_dict = yield download_all_files(id_val)
-
-            if not files_dict:
-                raise errors.DownloadLimitExceeded
-
-        else:
-
+        if not original_rtip_id:
             raise errors.UnexistentDownloadToken
 
+        files_dict = yield download_all_files(original_rtip_id)
+
+        if not files_dict:
+            raise errors.DownloadLimitExceeded
+
+
         node_dict = yield admin.get_node()
-        receiver_dict = yield get_receiver_from_rtip(id_val)
-        collection_tip_dict = yield get_collection_info(id_val)
+        receiver_dict = yield get_receiver_from_rtip(original_rtip_id)
+        collection_tip_dict = yield get_collection_info(original_rtip_id)
         context_dict = yield admin.get_context(collection_tip_dict['context_id'])
         notif_dict = yield admin.get_notification()
 
@@ -140,7 +138,7 @@ class CollectionDownload(BaseHandler):
             filedesc['path'] = os.path.join(GLSetting.submission_path, filedesc['path'])
 
         formatted_coll = Templating().format_template(notif_dict['zip_description'], mock_event).encode('utf-8')
-        log.debug("Generating collection content with: %s" % formatted_coll)
+        # log.debug("Generating collection content with: %s" % formatted_coll)
         files_dict.append(
             { 'buf'  : formatted_coll,
               'name' : "COLLECTION_INFO.txt"

@@ -67,3 +67,7 @@ TORDNSPORT=5353
 # WORKING_DIR
 #   must be configured with the daemon working directory
 WORKING_DIR=/var/globaleaks/
+
+# TOR_DIR
+#   this contain the Tor hidden service directory
+TOR_DIR=/var/globaleaks/torhs/
