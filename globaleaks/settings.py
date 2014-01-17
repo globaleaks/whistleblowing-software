@@ -276,7 +276,11 @@ class GLSettingsClass:
         self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')
         self.static_source = os.path.join(self.root_path, 'staticdata')
-        self.glclient_path = os.path.abspath(os.path.join(self.root_path, "..", "GLClient", "app"))
+
+        
+        self.glclient_path = os.path.abspath(os.path.join(self.root_path, "..", "GLClient", "build"))
+        if not os.path.exists(self.glclient_path):
+            self.glclient_path = os.path.abspath(os.path.join(self.root_path, "..", "GLClient", "app"))
 
 
     def set_glc_path(self, glcp):
