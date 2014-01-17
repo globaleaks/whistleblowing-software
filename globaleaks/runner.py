@@ -112,9 +112,10 @@ def globaleaks_start():
             if host not in GLSetting.bind_addresses:
                 log.msg("Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port))
 
-        for other in tor_configured_hosts:
-            if other:
-                log.msg("Visit %s to interact with me" % other)
+        if tor_configured_hosts:
+            for other in tor_configured_hosts:
+                if other:
+                    log.msg("Visit %s to interact with me" % other)
 
         log.msg("Remind: GlobaLeaks is not accessible from other URLs, this is strictly enforced")
         log.msg("Checks documentation in https://github.com/globaleaks/GlobaLeaks/wiki/ for special enhancement")

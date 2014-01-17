@@ -104,7 +104,8 @@ class notifTemplateTest(TestWithDB):
                 receiver_info = receiver_dict,
                 context_info = context_dict,
                 plugin = None,
-                trigger_info = tip_dict
+                trigger_info = tip_dict,
+                trigger_parent = None
             )
 
         elif (type == u'encrypted_file' or type == u'plaintext_comment') and trigger == 'File':

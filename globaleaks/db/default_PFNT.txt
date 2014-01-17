@@ -3,6 +3,7 @@ Esteemed %ReceiverName%,
 This is an E-Mail message to notify you that a Whistleblower
 has updated a submission with new material.
 
+The Tip can be reached via Tor at: %TipTorURL%
 This has happened in %ContextName% at %EventTime%.
 
 Take Care,

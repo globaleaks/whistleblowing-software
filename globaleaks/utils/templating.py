@@ -40,7 +40,8 @@ class Templating:
         keyword_converter = supported_event_types[event_dicts.type](event_dicts.node_info,
                                                                     event_dicts.context_info,
                                                                     event_dicts.receiver_info,
-                                                                    event_dicts.trigger_info)
+                                                                    event_dicts.trigger_info,
+                                                                    event_dicts.trigger_parent)
         # Each event has the same initializer, also if trigger_info differs :)
 
         # we've now:
@@ -134,7 +135,7 @@ class TipKeyword(_KeyWord):
         '%EventTime%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, *x):
 
         super(TipKeyword, self).__init__(node_desc, context_desc, receiver_desc)
 
@@ -192,9 +193,9 @@ class EncryptedTipKeyword(TipKeyword):
         '%TipFields%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, *x):
 
-        super(EncryptedTipKeyword, self).__init__(node_desc, context_desc, receiver_desc, tip_desc)
+        super(EncryptedTipKeyword, self).__init__(node_desc, context_desc, receiver_desc, tip_desc, None)
         self.keyword_list += EncryptedTipKeyword.encrypted_tip_keywords
 
     def TipFields(self):
@@ -208,9 +209,9 @@ class CommentKeyword(TipKeyword):
         '%EventTime%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, comment_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc, comment_desc, tip_desc):
 
-        super(CommentKeyword, self).__init__(node_desc, context_desc, receiver_desc)
+        super(CommentKeyword, self).__init__(node_desc, context_desc, receiver_desc, tip_desc)
 
         self.keyword_list += CommentKeyword.comment_keywords
         self.comment = comment_desc
@@ -228,10 +229,10 @@ class EncryptedCommentKeyword(CommentKeyword):
         '%CommentContent%',
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, comment_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc, comment_desc, tip_desc):
 
         super(EncryptedCommentKeyword, self).__init__(node_desc, context_desc,
-                                                      receiver_desc, comment_desc)
+                                                      receiver_desc, comment_desc, tip_desc)
         self.keyword_list += EncryptedCommentKeyword.encrypted_comment_keywords
 
     def CommentContent(self):
@@ -249,9 +250,9 @@ class MessageKeyword(TipKeyword):
         '%EventTime%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, message_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc, message_desc, tip_desc):
 
-        super(MessageKeyword, self).__init__(node_desc, context_desc, receiver_desc)
+        super(MessageKeyword, self).__init__(node_desc, context_desc, receiver_desc, tip_desc)
 
         self.keyword_list += MessageKeyword.message_keywords
         self.message = message_desc
@@ -268,12 +269,12 @@ class EncryptedMessageKeyword(MessageKeyword):
 
     encrypted_message_keywords = [
         '%MessageContent%',
-        ]
+    ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, message_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc, message_desc, tip_desc):
 
         super(EncryptedMessageKeyword, self).__init__(node_desc, context_desc,
-                                                      receiver_desc, message_desc)
+                                                      receiver_desc, message_desc, tip_desc)
         self.keyword_list += EncryptedMessageKeyword.encrypted_message_keywords
 
     def MessageContent(self):
@@ -289,9 +290,9 @@ class FileKeyword(TipKeyword):
         '%FileType%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, file_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc, file_desc, tip_desc):
 
-        super(FileKeyword, self).__init__(node_desc, context_desc, receiver_desc)
+        super(FileKeyword, self).__init__(node_desc, context_desc, receiver_desc, tip_desc)
 
         self.keyword_list += FileKeyword.file_keywords
         self.file = file_desc
@@ -318,9 +319,10 @@ class EncryptedFileKeyword(FileKeyword):
         '%FileDescription%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, file_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc, file_desc, tip_desc):
 
-        super(EncryptedFileKeyword, self).__init__(node_desc, context_desc, receiver_desc, file_desc)
+        super(EncryptedFileKeyword, self).__init__(node_desc, context_desc,
+                                                   receiver_desc, file_desc, tip_desc)
         self.keyword_list += EncryptedFileKeyword.encrypted_file_keywords
 
     def FileDescription(self):
