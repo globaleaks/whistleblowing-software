@@ -157,6 +157,10 @@ GLSetting.parser.add_option("-d", "--disable-tor-socks", action='store_true',
     help="disable Tor Socks for notifications [default: Tor enabled]",
     dest="disable_tor_socks", default=(not GLSetting.tor_socks_enable))
 
+GLSetting.parser.add_option("-D", "--tor-dir", type="string",
+    help="tor directory, acquire hidden service and set onion.to proxy [default: None]",
+    dest="tor_dir")
+
 GLSetting.parser.add_option("-H", "--hidden-service", type="string",
     help="hidden service (http:// needed) [default: None]",
     dest="hidden_service")

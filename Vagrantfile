@@ -57,7 +57,8 @@ echo "HiddenServicePort 80 127.0.0.1:8082" >> /etc/tor/torrc
 echo "##########"
 echo "# GlobaLeaks is running with this Tor Hidden Service address:"
 echo -n "# "
-cat /var/globaleaks/torhs/hostname
+hs=`cat /var/globaleaks/torhs/hostname`
+echo http://$hs
 echo "##########"
 
 # 7 - Setup GlobaLeaks to run automatically

@@ -197,6 +197,7 @@ do_start()
                     --accept-host=${HOSTS}
                     --user=${USER} --group=${GROUP}
                     --working-path=${WORKING_DIR}
+                    --tor-dir=${TOR_DIR}
                     --loglevel=${LOGLEVEL}
                     --http-log=${HTTPLOG}"
 
