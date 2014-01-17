@@ -599,7 +599,7 @@ class BaseRedirectHandler(BaseHandler, RedirectHandler):
             raise errors.InvalidHostSpecified
 
 
-class DownloadToken(components.Componentized):
+class _DownloadToken(components.Componentized):
     """
     An object that expire after a configurable amount of time.
     Inspired to twisted.web.server.Session
@@ -607,32 +607,6 @@ class DownloadToken(components.Componentized):
     tokenTimeout = 600
     
     _expireCall = None
-
-    def __init__(self, id_val, id_type):
-        """
-        Initialize the object
-        """
-        components.Componentized.__init__(self)
-
-        self.id = unicode(uuid4())
-
-        self.id_val = id_val
-        self.id_type = id_type
-
-        self.expireCallbacks = []
-
-        GLSetting.download_tokens[self.id] = self
-
-        self._expireCall = reactor.callLater(
-            self.tokenTimeout, self.expire)
-
-    @staticmethod
-    def get(temporary_download_id):
-        if temporary_download_id in GLSetting.download_tokens:
-            id_val = GLSetting.download_tokens[temporary_download_id].id_val
-            id_type = GLSetting.download_tokens[temporary_download_id].id_type
-            return (id_val, id_type)
-        return (None, None)
 
     def expire(self):
         """
@@ -646,3 +620,60 @@ class DownloadToken(components.Componentized):
             self._expireCall.cancel()
             # Break reference cycle.
             self._expireCall = None
+
+class CollectionToken(_DownloadToken):
+
+    def __init__(self, id_val):
+        """
+        CollectionToken contain the temporary token to download a compressed archive
+        """
+        components.Componentized.__init__(self)
+
+        self.id = unicode(uuid4())
+
+        self.id_val = id_val
+        self.id_type = 'rtip' # this is just a debug/informative information
+
+        self.expireCallbacks = []
+
+        GLSetting.download_tokens[self.id] = self
+
+        self._expireCall = reactor.callLater(self.tokenTimeout, self.expire)
+
+    @staticmethod
+    def get(temporary_download_id):
+        if temporary_download_id in GLSetting.download_tokens:
+            if GLSetting.download_tokens[temporary_download_id].id_type == 'rtip':
+                return GLSetting.download_tokens[temporary_download_id].id_val
+
+        return None
+
+
+class FileToken(_DownloadToken):
+
+    def __init__(self, id_val):
+        """
+        FileToken contain the temporary token to download a single File
+        """
+        components.Componentized.__init__(self)
+
+        self.id = unicode(uuid4())
+
+        self.id_val = id_val
+        self.id_type = 'file' # this is just a debug/informative information
+
+        self.expireCallbacks = []
+
+        GLSetting.download_tokens[self.id] = self
+
+        self._expireCall = reactor.callLater(self.tokenTimeout, self.expire)
+
+    @staticmethod
+    def get(temporary_download_id):
+
+        if temporary_download_id in GLSetting.download_tokens:
+            if GLSetting.download_tokens[temporary_download_id].id_type == 'file':
+                return GLSetting.download_tokens[temporary_download_id].id_val
+
+        return None
+

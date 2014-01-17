@@ -200,6 +200,11 @@ class GLSettingsClass:
         self.defaults.lifetimes['receiver'] = (60 * 60)
         self.defaults.lifetimes['wb'] = (60 * 60)
 
+        # unchecked_tor_input contains information that cannot be validated now
+        # due to complex inclusions or requirements. Data is used in
+        # globaleaks.db.datainit.apply_cli_options()
+        self.unchecked_tor_input = {}
+
         # SOCKS default
         self.socks_host = "127.0.0.1"
         self.socks_port = 9050
@@ -290,6 +295,21 @@ class GLSettingsClass:
             
         signal.signal(signal.SIGQUIT, start_pdb)
 
+    def validate_tor_dir_struct(self, tor_dir):
+        """
+        Return False instead of quit(-1) because at the startup this struct
+        can in fact be empty
+        """
+        if not os.path.isdir(tor_dir):
+            print "Invalid directory provided as -D argument (%s)" % self.cmdline_options.tor_dir
+            return False
+
+        hostname_tor_file = os.path.join(tor_dir, 'hostname')
+        if not os.path.isfile(hostname_tor_file):
+            print "Not found 'hostname' file as expected in Tor dir (-D %s): skipped" % tor_dir
+            return False
+
+        return True
 
     def load_cmdline_options(self):
         """
@@ -328,16 +348,28 @@ class GLSettingsClass:
         if self.cmdline_options.ramdisk:
             self.ramdisk_path = self.cmdline_options.ramdisk
 
-        # we're not performing here the checks because utility.acquire_url_address include
-        # GLSetting on top, and etc. require a cleaner function but still, checks are
-        # done in apply_cli_options. This cause don't exit if validation fail, but ignored.
+        # we're not performing here the checks because utility.acquire_url_address cannot
+        # be included here.
+        # This cause that *content* validation cannot be done here, but when GL is started.
+        if self.cmdline_options.tor_dir and self.validate_tor_dir_struct(self.cmdline_options.tor_dir):
+
+            hostname_tor_file = os.path.join(self.cmdline_options.tor_dir, 'hostname')
+
+            if not os.access(hostname_tor_file, os.R_OK):
+                print "Tor HS file in %s cannot be read" % hostname_tor_file
+                quit(-1)
+
+            with file(hostname_tor_file, 'r') as htf:
+                hostname_tor_content = htf.read(22) # hostname + .onion
+                GLSetting.unchecked_tor_input['hostname_tor_content'] = hostname_tor_content
+        # URL validation and DB import continue in apply_cli_options
+
         if self.cmdline_options.hidden_service:
-            pass
-            # would be done in globaleaks.db.datainit.apply_cli_options()
+            GLSetting.unchecked_tor_input['hidden_service'] = self.cmdline_options.hidden_service
 
         if self.cmdline_options.public_website:
-            pass
-            # would be done in globaleaks.db.datainit.apply_cli_options()
+            GLSetting.unchecked_tor_input['public_website'] = self.cmdline_options.public_website
+        # These three option would be used in globaleaks.db.datainit.apply_cli_options()
 
         if self.tor_socks_enable:
             # convert socks addr in IP and perform a test connection
@@ -415,7 +447,7 @@ class GLSettingsClass:
                 err_info = excep.strerror
             else:
                 err_info = excep.message
-            print "Unable to connect to Tor socks at %s:%d (%s)" %\
+            print "Unable to connect to Tor socks at %s:%d (%s), disable with -d" %\
                   (self.socks_host, self.socks_port, err_info)
             quit(-1)
 

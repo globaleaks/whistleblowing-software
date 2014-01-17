@@ -16,13 +16,12 @@ from cyclone.web import StaticFileHandler
 from Crypto.Hash import SHA256
 
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler, DownloadToken
+from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler, FileToken
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils.utility import log, pretty_date_time
 from globaleaks.rest import errors
-from globaleaks.models import ReceiverFile, ReceiverTip, InternalTip, InternalFile, WhistleblowerTip
+from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.third_party import rstr
-from globaleaks.security import access_tip
 
 def serialize_file(internalfile):
 
@@ -286,12 +285,12 @@ class Download(BaseHandler):
 
         # tip_id needed to authorized the download
 
-        (id_val, id_type) = DownloadToken.get(rfile_token, 'rfile')
+        original_file_id = FileToken.get(rfile_token)
 
-        if id_type != 'rfile' or id_val is None:
+        if not original_file_id:
             raise errors.UnexistentDownloadToken
 
-        rfile = yield download_file(id_val)
+        rfile = yield download_file(original_file_id)
 
         # keys:  'file_path'  'sha2sum'  'size' : 'content_type' 'file_name'
 
