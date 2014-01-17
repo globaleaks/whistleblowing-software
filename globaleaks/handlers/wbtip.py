@@ -65,12 +65,15 @@ def get_files_wb(store, wb_tip_id):
     return file_list
 
 
-@transact_ro
+@transact
 def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_language):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
 
     if not wbtip:
         raise errors.TipReceiptNotFound
+
+    # there is not a limit in the WB access counter, but is kept track
+    wbtip.access_counter += 1
 
     tip_desc = wb_serialize_tip(wbtip.internaltip, language)
 
@@ -216,12 +219,10 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
     if not wb_tip:
         raise errors.TipReceiptNotFound
 
-    # this part has been refactored in an hackathon
-    # the second part, was the only in place when we want to show only the
-    # REAL receivers involved.
-    # But, this give a bad feedback for the missing of rcvr list,
-    # when WB access after few seconds. then has been handled the case:
-
+    # This part of code is used only in the short time between the first
+    # WB access and the delivery schedule. In this moment
+    # wb_tip.internaltips.receivertips is EMPTY, therefore we force
+    # the Receivers values below
     if not wb_tip.internaltip.receivertips.count():
         receiver_list = []
 
