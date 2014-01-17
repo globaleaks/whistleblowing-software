@@ -130,7 +130,8 @@ class CollectionDownload(BaseHandler):
             receiver_info = receiver_dict,
             context_info = context_dict,
             plugin = None,
-            trigger_info = collection_tip_dict
+            trigger_info = collection_tip_dict,
+            trigger_parent = None # could be the Tip ? mmhh...
         )
 
         for filedesc in files_dict:

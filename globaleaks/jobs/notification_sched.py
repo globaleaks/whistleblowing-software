@@ -20,15 +20,15 @@ from globaleaks.plugins import notification
 from globaleaks.handlers import admin, rtip
 from globaleaks.models import Receiver
 
-def serialize_receivertip(rtip):
+def serialize_receivertip(receiver_tip):
     rtip_dict = {
-        'id': unicode(rtip.id),
-        'creation_date' : unicode(pretty_date_time(rtip.creation_date)),
-        'last_access' : unicode(pretty_date_time(rtip.last_access)),
-        'expressed_pertinence' : unicode(rtip.expressed_pertinence),
-        'access_counter' : int(rtip.access_counter),
-        'wb_fields': dict(rtip.internaltip.wb_fields),
-        'context_id': unicode(rtip.internaltip.context.id),
+        'id': unicode(receiver_tip.id),
+        'creation_date' : unicode(pretty_date_time(receiver_tip.creation_date)),
+        'last_access' : unicode(pretty_date_time(receiver_tip.last_access)),
+        'expressed_pertinence' : unicode(receiver_tip.expressed_pertinence),
+        'access_counter' : int(receiver_tip.access_counter),
+        'wb_fields': dict(receiver_tip.internaltip.wb_fields),
+        'context_id': unicode(receiver_tip.internaltip.context.id),
     }
     return rtip_dict
 
@@ -96,27 +96,27 @@ class APSNotification(GLJob):
         if not_notified_tips.count():
             log.debug("Receiver Tips found to be notified: %d" % not_notified_tips.count() )
 
-        for rtip in not_notified_tips:
+        for receiver_tip in not_notified_tips:
 
-            if not rtip.internaltip or not rtip.internaltip.context:
+            if not receiver_tip.internaltip or not receiver_tip.internaltip.context:
                 log.err("(tip_notification) Integrity failure: missing InternalTip|Context")
                 continue
 
-            context_desc = admin.admin_serialize_context(rtip.internaltip.context, GLSetting.memory_copy.default_language)
+            context_desc = admin.admin_serialize_context(receiver_tip.internaltip.context, GLSetting.memory_copy.default_language)
 
-            receiver_desc = admin.admin_serialize_receiver(rtip.receiver, GLSetting.memory_copy.default_language)
+            receiver_desc = admin.admin_serialize_receiver(receiver_tip.receiver, GLSetting.memory_copy.default_language)
             if not receiver_desc.has_key('mail_address'):
-                log.err("Receiver %s lack of email address!" % rtip.receiver.name)
+                log.err("Receiver %s lack of email address!" % receiver_tip.receiver.name)
                 continue
 
             # check if the receiver has the Tip notification enabled or not
             if not receiver_desc['tip_notification']:
-                log.debug("Receiver %s has tip notification disabled" % rtip.receiver.user.username)
-                rtip.mark = models.ReceiverTip._marker[3] # 'disabled'
+                log.debug("Receiver %s has tip notification disabled" % receiver_tip.receiver.user.username)
+                receiver_tip.mark = models.ReceiverTip._marker[3] # 'disabled'
                 store.commit()
                 continue
 
-            tip_desc = serialize_receivertip(rtip)
+            tip_desc = serialize_receivertip(receiver_tip)
 
             if  receiver_desc['gpg_key_status'] == u'Enabled': # Receiver._gpg_types[1]
                 template_type = u'encrypted_tip'
@@ -126,11 +126,12 @@ class APSNotification(GLJob):
             event = Event(type=template_type, trigger='Tip',
                             notification_settings=self.notification_settings,
                             trigger_info=tip_desc,
+                            trigger_parent=None,
                             node_info=node_desc,
                             receiver_info=receiver_desc,
                             context_info=context_desc,
                             plugin=plugin)
-            events.append((unicode(rtip.id), event))
+            events.append((unicode(receiver_tip.id), event))
 
         return events
 
@@ -139,26 +140,26 @@ class APSNotification(GLJob):
         """
         This is called when the tip notification has succeeded
         """
-        rtip = store.find(models.ReceiverTip, models.ReceiverTip.id == tip_id).one()
+        receiver_tip = store.find(models.ReceiverTip, models.ReceiverTip.id == tip_id).one()
 
-        if not rtip:
+        if not receiver_tip:
             raise errors.TipGusNotFound
 
-        log.debug("Email: +[Success] Notification Tip receiver %s" % rtip.receiver.user.username)
-        rtip.mark = models.ReceiverTip._marker[1] # 'notified'
+        log.debug("Email: +[Success] Notification Tip receiver %s" % receiver_tip.receiver.user.username)
+        receiver_tip.mark = models.ReceiverTip._marker[1] # 'notified'
 
     @transact
     def tip_notification_failed(self, store, failure, tip_id):
         """
         This is called when the tip notification has failed.
         """
-        rtip = store.find(models.ReceiverTip, models.ReceiverTip.id == tip_id).one()
+        receiver_tip = store.find(models.ReceiverTip, models.ReceiverTip.id == tip_id).one()
 
-        if not rtip:
+        if not receiver_tip:
             raise errors.TipGusNotFound
 
-        log.debug("Email: -[Fail] Notification Tip receiver %s" % rtip.receiver.user.username)
-        rtip.mark = models.ReceiverTip._marker[2] # 'unable to notify'
+        log.debug("Email: -[Fail] Notification Tip receiver %s" % receiver_tip.receiver.user.username)
+        receiver_tip.mark = models.ReceiverTip._marker[2] # 'unable to notify'
 
     @inlineCallbacks
     def do_tip_notification(self, tip_events):
@@ -204,6 +205,8 @@ class APSNotification(GLJob):
                 message.mark = models.Message._marker[2] # 'unable to notify'
                 continue
 
+            tip_desc = serialize_receivertip(message.receivertip)
+
             receiver = store.find(Receiver, Receiver.id == message.receivertip.receiver_id).one()
             if not receiver:
                 log.err("Message %s do not find receiver!?" % message.id)
@@ -243,6 +246,7 @@ class APSNotification(GLJob):
             event = Event(type=template_type, trigger='Message',
                           notification_settings=self.notification_settings,
                           trigger_info=message_desc,
+                          trigger_parent=tip_desc,
                           node_info=node_desc,
                           receiver_info=receiver_desc,
                           context_info=context_desc,
@@ -356,6 +360,8 @@ class APSNotification(GLJob):
                     log.debug("Receiver %s has comment notification disabled: skipped [source: %s]" % (
                         receiver.user.username, comment.author))
                     continue
+                    
+                tip_desc = serialize_receivertip(rtip)
 
                 if  receiver_desc['gpg_key_status'] == u'Enabled': # Receiver._gpg_types[1]
                     template_type = u'encrypted_comment'
@@ -365,6 +371,7 @@ class APSNotification(GLJob):
                 event = Event(type=template_type, trigger='Comment',
                     notification_settings=self.notification_settings,
                     trigger_info=comment_desc,
+                    trigger_parent=tip_desc,
                     node_info=node_desc,
                     receiver_info=receiver_desc,
                     context_info=context_desc,
@@ -474,6 +481,8 @@ class APSNotification(GLJob):
                 store.commit()
                 continue
 
+            tip_desc = serialize_receivertip(rfile.receiver_tip)
+
             if  receiver_desc['gpg_key_status'] == u'Enabled': # Receiver._gpg_types[1]
                 template_type = u'encrypted_file'
             else:
@@ -482,6 +491,7 @@ class APSNotification(GLJob):
             event = Event(type=template_type, trigger='File',
                 notification_settings=self.notification_settings,
                 trigger_info=file_desc,
+                trigger_parent=tip_desc,
                 node_info=node_desc,
                 receiver_info=receiver_desc,
                 context_info=context_desc,
