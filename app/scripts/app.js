@@ -94,21 +94,7 @@ var GLClient = angular.module('GLClient', [
 
      var globaleaksRequestInterceptor = function(data, headers) {
 
-        var extra_headers = {};
-
-        if (Authentication.id) {
-          extra_headers['X-Session'] = Authentication.id;
-        };
-
-        if ($.cookie('XSRF-TOKEN')) {
-          extra_headers['X-XSRF-TOKEN'] = $.cookie('XSRF-TOKEN');
-        }
-
-        if ($rootScope.language) {
-          extra_headers['GL-Language'] = $rootScope.language;
-        };
-
-        headers = angular.extend(headers(), extra_headers);
+        headers = angular.extend(headers(), Authentication.headers());
 
         return data;
     };

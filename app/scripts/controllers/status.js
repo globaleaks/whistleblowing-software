@@ -6,24 +6,12 @@ GLClient.controller('StatusCtrl',
     $scope.auth_landing_page = Authentication.auth_landing_page;
 
     if (Authentication.role === 'wb') {
-      var url = '/wbtip/upload',
-        headers = {};
-      if (Authentication.id) {
-        headers['X-Session'] = Authentication.id;
-      };
-
-      if ($.cookie('XSRF-TOKEN')) {
-        headers['X-XSRF-TOKEN'] = $.cookie('XSRF-TOKEN');
-      }
-
-      if ($.cookie('language')) {
-        headers['GL-Language'] = $rootScope.language;
-      };
+      var url = '/wbtip/upload';
 
       $scope.options = {
         url: url,
         multipart: false,
-        headers: headers,
+        headers: Authentication.headers(),
         autoUpload: true,
       };
 

@@ -77,8 +77,8 @@ h3, #SubTitleBox {
   float: left;
 }
 
-#ToolbarBox {
-  float: right;
+#TitleBox {
+  max-width: 60%;
 }
 
 #LogoBox {
@@ -87,10 +87,6 @@ h3, #SubTitleBox {
 
 #Logobox img {
   max-width: 100%;
-}
-
-#TitleBox {
-  max-width: 60%;
 }
 
 #LogoBox h1 {
@@ -107,8 +103,13 @@ h3, #SubTitleBox {
   margin-bottom: 30px;
 }
 
+#LogoBox img {
+  max-width: 100%;
+}
+
 #ToolbarBox {
   max-width: 20%;
+  float: right;
 }
 
 #HomePageBoxHeader, #BlowTheWhistleBox, #WhistleblowerLoginBox, #ReceiverLoginBox {
