@@ -7,14 +7,13 @@
 // with it.
 // To learn more see: http://docs.angularjs.org/guide/directive
 angular.module('submissionUI', []).
-  directive('genericFileUpload', [ '$route', function($route){
+  directive('genericFileUpload', [ '$route', '$rootScope', 'Authentication', function($route, $rootScope, Authentication){
 
     return {
 
       link: function(scope, element, attrs) {
-        var selectFileButton = element.find('button.selectFile'),
-          uploadButton = element.find('button.upload'),
-          headers = {'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')};
+        var selectFileButton = element.find('button.selectFile');
+        var uploadButton = element.find('button.upload');
 
         function progressMeter(e, data) {
           var progress_percent = parseInt(data.loaded / data.total * 100, 10);
@@ -29,7 +28,7 @@ angular.module('submissionUI', []).
           var url = attrs.src,
             fileUploader = $(element).fileupload({
               url: url,
-              headers: headers,
+              headers: Authentication.headers(),
               multipart: false,
               progress: progressMeter,
               progressall: progressMeter,
@@ -52,15 +51,14 @@ angular.module('submissionUI', []).
     }
 }]).
 
-  directive('pragmaticFileUpload', [ '$route', function($route){
+  directive('pragmaticFileUpload', [ '$route', 'Authentication', function($route, Authentication){
 
     return {
 
       link: function(scope, element, attrs) {
-        var selectFileButton = element.find('button.selectFile'),
-          uploadButton = element.find('button.upload'),
-          img = element.parent().parent().find('img.baseimage')[0],
-          headers = {'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')};
+        var selectFileButton = element.find('button.selectFile');
+        var uploadButton = element.find('button.upload');
+        var img = element.parent().parent().find('img.baseimage')[0];
 
         function progressMeter(e, data) {
           var progress_percent = parseInt(data.loaded / data.total * 100, 10);
@@ -75,7 +73,7 @@ angular.module('submissionUI', []).
           var url = attrs.src,
             fileUploader = $(element).fileupload({
               url: url,
-              headers: headers,
+              headers: Authentication.headers(),
               multipart: false,
               progress: progressMeter,
               progressall: progressMeter,

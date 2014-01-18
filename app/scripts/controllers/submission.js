@@ -1,6 +1,6 @@
-GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Node',
-    'Submission', 'Receivers', 'WhistleblowerTip', function($scope, $rootScope,
-      $location, Node, Submission, Receivers, WhistleblowerTip) {
+GLClient.controller('SubmissionCtrl',
+      ['$scope', '$rootScope', '$location', 'Authentication', 'Node', 'Submission', 'Receivers', 'WhistleblowerTip',
+      function($scope, $rootScope, $location, Authentication, Node, Submission, Receivers, WhistleblowerTip) {
 
   $rootScope.invalidForm = true;
   $scope.receiptConfimation = "";
@@ -82,25 +82,13 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
   $scope.$watch('submission.current_context', function(){
     if ($scope.current_context) {
       $scope.submission.create(function(){
-        var url = '/submission/' + $scope.submission.current_submission.submission_gus + '/file',
-          headers = {};
-        if ($.cookie('session_id')) {
-          headers['X-Session'] = $.cookie('session_id');
-        };
-
-        if ($.cookie('XSRF-TOKEN')) {
-          headers['X-XSRF-TOKEN'] = $.cookie('XSRF-TOKEN');
-        }
-
-        if ($.cookie('language')) {
-          headers['GL-Language'] = $.cookie('language');
-        };
+        var url = '/submission/' + $scope.submission.current_submission.submission_gus + '/file';
         
         $scope.queue = [];
         $scope.options = {
           url: url,
           multipart: false,
-          headers: headers,
+          headers: Authentication.headers(),
           autoUpload: true,
           maxFileSize: $scope.node.maximum_filesize * 1024 * 1024,
         };

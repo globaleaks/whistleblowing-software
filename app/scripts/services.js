@@ -112,6 +112,24 @@ angular.module('resourceServices.authentication', [])
 
         };
 
+        self.headers = function() {
+          var h = {};
+
+          if (self.id) {
+            h['X-Session'] = self.id;
+          };
+
+          if ($.cookie('XSRF-TOKEN')) {
+            h['X-XSRF-TOKEN'] = $.cookie('XSRF-TOKEN');
+          }
+
+          if ($rootScope.language) {
+            h['GL-Language'] = $rootScope.language;
+          }
+
+          return h;
+        };
+
       };
 
       return new Session;
