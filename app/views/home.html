@@ -104,35 +104,6 @@
   </div>
 </div>
 
-<div id="HeaderBox" ng-show="node.name">
-  <div id="HeaderBoxContent">
-    <span id="LogoBox">
-      <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
-    </span>
-    <span id="TitleBox">
-      <div id="titleboxwithtagline">
-        <a href="/#/">
-          <div id="logo"></div>
-        </a>
-        <div id="tagline">
-          {{ node.subtitle | translate }}
-        </div>
-      </div>
-    </span>
-    <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
-  </div>
-  <div class="clearfix"></div>
-  <div id="SubTitleBox">
-    {{ node.subtitle | translate }}
-  </div>
-</div>
-
-<div class="homeSplash" ng-show="!node.name">
-    <h1>
-      {{ "Loading..." | translate }}
-    </h1>
-</div>
-
 <div id="ContentBox" class="container"   ng-show="node.description">
   <div id="HomePageBox">
 
@@ -153,7 +124,7 @@
           </p>
         </div>
         <div class="row" ng-show="!node.tor2web_submission && !anonymous">
-          <button class="btn btn-danger disabled">
+          <button class="btn btn-danger" disabled="disabled">
             <i class="glyphicon glyphicon-ban-circle"></i>
             {{ "Whistleblowing disabled" | translate }}
           </button>

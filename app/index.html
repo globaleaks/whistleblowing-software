@@ -63,8 +63,24 @@
         <div ng-include="'views/partials/privacybox.html'"></div>
         <div ng-include="'views/partials/messageconsole.html'"></div>
 
+        <div ng-include="'views/partials/header.html'"></div>
+
         <!-- In here is the main GLClient application content -->
-        <div id="PageBox" ng-view=""></div>
+
+        <div id="ContentBox" class="container" ng-hide="cookiesEnabled()">
+          <div class="row">
+            <div class="col-md-9">
+              <h2>{{ "Cookies are not enabled!" | translate }}</h2>
+              <p>
+                {{ "To use of GlobaLeaks Cookies must be enabled." | translate }}
+                <br />
+                {{ "The application makes use of Cookies only for security purposes and without tracking any data." | translate }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="PageBox" ng-view="" ng-show="cookiesEnabled()"></div>
 
         <div ng-include="'views/partials/footer.html'"></div>
 
@@ -73,18 +89,18 @@
                 <br /><br />
                 <h1>Error! :(</h1>
                 <p>
-                Your browser is not running Javascript, and It's required to
-                use GlobaLeaks anonymous submission client, because is entirely
-                Javascript based.
-                <br /><br />
+                  Your browser is not running Javascript, and It's required to
+                  use GlobaLeaks anonymous submission client, because is entirely
+                  Javascript based.
+                  <br /><br />
 
-                It's common believe that Javascript and security don't sound
-                well together, for this reason we suggest to use GlobaLeaks,
-                with Tor Browser Bundle, an extremely tuned FireFox browser
-                with Tor integrated.
+                  It's common believe that Javascript and security don't sound
+                  well together, for this reason we suggest to use GlobaLeaks,
+                  with Tor Browser Bundle, an extremely tuned FireFox browser
+                  with Tor integrated.
 
-                Here you can found and download the latest release of:
-                <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser Bundle</a>.
+                  Here you can found and download the latest release of:
+                  <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser Bundle</a>.
                 </p>
             </div>
             <br />
