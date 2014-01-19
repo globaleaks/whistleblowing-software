@@ -5,19 +5,8 @@ This comment is needed in order to push the following strings on transifex
 {{ "Login" | translate }}
 
 -->
-<div ng-include="'views/partials/header.html'"
-     onload="header_section='Login'">
-</div>
-
 <div id="ContentBox" class="container">
   <div id="LoginBox">
-    <div class="row" ng-hide="cookiesEnabled()">
-      <div class="col-md-9">
-        <h2>{{ "Cookies are not enabled!" | translate }}</h2>
-        <p>{{ "You will not be able to login." | translate }}</p>
-      </div>
-    </div>
-
     <div class="row ng-cloak" ng-show="errors[0].code == 29">
       <div class="col-md-9">
         <div class="alert alert-error alert-warning">
@@ -25,7 +14,6 @@ This comment is needed in order to push the following strings on transifex
         </div>
       </div>
     </div>
-
     <div class="row" ng-show="cookiesEnabled()">
       <div class="col-md-4">
         <form class=form-inline" name="loginForm" novalidate="">

@@ -12,72 +12,103 @@ var GLClient = angular.module('GLClient', [
   ]).
   config(['$routeProvider', '$translateProvider', '$tooltipProvider', function($routeProvider, $translateProvider, $tooltipProvider) {
 
+
     $routeProvider.
       when('/', {
         templateUrl: 'views/home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        header_title: '',
+        header_subtitle: ''
       }).
       when('/submission', {
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
+	header_title: 'Blow the Wistle',
+        header_subtitle: ''
       }).
       when('/status', {
         templateUrl: 'views/whistleblower/tip.html',
         controller: 'StatusCtrl',
+        header_title: 'Whistleblower Interface',
+        header_subtitle: 'Tip Status Page'
       }).
       when('/status/:tip_id', {
         templateUrl: 'views/receiver/tip.html',
         controller: 'StatusCtrl',
+        header_title: 'Receiver Interface',
+        header_subtitle: 'Tip Status Page'
       }).
       when('/receiver/preferences', {
         templateUrl: 'views/receiver/preferences.html',
-        controller: 'ReceiverPreferencesCtrl'
+        controller: 'ReceiverPreferencesCtrl',
+        header_title: 'Receiver Interface',
+        header_subtitle: ''
       }).
       when('/receiver/tips', {
         templateUrl: 'views/receiver/tips.html',
-        controller: 'ReceiverTipsCtrl'
+        controller: 'ReceiverTipsCtrl',
+        header_title: 'Receiver Interface',
+        header_subtitle: 'Your Tips'
       }).
       when('/admin/content', {
         templateUrl: 'views/admin/content.html',
         controller: 'AdminCtrl',
+        header_title: 'Administration Interface',
+        header_subtitle: 'Content Settings'
       }).
       when('/admin/contexts', {
         templateUrl: 'views/admin/contexts.html',
         controller: 'AdminCtrl',
+        header_title: 'Administration Interface',
+        header_subtitle: 'Contexts Configuration'
       }).
       when('/admin/receivers', {
         templateUrl: 'views/admin/receivers.html',
         controller: 'AdminCtrl',
+        header_title: 'Administration Interface',
+        header_subtitle: 'Receivers Configuration'
       }).
       when('/admin/mail', {
         templateUrl: 'views/admin/mail.html',
         controller: 'AdminCtrl',
+        header_title: 'Administration Interface',
+        header_subtitle: 'Mail Configuration'
       }).
       when('/admin/advanced_settings', {
         templateUrl: 'views/admin/advanced.html',
         controller: 'AdminCtrl',
+        header_title: 'Administration Interface',
+        header_subtitle: 'Advanced Settings'
       }).
-
       when('/admin/password', {
         templateUrl: 'views/admin/password.html',
         controller: 'AdminCtrl',
+        header_title: 'Administration Interface',
+        header_subtitle: 'Password Configuration'
       }).
-
       when('/admin/overview/users', {
         templateUrl: 'views/admin/users_overview.html',
         controller: 'OverviewCtrl',
+        header_title: 'Administration Interface',
+        header_subtitle: 'Users Overview'
       }).
       when('/admin/overview/tips', {
         templateUrl: 'views/admin/tips_overview.html',
         controller: 'OverviewCtrl',
+        header_title: 'Administration Interface',
+        header_subtitle: 'Tips Overview'
       }).
       when('/admin/overview/files', {
         templateUrl: 'views/admin/files_overview.html',
         controller: 'OverviewCtrl',
+        header_title: 'Administration Interface',
+        header_subtitle: 'Files Overview'
       }).
       when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
+        header_title: 'Login',
+        header_subtitle: ''
       }).
       otherwise({
         redirectTo: '/'
@@ -116,5 +147,31 @@ var GLClient = angular.module('GLClient', [
     $(document).bind("keydown", overloadReload);
 
     $rootScope.reload = reload;
+
+    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+        if (current.$$route) {
+          $rootScope.header_title = current.$$route.header_title;
+          $rootScope.header_subtitle = current.$$route.header_subtitle;
+        }
+    });
+
+    $rootScope.cookiesEnabled = function() { 
+      var enabled = false;
+      document.cookie = 'cookiesenabled=true;';
+      if (document.cookie == "") {
+        enabled = false;
+      } else {
+        enabled = true;
+        $.removeCookie('cookiesenabled');
+      }
+      return enabled;
+    }
+
+    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+        if (current.$$route) {
+          $rootScope.header_title = current.$$route.header_title;
+          $rootScope.header_subtitle = current.$$route.header_subtitle;
+        }
+    });
 
 }]);

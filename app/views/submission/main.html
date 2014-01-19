@@ -1,12 +1,10 @@
-<div ng-include="'views/partials/header.html'"
-     onload="header_subsection='';
-             header_section='Blow the Whistle'">
-</div>
+<!-- 
 
-<div  ng-show="!node.name">
-    <h2>{{ "Loading..." | translate }}</h2>
-</div>
+This comment is needed in order to push the following strings on transifex
 
+{{ "Blow the Whistle" | translate }}
+
+-->
 <div class="ng-cloak" ng-show="!node.configured && node.name">
   <h2>{{ "This node is not configured." | translate }}</h2>
   <p>{{ "You will not be able to perform a submission." | translate }}<br />
