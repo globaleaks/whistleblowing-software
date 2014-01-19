@@ -137,7 +137,7 @@ var GLClient = angular.module('GLClient', [
     }
 
     function overloadReload(e) {
-       if (((e.which || e.keyCode) == 116) || /* F5       */
+       if (((e.which || e.keyCode) == 116) || /* F5 */
            ((e.which || e.keyCode) == 82 && (e.ctrlKey || e.metaKey))) {  /* (ctrl or meta) + r */ 
            e.preventDefault();
            reload();
