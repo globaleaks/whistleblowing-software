@@ -65,7 +65,7 @@
 
     <div class="form-group">
       <label>{{ "Tor2web Public Site (url)" | translate }}</label>
-      <input class="form-control" name="public_site" ng-model="admin.node.public_site" ng-pattern="/^https://[0-9a-z.:]*$/" type="url" required>
+      <input class="form-control" name="public_site" ng-model="admin.node.public_site" ng-pattern="/^https://[0-9a-z.:]*$/" type="url">
       <p class="has-error" ng-show="contentForm.public_site.$error.pattern">
         {{ "Invalid format for public site (should be https://thirteenchars123.tor2web.org)" | translate }}
       </p>
