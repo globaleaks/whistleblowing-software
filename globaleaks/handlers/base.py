@@ -199,9 +199,9 @@ class BaseHandler(RequestHandler):
         self.set_header("X-XSS-Protection", "1; mode=block")
 
         # to mitigate information leakage on Browser/Proxy Cache
-        self.set_header("Cache-control", "no-cache, no-store")
+        self.set_header("Cache-control", "no-cache, no-store, must-revalidate")
         self.set_header("Pragma", "no-cache")
-        self.set_header("Expires", "Mon, 01-Jan-1990 00:00:00")
+        self.set_header("Expires", "-1")
 
         # to avoid Robots spidering, indexing, caching
         self.set_header("X-Robots-Tag", "noindex")
