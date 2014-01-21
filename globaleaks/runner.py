@@ -118,7 +118,7 @@ def globaleaks_start():
                     log.msg("Visit %s to interact with me" % other)
 
         log.msg("Remind: GlobaLeaks is not accessible from other URLs, this is strictly enforced")
-        log.msg("Checks documentation in https://github.com/globaleaks/GlobaLeaks/wiki/ for special enhancement")
+        log.msg("Check documentation in https://github.com/globaleaks/GlobaLeaks/wiki/ for special enhancement")
 
     return True
 
