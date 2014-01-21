@@ -67,7 +67,7 @@
 
         <!-- In here is the main GLClient application content -->
 
-        <div id="ContentBox" class="container" ng-hide="cookiesEnabled()">
+        <div id="ContentBox" class="container" ng-hide="cookiesEnabled">
           <div class="row">
             <div class="col-md-9">
               <h2>{{ "Cookies are not enabled!" | translate }}</h2>
@@ -80,7 +80,7 @@
           </div>
         </div>
 
-        <div id="PageBox" ng-view="" ng-show="cookiesEnabled()"></div>
+        <div id="PageBox" ng-view="" ng-show="cookiesEnabled"></div>
 
         <div ng-include="'views/partials/footer.html'"></div>
 

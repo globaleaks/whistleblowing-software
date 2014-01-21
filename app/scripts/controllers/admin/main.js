@@ -3,8 +3,8 @@ function CollapseDemoCtrl($scope) {
 }
 
 GLClient.controller('AdminCtrl',
-    ['$rootScope', '$scope', '$http', '$route', '$location', 'Admin',
-function($rootScope, $scope, $http, $route, $location, Admin) {
+    ['$scope', '$rootScope', '$http', '$route', '$location', 'Admin', 'Node',
+function($rootScope, $scope, $http, $route, $location, Admin, Node) {
 
   // XXX this should actually be defined per controller
   // otherwise every time you open a new page the button appears enabled
@@ -19,6 +19,8 @@ function($rootScope, $scope, $http, $route, $location, Admin) {
 
   $scope.admin = new Admin();
 
+  $scope.language = $rootScope.language;
+
   $scope.languages_enabled_edit = {};
   $scope.languages_default_selector = {};
 
@@ -26,11 +28,28 @@ function($rootScope, $scope, $http, $route, $location, Admin) {
     $scope.isCollapsed = false;
   }
 
-  $rootScope.$watch('languages_enabled', function(){
-    if ($rootScope.languages_enabled) {
+  Node.get(function(node) {
+
+    $scope.languages_supported = {};
+    $scope.languages_enabled = [];
+    $scope.languages_enabled_selector = [];
+    $.each(node.languages_supported, function(idx) {
+      var code = node.languages_supported[idx]['code'];
+      $scope.languages_supported[code] = node.languages_supported[idx]['name'];
+      if ($.inArray(code, node.languages_enabled) != -1) {
+        $scope.languages_enabled[code] = node.languages_supported[idx]['name'];
+        $scope.languages_enabled_selector.push({"name": node.languages_supported[idx]['name'],"code": code});
+      }
+    });
+
+  });
+
+
+  $scope.$watch('languages_enabled', function(){
+    if ($scope.languages_enabled) {
       $scope.languages_default_selector = {};
-      $.each($rootScope.languages_supported, function(lang){
-        if (lang in $rootScope.languages_enabled) {
+      $.each($scope.languages_supported, function(lang){
+        if (lang in $scope.languages_enabled) {
           $scope.languages_enabled_edit[lang] = true;
         } else {
           $scope.languages_enabled_edit[lang] = false;
@@ -41,7 +60,7 @@ function($rootScope, $scope, $http, $route, $location, Admin) {
   }, true);
 
   $scope.$watch('languages_enabled_edit', function() {
-    if ($rootScope.languages_enabled) {
+    if ($scope.languages_enabled) {
       var languages_default_selector = [];
       var change_default = false;
       var language_selected = $scope.admin.node.default_language;
@@ -49,7 +68,7 @@ function($rootScope, $scope, $http, $route, $location, Admin) {
         change_default = true;
       }
 
-      $.each($rootScope.languages_supported, function(lang) {
+      $.each($scope.languages_supported, function(lang) {
         if ($scope.languages_enabled_edit[lang]) {
           languages_default_selector.push({'name': $scope.languages_supported[lang], 'code': lang});
 
@@ -86,27 +105,11 @@ function($rootScope, $scope, $http, $route, $location, Admin) {
 
     node.languages_enabled = languages_enabled;
 
-    var language_count = 0;
-    languages_enabled = {};
-
-    $.each(node.languages_supported, function(idx) {
-      var code = node.languages_supported[idx]['code'];
-      if ($.inArray(code, node.languages_enabled) != -1) {
-        languages_enabled[code] = node.languages_supported[idx]['name'];
-        language_count += 1;
-      }
-    });
-
-    $rootScope.languages_enabled = languages_enabled;
-    $rootScope.show_language_selector = (language_count > 1);
-
-    if ($.inArray($rootScope.language, node.languages_enabled) == -1) {
-      $rootScope.language = node.default_language;
-    }
-
     $scope.update(node);
 
     $rootScope.update_node();
+
+    $scope.$broadcast("REFRESH");
 
     $route.reload();
   }
