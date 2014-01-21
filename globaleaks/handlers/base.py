@@ -180,8 +180,6 @@ class GLHTTPServer(HTTPConnection):
 class BaseHandler(RequestHandler):
     xsrf_cookie_name = "XSRF-TOKEN"
 
-    auth_type = "HEADER"
-
     def set_default_headers(self):
         # In this function are written some security enforcements
         # related to WebServer versioning and XSS attacks.
@@ -495,11 +493,7 @@ class BaseHandler(RequestHandler):
     def current_user(self):
         session_id = None
 
-        if self.auth_type == "HEADER":
-            session_id = self.request.headers.get('X-Session')
-        else: # auth_type == "COOKIE"
-            if 'session_id' in self.request.cookies:
-                session_id = self.request.cookies['session_id'].value
+        session_id = self.request.headers.get('X-Session')
 
         if session_id == None:
             return None
