@@ -154,20 +154,12 @@ GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http
       $scope.uploadfile = $scope.fileSelected = false;
     }
 
-    $scope.customCSSUrl = function() {
-      return "/admin/staticfiles/custom_stylesheet";
-    }
-
-    $scope.customCSSReloadUrl = function() {
-      return "/static" + "custom_stylesheet?" + $scope.randomFluff;
-    }
-
     $scope.receiverImgUrl = function() {
       return "/admin/staticfiles/" + $scope.receiver.receiver_gus;
     }
 
     $scope.receiverImgReloadUrl = function() {
-      return "/static/" + $scope.receiver.receiver_gus + ".png?" + $scope.randomFluff;
+      return "/static/" + $scope.receiver.receiver_gus + ".png?" + $scope.randomFluff();
     }
 
 }]);

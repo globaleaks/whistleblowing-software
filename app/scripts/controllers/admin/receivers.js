@@ -1,7 +1,5 @@
 GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal',
 function($scope, $modal) {
-  $scope.randomFluff = Math.round(Math.random()*1000000);
-
   $scope.save_all = function() {
     angular.forEach($scope.admin.receivers, function(receiver, key) {
         $scope.update(receiver);
