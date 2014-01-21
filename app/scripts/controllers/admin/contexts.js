@@ -1,6 +1,6 @@
 GLClient.controller('AdminContextsCtrl',
-    ['$scope', '$rootScope', '$modal', 'Admin',
-    function($scope, $rootScope, $modal, Admin) {
+    ['$scope', '$modal', 'Admin',
+    function($scope, $modal, Admin) {
 
   $scope.save_all = function() {
     angular.forEach($scope.admin.contexts, function(context, key) {

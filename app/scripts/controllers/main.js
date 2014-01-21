@@ -2,11 +2,25 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', 'Nod
   function($scope, $rootScope, $http, $route, Node) {
     $scope.started = true;
 
+    $scope.custom_stylesheet = '/custom_stylesheet.css';
+    $scope.logo = '/static/globaleaks_logo.png';
+
     $rootScope.update_node = function() {
       Node.get(function(node){
         $rootScope.node = node;
       });
     }
+
+    $scope.randomFluff = function() {
+      return Math.round(Math.random() * 1000000);
+    }
+
+    var refresh = function() {
+      $scope.custom_stylesheet = '/custom_stylesheet.css?' + $scope.randomFluff();
+      $scope.logo = '/static/globaleaks_logo.png?' + $scope.randomFluff();
+    }
+
+    $scope.$on("REFRESH", refresh);
 
     $rootScope.update_node();
 
