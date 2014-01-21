@@ -155,16 +155,13 @@ var GLClient = angular.module('GLClient', [
         }
     });
 
-    $rootScope.cookiesEnabled = function() { 
-      var enabled = false;
-      document.cookie = 'cookiesenabled=true;';
-      if (document.cookie == "") {
-        enabled = false;
-      } else {
-        enabled = true;
-        $.removeCookie('cookiesenabled');
-      }
-      return enabled;
+    var enabled = false;
+    document.cookie = 'cookiesenabled=true;';
+    if (document.cookie == "") {
+      $rootScope.cookiesEnabled = false;
+    } else {
+      $rootScope.cookiesEnabled = true;
+      $.removeCookie('cookiesenabled');
     }
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
