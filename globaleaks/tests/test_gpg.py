@@ -140,7 +140,8 @@ class TestReceiverSetKey(TestHandler):
                     node_info = MockDict().dummyNode,
                     receiver_info = MockDict().dummyReceiver,
                     context_info = MockDict().dummyContext,
-                    plugin = MailNotification() )
+                    plugin = MailNotification(),
+                    trigger_parent = {} )
 
         mail_content = Templating().format_template(dummy_template['en'], mock_event)
 
