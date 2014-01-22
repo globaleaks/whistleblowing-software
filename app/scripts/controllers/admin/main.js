@@ -107,7 +107,7 @@ function($rootScope, $scope, $http, $route, $location, Admin, Node) {
 
     $scope.update(node);
 
-    $rootScope.update_node();
+    $scope.update_node();
 
     $scope.$broadcast("REFRESH");
 
@@ -139,6 +139,9 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', 'changeParamsWatcher',
 }]);
 
 GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http){
+
+    $scope.random = Math.round(Math.random()*1000000);
+
     $scope.uploadfile = false;
 
     $scope.fileSelected = false;
@@ -159,7 +162,7 @@ GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http
     }
 
     $scope.receiverImgReloadUrl = function() {
-      return "/static/" + $scope.receiver.receiver_gus + ".png?" + $scope.randomFluff();
+      return "/static/" + $scope.receiver.receiver_gus + ".png?" + $scope.random;
     }
 
 }]);
