@@ -158,7 +158,7 @@ GLSetting.parser.add_option("-d", "--disable-tor-socks", action='store_true',
     dest="disable_tor_socks", default=(not GLSetting.tor_socks_enable))
 
 GLSetting.parser.add_option("-D", "--tor-dir", type="string",
-    help="tor directory, acquire hidden service and set onion.to proxy [default: None]",
+    help="Tor directory, acquire hidden service and set onion.to proxy [default: None]",
     dest="tor_dir")
 
 GLSetting.parser.add_option("-H", "--hidden-service", type="string",
@@ -186,7 +186,7 @@ GLSetting.parser.add_option("-c", "--start-clean", action='store_true',
     dest="start_clean", default=GLSetting.start_clean)
 
 GLSetting.parser.add_option("-k", "--kill", type="int",
-    help="signal to send to the current twisted.pid process (if exists) [default: don't kill]",
+    help="signal to send to the current globaleaks process (if exists) [default: don't kill]",
     dest="kill", default=0)
 
 GLSetting.parser.add_option("-z", "--devel-mode", action='store_true',
