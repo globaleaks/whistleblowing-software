@@ -1,9 +1,10 @@
 GLClient.controller('toolTipCtrl',
   ['$scope', '$rootScope', 'Authentication',
-   '$location', 'Node', '$route', '$translate',
-function($scope, $rootScope, Authentication, $location,
+   'Node', '$route', '$translate',
+function($scope, $rootScope, Authentication,
          Node, $route, $translate) {
 
+  
   var refresh = function() {
 
     $scope.session_id = Authentication.id;
@@ -48,7 +49,7 @@ function($scope, $rootScope, Authentication, $location,
 
       $translate.uses($scope.language);
 
-      $rootScope.update_node();
+      $scope.update_node();
 
       $route.reload();
     }

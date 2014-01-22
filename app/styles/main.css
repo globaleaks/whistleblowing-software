@@ -56,7 +56,7 @@
   font-size: 20px;
 }
 
-#LogoBox, #TitleBox, #ToolbarBox, #SubTitleBox {
+#LogoBox, #TitleBox, #ToolbarBox, {
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -69,12 +69,13 @@ h2, #HomePageBoxNodeDescription {
   font-size: 36px;
 }
 
-h3, #SubTitleBox {
+h3 {
   font-size: 20px;
 }
 
 #LogoBox, #TitleBox {
   float: left;
+  padding: 30px;
 }
 
 #TitleBox {

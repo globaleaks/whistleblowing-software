@@ -5,24 +5,23 @@
     </span>
     <span id="TitleBox">
       <div id="titleboxdefault">
-        <div ng-show="$location.path() == '/'">
+        <div ng-show="isHomepage()">
           <h1>{{ node.name }}</h1>
+          <h3>{{ node.subtitle }}</h3>
         </div>
-        <div ng-show="$location.path() != '/'">
-          <h3>{{ header_subtitle | translate }}</h3>
-        </div>
-        <div ng-show="$location.path() != '/'">
-          <h1>{{ header_title | translate }}</h1>
+        <div ng-hide="isHomepage()">
+          <h3>{{ header_title | translate }}</h3>
+          <h1>{{ header_subtitle | translate }}</h1>
         </div>
       </div>
       <div id="titleboxwithtagline">
           <a href="/#/">
             <div id="logo"></div>
           </a>
-          <div id="tagline" ng-show="$location.path() == '/'">
-            {{ node.name | translate }}
+          <div id="tagline" ng-show="isHomepage()">
+            {{ node.subtitle }}
           </div>
-          <div id="tagline" ng-show="$location.path() != '/'">
+          <div id="tagline" ng-hide="isHomepage()">
             {{ header_title | translate }}
             <span ng-show="header_subsection">
                - {{ header_subtitle | translate }}

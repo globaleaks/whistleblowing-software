@@ -1,13 +1,13 @@
-GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', 'Node',
-  function($scope, $rootScope, $http, $route, Node) {
+GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$location', 'Node',
+  function($scope, $rootScope, $http, $route, $location, Node) {
     $scope.started = true;
 
     $scope.custom_stylesheet = '/custom_stylesheet.css';
     $scope.logo = '/static/globaleaks_logo.png';
 
-    $rootScope.update_node = function() {
+    $scope.update_node = function() {
       Node.get(function(node){
-        $rootScope.node = node;
+        $scope.node = node;
       });
     }
 
@@ -22,8 +22,11 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', 'Nod
 
     $scope.$on("REFRESH", refresh);
 
-    $rootScope.update_node();
+    $scope.update_node();
 
+    $scope.isHomepage = function () { 
+      return ($location.path() == '/') ? true : false;
+    }
   }
 ]);
 
