@@ -254,7 +254,7 @@ This comment is needed in order to push the following strings on transifex
             {{ "Private Messages" | translate }}
           </div>
           <div class="col-md-6">
-            <select ng-model="tip.msg_receiver_selected" ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector" class="form-control"></select>
+            <select ng-model="tip.msg_receiver_selected" ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
           </div>
         </h3>
       </div>
