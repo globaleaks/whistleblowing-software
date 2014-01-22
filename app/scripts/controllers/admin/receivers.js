@@ -125,7 +125,7 @@ GLClient.controller('AdminReceiverAddCtrl', ['$scope', 'passwordWatcher',
     receiver.tags = [];
     receiver.tip_notification = true;
     receiver.file_notification = true;
-    receiver.comment_notification = false;
+    receiver.comment_notification = true;
     receiver.message_notification = true;
     receiver.gpg_key_info = '';
     receiver.gpg_key_fingerprint = '';
