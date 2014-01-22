@@ -337,7 +337,7 @@ class ZipFileKeyword(_KeyWord):
         '%TotalSize%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, zip_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc, zip_desc, tip_desc):
 
         super(ZipFileKeyword, self).__init__(node_desc, context_desc, receiver_desc)
 
