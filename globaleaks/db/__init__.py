@@ -71,7 +71,7 @@ def create_tables(create_node=True):
         log.debug("Node initialization with defaults values")
 
         only_node = {
-            'name':  u"MissingConfLeaks",
+            'name':  u"Node Title",
             'description':  dict({ GLSetting.memory_copy.default_language:
                                        u"This is the description of your node. PLEASE CHANGE ME." }),
             'presentation':  dict({ GLSetting.memory_copy.default_language :
