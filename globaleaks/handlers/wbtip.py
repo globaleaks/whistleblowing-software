@@ -11,7 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.rest import requests
-from globaleaks.utils.utility import log, pretty_date_time
+from globaleaks.utils.utility import log, pretty_date_time, datetime_now
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
@@ -236,11 +236,13 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
             receiver_desc = {
                 "name": unicode(receiver.name),
                 "receiver_gus": unicode(receiver.id),
+                "id": unicode(receiver.id),
                 "tags": receiver.tags,
                 "access_counter" : 0,
                 "unread_messages" : 0,
                 "read_messages" : 0,
                 "your_messages" : 0,
+                "creation_date" : unicode(pretty_date_time(datetime_now())),
                 # XXX ReceiverTip last activity ?
             }
 
@@ -273,11 +275,13 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
             receiver_desc = {
                 "name": unicode(rtip.receiver.name),
                 "receiver_gus": unicode(rtip.receiver.id),
+                "id": unicode(rtip.receiver.id),
                 "tags": rtip.receiver.tags,
                 "access_counter" : rtip.access_counter,
                 "unread_messages" : unread_messages,
                 "read_messages" : read_messages,
-                "your_messages" : your_messages
+                "your_messages" : your_messages,
+                "creation_date" : unicode(pretty_date_time(datetime_now())),
                 # XXX ReceiverTip last activity ?
             }
 
