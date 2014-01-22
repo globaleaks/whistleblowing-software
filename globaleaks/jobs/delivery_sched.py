@@ -329,7 +329,6 @@ def do_final_internalfile_update(store, ifile_track):
 
         try:
             ifil.mark = status
-            store.commit()
         except Exception as excep:
             log.err("Unable to switch mode in InternalFile %s: %s" % (ifil.name, excep) )
             continue
@@ -410,12 +409,15 @@ class APSDelivery(GLJob):
             almost_one_reference = False
 
             for (fid, status, fname, flen, receiver_desc) in rfileslist:
-                if ifile_id == fid and status == 'reference':
-                    almost_one_reference = True
+                if ifile_id == fid:
+                    fname_to_remove = fname
+                    if status == 'reference':
+                      almost_one_reference = True
+                      break;
 
             if not almost_one_reference:
-                log.debug("Removing useless plain file: %s" % fname)
-                path = os.path.join(GLSetting.submission_path, fname)
+                log.debug("Removing useless plain file: %s" % fname_to_remove)
+                path = os.path.join(GLSetting.submission_path, fname_to_remove)
                 try:
                     os.remove(path)
                 except Exception as excep:
