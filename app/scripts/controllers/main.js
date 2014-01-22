@@ -24,8 +24,12 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$lo
 
     $scope.update_node();
 
-    $scope.isHomepage = function () { 
+    $scope.isHomepage = function() { 
       return ($location.path() == '/') ? true : false;
+    }
+
+    $scope.hasSubtitle = function() {
+      return $scope.header_subtitle != '';
     }
   }
 ]);

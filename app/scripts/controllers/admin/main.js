@@ -107,8 +107,6 @@ function($rootScope, $scope, $http, $route, $location, Admin, Node) {
 
     $scope.update(node);
 
-    $scope.update_node();
-
     $scope.$broadcast("REFRESH");
 
     $route.reload();

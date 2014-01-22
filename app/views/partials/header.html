@@ -10,8 +10,13 @@
           <h3>{{ node.subtitle }}</h3>
         </div>
         <div ng-hide="isHomepage()">
-          <h3>{{ header_title | translate }}</h3>
-          <h1>{{ header_subtitle | translate }}</h1>
+          <div ng-show="hasSubtitle()">
+            <h3>{{ header_title | translate }}</h3>
+            <h1>{{ header_subtitle | translate }}</h1>
+          </div>
+          <div ng-show="!hasSubtitle()">
+            <h1>{{ header_title | translate }}</h1>
+          </div>
         </div>
       </div>
       <div id="titleboxwithtagline">
@@ -23,7 +28,7 @@
           </div>
           <div id="tagline" ng-hide="isHomepage()">
             {{ header_title | translate }}
-            <span ng-show="header_subsection">
+            <span ng-show="hasSubtitle()">
                - {{ header_subtitle | translate }}
             </span>
           </div>
