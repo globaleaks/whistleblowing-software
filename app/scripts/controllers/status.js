@@ -99,7 +99,9 @@ GLClient.controller('StatusCtrl',
         });
       });
     } else {
-      $location.path('/');
+      search = 'src=' + $location.path();
+      $location.path('/login');
+      $location.search(search);
     }
 
     $scope.newComment = function() {
