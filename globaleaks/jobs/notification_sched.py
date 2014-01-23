@@ -360,8 +360,12 @@ class APSNotification(GLJob):
                     log.debug("Receiver %s has comment notification disabled: skipped [source: %s]" % (
                         receiver.user.username, comment.author))
                     continue
-                    
-                tip_desc = serialize_receivertip(rtip)
+
+                receivertip = store.find(models.ReceiverTip,
+                    (models.ReceiverTip.internaltip_id == comment.internaltip_id,
+                     models.ReceiverTip.receiver_id == receiver.id)).one()
+
+                tip_desc = serialize_receivertip(receivertip)
 
                 if  receiver_desc['gpg_key_status'] == u'Enabled': # Receiver._gpg_types[1]
                     template_type = u'encrypted_comment'
