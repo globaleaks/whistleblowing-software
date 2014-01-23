@@ -68,7 +68,10 @@ ModalDeleteTipCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance'
   $scope.ok = function () {
       $modalInstance.close();
       return $http({method: 'DELETE', url: '/rtip/' + tip_id, data:{global_delete: global_delete, is_pertinent: true}}).
-                 success(function(data, status, headers, config){ $location.url('/receiver/tips'); });
+                 success(function(data, status, headers, config){ 
+                                                                  $location.url('/receiver/tips');
+                                                                  $route.reload();
+                                                                });
   };
 }];
 

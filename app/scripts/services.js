@@ -245,8 +245,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$rootScope', '$resource', 'Node', 'Contexts', 'Receivers',
-          function($rootScope, $resource, Node, Contexts, Receivers) {
+  factory('Submission', ['$resource', 'Node', 'Contexts', 'Receivers', function($resource, Node, Contexts, Receivers) {
 
     var submissionResource = $resource('/submission/:submission_id/',
         {submission_id: '@submission_gus'},
@@ -534,10 +533,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     };
 }]).
-  factory('WhistleblowerTip', ['$resource', 'WBTip', 'Authentication', function($resource, WBTip, Authentication){
+  factory('WhistleblowerTip', ['$rootScope', '$resource', 'WBTip', 'Authentication',
+    function($rootScope, $resource, WBTip, Authentication){
     return function(receipt, fn) {
       var self = this;
-      Authentication.login('', receipt, 'wb')
+      $rootScope.login('', receipt, 'wb')
       .then(function() {
         fn();
       });
