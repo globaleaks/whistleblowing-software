@@ -34,7 +34,7 @@
     </p>
   </div>
 
-  <button type="submit" class="btn btn-success" ng-disabled="mismatch_password || unsafe_password || missing_old_password" ng-click="pass_save()">
+  <button type="submit" class="btn btn-success" ng-disabled="invalid" ng-click="pass_save()">
     <i class="glyphicon glyphicon-ok"></i>
     {{ "Save" | translate }}
   </button>
