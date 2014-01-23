@@ -161,7 +161,7 @@ class TipKeyword(_KeyWord):
         elif len(self.node['public_site']):
             retstr =  '%s/#/status/%s' % ( self.node['public_site'], self.tip['id'] )
         else:
-            retstr = 'ADMIN, CONFIGURE YOUR PUBLIC SITE (Advanced configuration)'
+            retstr = 'ADMIN, CONFIGURE YOUR PUBLIC SITE (Advanced configuration)!'
 
         return retstr
 
