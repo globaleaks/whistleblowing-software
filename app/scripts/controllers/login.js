@@ -14,8 +14,6 @@ GLClient.controller('LoginCtrl', ['$scope', '$location',
       $scope.loginRole = "admin";
     };
 
-    $scope.login = Authentication.login;
-
     $scope.$watch("loginUsername", function(){
       if ($scope.loginUsername == "admin") {
         $scope.loginRole = "admin";
@@ -25,6 +23,5 @@ GLClient.controller('LoginCtrl', ['$scope', '$location',
         $scope.loginRole = "receiver";
       }
     });
-
 
 }]);

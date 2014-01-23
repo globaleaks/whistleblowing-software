@@ -7,7 +7,7 @@
 // with it.
 // To learn more see: http://docs.angularjs.org/guide/directive
 angular.module('submissionUI', []).
-  directive('genericFileUpload', [ '$route', '$rootScope', 'Authentication', function($route, $rootScope, Authentication){
+  directive('genericFileUpload', [ '$route', 'Authentication', function($route, Authentication){
 
     return {
 
