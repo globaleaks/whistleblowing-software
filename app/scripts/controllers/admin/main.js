@@ -222,7 +222,7 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', function($scope, $h
   ];
 }]);
 
-ConfirmableDialogCtrl = function($scope, $modalInstance, object) {
+ConfirmableDialogCtrl = ['$scope', '$modalInstance', 'object', function($scope, $modalInstance, object) {
   $scope.object = object;
 
   $scope.ok = function () {
@@ -232,4 +232,4 @@ ConfirmableDialogCtrl = function($scope, $modalInstance, object) {
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
-};
+}];
