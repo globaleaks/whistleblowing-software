@@ -138,10 +138,15 @@ def authenticated(role):
                 return method_handler(cls, *args, **kwargs)
 
             # else, if role != cls.current_user.role
-            log.err("Authenticated with a different required user: now %s, expected %s" %
-                    (cls.current_user.role, role) )
-            raise errors.InvalidScopeAuth("Good login in wrong scope: you %s, expected %s" %
-                                          (cls.current_user.role, role) )
+
+            error = "Good login in wrong scope: you %s, expected %s" % \
+                    (cls.current_user.role, role)
+
+            log.err(error)
+
+            GLSetting.sessions[cls.current_user.id]
+
+            raise errors.InvalidScopeAuth(error)
 
         return call_handler
     return wrapper
