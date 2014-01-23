@@ -51,7 +51,7 @@ angular.module('resourceServices.authentication', [])
           }
         };
 
-        self.login = function(username, password, role) {
+        $rootScope.login = function(username, password, role) {
           return $http.post('/authentication', {'username': username,
                                                 'password': password,
                                                 'role': role})
@@ -106,7 +106,7 @@ angular.module('resourceServices.authentication', [])
               $location.path('/login');
         }
 
-        self.logout = function() {
+        $rootScope.logout = function() {
           $http.delete('/authentication').then(self.logout_performed,
                                                self.logout_performed);
 
@@ -216,13 +216,18 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         error.url = response.config.url;
         error.arguments = response.data.arguments;
 
-        if (error.code == 30) {
+        /* 30: Not Authenticated / 24: Wrong Authentication */
+        if (error.code == 30 || error.code == 24) {
 
-          // Only redirect if we are not on the login page
-          if ($location.path().indexOf('/login') === -1) {
-            $location.path('/login');
-            $location.search('src='+source_path);
-          };
+          if (error.code == 24) {
+              $rootScope.logout();
+          } else {
+            // Only redirect if we are not on the login page
+            if ($location.path().indexOf('/login') === -1) {
+              $location.path('/login');
+              $location.search('src='+source_path);
+            };
+          }
         };
 
         if (!$rootScope.errors) {

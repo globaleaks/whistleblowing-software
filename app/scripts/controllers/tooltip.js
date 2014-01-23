@@ -10,13 +10,11 @@ function($scope, $rootScope, Authentication,
     $scope.session_id = Authentication.id;
     $scope.auth_landing_page = Authentication.auth_landing_page;
     $scope.role = Authentication.role;
-    $scope.logout = Authentication.logout;
 
     Node.get(function(node) {
 
       if ($rootScope.language == undefined || $.inArray($rootScope.language, node.languages_enabled) == -1) {
-        $scope.language = node.default_language;
-        $rootScope.language = node.default_language;
+        $rootScope.language = $scope.language = node.default_language;
       }
 
       var language_count = 0;
@@ -44,8 +42,6 @@ function($scope, $rootScope, Authentication,
   $scope.$watch("language", function(newVal, oldVal) {
 
     if (newVal && newVal !== oldVal) {
-
-      $rootScope.language = $scope.language;
 
       $translate.uses($scope.language);
 

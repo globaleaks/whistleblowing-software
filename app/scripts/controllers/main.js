@@ -1,5 +1,5 @@
-GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$location', 'Node',
-  function($scope, $rootScope, $http, $route, $location, Node) {
+GLClient.controller('MainCtrl', ['$scope', '$http', '$route', '$location', 'Node',
+  function($scope, $http, $route, $location, Node) {
     $scope.started = true;
 
     $scope.custom_stylesheet = '/custom_stylesheet.css';
@@ -10,6 +10,17 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$lo
         $scope.node = node;
       });
     }
+
+    $scope.update = function(model) {
+      var success = {};
+      success.message = "Updated " + model;
+      model.$update(function(){
+        if (!$scope.successes) {
+          $scope.successes = [];
+        };
+        $scope.successes.push(success);
+      });
+    };
 
     $scope.randomFluff = function() {
       return Math.round(Math.random() * 1000000);

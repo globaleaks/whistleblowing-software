@@ -1,10 +1,6 @@
-function CollapseDemoCtrl($scope) {
-  $scope.isCollapsed = false;
-}
-
 GLClient.controller('AdminCtrl',
     ['$scope', '$rootScope', '$http', '$route', '$location', 'Admin', 'Node',
-function($rootScope, $scope, $http, $route, $location, Admin, Node) {
+function($scope, $rootScope, $http, $route, $location, Admin, Node) {
 
   // XXX this should actually be defined per controller
   // otherwise every time you open a new page the button appears enabled
@@ -18,8 +14,6 @@ function($rootScope, $scope, $http, $route, $location, Admin, Node) {
   $scope.active[current_menu] = "active";
 
   $scope.admin = new Admin();
-
-  $scope.language = $rootScope.language;
 
   $scope.languages_enabled_edit = {};
   $scope.languages_default_selector = {};
@@ -107,21 +101,10 @@ function($rootScope, $scope, $http, $route, $location, Admin, Node) {
 
     $scope.update(node);
 
-    $scope.$broadcast("REFRESH");
+    $rootScope.$broadcast("REFRESH");
 
     $route.reload();
   }
-
-  $scope.update = function(model) {
-    var success = {};
-    success.message = "Updated " + model;
-    model.$update(function(){
-      if (!$rootScope.successes) {
-        $rootScope.successes = [];
-      };
-      $rootScope.successes.push(success);
-    });
-  };
 
 }]);
 
