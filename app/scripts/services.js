@@ -645,6 +645,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
        *  @param {string} password the new password model name.
        *  @param {string} check_password need to be equal to the new password.
        **/
+
+      scope.invalid = true;
+
       scope.mismatch_password = false;
       scope.missing_old_password = false;
       scope.unsafe_password = false;
@@ -690,6 +693,12 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         } else {
             scope.missing_old_password = true;
         }
+
+        scope.invalid = scope.$eval(password) === undefined ||
+                        scope.$eval(password) === '' ||
+                        scope.mismatch_password ||
+                        scope.unsafe_password ||
+                        scope.missing_old_password;
       }
 
       scope.$watch(password, function(){
