@@ -157,7 +157,7 @@ class CollectionDownload(BaseHandler):
 
         elif compression in ['tar', 'targz', 'tarbz2']:
             collectionstreamer = CollectionStreamer(self)
-            tar = tarfile.open("collection.tar.gz", 'w|'+opts['compression_type'], collectionstreamer)
+            tar = tarfile.open("collection." + compression, 'w|'+opts['compression_type'], collectionstreamer)
             for f in files_dict:
                 if 'path' in f:
                     tar.add(f['path'], f['name'])
