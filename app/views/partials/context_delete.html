@@ -1,28 +1,24 @@
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" aria-hidden="true" ng-click="cancel()">
-        <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
-      </button>
-      <h2>{{ "Delete Context" | translate }}</h2>
+<div class="modal-header">
+  <button type="button" class="close" aria-hidden="true" ng-click="cancel()">
+    <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+  </button>
+  <h2>{{ "Delete Context" | translate }}</h2>
+</div>
+<div class="modal-body">
+  <div class="alert alert-danger">
+    <div>
+      {{ "Are you sure you want to delete the context?" | translate }}
+      <br />
+      {{ "Please take care that all associated data will be properly deleted." | translate}}
     </div>
-    <div class="modal-body">
-      <div class="alert alert-danger">
-        <div>
-          {{ "Are you sure you want to delete the context?" | translate }}
-          <br />
-          {{ "Please take care that all associated data will be properly deleted." | translate}}
-        </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn" ng-click="cancel()">
-        <i class="glyphicon glyphicon-remove"></i>
-        {{ "Cancel" | translate }}
-      </button>
-      <button class="btn btn-danger" ng-click="ok()">
-        <i class="glyphicon glyphicon-ok"></i>
-        {{ "Confirm Deletion" | translate }}
-      </button>
-    </div>
-  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn" ng-click="cancel()">
+    <i class="glyphicon glyphicon-remove"></i>
+    {{ "Cancel" | translate }}
+  </button>
+  <button class="btn btn-danger" ng-click="ok()">
+    <i class="glyphicon glyphicon-ok"></i>
+    {{ "Confirm Deletion" | translate }}
+  </button>
 </div>
