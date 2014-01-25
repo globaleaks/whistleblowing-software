@@ -152,46 +152,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         return $http.pendingRequests.length;
       }
 
-      var Fairy = function(promise) {
-        this.promise = promise;
-        this.timeout = function() {
-          /*
-            Code commented out as unuseful from user of point of view
-
-            var error = {},
-              source_path = $location.path();
-
-            error.message = "Request timed out";
-            error.code = 100;
-            error.url = '/';
-
-            if (!$rootScope.errors) {
-              $rootScope.errors = [];
-            }
-            $rootScope.errors.push(error);
-            $rootScope.pendingRequests.pop(this);
-          */
-        }
-      },
-      fairy = new Fairy(promise);
-
-      function timedOut(fairy) {
-        return function() {
-          fairy.timeout();
-          $rootScope.$digest();
-        }
-      }
-     
       $rootScope.showRequestBox = true;
 
-      window.setTimeout(timedOut(fairy), requestTimeout);
-
       return promise.then(function(response) {
-
-        fairy.timeout = function() {
-          // We override the instance method if the promise actually works.
-          return true;
-        };
 
         if ($http.pendingRequests.length < 1) {
           $rootScope.showRequestBox = false;
