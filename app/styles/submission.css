@@ -14,6 +14,7 @@
   border: 1px solid #DDD;
   float: left;
   border-radius: 10px;
+  word-wrap: break-word;
 }
 
 .receiverCard.selected {
@@ -35,7 +36,6 @@
   
   .receiverCard {
     max-width: 95%;
-    word-wrap: break-word;
   }
 }
 
