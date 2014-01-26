@@ -1,3 +1,9 @@
+globaleaks (2.52.2) unstable; urgency=low
+
+  * GlobaLeaks 2.52.2 Release (AngularJs updated to 1.2.10)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 26 Jan 2014 16:33:00 +0002
+
 globaleaks (2.52.1) unstable; urgency=low
 
   * GlobaLeaks 2.52.1 Release (Packaging Fixes, Translations Updated)
