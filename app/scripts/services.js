@@ -84,9 +84,12 @@ angular.module('resourceServices.authentication', [])
 
               if ($routeParams['src']) {
                 $location.path($routeParams['src']);
+
               } else {
                 $location.path(auth_landing_page);
               }
+
+              $location.search('');
 
           });
         };
