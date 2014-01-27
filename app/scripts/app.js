@@ -156,7 +156,6 @@ var GLClient = angular.module('GLClient', [
         }
     });
 
-    var enabled = false;
     document.cookie = 'cookiesenabled=true;';
     if (document.cookie == "") {
       $rootScope.cookiesEnabled = false;
