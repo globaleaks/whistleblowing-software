@@ -67,7 +67,8 @@ GET /contexts
             "hint":"Describe your tip-off with a line/title",
             "required":true,
             "value":"",
-            "type":"text"
+            "type":"text",
+            "key": "b0c7f947-ec3e-4957-b08f-9a61fa07e128"
          },
          {
             "name":"Full description",
@@ -75,7 +76,8 @@ GET /contexts
             "hint":"Describe the details of your tip-off",
             "required":true,
             "value":"",
-            "type":"text"
+            "type":"text",
+            "key": "9151a5c0-7766-4f32-a2d2-3379dc580bb8"
          },
          {
             "name":"Files description",
@@ -83,17 +85,21 @@ GET /contexts
             "hint":"Describe the submitted files",
             "required":false,
             "value":"",
-            "type":"text"
+            "type":"text",
+            "key": "a7646ab2-06c9-444f-a703-0731ab3e541f"
          }
       ],
       "selectable_receiver":true,
+      "select_all_receiver": true,
       "context_gus":"d1c364a2-65ed-4794-9664-7edb9858e0e6",
       "tip_timetolive":1296000,
+      "tip_max_access":42,
+      "file_max_download":42,
+      "file_required":false,
+       maximum_selectable_receivers": 0,
+      "show_small_cards": false,
       "escalation_threshold":null,
       "submission_introduction":"Here you can submit your tip-off and the files",
-      "file_max_download":42,
-      "tip_max_access":42,
-      "file_required":false,
       "submission_disclaimer":"Thank you for your contribution, your submission is complete"
    }
 ]
@@ -106,13 +112,13 @@ GET /receivers
    {
       "update_date":"Never",
       "description":"",
+      "presentation_order": 0,
       "tags":[
       ],
       "contexts":[
          "70b70b4a-a3dd-4e9a-b907-06a6ffbe391e",
          "d1c364a2-65ed-4794-9664-7edb9858e0e6"
       ],
-      "can_delete_submission":true,
       "creation_date":"2013-06-17T14:59:36.438000",
       "receiver_level":1,
       "receiver_gus":"63793685-b9a0-4ead-812d-4af62800017c",
@@ -121,12 +127,12 @@ GET /receivers
    {
       "update_date":"Never",
       "description":"",
+      "presentation_order": 1,
       "tags":[
       ],
       "contexts":[
          "d1c364a2-65ed-4794-9664-7edb9858e0e6"
       ],
-      "can_delete_submission":true,
       "creation_date":"2013-06-17T15:13:46.887787",
       "receiver_level":1,
       "receiver_gus":"24602346-eb5e-4c49-bef3-0769790717f4",
