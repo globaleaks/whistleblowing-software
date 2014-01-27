@@ -14,14 +14,14 @@ GET /node
 < 200
 < Content-Type: application/json
 {
-   "description":"GlobaLeaks node for testing my dissertation project.",
-   "maximum_namesize":128,
+   "configured":true,
    "name":"NewcastleLeaks",
-   "tor2web_admin":false,
-   "tor2web_unauth":true,
-   "maximum_filesize":31457280,
+   "subtitle":"Hi! I'm the subtitle \u00f0 <: change m"
+   "presentation": "Welcome to GlobaLeaks\u2122",
+   "description":"GlobaLeaks node for testing my dissertation project."
+   "footer": "Copyright 2011-2014 Hermes Center for Transparency and Digital Human Rights",
    "email":"lorenzo@primiterra.it",
-   "languages":[
+   "languages_supported":[
       {
          "code":"it",
          "name":"Italiano"
@@ -31,14 +31,21 @@ GET /node
          "name":"English"
       }
    ],
+   "languages_enabled": ["en", "it"],
+   "tor2web_admin":false,
+   "tor2web_unauth":true,
    "tor2web_receiver":false,
    "tor2web_submission":false,
    "tor2web_tip":false,
+   "maximum_namesize":128,
+   "maximum_descsize":1024,
+   "maximum_textsize":4096,
+   "maximum_filesize":31457280,
+   "hidden_service":"http://ymasaptkeux3qgbc.onion"
    "public_site":"https://ymasaptkeux3qgbc.tor2web.blutmagie.de",
-   "maximum_textsize":2048,
-   "configured":true,
-   "hidden_service":"http://ymasaptkeux3qgbc.onion",
-   "maximum_descsize":1024
+   "postpone_superpower":false,
+   "can_delete_submission": false,
+   "ahmia": false,
 }
 
 Returns an array with  all the contexts of the GlobaLeaks node. Every object includes submission fields and a list of receiver gus.
