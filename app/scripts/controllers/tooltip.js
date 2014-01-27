@@ -1,9 +1,12 @@
 GLClient.controller('toolTipCtrl',
-  ['$scope', '$rootScope', 'Authentication',
-   'Node', '$route', '$translate',
-function($scope, $rootScope, Authentication,
-         Node, $route, $translate) {
+  ['$scope', '$rootScope', '$routeParams', '$route', '$translate', 
+    'Authentication', 'Node',
+  function($scope, $rootScope, $routeParams, $route, $translate,
+           Authentication, Node) {
 
+  if($routeParams.lang) {
+    $rootScope.language = $scope.language = $routeParams.lang;
+  }
   
   var refresh = function() {
 
