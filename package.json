@@ -22,6 +22,7 @@
     "grunt-reload": "0.2.0",
     "grunt-usemin": "2.0.2",
     "jquery": "1.8.3",
+    "matchdep": "0.3.0",
     "mocha": "1.15.1",
     "node-gettext": "0.2.14",
     "should": "2.1.1",
