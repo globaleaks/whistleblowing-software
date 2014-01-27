@@ -252,10 +252,18 @@ Used to login and retrieve a tip
 Returns a session token to access the specified submission, which id was passed inside of the request password headers. And a user_id that will be used as receipt_id.
 POST /authentication
 > Content-Type: application/json
-{"username":"wb","password":"5864037396","role":"wb"}
+{
+    "username":"wb"
+    "password":"5864037396",
+    "role":"wb"
+}
 < 201
 < Content-Type: application/json
-{"user_id": "91a0e7c9-e704-47fb-8198-84ed707be19e", "session_id": "LqK8tfPKdKQF8LT8KlHBivVn9GuMTV0e66UyZmqm6y"}
+{
+    "user_id": "91a0e7c9-e704-47fb-8198-84ed707be19e",
+    "session_id": "LqK8tfPKdKQF8LT8KlHBivVn9GuMTV0e66UyZmqm6y",
+    "session_expiration": 1390861521
+}
 
 Allows the application to refresh an authenticated session. Returns the session token if still valid. 
 GET /authentication
