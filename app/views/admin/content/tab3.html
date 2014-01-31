@@ -5,7 +5,7 @@
       <div ng-repeat="language in admin.node.languages_supported | orderBy:'name'">
         <div>
           <input ng-model="languages_enabled_edit[language.code]" type="checkbox">
-          <label>{{language.name}}</label>
+          <label>{{ language.name }} [{{ language.code }}]</label>
           <a ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
             <i class="glyphicon glyphicon-plus-sign" ng-show="isCollapsed"></i>
             <i class="glyphicon glyphicon-minus-sign" ng-show="!isCollapsed"></i>
