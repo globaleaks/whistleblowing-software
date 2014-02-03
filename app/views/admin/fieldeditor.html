@@ -77,23 +77,25 @@
           </select>
         </div>
 
-        <div ng-switch="" on="typeSwitch(field.type)">
-          <div ng-switch-default=""></div>
+        <div ng-switch="" on="typeSwitch(field.type)" class="row">
+          <div class="col-md-offset-1 col-md-10">
+            <div ng-switch-default=""></div>
 
-          <div ng-switch-when="multiple">
-            <div class="row col-md-offset-1 col-md-10" ng-repeat="option in field.options">
-              <form class="form-inline">
-                <div class="form-group">
-                  <label>{{ "Name" | translate }}</label>
-                  <input class="form-control" placeholder="name" ng-model="option.name" ng-change="updateValue(option)" type="text">
-                </div>
-              </form>
-            </div>
-            <div class="row col-md-offset-1 col-md-10">
-              <button class="btn btn-info" ng-click="addOption(field)">
-                <i class="glyphicon glyphicon-plus-sign"></i> 
-                {{ "Add option" | translate }}
-              </button>
+            <div ng-switch-when="multiple">
+              <div ng-repeat="option in field.options">
+                <form class="form-inline">
+                  <div class="form-group">
+                    <label>{{ "Name" | translate }}</label>
+                    <input class="form-control" placeholder="name" ng-model="option.name" ng-change="updateValue(option)" type="text">
+                  </div>
+                </form>
+              </div>
+              <div>
+                <button class="btn btn-info" ng-click="addOption(field)">
+                  <i class="glyphicon glyphicon-plus-sign"></i> 
+                  {{ "Add option" | translate }}
+                </button>
+              </div>
             </div>
           </div>
         </div>
