@@ -352,17 +352,17 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
                       request['maximum_selectable_receivers'])
         request['maximum_selectable_receivers'] = 0
 
+    # tip_timetolive and submission_timetolive need to be converted in seconds since hours and days
+    (context.submission_timetolive, context.tip_timetolive) = acquire_context_timetolive(request)
+
+    c = store.add(context)
+
     for receiver_id in receivers:
         receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         if not receiver:
             log.err("Creation error: unexistent context can't be associated")
             raise errors.ReceiverGusNotFound
-        context.receivers.add(receiver)
-
-    # tip_timetolive and submission_timetolive need to be converted in seconds since hours and days
-    (context.submission_timetolive, context.tip_timetolive) = acquire_context_timetolive(request)
-
-    store.add(context)
+        c.receivers.add(receiver)
 
     receipt_example = generate_example_receipt(context.receipt_regexp)
     return admin_serialize_context(context, receipt_example, language)
