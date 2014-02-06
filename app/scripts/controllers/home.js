@@ -5,17 +5,11 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication'
   function ($scope, $location, Node, Authentication, WhistleblowerTip, Contexts, Receivers) {
     $scope.receipt = '';
     $scope.configured = false;
-    $scope.anonymous = false;
     $scope.step = 1;
     $scope.answer = {value: null}
     $scope.answered = false;
     $scope.correctAnswer = false;
     $scope.showQuestions = false;
-
-
-    if ($scope.privacy == 'high') {
-      $scope.anonymous = true;
-    }
 
     $scope.view_tip = function(receipt) {
       WhistleblowerTip(receipt, function() {
