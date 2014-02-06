@@ -5,9 +5,10 @@
 # Implementation of classes handling the HTTP request to /node, public
 # exposed API.
 
+import json
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.utils.utility import pretty_date_time
+from globaleaks.utils.utility import pretty_date_time, log
 from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
@@ -151,6 +152,35 @@ class InfoCollection(BaseHandler):
         """
         response = yield anon_serialize_node(self.current_user, self.request.language)
         self.finish(response)
+
+class AhmiaDescriptionHandler(BaseHandler):
+    """
+    Description of Ahmia 'protocol' is in:
+    https://ahmia.fi/documentation/
+    and we're supporting the Hidden Service description proposal from:
+    https://ahmia.fi/documentation/descriptionProposal/
+    """
+
+    @transport_security_check("unauth")
+    @unauthenticated
+    @inlineCallbacks
+    def get(self, *uriargs):
+
+        log.debug("Requested Ahmia description file")
+        node_info = yield anon_serialize_node(self.current_user, self.request.language)
+
+        ahmia_description = {
+            "title" : node_info['name'],
+            "description" : node_info['description'],
+            # we've not yet keywords, need to add them in Node ?
+            "keywords" : "%s (GlobaLeaks instance)" % node_info['name'],
+            "relation" : node_info['public_site'],
+            "language" : node_info['default_language'],
+            "contactInformation" : u'', # we've removed Node.email_addr
+            "type" : "GlobaLeaks"
+        }
+        self.finish(ahmia_description)
+
 
 # U2 Submission create
 # U3 Submission update/status/delete
