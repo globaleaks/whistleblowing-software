@@ -4,8 +4,10 @@ This comment is needed in order to push the following strings on transifex
 
 {{ "Loading Tip page..." | translate }}
 {{ "Tip Status Page" | translate }}
+{{ "This receiver has configured the encryption key." | translate }}
+{{ "This receiver has not configured for encryption key." | translate }
 
--->
+//-->
 <div id="ContentBox" class="container statusPage ng-cloak">
   <div class="row" ng-controller="TipCtrl">
     <div class="col-md-6">
@@ -13,7 +15,7 @@ This comment is needed in order to push the following strings on transifex
         <dl>
           <dt>
             {{ tip.context_name }}
-            <a popover="{{tip.context_description}}" popover-placement="right" popover-trigger="mouseenter">
+            <a ng-show="tip.context_description" popover="{{tip.context_description}}" popover-placement="right" popover-trigger="mouseenter">
               <span class="glyphicon glyphicon-info-sign"></span>
             </a>
           </dt>
@@ -29,8 +31,8 @@ This comment is needed in order to push the following strings on transifex
             <span>
               {{fieldFormat[fieldName].name}}
             </span>
-            <a popover="{{fieldFormat[fieldName].hint}}" popover-placement="right" popover-trigger="mouseenter">
-              <span class="glyphicon glyphicon-info-sign"></span>
+            <a ng-show="fieldFormat[fieldName].hint" popover="{{fieldFormat[fieldName].hint}}" popover-placement="right" popover-trigger="mouseenter">
+              <span class="glyphicon glyphicon-info-sign"}}></span>
             </a>
           </dt>
         
@@ -72,7 +74,17 @@ This comment is needed in order to push the following strings on transifex
           </thead>
           <tbody id="receiverListBody">
             <tr ng-repeat="receiver in tip.receivers | orderBy:'name'">
-              <td>{{receiver.name}}</td>
+              <td>
+                <span ng-switch="" on="receiver.gpg_key_status">
+                  <span ng-switch-when="Enabled">
+                    <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                  </span>
+                  <span ng-switch-when="Disabled">
+                    <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                  </span>
+                </span>
+                {{receiver.name}}
+              </td>
               <td>{{receiver.description}}</td>
               <td>{{receiver.access_counter}}</td>
             </tr>
