@@ -17,13 +17,13 @@ var GLClient = angular.module('GLClient', [
       when('/submission', {
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
-        header_title: 'Blow the Wistle',
+        header_title: 'Blow the Whistle',
         header_subtitle: ''
       }).
       when('/submission/:lang', {
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
-	   header_title: 'Blow the Wistle',
+	   header_title: 'Blow the Whistle',
         header_subtitle: ''
       }).
       when('/status', {
