@@ -3,6 +3,10 @@
 This comment is needed in order to push the following strings on transifex
 
 {{ "Blow the Whistle" | translate }}
+{{ "This receiver has configured the encryption key." | translate }}
+{{ "This receiver has not configured for encryption key." | translate }
+{{ "Select this receiver." | translate }}
+{{ "Deselect this receiver." | translate }}
 
 -->
 <div class="ng-cloak container" ng-show="!node.configured && node.name">
@@ -75,14 +79,24 @@ This comment is needed in order to push the following strings on transifex
           <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}" ng-click="switch_selection(receiver.receiver_gus)">
             <div class="row receiverCardTitle">
               <div class="col-md-10">
-                <label>{{receiver.name}}</label>
+                <label>
+                  <span ng-switch="" on="receiver.gpg_key_status">
+                    <span ng-switch-when="Enabled">
+                      <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    </span>
+                    <span ng-switch-when="Disabled">
+                      <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    </span>
+                  </span>
+                  &nbsp;{{receiver.name}}
+                </label>
               </div>
               <div class="col-md-1">
                 <div ng-show="submission.receivers_selected[receiver.receiver_gus]">
-                  <i class="glyphicon glyphicon-check"></i>
+                  <i class="glyphicon glyphicon-check" popover="{{ 'Deselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                 </div>
                 <div ng-show="!submission.receivers_selected[receiver.receiver_gus]">
-                  <i class="glyphicon glyphicon-unchecked"></i>
+                  <i class="glyphicon glyphicon-unchecked" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                 </div>
               </div>
             </div>
@@ -103,14 +117,24 @@ This comment is needed in order to push the following strings on transifex
             <div ng-click="switch_selection(receiver.receiver_gus)" class="receiverCard" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}">
               <div class="row receiverCardTitle">
                 <div class="col-md-9">
-                  <label>{{receiver.name}}</label>
+                  <label>
+                    <span ng-switch="" on="receiver.gpg_key_status">
+                      <span ng-switch-when="Enabled">
+                        <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                      </span>
+                      <span ng-switch-when="Disabled">
+                        <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                      </span>
+                    </span>
+                    &nbsp;{{receiver.name}}
+                  </label>
                 </div>
                 <div class="col-md-1">
                   <div ng-show="submission.receivers_selected[receiver.receiver_gus]">
-                    <i class="glyphicon glyphicon-check"></i>
+                    <i class="glyphicon glyphicon-check" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </div>
                   <div ng-show="!submission.receivers_selected[receiver.receiver_gus]">
-                    <i class="glyphicon glyphicon-unchecked"></i>
+                    <i class="glyphicon glyphicon-unchecked" popover="{{ 'Deselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </div>
                 </div>
               </div>
