@@ -123,6 +123,7 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
         "receiver_level": int(receiver.receiver_level),
         "tags": receiver.tags,
         "presentation_order": receiver.presentation_order,
+        "gpg_key_status": receiver.gpg_key_status,
     })
 
     mo = Rosetta()
