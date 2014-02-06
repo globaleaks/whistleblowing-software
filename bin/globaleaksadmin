@@ -17,7 +17,6 @@ from globaleaks import DATABASE_VERSION
 DEFAULT_OUTPUT_DBNAME = "/tmp/cleaned_glbackend.db"
 DUMMY_UNICODE_TEXT = u"¹²³ HelLlo! I'm the Batman"
 
-
 def _fancy_print(tablename, elements=0):
     if elements:
         print u' ¬æ  %d elements exported from %s' %\
@@ -199,10 +198,12 @@ def do_safexport(dbfile):
 
 
 
-def do_resetpass(dbfile):
+def do_resetpass(dbfile, password=None):
 
     salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
-    password = rstr.xeger('[A-Za-z0-9]{16}')
+
+    if not password:
+        password = rstr.xeger('[A-Za-z0-9]{16}')
     hashed_password = hash_password(password, salt)
 
     QUERY = 'UPDATE user SET salt="%s", password="%s"' % (salt, hashed_password)
@@ -232,7 +233,7 @@ def check_file(isafile):
 if len(sys.argv) == 1:
     print "\nGlobaLeaks backend administator interface: Missing command\n"
     funny_print(" safexport <DBFILE>","(export without sensitive data)")
-    funny_print(" resetpass <DBFILE>","(reset admin password")
+    funny_print(" resetpass <DBFILE> [password]","(reset admin password)")
     funny_print(" backup <WORKINGDIR> <BACKUPNAME>","(create a zipped backup)")
     funny_print(" restore <WORKINGDIR> <BACKUPNAME>","(restore a backup in workingdir)")
     print "default DBFILE is /var/globaleaks/db/glbackend-*.db"
@@ -250,10 +251,14 @@ if sys.argv[1] == 'safexport' and len(sys.argv) == 3:
     except Exception as excep:
         print "Something is going wrong: %s" % excep
 
-elif sys.argv[1] == 'resetpass' and len(sys.argv) == 3:
+elif sys.argv[1] == 'resetpass' and (len(sys.argv) == 3 or len(sys.argv) == 4):
     try:
         check_file(sys.argv[2])
-        password = do_resetpass(sys.argv[2])
+
+        if len(sys.argv) == 4:
+            password = do_resetpass(sys.argv[2], sys.argv[3])
+        else:
+            password = do_resetpass(sys.argv[2])
 
         print "================================="
         print "||   Your new admin password   ||"
