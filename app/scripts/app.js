@@ -261,4 +261,9 @@ var GLClient = angular.module('GLClient', [
         }
     });
 
+
+    /* initialization of privacy detection variables */
+    $rootScope.privacy = 'unknown';
+    $rootScope.anonymous = false;
+
 }]);
