@@ -51,6 +51,24 @@ class Fields:
         This function shall be used in two cases:
         1) a new field has been added with the language
         2) a new language has been provided
+
+        admin_data expect this kind of data -LOCALIZED-
+        [
+          {
+             u'name': u'Short title',
+             u'presentation_order': 1,
+             u'hint': u'Describe your Tip with a short title',
+             u'required': True,
+             u'value': u'',
+             u'key': u'b410bb94-00a7-4b9f-9499-f4fea086e4cc',
+             u'preview': True,
+             u'type': u'text'
+          },
+          {
+             u'name': u'Full description',
+             ...
+          }
+        ]
         """
         from globaleaks.rest.errors import InvalidInputFormat
         from uuid import uuid4
@@ -175,7 +193,6 @@ class Fields:
         for k, v in self._fields.iteritems():
 
             v['key'] = k
-            presentation_fallback += 1
 
             if self._localization.has_key(language) and self._localization[language].has_key(k):
                 v['name'] = self._localization[language][k]['name']
@@ -187,18 +204,14 @@ class Fields:
                 v['name'] = u"Missing translation for lang '%s' " % language
                 v['hint'] = u"Missing translation for lang '%s' " % language
 
-            # this is required if some fields are stored in the DB without a presentation_order,
-            # it's something very rare, but still need to be handled for safety
-            # XXX can be removed in the next Fields refactoring with issue 700
-            if ordered_field_list.has_key(v['presentation_order']):
-                order = presentation_fallback
-            else:
-                order = v['presentation_order']
-
+            order = v['presentation_order']
+            if ordered_field_list.has_key(order):
+                # this shall happen only in malformed Admin Clients != from GLC
+                log.err("Conflict: two fields have the same presentation order!")
+                # and the old one would be lost :P
             ordered_field_list.update({ order : v })
 
-        # XXX This is a workaround on
-        # https://github.com/globaleaks/GlobaLeaks/issues/700
+        # convert from the keyed Dict to an ordered list
         fields_list = []
         try:
             for field_ndx in ordered_field_list.keys():

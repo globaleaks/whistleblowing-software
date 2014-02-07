@@ -8,7 +8,6 @@ from globaleaks.settings import GLSetting
 from globaleaks.tests import helpers
 
 from globaleaks.rest import errors, requests
-from globaleaks.rest.base import uuid_regexp
 from globaleaks.handlers import base, admin, submission, authentication, receiver, rtip, wbtip
 from globaleaks.jobs import delivery_sched
 from globaleaks import models
@@ -181,7 +180,7 @@ class TestTipInstance(TTip):
             self.wb_tip_id = yield authentication.login_wb(self.receipt)
             # is the self.current_user['user_id']
 
-        self.assertTrue(re.match(uuid_regexp, self.wb_tip_id))
+        self.assertTrue(re.match(requests.uuid_regexp, self.wb_tip_id))
 
     @inlineCallbacks
     def wb_auth_with_bad_receipt(self):
@@ -209,8 +208,8 @@ class TestTipInstance(TTip):
         self.rtip2_id = receiver_tips[1]
 
         self.assertEqual(len(receiver_tips), 2)
-        self.assertTrue(re.match(uuid_regexp, receiver_tips[0]))
-        self.assertTrue(re.match(uuid_regexp, receiver_tips[1]))
+        self.assertTrue(re.match(requests.uuid_regexp, receiver_tips[0]))
+        self.assertTrue(re.match(requests.uuid_regexp, receiver_tips[1]))
 
     @inlineCallbacks
     def access_receivers_tip(self):
