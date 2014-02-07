@@ -111,7 +111,7 @@ var context = {
       "hint":"the third",
       "required":true,
       "presentation_order":3
-      ,"value":"",
+      "value":"",
       "key":"",
       "preview":true,
       "type":"select",
@@ -119,43 +119,17 @@ var context = {
         {
           "order":0,
           "value":"a",
-          "name":"a"
+          "name":"the 4th do not exist"
         },
         {
           "order":0,
           "value":"b",
-          "name":"b"},
+          "name":"il 4° non esiste"
+	},
         {
           "order":0,
           "value":"c",
-          "name":"c"
-        }
-      ]
-    },
-    {
-      "name":"forth",
-      "hint":"the !$",
-      "required":true,
-      "presentation_order":4,
-      "value":"",
-      "key":"",
-      "preview":true,
-      "type":"multiple",
-      "options": [
-        {
-          "order":0,
-          "value": "a",
-          "name":"a"
-        },
-        {
-          "order":0,
-          "value":"b",
-          "name":"b"
-        },
-        {
-          "order":0,
-          "value":"c",
-          "name":"c"
+          "name":"blah"
         }
       ]
     },
@@ -202,41 +176,42 @@ var context = {
       "preview":true,
       "type":"textarea"
     },
-    {"name":"seventh",
-      "hint":"seven figthers!",
+    {
+      "name":"seventh",
+      "hint":"seven figthers! (it's a number!)",
       "required":true,
       "presentation_order":7,
-      "value":"",
+      "value":"123",
       "key":"",
       "preview":true,
       "type":"number"
     },
     {
       "name":"eighth",
-      "hint":"eighththththth",
+      "hint":"eighththththth (url)",
       "required":true,
       "presentation_order":0,
-      "value":"",
+      "value":"https://globaleaks.org",
       "key":"",
       "preview":true,
       "type":"url"
     },
     {
       "name":"nineth",
-      "hint":"nine hell",
+      "hint":"nine hell (phone)",
       "required":true,
       "presentation_order":8,
-      "value":"",
+      "value":"+3933932143413",
       "key":"",
       "preview":true,
       "type":"phone"
     },
     {
       "name":"tenth",
-      "hint":"the 10th in english",
+      "hint":"the 10th in english (email)",
       "presentation_order":9,
       "required":true,
-      "value":"",
+      "value":"email@domain.tld",
       "key":"",
       "preview":true,
       "type":"email"
