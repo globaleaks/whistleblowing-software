@@ -17,13 +17,13 @@ var GLClient = angular.module('GLClient', [
       when('/submission', {
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
-        header_title: 'Blow the Wistle',
+        header_title: 'Blow the Whistle',
         header_subtitle: ''
       }).
       when('/submission/:lang', {
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
-	   header_title: 'Blow the Wistle',
+	   header_title: 'Blow the Whistle',
         header_subtitle: ''
       }).
       when('/status', {
@@ -260,5 +260,10 @@ var GLClient = angular.module('GLClient', [
           $rootScope.header_subtitle = current.$$route.header_subtitle;
         }
     });
+
+
+    /* initialization of privacy detection variables */
+    $rootScope.privacy = 'unknown';
+    $rootScope.anonymous = false;
 
 }]);
