@@ -166,10 +166,11 @@ class GLSettingsClass:
 
         # default timings for scheduled jobs
         self.session_management_minutes_delta = 1 # runner.py function expects minutes
-        self.cleaning_hours_delta = 5             # runner.py function expects hours
+        self.cleaning_hours_delta = 6             # runner.py function expects hours
         self.notification_minutes_delta = 2       # runner.py function expects minutes
         self.delivery_seconds_delta = 30          # runner.py function expects seconds
-        self.statistics_minutes_delta = 1         # runner.py function expects minutes
+        self.anomaly_seconds_delta = 30         # runner.py function expects seconds
+        self.stats_minutes_delta = 10             # runner.py function expects minutes
 
         self.defaults = OD()
         # Default values, used to initialize DB at the first start,
