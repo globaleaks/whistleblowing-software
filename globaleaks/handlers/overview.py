@@ -256,9 +256,10 @@ class Users(BaseHandler):
 
 class Files(BaseHandler):
     """
-    AB
-
     /admin/overview/files
+
+    Return the list of the files in InternalFile, ReceiverFile
+    and the files in
     """
 
     @transport_security_check('admin')
@@ -275,3 +276,14 @@ class Files(BaseHandler):
 
         self.set_status(200)
         self.finish(file_complete_list)
+
+
+class StatsCollection(BaseHandler):
+    """
+    /admin/statistics
+
+    This return the history of the anonymous activity over the node,
+    this is needed to spot anomalies and raise 'alarms'
+    """
+
+

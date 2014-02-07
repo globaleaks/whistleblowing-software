@@ -13,7 +13,7 @@ from globaleaks.handlers import node, submission, rtip, wbtip, admin, receiver, 
                                 files, authentication, admstaticfiles, \
                                 admlangfiles, overview, collection, wizard
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
-from globaleaks.rest.base import uuid_regexp
+from globaleaks.rest.requests import uuid_regexp
 
 # Here is mapped a path and the associated class to be invoked,
 # Two kind of Classes:
@@ -30,6 +30,10 @@ spec = [
     ## Node Handler ##
     (r'/node', node.InfoCollection),
 
+    (r'/contexts', node.ContextsCollection),
+
+    (r'/receivers' , node.ReceiversCollection),
+
     #  ahmia.fi integration with description.json file
     (r'/(description.json)', node.AhmiaDescriptionHandler),
 
@@ -39,12 +43,6 @@ spec = [
     (r'/submission/' + uuid_regexp, submission.SubmissionInstance),
 
     (r'/submission/' + uuid_regexp + '/file', files.FileInstance),
-
-    (r'/statistics', node.StatsCollection),
-
-    (r'/contexts', node.ContextsCollection),
-
-    (r'/receivers' , node.ReceiversCollection),
 
     (r'/authentication', authentication.AuthenticationHandler),
 
@@ -99,6 +97,7 @@ spec = [
     (r'/admin/overview/tips', overview.Tips),
     (r'/admin/overview/users', overview.Users),
     (r'/admin/overview/files', overview.Files),
+    (r'/admin/statistics', overview.StatsCollection)
 
 ]
 

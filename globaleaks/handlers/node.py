@@ -184,28 +184,6 @@ class AhmiaDescriptionHandler(BaseHandler):
         self.finish(ahmia_description)
 
 
-# U2 Submission create
-# U3 Submission update/status/delete
-# U4 Files
-
-class StatsCollection(BaseHandler):
-    """
-    U5
-    Interface for the public statistics, configured between the Node settings and the
-    Contexts settings
-    """
-    @unauthenticated
-    def get(self, *uriargs):
-        """
-        Parameters: None
-        Response: publicStatsList
-        Errors: StatsNotCollectedError
-
-        This interface return the collected statistics for the public audience.
-        """
-        pass
-
-
 @transact_ro
 def get_public_context_list(store, default_lang):
     context_list = []
@@ -222,7 +200,6 @@ def get_public_context_list(store, default_lang):
 
 class ContextsCollection(BaseHandler):
     """
-    U6
     Return the public list of contexts, those information are shown in client
     and would be memorized in a third party indexer service. This is way some dates
     are returned within.
@@ -255,7 +232,6 @@ def get_public_receiver_list(store, default_lang):
 
 class ReceiversCollection(BaseHandler):
     """
-    U7
     Return the description of all the receivers visible from the outside.
     """
 

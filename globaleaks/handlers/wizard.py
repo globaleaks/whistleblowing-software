@@ -52,7 +52,7 @@ class FieldsCollection(BaseHandler):
     # @transport_security_check('admin')
     # @authenticated('admin')
     @unauthenticated
-    @inlineCallbacks
+    # @inlineCallbacks
     def get(self, *uriargs):
 
         self.set_status(200)
@@ -63,23 +63,20 @@ class FieldsCollection(BaseHandler):
     @unauthenticated
     # @inlineCallbacks
     def post(self, *uriargs):
-        """
-        only accepted types:
-          "type":"text"
-          "type":"radio",
-          "type":"select",
-          "type":"checkboxes",
-          "type":"textarea"
-          "type":"number"
-          "type":"url"
-          "type":"phone"
-          "type":"email"
-        """
+
+        accepted_types = [ "text", "radio", "select", "checkboxes",
+            "textarea", "number", "url", "phone", "email" ]
 
         request = self.validate_message(self.request.body,
                 requests.wizardFieldUpdate)
 
         fields = request['fields']
+
+        for field in fields:
+            if field['type'] not in accepted_types:
+                log.debug("Invalid type received: %s" % field['type'])
+                raise errors.InvalidInputFormat("Invalid type supply")
+
         log.debug("Updating Application Data (Fields) to version: %d" % request['version'])
 
         temporary_fields_dump = list(fields)
