@@ -1,38 +1,41 @@
-[
-  {
-    "incremental_number": 0,
-    "localized_name": {
-      "en": "Short title"
+{
+  "version": 1,  
+  "fields" : [
+    {
+      "incremental_number": 0,
+      "localized_name": {
+        "en": "Short title"
+      },
+      "localized_hint": {
+        "en": "Describe your submission with few words"
+      },
+      "type": "text",
+      "trigger": [],
+      "defined_options": []
     },
-    "localized_hint": {
-      "en": "Describe your submission with few words"
+    {
+      "incremental_number": 1,
+      "localized_name": {
+        "en": "Full description"
+      },
+      "localized_hint": {
+        "en": "Describe the details of the submission"
+      },
+      "type": "textarea",
+      "trigger": [],
+      "defined_options": []
     },
-    "type": "text",
-    "trigger": [],
-    "defined_options": []
-  },
-  {
-    "incremental_number": 1,
-    "localized_name": {
-      "en": "Full description"
-    },
-    "localized_hint": {
-      "en": "Describe the details of the submission"
-    },
-    "type": "textarea",
-    "trigger": [],
-    "defined_options": []
-  },
-  {
-    "incremental_number": 2,
-    "localized_name": {
-      "en": "Files description"
-    },
-    "localized_hint": {
-      "en": "Describe the attachments of the submission"
-    },
-    "type": "textarea",
-    "trigger": [],
-    "defined_options": []
-  }
-]
+    {
+      "incremental_number": 2,
+      "localized_name": {
+        "en": "Files description"
+      },
+      "localized_hint": {
+        "en": "Describe the attachments of the submission"
+      },
+      "type": "textarea",
+      "trigger": [],
+      "defined_options": []
+    }
+  ]
+}
