@@ -7,7 +7,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 
 from globaleaks.rest import requests
-from globaleaks.rest.base import uuid_regexp
 from globaleaks.handlers import base, admin, submission, files
 from globaleaks.jobs import delivery_sched, cleaning_sched
 from globaleaks import models
@@ -250,8 +249,8 @@ class FinalizedTipCleaning(TestCleaning):
         self.rtip2_id = receiver_tips[1]
 
         self.assertEqual(len(receiver_tips), 2)
-        self.assertTrue(re.match(uuid_regexp, receiver_tips[0]))
-        self.assertTrue(re.match(uuid_regexp, receiver_tips[1]))
+        self.assertTrue(re.match(requests.uuid_regexp, receiver_tips[0]))
+        self.assertTrue(re.match(requests.uuid_regexp, receiver_tips[1]))
 
     @inlineCallbacks
     def test_tip_life_and_expire(self):

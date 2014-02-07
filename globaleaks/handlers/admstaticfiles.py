@@ -21,7 +21,7 @@ from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils.utility import log
 from globaleaks.rest import errors
-from globaleaks.rest.base import uuid_regexp, receiver_img_regexp
+from globaleaks.rest.requests import uuid_regexp, receiver_img_regexp
 from globaleaks import models
 
 from globaleaks.security import directory_traversal_check
