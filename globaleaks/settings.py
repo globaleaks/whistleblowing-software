@@ -70,7 +70,25 @@ sample_context_fields = [
             'type': u'text',
             'value': u'' 
         },
-] 
+]
+
+external_counted_events = {
+    'new_submission' : 0,
+    'finalized_submission': 0,
+    'anon_requests': 0,
+    'file_uploaded': 0,
+}
+
+def stats_counter(element):
+    """
+    TODO: this need to clear that's an "anomaly detection counter"
+    @param element: one of the four element above
+    @return: None, but increment internal counters
+    """
+    assert GLSetting.stats.has_key(element), "Invalid usage of stats_counter"
+    GLSetting.stats[element] += 1
+
+
 
 class GLSettingsClass:
 
@@ -151,6 +169,7 @@ class GLSettingsClass:
         self.cleaning_hours_delta = 5             # runner.py function expects hours
         self.notification_minutes_delta = 2       # runner.py function expects minutes
         self.delivery_seconds_delta = 30          # runner.py function expects seconds
+        self.statistics_minutes_delta = 1         # runner.py function expects minutes
 
         self.defaults = OD()
         # Default values, used to initialize DB at the first start,
@@ -191,6 +210,9 @@ class GLSettingsClass:
         self.memory_copy.notif_username = None
         self.memory_copy.notif_security = None
         # import_memory_variables is called after create_tables and node+notif updating
+
+        # this dict keep track of some 'external' events and is cleaned periodically
+        self.stats = dict(external_counted_events)
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
