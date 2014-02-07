@@ -15,8 +15,10 @@ module.exports = function(grunt) {
         'app/styles/**/*.css',
         'app/scripts/**/*.js',
         'app/views/**/*.html',
-        'app/img/**/*',
+        'app/data/*',
         'app/fonts/*',
+        'app/img/*',
+        'app/l10n/*',
       ],
       tasks: ['build', 'reload']
     },
@@ -125,20 +127,25 @@ module.exports = function(grunt) {
     };
 
     grunt.file.mkdir('build');
-    grunt.file.mkdir('build/img');
+    grunt.file.mkdir('build/data');
     grunt.file.mkdir('build/fonts');
+    grunt.file.mkdir('build/img');
     grunt.file.mkdir('build/l10n');
 
     grunt.file.copy('tmp/styles.css', 'build/styles.css');
     grunt.file.copy('tmp/scripts.js', 'build/scripts.js');
     grunt.file.copy('tmp/index.html', 'build/index.html');
 
-    grunt.file.recurse('tmp/img', function(absdir, rootdir, subdir, filename) {
-        grunt.file.copy(absdir, path.join('build/img', subdir || '', filename || ''));
+    grunt.file.recurse('tmp/data', function(absdir, rootdir, subdir, filename) {
+        grunt.file.copy(absdir, path.join('build/data', subdir || '', filename || ''));
     });
 
     grunt.file.recurse('tmp/fonts', function(absdir, rootdir, subdir, filename) {
         grunt.file.copy(absdir, path.join('build/fonts', subdir || '', filename || ''));
+    });
+
+    grunt.file.recurse('tmp/img', function(absdir, rootdir, subdir, filename) {
+        grunt.file.copy(absdir, path.join('build/img', subdir || '', filename || ''));
     });
 
     grunt.file.recurse('tmp/l10n', function(absdir, rootdir, subdir, filename) {
@@ -281,16 +288,27 @@ module.exports = function(grunt) {
       gt = new Gettext(),
       strings,
       translations = {},
-      translationStringRegexp = /"(.+?)"\s+\|\s+translate/gi,
+      translationStringRegexpHTML = /"(.+?)"\s+\|\s+translate/gi,
+      translationStringRegexpJSON = /"en": "(.+?)"/gi,
       translationStringCount = 0;
 
     gt.addTextdomain("en");
 
-    function extractPotFromFilepath(filepath) {
+    function extractPotFromHTMLFile(filepath) {
       var filecontent = grunt.file.read(filepath),
         result;
 
-      while ( (result = translationStringRegexp.exec(filecontent)) ) {
+      while ( (result = translationStringRegexpHTML.exec(filecontent)) ) {
+        gt.setTranslation("en", "", result[1], result[1]);
+        translationStringCount += 1;
+      }
+    };
+
+    function extractPotFromJSONFile(filepath) {
+      var filecontent = grunt.file.read(filepath),
+        result;
+
+      while ( (result = translationStringRegexpJSON.exec(filecontent)) ) {
         gt.setTranslation("en", "", result[1], result[1]);
         translationStringCount += 1;
       }
@@ -298,9 +316,12 @@ module.exports = function(grunt) {
 
     grunt.file.recurse('app/views/', function(absdir, rootdir, subdir, filename) {
         var filepath = path.join('app/views/', subdir || '', filename || '');
-        extractPotFromFilepath(filepath);
+        extractPotFromHTMLFile(filepath);
     });
-    extractPotFromFilepath('app/index.html');
+
+    extractPotFromHTMLFile('app/index.html');
+
+    extractPotFromJSONFile('app/data/fields.json')
 
     fs.writeFileSync("pot/en.po", gt.compilePO("en"));
 
@@ -345,8 +366,47 @@ module.exports = function(grunt) {
 
   });
 
+  grunt.registerTask('makeFields', function() {
+
+    var done = this.async(),
+      gt = new Gettext(),
+      strings,
+      fileContents = fs.readFileSync("pot/en.po")
+
+    fetchTxTranslations(function(supported_languages){
+
+      gt.addTextdomain("en", fileContents);
+
+      var fields = JSON.parse(fs.readFileSync("app/data/fields.json"));
+
+      for (var lang_code in supported_languages) {
+        var translations = {},
+          output;
+
+        gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
+
+        for (var i = 0; i < fields.length; i++) {
+          fields[i]['localized_name'][lang_code] = gt.dgettext(lang_code, fields[i]['localized_hint']['en']);
+          fields[i]['localized_hint'][lang_code] = gt.dgettext(lang_code, fields[i]['localized_hint']['en']);
+          for (var j = 0; j <  fields[i]["defined_options"]; j++) {
+            fields[i]["defined_options"][j][lang_code] = gt.dgettext(lang_code, fields[i]["defined_options"][j][lang_code]);
+          }
+        }
+
+      };
+
+      output = JSON.stringify(fields);
+
+      fs.writeFileSync("app/data/fields_l10n.json", output);
+
+      console.log("Fields file was written!");
+
+    });
+
+  });
+
   // Run this task to update translation related files
-  grunt.registerTask('updateTranslations', ['updateTranslationsSource', 'makeTranslations']);
+  grunt.registerTask('updateTranslations', ['updateTranslationsSource', 'makeTranslations', 'makeFields']);
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
