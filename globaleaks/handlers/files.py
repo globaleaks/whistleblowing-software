@@ -15,7 +15,7 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import StaticFileHandler
 from Crypto.Hash import SHA256
 
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSetting, stats_counter
 from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler, FileToken
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils.utility import log, pretty_date_time
@@ -207,6 +207,7 @@ class FileAdd(FileHandler):
         Response: Unknown
         Errors: SubmissionGusNotFound, SubmissionConcluded
         """
+        stats_counter('file_uploaded')
         itip_id = yield get_tip_by_wbtip(self.current_user['user_id'])
 
         # Call the master class method
@@ -228,6 +229,7 @@ class FileInstance(FileHandler):
         Response: Unknown
         Errors: SubmissionGusNotFound, SubmissionConcluded
         """
+        stats_counter('file_uploaded')
         itip_id = yield get_tip_by_submission(submission_id)
 
         # Call the master class method

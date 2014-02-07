@@ -5,12 +5,11 @@
 # Implementation of classes handling the HTTP request to /node, public
 # exposed API.
 
-import json
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.utils.utility import pretty_date_time, log
 from globaleaks.utils.structures import Rosetta, Fields
-from globaleaks.settings import transact_ro, GLSetting
+from globaleaks.settings import transact_ro, GLSetting, stats_counter
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks import models
@@ -150,8 +149,10 @@ class InfoCollection(BaseHandler):
         Response: publicNodeDesc
         Errors: NodeNotFound
         """
+        stats_counter('anon_requests')
         response = yield anon_serialize_node(self.current_user, self.request.language)
         self.finish(response)
+
 
 class AhmiaDescriptionHandler(BaseHandler):
     """
@@ -234,6 +235,7 @@ class ContextsCollection(BaseHandler):
         Response: publicContextList
         Errors: None
         """
+        stats_counter('anon_requests')
         response = yield get_public_context_list(self.request.language)
         self.finish(response)
 
@@ -265,5 +267,6 @@ class ReceiversCollection(BaseHandler):
         Response: publicReceiverList
         Errors: None
         """
+        stats_counter('anon_requests')
         response = yield get_public_receiver_list(self.request.language)
         self.finish(response)
