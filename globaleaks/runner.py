@@ -74,9 +74,14 @@ def start_asynchronous():
     #                                 hours=23,
     #                                 start_date=utc_future_date(seconds=50))
 
+    anomaly_sched = statistics_sched.APSAnomalies()
+    GLAsynchronous.add_interval_job(anomaly_sched.operation,
+                                    minutes=GLSetting.anomaly_seconds_delta)
+
     stats_sched = statistics_sched.APSStatistics()
     GLAsynchronous.add_interval_job(stats_sched.operation,
-                                    minutes=GLSetting.statistics_minutes_delta)
+                                    minutes=GLSetting.stats_minutes_delta)
+
 
 from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
 ServerOptions = ServerOptions

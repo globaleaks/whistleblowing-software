@@ -20,22 +20,22 @@ temporary_dummy_db = []
 # 'file_uploaded': 0,
 
 
-
-class APSStatistics(GLJob):
+class APSAnomalies(GLJob):
 
     @staticmethod
     def operation():
         """
-        Every node has two timeframe which the statistics are collected
-        inside. All the operation happening during a timeframe
+        Every X seconds is checked if anomalies are happening
+        from anonymous interaction (submission/file/comments/whatever flood)
 
         two thing are done:
             1) checks if the threshold are under the 'danger level'
-            2) copy them in the admin statistics table
+            2) copy them in the admin statistics memory table, this table is
+                dumped in the database by scheduled ops APSStatistics below
         """
 
         try:
-            log.debug("Statistics loop collection [started submission %d, " \
+            log.debug("Anomalies loop collection [started submission %d, " \
                       "finalized submission %d, anon req %d, new files %d]" %
                       ( GLSetting.stats['new_submission'],
                         GLSetting.stats['finalized_submission'],
@@ -50,3 +50,11 @@ class APSStatistics(GLJob):
 
         except:
             sys.excepthook(*sys.exc_info())
+
+
+class APSStatistics(GLJob):
+
+    @staticmethod
+    def operation():
+        log.debug("Statistic loop collection")
+        pass
