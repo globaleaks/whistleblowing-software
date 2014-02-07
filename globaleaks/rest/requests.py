@@ -7,7 +7,47 @@
 # These specifications may be used with rest.validateMessage() inside of the
 # handler to verify if the request is correct.
 
-from globaleaks.rest.base import formFieldsDict, uuid_regexp
+uuid_regexp         = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+receiver_img_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png'
+
+dateType = r'(.*)'
+# contentType = r'(application|audio|text|video|image)'
+# via stackoverflow:
+# /^(application|audio|example|image|message|model|multipart|text|video)\/[a-zA-Z0-9]+([+.-][a-zA-z0-9]+)*$/
+contentType = r'(.*)'
+
+fileDict = {
+    "name": unicode,
+    "description": unicode,
+    "size": int,
+    "content_type": contentType,
+    "date": dateType,
+    }
+
+formFieldsDict = {
+    "key": unicode,
+    "presentation_order": int,
+    "name": unicode,
+    "required": bool,
+    "preview": bool,
+    "hint": unicode,
+    "type": unicode
+}
+
+wizardFieldDesc = {
+    "incremental_number": int,
+    "localized_name": dict,
+    "localized_hint": dict,
+    "type": unicode,
+    "trigger": list,
+    "defined_options": list, # can be None, I don't remember if can be other ?
+}
+
+wizardFieldUpdate = {
+    "version": int,
+    "fields": [ wizardFieldDesc ]
+}
+
 
 authDict = {
     'username' : unicode,
