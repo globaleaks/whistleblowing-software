@@ -28,63 +28,50 @@ from globaleaks.rest.base import uuid_regexp
 
 spec = [
     ## Node Handler ##
-    #  U1
     (r'/node', node.InfoCollection),
 
+    #  ahmia.fi integration with description.json file
+    (r'/(description.json)', node.AhmiaDescriptionHandler),
+
     ## Submission Handlers ##
-    #  U2
     (r'/submission', submission.SubmissionCreate),
 
-    #  U3
     (r'/submission/' + uuid_regexp, submission.SubmissionInstance),
 
-    #  U4
     (r'/submission/' + uuid_regexp + '/file', files.FileInstance),
 
-    #  U5
     (r'/statistics', node.StatsCollection),
 
-    #  U6
     (r'/contexts', node.ContextsCollection),
 
-    #  U7
     (r'/receivers' , node.ReceiversCollection),
 
-    #  U8
     (r'/authentication', authentication.AuthenticationHandler),
 
     ## Receiver Tip Handlers ##
 
-    #  RT1
     (r'/rtip/' + uuid_regexp, rtip.RTipInstance),
 
-    #  RT2
     (r'/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
 
-    #  RT3
     (r'/rtip/' + uuid_regexp + r'/receivers', rtip.RTipReceiversCollection),
 
-    #  RT4 (Download single file)
+    #  (Download a single file)
     (r'/rtip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
 
-    #  RT5 (Download all the file in various archive formats)
+    #  (Download all the file in various archive formats)
     (r'/rtip/' + uuid_regexp + '/collection(/(zipstored|zipdeflated|tar|targz|tarbz2))?', collection.CollectionDownload),
 
-    #  RT6 list of messages exchanged with the Wb
     (r'/rtip/' + uuid_regexp + '/messages', rtip.ReceiverMsgCollection),
 
     ## Whistleblower Tip Handlers
 
-    #  W1
     (r'/wbtip', wbtip.WbTipInstance),
 
-    #  W2
     (r'/wbtip/comments', wbtip.WbTipCommentCollection),
 
-    #  W3 receiver information + status of read/unread messages
     (r'/wbtip/receivers', wbtip.WbTipReceiversCollection),
 
-    #  W4 (whistlebower can access to this interface, and upload new files)
     (r'/wbtip/upload', files.FileAdd),
 
     #  W5 interaction with a single receiver
@@ -92,43 +79,30 @@ spec = [
 
     ## Receiver Handlers ##
 
-    #  R1
     (r'/receiver/preferences', receiver.ReceiverInstance),
 
-    #  R5
     (r'/receiver/tips', receiver.TipsCollection),
 
     ## Admin Handlers ##
-    #  A1
     (r'/admin/node', admin.NodeInstance),
 
-    #  A2
     (r'/admin/context', admin.ContextsCollection),
 
-    #  A3
     (r'/admin/context/' + uuid_regexp, admin.ContextInstance),
 
-    #  A4
     (r'/admin/receiver', admin.ReceiversCollection),
 
-    #  A5
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
 
-    #  A6
     (r'/admin/notification', admin.NotificationInstance),
 
-    #  A7
     (r'/admin/staticfiles', admstaticfiles.StaticFileList),
     (r'/admin/staticfiles/(.*)', admstaticfiles.StaticFileInstance, {'path': GLSetting.static_path }),
 
-    #  A8
     (r'/admin/overview/tips', overview.Tips),
-
-    #  A9
     (r'/admin/overview/users', overview.Users),
-
-    #  AA
     (r'/admin/overview/files', overview.Files),
+
 ]
 
 ## Utility redirect,

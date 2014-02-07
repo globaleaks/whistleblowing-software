@@ -220,22 +220,22 @@ def get_future_epoch(seconds=0):
     return int(time.time()) - time.timezone + seconds
 
 
-def is_expired(old_date, seconds=0, minutes=0, hours=0, day=0):
+def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
     """
-    @param old_date: the datetime stored in the databased
+    @param check_date: the datetime stored in the database
 
     @param seconds, minutes, hours, day
-        the expire time of the element
+        the time to live of the element
 
     @return:
-        if the amount requeste by those four param has been reached
-        is returned True, else is returned False
+        if now + (seconds+minutes+hours) > check_date
+        True is returned, else False
     """
-    if not old_date:
+    if not check_date:
         return False
 
     total_hours = (day * 24) + hours
-    check = old_date
+    check = check_date
     check += timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
     now = datetime.utcnow() - timedelta(seconds=time.timezone)
 
