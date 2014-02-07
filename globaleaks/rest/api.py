@@ -11,7 +11,7 @@ from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
 from globaleaks.handlers import node, submission, rtip, wbtip, admin, receiver, \
                                 files, authentication, admstaticfiles, \
-                                admlangfiles, overview, collection
+                                admlangfiles, overview, collection, wizard
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 from globaleaks.rest.base import uuid_regexp
 
@@ -85,16 +85,13 @@ spec = [
 
     ## Admin Handlers ##
     (r'/admin/node', admin.NodeInstance),
-
     (r'/admin/context', admin.ContextsCollection),
-
     (r'/admin/context/' + uuid_regexp, admin.ContextInstance),
-
     (r'/admin/receiver', admin.ReceiversCollection),
-
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
-
     (r'/admin/notification', admin.NotificationInstance),
+
+    (r'/admin/wizard/fields', wizard.FieldsCollection),
 
     (r'/admin/staticfiles', admstaticfiles.StaticFileList),
     (r'/admin/staticfiles/(.*)', admstaticfiles.StaticFileInstance, {'path': GLSetting.static_path }),

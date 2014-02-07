@@ -5,8 +5,6 @@
 
 import os
 
-from twisted.application import app
-from twisted.internet.error import CannotListenError
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.util import untilConcludes
 
@@ -31,7 +29,7 @@ def start_asynchronous():
     not executed by globaleaks.run_app, then is called by the
     OS-depenedent runner below
     """
-    from globaleaks.jobs import session_management_sched, \
+    from globaleaks.jobs import session_management_sched, statistics_sched, \
                                 notification_sched, delivery_sched, cleaning_sched
 
     # When the application boot, maybe because has been after a restart, then
@@ -76,10 +74,9 @@ def start_asynchronous():
     #                                 hours=23,
     #                                 start_date=utc_future_date(seconds=50))
 
-    #stats_sched = statistics_sched.APSStatistics()
-    #GLAsynchronous.add_interval_job(stats_sched.operation,
-    #                                seconds=GLSetting.statistics_interval,
-    #                                start_date=utc_future_date(seconds=10))
+    stats_sched = statistics_sched.APSStatistics()
+    GLAsynchronous.add_interval_job(stats_sched.operation,
+                                    minutes=GLSetting.statistics_minutes_delta)
 
 from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
 ServerOptions = ServerOptions
