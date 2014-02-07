@@ -377,7 +377,9 @@ module.exports = function(grunt) {
 
       gt.addTextdomain("en", fileContents);
 
-      var fields = JSON.parse(fs.readFileSync("app/data/fields.json"));
+      var json = JSON.parse(fs.readFileSync("app/data/fields.json"));
+      var version = json['version'];
+      var fields = json['fields'];
 
       for (var lang_code in supported_languages) {
         var translations = {},
@@ -395,7 +397,11 @@ module.exports = function(grunt) {
 
       };
 
-      output = JSON.stringify(fields);
+      output = {}
+      output['version'] = version;
+      output['fields'] = fields;
+
+      output = JSON.stringify(output);
 
       fs.writeFileSync("app/data/fields_l10n.json", output);
 
