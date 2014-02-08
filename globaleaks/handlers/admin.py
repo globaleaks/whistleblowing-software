@@ -10,7 +10,7 @@ import shutil
 from Crypto import Random
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import transact, transact_ro, GLSetting, sample_context_fields
+from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import errors, requests
@@ -313,8 +313,8 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
     context = Context(request)
 
     if not request['fields']:
-        # When a new context is created, assign default fields, if not supply
-        admin_data_fields = sample_context_fields
+        # When a new context is created, if no fields has been assigned assigns defaults
+        admin_data_fields = [] # ! vecna can you load localized defaults
     else:
         admin_data_fields = request['fields']
 
