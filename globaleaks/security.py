@@ -122,7 +122,7 @@ def change_password(base64_stored, old_password, new_password, salt_input):
 
 class GLBGPG:
     """
-    GPG has not a dedicated class, because one of the function is callend inside a transact, and
+    GPG has not a dedicated class, because one of the function is called inside a transact, and
     I'm not quite confident on creating an object that operates on the filesystem knowing
     that would be run also on the Storm cycle.
     """

@@ -54,6 +54,7 @@ def validate_host(host_key):
 
     log.debug("Error in host requested: %s not accepted between: %s " %
               (host_key, GLSetting.accepted_hosts))
+
     return False
 
 class GLHTTPServer(HTTPConnection):
