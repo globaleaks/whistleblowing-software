@@ -24,3 +24,13 @@
       mv globaleaks_glclient-02-enpo.pot pot/en.po
 
 
+### Run mocha Tests
+
+In GLBackend reset to the default password:
+
+    bin/globaleaksadmin resetpass workingdir/db/glbackend-10.db globaleaks
+
+In GLClient run the mocha tests:
+
+    node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*
+

@@ -1,3 +1,4 @@
+
 GLClient.controller('AdminCtrl',
     ['$scope', '$rootScope', '$http', '$route', '$location', 'Admin', 'Node',
 function($scope, $rootScope, $http, $route, $location, Admin, Node) {

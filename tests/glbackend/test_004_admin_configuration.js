@@ -110,7 +110,7 @@ var context = {
       "name":"third",
       "hint":"the third",
       "required":true,
-      "presentation_order":3
+      "presentation_order":3,
       "value":"",
       "key":"",
       "preview":true,
