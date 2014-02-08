@@ -95,18 +95,20 @@ class Logger(object):
             traceback.print_exception(exc_type, exc_value, exc_traceback)
 
     def info(self, msg):
-        if GLSetting.loglevel <= logging.INFO:
+        if GLSetting.loglevel and GLSetting.loglevel <= logging.INFO:
             print "[-] %s" % self._str(msg)
 
     def err(self, msg):
-        twlog.err("[!] %s" % self._str(msg))
+        if GLSetting.loglevel:
+            twlog.err("[!] %s" % self._str(msg))
 
     def debug(self, msg):
-        if GLSetting.loglevel <= logging.DEBUG:
+        if GLSetting.loglevel and GLSetting.loglevel <= logging.DEBUG:
             print "[D] %s" % self._str(msg)
 
     def msg(self, msg):
-        twlog.msg("[ ] %s" % self._str(msg))
+        if GLSetting.loglevel:
+            twlog.msg("[ ] %s" % self._str(msg))
 
     def start_logging(self):
         """

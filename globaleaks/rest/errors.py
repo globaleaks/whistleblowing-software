@@ -15,20 +15,15 @@ class GLException(HTTPError):
     log_message = "GLException"
     error_code = 0
     status_code = 500 # generic Server error
-
+    
     def __init__(self):
-        self.record()
+        pass
 
     def __repr__(self):
         return "%s: <<%s>> (%d) HTTP:%d" % (
             self.__class__.__name__, self.reason,
             self.error_code, self.status_code
         )
-
-    def record(self):
-        log_message = "[GLE] %s  (code %d http %d)" % ( self.reason, self.error_code, self.status_code)
-        print log_message
-
 
 class InvalidInputFormat(GLException):
     """
@@ -42,7 +37,6 @@ class InvalidInputFormat(GLException):
         self.reason = "Invalid Input Format [%s]" % wrong_source
         self.arguments = []
         self.arguments.append(wrong_source)
-        self.record()
 
 
 class StatsNotCollectedError(GLException):
@@ -126,7 +120,6 @@ class ExpectedUniqueField(GLException):
         self.arguments = []
         self.arguments.append(key)
         self.arguments.append(existent_value)
-        self.record()
 
 
 class ReceiverGusNotFound(GLException):
@@ -158,7 +151,6 @@ class SubmissionFailFields(GLException):
         self.reason = "Submission do not validate the input fields [%s]" % wrong_fields
         self.arguments = []
         self.arguments.append(wrong_fields)
-        self.record()
 
 
 class InvalidTipAuthToken(GLException):
@@ -237,7 +229,6 @@ class InternalServerError(GLException):
         self.reason = "Internal Server Error (%s)" % details
         self.arguments = []
         self.arguments.append(details)
-        self.record()
 
 
 class NoEmailSpecified(GLException):
