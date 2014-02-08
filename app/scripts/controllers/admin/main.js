@@ -148,7 +148,8 @@ GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http
 
 }]);
 
-GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', function($scope, $http, StaticFiles){
+GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', 'DefaultFields',
+  function($scope, $http, StaticFiles, DefaultFields){
   $scope.tabs = [
     {
       title:"Main Configuration",
@@ -166,6 +167,17 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', funct
       ctrl: TabCtrl
     }
   ];
+
+  $scope.install_default_fields = function() {
+
+    DefaultFields.get(function(res) {
+
+      $http.post('/admin/wizard/fields', res).success(function(response) {
+      
+      });
+
+    });
+  }
 
   $scope.update_static_files = function() {
     var updated_staticfiles = StaticFiles.query(function() {
