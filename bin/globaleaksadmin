@@ -63,7 +63,7 @@ def do_storm_copy(source_store_obj):
     return thecopy
 
 
-def do_safexport(dbfile):
+def do_safexport(dbfile, export_print):
 
     # source
     gl_database = create_database("sqlite:%s" % dbfile)
@@ -87,11 +87,28 @@ def do_safexport(dbfile):
     rtips = source_store.find(models.ReceiverTip)
     comments = source_store.find(models.Comment)
     messages = source_store.find(models.Message)
-    rfiles = source_store.find(models.ReceiverFile)
     ifiles = source_store.find(models.InternalFile)
+    rfiles = source_store.find(models.ReceiverFile)
     wbtips = source_store.find(models.WhistleblowerTip)
+    stats = source_store.find(models.Stats)
+    appdata = source_store.find(models.ApplicationData)
     ctxrcvr = source_store.find(models.ReceiverContext)
     tiprcvr = source_store.find(models.ReceiverInternalTip)
+
+    if export_print:
+        funny_print("Context", "%s" % contexts.count())
+        funny_print("Receivers", "%s" % receivers.count())
+        funny_print("Users", "%s" % users.count())
+        funny_print("InternalTips", "%s" % itips.count())
+        funny_print("ReceiverTips", "%s" % rtips.count())
+        funny_print("Comments", "%s" % comments.count())
+        funny_print("Messages", "%s" % messages.count())
+        funny_print("InternalFile", "%s" % ifiles.count())
+        funny_print("ReceiverFile", "%s" % rfiles.count())
+        funny_print("WhistleblowerTips", "%s" % wbtips.count())
+        funny_print("ReceiverContext", "%s" % ctxrcvr.count())
+        funny_print("InternalTipReceiver", "%s" % tiprcvr.count())
+        return
 
     # export
     os.unlink(DEFAULT_OUTPUT_DBNAME)
@@ -232,7 +249,7 @@ def check_file(isafile):
 
 if len(sys.argv) == 1:
     print "\nGlobaLeaks backend administator interface: Missing command\n"
-    funny_print(" safexport <DBFILE>","(export without sensitive data)")
+    funny_print(" safexport <DBFILE> [print]","(export without sensitive data)")
     funny_print(" resetpass <DBFILE> [password]","(reset admin password)")
     funny_print(" backup <WORKINGDIR> <BACKUPNAME>","(create a zipped backup)")
     funny_print(" restore <WORKINGDIR> <BACKUPNAME>","(restore a backup in workingdir)")
@@ -241,13 +258,12 @@ if len(sys.argv) == 1:
         print "\n fnord"
     quit()
 
-if sys.argv[1] == 'safexport' and len(sys.argv) == 3:
-    # just to use exception stacktrace
-    check_file(sys.argv[2])
-    do_safexport(sys.argv[2])
+if sys.argv[1] == 'safexport' and len(sys.argv) >= 3:
     try:
         check_file(sys.argv[2])
-        do_safexport(sys.argv[2])
+        # if 'print' is present, or something else, just dump to stdout
+        do_safexport(sys.argv[2], True if len(sys.argv) == 4 else None )
+        # shall be another dedicated option!
     except Exception as excep:
         print "Something is going wrong: %s" % excep
 
