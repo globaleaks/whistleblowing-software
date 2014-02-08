@@ -15,9 +15,11 @@ class Fields:
                            "checkboxes",  "textarea", "number",
                            "url", "phone", "email" ]
 
+    noisy = False
+
     def debug_status(self, developer_reminder):
         # change this when you need verbose field debug
-        if False:
+        if Fields.noisy:
             log.debug("%s lang [%s] and fields #%d" % (
                 developer_reminder,
                 self._localization.keys(), len(self._fields.keys()) ))
