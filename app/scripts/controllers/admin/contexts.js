@@ -1,6 +1,14 @@
 GLClient.controller('AdminContextsCtrl',
-    ['$scope', '$modal', 'Admin',
-    function($scope, $modal, Admin) {
+    ['$scope', '$modal', 'Admin', 'DefaultFields',
+    function($scope, $modal, Admin, DefaultFields) {
+
+  DefaultFields.get(function(fields) {
+
+    $scope.fields = fields;
+    console.log($scope.fields);
+
+  });
+
 
   $scope.save_all = function() {
     angular.forEach($scope.admin.contexts, function(context, key) {
