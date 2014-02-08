@@ -5,20 +5,37 @@
 #  Statistics works collecting every N-th minutes the amount of important
 #  operations happened
 import sys
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
 from globaleaks.utils.utility import log
-from globaleaks.settings import GLSetting, external_counted_events
+from globaleaks.settings import GLSetting, transact, external_counted_events
+from globaleaks.models import Stats
 
-# Instead of a DB table we've a temporary area where store the statistics
-temporary_dummy_db = []
-# when globaleaks restart these data are lost
+
+def serialize_events(collected):
+
+    retdict = {}
+    for key in external_counted_events.keys():
+        retdict.update({key: collected[key]})
+        print "serialized: %s : %s" % (key, collected[key])
+
+    return retdict
+
+@transact
+def acquire_statistics(store, anomalies_collection):
+
+    log.debug("Acquiring anomalies in stats")
+    log.debug("%s" % serialize_events(anomalies_collection))
+    newstat = Stats()
+    newstat.content = dict(anomalies_collection)
+    store.add(newstat)
+
 
 # 'new_submission' : 0,
 # 'finalized_submission': 0,
 # 'anon_requests': 0,
 # 'file_uploaded': 0,
-
 
 class APSAnomalies(GLJob):
 
@@ -37,24 +54,40 @@ class APSAnomalies(GLJob):
         try:
             log.debug("Anomalies loop collection [started submission %d, " \
                       "finalized submission %d, anon req %d, new files %d]" %
-                      ( GLSetting.stats['new_submission'],
-                        GLSetting.stats['finalized_submission'],
-                        GLSetting.stats['anon_requests'],
-                        GLSetting.stats['file_uploaded'] ) )
+                      ( GLSetting.anomalies_counter['new_submission'],
+                        GLSetting.anomalies_counter['finalized_submission'],
+                        GLSetting.anomalies_counter['anon_requests'],
+                        GLSetting.anomalies_counter['file_uploaded'] ) )
 
-
-            temporary_dummy_db.append(GLSetting.stats)
+            GLSetting.anomalies_list.append(GLSetting.anomalies_counter)
+            log.debug("%s" % serialize_events(GLSetting.anomalies_counter))
 
             # clean the next collection dictionary
-            GLSetting.stats = dict(external_counted_events)
+            GLSetting.anomalies_counter = dict(external_counted_events)
 
-        except:
+        except Exception as excep:
+            log.err("Unable to collect the anomaly counters: %s" % excep)
             sys.excepthook(*sys.exc_info())
 
 
 class APSStatistics(GLJob):
 
     @staticmethod
+    @inlineCallbacks
     def operation():
-        log.debug("Statistic loop collection")
-        pass
+
+        try:
+            stat_sum = dict(external_counted_events)
+            for segment in GLSetting.anomalies_list:
+                for key in external_counted_events.keys():
+                    stat_sum[key] += segment[key]
+
+            log.debug("Statistic ready to be acquired!")
+            log.debug("%s" % serialize_events(stat_sum))
+
+            yield acquire_statistics(stat_sum)
+
+        except Exception as excep:
+            log.err("Unable to dump the anomalies in to the stats: %s" % excep)
+            sys.excepthook(*sys.exc_info())
+

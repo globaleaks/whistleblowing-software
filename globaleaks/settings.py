@@ -81,13 +81,15 @@ external_counted_events = {
 
 def stats_counter(element):
     """
-    TODO: this need to clear that's an "anomaly detection counter"
+    Stats counter is called every 30 seconds and make a first dump of the
+    variable in memory: GLSetting.anomailes_counter
+    Then in jobs/statistics_sched.py is transformed in statistic.
+
     @param element: one of the four element above
     @return: None, but increment internal counters
     """
-    assert GLSetting.stats.has_key(element), "Invalid usage of stats_counter"
-    GLSetting.stats[element] += 1
-
+    assert GLSetting.anomalies_counter.has_key(element), "Invalid usage of stats_counter"
+    GLSetting.anomalies_counter[element] += 1
 
 
 class GLSettingsClass:
@@ -212,8 +214,10 @@ class GLSettingsClass:
         self.memory_copy.notif_security = None
         # import_memory_variables is called after create_tables and node+notif updating
 
-        # this dict keep track of some 'external' events and is cleaned periodically
-        self.stats = dict(external_counted_events)
+        self.anomalies_counter = dict(external_counted_events)
+        # this dict keep track of some 'external' events and is
+        # cleaned periodically (10 minutes in stats)
+        self.anomalies_list = []
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.

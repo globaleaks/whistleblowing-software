@@ -76,7 +76,7 @@ def start_asynchronous():
 
     anomaly_sched = statistics_sched.APSAnomalies()
     GLAsynchronous.add_interval_job(anomaly_sched.operation,
-                                    minutes=GLSetting.anomaly_seconds_delta)
+                                    seconds=GLSetting.anomaly_seconds_delta)
 
     stats_sched = statistics_sched.APSStatistics()
     GLAsynchronous.add_interval_job(stats_sched.operation,
