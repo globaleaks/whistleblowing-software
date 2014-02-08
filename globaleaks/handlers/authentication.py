@@ -40,15 +40,12 @@ def random_login_delay(user):
         the function implements the following table:
             ----------------------------------
            | failed_attempts |      delay     |
-           | 0               | 0              |
-           | 1               | 1              |
-           | 2               | random(2, 4)   |
-           | 3               | random(3, 9)   |
-           | 4               | random(4, 16)  |
-           | 5               | random(5, 26)  |
-           | 6               | random(6, 36 ) |
+           | x < 5           | 0              |
+           | 5               | random(5, 25)  |
+           | 6               | random(6, 36)  |
            | 7               | random(7, 42)  |
-           | N               | random(N, 42)  |
+           | 8 <= x <= 42    | random(x, 42)  |
+           | x > 42          | 42             |
             ----------------------------------
         """
     if user == 'wb':
@@ -59,7 +56,7 @@ def random_login_delay(user):
         else:
             failed_attempts = 0
 
-    if failed_attempts:
+    if failed_attempts >= 5:
         min = failed_attempts if failed_attempts < 42 else 42
 
         n = failed_attempts * failed_attempts
