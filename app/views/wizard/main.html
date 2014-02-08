@@ -7,6 +7,190 @@ This comment is needed in order to push the following strings on transifex
 
 -->
 
-<div ng-controller="WizardCtrl" id="ContentBox" class="container" ng-show="!node.configured">
+<div ng-controller="WizardCtrl" id="ContentBox" class="container">
 
+  <form class="navbar-form navbar-left" name="wizard">
+
+    <div class="row bordered">
+      <h2>{{ "General" | translate }}</h2>
+
+      <div class="col-md-6">
+
+        <div class="form-group col-md-12">
+          <label class="col-md-4">
+            {{ "Initiative name" | translate }}</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" ng-model="admin.node.name" placeholder="" required>
+            <span class="help-block">
+              {{ "Enter the name for your whistleblowing initiative" | translate }}</span>
+          </div>
+        </div>
+
+        <div class="form-group col-md-12">
+          <label class="col-md-4">
+            {{ "Initiative description" | translate }}</label>
+          <div class="col-md-8">
+            <textarea type="text" class="form-control" ng-model="admin.node.description" required></textarea>
+            <span class="help-block">
+              {{ "Give a concisive description of your project" | translate }}
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <p>
+        {{ "Give your whistleblowing initiative a good name and description to invite whistleblowers to submit. Be sure to make it clear the goals of your project" | translate }}. 
+        <a href="">
+          {{ "Read more about describing your initiative here" | translate }}
+        </a>.</p>
+      </div>
+
+    </div>
+    
+    <div class="row bordered">
+      <h2>{{ "Admin" | translate }}</h2>
+
+      <div class="col-md-6">
+
+        <div class="form-group col-md-12">
+          <label class="col-md-4">
+            {{ "Email" | translate }}</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" placeholder="" ng-model="admin.node.email" required>
+            <span class="help-block">
+              {{ "Enter your email address" | translate }}</span>
+          </div>
+        </div>
+
+        <div class="form-group col-md-12">
+          <label class="col-md-4">
+            {{ "Password" | translate }}</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" placeholder="" ng-model="admin.node.password" required>
+            <span class="help-block">
+              {{ "Enter a new globaleaks node password" | translate }}</span>
+
+            <p class="has-error" ng-show="unsafe_password">
+              {{ "The choosen password is unsafe, it should have" | translate }}:
+            </p>
+            <li class="has-error" ng-hide="pwdHasLetter">
+              {{ "At least one letter" | translate }}
+            </li>
+            <li class="has-error" ng-hide="pwdHasNumber">
+              {{ "At least one number" | translate }}
+            </li>
+            <li class="has-error" ng-hide="pwdValidLength">
+              {{ "At least 8 keypress long" | translate }}
+            </li>
+
+          </div>
+        </div>
+
+        <div class="form-group col-md-12">
+          <label class="col-md-4">
+            {{ "Confirm password" | translate }}</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" placeholder="" ng-model="admin.node.check_password" required>
+            <span class="help-block">
+              {{ "Please confirm it" | translate }}</span>
+            <p class="has-error" ng-show="mismatch_password">
+              {{ "The two passwords do not match" | translate }}</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <p>
+        {{ "There are three types of users inside of GlobaLeaks: the administrator, the receivers and the whistleblower. Your username for accessing the node as administrator will be 'admin'." | translate }}
+        </p>
+      </div>
+
+    </div>
+
+    <div class="row bordered">
+      <h2>{{ "Receiver" | translate }}</h2>
+
+      <div class="col-md-6">
+
+        <div class="form-group col-md-12">
+          <label class="col-md-4">
+            {{ "Name" | translate }}</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" placeholder="" ng-model="receiver.name" required>
+            <span class="help-block">
+              {{ "Enter the name of the receiver" | translate }}</span>
+          </div>
+        </div>
+
+        <div class="form-group col-md-12">
+          <label class="col-md-4">Email</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" placeholder="" ng-model="receiver.email" required>
+            <span class="help-block">
+              {{ "Enter the email address through which they will be notified" | translate }}</span>
+          </div>
+        </div>
+
+        <div class="form-group col-md-12">
+          <label class="col-md-4">
+            {{ "Password" | translate }}</label>
+          <div class="col-md-8">
+            <span>{{receiver.password}}</span>
+            <span class="help-block">
+              {{ "This is the password that the receiver must use to login to their tip page." | translate }}
+            </span>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <p>
+        {{ "Receivers are very important for a GlobaLeaks based initiative. They are the people responsible for receiving the whistleblower submissions, verifying their authenticity and taking action upon them. Choose them wisely." | translate }}
+        </p>
+      </div>
+
+    </div>
+
+    <div class="row bordered">
+      <h2>{{ "Context" | translate }}</h2>
+
+      <div class="col-md-6">
+
+        <div class="form-group col-md-12">
+          <label class="col-md-4">
+            {{ "Name" | translate }}</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" placeholder="" ng-model="context.name" required>
+            <span class="help-block">
+            {{ "What is the topic of your whistleblowing initiative" }}</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <p>
+        {{ "The contexts are the categories to be selected by a whistleblower, when they perform their submission. Make sure to make it something pertinent to your initiative." | translate }}
+        </p>
+      </div>
+
+    </div>
+
+    <div class="row bordered">
+
+      <div class="col-md-6">
+        <p>
+        <strong>{{ "Congratulations!" | translate }}</strong>
+        {{ "You have finished configuring your globaleaks site. You are now ready to future tweak it inside of the admin interface." | translate }}
+        </p>
+      </div>
+
+      <div class="col-md-6">
+        <button class="btn btn-success btn-large" ng-disabled="wizard.$invalid" ng-click="finish()">Go to admin interface</button>
+      </div>
+
+    </div>
+
+  </form>
 </div>
