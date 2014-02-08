@@ -166,6 +166,10 @@ class APSNotification(GLJob):
         for tip_id, event in tip_events:
 
             notify = event.plugin.do_notify(event)
+
+            if notify is None:
+                continue
+
             notify.addCallback(self.tip_notification_succeeded, tip_id)
             notify.addErrback(self.tip_notification_failed, tip_id)
 
@@ -286,6 +290,10 @@ class APSNotification(GLJob):
             message_id, receiver_id = message_receiver_id
 
             notify = event.plugin.do_notify(event)
+
+            if notify is None:
+                continue
+
             notify.addCallback(self.message_notification_succeeded, message_id, receiver_id)
             notify.addErrback(self.message_notification_failed, message_id, receiver_id)
 
@@ -415,6 +423,10 @@ class APSNotification(GLJob):
             comment_id, receiver_id = comment_receiver_id
 
             notify = event.plugin.do_notify(event)
+
+            if notify is None:
+                continue
+
             notify.addCallback(self.comment_notification_succeeded, comment_id, receiver_id)
             notify.addErrback(self.comment_notification_failed, comment_id, receiver_id)
 
@@ -539,6 +551,10 @@ class APSNotification(GLJob):
             receiverfile_id, receiver_id = receiverfile_receiver_id
 
             notify = event.plugin.do_notify(event)
+
+            if notify is None:
+                continue
+
             notify.addCallback(self.receiverfile_notification_succeeded, receiverfile_id, receiver_id)
             notify.addErrback(self.receiverfile_notification_failed, receiverfile_id, receiver_id)
 
