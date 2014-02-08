@@ -564,17 +564,6 @@ class ReceiverContext(object):
     context_id = Unicode()
     receiver_id = Unicode()
 
-Context.receivers = ReferenceSet(
-                                 Context.id,
-                                 ReceiverContext.context_id,
-                                 ReceiverContext.receiver_id,
-                                 Receiver.id)
-
-Receiver.contexts = ReferenceSet(
-                        Receiver.id,
-                        ReceiverContext.receiver_id,
-                        ReceiverContext.context_id,
-                        Context.id)
 
 class ReceiverInternalTip(object):
     """
@@ -582,9 +571,32 @@ class ReceiverInternalTip(object):
     """
     __storm_table__ = 'receiver_internaltip'
     __storm_primary__ = 'receiver_id', 'internaltip_id'
+
     receiver_id = Unicode()
     internaltip_id = Unicode()
 
+
+class ApplicationData(Model):
+    """
+    Exists only one instance of this class, because the ApplicationData
+    had only one big updated blob.
+    """
+    __storm_table__ = 'applicationdata'
+
+    fields_version = Int()
+    fields = Pickle()
+
+
+class Stats(Model):
+    """
+    Stats collection!
+    """
+    __storm_table__ = 'stats'
+
+    content = Pickle()
+
+
+#_*_# References tracking below #_*_#
 Receiver.user = Reference(Receiver.user_id, User.id)
 
 Receiver.internaltips = ReferenceSet(Receiver.id,
@@ -636,7 +648,19 @@ Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
 
 Message.receivertip = Reference(Message.receivertip_id, ReceiverTip.id)
 
+Context.receivers = ReferenceSet(
+                                 Context.id,
+                                 ReceiverContext.context_id,
+                                 ReceiverContext.receiver_id,
+                                 Receiver.id)
 
-models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
-          Receiver, ReceiverContext, InternalFile, ReceiverFile, Notification, Message ]
+Receiver.contexts = ReferenceSet(
+                        Receiver.id,
+                        ReceiverContext.receiver_id,
+                        ReceiverContext.context_id,
+                        Context.id)
+
+models = [ Node, User, Context, ReceiverTip, WhistleblowerTip, Comment, 
+           InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile, 
+           Notification, Message, Stats, ApplicationData ]
 

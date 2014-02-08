@@ -250,3 +250,18 @@ CREATE TABLE whistleblowertip (
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
+
+CREATE TABLE applicationdata (
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    fields_version INTEGER NOT NULL,
+    fields BLOB,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE stats (
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    content BLOB,
+    PRIMARY KEY (id)
+);
