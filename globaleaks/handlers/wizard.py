@@ -5,37 +5,69 @@
 #
 # This interface is used to fill the Node defaults whenever they are updated
 
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import authenticated, transport_security_check, unauthenticated
+from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import errors, requests
-from globaleaks.models import Context, Node, User
-from globaleaks import security, models
-from globaleaks.utils import utility, structures
+from globaleaks.models import ApplicationData
 from globaleaks.utils.utility import log
-from globaleaks.db.datainit import import_memory_variables
-from globaleaks import LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 
 
-temporary_fields_dump = []
+@transact_ro
+def admin_serialize_fields(store, language=GLSetting.memory_copy.default_language):
 
-# how to use this temporary status
-#
-#   pip install httpie
-#
-# GLBackend$ http 127.0.0.1:8082/admin/wizard `cat test_fields.json`
+    appdata = store.find(ApplicationData).one()
 
-def wizard_serialize_fields(fields, language=GLSetting.memory_copy.default_language):
-    """
-    @param fields:
-    @return:
-        Need to be investigated (wizard use full languages and not a single one)
-    """
+    # this condition happen only in the UnitTest
+    if not appdata:
+        print "no appdata!:w"
+        version = 0
+        fields = []
+    else:
+        version = appdata.fields_version
+        fields = appdata.fields
 
-    return temporary_fields_dump
+    return {
+        'version': version,
+        'fields': list(fields)
+    }
+
+@transact
+def update_application_fields(store, version, appfields):
+
+    appdata = store.find(ApplicationData).one()
+
+    if not appdata:
+        appdata = ApplicationData()
+        has_been_updated = True
+        old_version = 0
+        store.add(appdata)
+    elif appdata.fields_version > version:
+        has_been_updated = False
+        old_version = appdata.fields_version
+    else: # appdata not None and new_v >= old_v
+        has_been_updated = True
+        old_version = appdata.fields_version
+
+    if has_been_updated:
+
+        log.debug("Updating Application Data Fields %d => %d" %
+                  (old_version, version))
+
+        appdata.fields = appfields
+        appdata.fields_version = version
+    else:
+        log.err("NOT updating the Application Data Fields current %d proposed %d" %
+                (appdata.fields_version, version))
+
+    # in both cases, update or not, return the running version
+    return {
+        'version': appdata.fields_version,
+        'fields': appdata.fields,
+    }
+
 
 
 # ---------------------------------
@@ -49,19 +81,19 @@ class FieldsCollection(BaseHandler):
 
     /admin/wizard/fields
     """
-    # @transport_security_check('admin')
-    # @authenticated('admin')
-    @unauthenticated
-    # @inlineCallbacks
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
     def get(self, *uriargs):
 
         self.set_status(200)
-        self.finish(temporary_fields_dump)
 
-    # @transport_security_check('admin')
-    # @authenticated('admin')
-    @unauthenticated
-    # @inlineCallbacks
+        app_fields_dump = yield admin_serialize_fields(self.request.language)
+        self.finish(app_fields_dump)
+
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
     def post(self, *uriargs):
 
         accepted_types = [ "text", "radio", "select", "checkboxes",
@@ -71,18 +103,17 @@ class FieldsCollection(BaseHandler):
                 requests.wizardFieldUpdate)
 
         fields = request['fields']
+        log.debug("Received update of Application Data Fields (%d elements)" % len(fields))
 
         for field in fields:
             if field['type'] not in accepted_types:
                 log.debug("Invalid type received: %s" % field['type'])
                 raise errors.InvalidInputFormat("Invalid type supply")
 
-        log.debug("Updating Application Data (Fields) to version: %d" % request['version'])
-
-        temporary_fields_dump = list(fields)
+        app_fields_dump = yield update_application_fields(request['version'], fields)
 
         self.set_status(202) # Updated
-        self.finish(temporary_fields_dump)
+        self.finish(app_fields_dump)
 
 
 
