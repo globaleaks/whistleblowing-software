@@ -39,11 +39,11 @@ class UTlog():
 
     @staticmethod
     def err(stuff):
-        print "[E]", stuff
+        pass
 
     @staticmethod
     def debug(stuff):
-        print "[D]", stuff
+        pass
 
 from globaleaks.utils.utility import log
 # I'm trying by feeling
@@ -54,6 +54,7 @@ log.debug = UTlog().debug
 class TestWithDB(unittest.TestCase):
     def setUp(self):
         GLSetting.set_devel_mode()
+        GLSetting.logging = None
         GLSetting.scheduler_threadpool = FakeThreadPool()
         GLSetting.sessions = {}
         GLSetting.failed_login_attempts = dict()
