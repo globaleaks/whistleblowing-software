@@ -49,20 +49,17 @@ fields_blob = {
 class TestWizardCollection(helpers.TestHandler):
     _handler = wizard.FieldsCollection
 
-    # @inlineCallbacks
-    def test_1_post(self):
+    @inlineCallbacks
+    def test_post(self):
 
         handler = self.request(fields_blob, role='admin')
-        # yield handler.post()
-        handler.post()
+        yield handler.post()
 
-        print self.responses[0]
+        fields_blob['version'] = (fields_blob['version'] + 1)
 
-    # @inlineCallbacks
-    def test_2_get(self):
-        handler = self.request(role='admin')
-        # yield handler.get()
+        handler = self.request(fields_blob, role='admin')
+        yield handler.post()
+
         yield handler.get()
-
-        print self.responses[0]
-
+        self.assertEqual(len(self.responses), len(fields_blob['fields']) )
+        self.assertEqual(self.responses[2]['version'], fields_blob['version'])

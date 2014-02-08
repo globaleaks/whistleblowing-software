@@ -220,7 +220,7 @@ def do_resetpass(dbfile, password=None):
 
 def funny_print(stringz, details):
 
-    block = 30
+    block = 40
     print stringz, " " * (block - len(stringz)), details
 
 def check_file(isafile):
