@@ -100,7 +100,6 @@ class GLSettingsClass:
 
         if GLSettingsClass.initialized:
             error_msg = "Singleton GLSettingClass instanced twice!"
-            print error_msg
             raise Exception(error_msg)
         else:
             GLSettingsClass.initialized = True

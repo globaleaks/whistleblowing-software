@@ -414,6 +414,7 @@ def get_receiver_list_receiver(store, user_id, tip_id, language=GLSetting.memory
     for rtip in rtip.internaltip.receivertips:
 
         receiver_desc = {
+            "gpg_key_status": rtip.receiver.gpg_key_status,
             "can_delete_submission": rtip.receiver.can_delete_submission,
             "name": unicode(rtip.receiver.name),
             "receiver_gus": unicode(rtip.receiver.id),

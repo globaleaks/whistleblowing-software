@@ -237,6 +237,7 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
                 "name": unicode(receiver.name),
                 "receiver_gus": unicode(receiver.id),
                 "id": unicode(receiver.id),
+                "gpg_key_status": receiver.gpg_key_status,
                 "tags": receiver.tags,
                 "access_counter" : 0,
                 "unread_messages" : 0,
