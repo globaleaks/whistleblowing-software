@@ -67,11 +67,7 @@ angular.module('resourceServices.authentication', [])
               setExpiration(response.session_expiration);
 
               if (role == 'admin') {
-                  if (password == 'globaleaks') {
-                    auth_landing_page = "/admin/password";
-                  } else {
-                    auth_landing_page = "/admin/overview/tips";
-                  }
+                  auth_landing_page = "/admin/landing";
               }
               if (role == 'receiver') {
                 auth_landing_page = "/receiver/tips";

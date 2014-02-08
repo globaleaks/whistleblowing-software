@@ -1,0 +1,41 @@
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+{{ "Administrator: be it" | translate }}
+{{ "Understand your status" | translate }}
+
+-->
+
+<div id="Landing" class="container" ng-controller="AdminCtrl">
+  <div class="row">
+    <div id="ConfigSidebarBox" class="col-md-3" ng-include="'views/admin/sidebar.html'"></div>
+    <div class="col-md-9">
+
+      <p> 
+        {{ "This interface may help you understand how the Node is currently configured, and get some tip on being connected to other GlobaLeaks users and experts.  " | translate }}
+        {{ "Here you can check anomalies and message from the node. " | translate }}
+        {{ "Clicking on the 'admin' name, high corner on the left, will bring you here " | translate }}
+      </p>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-horizontal">
+            <span class="form-group col-md-6" ng-init="orderProp='creation_date'">
+              <label class="control-label col-md-4">
+                <ul>
+                  <li>
+                    You can try cryptocat for ask a support.
+                  </li>
+                  <li>
+                    Below the status of your configuration
+                  </li>
+                  <li>
+                    Click here to jump to the anomaly detected, in any
+                  </li>
+                </ul>
+              </label>
+            </span>
+      </div> <!-- col-md-12 -->
+    </div> <!-- row -->
+  </div> <!-- col-md-9 -->
+</div> <!-- Landing -->

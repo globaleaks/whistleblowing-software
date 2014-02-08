@@ -68,6 +68,18 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Receiver Interface',
         header_subtitle: 'Your Tips'
       }).
+      when('/admin/landing', {
+        templateUrl: 'views/admin/landing.html',
+        controller: 'AdminCtrl',
+        header_title: 'Administration Interface',
+        header_subtitle: 'Administrator: be it'
+      }).
+      when('/admin/landing:lang', {
+        templateUrl: 'views/admin/landing.html',
+        controller: 'AdminCtrl',
+        header_title: 'Administration Interface',
+        header_subtitle: 'Administrator: be it'
+      }).
       when('/admin/content', {
         templateUrl: 'views/admin/content.html',
         controller: 'AdminCtrl',
