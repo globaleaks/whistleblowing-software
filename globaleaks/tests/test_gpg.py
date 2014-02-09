@@ -11,12 +11,13 @@ from globaleaks.handlers import receiver, files
 from globaleaks.handlers.admin import admin_serialize_receiver, create_receiver, create_context, get_context_list
 from globaleaks.handlers.submission import create_submission, update_submission
 from globaleaks.settings import GLSetting, transact_ro
-from globaleaks.tests.helpers import MockDict, fill_random_fields, TestHandler
 from globaleaks.models import Receiver
 from globaleaks.jobs.delivery_sched import APSDelivery, get_files_by_itip, get_receiverfile_by_itip
 from globaleaks.plugins.notification import MailNotification
 from globaleaks.plugins.base import Event
 from globaleaks.utils.templating import Templating
+
+from globaleaks.tests.helpers import MockDict, fill_random_fields, TestHandler
 
 GPGROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
 
@@ -252,12 +253,10 @@ class TestReceiverSetKey(TestHandler):
 
         new_file = dict(MockDict().dummyFile)
 
-        (relationship1, cksum, fsize) = yield threads.deferToThread(files.dump_file_fs, new_file)
-        # encrypted output is always greater than the not encrypted
-        self.assertGreater(fsize, new_file['body_len'])
+        relationship1 = yield threads.deferToThread(files.dump_file_fs, new_file)
 
         self.registered_file1 = yield files.register_file_db(
-            new_file, relationship1, cksum, new_subm_output['submission_gus'] )
+            new_file, relationship1, new_file['body_sha'], new_subm_output['submission_gus'] )
 
         new_subm['submission_gus'] = new_subm_output['submission_gus']
         new_subm['finalize'] = True
@@ -286,7 +285,7 @@ class TestReceiverSetKey(TestHandler):
 
 
 #    @inlineCallbacks
-#    def test_invalid_duplicated_key(self):
+#    def test_invalid_dtest_submission_file_delivery_gpgicated_key(self):
 #
 #        self.receiver_only_update = dict(MockDict().dummyReceiver)
 #        self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
