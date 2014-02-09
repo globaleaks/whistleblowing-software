@@ -137,13 +137,27 @@ angular.module('resourceServices.authentication', [])
 
       return new Session;
 }]);
-angular.module('resourceServices', ['ngResource', 'resourceServices.authentication']).
-  factory('globaleaksInterceptor', ['$q', '$injector', '$rootScope', '$location',
+
+angular.module('resourceServices', ['ngResource', 'resourceServices.authentication', 'ui.bootstrap']).
+  factory('globaleaksInterceptor', ['$q', '$injector', '$rootScope', '$location', 
   function($q, $injector, $rootScope, $location) {
-    var requestTimeout = 30000;
-    var $http = null;
+    var requestTimeout = 30000,
+      $http = null, $modal = null;
 
     $rootScope.showRequestBox = false;
+    
+    function showModal(error) {
+      $modal = $modal || $injector.get('$modal');
+      var modalInstance = $modal.open({
+        templateUrl: 'views/partials/error_popup.html',
+        controller: 'ModalCtrl',
+        resolve: {
+          error: function() {
+            return error;
+          }
+        }
+      })
+    };
 
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
@@ -181,6 +195,12 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         error.code = response.data.error_code;
         error.url = response.config.url;
         error.arguments = response.data.arguments;
+        
+        // In here you should place the error codes that should trigger a modal
+        // view.
+        if ( ['55', '56', '57'].indexOf(error.code) != -1 ) {
+          showModal(error); 
+        }
 
         /* 30: Not Authenticated / 24: Wrong Authentication */
         if (error.code == 30 || error.code == 24) {

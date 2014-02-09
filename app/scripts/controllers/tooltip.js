@@ -66,4 +66,12 @@ GLClient.controller('toolTipCtrl',
   refresh();
 
 }]);
+GLClient.controller('ModalCtrl', ['$scope', '$location', '$modalInstance', 'error',
+                    function ($scope, $location, $modalInstance, error){
+    $scope.error = error;
+    $scope.seconds = error.arguments[0];
 
+    $scope.close = function() {
+      $modalInstance.dismiss('cancel'); 
+    };
+}]);

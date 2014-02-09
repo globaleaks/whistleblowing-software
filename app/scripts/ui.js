@@ -38,9 +38,7 @@ angular.module('submissionUI', []).
                   jqXHR = data.submit({files: filesList});
 
                 jqXHR.success(function(result, textStatus, jqXHR) {
-
-		    scope.uploadfinished()
-
+		                scope.uploadfinished()
                     $(element).parent().find('.uploadProgress').hide();
                 });
               }
@@ -132,4 +130,12 @@ angular.module('submissionUI', []).
 
       element.fadeOut(fadeout_delay);
     };
+}).
+  directive('glClock', function() {
+    return function(scope, element, attrs) {
+      var clock = $(element).FlipClock({});
+      clock.setTime(scope.seconds);
+      clock.setCountdown(true);
+    }
 });
+
