@@ -16,7 +16,7 @@ from cyclone.web import StaticFileHandler
 from Crypto.Hash import SHA256
 
 from globaleaks.settings import transact, transact_ro, GLSetting, stats_counter
-from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler, FileToken
+from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler, FileToken, anomaly_check
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils.utility import log, pretty_date_time
 from globaleaks.rest import errors
@@ -199,6 +199,7 @@ class FileAdd(FileHandler):
 
     @transport_security_check('wb')
     @authenticated('wb')
+    @anomaly_check('file_uploaded')
     @inlineCallbacks
     def post(self, *args):
         """
@@ -221,6 +222,7 @@ class FileInstance(FileHandler):
 
     @transport_security_check('wb')
     @unauthenticated
+    @anomaly_check('file_uploaded')
     @inlineCallbacks
     def post(self, submission_id, *args):
         """

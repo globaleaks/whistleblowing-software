@@ -10,14 +10,13 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.settings import transact, transact_ro, GLSetting, stats_counter
 from globaleaks.models import *
 from globaleaks import security
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, anomaly_check
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
 from globaleaks.utils.utility import log, utc_future_date, pretty_date_time, datetime_now
 from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
 from globaleaks.rest import errors
-
 
 def wb_serialize_internaltip(internaltip):
     response = {
@@ -329,6 +328,7 @@ class SubmissionCreate(BaseHandler):
 
     @transport_security_check('wb')
     @unauthenticated
+    @anomaly_check('new_submission')
     @inlineCallbacks
     def post(self, *uriargs):
         """
@@ -388,6 +388,7 @@ class SubmissionInstance(BaseHandler):
 
     @transport_security_check('wb')
     @unauthenticated
+    @anomaly_check('finalized_submission')
     @inlineCallbacks
     def put(self, submission_gus, *uriargs):
         """
