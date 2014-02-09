@@ -57,17 +57,17 @@ def start_asynchronous():
     deliver_sched = delivery_sched.APSDelivery()
     GLAsynchronous.add_interval_job(deliver_sched.operation,
                                     seconds=GLSetting.delivery_seconds_delta,
-                                    start_date=utc_future_date(seconds=5))
+                                    start_date=utc_future_date(seconds=15))
 
     notify_sched = notification_sched.APSNotification()
     GLAsynchronous.add_interval_job(notify_sched.operation,
                                     minutes=GLSetting.notification_minutes_delta,
-                                    start_date=utc_future_date(seconds=7))
+                                    start_date=utc_future_date(seconds=45))
 
     clean_sched = cleaning_sched.APSCleaning()
     GLAsynchronous.add_interval_job(clean_sched.operation,
                                     hours=GLSetting.cleaning_hours_delta,
-                                    start_date=utc_future_date(seconds=10))
+                                    start_date=utc_future_date(seconds=65))
 
     # expiration_sched = gpgexpire_sched.GPGExpireCheck()
     # GLAsynchronous.add_interval_job(expiration_sched.operation,
@@ -76,7 +76,7 @@ def start_asynchronous():
 
     anomaly_sched = statistics_sched.APSAnomalies()
     GLAsynchronous.add_interval_job(anomaly_sched.operation,
-                                    minutes=GLSetting.anomaly_seconds_delta)
+                                    seconds=GLSetting.anomaly_seconds_delta)
 
     stats_sched = statistics_sched.APSStatistics()
     GLAsynchronous.add_interval_job(stats_sched.operation,

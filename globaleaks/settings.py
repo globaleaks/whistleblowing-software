@@ -39,39 +39,6 @@ verbosity_dict = {
     'CRITICAL': logging.CRITICAL
 }
 
-sample_context_fields = [
-        {
-            'name': u'Short title', 
-            'hint': u"Describe your Tip with a short title",
-            'presentation_order': 1,
-            'key': unicode(uuid.uuid4()),
-            'required': True,
-            'preview': True,
-            'type': u'text',
-            'value': u''
-        },
-        {
-            'name': u'Full description',
-            'hint': u'Describe the details of your Submission',
-            'key': unicode(uuid.uuid4()),
-            'presentation_order': 2,
-            'required': True,
-            'preview': True,
-            'type': u'text',
-            'value': u''
-        },
-        {   
-            'name': u'Files description',
-            'hint': u"Describe the submitted files",
-            'key': unicode(uuid.uuid4()),
-            'presentation_order': 3,
-            'required': False,
-            'preview': False,
-            'type': u'text',
-            'value': u'' 
-        },
-]
-
 external_counted_events = {
     'new_submission' : 0,
     'finalized_submission': 0,
@@ -81,13 +48,15 @@ external_counted_events = {
 
 def stats_counter(element):
     """
-    TODO: this need to clear that's an "anomaly detection counter"
+    Stats counter is called every 30 seconds and make a first dump of the
+    variable in memory: GLSetting.anomailes_counter
+    Then in jobs/statistics_sched.py is transformed in statistic.
+
     @param element: one of the four element above
     @return: None, but increment internal counters
     """
-    assert GLSetting.stats.has_key(element), "Invalid usage of stats_counter"
-    GLSetting.stats[element] += 1
-
+    assert GLSetting.anomalies_counter.has_key(element), "Invalid usage of stats_counter"
+    GLSetting.anomalies_counter[element] += 1
 
 
 class GLSettingsClass:
@@ -167,8 +136,8 @@ class GLSettingsClass:
         self.session_management_minutes_delta = 1 # runner.py function expects minutes
         self.cleaning_hours_delta = 6             # runner.py function expects hours
         self.notification_minutes_delta = 2       # runner.py function expects minutes
-        self.delivery_seconds_delta = 30          # runner.py function expects seconds
-        self.anomaly_seconds_delta = 30         # runner.py function expects seconds
+        self.delivery_seconds_delta = 20          # runner.py function expects seconds
+        self.anomaly_seconds_delta = 30           # runner.py function expects seconds
         self.stats_minutes_delta = 10             # runner.py function expects minutes
 
         self.defaults = OD()
@@ -211,8 +180,15 @@ class GLSettingsClass:
         self.memory_copy.notif_security = None
         # import_memory_variables is called after create_tables and node+notif updating
 
-        # this dict keep track of some 'external' events and is cleaned periodically
-        self.stats = dict(external_counted_events)
+        self.anomalies_counter = dict(external_counted_events)
+        # this dict keep track of some 'external' events and is
+        # cleaned periodically (10 minutes in stats)
+        self.anomalies_list = []
+        # this is the collection of the messages shall be reported to the admin
+        self.anomalies_messages = []
+        # maximum amount of element riported by /admin/anomalies and /admin/stats
+        self.anomalies_report_limit = 20
+
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
@@ -237,6 +213,7 @@ class GLSettingsClass:
         # error looping thru email. A temporary way to disable mail
         # is put here. A globaleaks restart cause the email to restart.
         self.notification_temporary_disable = False
+        self.notification_limit = 30
 
         self.user = getpass.getuser()
         self.group = getpass.getuser()
