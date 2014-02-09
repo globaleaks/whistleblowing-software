@@ -348,7 +348,6 @@ class APSDelivery(GLJob):
         Goal of this function is to process/validate files, compute their checksums and
         apply the configured delivery method.
         """
-
         try:
             # ==> Submission && Escalation
             info_created_tips = yield tip_creation()

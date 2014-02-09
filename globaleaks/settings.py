@@ -217,6 +217,10 @@ class GLSettingsClass:
         # this dict keep track of some 'external' events and is
         # cleaned periodically (10 minutes in stats)
         self.anomalies_list = []
+        # this is the collection of the messages shall be reported to the admin
+        self.anomalies_messages = []
+        # limit of the number of Anomalies and Statistics
+        self.limit = 10
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
@@ -241,6 +245,7 @@ class GLSettingsClass:
         # error looping thru email. A temporary way to disable mail
         # is put here. A globaleaks restart cause the email to restart.
         self.notification_temporary_disable = False
+        self.notification_limit = 10
 
         self.user = getpass.getuser()
         self.group = getpass.getuser()
