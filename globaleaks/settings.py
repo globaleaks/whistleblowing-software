@@ -114,7 +114,7 @@ class GLSettingsClass:
         self.working_path = '/var/globaleaks'
         self.static_source = '/usr/share/globaleaks/glbackend'
         self.glclient_path = '/usr/share/globaleaks/glclient'
-        self.ramdisk_path = None
+        self.ramdisk_path = '/dev/shm/globaleaks'
         self.eval_paths()
 
         # list of plugins available in the software
@@ -196,9 +196,9 @@ class GLSettingsClass:
         self.anomalies_list = []
         # this is the collection of the messages shall be reported to the admin
         self.anomalies_messages = []
+        # maximum amount of element riported by /admin/anomalies and /admin/stats
+        self.anomalies_report_limit = 20
 
-        # limit of the number of Notification without breath-taking
-        self.limit = 30
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
@@ -223,7 +223,7 @@ class GLSettingsClass:
         # error looping thru email. A temporary way to disable mail
         # is put here. A globaleaks restart cause the email to restart.
         self.notification_temporary_disable = False
-        self.notification_limit = 10
+        self.notification_limit = 30
 
         self.user = getpass.getuser()
         self.group = getpass.getuser()
@@ -255,6 +255,7 @@ class GLSettingsClass:
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
+        self.tmp_upload_path = os.path.abspath(os.path.join(self.glfiles_path, 'tmp_upload'))
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
         self.static_path_l10n = os.path.abspath(os.path.join(self.static_path, 'l10n'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
@@ -506,8 +507,10 @@ class GLSettingsClass:
         create_directory(self.static_path)
         create_directory(self.static_path_l10n)
         create_directory(self.submission_path)
+        create_directory(self.tmp_upload_path)
         create_directory(self.log_path)
         create_directory(self.torhs_path)
+        create_directory(self.ramdisk_path)
 
         logo_path = os.path.join(self.static_path, "%s.png" % GLSetting.reserved_names.logo)
         # Missing default logo: is supposed we're initializing a new globaleaks directory

@@ -12,6 +12,8 @@
 import os
 import sys
 
+import shutil
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
@@ -19,7 +21,7 @@ from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
                               ReceiverFile, Receiver
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.utility import log, pretty_date_time
-from globaleaks.security import GLBGPG
+from globaleaks.security import GLBGPG, GLSecureFile
 from globaleaks.handlers.admin import admin_serialize_receiver
 
 __all__ = ['APSDelivery']
@@ -182,8 +184,9 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
             raise Exception("Unable to validate key")
 
         ifile_abs = os.path.join(GLSetting.submission_path, fpath)
+        key_path = os.path.join(GLSetting.ramdisk_path, fpath + '.key')
 
-        with file(ifile_abs, "r") as f:
+        with GLSecureFile(ifile_abs, key_path) as f:
             encrypted_file_path, encrypted_file_size = \
                 gpoj.encrypt_file(ifile_abs, f, GLSetting.submission_path)
 
@@ -405,31 +408,39 @@ class APSDelivery(GLJob):
         # e.g.: all the receiver have GPG key and so the reference is useless.
 
         for ifile_id, empty_status in ifile_track.iteritems():
+
             almost_one_reference = False
 
             for (fid, status, fname, flen, receiver_desc) in rfileslist:
                 if ifile_id == fid:
-                    fname_to_remove = fname
                     if status == 'reference':
                       almost_one_reference = True
                       break;
 
-            if not almost_one_reference:
-                log.debug("Removing useless plain file: %s" % fname_to_remove)
-                path = os.path.join(GLSetting.submission_path, fname_to_remove)
-                try:
-                    os.remove(path)
-                except Exception as excep:
-                    log.err("Unable to remove ifile in %s: %s" % (
-                        path, str(excep)
-                    ))
-                    # In DB the ifile remain with status 'locked'; this may arise suspects
-                    # but still this error need to be properly handled/reported
-                    continue
+            file_path = os.path.join(GLSetting.submission_path, fname)
+
+            if almost_one_reference:
+                log.debug("Decrypting encrypted temporary file due to unencrypted receivers: %s" % fname)
+
+                key_path = os.path.join(GLSetting.ramdisk_path, fname + '.key')
+                tmp_path = os.path.join(GLSetting.submission_path, fname + '.tmp')
+                unencrypted_file = GLSecureFile(file_path, key_path)
+
+                with open(tmp_path, "wb") as tmp_file:
+                    chunk_size = 4096
+                    while True:
+                        chunk = unencrypted_file.read(chunk_size)
+                        if len(chunk) == 0:
+                            break
+                        tmp_file.write(chunk)
+
+                shutil.move(tmp_path, file_path)
+
+                ifile_track.update({ifile_id: InternalFile._marker[2] }) # Ready
+            else:
+
+                os.remove(file_path)
 
                 ifile_track.update({ifile_id: InternalFile._marker[3] }) # Removed
-            else:
-                ifile_track.update({ifile_id: InternalFile._marker[2] }) # Ready
 
         yield do_final_internalfile_update(ifile_track)
-

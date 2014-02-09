@@ -3,6 +3,7 @@
 import os
 import json
 import uuid
+import shutil
 
 from io import BytesIO as StringIO
 from cyclone import httpserver
@@ -22,6 +23,8 @@ from globaleaks.utils.utility import datetime_null, datetime_now
 from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
 from globaleaks.db.datainit import opportunistic_appdata_init
+
+from globaleaks.security import GLSecureTemporaryFile
 
 
 Random.atfork()
@@ -71,6 +74,16 @@ class TestGL(TestWithDB):
 
     @inlineCallbacks
     def _setUp(self):
+
+        if not os.path.exists('files'):
+            os.mkdir('files')
+
+        if not os.path.exists('files/submission'):
+            os.mkdir('files/submission')
+
+        if not os.path.exists('ramdisk'):
+            os.mkdir('ramdisk')
+
         yield TestWithDB.setUp(self)
         self.setUp_dummy()
         yield self.fill_data()
@@ -422,16 +435,19 @@ class MockDict():
             'disable': False,
         }
 
-        unicode_body = ''.join(unichr(x) for x in range(0x070, 0x3FF))
+        temporary_file = GLSecureTemporaryFile('files/submission', 'ramdisk')
+        temporary_file.write("ANTANI")
+        temporary_file.avoid_delete()
 
         self.dummyFile = {
-            'body' : StringIO(),
-            'body_len' : len(unicode_body),
-            'filename' : ''.join(unichr(x) for x in range(0x400, 0x40A)),
-            'content_type' : 'application/octect',
+            'body': temporary_file,
+            'body_len': len("ANTANI"),
+            'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
+            'body_filepath': temporary_file.filepath,
+            'body_keypath': temporary_file.keypath,
+            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
+            'content_type': 'application/octect',
         }
-
-        self.dummyFile['body'].write(unicode_body.encode('utf-8'))
 
 
 def template_keys(first_a, second_a, name):
@@ -446,7 +462,6 @@ def template_keys(first_a, second_a, name):
         ret_string += " %s" % x
 
     return ret_string
-
 
 def get_dummy_submission(context_gus, context_admin_data_fields):
     """

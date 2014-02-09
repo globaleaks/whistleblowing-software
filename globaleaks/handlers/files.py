@@ -10,10 +10,11 @@ from __future__ import with_statement
 import os
 import time
 
+import shutil
+
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import StaticFileHandler
-from Crypto.Hash import SHA256
 
 from globaleaks.settings import transact, transact_ro, GLSetting, stats_counter
 from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler, FileToken, anomaly_check
@@ -98,29 +99,20 @@ def dump_file_fs(uploaded_file):
     atfork()
 
     saved_name = rstr.xeger(r'[A-Za-z]{26}')
+    key_name = saved_name + '.key'
     filelocation = os.path.join(GLSetting.submission_path, saved_name)
+    keylocation = os.path.join(GLSetting.ramdisk_path, key_name)
 
     log.debug("Start saving %d bytes from file [%s]" %
               (uploaded_file['body_len'], uploaded_file['filename'].encode('utf-8')))
 
-    # checksum is computed here, because don't slow down the operation
-    # enough to postpone in a scheduled job.
-    # https://github.com/globaleaks/GlobaLeaks/issues/600
+    uploaded_file['body'].avoid_delete()
+    uploaded_file['body'].close()
 
-    sha = SHA256.new()
-    with open(filelocation, 'w+') as fd:
-        uploaded_file['body'].seek(0, 0)
+    shutil.move(uploaded_file['body_filepath'], filelocation)
+    shutil.move(uploaded_file['body_keypath'], keylocation)
 
-        data = uploaded_file['body'].read() # 4kb
-        total_length = 0
-
-        while data != "":
-            total_length = total_length + len(data)
-            sha.update(data)
-            os.write(fd.fileno(), data)
-            data = uploaded_file['body'].read(4096) # 4kb
-
-    return (saved_name, sha.hexdigest(), total_length)
+    return saved_name
 
 
 @transact_ro
@@ -162,23 +154,16 @@ class FileHandler(BaseHandler):
         start_time = time.time()
 
         uploaded_file = self.request.body
-
         try:
             # First: dump the file in the filesystem,
             # and exception raised here would prevent the InternalFile recordings
-            (filepath, cksum, size) = yield threads.deferToThread(dump_file_fs, uploaded_file)
+            filepath = yield threads.deferToThread(dump_file_fs, uploaded_file)
         except Exception as excep:
             log.err("Unable to save a file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
-
-        # integrity check: has been saved the same amount of byte declared ?
-        if size != uploaded_file['body_len']:
-            raise errors.InternalServerError("File has been truncated (%d saved on %d bytes)" %
-                                             (size, uploaded_file['body_len']))
-
         try:
             # Second: register the file in the database
-            registered_file = yield register_file_db(uploaded_file, filepath, cksum, itip_id)
+            registered_file = yield register_file_db(uploaded_file, filepath, uploaded_file['body_sha'], itip_id)
         except Exception as excep:
             log.err("Unable to register file in DB: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")

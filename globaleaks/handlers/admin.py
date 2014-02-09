@@ -320,19 +320,21 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
 
             try:
                 appdata = store.find(ApplicationData).one()
+                # print "!!! new fields taked from default"
+                # print appdata.fields
                 fo.default_fields(appdata.fields)
-                log.debug("Is configured %s" % appdata.fields)
             except Exception as excep:
                 log.err("Invalid initialization of ApplicationData [for %s]!" %
                         context.name)
                 log.err(excep)
                 raise excep
-                # fo.update_fields(language, [])
 
         else:
+            # print "?? :( Fields supply by the source", request['fields'], "in lang:", language
             fo.update_fields(language, request['fields'])
 
         fo.context_import(context)
+
 
     except Exception as excep:
         log.err("Unable to create fields: %s" % excep)

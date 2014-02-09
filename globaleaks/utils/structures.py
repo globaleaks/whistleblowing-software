@@ -15,17 +15,16 @@ class Fields:
                            "checkboxes",  "textarea", "number",
                            "url", "phone", "email" ]
 
-    noisy = False
-
     def debug_status(self, developer_reminder):
         # change this when you need verbose field debug
-        if Fields.noisy:
+        if self.noisy:
             log.debug("%s lang [%s] and fields #%d" % (
                 developer_reminder,
                 self._localization.keys(), len(self._fields.keys()) ))
 
     def __init__(self, localization=None, fields=None):
 
+        self.noisy = False
         self._localization = localization if localization else {}
         self._fields = fields if fields else {}
         self._langcodes = []
@@ -249,7 +248,6 @@ class Fields:
                 localization_l.update({lang: dict(self._localization[lang][k])})
 
         return fiels_l, localization_l
-
 
 
     def dump_fields(self, language):
