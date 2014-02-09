@@ -27,7 +27,7 @@ def admin_serialize_stats(store, language=GLSetting.memory_copy.default_language
     for stat in stats:
 
         limit += 1
-        if limit >= GLSetting.limit:
+        if limit >= GLSetting.anomalies_report_limit:
             break
 
         single_stat = { 'creation_date' : pretty_date_time(stat.creation_date) }
@@ -46,14 +46,14 @@ class AnomaliesCollection(BaseHandler):
     """
 
     @transport_security_check("admin")
-    @authenticated('admin')
+    @authenticated("admin")
     def get(self, *uriargs):
 
-        # it's already stored since the newer to older
-        if len(GLSetting.anomalies_messages) > GLSetting.limit:
-            GLSetting.anomalies_messages = GLSetting.anomalies_messages[:GLSetting.limit]
+        # are kept the last 'GLSetting.anomalies_report_limit' number of informative element
+	# because they are kept in memory. they are not lost, but summed in the statistics
+        if len(GLSetting.anomalies_messages) > GLSetting.anomalies_report_limit:
+            GLSetting.anomalies_messages = GLSetting.anomalies_messages[:GLSetting.anomalies_report_limit]
 
-        # 
         self.finish(GLSetting.anomalies_messages)
 
 
@@ -61,8 +61,9 @@ class StatsCollection(BaseHandler):
     """
     (r'/admin/stats', statistics.StatsCollection),
     """
+
     @transport_security_check("admin")
-    @authenticated('admin')
+    @authenticated("admin")
     @inlineCallbacks
     def get(self, *uriargs):
 
