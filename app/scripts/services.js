@@ -51,7 +51,7 @@ angular.module('resourceServices.authentication', [])
           }
         };
 
-        $rootScope.login = function(username, password, role) {
+        $rootScope.login = function(username, password, role, cb) {
           return $http.post('/authentication', {'username': username,
                                                 'password': password,
                                                 'role': role})
@@ -65,6 +65,10 @@ angular.module('resourceServices.authentication', [])
               var auth_landing_page = "";
 
               setExpiration(response.session_expiration);
+
+              if (cb){
+                return cb(response);
+              }
 
               if (role == 'admin') {
                   auth_landing_page = "/admin/landing";
@@ -710,7 +714,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.context = adminContextsResource;
       self.contexts = adminContextsResource.query();
 
-      self.create_context = function(context_name) {
+      self.create_context = function(context_name, cb) {
         var context = new adminContextsResource;
 
         context.name = context_name;
@@ -730,18 +734,19 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.receipt_regexp = "[0-9]{10}";
         context.receiver_introduction = "";
         context.fields_introduction = "";
-	context.postpone_superpower = false;
-	context.can_delete_submission = false;
-	context.maximum_selectable_receivers = 0;
-	context.require_file_description = false;
-	context.delete_consensus_percentage = 0;
-	context.require_pgp = false;
+        context.postpone_superpower = false;
+        context.can_delete_submission = false;
+        context.maximum_selectable_receivers = 0;
+        context.require_file_description = false;
+        context.delete_consensus_percentage = 0;
+        context.require_pgp = false;
         context.tags = [];
         context.show_small_cards = false;
         context.presentation_order = 0;
 
         context.$save(function(new_context){
           self.contexts.push(new_context);
+          cb(new_context);
         });
 
       };

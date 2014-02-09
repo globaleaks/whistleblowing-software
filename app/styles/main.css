@@ -235,3 +235,25 @@ table {
 #titleboxwithtagline {
   display: none;
 }
+
+.bordered {
+  position: relative;
+  padding: 45px 15px 15px;
+  margin: 0 -15px 15px;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+  //border-color: #e5e5e5 #eee #eee;
+  border-style: solid;
+  margin-left: 0;
+  margin-right: 0;
+  border-width: 1px;
+  border-color: #ddd;
+  border-radius: 4px 4px 0 0;
+  box-shadow: none;
+}
+
+.bordered h2 {
+position: absolute;
+top: -10px;
+font-size: 18px;
+color: #aaa;
+}
