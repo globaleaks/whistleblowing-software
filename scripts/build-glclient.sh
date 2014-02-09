@@ -109,7 +109,7 @@ build_glclient()
 
   echo "Revision used: ${GLCLIENT_REVISION}"
 
-  if not test $TAG; then
+  if ! test $TAG; then
     TAG=${GLCLIENT_REVISION}
   fi
 
