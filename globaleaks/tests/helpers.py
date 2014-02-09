@@ -305,7 +305,7 @@ class MockDict():
             'name': u'Already localized name',
             'description': u'Already localized desc',
             # fields, usually filled in content by fill_random_fields
-            'fields': [],
+            'fields': list(sample_context_fields),
             'selectable_receiver': False,
             'select_all_receivers': True,
             'tip_max_access': 10,
@@ -489,3 +489,36 @@ def fill_random_fields(context_desc):
 
     return ret_dict
 
+
+sample_context_fields = [
+    {
+        'name': u'Short title',
+        'hint': u"Describe your Tip with a short title",
+        'presentation_order': 1,
+        'key': unicode(uuid.uuid4()),
+        'required': True,
+        'preview': True,
+        'type': u'text',
+        'value': u''
+    },
+    {
+        'name': u'Full description',
+        'hint': u'Describe the details of your Submission',
+        'key': unicode(uuid.uuid4()),
+        'presentation_order': 2,
+        'required': True,
+        'preview': True,
+        'type': u'text',
+        'value': u''
+    },
+    {
+        'name': u'Files description',
+        'hint': u"Describe the submitted files",
+        'key': unicode(uuid.uuid4()),
+        'presentation_order': 3,
+        'required': False,
+        'preview': False,
+        'type': u'text',
+        'value': u''
+    },
+]

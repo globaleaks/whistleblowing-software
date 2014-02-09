@@ -85,6 +85,8 @@ class TestEmail(helpers.TestGL):
             "message_mail_title" : { "en" : u"msg mail title" },
         }
 
-        tip_events = yield aps.create_tip_notification_events()
+        # 100 as limit
+        (tip_events, enqueued) = yield aps.create_tip_notification_events(0)
+        self.assertEqual(enqueued, 2)
         yield aps.do_tip_notification(tip_events)
 
