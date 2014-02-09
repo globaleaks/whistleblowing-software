@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import json
+import json, os
 
 from twisted.internet import protocol, defer, reactor
 from twisted.web.iweb import IBodyProducer
@@ -107,9 +107,11 @@ class Submission(object):
 
         receivers = self.data['receivers']
         self.data = response
-        self.data['receivers'] = receivers
+        self.data['receivers'] = [ receivers[0] ]
+        # self.data['receivers'] = receivers # some contexts had limits
     
     def randomFill(self):
+        self.data['wb_fields'] = {}
         for field in self.fields:
             self.data['wb_fields'][field['key']] = 'I am an evil stress tester...'
 
@@ -134,15 +136,17 @@ class WBTip(object):
     def __init__(self, receipt):
         self.receipt = receipt
         self.session_id = None
+        self.user_id = None
         
     @defer.inlineCallbacks
     def authenticate(self):
         session = yield authenticate(self.receipt, 'wb')
         self.session_id = session['session_id']
+        self.user_id = session['user_id']
     
     def comment(self, text):
-        tid = '88197484-655c-e805-6420-9c39e6834721'
-        d = request('POST', '/tip/'+tid+'/comments',
+        tid = self.user_id
+        d = request('POST', '/wbtip/comments',
                     {'content': text, 'tip_id': tid}, 
                       session_id=self.session_id)
         @d.addErrback
@@ -152,7 +156,9 @@ class WBTip(object):
 @defer.inlineCallbacks
 def doStuff():
     contexts = yield request('GET', '/contexts')
-    sub = Submission(contexts[0])
+    for context in contexts:
+        print "doStuff ing", context['name']
+        sub = Submission(context)
     yield sub.create()
     sub.randomFill()
     submission = yield sub.finalize()
@@ -175,7 +181,7 @@ def submissionWorkflow(context, request_delay, idx):
     submission = yield sub.finalize()
 
     if idx == 0:
-        print "I am now done"
+        print "completed %s" % context.name
     else:
         reactor.callLater(request_delay, submissionWorkflow, context, request_delay, idx)
 
@@ -184,7 +190,11 @@ def submissionFuzz(request_delay, submission_count):
     print "Using %s - %s" % (request_delay, submission_count)
     contexts = yield request('GET', '/contexts')
     
-    submissionWorkflow(contexts[0], request_delay, submission_count)
+    for cnt, context in enumerate(contexts):
+        print "%d) submissionFuzz ing: %s" % (cnt, context['name'])
+        # submissionWorkflow(context, request_delay, submission_count)
+        doStuff()
 
-submissionFuzz(1, 10)
+
+submissionFuzz(0.1, 20)
 reactor.run()
