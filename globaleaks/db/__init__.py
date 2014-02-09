@@ -10,7 +10,7 @@ from storm.exceptions import OperationalError
 from globaleaks.utils.utility import log
 from globaleaks.settings import transact, ZStorm, GLSetting
 from globaleaks import models
-from globaleaks.db.datainit import initialize_node
+from globaleaks.db.datainit import initialize_node, opportunistic_appdata_init
 
 
 def init_models():
@@ -126,8 +126,11 @@ def create_tables(create_node=True):
         templates['zip_collection'] = acquire_email_templates('default_ZCT.txt',
             "default Zip Collection template not available! %NodeName% configure this!")
 
+        appdata_dict = opportunistic_appdata_init()
+        # here is ok!
+
         # Initialize the node + notification table
-        deferred.addCallback(initialize_node, only_node, templates)
+        deferred.addCallback(initialize_node, only_node, templates, appdata_dict)
 
     return deferred
 
