@@ -14,7 +14,7 @@ from twisted.internet.defer import inlineCallbacks
 from Crypto import Random
 from storm.twisted.testing import FakeThreadPool
 
-from globaleaks.settings import GLSetting, transact, sample_context_fields
+from globaleaks.settings import GLSetting, transact
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db, models, security
@@ -305,7 +305,7 @@ class MockDict():
             'name': u'Already localized name',
             'description': u'Already localized desc',
             # fields, usually filled in content by fill_random_fields
-            'fields': list(sample_context_fields),
+            'fields': [],
             'selectable_receiver': False,
             'select_all_receivers': True,
             'tip_max_access': 10,

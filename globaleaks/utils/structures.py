@@ -43,6 +43,52 @@ class Fields:
         context_storm_object.localized_fields = self._localization
         context_storm_object.unique_fields = self._fields
 
+
+    def default_fields(self, appdata_fields):
+        """
+        @param appdata_fields: the content of the ApplicationData.fields
+        @return:
+        """
+        from uuid import uuid4
+        assert appdata_fields.count() > 1, "ApplicationData not initialized"
+
+        # first, get the amount of translated languages
+        langlist = []
+        for block in appdata_fields:
+
+            for langcode, in block['localized_name'].iteritems():
+                self._localization[langcode] = dict()
+                langlist.append(langcode)
+
+            break
+
+        for original_order, block in enumerate(appdata_fields):
+
+            key = unicode(uuid4())
+            self._fields[key] = {
+                'required': False,
+                'incremental_number' : block['incremental_number'],
+                'presentation_order' : original_order,
+                'trigger' : block['trigger'],
+                'value': block['value'],
+                'preview': False,
+                'type': block['type']
+            }
+
+            for lang in langlist:
+                print block['localized_name']
+                self._localization[lang][key].update({'name' : block['localized_name'][lang]})
+                self._localization[lang][key].update({'hint' : block['localized_hint']})
+
+#                    { "order":1, "value":"a", "localized_name":
+#                        {"en":"chief","it":"capo"}},
+#                    { "order":2, "value":"b", "localized_name":
+#                        {"en":"slave","it":"schiavo"}},
+#                    { "order":3, "value":"c", "localized_name":
+#                        {"en":"consultant","it":"consulente"}}
+
+        self.debug_status('after update')
+
     def update_fields(self, language, admin_data):
         """
         update_fields imply create_fields
