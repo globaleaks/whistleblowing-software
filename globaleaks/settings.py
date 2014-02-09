@@ -39,39 +39,6 @@ verbosity_dict = {
     'CRITICAL': logging.CRITICAL
 }
 
-sample_context_fields = [
-        {
-            'name': u'Short title', 
-            'hint': u"Describe your Tip with a short title",
-            'presentation_order': 1,
-            'key': unicode(uuid.uuid4()),
-            'required': True,
-            'preview': True,
-            'type': u'text',
-            'value': u''
-        },
-        {
-            'name': u'Full description',
-            'hint': u'Describe the details of your Submission',
-            'key': unicode(uuid.uuid4()),
-            'presentation_order': 2,
-            'required': True,
-            'preview': True,
-            'type': u'text',
-            'value': u''
-        },
-        {   
-            'name': u'Files description',
-            'hint': u"Describe the submitted files",
-            'key': unicode(uuid.uuid4()),
-            'presentation_order': 3,
-            'required': False,
-            'preview': False,
-            'type': u'text',
-            'value': u'' 
-        },
-]
-
 external_counted_events = {
     'new_submission' : 0,
     'finalized_submission': 0,

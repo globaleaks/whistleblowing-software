@@ -14,7 +14,7 @@ from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import errors, requests
-from globaleaks.models import Receiver, Context, Node, Notification, User
+from globaleaks.models import Receiver, Context, Node, Notification, User, ApplicationData
 from globaleaks import security, models
 from globaleaks.utils import utility, structures
 from globaleaks.utils.utility import log
@@ -312,16 +312,18 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
 
     context = Context(request)
 
-    if not request['fields']:
-        # When a new context is created, if no fields has been assigned assigns defaults
-        admin_data_fields = [] # ! vecna can you load localized defaults
-    else:
-        admin_data_fields = request['fields']
-
     try:
         fo = structures.Fields(context.localized_fields, context.unique_fields)
-        fo.update_fields(language, admin_data_fields)
+        # When a new context is created, if no fields has been assigned assigns defaults
+
+        if not request['fields']:
+            appdata = store.find(ApplicationData)
+            fo.default_fields(appdata)
+        else:
+            fo.update_fields(language, request['fields'])
+
         fo.context_import(context)
+
     except Exception as excep:
         log.err("Unable to create fields: %s" % excep)
         raise excep
