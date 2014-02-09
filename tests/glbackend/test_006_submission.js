@@ -17,6 +17,7 @@ var receivers_gus = new Array();
 var contexts = new Array();
 var contexts_gus = new Array();
 var submissions = new Array();
+var files = new Array();
 var wb_receipts  = new Array();
 
 var validate_mandatory_headers = function(headers) {
@@ -126,13 +127,16 @@ describe('POST /submission', function(){
     (function (i) {
       it('responds with ', function(done){
 
-        var new_submission = {
-          context_gus: contexts_gus[i],
-          files: [],
-          finalize: false,
-          receivers: [],
-          wb_fields: {}
-        }
+        var new_submission = { }
+
+        contexts[i].fields.forEach(function (field) {
+          new_submission.wb_fields[field.key]  = "primo";
+        })
+
+        new_submission.context_gus = contexts_gus[i];
+        new_submission.files = [];
+        new_submission.finalize = false;
+        new_submission.receivers = [];
 
         app
           .post('/submission')
@@ -156,6 +160,41 @@ describe('POST /submission', function(){
 
       })
     })(i);
+
+    (function (i) {
+      it('responds with ', function(done){
+
+        var new_file = {
+	    name: "afilename.txt",
+	    description: "a description haha",
+	    size: 20,
+	    content_type: "09876543211234567890",
+	    date: "somethingignored?"
+	}
+
+        app
+          .post('/submission/' + submissions[i].id + '/file')
+          .send(new_file)
+          .set('X-XSRF-TOKEN', 'antani')
+          .set('cookie', 'XSRF-TOKEN=antani')
+          .expect('Content-Type', 'application/json')
+          .expect(201)
+          .end(function(err, res) {
+            if (err) {
+              return done(err);
+            } else {
+
+              validate_mandatory_headers(res.headers);
+
+              files.push(res.body);
+
+              done();
+            }
+          });
+
+      })
+    })(i);
+
   }
 })
 

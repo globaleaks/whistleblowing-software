@@ -16,6 +16,7 @@ var receivers = new Array();
 var receivers_gus = new Array();
 var contexts = new Array();
 var contexts_gus = new Array();
+var contexts_list = new Array();
 
 var authentication;
 
@@ -27,10 +28,10 @@ var valid_admin_login = {
 
 var receiver = {
   can_delete_submission: false,
-  comment_notification: true,
+  comment_notification: false,
   contexts: [],
   description: "",
-  file_notification: true,
+  file_notification: false,
   gpg_enable_files: false,
   gpg_enable_notification: false,
   gpg_key_armor: "",
@@ -39,14 +40,14 @@ var receiver = {
   gpg_key_remove: false,
   gpg_key_status: "ignored",
   mail_address: "receiver1@antani.gov", // used 'Receiver N' for population
-  message_notification: true,
+  message_notification: false,
   name: "receiver1@antani.gov", // used 'receiverN@antani.gov' for population
   password: "receiver1@antani.gov", // used 'receiverN@antani.gov' for population
-  postpone_superpower: false,
+  postpone_superpower: true,
   presentation_order: 0,
   receiver_level: 1,
   tags: [],
-  tip_notification: true,
+  tip_notification: false,
 }
 
 var context = {
@@ -56,11 +57,11 @@ var context = {
   "delete_consensus_percentage":0,
   "require_pgp":false,
   "receipt_regexp":"[0-9]{10}",
-  "tip_timetolive":15,
+  "tip_timetolive":15, 
   "escalation_threshold":0,
   "can_delete_submission":false,
   "show_small_cards":false,
-  "submission_timetolive":48,
+  "submission_timetolive":1, 
   "file_max_download":3,
   "select_all_receivers":true,
   "description":"",
@@ -292,6 +293,31 @@ for (var i=0; i<population_order/2; i++) {
           contexts.push(res.body);
 
           contexts_gus.push(res.body.context_gus);
+
+          done();
+        });
+    })
+  })
+}
+
+for (var i=0; i<population_order/2; i++) {
+  describe('GET /admin/contexts', function () {
+
+    it('responds 200 on GET /admin/contexts (authenticated)', function (done) {
+      app
+        .post('/admin/context')
+        .send(newObject)
+        .set('X-XSRF-TOKEN', 'antani')
+        .set('cookie', 'XSRF-TOKEN=antani')
+        .set('X-Session', authentication['session_id'])
+        .expect(200)
+        .end(function (err, res) {
+          if (err) {
+            return done(err);
+          }
+          validate_mandatory_headers(res.headers);
+
+          contexts_list.push(res.body);
 
           done();
         });
