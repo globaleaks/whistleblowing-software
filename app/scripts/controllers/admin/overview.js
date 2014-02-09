@@ -4,3 +4,9 @@ GLClient.controller('OverviewCtrl', ['$scope', 'ReceiverOverview', 'TipOverview'
       $scope.tips = TipOverview.query();
       $scope.files = FileOverview.query();
 }]);
+
+GLClient.controller('StatisticsCtrl', ['$scope', 'StatsCollection', 'AnomaliesCollection',
+    function($scope, StatsCollection, AnomaliesCollection) {
+        $scope.anomalies = AnomaliesCollection.query();
+        $scope.stats = StatsCollection.query();
+}]);

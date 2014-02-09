@@ -5,7 +5,7 @@ GLClient.controller('AdminContextsCtrl',
   DefaultFields.get(function(fields) {
 
     $scope.fields = fields;
-    console.log($scope.fields);
+    // console.log($scope.fields);
 
   });
 
