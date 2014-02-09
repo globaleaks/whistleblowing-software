@@ -111,7 +111,6 @@ class GLHTTPServer(HTTPConnection):
             # if content_length < 100000 and self._request.headers.get("Content-Disposition") is None:
             #    self._contentbuffer = StringIO('')
             #else:
-            print GLSetting.ramdisk_path
             self._contentbuffer = GLSecureTemporaryFile(GLSetting.tmp_upload_path, GLSetting.ramdisk_path)
 
             if headers.get("Expect") == "100-continue":
