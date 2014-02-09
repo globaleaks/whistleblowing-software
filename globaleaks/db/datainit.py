@@ -2,6 +2,7 @@
 #   GLBackend Database
 #   ******************
 from __future__ import with_statement
+import os
 
 from globaleaks.rest import errors
 from globaleaks.settings import transact, transact_ro, GLSetting
@@ -9,11 +10,38 @@ from globaleaks import models
 from globaleaks.security import get_salt, hash_password
 from globaleaks.utils.utility import datetime_now, datetime_null, acquire_url_address
 from globaleaks.third_party import rstr
-from globaleaks.models import Node
+from globaleaks.models import Node, ApplicationData
+
+
+def opportunistic_appdata_init():
+    """
+    This function work well in the development environment, when
+    ApplicationData can be configured just reading from the GLC the latest source
+    """
+
+    # Fields and applicative data initialization
+
+    fields_l10n = [ "../GLClient/app/data/fields_l10n.json",
+                    "../../GLClient/app/data/fields_l10n.json" ]
+
+    for f710n in fields_l10n:
+        if os.path.exists(f710n):
+            appdata_dict = None
+            with file(f710n, 'r') as f:
+                import json
+
+                json_string = f.read()
+                appdata_dict = json.loads(json_string)
+
+            break
+        else:
+            appdata_dict = None
+
+    return appdata_dict
 
 
 @transact
-def initialize_node(store, results, only_node, templates):
+def initialize_node(store, results, only_node, templates, appdata):
     """
     TODO refactor with languages the email_template, develop a dedicated
     function outside the node, and inquire fucking YHWH about the
@@ -104,6 +132,18 @@ def initialize_node(store, results, only_node, templates):
 
     store.add(notification)
 
+    if appdata:
+        print "Development environment detected: Installing ApplicationData from file"
+
+        new_appdata = ApplicationData()
+        new_appdata.fields = appdata['fields']
+        new_appdata.fields_version = appdata['version']
+
+        store.add(new_appdata)
+    else:
+        print "Not Development environment: waiting for Wizard setup ApplicationData"
+
+
 
 @transact_ro
 def import_memory_variables(store):
@@ -126,7 +166,8 @@ def import_memory_variables(store):
         GLSetting.memory_copy.exception_email = node.exception_email
         GLSetting.memory_copy.default_language = node.default_language
 
-        # Email settings are copyed because they are used when
+        # Email settings are copyed because they are used when an exception raises
+        # and we can't go to check in the DB, because that's shall be exception source
         notif = store.find(models.Notification).one()
 
         GLSetting.memory_copy.notif_server = notif.server
