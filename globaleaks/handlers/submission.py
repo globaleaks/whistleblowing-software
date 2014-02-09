@@ -327,8 +327,8 @@ class SubmissionCreate(BaseHandler):
     """
 
     @transport_security_check('wb')
-    @anomaly_check('new_submission')
     @unauthenticated
+    @anomaly_check('new_submission')
     @inlineCallbacks
     def post(self, *uriargs):
         """
@@ -387,8 +387,8 @@ class SubmissionInstance(BaseHandler):
         self.finish(submission)
 
     @transport_security_check('wb')
-    @anomaly_check('finalized_submission')
     @unauthenticated
+    @anomaly_check('finalized_submission')
     @inlineCallbacks
     def put(self, submission_gus, *uriargs):
         """
