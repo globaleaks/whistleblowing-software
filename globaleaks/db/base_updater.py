@@ -14,34 +14,61 @@ from globaleaks import DATABASE_VERSION
 
 # This code is take directly from the GlobaLeaks-pre-model-refactor
 
-def variableToSQLite(var_type):
+def variableToSQL(var_type, db_type):
     """
     We take as input a storm.variable and we output the SQLite string it
     represents.
     """
-    sqlite_type = "VARCHAR"
+    sqlite_type = {
+        "sqlite": "VARCHAR",
+        "mysql": "BLOB",
+    }
     if isinstance(var_type, BoolVariable):
-        sqlite_type = "INTEGER"
+        sqlite_type = {
+            "sqlite": "INTEGER",
+            "mysql": "TINYINT(1)",
+        }
     elif isinstance(var_type, DateTimeVariable):
-        pass
+        sqlite_type = {
+            "sqlite": "VARCHAR",
+            "mysql": "DATETIME",
+        }
     elif isinstance(var_type, EnumVariable):
-        sqlite_type = "BLOB"
+        sqlite_type = {
+            "sqlite": "BLOB",
+            "mysql": "BLOB",
+        }
     elif isinstance(var_type, IntVariable):
-        sqlite_type = "INTEGER"
+        sqlite_type = {
+            "sqlite": "INTEGER",
+            "mysql": "INT"
+        }
     elif isinstance(var_type, RawStrVariable):
-        sqlite_type = "BLOB"
+        sqlite_type = {
+            "sqlite": "BLOB",
+            "mysql": "BLOB",
+        }
     elif isinstance(var_type, UnicodeVariable):
-        pass
+        sqlite_type = {
+            "sqlite": "VARCHAR",
+            "mysql": "VARCHAR",
+        }
     elif isinstance(var_type, JSONVariable):
-        sqlite_type = "BLOB"
+        sqlite_type = {
+            "sqlite": "BLOB",
+            "mysql": "BLOB"
+        }
     elif isinstance(var_type, PickleVariable):
-        sqlite_type = "BLOB"
+        sqlite_type = {
+            "sqlite": "BLOB",
+            "mysql": "BLOB"
+        }
     else:
         raise AssertionError("Invalid var_type: %s" % var_type)
 
-    return "%s" % sqlite_type
+    return "%s" % sqlite_type[db_type]
 
-def varsToParametersSQLite(variables, primary_keys):
+def varsToParametersSQL(variables, primary_keys, db_type):
     """
     Takes as input a list of variables (convered to SQLite syntax and in the
     form of strings) and primary_keys.
@@ -85,13 +112,13 @@ def generateCreateQuery(model):
         a = getattr(model, attr)
         if isinstance(a, PropertyColumn):
             var_stype = a.variable_factory()
-            var_type = variableToSQLite(var_stype)
+            var_type = variableToSQL(var_stype, GLSetting.db_type)
             name = a.name
             variables.append((name, var_type))
             if a.primary:
                 primary_keys.append(name)
 
-    query += varsToParametersSQLite(variables, primary_keys)
+    query += varsToParametersSQL(variables, primary_keys, GLSetting.db_type)
     return query
 
 

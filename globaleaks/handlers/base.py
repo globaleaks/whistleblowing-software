@@ -678,13 +678,13 @@ def anomaly_check(element):
     def wrapper(method_handler):
         def call_handler(cls, *args, **kw):
             if GLSetting.anomalies_counter[element] > alarm_level[element]:
-                if element == 'new_submission'
+                if element == 'new_submission':
                     raise errors.SubmissionFlood(30)
-                elif element == 'finalized_submission'
+                elif element == 'finalized_submission':
                     raise errors.SubmissionFlood(30)
-                elif element == 'anon_requests'
+                elif element == 'anon_requests':
                     raise errors.FloodException(30)
-                elif element == 'file_upload'
+                elif element == 'file_upload':
                     raise errors.FileUploadFlood(30)
                 else:
                     raise errors.FloodException(30)
