@@ -1,6 +1,6 @@
-HOST: https://ymasaptkeux3qgbc.tor2web.org
+HOST: http://demo.globaleaks.org
 
---- GlobaLeaks v0.2 API ---
+--- GlobaLeaks v2.52 API ---
 ---
 Welcome to the our sample API documentation. All comments can be written in (support [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax)
 ---
@@ -14,14 +14,14 @@ GET /node
 < 200
 < Content-Type: application/json
 {
-   "description":"GlobaLeaks node for testing my dissertation project.",
-   "maximum_namesize":128,
+   "configured":true,
    "name":"NewcastleLeaks",
-   "tor2web_admin":false,
-   "tor2web_unauth":true,
-   "maximum_filesize":31457280,
+   "subtitle":"Hi! I'm the subtitle \u00f0 <: changeme",
+   "presentation": "Welcome to GlobaLeaks\u2122",
+   "description":"GlobaLeaks node for testing my dissertation project.",
+   "footer": "Copyright 2011-2014 Hermes Center for Transparency and Digital Human Rights",
    "email":"lorenzo@primiterra.it",
-   "languages":[
+   "languages_supported":[
       {
          "code":"it",
          "name":"Italiano"
@@ -31,14 +31,20 @@ GET /node
          "name":"English"
       }
    ],
+   "languages_enabled": ["en", "it"],
+   "tor2web_admin":false,
+   "tor2web_unauth":true,
    "tor2web_receiver":false,
    "tor2web_submission":false,
-   "tor2web_tip":false,
+   "maximum_namesize":128,
+   "maximum_descsize":1024,
+   "maximum_textsize":4096,
+   "maximum_filesize":31457280,
+   "hidden_service":"http://ymasaptkeux3qgbc.onion"
    "public_site":"https://ymasaptkeux3qgbc.tor2web.blutmagie.de",
-   "maximum_textsize":2048,
-   "configured":true,
-   "hidden_service":"http://ymasaptkeux3qgbc.onion",
-   "maximum_descsize":1024
+   "postpone_superpower":false,
+   "can_delete_submission": false,
+   "ahmia": false,
 }
 
 Returns an array with  all the contexts of the GlobaLeaks node. Every object includes submission fields and a list of receiver gus.
@@ -61,7 +67,8 @@ GET /contexts
             "hint":"Describe your tip-off with a line/title",
             "required":true,
             "value":"",
-            "type":"text"
+            "type":"text",
+            "key": "b0c7f947-ec3e-4957-b08f-9a61fa07e128"
          },
          {
             "name":"Full description",
@@ -69,7 +76,8 @@ GET /contexts
             "hint":"Describe the details of your tip-off",
             "required":true,
             "value":"",
-            "type":"text"
+            "type":"text",
+            "key": "9151a5c0-7766-4f32-a2d2-3379dc580bb8"
          },
          {
             "name":"Files description",
@@ -77,17 +85,21 @@ GET /contexts
             "hint":"Describe the submitted files",
             "required":false,
             "value":"",
-            "type":"text"
+            "type":"text",
+            "key": "a7646ab2-06c9-444f-a703-0731ab3e541f"
          }
       ],
       "selectable_receiver":true,
+      "select_all_receiver": true,
       "context_gus":"d1c364a2-65ed-4794-9664-7edb9858e0e6",
       "tip_timetolive":1296000,
+      "tip_max_access":42,
+      "file_max_download":42,
+      "file_required":false,
+       maximum_selectable_receivers": 0,
+      "show_small_cards": false,
       "escalation_threshold":null,
       "submission_introduction":"Here you can submit your tip-off and the files",
-      "file_max_download":42,
-      "tip_max_access":42,
-      "file_required":false,
       "submission_disclaimer":"Thank you for your contribution, your submission is complete"
    }
 ]
@@ -100,13 +112,13 @@ GET /receivers
    {
       "update_date":"Never",
       "description":"",
+      "presentation_order": 0,
       "tags":[
       ],
       "contexts":[
          "70b70b4a-a3dd-4e9a-b907-06a6ffbe391e",
          "d1c364a2-65ed-4794-9664-7edb9858e0e6"
       ],
-      "can_delete_submission":true,
       "creation_date":"2013-06-17T14:59:36.438000",
       "receiver_level":1,
       "receiver_gus":"63793685-b9a0-4ead-812d-4af62800017c",
@@ -115,12 +127,12 @@ GET /receivers
    {
       "update_date":"Never",
       "description":"",
+      "presentation_order": 1,
       "tags":[
       ],
       "contexts":[
          "d1c364a2-65ed-4794-9664-7edb9858e0e6"
       ],
-      "can_delete_submission":true,
       "creation_date":"2013-06-17T15:13:46.887787",
       "receiver_level":1,
       "receiver_gus":"24602346-eb5e-4c49-bef3-0769790717f4",
@@ -240,10 +252,18 @@ Used to login and retrieve a tip
 Returns a session token to access the specified submission, which id was passed inside of the request password headers. And a user_id that will be used as receipt_id.
 POST /authentication
 > Content-Type: application/json
-{"username":"wb","password":"5864037396","role":"wb"}
+{
+    "username":"wb"
+    "password":"5864037396",
+    "role":"wb"
+}
 < 201
 < Content-Type: application/json
-{"user_id": "91a0e7c9-e704-47fb-8198-84ed707be19e", "session_id": "LqK8tfPKdKQF8LT8KlHBivVn9GuMTV0e66UyZmqm6y"}
+{
+    "user_id": "91a0e7c9-e704-47fb-8198-84ed707be19e",
+    "session_id": "LqK8tfPKdKQF8LT8KlHBivVn9GuMTV0e66UyZmqm6y",
+    "session_expiration": 1390861521
+}
 
 Allows the application to refresh an authenticated session. Returns the session token if still valid. 
 GET /authentication
