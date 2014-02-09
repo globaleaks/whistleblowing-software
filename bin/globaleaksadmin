@@ -108,6 +108,9 @@ def do_safexport(dbfile, export_print):
         funny_print("WhistleblowerTips", "%s" % wbtips.count())
         funny_print("ReceiverContext", "%s" % ctxrcvr.count())
         funny_print("InternalTipReceiver", "%s" % tiprcvr.count())
+        funny_print("Notification", "%s" % notification.count())
+        funny_print("ApplicationData", "%s" % appdata.count())
+        funny_print("Node", "%s" % node.count())
         return
 
     # export

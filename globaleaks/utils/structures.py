@@ -28,6 +28,7 @@ class Fields:
 
         self._localization = localization if localization else {}
         self._fields = fields if fields else {}
+        self._langcodes = []
         self.debug_status('__init__')
 
     def context_import(self, context_storm_object):
@@ -50,15 +51,15 @@ class Fields:
         @return:
         """
         from uuid import uuid4
-        assert appdata_fields.count() > 1, "ApplicationData not initialized"
+        assert len(appdata_fields) > 1, "ApplicationData not initialized"
 
         # first, get the amount of translated languages
-        langlist = []
         for block in appdata_fields:
 
-            for langcode, in block['localized_name'].iteritems():
+            # this is just to init variable, we don't collect text here.
+            for langcode, transtring in block['localized_name'].iteritems():
                 self._localization[langcode] = dict()
-                langlist.append(langcode)
+                self._langcodes.append(langcode)
 
             break
 
@@ -70,15 +71,18 @@ class Fields:
                 'incremental_number' : block['incremental_number'],
                 'presentation_order' : original_order,
                 'trigger' : block['trigger'],
-                'value': block['value'],
                 'preview': False,
                 'type': block['type']
             }
 
-            for lang in langlist:
-                print block['localized_name']
-                self._localization[lang][key].update({'name' : block['localized_name'][lang]})
-                self._localization[lang][key].update({'hint' : block['localized_hint']})
+            for lang in self._langcodes:
+                if not self._localization[lang].has_key(key):
+                    self._localization[lang].update({ key : {
+
+                        'name' : block['localized_name'][lang],
+                        'hint' : block['localized_hint'][lang]
+                        }
+                    })
 
 #                    { "order":1, "value":"a", "localized_name":
 #                        {"en":"chief","it":"capo"}},
@@ -232,11 +236,26 @@ class Fields:
             log.err("Submission has a required field (%s) missing" % required)
             raise SubmissionFailFields("Missing field '%s': Required" % required)
 
+    def extensive_dump(self):
+
+        localization_l = {}
+        fiels_l = []
+
+        for k, v in self._fields.iteritems():
+
+            fiels_l.append(dict(v))
+
+            for lang in self._langcodes:
+                localization_l.update({lang: dict(self._localization[lang][k])})
+
+        return fiels_l, localization_l
+
+
+
     def dump_fields(self, language):
 
         default_language = GLSetting.memory_copy.default_language
         ordered_field_list = {}
-        presentation_fallback = 0
 
         for k, v in self._fields.iteritems():
 
