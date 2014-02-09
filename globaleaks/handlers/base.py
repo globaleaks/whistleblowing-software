@@ -17,6 +17,7 @@ import os
 from io import BytesIO as StringIO
 from tempfile import TemporaryFile
 from uuid import uuid4
+from Crypto.Hash import SHA256
 
 from twisted.python import components
 from twisted.python.failure import Failure
@@ -31,8 +32,10 @@ from globaleaks.utils.utility import log, sanitize_str
 from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
+from globaleaks.security import GLSecureTemporaryFile, GLSecureFile
 
 content_disposition_re = re.compile(r"attachment; filename=\"(.+)\"", re.IGNORECASE)
+
 
 def validate_host(host_key):
     """
@@ -57,6 +60,7 @@ def validate_host(host_key):
 
     return False
 
+
 class GLHTTPServer(HTTPConnection):
     file_upload = False
     uploaded_file = {}
@@ -68,6 +72,7 @@ class GLHTTPServer(HTTPConnection):
         else:
             rest = ''
 
+        self._contentbuffer_sha.update(data)
         self._contentbuffer.write(data)
         if self.content_length == 0:
             self._contentbuffer.seek(0, 0)
@@ -91,7 +96,7 @@ class GLHTTPServer(HTTPConnection):
                 raise _BadRequestException("Malformed HTTP request line")
             if not version.startswith("HTTP/"):
                 raise _BadRequestException(
-                        "Malformed HTTP version in HTTP Request-Line")
+                    "Malformed HTTP version in HTTP Request-Line")
             headers = httputil.HTTPHeaders.parse(data[eol:])
             self._request = HTTPRequest(
                 connection=self, method=method, uri=uri, version=version,
@@ -100,10 +105,13 @@ class GLHTTPServer(HTTPConnection):
             content_length = int(headers.get("Content-Length", 0))
             self.content_length = content_length
 
-            if content_length < 100000:
-                self._contentbuffer = StringIO('')
-            else:
-                self._contentbuffer = TemporaryFile()
+            # we always use secure temporary files in case of large jsons or file uploads
+            self._contentbuffer_sha = SHA256.new()
+            # if content_length < 100000 and self._request.headers.get("Content-Disposition") is None:
+            #    self._contentbuffer = StringIO('')
+            #else:
+            print GLSetting.ramdisk_path
+            self._contentbuffer = GLSecureTemporaryFile(GLSetting.tmp_upload_path, GLSetting.ramdisk_path)
 
             if headers.get("Expect") == "100-continue":
                 self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
@@ -115,24 +123,28 @@ class GLHTTPServer(HTTPConnection):
                     raise Exception
                 self.file_upload = True
                 self.uploaded_file['filename'] = m.group(1)
-                self.uploaded_file['content_type'] =  self._request.headers.get("Content-Type", 'application/octet-stream')
+                self.uploaded_file['content_type'] = self._request.headers.get("Content-Type",
+                                                                               'application/octet-stream')
+
                 self.uploaded_file['body'] = self._contentbuffer
                 self.uploaded_file['body_len'] = int(content_length)
+                self.uploaded_file['body_sha'] = self._contentbuffer_sha.hexdigest()
+                self.uploaded_file['body_filepath'] = self._contentbuffer.filepath
+                self.uploaded_file['body_keypath'] = self._contentbuffer.keypath
 
             megabytes = int(content_length) / (1024 * 1024)
 
             if self.file_upload:
-               limit_type = "upload"
-               limit = GLSetting.memory_copy.maximum_filesize
+                limit_type = "upload"
+                limit = GLSetting.memory_copy.maximum_filesize
             else:
-               limit_type = "json"
-               limit = 1000000 # 1MB fixme: add GLSetting.memory_copy.maximum_jsonsize
-                                    # is 1MB probably too high. probably this variable must be
-                                    # in kB
+                limit_type = "json"
+                limit = 1000000 # 1MB fixme: add GLSetting.memory_copy.maximum_jsonsize
+                # is 1MB probably too high. probably this variable must be
+                # in kB
 
             # less than 1 megabytes is always accepted
             if megabytes > limit:
-
                 log.err("Tried %s request larger than expected (%dMb > %dMb)" %
                         (limit_type,
                          megabytes,
@@ -364,6 +376,7 @@ class BaseHandler(RequestHandler):
         pass
 
     requestTypes = {}
+
     def prepare(self):
         """
         This method is called by cyclone, and is implemented to
@@ -388,7 +401,7 @@ class BaseHandler(RequestHandler):
             try:
                 content = (">" * 15)
                 content += (" Request %d " % GLSetting.http_log_counter)
-                content += (">" * 15) + "\n\n" 
+                content += (">" * 15) + "\n\n"
 
                 content += self.request.method + " " + self.request.full_url() + "\n\n"
 
@@ -454,7 +467,7 @@ class BaseHandler(RequestHandler):
         """
         Record in the verbose log the content as defined by Cyclone wrappers.
         """
-        content = sanitize_str(content)        
+        content = sanitize_str(content)
 
         try:
             with open(GLSetting.httplogfile, 'a+') as fd:
@@ -467,11 +480,11 @@ class BaseHandler(RequestHandler):
         if exception and hasattr(exception, 'error_code'):
 
             error_dict = {}
-            error_dict.update({'error_message': exception.reason, 'error_code' : exception.error_code })
+            error_dict.update({'error_message': exception.reason, 'error_code': exception.error_code})
             if hasattr(exception, 'arguments'):
-                error_dict.update({'arguments': exception.arguments })
+                error_dict.update({'arguments': exception.arguments})
             else:
-                error_dict.update({'arguments': [] })
+                error_dict.update({'arguments': []})
 
             self.set_status(status_code)
             self.finish(error_dict)
@@ -528,7 +541,7 @@ class BaseHandler(RequestHandler):
             e = e.value
         else:
             exc_type, exc_value, exc_tb = sys.exc_info()
- 
+
         if isinstance(e, (HTTPError, HTTPAuthenticationRequired)):
             if GLSetting.http_log and e.log_message:
                 format = "%d %s: " + e.log_message
@@ -541,14 +554,14 @@ class BaseHandler(RequestHandler):
             else:
                 return self.send_error(e.status_code, exception=e)
         else:
-            log.err("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb) )
+            log.err("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb))
             if GLSetting.http_log:
                 log.msg(e)
             mail_exception(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
 
     def get_uploaded_file(self):
-	uploaded_file = self.request.body
+        uploaded_file = self.request.body
 
         if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 4:
             raise errors.InvalidInputFormat("Expected a dict of four keys in uploaded file")
@@ -558,7 +571,8 @@ class BaseHandler(RequestHandler):
                 raise errors.InvalidInputFormat(
                     "Invalid JSON key in uploaded file (%s)" % filekey)
 
-	return uploaded_file
+        return uploaded_file
+
 
 class BaseStaticFileHandler(BaseHandler, StaticFileHandler):
     def prepare(self):
@@ -572,7 +586,7 @@ class BaseStaticFileHandler(BaseHandler, StaticFileHandler):
             raise errors.InvalidHostSpecified
 
     def get_uploaded_file(self):
-	uploaded_file = self.request.body
+        uploaded_file = self.request.body
 
         if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 4:
             raise errors.InvalidInputFormat("Expected a dict of four keys in uploaded file")
@@ -582,7 +596,7 @@ class BaseStaticFileHandler(BaseHandler, StaticFileHandler):
                 raise errors.InvalidInputFormat(
                     "Invalid JSON key in uploaded file (%s)" % filekey)
 
-	return uploaded_file
+        return uploaded_file
 
 
 class BaseRedirectHandler(BaseHandler, RedirectHandler):
@@ -600,7 +614,7 @@ class _DownloadToken(components.Componentized):
     Inspired to twisted.web.server.Session
     """
     tokenTimeout = 600
-    
+
     _expireCall = None
 
     def expire(self):
@@ -616,8 +630,8 @@ class _DownloadToken(components.Componentized):
             # Break reference cycle.
             self._expireCall = None
 
-class CollectionToken(_DownloadToken):
 
+class CollectionToken(_DownloadToken):
     def __init__(self, id_val):
         """
         CollectionToken contain the temporary token to download a compressed archive
@@ -645,7 +659,6 @@ class CollectionToken(_DownloadToken):
 
 
 class FileToken(_DownloadToken):
-
     def __init__(self, id_val):
         """
         FileToken contain the temporary token to download a single File

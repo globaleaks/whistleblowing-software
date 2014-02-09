@@ -135,7 +135,7 @@ class GLSettingsClass:
         self.working_path = '/var/globaleaks'
         self.static_source = '/usr/share/globaleaks/glbackend'
         self.glclient_path = '/usr/share/globaleaks/glclient'
-        self.ramdisk_path = None
+        self.ramdisk_path = '/dev/shm/globaleaks'
         self.eval_paths()
 
         # list of plugins available in the software
@@ -270,6 +270,7 @@ class GLSettingsClass:
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
+        self.tmp_upload_path = os.path.abspath(os.path.join(self.glfiles_path, 'tmp_upload'))
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
         self.static_path_l10n = os.path.abspath(os.path.join(self.static_path, 'l10n'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
@@ -508,8 +509,10 @@ class GLSettingsClass:
         create_directory(self.static_path)
         create_directory(self.static_path_l10n)
         create_directory(self.submission_path)
+        create_directory(self.tmp_upload_path)
         create_directory(self.log_path)
         create_directory(self.torhs_path)
+        create_directory(self.ramdisk_path)
 
         logo_path = os.path.join(self.static_path, "%s.png" % GLSetting.reserved_names.logo)
         # Missing default logo: is supposed we're initializing a new globaleaks directory

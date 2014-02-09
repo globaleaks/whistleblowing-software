@@ -15,6 +15,7 @@ from globaleaks.handlers.base import CollectionToken, FileToken
 from globaleaks.handlers.admin import create_context, update_context, create_receiver, get_receiver_list
 from globaleaks.rest import errors
 from globaleaks.models import InternalTip
+from globaleaks.security import GLSecureTemporaryFile
 
 from io import BytesIO as StringIO
 
@@ -37,19 +38,34 @@ class TestSubmission(helpers.TestGL):
         filename = ''.join(unichr(x) for x in range(0x400, 0x4FF))
         body = ''.join(unichr(x) for x in range(0x370, 0x3FF))
 
-        self.dummyFile1 = {}
-        self.dummyFile1['body'] = StringIO()
-        self.dummyFile1['body'].write(body[0:GLSetting.defaults.maximum_textsize].encode('utf-8'))
-        self.dummyFile1['body_len'] = len(self.dummyFile1['body'].getvalue())
-        self.dummyFile1['content_type'] = 'application/octect'
-        self.dummyFile1['filename'] = 'aaaaaa'
 
-        self.dummyFile2 = {}
-        self.dummyFile2['body'] = StringIO()
-        self.dummyFile2['body'].write(str('aaaaba'))
-        self.dummyFile2['body_len'] = len(self.dummyFile2['body'].getvalue())
-        self.dummyFile2['content_type'] = 'application/octect'
-        self.dummyFile2['filename'] = filename[0:GLSetting.defaults.maximum_namesize]
+        temporary_file1 = GLSecureTemporaryFile('files/submission', 'ramdisk')
+        temporary_file1.write("ANTANI")
+        temporary_file1.avoid_delete()
+
+        temporary_file2 = GLSecureTemporaryFile('files/submission', 'ramdisk')
+        temporary_file2.write("ANTANIANTANIANTANI")
+        temporary_file2.avoid_delete()
+
+        self.dummyFile1 = {
+            'body': temporary_file1,
+            'body_len': len("ANTANI"),
+            'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
+            'body_filepath': temporary_file1.filepath,
+            'body_keypath': temporary_file1.keypath,
+            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
+            'content_type': 'application/octect',
+        }
+
+        self.dummyFile2 = {
+            'body': temporary_file2,
+            'body_len': len("ANTANIANTANIANTANI"),
+            'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
+            'body_filepath': temporary_file2.filepath,
+            'body_keypath': temporary_file2.keypath,
+            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
+            'content_type': 'application/octect',
+        }
 
         return self._setUp()
 
@@ -92,22 +108,15 @@ class TestSubmission(helpers.TestGL):
     @inlineCallbacks
     def emulate_file_upload(self, associated_submission_id):
 
-        (relationship1, cksum1, size1) = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
-        self.assertEqual(size1, self.dummyFile1['body_len'])
+        relationship1 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
         self.registered_file1 = yield files.register_file_db(
-            self.dummyFile1, relationship1, cksum1, associated_submission_id,
+            self.dummyFile1, relationship1, self.dummyFile1['body_sha'], associated_submission_id,
         )
 
-        (relationship2, cksum2, size2) = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
-        self.assertEqual(size2, self.dummyFile2['body_len'])
+        relationship2 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
         self.registered_file2 = yield files.register_file_db(
-            self.dummyFile2, relationship2, cksum2, associated_submission_id,
+            self.dummyFile2, relationship2, self.dummyFile2['body_sha'], associated_submission_id,
             )
-
-        # well... why not ? :
-        self.assertNotEqual(size1, self.dummyFile2['body_len'])
-
-
 
     @inlineCallbacks
     def test_create_internalfiles(self):
