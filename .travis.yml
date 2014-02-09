@@ -4,8 +4,8 @@ services:
 python:
   - "2.7"
 install:
-  - curl -s https://raw2.github.com/globaleaks/GlobaLeaks/master/scripts/travis/install.sh | sh
+  - curl -s https://raw.github.com/globaleaks/GlobaLeaks/master/scripts/travis/install.sh | sh
 before_script:
-  - curl -s https://raw2.github.com/globaleaks/GlobaLeaks/master/scripts/travis/before_script.sh | sh
+  - curl -s https://raw.github.com/globaleaks/GlobaLeaks/master/scripts/travis/before_script.sh | sh
 script:
-  - curl -s https://raw2.github.com/globaleaks/GlobaLeaks/master/scripts/travis/script.sh | sh
+  - curl -s https://raw.github.com/globaleaks/GlobaLeaks/master/scripts/travis/script.sh | sh
