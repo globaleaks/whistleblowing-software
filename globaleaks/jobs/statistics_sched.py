@@ -8,7 +8,7 @@ import sys
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
-from globaleaks.utils.utility import log
+from globaleaks.utils.utility import log, pretty_date_time, datetime_now
 from globaleaks.settings import GLSetting, transact, external_counted_events
 from globaleaks.models import Stats
 
@@ -25,8 +25,6 @@ def serialize_events(collected):
 @transact
 def acquire_statistics(store, anomalies_collection):
 
-    log.debug("Acquiring anomalies in stats")
-    log.debug("%s" % serialize_events(anomalies_collection))
     newstat = Stats()
     newstat.content = dict(anomalies_collection)
     store.add(newstat)
@@ -36,6 +34,21 @@ def acquire_statistics(store, anomalies_collection):
 # 'finalized_submission': 0,
 # 'anon_requests': 0,
 # 'file_uploaded': 0,
+
+# the level of the alarm in 30 seconds, to be moved in GLSetting
+alarm_level = {
+    'new_submission' : 20, # test
+    'finalized_submission': 5,
+    'anon_requests': 100, # this is just an amazing value, don't know if useful
+    'file_uploaded': 10, # this is untrue, if someone select 30 little .doc, it's fine !?
+}
+
+alarm_template = {
+    'new_submission' : "Has been reached 20 sumbmissions in 30 seconds",
+    'finalized_submission': "Has been reached 5 finalized Tip in 30 seconds",
+    'anon_requests': "Anonymous request more than 100 in 30 seconds",
+    'file_uploaded': "10 files has been uploaded in the last 30 seconds"
+}
 
 class APSAnomalies(GLJob):
 
@@ -52,15 +65,21 @@ class APSAnomalies(GLJob):
         """
 
         try:
-            log.debug("Anomalies loop collection [started submission %d, " \
+            log.debug("Anomalies checks [started submission %d, " \
                       "finalized submission %d, anon req %d, new files %d]" %
                       ( GLSetting.anomalies_counter['new_submission'],
                         GLSetting.anomalies_counter['finalized_submission'],
                         GLSetting.anomalies_counter['anon_requests'],
                         GLSetting.anomalies_counter['file_uploaded'] ) )
 
-            GLSetting.anomalies_list.append(GLSetting.anomalies_counter)
-            log.debug("%s" % serialize_events(GLSetting.anomalies_counter))
+            # the newer on top of the older
+            GLSetting.anomalies_list = [ GLSetting.anomalies_counter ] + GLSetting.anomalies_list
+
+            # check the anomalies
+            for element, alarm in alarm_level.iteritems():
+                if GLSetting.anomalies_counter[element] > alarm:
+                    GLSetting.anomalies_messages.append(
+                        [ pretty_date_time(datetime_now()), alarm_template[element] ] )
 
             # clean the next collection dictionary
             GLSetting.anomalies_counter = dict(external_counted_events)
@@ -81,9 +100,6 @@ class APSStatistics(GLJob):
             for segment in GLSetting.anomalies_list:
                 for key in external_counted_events.keys():
                     stat_sum[key] += segment[key]
-
-            log.debug("Statistic ready to be acquired!")
-            log.debug("%s" % serialize_events(stat_sum))
 
             yield acquire_statistics(stat_sum)
 
