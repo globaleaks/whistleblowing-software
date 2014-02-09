@@ -6,10 +6,13 @@ sudo -i bash -x -c 'chown travis:travis /data/globaleaks'
 sudo pip install coverage
 sudo pip install coveralls
 git clone https://github.com/globaleaks/GLBackend /data/globaleaks/GLBackend_trial
-cd /data/globaleaks/GLBackend_trial && coverage $(which trial globaleaks)
+cd /data/globaleaks/GLBackend_trial
+git checkout ${TRAVIS_BRANCH} >& /dev/null || git checkout HEAD >& /dev/null
+coverage $(which trial globaleaks)
 coveralls
 git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks
-cd /data/globaleaks/GlobaLeaks && (git checkout ${TRAVIS_BRANCH} >& /dev/null || git checkout HEAD >& /dev/null)
+cd /data/globaleaks/GlobaLeaks
+git checkout ${TRAVIS_BRANCH} >& /dev/null || git checkout HEAD >& /dev/null
 /data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh -c${TRAVIS_BRANCH} -b${TRAVIS_BRANCH}
 sudo -i bash -x -c 'add-apt-repository "deb http://deb.torproject.org/torproject.org $(lsb_release -s -c) main" -y'
 sudo -i bash -x -c 'gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x886DDD89'
