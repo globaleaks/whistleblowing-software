@@ -48,6 +48,12 @@ GLClient.controller('MainCtrl', ['$scope', '$http', '$route', '$location', 'Node
   }
 ]);
 
+GLClient.controller('ModalCtrl', ['$scope', 
+  function($scope, $modalInstance, error) {
+    $scope.error = error;
+    $scope.seconds = error.arguments[0];
+}]);
+
 TabCtrl = ['$scope', function($scope) {
   /* Empty controller function used to implement TAB pages */
 }];
