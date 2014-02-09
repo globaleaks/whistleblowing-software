@@ -19,7 +19,9 @@ from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db, models, security
 from globaleaks.utils.utility import datetime_null, datetime_now
+from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
+from globaleaks.db.datainit import opportunistic_appdata_init
 
 
 Random.atfork()
@@ -97,6 +99,15 @@ class TestGL(TestWithDB):
 
     @inlineCallbacks
     def fill_data(self):
+
+        try:
+            import pdb; pdb.set_trace()
+            yield do_appdata_init()
+
+        except Exception as excp:
+            print "Fail fill_data/do_appdata_init: %s" % excp
+            raise  excp
+
         try:
             receiver = yield create_receiver(self.dummyReceiver)
 
@@ -305,7 +316,7 @@ class MockDict():
             'name': u'Already localized name',
             'description': u'Already localized desc',
             # fields, usually filled in content by fill_random_fields
-            'fields': list(sample_context_fields),
+            'fields': list(default_context_fields),
             'selectable_receiver': False,
             'select_all_receivers': True,
             'tip_max_access': 10,
@@ -490,35 +501,36 @@ def fill_random_fields(context_desc):
     return ret_dict
 
 
-sample_context_fields = [
-    {
-        'name': u'Short title',
-        'hint': u"Describe your Tip with a short title",
-        'presentation_order': 1,
-        'key': unicode(uuid.uuid4()),
-        'required': True,
-        'preview': True,
-        'type': u'text',
-        'value': u''
-    },
-    {
-        'name': u'Full description',
-        'hint': u'Describe the details of your Submission',
-        'key': unicode(uuid.uuid4()),
-        'presentation_order': 2,
-        'required': True,
-        'preview': True,
-        'type': u'text',
-        'value': u''
-    },
-    {
-        'name': u'Files description',
-        'hint': u"Describe the submitted files",
-        'key': unicode(uuid.uuid4()),
-        'presentation_order': 3,
-        'required': False,
-        'preview': False,
-        'type': u'text',
-        'value': u''
-    },
-]
+
+default_context_fields = None
+
+@transact
+def do_appdata_init(store):
+
+    try:
+        appdata = store.find(models.ApplicationData).one()
+
+        if not appdata:
+            raise Exception
+
+    except Exception as xxx:
+        appdata = models.ApplicationData()
+
+        source = opportunistic_appdata_init()
+        appdata.fields_version = source['version']
+        appdata.fields = source['fields']
+
+        store.add(appdata)
+
+    fo = Fields()
+    fo.noisy = True
+    fo.default_fields(appdata.fields)
+    (unique_fields, localized_fields) = fo.extensive_dump()
+
+    # default_context_fields = fo.dump_fields('en')
+    #print fo.dump_fields('en')
+    #print unique_fields
+    #print localized_fields
+    return unique_fields, localized_fields
+
+
