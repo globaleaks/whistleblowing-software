@@ -41,6 +41,7 @@ def get_tiptime_by_marker(store, marker):
         serialized_tipinfo = {
             'id': itip.id,
             'creation_date': pretty_date_time(itip.creation_date),
+            'expiration_date': pretty_date_time(itip.expiration_date),
             'tip_life_seconds':  tip_timetolive,
             'submission_life_seconds':  submission_timetolive,
             'files': files_cnt,
@@ -126,7 +127,7 @@ class APSCleaning(GLJob):
         and their expiration date, if match, remove that, all the folder,
         comment and tip related.
 
-        Thir goal of this function is to reset the exception counter that
+        Third goal of this function is to reset the exception counter that
         acts as limit for mail storm
         """
         try:
@@ -134,18 +135,18 @@ class APSCleaning(GLJob):
             submissions = yield get_tiptime_by_marker(InternalTip._marker[0]) # Submission
             log.debug("(Cleaning routines) %d unfinished Submission are check if expired" % len(submissions))
             for submission in submissions:
-                if is_expired(iso2dateobj(submission['creation_date'])):
-                    log.info("Deleting an unfinalized Submission (creation date: %s) files %d" %
-                             (submission['creation_date'], submission['files']) )
+                if is_expired(iso2dateobj(submission['expiration_date'])):
+                    log.info("Deleting an unfinalized Submission (creation %s expiration %s) files %d" %
+                             (submission['creation_date'], submission['expiration_date'], submission['files']) )
                     yield itip_cleaning(submission['id'])
 
             # Second Goal
             tips = yield get_tiptime_by_marker(InternalTip._marker[2]) # First
             log.debug("(Cleaning routines) %d Tips stored are check if expired" % len(tips))
             for tip in tips:
-                if is_expired(iso2dateobj(tip['creation_date'])):
-                    log.info("Deleting an expired Tip (creation date: %s) files %d comments %d" %
-                             (tip['creation_date'], tip['files'], tip['comments']) )
+                if is_expired(iso2dateobj(tip['expiration_date'])):
+                    log.info("Deleting an expired Tip (creation date: %s, expiration %s) files %d comments %d" %
+                             (tip['creation_date'], tip['expiration_date'], tip['files'], tip['comments']) )
                     yield itip_cleaning(tip['id'])
 
             # Third Goal: Reset of GLSetting.exceptions

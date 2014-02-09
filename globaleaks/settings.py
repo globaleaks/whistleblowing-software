@@ -169,8 +169,8 @@ class GLSettingsClass:
         self.session_management_minutes_delta = 1 # runner.py function expects minutes
         self.cleaning_hours_delta = 6             # runner.py function expects hours
         self.notification_minutes_delta = 2       # runner.py function expects minutes
-        self.delivery_seconds_delta = 30          # runner.py function expects seconds
-        self.anomaly_seconds_delta = 30         # runner.py function expects seconds
+        self.delivery_seconds_delta = 20          # runner.py function expects seconds
+        self.anomaly_seconds_delta = 30           # runner.py function expects seconds
         self.stats_minutes_delta = 10             # runner.py function expects minutes
 
         self.defaults = OD()
@@ -219,8 +219,9 @@ class GLSettingsClass:
         self.anomalies_list = []
         # this is the collection of the messages shall be reported to the admin
         self.anomalies_messages = []
-        # limit of the number of Anomalies and Statistics
-        self.limit = 10
+
+        # limit of the number of Notification without breath-taking
+        self.limit = 30
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
