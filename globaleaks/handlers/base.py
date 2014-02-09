@@ -28,6 +28,7 @@ from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone import escape, httputil
 from cyclone.escape import native_str
 
+from globaleaks.jobs.statistics_sched import alarm_level
 from globaleaks.utils.utility import log, sanitize_str
 from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
@@ -685,3 +686,21 @@ class FileToken(_DownloadToken):
 
         return None
 
+
+def anomaly_check(element):
+    def wrapper(method_handler):
+        def call_handler(cls, *args, **kw):
+            if GLSetting.anomalies_counter[element] > alarm_level[element]:
+                if element == 'new_submission':
+                    raise errors.SubmissionFlood(30)
+                elif element == 'finalized_submission':
+                    raise errors.SubmissionFlood(30)
+                elif element == 'anon_requests':
+                    raise errors.FloodException(30)
+                elif element == 'file_upload':
+                    raise errors.FileUploadFlood(30)
+                else:
+                    raise errors.FloodException(30)
+            return method_handler(cls, *args, **kw)
+        return call_handler
+    return wrapper

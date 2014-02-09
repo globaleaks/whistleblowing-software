@@ -16,7 +16,7 @@ from globaleaks.utils.utility import log
 
 
 @transact_ro
-def admin_serialize_fields(store, language=GLSetting.memory_copy.default_language):
+def get_admin_serialize_fields(store, language=GLSetting.memory_copy.default_language):
 
     appdata = store.find(ApplicationData).one()
 

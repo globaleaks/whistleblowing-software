@@ -10,7 +10,7 @@
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
 from globaleaks.handlers import node, submission, rtip, wbtip, admin, receiver, \
-                                files, authentication, admstaticfiles, \
+                                files, authentication, admstaticfiles, statistics,\
                                 admlangfiles, overview, collection, wizard
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 from globaleaks.rest.requests import uuid_regexp
@@ -88,6 +88,9 @@ spec = [
     (r'/admin/receiver', admin.ReceiversCollection),
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
     (r'/admin/notification', admin.NotificationInstance),
+
+    (r'/admin/anomalies', statistics.AnomaliesCollection),
+    (r'/admin/stats', statistics.StatsCollection),
 
     (r'/admin/wizard/fields', wizard.FieldsCollection),
 

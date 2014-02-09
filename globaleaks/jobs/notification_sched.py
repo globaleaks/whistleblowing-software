@@ -66,7 +66,7 @@ class APSNotification(GLJob):
 
 
     @transact
-    def create_tip_notification_events(self, store):
+    def create_tip_notification_events(self, store, notification_counter):
         """
         This transaction will return all a list of tuples containing the tips
         for which the notification event has not been run.
@@ -97,6 +97,12 @@ class APSNotification(GLJob):
             log.debug("Receiver Tips found to be notified: %d" % not_notified_tips.count() )
 
         for receiver_tip in not_notified_tips:
+
+            notification_counter += 1
+            if notification_counter >= GLSetting.notification_limit:
+                log.debug("Notification counter has reached the suggested limit: %d (tip)" %
+                          notification_counter)
+                break
 
             if not receiver_tip.internaltip or not receiver_tip.internaltip.context:
                 log.err("(tip_notification) Integrity failure: missing InternalTip|Context")
@@ -133,7 +139,7 @@ class APSNotification(GLJob):
                             plugin=plugin)
             events.append((unicode(receiver_tip.id), event))
 
-        return events
+        return (events, notification_counter)
 
     @transact
     def tip_notification_succeeded(self, store, result, tip_id):
@@ -178,7 +184,7 @@ class APSNotification(GLJob):
             yield notify
 
     @transact
-    def create_message_notification_events(self, store):
+    def create_message_notification_events(self, store, notification_counter):
         """
         Creates events for performing notification of newly added messages.
 
@@ -203,6 +209,12 @@ class APSNotification(GLJob):
             log.debug("Messages found to be notified: %d" % not_notified_messages.count() )
 
         for message in not_notified_messages:
+
+            notification_counter += 1
+            if notification_counter >= GLSetting.notification_limit:
+                log.debug("Notification counter has reached the suggested limit: %d (messages)" %
+                          notification_counter)
+                break
 
             if message.receivertip is None:
                 log.err("Message %s has ReceiverTip broken reference" % message.id)
@@ -258,7 +270,7 @@ class APSNotification(GLJob):
 
             events.append(((unicode(message.id), unicode(receiver.id)), event))
 
-        return events
+        return (events, notification_counter)
 
     @transact_ro
     def message_notification_succeeded(self, store, result, message_id, receiver_id):
@@ -302,7 +314,7 @@ class APSNotification(GLJob):
             yield notify
 
     @transact
-    def create_comment_notification_events(self, store):
+    def create_comment_notification_events(self, store, notification_counter):
         """
         Creates events for performing notification of newly added comments.
 
@@ -327,6 +339,12 @@ class APSNotification(GLJob):
             log.debug("Comments found to be notified: %d" % not_notified_comments.count() )
 
         for comment in not_notified_comments:
+
+            notification_counter += 1
+            if notification_counter >= GLSetting.notification_limit:
+                log.debug("Notification counter has reached the suggested limit: %d (comment)" %
+                          notification_counter)
+                break
 
             if comment.internaltip is None or comment.internaltip.receivers is None:
                 log.err("Comment %s has internaltip or receivers broken reference" % comment.id)
@@ -391,7 +409,7 @@ class APSNotification(GLJob):
 
                 events.append(((unicode(comment.id), unicode(receiver.id)), event))
 
-        return events
+        return (events, notification_counter)
 
     @transact_ro
     def comment_notification_succeeded(self, store, result, comment_id, receiver_id):
@@ -435,7 +453,7 @@ class APSNotification(GLJob):
             yield notify
 
     @transact
-    def create_file_notification_events(self, store):
+    def create_file_notification_events(self, store, notification_counter):
         """
         Creates events for performing notification of newly added files..
 
@@ -459,6 +477,12 @@ class APSNotification(GLJob):
             log.debug("Receiverfiles found to be notified: %d" % not_notified_rfiles.count() )
 
         for rfile in not_notified_rfiles:
+
+            notification_counter += 1
+            if notification_counter >= GLSetting.notification_limit:
+                log.debug("Notification counter has reached the suggested limit: %d (files)" %
+                          notification_counter)
+                break
 
             if not rfile.internalfile:
                 log.err("(file_notification) Integrity check failure (InternalFile)")
@@ -515,7 +539,7 @@ class APSNotification(GLJob):
 
             events.append(((unicode(rfile.id), unicode(rfile.receiver.id)), event))
 
-        return events
+        return (events, notification_counter)
 
     @transact
     def receiverfile_notification_succeeded(self, store, result, receiverfile_id, receiver_id):
@@ -586,10 +610,11 @@ class APSNotification(GLJob):
                 log.err("Node has Notification temporary disabled")
                 return
 
-            tip_events = yield self.create_tip_notification_events()
-            comment_events = yield self.create_comment_notification_events()
-            file_events = yield self.create_file_notification_events()
-            message_events = yield self.create_message_notification_events()
+            limit_counter = 0
+            (tip_events, limit_counter) = yield self.create_tip_notification_events(limit_counter)
+            (comment_events, limit_counter) = yield self.create_comment_notification_events(limit_counter)
+            (file_events, limit_counter) = yield self.create_file_notification_events(limit_counter)
+            (message_events, limit_counter) = yield self.create_message_notification_events(limit_counter)
 
         except Exception as excep:
             log.err("Error in notification event creation: %s" % excep)
