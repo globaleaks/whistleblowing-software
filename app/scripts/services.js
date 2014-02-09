@@ -1,4 +1,4 @@
-'use strict';
+'usestrict';
 
 angular.module('resourceServices.authentication', [])
   .factory('Authentication', ['$http', '$location', '$routeParams',
@@ -558,6 +558,12 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   factory('FileOverview', ['$resource', function($resource) {
     return $resource('/admin/overview/files');
+}]).
+  factory('StatsCollection', ['$resource', function($resource) {
+    return $resource('/admin/stats');
+}]).
+  factory('AnomaliesCollection', ['$resource', function($resource) {
+    return $resource('/admin/anomalies');
 }]).
   factory('StaticFiles', ['$resource', function($resource) {
     return $resource('/admin/staticfiles');
