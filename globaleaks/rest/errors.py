@@ -423,3 +423,29 @@ class UnexistentDownloadToken(GLException):
    error_code = 54
    status_code = 404
 
+class FloodException(GLException):
+    error_code = 55
+    status_code = 403
+
+    def __init__(self, seconds):
+        self.reason = "Chill out for another %s seconds"
+        self.arguments = []
+        self.arguments.append(seconds)
+
+class SubmissionFlood(FloodException):
+    error_code = 56
+    status_code = 403
+
+    def __init__(self, seconds):
+        self.reason = "Too many submissions in %d seconds" % seconds
+        self.arguments = []
+        self.arguments.append(seconds)
+
+class FileUploadFlood(FloodException):
+    error_code = 57
+    status_code = 403
+
+    def __init__(self, seconds):
+        self.reason = "Too many file uploads in %d seconds" % seconds
+        self.arguments = []
+        self.arguments.append(seconds)
