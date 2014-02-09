@@ -17,6 +17,7 @@ import uuid
 import pwd
 import grp
 import getpass
+from ConfigParser import ConfigParser
 from optparse import OptionParser
 
 import transaction
@@ -91,6 +92,15 @@ class GLSettingsClass:
 
         # store name
         self.store_name = 'main_store'
+
+        # Database variables for MYSQL 
+        self.db_username = 'admin'
+        self.db_password = 'globaleaks'
+        self.db_hostname = 'localhost'
+        # Can either be sqlite or mysql
+        self.db_type = 'sqlite'
+        # Database version tracking
+        self.db_version = DATABASE_VERSION
 
         # debug defaults
         self.storm_debug = False
@@ -236,12 +246,10 @@ class GLSettingsClass:
         # Number of log files to conserve.
         self.maximum_rotated_log_files = 100
 
-        # Database version tracking
-        self.db_version = DATABASE_VERSION
-
         self.exceptions = {}
 
     def eval_paths(self):
+        self.config_file_path = '/etc/globaleaks'
         self.pidfile_path = os.path.join(self.pid_path, 'globaleaks-' + str(self.bind_port) + '.pid')
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
@@ -252,12 +260,25 @@ class GLSettingsClass:
         self.static_path_l10n = os.path.abspath(os.path.join(self.static_path, 'l10n'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
-        self.db_schema_file = os.path.join(self.static_db_source,'sqlite.sql')
+        self.db_schema_file = os.path.join(self.static_db_source, self.db_type + '.sql')
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.httplogfile =  os.path.abspath(os.path.join(self.log_path, "http.log"))
-        self.file_versioned_db = 'sqlite:' + \
+
+        if os.path.exists(self.config_file_path):
+            config = ConfigParser()
+            config.read(self.config_file_path)
+            self.db_type = config.get('db', 'type')
+            self.db_username = config.get('db', 'username')
+            self.db_pasword = config.get('db', 'password')
+            self.db_hostname = config.get('db', 'hostname')
+            self.db_name = config.get('db', 'name')
+
+        if self.db_type == 'sqlite':
+            self.db_uri = 'sqlite:' + \
                                  os.path.abspath(os.path.join(self.gldb_path,
-                                     'glbackend-%d.db' % DATABASE_VERSION))
+                                     'glbackend-%d.db?foreign_keys=ON' % DATABASE_VERSION))
+        elif self.db_type == 'mysql':
+            self.db_uri = "mysql://%s:%s@%s/%s" % (self.db_username, self.db_password, self.db_hostname, self.db_name)
 
         # gnupg path is used by GPG as temporary directory with keyring and files encryption.
         if self.ramdisk_path:
@@ -636,7 +657,7 @@ class transact(object):
         Returns a reference to Storm Store
         """
         zstorm = ZStorm()
-        zstorm.set_default_uri(GLSetting.store_name, GLSetting.file_versioned_db + '?foreign_keys=ON')
+        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_uri)
         return zstorm.get(GLSetting.store_name)
 
     def _wrap(self, function, *args, **kwargs):
