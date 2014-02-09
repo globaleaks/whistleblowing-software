@@ -109,9 +109,6 @@ def dump_file_fs(uploaded_file):
     uploaded_file['body'].avoid_delete()
     uploaded_file['body'].close()
 
-    print filelocation
-    print keylocation
-
     shutil.move(uploaded_file['body_filepath'], filelocation)
     shutil.move(uploaded_file['body_keypath'], keylocation)
 
