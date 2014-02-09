@@ -8,6 +8,9 @@ GLClient.controller('MainCtrl', ['$scope', '$http', '$route', '$location', 'Node
     $scope.update_node = function() {
       Node.get(function(node){
         $scope.node = node;
+        if ( ! $scope.node.configured ) {
+          $location.path('/wizard');
+        }
       });
     }
 
