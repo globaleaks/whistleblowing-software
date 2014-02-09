@@ -2,12 +2,15 @@ import binascii
 
 import os
 import scrypt
+
+import shutil
+
 from Crypto.Hash import SHA512
 from twisted.trial import unittest
 
 from globaleaks.tests import helpers
 from globaleaks.security import get_salt, hash_password, check_password, change_password, SALT_LENGTH, \
-                                directory_traversal_check
+                                directory_traversal_check, GLSecureTemporaryFile, GLSecureFile
 
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
@@ -94,3 +97,29 @@ class TestFilesystemAccess(unittest.TestCase):
         except Exception as excep:
             print "Exception %s" % excep.log_message
             self.assertTrue(False)
+
+class TestGLSecureFiles(helpers.TestGL):
+
+    def test_temporary_file(self):
+        a = GLSecureTemporaryFile('files/submission', 'ramdisk')
+        filepath = a.filepath
+        keypath = a.keypath
+        antani = "0123456789" * 10000
+        a.write(antani)
+        self.assertTrue(antani == a.read())
+        a.close()
+        self.assertFalse(os.path.exists(filepath))
+        self.assertFalse(os.path.exists(keypath))
+
+    def test_temporary_file_avoid_delete(self):
+        a = GLSecureTemporaryFile('files/submission', 'ramdisk')
+        a.avoid_delete()
+        filepath = a.filepath
+        keypath = a.keypath
+        antani = "0123456789" * 10000
+        a.write(antani)
+        a.close()
+        self.assertTrue(os.path.exists(filepath))
+        self.assertTrue(os.path.exists(keypath))
+        b = GLSecureFile(filepath, keypath)
+        self.assertTrue(antani == b.read())
