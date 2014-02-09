@@ -63,8 +63,8 @@ def itip_cleaning(store, id):
         return
 
     comments = store.find(Comment, Comment.internaltip_id == id)
-    log.debug("[-] Removing %d comments, %d files from an InternalTip and %d rtips" %
-        (tit.internalfiles.count(), comments.count(), tit.receivertips.count() ))
+    log.debug("[-] Removing [%d comments] [%d files] [%d rtips] from an InternalTip" %
+        (comments.count(), tit.internalfiles.count(), tit.receivertips.count() ))
 
     for ifile in tit.internalfiles:
         abspath = os.path.join(GLSetting.submission_path, ifile.file_path)
