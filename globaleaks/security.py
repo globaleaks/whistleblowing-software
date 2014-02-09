@@ -11,8 +11,11 @@ import os
 import shutil
 
 import scrypt
-from Crypto.Hash import SHA512
-from Crypto.Random import random, atfork
+from Crypto.Hash import SHA512, MD5
+from Crypto import Random
+from Crypto.Cipher import AES
+from Crypto.Util import Counter
+from Crypto.Util.number import bytes_to_long, long_to_bytes
 from gnupg import GPG
 
 from globaleaks.rest import errors
@@ -21,6 +24,72 @@ from globaleaks.settings import GLSetting
 from globaleaks.models import *
 
 SALT_LENGTH = (128 / 8) # 128 bits of unique salt
+
+import os
+import struct
+
+from tempfile import _TemporaryFileWrapper
+
+
+class GLSecureTemporaryFile(_TemporaryFileWrapper):
+    def __init__(self, filedir, keydir):
+        self.nonce_size = 16
+        self.block_size = 32
+        self.last_action = 'init'
+        self.key = MD5.new(Random.new().read(self.block_size)).hexdigest()
+        self.nonce = MD5.new(Random.get_random_bytes(8)).hexdigest()[:8]
+
+        self.keypath = os.path.join(keydir, self.nonce)
+        self.filepath = os.path.join(filedir, self.nonce)
+
+        with open(self.keypath, 'w+b') as f:
+            f.write(self.key)
+
+        self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
+        self.file = open(self.filepath, 'w+b')
+        self.file.write(self.nonce)
+
+        _TemporaryFileWrapper.__init__(self, self.file, self.filepath, True)
+
+    def avoid_delete(self):
+        self.delete = False;
+
+    def write(self, data): # encrypt
+        self.last_action = 'write'
+        self.file.write(self.cipher.encrypt(data))
+
+    def read(self, c=None): # decrypt
+        if self.last_action == 'write':
+            self.seek(8, 0) # this is a trick just to misc write and read
+            self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
+
+        self.last_action = 'read'
+
+        if c is None:
+            return self.cipher.decrypt(self.file.read())
+        else:
+            return self.cipher.decrypt(self.file.read(c))
+
+    def close(self):
+        if not self.close_called:
+            _TemporaryFileWrapper.close(self)
+            if self.delete:
+                os.remove(self.keypath)
+
+class GLSecureFile(GLSecureTemporaryFile):
+    def __init__(self, filepath, keypath):
+        self.block_size = 32
+        self.last_action = 'init'
+        self.keypath = keypath
+        self.filepath = filepath
+
+        self.key = open(keypath).read(self.block_size)
+        self.file = open(filepath, 'r+b')
+        self.nonce = self.file.read(8)
+
+        self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
+
+        _TemporaryFileWrapper.__init__(self, self.file, filepath, False)
 
 def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
     """
@@ -38,6 +107,7 @@ def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
                 (trusted_absolute_prefix, untrusted_path))
 
         raise errors.DirectoryTraversalError
+
 
 def get_salt(salt_input):
     """
@@ -86,6 +156,7 @@ def check_password_format(password):
     if m1 is None or m2 is None or m3 is None:
         raise errors.InvalidInputFormat("password requirements unmet")
 
+
 def check_password(guessed_password, base64_stored, salt_input):
     guessed_password = guessed_password.encode('utf-8')
     salt = get_salt(salt_input)
@@ -131,16 +202,16 @@ class GLBGPG:
         """
         every time is needed, a new keyring is created here.
         """
-        atfork()
+        Random.atfork()
 
         if receiver_desc.has_key('gpg_key_status') and \
-           receiver_desc['gpg_key_status'] != Receiver._gpg_types[1]: # Enabled
+                        receiver_desc['gpg_key_status'] != Receiver._gpg_types[1]: # Enabled
             log.err("Requested GPG initialization for a receiver without GPG configured! %s" %
                     receiver_desc['username'])
             raise Exception("Requested GPG init for user without GPG [%s]" % receiver_desc['username'])
 
         try:
-            temp_gpgroot = os.path.join(GLSetting.gpgroot, "%s" % random.randint(0, 0xFFFF) )
+            temp_gpgroot = os.path.join(GLSetting.gpgroot, "%s" % Random.random.randint(0, 0xFFFF))
             os.makedirs(temp_gpgroot, mode=0700)
             self.gpgh = GPG(gnupghome=temp_gpgroot, options="--trust-model always")
         except Exception as excep:
@@ -182,7 +253,7 @@ class GLBGPG:
             except IndexError:
                 continue
 
-            main_content = re.compile( r"^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$" , re.UNICODE)
+            main_content = re.compile(r"^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$", re.UNICODE)
             base64only = main_content.findall(lines[i])
 
             if len(base64only) == 1:
@@ -218,7 +289,8 @@ class GLBGPG:
         #     log.err("Receiver %s in uploaded GPG key has raise and alarm:\n< %s >" %
         #             (self.receiver_desc['username'], (self.ke.stderr.replace("\n", "\n  "))[:-3]))
 
-        if not (hasattr(self.ke, 'results') and len(self.ke.results) == 1 and self.ke.results[0].has_key('fingerprint')):
+        if not (hasattr(self.ke, 'results') and len(self.ke.results) == 1 and self.ke.results[0].has_key(
+                'fingerprint')):
             log.err("User error: unable to import GPG key in the keyring")
             return False
 
@@ -265,17 +337,18 @@ class GLBGPG:
         if not encrypt_obj.ok:
             # continue here if is not ok
             log.err("Falure in encrypting file %s %s (%s)" % ( plainpath,
-                    self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint']) )
+                                                               self.receiver_desc['username'],
+                                                               self.receiver_desc['gpg_key_fingerprint']))
             log.err(encrypt_obj.stderr)
             raise errors.GPGKeyInvalid
 
         log.debug("Encrypting for %s (%s) file %s (%d bytes)" %
                   (self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint'],
-                  plainpath, len(str(encrypt_obj))) )
+                   plainpath, len(str(encrypt_obj))))
 
-        encrypted_path = os.path.join( os.path.abspath(output_path),
-                                       "gpg_encrypted-%d-%d" %
-                                       (random.randint(0, 0xFFFF), random.randint(0, 0xFFFF)))
+        encrypted_path = os.path.join(os.path.abspath(output_path),
+                                      "gpg_encrypted-%d-%d" %
+                                      (Random.random.randint(0, 0xFFFF), Random.random.randint(0, 0xFFFF)))
 
         if os.path.isfile(encrypted_path):
             log.err("Unexpected unpredictable unbelievable error! %s" % encrypted_path)
@@ -290,7 +363,7 @@ class GLBGPG:
         except Exception as excep:
             log.err("Error in writing GPG file output: %s (%s) bytes %d" %
                     (excep.message, encrypted_path, len(str(encrypt_obj)) ))
-            raise errors.InternalServerError("Error in writing [%s]" % excep.message )
+            raise errors.InternalServerError("Error in writing [%s]" % excep.message)
 
 
     def encrypt_message(self, plaintext):
@@ -312,18 +385,19 @@ class GLBGPG:
             raise errors.GPGKeyInvalid
 
         # This second argument may be a list of fingerprint, not just one
-        encrypt_obj = self.gpgh.encrypt(plaintext, str(self.receiver_desc['gpg_key_fingerprint']) )
+        encrypt_obj = self.gpgh.encrypt(plaintext, str(self.receiver_desc['gpg_key_fingerprint']))
 
         if not encrypt_obj.ok:
             # else, is not .ok
             log.err("Falure in encrypting %d bytes for %s (%s)" % (len(plaintext),
-                    self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint']) )
+                                                                   self.receiver_desc['username'],
+                                                                   self.receiver_desc['gpg_key_fingerprint']))
             log.err(encrypt_obj.stderr)
             raise errors.GPGKeyInvalid
 
         log.debug("Encrypting for %s (%s) %d byte of plain data (%d cipher output)" %
                   (self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint'],
-                   len(plaintext), len(str(encrypt_obj))) )
+                   len(plaintext), len(str(encrypt_obj))))
 
         return str(encrypt_obj)
 
@@ -387,11 +461,11 @@ def gpg_options_parse(receiver, request):
         log.debug("Receiver %s sets GPG usage: notification %s, file %s" %
                   (receiver.user.username,
                    "YES" if encrypt_notification else "NO",
-                   "YES" if encrypt_file else "NO") )
+                   "YES" if encrypt_file else "NO"))
 
     if new_gpg_key:
 
-        fake_receiver_dict = { 'username' : receiver.user.username }
+        fake_receiver_dict = {'username': receiver.user.username}
         gnob = GLBGPG(fake_receiver_dict)
         if not gnob.validate_key(new_gpg_key):
             raise errors.GPGKeyInvalid
@@ -414,12 +488,12 @@ def get_expirations(keylist):
     This function is not implemented in GPG object class because need to operate
     on the whole keys
     """
-    atfork()
+    Random.atfork()
 
     try:
-        temp_gpgroot = os.path.join(GLSetting.gpgroot, "-expiration_check-%s" % random.randint(0, 0xFFFF) )
+        temp_gpgroot = os.path.join(GLSetting.gpgroot, "-expiration_check-%s" % Random.random.randint(0, 0xFFFF))
         os.makedirs(temp_gpgroot, mode=0700)
-        gpexpire= GPG(gnupghome=temp_gpgroot, options="--trust-model always")
+        gpexpire = GPG(gnupghome=temp_gpgroot, options="--trust-model always")
     except Exception as excep:
         log.err("Unable to setup expiration check environment: %s" % excep)
         raise excep
@@ -439,13 +513,14 @@ def get_expirations(keylist):
 
     expirations = {}
     for ak in all_keys:
-        expirations.update({ ak['fingerprint'] : ak['date']})
+        expirations.update({ak['fingerprint']: ak['date']})
 
     return expirations
 
+
 def access_tip(store, user_id, tip_id):
     rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(tip_id),
-                                   ReceiverTip.receiver_id == user_id).one()
+                      ReceiverTip.receiver_id == user_id).one()
 
     if not rtip:
         raise errors.TipGusNotFound
