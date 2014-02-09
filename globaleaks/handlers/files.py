@@ -198,8 +198,8 @@ class FileAdd(FileHandler):
     """
 
     @transport_security_check('wb')
-    @anomaly_check('file_uploaded')
     @authenticated('wb')
+    @anomaly_check('file_uploaded')
     @inlineCallbacks
     def post(self, *args):
         """
@@ -221,8 +221,8 @@ class FileInstance(FileHandler):
     """
 
     @transport_security_check('wb')
-    @anomaly_check('file_uploaded')
     @unauthenticated
+    @anomaly_check('file_uploaded')
     @inlineCallbacks
     def post(self, submission_id, *args):
         """
