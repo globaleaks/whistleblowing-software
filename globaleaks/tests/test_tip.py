@@ -11,7 +11,6 @@ from globaleaks.rest import errors, requests
 from globaleaks.handlers import base, admin, submission, authentication, receiver, rtip, wbtip
 from globaleaks.jobs import delivery_sched
 from globaleaks import models
-from globaleaks.settings import sample_context_fields
 
 STATIC_PASSWORD = u'bungabunga ;( 12345'
 
@@ -54,7 +53,8 @@ class TTip(helpers.TestWithDB):
 
     tipContext = {
         'name': u'CtxName', 'description': u'dummy context with default fields',
-        'escalation_threshold': u'1', 'tip_max_access': u'2', 'fields' : sample_context_fields,
+        'escalation_threshold': u'1', 'tip_max_access': u'2', 
+        'fields' : list(helpers.sample_context_fields),
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': False,
         'receivers': [], 'submission_timetolive': 100,
         'receipt_regexp': u"[0-9]{10}",

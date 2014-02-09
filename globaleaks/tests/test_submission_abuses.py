@@ -2,7 +2,6 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import sample_context_fields
 from globaleaks.tests import helpers
 from globaleaks.rest.requests import adminContextDesc, adminReceiverDesc
 from globaleaks.rest.errors import GLException, InvalidInputFormat
@@ -42,7 +41,7 @@ class SubmissionTest(helpers.TestGL):
         'name': u'UNUSED', 'description': u'UNUSED',
         'escalation_threshold': u'0', 'tip_max_access': u'2',
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
-        'receivers': [], 'fields': sample_context_fields, 'submission_timetolive': 100,
+        'receivers': [], 'fields': helpers.sample_context_fields, 'submission_timetolive': 100,
         'receipt_regexp': u"[0-9]{10}",
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
         'select_all_receivers': True,
