@@ -92,7 +92,10 @@ spec = [
     (r'/admin/anomalies', statistics.AnomaliesCollection),
     (r'/admin/stats', statistics.StatsCollection),
 
-    (r'/admin/wizard/fields', wizard.FieldsCollection),
+    (r'/admin/wizard/', wizard.FirstSetup),
+
+    (r'/admin/update/fields', wizard.FieldsCollection),
+    # (r'/admin/update/template', wizard.TemplateCollection),
 
     (r'/admin/staticfiles', admstaticfiles.StaticFileList),
     (r'/admin/staticfiles/(.*)', admstaticfiles.StaticFileInstance, {'path': GLSetting.static_path }),

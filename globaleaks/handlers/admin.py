@@ -144,7 +144,7 @@ def get_node(store, language=GLSetting.memory_copy.default_language):
     return admin_serialize_node(store.find(Node).one(), language)
 
 @transact
-def update_node(store, request, language=GLSetting.memory_copy.default_language):
+def update_node(store, request, wizard_done=True, language=GLSetting.memory_copy.default_language):
     """
     Update the node, setting the last update time on it.
 
@@ -223,6 +223,9 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
         node.default_language = node.languages_enabled[0]
         log.err("Default language not set!? fallback on %s" % node.default_language)
 
+    # default False in creation, default False in the option.
+    if not node.wizard_done and wizard_done:
+        node.wizard_done = True
 
     # name, description tor2web boolean value are acquired here
     try:
@@ -230,6 +233,7 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
     except Exception as dberror:
         log.err("Unable to update Node: %s" % dberror)
         raise errors.InvalidInputFormat(dberror)
+
 
     node.last_update = utility.datetime_now()
 
@@ -717,7 +721,7 @@ class NodeInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                 requests.adminNodeDesc)
 
-        yield update_node(request, self.request.language)
+        yield update_node(request, language=self.request.language)
 
         # align the memory variables with the new updated data
         yield import_memory_variables()

@@ -10,13 +10,14 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
+from globaleaks.handlers.admin import create_context, create_receiver, update_node
 from globaleaks.rest import errors, requests
 from globaleaks.models import ApplicationData
 from globaleaks.utils.utility import log
 
 
 @transact_ro
-def get_admin_serialize_fields(store, language=GLSetting.memory_copy.default_language):
+def admin_serialize_fields(store, language=GLSetting.memory_copy.default_language):
 
     appdata = store.find(ApplicationData).one()
 
@@ -115,5 +116,63 @@ class FieldsCollection(BaseHandler):
         self.set_status(202) # Updated
         self.finish(app_fields_dump)
 
+
+
+class FirstSetup(BaseHandler):
+    """
+    """
+
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def post(self, *uriargs):
+
+        self.set_status(200)
+
+        request = self.validate_message(self.request.body,
+                requests.wizardFirstSetup)
+
+        log.debug("Wizard initialization setup!")
+
+        receiver = request['receiver']
+        context = request['context']
+        node = request['node']
+        fields = request['fields']
+
+        try:
+            accepted_types = [ "text", "radio", "select", "checkboxes",
+                               "textarea", "number", "url", "phone", "email" ]
+            for field in fields:
+                if field['type'] not in accepted_types:
+                    log.debug("Invalid type received: %s" % field['type'])
+                    raise errors.InvalidInputFormat("Invalid type supply")
+
+            yield update_application_fields(request['version'], fields)
+
+        except Exception as excep:
+            log.debug("Failed Fields initialization %s" % excep)
+            raise excep
+
+        try:
+            context_dict = yield create_context(context, self.request.language)
+        except Exception as excep:
+            log.debug("Failed Context initialization %s" % excep)
+            raise excep
+
+        try:
+            receiver['context']= [ context_dict['id'] ]
+            yield create_receiver(receiver, self.request.language)
+        except Exception as excep:
+            log.debug("Failed Receiver Finitialization %s" % excep)
+            raise excep
+
+        try:
+            yield update_node(node, wizard_done=True, request=self.request.language)
+        except Exception as excep:
+            log.debug("Failed Fields initialization %s" % excep)
+            raise excep
+
+        self.set_status(202) # Updated
+        self.finish()
 
 
