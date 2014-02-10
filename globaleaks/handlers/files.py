@@ -99,9 +99,7 @@ def dump_file_fs(uploaded_file):
     atfork()
 
     saved_name = rstr.xeger(r'[A-Za-z]{26}')
-    key_name = saved_name + '.key'
     filelocation = os.path.join(GLSetting.submission_path, saved_name)
-    keylocation = os.path.join(GLSetting.ramdisk_path, key_name)
 
     log.debug("Start saving %d bytes from file [%s]" %
               (uploaded_file['body_len'], uploaded_file['filename'].encode('utf-8')))
@@ -110,7 +108,7 @@ def dump_file_fs(uploaded_file):
     uploaded_file['body'].close()
 
     shutil.move(uploaded_file['body_filepath'], filelocation)
-    shutil.move(uploaded_file['body_keypath'], keylocation)
+    shutil.move(uploaded_file['body_keylink'], filelocation + ".keylink")
 
     return saved_name
 

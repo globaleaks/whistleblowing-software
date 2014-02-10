@@ -183,12 +183,11 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
         if not gpoj.validate_key(recipient_gpg['gpg_key_armor']):
             raise Exception("Unable to validate key")
 
-        ifile_abs = os.path.join(GLSetting.submission_path, fpath)
-        key_path = os.path.join(GLSetting.ramdisk_path, fpath + '.key')
+        filepath = os.path.join(GLSetting.submission_path, fpath)
 
-        with GLSecureFile(ifile_abs, key_path) as f:
+        with GLSecureFile(filepath, GLSetting.ramdisk_path) as f:
             encrypted_file_path, encrypted_file_size = \
-                gpoj.encrypt_file(ifile_abs, f, GLSetting.submission_path)
+                gpoj.encrypt_file(filepath, f, GLSetting.submission_path)
 
         gpoj.destroy_environment()
 
@@ -417,14 +416,18 @@ class APSDelivery(GLJob):
                       almost_one_reference = True
                       break;
 
-            file_path = os.path.join(GLSetting.submission_path, fname)
+            filepath = os.path.join(GLSetting.submission_path, fname)
+            keylink = os.path.join(GLSetting.submission_path, fname + '.keylink')
 
             if almost_one_reference:
                 log.debug("Decrypting encrypted temporary file due to unencrypted receivers: %s" % fname)
 
-                key_path = os.path.join(GLSetting.ramdisk_path, fname + '.key')
+                print keylink
+                with open(keylink) as f:
+                    nonce = f.read()
+
                 tmp_path = os.path.join(GLSetting.submission_path, fname + '.tmp')
-                unencrypted_file = GLSecureFile(file_path, key_path)
+                unencrypted_file = GLSecureFile(filepath, GLSetting.ramdisk_path)
 
                 with open(tmp_path, "wb") as tmp_file:
                     chunk_size = 4096
@@ -434,12 +437,16 @@ class APSDelivery(GLJob):
                             break
                         tmp_file.write(chunk)
 
-                shutil.move(tmp_path, file_path)
+                os.remove(filepath)
+                os.remove(keylink)
+                shutil.move(tmp_path, filepath)
 
                 ifile_track.update({ifile_id: InternalFile._marker[2] }) # Ready
             else:
 
-                os.remove(file_path)
+                print "remove" + filepath
+                os.remove(filepath)
+                os.remove(keylink)
 
                 ifile_track.update({ifile_id: InternalFile._marker[3] }) # Removed
 
