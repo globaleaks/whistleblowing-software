@@ -54,9 +54,9 @@ GLClient.controller('SubmissionCtrl',
     return $scope.selected_receivers_count() < $scope.submission.current_context.maximum_selectable_receivers;
   }
 
-  $scope.switch_selection = function(receiver_gus) {
-    if ($scope.submission.receivers_selected[receiver_gus] || $scope.selectable()) {
-      $scope.submission.receivers_selected[receiver_gus] = !$scope.submission.receivers_selected[receiver_gus];
+  $scope.switch_selection = function(receiver_id) {
+    if ($scope.submission.receivers_selected[receiver_id] || $scope.selectable()) {
+      $scope.submission.receivers_selected[receiver_id] = !$scope.submission.receivers_selected[receiver_id];
     }
   }
 
@@ -82,7 +82,7 @@ GLClient.controller('SubmissionCtrl',
   $scope.$watch('submission.current_context', function(){
     if ($scope.current_context) {
       $scope.submission.create(function(){
-        var url = '/submission/' + $scope.submission.current_submission.submission_gus + '/file';
+        var url = '/submission/' + $scope.submission.current_submission.id + '/file';
         
         $scope.queue = [];
         $scope.options = {

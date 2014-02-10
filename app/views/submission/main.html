@@ -76,7 +76,7 @@ This comment is needed in order to push the following strings on transifex
         </div>
 
         <div id="ReceiverSelectionBoxBig" ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" ng-show="!submission.current_context.show_small_cards">
-          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}" ng-click="switch_selection(receiver.receiver_gus)">
+          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" ng-class="{selected: submission.receivers_selected[receiver.id]}" ng-click="switch_selection(receiver.id)">
             <div class="row receiverCardTitle">
               <div class="col-md-10">
                 <label>
@@ -92,17 +92,17 @@ This comment is needed in order to push the following strings on transifex
                 </label>
               </div>
               <div class="col-md-1">
-                <div ng-show="submission.receivers_selected[receiver.receiver_gus]">
+                <div ng-show="submission.receivers_selected[receiver.id]">
                   <i class="glyphicon glyphicon-check" popover="{{ 'Deselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                 </div>
-                <div ng-show="!submission.receivers_selected[receiver.receiver_gus]">
+                <div ng-show="!submission.receivers_selected[receiver.id]">
                   <i class="glyphicon glyphicon-unchecked" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-5">
-                <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-thumbnail">
+                <img ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
               </div>
               <div class="col-md-offset-1 col-md-6">
                 <p>{{receiver.description}}</p>
@@ -114,7 +114,7 @@ This comment is needed in order to push the following strings on transifex
 
         <div id="ReceiverSelectionBoxSmall" ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" ng-show="submission.current_context.show_small_cards">
           <div class="form-group col-md-3">
-            <div ng-click="switch_selection(receiver.receiver_gus)" class="receiverCard" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}">
+            <div ng-click="switch_selection(receiver.id)" class="receiverCard" ng-class="{selected: submission.receivers_selected[receiver.id]}">
               <div class="row receiverCardTitle">
                 <div class="col-md-9">
                   <label>
@@ -130,17 +130,17 @@ This comment is needed in order to push the following strings on transifex
                   </label>
                 </div>
                 <div class="col-md-1">
-                  <div ng-show="submission.receivers_selected[receiver.receiver_gus]">
+                  <div ng-show="submission.receivers_selected[receiver.id]">
                     <i class="glyphicon glyphicon-check" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </div>
-                  <div ng-show="!submission.receivers_selected[receiver.receiver_gus]">
+                  <div ng-show="!submission.receivers_selected[receiver.id]">
                     <i class="glyphicon glyphicon-unchecked" popover="{{ 'Deselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-thumbnail">
+                  <img ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
                 </div>
               </div>
             </div>
