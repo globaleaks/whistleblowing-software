@@ -234,14 +234,14 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('Submission', ['$resource', 'Node', 'Contexts', 'Receivers', function($resource, Node, Contexts, Receivers) {
 
     var submissionResource = $resource('/submission/:submission_id/',
-        {submission_id: '@submission_gus'},
+        {submission_id: '@id'},
         {submit:
           {method: 'PUT'}
     });
 
     var isReceiverInContext = function(receiver, context) {
 
-      if (receiver.contexts.indexOf(context.context_gus)) {
+      if (receiver.contexts.indexOf(context.id)) {
         return true;
       } else {
         return false
@@ -275,11 +275,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.current_context_receivers = [];
         forEach(self.receivers, function(receiver){
           // enumerate only the receivers of the current context
-          if (self.current_context.receivers.indexOf(receiver.receiver_gus) !== -1) {
+          if (self.current_context.receivers.indexOf(receiver.id) !== -1) {
             self.current_context_receivers.push(receiver);
-            self.receivers_selected[receiver.receiver_gus] = true;
+            self.receivers_selected[receiver.id] = true;
             if ( self.current_context.select_all_receivers == false ) {
-              self.receivers_selected[receiver.receiver_gus] = false;
+              self.receivers_selected[receiver.id] = false;
             }
           };
         });
@@ -307,7 +307,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
        * */
       self.create = function(cb) {
         self.current_submission = new submissionResource({
-          context_gus: self.current_context.context_gus,
+          id: self.current_context.id,
           wb_fields: {}, files: [], finalize: false, receivers: []
         });
 
@@ -352,9 +352,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.receivers = [];
         // remind this clean the collected list of receiver_id
         self.current_submission.receivers = [];
-        _.each(self.receivers_selected, function(selected, receiver_gus){
+        _.each(self.receivers_selected, function(selected, id){
           if (selected) {
-            self.current_submission.receivers.push(receiver_gus);
+            self.current_submission.receivers.push(id);
           }
         });
         self.current_submission.finalize = true;
@@ -440,7 +440,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     var tipResource = $resource('/wbtip', {}, {update: {method: 'PUT'}});
     var receiversResource = $resource('/wbtip/receivers', {}, {});
     var commentsResource = $resource('/wbtip/comments', {}, {});
-    var messageResource = $resource('/wbtip/messages/:receiver_gus', {receiver_gus: '@receiver_gus'}, {});
+    var messageResource = $resource('/wbtip/messages/:id', {id: '@id'}, {});
 
     return function(fn) {
       var self = this;
@@ -466,7 +466,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           };
 
           self.tip.newMessage = function(content) {
-            var m = new messageResource({receiver_gus: self.tip.msg_receiver_selected});
+            var m = new messageResource({id: self.tip.msg_receiver_selected});
             m.content = content;
             m.$save(function(newMessage) {
               self.tip.messages.unshift(newMessage);
@@ -475,7 +475,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
           self.tip.updateMessages = function() {
             if (self.tip.msg_receiver_selected) {
-              messageResource.query({receiver_gus: self.tip.msg_receiver_selected}, function(messageCollection){
+              messageResource.query({id: self.tip.msg_receiver_selected}, function(messageCollection){
                 self.tip.messages = messageCollection;
 
                 // XXX perhaps make this return a lazyly instanced item.
@@ -491,9 +491,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
             forEach(self.tip.receivers, function(r1) {
               forEach(receivers, function(r2) {
-                if (r2.receiver_gus == r1.receiver_gus) {
+                if (r2.id == r1.id) {
                   self.tip.msg_receivers_selector.push({
-                    key: r2.receiver_gus,
+                    key: r2.id,
                     value: r2.name
                   });
                 }
@@ -720,12 +720,12 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     function Admin() {
       var self = this,
         adminContextsResource = $resource('/admin/context/:context_id',
-          {context_id: '@context_gus'},
+          {context_id: '@id'},
           {update:
           {method: 'PUT'}
           }),
         adminReceiversResource = $resource('/admin/receiver/:receiver_id',
-          {receiver_id: '@receiver_gus'},
+          {receiver_id: '@id'},
           {update:
           {method: 'PUT'}
           }),

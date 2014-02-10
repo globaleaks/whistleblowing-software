@@ -46,7 +46,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$http', 'Admin',
           receiver.presentation_order = 0;
           receiver.$save(function(added_receiver){
             $scope.admin.create_context($scope.context.name, function(context){
-              context.receivers = [added_receiver.receiver_gus];
+              context.receivers = [added_receiver.id];
               $scope.admin.node.old_password = 'globaleaks';
               $scope.update($scope.admin.node);
               $scope.update(context);

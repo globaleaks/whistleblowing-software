@@ -35,11 +35,11 @@ GLClient.controller('TipCtrl', ['$scope', '$http', '$route', '$location', '$moda
 
   $scope.$watch('msg_receiver_selected', function(){
     if ($scope.msg_receiver_selected) {
-      messageResource.query({receiver_gus: $scope.msg_receiver_selected}, function(messageCollection){
+      messageResource.query({receiver_id: $scope.msg_receiver_selected}, function(messageCollection){
         $scope.tip.messages = messageCollection;
 
         $scope.tip.messages.newMessage = function(content) {
-          var m = new messageResource({receiver_gus: $scope.msg_receiver_selected});
+          var m = new messageResource({receiver_id: $scope.msg_receiver_selected});
           m.content = content;
           m.$save(function(newMessage) {
             $scope.tip.messages.unshift(newMessage);
