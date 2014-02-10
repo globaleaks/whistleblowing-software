@@ -10,26 +10,12 @@ var host = 'http://127.0.0.1:8082';
 
 var app = request(host);
 
-var population_order = 42;
+var population_order = 4;
 
 var submissions = new Array();
 var files = new Array();
+var context_id = new Array();
 
-var valid_login = function(i) {
-  return {
-    "username": "",
-    "password": wb_receipts[i],
-    "role": "wb"
-  }
-}
-
-var invalid_login = function(i) {
-  return {
-    "username": "",
-    "password": "antani",
-    "role": "wb"
-  }
-}
 
 describe('GET /contexts', function(){
   it('responds with ' + population_order + ' contexts associated to ' + population_order + ' receivers', function(done){
@@ -49,7 +35,7 @@ describe('GET /contexts', function(){
           contexts = res.body;
 
           for (var i=0; i<population_order; i++) {
-            contexts_gus.push(contexts[i].context_gus);
+            contexts_id.push(contexts[i].id);
           }
 
           done();
@@ -69,7 +55,7 @@ describe('POST /submission', function(){
           new_submission.wb_fields[field.key]  = "primo";
         })
 
-        new_submission.context_gus = contexts_gus[i];
+        new_submission.context_id = contexts_id[i];
         new_submission.files = [];
         new_submission.finalize = false;
         new_submission.receivers = [];
@@ -144,8 +130,6 @@ describe('POST /submission', function(){
     (function (i) {
 
       it('responds with ', function(done){
-
-        submissions[i].receivers = receivers_gus;
 
         submissions[i].wb_fields = {};
 

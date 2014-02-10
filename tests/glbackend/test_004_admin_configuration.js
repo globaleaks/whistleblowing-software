@@ -52,7 +52,7 @@ var receiver = {
 }
 
 var context = {
-  "receiver_introduction":"",
+  "receiver_introduction":"foca",
   "presentation_order":0,
   "postpone_superpower":false,
   "delete_consensus_percentage":0,
@@ -60,14 +60,14 @@ var context = {
   "receipt_regexp":"[0-9]{10}",
   "tip_timetolive":15, 
   "escalation_threshold":0,
-  "can_delete_submission":false,
+  "can_delete_submission":true,
   "show_small_cards":false,
   "submission_timetolive":1, 
   "file_max_download":3,
   "select_all_receivers":true,
-  "description":"",
+  "description":"XXXXX ħ ÐÐ",
   "tags":[],
-  "selectable_receiver":true,
+  "selectable_receiver":false,
   "require_file_description":false,
   "name":"Context 1",
   "fields":[
@@ -155,7 +155,7 @@ var context = {
             "order":0,
             "value":"b",
             "name":"b"
-          },
+	  },
           {
             "order":0,
             "value":"c",
@@ -275,7 +275,7 @@ for (var i=0; i<population_order/2; i++) {
     context.selectable_receiver = false;
 
     var newObject = JSON.parse(JSON.stringify(context));
-    newObject.name = 'Context ' + i;
+    newObject.name = 'Conte><T ' + i;
     newObject.presentation_order = i;
 
     it('responds 201 on POST /admin/context (authenticated, valid context[' + i + '])', function (done) {
