@@ -8,7 +8,7 @@ from globaleaks.rest import errors
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks import models
 from globaleaks.security import get_salt, hash_password
-from globaleaks.utils.utility import datetime_now, datetime_null, acquire_url_address
+from globaleaks.utils.utility import datetime_now, datetime_null, acquire_url_address, log
 from globaleaks.third_party import rstr
 from globaleaks.models import Node, ApplicationData
 
@@ -24,18 +24,24 @@ def opportunistic_appdata_init():
     fields_l10n = [ "../GLClient/app/data/fields_l10n.json",
                     "../../GLClient/app/data/fields_l10n.json" ]
 
+    appdata_dict = None
+
     for f710n in fields_l10n:
+
         if os.path.exists(f710n):
-            appdata_dict = None
+
             with file(f710n, 'r') as f:
                 import json
 
                 json_string = f.read()
                 appdata_dict = json.loads(json_string)
+                return appdata_dict
 
-            break
         else:
             appdata_dict = None
+
+    if not appdata_dict:
+        print "Note: no init opportunity!"
 
     return appdata_dict
 
@@ -133,7 +139,7 @@ def initialize_node(store, results, only_node, templates, appdata):
     store.add(notification)
 
     if appdata:
-        print "Development environment detected: Installing ApplicationData from file"
+        log.debug("Development environment detected: Installing ApplicationData from file")
 
         new_appdata = ApplicationData()
         new_appdata.fields = appdata['fields']
@@ -141,7 +147,7 @@ def initialize_node(store, results, only_node, templates, appdata):
 
         store.add(new_appdata)
     else:
-        print "Not Development environment: waiting for Wizard setup ApplicationData"
+        log.debug("Not Development environment: waiting for Wizard setup ApplicationData")
 
 
 
