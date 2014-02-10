@@ -58,7 +58,7 @@ class TestReceiverSetKey(TestHandler):
     @inlineCallbacks
     def test_get(self):
 
-        handler = self.request(self.dummyReceiver, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
+        handler = self.request(self.dummyReceiver, role='receiver', user_id=self.dummyReceiver['id'])
         yield handler.get()
         self.assertEqual(self.responses[0]['gpg_key_info'], None)
 
@@ -72,7 +72,7 @@ class TestReceiverSetKey(TestHandler):
         self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
         self.receiver_only_update['gpg_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
+        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['id'])
         yield handler.put()
         self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
                          u'C1ED5C8FDB6A1C74A807569591EC9BB8D9A950DE')
@@ -92,7 +92,7 @@ class TestReceiverSetKey(TestHandler):
         self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
         self.receiver_only_update['gpg_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
+        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['id'])
         yield handler.put()
         self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
             u'C1ED5C8FDB6A1C74A807569591EC9BB8D9A950DE')
@@ -100,7 +100,7 @@ class TestReceiverSetKey(TestHandler):
 
         self.receiver_only_update['gpg_key_armor'] = unicode(HermesGlobaleaksKey.__doc__)
         self.receiver_only_update['gpg_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
+        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['id'])
         yield handler.put()
         self.assertEqual(self.responses[1]['gpg_key_fingerprint'],
             u'12CB52E0D793A11CAF0360F8839B5DED0050B3C1')
@@ -114,7 +114,7 @@ class TestReceiverSetKey(TestHandler):
         self.receiver_only_update['gpg_key_remove'] = False
 
         try:
-            serialized_result = yield transact_dummy_whatever(self.dummyReceiver['receiver_gus'],
+            serialized_result = yield transact_dummy_whatever(self.dummyReceiver['id'],
                 self.receiver_only_update)
             print "Invalid results!"
             self.assertTrue(False)
@@ -200,7 +200,7 @@ class TestReceiverSetKey(TestHandler):
 
         self.receiver_only_update['gpg_key_armor'] = unicode(ExpiredKey.__doc__)
         self.receiver_only_update['gpg_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
+        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['id'])
         yield handler.put()
         self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
             u'C6DAF5B34D5960883C7A9552AACA3A01C2752D4B')
@@ -231,7 +231,7 @@ class TestReceiverSetKey(TestHandler):
         yanr['name'] = yanr['mail_address'] = "quercia@nana.ptg"
         yanr['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         yanr['gpg_enable_files'] = True
-        yanr['contexts'] = [ new_context_output['context_gus']]
+        yanr['contexts'] = [ new_context_output['id']]
         yanr_output = yield create_receiver(yanr)
         self.receiver_assertion(yanr, yanr_output)
 
@@ -239,15 +239,15 @@ class TestReceiverSetKey(TestHandler):
         asdr['name'] = asdr['mail_address'] = "nocibo@rocco.tnc"
         asdr['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         asdr['gpg_enable_files'] = True
-        asdr['contexts'] = [ new_context_output['context_gus']]
+        asdr['contexts'] = [ new_context_output['id']]
         asdr_output = yield create_receiver(asdr)
         self.receiver_assertion(asdr, asdr_output)
 
         new_subm = dict(MockDict().dummySubmission)
         new_subm['finalize'] = False
-        new_subm['context_gus'] = new_context_output['context_gus']
-        new_subm['receivers'] = [ asdr_output['receiver_gus'],
-                                  yanr_output['receiver_gus'] ]
+        new_subm['context_id'] = new_context_output['id']
+        new_subm['receivers'] = [ asdr_output['id'],
+                                  yanr_output['id'] ]
         new_subm_output = yield create_submission(new_subm, False)
         # self.submission_assertion(new_subm, new_subm_output)
 
@@ -256,22 +256,22 @@ class TestReceiverSetKey(TestHandler):
         relationship1 = yield threads.deferToThread(files.dump_file_fs, new_file)
 
         self.registered_file1 = yield files.register_file_db(
-            new_file, relationship1, new_file['body_sha'], new_subm_output['submission_gus'] )
+            new_file, relationship1, new_file['body_sha'], new_subm_output['id'] )
 
-        new_subm['submission_gus'] = new_subm_output['submission_gus']
+        new_subm['id'] = new_subm_output['id']
         new_subm['finalize'] = True
-        new_subm_output = yield update_submission(new_subm['submission_gus'], new_subm, True)
+        new_subm_output = yield update_submission(new_subm['id'], new_subm, True)
 
         yield APSDelivery().operation()
 
         # now get a lots of receivertips/receiverfiles and check!
-        ifilist = yield get_files_by_itip(new_subm_output['submission_gus'])
+        ifilist = yield get_files_by_itip(new_subm_output['id'])
 
         self.assertTrue(isinstance(ifilist, list))
         self.assertEqual(len(ifilist), 1)
         self.assertEqual(ifilist[0]['mark'], u'delivered')
 
-        rfilist = yield get_receiverfile_by_itip(new_subm_output['submission_gus'])
+        rfilist = yield get_receiverfile_by_itip(new_subm_output['id'])
 
         self.assertTrue(isinstance(ifilist, list))
         self.assertEqual(len(rfilist), 2)
@@ -291,7 +291,7 @@ class TestReceiverSetKey(TestHandler):
 #        self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
 #        self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
 #        self.receiver_only_update['gpg_key_remove'] = False
-#        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
+#        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['id'])
 #        yield handler.put()
 #        self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
 #            u'C1ED5C8FDB6A1C74A807569591EC9BB8D9A950DE')
@@ -303,10 +303,7 @@ class TestReceiverSetKey(TestHandler):
 #            new_receiver['mail_address'] = "quercia@nana.ptg"
 #        new_receiver_output = yield create_receiver(new_receiver)
 #
-#        self.assertGreater(new_receiver_output['receiver_gus'], 10)
-#        self.assertNotEqual(self.dummyReceiver['receiver_gus'], new_receiver_output['receiver_gus'])
-#
-#        handler = self.request(self.receiver_only_update, role='receiver', user_id=new_receiver_output['receiver_gus'])
+#        handler = self.request(self.receiver_only_update, role='receiver', user_id=new_receiver_output['id'])
 #        try:
 #            yield handler.put()
 #            self.assertTrue(False)

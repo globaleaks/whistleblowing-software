@@ -61,7 +61,7 @@ def register_file_db(store, uploaded_file, filepath, cksum, internaltip_id):
 
     if not internaltip:
         log.err("File submission register in a submission that's no more")
-        raise errors.TipGusNotFound
+        raise errors.TipIdNotFound
 
     original_fname = uploaded_file['filename']
 
@@ -122,7 +122,7 @@ def get_tip_by_submission(store, itip_id):
                       InternalTip.id == itip_id).one()
 
     if not itip:
-        raise errors.SubmissionGusNotFound
+        raise errors.SubmissionIdNotFound
 
     if itip.mark != InternalTip._marker[0]:
         log.err("Denied access on a concluded submission")
@@ -188,10 +188,10 @@ class FileAdd(FileHandler):
     @inlineCallbacks
     def post(self, *args):
         """
-        Parameter: submission_gus
+        Parameter: internaltip_id 
         Request: Unknown
         Response: Unknown
-        Errors: SubmissionGusNotFound, SubmissionConcluded
+        Errors: SubmissionIdNotFound, SubmissionConcluded
         """
         stats_counter('file_uploaded')
         itip_id = yield get_tip_by_wbtip(self.current_user['user_id'])
@@ -211,10 +211,10 @@ class FileInstance(FileHandler):
     @inlineCallbacks
     def post(self, submission_id, *args):
         """
-        Parameter: submission_gus
+        Parameter: internaltip_id
         Request: Unknown
         Response: Unknown
-        Errors: SubmissionGusNotFound, SubmissionConcluded
+        Errors: SubmissionIdNotFound, SubmissionConcluded
         """
         stats_counter('file_uploaded')
         itip_id = yield get_tip_by_submission(submission_id)

@@ -106,7 +106,7 @@ def receiver_pic_path(store, receiver_uuid):
     receiver = store.find(models.Receiver, models.Receiver.id == unicode(receiver_uuid)).one()
 
     if not receiver:
-        raise errors.ReceiverGusNotFound
+        raise errors.ReceiverIdNotFound
 
     return os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
 
@@ -166,7 +166,7 @@ class StaticFileInstance(BaseStaticFileHandler):
             try:
                 path = yield receiver_pic_path(filename)
                 log.debug("Received request to update Receiver portrait with %s" % filename)
-            except errors.ReceiverGusNotFound as excpd:
+            except errors.ReceiverIdNotFound as excpd:
                 log.err("Invalid Receiver ID specified: %s" % filename)
                 raise excpd
             except Exception as excpd:

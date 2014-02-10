@@ -22,7 +22,7 @@ from globaleaks.security import access_tip
 def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.default_language):
 
     itip_dict = {
-        'context_gus': unicode(internaltip.context.id),
+        'context_id': unicode(internaltip.context.id),
         'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
         'expiration_date' : unicode(pretty_date_time(internaltip.expiration_date)),
         'download_limit' : int(internaltip.download_limit),
@@ -306,7 +306,7 @@ class RTipInstance(BaseHandler):
         """
         Request: actorsTipOpsDesc
         Response: None
-        Errors: ForbiddenOperation, TipGusNotFound
+        Errors: ForbiddenOperation, TipIdNotFound
 
         global delete: is removed InternalTip and all the things derived
         personal delete: is removed the ReceiverTip and ReceiverFiles
@@ -394,7 +394,7 @@ class RTipCommentCollection(BaseHandler):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc
-        Errors: InvalidTipAuthToken, InvalidInputFormat, TipGusNotFound, TipReceiptNotFound
+        Errors: InvalidTipAuthToken, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
@@ -417,7 +417,7 @@ def get_receiver_list_receiver(store, user_id, tip_id, language=GLSetting.memory
             "gpg_key_status": rtip.receiver.gpg_key_status,
             "can_delete_submission": rtip.receiver.can_delete_submission,
             "name": unicode(rtip.receiver.name),
-            "receiver_gus": unicode(rtip.receiver.id),
+            "receiver_id": unicode(rtip.receiver.id),
             "receiver_level": int(rtip.receiver.receiver_level),
             "tags": rtip.receiver.tags,
             "access_counter": rtip.access_counter,
@@ -534,7 +534,7 @@ class ReceiverMsgCollection(BaseHandler):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc
-        Errors: InvalidTipAuthToken, InvalidInputFormat, TipGusNotFound, TipReceiptNotFound
+        Errors: InvalidTipAuthToken, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)

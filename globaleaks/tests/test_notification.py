@@ -23,8 +23,8 @@ class TestEmail(helpers.TestGL):
 
         self.recipe = yield submission.create_submission({
             'wb_fields': helpers.fill_random_fields(self.dummyContext),
-            'context_gus': self.dummyContext['context_gus'],
-            'receivers': [self.dummyReceiver['receiver_gus']],
+            'context_id': self.dummyContext['id'],
+            'receivers': [self.dummyReceiver['id']],
             'files': [],
             'finalize': True,
             }, finalize=True)

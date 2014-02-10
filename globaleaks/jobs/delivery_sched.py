@@ -220,13 +220,13 @@ def receiverfile_create(store, fid, status, fpath, flen, receiver_desc):
         receiverfile = ReceiverFile()
 
         receiverfile.downloads = 0
-        receiverfile.receiver_id = receiver_desc['receiver_gus']
+        receiverfile.receiver_id = receiver_desc['id']
         receiverfile.internalfile_id = ifile.id
         receiverfile.internaltip_id = ifile.internaltip_id
 
         # Receiver Tip reference
         rtrf = store.find(ReceiverTip, ReceiverTip.internaltip_id == ifile.internaltip_id,
-                          ReceiverTip.receiver_id == receiver_desc['receiver_gus']).one()
+                          ReceiverTip.receiver_id == receiver_desc['id']).one()
         receiverfile.receiver_tip_id = rtrf.id
 
         # inherit by previous operation and checks
@@ -243,7 +243,7 @@ def receiverfile_create(store, fid, status, fpath, flen, receiver_desc):
         # loaded the object to verify reference
 
         test = store.find(ReceiverFile, ReceiverFile.internalfile_id == fid,
-                          ReceiverFile.receiver_id == receiver_desc['receiver_gus']).one()
+                          ReceiverFile.receiver_id == receiver_desc['id']).one()
 
         # assert over context, filesystem and receiver state
         assert test.internaltip.context_id, "Context broken"

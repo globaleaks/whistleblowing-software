@@ -57,7 +57,7 @@ authDict = {
 
 wbSubmissionDesc = {
     'wb_fields' : dict,
-    'context_gus' : uuid_regexp,
+    'context_id' : uuid_regexp,
     'receivers' : [ uuid_regexp ],
     'files' : [ uuid_regexp ],
     'finalize' : bool

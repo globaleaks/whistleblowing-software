@@ -83,8 +83,8 @@ class notifTemplateTest(TestWithDB):
         """
         if type == u'encrypted_tip' and trigger == 'Tip':
 
-            receiver_dict = yield admin.get_receiver(self.createdReceiver['receiver_gus'])
-            context_dict = yield admin.get_context(self.createdContext['context_gus'])
+            receiver_dict = yield admin.get_receiver(self.createdReceiver['id'])
+            context_dict = yield admin.get_context(self.createdContext['id'])
             notif_dict = yield admin.get_notification()
 
             try:
@@ -142,15 +142,15 @@ class notifTemplateTest(TestWithDB):
 
         try:
             self.createdContext = yield admin.create_context(self.mockContext)
-            self.assertTrue(self.createdContext.has_key('context_gus'))
+            self.assertTrue(self.createdContext.has_key('id'))
         except Exception as excep:
             raise excep
 
         try:
-            self.mockReceiver['contexts'] = [ self.createdContext['context_gus'] ]
+            self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
 
             self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
-            self.assertTrue(self.createdReceiver.has_key('receiver_gus'))
+            self.assertTrue(self.createdReceiver.has_key('id'))
         except Exception as excep:
             raise excep
 
@@ -186,8 +186,8 @@ class notifTemplateTest(TestWithDB):
         # THE REAL CONVERSION TEST START HERE:
         self.mockSubmission = MockDict().dummySubmission
         self.mockSubmission['finalize'] = True
-        self.mockSubmission['context_gus'] = self.createdReceiver['contexts'][0]
-        self.mockSubmission['receivers'] = [ self.createdReceiver['receiver_gus'] ]
+        self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
+        self.mockSubmission['receivers'] = [ self.createdReceiver['receiver_id'] ]
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()
@@ -231,15 +231,15 @@ class notifTemplateTest(TestWithDB):
 
         try:
             self.createdContext = yield admin.create_context(self.mockContext)
-            self.assertTrue(self.createdContext.has_key('context_gus'))
+            self.assertTrue(self.createdContext.has_key('id'))
         except Exception as excep:
             raise excep
 
         try:
-            self.mockReceiver['contexts'] = [ self.createdContext['context_gus'] ]
+            self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
 
             self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
-            self.assertTrue(self.createdReceiver.has_key('receiver_gus'))
+            self.assertTrue(self.createdReceiver.has_key('id'))
         except Exception as excep:
             raise excep
 
@@ -253,8 +253,8 @@ class notifTemplateTest(TestWithDB):
         # THE REAL CONVERSION TEST START HERE:
         self.mockSubmission = MockDict().dummySubmission
         self.mockSubmission['finalize'] = True
-        self.mockSubmission['context_gus'] = self.createdReceiver['contexts'][0]
-        self.mockSubmission['receivers'] = [ self.createdReceiver['receiver_gus'] ]
+        self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
+        self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()
@@ -287,15 +287,15 @@ class notifTemplateTest(TestWithDB):
 
         try:
             self.createdContext = yield admin.create_context(self.mockContext)
-            self.assertTrue(self.createdContext.has_key('context_gus'))
+            self.assertTrue(self.createdContext.has_key('id'))
         except Exception as excep:
             raise excep
 
         try:
-            self.mockReceiver['contexts'] = [ self.createdContext['context_gus'] ]
+            self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
 
             self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
-            self.assertTrue(self.createdReceiver.has_key('receiver_gus'))
+            self.assertTrue(self.createdReceiver.has_key('id'))
         except Exception as excep:
             raise excep
 
@@ -316,8 +316,8 @@ class notifTemplateTest(TestWithDB):
 
         self.mockSubmission = MockDict().dummySubmission
         self.mockSubmission['finalize'] = True
-        self.mockSubmission['context_gus'] = self.createdReceiver['contexts'][0]
-        self.mockSubmission['receivers'] = [ self.createdReceiver['receiver_gus'] ]
+        self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
+        self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()

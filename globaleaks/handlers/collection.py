@@ -35,7 +35,7 @@ def get_collection_info(store, rtip_id):
 
     if not rtip:
         log.err("Download of a Zip file without ReceiverTip associated!")
-        raise errors.TipGusNotFound
+        raise errors.TipIdNotFound
 
     rtip_dict = serialize_receivertip(rtip)
 
@@ -56,7 +56,7 @@ def get_receiver_from_rtip(store, rtip_id):
 
     if not rtip:
         log.err("Download of a Zip file without ReceiverTip associated!")
-        raise errors.TipGusNotFound
+        raise errors.TipIdNotFound
 
     return admin.admin_serialize_receiver(rtip.receiver, GLSetting.memory_copy.default_language)
 

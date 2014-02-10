@@ -120,7 +120,7 @@ class APSCleaning(GLJob):
         """
         Goal of this function is to check all the submission not
         finalized, and, if the expiration time sets in the context has
-        been reached, then clean the submission_gus along with the fields,
+        been reached, then clean the submission_id along with the fields,
         and, if present, the uploaded folder/files.
 
         Second goal of this function, is to check all the InternalTip(s)

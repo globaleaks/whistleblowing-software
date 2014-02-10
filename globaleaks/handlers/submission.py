@@ -21,9 +21,7 @@ from globaleaks.rest import errors
 def wb_serialize_internaltip(internaltip):
     response = {
         'id' : unicode(internaltip.id),
-        # compatibility! until client is not patched.
-        'submission_gus' : unicode(internaltip.id),
-        'context_gus': unicode(internaltip.context_id),
+        'context_id': unicode(internaltip.context_id),
         'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
         'expiration_date' : unicode(pretty_date_time(internaltip.expiration_date)),
         'wb_fields' : dict(internaltip.wb_fields or {}),
@@ -56,7 +54,7 @@ def create_whistleblower_tip(store, submission_desc):
 
     wbtip = WhistleblowerTip()
 
-    context = store.find(Context, Context.id == submission_desc['context_gus']).one()
+    context = store.find(Context, Context.id == submission_desc['context_id']).one()
 
     return_value_receipt = unicode( rstr.xeger(context.receipt_regexp) )
     node = store.find(Node).one()
@@ -117,7 +115,7 @@ def import_receivers(store, submission, receiver_id_list, required=False):
         except Exception as excep:
             log.err("Receiver requested (%s) can't be found: %s" %
                     (receiver_id, excep))
-            raise errors.ReceiverGusNotFound
+            raise errors.ReceiverIdNotFound
 
         if not context in receiver.contexts:
             raise errors.InvalidInputFormat("Forged receiver selection, you fuzzer! <:")
@@ -152,7 +150,7 @@ def import_files(store, submission, files, finalize):
         except Exception as excep:
             log.err("Storm error, not found %s file in import_files (%s)" %
                     (file_id, excep))
-            raise errors.FileGusNotFound
+            raise errors.FileIdNotFound
 
         ifile.internaltip_id = submission.id
     
@@ -165,10 +163,10 @@ def import_files(store, submission, files, finalize):
 @transact
 def create_submission(store, request, finalize, language=GLSetting.memory_copy.default_language):
 
-    context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
+    context = store.find(Context, Context.id == unicode(request['context_id'])).one()
     if not context:
-        log.err("Context requested: [%s] not found!" % request['context_gus'])
-        raise errors.ContextGusNotFound
+        log.err("Context requested: [%s] not found!" % request['context_id'])
+        raise errors.ContextIdNotFound
 
     submission = InternalTip()
 
@@ -226,10 +224,10 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
 @transact
 def update_submission(store, id, request, finalize, language=GLSetting.memory_copy.default_language):
 
-    context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
+    context = store.find(Context, Context.id == unicode(request['context_id'])).one()
     if not context:
-        log.err("Context requested: [%s] not found!" % request['context_gus'])
-        raise errors.ContextGusNotFound
+        log.err("Context requested: [%s] not found!" % request['context_id'])
+        raise errors.ContextIdNotFound
 
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
 
@@ -256,7 +254,7 @@ def update_submission(store, id, request, finalize, language=GLSetting.memory_co
     # this may happen if a submission try to update a context
     if submission.context_id != context.id:
         log.err("Can't be changed context in a submission update")
-        raise errors.ContextGusNotFound("Context are immutable")
+        raise errors.ContextIdNotFound("Context are immutable")
 
     if submission.mark != InternalTip._marker[0]:
         log.err("Submission %s do not permit update (status %s)" % (id, submission.mark))
@@ -300,7 +298,7 @@ def get_submission(store, id):
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
     if not submission:
         log.err("Invalid Submission requested %s in GET" % id)
-        raise errors.SubmissionGusNotFound
+        raise errors.SubmissionIdNotFound
 
     return wb_serialize_internaltip(submission)
 
@@ -310,7 +308,7 @@ def delete_submission(store, id):
 
     if not submission:
         log.err("Invalid Submission requested %s in DELETE" % id)
-        raise errors.SubmissionGusNotFound
+        raise errors.SubmissionIdNotFound
 
     if submission.mark != submission._marked[0]:
         log.err("Submission %s already concluded (status: %s)" % (id, submission.mark))
@@ -323,7 +321,7 @@ class SubmissionCreate(BaseHandler):
     """
     U2
     This class create the submission, receiving a partial wbSubmissionDesc, and
-    returning a submission_gus, usable in update operation.
+    returning a submission_id, usable in update operation.
     """
 
     @transport_security_check('wb')
@@ -334,12 +332,12 @@ class SubmissionCreate(BaseHandler):
         """
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
-        Errors: ContextGusNotFound, InvalidInputFormat, SubmissionFailFields
+        Errors: ContextIdNotFound, InvalidInputFormat, SubmissionFailFields
 
         This creates an empty submission for the requested context,
         and returns submissionStatus with empty fields and a Submission Unique String,
         This is the unique token used during the submission procedure.
-        sessionGUS is used as authentication secret for the next interaction.
+        header session_id is used as authentication secret for the next interaction.
         expire after the time set by Admin (Context dependent setting)
         """
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
@@ -373,15 +371,15 @@ class SubmissionInstance(BaseHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def get(self, submission_gus, *uriargs):
+    def get(self, submission_id, *uriargs):
         """
-        Parameters: submission_gus
+        Parameters: submission_id
         Response: wbSubmissionDesc
-        Errors: SubmissionGusNotFound, InvalidInputFormat
+        Errors: SubmissionIdNotFound, InvalidInputFormat
 
         Get the status of the current submission.
         """
-        submission = yield get_submission(submission_gus)
+        submission = yield get_submission(submission_id)
 
         self.set_status(200)
         self.finish(submission)
@@ -390,12 +388,12 @@ class SubmissionInstance(BaseHandler):
     @unauthenticated
     @anomaly_check('finalized_submission')
     @inlineCallbacks
-    def put(self, submission_gus, *uriargs):
+    def put(self, submission_id, *uriargs):
         """
-        Parameter: submission_gus
+        Parameter: submission_id
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
-        Errors: ContextGusNotFound, InvalidInputFormat, SubmissionFailFields, SubmissionGusNotFound, SubmissionConcluded
+        Errors: ContextIdNotFound, InvalidInputFormat, SubmissionFailFields, SubmissionIdNotFound, SubmissionConcluded
 
         PUT update the submission and finalize if requested.
         """
@@ -407,7 +405,7 @@ class SubmissionInstance(BaseHandler):
         else:
             finalize = False
 
-        status = yield update_submission(submission_gus, request, finalize, self.request.language)
+        status = yield update_submission(submission_id, request, finalize, self.request.language)
 
         if finalize:
             receipt = yield create_whistleblower_tip(status)
@@ -422,17 +420,20 @@ class SubmissionInstance(BaseHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def delete(self, submission_gus, *uriargs):
+    def delete(self, submission_id, *uriargs):
         """
-        Parameter: submission_gus
+        Parameter: submission_id
         Request:
         Response: None
-        Errors: SubmissionGusNotFound, SubmissionConcluded
+        Errors: SubmissionIdNotFound, SubmissionConcluded
 
-        A whistleblower is deleting a Submission because has understand that won't really be an hero. :P
+        A whistleblower is deleting a Submission because has understand that won't really 
+        be an hero. :P
+
+        This operation is available and tested but not implemented in the GLClient
         """
 
-        yield delete_submission(submission_gus)
+        yield delete_submission(submission_id)
 
         self.set_status(200) # Accepted
         self.finish()
