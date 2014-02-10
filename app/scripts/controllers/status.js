@@ -35,7 +35,7 @@ GLClient.controller('StatusCtrl',
           $scope.fieldFormat = {};
 
           angular.forEach(contexts, function(context, k){
-            if (context.context_gus == $scope.tip.context_gus) {
+            if (context.id == $scope.tip.context_id) {
               $scope.current_context = context;
             }
           });
@@ -65,7 +65,7 @@ GLClient.controller('StatusCtrl',
           $scope.fieldFormat = {};
 
           angular.forEach(contexts, function(context, k){
-            if (context.context_gus == $scope.tip.context_gus) {
+            if (context.id == $scope.tip.context_id) {
               $scope.current_context = context;
             }
           });

@@ -10,7 +10,8 @@ var host = 'http://127.0.0.1:8082';
 
 var app = request(host);
 
-var population_order = 42;
+// var population_order = 42;
+var population_order = 4;
 
 var receivers = new Array();
 var receivers_gus = new Array();
@@ -219,9 +220,10 @@ var context = {
     }
   ],
   "file_required":false,
+  "fields" : [],
   "maximum_selectable_receivers":0,
   "tip_max_access":500,
-  "fields_introduction":"",
+  "fields_introduction":"something",
   "receivers": []
 }
 
@@ -269,6 +271,8 @@ describe('POST /authentication', function () {
 // we popolate population_order/2 contexts
 for (var i=0; i<population_order/2; i++) {
   describe('POST /admin/context', function () {
+
+    context.selectable_receiver = false;
 
     var newObject = JSON.parse(JSON.stringify(context));
     newObject.name = 'Context ' + i;
