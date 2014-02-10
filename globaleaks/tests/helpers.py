@@ -75,14 +75,22 @@ class TestGL(TestWithDB):
     @inlineCallbacks
     def _setUp(self):
 
-        if not os.path.exists('files'):
-            os.mkdir('files')
+        try:
+            if not os.path.isdir('files'):
+                log.debug("Creating directory 'files' in %s" % os.getcwd())
+                os.mkdir('files')
 
-        if not os.path.exists('files/submission'):
-            os.mkdir('files/submission')
+            if not os.path.isdir('files/submission'):
+                log.debug("Creating directory 'files/submission' in %s" % os.getcwd())
+                os.mkdir('files/submission')
 
-        if not os.path.exists('ramdisk'):
-            os.mkdir('ramdisk')
+            if not os.path.isdir('ramdisk'):
+                log.debug("Creating directory 'ramdisk' in %s" % os.getcwd())
+                os.mkdir('ramdisk')
+
+        except OSError as excep:
+            log.err("Unable to setup disk emulation environment: %s" % excep.strerror)
+            raise excep
 
         yield TestWithDB.setUp(self)
         self.setUp_dummy()
@@ -114,7 +122,6 @@ class TestGL(TestWithDB):
     def fill_data(self):
 
         try:
-            import pdb; pdb.set_trace()
             yield do_appdata_init()
 
         except Exception as excp:
@@ -139,8 +146,8 @@ class TestGL(TestWithDB):
             print "Fail fill_data/create_context: %s" % excp
             raise  excp
 
-        self.dummySubmission['context_id'] = self.dummyContext['context_id']
-        self.dummySubmission['receivers'] = [ self.dummyReceiver['receiver_id'] ]
+        self.dummySubmission['context_id'] = self.dummyContext['id']
+        self.dummySubmission['receivers'] = [ self.dummyReceiver['id'] ]
         self.dummySubmission['wb_fields'] = fill_random_fields(self.dummyContext)
 
         try:
@@ -328,7 +335,7 @@ class MockDict():
             'name': u'Already localized name',
             'description': u'Already localized desc',
             # fields, usually filled in content by fill_random_fields
-            'fields': list(default_context_fields),
+            'fields': default_context_fields(),
             'selectable_receiver': False,
             'select_all_receivers': True,
             'tip_max_access': 10,
@@ -495,7 +502,7 @@ def fill_random_fields(context_desc):
 
     assert isinstance(context_desc, dict)
     fields_list = context_desc['fields']
-    assert isinstance(fields_list, list)
+    assert isinstance(fields_list, list), "Missing fields!"
     assert len(fields_list) >= 1
 
     ret_dict = {}
@@ -505,9 +512,8 @@ def fill_random_fields(context_desc):
         assert sf.has_key(u'key')
         assert sf.has_key(u'hint')
         assert sf.has_key(u'presentation_order')
-        assert sf.has_key(u'value')
         assert sf.has_key(u'type')
-        # assert sf.has_key(u'required')
+        # not all element are checked now
 
         unicode_weird = ''.join(unichr(x) for x in range(0x400, 0x4FF) )
         ret_dict.update({ sf.get(u'key') : unicode_weird })
@@ -515,8 +521,31 @@ def fill_random_fields(context_desc):
     return ret_dict
 
 
+def default_context_fields():
 
-default_context_fields = None
+    source = opportunistic_appdata_init()
+    if not source.has_key('fields'):
+        raise Exception("Invalid Application Data initialization")
+
+    f = source['fields']
+    fo = Fields()
+    fo.noisy = True
+    fo.default_fields(f)
+    default_fields_unhappy = fo.dump_fields('en')
+
+    ret_fields = []
+    the_first_is_required = False
+
+    for field in default_fields_unhappy:
+
+        if not the_first_is_required:
+            field['required'] = True
+            the_first_is_required = True
+
+        ret_fields.append(field)
+
+    return ret_fields
+
 
 @transact
 def do_appdata_init(store):
@@ -541,10 +570,6 @@ def do_appdata_init(store):
     fo.default_fields(appdata.fields)
     (unique_fields, localized_fields) = fo.extensive_dump()
 
-    # default_context_fields = fo.dump_fields('en')
-    #print fo.dump_fields('en')
-    #print unique_fields
-    #print localized_fields
     return unique_fields, localized_fields
 
 

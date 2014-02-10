@@ -42,8 +42,12 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         self.keypath = os.path.join(keydir, self.nonce)
         self.filepath = os.path.join(filedir, self.nonce)
 
-        with open(self.keypath, 'w+b') as f:
-            f.write(self.key)
+        if os.access(keydir, os.W_OK):
+            with open(self.keypath, 'w+b') as f:
+                f.write(self.key)
+        else:
+            log.err("Unable to access in writing mode to: %s" % self.keypath)
+            raise OSError("Unable to open in writing %s" % self.keypath)
 
         self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
         self.file = open(self.filepath, 'w+b')

@@ -41,7 +41,7 @@ class SubmissionTest(helpers.TestGL):
         'name': u'UNUSED', 'description': u'UNUSED',
         'escalation_threshold': u'0', 'tip_max_access': u'2',
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
-        'receivers': [], 'fields': helpers.sample_context_fields, 'submission_timetolive': 100,
+        'receivers': [], 'fields': helpers.default_context_fields(), 'submission_timetolive': 100,
         'receipt_regexp': u"[0-9]{10}",
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
         'select_all_receivers': True,
@@ -84,7 +84,7 @@ class TestTipInstance(SubmissionTest):
             for attrname in Context.localized_strings:
                 SubmissionTest.context_used[attrname] = stuff
 
-            SubmissionTest.context_used = yield admin.update_context(SubmissionTest.context_used['context_id'],
+            SubmissionTest.context_used = yield admin.update_context(SubmissionTest.context_used['id'],
                 SubmissionTest.context_used)
 
             basehandler.validate_jmessage( SubmissionTest.aContext2, adminContextDesc)
@@ -94,10 +94,10 @@ class TestTipInstance(SubmissionTest):
             log.err("Unable to create context used/unused in UT: %s" % excep.message)
             raise excep
 
-        self.assertTrue(len(SubmissionTest.context_used['context_id']) > 1)
-        self.assertTrue(len(SubmissionTest.context_unused['context_id']) > 1)
+        self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
+        self.assertTrue(len(SubmissionTest.context_unused['id']) > 1)
 
-        SubmissionTest.aReceiver1['contexts'] = [ SubmissionTest.context_used['context_id'] ]
+        SubmissionTest.aReceiver1['contexts'] = [ SubmissionTest.context_used['id'] ]
 
         for attrname in Receiver.localized_strings:
             SubmissionTest.aReceiver1[attrname] = stuff * 2
@@ -119,9 +119,9 @@ class TestTipInstance(SubmissionTest):
 
     @inlineCallbacks
     def test_2_create_submission_missing_receiver(self):
-        self.assertTrue(len(SubmissionTest.context_used['context_id']) > 1)
+        self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['context_id'],
+        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
                                                                 SubmissionTest.context_used['fields']) )
         submission_request['finalize'] = True
 
@@ -139,9 +139,9 @@ class TestTipInstance(SubmissionTest):
 
     @inlineCallbacks
     def test_3_create_submission_flip_receiver(self):
-        self.assertTrue(len(SubmissionTest.context_used['context_id']) > 1)
+        self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['context_id'],
+        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
                                                                 SubmissionTest.context_used['fields']) )
 
         submission_request['receivers'] = [ SubmissionTest.receiver_unused['id'] ]
@@ -161,9 +161,9 @@ class TestTipInstance(SubmissionTest):
 
     @inlineCallbacks
     def test_4_create_submission_both_valid_and_invalid_receiver(self):
-        self.assertTrue(len(SubmissionTest.context_used['context_id']) > 1)
+        self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['context_id'],
+        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
                                                                 SubmissionTest.context_used['fields']) )
 
         submission_request['receivers'] = [ SubmissionTest.receiver_unused['id'],
@@ -184,9 +184,9 @@ class TestTipInstance(SubmissionTest):
 
     @inlineCallbacks
     def test_5_create_valid_submission(self):
-        self.assertTrue(len(SubmissionTest.context_used['context_id']) > 1)
+        self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['context_id'],
+        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
                                                                 SubmissionTest.context_used['fields']) )
 
         submission_request['receivers'] = [ SubmissionTest.receiver_used['id']  ]
@@ -206,13 +206,13 @@ class TestTipInstance(SubmissionTest):
 
     @inlineCallbacks
     def test_6_fail_create_huge_submission(self):
-        self.assertTrue(len(SubmissionTest.context_used['context_id']) > 1)
+        self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['context_id'],
+        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
                                                                 SubmissionTest.context_used['fields']) )
 
         submission_request['receivers'] = [ SubmissionTest.receiver_used['id'] ]
-        submission_request['context_id'] = SubmissionTest.context_used['context_id']
+        submission_request['context_id'] = SubmissionTest.context_used['id']
 
         for key in submission_request['wb_fields'].keys():
             submission_request['wb_fields'][key] = unicode("You know nothing John Snow" * 100 * 100)
