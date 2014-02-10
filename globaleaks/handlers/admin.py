@@ -109,6 +109,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "can_delete_submission": receiver.can_delete_submission,
         "postpone_superpower": receiver.postpone_superpower,
         "username": receiver.user.username,
+        "user_id": receiver.user.id,
         'mail_address': receiver.mail_address,
         "failed_login": receiver.user.failed_login_count,
         "password": u"",

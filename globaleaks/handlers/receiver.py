@@ -55,8 +55,8 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
     return receiver_dict
 
 @transact_ro
-def get_receiver_settings(store, user_id, language=GLSetting.memory_copy.default_language):
-    receiver = store.find(Receiver, Receiver.id== unicode(user_id)).one()
+def get_receiver_settings(store, receiver_id, language=GLSetting.memory_copy.default_language):
+    receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
 
     if not receiver:
         raise errors.ReceiverIdNotFound
@@ -64,8 +64,8 @@ def get_receiver_settings(store, user_id, language=GLSetting.memory_copy.default
     return receiver_serialize_receiver(receiver, language)
 
 @transact
-def update_receiver_settings(store, user_id, request, language=GLSetting.memory_copy.default_language):
-    receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
+def update_receiver_settings(store, receiver_id, request, language=GLSetting.memory_copy.default_language):
+    receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
     receiver.description[language] = request.get('description')
 
     if not receiver:
@@ -146,9 +146,9 @@ class ReceiverInstance(BaseHandler):
 
 
 @transact_ro
-def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default_language):
+def get_receiver_tip_list(store, receiver_id, language=GLSetting.memory_copy.default_language):
 
-    rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == user_id)
+    rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
     rtiplist.order_by(Desc(ReceiverTip.creation_date))
 
     node = store.find(Node).one()
@@ -167,7 +167,7 @@ def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default
 
         rfiles_n = store.find(ReceiverFile,
             (ReceiverFile.internaltip_id == rtip.internaltip.id,
-             ReceiverFile.receiver_id == user_id)).count()
+             ReceiverFile.receiver_id == receiver_id)).count()
 
         your_messages = store.find(Message,
                                    Message.receivertip_id == rtip.id,
