@@ -130,7 +130,7 @@ class GLHTTPServer(HTTPConnection):
                 self.uploaded_file['body_len'] = int(content_length)
                 self.uploaded_file['body_sha'] = self._contentbuffer_sha.hexdigest()
                 self.uploaded_file['body_filepath'] = self._contentbuffer.filepath
-                self.uploaded_file['body_keypath'] = self._contentbuffer.keypath
+                self.uploaded_file['body_keylink'] = self._contentbuffer.keylink
 
             megabytes = int(content_length) / (1024 * 1024)
 

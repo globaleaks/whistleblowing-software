@@ -443,7 +443,6 @@ class MockDict():
 
         temporary_file = GLSecureTemporaryFile('files/submission', 'ramdisk')
         temporary_file.write("ANTANI")
-        temporary_file.avoid_delete()
 
         self.dummyFile = {
             'body': temporary_file,

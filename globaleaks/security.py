@@ -32,15 +32,20 @@ from tempfile import _TemporaryFileWrapper
 
 
 class GLSecureTemporaryFile(_TemporaryFileWrapper):
+    nonce_size = 8
+    block_size = 32
+    last_action = 'init'
+
     def __init__(self, filedir, keydir):
-        self.nonce_size = 16
-        self.block_size = 32
-        self.last_action = 'init'
         self.key = MD5.new(Random.new().read(self.block_size)).hexdigest()
-        self.nonce = MD5.new(Random.get_random_bytes(8)).hexdigest()[:8]
+        self.nonce = MD5.new(Random.get_random_bytes(self.nonce_size)).hexdigest()[:self.nonce_size]
 
         self.keypath = os.path.join(keydir, self.nonce)
         self.filepath = os.path.join(filedir, self.nonce)
+        self.keylink = self.filepath + '.keylink'
+
+        with open(self.keylink, 'w+') as f:
+            f.write(self.nonce)
 
         if os.access(keydir, os.W_OK):
             with open(self.keypath, 'w+b') as f:
@@ -51,7 +56,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
         self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
         self.file = open(self.filepath, 'w+b')
-        self.file.write(self.nonce)
 
         _TemporaryFileWrapper.__init__(self, self.file, self.filepath, True)
 
@@ -64,7 +68,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
     def read(self, c=None): # decrypt
         if self.last_action == 'write':
-            self.seek(8, 0) # this is a trick just to misc write and read
+            self.seek(0, 0) # this is a trick just to misc write and read
             self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
 
         self.last_action = 'read'
@@ -79,17 +83,22 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             _TemporaryFileWrapper.close(self)
             if self.delete:
                 os.remove(self.keypath)
+                os.remove(self.keylink)
 
 class GLSecureFile(GLSecureTemporaryFile):
-    def __init__(self, filepath, keypath):
-        self.block_size = 32
-        self.last_action = 'init'
-        self.keypath = keypath
+    def __init__(self, filepath, keydir):
         self.filepath = filepath
+        self.keylink = self.filepath + '.keylink'
 
-        self.key = open(keypath).read(self.block_size)
+        with open(self.keylink) as f:
+            self.nonce = f.read()
+
+        self.keypath = os.path.join(keydir, self.nonce)
+
+        with open(self.keypath) as f:
+            self.key = f.read(self.block_size)
+
         self.file = open(filepath, 'r+b')
-        self.nonce = self.file.read(8)
 
         self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
 
