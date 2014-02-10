@@ -174,7 +174,7 @@ adminContextDesc = {
     'presentation_order': int,
 }
 
-adminReceiverDesc =  {
+adminReceiverDesc = {
     'password': unicode,
     'mail_address': unicode,
     'name': unicode,
@@ -196,4 +196,11 @@ adminReceiverDesc =  {
     'gpg_enable_notification': bool,
     'gpg_enable_files': bool,
     'presentation_order': int,
+}
+
+wizardFirstSetup = {
+    'receiver' : adminReceiverDesc,
+    'context' : adminContextDesc,
+    'node' : adminNodeDesc,
+    'fields' : wizardFieldUpdate,
 }
