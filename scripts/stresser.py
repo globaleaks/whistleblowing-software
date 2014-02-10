@@ -147,8 +147,10 @@ class WBTip(object):
     def comment(self, text):
         tid = self.user_id
         d = request('POST', '/wbtip/comments',
-                    {'content': text, 'tip_id': tid}, 
-                      session_id=self.session_id)
+                     { 'content': "%s%s" % (text, self.receipt) , 
+                       'tip_id': tid }, 
+                     session_id=self.session_id 
+                   )
         @d.addErrback
         def eb(err):
             print err
@@ -167,7 +169,7 @@ def doStuff():
 
     tip = WBTip(submission['receipt'])
     yield tip.authenticate()
-    yield tip.comment("HELLO")
+    yield tip.comment("Your Receipt is:")
 
     print "Fin."
 
@@ -189,12 +191,15 @@ def submissionWorkflow(context, request_delay, idx):
 def submissionFuzz(request_delay, submission_count):
     print "Using %s - %s" % (request_delay, submission_count)
     contexts = yield request('GET', '/contexts')
-    
-    for cnt, context in enumerate(contexts):
-        print "%d) submissionFuzz ing: %s" % (cnt, context['name'])
-        # submissionWorkflow(context, request_delay, submission_count)
-        doStuff()
+  
+    i = 0
+    while i < submission_count: 
+        for cnt, context in enumerate(contexts):
+            i += 1
+            print "%d) submissionFuzz ing: %s" % (cnt, context['name'])
+            # submissionWorkflow(context, request_delay, submission_count)
+            doStuff()
 
 
-submissionFuzz(0.1, 20)
+submissionFuzz(0, 14)
 reactor.run()
