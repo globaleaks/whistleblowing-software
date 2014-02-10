@@ -19,10 +19,6 @@ def variableToSQL(var_type, db_type):
     We take as input a storm.variable and we output the SQLite string it
     represents.
     """
-    sqlite_type = {
-        "sqlite": "VARCHAR",
-        "mysql": "BLOB",
-    }
     if isinstance(var_type, BoolVariable):
         sqlite_type = {
             "sqlite": "INTEGER",
@@ -134,7 +130,7 @@ class TableReplacer:
         from globaleaks.db.update_7_8 import Node_version_7, Notification_version_7, Context_version_7, \
             Receiver_version_7, InternalFile_version_7
         from globaleaks.db.update_8_9 import Context_version_8, Receiver_version_8, Notification_version_8
-        # from globaleaks.db.update_9_10 import 
+        from globaleaks.db.update_9_10 import Node_version_9
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -144,7 +140,7 @@ class TableReplacer:
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
         self.table_history = {
-            'Node' : [ Node_version_5, Node_version_6, Node_version_7, models.Node, None, None ],
+            'Node' : [ Node_version_5, Node_version_6, Node_version_7, Node_version_9, None, models.Node ],
             'User' : [ User_version_5, models.User, None, None, None, None ],
             'Context' : [ Context_version_6, None, Context_version_7, Context_version_8, models.Context, None ],
             'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, models.Receiver, None ],
