@@ -19,7 +19,7 @@ class TestJobs(helpers.TestGL):
         created_tips = yield delivery_sched.tip_creation()
         self.assertEqual(len(created_tips), 2) # this createSubmission and the helpers one
 
-        receiver_tips = yield get_receiver_tip_list(self.dummyReceiver['receiver_gus'])
+        receiver_tips = yield get_receiver_tip_list(self.dummyReceiver['id'])
 
         expected_keys = ['access_counter',
                          'creation_date',

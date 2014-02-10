@@ -149,7 +149,7 @@ class APSNotification(GLJob):
         receiver_tip = store.find(models.ReceiverTip, models.ReceiverTip.id == tip_id).one()
 
         if not receiver_tip:
-            raise errors.TipGusNotFound
+            raise errors.TipIdNotFound
 
         log.debug("Email: +[Success] Notification Tip receiver %s" % receiver_tip.receiver.user.username)
         receiver_tip.mark = models.ReceiverTip._marker[1] # 'notified'
@@ -162,7 +162,7 @@ class APSNotification(GLJob):
         receiver_tip = store.find(models.ReceiverTip, models.ReceiverTip.id == tip_id).one()
 
         if not receiver_tip:
-            raise errors.TipGusNotFound
+            raise errors.TipIdNotFound
 
         log.debug("Email: -[Fail] Notification Tip receiver %s" % receiver_tip.receiver.user.username)
         receiver_tip.mark = models.ReceiverTip._marker[2] # 'unable to notify'
@@ -280,7 +280,7 @@ class APSNotification(GLJob):
         receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
 
         if not receiver:
-            raise errors.ReceiverGusNotFound
+            raise errors.ReceiverIdNotFound
 
         log.debug("Email: +[Success] Notification of message receiver %s" % receiver.user.username)
 
@@ -292,7 +292,7 @@ class APSNotification(GLJob):
         receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
 
         if not receiver:
-            raise errors.ReceiverGusNotFound
+            raise errors.ReceiverIdNotFound
 
         log.debug("Email: -[Fail] Notification of message receiver %s" % receiver.user.username)
 
@@ -419,7 +419,7 @@ class APSNotification(GLJob):
         receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
 
         if not receiver:
-            raise errors.ReceiverGusNotFound
+            raise errors.ReceiverIdNotFound
 
         log.debug("Email: +[Success] Notification of comment receiver %s" % receiver.user.username)
 
@@ -431,7 +431,7 @@ class APSNotification(GLJob):
         receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
 
         if not receiver:
-            raise errors.ReceiverGusNotFound
+            raise errors.ReceiverIdNotFound
 
         log.debug("Email: -[Fail] Notification of comment receiver %s" % receiver.user.username)
 
@@ -549,7 +549,7 @@ class APSNotification(GLJob):
         rfile = store.find(models.ReceiverFile, models.ReceiverFile.id == receiverfile_id).one()
 
         if not rfile:
-            raise errors.FileGusNotFound
+            raise errors.FileIdNotFound
 
         rfile.mark = models.ReceiverFile._marker[1] # 'notified'
 
@@ -563,7 +563,7 @@ class APSNotification(GLJob):
         rfile = store.find(models.ReceiverFile, models.ReceiverFile.id == receiverfile_id).one()
 
         if not rfile:
-            raise errors.FileGusNotFound
+            raise errors.FileIdNotFound
 
         rfile.mark = models.ReceiverFile._marker[2] # 'unable to notify'
 

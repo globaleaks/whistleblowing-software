@@ -74,7 +74,7 @@ class TestSubmission(helpers.TestGL):
     def test_create_submission(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
-        del submission_desc['submission_gus']
+        del submission_desc['id']
 
         status = yield submission.create_submission(submission_desc, finalize=True)
         receipt = yield submission.create_whistleblower_tip(status)
@@ -94,7 +94,7 @@ class TestSubmission(helpers.TestGL):
         context_status = yield create_context(mycopy)
         submission_desc = dict(self.dummySubmission)
 
-        submission_desc['context_gus'] = context_status['context_gus']
+        submission_desc['context_id'] = context_status['context_id']
         submission_desc['finalize'] = True
         submission_desc['wb_fields'] = helpers.fill_random_fields(self.dummyContext)
 
@@ -120,7 +120,7 @@ class TestSubmission(helpers.TestGL):
 
     @inlineCallbacks
     def test_create_internalfiles(self):
-        yield self.emulate_file_upload(self.dummySubmission['submission_gus'])
+        yield self.emulate_file_upload(self.dummySubmission['id'])
         keydiff = {'size', 'content_type', 'name', 'creation_date', 'id'} - set(self.registered_file1.keys())
         self.assertFalse(keydiff)
         keydiff = {'size', 'content_type', 'name', 'creation_date', 'id'} - set(self.registered_file2.keys())
@@ -134,8 +134,8 @@ class TestSubmission(helpers.TestGL):
     @inlineCallbacks
     def test_create_receiverfiles(self):
 
-        yield self.emulate_file_upload(self.dummySubmission['submission_gus'])
-        yield self._force_finalize(self.dummySubmission['submission_gus'])
+        yield self.emulate_file_upload(self.dummySubmission['id'])
+        yield self._force_finalize(self.dummySubmission['id'])
 
         # create receivertip its NEEDED to create receiverfile
         self.rt = yield delivery_sched.tip_creation()
@@ -150,14 +150,14 @@ class TestSubmission(helpers.TestGL):
             rfdesc = yield delivery_sched.receiverfile_create(fid,
                                     status, fpath, flen, receiver_desc)
             self.assertEqual(rfdesc['mark'], u'not notified')
-            self.assertEqual(rfdesc['receiver_id'], receiver_desc['receiver_gus'])
+            self.assertEqual(rfdesc['receiver_id'], receiver_desc['receiver_id'])
             self.assertEqual(rfdesc['internalfile_id'], fid)
 
-        self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['submission_gus'])
+        self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['id'])
         self.assertTrue(isinstance(self.fil, list))
         self.assertEqual(len(self.fil), 2)
 
-        self.rfi = yield delivery_sched.get_receiverfile_by_itip(self.dummySubmission['submission_gus'])
+        self.rfi = yield delivery_sched.get_receiverfile_by_itip(self.dummySubmission['id'])
         self.assertTrue(isinstance(self.rfi, list))
         self.assertEqual(len(self.rfi), 2)
         self.assertEqual(self.rfi[0]['mark'], u'not notified')
@@ -168,7 +168,7 @@ class TestSubmission(helpers.TestGL):
         # verify the checksum returned by whistleblower POV, I'm not using
         #  wfv = yield tip.get_files_wb()
         # because is not generated a WhistleblowerTip in this test
-        self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.dummySubmission['submission_gus'])
+        self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.dummySubmission['id'])
         self.assertEqual(len(self.wbfls), 2)
         self.assertEqual(self.wbfls[0]['sha2sum'], self.fil[0]['sha2sum'])
         self.assertEqual(self.wbfls[1]['sha2sum'], self.fil[1]['sha2sum'])
@@ -177,7 +177,7 @@ class TestSubmission(helpers.TestGL):
     def test_access_from_receipt(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
-        del submission_desc['submission_gus']
+        del submission_desc['id']
 
         status = yield submission.create_submission(submission_desc, finalize=True)
         receipt = yield submission.create_whistleblower_tip(status)
@@ -188,7 +188,7 @@ class TestSubmission(helpers.TestGL):
         wb_tip = yield wbtip.get_internaltip_wb(wb_access_id)
 
         # In the WB/Receiver Tip interface, wb_fields are called fields.
-        # This can be uniformed when API would be cleaned of the _gus
+        # This can be uniformed when API would be cleaned of the _id
         self.assertTrue(wb_tip.has_key('fields'))
 
     def get_new_receiver_desc(self, descpattern):
@@ -212,26 +212,26 @@ class TestSubmission(helpers.TestGL):
 
         self.assertEqual(len(self.receivers), 4)
 
-        self.dummyContext['receivers'] = [ self.receivers[0]['receiver_gus'],
-                                           self.receivers[1]['receiver_gus'],
-                                           self.receivers[2]['receiver_gus'],
-                                           self.receivers[3]['receiver_gus'] ]
+        self.dummyContext['receivers'] = [ self.receivers[0]['id'],
+                                           self.receivers[1]['id'],
+                                           self.receivers[2]['id'],
+                                           self.receivers[3]['id'] ]
         self.dummyContext['selectable_receiver'] = True
         self.dummyContext['escalation_threshold'] = 0
 
         for attrname in models.Context.localized_strings:
             self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
 
-        context_status = yield update_context(self.dummyContext['context_gus'], self.dummyContext)
+        context_status = yield update_context(self.dummyContext['id'], self.dummyContext)
 
         # Create a new request with selected three of the four receivers
         submission_request= dict(self.dummySubmission)
-        # submission_request['context_gus'] = context_status['context_gus']
-        submission_request['submission_gus'] = submission_request['id'] = ''
+        # submission_request['context_id'] = context_status['context_id']
+        submission_request['id'] = ''
         submission_request['finalize'] = False
-        submission_request['receivers'] = [ self.receivers[0]['receiver_gus'],
-                                            self.receivers[1]['receiver_gus'],
-                                            self.receivers[2]['receiver_gus'] ]
+        submission_request['receivers'] = [ self.receivers[0]['id'],
+                                            self.receivers[1]['id'],
+                                            self.receivers[2]['id'] ]
 
         status = yield submission.create_submission(submission_request, finalize=False)
         just_empty_eventually_internaltip = yield delivery_sched.tip_creation()
@@ -240,11 +240,11 @@ class TestSubmission(helpers.TestGL):
         self.assertEqual(len(submission_request['receivers']), len(status['receivers']))
 
         status['finalize'] = True
-        submission_request['context_gus'] = context_status['context_gus'] # reused
-        status['receivers'] = [ self.receivers[0]['receiver_gus'],
-                                self.receivers[3]['receiver_gus'] ]
+        submission_request['context_id'] = context_status['id'] # reused
+        status['receivers'] = [ self.receivers[0]['receiver_id'],
+                                self.receivers[3]['receiver_id'] ]
 
-        status = yield submission.update_submission(status['submission_gus'], status, finalize=True)
+        status = yield submission.update_submission(status['id'], status, finalize=True)
 
         receiver_tips = yield delivery_sched.tip_creation()
         self.assertEqual(len(receiver_tips), len(status['receivers']))
@@ -254,15 +254,15 @@ class TestSubmission(helpers.TestGL):
     def test_update_submission(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = False
-        submission_desc['context_gus'] = self.dummyContext['context_gus']
-        submission_desc['submission_gus'] = submission_desc['id'] = submission_desc['mark'] = None
+        submission_desc['context_id'] = self.dummyContext['id']
+        submission_desc['id'] = submission_desc['mark'] = None
 
         status = yield submission.create_submission(submission_desc, finalize=False)
 
         status['wb_fields'] = helpers.fill_random_fields(self.dummyContext)
         status['finalize'] = True
 
-        status = yield submission.update_submission(status['submission_gus'], status, finalize=True)
+        status = yield submission.update_submission(status['id'], status, finalize=True)
 
         receipt = yield submission.create_whistleblower_tip(status)
         wb_access_id = yield authentication.login_wb(receipt)
@@ -276,11 +276,11 @@ class TestSubmission(helpers.TestGL):
     def test_unable_to_access_finalized(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
-        submission_desc['context_gus'] = self.dummyContext['context_gus']
+        submission_desc['context_id'] = self.dummyContext['id']
 
         status = yield submission.create_submission(submission_desc, finalize=True)
         try:
-            yield submission.update_submission(status['submission_gus'], status, finalize=True)
+            yield submission.update_submission(status['id'], status, finalize=True)
         except errors.SubmissionConcluded:
             self.assertTrue(True)
             return
@@ -311,7 +311,7 @@ class TestSubmission(helpers.TestGL):
     @inlineCallbacks
     def test_fields_fail_unexpected_presence(self):
 
-        sbmt = helpers.get_dummy_submission(self.dummySubmission['context_gus'], self.dummyContext['fields'])
+        sbmt = helpers.get_dummy_submission(self.dummySubmission['id'], self.dummyContext['fields'])
         sbmt['wb_fields'].update({ 'alien' : 'predator' })
 
         try:
@@ -325,7 +325,7 @@ class TestSubmission(helpers.TestGL):
     def test_fields_fail_missing_required(self):
 
         required_key = self.dummyContext['fields'][0]['key']
-        sbmt = helpers.get_dummy_submission(self.dummySubmission['context_gus'], self.dummyContext['fields'])
+        sbmt = helpers.get_dummy_submission(self.dummySubmission['id'], self.dummyContext['fields'])
         del sbmt['wb_fields'][required_key]
 
         try:

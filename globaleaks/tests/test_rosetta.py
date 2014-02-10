@@ -20,7 +20,7 @@ class TestRosetta(helpers.TestHandler):
     @inlineCallbacks
     def test_simple_update_fields(self):
         handler = self.request(role='admin')
-        yield handler.get(self.dummyContext['context_gus'])
+        yield handler.get(self.dummyContext['id'])
 
         self.assertTrue(isinstance(self.responses[0], dict))
 
@@ -28,7 +28,7 @@ class TestRosetta(helpers.TestHandler):
         new_context_dict['fields'] = [ text_field ]
 
         handler = self.request(new_context_dict, role='admin')
-        yield handler.put(new_context_dict['context_gus'])
+        yield handler.put(new_context_dict['id'])
 
         self.assertEqual(self.responses[1]['fields'], [ text_field ] )
 

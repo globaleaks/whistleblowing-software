@@ -96,7 +96,7 @@ class TestCleaning(TTip):
             )
 
     def do_create_internalfiles(self):
-        yield self.emulate_file_upload(self.submission_desc['submission_gus'],)
+        yield self.emulate_file_upload(self.submission_desc['id'],)
         keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(self.registered_file1.keys())
         self.assertFalse(keydiff)
         keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(self.registered_file2.keys())
@@ -114,7 +114,7 @@ class TestCleaning(TTip):
         basehandler.validate_jmessage(self.tipContext, requests.adminContextDesc)
         self.context_desc = yield admin.create_context(self.tipContext)
 
-        self.tipReceiver1['contexts'] = self.tipReceiver2['contexts'] = [ self.context_desc['context_gus'] ]
+        self.tipReceiver1['contexts'] = self.tipReceiver2['contexts'] = [ self.context_desc['id'] ]
 
         for attrname in models.Receiver.localized_strings:
             self.tipReceiver2[attrname] = u'222222’‘ª‘ª’‘ÐŊ'
@@ -130,10 +130,10 @@ class TestCleaning(TTip):
             print exxxx
             self.assertTrue(False)
 
-        self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['context_gus']])
-        self.assertEqual(self.receiver2_desc['contexts'], [ self.context_desc['context_gus']])
+        self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['id']])
+        self.assertEqual(self.receiver2_desc['contexts'], [ self.context_desc['id']])
 
-        dummySubmission = helpers.get_dummy_submission(self.context_desc['context_gus'], self.context_desc['fields'])
+        dummySubmission = helpers.get_dummy_submission(self.context_desc['id'], self.context_desc['fields'])
         basehandler.validate_jmessage( dummySubmission, requests.wbSubmissionDesc)
 
         self.submission_desc = yield submission.create_submission(dummySubmission, finalize=False)
@@ -146,7 +146,7 @@ class TestCleaning(TTip):
         self.submission_desc['finalize'] = True
         self.submission_desc['wb_fields'] = helpers.fill_random_fields(self.context_desc)
         self.submission_desc = yield submission.update_submission(
-            self.submission_desc['submission_gus'],
+            self.submission_desc['id'],
             self.submission_desc,
             finalize=True)
 

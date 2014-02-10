@@ -325,7 +325,7 @@ class TestAuthentication(helpers.TestHandler):
                 print excep, "Has been raised wrongly"
                 self.assertTrue(False)
 
-        receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
+        receiver_status = yield admin.get_receiver(self.dummyReceiver['id'])
         self.assertTrue(receiver_status.has_key('failed_login'))
         self.assertEqual(receiver_status['failed_login'], failed_login )
         self.assertEqual(GLSetting.failed_login_attempts[self.dummyReceiverUser['username']], failed_login)
@@ -357,7 +357,7 @@ class TestAuthentication(helpers.TestHandler):
                 print excep, "Has been raised wrongly"
                 self.assertTrue(False)
 
-        receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
+        receiver_status = yield admin.get_receiver(self.dummyReceiver['id'])
 
         self.assertEqual(GLSetting.failed_login_attempts[self.dummyReceiverUser['username']], failed_login)
         self.assertTrue(receiver_status.has_key('failed_login'))

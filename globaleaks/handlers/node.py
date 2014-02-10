@@ -72,7 +72,7 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         return None
 
     context_dict.update({
-        "context_gus": unicode(context.id),
+        "id": unicode(context.id),
         "escalation_threshold": None,
         "file_max_download": int(context.file_max_download),
         "file_required": context.file_required,
@@ -120,7 +120,7 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
         "creation_date": pretty_date_time(receiver.creation_date),
         "update_date": pretty_date_time(receiver.last_update),
         "name": unicode(receiver.name),
-        "receiver_gus": unicode(receiver.id),
+        "id": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
         "tags": receiver.tags,
         "presentation_order": receiver.presentation_order,

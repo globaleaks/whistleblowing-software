@@ -20,7 +20,7 @@ from globaleaks.rest import errors
 
 def wb_serialize_tip(internaltip, language=GLSetting.memory_copy.default_language):
     itip_dict = {
-        'context_gus': unicode(internaltip.context.id),
+        'context_id': unicode(internaltip.context.id),
         'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
         'last_activity' : unicode(pretty_date_time(internaltip.creation_date)),
         'expiration_date' : unicode(pretty_date_time(internaltip.expiration_date)),
@@ -193,7 +193,7 @@ class WbTipCommentCollection(BaseHandler):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc
-        Errors: InvalidTipAuthToken, InvalidInputFormat, TipGusNotFound, TipReceiptNotFound
+        Errors: InvalidTipAuthToken, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
@@ -235,7 +235,6 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
             # This is the reduced version of Receiver serialization
             receiver_desc = {
                 "name": unicode(receiver.name),
-                "receiver_gus": unicode(receiver.id),
                 "id": unicode(receiver.id),
                 "gpg_key_status": receiver.gpg_key_status,
                 "tags": receiver.tags,
@@ -275,7 +274,6 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
             # if you change something here, check also 20 lines before!
             receiver_desc = {
                 "name": unicode(rtip.receiver.name),
-                "receiver_gus": unicode(rtip.receiver.id),
                 "id": unicode(rtip.receiver.id),
                 "tags": rtip.receiver.tags,
                 "access_counter" : rtip.access_counter,
@@ -345,7 +343,7 @@ def get_messages_content(store, wb_tip_id, receiver_id):
                       ReceiverTip.receiver_id == unicode(receiver_id)).one()
 
     if not rtip:
-        raise errors.TipGusNotFound
+        raise errors.TipIdNotFound
 
     messages = store.find(Message, Message.receivertip_id == rtip.id)
 
@@ -377,7 +375,7 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
     if not rtip:
         log.err("No ReceiverTip found: receiver_id %s itip %s" %
                 (receiver_id, wb_tip.internaltip.id))
-        raise errors.TipGusNotFound
+        raise errors.TipIdNotFound
 
     msg = Message()
     msg.content = request['content']

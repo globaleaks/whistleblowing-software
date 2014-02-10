@@ -160,7 +160,7 @@ class FirstSetup(BaseHandler):
             raise excep
 
         try:
-            receiver['contexts']= [ context_dict['context_gus'] ]
+            receiver['contexts']= [ context_dict['id'] ]
             print receiver
             yield create_receiver(receiver, self.request.language)
         except Exception as excep:

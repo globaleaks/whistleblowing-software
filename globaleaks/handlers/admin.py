@@ -60,7 +60,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
 
 def admin_serialize_context(context, receipt_output, language=GLSetting.memory_copy.default_language):
     context_dict = {
-        "context_gus": context.id,
+        "id": context.id,
         "creation_date": utility.pretty_date_time(context.creation_date),
         "last_update": utility.pretty_date_time(context.last_update),
         "selectable_receiver": context.selectable_receiver,
@@ -101,7 +101,7 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
 
 def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
     receiver_dict = {
-        "receiver_gus": receiver.id,
+        "id": receiver.id,
         "name": receiver.name,
         "creation_date": utility.pretty_date_time(receiver.creation_date),
         "last_update": utility.pretty_date_time(receiver.last_update),
@@ -299,7 +299,7 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
     Creates a new context from the request of a client.
 
     We associate to the context the list of receivers and if the receiver is
-    not valid we raise a ReceiverGusNotFound exception.
+    not valid we raise a ReceiverIdNotFound exception.
 
     Args:
         (dict) the request containing the keys to set on the model.
@@ -379,37 +379,37 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
         receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         if not receiver:
             log.err("Creation error: unexistent context can't be associated")
-            raise errors.ReceiverGusNotFound
+            raise errors.ReceiverIdNotFound
         c.receivers.add(receiver)
 
     receipt_example = generate_example_receipt(context.receipt_regexp)
     return admin_serialize_context(context, receipt_example, language)
 
 @transact_ro
-def get_context(store, context_gus, language=GLSetting.memory_copy.default_language):
+def get_context(store, context_id, language=GLSetting.memory_copy.default_language):
     """
     Returns:
         (dict) the currently configured node.
     """
-    context = store.find(Context, Context.id == unicode(context_gus)).one()
+    context = store.find(Context, Context.id == unicode(context_id)).one()
 
     if not context:
         log.err("Requested invalid context")
-        raise errors.ContextGusNotFound
+        raise errors.ContextIdNotFound
 
     receipt_example = generate_example_receipt(context.receipt_regexp)
     return admin_serialize_context(context, receipt_example, language)
 
 @transact
-def update_context(store, context_gus, request, language=GLSetting.memory_copy.default_language):
+def update_context(store, context_id, request, language=GLSetting.memory_copy.default_language):
     """
     Updates the specified context. If the key receivers is specified we remove
     the current receivers of the Context and reset set it to the new specified
     ones.
-    If no such context exists raises :class:`globaleaks.errors.ContextGusNotFound`.
+    If no such context exists raises :class:`globaleaks.errors.ContextIdNotFound`.
 
     Args:
-        context_gus:
+        context_id:
 
         request:
             (dict) the request to use to set the attributes of the Context
@@ -417,10 +417,10 @@ def update_context(store, context_gus, request, language=GLSetting.memory_copy.d
     Returns:
             (dict) the serialized object updated
     """
-    context = store.find(Context, Context.id == unicode(context_gus)).one()
+    context = store.find(Context, Context.id == unicode(context_id)).one()
 
     if not context:
-         raise errors.ContextGusNotFound
+         raise errors.ContextIdNotFound
 
     mo = structures.Rosetta()
     mo.acquire_request(language, request, Context)
@@ -435,7 +435,7 @@ def update_context(store, context_gus, request, language=GLSetting.memory_copy.d
         receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         if not receiver:
             log.err("Update error: unexistent receiver can't be associated")
-            raise errors.ReceiverGusNotFound
+            raise errors.ReceiverIdNotFound
         context.receivers.add(receiver)
 
     # tip_timetolive and submission_timetolive need to be converted in seconds since hours and days
@@ -471,19 +471,19 @@ def update_context(store, context_gus, request, language=GLSetting.memory_copy.d
     return admin_serialize_context(context, receipt_example, language)
 
 @transact
-def delete_context(store, context_gus):
+def delete_context(store, context_id):
     """
     Deletes the specified context. If no such context exists raises
-    :class:`globaleaks.errors.ContextGusNotFound`.
+    :class:`globaleaks.errors.ContextIdNotFound`.
 
     Args:
-        context_gus: the context gus of the context to remove.
+        context_id: the context id of the context to remove.
     """
-    context = store.find(Context, Context.id == unicode(context_gus)).one()
+    context = store.find(Context, Context.id == unicode(context_id)).one()
 
     if not context:
         log.err("Invalid context requested in removal")
-        raise errors.ContextGusNotFound
+        raise errors.ContextIdNotFound
 
     store.remove(context)
 
@@ -579,7 +579,7 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
         context = store.find(Context, Context.id == context_id).one()
         if not context:
             log.err("Creation error: invalid Context can't be associated")
-            raise errors.ContextGusNotFound
+            raise errors.ContextIdNotFound
         context.receivers.add(receiver)
 
     return admin_serialize_receiver(receiver, language)
@@ -588,7 +588,7 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
 @transact_ro
 def get_receiver(store, id, language=GLSetting.memory_copy.default_language):
     """
-    raises :class:`globaleaks.errors.ReceiverGusNotFound` if the receiver does
+    raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
     not exist.
     Returns:
         (dict) the receiver
@@ -598,7 +598,7 @@ def get_receiver(store, id, language=GLSetting.memory_copy.default_language):
 
     if not receiver:
         log.err("Requested in receiver")
-        raise errors.ReceiverGusNotFound
+        raise errors.ReceiverIdNotFound
 
     return admin_serialize_receiver(receiver, language)
 
@@ -607,13 +607,13 @@ def get_receiver(store, id, language=GLSetting.memory_copy.default_language):
 def update_receiver(store, id, request, language=GLSetting.memory_copy.default_language):
     """
     Updates the specified receiver with the details.
-    raises :class:`globaleaks.errors.ReceiverGusNotFound` if the receiver does
+    raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
     not exist.
     """
     receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
 
     if not receiver:
-        raise errors.ReceiverGusNotFound
+        raise errors.ReceiverIdNotFound
 
     mo = structures.Rosetta()
     mo.acquire_request(language, request, Receiver)
@@ -652,7 +652,7 @@ def update_receiver(store, id, request, language=GLSetting.memory_copy.default_l
         context = store.find(Context, Context.id == context_id).one()
         if not context:
             log.err("Update error: unexistent context can't be associated")
-            raise errors.ContextGusNotFound
+            raise errors.ContextIdNotFound
         receiver.contexts.add(context)
 
     receiver.last_update = utility.datetime_now()
@@ -671,7 +671,7 @@ def delete_receiver(store, id):
 
     if not receiver:
         log.err("Invalid receiver requested in removal")
-        raise errors.ReceiverGusNotFound
+        raise errors.ReceiverIdNotFound
 
     portrait = os.path.join(GLSetting.static_path, "%s.png" % id)
 
@@ -759,7 +759,7 @@ class ContextsCollection(BaseHandler):
         """
         Request: adminContextDesc
         Response: adminContextDesc
-        Errors: InvalidInputFormat, ReceiverGusNotFound
+        Errors: InvalidInputFormat, ReceiverIdNotFound
         """
         request = self.validate_message(self.request.body, requests.adminContextDesc)
 
@@ -777,13 +777,13 @@ class ContextInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, context_gus, *uriargs):
+    def get(self, context_id, *uriargs):
         """
-        Parameters: context_gus
+        Parameters: context_id
         Response: adminContextDesc
-        Errors: ContextGusNotFound, InvalidInputFormat
+        Errors: ContextIdNotFound, InvalidInputFormat
         """
-        response = yield get_context(context_gus, self.request.language)
+        response = yield get_context(context_id, self.request.language)
 
         self.set_status(200)
         self.finish(response)
@@ -791,17 +791,17 @@ class ContextInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, context_gus, *uriargs):
+    def put(self, context_id, *uriargs):
         """
         Request: adminContextDesc
         Response: adminContextDesc
-        Errors: InvalidInputFormat, ContextGusNotFound, ReceiverGusNotFound
+        Errors: InvalidInputFormat, ContextIdNotFound, ReceiverIdNotFound
         """
 
         request = self.validate_message(self.request.body,
                                         requests.adminContextDesc)
 
-        response = yield update_context(context_gus, request, self.request.language)
+        response = yield update_context(context_id, request, self.request.language)
 
         self.set_status(202) # Updated
         self.finish(response)
@@ -809,13 +809,13 @@ class ContextInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def delete(self, context_gus, *uriargs):
+    def delete(self, context_id, *uriargs):
         """
         Request: adminContextDesc
         Response: None
-        Errors: InvalidInputFormat, ContextGusNotFound
+        Errors: InvalidInputFormat, ContextIdNotFound
         """
-        yield delete_context(context_gus)
+        yield delete_context(context_id)
         self.set_status(200)
 
 class ReceiversCollection(BaseHandler):
@@ -847,7 +847,7 @@ class ReceiversCollection(BaseHandler):
         """
         Request: adminReceiverDesc
         Response: adminReceiverDesc
-        Errors: InvalidInputFormat, ContextGusNotFound
+        Errors: InvalidInputFormat, ContextIdNotFound
 
         Create a new receiver
         """
@@ -873,15 +873,15 @@ class ReceiverInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, receiver_gus, *uriargs):
+    def get(self, receiver_id, *uriargs):
         """
-        Parameters: receiver_gus
+        Parameters: receiver_id
         Response: adminReceiverDesc
-        Errors: InvalidInputFormat, ReceiverGusNotFound
+        Errors: InvalidInputFormat, ReceiverIdNotFound
 
         Get an existent Receiver instance.
         """
-        response = yield get_receiver(receiver_gus, self.request.language)
+        response = yield get_receiver(receiver_id, self.request.language)
 
         self.set_status(200)
         self.finish(response)
@@ -889,17 +889,17 @@ class ReceiverInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, receiver_gus, *uriargs):
+    def put(self, receiver_id, *uriargs):
         """
         Request: adminReceiverDesc
         Response: adminReceiverDesc
-        Errors: InvalidInputFormat, ReceiverGusNotFound, ContextGus
+        Errors: InvalidInputFormat, ReceiverIdNotFound, ContextId
 
         Update information about a Receiver, return the instance updated.
         """
         request = self.validate_message(self.request.body, requests.adminReceiverDesc)
 
-        response = yield update_receiver(receiver_gus, request, self.request.language)
+        response = yield update_receiver(receiver_id, request, self.request.language)
 
         self.set_status(201)
         self.finish(response)
@@ -907,14 +907,14 @@ class ReceiverInstance(BaseHandler):
     @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
-    def delete(self, receiver_gus, *uriargs):
+    def delete(self, receiver_id, *uriargs):
         """
-        Parameter: receiver_gus
+        Parameter: receiver_id
         Request: None
         Response: None
-        Errors: InvalidInputFormat, ReceiverGusNotFound
+        Errors: InvalidInputFormat, ReceiverIdNotFound
         """
-        yield delete_receiver(receiver_gus)
+        yield delete_receiver(receiver_id)
 
         self.set_status(200)
         self.finish()

@@ -21,7 +21,7 @@ from globaleaks.security import change_password, gpg_options_parse
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
     receiver_dict = {
-        "receiver_gus": receiver.id,
+        "id": receiver.id,
         "name": receiver.name,
         "update_date": pretty_date_time(receiver.last_update),
         "creation_date": pretty_date_time(receiver.creation_date),
@@ -59,7 +59,7 @@ def get_receiver_settings(store, user_id, language=GLSetting.memory_copy.default
     receiver = store.find(Receiver, Receiver.id== unicode(user_id)).one()
 
     if not receiver:
-        raise errors.ReceiverGusNotFound
+        raise errors.ReceiverIdNotFound
 
     return receiver_serialize_receiver(receiver, language)
 
@@ -69,7 +69,7 @@ def update_receiver_settings(store, user_id, request, language=GLSetting.memory_
     receiver.description[language] = request.get('description')
 
     if not receiver:
-        raise errors.ReceiverGusNotFound
+        raise errors.ReceiverIdNotFound
 
     new_password = request.get('password')
     old_password = request.get('old_password')
@@ -116,7 +116,7 @@ class ReceiverInstance(BaseHandler):
         """
         Parameters: None
         Response: receiverReceiverDesc
-        Errors: TipGusNotFound, InvalidInputFormat, InvalidTipAuthToken
+        Errors: TipIdNotFound, InvalidInputFormat, InvalidTipAuthToken
         """
 
         receiver_status = yield get_receiver_settings(self.current_user['user_id'],
@@ -134,7 +134,7 @@ class ReceiverInstance(BaseHandler):
         Parameters: None
         Request: receiverReceiverDesc
         Response: receiverReceiverDesc
-        Errors: ReceiverGusNotFound, InvalidInputFormat, InvalidTipAuthToken, TipGusNotFound
+        Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidTipAuthToken, TipIdNotFound
         """
         request = self.validate_message(self.request.body, requests.receiverReceiverDesc)
 

@@ -124,29 +124,28 @@ class TestGL(TestWithDB):
         try:
             receiver = yield create_receiver(self.dummyReceiver)
 
-            self.dummyReceiver['receiver_gus'] = receiver['receiver_gus']
+            self.dummyReceiver['id'] = receiver['id']
             self.receiver_assertion(self.dummyReceiver, receiver)
         except Exception as excp:
             print "Fail fill_data/create_receiver: %s" % excp
             raise  excp
 
         try:
-            self.dummyContext['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
+            self.dummyContext['receivers'] = [ self.dummyReceiver['id'] ]
             context = yield create_context(self.dummyContext)
-            self.dummyContext['context_gus'] = context['context_gus']
+            self.dummyContext['id'] = context['id']
 
         except Exception as excp:
             print "Fail fill_data/create_context: %s" % excp
             raise  excp
 
-        self.dummySubmission['context_gus'] = self.dummyContext['context_gus']
-        self.dummySubmission['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
+        self.dummySubmission['context_id'] = self.dummyContext['context_id']
+        self.dummySubmission['receivers'] = [ self.dummyReceiver['receiver_id'] ]
         self.dummySubmission['wb_fields'] = fill_random_fields(self.dummyContext)
 
         try:
             submission = yield create_submission(self.dummySubmission, finalize=True)
             self.dummySubmission['id'] = submission['id']
-            self.dummySubmission['submission_gus'] = submission['submission_gus']
         except Exception as excp:
             print "Fail fill_data/create_submission: %s" % excp
             raise  excp
@@ -157,9 +156,9 @@ class TestGL(TestWithDB):
             print "Fail fill_data/create_whistleblower: %s" % excp
             raise  excp
 
-        assert self.dummyContext.has_key('context_gus')
-        assert self.dummyReceiver.has_key('receiver_gus')
-        assert self.dummySubmission.has_key('submission_gus')
+        assert self.dummyContext.has_key('id')
+        assert self.dummyReceiver.has_key('id')
+        assert self.dummySubmission.has_key('id')
 
 
     def localization_set(self, dict_l, dict_c, language):
@@ -297,7 +296,7 @@ class MockDict():
         }
 
         self.dummyReceiver = {
-            'receiver_gus': unicode(uuid.uuid4()),
+            'id': unicode(uuid.uuid4()),
             'password': VALID_PASSWORD1,
             'name': u'Ned Stark',
             'description': u'King MockDummy Receiver',
@@ -324,7 +323,7 @@ class MockDict():
         }
 
         self.dummyContext = {
-            'context_gus': unicode(uuid.uuid4()),
+            'id': unicode(uuid.uuid4()),
             # localized stuff
             'name': u'Already localized name',
             'description': u'Already localized desc',
@@ -356,7 +355,7 @@ class MockDict():
         }
 
         self.dummySubmission = {
-            'context_gus': '',
+            'context_id': '',
             'wb_fields': fill_random_fields(self.dummyContext),
             'finalize': False,
             'receivers': [],
@@ -463,7 +462,7 @@ def template_keys(first_a, second_a, name):
 
     return ret_string
 
-def get_dummy_submission(context_gus, context_admin_data_fields):
+def get_dummy_submission(context_id, context_admin_data_fields):
     """
     this may works until the content of the fields do not start to be validated. like
     numbers shall contain only number, and not URL.
@@ -485,7 +484,7 @@ def get_dummy_submission(context_gus, context_admin_data_fields):
     dummySubmissionDict['receivers'] = []
     dummySubmissionDict['files'] = []
     dummySubmissionDict['finalize'] = True
-    dummySubmissionDict['context_gus'] = context_gus
+    dummySubmissionDict['context_id'] = context_id
     return dummySubmissionDict
 
 def fill_random_fields(context_desc):

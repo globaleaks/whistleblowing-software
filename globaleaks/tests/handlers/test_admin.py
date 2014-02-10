@@ -138,7 +138,7 @@ class TestContextsCollection(helpers.TestHandler):
         handler = self.request(self.dummyContext, role='admin')
         yield handler.post()
 
-        self.dummyContext['context_gus'] =  self.responses[0]['context_gus']
+        self.dummyContext['id'] =  self.responses[0]['id']
         self.dummyContext['creation_date'] = self.responses[0]['creation_date']
         self.assertEqual(self.responses[0]['description'], stuff)
 
@@ -149,7 +149,7 @@ class TestContextInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
         handler = self.request(role='admin')
-        yield handler.get(self.dummyContext['context_gus'])
+        yield handler.get(self.dummyContext['id'])
 
         self.assertTrue(isinstance(self.responses[0], dict))
 
@@ -185,7 +185,7 @@ class TestContextInstance(helpers.TestHandler):
             self.dummyContext[attrname] = u"³²¼½¬¼³²"
 
         handler = self.request(self.dummyContext, role='admin')
-        yield handler.put(self.dummyContext['context_gus'])
+        yield handler.put(self.dummyContext['id'])
         self.dummyContext['creation_date'] = self.responses[0]['creation_date']
         self.dummyContext['last_update'] = self.responses[0]['last_update']
         self.assertEqual(self.responses[0]['description'], stuff)
@@ -200,7 +200,7 @@ class TestContextInstance(helpers.TestHandler):
             self.dummyContext[attrname] = stuff
 
         handler = self.request(self.dummyContext, role='admin')
-        yield handler.put(self.dummyContext['context_gus'])
+        yield handler.put(self.dummyContext['id'])
 
         self.assertEqual(self.responses[0]['submission_timetolive'], self.dummyContext['submission_timetolive'])
         self.assertEqual(self.responses[0]['tip_timetolive'], self.dummyContext['tip_timetolive'])
@@ -217,7 +217,7 @@ class TestContextInstance(helpers.TestHandler):
         # 1000 hours are more than three days, and a Tip can't live less than a submission
         handler = self.request(self.dummyContext, role='admin')
         try:
-            yield handler.put(self.dummyContext['context_gus'])
+            yield handler.put(self.dummyContext['id'])
             self.assertTrue(False)
         except errors.InvalidTipSubmCombo:
             self.assertTrue(True)
@@ -237,7 +237,7 @@ class TestReceiversCollection(helpers.TestHandler):
         # XXX helpers.py.. Why self.responses is became a double array ?
         del self.dummyReceiver['contexts']
         del self.responses[0][0]['contexts']
-        self.assertEqual(self.responses[0][0]['receiver_gus'], self.dummyReceiver['receiver_gus'])
+        self.assertEqual(self.responses[0][0]['id'], self.dummyReceiver['id'])
 
     @inlineCallbacks
     def test_post(self):
@@ -255,8 +255,8 @@ class TestReceiversCollection(helpers.TestHandler):
         yield handler.post()
 
         # We delete this because it's randomly generated
-        del self.responses[0]['receiver_gus']
-        del self.dummyReceiver['receiver_gus']
+        del self.responses[0]['id']
+        del self.dummyReceiver['id']
 
         self.assertEqual(self.responses[0]['name'], self.dummyReceiver['name'])
 
@@ -310,14 +310,14 @@ class TestReceiverInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
         handler = self.request(role='admin')
-        yield handler.get(self.dummyReceiver['receiver_gus'])
+        yield handler.get(self.dummyReceiver['id'])
         del self.dummyReceiver['contexts']
         del self.responses[0]['contexts']
-        self.assertEqual(self.responses[0]['receiver_gus'], self.dummyReceiver['receiver_gus'])
+        self.assertEqual(self.responses[0]['id'], self.dummyReceiver['id'])
 
     @inlineCallbacks
     def test_put_change_password(self):
-        self.dummyReceiver['context_gus'] = ''
+        self.dummyReceiver['context_id'] = ''
         self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
         self.dummyReceiver['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
         self.dummyReceiver['password'] = u'12345678antani'
@@ -327,12 +327,12 @@ class TestReceiverInstance(helpers.TestHandler):
             self.dummyReceiver[attrname] = stuff
 
         handler = self.request(self.dummyReceiver, role='admin')
-        yield handler.put(self.dummyReceiver['receiver_gus'])
+        yield handler.put(self.dummyReceiver['id'])
         self.assertEqual(self.responses[0]['name'], self.dummyReceiver['name'])
 
     @inlineCallbacks
     def test_put_with_password_empty(self):
-        self.dummyReceiver['context_gus'] = ''
+        self.dummyReceiver['context_id'] = ''
         self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
         self.dummyReceiver['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
         self.dummyReceiver['password'] = u""
@@ -342,13 +342,13 @@ class TestReceiverInstance(helpers.TestHandler):
             self.dummyReceiver[attrname] = stuff
 
         handler = self.request(self.dummyReceiver, role='admin')
-        yield handler.put(self.dummyReceiver['receiver_gus'])
+        yield handler.put(self.dummyReceiver['id'])
         self.assertEqual(self.responses[0]['name'], self.dummyReceiver['name'])
 
     @inlineCallbacks
-    def test_put_invalid_context_gus(self):
+    def test_put_invalid_context_id(self):
         self.dummyReceiver['name'] = u'justalazyupdate'
-        # keep the context_gus wrong but matching eventually regexp
+        # keep the context ID wrong but matching eventually regexp
         import uuid
         self.dummyReceiver['contexts'] = [ unicode(uuid.uuid4()) ]
         self.dummyReceiver['name'] = u'another unique name %d' % random.randint(1, 10000)
@@ -361,9 +361,9 @@ class TestReceiverInstance(helpers.TestHandler):
 
         handler = self.request(self.dummyReceiver, role='admin')
         try:
-            yield handler.put(self.dummyReceiver['receiver_gus'])
+            yield handler.put(self.dummyReceiver['id'])
             self.assertTrue(False)
-        except errors.ContextGusNotFound:
+        except errors.ContextIdNotFound:
             self.assertTrue(True)
         except Exception as excep:
             print "Wrong exception: %s" % excep
@@ -373,16 +373,16 @@ class TestReceiverInstance(helpers.TestHandler):
     def test_delete(self):
         handler = self.request(self.dummyReceiver, role='admin')
         try:
-            yield handler.delete(self.dummyReceiver['receiver_gus'])
+            yield handler.delete(self.dummyReceiver['id'])
             self.assertTrue(True)
         except Exception as excep:
             print "Wrong exception: %s" % excep
             raise excep
 
         try:
-            yield handler.get(self.dummyReceiver['receiver_gus'])
+            yield handler.get(self.dummyReceiver['id'])
             self.assertTrue(False)
-        except errors.ReceiverGusNotFound:
+        except errors.ReceiverIdNotFound:
             self.assertTrue(True)
 
 

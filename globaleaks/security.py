@@ -523,6 +523,6 @@ def access_tip(store, user_id, tip_id):
                       ReceiverTip.receiver_id == user_id).one()
 
     if not rtip:
-        raise errors.TipGusNotFound
+        raise errors.TipIdNotFound
 
     return rtip

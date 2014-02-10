@@ -48,20 +48,20 @@ class StatsNotCollectedError(GLException):
     error_code = 11
     status_code = 500 # Internal Server Error
 
-class ContextGusNotFound(GLException):
+class ContextIdNotFound(GLException):
     """
-    The context_gus used do not exist in the database.
+    The context_id used do not exist in the database.
     """
-    reason = "Not found a Context with the specified GUS identifier"
+    reason = "Not found a Context with the specified ID"
     error_code = 12
     status_code = 404 # Not Found
 
 
-class TipGusNotFound(GLException):
+class TipIdNotFound(GLException):
     """
-    The Tip GUS requested do not exists in the database.
+    The Tip Id requested do not exists in the database.
     """
-    reason = "Not found a Tip with the specified GUS identifier"
+    reason = "Not found a Tip with the specified ID"
     error_code = 13
     status_code = 404 # Not Found
 
@@ -69,7 +69,7 @@ class TipReceiptNotFound(GLException):
     """
     The WhisleBlower receipt is not related to any of the whistleblower tips
     """
-    reason = "Not found a Receiver with the specified GUS identifier"
+    reason = "Not found a Receiver with the specified ID"
     error_code = 14
     status_code = 404 # Not Found
 
@@ -122,19 +122,19 @@ class ExpectedUniqueField(GLException):
         self.arguments.append(existent_value)
 
 
-class ReceiverGusNotFound(GLException):
+class ReceiverIdNotFound(GLException):
     """
-    The Receiver GUS requested do not exists in the database.
+    The Receiver ID requested do not exists in the database.
     """
-    reason = "Not found a Receiver with the specified GUS identifier"
+    reason = "Not found a Receiver with the specified ID"
     error_code = 20
     status_code = 404 # Not Found
 
-class SubmissionGusNotFound(GLException):
+class SubmissionIdNotFound(GLException):
     """
-    The Submission GUS requested do not exists in the database.
+    The Submission ID requested do not exists in the database.
     """
-    reason = "Not found a Submission with the specified GUS identifier"
+    reason = "Not found a Submission with the specified ID"
     error_code = 21
     status_code = 404 # Not Found
 
@@ -156,7 +156,7 @@ class SubmissionFailFields(GLException):
 class InvalidTipAuthToken(GLException):
     """
     Authentication is failed, for Receiver or Whistleblower, because do not rely
-    only in the secret Token (Tip Gus knowledge or receipt).
+    only in the secret Token (Tip Id knowledge or receipt).
     """
     reason = "Authentication in Tip failed"
     error_code = 23
@@ -184,11 +184,11 @@ class ForbiddenOperation(GLException):
     error_code = 25
     status_code = 401 # Unauthorized
 
-class FileGusNotFound(GLException):
+class FileIdNotFound(GLException):
     """
-    The requested file Gus do not exist in the database
+    The requested file Id do not exist in the database
     """
-    reason = "Not found a File with the specified GUS identifier"
+    reason = "Not found a File with the specified ID "
     error_code = 26
     status_code = 404 # Not Found
 
