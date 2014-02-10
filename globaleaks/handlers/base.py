@@ -687,19 +687,46 @@ class FileToken(_DownloadToken):
 
 
 def anomaly_check(element):
+    """
+    @param element: one of the events with threshold
+    """
+
     def wrapper(method_handler):
         def call_handler(cls, *args, **kw):
+
             if GLSetting.anomalies_counter[element] > alarm_level[element]:
                 if element == 'new_submission':
+                    log.debug("Blocked a New Submission (%d > %d)" % (
+                        GLSetting.anomalies_counter[element],
+                        alarm_level[element]
+                    ))
                     raise errors.SubmissionFlood(30)
                 elif element == 'finalized_submission':
+                    log.debug("Blocked a Finalized Submission (%d > %d)" % (
+                        GLSetting.anomalies_counter[element],
+                        alarm_level[element]
+                    ))
                     raise errors.SubmissionFlood(30)
                 elif element == 'anon_requests':
+                    log.debug("Blocked an Anon Request (%d > %d)" % (
+                        GLSetting.anomalies_counter[element],
+                        alarm_level[element]
+                    ))
                     raise errors.FloodException(30)
                 elif element == 'file_upload':
+                    log.debug("Blocked a File upload (%d > %d)" % (
+                        GLSetting.anomalies_counter[element],
+                        alarm_level[element]
+                    ))
                     raise errors.FileUploadFlood(30)
                 else:
+                    log.debug("Blocked an Unknown event !? [BUG!] (%d > %d)" % (
+                        GLSetting.anomalies_counter[element],
+                        alarm_level[element]
+                    ))
                     raise errors.FloodException(30)
+
             return method_handler(cls, *args, **kw)
         return call_handler
+
     return wrapper
