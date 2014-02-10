@@ -58,7 +58,7 @@ def create_tables(create_node=True):
     """
     Override transactor for testing.
     """
-    if GLSetting.db_type == 'sqlite' and os.path.exists(GLSetting.db_uri.replace('sqlite:', '')):
+    if GLSetting.db_type == 'sqlite' and os.path.exists(GLSetting.db_uri.replace('sqlite:', '').split('?')[0]):
         # Here we instance every model so that __storm_table__ gets set via
         # __new__
         for model in models.models:
@@ -164,7 +164,8 @@ def check_schema_version():
             comma_number = "".join(sqlfile).count(',')
 
         zstorm = ZStorm()
-        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_uri)
+        db_uri = GLSetting.db_uri.replace("?foreign_keys=O", "")
+        zstorm.set_default_uri(GLSetting.store_name, db_uri)
         store = zstorm.get(GLSetting.store_name)
 
         q = """

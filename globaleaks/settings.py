@@ -31,7 +31,6 @@ from cyclone.util import ObjectDict as OD
 
 from globaleaks import __version__, DATABASE_VERSION
 
-
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
     'INFO' : logging.INFO,
@@ -250,6 +249,9 @@ class GLSettingsClass:
 
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'
+        if not os.path.exists('/'.join(self.ramdisk_path.split('/')[:-1])):
+            print "Warning not going to use a RAMDISK"
+            self.ramdisk_path = os.path.join(os.path.join(self.working_path, 'ramdisk'))
         self.pidfile_path = os.path.join(self.pid_path, 'globaleaks-' + str(self.bind_port) + '.pid')
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
