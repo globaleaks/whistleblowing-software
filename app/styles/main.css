@@ -241,7 +241,7 @@ table {
   padding: 45px 15px 15px;
   margin: 0 -15px 15px;
   box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
-  //border-color: #e5e5e5 #eee #eee;
+  border-color: #e5e5e5 #eee #eee;
   border-style: solid;
   margin-left: 0;
   margin-right: 0;
@@ -252,8 +252,14 @@ table {
 }
 
 .bordered h2 {
-position: absolute;
-top: -10px;
-font-size: 18px;
-color: #aaa;
+  position: absolute;
+  top: -10px;
+  font-size: 18px;
+  color: #aaa;
+}
+
+.help-hint {
+  border-left: 3px solid #8a6d3b;
+  background-color: #fcf8e3;
+  padding: 20px;
 }

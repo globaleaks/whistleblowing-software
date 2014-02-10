@@ -86,7 +86,6 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher',
     }
 
     $scope.save_receiver = function() {
-
       if ($scope.receiver.gpg_key_remove == true) {
         $scope.receiver.gpg_key_armor = '';
       }
@@ -107,39 +106,19 @@ GLClient.controller('AdminReceiverAddCtrl', ['$scope', 'passwordWatcher',
 
     passwordWatcher($scope, 'new_receiver.password');
 
-  $scope.new_receiver = {};
+    $scope.new_receiver = {};
 
-  $scope.add_receiver = function() {
-    var receiver = new $scope.admin.receiver;
+    $scope.add_receiver = function() {
+      receiver = new $scope.admin.new_receiver();
 
-    receiver.name = $scope.new_receiver.name;
-    receiver.password = $scope.new_receiver.password;
-    receiver.mail_address = $scope.new_receiver.email;
+      receiver.name = $scope.new_receiver.name;
+      receiver.password = $scope.new_receiver.password;
+      receiver.mail_address = $scope.new_receiver.email;
 
-    // Under here go default settings
-    receiver.contexts =  [];
-    receiver.description = "";
-    receiver.can_delete_submission = false;
-    receiver.postpone_superpower = false;
-    receiver.receiver_level = 1;
-    receiver.tags = [];
-    receiver.tip_notification = true;
-    receiver.file_notification = true;
-    receiver.comment_notification = true;
-    receiver.message_notification = true;
-    receiver.gpg_key_info = '';
-    receiver.gpg_key_fingerprint = '';
-    receiver.gpg_key_remove = false;
-    receiver.gpg_key_armor = '';
-    receiver.gpg_key_status = 'ignored';
-    receiver.gpg_enable_notification = false;
-    receiver.gpg_enable_files = false;
-    receiver.presentation_order = 0;
-    receiver.$save(function(added_receiver){
-      $scope.admin.receivers.push(added_receiver);
-      $scope.new_receiver = {};
-    });
-
-  };
+      receiver.$save(function(new_receiver){
+        $scope.admin.receivers.push(new_receiver);
+        $scope.new_receiver = {};
+      });
+    }
 
 }]);
