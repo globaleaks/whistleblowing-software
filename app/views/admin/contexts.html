@@ -8,6 +8,8 @@ This comment is needed in order to push the following strings on transifex
 {{ "Presentation Order" | translate }} <- this has been removed by the way we
                                           do not want to loose present translations
 
+{{ "Click to edit, Drag to order" | translate }}
+
 -->
 <div id="ContentBox" class="container">
   <div class="row">
@@ -31,19 +33,19 @@ This comment is needed in order to push the following strings on transifex
             <form name="contextForm" ng-controller="AdminContextsEditorCtrl" novalidate>
               <div class="configItem contextItem"  ng-class="{'configItemLast': $last}">
 
-                <div class="row" ng-click="toggleEditing()" ng-mouseenter="show_hint=true" ng-mouseleave="show_hint=false">
+                <div class="row" ng-click="toggleEditing()">
                   <div class="editorHeader contextEditorHeader">
                     <div class="col-md-12" ng-show="!editing">
                       <span class="col-md-6">{{ context.name | translate }}</span>
-                      <span class="pull-right" ng-show="show_hint">
-                        {{ "Click to edit, Drag to order" | translate }}
+                      <span class="pull-right" popover="{{ 'Click to edit, Drag to order' | translate }}" popover-placement="left" popover-trigger="mouseenter">
+                        <i class="glyphicon glyphicon-th"></i>
                       </span>
                     </div>
 
                     <div class="col-md-12" ng-show="editing">
-                      <span class="col-md-6">{{ context.name | translate }}</span>
+                      <span class="col-md-9">{{ context.name | translate }}</span>
 
-                      <div class="col-md-6 editButtons" ng-show="editing">
+                      <div class="col-md-3 editButtons" ng-show="editing">
                         <button class="btn btn-success saveContext" ng-disabled="contextForm.$pristine" ng-click="update(context)">
                           <i class="glyphicon glyphicon-ok"></i>
                           {{ "Save" | translate }}

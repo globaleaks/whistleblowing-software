@@ -1,3 +1,11 @@
+<!--
+
+This comment is needed in order to push the following strings on transifex
+
+{{ "Delete" | translate }}
+
+-->
+
 <br />
 <div class="row">
   <div class="col-md-12">
@@ -17,9 +25,8 @@
           <i class="glyphicon glyphicon-question-sign"></i>
         </a>
         <div class="pull-right" ng-show="editing" ng-class="{invalid: newField.$invalid}">
-          <button class="btn btn-xs btn-danger" ng-click="deleteField(field)">
+          <button class="btn btn-xs btn-danger" ng-click="deleteField(field)" popover="{{ Delete | translate }}" popover-placement="right" popover-trigger="mouseenter">
             <i class="glyphicon glyphicon-remove"></i>
-            {{ "Delete" | translate }}
           </button>
         </div>
       </div>
