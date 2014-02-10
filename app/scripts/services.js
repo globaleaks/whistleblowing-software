@@ -740,15 +740,12 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.context = adminContextsResource;
       self.contexts = adminContextsResource.query();
 
-      self.create_context = function(context_name, cb) {
+      self.new_context = function() {
         var context = new adminContextsResource;
-
-        context.name = context_name;
+        context.name = "";
         context.description = "";
-
         context.fields = [];
         context.receivers = [];
-
         context.escalation_threshold = 0;
         context.file_max_download = 3;
         context.tip_max_access = 500;
@@ -769,13 +766,32 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.tags = [];
         context.show_small_cards = false;
         context.presentation_order = 0;
-
-        context.$save(function(new_context){
-          self.contexts.push(new_context);
-          cb(new_context);
-        });
-
+        return context;
       };
+
+      self.new_receiver = function() {
+        var receiver = new adminReceiversResource;
+        receiver.contexts =  [];
+        receiver.description = "";
+        receiver.mail_address = "",
+        receiver.can_delete_submission = false;
+        receiver.postpone_superpower = false;
+        receiver.receiver_level = 1;
+        receiver.tags = [];
+        receiver.tip_notification = true;
+        receiver.file_notification = true;
+        receiver.comment_notification = true;
+        receiver.message_notification = true;
+        receiver.gpg_key_info = '';
+        receiver.gpg_key_fingerprint = '';
+        receiver.gpg_key_remove = false;
+        receiver.gpg_key_armor = '';
+        receiver.gpg_key_status = 'ignored';
+        receiver.gpg_enable_notification = false;
+        receiver.gpg_enable_files = false;
+        receiver.presentation_order = 0;
+        return receiver;
+      }
 
       self.receiver = adminReceiversResource;
       self.receivers = adminReceiversResource.query();
