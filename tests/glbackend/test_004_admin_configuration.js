@@ -10,13 +10,12 @@ var host = 'http://127.0.0.1:8082';
 
 var app = request(host);
 
-// var population_order = 42;
-var population_order = 4;
+var population_order = 42;
 
 var receivers = new Array();
-var receivers_gus = new Array();
+var receivers_ids = new Array();
 var contexts = new Array();
-var contexts_gus = new Array();
+var contexts_ids = new Array();
 var contexts_list = new Array();
 
 var authentication;
@@ -268,15 +267,15 @@ describe('POST /authentication', function () {
   })
 })
 
-// we popolate population_order/2 contexts
-for (var i=0; i<population_order/2; i++) {
+// we popolate population_order contexts
+for (var i=0; i<population_order / 2; i++) {
   describe('POST /admin/context', function () {
 
-    context.selectable_receiver = false;
-
     var newObject = JSON.parse(JSON.stringify(context));
-    newObject.name = 'Conte><T ' + i;
+    newObject.name = 'Context ' + i ;
     newObject.presentation_order = i;
+    newObject.name = 'Context ' + i + ' (selectable receivers: TRUE)';
+    newObject.selectable_receiver = true;
 
     it('responds 201 on POST /admin/context (authenticated, valid context[' + i + '])', function (done) {
       app
@@ -296,32 +295,7 @@ for (var i=0; i<population_order/2; i++) {
 
           contexts.push(res.body);
 
-          contexts_gus.push(res.body.context_gus);
-
-          done();
-        });
-    })
-  })
-}
-
-for (var i=0; i<population_order/2; i++) {
-  describe('GET /admin/contexts', function () {
-
-    it('responds 200 on GET /admin/contexts (authenticated)', function (done) {
-      app
-        .post('/admin/context')
-        .send(newObject)
-        .set('X-XSRF-TOKEN', 'antani')
-        .set('cookie', 'XSRF-TOKEN=antani')
-        .set('X-Session', authentication['session_id'])
-        .expect(200)
-        .end(function (err, res) {
-          if (err) {
-            return done(err);
-          }
-          validate_mandatory_headers(res.headers);
-
-          contexts_list.push(res.body);
+          contexts_ids.push(res.body.id);
 
           done();
         });
@@ -337,7 +311,7 @@ for (var i=0; i<population_order; i++) {
     newObject.mail_address = 'receiver' + i + '@antani.gov';
     newObject.password = newObject.mail_address;
     newObject.name = 'Receiver ' + i;
-    newObject.contexts = contexts_gus;
+    newObject.contexts = contexts_ids;
     newObject.presentation_order = i;
 
     it('responds 201 on POST /admin/receiver (authenticated, valid receiver[' + i + '])', function (done) {
@@ -358,7 +332,7 @@ for (var i=0; i<population_order; i++) {
 
           receivers.push(res.body);
 
-          receivers_gus.push(res.body.receiver_gus);
+          receivers_ids.push(res.body.id);
 
           done();
         });
@@ -372,8 +346,10 @@ for (var i=population_order/2; i<population_order; i++) {
 
     var newObject = JSON.parse(JSON.stringify(context));
     newObject.name = 'Context ' + i;
-    newObject.receivers = receivers_gus;
+    newObject.receivers = receivers_ids;
     newObject.presentation_order = i;
+    newObject.name = 'Context ' + i + ' (selectable receivers: FALSE)';
+    newObject.selectable_receiver = false;
 
     it('responds 201 on POST /admin/context (authenticated, valid context[' + i + '])', function (done) {
       app
@@ -393,7 +369,7 @@ for (var i=population_order/2; i<population_order; i++) {
 
           contexts.push(res.body);
 
-          contexts_gus.push(res.body.context_gus);
+          contexts_ids.push(res.body.id);
 
           done();
         });

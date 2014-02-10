@@ -307,7 +307,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
        * */
       self.create = function(cb) {
         self.current_submission = new submissionResource({
-          id: self.current_context.id,
+          context_id: self.current_context.id,
           wb_fields: {}, files: [], finalize: false, receivers: []
         });
 

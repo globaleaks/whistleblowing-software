@@ -11,11 +11,12 @@ var host = 'http://127.0.0.1:8082';
 var app = request(host);
 
 var population_order = 42;
+var submission_population_order = 4;
 
 var receivers = new Array();
-var receivers_gus = new Array();
+var receivers_ids = new Array();
 var contexts = new Array();
-var contexts_gus = new Array();
+var contexts_ids = new Array();
 var submissions = new Array();
 var files = new Array();
 var wb_receipts  = new Array();
@@ -75,7 +76,7 @@ describe('GET /contexts', function(){
 
           for (var i=0; i<population_order; i++) {
 
-            contexts_gus.push(contexts[i].context_gus);
+            contexts_ids.push(contexts[i].id);
 
             if(contexts[i].receivers.length != population_order) {
               throw "/contexts didn't return " + population_order + " receivers associated to each context";
@@ -109,7 +110,7 @@ describe('GET /receivers', function(){
 
           for (var i=0; i<population_order; i++) {
 
-            receivers_gus.push(receivers[i].receiver_gus);
+            receivers_ids.push(receivers[i].id);
 
             if(receivers[i].contexts.length != population_order) {
               throw "/receivers didn't return " + population_order + " receivers associated to each receiver";
@@ -123,17 +124,18 @@ describe('GET /receivers', function(){
 })
 
 describe('POST /submission', function(){
-  for (var i=0; i<population_order; i++) {
+  for (var i=0; i<submission_population_order; i++) {
     (function (i) {
       it('responds with ', function(done){
 
-        var new_submission = { }
+        var new_submission = {};
+        new_submission.wb_fields = {};
 
         contexts[i].fields.forEach(function (field) {
           new_submission.wb_fields[field.key]  = "primo";
         })
 
-        new_submission.context_gus = contexts_gus[i];
+        new_submission.context_id = contexts_ids[i];
         new_submission.files = [];
         new_submission.finalize = false;
         new_submission.receivers = [];
@@ -161,22 +163,21 @@ describe('POST /submission', function(){
       })
     })(i);
 
+  }
+})
+
+describe('POST /submission/submission_id/file', function(){
+  for (var i=0; i<submission_population_order; i++) {
     (function (i) {
       it('responds with ', function(done){
-
-        var new_file = {
-	    name: "afilename.txt",
-	    description: "a description haha",
-	    size: 20,
-	    content_type: "09876543211234567890",
-	    date: "somethingignored?"
-	}
-
+        console.log(submissions[i].id)
         app
           .post('/submission/' + submissions[i].id + '/file')
-          .send(new_file)
+          .send('ANTANIFILECONTENT')
           .set('X-XSRF-TOKEN', 'antani')
           .set('cookie', 'XSRF-TOKEN=antani')
+          .set('Content-Type', 'text/plain')
+          .set('Content-Disposition', 'attachment; filename="ANTANI.txt"')
           .expect('Content-Type', 'application/json')
           .expect(201)
           .end(function(err, res) {
@@ -186,7 +187,7 @@ describe('POST /submission', function(){
 
               validate_mandatory_headers(res.headers);
 
-              files.push(res.body);
+              submissions.push(res.body);
 
               done();
             }
@@ -200,7 +201,7 @@ describe('POST /submission', function(){
 
 // finalize with missing receiver and empty fields must result in 412
 describe('POST /submission', function(){
-  for (var i=0; i<population_order; i++) {
+  for (var i=0; i<submission_population_order; i++) {
     (function (i) {
       it('responds with ', function(done){
 
@@ -232,12 +233,12 @@ describe('POST /submission', function(){
 })
 
 describe('POST /submission', function(){
-  for (var i=0; i<population_order; i++) {
+  for (var i=0; i<submission_population_order; i++) {
     (function (i) {
 
       it('responds with ', function(done){
 
-        submissions[i].receivers = receivers_gus;
+        submissions[i].receivers = receivers_ids;
 
         submissions[i].wb_fields = {};
 
@@ -274,7 +275,7 @@ describe('POST /submission', function(){
   }
 })
 
-for (var i=0; i<population_order; i++){
+for (var i=0; i<submission_population_order; i++){
   (function (i) {
     describe('POST /authentication', function () {
       it('responds 403 on valid wb login with missing XSRF token (missing header)', function (done) {
@@ -386,3 +387,4 @@ for (var i=0; i<population_order; i++){
 
   })(i);
 }
+
