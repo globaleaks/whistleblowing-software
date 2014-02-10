@@ -1,14 +1,14 @@
 GLClient.controller('AdminContextsCtrl',
-    ['$scope', '$modal', 'Admin', 'DefaultFields',
-    function($scope, $modal, Admin, DefaultFields) {
+  ['$scope', '$modal', 'Admin',
+  function($scope, $modal, Admin) {
 
-  DefaultFields.get(function(fields) {
-
-    $scope.fields = fields;
-    // console.log($scope.fields);
-
-  });
-
+  $scope.add_context = function(name) {
+    context = $scope.admin.new_context();
+    context.name = name;
+    context.$save(function(new_context){
+      $scope.admin.contexts.push(new_context);
+    });
+  }
 
   $scope.save_all = function() {
     angular.forEach($scope.admin.contexts, function(context, key) {
@@ -162,5 +162,4 @@ GLClient.controller('AdminContextsEditorCtrl', ['$scope',
         $scope.context.receivers.splice(idx, 1);
       }
     }
-
 }]);

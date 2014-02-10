@@ -160,7 +160,6 @@ This comment is needed in order to push the following strings on transifex
             </form>
           </div>
         </div>
-
         <form name="newContext" novalidate>
           <div class="row">
             <div class="col-md-6">
@@ -173,7 +172,7 @@ This comment is needed in order to push the following strings on transifex
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <button class="btn btn-success" ng-disabled="newContext.$invalid" ng-click="admin.create_context(new_context_name)">
+                <button class="btn btn-success" ng-disabled="newContext.$invalid" ng-click="add_context(new_context_name)">
                   <i class="glyphicon glyphicon-ok"></i>
                   {{ "Add" | translate }}
                 </button>
@@ -181,7 +180,6 @@ This comment is needed in order to push the following strings on transifex
             </div>
           </div>
         </form>
-
       </div>
     </div>
   </div>
