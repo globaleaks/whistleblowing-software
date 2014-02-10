@@ -187,7 +187,7 @@ class notifTemplateTest(TestWithDB):
         self.mockSubmission = MockDict().dummySubmission
         self.mockSubmission['finalize'] = True
         self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
-        self.mockSubmission['receivers'] = [ self.createdReceiver['receiver_id'] ]
+        self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()

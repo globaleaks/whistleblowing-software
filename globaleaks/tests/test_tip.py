@@ -11,6 +11,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.handlers import base, admin, submission, authentication, receiver, rtip, wbtip
 from globaleaks.jobs import delivery_sched
 from globaleaks import models
+from globaleaks.tests.helpers import default_context_fields
 
 STATIC_PASSWORD = u'bungabunga ;( 12345'
 
@@ -54,7 +55,7 @@ class TTip(helpers.TestWithDB):
     tipContext = {
         'name': u'CtxName', 'description': u'dummy context with default fields',
         'escalation_threshold': u'1', 'tip_max_access': u'2', 
-        'fields' : list(helpers.sample_context_fields),
+        'fields' : default_context_fields(),
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': False,
         'receivers': [], 'submission_timetolive': 100,
         'receipt_regexp': u"[0-9]{10}",
@@ -290,9 +291,7 @@ class TestTipInstance(TTip):
         self.assertTrue(isinstance(tiplist, list))
         self.assertTrue(isinstance(tiplist[0], dict))
         self.assertTrue(isinstance(tiplist[0]['preview'], list))
-        self.assertTrue(isinstance(tiplist[0]['preview'][0], dict))
-        self.assertTrue(tiplist[0]['preview'][0].has_key('label'))
-        self.assertTrue(tiplist[0]['preview'][0].has_key('text'))
+        # then the content here depends on the fields
 
     @inlineCallbacks
     def receiver2_express_negative_vote(self):
