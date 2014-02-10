@@ -425,6 +425,7 @@ class Node(Model):
     postpone_superpower = Bool()
     can_delete_submission = Bool()
     ahmia = Bool()
+    wizard_done = Bool(default=False)
 
     exception_email = Unicode()
 
@@ -434,7 +435,7 @@ class Node(Model):
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_unauth', 'postpone_superpower',
-                  'can_delete_submission', 'ahmia' ]
+                  'can_delete_submission', 'ahmia' ] # wizard_done set by hand!
     localized_strings = [ 'description', 'presentation', 'footer', 'subtitle' ]
 
 
