@@ -219,6 +219,9 @@ def transport_security_check(wrapped_handler_role):
 
 @transact
 def login_wb(store, receipt):
+    """
+    Login wb return the WhistleblowerTip.id
+    """
     try:
         node = store.find(Node).one()
         hashed_receipt = security.hash_password(receipt, node.receipt_salt)
@@ -244,6 +247,8 @@ def login_receiver(store, username, password):
     """
     This login receiver need to collect also the amount of unsuccessful
     consecutive logins, because this element may bring to password lockdown.
+
+    login_receiver return the receiver.id
     """
     receiver_user = store.find(User, User.username == username).one()
 
@@ -269,6 +274,10 @@ def login_receiver(store, username, password):
 
 @transact
 def login_admin(store, username, password):
+    """
+    login_admin return the 'username' of the administrator
+    """
+
     admin_user = store.find(User, User.username == username).one()
 
     if not admin_user or admin_user.role != 'admin':
@@ -366,28 +375,49 @@ class AuthenticationHandler(BaseHandler):
                log.debug("Accepted login request on Tor2web for role '%s'" % role)
 
         # Then verify credential, if the channel shall be trusted
+        #
+        # Here is created the session struct, is now explicit in the
+        # three roles, because 'user_id' has a different meaning for every role
+
         if role == 'admin':
-            # username is ignored
-            user_id = yield login_admin(username, password)
+
+            authorized_username = yield login_admin(username, password)
+            new_session_id = self.generate_session(role, authorized_username)
+
+            auth_answer = {
+                'role': 'admin',
+                'session_id': new_session_id,
+                'user_id': unicode(authorized_username),
+                'session_expiration': int(GLSetting.sessions[new_session_id].expirydate),
+            }
+
         elif role == 'wb':
-            # username is ignored
-            user_id = yield login_wb(password)
+
+            wbtip_id = yield login_wb(password)
+            new_session_id = self.generate_session(role, wbtip_id)
+
+            auth_answer = {
+                'role': 'admin',
+                'session_id': new_session_id,
+                'user_id': unicode(wbtip_id),
+                'session_expiration': int(GLSetting.sessions[new_session_id].expirydate),
+            }
+
         elif role == 'receiver':
-            user_id = yield login_receiver(username, password)
+
+            receiver_id = yield login_receiver(username, password)
+            new_session_id = self.generate_session(role, receiver_id)
+
+            auth_answer = {
+                'role': 'receiver',
+                'session_id': new_session_id,
+                'user_id': unicode(receiver_id),
+                'session_expiration': int(GLSetting.sessions[new_session_id].expirydate),
+            }
+
         else:
             log.err("Invalid role proposed to authenticate!")
             raise errors.InvalidAuthRequest
-
-        if not user_id:
-            raise errors.InvalidAuthRequest
-
-        new_session_id = self.generate_session(role, user_id)
-
-        auth_answer = {
-            'session_id': new_session_id,
-            'user_id': unicode(user_id),
-            'session_expiration': int(GLSetting.sessions[new_session_id].expirydate),
-        }
 
         self.write(auth_answer)
 
