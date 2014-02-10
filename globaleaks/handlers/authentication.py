@@ -341,6 +341,7 @@ class AuthenticationHandler(BaseHandler):
 
         auth_answer = {
             'session_id': self.current_user.id,
+            'role': self.current_user.role,
             'user_id': unicode(self.current_user.user_id),
             'session_expiration': int(self.current_user.expirydate),
         }

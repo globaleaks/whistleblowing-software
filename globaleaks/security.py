@@ -10,12 +10,10 @@ import re
 import os
 import shutil
 
-import scrypt
 from Crypto.Hash import SHA512, MD5
 from Crypto import Random
 from Crypto.Cipher import AES
 from Crypto.Util import Counter
-from Crypto.Util.number import bytes_to_long, long_to_bytes
 from gnupg import GPG
 
 from globaleaks.rest import errors
@@ -25,13 +23,10 @@ from globaleaks.models import *
 
 SALT_LENGTH = (128 / 8) # 128 bits of unique salt
 
-import os
-import struct
-
 from tempfile import _TemporaryFileWrapper
 
-
 class GLSecureTemporaryFile(_TemporaryFileWrapper):
+
     def __init__(self, filedir, keydir):
         self.nonce_size = 16
         self.block_size = 32
