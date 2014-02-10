@@ -142,12 +142,12 @@ class FirstSetup(BaseHandler):
         try:
             accepted_types = [ "text", "radio", "select", "checkboxes",
                                "textarea", "number", "url", "phone", "email" ]
-            for field in fields:
+            for field in fields['fields']:
                 if field['type'] not in accepted_types:
                     log.debug("Invalid type received: %s" % field['type'])
                     raise errors.InvalidInputFormat("Invalid type supply")
 
-            yield update_application_fields(request['version'], fields)
+            yield update_application_fields(fields['version'], fields['fields'])
 
         except Exception as excep:
             log.debug("Failed Fields initialization %s" % excep)
@@ -160,14 +160,15 @@ class FirstSetup(BaseHandler):
             raise excep
 
         try:
-            receiver['context']= [ context_dict['id'] ]
+            receiver['contexts']= [ context_dict['context_gus'] ]
+            print receiver
             yield create_receiver(receiver, self.request.language)
         except Exception as excep:
             log.debug("Failed Receiver Finitialization %s" % excep)
             raise excep
 
         try:
-            yield update_node(node, wizard_done=True, request=self.request.language)
+            yield update_node(node, wizard_done=True, language=self.request.language)
         except Exception as excep:
             log.debug("Failed Fields initialization %s" % excep)
             raise excep
