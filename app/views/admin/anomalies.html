@@ -1,0 +1,76 @@
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+{{ "Check anomalies" | translate }}
+{{ "Administration Interface" | translate }}
+
+-->
+<div id="ContentBox" class="container" ng-controller="StatisticsCtrl">
+  <div class="row">
+    <div id="ConfigSidebarBox" class="col-md-3" ng-include="'views/admin/sidebar.html'"></div>
+    <div class="col-md-9">
+
+      <p>
+      {{ "This interface shows the latest anomalies spotted by the system." | translate }}
+      </p>
+      <div class="row">
+        <div class="col-md-12">
+        <table class="table table-bordered" id="receiverList">
+
+          <tbody id="StatsListBody">
+            <tr ng-repeat="anom in anomalies">
+              <td class="col-md-2">
+		{{anom.creation_date | date:'dd-MM-yyyy HH:mm'}}
+              </td>
+              <td class="col-md-2">
+		{{anom.new_submission}}
+              </td>
+              <td class="col-md-2">
+                {{anom.anon_requests}}
+              </td>
+              <td class="col-md-2">
+                {{anom.finalized_submission}}
+              </td>
+              <td class="col-md-2">
+                {{anom.file_uploaded}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+      {{ "This interface will show you the statistics for the last hours." | translate }}
+      <a href="/#/admin/anomalies">
+        {{ "Here you can check the latest anomalies detected" | translate }}</a>
+      </p>
+      <div class="row">
+        <div class="col-md-12">
+        <table class="table table-bordered" id="receiverList">
+
+          <tbody id="StatsListBody">
+            <tr ng-repeat="stat in stats">
+              <td class="col-md-2">
+		{{stat.creation_date | date:'dd-MM-yyyy HH:mm'}}
+              </td>
+              <td class="col-md-2">
+		{{stat.new_submission}}
+              </td>
+              <td class="col-md-2">
+                {{stat.anon_requests}}
+              </td>
+              <td class="col-md-2">
+                {{stat.finalized_submission}}
+              </td>
+              <td class="col-md-2">
+                {{stat.file_uploaded}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

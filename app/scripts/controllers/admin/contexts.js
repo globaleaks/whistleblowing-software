@@ -145,7 +145,7 @@ GLClient.controller('AdminContextsEditorCtrl', ['$scope',
     }
 
     $scope.isSelected = function(receiver) {
-      if ($scope.context.receivers.indexOf(receiver.receiver_gus) !== -1) {
+      if ($scope.context.receivers.indexOf(receiver.id) !== -1) {
         return true;
       } else {
         return false;
@@ -153,11 +153,11 @@ GLClient.controller('AdminContextsEditorCtrl', ['$scope',
     }
 
     $scope.toggle = function(receiver) {
-      var idx = $scope.context.receivers.indexOf(receiver.receiver_gus);
+      var idx = $scope.context.receivers.indexOf(receiver.id);
       $scope.contextForm.$dirty = true;
       $scope.contextForm.$pristine = false;
       if (idx === -1) {
-        $scope.context.receivers.push(receiver.receiver_gus);
+        $scope.context.receivers.push(receiver.id);
       } else {
         $scope.context.receivers.splice(idx, 1);
       }

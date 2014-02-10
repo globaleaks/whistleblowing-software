@@ -69,7 +69,7 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher',
     }
 
     $scope.isSelected = function(context) {
-      if ($scope.receiver.contexts.indexOf(context.context_gus) !== -1) {
+      if ($scope.receiver.contexts.indexOf(context.id) !== -1) {
         return true;
       } else {
         return false;
@@ -77,9 +77,9 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher',
     }
 
     $scope.toggle = function(context) {
-      var idx = $scope.receiver.contexts.indexOf(context.context_gus)
+      var idx = $scope.receiver.contexts.indexOf(context.id)
       if (idx === -1) {
-        $scope.receiver.contexts.push(context.context_gus);
+        $scope.receiver.contexts.push(context.id);
       } else {
         $scope.receiver.contexts.splice(idx, 1);
       }
