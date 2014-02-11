@@ -76,7 +76,7 @@ class TestPasswordManagement(unittest.TestCase):
         )
 
 
-class TestFilesystemAccess(unittest.TestCase):
+class TestFilesystemAccess(helpers.TestGL):
 
     def test_directory_traversal_check_blocked(self):
         try:
@@ -95,33 +95,28 @@ class TestFilesystemAccess(unittest.TestCase):
             directory_traversal_check(GLSetting.static_path, valid_access)
             self.assertTrue(True)
         except Exception as excep:
+            print excep
             print "Exception %s" % excep.log_message
             self.assertTrue(False)
 
 class TestGLSecureFiles(helpers.TestGL):
 
     def test_temporary_file(self):
-        a = GLSecureTemporaryFile('files/submission', 'ramdisk')
+        a = GLSecureTemporaryFile('files/submission')
         filepath = a.filepath
-        keypath = a.keypath
         antani = "0123456789" * 10000
         a.write(antani)
         self.assertTrue(antani == a.read())
         a.close()
         self.assertFalse(os.path.exists(filepath))
-        self.assertFalse(os.path.exists(keypath))
 
-"""
     def test_temporary_file_avoid_delete(self):
-        a = GLSecureTemporaryFile('files/submission', 'ramdisk')
+        a = GLSecureTemporaryFile('files/submission')
         a.avoid_delete()
         filepath = a.filepath
-        keylink = a.keylink
         antani = "0123456789" * 10000
         a.write(antani)
         a.close()
         self.assertTrue(os.path.exists(filepath))
-        self.assertTrue(os.path.exists(keylink))
-        b = GLSecureFile(filepath, 'ramdisk')
+        b = GLSecureFile(filepath)
         self.assertTrue(antani == b.read())
-"""

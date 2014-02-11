@@ -68,6 +68,7 @@ class TestWithDB(unittest.TestCase):
         GLSetting.eval_paths()
         GLSetting.remove_directories()
         GLSetting.create_directories()
+        GLSetting.load_key()
         return db.create_tables(create_node=True)
 
 class TestGL(TestWithDB):
@@ -441,7 +442,7 @@ class MockDict():
             'disable': False,
         }
 
-        temporary_file = GLSecureTemporaryFile('files/submission', 'ramdisk')
+        temporary_file = GLSecureTemporaryFile('files/submission')
         temporary_file.write("ANTANI")
 
         self.dummyFile = {
@@ -449,7 +450,6 @@ class MockDict():
             'body_len': len("ANTANI"),
             'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
             'body_filepath': temporary_file.filepath,
-            'body_keypath': temporary_file.keypath,
             'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
             'content_type': 'application/octect',
         }
