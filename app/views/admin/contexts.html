@@ -51,7 +51,7 @@ This comment is needed in order to push the following strings on transifex
               <i class="glyphicon glyphicon-sort-by-alphabet"></i>
               {{ "Reorder Contexts alphabetically" | translate }}
             </button>
-            <button class="btn btn-success" ng-click="save_all()">
+            <button class="btn btn-success" ng-click="save_all()" type="submit" >
               <i class="glyphicon glyphicon-ok"></i>
               {{ "Save All" | translate }}
             </button>
@@ -76,7 +76,7 @@ This comment is needed in order to push the following strings on transifex
                         <span class="col-md-9">{{ context.name | translate }}</span>
 
                         <div class="col-md-3 editButtons" ng-show="editing">
-                          <button class="btn btn-success saveContext" ng-disabled="contextForm.$pristine" ng-click="update(context)">
+                          <button class="btn btn-success saveContext" ng-disabled="contextForm.$pristine" ng-click="update(context)" type="submit" >
                             <i class="glyphicon glyphicon-ok"></i>
                             {{ "Save" | translate }}
                           </button>

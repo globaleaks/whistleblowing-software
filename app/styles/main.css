@@ -133,8 +133,6 @@ h3 {
 }
 
 #PrivacyBox {
-  position: absolute;
-  width: 100%;
   padding: 10px;
   background-color: #fcf8e3;
   color: #c09853;

@@ -4,6 +4,7 @@ This comment is needed in order to push the following strings on transifex
 
 {{ "GlobaLeaks Wizard" | translate }}
 {{ "Step by step setup" | translate }}
+{{ "Read more about describing your initiative here" | translate }}
 
 -->
 
@@ -35,7 +36,7 @@ This comment is needed in order to push the following strings on transifex
           <div class="col-md-8">
             <textarea type="text" class="form-control" ng-model="admin.node.description" required></textarea>
             <span class="help-block">
-              {{ "Give a concisive description of your project" | translate }}
+              {{ "Give a concise description of your project" | translate }}
             </span>
           </div>
         </div>
@@ -43,10 +44,12 @@ This comment is needed in order to push the following strings on transifex
       </div>
       <div class="col-md-6">
         <p class="help-hint">
-          {{ "Give your whistleblowing initiative a good name and description to invite whistleblowers to submit. Be sure to make it clear the goals of your project" | translate }}.
+          {{ "Give your whistleblowing initiative a good name and description to invite whistleblowers to submit. Be sure to make it clear the goals of your project" | translate }}
+          <!-- Commented out while choosing the link so that the string on transifex is not lost
           <a href="">
             {{ "Read more about describing your initiative here" | translate }}
           </a>.
+          -->
         </p>
       </div>
 
@@ -74,7 +77,7 @@ This comment is needed in order to push the following strings on transifex
             {{ "Password" | translate }}
           </label>
           <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="" ng-model="admin.node.password" required>
+            <input type="password" class="form-control" placeholder="" ng-model="admin.node.password" required>
             <span class="help-block">
               {{ "Enter a new globaleaks node password" | translate }}
             </span>
@@ -98,7 +101,7 @@ This comment is needed in order to push the following strings on transifex
             {{ "Confirm password" | translate }}
           </label>
           <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="" ng-model="admin.node.check_password" required>
+            <input type="password" class="form-control" placeholder="" ng-model="admin.node.check_password" required>
             <span class="help-block">
               {{ "Please confirm it" | translate }}
             </span>
@@ -139,7 +142,7 @@ This comment is needed in order to push the following strings on transifex
           <div class="col-md-8">
             <input name="receiver_mail" type="email" class="form-control" placeholder="" ng-model="receiver.mail_address" required>
             <span class="help-block">
-              {{ "Enter the email address through which they will be notified" | translate }}
+              {{ "Enter the email address through which the receiver will be notified" | translate }}
             </span>
             <p class="has-error" ng-show="wizard.receiver_mail.$error.email">
               {{ "Invalid email address" | translate }}
@@ -152,7 +155,7 @@ This comment is needed in order to push the following strings on transifex
             {{ "Password" | translate }}
           </label>
           <div class="col-md-8">
-            <span class="label label-primary">{{receiver.password}}</span>
+            <input name="receiver_password" type="text" class="form-control" placeholder="" ng-model="receiver.password" required ng-value="{{receiver.password}}" readonly>
             <span class="help-block">
               {{ "This is the password that the receiver must use to login to their tip page." | translate }}
             </span>
