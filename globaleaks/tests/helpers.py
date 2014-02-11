@@ -69,7 +69,8 @@ class TestWithDB(unittest.TestCase):
         GLSetting.remove_directories()
         GLSetting.create_directories()
         GLSetting.load_key()
-        GLSetting.remove_dead_files()
+        GLSetting.cleaning_dead_files()
+
         return db.create_tables(create_node=True)
 
 class TestGL(TestWithDB):

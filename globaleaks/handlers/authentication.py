@@ -254,7 +254,7 @@ def login_receiver(store, username, password):
 
     if not receiver_user or receiver_user.role != 'receiver':
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
-        raise errors.InvalidAuthRequest
+        return False
 
     if not security.check_password(password, receiver_user.password, receiver_user.salt):
         receiver_user.failed_login_count += 1
@@ -264,7 +264,7 @@ def login_receiver(store, username, password):
         else:
             GLSetting.failed_login_attempts[username] = 1
 
-        raise errors.InvalidAuthRequest
+        return False
     else:
         log.debug("Receiver: Authorized receiver %s" % username)
         receiver_user.last_login = datetime_now()
@@ -282,7 +282,7 @@ def login_admin(store, username, password):
 
     if not admin_user or admin_user.role != 'admin':
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
-        raise errors.InvalidAuthRequest
+        return False
 
     if not security.check_password(password, admin_user.password, admin_user.salt):
         admin_user.failed_login_count += 1
@@ -291,7 +291,7 @@ def login_admin(store, username, password):
             GLSetting.failed_login_attempts[username] += 1
         else:
             GLSetting.failed_login_attempts[username] = 1
-        raise errors.InvalidAuthRequest
+        return False
     else:
         log.debug("Admin: Authorized receiver %s" % username)
         admin_user.last_login = datetime_now()
@@ -383,6 +383,8 @@ class AuthenticationHandler(BaseHandler):
         if role == 'admin':
 
             authorized_username = yield login_admin(username, password)
+            if authorized_username is False:
+                raise errors.InvalidAuthRequest
             new_session_id = self.generate_session(role, authorized_username)
 
             auth_answer = {
@@ -395,6 +397,9 @@ class AuthenticationHandler(BaseHandler):
         elif role == 'wb':
 
             wbtip_id = yield login_wb(password)
+            if wbtip_id is False:
+                raise errors.InvalidAuthRequest
+
             new_session_id = self.generate_session(role, wbtip_id)
 
             auth_answer = {
@@ -407,6 +412,9 @@ class AuthenticationHandler(BaseHandler):
         elif role == 'receiver':
 
             receiver_id = yield login_receiver(username, password)
+            if receiver_id is False:
+                raise errors.InvalidAuthRequest
+
             new_session_id = self.generate_session(role, receiver_id)
 
             auth_answer = {
