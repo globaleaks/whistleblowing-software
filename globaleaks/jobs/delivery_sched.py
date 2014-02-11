@@ -185,7 +185,7 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
 
         filepath = os.path.join(GLSetting.submission_path, fpath)
 
-        with GLSecureFile(filepath, GLSetting.ramdisk_path) as f:
+        with GLSecureFile(filepath) as f:
             encrypted_file_path, encrypted_file_size = \
                 gpoj.encrypt_file(filepath, f, GLSetting.submission_path)
 
@@ -410,43 +410,40 @@ class APSDelivery(GLJob):
 
             almost_one_reference = False
 
+            print "**", rfileslist
             for (fid, status, fname, flen, receiver_desc) in rfileslist:
                 if ifile_id == fid:
                     if status == 'reference':
                       almost_one_reference = True
-                      break;
+                      break
 
             filepath = os.path.join(GLSetting.submission_path, fname)
-            keylink = os.path.join(GLSetting.submission_path, fname + '.keylink')
 
             if almost_one_reference:
                 log.debug("Decrypting encrypted temporary file due to unencrypted receivers: %s" % fname)
 
-                print keylink
-                with open(keylink) as f:
-                    nonce = f.read()
+                tmp_path = os.path.join(GLSetting.submission_path, "%s.%s" % (fname, '.tmp_plainfile'))
+                with GLSecureFile(filepath) as unencrypted_file:
 
-                tmp_path = os.path.join(GLSetting.submission_path, fname + '.tmp')
-                unencrypted_file = GLSecureFile(filepath, GLSetting.ramdisk_path)
+                    with open(tmp_path, "wb") as tmp_file:
+                        chunk_size = 4096
 
-                with open(tmp_path, "wb") as tmp_file:
-                    chunk_size = 4096
-                    while True:
-                        chunk = unencrypted_file.read(chunk_size)
-                        if len(chunk) == 0:
-                            break
-                        tmp_file.write(chunk)
+                        while True:
+                            chunk = unencrypted_file.read(chunk_size)
+                            if len(chunk) == 0:
+                                break
+                            tmp_file.write(chunk)
 
+                # now the .tmp_plainfile, decrypted (because almost one receiver has not GPG)
+                # is moved in the InternalFile 'filepath'
                 os.remove(filepath)
-                os.remove(keylink)
                 shutil.move(tmp_path, filepath)
 
                 ifile_track.update({ifile_id: InternalFile._marker[2] }) # Ready
             else:
 
-                print "remove" + filepath
+                log.debug("Only PGP encrypted version of %s exists: AES file removed" % filepath)
                 os.remove(filepath)
-                os.remove(keylink)
 
                 ifile_track.update({ifile_id: InternalFile._marker[3] }) # Removed
 

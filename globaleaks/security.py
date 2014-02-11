@@ -9,63 +9,79 @@ import binascii
 import re
 import os
 import shutil
+import scrypt
+import random
 
 from Crypto.Hash import SHA512, MD5
 from Crypto import Random
 from Crypto.Cipher import AES
 from Crypto.Util import Counter
 from gnupg import GPG
+from tempfile import _TemporaryFileWrapper
 
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log, acquire_bool
 from globaleaks.settings import GLSetting
 from globaleaks.models import *
+from globaleaks.third_party.rstr import xeger
 
 SALT_LENGTH = (128 / 8) # 128 bits of unique salt
 
-from tempfile import _TemporaryFileWrapper
 
 class GLSecureTemporaryFile(_TemporaryFileWrapper):
+    """
+    WARNING!
+    You can't use this File object like a normal file object.
+
+    """
     nonce_size = 8
-    block_size = 32
     last_action = 'init'
 
-    def __init__(self, filedir, keydir):
-        self.key = MD5.new(Random.new().read(self.block_size)).hexdigest()
-        self.nonce = MD5.new(Random.get_random_bytes(self.nonce_size)).hexdigest()[:self.nonce_size]
+    def __init__(self, filedir):
+        """
+        filedir: dir target to keep GL.
+        """
 
-        self.keypath = os.path.join(keydir, self.nonce)
-        self.filepath = os.path.join(filedir, self.nonce)
-        self.keylink = self.filepath + '.keylink'
+        assert (GLSetting.key and GLSetting.key_id), "Encryption key not initialized"
 
-        with open(self.keylink, 'w+') as f:
-            f.write(self.nonce)
+        pseudo_random = "%d%d%d%d" % (
+            random.randint(1, 0xFFFF), random.randint(1, 0xFFFF),
+            random.randint(1, 0xFFFF), random.randint(1, 0xFFFF) )
+        self.nonce = MD5.new(pseudo_random).hexdigest()[:self.nonce_size]
 
-        if os.access(keydir, os.W_OK):
-            with open(self.keypath, 'w+b') as f:
-                f.write(self.key)
-        else:
-            log.err("Unable to access in writing mode to: %s" % self.keypath)
-            raise OSError("Unable to open in writing %s" % self.keypath)
+        self.filepath = os.path.join(filedir, "%s.%s_%s" % ( xeger(r'[A-Za-z]{26}'), GLSetting.key_id, self.nonce) )
 
-        self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
+        log.debug("++ Creating %s filetmp" % self.filepath)
+
         self.file = open(self.filepath, 'w+b')
-
+        self.cipher = AES.new(GLSetting.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
         _TemporaryFileWrapper.__init__(self, self.file, self.filepath, True)
 
-    def avoid_delete(self):
-        self.delete = False;
 
-    def write(self, data): # encrypt
+    def avoid_delete(self):
+        log.debug("Avoid delete on: %s " % self.filepath)
+        self.delete = False
+
+    def write(self, data):
+        """
+        The last action is kept track because the internal status
+        need to track them. read below read()
+        """
+        assert (self.last_action != 'read'), "you can write after read!"
         self.last_action = 'write'
         self.file.write(self.cipher.encrypt(data))
 
-    def read(self, c=None): # decrypt
+    def read(self, c=None):
+        """
+        The first time 'read' is called after a write, is automatically seek(0)
+        """
+        assert (self.last_action != 'init'), "you can't read before write!"
+
         if self.last_action == 'write':
             self.seek(0, 0) # this is a trick just to misc write and read
-            self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
-
-        self.last_action = 'read'
+            self.cipher = AES.new(GLSetting.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
+            log.debug("First seek on %s" % self.filepath)
+            self.last_action = 'read'
 
         if c is None:
             return self.cipher.decrypt(self.file.read())
@@ -73,30 +89,44 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             return self.cipher.decrypt(self.file.read(c))
 
     def close(self):
-        if not self.close_called:
-            _TemporaryFileWrapper.close(self)
-            if self.delete:
-                os.remove(self.keypath)
-                os.remove(self.keylink)
+        """
+        TEMP JUST FOR DEBUG
+        @return:
+        """
+        if self.delete:
+            log.debug("removing %s" % self.filepath)
+        else:
+            log.debug("not removing " % self.filepath)
+
+        _TemporaryFileWrapper.close(self)
+
+
+class KeyExpiredSadness(Exception): pass
+
 
 class GLSecureFile(GLSecureTemporaryFile):
-    def __init__(self, filepath, keydir):
+
+    def __init__(self, filepath):
+
+        assert (GLSetting.key and GLSetting.key_id), "Encryption key not initialized"
         self.filepath = filepath
-        self.keylink = self.filepath + '.keylink'
 
-        with open(self.keylink) as f:
-            self.nonce = f.read()
+        log.debug("Opening secure file %s with %s" % (self.filepath, GLSetting.key_id) )
 
-        self.keypath = os.path.join(keydir, self.nonce)
+        expected_key_id, used_nonce = (self.filepath.split('.')[1]).split('_')
 
-        with open(self.keypath) as f:
-            self.key = f.read(self.block_size)
+        if GLSetting.key_id != expected_key_id:
+            # I'm sorry, those file is a dead file!
+            log.err("The file %s has been encrypted with a lost key!")
+            raise KeyExpiredSadness("%s != %s :(" % (GLSetting.key_id, expected_key_id))
 
-        self.file = open(filepath, 'r+b')
+        self.file = open(self.filepath, 'r+b')
+        self.cipher = AES.new(GLSetting.key, AES.MODE_CTR, counter=Counter.new(64, prefix=used_nonce))
 
-        self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
+        # last argument is 'False' because has not to be deleted on .close()
+        _TemporaryFileWrapper.__init__(self, self.file, self.filepath, False)
 
-        _TemporaryFileWrapper.__init__(self, self.file, filepath, False)
+
 
 def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
     """
