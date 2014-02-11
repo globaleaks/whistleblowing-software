@@ -27,8 +27,6 @@ from globaleaks.third_party.rstr import xeger
 
 SALT_LENGTH = (128 / 8) # 128 bits of unique salt
 
-# Security UMASK hardening
-
 SAFE_UMASK = 077
 os.umask(SAFE_UMASK)
 orig_umask = os.umask
@@ -37,8 +35,6 @@ def umask(req_mask):
 
     if req_mask != SAFE_UMASK:
 
-        import traceback
-        traceback.print_stack()
         log.debug("Attempt to call umask of %d instead of %d (forcing anyway!)" % (
             req_mask, SAFE_UMASK
         ))
@@ -89,7 +85,13 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
         # assert (self.last_action != 'read'), "you can write after read!"
         self.last_action = 'write'
-        self.file.write(self.cipher.encrypt(data))
+        try:
+            self.file.write(self.cipher.encrypt(data))
+        except Exception as wer:
+            import traceback
+            traceback.print_stack()
+            log.err("Unable to write() in GLSecureTemporaryFile: %s" % wer.message)
+            raise wer
 
     def read(self, c=None):
         """

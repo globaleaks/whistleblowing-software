@@ -150,7 +150,8 @@ def receiverfile_planning(store):
                 map_info = {
                     'receiver' : receiver_desc,
                     'path' : filex.file_path,
-                    'size' : filex.size
+                    'size' : filex.size,
+                    'status' : filex.mark
                 }
 
                 # this may seem apparently redounded, but is not!
@@ -214,17 +215,22 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
 
 
 @transact
-def receiverfile_create(store, status, ifpath, iflen, receiver_desc):
+def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_desc):
 
-    assert type(1) == type(iflen)
+    assert type(1) == type(recv_size)
     assert isinstance(receiver_desc, dict)
-    assert os.path.isfile(os.path.join(GLSetting.submission_path, ifpath))
+    assert os.path.isfile(os.path.join(GLSetting.submission_path, if_path))
 
     try:
-        ifile = store.find(InternalFile, InternalFile.file_path == unicode(ifpath)).one()
+        ifile = store.find(InternalFile, InternalFile.file_path == unicode(if_path)).one()
 
-        log.debug("ReceiverFile creation for user %s, file %s (%d bytes %s)"
-                % (receiver_desc['name'], ifile.name, iflen, status ) )
+        if not ifile:
+            log.err("InternalFile with path %s not found !?" % if_path)
+            raise Exception("This is bad!")
+
+        log.debug("ReceiverFile creation for user %s, '%s' bytes %d = %s)"
+                % (receiver_desc['name'], ifile.name, recv_size, status ) )
+
         receiverfile = ReceiverFile()
 
         receiverfile.downloads = 0
@@ -238,9 +244,9 @@ def receiverfile_create(store, status, ifpath, iflen, receiver_desc):
         receiverfile.receiver_tip_id = rtrf.id
 
         # inherit by previous operation and checks
-        receiverfile.file_path = ifpath
-        receiverfile.size = iflen
-        receiverfile.status = status
+        receiverfile.file_path = unicode(recv_path)
+        receiverfile.size = recv_size
+        receiverfile.status = unicode(status)
 
         receiverfile.mark = ReceiverFile._marker[0] # not notified
 
@@ -250,7 +256,7 @@ def receiverfile_create(store, status, ifpath, iflen, receiver_desc):
         # to avoid eventual file leakage or inconsistency, now is
         # loaded the object to verify reference
 
-        test = store.find(ReceiverFile, ReceiverFile.file_path == ifpath,
+        test = store.find(ReceiverFile, ReceiverFile.file_path == unicode(recv_path),
                           ReceiverFile.receiver_id == receiver_desc['id']).one()
 
         # assert over context, filesystem and receiver state
@@ -266,8 +272,8 @@ def receiverfile_create(store, status, ifpath, iflen, receiver_desc):
         return serialize_receiverfile(receiverfile)
 
     except Exception as excep:
-        log.err("Error when saving ReceiverFile %s for %s: %s" % (
-                ifpath, receiver_desc['name'], str(excep) ))
+        log.err("Error when saving ReceiverFile %s for '%s': %s" % (
+                if_path, receiver_desc['name'], excep.message ))
         return []
 
 
@@ -332,9 +338,18 @@ def tip_creation(store):
 
 
 @transact
-def do_final_internalfile_update(store, fileid, new_marker, new_path=None):
+def do_final_internalfile_update(store, file_path, new_marker, new_path=None):
 
-    ifile = store.find(InternalFile, InternalFile.id == unicode(fileid)).one()
+    try:
+        ifile = store.find(InternalFile,
+                           InternalFile.file_path == unicode(file_path)).one()
+    except Exception as stormer:
+        log.err("Error in find %s: %s" % (file_path, stormer.message))
+        return
+
+    if not ifile:
+        log.err("Unable to find %s" % file_path)
+        return
 
     try:
         old_marker = ifile.mark
@@ -414,8 +429,9 @@ class APSDelivery(GLJob):
         # ==> Files && Files update,
         #     InternalFile is set as 'locked' status
         #     and would be unlocked at the end.
-        filemap = yield receiverfile_planning() # TODO xxx limit of file number per operation
-        # the function returns a list of lists:
+        # TODO xxx limit of file number per operation
+        filemap = yield receiverfile_planning()
+        # the function returns a dict of lists with dicts:
         # {
         #     'ifile_path' : [
         #       { 'receiver' : receiver_desc, 'path': file_path,
@@ -435,14 +451,14 @@ class APSDelivery(GLJob):
 
             are_all_encrypted = encrypt_where_available(receivermap)
 
-            for rcounter, rfileinfo in enumerate(receivermap):
+            for rfileinfo in receivermap:
 
                 try:
-                    yield receiverfile_create(ifile_path, rfileinfo['status'],
+                    yield receiverfile_create(ifile_path, rfileinfo['path'], rfileinfo['status'],
                                               rfileinfo['size'], rfileinfo['receiver'])
                 except Exception as excep:
                     log.err("Unable to create ReceiverFile from %s for %s: %s" %
-                            (rfileinfo['path'], rfileinfo['receiver']['name'], excep))
+                            (ifile_path, rfileinfo['receiver']['name'], excep))
                     continue
 
             if are_all_encrypted:
@@ -456,16 +472,19 @@ class APSDelivery(GLJob):
 
             else:
 
-                log.debug(":( NOT all receivers supports PGP. %s go to unsafe version %s")
-
                 plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z]{6}') )
 
-                with GLSecureFile(ifile_path) as unencrypted_file:
+                log.debug(":( NOT all receivers supports PGP %s go to unsafe version %s" %
+                          (ifile_path, plain_path)
+                )
+
+                with GLSecureFile(ifile_path) as encrypted_file:
 
                     with open(plain_path, "wb") as plain_f_is_sad_f:
+
                         chunk_size = 4096
                         while True:
-                            chunk = unencrypted_file.read(chunk_size)
+                            chunk = encrypted_file.read(chunk_size)
                             if len(chunk) == 0:
                                 break
                             plain_f_is_sad_f.write(chunk)
