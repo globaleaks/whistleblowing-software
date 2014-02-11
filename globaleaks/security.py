@@ -69,7 +69,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         self.nonce = MD5.new(pseudo_random).hexdigest()[:GLSetting.AES_nonce_size]
 
         # XXX remind enhance file name with incremental number
-        self.filepath = os.path.join(filedir, "%s.%s_%s.aes" % ( xeger(r'[A-Za-z0-9]{7}'), GLSetting.key_id, self.nonce) )
+        self.filepath = os.path.join(filedir, "%s.%s_%s.aes" % (xeger(r'[A-Za-z0-9]{7}'), GLSetting.key_id, self.nonce) )
 
         log.debug("++ Creating %s filetmp" % self.filepath)
 

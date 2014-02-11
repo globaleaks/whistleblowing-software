@@ -680,21 +680,28 @@ class GLSettingsClass:
                 print "Unable to write keyfile! abort"
                 raise Exception("Unable to write %s" % keypath)
 
-    def validate_encrypted_files(self):
+    def cleaning_dead_files(self):
+        """
+        This function is called at the start of GlobaLeaks, in
+        bin/globaleaks, and checks if the file present in
+        temporally_encrypted_dir
+            (XXX change submission now used to too much thing)
+        """
 
         # temporary .aes files must be simply deleted
         for f in os.listdir(GLSetting.tmp_upload_path):
+            print "Removing a broken temporary file: ", f
             os.remove(os.path.join(GLSetting.tmp_upload_path, f))
-            result = GLSetting.AES_file_regexp_comp.match(f)
 
         # temporary .aes files with lost keys can be deleted
-        # whiole temporary .aes files with valid current key
+        # while temporary .aes files with valid current key
         # will be automagically handled by delivery sched.
         for f in os.listdir(GLSetting.submission_path):
             result = GLSetting.AES_file_regexp_comp.match(f)
             if result is not None:
                 if result.group(2) != GLSetting.key_id:
                     os.remove(os.path.join(GLSetting.submission_path, f))
+
 
 # GLSetting is a singleton class exported once
 GLSetting = GLSettingsClass()
