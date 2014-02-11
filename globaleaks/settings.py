@@ -260,8 +260,11 @@ class GLSettingsClass:
         # This key_id is just to identify the keys, and is generated with
         self.key_id = None
         self.key_id_regexp = u'[A-Z]{8}'
+        # nonce is used in hex therefore we double the right amount FIXME
+        self.AES_nonce_size = 8 # (8 * 2)
+        self.AES_counter_size = 64 # (self.AES_nonce_size * 8)
         # you can read more about this security measure in the document:
-        # TODO TODO TODO TODO
+        # TODO + issue!
 
         self.keysuffix = ".permkey"
 
@@ -448,7 +451,6 @@ class GLSettingsClass:
             self.set_glc_path(self.cmdline_options.glc_path)
 
         self.eval_paths()
-        self.load_key()
 
         # special evaluation of glclient directory:
         indexfile = os.path.join(self.glclient_path, 'index.html')
@@ -666,7 +668,6 @@ class GLSettingsClass:
                 'key' : self.key,
                 'key_id' : self.key_id
             }
-            print saved_struct
 
             with open(keypath, 'w') as kf:
                 pickle.dump(saved_struct, kf)
