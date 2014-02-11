@@ -87,7 +87,7 @@ This comment is needed in order to push the following strings on transifex
             <i class="glyphicon glyphicon-sort-by-alphabet"></i>
             {{ "Reorder Receivers alphabetically" | translate }}
           </button>
-          <button class="btn btn-success" ng-click="save_all()">
+          <button class="btn btn-success" ng-click="save_all()" type="submit">
             <i class="glyphicon glyphicon-ok"></i>
             {{ "Save All" | translate }}
           </button>
@@ -112,15 +112,15 @@ This comment is needed in order to push the following strings on transifex
                       <span class="col-md-9">{{receiver.name}}</span>
 
                       <div class="col-md-3 editButtons" ng-show="editing">
-                        <button class="btn btn-success saveReceiver" ng-disabled="receiverForm.$invalid || unsafe_password" ng-click="save_receiver()">
+                        <button class="btn btn-success saveReceiver" ng-disabled="receiverForm.$invalid || unsafe_password" ng-click="save_receiver()" type="submit" >
                           <i class="glyphicon glyphicon-ok"></i>
                           {{ "Save" | translate }}
                         </button>
 
-                        <button class="btn btn-danger deleteReceiver" ng-click="deleteDialog(receiver)">
+                        <a class="btn btn-danger deleteReceiver" ng-click="deleteDialog(receiver)">
                           <i class="glyphicon glyphicon-remove"></i>
                           {{ "Delete" | translate }}
-                        </button>
+                        </a>
                       </div>
 
                     </div>
