@@ -95,22 +95,22 @@ def dump_file_fs(uploaded_file):
         #1 SHA256 checksum of the file
         #3 size in bytes of the files
     """
-    from Crypto.Random import atfork
-    atfork()
 
-    saved_name = rstr.xeger(r'[A-Za-z]{26}')
-    filelocation = os.path.join(GLSetting.submission_path, saved_name)
+    encrypted_destination = os.path.join(GLSetting.submission_path,
+                                         os.path.basename(uploaded_file['body_filepath']))
 
-    log.debug("Start saving %d bytes from file [%s]" %
-              (uploaded_file['body_len'], uploaded_file['filename'].encode('utf-8')))
+    log.debug("Moving encrypted bytes %d from file [%s] %s => %s" %
+              (uploaded_file['body_len'],
+               uploaded_file['filename'].encode('utf-8'),
+               uploaded_file['body_filepath'],
+               encrypted_destination )
+    )
 
     uploaded_file['body'].avoid_delete()
     uploaded_file['body'].close()
 
-    shutil.move(uploaded_file['body_filepath'], filelocation)
-    shutil.move(uploaded_file['body_keylink'], filelocation + ".keylink")
-
-    return saved_name
+    shutil.move(uploaded_file['body_filepath'], encrypted_destination)
+    return encrypted_destination
 
 
 @transact_ro

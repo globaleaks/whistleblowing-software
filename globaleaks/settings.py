@@ -13,14 +13,17 @@ import shutil
 import traceback
 import logging
 import socket
-import uuid
 import pwd
 import grp
 import getpass
+import pickle
+import transaction
+
+from Crypto import Random
+
 from ConfigParser import ConfigParser
 from optparse import OptionParser
 
-import transaction
 from twisted.python.threadpool import ThreadPool
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
@@ -30,6 +33,7 @@ from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
 
 from globaleaks import __version__, DATABASE_VERSION
+from globaleaks.third_party.rstr import xeger
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
@@ -114,7 +118,6 @@ class GLSettingsClass:
         self.static_source = '/usr/share/globaleaks/glbackend'
         self.glclient_path = '/usr/share/globaleaks/glclient'
         self.ramdisk_path = '/dev/shm/globaleaks'
-        self.eval_paths()
 
         # list of plugins available in the software
         self.notification_plugins = [
@@ -245,19 +248,35 @@ class GLSettingsClass:
         # Number of log files to conserve.
         self.maximum_rotated_log_files = 100
 
+        # Disk file encryption in realtime
+        # if the key is fine or is not.
+        # this key permit Globaleaks to resist on application restart
+        # not to a reboot! (is written in GLSetting.
+        # key is initialized and stored in key path.
+        # key_id contains an identifier of the key (when system reboots,
+        # key changes.
+        self.key = None
+        self.AES_key_size = 32
+        # This key_id is just to identify the keys, and is generated with
+        self.key_id = None
+        self.key_id_regexp = u'[A-Z]{8}'
+        # you can read more about this security measure in the document:
+        # TODO TODO TODO TODO
+
+        self.keysuffix = ".permkey"
+
         self.exceptions = {}
 
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'
-        if not os.path.exists('/'.join(self.ramdisk_path.split('/')[:-1])):
-            print "Warning not going to use a RAMDISK"
-            self.ramdisk_path = os.path.join(os.path.join(self.working_path, 'ramdisk'))
+
         self.pidfile_path = os.path.join(self.pid_path, 'globaleaks-' + str(self.bind_port) + '.pid')
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
-        self.tmp_upload_path = os.path.abspath(os.path.join(self.glfiles_path, 'tmp_upload'))
+        # this temporary directory is not under RamDisk because contain the temporary encrypted files!
+        self.tmp_upload_path = os.path.abspath(os.path.join(self.glfiles_path, 'encrypted_upload'))
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
         self.static_path_l10n = os.path.abspath(os.path.join(self.static_path, 'l10n'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
@@ -266,6 +285,10 @@ class GLSettingsClass:
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.httplogfile =  os.path.abspath(os.path.join(self.log_path, "http.log"))
 
+        # gnupg path is used by GPG as temporary directory with keyring and files encryption.
+        self.gpgroot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
+
+        # This part of code runs only when MySQL is configured.
         if os.path.exists(self.config_file_path):
             config = ConfigParser()
             config.read(self.config_file_path)
@@ -274,7 +297,9 @@ class GLSettingsClass:
             self.db_pasword = config.get('db', 'password')
             self.db_hostname = config.get('db', 'hostname')
             self.db_name = config.get('db', 'name')
+            print "DB Configuration detected!", self.db_hostname, self.db_username, self.db_type
 
+        # this is the default, happen when file above is not found
         if self.db_type == 'sqlite':
             self.db_uri = 'sqlite:' + \
                                  os.path.abspath(os.path.join(self.gldb_path,
@@ -282,12 +307,6 @@ class GLSettingsClass:
         elif self.db_type == 'mysql':
             self.db_uri = "mysql://%s:%s@%s/%s" % (self.db_username, self.db_password, self.db_hostname, self.db_name)
 
-        # gnupg path is used by GPG as temporary directory with keyring and files encryption.
-        if self.ramdisk_path:
-            self.gpgroot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
-        else:
-            self.gpgroot = os.path.abspath(os.path.join(self.working_path, 'gnupg'))
-        
         # If we see that there is a custom build of GLClient, use that one.
         custom_glclient_path = '/var/globaleaks/custom-glclient'
         if os.path.exists(custom_glclient_path):
@@ -300,7 +319,6 @@ class GLSettingsClass:
         self.working_path = os.path.join(self.root_path, 'workingdir')
         self.static_source = os.path.join(self.root_path, 'staticdata')
 
-        
         self.glclient_path = os.path.abspath(os.path.join(self.root_path, "..", "GLClient", "build"))
         if not os.path.exists(self.glclient_path):
             self.glclient_path = os.path.abspath(os.path.join(self.root_path, "..", "GLClient", "app"))
@@ -430,6 +448,7 @@ class GLSettingsClass:
             self.set_glc_path(self.cmdline_options.glc_path)
 
         self.eval_paths()
+        self.load_key()
 
         # special evaluation of glclient directory:
         indexfile = os.path.join(self.glclient_path, 'index.html')
@@ -614,6 +633,47 @@ class GLSettingsClass:
         """
         if self.loglevel == logging.DEBUG:
             print message
+
+    def load_key(self):
+        """
+        Load the AES Key to encrypt uploaded file, if do not exists, the
+        key is created!
+        """
+        keypath = os.path.join(self.ramdisk_path, GLSetting.keysuffix)
+
+        if os.path.isfile(keypath):
+
+            try:
+                with open(keypath, 'r') as kf:
+                    saved_struct = pickle.load(kf)
+            except Exception as axa:
+                print "Unable to load key from %s" % keypath
+                raise axa
+
+            self.key = saved_struct['key']
+            self.key_id = saved_struct['key_id']
+
+            print "Imported key from ID=", self.key_id, "file", keypath
+
+        else:
+
+            print "Key initialization at %s" % keypath
+
+            self.key = Random.new().read(GLSetting.AES_key_size)
+            self.key_id = xeger(self.key_id_regexp)
+
+            saved_struct = {
+                'key' : self.key,
+                'key_id' : self.key_id
+            }
+            print saved_struct
+
+            with open(keypath, 'w') as kf:
+                pickle.dump(saved_struct, kf)
+
+            if not os.path.isfile(keypath):
+                print "Unable to write keyfile! abort"
+                raise Exception("Unable to write %s" % keypath)
 
 
 

@@ -13,9 +13,6 @@ import collections
 import json
 import re
 import sys
-import os
-from io import BytesIO as StringIO
-from tempfile import TemporaryFile
 from uuid import uuid4
 from Crypto.Hash import SHA256
 
@@ -33,7 +30,7 @@ from globaleaks.utils.utility import log, sanitize_str
 from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
-from globaleaks.security import GLSecureTemporaryFile, GLSecureFile
+from globaleaks.security import GLSecureTemporaryFile
 
 content_disposition_re = re.compile(r"attachment; filename=\"(.+)\"", re.IGNORECASE)
 
@@ -103,15 +100,15 @@ class GLHTTPServer(HTTPConnection):
                 connection=self, method=method, uri=uri, version=version,
                 headers=headers, remote_ip=self._remote_ip)
 
-            content_length = int(headers.get("Content-Length", 0))
-            self.content_length = content_length
+            self.content_length = int(headers.get("Content-Length", 0))
 
-            # we always use secure temporary files in case of large jsons or file uploads
+            # we always use secure temporary files in case of large json or file uploads
             self._contentbuffer_sha = SHA256.new()
+            # FIXME this is commented only for test TODO XXX
             # if content_length < 100000 and self._request.headers.get("Content-Disposition") is None:
             #    self._contentbuffer = StringIO('')
             #else:
-            self._contentbuffer = GLSecureTemporaryFile(GLSetting.tmp_upload_path, GLSetting.ramdisk_path)
+            self._contentbuffer = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
 
             if headers.get("Expect") == "100-continue":
                 self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
@@ -127,12 +124,11 @@ class GLHTTPServer(HTTPConnection):
                                                                                'application/octet-stream')
 
                 self.uploaded_file['body'] = self._contentbuffer
-                self.uploaded_file['body_len'] = int(content_length)
+                self.uploaded_file['body_len'] = int(self.content_length)
                 self.uploaded_file['body_sha'] = self._contentbuffer_sha.hexdigest()
                 self.uploaded_file['body_filepath'] = self._contentbuffer.filepath
-                self.uploaded_file['body_keylink'] = self._contentbuffer.keylink
 
-            megabytes = int(content_length) / (1024 * 1024)
+            megabytes = int(self.content_length) / (1024 * 1024)
 
             if self.file_upload:
                 limit_type = "upload"
@@ -140,8 +136,7 @@ class GLHTTPServer(HTTPConnection):
             else:
                 limit_type = "json"
                 limit = 1000000 # 1MB fixme: add GLSetting.memory_copy.maximum_jsonsize
-                # is 1MB probably too high. probably this variable must be
-                # in kB
+                # is 1MB probably too high. probably this variable must be in kB
 
             # less than 1 megabytes is always accepted
             if megabytes > limit:
@@ -153,7 +148,7 @@ class GLHTTPServer(HTTPConnection):
                 # In HTTP Protocol errors need to be managed differently than handlers
                 raise errors.HTTPRawLimitReach
 
-            if content_length > 0:
+            if self.content_length > 0:
                 self.setRawMode()
                 return
             elif self.file_upload:
