@@ -17,10 +17,6 @@ from globaleaks.rest import errors
 from globaleaks.models import InternalTip
 from globaleaks.security import GLSecureTemporaryFile
 
-from io import BytesIO as StringIO
-
-import time
-
 @transact_ro
 def collect_ifile_as_wb_without_wbtip(store, internaltip_id):
     file_list = []
@@ -34,16 +30,14 @@ def collect_ifile_as_wb_without_wbtip(store, internaltip_id):
 class TestSubmission(helpers.TestGL):
 
     def setUp(self):
-
-        filename = ''.join(unichr(x) for x in range(0x400, 0x4FF))
-        body = ''.join(unichr(x) for x in range(0x370, 0x3FF))
+        helpers.TestGL.setUp(self)
 
 
-        temporary_file1 = GLSecureTemporaryFile('files/submission', 'ramdisk')
+        temporary_file1 = GLSecureTemporaryFile('files/submission')
         temporary_file1.write("ANTANI")
         temporary_file1.avoid_delete()
 
-        temporary_file2 = GLSecureTemporaryFile('files/submission', 'ramdisk')
+        temporary_file2 = GLSecureTemporaryFile('files/submission')
         temporary_file2.write("ANTANIANTANIANTANI")
         temporary_file2.avoid_delete()
 
@@ -52,7 +46,6 @@ class TestSubmission(helpers.TestGL):
             'body_len': len("ANTANI"),
             'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
             'body_filepath': temporary_file1.filepath,
-            'body_keypath': temporary_file1.keypath,
             'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
             'content_type': 'application/octect',
         }
@@ -62,7 +55,6 @@ class TestSubmission(helpers.TestGL):
             'body_len': len("ANTANIANTANIANTANI"),
             'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
             'body_filepath': temporary_file2.filepath,
-            'body_keypath': temporary_file2.keypath,
             'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
             'content_type': 'application/octect',
         }
