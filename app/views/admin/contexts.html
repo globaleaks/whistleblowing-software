@@ -46,14 +46,16 @@ This comment is needed in order to push the following strings on transifex
         <br /><br />
 
         <div ng-show="admin.contexts.length != 0">
-          <button class="btn btn-success" ng-click="reorder_contexts_alphabetically()">
-            <i class="glyphicon glyphicon-sort-by-alphabet"></i>
-            {{ "Reorder Contexts alphabetically" | translate }}
-          </button>
-          <button class="btn btn-success" ng-click="save_all()">
-            <i class="glyphicon glyphicon-ok"></i>
-            {{ "Save All" | translate }}
-          </button>
+          <div class="row text-right">
+            <button class="btn btn-success" ng-click="reorder_contexts_alphabetically()">
+              <i class="glyphicon glyphicon-sort-by-alphabet"></i>
+              {{ "Reorder Contexts alphabetically" | translate }}
+            </button>
+            <button class="btn btn-success" ng-click="save_all()">
+              <i class="glyphicon glyphicon-ok"></i>
+              {{ "Save All" | translate }}
+            </button>
+          </div>
 
           <div ui-sortable="sortableOptions" ng-model="admin.contexts">
 
