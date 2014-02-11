@@ -361,7 +361,7 @@ class TestAuthentication(helpers.TestHandler):
 
         self.assertEqual(GLSetting.failed_login_attempts[self.dummyReceiverUser['username']], failed_login)
         self.assertTrue(receiver_status.has_key('failed_login'))
-        self.assertEqual(receiver_status['failed_login'], failed_login )
+        self.assertEqual(receiver_status['failed_login'], failed_login)
 
         # validate incremental delay
         self.assertTrue(len(sleep_list), failed_login)
