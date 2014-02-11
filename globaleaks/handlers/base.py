@@ -13,11 +13,12 @@ import collections
 import json
 import re
 import sys
+
 from uuid import uuid4
 from Crypto.Hash import SHA256
-
 from twisted.python import components
 from twisted.python.failure import Failure
+from StringIO import StringIO
 
 from twisted.internet import reactor, fdesc
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
@@ -104,11 +105,11 @@ class GLHTTPServer(HTTPConnection):
 
             # we always use secure temporary files in case of large json or file uploads
             self._contentbuffer_sha = SHA256.new()
-            # FIXME this is commented only for test TODO XXX
-            # if content_length < 100000 and self._request.headers.get("Content-Disposition") is None:
-            #    self._contentbuffer = StringIO('')
-            #else:
-            self._contentbuffer = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+
+            if self.content_length < 100000 and self._request.headers.get("Content-Disposition") is None:
+                self._contentbuffer = StringIO('')
+            else:
+                self._contentbuffer = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
 
             if headers.get("Expect") == "100-continue":
                 self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")

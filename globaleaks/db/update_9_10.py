@@ -77,3 +77,4 @@ class Replacer910(TableReplacer):
         self.store_new.commit()
 
 
+    # TODO, receiver can be removed the 'gpg_encrypt_file' because is always True if gpg is enable

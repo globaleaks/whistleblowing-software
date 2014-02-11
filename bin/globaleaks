@@ -274,7 +274,7 @@ elif GLSetting.cmdline_options.kill:
 
 GLSetting.create_directories()
 GLSetting.load_key()
-GLSetting.validate_encrypted_files()
+GLSetting.cleaning_dead_files()
 
 backend_script = os.path.join(GLSetting.root_path, 'globaleaks', 'backend.py')
 

@@ -68,6 +68,8 @@ class TestWithDB(unittest.TestCase):
         GLSetting.eval_paths()
         GLSetting.remove_directories()
         GLSetting.create_directories()
+        GLSetting.load_key()
+        GLSetting.remove_dead_files()
         return db.create_tables(create_node=True)
 
 class TestGL(TestWithDB):
@@ -441,7 +443,7 @@ class MockDict():
             'disable': False,
         }
 
-        temporary_file = GLSecureTemporaryFile('files/submission', 'ramdisk')
+        temporary_file = GLSecureTemporaryFile('files/submission')
         temporary_file.write("ANTANI")
 
         self.dummyFile = {

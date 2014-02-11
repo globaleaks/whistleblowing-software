@@ -309,8 +309,7 @@ class ReceiverFile(Model):
     # cloned = file is copied on the disk; receiverfile.file_path address this copy
     # reference = receiverfile.file_path reference internalfile.file_path
     # encrypted = receiverfile.file_path is an encrypted file for the specific receiver
-    # unavailable = the file was supposed to be encrypted but something didn't work
-    #                   (e.g.: the key is broken or expired)
+    # unavailable = the file was supposed to be available but something goes wrong and now is lost
 
     ## NO *_keys = It's created without initializing dict
 
