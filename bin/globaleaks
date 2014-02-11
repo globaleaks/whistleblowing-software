@@ -92,7 +92,7 @@ else:
 from twisted.python import usage
 
 from globaleaks import runner, DATABASE_VERSION
-from globaleaks.utils.utility import log, query_yes_no, caller_name
+from globaleaks.utils.utility import log, query_yes_no
 from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 
@@ -272,20 +272,9 @@ elif GLSetting.cmdline_options.kill:
         print "Unable kill PID found in %s: kill option ignored (%s)" %\
               (GLSetting.pidfile_path, excep)
 
-##########################
-# Security UMASK hardening
-os.umask(077)
-
-orig_umask = os.umask
-
-def umask(mask):
-    log.debug("attempt to call umask by %s with value %o; forcing umask(077)" % (caller_name(), mask))
-    return orig_umask(077)
-
-os.umask = umask
-#########################
 
 GLSetting.create_directories()
+GLSetting.load_key()
 
 backend_script = os.path.join(GLSetting.root_path, 'globaleaks', 'backend.py')
 

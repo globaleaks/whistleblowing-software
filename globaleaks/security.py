@@ -27,14 +27,33 @@ from globaleaks.third_party.rstr import xeger
 
 SALT_LENGTH = (128 / 8) # 128 bits of unique salt
 
+# Security UMASK hardening
+
+SAFE_UMASK = 077
+os.umask(SAFE_UMASK)
+orig_umask = os.umask
+
+def umask(req_mask):
+
+    if req_mask != SAFE_UMASK:
+
+        import traceback
+        traceback.print_stack()
+        log.debug("Attempt to call umask of %d instead of %d (forcing anyway!)" % (
+            req_mask, SAFE_UMASK
+        ))
+
+    return orig_umask(077)
+
+os.umask = umask
 
 class GLSecureTemporaryFile(_TemporaryFileWrapper):
     """
     WARNING!
-    You can't use this File object like a normal file object.
-
+    You can't use this File object like a normal file object,
+    check .read and .write!
     """
-    nonce_size = 8
+
     last_action = 'init'
 
     def __init__(self, filedir):
@@ -47,9 +66,10 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         pseudo_random = "%d%d%d%d" % (
             random.randint(1, 0xFFFF), random.randint(1, 0xFFFF),
             random.randint(1, 0xFFFF), random.randint(1, 0xFFFF) )
-        self.nonce = MD5.new(pseudo_random).hexdigest()[:self.nonce_size]
+        self.nonce = MD5.new(pseudo_random).hexdigest()[:GLSetting.AES_nonce_size]
 
-        self.filepath = os.path.join(filedir, "%s.%s_%s" % ( xeger(r'[A-Za-z]{26}'), GLSetting.key_id, self.nonce) )
+        # XXX remind enhance file name with incremental number
+        self.filepath = os.path.join(filedir, "%s.%s_%s" % ( xeger(r'[A-Za-z0-9]{7}'), GLSetting.key_id, self.nonce) )
 
         log.debug("++ Creating %s filetmp" % self.filepath)
 
@@ -67,7 +87,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         The last action is kept track because the internal status
         need to track them. read below read()
         """
-        assert (self.last_action != 'read'), "you can write after read!"
+        # assert (self.last_action != 'read'), "you can write after read!"
         self.last_action = 'write'
         self.file.write(self.cipher.encrypt(data))
 
@@ -75,11 +95,11 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
         The first time 'read' is called after a write, is automatically seek(0)
         """
-        assert (self.last_action != 'init'), "you can't read before write!"
+        # assert (self.last_action != 'init'), "you can't read before write!"
 
         if self.last_action == 'write':
             self.seek(0, 0) # this is a trick just to misc write and read
-            self.cipher = AES.new(GLSetting.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
+            self.cipher = AES.new(GLSetting.key, AES.MODE_CTR, counter=Counter.new(GLSetting.AES_counter_size, prefix=self.nonce))
             log.debug("First seek on %s" % self.filepath)
             self.last_action = 'read'
 
@@ -94,9 +114,9 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         @return:
         """
         if self.delete:
-            log.debug("removing %s" % self.filepath)
+            log.debug("-- removing %s" % self.filepath)
         else:
-            log.debug("not removing " % self.filepath)
+            log.debug("-! not removing %s" % self.filepath)
 
         _TemporaryFileWrapper.close(self)
 
@@ -121,7 +141,7 @@ class GLSecureFile(GLSecureTemporaryFile):
             raise KeyExpiredSadness("%s != %s :(" % (GLSetting.key_id, expected_key_id))
 
         self.file = open(self.filepath, 'r+b')
-        self.cipher = AES.new(GLSetting.key, AES.MODE_CTR, counter=Counter.new(64, prefix=used_nonce))
+        self.cipher = AES.new(GLSetting.key, AES.MODE_CTR, counter=Counter.new(GLSetting.AES_counter_size, prefix=used_nonce))
 
         # last argument is 'False' because has not to be deleted on .close()
         _TemporaryFileWrapper.__init__(self, self.file, self.filepath, False)
