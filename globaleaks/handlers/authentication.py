@@ -230,12 +230,12 @@ def login_wb(store, receipt):
     except NotOneError, e:
         # This is one of the fatal error that never need to happen
         log.err("Expected unique fields (receipt) not unique when hashed %s" % receipt)
-        return False
+        raise errors.InvalidAuthRequest
 
     if not wb_tip:
         log.debug("Whistleblower: Invalid receipt")
         GLSetting.failed_login_attempts_wb += 1
-        return False
+        raise errors.InvalidAuthRequest
 
     log.debug("Whistleblower: Valid receipt")
     wb_tip.last_access = datetime_now()
@@ -254,7 +254,7 @@ def login_receiver(store, username, password):
 
     if not receiver_user or receiver_user.role != 'receiver':
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
-        return False
+        raise errors.InvalidAuthRequest
 
     if not security.check_password(password, receiver_user.password, receiver_user.salt):
         receiver_user.failed_login_count += 1
@@ -264,7 +264,7 @@ def login_receiver(store, username, password):
         else:
             GLSetting.failed_login_attempts[username] = 1
 
-        return False
+        raise errors.InvalidAuthRequest
     else:
         log.debug("Receiver: Authorized receiver %s" % username)
         receiver_user.last_login = datetime_now()
@@ -282,7 +282,7 @@ def login_admin(store, username, password):
 
     if not admin_user or admin_user.role != 'admin':
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
-        return False
+        raise errors.InvalidAuthRequest
 
     if not security.check_password(password, admin_user.password, admin_user.salt):
         admin_user.failed_login_count += 1
@@ -291,7 +291,7 @@ def login_admin(store, username, password):
             GLSetting.failed_login_attempts[username] += 1
         else:
             GLSetting.failed_login_attempts[username] = 1
-        return False
+        raise errors.InvalidAuthRequest
     else:
         log.debug("Admin: Authorized receiver %s" % username)
         admin_user.last_login = datetime_now()
@@ -417,6 +417,7 @@ class AuthenticationHandler(BaseHandler):
             }
 
         else:
+
             log.err("Invalid role proposed to authenticate!")
             raise errors.InvalidAuthRequest
 
