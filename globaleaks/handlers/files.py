@@ -291,13 +291,19 @@ class Download(BaseHandler):
 
         filelocation = os.path.join(GLSetting.submission_path, rfile['path'])
 
-        with open(filelocation, "rb") as requestf:
-            chunk_size = 8192
-            while True:
-                chunk = requestf.read(chunk_size)
-                if len(chunk) == 0:
-                    break
-                self.write(chunk)
+        try:
+
+            with open(filelocation, "rb") as requestf:
+                chunk_size = 8192
+                while True:
+                    chunk = requestf.read(chunk_size)
+                    if len(chunk) == 0:
+                        break
+                    self.write(chunk)
+
+        except IOError as srcerr:
+            log.err("Unable to open %s: %s " % (filelocation, srcerr.strerror))
+            self.set_status(404)
 
         self.finish()
 

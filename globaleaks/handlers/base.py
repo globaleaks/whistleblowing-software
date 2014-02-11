@@ -190,12 +190,13 @@ class BaseHandler(RequestHandler):
     xsrf_cookie_name = "XSRF-TOKEN"
 
     def set_default_headers(self):
-        # In this function are written some security enforcements
-        # related to WebServer versioning and XSS attacks.
         """
-            just reading the property is enough to
-            set the cookie as a side effect.
+            In this function are written some security enforcements
+            related to WebServer versioning and XSS attacks.
         """
+
+        # just reading the property is enough to
+        # set the cookie as a side effect.
         self.xsrf_token
 
         # to avoid version attacks
@@ -364,9 +365,6 @@ class BaseHandler(RequestHandler):
         @return: a dict or a list without the unwanted keys
         """
         pass
-
-    #def initialize(self):
-    #    pass
 
     def on_connection_close(self, *args, **kwargs):
         pass
@@ -691,6 +689,7 @@ def anomaly_check(element):
         def call_handler(cls, *args, **kw):
 
             if GLSetting.anomalies_counter[element] > alarm_level[element]:
+
                 if element == 'new_submission':
                     log.debug("Blocked a New Submission (%d > %d)" % (
                         GLSetting.anomalies_counter[element],
@@ -716,7 +715,8 @@ def anomaly_check(element):
                     ))
                     raise errors.FileUploadFlood(30)
                 else:
-                    log.debug("Blocked an Unknown event !? [BUG!] (%d > %d)" % (
+                    log.debug("Blocked an Unknown event (=%s) !? [BUG!] (%d > %d)" % (
+                        element,
                         GLSetting.anomalies_counter[element],
                         alarm_level[element]
                     ))
