@@ -451,7 +451,6 @@ class MockDict():
             'body_len': len("ANTANI"),
             'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
             'body_filepath': temporary_file.filepath,
-            'body_keypath': temporary_file.keypath,
             'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
             'content_type': 'application/octect',
         }
