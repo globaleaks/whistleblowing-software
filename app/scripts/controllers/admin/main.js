@@ -140,11 +140,11 @@ GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http
     }
 
     $scope.receiverImgUrl = function() {
-      return "/admin/staticfiles/" + $scope.receiver.receiver_gus;
+      return "/admin/staticfiles/" + $scope.receiver.id;
     }
 
     $scope.receiverImgReloadUrl = function() {
-      return "/static/" + $scope.receiver.receiver_gus + ".png?" + $scope.random;
+      return "/static/" + $scope.receiver.id + ".png?" + $scope.random;
     }
 
 }]);

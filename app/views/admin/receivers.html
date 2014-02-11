@@ -1,4 +1,4 @@
-<!-- 
+<!--
 
 This comment is needed in order to push the following strings on transifex
 
@@ -16,7 +16,71 @@ This comment is needed in order to push the following strings on transifex
     <div id="ConfigSidebarBox" class="col-md-3" ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
 
-      <div ng-controller="AdminReceiversCtrl">
+      <div ng-controller="AdminReceiverAddCtrl">
+        <div class="row">
+          <form name="newReceiver">
+            <div class="addReceiver configItem col-md-6">
+              <h4>{{ "Add new receiver" | translate }}</h4>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>{{ "Name" | translate }}</label>
+                    <input class="form-control" name="name" ng-maxlength="40" ng-model="new_receiver.name" type="text" required>
+                    <p class="has-error" ng-show="newReceiver.name.$error.maxlength">
+                      {{ "Receiver name too long" | translate }}
+                    </p>
+                    <!-- XXX fix this so that it works on right to left languages. -->
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      {{ "Email Address" | translate }}
+                      ({{ "Username" | translate }})
+                    </label>
+                    <input class="form-control" name="email" ng-model="new_receiver.email" type="email" required>
+                    <p class="has-error" ng-show="newReceiver.email.$error.email">
+                      {{ "Invalid email address" | translate }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>{{ "Password" | translate }}</label>
+                    <input class="form-control" ng-model="new_receiver.password" type="password" required>
+                    <p class="has-error" ng-show="unsafe_password">
+                      {{ "The choosen password is unsafe, it should have" | translate }}:
+                    </p>
+                    <li class="has-error" ng-hide="pwdHasLetter">
+                      {{ "At least one letter" | translate }}
+                    </li>
+                    <li class="has-error" ng-hide="pwdHasNumber">
+                      {{ "At least one number" | translate }}
+                    </li>
+                    <li class="has-error" ng-hide="pwdValidLength">
+                      {{ "At least 8 keypress long" | translate }}
+                    </li>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <button class="btn btn-success" ng-disabled="newReceiver.$invalid || unsafe_password" ng-click="add_receiver()">
+                      <i class="glyphicon glyphicon-ok"></i>
+                      {{ "Add" | translate }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <br /><br />
+
+      <div ng-controller="AdminReceiversCtrl" ng-show="admin.receivers.length != 0">
 
         <button class="btn btn-success" ng-click="reorder_receivers_alphabetically()">
           <i class="glyphicon glyphicon-sort-by-alphabet"></i>
@@ -254,70 +318,6 @@ This comment is needed in order to push the following strings on transifex
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <div ng-controller="AdminReceiverAddCtrl">
-        <div class="row">
-          <form name="newReceiver" novalidate>
-            <div class="addReceiver col-md-9">
-              <h4>{{ "Add new receiver" | translate }}</h4>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>{{ "Name" | translate }}</label>
-                    <input class="form-control" name="name" ng-maxlength="40" ng-model="new_receiver.name" type="text" required>
-                    <p class="has-error" ng-show="newReceiver.name.$error.maxlength">
-                      {{ "Receiver name too long" | translate }}
-                    </p>
-                    <!-- XXX fix this so that it works on right to left languages. -->
-                  </div>
-                  <div class="form-group">
-                    <label>
-                      {{ "Email Address" | translate }} 
-                      ({{ "Username" | translate }})
-                    </label>
-                    <input class="form-control" name="email" ng-model="new_receiver.email" type="email" required>
-                    <p class="has-error" ng-show="newReceiver.email.$error.email">
-                      {{ "Invalid email address" | translate }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>{{ "Password" | translate }}</label>
-                    <input class="form-control" ng-model="new_receiver.password" type="password" required>
-                    <p class="has-error" ng-show="unsafe_password">
-                      {{ "The choosen password is unsafe, it should have" | translate }}:
-                    </p>
-                    <li class="has-error" ng-hide="pwdHasLetter">
-                      {{ "At least one letter" | translate }}
-                    </li>
-                    <li class="has-error" ng-hide="pwdHasNumber">
-                      {{ "At least one number" | translate }}
-                    </li>
-                    <li class="has-error" ng-hide="pwdValidLength">
-                      {{ "At least 8 keypress long" | translate }}
-                    </li>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <button class="btn btn-success" ng-disabled="newReceiver.$invalid || unsafe_password" ng-click="add_receiver()">
-                      <i class="glyphicon glyphicon-ok"></i>
-                      {{ "Add" | translate }}
-                    </button>
                   </div>
                 </div>
               </div>
