@@ -6,6 +6,7 @@
 # because all those infos are stored in the databased.
 # Config contains some system variables usable for debug,
 
+import re
 import os
 import sys
 import glob
@@ -263,6 +264,9 @@ class GLSettingsClass:
         # nonce is used in hex therefore we double the right amount FIXME
         self.AES_nonce_size = 8 # (8 * 2)
         self.AES_counter_size = 64 # (self.AES_nonce_size * 8)
+        self.AES_file_regexp = r'(.*)\.(.*)_(.*)\.aes'
+        self.AES_file_regexp_comp = re.compile(self.AES_file_regexp)
+
         # you can read more about this security measure in the document:
         # TODO + issue!
 
@@ -655,7 +659,7 @@ class GLSettingsClass:
             self.key = saved_struct['key']
             self.key_id = saved_struct['key_id']
 
-            print "Imported key from ID=", self.key_id, "file", keypath
+            print "Imported key ID=%s from file %s" % (self.key_id, keypath)
 
         else:
 
@@ -676,7 +680,21 @@ class GLSettingsClass:
                 print "Unable to write keyfile! abort"
                 raise Exception("Unable to write %s" % keypath)
 
+    def validate_encrypted_files(self):
 
+        # temporary .aes files must be simply deleted
+        for f in os.listdir(GLSetting.tmp_upload_path):
+            os.remove(os.path.join(GLSetting.tmp_upload_path, f))
+            result = GLSetting.AES_file_regexp_comp.match(f)
+
+        # temporary .aes files with lost keys can be deleted
+        # whiole temporary .aes files with valid current key
+        # will be automagically handled by delivery sched.
+        for f in os.listdir(GLSetting.submission_path):
+            result = GLSetting.AES_file_regexp_comp.match(f)
+            if result is not None:
+                if result.group(2) != GLSetting.key_id:
+                    os.remove(os.path.join(GLSetting.submission_path, f))
 
 # GLSetting is a singleton class exported once
 GLSetting = GLSettingsClass()

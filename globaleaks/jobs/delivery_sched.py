@@ -12,8 +12,6 @@
 import os
 import sys
 
-import shutil
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
@@ -410,41 +408,41 @@ class APSDelivery(GLJob):
 
             almost_one_reference = False
 
-            print "**", rfileslist
             for (fid, status, fname, flen, receiver_desc) in rfileslist:
                 if ifile_id == fid:
                     if status == 'reference':
                       almost_one_reference = True
                       break
 
-            filepath = os.path.join(GLSetting.submission_path, fname)
+            encrypted_filepath = os.path.join(GLSetting.submission_path, fname)
 
             if almost_one_reference:
-                log.debug("Decrypting encrypted temporary file due to unencrypted receivers: %s" % fname)
 
-                tmp_path = os.path.join(GLSetting.submission_path, "%s.%s" % (fname, '.tmp_plainfile'))
-                with GLSecureFile(filepath) as unencrypted_file:
+                # if needed the plaintext copy is created here
+                result = GLSetting.AES_file_regexp_comp.match(fname)
+                plaintext_path = os.path.join(GLSetting.submission_path, "%s.%s" % (fname, '.plaintext'))
+
+                log.debug("Decrypting encrypted temporary file due to unencrypted receivers: %s -> %s" % (encrypted_filepath, plaintext_path))
+
+                with GLSecureFile(encrypted_filepath) as unencrypted_file:
 
                     with open(tmp_path, "wb") as tmp_file:
                         chunk_size = 4096
-
                         while True:
                             chunk = unencrypted_file.read(chunk_size)
                             if len(chunk) == 0:
                                 break
                             tmp_file.write(chunk)
 
-                # now the .tmp_plainfile, decrypted (because almost one receiver has not GPG)
-                # is moved in the InternalFile 'filepath'
-                os.remove(filepath)
-                shutil.move(tmp_path, filepath)
-
                 ifile_track.update({ifile_id: InternalFile._marker[2] }) # Ready
             else:
 
-                log.debug("Only PGP encrypted version of %s exists: AES file removed" % filepath)
-                os.remove(filepath)
+                log.debug("Only PGP encrypted versions of %s exist" % fname)
 
                 ifile_track.update({ifile_id: InternalFile._marker[3] }) # Removed
+
+            # the temporary aes file is totally deleted here
+            log.debug("Removing AES temporary file: %s" % encrypted_filepath)
+            os.remove(encrypted_filepath)
 
         yield do_final_internalfile_update(ifile_track)

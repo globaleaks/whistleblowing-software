@@ -272,9 +272,9 @@ elif GLSetting.cmdline_options.kill:
         print "Unable kill PID found in %s: kill option ignored (%s)" %\
               (GLSetting.pidfile_path, excep)
 
-
 GLSetting.create_directories()
 GLSetting.load_key()
+GLSetting.validate_encrypted_files()
 
 backend_script = os.path.join(GLSetting.root_path, 'globaleaks', 'backend.py')
 

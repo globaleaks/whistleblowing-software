@@ -69,7 +69,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         self.nonce = MD5.new(pseudo_random).hexdigest()[:GLSetting.AES_nonce_size]
 
         # XXX remind enhance file name with incremental number
-        self.filepath = os.path.join(filedir, "%s.%s_%s" % ( xeger(r'[A-Za-z0-9]{7}'), GLSetting.key_id, self.nonce) )
+        self.filepath = os.path.join(filedir, "%s.%s_%s.aes" % ( xeger(r'[A-Za-z0-9]{7}'), GLSetting.key_id, self.nonce) )
 
         log.debug("++ Creating %s filetmp" % self.filepath)
 
@@ -95,8 +95,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
         The first time 'read' is called after a write, is automatically seek(0)
         """
-        # assert (self.last_action != 'init'), "you can't read before write!"
-
         if self.last_action == 'write':
             self.seek(0, 0) # this is a trick just to misc write and read
             self.cipher = AES.new(GLSetting.key, AES.MODE_CTR, counter=Counter.new(GLSetting.AES_counter_size, prefix=self.nonce))
