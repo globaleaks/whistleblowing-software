@@ -8,7 +8,7 @@ from globaleaks.settings import transact, transact_ro
 from globaleaks.models import *
 from globaleaks.utils.structures import Fields
 
-class TestTransaction(helpers.TestGL):
+class TestTransaction(helpers.TestGLWithPopulatedDB):
 
     def test_transaction_with_exception(self):
         try:

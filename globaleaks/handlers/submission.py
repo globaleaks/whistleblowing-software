@@ -22,7 +22,7 @@ def wb_serialize_internaltip(internaltip):
     response = {
         'id' : unicode(internaltip.id),
         'context_id': unicode(internaltip.context_id),
-        'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
+        'eeation_date' : unicode(pretty_date_time(internaltip.creation_date)),
         'expiration_date' : unicode(pretty_date_time(internaltip.expiration_date)),
         'wb_fields' : dict(internaltip.wb_fields or {}),
         'download_limit' : int(internaltip.download_limit),
@@ -162,7 +162,6 @@ def import_files(store, submission, files, finalize):
 
 @transact
 def create_submission(store, request, finalize, language=GLSetting.memory_copy.default_language):
-
     context = store.find(Context, Context.id == unicode(request['context_id'])).one()
     if not context:
         log.err("Context requested: [%s] not found!" % request['context_id'])

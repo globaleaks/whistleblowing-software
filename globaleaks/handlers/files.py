@@ -101,9 +101,9 @@ def dump_file_fs(uploaded_file):
 
     log.debug("Moving encrypted bytes %d from file [%s] %s => %s" %
               (uploaded_file['body_len'],
-               uploaded_file['filename'].encode('utf-8'),
+               uploaded_file['filename'],
                uploaded_file['body_filepath'],
-               encrypted_destination )
+               encrypted_destination)
     )
 
     uploaded_file['body'].avoid_delete()

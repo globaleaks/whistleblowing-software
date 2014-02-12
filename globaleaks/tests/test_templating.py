@@ -4,7 +4,7 @@ import os
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.tests.helpers import TestWithDB, MockDict, fill_random_fields
+from globaleaks.tests import helpers
 from globaleaks.handlers import admin, submission
 from globaleaks.jobs import delivery_sched
 from globaleaks.plugins.base import Event
@@ -14,7 +14,7 @@ from globaleaks.jobs.notification_sched import serialize_receivertip
 from globaleaks.utils.templating import Templating
 
 
-class notifTemplateTest(TestWithDB):
+class notifTemplateTest(helpers.TestGL):
 
     templates_list = [
         'default_ETNT.txt',
@@ -136,9 +136,9 @@ class notifTemplateTest(TestWithDB):
     def test_keywords_conversion(self):
 
         ### INITIALIZE BLOCK
-        self.mockContext = MockDict().dummyContext
-        self.mockReceiver = MockDict().dummyReceiver
-        self.mockNode = MockDict().dummyNode
+        self.mockContext =helpers.MockDict().dummyContext
+        self.mockReceiver = helpers.MockDict().dummyReceiver
+        self.mockNode = helpers.MockDict().dummyNode
 
         try:
             self.createdContext = yield admin.create_context(self.mockContext)
@@ -184,11 +184,11 @@ class notifTemplateTest(TestWithDB):
             self.templates['default_PFNT.txt']['en'] += " " + k
 
         # THE REAL CONVERSION TEST START HERE:
-        self.mockSubmission = MockDict().dummySubmission
+        self.mockSubmission = helpers.MockDict().dummySubmission
         self.mockSubmission['finalize'] = True
         self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
         self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
-        self.mockSubmission['wb_fields'] = fill_random_fields(self.createdContext)
+        self.mockSubmission['wb_fields'] = helpers.fill_random_fields(self.createdContext)
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()
@@ -226,9 +226,9 @@ class notifTemplateTest(TestWithDB):
         self._load_defaults()
 
         ### INITIALIZE BLOCK
-        self.mockContext = MockDict().dummyContext
-        self.mockReceiver = MockDict().dummyReceiver
-        self.mockNode = MockDict().dummyNode
+        self.mockContext = helpers.MockDict().dummyContext
+        self.mockReceiver = helpers.MockDict().dummyReceiver
+        self.mockNode = helpers.MockDict().dummyNode
 
         try:
             self.createdContext = yield admin.create_context(self.mockContext)
@@ -252,10 +252,11 @@ class notifTemplateTest(TestWithDB):
         ### END OF THE INITIALIZE BLOCK
 
         # THE REAL CONVERSION TEST START HERE:
-        self.mockSubmission = MockDict().dummySubmission
+        self.mockSubmission = helpers.MockDict().dummySubmission
         self.mockSubmission['finalize'] = True
         self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
         self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
+        self.mockSubmission['wb_fields'] = helpers.fill_random_fields(self.createdContext)
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()
@@ -282,9 +283,9 @@ class notifTemplateTest(TestWithDB):
         """
 
         ### INITIALIZE BLOCK
-        self.mockContext = MockDict().dummyContext
-        self.mockReceiver = MockDict().dummyReceiver
-        self.mockNode = MockDict().dummyNode
+        self.mockContext = helpers.MockDict().dummyContext
+        self.mockReceiver = helpers.MockDict().dummyReceiver
+        self.mockNode = helpers.MockDict().dummyNode
 
         try:
             self.createdContext = yield admin.create_context(self.mockContext)
@@ -315,10 +316,11 @@ class notifTemplateTest(TestWithDB):
 
         self._load_defaults()
 
-        self.mockSubmission = MockDict().dummySubmission
+        self.mockSubmission = helpers.MockDict().dummySubmission
         self.mockSubmission['finalize'] = True
         self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
         self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
+        self.mockSubmission['wb_fields'] = helpers.fill_random_fields(self.createdContext)
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()

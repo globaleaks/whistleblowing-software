@@ -5,7 +5,6 @@ import json
 import uuid
 import shutil
 
-from io import BytesIO as StringIO
 from cyclone import httpserver
 from cyclone.web import Application
 from cyclone.util import ObjectDict as OD
@@ -51,12 +50,12 @@ class UTlog():
         pass
 
 from globaleaks.utils.utility import log
-# I'm trying by feeling
+
 log.err = UTlog().err
 log.debug = UTlog().debug
-# woha and it's working! I'm starting to thing like python want!
 
-class TestWithDB(unittest.TestCase):
+
+class TestGL(unittest.TestCase):
     def setUp(self):
         GLSetting.set_devel_mode()
         GLSetting.logging = None
@@ -64,46 +63,18 @@ class TestWithDB(unittest.TestCase):
         GLSetting.sessions = {}
         GLSetting.failed_login_attempts = dict()
         GLSetting.failed_login_attempts_wb = 0
-        GLSetting.working_path = os.path.abspath(os.path.join(GLSetting.root_path, 'testing_dir'))
+        GLSetting.working_path = './working_path'
         GLSetting.eval_paths()
         GLSetting.remove_directories()
         GLSetting.create_directories()
         GLSetting.load_key()
         GLSetting.cleaning_dead_files()
 
+        self.setUp_dummy()
+
         return db.create_tables(create_node=True)
 
-class TestGL(TestWithDB):
-
-    @inlineCallbacks
-    def _setUp(self):
-
-        try:
-            if not os.path.isdir('files'):
-                log.debug("Creating directory 'files' in %s" % os.getcwd())
-                os.mkdir('files')
-
-            if not os.path.isdir('files/submission'):
-                log.debug("Creating directory 'files/submission' in %s" % os.getcwd())
-                os.mkdir('files/submission')
-
-            if not os.path.isdir('ramdisk'):
-                log.debug("Creating directory 'ramdisk' in %s" % os.getcwd())
-                os.mkdir('ramdisk')
-
-        except OSError as excep:
-            log.err("Unable to setup disk emulation environment: %s" % excep.strerror)
-            raise excep
-
-        yield TestWithDB.setUp(self)
-        self.setUp_dummy()
-        yield self.fill_data()
-
-    def setUp(self):
-        return self._setUp()
-
     def setUp_dummy(self):
-
         dummyStuff = MockDict()
 
         self.dummyContext = dummyStuff.dummyContext
@@ -112,6 +83,21 @@ class TestGL(TestWithDB):
         self.dummyReceiverUser = dummyStuff.dummyReceiverUser
         self.dummyReceiver = dummyStuff.dummyReceiver
         self.dummyNode = dummyStuff.dummyNode
+
+    def localization_set(self, dict_l, dict_c, language):
+        ret = dict(dict_l)
+
+        for attr in getattr(dict_c, "localized_strings"):
+            ret[attr] = {}
+            ret[attr][language] = unicode(dict_l[attr])
+
+        return ret
+
+class TestGLWithPopulatedDB(TestGL):
+    @inlineCallbacks
+    def setUp(self):
+        yield TestGL.setUp(self)
+        yield self.fill_data()
 
     def receiver_assertion(self, source_r, created_r):
         self.assertEqual(source_r['name'], created_r['name'], "name")
@@ -123,7 +109,6 @@ class TestGL(TestWithDB):
 
     @inlineCallbacks
     def fill_data(self):
-
         try:
             yield do_appdata_init()
 
@@ -149,6 +134,7 @@ class TestGL(TestWithDB):
             print "Fail fill_data/create_context: %s" % excp
             raise  excp
 
+
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = [ self.dummyReceiver['id'] ]
         self.dummySubmission['wb_fields'] = fill_random_fields(self.dummyContext)
@@ -170,17 +156,7 @@ class TestGL(TestWithDB):
         assert self.dummyReceiver.has_key('id')
         assert self.dummySubmission.has_key('id')
 
-
-    def localization_set(self, dict_l, dict_c, language):
-        ret = dict(dict_l)
-
-        for attr in getattr(dict_c, "localized_strings"):
-            ret[attr] = {}
-            ret[attr][language] = unicode(dict_l[attr])
-        
-        return ret
-
-class TestHandler(TestGL):
+class TestHandler(TestGLWithPopulatedDB):
     """
     :attr _handler: handler class to be tested
     """
@@ -191,7 +167,7 @@ class TestHandler(TestGL):
         """
         override default handlers' get_store with a mock store used for testing/
         """
-        yield TestGL.setUp(self)
+        yield TestGLWithPopulatedDB.setUp(self)
         self.responses = []
 
         def mock_write(cls, response=None):
@@ -444,7 +420,9 @@ class MockDict():
             'disable': False,
         }
 
-        temporary_file = GLSecureTemporaryFile('.')
+
+        temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+
         temporary_file.write("ANTANI")
 
         self.dummyFile = {
@@ -572,5 +550,3 @@ def do_appdata_init(store):
     (unique_fields, localized_fields) = fo.extensive_dump()
 
     return unique_fields, localized_fields
-
-

@@ -15,11 +15,11 @@ from globaleaks.jobs import delivery_sched
 from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.plugins import notification
 
-class TestEmail(helpers.TestGL):
+class TestEmail(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def setUp(self):
-        yield helpers.TestGL.setUp(self)
+        yield helpers.TestGLWithPopulatedDB.setUp(self)
 
         self.recipe = yield submission.create_submission({
             'wb_fields': helpers.fill_random_fields(self.dummyContext),

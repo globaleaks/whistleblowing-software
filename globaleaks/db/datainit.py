@@ -22,7 +22,8 @@ def opportunistic_appdata_init():
     # Fields and applicative data initialization
 
     fields_l10n = [ "../GLClient/app/data/fields_l10n.json",
-                    "../../GLClient/app/data/fields_l10n.json" ]
+                    "../../GLClient/app/data/fields_l10n.json",
+                    "../../../GLClient/app/data/fields_l10n.json"]
 
     appdata_dict = None
 
@@ -32,7 +33,6 @@ def opportunistic_appdata_init():
 
             with file(f710n, 'r') as f:
                 import json
-
                 json_string = f.read()
                 appdata_dict = json.loads(json_string)
                 return appdata_dict
