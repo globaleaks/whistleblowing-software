@@ -444,7 +444,7 @@ class MockDict():
             'disable': False,
         }
 
-        temporary_file = GLSecureTemporaryFile('files/submission')
+        temporary_file = GLSecureTemporaryFile('.')
         temporary_file.write("ANTANI")
 
         self.dummyFile = {
