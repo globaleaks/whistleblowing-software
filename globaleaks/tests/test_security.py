@@ -102,7 +102,7 @@ class TestFilesystemAccess(helpers.TestGL):
 class TestGLSecureFiles(helpers.TestGL):
 
     def test_temporary_file(self):
-        a = GLSecureTemporaryFile('files/submission')
+        a = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
         filepath = a.filepath
         antani = "0123456789" * 10000
         a.write(antani)
@@ -111,7 +111,7 @@ class TestGLSecureFiles(helpers.TestGL):
         self.assertFalse(os.path.exists(filepath))
 
     def test_temporary_file_avoid_delete(self):
-        a = GLSecureTemporaryFile('files/submission')
+        a = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
         a.avoid_delete()
         filepath = a.filepath
         antani = "0123456789" * 10000

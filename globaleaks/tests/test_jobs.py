@@ -7,7 +7,7 @@ from globaleaks.handlers.receiver import get_receiver_tip_list
 from globaleaks.handlers.submission import create_submission
 from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list
 
-class TestJobs(helpers.TestGL):
+class TestJobs(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_tip_creation(self):

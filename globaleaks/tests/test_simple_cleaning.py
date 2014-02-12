@@ -6,15 +6,15 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 
+from globaleaks import models
 from globaleaks.rest import requests
 from globaleaks.handlers import base, admin, submission, files
 from globaleaks.jobs import delivery_sched, cleaning_sched
-from globaleaks import models
 from globaleaks.utils.utility import is_expired
-from globaleaks.settings import transact
+from globaleaks.settings import transact, GLSetting
 from globaleaks.tests.test_tip import TTip
 
-from io import BytesIO as StringIO
+from globaleaks.security import GLSecureTemporaryFile
 
 STATIC_PASSWORD = u'bungabunga ;('
 dummy_sum = u'a1c2257ef58acffec9b0e2d165dc6be67c8d05f224116714e18bec972aea34c3'
@@ -24,7 +24,7 @@ class MockHandler(base.BaseHandler):
     def __init__(self):
         pass
 
-class TTip(helpers.TestWithDB):
+class TTip(helpers.TestGL):
 
     # filled in setup
     context_desc = None
@@ -44,19 +44,34 @@ class TTip(helpers.TestWithDB):
     tipOptions = TTip.tipOptions
     commentCreation = TTip.commentCreation
 
-    dummyFile1 = {}
-    dummyFile1['body'] = StringIO()
-    dummyFile1['body'].write(str('aaaaaa'))
-    dummyFile1['body_len'] = len(dummyFile1['body'].read())
-    dummyFile1['content_type'] = 'application/octect'
-    dummyFile1['filename'] = 'filename1'
-    dummyFile2 = {}
-    dummyFile2['body'] = StringIO()
-    dummyFile2['body'].write(str('aaaaa'))
-    dummyFile2['body_len'] = len(dummyFile2['body'].read())
-    dummyFile2['content_type'] = 'application/octect'
-    dummyFile2['filename'] = 'filename2'
+    def setUp(self):
+        helpers.TestGL.setUp(self)
 
+        temporary_file1 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+        temporary_file1.write("ANTANI")
+        temporary_file1.avoid_delete()
+
+        temporary_file2 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+        temporary_file2.write("ANTANI")
+        temporary_file2.avoid_delete()
+
+        self.dummyFile1 = {
+            'body': temporary_file1,
+            'body_len': len("ANTANI"),
+            'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
+            'body_filepath': temporary_file1.filepath,
+            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
+            'content_type': 'application/octect',
+        }
+
+        self.dummyFile2 = {
+            'body': temporary_file2,
+            'body_len': len("ANTANI"),
+            'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
+            'body_filepath': temporary_file2.filepath,
+            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
+            'content_type': 'application/octect',
+        }
 
 
 class TestCleaning(TTip):
@@ -127,7 +142,6 @@ class TestCleaning(TTip):
             self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1)
             self.receiver2_desc = yield admin.create_receiver(self.tipReceiver2)
         except Exception as exxxx:
-            print exxxx
             self.assertTrue(False)
 
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['id']])

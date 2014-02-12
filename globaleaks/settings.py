@@ -659,7 +659,7 @@ class GLSettingsClass:
             self.key = saved_struct['key']
             self.key_id = saved_struct['key_id']
 
-            print "Imported key ID=%s from file %s" % (self.key_id, keypath)
+            #print "Imported key ID=%s from file %s" % (self.key_id, keypath)
 
         else:
 

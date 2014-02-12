@@ -243,13 +243,12 @@ def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_d
                           ReceiverTip.receiver_id == receiver_desc['id']).one()
         receiverfile.receiver_tip_id = rtrf.id
 
-        # inherit by previous operation and checks
+        # inherited by previous operation and checks
         receiverfile.file_path = unicode(recv_path)
         receiverfile.size = recv_size
         receiverfile.status = unicode(status)
 
         receiverfile.mark = ReceiverFile._marker[0] # not notified
-
         store.add(receiverfile)
         store.commit()
 
@@ -273,7 +272,7 @@ def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_d
 
     except Exception as excep:
         log.err("Error when saving ReceiverFile %s for '%s': %s" % (
-                if_path, receiver_desc['name'], excep.message ))
+                if_path, receiver_desc['name'], excep.message))
         return []
 
 

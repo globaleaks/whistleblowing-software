@@ -230,12 +230,12 @@ def login_wb(store, receipt):
     except NotOneError, e:
         # This is one of the fatal error that never need to happen
         log.err("Expected unique fields (receipt) not unique when hashed %s" % receipt)
-        raise errors.InvalidAuthRequest
+        return False
 
     if not wb_tip:
         log.debug("Whistleblower: Invalid receipt")
         GLSetting.failed_login_attempts_wb += 1
-        raise errors.InvalidAuthRequest
+        return False
 
     log.debug("Whistleblower: Valid receipt")
     wb_tip.last_access = datetime_now()

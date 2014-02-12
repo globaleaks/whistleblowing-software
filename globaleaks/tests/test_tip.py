@@ -35,7 +35,7 @@ class MockHandler(base.BaseHandler):
     def __init__(self):
         pass
 
-class TTip(helpers.TestWithDB):
+class TTip(helpers.TestGL):
 
     # filled in setup
     context_desc = None

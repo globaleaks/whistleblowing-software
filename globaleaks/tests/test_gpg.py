@@ -244,10 +244,13 @@ class TestReceiverSetKey(TestHandler):
         self.receiver_assertion(asdr, asdr_output)
 
         new_subm = dict(MockDict().dummySubmission)
+
         new_subm['finalize'] = False
+
         new_subm['context_id'] = new_context_output['id']
         new_subm['receivers'] = [ asdr_output['id'],
                                   yanr_output['id'] ]
+        new_subm['wb_fields'] = fill_random_fields(new_context_output)
         new_subm_output = yield create_submission(new_subm, False)
         # self.submission_assertion(new_subm, new_subm_output)
 

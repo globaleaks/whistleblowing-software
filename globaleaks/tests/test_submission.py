@@ -27,17 +27,17 @@ def collect_ifile_as_wb_without_wbtip(store, internaltip_id):
     return file_list
 
 
-class TestSubmission(helpers.TestGL):
+class TestSubmission(helpers.TestGLWithPopulatedDB):
 
+    @inlineCallbacks
     def setUp(self):
-        helpers.TestGL.setUp(self)
+        yield helpers.TestGLWithPopulatedDB.setUp(self)
 
-
-        temporary_file1 = GLSecureTemporaryFile('files/submission')
+        temporary_file1 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
         temporary_file1.write("ANTANI")
         temporary_file1.avoid_delete()
 
-        temporary_file2 = GLSecureTemporaryFile('files/submission')
+        temporary_file2 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
         temporary_file2.write("ANTANIANTANIANTANI")
         temporary_file2.avoid_delete()
 
@@ -58,8 +58,6 @@ class TestSubmission(helpers.TestGL):
             'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
             'content_type': 'application/octect',
         }
-
-        return self._setUp()
 
     # --------------------------------------------------------- #
     @inlineCallbacks
@@ -86,9 +84,9 @@ class TestSubmission(helpers.TestGL):
         context_status = yield create_context(mycopy)
         submission_desc = dict(self.dummySubmission)
 
-        submission_desc['context_id'] = context_status['context_id']
+        submission_desc['context_id'] = context_status['id']
         submission_desc['finalize'] = True
-        submission_desc['wb_fields'] = helpers.fill_random_fields(self.dummyContext)
+        submission_desc['wb_fields'] = helpers.fill_random_fields(mycopy)
 
         try:
             yield submission.create_submission(submission_desc, finalize=True)
@@ -111,7 +109,7 @@ class TestSubmission(helpers.TestGL):
             )
 
     @inlineCallbacks
-    def test_create_internalfiles(self):
+    def test_pternalfiles(self):
         yield self.emulate_file_upload(self.dummySubmission['id'])
         keydiff = {'size', 'content_type', 'name', 'creation_date', 'id'} - set(self.registered_file1.keys())
         self.assertFalse(keydiff)
@@ -133,17 +131,16 @@ class TestSubmission(helpers.TestGL):
         self.rt = yield delivery_sched.tip_creation()
         self.assertTrue(isinstance(self.rt, list))
 
-        self.rfileslist = yield delivery_sched.receiverfile_planning()
+        self.rfilesdict = yield delivery_sched.receiverfile_planning()
         # return a list of lists [ "file_id", status, "f_path", len, "receiver_desc" ]
-        self.assertTrue(isinstance(self.rfileslist, list))
+        self.assertTrue(isinstance(self.rfilesdict, dict))
 
-        for (fid, status, fpath, flen, receiver_desc) in self.rfileslist:
-
-            rfdesc = yield delivery_sched.receiverfile_create(fid,
-                                    status, fpath, flen, receiver_desc)
-            self.assertEqual(rfdesc['mark'], u'not notified')
-            self.assertEqual(rfdesc['receiver_id'], receiver_desc['receiver_id'])
-            self.assertEqual(rfdesc['internalfile_id'], fid)
+        for key, value in self.rfilesdict.iteritems():
+            for elem in value:
+                rfdesc = yield delivery_sched.receiverfile_create(key,
+                                    elem['path'], elem['status'], elem['size'], elem['receiver'])
+                self.assertEqual(rfdesc['mark'], u'not notified')
+                self.assertEqual(rfdesc['receiver_id'], elem['receiver']['id'])
 
         self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['id'])
         self.assertTrue(isinstance(self.fil, list))
@@ -154,8 +151,8 @@ class TestSubmission(helpers.TestGL):
         self.assertEqual(len(self.rfi), 2)
         self.assertEqual(self.rfi[0]['mark'], u'not notified')
         self.assertEqual(self.rfi[1]['mark'], u'not notified')
-        self.assertEqual(self.rfi[0]['status'], u'reference')
-        self.assertEqual(self.rfi[1]['status'], u'reference')
+        self.assertEqual(self.rfi[0]['status'], u'locked')
+        self.assertEqual(self.rfi[1]['status'], u'locked')
 
         # verify the checksum returned by whistleblower POV, I'm not using
         #  wfv = yield tip.get_files_wb()
@@ -189,7 +186,7 @@ class TestSubmission(helpers.TestGL):
         new_r['mail_address'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
         new_r['password'] = helpers.VALID_PASSWORD1
         # localized dict required in desc
-        new_r['description'] =  "am I ignored ? %s" % descpattern 
+        new_r['description'] =  "am I ignored ? %s" % descpattern
         return new_r
 
     @inlineCallbacks
@@ -233,8 +230,8 @@ class TestSubmission(helpers.TestGL):
 
         status['finalize'] = True
         submission_request['context_id'] = context_status['id'] # reused
-        status['receivers'] = [ self.receivers[0]['receiver_id'],
-                                self.receivers[3]['receiver_id'] ]
+        status['receivers'] = [ self.receivers[0]['id'],
+                                self.receivers[3]['id'] ]
 
         status = yield submission.update_submission(status['id'], status, finalize=True)
 
@@ -286,9 +283,7 @@ class TestSubmission(helpers.TestGL):
 
         sbmt['wb_fields'] = {}
         for sf in self.dummyContext['fields']:
-
-            if sf['type'] != u"text":
-                assert self['type'] == u'text', \
+            assert (sf['type'] == u'text' or sf['type'] == u'textarea'), \
                     "Dummy fields had only 'text' when this test has been dev"
 
             sbmt['wb_fields'].update({ sf['key'] : "something" })
@@ -303,7 +298,7 @@ class TestSubmission(helpers.TestGL):
     @inlineCallbacks
     def test_fields_fail_unexpected_presence(self):
 
-        sbmt = helpers.get_dummy_submission(self.dummySubmission['id'], self.dummyContext['fields'])
+        sbmt = helpers.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])
         sbmt['wb_fields'].update({ 'alien' : 'predator' })
 
         try:
@@ -317,7 +312,7 @@ class TestSubmission(helpers.TestGL):
     def test_fields_fail_missing_required(self):
 
         required_key = self.dummyContext['fields'][0]['key']
-        sbmt = helpers.get_dummy_submission(self.dummySubmission['id'], self.dummyContext['fields'])
+        sbmt = helpers.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])
         del sbmt['wb_fields'][required_key]
 
         try:
