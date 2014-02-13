@@ -30,6 +30,12 @@
     {{ "Password Configuration" | translate }}</a>
   </li>
 
+  <li ng-class="active.advancedsettings">
+    <a href="#/admin/advanced_settings">
+      <i class="glyphicon glyphicon-chevron-right"></i>
+    {{ "Advanced Settings" | translate }}</a>
+  </li>
+
   <br />
 
   <li ng-class="active.useroverview">
@@ -50,12 +56,10 @@
     {{ "Files Overview" | translate }}</a>
   </li>
 
-  <br />
-
-  <li ng-class="active.advancedsettings">
-    <a href="#/admin/advanced_settings">
+  <li ng-class="active.stats">
+    <a href="#/admin/stats">
       <i class="glyphicon glyphicon-chevron-right"></i>
-    {{ "Advanced Settings" | translate }}</a>
+      {{ "System Stats" | translate }}</a>
   </li>
 
 </ul>
