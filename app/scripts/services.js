@@ -788,7 +788,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.gpg_key_armor = '';
         receiver.gpg_key_status = 'ignored';
         receiver.gpg_enable_notification = false;
-        receiver.gpg_enable_files = false;
         receiver.presentation_order = 0;
         return receiver;
       }
