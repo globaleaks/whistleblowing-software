@@ -715,7 +715,7 @@ def anomaly_check(element):
                         alarm_level[element]
                     ))
                     raise errors.FloodException(30)
-                elif element == 'file_upload':
+                elif element == 'file_uploaded':
                     log.debug("Blocked a File upload (%d > %d)" % (
                         GLSetting.anomalies_counter[element],
                         alarm_level[element]
