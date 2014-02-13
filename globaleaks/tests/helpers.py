@@ -102,7 +102,6 @@ class TestGLWithPopulatedDB(TestGL):
     def receiver_assertion(self, source_r, created_r):
         self.assertEqual(source_r['name'], created_r['name'], "name")
         self.assertEqual(source_r['can_delete_submission'], created_r['can_delete_submission'], "delete")
-        self.assertEqual(source_r['gpg_enable_files'], created_r['gpg_enable_files'], "GPGf")
 
     def context_assertion(self, source_c, created_c):
         self.assertEqual(source_c['tip_max_access'], created_c['tip_max_access'])
@@ -303,7 +302,6 @@ class MockDict():
             'gpg_key_status': models.Receiver._gpg_types[0], # disabled
             'gpg_key_armor' : u'',
             'gpg_enable_notification': False,
-            'gpg_enable_files': False,
             'gpg_key_remove': False,
             'presentation_order': 0,
         }

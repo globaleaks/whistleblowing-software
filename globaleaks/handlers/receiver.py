@@ -34,7 +34,6 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "gpg_key_armor": receiver.gpg_key_armor,
         "gpg_key_status": receiver.gpg_key_status,
         "gpg_enable_notification": receiver.gpg_enable_notification,
-        "gpg_enable_files": receiver.gpg_enable_files,
         "tags": receiver.tags,
         "tip_notification" : receiver.tip_notification,
         "file_notification" : receiver.file_notification,

@@ -121,7 +121,6 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
         "gpg_key_status": receiver.gpg_key_status,
         "gpg_enable_notification": True if receiver.gpg_enable_notification else False,
-        "gpg_enable_files": True if receiver.gpg_enable_files else False,
         "comment_notification": True if receiver.comment_notification else False,
         "tip_notification": True if receiver.tip_notification else False,
         "file_notification": True if receiver.file_notification else False,

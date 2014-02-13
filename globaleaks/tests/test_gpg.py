@@ -42,7 +42,7 @@ class TestReceiverSetKey(TestHandler):
         'gpg_key_armor': None, 'gpg_key_remove': False,
         "gpg_key_info": None, "gpg_key_fingerprint": None,
         'gpg_key_status': Receiver._gpg_types[0], # Disabled
-        "gpg_enable_notification": False,  "gpg_enable_files": False,
+        "gpg_enable_notification": False,
         'name' : "irrelevant",
         'password' : "",
         'old_password': "",
@@ -80,7 +80,6 @@ class TestReceiverSetKey(TestHandler):
 
         self.receiver_only_update['gpg_key_armor'] = unicode(HermesGlobaleaksKey.__doc__)
         self.assertEqual(self.responses[0]['gpg_enable_notification'], True)
-        self.assertEqual(self.responses[0]['gpg_enable_files'], True)
 
     @inlineCallbacks
     def test_handler_update_key(self):
@@ -230,7 +229,6 @@ class TestReceiverSetKey(TestHandler):
         yanr = dict(MockDict().dummyReceiver)
         yanr['name'] = yanr['mail_address'] = "quercia@nana.ptg"
         yanr['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
-        yanr['gpg_enable_files'] = True
         yanr['contexts'] = [ new_context_output['id']]
         yanr_output = yield create_receiver(yanr)
         self.receiver_assertion(yanr, yanr_output)
@@ -238,7 +236,6 @@ class TestReceiverSetKey(TestHandler):
         asdr = dict(MockDict().dummyReceiver)
         asdr['name'] = asdr['mail_address'] = "nocibo@rocco.tnc"
         asdr['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
-        asdr['gpg_enable_files'] = True
         asdr['contexts'] = [ new_context_output['id']]
         asdr_output = yield create_receiver(asdr)
         self.receiver_assertion(asdr, asdr_output)

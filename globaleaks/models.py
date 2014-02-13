@@ -513,7 +513,6 @@ class Receiver(Model):
     gpg_key_status = Unicode()
     gpg_key_armor = Unicode()
     gpg_enable_notification = Bool()
-    gpg_enable_files = Bool()
 
     _gpg_types = [ u'Disabled', u'Enabled' ]
 
