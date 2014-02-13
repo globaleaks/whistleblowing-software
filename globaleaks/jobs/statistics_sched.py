@@ -79,7 +79,10 @@ class APSAnomalies(GLJob):
             for element, alarm in alarm_level.iteritems():
                 if GLSetting.anomalies_counter[element] > alarm:
                     GLSetting.anomalies_messages.append(
-                        [ pretty_date_time(datetime_now()), alarm_template[element] ] )
+                        { 
+                          'creation_date': pretty_date_time(datetime_now()),
+                          'message': alarm_template[element]
+                        })
 
             # clean the next collection dictionary
             GLSetting.anomalies_counter = dict(external_counted_events)
