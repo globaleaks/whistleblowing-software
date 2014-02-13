@@ -200,17 +200,17 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration Interface',
         header_subtitle: 'Files Overview'
       }).
-      when('/admin/anomalies/', {
-        templateUrl: 'views/admin/anomalies.html',
+      when('/admin/stats/', {
+        templateUrl: 'views/admin/stats.html',
         controller: 'StatisticsCtrl',
         header_title: 'Administration Interface',
-        header_subtitle: 'Anomalies checks'
+        header_subtitle: 'System Stats'
       }).
-      when('/admin/anomalies/:lang', {
-        templateUrl: 'views/admin/anomalies.html',
+      when('/admin/stats/:lang', {
+        templateUrl: 'views/admin/stats.html',
         controller: 'StatisticsCtrl',
         header_title: 'Administration Interface',
-        header_subtitle: 'Anomalies checks'
+        header_subtitle: 'System Stats'
       }).
       when('/login', {
         templateUrl: 'views/login.html',
