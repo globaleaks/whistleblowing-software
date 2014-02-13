@@ -23,7 +23,6 @@ def admin_serialize_fields(store, language=GLSetting.memory_copy.default_languag
 
     # this condition happen only in the UnitTest
     if not appdata:
-        print "no appdata!:w"
         version = 0
         fields = []
     else:
@@ -161,7 +160,6 @@ class FirstSetup(BaseHandler):
 
         try:
             receiver['contexts']= [ context_dict['id'] ]
-            print receiver
             yield create_receiver(receiver, self.request.language)
         except Exception as excep:
             log.debug("Failed Receiver Finitialization %s" % excep)
