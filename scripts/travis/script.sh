@@ -8,7 +8,7 @@ sudo pip install coveralls
 git clone https://github.com/globaleaks/GLBackend /data/globaleaks/GLBackend_trial
 cd /data/globaleaks/GLBackend_trial
 git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
-coverage $(which trial globaleaks)
+coverage run $(which trial) globaleaks
 coveralls
 git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks
 cd /data/globaleaks/GlobaLeaks
