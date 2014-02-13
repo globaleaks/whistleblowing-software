@@ -213,7 +213,6 @@ CREATE TABLE receiver (
     gpg_key_fingerprint VARCHAR,
     gpg_key_armor VARCHAR,
     gpg_enable_notification INT,
-    gpg_enable_files INT,
     receiver_level INT NOT NULL,
     presentation_order INT NOT NULL,
     PRIMARY KEY (id),

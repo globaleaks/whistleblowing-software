@@ -165,7 +165,6 @@ class ReceiverCapability(_CapabilityClass):
         'file_notification',
         'message_notification',
         'gpg_enable_notification',
-        'gpg_enable_files',
     ]
 
     def __init__(self, init_data=None):
@@ -177,7 +176,6 @@ class ReceiverCapability(_CapabilityClass):
         self.file_notification = True
         self.message_notification = True
         self.gpg_enable_notification = True
-        self.gpg_enable_files = True
 
         if init_data:
             for bool_key in ReceiverCapability.bool_vars:

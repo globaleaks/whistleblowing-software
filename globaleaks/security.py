@@ -495,7 +495,6 @@ def gpg_options_parse(receiver, request):
     remove_key = request.get('gpg_key_remove', False)
 
     encrypt_notification = acquire_bool(request.get('gpg_enable_notification', False))
-    encrypt_file = acquire_bool(request.get('gpg_enable_files', False))
 
     # set a default status
     receiver.gpg_key_status = Receiver._gpg_types[0]
@@ -509,11 +508,9 @@ def gpg_options_parse(receiver, request):
         receiver.gpg_key_info = None
         receiver.gpg_key_armor = None
         receiver.gpg_key_fingerprint = None
-        receiver.gpg_enable_files = False
         receiver.gpg_enable_notification = False
 
     if receiver.gpg_key_status == Receiver._gpg_types[1]:
-        receiver.gpg_enable_files = encrypt_file
         receiver.gpg_enable_notification = encrypt_notification
         log.debug("Receiver %s sets GPG usage: notification %s, file %s" %
                   (receiver.user.username,
@@ -534,7 +531,6 @@ def gpg_options_parse(receiver, request):
         receiver.gpg_key_status = Receiver._gpg_types[1] # Enabled
         receiver.gpg_key_armor = new_gpg_key
         # default enabled https://github.com/globaleaks/GlobaLeaks/issues/620
-        receiver.gpg_enable_files = True
         receiver.gpg_enable_notification = True
 
         gnob.destroy_environment()

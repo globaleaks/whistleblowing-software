@@ -81,8 +81,8 @@ class TTip(helpers.TestGL):
         'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
         'message_notification': True,
         'postpone_superpower': False,
-        'gpg_key_info': None, 'gpg_key_fingerprint': None, 'gpg_key_remove': False,
-        'gpg_enable_files': False, 'gpg_enable_notification': False, 'gpg_key_armor': None,
+        'gpg_key_info': None, 'gpg_key_fingerprint': None,
+        'gpg_key_remove': False, 'gpg_key_armor': None, 'gpg_enable_notification': False,
         'presentation_order': 0,
     }
 
@@ -94,8 +94,8 @@ class TTip(helpers.TestGL):
         'message_notification': True,
         'postpone_superpower': False,
         'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
-        'gpg_key_info': None, 'gpg_key_fingerprint': None, 'gpg_key_remove': False,
-        'gpg_enable_files': False, 'gpg_enable_notification': False, 'gpg_key_armor': None,
+        'gpg_key_info': None, 'gpg_key_fingerprint': None,
+        'gpg_key_remove': False, 'gpg_key_armor': None, 'gpg_enable_notification': False,
         'presentation_order': 0,
     }
 

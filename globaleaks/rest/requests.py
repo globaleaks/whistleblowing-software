@@ -73,7 +73,6 @@ receiverReceiverDesc = {
     'gpg_key_armor': unicode,
     'gpg_key_remove': bool,
     "gpg_enable_notification": bool,
-    "gpg_enable_files": bool,
     "comment_notification": bool,
     "file_notification": bool,
     "tip_notification": bool,
@@ -194,7 +193,6 @@ adminReceiverDesc = {
     'gpg_key_armor': unicode,
     'gpg_key_status': unicode,
     'gpg_enable_notification': bool,
-    'gpg_enable_files': bool,
     'presentation_order': int,
 }
 
