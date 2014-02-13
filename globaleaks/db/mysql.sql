@@ -158,6 +158,8 @@ CREATE TABLE node (
     postpone_superpower INT NOT NULL,
     can_delete_submission INT NOT NULL,
     ahmia INT NOT NULL,
+    wizard_done INT NOT NULL,
+    anomaly_checks INT NOT NULL,
     exception_email VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );

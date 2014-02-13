@@ -684,10 +684,16 @@ class FileToken(_DownloadToken):
 def anomaly_check(element):
     """
     @param element: one of the events with threshold
+
+    if anomaly_checks are disabled the decorator simply returns
     """
 
     def wrapper(method_handler):
         def call_handler(cls, *args, **kw):
+
+            # if anomaly_checks are disabled the decorator simply returns
+            if not GLSetting.memory_copy.anomaly_checks:
+                return method_handler(cls, *args, **kw)
 
             if GLSetting.anomalies_counter[element] > alarm_level[element]:
 

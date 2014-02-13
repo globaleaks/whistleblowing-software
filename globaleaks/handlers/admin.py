@@ -49,6 +49,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'can_delete_submission': node.can_delete_submission,
         'ahmia': node.ahmia,
         'reset_css': False,
+        'anomaly_checks': node.anomaly_checks,
     }
 
     mo = structures.Rosetta()

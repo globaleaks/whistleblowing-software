@@ -169,6 +169,8 @@ def import_memory_variables(store):
         GLSetting.memory_copy.tor2web_receiver = node.tor2web_receiver
         GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
 
+        GLSetting.memory_copy.anomaly_checks = node.anomaly_checks
+
         GLSetting.memory_copy.exception_email = node.exception_email
         GLSetting.memory_copy.default_language = node.default_language
 
