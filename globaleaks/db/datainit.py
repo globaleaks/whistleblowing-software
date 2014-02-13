@@ -75,7 +75,6 @@ def initialize_node(store, results, only_node, templates, appdata):
         'salt': admin_salt,
         'role': u'admin',
         'state': u'enabled',
-        'failed_login_count': 0,
         }
 
     admin = models.User(admin_dict)

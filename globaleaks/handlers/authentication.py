@@ -12,7 +12,7 @@ from cyclone.util import ObjectDict as OD
 from Crypto import Random
 
 from globaleaks.models import Node, User
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.models import Receiver, WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
@@ -32,7 +32,7 @@ def security_sleep(timeout):
     reactor.callLater(timeout, callbackDeferred)
     return d
 
-def random_login_delay(user):
+def random_login_delay():
     """
     in case of failed_login_attempts introduces
     an exponential increasing delay between 0 and 42 seconds
@@ -48,13 +48,7 @@ def random_login_delay(user):
            | x > 42          | 42             |
             ----------------------------------
         """
-    if user == 'wb':
-        failed_attempts = GLSetting.failed_login_attempts_wb
-    else:
-        if user in GLSetting.failed_login_attempts:
-            failed_attempts = GLSetting.failed_login_attempts[user]
-        else:
-            failed_attempts = 0
+    failed_attempts = GLSetting.failed_login_attempts
 
     if failed_attempts >= 5:
         min = failed_attempts if failed_attempts < 42 else 42
@@ -65,7 +59,6 @@ def random_login_delay(user):
         else:
             max = 42
 
-        Random.atfork()
         return Random.random.randint(min, max)
 
     return 0
@@ -217,7 +210,7 @@ def transport_security_check(wrapped_handler_role):
     return wrapper
 
 
-@transact
+@transact_ro # read only transact; manual commit on success needed
 def login_wb(store, receipt):
     """
     Login wb return the WhistleblowerTip.id
@@ -234,15 +227,15 @@ def login_wb(store, receipt):
 
     if not wb_tip:
         log.debug("Whistleblower: Invalid receipt")
-        GLSetting.failed_login_attempts_wb += 1
         return False
 
     log.debug("Whistleblower: Valid receipt")
     wb_tip.last_access = datetime_now()
+    store.commit() # the transact was read only! on success we apply the commit()
     return unicode(wb_tip.id)
 
 
-@transact
+@transact_ro  # read only transact; manual commit on success needed
 def login_receiver(store, username, password):
     """
     This login receiver need to collect also the amount of unsuccessful
@@ -257,22 +250,16 @@ def login_receiver(store, username, password):
         return False
 
     if not security.check_password(password, receiver_user.password, receiver_user.salt):
-        receiver_user.failed_login_count += 1
-        log.debug("Receiver login: Invalid password (failed: %d)" % receiver_user.failed_login_count)
-        if username in GLSetting.failed_login_attempts:
-            GLSetting.failed_login_attempts[username] += 1
-        else:
-            GLSetting.failed_login_attempts[username] = 1
-
+        log.debug("Receiver login: Invalid password")
         return False
     else:
         log.debug("Receiver: Authorized receiver %s" % username)
         receiver_user.last_login = datetime_now()
         receiver = store.find(Receiver, (Receiver.user_id == receiver_user.id)).one()
-
+        store.commit() # the transact was read only! on success we apply the commit()
         return receiver.id
 
-@transact
+@transact_ro  # read only transact; manual commit on success needed
 def login_admin(store, username, password):
     """
     login_admin return the 'username' of the administrator
@@ -285,16 +272,12 @@ def login_admin(store, username, password):
         return False
 
     if not security.check_password(password, admin_user.password, admin_user.salt):
-        admin_user.failed_login_count += 1
-        log.debug("Admin login: Invalid password (failed: %d)" % admin_user.failed_login_count)
-        if username in GLSetting.failed_login_attempts:
-            GLSetting.failed_login_attempts[username] += 1
-        else:
-            GLSetting.failed_login_attempts[username] = 1
+        log.debug("Admin login: Invalid password")
         return False
     else:
         log.debug("Admin: Authorized receiver %s" % username)
         admin_user.last_login = datetime_now()
+        store.commit() # the transact was read only! on success we apply the commit()
         return username
 
 class AuthenticationHandler(BaseHandler):
@@ -315,8 +298,6 @@ class AuthenticationHandler(BaseHandler):
                 case of an admin it will be set to 'admin', in the case of the
                 'wb' it will be the whistleblower id.
         """
-        Random.atfork()
-
         self.session_id = rstr.xeger(r'[A-Za-z0-9]{42}')
 
         # This is the format to preserve sessions in memory
@@ -361,7 +342,7 @@ class AuthenticationHandler(BaseHandler):
         password = request['password']
         role = request['role']
 
-        delay = random_login_delay(username)
+        delay = random_login_delay()
         if delay:
             yield security_sleep(delay)
 
@@ -384,6 +365,7 @@ class AuthenticationHandler(BaseHandler):
 
             authorized_username = yield login_admin(username, password)
             if authorized_username is False:
+                GLSetting.failed_login_attempts += 1
                 raise errors.InvalidAuthRequest
             new_session_id = self.generate_session(role, authorized_username)
 
@@ -398,6 +380,7 @@ class AuthenticationHandler(BaseHandler):
 
             wbtip_id = yield login_wb(password)
             if wbtip_id is False:
+                GLSetting.failed_login_attempts += 1
                 raise errors.InvalidAuthRequest
 
             new_session_id = self.generate_session(role, wbtip_id)
@@ -413,6 +396,7 @@ class AuthenticationHandler(BaseHandler):
 
             receiver_id = yield login_receiver(username, password)
             if receiver_id is False:
+                GLSetting.failed_login_attempts += 1
                 raise errors.InvalidAuthRequest
 
             new_session_id = self.generate_session(role, receiver_id)

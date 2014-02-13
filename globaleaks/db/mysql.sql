@@ -10,7 +10,6 @@ CREATE TABLE user (
     state VARCHAR NOT NULL,
     last_login VARCHAR NOT NULL,
     last_update VARCHAR,
-    failed_login_count INT NOT NULL, 
     PRIMARY KEY (id),
     UNIQUE (username),
     CHECK (role IN ('admin', 'receiver')),

@@ -47,5 +47,4 @@ class APSSessionManagement(GLJob):
             sys.excepthook(*sys.exc_info())
 
         # Reset of failed login attempts counters
-        GLSetting.failed_login_attempts = dict()
-        GLSetting.failed_login_attempts_wb = 0
+        GLSetting.failed_login_attempts = 0

@@ -104,7 +104,6 @@ def collect_users_overview(store):
         user_description = {
             'id': receiver.id,
             'name': receiver.name,
-            'failed_login': receiver.user.failed_login_count,
             'receiverfiles': [],
             'receivertips': [],
             'gpg_key_status': receiver.gpg_key_status,
