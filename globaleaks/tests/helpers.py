@@ -61,8 +61,7 @@ class TestGL(unittest.TestCase):
         GLSetting.logging = None
         GLSetting.scheduler_threadpool = FakeThreadPool()
         GLSetting.sessions = {}
-        GLSetting.failed_login_attempts = dict()
-        GLSetting.failed_login_attempts_wb = 0
+        GLSetting.failed_login_attempts = 0
         GLSetting.working_path = './working_path'
         GLSetting.eval_paths()
         GLSetting.remove_directories()
@@ -277,7 +276,6 @@ class MockDict():
             'role': u'admin',
             'state': u'enabled',
             'last_login': datetime_null(),
-            'failed_login_count': 0
         }
 
         self.dummyReceiver = {

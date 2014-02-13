@@ -322,7 +322,6 @@ class BaseHandler(RequestHandler):
         valid_jmessage = {}
         for key in message_template.keys():
             if key not in jmessage:
-                print key
                 log.err('key %s not in %s' % (key, jmessage))
                 raise errors.InvalidInputFormat('wrong schema: missing %s' % key)
             else:

@@ -326,9 +326,7 @@ class TestAuthentication(helpers.TestHandler):
                 self.assertTrue(False)
 
         receiver_status = yield admin.get_receiver(self.dummyReceiver['id'])
-        self.assertTrue(receiver_status.has_key('failed_login'))
-        self.assertEqual(receiver_status['failed_login'], failed_login )
-        self.assertEqual(GLSetting.failed_login_attempts[self.dummyReceiverUser['username']], failed_login)
+        self.assertEqual(GLSetting.failed_login_attempts, failed_login)
 
     @inlineCallbacks
     def test_bruteforce_login_protection(self):
@@ -359,9 +357,7 @@ class TestAuthentication(helpers.TestHandler):
 
         receiver_status = yield admin.get_receiver(self.dummyReceiver['id'])
 
-        self.assertEqual(GLSetting.failed_login_attempts[self.dummyReceiverUser['username']], failed_login)
-        self.assertTrue(receiver_status.has_key('failed_login'))
-        self.assertEqual(receiver_status['failed_login'], failed_login)
+        self.assertEqual(GLSetting.failed_login_attempts, failed_login)
 
         # validate incremental delay
         self.assertTrue(len(sleep_list), failed_login)

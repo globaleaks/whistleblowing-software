@@ -127,8 +127,8 @@ class GLSettingsClass:
 
         # session tracking, in the singleton classes
         self.sessions = dict()
-        self.failed_login_attempts = dict() # statisticals, referred to latest_period
-        self.failed_login_attempts_wb = 0   # and resetted by session_management sched
+        self.failed_login_attempts = 0 # statisticals, referred to latest_period
+                                       # and resetted by session_management sched
 
         # download tocken trackin
         self.download_tokens = dict()

@@ -112,7 +112,6 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "username": receiver.user.username,
         "user_id": receiver.user.id,
         'mail_address': receiver.mail_address,
-        "failed_login": receiver.user.failed_login_count,
         "password": u"",
         "contexts": [],
         "tags": receiver.tags,
@@ -137,6 +136,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
 
     for context in receiver.contexts:
         receiver_dict['contexts'].append(context.id)
+
 
     return receiver_dict
 
@@ -553,7 +553,6 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
             'salt': receiver_salt,
             'role': u'receiver',
             'state': u'enabled',
-            'failed_login_count': 0,
     }
 
     receiver_user = models.User(receiver_user_dict)

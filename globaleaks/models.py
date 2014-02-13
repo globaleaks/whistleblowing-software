@@ -126,13 +126,12 @@ class User(Model):
     role = Unicode()
     state = Unicode()
     last_login = DateTime()
-    failed_login_count = Int()
  
     _roles = [ u'admin', u'receiver' ]
     _states = [ u'disabled', u'to_be_activated', u'enabled']
 
     unicode_keys = [ 'username', 'password', 'salt', 'role', 'state' ]
-    int_keys = [ 'failed_login_count' ]
+    int_keys = []
 
 
 class Context(Model):
