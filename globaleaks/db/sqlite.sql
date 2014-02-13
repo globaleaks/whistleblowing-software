@@ -149,6 +149,7 @@ CREATE TABLE node (
     can_delete_submission INTEGER NOT NULL,
     ahmia INTEGER NOT NULL,
     wizard_done INTEGER NOT NULL,
+    anomaly_checks INTEGER NOT NULL,
     exception_email VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );

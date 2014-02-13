@@ -163,6 +163,7 @@ class GLSettingsClass:
         self.defaults.tor2web_submission = False
         self.defaults.tor2web_receiver = False
         self.defaults.tor2web_unauth = True
+        self.defaults.anomaly_checks = False
         self.defaults.maximum_namesize = 128
         self.defaults.maximum_textsize = 4096
         self.defaults.maximum_filesize = 30 # expressed in megabytes
@@ -184,6 +185,7 @@ class GLSettingsClass:
         self.memory_copy.tor2web_submission = self.defaults.tor2web_submission
         self.memory_copy.tor2web_receiver = self.defaults.tor2web_receiver
         self.memory_copy.tor2web_unauth = self.defaults.tor2web_unauth
+        self.memory_copy.anomaly_checks = self.defaults.anomaly_checks
         self.memory_copy.exception_email = self.defaults.exception_email
         # updated by globaleaks/db/__init__.import_memory_variables
         self.memory_copy.default_language = 'en'

@@ -425,6 +425,7 @@ class Node(Model):
     can_delete_submission = Bool()
     ahmia = Bool()
     wizard_done = Bool(default=False)
+    anomaly_checks = Bool(default=False)
 
     exception_email = Unicode()
 
@@ -433,8 +434,9 @@ class Node(Model):
     int_keys = [ 'stats_update_time', 'maximum_namesize', 
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
-                  'tor2web_unauth', 'postpone_superpower',
-                  'can_delete_submission', 'ahmia' ] # wizard_done set by hand!
+                  'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',
+                  'can_delete_submission', 'ahmia' ] # wizard_done is not checked
+                                                     # because it's set by the backend
     localized_strings = [ 'description', 'presentation', 'footer', 'subtitle' ]
 
 

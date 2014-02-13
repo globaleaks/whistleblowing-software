@@ -374,6 +374,7 @@ class MockDict():
             'exception_email': GLSetting.defaults.exception_email,
             'reset_css': False,
             'ahmia': False,
+            'anomaly_checks': False,
         }
 
         self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',

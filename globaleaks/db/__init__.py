@@ -95,6 +95,8 @@ def create_tables(create_node=True):
             'postpone_superpower' : False, # disabled by default
             'can_delete_submission' : False, # disabled too
             'ahmia' : False, # disabled too
+            'wizard_done' : False,
+            'anomaly_checks' : False, # need to disabled in this stage as it need to be tuned
             'exception_email' : GLSetting.defaults.exception_email,
             'default_language' : GLSetting.memory_copy.default_language,
         }
