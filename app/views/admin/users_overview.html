@@ -17,31 +17,27 @@ This comment is needed in order to push the following strings on transifex
         <table class="table table-bordered" id="receiverList">
           <thead>
             <tr>
-              <th class="col-md-3">
+              <th class="col-md-4">
                 {{ "User" | translate }}
-              </th>
-              <th class="col-md-2">
-                {{ "Failed Logins" | translate }}
               </th>
               <th class="col-md-4">
                 {{ "Receiver Tips" | translate }}
               </th>
-              <th class="col-md-3">
+              <th class="col-md-4">
                 {{ "Files and Downloads" | translate }}
               </th>
             </tr>
           </thead>
           <tbody id="receiverListBody">
             <tr ng-repeat="receiver in users">
-              <td class="col-md-3"><a href="/#/admin/receivers/">{{receiver.name}}</a></td>
-              <td class="col-md-2">{{receiver.failed_login}}</td>
+              <td class="col-md-4"><a href="/#/admin/receivers/">{{receiver.name}}</a></td>
               <td class="col-md-4">
                 <div ng-repeat="rtip in receiver.receivertips">
                   <span class="glyphicon glyphicon-book"></span>
                   {{rtip.status}} {{rtip.last_access | date:'dd-MM-yyyy HH:mm'}} ({{rtip.access_counter}})
                 </div>
               </td>
-              <td class="col-md-3">
+              <td class="col-md-4">
                 <div ng-repeat="rfile in receiver.receiverfiles">
                   <span class="glyphicon glyphicon-file"></span>
                   {{rfile.file_name}} ({{rfile.downloads}}), {{rfile.last_access | date:'dd-MM-yyyy HH:mm'}}
