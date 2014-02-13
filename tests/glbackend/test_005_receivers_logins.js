@@ -48,7 +48,8 @@ var invalid_login = function(i) {
   }
 }
 
-for (var i=0; i<population_order; i++){
+// full test on the first receiver only
+for (var i=0; i<1; i++){
   describe('POST /authentication', function () {
     var credentials = valid_login(i);
     it('responds 403 on valid login [receiver'+ i + '@antani.gov:] with missing XSRF token (missing header)', function (done) {
@@ -135,6 +136,32 @@ for (var i=0; i<population_order; i++){
     })
   })
 
+  describe('POST /authentication', function () {
+    var credentials = valid_login(i);
+    it('responds 200 on valid login [receiver'+ i + '@antani.gov:] (valid XSRF token)', function (done) {
+      app
+        .post('/authentication')
+        .set('X-XSRF-TOKEN', 'antani')
+        .set('cookie', 'XSRF-TOKEN=antani')
+        .send(credentials)
+        .expect(200)
+        .end(function (err, res) {
+
+          if (err) {
+            return done(err);
+          }
+
+          validate_mandatory_headers(res.headers);
+
+          authentication = res.body;
+
+          done();
+        });
+    })
+  })
+}
+
+for (var i=1; i<population_order; i++){
   describe('POST /authentication', function () {
     var credentials = valid_login(i);
     it('responds 200 on valid login [receiver'+ i + '@antani.gov:] (valid XSRF token)', function (done) {

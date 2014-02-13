@@ -170,7 +170,6 @@ describe('POST /submission/submission_id/file', function(){
   for (var i=0; i<submission_population_order; i++) {
     (function (i) {
       it('responds with ', function(done){
-        console.log(submissions[i].id)
         app
           .post('/submission/' + submissions[i].id + '/file')
           .send('ANTANIFILECONTENT')
@@ -275,7 +274,8 @@ describe('POST /submission', function(){
   }
 })
 
-for (var i=0; i<submission_population_order; i++){
+// full test on first submission only
+for (var i=0; i<1; i++){
   (function (i) {
     describe('POST /authentication', function () {
       it('responds 403 on valid wb login with missing XSRF token (missing header)', function (done) {
@@ -388,3 +388,29 @@ for (var i=0; i<submission_population_order; i++){
   })(i);
 }
 
+for (var i=1; i<submission_population_order; i++){
+  (function (i) {
+    describe('POST /authentication', function () {
+      it('responds 200 on valid wb login (valid XSRF token)', function (done) {
+        var credentials = valid_login(i);
+        app
+          .post('/authentication')
+          .set('X-XSRF-TOKEN', 'antani')
+          .set('cookie', 'XSRF-TOKEN=antani')
+          .send(credentials)
+          .expect(200)
+          .end(function (err, res) {
+
+            if (err) {
+              return done(err);
+            }
+
+            validate_mandatory_headers(res.headers);
+
+            done();
+          });
+      })
+    })
+
+  })(i);
+}
