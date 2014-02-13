@@ -14,6 +14,19 @@
       <input class="form-control" ng-model="admin.node.exception_email" type="text">
     </div>
 
+    <div class="form-group table-bordered">
+      <label>
+        <input ng-model="admin.node.anomaly_checks" type="checkbox">
+        {{ "Enable anomaly checks" | translate }}
+      </label>
+      <div ng-show="admin.node.anomaly_checks">
+        <span class="btn-info">
+        {{ "now Enabled:" | translate }}
+        </span>
+        {{ "Anomaly checks will be now performed on each request." | translate }}
+      </div>
+    </div>
+
     <div class="form-group">
       <label>{{ "File size limit (in Megabytes)" | translate }}</label>
       <input class="form-control" ng-model="admin.node.maximum_filesize" type="text">
