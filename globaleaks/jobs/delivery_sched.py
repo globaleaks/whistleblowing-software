@@ -91,7 +91,7 @@ def receiverfile_planning(store):
     receivers associated, one entry for each combination. representing the
     ReceiverFile that need to be created.
 
-    REMIND: (keyword) esclation escalate pertinence vote
+    REMIND: (keyword) escalation escalate pertinence vote
     here need to be updated whenever an escalation is implemented.
     checking of status and marker and recipients
     """
@@ -151,7 +151,7 @@ def receiverfile_planning(store):
                     'receiver' : receiver_desc,
                     'path' : filex.file_path,
                     'size' : filex.size,
-                    'status' : filex.mark
+                    'status' : ReceiverFile._status_list[1] # reference
                 }
 
                 # this may seem apparently redounded, but is not!
@@ -392,7 +392,7 @@ def encrypt_where_available(receivermap):
 
                 rfileinfo['path'] = new_path
                 rfileinfo['size'] = new_size
-                rfileinfo['status'] = ReceiverFile._status_list[2]
+                rfileinfo['status'] = ReceiverFile._status_list[2] # encrypted
 
             except Exception as excep:
                 log.err("%d# Unable to complete GPG encrypt for %s on %s: %s" % (
@@ -402,7 +402,7 @@ def encrypt_where_available(receivermap):
                 retcode = False
                 continue
         else:
-            rfileinfo['status'] = ReceiverFile._status_list[1]
+            rfileinfo['status'] = ReceiverFile._status_list[1] # reference
             retcode = False
 
     return retcode

@@ -135,9 +135,10 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         # return a list of lists [ "file_id", status, "f_path", len, "receiver_desc" ]
         self.assertTrue(isinstance(self.rfilesdict, dict))
 
-        for key, value in self.rfilesdict.iteritems():
-            for elem in value:
-                rfdesc = yield delivery_sched.receiverfile_create(key,
+        for ifile_path, receivermap in self.rfilesdict.iteritems():
+            yield delivery_sched.encrypt_where_available(receivermap)
+            for elem in receivermap:
+                rfdesc = yield delivery_sched.receiverfile_create(ifile_path,
                                     elem['path'], elem['status'], elem['size'], elem['receiver'])
                 self.assertEqual(rfdesc['mark'], u'not notified')
                 self.assertEqual(rfdesc['receiver_id'], elem['receiver']['id'])
@@ -151,8 +152,8 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertEqual(len(self.rfi), 2)
         self.assertEqual(self.rfi[0]['mark'], u'not notified')
         self.assertEqual(self.rfi[1]['mark'], u'not notified')
-        self.assertEqual(self.rfi[0]['status'], u'locked')
-        self.assertEqual(self.rfi[1]['status'], u'locked')
+        self.assertEqual(self.rfi[0]['status'], u'reference')
+        self.assertEqual(self.rfi[1]['status'], u'reference')
 
         # verify the checksum returned by whistleblower POV, I'm not using
         #  wfv = yield tip.get_files_wb()
