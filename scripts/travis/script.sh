@@ -1,4 +1,29 @@
 #!/bin/sh
+
+sudo -i bash -x -c 'mkdir -p /data/globaleaks'
+sudo -i bash -x -c 'chown travis:travis /data/globaleaks'
+sudo -i bash -x -c 'apt-get install curl git -y'
+
+if [ "${TRAVIS_REPO_SLUG}" = "globaleaks/GLBackend" ]; then
+  sudo pip install coverage
+  sudo pip install coveralls
+  git clone https://github.com/globaleaks/GLBackend /data/globaleaks/GLBackend_UT
+  cd /data/globaleaks/GLBackend_UT
+  git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
+  sudo pip install coverage
+  sudo pip install coveralls
+  coverage run $(which trial) globaleaks
+  coveralls
+fi
+
+if [ "${TRAVIS_REPO_SLUG}" = "globaleaks/GLClient" ]; then
+  git clone https://github.com/globaleaks/GLClient
+  cd /data/globaleaks/GLClient_UT
+  git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
+  npm install -d
+  grunt unittest
+fi
+
 git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks
 cd /data/globaleaks/GlobaLeaks
 git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
@@ -40,13 +65,3 @@ sudo -i bash -x -c 'apt-get update -y'
 sudo -i bash -x -c 'apt-get install git nodejs -y'
 sudo -i bash -x -c 'cd /data/globaleaks/GlobaLeaks_UT && npm install -d'
 sudo -i bash -x -c 'cd /data/globaleaks/GlobaLeaks_UT && node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*'
-
-if [ "${TRAVIS_REPO_SLUG}" == "globaleaks/GLBackend" ]; then
-  sudo pip install coverage
-  sudo pip install coveralls
-  git clone https://github.com/globaleaks/GLBackend /data/globaleaks/GLBackend_trial
-  cd /data/globaleaks/GLBackend_trial
-  git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
-  coverage run $(which trial) globaleaks
-  coveralls
-fi
