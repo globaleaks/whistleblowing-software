@@ -3,13 +3,6 @@ sudo -i bash -x -c 'apt-get update -y'
 sudo -i bash -x -c 'apt-get install curl git python-software-properties -y'
 sudo -i bash -x -c 'mkdir -p /data/globaleaks'
 sudo -i bash -x -c 'chown travis:travis /data/globaleaks'
-sudo pip install coverage
-sudo pip install coveralls
-git clone https://github.com/globaleaks/GLBackend /data/globaleaks/GLBackend_trial
-cd /data/globaleaks/GLBackend_trial
-git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
-coverage run $(which trial) globaleaks
-coveralls
 git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks
 cd /data/globaleaks/GlobaLeaks
 git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
