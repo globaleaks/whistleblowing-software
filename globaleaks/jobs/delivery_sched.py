@@ -475,6 +475,22 @@ class APSDelivery(GLJob):
                 log.debug("All Receivers support PGP, marking internalfile as removed")
                 yield do_final_internalfile_update(ifile_path, InternalFile._marker[3]) # Removed
 
+            for rfileinfo in receivermap:
+
+                if not are_all_encrypted and rfileinfo['status'] == u'reference':
+                    ref_path = plain_path
+                    rfileinfo['path'] = plain_path
+                else:
+                    ref_path = ifile_path
+
+                try:
+                    yield receiverfile_create(ref_path, rfileinfo['path'], rfileinfo['status'],
+                                              rfileinfo['size'], rfileinfo['receiver'])
+                except Exception as excep:
+                    log.err("Unable to create ReceiverFile from %s for %s: %s" %
+                            (ifile_path, rfileinfo['receiver']['name'], excep))
+                    continue
+
             # the original AES file need always to be deleted
             log.debug("Deleting the submission AES encrypted file: %s" % ifile_path)
             try:
@@ -482,19 +498,6 @@ class APSDelivery(GLJob):
             except OSError as ose:
                 log.err("Unable to remove %s: %s" % (ifile_path, ose.message))
 
-            for rfileinfo in receivermap:
-
-                if not are_all_encrypted and rfileinfo['status'] == u'reference':
-                    ifile_path = plain_path
-                    rfileinfo['path'] = plain_path
-
-                try:
-                    yield receiverfile_create(ifile_path, rfileinfo['path'], rfileinfo['status'],
-                                              rfileinfo['size'], rfileinfo['receiver'])
-                except Exception as excep:
-                    log.err("Unable to create ReceiverFile from %s for %s: %s" %
-                            (ifile_path, rfileinfo['receiver']['name'], excep))
-                    continue
 
             # here closes the if/else 'are_all_encrypted'
         # here closes the loop over internalfile mapping

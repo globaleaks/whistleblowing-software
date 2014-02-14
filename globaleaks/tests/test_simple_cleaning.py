@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 import os
 
+import copy
+
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
@@ -39,8 +41,10 @@ class TTip(helpers.TestGL):
     # https://www.youtube.com/watch?v=ja46oa2ZML8 couple of cups, and tests!:
 
     tipContext = TTip.tipContext
-    tipReceiver1 = TTip.tipReceiver1
-    tipReceiver2 = TTip.tipReceiver2
+    tipReceiver1 = copy.deepcopy(TTip.tipReceiver1)
+    tipReceiver1['postpone_superpower'] = True
+    tipReceiver2 = copy.deepcopy(TTip.tipReceiver2)
+    tipReceiver2['postpone_superpower'] = True
     tipOptions = TTip.tipOptions
     commentCreation = TTip.commentCreation
 
@@ -203,7 +207,6 @@ class TipCleaning(TestCleaning):
         self.assertEqual(len(rtip_desc), 1)
         tip_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[2])
         self.assertEqual(len(tip_list), 1)
-        tip_desc  = tip_list[0]
         rtip.postpone_expiration_date(recv_desc[0]['id'], rtip_desc[0]['id'])
 
         yield cleaning_sched.APSCleaning.operation()
