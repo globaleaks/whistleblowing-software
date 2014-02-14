@@ -219,7 +219,6 @@ var context = {
     }
   ],
   "file_required":false,
-  "fields" : [],
   "maximum_selectable_receivers":0,
   "tip_max_access":500,
   "fields_introduction":"something",
