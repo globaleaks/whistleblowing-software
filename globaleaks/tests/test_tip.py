@@ -80,7 +80,7 @@ class TTip(helpers.TestGL):
         'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
         'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
         'message_notification': True,
-        'postpone_superpower': True,
+        'postpone_superpower': False,
         'gpg_key_info': None, 'gpg_key_fingerprint': None,
         'gpg_key_remove': False, 'gpg_key_armor': None, 'gpg_enable_notification': False,
         'presentation_order': 0,
@@ -376,8 +376,8 @@ class TestTipInstance(TTip):
 
         try:
             yield rtip.postpone_expiration_date(
-                    self.receiver2_desc['id'],
-                    self.rtip2_id)
+                    self.receiver1_desc['id'],
+                    self.rtip1_id)
         except errors.ExtendTipLifeNotEnabled:
             self.assertTrue(True)
         except Exception, e:
