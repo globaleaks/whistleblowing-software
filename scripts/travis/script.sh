@@ -1,12 +1,12 @@
 #!/bin/sh
-sudo -i bash -x -c 'apt-get update -y'
-sudo -i bash -x -c 'apt-get install curl git python-software-properties -y'
-sudo -i bash -x -c 'mkdir -p /data/globaleaks'
-sudo -i bash -x -c 'chown travis:travis /data/globaleaks'
 git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks
 cd /data/globaleaks/GlobaLeaks
 git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
 /data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh -c${TRAVIS_BRANCH} -b${TRAVIS_BRANCH}
+# the following is the emulation of the installation guide: 
+#   https://github.com/globaleaks/GlobaLeaks/wiki/Installation-guide
+sudo -i bash -x -c 'apt-get update -y'
+sudo -i bash -x -c 'apt-get install python-software-properties -y'
 sudo -i bash -x -c 'add-apt-repository "deb http://deb.torproject.org/torproject.org $(lsb_release -s -c) main" -y'
 sudo -i bash -x -c 'gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x886DDD89'
 sudo -i bash -x -c 'gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -'
@@ -33,11 +33,10 @@ sudo -i bash -x -c '/etc/init.d/tor restart'
 #sudo -i bash -x -c 'echo "name: globaleaks" >> /etc/globaleaks'
 sudo TRAVIS=true -i bash -x -c '/etc/init.d/globaleaks restart'
 sleep 10
-curl 127.0.0.1:8082 | grep "GlobaLeaks"
-git clone https://github.com/globaleaks/GLClient /data/globaleaks/GLClient_UT
-cd /data/globaleaks/GLClient_UT && (git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null)
+git clone https://github.com/globaleaks/GLClient /data/globaleaks/GlobaLeaks_UT
+cd /data/globaleaks/GlobaLeaks_UT && (git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null)
 sudo -i bash -x -c 'add-apt-repository ppa:chris-lea/node.js -y'
 sudo -i bash -x -c 'apt-get update -y'
 sudo -i bash -x -c 'apt-get install git nodejs -y'
-sudo -i bash -x -c 'cd /data/globaleaks/GLClient_UT && npm install -d'
-sudo -i bash -x -c 'cd /data/globaleaks/GLClient_UT && node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*'
+sudo -i bash -x -c 'cd /data/globaleaks/GlobaLeaks_UT && npm install -d'
+sudo -i bash -x -c 'cd /data/globaleaks/GlobaLeaks_UT && node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*'
