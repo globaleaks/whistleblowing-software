@@ -320,8 +320,10 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
     try:
         fo = structures.Fields(context.localized_fields, context.unique_fields)
         # When a new context is created, if no fields has been assigned assigns defaults
-
-        if not request['fields']:
+        # fields are treated as missing in 3 cases: key missing, != list, list empty
+        if 'fields' not in request or \
+            not isinstance(request['fields'], list) or \
+            not request['fields']:
 
             try:
                 appdata = store.find(ApplicationData).one()
