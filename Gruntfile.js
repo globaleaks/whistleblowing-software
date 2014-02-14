@@ -102,6 +102,19 @@ module.exports = function(grunt) {
             src: ['views/**/*.html'],
             dest: 'tmp/scripts/templates.js'
           }
+    },
+
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
+    },
+
+    coveralls: {
+      options: {
+            debug: true,
+            coverage_dir: 'coverage'
+      }
     }
 
   });
@@ -418,6 +431,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build',
     ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'uglify', 'manifest', 'cleanupWorkingDirectory']);
 
-  grunt.registerTask('dev',
-    ['reload', 'watch']);
+  grunt.registerTask('unittest',
+    ['build', 'karma', 'coveralls']);
+
 };
