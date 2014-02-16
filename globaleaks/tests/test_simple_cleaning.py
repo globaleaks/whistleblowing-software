@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import re
+import os
 
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
@@ -8,9 +8,9 @@ from globaleaks.tests import helpers
 
 from globaleaks import models
 from globaleaks.rest import requests
-from globaleaks.handlers import base, admin, submission, files
+from globaleaks.handlers import base, admin, submission, files, rtip, receiver
 from globaleaks.jobs import delivery_sched, cleaning_sched
-from globaleaks.utils.utility import is_expired
+from globaleaks.utils.utility import is_expired, datetime_null
 from globaleaks.settings import transact, GLSetting
 from globaleaks.tests.test_tip import TTip
 
@@ -46,6 +46,9 @@ class TTip(helpers.TestGL):
 
     def setUp(self):
         helpers.TestGL.setUp(self)
+
+        self.assertTrue(os.listdir(GLSetting.submission_path) == [])
+        self.assertTrue(os.listdir(GLSetting.tmp_upload_path) == [])
 
         temporary_file1 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
         temporary_file1.write("ANTANI")
@@ -85,6 +88,12 @@ class TestCleaning(TTip):
     # They are defined in TTip. This unitTest DO NOT TEST HANDLERS but transaction functions
 
     @transact
+    def test_postpone_survive_cleaning(self, store):
+        self.assertEqual(store.find(models.InternalTip).count(), 1)
+        self.assertEqual(store.find(models.ReceiverTip).count(), 2)
+        self.assertEqual(store.find(models.WhistleblowerTip).count(), 1)
+
+    @transact
     def test_cleaning(self, store):
         self.assertEqual(store.find(models.InternalTip).count(), 0)
         self.assertEqual(store.find(models.ReceiverTip).count(), 0)
@@ -93,23 +102,35 @@ class TestCleaning(TTip):
         self.assertEqual(store.find(models.ReceiverFile).count(), 0)
         self.assertEqual(store.find(models.Comment).count(), 0)
 
+    @transact
+    def check_tip_not_expired(self, store):
+        tips = store.find(models.InternalTip)
+        for tip in tips:
+            self.assertFalse(is_expired(tip.expiration_date))
+
+    @transact
+    def force_tip_expire(self, store):
+        tips = store.find(models.InternalTip)
+        for tip in tips:
+            tip.expiration_date = datetime_null()
+            self.assertTrue(is_expired(tip.expiration_date))
+
     @inlineCallbacks
     def emulate_file_upload(self, associated_submission_id):
         """
         THIS IS A COPY OF emulate_file_upload from test_submission
         """
-        (relationship1, cksum1, size1) = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
-        self.assertEqual(size1, self.dummyFile1['body_len'])
+        relationship1 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
         self.registered_file1 = yield files.register_file_db(
-            self.dummyFile1, relationship1, cksum1, associated_submission_id,
+            self.dummyFile1, relationship1, self.dummyFile1['body_sha'], associated_submission_id,
             )
 
-        (relationship2, cksum2, size2) = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
-        self.assertEqual(size2, self.dummyFile2['body_len'])
+        relationship2 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
         self.registered_file2 = yield files.register_file_db(
-            self.dummyFile2, relationship2, cksum2, associated_submission_id,
+            self.dummyFile2, relationship2, self.dummyFile2['body_sha'], associated_submission_id,
             )
 
+    @inlineCallbacks
     def do_create_internalfiles(self):
         yield self.emulate_file_upload(self.submission_desc['id'],)
         keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(self.registered_file1.keys())
@@ -172,127 +193,73 @@ class TestCleaning(TTip):
     # Those the two class implements the sequence
     # -------------------------------------------
 
-class UnfinishedSubmissionCleaning(TestCleaning):
+class TipCleaning(TestCleaning):
 
     @inlineCallbacks
-    def submission_not_expired(self):
-        """
-        Submission is intended the non-finalized Tip, with a shorter life than completed Tips, and
-        not yet delivered to anyone. (marker 0)
-        """
-        sub_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[0])
-
-        self.assertEqual(len(sub_list), 1)
-
-        self.assertFalse(
-            is_expired(
-                cleaning_sched.iso2dateobj(sub_list[0]['creation_date']),
-                sub_list[0]['submission_life_seconds'])
-        )
-
-    @inlineCallbacks
-    def force_submission_expire(self):
-        sub_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[0])
-        self.assertEqual(len(sub_list), 1)
-
-        sub_desc = sub_list[0]
-        sub_desc['submission_life_seconds'] = 0
-
-        self.assertTrue(
-            is_expired(
-                cleaning_sched.iso2dateobj(sub_desc['creation_date']),
-                sub_desc['submission_life_seconds'])
-        )
-
-        # and then, delete the expired submission
-        yield cleaning_sched.itip_cleaning(sub_desc['id'])
-
-        new_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[0])
-        self.assertEqual(len(new_list), 0)
-
-    @inlineCallbacks
-    def test_submission_life_and_expire(self):
-        yield self.do_setup_tip_environment()
-        #yield self.submission_not_expired()
-        #yield self.force_submission_expire()
-
-
-class FinalizedTipCleaning(TestCleaning):
-    @inlineCallbacks
-    def tip_not_expired(self):
-        """
-        Tip is intended InternalTip notified and delivered (marker 2, 'first' layer of deliverance)
-        and their life depends by context policies
-        """
-        tip_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[2])
-
-        self.assertEqual(len(tip_list), 1)
-
-        self.assertFalse(
-            is_expired(
-                cleaning_sched.iso2dateobj(tip_list[0]['creation_date']),
-                tip_list[0]['tip_life_seconds'])
-        )
-
-    @inlineCallbacks
-    def force_tip_expire(self):
+    def postpone_tip_expiration(self):
+        recv_desc = yield admin.get_receiver_list()
+        self.assertEqual(len(recv_desc), 2)
+        rtip_desc = yield receiver.get_receiver_tip_list(recv_desc[0]['id'])
+        self.assertEqual(len(rtip_desc), 1)
         tip_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[2])
         self.assertEqual(len(tip_list), 1)
-
         tip_desc  = tip_list[0]
-        tip_desc['tip_life_seconds'] = 0
+        rtip.postpone_expiration_date(recv_desc[0]['id'], rtip_desc[0]['id'])
 
-        self.assertTrue(
-            is_expired(
-                cleaning_sched.iso2dateobj(tip_desc['creation_date']),
-                tip_desc['tip_life_seconds']
-            )
-        )
-        
-        # and then, delete the expired submission
-        yield cleaning_sched.itip_cleaning(tip_desc['id'])
-
-        new_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[0])
-        self.assertEqual(len(new_list), 0)
+        yield cleaning_sched.APSCleaning.operation()
 
     @inlineCallbacks
-    def do_create_receivers_tip(self):
-        receiver_tips = yield delivery_sched.tip_creation()
-
-        self.rtip1_id = receiver_tips[0]
-        self.rtip2_id = receiver_tips[1]
-
-        self.assertEqual(len(receiver_tips), 2)
-        self.assertTrue(re.match(requests.uuid_regexp, receiver_tips[0]))
-        self.assertTrue(re.match(requests.uuid_regexp, receiver_tips[1]))
-
-    @inlineCallbacks
-    def test_tip_life_and_expire(self):
-        yield self.do_setup_tip_environment()       
-        yield self.do_finalize_submission()
-        yield self.do_create_receivers_tip()
-        yield self.tip_not_expired()
+    def test_001_unfinished_submission_life_and_expire(self):
+        yield self.do_setup_tip_environment()
+        yield self.check_tip_not_expired()
         yield self.force_tip_expire()
+        yield cleaning_sched.APSCleaning.operation()
         yield self.test_cleaning()
 
     @inlineCallbacks
-    def test_tip_life_and_expire_with_files(self):
+    def test_002_tip_life_and_expire(self):
+        yield self.do_setup_tip_environment()       
+        yield self.do_finalize_submission()
+
+        yield delivery_sched.APSDelivery.operation()
+
+        yield self.check_tip_not_expired()
+        yield self.force_tip_expire()
+
+        yield cleaning_sched.APSCleaning.operation()
+
+        yield self.test_cleaning()
+
+    @inlineCallbacks
+    def test_003_tip_life_postpone(self):
+        yield self.do_setup_tip_environment()
+        yield self.do_finalize_submission()
+
+        yield delivery_sched.APSDelivery.operation()
+
+        yield self.check_tip_not_expired()
+        yield self.force_tip_expire()
+        yield self.postpone_tip_expiration()
+
+        yield cleaning_sched.APSCleaning.operation()
+
+        yield self.test_postpone_survive_cleaning()
+
+    @inlineCallbacks
+    def test_004_tip_life_and_expire_with_files(self):
         yield self.do_setup_tip_environment()
         yield self.do_create_internalfiles()
         yield self.do_finalize_submission()
 
-        # now its before because receiverfile need receivertip!
-        yield self.do_create_receivers_tip()
+        yield delivery_sched.APSDelivery.operation()
 
-        rfilesl = yield delivery_sched.receiverfile_planning()
+        self.assertTrue(os.listdir(GLSetting.submission_path) != [])
 
-        for (fid, status, fpath, flen, receiver_desc) in rfilesl:
+        yield self.check_tip_not_expired()
 
-            rfd = yield delivery_sched.receiverfile_create(fid,
-                        status, fpath, flen, receiver_desc)
-
-            self.assertEqual(rfd['status'], u'reference')
-
-        yield self.tip_not_expired()
         yield self.force_tip_expire()
-        yield self.test_cleaning()
+
+        yield cleaning_sched.APSCleaning.operation()
+
+        self.assertTrue(os.listdir(GLSetting.submission_path) == [])
+        self.assertTrue(os.listdir(GLSetting.tmp_upload_path) == [])
