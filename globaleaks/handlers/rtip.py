@@ -204,7 +204,6 @@ def manage_pertinence(store, user_id, tip_id, vote):
 
 @transact
 def postpone_expiration_date(store, user_id, tip_id):
-
     rtip = access_tip(store, user_id, tip_id)
 
     node = store.find(Node).one()
