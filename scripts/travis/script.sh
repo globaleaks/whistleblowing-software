@@ -5,8 +5,6 @@ sudo -i bash -x -c 'chown travis:travis /data/globaleaks'
 sudo -i bash -x -c 'apt-get install curl git -y'
 
 if [ "${TRAVIS_REPO_SLUG}" = "globaleaks/GLBackend" ]; then
-  sudo pip install coverage
-  sudo pip install coveralls
   git clone https://github.com/globaleaks/GLBackend /data/globaleaks/GLBackend_UT
   cd /data/globaleaks/GLBackend_UT
   git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
