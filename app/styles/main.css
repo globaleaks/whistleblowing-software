@@ -218,6 +218,11 @@ table {
   word-break: break-all;
 }
 
+.wrap-content {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
 .img-thumbnail {
   position: relative;
   width: 160px;
