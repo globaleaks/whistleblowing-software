@@ -2,57 +2,57 @@
   <div class="form-group table-bordered">
     <input ng-model="preferences.tip_notification" type="checkbox">
     <label>
-      {{ "Enable Tip notification" | translate }}
+      <span data-translate>Enable Tip notification</span>
     </label>
     <div ng-show="preferences.tip_notification">
       <span class="btn-info">
-        {{ "now Enabled:" | translate }}
+        <span data-translate>now Enabled:</span>
       </span>
-      {{ "Every new Tip you receive will trigger an email with a link to it." | translate }}
+      <span data-translate>Every new Tip you receive will trigger an email with a link to it.</span>
     </div>
   </div>
 
   <div class="form-group table-bordered">
     <input ng-model="preferences.message_notification" type="checkbox">
     <label>
-      {{ "Enable Message notification" | translate }}
+      <span data-translate>Enable Message notification</span>
     </label>
     <div ng-show="preferences.message_notification">
       <span class="btn-info">
-        {{ "now Enabled:" | translate }}
+        <span data-translate>now Enabled:</span>
       </span>
-      {{ "Every message, written specifically by the whistleblower for you, will trigger an email." | translate }}
+      <span data-translate>Every message, written specifically by the whistleblower for you, will trigger an email.</span>
     </div>
   </div>
 
   <div class="form-group table-bordered">
     <input ng-model="preferences.comment_notification" type="checkbox">
     <label>
-      {{ "Enable Comment notification" | translate }}
+      <span data-translate>Enable Comment notification</span>
     </label>
     <div ng-show="preferences.comment_notification">
       <span class="btn-info">
-        {{ "now Enabled:" | translate }}
+        <span data-translate>now Enabled:</span>
       </span>
-      {{ "Every comment, written by the whistleblower or the receivers, will trigger an email." | translate }}
+      <span data-translate>Every comment, written by the whistleblower or the receivers, will trigger an email.</span>
     </div>
   </div>
 
   <div class="form-group table-bordered">
     <input ng-model="preferences.file_notification" type="checkbox">
     <label>
-      {{ "Enable File notification" | translate }}
+      <span data-translate>Enable File notification</span>
     </label>
     <div ng-show="preferences.file_notification">
       <span class="btn-info">
-        {{ "now Enabled:" | translate }}
+        <span data-translate>now Enabled:</span>
       </span>
-      {{ "For every file available for download you will be notified via email with related information." | translate }}
+      <span data-translate>For every file available for download you will be notified via email with related information.</span>
     </div>
   </div>
 
   <button type="submit" class="btn btn-success" ng-click="pref_save()">
     <i class="glyphicon glyphicon-ok"></i>
-    {{ "Update notification settings" | translate }}
+    <span data-translate>Update notification settings</span>
   </button>
 </div>

@@ -2,27 +2,27 @@
   <button type="button" class="close" ng-click="close()">
     <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
   </button>
-  <h2>{{ "Oh so many requests." | translate }}</h2>
+  <h2 data-translate>Oh so many requests.</h2>
 </div>
 <div class="modal-body">
   <div gl-clock></div>
 
   <div ng-switch="" on="error.code">
     <div ng-switch-when="55">
-      {{ "Chill out for another" | translate }} {{seconds}} {{ "seconds" | translate }}
+      <span data-translate>Chill out for another</span> {{seconds}} <span data-translate>seconds</span>
     </div>
     <div ng-switch-when="56">
-      {{ "Too many submissions in" | translate }} {{seconds}} {{ "seconds" | translate }}
+      <span data-translate>Too many submissions in</span> {{seconds}} <span data-translate>seconds</span>
     </div>
     <div ng-switch-when="57">
-      {{ "Too many file uploads in" | translate }} {{seconds}} {{ "seconds" | translate }}
+      <span data-translate>Too many file uploads in</span> {{seconds}} <span data-translate>seconds</span>
     </div>
   </div>
 
-  <p>{{ "Please wait while we get back fully operational" | translate }}</p>
+  <p data-translate>Please wait while we get back fully operational</p>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn" ng-click="reload()">
-    {{ "Reload" | translate }}
+    <span data-translate>Reload</span>
   </button>
 </div>

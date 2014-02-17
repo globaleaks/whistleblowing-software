@@ -27,9 +27,9 @@
             {{ node.subtitle }}
           </div>
           <div id="tagline" ng-hide="isHomepage()">
-            {{ header_title | translate }}
+            <span>{{ header_title | translate }}</span>
             <span ng-show="hasSubtitle()">
-               - {{ header_subtitle | translate }}
+               - <span>{{ header_subtitle | translate }}</span>
             </span>
           </div>
       </div>

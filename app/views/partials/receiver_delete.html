@@ -2,22 +2,22 @@
   <button type="button" class="close" aria-hidden="true" ng-click="cancel()">
     <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
   </button>
-  <h2>{{ "Delete Receiver" | translate }}</h2>
+  <h2 data-translate>Delete Receiver</h2>
 </div>
 <div class="modal-body">
   <div class="alert alert-danger">
-    {{ "Are you sure you want to delete the receiver?" | translate }}
+    <span data-translate>Are you sure you want to delete the receiver?</span>
     <br />
-    {{ "Please take care that all associated data will be properly deleted." | translate }}
+    <span data-translate>Please take care that all associated data will be properly deleted.</span>
   </div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn" ng-click="cancel()">
     <i class="glyphicon glyphicon-remove"></i>
-    {{ "Cancel" | translate }}
+    <span data-translate>Cancel</span>
   </button>
   <button class="btn btn-danger" ng-click="ok()">
     <i class="glyphicon glyphicon-ok"></i>
-    {{ "Confirm Deletion" | translate }}
+    <span data-translate>Confirm Deletion</span>
   </button>
 </div>

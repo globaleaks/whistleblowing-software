@@ -2,7 +2,7 @@
 
 This comment is needed in order to push the following strings on transifex
 
-{{ "Login" | translate }}
+<span data-translate>Login</span>
 
 -->
 <div id="ContentBox" class="container">
@@ -10,7 +10,7 @@ This comment is needed in order to push the following strings on transifex
     <div class="row" ng-show="errors[0].code == 29">
       <div class="col-md-9">
         <div class="alert alert-error alert-warning">
-          <strong>{{ "Authentication Failed" | translate }}</strong>
+          <strong><span data-translate>Authentication Failed</span></strong>
         </div>
       </div>
     </div>
@@ -18,18 +18,18 @@ This comment is needed in order to push the following strings on transifex
       <div class="col-md-4">
         <form class=form-inline" name="loginForm" novalidate="">
           <div class="form-group">
-            <label>{{ "Username:" | translate }}</label>
+            <label data-translate>Username:</label>
             <input class="form-control" name="username" ng-model="loginUsername" type="text">
           </div>
 
           <div class="form-group">
-            <label>{{ "Password:" | translate }}</label>
+            <label data-translate>Password:</label>
             <input class="form-control" name="password" ng-model="loginPassword" type="password">
           </div>
 
           <button class="btn btn-success" ng-disable="loginForm.$invalid" ng-click="login(loginUsername, loginPassword, loginRole)">
             <i class="glyphicon glyphicon-log-in"></i>
-            {{ "Login" | translate }}
+            <span data-translate>Login</span>
           </button>
         </form>
       </div>

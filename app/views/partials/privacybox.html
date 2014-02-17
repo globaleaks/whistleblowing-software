@@ -8,21 +8,21 @@
         <div ng-show="!displayBox">
           <span class="label label-success">
             <i class="glyphicon glyphicon-ok-circle"></i>
-            {{ "Congratulations!" | translate }}
+            <span data-translate>Congratulations!</span>
           </span>
         </div>
         <div ng-show="displayBox">
           <span class="label label-success">
             <i class="glyphicon glyphicon-ok-circle"></i>
-            {{ "Congratulations!" | translate }}
+            <span data-translate>Congratulations!</span>
           </span>
           <div>
             <p>
-              {{ "It appears you are using Tor. To better protect your anonymity, be sure that you are using the" | translate }}
+              <span data-translate>It appears you are using Tor. To better protect your anonymity, be sure that you are using the</span>
               <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer">Tor Browser Bundle</a>.
-              {{ "Keep in mind that using Tor Browser Bundle does not replace good security practices and it cannot protect you in the event your computer has been compromised. You are strongly advised to read the" | translate }}
+              <span data-translate>Keep in mind that using Tor Browser Bundle does not replace good security practices and it cannot protect you in the event your computer has been compromised. You are strongly advised to read the</span>
               <a href="https://securityinabox.org/" target="_blank" rel="noreferrer">security in a box</a>
-              {{ "manual for practical security best practices." | translate }}
+              <span data-translate>manual for practical security best practices.</span>
             </p>
           </div>
         </div>
@@ -31,17 +31,17 @@
         <div ng-show="!displayBox">
           <span class="label label-danger">
             <i class="glyphicon glyphicon-exclamation-sign"></i>
-            {{ "Warning!" | translate }}
+            <span data-translate>Warning!</span>
           </span>
         </div>
         <div ng-show="displayBox" class="privacyBox-ext">
           <span class="label label-danger">
             <i class="glyphicon glyphicon-exclamation-sign"></i>
-            {{ "Warning!" | translate }}
+            <span data-translate>Warning!</span>
           </span>
           <div>
             <p>
-              {{ "We were not able to determine if you are anonymous or not, please proceed with care" | translate }}
+              <span data-translate>We were not able to determine if you are anonymous or not, please proceed with care</span>
             </p>
           </div>
         </div>
@@ -50,21 +50,21 @@
         <div ng-show="!displayBox">
           <span class="label label-danger">
             <i class="glyphicon glyphicon-warning-sign"></i>
-            {{ "Danger!" | translate }}
+            <span data-translate>Danger!</span>
           </span>
         </div>
         <div ng-show="displayBox" class="privacyBox-ext">
           <span class="label label-danger">
             <i class="glyphicon glyphicon-warning-sign"></i>
-            {{ "Danger!" | translate }}
+            <span data-translate>Danger!</span>
           </span>
           <div>
             <p>
-              {{ "It appears you are not using Tor, thus you are strongly advised to " | translate }}
+              <span data-translate>It appears you are not using Tor, thus you are strongly advised to</span>
               <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer">
-                {{ "download a copy of the tor browser bundle" | translate }}
+                <span data-translate>download a copy of the tor browser bundle</span>
               </a>
-              {{ "before continuing." | translate }}
+              <span data-translate>before continuing.</span>
             </p>
           </div>
         </div>

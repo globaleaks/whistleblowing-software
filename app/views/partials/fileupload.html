@@ -8,7 +8,7 @@
     <!-- The fileinput-button span is used to style the file input field as button -->
     <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
       <i class="glyphicon glyphicon-paperclip"></i>
-      <span>{{ "Add files" | translate }}</span>
+      <span data-translate>Add files</span>
       <input type="file" name="files[]" multiple ng-disabled="disabled">
     </span>
     <!-- The global file processing state -->
@@ -49,7 +49,7 @@
     <td>
       <button type="button" class="btn btn-warning cancel" data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
         <i class="glyphicon glyphicon-ban-circle"></i>
-        <span>{{ "Cancel" | translate }}</span>
+        <span data-translate>Cancel</span>
       </button>
     </td>
   </tr>

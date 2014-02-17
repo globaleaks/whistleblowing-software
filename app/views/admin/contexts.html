@@ -2,13 +2,13 @@
 
 This comment is needed in order to push the following strings on transifex
 
-{{ "Contexts Configuration" | translate }}
-{{ "Administration Interface" | translate }}
+<span data-translate>Contexts Configuration</span>
+<span data-translate>Administration Interface</span>
 
-{{ "Presentation Order" | translate }} <- this has been removed by the way we
+<span data-translate>Presentation Order</span> <- this has been removed by the way we
                                           do not want to loose present translations
 
-{{ "Click to edit, Drag to order" | translate }}
+<span data-translate>Click to edit, Drag to order</span>
 
 -->
 <div id="ContentBox" class="container">
@@ -20,11 +20,11 @@ This comment is needed in order to push the following strings on transifex
         <div class="row">
           <form name="newContext" novalidate>
             <div class="addContext configItem col-md-6">
-              <h4>{{ "Add new context" | translate }}</h4>
+              <h4><span data-translate>Add new context</span></h4>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>{{ "Name" | translate }}</label>
+                    <label data-translate>Name</label>
                     <input class="form-control" ng-model="new_context_name" type="text" required>
                   </div>
                 </div>
@@ -34,7 +34,7 @@ This comment is needed in order to push the following strings on transifex
                   <div class="form-group">
                     <button class="btn btn-success" ng-disabled="newContext.$invalid" ng-click="add_context(new_context_name)">
                       <i class="glyphicon glyphicon-ok"></i>
-                      {{ "Add" | translate }}
+                      <span data-translate>Add</span>
                     </button>
                   </div>
                 </div>
@@ -49,11 +49,11 @@ This comment is needed in order to push the following strings on transifex
           <div class="row text-right">
             <button class="btn btn-success" ng-click="reorder_contexts_alphabetically()">
               <i class="glyphicon glyphicon-sort-by-alphabet"></i>
-              {{ "Reorder Contexts alphabetically" | translate }}
+              <span data-translate>Reorder Contexts alphabetically</span>
             </button>
             <button class="btn btn-success" ng-click="save_all()" type="submit" >
               <i class="glyphicon glyphicon-ok"></i>
-              {{ "Save All" | translate }}
+              <span data-translate>Save All</span>
             </button>
           </div>
 
@@ -66,24 +66,24 @@ This comment is needed in order to push the following strings on transifex
                   <div class="row" ng-click="toggleEditing()">
                     <div class="editorHeader contextEditorHeader">
                       <div class="col-md-12" ng-show="!editing">
-                        <span class="col-md-6">{{ context.name | translate }}</span>
+                        <span class="col-md-6">{{ context.name }}</span>
                       <span class="pull-right" popover="{{ 'Click to edit, Drag to order' | translate }}" popover-placement="left" popover-trigger="mouseenter">
                         <i class="glyphicon glyphicon-th"></i>
                       </span>
                       </div>
 
                       <div class="col-md-12" ng-show="editing">
-                        <span class="col-md-9">{{ context.name | translate }}</span>
+                        <span class="col-md-9">{{ context.name }}</span>
 
                         <div class="col-md-3 editButtons" ng-show="editing">
                           <button class="btn btn-success saveContext" ng-disabled="contextForm.$pristine" ng-click="update(context)" type="submit" >
                             <i class="glyphicon glyphicon-ok"></i>
-                            {{ "Save" | translate }}
+                            <span data-translate>Save</span>
                           </button>
 
                           <a class="btn btn-danger deleteContext" ng-click="deleteDialog(context)">
                             <i class="glyphicon glyphicon-remove"></i>
-                            {{ "Delete" | translate }}
+                            <span data-translate>Delete</span>
                           </a>
                         </div>
                       </div>
@@ -95,11 +95,11 @@ This comment is needed in order to push the following strings on transifex
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label>{{ "Name" | translate }}</label>
+                          <label data-translate>Name</label>
                           <input class="form-control" ng-maxlength="40" ng-model="context.name" value="{{context.name}}" type="text">
                         </div>
                         <div class="form-group">
-                          <label>{{ "Description" | translate }}</label>
+                          <label data-translate>Description</label>
                           <div>
                             <textarea class="form-control" ng-model="context.description">{{context.description}}</textarea>
                           </div>
@@ -107,7 +107,7 @@ This comment is needed in order to push the following strings on transifex
                         <div ng-include="'views/admin/fieldeditor.html'"></div>
                       </div>
                       <div class="col-md-6">
-                        <label>{{ "Receivers" | translate }}</label>
+                        <label data-translate>Receivers</label>
                         <div class="selectionList">
                           <div ng-repeat="receiver in admin.receivers" ng-class="{clearfix: ($index % 2 == 1) || $last}">
                             <div class="row" ng-click="toggle(receiver)">
@@ -128,61 +128,61 @@ This comment is needed in order to push the following strings on transifex
 
                     <button class="btn btn-info" ng-click="advanced_edit = !advanced_edit" ng-init="advanced_edit=false">
                       <i class="glyphicon glyphicon-plus"></i>
-                      {{ "Advanced settings" | translate }}
+                      <span data-translate>Advanced settings</span>
                     </button>
 
                     <div class="row" ng-show="advanced_edit">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label>{{ "Incomplete submissions expiry time (hours)" | translate }}</label>
+                          <label data-translate>Incomplete submissions expiry time (hours)</label>
                           <input class="form-control" ng-model="context.submission_timetolive" value="{{context.submission_timetolive}}" type="number">
                         </div>
                         <div class="form-group">
-                          <label>{{ "Maximum file downloads" | translate }}</label>
+                          <label data-translate>Maximum file downloads</label>
                           <input class="form-control" ng-model="context.file_max_download" value="{{context.file_max_download}}" type="number">
                         </div>
                         <div class="form-group">
-                          <label>{{ "Submitted Tip expiry time (days)" | translate }}</label>
+                          <label data-translate>Submitted Tip expiry time (days)</label>
                           <input class="form-control" ng-model="context.tip_timetolive" value="{{context.tip_timetolive}}" type="number">
                         </div>
                         <div class="form-group">
-                          <label>{{ "Receipt format (regular expression)" | translate }}</label>
+                          <label data-translate>Receipt format (regular expression)</label>
                           <input class="form-control" ng-model="context.receipt_regexp" value="{{context.receipt_regexp}}" type="text">
                         </div>
                         <div class="form-group table-bordered">
                           <input ng-model="context.file_required" value="{{context.file_required}}" type="checkbox">
-                          <label>{{ "Require at least one file to be uploaded" | translate }}</label>
+                          <label data-translate>Require at least one file to be uploaded</label>
                         </div>
                         <div class="form-group table-bordered">
                           <input ng-model="context.select_all_receivers" value="{{context.select_all_receivers}}" type="checkbox">
-                          <label>{{ "Select all receivers by default" | translate }}</label>
+                          <label data-translate>Select all receivers by default</label>
                         </div>
                         <div class="form-group" ng-show="!context.select_all_receivers">
-                          <label>{{ "Maximum number of Receivers selectable:" | translate }} {{ "(0 = unlimited)" | translate }}</label>
+                          <label><p data-translate>Maximum number of Receivers selectable:</p> <p data-translate>(0 = unlimited)</p></label>
                           <input class="form-control" ng-model="context.maximum_selectable_receivers" value="{{context.maximum_selectable_receivers}}" type="number">
                         </div>
                         <div class="form-group table-bordered">
                           <input ng-model="context.show_small_cards" value="{{context.show_small_cards}}" type="checkbox">
-                          <label>{{ "Show small receiver cards on submission interface" | translate }}</label>
+                          <label data-translate>Show small receiver cards on submission interface</label>
                         </div>
                         <div class="form-group table-bordered">
                           <input ng-model="context.postpone_superpower" value="{{context.postpone_superpower}}" type="checkbox">
-                          <label>{{ "Permit Receivers to postpone expiration date of the Tips" | translate }}</label>
+                          <label data-translate>Permit Receivers to postpone expiration date of the Tips</label>
                           <div ng-show="context.postpone_superpower">
                           <span class="label label-info">
-                            {{ "now Enabled:" | translate }}
+                            <span data-translate>now Enabled:</span>
                           </span>
-                            {{ "Receivers of this Context will be now able to postpone expiration date of the Tips." | translate }}
+                            <span data-translate>Receivers of this Context will be now able to postpone expiration date of the Tips.</span>
                           </div>
                         </div>
                         <div class="form-group table-bordered">
                           <input ng-model="context.can_delete_submission" value="{{context.can_delete_submission}}" type="checkbox">
-                          <label>{{ "Permit Receivers to delete Tips" | translate }}</label>
+                          <label data-translate>Permit Receivers to delete Tips</label>
                           <div ng-show="context.can_delete_submission">
                           <span class="label label-info">
-                            {{ "now Enabled:" | translate }}
+                            <span data-translate>now Enabled:</span>
                           </span>
-                            {{ "Receivers of this Context will be now able to delete Tips and their content." | translate }}
+                            <span data-translate>Receivers of this Context will be now able to delete Tips and their content.</span>
                           </div>
                         </div>
                       </div>

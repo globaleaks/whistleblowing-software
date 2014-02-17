@@ -3,46 +3,46 @@
 
     <div class="form-group table-bordered">
       <input ng-model="admin.node.tor2web_admin" type="checkbox">
-      <label>{{ "Permit Admin access via Tor2web" | translate }}</label>
+      <label data-translate>Permit Admin access via Tor2web</label>
       <div ng-show="admin.node.tor2web_admin">
         <span class="btn-info">
-          {{ "now Enabled:" | translate }}
+          <span data-translate>now Enabled:</span>
         </span>
-        {{ "Admin can access via Tor2web." | translate }} {{ "This is safe only if you're using a dedicated Tor2web server." | translate }}
+        <span data-translate>Admin can access via Tor2web.</span> <span data-translate>This is safe only if you're using a dedicated Tor2web server.</span>
       </div>
     </div>
 
     <div class="form-group table-bordered">
       <input ng-model="admin.node.tor2web_receiver" type="checkbox">
-      <label>{{ "Permit Receivers access via Tor2web" | translate }}</label>
+      <label data-translate>Permit Receivers access via Tor2web</label>
       <div ng-show="admin.node.tor2web_receiver">
         <span class="btn-info">
-          {{ "now Enabled:" | translate }}
+          <span data-translate>now Enabled:</span>
         </span>
-        {{ "Receivers can access via Tor2web." | translate }} {{ "This is dangerous and it's recommended instead to train receivers in the use of Tor and Enigmail." | translate }}
+        <span data-translate>Receivers can access via Tor2web.</span> <span data-translate>This is dangerous and it's recommended instead to train receivers in the use of Tor and Enigmail.</span>
       </div>
     </div>
 
     <div class="form-group table-bordered">
       <input ng-model="admin.node.tor2web_submission" type="checkbox">
-      <label>{{ "Permit Whistleblower submissions via Tor2web" | translate }}</label>
+      <label data-translate>Permit Whistleblower submissions via Tor2web</label>
       <div ng-show="admin.node.tor2web_submission">
         <span class="btn-info">
-          {{ "now Enabled:" | translate }}
+          <span data-translate>now Enabled:</span>
         </span>
-        {{ "Whistleblowers can perform submissions via Tor2web." | translate }}
-        {{ "This won't preserve Whistleblower's anonymity while preserving submission confidentiality." | translate }}
+        <span data-translate>Whistleblowers can perform submissions via Tor2web.</span>
+        <span data-translate>This won't preserve Whistleblower's anonymity while preserving submission confidentiality.</span>
       </div>
     </div>
 
     <div class="form-group table-bordered">
       <input ng-init="admin.node.tor2web_unauth" ng-model="admin.node.tor2web_unauth" type="checkbox">
-      <label>{{ "Permit access of public resources via Tor2web" | translate }}</label>
+      <label data-translate>Permit access of public resources via Tor2web</label>
       <div ng-show="admin.node.tor2web_unauth">
         <span class="btn-info">
-          {{ "now Enabled:" | translate }}
+          <span data-translate>now Enabled:</span>
         </span>
-        {{ "Public resources can be accessed via Tor2web." | translate }}
+        <span data-translate>Public resources can be accessed via Tor2web.</span>
       </div>
     </div>
 

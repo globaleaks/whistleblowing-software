@@ -286,7 +286,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('pushTx', function(){
     var done = this.async();
-
     updateTxSource(done);
   });
 
@@ -301,7 +300,8 @@ module.exports = function(grunt) {
       gt = new Gettext(),
       strings,
       translations = {},
-      translationStringRegexpHTML = /"(.+?)"\s+\|\s+translate/gi,
+      translationStringRegexpHTML1 = /"(.+?)"\s+\|\s+translate/gi,
+      translationStringRegexpHTML2 = /translate>(.+?)</gi,
       translationStringRegexpJSON = /"en": "(.+?)"/gi,
       translationStringCount = 0;
 
@@ -311,10 +311,16 @@ module.exports = function(grunt) {
       var filecontent = grunt.file.read(filepath),
         result;
 
-      while ( (result = translationStringRegexpHTML.exec(filecontent)) ) {
+      while ( (result = translationStringRegexpHTML1.exec(filecontent)) ) {
         gt.setTranslation("en", "", result[1], result[1]);
         translationStringCount += 1;
       }
+
+      while ( (result = translationStringRegexpHTML2.exec(filecontent)) ) {
+        gt.setTranslation("en", "", result[1], result[1]);
+        translationStringCount += 1;
+      }
+
     };
 
     function extractPotFromJSONFile(filepath) {

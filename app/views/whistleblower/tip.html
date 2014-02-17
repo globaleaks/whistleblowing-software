@@ -2,10 +2,10 @@
 
 This comment is needed in order to push the following strings on transifex
 
-{{ "Loading Tip page..." | translate }}
-{{ "Tip Status Page" | translate }}
-{{ "This receiver has configured the encryption key." | translate }}
-{{ "This receiver has not configured the encryption key." | translate }
+<span data-translate>Loading Tip page...</span>
+<span data-translate>Tip Status Page</span>
+<span data-translate>This receiver has configured the encryption key.</span>
+<span data-translate>This receiver has not configured the encryption key.</span>
 
 //-->
 <div id="ContentBox" class="container statusPage ng-cloak">
@@ -20,10 +20,10 @@ This comment is needed in order to push the following strings on transifex
             </a>
           </dt>
           <br />
-          <dt>{{ "Submission date" | translate }}</dt>
+          <dt><span data-translate>Submission date</span></dt>
           <dd>{{ tip.creation_date | date:'dd-MM-yyyy HH:mm' }}</dd>
           <br />
-          <dt>{{ "Expiration Date" | translate }}</dt>
+          <dt><span data-translate>Expiration Date</span></dt>
           <dd>{{ tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}</dd>
         </dl>
         <dl ng-repeat="(fieldName, fieldValue) in tip.fields">
@@ -63,13 +63,13 @@ This comment is needed in order to push the following strings on transifex
 
     <div class="col-md-6">
       <div class="col-md-12">
-        <h3>{{ "Receiver List" | translate }}</h3>
+        <h3 data-translate>Receiver List</h3>
         <table class="table table-striped" id="receiverList">
           <thead>
             <tr>
-              <th>{{ "Name" | translate }}</th>
-              <th>{{ "Description" | translate }}</th>
-              <th>{{ "Access counter" | translate }}</th>
+              <th><span data-translate>Name</span></th>
+              <th><span data-translate>Description</span></th>
+              <th><span data-translate>Access counter</span></th>
             </tr>
           </thead>
           <tbody id="receiverListBody">
@@ -100,7 +100,7 @@ This comment is needed in order to push the following strings on transifex
   <div class="row">
     <div class="col-md-12">
       <h3>
-        {{ "Files" | translate }}
+        <span data-translate>Files</span>
       </h3>
       <div class="well" ng-show="tip.files">
         <div class="table-container">
@@ -108,16 +108,16 @@ This comment is needed in order to push the following strings on transifex
             <thead>
               <tr>
                 <th>
-                  {{ "Filename" | translate }}
+                  <span data-translate>Filename</span>
                 </th>
                 <th>
-                  {{ "Upload Date" | translate }}
+                  <span data-translate>Upload Date</span>
                 </th>
                 <th>
-                  {{ "Content Type" | translate }}
+                  <span data-translate>Content Type</span>
                 </th>
                 <th>
-                  {{ "File Size" | translate }}
+                  <span data-translate>File Size</span>
                 </th>
               </tr>
             </thead>
@@ -144,25 +144,25 @@ This comment is needed in order to push the following strings on transifex
 
         <a class="input-small" ng-click="security_checksum = !security_checksum" ng-init="security_checksum = false" ng-show="!security_checksum">
           <i class="glyphicon glyphicon-plus-sign"></i>
-          {{ "show sha256 checksum" | translate }}
+          <span data-translate>show sha256 checksum</span>
         </a>
         <a class="input-small" ng-click="security_checksum = !security_checksum" ng-show="security_checksum">
           <i class="glyphicon glyphicon-minus-sign"></i>
-          {{ "show sha256 checksum" | translate }}
+          <span data-translate>show sha256 checksum</span>
           <i>
-            {{ "(click again to hide)" | translate }}
+            <span data-translate>(click again to hide)</span>
           </i>
         </a>
       </div>
       <div class="well" ng-show="security_checksum">
         <p>
-          {{ "Use the" | translate }} 
+          <span data-translate>Use the</span> 
           <a href="https://en.wikipedia.org/wiki/SHA-2" target="_blank" rel="noreferrer">
-            {{ "sha256 hash" | translate }}
+            <span data-translate>sha256 hash</span>
           </a> 
-          {{ "to verify the file integrity" | translate }}.
+          <span data-translate>to verify the file integrity</span>.
           <br />
-          {{ "On unix based systems this can be done by running the following command in the directory of the files" | translate }}:
+          <span data-translate>On unix based systems this can be done by running the following command in the directory of the files</span>:
         </p>
         <b>$ shasum -a 256 *</b>
         <div ng-repeat="file in tip.files">
@@ -175,7 +175,7 @@ This comment is needed in order to push the following strings on transifex
 
     <div class="col-md-12" ng-hide="tip.files">
       <p>
-        {{ "No file has been uploaded!" | translate }}
+        <span data-translate>No file has been uploaded!</span>
       </p>
     </div>
 
@@ -190,13 +190,13 @@ This comment is needed in order to push the following strings on transifex
   <div class="row">
     <div class="col-md-5">
       <h3>
-        {{ "Comments" | translate }}
+        <span data-translate>Comments</span>
       </h3>
       <textarea ng-model="newCommentContent" class="form-control"></textarea>
       <br />
       <button class="btn btn-success" ng-click="newComment()" ng-disabled="!newCommentContent || newCommentContent == ''">
         <i class="glyphicon glyphicon-comment"></i>
-        {{ "Add Comment" | translate }}
+        <span data-translate>Add Comment</span>
       </button>
       <br /><br />
       <div ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
@@ -206,7 +206,7 @@ This comment is needed in order to push the following strings on transifex
             <div class="row">
               <div class="col-md-6">
                 <strong>
-                  {{ "Whistleblower" | translate }}
+                  <span data-translate>Whistleblower</span>
                 </strong>
               </div>
               <div class="pull-right" style="margin-right:20px">
@@ -240,16 +240,16 @@ This comment is needed in order to push the following strings on transifex
 
           <div ng-switch-when="system" class="alert alert-warning">
             <strong>
-              {{ "System" | translate }}
+              <span data-translate>System</span>
             </strong>
               <!-- {{comment.content}} -->
               <div ng-switch="" on="comment.system_content.type">
                  <div ng-switch-when="1">
-                   {{ "The user" | translate }}
+                   <span data-translate>The user</span>
                    {{comment.system_content.receiver_name}}
-                   {{ "In date" | translate }}
+                   <span data-translate>In date</span>
                    {{comment.system_content.now | date:'dd-MM-yyyy HH:mm' }}
-                   {{ "has postponed Tip expiration to" | translate }}
+                   <span data-translate>has postponed Tip expiration to</span>
                    {{comment.system_content.expire_on | date:'dd-MM-yyyy HH:mm' }}
                  </div>
               </div>
@@ -263,7 +263,7 @@ This comment is needed in order to push the following strings on transifex
       <div class="row">
         <h3>
           <div class="col-md-6">
-            {{ "Private Messages" | translate }}
+            <span data-translate>Private Messages</span>
           </div>
           <div class="col-md-6">
             <select ng-model="tip.msg_receiver_selected" ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
@@ -274,7 +274,7 @@ This comment is needed in order to push the following strings on transifex
       <br />
       <button class="btn btn-success" ng-click="newMessage()" ng-disabled="!tip.msg_receiver_selected || tip.msg_receiver_selected == '' || !newMessageContent || newMessageContent == ''">
         <i class="glyphicon glyphicon-comment"></i>
-        {{ "Send Private Message" | translate }}
+        <span data-translate>Send Private Message</span>
       </button>
       <br /><br />
       <div ng-repeat="message in tip.messages | orderBy:'creation_date':true">
@@ -284,7 +284,7 @@ This comment is needed in order to push the following strings on transifex
             <div class="row">
               <div class="col-md-6">
                 <strong>
-		  {{ "Whistleblower" | translate }}
+		  <span data-translate>Whistleblower</span>
                 </strong>
               </div>
               <div class="pull-right" style="margin-right:20px">

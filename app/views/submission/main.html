@@ -2,20 +2,22 @@
 
 This comment is needed in order to push the following strings on transifex
 
-{{ "Blow the Whistle" | translate }}
-{{ "This receiver has configured the encryption key." | translate }}
-{{ "This receiver has not configured the encryption key." | translate }
-{{ "Select this receiver." | translate }}
-{{ "Deselect this receiver." | translate }}
+<span data-translate>Blow the Whistle</span>
+<span data-translate>This receiver has configured the encryption key.</span>
+<span data-translate>This receiver has not configured the encryption key.</span>
+<span data-translate>Select this receiver.</span>
+<span data-translate>Deselect this receiver.</span>
 
 -->
 <div class="ng-cloak container" ng-show="!node.configured && node.name">
-  <h2>{{ "This node is not configured." | translate }}</h2>
-  <p>{{ "You will not be able to perform a submission." | translate }}<br />
-  {{ "Admin please configure at least one Context and associated Receivers using" | translate }}
-  <a href="/#/admin/contexts">
-    {{ "Admin management interface" | translate }}
-  </a>.</p>
+  <h2 data-translate>This node is not configured.</h2>
+  <p>
+    <span data-translate>You will not be able to perform a submission.</span><br />
+    <span data-translate>Admin please configure at least one Context and associated Receivers using</span>
+    <a href="/#/admin/contexts">
+      <span data-translate>Admin management interface</span>
+    </a>.
+  </p>
 </div>
 
 <div ng-controller="SubmissionStepsCtrl" id="ContentBox" class="container submission" ng-show="node.name && node.configured">
@@ -28,15 +30,15 @@ This comment is needed in order to push the following strings on transifex
           <div ng-switch="" on="step">
 
             <span ng-switch-when="1">
-              1 - {{ "Receiver selection" | translate }}
+              1 - <span data-translate>Receiver selection</span>
             </span>
 
             <span ng-switch-when="2">
-              2 - {{ "Fill out your submission" | translate }}
+              2 - <span data-translate>Fill out your submission</span>
             </span>
 
             <span ng-switch-when="3">
-              3 - {{ "Final Step" | translate }}
+              3 - <span data-translate>Final Step</span>
             </span>
 
           </div>
@@ -50,11 +52,11 @@ This comment is needed in order to push the following strings on transifex
       <div ng-switch-when="1" class="receiverCards">
         <div id="ContextPickSelector" ng-show="submission.contexts.length > 1">
             <div class="lead">
-              {{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}
+              <span data-translate>Choose the context and receivers that will be sure to transform your submission into action!</span>
             </div>
 
             <span class="lead" ng-show="node.configured">
-              {{ "I want to report on" | translate }}
+              <span data-translate>I want to report on</span>
             </span>
 
             <select class="form-control contexts" ng-model="submission.current_context" ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'">
@@ -71,8 +73,8 @@ This comment is needed in order to push the following strings on transifex
         </div>
 
         <div ng-show="submission.current_context.maximum_selectable_receivers != 0 && !submission.current_context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
-          <div>{{ "Maximum number of Receivers selectable:" | translate }} {{submission.current_context.maximum_selectable_receivers}}</div>
-          <div>{{ "Receivers selected:" | translate }} {{selected_receivers_count()}}</div>
+          <div><span data-translate>Maximum number of Receivers selectable:</span> {{submission.current_context.maximum_selectable_receivers}}</div>
+          <div><span data-translate>Receivers selected:</span> {{selected_receivers_count()}}</div>
         </div>
 
         <div id="ReceiverSelectionBoxBig" ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" ng-show="!submission.current_context.show_small_cards">
@@ -155,7 +157,7 @@ This comment is needed in order to push the following strings on transifex
       <div ng-switch-when="2">
 
         <div class="lead">
-          {{ "Enter the information that is relevant to your submission and possibly upload the relevant accompanying files" | translate }}
+          <span data-translate>Enter the information that is relevant to your submission and possibly upload the relevant accompanying files</span>
         </div>
         <div>
           {{submission.current_context.fields_introduction}}
@@ -183,29 +185,29 @@ This comment is needed in order to push the following strings on transifex
 
           <div class="col-md-12">
             <p class="lead">
-            {{ "To ensure your anonymity be sure that you are visiting this site using the" | translate }}
+            <span data-translate>To ensure your anonymity be sure that you are visiting this site using the</span>
             <a href="https://www.torproject.org/projects/torbrowser.html" target="_blank" rel="noreferrer">Tor Browser Bundle</a>
             </p>
 
             <p class="lead">
-            {{ "You acknowledge that failure to do so will result in the inability to technically protect your anonymity." | translate }}
+            <span data-translate>You acknowledge that failure to do so will result in the inability to technically protect your anonymity.</span>
             </p>
 
             <p class="lead">
-              {{ "To further enhance your security, please follow these instructions:" | translate }}
+              <span data-translate>To further enhance your security, please follow these instructions:</span>
             </p>
 
             <ul class="lead">
-              <li>{{ "In the event that you would like to remain anonymous, do not submit any personal information. (e.g. your name or relationship to the offender. Do not submit any information that can be traced back to you.)" | translate }}</li>
-              <li>{{ "Please do not submit your report on a PC provided by your employer. Particularly an intranet connection may jeopardize your anonymity." | translate }}</li>
+              <li><span data-translate>In the event that you would like to remain anonymous, do not submit any personal information. (e.g. your name or relationship to the offender. Do not submit any information that can be traced back to you.)</span></li>
+              <li><span data-translate>Please do not submit your report on a PC provided by your employer. Particularly an intranet connection may jeopardize your anonymity.</span></li>
             </ul>
 
             <p class="lead">
-              {{ "By checking the box below you agree to these terms and conditions." | translate }}
+              <span data-translate>By checking the box below you agree to these terms and conditions.</span>
             </p>
             <div class="form-group">
               <input ng-model="disclaimer.accepted" value="true" type="checkbox"> 
-              <label>{{ "Agree" | translate }}</label>
+              <label data-translate>Agree</label>
             </div>
 
           </div>
@@ -225,12 +227,12 @@ This comment is needed in order to push the following strings on transifex
       <li ng-class="{disabled: uploading}" class="previous" ng-hide="!hasPreviousStep()">
         <a ng-click="decrementStep()">
           <i class="glyphicon glyphicon-arrow-left"></i>
-          {{ "Previous Step" | translate }}
+          <span data-translate>Previous Step</span>
         </a>
       </li>
       <li ng-class="{disabled: uploading}" class="next" ng-hide="!hasNextStep()">
         <a ng-click="incrementStep()">
-          {{ "Next Step" | translate }}
+          <span data-translate>Next Step</span>
           <i class="glyphicon glyphicon-arrow-right"></i>
         </a>
       </li>
@@ -238,7 +240,7 @@ This comment is needed in order to push the following strings on transifex
     <div class="pager pull-left" style="margin-left: 20px">
       <div class="btn btn-success" ng-click="submit()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
         <i class="glyphicon glyphicon-ok"></i>
-        {{ "Submit" | translate }}
+        <span data-translate>Submit</span>
       </div>
     </div>
 
@@ -252,29 +254,29 @@ This comment is needed in order to push the following strings on transifex
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>{{ "Submission Created!" | translate }}</h2>
+        <h2 data-translate>Submission Created!</h2>
       </div>
       <div class="modal-body">
 
         <p>
-        {{ "This receipt will allow you to login as the whistleblower for this Tip." | translate }}
-        {{ "Through this system receivers will be able to ask you questions on the Tip and you will be able to write a reply." | translate }} 
-        {{ "You will also be able to keep track of who has viewed your submission and downloaded the files." | translate }}
-        {{ "Moreover, it will allow you to add other files to your submission." | translate }} 
+        <span data-translate>This receipt will allow you to login as the whistleblower for this Tip.</span>
+        <span data-translate>Through this system receivers will be able to ask you questions on the Tip and you will be able to write a reply.</span> 
+        <span data-translate>You will also be able to keep track of who has viewed your submission and downloaded the files.</span>
+        <span data-translate>Moreover, it will allow you to add other files to your submission.</span> 
         </p>
 
         <p>
-        {{ "Beware of the fact that this receipt, if fallen into the wrong hands, will lead to identifying you as the whistleblower for this Tip." | translate }}
+        <span data-translate>Beware of the fact that this receipt, if fallen into the wrong hands, will lead to identifying you as the whistleblower for this Tip.</span>
         </p>
     
         <p>
-        {{ "If you are interested in keeping it, please save it in a secure place and make sure it does not fall into the wrong hands" | translate }} 
+        <span data-translate>If you are interested in keeping it, please save it in a secure place and make sure it does not fall into the wrong hands</span> 
         </p>
 
         <h2>{{submission.receipt}}</h2>
 
         <p>
-        {{ "Please copy in the box below your receipt to access the tip interface." | translate }} 
+        <span data-translate>Please copy in the box below your receipt to access the tip interface.</span> 
         </p>
         <input class="form-control" ng-model="receiptConfirmation" type="text">
 
@@ -282,7 +284,7 @@ This comment is needed in order to push the following strings on transifex
       <div class="modal-footer">
         <a ng-click="view_tip(submission.receipt)" ng-disabled="submission.receipt != receiptConfirmation" class="btn btn-success">
          <i class="glyphicon glyphicon-log-in"></i>
-         {{ "View Tip" | translate }}
+         <span data-translate>View Tip</span>
         </a>
       </div>
     </div>
