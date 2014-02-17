@@ -7,19 +7,19 @@
 <div class="modal-body">
   <div class="alert alert-danger">
     <div>
-      {{ "Are you sure you want to postpone tip expiration date?" | translate }}
+      <span data-translate>Are you sure you want to postpone tip expiration date?</span>
       <br />
-      {{ "Clicking extend, you will extend the Tip expiration date to:" | translate }}
+      <span data-translate>Clicking extend, you will extend the Tip expiration date to:</span>
       {{ tip.potential_expiration_date | date:'dd-MM-yyyy HH:mm' }}
     </div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn" ng-click="cancel()">
     <i class="glyphicon glyphicon-remove"></i>
-    {{ "Cancel" | translate }}
+    <span data-translate>Cancel</span>
   </button>
   <button class="btn btn-danger" ng-click="ok()">
     <i class="glyphicon glyphicon-ok"></i>
-    {{ "Confirm Extension" | translate }}
+    <span data-translate>Confirm Extension</span>
   </button>
 </div>

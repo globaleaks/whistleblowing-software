@@ -2,14 +2,14 @@
   <div class="col-md-12">
     <div class="form-group">
       <label>
-        {{ "Graphic Customization" | translate }}
-        ({{ "CSS" | translate}})
+        <span data-translate>Graphic Customization</span>
+        <span data-translate>CSS</span>
       </label>
       <div class="well well-large uploadfile" ng-controller="FileUploadCtrl">
         <span generic-file-upload="" ng-src="/admin/staticfiles/custom_stylesheet">
           <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
             <span class="glyphicon glyphicon-plus"></span>
-            <span>{{ "Load" | translate }}</span>
+            <span data-translate>Load</span>
             <input type="file" name="files[]" multiple ng-disabled="disabled">
           </span>
         </span>
@@ -20,24 +20,22 @@
         </span>
         <a class="btn btn-primary" ng-class="{disabled: disabled}" ng-href="{{'/custom_stylesheet.css'}}" download="{{'custom_stylesheet.css'}}">
           <span class="glyphicon glyphicon-download"></span>
-          <span>{{ "Download" | translate }}</span>
+          <span data-translate>Download</span>
         </a>
         <div>
           <input ng-model="admin.node.reset_css" type="checkbox">
-          <label>{{ "Reset custom CSS" | translate}}</label>
+          <label data-translate>Reset custom CSS</label>
         </div>
       </div>
       <br /><br />
-      <label>
-        {{ "Load Custom File" | translate }}
-      </label>
+      <label data-translate>Load Custom File</label>
       <br />
-      {{ "The file will be available at the url: /static/$filename" | translate }}
+      <span data-translate>The file will be available at the url: /static/$filename</span>
       <div class="well well-large uploadfile" ng-controller="FileUploadCtrl">
         <span generic-file-upload="" ng-src="/admin/staticfiles/customization">
           <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
             <span class="glyphicon glyphicon-plus"></span>
-            <span>{{ "Load" | translate }}</span>
+            <span data-translate>Load</span>
             <input type="file" name="files[]" multiple ng-disabled="disabled">
           </span>
         </span>
@@ -52,10 +50,10 @@
           <thead>
             <tr>
               <th>
-                {{ "Filename" | translate }}
+                <span data-translate>Filename</span>
               </th>
               <th>
-                {{ "File Operations" | translate }}
+                <span data-translate>File Operations</span>
               </th>
             </tr>
           </thead>
@@ -67,11 +65,11 @@
               <td>
                 <a class="btn btn-primary" ng-href="{{'/static/' + file.filename}}" download="{{file.filename}}">
                   <span class="glyphicon glyphicon-download"></span>
-                  <span>{{ "Download" | translate }}</span>
+                  <span data-translate>Download</span>
                 </a>
                 <button class="btn btn-danger" ng-click="delete('/admin/staticfiles/' + file.filename)">
                   <span class="glyphicon glyphicon-trash"></span>
-                  <span>{{ "Delete" | translate }}</span>
+                  <span data-translate>Delete</span>
                 </button>
               </td>
             </tr>

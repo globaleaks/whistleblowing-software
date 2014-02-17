@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-md-6">
     <div class="form-group">
-      <label>{{ "Current initiative logo" | translate }}</label>
+      <label data-translate>Current initiative logo</label>
       <div class="imageUpload" ng-controller="FileUploadCtrl">
         <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
           <div ng-show="uploadfile" class="uploadfile">
             <span class="col-md-12 changePicture">
-              {{ "Change picture" | translate }}
+              <span data-translate>Change picture</span>
             </span>
             <div pragmatic-file-upload="" ng-src="/admin/staticfiles/globaleaks_logo">
               <div class="fileselector">
@@ -25,59 +25,59 @@
     </div>
 
     <div class="form-group">
-      <label>{{ "Node name" | translate }}</label>
+      <label data-translate>Node name</label>
       <input class="form-control" ng-model="admin.node.name" value="{{admin.node.name}}" type="text">
     </div>
 
     <div class="form-group">
-      <label>{{ "Node Subtitle" | translate }}</label>
+      <label data-translate>Node Subtitle</label>
       <input class="form-control" ng-model="admin.node.subtitle" value="{{admin.node.subtitle}}" type="text">
     </div>
 
     <div class="form-group">
-      <label>{{ "Description" | translate }}</label>
+      <label data-translate>Description</label>
       <div>
         <textarea class="form-control" ng-model="admin.node.description">{{admin.node.description}}</textarea>
       </div>
     </div>
 
     <div class="form-group">
-      <label>{{ "Presentation" | translate }}</label>
+      <label data-translate>Presentation</label>
       <div>
         <textarea class="form-control" ng-model="admin.node.presentation">{{admin.node.presentation}}</textarea>
       </div>
     </div>
 
     <div class="form-group">
-      <label>{{ "Footer" | translate }}</label>
+      <label data-translate>Footer</label>
       <div>
         <textarea class="form-control" ng-model="admin.node.footer">{{admin.node.footer}}</textarea>
       </div>
     </div>
 
     <div class="form-group">
-      <label>{{ "Install default fields" | translate }}</label>
+      <label data-translate>Install default fields</label>
       <div>
         <button class="btn btn-primary" ng-click="install_default_fields()">
           <span class="glyphicon glyphicon-floppy-open"></span>
-          <span>{{ "Install" | translate }}</span>
+          <span data-translate>Install</span>
         </button>
       </div>
     </div>
 
     <div class="form-group">
-      <label>{{ "Tor Hidden Service (url)" | translate }}</label>
+      <label data-translate>Tor Hidden Service (url)</label>
       <input class="form-control" name="hidden_service" ng-model="admin.node.hidden_service" ng-pattern="/^http://[0-9a-z]{16}\.onion$/" type="text">
       <p class="has-error" ng-show="contentForm.hidden_service.$error.pattern">
-        {{ "Invalid format for hidden service (should be http://thirteenchars123.onion)" | translate }}
+        <span data-translate>Invalid format for hidden service (should be http://thirteenchars123.onion)</span>
       </p>
     </div>
 
     <div class="form-group">
-      <label>{{ "Tor2web Public Site (url)" | translate }}</label>
+      <label data-translate>Tor2web Public Site (url)</label>
       <input class="form-control" name="public_site" ng-model="admin.node.public_site" ng-pattern="/^https://[0-9a-z.:]*$/" type="url">
       <p class="has-error" ng-show="contentForm.public_site.$error.pattern">
-        {{ "Invalid format for public site (should be https://thirteenchars123.tor2web.org)" | translate }}
+        <span data-translate>Invalid format for public site (should be https://thirteenchars123.tor2web.org)</span>
       </p>
     </div>
   </div>

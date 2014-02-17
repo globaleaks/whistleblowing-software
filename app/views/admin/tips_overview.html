@@ -2,8 +2,8 @@
 
 This comment is needed in order to push the following strings on transifex
 
-{{ "Tips Overview" | translate }}
-{{ "Administration Interface" | translate }}
+<span data-translate>Tips Overview</span>
+<span data-translate>Administration Interface</span>
 
 -->
 <div id="ContentBox" class="container"   ng-controller="OverviewCtrl">
@@ -11,46 +11,46 @@ This comment is needed in order to push the following strings on transifex
     <div id="ConfigSidebarBox" class="col-md-3" ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
       <p>
-      {{ "This interface may help you understand how the Node is used by the whistleblower. We present you with the submissions currently on the node and a few statistics on the kind of usage (activity, files, comments)." | translate }}
+      <span data-translate>This interface may help you understand how the Node is used by the whistleblower. We present you with the submissions currently on the node and a few statistics on the kind of usage (activity, files, comments).</span>
       </p>
       <div class="row">
         <div class="col-md-12">
           <div class="form-horizontal">
             <span class="form-group col-md-6" ng-init="orderProp='creation_date'">
               <label class="control-label col-md-4">
-                {{ "Order by:" | translate }}
+                <span data-translate>Order by:</span>
               </label>
               <div class="col-md-6">
                 <select ng-model="orderProp" class="form-control">
                   <option value="status">
-                    {{ "Status" | translate }}
+                    <span data-translate>Status</span>
                   </option>
                   <option value="creation_date">
-                    {{ "Creation" | translate }}
+                    <span data-translate>Creation</span>
                   </option>
                   <option value="expiration_date">
-                    {{ "Expiration" | translate }}
+                    <span data-translate>Expiration</span>
                   </option>
                   <option value="wb_last_access">
-                    {{ "WB Last Access" | translate }}
+                    <span data-translate>WB Last Access</span>
                   </option>
                   <option value="context_name">
-                    {{ "Context Name" | translate }}
+                    <span data-translate>Context Name</span>
                   </option>
                 </select>
               </div>
             </span>
             <span class="form-group col-md-6" ng-init="reverse='true'">
               <label class="control-label col-md-4">
-                {{ "Order:" | translate }}
+                <span data-translate>Order:</span>
               </label>
               <div class="col-md-4">
                 <select ng-model="reverse" class="form-control">
                   <option value="true">
-                    {{ "Desc" | translate }}
+                    <span data-translate>Desc</span>
                   </option>
                   <option value="false">
-                    {{ "Asc" | translate }}
+                    <span data-translate>Asc</span>
                   </option>
                 </select>
               </div>
@@ -63,12 +63,12 @@ This comment is needed in order to push the following strings on transifex
           <thead>
             <tr>
               <th class="col-md-1">
-                {{ "Status" | translate }}
+                <span data-translate>Status</span>
               </th>
               <th class="col-md-5">
-                {{ "Date" | translate }}
+                <span data-translate>Date</span>
               </th>
-              <th>{{ "Info" | translate }}</th>
+              <th><span data-translate>Info</span></th>
             </tr>
           </thead>
 
@@ -78,7 +78,7 @@ This comment is needed in order to push the following strings on transifex
               <td class="col-md-5">
                 <div class="row">
                   <span class="col-md-6">
-                    <b>{{ "Creation Date" | translate }}</b>
+                    <b><span data-translate>Creation Date</span></b>
                   </span>
                   <span class="col-md-6">
                     {{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}
@@ -86,7 +86,7 @@ This comment is needed in order to push the following strings on transifex
                 </div>
                 <div class="row">
                   <span class="col-md-6">
-                    <b>{{ "Expiration Date" | translate }}</b>
+                    <b><span data-translate>Expiration Date</span></b>
                   </span>
                   <span class="col-md-6">
                     {{tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}
@@ -94,7 +94,7 @@ This comment is needed in order to push the following strings on transifex
                 </div>
                 <div class="row">
                   <span class="col-md-6">
-                    <b>{{ "WB Last Access" | translate }}</b>
+                    <b><span data-translate>WB Last Access</span></b>
                   </span>
                   <span class="col-md-6">
                     {{tip.wb_last_access | date:'dd-MM-yyyy HH:mm' }} ({{tip.wb_access_counter}})
@@ -104,14 +104,14 @@ This comment is needed in order to push the following strings on transifex
               <td class="col-md-6">
                 <div class="row">
                   <div class="col-md-12">
-                    <b>{{ "Context" | translate }}:</b>
+                    <b><span data-translate>Context</span>:</b>
                     <a href="/#/admin/contexts">{{tip.context_name}}</a>
                   </div>
                 </div>
                 <br />
                 <div class="row">
                   <div class="col-md-12">
-                    <b>{{ "Receiver Tips" | translate }}:</b>
+                    <b><span data-translate>Receiver Tips</span>:</b>
                   </div>
                 </div>
                 <div class="row">
@@ -127,7 +127,7 @@ This comment is needed in order to push the following strings on transifex
                 <br />
                 <div class="row">
                   <div class="col-md-12">
-                    <b>{{ "Files" | translate }}:</b>
+                    <b><span data-translate>Files</span>:</b>
                   </div>
                   <div class="col-sm-offset-1 col-md-11">
                     <div ng-repeat="ifile in tip.internalfiles">
@@ -139,7 +139,7 @@ This comment is needed in order to push the following strings on transifex
                 <br />
                 <div class="row">
                   <div class="col-md-12">
-                    <b>{{ "Comments" | translate }}:</b>
+                    <b><span data-translate>Comments</span>:</b>
                   </div>
                   <div class="col-sm-offset-1 col-md-11">
                     <div ng-repeat="comment in tip.comments">

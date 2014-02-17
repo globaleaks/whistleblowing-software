@@ -2,10 +2,10 @@
 
 This comment is needed in order to push the following strings on transifex
 
-{{ "System Checks" | translate }}
-{{ "Anomalies Checks" | translate }}
-{{ "Administration Interface" | translate }}
-{{ "Here you can check the latest anomalies detected" | translate }}
+<span data-translate>System Checks</span>
+<span data-translate>Anomalies Checks</span>
+<span data-translate>Administration Interface</span>
+<span data-translate>Here you can check the latest anomalies detected</span>
 
 -->
 <div id="ContentBox" class="container" ng-controller="StatisticsCtrl">
@@ -14,27 +14,27 @@ This comment is needed in order to push the following strings on transifex
     <div class="col-md-9">
       <div class="row">
         <div class="col-md-12">
-          <h3>{{ "System Stats" | translate }}</h3>
+          <h3 data-translate>System Stats</h3>
           <p>
-            {{ "This interface shows you the statistics for the last hours." | translate }}
+            <span data-translate>This interface shows you the statistics for the last hours.</span>
           </p>
           <table class="table table-bordered" id="receiverList">
           <thead>
               <tr>
                 <th class="col-md-2">
-                  {{ "Date" | translate }}
+                  <span data-translate>Date</span>
                 </th>
                 <th class="col-md-2">
-                  {{ "New Submissions" | translate }}
+                  <span data-translate>New Submissions</span>
                 </th>
                 <th class="col-md-2">
-                  {{ "Finalized Submissions" | translate }}
+                  <span data-translate>Finalized Submissions</span>
                 </th>
                 <th class="col-md-2">
-                  {{ "File Uploads" | translate }}
+                  <span data-translate>File Uploads</span>
                 </th>
                 <th class="col-md-2">
-                  {{ "Unauthenticated Requests" | translate }}
+                  <span data-translate>Unauthenticated Requests</span>
                 </th>
               </tr>
             </thead>
@@ -60,18 +60,18 @@ This comment is needed in order to push the following strings on transifex
           </table>
         </div>
         <div class="col-md-12" ng-show="anomaly_checks">
-          <h3>{{ "Anomalies Checks" | translate }}</h3>
+          <h3 data-translate>Anomalies Checks</h3>
           <p>
-            {{ "This interface shows the latest anomalies spotted by the system." | translate }}
+            <span data-translate>This interface shows the latest anomalies spotted by the system.</span>
           </p>
           <table class="table table-bordered">
           <thead>
               <tr>
                 <th class="col-md-2">
-                  {{ "Date" | translate }}
+                  <span data-translate>Date</span>
                 </th>
                 <th class="col-md-10">
-                  {{ "Anomaly Description" | translate }}
+                  <span data-translate>Anomaly Description</span>
                 </th>
               </tr>
             </thead>

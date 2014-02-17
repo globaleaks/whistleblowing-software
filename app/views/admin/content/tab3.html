@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6">
     <div class="form-group">
-      <label>{{ "Languages Configuration" | translate }}</label>
+      <label data-translate>Languages Configuration</label>
       <div ng-repeat="language in admin.node.languages_supported | orderBy:'name'">
         <div>
           <input ng-model="languages_enabled_edit[language.code]" type="checkbox">
@@ -16,7 +16,7 @@
             <span pragmatic-file-upload="" ng-src="{{'/l10n/' + language.code + '.json' }}">
               <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
                 <span class="glyphicon glyphicon-plus"></span>
-                <span>{{ "Load" | translate }}</span>
+                <span data-translate>Load</span>
                 <input type="file" name="files[]" multiple ng-disabled="disabled">
               </span>
             </span>
@@ -27,11 +27,11 @@
             </span>
             <a class="btn btn-primary" ng-class="{disabled: disabled}" ng-href="{{'/l10n/' + language.code + '.json'}}" download="{{language.code + '.json'}}">
               <span class="glyphicon glyphicon-download"></span>
-              <span>{{ "Download" | translate }}</span>
+              <span data-translate>Download</span>
             </a>
             <a class="btn btn-danger" ng-class="{disabled: disabled}" ng-click="delete('/l10n/' + language.code + '.json')">
               <span class="glyphicon glyphicon-trash"></span>
-              <span>{{ "Reset" | translate }}</span>
+              <span data-translate>Reset</span>
             </a>
           </div>
         </div>
@@ -39,7 +39,7 @@
     </div>
 
     <div class="form-group">
-      <label>{{ "Default language" | translate }}</label>
+      <label data-translate>Default language</label>
       <select class="form-control" ng-model="admin.node.default_language" ng-options="item.code as item.name for item in languages_default_selector | orderBy:'name'"></select>
     </div>
   </div>

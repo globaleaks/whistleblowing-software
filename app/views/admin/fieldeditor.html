@@ -2,17 +2,17 @@
 
 This comment is needed in order to push the following strings on transifex
 
-{{ "Delete" | translate }}
+<span data-translate>Delete</span>
 
 -->
 
 <br />
 <div class="row">
   <div class="col-md-12">
-    <label>{{ "Fields" | translate }}</label>
+    <label data-translate>Fields</label>
     <a ng-click="addField(context)">
       <i class="glyphicon glyphicon-plus-sign"></i> 
-      {{ "add field" | translate }}
+      <span data-translate>add field</span>
     </a>
   </div>
 </div>
@@ -33,53 +33,53 @@ This comment is needed in order to push the following strings on transifex
 
       <div ng-form="" name="newField" class="fieldEditorBody" ng-show=editing>
         <div class="form-group">
-          <label>{{ "Name" | translate }}</label>
+          <label data-translate>Name</label>
           <input class="form-control" ng-model="field.name" type="text">
         </div>
         <div class="form-group">
-          <label>{{ "Hint" | translate }}</label>
+          <label data-translate>Hint</label>
           <input class="form-control" ng-model="field.hint" type="text">
         </div>
         <div class="form-group">
           <input ng-model="field.required" type="checkbox">
-          <label>{{ "Required" | translate }}</label>
+          <label data-translate>Required</label>
         </div>
         <div class="form-group">
           <input ng-model="field.preview" type="checkbox">
-          <label>{{ "Show in preview" | translate }}</label>
+          <label data-translate>Show in preview</label>
         </div>
         <div class="form-group">
-          <label>{{ "Type" | translate }}</label>
+          <label data-translate>Type</label>
           <select id="editFieldType" class="form-control" ng-model="field.type" ng-required="">
             <option value="text">
-              {{ "Text" | translate }}
+              <span data-translate>Text</span>
             </option>
             <option value="radio">
-              {{ "Radio Buttons" | translate }}
+              <span data-translate>Radio Buttons</span>
             </option>
             <option value="select">
-              {{ "Drop Menu (Select)" | translate }}
+              <span data-translate>Drop Menu (Select)</span>
             </option>
             <option value="multiple">
-              {{ "Multi-Select" | translate }}
+              <span data-translate>Multi-Select</span>
             </option>
             <option value="checkboxes">
-              {{ "Checkboxes" | translate }}
+              <span data-translate>Checkboxes</span>
             </option>
             <option value="textarea">
-              {{ "Paragraph(s)" | translate }}
+              <span data-translate>Paragraph(s)</span>
             </option>
             <option value="number">
-              {{ "Number" | translate }}
+              <span data-translate>Number</span>
             </option>
             <option value="url">
-              {{ "Url" | translate }}
+              <span data-translate>Url</span>
             </option>
             <option value="phone">
-              {{ "Phone" | translate }}
+              <span data-translate>Phone</span>
             </option>
             <option value="email">
-              {{ "Email" | translate }}
+              <span data-translate>Email</span>
             </option>
           </select>
         </div>
@@ -92,7 +92,7 @@ This comment is needed in order to push the following strings on transifex
               <div ng-repeat="option in field.options">
                 <form class="form-inline">
                   <div class="form-group">
-                    <label>{{ "Name" | translate }}</label>
+                    <label data-translate>Name</label>
                     <input class="form-control" placeholder="name" ng-model="option.name" ng-change="updateValue(option)" type="text">
                   </div>
                 </form>
@@ -100,7 +100,7 @@ This comment is needed in order to push the following strings on transifex
               <div>
                 <button class="btn btn-info" ng-click="addOption(field)">
                   <i class="glyphicon glyphicon-plus-sign"></i> 
-                  {{ "Add option" | translate }}
+                  <span data-translate>Add option</span>
                 </button>
               </div>
             </div>

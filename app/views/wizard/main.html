@@ -2,8 +2,8 @@
 
 This comment is needed in order to push the following strings on transifex
 
-{{ "GlobaLeaks Wizard" | translate }}
-{{ "Step by step setup" | translate }}
+<span data-translate>GlobaLeaks Wizard</span>
+<span data-translate>Step by step setup</span>
 
 -->
 
@@ -13,36 +13,36 @@ This comment is needed in order to push the following strings on transifex
 
     <h2>
       <strong>
-        {{ "Welcome to GlobaLeaks!" | translate }}
+        <span data-translate>Welcome to GlobaLeaks!</span>
       </strong>
     </h2>
-    <h3>{{ "The following step by step wizard will guide you to configure your whisleblowing site." | translate }}</h3>
+    <h3 data-translate>The following step by step wizard will guide you to configure your whisleblowing site.</h3>
     <br />
     <div class="row bordered">
-      <h2>{{ "General" | translate }}</h2>
+      <h2 data-translate>General</h2>
 
       <div class="col-md-6">
 
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            {{ "Initiative name" | translate }}
+            <span data-translate>Initiative name</span>
           </label>
           <div class="col-md-8">
             <input type="text" class="form-control" ng-model="admin.node.name" placeholder="" required>
             <span class="help-block">
-              {{ "Enter the name for your whistleblowing initiative" | translate }}
+              <span data-translate>Enter the name for your whistleblowing initiative</span>
             </span>
           </div>
         </div>
 
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            {{ "Initiative description" | translate }}
+            <span data-translate>Initiative description</span>
           </label>
           <div class="col-md-8">
             <textarea type="text" class="form-control" ng-model="admin.node.description" required></textarea>
             <span class="help-block">
-              {{ "Give a concise description of your project" | translate }}
+              <span data-translate>Give a concise description of your project</span>
             </span>
           </div>
         </div>
@@ -50,64 +50,64 @@ This comment is needed in order to push the following strings on transifex
       </div>
       <div class="col-md-6">
         <p class="help-hint">
-          {{ "Give your whistleblowing initiative a good name and description to invite whistleblowers to submit. Be sure to make it clear the goals of your project" | translate }}
+          <span data-translate>Give your whistleblowing initiative a good name and description to invite whistleblowers to submit. Be sure to make it clear the goals of your project</span>
         </p>
       </div>
 
     </div>
     
     <div class="row bordered">
-      <h2>{{ "Admin" | translate }}</h2>
+      <h2 data-translate>Admin</h2>
 
       <div class="col-md-6">
 
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            {{ "Email" | translate }}
+            <span data-translate>Email</span>
           </label>
           <div class="col-md-8">
             <input type="text" class="form-control" placeholder="" ng-model="admin.node.email" required>
             <span class="help-block">
-              {{ "Enter your email address" | translate }}
+              <span data-translate>Enter your email address</span>
             </span>
           </div>
         </div>
 
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            {{ "Password" | translate }}
+            <span data-translate>Password</span>
           </label>
           <div class="col-md-8">
             <input type="password" class="form-control" placeholder="" ng-model="admin.node.password" required>
             <span class="help-block">
-              {{ "Enter a new globaleaks node password" | translate }}
+              <span data-translate>Enter a new globaleaks node password</span>
             </span>
             <p class="has-error" ng-show="unsafe_password">
-              {{ "The choosen password is unsafe, it should have" | translate }}:
+              <span data-translate>The choosen password is unsafe, it should have</span>:
             </p>
             <li class="has-error" ng-hide="pwdHasLetter">
-              {{ "At least one letter" | translate }}
+              <span data-translate>At least one letter</span>
             </li>
             <li class="has-error" ng-hide="pwdHasNumber">
-              {{ "At least one number" | translate }}
+              <span data-translate>At least one number</span>
             </li>
             <li class="has-error" ng-hide="pwdValidLength">
-              {{ "At least 8 keypress long" | translate }}
+              <span data-translate>At least 8 keypress long</span>
             </li>
           </div>
         </div>
 
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            {{ "Confirm password" | translate }}
+            <span data-translate>Confirm password</span>
           </label>
           <div class="col-md-8">
             <input type="password" class="form-control" placeholder="" ng-model="admin.node.check_password" required>
             <span class="help-block">
-              {{ "Please confirm it" | translate }}
+              <span data-translate>Please confirm it</span>
             </span>
             <p class="has-error" ng-show="mismatch_password">
-              {{ "The two passwords do not match" | translate }}
+              <span data-translate>The two passwords do not match</span>
             </p>
           </div>
         </div>
@@ -115,25 +115,25 @@ This comment is needed in order to push the following strings on transifex
       </div>
       <div class="col-md-6">
         <p class="help-hint">
-        {{ "There are three types of users inside of GlobaLeaks: the administrator, the receivers and the whistleblower. Your username for accessing the node as administrator will be 'admin'." | translate }}
+        <span data-translate>There are three types of users inside of GlobaLeaks: the administrator, the receivers and the whistleblower. Your username for accessing the node as administrator will be 'admin'.</span>
         </p>
       </div>
 
     </div>
 
     <div class="row bordered">
-      <h2>{{ "Receiver" | translate }}</h2>
+      <h2 data-translate>Receiver</h2>
 
       <div class="col-md-6">
 
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            {{ "Name" | translate }}
+            <span data-translate>Name</span>
           </label>
           <div class="col-md-8">
             <input type="text" class="form-control" placeholder="" ng-model="receiver.name" required>
             <span class="help-block">
-              {{ "Enter the name of the receiver" | translate }}
+              <span data-translate>Enter the name of the receiver</span>
             </span>
           </div>
         </div>
@@ -143,22 +143,22 @@ This comment is needed in order to push the following strings on transifex
           <div class="col-md-8">
             <input name="receiver_mail" type="email" class="form-control" placeholder="" ng-model="receiver.mail_address" required>
             <span class="help-block">
-              {{ "Enter the email address through which the receiver will be notified" | translate }}
+              <span data-translate>Enter the email address through which the receiver will be notified</span>
             </span>
             <p class="has-error" ng-show="wizard.receiver_mail.$error.email">
-              {{ "Invalid email address" | translate }}
+              <span data-translate>Invalid email address</span>
             </p>
           </div>
         </div>
 
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            {{ "Password" | translate }}
+            <span data-translate>Password</span>
           </label>
           <div class="col-md-8">
             <input name="receiver_password" type="text" class="form-control" placeholder="" ng-model="receiver.password" required ng-value="{{receiver.password}}" readonly>
             <span class="help-block">
-              {{ "This is the password that the receiver must use to login to their tip page." | translate }}
+              <span data-translate>This is the password that the receiver must use to login to their tip page.</span>
             </span>
           </div>
         </div>
@@ -166,25 +166,25 @@ This comment is needed in order to push the following strings on transifex
       </div>
       <div class="col-md-6">
         <p class="help-hint bg-warning">
-        {{ "Receivers are very important for a GlobaLeaks based initiative. They are the people responsible for receiving the whistleblower submissions, verifying their authenticity and taking action upon them. Choose them wisely." | translate }}
+          <span data-translate>Receivers are very important for a GlobaLeaks based initiative. They are the people responsible for receiving the whistleblower submissions, verifying their authenticity and taking action upon them. Choose them wisely.</span>
         </p>
       </div>
 
     </div>
 
     <div class="row bordered">
-      <h2>{{ "Context" | translate }}</h2>
+      <h2 data-translate>Context</h2>
 
       <div class="col-md-6">
 
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            {{ "Name" | translate }}
+            <span data-translate>Name</span>
           </label>
           <div class="col-md-8">
             <input type="text" class="form-control" placeholder="" ng-model="context.name" required>
             <span class="help-block">
-              {{ "What is the topic of your whistleblowing initiative" }}
+              <span data-translate>What is the topic of your whistleblowing initiative</span>
             </span>
           </div>
         </div>
@@ -192,7 +192,7 @@ This comment is needed in order to push the following strings on transifex
       </div>
       <div class="col-md-6">
         <p class="help-hint">
-        {{ "The contexts are the categories to be selected by a whistleblower, when they perform their submission. Make sure to make it something pertinent to your initiative." | translate }}
+          <span data-translate>The contexts are the categories to be selected by a whistleblower, when they perform their submission. Make sure to make it something pertinent to your initiative.</span>
         </p>
       </div>
 
@@ -204,11 +204,11 @@ This comment is needed in order to push the following strings on transifex
         <p class="congratulations">
           <label>
             <strong>
-              {{ "Congratulations!" | translate }}
+              <span data-translate>Congratulations!</span>
             </strong>
           </label>
           <div>
-            {{ "You have finished configuring your GlobaLeaks site. You are now ready to future tweak it inside of the admin interface." | translate }}
+            <span data-translate>You have finished configuring your GlobaLeaks site. You are now ready to future tweak it inside of the admin interface.</span>
           </div>
         </p>
       </div>

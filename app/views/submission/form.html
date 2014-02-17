@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>{{ "Details" | translate }}</legend>
+  <legend><span data-translate>Details</span></legend>
   <div ng-repeat="field in submission.current_context.fields">
     <div ng-form="" name="subForm">
       <div ng-switch="" on="field.type">
@@ -45,7 +45,7 @@
       </div>
 
       <p class="has-error" ng-show="subForm.input.$error.required">
-      {{"This field cannot be empty" | translate }}
+      <span data-translate>This field cannot be empty</span>
       </p>
 
     </div>

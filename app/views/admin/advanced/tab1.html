@@ -1,65 +1,65 @@
 <div class="row">
   <div class="col-md-6">
     <p>
-      <b>{{ "You're running GlobaLeaks version" | translate }} {{admin.node.version}}</b>
+      <b><span data-translate>You're running GlobaLeaks version</span> {{admin.node.version}}</b>
     </p>
 
     <p>
-      {{ "This section contains settings that may make your installation not work properly. Please refer to the " | translate }}
+      <span data-translate>This section contains settings that may make your installation not work properly. Please refer to the</span>
       <a href="https://github.com/globaleaks/GlobaLeaks/wiki/Advanced-configuration" target="_blank" rel="noreferrer">Advanced configuration</a>.
     </p>
 
     <div class="form-group">
-      <label>{{ "Exception mail address" | translate }}</label>
+      <label data-translate>Exception mail address</label>
       <input class="form-control" ng-model="admin.node.exception_email" type="text">
     </div>
 
     <div class="form-group table-bordered">
       <label>
         <input ng-model="admin.node.anomaly_checks" type="checkbox">
-        {{ "Enable anomaly checks" | translate }}
+        <span data-translate>Enable anomaly checks</span>
       </label>
       <div ng-show="admin.node.anomaly_checks">
         <span class="btn-info">
-        {{ "now Enabled:" | translate }}
+        <span data-translate>now Enabled:</span>
         </span>
-        {{ "Anomaly checks will be now performed on each request." | translate }}
+        <span data-translate>Anomaly checks will be now performed on each request.</span>
       </div>
     </div>
 
     <div class="form-group">
-      <label>{{ "File size limit (in Megabytes)" | translate }}</label>
+      <label data-translate>File size limit (in Megabytes)</label>
       <input class="form-control" ng-model="admin.node.maximum_filesize" type="text">
     </div>
 
     <div class="form-group">
-      <label>{{ "Text size limit (in bytes)" | translate }}</label>
+      <label data-translate>Text size limit (in bytes)</label>
       <input class="form-control" ng-model="admin.node.maximum_textsize" type="text">
     </div>
 
     <div class="form-group table-bordered">
       <label>
         <input ng-model="admin.node.postpone_superpower" type="checkbox">
-        {{ "Permit Receivers to postpone expiration date of the Tips" | translate }}
+        <span data-translate>Permit Receivers to postpone expiration date of the Tips</span>
       </label>
       <div ng-show="admin.node.postpone_superpower">
         <span class="btn-info">
-        {{ "now Enabled:" | translate }}
+        <span data-translate>now Enabled:</span>
         </span>
-        {{ "Receivers will be now able to postpone Tips expiration." | translate }}
+        <span data-translate>Receivers will be now able to postpone Tips expiration.</span>
       </div>
     </div>
 
     <div class="form-group table-bordered">
       <label>
         <input ng-model="admin.node.can_delete_submission " type="checkbox">
-        {{ "Permit Receivers to delete Tips" | translate }}
+        <span data-translate>Permit Receivers to delete Tips</span>
       </label>
       <div ng-show="admin.node.can_delete_submission">
         <span class="btn-info">
-        {{ "now Enabled:" | translate }}
+        <span data-translate>now Enabled:</span>
         </span>
-	{{ "Receivers will be now able to delete Tips and their content." | translate }}
+	<span data-translate>Receivers will be now able to delete Tips and their content.</span>
       </div>
     </div>
 

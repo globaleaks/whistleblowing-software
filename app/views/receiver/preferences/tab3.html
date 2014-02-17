@@ -2,9 +2,9 @@
   <div ng-show="preferences.gpg_key_info">
 
     <p>
-      {{ "PGP Key details" | translate }}
+      <span data-translate>PGP Key details</span>
       <br />
-      {{ "The fingerprint is:" | translate }}
+      <span data-translate>The fingerprint is:</span>
       <b>{{preferences.gpg_key_fingerprint}}</b>
     </p>
 
@@ -15,35 +15,35 @@
     <div class="form-group table-bordered">
       <label>
         <input ng-model="preferences.gpg_enable_notification" type="checkbox">
-        {{ "Enable encrypted notification" | translate }}
+        <span data-translate>Enable encrypted notification</span>
       </label>
       <div ng-show="preferences.gpg_enable_notification">
         <span class="label label-success">
-          {{ "now Enabled:" | translate }}
+          <span data-translate>now Enabled:</span>
         </span>
-        {{ "Every notification will be encrypted with the PGP key." | translate }}
+        <span data-translate>Every notification will be encrypted with the PGP key.</span>
       </div>
       <div ng-show="!preferences.gpg_enable_notification">
         <span class="label label-danger">
-          {{ "now Disabled:" | translate }}
+          <span data-translate>now Disabled:</span>
         </span>
-        {{ "Every notification won't be encrypted." | translate }}
+        <span data-translate>Every notification won't be encrypted.</span>
       </div>
     </div>
 
     <div class="form-group table-bordered" ng-show="preferences.gpg_key_fingerprint">
       <input ng-model="preferences.gpg_key_remove" type="checkbox">
-      <label>{{ "Remove the PGP key" | translate }}</label>
+      <label data-translate>Remove the PGP key</label>
     </div>
   </div>
 
   <div class="form-group">
     <div class="alert alert-danger" ng-hide="preferences.gpg_key_fingerprint" ng-click="gpg_marketing = ! gpg_marketing" ng-init="gpg_marketing=false">
-      <b>{{ "You've not enabled encryption!" | translate }}</b>
+      <b><span data-translate>You've not enabled encryption!</span></b>
       <br /><br />
       <div>
         <a href="https://gnupg.org">GnuPG</a>
-        {{ "can be configured in order to deliver encrypted email and store encrypted files. You've to copy and paste the ascii version of your personal key, and then it would be possibile update your encryption settings. If you've any doubts talk to your admin." | translate }}
+        <span data-translate>can be configured in order to deliver encrypted email and store encrypted files. You've to copy and paste the ascii version of your personal key, and then it would be possibile update your encryption settings. If you've any doubts talk to your admin.</span>
       </div>
      </div>
   </div>
@@ -52,11 +52,11 @@
     <button class="btn btn-success" ng-init="send_key=false" ng-click="send_key = !send_key">
       <i class="glyphicon glyphicon-plus" ng-hide="send_key"></i>
       <i class="glyphicon glyphicon-minus" ng-show="send_key"></i>
-      {{ "Configure a PGP key" | translate }}
+      <span data-translate>Configure a PGP key</span>
     </button>
 
     <div ng-show="send_key">
-      <label>{{ "Copy and Paste here the PGP Key:" | translate }}</label>
+      <label data-translate>Copy and Paste here the PGP Key:</label>
       <textarea class="form-control" ng-model="preferences.gpg_key_armor"></textarea>
     </div>
   </div>
@@ -64,7 +64,7 @@
   <div class="form-group">
     <button type="submit" class="btn btn-success" ng-click="pref_save()">
     <i class="glyphicon glyphicon-ok"></i>
-    {{ "Update notification and encryption settings" | translate }}
+    <span data-translate>Update notification and encryption settings</span>
     </button>
   </div>
 </div>
