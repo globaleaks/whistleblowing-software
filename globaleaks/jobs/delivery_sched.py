@@ -30,6 +30,7 @@ def serialize_internalfile(ifile):
         'id': ifile.id,
         'internaltip_id' : ifile.internaltip_id,
         'name' : ifile.name,
+        'description' : ifile.description,
         'sha2sum' : ifile.sha2sum,
         'file_path' : ifile.file_path,
         'content_type' : ifile.content_type,
