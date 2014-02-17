@@ -1,20 +1,20 @@
 <div id="HeaderBox" class="subhead">
   <div id="HeaderBoxContent">
     <span id="LogoBox">
-      <a href="/#/"><img ng-src="{{ logo }}" class="img-rounded"></a>
+      <a href="/#/"><img data-ng-src="{{ logo }}" class="img-rounded"></a>
     </span>
     <span id="TitleBox">
       <div id="titleboxdefault">
-        <div ng-show="isHomepage()">
+        <div data-ng-show="isHomepage()">
           <h1>{{ node.name }}</h1>
           <h3>{{ node.subtitle }}</h3>
         </div>
-        <div ng-hide="isHomepage()">
-          <div ng-show="hasSubtitle()">
+        <div data-ng-hide="isHomepage()">
+          <div data-ng-show="hasSubtitle()">
             <h3>{{ header_title | translate }}</h3>
             <h1>{{ header_subtitle | translate }}</h1>
           </div>
-          <div ng-show="!hasSubtitle()">
+          <div data-ng-show="!hasSubtitle()">
             <h1>{{ header_title | translate }}</h1>
           </div>
         </div>
@@ -23,18 +23,18 @@
           <a href="/#/">
             <div id="logo"></div>
           </a>
-          <div id="tagline" ng-show="isHomepage()">
+          <div id="tagline" data-ng-show="isHomepage()">
             {{ node.subtitle }}
           </div>
-          <div id="tagline" ng-hide="isHomepage()">
+          <div id="tagline" data-ng-hide="isHomepage()">
             <span>{{ header_title | translate }}</span>
-            <span ng-show="hasSubtitle()">
+            <span data-ng-show="hasSubtitle()">
                - <span>{{ header_subtitle | translate }}</span>
             </span>
           </div>
       </div>
     </span>
-    <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
+    <span id="ToolbarBox" data-ng-include="'views/partials/toolbar.html'"></span>
   </div>
   <div class="clearfix"></div>
 </div>

@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <button type="button" class="close" ng-click="close()">
+  <button type="button" class="close" data-ng-click="close()">
     <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
   </button>
   <h2 data-translate>Oh so many requests.</h2>
@@ -7,14 +7,14 @@
 <div class="modal-body">
   <div gl-clock></div>
 
-  <div ng-switch="" on="error.code">
-    <div ng-switch-when="55">
+  <div data-ng-switch="" on="error.code">
+    <div data-ng-switch-when="55">
       <span data-translate>Chill out for another</span> {{seconds}} <span data-translate>seconds</span>
     </div>
-    <div ng-switch-when="56">
+    <div data-ng-switch-when="56">
       <span data-translate>Too many submissions in</span> {{seconds}} <span data-translate>seconds</span>
     </div>
-    <div ng-switch-when="57">
+    <div data-ng-switch-when="57">
       <span data-translate>Too many file uploads in</span> {{seconds}} <span data-translate>seconds</span>
     </div>
   </div>
@@ -22,7 +22,7 @@
   <p data-translate>Please wait while we get back fully operational</p>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn" ng-click="reload()">
+  <button type="button" class="btn" data-ng-click="reload()">
     <span data-translate>Reload</span>
   </button>
 </div>

@@ -5,12 +5,12 @@
         <span data-translate>Graphic Customization</span>
         <span data-translate>CSS</span>
       </label>
-      <div class="well well-large uploadfile" ng-controller="FileUploadCtrl">
-        <span generic-file-upload="" ng-src="/admin/staticfiles/custom_stylesheet">
-          <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
+      <div class="well well-large uploadfile" data-ng-controller="FileUploadCtrl">
+        <span generic-file-upload="" data-ng-src="/admin/staticfiles/custom_stylesheet">
+          <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
             <span class="glyphicon glyphicon-plus"></span>
             <span data-translate>Load</span>
-            <input type="file" name="files[]" multiple ng-disabled="disabled">
+            <input type="file" name="files[]" multiple data-ng-disabled="disabled">
           </span>
         </span>
         <span class="uploadProgress hide">
@@ -18,12 +18,12 @@
             <span class="progress-bar" style="width: 0%;"></span>
           </span>
         </span>
-        <a class="btn btn-primary" ng-class="{disabled: disabled}" ng-href="{{'/custom_stylesheet.css'}}" download="{{'custom_stylesheet.css'}}">
+        <a class="btn btn-primary" data-ng-class="{disabled: disabled}" data-ng-href="{{'/custom_stylesheet.css'}}" download="{{'custom_stylesheet.css'}}">
           <span class="glyphicon glyphicon-download"></span>
           <span data-translate>Download</span>
         </a>
         <div>
-          <input ng-model="admin.node.reset_css" type="checkbox">
+          <input data-ng-model="admin.node.reset_css" type="checkbox">
           <label data-translate>Reset custom CSS</label>
         </div>
       </div>
@@ -31,12 +31,12 @@
       <label data-translate>Load Custom File</label>
       <br />
       <span data-translate>The file will be available at the url: /static/$filename</span>
-      <div class="well well-large uploadfile" ng-controller="FileUploadCtrl">
-        <span generic-file-upload="" ng-src="/admin/staticfiles/customization">
-          <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
+      <div class="well well-large uploadfile" data-ng-controller="FileUploadCtrl">
+        <span generic-file-upload="" data-ng-src="/admin/staticfiles/customization">
+          <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
             <span class="glyphicon glyphicon-plus"></span>
             <span data-translate>Load</span>
-            <input type="file" name="files[]" multiple ng-disabled="disabled">
+            <input type="file" name="files[]" multiple data-ng-disabled="disabled">
           </span>
         </span>
         <span class="uploadProgress hide">
@@ -46,7 +46,7 @@
         </span>
       </div>
       <div class="table-container">
-        <table ng-show="staticfiles" class="table table-striped" id="fileList">
+        <table data-ng-show="staticfiles" class="table table-striped" id="fileList">
           <thead>
             <tr>
               <th>
@@ -57,17 +57,17 @@
               </th>
             </tr>
           </thead>
-          <tbody id="fileListBody" ng-repeat="file in staticfiles">
+          <tbody id="fileListBody" data-ng-repeat="file in staticfiles">
             <tr>
               <td>
                 {{file.filename}}
               </td>
               <td>
-                <a class="btn btn-primary" ng-href="{{'/static/' + file.filename}}" download="{{file.filename}}">
+                <a class="btn btn-primary" data-ng-href="{{'/static/' + file.filename}}" download="{{file.filename}}">
                   <span class="glyphicon glyphicon-download"></span>
                   <span data-translate>Download</span>
                 </a>
-                <button class="btn btn-danger" ng-click="delete('/admin/staticfiles/' + file.filename)">
+                <button class="btn btn-danger" data-ng-click="delete('/admin/staticfiles/' + file.filename)">
                   <span class="glyphicon glyphicon-trash"></span>
                   <span data-translate>Delete</span>
                 </button>

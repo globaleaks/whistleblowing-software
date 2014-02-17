@@ -1,17 +1,17 @@
-<div id="PrivacyBox" ng-controller="PrivacyBoxCtrl">
-  <div ng-mouseenter="showBox()" ng-mouseleave="hideBox()">
-    <button ng-show="displayBox" type="button" class="close" ng-click="hideBox()">
+<div id="PrivacyBox" data-ng-controller="PrivacyBoxCtrl">
+  <div data-ng-mouseenter="showBox()" data-ng-mouseleave="hideBox()">
+    <button data-ng-show="displayBox" type="button" class="close" data-ng-click="hideBox()">
     <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
     </button>
-    <div ng-switch="" on="privacy">
-      <div ng-switch-when="high">
-        <div ng-show="!displayBox">
+    <div data-ng-switch="" on="privacy">
+      <div data-ng-switch-when="high">
+        <div data-ng-show="!displayBox">
           <span class="label label-success">
             <i class="glyphicon glyphicon-ok-circle"></i>
             <span data-translate>Congratulations!</span>
           </span>
         </div>
-        <div ng-show="displayBox">
+        <div data-ng-show="displayBox">
           <span class="label label-success">
             <i class="glyphicon glyphicon-ok-circle"></i>
             <span data-translate>Congratulations!</span>
@@ -27,14 +27,14 @@
           </div>
         </div>
       </div>
-      <div ng-switch-when="unknown">
-        <div ng-show="!displayBox">
+      <div data-ng-switch-when="unknown">
+        <div data-ng-show="!displayBox">
           <span class="label label-danger">
             <i class="glyphicon glyphicon-exclamation-sign"></i>
             <span data-translate>Warning!</span>
           </span>
         </div>
-        <div ng-show="displayBox" class="privacyBox-ext">
+        <div data-ng-show="displayBox" class="privacyBox-ext">
           <span class="label label-danger">
             <i class="glyphicon glyphicon-exclamation-sign"></i>
             <span data-translate>Warning!</span>
@@ -46,16 +46,16 @@
           </div>
         </div>
       </div>
-      <div ng-switch-when="low">
-        <div ng-show="!displayBox">
+      <div data-ng-switch-when="low">
+        <div data-ng-show="!displayBox">
           <span class="label label-danger">
-            <i class="glyphicon glyphicon-warning-sign"></i>
+            <i class="glyphicon glyphicon-warnidata-ng-sign"></i>
             <span data-translate>Danger!</span>
           </span>
         </div>
-        <div ng-show="displayBox" class="privacyBox-ext">
+        <div data-ng-show="displayBox" class="privacyBox-ext">
           <span class="label label-danger">
-            <i class="glyphicon glyphicon-warning-sign"></i>
+            <i class="glyphicon glyphicon-warnidata-ng-sign"></i>
             <span data-translate>Danger!</span>
           </span>
           <div>

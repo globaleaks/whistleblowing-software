@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-8">
     <div class="form-group table-bordered">
-      <input ng-model="admin.notification.disable" type="checkbox">
+      <input data-ng-model="admin.notification.disable" type="checkbox">
       <label data-translate>Disable email notification</label>
-      <div ng-show="admin.notification.disable">
+      <div data-ng-show="admin.notification.disable">
         <span class="label label-warning">
           <span data-translate>now Disabled:</span> <br />
         </span>
@@ -13,37 +13,37 @@
 
     <div class="form-group">
       <label data-translate>Source Name</label>
-      <input class="form-control" ng-model="admin.notification.source_name" type="text">
+      <input class="form-control" data-ng-model="admin.notification.source_name" type="text">
     </div>
 
     <div class="form-group">
       <label data-translate>Source Email</label>
-      <input class="form-control" ng-model="admin.notification.source_email" type="text">
+      <input class="form-control" data-ng-model="admin.notification.source_email" type="text">
     </div>
 
     <div class="form-group">
       <label data-translate>Username</label>
-      <input class="form-control" ng-model="admin.notification.username" type="text">
+      <input class="form-control" data-ng-model="admin.notification.username" type="text">
     </div>
 
     <div class="form-group">
       <label data-translate>Password</label>
-      <input class="form-control" ng-model="admin.notification.password" type="password">
+      <input class="form-control" data-ng-model="admin.notification.password" type="password">
     </div>
 
     <div class="form-group">
       <label data-translate>SMTP server address</label>
-      <input class="form-control" ng-model="admin.notification.server" type="text">
+      <input class="form-control" data-ng-model="admin.notification.server" type="text">
     </div>
 
     <div class="form-group">
       <label data-translate>SMTP server port</label>
-      <input class="form-control" ng-model="admin.notification.port" type="text">
+      <input class="form-control" data-ng-model="admin.notification.port" type="text">
     </div>
 
     <div class="form-group">
       <label data-translate>Transport Security</label>
-      <select class="form-control" ng-model="admin.notification.security" required="">
+      <select class="form-control" data-ng-model="admin.notification.security" required="">
         <option value="SSL">SMTPS</option>
         <option value="TLS">SMTP/TLS</option>
       </select>
@@ -52,7 +52,7 @@
     <div class="form-group">
       <label data-translate>Zip Description Template</label>
       <div>
-        <textarea ng-model="admin.notification.zip_description" class="form-control mobileTextArea"></textarea>
+        <textarea data-ng-model="admin.notification.zip_description" class="form-control mobileTextArea"></textarea>
       </div>
     </div>
 

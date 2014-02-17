@@ -59,7 +59,7 @@
   background-color: rgb(252, 252, 248);
 }
 
-.editorHeader span {
+.editorHeaderTitle {
   letter-spacing: -1px;
   font-size: 20px;
   line-height: 1;

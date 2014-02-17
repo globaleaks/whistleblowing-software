@@ -10,47 +10,47 @@ This comment is needed in order to push the following strings on transifex
 <div class="row">
   <div class="col-md-12">
     <label data-translate>Fields</label>
-    <a ng-click="addField(context)">
+    <a data-ng-click="addField(context)">
       <i class="glyphicon glyphicon-plus-sign"></i> 
       <span data-translate>add field</span>
     </a>
   </div>
 </div>
-<div ui-sortable="fieldsSortableOptions" ng-model="context.fields">
-  <div ng-repeat="field in context.fields | orderBy:'presentation_order'" class="contextFieldsa" ng-controller="AdminFieldEditorCtrl">
+<div ui-sortable="fieldsSortableOptions" data-ng-model="context.fields">
+  <div data-ng-repeat="field in context.fields | orderBy:'presentation_order'" class="contextFieldsa" data-ng-controller="AdminFieldEditorCtrl">
     <div class="field">
-      <div class="fieldEditorHeader" ng-init="editing=false" ng-click="editing=!editing">
+      <div class="fieldEditorHeader" data-ng-init="editing=false" data-ng-click="editing=!editing">
         {{field.name}}&nbsp;
         <a href="" data-content="{{field.hint}}" popover="{{field.name}}" popover-placement="right" popover-trigger="mouseenter">
           <i class="glyphicon glyphicon-question-sign"></i>
         </a>
-        <div class="pull-right" ng-show="editing" ng-class="{invalid: newField.$invalid}">
-          <button class="btn btn-xs btn-danger" ng-click="deleteField(field)" popover="{{ Delete | translate }}" popover-placement="right" popover-trigger="mouseenter">
+        <div class="pull-right" data-ng-show="editing" data-ng-class="{invalid: newField.$invalid}">
+          <button class="btn btn-xs btn-danger" data-ng-click="deleteField(field)" popover="{{ Delete | translate }}" popover-placement="right" popover-trigger="mouseenter">
             <i class="glyphicon glyphicon-remove"></i>
           </button>
         </div>
       </div>
 
-      <div ng-form="" name="newField" class="fieldEditorBody" ng-show=editing>
+      <div data-ng-form="" name="newField" class="fieldEditorBody" data-ng-show=editing>
         <div class="form-group">
           <label data-translate>Name</label>
-          <input class="form-control" ng-model="field.name" type="text">
+          <input class="form-control" data-ng-model="field.name" type="text">
         </div>
         <div class="form-group">
           <label data-translate>Hint</label>
-          <input class="form-control" ng-model="field.hint" type="text">
+          <input class="form-control" data-ng-model="field.hint" type="text">
         </div>
         <div class="form-group">
-          <input ng-model="field.required" type="checkbox">
+          <input data-ng-model="field.required" type="checkbox">
           <label data-translate>Required</label>
         </div>
         <div class="form-group">
-          <input ng-model="field.preview" type="checkbox">
+          <input data-ng-model="field.preview" type="checkbox">
           <label data-translate>Show in preview</label>
         </div>
         <div class="form-group">
           <label data-translate>Type</label>
-          <select id="editFieldType" class="form-control" ng-model="field.type" ng-required="">
+          <select id="editFieldType" class="form-control" data-ng-model="field.type" data-ng-required="">
             <option value="text">
               <span data-translate>Text</span>
             </option>
@@ -84,21 +84,21 @@ This comment is needed in order to push the following strings on transifex
           </select>
         </div>
 
-        <div ng-switch="" on="typeSwitch(field.type)" class="row">
+        <div data-ng-switch="" on="typeSwitch(field.type)" class="row">
           <div class="col-md-offset-1 col-md-10">
-            <div ng-switch-default=""></div>
+            <div data-ng-switch-default=""></div>
 
-            <div ng-switch-when="multiple">
-              <div ng-repeat="option in field.options">
+            <div data-ng-switch-when="multiple">
+              <div data-ng-repeat="option in field.options">
                 <form class="form-inline">
                   <div class="form-group">
                     <label data-translate>Name</label>
-                    <input class="form-control" placeholder="name" ng-model="option.name" ng-change="updateValue(option)" type="text">
+                    <input class="form-control" placeholder="name" data-ng-model="option.name" data-ng-change="updateValue(option)" type="text">
                   </div>
                 </form>
               </div>
               <div>
-                <button class="btn btn-info" ng-click="addOption(field)">
+                <button class="btn btn-info" data-ng-click="addOption(field)">
                   <i class="glyphicon glyphicon-plus-sign"></i> 
                   <span data-translate>Add option</span>
                 </button>

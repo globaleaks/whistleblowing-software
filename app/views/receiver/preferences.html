@@ -11,14 +11,14 @@ This comment is needed in order to push the following strings on transifex
 -->
 <div id="ContentBox" class="container">
   <div class="row">
-    <div id="ConfigSidebarBox" class="col-md-3" ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl"></div>
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/receiver/sidebar.html'" data-ng-controller="ReceiverSidebarCtrl"></div>
     <div class="col-md-9">
 
       <div class="row tab-content">
         <form name="receiverPreferencesForm">
           <tabset>
-            <tab ng-repeat="tab in tabs" heading="{{ tab.title | translate }}" active="tab.active" disabled="tab.disabled">
-            <div ng-include="tab.template" ng-controller="tab.ctrl"></div>
+            <tab data-ng-repeat="tab in tabs" heading="{{ tab.title | translate }}" active="tab.active" disabled="tab.disabled">
+            <div data-ng-include="tab.template" data-ng-controller="tab.ctrl"></div>
             </tab>
           </tabset>
         </form>

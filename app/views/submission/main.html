@@ -9,7 +9,7 @@ This comment is needed in order to push the following strings on transifex
 <span data-translate>Deselect this receiver.</span>
 
 -->
-<div class="ng-cloak container" ng-show="!node.configured && node.name">
+<div class="ng-cloak container" data-ng-show="!node.configured && node.name">
   <h2 data-translate>This node is not configured.</h2>
   <p>
     <span data-translate>You will not be able to perform a submission.</span><br />
@@ -20,24 +20,24 @@ This comment is needed in order to push the following strings on transifex
   </p>
 </div>
 
-<div ng-controller="SubmissionStepsCtrl" id="ContentBox" class="container submission" ng-show="node.name && node.configured">
+<div data-ng-controller="SubmissionStepsCtrl" id="ContentBox" class="container submission" data-ng-show="node.name && node.configured">
 
   <div class="tabbable tabs-below">
 
     <ul class="nav nav-tabs">
-      <li ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex(), disabled: uploading}">
-        <a href="javascript:void(0)" ng-click="goToStep($index)" ng-disabled="uploading">
-          <div ng-switch="" on="step">
+      <li data-ng-repeat="step in steps" data-ng-class="{active: $index==getCurrentStepIndex(), disabled: uploading}">
+        <a href="javascript:void(0)" data-ng-click="goToStep($index)" data-ng-disabled="uploading">
+          <div data-ng-switch="" on="step">
 
-            <span ng-switch-when="1">
+            <span data-ng-switch-when="1">
               1 - <span data-translate>Receiver selection</span>
             </span>
 
-            <span ng-switch-when="2">
+            <span data-ng-switch-when="2">
               2 - <span data-translate>Fill out your submission</span>
             </span>
 
-            <span ng-switch-when="3">
+            <span data-ng-switch-when="3">
               3 - <span data-translate>Final Step</span>
             </span>
 
@@ -46,20 +46,20 @@ This comment is needed in order to push the following strings on transifex
       </li>
     </ul>
 
-    <div ng-switch="" on="selection" class="tab-content">
+    <div data-ng-switch="" on="selection" class="tab-content">
 
       <!-- First Step -->
-      <div ng-switch-when="1" class="receiverCards">
-        <div id="ContextPickSelector" ng-show="submission.contexts.length > 1">
+      <div data-ng-switch-when="1" class="receiverCards">
+        <div id="ContextPickSelector" data-ng-show="submission.contexts.length > 1">
             <div class="lead">
               <span data-translate>Choose the context and receivers that will be sure to transform your submission into action!</span>
             </div>
 
-            <span class="lead" ng-show="node.configured">
+            <span class="lead" data-ng-show="node.configured">
               <span data-translate>I want to report on</span>
             </span>
 
-            <select class="form-control contexts" ng-model="submission.current_context" ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'">
+            <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'">
             </select>
 
         </div>
@@ -72,89 +72,89 @@ This comment is needed in order to push the following strings on transifex
           {{submission.current_context.receiver_introduction}}
         </div>
 
-        <div ng-show="submission.current_context.maximum_selectable_receivers != 0 && !submission.current_context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
+        <div data-ng-show="submission.current_context.maximum_selectable_receivers != 0 && !submission.current_context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
           <div><span data-translate>Maximum number of Receivers selectable:</span> {{submission.current_context.maximum_selectable_receivers}}</div>
           <div><span data-translate>Receivers selected:</span> {{selected_receivers_count()}}</div>
         </div>
 
-        <div id="ReceiverSelectionBoxBig" ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" ng-show="!submission.current_context.show_small_cards">
-          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" ng-class="{selected: submission.receivers_selected[receiver.id]}" ng-click="switch_selection(receiver.id)">
+        <div id="ReceiverSelectionBoxBig" data-ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" data-ng-show="!submission.current_context.show_small_cards">
+          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" data-ng-class="{selected: submission.receivers_selected[receiver.id]}" data-ng-click="switch_selection(receiver.id)">
             <div class="row receiverCardTitle">
               <div class="col-md-10">
                 <label>
-                  <span ng-switch="" on="receiver.gpg_key_status">
-                    <span ng-switch-when="Enabled">
+                  <span data-ng-switch="" on="receiver.gpg_key_status">
+                    <span data-ng-switch-when="Enabled">
                       <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                     </span>
-                    <span ng-switch-when="Disabled">
-                      <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    <span data-ng-switch-when="Disabled">
+                      <i class="glyphicon glyphicon-warnidata-ng-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                     </span>
                   </span>
                   &nbsp;{{receiver.name}}
                 </label>
               </div>
               <div class="col-md-1">
-                <div ng-show="submission.receivers_selected[receiver.id]">
+                <div data-ng-show="submission.receivers_selected[receiver.id]">
                   <i class="glyphicon glyphicon-check" popover="{{ 'Deselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                 </div>
-                <div ng-show="!submission.receivers_selected[receiver.id]">
+                <div data-ng-show="!submission.receivers_selected[receiver.id]">
                   <i class="glyphicon glyphicon-unchecked" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-5">
-                <img ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
+                <img data-ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
               </div>
               <div class="col-md-offset-1 col-md-6">
                 <p>{{receiver.description}}</p>
               </div>
             </div>
           </div>
-          <div class="clearfix" ng-show="$index % 2"></div>
+          <div class="clearfix" data-ng-show="$index % 2"></div>
         </div>
 
-        <div id="ReceiverSelectionBoxSmall" ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" ng-show="submission.current_context.show_small_cards">
+        <div id="ReceiverSelectionBoxSmall" data-ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" data-ng-show="submission.current_context.show_small_cards">
           <div class="form-group col-md-3">
-            <div ng-click="switch_selection(receiver.id)" class="receiverCard" ng-class="{selected: submission.receivers_selected[receiver.id]}">
+            <div data-ng-click="switch_selection(receiver.id)" class="receiverCard" data-ng-class="{selected: submission.receivers_selected[receiver.id]}">
               <div class="row receiverCardTitle">
                 <div class="col-md-9">
                   <label>
-                    <span ng-switch="" on="receiver.gpg_key_status">
-                      <span ng-switch-when="Enabled">
+                    <span data-ng-switch="" on="receiver.gpg_key_status">
+                      <span data-ng-switch-when="Enabled">
                         <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                       </span>
-                      <span ng-switch-when="Disabled">
-                        <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                      <span data-ng-switch-when="Disabled">
+                        <i class="glyphicon glyphicon-warnidata-ng-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                       </span>
                     </span>
                     &nbsp;{{receiver.name}}
                   </label>
                 </div>
                 <div class="col-md-1">
-                  <div ng-show="submission.receivers_selected[receiver.id]">
+                  <div data-ng-show="submission.receivers_selected[receiver.id]">
                     <i class="glyphicon glyphicon-check" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </div>
-                  <div ng-show="!submission.receivers_selected[receiver.id]">
+                  <div data-ng-show="!submission.receivers_selected[receiver.id]">
                     <i class="glyphicon glyphicon-unchecked" popover="{{ 'Deselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <img ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
+                  <img data-ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
                 </div>
               </div>
             </div>
           </div>
-          <div class="clearfix" ng-show="!(($index + 1) % 4)"></div>
+          <div class="clearfix" data-ng-show="!(($index + 1) % 4)"></div>
         </div>
 
       </div>
       <!-- /1 -->
 
       <!-- Second Step -->
-      <div ng-switch-when="2">
+      <div data-ng-switch-when="2">
 
         <div class="lead">
           <span data-translate>Enter the information that is relevant to your submission and possibly upload the relevant accompanying files</span>
@@ -165,21 +165,21 @@ This comment is needed in order to push the following strings on transifex
 
         <div class="row">
 
-          <div class="col-md-6" ng-form="submissionForm" ng-controller="SubmissionFormController"> 
-            <div class="submissionDetails" ng-include="'views/submission/form.html'"></div>
+          <div class="col-md-6" data-ng-form="submissionForm" data-ng-controller="SubmissionFormController"> 
+            <div class="submissionDetails" data-ng-include="'views/submission/form.html'"></div>
           </div>
 
         </div>
 
         <div class="row">
-          <div class="col-md-6" ng-include="'views/partials/fileupload.html'"></div>
+          <div class="col-md-6" data-ng-include="'views/partials/fileupload.html'"></div>
         </div>
 
       </div>
       <!-- /2 -->
 
       <!-- Third Step -->
-      <div ng-switch-when="3">
+      <div data-ng-switch-when="3">
 
         <div class="row">
 
@@ -206,7 +206,7 @@ This comment is needed in order to push the following strings on transifex
               <span data-translate>By checking the box below you agree to these terms and conditions.</span>
             </p>
             <div class="form-group">
-              <input ng-model="disclaimer.accepted" value="true" type="checkbox"> 
+              <input data-ng-model="disclaimer.accepted" value="true" type="checkbox"> 
               <label data-translate>Agree</label>
             </div>
 
@@ -224,21 +224,21 @@ This comment is needed in order to push the following strings on transifex
     <div class="clearfix"></div>
 
     <ul class="pager pull-left">
-      <li ng-class="{disabled: uploading}" class="previous" ng-hide="!hasPreviousStep()">
-        <a ng-click="decrementStep()">
+      <li data-ng-class="{disabled: uploading}" class="previous" data-ng-hide="!hasPreviousStep()">
+        <a data-ng-click="decrementStep()">
           <i class="glyphicon glyphicon-arrow-left"></i>
           <span data-translate>Previous Step</span>
         </a>
       </li>
-      <li ng-class="{disabled: uploading}" class="next" ng-hide="!hasNextStep()">
-        <a ng-click="incrementStep()">
+      <li data-ng-class="{disabled: uploading}" class="next" data-ng-hide="!hasNextStep()">
+        <a data-ng-click="incrementStep()">
           <span data-translate>Next Step</span>
           <i class="glyphicon glyphicon-arrow-right"></i>
         </a>
       </li>
     </ul>
     <div class="pager pull-left" style="margin-left: 20px">
-      <div class="btn btn-success" ng-click="submit()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
+      <div class="btn btn-success" data-ng-click="submit()" data-ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
         <i class="glyphicon glyphicon-ok"></i>
         <span data-translate>Submit</span>
       </div>
@@ -250,7 +250,7 @@ This comment is needed in order to push the following strings on transifex
 </div>
 
 <!-- This will be visualized once the subission is created -->
-<div class="submission-receipt modal" ng-show="submission.completed">
+<div class="submission-receipt modal" data-ng-show="submission.completed">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -278,11 +278,11 @@ This comment is needed in order to push the following strings on transifex
         <p>
         <span data-translate>Please copy in the box below your receipt to access the tip interface.</span> 
         </p>
-        <input class="form-control" ng-model="receiptConfirmation" type="text">
+        <input class="form-control" data-ng-model="receiptConfirmation" type="text">
 
       </div>
       <div class="modal-footer">
-        <a ng-click="view_tip(submission.receipt)" ng-disabled="submission.receipt != receiptConfirmation" class="btn btn-success">
+        <a data-ng-click="view_tip(submission.receipt)" data-ng-disabled="submission.receipt != receiptConfirmation" class="btn btn-success">
          <i class="glyphicon glyphicon-log-in"></i>
          <span data-translate>View Tip</span>
         </a>

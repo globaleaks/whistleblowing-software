@@ -9,13 +9,13 @@ This comment is needed in order to push the following strings on transifex
 
 //-->
 <div id="ContentBox" class="container statusPage ng-cloak">
-  <div class="row" ng-controller="TipCtrl">
+  <div class="row" data-ng-controller="TipCtrl">
     <div class="col-md-6">
       <div class="col-md-12">
         <dl>
           <dt>
             {{ tip.context_name }}
-            <a ng-show="tip.context_description" popover="{{tip.context_description}}" popover-placement="right" popover-trigger="mouseenter">
+            <a data-ng-show="tip.context_description" popover="{{tip.context_description}}" popover-placement="right" popover-trigger="mouseenter">
               <span class="glyphicon glyphicon-info-sign"></span>
             </a>
           </dt>
@@ -26,35 +26,35 @@ This comment is needed in order to push the following strings on transifex
           <dt><span data-translate>Expiration Date</span></dt>
           <dd>{{ tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}</dd>
         </dl>
-        <dl ng-repeat="(fieldName, fieldValue) in tip.fields">
+        <dl data-ng-repeat="(fieldName, fieldValue) in tip.fields">
           <dt>
             <span>
               {{fieldFormat[fieldName].name}}
             </span>
-            <a ng-show="fieldFormat[fieldName].hint" popover="{{fieldFormat[fieldName].hint}}" popover-placement="right" popover-trigger="mouseenter">
+            <a data-ng-show="fieldFormat[fieldName].hint" popover="{{fieldFormat[fieldName].hint}}" popover-placement="right" popover-trigger="mouseenter">
               <span class="glyphicon glyphicon-info-sign"}}></span>
             </a>
           </dt>
         
-          <div ng-switch="" on="fieldFormat[fieldName].type">
+          <div data-ng-switch="" on="fieldFormat[fieldName].type">
       
-            <dd ng-switch-when="checkboxes">
+            <dd data-ng-switch-when="checkboxes">
               <ul>
-                <li ng-repeat="checkbox in fieldFormat[fieldName].options">
+                <li data-ng-repeat="checkbox in fieldFormat[fieldName].options">
                 {{checkbox.name}} 
-                <span ng-hide="fieldValue[checkbox.name]">☐</span> 
-                <span ng-show="fieldValue[checkbox.name]">☑</span>
+                <span data-ng-hide="fieldValue[checkbox.name]">☐</span> 
+                <span data-ng-show="fieldValue[checkbox.name]">☑</span>
                 </li>
               </ul>
             </dd>
 
-            <dd ng-switch-when="multiple">
+            <dd data-ng-switch-when="multiple">
               <ul>
-                <li ng-repeat="selection in fieldValue">{{selection}}</li>
+                <li data-ng-repeat="selection in fieldValue">{{selection}}</li>
               </ul>
 
             </dd>
-            <dd ng-switch-default="">{{fieldValue}}</dd>
+            <dd data-ng-switch-default="">{{fieldValue}}</dd>
 
           </div>
         </dl>
@@ -73,14 +73,14 @@ This comment is needed in order to push the following strings on transifex
             </tr>
           </thead>
           <tbody id="receiverListBody">
-            <tr ng-repeat="receiver in tip.receivers | orderBy:'name'">
+            <tr data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
               <td>
-                <span ng-switch="" on="receiver.gpg_key_status">
-                  <span ng-switch-when="Enabled">
+                <span data-ng-switch="" on="receiver.gpg_key_status">
+                  <span data-ng-switch-when="Enabled">
                     <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </span>
-                  <span ng-switch-when="Disabled">
-                    <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                  <span data-ng-switch-when="Disabled">
+                    <i class="glyphicon glyphicon-warnidata-ng-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </span>
                 </span>
                 {{receiver.name}}
@@ -102,7 +102,7 @@ This comment is needed in order to push the following strings on transifex
       <h3>
         <span data-translate>Files</span>
       </h3>
-      <div class="well" ng-show="tip.files">
+      <div class="well" data-ng-show="tip.files">
         <div class="table-container">
           <table class="table table-striped" id="fileList">
             <thead>
@@ -121,8 +121,8 @@ This comment is needed in order to push the following strings on transifex
                 </th>
               </tr>
             </thead>
-            <tbody id="fileListBody" ng-repeat="file in tip.files">
-              <tr ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
+            <tbody id="fileListBody" data-ng-repeat="file in tip.files">
+              <tr data-ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
                 <td>
                   {{file.name}}
                 </td>
@@ -142,11 +142,11 @@ This comment is needed in order to push the following strings on transifex
 
         <br />
 
-        <a class="input-small" ng-click="security_checksum = !security_checksum" ng-init="security_checksum = false" ng-show="!security_checksum">
+        <a class="input-small" data-ng-click="security_checksum = !security_checksum" data-ng-init="security_checksum = false" data-ng-show="!security_checksum">
           <i class="glyphicon glyphicon-plus-sign"></i>
           <span data-translate>show sha256 checksum</span>
         </a>
-        <a class="input-small" ng-click="security_checksum = !security_checksum" ng-show="security_checksum">
+        <a class="input-small" data-ng-click="security_checksum = !security_checksum" data-ng-show="security_checksum">
           <i class="glyphicon glyphicon-minus-sign"></i>
           <span data-translate>show sha256 checksum</span>
           <i>
@@ -154,7 +154,7 @@ This comment is needed in order to push the following strings on transifex
           </i>
         </a>
       </div>
-      <div class="well" ng-show="security_checksum">
+      <div class="well" data-ng-show="security_checksum">
         <p>
           <span data-translate>Use the</span> 
           <a href="https://en.wikipedia.org/wiki/SHA-2" target="_blank" rel="noreferrer">
@@ -165,7 +165,7 @@ This comment is needed in order to push the following strings on transifex
           <span data-translate>On unix based systems this can be done by running the following command in the directory of the files</span>:
         </p>
         <b>$ shasum -a 256 *</b>
-        <div ng-repeat="file in tip.files">
+        <div data-ng-repeat="file in tip.files">
           <div class="label label-lg label-warning">
             {{file.name}} {{file.sha2sum}}
           </div>
@@ -173,14 +173,14 @@ This comment is needed in order to push the following strings on transifex
       </div>
     </div>
 
-    <div class="col-md-12" ng-hide="tip.files">
+    <div class="col-md-12" data-ng-hide="tip.files">
       <p>
         <span data-translate>No file has been uploaded!</span>
       </p>
     </div>
 
     <div class="col-md-12">
-      <div ng-include="'views/partials/fileupload.html'"></div>
+      <div data-ng-include="'views/partials/fileupload.html'"></div>
     </div>
 
   </div>
@@ -192,17 +192,17 @@ This comment is needed in order to push the following strings on transifex
       <h3>
         <span data-translate>Comments</span>
       </h3>
-      <textarea ng-model="newCommentContent" class="form-control"></textarea>
+      <textarea data-ng-model="newCommentContent" class="form-control"></textarea>
       <br />
-      <button class="btn btn-success" ng-click="newComment()" ng-disabled="!newCommentContent || newCommentContent == ''">
+      <button class="btn btn-success" data-ng-click="newComment()" data-ng-disabled="!newCommentContent || newCommentContent == ''">
         <i class="glyphicon glyphicon-comment"></i>
         <span data-translate>Add Comment</span>
       </button>
       <br /><br />
-      <div ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
-        <div ng-switch="" on="comment.type">
+      <div data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
+        <div data-ng-switch="" on="comment.type">
 
-          <div ng-switch-when="whistleblower" class="alert alert-info">
+          <div data-ng-switch-when="whistleblower" class="alert alert-info">
             <div class="row">
               <div class="col-md-6">
                 <strong>
@@ -220,7 +220,7 @@ This comment is needed in order to push the following strings on transifex
             </div>
           </div>
 
-          <div ng-switch-when="receiver" class="alert alert-success">
+          <div data-ng-switch-when="receiver" class="alert alert-success">
             <div class="row">
               <div class="col-md-6">
                 <strong>
@@ -238,13 +238,13 @@ This comment is needed in order to push the following strings on transifex
             </div>
           </div>
 
-          <div ng-switch-when="system" class="alert alert-warning">
+          <div data-ng-switch-when="system" class="alert alert-warning">
             <strong>
               <span data-translate>System</span>
             </strong>
               <!-- {{comment.content}} -->
-              <div ng-switch="" on="comment.system_content.type">
-                 <div ng-switch-when="1">
+              <div data-ng-switch="" on="comment.system_content.type">
+                 <div data-ng-switch-when="1">
                    <span data-translate>The user</span>
                    {{comment.system_content.receiver_name}}
                    <span data-translate>In date</span>
@@ -266,21 +266,21 @@ This comment is needed in order to push the following strings on transifex
             <span data-translate>Private Messages</span>
           </div>
           <div class="col-md-6">
-            <select ng-model="tip.msg_receiver_selected" ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
+            <select data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
           </div>
         </h3>
       </div>
-      <textarea ng-model="newMessageContent" class="form-control"></textarea>
+      <textarea data-ng-model="newMessageContent" class="form-control"></textarea>
       <br />
-      <button class="btn btn-success" ng-click="newMessage()" ng-disabled="!tip.msg_receiver_selected || tip.msg_receiver_selected == '' || !newMessageContent || newMessageContent == ''">
+      <button class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.msg_receiver_selected || tip.msg_receiver_selected == '' || !newMessageContent || newMessageContent == ''">
         <i class="glyphicon glyphicon-comment"></i>
         <span data-translate>Send Private Message</span>
       </button>
       <br /><br />
-      <div ng-repeat="message in tip.messages | orderBy:'creation_date':true">
-        <div ng-switch="" on="message.type">
+      <div data-ng-repeat="message in tip.messages | orderBy:'creation_date':true">
+        <div data-ng-switch="" on="message.type">
 
-          <div ng-switch-when="whistleblower" class="alert alert-info">
+          <div data-ng-switch-when="whistleblower" class="alert alert-info">
             <div class="row">
               <div class="col-md-6">
                 <strong>
@@ -298,7 +298,7 @@ This comment is needed in order to push the following strings on transifex
             </div>
           </div>
 
-          <div ng-switch-when="receiver" class="alert alert-success">
+          <div data-ng-switch-when="receiver" class="alert alert-success">
             <div class="row">
               <div class="col-md-6">
                 <strong>
