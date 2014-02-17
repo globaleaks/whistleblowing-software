@@ -16,23 +16,23 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.2.10",
-    "angular-resource": "1.2.10",
-    "angular-route": "1.2.10",
+    "angular": "1.2.13",
+    "angular-resource": "1.2.13",
+    "angular-route": "1.2.13",
     "angular-translate": "1.1.1",
     "angular-translate-loader-url": "0.1.5",
     "angular-translate-loader-static-files": "0.1.6",
     "angular-ui-bootstrap-bower": "0.10.0",
-    "angular-ui-sortable": "0.0.1",
-    "jquery": "2.0.3",
+    "angular-ui-sortable": "0.10.1",
+    "jquery": "2.1.0",
     "jquery.cookie": "1.4.0",
-    "jquery-file-upload": "9.5.1",
+    "jquery-file-upload": "9.5.6",
     "jquery-ui": "1.10.3",
-    "bootstrap": "3.0.3",
-    "underscore": "1.5.2",
+    "bootstrap": "3.1.1",
+    "underscore": "1.6.0",
     "FlipClock": "https://github.com/objectivehtml/FlipClock.git"
   },
   "resolutions": {
-    "angular": "1.2.10"
+    "angular": "1.2.13"
   }
 }
