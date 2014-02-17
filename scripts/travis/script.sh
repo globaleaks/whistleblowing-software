@@ -1,22 +1,30 @@
 #!/bin/sh
 
-sudo -i bash -x -c 'mkdir -p /data/globaleaks'
-sudo -i bash -x -c 'chown travis:travis /data/globaleaks'
+set -e
+
+sudo -i bash -x -c 'mkdir -p /data/globaleaks /data/globaleaks/tests'
+sudo -i bash -x -c 'chown travis:travis /data/globaleaks -R'
 sudo -i bash -x -c 'apt-get install curl git -y'
 
+git clone https://github.com/globaleaks/GLBackend /data/globaleaks/tests/GLBackend
+cd /data/globaleaks/tests/GLBackend
+git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
+
+git clone https://github.com/globaleaks/GLClient /data/globaleaks/tests/GLClient
+cd /data/globaleaks/tests/GLClient
+git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
+
 if [ "${TRAVIS_REPO_SLUG}" = "globaleaks/GLBackend" ]; then
-  git clone https://github.com/globaleaks/GLBackend /data/globaleaks/GLBackend_UT
-  cd /data/globaleaks/GLBackend_UT
+  cd /data/globaleaks/tests/GLBackend
   git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
-  sudo pip install coverage
-  sudo pip install coveralls
+  pip install coverage
+  pip install coveralls
   coverage run $(which trial) globaleaks
   coveralls
 fi
 
 if [ "${TRAVIS_REPO_SLUG}" = "globaleaks/GLClient" ]; then
-  git clone https://github.com/globaleaks/GLClient
-  cd /data/globaleaks/GLClient_UT
+  cd /data/globaleaks/tests/GLClient
   git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
   npm install -d
   grunt unittest
