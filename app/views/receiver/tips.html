@@ -13,18 +13,18 @@ This comment is needed in order to push the following strings on transifex
 -->
 <div id="ContentBox" class="container">
   <div class="row">
-    <div id="ConfigSidebarBox" class="col-md-3" ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl"></div>
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/receiver/sidebar.html'" data-ng-controller="ReceiverSidebarCtrl"></div>
     <!-- Begin main content -->
     <div class="col-md-9">
       <div class="row">
         <div class="col-md-12">
           <div class="form-horizontal">
-            <span class="form-group col-md-6" ng-init="orderProp='creation_date'">
+            <span class="form-group col-md-6" data-ng-init="orderProp='creation_date'">
               <label class="control-label col-md-4">
                 <span data-translate>Order by:</span>
               </label>
               <div class="col-md-6">
-              <select ng-model="orderProp" class="form-control">
+              <select data-ng-model="orderProp" class="form-control">
                 <option value="creation_date">
                   <span data-translate>Creation</span>
                 </option>
@@ -49,12 +49,12 @@ This comment is needed in order to push the following strings on transifex
               </select>
               </div>
             </span>
-            <span class="form-group col-md-6" ng-init="reverse='true'">
+            <span class="form-group col-md-6" data-ng-init="reverse='true'">
               <label class="control-label col-md-4">
                 <span data-translate>Order:</span>
               </label>
               <div class="col-md-4">
-                <select ng-model="reverse" class="form-control">
+                <select data-ng-model="reverse" class="form-control">
                   <option value="true">
                     <span data-translate>Desc</span>
                   </option>
@@ -83,26 +83,26 @@ This comment is needed in order to push the following strings on transifex
               <th><span data-translate>Preview</span></th>
             </tr>
           </thead>
-          <tbody id="tipListTableBody" ng-controller="TipCtrl">
-            <tr ng-repeat="tip in tips | orderBy:orderProp:reverse" class="{{tip.parity}}">
+          <tbody id="tipListTableBody" data-ng-controller="TipCtrl">
+            <tr data-ng-repeat="tip in tips | orderBy:orderProp:reverse" class="{{tip.parity}}">
               <td class="col-md-2">
-                <a ng-switch="tip.access_counter" href="/#/status/{{tip.id}}">
-                  <span ng-switch-when="0" class="btn btn-success col-md-12" style="text-align: left">
+                <a data-ng-switch="tip.access_counter" href="/#/status/{{tip.id}}">
+                  <span data-ng-switch-when="0" class="btn btn-success col-md-12" style="text-align: left">
                     <span class="glyphicon glyphicon-tint"></span>&nbsp;
                     <span data-translate>Open</span>
                     <span data-translate>(New)</span>
                   </span>
-                  <span ng-switch-default class="btn btn-primary col-md-12" style="text-align: left">
+                  <span data-ng-switch-default class="btn btn-primary col-md-12" style="text-align: left">
                     <span class="glyphicon glyphicon-tint"></span>&nbsp;
                     <span data-translate>Open</span>
                   </span>
                 </a>
                 <br /><br />
-                <a ng-show="tip.postpone_superpower" ng-click="tip_extend(tip.id)" class="btn btn-xs btn-warning"
+                <a data-ng-show="tip.postpone_superpower" data-ng-click="tip_extend(tip.id)" class="btn btn-xs btn-warning"
                    popover="{{ 'Postpone Tip expiration date' | translate }}" popover-placement="top" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-time"></i>
                 </a>
-                <a ng-show="tip.can_delete_submission" ng-click="tip_delete(tip.id, true)" class="btn btn-xs btn-danger"
+                <a data-ng-show="tip.can_delete_submission" data-ng-click="tip_delete(tip.id, true)" class="btn btn-xs btn-danger"
                    popover="{{ 'Delete Tip (Globablly)' | translate }}" popover-placement="top" popover-trigger="mouseenter">
                   <span class="glyphicon glyphicon-trash"></span>
                 </a>
@@ -153,7 +153,7 @@ This comment is needed in order to push the following strings on transifex
                   <b><span data-translate>Context Name</span>:</b>
                   {{tip.context_name}}
                 <div>
-                <div ng-repeat="entry in tip.preview">
+                <div data-ng-repeat="entry in tip.preview">
                   <b>{{entry.label}}:</b> {{entry.text}}
                 </div>
               </td>

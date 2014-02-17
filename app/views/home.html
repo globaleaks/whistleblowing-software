@@ -1,19 +1,19 @@
-<div id="SecurityAwarenessBox" class="not-anonymous-question modal" ng-show="showQuestions">
+<div id="SecurityAwarenessBox" class="not-anonymous-question modal" data-ng-show="showQuestions">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" aria-hidden="true" ng-click="showQuestions = false">
+        <button type="button" class="close" aria-hidden="true" data-ng-click="showQuestions = false">
           <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
         </button>
-        <h3 ng-show="correctAnswer || !answered">
+        <h3 data-ng-show="correctAnswer || !answered">
           <span data-translate>Warning! You are not Anonymous.</span>
         </h3>
-        <h3 ng-show="!correctAnswer && answered">
+        <h3 data-ng-show="!correctAnswer && answered">
           <span data-translate>Wrong Answer!</span>
         </h3>
       </div>
-      <div class="modal-body" ng-switch="" on="step">
-        <div class="explaination" ng-switch-when="1">
+      <div class="modal-body" data-ng-switch="" on="step">
+        <div class="explaination" data-ng-switch-when="1">
           <p>
           <span data-translate>With a HTTPS submission you are exposing yourself to the risks that someone else will know that you have submitted something, without knowing what you have submitted.</span>
           </p>
@@ -34,29 +34,29 @@
 
         </div>
 
-        <div class="question" ng-hide="answered" ng-switch-when="2">
+        <div class="question" data-ng-hide="answered" data-ng-switch-when="2">
            <p class="lead">
              <span data-translate>Which of the following statements is true?</span>
            </p>
     
-           <input ng-model="answer.value" value="a" type="radio"> 
+           <input data-ng-model="answer.value" value="a" type="radio"> 
            <span data-translate>https protects my identity, but not the content of my leak</span><br />
-           <input ng-model="answer.value" value="b" type="radio"> 
+           <input data-ng-model="answer.value" value="b" type="radio"> 
            <span data-translate>https protects the content of my leak but not my identity</span><br />
-           <input ng-model="answer.value" value="c" type="radio"> 
+           <input data-ng-model="answer.value" value="c" type="radio"> 
            <span data-translate>https does not protect the content of my leak nor my identity</span><br />
-           <input ng-model="answer.value" value="d" type="radio"> 
+           <input data-ng-model="answer.value" value="d" type="radio"> 
            <span data-translate>https does protect my identity and the content of my leak</span><br />
         </div>
     
-        <div ng-switch="" on="answer.value" ng-switch-when="3">
-          <div ng-switch-when="b" class="correct-answer">
+        <div data-ng-switch="" on="answer.value" data-ng-switch-when="3">
+          <div data-ng-switch-when="b" class="correct-answer">
               <p>
               <span data-translate>You are aware of the risks involved, go ahead, consider yourself warned.</span>
               </p>
           </div>
 
-          <div class="wrong-answer" ng-switch-default="">
+          <div class="wrodata-ng-answer" data-ng-switch-default="">
             <p>
             <span data-translate>If you want protection of your identity and the content of your message, you should try to achieve anonimity by using the</span>
             <a href="https://www.torproject.org/download">Tor browser bundle</a> 
@@ -67,33 +67,33 @@
         </div>
 
       </div>
-      <div class="modal-footer" ng-switch="" on="step">
-        <div ng-switch-when="1">
-           <a ng-click="goToStep(2)" class="btn btn-default">
+      <div class="modal-footer" data-ng-switch="" on="step">
+        <div data-ng-switch-when="1">
+           <a data-ng-click="goToStep(2)" class="btn btn-default">
              <span data-translate>Next Step</span>
              <i class="glyphicon glyphicon-arrow-right"></i>
            </a>
         </div>
     
-        <div ng-switch-when="2">
-          <a ng-click="goToStep(1)" class="btn btn-default">
+        <div data-ng-switch-when="2">
+          <a data-ng-click="goToStep(1)" class="btn btn-default">
             <i class="glyphicon glyphicon-arrow-left"></i>
             <span data-translate>Previous Step</span> 
           </a>
       
-          <a ng-click="checkAnswer()" ng-disabled="!answer.value" class="btn btn-success">
+          <a data-ng-click="checkAnswer()" data-ng-disabled="!answer.value" class="btn btn-success">
             <span data-translate>Proceed</span>
             <i class="glyphicon glyphicon-arrow-right"></i>
           </a>
         </div>
 
-        <div ng-switch-when="3">
-          <a ng-click="goToStart()" ng-hide="correctAnswer" class="btn btn-default">
+        <div data-ng-switch-when="3">
+          <a data-ng-click="goToStart()" data-ng-hide="correctAnswer" class="btn btn-default">
             <i class="glyphicon glyphicon-arrow-left"></i>
             <span data-translate>Back to start</span>
           </a>
 
-          <a ng-click="goToSubmission()" ng-hide="!correctAnswer" ng-disabled="!answer.value" class="btn btn-warning">
+          <a data-ng-click="goToSubmission()" data-ng-hide="!correctAnswer" data-ng-disabled="!answer.value" class="btn btn-warning">
             <span data-translate>Proceed to submission</span>
             <i class="glyphicon glyphicon-arrow-right"></i>
           </a>
@@ -104,7 +104,7 @@
   </div>
 </div>
 
-<div id="ContentBox" class="container"   ng-show="node.description">
+<div id="ContentBox" class="container"   data-ng-show="node.description">
   <div id="HomePageBox">
 
     <div id="HomePageBoxHeader">
@@ -117,26 +117,26 @@
     </div>
 
     <div id="BlowTheWhistleBox" class="ng-cloak row">
-      <div ng-show="node.configured">
-        <div class="row" ng-show="!node.tor2web_submission && !anonymous">
+      <div data-ng-show="node.configured">
+        <div class="row" data-ng-show="!node.tor2web_submission && !anonymous">
           <p class="has-error">
             <span data-translate>You are connecting to the node not anonymously and this node only supports anonymous submissions</span>
           </p>
         </div>
-        <div class="row" ng-show="!node.tor2web_submission && !anonymous">
+        <div class="row" data-ng-show="!node.tor2web_submission && !anonymous">
           <button class="btn btn-danger" disabled="disabled">
             <i class="glyphicon glyphicon-ban-circle"></i>
             <span data-translate>Whistleblowing disabled</span>
           </button>
         </div>
-        <div class="row" ng-show="node.tor2web_submission || anonymous">
-          <a ng-click="goToSubmission()" class="btn btn-primary">
+        <div class="row" data-ng-show="node.tor2web_submission || anonymous">
+          <a data-ng-click="goToSubmission()" class="btn btn-primary">
             <i class="glyphicon glyphicon-bullhorn"></i>
             <span data-translate>Blow the Whistle</span>
           </a>
         </div>
       </div>
-      <div ng-hide="node.configured">
+      <div data-ng-hide="node.configured">
         <span data-translate>Your node is not configured! Please, proceed via</span>
         <a href="/#/admin/contexts">
           <span data-translate>Admin interface and configure at least one context</span>
@@ -156,12 +156,12 @@
             </label>
             <div class="row">
               <span class="col-md-offset-3 col-md-6">
-                <input class="form-control" ng-model="receipt" type="text">
+                <input class="form-control" data-ng-model="receipt" type="text">
               </span>
             </div>
             <br />
             <div class="row">
-              <a ng-click="view_tip(receipt)" class="btn btn-primary" ng-disabled="!receipt || receipt == ''">
+              <a data-ng-click="view_tip(receipt)" class="btn btn-primary" data-ng-disabled="!receipt || receipt == ''">
                 <i class="glyphicon glyphicon-log-in"></i>
                 <span data-translate>View Tip</span>
               </a>

@@ -1,10 +1,10 @@
 <div class="col-md-8">
   <div class="form-group table-bordered">
-    <input ng-model="preferences.tip_notification" type="checkbox">
+    <input data-ng-model="preferences.tip_notification" type="checkbox">
     <label>
       <span data-translate>Enable Tip notification</span>
     </label>
-    <div ng-show="preferences.tip_notification">
+    <div data-ng-show="preferences.tip_notification">
       <span class="btn-info">
         <span data-translate>now Enabled:</span>
       </span>
@@ -13,11 +13,11 @@
   </div>
 
   <div class="form-group table-bordered">
-    <input ng-model="preferences.message_notification" type="checkbox">
+    <input data-ng-model="preferences.message_notification" type="checkbox">
     <label>
       <span data-translate>Enable Message notification</span>
     </label>
-    <div ng-show="preferences.message_notification">
+    <div data-ng-show="preferences.message_notification">
       <span class="btn-info">
         <span data-translate>now Enabled:</span>
       </span>
@@ -26,11 +26,11 @@
   </div>
 
   <div class="form-group table-bordered">
-    <input ng-model="preferences.comment_notification" type="checkbox">
+    <input data-ng-model="preferences.comment_notification" type="checkbox">
     <label>
       <span data-translate>Enable Comment notification</span>
     </label>
-    <div ng-show="preferences.comment_notification">
+    <div data-ng-show="preferences.comment_notification">
       <span class="btn-info">
         <span data-translate>now Enabled:</span>
       </span>
@@ -39,11 +39,11 @@
   </div>
 
   <div class="form-group table-bordered">
-    <input ng-model="preferences.file_notification" type="checkbox">
+    <input data-ng-model="preferences.file_notification" type="checkbox">
     <label>
       <span data-translate>Enable File notification</span>
     </label>
-    <div ng-show="preferences.file_notification">
+    <div data-ng-show="preferences.file_notification">
       <span class="btn-info">
         <span data-translate>now Enabled:</span>
       </span>
@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <button type="submit" class="btn btn-success" ng-click="pref_save()">
+  <button type="submit" class="btn btn-success" data-ng-click="pref_save()">
     <i class="glyphicon glyphicon-ok"></i>
     <span data-translate>Update notification settings</span>
   </button>

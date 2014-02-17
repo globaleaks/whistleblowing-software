@@ -6,9 +6,9 @@ This comment is needed in order to push the following strings on transifex
 <span data-translate>Administration Interface</span>
 
 -->
-<div id="ContentBox" class="container"   ng-controller="OverviewCtrl">
+<div id="ContentBox" class="container"   data-ng-controller="OverviewCtrl">
   <div class="row">
-    <div id="ConfigSidebarBox" class="col-md-3" ng-include="'views/admin/sidebar.html'"></div>
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
       <p>
         <span data-translate>This interface may help you spot anomalies in your Node.</span><br />
@@ -33,7 +33,7 @@ This comment is needed in order to push the following strings on transifex
             </tr>
           </thead>
           <tbody id="fileListBody">
-            <tr ng-repeat="file in files">
+            <tr data-ng-repeat="file in files">
               <td class="col-md-6">
                  {{file.name}}<br /><br />
                  {{file.creation_date | date:'dd-MM-yyyy HH:mm' }} <br /><br />

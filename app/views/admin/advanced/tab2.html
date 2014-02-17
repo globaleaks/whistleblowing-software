@@ -2,9 +2,9 @@
   <div class="col-md-12">
 
     <div class="form-group table-bordered">
-      <input ng-model="admin.node.tor2web_admin" type="checkbox">
+      <input data-ng-model="admin.node.tor2web_admin" type="checkbox">
       <label data-translate>Permit Admin access via Tor2web</label>
-      <div ng-show="admin.node.tor2web_admin">
+      <div data-ng-show="admin.node.tor2web_admin">
         <span class="btn-info">
           <span data-translate>now Enabled:</span>
         </span>
@@ -13,9 +13,9 @@
     </div>
 
     <div class="form-group table-bordered">
-      <input ng-model="admin.node.tor2web_receiver" type="checkbox">
+      <input data-ng-model="admin.node.tor2web_receiver" type="checkbox">
       <label data-translate>Permit Receivers access via Tor2web</label>
-      <div ng-show="admin.node.tor2web_receiver">
+      <div data-ng-show="admin.node.tor2web_receiver">
         <span class="btn-info">
           <span data-translate>now Enabled:</span>
         </span>
@@ -24,9 +24,9 @@
     </div>
 
     <div class="form-group table-bordered">
-      <input ng-model="admin.node.tor2web_submission" type="checkbox">
+      <input data-ng-model="admin.node.tor2web_submission" type="checkbox">
       <label data-translate>Permit Whistleblower submissions via Tor2web</label>
-      <div ng-show="admin.node.tor2web_submission">
+      <div data-ng-show="admin.node.tor2web_submission">
         <span class="btn-info">
           <span data-translate>now Enabled:</span>
         </span>
@@ -36,9 +36,9 @@
     </div>
 
     <div class="form-group table-bordered">
-      <input ng-init="admin.node.tor2web_unauth" ng-model="admin.node.tor2web_unauth" type="checkbox">
+      <input data-ng-init="admin.node.tor2web_unauth" data-ng-model="admin.node.tor2web_unauth" type="checkbox">
       <label data-translate>Permit access of public resources via Tor2web</label>
-      <div ng-show="admin.node.tor2web_unauth">
+      <div data-ng-show="admin.node.tor2web_unauth">
         <span class="btn-info">
           <span data-translate>now Enabled:</span>
         </span>

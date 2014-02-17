@@ -6,9 +6,9 @@ This comment is needed in order to push the following strings on transifex
 <span data-translate>Administration Interface</span>
 
 -->
-<div id="ContentBox" class="container"   ng-controller="OverviewCtrl">
+<div id="ContentBox" class="container"   data-ng-controller="OverviewCtrl">
   <div class="row">
-    <div id="ConfigSidebarBox" class="col-md-3" ng-include="'views/admin/sidebar.html'"></div>
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
       <p>
       <span data-translate>This interface may help you understand how the Node is used by the whistleblower. We present you with the submissions currently on the node and a few statistics on the kind of usage (activity, files, comments).</span>
@@ -16,12 +16,12 @@ This comment is needed in order to push the following strings on transifex
       <div class="row">
         <div class="col-md-12">
           <div class="form-horizontal">
-            <span class="form-group col-md-6" ng-init="orderProp='creation_date'">
+            <span class="form-group col-md-6" data-ng-init="orderProp='creation_date'">
               <label class="control-label col-md-4">
                 <span data-translate>Order by:</span>
               </label>
               <div class="col-md-6">
-                <select ng-model="orderProp" class="form-control">
+                <select data-ng-model="orderProp" class="form-control">
                   <option value="status">
                     <span data-translate>Status</span>
                   </option>
@@ -40,12 +40,12 @@ This comment is needed in order to push the following strings on transifex
                 </select>
               </div>
             </span>
-            <span class="form-group col-md-6" ng-init="reverse='true'">
+            <span class="form-group col-md-6" data-ng-init="reverse='true'">
               <label class="control-label col-md-4">
                 <span data-translate>Order:</span>
               </label>
               <div class="col-md-4">
-                <select ng-model="reverse" class="form-control">
+                <select data-ng-model="reverse" class="form-control">
                   <option value="true">
                     <span data-translate>Desc</span>
                   </option>
@@ -73,7 +73,7 @@ This comment is needed in order to push the following strings on transifex
           </thead>
 
           <tbody id="tipListBody">
-            <tr ng-repeat="tip in tips | orderBy:orderProp:reverse">
+            <tr data-ng-repeat="tip in tips | orderBy:orderProp:reverse">
               <td class="col-md-1">{{tip.status}}</td>
               <td class="col-md-5">
                 <div class="row">
@@ -116,7 +116,7 @@ This comment is needed in order to push the following strings on transifex
                 </div>
                 <div class="row">
                   <div class="col-sm-offset-1 col-md-11">
-                    <div ng-repeat="rtip in tip.receivertips">
+                    <div data-ng-repeat="rtip in tip.receivertips">
                       <span class="glyphicon glyphicon-info-sign"></span>
                       {{rtip.status}} ({{rtip.access_counter}})
                       <a href="/#/admin/receivers">{{rtip.receiver_name}}</a>
@@ -130,7 +130,7 @@ This comment is needed in order to push the following strings on transifex
                     <b><span data-translate>Files</span>:</b>
                   </div>
                   <div class="col-sm-offset-1 col-md-11">
-                    <div ng-repeat="ifile in tip.internalfiles">
+                    <div data-ng-repeat="ifile in tip.internalfiles">
                        <span class="glyphicon glyphicon-file"></span>
                       {{ifile.name}} ({{ifile.size}}) {{ifile.content_type}}
                     </div>
@@ -142,7 +142,7 @@ This comment is needed in order to push the following strings on transifex
                     <b><span data-translate>Comments</span>:</b>
                   </div>
                   <div class="col-sm-offset-1 col-md-11">
-                    <div ng-repeat="comment in tip.comments">
+                    <div data-ng-repeat="comment in tip.comments">
                        <span class="glyphicon glyphicon-comment"></span>
                       {{comment.type}} ({{comment.lifetime | date:'dd-MM-yyyy HH:mm' }})
                     </div>

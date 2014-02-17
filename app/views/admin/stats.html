@@ -8,9 +8,9 @@ This comment is needed in order to push the following strings on transifex
 <span data-translate>Here you can check the latest anomalies detected</span>
 
 -->
-<div id="ContentBox" class="container" ng-controller="StatisticsCtrl">
+<div id="ContentBox" class="container" data-ng-controller="StatisticsCtrl">
   <div class="row">
-    <div id="ConfigSidebarBox" class="col-md-3" ng-include="'views/admin/sidebar.html'"></div>
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
       <div class="row">
         <div class="col-md-12">
@@ -39,7 +39,7 @@ This comment is needed in order to push the following strings on transifex
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="stat in stats">
+              <tr data-ng-repeat="stat in stats">
                 <td class="col-md-2">
                   {{stat.creation_date | date:'dd-MM-yyyy HH:mm'}}
                 </td>
@@ -59,7 +59,7 @@ This comment is needed in order to push the following strings on transifex
             </tbody>
           </table>
         </div>
-        <div class="col-md-12" ng-show="anomaly_checks">
+        <div class="col-md-12" data-ng-show="anomaly_checks">
           <h3 data-translate>Anomalies Checks</h3>
           <p>
             <span data-translate>This interface shows the latest anomalies spotted by the system.</span>
@@ -76,7 +76,7 @@ This comment is needed in order to push the following strings on transifex
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="anom in anomalies">
+              <tr data-ng-repeat="anom in anomalies">
                 <td class="col-md-2">
                   {{anom.creation_date | date:'dd-MM-yyyy HH:mm'}}
                 </td>

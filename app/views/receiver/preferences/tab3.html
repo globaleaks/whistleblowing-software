@@ -1,5 +1,5 @@
 <div class="col-md-8">
-  <div ng-show="preferences.gpg_key_info">
+  <div data-ng-show="preferences.gpg_key_info">
 
     <p>
       <span data-translate>PGP Key details</span>
@@ -14,16 +14,16 @@
 
     <div class="form-group table-bordered">
       <label>
-        <input ng-model="preferences.gpg_enable_notification" type="checkbox">
+        <input data-ng-model="preferences.gpg_enable_notification" type="checkbox">
         <span data-translate>Enable encrypted notification</span>
       </label>
-      <div ng-show="preferences.gpg_enable_notification">
+      <div data-ng-show="preferences.gpg_enable_notification">
         <span class="label label-success">
           <span data-translate>now Enabled:</span>
         </span>
         <span data-translate>Every notification will be encrypted with the PGP key.</span>
       </div>
-      <div ng-show="!preferences.gpg_enable_notification">
+      <div data-ng-show="!preferences.gpg_enable_notification">
         <span class="label label-danger">
           <span data-translate>now Disabled:</span>
         </span>
@@ -31,14 +31,14 @@
       </div>
     </div>
 
-    <div class="form-group table-bordered" ng-show="preferences.gpg_key_fingerprint">
-      <input ng-model="preferences.gpg_key_remove" type="checkbox">
+    <div class="form-group table-bordered" data-ng-show="preferences.gpg_key_fingerprint">
+      <input data-ng-model="preferences.gpg_key_remove" type="checkbox">
       <label data-translate>Remove the PGP key</label>
     </div>
   </div>
 
   <div class="form-group">
-    <div class="alert alert-danger" ng-hide="preferences.gpg_key_fingerprint" ng-click="gpg_marketing = ! gpg_marketing" ng-init="gpg_marketing=false">
+    <div class="alert alert-danger" data-ng-hide="preferences.gpg_key_fingerprint" data-ng-click="gpg_marketing = ! gpg_marketing" data-ng-init="gpg_marketing=false">
       <b><span data-translate>You've not enabled encryption!</span></b>
       <br /><br />
       <div>
@@ -48,21 +48,21 @@
      </div>
   </div>
 
-  <div class="form-group" ng-hide="preferences.gpg_key_fingerprint">
-    <button class="btn btn-success" ng-init="send_key=false" ng-click="send_key = !send_key">
-      <i class="glyphicon glyphicon-plus" ng-hide="send_key"></i>
-      <i class="glyphicon glyphicon-minus" ng-show="send_key"></i>
+  <div class="form-group" data-ng-hide="preferences.gpg_key_fingerprint">
+    <button class="btn btn-success" data-ng-init="send_key=false" data-ng-click="send_key = !send_key">
+      <i class="glyphicon glyphicon-plus" data-ng-hide="send_key"></i>
+      <i class="glyphicon glyphicon-minus" data-ng-show="send_key"></i>
       <span data-translate>Configure a PGP key</span>
     </button>
 
-    <div ng-show="send_key">
+    <div data-ng-show="send_key">
       <label data-translate>Copy and Paste here the PGP Key:</label>
-      <textarea class="form-control" ng-model="preferences.gpg_key_armor"></textarea>
+      <textarea class="form-control" data-ng-model="preferences.gpg_key_armor"></textarea>
     </div>
   </div>
 
   <div class="form-group">
-    <button type="submit" class="btn btn-success" ng-click="pref_save()">
+    <button type="submit" class="btn btn-success" data-ng-click="pref_save()">
     <i class="glyphicon glyphicon-ok"></i>
     <span data-translate>Update notification and encryption settings</span>
     </button>
