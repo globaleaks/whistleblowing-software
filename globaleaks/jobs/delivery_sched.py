@@ -30,6 +30,7 @@ def serialize_internalfile(ifile):
         'id': ifile.id,
         'internaltip_id' : ifile.internaltip_id,
         'name' : ifile.name,
+        'description' : ifile.description,
         'sha2sum' : ifile.sha2sum,
         'file_path' : ifile.file_path,
         'content_type' : ifile.content_type,
@@ -103,6 +104,7 @@ def receiverfile_planning(store):
         return []
 
     ifilesmap = {}
+
     for filex in files:
 
         if not filex.internaltip:
@@ -450,37 +452,17 @@ class APSDelivery(GLJob):
 
             are_all_encrypted = encrypt_where_available(receivermap)
 
-            for rfileinfo in receivermap:
 
-                try:
-                    yield receiverfile_create(ifile_path, rfileinfo['path'], rfileinfo['status'],
-                                              rfileinfo['size'], rfileinfo['receiver'])
-                except Exception as excep:
-                    log.err("Unable to create ReceiverFile from %s for %s: %s" %
-                            (ifile_path, rfileinfo['receiver']['name'], excep))
-                    continue
-
-            if are_all_encrypted:
-
-                log.debug(":) all file encrypted: delete the original InternalFile")
-                yield do_final_internalfile_update(ifile_path, InternalFile._marker[3]) # Removed
-                try:
-                    os.remove(ifile_path)
-                except OSError as ose:
-                    log.err("Unable to remove %s: %s" % (ifile_path, ose.message))
-
-            else:
-
+            if not are_all_encrypted:
                 plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z]{6}') )
 
-                log.debug(":( NOT all receivers supports PGP %s go to unsafe version %s" %
+                log.debug(":( NOT all receivers support PGP %s go to unsafe version %s" %
                           (ifile_path, plain_path)
                 )
 
                 with GLSecureFile(ifile_path) as encrypted_file:
 
                     with open(plain_path, "wb") as plain_f_is_sad_f:
-
                         chunk_size = 4096
                         while True:
                             chunk = encrypted_file.read(chunk_size)
@@ -489,6 +471,34 @@ class APSDelivery(GLJob):
                             plain_f_is_sad_f.write(chunk)
 
                 yield do_final_internalfile_update(ifile_path, InternalFile._marker[2], plain_path)
+
+            else: # are_all_encrypted:
+                log.debug("All Receivers support PGP, marking internalfile as removed")
+                yield do_final_internalfile_update(ifile_path, InternalFile._marker[3]) # Removed
+
+            for rfileinfo in receivermap:
+
+                if not are_all_encrypted and rfileinfo['status'] == u'reference':
+                    ref_path = plain_path
+                    rfileinfo['path'] = plain_path
+                else:
+                    ref_path = ifile_path
+
+                try:
+                    yield receiverfile_create(ref_path, rfileinfo['path'], rfileinfo['status'],
+                                              rfileinfo['size'], rfileinfo['receiver'])
+                except Exception as excep:
+                    log.err("Unable to create ReceiverFile from %s for %s: %s" %
+                            (ifile_path, rfileinfo['receiver']['name'], excep))
+                    continue
+
+            # the original AES file need always to be deleted
+            log.debug("Deleting the submission AES encrypted file: %s" % ifile_path)
+            try:
+                os.remove(ifile_path)
+            except OSError as ose:
+                log.err("Unable to remove %s: %s" % (ifile_path, ose.message))
+
 
             # here closes the if/else 'are_all_encrypted'
         # here closes the loop over internalfile mapping

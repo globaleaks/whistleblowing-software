@@ -69,6 +69,7 @@ def register_file_db(store, uploaded_file, filepath, cksum, internaltip_id):
         new_file = InternalFile()
 
         new_file.name = original_fname
+        new_file.description = ""
         new_file.content_type = uploaded_file['content_type']
         new_file.mark = InternalFile._marker[0] # 'not processed'
         new_file.sha2sum = cksum
