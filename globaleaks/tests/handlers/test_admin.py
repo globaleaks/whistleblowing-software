@@ -50,20 +50,13 @@ class TestNodeInstance(helpers.TestHandler):
             self.assertEqual(self.responses[0][response_key],
                              self.dummyNode[response_key])
 
-
     @inlineCallbacks
     def test_put_update_node_invalid_lang(self):
         self.dummyNode['languages_enabled'] = ["en", "shit" ]
 
         handler = self.request(self.dummyNode, role='admin')
-        try:
-            yield handler.put()
-            self.assertTrue(False)
-        except InvalidInputFormat as excep:
-            self.assertSubstring("Invalid lang code enabled: shit", excep.reason)
-        except Exception as excep:
-            print "Wrong exception: %s" % excep
-            self.assertFalse(True)
+
+        yield self.assertFailure(handler.put(), InvalidInputFormat)
 
     @inlineCallbacks
     def test_put_update_node_invalid_hidden(self):
@@ -71,14 +64,8 @@ class TestNodeInstance(helpers.TestHandler):
         self.dummyNode['public_site'] = 'http://blogleaks.blogspot.com'
 
         handler = self.request(self.dummyNode, role='admin')
-        try:
-            yield handler.put()
-            self.assertTrue(False)
-        except InvalidInputFormat:
-            self.assertTrue(True)
-        except Exception as excep:
-            print "Wrong exception: %s" % excep
-            raise excep
+
+        yield self.assertFailure(handler.put(), InvalidInputFormat)
 
     @inlineCallbacks
     def test_put_update_node_invalid_public(self):
@@ -86,35 +73,15 @@ class TestNodeInstance(helpers.TestHandler):
         self.dummyNode['public_site'] = 'blogleaks.blogspot.com'
 
         handler = self.request(self.dummyNode, role='admin')
-        try:
-            yield handler.put()
-            self.assertTrue(False)
-        except InvalidInputFormat:
-            self.assertTrue(True)
-        except Exception as excep:
-            print "Wrong exception: %s" % excep.log_message
-            raise excep
+
+        yield self.assertFailure(handler.put(), InvalidInputFormat)
 
 
 class TestNotificationInstance(helpers.TestHandler):
     _handler = admin.NotificationInstance
 
-    @transact
-    def mock_initialize_notification(self, store):
-        """
-        This is what is commonly performed in initialize_node
-        """
-        # load notification template
-
-        notification = Notification()
-        notification.tip_template = "my dummy template %EventName%"
-        # It's the only NOT NULL variable with CHECK
-        notification.security = Notification._security_types[0]
-        store.add(notification)
-
     @inlineCallbacks
     def test_update_notification(self):
-        yield self.mock_initialize_notification
         self.dummyNotification['server'] = 'stuff'
         handler = self.request(self.dummyNotification, role='admin')
         yield handler.put()
@@ -216,14 +183,8 @@ class TestContextInstance(helpers.TestHandler):
 
         # 1000 hours are more than three days, and a Tip can't live less than a submission
         handler = self.request(self.dummyContext, role='admin')
-        try:
-            yield handler.put(self.dummyContext['id'])
-            self.assertTrue(False)
-        except errors.InvalidTipSubmCombo:
-            self.assertTrue(True)
-        except Exception as excep:
-            print "Wrong exception: %s" % excep
-            self.assertTrue(False)
+        
+        yield self.assertFailure(handler.put(self.dummyContext['id']), errors.InvalidTipSubmCombo)
 
 
 class TestReceiversCollection(helpers.TestHandler):
@@ -272,14 +233,7 @@ class TestReceiversCollection(helpers.TestHandler):
 
         handler = self.request(self.dummyReceiver, role='admin')
 
-        try:
-            yield handler.post()
-            self.assertTrue(False)
-        except errors.NoEmailSpecified:
-            self.assertTrue(True)
-        except Exception as excep:
-            print "Wrong exception: %s" % excep.log_message
-            raise excep
+        yield self.assertFailure(handler.post(), errors.NoEmailSpecified)
 
     @inlineCallbacks
     def test_post_duplicated_username(self):
@@ -293,15 +247,10 @@ class TestReceiversCollection(helpers.TestHandler):
 
         handler = self.request(self.dummyReceiver, role='admin')
 
-        try:
-            yield handler.post()
-            yield handler.post() # duplication here!
-            self.assertTrue(False)
-        except errors.ExpectedUniqueField:
-            self.assertTrue(True)
-        except Exception as excep:
-            print "Wrong exception: %s" % excep.log_message
-            raise excep
+        yield handler.post()
+
+        # duplicated username raises errors.ExpectedUniqueField
+        yield self.assertFailure(handler.post(), errors.ExpectedUniqueField)
 
 
 class TestReceiverInstance(helpers.TestHandler):
@@ -360,14 +309,9 @@ class TestReceiverInstance(helpers.TestHandler):
             self.dummyReceiver[attrname] = stuff
 
         handler = self.request(self.dummyReceiver, role='admin')
-        try:
-            yield handler.put(self.dummyReceiver['id'])
-            self.assertTrue(False)
-        except errors.ContextIdNotFound:
-            self.assertTrue(True)
-        except Exception as excep:
-            print "Wrong exception: %s" % excep
-            raise excep
+
+        yield self.assertFailure(handler.put(self.dummyReceiver['id']),
+                                 errors.ContextIdNotFound)
 
     @inlineCallbacks
     def test_delete(self):
@@ -379,11 +323,8 @@ class TestReceiverInstance(helpers.TestHandler):
             print "Wrong exception: %s" % excep
             raise excep
 
-        try:
-            yield handler.get(self.dummyReceiver['id'])
-            self.assertTrue(False)
-        except errors.ReceiverIdNotFound:
-            self.assertTrue(True)
+        yield self.assertFailure(handler.get(self.dummyReceiver['id']),
+                                 errors.ReceiverIdNotFound)
 
 
 class TestAdminStaticFileInstance(helpers.TestHandler):
