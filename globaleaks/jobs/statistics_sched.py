@@ -65,12 +65,18 @@ class APSAnomalies(GLJob):
         """
 
         try:
-            log.debug("Anomalies checks [started submission %d, " \
-                      "finalized submission %d, anon req %d, new files %d]" %
-                      ( GLSetting.anomalies_counter['new_submission'],
-                        GLSetting.anomalies_counter['finalized_submission'],
-                        GLSetting.anomalies_counter['anon_requests'],
-                        GLSetting.anomalies_counter['file_uploaded'] ) )
+            # print this log message only if something need to be reported
+            if GLSetting.anomalies_counter['new_submission'] > 0 or \
+               GLSetting.anomalies_counter['finalized_submission'] > 0 or \
+               GLSetting.anomalies_counter['anon_requests'] > 0 or \
+               GLSetting.anomalies_counter['file_uploaded'] > 0:
+
+                log.debug("Anomalies checks [started submission %d, " \
+                          "finalized submission %d, anon req %d, new files %d]" %
+                          ( GLSetting.anomalies_counter['new_submission'],
+                            GLSetting.anomalies_counter['finalized_submission'],
+                            GLSetting.anomalies_counter['anon_requests'],
+                            GLSetting.anomalies_counter['file_uploaded'] ) )
 
             # the newer on top of the older
             GLSetting.anomalies_list = [ GLSetting.anomalies_counter ] + GLSetting.anomalies_list
