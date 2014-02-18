@@ -270,7 +270,7 @@ class GLBGPG:
         try:
             temp_gpgroot = os.path.join(GLSetting.gpgroot, "%s" % Random.random.randint(0, 0xFFFF))
             os.makedirs(temp_gpgroot, mode=0700)
-            self.gpgh = GPG(gnupghome=temp_gpgroot, options="--trust-model always")
+            self.gpgh = GPG(gnupghome=temp_gpgroot, options=['--trust-model', 'always'])
         except Exception as excep:
             log.err("Unable to instance GPG object: %s" % excep)
             raise excep
@@ -546,7 +546,7 @@ def get_expirations(keylist):
     try:
         temp_gpgroot = os.path.join(GLSetting.gpgroot, "-expiration_check-%s" % Random.random.randint(0, 0xFFFF))
         os.makedirs(temp_gpgroot, mode=0700)
-        gpexpire = GPG(gnupghome=temp_gpgroot, options="--trust-model always")
+        gpexpire = GPG(gnupghome=temp_gpgroot, options=['--trust-model', 'always'])
     except Exception as excep:
         log.err("Unable to setup expiration check environment: %s" % excep)
         raise excep

@@ -40,6 +40,7 @@ class Node_version_9(Model):
     exception_email = Unicode()
 
     # is added wizard_done = Bool()
+    #          anomaly_checks = Bool()
 
 
 
@@ -58,11 +59,54 @@ class Replacer910(TableReplacer):
                 new_node.wizard_done = True
                 continue
 
+            if v.name == 'anomaly_checks':
+                anomaly_checks = True
+                continue
+
             setattr(new_node, v.name, getattr(old_node, v.name) )
 
         self.store_new.add(new_node)
         self.store_new.commit()
 
+    def migrate_InternalFile(self):
+        """
+        The following is the same comment present in migration 8->9 as the bug still
+        exist because InternalFile.description was not initialized in InternalFile creation
+        in file.py handler.
+
+        The integration of 'description' happen between the v 7 and 8, but
+        InternalFile.description has been set with storm validator after the
+        release.
+
+        This mean that old DB can't be converted anymore because description was
+        accepted empty (at the moment, from the GLC UI, can't be set a file desc)
+
+        This migrate_InternalFile do not require an update of the version table:
+        self.get_right_model("InternalFile", 8)
+        and
+        self.get_right_model("InternalFile", 9)
+        return the same object, and is fine so.
+        """
+        print "%s InternalFile migration assistant: (file description is mandatory !?) #%d" % (
+            self.std_fancy, self.store_old.find(self.get_right_model("InternalFile", 8)).count() )
+
+        old_ifiles = self.store_old.find(self.get_right_model("InternalFile", 8))
+
+        for old_obj in old_ifiles:
+
+            new_obj = self.get_right_model("InternalFile", 9)()
+
+            for k, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'description':
+                    if not old_obj.description or not len(old_obj.description):
+                        new_obj.description = "Descriptionless %s file" % old_obj.content_type
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+        self.store_new.commit()
 
     def epilogue(self):
         print "%s Epilogue function in migration assistant: (stats, appdata)" % \
