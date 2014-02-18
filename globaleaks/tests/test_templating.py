@@ -62,13 +62,12 @@ class notifTemplateTest(helpers.TestGL):
     def get_a_fucking_random_submission(self, store):
 
         aits = store.find(InternalTip)
-        if not aits.count():
-            # this cannot happen, but ...
-            raise Exception("in our Eternal Mangekyō Sharingan, not InternalTip are avail")
+        self.failIfEqual(aits.count(), 0,
+                         "in our Eternal Mangekyō Sharingan, no InternalTip are available")
 
         rits = store.find(ReceiverTip)
-        if not rits.count():
-            raise Exception("in our Eternal Mangekyō Sharingan, not ReceiverTip are avail")
+        self.failIfEqual(rits.count(), 0,
+                         "in our Eternal Mangekyō Sharingan, no ReceiverTip are available")
 
         # just because 
         # storm.exceptions.UnorderedError: Can't use first() on unordered result set
@@ -81,18 +80,17 @@ class notifTemplateTest(helpers.TestGL):
         Here I'm testing only encrypted_tip because trigger a bigger
         amount of %KeyWords%
         """
+        self.assertEqual(type, u'encrypted_tip')
+        self.assertEqual(trigger, 'Tip')
+
         if type == u'encrypted_tip' and trigger == 'Tip':
 
             receiver_dict = yield admin.get_receiver(self.createdReceiver['id'])
             context_dict = yield admin.get_context(self.createdContext['id'])
             notif_dict = yield admin.get_notification()
 
-            try:
-                yield admin.import_memory_variables()
-                node_dict = yield admin.get_node()
-            except Exception as exxx:
-                print "Some random error with DB", exxx.__repr__()
-                raise exxx
+            yield admin.import_memory_variables()
+            node_dict = yield admin.get_node()
 
             tip_dict = yield self.get_a_fucking_random_submission()
 
@@ -107,16 +105,6 @@ class notifTemplateTest(helpers.TestGL):
                 trigger_info = tip_dict,
                 trigger_parent = None
             )
-
-        elif (type == u'encrypted_file' or type == u'plaintext_comment') and trigger == 'File':
-            raise AssertionError("Not yet managed Mock files")
-        elif (type == u'encrypted_comment' or type == u'plaintext_comment') and trigger == 'Comment':
-            raise AssertionError("Not yet managed Mock comments")
-        elif (type == u'encrypted_message' or type == u'plaintext_message') and trigger == 'Message':
-            raise AssertionError("Not yet managed Mock messages")
-        else:
-            raise AssertionError("Invalid combo: %s ~ %s" % (type, trigger))
-
 
     def _load_defaults(self):
         # CWD is on _trial_temp
@@ -140,25 +128,16 @@ class notifTemplateTest(helpers.TestGL):
         self.mockReceiver = helpers.MockDict().dummyReceiver
         self.mockNode = helpers.MockDict().dummyNode
 
-        try:
-            self.createdContext = yield admin.create_context(self.mockContext)
-            self.assertTrue(self.createdContext.has_key('id'))
-        except Exception as excep:
-            raise excep
+        self.createdContext = yield admin.create_context(self.mockContext)
+        self.assertTrue(self.createdContext.has_key('id'))
 
-        try:
-            self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
+        self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
+        
+        self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
+        self.assertTrue(self.createdReceiver.has_key('id'))
 
-            self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
-            self.assertTrue(self.createdReceiver.has_key('id'))
-        except Exception as excep:
-            raise excep
-
-        try:
-            self.createdNode = yield admin.update_node(self.mockNode)
-            self.assertTrue(self.createdNode.has_key('version'))
-        except Exception as excep:
-            raise excep
+        self.createdNode = yield admin.update_node(self.mockNode)
+        self.assertTrue(self.createdNode.has_key('version'))
         ### END OF THE INITIALIZE BLOCK
 
         self.templates = {}
@@ -194,10 +173,7 @@ class notifTemplateTest(helpers.TestGL):
         created_rtip = yield delivery_sched.tip_creation()
         self.assertEqual(len(created_rtip), 1)
 
-        try:
-            yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
-        except Exception as excep:
-            print excep; raise excep
+        yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
 
         # with the event, we can finally call the template filler
         gentext = Templating().format_template(self.templates['default_ETNT.txt']['en'], self.event)
@@ -230,25 +206,16 @@ class notifTemplateTest(helpers.TestGL):
         self.mockReceiver = helpers.MockDict().dummyReceiver
         self.mockNode = helpers.MockDict().dummyNode
 
-        try:
-            self.createdContext = yield admin.create_context(self.mockContext)
-            self.assertTrue(self.createdContext.has_key('id'))
-        except Exception as excep:
-            raise excep
+        self.createdContext = yield admin.create_context(self.mockContext)
+        self.assertTrue(self.createdContext.has_key('id'))
 
-        try:
-            self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
+        self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
 
-            self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
-            self.assertTrue(self.createdReceiver.has_key('id'))
-        except Exception as excep:
-            raise excep
+        self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
+        self.assertTrue(self.createdReceiver.has_key('id'))
 
-        try:
-            self.createdNode = yield admin.update_node(self.mockNode)
-            self.assertTrue(self.createdNode.has_key('version'))
-        except Exception as excep:
-            raise excep
+        self.createdNode = yield admin.update_node(self.mockNode)
+        self.assertTrue(self.createdNode.has_key('version'))
         ### END OF THE INITIALIZE BLOCK
 
         # THE REAL CONVERSION TEST START HERE:
@@ -262,10 +229,7 @@ class notifTemplateTest(helpers.TestGL):
         created_rtip = yield delivery_sched.tip_creation()
         self.assertEqual(len(created_rtip), 1)
 
-        try:
-            yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
-        except Exception as excep:
-            print excep; raise excep
+        yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
 
         # with the event, we can finally call the template filler
         gentext = Templating().format_template(self.templates['default_ETNT.txt'], self.event)
@@ -287,25 +251,16 @@ class notifTemplateTest(helpers.TestGL):
         self.mockReceiver = helpers.MockDict().dummyReceiver
         self.mockNode = helpers.MockDict().dummyNode
 
-        try:
-            self.createdContext = yield admin.create_context(self.mockContext)
-            self.assertTrue(self.createdContext.has_key('id'))
-        except Exception as excep:
-            raise excep
+        self.createdContext = yield admin.create_context(self.mockContext)
+        self.assertTrue(self.createdContext.has_key('id'))
 
-        try:
-            self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
+        self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
 
-            self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
-            self.assertTrue(self.createdReceiver.has_key('id'))
-        except Exception as excep:
-            raise excep
+        self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
+        self.assertTrue(self.createdReceiver.has_key('id'))
 
-        try:
-            self.createdNode = yield admin.update_node(self.mockNode)
-            self.assertTrue(self.createdNode.has_key('version'))
-        except Exception as excep:
-            raise excep
+        self.createdNode = yield admin.update_node(self.mockNode)
+        self.assertTrue(self.createdNode.has_key('version'))
         ### END OF THE INITIALIZE BLOCK
 
         # be sure of Tor2Web capability

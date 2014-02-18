@@ -38,32 +38,8 @@ class TestEmail(helpers.TestGLWithPopulatedDB):
 
         notification.MailNotification.mail_flush = mail_flush_mock
 
-    @transact
-    def _setup_database(self, store):
-        del self.dummyContext['receivers']
-        self.ctx = models.Context(self.dummyContext)
-        del self.dummyReceiver['contexts']
-        self.rcv = models.Receiver(self.dummyReceiver)
-        store.add(self.ctx)
-        store.add(self.rcv)
-        store.commit()
-
-        self.rcv.mail_address = 'vecna@globaleaks.org'
-        self.rcv.receiver_level = 1
-
-        # Assign Receiver to the Context
-        self.ctx.receivers.add(self.rcv)
-
     @inlineCallbacks
     def test_sendmail(self):
-        def success(*result):
-            print 'message sent', result
-            self.assertTrue(True)
-
-        def failure(result):
-            print 'failure', result
-            self.assertTrue(False)
-
         aps = APSNotification()
         aps.notification_settings = {
             "server": "mail.headstrong.de",
