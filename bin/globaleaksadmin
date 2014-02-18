@@ -111,6 +111,7 @@ def do_safexport(dbfile, export_print):
         funny_print("Notification", "%s" % notification.count())
         funny_print("ApplicationData", "%s" % appdata.count())
         funny_print("Node", "%s" % node.count())
+        funny_print("Stats", "%s" % stats.count())
         return
 
     # export
