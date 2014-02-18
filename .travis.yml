@@ -8,11 +8,4 @@ install:
 before_script:
   - curl -s https://raw.github.com/globaleaks/GlobaLeaks/master/scripts/travis/before_script.sh | sh
 script:
-  - sudo pip install coverage
-  - sudo pip install coveralls
-  - git clone https://github.com/globaleaks/GLBackend /data/globaleaks/GLBackend_trial
-  - cd /data/globaleaks/GLBackend_trial
-  - git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
-  - coverage run $(which trial) globaleaks
-  - coveralls
   - curl -s https://raw.github.com/globaleaks/GlobaLeaks/master/scripts/travis/script.sh | sh

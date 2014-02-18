@@ -140,12 +140,7 @@ class TestTipInstance(TTip):
         basehandler.validate_jmessage( self.tipReceiver1, requests.adminReceiverDesc )
         basehandler.validate_jmessage( self.tipReceiver2, requests.adminReceiverDesc )
 
-        try:
-            self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1)
-        except Exception as exxx:
-            print "Exception: %s" % exxx
-            self.assertTrue(False)
-
+        self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1)
         self.receiver2_desc = yield admin.create_receiver(self.tipReceiver2)
 
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['id']])
@@ -227,18 +222,14 @@ class TestTipInstance(TTip):
         try:
             self.receiver1_data = yield rtip.get_internaltip_receiver(auth1, tmp1)
         except:
-            try:
-                self.rtip1_id = tmp2
-                self.rtip2_id = tmp1
+            self.rtip1_id = tmp2
+            self.rtip2_id = tmp1
 
-                self.receiver1_data = yield rtip.get_internaltip_receiver(auth1, tmp2)
+            self.receiver1_data = yield rtip.get_internaltip_receiver(auth1, tmp2)
 
-                self.assertEqual(self.receiver1_data['fields'], self.submission_desc['wb_fields'])
-                self.assertEqual(self.receiver1_data['access_counter'], 0)
-            except Exception as e:
-                self.assertTrue(False)
-                raise e
-        
+            self.assertEqual(self.receiver1_data['fields'], self.submission_desc['wb_fields'])
+            self.assertEqual(self.receiver1_data['access_counter'], 0)
+
         self.receiver2_data = yield rtip.get_internaltip_receiver(auth2, self.rtip2_id)
         self.assertEqual(self.receiver2_data['fields'], self.submission_desc['wb_fields'])
         self.assertEqual(self.receiver2_data['access_counter'], 0)
@@ -252,13 +243,8 @@ class TestTipInstance(TTip):
         # Instead of yield authentication.login_receiver(username/pasword), is used:
         auth_receiver_1 = self.receiver1_desc['id']
 
-        try:
-            yield rtip.get_internaltip_receiver(auth_receiver_1, self.rtip2_id)
-            self.assertTrue(False)
-        except errors.TipIdNotFound, e:
-            self.assertTrue(True)
-        except Exception, e:
-            self.assertTrue(False)
+        yield self.assertFailure(rtip.get_internaltip_receiver(auth_receiver_1, self.rtip2_id),
+                                 errors.TipIdNotFound)
 
     @inlineCallbacks
     def increment_access_counter(self):
@@ -374,15 +360,10 @@ class TestTipInstance(TTip):
         tip_expiring = yield rtip.get_internaltip_receiver(
             self.receiver1_desc['id'], self.rtip1_id)
 
-        try:
-            yield rtip.postpone_expiration_date(
-                    self.receiver1_desc['id'],
-                    self.rtip1_id)
-        except errors.ExtendTipLifeNotEnabled:
-            self.assertTrue(True)
-        except Exception, e:
-            self.assertTrue(False)
-            raise e
+        yield self.assertFailure(rtip.postpone_expiration_date(
+                                     self.receiver1_desc['id'],
+                                     self.rtip1_id),
+                                 errors.ExtendTipLifeNotEnabled)
 
         tip_not_extended = yield rtip.get_internaltip_receiver(
             self.receiver1_desc['id'], self.rtip1_id)
@@ -468,15 +449,9 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def receiver2_fail_in_delete_internal_tip(self):
-        try:
-            yield rtip.delete_internal_tip(self.receiver2_desc['id'],
-                                    self.rtip2_id)
-            self.assertTrue(False)
-        except errors.ForbiddenOperation:
-            self.assertTrue(True)
-        except Exception, e:
-            self.assertTrue(False)
-            raise e
+        yield self.assertFailure(rtip.delete_internal_tip(self.receiver2_desc['id'],
+                                                          self.rtip2_id),
+                                 errors.ForbiddenOperation)
 
     @inlineCallbacks
     def receiver2_personal_delete(self):
@@ -536,17 +511,9 @@ class TestTipInstance(TTip):
         y = yield rtip.get_messages_list(self.receiver2_desc['id'], self.rtip2_id)
         self.assertEqual(len(y), expected_msgs)
 
-        try:
-            # receiver 1 and tip 2 access test
-            yield rtip.get_messages_list(self.receiver1_desc['id'], self.rtip2_id)
-            self.assertTrue(False)
-            # no success expected here !!
-        except errors.TipIdNotFound:
-            self.assertTrue(True)
-        except Exception as excep:
-            self.assertTrue(False)
-            raise excep
-
+        # receiver 1 and tip 2 access test
+        yield self.assertFailure(rtip.get_messages_list(self.receiver1_desc['id'], self.rtip2_id),
+                                 errors.TipIdNotFound)
 
     @inlineCallbacks
     def do_wb_messages(self):
@@ -567,11 +534,11 @@ class TestTipInstance(TTip):
 
         after = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
 
-        for receivers_messages in after:
-            if (after[0]['id'] == self.receiver1_desc['id']):
-                self.assertEqual(after[0]['your_messages'], 1)
+        for receivers_message in after:
+            if (receivers_message['id'] == self.receiver1_desc['id']):
+                self.assertEqual(receivers_message['your_messages'], 1)
             else:
-                self.assertEqual(after[0]['your_messages'], 0)
+                self.assertEqual(receivers_message['your_messages'], 0)
 
         # and now, two messages for the second receiver
         msgrequest = { 'content': u'#1/2 msg from wb to receiver2' }
@@ -583,11 +550,11 @@ class TestTipInstance(TTip):
 
         end = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
 
-        for receivers_messages in end:
-            if (end[0]['id'] == self.receiver2_desc['id']):
-                self.assertEqual(end[0]['your_messages'], 2)
+        for receivers_message in end:
+            if (receivers_message['id'] == self.receiver2_desc['id']):
+                self.assertEqual(receivers_message['your_messages'], 2)
             else: # the messages from Receiver1 are not changed, right ?
-                self.assertEqual(end[0]['your_messages'], 1)
+                self.assertEqual(receivers_message['your_messages'], 1)
 
     @inlineCallbacks
     def do_receivers_messages_and_unread_verification(self):

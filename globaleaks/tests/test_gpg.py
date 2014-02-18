@@ -21,14 +21,6 @@ from globaleaks.tests.helpers import MockDict, fill_random_fields, TestHandler
 
 GPGROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
 
-
-@transact_ro
-def transact_dummy_whatever(store, receiver_id, mock_request):
-    receiver = store.find(Receiver, Receiver.id == receiver_id).one()
-    gpg_options_parse(receiver, mock_request)
-    return admin_serialize_receiver(receiver)
-
-
 class TestReceiverSetKey(TestHandler):
     _handler = receiver.ReceiverInstance
 
@@ -107,22 +99,13 @@ class TestReceiverSetKey(TestHandler):
 
     @inlineCallbacks
     def test_transact_malformed_key(self):
-        self.receiver_only_update = dict(MockDict().dummyReceiver)
+        self.receiver_only_update['password'] = self.dummyReceiver['password']
+        self.receiver_only_update['old_password'] = self.dummyReceiver['password']
         self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__).replace('A', 'B')
         self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
         self.receiver_only_update['gpg_key_remove'] = False
-
-        try:
-            serialized_result = yield transact_dummy_whatever(self.dummyReceiver['id'],
-                self.receiver_only_update)
-            print "Invalid results!"
-            self.assertTrue(False)
-        except errors.GPGKeyInvalid:
-
-            self.assertTrue(True)
-        except Exception as excep:
-            print "Invalid exception! %s" % excep
-            self.assertTrue(False)
+        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['id'])
+        yield self.assertFailure(handler.put(), errors.GPGKeyInvalid)
 
     def test_Class_encryption_message(self):
 
@@ -324,12 +307,7 @@ class TestReceiverSetKey(TestHandler):
             expiration_dt = datetime.datetime.utcfromtimestamp(int(sincepoch)).date()
 
             # simply, all the keys here are expired
-            if expiration_dt < today_dt:
-                continue
-
-            self.assertTrue(False)
-        self.assertTrue(True)
-
+            self.assertTrue(expiration_dt < today_dt)
 
 
 class HermesGlobaleaksKey:
