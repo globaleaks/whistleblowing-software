@@ -425,10 +425,12 @@ class TestAdminStaticFileList(helpers.TestHandler):
         yield handler.get()
         self.assertTrue( isinstance(self.responses[0], list) )
 
+        found = False
+
         for f in self.responses[0]:
             if f['filename'] == self.fakeFile['filename']:
+                found = True
                 self.assertEqual(self.fakeFile['body_len'], f['size'])
-                return
 
-        self.assertTrue(False) # has never match the check before :(
+        self.assertTrue(found)
 
