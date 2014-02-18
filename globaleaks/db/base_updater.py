@@ -130,7 +130,8 @@ class TableReplacer:
         from globaleaks.db.update_7_8 import Node_version_7, Notification_version_7, Context_version_7, \
             Receiver_version_7, InternalFile_version_7
         from globaleaks.db.update_8_9 import Context_version_8, Receiver_version_8, Notification_version_8
-        from globaleaks.db.update_9_10 import Node_version_9
+        from globaleaks.db.update_9_10 import Node_version_9, ApplicationData_version_10, \
+            Receiver_version_9, User_version_9
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -141,9 +142,9 @@ class TableReplacer:
 
         self.table_history = {
             'Node' : [ Node_version_5, Node_version_6, Node_version_7, Node_version_9, None, models.Node ],
-            'User' : [ User_version_5, models.User, None, None, None, None ],
+            'User' : [ User_version_5, User_version_9, None, None, None, models.User ],
             'Context' : [ Context_version_6, None, Context_version_7, Context_version_8, models.Context, None ],
-            'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, models.Receiver, None ],
+            'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, Receiver_version_9, models.Receiver ],
             'ReceiverFile' : [ models.ReceiverFile, None, None, None, None, None ],
             'Notification': [ Notification_version_7, None, None, Notification_version_8, models.Notification, None ],
             'Comment': [ Comment_version_5, models.Comment, None, None, None, None ],
@@ -154,6 +155,7 @@ class TableReplacer:
             'ReceiverInternalTip' : [ models.ReceiverInternalTip, None, None, None, None, None ],
             'ReceiverContext' : [ models.ReceiverContext, None, None, None, None, None ],
             'Message' : [models.Message, None, None, None, None, None ],
+            # next release: 'ApplicationData' and 'Stats'
         }
 
         for k, v in self.table_history.iteritems():
