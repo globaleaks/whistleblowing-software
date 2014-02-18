@@ -39,9 +39,44 @@ class Node_version_9(Model):
     ahmia = Bool()
     exception_email = Unicode()
 
-    # is added wizard_done = Bool()
-    #          anomaly_checks = Bool()
+    # is added
+    # wizard_done = Bool()
+    # anomaly_checks = Bool()
 
+class Receiver_version_9(Model):
+    __storm_table__ = 'receiver'
+    user_id = Unicode()
+    name = Unicode()
+    description = Pickle()
+    gpg_key_info = Unicode()
+    gpg_key_fingerprint = Unicode()
+    gpg_key_status = Unicode()
+    gpg_key_armor = Unicode()
+    gpg_enable_notification = Bool()
+    mail_address = Unicode()
+    can_delete_submission = Bool()
+    postpone_superpower = Bool()
+    receiver_level = Int()
+    last_update = DateTime()
+    tags = Pickle()
+    tip_notification = Bool()
+    comment_notification = Bool()
+    file_notification = Bool()
+    message_notification = Bool()
+    presentation_order = Int()
+    # this gpg_enable_files is removed since 9 to 10
+    gpg_enable_files = Bool()
+
+class User_version_9(Model):
+    __storm_table__ = 'user'
+    username = Unicode()
+    password = Unicode()
+    salt = Unicode()
+    role = Unicode()
+    state = Unicode()
+    last_login = DateTime()
+    # this failed_login_count is removed since 9 to 10
+    failed_login_count = Int()
 
 
 class Replacer910(TableReplacer):
@@ -120,5 +155,3 @@ class Replacer910(TableReplacer):
         self.store_new.add(appdata)
         self.store_new.commit()
 
-
-    # TODO, receiver can be removed the 'gpg_encrypt_file' because is always True if gpg is enable
