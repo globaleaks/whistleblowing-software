@@ -150,7 +150,7 @@ class Replacer910(TableReplacer):
         # first stats is not generated here, do not need
         appdata = ApplicationData_version_10()
         appdata.fields_version = 0
-        appdata.fields = None
+        appdata.fields = list()
 
         self.store_new.add(appdata)
         self.store_new.commit()
