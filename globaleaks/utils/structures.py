@@ -50,7 +50,6 @@ class Fields:
         @return:
         """
         from uuid import uuid4
-        assert len(appdata_fields) > 1, "ApplicationData not initialized"
 
         # first, get the amount of translated languages
         for block in appdata_fields:
