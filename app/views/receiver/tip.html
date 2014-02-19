@@ -6,6 +6,7 @@ This comment is needed in order to push the following strings on transifex
 <span data-translate>Tip Status Page</span>
 <span data-translate>This receiver has configured the encryption key.</span>
 <span data-translate>This receiver has not configured the encryption key.</span>
+<span data-translate>The file is unavailable due to an internal error.</span>
 
 -->
 <div id="ContentBox" class="container statusPage ng-cloak">
@@ -169,12 +170,15 @@ This comment is needed in order to push the following strings on transifex
                 <td>
                   {{file.name}}
                 </td>
-                <td>
+                <td data-ng-show="file.status != 'unavailable'">
                   <a data-ng-disabled="file.downloads >= tip.download_limit" data-ng-click="increaseDownloadCount(file)" class="btn btn-xs btn-default ng-cloak" data-ng-href="{{file.href}}" download="{{file.name}}">
                     <i class="glyphicon glyphicon-download"></i> 
                     <span data-translate>download</span>
                     ({{file.downloads}}/{{tip.download_limit}})
                   </a>
+                </td>
+                <td data-ng-show="file.status == 'unavailable'">
+                  <div class="label label-lg label-warning" popover="{{ 'The file is unavailable due to an internal error.' | translate }}" popover-placement="bottom" popover-trigger="mouseenter">file unavailable</div>
                 </td>
                 <td>
                   {{file.creation_date | date:'dd-MM-yyyy' }}
