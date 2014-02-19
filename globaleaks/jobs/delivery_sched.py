@@ -189,32 +189,23 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
     assert recipient_gpg['gpg_key_status'] == u'Enabled', "GPG not enabled"
     assert recipient_gpg.has_key('name'), "missing recipient Name"
 
-    try:
-        gpoj = GLBGPG(recipient_gpg)
+    gpoj = GLBGPG(recipient_gpg)
 
-        if not gpoj.validate_key(recipient_gpg['gpg_key_armor']):
-            raise Exception("Unable to validate key")
+    if not gpoj.validate_key(recipient_gpg['gpg_key_armor']):
+        raise Exception("Unable to validate key")
 
-        filepath = os.path.join(GLSetting.submission_path, fpath)
+    filepath = os.path.join(GLSetting.submission_path, fpath)
 
-        with GLSecureFile(filepath) as f:
-            encrypted_file_path, encrypted_file_size = \
-                gpoj.encrypt_file(filepath, f, GLSetting.submission_path)
+    with GLSecureFile(filepath) as f:
+        encrypted_file_path, encrypted_file_size = \
+            gpoj.encrypt_file(filepath, f, GLSetting.submission_path)
 
-        gpoj.destroy_environment()
+    gpoj.destroy_environment()
 
-        assert (encrypted_file_size > 1), "File generated is empty or size is 0"
-        assert os.path.isfile(encrypted_file_path), "Output generated is not a file!"
+    assert (encrypted_file_size > 1), "File generated is empty or size is 0"
+    assert os.path.isfile(encrypted_file_path), "Output generated is not a file!"
 
-        return encrypted_file_path, encrypted_file_size
-
-    except Exception as excep:
-        # Yea, please, don't mention protocol downgrade.
-        log.err("Error in encrypting %s for %s: fallback in plaintext (%s)" % (
-            fpath, recipient_gpg['name'], excep
-        ) )
-        raise excep
-
+    return encrypted_file_path, encrypted_file_size
 
 @transact
 def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_desc):
@@ -397,11 +388,10 @@ def encrypt_where_available(receivermap):
                 rfileinfo['status'] = ReceiverFile._status_list[2] # encrypted
 
             except Exception as excep:
-                log.err("%d# Unable to complete GPG encrypt for %s on %s: %s" % (
+                log.err("%d# Unable to complete GPG encrypt for %s on %s: %s. marking the file as unavailable." % (
                         rcounter, rfileinfo['receiver']['name'], rfileinfo['path'], excep)
                 )
-                log.err("Danger/Error fallback in keeping plaintext file!")
-                retcode = False
+                rfileinfo['status'] = ReceiverFile._status_list[3] # unavailable
                 continue
         else:
             rfileinfo['status'] = ReceiverFile._status_list[1] # reference
@@ -451,7 +441,6 @@ class APSDelivery(GLJob):
         for ifile_path, receivermap in filemap.iteritems():
 
             are_all_encrypted = encrypt_where_available(receivermap)
-
 
             if not are_all_encrypted:
                 plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z]{6}') )
