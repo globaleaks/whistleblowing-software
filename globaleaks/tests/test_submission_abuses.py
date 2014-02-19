@@ -64,35 +64,30 @@ class SubmissionTest(helpers.TestGL):
 class TestTipInstance(SubmissionTest):
 
     @inlineCallbacks
-    def test_1_setup_submission_environment(self):
+    def test_001_setup_submission_environment(self):
         helpers.TestGL.setUp(self)
         
         basehandler = MockHandler()
 
         stuff = u"AAA :P ³²¼½¬¼³²"
 
-        try:
-            for attrname in Context.localized_strings:
-                SubmissionTest.aContext1[attrname] = stuff
+        for attrname in Context.localized_strings:
+            SubmissionTest.aContext1[attrname] = stuff
 
-            basehandler.validate_jmessage( SubmissionTest.aContext1, adminContextDesc)
-            SubmissionTest.context_used = yield admin.create_context(SubmissionTest.aContext1)
+        basehandler.validate_jmessage( SubmissionTest.aContext1, adminContextDesc)
+        SubmissionTest.context_used = yield admin.create_context(SubmissionTest.aContext1)
 
-            # Correctly, TTip.tipContext has not selectable receiver, and we want test it in the 2nd test
-            SubmissionTest.context_used['selectable_receiver'] = True
+        # Correctly, TTip.tipContext has not selectable receiver, and we want test it in the 2nd test
+        SubmissionTest.context_used['selectable_receiver'] = True
 
-            for attrname in Context.localized_strings:
-                SubmissionTest.context_used[attrname] = stuff
+        for attrname in Context.localized_strings:
+            SubmissionTest.context_used[attrname] = stuff
 
-            SubmissionTest.context_used = yield admin.update_context(SubmissionTest.context_used['id'],
-                SubmissionTest.context_used)
+        SubmissionTest.context_used = yield admin.update_context(SubmissionTest.context_used['id'],
+            SubmissionTest.context_used)
 
-            basehandler.validate_jmessage( SubmissionTest.aContext2, adminContextDesc)
-            SubmissionTest.context_unused = yield admin.create_context(SubmissionTest.aContext2)
-
-        except Exception as excep:
-            log.err("Unable to create context used/unused in UT: %s" % excep.message)
-            raise excep
+        basehandler.validate_jmessage( SubmissionTest.aContext2, adminContextDesc)
+        SubmissionTest.context_unused = yield admin.create_context(SubmissionTest.aContext2)
 
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
         self.assertTrue(len(SubmissionTest.context_unused['id']) > 1)
@@ -118,27 +113,19 @@ class TestTipInstance(SubmissionTest):
 
 
     @inlineCallbacks
-    def test_2_create_submission_missing_receiver(self):
+    def test_002_create_submission_missing_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
                                                                 SubmissionTest.context_used['fields']) )
         submission_request['finalize'] = True
 
-        try:
-            r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Unexpected Success in submission creation: <%s>\n<%s>" % (str(r), submission_request))
-            self.assertTrue(False)
-        except GLException, e:
-            log.debug("GLException %s %s" % (str(e), e.message) )
-            self.assertEqual(e.error_code, 22) # SubmissionFailFields
-        except Exception, e:
-            log.debug("Unexpected Exception %s" % str(e.message) )
-            self.assertTrue(False, msg=str(e.message))
+        yield self.assertFailure(submission.create_submission(submission_request, finalize=True),
+                                 GLException)
 
 
     @inlineCallbacks
-    def test_3_create_submission_flip_receiver(self):
+    def test_003_create_submission_flip_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
@@ -147,20 +134,11 @@ class TestTipInstance(SubmissionTest):
         submission_request['receivers'] = [ SubmissionTest.receiver_unused['id'] ]
         submission_request['finalize'] = True
 
-        try:
-            r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Unexpected Success in submission creation: <%s>\n<%s>" % (str(r), submission_request))
-            self.assertTrue(False)
-        except GLException, e:
-            log.debug("GLException %s %s" % (str(e), e.reason) )
-            self.assertTrue(True)
-        except Exception, e:
-            log.debug("Unexpected Exception %s" % str(e) )
-            self.assertTrue(False, msg=str(e))
-
+        yield self.assertFailure(submission.create_submission(submission_request, finalize=True),
+                                 GLException)
 
     @inlineCallbacks
-    def test_4_create_submission_both_valid_and_invalid_receiver(self):
+    def test_004_create_submission_both_valid_and_invalid_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
@@ -170,20 +148,12 @@ class TestTipInstance(SubmissionTest):
                                             SubmissionTest.receiver_used['id']  ]
         submission_request['finalize'] = True
 
-        try:
-            r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Unexpected Success in submission creation: <%s>\n<%s>" % (str(r), submission_request))
-            self.assertTrue(False, msg="Created!")
-        except GLException, e:
-            log.debug("GLException %s %s" % (str(e), e.reason) )
-            self.assertTrue(True)
-        except Exception, e:
-            log.debug("Unexpected Exception %s" % str(e) )
-            self.assertTrue(False, msg=str(e))
+        yield self.assertFailure(submission.create_submission(submission_request, finalize=True),
+                                 GLException)
 
 
     @inlineCallbacks
-    def test_5_create_valid_submission(self):
+    def test_005_create_valid_submission(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
@@ -192,20 +162,10 @@ class TestTipInstance(SubmissionTest):
         submission_request['receivers'] = [ SubmissionTest.receiver_used['id']  ]
         submission_request['finalize'] = True
 
-        try:
-            r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Success in creation: %s" % str(r))
-            self.assertTrue(True)
-        except GLException, e:
-            log.debug("GLException %s %s" % (str(e), e.reason) )
-            self.assertTrue(False)
-        except Exception, e:
-            log.debug("Exception %s" % str(e) )
-            self.assertTrue(False, msg=str(e))
-
+        yield submission.create_submission(submission_request, finalize=True)
 
     @inlineCallbacks
-    def test_6_fail_create_huge_submission(self):
+    def test_006_fail_create_huge_submission(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
@@ -219,15 +179,5 @@ class TestTipInstance(SubmissionTest):
 
         submission_request['finalize'] = True
 
-        try:
-            r = yield submission.create_submission(submission_request, finalize=True)
-            self.assertTrue(False)
-        except InvalidInputFormat:
-            self.assertTrue(True)
-        except GLException, e:
-            log.debug("GLException %s %s" % (str(e), e.reason) )
-            self.assertTrue(False)
-
-        helpers.TestGL.tearDown(self)
-
-
+        yield self.assertFailure(submission.create_submission(submission_request, finalize=True),
+                                 InvalidInputFormat)

@@ -10,12 +10,23 @@ from globaleaks.utils.structures import Fields
 
 class TestTransaction(helpers.TestGLWithPopulatedDB):
 
+    @transact
+    def _transaction_with_exception(self, store):
+        raise Exception
+
+    #def transaction_with_exception_while_writing(self):
+    @transact
+    def _transaction_ok(self, store):
+        self.assertTrue(getattr(store, 'find'))
+        return
+
+    @transact
+    def _transaction_with_commit_close(self, store):
+        store.commit()
+        store.close()
+
     def test_transaction_with_exception(self):
-        try:
-            yield self._transaction_with_exception()
-            self.assertTrue(False)
-        except Exception:
-            self.assertTrue(True)
+        yield self.assertFailure(self._transaction_with_exception(), Exception)
 
     def test_transaction_ok(self):
         return self._transaction_ok()
@@ -42,21 +53,6 @@ class TestTransaction(helpers.TestGLWithPopulatedDB):
         def transaction(store):
             self.assertTrue(getattr(store, 'find'))
         yield transaction()
-
-    @transact
-    def _transaction_with_exception(self, store):
-        raise Exception
-
-    #def transaction_with_exception_while_writing(self):
-    @transact
-    def _transaction_ok(self, store):
-        self.assertTrue(getattr(store, 'find'))
-        return
-
-    @transact
-    def _transaction_with_commit_close(self, store):
-        store.commit()
-        store.close()
 
     @transact
     def _transact_with_stuff(self, store):
@@ -111,15 +107,10 @@ class TestTransaction(helpers.TestGLWithPopulatedDB):
         return context.id
 
     @transact_ro
-    def context_get(self, store, context_id):
-        context = store.find(Context, Context.id == context_id).one()
-        if context is None:
-            return None
-        return context.id
+    def _transact_ro_context_bla_bla(self, store, context_id):
+        self.assertEqual(store.find(Context, Context.id == context_id).one(), None)
 
     @inlineCallbacks
     def test_transact_ro(self):
         created_id = yield self._transact_ro_add_context()
-        test = yield self.context_get(created_id)
-        self.assertEqual(test, None)
-
+        yield self._transact_ro_context_bla_bla(created_id)

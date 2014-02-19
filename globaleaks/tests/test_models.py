@@ -191,13 +191,9 @@ class TestModels(helpers.TestGL):
         Receiver(self.dummyReceiver)
 
     @transact
-    def do_invalid_description_oversize(self, store):
+    def do_invalid_receiver_description_oversize(self, store):
         self.dummyReceiver['description'] = "A" * 5000
-        try:
-            Receiver(self.dummyReceiver)
-            return False
-        except TypeError:
-            return True
+        Receiver(self.dummyReceiver)
 
     @inlineCallbacks
     def test_context_add_and_get(self):
@@ -239,8 +235,8 @@ class TestModels(helpers.TestGL):
 
     def test_invalid_receiver_0length_name(self):
         self.assertFailure(self.do_invalid_receiver_0length_name(),
-                errors.InvalidInputFormat)
+                           errors.InvalidInputFormat)
 
-    def test_invalid_description_oversize(self):
-        self.assertFailure(self.do_invalid_receiver_0length_name(),
-                errors.InvalidInputFormat)
+    def test_invalid_receiver_description_oversize(self):
+        self.assertFailure(self.do_invalid_receiver_description_oversize(),
+                           errors.InvalidInputFormat)

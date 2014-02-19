@@ -3,8 +3,6 @@ import binascii
 import os
 import scrypt
 
-import shutil
-
 from Crypto.Hash import SHA512
 from twisted.trial import unittest
 
@@ -79,25 +77,13 @@ class TestPasswordManagement(unittest.TestCase):
 class TestFilesystemAccess(helpers.TestGL):
 
     def test_directory_traversal_check_blocked(self):
-        try:
-            directory_traversal_check(GLSetting.static_path, "/etc/passwd")
-            self.assertTrue(False)
-        except errors.DirectoryTraversalError:
-            self.assertTrue(True)
-        except Exception as excep:
-            print "Wrong exception: %s" % excep.log_message
-            raise excep
-
+        yield self.assertFailure(directory_traversal_check(GLSetting.static_path, "/etc/passwd"),
+                                 errors.DirectoryTraversalError)
 
     def test_directory_traversal_check_allowed(self):
-        try: 
-            valid_access = os.path.join(GLSetting.static_path, "antani.txt")
-            directory_traversal_check(GLSetting.static_path, valid_access)
-            self.assertTrue(True)
-        except Exception as excep:
-            print excep
-            print "Exception %s" % excep.log_message
-            self.assertTrue(False)
+        valid_access = os.path.join(GLSetting.static_path, "antani.txt")
+        directory_traversal_check(GLSetting.static_path, valid_access)
+        self.assertTrue(True)
 
 class TestGLSecureFiles(helpers.TestGL):
 
