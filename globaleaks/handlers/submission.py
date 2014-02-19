@@ -22,7 +22,7 @@ def wb_serialize_internaltip(internaltip):
     response = {
         'id' : unicode(internaltip.id),
         'context_id': unicode(internaltip.context_id),
-        'eeation_date' : unicode(pretty_date_time(internaltip.creation_date)),
+        'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
         'expiration_date' : unicode(pretty_date_time(internaltip.expiration_date)),
         'wb_fields' : dict(internaltip.wb_fields or {}),
         'download_limit' : int(internaltip.download_limit),

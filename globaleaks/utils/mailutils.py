@@ -35,6 +35,11 @@ from globaleaks import __version__
 
 from Crypto.Hash import SHA256
 
+# Relevant errors from http://tools.ietf.org/html/rfc4954
+smtp_errors = {
+    '535 5.7.8': "Authentication credentials invalid"
+}
+
 def rfc822_date():
     """
     holy stackoverflow:
@@ -72,7 +77,7 @@ def sendmail(authentication_username, authentication_password, from_address,
         if isinstance(reason, Failure):
             log.err("Failed to contact %s:%d (Sock Error %s)" %
                     (smtp_host, smtp_port, reason.type))
-            log.err(reason)
+            log.debug(reason)
 
     def handle_error(reason, *args, **kwargs):
         # XXX event is not an argument here ?
@@ -85,14 +90,24 @@ def sendmail(authentication_username, authentication_password, from_address,
             if not isinstance(reason.value, error.ConnectionDone):
                 log.err("Failed to contact %s:%d (ConnectionLost Error %s)"
                         % (smtp_host, smtp_port, reason.type))
-                log.err(reason)
+                log.debug(reason)
 
         self.setTimeout(None)
         self.mailFile = None
 
     def sendError(self, exc):
         if exc.code and exc.resp:
-            log.err("Failed to contact %s:%d (STMP Error: %.3d %s)"
+            error = re.match(r'^([0-9\.]+) ', exc.resp)
+            error_str = ""
+            if error:
+                error_str = error.group(1)
+                key = str(exc.code) + " " + error.group(1)
+                if key in smtp_errors:
+                    error_str +=  " " + smtp_errors[key]
+                    
+            log.err("Failed to contact %s:%d (SMTP Error: %.3d %s)"
+                    % (smtp_host, smtp_port, exc.code, error_str))
+            log.debug("Failed to contact %s:%d (SMTP Error: %.3d %s)"
                     % (smtp_host, smtp_port, exc.code, exc.resp))
         SMTPClient.sendError(self, exc)
 

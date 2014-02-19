@@ -80,11 +80,7 @@ class TestSessionExpiryOnUnauthRequests(helpers.TestHandler):
 
         handler = self.request({}, headers={'X-Session': 'antani'})
         
-        # this request raise an exception for session expiration
-        try:
-            yield handler.get()
-        except:
-            pass
+        yield handler.get()
         
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
@@ -105,12 +101,8 @@ class TestSessionExpiryOnAuthRequests(helpers.TestHandler):
         GLSetting.sessions[u'antani']['refreshdate'] = date1
 
         handler = self.request({}, headers={'X-Session': 'antani'})
-        
-        # this request raise an exception for session expiration
-        try:
-            yield handler.get()
-        except:
-            pass
+
+        yield self.assertRaises(errors.AdminSessionExpired, handler.get)
         
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
