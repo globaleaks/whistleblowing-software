@@ -173,7 +173,7 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', 'Defa
 
     DefaultFields.get(function(res) {
 
-      $http.post('/admin/wizard/fields', res).success(function(response) {
+      $http.post('/admin/fields', res).success(function(response) {
       
       });
 

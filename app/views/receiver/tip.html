@@ -7,13 +7,14 @@ This comment is needed in order to push the following strings on transifex
 <span data-translate>This receiver has configured the encryption key.</span>
 <span data-translate>This receiver has not configured the encryption key.</span>
 <span data-translate>The file is unavailable due to an internal error.</span>
+<span data-translate>file unavailable</span>
 
 -->
 <div id="ContentBox" class="container statusPage ng-cloak">
   <div class="row" data-ng-show="!preferences.gpg_enable_files">
     <div class="col-md-12">
       <div class="alert alert-warning">
-        <i class="glyphicon glyphicon-warnidata-ng-sign"></i>
+        <i class="glyphicon glyphicon-warning-sign"></i>
         <strong><span data-translate>Warning!</span></strong>
         <span data-translate>You have not configured your encryption keys, so the files will be stored on the globaleaks node un-encrypted.</span>
         <span data-translate>This may lead to unintended access to the files by the server administrator or in case of server seizing.</span>
@@ -54,9 +55,9 @@ This comment is needed in order to push the following strings on transifex
             <dd data-ng-switch-when="checkboxes">
               <ul>
                 <li data-ng-repeat="checkbox in fieldFormat[fieldName].options">
-                {{checkbox.name}} 
-                <span data-ng-hide="fieldValue[checkbox.name]">☐</span> 
-                <span data-ng-show="fieldValue[checkbox.name]">☑</span>
+                  {{checkbox.name}} 
+                  <span data-ng-hide="fieldValue[checkbox.name]"><i class="glyphicon glyphicon-unchecked"></i></span>
+                  <span data-ng-show="fieldValue[checkbox.name]"><i class="glyphicon glyphicon-check"></i></span>
                 </li>
               </ul>
             </dd>
@@ -110,7 +111,7 @@ This comment is needed in order to push the following strings on transifex
                     <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </span>
                   <span data-ng-switch-when="Disabled">
-                    <i class="glyphicon glyphicon-warnidata-ng-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </span>
                 </span>
                 {{receiver.name}}
@@ -178,7 +179,7 @@ This comment is needed in order to push the following strings on transifex
                   </a>
                 </td>
                 <td data-ng-show="file.status == 'unavailable'">
-                  <div class="label label-lg label-warning" popover="{{ 'The file is unavailable due to an internal error.' | translate }}" popover-placement="bottom" popover-trigger="mouseenter">file unavailable</div>
+                  <div class="label label-lg label-warning" popover="{{ 'The file is unavailable due to an internal error.' | translate }}" popover-placement="bottom" popover-trigger="mouseenter" data-translate>file unavailable</div>
                 </td>
                 <td>
                   {{file.creation_date | date:'dd-MM-yyyy' }}

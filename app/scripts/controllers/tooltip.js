@@ -46,6 +46,8 @@ GLClient.controller('toolTipCtrl',
 
     if (newVal && newVal !== oldVal) {
 
+      $rootScope.language = $scope.language;
+
       $translate.uses($scope.language);
 
       $scope.update_node();
