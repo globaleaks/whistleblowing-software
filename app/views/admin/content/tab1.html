@@ -56,16 +56,6 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>Install default fields</label>
-      <div>
-        <button class="btn btn-primary" data-ng-click="install_default_fields()">
-          <span class="glyphicon glyphicon-floppy-open"></span>
-          <span data-translate>Install</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="form-group">
       <label data-translate>Tor Hidden Service (url)</label>
       <input class="form-control" name="hidden_service" data-ng-model="admin.node.hidden_service" data-ng-pattern="/^http://[0-9a-z]{16}\.onion$/" type="text">
       <p class="has-error" data-ng-show="contentForm.hidden_service.$error.pattern">
@@ -79,6 +69,16 @@
       <p class="has-error" data-ng-show="contentForm.public_site.$error.pattern">
         <span data-translate>Invalid format for public site (should be https://thirteenchars123.tor2web.org)</span>
       </p>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Install default fields</label>
+      <div>
+        <button class="btn btn-primary" data-ng-click="install_default_fields()">
+          <span class="glyphicon glyphicon-floppy-open"></span>
+          <span data-translate>Install</span>
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -18,7 +18,7 @@
             <span class="progress-bar" style="width: 0%;"></span>
           </span>
         </span>
-        <a class="btn btn-primary" data-ng-class="{disabled: disabled}" data-ng-href="{{'/custom_stylesheet.css'}}" download="{{'custom_stylesheet.css'}}">
+        <a class="btn btn-primary" data-ng-href="{{'/custom_stylesheet.css'}}" data-download="{{'custom_stylesheet.css'}}">
           <span class="glyphicon glyphicon-download"></span>
           <span data-translate>Download</span>
         </a>
@@ -63,7 +63,7 @@
                 {{file.filename}}
               </td>
               <td>
-                <a class="btn btn-primary" data-ng-href="{{'/static/' + file.filename}}" download="{{file.filename}}">
+                <a class="btn btn-primary" data-ng-href="{{'/static/' + file.filename}}" data-download="{{file.filename}}">
                   <span class="glyphicon glyphicon-download"></span>
                   <span data-translate>Download</span>
                 </a>
