@@ -230,7 +230,7 @@ def change_password(base64_stored, old_password, new_password, salt_input):
         and override the old one.
 
     @param base64_stored:
-    @param salt:
+    @param salt_input:
         You're fine with these
 
     @param new_password:
@@ -336,7 +336,7 @@ class GLBGPG:
         sanitized_gpgasc = self.sanitize_gpg_string(armored_key)
 
         try:
-            self.ke = self.gpgh.import_keys(sanitized_gpgasc)
+            key = self.gpgh.import_keys(sanitized_gpgasc)
         except Exception as excep:
             log.err("Error in GPG import_keys: %s" % excep)
             return False
@@ -346,13 +346,13 @@ class GLBGPG:
         #     log.err("Receiver %s in uploaded GPG key has raise and alarm:\n< %s >" %
         #             (self.receiver_desc['username'], (self.ke.stderr.replace("\n", "\n  "))[:-3]))
 
-        if not (hasattr(self.ke, 'results') and len(self.ke.results) == 1 and self.ke.results[0].has_key(
+        if not (hasattr(key, 'results') and len(key.results) == 1 and key.results[0].has_key(
                 'fingerprint')):
             log.err("User error: unable to import GPG key in the keyring")
             return False
 
         # else, the key has been loaded and we extract info about that:
-        self.fingerprint = self.ke.results[0]['fingerprint']
+        self.fingerprint = key.results[0]['fingerprint']
 
         # looking if the key is effectively reachable
         try:

@@ -51,16 +51,16 @@ def random_login_delay():
     failed_attempts = GLSetting.failed_login_attempts
 
     if failed_attempts >= 5:
-        min = failed_attempts if failed_attempts < 42 else 42
+        min_sleep = failed_attempts if failed_attempts < 42 else 42
 
         n = failed_attempts * failed_attempts
         if n < 42:
-            max = n
+            max_sleep = n
         else:
-            max = 42
+            max_sleep = 42
 
         Random.atfork()
-        return Random.random.randint(min, max)
+        return Random.random.randint(min_sleep, max_sleep)
 
     return 0
 
@@ -352,7 +352,7 @@ class AuthenticationHandler(BaseHandler):
            raise errors.InvalidInputFormat("Authentication role %s" % str(role) )
 
         if get_tor2web_header(self.request.headers):
-            if accept_tor2web(role) == False:
+            if not accept_tor2web(role):
                 log.err("Denied login request on Tor2web for role '%s'" % role)
                 raise errors.TorNetworkRequired
             else:

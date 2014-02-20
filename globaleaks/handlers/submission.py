@@ -221,14 +221,14 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
     return submission_dict
 
 @transact
-def update_submission(store, id, request, finalize, language=GLSetting.memory_copy.default_language):
+def update_submission(store, submission_id, request, finalize, language=GLSetting.memory_copy.default_language):
 
     context = store.find(Context, Context.id == unicode(request['context_id'])).one()
     if not context:
         log.err("Context requested: [%s] not found!" % request['context_id'])
         raise errors.ContextIdNotFound
 
-    submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
+    submission = store.find(InternalTip, InternalTip.id == unicode(submission_id)).one()
 
     if not submission:
 
@@ -256,7 +256,7 @@ def update_submission(store, id, request, finalize, language=GLSetting.memory_co
         raise errors.ContextIdNotFound("Context are immutable")
 
     if submission.mark != InternalTip._marker[0]:
-        log.err("Submission %s do not permit update (status %s)" % (id, submission.mark))
+        log.err("Submission %s do not permit update (status %s)" % (submission_id, submission.mark))
         raise errors.SubmissionConcluded
 
     files = request.get('files', [])
@@ -293,24 +293,24 @@ def update_submission(store, id, request, finalize, language=GLSetting.memory_co
 
 
 @transact_ro
-def get_submission(store, id):
-    submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
+def get_submission(store, submission_d):
+    submission = store.find(InternalTip, InternalTip.id == unicode(submission_d)).one()
     if not submission:
-        log.err("Invalid Submission requested %s in GET" % id)
+        log.err("Invalid Submission requested %s in GET" % submission_d)
         raise errors.SubmissionIdNotFound
 
     return wb_serialize_internaltip(submission)
 
 @transact
-def delete_submission(store, id):
-    submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
+def delete_submission(store, submission_id):
+    submission = store.find(InternalTip, InternalTip.id == unicode(submission_id)).one()
 
     if not submission:
-        log.err("Invalid Submission requested %s in DELETE" % id)
+        log.err("Invalid Submission requested %s in DELETE" % submission_id)
         raise errors.SubmissionIdNotFound
 
     if submission.mark != submission._marked[0]:
-        log.err("Submission %s already concluded (status: %s)" % (id, submission.mark))
+        log.err("Submission %s already concluded (status: %s)" % (submission_id, submission.mark))
         raise errors.SubmissionConcluded
 
     store.remove(submission)

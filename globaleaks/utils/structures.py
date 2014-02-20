@@ -204,7 +204,7 @@ class Fields:
         try:
             for k, v in self._fields.iteritems():
 
-                if v['required'] == True:
+                if v['required']:
                     required_keys.append(k)
                 else:
                     optional_keys.append(k)

@@ -86,9 +86,8 @@ def check_expiration_date(store):
 
 class GPGExpireCheck(GLJob):
 
-    @staticmethod
     @inlineCallbacks
-    def operation():
+    def operation(self):
 
         try:
             (two_weeks, three_days, gone) = yield check_expiration_date()

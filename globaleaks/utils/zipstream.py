@@ -214,7 +214,7 @@ class ZipStream:
         self.filelist = []              # List of ZipInfo instances for archive
         self.data_ptr = 0               # Keep track of location inside archive
 
-	self.time = time.localtime()[0:6] # Security: Forced Time
+        self.time = time.localtime()[0:6] # Security: Forced Time
 
 
     def __iter__(self):
@@ -394,7 +394,7 @@ class ZipStream:
                                   len(zinfo.filename), len(extra_data), len(zinfo.comment),
                                   0, zinfo.internal_attr, zinfo.external_attr,
                                   header_offset)
-            
+
             data.append(self.update_data_ptr(centdir))
             data.append(self.update_data_ptr(zinfo.filename))
             data.append(self.update_data_ptr(extra_data))

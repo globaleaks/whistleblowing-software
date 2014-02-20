@@ -259,13 +259,13 @@ def get_context_list(store, language=GLSetting.memory_copy.default_language):
 def acquire_context_timetolive(request):
 
     try:
-        submission_ttl = utility.seconds_convert(int(request['submission_timetolive']), (60 * 60), min=1)
+        submission_ttl = utility.seconds_convert(int(request['submission_timetolive']), (60 * 60), minv=1)
     except Exception as excep:
         log.err("Invalid timing configured for Submission: %s" % excep.message)
         raise errors.InvalidTipTimeToLive()
 
     try:
-        tip_ttl = utility.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), min=1)
+        tip_ttl = utility.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), minv=1)
     except Exception as excep:
         log.err("Invalid timing configured for Tip: %s" % excep.message)
         raise errors.InvalidSubmTimeToLive()
@@ -588,7 +588,7 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
 
 
 @transact_ro
-def get_receiver(store, id, language=GLSetting.memory_copy.default_language):
+def get_receiver(store, receiver_id, language=GLSetting.memory_copy.default_language):
     """
     raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
     not exist.
@@ -596,7 +596,7 @@ def get_receiver(store, id, language=GLSetting.memory_copy.default_language):
         (dict) the receiver
 
     """
-    receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
+    receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
 
     if not receiver:
         log.err("Requested in receiver")
@@ -606,13 +606,13 @@ def get_receiver(store, id, language=GLSetting.memory_copy.default_language):
 
 
 @transact
-def update_receiver(store, id, request, language=GLSetting.memory_copy.default_language):
+def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.default_language):
     """
     Updates the specified receiver with the details.
     raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
     not exist.
     """
-    receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
+    receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
 
     if not receiver:
         raise errors.ReceiverIdNotFound
@@ -667,15 +667,15 @@ def update_receiver(store, id, request, language=GLSetting.memory_copy.default_l
     return admin_serialize_receiver(receiver, language)
 
 @transact
-def delete_receiver(store, id):
+def delete_receiver(store, receiver_id):
 
-    receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
+    receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
 
     if not receiver:
         log.err("Invalid receiver requested in removal")
         raise errors.ReceiverIdNotFound
 
-    portrait = os.path.join(GLSetting.static_path, "%s.png" % id)
+    portrait = os.path.join(GLSetting.static_path, "%s.png" % receiver_id)
 
     if os.path.exists(portrait):
         os.remove(portrait)
