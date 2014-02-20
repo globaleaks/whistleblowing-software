@@ -53,17 +53,17 @@ def get_tiptime_by_marker(store, marker):
 
 
 @transact
-def itip_cleaning(store, id):
+def itip_cleaning(store, tip_id):
     """
-    @param id: aim for an InternalTip, and delete them.
+    @param tip_id: aim for an InternalTip, and delete them.
     """
-    tit = store.find(InternalTip, InternalTip.id == id).one()
+    tit = store.find(InternalTip, InternalTip.id == tip_id).one()
 
     if not tit: # gtfo
-        log.err("Requested invalid InternalTip id in itip_cleaning! %s" % id)
+        log.err("Requested invalid InternalTip id in itip_cleaning! %s" % tip_id)
         return
 
-    comments = store.find(Comment, Comment.internaltip_id == id)
+    comments = store.find(Comment, Comment.internaltip_id == tip_id)
     log.debug("[-] Removing [%d comments] [%d files] [%d rtips] from an InternalTip" %
         (comments.count(), tit.internalfiles.count(), tit.receivertips.count() ))
 
@@ -73,7 +73,7 @@ def itip_cleaning(store, id):
 
         if not os.path.isfile(abspath):
             log.err("Unable to remove non existent internalfile %s (itip %s, internalfile %s(%d))" %
-                (abspath, id, ifname, ifile.size))
+                (abspath, tip_id, ifname, ifile.size))
         else:
             try:
                 os.remove(abspath)
@@ -90,7 +90,7 @@ def itip_cleaning(store, id):
     
             if not os.path.isfile(abspath):
                 log.err("Unable to remove non existent receiverfile %s (itip %s, internalfile %s(%d))" %
-                    (abspath, id, ifname, ifile.size))
+                    (abspath, tip_id, ifname, ifile.size))
                 continue
     
             try:
@@ -114,9 +114,9 @@ def debug_count_itips_by_marker(store):
 
 
 class APSCleaning(GLJob):
-    @staticmethod
+
     @inlineCallbacks
-    def operation():
+    def operation(self):
         """
         Goal of this function is to check all the submission not
         finalized, and, if the expiration time sets in the context has

@@ -385,9 +385,8 @@ def encrypt_where_available(receivermap):
 
 class APSDelivery(GLJob):
 
-    @staticmethod
     @inlineCallbacks
-    def operation():
+    def operation(self):
         """
         Goal of this function is to process/validate files, compute their checksums and
         apply the configured delivery method.
