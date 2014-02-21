@@ -538,9 +538,9 @@ class BaseHandler(RequestHandler):
 
         if isinstance(e, (HTTPError, HTTPAuthenticationRequired)):
             if GLSetting.http_log and e.log_message:
-                format = "%d %s: " + e.log_message
+                string_format = "%d %s: " + e.log_message
                 args = [e.status_code, self._request_summary()] + list(e.args)
-                msg = lambda *args: format % args
+                msg = lambda *args: string_format % args
                 log.msg(msg(*args))
             if e.status_code not in httplib.responses:
                 log.msg("Bad HTTP status code: %d" % e.status_code)

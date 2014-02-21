@@ -52,8 +52,7 @@ alarm_template = {
 
 class APSAnomalies(GLJob):
 
-    @staticmethod
-    def operation():
+    def operation(self):
         """
         Every X seconds is checked if anomalies are happening
         from anonymous interaction (submission/file/comments/whatever flood)
@@ -100,9 +99,8 @@ class APSAnomalies(GLJob):
 
 class APSStatistics(GLJob):
 
-    @staticmethod
     @inlineCallbacks
-    def operation():
+    def operation(self):
 
         try:
             stat_sum = dict(external_counted_events)

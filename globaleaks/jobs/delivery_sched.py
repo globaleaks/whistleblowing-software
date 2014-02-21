@@ -242,24 +242,8 @@ def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_d
         receiverfile.status = unicode(status)
 
         receiverfile.mark = ReceiverFile._marker[0] # not notified
+
         store.add(receiverfile)
-        store.commit()
-
-        # to avoid eventual file leakage or inconsistency, now is
-        # loaded the object to verify reference
-
-        test = store.find(ReceiverFile, ReceiverFile.file_path == unicode(recv_path),
-                          ReceiverFile.receiver_id == receiver_desc['id']).one()
-
-        # assert over context, filesystem and receiver state
-        assert test.internaltip.context_id, "Context broken"
-        assert os.path.isfile(
-            os.path.join(GLSetting.submission_path,
-                         test.file_path)), "FS broken (r)"
-        assert os.path.isfile(
-            os.path.join(GLSetting.submission_path,
-                         test.internalfile.file_path)), "FS broken (i)"
-        assert test.receiver.user.state != u'disabled', "User broken"
 
         return serialize_receiverfile(receiverfile)
 
@@ -401,9 +385,8 @@ def encrypt_where_available(receivermap):
 
 class APSDelivery(GLJob):
 
-    @staticmethod
     @inlineCallbacks
-    def operation():
+    def operation(self):
         """
         Goal of this function is to process/validate files, compute their checksums and
         apply the configured delivery method.
@@ -440,46 +423,43 @@ class APSDelivery(GLJob):
 
         for ifile_path, receivermap in filemap.iteritems():
 
+            plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z]{6}') )
+
             are_all_encrypted = encrypt_where_available(receivermap)
 
-            if not are_all_encrypted:
-                plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z]{6}') )
+            for rfileinfo in receivermap:
 
+                if not are_all_encrypted and rfileinfo['status'] == u'reference':
+                    rfileinfo['path'] = plain_path
+
+                try:
+                    yield receiverfile_create(ifile_path, rfileinfo['path'], rfileinfo['status'],
+                                              rfileinfo['size'], rfileinfo['receiver'])
+                except Exception as excep:
+                    log.err("Unable to create ReceiverFile from %s for %s: %s" %
+                            (ifile_path, rfileinfo['receiver']['name'], excep))
+                    continue
+
+            if not are_all_encrypted:
                 log.debug(":( NOT all receivers support PGP %s go to unsafe version %s" %
                           (ifile_path, plain_path)
                 )
 
-                with GLSecureFile(ifile_path) as encrypted_file:
+                with open(plain_path, "wb") as plain_f_is_sad_f, \
+                     GLSecureFile(ifile_path) as encrypted_file:
 
-                    with open(plain_path, "wb") as plain_f_is_sad_f:
-                        chunk_size = 4096
-                        while True:
-                            chunk = encrypted_file.read(chunk_size)
-                            if len(chunk) == 0:
-                                break
-                            plain_f_is_sad_f.write(chunk)
+                    chunk_size = 4096
+                    while True:
+                        chunk = encrypted_file.read(chunk_size)
+                        if len(chunk) == 0:
+                            break
+                        plain_f_is_sad_f.write(chunk)
 
                 yield do_final_internalfile_update(ifile_path, InternalFile._marker[2], plain_path)
 
             else: # are_all_encrypted:
                 log.debug("All Receivers support PGP, marking internalfile as removed")
                 yield do_final_internalfile_update(ifile_path, InternalFile._marker[3]) # Removed
-
-            for rfileinfo in receivermap:
-
-                if not are_all_encrypted and rfileinfo['status'] == u'reference':
-                    ref_path = plain_path
-                    rfileinfo['path'] = plain_path
-                else:
-                    ref_path = ifile_path
-
-                try:
-                    yield receiverfile_create(ref_path, rfileinfo['path'], rfileinfo['status'],
-                                              rfileinfo['size'], rfileinfo['receiver'])
-                except Exception as excep:
-                    log.err("Unable to create ReceiverFile from %s for %s: %s" %
-                            (ifile_path, rfileinfo['receiver']['name'], excep))
-                    continue
 
             # the original AES file need always to be deleted
             log.debug("Deleting the submission AES encrypted file: %s" % ifile_path)
