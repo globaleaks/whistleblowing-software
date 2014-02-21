@@ -705,7 +705,6 @@ class GLSettingsClass:
                 if result.group(2) != GLSetting.key_id:
                     os.remove(os.path.join(GLSetting.submission_path, f))
 
-
 # GLSetting is a singleton class exported once
 GLSetting = GLSettingsClass()
 
