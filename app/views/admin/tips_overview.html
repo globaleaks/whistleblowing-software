@@ -109,42 +109,50 @@ This comment is needed in order to push the following strings on transifex
                   </div>
                 </div>
                 <br />
-                <div class="row">
-                  <div class="col-md-12">
-                    <b><span data-translate>Receiver Tips</span>:</b>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-offset-1 col-md-11">
-                    <div data-ng-repeat="rtip in tip.receivertips">
-                      <span class="glyphicon glyphicon-info-sign"></span>
-                      {{rtip.status}} ({{rtip.access_counter}})
-                      <a href="/#/admin/receivers">{{rtip.receiver_name}}</a>
-                      {{rtip.receiver_username}}
+                <a data-ng-click="show_details = !show_details" data-ng-init="show_details=false" data-ng-show="!show_details">
+                  <p data-translate>Show details</p>
+                </a>
+                <a data-ng-click="show_details = !show_details" data-ng-show="show_details">
+                  <p data-translate>Hide details</p>
+                </a>
+                <div data-ng-show="show_details">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <b>Receiver Tips:</b>
                     </div>
                   </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-md-12">
-                    <b><span data-translate>Files</span>:</b>
-                  </div>
-                  <div class="col-sm-offset-1 col-md-11">
-                    <div data-ng-repeat="ifile in tip.internalfiles">
-                       <span class="glyphicon glyphicon-file"></span>
-                      {{ifile.name}} ({{ifile.size}}) {{ifile.content_type}}
+                  <div class="row">
+                    <div class="col-sm-offset-1 col-md-11">
+                      <div data-ng-repeat="rtip in tip.receivertips">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        {{rtip.status}} ({{rtip.access_counter}})
+                        <a href="/#/admin/receivers">{{rtip.receiver_name}}</a>
+                        {{rtip.receiver_username}}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-md-12">
-                    <b><span data-translate>Comments</span>:</b>
+                  <br />
+                  <div class="row">
+                    <div class="col-md-12">
+                      <b><span data-translate>Files</span>:</b>
+                    </div>
+                    <div class="col-sm-offset-1 col-md-11">
+                      <div data-ng-repeat="ifile in tip.internalfiles">
+                         <span class="glyphicon glyphicon-file"></span>
+                        {{ifile.name}} ({{ifile.size}}) {{ifile.content_type}}
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-sm-offset-1 col-md-11">
-                    <div data-ng-repeat="comment in tip.comments">
-                       <span class="glyphicon glyphicon-comment"></span>
-                      {{comment.type}} ({{comment.lifetime | date:'dd-MM-yyyy HH:mm' }})
+                  <br />
+                  <div class="row">
+                    <div class="col-md-12">
+                      <b><span data-translate>Comments</span>:</b>
+                    </div>
+                    <div class="col-sm-offset-1 col-md-11">
+                      <div data-ng-repeat="comment in tip.comments">
+                         <span class="glyphicon glyphicon-comment"></span>
+                        {{comment.type}} ({{comment.lifetime | date:'dd-MM-yyyy HH:mm' }})
+                      </div>
                     </div>
                   </div>
                 </div>
