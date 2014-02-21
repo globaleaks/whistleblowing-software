@@ -9,10 +9,12 @@
 # Changed heavily for our purpose (that's the reason why is not in third party)
 # Initially derived from zipfile.py
 
-from globaleaks.utils.utility import log
-
-import struct, os, time, sys
+import struct
+import os
+import time
 import binascii
+
+from globaleaks.utils.utility import log
 
 try:
     import zlib # We may need its compression method
@@ -272,16 +274,16 @@ class ZipStream:
                 buf = fp.read(1024 * 8)
                 if not buf:
                    break
-                zinfo.file_size = zinfo.file_size + len(buf)
+                zinfo.file_size += len(buf)
                 zinfo.CRC = binascii.crc32(buf, zinfo.CRC)
                 if cmpr:
                     buf = cmpr.compress(buf)
-                    zinfo.compress_size = zinfo.compress_size + len(buf)
+                    zinfo.compress_size += len(buf)
                 yield self.update_data_ptr(buf)
 
         if cmpr:
             buf = cmpr.flush()
-            zinfo.compress_size = zinfo.compress_size + len(buf)
+            zinfo.compress_size += len(buf)
             yield self.update_data_ptr(buf)
         else:
             zinfo.compress_size = zinfo.file_size
@@ -321,13 +323,13 @@ class ZipStream:
 
         if cmpr:
             buf = cmpr.compress(buf)
-            zinfo.compress_size = zinfo.compress_size + len(buf)
+            zinfo.compress_size += len(buf)
 
         yield self.update_data_ptr(buf)
 
         if cmpr:
             buf = cmpr.flush()
-            zinfo.compress_size = zinfo.compress_size + len(buf)
+            zinfo.compress_size += len(buf)
             yield self.update_data_ptr(buf)
         else:
             zinfo.compress_size = zinfo.file_size
@@ -356,7 +358,7 @@ class ZipStream:
         count = 0
         pos1 = self.data_ptr
         for zinfo in self.filelist:         # write central directory
-            count = count + 1
+            count += 1
             dt = zinfo.date_time
             dosdate = (dt[0] - 1980) << 9 | dt[1] << 5 | dt[2]
             dostime = dt[3] << 11 | dt[4] << 5 | (dt[5] // 2)

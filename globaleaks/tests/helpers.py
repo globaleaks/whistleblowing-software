@@ -1,9 +1,7 @@
 # -*- coding: UTF-8
 
-import os
 import json
 import uuid
-import shutil
 
 from cyclone import httpserver
 from cyclone.web import Application
@@ -534,11 +532,9 @@ def do_appdata_init(store):
 
     except Exception as xxx:
         appdata = models.ApplicationData()
-
         source = opportunistic_appdata_init()
         appdata.fields_version = source['version']
         appdata.fields = source['fields']
-
         store.add(appdata)
 
     fo = Fields()

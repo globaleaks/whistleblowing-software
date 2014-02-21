@@ -7,12 +7,11 @@ from globaleaks.rest.errors import InvalidInputFormat
 from globaleaks.tests import helpers
 from globaleaks.rest import errors
 from globaleaks.handlers import admin, admstaticfiles
-from globaleaks.settings import GLSetting, transact
+from globaleaks.settings import GLSetting
 from globaleaks import __version__
 from globaleaks.models import Node, Context, Receiver
 
 # special guest:
-from globaleaks.models import Notification
 from io import BytesIO as StringIO
 
 class TestNodeInstance(helpers.TestHandler):

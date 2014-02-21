@@ -135,8 +135,6 @@ def authenticated(role):
 
             log.err(error)
 
-            GLSetting.sessions[cls.current_user.id]
-
             raise errors.InvalidScopeAuth(error)
 
         return call_handler

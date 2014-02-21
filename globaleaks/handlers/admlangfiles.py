@@ -11,7 +11,6 @@
 from __future__ import with_statement
 import os
 import time
-import re
 
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
@@ -31,10 +30,10 @@ class LanguageFileHandler(BaseStaticFileHandler):
     if the file are not present, default translations are returned
     """
     def langfile_path(self, lang):
-        return os.path.abspath(os.path.join(GLSetting.glclient_path, 'l10n', ('%s.json') % lang))
+        return os.path.abspath(os.path.join(GLSetting.glclient_path, 'l10n', '%s.json' % lang))
 
     def custom_langfile_path(self, lang):
-        return os.path.abspath(os.path.join(GLSetting.static_path_l10n, ('%s.json') % lang))
+        return os.path.abspath(os.path.join(GLSetting.static_path_l10n, '%s.json' % lang))
 
     @transport_security_check('admin')
     @authenticated('admin')
