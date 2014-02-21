@@ -34,7 +34,7 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
     changePasswordWatcher($scope, "preferences.old_password",
         "preferences.password", "preferences.check_password");
 
-    $scope.pass_save = function() {
+    $scope.pass_save = function () {
 
       if ($scope.preferences.gpg_key_remove == undefined) {
         $scope.preferences.gpg_key_remove = false;
@@ -43,14 +43,14 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
         $scope.preferences.gpg_key_armor = '';
       }
 
-      $scope.preferences.$update(function(){
+      $scope.preferences.$update(function () {
 
         if (!$rootScope.successes) {
           $rootScope.successes = [];
         }
         $rootScope.successes.push({message: 'Updated your password!'});
       });
-    }
+    };
 
     $scope.pref_save = function() {
 

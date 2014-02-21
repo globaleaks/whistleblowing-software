@@ -44,11 +44,7 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node) {
     if ($scope.languages_enabled) {
       $scope.languages_default_selector = {};
       $.each($scope.languages_supported, function(lang){
-        if (lang in $scope.languages_enabled) {
-          $scope.languages_enabled_edit[lang] = true;
-        } else {
-          $scope.languages_enabled_edit[lang] = false;
-        }
+        $scope.languages_enabled_edit[lang] = lang in $scope.languages_enabled;
       });
     }
 
@@ -127,21 +123,21 @@ GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http
     $scope.uploadfile = false;
 
     $scope.fileSelected = false;
-    $scope.markFileSelected = function() {
+    $scope.markFileSelected = function () {
       $scope.fileSelected = true;
-    }
+    };
 
-    $scope.openUploader = function() {
+    $scope.openUploader = function () {
       $scope.uploadfile = true;
-    }
+    };
 
-    $scope.closeUploader = function() {
+    $scope.closeUploader = function () {
       $scope.uploadfile = $scope.fileSelected = false;
-    }
+    };
 
-    $scope.receiverImgUrl = function() {
+    $scope.receiverImgUrl = function () {
       return "/admin/staticfiles/" + $scope.receiver.id;
-    }
+    };
 
     $scope.receiverImgReloadUrl = function() {
       return "/static/" + $scope.receiver.id + ".png?" + $scope.random;
@@ -169,32 +165,32 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', 'Defa
     }
   ];
 
-  $scope.install_default_fields = function() {
+  $scope.install_default_fields = function () {
 
-    DefaultFields.get(function(res) {
+    DefaultFields.get(function (res) {
 
-      $http.post('/admin/fields', res).success(function(response) {
-      
+      $http.post('/admin/fields', res).success(function (response) {
+
       });
 
     });
-  }
+  };
 
-  $scope.update_static_files = function() {
-    var updated_staticfiles = StaticFiles.query(function() {
+  $scope.update_static_files = function () {
+    var updated_staticfiles = StaticFiles.query(function () {
       $scope.staticfiles = updated_staticfiles;
     });
-  }
+  };
 
-  $scope.uploadfinished = function() {
+  $scope.uploadfinished = function () {
     $scope.update_static_files();
-  }
+  };
 
-  $scope.delete = function(url) {
-    $http.delete(url).success(function(response) {
-       $scope.update_static_files();
+  $scope.delete = function (url) {
+    $http.delete(url).success(function (response) {
+      $scope.update_static_files();
     });
-  }
+  };
 
   $scope.update_static_files();
 

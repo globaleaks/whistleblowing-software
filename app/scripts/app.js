@@ -35,7 +35,7 @@ var GLClient = angular.module('GLClient', [
       when('/submission/:lang', {
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
-	      header_title: 'Blow the Whistle',
+        header_title: 'Blow the Whistle',
         header_subtitle: ''
       }).
       when('/status', {
@@ -238,7 +238,7 @@ var GLClient = angular.module('GLClient', [
       }).
       otherwise({
         redirectTo: '/'
-      })
+      });
 
       $translateProvider.useStaticFilesLoader({
         prefix: 'l10n/',
@@ -258,9 +258,9 @@ var GLClient = angular.module('GLClient', [
 
     $http.defaults.transformRequest.push(globaleaksRequestInterceptor);
 
-    var reload = function() {
-        $route.reload();
-    }
+    var reload = function () {
+      $route.reload();
+    };
 
     function overloadReload(e) {
        if (((e.which || e.keyCode) == 116) || /* F5 */

@@ -5,14 +5,14 @@ GLClient.controller('MainCtrl', ['$scope', '$http', '$route', '$location', 'Node
     $scope.custom_stylesheet = '/custom_stylesheet.css';
     $scope.logo = '/static/globaleaks_logo.png';
 
-    $scope.update_node = function() {
-      Node.get(function(node){
+    $scope.update_node = function () {
+      Node.get(function (node) {
         $scope.node = node;
-        if ( !$scope.node.wizard_done ) {
+        if (!$scope.node.wizard_done) {
           $location.path('/wizard');
         }
       });
-    }
+    };
 
     $scope.update = function(model) {
       var success = {};
@@ -25,22 +25,22 @@ GLClient.controller('MainCtrl', ['$scope', '$http', '$route', '$location', 'Node
       });
     };
 
-    $scope.randomFluff = function() {
+    $scope.randomFluff = function () {
       return Math.round(Math.random() * 1000000);
-    }
+    };
 
-    var refresh = function() {
+    var refresh = function () {
       $scope.custom_stylesheet = '/custom_stylesheet.css?' + $scope.randomFluff();
       $scope.logo = '/static/globaleaks_logo.png?' + $scope.randomFluff();
-    }
+    };
 
     $scope.$on("REFRESH", refresh);
 
     $scope.update_node();
 
-    $scope.isHomepage = function() { 
-      return ($location.path() == '/') ? true : false;
-    }
+    $scope.isHomepage = function () {
+      return ($location.path() == '/');
+    };
 
     $scope.hasSubtitle = function() {
       return $scope.header_subtitle != '';

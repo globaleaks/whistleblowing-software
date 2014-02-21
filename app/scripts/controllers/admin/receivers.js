@@ -1,10 +1,10 @@
 GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal',
 function($scope, $modal) {
-  $scope.save_all = function() {
-    angular.forEach($scope.admin.receivers, function(receiver, key) {
-        $scope.update(receiver);
+  $scope.save_all = function () {
+    angular.forEach($scope.admin.receivers, function (receiver, key) {
+      $scope.update(receiver);
     });
-  }
+  };
 
   $scope.delete = function(receiver) {
     var idx = _.indexOf($scope.admin.receivers, receiver);
@@ -39,13 +39,13 @@ function($scope, $modal) {
     }
   };
 
-  $scope.reorder_receivers_alphabetically = function() {
-    $scope.admin.receivers = _($scope.admin.receivers).sortBy(function(receiver) {
+  $scope.reorder_receivers_alphabetically = function () {
+    $scope.admin.receivers = _($scope.admin.receivers).sortBy(function (receiver) {
       return receiver.name;
     });
 
     $scope.update_receivers_order();
-  }
+  };
 
   $scope.update_receivers_order = function() {
     var i = 0;
@@ -64,26 +64,22 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher',
 
     $scope.editing = false;
 
-    $scope.toggleEditing = function() {
+    $scope.toggleEditing = function () {
       $scope.editing = $scope.editing ^ 1;
-    }
+    };
 
-    $scope.isSelected = function(context) {
-      if ($scope.receiver.contexts.indexOf(context.id) !== -1) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+    $scope.isSelected = function (context) {
+      return $scope.receiver.contexts.indexOf(context.id) !== -1;
+    };
 
-    $scope.toggle = function(context) {
-      var idx = $scope.receiver.contexts.indexOf(context.id)
+    $scope.toggle = function (context) {
+      var idx = $scope.receiver.contexts.indexOf(context.id);
       if (idx === -1) {
         $scope.receiver.contexts.push(context.id);
       } else {
         $scope.receiver.contexts.splice(idx, 1);
       }
-    }
+    };
 
     $scope.save_receiver = function() {
       if ($scope.receiver.gpg_key_remove == true) {
