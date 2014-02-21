@@ -3,10 +3,8 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
-from globaleaks.models import Stats
-from globaleaks.handlers import node, submission, files
 from globaleaks.jobs import statistics_sched
-from globaleaks.settings import transact, GLSetting, external_counted_events
+from globaleaks.settings import GLSetting, external_counted_events
 
 class TestEmail(helpers.TestGL):
 

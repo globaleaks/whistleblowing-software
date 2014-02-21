@@ -3,9 +3,8 @@
 from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.db import acquire_email_templates
 from globaleaks.models import Model
-from globaleaks import LANGUAGES_SUPPORTED_CODES
+
 
 class Context_version_8(Model):
     """

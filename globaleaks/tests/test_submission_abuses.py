@@ -6,7 +6,6 @@ from globaleaks.tests import helpers
 from globaleaks.rest.requests import adminContextDesc, adminReceiverDesc
 from globaleaks.rest.errors import GLException, InvalidInputFormat
 from globaleaks.handlers import base, admin, submission
-from globaleaks.utils.utility import log
 from globaleaks.tests.test_tip import TTip
 from globaleaks.models import Context, Receiver
 
