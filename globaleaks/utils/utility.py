@@ -267,7 +267,7 @@ def very_pretty_date_time(isowhen):
 
     return x.strftime("%H:%M, %A %d %B %Y")
 
-def seconds_convert(value, conversion_factor, min=0, max=0):
+def seconds_convert(value, conversion_factor, minv=0, maxv=0):
     """
     @param value:
     @param conversion_factor:
@@ -276,18 +276,18 @@ def seconds_convert(value, conversion_factor, min=0, max=0):
 
     if (seconds / conversion_factor) != value:
         raise Exception("Invalid operation triggered")
-    if min and (seconds < min * conversion_factor):
-        raise Exception("%d < %d" % (seconds, min * conversion_factor))
-    if max and (seconds > max * conversion_factor):
-        raise Exception("%d > %d" % (seconds, max * conversion_factor))
+    if minv and (seconds < minv * conversion_factor):
+        raise Exception("%d < %d" % (seconds, minv * conversion_factor))
+    if maxv and (seconds > maxv * conversion_factor):
+        raise Exception("%d > %d" % (seconds, maxv * conversion_factor))
 
     return seconds
 
-def iso2dateobj(str) :
+def iso2dateobj(parse_str) :
     try:
-        ret = datetime.strptime(str, "%Y-%m-%dT%H:%M:%S")
+        ret = datetime.strptime(parse_str, "%Y-%m-%dT%H:%M:%S")
     except ValueError :
-        ret = datetime.strptime(str, "%Y-%m-%dT%H:%M:%S.%f")
+        ret = datetime.strptime(parse_str, "%Y-%m-%dT%H:%M:%S.%f")
         ret.replace(microsecond=0)
     return ret
     

@@ -75,15 +75,15 @@ class notifTemplateTest(helpers.TestGL):
         return serialize_receivertip(rits.first())
 
     @inlineCallbacks
-    def _fill_event(self, type, trigger, trigger_id):
+    def _fill_event(self, event_type, trigger, trigger_id):
         """
         Here I'm testing only encrypted_tip because trigger a bigger
         amount of %KeyWords%
         """
-        self.assertEqual(type, u'encrypted_tip')
+        self.assertEqual(event_type, u'encrypted_tip')
         self.assertEqual(trigger, 'Tip')
 
-        if type == u'encrypted_tip' and trigger == 'Tip':
+        if event_type == u'encrypted_tip' and trigger == 'Tip':
 
             receiver_dict = yield admin.get_receiver(self.createdReceiver['id'])
             context_dict = yield admin.get_context(self.createdContext['id'])

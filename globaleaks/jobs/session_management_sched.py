@@ -15,8 +15,8 @@ from globaleaks.jobs.base import GLJob
 __all__ = ['APSSessionManagement']
 
 class APSSessionManagement(GLJob):
-    @staticmethod
-    def operation():
+
+    def operation(self):
         """
         This scheduler is responsible of:
             - Removal of expired sessions
