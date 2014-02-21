@@ -2,19 +2,19 @@ GLClient.controller('AdminContextsCtrl',
   ['$scope', '$modal', 'Admin',
   function($scope, $modal, Admin) {
 
-  $scope.add_context = function(name) {
+  $scope.add_context = function (name) {
     context = $scope.admin.new_context();
     context.name = name;
-    context.$save(function(new_context){
+    context.$save(function (new_context) {
       $scope.admin.contexts.push(new_context);
     });
-  }
+  };
 
-  $scope.save_all = function() {
-    angular.forEach($scope.admin.contexts, function(context, key) {
-        $scope.update(context);
+  $scope.save_all = function () {
+    angular.forEach($scope.admin.contexts, function (context, key) {
+      $scope.update(context);
     });
-  }
+  };
 
   $scope.delete = function(context) {
     var idx = _.indexOf($scope.admin.contexts, context);
@@ -25,19 +25,19 @@ GLClient.controller('AdminContextsCtrl',
 
   };
 
-  $scope.addField = function(context) {
+  $scope.addField = function (context) {
     if (context.fields === undefined) {
       context.fields = [];
     }
     context.fields.push({presentation_order: 0,
-                        name: "",
-                        hint: "",
-                        key: '',
-                        value: '',
-                        type: 'text',
-                        preview: false,
-                        required: false});
-  }
+      name: "",
+      hint: "",
+      key: '',
+      value: '',
+      type: 'text',
+      preview: false,
+      required: false});
+  };
 
   $scope.sortableOptions = {
     stop: function(e, ui) {
@@ -45,31 +45,31 @@ GLClient.controller('AdminContextsCtrl',
     }
   };
 
-  $scope.reorder_contexts_alphabetically = function() {
-    $scope.admin.contexts = _($scope.admin.contexts).sortBy(function(context) {
+  $scope.reorder_contexts_alphabetically = function () {
+    $scope.admin.contexts = _($scope.admin.contexts).sortBy(function (context) {
       return context.name;
     });
 
     $scope.update_contexts_order();
-  }
+  };
 
-  $scope.update_contexts_order = function() {
+  $scope.update_contexts_order = function () {
     var i = 0;
-    angular.forEach($scope.admin.contexts, function(context, key) {
-        context.presentation_order = i + 1;
-        i += 1;
+    angular.forEach($scope.admin.contexts, function (context, key) {
+      context.presentation_order = i + 1;
+      i += 1;
     });
-  }
+  };
 
   $scope.fieldsSortableOptions = {
-    stop: function(e, ui) {
+    stop: function (e, ui) {
       var i = 0;
-      angular.forEach(ui.item.scope().context.fields, function(field, key) {
-          field.presentation_order = i + 1;
-          i += 1;
+      angular.forEach(ui.item.scope().context.fields, function (field, key) {
+        field.presentation_order = i + 1;
+        i += 1;
       });
     }
-  }
+  };
 
   $scope.deleteDialog = function(context){
     var modalInstance = $modal.open({
@@ -101,28 +101,24 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
       return result;
     }
 
-    $scope.editing = false;
+    $scope.editing = $scope.field.name === undefined;
 
-    if ($scope.field.name === undefined) {
-      $scope.editing = true;
-    }
-
-    $scope.typeSwitch = function(type) {
-      if (_.indexOf(['checkboxes','select','radio'], type) === -1)
+    $scope.typeSwitch = function (type) {
+      if (_.indexOf(['checkboxes', 'select', 'radio'], type) === -1)
         return type;
       return 'multiple';
-    }
+    };
 
-    $scope.addOption = function(field) {
+    $scope.addOption = function (field) {
       if (field.options === undefined) {
         field.options = [];
       }
       field.options.push({order: 0})
-    }
+    };
 
-    $scope.updateValue = function(option) {
+    $scope.updateValue = function (option) {
       option.value = tokenize(option.name);
-    }
+    };
 
     $scope.deleteField = function(field) {
       var idx = $scope.context.fields.indexOf(field);
@@ -134,23 +130,15 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',
 GLClient.controller('AdminContextsEditorCtrl', ['$scope',
   function($scope) {
 
-    $scope.editing = false;
+    $scope.editing = $scope.context.description === undefined;
 
-    if ($scope.context.description === undefined) {
-      $scope.editing = true;
-    }
-
-    $scope.toggleEditing = function() {
+    $scope.toggleEditing = function () {
       $scope.editing = $scope.editing ^ 1;
-    }
+    };
 
-    $scope.isSelected = function(receiver) {
-      if ($scope.context.receivers.indexOf(receiver.id) !== -1) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+    $scope.isSelected = function (receiver) {
+      return $scope.context.receivers.indexOf(receiver.id) !== -1;
+    };
 
     $scope.toggle = function(receiver) {
       var idx = $scope.context.receivers.indexOf(receiver.id);

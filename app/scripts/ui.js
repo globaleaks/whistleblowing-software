@@ -38,7 +38,7 @@ angular.module('submissionUI', []).
                   jqXHR = data.submit({files: filesList});
 
                 jqXHR.success(function(result, textStatus, jqXHR) {
-		                scope.uploadfinished()
+		                scope.uploadfinished();
                     $(element).parent().find('.uploadProgress').hide();
                 });
               }
@@ -105,7 +105,7 @@ angular.module('submissionUI', []).
         corners: 1, // Corner roundness (0..1)
         rotate: 0, // The rotation offset
         direction: 1, // 1: clockwise, -1: counterclockwise
-        color: '#000', // #rgb or #rrggbb
+        color: '#000', // #rgb or #rrggbb or array of colors
         speed: 1, // Rounds per second
         trail: 38, // Afterglow percentage
         shadow: false, // Whether to render a shadow
@@ -114,7 +114,7 @@ angular.module('submissionUI', []).
         zIndex: 2e9, // The z-index (defaults to 2000000000)
         top: 'auto', // Top position relative to parent in px
         left: 'auto' // Left position relative to parent in px
-      }, spinner = new Spinner(opts).spin(element[0]);
+      } , spinner = new Spinner(opts).spin(element[0]);
   };
 }).
   directive('fadeout', function(){

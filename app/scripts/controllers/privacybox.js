@@ -23,10 +23,10 @@ GLClient.controller('PrivacyBoxCtrl',
     $scope.displayBox = true;
     $scope.boxes = 'open';
 
-    $scope.showBox = function() {
+    $scope.showBox = function () {
       $scope.displayBox = true;
       $scope.boxes = 'open';
-    }
+    };
 
     $scope.hideBox = function() {
       $scope.displayBox = false;

@@ -8,13 +8,13 @@ GLClient.controller('toolTipCtrl',
     $rootScope.language = $scope.language = $routeParams.lang;
   }
   
-  var refresh = function() {
+  var refresh = function () {
 
     $scope.session_id = Authentication.id;
     $scope.auth_landing_page = Authentication.auth_landing_page;
     $scope.role = Authentication.role;
 
-    Node.get(function(node) {
+    Node.get(function (node) {
 
       if ($rootScope.language == undefined || $.inArray($rootScope.language, node.languages_enabled) == -1) {
         $rootScope.language = $scope.language = node.default_language;
@@ -24,12 +24,12 @@ GLClient.controller('toolTipCtrl',
       $scope.languages_supported = {};
       $scope.languages_enabled = [];
       $scope.languages_enabled_selector = [];
-      $.each(node.languages_supported, function(idx) {
+      $.each(node.languages_supported, function (idx) {
         var code = node.languages_supported[idx]['code'];
         $scope.languages_supported[code] = node.languages_supported[idx]['name'];
         if ($.inArray(code, node.languages_enabled) != -1) {
           $scope.languages_enabled[code] = node.languages_supported[idx]['name'];
-          $scope.languages_enabled_selector.push({"name": node.languages_supported[idx]['name'],"code": code});
+          $scope.languages_enabled_selector.push({"name": node.languages_supported[idx]['name'], "code": code});
           language_count += 1;
         }
       });
@@ -38,7 +38,7 @@ GLClient.controller('toolTipCtrl',
     });
 
     $translate.uses($scope.language);
-  }
+  };
 
   $scope.$on("REFRESH", refresh);
 

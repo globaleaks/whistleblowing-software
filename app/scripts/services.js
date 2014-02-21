@@ -1,4 +1,4 @@
-'usestrict';
+"use strict";
 
 angular.module('resourceServices.authentication', [])
   .factory('Authentication', ['$http', '$location', '$routeParams',
@@ -78,10 +78,6 @@ angular.module('resourceServices.authentication', [])
 
               self.auth_landing_page = "/#" + auth_landing_page;
 
-              if (cb){
-                return cb(response);
-              }
-
               if ($routeParams['src']) {
                 $location.path($routeParams['src']);
 
@@ -94,20 +90,20 @@ angular.module('resourceServices.authentication', [])
           });
         };
 
-        self.logout_performed = function() {
-            var role = self.role;
+        self.logout_performed = function () {
+          var role = self.role;
 
-            self.id = null;
-            self.user_id = null;
-            self.username = null;
-            self.role = null;
-            self.session = null;
+          self.id = null;
+          self.user_id = null;
+          self.username = null;
+          self.role = null;
+          self.session = null;
 
-            if (role === 'wb')
-              $location.path('/');
-            else
-              $location.path('/login');
-        }
+          if (role === 'wb')
+            $location.path('/');
+          else
+            $location.path('/login');
+        };
 
         $rootScope.logout = function() {
           $http.delete('/authentication').then(self.logout_performed,
@@ -167,7 +163,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       $rootScope.pendingRequests = function () {
         return $http.pendingRequests.length;
-      }
+      };
 
       $rootScope.showRequestBox = true;
 
@@ -188,7 +184,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           $rootScope.showRequestBox = false;
         }
 
-        var error = {}
+        var error = {};
         var source_path = $location.path();
 
         error.message = response.data.error_message;
@@ -241,11 +237,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     var isReceiverInContext = function(receiver, context) {
 
-      if (receiver.contexts.indexOf(context.id)) {
-        return true;
-      } else {
-        return false
-      };
+      return receiver.contexts.indexOf(context.id);
 
     };
 
@@ -277,10 +269,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           // enumerate only the receivers of the current context
           if (self.current_context.receivers.indexOf(receiver.id) !== -1) {
             self.current_context_receivers.push(receiver);
-            self.receivers_selected[receiver.id] = true;
-            if ( self.current_context.select_all_receivers == false ) {
-              self.receivers_selected[receiver.id] = false;
-            }
+            self.receivers_selected[receiver.id] = self.current_context.select_all_receivers != false;
           };
         });
       };
@@ -473,9 +462,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             });
           };
 
-          self.tip.updateMessages = function() {
+          self.tip.updateMessages = function () {
             if (self.tip.msg_receiver_selected) {
-              messageResource.query({id: self.tip.msg_receiver_selected}, function(messageCollection){
+              messageResource.query({id: self.tip.msg_receiver_selected}, function (messageCollection) {
                 self.tip.messages = messageCollection;
 
                 // XXX perhaps make this return a lazyly instanced item.
@@ -483,7 +472,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
                 fn(self.tip);
               });
             }
-          }
+          };
 
           self.tip.receivers = receiversCollection;
 
@@ -600,28 +589,23 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       scope.pwdHasLetter = true;
       scope.pwdHasNumber = true;
 
-      var validatePasswordChange = function() {
+      var validatePasswordChange = function () {
         if (scope.$eval(password) !== undefined && scope.$eval(password) != '') {
-            scope.pwdValidLength = ( scope.$eval(password)).length >= 8 ? true : false;
-            scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password) )) ? true : false;
-            scope.pwdHasNumber = ( /\d/.test(scope.$eval(password) )) ? true : false;
-
-            if (scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber) {
-              scope.unsafe_password = false;
-            } else {
-              scope.unsafe_password = true;
-            }
+          scope.pwdValidLength = ( scope.$eval(password)).length >= 8;
+          scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password))) ? true : false;
+          scope.pwdHasNumber = ( /\d/.test(scope.$eval(password))) ? true : false;
+          scope.unsafe_password = !(scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber);
         } else {
-            /*
-             * This values permits to not show errors when
-             * the user has not yed typed any password.
-             */
-            scope.unsafe_password = false
-            scope.pwdValidLength = true;
-            scope.pwdHasLetter = true;
-            scope.pwdHasNumber = true;
+          /*
+           * This values permits to not show errors when
+           * the user has not yed typed any password.
+           */
+          scope.unsafe_password = false;
+          scope.pwdValidLength = true;
+          scope.pwdHasLetter = true;
+          scope.pwdHasNumber = true;
         }
-      }
+      };
 
       scope.$watch(password, function(){
           validatePasswordChange();
@@ -651,50 +635,44 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       scope.pwdHasLetter = true;
       scope.pwdHasNumber = true;
 
-      var validatePasswordChange = function() {
+      var validatePasswordChange = function () {
 
         if (scope.$eval(password) !== undefined && scope.$eval(password) != '') {
-
-            scope.pwdValidLength = ( scope.$eval(password)).length >= 8 ? true : false;
-            scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password) )) ? true : false;
-            scope.pwdHasNumber = ( /\d/.test(scope.$eval(password) )) ? true : false;
-
-            if (scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber) {
-              scope.unsafe_password = false;
-            } else {
-              scope.unsafe_password = true;
-            }
+          scope.pwdValidLength = ( scope.$eval(password)).length >= 8;
+          scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password))) ? true : false;
+          scope.pwdHasNumber = ( /\d/.test(scope.$eval(password))) ? true : false;
+          scope.unsafe_password = !(scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber);
         } else {
-            /*
-             * This values permits to not show errors when
-             * the user has not yed typed any password.
-             */
-            scope.unsafe_password = false
-            scope.pwdValidLength = true;
-            scope.pwdHasLetter = true;
-            scope.pwdHasNumber = true;
+          /*
+           * This values permits to not show errors when
+           * the user has not yed typed any password.
+           */
+          scope.unsafe_password = false;
+          scope.pwdValidLength = true;
+          scope.pwdHasLetter = true;
+          scope.pwdHasNumber = true;
         }
 
         if (scope.$eval(password) === undefined ||
-            scope.$eval(password) === '' ||
-            scope.$eval(password) === scope.$eval(check_password)) {
-            scope.mismatch_password = false;
+          scope.$eval(password) === '' ||
+          scope.$eval(password) === scope.$eval(check_password)) {
+          scope.mismatch_password = false;
         } else {
-            scope.mismatch_password = true;
+          scope.mismatch_password = true;
         }
 
-        if (scope.$eval(old_password) !== undefined && (scope.$eval(old_password)).length >= 1 )  {
-            scope.missing_old_password = false;
+        if (scope.$eval(old_password) !== undefined && (scope.$eval(old_password)).length >= 1) {
+          scope.missing_old_password = false;
         } else {
-            scope.missing_old_password = true;
+          scope.missing_old_password = true;
         }
 
         scope.invalid = scope.$eval(password) === undefined ||
-                        scope.$eval(password) === '' ||
-                        scope.mismatch_password ||
-                        scope.unsafe_password ||
-                        scope.missing_old_password;
-      }
+          scope.$eval(password) === '' ||
+          scope.mismatch_password ||
+          scope.unsafe_password ||
+          scope.missing_old_password;
+      };
 
       scope.$watch(password, function(){
           validatePasswordChange();
@@ -769,11 +747,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         return context;
       };
 
-      self.new_receiver = function() {
+      self.new_receiver = function () {
         var receiver = new adminReceiversResource;
-        receiver.contexts =  [];
+        receiver.contexts = [];
         receiver.description = "";
-        receiver.mail_address = "",
+        receiver.mail_address = "";
         receiver.can_delete_submission = false;
         receiver.postpone_superpower = false;
         receiver.receiver_level = 1;
@@ -790,7 +768,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.gpg_enable_notification = false;
         receiver.presentation_order = 0;
         return receiver;
-      }
+      };
 
       self.receiver = adminReceiversResource;
       self.receivers = adminReceiversResource.query();

@@ -6,7 +6,7 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication'
     $scope.receipt = '';
     $scope.configured = false;
     $scope.step = 1;
-    $scope.answer = {value: null}
+    $scope.answer = {value: null};
     $scope.answered = false;
     $scope.correctAnswer = false;
     $scope.showQuestions = false;
@@ -17,7 +17,7 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication'
       });
     };
 
-    $scope.checkAnswer = function() {
+    $scope.checkAnswer = function () {
       if (!$scope.answer.value)
         return;
       if ($scope.answer.value == 'b') {
@@ -25,23 +25,23 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication'
       }
       $scope.answered = true;
       $scope.step = 3;
-    }
+    };
 
-    $scope.goToSubmission = function() {
-      if ( !$scope.anonymous && !$scope.node.tor2web_submission)
+    $scope.goToSubmission = function () {
+      if (!$scope.anonymous && !$scope.node.tor2web_submission)
         return;
 
       if ($scope.anonymous || $scope.correctAnswer) {
         $location.path("/submission");
       } else {
-        $scope.showQuestions = true; 
+        $scope.showQuestions = true;
       }
-      
-    }
+
+    };
     
-    $scope.goToStep = function(idx) {
-      $scope.step = idx; 
-    }
+    $scope.goToStep = function (idx) {
+      $scope.step = idx;
+    };
 
     $scope.goToStart = function() {
       $scope.answered = false;
