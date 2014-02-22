@@ -34,3 +34,16 @@ GLC_BUILD=$( readlink -m ${GLCLIENT_TMP}/glclient_build)
 echo "Running command ${SCRIPTNAME} $*"
 echo "Build directory used: ${BUILD_DIR}"
 echo "To override this do: 'GLOBALEAKS_BUILD_ENV=/what/you/want && export GLOBALEAKS_BUILD_ENV'"
+
+echo "[+] Setupping GLClient and GLBackend build environments"
+
+if [ ! -f ${DIR}/.environment_setupped ]; then
+    sudo -i apt-get update -y
+    sudo -i apt-get install python-software-properties -y
+    sudo -i add-apt-repository ppa:chris-lea/node.js -y
+    sudo -i apt-get update -y
+    sudo -i apt-get install nodejs -y
+    sudo -i npm install -g grunt-cli bower
+    sudo -i apt-get install python-dev build-essential python-virtualenv python-pip python-stdeb devscripts zip -y
+    touch ${DIR}/.environment_setupped
+fi
