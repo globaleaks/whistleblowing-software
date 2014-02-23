@@ -51,6 +51,8 @@ def list_files(path):
 data_files = [
     ('/usr/share/globaleaks/glclient',
      list_files(os.path.join(glclient_path))),
+    ('/usr/share/globaleaks/glclient/data',
+     list_files(os.path.join(glclient_path, 'data'))),
     ('/usr/share/globaleaks/glclient/fonts',
      list_files(os.path.join(glclient_path, 'fonts'))),
     ('/usr/share/globaleaks/glclient/img',

@@ -15,15 +15,17 @@ from globaleaks.models import Node, ApplicationData
 
 def opportunistic_appdata_init():
     """
-    This function work well in the development environment, when
-    ApplicationData can be configured just reading from the GLC the latest source
+    Setup application data evaluating the presence of the following paths:
+        - production data path: /usr/share/globaleaks/glclient/data/
+        - development data paths: ../GLClient/app/data/
+                                  ../../GLClient/app/data/
     """
 
     # Fields and applicative data initialization
 
-    fields_l10n = [ "../GLClient/app/data/fields_l10n.json",
-                    "../../GLClient/app/data/fields_l10n.json",
-                    "../../../GLClient/app/data/fields_l10n.json"]
+    fields_l10n = [ "/usr/share/globaleaks/glclient/data/fields_l10n.json",
+                    "../GLClient/app/data/fields_l10n.json",
+                    "../../GLClient/app/data/fields_l10n.json"]
 
     appdata_dict = None
 
@@ -37,11 +39,9 @@ def opportunistic_appdata_init():
                 appdata_dict = json.loads(json_string)
                 return appdata_dict
 
-        else:
-            appdata_dict = None
-
     if not appdata_dict:
-        print "Note: no init opportunity!"
+        print "Note: no app data init opportunity!"
+        return dict({'version': 0, 'fields': []}) # empty!
 
     return appdata_dict
 

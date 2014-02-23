@@ -39,8 +39,9 @@ profile usr.bin.globaleaks {
     /var/globaleaks/** lrwk,
     /run/globaleaks/globaleaks-*.pid rw,
 
-    /{dev,run}/shm/ r,
-    /{dev,run}/shm/* rw,
+    /{run,dev}/shm/ r,
+    /{run,dev}/shm/globaleaks/ rwk,
+    /{run,dev}/shm/globaleaks/** rwk,
 
     owner /tmp/** rwkl,
     owner /var/tmp/** rwkl,
