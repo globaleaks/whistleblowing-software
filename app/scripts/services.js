@@ -78,6 +78,10 @@ angular.module('resourceServices.authentication', [])
 
               self.auth_landing_page = "/#" + auth_landing_page;
 
+              if (cb){
+                return cb(response);
+              }
+
               if ($routeParams['src']) {
                 $location.path($routeParams['src']);
 
