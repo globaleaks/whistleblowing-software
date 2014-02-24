@@ -11,7 +11,7 @@ from twisted.python.util import untilConcludes
 from apscheduler.scheduler import Scheduler
 
 from globaleaks.utils.utility import log, utc_future_date
-from globaleaks.db import create_tables, check_schema_version
+from globaleaks.db import create_tables, check_schema_version, clean_untracked_files
 from globaleaks.db.datainit import import_memory_variables, apply_cli_options
 from globaleaks.settings import GLSetting
 
@@ -99,6 +99,9 @@ def globaleaks_start():
         return False
 
     d = create_tables()
+
+    d.addCallback(clean_untracked_files)
+
     @d.addCallback
     @inlineCallbacks
     def cb(res):

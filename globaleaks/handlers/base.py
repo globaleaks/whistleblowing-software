@@ -503,7 +503,7 @@ class BaseHandler(RequestHandler):
 
         session_id = self.request.headers.get('X-Session')
 
-        if session_id == None:
+        if session_id is None:
             return None
 
         try:

@@ -24,6 +24,10 @@ from globaleaks import LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.third_party import rstr
 
 def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
+
+    mo = structures.Rosetta()
+    mo.acquire_storm_object(node)
+
     node_dict = {
         "name": node.name,
         "presentation": node.presentation,
@@ -52,14 +56,17 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'anomaly_checks': node.anomaly_checks,
     }
 
-    mo = structures.Rosetta()
-    mo.acquire_storm_object(node)
     for attr in mo.get_localized_attrs():
         node_dict[attr] = mo.dump_translated(attr, language)
 
     return node_dict
 
 def admin_serialize_context(context, receipt_output, language=GLSetting.memory_copy.default_language):
+
+    mo = structures.Rosetta()
+    mo.acquire_storm_object(context)
+    fo = structures.Fields(context.localized_fields, context.unique_fields)
+
     context_dict = {
         "id": context.id,
         "creation_date": utility.pretty_date_time(context.creation_date),
@@ -68,7 +75,7 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
         "tip_max_access": context.tip_max_access,
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
-        "receivers": [],
+        "receivers": list(context.receivers.values(models.Receiver.id)),
         "receipt_regexp": context.receipt_regexp,
         "receipt_example": receipt_output,
         "tags": context.tags if context.tags else [],
@@ -85,22 +92,19 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
         "require_pgp": context.require_pgp,
         "show_small_cards": context.show_small_cards,
         "presentation_order": context.presentation_order,
+        "fields": fo.dump_fields(language)
     }
 
-    mo = structures.Rosetta()
-    mo.acquire_storm_object(context)
     for attr in mo.get_localized_attrs():
         context_dict[attr] = mo.dump_translated(attr, language)
-
-    fo = structures.Fields(context.localized_fields, context.unique_fields)
-    context_dict['fields'] = fo.dump_fields(language)
-
-    for receiver in context.receivers:
-        context_dict['receivers'].append(receiver.id)
 
     return context_dict
 
 def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
+
+    mo = structures.Rosetta()
+    mo.acquire_storm_object(receiver)
+
     receiver_dict = {
         "id": receiver.id,
         "name": receiver.name,
@@ -113,7 +117,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "user_id": receiver.user.id,
         'mail_address': receiver.mail_address,
         "password": u"",
-        "contexts": [],
+        "contexts": list(receiver.contexts.values(models.Context.id)),
         "tags": receiver.tags,
         "gpg_key_info": receiver.gpg_key_info,
         "gpg_key_armor": receiver.gpg_key_armor,
@@ -129,14 +133,8 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
     }
 
     # only 'description' at the moment is a localized object here
-    mo = structures.Rosetta()
-    mo.acquire_storm_object(receiver)
     for attr in mo.get_localized_attrs():
         receiver_dict[attr] = mo.dump_translated(attr, language)
-
-    for context in receiver.contexts:
-        receiver_dict['contexts'].append(context.id)
-
 
     return receiver_dict
 
@@ -327,8 +325,6 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
 
             try:
                 appdata = store.find(ApplicationData).one()
-                print appdata
-                print appdata.fields
                 fo.default_fields(appdata.fields)
             except Exception as excep:
                 log.err("Invalid initialization of ApplicationData [for %s]!" %
@@ -359,7 +355,7 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
         log.err("Invalid request: name is an empty string")
         raise errors.InvalidInputFormat("Context name is missing (1 char required)")
 
-    if context.receipt_regexp == u'' or context.receipt_regexp == None:
+    if context.receipt_regexp == u'' or context.receipt_regexp is None:
         log.err("Missing receipt regexp, using default fixme-[0-9]{13}-please")
         context.receipt_regexp = u"fixme-[0-9]{13}-please"
 

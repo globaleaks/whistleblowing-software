@@ -11,7 +11,7 @@ from storm.expr import Desc
 from globaleaks.utils.utility import pretty_date_time, acquire_mail_address, acquire_bool, log
 from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node
+from globaleaks.models import Receiver, Context, ReceiverTip, ReceiverFile, Message, Node
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests, errors
@@ -40,7 +40,7 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "comment_notification" : receiver.comment_notification,
         "message_notification" : receiver.message_notification,
         "mail_address": receiver.mail_address,
-        "contexts": [],
+        "contexts": list(receiver.contexts.values(Context.id)),
     }
 
     mo = Rosetta()

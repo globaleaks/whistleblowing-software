@@ -19,6 +19,7 @@ from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 
 def wb_serialize_internaltip(internaltip):
+
     response = {
         'id' : unicode(internaltip.id),
         'context_id': unicode(internaltip.context_id),
@@ -30,14 +31,9 @@ def wb_serialize_internaltip(internaltip):
         'mark' : unicode(internaltip.mark),
         'pertinence' : unicode(internaltip.pertinence_counter),
         'escalation_threshold' : unicode(internaltip.escalation_threshold),
-        'files' : [],
-        'receivers' : []
+        'files' : list(internaltip.internalfiles.values(InternalFile.id)),
+        'receivers' : list(internaltip.receivers.values(Context.id)),
     }
-    for receiver in internaltip.receivers:
-        response['receivers'].append(receiver.id)
-
-    for internalfile in internaltip.internalfiles:
-        response['files'].append(internalfile.id)
 
     return response
 

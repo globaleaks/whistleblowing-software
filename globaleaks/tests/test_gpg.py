@@ -7,11 +7,11 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.rest import errors
-from globaleaks.security import GLBGPG, gpg_options_parse, get_expirations
+from globaleaks.security import GLBGPG, get_expirations
 from globaleaks.handlers import receiver, files
-from globaleaks.handlers.admin import admin_serialize_receiver, create_receiver, create_context, get_context_list
+from globaleaks.handlers.admin import create_receiver, create_context, get_context_list
 from globaleaks.handlers.submission import create_submission, update_submission
-from globaleaks.settings import GLSetting, transact_ro
+from globaleaks.settings import GLSetting
 from globaleaks.models import Receiver
 from globaleaks.jobs.delivery_sched import APSDelivery, get_files_by_itip, get_receiverfile_by_itip
 from globaleaks.plugins.notification import MailNotification

@@ -62,17 +62,12 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """
+
+    mo = Rosetta()
+    mo.acquire_storm_object(context)
+    fo = Fields(context.localized_fields, context.unique_fields)
+
     context_dict = {
-        "receivers": []
-    }
-
-    for receiver in context.receivers:
-        context_dict['receivers'].append(unicode(receiver.id))
-
-    if not len(context_dict['receivers']):
-        return None
-
-    context_dict.update({
         "id": unicode(context.id),
         "escalation_threshold": None,
         "file_max_download": int(context.file_max_download),
@@ -87,15 +82,13 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         'require_pgp': context.require_pgp,
         "show_small_cards": context.show_small_cards,
         "presentation_order": context.presentation_order,
-    })
+        "receivers": list(context.receivers.values(models.Receiver.id)),
+        "description": mo.dump_translated('description', language),
+        "fields": fo.dump_fields(language)
+    }
 
-    mo = Rosetta()
-    mo.acquire_storm_object(context)
-    context_dict['name'] = mo.dump_translated('name', language)
-    context_dict['description'] = mo.dump_translated('description', language)
-
-    fo = Fields(context.localized_fields, context.unique_fields)
-    context_dict['fields'] = fo.dump_fields(language)
+    if not len(context_dict['receivers']):
+        return None
 
     return context_dict
 
@@ -107,30 +100,24 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
         (e.g. checks if almost one context is associated, or, in
          node where GPG encryption is enforced, that a valid key is registered)
     """
+    mo = Rosetta()
+    mo.acquire_storm_object(receiver)
+
     receiver_dict = {
-        "contexts": [],
-    }
-
-    for context in receiver.contexts:
-        receiver_dict['contexts'].append(unicode(context.id))
-
-    if not len(receiver_dict['contexts']):
-        return None
-
-    receiver_dict.update({
         "creation_date": pretty_date_time(receiver.creation_date),
         "update_date": pretty_date_time(receiver.last_update),
         "name": unicode(receiver.name),
+        "description": mo.dump_translated('description', language),
         "id": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
         "tags": receiver.tags,
         "presentation_order": receiver.presentation_order,
         "gpg_key_status": receiver.gpg_key_status,
-    })
+        "contexts": list(receiver.contexts.values(models.Context.id))
+    }
 
-    mo = Rosetta()
-    mo.acquire_storm_object(receiver)
-    receiver_dict['description'] = mo.dump_translated('description', language)
+    if not len(receiver_dict['contexts']):
+        return None
 
     return receiver_dict
 
@@ -174,14 +161,14 @@ class AhmiaDescriptionHandler(BaseHandler):
         node_info = yield anon_serialize_node(self.current_user, self.request.language)
 
         ahmia_description = {
-            "title" : node_info['name'],
-            "description" : node_info['description'],
+            "title": node_info['name'],
+            "description": node_info['description'],
             # we've not yet keywords, need to add them in Node ?
-            "keywords" : "%s (GlobaLeaks instance)" % node_info['name'],
-            "relation" : node_info['public_site'],
-            "language" : node_info['default_language'],
-            "contactInformation" : u'', # we've removed Node.email_addr
-            "type" : "GlobaLeaks"
+            "keywords": "%s (GlobaLeaks instance)" % node_info['name'],
+            "relation": node_info['public_site'],
+            "language": node_info['default_language'],
+            "contactInformation": u'', # we've removed Node.email_addr
+            "type": "GlobaLeaks"
         }
         self.finish(ahmia_description)
 

@@ -1,12 +1,11 @@
 # -*- encoding: utf-8 -*-
 import re
+from datetime import datetime
 
 from twisted.internet.defer import inlineCallbacks
-from datetime import datetime, timedelta
 
 from globaleaks.settings import GLSetting
 from globaleaks.tests import helpers
-
 from globaleaks.rest import errors, requests
 from globaleaks.handlers import base, admin, submission, authentication, receiver, rtip, wbtip
 from globaleaks.jobs import delivery_sched
@@ -535,7 +534,7 @@ class TestTipInstance(TTip):
         after = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
 
         for receivers_message in after:
-            if (receivers_message['id'] == self.receiver1_desc['id']):
+            if receivers_message['id'] == self.receiver1_desc['id']:
                 self.assertEqual(receivers_message['your_messages'], 1)
             else:
                 self.assertEqual(receivers_message['your_messages'], 0)
@@ -551,7 +550,7 @@ class TestTipInstance(TTip):
         end = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
 
         for receivers_message in end:
-            if (receivers_message['id'] == self.receiver2_desc['id']):
+            if receivers_message['id'] == self.receiver2_desc['id']:
                 self.assertEqual(receivers_message['your_messages'], 2)
             else: # the messages from Receiver1 are not changed, right ?
                 self.assertEqual(receivers_message['your_messages'], 1)
