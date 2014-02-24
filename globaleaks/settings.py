@@ -137,7 +137,7 @@ class GLSettingsClass:
         self.staticfile_regexp = r'(.*)'
         self.staticfile_overwrite = False
         self.images_extensions = (".jpg", ".jpeg", ".png", ".gif")
-        self.css_extensions = (".css")
+        self.css_extensions = ".css"
         self.reserved_names = OD()
         self.reserved_names.logo = "globaleaks_logo"
         self.reserved_names.css = "custom_stylesheet"
@@ -208,10 +208,11 @@ class GLSettingsClass:
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
         # https://github.com/globaleaks/GlobaLeaks/issues/510
-        self.defaults.lifetimes = {}
-        self.defaults.lifetimes['admin'] = (60 * 60)
-        self.defaults.lifetimes['receiver'] = (60 * 60)
-        self.defaults.lifetimes['wb'] = (60 * 60)
+        self.defaults.lifetimes = {
+            'admin': (60 * 60),
+            'receiver': (60 * 60),
+            'wb': (60 * 60)
+        }
 
         # unchecked_tor_input contains information that cannot be validated now
         # due to complex inclusions or requirements. Data is used in
@@ -703,7 +704,6 @@ class GLSettingsClass:
             if result is not None:
                 if result.group(2) != GLSetting.key_id:
                     os.remove(os.path.join(GLSetting.submission_path, f))
-
 
 # GLSetting is a singleton class exported once
 GLSetting = GLSettingsClass()

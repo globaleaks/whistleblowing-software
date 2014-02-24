@@ -139,7 +139,7 @@ class APSNotification(GLJob):
                             plugin=plugin)
             events.append((unicode(receiver_tip.id), event))
 
-        return (events, notification_counter)
+        return events, notification_counter
 
     @transact
     def tip_notification_succeeded(self, store, result, tip_id):
@@ -270,7 +270,7 @@ class APSNotification(GLJob):
 
             events.append(((unicode(message.id), unicode(receiver.id)), event))
 
-        return (events, notification_counter)
+        return events, notification_counter
 
     @transact_ro
     def message_notification_succeeded(self, store, result, message_id, receiver_id):
@@ -409,7 +409,7 @@ class APSNotification(GLJob):
 
                 events.append(((unicode(comment.id), unicode(receiver.id)), event))
 
-        return (events, notification_counter)
+        return events, notification_counter
 
     @transact_ro
     def comment_notification_succeeded(self, store, result, comment_id, receiver_id):
@@ -539,7 +539,7 @@ class APSNotification(GLJob):
 
             events.append(((unicode(rfile.id), unicode(rfile.receiver.id)), event))
 
-        return (events, notification_counter)
+        return events, notification_counter
 
     @transact
     def receiverfile_notification_succeeded(self, store, result, receiverfile_id, receiver_id):

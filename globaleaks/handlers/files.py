@@ -129,7 +129,6 @@ def get_tip_by_submission(store, itip_id):
     else:
         return itip.id
 
-
 @transact_ro
 def get_tip_by_wbtip(store, wb_tip_id):
 

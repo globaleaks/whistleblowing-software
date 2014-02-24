@@ -26,3 +26,9 @@ if [ ! -d /var/run/globaleaks ]; then
   chown globaleaks:globaleaks /var/run/globaleaks
   chmod 750 /var/run/globaleaks
 fi
+
+if [ ! -d /dev/shm/globaleaks ]; then
+  mkdir -p /dev/shm/globaleaks
+  chown globaleaks:globaleaks /dev/shm/globaleaks
+  chmod 750 /dev/shm/globaleaks
+fi

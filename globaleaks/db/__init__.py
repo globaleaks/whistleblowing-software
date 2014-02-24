@@ -4,11 +4,11 @@
 from __future__ import with_statement
 import os
 
-from twisted.internet.defer import succeed
+from twisted.internet.defer import succeed, inlineCallbacks
 from storm.exceptions import OperationalError
 
 from globaleaks.utils.utility import log
-from globaleaks.settings import transact, ZStorm, GLSetting
+from globaleaks.settings import transact, transact_ro, ZStorm, GLSetting
 from globaleaks import models
 from globaleaks.db.datainit import initialize_node, opportunistic_appdata_init
 
@@ -39,7 +39,6 @@ def create_tables_transaction(store):
     init_models()
     # new is the only Models function executed without @transact, call .add, but
     # the called has to .commit and .close, operations commonly performed by decorator
-
 
 def acquire_email_templates(filename, fallback):
 
@@ -195,3 +194,33 @@ def check_schema_version():
         store.close()
 
     return ret
+
+
+@transact_ro
+def get_tracked_files(store):
+    """
+    returns a list the basenames of files tracked by InternalFile and ReceiverFile.
+    """
+    ifiles = list(store.find(models.InternalFile).values(models.InternalFile.file_path))
+    rfiles = list(store.find(models.ReceiverFile).values(models.ReceiverFile.file_path))
+
+    tracked_files = list()
+    for files in list(set(ifiles + rfiles)):
+        tracked_files.append(os.path.basename(files))
+
+    return tracked_files
+
+@inlineCallbacks
+def clean_untracked_files(res):
+    """
+    removes files in GLSetting.submission_path that are not
+    tracked by InternalFile/ReceiverFile.
+    """
+    tracked_files = yield get_tracked_files()
+    for filesystem_file in os.listdir(GLSetting.submission_path):
+        if filesystem_file not in tracked_files:
+            file_to_remove = os.path.join(GLSetting.submission_path, filesystem_file)
+            try:
+                os.remove(file_to_remove)
+            except OSError as e:
+                log.err("Failed to remove untracked file" % file_to_remove)
