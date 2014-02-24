@@ -557,11 +557,16 @@ class BaseHandler(RequestHandler):
     def get_uploaded_file(self):
         uploaded_file = self.request.body
 
-        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 4:
+        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 6:
             raise errors.InvalidInputFormat("Expected a dict of four keys in uploaded file")
 
         for filekey in uploaded_file.keys():
-            if filekey not in [u'body', u'body_len', u'content_type', u'filename']:
+            if filekey not in [u'body',
+                               u'body_len',
+                               u'content_type',
+                               u'filename',
+                               u'body_sha',
+                               u'body_filepath']:
                 raise errors.InvalidInputFormat(
                     "Invalid JSON key in uploaded file (%s)" % filekey)
 
@@ -578,19 +583,6 @@ class BaseStaticFileHandler(BaseHandler, StaticFileHandler):
         """
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
-
-    def get_uploaded_file(self):
-        uploaded_file = self.request.body
-
-        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 4:
-            raise errors.InvalidInputFormat("Expected a dict of four keys in uploaded file")
-
-        for filekey in uploaded_file.keys():
-            if filekey not in [u'body', u'body_len', u'content_type', u'filename']:
-                raise errors.InvalidInputFormat(
-                    "Invalid JSON key in uploaded file (%s)" % filekey)
-
-        return uploaded_file
 
 
 class BaseRedirectHandler(BaseHandler, RedirectHandler):
