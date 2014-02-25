@@ -545,7 +545,7 @@ if [ $DISTRO == 'ubuntu' ];then
   add_repository 'deb http://de.archive.ubuntu.com/ubuntu/ precise universe'
   DO "apt-get update -y" "0"
 fi
-DO "apt-get install python-pip python-setuptools python-dev gcc -y" "0"
+DO "apt-get install python-pip python-setuptools python-dev gcc libffi-dev -y" "0"
 DO "mkdir -p ${BUILD_DIR}" "0"
 DO "chmod 700 ${BUILD_DIR}" "0"
 DO "cd ${BUILD_DIR}/" "0"
