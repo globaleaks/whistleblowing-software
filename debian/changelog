@@ -1,3 +1,9 @@
+globaleaks (2.54.1) unstable; urgency=low
+
+  * GlobaLeaks 2.54.1 Release (Minor Fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 27 Jan 2014 17:40:00 +0002
+
 globaleaks (2.54) unstable; urgency=low
 
   * GlobaLeaks 2.54 Release

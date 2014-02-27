@@ -41,7 +41,7 @@ profile usr.bin.globaleaks {
 
     /{run,dev}/shm/ r,
     /{run,dev}/shm/globaleaks/ rwk,
-    /{run,dev}/shm/globaleaks/** rwk,
+    /{run,dev}/shm/globaleaks/** lrwk,
 
     owner /tmp/** rwkl,
     owner /var/tmp/** rwkl,
