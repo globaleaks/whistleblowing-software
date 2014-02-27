@@ -83,6 +83,7 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         "show_small_cards": context.show_small_cards,
         "presentation_order": context.presentation_order,
         "receivers": list(context.receivers.values(models.Receiver.id)),
+        'name': mo.dump_translated('name', language),
         "description": mo.dump_translated('description', language),
         "fields": fo.dump_fields(language)
     }
