@@ -445,17 +445,22 @@ class APSDelivery(GLJob):
                           (ifile_path, plain_path)
                 )
 
-                with open(plain_path, "wb") as plain_f_is_sad_f, \
-                     GLSecureFile(ifile_path) as encrypted_file:
+                try:
+                    with open(plain_path, "wb") as plain_f_is_sad_f, \
+                         GLSecureFile(ifile_path) as encrypted_file:
 
-                    chunk_size = 4096
-                    while True:
-                        chunk = encrypted_file.read(chunk_size)
-                        if len(chunk) == 0:
-                            break
-                        plain_f_is_sad_f.write(chunk)
+                        chunk_size = 4096
+                        while True:
+                            chunk = encrypted_file.read(chunk_size)
+                            if len(chunk) == 0:
+                                break
+                            plain_f_is_sad_f.write(chunk)
 
-                yield do_final_internalfile_update(ifile_path, InternalFile._marker[2], plain_path)
+                    yield do_final_internalfile_update(ifile_path, InternalFile._marker[2], plain_path)
+
+                except Exception as e:
+                    log.err("Unable to create plaintext file %s" % plain_path)
+                    raise e
 
             else: # are_all_encrypted:
                 log.debug("All Receivers support PGP, marking internalfile as removed")

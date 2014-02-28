@@ -274,7 +274,7 @@ def login_admin(store, username, password):
         log.debug("Admin login: Invalid password")
         return False
     else:
-        log.debug("Admin: Authorized receiver %s" % username)
+        log.debug("Admin: Authorized admin %s" % username)
         admin_user.last_login = datetime_now()
         store.commit() # the transact was read only! on success we apply the commit()
         return username
