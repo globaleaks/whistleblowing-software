@@ -250,6 +250,11 @@ This comment is needed in order to push the following strings on transifex
                       </div>
 
                       <div class="form-group" data-ng-show="receiver.gpg_key_info">
+                        <div class="alert alert-success">
+                          <span data-translate>Encryption is enabled!</span>
+                          <span data-translate>Notifications and Files will be encrypted.</span>
+                        </div>
+
                         <p>
                           <span data-translate>PGP Key details</span>
                           <br />
@@ -262,40 +267,6 @@ This comment is needed in order to push the following strings on transifex
                         </div>
 
                         <div class="form-group table-bordered">
-                          <input data-ng-model="receiver.gpg_enable_notification" type="checkbox">
-                          <label data-translate>Enable encrypted notification</label>
-                          <div data-ng-show="receiver.gpg_enable_notification">
-                            <span class="label label-success">
-                              <span data-translate>now Enabled:</span>
-                            </span>
-                            <span data-translate>Every notification will be encrypted with the PGP key.</span>
-                          </div>
-                          <div data-ng-show="!receiver.gpg_enable_notification">
-                            <span class="label label-danger">
-                              <span data-translate>now Disabled:</span>
-                            </span>
-                            <span data-translate>Every notification won't be encrypted.</span>
-                          </div>
-                        </div>
-
-                        <div class="form-group table-bordered">
-                          <input data-ng-model="receiver.gpg_enable_files" type="checkbox">
-                          <label data-translate>Enable file encryption</label>
-                          <div data-ng-show="receiver.gpg_enable_files">
-                            <span class="label label-success">
-                              <span data-translate>now Enabled:</span>
-                            </span>
-                            <span data-translate>Every downloaded file will be encrypted with the PGP key.</span>
-                          </div>
-                          <div data-ng-show="!receiver.gpg_enable_files">
-                            <span class="label label-danger">
-                              <span data-translate>now Disabled:</span>
-                            </span>
-                            <span data-translate>Every downloaded file won't be encrypted.</span>
-                          </div>
-                        </div>
-
-                        <div class="form-group table-bordered">
                           <input data-ng-model="receiver.gpg_key_remove" type="checkbox">
                           <label data-translate>Remove the PGP key</label>
                         </div>
@@ -303,8 +274,9 @@ This comment is needed in order to push the following strings on transifex
                       </div>
 
                       <div class="form-group" data-ng-hide="receiver.gpg_key_fingerprint">
-                        <div class="alert alert-danger" data-ng-hide="preferences.gpg_key_fingerprint">
-                          <b><span data-translate>Encryption not enabled!</span></b>
+                        <div class="alert alert-danger">
+                          <span data-translate>Encryption is not enabled!</span>
+                          <span data-translate>Notifications and Files won't be encrypted.</span>
                         </div>
 
                         <button class="btn btn-info" data-ng-init="send_key=false" data-ng-click="send_key = !send_key">
