@@ -20,18 +20,18 @@ class TestEmail(helpers.TestGL):
 
         print "First round 10"
         self.increment_accesses(10)
-        statistics_sched.APSAnomalies().operation()
+        statistics_sched.AnomaliesSchedule().operation()
 
         print "Second round 30"
         self.increment_accesses(30)
-        statistics_sched.APSAnomalies().operation()
+        statistics_sched.AnomaliesSchedule().operation()
 
         print "Third round 30"
         self.increment_accesses(30)
-        statistics_sched.APSAnomalies().operation()
+        statistics_sched.AnomaliesSchedule().operation()
 
         print "Stats!"
-        yield statistics_sched.APSStatistics().operation()
+        yield statistics_sched.StatisticsSchedule().operation()
 
 
 

@@ -12,9 +12,9 @@ from globaleaks.utils.utility import log, is_expired
 from globaleaks.jobs.base import GLJob
 
 
-__all__ = ['APSSessionManagement']
+__all__ = ['SessionManagementSchedule']
 
-class APSSessionManagement(GLJob):
+class SessionManagementSchedule(GLJob):
 
     def operation(self):
         """

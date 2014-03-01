@@ -15,7 +15,7 @@ from globaleaks.utils.utility import log, pretty_date_time, is_expired, iso2date
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalTip, ReceiverFile, InternalFile, Comment
 
-__all__ = ['APSCleaning']
+__all__ = ['CleaningSchedule']
 
 @transact_ro
 def get_tiptime_by_marker(store, marker):
@@ -113,7 +113,7 @@ def debug_count_itips_by_marker(store):
     return info_list
 
 
-class APSCleaning(GLJob):
+class CleaningSchedule(GLJob):
 
     @inlineCallbacks
     def operation(self):
