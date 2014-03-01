@@ -32,4 +32,3 @@ for ip in GLSetting.bind_addresses:
     GLBackendAPI.setServiceParent(application)
 
 # define exit behaviour
-
