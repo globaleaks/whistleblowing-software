@@ -46,7 +46,7 @@ def serialize_internalfile(ifile):
 # requested in Comment notification template (like some Tip info)
 
 
-class APSNotification(GLJob):
+class NotificationSchedule(GLJob):
     notification_settings = None
 
     @transact_ro

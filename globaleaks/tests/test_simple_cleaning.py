@@ -209,14 +209,14 @@ class TipCleaning(TestCleaning):
         self.assertEqual(len(tip_list), 1)
         rtip.postpone_expiration_date(recv_desc[0]['id'], rtip_desc[0]['id'])
 
-        yield cleaning_sched.APSCleaning().operation()
+        yield cleaning_sched.CleaningSchedule().operation()
 
     @inlineCallbacks
     def test_001_unfinished_submission_life_and_expire(self):
         yield self.do_setup_tip_environment()
         yield self.check_tip_not_expired()
         yield self.force_tip_expire()
-        yield cleaning_sched.APSCleaning().operation()
+        yield cleaning_sched.CleaningSchedule().operation()
         yield self.test_cleaning()
 
     @inlineCallbacks
@@ -224,12 +224,12 @@ class TipCleaning(TestCleaning):
         yield self.do_setup_tip_environment()       
         yield self.do_finalize_submission()
 
-        yield delivery_sched.APSDelivery().operation()
+        yield delivery_sched.DeliverySchedule().operation()
 
         yield self.check_tip_not_expired()
         yield self.force_tip_expire()
 
-        yield cleaning_sched.APSCleaning().operation()
+        yield cleaning_sched.CleaningSchedule().operation()
 
         yield self.test_cleaning()
 
@@ -238,13 +238,13 @@ class TipCleaning(TestCleaning):
         yield self.do_setup_tip_environment()
         yield self.do_finalize_submission()
 
-        yield delivery_sched.APSDelivery().operation()
+        yield delivery_sched.DeliverySchedule().operation()
 
         yield self.check_tip_not_expired()
         yield self.force_tip_expire()
         yield self.postpone_tip_expiration()
 
-        yield cleaning_sched.APSCleaning().operation()
+        yield cleaning_sched.CleaningSchedule().operation()
 
         yield self.test_postpone_survive_cleaning()
 
@@ -254,7 +254,7 @@ class TipCleaning(TestCleaning):
         yield self.do_create_internalfiles()
         yield self.do_finalize_submission()
 
-        yield delivery_sched.APSDelivery().operation()
+        yield delivery_sched.DeliverySchedule().operation()
 
         self.assertTrue(os.listdir(GLSetting.submission_path) != [])
 
@@ -262,7 +262,7 @@ class TipCleaning(TestCleaning):
 
         yield self.force_tip_expire()
 
-        yield cleaning_sched.APSCleaning().operation()
+        yield cleaning_sched.CleaningSchedule().operation()
 
         self.assertTrue(os.listdir(GLSetting.submission_path) == [])
         self.assertTrue(os.listdir(GLSetting.tmp_upload_path) == [])
