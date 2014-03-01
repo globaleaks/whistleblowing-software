@@ -50,7 +50,7 @@ alarm_template = {
     'file_uploaded': "10 files has been uploaded in the last 30 seconds"
 }
 
-class APSAnomalies(GLJob):
+class AnomaliesSchedule(GLJob):
 
     def operation(self):
         """
@@ -60,7 +60,7 @@ class APSAnomalies(GLJob):
         two thing are done:
             1) checks if the threshold are under the 'danger level'
             2) copy them in the admin statistics memory table, this table is
-                dumped in the database by scheduled ops APSStatistics below
+                dumped in the database by scheduled ops StatisticsSchedule below
         """
 
         try:
@@ -97,7 +97,7 @@ class APSAnomalies(GLJob):
             sys.excepthook(*sys.exc_info())
 
 
-class APSStatistics(GLJob):
+class StatisticsSchedule(GLJob):
 
     @inlineCallbacks
     def operation(self):

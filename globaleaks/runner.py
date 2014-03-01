@@ -14,9 +14,6 @@ from globaleaks.db import create_tables, check_schema_version, clean_untracked_f
 from globaleaks.db.datainit import import_memory_variables, apply_cli_options
 from globaleaks.settings import GLSetting
 
-# The scheduler is a global variable, because can be used to force execution
-__all__ = ['GLAsynchronous']
-
 def start_asynchronous():
     """
     Initialize the asynchronous operation, scheduled in the system
@@ -31,12 +28,12 @@ def start_asynchronous():
 
     # Here we prepare the scheduled, schedules will be started by reactor after reactor.run()
 
-    session_management = session_management_sched.APSSessionManagement()
-    delivery = delivery_sched.APSDelivery()
-    notification = notification_sched.APSNotification()
-    clean = cleaning_sched.APSCleaning()
-    anomaly = statistics_sched.APSAnomalies()
-    stats = statistics_sched.APSStatistics()
+    session_management = session_management_sched.SessionManagementSchedule()
+    delivery = delivery_sched.DeliverySchedule()
+    notification = notification_sched.NotificationSchedule()
+    clean = cleaning_sched.CleaningSchedule()
+    anomaly = statistics_sched.AnomaliesSchedule()
+    stats = statistics_sched.StatisticsSchedule()
 
     # here we prepare the schedule:
     #  - first argument is the first run delay in seconds
