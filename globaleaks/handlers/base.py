@@ -76,6 +76,7 @@ class GLHTTPServer(HTTPConnection):
         if self.content_length == 0:
             self._contentbuffer.seek(0, 0)
             if self.file_upload:
+                self.uploaded_file['body_sha'] = self._contentbuffer_sha.hexdigest()
                 self._on_request_body(self.uploaded_file)
                 self.file_upload = False
                 self.uploaded_file = {}
@@ -126,7 +127,6 @@ class GLHTTPServer(HTTPConnection):
 
                 self.uploaded_file['body'] = self._contentbuffer
                 self.uploaded_file['body_len'] = int(self.content_length)
-                self.uploaded_file['body_sha'] = self._contentbuffer_sha.hexdigest()
                 self.uploaded_file['body_filepath'] = self._contentbuffer.filepath
 
             megabytes = int(self.content_length) / (1024 * 1024)
