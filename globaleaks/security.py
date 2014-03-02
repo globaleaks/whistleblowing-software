@@ -259,8 +259,6 @@ class GLBGPG:
         """
         every time is needed, a new keyring is created here.
         """
-        Random.atfork()
-
         if receiver_desc.has_key('gpg_key_status') and \
                         receiver_desc['gpg_key_status'] != Receiver._gpg_types[1]: # Enabled
             log.err("Requested GPG initialization for a receiver without GPG configured! %s" %
@@ -541,8 +539,6 @@ def get_expirations(keylist):
     This function is not implemented in GPG object class because need to operate
     on the whole keys
     """
-    Random.atfork()
-
     try:
         temp_gpgroot = os.path.join(GLSetting.gpgroot, "-expiration_check-%s" % Random.random.randint(0, 0xFFFF))
         os.makedirs(temp_gpgroot, mode=0700)
