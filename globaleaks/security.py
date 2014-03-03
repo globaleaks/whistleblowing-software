@@ -65,7 +65,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         self.nonce = MD5.new(pseudo_random).hexdigest()[:GLSetting.AES_nonce_size]
 
         # XXX remind enhance file name with incremental number
-        self.filepath = os.path.join(filedir, "%s.%s_%s.aes" % (xeger(r'[A-Za-z0-9]{7}'), GLSetting.key_id, self.nonce) )
+        self.filepath = os.path.join(filedir, "%s.%s_%s.aes" % (xeger(r'[A-Za-z0-9]{8}'), GLSetting.key_id, self.nonce) )
 
         log.debug("++ Creating %s filetmp" % self.filepath)
 
@@ -268,7 +268,7 @@ class GLBGPG:
             raise Exception("Requested GPG init for user without GPG [%s]" % receiver_desc['username'])
 
         try:
-            temp_gpgroot = os.path.join(GLSetting.gpgroot, "%s" % Random.random.randint(0, 0xFFFF))
+            temp_gpgroot = os.path.join(GLSetting.gpgroot, "%s" % xeger(r'[A-Za-z0-9]{8}'))
             os.makedirs(temp_gpgroot, mode=0700)
             self.gpgh = GPG(gnupghome=temp_gpgroot, options=['--trust-model', 'always'])
         except Exception as excep:
@@ -404,8 +404,7 @@ class GLBGPG:
                    plainpath, len(str(encrypt_obj))))
 
         encrypted_path = os.path.join(os.path.abspath(output_path),
-                                      "gpg_encrypted-%d-%d" %
-                                      (Random.random.randint(0, 0xFFFF), Random.random.randint(0, 0xFFFF)))
+                                      "gpg_encrypted-%s" % xeger(r'[A-Za-z0-9]{8}'))
 
         if os.path.isfile(encrypted_path):
             log.err("Unexpected unpredictable unbelievable error! %s" % encrypted_path)
@@ -544,7 +543,7 @@ def get_expirations(keylist):
     Random.atfork()
 
     try:
-        temp_gpgroot = os.path.join(GLSetting.gpgroot, "-expiration_check-%s" % Random.random.randint(0, 0xFFFF))
+        temp_gpgroot = os.path.join(GLSetting.gpgroot, "-expiration_check-%s" % xeger(r'[A-Za-z0-9]{8}'))
         os.makedirs(temp_gpgroot, mode=0700)
         gpexpire = GPG(gnupghome=temp_gpgroot, options=['--trust-model', 'always'])
     except Exception as excep:
