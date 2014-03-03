@@ -423,7 +423,7 @@ class APSDelivery(GLJob):
 
         for ifile_path, receivermap in filemap.iteritems():
 
-            plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z]{6}') )
+            plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z0-9]{8}') )
 
             are_all_encrypted = encrypt_where_available(receivermap)
 
