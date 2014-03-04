@@ -627,7 +627,6 @@ class NotificationSchedule(GLJob):
         except Exception as excep:
             log.err("Error in Tip notification: %s" % excep)
             log.debug(sys.exc_info())
-            raise excep
 
         try:
             if comment_events:

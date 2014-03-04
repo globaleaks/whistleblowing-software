@@ -48,15 +48,21 @@ class Templating:
         # 1) template => directly from Notification.*_template
         # 2) keyword_converter => object aligned with Event type and data
 
-        # The receiver preferred language is not yet collected, or can be used instead of default
+        # is template == dict, we can need to select a language to use.
+        # currently used language is the node default, but in future it would be
+        # nice to use a receiver preference variable.
+        if isinstance(template, dict): 
 
-        assert isinstance(template, dict)
+            if not template.has_key(GLSetting.memory_copy.default_language):
+                log.err("Missing notification template in the default language!")
+                raise Exception("Missing notification template in the default language")
 
-        if not template.has_key(GLSetting.memory_copy.default_language):
-            log.err("Missing notification template in the default language!")
-            raise Exception("Missing notification template in the default language")
+            raw_template = template[GLSetting.memory_copy.default_language]
 
-        raw_template = template[GLSetting.memory_copy.default_language]
+        else: # if != dict we expcect an already localized template
+
+            raw_template = template
+
 
         for kw in keyword_converter.keyword_list:
 
