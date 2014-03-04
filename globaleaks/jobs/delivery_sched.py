@@ -23,7 +23,7 @@ from globaleaks.security import GLBGPG, GLSecureFile
 from globaleaks.handlers.admin import admin_serialize_receiver
 from globaleaks.third_party.rstr import xeger
 
-__all__ = ['APSDelivery']
+__all__ = ['DeliverySchedule']
 
 def serialize_internalfile(ifile):
     ifile_dict = {
@@ -383,7 +383,7 @@ def encrypt_where_available(receivermap):
 
     return retcode
 
-class APSDelivery(GLJob):
+class DeliverySchedule(GLJob):
 
     @inlineCallbacks
     def operation(self):
