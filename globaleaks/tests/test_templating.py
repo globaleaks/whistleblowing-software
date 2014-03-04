@@ -176,7 +176,7 @@ class notifTemplateTest(helpers.TestGL):
         yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
 
         # with the event, we can finally call the template filler
-        gentext = Templating().format_template(self.templates['default_ETNT.txt']['en'], self.event)
+        gentext = Templating().format_template(self.templates['default_ETNT.txt'], self.event)
 
         self.assertSubstring(self.createdContext['name'], gentext)
         self.assertSubstring(created_rtip[0], gentext)
@@ -188,11 +188,11 @@ class notifTemplateTest(helpers.TestGL):
 
         # http://witchwind.wordpress.com/2013/12/15/piv-is-always-rape-ok/
         # wtf has the internet in those days ? bwahahaah
-        tip_num_test = Templating().format_template("%TipNum%", self.event)
+        tip_num_test = Templating().format_template({'en': u'%TipNum%'}, self.event)
         new_id = self.event.trigger_info['id'].replace('1', '2')
         new_id.replace('3', '4')
         self.event.trigger_info['id'] = new_id.replace('5', '6')
-        different_num = Templating().format_template("%TipNum%", self.event)
+        different_num = Templating().format_template({'en': u'%TipNum%'}, self.event)
         self.assertNotEqual(tip_num_test, different_num)
 
 
@@ -283,9 +283,15 @@ class notifTemplateTest(helpers.TestGL):
 
         yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
 
+        # adding funny configured variables 
+        self.templates['default_ETNT.txt']['en'] += " %OttimoDireiOOOttimoDirei%"
+
         # with the event, we can finally call the format checks
         gentext = Templating().format_template(self.templates['default_ETNT.txt'], self.event)
 
         self.assertSubstring(self.createdContext['name'], gentext)
         self.assertSubstring(created_rtip[0], gentext)
         self.assertNotSubstring("%TipT2WURL%", gentext)
+
+        # test against funny configured variables
+        self.assertSubstring("%OttimoDireiOOOttimoDirei%", gentext)

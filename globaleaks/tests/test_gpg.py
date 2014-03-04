@@ -127,7 +127,7 @@ class TestReceiverSetKey(TestHandler):
                     plugin = MailNotification(),
                     trigger_parent = {} )
 
-        mail_content = Templating().format_template(dummy_template['en'], mock_event)
+        mail_content = Templating().format_template(dummy_template, mock_event)
 
         # setup the GPG key before
         GLSetting.gpgroot = GPGROOT
