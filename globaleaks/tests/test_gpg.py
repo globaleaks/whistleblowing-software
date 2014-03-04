@@ -13,7 +13,7 @@ from globaleaks.handlers.admin import create_receiver, create_context, get_conte
 from globaleaks.handlers.submission import create_submission, update_submission
 from globaleaks.settings import GLSetting
 from globaleaks.models import Receiver
-from globaleaks.jobs.delivery_sched import APSDelivery, get_files_by_itip, get_receiverfile_by_itip
+from globaleaks.jobs.delivery_sched import DeliverySchedule, get_files_by_itip, get_receiverfile_by_itip
 from globaleaks.plugins.notification import MailNotification
 from globaleaks.plugins.base import Event
 from globaleaks.utils.templating import Templating
@@ -246,7 +246,7 @@ class TestReceiverSetKey(TestHandler):
         new_subm['finalize'] = True
         new_subm_output = yield update_submission(new_subm['id'], new_subm, True)
 
-        yield APSDelivery().operation()
+        yield DeliverySchedule().operation()
 
         # now get a lots of receivertips/receiverfiles and check!
         ifilist = yield get_files_by_itip(new_subm_output['id'])

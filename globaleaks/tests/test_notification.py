@@ -11,7 +11,7 @@ GLSetting.memory_copy.notif_source_email = "mail@fake.xxx"
 from globaleaks.tests import helpers
 from globaleaks.handlers import submission
 from globaleaks.jobs import delivery_sched
-from globaleaks.jobs.notification_sched import APSNotification
+from globaleaks.jobs.notification_sched import NotificationSchedule
 from globaleaks.plugins import notification
 
 class TestEmail(helpers.TestGLWithPopulatedDB):
@@ -39,7 +39,7 @@ class TestEmail(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_sendmail(self):
-        aps = APSNotification()
+        aps = NotificationSchedule()
         aps.notification_settings = {
             "server": "mail.headstrong.de",
             "port": 587,

@@ -1,5 +1,4 @@
 Twisted==13.2.0
-apscheduler==2.1.2
 zope.component==4.1.0
 zope.interface==4.0.5
 cyclone==1.1

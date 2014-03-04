@@ -7,18 +7,12 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.util import untilConcludes
-
-from apscheduler.scheduler import Scheduler
+from twisted.internet import reactor
 
 from globaleaks.utils.utility import log, utc_future_date
 from globaleaks.db import create_tables, check_schema_version, clean_untracked_files
 from globaleaks.db.datainit import import_memory_variables, apply_cli_options
 from globaleaks.settings import GLSetting
-
-# The scheduler is a global variable, because can be used to force execution
-__all__ = ['GLAsynchronous']
-
-GLAsynchronous = Scheduler()
 
 def start_asynchronous():
     """
@@ -32,56 +26,25 @@ def start_asynchronous():
     from globaleaks.jobs import session_management_sched, statistics_sched, \
                                 notification_sched, delivery_sched, cleaning_sched
 
-    # When the application boot, maybe because has been after a restart, then
-    # with the method *.force_execution, we reschedule the execution of all the
-    # operations
+    # Here we prepare the scheduled, schedules will be started by reactor after reactor.run()
 
-    # start the scheduler, before add the Schedule job
-    GLAsynchronous.start()
+    session_management = session_management_sched.SessionManagementSchedule()
+    delivery = delivery_sched.DeliverySchedule()
+    notification = notification_sched.NotificationSchedule()
+    clean = cleaning_sched.CleaningSchedule()
+    anomaly = statistics_sched.AnomaliesSchedule()
+    stats = statistics_sched.StatisticsSchedule()
 
-    # This maybe expanded for debug:
-    # def event_debug_listener(event):
-    #     if event.exception:
-    #         Job failed
-    #     else:
-    #         Job success
-    #         GLAsynchronous.print_jobs()
-    # GLAsynchronous.add_listener(event_debug_listener,
-    #       EVENT_JOB_EXECUTED | EVENT_JOB_ERROR | EVENT_JOB_MISSED)
-
-    session_manage_sched = session_management_sched.APSSessionManagement()
-    GLAsynchronous.add_interval_job(session_manage_sched.operation,
-                                    minutes=GLSetting.session_management_minutes_delta,
-                                    start_date=utc_future_date(seconds=3))
-
-    deliver_sched = delivery_sched.APSDelivery()
-    GLAsynchronous.add_interval_job(deliver_sched.operation,
-                                    seconds=GLSetting.delivery_seconds_delta,
-                                    start_date=utc_future_date(seconds=15))
-
-    notify_sched = notification_sched.APSNotification()
-    GLAsynchronous.add_interval_job(notify_sched.operation,
-                                    minutes=GLSetting.notification_minutes_delta,
-                                    start_date=utc_future_date(seconds=45))
-
-    clean_sched = cleaning_sched.APSCleaning()
-    GLAsynchronous.add_interval_job(clean_sched.operation,
-                                    hours=GLSetting.cleaning_hours_delta,
-                                    start_date=utc_future_date(seconds=65))
-
-    # expiration_sched = gpgexpire_sched.GPGExpireCheck()
-    # GLAsynchronous.add_interval_job(expiration_sched.operation,
-    #                                 hours=23,
-    #                                 start_date=utc_future_date(seconds=50))
-
-    anomaly_sched = statistics_sched.APSAnomalies()
-    GLAsynchronous.add_interval_job(anomaly_sched.operation,
-                                    seconds=GLSetting.anomaly_seconds_delta)
-
-    stats_sched = statistics_sched.APSStatistics()
-    GLAsynchronous.add_interval_job(stats_sched.operation,
-                                    minutes=GLSetting.stats_minutes_delta)
-
+    # here we prepare the schedule:
+    #  - first argument is the first run delay in seconds
+    #  - second argument is the function that starts the schedule
+    #  - third argument is the schedule period in seconds
+    reactor.callLater(0, session_management.start, GLSetting.session_management_minutes_delta * 60)
+    reactor.callLater(10, delivery.start, GLSetting.delivery_seconds_delta)
+    reactor.callLater(20, notification.start, GLSetting.notification_minutes_delta * 60)
+    reactor.callLater(30, clean.start, GLSetting.cleaning_hours_delta * 3600)
+    reactor.callLater(40, anomaly.start, GLSetting.anomaly_seconds_delta)
+    reactor.callLater(50, stats.start, GLSetting.stats_minutes_delta * 60)
 
 from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
 ServerOptions = ServerOptions
