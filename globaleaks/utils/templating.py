@@ -329,7 +329,7 @@ class EncryptedFileKeyword(FileKeyword):
         pass
 
 
-class ZipFileKeyword(TipKeyword):
+class ZipFileKeyword(_KeyWord):
 
     zip_file_keywords = [
         '%FileList%',
@@ -339,7 +339,7 @@ class ZipFileKeyword(TipKeyword):
 
     def __init__(self, node_desc, context_desc, receiver_desc, zip_desc, tip_desc):
 
-        super(ZipFileKeyword, self).__init__(node_desc, context_desc, receiver_desc, tip_desc)
+        super(ZipFileKeyword, self).__init__(node_desc, context_desc, receiver_desc)
 
         self.keyword_list += ZipFileKeyword.zip_file_keywords
         self.zip = zip_desc
