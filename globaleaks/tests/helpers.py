@@ -349,7 +349,7 @@ class MockDict():
             'subtitle': u'https://twitter.com/TheHackersNews/status/410457372042092544/photo/1',
             'hidden_service':  u"http://1234567890123456.onion",
             'public_site':  u"https://globaleaks.org",
-            'email':  u"email@dumnmy.net",
+            'email':  u"email@dummy.net",
             'stats_update_time':  2, # hours,
             'languages_supported': [], # ignored
             'languages_enabled':  [ "it" , "en" ],
