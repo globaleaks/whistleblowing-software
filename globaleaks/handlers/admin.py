@@ -282,8 +282,6 @@ def generate_example_receipt(regexp):
     receipt_regexp configured, and if an error happen, it's
     works as validator.
     """
-    Random.atfork()
-
     try:
         return_value_receipt = unicode(rstr.xeger(regexp))
     except Exception as excep:
