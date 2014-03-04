@@ -62,7 +62,9 @@ def validate_host(host_key):
 
 class GLHTTPServer(HTTPConnection):
     file_upload = False
-    uploaded_file = {}
+
+    def __init__(self):
+        self.uploaded_file = {}
 
     def rawDataReceived(self, data):
         if self.content_length is not None:
@@ -73,17 +75,18 @@ class GLHTTPServer(HTTPConnection):
 
         self._contentbuffer_sha.update(data)
         self._contentbuffer.write(data)
-        if self.content_length == 0:
-            self._contentbuffer.seek(0, 0)
+        if self.content_length == 0 and self._contentbuffer is not None:
+            tmpbuf = self._contentbuffer
+            self.content_length = self._contentbuffer = None
+            self.setLineMode(rest)
+            tmpbuf.seek(0, 0)
             if self.file_upload:
                 self.uploaded_file['body_sha'] = self._contentbuffer_sha.hexdigest()
                 self._on_request_body(self.uploaded_file)
                 self.file_upload = False
                 self.uploaded_file = {}
             else:
-                self._on_request_body(self._contentbuffer.read())
-            self.content_length = self._contentbuffer = None
-            self.setLineMode(rest)
+                self._on_request_body(tmpbuf.read())
 
     def _on_headers(self, data):
         try:
@@ -368,8 +371,6 @@ class BaseHandler(RequestHandler):
 
     def on_connection_close(self, *args, **kwargs):
         pass
-
-    requestTypes = {}
 
     def prepare(self):
         """
