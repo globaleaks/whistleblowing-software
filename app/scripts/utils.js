@@ -37,18 +37,25 @@ GLCrypto.randomString = function (length) {
     randomBytes = GLCrypto.getRandomBytes(),
     result = '';
 
-  for (var i = 0; i < length; i++) {
-    var idx = i;
-    // If we have already covered all possible values then we need to generate
-    // some new bytes.
-    if (idx > randomBytes.length) {
-      randomBytes = GLCrypto.getRandomBytes();
-      idx = idx % randomBytes.length;
+  do {
+    result = '';
+
+    randomBytes = GLCrypto.getRandomBytes();
+
+    for (var i = 0; i < length; i++) {
+      var idx = i;
+      // If we have already covered all possible values then we need to generate
+      // some new bytes.
+      if (idx > randomBytes.length) {
+        randomBytes = GLCrypto.getRandomBytes();
+        idx = idx % randomBytes.length;
+      };
+      result += possibleChars[randomBytes[idx] % possibleChars.length];
     }
-    ;
-    result += possibleChars[randomBytes[idx] % possibleChars.length];
-  }
-  ;
+    
+    // the strings are checked to contains both characters and numbers
+  } while((result.match(/^[A-Za-z]*$/) && result.match(/^[\d]*$/)));
+
   return result;
 };
 
