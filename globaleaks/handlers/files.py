@@ -107,9 +107,6 @@ def dump_file_fs(uploaded_file):
                encrypted_destination)
     )
 
-    uploaded_file['body'].avoid_delete()
-    uploaded_file['body'].close()
-
     shutil.move(uploaded_file['body_filepath'], encrypted_destination)
     return encrypted_destination
 
@@ -152,6 +149,11 @@ class FileHandler(BaseHandler):
         start_time = time.time()
 
         uploaded_file = self.request.body
+
+        uploaded_file['body'].avoid_delete()
+        print "close in dump_file_fs " + uploaded_file['body_filepath']
+        uploaded_file['body'].close()
+
         try:
             # First: dump the file in the filesystem,
             # and exception raised here would prevent the InternalFile recordings
