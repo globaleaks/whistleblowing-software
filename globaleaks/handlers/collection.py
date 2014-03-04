@@ -24,6 +24,22 @@ from globaleaks.models import ReceiverTip
 from globaleaks.utils.utility import log
 from globaleaks.utils.templating import Templating
 
+@transact_ro
+def get_rtip_info(store, rtip_id):
+    """
+    This function return a receiver tip
+    """
+
+    rtip = store.find(ReceiverTip, ReceiverTip.id == rtip_id).one()
+
+    if not rtip:
+        log.err("Download of a Zip file without ReceiverTip associated!")
+        raise errors.TipIdNotFound
+
+    rtip_dict = serialize_receivertip(rtip)
+
+    return rtip_dict
+
 
 @transact_ro
 def get_collection_info(store, rtip_id):
@@ -37,18 +53,16 @@ def get_collection_info(store, rtip_id):
         log.err("Download of a Zip file without ReceiverTip associated!")
         raise errors.TipIdNotFound
 
-    rtip_dict = serialize_receivertip(rtip)
-
-    rtip_dict['files'] = []
-    rtip_dict['files_number'] = 0
-    rtip_dict['total_size'] = 0
+    collection_dict = {}
+    collection_dict['files'] = []
+    collection_dict['files_number'] = 0
+    collection_dict['total_size'] = 0
     for internalf in rtip.internaltip.internalfiles:
-        rtip_dict['files_number'] += 1
-        rtip_dict['total_size'] += internalf.size
-        rtip_dict['files'].append(serialize_file(internalf))
+        collection_dict['files_number'] += 1
+        collection_dict['total_size'] += internalf.size
+        collection_dict['files'].append(serialize_file(internalf))
 
-    rtip_dict['etag_hash'] = unicode(str(rtip_dict['total_size'] * rtip_dict['files_number']))
-    return rtip_dict
+    return collection_dict
 
 @transact_ro
 def get_receiver_from_rtip(store, rtip_id):
@@ -118,8 +132,9 @@ class CollectionDownload(BaseHandler):
 
         node_dict = yield admin.get_node()
         receiver_dict = yield get_receiver_from_rtip(original_rtip_id)
+        rtip_dict = yield get_rtip_info(original_rtip_id)
         collection_tip_dict = yield get_collection_info(original_rtip_id)
-        context_dict = yield admin.get_context(collection_tip_dict['context_id'])
+        context_dict = yield admin.get_context(rtip_dict['context_id'])
         notif_dict = yield admin.get_notification()
 
         mock_event = Event(
@@ -131,7 +146,7 @@ class CollectionDownload(BaseHandler):
             context_info = context_dict,
             plugin = None,
             trigger_info = collection_tip_dict,
-            trigger_parent = None # could be the Tip ? mmhh...
+            trigger_parent = rtip_dict
         )
 
         for filedesc in files_dict:
