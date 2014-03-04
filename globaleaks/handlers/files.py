@@ -151,7 +151,6 @@ class FileHandler(BaseHandler):
         uploaded_file = self.request.body
 
         uploaded_file['body'].avoid_delete()
-        print "close in dump_file_fs " + uploaded_file['body_filepath']
         uploaded_file['body'].close()
 
         try:
