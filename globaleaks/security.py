@@ -108,18 +108,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         else:
             return self.cipher.decrypt(self.file.read(c))
 
-    def close(self):
-        """
-        TEMP JUST FOR DEBUG
-        @return:
-        """
-        if self.delete:
-            log.debug("-- removing %s" % self.filepath)
-        else:
-            log.debug("-! not removing %s" % self.filepath)
-
-        _TemporaryFileWrapper.close(self)
-
 
 class KeyExpiredSadness(Exception): pass
 
