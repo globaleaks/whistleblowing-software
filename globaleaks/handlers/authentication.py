@@ -59,7 +59,6 @@ def random_login_delay():
         else:
             max_sleep = 42
 
-        Random.atfork()
         return Random.random.randint(min_sleep, max_sleep)
 
     return 0
@@ -297,7 +296,6 @@ class AuthenticationHandler(BaseHandler):
                 case of an admin it will be set to 'admin', in the case of the
                 'wb' it will be the whistleblower id.
         """
-        Random.atfork()
         self.session_id = rstr.xeger(r'[A-Za-z0-9]{42}')
 
         # This is the format to preserve sessions in memory

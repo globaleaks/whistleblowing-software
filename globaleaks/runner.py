@@ -5,6 +5,9 @@
 
 import os
 
+from Crypto import Random
+
+
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.util import untilConcludes
 from twisted.internet import reactor
@@ -50,6 +53,9 @@ from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
 ServerOptions = ServerOptions
 
 def globaleaks_start():
+
+    Random.atfork()
+
     GLSetting.fix_file_permissions()
     GLSetting.drop_privileges()
     GLSetting.check_directories()
