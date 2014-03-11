@@ -156,8 +156,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         # because is not generated a WhistleblowerTip in this test
         self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.dummySubmission['id'])
         self.assertEqual(len(self.wbfls), 2)
-        self.assertEqual(self.wbfls[0]['sha2sum'], self.fil[0]['sha2sum'])
-        self.assertEqual(self.wbfls[1]['sha2sum'], self.fil[1]['sha2sum'])
 
     @inlineCallbacks
     def test_access_from_receipt(self):
