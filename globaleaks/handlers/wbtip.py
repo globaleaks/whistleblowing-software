@@ -44,7 +44,6 @@ def wb_serialize_tip(internaltip, language=GLSetting.memory_copy.default_languag
 def wb_serialize_file(internalfile):
     wb_file_desc = {
         'name' : unicode(internalfile.name),
-        'sha2sum' : unicode(internalfile.sha2sum),
         'content_type' : unicode(internalfile.content_type),
         'creation_date' : unicode(pretty_date_time(internalfile.creation_date)),
         'size': int(internalfile.size),
