@@ -28,7 +28,7 @@ This comment is needed in order to push the following strings on transifex
             <span data-translate>Initiative name</span>
           </label>
           <div class="col-md-8">
-            <input type="text" class="form-control" data-ng-model="admin.node.name" placeholder="" required>
+            <input type="text" class="form-control" data-ng-model="admin.node.name" placeholder="" cols="45" required>
             <span class="help-block">
               <span data-translate>Enter the name for your whistleblowing initiative</span>
             </span>
@@ -40,7 +40,7 @@ This comment is needed in order to push the following strings on transifex
             <span data-translate>Initiative description</span>
           </label>
           <div class="col-md-8">
-            <textarea type="text" class="form-control" data-ng-model="admin.node.description" required></textarea>
+            <textarea type="text" class="form-control" data-ng-model="admin.node.description" cols="45" rows="10" required></textarea>
             <span class="help-block">
               <span data-translate>Give a concise description of your project</span>
             </span>
@@ -66,10 +66,13 @@ This comment is needed in order to push the following strings on transifex
             <span data-translate>Email</span>
           </label>
           <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="" data-ng-model="admin.node.email" required>
+            <input name="admin_email" type="email" class="form-control" placeholder="" data-ng-model="admin.node.email" required>
             <span class="help-block">
               <span data-translate>Enter your email address</span>
             </span>
+            <p class="has-error" data-ng-show="wizard.admin_email.$error.email">
+              <span data-translate>Invalid email address</span>
+            </p>
           </div>
         </div>
 
@@ -141,11 +144,11 @@ This comment is needed in order to push the following strings on transifex
         <div class="form-group col-md-12">
           <label class="col-md-4">Email</label>
           <div class="col-md-8">
-            <input name="receiver_mail" type="email" class="form-control" placeholder="" data-ng-model="receiver.mail_address" required>
+            <input name="receiver_email" type="email" class="form-control" placeholder="" data-ng-model="receiver.mail_address" required>
             <span class="help-block">
               <span data-translate>Enter the email address through which the receiver will be notified</span>
             </span>
-            <p class="has-error" data-ng-show="wizard.receiver_mail.$error.email">
+            <p class="has-error" data-ng-show="wizard.receiver_email.$error.email">
               <span data-translate>Invalid email address</span>
             </p>
           </div>
@@ -156,7 +159,7 @@ This comment is needed in order to push the following strings on transifex
             <span data-translate>Password</span>
           </label>
           <div class="col-md-8">
-            <input name="receiver_password" type="text" class="form-control" placeholder="" data-ng-model="receiver.password" required data-ng-value="{{receiver.password}}" readonly>
+            <div class="label label-primary wizard-receiver-password"><strong>{{receiver.password}}<strong></div>
             <span class="help-block">
               <span data-translate>This is the password that the receiver must use to login to their tip page.</span>
             </span>

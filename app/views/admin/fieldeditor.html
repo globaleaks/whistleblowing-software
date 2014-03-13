@@ -21,7 +21,7 @@ This comment is needed in order to push the following strings on transifex
     <div class="field">
       <div class="fieldEditorHeader" data-ng-init="editing=false" data-ng-click="editing=!editing">
         {{field.name}}&nbsp;
-        <a href="" data-content="{{field.hint}}" popover="{{field.name}}" popover-placement="right" popover-trigger="mouseenter">
+        <a href="" data-ng-show="field.hint" data-content="{{field.hint}}" popover="{{field.hint}}" popover-placement="right" popover-trigger="mouseenter">
           <i class="glyphicon glyphicon-question-sign"></i>
         </a>
         <div class="pull-right" data-ng-show="editing" data-ng-class="{invalid: newField.$invalid}">
