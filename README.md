@@ -13,6 +13,8 @@ Join our [Development Mailing List](http://lists.globaleaks.org/listinfo/dev);
 here we collect all the knowledge that is not specific to the backend or
 client component.
 
+[![You can support the development of GlobaLeaks via Pledgie - thanks for your help](https://pledgie.com/campaigns/24521.png?skin_name=chrome)]
+
 ## GlobaLeaks main components
 
 The main components of are:
@@ -29,7 +31,6 @@ and [Bootstrap](http://getbootstrap.com/).
 * [GLBackend wiki](https://github.com/globaleaks/GLBackend/wiki/Home)
 * [GLClient wiki](https://github.com/globaleaks/GLClient/wiki/Home)
 
-[[You can support the development of GlobaLeaks via Pledgie - thanks for your help](https://pledgie.com/campaigns/24521.png?skin_name=chrome)][Pledgie]
 
 ## License
 Copyright (C) 2011-2014 Hermes No Profit Association - GlobaLeaks Project
