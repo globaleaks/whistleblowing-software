@@ -13,7 +13,11 @@ Join our [Development Mailing List](http://lists.globaleaks.org/listinfo/dev);
 here we collect all the knowledge that is not specific to the backend or
 client component.
 
-[![You can support the development of GlobaLeaks via Pledgie - thanks for your help](https://pledgie.com/campaigns/24521.png?skin_name=chrome)]
+[Pledgie]: http://www.pledgie.com/campaigns/18379
+
+[![You can support the development of GlobaLeaks via Pledgie - thanks for your help](https://pledgie.com/campaigns/24521.png?skin_name=chrome)][Pledgie]
+
+https://github.com/colszowka/simplecov/commit/a9d8b111ef0378f862ae30b6850f6a8e2d89fc80
 
 ## GlobaLeaks main components
 
