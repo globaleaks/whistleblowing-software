@@ -17,8 +17,6 @@ client component.
 
 [![You can support the development of GlobaLeaks via Pledgie - thanks for your help](https://pledgie.com/campaigns/24521.png?skin_name=chrome)][Pledgie]
 
-https://github.com/colszowka/simplecov/commit/a9d8b111ef0378f862ae30b6850f6a8e2d89fc80
-
 ## GlobaLeaks main components
 
 The main components of are:
