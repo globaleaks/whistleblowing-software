@@ -29,6 +29,8 @@ and [Bootstrap](http://getbootstrap.com/).
 * [GLBackend wiki](https://github.com/globaleaks/GLBackend/wiki/Home)
 * [GLClient wiki](https://github.com/globaleaks/GLClient/wiki/Home)
 
+[![You can support the development of GlobaLeaks via Pledgie - thanks for your help](https://pledgie.com/campaigns/24521.png?skin_name=chrome)][Pledgie]
+
 ## License
 Copyright (C) 2011-2014 Hermes No Profit Association - GlobaLeaks Project
 
