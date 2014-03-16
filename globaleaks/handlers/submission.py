@@ -201,7 +201,7 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
     try:
         import_receivers(store, submission, receivers, required=finalize)
     except Exception as excep:
-        log.err("Submission reate: receivers import fail: %s" % excep)
+        log.err("Submission create: receivers import fail: %s" % excep)
         raise errors.InvalidInputFormat("Error in submission: cannot validate receivers")
 
     submission_dict = wb_serialize_internaltip(submission)
