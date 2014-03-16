@@ -39,7 +39,7 @@ sudo -i bash -x -c '/etc/init.d/tor restart'
 #sudo -i bash -x -c 'echo "hostname: localhost" >> /etc/globaleaks'
 #sudo -i bash -x -c 'echo "name: globaleaks" >> /etc/globaleaks'
 # damn travis seems to have problm on /dev/shm, making a special configuration for this
-sudo -i bash -x -c 'mkdir /var/globaleaks/ramdisk && chown globaleaks:globaleaks && chown 700 /var/globaleaks/ramdisk'
+sudo -i bash -x -c 'mkdir /var/globaleaks/ramdisk && chown globaleaks:globaleaks /var/globaleaks/ramdisk && chown 700 /var/globaleaks/ramdisk'
 sudo -i bash -x -c 'sed -i "s/RAM_DISK=\/dev\/shm\/globaleaks\//RAM_DISK=\/var\/globaleaks\/ramdisk\//g" /var/default/globaleaks'
 sudo TRAVIS=true -i bash -x -c '/etc/init.d/globaleaks restart'
 sleep 10
