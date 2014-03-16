@@ -213,7 +213,7 @@ class Fields:
             log.err("Internal error in processing required keys: %s" % excep)
             raise excep
 
-        for key, value in wb_fields.iteritems():
+        for key, field in wb_fields.iteritems():
 
             if not key in required_keys and not key in optional_keys:
                 log.err("Submission contain an unexpected field %s" % key)
@@ -226,7 +226,7 @@ class Fields:
 
         for required in required_keys:
 
-            if wb_fields.has_key(required) and len(wb_fields[required]) > 0:
+            if wb_fields.has_key(required) and len(wb_fields[required]['value']) > 0:
             # the keys are always provided by GLClient! also if the content is empty.
             # then is not difficult check a test len(text) > $blah, but other checks are...
                 continue

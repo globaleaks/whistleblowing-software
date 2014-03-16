@@ -460,7 +460,8 @@ def get_dummy_submission(context_id, context_admin_data_fields):
                  "http://www.giantitp.com"
 
     for field_desc in context_admin_data_fields:
-        dummySubmissionDict['wb_fields'][field_desc['key']] = dummyvalue
+        dummySubmissionDict['wb_fields'][field_desc['key']] = { u'value': dummyvalue,
+                                                                u'answer_order': 0 }
 
     dummySubmissionDict['receivers'] = []
     dummySubmissionDict['files'] = []
@@ -480,6 +481,7 @@ def fill_random_fields(context_desc):
     assert len(fields_list) >= 1
 
     ret_dict = {}
+    i = 0
     for sf in fields_list:
 
         assert sf.has_key(u'name')
@@ -490,7 +492,10 @@ def fill_random_fields(context_desc):
         # not all element are checked now
 
         unicode_weird = ''.join(unichr(x) for x in range(0x400, 0x4FF) )
-        ret_dict.update({ sf.get(u'key') : unicode_weird })
+        ret_dict.update({ sf.get(u'key') : { u'value': unicode_weird,
+                                             u'answer_order': i } })
+
+        i += 1
 
     return ret_dict
 
