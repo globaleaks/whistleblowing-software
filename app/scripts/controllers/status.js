@@ -31,18 +31,32 @@ GLClient.controller('StatusCtrl',
 
         Contexts.query(function(contexts){
           $scope.tip = tip;
+
           $scope.contexts = contexts;
+
           $scope.fieldFormat = {};
+          $scope.fields = [];
 
           angular.forEach(contexts, function(context, k){
             if (context.id == $scope.tip.context_id) {
               $scope.current_context = context;
             }
           });
+
           angular.forEach($scope.current_context.fields,
                           function(field){
             $scope.fieldFormat[field.key] = field;
           });
+
+          angular.forEach(tip.fields,
+                          function(field, k){
+            $scope.fields.push({
+                                'key': k,
+                                'value': field.value,
+                                'answer_order': field.answer_order
+                              });
+          });
+
 
         });
       });
@@ -61,8 +75,11 @@ GLClient.controller('StatusCtrl',
 
         Contexts.query(function(contexts){
           $scope.tip = tip;
+
           $scope.contexts = contexts;
+
           $scope.fieldFormat = {};
+          $scope.fields = [];
 
           angular.forEach(contexts, function(context, k){
             if (context.id == $scope.tip.context_id) {
@@ -72,6 +89,15 @@ GLClient.controller('StatusCtrl',
           angular.forEach($scope.current_context.fields,
                           function(field){
             $scope.fieldFormat[field.key] = field; 
+          });
+
+          angular.forEach(tip.fields,
+                          function(field, k){
+            $scope.fields.push({
+                                'key': k,
+                                'value': field.value,
+                                'answer_order': field.answer_order
+                              });
           });
 
           $scope.increaseDownloadCount = function(file) {

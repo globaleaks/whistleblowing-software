@@ -40,35 +40,35 @@ This comment is needed in order to push the following strings on transifex
           <dt><span data-translate>Expiration Date</span></dt>
           <dd>{{ tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}</dd>
         </dl>
-        <dl data-ng-repeat="(fieldName, fieldValue) in tip.fields">
+        <dl data-ng-repeat="field in fields | orderBy:'answer_order'">
           <dt>
             <span>
-              {{fieldFormat[fieldName].name}}
+              {{$index + 1}}) {{fieldFormat[field.key].name}}
             </span>
-            <a data-ng-show="fieldFormat[fieldName].hint" popover="{{fieldFormat[fieldName].hint}}" popover-placement="right" popover-trigger="mouseenter">
+            <a data-ng-show="fieldFormat[field.key].hint" popover="{{fieldFormat[field.key].hint}}" popover-placement="right" popover-trigger="mouseenter">
               <span class="glyphicon glyphicon-info-sign"></span>
             </a>
           </dt>
         
-          <div data-ng-switch="" on="fieldFormat[fieldName].type">
+          <div data-ng-switch="" on="fieldFormat[field.key].type">
       
             <dd data-ng-switch-when="checkboxes">
               <ul>
-                <li data-ng-repeat="checkbox in fieldFormat[fieldName].options">
+                <li data-ng-repeat="checkbox in fieldFormat[field.key].options">
                   {{checkbox.name}} 
-                  <span data-ng-hide="fieldValue[checkbox.name]"><i class="glyphicon glyphicon-unchecked"></i></span>
-                  <span data-ng-show="fieldValue[checkbox.name]"><i class="glyphicon glyphicon-check"></i></span>
+                  <span data-ng-hide="field.value[checkbox.name]"><i class="glyphicon glyphicon-unchecked"></i></span>
+                  <span data-ng-show="field.value[checkbox.name]"><i class="glyphicon glyphicon-check"></i></span>
                 </li>
               </ul>
             </dd>
 
             <dd data-ng-switch-when="multiple">
               <ul>
-                <li data-ng-repeat="selection in fieldValue">{{selection}}</li>
+                <li data-ng-repeat="selection in field.value">{{selection}}</li>
               </ul>
 
             </dd>
-            <dd data-ng-switch-default="">{{fieldValue}}</dd>
+            <dd data-ng-switch-default="">{{field.value}}</dd>
 
           </div>
         </dl>

@@ -338,7 +338,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
         // Set the submission field values
         _.each(self.current_context.fields, function(field, k) {
-          self.current_submission.wb_fields[field.key] = field.value;
+          self.current_submission.wb_fields[field.key] = {
+            'value': field.value,
+            'answer_order': self.current_context.fields[k]['presentation_order']
+          }
         });
 
         // Set the currently selected receivers
@@ -374,7 +377,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     var messageResource = $resource('/rtip/:tip_id/messages', {tip_id: '@tip_id'}, {});
 
     return function(tipID, fn) {
-      var self = this;
+      var self = this,
+        forEach = angular.forEach;
+
       self.tip = {};
 
       tipResource.get(tipID, function(result){
@@ -444,6 +449,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiversResource.query(function(receiversCollection) {
 
           self.tip = result;
+
           self.tip.comments = [];
           self.tip.messages = [];
           self.tip.receivers = [];
