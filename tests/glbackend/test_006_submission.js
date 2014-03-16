@@ -138,7 +138,8 @@ describe('POST /submission', function(){
         new_submission.context_id = contexts_ids[i];
         new_submission.files = [];
         new_submission.finalize = false;
-        new_submission.receivers = [];
+
+        new_submission.receivers = receivers_ids;
 
         app
           .post('/submission')
@@ -204,6 +205,9 @@ describe('POST /submission', function(){
     (function (i) {
       it('responds with ', function(done){
 
+        submissions[i].receivers = [];
+        submissions[i].wb_fields = {};
+
         submissions[i].finalize = 'true';
 
         app
@@ -238,7 +242,6 @@ describe('POST /submission', function(){
       it('responds with ', function(done){
 
         submissions[i].receivers = receivers_ids;
-
         submissions[i].wb_fields = {};
 
         contexts[i].fields.forEach(function (field) {
