@@ -9,6 +9,9 @@
 from globaleaks.utils.utility import log
 from globaleaks.settings import GLSetting
 
+from globaleaks.rest.errors import InvalidInputFormat, SubmissionFailFields
+from uuid import uuid4
+
 class Fields:
 
     accepted_form_type = [ "text", "radio", "select", "multiple",
@@ -120,9 +123,6 @@ class Fields:
           }
         ]
         """
-        from globaleaks.rest.errors import InvalidInputFormat
-        from uuid import uuid4
-
         self.debug_status('before update')
 
         # this variable collect the updated fields from the
@@ -195,8 +195,6 @@ class Fields:
         strict_validation = required the presence of 'required' wb_fields.
         Is not enforced if Submission would not be finalized yet.
         """
-        from globaleaks.rest.errors import SubmissionFailFields
-
         required_keys = list()
         optional_keys = list()
 
@@ -219,8 +217,16 @@ class Fields:
                 log.err("Submission contain an unexpected field %s" % key)
                 raise SubmissionFailFields("Submitted field '%s' not expected in context" % key)
 
+            if not isinstance(wb_fields[key], dict):
+                raise InvalidInputFormat("Submitted field not in dict format")
+
+            for k in ['value', 'answer_order']:
+                if k not in wb_fields[key]:
+                    raise InvalidInputFormat("Submitted field dict is missing %s key", k)
+
         if not strict_validation:
             return
+
 
         #log.debug("fields strict validation: %s (optional %s)" % (required_keys, optional_keys))
 
