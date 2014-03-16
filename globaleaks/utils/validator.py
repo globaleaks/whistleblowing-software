@@ -67,11 +67,17 @@ def dict_v(_self, attr, value):
         raise errors.InvalidInputFormat("(%s) dict expected" % attr)
 
     for key, subvalue in value.iteritems():
+        if isinstance(subvalue, str):
+            subvalue = unicode(subvalue)
+
         if isinstance(subvalue, unicode):
             if len(subvalue) > GLSetting.memory_copy.maximum_textsize:
                 raise errors.InvalidInputFormat("In dict %s the key %s" \
                                                 "overcome length limit of %d" % (attr, key,
                                                 GLSetting.memory_copy.maximum_textsize))
+
+        if isinstance(subvalue, dict):
+            dict_v(_self, attr, subvalue)
 
     return value
 

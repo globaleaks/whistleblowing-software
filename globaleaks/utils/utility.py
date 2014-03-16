@@ -384,7 +384,7 @@ def dump_submission_fields(fields, wb_fields):
         fnl = len(sf['name'])
         # dumptext += ("="*fnl)+"\n"+sf['name']+"\n("+sf['hint']+")\n"+("="*fnl)+"\n"
         dumptext += ("="*fnl)+"\n"+sf['name']+"\n"+("="*fnl)+"\n"
-        dumptext += wb_fields[ fields[0]['key'] ]+"\n\n"
+        dumptext += wb_fields[ fields[0]['key'] ]['value']+"\n\n"
 
     return dumptext
 

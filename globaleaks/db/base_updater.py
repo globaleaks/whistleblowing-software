@@ -141,21 +141,22 @@ class TableReplacer:
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
         self.table_history = {
-            'Node' : [ Node_version_5, Node_version_6, Node_version_7, Node_version_9, None, models.Node ],
-            'User' : [ User_version_5, User_version_9, None, None, None, models.User ],
-            'Context' : [ Context_version_6, None, Context_version_7, Context_version_8, models.Context, None ],
-            'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, Receiver_version_9, models.Receiver ],
-            'ReceiverFile' : [ models.ReceiverFile, None, None, None, None, None ],
-            'Notification': [ Notification_version_7, None, None, Notification_version_8, models.Notification, None ],
-            'Comment': [ Comment_version_5, models.Comment, None, None, None, None ],
-            'InternalTip' : [ models.InternalTip, None, None, None, None, None ],
-            'InternalFile' : [ InternalFile_version_7, None, None, models.InternalFile, None, None ],
-            'WhistleblowerTip' : [ models.WhistleblowerTip, None, None, None, None, None ],
-            'ReceiverTip' : [ models.ReceiverTip, None, None, None, None, None ],
-            'ReceiverInternalTip' : [ models.ReceiverInternalTip, None, None, None, None, None ],
-            'ReceiverContext' : [ models.ReceiverContext, None, None, None, None, None ],
-            'Message' : [models.Message, None, None, None, None, None ],
-            # next release: 'ApplicationData' and 'Stats'
+            'Node' : [ Node_version_5, Node_version_6, Node_version_7, Node_version_9, None, models.Node, None ],
+            'User' : [ User_version_5, User_version_9, None, None, None, models.User, None ],
+            'Context' : [ Context_version_6, None, Context_version_7, Context_version_8, models.Context, None, None ],
+            'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, Receiver_version_9, models.Receiver, None ],
+            'ReceiverFile' : [ models.ReceiverFile, None, None, None, None, None, None ],
+            'Notification': [ Notification_version_7, None, None, Notification_version_8, models.Notification, None, None ],
+            'Comment': [ Comment_version_5, models.Comment, None, None, None, None, None ],
+            'InternalTip' : [ models.InternalTip, None, None, None, None, None, None ],
+            'InternalFile' : [ InternalFile_version_7, None, None, models.InternalFile, None, None, None ],
+            'WhistleblowerTip' : [ models.WhistleblowerTip, None, None, None, None, None, None ],
+            'ReceiverTip' : [ models.ReceiverTip, None, None, None, None, None, None ],
+            'ReceiverInternalTip' : [ models.ReceiverInternalTip, None, None, None, None, None, None ],
+            'ReceiverContext' : [ models.ReceiverContext, None, None, None, None, None, None ],
+            'Message' : [ models.Message, None, None, None, None, None, None ],
+            'Stats' : [models.Stats, None, None, None, None, None, None ],
+            'ApplicationData' : [models.ApplicationData, None, None, None, None, None, None ],
         }
 
         for k, v in self.table_history.iteritems():

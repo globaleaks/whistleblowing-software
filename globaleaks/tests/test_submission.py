@@ -283,11 +283,15 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         sbmt = dict(self.dummySubmission)
 
         sbmt['wb_fields'] = {}
+        i = 0
         for sf in self.dummyContext['fields']:
             assert (sf['type'] == u'text' or sf['type'] == u'textarea'), \
                     "Dummy fields had only 'text' when this test has been dev"
 
-            sbmt['wb_fields'].update({ sf['key'] : "something" })
+            sbmt['wb_fields'].update({ sf['key'] : { u'value': "something",
+                                                     u'answer_order': i} })
+
+            i += 1
 
         try:
             status = yield submission.create_submission(sbmt, finalize=True)
