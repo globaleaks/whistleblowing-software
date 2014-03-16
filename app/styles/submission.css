@@ -21,6 +21,14 @@
   background-color: #DFF0D8;
 }
 
+.submissionField {
+  padding-bottom: 15px;
+}
+
+.submissionFieldInput {
+  padding-left: 15px;
+}
+
 #ReceiverSelectionBoxBig .receiverCardTitle {
   font-size: 20px;
 }
