@@ -132,7 +132,7 @@ describe('POST /submission', function(){
         new_submission.wb_fields = {};
 
         contexts[i].fields.forEach(function (field) {
-          new_submission.wb_fields[field.key]  = "primo";
+          new_submission.wb_fields[field.key]  = { 'value': "first", 'answer_order': 0 };
         })
 
         new_submission.context_id = contexts_ids[i];
@@ -242,7 +242,7 @@ describe('POST /submission', function(){
         submissions[i].wb_fields = {};
 
         contexts[i].fields.forEach(function (field) {
-          submissions[i].wb_fields[field.key]  = "antani";
+          submissions[i].wb_fields[field.key] = { 'value': "second", 'answer_order': 0 };
         })
 
         submissions[i].finalize = 'true';
