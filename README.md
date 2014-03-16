@@ -17,10 +17,7 @@ client component.
 
 [![You can support the development of GlobaLeaks via Pledgie - thanks for your help](https://pledgie.com/campaigns/24521.png?skin_name=chrome)][Pledgie]
 
-| Repository | Master Branch | Devel Branch
-| ------------- |:-------------:|:-------------:|
-| [GLBackend](https://github.com/globaleaks/GLBackend) | [![Build Status](https://travis-ci.org/globaleaks/GLBackend.png?branch=master)](http://travis-ci.org/globaleaks/GLBackend) [![Coverage Status](https://coveralls.io/repos/globaleaks/GLBackend/badge.png?branch=master)](https://coveralls.io/r/globaleaks/GLBackend?branch=master) | [![Build Status](https://travis-ci.org/globaleaks/GLBackend.png?branch=devel)](http://travis-ci.org/globaleaks/GLBackend) [![Coverage Status](https://coveralls.io/repos/globaleaks/GLBackend/badge.png?branch=devel)](https://coveralls.io/r/globaleaks/GLBackend?branch=devel) |
-| [GLClient](https://github.com/globaleaks/GLClient) | [![Build Status](https://travis-ci.org/globaleaks/GLClient.png?branch=master)](http://travis-ci.org/globaleaks/GLClient) [![Coverage Status](https://coveralls.io/repos/globaleaks/GLClient/badge.png?branch=master)](https://coveralls.io/r/globaleaks/GLClient?branch=master) | [![Build Status](https://travis-ci.org/globaleaks/GLClient.png?branch=devel)](http://travis-ci.org/globaleaks/GLClient) [![Coverage Status](https://coveralls.io/repos/globaleaks/GLClient/badge.png?branch=devel)](https://coveralls.io/r/globaleaks/GLClient?branch=devel)|
+[![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png?branch=master)](http://travis-ci.org/globaleaks/GlobaLeaks) [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master)
 
 ## GlobaLeaks main components
 
