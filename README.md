@@ -13,11 +13,12 @@ Join our [Development Mailing List](http://lists.globaleaks.org/listinfo/dev);
 here we collect all the knowledge that is not specific to the backend or
 client component.
 
+[![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png)](http://travis-ci.org/globaleaks/GlobaLeaks) [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png)](https://coveralls.io/r/globaleaks/GlobaLeaks)
+
 [Pledgie]: http://www.pledgie.com/campaigns/24521
 
 [![You can support the development of GlobaLeaks via Pledgie - thanks for your help](https://pledgie.com/campaigns/24521.png?skin_name=chrome)][Pledgie]
 
-[![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png)](http://travis-ci.org/globaleaks/GlobaLeaks) [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png)](https://coveralls.io/r/globaleaks/GlobaLeaks)
 
 ## GlobaLeaks main components
 
