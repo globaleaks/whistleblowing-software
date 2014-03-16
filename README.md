@@ -17,7 +17,7 @@ client component.
 
 [![You can support the development of GlobaLeaks via Pledgie - thanks for your help](https://pledgie.com/campaigns/24521.png?skin_name=chrome)][Pledgie]
 
-[![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png?branch=master)](http://travis-ci.org/globaleaks/GlobaLeaks) [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master)
+[![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png)](http://travis-ci.org/globaleaks/GlobaLeaks) [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png)](https://coveralls.io/r/globaleaks/GlobaLeaks)
 
 ## GlobaLeaks main components
 
