@@ -5,8 +5,30 @@ from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
 
-class Replacer1011(TableReplacer):
 
+# This migration script is quite fake and takes care only in a change of
+# format inside a Pickle
+#
+# the fields format changes from:
+#   {field1_id: field1_value, field2_id: field2_value }
+#
+# to:
+#   {field1_id: {value: field1_value, answer_order: 0}, field2_id: {value: field2_value, answer_order: 1} }
+#
+
+class InternalTip_version_10(Model): # no change at all!
+    __storm_table__ = 'internaltip'
+    context_id = Unicode()
+    wb_fields = Pickle()
+    pertinence_counter = Int()
+    expiration_date = DateTime()
+    last_activity = DateTime()
+    escalation_threshold = Int()
+    access_limit = Int()
+    download_limit = Int()
+    mark = Unicode()
+
+class Replacer1011(TableReplacer):
 
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant: (presentation order added, format refactored)" % self.std_fancy
@@ -15,7 +37,7 @@ class Replacer1011(TableReplacer):
 
         for old_itip in old_itips:
 
-            new_itip = self.get_right_model("InternalTip", 10)()
+            new_itip = self.get_right_model("InternalTip", 11)()
 
             for k, v in new_itip._storm_columns.iteritems():
 
