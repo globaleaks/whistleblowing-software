@@ -282,6 +282,7 @@ class TableReplacer:
                 setattr(new_obj, v.name, getattr(old_obj, v.name) )
 
             self.store_new.add(new_obj)
+
         self.store_new.commit()
 
     def _perform_copy_single(self, table_name):
