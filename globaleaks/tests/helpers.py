@@ -61,6 +61,8 @@ class TestGL(unittest.TestCase):
         GLSetting.sessions = {}
         GLSetting.failed_login_attempts = 0
         GLSetting.working_path = './working_path'
+        GLSetting.ramdisk_path = './working_path/ramdisk'
+
         GLSetting.eval_paths()
         GLSetting.remove_directories()
         GLSetting.create_directories()

@@ -68,6 +68,10 @@ TORDNSPORT=5353
 #   must be configured with the daemon working directory
 WORKING_DIR=/var/globaleaks/
 
+# RAM_DISK
+#   must be configured with a RAM disk path to be used for globaleaks
+RAM_DISK=/dev/shm/globaleaks/
+
 # TOR_DIR
 #   this contain the Tor hidden service directory
 TOR_DIR=/var/globaleaks/torhs/
