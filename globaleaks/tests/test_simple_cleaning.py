@@ -65,7 +65,6 @@ class TTip(helpers.TestGL):
         self.dummyFile1 = {
             'body': temporary_file1,
             'body_len': len("ANTANI"),
-            'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
             'body_filepath': temporary_file1.filepath,
             'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
             'content_type': 'application/octect',
@@ -74,7 +73,6 @@ class TTip(helpers.TestGL):
         self.dummyFile2 = {
             'body': temporary_file2,
             'body_len': len("ANTANI"),
-            'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
             'body_filepath': temporary_file2.filepath,
             'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
             'content_type': 'application/octect',
@@ -126,12 +124,12 @@ class TestCleaning(TTip):
         """
         relationship1 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
         self.registered_file1 = yield files.register_file_db(
-            self.dummyFile1, relationship1, self.dummyFile1['body_sha'], associated_submission_id,
+            self.dummyFile1, relationship1, associated_submission_id,
             )
 
         relationship2 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
         self.registered_file2 = yield files.register_file_db(
-            self.dummyFile2, relationship2, self.dummyFile2['body_sha'], associated_submission_id,
+            self.dummyFile2, relationship2, associated_submission_id,
             )
 
     @inlineCallbacks

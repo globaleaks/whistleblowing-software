@@ -73,7 +73,6 @@ class GLHTTPServer(HTTPConnection):
         else:
             rest = ''
 
-        self._contentbuffer_sha.update(data)
         self._contentbuffer.write(data)
         if self.content_length == 0 and self._contentbuffer is not None:
             tmpbuf = self._contentbuffer
@@ -81,7 +80,6 @@ class GLHTTPServer(HTTPConnection):
             self.setLineMode(rest)
             tmpbuf.seek(0, 0)
             if self.file_upload:
-                self.uploaded_file['body_sha'] = self._contentbuffer_sha.hexdigest()
                 self._on_request_body(self.uploaded_file)
                 self.file_upload = False
                 self.uploaded_file = {}
@@ -108,8 +106,6 @@ class GLHTTPServer(HTTPConnection):
             self.content_length = int(headers.get("Content-Length", 0))
 
             # we always use secure temporary files in case of large json or file uploads
-            self._contentbuffer_sha = SHA256.new()
-
             if self.content_length < 100000 and self._request.headers.get("Content-Disposition") is None:
                 self._contentbuffer = StringIO('')
             else:
@@ -566,7 +562,6 @@ class BaseHandler(RequestHandler):
                                u'body_len',
                                u'content_type',
                                u'filename',
-                               u'body_sha',
                                u'body_filepath']:
                 raise errors.InvalidInputFormat(
                     "Invalid JSON key in uploaded file (%s)" % filekey)

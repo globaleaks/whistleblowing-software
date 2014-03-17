@@ -33,7 +33,6 @@ def serialize_file(internalfile):
         'creation_date': pretty_date_time(internalfile.creation_date),
         'id' : internalfile.id,
         'mark' : internalfile.mark,
-        'sha2sum': internalfile.sha2sum,
     }
 
     return file_desc
@@ -49,13 +48,12 @@ def serialize_receiver_file(receiverfile):
         'creation_date': pretty_date_time(internalfile.creation_date),
         'downloads' : receiverfile.downloads,
         'path' : receiverfile.file_path,
-        'sha2sum' : internalfile.sha2sum,
     }
 
     return file_desc
 
 @transact
-def register_file_db(store, uploaded_file, filepath, cksum, internaltip_id):
+def register_file_db(store, uploaded_file, filepath, internaltip_id):
     internaltip = store.find(InternalTip,
                              InternalTip.id == internaltip_id).one()
 
@@ -72,7 +70,6 @@ def register_file_db(store, uploaded_file, filepath, cksum, internaltip_id):
         new_file.description = ""
         new_file.content_type = uploaded_file['content_type']
         new_file.mark = InternalFile._marker[0] # 'not processed'
-        new_file.sha2sum = cksum
         new_file.size = uploaded_file['body_len']
         new_file.internaltip_id = unicode(internaltip_id)
         new_file.file_path = filepath
@@ -82,7 +79,7 @@ def register_file_db(store, uploaded_file, filepath, cksum, internaltip_id):
         log.err("Unable to commit new InternalFile %s: %s" % (original_fname.encode('utf-8'), excep))
         raise excep
 
-    log.debug("=> Recorded new InternalFile %s (%s)" % (original_fname, cksum))
+    log.debug("=> Recorded new InternalFile %s" % (original_fname))
 
     return serialize_file(new_file)
 
@@ -90,11 +87,8 @@ def register_file_db(store, uploaded_file, filepath, cksum, internaltip_id):
 def dump_file_fs(uploaded_file):
     """
     @param files: a file
-    @return: three variables:
-        #0 a filepath linking the filename with the random
+    @return: a filepath linking the filename with the random
              filename saved in the disk
-        #1 SHA256 checksum of the file
-        #3 size in bytes of the files
     """
 
     encrypted_destination = os.path.join(GLSetting.submission_path,
@@ -162,7 +156,7 @@ class FileHandler(BaseHandler):
             raise errors.InternalServerError("Unable to accept new files")
         try:
             # Second: register the file in the database
-            registered_file = yield register_file_db(uploaded_file, filepath, uploaded_file['body_sha'], itip_id)
+            registered_file = yield register_file_db(uploaded_file, filepath, 0, itip_id)
         except Exception as excep:
             log.err("Unable to register file in DB: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
@@ -280,7 +274,7 @@ class Download(BaseHandler):
 
         rfile = yield download_file(original_file_id)
 
-        # keys:  'file_path'  'sha2sum'  'size' : 'content_type' 'file_name'
+        # keys:  'file_path'  'size' : 'content_type' 'file_name'
 
         self.set_status(200)
 

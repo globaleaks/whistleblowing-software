@@ -240,7 +240,7 @@ class TestReceiverSetKey(TestHandler):
         relationship1 = yield threads.deferToThread(files.dump_file_fs, new_file)
 
         self.registered_file1 = yield files.register_file_db(
-            new_file, relationship1, new_file['body_sha'], new_subm_output['id'] )
+            new_file, relationship1, new_subm_output['id'] )
 
         new_subm['id'] = new_subm_output['id']
         new_subm['finalize'] = True
