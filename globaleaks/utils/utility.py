@@ -158,27 +158,6 @@ def query_yes_no(question, default="no"):
         else:
             sys.stdout.write("Please respond with 'y' or 'n'\n\n")
 
-## Hashing utils
-
-def get_file_checksum(filepath):
-    sha = SHA256.new()
-
-    chunk_size = 8192
-    total_len = 0
-
-    with open(filepath, 'rb') as fp:
-        while True:
-            chunk = fp.read(chunk_size)
-            if len(chunk) == 0:
-                break
-            total_len += len(chunk)
-            sha.update(chunk)
-
-    if not total_len:
-        log.debug("checksum of %s computed, but the file is empty" % filepath)
-
-    return sha.hexdigest(), total_len
-
 ## time facilities ##
 
 def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0):
@@ -392,15 +371,11 @@ def dump_file_list(filelist, files_n):
 
     info = "%s%s%s%s%s\n" % ("Filename",
                              " "*(40-len("Filename")),
-                             "Size (Bytes)",
-                             " "*(15-len("Size (Bytes)")),
-                             "sha256")
+                             "Size (Bytes)")
 
     for i in xrange(files_n):
-        length1 = 40 - len(filelist[i]['name'])
-        length2 = 15 - len(str(filelist[i]['size']))
-        info += "%s%s%i%s%s\n" % (filelist[i]['name'], " "*length1,
-                                  filelist[i]['size'], " "*length2,
-                                  filelist[i]['sha2sum'])
+        info += "%s%s%i%s\n" % (filelist[i]['name'],
+                                " "*(40 - len(filelist[i]['name'])),
+                                filelist[i]['size'])
 
     return info

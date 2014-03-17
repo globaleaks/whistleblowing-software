@@ -79,7 +79,6 @@ CREATE TABLE internalfile (
     mark VARCHAR NOT NULL CHECK (mark IN ('not processed', 'locked', 'ready', 'delivered')),
     name VARCHAR NOT NULL,
     description VARCHAR,
-    sha2sum VARCHAR,
     size INTEGER NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,

@@ -324,7 +324,6 @@ class InternalFile(Model):
     #internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
 
     name = Unicode(validator=longtext_v)
-    sha2sum = Unicode()
     file_path = Unicode()
 
     content_type = Unicode()

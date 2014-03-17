@@ -35,7 +35,6 @@ def serialize_receivertip(receiver_tip):
 def serialize_internalfile(ifile):
     rfile_dict = {
         'name': unicode(ifile.name),
-        'sha2sum': unicode(ifile.sha2sum),
         'content_type': unicode(ifile.content_type),
         'size': unicode(ifile.size),
         'creation_date' : unicode(pretty_date_time(ifile.creation_date)),
