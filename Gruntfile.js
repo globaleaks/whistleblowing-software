@@ -300,9 +300,8 @@ module.exports = function(grunt) {
       gt = new Gettext(),
       strings,
       translations = {},
-      translationStringRegexpHTML1 = /"(.+?)"\s+\|\s+translate/gi,
-      translationStringRegexpHTML2 = /translate>(.+?)</gi,
-      translationStringRegexpJSON = /"en": "(.+?)"/gi,
+      translationStringRegexpHTML = /translate>(.+?)</gi,
+      translationStringRegexpJSON = /"en": "(.+)"/gi,
       translationStringCount = 0;
 
     gt.addTextdomain("en");
@@ -311,12 +310,7 @@ module.exports = function(grunt) {
       var filecontent = grunt.file.read(filepath),
         result;
 
-      while ( (result = translationStringRegexpHTML1.exec(filecontent)) ) {
-        gt.setTranslation("en", "", result[1], result[1]);
-        translationStringCount += 1;
-      }
-
-      while ( (result = translationStringRegexpHTML2.exec(filecontent)) ) {
+      while ( (result = translationStringRegexpHTML.exec(filecontent)) ) {
         gt.setTranslation("en", "", result[1], result[1]);
         translationStringCount += 1;
       }
