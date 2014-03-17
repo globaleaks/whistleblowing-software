@@ -92,7 +92,7 @@ def request(method, url, data=None, session_id=None):
 class Submission(object):
     def __init__(self, context):
         self.data = {
-            'context_gus': context['context_gus'],
+            'context_id': context['id'],
             'files': '',
             'finalize': False,
             'receivers': context['receivers'],
