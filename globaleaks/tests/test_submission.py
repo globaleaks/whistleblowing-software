@@ -77,6 +77,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         mycopy = dict(self.dummyContext)
         mycopy['file_required'] = True
+        del mycopy['id']
 
         for attrname in models.Context.localized_strings:
             mycopy[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
@@ -88,12 +89,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         submission_desc['finalize'] = True
         submission_desc['wb_fields'] = helpers.fill_random_fields(mycopy)
 
-        try:
-            yield submission.create_submission(submission_desc, finalize=True)
-        except errors.FileRequiredMissing:
-            self.assertTrue(True)
-            return
-        self.assertTrue(False)
+        yield self.assertFailure(submission.create_submission(submission_desc, finalize=True), errors.FileRequiredMissing)
 
     @inlineCallbacks
     def emulate_file_upload(self, associated_submission_id):
@@ -306,12 +302,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         sbmt = helpers.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])
         sbmt['wb_fields'].update({ 'alien' : 'predator' })
 
-        try:
-            yield submission.create_submission(sbmt, finalize=True)
-            self.assertTrue(False)
-        except Exception as excep:
-            self.assertEqual(excep.reason,
-                             u"Submission do not validate the input fields [Submitted field 'alien' not expected in context]")
+        yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
 
     @inlineCallbacks
     def test_fields_fail_missing_required(self):
@@ -320,11 +311,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         sbmt = helpers.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])
         del sbmt['wb_fields'][required_key]
 
-        try:
-            yield submission.create_submission(sbmt, finalize=True)
-            self.assertTrue(False)
-        except Exception as excep:
-            self.assertTrue(excep.reason.startswith(u"Submission do not validate the input fields [Missing field"))
+        yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
 
     def download_collection_token_test(self, rtip_id):
         # test token generation

@@ -146,7 +146,7 @@ def import_files(store, submission, files, finalize):
             raise errors.FileIdNotFound
 
         ifile.internaltip_id = submission.id
-    
+   
     if finalize and submission.context.file_required and not len(files):
         log.debug("Missing file for a submission in context %s" %
                   submission.context.name)
@@ -186,7 +186,7 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
         import_files(store, submission, files, finalize)
     except Exception as excep:
         log.err("Submission create: files import fail: %s" % excep)
-        raise errors.InvalidInputFormat("Error in submission: cannot validate files")
+        raise excep
 
     wb_fields = request.get('wb_fields', {})
     try:
@@ -195,14 +195,14 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
         submission.wb_fields = wb_fields
     except Exception as excep:
         log.err("Submission create: fields validation fail: %s" % excep)
-        raise errors.InvalidInputFormat("Error in submission: cannot validate fields")
+        raise excep
 
     receivers = request.get('receivers', [])
     try:
         import_receivers(store, submission, receivers, required=finalize)
     except Exception as excep:
         log.err("Submission create: receivers import fail: %s" % excep)
-        raise errors.InvalidInputFormat("Error in submission: cannot validate receivers")
+        raise excep
 
     submission_dict = wb_serialize_internaltip(submission)
     return submission_dict
