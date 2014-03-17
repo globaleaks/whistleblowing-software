@@ -13,7 +13,11 @@ Join our [Development Mailing List](http://lists.globaleaks.org/listinfo/dev);
 here we collect all the knowledge that is not specific to the backend or
 client component.
 
-[![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png)](http://travis-ci.org/globaleaks/GlobaLeaks) [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png)](https://coveralls.io/r/globaleaks/GlobaLeaks)
+| GlobaLeaks build status | GLBackend code coverage | GLClient code coverage
+|:-------------:|:-------------:|:-------------:|
+| [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GLBackend/badge.png)](https://coveralls.io/r/globaleaks/GLBackend) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GLClient/badge.png)](https://coveralls.io/r/globaleaks/GLClient) |
+
+## Donations
 
 [Pledgie]: http://www.pledgie.com/campaigns/24521
 
