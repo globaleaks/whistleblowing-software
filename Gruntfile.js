@@ -68,20 +68,29 @@ module.exports = function(grunt) {
       }
     },
 
-    // update references in HTML/CSS to revved files
+    // update references in HTML/CSS
     usemin: {
       html: ['tmp/views/**/*.html',
              'tmp/index.html',
-            ],
-      css: [
-        'tmp/components/bootstrap/docs/assets/css/bootstrap.css',
-        'tmp/components/angular-ui/build/angular-ui.css',
-        'tmp/components/jquery-file-upload/css/jquery.fileupload-ui.css',
-        'tmp/components/jquery-file-upload/css/jquery.fileupload-ui-noscript.css',
-        'tmp/styles/**/*.css',
       ],
       options: {
         dirs: ['tmp']
+      }
+    },
+
+    cssmin: {
+      combine: {
+        files: {
+          'tmp/styles-rtl.css': [ 'tmp/components/bootstrap-arabic/dist/css/bootstrap.css',
+                                  'tmp/components/jquery-file-upload/css/jquery.fileupload.css',
+                                  'tmp/components/jquery-file-upload/css/jquery.fileupload-ui.css',
+                                  'tmp/components/FlipClock/compiled/flipclock.css',
+                                  'tmp/styles/main.css',
+                                  'tmp/styles/admin.css',
+                                  'tmp/styles/home.css',
+                                  'tmp/styles/submission.css',
+                                  'tmp/styles/custom-glclient.css' ]
+        }
       }
     },
 
@@ -98,6 +107,17 @@ module.exports = function(grunt) {
             src: ['views/**/*.html'],
             dest: 'tmp/scripts/templates.js'
           }
+    },
+
+    lineremover: {
+      customExclude: {
+        files: {
+          'tmp/index.html': 'tmp/index.html'
+        },
+        options: {
+          exclusionPattern: /<link rel="stylesheet" href="(styles|styles-rtl)\.css"\/>/g
+        }
+      },
     },
 
     karma: {
@@ -142,6 +162,7 @@ module.exports = function(grunt) {
     grunt.file.mkdir('build/l10n');
 
     grunt.file.copy('tmp/styles.css', 'build/styles.css');
+    grunt.file.copy('tmp/styles-rtl.css', 'build/styles-rtl.css');
     grunt.file.copy('tmp/scripts.js', 'build/scripts.js');
     grunt.file.copy('tmp/index.html', 'build/index.html');
 
@@ -425,7 +446,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'uglify', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'uglify', 'lineremover', 'manifest', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('unittest',
     ['build', 'karma', 'coveralls']);

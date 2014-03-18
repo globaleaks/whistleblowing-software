@@ -29,6 +29,7 @@
     "jquery-file-upload": "9.5.6",
     "jquery-ui": "1.10.3",
     "bootstrap": "3.1.1",
+    "bootstrap-arabic": "3.1.0",
     "underscore": "1.6.0",
     "FlipClock": "https://github.com/objectivehtml/FlipClock.git"
   },
