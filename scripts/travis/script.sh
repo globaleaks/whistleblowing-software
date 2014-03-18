@@ -48,7 +48,7 @@ git clone https://github.com/globaleaks/GLClient /data/globaleaks/GlobaLeaks_UT
 cd /data/globaleaks/GlobaLeaks_UT && (git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null)
 sudo -i bash -x -c 'add-apt-repository ppa:chris-lea/node.js -y'
 sudo -i bash -x -c 'apt-get update -y'
-sudo -i bash -x -c 'apt-get install git nodejs -y'
+sudo -i bash -x -c 'apt-get install nodejs -y'
 sudo -i bash -x -c 'cd /data/globaleaks/GlobaLeaks_UT && npm install -d'
 sudo -i bash -x -c 'cd /data/globaleaks/GlobaLeaks_UT && node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*'
 
@@ -69,9 +69,10 @@ if [ "${TRAVIS_REPO_SLUG}" = "globaleaks/GLBackend" ]; then
   coveralls || true
 fi
 
-if [ "${TRAVIS_REPO_SLUG}" = "globaleaks/GLClient" ]; then
-  cd /data/globaleaks/tests/GLClient
-  git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
-  npm install -d
-  grunt unittest
-fi
+# Commented because not fully implemented yet
+#if [ "${TRAVIS_REPO_SLUG}" = "globaleaks/GLClient" ]; then
+#  cd /data/globaleaks/tests/GLClient
+#  git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
+#  npm install -d
+#  grunt unittest
+#fi
