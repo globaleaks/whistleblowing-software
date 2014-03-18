@@ -20,11 +20,7 @@ module.exports = function(grunt) {
         'app/img/*',
         'app/l10n/*',
       ],
-      tasks: ['build', 'reload']
-    },
-
-    reload: {
-        port: 6001,
+      tasks: ['build']
     },
 
     lint: {
