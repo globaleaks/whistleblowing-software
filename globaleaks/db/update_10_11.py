@@ -65,7 +65,8 @@ class Replacer1011(TableReplacer):
                 setattr(new_itip, v.name, getattr(old_itip, v.name))
 
             self.store_new.add(new_itip)
-            self.store_new.commit()
+
+        self.store_new.commit()
 
     def migrate_InternalFile(self):
         print "%s InternalFile migration assistant: (removed sha)" % self.std_fancy
@@ -80,6 +81,7 @@ class Replacer1011(TableReplacer):
                 setattr(new_ifile, v.name, getattr(old_ifile, v.name))
 
             self.store_new.add(new_ifile)
-            self.store_new.commit()
+
+        self.store_new.commit()
 
         
