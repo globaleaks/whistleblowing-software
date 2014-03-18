@@ -156,7 +156,7 @@ class FileHandler(BaseHandler):
             raise errors.InternalServerError("Unable to accept new files")
         try:
             # Second: register the file in the database
-            registered_file = yield register_file_db(uploaded_file, filepath, 0, itip_id)
+            registered_file = yield register_file_db(uploaded_file, filepath, itip_id)
         except Exception as excep:
             log.err("Unable to register file in DB: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
