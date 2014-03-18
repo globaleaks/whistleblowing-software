@@ -28,6 +28,16 @@ class InternalTip_version_10(Model): # no change at all!
     download_limit = Int()
     mark = Unicode()
 
+class InternalFile_version_10(Model):
+    __storm_table__ = 'internalfile'
+    internaltip_id = Unicode()
+    name = Unicode()
+    file_path = Unicode()
+    content_type = Unicode()
+    description = Unicode()
+    size = Int()
+    mark = Unicode()
+
 class Replacer1011(TableReplacer):
 
     def migrate_InternalTip(self):
@@ -56,4 +66,20 @@ class Replacer1011(TableReplacer):
 
             self.store_new.add(new_itip)
             self.store_new.commit()
+
+    def migrate_InternalFile(self):
+        print "%s InternalFile migration assistant: (removed sha)" % self.std_fancy
+
+        old_ifile = self.store_old.find(self.get_right_model("InternalFile", 10))
+
+        for old_ifile in old_ifile:
+
+            new_ifile = self.get_right_model("InternalFile", 11)()
+
+            for k, v in new_ifile._storm_columns.iteritems():
+                setattr(new_ifile, v.name, getattr(old_ifile, v.name))
+
+            self.store_new.add(new_ifile)
+            self.store_new.commit()
+
         
