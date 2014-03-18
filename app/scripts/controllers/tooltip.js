@@ -50,6 +50,12 @@ GLClient.controller('toolTipCtrl',
 
       $translate.uses($scope.language);
 
+      if (newVal != "ar") {
+        $rootScope.build_stylesheet = "/styles.css";
+      } else {
+        $rootScope.build_stylesheet = "/styles-rtl.css";
+      }
+
       $scope.update_node();
 
       $route.reload();

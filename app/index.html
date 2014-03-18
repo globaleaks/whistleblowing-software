@@ -11,13 +11,15 @@
         <link rel="stylesheet" href="components/jquery-file-upload/css/jquery.fileupload.css">
         <link rel="stylesheet" href="components/jquery-file-upload/css/jquery.fileupload-ui.css">
         <link rel="stylesheet" href="components/FlipClock/compiled/flipclock.css">
-
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/admin.css">
         <link rel="stylesheet" href="styles/home.css">
         <link rel="stylesheet" href="styles/submission.css">
         <link rel="stylesheet" href="styles/custom-glclient.css">
         <!-- endbuild -->
+
+        <!-- runtime loading of RTL / LTR version -->
+        <link rel="stylesheet" data-ng-href="{{ build_stylesheet }}" href="/styles.css">
 
         <!-- stylesheet downloaded from the GLBackend -->
         <link rel="stylesheet" data-ng-href="{{ custom_stylesheet }}" href="/custom_stylesheet.css">
