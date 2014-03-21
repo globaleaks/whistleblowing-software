@@ -1,3 +1,9 @@
+globaleaks (2.54.7) unstable; urgency=low
+
+  * GlobaLeaks 2.54.7 Release (Added support for Slovack!)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sat, 22 Mar 2014 00:53:00 +0002
+
 globaleaks (2.54.6) unstable; urgency=low
 
   * GlobaLeaks 2.54.6 Release (Added support to Arabic in RTL!)
