@@ -11,22 +11,23 @@ DATABASE_VERSION = 11
 # Add here by hand the languages supported!
 # copy paste format from 'grunt makeTranslations'
 LANGUAGES_SUPPORTED = [
- { "code": "en", "name": "English" },
- { "code": "en_US", "name": "English (United States)" },
  { "code": "bg", "name": "Bulgarian" },
  { "code": "ar", "name": "Arabic" },
- { "code": "cs", "name": "Czech" },
- { "code": "nl", "name": "Dutch" },
  { "code": "de", "name": "German" },
- { "code": "hu_HU", "name": "Hungarian (Hungary)" },
- { "code": "fr", "name": "French" },
+ { "code": "en", "name": "English" },
+ { "code": "cs", "name": "Czech" },
  { "code": "pt_BR", "name": "Portuguese (Brazil)" },
- { "code": "sr_RS@latin", "name": "Serbian (Latin) (Serbia)" },
- { "code": "it", "name": "Italian" },
- { "code": "ru", "name": "Russian" },
- { "code": "sr_RS", "name": "Serbian (Serbia)" },
  { "code": "vi", "name": "Vietnamese" },
+ { "code": "sr_RS@latin", "name": "Serbian (Latin) (Serbia)" },
  { "code": "es", "name": "Spanish" },
+ { "code": "ru", "name": "Russian" },
+ { "code": "sk", "name": "Slovak" },
+ { "code": "fr", "name": "French" },
+ { "code": "sr_RS", "name": "Serbian (Serbia)" },
+ { "code": "hu_HU", "name": "Hungarian (Hungary)" },
+ { "code": "it", "name": "Italian" },
+ { "code": "nl", "name": "Dutch" },
+ { "code": "en_US", "name": "English (United States)" },
 ]
 
 # Sorting the list of dict using the key 'code'
