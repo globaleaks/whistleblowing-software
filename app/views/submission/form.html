@@ -10,7 +10,7 @@
               <i class="glyphicon glyphicon-question-sign"></i>
             </a>
             <div data-ng-switch="" on="field.type">
-              <input class="form-control" data-ng-switch-when="checkbox" data-ng-model="field.value" data-ng-required="field.required" value="{{field.value}}" id="field" name="input" placeholder="{{field.placeholder}}" type="checkbox">
+              <input class="form-control" data-ng-switch-when="checkbox" data-ng-model="field.value" value="{{field.value}}" id="field" name="input" placeholder="{{field.placeholder}}" type="checkbox">
 
               <input class="form-control" data-ng-switch-when="text" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text">
 
@@ -20,7 +20,7 @@
                 <option data-ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
               </select>
 
-              <select class="form-control" data-ng-switch-when="multiple" name="input" data-ng-model="field.value" data-ng-required="field.required" multiple="">
+              <select class="form-control" data-ng-switch-when="multiple" name="input" data-ng-model="field.value" multiple="">
                 <option data-ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
               </select>
 
@@ -33,7 +33,7 @@
 
               <div data-ng-switch-when="checkboxes">
                 <div data-ng-repeat="option in field.options">
-                    <input name="input" data-ng-model="field.value[option.name]" data-ng-value="{{option.value}}" data-ng-required="field.required" type="checkbox">
+                    <input name="input" data-ng-model="field.value[option.name]" data-ng-value="{{option.value}}" type="checkbox">
                     <label>{{option.name}}</label>
                 </div>
               </div>
