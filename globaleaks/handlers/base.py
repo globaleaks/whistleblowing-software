@@ -554,7 +554,7 @@ class BaseHandler(RequestHandler):
     def get_uploaded_file(self):
         uploaded_file = self.request.body
 
-        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 6:
+        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 5:
             raise errors.InvalidInputFormat("Expected a dict of four keys in uploaded file")
 
         for filekey in uploaded_file.keys():
