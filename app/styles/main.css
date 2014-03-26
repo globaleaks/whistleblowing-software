@@ -20,17 +20,16 @@
   text-align: center;
 }
 
-.subhead {
-  text-align: left;
+#HeaderBox {
   border-bottom: 1px solid #ddd;
 }
-.subhead h1 {
+#HeaderBox h1 {
   font-size: 40px;
 }
-.subhead p {
+#HeaderBox p {
   margin-bottom: 20px;
 }
-.subhead .navbar {
+#HeaderBox .navbar {
   display: none;
 }
 
@@ -43,7 +42,8 @@
   position: fixed;
   z-index: 99999;
   top: 20px;
-  left: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 /* Footer */
@@ -74,7 +74,6 @@ h3 {
 }
 
 #LogoBox, #TitleBox {
-  float: left;
   padding: 30px;
 }
 
@@ -110,7 +109,6 @@ h3 {
 
 #ToolbarBox {
   max-width: 20%;
-  float: right;
 }
 
 #HomePageBoxHeader, #BlowTheWhistleBox, #WhistleblowerLoginBox, #ReceiverLoginBox {
@@ -141,7 +139,6 @@ h3 {
 
 #ToolTipBox {
   position: relative;
-  float: right;
   top: 10px;
   right: 10px;
   width: 200px;
