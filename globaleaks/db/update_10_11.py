@@ -71,9 +71,9 @@ class Replacer1011(TableReplacer):
     def migrate_InternalFile(self):
         print "%s InternalFile migration assistant: (removed sha)" % self.std_fancy
 
-        old_ifile = self.store_old.find(self.get_right_model("InternalFile", 10))
+        old_ifiles = self.store_old.find(self.get_right_model("InternalFile", 10))
 
-        for old_ifile in old_ifile:
+        for old_ifile in old_ifiles:
 
             new_ifile = self.get_right_model("InternalFile", 11)()
 
