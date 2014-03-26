@@ -1,9 +1,9 @@
-<div id="HeaderBox" class="subhead">
+<div id="HeaderBox">
   <div id="HeaderBoxContent">
-    <span id="LogoBox">
+    <span id="LogoBox" class="pull-left">
       <a href="/#/"><img data-ng-src="{{ logo }}" class="img-rounded"></a>
     </span>
-    <span id="TitleBox">
+    <span id="TitleBox" class="pull-left">
       <div id="titleboxdefault">
         <div data-ng-show="isHomepage()">
           <h1>{{ node.name }}</h1>
@@ -34,7 +34,7 @@
           </div>
       </div>
     </span>
-    <span id="ToolbarBox" data-ng-include="'views/partials/toolbar.html'"></span>
+    <span id="ToolbarBox" class="pull-right" data-ng-include="'views/partials/toolbar.html'"></span>
   </div>
   <div class="clearfix"></div>
 </div>

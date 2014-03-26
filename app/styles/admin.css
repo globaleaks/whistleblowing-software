@@ -2,8 +2,10 @@
 
 .configItem {
   line-height: 20px;
-  text-align: left;
   vertical-align: top;
+  border: 1px solid rgb(204, 204, 204);
+  background-color: rgb(252, 252, 252);
+  margin-top: 20px;
   margin-bottom: 5px;
 }
 
@@ -11,11 +13,12 @@
   margin-bottom: 30px;
 }
 
-.configItem textarea {
-}
-
 .odd {
   background-color: #f9f9f9;
+}
+
+.addReceiver, .addContext {
+  padding: 10px;
 }
 
 .fileDetails {
@@ -24,7 +27,7 @@
 }
 
 .invalidReceiver {
-    background-color: red;
+  background-color: red;
 }
 
 .config-sidebar {
@@ -59,13 +62,13 @@
   background-color: rgb(252, 252, 248);
 }
 
-.editorHeaderTitle {
+.editorHeaderTitle, .editorHeaderButtons {
   letter-spacing: -1px;
   font-size: 20px;
   line-height: 1;
   font-weight: bold;
   display: block;
-  padding: 20px;
+  margin: 10px;
 }
 
 .editor {
@@ -85,7 +88,8 @@
 
 .imageUpload .profile .changePicture {
   position: absolute;
-  top: 0px;
+  top: 0;
+  left: 0;
   padding: 5px;
   text-align: center;
   background-color: #0088cc;
@@ -98,7 +102,7 @@
 
 .imageUpload .profile .close {
   position: absolute;
-  top: 0px;
+  top: 0;
   right: 6px;
   color: #fff;
   text-shadow: 0 1px 0 #000;
@@ -135,16 +139,6 @@
   width: 100%;
 }
 
-.configItem {
-  border: 1px solid rgb(204, 204, 204);
-  background-color: rgb(252, 252, 252);
-  margin-top: 20px;
-}
-
-.editButtons {
-  margin-top: 15px;
-}
-
 .selectionList {
   background-color: #fff;
   padding-top: 20px;
@@ -154,7 +148,7 @@
 }
 
 .selectionList .row {
-  margin-left: 0px;
+  margin-left: 0;
 }
 
 .selectionDetails {
@@ -185,7 +179,7 @@
 }
 .selectionContextItem .checkbox {
   display: inline;
-  top: 0px;
+  top: 0;
   position: absolute;
   left: -40px;
 }

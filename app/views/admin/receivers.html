@@ -64,9 +64,9 @@ This comment is needed in order to push the following strings on transifex
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="form-group">
-                    <button class="btn btn-success" data-ng-disabled="newReceiver.$invalid || unsafe_password" data-ng-click="add_receiver()">
+                    <button class="pull-left btn btn-success" data-ng-disabled="newReceiver.$invalid || unsafe_password" data-ng-click="add_receiver()">
                       <i class="glyphicon glyphicon-ok"></i>
                       <span data-translate>Add</span>
                     </button>
@@ -101,17 +101,16 @@ This comment is needed in order to push the following strings on transifex
               <div class="configItem receiverItem" data-ng-class="{'configItemLast': $last}">
                 <div class="row" data-ng-click="toggleEditing()">
                   <div class="editorHeader receiverEditorHeader">
-                    <div class="col-md-12" data-ng-show="!editing">
-                      <span class="col-md-6 editorHeaderTitle">{{receiver.name}}</span>
-                      <span class="pull-right editorHeaderTitle" popover="{{ 'Click to edit, Drag to order' | translate }}" popover-placement="left" popover-trigger="mouseenter">
+                    <div data-ng-show="!editing">
+                      <span class="col-md-7 pull-left editorHeaderTitle">{{receiver.name}}</span>
+                      <span class="col-md-1 pull-right editorHeaderButtons" popover="{{ 'Click to edit, Drag to order' | translate }}" popover-placement="left" popover-trigger="mouseenter">
                         <i class="glyphicon glyphicon-th"></i>
                       </span>
                     </div>
 
-                    <div class="col-md-12" data-ng-show="editing">
-                      <span class="col-md-9 editorHeaderTitle">{{receiver.name}}</span>
-
-                      <div class="col-md-3 editButtons" data-ng-show="editing">
+                    <div data-ng-show="editing">
+                      <span class="col-md-7 pull-left editorHeaderTitle">{{receiver.name}}</span>
+                      <span class="col-md-3 pull-right editorHeaderButtons" data-ng-show="editing">
                         <button class="btn btn-success saveReceiver" data-ng-disabled="receiverForm.$invalid || unsafe_password" data-ng-click="save_receiver()" type="submit" >
                           <i class="glyphicon glyphicon-ok"></i>
                           <span data-translate>Save</span>
@@ -121,7 +120,7 @@ This comment is needed in order to push the following strings on transifex
                           <i class="glyphicon glyphicon-remove"></i>
                           <span data-translate>Delete</span>
                         </a>
-                      </div>
+                      </span>
 
                     </div>
 
