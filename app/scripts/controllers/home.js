@@ -17,21 +17,11 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication'
       });
     };
 
-    $scope.checkAnswer = function () {
-      if (!$scope.answer.value)
-        return;
-      if ($scope.answer.value == 'b') {
-        $scope.correctAnswer = true;
-      }
-      $scope.answered = true;
-      $scope.step = 3;
-    };
-
     $scope.goToSubmission = function () {
       if (!$scope.anonymous && !$scope.node.tor2web_submission)
         return;
 
-      if ($scope.anonymous || $scope.correctAnswer) {
+      if ($scope.anonymous || $scope.answer.value == 'b') {
         $location.path("/submission");
       } else {
         $scope.showQuestions = true;
@@ -39,14 +29,4 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication'
 
     };
     
-    $scope.goToStep = function (idx) {
-      $scope.step = idx;
-    };
-
-    $scope.goToStart = function() {
-      $scope.answered = false;
-      $scope.correctAnswer = false;
-      $scope.goToStep(1);
-    }
-
 }]);
