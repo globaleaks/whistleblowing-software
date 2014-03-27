@@ -123,3 +123,12 @@
   }
 
 }
+
+#spinnerBox {
+  position: relative;
+  background: #fff;
+  color: #fff;
+  width: 100%;
+  height: 200px;
+  direction: ltr;
+}

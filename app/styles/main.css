@@ -156,10 +156,6 @@ h3 {
   padding-bottom: 20px;
 }
 
-.shasum {
-  width: 500px;
-}
-
 /* Display the pending requests */
 .pending-requests {
   position: fixed;
@@ -176,10 +172,6 @@ h3 {
   border-radius: 10px;
   padding: 20px;
   border: 1px solid #ddd;
-}
-
-.spinner {
-  padding-bottom: 100px;
 }
 
 /* minor hacks needed to not modify some code written for angular and bootstrap 2.0.3 */

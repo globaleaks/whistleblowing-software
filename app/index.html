@@ -52,11 +52,11 @@
           <h2 style="text-align: center">Starting GlobaLeaks...</h2>
         </div>
 
-        <div class="pending-requests ng-cloak" data-ng-hide="!showRequestBox">
+        <div class="pending-requests ng-cloak" data-ng-hide="showRequestBox">
 
           <div class="message">
             <h1><span data-translate>Please wait</span>...</h1>
-            <div class="spinner" data-spinner=""></div>
+            <div id="spinnerBox" data-spinner=""></div>
             <p class="lead">
               <span data-translate>Loading</span>...
             </p>
