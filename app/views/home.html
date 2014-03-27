@@ -5,100 +5,65 @@
         <button type="button" class="close" aria-hidden="true" data-ng-click="showQuestions = false">
           <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
         </button>
-        <h3 data-ng-show="correctAnswer || !answered">
+        <h3>
           <span data-translate>Warning! You are not Anonymous.</span>
         </h3>
-        <h3 data-ng-show="!correctAnswer && answered">
-          <span data-translate>Wrong Answer!</span>
-        </h3>
       </div>
-      <div class="modal-body" data-ng-switch="" on="step">
-        <div class="explaination" data-ng-switch-when="1">
-          <p>
+      <div class="modal-body">
+        <p>
           <span data-translate>With a HTTPS submission you are exposing yourself to the risks that someone else will know that you have submitted something, without knowing what you have submitted.</span>
-          </p>
+        </p>
 
-          <p>
+        <p>
           <span data-translate>Instead with an Anonymous Submission you are fully protected, it is not possible for a third party to know that you have submitted something nor what you have submitted.</span>
-          </p>
+        </p>
       
-          <p>
+        <p>
           <span data-translate>We strongly advise you to go for an Anonymous Submission.</span>
-          </p>
+        </p>
 
-          <p>
+        <p>
           <span data-translate>To make an Anonymous Submission, instead of using your usual Web Browser (Internet Explorer, Chrome, Firefox, Opera, etc.) you should use the</span>
           <a href="https://www.torproject.org/download">Tor Browser Bundle</a>,
           <span data-translate>this is a special piece of software designed to enable Anonymous Web Browsing.</span>
-          </p>
+        </p>
 
-        </div>
-
-        <div class="question" data-ng-hide="answered" data-ng-switch-when="2">
-           <p class="lead">
-             <span data-translate>Which of the following statements is true?</span>
-           </p>
+        <p class="lead">
+          <span data-translate>Which of the following statements is true?</span>
+        </p>
     
-           <input data-ng-model="answer.value" value="a" type="radio"> 
-           <span data-translate>https protects my identity, but not the content of my leak</span><br />
-           <input data-ng-model="answer.value" value="b" type="radio"> 
-           <span data-translate>https protects the content of my leak but not my identity</span><br />
-           <input data-ng-model="answer.value" value="c" type="radio"> 
-           <span data-translate>https does not protect the content of my leak nor my identity</span><br />
-           <input data-ng-model="answer.value" value="d" type="radio"> 
-           <span data-translate>https does protect my identity and the content of my leak</span><br />
-        </div>
-    
-        <div data-ng-switch="" on="answer.value" data-ng-switch-when="3">
-          <div data-ng-switch-when="b" class="correct-answer">
-              <p>
-              <span data-translate>You are aware of the risks involved, go ahead, consider yourself warned.</span>
-              </p>
+        <input data-ng-model="answer.value" value="a" type="radio"> 
+        <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'a')}" data-translate>https protects my identity, but not the content of my leak</span><br />
+        <input data-ng-model="answer.value" value="b" type="radio"> 
+        <span data-ng-class="{'bg-success': (answer.value && answer.value == 'b')}" data-translate>https protects the content of my leak but not my identity</span><br />
+        <input data-ng-model="answer.value" value="c" type="radio"> 
+        <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'c')}" data-translate>https does not protect the content of my leak nor my identity</span><br />
+        <input data-ng-model="answer.value" value="d" type="radio"> 
+        <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'd')}" data-translate>https does protect my identity and the content of my leak</span><br />
+
+        <br /></br />
+
+        <div data-ng-show="(answer.value && answer.value == 'b')">
+          <div class="bg-warning">
+            <span data-translate>You are aware of the risks involved, go ahead, consider yourself warned.</span>
           </div>
-
-          <div class="wrodata-ng-answer" data-ng-switch-default="">
-            <p>
-            <span data-translate>If you want protection of your identity and the content of your message, you should try to achieve anonimity by using the</span>
-            <a href="https://www.torproject.org/download">Tor browser bundle</a> 
-            <span data-translate>to submit</span>
-            </p>
+        </div>           
+        <div data-ng-show="!answer.value">
+          <div>
+            <span>&nbsp;</span>
           </div>
-
         </div>
-
+        <div data-ng-show="(answer.value && answer.value != 'b')">
+          <div class="bg-danger">
+            <span data-translate>Wrong Answer!</span>
+          </div>
+        </div>
       </div>
-      <div class="modal-footer" data-ng-switch="" on="step">
-        <div data-ng-switch-when="1">
-           <a data-ng-click="goToStep(2)" class="btn btn-default">
-             <span data-translate>Next Step</span>
-             <i class="glyphicon glyphicon-arrow-right"></i>
-           </a>
-        </div>
-    
-        <div data-ng-switch-when="2">
-          <a data-ng-click="goToStep(1)" class="btn btn-default">
-            <i class="glyphicon glyphicon-arrow-left"></i>
-            <span data-translate>Previous Step</span> 
-          </a>
-      
-          <a data-ng-click="checkAnswer()" data-ng-disabled="!answer.value" class="btn btn-success">
-            <span data-translate>Proceed</span>
-            <i class="glyphicon glyphicon-arrow-right"></i>
-          </a>
-        </div>
-
-        <div data-ng-switch-when="3">
-          <a data-ng-click="goToStart()" data-ng-hide="correctAnswer" class="btn btn-default">
-            <i class="glyphicon glyphicon-arrow-left"></i>
-            <span data-translate>Back to start</span>
-          </a>
-
-          <a data-ng-click="goToSubmission()" data-ng-hide="!correctAnswer" data-ng-disabled="!answer.value" class="btn btn-warning">
-            <span data-translate>Proceed to submission</span>
-            <i class="glyphicon glyphicon-arrow-right"></i>
-          </a>
-
-        </div>
+      <div class="modal-footer">
+        <a data-ng-click="goToSubmission()" data-ng-disabled="!answer.value || answer.value != 'b'" class="btn btn-warning">
+          <span data-translate>Proceed to submission</span>
+          <i class="glyphicon glyphicon-arrow-right"></i>
+        </a>
       </div>
     </div>
   </div>
