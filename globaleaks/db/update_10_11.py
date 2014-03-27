@@ -78,6 +78,14 @@ class Replacer1011(TableReplacer):
             new_ifile = self.get_right_model("InternalFile", 11)()
 
             for k, v in new_ifile._storm_columns.iteritems():
+
+                # fix against issue https://github.com/globaleaks/GlobaLeaks/issues/850
+                # and related to the addiction of some validation in latest releases
+                if v.name == 'description':
+                    if getattr(old_ifile, v.name) is None:
+                        setattr(new_ifile, v.name, u'')
+                        continue
+
                 setattr(new_ifile, v.name, getattr(old_ifile, v.name))
 
             self.store_new.add(new_ifile)
