@@ -1,3 +1,9 @@
+globaleaks (2.54.14) unstable; urgency=low
+
+  * GlobaLeaks 2.54.14 Release (Updated Translations on adopter request)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 28 Mar 2014 10:11:00 +0002
+
 globaleaks (2.54.13) unstable; urgency=low
 
   * GlobaLeaks 2.54.13 Release (Packaging fixes)
