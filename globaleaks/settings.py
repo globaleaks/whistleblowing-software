@@ -693,8 +693,9 @@ class GLSettingsClass:
 
         # temporary .aes files must be simply deleted
         for f in os.listdir(GLSetting.tmp_upload_path):
-            print "Removing a broken temporary file: ", f
-            os.remove(os.path.join(GLSetting.tmp_upload_path, f))
+            path = os.path.join(GLSetting.tmp_upload_path, f)
+            print "Removing old temporary file: %s" % path
+            os.remove(path)
 
         # temporary .aes files with lost keys can be deleted
         # while temporary .aes files with valid current key
@@ -703,7 +704,9 @@ class GLSettingsClass:
             result = GLSetting.AES_file_regexp_comp.match(f)
             if result is not None:
                 if result.group(2) != GLSetting.key_id:
-                    os.remove(os.path.join(GLSetting.submission_path, f))
+                    path = os.path.join(GLSetting.submission_path, f)
+                    print "Removing old encrypted file (lost key): %s" % path
+                    os.remove(path)
 
 # GLSetting is a singleton class exported once
 GLSetting = GLSettingsClass()
