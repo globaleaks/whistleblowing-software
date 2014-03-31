@@ -111,6 +111,13 @@ class TestCleaning(TTip):
             self.assertFalse(is_expired(tip.expiration_date))
 
     @transact
+    def force_submission_expire(self, store):
+        tips = store.find(models.InternalTip)
+        for tip in tips:
+            tip.creation_date = datetime_null()
+            self.assertTrue(is_expired(tip.creation_date))
+
+    @transact
     def force_tip_expire(self, store):
         tips = store.find(models.InternalTip)
         for tip in tips:
@@ -213,7 +220,7 @@ class TipCleaning(TestCleaning):
     def test_001_unfinished_submission_life_and_expire(self):
         yield self.do_setup_tip_environment()
         yield self.check_tip_not_expired()
-        yield self.force_tip_expire()
+        yield self.force_submission_expire()
         yield cleaning_sched.CleaningSchedule().operation()
         yield self.test_cleaning()
 
