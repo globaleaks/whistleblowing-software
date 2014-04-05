@@ -369,12 +369,12 @@ def dump_submission_fields(fields, wb_fields):
 
 def dump_file_list(filelist, files_n):
 
-    info = "%s%s%s%s%s\n" % ("Filename",
+    info = "%s%s%s\n" % ("Filename",
                              " "*(40-len("Filename")),
                              "Size (Bytes)")
 
     for i in xrange(files_n):
-        info += "%s%s%i%s\n" % (filelist[i]['name'],
+        info += "%s%s%i\n" % (filelist[i]['name'],
                                 " "*(40 - len(filelist[i]['name'])),
                                 filelist[i]['size'])
 
