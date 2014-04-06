@@ -1,3 +1,9 @@
+globaleaks (2.54.16) unstable; urgency=low
+
+  * GlobaLeaks 2.54.16 Release (Minor Bugfix, Added Croatian 72%, Added Portuguese (Portugal) 55%)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 6 Apr 2014 20:18:00 +0002
+
 globaleaks (2.54.15) unstable; urgency=low
 
   * GlobaLeaks 2.54.15 Release (Added support for Swedish)
