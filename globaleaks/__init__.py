@@ -5,30 +5,32 @@
 
 import operator
 
-__version__ = '2.54.15'
+__version__ = '2.54.16'
 DATABASE_VERSION = 11
 
 # Add here by hand the languages supported!
 # copy paste format from 'grunt makeTranslations'
 LANGUAGES_SUPPORTED = [
  { "code": "bg", "name": "Bulgarian" },
+ { "code": "hr_HR", "name": "Croatian (Croatia)" },
  { "code": "ar", "name": "Arabic" },
- { "code": "de", "name": "German" },
+ { "code": "en_US", "name": "English (United States)" },
  { "code": "en", "name": "English" },
  { "code": "cs", "name": "Czech" },
- { "code": "pt_BR", "name": "Portuguese (Brazil)" },
- { "code": "vi", "name": "Vietnamese" },
- { "code": "sr_RS@latin", "name": "Serbian (Latin) (Serbia)" },
- { "code": "es", "name": "Spanish" },
- { "code": "ru", "name": "Russian" },
- { "code": "sk", "name": "Slovak" },
  { "code": "fr", "name": "French" },
- { "code": "sr_RS", "name": "Serbian (Serbia)" },
- { "code": "hu_HU", "name": "Hungarian (Hungary)" },
- { "code": "it", "name": "Italian" },
+ { "code": "de", "name": "German" },
  { "code": "nl", "name": "Dutch" },
- { "code": "en_US", "name": "English (United States)" },
+ { "code": "pt_BR", "name": "Portuguese (Brazil)" },
+ { "code": "hu_HU", "name": "Hungarian (Hungary)" },
+ { "code": "pt_PT", "name": "Portuguese (Portugal)" },
+ { "code": "ru", "name": "Russian" },
  { "code": "sv", "name": "Swedish" },
+ { "code": "sk", "name": "Slovak" },
+ { "code": "sr_RS", "name": "Serbian (Serbia)" },
+ { "code": "vi", "name": "Vietnamese" },
+ { "code": "it", "name": "Italian" },
+ { "code": "es", "name": "Spanish" },
+ { "code": "sr_RS@latin", "name": "Serbian (Latin) (Serbia)" },
 ]
 
 # Sorting the list of dict using the key 'code'
