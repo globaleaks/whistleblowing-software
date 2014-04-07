@@ -112,17 +112,19 @@ def receiverfile_planning(store):
                     (filex.name, pretty_date_time(filex.creation_date), filex.file_path) )
 
             try:
-                store.remove(filex)
-            except Exception as excep:
-                log.err("Unable to remove InternalFile in scheduler! %s" % str(excep))
-                continue
-
-            try:
                 os.remove(os.path.join(GLSetting.submission_path, filex.file_path))
             except OSError as excep:
                 log.err("Unable to remove %s in integrity fixing routine: %s" %
                     (filex.file_path, excep.strerror) )
-                continue
+
+            try:
+                key_id = os.path.basename(filex.file_path).split('.')[0]
+                keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, key_id)))
+                os.remove(keypath)
+            except Exception as excep:
+                log.err("Unable to keyfile %s in integrity fixing routine: %s" % (keypath, excep))
+
+            continue
 
         # here we select the file which deserve to be processed.
         # They need to be:
@@ -422,7 +424,7 @@ class DeliverySchedule(GLJob):
 
         for ifile_path, receivermap in filemap.iteritems():
 
-            plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z0-9]{8}') )
+            plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z0-9]{16}') )
 
             are_all_encrypted = encrypt_where_available(receivermap)
 
@@ -457,9 +459,8 @@ class DeliverySchedule(GLJob):
 
                     yield do_final_internalfile_update(ifile_path, InternalFile._marker[2], plain_path)
 
-                except Exception as e:
-                    log.err("Unable to create plaintext file %s" % plain_path)
-                    raise e
+                except Exception as excep:
+                    log.err("Unable to create plaintext file %s: %s" % plain_path, excep)
 
             else: # are_all_encrypted:
                 log.debug("All Receivers support PGP, marking internalfile as removed")
@@ -472,6 +473,12 @@ class DeliverySchedule(GLJob):
             except OSError as ose:
                 log.err("Unable to remove %s: %s" % (ifile_path, ose.message))
 
+            try:
+                key_id = os.path.basename(ifile_path).split('.')[0]
+                keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, key_id)))
+                os.remove(keypath)
+            except Exception as excep:
+                log.err("Unable to remove keyfile associated with %s: %s" % (ifile_path, excep))
 
             # here closes the if/else 'are_all_encrypted'
         # here closes the loop over internalfile mapping

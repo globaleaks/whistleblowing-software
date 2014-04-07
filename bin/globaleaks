@@ -273,7 +273,6 @@ elif GLSetting.cmdline_options.kill:
               (GLSetting.pidfile_path, excep)
 
 GLSetting.create_directories()
-GLSetting.load_key()
 GLSetting.cleaning_dead_files()
 
 backend_script = os.path.join(GLSetting.root_path, 'globaleaks', 'backend.py')
