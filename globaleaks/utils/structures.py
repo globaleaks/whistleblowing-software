@@ -222,7 +222,7 @@ class Fields:
 
             for k in ['value', 'answer_order']:
                 if k not in wb_fields[key]:
-                    raise InvalidInputFormat("Submitted field dict is missing %s key", k)
+                    raise InvalidInputFormat("Submitted field dict is missing %s key" % k)
 
         if not strict_validation:
             return
