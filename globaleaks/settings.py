@@ -17,7 +17,6 @@ import socket
 import pwd
 import grp
 import getpass
-import pickle
 import transaction
 
 from Crypto import Random
@@ -34,7 +33,6 @@ from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
 
 from globaleaks import __version__, DATABASE_VERSION
-from globaleaks.third_party.rstr import xeger
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
@@ -259,21 +257,19 @@ class GLSettingsClass:
         # key is initialized and stored in key path.
         # key_id contains an identifier of the key (when system reboots,
         # key changes.
-        self.key = None
         self.AES_key_size = 32
         # This key_id is just to identify the keys, and is generated with
-        self.key_id = None
-        self.key_id_regexp = u'[A-Z]{8}'
+        self.AES_key_id_regexp = u'[A-Za-z0-9]{16}'
         # nonce is used in hex therefore we double the right amount FIXME
-        self.AES_nonce_size = 8 # (8 * 2)
+        self.AES_counter_prefix_size = 8
         self.AES_counter_size = 64 # (self.AES_nonce_size * 8)
-        self.AES_file_regexp = r'(.*)\.(.*)_(.*)\.aes'
+        self.AES_file_regexp = r'(.*)\.aes'
         self.AES_file_regexp_comp = re.compile(self.AES_file_regexp)
 
         # you can read more about this security measure in the document:
         # TODO + issue!
 
-        self.keysuffix = ".permkey"
+        self.AES_keyfile_prefix = "aeskey-"
 
         self.exceptions = {}
 
@@ -643,46 +639,6 @@ class GLSettingsClass:
         if self.loglevel == logging.DEBUG:
             print message
 
-    def load_key(self):
-        """
-        Load the AES Key to encrypt uploaded file, if do not exists, the
-        key is created!
-        """
-        keypath = os.path.join(self.ramdisk_path, GLSetting.keysuffix)
-
-        if os.path.isfile(keypath):
-
-            try:
-                with open(keypath, 'r') as kf:
-                    saved_struct = pickle.load(kf)
-            except Exception as axa:
-                print "Unable to load key from %s" % keypath
-                raise axa
-
-            self.key = saved_struct['key']
-            self.key_id = saved_struct['key_id']
-
-            #print "Imported key ID=%s from file %s" % (self.key_id, keypath)
-
-        else:
-
-            print "Key initialization at %s" % keypath
-
-            self.key = Random.new().read(GLSetting.AES_key_size)
-            self.key_id = xeger(self.key_id_regexp)
-
-            saved_struct = {
-                'key' : self.key,
-                'key_id' : self.key_id
-            }
-
-            with open(keypath, 'w') as kf:
-                pickle.dump(saved_struct, kf)
-
-            if not os.path.isfile(keypath):
-                print "Unable to write keyfile! abort"
-                raise Exception("Unable to write %s" % keypath)
-
     def cleaning_dead_files(self):
         """
         This function is called at the start of GlobaLeaks, in
@@ -693,20 +649,29 @@ class GLSettingsClass:
 
         # temporary .aes files must be simply deleted
         for f in os.listdir(GLSetting.tmp_upload_path):
-            path = os.path.join(GLSetting.tmp_upload_path, f)
-            print "Removing old temporary file: %s" % path
-            os.remove(path)
+            try: 
+                path = os.path.join(GLSetting.tmp_upload_path, f)
+                print "Removing old temporary file: %s" % path
+                os.remove(path)
+            except Exception as excep:
+                print "Error while evaluating removal for %s: %s" % (path, excep)
 
         # temporary .aes files with lost keys can be deleted
         # while temporary .aes files with valid current key
         # will be automagically handled by delivery sched.
+        keypath = os.path.join(self.ramdisk_path, GLSetting.AES_keyfile_prefix)
+
         for f in os.listdir(GLSetting.submission_path):
-            result = GLSetting.AES_file_regexp_comp.match(f)
-            if result is not None:
-                if result.group(2) != GLSetting.key_id:
-                    path = os.path.join(GLSetting.submission_path, f)
-                    print "Removing old encrypted file (lost key): %s" % path
-                    os.remove(path)
+            try:
+                path = os.path.join(GLSetting.submission_path, f) 
+                result = GLSetting.AES_file_regexp_comp.match(f)
+                if result is not None:
+                    if not os.path.isfile("%s%s" % (keypath, result.group(1)) ):
+                        print "Removing old encrypted file (lost key): %s" % path
+                        os.remove(path)
+            except Exception as excep:
+                print "Error while evaluating removal for %s: %s" % (path, excep)
+
 
 # GLSetting is a singleton class exported once
 GLSetting = GLSettingsClass()

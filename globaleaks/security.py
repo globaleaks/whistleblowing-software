@@ -10,7 +10,7 @@ import re
 import os
 import shutil
 import scrypt
-import random
+import pickle
 
 from Crypto.Hash import SHA512, MD5
 from Crypto import Random
@@ -57,22 +57,41 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         filedir: dir target to keep GL.
         """
 
-        assert (GLSetting.key and GLSetting.key_id), "Encryption key not initialized"
-
-        pseudo_random = "%d%d%d%d" % (
-            random.randint(1, 0xFFFF), random.randint(1, 0xFFFF),
-            random.randint(1, 0xFFFF), random.randint(1, 0xFFFF) )
-        self.nonce = MD5.new(pseudo_random).hexdigest()[:GLSetting.AES_nonce_size]
+        self.create_key()
 
         # XXX remind enhance file name with incremental number
-        self.filepath = os.path.join(filedir, "%s.%s_%s.aes" % (xeger(r'[A-Za-z0-9]{8}'), GLSetting.key_id, self.nonce) )
+        self.filepath = os.path.join(filedir, "%s.aes" % self.key_id)
 
         log.debug("++ Creating %s filetmp" % self.filepath)
 
         self.file = open(self.filepath, 'w+b')
-        self.cipher = AES.new(GLSetting.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.nonce))
+
         _TemporaryFileWrapper.__init__(self, self.file, self.filepath, True)
 
+    def create_key(self):
+        """
+        Create the AES Key to encrypt uploaded file.
+        """
+        self.key = Random.new().read(GLSetting.AES_key_size)
+        self.key_id = xeger(GLSetting.AES_key_id_regexp)
+        self.key_counter_prefix = os.urandom(GLSetting.AES_counter_prefix_size)
+        self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.key_counter_prefix))
+
+        saved_struct = {
+            'key' : self.key,
+            'key_counter_prefix' : self.key_counter_prefix
+        }
+
+        keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, self.key_id)))
+
+        log.debug("Key initialization at %s" % keypath)
+
+        with open(keypath, 'w') as kf:
+           pickle.dump(saved_struct, kf)
+
+        if not os.path.isfile(keypath):
+            log.err("Unable to write keyfile %s" % keypath)
+            raise Exception("Unable to write keyfile %s" % keypath)
 
     def avoid_delete(self):
         log.debug("Avoid delete on: %s " % self.filepath)
@@ -89,7 +108,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             self.file.write(self.cipher.encrypt(data))
         except Exception as wer:
             import traceback
-            traceback.print_stack()
             log.err("Unable to write() in GLSecureTemporaryFile: %s" % wer.message)
             raise wer
 
@@ -99,7 +117,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
         if self.last_action == 'write':
             self.seek(0, 0) # this is a trick just to misc write and read
-            self.cipher = AES.new(GLSetting.key, AES.MODE_CTR, counter=Counter.new(GLSetting.AES_counter_size, prefix=self.nonce))
+            self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(GLSetting.AES_counter_size, prefix=self.key_counter_prefix))
             log.debug("First seek on %s" % self.filepath)
             self.last_action = 'read'
 
@@ -116,24 +134,44 @@ class GLSecureFile(GLSecureTemporaryFile):
 
     def __init__(self, filepath):
 
-        assert (GLSetting.key and GLSetting.key_id), "Encryption key not initialized"
         self.filepath = filepath
 
-        log.debug("Opening secure file %s with %s" % (self.filepath, GLSetting.key_id) )
+        self.key_id = os.path.basename(self.filepath).split('.')[0]
 
-        expected_key_id, used_nonce = (self.filepath.split('.')[1]).split('_')
-
-        if GLSetting.key_id != expected_key_id:
-            # I'm sorry, those file is a dead file!
-            log.err("The file %s has been encrypted with a lost key!")
-            raise KeyExpiredSadness("%s != %s :(" % (GLSetting.key_id, expected_key_id))
+        log.debug("Opening secure file %s with %s" % (self.filepath, self.key_id) )
 
         self.file = open(self.filepath, 'r+b')
-        self.cipher = AES.new(GLSetting.key, AES.MODE_CTR, counter=Counter.new(GLSetting.AES_counter_size, prefix=used_nonce))
+
+        self.load_key()
 
         # last argument is 'False' because has not to be deleted on .close()
         _TemporaryFileWrapper.__init__(self, self.file, self.filepath, False)
 
+
+    def load_key(self):
+        """
+        Load the AES Key to decrypt uploaded file.
+        """
+        keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, self.key_id)))
+
+        if os.path.isfile(keypath):
+
+            try:
+                with open(keypath, 'r') as kf:
+                    saved_struct = pickle.load(kf)
+            except Exception as axa:
+                log.err("Unable to load key from %s" % keypath)
+                raise axa
+
+            self.key = saved_struct['key']
+            self.key_counter_prefix = saved_struct['key_counter_prefix']
+            self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(GLSetting.AES_counter_size, prefix=self.key_counter_prefix))
+
+        else:
+
+            # I'm sorry, those file is a dead file!
+            log.err("The file %s has been encrypted with a lost key!")
+            raise KeyExpiredSadness("cannot find key %s" % self.key_id)
 
 
 def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
