@@ -477,7 +477,7 @@ class DeliverySchedule(GLJob):
                 key_id = os.path.basename(ifile_path).split('.')[0]
                 keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, key_id)))
                 os.remove(keypath)
-            except OSError as excep:
+            except Exception as excep:
                 log.err("Unable to remove keyfile associated with %s: %s" % (ifile_path, excep))
 
             # here closes the if/else 'are_all_encrypted'
