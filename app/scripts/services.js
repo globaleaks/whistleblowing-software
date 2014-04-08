@@ -339,7 +339,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         // Set the submission field values
         _.each(self.current_context.fields, function(field, k) {
           self.current_submission.wb_fields[field.key] = {
-            'value': field.value,
+            'value': field.value || "",
             'answer_order': self.current_context.fields[k]['presentation_order']
           }
         });
