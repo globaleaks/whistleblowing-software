@@ -7,22 +7,14 @@
 import types
 
 from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet, Unicode, Storm
-from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.utility import datetime_now, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, shortlocal_v, longlocal_v, dict_v
-
-def uuid():
-    """
-    Generated an UUID used in GlobaLeaks ORM models
-    """
-    import uuid as u
-    return unicode(u.uuid4())
-
 
 class Model(Storm):
     """
     Base class for working the database
     """
-    id = Unicode(primary=True, default_factory=uuid)
+    id = Unicode(primary=True, default_factory=uuid4)
     creation_date = DateTime(default_factory=datetime_now)
     # Note on creation last_update and last_access may be out of sync by some
     # seconds.

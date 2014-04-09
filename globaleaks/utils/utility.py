@@ -22,6 +22,15 @@ from Crypto.Hash import SHA256
 
 from globaleaks.settings import GLSetting
 
+from globaleaks.third_party.rstr import xeger
+
+def uuid4():
+    """
+    This function returns a secure random uuid4 as
+    defined by http://www.ietf.org/rfc/rfc4122.txt
+    """
+    return xeger(r"[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}")
+
 def sanitize_str(s):
     """
     This function encodes the following characters
