@@ -11,7 +11,9 @@ import os
 import tarfile
 import StringIO
 
-from globaleaks.handlers.base import BaseHandler
+from urllib import quote
+
+from globaleaks.handlers.base import BaseHandler, CollectionToken
 from globaleaks.handlers.files import download_all_files, serialize_file
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated, authenticated
 from globaleaks.handlers import admin
@@ -159,7 +161,7 @@ class CollectionDownload(BaseHandler):
 
         self.set_header('X-Download-Options', 'noopen')
         self.set_header('Content-Type', 'application/octet-stream')
-        self.set_header('Content-Disposition','attachment; filename=\"' + opts['filename'] + '\"')
+        self.set_header('Content-Disposition','attachment; filename=\"%s\"' % quote(opts['filename']))
 
         if compression in ['zipstored', 'zipdeflated']:
             for data in ZipStream(files_dict, opts['compression_type']):
