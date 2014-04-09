@@ -37,7 +37,7 @@ GLClient.controller('toolTipCtrl',
       $scope.show_language_selector = (language_count > 1);
     });
 
-    $translate.uses($scope.language);
+    $translate.use($scope.language);
   };
 
   $scope.$on("REFRESH", refresh);
@@ -48,7 +48,7 @@ GLClient.controller('toolTipCtrl',
 
       $rootScope.language = $scope.language;
 
-      $translate.uses($scope.language);
+      $translate.use($scope.language);
 
       if (newVal != "ar") {
         $rootScope.build_stylesheet = "/styles.css";
