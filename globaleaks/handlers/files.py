@@ -12,6 +12,8 @@ import time
 
 import shutil
 
+from urllib import quote
+
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import StaticFileHandler
@@ -274,7 +276,7 @@ class Download(BaseHandler):
         self.set_header('X-Download-Options', 'noopen')
         self.set_header('Content-Type', 'application/octet-stream')
         self.set_header('Content-Length', rfile['size'])
-        self.set_header('Content-Disposition','attachment; filename=\"%s\"' % rfile['name'])
+        self.set_header('Content-Disposition','attachment; filename=\"%s\"' % quote(rfile['name']))
 
         filelocation = os.path.join(GLSetting.submission_path, rfile['path'])
 
