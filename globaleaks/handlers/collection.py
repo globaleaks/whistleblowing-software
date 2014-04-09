@@ -11,7 +11,9 @@ import os
 import tarfile
 import StringIO
 
-from globaleaks.handlers.base import BaseHandler
+from urllib import quote
+
+from globaleaks.handlers.base import BaseHandler, CollectionToken
 from globaleaks.handlers.files import download_all_files, serialize_file
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated, authenticated
 from globaleaks.handlers import admin
