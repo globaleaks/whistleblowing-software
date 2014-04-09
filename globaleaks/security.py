@@ -72,10 +72,11 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
         Create the AES Key to encrypt uploaded file.
         """
-        self.key = Random.new().read(GLSetting.AES_key_size)
+        random_source = Random.new()
+        self.key = random_source.read(GLSetting.AES_key_size)
         self.key_id = xeger(GLSetting.AES_key_id_regexp)
-        self.key_counter_prefix = os.urandom(GLSetting.AES_counter_prefix_size)
-        self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(64, prefix=self.key_counter_prefix))
+        self.key_counter_prefix = random_source.read(GLSetting.AES_counter_prefix_size)
+        self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(GLSetting.AES_counter_size, prefix=self.key_counter_prefix))
 
         saved_struct = {
             'key' : self.key,
@@ -102,7 +103,9 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         The last action is kept track because the internal status
         need to track them. read below read()
         """
-        # assert (self.last_action != 'read'), "you can write after read!"
+
+        assert (self.last_action != 'read'), "you can write after read!"
+
         self.last_action = 'write'
         try:
             self.file.write(self.cipher.encrypt(data))
