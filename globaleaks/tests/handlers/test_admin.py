@@ -10,6 +10,7 @@ from globaleaks.handlers import admin, admstaticfiles
 from globaleaks.settings import GLSetting
 from globaleaks import __version__
 from globaleaks.models import Node, Context, Receiver
+from globaleaks.utils.utility import uuid4
 
 # special guest:
 from io import BytesIO as StringIO
@@ -297,7 +298,6 @@ class TestReceiverInstance(helpers.TestHandler):
     def test_put_invalid_context_id(self):
         self.dummyReceiver['name'] = u'justalazyupdate'
         # keep the context ID wrong but matching eventually regexp
-        import uuid
         self.dummyReceiver['contexts'] = [ unicode(uuid4()) ]
         self.dummyReceiver['name'] = u'another unique name %d' % random.randint(1, 10000)
         self.dummyReceiver['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
