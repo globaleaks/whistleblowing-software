@@ -22,7 +22,7 @@ from twisted.internet import reactor, fdesc
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone import escape, httputil
-from cyclone.escape import native_str
+from cyclone.escape import native_str, parse_qs_bytes
 
 from globaleaks.jobs.statistics_sched import alarm_level
 from globaleaks.utils.utility import log, sanitize_str, uuid4
@@ -236,6 +236,8 @@ class BaseHandler(RequestHandler):
             Override needed to change name of header name
         """
         token = self.request.headers.get("X-XSRF-TOKEN")
+        if not token:
+            token = self.get_argument('xsrf-token', default=None)
         if not token:
             raise HTTPError(403, "X-XSRF-TOKEN argument missing from POST")
         if self.xsrf_token != token:
@@ -507,7 +509,7 @@ class BaseHandler(RequestHandler):
 
         if session_id is None:
             # Check for POST based authentication.
-            session_id = self.request.get_argument('x-session', default=None)
+            session_id = self.get_argument('x-session', default=None)
 
         if session_id is None:
             return None
