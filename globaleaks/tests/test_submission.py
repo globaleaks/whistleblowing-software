@@ -11,7 +11,6 @@ from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import files, authentication, submission, wbtip
-from globaleaks.handlers.base import CollectionToken, FileToken
 from globaleaks.handlers.admin import create_context, update_context, create_receiver, get_receiver_list
 from globaleaks.rest import errors
 from globaleaks.models import InternalTip
@@ -308,51 +307,3 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         del sbmt['wb_fields'][required_key]
 
         yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
-
-    def download_collection_token_test(self, rtip_id):
-        # test token generation
-        d = CollectionToken(rtip_id)
-        self.assertNotEqual(d.id, None)
-
-        # test token use during token validity
-        id_val_check = CollectionToken.get(d.id)
-        self.assertEqual(id_val_check, rtip_id)
-
-        # emulate reactor.callLater on Download Token
-        d.expire()
-
-        # test token use after token validity;
-        # n.b. this is equal of testing not existent token
-        id_val_check = CollectionToken.get(d.id)
-        self.assertEqual(id_val_check, None)
-
-    def download_file_token_test(self, file_id):
-         # test token generation
-         d = FileToken(file_id)
-         self.assertNotEqual(d.id, None)
-
-         # test token use during token validity
-         id_val_check = FileToken.get(d.id)
-         self.assertEqual(id_val_check, file_id)
-
-         # emulate reactor.callLater on Download Token
-         d.expire()
-
-         # test token use after token validity;
-         # n.b. this is equal of testing not existent token
-         id_val_check = FileToken.get(d.id)
-         self.assertEqual(id_val_check, None)
-
-    @inlineCallbacks
-    def test_download_tokens(self):
-
-         yield self.test_create_receiverfiles()
-
-         # Test Download Token Creation/Access for rtip
-         for rtip in self.rt:
-             self.download_collection_token_test(rtip)
-
-         # Test Download Token Creation/Access for rfile
-         for rfile in self.rfi:
-             self.download_file_token_test(rfile['id'])
-

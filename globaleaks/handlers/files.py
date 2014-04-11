@@ -17,7 +17,7 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import StaticFileHandler
 
 from globaleaks.settings import transact, transact_ro, GLSetting, stats_counter
-from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler, FileToken, anomaly_check
+from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler, anomaly_check
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils.utility import log, pretty_date_time
 from globaleaks.rest import errors
@@ -263,16 +263,9 @@ class Download(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def post(self, tip_id, rfile_token, *uriargs):
+    def post(self, tip_id, rfile_id, *uriargs):
 
-        # tip_id needed to authorized the download
-
-        original_file_id = FileToken.get(rfile_token)
-
-        if not original_file_id:
-            raise errors.UnexistentDownloadToken
-
-        rfile = yield download_file(original_file_id)
+        rfile = yield download_file(rfile_id)
 
         # keys:  'file_path'  'size' : 'content_type' 'file_name'
 
