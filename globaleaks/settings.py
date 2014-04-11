@@ -151,6 +151,8 @@ class GLSettingsClass:
         self.anomaly_seconds_delta = 30           # runner.py function expects seconds
         self.stats_minutes_delta = 10             # runner.py function expects minutes
 
+        self.www_form_urlencoded_maximum_size = 1024
+
         self.defaults = OD()
         # Default values, used to initialize DB at the first start,
         # or whenever the value is not supply by client.
