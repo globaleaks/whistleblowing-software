@@ -14,7 +14,6 @@ import json
 import re
 import sys
 
-from uuid import uuid4
 from Crypto.Hash import SHA256
 from twisted.python import components
 from twisted.python.failure import Failure
@@ -30,7 +29,7 @@ from cyclone import escape, httputil
 from cyclone.escape import native_str
 
 from globaleaks.jobs.statistics_sched import alarm_level
-from globaleaks.utils.utility import log, sanitize_str
+from globaleaks.utils.utility import log, sanitize_str, uuid4
 from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors

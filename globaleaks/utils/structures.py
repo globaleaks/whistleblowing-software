@@ -10,7 +10,8 @@ from globaleaks.utils.utility import log
 from globaleaks.settings import GLSetting
 
 from globaleaks.rest.errors import InvalidInputFormat, SubmissionFailFields
-from uuid import uuid4
+
+from globaleaks.utils.utility import uuid4
 
 class Fields:
 
@@ -52,8 +53,6 @@ class Fields:
         @param appdata_fields: the content of the ApplicationData.fields
         @return:
         """
-        from uuid import uuid4
-
         # first, get the amount of translated languages
         for block in appdata_fields:
 

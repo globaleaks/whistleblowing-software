@@ -1,7 +1,6 @@
 # -*- coding: UTF-8
 
 import json
-import uuid
 
 from cyclone import httpserver
 from cyclone.web import Application
@@ -16,7 +15,7 @@ from globaleaks.settings import GLSetting, transact
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db, models, security
-from globaleaks.utils.utility import datetime_null, datetime_now
+from globaleaks.utils.utility import datetime_null, datetime_now, uuid4
 from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
 from globaleaks.db.datainit import opportunistic_appdata_init
@@ -278,7 +277,7 @@ class MockDict():
         }
 
         self.dummyReceiver = {
-            'id': unicode(uuid.uuid4()),
+            'id': unicode(uuid4()),
             'password': VALID_PASSWORD1,
             'name': u'Ned Stark',
             'description': u'King MockDummy Receiver',
@@ -304,7 +303,7 @@ class MockDict():
         }
 
         self.dummyContext = {
-            'id': unicode(uuid.uuid4()),
+            'id': unicode(uuid4()),
             # localized stuff
             'name': u'Already localized name',
             'description': u'Already localized desc',

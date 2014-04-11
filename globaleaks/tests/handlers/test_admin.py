@@ -298,7 +298,7 @@ class TestReceiverInstance(helpers.TestHandler):
         self.dummyReceiver['name'] = u'justalazyupdate'
         # keep the context ID wrong but matching eventually regexp
         import uuid
-        self.dummyReceiver['contexts'] = [ unicode(uuid.uuid4()) ]
+        self.dummyReceiver['contexts'] = [ unicode(uuid4()) ]
         self.dummyReceiver['name'] = u'another unique name %d' % random.randint(1, 10000)
         self.dummyReceiver['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
         self.dummyReceiver['password'] = u'12345678andaletter'
