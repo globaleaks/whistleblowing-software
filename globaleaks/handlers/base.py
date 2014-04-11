@@ -20,6 +20,9 @@ from twisted.python import components
 from twisted.python.failure import Failure
 from StringIO import StringIO
 
+from cgi import parse_header 
+from urllib import unquote
+
 from twisted.internet import reactor, fdesc
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
@@ -32,9 +35,6 @@ from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 from globaleaks.security import GLSecureTemporaryFile
-
-content_disposition_re = re.compile(r"attachment; filename=\"(.+)\"", re.IGNORECASE)
-
 
 def validate_host(host_key):
     """
@@ -116,11 +116,12 @@ class GLHTTPServer(HTTPConnection):
 
             c_d_header = self._request.headers.get("Content-Disposition")
             if c_d_header is not None:
-                m = content_disposition_re.match(c_d_header)
-                if m is None:
-                    raise Exception
+                key, pdict = parse_header(c_d_header)
+                if key != 'attachment' or 'filename' not in pdict:
+                    raise _BadRequestException("Malformed Content-Disposition header")
+
                 self.file_upload = True
-                self.uploaded_file['filename'] = m.group(1)
+                self.uploaded_file['filename'] = unquote(pdict['filename'])
                 self.uploaded_file['content_type'] = self._request.headers.get("Content-Type",
                                                                                'application/octet-stream')
 
