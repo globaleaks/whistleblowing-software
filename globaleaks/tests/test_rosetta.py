@@ -1,13 +1,13 @@
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 from globaleaks.handlers import admin
-import uuid
+from globaleaks.utils.utility import uuid4
 
 text_field =  {
         u'name': u'Localized name 1',
         u'hint': u"Localized hint 1",
         u'presentation_order': 0,
-        u'key': unicode(uuid.uuid4()),
+        u'key': unicode(uuid4()),
         u'required': True,
         u'preview': True,
         u'type': u'text',
