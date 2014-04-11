@@ -121,8 +121,8 @@ def receiverfile_planning(store):
                 key_id = os.path.basename(filex.file_path).split('.')[0]
                 keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, key_id)))
                 os.remove(keypath)
-            except Exception as excep:
-                log.err("Unable to keyfile %s in integrity fixing routine: %s" % (keypath, excep))
+            except OSError as excep:
+                log.err("Unable to delete keyfile %s: %s" % (keypath, excep.strerror))
 
             continue
 
@@ -477,7 +477,7 @@ class DeliverySchedule(GLJob):
                 key_id = os.path.basename(ifile_path).split('.')[0]
                 keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, key_id)))
                 os.remove(keypath)
-            except Exception as excep:
+            except OSError as excep:
                 log.err("Unable to remove keyfile associated with %s: %s" % (ifile_path, excep))
 
             # here closes the if/else 'are_all_encrypted'

@@ -74,7 +74,16 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
         random_source = Random.new()
         self.key = random_source.read(GLSetting.AES_key_size)
+
         self.key_id = xeger(GLSetting.AES_key_id_regexp)
+        keypath = os.path.join(GLSetting.ramdisk_path, "%s%s" %
+                                (GLSetting.AES_keyfile_prefix, self.key_id))
+
+        while os.path.isfile(keypath):
+            self.key_id = xeger(GLSetting.AES_key_id_regexp)
+            keypath = os.path.join(GLSetting.ramdisk_path, "%s%s" %
+                                    (GLSetting.AES_keyfile_prefix, self.key_id))
+
         self.key_counter_prefix = random_source.read(GLSetting.AES_counter_prefix_size)
         self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(GLSetting.AES_counter_size, prefix=self.key_counter_prefix))
 
@@ -83,7 +92,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             'key_counter_prefix' : self.key_counter_prefix
         }
 
-        keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, self.key_id)))
 
         log.debug("Key initialization at %s" % keypath)
 
