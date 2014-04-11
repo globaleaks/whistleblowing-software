@@ -35,20 +35,32 @@
 #                  ;;;  ,' |    `
 #                      /   '
 
-cat ${BASH_SOURCE[0]} | head -n 36 | tail -n 35
+remove() {
 
-echo
-echo "[+] Sorry to hear you did not enjoy your leaking experience"
-echo "    send us an email to info@globaleaks.org"
+  cat ${BASH_SOURCE[0]} | head -n 36 | tail -n 35
 
+  echo
+  echo "[+] Sorry to hear you did not enjoy your leaking experience"
+  echo "    send us an email to info@globaleaks.org"
 
-if [ "$1" = "purge" ]; then
+}
+
+purge() {
   echo "Forcefully purging all globaleaks data except /var/globaleaks/torhs directory"
   rm -rf /var/globaleaks/db
   rm -rf /var/globaleaks/files
   rm -rf /var/globaleaks/log
   rm -rf /var/run/globaleaks
-fi
+}
+
+case "$1" in
+  "purge")
+    purge
+    ;;
+  "remove")
+    remove
+    ;;
+esac
 
 #DEBHELPER#
 

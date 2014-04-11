@@ -81,7 +81,7 @@ def create_tables(create_node=True):
                                    u"Hi! I'm the subtitle ð <: change me" }),
             'hidden_service':  u"",
             'public_site':  u"",
-            'email':  u"email@dumnmy.net",
+            'email':  u"email@dummy.net",
             'stats_update_time':  2, # hours,
             # advanced settings
             'maximum_filesize' : GLSetting.defaults.maximum_filesize,

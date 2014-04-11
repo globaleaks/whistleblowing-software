@@ -65,7 +65,6 @@ class TTip(helpers.TestGL):
         self.dummyFile1 = {
             'body': temporary_file1,
             'body_len': len("ANTANI"),
-            'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
             'body_filepath': temporary_file1.filepath,
             'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
             'content_type': 'application/octect',
@@ -74,7 +73,6 @@ class TTip(helpers.TestGL):
         self.dummyFile2 = {
             'body': temporary_file2,
             'body_len': len("ANTANI"),
-            'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
             'body_filepath': temporary_file2.filepath,
             'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
             'content_type': 'application/octect',
@@ -113,6 +111,13 @@ class TestCleaning(TTip):
             self.assertFalse(is_expired(tip.expiration_date))
 
     @transact
+    def force_submission_expire(self, store):
+        tips = store.find(models.InternalTip)
+        for tip in tips:
+            tip.creation_date = datetime_null()
+            self.assertTrue(is_expired(tip.creation_date))
+
+    @transact
     def force_tip_expire(self, store):
         tips = store.find(models.InternalTip)
         for tip in tips:
@@ -126,12 +131,12 @@ class TestCleaning(TTip):
         """
         relationship1 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
         self.registered_file1 = yield files.register_file_db(
-            self.dummyFile1, relationship1, self.dummyFile1['body_sha'], associated_submission_id,
+            self.dummyFile1, relationship1, associated_submission_id,
             )
 
         relationship2 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
         self.registered_file2 = yield files.register_file_db(
-            self.dummyFile2, relationship2, self.dummyFile2['body_sha'], associated_submission_id,
+            self.dummyFile2, relationship2, associated_submission_id,
             )
 
     @inlineCallbacks
@@ -209,14 +214,14 @@ class TipCleaning(TestCleaning):
         self.assertEqual(len(tip_list), 1)
         rtip.postpone_expiration_date(recv_desc[0]['id'], rtip_desc[0]['id'])
 
-        yield cleaning_sched.APSCleaning().operation()
+        yield cleaning_sched.CleaningSchedule().operation()
 
     @inlineCallbacks
     def test_001_unfinished_submission_life_and_expire(self):
         yield self.do_setup_tip_environment()
         yield self.check_tip_not_expired()
-        yield self.force_tip_expire()
-        yield cleaning_sched.APSCleaning().operation()
+        yield self.force_submission_expire()
+        yield cleaning_sched.CleaningSchedule().operation()
         yield self.test_cleaning()
 
     @inlineCallbacks
@@ -224,12 +229,12 @@ class TipCleaning(TestCleaning):
         yield self.do_setup_tip_environment()       
         yield self.do_finalize_submission()
 
-        yield delivery_sched.APSDelivery().operation()
+        yield delivery_sched.DeliverySchedule().operation()
 
         yield self.check_tip_not_expired()
         yield self.force_tip_expire()
 
-        yield cleaning_sched.APSCleaning().operation()
+        yield cleaning_sched.CleaningSchedule().operation()
 
         yield self.test_cleaning()
 
@@ -238,13 +243,13 @@ class TipCleaning(TestCleaning):
         yield self.do_setup_tip_environment()
         yield self.do_finalize_submission()
 
-        yield delivery_sched.APSDelivery().operation()
+        yield delivery_sched.DeliverySchedule().operation()
 
         yield self.check_tip_not_expired()
         yield self.force_tip_expire()
         yield self.postpone_tip_expiration()
 
-        yield cleaning_sched.APSCleaning().operation()
+        yield cleaning_sched.CleaningSchedule().operation()
 
         yield self.test_postpone_survive_cleaning()
 
@@ -254,7 +259,7 @@ class TipCleaning(TestCleaning):
         yield self.do_create_internalfiles()
         yield self.do_finalize_submission()
 
-        yield delivery_sched.APSDelivery().operation()
+        yield delivery_sched.DeliverySchedule().operation()
 
         self.assertTrue(os.listdir(GLSetting.submission_path) != [])
 
@@ -262,7 +267,7 @@ class TipCleaning(TestCleaning):
 
         yield self.force_tip_expire()
 
-        yield cleaning_sched.APSCleaning().operation()
+        yield cleaning_sched.CleaningSchedule().operation()
 
         self.assertTrue(os.listdir(GLSetting.submission_path) == [])
         self.assertTrue(os.listdir(GLSetting.tmp_upload_path) == [])

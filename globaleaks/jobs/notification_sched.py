@@ -35,7 +35,6 @@ def serialize_receivertip(receiver_tip):
 def serialize_internalfile(ifile):
     rfile_dict = {
         'name': unicode(ifile.name),
-        'sha2sum': unicode(ifile.sha2sum),
         'content_type': unicode(ifile.content_type),
         'size': unicode(ifile.size),
         'creation_date' : unicode(pretty_date_time(ifile.creation_date)),
@@ -46,7 +45,7 @@ def serialize_internalfile(ifile):
 # requested in Comment notification template (like some Tip info)
 
 
-class APSNotification(GLJob):
+class NotificationSchedule(GLJob):
     notification_settings = None
 
     @transact_ro
@@ -627,7 +626,6 @@ class APSNotification(GLJob):
         except Exception as excep:
             log.err("Error in Tip notification: %s" % excep)
             log.debug(sys.exc_info())
-            raise excep
 
         try:
             if comment_events:

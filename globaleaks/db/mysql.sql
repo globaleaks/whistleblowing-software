@@ -85,7 +85,6 @@ CREATE TABLE internalfile (
     mark VARCHAR NOT NULL,
     name VARCHAR NOT NULL,
     description VARCHAR,
-    sha2sum VARCHAR,
     size INT NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,

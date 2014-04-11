@@ -14,11 +14,13 @@ import json
 import re
 import sys
 
-from uuid import uuid4
 from Crypto.Hash import SHA256
 from twisted.python import components
 from twisted.python.failure import Failure
 from StringIO import StringIO
+
+from cgi import parse_header 
+from urllib import unquote
 
 from twisted.internet import reactor, fdesc
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
@@ -27,14 +29,11 @@ from cyclone import escape, httputil
 from cyclone.escape import native_str
 
 from globaleaks.jobs.statistics_sched import alarm_level
-from globaleaks.utils.utility import log, sanitize_str
+from globaleaks.utils.utility import log, sanitize_str, uuid4
 from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 from globaleaks.security import GLSecureTemporaryFile
-
-content_disposition_re = re.compile(r"attachment; filename=\"(.+)\"", re.IGNORECASE)
-
 
 def validate_host(host_key):
     """
@@ -62,7 +61,9 @@ def validate_host(host_key):
 
 class GLHTTPServer(HTTPConnection):
     file_upload = False
-    uploaded_file = {}
+
+    def __init__(self):
+        self.uploaded_file = {}
 
     def rawDataReceived(self, data):
         if self.content_length is not None:
@@ -71,18 +72,18 @@ class GLHTTPServer(HTTPConnection):
         else:
             rest = ''
 
-        self._contentbuffer_sha.update(data)
         self._contentbuffer.write(data)
-        if self.content_length == 0:
-            self._contentbuffer.seek(0, 0)
+        if self.content_length == 0 and self._contentbuffer is not None:
+            tmpbuf = self._contentbuffer
+            self.content_length = self._contentbuffer = None
+            self.setLineMode(rest)
+            tmpbuf.seek(0, 0)
             if self.file_upload:
                 self._on_request_body(self.uploaded_file)
                 self.file_upload = False
                 self.uploaded_file = {}
             else:
-                self._on_request_body(self._contentbuffer.read())
-            self.content_length = self._contentbuffer = None
-            self.setLineMode(rest)
+                self._on_request_body(tmpbuf.read())
 
     def _on_headers(self, data):
         try:
@@ -104,8 +105,6 @@ class GLHTTPServer(HTTPConnection):
             self.content_length = int(headers.get("Content-Length", 0))
 
             # we always use secure temporary files in case of large json or file uploads
-            self._contentbuffer_sha = SHA256.new()
-
             if self.content_length < 100000 and self._request.headers.get("Content-Disposition") is None:
                 self._contentbuffer = StringIO('')
             else:
@@ -116,17 +115,17 @@ class GLHTTPServer(HTTPConnection):
 
             c_d_header = self._request.headers.get("Content-Disposition")
             if c_d_header is not None:
-                m = content_disposition_re.match(c_d_header)
-                if m is None:
-                    raise Exception
+                key, pdict = parse_header(c_d_header)
+                if key != 'attachment' or 'filename' not in pdict:
+                    raise _BadRequestException("Malformed Content-Disposition header")
+
                 self.file_upload = True
-                self.uploaded_file['filename'] = m.group(1)
+                self.uploaded_file['filename'] = unquote(pdict['filename'])
                 self.uploaded_file['content_type'] = self._request.headers.get("Content-Type",
                                                                                'application/octet-stream')
 
                 self.uploaded_file['body'] = self._contentbuffer
                 self.uploaded_file['body_len'] = int(self.content_length)
-                self.uploaded_file['body_sha'] = self._contentbuffer_sha.hexdigest()
                 self.uploaded_file['body_filepath'] = self._contentbuffer.filepath
 
             megabytes = int(self.content_length) / (1024 * 1024)
@@ -369,8 +368,6 @@ class BaseHandler(RequestHandler):
     def on_connection_close(self, *args, **kwargs):
         pass
 
-    requestTypes = {}
-
     def prepare(self):
         """
         This method is called by cyclone, and is implemented to
@@ -557,7 +554,7 @@ class BaseHandler(RequestHandler):
     def get_uploaded_file(self):
         uploaded_file = self.request.body
 
-        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 6:
+        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 5:
             raise errors.InvalidInputFormat("Expected a dict of four keys in uploaded file")
 
         for filekey in uploaded_file.keys():
@@ -565,7 +562,6 @@ class BaseHandler(RequestHandler):
                                u'body_len',
                                u'content_type',
                                u'filename',
-                               u'body_sha',
                                u'body_filepath']:
                 raise errors.InvalidInputFormat(
                     "Invalid JSON key in uploaded file (%s)" % filekey)

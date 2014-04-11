@@ -19,6 +19,9 @@ class GLException(HTTPError):
     def __init__(self):
         pass
 
+    def __str__(self):
+        return self.__repr__()
+
     def __repr__(self):
         return "%s: <<%s>> (%d) HTTP:%d" % (
             self.__class__.__name__, self.reason,

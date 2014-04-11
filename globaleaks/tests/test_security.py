@@ -96,6 +96,14 @@ class TestGLSecureFiles(helpers.TestGL):
         a.close()
         self.assertFalse(os.path.exists(filepath))
 
+    def test_temporary_file_write_after_read(self):
+        a = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+        filepath = a.filepath
+        antani = "0123456789" * 10000
+        a.write(antani)
+        self.assertTrue(antani == a.read())
+        self.assertRaises(AssertionError, a.write, antani)
+
     def test_temporary_file_avoid_delete(self):
         a = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
         a.avoid_delete()
