@@ -11,7 +11,7 @@ import os
 import tarfile
 import StringIO
 
-from globaleaks.handlers.base import BaseHandler, CollectionToken
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.files import download_all_files, serialize_file
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.handlers import admin
@@ -54,8 +54,7 @@ def get_collection_info(store, rtip_id):
         raise errors.TipIdNotFound
 
     collection_dict = {}
-    collection_dict['files'] = []
-    collection_dict['files_number'] = 0
+    collection_dict['files'] collection_dict['files_number'] = 0
     collection_dict['total_size'] = 0
     for internalf in rtip.internaltip.internalfiles:
         collection_dict['files_number'] += 1
@@ -89,7 +88,7 @@ class CollectionDownload(BaseHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def get(self, token, path, compression):
+    def get(self, rtip_id, path, compression):
 
         if compression is None:
             # Forcing the default to be zip without compression
@@ -119,21 +118,16 @@ class CollectionDownload(BaseHandler):
             # the regexp of rest/api.py should prevent this.
             raise errors.InvalidInputFormat("collection compression type not supported")
 
-        original_rtip_id = CollectionToken.get(token)
-
-        if not original_rtip_id:
-            raise errors.UnexistentDownloadToken
-
-        files_dict = yield download_all_files(original_rtip_id)
+        files_dict = yield download_all_files(rtip_id)
 
         if not files_dict:
             raise errors.DownloadLimitExceeded
 
 
         node_dict = yield admin.get_node()
-        receiver_dict = yield get_receiver_from_rtip(original_rtip_id)
-        rtip_dict = yield get_rtip_info(original_rtip_id)
-        collection_tip_dict = yield get_collection_info(original_rtip_id)
+        receiver_dict = yield get_receiver_from_rtip(rtip_id)
+        rtip_dict = yield get_rtip_info(rtip_id)
+        collection_tip_dict = yield get_collection_info(rtip_id)
         context_dict = yield admin.get_context(rtip_dict['context_id'])
         notif_dict = yield admin.get_notification()
 
