@@ -28,7 +28,7 @@ from cyclone import escape, httputil
 from cyclone.escape import native_str, parse_qs_bytes
 
 from globaleaks.jobs.statistics_sched import alarm_level
-from globaleaks.utils.utility import log, sanitize_str, uuid4
+from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html
 from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
@@ -466,7 +466,8 @@ class BaseHandler(RequestHandler):
         """
         Record in the verbose log the content as defined by Cyclone wrappers.
         """
-        content = sanitize_str(content)
+        content = log_remove_escapes(content)
+        content = log_encode_html(content)
 
         try:
             with open(GLSetting.httplogfile, 'a+') as fd:
