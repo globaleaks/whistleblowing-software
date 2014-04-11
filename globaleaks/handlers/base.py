@@ -170,7 +170,14 @@ class GLHTTPServer(HTTPConnection):
             self._request.body = data
             content_type = self._request.headers.get("Content-Type", "")
             if self._request.method in ("POST", "PATCH", "PUT"):
-                if content_type.startswith("application/x-www-form-urlencoded"):
+                if content_type.startswith("application/x-www-form-urlencoded") and self.content_length < GLSetting.www_form_urlencoded_maximum_size:
+                    arguments = parse_qs_bytes(native_str(self._request.body))
+                    for name, values in arguments.iteritems():
+                        values = [v for v in values if v]
+                        if values:
+                            self._request.arguments.setdefault(name,
+                                                               []).extend(values)
+                elif content_type.startswith("application/x-www-form-urlencoded"):
                     raise errors.InvalidInputFormat("content type application/x-www-form-urlencoded not supported")
                 elif content_type.startswith("multipart/form-data"):
                     raise errors.InvalidInputFormat("content type multipart/form-data not supported")
@@ -496,8 +503,12 @@ class BaseHandler(RequestHandler):
     @property
     def current_user(self):
         session_id = None
-
+        
         session_id = self.request.headers.get('X-Session')
+
+        if session_id is None:
+            # Check for POST based authentication.
+            session_id = self.request.get_argument('x-session', default=None)
 
         if session_id is None:
             return None

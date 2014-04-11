@@ -260,10 +260,10 @@ def download_all_files(store, tip_id):
 
 class Download(BaseHandler):
 
-    @transport_security_check('wb')
-    @unauthenticated
+    @transport_security_check('receiver')
+    @authenticated('receiver')
     @inlineCallbacks
-    def get(self, tip_id, rfile_token, *uriargs):
+    def post(self, tip_id, rfile_token, *uriargs):
 
         # tip_id needed to authorized the download
 
