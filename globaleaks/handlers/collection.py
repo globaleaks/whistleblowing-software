@@ -54,7 +54,8 @@ def get_collection_info(store, rtip_id):
         raise errors.TipIdNotFound
 
     collection_dict = {}
-    collection_dict['files'] collection_dict['files_number'] = 0
+    collection_dict['files'] = []
+    collection_dict['files_number'] = 0
     collection_dict['total_size'] = 0
     for internalf in rtip.internaltip.internalfiles:
         collection_dict['files_number'] += 1
