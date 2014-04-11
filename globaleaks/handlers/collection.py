@@ -86,10 +86,10 @@ class CollectionStreamer(object):
 
 class CollectionDownload(BaseHandler):
 
-    @transport_security_check('wb')
-    @unauthenticated
+    @transport_security_check('receiver')
+    @authenticated('receiver')
     @inlineCallbacks
-    def get(self, rtip_id, path, compression):
+    def post(self, rtip_id, path, compression):
 
         if compression is None:
             # Forcing the default to be zip without compression
