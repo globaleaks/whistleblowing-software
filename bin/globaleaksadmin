@@ -5,7 +5,6 @@ import os
 import sys
 import sqlite3
 
-from Crypto.Random import random
 from storm.locals import create_database, Store
 from copy import copy
 
@@ -13,6 +12,7 @@ from globaleaks import models
 from globaleaks.security import hash_password, get_salt
 from globaleaks.third_party import rstr
 from globaleaks import DATABASE_VERSION
+from globaleaks.utils.utility import randint
 
 DEFAULT_OUTPUT_DBNAME = "/tmp/cleaned_glbackend.db"
 DUMMY_UNICODE_TEXT = u"¹²³ HelLlo! I'm the Batman"
@@ -258,7 +258,7 @@ if len(sys.argv) == 1:
     funny_print(" backup <WORKINGDIR> <BACKUPNAME>","(create a zipped backup)")
     funny_print(" restore <WORKINGDIR> <BACKUPNAME>","(restore a backup in workingdir)")
     print "default DBFILE is /var/globaleaks/db/glbackend-*.db"
-    if not random.randint(1, 50) % 42:
+    if not randint(1, 50) % 42:
         print "\n fnord"
     quit()
 
@@ -298,7 +298,7 @@ elif sys.argv[1] == 'restore' and len(sys.argv)== 4:
 else:
     print "wrong usabe of %s command (missing option or bad keyword)" % sys.argv[1]
     print "Run %s without argument can trigger the help" % sys.argv[1]
-    if not random.randint(20, 50) % 42:
+    if not randint(20, 50) % 42:
         print "\n fnord"
     quit()
 

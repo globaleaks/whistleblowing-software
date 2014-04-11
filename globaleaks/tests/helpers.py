@@ -8,7 +8,6 @@ from cyclone.util import ObjectDict as OD
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 from twisted.internet.defer import inlineCallbacks
-from Crypto import Random
 from storm.twisted.testing import FakeThreadPool
 
 from globaleaks.settings import GLSetting, transact
@@ -22,8 +21,6 @@ from globaleaks.db.datainit import opportunistic_appdata_init
 
 from globaleaks.security import GLSecureTemporaryFile
 
-
-Random.atfork()
 
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
