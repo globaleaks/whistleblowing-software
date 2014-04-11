@@ -174,7 +174,8 @@ class TestTipInstance(SubmissionTest):
         submission_request['context_id'] = SubmissionTest.context_used['id']
 
         for key in submission_request['wb_fields'].keys():
-            submission_request['wb_fields'][key] = unicode("You know nothing John Snow" * 100 * 100)
+            submission_request['wb_fields'][key] = { u'value': unicode("You know nothing John Snow" * 100 * 100),
+                                                     u'answer_order': 0 }
 
         submission_request['finalize'] = True
 

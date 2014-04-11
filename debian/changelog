@@ -1,14 +1,104 @@
+globaleaks (2.54.16) unstable; urgency=low
+
+  * GlobaLeaks 2.54.16 Release (Minor Bugfix, Added Croatian 72%, Added Portuguese (Portugal) 55%)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 6 Apr 2014 20:18:00 +0002
+
+globaleaks (2.54.15) unstable; urgency=low
+
+  * GlobaLeaks 2.54.15 Release (Added support for Swedish)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 31 Mar 2014 12:51:00 +0002
+
+globaleaks (2.54.14) unstable; urgency=low
+
+  * GlobaLeaks 2.54.14 Release (Updated Translations on adopter request)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 28 Mar 2014 10:11:00 +0002
+
+globaleaks (2.54.13) unstable; urgency=low
+
+  * GlobaLeaks 2.54.13 Release (Packaging fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 27 Mar 2014 23:54:00 +0002
+
+globaleaks (2.54.12) unstable; urgency=low
+
+  * GlobaLeaks 2.54.12 Release (Migration fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 27 Mar 2014 23:30:00 +0002
+
+globaleaks (2.54.11) unstable; urgency=low
+
+  * GlobaLeaks 2.54.11 Release (Packaging fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 27 Mar 2014 14:11:00 +0002
+
+globaleaks (2.54.10) unstable; urgency=low
+
+  * GlobaLeaks 2.54.10 Release (RTL fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 27 Mar 2014 13:59:00 +0002
+
+globaleaks (2.54.9) unstable; urgency=low
+
+  * GlobaLeaks 2.54.9 Release (RTL fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 27 Mar 2014 09:37:00 +0002
+
+globaleaks (2.54.8) unstable; urgency=low
+
+  * GlobaLeaks 2.54.8 Release (Minor Fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 23 Mar 2014 00:22:00 +0002
+
+globaleaks (2.54.7) unstable; urgency=low
+
+  * GlobaLeaks 2.54.7 Release (Added support for Slovack!)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sat, 22 Mar 2014 00:53:00 +0002
+
+globaleaks (2.54.6) unstable; urgency=low
+
+  * GlobaLeaks 2.54.6 Release (Added support to Arabic in RTL!)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Wed, 19 Mar 2014 00:43:00 +0002
+
+globaleaks (2.54.5) unstable; urgency=low
+
+  * GlobaLeaks 2.54.5 Release (Minor Usability Fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 18 Mar 2014 17:43:00 +0002
+
+globaleaks (2.54.4) unstable; urgency=low
+
+  * GlobaLeaks 2.54.4 Release (Minor Usability Fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 13 Mar 2014 15:37:00 +0002
+
+globaleaks (2.54.3) unstable; urgency=low
+
+  * GlobaLeaks 2.54.3 Release (Minor Fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 04 Mar 2014 16:16:00 +0002
+
+globaleaks (2.54.2) unstable; urgency=low
+
+  * GlobaLeaks 2.54.2 Release (Minor Fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 28 Feb 2014 16:38:00 +0002
+
 globaleaks (2.54.1) unstable; urgency=low
 
   * GlobaLeaks 2.54.1 Release (Minor Fixes)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 27 Jan 2014 17:40:00 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 27 Beb 2014 17:40:00 +0002
 
 globaleaks (2.54) unstable; urgency=low
 
   * GlobaLeaks 2.54 Release
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 24 Jan 2014 11:28:00 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 24 Feb 2014 11:28:00 +0002
 
 globaleaks (2.52.3) unstable; urgency=low
 

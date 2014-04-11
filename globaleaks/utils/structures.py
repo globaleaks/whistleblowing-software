@@ -9,6 +9,10 @@
 from globaleaks.utils.utility import log
 from globaleaks.settings import GLSetting
 
+from globaleaks.rest.errors import InvalidInputFormat, SubmissionFailFields
+
+from globaleaks.utils.utility import uuid4
+
 class Fields:
 
     accepted_form_type = [ "text", "radio", "select", "multiple",
@@ -49,8 +53,6 @@ class Fields:
         @param appdata_fields: the content of the ApplicationData.fields
         @return:
         """
-        from uuid import uuid4
-
         # first, get the amount of translated languages
         for block in appdata_fields:
 
@@ -120,9 +122,6 @@ class Fields:
           }
         ]
         """
-        from globaleaks.rest.errors import InvalidInputFormat
-        from uuid import uuid4
-
         self.debug_status('before update')
 
         # this variable collect the updated fields from the
@@ -195,8 +194,6 @@ class Fields:
         strict_validation = required the presence of 'required' wb_fields.
         Is not enforced if Submission would not be finalized yet.
         """
-        from globaleaks.rest.errors import SubmissionFailFields
-
         required_keys = list()
         optional_keys = list()
 
@@ -213,20 +210,28 @@ class Fields:
             log.err("Internal error in processing required keys: %s" % excep)
             raise excep
 
-        for key, value in wb_fields.iteritems():
+        for key, field in wb_fields.iteritems():
 
             if not key in required_keys and not key in optional_keys:
                 log.err("Submission contain an unexpected field %s" % key)
                 raise SubmissionFailFields("Submitted field '%s' not expected in context" % key)
 
+            if not isinstance(wb_fields[key], dict):
+                raise InvalidInputFormat("Submitted field not in dict format")
+
+            for k in ['value', 'answer_order']:
+                if k not in wb_fields[key]:
+                    raise InvalidInputFormat("Submitted field dict is missing %s key" % k)
+
         if not strict_validation:
             return
+
 
         #log.debug("fields strict validation: %s (optional %s)" % (required_keys, optional_keys))
 
         for required in required_keys:
 
-            if wb_fields.has_key(required) and len(wb_fields[required]) > 0:
+            if wb_fields.has_key(required) and len(wb_fields[required]['value']) > 0:
             # the keys are always provided by GLClient! also if the content is empty.
             # then is not difficult check a test len(text) > $blah, but other checks are...
                 continue

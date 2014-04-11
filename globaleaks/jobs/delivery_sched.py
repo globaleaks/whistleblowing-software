@@ -23,7 +23,7 @@ from globaleaks.security import GLBGPG, GLSecureFile
 from globaleaks.handlers.admin import admin_serialize_receiver
 from globaleaks.third_party.rstr import xeger
 
-__all__ = ['APSDelivery']
+__all__ = ['DeliverySchedule']
 
 def serialize_internalfile(ifile):
     ifile_dict = {
@@ -31,7 +31,6 @@ def serialize_internalfile(ifile):
         'internaltip_id' : ifile.internaltip_id,
         'name' : ifile.name,
         'description' : ifile.description,
-        'sha2sum' : ifile.sha2sum,
         'file_path' : ifile.file_path,
         'content_type' : ifile.content_type,
         'size' : ifile.size,
@@ -113,17 +112,19 @@ def receiverfile_planning(store):
                     (filex.name, pretty_date_time(filex.creation_date), filex.file_path) )
 
             try:
-                store.remove(filex)
-            except Exception as excep:
-                log.err("Unable to remove InternalFile in scheduler! %s" % str(excep))
-                continue
-
-            try:
                 os.remove(os.path.join(GLSetting.submission_path, filex.file_path))
             except OSError as excep:
                 log.err("Unable to remove %s in integrity fixing routine: %s" %
                     (filex.file_path, excep.strerror) )
-                continue
+
+            try:
+                key_id = os.path.basename(filex.file_path).split('.')[0]
+                keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, key_id)))
+                os.remove(keypath)
+            except OSError as excep:
+                log.err("Unable to delete keyfile %s: %s" % (keypath, excep.strerror))
+
+            continue
 
         # here we select the file which deserve to be processed.
         # They need to be:
@@ -383,7 +384,7 @@ def encrypt_where_available(receivermap):
 
     return retcode
 
-class APSDelivery(GLJob):
+class DeliverySchedule(GLJob):
 
     @inlineCallbacks
     def operation(self):
@@ -423,7 +424,7 @@ class APSDelivery(GLJob):
 
         for ifile_path, receivermap in filemap.iteritems():
 
-            plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z]{6}') )
+            plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z0-9]{16}') )
 
             are_all_encrypted = encrypt_where_available(receivermap)
 
@@ -445,17 +446,21 @@ class APSDelivery(GLJob):
                           (ifile_path, plain_path)
                 )
 
-                with open(plain_path, "wb") as plain_f_is_sad_f, \
-                     GLSecureFile(ifile_path) as encrypted_file:
+                try:
+                    with open(plain_path, "wb") as plain_f_is_sad_f, \
+                         GLSecureFile(ifile_path) as encrypted_file:
 
-                    chunk_size = 4096
-                    while True:
-                        chunk = encrypted_file.read(chunk_size)
-                        if len(chunk) == 0:
-                            break
-                        plain_f_is_sad_f.write(chunk)
+                        chunk_size = 4096
+                        while True:
+                            chunk = encrypted_file.read(chunk_size)
+                            if len(chunk) == 0:
+                                break
+                            plain_f_is_sad_f.write(chunk)
 
-                yield do_final_internalfile_update(ifile_path, InternalFile._marker[2], plain_path)
+                    yield do_final_internalfile_update(ifile_path, InternalFile._marker[2], plain_path)
+
+                except Exception as excep:
+                    log.err("Unable to create plaintext file %s: %s" % plain_path, excep)
 
             else: # are_all_encrypted:
                 log.debug("All Receivers support PGP, marking internalfile as removed")
@@ -468,6 +473,12 @@ class APSDelivery(GLJob):
             except OSError as ose:
                 log.err("Unable to remove %s: %s" % (ifile_path, ose.message))
 
+            try:
+                key_id = os.path.basename(ifile_path).split('.')[0]
+                keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, key_id)))
+                os.remove(keypath)
+            except OSError as excep:
+                log.err("Unable to remove keyfile associated with %s: %s" % (ifile_path, excep))
 
             # here closes the if/else 'are_all_encrypted'
         # here closes the loop over internalfile mapping

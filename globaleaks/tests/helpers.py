@@ -1,7 +1,6 @@
 # -*- coding: UTF-8
 
 import json
-import uuid
 
 from cyclone import httpserver
 from cyclone.web import Application
@@ -16,7 +15,7 @@ from globaleaks.settings import GLSetting, transact
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db, models, security
-from globaleaks.utils.utility import datetime_null, datetime_now
+from globaleaks.utils.utility import datetime_null, datetime_now, uuid4
 from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
 from globaleaks.db.datainit import opportunistic_appdata_init
@@ -61,10 +60,11 @@ class TestGL(unittest.TestCase):
         GLSetting.sessions = {}
         GLSetting.failed_login_attempts = 0
         GLSetting.working_path = './working_path'
+        GLSetting.ramdisk_path = './working_path/ramdisk'
+
         GLSetting.eval_paths()
         GLSetting.remove_directories()
         GLSetting.create_directories()
-        GLSetting.load_key()
         GLSetting.cleaning_dead_files()
 
         self.setUp_dummy()
@@ -277,7 +277,7 @@ class MockDict():
         }
 
         self.dummyReceiver = {
-            'id': unicode(uuid.uuid4()),
+            'id': unicode(uuid4()),
             'password': VALID_PASSWORD1,
             'name': u'Ned Stark',
             'description': u'King MockDummy Receiver',
@@ -303,7 +303,7 @@ class MockDict():
         }
 
         self.dummyContext = {
-            'id': unicode(uuid.uuid4()),
+            'id': unicode(uuid4()),
             # localized stuff
             'name': u'Already localized name',
             'description': u'Already localized desc',
@@ -349,7 +349,7 @@ class MockDict():
             'subtitle': u'https://twitter.com/TheHackersNews/status/410457372042092544/photo/1',
             'hidden_service':  u"http://1234567890123456.onion",
             'public_site':  u"https://globaleaks.org",
-            'email':  u"email@dumnmy.net",
+            'email':  u"email@dummy.net",
             'stats_update_time':  2, # hours,
             'languages_supported': [], # ignored
             'languages_enabled':  [ "it" , "en" ],
@@ -423,7 +423,6 @@ class MockDict():
         self.dummyFile = {
             'body': temporary_file,
             'body_len': len("ANTANI"),
-            'body_sha': 'b1dc5f0ba862fe3a1608d985ded3c5ed6b9a7418db186d9e6e6201794f59ba54',
             'body_filepath': temporary_file.filepath,
             'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
             'content_type': 'application/octect',
@@ -460,7 +459,8 @@ def get_dummy_submission(context_id, context_admin_data_fields):
                  "http://www.giantitp.com"
 
     for field_desc in context_admin_data_fields:
-        dummySubmissionDict['wb_fields'][field_desc['key']] = dummyvalue
+        dummySubmissionDict['wb_fields'][field_desc['key']] = { u'value': dummyvalue,
+                                                                u'answer_order': 0 }
 
     dummySubmissionDict['receivers'] = []
     dummySubmissionDict['files'] = []
@@ -480,6 +480,7 @@ def fill_random_fields(context_desc):
     assert len(fields_list) >= 1
 
     ret_dict = {}
+    i = 0
     for sf in fields_list:
 
         assert sf.has_key(u'name')
@@ -490,7 +491,10 @@ def fill_random_fields(context_desc):
         # not all element are checked now
 
         unicode_weird = ''.join(unichr(x) for x in range(0x400, 0x4FF) )
-        ret_dict.update({ sf.get(u'key') : unicode_weird })
+        ret_dict.update({ sf.get(u'key') : { u'value': unicode_weird,
+                                             u'answer_order': i } })
+
+        i += 1
 
     return ret_dict
 

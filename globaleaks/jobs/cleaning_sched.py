@@ -15,7 +15,7 @@ from globaleaks.utils.utility import log, pretty_date_time, is_expired, iso2date
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalTip, ReceiverFile, InternalFile, Comment
 
-__all__ = ['APSCleaning']
+__all__ = ['CleaningSchedule']
 
 @transact_ro
 def get_tiptime_by_marker(store, marker):
@@ -76,6 +76,7 @@ def itip_cleaning(store, tip_id):
                 (abspath, tip_id, ifname, ifile.size))
         else:
             try:
+                print "removing %s" % abspath
                 os.remove(abspath)
             except OSError as excep:
                 log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
@@ -113,7 +114,7 @@ def debug_count_itips_by_marker(store):
     return info_list
 
 
-class APSCleaning(GLJob):
+class CleaningSchedule(GLJob):
 
     @inlineCallbacks
     def operation(self):
@@ -135,7 +136,7 @@ class APSCleaning(GLJob):
             submissions = yield get_tiptime_by_marker(InternalTip._marker[0]) # Submission
             log.debug("(Cleaning routines) %d unfinished Submission are check if expired" % len(submissions))
             for submission in submissions:
-                if is_expired(iso2dateobj(submission['expiration_date'])):
+                if is_expired(iso2dateobj(submission['creation_date']), GLSetting.defaults.submission_seconds_of_life):
                     log.info("Deleting an unfinalized Submission (creation %s expiration %s) files %d" %
                              (submission['creation_date'], submission['expiration_date'], submission['files']) )
                     yield itip_cleaning(submission['id'])

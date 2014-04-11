@@ -12,6 +12,7 @@ import os
 import sys
 import time
 import traceback
+from uuid import UUID
 from datetime import datetime, timedelta
 
 from twisted.python import log as twlog
@@ -21,6 +22,13 @@ from twisted.python.failure import Failure
 from Crypto.Hash import SHA256
 
 from globaleaks.settings import GLSetting
+
+def uuid4():
+    """
+    This function returns a secure random uuid4 as
+    defined by http://www.ietf.org/rfc/rfc4122.txt
+    """
+    return UUID(bytes=os.urandom(16), version=4)
 
 def sanitize_str(s):
     """
@@ -157,27 +165,6 @@ def query_yes_no(question, default="no"):
             return valid[choice]
         else:
             sys.stdout.write("Please respond with 'y' or 'n'\n\n")
-
-## Hashing utils
-
-def get_file_checksum(filepath):
-    sha = SHA256.new()
-
-    chunk_size = 8192
-    total_len = 0
-
-    with open(filepath, 'rb') as fp:
-        while True:
-            chunk = fp.read(chunk_size)
-            if len(chunk) == 0:
-                break
-            total_len += len(chunk)
-            sha.update(chunk)
-
-    if not total_len:
-        log.debug("checksum of %s computed, but the file is empty" % filepath)
-
-    return sha.hexdigest(), total_len
 
 ## time facilities ##
 
@@ -384,23 +371,19 @@ def dump_submission_fields(fields, wb_fields):
         fnl = len(sf['name'])
         # dumptext += ("="*fnl)+"\n"+sf['name']+"\n("+sf['hint']+")\n"+("="*fnl)+"\n"
         dumptext += ("="*fnl)+"\n"+sf['name']+"\n"+("="*fnl)+"\n"
-        dumptext += wb_fields[ fields[0]['key'] ]+"\n\n"
+        dumptext += wb_fields[ fields[0]['key'] ]['value']+"\n\n"
 
     return dumptext
 
 def dump_file_list(filelist, files_n):
 
-    info = "%s%s%s%s%s\n" % ("Filename",
+    info = "%s%s%s\n" % ("Filename",
                              " "*(40-len("Filename")),
-                             "Size (Bytes)",
-                             " "*(15-len("Size (Bytes)")),
-                             "sha256")
+                             "Size (Bytes)")
 
     for i in xrange(files_n):
-        length1 = 40 - len(filelist[i]['name'])
-        length2 = 15 - len(str(filelist[i]['size']))
-        info += "%s%s%i%s%s\n" % (filelist[i]['name'], " "*length1,
-                                  filelist[i]['size'], " "*length2,
-                                  filelist[i]['sha2sum'])
+        info += "%s%s%i\n" % (filelist[i]['name'],
+                                " "*(40 - len(filelist[i]['name'])),
+                                filelist[i]['size'])
 
     return info

@@ -4,27 +4,42 @@
 #
 # Base class for implement the scheduled tasks
 
-from datetime import datetime
-from globaleaks.utils.utility import log, utc_future_date, pretty_date_time
+from twisted.internet import task
+from twisted.python.failure import Failure
 
-class GLJob:
+from globaleaks.utils.utility import log
+from globaleaks.utils.mailutils import mail_exception
 
-    def force_execution(self, aps=None, seconds=1):
-        """
-        @aps: Advanced Python Scheduler object
-        seconds: number of seconds to await before operation start
+class GLJob(task.LoopingCall):
 
-        force execution do not execute immidiatly self.operation(),
-        because we want be sure that is a thread start by APScheduler
-        """
-        plan_exec = utc_future_date(hours=0, seconds=seconds)
-        plan_exec += (datetime.now() - datetime.utcnow())
+    def __init__(self):
+        task.LoopingCall.__init__(self, self._operation)
 
+    def _operation(self):
         try:
-            aps.add_date_job(self.operation, plan_exec)
-        except ValueError as exc:
-            log.err("Failing in force schedule execution of %s planned at %s" %
-                      (self.__class__.__name__, pretty_date_time(plan_exec)))
 
-        log.debug("Forced execution of %s at %s" %
-                  (self.__class__.__name__, pretty_date_time(plan_exec)))
+            self.operation()
+
+        except Exception as e:
+
+            log.err("Exception while performin scheduled operation %s: %s" % \
+                    (type(self).__name__, e))
+
+            try:
+
+                if isinstance(e, Failure):
+                    exc_type = e.type
+                    exc_value = e.value
+                    exc_tb = e.getTracebackObject()
+                else:
+                    exc_type, exc_value, exc_tb = sys.exc_info()
+
+                mail_exception(exc_type, exc_value, exc_tb)
+
+            except:
+
+                pass
+
+    def operation(self):
+        pass # dummy skel for GLJob objects
+            

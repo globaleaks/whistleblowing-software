@@ -53,9 +53,6 @@ def initialize_node(store, results, only_node, templates, appdata):
     function outside the node, and inquire fucking YHWH about the
     callbacks existence/usage
     """
-    from Crypto import Random
-    Random.atfork()
-
     node = models.Node(only_node)
 
     # by default, only english is the surely present language
