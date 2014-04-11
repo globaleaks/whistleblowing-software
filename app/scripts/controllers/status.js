@@ -2,6 +2,9 @@ GLClient.controller('StatusCtrl',
   ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', 'Authentication', 'Tip', 'WBTip', 'Contexts', 'ReceiverPreferences',
   function($scope, $rootScope, $location, $route, $routeParams, $http, Authentication, Tip, WBTip, Contexts, ReceiverPreferences) {
     $scope.tip_id = $routeParams.tip_id;
+    $scope.session = Authentication.id;
+    $scope.xsrf_token = $.cookie('XSRF-TOKEN');
+    $scope.target_file = '#';
 
     $scope.auth_landing_page = Authentication.auth_landing_page;
 
@@ -108,6 +111,25 @@ GLClient.controller('StatusCtrl',
             for (file in $scope.tip.files) {
               $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
             }
+          };
+          
+          function submitDownloadForm() {
+            // We add 10 milliseconds so that the angular.js loop can hit.
+            window.setTimeout(function() { 
+              $("#fileDownload").submit(); 
+            }, 10);
+          };
+
+          $scope.downloadAll = function() {
+            $scope.target_file = $scope.tip.collection;
+            $scope.increaseDownloadCounts();
+            submitDownloadForm();
+          };
+
+          $scope.downloadFile = function(file) {
+            $scope.target_file = file.href;
+            $scope.increaseDownloadCount(file);
+            submitDownloadForm();
           };
 
           $scope.show_download_all = function() {
