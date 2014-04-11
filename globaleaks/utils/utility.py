@@ -31,7 +31,7 @@ def uuid4():
     """
     return unicode(UUID(bytes=os.urandom(16), version=4))
 
-def sanitize_str(s):
+def log_encode_html(s):
     """
     This function encodes the following characters
     using HTML encoding: < > & ' " \ / 
