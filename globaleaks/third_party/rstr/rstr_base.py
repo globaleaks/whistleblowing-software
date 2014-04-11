@@ -28,7 +28,7 @@
 
 import string
 import itertools
-from Crypto.Random import random
+from globaleaks.utils.utility import random_choice, randint, random_shuffle
 from copy import copy
 from functools import partial
 from xeger import Xeger
@@ -131,10 +131,10 @@ class RstrBase(object):
                 k = start_range
 
         if end_range:
-            k = random.randint(start_range, end_range)
+            k = randint(start_range, end_range)
 
         result = sample_wr(popul, k) + list(include)
-        random.shuffle(result)
+        random_shuffle(result)
         return ''.join(result)
 
 
@@ -146,4 +146,4 @@ default_instance = Rstr()
 
 def sample_wr(population, k):
     """Samples k random elements (with replacement) from a population"""
-    return [random.choice(population) for i in itertools.repeat(None, k)]
+    return [random_choice(population) for i in itertools.repeat(None, k)]

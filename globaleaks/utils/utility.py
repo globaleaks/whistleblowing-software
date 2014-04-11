@@ -20,7 +20,6 @@ from twisted.python import log as twlog
 from twisted.python import logfile as twlogfile
 from twisted.python import util
 from twisted.python.failure import Failure
-from Crypto.Hash import SHA256
 
 from globaleaks.settings import GLSetting
 
@@ -30,6 +29,26 @@ def uuid4():
     defined by http://www.ietf.org/rfc/rfc4122.txt
     """
     return unicode(UUID(bytes=os.urandom(16), version=4))
+
+def randint(start, end=None):
+    if not end:
+        end = start
+        start = 0
+    w = end - start + 1
+    return start + int(''.join("%x" % ord(x) for x in os.urandom(w)), 16) % w
+
+def randbits(bits):
+    return os.urandom(int(bits/8))
+
+def random_choice(population):
+    size = len(population)
+    return population[randint(size-1)]
+
+def random_shuffle(x):
+    for i in reversed(xrange(1, len(x))):
+        j = randint(0, i)
+        x[i], x[j] = x[j], x[i]
+    return x
 
 def log_encode_html(s):
     """

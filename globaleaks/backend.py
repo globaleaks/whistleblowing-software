@@ -11,15 +11,15 @@
 from twisted.application.service import Application
 from twisted.application import internet
 from cyclone import web
-from Crypto.Random import random
 
+from globaleaks.utils.utility import randbits
 from globaleaks.settings import GLSetting
 from globaleaks.rest import api
 from globaleaks.handlers.base import GLHTTPServer
 
 application = Application('GLBackend')
 
-settings = dict(cookie_secret=random.getrandbits(128),
+settings = dict(cookie_secret=randbits(128),
                 xsrf_cookies=True,
                 debug=GLSetting.http_log)
 

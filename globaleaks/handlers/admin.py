@@ -7,7 +7,6 @@
 import os
 import shutil
 
-from Crypto import Random
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
