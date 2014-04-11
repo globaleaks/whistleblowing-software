@@ -28,7 +28,7 @@ def uuid4():
     This function returns a secure random uuid4 as
     defined by http://www.ietf.org/rfc/rfc4122.txt
     """
-    return UUID(bytes=os.urandom(16), version=4)
+    return unicode(UUID(bytes=os.urandom(16), version=4))
 
 def sanitize_str(s):
     """

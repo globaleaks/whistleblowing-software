@@ -9,7 +9,7 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.handlers.base import BaseHandler, FileToken, CollectionToken
+from globaleaks.handlers.base import BaseHandler 
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.rest import requests
 from globaleaks.utils.utility import log, pretty_date_time, utc_future_date, datetime_now
@@ -63,7 +63,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
 
         rfile_dict = {
             'status': receiverfile.status,
-            'href' : unicode("/rtip/" + receivertip_id + "/download/" + FileToken(receiverfile.id).id),
+            'href' : unicode("/rtip/" + receivertip_id + "/download/" + receiverfile.id),
             # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
             'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == ReceiverFile._status_list[2] else internalfile.name,
             'content_type' : unicode(internalfile.content_type),
@@ -290,7 +290,7 @@ class RTipInstance(BaseHandler):
 
         yield increment_receiver_access_count(self.current_user['user_id'], tip_id)
         answer = yield get_internaltip_receiver(self.current_user['user_id'], tip_id, self.request.language)
-        answer['collection'] = '/rtip/' + CollectionToken(tip_id).id + '/collection'
+        answer['collection'] = '/rtip/' + tip_id + '/collection'
         answer['files'] = yield get_files_receiver(self.current_user['user_id'], tip_id)
 
         self.set_status(200)
