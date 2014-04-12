@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8 -*-
 #
 #   security 
 #   ********
@@ -19,11 +19,15 @@ from cryptography.hazmat.backends import default_backend
 from gnupg import GPG
 from tempfile import _TemporaryFileWrapper
 
+from twisted.internet import reactor
+from twisted.internet.defer import Deferred
+
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log, acquire_bool
 from globaleaks.settings import GLSetting
 from globaleaks.models import *
 from globaleaks.third_party.rstr import xeger
+
 
 SALT_LENGTH = (128 / 8) # 128 bits of unique salt
 
@@ -37,9 +41,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
     """
 
     last_action = 'init'
-
-    encryptor = None
-    decryptor = None
 
     def __init__(self, filedir):
         """
@@ -84,7 +85,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             'key' : self.key,
             'key_counter_nonce' : self.key_counter_nonce
         }
-
 
         log.debug("Key initialization at %s" % keypath)
 
@@ -614,3 +614,16 @@ def access_tip(store, user_id, tip_id):
         raise errors.TipIdNotFound
 
     return rtip
+
+
+def security_sleep(timeout):
+    """
+    @param timeout: this sleep is called to slow down bruteforce attacks
+    @return:
+    """
+    def callbackDeferred():
+        d.callback(True)
+
+    d = Deferred()
+    reactor.callLater(timeout, callbackDeferred)
+    return d

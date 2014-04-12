@@ -85,14 +85,11 @@ def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_lan
 
 class WbTipInstance(BaseHandler):
     """
-    WT1
     This interface expose the Whistleblower Tip.
 
     Tip is the safe area, created with an expiration time, where Receivers (and optionally)
     Whistleblower can discuss about the submission, comments, collaborative voting, forward,
-    promote, and perform other operation in this closed environment.
-    In the request is present an unique token, aim to authenticate the users accessing to the
-    resource, and giving accountability in resource accesses.
+    promote, and perform other operations in this protected environment.
     """
 
     @transport_security_check('wb')
@@ -112,6 +109,7 @@ class WbTipInstance(BaseHandler):
         answer['files'] = yield get_files_wb(self.current_user['user_id'])
 
         self.set_status(200)
+        yield self.uniform_answers_delay()
         self.finish(answer)
 
 
@@ -162,9 +160,9 @@ def create_comment_wb(store, wb_tip_id, request):
 
     return wb_serialize_comment(comment)
 
+
 class WbTipCommentCollection(BaseHandler):
     """
-    T2
     Interface use to read/write comments inside of a Tip, is not implemented as CRUD because we've not
     needs, at the moment, to delete/update comments once has been published. Comments is intended, now,
     as a stone written consideration about Tip reliability, therefore no editing and rethinking is
@@ -183,6 +181,7 @@ class WbTipCommentCollection(BaseHandler):
         wb_comment_list = yield get_comment_list_wb(self.current_user['user_id'])
 
         self.set_status(200)
+        yield self.uniform_answers_delay()
         self.finish(wb_comment_list)
 
     @transport_security_check('wb')
@@ -199,6 +198,7 @@ class WbTipCommentCollection(BaseHandler):
         answer = yield create_comment_wb(self.current_user['user_id'], request)
 
         self.set_status(201) # Created
+        yield self.uniform_answers_delay()
         self.finish(answer)
 
 
@@ -294,9 +294,8 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
 
 class WbTipReceiversCollection(BaseHandler):
     """
-    T3
     This interface return the list of the Receiver active in a Tip.
-    GET /tip/<auth_tip_id>/receivers
+    GET /tip/receivers
     """
 
     @transport_security_check('wb')
@@ -311,9 +310,9 @@ class WbTipReceiversCollection(BaseHandler):
         answer = yield get_receiver_list_wb(self.current_user['user_id'], self.request.language)
 
         self.set_status(200)
+        yield self.uniform_answers_delay()
         self.finish(answer)
 
-## Direct messages handling function
 
 def wb_serialize_message(msg):
     return {
@@ -382,8 +381,6 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
     msg.author = u'Whistleblower'
     msg.visualized = False
 
-    # remind: is safest use this convention, and probably we've to
-    # change in the whole code the usage of Model._type[ndx]
     msg.type = u'whistleblower'
     msg.mark = u'not notified'
 
@@ -398,7 +395,10 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
 
 class WbMessageCollection(BaseHandler):
     """
-    W5
+    This interface return the lists of the private messages exchanged between
+    whistleblower and the specified receiver requested in GET
+
+    Supports the creation of a new message for the requested receiver
     """
 
     @transport_security_check('wb')
@@ -409,6 +409,7 @@ class WbMessageCollection(BaseHandler):
         messages = yield get_messages_content(self.current_user['user_id'], receiver_id)
 
         self.set_status(200)
+        yield self.uniform_answers_delay()
         self.finish(messages)
 
     @transport_security_check('wb')
@@ -421,4 +422,5 @@ class WbMessageCollection(BaseHandler):
         message = yield create_message_wb(self.current_user['user_id'], receiver_id, request)
 
         self.set_status(201) # Created
+        yield self.uniform_answers_delay()
         self.finish(message)
