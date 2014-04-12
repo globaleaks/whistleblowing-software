@@ -47,30 +47,30 @@ def pip_version_check(path):
                     check = version_number_compare(installed_version, version)
                     if condition == "<":
                         if check >= 0:
-                            unmet_requirements.append(requirement)
+                            unmet_requirements.append([requirement, installed_version])
                             continue
                     elif condition == "<=":
                         if check > 0:
-                            unmet_requirements.append(requirement)
+                            unmet_requirements.append([requirement, installed_version])
                             continue
                     elif condition == "==":
                         if check != 0:
-                            unmet_requirements.append(requirement)
+                            unmet_requirements.append([requirement, installed_version])
                             continue
                     elif condition == ">=":
                         if check < 0:
-                            unmet_requirements.append(requirement)
+                            unmet_requirements.append([requirement, installed_version])
                             continue
                     elif condition == ">":
                         if check <= 0:
-                            unmet_requirements.append(requirement)
+                            unmet_requirements.append([requirement, installed_version])
                             continue
 
     if unmet_requirements:
         print "Some GlobaLeaks requirements are unmet\n"
         print "Unmet requirements:"
-        for unmet_requirement in unmet_requirements:
-            print "\t" + unmet_requirement
+        for unmet_requirement_desc in unmet_requirements:
+            print "\t", unmet_requirement_desc[0], "[ Installed", unmet_requirement_desc[1], "]"
         print "\n"
         print "The problem can be solved by:"
         print "1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki"
