@@ -96,6 +96,7 @@ def create_tables(create_node=True):
             'ahmia' : False, # disabled too
             'wizard_done' : False,
             'anomaly_checks' : False, # need to disabled in this stage as it need to be tuned
+            'encrypted_only': True, # By default the node should be only encrypted.
             'exception_email' : GLSetting.defaults.exception_email,
             'default_language' : GLSetting.memory_copy.default_language,
         }

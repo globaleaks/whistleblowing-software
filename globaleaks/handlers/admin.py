@@ -53,6 +53,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'ahmia': node.ahmia,
         'reset_css': False,
         'anomaly_checks': node.anomaly_checks,
+        'encrypted_only': node.encrypted_only,
     }
 
     for attr in mo.get_localized_attrs():

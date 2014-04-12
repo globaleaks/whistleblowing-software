@@ -409,6 +409,7 @@ class Node(Model):
     tor2web_submission = Bool()
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
+    encrypted_only = Bool()
 
     # privileges configurable in node/context/receiver
     postpone_superpower = Bool()
@@ -425,7 +426,7 @@ class Node(Model):
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',
-                  'can_delete_submission', 'ahmia' ] # wizard_done is not checked
+                  'can_delete_submission', 'ahmia', 'encrypted_only' ] # wizard_done is not checked
                                                      # because it's set by the backend
     localized_strings = [ 'description', 'presentation', 'footer', 'subtitle' ]
 
