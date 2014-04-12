@@ -272,6 +272,7 @@ elif GLSetting.cmdline_options.kill:
         print "Unable kill PID found in %s: kill option ignored (%s)" %\
               (GLSetting.pidfile_path, excep)
 
+os.umask(077)
 GLSetting.create_directories()
 GLSetting.cleaning_dead_files()
 

@@ -27,22 +27,7 @@ from globaleaks.third_party.rstr import xeger
 
 SALT_LENGTH = (128 / 8) # 128 bits of unique salt
 
-SAFE_UMASK = 077
-os.umask(SAFE_UMASK)
-orig_umask = os.umask
 crypto_backend = default_backend()
-
-def umask(req_mask):
-
-    if req_mask != SAFE_UMASK:
-
-        log.debug("Attempt to call umask of %d instead of %d (forcing anyway!)" % (
-            req_mask, SAFE_UMASK
-        ))
-
-    return orig_umask(077)
-
-os.umask = umask
 
 class GLSecureTemporaryFile(_TemporaryFileWrapper):
     """
