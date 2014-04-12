@@ -18,6 +18,7 @@ import logging
 from StringIO import StringIO
 from cgi import parse_header
 from urllib import unquote
+from cryptography.hazmat.primitives.constant_time import bytes_eq
 
 from twisted.python.failure import Failure
 from twisted.internet.defer import inlineCallbacks
@@ -246,9 +247,8 @@ class BaseHandler(RequestHandler):
         if not token:
             raise HTTPError(403, "X-XSRF-TOKEN argument missing from POST")
 
-        # TODO
-        # This need to be compared with cryptography "same time comparation etc"
-        if self.xsrf_token != token:
+        # This is a constant time comparison provided by cryptography package
+        if not bytes_eq(self.xsrf_token, token):
             raise HTTPError(403, "XSRF cookie does not match POST argument")
 
 
