@@ -75,6 +75,13 @@ GLClient.controller('StatusCtrl',
     
       var TipID = {tip_id: $scope.tip_id};
       new Tip(TipID, function(tip){
+        
+        $scope.tip_unencrypted = false;
+        angular.forEach(tip.receivers, function(receiver){
+          if (receiver.gpg_key_status == 'Disabled' && receiver.receiver_id !== tip.receiver_id) {
+            $scope.tip_unencrypted = true;
+          };
+        });
 
         Contexts.query(function(contexts){
           $scope.tip = tip;

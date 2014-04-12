@@ -23,6 +23,17 @@ This comment is needed in order to push the following strings on transifex
     </div>
   </div>
 
+  <div class="row" data-ng-show="tip_unencrypted">
+    <div class="col-md-12">
+      <div class="alert alert-warning">
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        <strong><span data-translate>Warning!</span></strong>
+        <span data-translate>One or more of the receivers of this tip has not configured their PGP key.</span>
+        <span data-translate>This means that the submitted files will be stored in plaintext on the node.</span>
+      </div>
+    </div>
+  </div>
+
   <div class="row" data-ng-controller="TipCtrl">
     <div class="col-md-6">
       <div class="col-md-12">
