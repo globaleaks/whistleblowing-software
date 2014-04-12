@@ -115,7 +115,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         it.mark = models.InternalTip._marker[1] # 'finalized'
 
     @inlineCallbacks
-    def test_create_receiverfiles(self):
+    def test_create_receiverfiles_encrypted_only_false_no_keys_loaded(self):
 
         yield self.emulate_file_upload(self.dummySubmission['id'])
         yield self._force_finalize(self.dummySubmission['id'])
@@ -155,6 +155,50 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertEqual(len(self.wbfls), 2)
 
     @inlineCallbacks
+    def test_create_receiverfiles_encrypted_only_true_no_keys_loaded(self):
+
+        GLSetting.memory_copy.encrypted_only = True
+
+        yield self.emulate_file_upload(self.dummySubmission['id'])
+        yield self._force_finalize(self.dummySubmission['id'])
+
+        # create receivertip its NEEDED to create receiverfile
+        self.rt = yield delivery_sched.tip_creation()
+        self.assertTrue(isinstance(self.rt, list))
+
+        self.rfilesdict = yield delivery_sched.receiverfile_planning()
+        # return a list of lists [ "file_id", status, "f_path", len, "receiver_desc" ]
+        self.assertTrue(isinstance(self.rfilesdict, dict))
+
+        for ifile_path, receivermap in self.rfilesdict.iteritems():
+            yield delivery_sched.encrypt_where_available(receivermap)
+            for elem in receivermap:
+                rfdesc = yield delivery_sched.receiverfile_create(ifile_path,
+                                    elem['path'], elem['status'], elem['size'], elem['receiver'])
+                self.assertEqual(rfdesc['mark'], u'not notified')
+                self.assertEqual(rfdesc['receiver_id'], elem['receiver']['id'])
+
+        self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['id'])
+        self.assertTrue(isinstance(self.fil, list))
+        self.assertEqual(len(self.fil), 2)
+
+        self.rfi = yield delivery_sched.get_receiverfile_by_itip(self.dummySubmission['id'])
+        self.assertTrue(isinstance(self.rfi, list))
+
+        self.assertEqual(len(self.rfi), 2) # no rfiles are created for the receivers that have no key
+        self.assertEqual(self.rfi[0]['mark'], u'not notified')
+        self.assertEqual(self.rfi[1]['mark'], u'not notified')
+        self.assertEqual(self.rfi[0]['status'], u'nokey')
+        self.assertEqual(self.rfi[1]['status'], u'nokey')
+
+        # verify the checksum returned by whistleblower POV, I'm not using
+        #  wfv = yield tip.get_files_wb()
+        # because is not generated a WhistleblowerTip in this test
+        self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.dummySubmission['id'])
+        self.assertEqual(len(self.wbfls), 2)
+
+
+    @inlineCallbacks
     def test_access_from_receipt(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
@@ -182,7 +226,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         return new_r
 
     @inlineCallbacks
-    def test_submission_with_receiver_selection(self):
+    def test_submission_with_receiver_selection_encrypted_only_false_no_keys_loaded(self):
 
         yield create_receiver(self.get_new_receiver_desc("second"))
         yield create_receiver(self.get_new_receiver_desc("third"))
@@ -230,6 +274,43 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         receiver_tips = yield delivery_sched.tip_creation()
         self.assertEqual(len(receiver_tips), len(status['receivers']))
 
+
+    @inlineCallbacks
+    def test_submission_with_receiver_selection_encrypted_only_true_no_keys_loaded(self):
+
+        GLSetting.memory_copy.encrypted_only = True
+
+        yield create_receiver(self.get_new_receiver_desc("second"))
+        yield create_receiver(self.get_new_receiver_desc("third"))
+        yield create_receiver(self.get_new_receiver_desc("fourth"))
+
+        # for some reason, the first receiver is no more with the same ID
+        self.receivers = yield get_receiver_list()
+
+        self.assertEqual(len(self.receivers), 4)
+
+        self.dummyContext['receivers'] = [ self.receivers[0]['id'],
+                                           self.receivers[1]['id'],
+                                           self.receivers[2]['id'],
+                                           self.receivers[3]['id'] ]
+        self.dummyContext['selectable_receiver'] = True
+        self.dummyContext['escalation_threshold'] = 0
+
+        for attrname in models.Context.localized_strings:
+            self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
+
+        context_status = yield update_context(self.dummyContext['id'], self.dummyContext)
+
+        # Create a new request with selected three of the four receivers
+        submission_request= dict(self.dummySubmission)
+        # submission_request['context_id'] = context_status['context_id']
+        submission_request['id'] = ''
+        submission_request['finalize'] = False
+        submission_request['receivers'] = [ self.receivers[0]['id'],
+                                            self.receivers[1]['id'],
+                                            self.receivers[2]['id'] ]
+
+        yield self.assertFailure(submission.create_submission(submission_request, finalize=True), errors.SubmissionFailFields)
 
     @inlineCallbacks
     def test_update_submission(self):

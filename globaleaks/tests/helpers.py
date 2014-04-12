@@ -14,13 +14,12 @@ from globaleaks.settings import GLSetting, transact
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db, models, security
-from globaleaks.utils.utility import datetime_null, datetime_now, uuid4
+from globaleaks.utils.utility import datetime_null, datetime_now, uuid4, log
 from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
 from globaleaks.db.datainit import opportunistic_appdata_init
 
 from globaleaks.security import GLSecureTemporaryFile
-
 
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
@@ -43,17 +42,15 @@ class UTlog():
     def debug(stuff):
         pass
 
-from globaleaks.utils.utility import log
-
 log.err = UTlog().err
 log.debug = UTlog().debug
-
 
 class TestGL(unittest.TestCase):
     def setUp(self):
         GLSetting.set_devel_mode()
         GLSetting.logging = None
         GLSetting.scheduler_threadpool = FakeThreadPool()
+        GLSetting.memory_copy.encrypted_only = False
         GLSetting.sessions = {}
         GLSetting.failed_login_attempts = 0
         GLSetting.working_path = './working_path'
@@ -368,6 +365,7 @@ class MockDict():
             'reset_css': False,
             'ahmia': False,
             'anomaly_checks': False,
+            'encrypted_only': False,
         }
 
         self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',

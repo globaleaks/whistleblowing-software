@@ -117,7 +117,8 @@ adminNodeDesc = {
     'exception_email': unicode,
     'reset_css': bool,
     'ahmia': bool,
-    'anomaly_checks': bool
+    'anomaly_checks': bool,
+    'encrypted_only': bool,
 }
 
 adminNotificationDesc = {
