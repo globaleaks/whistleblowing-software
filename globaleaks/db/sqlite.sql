@@ -149,6 +149,7 @@ CREATE TABLE node (
     wizard_done INTEGER NOT NULL,
     anomaly_checks INTEGER NOT NULL,
     exception_email VARCHAR NOT NULL,
+    encrypted_only INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 
