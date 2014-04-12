@@ -261,6 +261,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.receivers = [];
       self.current_context = null;
       self.maximum_filesize = null;
+      self.encrypted_only = null;
       self.current_context_receivers = [];
       self.receivers_selected = {};
       self.completed = false;
@@ -273,19 +274,27 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           // enumerate only the receivers of the current context
           if (self.current_context.receivers.indexOf(receiver.id) !== -1) {
             self.current_context_receivers.push(receiver);
-            self.receivers_selected[receiver.id] = self.current_context.select_all_receivers != false;
+            if (!receiver.disabled)
+              self.receivers_selected[receiver.id] = self.current_context.select_all_receivers != false;
           };
         });
       };
 
       Node.get(function(node) {
         self.maximum_filesize = node.maximum_filesize;
+        self.encrypted_only = node.encrypted_only;
 
         Contexts.query(function(contexts){
           self.contexts = contexts;
           self.current_context = self.contexts[0];
           Receivers.query(function(receivers){
-            self.receivers = receivers;
+            self.receivers = [];
+            forEach(receivers, function(receiver){
+              receiver.disabled = false;
+              if (self.encrypted_only && receiver.gpg_key_status !== 'Enabled')
+                receiver.disabled = true; 
+              self.receivers.push(receiver);
+            });
             setCurrentContextReceivers();
             fn(self);
           });

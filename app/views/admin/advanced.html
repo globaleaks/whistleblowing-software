@@ -13,7 +13,6 @@ This comment is needed in order to push the following strings on transifex
 
       <div class="row">
         <form name="advancedForm" data-ng-controller="AdminAdvancedCtrl">
-
           <tabset class="tab-content">
             <tab data-ng-repeat="tab in tabs" heading="{{ tab.title | translate }}" active="tab.active" disabled="tab.disabled">
             <div data-ng-include="tab.template" data-ng-controller="tab.ctrl"></div>

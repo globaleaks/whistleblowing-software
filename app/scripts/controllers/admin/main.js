@@ -111,11 +111,6 @@ GLClient.controller('AdminPasswordCtrl', ['$scope', 'changePasswordWatcher',
         "admin.node.password", "admin.node.check_password");
 }]);
 
-GLClient.controller('AdminAdvancedCtrl', ['$scope', 'changeParamsWatcher',
-                    function($scope, changeParamsWatcher) {
-    changeParamsWatcher($scope);
-}]);
-
 GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http){
 
     $scope.random = Math.round(Math.random()*1000000);
@@ -216,7 +211,22 @@ GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http)
   ];
 }]);
 
-GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', function($scope, $http){
+GLClient.controller('DisableEncryptionCtrl', ['$scope', '$modalInstance', function($scope, $modalInstance){
+    $scope.close = function() {
+      $modalInstance.close(true);
+    };
+
+    $scope.no = function() {
+      $modalInstance.close(true);
+    };
+    $scope.ok = function() {
+      $modalInstance.close(false);
+    };
+      
+}]);
+
+GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$modal', 
+                    function($scope, $http, $modal){
   $scope.tabs = [
     {
       title:"Main Configuration",
@@ -229,6 +239,19 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', function($scope, $h
       ctrl: TabCtrl
     }
   ];
+  $scope.open_modal = function() {
+    if (!$scope.admin.node.encrypted_only)
+      return;
+    var modalInstance = $modal.open({
+      templateUrl: 'views/partials/disable_encryption.html',
+      controller: 'DisableEncryptionCtrl',
+    });
+
+    modalInstance.result.then(function(result){
+      $scope.admin.node.encrypted_only = result;
+    });
+  };
+
 }]);
 
 ConfirmableDialogCtrl = ['$scope', '$modalInstance', 'object', function($scope, $modalInstance, object) {

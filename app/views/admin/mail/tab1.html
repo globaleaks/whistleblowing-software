@@ -1,12 +1,10 @@
 <div class="row">
   <div class="col-md-8">
-    <div class="form-group table-bordered">
+    <div class="form-group">
       <input data-ng-model="admin.notification.disable" type="checkbox">
       <label data-translate>Disable email notification</label>
       <div data-ng-show="admin.notification.disable">
-        <span class="label label-warning">
-          <span data-translate>now Disabled:</span> <br />
-        </span>
+        <span class="label label-warning" data-translate>Disabled</span>
         <span data-translate>Unsent emails will be spooled when the option will be re-enabled.</span>
       </div>
     </div>

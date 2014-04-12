@@ -20,6 +20,10 @@
   background-color: #DFF0D8;
 }
 
+.receiverCard.disabled {
+  background-color: #f2dede;
+}
+
 .submissionField {
   padding-bottom: 15px;
 }
