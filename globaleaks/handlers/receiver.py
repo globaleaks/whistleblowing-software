@@ -121,6 +121,7 @@ class ReceiverInstance(BaseHandler):
             self.request.language)
 
         self.set_status(200)
+        yield self.uniform_answers_delay()
         self.finish(receiver_status)
 
 
@@ -140,6 +141,7 @@ class ReceiverInstance(BaseHandler):
             request, self.request.language)
 
         self.set_status(200)
+        yield self.uniform_answers_delay()
         self.finish(receiver_status)
 
 
@@ -243,4 +245,5 @@ class TipsCollection(BaseHandler):
         answer = yield get_receiver_tip_list(self.current_user['user_id'], self.request.language)
 
         self.set_status(200)
+        yield self.uniform_answers_delay()
         self.finish(answer)
