@@ -112,6 +112,7 @@ class WbTipInstance(BaseHandler):
         answer['files'] = yield get_files_wb(self.current_user['user_id'])
 
         self.set_status(200)
+        yield self.uniform_answers_delay()
         self.finish(answer)
 
 
@@ -183,6 +184,7 @@ class WbTipCommentCollection(BaseHandler):
         wb_comment_list = yield get_comment_list_wb(self.current_user['user_id'])
 
         self.set_status(200)
+        yield self.uniform_answers_delay()
         self.finish(wb_comment_list)
 
     @transport_security_check('wb')
@@ -199,6 +201,7 @@ class WbTipCommentCollection(BaseHandler):
         answer = yield create_comment_wb(self.current_user['user_id'], request)
 
         self.set_status(201) # Created
+        yield self.uniform_answers_delay()
         self.finish(answer)
 
 
@@ -311,6 +314,7 @@ class WbTipReceiversCollection(BaseHandler):
         answer = yield get_receiver_list_wb(self.current_user['user_id'], self.request.language)
 
         self.set_status(200)
+        yield self.uniform_answers_delay()
         self.finish(answer)
 
 ## Direct messages handling function
@@ -409,6 +413,7 @@ class WbMessageCollection(BaseHandler):
         messages = yield get_messages_content(self.current_user['user_id'], receiver_id)
 
         self.set_status(200)
+        yield self.uniform_answers_delay()
         self.finish(messages)
 
     @transport_security_check('wb')
@@ -421,4 +426,5 @@ class WbMessageCollection(BaseHandler):
         message = yield create_message_wb(self.current_user['user_id'], receiver_id, request)
 
         self.set_status(201) # Created
+        yield self.uniform_answers_delay()
         self.finish(message)
