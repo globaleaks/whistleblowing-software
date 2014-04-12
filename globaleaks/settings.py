@@ -17,6 +17,8 @@ import socket
 import pwd
 import grp
 import getpass
+import pickle
+import tempfile
 import transaction
 
 from ConfigParser import ConfigParser
@@ -115,6 +117,8 @@ class GLSettingsClass:
         self.static_source = '/usr/share/globaleaks/glbackend'
         self.glclient_path = '/usr/share/globaleaks/glclient'
         self.ramdisk_path = '/dev/shm/globaleaks'
+        if not os.path.isdir(self.ramdisk_path):
+            self.ramdisk_path = tempfile.mkdtemp()
 
         # list of plugins available in the software
         self.notification_plugins = [
