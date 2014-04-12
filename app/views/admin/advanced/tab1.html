@@ -14,15 +14,13 @@
       <input class="form-control" data-ng-model="admin.node.exception_email" type="text">
     </div>
 
-    <div class="form-group table-bordered">
+    <div class="form-group">
       <label>
         <input data-ng-model="admin.node.anomaly_checks" type="checkbox">
         <span data-translate>Enable anomaly checks</span>
       </label>
       <div data-ng-show="admin.node.anomaly_checks">
-        <span class="btn-info">
-        <span data-translate>now Enabled:</span>
-        </span>
+        <span class="label label-info" data-translate>Enabled</span>
         <span data-translate>Anomaly checks will be now performed on each request.</span>
       </div>
     </div>
@@ -37,29 +35,36 @@
       <input class="form-control" data-ng-model="admin.node.maximum_textsize" type="text">
     </div>
 
-    <div class="form-group table-bordered">
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.encrypted_only" ng-click="open_modal()" type="checkbox">
+        <span data-translate>Never store plaintext data on this node</span>
+      </label>
+      <div data-ng-show="admin.node.encrypted_only">
+        <span class="label label-info" data-translate>Enabled</span>
+        <span data-translate>Whistleblowers will only be able to submit to receivers that have a PGP key.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
       <label>
         <input data-ng-model="admin.node.postpone_superpower" type="checkbox">
         <span data-translate>Permit Receivers to postpone expiration date of the Tips</span>
       </label>
       <div data-ng-show="admin.node.postpone_superpower">
-        <span class="btn-info">
-        <span data-translate>now Enabled:</span>
-        </span>
+        <span class="label label-info" data-translate>Enabled</span>
         <span data-translate>Receivers will be now able to postpone Tips expiration.</span>
       </div>
     </div>
 
-    <div class="form-group table-bordered">
+    <div class="form-group">
       <label>
         <input data-ng-model="admin.node.can_delete_submission " type="checkbox">
         <span data-translate>Permit Receivers to delete Tips</span>
       </label>
       <div data-ng-show="admin.node.can_delete_submission">
-        <span class="btn-info">
-        <span data-translate>now Enabled:</span>
-        </span>
-	<span data-translate>Receivers will be now able to delete Tips and their content.</span>
+        <span class="label label-info" data-translate>Enabled</span>
+	      <span data-translate>Receivers will be now able to delete Tips and their content.</span>
       </div>
     </div>
 

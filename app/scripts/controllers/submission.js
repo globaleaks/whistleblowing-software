@@ -54,9 +54,11 @@ GLClient.controller('SubmissionCtrl',
           return $scope.selected_receivers_count() < $scope.submission.current_context.maximum_selectable_receivers;
         };
 
-        $scope.switch_selection = function (receiver_id) {
-          if ($scope.submission.receivers_selected[receiver_id] || $scope.selectable()) {
-            $scope.submission.receivers_selected[receiver_id] = !$scope.submission.receivers_selected[receiver_id];
+        $scope.switch_selection = function (receiver) {
+          if (receiver.disabled)
+            return;
+          if ($scope.submission.receivers_selected[receiver.id] || $scope.selectable()) {
+            $scope.submission.receivers_selected[receiver.id] = !$scope.submission.receivers_selected[receiver.id];
           }
         };
 

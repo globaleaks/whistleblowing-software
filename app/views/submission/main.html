@@ -63,7 +63,6 @@ This comment is needed in order to push the following strings on transifex
             </select>
 
         </div>
-
         <div id="ContextIntroductionBox">
           {{submission.current_context.description}}
         </div>
@@ -78,7 +77,7 @@ This comment is needed in order to push the following strings on transifex
         </div>
 
         <div id="ReceiverSelectionBoxBig" data-ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" data-ng-show="!submission.current_context.show_small_cards">
-          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" data-ng-class="{selected: submission.receivers_selected[receiver.id]}" data-ng-click="switch_selection(receiver.id)">
+          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.disabled}" data-ng-click="switch_selection(receiver)">
             <div class="row receiverCardTitle">
               <div class="col-md-10">
                 <label>
@@ -93,7 +92,7 @@ This comment is needed in order to push the following strings on transifex
                   &nbsp;{{receiver.name}}
                 </label>
               </div>
-              <div class="col-md-1">
+              <div class="col-md-1" ng-hide="receiver.disabled">
                 <div data-ng-show="submission.receivers_selected[receiver.id]">
                   <i class="glyphicon glyphicon-check" popover="{{ 'Deselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                 </div>
@@ -116,9 +115,9 @@ This comment is needed in order to push the following strings on transifex
 
         <div id="ReceiverSelectionBoxSmall" data-ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" data-ng-show="submission.current_context.show_small_cards">
           <div class="form-group col-md-3">
-            <div data-ng-click="switch_selection(receiver.id)" class="receiverCard" data-ng-class="{selected: submission.receivers_selected[receiver.id]}">
+            <div data-ng-click="switch_selection(receiver)" class="receiverCard" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.disabled}">
               <div class="row receiverCardTitle">
-                <div class="col-md-9">
+                <div class="col-md-9" ng-hide="receiver.disabled">
                   <label>
                     <span data-ng-switch="" on="receiver.gpg_key_status">
                       <span data-ng-switch-when="Enabled">
@@ -131,12 +130,16 @@ This comment is needed in order to push the following strings on transifex
                     &nbsp;{{receiver.name}}
                   </label>
                 </div>
+
                 <div class="col-md-1">
                   <div data-ng-show="submission.receivers_selected[receiver.id]">
                     <i class="glyphicon glyphicon-check" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </div>
                   <div data-ng-show="!submission.receivers_selected[receiver.id]">
                     <i class="glyphicon glyphicon-unchecked" popover="{{ 'Deselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                  </div>
+                  <div data-ng-show="receiver.gpg_key_status != 'Enabled' && node.encrypted_only">
+                    <i class="glyphicon">Cannot select this receiver</i>
                   </div>
                 </div>
               </div>
