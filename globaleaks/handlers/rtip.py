@@ -158,8 +158,8 @@ def delete_receiver_tip(store, user_id, tip_id):
 
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'System' # The printed line
-    comment.type = Comment._types[2] # System
-    comment.mark = Comment._marker[0] # Not Notified
+    comment.type = u'system' # Comment._types[2]
+    comment.mark = u'not notified' # Comment._marker[0]
 
     rtip.internaltip.comments.add(comment)
 
@@ -266,9 +266,7 @@ def postpone_expiration_date(store, user_id, tip_id):
 
 class RTipInstance(BaseHandler):
     """
-    RT1
-    This interface expose the Tip.
-
+    This interface expose the Receiver Tip
     """
 
     @transport_security_check('wb')
@@ -381,7 +379,6 @@ def create_comment_receiver(store, user_id, tip_id, request):
 
 class RTipCommentCollection(BaseHandler):
     """
-    T2
     Interface use to read/write comments inside of a Tip, is not implemented as CRUD because we've not
     needs, at the moment, to delete/update comments once has been published. Comments is intended, now,
     as a stone written consideration about Tip reliability, therefore no editing and rethinking is
@@ -452,7 +449,6 @@ def get_receiver_list_receiver(store, user_id, tip_id, language=GLSetting.memory
 
 class RTipReceiversCollection(BaseHandler):
     """
-    T3
     This interface return the list of the Receiver active in a Tip.
     GET /tip/<auth_tip_id>/receivers
     """
@@ -472,10 +468,6 @@ class RTipReceiversCollection(BaseHandler):
         yield self.uniform_answers_delay()
         self.finish(answer)
 
-## Direct messages handling function,
-# they are quite similar to the Comment, at the moment.
-# differences: are personal, in the future can be E2E encrypted,
-#              and do not exist system messages
 
 def receiver_serialize_message(msg):
 

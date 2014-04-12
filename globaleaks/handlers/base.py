@@ -521,9 +521,6 @@ class BaseHandler(RequestHandler):
         this safety measure, able to counteract some side channel attacks, is
         automatically disabled when the option -z and -l DEBUG are present
         (because mean that is run in development mode)
-
-        is not really "uniformed" the delay, there are some range of randomness
-        as documented in TODO
         """
 
         if GLSetting.loglevel == logging.DEBUG and GLSetting.devel_mode:
