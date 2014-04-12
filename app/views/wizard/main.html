@@ -47,6 +47,19 @@ This comment is needed in order to push the following strings on transifex
           </div>
         </div>
 
+        <div class="form-group col-md-12">
+          <label class="col-md-4">
+            <span data-translate>Store only encrypted data</span>
+          </label>
+          <div class="col-md-8">
+            <input type="checkbox" data-ng-model="admin.node.encrypted_only">
+            <span class="help-block">
+              <span data-translate class="label label-danger">Danger</span> <span data-translate>By disabling this option you will be storing the submitted files in plaintext on your node.</span>
+              <span data-translate>You should re-enable this when in production by going to "Advanced Settings" in your admin panel</span>
+            </span>
+          </div>
+        </div>
+
       </div>
       <div class="col-md-6">
         <p class="help-hint">
