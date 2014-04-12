@@ -116,7 +116,6 @@ class FieldsCollection(BaseHandler):
         self.finish(app_fields_dump)
 
 
-
 class FirstSetup(BaseHandler):
     """
     """

@@ -24,7 +24,6 @@ from globaleaks.handlers.authentication import transport_security_check, authent
 from globaleaks.utils.utility import log, pretty_date_time
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
-from globaleaks.third_party import rstr
 
 def serialize_file(internalfile):
 
@@ -173,7 +172,6 @@ class FileHandler(BaseHandler):
 # This is different from FileInstance, just because there are a different authentication requirements
 class FileAdd(FileHandler):
     """
-    T4
     WhistleBlower interface for upload a new file in an already completed submission
     """
 
@@ -183,10 +181,9 @@ class FileAdd(FileHandler):
     @inlineCallbacks
     def post(self, *args):
         """
-        Parameter: internaltip_id 
         Request: Unknown
         Response: Unknown
-        Errors: SubmissionIdNotFound, SubmissionConcluded
+        Errors: TipIdNotFound
         """
         stats_counter('file_uploaded')
         itip_id = yield get_tip_by_wbtip(self.current_user['user_id'])
@@ -196,7 +193,6 @@ class FileAdd(FileHandler):
 
 class FileInstance(FileHandler):
     """
-    U4
     WhistleBlower interface for upload a new file in a not yet completed submission
     """
 

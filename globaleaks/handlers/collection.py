@@ -183,5 +183,4 @@ class CollectionDownload(BaseHandler):
 
             tar.close()
 
-
         self.finish()

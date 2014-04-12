@@ -98,7 +98,6 @@ def update_receiver_settings(store, receiver_id, request, language=GLSetting.mem
 
 class ReceiverInstance(BaseHandler):
     """
-    R1
     This class permit to the receiver to modify some of their fields:
         Receiver.description
         Receiver.password
@@ -227,7 +226,6 @@ def get_receiver_tip_list(store, receiver_id, language=GLSetting.memory_copy.def
 
 class TipsCollection(BaseHandler):
     """
-    R5
     This interface return the summary list of the Tips available for the authenticated Receiver
     GET /tips/<receiver_token_auth/tip
     """
