@@ -5,6 +5,7 @@
 # GlobaLeaks Utility Functions
 
 import cgi
+import codecs
 import inspect
 import logging
 import re
@@ -28,18 +29,35 @@ def uuid4():
     This function returns a secure random uuid4 as
     defined by http://www.ietf.org/rfc/rfc4122.txt
     """
-    return UUID(bytes=os.urandom(16), version=4)
+    return unicode(UUID(bytes=os.urandom(16), version=4))
 
-def sanitize_str(s):
+def log_encode_html(s):
     """
     This function encodes the following characters
     using HTML encoding: < > & ' " \ / 
     """
     s = cgi.escape(s, True)
-    s = s.replace("'", "&#x2F;")
+    s = s.replace("'", "&#39;")
     s = s.replace("/", "&#47;")
     s = s.replace("\\", "&#92;")
     return s
+
+def log_remove_escapes(s):
+    """
+    This function removes escape sequence from log strings
+    """
+    if isinstance(s, unicode):
+        return codecs.encode(s, 'unicode_escape')
+    if isinstance(s, str):
+        try:
+            unicodelogmsg = s.decode('utf-8')
+        except UnicodeDecodeError:
+            return codecs.encode(s, 'string_escape')
+        else:
+            return codecs.encode(unicodelogmsg, 'unicode_escape')
+    else:
+        raise Exception("log_remove_escapes accepts only unicode/str objects not a %s object like %r"
+                        % (type(s), repr(s)))
 
 class GLLogObserver(twlog.FileLogObserver):
 
@@ -73,7 +91,8 @@ class GLLogObserver(twlog.FileLogObserver):
             GLLogObserver.last_exception_msg = ""
 
         try:
-            util.untilConcludes(self.write, timeStr + " " + sanitize_str(msgStr))
+            # in addition to escape sequence removal on logfiles we also quote html chars
+            util.untilConcludes(self.write, timeStr + " " + log_encode_html(msgStr))
             util.untilConcludes(self.flush) # Hoorj!
         except Exception as excep:
             GLLogObserver.suppressed += 1
@@ -89,7 +108,7 @@ class Logger(object):
         if isinstance(msg, unicode):
             msg = msg.encode('utf-8')
 
-        return str(msg)
+        return log_remove_escapes(msg)
 
     def exception(self, error):
         """
