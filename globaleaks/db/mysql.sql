@@ -110,7 +110,7 @@ CREATE TABLE receiverfile (
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id),
     CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled', 'skipped')),
-    CHECK (status IN ('cloned', 'reference', 'encrypted', 'unavailable'))
+    CHECK (status IN ('cloned', 'reference', 'encrypted', 'unavailable', 'nokey'))
 );
 
 CREATE TABLE internaltip (

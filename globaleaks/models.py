@@ -296,7 +296,7 @@ class ReceiverFile(Model):
     _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
 
     status = Unicode()
-    _status_list = [ u'cloned', u'reference', u'encrypted', u'unavailable' ]
+    _status_list = [ u'cloned', u'reference', u'encrypted', u'unavailable', 'nokey' ]
     # cloned = file is copied on the disk; receiverfile.file_path address this copy
     # reference = receiverfile.file_path reference internalfile.file_path
     # encrypted = receiverfile.file_path is an encrypted file for the specific receiver
@@ -426,8 +426,8 @@ class Node(Model):
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',
-                  'can_delete_submission', 'ahmia', 'encrypted_only' ] # wizard_done is not checked
-                                                     # because it's set by the backend
+                  'can_delete_submission', 'ahmia', 'encrypted_only' ]
+                # wizard_done is not checked because it's set by the backend
     localized_strings = [ 'description', 'presentation', 'footer', 'subtitle' ]
 
 

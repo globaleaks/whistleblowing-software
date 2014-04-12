@@ -97,7 +97,7 @@ def receiverfile_planning(store):
     """
 
     try:
-        files = store.find(InternalFile, InternalFile.mark == InternalFile._marker[0])
+        files = store.find(InternalFile, InternalFile.mark == u'not processed')
     except Exception as excep:
         log.err("Unable to find InternalFile in scheduler! %s" % str(excep))
         return []
@@ -134,10 +134,10 @@ def receiverfile_planning(store):
         # if these conditions are met the InternalFile(s) is/are marked as 'locked',
         # Whenever a delivery scheduler run, do not touch 'locked' file, and if 'locked' file
         # appears in the Admin interface of file overview, this mean that something is broken.
-        if (filex.internaltip.mark == InternalTip._marker[1] or \
-            filex.internaltip.mark == InternalTip._marker[2]) and \
-            (filex.mark == InternalFile._marker[0]):
-            filex.mark = InternalFile._marker[1] # 'locked'
+        if (filex.internaltip.mark == u'finalize' or \
+            filex.internaltip.mark == u'first') and \
+            (filex.mark == u'not processed'):
+            filex.mark = u'locked'
         else:
             continue
 
@@ -154,7 +154,7 @@ def receiverfile_planning(store):
                     'receiver' : receiver_desc,
                     'path' : filex.file_path,
                     'size' : filex.size,
-                    'status' : ReceiverFile._status_list[1] # reference
+                    'status' : u'reference'
                 }
 
                 # this may seem apparently redounded, but is not!
@@ -242,7 +242,7 @@ def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_d
         receiverfile.size = recv_size
         receiverfile.status = unicode(status)
 
-        receiverfile.mark = ReceiverFile._marker[0] # not notified
+        receiverfile.mark = u'not notified'
 
         store.add(receiverfile)
 
@@ -270,7 +270,7 @@ def create_receivertip(store, receiver, internaltip, tier):
     receivertip.access_counter = 0
     receivertip.expressed_pertinence = 0
     receivertip.receiver_id = receiver.id
-    receivertip.mark = ReceiverTip._marker[0]
+    receivertip.mark = u'not notified'
 
     store.add(receivertip)
 
@@ -285,7 +285,7 @@ def tip_creation(store):
     """
     created_rtip = []
 
-    finalized = store.find(InternalTip, InternalTip.mark == InternalTip._marker[1])
+    finalized = store.find(InternalTip, InternalTip.mark == u'finalize')
 
     for internaltip in finalized:
 
@@ -294,25 +294,12 @@ def tip_creation(store):
 
             created_rtip.append(rtip_id)
 
-        internaltip.mark = internaltip._marker[2]
+        internaltip.mark = u'first'
 
     if len(created_rtip):
         log.debug("The finalized submissions had created %d ReceiverTip(s)" % len(created_rtip))
 
     return created_rtip
-
-    # update below with the return_dict
-    #promoted = store.find(InternalTip,
-    #                    ( InternalTip.mark == InternalTip._marker[2],
-    #                      InternalTip.pertinence_counter >= InternalTip.escalation_threshold ) )
-
-    #for internaltip in promoted:
-    #    for receiver in internaltip.receivers:
-    #        rtip_id = create_receivertip(store, receiver, internaltip, 2)
-    #        created_tips.append(rtip_id)
-    #
-    #    internaltip.mark = internaltip._marker[3]
-
 
 @transact
 def do_final_internalfile_update(store, file_path, new_marker, new_path=None):
@@ -349,14 +336,14 @@ def encrypt_where_available(receivermap):
     """
     @param receivermap:
         [ { 'receiver' : receiver_desc, 'path' : file_path, 'size' : file_size }, .. ]
-    @return: return True if all the receiver permit GPG encryption
+    @return: return True if plaintex version of file must be created.
     """
 
     retcode = True
 
     for rcounter, rfileinfo in enumerate(receivermap):
 
-        if rfileinfo['receiver']['gpg_key_status'] == Receiver._gpg_types[1]:
+        if rfileinfo['receiver']['gpg_key_status'] == u'Enabled':
 
             try:
                 new_path, new_size = fsops_gpg_encrypt(rfileinfo['path'], rfileinfo['receiver'])
@@ -370,17 +357,18 @@ def encrypt_where_available(receivermap):
 
                 rfileinfo['path'] = new_path
                 rfileinfo['size'] = new_size
-                rfileinfo['status'] = ReceiverFile._status_list[2] # encrypted
+                rfileinfo['status'] = u'encrypted'
 
             except Exception as excep:
                 log.err("%d# Unable to complete GPG encrypt for %s on %s: %s. marking the file as unavailable." % (
                         rcounter, rfileinfo['receiver']['name'], rfileinfo['path'], excep)
                 )
-                rfileinfo['status'] = ReceiverFile._status_list[3] # unavailable
-                continue
-        else:
-            rfileinfo['status'] = ReceiverFile._status_list[1] # reference
+                rfileinfo['status'] = u'unavailable'
+        elif not GLSetting.memory_copy.encrypted_only:
+            rfileinfo['status'] = u'reference'
             retcode = False
+        else:
+            rfileinfo['status'] = u'nokey'
 
     return retcode
 
@@ -426,11 +414,11 @@ class DeliverySchedule(GLJob):
 
             plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z0-9]{16}') )
 
-            are_all_encrypted = encrypt_where_available(receivermap)
+            create_plaintextfile = encrypt_where_available(receivermap)
 
             for rfileinfo in receivermap:
 
-                if not are_all_encrypted and rfileinfo['status'] == u'reference':
+                if not create_plaintextfile and rfileinfo['status'] == u'reference':
                     rfileinfo['path'] = plain_path
 
                 try:
@@ -441,8 +429,8 @@ class DeliverySchedule(GLJob):
                             (ifile_path, rfileinfo['receiver']['name'], excep))
                     continue
 
-            if not are_all_encrypted:
-                log.debug(":( NOT all receivers support PGP %s go to unsafe version %s" %
+            if not create_plaintextfile:
+                log.debug(":( NOT all receivers support PGP and the system allows plaintext version of files: %s saved in plaintext file %s" %
                           (ifile_path, plain_path)
                 )
 
@@ -457,14 +445,14 @@ class DeliverySchedule(GLJob):
                                 break
                             plain_f_is_sad_f.write(chunk)
 
-                    yield do_final_internalfile_update(ifile_path, InternalFile._marker[2], plain_path)
+                    yield do_final_internalfile_update(ifile_path, u'ready', plain_path)
 
                 except Exception as excep:
                     log.err("Unable to create plaintext file %s: %s" % (plain_path, excep))
 
-            else: # are_all_encrypted:
-                log.debug("All Receivers support PGP, marking internalfile as removed")
-                yield do_final_internalfile_update(ifile_path, InternalFile._marker[3]) # Removed
+            else: # create_plaintextfile
+                log.debug("All Receivers support PGP or the system denys plaintext version of files: marking internalfile as removed")
+                yield do_final_internalfile_update(ifile_path, u'delivered') # Removed
 
             # the original AES file need always to be deleted
             log.debug("Deleting the submission AES encrypted file: %s" % ifile_path)
