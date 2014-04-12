@@ -86,8 +86,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             'key_counter_nonce' : self.key_counter_nonce
         }
 
-        keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, self.key_id)))
-
         log.debug("Key initialization at %s" % keypath)
 
         with open(keypath, 'w') as kf:
