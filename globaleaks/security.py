@@ -12,10 +12,10 @@ import shutil
 import scrypt
 import pickle
 
-from Crypto.Hash import SHA512, MD5
-from Crypto import Random
-from Crypto.Cipher import AES
-from Crypto.Util import Counter
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.backends import default_backend
+
 from gnupg import GPG
 from tempfile import _TemporaryFileWrapper
 
@@ -30,6 +30,7 @@ SALT_LENGTH = (128 / 8) # 128 bits of unique salt
 SAFE_UMASK = 077
 os.umask(SAFE_UMASK)
 orig_umask = os.umask
+crypto_backend = default_backend()
 
 def umask(req_mask):
 
@@ -52,6 +53,9 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
     last_action = 'init'
 
+    encryptor = None
+    decryptor = None
+
     def __init__(self, filedir):
         """
         filedir: dir target to keep GL.
@@ -68,12 +72,16 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
         _TemporaryFileWrapper.__init__(self, self.file, self.filepath, True)
 
+    def initialize_cipher(self):
+        self.cipher = Cipher(algorithms.AES(self.key), modes.CTR(self.key_counter_nonce), backend=crypto_backend)
+        self.encryptor = self.cipher.encryptor()
+        self.decryptor = self.cipher.decryptor()
+
     def create_key(self):
         """
         Create the AES Key to encrypt uploaded file.
         """
-        random_source = Random.new()
-        self.key = random_source.read(GLSetting.AES_key_size)
+        self.key = os.urandom(GLSetting.AES_key_size)
 
         self.key_id = xeger(GLSetting.AES_key_id_regexp)
         keypath = os.path.join(GLSetting.ramdisk_path, "%s%s" %
@@ -84,12 +92,12 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             keypath = os.path.join(GLSetting.ramdisk_path, "%s%s" %
                                     (GLSetting.AES_keyfile_prefix, self.key_id))
 
-        self.key_counter_prefix = random_source.read(GLSetting.AES_counter_prefix_size)
-        self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(GLSetting.AES_counter_size, prefix=self.key_counter_prefix))
+        self.key_counter_nonce = os.urandom(GLSetting.AES_counter_nonce)
+        self.initialize_cipher()
 
         saved_struct = {
             'key' : self.key,
-            'key_counter_prefix' : self.key_counter_prefix
+            'key_counter_nonce' : self.key_counter_nonce
         }
 
 
@@ -113,14 +121,23 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
 
         assert (self.last_action != 'read'), "you can write after read!"
+        
 
         self.last_action = 'write'
         try:
-            self.file.write(self.cipher.encrypt(data))
+            if isinstance(data, unicode):
+                data = data.encode('utf-8')
+
+            self.file.write(self.encryptor.update(data))
         except Exception as wer:
             import traceback
             log.err("Unable to write() in GLSecureTemporaryFile: %s" % wer.message)
             raise wer
+
+    def close(self):
+        if any(x in self.file.mode for x in 'wa') and not self.close_called:
+            self.file.write(self.encryptor.finalize())
+        return _TemporaryFileWrapper.close(self)
 
     def read(self, c=None):
         """
@@ -128,15 +145,14 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
         if self.last_action == 'write':
             self.seek(0, 0) # this is a trick just to misc write and read
-            self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(GLSetting.AES_counter_size, prefix=self.key_counter_prefix))
+            self.initialize_cipher()
             log.debug("First seek on %s" % self.filepath)
             self.last_action = 'read'
 
         if c is None:
-            return self.cipher.decrypt(self.file.read())
+            return self.decryptor.update(self.file.read())
         else:
-            return self.cipher.decrypt(self.file.read(c))
-
+            return self.decryptor.update(self.file.read(c))
 
 class KeyExpiredSadness(Exception): pass
 
@@ -175,8 +191,8 @@ class GLSecureFile(GLSecureTemporaryFile):
                 raise axa
 
             self.key = saved_struct['key']
-            self.key_counter_prefix = saved_struct['key_counter_prefix']
-            self.cipher = AES.new(self.key, AES.MODE_CTR, counter=Counter.new(GLSetting.AES_counter_size, prefix=self.key_counter_prefix))
+            self.key_counter_nonce = saved_struct['key_counter_nonce']
+            self.initialize_cipher()
 
         else:
 
@@ -211,10 +227,12 @@ def get_salt(salt_input):
     is performed a SHA512 hash of the salt_input string, and are returned 128bits
     of uniq data, converted in
     """
-    sha = SHA512.new()
-    sha.update(salt_input)
+    sha = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
+    sha.update(salt_input.encode('utf-8'))
     # hex require two byte each to describe 1 byte of entropy
-    return sha.hexdigest()[:SALT_LENGTH * 2]
+    h = sha.finalize()
+    digest = ''.join("%x" % ord(x) for x in h)
+    return digest[:SALT_LENGTH * 2]
 
 
 def hash_password(proposed_password, salt_input):

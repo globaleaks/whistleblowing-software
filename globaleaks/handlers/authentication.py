@@ -9,14 +9,13 @@ from twisted.internet import reactor
 from twisted.internet.defer import Deferred, inlineCallbacks
 from storm.exceptions import NotOneError
 from cyclone.util import ObjectDict as OD
-from Crypto import Random
 
 from globaleaks.models import Node, User
 from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.models import Receiver, WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
-from globaleaks.utils.utility import is_expired, log, datetime_now, get_future_epoch
+from globaleaks.utils.utility import is_expired, log, datetime_now, get_future_epoch, randint
 from globaleaks.third_party import rstr
 from globaleaks import security
 
@@ -59,7 +58,7 @@ def random_login_delay():
         else:
             max_sleep = 42
 
-        return Random.random.randint(min_sleep, max_sleep)
+        return randint(min_sleep, max_sleep)
 
     return 0
 

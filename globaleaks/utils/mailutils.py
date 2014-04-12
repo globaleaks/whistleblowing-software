@@ -27,13 +27,15 @@ from txsocksx.client import SOCKS5ClientEndpoint
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.header import Header
+
+from cryptography.hazmat.primitives import hashes
+
 from email import Charset
 
+from globaleaks import __version__
 from globaleaks.utils.utility import log
 from globaleaks.settings import GLSetting
-from globaleaks import __version__
-
-from Crypto.Hash import SHA256
+from globaleaks.security import crypto_backend
 
 # Relevant errors from http://tools.ietf.org/html/rfc4954
 smtp_errors = {
@@ -254,8 +256,10 @@ def mail_exception(etype, value, tback):
     This would be enabled only in the testing phase and testing release,
     not in production release.
     """
-
-    sha256 = SHA256.new(str(value)).hexdigest()
+    h = hashes.Hash(hashes.SHA256(), 
+                    backend=crypto_backend)
+    h.update(str(value))
+    sha256 = ''.join("%x" % ord(x) for x in h.finalize())
 
     if isinstance(value, GeneratorExit) or \
        isinstance(value, AlreadyCalledError) or \

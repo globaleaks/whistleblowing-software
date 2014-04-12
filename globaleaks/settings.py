@@ -19,8 +19,6 @@ import grp
 import getpass
 import transaction
 
-from Crypto import Random
-
 from ConfigParser import ConfigParser
 from optparse import OptionParser
 
@@ -263,8 +261,7 @@ class GLSettingsClass:
         # This key_id is just to identify the keys, and is generated with
         self.AES_key_id_regexp = u'[A-Za-z0-9]{16}'
         # nonce is used in hex therefore we double the right amount FIXME
-        self.AES_counter_prefix_size = 8
-        self.AES_counter_size = 64 # (self.AES_nonce_size * 8)
+        self.AES_counter_nonce = 128/8
         self.AES_file_regexp = r'(.*)\.aes'
         self.AES_file_regexp_comp = re.compile(self.AES_file_regexp)
 
