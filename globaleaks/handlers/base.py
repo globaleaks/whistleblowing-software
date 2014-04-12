@@ -15,7 +15,6 @@ import re
 import sys
 
 from Crypto.Hash import SHA256
-from twisted.python import components
 from twisted.python.failure import Failure
 from StringIO import StringIO
 
@@ -26,10 +25,10 @@ from twisted.internet import reactor, fdesc
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone import escape, httputil
-from cyclone.escape import native_str
+from cyclone.escape import native_str, parse_qs_bytes
 
 from globaleaks.jobs.statistics_sched import alarm_level
-from globaleaks.utils.utility import log, sanitize_str, uuid4
+from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html
 from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
@@ -171,7 +170,14 @@ class GLHTTPServer(HTTPConnection):
             self._request.body = data
             content_type = self._request.headers.get("Content-Type", "")
             if self._request.method in ("POST", "PATCH", "PUT"):
-                if content_type.startswith("application/x-www-form-urlencoded"):
+                if content_type.startswith("application/x-www-form-urlencoded") and self.content_length < GLSetting.www_form_urlencoded_maximum_size:
+                    arguments = parse_qs_bytes(native_str(self._request.body))
+                    for name, values in arguments.iteritems():
+                        values = [v for v in values if v]
+                        if values:
+                            self._request.arguments.setdefault(name,
+                                                               []).extend(values)
+                elif content_type.startswith("application/x-www-form-urlencoded"):
                     raise errors.InvalidInputFormat("content type application/x-www-form-urlencoded not supported")
                 elif content_type.startswith("multipart/form-data"):
                     raise errors.InvalidInputFormat("content type multipart/form-data not supported")
@@ -231,6 +237,8 @@ class BaseHandler(RequestHandler):
             Override needed to change name of header name
         """
         token = self.request.headers.get("X-XSRF-TOKEN")
+        if not token:
+            token = self.get_argument('xsrf-token', default=None)
         if not token:
             raise HTTPError(403, "X-XSRF-TOKEN argument missing from POST")
         if self.xsrf_token != token:
@@ -458,7 +466,8 @@ class BaseHandler(RequestHandler):
         """
         Record in the verbose log the content as defined by Cyclone wrappers.
         """
-        content = sanitize_str(content)
+        content = log_remove_escapes(content)
+        content = log_encode_html(content)
 
         try:
             with open(GLSetting.httplogfile, 'a+') as fd:
@@ -497,8 +506,12 @@ class BaseHandler(RequestHandler):
     @property
     def current_user(self):
         session_id = None
-
+        
         session_id = self.request.headers.get('X-Session')
+
+        if session_id is None:
+            # Check for POST based authentication.
+            session_id = self.get_argument('x-session', default=None)
 
         if session_id is None:
             return None
@@ -588,85 +601,6 @@ class BaseRedirectHandler(BaseHandler, RedirectHandler):
         """
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
-
-
-class _DownloadToken(components.Componentized):
-    """
-    An object that expire after a configurable amount of time.
-    Inspired to twisted.web.server.Session
-    """
-    tokenTimeout = 600
-
-    _expireCall = None
-
-    def expire(self):
-        """
-        Expire/Delete the object.
-        """
-        del GLSetting.download_tokens[self.id]
-        for c in self.expireCallbacks:
-            c()
-        self.expireCallbacks = []
-        if self._expireCall and self._expireCall.active():
-            self._expireCall.cancel()
-            # Break reference cycle.
-            self._expireCall = None
-
-
-class CollectionToken(_DownloadToken):
-    def __init__(self, id_val):
-        """
-        CollectionToken contain the temporary token to download a compressed archive
-        """
-        components.Componentized.__init__(self)
-
-        self.id = unicode(uuid4())
-
-        self.id_val = id_val
-        self.id_type = 'rtip' # this is just a debug/informative information
-
-        self.expireCallbacks = []
-
-        GLSetting.download_tokens[self.id] = self
-
-        self._expireCall = reactor.callLater(self.tokenTimeout, self.expire)
-
-    @staticmethod
-    def get(temporary_download_id):
-        if temporary_download_id in GLSetting.download_tokens:
-            if GLSetting.download_tokens[temporary_download_id].id_type == 'rtip':
-                return GLSetting.download_tokens[temporary_download_id].id_val
-
-        return None
-
-
-class FileToken(_DownloadToken):
-    def __init__(self, id_val):
-        """
-        FileToken contain the temporary token to download a single File
-        """
-        components.Componentized.__init__(self)
-
-        self.id = unicode(uuid4())
-
-        self.id_val = id_val
-        self.id_type = 'file' # this is just a debug/informative information
-
-        self.expireCallbacks = []
-
-        GLSetting.download_tokens[self.id] = self
-
-        self._expireCall = reactor.callLater(self.tokenTimeout, self.expire)
-
-    @staticmethod
-    def get(temporary_download_id):
-
-        if temporary_download_id in GLSetting.download_tokens:
-            if GLSetting.download_tokens[temporary_download_id].id_type == 'file':
-                return GLSetting.download_tokens[temporary_download_id].id_val
-
-        return None
-
 
 def anomaly_check(element):
     """
