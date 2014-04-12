@@ -161,6 +161,7 @@ class GLSettingsClass:
         # These value are then stored in the single instance
         # (Node, Receiver or Context) and then can be updated by
         # the admin using the Admin interface (advanced settings)
+        self.defaults.encrypted_only = False
         self.defaults.tor2web_admin = False
         self.defaults.tor2web_submission = False
         self.defaults.tor2web_receiver = False
@@ -183,6 +184,7 @@ class GLSettingsClass:
         self.memory_copy.maximum_filesize = self.defaults.maximum_filesize
         self.memory_copy.maximum_textsize = self.defaults.maximum_textsize
         self.memory_copy.maximum_namesize = self.defaults.maximum_namesize
+        self.memory_copy.encrypted_only = self.defaults.encrypted_only
         self.memory_copy.tor2web_admin = self.defaults.tor2web_admin
         self.memory_copy.tor2web_submission = self.defaults.tor2web_submission
         self.memory_copy.tor2web_receiver = self.defaults.tor2web_receiver
