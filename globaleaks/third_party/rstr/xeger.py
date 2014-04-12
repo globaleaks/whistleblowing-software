@@ -1,6 +1,6 @@
 import re
 import string
-from Crypto.Random.random import choice, randint
+from globaleaks.utils.utility import randint, random_choice
 from itertools import chain
 
 #The * and + characters in a regular expression
@@ -29,7 +29,7 @@ class Xeger(object):
                   }
 
         self._cases = {"literal": lambda x: unichr(x),
-             "not_literal": lambda x: choice(
+             "not_literal": lambda x: random_choice(
                                 string.printable.replace(unichr(x), '')),
              "at": lambda x: '',
              "in": lambda x: self._handle_in(x),
@@ -37,7 +37,7 @@ class Xeger(object):
              "range": lambda x: [unichr(i) for i in xrange(x[0], x[1]+1)],
              "category": lambda x: self._categories[x](),
              'branch': lambda x: ''.join(self._handle_state(i) for
-                                                            i in choice(x[1])),
+                                                            i in random_choice(x[1])),
              "subpattern": lambda x: self._handle_group(x),
              "assert": lambda x: ''.join(self._handle_state(i) for i in x[1]),
              "assert_not": lambda x: '',
@@ -78,9 +78,9 @@ class Xeger(object):
                                                      i in value)))
         if candidates[0] is False:
             candidates = set(string.printable).difference(candidates[1:])
-            return choice(list(candidates))
+            return random_choice(list(candidates))
         else:
-            return choice(candidates)
+            return random_choice(candidates)
 
     def _handle_repeat(self, start_range, end_range, value):
         result = []

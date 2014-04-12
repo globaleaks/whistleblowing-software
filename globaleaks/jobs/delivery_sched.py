@@ -460,7 +460,7 @@ class DeliverySchedule(GLJob):
                     yield do_final_internalfile_update(ifile_path, InternalFile._marker[2], plain_path)
 
                 except Exception as excep:
-                    log.err("Unable to create plaintext file %s: %s" % plain_path, excep)
+                    log.err("Unable to create plaintext file %s: %s" % (plain_path, excep))
 
             else: # are_all_encrypted:
                 log.debug("All Receivers support PGP, marking internalfile as removed")

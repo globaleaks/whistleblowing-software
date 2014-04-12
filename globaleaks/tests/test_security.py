@@ -3,12 +3,12 @@ import binascii
 import os
 import scrypt
 
-from Crypto.Hash import SHA512
+from cryptography.hazmat.primitives import hashes
 from twisted.trial import unittest
 
 from globaleaks.tests import helpers
 from globaleaks.security import get_salt, hash_password, check_password, change_password, SALT_LENGTH, \
-                                directory_traversal_check, GLSecureTemporaryFile, GLSecureFile
+                                directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, crypto_backend
 
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
@@ -28,19 +28,19 @@ class TestPasswordManagement(unittest.TestCase):
     def test_salt(self):
         dummy_string = "xxxxxx32312xxxxxx"
 
-        sha = SHA512.new()
+        sha = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
         sha.update(dummy_string)
 
-        complete_hex = sha.hexdigest()
+        complete_hex = ''.join("%x" % ord(x) for x in sha.finalize())
         self.assertEqual( complete_hex[:SALT_LENGTH],
                           get_salt(dummy_string)[:SALT_LENGTH] )
 
         new_dummy_string = "xxxxkkkk"
 
-        sha_second = SHA512.new()
+        sha_second = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
         sha_second.update(new_dummy_string)
 
-        complete_hex = sha_second.hexdigest()
+        complete_hex = ''.join("%x" % ord(x) for x in sha_second.finalize())
         self.assertEqual( complete_hex[:SALT_LENGTH],
                           get_salt(new_dummy_string)[:SALT_LENGTH] )
 
