@@ -67,6 +67,10 @@ def import_receivers(store, submission, receiver_id_list, required=False):
     # As first we check if Context has some policies
     if not context.selectable_receiver:
         for receiver in context.receivers:
+            # Skip adding receivers that don't have PGP enabled if encrypted only.
+            if GLSetting.memory_copy.encrypted_only and \
+                    receiver.gpg_key_status != u'Enabled':
+                continue
             # Add only the receiver not yet associated in Many-to-Many
             check = store.find(ReceiverInternalTip,
                 ( ReceiverInternalTip.receiver_id == receiver.id,
@@ -114,6 +118,10 @@ def import_receivers(store, submission, receiver_id_list, required=False):
             raise errors.InvalidInputFormat("Forged receiver selection, you fuzzer! <:")
 
         try:
+            if GLSetting.memory_copy.encrypted_only and \
+                    receiver.gpg_key_status != u'Enabled':
+                log.err("Encrypted only submissions are supported. Cannot select [%s]" % receiver_id)
+                continue
             submission.receivers.add(receiver)
         except Exception as excep:
             log.err("Receiver %s can't be assigned to the tip [%s]" % (receiver_id, excep) )
@@ -121,10 +129,10 @@ def import_receivers(store, submission, receiver_id_list, required=False):
 
         log.debug("+receiver [%s] In tip (%s) #%d" %\
                 (receiver.name, submission.id, submission.receivers.count() ) )
-
+    
     if required and submission.receivers.count() == 0:
         log.err("Receivers required to be selected, not empty")
-        raise errors.SubmissionFailFields("Needed almost one Receiver selected [2]")
+        raise errors.SubmissionFailFields("Needed at least one Receiver selected [2]")
 
 
 # Remind: it's a store without @transaction because called by a @ŧransact
