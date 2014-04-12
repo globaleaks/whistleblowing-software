@@ -13,26 +13,28 @@ import collections
 import json
 import re
 import sys
+import logging
 
-from Crypto.Hash import SHA256
-from twisted.python.failure import Failure
 from StringIO import StringIO
-
-from cgi import parse_header 
+from cgi import parse_header
 from urllib import unquote
+from cryptography.hazmat.primitives.constant_time import bytes_eq
 
-from twisted.internet import reactor, fdesc
+from twisted.python.failure import Failure
+from twisted.internet.defer import inlineCallbacks
+from twisted.internet import fdesc
+
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone import escape, httputil
 from cyclone.escape import native_str, parse_qs_bytes
 
 from globaleaks.jobs.statistics_sched import alarm_level
-from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html
+from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now
 from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
-from globaleaks.security import GLSecureTemporaryFile
+from globaleaks.security import GLSecureTemporaryFile, security_sleep
 
 def validate_host(host_key):
     """
@@ -196,9 +198,12 @@ class BaseHandler(RequestHandler):
 
     def set_default_headers(self):
         """
-            In this function are written some security enforcements
-            related to WebServer versioning and XSS attacks.
+        In this function are written some security enforcements
+        related to WebServer versioning and XSS attacks.
+
+        This is the first function called when a new request reach GLB
         """
+        self.request.start_time = datetime_now()
 
         # just reading the property is enough to
         # set the cookie as a side effect.
@@ -241,7 +246,9 @@ class BaseHandler(RequestHandler):
             token = self.get_argument('xsrf-token', default=None)
         if not token:
             raise HTTPError(403, "X-XSRF-TOKEN argument missing from POST")
-        if self.xsrf_token != token:
+
+        # This is a constant time comparison provided by cryptography package
+        if not bytes_eq(self.xsrf_token, token):
             raise HTTPError(403, "XSRF cookie does not match POST argument")
 
 
@@ -386,7 +393,7 @@ class BaseHandler(RequestHandler):
         """
 
         # just reading the property is enough to
-        # set the cookie as a side effect).
+        # set the cookie as a side effect.
         self.xsrf_token
 
         if not validate_host(self.request.host):
@@ -495,6 +502,7 @@ class BaseHandler(RequestHandler):
         """
         This is a monkey patch to RequestHandler to allow us to serialize also
         json list objects.
+
         """
         if isinstance(chunk, types.ListType):
             chunk = escape.json_encode(chunk)
@@ -503,10 +511,42 @@ class BaseHandler(RequestHandler):
         else:
             RequestHandler.write(self, chunk)
 
+
+    @inlineCallbacks
+    def uniform_answers_delay(self):
+        """
+        @return: nothing. just put a delay to normalize a minimum
+           amount of time used by requests. this impair time execution analysis
+
+        this safety measure, able to counteract some side channel attacks, is
+        automatically disabled when the option -z and -l DEBUG are present
+        (because mean that is run in development mode)
+        """
+
+        if GLSetting.loglevel == logging.DEBUG and GLSetting.devel_mode:
+            return
+
+        uniform_delay = 0.800
+        request_time = self.request.request_time()
+        needed_diff = uniform_delay - request_time
+
+        if needed_diff > 0:
+            #print "uniform delay of %.2fms to reach %.2fms" % (
+            #    (1000.0 * needed_diff),
+            #    (1000.0 * uniform_delay)
+            #)
+            yield security_sleep(needed_diff)
+        else:
+            #print "uniform delay of %.2fms it's more than %.2fms" % (
+            #    (1000.0 * request_time ), (1000.0 * uniform_delay)
+            #)
+            pass
+
+
     @property
     def current_user(self):
         session_id = None
-        
+
         session_id = self.request.headers.get('X-Session')
 
         if session_id is None:

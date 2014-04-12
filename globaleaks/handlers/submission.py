@@ -1,4 +1,5 @@
 # -*- coding: UTF-8
+#
 #   submission
 #   **********
 #
@@ -60,7 +61,7 @@ def create_whistleblower_tip(store, submission_desc):
     return return_value_receipt
 
 
-# Remind: it's a store without @transaction because called by a @ŧransact
+# Remind: has a store between argumentos because called by a @ŧransact
 def import_receivers(store, submission, receiver_id_list, required=False):
     context = submission.context
 
@@ -313,7 +314,6 @@ def delete_submission(store, submission_id):
 
 class SubmissionCreate(BaseHandler):
     """
-    U2
     This class create the submission, receiving a partial wbSubmissionDesc, and
     returning a submission_id, usable in update operation.
     """
@@ -357,7 +357,6 @@ class SubmissionCreate(BaseHandler):
 
 class SubmissionInstance(BaseHandler):
     """
-    U3
     This is the interface for create, populate and complete a submission.
     Relay in the client-server update and exchange of the submissionStatus message.
     """

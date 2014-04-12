@@ -6,6 +6,7 @@ from globaleaks.handlers import authentication, admin, base
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks.utils.utility import datetime_now, datetime_null, get_future_epoch
+from globaleaks import security
 
 
 class ClassToTestUnauthenticatedDecorator(base.BaseHandler):
@@ -334,7 +335,7 @@ class TestAuthentication(helpers.TestHandler):
         def fake_sleep(seconds):
             sleep_list.append(seconds)
 
-        authentication.security_sleep = fake_sleep
+        security.security_sleep = fake_sleep
 
         failed_login = 7
         for i in xrange(0, failed_login):

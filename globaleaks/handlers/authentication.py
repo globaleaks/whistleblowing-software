@@ -5,8 +5,7 @@
 #
 # Files collection handlers and utils
 
-from twisted.internet import reactor
-from twisted.internet.defer import Deferred, inlineCallbacks
+from twisted.internet.defer import inlineCallbacks
 from storm.exceptions import NotOneError
 from cyclone.util import ObjectDict as OD
 
@@ -19,17 +18,6 @@ from globaleaks.utils.utility import is_expired, log, datetime_now, get_future_e
 from globaleaks.third_party import rstr
 from globaleaks import security
 
-def security_sleep(timeout):
-    """
-    @param timeout: this sleep is called to slow down bruteforce attacks
-    @return:
-    """
-    def callbackDeferred():
-        d.callback(True)
-
-    d = Deferred()
-    reactor.callLater(timeout, callbackDeferred)
-    return d
 
 def random_login_delay():
     """
@@ -112,7 +100,6 @@ def authenticated(role):
             copy_role = cls.current_user.role
 
             if not update_session(cls.current_user):
-                # TODO possible extension of debug in error: print the request failed
                 if copy_role == 'admin':
                     raise errors.AdminSessionExpired()
                 elif copy_role == 'wb':
@@ -120,7 +107,7 @@ def authenticated(role):
                 elif copy_role == 'receiver':
                     raise errors.ReceiverSessionExpired()
                 else:
-                    raise AssertionError
+                    raise AssertionError("Developer mistake: %s" % cls.current_user)
 
             if role == '*' or role == cls.current_user.role:
                 log.debug("Authentication OK (%s)" % cls.current_user.role )
@@ -341,7 +328,7 @@ class AuthenticationHandler(BaseHandler):
 
         delay = random_login_delay()
         if delay:
-            yield security_sleep(delay)
+            yield security.security_sleep(delay)
 
         if role not in ['admin', 'wb', 'receiver']:
            raise errors.InvalidInputFormat("Authentication role %s" % str(role) )
@@ -410,6 +397,7 @@ class AuthenticationHandler(BaseHandler):
             log.err("Invalid role proposed to authenticate!")
             raise errors.InvalidAuthRequest
 
+        yield self.uniform_answers_delay()
         self.write(auth_answer)
 
 

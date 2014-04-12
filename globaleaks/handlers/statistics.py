@@ -42,7 +42,9 @@ def admin_serialize_stats(store, language=GLSetting.memory_copy.default_language
 
 class AnomaliesCollection(BaseHandler):
     """
-    (r'/admin/anomalies', statistics.AnomaliesCollection),
+    This Handler returns the list of the triggered anomalies based on
+    activity monitored in a timedelta (is considered anomalous if they
+    reach the thresholds defined in GLSettings)
     """
 
     @transport_security_check("admin")
@@ -50,7 +52,7 @@ class AnomaliesCollection(BaseHandler):
     def get(self, *uriargs):
 
         # are kept the last 'GLSetting.anomalies_report_limit' number of informative element
-	# because they are kept in memory. they are not lost, but summed in the statistics
+        # because they are kept in memory. they are not lost, but summed in the statistics
         if len(GLSetting.anomalies_messages) > GLSetting.anomalies_report_limit:
             GLSetting.anomalies_messages = GLSetting.anomalies_messages[:GLSetting.anomalies_report_limit]
 
@@ -59,7 +61,8 @@ class AnomaliesCollection(BaseHandler):
 
 class StatsCollection(BaseHandler):
     """
-    (r'/admin/stats', statistics.StatsCollection),
+    This Handler returns the list of the stats, stats is the aggregated amount of
+    activities recorded in the delta defined in GLSettings
     """
 
     @transport_security_check("admin")
