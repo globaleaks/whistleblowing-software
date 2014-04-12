@@ -14,7 +14,7 @@ import StringIO
 from urllib import quote
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.files import download_all_files, serialize_file
+from globaleaks.handlers.files import download_all_files, serialize_receiver_file
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated, authenticated
 from globaleaks.handlers import admin
 from globaleaks.rest import errors
@@ -22,7 +22,7 @@ from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.utils.zipstream import ZipStream, ZIP_STORED, ZIP_DEFLATED
 from globaleaks.plugins.base import Event
 from globaleaks.jobs.notification_sched import serialize_receivertip
-from globaleaks.models import ReceiverTip
+from globaleaks.models import ReceiverTip, ReceiverFile
 from globaleaks.utils.utility import log
 from globaleaks.utils.templating import Templating
 
@@ -59,10 +59,12 @@ def get_collection_info(store, rtip_id):
     collection_dict['files'] = []
     collection_dict['files_number'] = 0
     collection_dict['total_size'] = 0
-    for internalf in rtip.internaltip.internalfiles:
+
+    rfiles = store.find(ReceiverFile, ReceiverFile.receiver_tip_id == rtip_id)
+    for rf in rfiles:
         collection_dict['files_number'] += 1
-        collection_dict['total_size'] += internalf.size
-        collection_dict['files'].append(serialize_file(internalf))
+        collection_dict['total_size'] += rf.size
+        collection_dict['files'].append(serialize_receiver_file(rf))
 
     return collection_dict
 
