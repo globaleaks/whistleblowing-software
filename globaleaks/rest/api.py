@@ -103,7 +103,6 @@ spec = [
     (r'/admin/overview/tips', overview.Tips),
     (r'/admin/overview/users', overview.Users),
     (r'/admin/overview/files', overview.Files),
-    (r'/admin/statistics', overview.StatsCollection)
 
 ]
 
