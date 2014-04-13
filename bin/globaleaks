@@ -153,6 +153,10 @@ GLSetting.parser.add_option("-P", "--socks-port", type="int",
     help="set Socks port to use for Tor [default: %default]",
     dest="socks_port", default=GLSetting.socks_port)
 
+GLSetting.parser.add_option("-t", "--delay", type="int",
+    help="security delay threshold to prevent side channels analysis (ms) [default: 800]",
+    dest="delay", default=800)
+
 GLSetting.parser.add_option("-d", "--disable-tor-socks", action='store_true',
     help="disable Tor Socks for notifications [default: Tor enabled]",
     dest="disable_tor_socks", default=(not GLSetting.tor_socks_enable))

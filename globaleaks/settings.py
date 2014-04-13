@@ -208,6 +208,8 @@ class GLSettingsClass:
         # maximum amount of element riported by /admin/anomalies and /admin/stats
         self.anomalies_report_limit = 20
 
+        # Default delay threshold
+        self.delay_threshold = 0.800
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
@@ -264,6 +266,8 @@ class GLSettingsClass:
         # key is initialized and stored in key path.
         # key_id contains an identifier of the key (when system reboots,
         # key changes.
+        ### you can read more about this security measure in the document:
+        ### https://github.com/globaleaks/GlobaLeaks/wiki/Encryption
         self.AES_key_size = 32
         # This key_id is just to identify the keys, and is generated with
         self.AES_key_id_regexp = u'[A-Za-z0-9]{16}'
@@ -271,10 +275,6 @@ class GLSettingsClass:
         self.AES_counter_nonce = 128/8
         self.AES_file_regexp = r'(.*)\.aes'
         self.AES_file_regexp_comp = re.compile(self.AES_file_regexp)
-
-        # you can read more about this security measure in the document:
-        # TODO + issue!
-
         self.AES_keyfile_prefix = "aeskey-"
 
         self.exceptions = {}
@@ -309,7 +309,8 @@ class GLSettingsClass:
             self.db_pasword = config.get('db', 'password')
             self.db_hostname = config.get('db', 'hostname')
             self.db_name = config.get('db', 'name')
-            print "DB Configuration detected!", self.db_hostname, self.db_username, self.db_type
+            print "'\033[1;33m*Experimental* DB Configuration detected!", \
+                self.db_hostname, self.db_username, self.db_type
 
         # this is the default, happen when file above is not found
         if self.db_type == 'sqlite':
@@ -397,6 +398,17 @@ class GLSettingsClass:
         if not self.validate_port(self.cmdline_options.socks_port):
             quit(-1)
         self.socks_port = self.cmdline_options.socks_port
+
+        try:
+            self.delay_threshold = (int(self.cmdline_options.delay) / 1000.0)
+
+            if self.delay_threshold > 2:
+                print "[?] Are you sure ? You've set a security delay of", \
+                    self.delay_threshold, "seconds"
+        except ValueError:
+            print "Invalid delay inserted, a number of milliseconds is required"
+            quit(-1)
+
 
         if self.cmdline_options.ramdisk:
             self.ramdisk_path = self.cmdline_options.ramdisk
