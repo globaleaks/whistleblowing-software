@@ -526,7 +526,7 @@ class BaseHandler(RequestHandler):
         if GLSetting.loglevel == logging.DEBUG and GLSetting.devel_mode:
             return
 
-        uniform_delay = 0.800
+        uniform_delay = GLSetting.delay_threshold # default 0.800
         request_time = self.request.request_time()
         needed_diff = uniform_delay - request_time
 
