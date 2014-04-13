@@ -201,6 +201,9 @@ This comment is needed in order to push the following strings on transifex
                 <td data-ng-show="file.status == 'unavailable'">
                   <div class="label label-warning" popover="{{ 'The file is unavailable due to an internal error.' | translate }}" popover-placement="bottom" popover-trigger="mouseenter" data-translate>file unavailable</div>
                 </td>
+                <td data-ng-show="file.status == 'nokey'">
+                  <div class="label label-warning" popover="{{ 'The file is unavailable due to missing pgp key.' | translate }}" popover-placement="bottom" popover-trigger="mouseenter" data-translate>file unavailable</div>
+                </td>
                 <td>
                   {{file.creation_date | date:'dd-MM-yyyy' }}
                 </td>
