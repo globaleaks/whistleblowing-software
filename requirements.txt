@@ -1,6 +1,4 @@
 Twisted==13.2.0
-zope.component==4.2.1
-zope.interface==4.1.1
 cyclone==1.1
 Storm==0.20
 transaction==1.4.3
