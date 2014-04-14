@@ -64,6 +64,11 @@ class Context_version_11(Model):
     show_small_cards = Bool()
     presentation_order = Int()
 
+class ApplicationData_version_11(Model):
+    __storm_table__ = 'applicationdata'
+    fields_version = Int()
+    fields = Pickle()
+
 
 class Replacer1112(TableReplacer):
 
@@ -88,6 +93,23 @@ class Replacer1112(TableReplacer):
             setattr(new_node, v.name, getattr(old_node, v.name) )
 
         self.store_new.add(new_node)
+        self.store_new.commit()
+
+    def migrate_ApplicationData(self):
+        print "%s ApplicationData migration assistant: (fields_version rename)" % self.std_fancy
+
+        old_ad = self.store_old.find(self.get_right_model("ApplicationData", 11)).one()
+        new_ad = self.get_right_model("ApplicationData", 12)()
+
+        for k, v in new_ad._storm_columns.iteritems():
+
+            if v.name == 'version' :
+                new_ad.version = old_ad.fields_version
+                continue
+
+            setattr(new_ad, v.name, getattr(old_ad, v.name))
+
+        self.store_new.add(new_ad)
         self.store_new.commit()
 
     # Context migration: is removed the receipt by the default bahavior
