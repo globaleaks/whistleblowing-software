@@ -42,7 +42,7 @@ def opportunistic_appdata_init():
                 return appdata_dict
 
     if not appdata_dict:
-        print "Note: no app data init opportunity!"
+        print "No GLClient (appdata_l10n.json) file found in fixed paths!"
         return dict({'version': 1, 'fields': []}) # empty!
 
     return appdata_dict

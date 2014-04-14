@@ -243,7 +243,7 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
         if node.wizard_done:
             log.err("wizard completed more than one time!?")
         else:
-            log.err("wizard completed: Node initialized")
+            log.debug("wizard completed: Node initialized")
             node.wizard_done = True
 
     # name, description tor2web boolean value are acquired here
@@ -391,6 +391,7 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
             raise errors.ReceiverIdNotFound
         c.receivers.add(receiver)
 
+    log.debug("Created context %s (using %s)" % (context_name, language) )
     return admin_serialize_context(context, language)
 
 @transact
