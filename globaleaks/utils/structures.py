@@ -184,20 +184,20 @@ class Fields:
 
         self.debug_status('after update')
 
-    def validate_fields(self, wb_fields, strict_validation):
+    def validate_fields(self, wb_fields, lang, strict_validation):
         """
         @param wb_fields: the received wb_fields
-        @param configured_fields: the Context defined wb_fields
+        @param lang: the language used to perform submission
+        @param strict_validation: required the presence of 'required' wb_fields.
+            Is not enforced if Submission would not be finalized yet.
         @return: update the object of raise an Exception if a required field
             is missing, or if received field do not match the expected shape
-
-        strict_validation = required the presence of 'required' wb_fields.
-        Is not enforced if Submission would not be finalized yet.
         """
+
         required_keys = list()
         optional_keys = list()
 
-        self.debug_status('fields validation')
+        self.debug_status('fields validation - submission in "%s"' % lang)
         try:
             for k, v in self._fields.iteritems():
 
@@ -210,6 +210,9 @@ class Fields:
             log.err("Internal error in processing required keys: %s" % excep)
             raise excep
 
+        if not self._localization.has_key(lang):
+            raise InvalidInputFormat("Submitted content in an unsupported language (%s)" % lang)
+
         for key, field in wb_fields.iteritems():
 
             if not key in required_keys and not key in optional_keys:
@@ -217,11 +220,13 @@ class Fields:
                 raise SubmissionFailFields("Submitted field '%s' not expected in context" % key)
 
             if not isinstance(wb_fields[key], dict):
-                raise InvalidInputFormat("Submitted field not in dict format")
+                raise InvalidInputFormat("Submitted content '%s' wrong format (not a dict)" %
+                                         self._localization[lang][key]['name'])
 
             for k in ['value', 'answer_order']:
                 if k not in wb_fields[key]:
-                    raise InvalidInputFormat("Submitted field dict is missing %s key" % k)
+                    raise InvalidInputFormat("Submitted field %s is malformed (missing %s)" %
+                                             (self._localization[lang][key]['name'], k) )
 
         if not strict_validation:
             return
