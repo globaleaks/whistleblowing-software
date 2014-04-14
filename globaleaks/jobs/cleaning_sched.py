@@ -98,7 +98,7 @@ def itip_cleaning(store, tip_id):
                 except OSError as excep:
                     log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
             else:
-                if rfile.status != 'encrypted': # encrypted is the only status where the file need to be deleted.
+                if rfile.status == 'encrypted': # encrypted is the only status where the file need to be deleted.
                                                 # other cases are:
                                                 # - reference: the ifile removal is handled above
                                                 # - nokey and unavailable are the error cases where the file does not exist
