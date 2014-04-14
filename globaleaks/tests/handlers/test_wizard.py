@@ -6,6 +6,9 @@ from globaleaks.handlers import wizard
 
 fields_blob = {
    "version":1,
+   "node_subtitle": { "en": "subtitle bello"},
+   "node_footer": { "en": "footer brutto"},
+   "node_presentation": { "en": "presentation cattivo"},
    "fields": [
      {
        "incremental_number":0,
@@ -47,7 +50,7 @@ fields_blob = {
 }
 
 class TestWizardCollection(helpers.TestHandler):
-    _handler = wizard.FieldsCollection
+    _handler = wizard.AppdataCollection
 
     @inlineCallbacks
     def test_post(self):

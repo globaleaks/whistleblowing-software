@@ -45,7 +45,10 @@ wizardFieldDesc = {
 
 wizardFieldUpdate = {
     "version": int,
-    "fields": [ wizardFieldDesc ]
+    "fields": [ wizardFieldDesc ],
+    'node_presentation': dict,
+    'node_footer': dict,
+    'node_subtitle': dict,
 }
 
 
@@ -202,5 +205,5 @@ wizardFirstSetup = {
     'receiver' : adminReceiverDesc,
     'context' : adminContextDesc,
     'node' : adminNodeDesc,
-    'fields' : wizardFieldUpdate,
+    'appdata' : wizardFieldUpdate,
 }

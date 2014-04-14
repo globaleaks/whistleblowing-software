@@ -94,7 +94,7 @@ spec = [
 
     (r'/admin/wizard', wizard.FirstSetup),
 
-    (r'/admin/fields', wizard.FieldsCollection),
+    (r'/admin/appdata', wizard.AppdataCollection),
     # (r'/admin/templates', wizard.TemplateCollection),
 
     (r'/admin/staticfiles', admstaticfiles.StaticFileList),

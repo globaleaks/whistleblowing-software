@@ -267,7 +267,7 @@ CREATE TABLE whistleblowertip (
 CREATE TABLE applicationdata (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
-    fields_version INT NOT NULL,
+    version INT NOT NULL,
     fields BLOB,
     PRIMARY KEY (id)
 );
