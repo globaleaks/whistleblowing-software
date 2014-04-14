@@ -102,7 +102,6 @@ class TestTransaction(helpers.TestGLWithPopulatedDB):
         context.description = context.name = \
             context.submission_disclaimer = \
             context.submission_introduction = { "en" : u'Localized723' }
-        context.receipt_regexp = u"unipop547"
         store.add(context)
         return context.id
 

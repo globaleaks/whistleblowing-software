@@ -25,7 +25,6 @@ class TestModels(helpers.TestGL):
         context.description = context.name = \
             context.submission_disclaimer = \
             context.submission_introduction = { "en" : u'Localized723' }
-        context.receipt_regexp = u"unipop547"
         store.add(context)
         return context.id
 
@@ -105,7 +104,6 @@ class TestModels(helpers.TestGL):
         context.description = context.name = \
             context.submission_disclaimer = \
             context.submission_introduction = { "en" : u'Localized76w' }
-        context.receipt_regexp = u"unipop09876"
 
         receiver1 = Receiver(r)
         receiver2 = Receiver(r)
@@ -151,7 +149,6 @@ class TestModels(helpers.TestGL):
         context1.description = context1.name = \
             context1.submission_disclaimer = \
             context1.submission_introduction = { "en" : u'Valar Morghulis' }
-        context1.receipt_regexp = u"unipop254"
 
         context2 = Context(c)
 
@@ -162,7 +159,6 @@ class TestModels(helpers.TestGL):
         context2.description = context2.name =\
             context2.submission_disclaimer = \
             context2.submission_introduction = { "en" : u'Valar Dohaeris' }
-        context2.receipt_regexp = u"unipop43423"
 
         receiver.contexts.add(context1)
         receiver.contexts.add(context2)

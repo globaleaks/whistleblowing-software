@@ -66,7 +66,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         status = yield submission.create_submission(submission_desc, finalize=True)
         receipt = yield submission.create_whistleblower_tip(status)
 
-        retval = re.match(self.dummyContext['receipt_regexp'], receipt)
+        retval = re.match(self.dummyNode['receipt_regexp'], receipt)
         self.assertTrue(retval)
 
     @inlineCallbacks

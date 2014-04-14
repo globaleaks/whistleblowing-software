@@ -79,9 +79,10 @@ def create_tables(create_node=True):
                                  u"Copyright 2011-2014 Hermes Center for Transparency and Digital Human Rights" }),
             'subtitle': dict({ GLSetting.memory_copy.default_language :
                                    u"Hi! I'm the subtitle ð <: change me" }),
-            'hidden_service':  u"",
-            'public_site':  u"",
-            'email':  u"email@dummy.net",
+            'hidden_service': u"",
+            'public_site': u"",
+            'email': u"email@dummy.net",
+            'receipt_regexp': u"[0-9]{16}",
             'stats_update_time':  2, # hours,
             # advanced settings
             'maximum_filesize' : GLSetting.defaults.maximum_filesize,

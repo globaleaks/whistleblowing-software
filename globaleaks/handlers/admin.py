@@ -369,10 +369,6 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
         log.err("Invalid request: name is an empty string")
         raise errors.InvalidInputFormat("Context name is missing (1 char required)")
 
-    if context.receipt_regexp == u'' or context.receipt_regexp is None:
-        log.err("Missing receipt regexp, using default fixme-[0-9]{13}-please")
-        context.receipt_regexp = u"fixme-[0-9]{13}-please"
-
     if context.escalation_threshold and context.selectable_receiver:
         log.err("Parameter conflict in context creation")
         raise errors.ContextParameterConflict
@@ -395,8 +391,7 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
             raise errors.ReceiverIdNotFound
         c.receivers.add(receiver)
 
-    receipt_example = generate_example_receipt(context.receipt_regexp)
-    return admin_serialize_context(context, receipt_example, language)
+    return admin_serialize_context(context, language)
 
 @transact
 def create_context(store, request, language=GLSetting.memory_copy.default_language):
@@ -414,8 +409,7 @@ def get_context(store, context_id, language=GLSetting.memory_copy.default_langua
         log.err("Requested invalid context")
         raise errors.ContextIdNotFound
 
-    receipt_example = generate_example_receipt(context.receipt_regexp)
-    return admin_serialize_context(context, receipt_example, language)
+    return admin_serialize_context(context, language)
 
 @transact
 def update_context(store, context_id, request, language=GLSetting.memory_copy.default_language):
@@ -480,8 +474,7 @@ def update_context(store, context_id, request, language=GLSetting.memory_copy.de
         log.err("Unable to update context %s: %s" % (context.name, dberror))
         raise errors.InvalidInputFormat(dberror)
 
-    receipt_example = generate_example_receipt(context.receipt_regexp)
-    return admin_serialize_context(context, receipt_example, language)
+    return admin_serialize_context(context, language)
 
 @transact
 def delete_context(store, context_id):
