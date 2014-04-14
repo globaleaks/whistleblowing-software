@@ -33,7 +33,9 @@ GLCrypto.getRandomBytes = function () {
 };
 
 GLCrypto.randomString = function (length) {
-  var possibleChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+  /* TODO find a random password generation in JS (wordlist ?) */
+
+  var possibleChars = 'abcdefghijklmnopqrstuvwxyz0123456789',
     randomBytes = GLCrypto.getRandomBytes(),
     result = '';
 
@@ -54,7 +56,7 @@ GLCrypto.randomString = function (length) {
     }
     
     // the strings are checked to contains both characters and numbers
-  } while((result.match(/^[A-Za-z]*$/) && result.match(/^[\d]*$/)));
+  } while((result.match(/^[a-z]*$/) || result.match(/^[\d]*$/)));
 
   return result;
 };

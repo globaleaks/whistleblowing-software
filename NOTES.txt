@@ -11,6 +11,10 @@
 
    grunt build
 
+### Helps for lazy developers
+
+   npm install -d && bower update -f && grunt build
+
 ### Fetch updated translation
 
    $ grunt updateTranslations
