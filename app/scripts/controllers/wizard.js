@@ -1,6 +1,6 @@
-GLClient.controller('WizardCtrl', ['$scope', '$location', '$http', 'Admin',
+GLClient.controller('WizardCtrl', ['$scope', '$location', '$http', '$modal', 'Admin',
                     'DefaultFields', 'passwordWatcher',
-                    'changePasswordWatcher', function($scope, $location, $http,
+                    'changePasswordWatcher', function($scope, $location, $http, $modal,
                                                       Admin, DefaultFields,
                                                       passwordWatcher,
                                                       changePasswordWatcher) {
@@ -17,6 +17,20 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$http', 'Admin',
 
       });
     }
+
+    $scope.open_modal_allow_unencrypted = function() {
+      if ($scope.admin.node.allow_unencrypted)
+        return;
+      var modalInstance = $modal.open({
+        templateUrl: 'views/partials/disable_encryption.html',
+        controller: 'DisableEncryptionCtrl',
+      });
+
+      modalInstance.result.then(function(result){
+        $scope.admin.node.allow_unencrypted = result;
+      });
+    };
+
 
     $scope.finish = function() {
       DefaultFields.get(function(res) {

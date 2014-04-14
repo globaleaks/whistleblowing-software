@@ -117,7 +117,7 @@ This comment is needed in order to push the following strings on transifex
           <div class="form-group col-md-3">
             <div data-ng-click="switch_selection(receiver)" class="receiverCard" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.disabled}">
               <div class="row receiverCardTitle">
-                <div class="col-md-9" ng-hide="receiver.disabled">
+                <div class="col-md-9">
                   <label>
                     <span data-ng-switch="" on="receiver.gpg_key_status">
                       <span data-ng-switch-when="Enabled">
@@ -129,17 +129,17 @@ This comment is needed in order to push the following strings on transifex
                     </span>
                     &nbsp;{{receiver.name}}
                   </label>
+                  <div data-ng-show="receiver.disabled">
+                    <span data-translate>Disabled</span>
+                  </div>
                 </div>
 
-                <div class="col-md-1">
+                <div class="col-md-1" ng-hide="receiver.disabled">
                   <div data-ng-show="submission.receivers_selected[receiver.id]">
                     <i class="glyphicon glyphicon-check" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </div>
                   <div data-ng-show="!submission.receivers_selected[receiver.id]">
                     <i class="glyphicon glyphicon-unchecked" popover="{{ 'Deselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
-                  </div>
-                  <div data-ng-show="receiver.gpg_key_status != 'Enabled' && node.encrypted_only">
-                    <i class="glyphicon">Cannot select this receiver</i>
                   </div>
                 </div>
               </div>
