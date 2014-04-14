@@ -156,7 +156,6 @@ class Context(Model):
     file_required = Bool()
     tip_timetolive = Int()
     submission_timetolive = Int()
-    receipt_regexp = Unicode()
     last_update = DateTime()
     tags = Pickle()
 
@@ -184,7 +183,7 @@ class Context(Model):
 
     presentation_order = Int()
 
-    unicode_keys = [ 'receipt_regexp' ]
+    unicode_keys = [ ]
     localized_strings = ['name', 'description',
                          'receiver_introduction', 'fields_introduction' ]
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'file_max_download',
@@ -387,6 +386,8 @@ class Node(Model):
     email = Unicode()
     receipt_salt = Unicode()
     last_update = DateTime()
+    # this has a dedicated validator in update_node()
+    receipt_regexp = Unicode()
 
     languages_enabled = Pickle()
     default_language = Unicode()
@@ -421,8 +422,8 @@ class Node(Model):
     exception_email = Unicode()
 
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
-                    'exception_email', 'default_language' ]
-    int_keys = [ 'stats_update_time', 'maximum_namesize', 
+                    'exception_email', 'default_language', 'receipt_regexp' ]
+    int_keys = [ 'stats_update_time', 'maximum_namesize',
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',

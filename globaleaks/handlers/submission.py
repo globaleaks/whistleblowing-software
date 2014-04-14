@@ -48,10 +48,9 @@ def create_whistleblower_tip(store, submission_desc):
 
     wbtip = WhistleblowerTip()
 
-    context = store.find(Context, Context.id == submission_desc['context_id']).one()
-
-    return_value_receipt = unicode( rstr.xeger(context.receipt_regexp) )
     node = store.find(Node).one()
+
+    return_value_receipt = unicode( rstr.xeger(node.receipt_regexp) )
     wbtip.receipt_hash = security.hash_password(return_value_receipt, node.receipt_salt)
 
     wbtip.access_counter = 0
