@@ -70,18 +70,14 @@ def create_tables(create_node=True):
         log.debug("Node initialization with defaults values")
 
         only_node = {
-            'name':  u"Node Title",
-            'description':  dict({ GLSetting.memory_copy.default_language:
-                                       u"This is the description of your node. PLEASE CHANGE ME." }),
-            'presentation':  dict({ GLSetting.memory_copy.default_language :
-                                        u"Welcome to GlobaLeaks™" }),
-            'footer': dict({ GLSetting.memory_copy.default_language :
-                                 u"Copyright 2011-2014 Hermes Center for Transparency and Digital Human Rights" }),
-            'subtitle': dict({ GLSetting.memory_copy.default_language :
-                                   u"Hi! I'm the subtitle ð <: change me" }),
-            'hidden_service': u"",
-            'public_site': u"",
-            'email': u"email@dummy.net",
+            'name':  u"",
+            'description':  dict({ GLSetting.memory_copy.default_language: u"" }),
+            'presentation':  dict({ GLSetting.memory_copy.default_language: u"" }),
+            'footer':  dict({ GLSetting.memory_copy.default_language: u"" }),
+            'subtitle':  dict({ GLSetting.memory_copy.default_language: u"" }),
+            'hidden_service':  u"",
+            'public_site':  u"",
+            'email':  u"email@dummy.net",
             'receipt_regexp': u"[0-9]{16}",
             'stats_update_time':  2, # hours,
             # advanced settings

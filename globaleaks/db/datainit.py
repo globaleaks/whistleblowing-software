@@ -23,17 +23,19 @@ def opportunistic_appdata_init():
 
     # Fields and applicative data initialization
 
-    fields_l10n = [ "/usr/share/globaleaks/glclient/data/fields_l10n.json",
-                    "../GLClient/app/data/fields_l10n.json",
-                    "../../GLClient/app/data/fields_l10n.json"]
+    fields_l10n = [ "/usr/share/globaleaks/glclient/data/appdata_l10n.json",
+                    "../GLClient/app/data/appdata_l10n.json",
+                    "../GLClient/build/data/appdata_l10n.json",
+                    "../../GLClient/app/data/appdata_l10n.json",
+                    "../../GLClient/build/data/appdata_l10n.json"]
 
     appdata_dict = None
 
-    for f710n in fields_l10n:
+    for fl10n in fields_l10n:
 
-        if os.path.exists(f710n):
+        if os.path.exists(fl10n):
 
-            with file(f710n, 'r') as f:
+            with file(fl10n, 'r') as f:
                 import json
                 json_string = f.read()
                 appdata_dict = json.loads(json_string)
@@ -41,7 +43,7 @@ def opportunistic_appdata_init():
 
     if not appdata_dict:
         print "Note: no app data init opportunity!"
-        return dict({'version': 0, 'fields': []}) # empty!
+        return dict({'version': 1, 'fields': []}) # empty!
 
     return appdata_dict
 
@@ -53,9 +55,25 @@ def initialize_node(store, results, only_node, templates, appdata):
     function outside the node, and inquire fucking YHWH about the
     callbacks existence/usage
     """
+
     node = models.Node(only_node)
 
-    # by default, only english is the surely present language
+    log.debug("Inizializing ApplicationData")
+
+    new_appdata = ApplicationData()
+    new_appdata.fields = appdata['fields']
+    new_appdata.version = appdata['version']
+    store.add(new_appdata)
+
+    if 'node_presentation' in appdata:
+        node.presentation = appdata['node_presentation']
+
+    if 'node_footer' in appdata:
+        node.footer = appdata['node_footer']
+
+    if 'node_subtitle' in appdata:
+        node.subtitle = appdata['node_subtitle']
+
     node.languages_enabled = GLSetting.defaults.languages_enabled
 
     node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
@@ -136,19 +154,6 @@ def initialize_node(store, results, only_node, templates, appdata):
                                      templates['zip_collection'] }
 
     store.add(notification)
-
-    if appdata:
-        log.debug("Development environment detected: Installing ApplicationData from file")
-
-        new_appdata = ApplicationData()
-        new_appdata.fields = appdata['fields']
-        new_appdata.fields_version = appdata['version']
-
-        store.add(new_appdata)
-    else:
-        log.debug("Not Development environment: waiting for Wizard setup ApplicationData")
-
-
 
 @transact_ro
 def import_memory_variables(store):
