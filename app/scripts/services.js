@@ -261,7 +261,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.receivers = [];
       self.current_context = null;
       self.maximum_filesize = null;
-      self.encrypted_only = null;
+      self.allow_unencrypted = null;
       self.current_context_receivers = [];
       self.receivers_selected = {};
       self.completed = false;
@@ -282,7 +282,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       Node.get(function(node) {
         self.maximum_filesize = node.maximum_filesize;
-        self.encrypted_only = node.encrypted_only;
+        self.allow_unencrypted = node.allow_unencrypted;
 
         Contexts.query(function(contexts){
           self.contexts = contexts;
@@ -291,7 +291,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             self.receivers = [];
             forEach(receivers, function(receiver){
               receiver.disabled = false;
-              if (self.encrypted_only && receiver.gpg_key_status !== 'Enabled')
+              if (!self.allow_unencrypted && receiver.gpg_key_status !== 'Enabled')
                 receiver.disabled = true; 
               self.receivers.push(receiver);
             });

@@ -28,7 +28,7 @@ This comment is needed in order to push the following strings on transifex
             <span data-translate>Initiative name</span>
           </label>
           <div class="col-md-8">
-            <input type="text" class="form-control" data-ng-model="admin.node.name" placeholder="" cols="45" required>
+            <input type="text" class="form-control" data-ng-model="admin.node.name" placeholder="" cols="40" required>
             <span class="help-block">
               <span data-translate>Enter the name for your whistleblowing initiative</span>
             </span>
@@ -43,19 +43,6 @@ This comment is needed in order to push the following strings on transifex
             <textarea type="text" class="form-control" data-ng-model="admin.node.description" cols="45" rows="10" required></textarea>
             <span class="help-block">
               <span data-translate>Give a concise description of your project</span>
-            </span>
-          </div>
-        </div>
-
-        <div class="form-group col-md-12">
-          <label class="col-md-4">
-            <span data-translate>Store only encrypted data</span>
-          </label>
-          <div class="col-md-8">
-            <input type="checkbox" data-ng-model="admin.node.encrypted_only">
-            <span class="help-block">
-              <span data-translate class="label label-danger">Danger</span> <span data-translate>By disabling this option you will be storing the submitted files in plaintext on your node.</span>
-              <span data-translate>You should re-enable this when in production by going to "Advanced Settings" in your admin panel</span>
             </span>
           </div>
         </div>
@@ -179,13 +166,43 @@ This comment is needed in order to push the following strings on transifex
           </div>
         </div>
 
+        <div class="form-group col-md-12">
+          <label class="col-md-4">PGP Key</label>
+          <div class="col-md-8">
+            <textarea type="text" class="form-control" data-ng-model="receiver.gpg_key_armor" cols="40" rows="10"></textarea>
+            <span class="help-block">
+              <label data-translate>Copy and paste here the PGP public key</label>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group col-md-12">
+          <label class="col-md-4">
+            <span data-translate></span>
+          </label>
+          <label class="col-md-8">
+            <input data-ng-model="admin.node.allow_unencrypted" ng-click="open_modal_allow_unencrypted()" type="checkbox">
+            <span data-translate>Enable insecure configuration without PGP encryption.</span>
+            <div data-ng-show="admin.node.allow_unencrypted">
+              <span class="label label-danger" data-translate>Danger</span>
+              <span data-translate>By enabling this option the system will be storing the submitted files unecrypted on your node.</span>
+            </div>
+          </label>
+        </div>
+
       </div>
+
       <div class="col-md-6">
         <p class="help-hint bg-warning">
           <span data-translate>Receivers are very important for a GlobaLeaks based initiative. They are the people responsible for receiving the whistleblower submissions, verifying their authenticity and taking action upon them. Choose them wisely.</span>
         </p>
       </div>
 
+      <div class="col-md-6">
+        <p class="help-hint bg-warning">
+          <span data-translate>In order to deliver encrypted emails and files each receiver needs an associated PGP key. Cut and paste the key of the receiver or mark the checkbox "Enable insecure configuration without PGP encryption".</span>
+        </p>
+      </div>
     </div>
 
     <div class="row bordered">
@@ -214,10 +231,10 @@ This comment is needed in order to push the following strings on transifex
 
     </div>
 
-    <div class="row bordered" data-ng-hide="wizard.$invalid">
+    <div class="row bordered" data-ng-show="!(wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.gpg_key_armor))">
 
       <div class="col-md-10">
-        <p class="congratulations">
+        <div class="congratulations">
           <label>
             <strong>
               <span data-translate>Congratulations!</span>
@@ -226,11 +243,11 @@ This comment is needed in order to push the following strings on transifex
           <div>
             <span data-translate>You have finished configuring your GlobaLeaks site. You are now ready to future tweak it inside of the admin interface.</span>
           </div>
-        </p>
+        </div>
       </div>
 
       <div class="col-md-2">
-        <button class="btn btn-success btn-large" data-ng-disabled="wizard.$invalid" data-ng-click="finish()">Go to admin interface</button>
+        <button class="btn btn-success btn-large" data-ng-disabled="wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.gpg_key_armor)" data-ng-click="finish()">Go to admin interface</button>
       </div>
 
     </div>

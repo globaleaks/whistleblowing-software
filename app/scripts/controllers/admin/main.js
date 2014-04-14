@@ -211,20 +211,6 @@ GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http)
   ];
 }]);
 
-GLClient.controller('DisableEncryptionCtrl', ['$scope', '$modalInstance', function($scope, $modalInstance){
-    $scope.close = function() {
-      $modalInstance.close(true);
-    };
-
-    $scope.no = function() {
-      $modalInstance.close(true);
-    };
-    $scope.ok = function() {
-      $modalInstance.close(false);
-    };
-      
-}]);
-
 GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$modal', 
                     function($scope, $http, $modal){
   $scope.tabs = [
@@ -239,8 +225,8 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$modal',
       ctrl: TabCtrl
     }
   ];
-  $scope.open_modal = function() {
-    if (!$scope.admin.node.encrypted_only)
+  $scope.open_modal_allow_unencrypted = function() {
+    if ($scope.admin.node.allow_unencrypted)
       return;
     var modalInstance = $modal.open({
       templateUrl: 'views/partials/disable_encryption.html',
@@ -248,7 +234,7 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$modal',
     });
 
     modalInstance.result.then(function(result){
-      $scope.admin.node.encrypted_only = result;
+      $scope.admin.node.allow_unencrypted = result;
     });
   };
 

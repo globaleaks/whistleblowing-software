@@ -37,12 +37,12 @@
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.encrypted_only" ng-click="open_modal()" type="checkbox">
-        <span data-translate>Never store unencrypted files on this node</span>
+        <input data-ng-model="admin.node.allow_unencrypted" ng-click="open_modal_allow_unencrypted()" type="checkbox">
+        <span data-translate>Enable insecure configuration without PGP encryption.</span>
       </label>
-      <div data-ng-show="admin.node.encrypted_only">
-        <span class="label label-info" data-translate>Enabled</span>
-        <span data-translate>Whistleblowers will only be able to submit to receivers that have a PGP key.</span>
+      <div data-ng-show="admin.node.allow_unencrypted">
+        <span class="label label-danger" data-translate>Danger</span>
+        <span data-translate>By enabling this option the system will be storing the submitted files unecrypted on your node.</span>
       </div>
     </div>
 

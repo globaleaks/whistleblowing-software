@@ -36,6 +36,10 @@ GLClient.controller('MainCtrl', ['$scope', '$http', '$route', '$location', 'Node
 
     $scope.$on("REFRESH", refresh);
 
+    $scope.$on('$routeChangeStart', function(next, current) {
+      $scope.update_node();
+    });
+
     $scope.update_node();
 
     $scope.isHomepage = function () {
@@ -57,6 +61,20 @@ GLClient.controller('ModalCtrl', ['$scope',
 TabCtrl = ['$scope', function($scope) {
   /* Empty controller function used to implement TAB pages */
 }];
+
+GLClient.controller('DisableEncryptionCtrl', ['$scope', '$modalInstance', function($scope, $modalInstance){
+    $scope.close = function() {
+      $modalInstance.close(false);
+    };
+
+    $scope.no = function() {
+      $modalInstance.close(false);
+    };
+    $scope.ok = function() {
+      $modalInstance.close(true);
+    };
+
+}]);
 
 angular.module('GLClient.fileuploader', ['blueimp.fileupload'])
   .config(['$httpProvider', 'fileUploadProvider',
