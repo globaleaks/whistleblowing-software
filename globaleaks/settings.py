@@ -400,6 +400,8 @@ class GLSettingsClass:
 
         self.tor_socks_enable = not self.cmdline_options.disable_tor_socks
 
+        self.notification_temporary_disable = self.cmdline_options.notification_temporary_disable
+
         self.socks_host = self.cmdline_options.socks_host
 
         if not self.validate_port(self.cmdline_options.socks_port):
