@@ -72,15 +72,16 @@ def itip_cleaning(store, tip_id):
         abspath = os.path.join(GLSetting.submission_path, ifile.file_path)
         ifname = unicode(ifile.name)
 
-        if not os.path.isfile(abspath):
-            log.err("Unable to remove non existent internalfile %s (itip %s, internalfile %s(%d))" %
-                (abspath, tip_id, ifname, ifile.size))
-        else:
+        if os.path.isfile(abspath):
             try:
-                print "removing %s" % abspath
+                print "Removing internalfile %s" % abspath
                 os.remove(abspath)
             except OSError as excep:
                 log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
+        else:
+            if ifile.mark != u'delivered': # Removed
+                log.err("Unable to remove non existent internalfile %s (itip %s, internalfile %s(%d))" %
+                        (abspath, tip_id, ifname, ifile.size))
 
         rfiles = store.find(ReceiverFile, ReceiverFile.internalfile_id == ifile.id)
         for rfile in rfiles:
@@ -89,16 +90,20 @@ def itip_cleaning(store, tip_id):
                 continue
 
             abspath = os.path.join(GLSetting.submission_path, rfile.file_path)
-    
-            if not os.path.isfile(abspath):
-                log.err("Unable to remove non existent receiverfile %s (itip %s, internalfile %s(%d))" %
-                    (abspath, tip_id, ifname, ifile.size))
-                continue
-    
-            try:
-                os.remove(abspath)
-            except OSError as excep:
-                log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
+
+            if os.path.isfile(abspath):
+                try:
+                    print "Removing receiverfile %s" % abspath
+                    os.remove(abspath)
+                except OSError as excep:
+                    log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
+            else:
+                if rfile.status != 'encrypted': # encrypted is the only status where the file need to be deleted.
+                                                # other cases are:
+                                                # - reference: the ifile removal is handled above
+                                                # - nokey and unavailable are the error cases where the file does not exist
+                    log.err("Unable to remove non existent receiverfile %s (itip %s, internalfile %s(%d))" %
+                            (abspath, tip_id, ifname, ifile.size))
 
     store.remove(tit)
 
