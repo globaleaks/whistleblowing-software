@@ -364,7 +364,7 @@ def encrypt_where_available(receivermap):
                         rcounter, rfileinfo['receiver']['name'], rfileinfo['path'], excep)
                 )
                 rfileinfo['status'] = u'unavailable'
-        elif not GLSetting.memory_copy.encrypted_only:
+        elif GLSetting.memory_copy.allow_unencrypted:
             rfileinfo['status'] = u'reference'
             retcode = False
         else:

@@ -50,7 +50,7 @@ class TestGL(unittest.TestCase):
         GLSetting.set_devel_mode()
         GLSetting.logging = None
         GLSetting.scheduler_threadpool = FakeThreadPool()
-        GLSetting.memory_copy.encrypted_only = False
+        GLSetting.memory_copy.allow_unencrypted = True
         GLSetting.sessions = {}
         GLSetting.failed_login_attempts = 0
         GLSetting.working_path = './working_path'
@@ -365,7 +365,7 @@ class MockDict():
             'reset_css': False,
             'ahmia': False,
             'anomaly_checks': False,
-            'encrypted_only': False,
+            'allow_unencrypted': True,
         }
 
         self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',

@@ -118,7 +118,7 @@ adminNodeDesc = {
     'reset_css': bool,
     'ahmia': bool,
     'anomaly_checks': bool,
-    'encrypted_only': bool,
+    'allow_unencrypted': bool,
 }
 
 adminNotificationDesc = {
