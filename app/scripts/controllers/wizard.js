@@ -1,10 +1,11 @@
 GLClient.controller('WizardCtrl', ['$scope', '$location', '$http', '$modal', 'Admin',
-                    'DefaultFields', 'passwordWatcher',
+                    'DefaultAppdata', 'passwordWatcher',
                     'changePasswordWatcher', function($scope, $location, $http, $modal,
-                                                      Admin, DefaultFields,
+                                                      Admin, DefaultAppdata,
                                                       passwordWatcher,
                                                       changePasswordWatcher) {
 
+    finished = false;
     if ($scope.role != 'admin') {
       $scope.login('admin', 'globaleaks', 'admin', function(response){
         $scope.admin = new Admin();
@@ -33,19 +34,22 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$http', '$modal', 'Ad
 
 
     $scope.finish = function() {
-      DefaultFields.get(function(res) {
-        $scope.admin.node.old_password = 'globaleaks';
-        $scope.wizard = {
-          'node': $scope.admin.node,
-          'fields': res,
-          'receiver': $scope.receiver,
-          'context': $scope.context
-        };
+      if (!finished) {
+        finished = true;
+        DefaultAppdata.get(function(res) {
+          $scope.admin.node.old_password = 'globaleaks';
+          $scope.wizard = {
+            'node': $scope.admin.node,
+            'appdata': res,
+            'receiver': $scope.receiver,
+            'context': $scope.context
+          };
 
-        $http.post('/admin/wizard', $scope.wizard).success(function(response) {
-          $location.path("/admin/landing")
+          $http.post('/admin/wizard', $scope.wizard).success(function(response) {
+            $location.path("/admin/landing")
+          });
         });
-      });
+      }
     };
 
   }

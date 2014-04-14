@@ -537,8 +537,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       });
     };
 }]).
-  factory('DefaultFields', ['$resource', function($resource) {
-    return $resource('/data/fields_l10n.json', {});
+  factory('DefaultAppdata', ['$resource', function($resource) {
+    return $resource('/data/appdata_l10n.json', {});
 }]).
   factory('Contexts', ['$resource', function($resource) {
     return $resource('/contexts');

@@ -357,7 +357,7 @@ module.exports = function(grunt) {
 
     extractPotFromHTMLFile('app/index.html');
 
-    extractPotFromJSONFile('app/data/fields.json')
+    extractPotFromJSONFile('app/data/appdata.json')
 
     fs.writeFileSync("pot/en.po", gt.compilePO("en"));
 
@@ -402,7 +402,7 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('makeFields', function() {
+  grunt.registerTask('makeAppData', function() {
 
     var done = this.async(),
       gt = new Gettext(),
@@ -413,13 +413,12 @@ module.exports = function(grunt) {
 
       gt.addTextdomain("en", fileContents);
 
-      var json = JSON.parse(fs.readFileSync("app/data/fields.json"));
+      var json = JSON.parse(fs.readFileSync("app/data/appdata.json"));
+      var output = {};
       var version = json['version'];
       var fields = json['fields'];
 
       for (var lang_code in supported_languages) {
-        var translations = {},
-          output;
 
         gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
 
@@ -428,18 +427,30 @@ module.exports = function(grunt) {
           fields[i]['localized_hint'][lang_code] = gt.dgettext(lang_code, fields[i]['localized_hint']['en']);
           for (var j = 0; j <  fields[i]["defined_options"]; j++) {
             fields[i]["defined_options"][j][lang_code] = gt.dgettext(lang_code, fields[i]["defined_options"][j][lang_code]);
-          }
-        }
+          };
+        };
 
       };
 
-      output = {}
       output['version'] = version;
       output['fields'] = fields;
 
+      var vars = ["node_description", "node_presentation", "node_footer", "node_subtitle"]
+      for (var i in vars) {
+
+        gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
+
+        output[vars[i]] = {}
+        for (var lang_code in supported_languages) {
+
+          output[vars[i]][lang_code] = gt.dgettext(lang_code, json[vars[i]]['en']);
+
+        };
+      };
+
       output = JSON.stringify(output);
 
-      fs.writeFileSync("app/data/fields_l10n.json", output);
+      fs.writeFileSync("app/data/appdata_l10n.json", output);
 
       console.log("Fields file was written!");
 
@@ -448,7 +459,7 @@ module.exports = function(grunt) {
   });
 
   // Run this task to update translation related files
-  grunt.registerTask('updateTranslations', ['updateTranslationsSource', 'makeTranslations', 'makeFields']);
+  grunt.registerTask('updateTranslations', ['updateTranslationsSource', 'makeTranslations', 'makeAppData']);
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',

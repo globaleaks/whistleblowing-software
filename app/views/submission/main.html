@@ -105,8 +105,12 @@ This comment is needed in order to push the following strings on transifex
               <div class="col-md-5">
                 <img data-ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
               </div>
-              <div class="col-md-offset-1 col-md-6">
+              <div class="col-md-offset-1 col-md-6" ng-show="!receiver.disabled">
                 <p>{{receiver.description}}</p>
+              </div>
+              <div class="col-md-offset-1 col-md-6" ng-show="receiver.disabled">
+                <div data-translate>This receiver is disabled due to missing PGP key.</div>
+                <div data-translate>To enable it his public key must be loaded by the admin or by the receiver himself.</div>
               </div>
             </div>
           </div>

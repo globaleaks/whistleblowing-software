@@ -140,8 +140,8 @@ GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http
 
 }]);
 
-GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', 'DefaultFields',
-  function($scope, $http, StaticFiles, DefaultFields){
+GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', 'DefaultAppdata',
+  function($scope, $http, StaticFiles, DefaultAppdata){
   $scope.tabs = [
     {
       title:"Main Configuration",
@@ -162,9 +162,9 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', 'Defa
 
   $scope.install_default_fields = function () {
 
-    DefaultFields.get(function (res) {
+    DefaultAppdata.get(function (res) {
 
-      $http.post('/admin/fields', res).success(function (response) {
+      $http.post('/admin/appdata', res).success(function (response) {
 
       });
 
