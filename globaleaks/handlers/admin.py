@@ -142,8 +142,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
 def get_node(store, language=GLSetting.memory_copy.default_language):
     return admin_serialize_node(store.find(Node).one(), language)
 
-@transact
-def update_node(store, request, wizard_done=True, language=GLSetting.memory_copy.default_language):
+def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_copy.default_language):
     """
     Update the node, setting the last update time on it.
 
@@ -238,6 +237,10 @@ def update_node(store, request, wizard_done=True, language=GLSetting.memory_copy
 
     return admin_serialize_node(node, language)
 
+@transact
+def update_node(store, request, wizard_done=False, language=GLSetting.memory_copy.default_language):
+    return db_update_node(store, request, wizard_done, language)
+
 @transact_ro
 def get_context_list(store, language=GLSetting.memory_copy.default_language):
     """
@@ -290,8 +293,7 @@ def generate_example_receipt(regexp):
 
     return return_value_receipt
 
-@transact
-def create_context(store, request, language=GLSetting.memory_copy.default_language):
+def db_create_context(store, request, language=GLSetting.memory_copy.default_language):
     """
     Creates a new context from the request of a client.
 
@@ -348,7 +350,6 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
     except Exception as excep:
         raise errors.InvalidInputFormat("language %s do not provide name: %s" %
                                        (language, excep) )
-
     if len(context_name) < 1:
         log.err("Invalid request: name is an empty string")
         raise errors.InvalidInputFormat("Context name is missing (1 char required)")
@@ -381,6 +382,10 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
 
     receipt_example = generate_example_receipt(context.receipt_regexp)
     return admin_serialize_context(context, receipt_example, language)
+
+@transact
+def create_context(store, request, language=GLSetting.memory_copy.default_language):
+    return db_create_context(store, request, language=language)
 
 @transact_ro
 def get_context(store, context_id, language=GLSetting.memory_copy.default_language):
@@ -514,8 +519,7 @@ def create_random_receiver_portrait(receiver_uuid):
         raise excep
 
 
-@transact
-def create_receiver(store, request, language=GLSetting.memory_copy.default_language):
+def db_create_receiver(store, request, language=GLSetting.memory_copy.default_language):
     """
     Creates a new receiver.
     Returns:
@@ -580,6 +584,9 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
 
     return admin_serialize_receiver(receiver, language)
 
+@transact
+def create_receiver(store, request, language=GLSetting.memory_copy.default_language):
+    return db_create_receiver(store, request, language)
 
 @transact_ro
 def get_receiver(store, receiver_id, language=GLSetting.memory_copy.default_language):

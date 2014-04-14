@@ -10,9 +10,9 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.admin import create_context, create_receiver, update_node
+from globaleaks.handlers.admin import db_create_context, db_create_receiver, db_update_node
 from globaleaks.rest import errors, requests
-from globaleaks.models import ApplicationData
+from globaleaks.models import *
 from globaleaks.utils.utility import log
 
 
@@ -51,6 +51,7 @@ def update_application_fields(store, version, appfields):
         has_been_updated = True
         old_version = appdata.fields_version
 
+    print "aaa"
     if has_been_updated:
 
         log.debug("Updating Application Data Fields %d => %d" %
@@ -68,7 +69,38 @@ def update_application_fields(store, version, appfields):
         'fields': appdata.fields,
     }
 
+@transact
+def associate_receivers_to_contexts(store):
+    receivers = store.find(Receiver)
+    contexts = store.find(Context)
+    for receiver in receivers:
+        for context in receivers:
+            receiver.contexts.add(context)
 
+@transact
+def wizard(store, request, language=GLSetting.memory_copy.default_language):
+    receiver = request['receiver']
+    context = request['context']
+    node = request['node']
+
+    try:
+        context_dict = db_create_context(store, context, language)
+    except Exception as excep:
+        log.debug("Failed Context initialization %s" % excep)
+        raise excep
+
+    try:
+        receiver_dict = db_create_receiver(store, receiver, language)
+        receiver['contexts']= [ context_dict['id'] ]
+    except Exception as excep:
+        log.debug("Failed Receiver Finitialization %s" % excep)
+        raise excep
+
+    try:
+        db_update_node(store, node, True, language)
+    except Exception as excep:
+        log.debug("Failed Fields initialization %s" % excep)
+        raise excep
 
 # ---------------------------------
 # Below starts the Cyclone handlers
@@ -130,45 +162,26 @@ class FirstSetup(BaseHandler):
         request = self.validate_message(self.request.body,
                 requests.wizardFirstSetup)
 
-        log.debug("Wizard initialization setup!")
-
-        receiver = request['receiver']
-        context = request['context']
-        node = request['node']
         fields = request['fields']
 
         try:
             accepted_types = [ "text", "radio", "select", "checkboxes",
                                "textarea", "number", "url", "phone", "email" ]
+
             for field in fields['fields']:
                 if field['type'] not in accepted_types:
                     log.debug("Invalid type received: %s" % field['type'])
                     raise errors.InvalidInputFormat("Invalid type supply")
 
-            yield update_application_fields(fields['version'], fields['fields'])
+            update_application_fields(fields['version'], fields['fields'])
 
         except Exception as excep:
             log.debug("Failed Fields initialization %s" % excep)
             raise excep
 
-        try:
-            context_dict = yield create_context(context, self.request.language)
-        except Exception as excep:
-            log.debug("Failed Context initialization %s" % excep)
-            raise excep
+        yield wizard(request, self.request.language)
 
-        try:
-            receiver['contexts']= [ context_dict['id'] ]
-            yield create_receiver(receiver, self.request.language)
-        except Exception as excep:
-            log.debug("Failed Receiver Finitialization %s" % excep)
-            raise excep
-
-        try:
-            yield update_node(node, wizard_done=True, language=self.request.language)
-        except Exception as excep:
-            log.debug("Failed Fields initialization %s" % excep)
-            raise excep
+        log.debug("Wizard initialization setup!")
 
         self.set_status(202) # Updated
         self.finish()
