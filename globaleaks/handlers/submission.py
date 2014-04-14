@@ -200,7 +200,7 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
     wb_fields = request.get('wb_fields', {})
     try:
         fo = Fields(context.localized_fields, context.unique_fields)
-        fo.validate_fields(wb_fields, strict_validation=finalize)
+        fo.validate_fields(wb_fields, language, strict_validation=finalize)
         submission.wb_fields = wb_fields
     except Exception as excep:
         log.err("Submission create: fields validation fail: %s" % excep)
@@ -266,7 +266,7 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
     wb_fields = request.get('wb_fields', [])
     try:
         fo = Fields(context.localized_fields, context.unique_fields)
-        fo.validate_fields(wb_fields, strict_validation=finalize)
+        fo.validate_fields(wb_fields, language, strict_validation=finalize)
         submission.wb_fields = wb_fields
     except Exception as excep:
         log.err("Submission update: fields validation fail: %s" % excep)
