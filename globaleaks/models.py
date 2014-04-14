@@ -576,7 +576,7 @@ class ApplicationData(Model):
     """
     __storm_table__ = 'applicationdata'
 
-    fields_version = Int()
+    version = Int()
     fields = Pickle()
 
 

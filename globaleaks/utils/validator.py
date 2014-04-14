@@ -27,9 +27,9 @@ def shorttext_v(_self, _attr, value):
     if not isinstance(value, unicode):
         raise errors.InvalidInputFormat("Name expected unicode (%s)" % value)
 
-    if len(value) > GLSetting.memory_copy.maximum_namesize or len(value) == 0:
-        raise errors.InvalidInputFormat("Name length need to be > 0 and " \
-                                        "< of %d" % GLSetting.memory_copy.maximum_namesize)
+    if len(value) > GLSetting.memory_copy.maximum_namesize:
+        raise errors.InvalidInputFormat("Name length need to be < of %d"
+                                        % GLSetting.memory_copy.maximum_namesize)
 
     return value
 

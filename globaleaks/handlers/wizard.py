@@ -17,7 +17,7 @@ from globaleaks.utils.utility import log
 
 
 @transact_ro
-def admin_serialize_fields(store, language=GLSetting.memory_copy.default_language):
+def admin_serialize_appdata(store, language=GLSetting.memory_copy.default_language):
 
     appdata = store.find(ApplicationData).one()
 
@@ -26,7 +26,7 @@ def admin_serialize_fields(store, language=GLSetting.memory_copy.default_languag
         version = 0
         fields = []
     else:
-        version = appdata.fields_version
+        version = appdata.version
         fields = appdata.fields
 
     return {
@@ -35,37 +35,64 @@ def admin_serialize_fields(store, language=GLSetting.memory_copy.default_languag
     }
 
 @transact
-def update_application_fields(store, version, appfields):
+def admin_update_appdata(store, loaded_appdata):
 
     appdata = store.find(ApplicationData).one()
+    node = store.find(Node).one()
 
     if not appdata:
         appdata = ApplicationData()
         has_been_updated = True
         old_version = 0
         store.add(appdata)
-    elif appdata.fields_version > version:
+    elif appdata.version > loaded_appdata['version']:
         has_been_updated = False
-        old_version = appdata.fields_version
+        old_version = appdata.version
     else: # appdata not None and new_v >= old_v
         has_been_updated = True
-        old_version = appdata.fields_version
+        old_version = appdata.version
 
-    print "aaa"
     if has_been_updated:
 
         log.debug("Updating Application Data Fields %d => %d" %
-                  (old_version, version))
+                  (old_version, loaded_appdata['version']))
 
-        appdata.fields = appfields
-        appdata.fields_version = version
+        appdata.version = loaded_appdata['version']
+
+        try:
+
+            log.debug("Validating %d fields" % len(loaded_appdata['fields']))
+
+            accepted_types = [ "text", "radio", "select", "checkboxes",
+                               "textarea", "number", "url", "phone", "email" ]
+
+            for field in loaded_appdata['fields']:
+                if field['type'] not in accepted_types:
+                    log.debug("Invalid type received: %s" % field['type'])
+                    raise errors.InvalidInputFormat("Invalid type supply")
+
+            appdata.fields = loaded_appdata['fields']
+
+        except Exception as excep:
+            log.debug("Failed Fields initialization %s" % excep)
+            raise excep
+
+        if 'node_presentation' in loaded_appdata:
+            node.presentation = loaded_appdata['node_presentation']
+
+        if 'node_footer' in loaded_appdata:
+            node.footer = loaded_appdata['node_footer']
+
+        if 'node_subtitle' in loaded_appdata:
+            node.subtitle = loaded_appdata['node_subtitle']
+
     else:
         log.err("NOT updating the Application Data Fields current %d proposed %d" %
-                (appdata.fields_version, version))
+                (appdata.version, version))
 
     # in both cases, update or not, return the running version
     return {
-        'version': appdata.fields_version,
+        'version': appdata.version,
         'fields': appdata.fields,
     }
 
@@ -106,7 +133,7 @@ def wizard(store, request, language=GLSetting.memory_copy.default_language):
 # Below starts the Cyclone handlers
 # ---------------------------------
 
-class FieldsCollection(BaseHandler):
+class AppdataCollection(BaseHandler):
     """
     Get the node main settings, update the node main settings, it works in a single static
     table, in models/admin.py
@@ -118,9 +145,9 @@ class FieldsCollection(BaseHandler):
     @inlineCallbacks
     def get(self, *uriargs):
 
-        self.set_status(200)
+        app_fields_dump = yield admin_serialize_appdata(self.request.language)
 
-        app_fields_dump = yield admin_serialize_fields(self.request.language)
+        self.set_status(200)
         self.finish(app_fields_dump)
 
     @transport_security_check('admin')
@@ -128,21 +155,10 @@ class FieldsCollection(BaseHandler):
     @inlineCallbacks
     def post(self, *uriargs):
 
-        accepted_types = [ "text", "radio", "select", "checkboxes",
-            "textarea", "number", "url", "phone", "email" ]
-
         request = self.validate_message(self.request.body,
                 requests.wizardFieldUpdate)
 
-        fields = request['fields']
-        log.debug("Received update of Application Data Fields (%d elements)" % len(fields))
-
-        for field in fields:
-            if field['type'] not in accepted_types:
-                log.debug("Invalid type received: %s" % field['type'])
-                raise errors.InvalidInputFormat("Invalid type supply")
-
-        app_fields_dump = yield update_application_fields(request['version'], fields)
+        app_fields_dump = yield admin_update_appdata(request)
 
         self.set_status(202) # Updated
         self.finish(app_fields_dump)
@@ -151,33 +167,13 @@ class FieldsCollection(BaseHandler):
 class FirstSetup(BaseHandler):
     """
     """
-
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
     def post(self, *uriargs):
 
-        self.set_status(200)
-
         request = self.validate_message(self.request.body,
                 requests.wizardFirstSetup)
-
-        fields = request['fields']
-
-        try:
-            accepted_types = [ "text", "radio", "select", "checkboxes",
-                               "textarea", "number", "url", "phone", "email" ]
-
-            for field in fields['fields']:
-                if field['type'] not in accepted_types:
-                    log.debug("Invalid type received: %s" % field['type'])
-                    raise errors.InvalidInputFormat("Invalid type supply")
-
-            update_application_fields(fields['version'], fields['fields'])
-
-        except Exception as excep:
-            log.debug("Failed Fields initialization %s" % excep)
-            raise excep
 
         yield wizard(request, self.request.language)
 
@@ -185,5 +181,3 @@ class FirstSetup(BaseHandler):
 
         self.set_status(202) # Updated
         self.finish()
-
-
