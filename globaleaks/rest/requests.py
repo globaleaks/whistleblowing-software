@@ -95,6 +95,7 @@ adminNodeDesc = {
     'name': unicode,
     'description' : unicode,
     'presentation' : unicode,
+    'receipt_regexp': unicode,
     'footer': unicode,
     'hidden_service' : unicode,
     'public_site' : unicode,
@@ -152,7 +153,6 @@ adminNotificationDesc = {
 adminContextDesc = {
     'name': unicode,
     'description': unicode,
-    'receipt_regexp': unicode,
     'receiver_introduction': unicode,
     'fields_introduction': unicode,
     'postpone_superpower': bool,

@@ -7,24 +7,19 @@ from globaleaks.models import Model
 
 class Node_version_11(Model):
     __storm_table__ = 'node'
-
     name = Unicode()
     public_site = Unicode()
     hidden_service = Unicode()
     email = Unicode()
     receipt_salt = Unicode()
     last_update = DateTime()
-
     languages_enabled = Pickle()
     default_language = Unicode()
-
     description = Pickle()
     presentation = Pickle()
     footer = Pickle()
     subtitle = Pickle()
-
     stats_update_time = Int()
-
     maximum_namesize = Int()
     maximum_textsize = Int()
     maximum_filesize = Int()
@@ -32,58 +27,68 @@ class Node_version_11(Model):
     tor2web_submission = Bool()
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
-
     postpone_superpower = Bool()
     can_delete_submission = Bool()
     ahmia = Bool()
     wizard_done = Bool(default=False)
     anomaly_checks = Bool(default=False)
-
     exception_email = Unicode()
+    # in the 12 release are added two keys:
+    # allow_unencrypted and receipt_regexp 
+    # moved from Context
+
+class Context_version_11(Model):
+    __storm_table__ = 'context'
+    unique_fields = Pickle()
+    localized_fields = Pickle()
+    selectable_receiver = Bool()
+    escalation_threshold = Int()
+    tip_max_access = Int()
+    file_max_download = Int()
+    file_required = Bool()
+    tip_timetolive = Int()
+    submission_timetolive = Int()
+    last_update = DateTime()
+    tags = Pickle()
+    name = Pickle()
+    description = Pickle()
+    receiver_introduction = Pickle()
+    fields_introduction = Pickle()
+    select_all_receivers = Bool()
+    postpone_superpower = Bool()
+    can_delete_submission = Bool()
+    maximum_selectable_receivers = Int()
+    require_file_description = Bool()
+    delete_consensus_percentage = Int()
+    require_pgp = Bool()
+    show_small_cards = Bool()
+    presentation_order = Int()
+
 
 class Replacer1112(TableReplacer):
 
     def migrate_Node(self):
-        old_node = self.store_old.find(self.get_right_model("Node", 11)).one()
+        print "%s Node migration assistant: (receipt, encryption only)" % self.std_fancy
 
+        old_node = self.store_old.find(self.get_right_model("Node", 11)).one()
         new_node = self.get_right_model("Node", 12)()
 
-        new_node.name = old_node.name
-        new_node.public_site = old_node.public_site
-        new_node.hidden_service = old_node.hidden_service
-        new_node.email = old_node.email
-        new_node.receipt_salt = old_node.receipt_salt
-        new_node.last_update = old_node.last_update
+        for k, v in new_node._storm_columns.iteritems():
 
-        new_node.languages_enabled = old_node.languages_enabled
-        new_node.default_language = old_node.default_language
+            if v.name == 'receipt_regexp':
+                new_node.receipt_regexp = u'[0-9]{16}'
+                continue
 
-        new_node.description = old_node.description
-        new_node.presentation = old_node.presentation
-        new_node.footer = old_node.footer
-        new_node.subtitle = old_node.subtitle
+            if v.name == 'allow_unencrypted':
+                # this is the default only for the migration, because the 
+                # old Nodes has not to be broken.
+                new_node.allow_unencrypted = True
+                continue
 
-        new_node.stats_update_time = old_node.stats_update_time
-
-        new_node.maximum_namesize = old_node.maximum_namesize
-        new_node.maximum_textsize = old_node.maximum_textsize
-        new_node.maximum_filesize = old_node.maximum_filesize
-        new_node.tor2web_admin = old_node.tor2web_admin
-        new_node.tor2web_submission = old_node.tor2web_submission
-        new_node.tor2web_receiver = old_node.tor2web_receiver
-        new_node.tor2web_unauth = old_node.tor2web_unauth
-
-        new_node.postpone_superpower = old_node.postpone_superpower
-        new_node.can_delete_submission = old_node.can_delete_submission
-        new_node.ahmia = old_node.ahmia
-        new_node.wizard_done = old_node.wizard_done
-        new_node.anomaly_checks = old_node.anomaly_checks
-
-        new_node.exception_email = old_node.exception_email
-
-        # This is the additional value.
-        new_node.allow_unencrypted = True
+            setattr(new_node, v.name, getattr(old_node, v.name) )
 
         self.store_new.add(new_node)
-
         self.store_new.commit()
+
+    # Context migration: is removed the receipt by the default bahavior
+

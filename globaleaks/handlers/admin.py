@@ -22,7 +22,7 @@ from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.third_party import rstr
 
-def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
+def admin_serialize_node(node, receipt_output, language=GLSetting.memory_copy.default_language):
 
     mo = structures.Rosetta()
     mo.acquire_storm_object(node)
@@ -34,6 +34,8 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         "last_update": utility.pretty_date_time(node.last_update),
         "hidden_service": node.hidden_service,
         "public_site": node.public_site,
+        "receipt_regexp": node.receipt_regexp,
+        "receipt_example": receipt_output,
         "stats_update_time": node.stats_update_time,
         "email": node.email,
         "version": GLSetting.version_string,
@@ -61,7 +63,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
 
     return node_dict
 
-def admin_serialize_context(context, receipt_output, language=GLSetting.memory_copy.default_language):
+def admin_serialize_context(context, language=GLSetting.memory_copy.default_language):
 
     mo = structures.Rosetta()
     mo.acquire_storm_object(context)
@@ -76,8 +78,6 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
         "receivers": list(context.receivers.values(models.Receiver.id)),
-        "receipt_regexp": context.receipt_regexp,
-        "receipt_example": receipt_output,
         "tags": context.tags if context.tags else [],
         "file_required": context.file_required,
         # tip expressed in day, submission in hours
@@ -140,7 +140,11 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
 
 @transact_ro
 def get_node(store, language=GLSetting.memory_copy.default_language):
-    return admin_serialize_node(store.find(Node).one(), language)
+
+    node = store.find(Node).one()
+    receipt_example = generate_example_receipt(node.receipt_regexp)
+    return admin_serialize_node(node, receipt_example, language)
+
 
 def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_copy.default_language):
     """
@@ -180,6 +184,19 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
         if not utility.acquire_url_address(request['hidden_service'], hidden_service=True, http=False):
             log.err("Invalid hidden service regexp in [%s]" % request['hidden_service'])
             raise errors.InvalidInputFormat("Invalid hidden service")
+
+    if len(request['receipt_regexp']) < 4:
+        log.err("Receipt regexp can't works (< 4) Forced: fixme-[a-z0-9]{13}-please")
+        # is acquired below by node.update(request)
+        request['receipt_regexp'] = u"fixme-[a-z0-9]{13}-please"
+
+    try:
+        receipt_example = generate_example_receipt(request['receipt_regexp'])
+    except Exception as excep:
+        log.err("Receipt regexp trigger the exception below. Forced: fixme-[a-z0-9]{13}-please")
+        log.err(excep)
+        request['receipt_regexp'] = u"fixme-[a-z0-9]{13}-please"
+        receipt_example = generate_example_receipt(request['receipt_regexp'])
 
     # check the 'reset_css' boolean option: remove an existent custom CSS
     if request['reset_css']:
@@ -222,8 +239,12 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
         log.err("Default language not set!? fallback on %s" % node.default_language)
 
     # default False in creation, default False in the option.
-    if not node.wizard_done and wizard_done:
-        node.wizard_done = True
+    if wizard_done:
+        if node.wizard_done:
+            log.err("wizard completed more than one time!?")
+        else:
+            log.err("wizard completed: Node initialized")
+            node.wizard_done = True
 
     # name, description tor2web boolean value are acquired here
     try:
@@ -232,10 +253,9 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
         log.err("Unable to update Node: %s" % dberror)
         raise errors.InvalidInputFormat(dberror)
 
-
     node.last_update = utility.datetime_now()
+    return admin_serialize_node(node, receipt_example, language)
 
-    return admin_serialize_node(node, language)
 
 @transact
 def update_node(store, request, wizard_done=False, language=GLSetting.memory_copy.default_language):
@@ -251,8 +271,7 @@ def get_context_list(store, language=GLSetting.memory_copy.default_language):
     context_list = []
 
     for context in contexts:
-        receipt_example = generate_example_receipt(context.receipt_regexp)
-        context_list.append(admin_serialize_context(context, receipt_example, language))
+        context_list.append(admin_serialize_context(context, language))
 
     return context_list
 
@@ -284,14 +303,10 @@ def generate_example_receipt(regexp):
     this function it's used to show to the Admin an example of the
     receipt_regexp configured, and if an error happen, it's
     works as validator.
+    The exception is raised over and a default regexp is put
     """
-    try:
-        return_value_receipt = unicode(rstr.xeger(regexp))
-    except Exception as excep:
-        log.err("Invalid receipt regexp: %s (%s)" % (regexp, excep) )
-        raise errors.InvalidReceiptRegexp
+    return unicode(rstr.xeger(regexp))
 
-    return return_value_receipt
 
 def db_create_context(store, request, language=GLSetting.memory_copy.default_language):
     """
@@ -442,10 +457,6 @@ def update_context(store, context_id, request, language=GLSetting.memory_copy.de
 
     # tip_timetolive and submission_timetolive need to be converted in seconds since hours and days
     (context.submission_timetolive, context.tip_timetolive) = acquire_context_timetolive(request)
-
-    if len(context.receipt_regexp) < 4:
-        log.err("Fixing receipt regexp < 4 byte with fixme-[0-9]{13}-please")
-        context.receipt_regexp = u"fixme-[0-9]{13}-please"
 
     if request['select_all_receivers']:
         if request['maximum_selectable_receivers']:
@@ -691,7 +702,6 @@ def delete_receiver(store, receiver_id):
 
 class NodeInstance(BaseHandler):
     """
-    A1
     Get the node main settings, update the node main settings, it works in a single static
     table, in models/admin.py
 
@@ -736,7 +746,6 @@ class NodeInstance(BaseHandler):
 
 class ContextsCollection(BaseHandler):
     """
-    A2
     Return a list of all the available contexts, in elements.
 
     /admin/context
@@ -773,7 +782,6 @@ class ContextsCollection(BaseHandler):
 
 class ContextInstance(BaseHandler):
     """
-    A3
     classic CRUD in the single Context resource.
     """
 
@@ -823,7 +831,6 @@ class ContextInstance(BaseHandler):
 
 class ReceiversCollection(BaseHandler):
     """
-    A4
     List all available receivers present in the node.
     """
 
@@ -864,7 +871,6 @@ class ReceiversCollection(BaseHandler):
 
 class ReceiverInstance(BaseHandler):
     """
-    A5
     AdminReceivers: classic CRUD in a 'receiver' resource
     A receiver can stay in more than one context, then is expected in POST/PUT
     operations a list of tarGET contexts is passed. Operation here, mostly are
@@ -923,8 +929,7 @@ class ReceiverInstance(BaseHandler):
         self.finish()
 
 
-# Notification section:
-
+# Notification
 def admin_serialize_notification(notif, language=GLSetting.memory_copy.default_language):
     notification_dict = {
         'server': notif.server if notif.server else u"",
@@ -993,8 +998,6 @@ def update_notification(store, request, language=GLSetting.memory_copy.default_l
 
 class NotificationInstance(BaseHandler):
     """
-    A6
-
     Manage Notification settings (account details and template)
     """
 

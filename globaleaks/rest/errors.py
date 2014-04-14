@@ -316,13 +316,7 @@ class GPGKeyInvalid(GLException):
     error_code = 40
     status_code = 406
 
-class InvalidReceiptRegexp(GLException):
-    """
-    context.receipt_regexp don't works
-    """
-    reason = "The provided receipt regexp is an invalid"
-    error_code = 41
-    status_code = 406
+# UNUSED ERROR CODE 41 HERE!
 
 class GPGKeyIDNotUnique(GLException):
     """
