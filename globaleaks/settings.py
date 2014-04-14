@@ -161,7 +161,7 @@ class GLSettingsClass:
         # These value are then stored in the single instance
         # (Node, Receiver or Context) and then can be updated by
         # the admin using the Admin interface (advanced settings)
-        self.defaults.encrypted_only = False
+        self.defaults.allow_unencrypted = False
         self.defaults.tor2web_admin = False
         self.defaults.tor2web_submission = False
         self.defaults.tor2web_receiver = False
@@ -184,7 +184,7 @@ class GLSettingsClass:
         self.memory_copy.maximum_filesize = self.defaults.maximum_filesize
         self.memory_copy.maximum_textsize = self.defaults.maximum_textsize
         self.memory_copy.maximum_namesize = self.defaults.maximum_namesize
-        self.memory_copy.encrypted_only = self.defaults.encrypted_only
+        self.memory_copy.allow_unencrypted = self.defaults.allow_unencrypted
         self.memory_copy.tor2web_admin = self.defaults.tor2web_admin
         self.memory_copy.tor2web_submission = self.defaults.tor2web_submission
         self.memory_copy.tor2web_receiver = self.defaults.tor2web_receiver
@@ -243,6 +243,7 @@ class GLSettingsClass:
         self.gid = os.getgid()
         self.start_clean = False
         self.devel_mode = False
+        self.skip_wizard = False
         self.glc_path = None
 
         # Number of failed login enough to generate an alarm
@@ -466,6 +467,9 @@ class GLSettingsClass:
         if self.cmdline_options.devel_mode:
             print "Enabling Development Mode"
             self.set_devel_mode()
+
+        if self.cmdline_options.skip_wizard:
+            self.skip_wizard = True
 
         if self.cmdline_options.glc_path:
             self.set_glc_path(self.cmdline_options.glc_path)

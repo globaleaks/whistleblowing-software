@@ -60,7 +60,10 @@ def initialize_node(store, results, only_node, templates, appdata):
 
     node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
 
+    node.wizard_done = GLSetting.skip_wizard
+
     node.creation_date = datetime_now()
+
     store.add(node)
 
     admin_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
@@ -166,7 +169,7 @@ def import_memory_variables(store):
         GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
 
         GLSetting.memory_copy.anomaly_checks = node.anomaly_checks
-        GLSetting.memory_copy.encrypted_only = node.encrypted_only
+        GLSetting.memory_copy.allow_unencrypted = node.allow_unencrypted
 
         GLSetting.memory_copy.exception_email = node.exception_email
         GLSetting.memory_copy.default_language = node.default_language

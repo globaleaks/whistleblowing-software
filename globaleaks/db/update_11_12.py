@@ -82,7 +82,7 @@ class Replacer1112(TableReplacer):
         new_node.exception_email = old_node.exception_email
 
         # This is the additional value.
-        new_node.encrypted_only = False
+        new_node.allow_unencrypted = True
 
         self.store_new.add(new_node)
 

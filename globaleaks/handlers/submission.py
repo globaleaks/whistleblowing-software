@@ -69,7 +69,7 @@ def import_receivers(store, submission, receiver_id_list, required=False):
     if not context.selectable_receiver:
         for receiver in context.receivers:
             # Skip adding receivers that don't have PGP enabled if encrypted only.
-            if GLSetting.memory_copy.encrypted_only and \
+            if not GLSetting.memory_copy.allow_unencrypted and \
                     receiver.gpg_key_status != u'Enabled':
                 continue
             # Add only the receiver not yet associated in Many-to-Many
@@ -119,7 +119,7 @@ def import_receivers(store, submission, receiver_id_list, required=False):
             raise errors.InvalidInputFormat("Forged receiver selection, you fuzzer! <:")
 
         try:
-            if GLSetting.memory_copy.encrypted_only and \
+            if not GLSetting.memory_copy.allow_unencrypted and \
                     receiver.gpg_key_status != u'Enabled':
                 log.err("Encrypted only submissions are supported. Cannot select [%s]" % receiver_id)
                 continue

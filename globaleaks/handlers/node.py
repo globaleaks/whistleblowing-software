@@ -47,7 +47,7 @@ def anon_serialize_node(store, user, language=GLSetting.memory_copy.default_lang
       'can_delete_submission': node.can_delete_submission,
       'wizard_done': node.wizard_done,
       'anomaly_checks': node.anomaly_checks,
-      'encrypted_only': node.encrypted_only,
+      'allow_unencrypted': node.allow_unencrypted,
     }
 
     mo = Rosetta()
