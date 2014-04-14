@@ -101,19 +101,17 @@ from globaleaks.settings import GLSetting
 ###
 def colorize(txt, col):
     """
-
     Colorized output.
-
     Plataform dependent: Linux
-
     """
-
     color_dict = {
             'GREY':   0, 'RED':   1, 'GREEN':   2,
             'YELLOW': 3, 'BLUE':  4, 'MAGENTA': 5,
             'CYAN':   6, 'WHITE': 7, 'BLACK':   8
             }
     return '\033[1;3%dm%s\033[0m' %(color_dict[col], txt)
+
+
 
 GLSetting.parser.add_option("-n", "--nodaemon", action='store_true',
     help="don't daemonize [default: %default]",
@@ -197,6 +195,10 @@ GLSetting.parser.add_option("-z", "--devel-mode", action='store_true',
     help="hack some configs and enable some additional features useful during development' [default: %default]",
     dest="devel_mode", default=GLSetting.devel_mode)
 
+GLSetting.parser.add_option("--disable-mail", action='store_true',
+    help="disable Notifications [default: Enabled]",
+    dest="notification_temporary_disable", default=(GLSetting.notification_temporary_disable))
+
 GLSetting.parser.add_option("-x", "--skip-wizard", action='store_true',
     help="skip globaleaks installation wizard' [default: False]",
     dest="skip_wizard")
@@ -209,9 +211,15 @@ GLSetting.parser.add_option("-R", "--ramdisk", type="string",
     help="optionally specify a path used by GnuGP operations [default: absent]",
     dest="ramdisk")
 
+GLSetting.parser.add_option("--XXX", type='string',
+    help="hardcore debug only options: check NOTES.md file",
+    dest="xxx")
+
 GLSetting.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software (spoiler: %s)" % GLSetting.version_string,
     dest="version")
+
+
 
 # here the options are parsed, because sys.argv array is whack below
 (GLSetting.cmdline_options, args) = GLSetting.parser.parse_args()
@@ -348,6 +356,7 @@ def find_current_db_version(dirpath, filearray):
 
 def check_db_files():
     """
+    This function checks the DB version and executes eventually the DB update scripts
     """
     from globaleaks.db import updater_manager
 
