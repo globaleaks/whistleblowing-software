@@ -27,8 +27,27 @@ def uuid4():
     """
     This function returns a secure random uuid4 as
     defined by http://www.ietf.org/rfc/rfc4122.txt
+
+    r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})
+    this is the regexp that has to be matched, and if a special
+    debug option is enabled here, the UUIDv4 is not randomic
     """
-    return unicode(UUID(bytes=os.urandom(16), version=4))
+    if len(GLSetting.debug_option_UUID_human) > 1:
+
+        GLSetting.debug_UUID_human_counter += 1
+        str_padding = 8 - len(GLSetting.debug_option_UUID_human)
+        int_padding = 12 - len("%d" % GLSetting.debug_UUID_human_counter)
+
+        Huuidv4 = "%s%s-0000-0000-0000-%s%d" % (
+            GLSetting.debug_option_UUID_human,
+            str_padding * "0",
+            int_padding * "0",
+            GLSetting.debug_UUID_human_counter
+        )
+        return unicode(Huuidv4)
+    else:
+        return unicode(UUID(bytes=os.urandom(16), version=4))
+
 
 def randint(start, end=None):
     if not end:
@@ -221,9 +240,16 @@ def utc_future_date(seconds=0, minutes=0, hours=0):
     @param minutes: get a datetime obj with now+minutes
     @param hours: get a datetime obj with now+seconds
     @return: a datetime object
+        Eventually is incremented of a certain amount of seconds
+        if the Node is running with --XXX option
     """
     delta = timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
-    return datetime.utcnow() - timedelta(seconds=time.timezone) + delta
+    now = datetime.utcnow() - timedelta(seconds=time.timezone)
+
+    if GLSetting.debug_option_in_the_future:
+        now += timedelta(seconds=GLSetting.debug_option_in_the_future)
+
+    return now + delta
 
 def datetime_null():
     """
@@ -233,9 +259,15 @@ def datetime_null():
 
 def datetime_now():
     """
-    @return: a datetime object of now, coherent with the timezone
+    @return: a datetime object of now, coherent with the timezone,
+        and eventually incremented of a certain amount of seconds
+        if the Node is running with --XXX option
     """
     now = datetime.utcnow() - timedelta(seconds=time.timezone)
+
+    if GLSetting.debug_option_in_the_future:
+        now += timedelta(seconds=GLSetting.debug_option_in_the_future)
+
     return now
 
 def get_future_epoch(seconds=0):
@@ -243,20 +275,28 @@ def get_future_epoch(seconds=0):
     @param seconds: optional, the second in
         the future
     @return: seconds since the Epoch
+        This future data is eventually incremented of the
+        amount of seconds specified in --XXX option
     """
-    return int(time.time()) - time.timezone + seconds
+    basic_future = int(time.time()) - time.timezone + seconds
+
+    if GLSetting.debug_option_in_the_future:
+        basic_future += GLSetting.debug_option_in_the_future
+
+    return basic_future
 
 
 def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
     """
     @param check_date: the datetime stored in the database
-
     @param seconds, minutes, hours, day
         the time to live of the element
-
     @return:
         if now + (seconds+minutes+hours) > check_date
         True is returned, else False
+
+        Eventually is incremented of a certain amount of seconds
+        if the Node is running with --XXX option
     """
     if not check_date:
         return False
@@ -265,6 +305,9 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
     check = check_date
     check += timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
     now = datetime.utcnow() - timedelta(seconds=time.timezone)
+
+    if GLSetting.debug_option_in_the_future:
+        now += timedelta(seconds=GLSetting.debug_option_in_the_future)
 
     return now > check
 
