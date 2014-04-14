@@ -193,6 +193,10 @@ GLSetting.parser.add_option("-z", "--devel-mode", action='store_true',
     help="hack some configs and enable some additional features useful during development' [default: %default]",
     dest="devel_mode", default=GLSetting.devel_mode)
 
+GLSetting.parser.add_option("-x", "--skip-wizard", action='store_true',
+    help="skip globaleaks installation wizard' [default: False]",
+    dest="skip_wizard")
+
 GLSetting.parser.add_option("-C", "--glc-path", type='string',
     help="specify GLClient path [default: %default]",
     dest="glc_path", default=GLSetting.glc_path)
