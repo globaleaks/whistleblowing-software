@@ -41,7 +41,6 @@ class SubmissionTest(helpers.TestGL):
         'escalation_threshold': u'0', 'tip_max_access': u'2',
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
         'receivers': [], 'fields': helpers.default_context_fields(), 'submission_timetolive': 100,
-        'receipt_regexp': u"[0-9]{10}",
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
         'select_all_receivers': True,
         'receiver_introduction': u"bleh",

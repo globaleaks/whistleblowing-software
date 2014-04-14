@@ -44,7 +44,8 @@ class TestNodeInstance(helpers.TestHandler):
 
             # some keys are added by GLB, and can't be compared
             if response_key in ['password', 'languages_supported',
-                                'creation_date', 'last_update', 'version' ]:
+                                'creation_date', 'last_update',
+                                'version', 'receipt_example' ]:
                 continue
 
             self.assertEqual(self.responses[0][response_key],
@@ -123,7 +124,7 @@ class TestContextInstance(helpers.TestHandler):
         for response_key in self.responses[0].keys():
 
             # some keys are added by GLB, and can't be compared
-            if response_key in ['creation_date', 'last_update', 'receipt_example']:
+            if response_key in ['creation_date', 'last_update' ]:
                 continue
 
             # the localized strings are kept in one side as localized l10n

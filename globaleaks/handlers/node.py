@@ -30,6 +30,7 @@ def anon_serialize_node(store, user, language=GLSetting.memory_copy.default_lang
       'languages_enabled': node.languages_enabled,
       'languages_supported': LANGUAGES_SUPPORTED,
       'default_language' : node.default_language,
+      'receipt_regexp': node.receipt_regexp,
       'configured': True if associated else False,
       # extended settings info:
       'maximum_namesize': node.maximum_namesize,

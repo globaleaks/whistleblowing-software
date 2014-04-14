@@ -57,7 +57,6 @@ class TTip(helpers.TestGL):
         'fields' : default_context_fields(),
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': False,
         'receivers': [], 'submission_timetolive': 100,
-        'receipt_regexp': u"[0-9]{10}",
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
         'select_all_receivers': True,
         'receiver_introduction': u"¡⅜⅛⅝⅞⅝⅛⅛¡⅛⅛⅛",
@@ -163,7 +162,7 @@ class TestTipInstance(TTip):
             self.receipt = yield submission.create_whistleblower_tip(self.submission_desc)
 
         self.assertGreater(len(self.receipt), 5)
-        self.assertTrue(re.match(u"[0-9]{10}", self.receipt) )
+        self.assertTrue(re.match(self.dummyNode['receipt_regexp'], self.receipt) )
 
     @inlineCallbacks
     def wb_auth_with_receipt(self):
@@ -179,7 +178,7 @@ class TestTipInstance(TTip):
     @inlineCallbacks
     def wb_auth_with_bad_receipt(self):
 
-        fakereceipt = u"1234567890"
+        fakereceipt = u"1234567890AA"
 
         retval = yield authentication.login_wb(fakereceipt)
         self.assertFalse(retval)
