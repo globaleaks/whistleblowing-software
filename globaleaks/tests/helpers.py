@@ -532,7 +532,7 @@ def do_appdata_init(store):
     except Exception as xxx:
         appdata = models.ApplicationData()
         source = opportunistic_appdata_init()
-        appdata.fields_version = source['version']
+        appdata.version = source['version']
         appdata.fields = source['fields']
         store.add(appdata)
 
