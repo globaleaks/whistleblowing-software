@@ -37,7 +37,7 @@ GLClient.controller('MainCtrl', ['$scope', '$http', '$route', '$location', 'Node
     $scope.$on("REFRESH", refresh);
 
     $scope.$on('$routeChangeStart', function(next, current) {
-      //$scope.update_node();
+      $scope.update_node();
     });
 
     $scope.update_node();
