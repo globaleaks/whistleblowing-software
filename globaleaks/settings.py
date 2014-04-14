@@ -17,12 +17,12 @@ import socket
 import pwd
 import grp
 import getpass
-import pickle
 import tempfile
 import transaction
 
 from ConfigParser import ConfigParser
 from optparse import OptionParser
+from ctypes import CDLL
 
 from twisted.python.threadpool import ThreadPool
 from twisted.internet import reactor
@@ -279,6 +279,13 @@ class GLSettingsClass:
 
         self.exceptions = {}
 
+        # Extreme debug option triggered by --XXX, that's are the defaults
+        self.debug_option_in_the_future = 0
+        self.debug_option_UUID_human = ""
+        self.debug_UUID_human_counter = 0
+        self.debug_option_mlockall = False
+
+
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'
 
@@ -309,7 +316,7 @@ class GLSettingsClass:
             self.db_pasword = config.get('db', 'password')
             self.db_hostname = config.get('db', 'hostname')
             self.db_name = config.get('db', 'name')
-            print "'\033[1;33m*Experimental* DB Configuration detected!", \
+            print "\033[1;33mExperimental DB Configuration detected!\033[0m", \
                 self.db_hostname, self.db_username, self.db_type
 
         # this is the default, happen when file above is not found
@@ -392,6 +399,8 @@ class GLSettingsClass:
                                        self.cmdline_options.host_list.replace(" ", "").split(",")))
 
         self.tor_socks_enable = not self.cmdline_options.disable_tor_socks
+
+        self.notification_temporary_disable = self.cmdline_options.notification_temporary_disable
 
         self.socks_host = self.cmdline_options.socks_host
 
@@ -484,6 +493,37 @@ class GLSettingsClass:
             print "Invalid directory of GLCLient: %s: index.html not found" % self.glclient_path
             quit(-1)
 
+        # hardcore extremely dangerous --XXX option trigger
+        # one,two,three
+        if self.cmdline_options.xxx:
+            print "\033[1;33mHardcore dangerous hazardous radioactive --XXX option used!\033[0m"
+            hardcore_opts = self.cmdline_options.xxx.split(',')
+            if len(hardcore_opts):
+                try:
+                    GLSetting.debug_option_in_the_future = int(hardcore_opts[0])
+                except ValueError:
+                    print "Invalid number of seconds provided:", hardcore_opts[0]
+                    quit(-1)
+                print "→ \033[1;31mUsing", GLSetting.debug_option_in_the_future, \
+                    "seconds in the future\033[0m"
+
+            if len(hardcore_opts) > 1 and len(hardcore_opts[1]) > 1:
+                # at least two byte needed, so you can skip this option
+                GLSetting.debug_option_UUID_human = hardcore_opts[1]
+
+                if len(GLSetting.debug_option_UUID_human) > 8:
+                    GLSetting.debug_option_UUID_human = GLSetting.debug_option_UUID_human[:8]
+
+                print "→ \033[1;31mUsing", GLSetting.debug_option_UUID_human, \
+                    "to generate human readable UUIDv4\033[0m"
+
+            if len(hardcore_opts) > 2 and len(hardcore_opts[2]) > 1:
+                self.debug_option_mlockall = True
+                print "→ \033[1;31mUsing mlockall(2) system call to prevent GlobaLeaks swap\033[0m"
+                self.avoid_globaleaks_swap()
+
+            print "\n"
+
 
     def validate_port(self, inquiry_port):
         if inquiry_port >= 65535 or inquiry_port < 0:
@@ -491,6 +531,17 @@ class GLSettingsClass:
             return False
         return True
 
+    def avoid_globaleaks_swap(self):
+        """
+        use mlockall(2) system call to prevent GlobaLeaks from swapping
+        """
+        libc = CDLL("libc.so.6")
+
+        # lock memory from swapping that is created in the FUTURE
+        # (does NOT apply to stuff that is already in memory!)
+        if libc.mlockall(2):
+            print "Unable to libc.mlockall"
+            quit(-1)
 
     def validate_socks(self):
         """
