@@ -106,6 +106,7 @@ def associate_receivers_to_contexts(store):
 
 @transact
 def wizard(store, request, language=GLSetting.memory_copy.default_language):
+
     receiver = request['receiver']
     context = request['context']
     node = request['node']
@@ -113,20 +114,22 @@ def wizard(store, request, language=GLSetting.memory_copy.default_language):
     try:
         context_dict = db_create_context(store, context, language)
     except Exception as excep:
-        log.debug("Failed Context initialization %s" % excep)
+        log.err("Failed Context initialization %s" % excep)
         raise excep
+
+    # associate the new context to the receiver 
+    receiver['contexts'] = [ context_dict['id'] ]
 
     try:
         receiver_dict = db_create_receiver(store, receiver, language)
-        receiver['contexts']= [ context_dict['id'] ]
     except Exception as excep:
-        log.debug("Failed Receiver Finitialization %s" % excep)
+        log.err("Failed Receiver Finitialization %s" % excep)
         raise excep
 
     try:
         db_update_node(store, node, True, language)
     except Exception as excep:
-        log.debug("Failed Fields initialization %s" % excep)
+        log.err("Failed Node initialization %s" % excep)
         raise excep
 
 # ---------------------------------
@@ -167,17 +170,19 @@ class AppdataCollection(BaseHandler):
 class FirstSetup(BaseHandler):
     """
     """
+
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
     def post(self, *uriargs):
+        """
+        """
 
         request = self.validate_message(self.request.body,
                 requests.wizardFirstSetup)
 
         yield wizard(request, self.request.language)
 
-        log.debug("Wizard initialization setup!")
-
-        self.set_status(202) # Updated
+        self.set_status(201) # Created
         self.finish()
+
