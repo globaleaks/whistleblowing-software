@@ -32,7 +32,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     def setUp(self):
         yield helpers.TestGLWithPopulatedDB.setUp(self)
 
-        temporary_file1 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+	temporary_file1 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
         temporary_file1.write("ANTANI")
         temporary_file1.avoid_delete()
 
@@ -227,6 +227,8 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_submission_with_receiver_selection_allow_unencrypted_true_no_keys_loaded(self):
+
+        GLSetting.memory_copy.allow_unencrypted = True
 
         yield create_receiver(self.get_new_receiver_desc("second"))
         yield create_receiver(self.get_new_receiver_desc("third"))

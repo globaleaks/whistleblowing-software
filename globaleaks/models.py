@@ -426,7 +426,8 @@ class Node(Model):
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',
-                  'can_delete_submission', 'ahmia', 'allow_unencrypted', 'wizard_done' ]
+                  'can_delete_submission', 'ahmia', 'allow_unencrypted']
+                # wizard_done is not checked because it's set by the backend
     localized_strings = [ 'description', 'presentation', 'footer', 'subtitle' ]
 
 
