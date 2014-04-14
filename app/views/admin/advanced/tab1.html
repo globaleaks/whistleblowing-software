@@ -26,6 +26,11 @@
     </div>
 
     <div class="form-group">
+      <label data-translate>Receipt format (regular expression)</label>
+      <input class="form-control" data-ng-model="admin.node.receipt_regexp" value="{{node.receipt_regexp}}" type="text">
+    </div>
+
+    <div class="form-group">
       <label data-translate>File size limit (in Megabytes)</label>
       <input class="form-control" data-ng-model="admin.node.maximum_filesize" type="text">
     </div>

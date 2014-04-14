@@ -751,7 +751,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.file_required = false;
         context.tip_timetolive = 15;
         context.submission_timetolive = 48;
-        context.receipt_regexp = "[0-9]{16}";
         context.receiver_introduction = "";
         context.fields_introduction = "";
         context.postpone_superpower = false;
