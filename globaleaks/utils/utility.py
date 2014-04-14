@@ -86,16 +86,16 @@ def log_remove_escapes(s):
     """
     if isinstance(s, unicode):
         return codecs.encode(s, 'unicode_escape')
-    if isinstance(s, str):
+    else:
         try:
+            s = str(s)
             unicodelogmsg = s.decode('utf-8')
         except UnicodeDecodeError:
             return codecs.encode(s, 'string_escape')
+        except Exception as e:
+            return "Failur in log_remove_escapes %s" % e
         else:
             return codecs.encode(unicodelogmsg, 'unicode_escape')
-    else:
-        raise Exception("log_remove_escapes accepts only unicode/str objects not a %s object like %r"
-                        % (type(s), repr(s)))
 
 class GLLogObserver(twlog.FileLogObserver):
 
