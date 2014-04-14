@@ -248,8 +248,10 @@ class BaseHandler(RequestHandler):
             raise HTTPError(403, "X-XSRF-TOKEN argument missing from POST")
 
         # This is a constant time comparison provided by cryptography package
-        if not bytes_eq(self.xsrf_token, token):
+        if not bytes_eq(self.xsrf_token.encode('utf-8'), token.encode('utf-8')):
             raise HTTPError(403, "XSRF cookie does not match POST argument")
+        # utf-8 encoding is used because suggested here:
+        # http://stackoverflow.com/questions/7585307/python-hashlib-problem-typeerror-unicode-objects-must-be-encoded-before-hashin
 
 
     @staticmethod
