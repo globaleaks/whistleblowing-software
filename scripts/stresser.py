@@ -92,7 +92,7 @@ def request(method, url, data=None, session_id=None):
 class Submission(object):
     def __init__(self, context):
         self.data = {
-            'context_gus': context['context_gus'],
+            'context_id': context['id'],
             'files': '',
             'finalize': False,
             'receivers': context['receivers'],
@@ -112,8 +112,13 @@ class Submission(object):
     
     def randomFill(self):
         self.data['wb_fields'] = {}
+        answer_order = 0
         for field in self.fields:
-            self.data['wb_fields'][field['key']] = 'I am an evil stress tester...'
+            self.data['wb_fields'][field['key']] = {
+		'value' : 'I am an evil stress tester...',
+                'answer_order' : answer_order }
+            answer_order += 1
+
 
     @defer.inlineCallbacks
     def finalize(self):
@@ -189,6 +194,7 @@ def submissionWorkflow(context, request_delay, idx):
 
 @defer.inlineCallbacks
 def submissionFuzz(request_delay, submission_count):
+    import time
     print "Using %s - %s" % (request_delay, submission_count)
     contexts = yield request('GET', '/contexts')
   
@@ -197,9 +203,10 @@ def submissionFuzz(request_delay, submission_count):
         for cnt, context in enumerate(contexts):
             i += 1
             print "%d) submissionFuzz ing: %s" % (cnt, context['name'])
+            time.sleep(0.5)
             # submissionWorkflow(context, request_delay, submission_count)
             doStuff()
 
 
-submissionFuzz(0, 14)
+submissionFuzz(0, 44)
 reactor.run()
