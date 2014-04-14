@@ -60,7 +60,10 @@ def initialize_node(store, results, only_node, templates, appdata):
 
     node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
 
+    node.wizard_done = GLSetting.skip_wizard
+
     node.creation_date = datetime_now()
+
     store.add(node)
 
     admin_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))

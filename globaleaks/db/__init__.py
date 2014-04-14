@@ -69,7 +69,6 @@ def create_tables(create_node=True):
 
         log.debug("Node initialization with defaults values")
 
-        print GLSetting.skip_wizard
         only_node = {
             'name':  u"Node Title",
             'description':  dict({ GLSetting.memory_copy.default_language:
@@ -95,7 +94,6 @@ def create_tables(create_node=True):
             'postpone_superpower' : False, # disabled by default
             'can_delete_submission' : False, # disabled too
             'ahmia' : False, # disabled too
-            'wizard_done' : GLSetting.skip_wizard,
             'anomaly_checks' : False, # need to disabled in this stage as it need to be tuned
             'allow_unencrypted': GLSetting.memory_copy.allow_unencrypted,
             'exception_email' : GLSetting.defaults.exception_email,
