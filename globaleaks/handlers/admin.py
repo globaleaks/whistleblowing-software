@@ -56,6 +56,8 @@ def admin_serialize_node(node, receipt_output, language=GLSetting.memory_copy.de
         'reset_css': False,
         'anomaly_checks': node.anomaly_checks,
         'allow_unencrypted': node.allow_unencrypted,
+        'password': u"",
+        'old_password': u"",
     }
 
     for attr in mo.get_localized_attrs():
@@ -185,18 +187,17 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
             log.err("Invalid hidden service regexp in [%s]" % request['hidden_service'])
             raise errors.InvalidInputFormat("Invalid hidden service")
 
-    if len(request['receipt_regexp']) < 4:
-        log.err("Receipt regexp can't works (< 4) Forced: fixme-[a-z0-9]{13}-please")
-        # is acquired below by node.update(request)
-        request['receipt_regexp'] = u"fixme-[a-z0-9]{13}-please"
-
     try:
         receipt_example = generate_example_receipt(request['receipt_regexp'])
+
+        if len(receipt_example) != 16:
+            raise Exception
+
     except Exception as excep:
-        log.err("Receipt regexp trigger the exception below. Forced: fixme-[a-z0-9]{13}-please")
-        log.err(excep)
-        request['receipt_regexp'] = u"fixme-[a-z0-9]{13}-please"
+        log.err("Only receipt returning 16 bytes are accepted. Sets to default: [0-9]{16}")
+        request['receipt_regexp'] = u"[0-9]{16}"
         receipt_example = generate_example_receipt(request['receipt_regexp'])
+
 
     # check the 'reset_css' boolean option: remove an existent custom CSS
     if request['reset_css']:
