@@ -338,7 +338,7 @@ class BaseHandler(RequestHandler):
         valid_jmessage = {}
         for key in message_template.keys():
             if key not in jmessage:
-                log.err('key %s not in %s' % (key, jmessage))
+                log.err('validate_message: key %s not in %s' % (key, jmessage))
                 raise errors.InvalidInputFormat('wrong schema: missing %s' % key)
             else:
                 valid_jmessage[key] = jmessage[key]
@@ -348,7 +348,7 @@ class BaseHandler(RequestHandler):
             # stripped in the previous loop, because valid_jmessage is returned
             for double_k in jmessage.keys():
                 if double_k not in message_template.keys():
-                    log.err("[!?] key %s not expected" % double_k)
+                    log.err("[!?] validate_message: key %s not expected" % double_k)
 
         jmessage = valid_jmessage
         del valid_jmessage
