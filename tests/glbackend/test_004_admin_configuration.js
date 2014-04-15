@@ -19,6 +19,7 @@ var contexts_ids = new Array();
 var contexts_list = new Array();
 
 var authentication;
+var node;
 
 var valid_admin_login = {
   "username": "admin",
@@ -260,6 +261,56 @@ describe('POST /authentication', function () {
         validate_mandatory_headers(res.headers);
 
         authentication = res.body;
+
+        done();
+      });
+  })
+})
+
+describe('GET /admin/node', function () {
+  it('responds 200 on GET /admin/node', function (done) {
+    app
+      .get('/admin/node')
+      .set('X-XSRF-TOKEN', 'antani')
+      .set('cookie', 'XSRF-TOKEN=antani')
+      .set('X-Session', authentication['session_id'])
+      .expect(200)
+      .end(function (err, res) {
+
+        if (err) {
+          return done(err);
+        }
+
+        validate_mandatory_headers(res.headers);
+
+        node = JSON.parse(JSON.stringify(res.body));
+
+        /* adding various keys needed next POST */
+        node['password'] = '';
+        node['old_password'] = '';
+        node['allow_unencrypted'] = true;
+
+        done();
+      });
+  })
+})
+
+describe('PUT /admin/node', function () {
+  it('responds 202 on PUT /admin/node (allow_unencrypted, valid configuration)', function (done) {
+    app
+      .put('/admin/node')
+      .send(node)
+      .set('X-XSRF-TOKEN', 'antani')
+      .set('cookie', 'XSRF-TOKEN=antani')
+      .set('X-Session', authentication['session_id'])
+      .expect(202)
+      .end(function (err, res) {
+
+        if (err) {
+          return done(err);
+        }
+
+        validate_mandatory_headers(res.headers);
 
         done();
       });
