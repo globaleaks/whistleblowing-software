@@ -9,7 +9,7 @@ This comment is needed in order to push the following strings on transifex
 
 <div data-ng-controller="WizardCtrl" id="ContentBox" class="container">
 
-  <form class="navbar-form navbar-left" name="wizard">
+  <form name="wizard">
 
     <h2>
       <strong>
@@ -28,7 +28,7 @@ This comment is needed in order to push the following strings on transifex
             <span data-translate>Initiative name</span>
           </label>
           <div class="col-md-8">
-            <input type="text" class="form-control" data-ng-model="admin.node.name" placeholder="" cols="40" required>
+            <input type="text" class="form-control" data-ng-model="admin.node.name" placeholder="" required>
             <span class="help-block">
               <span data-translate>Enter the name for your whistleblowing initiative</span>
             </span>
@@ -118,7 +118,7 @@ This comment is needed in order to push the following strings on transifex
       </div>
       <div class="col-md-6">
         <p class="help-hint">
-        <span data-translate>There are three types of users inside of GlobaLeaks: the administrator, the receivers and the whistleblower. Your username for accessing the node as administrator will be 'admin'.</span>
+          <span data-translate>There are three types of users inside of GlobaLeaks: the administrator, the receivers and the whistleblower. Your username for accessing the node as administrator will be 'admin'.</span>
         </p>
       </div>
 
@@ -159,7 +159,7 @@ This comment is needed in order to push the following strings on transifex
             <span data-translate>Password</span>
           </label>
           <div class="col-md-8">
-            <div class="label label-primary wizard-receiver-password"><strong>{{receiver.password}}<strong></div>
+            <div class="label label-primary wizard-receiver-password"><strong>{{receiver.password}}</strong></div>
             <span class="help-block">
               <span data-translate>This is the password that the receiver must use to login to their tip page.</span>
             </span>
@@ -186,6 +186,7 @@ This comment is needed in order to push the following strings on transifex
             <div data-ng-show="admin.node.allow_unencrypted">
               <span class="label label-danger" data-translate>Danger</span>
               <span data-translate>By enabling this option the system will be storing the submitted files unecrypted on your node.</span>
+              <span data-translate>This happens in case encryption is unavailable.</span>
             </div>
           </label>
         </div>
@@ -193,14 +194,15 @@ This comment is needed in order to push the following strings on transifex
       </div>
 
       <div class="col-md-6">
-        <p class="help-hint bg-warning">
+        <p class="help-hint">
           <span data-translate>Receivers are very important for a GlobaLeaks based initiative. They are the people responsible for receiving the whistleblower submissions, verifying their authenticity and taking action upon them. Choose them wisely.</span>
         </p>
       </div>
 
       <div class="col-md-6">
-        <p class="help-hint bg-warning">
-          <span data-translate>In order to deliver encrypted emails and files each receiver needs an associated PGP key. Cut and paste the key of the receiver or mark the checkbox "Enable insecure configuration without PGP encryption".</span>
+        <p class="help-hint">
+          <span data-translate>In order to deliver encrypted emails and files each receiver needs an associated PGP key. Cut and paste the key of the receiver or mark the checkbox:</span>
+          <span data-translate>Enable insecure configuration without PGP encryption.</span>
         </p>
       </div>
     </div>
