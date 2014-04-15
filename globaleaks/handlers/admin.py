@@ -116,7 +116,6 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "username": receiver.user.username,
         "user_id": receiver.user.id,
         'mail_address': receiver.mail_address,
-        "password": u"",
         "contexts": list(receiver.contexts.values(models.Context.id)),
         "tags": receiver.tags,
         "gpg_key_info": receiver.gpg_key_info,
