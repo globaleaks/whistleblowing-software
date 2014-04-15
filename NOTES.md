@@ -1,6 +1,6 @@
 ## Development hardcore option
 
-**Option --XXX permit to specify some options that broke GLBackend security and reliability **
+**Option --XXX permits to specify some options that broke GLBackend security and reliability **
 
 Usage:
 
@@ -8,7 +8,7 @@ Usage:
 
 
   * number_position_one: the number of seconds added every time the current data is checked, this can emulate GLBackend run in the future of the specified seconds
-  * string_position_two: if this string is enabled, every UUIDv4 is generated not by random sources but with YOURSTRING-XXX-XXX-[sameformat]-NNN where NNN is an incremental number. Its considered if something longer that two bytes is present
+  * string_position_two: if this string is enabled, every UUIDv4 is generated not by random sources but with YOURSTRING-XXX-XXX-[sameformat]-NNN where NNN is an incremental number. It's considered if something longer that two bytes is present
   * string_position_three if something longer than 1 byte is present, enable mlockall
 
 
