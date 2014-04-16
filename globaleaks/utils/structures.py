@@ -210,9 +210,6 @@ class Fields:
             log.err("Internal error in processing required keys: %s" % excep)
             raise excep
 
-        if not self._localization.has_key(lang):
-            raise InvalidInputFormat("Submitted content in an unsupported language (%s)" % lang)
-
         for key, field in wb_fields.iteritems():
 
             if not key in required_keys and not key in optional_keys:
