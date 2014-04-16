@@ -1,5 +1,2 @@
 [run]
 source = globaleaks
-
-omit =
-    globaleaks/db/update_*.py

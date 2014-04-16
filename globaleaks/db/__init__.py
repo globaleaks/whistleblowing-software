@@ -3,6 +3,8 @@
 #   ******************
 from __future__ import with_statement
 import os
+import sys
+import traceback
 
 from twisted.internet.defer import succeed, inlineCallbacks
 from storm.exceptions import OperationalError
@@ -10,8 +12,8 @@ from storm.exceptions import OperationalError
 from globaleaks.utils.utility import log
 from globaleaks.settings import transact, transact_ro, ZStorm, GLSetting
 from globaleaks import models
+from globaleaks.db import updater_manager
 from globaleaks.db.datainit import initialize_node, opportunistic_appdata_init
-
 
 def init_models():
     for model in models.models:
@@ -132,6 +134,78 @@ def create_tables(create_node=True):
 
     return deferred
 
+
+def find_current_db_version(dirpath, filearray):
+
+    glbackend_file_present = 0
+    for single_file in filearray:
+
+        # -journal file may remain if GLB crashes badly
+        if single_file.endswith('-journal'):
+            print "Found a DB journal file! %s: removing" % single_file
+            try:
+                os.unlink(os.path.join(dirpath, single_file))
+                continue
+            except Exception as excep:
+                print "Unable to remove %s: %s" % \
+                      (os.unlink(os.path.join(dirpath, single_file)), excep)
+                # this would lead quitting for "too much DBs" below
+
+        if single_file[:len('glbackend')] == 'glbackend':
+            glbackend_file_present += 1
+
+    if glbackend_file_present == 0:
+        print "glbackend database file not found in %s" % dirpath
+        raise StandardError
+    elif glbackend_file_present > 1:
+        print "glbackend database file found more than 1! keep only the latest in %s" % dirpath
+        raise AssertionError
+
+    for single_file in filearray:
+        abspath = os.path.join(dirpath, single_file)
+
+        if abspath[-3:] == '.db':
+
+            nameindex = abspath.rfind('glbackend')
+            extensindex = abspath.rfind('.db')
+
+            if nameindex + len('glbackend') == extensindex:
+                detected_version = 0
+            else:
+                detected_version = int(
+                    abspath[nameindex+len('glbackend-'):extensindex])
+
+            return detected_version, abspath
+
+def check_db_files():
+    """
+    This function checks the DB version and executes eventually the DB update scripts
+    """
+    for (path, dirs, files) in os.walk(GLSetting.gldb_path):
+
+        try:
+            starting_ver, abspath = find_current_db_version(path, files)
+
+            if starting_ver < GLSetting.db_version:
+                print "Performing update of Database from version %d to version %d" %\
+                      (starting_ver, GLSetting.db_version)
+                try:
+                    updater_manager.perform_version_update(starting_ver, GLSetting.db_version, abspath)
+                    print "GlobaLeaks database version %d: update complete!" % GLSetting.db_version
+                except Exception as excep:
+                    print "GlobaLeaks database version %d: update failure :(" % GLSetting.db_version
+                    print "Verbose exception traceback:"
+                    exc_type, exc_value, exc_traceback = sys.exc_info()
+                    traceback.print_tb(exc_traceback)
+                    quit(-1)
+
+                print "Database version detected: %d" % GLSetting.db_version
+
+        except AssertionError:
+            print "Error: More than one database file has been found in %s" % path
+            quit(-1)
+        except StandardError:
+            continue
 
 def check_schema_version():
     """
