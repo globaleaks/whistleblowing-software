@@ -11,6 +11,7 @@ import os
 import shutil
 import scrypt
 import pickle
+import traceback
 
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
@@ -56,6 +57,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
         self.file = open(self.filepath, 'w+b')
 
+        # last argument is 'True' because the file has to be deleted on .close()
         _TemporaryFileWrapper.__init__(self, self.file, self.filepath, True)
 
     def initialize_cipher(self):
@@ -70,12 +72,12 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         self.key = os.urandom(GLSetting.AES_key_size)
 
         self.key_id = xeger(GLSetting.AES_key_id_regexp)
-        keypath = os.path.join(GLSetting.ramdisk_path, "%s%s" %
-                                (GLSetting.AES_keyfile_prefix, self.key_id))
+        self.keypath = os.path.join(GLSetting.ramdisk_path, "%s%s" %
+                                    (GLSetting.AES_keyfile_prefix, self.key_id))
 
-        while os.path.isfile(keypath):
+        while os.path.isfile(self.keypath):
             self.key_id = xeger(GLSetting.AES_key_id_regexp)
-            keypath = os.path.join(GLSetting.ramdisk_path, "%s%s" %
+            self.keypath = os.path.join(GLSetting.ramdisk_path, "%s%s" %
                                     (GLSetting.AES_keyfile_prefix, self.key_id))
 
         self.key_counter_nonce = os.urandom(GLSetting.AES_counter_nonce)
@@ -86,14 +88,14 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             'key_counter_nonce' : self.key_counter_nonce
         }
 
-        log.debug("Key initialization at %s" % keypath)
+        log.debug("Key initialization at %s" % self.keypath)
 
-        with open(keypath, 'w') as kf:
+        with open(self.keypath, 'w') as kf:
            pickle.dump(saved_struct, kf)
 
-        if not os.path.isfile(keypath):
-            log.err("Unable to write keyfile %s" % keypath)
-            raise Exception("Unable to write keyfile %s" % keypath)
+        if not os.path.isfile(self.keypath):
+            log.err("Unable to write keyfile %s" % self.keypath)
+            raise Exception("Unable to write keyfile %s" % self.keypath)
 
     def avoid_delete(self):
         log.debug("Avoid delete on: %s " % self.filepath)
@@ -107,7 +109,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
         assert (self.last_action != 'read'), "you can write after read!"
         
-
         self.last_action = 'write'
         try:
             if isinstance(data, unicode):
@@ -115,7 +116,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
             self.file.write(self.encryptor.update(data))
         except Exception as wer:
-            import traceback
             log.err("Unable to write() in GLSecureTemporaryFile: %s" % wer.message)
             raise wer
 
@@ -139,8 +139,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         else:
             return self.decryptor.update(self.file.read(c))
 
-class KeyExpiredSadness(Exception): pass
-
 
 class GLSecureFile(GLSecureTemporaryFile):
 
@@ -154,36 +152,29 @@ class GLSecureFile(GLSecureTemporaryFile):
 
         self.file = open(self.filepath, 'r+b')
 
-        self.load_key()
-
-        # last argument is 'False' because has not to be deleted on .close()
+        # last argument is 'False' because the file has not to be deleted on .close()
         _TemporaryFileWrapper.__init__(self, self.file, self.filepath, False)
 
+        self.load_key()
 
     def load_key(self):
         """
         Load the AES Key to decrypt uploaded file.
         """
-        keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, self.key_id)))
+        self.keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, self.key_id)))
 
-        if os.path.isfile(keypath):
-
-            try:
-                with open(keypath, 'r') as kf:
-                    saved_struct = pickle.load(kf)
-            except Exception as axa:
-                log.err("Unable to load key from %s" % keypath)
-                raise axa
+        try:
+            with open(self.keypath, 'r') as kf:
+                saved_struct = pickle.load(kf)
 
             self.key = saved_struct['key']
             self.key_counter_nonce = saved_struct['key_counter_nonce']
             self.initialize_cipher()
 
-        else:
-
+        except Exception as axa:
             # I'm sorry, those file is a dead file!
-            log.err("The file %s has been encrypted with a lost key!")
-            raise KeyExpiredSadness("cannot find key %s" % self.key_id)
+            log.err("The file %s has been encrypted with a lost/invalid key (%s)" % (self.keypath, axa.message))
+            raise axa
 
 
 def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
@@ -280,7 +271,7 @@ def change_password(base64_stored, old_password, new_password, salt_input):
         the scrypt hash in base64 of the new password
     """
     if not check_password(old_password, base64_stored, salt_input):
-        log.err("old_password provided do match")
+        log.err("change_password_error: provided invalid old_password")
         raise errors.InvalidOldPassword
 
     check_password_format(new_password)
