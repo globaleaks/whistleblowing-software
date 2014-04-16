@@ -23,7 +23,8 @@ from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler, anomaly
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils.utility import log, pretty_date_time
 from globaleaks.rest import errors
-from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
+from globaleaks.models import ReceiverTip, ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
+from globaleaks.security import access_tip
 
 def serialize_file(internalfile):
 
@@ -215,15 +216,20 @@ class FileInstance(FileHandler):
 
 
 @transact
-def download_file(store, file_id):
+def download_file(store, user_id, tip_id, file_id):
     """
     Auth temporary disabled, just Tip_id and File_id required
     """
 
+    rtip = access_tip(store, user_id, tip_id)
+
     rfile = store.find(ReceiverFile,
                        ReceiverFile.id == unicode(file_id)).one()
 
-    log.debug("Download of %s downloads: %d with limit of %s for %s" %
+    if not rfile:
+        raise errors.FileIdNotFound
+
+    log.debug("Download of %s: %d of %d for %s" %
               (rfile.internalfile.name, rfile.downloads,
                rfile.internalfile.internaltip.download_limit, rfile.receiver.name))
 
@@ -236,7 +242,9 @@ def download_file(store, file_id):
 
 
 @transact
-def download_all_files(store, tip_id):
+def download_all_files(store, user_id, tip_id):
+
+    rtip = access_tip(store, user_id, tip_id)
 
     rfiles = store.find(ReceiverFile,
                         ReceiverFile.receiver_tip_id == unicode(tip_id))
@@ -263,7 +271,7 @@ class Download(BaseHandler):
     @inlineCallbacks
     def post(self, tip_id, rfile_id, *uriargs):
 
-        rfile = yield download_file(rfile_id)
+        rfile = yield download_file(self.current_user.user_id, tip_id, rfile_id)
 
         # keys:  'file_path'  'size' : 'content_type' 'file_name'
 
