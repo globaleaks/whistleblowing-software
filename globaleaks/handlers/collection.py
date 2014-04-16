@@ -123,11 +123,10 @@ class CollectionDownload(BaseHandler):
             # the regexp of rest/api.py should prevent this.
             raise errors.InvalidInputFormat("collection compression type not supported")
 
-        files_dict = yield download_all_files(rtip_id)
+        files_dict = yield download_all_files(self.current_user.user_id, rtip_id)
 
         if not files_dict:
             raise errors.DownloadLimitExceeded
-
 
         node_dict = yield admin.get_node()
         receiver_dict = yield get_receiver_from_rtip(rtip_id)
