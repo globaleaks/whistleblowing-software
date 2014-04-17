@@ -226,7 +226,7 @@ def download_file(store, user_id, tip_id, file_id):
     rfile = store.find(ReceiverFile,
                        ReceiverFile.id == unicode(file_id)).one()
 
-    if not rfile:
+    if not rfile or rfile.receiver_id != user_id:
         raise errors.FileIdNotFound
 
     log.debug("Download of %s: %d of %d for %s" %
