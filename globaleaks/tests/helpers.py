@@ -1,24 +1,26 @@
 # -*- coding: UTF-8
 
 import json
+import os
 
 from cyclone import httpserver
 from cyclone.web import Application
 from cyclone.util import ObjectDict as OD
 from twisted.trial import unittest
 from twisted.test import proto_helpers
+from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 from storm.twisted.testing import FakeThreadPool
 
+from globaleaks import db, models, security
 from globaleaks.settings import GLSetting, transact
+from globaleaks.handlers import files
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
-from globaleaks import db, models, security
 from globaleaks.utils.utility import datetime_null, datetime_now, uuid4, log
 from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
 from globaleaks.db.datainit import opportunistic_appdata_init
-
 from globaleaks.security import GLSecureTemporaryFile
 
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
@@ -75,6 +77,33 @@ class TestGL(unittest.TestCase):
         self.dummyReceiver = dummyStuff.dummyReceiver
         self.dummyNode = dummyStuff.dummyNode
 
+        self.assertTrue(os.listdir(GLSetting.submission_path) == [])
+        self.assertTrue(os.listdir(GLSetting.tmp_upload_path) == [])
+
+        temporary_file1 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+        temporary_file1.write("ANTANI")
+        temporary_file1.avoid_delete()
+
+        temporary_file2 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+        temporary_file2.write("ANTANIANTANIANTANI")
+        temporary_file2.avoid_delete()
+
+        self.dummyFile1 = {
+            'body': temporary_file1,
+            'body_len': len("ANTANI"),
+            'body_filepath': temporary_file1.filepath,
+            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
+            'content_type': 'application/octect',
+        }
+
+        self.dummyFile2 = {
+            'body': temporary_file2,
+            'body_len': len("ANTANIANTANIANTANI"),
+            'body_filepath': temporary_file2.filepath,
+            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
+            'content_type': 'application/octect',
+        }
+
     def localization_set(self, dict_l, dict_c, language):
         ret = dict(dict_l)
 
@@ -83,6 +112,50 @@ class TestGL(unittest.TestCase):
             ret[attr][language] = unicode(dict_l[attr])
 
         return ret
+
+    def get_new_receiver_desc(self, descpattern):
+        new_r = dict(self.dummyReceiver)
+        new_r['name'] = new_r['username'] =\
+        new_r['mail_address'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
+        new_r['password'] = VALID_PASSWORD1
+        # localized dict required in desc
+        new_r['description'] =  "am I ignored ? %s" % descpattern
+        return new_r
+
+    @inlineCallbacks
+    def emulate_file_upload(self, associated_submission_id):
+
+        relationship1 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
+        self.registered_file1 = yield files.register_file_db(
+            self.dummyFile1, relationship1, associated_submission_id,
+        )
+
+        relationship2 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
+        self.registered_file2 = yield files.register_file_db(
+            self.dummyFile2, relationship2, associated_submission_id,
+            )
+
+        keydiff = {'size', 'content_type', 'name', 'creation_date', 'id'} - set(self.registered_file1.keys())
+        self.assertFalse(keydiff)
+
+        keydiff = {'size', 'content_type', 'name', 'creation_date', 'id'} - set(self.registered_file2.keys())
+        self.assertFalse(keydiff)
+
+    def get_dummy_file(self):
+        temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+
+        temporary_file.write("ANTANI")
+        temporary_file.avoid_delete()
+
+        dummy_file = {
+            'body': temporary_file,
+            'body_len': len("ANTANI"),
+            'body_filepath': temporary_file.filepath,
+            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
+            'content_type': 'application/octect',
+        }
+
+        return dummy_file
 
 class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
@@ -408,19 +481,6 @@ class MockDict():
             'plaintext_message_mail_title': u'T %EventTime %TipUN',
             'zip_description': u'TODO',
             'disable': False,
-        }
-
-
-        temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
-
-        temporary_file.write("ANTANI")
-
-        self.dummyFile = {
-            'body': temporary_file,
-            'body_len': len("ANTANI"),
-            'body_filepath': temporary_file.filepath,
-            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
-            'content_type': 'application/octect',
         }
 
 

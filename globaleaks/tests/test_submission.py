@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 import re
 
-from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 # override GLSetting
@@ -10,11 +9,10 @@ from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.jobs import delivery_sched
-from globaleaks.handlers import files, authentication, submission, wbtip
+from globaleaks.handlers import authentication, submission, wbtip
 from globaleaks.handlers.admin import create_context, update_context, create_receiver, get_receiver_list
 from globaleaks.rest import errors
 from globaleaks.models import InternalTip
-from globaleaks.security import GLSecureTemporaryFile
 
 @transact_ro
 def collect_ifile_as_wb_without_wbtip(store, internaltip_id):
@@ -29,48 +27,44 @@ def collect_ifile_as_wb_without_wbtip(store, internaltip_id):
 class TestSubmission(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestGLWithPopulatedDB.setUp(self)
-
-	temporary_file1 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
-        temporary_file1.write("ANTANI")
-        temporary_file1.avoid_delete()
-
-        temporary_file2 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
-        temporary_file2.write("ANTANIANTANIANTANI")
-        temporary_file2.avoid_delete()
-
-        self.dummyFile1 = {
-            'body': temporary_file1,
-            'body_len': len("ANTANI"),
-            'body_filepath': temporary_file1.filepath,
-            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
-            'content_type': 'application/octect',
-        }
-
-        self.dummyFile2 = {
-            'body': temporary_file2,
-            'body_len': len("ANTANIANTANIANTANI"),
-            'body_filepath': temporary_file2.filepath,
-            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
-            'content_type': 'application/octect',
-        }
-
-    # --------------------------------------------------------- #
-    @inlineCallbacks
     def test_create_submission(self):
+        submission_desc = dict(self.dummySubmission)
+        submission_desc['finalize'] = False
+        del submission_desc['id']
+
+        status = yield submission.create_submission(submission_desc, finalize=False)
+
+        self.assertEqual(status['mark'], u'submission')
+
+    @inlineCallbacks
+    def test_create_submission_attach_files_finalize_and_access_wbtip(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
         del submission_desc['id']
 
-        status = yield submission.create_submission(submission_desc, finalize=True)
+        status = yield submission.create_submission(submission_desc, finalize=False)
+
+        yield self.emulate_file_upload(self.dummySubmission['id'])
+
+        status = yield submission.update_submission(status['id'], status, finalize=True)
+
+        self.assertEqual(status['mark'], u'finalize')
+
         receipt = yield submission.create_whistleblower_tip(status)
 
-        retval = re.match(self.dummyNode['receipt_regexp'], receipt)
-        self.assertTrue(retval)
+        self.assertTrue(re.match(self.dummyNode['receipt_regexp'], receipt))
+
+        wb_access_id = yield authentication.login_wb(receipt)
+
+        # remind: return a tuple (serzialized_itip, wb_itip)
+        wb_tip = yield wbtip.get_internaltip_wb(wb_access_id)
+
+        # In the WB/Receiver Tip interface, wb_fields are called fields.
+        # This can be uniformed when API would be cleaned of the _id
+        self.assertTrue(wb_tip.has_key('fields'))
 
     @inlineCallbacks
-    def test_fail_submission_missing_file(self):
+    def test_fail_submission_missing_required_file(self):
 
         mycopy = dict(self.dummyContext)
         mycopy['file_required'] = True
@@ -89,36 +83,9 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         yield self.assertFailure(submission.create_submission(submission_desc, finalize=True), errors.FileRequiredMissing)
 
     @inlineCallbacks
-    def emulate_file_upload(self, associated_submission_id):
-
-        relationship1 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
-        self.registered_file1 = yield files.register_file_db(
-            self.dummyFile1, relationship1, associated_submission_id,
-        )
-
-        relationship2 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
-        self.registered_file2 = yield files.register_file_db(
-            self.dummyFile2, relationship2, associated_submission_id,
-            )
-
-    @inlineCallbacks
-    def test_pternalfiles(self):
-        yield self.emulate_file_upload(self.dummySubmission['id'])
-        keydiff = {'size', 'content_type', 'name', 'creation_date', 'id'} - set(self.registered_file1.keys())
-        self.assertFalse(keydiff)
-        keydiff = {'size', 'content_type', 'name', 'creation_date', 'id'} - set(self.registered_file2.keys())
-        self.assertFalse(keydiff)
-
-    @transact
-    def _force_finalize(self, store, submission_id):
-        it = store.find(models.InternalTip, models.InternalTip.id == submission_id).one()
-        it.mark = models.InternalTip._marker[1] # 'finalized'
-
-    @inlineCallbacks
     def test_create_receiverfiles_allow_unencrypted_true_no_keys_loaded(self):
 
-        yield self.emulate_file_upload(self.dummySubmission['id'])
-        yield self._force_finalize(self.dummySubmission['id'])
+        yield self.test_create_submission_attach_files_finalize_and_access_wbtip()
 
         # create receivertip its NEEDED to create receiverfile
         self.rt = yield delivery_sched.tip_creation()
@@ -159,8 +126,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         GLSetting.memory_copy.allow_unencrypted = False
 
-        yield self.emulate_file_upload(self.dummySubmission['id'])
-        yield self._force_finalize(self.dummySubmission['id'])
+        yield self.test_create_submission_attach_files_finalize_and_access_wbtip()
 
         # create receivertip its NEEDED to create receiverfile
         self.rt = yield delivery_sched.tip_creation()
@@ -196,34 +162,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         # because is not generated a WhistleblowerTip in this test
         self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.dummySubmission['id'])
         self.assertEqual(len(self.wbfls), 2)
-
-
-    @inlineCallbacks
-    def test_access_from_receipt(self):
-        submission_desc = dict(self.dummySubmission)
-        submission_desc['finalize'] = True
-        del submission_desc['id']
-
-        status = yield submission.create_submission(submission_desc, finalize=True)
-        receipt = yield submission.create_whistleblower_tip(status)
-
-        wb_access_id = yield authentication.login_wb(receipt)
-
-        # remind: return a tuple (serzialized_itip, wb_itip)
-        wb_tip = yield wbtip.get_internaltip_wb(wb_access_id)
-
-        # In the WB/Receiver Tip interface, wb_fields are called fields.
-        # This can be uniformed when API would be cleaned of the _id
-        self.assertTrue(wb_tip.has_key('fields'))
-
-    def get_new_receiver_desc(self, descpattern):
-        new_r = dict(self.dummyReceiver)
-        new_r['name'] = new_r['username'] =\
-        new_r['mail_address'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
-        new_r['password'] = helpers.VALID_PASSWORD1
-        # localized dict required in desc
-        new_r['description'] =  "am I ignored ? %s" % descpattern
-        return new_r
 
     @inlineCallbacks
     def test_submission_with_receiver_selection_allow_unencrypted_true_no_keys_loaded(self):
