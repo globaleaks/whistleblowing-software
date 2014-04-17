@@ -80,6 +80,11 @@ ModalPostponeTipCtrl = ['$scope', '$http', '$route', '$location', 'Tip', '$modal
 
   $scope.tip_id = tip_id;
 
+  var TipID = {tip_id: $scope.tip_id};
+  new Tip(TipID, function(tip){
+    $scope.tip = tip;
+  });
+
   $scope.cancel = function () {
     $modalInstance.close();
   };
@@ -95,11 +100,6 @@ ModalPostponeTipCtrl = ['$scope', '$http', '$route', '$location', 'Tip', '$modal
      $scope.tip.$update();
      $route.reload();
   };
-
-  var TipID = {tip_id: $scope.tip_id};
-  new Tip(TipID, function(tip){
-    $scope.tip = tip;
-  });
 
 }];
 
