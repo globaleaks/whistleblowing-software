@@ -48,37 +48,6 @@ class TTip(helpers.TestGL):
     tipOptions = TTip.tipOptions
     commentCreation = TTip.commentCreation
 
-    def setUp(self):
-        helpers.TestGL.setUp(self)
-
-        self.assertTrue(os.listdir(GLSetting.submission_path) == [])
-        self.assertTrue(os.listdir(GLSetting.tmp_upload_path) == [])
-
-        temporary_file1 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
-        temporary_file1.write("ANTANI")
-        temporary_file1.avoid_delete()
-
-        temporary_file2 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
-        temporary_file2.write("ANTANI")
-        temporary_file2.avoid_delete()
-
-        self.dummyFile1 = {
-            'body': temporary_file1,
-            'body_len': len("ANTANI"),
-            'body_filepath': temporary_file1.filepath,
-            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
-            'content_type': 'application/octect',
-        }
-
-        self.dummyFile2 = {
-            'body': temporary_file2,
-            'body_len': len("ANTANI"),
-            'body_filepath': temporary_file2.filepath,
-            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
-            'content_type': 'application/octect',
-        }
-
-
 class TestCleaning(TTip):
 
     # Test model is a prerequisite for create e valid environment where Tip lives
@@ -123,21 +92,6 @@ class TestCleaning(TTip):
         for tip in tips:
             tip.expiration_date = datetime_null()
             self.assertTrue(is_expired(tip.expiration_date))
-
-    @inlineCallbacks
-    def emulate_file_upload(self, associated_submission_id):
-        """
-        THIS IS A COPY OF emulate_file_upload from test_submission
-        """
-        relationship1 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
-        self.registered_file1 = yield files.register_file_db(
-            self.dummyFile1, relationship1, associated_submission_id,
-            )
-
-        relationship2 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
-        self.registered_file2 = yield files.register_file_db(
-            self.dummyFile2, relationship2, associated_submission_id,
-            )
 
     @inlineCallbacks
     def do_create_internalfiles(self):

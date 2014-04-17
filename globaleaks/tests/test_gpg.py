@@ -235,7 +235,7 @@ class TestReceiverSetKey(TestHandler):
         new_subm_output = yield create_submission(new_subm, False)
         # self.submission_assertion(new_subm, new_subm_output)
 
-        new_file = dict(MockDict().dummyFile)
+        new_file = self.get_dummy_file()
 
         relationship1 = yield threads.deferToThread(files.dump_file_fs, new_file)
 

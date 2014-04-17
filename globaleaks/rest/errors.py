@@ -72,7 +72,7 @@ class TipReceiptNotFound(GLException):
     """
     The WhisleBlower receipt is not related to any of the whistleblower tips
     """
-    reason = "Not found a Receiver with the specified ID"
+    reason = "Not found a Whistleblower Tip with the specified ID"
     error_code = 14
     status_code = 404 # Not Found
 
