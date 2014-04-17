@@ -26,6 +26,32 @@ from globaleaks.models import ReceiverTip, ReceiverFile
 from globaleaks.utils.utility import log
 from globaleaks.utils.templating import Templating
 
+def get_compression_opts(compression):
+    if compression == 'zipstored':
+        return { 'filename'         : 'collection.zip',
+                 'compression_type' : ZIP_STORED }
+
+    elif compression == 'zipdeflated':
+        return { 'filename'         : 'collection.zip',
+                 'compression_type' : ZIP_DEFLATED }
+
+    elif compression == 'tar':
+        return { 'filename'         : 'collection.tar',
+                 'compression_type' : '' }
+
+    elif compression == 'targz':
+        return  { 'filename'         : 'collection.tar.gz',
+                  'compression_type' : 'gz' }
+
+    elif compression == 'tarbz2':
+        return  { 'filename'         : 'collection.tar.bz2',
+                  'compression_type' : 'bz2' }
+
+    else:
+        # just to be sure; by the way
+        # the regexp of rest/api.py should prevent this.
+        raise errors.InvalidInputFormat("collection compression type not supported")
+
 @transact_ro
 def get_rtip_info(store, rtip_id):
     """
@@ -95,38 +121,15 @@ class CollectionDownload(BaseHandler):
     @inlineCallbacks
     def post(self, rtip_id, path, compression):
 
-        if compression is None:
-            # Forcing the default to be zip without compression
-            compression = 'zipstored'
-
-        if compression == 'zipstored':
-            opts = { 'filename'         : 'collection.zip',
-                     'compression_type' : ZIP_STORED}
-
-        elif compression == 'zipdeflated':
-            opts = { 'filename'         : 'collection.zip',
-                     'compression_type' : ZIP_DEFLATED}
-
-        elif compression == 'tar':
-            opts = { 'filename'         : 'collection.tar',
-                     'compression_type' : ''}
-
-        elif compression == 'targz':
-            opts = { 'filename'         : 'collection.tar.gz',
-                     'compression_type' : 'gz'}
-
-        elif compression == 'tarbz2':
-            opts = { 'filename'         : 'collection.tar.bz2',
-                     'compression_type' : 'bz2'}
-        else:
-            # just to be sure; by the way
-            # the regexp of rest/api.py should prevent this.
-            raise errors.InvalidInputFormat("collection compression type not supported")
-
         files_dict = yield download_all_files(self.current_user.user_id, rtip_id)
 
         if not files_dict:
             raise errors.DownloadLimitExceeded
+
+        if compression is None:
+            compression = 'zipstored'
+
+        opts = get_compression_opts(compression)
 
         node_dict = yield admin.get_node()
         receiver_dict = yield get_receiver_from_rtip(rtip_id)
