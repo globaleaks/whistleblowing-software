@@ -93,7 +93,7 @@ def log_remove_escapes(s):
         except UnicodeDecodeError:
             return codecs.encode(s, 'string_escape')
         except Exception as e:
-            return "Failur in log_remove_escapes %s" % e
+            return "Failure in log_remove_escapes %r" % e
         else:
             return codecs.encode(unicodelogmsg, 'unicode_escape')
 
