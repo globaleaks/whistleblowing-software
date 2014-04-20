@@ -720,12 +720,14 @@ class GLSettingsClass:
 
         # temporary .aes files must be simply deleted
         for f in os.listdir(GLSetting.tmp_upload_path):
-            try: 
-                path = os.path.join(GLSetting.tmp_upload_path, f)
-                print "Removing old temporary file: %s" % path
+
+            path = os.path.join(GLSetting.tmp_upload_path, f)
+            print "Removing old temporary file: %s" % path
+
+            try:
                 os.remove(path)
-            except Exception as excep:
-                print "Error while evaluating removal for %s: %s" % (path, excep)
+            except OSError as excep:
+                print "Error while evaluating removal for %s: %s" % (path, excep.strerror)
 
         # temporary .aes files with lost keys can be deleted
         # while temporary .aes files with valid current key

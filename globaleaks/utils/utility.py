@@ -16,6 +16,8 @@ import traceback
 from uuid import UUID
 from datetime import datetime, timedelta
 
+from twisted.internet import reactor
+from twisted.internet.defer import Deferred
 from twisted.python import log as twlog
 from twisted.python import logfile as twlogfile
 from twisted.python import util
@@ -68,6 +70,18 @@ def random_shuffle(x):
         j = randint(0, i)
         x[i], x[j] = x[j], x[i]
     return x
+
+def deferred_sleep(timeout):
+    """
+    @param timeout: this sleep is called to slow down bruteforce attacks
+    @return:
+    """
+    def callbackDeferred():
+        d.callback(True)
+
+    d = Deferred()
+    reactor.callLater(timeout, callbackDeferred)
+    return d
 
 def log_encode_html(s):
     """

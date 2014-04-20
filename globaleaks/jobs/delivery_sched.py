@@ -117,9 +117,10 @@ def receiverfile_planning(store):
                 log.err("Unable to remove %s in integrity fixing routine: %s" %
                     (filex.file_path, excep.strerror) )
 
+            key_id = os.path.basename(filex.file_path).split('.')[0]
+            keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, key_id)))
+
             try:
-                key_id = os.path.basename(filex.file_path).split('.')[0]
-                keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, key_id)))
                 os.remove(keypath)
             except OSError as excep:
                 log.err("Unable to delete keyfile %s: %s" % (keypath, excep.strerror))

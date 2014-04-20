@@ -30,11 +30,11 @@ from cyclone import escape, httputil
 from cyclone.escape import native_str, parse_qs_bytes
 
 from globaleaks.jobs.statistics_sched import alarm_level
-from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now
+from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
 from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
-from globaleaks.security import GLSecureTemporaryFile, security_sleep
+from globaleaks.security import GLSecureTemporaryFile
 
 def validate_host(host_key):
     """
@@ -537,7 +537,7 @@ class BaseHandler(RequestHandler):
             #    (1000.0 * needed_diff),
             #    (1000.0 * uniform_delay)
             #)
-            yield security_sleep(needed_diff)
+            yield deferred_sleep(needed_diff)
         else:
             #print "uniform delay of %.2fms it's more than %.2fms" % (
             #    (1000.0 * request_time ), (1000.0 * uniform_delay)
