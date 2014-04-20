@@ -5,9 +5,7 @@ from globaleaks.tests import helpers
 from globaleaks.handlers import authentication, admin, base
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
-from globaleaks.utils.utility import datetime_now, datetime_null, get_future_epoch
-from globaleaks import security
-
+from globaleaks.utils import utility
 
 class ClassToTestUnauthenticatedDecorator(base.BaseHandler):
     @authentication.unauthenticated
@@ -26,7 +24,7 @@ class TestSessionUpdateOnUnauthRequests(helpers.TestHandler):
 
     @inlineCallbacks
     def test_successful_session_update_on_unauth_request(self):
-        date1 = datetime_now()
+        date1 = utility.datetime_now()
         
         GLSetting.sessions = {}
         GLSetting.sessions[u'antani'] = ObjectDict()
@@ -48,7 +46,7 @@ class TestSessionUpdateOnAuthRequests(helpers.TestHandler):
     @inlineCallbacks
     def test_successful_session_update_on_auth_request(self):
         
-        date1 = datetime_now()
+        date1 = utility.datetime_now()
         
         GLSetting.sessions = {}
         GLSetting.sessions[u'antani'] = ObjectDict()
@@ -70,7 +68,7 @@ class TestSessionExpiryOnUnauthRequests(helpers.TestHandler):
     @inlineCallbacks
     def test_successful_session_expiry_on_unauth_request(self):
         
-        date1 = datetime_null() # oh a very old date!
+        date1 = utility.datetime_null() # oh a very old date!
         
         GLSetting.sessions = {}
         GLSetting.sessions[u'antani'] = ObjectDict()
@@ -92,7 +90,7 @@ class TestSessionExpiryOnAuthRequests(helpers.TestHandler):
     @inlineCallbacks
     def test_successful_session_expiry_on_auth_request(self):
         
-        date1 = datetime_null() # oh a very old date!
+        date1 = utility.datetime_null() # oh a very old date!
         
         GLSetting.sessions = {}
         GLSetting.sessions[u'antani'] = ObjectDict()
@@ -332,10 +330,10 @@ class TestAuthentication(helpers.TestHandler):
 
         sleep_list = []
 
-        def fake_sleep(seconds):
+        def fake_deferred_sleep(seconds):
             sleep_list.append(seconds)
 
-        security.security_sleep = fake_sleep
+        utility.deferred_sleep = fake_deferred_sleep
 
         failed_login = 7
         for i in xrange(0, failed_login):
@@ -371,7 +369,7 @@ class TestAuthentication(helpers.TestHandler):
         self.assertTrue('session_expiration' in self.responses[0])
 
         # may differ of one or two seconds ? may!
-        expected_expiration = get_future_epoch(GLSetting.defaults.lifetimes[auth_request['role']])
+        expected_expiration = utility.get_future_epoch(GLSetting.defaults.lifetimes[auth_request['role']])
         expiration_date = self.responses[0]['session_expiration']
         self.assertApproximates(expected_expiration, expiration_date, 2)
 

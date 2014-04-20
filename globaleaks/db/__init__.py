@@ -219,6 +219,9 @@ def check_schema_version():
     is used. For sure there are other better checks, but not
     today.
     """
+
+    db_file = GLSetting.db_uri
+
     if GLSetting.db_type == 'sqlite':
         db_file = GLSetting.db_uri.replace('sqlite:', '')
 

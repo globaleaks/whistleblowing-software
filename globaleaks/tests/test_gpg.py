@@ -151,10 +151,10 @@ class TestReceiverSetKey(TestHandler):
         GLSetting.gpgroot = GPGROOT
 
         tempsource = os.path.join(os.getcwd(), "temp_source.txt")
-        with file(tempsource, 'w+') as f:
-            f.write("\n\nDecrypt the Cat!\n\nhttp://tobtu.com/decryptocat.php\n\n")
+        with file(tempsource, 'w+') as f1:
+            f1.write("\n\nDecrypt the Cat!\n\nhttp://tobtu.com/decryptocat.php\n\n")
 
-            f.seek(0)
+            f1.seek(0)
 
             fake_receiver_desc = {
                 'gpg_key_armor': unicode(DeveloperKey.__doc__),
@@ -166,16 +166,16 @@ class TestReceiverSetKey(TestHandler):
             # these are the same lines used in delivery_sched.py
             gpoj = GLBGPG(fake_receiver_desc)
             gpoj.validate_key(DeveloperKey.__doc__)
-            encrypted_file_path, encrypted_file_size = gpoj.encrypt_file(tempsource, f, "/tmp")
+            encrypted_file_path, encrypted_file_size = gpoj.encrypt_file(tempsource, f1, "/tmp")
             gpoj.destroy_environment()
 
-            with file(encrypted_file_path, "r") as f:
-                first_line = f.readline()
+            with file(encrypted_file_path, "r") as f2:
+                first_line = f2.readline()
 
             self.assertSubstring('-----BEGIN PGP MESSAGE-----', first_line)
 
-            with file(encrypted_file_path, "r") as f:
-                whole = f.read()
+            with file(encrypted_file_path, "r") as f2:
+                whole = f2.read()
             self.assertEqual(encrypted_file_size, len(whole))
 
     @inlineCallbacks

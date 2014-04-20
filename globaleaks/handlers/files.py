@@ -81,7 +81,7 @@ def register_file_db(store, uploaded_file, filepath, internaltip_id):
         log.err("Unable to commit new InternalFile %s: %s" % (original_fname.encode('utf-8'), excep))
         raise excep
 
-    log.debug("=> Recorded new InternalFile %s" % (original_fname))
+    log.debug("=> Recorded new InternalFile %s" % original_fname)
 
     return serialize_file(new_file)
 

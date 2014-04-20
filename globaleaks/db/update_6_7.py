@@ -53,7 +53,6 @@ class Context_version_6(Model):
     submission_timetolive = Int()
     receipt_regexp = Unicode()
     last_update = DateTime()
-    file_required = Bool()
     tags = Pickle()
     name = Pickle()
     description = Pickle()

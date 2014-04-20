@@ -14,7 +14,8 @@ from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.models import Receiver, WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
-from globaleaks.utils.utility import is_expired, log, datetime_now, get_future_epoch, randint
+from globaleaks.utils import utility
+from globaleaks.utils.utility import log
 from globaleaks.third_party import rstr
 from globaleaks import security
 
@@ -46,7 +47,7 @@ def random_login_delay():
         else:
             max_sleep = 42
 
-        return randint(min_sleep, max_sleep)
+        return utility.randint(min_sleep, max_sleep)
 
     return 0
 
@@ -57,7 +58,7 @@ def update_session(user):
     """
     session_info = GLSetting.sessions[user.id]
     
-    if is_expired(session_info.refreshdate,
+    if utility.is_expired(session_info.refreshdate,
                         seconds=GLSetting.defaults.lifetimes[user.role]):
 
         log.debug("Authentication Expired (%s) %s seconds" % (
@@ -71,8 +72,8 @@ def update_session(user):
     else:
 
         # update the access time to the latest
-        GLSetting.sessions[user.id].refreshdate = datetime_now()
-        GLSetting.sessions[user.id].expirydate = get_future_epoch(
+        GLSetting.sessions[user.id].refreshdate = utility.datetime_now()
+        GLSetting.sessions[user.id].expirydate = utility.get_future_epoch(
             seconds=GLSetting.defaults.lifetimes[user.role])
 
         return True
@@ -214,7 +215,7 @@ def login_wb(store, receipt):
         return False
 
     log.debug("Whistleblower: Valid receipt")
-    wb_tip.last_access = datetime_now()
+    wb_tip.last_access = utility.datetime_now()
     store.commit() # the transact was read only! on success we apply the commit()
     return unicode(wb_tip.id)
 
@@ -238,7 +239,7 @@ def login_receiver(store, username, password):
         return False
     else:
         log.debug("Receiver: Authorized receiver %s" % username)
-        receiver_user.last_login = datetime_now()
+        receiver_user.last_login = utility.datetime_now()
         receiver = store.find(Receiver, (Receiver.user_id == receiver_user.id)).one()
         store.commit() # the transact was read only! on success we apply the commit()
         return receiver.id
@@ -260,7 +261,7 @@ def login_admin(store, username, password):
         return False
     else:
         log.debug("Admin: Authorized admin %s" % username)
-        admin_user.last_login = datetime_now()
+        admin_user.last_login = utility.datetime_now()
         store.commit() # the transact was read only! on success we apply the commit()
         return username
 
@@ -287,11 +288,11 @@ class AuthenticationHandler(BaseHandler):
         # This is the format to preserve sessions in memory
         # Key = session_id, values "last access" "id" "role"
         new_session = OD(
-               refreshdate=datetime_now(),
+               refreshdate=utility.datetime_now(),
                id=self.session_id,
                role=role,
                user_id=user_id,
-               expirydate=get_future_epoch(seconds=GLSetting.defaults.lifetimes[role])
+               expirydate=utility.get_future_epoch(seconds=GLSetting.defaults.lifetimes[role])
         )
         GLSetting.sessions[self.session_id] = new_session
         return self.session_id
@@ -328,7 +329,7 @@ class AuthenticationHandler(BaseHandler):
 
         delay = random_login_delay()
         if delay:
-            yield security.security_sleep(delay)
+            yield utility.deferred_sleep(delay)
 
         if role not in ['admin', 'wb', 'receiver']:
            raise errors.InvalidInputFormat("Authentication role %s" % str(role) )
