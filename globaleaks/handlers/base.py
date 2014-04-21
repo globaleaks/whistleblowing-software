@@ -518,11 +518,11 @@ class BaseHandler(RequestHandler):
     def uniform_answers_delay(self):
         """
         @return: nothing. just put a delay to normalize a minimum
-           amount of time used by requests. this impair time execution analysis
+           amount of time used by requests. this impairs time execution analysis
 
         this safety measure, able to counteract some side channel attacks, is
         automatically disabled when the option -z and -l DEBUG are present
-        (because mean that is run in development mode)
+        (because it mean that globaleaks is runned in development mode)
         """
 
         if GLSetting.loglevel == logging.DEBUG and GLSetting.devel_mode:

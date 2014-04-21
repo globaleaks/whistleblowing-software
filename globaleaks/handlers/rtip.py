@@ -292,7 +292,6 @@ class RTipInstance(BaseHandler):
         answer['files'] = yield get_files_receiver(self.current_user['user_id'], tip_id)
 
         self.set_status(200)
-        yield self.uniform_answers_delay()
         self.finish(answer)
 
     @transport_security_check('wb')
@@ -309,7 +308,6 @@ class RTipInstance(BaseHandler):
             yield postpone_expiration_date(self.current_user['user_id'], tip_id)
 
         self.set_status(202) # Updated
-        yield self.uniform_answers_delay()
         self.finish()
 
     @transport_security_check('wb')
@@ -333,7 +331,6 @@ class RTipInstance(BaseHandler):
             yield delete_receiver_tip(self.current_user['user_id'], tip_id)
 
         self.set_status(200) # Success
-        yield self.uniform_answers_delay()
         self.finish()
 
 
@@ -398,7 +395,6 @@ class RTipCommentCollection(BaseHandler):
         comment_list = yield get_comment_list_receiver(self.current_user['user_id'], tip_id)
 
         self.set_status(200)
-        yield self.uniform_answers_delay()
         self.finish(comment_list)
 
     @transport_security_check('wb')
@@ -416,7 +412,6 @@ class RTipCommentCollection(BaseHandler):
         answer = yield create_comment_receiver(self.current_user['user_id'], tip_id, request)
 
         self.set_status(201) # Created
-        yield self.uniform_answers_delay()
         self.finish(answer)
 
 
@@ -465,7 +460,6 @@ class RTipReceiversCollection(BaseHandler):
         answer = yield get_receiver_list_receiver(self.current_user['user_id'], tip_id, self.request.language)
 
         self.set_status(200)
-        yield self.uniform_answers_delay()
         self.finish(answer)
 
 
@@ -536,7 +530,6 @@ class ReceiverMsgCollection(BaseHandler):
         answer = yield get_messages_list(self.current_user['user_id'], tip_id)
 
         self.set_status(200)
-        yield self.uniform_answers_delay()
         self.finish(answer)
 
     @transport_security_check('wb')
@@ -554,5 +547,4 @@ class ReceiverMsgCollection(BaseHandler):
         message = yield create_message_receiver(self.current_user['user_id'], tip_id, request)
 
         self.set_status(201) # Created
-        yield self.uniform_answers_delay()
         self.finish(message)
