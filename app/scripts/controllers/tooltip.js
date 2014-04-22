@@ -38,6 +38,9 @@ GLClient.controller('toolTipCtrl',
     });
 
     $translate.use($scope.language);
+
+    $route.reload();
+
   };
 
   $scope.$on("REFRESH", refresh);
