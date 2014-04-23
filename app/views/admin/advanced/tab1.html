@@ -5,7 +5,7 @@
     </p>
 
     <p>
-      <span data-translate>This section contains settings that may make your installation not work properly. Please refer to the</span>
+      <span data-translate>This section contains settings that may break your installation. Please refer properly. Please refer to the</span>
       <a href="https://github.com/globaleaks/GlobaLeaks/wiki/Advanced-configuration" target="_blank" rel="noreferrer">Advanced configuration</a>.
     </p>
 
@@ -17,11 +17,11 @@
     <div class="form-group">
       <label>
         <input data-ng-model="admin.node.anomaly_checks" type="checkbox">
-        <span data-translate>Enable anomaly checks</span>
+        <span data-translate>Enable checks for anomalies</span>
       </label>
       <div data-ng-show="admin.node.anomaly_checks">
         <span class="label label-info" data-translate>Enabled</span>
-        <span data-translate>Anomaly checks will be now performed on each request.</span>
+        <span data-translate>Checks for anomalies will be now performed on each request.</span>
       </div>
     </div>
 
@@ -48,8 +48,8 @@
       </label>
       <div data-ng-show="admin.node.allow_unencrypted">
         <span class="label label-danger" data-translate>Danger</span>
-        <span data-translate>By enabling this option the system will be storing the submitted files unecrypted on your node.</span>
-        <span data-translate>This happens in case encryption is unavailable.</span>
+        <span data-translate>By enabling this option, the system will be storing the submitted files unecrypted on your node.</span>
+        <span data-translate>This happens whenever encryption is unavailable.</span>
       </div>
     </div>
 
@@ -60,7 +60,7 @@
       </label>
       <div data-ng-show="admin.node.postpone_superpower">
         <span class="label label-info" data-translate>Enabled</span>
-        <span data-translate>Receivers will be now able to postpone Tips expiration.</span>
+        <span data-translate>Receivers will be able to postpone Tips expiration.</span>
       </div>
     </div>
 
@@ -71,7 +71,7 @@
       </label>
       <div data-ng-show="admin.node.can_delete_submission">
         <span class="label label-info" data-translate>Enabled</span>
-	      <span data-translate>Receivers will be now able to delete Tips and their content.</span>
+	      <span data-translate>Receivers will be able to delete Tips and their content.</span>
       </div>
     </div>
 

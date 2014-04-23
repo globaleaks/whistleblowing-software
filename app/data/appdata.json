@@ -16,7 +16,7 @@
         "en": "Short title"
       },
       "localized_hint": {
-        "en": "Describe your submission with few words"
+        "en": "Describe your submission with a few words"
       },
       "type": "text",
       "trigger": [],

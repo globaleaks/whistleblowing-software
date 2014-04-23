@@ -9,10 +9,10 @@ angular.module('resourceServices.authentication', [])
 
         var setCookie = function(name, value) {
           /**
-           * We set the cookie to be https only if we are accessing the
-           * globaleaks node over https.
+           * We set the cookie to be HTTPS only if we are accessing the
+           * globaleaks node over HTTPS.
            * If we are not that means that we are accessing it via it's Tor
-           * Hidden Service and we don't need to set the cookie https only as
+           * Hidden Service and we don't need to set the cookie HTTPS only as
            * all requests will always be encrypted end to end.
            * */
           $.cookie(name, value);

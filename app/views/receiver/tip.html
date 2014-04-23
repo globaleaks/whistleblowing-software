@@ -17,8 +17,8 @@ This comment is needed in order to push the following strings on transifex
         <i class="glyphicon glyphicon-warning-sign"></i>
         <strong><span data-translate>Warning!</span></strong>
         <span data-translate>You have not configured your encryption keys, so the files will be stored on the GlobaLeaks node un-encrypted.</span>
-        <span data-translate>This may lead to unintended access to the files by the server administrator or in case of server seizing.</span>
-        <span data-translate>Please configure your PGP keys in the receiver preference page.</span>
+        <span data-translate>This may lead to unintended access to the files by the server administrator or others in case the server is compromised.</span>
+        <span data-translate>Please configure your PGP keys in the receiver preferences page.</span>
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@ This comment is needed in order to push the following strings on transifex
       <div class="alert alert-warning">
         <i class="glyphicon glyphicon-warning-sign"></i>
         <strong><span data-translate>Warning!</span></strong>
-        <span data-translate>One or more of the receivers of this tip has not configured their PGP key.</span>
+        <span data-translate>One or more of the receivers of this tip has not configured a PGP key.</span>
         <span data-translate>This means that the submitted files will be stored in plaintext on the node.</span>
       </div>
     </div>
@@ -152,7 +152,7 @@ This comment is needed in order to push the following strings on transifex
       </h3>
       <div class="well" data-ng-show="tip.files">
         <a class="input-small" data-ng-show="show_download_all()" data-ng-click="downloadAll()">
-          <span data-translate>download all the files</span>
+          <span data-translate>download all files</span>
         </a>
         <br />
         <a class="input-small" data-ng-click="show_new_files = !show_new_files" data-ng-init="show_new_files = false" data-ng-show="!show_new_files">
@@ -222,7 +222,7 @@ This comment is needed in order to push the following strings on transifex
 
     <div class="col-md-12" data-ng-hide="tip.files">
       <p>
-        <span data-translate>No file has been uploaded!</span>
+        <span data-translate>No files have been uploaded!</span>
       </p>
     </div>
 
