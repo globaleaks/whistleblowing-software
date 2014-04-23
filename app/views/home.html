@@ -33,19 +33,19 @@
         </p>
     
         <input data-ng-model="answer.value" value="a" type="radio"> 
-        <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'a')}" data-translate>https protects my identity, but not the content of my leak</span><br />
+        <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'a')}" data-translate>HTTPS protects my identity, but not the content of my leak</span><br />
         <input data-ng-model="answer.value" value="b" type="radio"> 
-        <span data-ng-class="{'bg-success': (answer.value && answer.value == 'b')}" data-translate>https protects the content of my leak but not my identity</span><br />
+        <span data-ng-class="{'bg-success': (answer.value && answer.value == 'b')}" data-translate>HTTPS protects the content of my leak but not my identity</span><br />
         <input data-ng-model="answer.value" value="c" type="radio"> 
-        <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'c')}" data-translate>https does not protect the content of my leak nor my identity</span><br />
+        <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'c')}" data-translate>HTTPS does not protect the content of my leak nor my identity</span><br />
         <input data-ng-model="answer.value" value="d" type="radio"> 
-        <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'd')}" data-translate>https does protect my identity and the content of my leak</span><br />
+        <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'd')}" data-translate>HTTPS does protect my identity and the content of my leak</span><br />
 
         <br /></br />
 
         <div data-ng-show="(answer.value && answer.value == 'b')">
           <div class="bg-warning">
-            <span data-translate>You are aware of the risks involved, go ahead, consider yourself warned.</span>
+            <span data-translate>You are aware of the risks involved. Go ahead, but consider yourself warned.</span>
           </div>
         </div>           
         <div data-ng-show="!answer.value">
@@ -84,7 +84,7 @@
       <div data-ng-show="node.configured">
         <div class="row" data-ng-show="!node.tor2web_submission && !anonymous">
           <p class="has-error">
-            <span data-translate>You are connecting to the node not anonymously and this node only supports anonymous submissions</span>
+            <span data-translate>You are connecting to the node without anonymity and this node supports only anonymous submissions</span>
           </p>
         </div>
         <div class="row" data-ng-show="!node.tor2web_submission && !anonymous">
@@ -101,7 +101,7 @@
         </div>
       </div>
       <div data-ng-hide="node.configured">
-        <span data-translate>Your node is not configured! Please, proceed via</span>
+        <span data-translate>Your node is not configured! Please use the</span>
         <a href="/#/admin/contexts">
           <span data-translate>Admin interface and configure at least one context</span>
         </a>
@@ -156,7 +156,7 @@
         <a href="https://globaleaks.org/" target="_blank" rel="noreferrer">
           <span data-translate>GlobaLeaks software</span>
         </a> ,  
-        <span data-translate>that is specifically designed to protect the identity of the reporter and of the ones running the platform.</span>
+        <span data-translate>that is specifically designed to protect the identity of the submitter and of the organization running the platform.</span>
         </p>
         <p>
         <span data-translate>This software is developed by the non-profit organization</span>

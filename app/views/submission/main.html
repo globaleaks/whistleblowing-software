@@ -6,13 +6,13 @@ This comment is needed in order to push the following strings on transifex
 <span data-translate>This receiver has configured the encryption key.</span>
 <span data-translate>This receiver has not configured the encryption key.</span>
 <span data-translate>Select this receiver.</span>
-<span data-translate>Deselect this receiver.</span>
+<span data-translate>Unselect this receiver.</span>
 
 -->
 <div class="ng-cloak container" data-ng-show="!node.configured && node.name">
   <h2 data-translate>This node is not configured.</h2>
   <p>
-    <span data-translate>You will not be able to perform a submission.</span><br />
+    <span data-translate>You will not be able to send a submission.</span><br />
     <span data-translate>Admin please configure at least one Context and associated Receivers using</span>
     <a href="/#/admin/contexts">
       <span data-translate>Admin management interface</span>
@@ -72,7 +72,7 @@ This comment is needed in order to push the following strings on transifex
         </div>
 
         <div data-ng-show="submission.current_context.maximum_selectable_receivers != 0 && !submission.current_context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
-          <div><span data-translate>Maximum number of Receivers selectable:</span> {{submission.current_context.maximum_selectable_receivers}}</div>
+          <div><span data-translate>Maximum number of selectable Receivers:</span> {{submission.current_context.maximum_selectable_receivers}}</div>
           <div><span data-translate>Receivers selected:</span> {{selected_receivers_count()}}</div>
         </div>
 
@@ -94,7 +94,7 @@ This comment is needed in order to push the following strings on transifex
               </div>
               <div class="col-md-1" ng-hide="receiver.disabled">
                 <div data-ng-show="submission.receivers_selected[receiver.id]">
-                  <i class="glyphicon glyphicon-check" popover="{{ 'Deselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                  <i class="glyphicon glyphicon-check" popover="{{ 'Unselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                 </div>
                 <div data-ng-show="!submission.receivers_selected[receiver.id]">
                   <i class="glyphicon glyphicon-unchecked" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
@@ -143,7 +143,7 @@ This comment is needed in order to push the following strings on transifex
                     <i class="glyphicon glyphicon-check" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </div>
                   <div data-ng-show="!submission.receivers_selected[receiver.id]">
-                    <i class="glyphicon glyphicon-unchecked" popover="{{ 'Deselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    <i class="glyphicon glyphicon-unchecked" popover="{{ 'Unselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </div>
                 </div>
               </div>
@@ -192,7 +192,7 @@ This comment is needed in order to push the following strings on transifex
 
           <div class="col-md-12">
             <p class="lead">
-            <span data-translate>To ensure your anonymity be sure that you are visiting this site using the</span>
+            <span data-translate>To ensure that your anonymity be sure that you are visiting this site using the</span>
             <a href="https://www.torproject.org/projects/torbrowser.html" target="_blank" rel="noreferrer">Tor Browser Bundle</a>
             </p>
 

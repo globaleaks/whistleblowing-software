@@ -18,13 +18,13 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/wizard/main.html',
         controller: 'WizardCtrl',
         header_title: 'GlobaLeaks Wizard',
-        header_subtitle: 'Step by step setup'
+        header_subtitle: 'Step-by-step setup'
       }).
       when('/wizard:lang', {
         templateUrl: 'views/wizard/main.html',
         controller: 'WizardCtrl',
         header_title: 'GlobaLeaks Wizard',
-        header_subtitle: 'Step by step setup'
+        header_subtitle: 'Step-by-step setup'
       }).
       when('/submission', {
         templateUrl: 'views/submission/main.html',
