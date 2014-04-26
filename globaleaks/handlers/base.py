@@ -17,7 +17,6 @@ import logging
 
 from StringIO import StringIO
 from cgi import parse_header
-from urllib import unquote
 from cryptography.hazmat.primitives.constant_time import bytes_eq
 
 from twisted.python.failure import Failure
@@ -121,7 +120,7 @@ class GLHTTPServer(HTTPConnection):
                     raise _BadRequestException("Malformed Content-Disposition header")
 
                 self.file_upload = True
-                self.uploaded_file['filename'] = unquote(pdict['filename'])
+                self.uploaded_file['filename'] = pdict['filename']
                 self.uploaded_file['content_type'] = self._request.headers.get("Content-Type",
                                                                                'application/octet-stream')
 
