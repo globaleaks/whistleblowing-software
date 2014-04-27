@@ -1,6 +1,6 @@
 {
   "name": "GLClient",
-  "version": "2.60.1",
+  "version": "2.60.2",
   "homepage": "https://github.com/globaleaks/GLClient",
   "authors": [
     "Random GlobaLeaks Developers <info@globaleaks.org>"
@@ -16,9 +16,9 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.2.16",
-    "angular-resource": "1.2.16",
-    "angular-route": "1.2.16",
+    "angular": "1.2.15",
+    "angular-resource": "1.2.15",
+    "angular-route": "1.2.15",
     "angular-translate": "2.1.0",
     "angular-translate-loader-url": "2.1.0",
     "angular-translate-loader-static-files": "2.1.0",
