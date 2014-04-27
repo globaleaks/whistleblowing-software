@@ -5,7 +5,7 @@
 
 import operator
 
-__version__ = '2.60.1'
+__version__ = '2.60.2'
 DATABASE_VERSION = 12
 
 # Add here by hand the languages supported!
