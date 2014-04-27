@@ -2,7 +2,6 @@ Twisted==13.2.0
 cyclone==1.1
 Storm==0.20
 transaction==1.4.3
-vcversioner<=1.14.0.0
 txsocksx==1.13.0.2
 cryptography==0.3
 scrypt==0.6.1
