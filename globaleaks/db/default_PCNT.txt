@@ -3,9 +3,7 @@ Esteemed %ReceiverName%,
 This is an E-Mail message to notify you that %CommentSource%
 has added a comment to a previously notified Tip (%TipTorURL%) in %EventTime%
 
-
 This has happened in %ContextName% at %EventTime%.
 
 Take Care,
-A Random GlobaLeaks Node
-%NodeName%
+%NodeName%, a GlobaLeaks node

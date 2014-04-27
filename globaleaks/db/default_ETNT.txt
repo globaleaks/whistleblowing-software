@@ -23,31 +23,5 @@ Please do not forward or share this e-mail: each tip-off has a limited number of
 access before being destroyed forever, nobody (even the node administrator) can recover and
 expired or dead tip-off.
 
---------------------------------------------------
-GENERAL INFO
---------------------------------------------------
-
-1. What is Globaleaks?
-
-GlobaLeaks is the first Open Source Whistleblowing Framework. It empowers anyone to easily
-setup and maintain their own Whistleblowing platform. It is also a collection of what are the
-best practices for people receiveiving and submitting material. GlobaLeaks works in all
-environments: media, activism, corporations, public agencies.
-
-2. Is GlobaLeaks sending me this Mail?
-
-No, this mail has been sent to you by the Node called %NodeName% that is running the
-GlobaLeaks Platform, but is not directly tied to the GlobaLeaks organization.
-GlobaLeaks (https://globaleaks.org) will never be directly affiliated with any real world
-WhistleBlowing site and will only provide software and technical support.
-
-3. Why am I receiving this?
-
-You're receiving this communication because an anonymous whistleblower has chosen you as a
-trustworthy contact for releasing confidential and/or important information that could be of
-utmost importance.
-
-For any other inquiry please refer to the GlobaLeaks website at https://globaleaks.org
-
 Take Care,
-A Random GlobaLeaks Node
+%NodeName%, a GlobaLeaks node

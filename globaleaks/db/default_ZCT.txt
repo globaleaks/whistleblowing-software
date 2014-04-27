@@ -11,4 +11,7 @@ File details and integrity checksum:
 
 %FileList%
 
+Take Care,
+%NodeName%, a GlobaLeaks node
+
 
