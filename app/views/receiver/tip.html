@@ -139,21 +139,25 @@ This comment is needed in order to push the following strings on transifex
 
   <hr>
   
-  <form id="fileDownload" method="POST" action="{{target_file}}" hidden novalidate>
-    <input type="hidden" name="x-session" value="{{session}}">
-    <input type="hidden" name="xsrf-token" value="{{xsrf_token}}">
-    <input type="submit">
-  </form>
-
   <div class="row">
     <div class="col-md-12">
       <h3>
         <span data-translate>Files</span>
       </h3>
       <div class="well" data-ng-show="tip.files">
-        <a class="input-small" data-ng-show="show_download_all()" data-ng-click="downloadAll()">
-          <span data-translate>download all files</span>
-        </a>
+        <div ng-if="tip.collection">
+          <form id="fileCollectionDownload" method="POST" action="{{tip.collection}}" ng-cloak>
+            <input type="hidden" name="x-session" value="{{session}}">
+            <input type="hidden" name="xsrf-token" value="{{xsrf_token}}">
+            <button type="submit"
+                    data-ng-show="download_all_enabled()"
+                    data-ng-click="increaseDownloadCounts()"
+                    class="btn btn-xs btn-default ng-cloak">
+               <i class="glyphicon glyphicon-download"></i>
+               <span data-translate>download all files</span>
+            </button>
+          </form>
+        </div>
         <br />
         <a class="input-small" data-ng-click="show_new_files = !show_new_files" data-ng-init="show_new_files = false" data-ng-show="!show_new_files">
           <span data-translate>show only files not yet downloaded</span>
@@ -189,14 +193,18 @@ This comment is needed in order to push the following strings on transifex
                   {{file.name}}
                 </td>
                 <td data-ng-show="file.status != 'unavailable'">
-                  <a data-ng-disabled="file.downloads >= tip.download_limit" 
-                     data-ng-click="downloadFile(file)"
-                     class="btn btn-xs btn-default ng-cloak" 
-                     download="{{file.name}}">
-                    <i class="glyphicon glyphicon-download"></i> 
-                    <span data-translate>download</span>
-                    ({{file.downloads}}/{{tip.download_limit}})
-                  </a>
+                  <form id="fileDownload" method="POST" action="{{file.href}}">
+                    <input type="hidden" name="x-session" value="{{session}}">
+                    <input type="hidden" name="xsrf-token" value="{{xsrf_token}}">
+                    <button type="submit"
+                            data-ng-disabled="file.downloads >= tip.download_limit"
+                            data-ng-click="increaseDownloadCount(file)"
+                            class="btn btn-xs btn-default ng-cloak">
+                      <i class="glyphicon glyphicon-download"></i>
+                      <span data-translate>download</span>
+                      ({{file.downloads}}/{{tip.download_limit}})
+                    </button>
+                  </form>
                 </td>
                 <td data-ng-show="file.status == 'unavailable'">
                   <div class="label label-warning" popover="{{ 'The file is unavailable due to an internal error.' | translate }}" popover-placement="bottom" popover-trigger="mouseenter" data-translate>file unavailable</div>

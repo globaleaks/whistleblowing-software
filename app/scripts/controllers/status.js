@@ -120,26 +120,7 @@ GLClient.controller('StatusCtrl',
             }
           };
           
-          function submitDownloadForm() {
-            // We add 10 milliseconds so that the angular.js loop can hit.
-            window.setTimeout(function() { 
-              $("#fileDownload").submit(); 
-            }, 10);
-          };
-
-          $scope.downloadAll = function() {
-            $scope.target_file = $scope.tip.collection;
-            $scope.increaseDownloadCounts();
-            submitDownloadForm();
-          };
-
-          $scope.downloadFile = function(file) {
-            $scope.target_file = file.href;
-            $scope.increaseDownloadCount(file);
-            submitDownloadForm();
-          };
-
-          $scope.show_download_all = function() {
+          $scope.download_all_enabled = function() {
             download_all = false;
       
             for (file in $scope.tip.files) { 
