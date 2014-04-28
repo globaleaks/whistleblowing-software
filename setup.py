@@ -87,6 +87,9 @@ setup(
         'globaleaks.jobs', 'globaleaks.plugins', 'globaleaks.rest',
         'globaleaks.utils', 'globaleaks.third_party', 'globaleaks.third_party.rstr'],
     data_files=data_files,
-    scripts=["bin/globaleaks", "scripts/glclient-build", 'bin/gl-reset-password', 'bin/gl-fix-permissions'],
+    scripts=["bin/globaleaks",
+             "scripts/glclient-build",
+             "bin/globaleaksadmin",
+             "bin/gl-fix-permissions"],
     requires = get_requires(),
 )
