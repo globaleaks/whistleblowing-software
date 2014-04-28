@@ -204,7 +204,7 @@ def get_salt(salt_input):
     sha.update(salt_input.encode('utf-8'))
     # hex require two byte each to describe 1 byte of entropy
     h = sha.finalize()
-    digest = ''.join("%x" % ord(x) for x in h)
+    digest = binascii.b2a_hex(h)
     return digest[:SALT_LENGTH * 2]
 
 
