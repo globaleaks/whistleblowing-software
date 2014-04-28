@@ -5,6 +5,7 @@
 #
 # GlobaLeaks Utility used to handle Mail, format, exception, etc
 
+import binascii
 import logging
 import re
 import os
@@ -259,7 +260,7 @@ def mail_exception(etype, value, tback):
     h = hashes.Hash(hashes.SHA256(), 
                     backend=crypto_backend)
     h.update(str(value))
-    sha256 = ''.join("%x" % ord(x) for x in h.finalize())
+    sha256 = binascii.b2a_hex(h.finalize())
 
     if isinstance(value, GeneratorExit) or \
        isinstance(value, AlreadyCalledError) or \

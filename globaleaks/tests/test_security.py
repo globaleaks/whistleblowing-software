@@ -31,7 +31,7 @@ class TestPasswordManagement(unittest.TestCase):
         sha = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
         sha.update(dummy_string)
 
-        complete_hex = ''.join("%x" % ord(x) for x in sha.finalize())
+        complete_hex = digest = binascii.b2a_hex(sha.finalize())
         self.assertEqual( complete_hex[:SALT_LENGTH],
                           get_salt(dummy_string)[:SALT_LENGTH] )
 
@@ -40,7 +40,7 @@ class TestPasswordManagement(unittest.TestCase):
         sha_second = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
         sha_second.update(new_dummy_string)
 
-        complete_hex = ''.join("%x" % ord(x) for x in sha_second.finalize())
+        complete_hex = binascii.b2a_hex(sha_second.finalize())
         self.assertEqual( complete_hex[:SALT_LENGTH],
                           get_salt(new_dummy_string)[:SALT_LENGTH] )
 
