@@ -1,3 +1,9 @@
+globaleaks (2.60.4) unstable; urgency=low
+
+  * GlobaLeaks 2.60.4 Release (Fixed a bug in authentication)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 28 Apr 2014 15:20:00 +0002
+
 globaleaks (2.60.3) unstable; urgency=low
 
   * GlobaLeaks 2.60.3 Release (Updated Mail Templates)
