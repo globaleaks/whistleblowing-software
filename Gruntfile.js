@@ -279,8 +279,18 @@ module.exports = function(grunt) {
       total_languages, supported_languages = {};
 
     listLanguages(function(result){
+      result.available_languages = result.available_languages.filter(function( language ) {
+        /*
+            we skip en_US that is used internaly only as feedback in order
+            to keep track of corrections suggestions
+        */
+        return language.code !== 'en_US';
+      });
+
       total_languages = result.available_languages.length;
+
       result.available_languages.forEach(function(language){
+
         var content = grunt.file.read(sourceFile);
 
         fetchTxTranslationsForLanguage(language.code, function(content){
@@ -380,6 +390,7 @@ module.exports = function(grunt) {
       strings = gt.listKeys("en", "");
 
       for (var lang_code in supported_languages) {
+
         var translations = {},
           output;
 
@@ -435,7 +446,7 @@ module.exports = function(grunt) {
       output['version'] = version;
       output['fields'] = fields;
 
-      var vars = ["node_description", "node_presentation", "node_footer", "node_subtitle"]
+      var vars = ["node_presentation", "node_footer", "node_subtitle"]
       for (var i in vars) {
 
         gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
