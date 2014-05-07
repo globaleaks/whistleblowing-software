@@ -16,7 +16,7 @@ from globaleaks import models
 from globaleaks import LANGUAGES_SUPPORTED
 
 @transact_ro
-def anon_serialize_node(store, user, language=GLSetting.memory_copy.default_language):
+def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
     node = store.find(models.Node).one()
 
     # Contexts and Receivers relationship
@@ -30,8 +30,6 @@ def anon_serialize_node(store, user, language=GLSetting.memory_copy.default_lang
       'languages_enabled': node.languages_enabled,
       'languages_supported': LANGUAGES_SUPPORTED,
       'default_language' : node.default_language,
-      'receipt_regexp': node.receipt_regexp,
-      'configured': True if associated else False,
       # extended settings info:
       'maximum_namesize': node.maximum_namesize,
       'maximum_textsize': node.maximum_textsize,
@@ -49,6 +47,8 @@ def anon_serialize_node(store, user, language=GLSetting.memory_copy.default_lang
       'wizard_done': node.wizard_done,
       'anomaly_checks': node.anomaly_checks,
       'allow_unencrypted': node.allow_unencrypted,
+      'receipt_regexp': node.receipt_regexp,
+      'configured': True if associated else False,
     }
 
     mo = Rosetta()
@@ -71,7 +71,7 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
 
     context_dict = {
         "id": unicode(context.id),
-        "escalation_threshold": None,
+        "escalation_threshold": 0,
         "file_max_download": int(context.file_max_download),
         "file_required": context.file_required,
         "selectable_receiver": bool(context.selectable_receiver),
@@ -143,7 +143,7 @@ class InfoCollection(BaseHandler):
         Errors: NodeNotFound
         """
         stats_counter('anon_requests')
-        response = yield anon_serialize_node(self.current_user, self.request.language)
+        response = yield anon_serialize_node(self.request.language)
         self.finish(response)
 
 
@@ -161,7 +161,7 @@ class AhmiaDescriptionHandler(BaseHandler):
     def get(self, *uriargs):
 
         log.debug("Requested Ahmia description file")
-        node_info = yield anon_serialize_node(self.current_user, self.request.language)
+        node_info = yield anon_serialize_node(self.request.language)
 
         ahmia_description = {
             "title": node_info['name'],

@@ -90,7 +90,7 @@ class notifTemplateTest(helpers.TestGL):
             notif_dict = yield admin.get_notification()
 
             yield admin.import_memory_variables()
-            node_dict = yield admin.get_node()
+            node_dict = yield admin.admin_serialize_node()
 
             tip_dict = yield self.get_a_fucking_random_submission()
 

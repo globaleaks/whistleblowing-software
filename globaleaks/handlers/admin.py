@@ -22,10 +22,15 @@ from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.third_party import rstr
 
-def admin_serialize_node(node, receipt_output, language=GLSetting.memory_copy.default_language):
+def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_language):
+
+    node = store.find(Node).one()
 
     mo = structures.Rosetta()
     mo.acquire_storm_object(node)
+
+    # Contexts and Receivers relationship
+    associated = store.find(models.ReceiverContext).count()
 
     node_dict = {
         "name": node.name,
@@ -35,7 +40,7 @@ def admin_serialize_node(node, receipt_output, language=GLSetting.memory_copy.de
         "hidden_service": node.hidden_service,
         "public_site": node.public_site,
         "receipt_regexp": node.receipt_regexp,
-        "receipt_example": receipt_output,
+        "receipt_example": generate_example_receipt(node.receipt_regexp),
         "stats_update_time": node.stats_update_time,
         "email": node.email,
         "version": GLSetting.version_string,
@@ -58,12 +63,19 @@ def admin_serialize_node(node, receipt_output, language=GLSetting.memory_copy.de
         'allow_unencrypted': node.allow_unencrypted,
         'password': u"",
         'old_password': u"",
+        'wizard_done': node.wizard_done,
+        'receipt_regexp': node.receipt_regexp,
+        'configured': True if associated else False,
     }
 
     for attr in mo.get_localized_attrs():
         node_dict[attr] = mo.dump_translated(attr, language)
 
     return node_dict
+
+@transact_ro
+def admin_serialize_node(store, language=GLSetting.memory_copy.default_language):
+    return db_admin_serialize_node(store, language)
 
 def admin_serialize_context(context, language=GLSetting.memory_copy.default_language):
 
@@ -139,14 +151,6 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         receiver_dict[attr] = mo.dump_translated(attr, language)
 
     return receiver_dict
-
-@transact_ro
-def get_node(store, language=GLSetting.memory_copy.default_language):
-
-    node = store.find(Node).one()
-    receipt_example = generate_example_receipt(node.receipt_regexp)
-    return admin_serialize_node(node, receipt_example, language)
-
 
 def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_copy.default_language):
     """
@@ -255,7 +259,7 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
         raise errors.InvalidInputFormat(dberror)
 
     node.last_update = utility.datetime_now()
-    return admin_serialize_node(node, receipt_example, language)
+    return db_admin_serialize_node(store, language)
 
 
 @transact
@@ -711,7 +715,7 @@ class NodeInstance(BaseHandler):
         Response: adminNodeDesc
         Errors: NodeNotFound
         """
-        node_description = yield get_node(self.request.language)
+        node_description = yield admin_serialize_node(self.request.language)
         self.set_status(200)
         self.finish(node_description)
 
@@ -734,7 +738,7 @@ class NodeInstance(BaseHandler):
         # align the memory variables with the new updated data
         yield import_memory_variables()
 
-        node_description = yield get_node(self.request.language)
+        node_description = yield admin_serialize_node(self.request.language)
 
         self.set_status(202) # Updated
         self.finish(node_description)

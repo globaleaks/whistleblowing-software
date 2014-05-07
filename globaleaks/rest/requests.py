@@ -99,7 +99,7 @@ adminNodeDesc = {
     'name': unicode,
     'description' : unicode,
     'presentation' : unicode,
-    'receipt_regexp': unicode,
+    'subtitle': unicode,
     'footer': unicode,
     'hidden_service' : unicode,
     'public_site' : unicode,
@@ -108,7 +108,8 @@ adminNodeDesc = {
     'password' : unicode,
     'old_password' : unicode,
     'languages_enabled': [ unicode ],
-    'languages_supported': list, # ignored
+    'languages_supported': list,
+    'default_language' : unicode,
     'maximum_namesize': int,
     'maximum_textsize': int,
     'maximum_filesize': int,
@@ -118,12 +119,14 @@ adminNodeDesc = {
     'tor2web_unauth': bool,
     'postpone_superpower': bool,
     'can_delete_submission': bool,
-    'subtitle': unicode,
     'exception_email': unicode,
     'reset_css': bool,
     'ahmia': bool,
     'anomaly_checks': bool,
     'allow_unencrypted': bool,
+    'wizard_done': bool,
+    'receipt_regexp': unicode,
+    'configured': bool,
 }
 
 adminNotificationDesc = {
@@ -209,7 +212,34 @@ wizardFirstSetup = {
     'appdata' : wizardFieldUpdate,
 }
 
-# what follows are the Response definitions
+anonNodeDesc = {
+    'name': unicode,
+    'subtitle': unicode,
+    'description' : unicode,
+    'presentation' : unicode,
+    'footer': unicode,
+    'hidden_service' : unicode,
+    'public_site' : unicode,
+    'email' : unicode,
+    'languages_enabled': [ unicode ],
+    'languages_supported': list,
+    'default_language' : unicode,
+    'maximum_namesize': int,
+    'maximum_textsize': int,
+    'maximum_filesize': int,
+    'tor2web_admin': bool,
+    'tor2web_submission': bool,
+    'tor2web_receiver': bool,
+    'tor2web_unauth': bool,
+    'postpone_superpower': bool,
+    'can_delete_submission': bool,
+    'ahmia': bool,
+    'anomaly_checks': bool,
+    'allow_unencrypted': bool,
+    'wizard_done': bool,
+    'configured': bool,
+    'receipt_regexp': unicode,
+}
 
 TipOverview = {
     'status': unicode,
@@ -255,3 +285,63 @@ AnomalyLine = {
 }
 
 AnomaliesCollection = [ AnomalyLine ]
+
+nodeReceiver = { 
+     'update_date': unicode,
+     'receiver_level': int,
+     'name': unicode,
+     'tags': [ unicode ],
+     'contexts': [ uuid_regexp ],
+     'description': unicode,
+     'presentation_order': int,
+     'gpg_key_status': unicode,
+     'id': uuid_regexp,
+     'creation_date': dateType,
+}
+
+nodeReceiverCollection = [ nodeReceiver ]
+
+field = {
+    'incremental_number': int,
+    'name': unicode,
+    'hint': unicode,
+    'required': bool,
+    'presentation_order': int,
+    'trigger': list,
+    'key': uuid_regexp,
+    'preview': bool,
+    'type': unicode,
+}
+
+nodeContext = {
+    'select_all_receivers': bool,
+    'name': unicode,
+    'presentation_order': int,
+    'fields': [ field ],
+    'description': unicode,
+    'selectable_receiver': bool,
+    'tip_timetolive': int,
+    'submission_introduction': unicode,
+    'maximum_selectable_receivers': int,
+    'show_small_cards': bool,
+    'file_max_download': int,
+    'require_pgp': bool,
+    'tip_max_access': int,
+    'file_required': bool,
+    'id': uuid_regexp,
+    'receivers': [ uuid_regexp ],
+    'submission_disclaimer': unicode,
+    'escalation_threshold': int,
+}
+
+nodeContextCollection = [ nodeContext ]
+
+ahmiaDesc = {
+    'description': unicode,
+    'language': unicode,
+    'title': unicode,
+    'contactInformation': unicode,
+    'relation': unicode,
+    'keywords': unicode,
+    'type': unicode,
+}
