@@ -393,7 +393,7 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def update_node_properties(self):
-        node_desc = yield admin.get_node()
+        node_desc = yield admin.admin_serialize_node()
         self.assertEqual(node_desc['postpone_superpower'], False)
         node_desc['postpone_superpower'] = True
 
