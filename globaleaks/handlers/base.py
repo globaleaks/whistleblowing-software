@@ -334,33 +334,40 @@ class BaseHandler(RequestHandler):
 
         message_type: the GLType class it should match.
         """
-        valid_jmessage = {}
-        for key in message_template.keys():
-            if key not in jmessage:
-                log.err('validate_message: key %s not in %s' % (key, jmessage))
-                raise errors.InvalidInputFormat('wrong schema: missing %s' % key)
-            else:
-                valid_jmessage[key] = jmessage[key]
+        if isinstance(message_template, dict):
+            valid_jmessage = {}
+            for key in message_template.keys():
+                if key not in jmessage:
+                    log.err('validate_message: key %s not in %s' % (key, jmessage))
+                    raise errors.InvalidInputFormat('wrong schema: missing %s' % key)
+                else:
+                    valid_jmessage[key] = jmessage[key]
 
-        if GLSetting.loglevel == "DEBUG":
-            # check if wrong keys are reaching the GLBackend, they are
-            # stripped in the previous loop, because valid_jmessage is returned
-            for double_k in jmessage.keys():
-                if double_k not in message_template.keys():
-                    log.err("[!?] validate_message: key %s not expected" % double_k)
+            if GLSetting.loglevel == "DEBUG":
+                # check if wrong keys are reaching the GLBackend, they are
+                # stripped in the previous loop, because valid_jmessage is returned
+                for double_k in jmessage.keys():
+                    if double_k not in message_template.keys():
+                        log.err("[!?] validate_message: key %s not expected" % double_k)
 
-        jmessage = valid_jmessage
-        del valid_jmessage
+            jmessage = valid_jmessage
 
-        for key, value in message_template.iteritems():
-            if not BaseHandler.validate_type(jmessage[key], value):
-                raise errors.InvalidInputFormat("REST integrity check 1, fail in %s" % key)
+            for key, value in message_template.iteritems():
+                if not BaseHandler.validate_type(jmessage[key], value):
+                    raise errors.InvalidInputFormat("REST integrity check 1, fail in %s" % key)
 
-        for key, value in jmessage.iteritems():
-            if not BaseHandler.validate_type(value, message_template[key]):
-                raise errors.InvalidInputFormat("REST integrity check 2, fail in %s" % key)
+            for key, value in jmessage.iteritems():
+                if not BaseHandler.validate_type(value, message_template[key]):
+                    raise errors.InvalidInputFormat("REST integrity check 2, fail in %s" % key)
 
-        return True
+            return True
+
+        elif isinstance(message_template, list):
+            return all(BaseHandler.validate_type(x, message_template[0]) for x in jmessage)
+
+        else:
+            raise errors.InvalidInputFormat("invalid json massage: expected dict or list")
+            
 
     @staticmethod
     def validate_message(message, message_template):
