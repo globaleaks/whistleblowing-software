@@ -238,3 +238,20 @@ UserOverview = {
 }
 
 UsersOverview = [ UserOverview ]
+
+StatsLine = {
+     'file_uploaded': int,
+     'new_submission': int,
+     'finalized_submission': int,
+     'anon_requests': int,
+     'creation_date': dateType,
+}
+
+StatsCollection = [ StatsLine ]
+
+AnomalyLine = {
+     'message': unicode,
+     'creation_date': dateType,
+}
+
+AnomaliesCollection = [ AnomalyLine ]
