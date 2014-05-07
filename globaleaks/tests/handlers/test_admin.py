@@ -45,7 +45,8 @@ class TestNodeInstance(helpers.TestHandler):
             # some keys are added by GLB, and can't be compared
             if response_key in ['password', 'languages_supported',
                                 'creation_date', 'last_update',
-                                'version', 'receipt_example' ]:
+                                'version', 'receipt_example',
+                                'configured' ]:
                 continue
 
             self.assertEqual(self.responses[0][response_key],
