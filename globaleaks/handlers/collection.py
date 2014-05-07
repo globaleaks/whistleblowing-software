@@ -129,7 +129,7 @@ class CollectionDownload(BaseHandler):
 
         opts = get_compression_opts(compression)
 
-        node_dict = yield admin.get_node()
+        node_dict = yield admin.admin_serialize_node()
         receiver_dict = yield get_receiver_from_rtip(rtip_id)
         rtip_dict = yield get_rtip_info(rtip_id)
         collection_tip_dict = yield get_collection_info(rtip_id)

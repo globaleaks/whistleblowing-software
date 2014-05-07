@@ -439,6 +439,8 @@ class MockDict():
             'ahmia': False,
             'anomaly_checks': False,
             'allow_unencrypted': True,
+            'configured': False,
+            'wizard_done': False,
         }
 
         self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',

@@ -89,8 +89,7 @@ class NotificationSchedule(GLJob):
             models.ReceiverTip.mark == models.ReceiverTip._marker[0]
         )
 
-        node_desc = admin.admin_serialize_node(store.find(models.Node).one(),
-            GLSetting.memory_copy.default_language)
+        node_desc = admin.db_admin_serialize_node(store, GLSetting.memory_copy.default_language)
 
         if not_notified_tips.count():
             log.debug("Receiver Tips found to be notified: %d" % not_notified_tips.count() )
@@ -202,7 +201,7 @@ class NotificationSchedule(GLJob):
                                            models.Message.mark == models.Message._marker[0]
         )
 
-        node_desc = admin.admin_serialize_node(store.find(models.Node).one(), GLSetting.memory_copy.default_language)
+        node_desc = admin.db_admin_serialize_node(store, GLSetting.memory_copy.default_language)
 
         if not_notified_messages.count():
             log.debug("Messages found to be notified: %d" % not_notified_messages.count() )
@@ -332,7 +331,7 @@ class NotificationSchedule(GLJob):
             models.Comment.mark == models.Comment._marker[0]
         )
 
-        node_desc = admin.admin_serialize_node(store.find(models.Node).one(), GLSetting.memory_copy.default_language)
+        node_desc = admin.db_admin_serialize_node(store, GLSetting.memory_copy.default_language)
 
         if not_notified_comments.count():
             log.debug("Comments found to be notified: %d" % not_notified_comments.count() )
@@ -470,7 +469,7 @@ class NotificationSchedule(GLJob):
             models.ReceiverFile.mark == models.ReceiverFile._marker[0]
         )
 
-        node_desc = admin.admin_serialize_node(store.find(models.Node).one(), GLSetting.memory_copy.default_language)
+        node_desc = admin.db_admin_serialize_node(store, GLSetting.memory_copy.default_language)
 
         if not_notified_rfiles.count():
             log.debug("Receiverfiles found to be notified: %d" % not_notified_rfiles.count() )
