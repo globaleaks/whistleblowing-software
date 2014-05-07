@@ -11,6 +11,7 @@ uuid_regexp         = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9
 receiver_img_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png'
 
 dateType = r'(.*)'
+
 # contentType = r'(application|audio|text|video|image)'
 # via stackoverflow:
 # /^(application|audio|example|image|message|model|multipart|text|video)\/[a-zA-Z0-9]+([+.-][a-zA-z0-9]+)*$/
@@ -207,3 +208,33 @@ wizardFirstSetup = {
     'node' : adminNodeDesc,
     'appdata' : wizardFieldUpdate,
 }
+
+# what follows are the Response definitions
+
+TipOverview = {
+    'status': unicode,
+    'context_id': uuid_regexp,
+    'creation_lifetime': dateType,
+    'receivertips': list,
+    'creation_date': dateType,
+    'context_name': unicode,
+    'id': uuid_regexp,
+    'wb_access_counter': int,
+    'internalfiles': list,
+    'comments': list,
+    'wb_last_access': unicode,
+    'expiration_date': dateType,
+    'pertinence_counter': int,
+}
+
+TipsOverview = [ TipOverview ]
+
+UserOverview = {
+    'receivertips': list,
+    'receiverfiles': list,
+    'gpg_key_status': unicode,
+    'id': uuid_regexp,
+    'name': unicode,
+}
+
+UsersOverview = [ UserOverview ]

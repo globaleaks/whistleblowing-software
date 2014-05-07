@@ -273,5 +273,3 @@ class Files(BaseHandler):
 
         self.set_status(200)
         self.finish(file_complete_list)
-
-
