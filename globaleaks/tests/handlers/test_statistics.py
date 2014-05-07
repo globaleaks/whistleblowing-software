@@ -34,6 +34,7 @@ class TestStatsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
+
         StatisticsSchedule().operation()
 
         handler = self.request({}, role='admin')
