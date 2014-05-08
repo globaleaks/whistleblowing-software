@@ -519,7 +519,6 @@ class BaseHandler(RequestHandler):
         else:
             RequestHandler.write(self, chunk)
 
-
     @inlineCallbacks
     def uniform_answers_delay(self):
         """
@@ -549,7 +548,6 @@ class BaseHandler(RequestHandler):
             #    (1000.0 * request_time ), (1000.0 * uniform_delay)
             #)
             pass
-
 
     @property
     def current_user(self):
@@ -616,7 +614,7 @@ class BaseHandler(RequestHandler):
         uploaded_file = self.request.body
 
         if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 5:
-            raise errors.InvalidInputFormat("Expected a dict of four keys in uploaded file")
+            raise errors.InvalidInputFormat("Expected a dict of five keys in uploaded file")
 
         for filekey in uploaded_file.keys():
             if filekey not in [u'body',
@@ -645,7 +643,7 @@ class BaseStaticFileHandler(BaseHandler, StaticFileHandler):
 class BaseRedirectHandler(BaseHandler, RedirectHandler):
     def prepare(self):
         """
-        Same reason of StaticFileHandler
+        Same reason of BaseStaticFileHandler
         """
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
