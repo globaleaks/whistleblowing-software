@@ -345,3 +345,18 @@ ahmiaDesc = {
     'keywords': unicode,
     'type': unicode,
 }
+
+staticFile = {
+    'elapsed_time': float,
+    'size': int,
+    'filelocation': unicode,
+    'content_type': unicode,
+    'filename': unicode,
+}
+
+staticFileCollectionElem = {
+    'size': int,
+    'filename': unicode,
+}
+
+staticFileCollection = [ staticFileCollectionElem ]
