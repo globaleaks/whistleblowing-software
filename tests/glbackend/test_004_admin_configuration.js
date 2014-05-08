@@ -286,8 +286,6 @@ describe('GET /admin/node', function () {
         node = JSON.parse(JSON.stringify(res.body));
 
         /* adding various keys needed next POST */
-        node['password'] = '';
-        node['old_password'] = '';
         node['allow_unencrypted'] = true;
 
         done();
