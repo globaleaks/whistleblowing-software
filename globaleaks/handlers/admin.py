@@ -61,11 +61,11 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         'reset_css': False,
         'anomaly_checks': node.anomaly_checks,
         'allow_unencrypted': node.allow_unencrypted,
-        'password': u"",
-        'old_password': u"",
         'wizard_done': node.wizard_done,
         'receipt_regexp': node.receipt_regexp,
         'configured': True if associated else False,
+        'password': u"",
+        'old_password': u"",
     }
 
     for attr in mo.get_localized_attrs():

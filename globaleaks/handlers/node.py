@@ -49,6 +49,8 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'allow_unencrypted': node.allow_unencrypted,
       'receipt_regexp': node.receipt_regexp,
       'configured': True if associated else False,
+      'password': u"",
+      'old_password': u"",
     }
 
     mo = Rosetta()
