@@ -61,7 +61,6 @@ class TestGL(unittest.TestCase):
         GLSetting.eval_paths()
         GLSetting.remove_directories()
         GLSetting.create_directories()
-        GLSetting.cleaning_dead_files()
 
         self.setUp_dummy()
 
