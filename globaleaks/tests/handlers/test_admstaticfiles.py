@@ -27,7 +27,7 @@ class TestStaticFileInstance(helpers.TestHandler):
             'content_type': 'image/png'
         }
 
-        handler = self.request({}, role='admin', kwargs={'path':"globaleaks_logo"}, body=request_body)
+        handler = self.request({}, role='admin',  kwargs={'path': GLSetting.static_path}, body=request_body)
 
         yield handler.post(filename='globaleaks_logo')
 
@@ -50,7 +50,7 @@ class TestStaticFileInstance(helpers.TestHandler):
             'content_type': 'text/css'
         }
 
-        handler = self.request({}, role='admin', kwargs={'path':"custom_stylesheet"}, body=request_body)
+        handler = self.request({}, role='admin',  kwargs={'path': GLSetting.static_path}, body=request_body)
 
         yield handler.post(filename='custom_stylesheet')
 
@@ -79,7 +79,7 @@ class TestStaticFileInstance(helpers.TestHandler):
             'content_type': 'text/plain'
         }
 
-        handler = self.request({}, role='admin', kwargs={'path':"invalid.blabla"}, body=request_body)
+        handler = self.request({}, role='admin',  kwargs={'path': GLSetting.static_path}, body=request_body)
         self.assertFailure(handler.post(filename='invalid.blabla'), errors.ReceiverIdNotFound)
 
     @inlineCallbacks
@@ -113,35 +113,21 @@ class TestStaticFileInstance(helpers.TestHandler):
             'content_type': 'text/plain'
         }
 
-        handler = self.request({}, role='admin', kwargs={'path':"customization"}, body=request_body)
+        handler = self.request({}, role='admin',  kwargs={'path': GLSetting.static_path}, body=request_body)
         yield handler.post(filename='customization')
         self._handler.validate_message(json.dumps(self.responses[0]), requests.staticFile)
 
     @inlineCallbacks
     def test_delete_valid_custom_file(self):
-        temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
-        temporary_file.write("ANTANI")
-        temporary_file.avoid_delete()
-
-        request_body = {
-            'body': temporary_file,
-            'body_len': len("ANTANI"),
-            'body_filepath': temporary_file.filepath,
-            'filename': 'valid.blabla',
-            'content_type': 'text/plain'
-        }
-
         # we load a file
-        handler = self.request({}, role='admin', kwargs={'path':""}, body=request_body)
-        yield handler.post(filename='customization')
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.staticFile)
+        yield self.test_post_valid_custom_file()
 
         # we delete the file
-        handler = self.request({}, role='admin',  kwargs={'path':""})
+        handler = self.request({}, role='admin', kwargs={'path': GLSetting.static_path})
         yield handler.delete("valid.blabla")
 
         # we verify that the file do not exists anymore
-        handler = self.request({}, role='admin',  kwargs={'path':""})
+        handler = self.request({}, role='admin', kwargs={'path': GLSetting.static_path})
         self.assertRaises(errors.StaticFileNotFound, handler.delete, filename='validblabla')
 
 
