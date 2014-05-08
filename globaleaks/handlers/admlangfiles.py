@@ -67,14 +67,14 @@ class LanguageFileHandler(BaseStaticFileHandler):
 
     @transport_security_check('unauth')
     @unauthenticated
-    def get(self, lang, include_body=True):
+    def get(self, lang):
         self.set_header('Content-Type', 'application/json')
 
         path = self.custom_langfile_path(lang)
         directory_traversal_check(GLSetting.static_path_l10n, path)
 
         if os.path.exists(path):
-            StaticFileHandler.get(self, path, include_body)
+            StaticFileHandler.get(self, path, True)
         else:
             path = self.langfile_path(lang)
             directory_traversal_check(GLSetting.glclient_path, path)
@@ -82,7 +82,7 @@ class LanguageFileHandler(BaseStaticFileHandler):
             # to reuse use the StaticFile handler we need to change the root path
             self.root = os.path.abspath(os.path.join(GLSetting.glclient_path, 'l10n'))
 
-            StaticFileHandler.get(self, path, include_body)
+            StaticFileHandler.get(self, path, True)
 
     @transport_security_check('admin')
     @authenticated('admin')
