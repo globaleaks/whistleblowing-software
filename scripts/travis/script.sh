@@ -4,7 +4,6 @@ set -e
 
 sudo -i bash -x -c 'mkdir -p /data/globaleaks /data/globaleaks/tests'
 sudo -i bash -x -c 'chown travis:travis /data/globaleaks -R'
-sudo -i bash -x -c 'apt-get install curl git -y'
 
 git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks
 cd /data/globaleaks/GlobaLeaks
