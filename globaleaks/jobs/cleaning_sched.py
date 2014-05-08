@@ -74,7 +74,7 @@ def itip_cleaning(store, tip_id):
 
         if os.path.isfile(abspath):
             try:
-                print "Removing internalfile %s" % abspath
+                log.debug("Removing internalfile %s" % abspath)
                 os.remove(abspath)
             except OSError as excep:
                 log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
