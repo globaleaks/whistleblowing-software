@@ -405,6 +405,7 @@ class MockDict():
             'wb_fields': fill_random_fields(self.dummyContext),
             'finalize': False,
             'receivers': [],
+            'files': [],
         }
 
         self.dummyNode = {
