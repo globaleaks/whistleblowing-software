@@ -9,6 +9,7 @@ from cyclone.util import ObjectDict as OD
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 from twisted.internet import threads
+from twisted.internet import defer
 from twisted.internet.defer import inlineCallbacks
 from storm.twisted.testing import FakeThreadPool
 
@@ -16,7 +17,9 @@ from globaleaks import db, models, security
 from globaleaks.settings import GLSetting, transact
 from globaleaks.handlers import files
 from globaleaks.handlers.admin import create_context, create_receiver
-from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
+from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
+from globaleaks.jobs import delivery_sched, notification_sched
+from globaleaks.plugins import notification
 from globaleaks.utils.utility import datetime_null, datetime_now, uuid4, log
 from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
@@ -64,6 +67,14 @@ class TestGL(unittest.TestCase):
 
         self.setUp_dummy()
 
+        # This mocks out the MailNotification plugin so it does not actually
+        # require to perform a connection to send an email.
+        # XXX we probably want to create a proper mock of the ESMTPSenderFactory
+        def mail_flush_mock(self, from_address, to_address, message_file, event):
+            return defer.succeed(None)
+
+        notification.MailNotification.mail_flush = mail_flush_mock
+
         return db.create_tables(create_node=True)
 
     def setUp_dummy(self):
@@ -78,30 +89,6 @@ class TestGL(unittest.TestCase):
 
         self.assertTrue(os.listdir(GLSetting.submission_path) == [])
         self.assertTrue(os.listdir(GLSetting.tmp_upload_path) == [])
-
-        temporary_file1 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
-        temporary_file1.write("ANTANI")
-        temporary_file1.avoid_delete()
-
-        temporary_file2 = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
-        temporary_file2.write("ANTANIANTANIANTANI")
-        temporary_file2.avoid_delete()
-
-        self.dummyFile1 = {
-            'body': temporary_file1,
-            'body_len': len("ANTANI"),
-            'body_filepath': temporary_file1.filepath,
-            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
-            'content_type': 'application/octect',
-        }
-
-        self.dummyFile2 = {
-            'body': temporary_file2,
-            'body_len': len("ANTANIANTANIANTANI"),
-            'body_filepath': temporary_file2.filepath,
-            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
-            'content_type': 'application/octect',
-        }
 
     def localization_set(self, dict_l, dict_c, language):
         ret = dict(dict_l)
@@ -121,25 +108,6 @@ class TestGL(unittest.TestCase):
         new_r['description'] =  "am I ignored ? %s" % descpattern
         return new_r
 
-    @inlineCallbacks
-    def emulate_file_upload(self, associated_submission_id):
-
-        relationship1 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
-        self.registered_file1 = yield files.register_file_db(
-            self.dummyFile1, relationship1, associated_submission_id,
-        )
-
-        relationship2 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
-        self.registered_file2 = yield files.register_file_db(
-            self.dummyFile2, relationship2, associated_submission_id,
-            )
-
-        keydiff = {'size', 'content_type', 'name', 'creation_date', 'id'} - set(self.registered_file1.keys())
-        self.assertFalse(keydiff)
-
-        keydiff = {'size', 'content_type', 'name', 'creation_date', 'id'} - set(self.registered_file2.keys())
-        self.assertFalse(keydiff)
-
     def get_dummy_file(self):
         temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
 
@@ -156,11 +124,28 @@ class TestGL(unittest.TestCase):
 
         return dummy_file
 
+    @inlineCallbacks
+    def emulate_file_upload(self, associated_submission_id):
+
+        for i in range(0,5): # we emulate a constant upload of 5 files
+
+            dummyFile = self.get_dummy_file()
+
+            relationship = yield threads.deferToThread(files.dump_file_fs, dummyFile)
+            registered_file = yield files.register_file_db(
+                dummyFile, relationship, associated_submission_id,
+            )
+
+            self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
+
 class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def setUp(self):
         yield TestGL.setUp(self)
         yield self.fill_data()
+
+        yield delivery_sched.DeliverySchedule().operation()
+        yield notification_sched.NotificationSchedule().operation()
 
     def receiver_assertion(self, source_r, created_r):
         self.assertEqual(source_r['name'], created_r['name'], "name")
@@ -196,16 +181,22 @@ class TestGLWithPopulatedDB(TestGL):
             print "Fail fill_data/create_context: %s" % excp
             raise  excp
 
-
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = [ self.dummyReceiver['id'] ]
         self.dummySubmission['wb_fields'] = fill_random_fields(self.dummyContext)
 
         try:
-            submission = yield create_submission(self.dummySubmission, finalize=True)
-            self.dummySubmission['id'] = submission['id']
+            self.dummySubmission = yield create_submission(self.dummySubmission, finalize=False)
         except Exception as excp:
             print "Fail fill_data/create_submission: %s" % excp
+            raise  excp
+
+        yield self.emulate_file_upload(self.dummySubmission['id'])
+
+        try:
+            submission = yield update_submission(self.dummySubmission['id'], self.dummySubmission, finalize=True)
+        except Exception as excp:
+            print "Fail fill_data/update_submission: %s" % excp
             raise  excp
 
         try:
