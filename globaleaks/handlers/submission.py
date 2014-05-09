@@ -224,26 +224,9 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
         raise errors.ContextIdNotFound
 
     submission = store.find(InternalTip, InternalTip.id == unicode(submission_id)).one()
-
     if not submission:
-
-        log.debug("Creating a new submission in update!")
-        submission = InternalTip()
-
-        submission.escalation_threshold = context.escalation_threshold
-        submission.access_limit = context.tip_max_access
-        submission.download_limit = context.file_max_download
-        submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
-        submission.pertinence_counter = 0
-        submission.context_id = context.id
-        submission.creation_date = datetime_now()
-        submission.mark = InternalTip._marker[0] # Submission
-
-        try:
-            store.add(submission)
-        except Exception as excep:
-            log.err("Storm/SQL Error: %s (update_submission)" % excep)
-            raise errors.InternalServerError("Unable to commit on DB")
+        log.err("Invalid Submission requested %s in PUT" % submission_id)
+        raise errors.SubmissionIdNotFound
 
     # this may happen if a submission try to update a context
     if submission.context_id != context.id:
@@ -288,10 +271,11 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
 
 
 @transact_ro
-def get_submission(store, submission_d):
-    submission = store.find(InternalTip, InternalTip.id == unicode(submission_d)).one()
+def get_submission(store, submission_id):
+    submission = store.find(InternalTip, InternalTip.id == unicode(submission_id)).one()
+
     if not submission:
-        log.err("Invalid Submission requested %s in GET" % submission_d)
+        log.err("Invalid Submission requested %s in GET" % submission_id)
         raise errors.SubmissionIdNotFound
 
     return wb_serialize_internaltip(submission)
