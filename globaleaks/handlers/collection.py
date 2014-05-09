@@ -179,7 +179,7 @@ class CollectionDownload(BaseHandler):
                 elif 'buf' in f:
                     tarinfo = tarfile.TarInfo(f['name'])
                     tarinfo.size = len(f['buf'])
-                    tar.addfile(tarinfo, StringIO.StringIO(formatted_coll))
+                    tar.addfile(tarinfo, StringIO.StringIO(f['buf']))
 
             tar.close()
 
