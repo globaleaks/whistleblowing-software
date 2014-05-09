@@ -292,38 +292,43 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
                 # Update all the path with the absolute path
                 filedesc['path'] = os.path.join(GLSetting.submission_path, filedesc['path'])
 
+            files_dict.append(
+            { 'buf'  : "ANTANI JUST TO TEST buf TYPE PROCESSING".encode('utf-8'),
+              'name' : "AS_EXPLOITED_WHEN_ADDING_COLLECTION_INFO.txt"
+            })
+
             ##################################################################################
             #  The following code reproduce the handler/collection.py get() function         #
             #  and tests all the implemented compression alghoritms                          #
             ##################################################################################
-                for compression in ['zipstored', 'zipdeflated', 'tar', 'targz', 'tarbz2']:
-                    opts = get_compression_opts(compression)
+            for compression in ['zipstored', 'zipdeflated', 'tar', 'targz', 'tarbz2']:
+                opts = get_compression_opts(compression)
 
-                    if compression in ['zipstored', 'zipdeflated']:
-                        for data in ZipStream(files_dict, opts['compression_type']):
-                            pass # self.write(data)
+                if compression in ['zipstored', 'zipdeflated']:
+                    for data in ZipStream(files_dict, opts['compression_type']):
+                        pass # self.write(data)
 
-                    elif compression in ['tar', 'targz', 'tarbz2']:
+                elif compression in ['tar', 'targz', 'tarbz2']:
 
-                        collectionstreamer = CollectionStreamer(None)
+                    collectionstreamer = CollectionStreamer(None)
 
-                        # we replace collectionstreamer.write() with a pass function
-                        def nowrite(data):
-                            pass
+                    # we replace collectionstreamer.write() with a pass function
+                    def nowrite(data):
+                        pass
 
-                        collectionstreamer.write = nowrite
+                    collectionstreamer.write = nowrite
 
-                        tar = tarfile.open("collection." + compression, 'w|'+opts['compression_type'], collectionstreamer)
-                        for f in files_dict:
-                            if 'path' in f:
-                                tar.add(f['path'], f['name'])
+                    tar = tarfile.open("collection." + compression, 'w|'+opts['compression_type'], collectionstreamer)
+                    for f in files_dict:
+                        if 'path' in f:
+                            tar.add(f['path'], f['name'])
 
-                            elif 'buf' in f:
-                                tarinfo = tarfile.TarInfo(f['name'])
-                                tarinfo.size = len(f['buf'])
-                                tar.addfile(tarinfo, StringIO.StringIO(formatted_coll))
+                        elif 'buf' in f:
+                            tarinfo = tarfile.TarInfo(f['name'])
+                            tarinfo.size = len(f['buf'])
+                            tar.addfile(tarinfo, StringIO.StringIO(f['buf']))
 
-                        tar.close()
+                    tar.close()
             ##################################################################################
 
     @inlineCallbacks
