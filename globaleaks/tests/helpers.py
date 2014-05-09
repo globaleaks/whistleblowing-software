@@ -231,6 +231,8 @@ class TestGLWithPopulatedDB(TestGL):
                                                rtip_desc['rtip_id'],
                                                commentCreation)
 
+        yield delivery_sched.DeliverySchedule().operation()
+        yield notification_sched.NotificationSchedule().operation()
 
 class TestHandler(TestGLWithPopulatedDB):
     """
