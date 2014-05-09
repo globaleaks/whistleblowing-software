@@ -58,7 +58,7 @@ spec = [
     (r'/rtip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
 
     #  (Download all the file in various archive formats)
-    (r'/rtip/' + uuid_regexp + '/collection(/(zipstored|zipdeflated|tar|targz|tarbz2))?', collection.CollectionDownload),
+    (r'/rtip/' + uuid_regexp + '/collection(?:/(zipstored|zipdeflated|tar|targz|tarbz2))?', collection.CollectionDownload),
 
     (r'/rtip/' + uuid_regexp + '/messages', rtip.ReceiverMsgCollection),
 
