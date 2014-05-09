@@ -63,12 +63,25 @@ class Test_002_SubmissionInstance(helpers.TestHandler):
             self.assertEqual(len(self.responses), 1)
             self._handler.validate_message(json.dumps(self.responses[0]), requests.internalTipDesc)
 
-    def test_003_delete_unexistent_submission(self):
+    @inlineCallbacks
+    def test_003_put(self):
+        submission_desc = dict(self.dummySubmission)
+        submission_desc['finalize'] = False
+        del submission_desc['id']
+
+        status = yield submission.create_submission(submission_desc, finalize=False)
+
+        status['finalize'] = True
+
+        handler = self.request({}, body=json.dumps(status))
+        handler.put(status['id'])
+
+    def test_004_delete_unexistent_submission(self):
         handler = self.request({})
         self.assertFailure(handler.delete("unextistent"), errors.SubmissionIdNotFound)
 
     @inlineCallbacks
-    def test_004_delete_submission_not_finalized(self):
+    def test_005_delete_submission_not_finalized(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = False
         del submission_desc['id']
@@ -78,9 +91,8 @@ class Test_002_SubmissionInstance(helpers.TestHandler):
         handler = self.request({})
         handler.delete(status['id'])
 
-
     @inlineCallbacks
-    def test_005_delete_existent_but_finalized_submission(self):
+    def test_006_delete_existent_but_finalized_submission(self):
         submissions_ids = yield self.get_submissions_ids()
 
         for submission_id in submissions_ids:
