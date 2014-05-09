@@ -94,15 +94,6 @@ class TestCleaning(TTip):
             self.assertTrue(is_expired(tip.expiration_date))
 
     @inlineCallbacks
-    def do_create_internalfiles(self):
-        yield self.emulate_file_upload(self.submission_desc['id'],)
-        keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(self.registered_file1.keys())
-        self.assertFalse(keydiff)
-        keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(self.registered_file2.keys())
-        self.assertFalse(keydiff)
-
-
-    @inlineCallbacks
     def do_setup_tip_environment(self):
 
         basehandler = MockHandler()
@@ -210,7 +201,9 @@ class TipCleaning(TestCleaning):
     @inlineCallbacks
     def test_004_tip_life_and_expire_with_files(self):
         yield self.do_setup_tip_environment()
-        yield self.do_create_internalfiles()
+
+        yield self.emulate_file_upload(self.submission_desc['id'])
+
         yield self.do_finalize_submission()
 
         yield delivery_sched.DeliverySchedule().operation()

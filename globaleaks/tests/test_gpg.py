@@ -235,12 +235,9 @@ class TestReceiverSetKey(TestHandler):
         new_subm_output = yield create_submission(new_subm, False)
         # self.submission_assertion(new_subm, new_subm_output)
 
+        self.emulate_file_upload(new_subm_output['id'])
+
         new_file = self.get_dummy_file()
-
-        relationship1 = yield threads.deferToThread(files.dump_file_fs, new_file)
-
-        self.registered_file1 = yield files.register_file_db(
-            new_file, relationship1, new_subm_output['id'] )
 
         new_subm['id'] = new_subm_output['id']
         new_subm['finalize'] = True
@@ -252,15 +249,17 @@ class TestReceiverSetKey(TestHandler):
         ifilist = yield get_files_by_itip(new_subm_output['id'])
 
         self.assertTrue(isinstance(ifilist, list))
-        self.assertEqual(len(ifilist), 1)
+        self.assertEqual(len(ifilist), 3)
         self.assertEqual(ifilist[0]['mark'], u'delivered')
 
         rfilist = yield get_receiverfile_by_itip(new_subm_output['id'])
 
         self.assertTrue(isinstance(ifilist, list))
         self.assertEqual(len(rfilist), 2)
-        self.assertLess(ifilist[0]['size'], rfilist[0]['size'])
-        self.assertLess(ifilist[0]['size'], rfilist[1]['size'])
+
+        for i in range(0, 2):
+            self.assertLess(ifilist[0]['size'], rfilist[i]['size'])
+
         self.assertEqual(rfilist[0]['status'], u"encrypted" )
         # completed in love! http://www.youtube.com/watch?v=CqLAwt8T3Ps
 
