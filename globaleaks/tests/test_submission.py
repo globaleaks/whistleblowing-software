@@ -258,81 +258,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         yield self.assertFailure(submission.create_submission(submission_request, finalize=True), errors.SubmissionFailFields)
 
     @inlineCallbacks
-    def test_009_file_collection_creation(self):
-
-        yield self.test_003_create_submission_attach_files_finalize_and_access_wbtip()
-
-        # we trigger the complete DeliverySchedule() in order to create rtips and rfiles
-        delivery_sched.DeliverySchedule().operation()
-
-        rtips = yield get_receiver_tip_list(self.dummyReceiver['id'])
-
-        for rtip in rtips:
-
-            expected_keys = ['access_counter',
-                             'creation_date',
-                             'expiration_date',
-                             'last_access',
-                             'expressed_pertinence',
-                             'id',
-                             'comments_number',
-                             'files_number',
-                             'context_name',
-                             'preview', 'read_messages',
-                             'can_delete_submission',
-                             'postpone_superpower',
-                             'unread_messages',
-                             'your_messages']
-
-            self.assertEqual(set(rtip.keys()), set(expected_keys))
-
-            files_dict = yield download_all_files(self.dummyReceiver['id'], rtip['id'])
-
-            for filedesc in files_dict:
-                # Update all the path with the absolute path
-                filedesc['path'] = os.path.join(GLSetting.submission_path, filedesc['path'])
-
-            files_dict.append(
-            { 'buf'  : "ANTANI JUST TO TEST buf TYPE PROCESSING".encode('utf-8'),
-              'name' : "AS_EXPLOITED_WHEN_ADDING_COLLECTION_INFO.txt"
-            })
-
-            ##################################################################################
-            #  The following code reproduce the handler/collection.py get() function         #
-            #  and tests all the implemented compression alghoritms                          #
-            ##################################################################################
-            for compression in ['zipstored', 'zipdeflated', 'tar', 'targz', 'tarbz2']:
-                opts = get_compression_opts(compression)
-
-                if compression in ['zipstored', 'zipdeflated']:
-                    for data in ZipStream(files_dict, opts['compression_type']):
-                        pass # self.write(data)
-
-                elif compression in ['tar', 'targz', 'tarbz2']:
-
-                    collectionstreamer = CollectionStreamer(None)
-
-                    # we replace collectionstreamer.write() with a pass function
-                    def nowrite(data):
-                        pass
-
-                    collectionstreamer.write = nowrite
-
-                    tar = tarfile.open("collection." + compression, 'w|'+opts['compression_type'], collectionstreamer)
-                    for f in files_dict:
-                        if 'path' in f:
-                            tar.add(f['path'], f['name'])
-
-                        elif 'buf' in f:
-                            tarinfo = tarfile.TarInfo(f['name'])
-                            tarinfo.size = len(f['buf'])
-                            tar.addfile(tarinfo, StringIO.StringIO(f['buf']))
-
-                    tar.close()
-            ##################################################################################
-
-    @inlineCallbacks
-    def test_010_update_submission(self):
+    def test_009_update_submission(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = False
         submission_desc['context_id'] = self.dummyContext['id']
@@ -354,7 +280,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
 
     @inlineCallbacks
-    def test_011_unable_to_access_finalized(self):
+    def test_010_unable_to_access_finalized(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
         submission_desc['context_id'] = self.dummyContext['id']
@@ -369,7 +295,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
 
     @inlineCallbacks
-    def test_012_fields_validator_all_fields(self):
+    def test_011_fields_validator_all_fields(self):
 
         sbmt = dict(self.dummySubmission)
 
@@ -392,7 +318,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
             self.assertTrue(False)
 
     @inlineCallbacks
-    def test_013_fields_fail_unexpected_presence(self):
+    def test_012_fields_fail_unexpected_presence(self):
 
         sbmt = helpers.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])
         sbmt['wb_fields'].update({ 'alien' : 'predator' })
@@ -400,7 +326,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
 
     @inlineCallbacks
-    def test_014_fields_fail_missing_required(self):
+    def test_013_fields_fail_missing_required(self):
 
         required_key = self.dummyContext['fields'][0]['key']
         sbmt = helpers.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])

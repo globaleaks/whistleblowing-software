@@ -117,7 +117,7 @@ class CollectionDownload(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def post(self, rtip_id, path, compression):
+    def post(self, rtip_id, compression):
 
         files_dict = yield download_all_files(self.current_user.user_id, rtip_id)
 
