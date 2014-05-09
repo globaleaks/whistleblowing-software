@@ -1,4 +1,3 @@
-from twisted.internet import defer
 from twisted.internet.defer import inlineCallbacks
 
 # override GLsetting
@@ -12,7 +11,6 @@ from globaleaks.tests import helpers
 from globaleaks.handlers import submission
 from globaleaks.jobs import delivery_sched
 from globaleaks.jobs.notification_sched import NotificationSchedule
-from globaleaks.plugins import notification
 
 class TestEmail(helpers.TestGLWithPopulatedDB):
 
@@ -27,15 +25,8 @@ class TestEmail(helpers.TestGLWithPopulatedDB):
             'files': [],
             'finalize': True,
             }, finalize=True)
+
         yield delivery_sched.tip_creation()
-
-        # This mocks out the MailNotification plugin so it does not actually
-        # require to perform a connection to send an email.
-        # XXX we probably want to create a proper mock of the ESMTPSenderFactory
-        def mail_flush_mock(self, from_address, to_address, message_file, event):
-            return defer.succeed(None)
-
-        notification.MailNotification.mail_flush = mail_flush_mock
 
     @inlineCallbacks
     def test_sendmail(self):
@@ -62,6 +53,7 @@ class TestEmail(helpers.TestGLWithPopulatedDB):
 
         # 100 as limit
         (tip_events, enqueued) = yield aps.create_tip_notification_events(0)
-        self.assertEqual(enqueued, 2)
+        self.assertEqual(enqueued, 1)
+
         yield aps.do_tip_notification(tip_events)
 

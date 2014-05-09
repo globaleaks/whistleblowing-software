@@ -44,5 +44,5 @@ class TestFilesOverview(helpers.TestHandler):
         yield handler.get()
 
         self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 0)
-        self.assertEqual(self.responses, [])
+        self.assertEqual(len(self.responses), 1)
+        self.assertEqual(len(self.responses[0]), 10)
