@@ -304,7 +304,7 @@ def delete_submission(store, submission_id):
         log.err("Invalid Submission requested %s in DELETE" % submission_id)
         raise errors.SubmissionIdNotFound
 
-    if submission.mark != submission._marked[0]:
+    if submission.mark != submission._marker[0]:
         log.err("Submission %s already concluded (status: %s)" % (submission_id, submission.mark))
         raise errors.SubmissionConcluded
 

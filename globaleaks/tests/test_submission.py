@@ -111,21 +111,21 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['id'])
         self.assertTrue(isinstance(self.fil, list))
-        self.assertEqual(len(self.fil), 2)
+        self.assertEqual(len(self.fil), 10)
 
         self.rfi = yield delivery_sched.get_receiverfile_by_itip(self.dummySubmission['id'])
         self.assertTrue(isinstance(self.rfi, list))
-        self.assertEqual(len(self.rfi), 2)
-        self.assertEqual(self.rfi[0]['mark'], u'not notified')
-        self.assertEqual(self.rfi[1]['mark'], u'not notified')
-        self.assertEqual(self.rfi[0]['status'], u'reference')
-        self.assertEqual(self.rfi[1]['status'], u'reference')
+        self.assertEqual(len(self.rfi), 10)
+
+        for i in range(0, 10):
+            self.assertTrue(self.rfi[i]['mark'] in [u'not notified', u'skipped'])
+            self.assertTrue(self.rfi[i]['status'] in [u'reference', u'nokey'])
 
         # verify the checksum returned by whistleblower POV, I'm not using
         #  wfv = yield tip.get_files_wb()
         # because is not generated a WhistleblowerTip in this test
         self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.dummySubmission['id'])
-        self.assertEqual(len(self.wbfls), 2)
+        self.assertEqual(len(self.wbfls), 10)
 
     @inlineCallbacks
     def test_005_create_receiverfiles_allow_unencrypted_false_no_keys_loaded(self):
@@ -153,23 +153,22 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['id'])
         self.assertTrue(isinstance(self.fil, list))
-        self.assertEqual(len(self.fil), 2)
+        self.assertEqual(len(self.fil), 10)
 
         self.rfi = yield delivery_sched.get_receiverfile_by_itip(self.dummySubmission['id'])
         self.assertTrue(isinstance(self.rfi, list))
 
-        self.assertEqual(len(self.rfi), 2)
+        self.assertEqual(len(self.rfi), 10)
         # no rfiles are created for the receivers that have no key
-        self.assertEqual(self.rfi[0]['mark'], u'not notified')
-        self.assertEqual(self.rfi[1]['mark'], u'not notified')
-        self.assertEqual(self.rfi[0]['status'], u'nokey')
-        self.assertEqual(self.rfi[1]['status'], u'nokey')
+        for i in range(0, 10):
+            self.assertTrue(self.rfi[i]['mark'] in [u'not notified', u'skipped'])
+            self.assertTrue(self.rfi[i]['status'] in [u'reference', u'nokey'])
 
         # verify the checksum returned by whistleblower POV, I'm not using
         #  wfv = yield tip.get_files_wb()
         # because is not generated a WhistleblowerTip in this test
         self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.dummySubmission['id'])
-        self.assertEqual(len(self.wbfls), 2)
+        self.assertEqual(len(self.wbfls), 10)
 
     @inlineCallbacks
     def test_007_submission_with_receiver_selection_allow_unencrypted_true_no_keys_loaded(self):

@@ -360,3 +360,19 @@ staticFileCollectionElem = {
 }
 
 staticFileCollection = [ staticFileCollectionElem ]
+
+internalTipDesc = {
+    'wb_fields': dict,
+    'pertinence': unicode,
+    'receivers': [ uuid_regexp ],
+    'context_id': uuid_regexp,
+    'access_limit': int,
+    'creation_date': dateType,
+    'mark': unicode,
+    'id': uuid_regexp,
+    'files': [ uuid_regexp ],
+    'expiration_date': dateType,
+    'download_limit': int,
+    'escalation_threshold': unicode,
+}
+
