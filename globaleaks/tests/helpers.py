@@ -14,10 +14,11 @@ from twisted.internet.defer import inlineCallbacks
 from storm.twisted.testing import FakeThreadPool
 
 from globaleaks import db, models, security
-from globaleaks.settings import GLSetting, transact
-from globaleaks.handlers import files
+from globaleaks.settings import GLSetting, transact, transact_ro
+from globaleaks.handlers import files, rtip
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
+from globaleaks.models import ReceiverTip
 from globaleaks.jobs import delivery_sched, notification_sched
 from globaleaks.plugins import notification
 from globaleaks.utils.utility import datetime_null, datetime_now, uuid4, log
@@ -142,10 +143,8 @@ class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def setUp(self):
         yield TestGL.setUp(self)
-        yield self.fill_data()
 
-        yield delivery_sched.DeliverySchedule().operation()
-        yield notification_sched.NotificationSchedule().operation()
+        yield self.fill_data()
 
     def receiver_assertion(self, source_r, created_r):
         self.assertEqual(source_r['name'], created_r['name'], "name")
@@ -153,6 +152,15 @@ class TestGLWithPopulatedDB(TestGL):
 
     def context_assertion(self, source_c, created_c):
         self.assertEqual(source_c['tip_max_access'], created_c['tip_max_access'])
+
+    @transact_ro
+    def get_rtips(self, store):
+        rtips_desc = []
+        rtips = store.find(ReceiverTip)
+        for rtip in rtips:
+            rtips_desc.append({'rtip_id': rtip.id, 'receiver_id': rtip.receiver_id})
+
+        return rtips_desc
 
     @inlineCallbacks
     def fill_data(self):
@@ -208,6 +216,21 @@ class TestGLWithPopulatedDB(TestGL):
         assert self.dummyContext.has_key('id')
         assert self.dummyReceiver.has_key('id')
         assert self.dummySubmission.has_key('id')
+
+        yield delivery_sched.DeliverySchedule().operation()
+        yield notification_sched.NotificationSchedule().operation()
+
+        commentCreation = {
+            'content': '',
+        }
+
+        rtips_desc = yield self.get_rtips()
+
+        for rtip_desc in rtips_desc:
+            yield rtip.create_comment_receiver(rtip_desc['receiver_id'],
+                                               rtip_desc['rtip_id'],
+                                               commentCreation)
+
 
 class TestHandler(TestGLWithPopulatedDB):
     """
