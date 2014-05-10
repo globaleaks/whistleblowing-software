@@ -83,7 +83,7 @@ def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_lan
     return tip_desc
 
 
-class WbTipInstance(BaseHandler):
+class WBTipInstance(BaseHandler):
     """
     This interface expose the Whistleblower Tip.
 
@@ -160,7 +160,7 @@ def create_comment_wb(store, wb_tip_id, request):
     return wb_serialize_comment(comment)
 
 
-class WbTipCommentCollection(BaseHandler):
+class WBTipCommentCollection(BaseHandler):
     """
     Interface use to read/write comments inside of a Tip, is not implemented as CRUD because we've not
     needs, at the moment, to delete/update comments once has been published. Comments is intended, now,
@@ -289,7 +289,7 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
         return receiver_list
 
 
-class WbTipReceiversCollection(BaseHandler):
+class WBTipReceiversCollection(BaseHandler):
     """
     This interface return the list of the Receiver active in a Tip.
     GET /tip/receivers
@@ -389,7 +389,7 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
     return wb_serialize_message(msg)
 
 
-class WbMessageCollection(BaseHandler):
+class WBTipMessageCollection(BaseHandler):
     """
     This interface return the lists of the private messages exchanged between
     whistleblower and the specified receiver requested in GET

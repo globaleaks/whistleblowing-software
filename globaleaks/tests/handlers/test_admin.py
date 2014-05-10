@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 import random
 import os
+
+import json
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.rest.errors import InvalidInputFormat
 from globaleaks.tests import helpers
-from globaleaks.rest import errors
+from globaleaks.rest import requests, errors
 from globaleaks.handlers import admin, admstaticfiles
 from globaleaks.settings import GLSetting
 from globaleaks import __version__
@@ -119,36 +122,10 @@ class TestContextInstance(helpers.TestHandler):
     def test_get(self):
         handler = self.request(role='admin')
         yield handler.get(self.dummyContext['id'])
-
-        self.assertTrue(isinstance(self.responses[0], dict))
-
-        for response_key in self.responses[0].keys():
-
-            # some keys are added by GLB, and can't be compared
-            if response_key in ['creation_date', 'last_update' ]:
-                continue
-
-            # the localized strings are kept in one side as localized l10n
-            # and in the other as dict.
-            if response_key in ['name', 'description',
-                                'subtitle', 'footer', 'presentation',
-                                'receiver_introduction', 'fields_introduction' ]:
-                # XXX
-                print self.responses[0][response_key]
-                print self.dummyContext[response_key]
-                continue
-
-            if response_key in ['fields']:
-                # refactor of fields, remove and enhance!
-                continue
-
-            self.assertEqual(self.responses[0][response_key],
-                             self.dummyContext[response_key])
-
+        self._handler.validate_message(json.dumps(self.responses[0]), requests.adminContextDesc)
 
     @inlineCallbacks
     def test_put(self):
-
         stuff = u"³²¼½¬¼³²"
         for attrname in Context.localized_strings:
             self.dummyContext[attrname] = u"³²¼½¬¼³²"
@@ -197,57 +174,48 @@ class TestReceiversCollection(helpers.TestHandler):
         handler = self.request(role='admin')
         yield handler.get()
 
-        # XXX helpers.py.. Why self.responses is became a double array ?
-        del self.dummyReceiver['contexts']
-        del self.responses[0][0]['contexts']
-        self.assertEqual(self.responses[0][0]['id'], self.dummyReceiver['id'])
+        self.assertEqual(len(self.responses[0]), 2)
 
     @inlineCallbacks
     def test_post(self):
-        self.dummyReceiver['name'] = 'beppe'
+        self.dummyReceiver_1['name'] = 'beppe'
 
         new_email = "guy@globaleaks.xxx"
-        self.dummyReceiver['mail_address'] = new_email
-        self.dummyReceiver['password'] = helpers.VALID_PASSWORD1
+        self.dummyReceiver_1['mail_address'] = new_email
+        self.dummyReceiver_1['password'] = helpers.VALID_PASSWORD1
 
         stuff = u"³²¼½¬¼³²"
         for attrname in Receiver.localized_strings:
-            self.dummyReceiver[attrname] = stuff
+            self.dummyReceiver_1[attrname] = stuff
 
-        handler = self.request(self.dummyReceiver, role='admin')
+        handler = self.request(self.dummyReceiver_1, role='admin')
         yield handler.post()
-
-        # We delete this because it's randomly generated
-        del self.responses[0]['id']
-        del self.dummyReceiver['id']
-
-        self.assertEqual(self.responses[0]['name'], self.dummyReceiver['name'])
 
     @inlineCallbacks
     def test_post_invalid_mail_addr(self):
-        self.dummyReceiver['name'] = 'beppe'
-        self.dummyReceiver['mail_address'] = "[antani@xx.it"
-        self.dummyReceiver['password'] = helpers.VALID_PASSWORD1
+        self.dummyReceiver_1['name'] = 'beppe'
+        self.dummyReceiver_1['mail_address'] = "[antani@xx.it"
+        self.dummyReceiver_1['password'] = helpers.VALID_PASSWORD1
 
         stuff = u"³²¼½¬¼³²"
         for attrname in Receiver.localized_strings:
-            self.dummyReceiver[attrname] = stuff
+            self.dummyReceiver_1[attrname] = stuff
 
-        handler = self.request(self.dummyReceiver, role='admin')
+        handler = self.request(self.dummyReceiver_1, role='admin')
 
         yield self.assertFailure(handler.post(), errors.NoEmailSpecified)
 
     @inlineCallbacks
     def test_post_duplicated_username(self):
-        self.dummyReceiver['name'] = 'beppe'
-        self.dummyReceiver['mail_address'] = "evilamaker.py@vecllais.naif"
-        self.dummyReceiver['password'] = helpers.VALID_PASSWORD1
+        self.dummyReceiver_1['name'] = 'beppe'
+        self.dummyReceiver_1['mail_address'] = "evilamaker.py@vecllais.naif"
+        self.dummyReceiver_1['password'] = helpers.VALID_PASSWORD1
 
         stuff = u"³²¼½¬¼³²"
         for attrname in Receiver.localized_strings:
-            self.dummyReceiver[attrname] = stuff
+            self.dummyReceiver_1[attrname] = stuff
 
-        handler = self.request(self.dummyReceiver, role='admin')
+        handler = self.request(self.dummyReceiver_1, role='admin')
 
         yield handler.post()
 
@@ -261,70 +229,70 @@ class TestReceiverInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
         handler = self.request(role='admin')
-        yield handler.get(self.dummyReceiver['id'])
-        del self.dummyReceiver['contexts']
+        yield handler.get(self.dummyReceiver_1['id'])
+        del self.dummyReceiver_1['contexts']
         del self.responses[0]['contexts']
-        self.assertEqual(self.responses[0]['id'], self.dummyReceiver['id'])
+        self.assertEqual(self.responses[0]['id'], self.dummyReceiver_1['id'])
 
     @inlineCallbacks
     def test_put_change_password(self):
-        self.dummyReceiver['context_id'] = ''
-        self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
-        self.dummyReceiver['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
-        self.dummyReceiver['password'] = u'12345678antani'
+        self.dummyReceiver_1['context_id'] = ''
+        self.dummyReceiver_1['name'] = u'new unique name %d' % random.randint(1, 10000)
+        self.dummyReceiver_1['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
+        self.dummyReceiver_1['password'] = u'12345678antani'
 
         stuff = u"³²¼½¬¼³²"
         for attrname in Receiver.localized_strings:
-            self.dummyReceiver[attrname] = stuff
+            self.dummyReceiver_1[attrname] = stuff
 
-        handler = self.request(self.dummyReceiver, role='admin')
-        yield handler.put(self.dummyReceiver['id'])
-        self.assertEqual(self.responses[0]['name'], self.dummyReceiver['name'])
+        handler = self.request(self.dummyReceiver_1, role='admin')
+        yield handler.put(self.dummyReceiver_1['id'])
+        self.assertEqual(self.responses[0]['name'], self.dummyReceiver_1['name'])
 
     @inlineCallbacks
     def test_put_with_password_empty(self):
-        self.dummyReceiver['context_id'] = ''
-        self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
-        self.dummyReceiver['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
-        self.dummyReceiver['password'] = u""
+        self.dummyReceiver_1['context_id'] = ''
+        self.dummyReceiver_1['name'] = u'new unique name %d' % random.randint(1, 10000)
+        self.dummyReceiver_1['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
+        self.dummyReceiver_1['password'] = u""
 
         stuff = u"³²¼½¬¼³²"
         for attrname in Receiver.localized_strings:
-            self.dummyReceiver[attrname] = stuff
+            self.dummyReceiver_1[attrname] = stuff
 
-        handler = self.request(self.dummyReceiver, role='admin')
-        yield handler.put(self.dummyReceiver['id'])
-        self.assertEqual(self.responses[0]['name'], self.dummyReceiver['name'])
+        handler = self.request(self.dummyReceiver_1, role='admin')
+        yield handler.put(self.dummyReceiver_1['id'])
+        self.assertEqual(self.responses[0]['name'], self.dummyReceiver_1['name'])
 
     @inlineCallbacks
     def test_put_invalid_context_id(self):
-        self.dummyReceiver['name'] = u'justalazyupdate'
+        self.dummyReceiver_1['name'] = u'justalazyupdate'
         # keep the context ID wrong but matching eventually regexp
-        self.dummyReceiver['contexts'] = [ unicode(uuid4()) ]
-        self.dummyReceiver['name'] = u'another unique name %d' % random.randint(1, 10000)
-        self.dummyReceiver['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
-        self.dummyReceiver['password'] = u'12345678andaletter'
+        self.dummyReceiver_1['contexts'] = [ unicode(uuid4()) ]
+        self.dummyReceiver_1['name'] = u'another unique name %d' % random.randint(1, 10000)
+        self.dummyReceiver_1['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
+        self.dummyReceiver_1['password'] = u'12345678andaletter'
 
         stuff = u"³²¼½¬¼³²"
         for attrname in Receiver.localized_strings:
-            self.dummyReceiver[attrname] = stuff
+            self.dummyReceiver_1[attrname] = stuff
 
-        handler = self.request(self.dummyReceiver, role='admin')
+        handler = self.request(self.dummyReceiver_1, role='admin')
 
-        yield self.assertFailure(handler.put(self.dummyReceiver['id']),
+        yield self.assertFailure(handler.put(self.dummyReceiver_1['id']),
                                  errors.ContextIdNotFound)
 
     @inlineCallbacks
     def test_delete(self):
-        handler = self.request(self.dummyReceiver, role='admin')
+        handler = self.request(self.dummyReceiver_1, role='admin')
         try:
-            yield handler.delete(self.dummyReceiver['id'])
+            yield handler.delete(self.dummyReceiver_1['id'])
             self.assertTrue(True)
         except Exception as excep:
             print "Wrong exception: %s" % excep
             raise excep
 
-        yield self.assertFailure(handler.get(self.dummyReceiver['id']),
+        yield self.assertFailure(handler.get(self.dummyReceiver_1['id']),
                                  errors.ReceiverIdNotFound)
 
 

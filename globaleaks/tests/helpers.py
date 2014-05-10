@@ -84,8 +84,10 @@ class TestGL(unittest.TestCase):
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyNotification = dummyStuff.dummyNotification
-        self.dummyReceiverUser = dummyStuff.dummyReceiverUser
-        self.dummyReceiver = dummyStuff.dummyReceiver
+        self.dummyReceiverUser_1 = self.get_dummy_receiver_user("receiver1")
+        self.dummyReceiverUser_2 = self.get_dummy_receiver_user("receiver2")
+        self.dummyReceiver_1 = self.get_dummy_receiver("receiver1") # the one without PGP
+        self.dummyReceiver_2 = self.get_dummy_receiver("receiver2") # the one with PGP
         self.dummyNode = dummyStuff.dummyNode
 
         self.assertTrue(os.listdir(GLSetting.submission_path) == [])
@@ -100,14 +102,44 @@ class TestGL(unittest.TestCase):
 
         return ret
 
-    def get_new_receiver_desc(self, descpattern):
-        new_r = dict(self.dummyReceiver)
+    def get_dummy_receiver_user(self, descpattern):
+        new_ru = dict(MockDict().dummyReceiverUser)
+        new_ru['username'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
+        return new_ru
+
+    def get_dummy_receiver(self, descpattern):
+        new_r = dict(MockDict().dummyReceiver)
         new_r['name'] = new_r['username'] =\
         new_r['mail_address'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
         new_r['password'] = VALID_PASSWORD1
         # localized dict required in desc
         new_r['description'] =  "am I ignored ? %s" % descpattern
         return new_r
+
+    def get_dummy_submission(self, context_id, context_admin_data_fields):
+        """
+        this may works until the content of the fields do not start to be validated. like
+        numbers shall contain only number, and not URL.
+        This validation would not be implemented in validate_jmessage but in structures.Fields
+
+        need to be enhanced generating appropriate data based on the fields.type
+        """
+        dummySubmissionDict = {}
+        dummySubmissionDict['wb_fields'] = {}
+
+        dummyvalue = "https://dailyfoodporn.wordpress.com && " \
+                     "http://www.zerocalcare.it/ && " \
+                     "http://www.giantitp.com"
+
+        for field_desc in context_admin_data_fields:
+            dummySubmissionDict['wb_fields'][field_desc['key']] = { u'value': dummyvalue,
+                                                                    u'answer_order': 0 }
+
+        dummySubmissionDict['receivers'] = []
+        dummySubmissionDict['files'] = []
+        dummySubmissionDict['finalize'] = True
+        dummySubmissionDict['context_id'] = context_id
+        return dummySubmissionDict
 
     def get_dummy_file(self):
         temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
@@ -128,7 +160,7 @@ class TestGL(unittest.TestCase):
     @inlineCallbacks
     def emulate_file_upload(self, associated_submission_id):
 
-        for i in range(0,5): # we emulate a constant upload of 5 files
+        for i in range(0,2): # we emulate a constant upload of 2 files
 
             dummyFile = self.get_dummy_file()
 
@@ -138,6 +170,28 @@ class TestGL(unittest.TestCase):
             )
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
+
+    @transact_ro
+    def get_rtips(self, store):
+        rtips_desc = []
+        rtips = store.find(ReceiverTip)
+        for rtip in rtips:
+            rtips_desc.append({'rtip_id': rtip.id, 'receiver_id': rtip.receiver_id})
+
+        return rtips_desc
+
+    @transact_ro
+    def get_wbtips(self, store):
+        wbtips_desc = []
+        wbtips = store.find(WhistleblowerTip)
+        for wbtip in wbtips:
+            rcvrs_ids = []
+            for rcvr in wbtip.internaltip.receivers:
+                rcvrs_ids.append(rcvr.id)
+            wbtips_desc.append({'wbtip_id': wbtip.id, 'wbtip_receivers': rcvrs_ids})
+
+        return wbtips_desc
+
 
 class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
@@ -183,26 +237,26 @@ class TestGLWithPopulatedDB(TestGL):
             print "Fail fill_data/do_appdata_init: %s" % excp
             raise  excp
 
-        try:
-            receiver = yield create_receiver(self.dummyReceiver)
+        receivers_ids = []
 
-            self.dummyReceiver['id'] = receiver['id']
-            self.receiver_assertion(self.dummyReceiver, receiver)
+        try:
+            self.dummyReceiver_1 = yield create_receiver(self.dummyReceiver_1)
+            receivers_ids.append(self.dummyReceiver_1['id'])
+            self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2)
+            receivers_ids.append(self.dummyReceiver_2['id'])
         except Exception as excp:
             print "Fail fill_data/create_receiver: %s" % excp
             raise  excp
 
         try:
-            self.dummyContext['receivers'] = [ self.dummyReceiver['id'] ]
-            context = yield create_context(self.dummyContext)
-            self.dummyContext['id'] = context['id']
-
+            self.dummyContext['receivers'] = receivers_ids
+            self.dummyContext = yield create_context(self.dummyContext)
         except Exception as excp:
             print "Fail fill_data/create_context: %s" % excp
             raise  excp
 
         self.dummySubmission['context_id'] = self.dummyContext['id']
-        self.dummySubmission['receivers'] = [ self.dummyReceiver['id'] ]
+        self.dummySubmission['receivers'] = receivers_ids
         self.dummySubmission['wb_fields'] = fill_random_fields(self.dummyContext)
 
         try:
@@ -225,8 +279,9 @@ class TestGLWithPopulatedDB(TestGL):
             print "Fail fill_data/create_whistleblower: %s" % excp
             raise  excp
 
+        assert self.dummyReceiver_1.has_key('id')
+        assert self.dummyReceiver_2.has_key('id')
         assert self.dummyContext.has_key('id')
-        assert self.dummyReceiver.has_key('id')
         assert self.dummySubmission.has_key('id')
 
         yield delivery_sched.DeliverySchedule().operation()
@@ -383,7 +438,7 @@ class MockDict():
             'username': u'maker@iz.cool.yeah',
             'password': VALID_HASH1,
             'salt': VALID_SALT1,
-            'role': u'admin',
+            'role': u'receiver',
             'state': u'enabled',
             'last_login': datetime_null(),
         }
@@ -544,32 +599,6 @@ def template_keys(first_a, second_a, name):
         ret_string += " %s" % x
 
     return ret_string
-
-def get_dummy_submission(context_id, context_admin_data_fields):
-    """
-    this may works until the content of the fields do not start to be validated. like
-    numbers shall contain only number, and not URL.
-    This validation would not be implemented in validate_jmessage but in structures.Fields
-
-    need to be enhanced generating appropriate data based on the fields.type
-    """
-
-    dummySubmissionDict = {}
-    dummySubmissionDict['wb_fields'] = {}
-
-    dummyvalue = "https://dailyfoodporn.wordpress.com && " \
-                 "http://www.zerocalcare.it/ && " \
-                 "http://www.giantitp.com"
-
-    for field_desc in context_admin_data_fields:
-        dummySubmissionDict['wb_fields'][field_desc['key']] = { u'value': dummyvalue,
-                                                                u'answer_order': 0 }
-
-    dummySubmissionDict['receivers'] = []
-    dummySubmissionDict['files'] = []
-    dummySubmissionDict['finalize'] = True
-    dummySubmissionDict['context_id'] = context_id
-    return dummySubmissionDict
 
 def fill_random_fields(context_desc):
     """

@@ -43,18 +43,18 @@ class TestModels(helpers.TestGL):
 
     @transact
     def receiver_add(self, store):
-        r = self.localization_set(self.dummyReceiver, Receiver, 'en')
-        receiver_user = User(self.dummyReceiverUser)
-        receiver_user.last_login = self.dummyReceiverUser['last_login']
+        r = self.localization_set(self.dummyReceiver_1, Receiver, 'en')
+        receiver_user = User(self.dummyReceiverUser_1)
+        receiver_user.last_login = self.dummyReceiverUser_1['last_login']
 
-        receiver_user.username = str(self.receiver_inc) + self.dummyReceiver['mail_address']
-        receiver_user.password = self.dummyReceiverUser['password']
+        receiver_user.username = str(self.receiver_inc) + self.dummyReceiver_1['mail_address']
+        receiver_user.password = self.dummyReceiverUser_1['password']
         store.add(receiver_user)
 
         receiver = Receiver(r)
         receiver.user = receiver_user
         receiver.gpg_key_status = Receiver._gpg_types[0]
-        receiver.mail_address = self.dummyReceiver['mail_address']
+        receiver.mail_address = self.dummyReceiver_1['mail_address']
 
         store.add(receiver)
 
@@ -78,13 +78,13 @@ class TestModels(helpers.TestGL):
     @transact
     def create_context_with_receivers(self, store):
         c = self.localization_set(self.dummyContext, Context, 'en')
-        r = self.localization_set(self.dummyReceiver, Receiver, 'en')
+        r = self.localization_set(self.dummyReceiver_1, Receiver, 'en')
 
-        receiver_user1 = User(self.dummyReceiverUser)
-        receiver_user1.last_login = self.dummyReceiverUser['last_login']
+        receiver_user1 = User(self.dummyReceiverUser_1)
+        receiver_user1.last_login = self.dummyReceiverUser_1['last_login']
 
-        receiver_user2 = User(self.dummyReceiverUser)
-        receiver_user2.last_login = self.dummyReceiverUser['last_login']
+        receiver_user2 = User(self.dummyReceiverUser_1)
+        receiver_user2.last_login = self.dummyReceiverUser_1['last_login']
 
         # Avoid receivers with the same username!
         receiver_user1.username = unicode("xxx")
@@ -123,10 +123,10 @@ class TestModels(helpers.TestGL):
     @transact
     def create_receiver_with_contexts(self, store):
         c = self.localization_set(self.dummyContext, Context, 'en')
-        r = self.localization_set(self.dummyReceiver, Receiver, 'en')
+        r = self.localization_set(self.dummyReceiver_1, Receiver, 'en')
 
-        receiver_user = User(self.dummyReceiverUser)
-        receiver_user.last_login = self.dummyReceiverUser['last_login']
+        receiver_user = User(self.dummyReceiverUser_1)
+        receiver_user.last_login = self.dummyReceiverUser_1['last_login']
 
         # Avoid receivers with the same username!
         receiver_user.username = unicode("xxx")
@@ -183,13 +183,13 @@ class TestModels(helpers.TestGL):
 
     @transact
     def do_invalid_receiver_0length_name(self, store):
-        self.dummyReceiver['name'] = ''
-        Receiver(self.dummyReceiver)
+        self.dummyReceiver_1['name'] = ''
+        Receiver(self.dummyReceiver_1)
 
     @transact
     def do_invalid_receiver_description_oversize(self, store):
-        self.dummyReceiver['description'] = "A" * 5000
-        Receiver(self.dummyReceiver)
+        self.dummyReceiver_1['description'] = "A" * 5000
+        Receiver(self.dummyReceiver_1)
 
     @inlineCallbacks
     def test_context_add_and_get(self):

@@ -64,16 +64,16 @@ spec = [
 
     ## Whistleblower Tip Handlers
 
-    (r'/wbtip', wbtip.WbTipInstance),
+    (r'/wbtip', wbtip.WBTipInstance),
 
-    (r'/wbtip/comments', wbtip.WbTipCommentCollection),
+    (r'/wbtip/comments', wbtip.WBTipCommentCollection),
 
-    (r'/wbtip/receivers', wbtip.WbTipReceiversCollection),
+    (r'/wbtip/receivers', wbtip.WBTipReceiversCollection),
 
     (r'/wbtip/upload', files.FileAdd),
 
     #  W5 interaction with a single receiver
-    (r'/wbtip/messages/' + uuid_regexp, wbtip.WbMessageCollection),
+    (r'/wbtip/messages/' + uuid_regexp, wbtip.WBTipMessageCollection),
 
     ## Receiver Handlers ##
 

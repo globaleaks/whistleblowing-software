@@ -51,7 +51,7 @@ class TestReceiverSetKey(TestHandler):
     @inlineCallbacks
     def test_get(self):
 
-        handler = self.request(self.dummyReceiver, role='receiver', user_id=self.dummyReceiver['id'])
+        handler = self.request(self.dummyReceiver_1, role='receiver', user_id=self.dummyReceiver_1['id'])
         yield handler.get()
         self.assertEqual(self.responses[0]['gpg_key_info'], None)
 
@@ -60,12 +60,12 @@ class TestReceiverSetKey(TestHandler):
 
         self.receiver_only_update = dict(MockDict().dummyReceiver)
 
-        self.receiver_only_update['password'] = self.dummyReceiver['password']
-        self.receiver_only_update['old_password'] = self.dummyReceiver['password']
+        self.receiver_only_update['password'] = self.dummyReceiver_1['password']
+        self.receiver_only_update['old_password'] = self.dummyReceiver_1['password']
         self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
         self.receiver_only_update['gpg_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['id'])
+        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
         yield handler.put()
         self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
                          u'C1ED5C8FDB6A1C74A807569591EC9BB8D9A950DE')
@@ -79,12 +79,12 @@ class TestReceiverSetKey(TestHandler):
 
         self.receiver_only_update = dict(MockDict().dummyReceiver)
 
-        self.receiver_only_update['password'] = self.dummyReceiver['password']
-        self.receiver_only_update['old_password'] = self.dummyReceiver['password']
+        self.receiver_only_update['password'] = self.dummyReceiver_1['password']
+        self.receiver_only_update['old_password'] = self.dummyReceiver_1['password']
         self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
         self.receiver_only_update['gpg_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['id'])
+        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
         yield handler.put()
         self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
             u'C1ED5C8FDB6A1C74A807569591EC9BB8D9A950DE')
@@ -92,7 +92,7 @@ class TestReceiverSetKey(TestHandler):
 
         self.receiver_only_update['gpg_key_armor'] = unicode(HermesGlobaleaksKey.__doc__)
         self.receiver_only_update['gpg_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['id'])
+        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
         yield handler.put()
         self.assertEqual(self.responses[1]['gpg_key_fingerprint'],
             u'12CB52E0D793A11CAF0360F8839B5DED0050B3C1')
@@ -100,12 +100,12 @@ class TestReceiverSetKey(TestHandler):
 
     @inlineCallbacks
     def test_transact_malformed_key(self):
-        self.receiver_only_update['password'] = self.dummyReceiver['password']
-        self.receiver_only_update['old_password'] = self.dummyReceiver['password']
+        self.receiver_only_update['password'] = self.dummyReceiver_1['password']
+        self.receiver_only_update['old_password'] = self.dummyReceiver_1['password']
         self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__).replace('A', 'B')
         self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
         self.receiver_only_update['gpg_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['id'])
+        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
         yield self.assertFailure(handler.put(), errors.GPGKeyInvalid)
 
     def test_Class_encryption_message(self):
@@ -183,7 +183,7 @@ class TestReceiverSetKey(TestHandler):
 
         self.receiver_only_update['gpg_key_armor'] = unicode(ExpiredKey.__doc__)
         self.receiver_only_update['gpg_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['id'])
+        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
         yield handler.put()
         self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
             u'C6DAF5B34D5960883C7A9552AACA3A01C2752D4B')
@@ -249,7 +249,7 @@ class TestReceiverSetKey(TestHandler):
         ifilist = yield get_files_by_itip(new_subm_output['id'])
 
         self.assertTrue(isinstance(ifilist, list))
-        self.assertEqual(len(ifilist), 3)
+        self.assertEqual(len(ifilist), 2)
         self.assertEqual(ifilist[0]['mark'], u'delivered')
 
         rfilist = yield get_receiverfile_by_itip(new_subm_output['id'])
@@ -273,7 +273,7 @@ class TestReceiverSetKey(TestHandler):
 #        self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
 #        self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
 #        self.receiver_only_update['gpg_key_remove'] = False
-#        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['id'])
+#        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
 #        yield handler.put()
 #        self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
 #            u'C1ED5C8FDB6A1C74A807569591EC9BB8D9A950DE')
