@@ -15,10 +15,10 @@ from storm.twisted.testing import FakeThreadPool
 
 from globaleaks import db, models, security
 from globaleaks.settings import GLSetting, transact, transact_ro
-from globaleaks.handlers import files, rtip
+from globaleaks.handlers import files, rtip, wbtip
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
-from globaleaks.models import ReceiverTip
+from globaleaks.models import ReceiverTip, WhistleblowerTip
 from globaleaks.jobs import delivery_sched, notification_sched
 from globaleaks.plugins import notification
 from globaleaks.utils.utility import datetime_null, datetime_now, uuid4, log
@@ -162,6 +162,18 @@ class TestGLWithPopulatedDB(TestGL):
 
         return rtips_desc
 
+    @transact_ro
+    def get_wbtips(self, store):
+        wbtips_desc = []
+        wbtips = store.find(WhistleblowerTip)
+        for wbtip in wbtips:
+            rcvrs_ids = []
+            for rcvr in wbtip.internaltip.receivers:
+                rcvrs_ids.append(rcvr.id)
+            wbtips_desc.append({'wbtip_id': wbtip.id, 'wbtip_receivers': rcvrs_ids})
+
+        return wbtips_desc
+
     @inlineCallbacks
     def fill_data(self):
         try:
@@ -221,7 +233,11 @@ class TestGLWithPopulatedDB(TestGL):
         yield notification_sched.NotificationSchedule().operation()
 
         commentCreation = {
-            'content': '',
+            'content': 'comment!',
+        }
+
+        messageCreation = {
+            'content': 'message!',
         }
 
         rtips_desc = yield self.get_rtips()
@@ -230,6 +246,20 @@ class TestGLWithPopulatedDB(TestGL):
             yield rtip.create_comment_receiver(rtip_desc['receiver_id'],
                                                rtip_desc['rtip_id'],
                                                commentCreation)
+
+            yield rtip.create_message_receiver(rtip_desc['receiver_id'],
+                                               rtip_desc['rtip_id'],
+                                               messageCreation)
+
+
+        wbtips_desc = yield self.get_wbtips()
+
+        for wbtip_desc in wbtips_desc: 
+            yield wbtip.create_comment_wb(wbtip_desc['wbtip_id'],
+                                          commentCreation)
+
+            for receiver_id in wbtip_desc['wbtip_receivers']:
+                yield wbtip.create_message_wb(wbtip_desc['wbtip_id'], receiver_id, messageCreation)
 
         yield delivery_sched.DeliverySchedule().operation()
         yield notification_sched.NotificationSchedule().operation()
