@@ -114,8 +114,8 @@ class TestTipInstance(SubmissionTest):
     def test_002_create_submission_missing_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                                SubmissionTest.context_used['fields']) )
+        submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
+                                                             SubmissionTest.context_used['fields']) )
         submission_request['finalize'] = True
 
         yield self.assertFailure(submission.create_submission(submission_request, finalize=True),
@@ -126,8 +126,8 @@ class TestTipInstance(SubmissionTest):
     def test_003_create_submission_flip_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                                SubmissionTest.context_used['fields']) )
+        submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
+                                                             SubmissionTest.context_used['fields']) )
 
         submission_request['receivers'] = [ SubmissionTest.receiver_unused['id'] ]
         submission_request['finalize'] = True
@@ -139,8 +139,8 @@ class TestTipInstance(SubmissionTest):
     def test_004_create_submission_both_valid_and_invalid_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                                SubmissionTest.context_used['fields']) )
+        submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
+                                                             SubmissionTest.context_used['fields']) )
 
         submission_request['receivers'] = [ SubmissionTest.receiver_unused['id'],
                                             SubmissionTest.receiver_used['id']  ]
@@ -154,8 +154,8 @@ class TestTipInstance(SubmissionTest):
     def test_005_create_valid_submission(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                                SubmissionTest.context_used['fields']) )
+        submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
+                                                             SubmissionTest.context_used['fields']) )
 
         submission_request['receivers'] = [ SubmissionTest.receiver_used['id']  ]
         submission_request['finalize'] = True
@@ -166,8 +166,8 @@ class TestTipInstance(SubmissionTest):
     def test_006_fail_create_huge_submission(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        submission_request = dict( helpers.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                                SubmissionTest.context_used['fields']) )
+        submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
+                                                             SubmissionTest.context_used['fields']) )
 
         submission_request['receivers'] = [ SubmissionTest.receiver_used['id'] ]
         submission_request['context_id'] = SubmissionTest.context_used['id']

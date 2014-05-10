@@ -111,13 +111,13 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['id'])
         self.assertTrue(isinstance(self.fil, list))
-        self.assertEqual(len(self.fil), 10)
+        self.assertEqual(len(self.fil), 4)
 
         self.rfi = yield delivery_sched.get_receiverfile_by_itip(self.dummySubmission['id'])
         self.assertTrue(isinstance(self.rfi, list))
-        self.assertEqual(len(self.rfi), 10)
+        self.assertEqual(len(self.rfi), 8)
 
-        for i in range(0, 10):
+        for i in range(0, 8):
             self.assertTrue(self.rfi[i]['mark'] in [u'not notified', u'skipped'])
             self.assertTrue(self.rfi[i]['status'] in [u'reference', u'nokey'])
 
@@ -125,7 +125,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         #  wfv = yield tip.get_files_wb()
         # because is not generated a WhistleblowerTip in this test
         self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.dummySubmission['id'])
-        self.assertEqual(len(self.wbfls), 10)
+        self.assertEqual(len(self.wbfls), 4)
 
     @inlineCallbacks
     def test_005_create_receiverfiles_allow_unencrypted_false_no_keys_loaded(self):
@@ -153,14 +153,14 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['id'])
         self.assertTrue(isinstance(self.fil, list))
-        self.assertEqual(len(self.fil), 10)
+        self.assertEqual(len(self.fil), 4)
 
         self.rfi = yield delivery_sched.get_receiverfile_by_itip(self.dummySubmission['id'])
         self.assertTrue(isinstance(self.rfi, list))
 
-        self.assertEqual(len(self.rfi), 10)
+        self.assertEqual(len(self.rfi), 8)
         # no rfiles are created for the receivers that have no key
-        for i in range(0, 10):
+        for i in range(0, 8):
             self.assertTrue(self.rfi[i]['mark'] in [u'not notified', u'skipped'])
             self.assertTrue(self.rfi[i]['status'] in [u'reference', u'nokey'])
 
@@ -168,24 +168,20 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         #  wfv = yield tip.get_files_wb()
         # because is not generated a WhistleblowerTip in this test
         self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.dummySubmission['id'])
-        self.assertEqual(len(self.wbfls), 10)
+        self.assertEqual(len(self.wbfls), 4)
 
     @inlineCallbacks
     def test_007_submission_with_receiver_selection_allow_unencrypted_true_no_keys_loaded(self):
 
-        yield create_receiver(self.get_new_receiver_desc("second"))
-        yield create_receiver(self.get_new_receiver_desc("third"))
-        yield create_receiver(self.get_new_receiver_desc("fourth"))
-
         # for some reason, the first receiver is no more with the same ID
         self.receivers = yield get_receiver_list()
 
-        self.assertEqual(len(self.receivers), 4)
+        rcvrs_ids = []
 
-        self.dummyContext['receivers'] = [ self.receivers[0]['id'],
-                                           self.receivers[1]['id'],
-                                           self.receivers[2]['id'],
-                                           self.receivers[3]['id'] ]
+        for rcvr in self.receivers:
+            rcvrs_ids.append(rcvr['id'])
+
+        self.dummyContext['receivers'] = rcvrs_ids
         self.dummyContext['selectable_receiver'] = True
         self.dummyContext['escalation_threshold'] = 0
 
@@ -199,9 +195,8 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         # submission_request['context_id'] = context_status['context_id']
         submission_request['id'] = ''
         submission_request['finalize'] = False
-        submission_request['receivers'] = [ self.receivers[0]['id'],
-                                            self.receivers[1]['id'],
-                                            self.receivers[2]['id'] ]
+
+        submission_request['receivers'] = rcvrs_ids
 
         status = yield submission.create_submission(submission_request, finalize=False)
         just_empty_eventually_internaltip = yield delivery_sched.tip_creation()
@@ -211,8 +206,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         status['finalize'] = True
         submission_request['context_id'] = context_status['id'] # reused
-        status['receivers'] = [ self.receivers[0]['id'],
-                                self.receivers[3]['id'] ]
+        status['receivers'] = rcvrs_ids
 
         status = yield submission.update_submission(status['id'], status, finalize=True)
 
@@ -225,19 +219,15 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         GLSetting.memory_copy.allow_unencrypted = False
 
-        yield create_receiver(self.get_new_receiver_desc("second"))
-        yield create_receiver(self.get_new_receiver_desc("third"))
-        yield create_receiver(self.get_new_receiver_desc("fourth"))
-
         # for some reason, the first receiver is no more with the same ID
         self.receivers = yield get_receiver_list()
 
-        self.assertEqual(len(self.receivers), 4)
+        rcvrs_ids = []
 
-        self.dummyContext['receivers'] = [ self.receivers[0]['id'],
-                                           self.receivers[1]['id'],
-                                           self.receivers[2]['id'],
-                                           self.receivers[3]['id'] ]
+        for rcvr in self.receivers:
+            rcvrs_ids.append(rcvr['id'])
+
+        self.dummyContext['receivers'] = rcvrs_ids
         self.dummyContext['selectable_receiver'] = True
         self.dummyContext['escalation_threshold'] = 0
 
@@ -251,9 +241,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         # submission_request['context_id'] = context_status['context_id']
         submission_request['id'] = ''
         submission_request['finalize'] = False
-        submission_request['receivers'] = [ self.receivers[0]['id'],
-                                            self.receivers[1]['id'],
-                                            self.receivers[2]['id'] ]
+        submission_request['receivers'] = rcvrs_ids
 
         yield self.assertFailure(submission.create_submission(submission_request, finalize=True), errors.SubmissionFailFields)
 
@@ -320,7 +308,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_012_fields_fail_unexpected_presence(self):
 
-        sbmt = helpers.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])
+        sbmt = self.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])
         sbmt['wb_fields'].update({ 'alien' : 'predator' })
 
         yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
@@ -329,7 +317,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     def test_013_fields_fail_missing_required(self):
 
         required_key = self.dummyContext['fields'][0]['key']
-        sbmt = helpers.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])
+        sbmt = self.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])
         del sbmt['wb_fields'][required_key]
 
         yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
