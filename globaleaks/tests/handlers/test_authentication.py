@@ -135,7 +135,7 @@ class TestAuthentication(helpers.TestHandler):
     @inlineCallbacks
     def test_successful_receiver_login(self):
         handler = self.request({
-           'username': self.dummyReceiverUser['username'],
+           'username': self.dummyReceiverUser_1['username'],
            'password': helpers.VALID_PASSWORD1,
            'role': 'receiver'
         })
@@ -189,7 +189,7 @@ class TestAuthentication(helpers.TestHandler):
     def test_successful_receiver_logout(self):
         # Login
         handler = self.request({
-            'username': self.dummyReceiverUser['username'],
+            'username': self.dummyReceiverUser_1['username'],
             'password': helpers.VALID_PASSWORD1,
             'role': 'receiver'
         })
@@ -300,7 +300,7 @@ class TestAuthentication(helpers.TestHandler):
     @inlineCallbacks
     def test_failed_login_counter(self):
         handler = self.request({
-            'username': self.dummyReceiverUser['username'],
+            'username': self.dummyReceiverUser_1['username'],
             'password': 'INVALIDPASSWORD',
             'role': 'receiver'
         })
@@ -316,14 +316,14 @@ class TestAuthentication(helpers.TestHandler):
                 print excep, "Has been raised wrongly"
                 self.assertTrue(False)
 
-        receiver_status = yield admin.get_receiver(self.dummyReceiver['id'])
+        receiver_status = yield admin.get_receiver(self.dummyReceiver_1['id'])
         self.assertEqual(GLSetting.failed_login_attempts, failed_login)
 
     @inlineCallbacks
     def test_bruteforce_login_protection(self):
 
         handler = self.request({
-            'username': self.dummyReceiverUser['username'],
+            'username': self.dummyReceiverUser_1['username'],
             'password': 'INVALIDPASSWORD',
             'role': 'receiver'
         })
@@ -346,7 +346,7 @@ class TestAuthentication(helpers.TestHandler):
                 print excep, "Has been raised wrongly"
                 self.assertTrue(False)
 
-        receiver_status = yield admin.get_receiver(self.dummyReceiver['id'])
+        receiver_status = yield admin.get_receiver(self.dummyReceiver_1['id'])
 
         self.assertEqual(GLSetting.failed_login_attempts, failed_login)
 
@@ -358,7 +358,7 @@ class TestAuthentication(helpers.TestHandler):
     @inlineCallbacks
     def test_expiry_date(self):
         auth_request = {
-            'username': self.dummyReceiverUser['username'],
+            'username': self.dummyReceiverUser_1['username'],
             'password': helpers.VALID_PASSWORD1,
             'role': 'receiver'
         }

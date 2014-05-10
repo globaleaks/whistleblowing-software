@@ -21,7 +21,7 @@ class TestEmail(helpers.TestGLWithPopulatedDB):
         self.recipe = yield submission.create_submission({
             'wb_fields': helpers.fill_random_fields(self.dummyContext),
             'context_id': self.dummyContext['id'],
-            'receivers': [self.dummyReceiver['id']],
+            'receivers': [self.dummyReceiver_1['id']],
             'files': [],
             'finalize': True,
             }, finalize=True)
@@ -53,7 +53,7 @@ class TestEmail(helpers.TestGLWithPopulatedDB):
 
         # 100 as limit
         (tip_events, enqueued) = yield aps.create_tip_notification_events(0)
-        self.assertEqual(enqueued, 1)
+        self.assertEqual(enqueued, 2)
 
         yield aps.do_tip_notification(tip_events)
 

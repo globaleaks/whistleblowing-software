@@ -122,7 +122,7 @@ class TestCleaning(TTip):
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['id']])
         self.assertEqual(self.receiver2_desc['contexts'], [ self.context_desc['id']])
 
-        dummySubmission = helpers.get_dummy_submission(self.context_desc['id'], self.context_desc['fields'])
+        dummySubmission = self.get_dummy_submission(self.context_desc['id'], self.context_desc['fields'])
         basehandler.validate_jmessage( dummySubmission, requests.wbSubmissionDesc)
 
         self.submission_desc = yield submission.create_submission(dummySubmission, finalize=False)
