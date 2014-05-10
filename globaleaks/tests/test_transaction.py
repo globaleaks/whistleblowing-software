@@ -56,9 +56,9 @@ class TestTransaction(helpers.TestGLWithPopulatedDB):
 
     @transact
     def _transact_with_stuff(self, store):
-        r = self.localization_set(self.dummyReceiver, Receiver, 'en')
-        receiver_user = User(self.dummyReceiverUser)
-        receiver_user.last_login = self.dummyReceiverUser['last_login']
+        r = self.localization_set(self.dummyReceiver_1, Receiver, 'en')
+        receiver_user = User(self.dummyReceiverUser_1)
+        receiver_user.last_login = self.dummyReceiverUser_1['last_login']
 
         # Avoid receivers with the same username!
         receiver_user.username = unicode("xxx")
@@ -68,22 +68,22 @@ class TestTransaction(helpers.TestGLWithPopulatedDB):
         receiver = Receiver(r)
         receiver.user_id = receiver_user.id
         receiver.gpg_key_status = Receiver._gpg_types[0] # this is a required field!
-        receiver.mail_address = self.dummyReceiver['mail_address']
+        receiver.mail_address = self.dummyReceiver_1['mail_address']
         store.add(receiver)
 
         return receiver.id
 
     @transact
     def _transact_with_stuff_failing(self, store):
-        r = self.localization_set(self.dummyReceiver, Receiver, 'en')
-        receiver_user = User(self.dummyReceiverUser)
-        receiver_user.last_login = self.dummyReceiverUser['last_login']
+        r = self.localization_set(self.dummyReceiver_1, Receiver, 'en')
+        receiver_user = User(self.dummyReceiverUser_1)
+        receiver_user.last_login = self.dummyReceiverUser_1['last_login']
         store.add(receiver_user)
 
         receiver = Receiver(r)
         receiver.user_id = receiver_user.id
         receiver.gpg_key_status = Receiver._gpg_types[0] # this is a required field!
-        receiver.mail_address = self.dummyReceiver['mail_address']
+        receiver.mail_address = self.dummyReceiver_1['mail_address']
         store.add(receiver)
 
         raise exceptions.DisconnectionError
