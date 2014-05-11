@@ -307,12 +307,12 @@ class CSSStaticFileHandler(BaseStaticFileHandler):
 
     @transport_security_check('unauth')
     @unauthenticated
-    def get(self, path, include_body=True):
+    def get(self, path):
         self.set_header('Content-Type', 'text/css')
         path = self.parse_url_path(path)
         abspath = os.path.abspath(os.path.join(self.root, path))
         if os.path.isfile(abspath):
-            StaticFileHandler.get(self, path, include_body)
+            StaticFileHandler.get(self, path, True)
         else:
             # empty CSS and avoid 404 error log
             self.set_status(200)
