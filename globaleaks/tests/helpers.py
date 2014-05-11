@@ -18,8 +18,8 @@ from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.handlers import files, rtip, wbtip
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
-from globaleaks.models import ReceiverTip, WhistleblowerTip
-from globaleaks.jobs import delivery_sched, notification_sched
+from globaleaks.models import Receiver, ReceiverTip, WhistleblowerTip
+from globaleaks.jobs import delivery_sched, notification_sched, pgp_check_sched
 from globaleaks.plugins import notification
 from globaleaks.utils.utility import datetime_null, datetime_now, uuid4, log
 from globaleaks.utils.structures import Fields
@@ -35,6 +35,28 @@ VALID_HASH1 = security.hash_password(VALID_PASSWORD1, VALID_SALT1)
 VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
 
 INVALID_PASSWORD = u'antani'
+
+VALID_PGP_KEY = """
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1
+
+mI0EU29mpgEEALgXe9KSyy24q+6S5U075tawlYFsMor7vEhBzaGOCYgt01Jw3dkm
+qQmWcNHPkaHTUz3l3p7qBQCDxBXqoee3LPxJ6yRNX4hbiihRN/NnQ5puchFpVewt
+mHs+VU6lJjMsiqP6Vfsi2+DBtO+2IgQDNVyImZAZBJc0fs4VhukdG0UzABEBAAG0
+GkFudGFuaSA8YW50YW5pQGFudGFuaS5vcmc+iLgEEwECACIFAlNvZqYCGwMGCwkI
+BwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEBOFXb+BK+yrmnwD/ROpPQuuT1yrXfn0
+AE+Yb5q35tkNjhA9amVRfKudF1XFoWYiyYvM3f7EUpbcN9BRtzAZk7waL+WTks9X
+5FGHfLCnRvuwEwYc1KUUNMhXIrCoGrCfT1W24eWrQYXxcD1bzIbLf+7m/vU8mCzN
+bPSGKLR65/V0w2UqAJK1S8w+r/OpuI0EU29mpgEEAL85nNX2J578hvNobkQn/V9i
+vmMODNQ8Sv/912/sb86yIyjF0N8e4MwfWBxXmR3ucUFuy4nCcRxh4Pa0AKv60ltm
+GJVNK3J3U3+uKZb+j7og677CHl0msB7p3qdC4d+tVxP4hKmqDTCDuq/bcGk2e4iS
++CsGvJ57zH3lBfyIyR7nABEBAAGInwQYAQIACQUCU29mpgIbDAAKCRAThV2/gSvs
+q/ACA/9w2H56hTtt4FNROKVYqu62xdbkPKOYHt/R9eSpOyc6DusDcQ6BsUFBhbsN
+8bDiTVnK6N1PA8/+zqHbfE2JPAuEpKrG/lBY51lbfdAdQQ3OgApqkoTQ0e/Le9Ix
+oOh6SYNp/FDAcx0Ay7JsVw1gGd82vBwImoGf7D/cLlljnKUyOw==
+=C4Tz
+-----END PGP PUBLIC KEY BLOCK-----
+"""
 
 transact.tp = FakeThreadPool()
 
@@ -52,6 +74,8 @@ log.err = UTlog().err
 log.debug = UTlog().debug
 
 class TestGL(unittest.TestCase):
+    encryption_scenario = 'MIXED' # receivers with pgp and receivers without pgp
+
     def setUp(self):
         GLSetting.set_devel_mode()
         GLSetting.logging = None
@@ -88,6 +112,17 @@ class TestGL(unittest.TestCase):
         self.dummyReceiverUser_2 = self.get_dummy_receiver_user("receiver2")
         self.dummyReceiver_1 = self.get_dummy_receiver("receiver1") # the one without PGP
         self.dummyReceiver_2 = self.get_dummy_receiver("receiver2") # the one with PGP
+
+        if self.encryption_scenario == 'MIXED':
+            self.dummyReceiver_1['gpg_key_armor'] = None
+            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY
+        elif self.encryption_scenario == 'ALL_ENCRYPTED':
+            self.dummyReceiver_1['gpg_key_armor'] = VALID_PGP_KEY
+            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY
+        elif self.encryption_scenario == 'ALL_PLAINTEXT':
+            self.dummyReceiver_1['gpg_key_armor'] = None
+            self.dummyReceiver_2['gpg_key_armor'] = None
+
         self.dummyNode = dummyStuff.dummyNode
 
         self.assertTrue(os.listdir(GLSetting.submission_path) == [])
