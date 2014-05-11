@@ -163,27 +163,24 @@ def collect_files_overview(store):
         }
 
         file_desc['rfiles'] = store.find(models.ReceiverFile,
-                        models.ReceiverFile.internalfile_id == ifile.id).count()
+                                         models.ReceiverFile.internalfile_id == ifile.id).count()
 
-        absfilepath = os.path.join(submission_dir, ifile.file_path)
-
-        if os.path.isfile(absfilepath):
+        if os.path.isfile(ifile.file_path):
 
             file_desc['stored'] = True
-            file_desc['path'] = absfilepath
+            file_desc['path'] = ifile.file_path
 
-            # disk_files contain all the files present, the InternalFiles
-            # are removed one by one, and the goal is to keep in disk_files
-            # all the not referenced files.
-            if ifile.file_path in disk_files:
-                disk_files.remove(ifile.file_path)
-            else:
-                log.err("Weird failure: path %s not found in %s but still on dir" %
-                    (ifile.file_path, submission_dir) )
+            # disk_files contains all the files present in the submission_dir
+            # we remove the InternalFiles one by one, and the goal is to keep
+            # in disk_files all the not referenced files.
+            filename = os.path.basename(ifile.file_path)
+
+            if filename in disk_files:
+                disk_files.remove(filename)
 
         else:
-            log.err("InternalFile %s has not a disk reference present: %s" %
-                    (file_desc['name'], absfilepath) )
+            log.err("InternalFile %s reference ea not existent file: %s" %
+                    (file_desc['id'], absfilepath) )
             file_desc['stored'] = False
 
         file_description_list.append(file_desc)
