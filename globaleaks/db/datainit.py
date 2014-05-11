@@ -136,11 +136,11 @@ def initialize_node(store, results, only_node, templates, appdata):
 
     notification.encrypted_file_template = { GLSetting.memory_copy.default_language: templates['encrypted_file'] }
     notification.encrypted_file_mail_title = { GLSetting.memory_copy.default_language:
-                                               "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File appended (Encrypted)" }
+                                               "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File attached (Encrypted)" }
 
     notification.plaintext_file_template = { GLSetting.memory_copy.default_language: templates['plaintext_file'] }
     notification.plaintext_file_mail_title = { GLSetting.memory_copy.default_language:
-                                               "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File appended" }
+                                               "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File attached" }
 
     notification.encrypted_comment_template = { GLSetting.memory_copy.default_language: templates['encrypted_comment'] }
     notification.encrypted_comment_mail_title = { GLSetting.memory_copy.default_language:

@@ -270,6 +270,20 @@ UserOverview = {
 
 UsersOverview = [ UserOverview ]
 
+FileOverview = {
+    'rfiles': int,
+    'stored': bool,
+    'name': unicode,
+    'content_type': unicode,
+    'itip': uuid_regexp,
+    'path': unicode,
+    'creation_date': dateType,
+    'id': uuid_regexp,
+    'size': int,
+}
+
+FilesOverview = [ FileOverview ]
+
 StatsLine = {
      'file_uploaded': int,
      'new_submission': int,
