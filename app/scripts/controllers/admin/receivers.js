@@ -45,6 +45,8 @@ function($scope, $modal) {
     });
 
     $scope.update_receivers_order();
+
+    $scope.save_all();
   };
 
   $scope.update_receivers_order = function() {
