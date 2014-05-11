@@ -18,7 +18,7 @@ from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.handlers import files, rtip, wbtip
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
-from globaleaks.models import Receiver, ReceiverTip, WhistleblowerTip
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, WhistleblowerTip
 from globaleaks.jobs import delivery_sched, notification_sched, pgp_check_sched
 from globaleaks.plugins import notification
 from globaleaks.utils.utility import datetime_null, datetime_now, uuid4, log
@@ -214,6 +214,15 @@ class TestGL(unittest.TestCase):
             rtips_desc.append({'rtip_id': rtip.id, 'receiver_id': rtip.receiver_id})
 
         return rtips_desc
+
+    @transact_ro
+    def get_rfiles(self, store, rtip_id):
+        rfiles_desc = []
+        rfiles = store.find(ReceiverFile, ReceiverFile.receiver_tip_id == rtip_id)
+        for rfile in rfiles:
+            rfiles_desc.append({'rfile_id': rfile.id})
+
+        return rfiles_desc
 
     @transact_ro
     def get_wbtips(self, store):
