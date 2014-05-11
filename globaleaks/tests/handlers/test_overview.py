@@ -45,4 +45,4 @@ class TestFilesOverview(helpers.TestHandler):
 
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
-        self.assertEqual(len(self.responses[0]), 4)
+        self.assertEqual(len(self.responses[0]), 2)
