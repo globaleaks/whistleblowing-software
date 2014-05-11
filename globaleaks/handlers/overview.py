@@ -147,7 +147,10 @@ def collect_files_overview(store):
     disk_files = os.listdir(submission_dir)
     stored_ifiles = store.find(models.InternalFile)
     stored_ifiles.order_by(Desc(models.InternalFile.creation_date))
+    stored_rfiles = store.find(models.ReceiverFile)
+    stored_rfiles.order_by(Desc(models.ReceiverFile.creation_date))
 
+    # ifile evaluation
     for ifile in stored_ifiles:
 
         file_desc = {
@@ -179,15 +182,53 @@ def collect_files_overview(store):
                 disk_files.remove(filename)
 
         else:
-            log.err("InternalFile %s reference ea not existent file: %s" %
-                    (file_desc['id'], absfilepath) )
+            if ifile.mark == 'ready': # is the status userd by plaintext files
+                log.err("InternalFile %s references a not existent file: %s" %
+                        (file_desc['id'], ifile.file_path) )
+
             file_desc['stored'] = False
 
         file_description_list.append(file_desc)
 
-    # the files remained in disk_files array are without ifile
-    for dfile in disk_files:
+    # remaining files are checked for rfile presence
+    for rfile in stored_rfiles:
 
+        file_desc = {
+            'id': rfile.internalfile.id,
+            'name': rfile.internalfile.name,
+            'content_type': rfile.internalfile.content_type,
+            'size': rfile.size,
+            'itip': rfile.internaltip_id,
+            'creation_date': pretty_date_time(ifile.creation_date),
+            'rfiles': 1,
+            'stored': None,
+            'path': '',
+        }
+
+        if os.path.isfile(rfile.file_path):
+
+            file_desc['stored'] = True
+            file_desc['path'] = rfile.file_path
+
+            # disk_files contains all the files present in the submission_dir
+            # we remove the InternalFiles one by one, and the goal is to keep
+            # in disk_files all the not referenced files.
+            filename = os.path.basename(rfile.file_path)
+
+            if filename in disk_files:
+                disk_files.remove(filename)
+
+        else:
+            if ifile.mark == 'encrypted' or ifile.mark == 'reference':
+                log.err("ReceiverFile %s references a not existent file: %s" %
+                        (file_desc['id'], rfile.file_path) )
+            file_desc['stored'] = False
+
+        file_description_list.append(file_desc)
+
+
+    # remaining files are the file not tracked by any internalfile/receiverfile
+    for dfile in disk_files:
         absfilepath = os.path.join(submission_dir, dfile)
 
         file_desc = {

@@ -45,4 +45,5 @@ class TestFilesOverview(helpers.TestHandler):
 
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
-        self.assertEqual(len(self.responses[0]), 2)
+        self._handler.validate_message(json.dumps(self.responses[0]), requests.FilesOverview)
+
