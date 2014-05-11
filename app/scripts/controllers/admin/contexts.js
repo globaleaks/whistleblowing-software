@@ -51,6 +51,8 @@ GLClient.controller('AdminContextsCtrl',
     });
 
     $scope.update_contexts_order();
+
+    $scope.save_all();
   };
 
   $scope.update_contexts_order = function () {
