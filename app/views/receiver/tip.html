@@ -197,7 +197,7 @@ This comment is needed in order to push the following strings on transifex
                     <input type="hidden" name="x-session" value="{{session}}">
                     <input type="hidden" name="xsrf-token" value="{{xsrf_token}}">
                     <button type="submit"
-                            data-ng-disabled="file.downloads >= tip.download_limit"
+                            data-ng-class="{'disabled': file.downloads >= tip.download_limit}"
                             data-ng-click="increaseDownloadCount(file)"
                             class="btn btn-xs btn-default ng-cloak">
                       <i class="glyphicon glyphicon-download"></i>
