@@ -7,8 +7,14 @@
 # These specifications may be used with rest.validateMessage() inside of the
 # handler to verify if the request is correct.
 
-uuid_regexp         = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
-receiver_img_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png'
+uuid_regexp                    = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
+receiver_img_regexp            = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png$'
+email_regexp                   = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
+email_regexp_or_empty          = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
+hidden_service_regexp          = r'^http://[0-9a-z]{16}\.onion$'
+hidden_service_regexp_or_empty = r'^http://[0-9a-z]{16}\.onion$$|^$'
+web_url_regexp                 = r'^http(s?)://(\w+)\.(.*)$'
+web_url_regexp_or_empty        = r'^http(s?)://(\w+)\.(.*)$|^$'
 
 dateType = r'(.*)'
 
@@ -72,7 +78,7 @@ receiverReceiverDesc = {
     'password' : unicode,
     'old_password': unicode,
     # 'username' : unicode, XXX at creation time is the same of mail_address
-    'mail_address' : unicode,
+    'mail_address' : email_regexp,
     'description' : unicode,
     'gpg_key_armor': unicode,
     'gpg_key_remove': bool,
@@ -102,11 +108,11 @@ adminNodeDesc = {
     'presentation' : unicode,
     'subtitle': unicode,
     'footer': unicode,
-    'hidden_service' : unicode,
-    'public_site' : unicode,
+    'hidden_service' : hidden_service_regexp_or_empty,
+    'public_site' : web_url_regexp_or_empty,
     'stats_update_time' : int,
-    'email' : unicode,
-    'password' : unicode,
+    'email' : email_regexp_or_empty, # FIXME old versions of globaleaks have an empty value
+    'password' : unicode,            # and in addition the email is not set before wizard.
     'old_password' : unicode,
     'languages_enabled': [ unicode ],
     'languages_supported': list,
@@ -120,7 +126,7 @@ adminNodeDesc = {
     'tor2web_unauth': bool,
     'postpone_superpower': bool,
     'can_delete_submission': bool,
-    'exception_email': unicode,
+    'exception_email': email_regexp,
     'reset_css': bool,
     'ahmia': bool,
     'anomaly_checks': bool,
@@ -137,7 +143,7 @@ adminNotificationDesc = {
     'username': unicode,
     'password': unicode,
     'source_name' : unicode,
-    'source_email' : unicode,
+    'source_email' : email_regexp,
     'encrypted_tip_template': unicode,
     'encrypted_tip_mail_title': unicode,
     'plaintext_tip_template': unicode,
@@ -185,7 +191,7 @@ adminContextDesc = {
 
 adminReceiverDesc = {
     'password': unicode,
-    'mail_address': unicode,
+    'mail_address': email_regexp,
     'name': unicode,
     'description': unicode,
     'contexts': [ uuid_regexp ],
@@ -219,9 +225,9 @@ anonNodeDesc = {
     'description' : unicode,
     'presentation' : unicode,
     'footer': unicode,
-    'hidden_service' : unicode,
-    'public_site' : unicode,
-    'email' : unicode,
+    'hidden_service' : hidden_service_regexp_or_empty,
+    'public_site' : web_url_regexp_or_empty,
+    'email' : email_regexp,
     'languages_enabled': [ unicode ],
     'languages_supported': list,
     'default_language' : unicode,

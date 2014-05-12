@@ -54,7 +54,22 @@ class Test_002_SubmissionInstance(helpers.TestHandler):
             self._handler.validate_message(json.dumps(self.responses[0]), requests.internalTipDesc)
 
     @inlineCallbacks
-    def test_003_put(self):
+    def test_003_put_with_finalize_false(self):
+        submission_desc = dict(self.dummySubmission)
+        submission_desc['finalize'] = False
+        del submission_desc['id']
+
+        status = yield submission.create_submission(submission_desc, finalize=False)
+
+        status['finalize'] = False
+
+        handler = self.request({}, body=json.dumps(status))
+        yield handler.put(status['id'])
+
+        self.assertEqual(self.responses[0]['receipt'], '')
+
+    @inlineCallbacks
+    def test_004_put_with_finalize_true(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = False
         del submission_desc['id']
@@ -64,14 +79,16 @@ class Test_002_SubmissionInstance(helpers.TestHandler):
         status['finalize'] = True
 
         handler = self.request({}, body=json.dumps(status))
-        handler.put(status['id'])
+        yield handler.put(status['id'])
 
-    def test_004_delete_unexistent_submission(self):
+        self.assertNotEqual(self.responses[0]['receipt'], '')
+
+    def test_005_delete_unexistent_submission(self):
         handler = self.request({})
         self.assertFailure(handler.delete("unextistent"), errors.SubmissionIdNotFound)
 
     @inlineCallbacks
-    def test_005_delete_submission_not_finalized(self):
+    def test_006_delete_submission_not_finalized(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = False
         del submission_desc['id']
@@ -79,10 +96,10 @@ class Test_002_SubmissionInstance(helpers.TestHandler):
         status = yield submission.create_submission(submission_desc, finalize=False)
 
         handler = self.request({})
-        handler.delete(status['id'])
+        yield handler.delete(status['id'])
 
     @inlineCallbacks
-    def test_006_delete_existent_but_finalized_submission(self):
+    def test_007_delete_existent_but_finalized_submission(self):
         submissions_ids = yield self.get_finalized_submissions_ids()
 
         for submission_id in submissions_ids:

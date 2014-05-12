@@ -13,7 +13,6 @@ from globaleaks.handlers import node, submission, rtip, wbtip, admin, receiver, 
                                 files, authentication, admstaticfiles, statistics,\
                                 admlangfiles, overview, collection, wizard
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
-from globaleaks.rest.requests import uuid_regexp
 
 # Here is mapped a path and the associated class to be invoked,
 # Two kind of Classes:
@@ -25,6 +24,8 @@ from globaleaks.rest.requests import uuid_regexp
 #         for create a new elements of the collection.
 #
 # [ special guest that do not respect this rule: SubmissionCreate ]
+
+uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 
 spec = [
     ## Node Handler ##

@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.utils.utility import pretty_date_time, acquire_mail_address, acquire_bool, log
+from globaleaks.utils.utility import pretty_date_time, acquire_bool, log
 from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, Context, ReceiverTip, ReceiverFile, Message, Node
@@ -66,13 +66,13 @@ def get_receiver_settings(store, receiver_id, language=GLSetting.memory_copy.def
 @transact
 def update_receiver_settings(store, receiver_id, request, language=GLSetting.memory_copy.default_language):
     receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
-    receiver.description[language] = request.get('description')
+    receiver.description[language] = request['description']
 
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    new_password = request.get('password')
-    old_password = request.get('old_password')
+    new_password = request['password']
+    old_password = request['old_password']
 
     if len(new_password) and len(old_password):
         receiver.user.password = change_password(receiver.user.password,
@@ -80,9 +80,7 @@ def update_receiver_settings(store, receiver_id, request, language=GLSetting.mem
                                                  new_password,
                                                  receiver.user.salt)
 
-    mail_address = acquire_mail_address(request)
-    if not mail_address:
-        raise errors.NoEmailSpecified
+    mail_address = request['mail_address']
 
     if mail_address != receiver.mail_address:
         log.info("Email change %s => %s" % (receiver.mail_address, mail_address))
