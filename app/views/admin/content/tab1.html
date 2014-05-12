@@ -56,6 +56,14 @@
     </div>
 
     <div class="form-group">
+      <label data-translate>Email</label>
+      <input class="form-control" data-ng-model="admin.node.email" value="{{admin.node.email}}" name="email" type="email">
+      <p class="has-error" data-ng-show="contentForm.email.$error.email">
+        <span data-translate>Invalid email address</span>
+      </p>
+    </div>
+
+    <div class="form-group">
       <label data-translate>Tor Hidden Service (url)</label>
       <input class="form-control" name="hidden_service" data-ng-model="admin.node.hidden_service" data-ng-pattern="/^http://[0-9a-z]{16}\.onion$/" type="text">
       <p class="has-error" data-ng-show="contentForm.hidden_service.$error.pattern">

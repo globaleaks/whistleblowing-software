@@ -11,7 +11,10 @@
 
     <div class="form-group">
       <label data-translate>Exception mail address</label>
-      <input class="form-control" data-ng-model="admin.node.exception_email" type="text">
+      <input class="form-control" data-ng-model="admin.node.exception_email" name="email" type="email">
+        <p class="has-error" data-ng-show="advancedForm.email.$error.email">
+        <span data-translate>Invalid email address</span>
+      </p>
     </div>
 
     <div class="form-group">
