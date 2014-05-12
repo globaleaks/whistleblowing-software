@@ -373,53 +373,13 @@ def iso2dateobj(parse_str) :
         ret.replace(microsecond=0)
     return ret
     
-def acquire_mail_address(request):
-    """
-    Extracts email address from request
-
-    @param request: expect a receiver request (notification_fields key, with
-        mail_address key inside)
-    @return: False if is invalid or missing the email address, and the
-        lowercase mail address if is valid
-    """
-
-    if 'mail_address' not in request:
-        log.err("Missing mail_address in mail import check")
-        return False
-
-    mail_string = request['mail_address'].lower()
-    if not re.match("^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$", mail_string):
-        log.err("Invalid email address format [%s]" % mail_string)
-        return False
-
-    return unicode(mail_string)
-
-
-def acquire_url_address(inputstring, hidden_service=False, http=False):
-
-    if inputstring.find(' ') != -1:
-        return False
-
-    accepted = False
-
-    if hidden_service and re.match("^http://[0-9a-z]{16}\.onion$", inputstring):
-        accepted |= True
-
-    if http and re.match("^http(s?)://(\w+)\.(.*)$", inputstring):
-        accepted |= True
-
-    return accepted
-
-
 def acquire_bool(boolvalue):
-
     if boolvalue == 'true' or boolvalue == u'true' or boolvalue == True:
         return True
     if boolvalue == 'false' or boolvalue == u'false' or boolvalue == False or boolvalue is None:
         return False
 
     raise AssertionError("BaseHandler validator is not working")
-
 
 def caller_name(skip=2):
     """Get a name of a caller in the format module.class.method

@@ -180,17 +180,6 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
         admin = store.find(User, (User.username == unicode('admin'))).one()
         admin.password = security.change_password(admin.password,
                                     old_password, password, admin.salt)
-
-    if len(request['public_site']) > 1:
-        if not utility.acquire_url_address(request['public_site'], hidden_service=True, http=True):
-            log.err("Invalid public page regexp in [%s]" % request['public_site'])
-            raise errors.InvalidInputFormat("Invalid public site")
-
-    if len(request['hidden_service']) > 1:
-        if not utility.acquire_url_address(request['hidden_service'], hidden_service=True, http=False):
-            log.err("Invalid hidden service regexp in [%s]" % request['hidden_service'])
-            raise errors.InvalidInputFormat("Invalid hidden service")
-
     try:
         receipt_example = generate_example_receipt(request['receipt_regexp'])
 
@@ -541,9 +530,7 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
     for attr in mo.get_localized_attrs():
         request[attr] = mo.get_localized_dict(attr)
 
-    mail_address = utility.acquire_mail_address(request)
-    if not mail_address:
-        raise errors.NoEmailSpecified
+    mail_address = request['mail_address']
 
     # Pretend that username is unique:
     homonymous = store.find(User, User.username == mail_address).count()
@@ -572,8 +559,8 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
     receiver = Receiver(request)
     receiver.user = receiver_user
 
-    receiver.mail_address = request.get('mail_address')
-    receiver.tags = request.get('tags')
+    receiver.mail_address = mail_address
+    receiver.tags = request['tags']
 
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
@@ -633,16 +620,14 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
     for attr in mo.get_localized_attrs():
         request[attr] = mo.get_localized_dict(attr)
 
-    mail_address = utility.acquire_mail_address(request)
-    if not mail_address:
-        raise errors.NoEmailSpecified
+    mail_address = request['mail_address']
 
     homonymous = store.find(User, User.username == mail_address).one()
     if homonymous and homonymous.id != receiver.user_id:
         log.err("Update error: already present receiver with the requested username: %s" % mail_address)
         raise errors.ExpectedUniqueField('mail_address', mail_address)
 
-    receiver.mail_address = request['mail_address']
+    receiver.mail_address = mail_address
     receiver.tags = request['tags']
 
     # the email address it's also the username, stored in User
@@ -651,7 +636,7 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
 
-    password = request.get('password')
+    password = request['password']
     if len(password):
         security.check_password_format(password)
         receiver.user.password = security.hash_password(password, receiver.user.salt)
