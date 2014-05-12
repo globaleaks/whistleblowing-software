@@ -2,7 +2,7 @@ GLClient.controller('MainCtrl', ['$scope', '$http', '$route', '$location', 'Node
   function($scope, $http, $route, $location, Node) {
     $scope.started = true;
 
-    $scope.custom_stylesheet = '/custom_stylesheet.css';
+    $scope.custom_stylesheet = '/static/custom_stylesheet.css';
     $scope.logo = '/static/globaleaks_logo.png';
 
     $scope.update_node = function () {
@@ -30,7 +30,7 @@ GLClient.controller('MainCtrl', ['$scope', '$http', '$route', '$location', 'Node
     };
 
     var refresh = function () {
-      $scope.custom_stylesheet = '/custom_stylesheet.css?' + $scope.randomFluff();
+      $scope.custom_stylesheet = '/static/custom_stylesheet.css?' + $scope.randomFluff();
       $scope.logo = '/static/globaleaks_logo.png?' + $scope.randomFluff();
     };
 
