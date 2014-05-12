@@ -97,14 +97,6 @@ def admin_update_appdata(store, loaded_appdata):
     }
 
 @transact
-def associate_receivers_to_contexts(store):
-    receivers = store.find(Receiver)
-    contexts = store.find(Context)
-    for receiver in receivers:
-        for context in receivers:
-            receiver.contexts.add(context)
-
-@transact
 def wizard(store, request, language=GLSetting.memory_copy.default_language):
 
     receiver = request['receiver']

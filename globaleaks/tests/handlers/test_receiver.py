@@ -23,7 +23,7 @@ class TestReceiverInstance(helpers.TestHandler):
             yield handler.get()
 
     @inlineCallbacks
-    def test_put(self):
+    def test_put_data_obtained_with_get(self):
         handler = self.request(role='receiver')
 
         rcvrs = yield admin.get_receiver_list()
@@ -33,9 +33,22 @@ class TestReceiverInstance(helpers.TestHandler):
 
             yield handler.get()
 
-            # this need to be populated manually
-            self.responses[0]['password'] = ''
-            self.responses[0]['old_password'] = ''
+            handler = self.request(self.responses[0], role='receiver')
+            handler.current_user['user_id'] = rcvr['id']
+            yield handler.put()
+
+    @inlineCallbacks
+    def test_put_with_remove_pgp_flag_true(self):
+        handler = self.request(role='receiver')
+
+        rcvrs = yield admin.get_receiver_list()
+        for rcvr in rcvrs:
+            handler = self.request(role='receiver')
+            handler.current_user['user_id'] = rcvr['id']
+
+            yield handler.get()
+
+            self.responses[0]['gpg_key_remove'] = True
 
             handler = self.request(self.responses[0], role='receiver')
             handler.current_user['user_id'] = rcvr['id']

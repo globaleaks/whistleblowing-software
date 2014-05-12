@@ -211,14 +211,14 @@ class TestReceiverSetKey(TestHandler):
         self.assertEqual(len(doubletest), 2)
 
         yanr = dict(MockDict().dummyReceiver)
-        yanr['name'] = yanr['mail_address'] = "quercia@nana.ptg"
+        yanr['name'] = yanr['mail_address'] = u"quercia@nana.ptg"
         yanr['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         yanr['contexts'] = [ new_context_output['id']]
         yanr_output = yield create_receiver(yanr)
         self.receiver_assertion(yanr, yanr_output)
 
         asdr = dict(MockDict().dummyReceiver)
-        asdr['name'] = asdr['mail_address'] = "nocibo@rocco.tnc"
+        asdr['name'] = asdr['mail_address'] = u"nocibo@rocco.tnc"
         asdr['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         asdr['contexts'] = [ new_context_output['id']]
         asdr_output = yield create_receiver(asdr)
