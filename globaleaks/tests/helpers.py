@@ -18,7 +18,7 @@ from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.handlers import files, rtip, wbtip
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, WhistleblowerTip
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.jobs import delivery_sched, notification_sched, pgp_check_sched
 from globaleaks.plugins import notification
 from globaleaks.utils.utility import datetime_null, datetime_now, uuid4, log
@@ -176,18 +176,28 @@ class TestGL(unittest.TestCase):
         dummySubmissionDict['context_id'] = context_id
         return dummySubmissionDict
 
-    def get_dummy_file(self):
+    def get_dummy_file(self, filename=None, content_type=None, content=None):
+
+        if filename is None:
+            filename = ''.join(unichr(x) for x in range(0x400, 0x40A))
+
+        if content_type is None:
+            content_type = 'application/octet'
+
+        if content is None:
+            content = "ANTANI"
+
         temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
 
-        temporary_file.write("ANTANI")
+        temporary_file.write(content)
         temporary_file.avoid_delete()
 
         dummy_file = {
             'body': temporary_file,
-            'body_len': len("ANTANI"),
+            'body_len': len(content),
             'body_filepath': temporary_file.filepath,
-            'filename': ''.join(unichr(x) for x in range(0x400, 0x40A)),
-            'content_type': 'application/octect',
+            'filename': filename,
+            'content_type': content_type,
         }
 
         return dummy_file
@@ -205,6 +215,15 @@ class TestGL(unittest.TestCase):
             )
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
+
+    @transact_ro
+    def get_finalized_submissions_ids(self, store):
+        ids = []
+        submissions = store.find(InternalTip, InternalTip.mark != u'submission')
+        for s in submissions:
+            ids.append(s.id)
+
+        return ids
 
     @transact_ro
     def get_rtips(self, store):
@@ -302,6 +321,12 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = receivers_ids
         self.dummySubmission['wb_fields'] = fill_random_fields(self.dummyContext)
+
+        try:
+            self.dummySubmissionNotFinalized = yield create_submission(self.dummySubmission, finalize=False)
+        except Exception as excp:
+            print "Fail fill_data/create_submission: %s" % excp
+            raise  excp
 
         try:
             self.dummySubmission = yield create_submission(self.dummySubmission, finalize=False)

@@ -39,28 +39,18 @@ class Test_001_SubmissionCreate(helpers.TestHandler):
 class Test_002_SubmissionInstance(helpers.TestHandler):
     _handler = submission.SubmissionInstance
 
-    @transact_ro
-    def get_submissions_ids(self, store):
-        ids = []
-        submissions = store.find(InternalTip)
-        for s in submissions:
-            ids.append(s.id)
-
-        return ids
-
     def test_001_get_unexistent_submission(self):
         handler = self.request({})
         self.assertFailure(handler.get("unextistent"), errors.SubmissionIdNotFound)
 
     @inlineCallbacks
     def test_002_get_existent_submission(self):
-        submissions_ids = yield self.get_submissions_ids()
+        submissions_ids = yield self.get_finalized_submissions_ids()
 
         for submission_id in submissions_ids:
             handler = self.request({})
             yield handler.get(submission_id)
             self.assertTrue(isinstance(self.responses, list))
-            self.assertEqual(len(self.responses), 1)
             self._handler.validate_message(json.dumps(self.responses[0]), requests.internalTipDesc)
 
     @inlineCallbacks
@@ -93,7 +83,7 @@ class Test_002_SubmissionInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_006_delete_existent_but_finalized_submission(self):
-        submissions_ids = yield self.get_submissions_ids()
+        submissions_ids = yield self.get_finalized_submissions_ids()
 
         for submission_id in submissions_ids:
             handler = self.request({})

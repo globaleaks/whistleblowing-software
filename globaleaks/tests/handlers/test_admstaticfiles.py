@@ -15,17 +15,7 @@ class TestStaticFileInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_post_globaleaks_logo(self):
 
-        temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
-        temporary_file.write("ANTANI")
-        temporary_file.avoid_delete()
-
-        request_body = {
-            'body': temporary_file,
-            'body_len': len("ANTANI"),
-            'body_filepath': temporary_file.filepath,
-            'filename': 'globaleaks_logo.png',
-            'content_type': 'image/png'
-        }
+        request_body = self.get_dummy_file(filename='globaleaks_logo.png', content_type='image/png')
 
         handler = self.request({}, role='admin',  kwargs={'path': GLSetting.static_path}, body=request_body)
 
@@ -38,17 +28,7 @@ class TestStaticFileInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_post_custom_stylesheet(self):
 
-        temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
-        temporary_file.write("ANTANI")
-        temporary_file.avoid_delete()
-
-        request_body = {
-            'body': temporary_file,
-            'body_len': len("ANTANI"),
-            'body_filepath': temporary_file.filepath,
-            'filename': 'antani.css',
-            'content_type': 'text/css'
-        }
+        request_body = self.get_dummy_file(filename='antani.css', content_type='text/css')
 
         handler = self.request({}, role='admin',  kwargs={'path': GLSetting.static_path}, body=request_body)
 
@@ -67,17 +47,7 @@ class TestStaticFileInstance(helpers.TestHandler):
             - no receiver picture
         """
 
-        temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
-        temporary_file.write("ANTANI")
-        temporary_file.avoid_delete()
-
-        request_body = {
-            'body': temporary_file,
-            'body_len': len("ANTANI"),
-            'body_filepath': temporary_file.filepath,
-            'filename': 'valid_customization',
-            'content_type': 'text/plain'
-        }
+        request_body = self.get_dummy_file(filename='valid_customization', content_type='text/plain')
 
         handler = self.request({}, role='admin',  kwargs={'path': GLSetting.static_path}, body=request_body)
         self.assertFailure(handler.post(filename='invalid.blabla'), errors.ReceiverIdNotFound)
@@ -101,17 +71,7 @@ class TestStaticFileInstance(helpers.TestHandler):
             - no receiver picture
         """
 
-        temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
-        temporary_file.write("ANTANI")
-        temporary_file.avoid_delete()
-
-        request_body = {
-            'body': temporary_file,
-            'body_len': len("ANTANI"),
-            'body_filepath': temporary_file.filepath,
-            'filename': 'valid.blabla',
-            'content_type': 'text/plain'
-        }
+        request_body = self.get_dummy_file(filename='valid.blabla', content_type='text/plain')
 
         handler = self.request({}, role='admin',  kwargs={'path': GLSetting.static_path}, body=request_body)
         yield handler.post(filename='customization')
@@ -141,5 +101,5 @@ class TestStaticFileList(helpers.TestHandler):
 
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
-        self.assertEqual(len(self.responses[0]), 3)
+        self.assertEqual(len(self.responses[0]), 5)
         self._handler.validate_message(json.dumps(self.responses[0]), requests.staticFileCollection)
