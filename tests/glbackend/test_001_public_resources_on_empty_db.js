@@ -32,7 +32,7 @@ public_resources = [
     'status': 200
   },
   {
-    'url': '/custom_stylesheet.css',
+    'url': '/static/custom_stylesheet.css',
     'type': 'text/css',
     'status': 200
   },
