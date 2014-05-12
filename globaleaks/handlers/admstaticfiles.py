@@ -30,11 +30,11 @@ def reserved_file_check(filename):
     """
     Return True if filename matchs a reserved filename, False instead.
     """
-    if filename in [ 'globaleaks_logo.png',
-                     'custom_stylesheet.css'
-                   ]:
-        return True
 
+    # currently there is need only to filter files with name
+    # in format: receiver_img_regexp
+    # all others files do not need to be filtered from listing action so that
+    # the admin can understand that he can also customize them by uploading an override.
     if re.match(receiver_img_regexp, filename):
         return True
 

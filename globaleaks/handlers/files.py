@@ -61,25 +61,18 @@ def register_file_db(store, uploaded_file, filepath, internaltip_id):
         log.err("File submission register in a submission that's no more")
         raise errors.TipIdNotFound
 
-    original_fname = uploaded_file['filename']
+    new_file = InternalFile()
+    new_file.name = uploaded_file['filename']
+    new_file.description = ""
+    new_file.content_type = uploaded_file['content_type']
+    new_file.mark = InternalFile._marker[0] # 'not processed'
+    new_file.size = uploaded_file['body_len']
+    new_file.internaltip_id = unicode(internaltip_id)
+    new_file.file_path = filepath
 
-    try:
-        new_file = InternalFile()
+    store.add(new_file)
 
-        new_file.name = original_fname
-        new_file.description = ""
-        new_file.content_type = uploaded_file['content_type']
-        new_file.mark = InternalFile._marker[0] # 'not processed'
-        new_file.size = uploaded_file['body_len']
-        new_file.internaltip_id = unicode(internaltip_id)
-        new_file.file_path = filepath
-
-        store.add(new_file)
-    except Exception as excep:
-        log.err("Unable to commit new InternalFile %s: %s" % (original_fname.encode('utf-8'), excep))
-        raise excep
-
-    log.debug("=> Recorded new InternalFile %s" % original_fname)
+    log.debug("=> Recorded new InternalFile %s" % uploaded_file['filename'])
 
     return serialize_file(new_file)
 
@@ -297,23 +290,3 @@ class Download(BaseHandler):
             self.set_status(404)
 
         self.finish()
-
-
-class CSSStaticFileHandler(BaseStaticFileHandler):
-    """
-    This class is used to return the custom CSS file; 
-    if the file is not present, 200 is returned with an empty content
-    """
-
-    @transport_security_check('unauth')
-    @unauthenticated
-    def get(self, path):
-        self.set_header('Content-Type', 'text/css')
-        path = self.parse_url_path(path)
-        abspath = os.path.abspath(os.path.join(self.root, path))
-        if os.path.isfile(abspath):
-            StaticFileHandler.get(self, path, True)
-        else:
-            # empty CSS and avoid 404 error log
-            self.set_status(200)
-            self.finish()

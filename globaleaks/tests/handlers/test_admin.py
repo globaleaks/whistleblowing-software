@@ -58,7 +58,6 @@ class TestNodeInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_put_update_node_invalid_lang(self):
         self.dummyNode['languages_enabled'] = ["en", "shit" ]
-
         handler = self.request(self.dummyNode, role='admin')
 
         yield self.assertFailure(handler.put(), InvalidInputFormat)
@@ -87,10 +86,10 @@ class TestNotificationInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_update_notification(self):
-        self.dummyNotification['server'] = 'stuff'
-        handler = self.request(self.dummyNotification, role='admin')
-        yield handler.put()
-        self.assertEqual(self.responses[0]['server'], 'stuff')
+         self.dummyNotification['server'] = 'stuff'
+         handler = self.request(self.dummyNotification, role='admin')
+         yield handler.put()
+         self.assertEqual(self.responses[0]['server'], 'stuff')
 
 
 class TestContextsCollection(helpers.TestHandler):
@@ -151,19 +150,19 @@ class TestContextInstance(helpers.TestHandler):
         self.assertEqual(self.responses[0]['submission_timetolive'], self.dummyContext['submission_timetolive'])
         self.assertEqual(self.responses[0]['tip_timetolive'], self.dummyContext['tip_timetolive'])
 
-    @inlineCallbacks
-    def test_update_context_invalid_timetolive(self):
-        self.dummyContext['submission_timetolive'] = 1000 # hours
-        self.dummyContext['tip_timetolive'] = 3 # days
+        @inlineCallbacks
+        def test_update_context_invalid_timetolive(self):
+            self.dummyContext['submission_timetolive'] = 1000 # hours
+            self.dummyContext['tip_timetolive'] = 3 # days
 
-        stuff = u"³²¼½¬¼³²"
-        for attrname in Context.localized_strings:
-            self.dummyContext[attrname] = stuff
+            stuff = u"³²¼½¬¼³²"
+            for attrname in Context.localized_strings:
+                self.dummyContext[attrname] = stuff
 
-        # 1000 hours are more than three days, and a Tip can't live less than a submission
-        handler = self.request(self.dummyContext, role='admin')
-        
-        yield self.assertFailure(handler.put(self.dummyContext['id']), errors.InvalidTipSubmCombo)
+            # 1000 hours are more than three days, and a Tip can't live less than a submission
+            handler = self.request(self.dummyContext, role='admin')
+    
+            yield self.assertFailure(handler.put(self.dummyContext['id']), errors.InvalidTipSubmCombo)
 
 
 class TestReceiversCollection(helpers.TestHandler):
@@ -267,7 +266,7 @@ class TestReceiverInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_put_invalid_context_id(self):
         self.dummyReceiver_1['name'] = u'justalazyupdate'
-        # keep the context ID wrong but matching eventually regexp
+            # keep the context ID wrong but matching eventually regexp
         self.dummyReceiver_1['contexts'] = [ unicode(uuid4()) ]
         self.dummyReceiver_1['name'] = u'another unique name %d' % random.randint(1, 10000)
         self.dummyReceiver_1['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
@@ -280,7 +279,7 @@ class TestReceiverInstance(helpers.TestHandler):
         handler = self.request(self.dummyReceiver_1, role='admin')
 
         yield self.assertFailure(handler.put(self.dummyReceiver_1['id']),
-                                 errors.ContextIdNotFound)
+                     errors.ContextIdNotFound)
 
     @inlineCallbacks
     def test_delete(self):
@@ -293,7 +292,7 @@ class TestReceiverInstance(helpers.TestHandler):
             raise excep
 
         yield self.assertFailure(handler.get(self.dummyReceiver_1['id']),
-                                 errors.ReceiverIdNotFound)
+                     errors.ReceiverIdNotFound)
 
 
 class TestAdminStaticFileInstance(helpers.TestHandler):
@@ -335,7 +334,6 @@ class TestAdminStaticFileInstance(helpers.TestHandler):
         yield handler.get(self.fakeFile['filename'])
         self.assertEqual(self.responses[0], self.crappyjunk)
 
-
     @inlineCallbacks
     def test_file_delete_it(self):
         realpath = os.path.join(GLSetting.static_path, self.fakeFile['filename'])
@@ -356,9 +354,11 @@ class TestAdminStaticFileList(helpers.TestHandler):
     crappyjunk =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
     # default files not filtered from get(/) handler
-    default_files = [ 'favicon.ico',
+    default_files = [ 'globaleaks_logo.png',
+                      'favicon.ico',
                       'robots.txt',
-                      'default-profile-picture.png']
+                      'default-profile-picture.png',
+                      'custom_stylesheet.css']
 
     fakeFile = dict()
     fakeFile['body'] = StringIO()
@@ -376,8 +376,8 @@ class TestAdminStaticFileList(helpers.TestHandler):
         # this check verifies that only not filtered default files are shown
         # other files shall be present and are ignored in this test
         files_dict = {}
+
         for f in self.responses[0]:
-            self.assertTrue(f['size'] > 0)
             files_dict[f['filename']] = f['size']
 
         for system_names in self.default_files:
