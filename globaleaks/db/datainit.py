@@ -2,16 +2,17 @@
 #   GLBackend Database
 #   ******************
 from __future__ import with_statement
+
+import re
 import os
 
-from globaleaks.rest import errors
+from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks import models
 from globaleaks.security import get_salt, hash_password
-from globaleaks.utils.utility import datetime_now, datetime_null, acquire_url_address, log
+from globaleaks.utils.utility import datetime_now, datetime_null, log
 from globaleaks.third_party import rstr
 from globaleaks.models import Node, ApplicationData
-
 
 def opportunistic_appdata_init():
     """
@@ -208,10 +209,10 @@ def apply_cli_options(store):
     accepted = {}
     if GLSetting.unchecked_tor_input.has_key('hostname_tor_content'):
         composed_hs_url = 'http://%s' % GLSetting.unchecked_tor_input['hostname_tor_content']
-        composed_t2w_url = 'https://%s.to' % GLSetting.unchecked_tor_input['hostname_tor_content']
+        composed_t2w_url = 'https://%s.tor2web.org' % GLSetting.unchecked_tor_input['hostname_tor_content']
 
-        if not acquire_url_address(composed_hs_url, hidden_service=True, http=True) or \
-                not acquire_url_address(composed_t2w_url, hidden_service=False, http=True):
+        if not (re.match(requests.hidden_service_regexp, composed_hs_url) or \
+                re.match(requests.web_url_regexp, composed_t2w_url)):
             print "[!!] Invalid content found in the 'hostname' file specified (%s): Ignored" % \
                   GLSetting.unchecked_tor_input['hostname_tor_content']
         else:
@@ -228,14 +229,14 @@ def apply_cli_options(store):
             verb = "Overwritting"
 
     if GLSetting.cmdline_options.public_website:
-        if not acquire_url_address(GLSetting.cmdline_options.public_website, hidden_service=False, http=True):
+        if not re.match(requests.web_url_regexp, GLSetting.cmdline_options.public_website):
             print "[!!] Invalid public site: %s: Ignored" % GLSetting.cmdline_options.public_website
         else:
             print "[+] %s public site in the DB: %s" % (verb, GLSetting.cmdline_options.public_website)
             accepted.update({ 'public_site' : unicode(GLSetting.cmdline_options.public_website) })
 
     if GLSetting.cmdline_options.hidden_service:
-        if not acquire_url_address(GLSetting.cmdline_options.hidden_service, hidden_service=True, http=True):
+        if not re.match(requests.hidden_service_regexp, GLSetting.cmdline_options.hidden_service):
             print "[!!] Invalid hidden service: %s: Ignored" % GLSetting.cmdline_options.hidden_service
         else:
             print "[+] %s hidden service in the DB: %s" % (verb, GLSetting.cmdline_options.hidden_service)

@@ -108,18 +108,6 @@ def itip_cleaning(store, tip_id):
     store.remove(tit)
 
 
-@transact
-def debug_count_itips_by_marker(store):
-    info_list = []
-    for marker in InternalTip._marker:
-        single_info = {
-            marker: store.find(InternalTip, InternalTip.mark == marker).count()
-        }
-        info_list.append(single_info)
-
-    return info_list
-
-
 class CleaningSchedule(GLJob):
 
     @inlineCallbacks

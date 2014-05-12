@@ -628,7 +628,7 @@ class MockDict():
             'password': u'antani',
             'security': u'SSL',
             'source_name': u'UnitTest Helper Name',
-            'source_email': u'unit@test.helper',
+            'source_email': u'unit@test.help',
             'encrypted_tip_template': template_keys(self.tip_template_keywords,
                                           self.generic_template_keywords, "Tip"),
             'plaintext_tip_template': template_keys(self.tip_template_keywords,

@@ -202,7 +202,7 @@ class TestReceiversCollection(helpers.TestHandler):
 
         handler = self.request(self.dummyReceiver_1, role='admin')
 
-        yield self.assertFailure(handler.post(), errors.NoEmailSpecified)
+        yield self.assertFailure(handler.post(), InvalidInputFormat)
 
     @inlineCallbacks
     def test_post_duplicated_username(self):

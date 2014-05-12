@@ -4,7 +4,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 from globaleaks.handlers import wizard
 
-fields_blob = {
+appdata_blob = {
    "version":1,
    "node_subtitle": { "en": "subtitle bello"},
    "node_footer": { "en": "footer brutto"},
@@ -55,14 +55,32 @@ class TestWizardCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_post(self):
 
-        handler = self.request(fields_blob, role='admin')
+        handler = self.request(appdata_blob, role='admin')
         yield handler.post()
 
-        fields_blob['version'] = (fields_blob['version'] + 1)
+        appdata_blob['version'] = (appdata_blob['version'] + 1)
 
-        handler = self.request(fields_blob, role='admin')
+        handler = self.request(appdata_blob, role='admin')
         yield handler.post()
 
         yield handler.get()
-        self.assertEqual(len(self.responses), len(fields_blob['fields']) )
-        self.assertEqual(self.responses[2]['version'], fields_blob['version'])
+        self.assertEqual(len(self.responses), len(appdata_blob['fields']) )
+        self.assertEqual(self.responses[2]['version'], appdata_blob['version'])
+
+
+class TestFirstSetup(helpers.TestHandler):
+    _handler = wizard.FirstSetup
+
+    @inlineCallbacks
+    def test_post(self):
+
+        wizard_blob = {
+            'receiver' : self.get_dummy_receiver("christianice"),
+            'context' : self.dummyContext,
+            'node' : self.dummyNode,
+            'appdata' : appdata_blob,
+        }
+
+        handler = self.request(wizard_blob, role='admin')
+        yield handler.post()
+

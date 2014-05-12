@@ -13,22 +13,11 @@ from globaleaks.settings import GLSetting, transact, external_counted_events
 from globaleaks.models import Stats
 
 
-def serialize_events(collected):
-
-    retdict = {}
-    for key in external_counted_events.keys():
-        retdict.update({key: collected[key]})
-        print "serialized: %s : %s" % (key, collected[key])
-
-    return retdict
-
 @transact
 def acquire_statistics(store, anomalies_collection):
-
     newstat = Stats()
     newstat.content = dict(anomalies_collection)
     store.add(newstat)
-
 
 # 'new_submission' : 0,
 # 'finalized_submission': 0,

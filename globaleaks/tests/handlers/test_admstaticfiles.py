@@ -57,7 +57,7 @@ class TestStaticFileInstance(helpers.TestHandler):
         handler = self.request({}, role='admin',  kwargs={'path':"globaleaks_logo"})
         yield handler.delete("globaleaks_logo.png")
 
-    def test_delete_on_existent_file(self):
+    def test_delete_on_non_existent_file(self):
         handler = self.request({}, role='admin',  kwargs={'path':"not_existent"})
         self.assertRaises(errors.StaticFileNotFound, handler.delete, filename='not_existent.txt')
 
