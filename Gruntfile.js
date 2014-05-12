@@ -298,13 +298,24 @@ module.exports = function(grunt) {
             var potFile = "pot/" + language.code + ".po";
 
             fs.writeFileSync(potFile, content);
-            console.log(" { \"code\": \"" + language.code + "\", \"name\": \"" + language.name +"\" },");
+            console.log("Fetched " + language.code);
             supported_languages[language.code] = language.name;
           }
+
           fetched_languages += 1;
 
-          if (total_languages == fetched_languages)
+          if (total_languages == fetched_languages) {
+            var sorted_keys = Object.keys(supported_languages).sort();
+
+            console.log("List of available translations:");
+
+            for (var i in sorted_keys) {
+              console.log(" { \"code\": \"" + sorted_keys[i] +
+                          "\", \"name\": \"" + supported_languages[sorted_keys[i]] +"\" },");
+            }
+
             cb(supported_languages);
+          }
         });
 
       });
@@ -406,8 +417,6 @@ module.exports = function(grunt) {
         fs.writeFileSync("app/l10n/" + lang_code + ".json", output);
 
       };
-
-      console.log("Translations files was written!");
 
     });
 
