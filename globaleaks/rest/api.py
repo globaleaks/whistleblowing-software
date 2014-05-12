@@ -124,14 +124,7 @@ spec.append(
     (r'/static/(.*)', BaseStaticFileHandler, {'path': GLSetting.static_path })
 )
 
-## Special files (Custom CSS, l10n/$lang.json)
-
-spec.append(
-    (r'/(custom_stylesheet.css)', files.CSSStaticFileHandler, {
-        'path': GLSetting.static_path,
-        'default_filename': '/static/custom_stylesheet.css'
-    })
-)
+## Special files (l10n/$lang.json)
 
 spec.append(
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json', admlangfiles.LanguageFileHandler, {
