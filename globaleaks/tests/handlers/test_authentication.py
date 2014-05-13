@@ -23,7 +23,7 @@ class TestSessionUpdateOnUnauthRequests(helpers.TestHandler):
     _handler = ClassToTestUnauthenticatedDecorator
 
     @inlineCallbacks
-    def test_successful_session_update_on_unauth_request(self):
+    def test_001_successful_session_update_on_unauth_request(self):
         date1 = utility.datetime_now()
         
         GLSetting.sessions = {}
@@ -44,7 +44,7 @@ class TestSessionUpdateOnAuthRequests(helpers.TestHandler):
     _handler = ClassToTestAuthenticatedDecorator
 
     @inlineCallbacks
-    def test_successful_session_update_on_auth_request(self):
+    def test_001_successful_session_update_on_auth_request(self):
         
         date1 = utility.datetime_now()
         
@@ -66,7 +66,7 @@ class TestSessionExpiryOnUnauthRequests(helpers.TestHandler):
     _handler = ClassToTestUnauthenticatedDecorator
 
     @inlineCallbacks
-    def test_successful_session_expiry_on_unauth_request(self):
+    def test_001_successful_session_expiry_on_unauth_request(self):
         
         date1 = utility.datetime_null() # oh a very old date!
         
@@ -87,9 +87,8 @@ class TestSessionExpiryOnUnauthRequests(helpers.TestHandler):
 class TestSessionExpiryOnAuthRequests(helpers.TestHandler):
     _handler = ClassToTestAuthenticatedDecorator
 
-    @inlineCallbacks
-    def test_successful_session_expiry_on_auth_request(self):
-        
+    def test_001_successful_session_expiry_on_admin_auth_request(self):
+    
         date1 = utility.datetime_null() # oh a very old date!
         
         GLSetting.sessions = {}
@@ -101,8 +100,44 @@ class TestSessionExpiryOnAuthRequests(helpers.TestHandler):
 
         handler = self.request({}, headers={'X-Session': 'antani'})
 
-        yield self.assertRaises(errors.AdminSessionExpired, handler.get)
+        self.assertRaises(errors.AdminSessionExpired, handler.get)
         
+        self.assertTrue(handler.current_user is None)
+        self.assertEqual(len(GLSetting.sessions.keys()), 0)
+
+    def test_002_successful_session_expiry_on_receiver_auth_request(self):
+
+        date1 = utility.datetime_null() # oh a very old date!
+
+        GLSetting.sessions = {}
+        GLSetting.sessions[u'antani'] = ObjectDict()
+        GLSetting.sessions[u'antani']['user_id'] = u'receiver'
+        GLSetting.sessions[u'antani']['role'] = u'receiver'
+        GLSetting.sessions[u'antani']['id'] = u'antani'
+        GLSetting.sessions[u'antani']['refreshdate'] = date1
+
+        handler = self.request({}, headers={'X-Session': 'antani'})
+
+        self.assertRaises(errors.ReceiverSessionExpired, handler.get)
+
+        self.assertTrue(handler.current_user is None)
+        self.assertEqual(len(GLSetting.sessions.keys()), 0)
+
+    def test_003_successful_session_expiry_on_wb_auth_request(self):
+
+        date1 = utility.datetime_null() # oh a very old date!
+
+        GLSetting.sessions = {}
+        GLSetting.sessions[u'antani'] = ObjectDict()
+        GLSetting.sessions[u'antani']['user_id'] = u'wb'
+        GLSetting.sessions[u'antani']['role'] = u'wb'
+        GLSetting.sessions[u'antani']['id'] = u'antani'
+        GLSetting.sessions[u'antani']['refreshdate'] = date1
+
+        handler = self.request({}, headers={'X-Session': 'antani'})
+
+        self.assertRaises(errors.WBSessionExpired, handler.get)
+
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
@@ -110,7 +145,7 @@ class TestAuthentication(helpers.TestHandler):
     _handler = authentication.AuthenticationHandler
 
     @inlineCallbacks
-    def test_successful_admin_login(self):
+    def test_001_successful_admin_login(self):
         handler = self.request({
            'username': 'admin',
            'password': 'globaleaks',
@@ -121,7 +156,7 @@ class TestAuthentication(helpers.TestHandler):
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
     @inlineCallbacks
-    def test_accept_admin_login_in_tor2web(self):
+    def test_002_accept_admin_login_in_tor2web(self):
         handler = self.request({
             'username': 'admin',
             'password': 'globaleaks',
@@ -132,8 +167,17 @@ class TestAuthentication(helpers.TestHandler):
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
+    def test_003_deny_admin_login_in_tor2web(self):
+        handler = self.request({
+            'username': 'admin',
+            'password': 'globaleaks',
+            'role': 'admin'
+        }, headers={'X-Tor2Web': 'whatever'})
+        GLSetting.memory_copy.tor2web_admin = False
+        self.assertFailure(handler.post(), errors.TorNetworkRequired)
+
     @inlineCallbacks
-    def test_successful_receiver_login(self):
+    def test_004_successful_receiver_login(self):
         handler = self.request({
            'username': self.dummyReceiverUser_1['username'],
            'password': helpers.VALID_PASSWORD1,
@@ -144,7 +188,29 @@ class TestAuthentication(helpers.TestHandler):
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
     @inlineCallbacks
-    def test_successful_whistleblower_login(self):
+    def test_005_accept_receiver_login_in_tor2web(self):
+        handler = self.request({
+           'username': self.dummyReceiverUser_1['username'],
+           'password': helpers.VALID_PASSWORD1,
+           'role': 'receiver'
+        }, headers={'X-Tor2Web': 'whatever'})
+        GLSetting.memory_copy.tor2web_receiver = True
+        success = yield handler.post()
+        self.assertTrue('session_id' in self.responses[0])
+        self.assertEqual(len(GLSetting.sessions.keys()), 1)
+
+    def test_006_deny_receiver_login_in_tor2web(self):
+        handler = self.request({
+           'username': self.dummyReceiverUser_1['username'],
+           'password': helpers.VALID_PASSWORD1,
+           'role': 'receiver'
+        }, headers={'X-Tor2Web': 'whatever'})
+        GLSetting.memory_copy.tor2web_receiver = False
+        success = yield handler.post()
+        self.assertFailure(handler.post(), errors.TorNetworkRequired)
+
+    @inlineCallbacks
+    def test_007_successful_whistleblower_login(self):
         handler = self.request({
            'username': '',
            'password': self.dummyWBTip,
@@ -155,7 +221,28 @@ class TestAuthentication(helpers.TestHandler):
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
     @inlineCallbacks
-    def test_successful_admin_logout(self):
+    def test_008_accept_whistleblower_login_in_tor2web(self):
+        handler = self.request({
+           'username': '',
+           'password': self.dummyWBTip,
+           'role': 'wb'
+        })
+        GLSetting.memory_copy.tor2web_submission = True
+        success = yield handler.post()
+        self.assertTrue('session_id' in self.responses[0])
+        self.assertEqual(len(GLSetting.sessions.keys()), 1)
+
+    def test_009_deny_whistleblower_login_in_tor2web(self):
+        handler = self.request({
+           'username': '',
+           'password': self.dummyWBTip,
+           'role': 'wb'
+        }, headers={'X-Tor2Web': 'whatever'})
+        GLSetting.memory_copy.tor2web_submission = False
+        self.assertFailure(handler.post(), errors.TorNetworkRequired)
+
+    @inlineCallbacks
+    def test_010_successful_admin_logout(self):
         # Login
         handler = self.request({
             'username': 'admin',
@@ -186,7 +273,7 @@ class TestAuthentication(helpers.TestHandler):
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
     @inlineCallbacks
-    def test_successful_receiver_logout(self):
+    def test_011_successful_receiver_logout(self):
         # Login
         handler = self.request({
             'username': self.dummyReceiverUser_1['username'],
@@ -218,7 +305,7 @@ class TestAuthentication(helpers.TestHandler):
 
 
     @inlineCallbacks
-    def test_successful_whistleblower_logout(self):
+    def test_012_successful_whistleblower_logout(self):
         # Login
         handler = self.request({
             'username': '',
@@ -248,7 +335,7 @@ class TestAuthentication(helpers.TestHandler):
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
-    def test_invalid_admin_login_wrong_password(self):
+    def test_013_invalid_admin_login_wrong_password(self):
         handler = self.request({
            'username': 'admin',
            'password': 'INVALIDPASSWORD',
@@ -258,7 +345,7 @@ class TestAuthentication(helpers.TestHandler):
         self.assertFailure(d, errors.InvalidAuthRequest)
         return d
 
-    def test_invalid_receiver_login_wrong_password(self):
+    def test_014_invalid_receiver_login_wrong_password(self):
         handler = self.request({
            'username': 'scemo',
            'password': 'INVALIDPASSWORD',
@@ -268,7 +355,7 @@ class TestAuthentication(helpers.TestHandler):
         self.assertFailure(d, errors.InvalidAuthRequest)
         return d
 
-    def test_invalid_whistleblower_login_wrong_receipt(self):
+    def test_015_invalid_whistleblower_login_wrong_receipt(self):
         handler = self.request({
            'username': '',
            'password': 'INVALIDPASSWORD',
@@ -278,7 +365,7 @@ class TestAuthentication(helpers.TestHandler):
         self.assertFailure(d, errors.InvalidAuthRequest)
         return d
 
-    def test_invalid_input_format_missing_role(self):
+    def test_016_invalid_input_format_missing_role(self):
         handler = self.request({
            'username': '',
            'password': '',
@@ -287,7 +374,7 @@ class TestAuthentication(helpers.TestHandler):
         self.assertFailure(d, errors.InvalidInputFormat)
         return d
 
-    def test_invalid_input_format_wrong_role(self):
+    def test_017_invalid_input_format_wrong_role(self):
         handler = self.request({
            'username': 'ratzinger',
            'password': '',
@@ -298,7 +385,7 @@ class TestAuthentication(helpers.TestHandler):
         return d
 
     @inlineCallbacks
-    def test_failed_login_counter(self):
+    def test_018_failed_login_counter(self):
         handler = self.request({
             'username': self.dummyReceiverUser_1['username'],
             'password': 'INVALIDPASSWORD',
@@ -320,7 +407,7 @@ class TestAuthentication(helpers.TestHandler):
         self.assertEqual(GLSetting.failed_login_attempts, failed_login)
 
     @inlineCallbacks
-    def test_bruteforce_login_protection(self):
+    def test_019_bruteforce_login_protection(self):
 
         handler = self.request({
             'username': self.dummyReceiverUser_1['username'],
@@ -356,7 +443,7 @@ class TestAuthentication(helpers.TestHandler):
             self.assertTrue(i <= sleep_list[i])
 
     @inlineCallbacks
-    def test_expiry_date(self):
+    def test_020_expiry_date(self):
         auth_request = {
             'username': self.dummyReceiverUser_1['username'],
             'password': helpers.VALID_PASSWORD1,
@@ -372,5 +459,3 @@ class TestAuthentication(helpers.TestHandler):
         expected_expiration = utility.get_future_epoch(GLSetting.defaults.lifetimes[auth_request['role']])
         expiration_date = self.responses[0]['session_expiration']
         self.assertApproximates(expected_expiration, expiration_date, 2)
-
-

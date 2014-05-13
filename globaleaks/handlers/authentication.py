@@ -104,7 +104,7 @@ def authenticated(role):
                 if copy_role == 'admin':
                     raise errors.AdminSessionExpired()
                 elif copy_role == 'wb':
-                    raise errors.WbSessionExpired()
+                    raise errors.WBSessionExpired()
                 elif copy_role == 'receiver':
                     raise errors.ReceiverSessionExpired()
                 else:
