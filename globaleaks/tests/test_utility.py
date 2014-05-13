@@ -115,12 +115,12 @@ class TestUtility(unittest.TestCase):
         self.assertFalse(utility.is_expired(utility.utc_future_date(seconds=1337)))
 
     def test_pretty_date_time(self):
-        self.assertEqual(utility.pretty_date_time(None), u'1970-01-01T01:00:00')
-        self.assertEqual(utility.pretty_date_time(utility.datetime_null()), u'1970-01-01T01:00:00')
+        self.assertEqual(utility.pretty_date_time(None), '1970-01-01T01:00:00')
+        self.assertEqual(utility.pretty_date_time(utility.datetime_null()), '1970-01-01T01:00:00')
 
     def test_very_pretty_date_time(self):
-        self.assertEqual(utility.very_pretty_date_time(None), u'Thursday 01 January 1970 01:00')
-        self.assertEqual(utility.very_pretty_date_time(utility.datetime_null().isoformat()), u'Thursday 01 January 1970 01:00')
+        self.assertEqual(utility.very_pretty_date_time(None), 'Thursday 01 January 1970 01:00')
+        self.assertEqual(utility.very_pretty_date_time(utility.datetime_null().isoformat()), 'Thursday 01 January 1970 01:00')
 
 
     def test_iso2dateobj(self):
