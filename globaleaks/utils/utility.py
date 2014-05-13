@@ -239,32 +239,6 @@ def query_yes_no(question, default="no"):
 
 ## time facilities ##
 
-def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0):
-    """
-    @param start_date: a date stored in a db
-    seconds/minutes/hours = the amount of future you want
-    @return: a datetime object, as base of the sum
-    """
-    delta = timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
-    return start_date + delta
-
-def utc_future_date(seconds=0, minutes=0, hours=0):
-    """
-    @param seconds: get a datetime obj with now+hours
-    @param minutes: get a datetime obj with now+minutes
-    @param hours: get a datetime obj with now+seconds
-    @return: a datetime object
-        Eventually is incremented of a certain amount of seconds
-        if the Node is running with --XXX option
-    """
-    delta = timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
-    now = datetime.utcnow() - timedelta(seconds=time.timezone)
-
-    if GLSetting.debug_option_in_the_future:
-        now += timedelta(seconds=GLSetting.debug_option_in_the_future)
-
-    return now + delta
-
 def datetime_null():
     """
     @return: a datetime object representing a null date
@@ -284,6 +258,30 @@ def datetime_now():
 
     return now
 
+def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0):
+    """
+    @param start_date: a date stored in a db
+    seconds/minutes/hours = the amount of future you want
+    @return: a datetime object, as base of the sum
+    """
+    return start_date + timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
+
+def utc_future_date(seconds=0, minutes=0, hours=0):
+    """
+    @param seconds: get a datetime obj with now+hours
+    @param minutes: get a datetime obj with now+minutes
+    @param hours: get a datetime obj with now+seconds
+    @return: a datetime object
+        Eventually is incremented of a certain amount of seconds
+        if the Node is running with --XXX option
+    """
+    now = datetime.utcnow() - timedelta(seconds=time.timezone)
+
+    if GLSetting.debug_option_in_the_future:
+        now += timedelta(seconds=GLSetting.debug_option_in_the_future)
+
+    return utc_dynamic_date(now, seconds, minutes, hours)
+
 def get_future_epoch(seconds=0):
     """
     @param seconds: optional, the second in
@@ -299,14 +297,13 @@ def get_future_epoch(seconds=0):
 
     return basic_future
 
-
 def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
     """
     @param check_date: the datetime stored in the database
     @param seconds, minutes, hours, day
         the time to live of the element
     @return:
-        if now + (seconds+minutes+hours) > check_date
+        if now > check_date + (seconds+minutes+hours)
         True is returned, else False
 
         Eventually is incremented of a certain amount of seconds
@@ -316,38 +313,39 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
         return False
 
     total_hours = (day * 24) + hours
-    check = check_date
-    check += timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
-    now = datetime.utcnow() - timedelta(seconds=time.timezone)
+    check = check_date + timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
+    now = datetime_now()
 
     if GLSetting.debug_option_in_the_future:
         now += timedelta(seconds=GLSetting.debug_option_in_the_future)
 
     return now > check
 
-
-def pretty_date_time(when):
+def pretty_date_time(date):
     """
     @param when: a datetime
     @return: the date in ISO 8601, or 'Never' if not set
     """
-    if when is None:
-        return u'Never'
-    else:
-        return when.isoformat()
+    if date is None:
+        date = datetime_null()
 
-def very_pretty_date_time(isowhen):
+    return date.isoformat()
+
+def very_pretty_date_time(isodate):
     """
     print date used in email templating plugin/notification.py
     """
-    x = datetime(year=int(isowhen[0:4]),
-                 month=int(isowhen[5:7]),
-                 day=int(isowhen[8:10]),
-                 hour=int(isowhen[11:13]),
-                 minute=int(isowhen[14:16]),
-                 second=int(isowhen[17:19]) )
+    if isodate is None:
+        isodate = datetime_null().isoformat()
 
-    return x.strftime("%H:%M, %A %d %B %Y")
+    x = datetime(year=int(isodate[0:4]),
+                 month=int(isodate[5:7]),
+                 day=int(isodate[8:10]),
+                 hour=int(isodate[11:13]),
+                 minute=int(isodate[14:16]),
+                 second=int(isodate[17:19]) )
+
+    return x.strftime("%A %d %B %Y %H:%M")
 
 def seconds_convert(value, conversion_factor, minv=0, maxv=0):
     """
@@ -376,10 +374,8 @@ def iso2dateobj(parse_str) :
 def acquire_bool(boolvalue):
     if boolvalue == 'true' or boolvalue == u'true' or boolvalue == True:
         return True
-    if boolvalue == 'false' or boolvalue == u'false' or boolvalue == False or boolvalue is None:
-        return False
 
-    raise AssertionError("BaseHandler validator is not working")
+    return False
 
 def caller_name(skip=2):
     """Get a name of a caller in the format module.class.method
