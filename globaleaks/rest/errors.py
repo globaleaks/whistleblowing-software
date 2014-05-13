@@ -333,7 +333,7 @@ class AdminSessionExpired(GLException):
     error_code = 43
     status_code = 419 # Authentication Timeout
 
-class WbSessionExpired(GLException):
+class WBSessionExpired(GLException):
     reason = "Whistleblower session expired (max time: %s seconds) " % \
              GLSetting.defaults.lifetimes['wb']
     error_code = 44
