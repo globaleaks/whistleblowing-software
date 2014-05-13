@@ -59,7 +59,7 @@ def update_session(user):
     session_info = GLSetting.sessions[user.id]
     
     if utility.is_expired(session_info.refreshdate,
-                        seconds=GLSetting.defaults.lifetimes[user.role]):
+                          seconds=GLSetting.defaults.lifetimes[user.role]):
 
         log.debug("Authentication Expired (%s) %s seconds" % (
                   user.role,
