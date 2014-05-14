@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.utils.utility import pretty_date_time, acquire_bool, log
+from globaleaks.utils.utility import log, acquire_bool, datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, Context, ReceiverTip, ReceiverFile, Message, Node
@@ -23,8 +23,8 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
     receiver_dict = {
         "id": receiver.id,
         "name": receiver.name,
-        "update_date": pretty_date_time(receiver.last_update),
-        "creation_date": pretty_date_time(receiver.creation_date),
+        "update_date": datetime_to_ISO8601(receiver.last_update),
+        "creation_date": datetime_to_ISO8601(receiver.creation_date),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.user.username,
@@ -40,6 +40,7 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "comment_notification" : receiver.comment_notification,
         "message_notification" : receiver.message_notification,
         "mail_address": receiver.mail_address,
+                    # list is needed because .values returns a generator
         "contexts": list(receiver.contexts.values(Context.id)),
         "password": u'',
         "old_password": u'',
@@ -183,9 +184,9 @@ def get_receiver_tip_list(store, receiver_id, language=GLSetting.memory_copy.def
         single_tip_sum = dict({
             'id' : rtip.id,
             'expressed_pertinence': rtip.expressed_pertinence,
-            'creation_date' : unicode(pretty_date_time(rtip.creation_date)),
-            'last_access' : unicode(pretty_date_time(rtip.last_access)),
-            'expiration_date' : unicode(pretty_date_time(rtip.internaltip.expiration_date)),
+            'creation_date' : datetime_to_ISO8601(rtip.creation_date),
+            'last_access' : datetime_to_ISO8601(rtip.last_access),
+            'expiration_date' : datetime_to_ISO8601(rtip.internaltip.expiration_date),
             'access_counter': rtip.access_counter,
             'files_number': rfiles_n,
             'comments_number': rtip.internaltip.comments.count(),

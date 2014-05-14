@@ -9,7 +9,7 @@
 # https://github.com/globaleaks/GlobaLeaks/wiki/Customization-guide#customize-notification
 
 from globaleaks.settings import GLSetting
-from globaleaks.utils.utility import dump_file_list, dump_submission_fields, very_pretty_date_time, log
+from globaleaks.utils.utility import log, ISO8601_to_pretty_str, dump_file_list, dump_submission_fields
 
 class Templating:
 
@@ -185,7 +185,7 @@ class TipKeyword(_KeyWord):
         return unicode(retval)
 
     def EventTime(self):
-        return very_pretty_date_time(self.tip['creation_date'])
+        return ISO8601_to_pretty_str(self.tip['creation_date'])
 
 
 class EncryptedTipKeyword(TipKeyword):
@@ -221,7 +221,7 @@ class CommentKeyword(TipKeyword):
         return self.comment['type']
 
     def EventTime(self):
-        return very_pretty_date_time(self.comment['creation_date'])
+        return ISO8601_to_pretty_str(self.comment['creation_date'])
 
 
 class EncryptedCommentKeyword(CommentKeyword):
@@ -263,7 +263,7 @@ class MessageKeyword(TipKeyword):
         return self.message['author']
 
     def EventTime(self):
-        return very_pretty_date_time(self.message['creation_date'])
+        return ISO8601_to_pretty_str(self.message['creation_date'])
 
 
 class EncryptedMessageKeyword(MessageKeyword):
@@ -302,7 +302,7 @@ class FileKeyword(TipKeyword):
         return self.file['name']
 
     def EventTime(self):
-        return very_pretty_date_time(self.file['creation_date'])
+        return ISO8601_to_pretty_str(self.file['creation_date'])
 
     def FileSize(self):
         return self.file['size']

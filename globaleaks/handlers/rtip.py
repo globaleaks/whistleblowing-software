@@ -12,7 +12,10 @@ from storm.expr import Desc
 from globaleaks.handlers.base import BaseHandler 
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.rest import requests
-from globaleaks.utils.utility import log, pretty_date_time, utc_future_date, datetime_now
+
+from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
+                                     datetime_to_ISO8601, datetime_to_pretty_str
+
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.models import Node, Comment, ReceiverFile, Message
@@ -22,15 +25,15 @@ from globaleaks.security import access_tip
 def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.default_language):
 
     itip_dict = {
-        'context_id': unicode(internaltip.context.id),
-        'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
-        'expiration_date' : unicode(pretty_date_time(internaltip.expiration_date)),
-        'download_limit' : int(internaltip.download_limit),
-        'access_limit' : int(internaltip.access_limit),
-        'mark' : unicode(internaltip.mark),
-        'pertinence' : unicode(internaltip.pertinence_counter),
-        'escalation_threshold' : unicode(internaltip.escalation_threshold),
-        'fields' : dict(internaltip.wb_fields),
+        'context_id': internaltip.context.id,
+        'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
+        'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
+        'download_limit' : internaltip.download_limit,
+        'access_limit' : internaltip.access_limit,
+        'mark' : internaltip.mark,
+        'pertinence' : internaltip.pertinence_counter,
+        'escalation_threshold' : internaltip.escalation_threshold,
+        'fields' : internaltip.wb_fields,
 
         # these two fields are at the moment unsent by the client, but kept
         # maintained in unitTest. (tickets in wishlist)
@@ -39,7 +42,7 @@ def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.
         # this field "inform" the receiver of the new expiration date that can
         # be set, only if PUT with extend = True is updated
         'potential_expiration_date' : \
-            pretty_date_time(utc_future_date(seconds=internaltip.context.tip_timetolive)),
+            datetime_to_ISO8601(utc_future_date(seconds=internaltip.context.tip_timetolive)),
         'extend' : False,
     }
 
@@ -63,13 +66,13 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
 
         rfile_dict = {
             'status': receiverfile.status,
-            'href' : unicode("/rtip/" + receivertip_id + "/download/" + receiverfile.id),
+            'href' : "/rtip/" + receivertip_id + "/download/" + receiverfile.id,
             # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
             'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == ReceiverFile._status_list[2] else internalfile.name,
-            'content_type' : unicode(internalfile.content_type),
-            'creation_date' : unicode(pretty_date_time(internalfile.creation_date)),
-            'size': int(receiverfile.size),
-            'downloads': unicode(receiverfile.downloads)
+            'content_type' : internalfile.content_type,
+            'creation_date' : datetime_to_ISO8601(internalfile.creation_date),
+            'size': receiverfile.size,
+            'downloads': receiverfile.downloads
       }
 
     else: # == 'unavailable' in this case internal file metadata is returned.
@@ -78,8 +81,8 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
             'status': 'unavailable',
             'href' : "",
             'name' : internalfile.name, # original filename
-            'content_type' : unicode(internalfile.content_type), # original content size
-            'creation_date' : unicode(pretty_date_time(internalfile.creation_date)), # original creation_date
+            'content_type' : internalfile.content_type, # original content size
+            'creation_date' : datetime_to_ISO8601(internalfile.creation_date), # original creation_date
             'size': int(internalfile.size), # original filesize
             'downloads': unicode(receiverfile.downloads) # this counter is always valid
         }
@@ -109,10 +112,10 @@ def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_c
     tip_desc = receiver_serialize_internal_tip(rtip.internaltip)
 
     # are added here because part of ReceiverTip, not InternalTip
-    tip_desc['access_counter'] = int(rtip.access_counter)
-    tip_desc['expressed_pertinence'] = int(rtip.expressed_pertinence)
-    tip_desc['id'] = unicode(rtip.id)
-    tip_desc['receiver_id'] = unicode(user_id)
+    tip_desc['access_counter'] = rtip.access_counter
+    tip_desc['expressed_pertinence'] = rtip.expressed_pertinence
+    tip_desc['id'] = rtip.id
+    tip_desc['receiver_id'] = user_id
 
     node = store.find(Node).one()
 
@@ -140,6 +143,7 @@ def increment_receiver_access_count(store, user_id, tip_id):
         "Tip %s access garanted to user %s access_counter %d on limit %d" %
        (rtip.id, rtip.receiver.name, rtip.access_counter, rtip.internaltip.access_limit)
     )
+
     return rtip.access_counter
 
 
@@ -239,22 +243,22 @@ def postpone_expiration_date(store, user_id, tip_id):
 
     log.debug(" [%s] in %s has extended expiration time to %s" % (
         rtip.receiver.name,
-        pretty_date_time(datetime_now()),
-        pretty_date_time(rtip.internaltip.expiration_date)))
+        datetime_to_pretty_str(datetime_now()),
+        datetime_to_pretty_str(rtip.internaltip.expiration_date)))
 
     comment = Comment()
     comment.system_content = dict({
            'type': "1", # the first kind of structured system_comments
            'receiver_name': rtip.receiver.name,
-           'expire_on' : pretty_date_time(rtip.internaltip.expiration_date)
+           'expire_on' : datetime_to_ISO8601(rtip.internaltip.expiration_date)
     })
 
     # remind: this is put just for debug, it's never used in the flow
     # and a system comment may have nothing to say except the struct
-    comment.content = "%s %s %s " % (
+    comment.content = "%s %s %s (UTC)" % (
                    rtip.receiver.name,
-                   pretty_date_time(datetime_now()),
-                   pretty_date_time(rtip.internaltip.expiration_date))
+                   datetime_to_pretty_str(datetime_now()),
+                   datetime_to_pretty_str(rtip.internaltip.expiration_date))
 
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'System' # The printed line
@@ -336,12 +340,12 @@ class RTipInstance(BaseHandler):
 
 def receiver_serialize_comment(comment):
     comment_desc = {
-        'comment_id' : unicode(comment.id),
-        'type' : unicode(comment.type),
-        'content' : unicode(comment.content),
+        'comment_id' : comment.id,
+        'type' : comment.type,
+        'content' : comment.content,
         'system_content' : comment.system_content if comment.system_content else {},
-        'author' : unicode(comment.author),
-        'creation_date' : unicode(pretty_date_time(comment.creation_date))
+        'author' : comment.author,
+        'creation_date' : datetime_to_ISO8601(comment.creation_date)
     }
 
     return comment_desc
@@ -466,14 +470,13 @@ class RTipReceiversCollection(BaseHandler):
 def receiver_serialize_message(msg):
 
     return {
-        'id' : unicode(msg.id),
-        # 'unique_number': unicode(msg.receivertip_id): THINK HOW CAN BE DONE ?
-        'creation_date' : unicode(pretty_date_time(msg.creation_date)),
-        'content' : unicode(msg.content),
-        'visualized' : bool(msg.visualized),
-        'type' : unicode(msg.type),
-        'author' : unicode(msg.author),
-        'mark' : unicode(msg.mark)
+        'id' : msg.id,
+        'creation_date' : datetime_to_ISO8601(msg.creation_date),
+        'content' : msg.content,
+        'visualized' : msg.visualized,
+        'type' : msg.type,
+        'author' : msg.author,
+        'mark' : msg.mark
     }
 
 @transact

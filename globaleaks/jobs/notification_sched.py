@@ -15,29 +15,29 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.plugins.base import Event
 from globaleaks import models
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.utils.utility import log, pretty_date_time
+from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.plugins import notification
 from globaleaks.handlers import admin, rtip
 from globaleaks.models import Receiver
 
 def serialize_receivertip(receiver_tip):
     rtip_dict = {
-        'id': unicode(receiver_tip.id),
-        'creation_date' : unicode(pretty_date_time(receiver_tip.creation_date)),
-        'last_access' : unicode(pretty_date_time(receiver_tip.last_access)),
-        'expressed_pertinence' : unicode(receiver_tip.expressed_pertinence),
-        'access_counter' : int(receiver_tip.access_counter),
-        'wb_fields': dict(receiver_tip.internaltip.wb_fields),
-        'context_id': unicode(receiver_tip.internaltip.context.id),
+        'id': receiver_tip.id,
+        'creation_date' : datetime_to_ISO8601(receiver_tip.creation_date),
+        'last_access' : datetime_to_ISO8601(receiver_tip.last_access),
+        'expressed_pertinence' : receiver_tip.expressed_pertinence,
+        'access_counter' : receiver_tip.access_counter,
+        'wb_fields': receiver_tip.internaltip.wb_fields,
+        'context_id': receiver_tip.internaltip.context.id,
     }
     return rtip_dict
 
 def serialize_internalfile(ifile):
     rfile_dict = {
-        'name': unicode(ifile.name),
-        'content_type': unicode(ifile.content_type),
-        'size': unicode(ifile.size),
-        'creation_date' : unicode(pretty_date_time(ifile.creation_date)),
+        'name': ifile.name,
+        'content_type': ifile.content_type,
+        'size': ifile.size,
+        'creation_date' : datetime_to_ISO8601(ifile.creation_date),
     }
     return rfile_dict
 
