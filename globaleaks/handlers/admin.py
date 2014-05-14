@@ -15,8 +15,8 @@ from globaleaks.handlers.authentication import authenticated, transport_security
 from globaleaks.rest import errors, requests
 from globaleaks.models import Receiver, Context, Node, Notification, User, ApplicationData
 from globaleaks import security, models
-from globaleaks.utils import utility, structures
-from globaleaks.utils.utility import log
+from globaleaks.utils import structures
+from globaleaks.utils.utility import log, datetime_now, datetime_null, seconds_convert, datetime_to_ISO8601
 from globaleaks.db.datainit import import_memory_variables
 from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
@@ -35,8 +35,8 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
     node_dict = {
         "name": node.name,
         "presentation": node.presentation,
-        "creation_date": utility.pretty_date_time(node.creation_date),
-        "last_update": utility.pretty_date_time(node.last_update),
+        "creation_date": datetime_to_ISO8601(node.creation_date),
+        "last_update": datetime_to_ISO8601(node.last_update),
         "hidden_service": node.hidden_service,
         "public_site": node.public_site,
         "receipt_regexp": node.receipt_regexp,
@@ -85,12 +85,13 @@ def admin_serialize_context(context, language=GLSetting.memory_copy.default_lang
 
     context_dict = {
         "id": context.id,
-        "creation_date": utility.pretty_date_time(context.creation_date),
-        "last_update": utility.pretty_date_time(context.last_update),
+        "creation_date": datetime_to_ISO8601(context.creation_date),
+        "last_update": datetime_to_ISO8601(context.last_update),
         "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
+                     # list is needed because .values returns a generator
         "receivers": list(context.receivers.values(models.Receiver.id)),
         "tags": context.tags if context.tags else [],
         "file_required": context.file_required,
@@ -122,8 +123,8 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
     receiver_dict = {
         "id": receiver.id,
         "name": receiver.name,
-        "creation_date": utility.pretty_date_time(receiver.creation_date),
-        "last_update": utility.pretty_date_time(receiver.last_update),
+        "creation_date": datetime_to_ISO8601(receiver.creation_date),
+        "last_update": datetime_to_ISO8601(receiver.last_update),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "postpone_superpower": receiver.postpone_superpower,
@@ -131,6 +132,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "user_id": receiver.user.id,
         'mail_address': receiver.mail_address,
         "password": u"",
+                    # list is needed because .values returns a generator
         "contexts": list(receiver.contexts.values(models.Context.id)),
         "tags": receiver.tags,
         "gpg_key_info": receiver.gpg_key_info,
@@ -247,7 +249,7 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
         log.err("Unable to update Node: %s" % dberror)
         raise errors.InvalidInputFormat(dberror)
 
-    node.last_update = utility.datetime_now()
+    node.last_update = datetime_now()
     return db_admin_serialize_node(store, language)
 
 
@@ -273,13 +275,13 @@ def get_context_list(store, language=GLSetting.memory_copy.default_language):
 def acquire_context_timetolive(request):
 
     try:
-        submission_ttl = utility.seconds_convert(int(request['submission_timetolive']), (60 * 60), minv=1)
+        submission_ttl = seconds_convert(int(request['submission_timetolive']), (60 * 60), minv=1)
     except Exception as excep:
         log.err("Invalid timing configured for Submission: %s" % excep.message)
         raise errors.InvalidTipTimeToLive()
 
     try:
-        tip_ttl = utility.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), minv=1)
+        tip_ttl = seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), minv=1)
     except Exception as excep:
         log.err("Invalid timing configured for Tip: %s" % excep.message)
         raise errors.InvalidSubmTimeToLive()
@@ -461,7 +463,7 @@ def update_context(store, context_id, request, language=GLSetting.memory_copy.de
         log.err("Unable to update fields: %s" % excep)
         raise excep
 
-    context.last_update = utility.datetime_now()
+    context.last_update = datetime_now()
 
     try:
         context.update(request)
@@ -553,7 +555,7 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
     }
 
     receiver_user = models.User(receiver_user_dict)
-    receiver_user.last_login = utility.datetime_null()
+    receiver_user.last_login = datetime_null()
     store.add(receiver_user)
 
     receiver = Receiver(request)
@@ -653,7 +655,7 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
             raise errors.ContextIdNotFound
         receiver.contexts.add(context)
 
-    receiver.last_update = utility.datetime_now()
+    receiver.last_update = datetime_now()
     try:
         receiver.update(request)
     except Exception as dberror:

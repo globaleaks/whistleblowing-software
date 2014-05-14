@@ -18,7 +18,7 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
                               ReceiverFile, Receiver
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.utils.utility import log, pretty_date_time
+from globaleaks.utils.utility import log 
 from globaleaks.security import GLBGPG, GLSecureFile
 from globaleaks.handlers.admin import admin_serialize_receiver
 from globaleaks.third_party.rstr import xeger
@@ -107,9 +107,9 @@ def receiverfile_planning(store):
     for filex in files:
 
         if not filex.internaltip:
-            log.err("Integrity failure: the file %s of %s"\
+            log.err("Integrity failure: the file %s"\
                     "has not an InternalTip assigned (path: %s)" %
-                    (filex.name, pretty_date_time(filex.creation_date), filex.file_path) )
+                    (filex.name, filex.file_path) )
 
             try:
                 os.remove(os.path.join(GLSetting.submission_path, filex.file_path))

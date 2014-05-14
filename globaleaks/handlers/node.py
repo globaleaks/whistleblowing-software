@@ -7,13 +7,12 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.utils.utility import pretty_date_time, log
+from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.settings import transact_ro, GLSetting, stats_counter
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
-from globaleaks import models
-from globaleaks import LANGUAGES_SUPPORTED
+from globaleaks import models, LANGUAGES_SUPPORTED
 
 @transact_ro
 def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
@@ -23,10 +22,10 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
     associated = store.find(models.ReceiverContext).count()
 
     node_dict = {
-      'name': unicode(node.name),
-      'hidden_service': unicode(node.hidden_service),
-      'public_site': unicode(node.public_site),
-      'email': unicode(node.email),
+      'name': node.name,
+      'hidden_service': node.hidden_service,
+      'public_site': node.public_site,
+      'email': node.email,
       'languages_enabled': node.languages_enabled,
       'languages_supported': LANGUAGES_SUPPORTED,
       'default_language' : node.default_language,
@@ -72,13 +71,13 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
     fo = Fields(context.localized_fields, context.unique_fields)
 
     context_dict = {
-        "id": unicode(context.id),
+        "id": context.id,
         "escalation_threshold": 0,
-        "file_max_download": int(context.file_max_download),
+        "file_max_download": context.file_max_download,
         "file_required": context.file_required,
-        "selectable_receiver": bool(context.selectable_receiver),
-        "tip_max_access": int(context.tip_max_access),
-        "tip_timetolive": int(context.tip_timetolive),
+        "selectable_receiver": context.selectable_receiver,
+        "tip_max_access": context.tip_max_access,
+        "tip_timetolive": context.tip_timetolive,
         "submission_introduction": u'NYI', # unicode(context.submission_introduction), # optlang
         "submission_disclaimer": u'NYI', # unicode(context.submission_disclaimer), # optlang
         "select_all_receivers": context.select_all_receivers,
@@ -86,6 +85,7 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         'require_pgp': context.require_pgp,
         "show_small_cards": context.show_small_cards,
         "presentation_order": context.presentation_order,
+                     # list is needed because .values returns a generator
         "receivers": list(context.receivers.values(models.Receiver.id)),
         'name': mo.dump_translated('name', language),
         "description": mo.dump_translated('description', language),
@@ -109,15 +109,16 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
     mo.acquire_storm_object(receiver)
 
     receiver_dict = {
-        "creation_date": pretty_date_time(receiver.creation_date),
-        "update_date": pretty_date_time(receiver.last_update),
-        "name": unicode(receiver.name),
+        "creation_date": datetime_to_ISO8601(receiver.creation_date),
+        "update_date": datetime_to_ISO8601(receiver.last_update),
+        "name": receiver.name,
         "description": mo.dump_translated('description', language),
-        "id": unicode(receiver.id),
-        "receiver_level": int(receiver.receiver_level),
+        "id": receiver.id,
+        "receiver_level": receiver.receiver_level,
         "tags": receiver.tags,
         "presentation_order": receiver.presentation_order,
         "gpg_key_status": receiver.gpg_key_status,
+                    # list is needed because .values returns a generator
         "contexts": list(receiver.contexts.values(models.Context.id))
     }
 

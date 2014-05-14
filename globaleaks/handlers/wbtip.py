@@ -11,7 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.rest import requests
-from globaleaks.utils.utility import log, pretty_date_time, datetime_now
+from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601, datetime_to_pretty_str
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
@@ -20,16 +20,16 @@ from globaleaks.rest import errors
 
 def wb_serialize_tip(internaltip, language=GLSetting.memory_copy.default_language):
     itip_dict = {
-        'context_id': unicode(internaltip.context.id),
-        'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
-        'last_activity' : unicode(pretty_date_time(internaltip.creation_date)),
-        'expiration_date' : unicode(pretty_date_time(internaltip.expiration_date)),
-        'download_limit' : int(internaltip.download_limit),
-        'access_limit' : int(internaltip.access_limit),
-        'mark' : unicode(internaltip.mark),
-        'pertinence' : unicode(internaltip.pertinence_counter),
-        'escalation_threshold' : unicode(internaltip.escalation_threshold),
-        'fields' : dict(internaltip.wb_fields),
+        'context_id': internaltip.context.id,
+        'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
+        'last_activity' : datetime_to_ISO8601(internaltip.creation_date),
+        'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
+        'download_limit' : internaltip.download_limit,
+        'access_limit' : internaltip.access_limit,
+        'mark' : internaltip.mark,
+        'pertinence' : internaltip.pertinence_counter,
+        'escalation_threshold' : internaltip.escalation_threshold,
+        'fields' : internaltip.wb_fields,
     }
 
     # context_name and context_description are localized field
@@ -43,10 +43,10 @@ def wb_serialize_tip(internaltip, language=GLSetting.memory_copy.default_languag
 
 def wb_serialize_file(internalfile):
     wb_file_desc = {
-        'name' : unicode(internalfile.name),
-        'content_type' : unicode(internalfile.content_type),
-        'creation_date' : unicode(pretty_date_time(internalfile.creation_date)),
-        'size': int(internalfile.size),
+        'name' : internalfile.name,
+        'content_type' : internalfile.content_type,
+        'creation_date' : datetime_to_ISO8601(internalfile.creation_date),
+        'size': internalfile.size,
     }
     return wb_file_desc
 
@@ -77,8 +77,8 @@ def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_lan
     tip_desc = wb_serialize_tip(wbtip.internaltip, language)
 
     # two elements from WhistleblowerTip
-    tip_desc['access_counter'] = int(wbtip.access_counter)
-    tip_desc['id'] = unicode(wbtip.id)
+    tip_desc['access_counter'] = wbtip.access_counter
+    tip_desc['id'] = wbtip.id
 
     return tip_desc
 
@@ -114,12 +114,12 @@ class WBTipInstance(BaseHandler):
 
 def wb_serialize_comment(comment):
     comment_desc = {
-        'comment_id' : unicode(comment.id),
-        'type' : unicode(comment.type),
-        'content' : unicode(comment.content),
+        'comment_id' : comment.id,
+        'type' : comment.type,
+        'content' : comment.content,
         'system_content' : comment.system_content if comment.system_content else {},
-        'author' : unicode(comment.author),
-        'creation_date' : unicode(pretty_date_time(comment.creation_date))
+        'author' : comment.author,
+        'creation_date' : datetime_to_ISO8601(comment.creation_date)
     }
 
     return comment_desc
@@ -222,23 +222,23 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
     if not wb_tip.internaltip.receivertips.count():
         receiver_list = []
 
-        log.debug("Early access from the WB to the Tip (creation_date: %s),"\
+        log.debug("Early access from the WB to the Tip (creation_date: %s UTC),"\
                   " Receiver not yet present: fallback on receiver list" %
-                  pretty_date_time(wb_tip.creation_date))
+                  datetime_to_pretty_str(wb_tip.creation_date))
 
         for receiver in wb_tip.internaltip.receivers:
 
             # This is the reduced version of Receiver serialization
             receiver_desc = {
-                "name": unicode(receiver.name),
-                "id": unicode(receiver.id),
+                "name": receiver.name,
+                "id": receiver.id,
                 "gpg_key_status": receiver.gpg_key_status,
                 "tags": receiver.tags,
                 "access_counter" : 0,
                 "unread_messages" : 0,
                 "read_messages" : 0,
                 "your_messages" : 0,
-                "creation_date" : unicode(pretty_date_time(datetime_now())),
+                "creation_date" : datetime_to_ISO8601(datetime_now()),
                 # XXX ReceiverTip last activity ?
             }
 
@@ -269,14 +269,14 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
 
             # if you change something here, check also 20 lines before!
             receiver_desc = {
-                "name": unicode(rtip.receiver.name),
-                "id": unicode(rtip.receiver.id),
+                "name": rtip.receiver.name,
+                "id": rtip.receiver.id,
                 "tags": rtip.receiver.tags,
                 "access_counter" : rtip.access_counter,
                 "unread_messages" : unread_messages,
                 "read_messages" : read_messages,
                 "your_messages" : your_messages,
-                "creation_date" : unicode(pretty_date_time(datetime_now())),
+                "creation_date" : datetime_to_ISO8601(datetime_now()),
                 # XXX ReceiverTip last activity ?
             }
 
@@ -312,13 +312,13 @@ class WBTipReceiversCollection(BaseHandler):
 
 def wb_serialize_message(msg):
     return {
-        'id' : unicode(msg.id),
-        'creation_date' : unicode(pretty_date_time(msg.creation_date)),
-        'content' : unicode(msg.content),
-        'visualized' : bool(msg.visualized),
-        'type' : unicode(msg.type),
-        'author' : unicode(msg.author),
-        'mark' : unicode(msg.mark)
+        'id' : msg.id,
+        'creation_date' : datetime_to_ISO8601(msg.creation_date),
+        'content' : msg.content,
+        'visualized' : msg.visualized,
+        'type' : msg.type,
+        'author' : msg.author,
+        'mark' : msg.mark
     }
 
 @transact
