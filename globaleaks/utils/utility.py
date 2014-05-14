@@ -241,17 +241,16 @@ def query_yes_no(question, default="no"):
 
 def datetime_null():
     """
-    @return: a datetime object representing a null date
+    @return: a utc datetime object representing a null date
     """
-    return datetime.fromtimestamp(0)
+    return datetime.utcfromtimestamp(0)
 
 def datetime_now():
     """
-    @return: a datetime object of now, coherent with the timezone,
-        and eventually incremented of a certain amount of seconds
-        if the Node is running with --XXX option
+    @return: a utc datetime object of now and eventually incremented
+             of a certain amount of seconds if the Node is running with --XXX option
     """
-    now = datetime.utcnow() - timedelta(seconds=time.timezone)
+    now = datetime.utcnow()
 
     if GLSetting.debug_option_in_the_future:
         now += timedelta(seconds=GLSetting.debug_option_in_the_future)
@@ -275,7 +274,7 @@ def utc_future_date(seconds=0, minutes=0, hours=0):
         Eventually is incremented of a certain amount of seconds
         if the Node is running with --XXX option
     """
-    now = datetime.utcnow() - timedelta(seconds=time.timezone)
+    now = datetime.utcnow()
 
     if GLSetting.debug_option_in_the_future:
         now += timedelta(seconds=GLSetting.debug_option_in_the_future)
@@ -299,7 +298,7 @@ def get_future_epoch(seconds=0):
 
 def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
     """
-    @param check_date: the datetime stored in the database
+    @param check_date: a datetime or a timestap
     @param seconds, minutes, hours, day
         the time to live of the element
     @return:
@@ -312,6 +311,9 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
     if not check_date:
         return False
 
+    if isinstance(check_date, int):
+        check_date = datetime.utcfromtimestamp(check_date)
+
     total_hours = (day * 24) + hours
     check = check_date + timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
     now = datetime_now()
@@ -321,31 +323,50 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
 
     return now > check
 
-def pretty_date_time(date):
+def datetime_to_ISO8601(date):
     """
-    @param when: a datetime
-    @return: the date in ISO 8601, or 'Never' if not set
+    conver a datetime in ISO8601 format and UTC timezone
     """
     if date is None:
         date = datetime_null()
 
-    return date.isoformat()
+    return date.isoformat() + "Z" # Z means that the date is in UTC
 
-def very_pretty_date_time(isodate):
+def ISO8601_to_datetime(isodate):
+
+    isodate = isodate[:19] # we srip the eventual Z at the end
+
+    try:
+        ret = datetime.strptime(isodate, "%Y-%m-%dT%H:%M:%S")
+    except ValueError :
+        ret = datetime.strptime(isodate, "%Y-%m-%dT%H:%M:%S.%f")
+        ret.replace(microsecond=0)
+    return ret
+
+def datetime_to_pretty_str(date):
     """
-    print date used in email templating plugin/notification.py
+    print a datetime in pretty formatted str format
+    """
+    if date is None:
+        date = datetime_null()
+
+    return date.strftime("%A %d %B %Y %H:%M (UTC)")
+
+def ISO8601_to_pretty_str(isodate):
+    """
+    convert a ISO8601 in pretty formatted str format
     """
     if isodate is None:
         isodate = datetime_null().isoformat()
+ 
+    date = datetime(year=int(isodate[0:4]),
+                    month=int(isodate[5:7]),
+                    day=int(isodate[8:10]),
+                    hour=int(isodate[11:13]),
+                    minute=int(isodate[14:16]),
+                    second=int(isodate[17:19]) )
 
-    x = datetime(year=int(isodate[0:4]),
-                 month=int(isodate[5:7]),
-                 day=int(isodate[8:10]),
-                 hour=int(isodate[11:13]),
-                 minute=int(isodate[14:16]),
-                 second=int(isodate[17:19]) )
-
-    return x.strftime("%A %d %B %Y %H:%M")
+    return datetime_to_pretty_str(date)
 
 def seconds_convert(value, conversion_factor, minv=0, maxv=0):
     """
@@ -363,14 +384,6 @@ def seconds_convert(value, conversion_factor, minv=0, maxv=0):
 
     return seconds
 
-def iso2dateobj(parse_str) :
-    try:
-        ret = datetime.strptime(parse_str, "%Y-%m-%dT%H:%M:%S")
-    except ValueError :
-        ret = datetime.strptime(parse_str, "%Y-%m-%dT%H:%M:%S.%f")
-        ret.replace(microsecond=0)
-    return ret
-    
 def acquire_bool(boolvalue):
     if boolvalue == 'true' or boolvalue == u'true' or boolvalue == True:
         return True

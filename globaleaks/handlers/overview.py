@@ -14,7 +14,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks import models
 
-from globaleaks.utils.utility import pretty_date_time, log
+from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta
 
 @transact_ro
@@ -27,9 +27,9 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
     for itip in all_itips:
         tip_description = {
             "id": itip.id,
-            "creation_date": pretty_date_time(itip.creation_date),
-            "creation_lifetime": pretty_date_time(itip.creation_date),
-            "expiration_date": pretty_date_time(itip.expiration_date),
+            "creation_date": datetime_to_ISO8601(itip.creation_date),
+            "creation_lifetime": datetime_to_ISO8601(itip.creation_date),
+            "expiration_date": datetime_to_ISO8601(itip.expiration_date),
             "context_id": itip.context_id,
             "pertinence_counter": itip.pertinence_counter,
             "status": itip.mark,
@@ -50,8 +50,8 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
         for rtip in itip.receivertips:
             tip_description['receivertips'].append({
                 'access_counter': rtip.access_counter,
-                'notification_date': pretty_date_time(rtip.notification_date),
-                # 'creation_date': pretty_date_time(rtip.creation_date),
+                'notification_date': datetime_to_ISO8601(rtip.notification_date),
+                # 'creation_date': datetime_to_ISO8601(rtip.creation_date),
                 'status': rtip.mark,
                 'receiver_id': rtip.receiver.id,
                 'receiver_username': rtip.receiver.user.username,
@@ -70,7 +70,7 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
         for comment in itip.comments:
             tip_description['comments'].append({
                 'type': comment.type,
-                'lifetime': pretty_date_time(comment.creation_date),
+                'lifetime': datetime_to_ISO8601(comment.creation_date),
             })
 
         # whistleblower tip has not a reference from itip, then:
@@ -80,7 +80,7 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
         if wbtip is not None:
             tip_description.update({
                 'wb_access_counter': wbtip.access_counter,
-                'wb_last_access': pretty_date_time(wbtip.last_access)
+                'wb_last_access': datetime_to_ISO8601(wbtip.last_access)
             })
         else:
             tip_description.update({
@@ -120,7 +120,7 @@ def collect_users_overview(store):
                 'id': rfile.id,
                 'file_name': rfile.internalfile.name,
                 'downloads': rfile.downloads,
-                'last_access': pretty_date_time(rfile.last_access),
+                'last_access': datetime_to_ISO8601(rfile.last_access),
                 'status': rfile.mark,
             })
 
@@ -129,9 +129,9 @@ def collect_users_overview(store):
             user_description['receivertips'].append({
                 'internaltip_id': rtip.id,
                 'status': rtip.mark,
-                'last_access': pretty_date_time(rtip.last_access),
-                'notification_date': pretty_date_time(rtip.notification_date),
-                'access_counter': rtip.access_counter,
+                'last_access': datetime_to_ISO8601(rtip.last_access),
+                'notification_date': datetime_to_ISO8601(rtip.notification_date),
+                'access_counter': rtip.access_counter
             })
 
         users_description_list.append(user_description)
@@ -159,7 +159,7 @@ def collect_files_overview(store):
             'content_type': ifile.content_type,
             'size': ifile.size,
             'itip': ifile.internaltip_id,
-            'creation_date': pretty_date_time(ifile.creation_date),
+            'creation_date': datetime_to_ISO8601(ifile.creation_date),
             'rfiles': 0,
             'stored': None,
             'path': '',
@@ -199,7 +199,7 @@ def collect_files_overview(store):
             'content_type': rfile.internalfile.content_type,
             'size': rfile.size,
             'itip': rfile.internaltip_id,
-            'creation_date': pretty_date_time(ifile.creation_date),
+            'creation_date': datetime_to_ISO8601(ifile.creation_date),
             'rfiles': 1,
             'stored': None,
             'path': '',

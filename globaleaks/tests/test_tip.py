@@ -14,21 +14,6 @@ from globaleaks.tests.helpers import default_context_fields
 
 STATIC_PASSWORD = u'bungabunga ;( 12345'
 
-
-def vptd_dirty_copy(isowhen):
-    """
-    @param isowhen: a ISO representation of datetime object
-    @return: the datetime object. maybe exists a dedicated function to do this,
-        I've found/looked for because I'm silly.
-    """
-    x = datetime(year=int(isowhen[0:4]),
-                 month=int(isowhen[5:7]),
-                 day=int(isowhen[8:10]),
-                 hour=int(isowhen[11:13]),
-                 minute=int(isowhen[14:16]),
-                 second=int(isowhen[17:19]))
-    return x
-
 class MockHandler(base.BaseHandler):
 
     def __init__(self):
@@ -53,7 +38,8 @@ class TTip(helpers.TestGL):
 
     tipContext = {
         'name': u'CtxName', 'description': u'dummy context with default fields',
-        'escalation_threshold': u'1', 'tip_max_access': u'2', 
+        'escalation_threshold': 1,
+        'tip_max_access': 2, 
         'fields' : default_context_fields(),
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': False,
         'receivers': [], 'submission_timetolive': 100,
@@ -385,11 +371,7 @@ class TestTipInstance(TTip):
         tip_expiring = yield rtip.get_internaltip_receiver(
             self.receiver1_desc['id'], self.rtip1_id)
 
-        creation_date = vptd_dirty_copy(tip_expiring['creation_date'])
-        potential_exp_date = vptd_dirty_copy(tip_expiring['potential_expiration_date'])
-        expiration_date = vptd_dirty_copy(tip_expiring['expiration_date'])
-        # TODO think to more robust tests using timedelta and verify the dates / tip_ttl
-
+        # TODO implement a more complete test
 
     @inlineCallbacks
     def update_node_properties(self):
@@ -427,8 +409,8 @@ class TestTipInstance(TTip):
         """
            'type': "1", # the first kind of structured system_comments
            'receiver_name': rtip.receiver.name,
-           'now' : pretty_date_time(datetime_now()),
-           'expire_on' : pretty_date_time(rtip.internaltip.expiration_date)
+           'now' : datetime_now(),
+           'expire_on' : datetime_to_ISO8601(rtip.internaltip.expiration_date)
         """
         cl = yield rtip.get_comment_list_receiver(self.receiver1_desc['id'],
                                                  self.rtip1_id)
@@ -441,8 +423,8 @@ class TestTipInstance(TTip):
         # self.assertTrue(sys_comm['system_content'].has_key('now'))
         self.assertEqual(sys_comm['system_content']['type'], u"1")
         new_expire = sys_comm['system_content']['expire_on']
-        new_expiration_date = vptd_dirty_copy(new_expire)
-        # TODO think to more robust tests using timedelta and verify new_expiration_date
+
+        # TODO implement a more complete test
 
 
     @inlineCallbacks

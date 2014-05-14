@@ -12,7 +12,7 @@ import sys
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.utils.utility import log, pretty_date_time, is_expired, iso2dateobj
+from globaleaks.utils.utility import log, is_expired, datetime_to_ISO8601, ISO8601_to_datetime
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalTip, ReceiverFile, InternalFile, Comment
 
@@ -41,8 +41,8 @@ def get_tiptime_by_marker(store, marker):
 
         serialized_tipinfo = {
             'id': itip.id,
-            'creation_date': pretty_date_time(itip.creation_date),
-            'expiration_date': pretty_date_time(itip.expiration_date),
+            'creation_date': datetime_to_ISO8601(itip.creation_date),
+            'expiration_date': datetime_to_ISO8601(itip.expiration_date),
             'tip_life_seconds':  tip_timetolive,
             'submission_life_seconds':  submission_timetolive,
             'files': files_cnt,
@@ -130,7 +130,7 @@ class CleaningSchedule(GLJob):
             submissions = yield get_tiptime_by_marker(InternalTip._marker[0]) # Submission
             log.debug("(Cleaning routines) %d unfinished Submission are check if expired" % len(submissions))
             for submission in submissions:
-                if is_expired(iso2dateobj(submission['creation_date']), GLSetting.defaults.submission_seconds_of_life):
+                if is_expired(ISO8601_to_datetime(submission['creation_date']), GLSetting.defaults.submission_seconds_of_life):
                     log.info("Deleting an unfinalized Submission (creation %s expiration %s) files %d" %
                              (submission['creation_date'], submission['expiration_date'], submission['files']) )
                     yield itip_cleaning(submission['id'])
@@ -139,7 +139,7 @@ class CleaningSchedule(GLJob):
             tips = yield get_tiptime_by_marker(InternalTip._marker[2]) # First
             log.debug("(Cleaning routines) %d Tips stored are check if expired" % len(tips))
             for tip in tips:
-                if is_expired(iso2dateobj(tip['expiration_date'])):
+                if is_expired(ISO8601_to_datetime(tip['expiration_date'])):
                     log.info("Deleting an expired Tip (creation date: %s, expiration %s) files %d comments %d" %
                              (tip['creation_date'], tip['expiration_date'], tip['files'], tip['comments']) )
                     yield itip_cleaning(tip['id'])

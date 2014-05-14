@@ -14,7 +14,7 @@ from globaleaks import security
 from globaleaks.handlers.base import BaseHandler, anomaly_check
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
-from globaleaks.utils.utility import log, utc_future_date, pretty_date_time, datetime_now
+from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
 from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
 from globaleaks.rest import errors
@@ -22,17 +22,19 @@ from globaleaks.rest import errors
 def wb_serialize_internaltip(internaltip):
 
     response = {
-        'id' : unicode(internaltip.id),
-        'context_id': unicode(internaltip.context_id),
-        'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
-        'expiration_date' : unicode(pretty_date_time(internaltip.expiration_date)),
-        'wb_fields' : dict(internaltip.wb_fields or {}),
-        'download_limit' : int(internaltip.download_limit),
-        'access_limit' : int(internaltip.access_limit),
-        'mark' : unicode(internaltip.mark),
-        'pertinence' : unicode(internaltip.pertinence_counter),
-        'escalation_threshold' : unicode(internaltip.escalation_threshold),
+        'id' : internaltip.id,
+        'context_id': internaltip.context_id,
+        'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
+        'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
+        'wb_fields' : internaltip.wb_fields,
+        'download_limit' : internaltip.download_limit,
+        'access_limit' : internaltip.access_limit,
+        'mark' : internaltip.mark,
+        'pertinence' : internaltip.pertinence_counter,
+        'escalation_threshold' : internaltip.escalation_threshold,
+                  # list is needed because .values returns a generator
         'files' : list(internaltip.internalfiles.values(InternalFile.id)),
+                      # list is needed because .values returns a generator
         'receivers' : list(internaltip.receivers.values(Context.id)),
     }
 
@@ -189,15 +191,14 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
         log.err("Storm/SQL Error: %s (create_submission)" % excep)
         raise errors.InternalServerError("Unable to commit on DB")
 
-    files = request.get('files', [])
     try:
-        import_files(store, submission, files, finalize)
+        import_files(store, submission, request['files'], finalize)
     except Exception as excep:
         log.err("Submission create: files import fail: %s" % excep)
         raise excep
 
-    wb_fields = request.get('wb_fields', {})
     try:
+        wb_fields = request['wb_fields']
         fo = Fields(context.localized_fields, context.unique_fields)
         fo.validate_fields(wb_fields, language, strict_validation=finalize)
         submission.wb_fields = wb_fields
@@ -205,9 +206,8 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
         log.err("Submission create: fields validation fail: %s" % excep)
         raise excep
 
-    receivers = request.get('receivers', [])
     try:
-        import_receivers(store, submission, receivers, required=finalize)
+        import_receivers(store, submission, request['receivers'], required=finalize)
     except Exception as excep:
         log.err("Submission create: receivers import fail: %s" % excep)
         raise excep
@@ -237,16 +237,15 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
         log.err("Submission %s do not permit update (status %s)" % (submission_id, submission.mark))
         raise errors.SubmissionConcluded
 
-    files = request.get('files', [])
     try:
-        import_files(store, submission, files, finalize)
+        import_files(store, submission, request['files'], finalize)
     except Exception as excep:
         log.err("Submission update: files import fail: %s" % excep)
         log.exception(excep)
         raise excep
 
-    wb_fields = request.get('wb_fields', [])
     try:
+        wb_fields = request['wb_fields']
         fo = Fields(context.localized_fields, context.unique_fields)
         fo.validate_fields(wb_fields, language, strict_validation=finalize)
         submission.wb_fields = wb_fields
@@ -255,9 +254,8 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
         log.exception(excep)
         raise excep
 
-    receivers = request.get('receivers', [])
     try:
-        import_receivers(store, submission, receivers, required=finalize)
+        import_receivers(store, submission, request['receivers'], required=finalize)
     except Exception as excep:
         log.err("Submission update: receiver import fail: %s" % excep)
         log.exception(excep)

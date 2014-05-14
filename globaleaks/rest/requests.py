@@ -384,7 +384,7 @@ staticFileCollection = [ staticFileCollectionElem ]
 
 internalTipDesc = {
     'wb_fields': dict,
-    'pertinence': unicode,
+    'pertinence': int,
     'receivers': [ uuid_regexp ],
     'context_id': uuid_regexp,
     'access_limit': int,
@@ -394,6 +394,6 @@ internalTipDesc = {
     'files': [ uuid_regexp ],
     'expiration_date': dateType,
     'download_limit': int,
-    'escalation_threshold': unicode,
+    'escalation_threshold': int,
 }
 

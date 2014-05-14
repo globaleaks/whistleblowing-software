@@ -8,7 +8,7 @@ import sys
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
-from globaleaks.utils.utility import log, pretty_date_time, datetime_now
+from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.settings import GLSetting, transact, external_counted_events
 from globaleaks.models import Stats
 
@@ -74,7 +74,7 @@ class AnomaliesSchedule(GLJob):
                 if GLSetting.anomalies_counter[element] > alarm:
                     GLSetting.anomalies_messages.append(
                         { 
-                          'creation_date': pretty_date_time(datetime_now()),
+                          'creation_date': datetime_to_ISO8601(datetime_now()),
                           'message': alarm_template[element]
                         })
 
