@@ -137,4 +137,12 @@ class TestUtility(unittest.TestCase):
         self.assertFalse(utility.acquire_bool(None))
         self.assertFalse(utility.acquire_bool('antani'))
 
+    def test_018_log(self):
+        utility.log.info("info")
+        utility.log.err("err")
+        utility.log.debug("debug")
+        utility.log.msg("msg")
 
+    def test_019_start_logging(self):
+        GLSetting.logfile = 'test_logfile'
+        utility.log.start_logging()
