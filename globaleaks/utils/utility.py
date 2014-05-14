@@ -149,7 +149,6 @@ class GLLogObserver(twlog.FileLogObserver):
         except Exception as excep:
             GLLogObserver.suppressed += 1
             GLLogObserver.last_exception_msg = str(excep)
-            pass
 
 
 class Logger(object):
@@ -310,9 +309,6 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
     """
     if not check_date:
         return False
-
-    if isinstance(check_date, int):
-        check_date = datetime.utcfromtimestamp(check_date)
 
     total_hours = (day * 24) + hours
     check = check_date + timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
