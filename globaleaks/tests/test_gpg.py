@@ -117,7 +117,7 @@ class TestReceiverSetKey(TestHandler):
         mock_event = Event(type=u'encrypted_tip', trigger='Tip',
                     notification_settings = dummy_template,
                     trigger_info = {
-                        'creation_date': '2013-05-13T17:49:26.105485',
+                        'creation_date': '2013-05-13T17:49:26.105485', #epoch!
                         'id': 'useless',
                         'wb_fields' : fill_random_fields(self.dummyContext),
                     },

@@ -13,8 +13,7 @@ from globaleaks.settings import transact_ro, GLSetting, external_counted_events
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.models import Stats
-from globaleaks.utils.utility import pretty_date_time
-
+from globaleaks.utils.utility import datetime_to_ISO8601
 
 @transact_ro
 def admin_serialize_stats(store, language=GLSetting.memory_copy.default_language):
@@ -30,7 +29,7 @@ def admin_serialize_stats(store, language=GLSetting.memory_copy.default_language
         if limit >= GLSetting.anomalies_report_limit:
             break
 
-        single_stat = { 'creation_date' : pretty_date_time(stat.creation_date) }
+        single_stat = { 'creation_date' : datetime_to_ISO8601(stat.creation_date) }
 
         for element in external_counted_events.keys():
             single_stat.update({element : stat.content[element] })

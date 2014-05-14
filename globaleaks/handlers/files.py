@@ -19,7 +19,7 @@ from cyclone.web import StaticFileHandler
 from globaleaks.settings import transact, transact_ro, GLSetting, stats_counter
 from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler, anomaly_check
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
-from globaleaks.utils.utility import log, pretty_date_time
+from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverTip, ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.security import access_tip
@@ -30,7 +30,7 @@ def serialize_file(internalfile):
         'size' : internalfile.size,
         'content_type' : internalfile.content_type,
         'name' : internalfile.name,
-        'creation_date': pretty_date_time(internalfile.creation_date),
+        'creation_date': datetime_to_ISO8601(internalfile.creation_date),
         'id' : internalfile.id,
         'mark' : internalfile.mark,
     }
@@ -45,7 +45,7 @@ def serialize_receiver_file(receiverfile):
         'size' : receiverfile.size,
         'content_type' : internalfile.content_type,
         'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == ReceiverFile._status_list[2] else internalfile.name,
-        'creation_date': pretty_date_time(internalfile.creation_date),
+        'creation_date': datetime_to_ISO8601(internalfile.creation_date),
         'downloads' : receiverfile.downloads,
         'path' : receiverfile.file_path,
     }
@@ -67,7 +67,7 @@ def register_file_db(store, uploaded_file, filepath, internaltip_id):
     new_file.content_type = uploaded_file['content_type']
     new_file.mark = InternalFile._marker[0] # 'not processed'
     new_file.size = uploaded_file['body_len']
-    new_file.internaltip_id = unicode(internaltip_id)
+    new_file.internaltip_id = internaltip_id
     new_file.file_path = filepath
 
     store.add(new_file)

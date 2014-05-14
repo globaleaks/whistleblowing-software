@@ -14,17 +14,14 @@ class TestFileInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_001_post_file_on_not_finalized_submission(self):
-
         handler = self.request(body=self.get_dummy_file())
         yield handler.post(self.dummySubmissionNotFinalized['id'])
 
     def test_002_post_file_finalized_submission(self):
-
         handler = self.request(body=self.get_dummy_file())
         self.assertFailure(handler.post(self.dummySubmission['id']), errors.SubmissionConcluded)
 
     def test_003_post_file_on_unexistent_submission(self):
-
         handler = self.request(body=self.get_dummy_file())
         self.assertFailure(handler.post(u'unexistent_submission'), errors.SubmissionIdNotFound)
 
@@ -33,7 +30,6 @@ class TestFileAdd(helpers.TestHandler):
 
     @inlineCallbacks
     def test_001_post(self):
-
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb', body=self.get_dummy_file())
