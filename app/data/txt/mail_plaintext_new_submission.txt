@@ -1,23 +1,18 @@
-Esteemed %ReceiverName%,
+# First and second line of this file are reserved. The second line must contain comma separated variables.
+ReceiverName,TipTorURL,TipT2WURL,EventTime,NodeSignature
+Esteemed %$1s,
 
-This is an e-mail message to notify you that an anonymous whistleblower has
-selected you as a valuable recipient for their submission.
+This is an e-mail message to notify you that an anonymous whistleblower has selected you as a valuable recipient for their submission.
 
-They would like you to pay special attention to the information and material
-contained therein. Please keep in mind that whistleblowers often expose
-themselves to high personal risks for the public interest.
-Therefore the material that they provide with this tip-off should be considered
-of high importance.
+They would like you to pay special attention to the information and material contained therein. Please keep in mind that whistleblowers often expose themselves to high personal risks for the public interest. Therefore the material that they provide with this tip-off should be considered of high importance.
 
 The submission can be accessed:
-via Tor at: %TipTorURL%
-via Tor2web at: %TipT2WURL%
+via Tor at: %$2s
+via Tor2web at: %$3s
 
-Submission date: %EventTime%
+Submission date: %$4s
 
-Please do not forward or share this e-mail: each tip-off allows a limited
-number of accesses and downloads before being destroyed forever and nobody
-(even the node administrator) can recover an expired or dead tip-off.
+Please do not forward or share this e-mail: each tip-off allows a limited number of accesses and downloads before being destroyed forever and nobody (even the node administrator) can recover an expired or dead tip-off.
 
 Take Care,
-%NodeSignature%
+%$5s

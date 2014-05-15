@@ -422,6 +422,45 @@ module.exports = function(grunt) {
 
   });
 
+  grunt.registerTask('TEST', function() {
+
+    function extractPotFromTXTFile(filepath) {
+      var filecontent = grunt.file.read(filepath),
+          lines = filecontent.split("\n"),
+          lines_to_push = Array(),
+          result;
+
+      for (var i=0; i<lines.length; i++){
+
+          if (i == 0) {
+              continue;
+          }
+
+          if (i == 1) {
+              var keywords = lines[i].split(",")
+              for (var j=0; j<keywords.length; j++){
+                  console.log(keywords[j]);
+              }
+          }
+
+          /* we add only not empty lines and not variable only lines */
+          lines_to_push[i] = lines[i].replace(/###(.*)$$$/,"%s")
+
+          if (lines_to_push[i] != '' && lines_to_push[i] != '%s') {
+            console.log(lines_to_push[i]);
+            var a = /%(.*)%/.exec(lines[i]);
+            console.log(a);
+          }
+      }
+    };
+
+    grunt.file.recurse('app/data/txt', function(absdir, rootdir, subdir, filename) {
+        var filepath = path.join('app/data/txt', subdir || '', filename || '');
+        extractPotFromTXTFile(filepath);
+    });
+
+  });
+
   grunt.registerTask('makeAppData', function() {
 
     var done = this.async(),
