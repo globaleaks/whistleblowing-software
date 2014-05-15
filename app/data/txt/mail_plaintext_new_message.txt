@@ -1,12 +1,10 @@
-# First and second line of this file are reserved. The second line must contain comma separated variables.
-ReceiverName,ContextName,EventTime,TipTorUrl,NodeSignature
-Esteemed %$1s,
+Esteemed %ReceiverName%,
 
-This is an e-mail message to notify you that you have received a new message from the whistleblower.
+This is an e-mail message to notify you about new message from the whisleblower.
 
-This has happened on context %$2s at %$3s.
+This has happened on context %ContextName% at %EventTime%.
 
-You can read it at: %$4s
+You can read it at: %TipTorURL%
 
 Take Care,
-%$5s
+%NodeSignature%

@@ -1,12 +1,10 @@
-# First and second line of this file are reserved. The second line must contain comma separated variables.
-ReceiverName,CommentSource,EventTime,TipTorUrl,NodeSignature
-Esteemed %1$s,
+Esteemed %ReceiverName%,
 
-This is an e-mail message to notify you that %2$s has added a comment to a previous submission.
+This is an e-mail message to notify you that %CommentSource% has added a comment to a previous submission.
 
-This has happened on context %ContextName% at %3$s.
+This has happened on context %ContextName% at %EventTime%.
 
-You can read it at: %4$s
+You can read it at: %TipTorURL%
 
 Take Care,
-%5$s
+%NodeSignature%

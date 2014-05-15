@@ -371,9 +371,29 @@ module.exports = function(grunt) {
       }
     };
 
+    function extractPotFromTXTFile(filepath) {
+      var filecontent = grunt.file.read(filepath),
+          lines = filecontent.split("\n"),
+          result;
+
+      for (var i=0; i<lines.length; i++){
+
+        // we skip adding empty strings and variable only strings
+        if (lines[i] != '' && !lines[i].match(/^%[a-zA-Z0-9]+%/g)) {
+          gt.setTranslation("en", "", lines[i], lines[i]);
+          translationStringCount += 1;
+        }
+      }
+    };
+
     grunt.file.recurse('app/views/', function(absdir, rootdir, subdir, filename) {
-        var filepath = path.join('app/views/', subdir || '', filename || '');
-        extractPotFromHTMLFile(filepath);
+      var filepath = path.join('app/views/', subdir || '', filename || '');
+      extractPotFromHTMLFile(filepath);
+    });
+
+    grunt.file.recurse('app/data/txt', function(absdir, rootdir, subdir, filename) {
+      var filepath = path.join('app/data/txt', subdir || '', filename || '');
+      extractPotFromTXTFile(filepath);
     });
 
     extractPotFromHTMLFile('app/index.html');
@@ -393,7 +413,7 @@ module.exports = function(grunt) {
     var done = this.async(),
       gt = new Gettext(),
       strings,
-      fileContents = fs.readFileSync("pot/en.po")
+      fileContents = fs.readFileSync("pot/en.po");
 
     fetchTxTranslations(function(supported_languages){
 
@@ -416,47 +436,8 @@ module.exports = function(grunt) {
 
         fs.writeFileSync("app/l10n/" + lang_code + ".json", output);
 
-      };
-
-    });
-
-  });
-
-  grunt.registerTask('TEST', function() {
-
-    function extractPotFromTXTFile(filepath) {
-      var filecontent = grunt.file.read(filepath),
-          lines = filecontent.split("\n"),
-          lines_to_push = Array(),
-          result;
-
-      for (var i=0; i<lines.length; i++){
-
-          if (i == 0) {
-              continue;
-          }
-
-          if (i == 1) {
-              var keywords = lines[i].split(",")
-              for (var j=0; j<keywords.length; j++){
-                  console.log(keywords[j]);
-              }
-          }
-
-          /* we add only not empty lines and not variable only lines */
-          lines_to_push[i] = lines[i].replace(/###(.*)$$$/,"%s")
-
-          if (lines_to_push[i] != '' && lines_to_push[i] != '%s') {
-            console.log(lines_to_push[i]);
-            var a = /%(.*)%/.exec(lines[i]);
-            console.log(a);
-          }
       }
-    };
 
-    grunt.file.recurse('app/data/txt', function(absdir, rootdir, subdir, filename) {
-        var filepath = path.join('app/data/txt', subdir || '', filename || '');
-        extractPotFromTXTFile(filepath);
     });
 
   });
@@ -466,16 +447,27 @@ module.exports = function(grunt) {
     var done = this.async(),
       gt = new Gettext(),
       strings,
-      fileContents = fs.readFileSync("pot/en.po")
+      fileContents = fs.readFileSync("pot/en.po");
 
     fetchTxTranslations(function(supported_languages){
 
       gt.addTextdomain("en", fileContents);
 
-      var json = JSON.parse(fs.readFileSync("app/data/appdata.json"));
-      var output = {};
-      var version = json['version'];
-      var fields = json['fields'];
+      var json = JSON.parse(fs.readFileSync("app/data/appdata.json")),
+          output = {},
+          version = json['version'],
+          fields = json['fields'],
+          templates = json['templates'],
+          templates_sources = {};
+
+      grunt.file.recurse('app/data/txt', function(absdir, rootdir, subdir, filename) {
+        var template_name = filename.split('.txt')[0],
+            filepath = path.join('app/data/txt', subdir || '', filename || ''),
+            result;
+
+        templates_sources[template_name] = grunt.file.read(filepath);
+
+      });
 
       for (var lang_code in supported_languages) {
 
@@ -489,10 +481,33 @@ module.exports = function(grunt) {
           };
         };
 
-      };
+        for (var template_name in templates_sources) {
+          
+          if (!(template_name in templates)) {
+            templates[template_name] = {}
+          }
+
+          var tmp = templates_sources[template_name];
+
+          var lines = templates_sources[template_name].split("\n");
+
+          for (var i=0; i<lines.length; i++){
+
+            // we skip adding empty strings and variable only strings
+            if (lines[i] != '' && !lines[i].match(/^%[a-zA-Z0-9]+%/g)) {
+              tmp = tmp.replace(lines[i], gt.dgettext(lang_code, lines[i]));
+            }
+          }
+
+          templates[template_name][lang_code] = tmp;
+
+        }
+
+      }
 
       output['version'] = version;
       output['fields'] = fields;
+      output['templates'] = templates;
 
       var vars = ["node_presentation", "node_footer", "node_subtitle"]
       for (var i in vars) {
