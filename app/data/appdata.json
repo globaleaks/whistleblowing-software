@@ -46,5 +46,7 @@
       "trigger": [],
       "defined_options": []
     }
-  ]
+  ],
+  "templates" : {
+  }
 }
