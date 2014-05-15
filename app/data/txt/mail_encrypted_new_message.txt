@@ -1,6 +1,7 @@
 Esteemed %ReceiverName%,
 
-This is an E-Mail message to notify you about new message from the whisleblower.
+This is an e-mail message to notify you that you have received a new
+message from the whistleblower.
 
 This has happened on context %ContextName% at %EventTime%.
 
