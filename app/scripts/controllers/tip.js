@@ -67,7 +67,7 @@ ModalDeleteTipCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance'
 
   $scope.ok = function () {
       $modalInstance.close();
-      return $http({method: 'DELETE', url: '/rtip/' + tip_id, data:{global_delete: global_delete, is_pertinent: true}}).
+      return $http({method: 'DELETE', url: '/rtip/' + tip_id, data:{global_delete: global_delete, is_pertinent: true, extend:false}}).
                  success(function(data, status, headers, config){ 
                                                                   $location.url('/receiver/tips');
                                                                   $route.reload();
@@ -93,9 +93,6 @@ ModalPostponeTipCtrl = ['$scope', '$http', '$route', '$location', 'Tip', '$modal
      $modalInstance.close();
 
      $scope.tip.extend = true;
-
-     // XXX this should be returned by the backend, but is not.
-     $scope.tip.is_pertinent = false;
 
      $scope.tip.$update();
      $route.reload();
