@@ -13,6 +13,7 @@ DATABASE_VERSION = 12
 LANGUAGES_SUPPORTED = [
  { "code": "ar", "name": "Arabic" },
  { "code": "bg", "name": "Bulgarian" },
+ { "code": "ca", "name": "Catalan" },
  { "code": "cs", "name": "Czech" },
  { "code": "de", "name": "German" },
  { "code": "el", "name": "Greek" },
@@ -32,6 +33,7 @@ LANGUAGES_SUPPORTED = [
  { "code": "sr_RS", "name": "Serbian (Serbia)" },
  { "code": "sr_RS@latin", "name": "Serbian (Latin) (Serbia)" },
  { "code": "sv", "name": "Swedish" },
+ { "code": "th", "name": "Thai" },
  { "code": "vi", "name": "Vietnamese" },
 ]
 
