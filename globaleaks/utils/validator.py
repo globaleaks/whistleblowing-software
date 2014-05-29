@@ -12,9 +12,10 @@
 #                long localized text validator,
 #                dictionary validator
 
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
-from globaleaks import LANGUAGES_SUPPORTED_CODES
+from globaleaks.utils.utility import log
 
 def shorttext_v(_self, _attr, value):
     """
@@ -92,10 +93,18 @@ def shortlocal_v(_self, attr, value):
     if not value:
         return value
 
-    for lang, text in value.iteritems():
-        if lang not in LANGUAGES_SUPPORTED_CODES:
-            raise errors.InvalidInputFormat("(%s) Invalid language code in %s" % (lang, attr) )
+    """
+    If a language does not exist, it does not mean that a malicious input have been provided,
+    this condition in fact may happen when a language is removed from the package and 
+    so the proper way to handle it so is simply to log the issue and discard the input.
+    https://github.com/globaleaks/GlobaLeaks/issues/879
+    """
+    remove = [lang for lang in value if lang not in LANGUAGES_SUPPORTED_CODES]
+    for k in remove:
+       del value[lang]
+       log.debug("(%s) Invalid language code in %s, ignoring it" % (lang, attr))
 
+    for lang, text in value.iteritems():
         shorttext_v(None, None, text)
 
     return value
@@ -108,10 +117,18 @@ def longlocal_v(_self, attr, value):
     if not value:
         return value
 
-    for lang, text in value.iteritems():
-        if lang not in LANGUAGES_SUPPORTED_CODES:
-            raise errors.InvalidInputFormat("(%s) Invalid language code in %s" % (lang, attr) )
+    """
+    If a language does not exist, it does not mean that a malicious input have been provided,
+    this condition in fact may happen when a language is removed from the package and 
+    so the proper way to handle it so is simply to log the issue and discard the input.
+    https://github.com/globaleaks/GlobaLeaks/issues/879
+    """
+    remove = [lang for lang in value if lang not in LANGUAGES_SUPPORTED_CODES]
+    for k in remove:
+       del value[lang]
+       log.debug("(%s) Invalid language code in %s, ignoring it" % (lang, attr))
 
+    for lang, text in value.iteritems():
         longtext_v(None, attr, text)
 
     return value
