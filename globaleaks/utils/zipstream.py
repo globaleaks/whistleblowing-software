@@ -221,11 +221,15 @@ class ZipStream:
 
     def __iter__(self):
         for f in self.files:
+
             log.debug("Compressing (%s)" % f['name'])
 
             if 'path' in f:
-                for data in self.zip_file(f['path'], f['name']):
-                    yield data
+                try:
+                    for data in self.zip_file(f['path'], f['name']):
+                        yield data
+                except (OSError, IOError) as excpd:
+                    log.err("IOError while adding %s to files collection: %s" % (f['path'], excpd))
 
             elif 'buf' in f:
                 for data in self.zip_buf(f['buf'], f['name']):
