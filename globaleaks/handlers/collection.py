@@ -148,10 +148,6 @@ class CollectionDownload(BaseHandler):
             trigger_parent = rtip_dict
         )
 
-        for filedesc in files_dict:
-            # Update all the path with the absolute path
-            filedesc['path'] = os.path.join(GLSetting.submission_path, filedesc['path'])
-
         formatted_coll = Templating().format_template(notif_dict['zip_description'], mock_event).encode('utf-8')
         # log.debug("Generating collection content with: %s" % formatted_coll)
         files_dict.append(
@@ -174,7 +170,10 @@ class CollectionDownload(BaseHandler):
             tar = tarfile.open("collection." + compression, 'w|'+opts['compression_type'], collectionstreamer)
             for f in files_dict:
                 if 'path' in f:
-                    tar.add(f['path'], f['name'])
+                    try:
+                        tar.add(f['path'], f['name'])
+                    except (OSError, IOError) as excpd:
+                        log.err("OSError while adding %s to files collection: %s" % (f['path'], excpd))
 
                 elif 'buf' in f:
                     tarinfo = tarfile.TarInfo(f['name'])
