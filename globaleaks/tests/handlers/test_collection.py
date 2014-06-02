@@ -3,8 +3,10 @@ from twisted.internet.defer import inlineCallbacks
 
 import json
 
+import shutil
+
 from globaleaks.rest import requests
-from globaleaks.settings import transact_ro
+from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.tests import helpers
 from globaleaks.handlers import collection
 from globaleaks.models import ReceiverTip
@@ -50,3 +52,27 @@ class TestCollectionDownload(helpers.TestHandler):
     def test_005_post_download_tarbz2(self):
         yield self.download('tarbz2')
 
+    @inlineCallbacks
+    def test_006_post_download_zipstored_with_files_removed_due_to_whatever(self):
+        shutil.rmtree(GLSetting.submission_path)
+        yield self.download('zipstored')
+
+    @inlineCallbacks
+    def test_007_post_download_zipdeflated_with_files_removed_due_to_whatever(self):
+        shutil.rmtree(GLSetting.submission_path)
+        yield self.download('zipdeflated')
+
+    @inlineCallbacks
+    def test_008_post_download_tar_with_files_removed_due_to_whatever(self):
+        shutil.rmtree(GLSetting.submission_path)
+        yield self.download('tar')
+
+    @inlineCallbacks
+    def test_009_post_download_targz_with_files_removed_due_to_whatever(self):
+        shutil.rmtree(GLSetting.submission_path)
+        yield self.download('targz')
+
+    @inlineCallbacks
+    def test_010_post_download_tarbz2_with_files_removed_due_to_whatever(self):
+        shutil.rmtree(GLSetting.submission_path)
+        yield self.download('tarbz2')

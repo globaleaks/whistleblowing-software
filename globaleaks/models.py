@@ -227,7 +227,7 @@ class InternalTip(Model):
     mark = Unicode()
 
     _marker = [ u'submission', u'finalize', u'first', u'second' ]
-    ## NO *_keys = It's created without initializing dict
+    ## N.B. *_keys = It's created without initializing dict
 
 
 class ReceiverTip(Model):
@@ -251,7 +251,7 @@ class ReceiverTip(Model):
 
     _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
 
-    ## NO *_keys = It's created without initializing dict
+    ## N.B. *_keys = It's created without initializing dict
 
 
 class WhistleblowerTip(Model):
@@ -268,7 +268,7 @@ class WhistleblowerTip(Model):
     last_access = DateTime()
     access_counter = Int()
 
-    ## NO *_keys = It's created without initializing dict
+    ## N.B. *_keys = It's created without initializing dict
 
 
 class ReceiverFile(Model):
@@ -295,13 +295,12 @@ class ReceiverFile(Model):
     _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
 
     status = Unicode()
-    _status_list = [ u'cloned', u'reference', u'encrypted', u'unavailable', 'nokey' ]
-    # cloned = file is copied on the disk; receiverfile.file_path address this copy
+    _status_list = [ u'reference', u'encrypted', u'unavailable', u'nokey' ]
     # reference = receiverfile.file_path reference internalfile.file_path
     # encrypted = receiverfile.file_path is an encrypted file for the specific receiver
     # unavailable = the file was supposed to be available but something goes wrong and now is lost
 
-    ## NO *_keys = It's created without initializing dict
+    ## N.B. *_keys = It's created without initializing dict
 
 
 class InternalFile(Model):
@@ -320,15 +319,17 @@ class InternalFile(Model):
     content_type = Unicode()
     description = Unicode(validator=longtext_v)
     size = Int()
-    ## NO *_keys = It's created without initializing dict
 
     mark = Unicode()
     _marker = [ u'not processed', u'locked', u'ready', u'delivered' ]
     # 'not processed' = submission time
     # 'ready' = processed in ReceiverTip, available for usage
     # 'delivered' = the file need to stay on DB, but from the disk has been deleted
-    # happen when GPG encryption is present in the whole Receiver group.
+    #  it happens when GPG encryption is present in the whole Receiver group.
     # 'locked' = the file is under process by delivery scheduler
+
+    ## N.B. *_keys = It's created without initializing dict
+
 
 
 class Comment(Model):
@@ -349,7 +350,8 @@ class Comment(Model):
     _types = [ u'receiver', u'whistleblower', u'system' ]
     mark = Unicode()
     _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
-    ## NO *_keys = It's created without initializing dict
+
+    ## N.B. *_keys = It's created without initializing dict
 
 
 class Message(Model):
