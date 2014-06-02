@@ -19,9 +19,9 @@ client component.
 
 ## Donations
 
-[Pledgie]: http://www.pledgie.com/campaigns/24521
+You can support our project, that's funded by volounteering effort, donations and research grants from cool grantors such as [Open Technology Fund](https://www.opentechfund.org/) that has already supported us!.
 
-[![You can support the development of GlobaLeaks via Pledgie - thanks for your help](https://pledgie.com/campaigns/24521.png?skin_name=chrome)][Pledgie]
+[Help us](http://logioshermes.org/home/about-mission/support-us/) by sending us a small donation!
 
 
 ## GlobaLeaks main components
