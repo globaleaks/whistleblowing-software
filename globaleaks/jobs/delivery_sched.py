@@ -354,7 +354,7 @@ def encrypt_where_available(receivermap):
                     rfileinfo['path'], new_path, rfileinfo['size'], new_size )
                 )
 
-                # _status_list = [ u'cloned', u'reference', u'encrypted', u'unavailable' ]
+                # _status_list = [ u'reference', u'encrypted', u'unavailable' ]
 
                 rfileinfo['path'] = new_path
                 rfileinfo['size'] = new_size
