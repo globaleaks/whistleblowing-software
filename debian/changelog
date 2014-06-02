@@ -1,3 +1,9 @@
+globaleaks (2.60.7) unstable; urgency=low
+
+  * GlobaLeaks 2.60.7 Release (Minor Fixes, Updated Translations)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 20 Jun 2014 12:47:00 +0002
+
 globaleaks (2.60.6) unstable; urgency=low
 
   * GlobaLeaks 2.60.6 Release (Added Catalan and Thai)
