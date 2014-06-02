@@ -372,8 +372,9 @@ class GLBGPG:
         #     log.err("Receiver %s in uploaded GPG key has raise and alarm:\n< %s >" %
         #             (self.receiver_desc['username'], (self.ke.stderr.replace("\n", "\n  "))[:-3]))
 
-        if not (hasattr(key, 'results') and len(key.results) == 1 and key.results[0].has_key(
-                'fingerprint')):
+        if not (hasattr(key, 'results') and
+                len(key.results) >= 1 and
+                key.results[0].has_key('fingerprint')):
             log.err("User error: unable to import GPG key in the keyring")
             return False
 
