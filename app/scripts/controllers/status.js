@@ -111,12 +111,16 @@ GLClient.controller('StatusCtrl',
           });
 
           $scope.increaseDownloadCount = function(file) {
-            file.downloads = parseInt(file.downloads) + 1;
+            if (file.downloads < $scope.tip.download_limit) {
+              file.downloads = parseInt(file.downloads) + 1;
+            }
           };
 
           $scope.increaseDownloadCounts = function () {
             for (file in $scope.tip.files) {
-              $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
+              if ($scope.tip.files[file].downloads < $scope.tip.download_limit) {
+                $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
+              }
             }
           };
           
