@@ -231,7 +231,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$resource', 'Node', 'Contexts', 'Receivers', function($resource, Node, Contexts, Receivers) {
+  factory('Submission', ['$resource', '$filter', 'Node', 'Contexts', 'Receivers', function($resource, $filter, Node, Contexts, Receivers) {
 
     var submissionResource = $resource('/submission/:submission_id/',
         {submission_id: '@id'},
@@ -286,7 +286,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
         Contexts.query(function(contexts){
           self.contexts = contexts;
-          self.current_context = self.contexts[0];
+          self.current_context = $filter('orderBy')(self.contexts, 'presentation_order')[0];
           Receivers.query(function(receivers){
             self.receivers = [];
             forEach(receivers, function(receiver){
