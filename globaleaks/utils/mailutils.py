@@ -13,6 +13,7 @@ import time
 import traceback
 import StringIO
 from datetime import datetime, timedelta
+from calendar import timegm
 from email import utils as mailutils
 
 from twisted.internet.endpoints import TCP4ClientEndpoint
@@ -48,9 +49,9 @@ def rfc822_date():
     holy stackoverflow:
     http://stackoverflow.com/questions/3453177/convert-python-datetime-to-rfc-2822
     """
-    nowdt = datetime.utcnow() - timedelta(seconds=time.timezone)
-    nowtuple = nowdt.timetuple()
-    nowtimestamp = time.mktime(nowtuple)
+    nowdt = datetime.utcnow()
+    nowtuple = nowdt.utctimetuple()
+    nowtimestamp = timegm(nowtuple)
     return mailutils.formatdate(nowtimestamp)
 
 def sendmail(authentication_username, authentication_password, from_address,
