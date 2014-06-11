@@ -43,7 +43,7 @@ public_resources = [
   },
   {
     'url': '/fonts/glyphicons-halflings-regular.woff',
-    'type': 'application/x-font-woff',
+    'type': 'text/html; charset=UTF-8',
     'status': 200
   },
   {
