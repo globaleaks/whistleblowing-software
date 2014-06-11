@@ -32,6 +32,13 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
     # Contexts and Receivers relationship
     associated = store.find(models.ReceiverContext).count()
 
+    custom_homepage = False
+
+    try:
+        custom_homepage = os.path.isfile(os.path.join(GLSetting.static_path, "custom_homepage.html"))
+    except:
+        pass
+
     node_dict = {
         "name": node.name,
         "presentation": node.presentation,
@@ -59,6 +66,7 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         'can_delete_submission': node.can_delete_submission,
         'ahmia': node.ahmia,
         'reset_css': False,
+        'reset_homepage': False,
         'anomaly_checks': node.anomaly_checks,
         'allow_unencrypted': node.allow_unencrypted,
         'wizard_done': node.wizard_done,
@@ -66,6 +74,7 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         'configured': True if associated else False,
         'password': u"",
         'old_password': u"",
+        'custom_homepage': custom_homepage
     }
 
     for attr in mo.get_localized_attrs():
@@ -206,7 +215,21 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
                 log.err("Unable to remove custom CSS: %s: %s" % (custom_css_path, excep))
                 raise errors.InternalServerError(excep)
         else:
-            log.err("Requested CSS Reset, but custom CSS do not exists")
+            log.err("Requested CSS Reset, but custom CSS does not exist")
+
+    # check the 'reset_homepage' boolean option: remove an existent custom Homepage
+    if request['reset_homepage']:
+        custom_homepage_path = os.path.join(GLSetting.static_path, "%s.html" % GLSetting.reserved_names.html)
+
+        if os.path.isfile(custom_homepage_path):
+            try:
+                os.remove(custom_homepage_path)
+                log.debug("Reset on custom Homepage done.")
+            except Exception as excep:
+                log.err("Unable to remove custom Homepage: %s: %s" % (custom_homepage_path, excep))
+                raise errors.InternalServerError(excep)
+        else:
+            log.err("Requested Homepage Reset, but custom Homepage does not exist")
 
     # verify that the languages enabled are valid 'code' in the languages supported
     node.languages_enabled = []
