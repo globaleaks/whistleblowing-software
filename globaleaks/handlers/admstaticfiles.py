@@ -157,6 +157,14 @@ class StaticFileInstance(BaseStaticFileHandler):
                 log.err("Exception raise saving custom CSS: %s" % excpd)
                 raise errors.InternalServerError(excpd.__repr__())
 
+        elif filename == GLSetting.reserved_names.html:
+            try:
+                path = os.path.join(GLSetting.static_path, "%s.html" % GLSetting.reserved_names.html)
+                log.debug("Received request to update custom Homepage with %s" % uploaded_file['filename'])
+            except Exception as excpd:
+                log.err("Exception raise saving custom Homepage: %s" % excpd)
+                raise errors.InternalServerError(excpd.__repr__())
+
         elif filename == 'customization' and \
              not re.match(receiver_img_regexp, uploaded_file['filename'] + ".png"):
                 path = os.path.join(GLSetting.static_path, uploaded_file['filename'])

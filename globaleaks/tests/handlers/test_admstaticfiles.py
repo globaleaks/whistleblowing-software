@@ -38,6 +38,20 @@ class TestStaticFileInstance(helpers.TestHandler):
         self.assertEqual(len(self.responses), 1)
         self._handler.validate_message(json.dumps(self.responses[0]), requests.staticFile)
 
+    @inlineCallbacks
+    def test_post_custom_homepage(self):
+
+        request_body = self.get_dummy_file(filename='antani.html', content_type='text/html')
+
+        handler = self.request({}, role='admin',  kwargs={'path': GLSetting.static_path}, body=request_body)
+
+        yield handler.post(filename='custom_homepage')
+
+        self.assertTrue(isinstance(self.responses, list))
+        self.assertEqual(len(self.responses), 1)
+        self._handler.validate_message(json.dumps(self.responses[0]), requests.staticFile)
+
+
     def test_post_invalid_name(self):
         """
         test against invalid name:

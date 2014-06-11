@@ -128,6 +128,7 @@ adminNodeDesc = {
     'can_delete_submission': bool,
     'exception_email': email_regexp,
     'reset_css': bool,
+    'reset_homepage': bool,
     'ahmia': bool,
     'anomaly_checks': bool,
     'allow_unencrypted': bool,
