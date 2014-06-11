@@ -80,6 +80,41 @@ class TestNodeInstance(helpers.TestHandler):
 
         yield self.assertFailure(handler.put(), InvalidInputFormat)
 
+    @inlineCallbacks
+    def test_put_update_node_reset_css(self):
+        self.dummyNode['reset_css'] = True
+
+        open(os.path.join(GLSetting.static_path, "custom_stylesheet.css"), 'a').close()
+
+        handler = self.request(self.dummyNode, role='admin')
+        yield handler.put()
+
+        self.assertFalse(os.path.exists(os.path.join(GLSetting.static_path, "custom_stylesheet.css")))
+
+    @inlineCallbacks
+    def test_put_update_node_reset_css_with_no_css(self):
+        self.dummyNode['reset_css'] = True
+
+        handler = self.request(self.dummyNode, role='admin')
+        yield handler.put()
+
+    @inlineCallbacks
+    def test_put_update_node_reset_homepage(self):
+        self.dummyNode['reset_homepage'] = True
+
+        open(os.path.join(GLSetting.static_path, "custom_homepage.html"), 'a').close()
+
+        handler = self.request(self.dummyNode, role='admin')
+        yield handler.put()
+
+        self.assertFalse(os.path.exists(os.path.join(GLSetting.static_path, "custom_homepage.html")))
+
+    @inlineCallbacks
+    def test_put_update_node_reset_homepage_with_no_homepage(self):
+        self.dummyNode['reset_homepage'] = True
+
+        handler = self.request(self.dummyNode, role='admin')
+        yield handler.put()
 
 class TestNotificationInstance(helpers.TestHandler):
     _handler = admin.NotificationInstance
@@ -164,6 +199,18 @@ class TestContextInstance(helpers.TestHandler):
     
             yield self.assertFailure(handler.put(self.dummyContext['id']), errors.InvalidTipSubmCombo)
 
+    @inlineCallbacks
+    def test_delete(self):
+        handler = self.request(self.dummyContext, role='admin')
+        try:
+            yield handler.delete(self.dummyContext['id'])
+            self.assertTrue(True)
+        except Exception as excep:
+            print "Wrong exception: %s" % excep
+            raise excep
+
+        yield self.assertFailure(handler.get(self.dummyContext['id']),
+                     errors.ContextIdNotFound)
 
 class TestReceiversCollection(helpers.TestHandler):
     _handler = admin.ReceiversCollection

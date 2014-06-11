@@ -606,11 +606,13 @@ class MockDict():
             'can_delete_submission': False,
             'exception_email': GLSetting.defaults.exception_email,
             'reset_css': False,
+            'reset_homepage': False,
             'ahmia': False,
             'anomaly_checks': False,
             'allow_unencrypted': True,
             'configured': False,
             'wizard_done': False,
+            'custom_homepage': False,
         }
 
         self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',

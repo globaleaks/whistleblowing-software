@@ -5,6 +5,8 @@
 # Implementation of classes handling the HTTP request to /node, public
 # exposed API.
 
+import os
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.utils.utility import log, datetime_to_ISO8601
@@ -20,6 +22,13 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
 
     # Contexts and Receivers relationship
     associated = store.find(models.ReceiverContext).count()
+
+    custom_homepage = False
+
+    try: 
+        custom_homepage = os.path.isfile(os.path.join(GLSetting.static_path, "custom_homepage.html"))
+    except:
+        pass
 
     node_dict = {
       'name': node.name,
@@ -50,6 +59,7 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'configured': True if associated else False,
       'password': u"",
       'old_password': u"",
+      'custom_homepage': custom_homepage
     }
 
     mo = Rosetta()

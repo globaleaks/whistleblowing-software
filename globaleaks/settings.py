@@ -136,11 +136,10 @@ class GLSettingsClass:
         # static file rules
         self.staticfile_regexp = r'(.*)'
         self.staticfile_overwrite = False
-        self.images_extensions = (".jpg", ".jpeg", ".png", ".gif")
-        self.css_extensions = ".css"
         self.reserved_names = OD()
         self.reserved_names.logo = "globaleaks_logo"
         self.reserved_names.css = "custom_stylesheet"
+        self.reserved_names.html = "custom_homepage"
 
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
