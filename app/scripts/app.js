@@ -1,5 +1,9 @@
 'use strict';
 
+var translations = {
+ GLOBALEAKS: "{{NodeName}} makes use of GlobaLeaks software specifically designed to protect the identity of the submitter and of the receiver in the exchange of leaked materials."
+};
+
 var GLClient = angular.module('GLClient', [
     'ngRoute',
     'ui.bootstrap',
@@ -223,6 +227,18 @@ var GLClient = angular.module('GLClient', [
         controller: 'LoginCtrl',
         header_title: 'Login',
         header_subtitle: ''
+      }).
+      when('/start', {
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl',
+        header_title: '',
+        header_subtitle: '',
+      }).
+      when('/start/:lang', {
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl',
+        header_title: '',
+        header_subtitle: '',
       }).
       when('/', {
         templateUrl: 'views/home.html',
