@@ -23,6 +23,7 @@ LANGUAGES_SUPPORTED = [
  { "code": "hr_HR", "name": "Croatian (Croatia)" },
  { "code": "hu_HU", "name": "Hungarian (Hungary)" },
  { "code": "it", "name": "Italian" },
+ { "code": "lv", "name": "Latvian" },
  { "code": "nb_NO", "name": "Norwegian Bokmål (Norway)" },
  { "code": "nl", "name": "Dutch" },
  { "code": "pl", "name": "Polish" },
