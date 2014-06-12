@@ -1,8 +1,14 @@
+globaleaks (2.60.8) unstable; urgency=low
+
+  * GlobaLeaks 2.60.8 Release (Added Latvian 100%)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 12 Jun 2014 12:47:00 +0002
+
 globaleaks (2.60.7) unstable; urgency=low
 
   * GlobaLeaks 2.60.7 Release (Minor Fixes, Updated Translations)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 20 Jun 2014 12:47:00 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 9 Jun 2014 12:47:00 +0002
 
 globaleaks (2.60.6) unstable; urgency=low
 
