@@ -68,7 +68,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
             'status': receiverfile.status,
             'href' : "/rtip/" + receivertip_id + "/download/" + receiverfile.id,
             # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
-            'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == ReceiverFile._status_list[2] else internalfile.name,
+            'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == u'encrypted' else internalfile.name,
             'content_type' : internalfile.content_type,
             'creation_date' : datetime_to_ISO8601(internalfile.creation_date),
             'size': receiverfile.size,
