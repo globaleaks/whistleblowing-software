@@ -49,9 +49,9 @@ This comment is needed in order to push the following strings on transifex
     <div data-ng-switch="" on="selection" class="tab-content">
 
       <!-- First Step -->
-      <div data-ng-switch-when="1" class="receiverCards">
+      <div data-ng-switch-when="1" id="SubmissionStep1" class="receiverCards">
         <div id="ContextPickSelector" data-ng-show="submission.contexts.length > 1">
-            <div class="lead">
+            <div id="SubmissionStep1Title" class="lead">
               <span data-translate>Choose the context and receivers that will be sure to transform your submission into action!</span>
             </div>
 
@@ -161,9 +161,9 @@ This comment is needed in order to push the following strings on transifex
       <!-- /1 -->
 
       <!-- Second Step -->
-      <div data-ng-switch-when="2">
+      <div data-ng-switch-when="2" id="SubmissionStep2">
 
-        <div class="lead">
+        <div id="SubmissionStep2Title" class="lead">
           <span data-translate>Enter the information that is relevant to your submission and possibly upload the relevant accompanying files</span>
         </div>
         <div>
@@ -186,7 +186,7 @@ This comment is needed in order to push the following strings on transifex
       <!-- /2 -->
 
       <!-- Third Step -->
-      <div data-ng-switch-when="3">
+      <div data-ng-switch-when="3" id="SubmissionStep3">
 
         <div class="row">
 
