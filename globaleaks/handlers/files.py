@@ -44,7 +44,7 @@ def serialize_receiver_file(receiverfile):
     file_desc = {
         'size' : receiverfile.size,
         'content_type' : internalfile.content_type,
-        'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == ReceiverFile._status_list[2] else internalfile.name,
+        'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == u'encrypted' else internalfile.name,
         'creation_date': datetime_to_ISO8601(internalfile.creation_date),
         'downloads' : receiverfile.downloads,
         'path' : receiverfile.file_path,
