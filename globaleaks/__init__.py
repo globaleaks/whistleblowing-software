@@ -9,7 +9,7 @@ __version__ = '2.60.9'
 DATABASE_VERSION = 12
 
 # Add here by hand the languages supported!
-# copy paste format from 'grunt makeTranslations'
+# copy paste format from 'grunt updateTranslations'
 LANGUAGES_SUPPORTED = [
  { "code": "ar", "name": "Arabic" },
  { "code": "bg", "name": "Bulgarian" },
@@ -35,6 +35,7 @@ LANGUAGES_SUPPORTED = [
  { "code": "sr_RS@latin", "name": "Serbian (Latin) (Serbia)" },
  { "code": "sv", "name": "Swedish" },
  { "code": "th", "name": "Thai" },
+ { "code": "tr", "name": "Turkish" },
  { "code": "vi", "name": "Vietnamese" },
 ]
 
