@@ -6,7 +6,7 @@
 
     <p>
       <span data-translate>This section contains settings that may break your installation. Please refer to the</span>
-      <a href="https://github.com/globaleaks/GlobaLeaks/wiki/Advanced-configuration" target="_blank" rel="noreferrer">Advanced configuration</a>.
+      <a href="https://github.com/globaleaks/GlobaLeaks/wiki/Advanced-configuration" target="_blank" rel="noreferrer" data-translate>Advanced configuration</a>.
     </p>
 
     <div class="form-group">
@@ -69,12 +69,41 @@
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.can_delete_submission " type="checkbox">
+        <input data-ng-model="admin.node.can_delete_submission" type="checkbox">
         <span data-translate>Permit Receivers to delete Tips</span>
       </label>
       <div data-ng-show="admin.node.can_delete_submission">
         <span class="label label-info" data-translate>Enabled</span>
-	      <span data-translate>Receivers will be able to delete Tips and their content.</span>
+	<span data-translate>Receivers will be able to delete Tips and their content.</span>
+      </div>
+    </div>
+
+    <!--
+
+    Commented out as the feature it is not implemented/merged in the backend.
+    The code on the GLClient is complete and putted here in order to allow user to translate the feature texts on transifex
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.indexing" type="checkbox">
+        <span data-translate>Enable search engines indexing</span>
+      </label>
+      <div data-ng-show="admin.node.">
+        <span class="label label-info" data-translate>Enabled</span>
+        <span data-translate>Search engine spiders will be allowed to spider the application.</span>
+      </div>
+    </div>
+
+    -->
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.ahmia" type="checkbox">
+        <span data-translate>Enable Ahmia publishing</span>
+      </label>
+      <div data-ng-show="admin.node.ahmia">
+        <span class="label label-info" data-translate>Enabled</span>
+        <span data-translate>Node metadata will be now published using Ahmia JSON format.</span>
       </div>
     </div>
 
