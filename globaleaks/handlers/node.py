@@ -176,17 +176,24 @@ class AhmiaDescriptionHandler(BaseHandler):
         log.debug("Requested Ahmia description file")
         node_info = yield anon_serialize_node(self.request.language)
 
-        ahmia_description = {
-            "title": node_info['name'],
-            "description": node_info['description'],
-            # we've not yet keywords, need to add them in Node ?
-            "keywords": "%s (GlobaLeaks instance)" % node_info['name'],
-            "relation": node_info['public_site'],
-            "language": node_info['default_language'],
-            "contactInformation": u'', # we've removed Node.email_addr
-            "type": "GlobaLeaks"
-        }
-        self.finish(ahmia_description)
+        if node_info['ahmia']:
+
+            ahmia_description = {
+                "title": node_info['name'],
+                "description": node_info['description'],
+                # we've not yet keywords, need to add them in Node ?
+                "keywords": "%s (GlobaLeaks instance)" % node_info['name'],
+                "relation": node_info['public_site'],
+                "language": node_info['default_language'],
+                "contactInformation": u'', # we've removed Node.email_addr
+                "type": "GlobaLeaks"
+            }
+
+            self.finish(ahmia_description)
+
+        else: # in case of disabled option we return 404
+
+            self.set_status(404)
 
 
 @transact_ro
