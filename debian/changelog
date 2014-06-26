@@ -1,3 +1,9 @@
+globaleaks (2.60.11) unstable; urgency=low
+
+  * GlobaLeaks 2.60.11 Release (Updated translations)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 26 Jun 2014 21:06:00 +0002
+
 globaleaks (2.60.10) unstable; urgency=low
 
   * GlobaLeaks 2.60.10 Release (Added Turkish! 100%)
