@@ -403,7 +403,7 @@ module.exports = function(grunt) {
     fs.writeFileSync("pot/en.po", gt.compilePO("en"));
 
     console.log("Written " + translationStringCount + " string to pot/en.po.");
-    
+
     updateTxSource(done);
 
   });

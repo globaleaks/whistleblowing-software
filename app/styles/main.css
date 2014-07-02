@@ -11,9 +11,9 @@
 }
 
 #HeaderBox:after, #HeaderBox:after {
-    clear: both;
-    content: "";
-    display: block;
+  clear: both;
+  content: "";
+  display: block;
 }
 
 #HeaderBoxHomeContent {
@@ -71,6 +71,10 @@ h2, #HomePageBoxNodeDescription {
 
 h3 {
   font-size: 20px;
+}
+
+.preformatted {
+  white-space: pre;
 }
 
 #LogoBox, #TitleBox {
