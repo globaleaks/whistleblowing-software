@@ -6,7 +6,7 @@
 import operator
 
 __version__ = '2.60.11'
-DATABASE_VERSION = 12
+DATABASE_VERSION = 13
 
 # Add here by hand the languages supported!
 # copy paste format from 'grunt updateTranslations'

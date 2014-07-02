@@ -75,6 +75,9 @@ def initialize_node(store, results, only_node, templates, appdata):
     if 'node_subtitle' in appdata:
         node.subtitle = appdata['node_subtitle']
 
+    if 'node_terms_and_conditions' in appdata:
+        node.terms_and_conditions = appdata['node_terms_and_conditions']
+
     node.languages_enabled = GLSetting.defaults.languages_enabled
 
     node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
