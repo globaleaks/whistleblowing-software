@@ -126,6 +126,7 @@ CREATE TABLE node (
     presentation BLOB NOT NULL,
     subtitle BLOB NOT NULL,
     footer BLOB NOT NULL,
+    terms_and_conditions BLOB NOT NULL,
     email VARCHAR NOT NULL,
     hidden_service VARCHAR NOT NULL,
     receipt_regexp VARCHAR NOT NULL,

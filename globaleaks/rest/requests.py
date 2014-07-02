@@ -134,6 +134,7 @@ adminNodeDesc = {
     'allow_unencrypted': bool,
     'wizard_done': bool,
     'receipt_regexp': unicode,
+    'terms_and_conditions': unicode,
     'configured': bool,
 }
 

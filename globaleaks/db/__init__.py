@@ -77,6 +77,7 @@ def create_tables(create_node=True):
             'presentation':  dict({ GLSetting.memory_copy.default_language: u"" }),
             'footer':  dict({ GLSetting.memory_copy.default_language: u"" }),
             'subtitle':  dict({ GLSetting.memory_copy.default_language: u"" }),
+            'terms_and_conditions':  dict({ GLSetting.memory_copy.default_language: u"" }),
             'hidden_service':  u"",
             'public_site':  u"",
             'email':  u"",
