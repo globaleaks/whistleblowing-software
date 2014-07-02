@@ -9,6 +9,9 @@
   "node_subtitle": {
     "en": "This is the initiative subtitle: write your slogan here!"
   },
+  "node_terms_and_conditions": {
+    "en": "To ensure your anonymity be sure that you are visiting this site using the Tor Browser Bundle.\nYou acknowledge that failure to do so will result in the inability to technically protect your anonymity.\nTo further enhance your security, please follow these instructions:\n\t1) In the event that you would like to remain anonymous, do not submit any personal information. (e.g. your name or relationship to the offender. Do not submit any information that can be traced back to you.)\n\t2) Please do not submit your report on a PC provided by your employer. Particularly an intranet connection may jeopardize your anonymity.\n\nBy checking the box below you agree to these terms and conditions."
+  },
   "fields" : [
     {
       "incremental_number": 0,

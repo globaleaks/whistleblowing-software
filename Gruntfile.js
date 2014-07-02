@@ -509,7 +509,7 @@ module.exports = function(grunt) {
       output['fields'] = fields;
       output['templates'] = templates;
 
-      var vars = ["node_presentation", "node_footer", "node_subtitle"]
+      var vars = ["node_presentation", "node_footer", "node_subtitle", "node_terms_and_conditions"]
       for (var i in vars) {
 
         gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
