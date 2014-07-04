@@ -134,7 +134,7 @@ class TableReplacer:
             Receiver_version_9, User_version_9
         from globaleaks.db.update_10_11 import InternalTip_version_10, InternalFile_version_10
         from globaleaks.db.update_11_12 import Node_version_11, ApplicationData_version_11, Context_version_11
-        from globaleaks.db.update_12_13 import Node_version_12
+        from globaleaks.db.update_12_13 import Node_version_12, Context_version_12
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -146,7 +146,7 @@ class TableReplacer:
         self.table_history = {
             'Node' : [ Node_version_5, Node_version_6, Node_version_7, Node_version_9, None, Node_version_11, None, Node_version_12, models.Node],
             'User' : [ User_version_5, User_version_9, None, None, None, models.User, None, None, None],
-            'Context' : [ Context_version_6, None, Context_version_7, Context_version_8, Context_version_11, None, None, models.Context, None],
+            'Context' : [ Context_version_6, None, Context_version_7, Context_version_8, Context_version_11, None, None, Context_version_12, models.Context],
             'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, Receiver_version_9, models.Receiver, None, None, None],
             'ReceiverFile' : [ models.ReceiverFile, None, None, None, None, None, None, None, None],
             'Notification': [ Notification_version_7, None, None, Notification_version_8, models.Notification, None, None, None, None],

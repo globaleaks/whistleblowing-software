@@ -180,6 +180,7 @@ class Context(Model):
     delete_consensus_percentage = Int()
     require_pgp = Bool()
     show_small_cards = Bool()
+    show_receivers = Bool()
 
     presentation_order = Int()
 
@@ -191,7 +192,8 @@ class Context(Model):
                  'presentation_order' ]
     bool_keys = [ 'selectable_receiver', 'file_required', 'select_all_receivers',
                   'postpone_superpower', 'can_delete_submission',
-                  'require_file_description', 'require_pgp', 'show_small_cards' ]
+                  'require_file_description', 'require_pgp',
+                  'show_small_cards', 'show_receivers' ]
 
 
 class InternalTip(Model):
