@@ -566,6 +566,7 @@ class MockDict():
             'delete_consensus_percentage': 0,
             'require_pgp': False,
             'show_small_cards': False,
+            'show_receivers': False,
             'presentation_order': 0,
         }
 
@@ -583,6 +584,7 @@ class MockDict():
             'presentation': u'This is whæt æpp€ærs on top',
             'footer': u'check it out https://www.youtube.com/franksentus ;)',
             'subtitle': u'https://twitter.com/TheHackersNews/status/410457372042092544/photo/1',
+            'terms_and_conditions': u'',
             'hidden_service':  u"http://1234567890123456.onion",
             'public_site':  u"https://globaleaks.org",
             'email':  u"email@dummy.net",
