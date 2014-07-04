@@ -52,6 +52,7 @@ class SubmissionTest(helpers.TestGL):
         'delete_consensus_percentage': 0,
         'require_pgp': False,
         'show_small_cards': False,
+        'show_receivers': False,
         'presentation_order': 0,
     }
 

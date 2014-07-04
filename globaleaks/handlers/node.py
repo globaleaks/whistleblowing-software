@@ -94,6 +94,7 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         "maximum_selectable_receivers": context.maximum_selectable_receivers,
         'require_pgp': context.require_pgp,
         "show_small_cards": context.show_small_cards,
+        "show_receivers": context.show_receivers,
         "presentation_order": context.presentation_order,
                      # list is needed because .values returns a generator
         "receivers": list(context.receivers.values(models.Receiver.id)),
