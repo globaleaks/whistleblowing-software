@@ -33,6 +33,13 @@
     </div>
 
     <div class="form-group">
+      <label data-translate>Terms and Conditions</label>
+      <div>
+        <textarea class="form-control" data-ng-model="admin.node.terms_and_conditions">{{admin.node.terms_and_conditions}}</textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
       <label data-translate>Email</label>
       <input class="form-control" data-ng-model="admin.node.email" value="{{admin.node.email}}" name="email" type="email">
       <p class="has-error" data-ng-show="contentForm.email.$error.email">
