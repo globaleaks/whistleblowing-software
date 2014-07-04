@@ -66,6 +66,7 @@ CREATE TABLE context (
     delete_consensus_percentage INTEGER,
     require_pgp INTEGER NOT NULL,
     show_small_cards INTEGER NOT NULL,
+    show_receivers INTEGER NOT NULL,
     presentation_order INTEGER NOT NULL,
     PRIMARY KEY (id)
 );

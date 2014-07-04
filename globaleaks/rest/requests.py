@@ -188,6 +188,7 @@ adminContextDesc = {
     'tags' : [ unicode ],
     'select_all_receivers': bool,
     'show_small_cards': bool,
+    'show_receivers': bool,
     'presentation_order': int,
 }
 
@@ -347,6 +348,7 @@ nodeContext = {
     'submission_introduction': unicode,
     'maximum_selectable_receivers': int,
     'show_small_cards': bool,
+    'show_receivers': bool,
     'file_max_download': int,
     'require_pgp': bool,
     'tip_max_access': int,
