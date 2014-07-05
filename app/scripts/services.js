@@ -761,6 +761,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.require_pgp = false;
         context.tags = [];
         context.show_small_cards = false;
+        context.show_receivers = true;
         context.presentation_order = 0;
         return context;
       };
