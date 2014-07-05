@@ -25,31 +25,37 @@ This comment is needed in order to push the following strings on transifex
   <div class="tabbable tabs-below">
 
     <ul class="nav nav-tabs">
-      <li data-ng-repeat="step in steps" data-ng-class="{active: $index==getCurrentStepIndex(), disabled: uploading}">
-        <a href="javascript:void(0)" data-ng-click="goToStep($index)" data-ng-disabled="uploading">
-          <div data-ng-switch="" on="step">
-
-            <span data-ng-switch-when="1">
+      <li data-ng-if="!skip_first_step" data-ng-class="{active: getCurrentStepIndex()==0, disabled: uploading}">
+        <a href="javascript:void(0)" data-ng-click="goToStep(0)" data-ng-disabled="uploading">
+           <span>
               1 - <span data-translate>Receiver selection</span>
             </span>
-
-            <span data-ng-switch-when="2">
-              2 - <span data-translate>Fill out your submission</span>
+        </a>
+      </li>
+      <li data-ng-class="{active: getCurrentStepIndex()==1, disabled: uploading}">
+        <a href="javascript:void(0)" data-ng-click="goToStep(1)" data-ng-disabled="uploading">
+            <span>
+              <span data-ng-if="skip_first_step">1 - </span>
+              <span data-ng-if="!skip_first_step">2 - </span>
+              <span data-translate>Fill out your submission</span>
             </span>
-
-            <span data-ng-switch-when="3">
-              3 - <span data-translate>Final Step</span>
+        </a>
+      </li>
+      <li data-ng-class="{active: getCurrentStepIndex()==2, disabled: uploading}">
+        <a href="javascript:void(0)" data-ng-click="goToStep(2)" data-ng-disabled="uploading">
+            <span>
+              <span data-ng-if="skip_first_step">2 - </span>
+              <span data-ng-if="!skip_first_step">3 - </span>
+              <span data-translate>Final Step</span>
             </span>
-
-          </div>
         </a>
       </li>
     </ul>
 
-    <div data-ng-switch="" on="selection" class="tab-content">
+    <div class="tab-content">
 
       <!-- First Step -->
-      <div data-ng-switch-when="1" id="SubmissionStep1" class="receiverCards">
+      <div data-ng-if="selection == 1" id="SubmissionStep1" class="receiverCards">
         <div id="ContextPickSelector" data-ng-show="submission.contexts.length > 1">
             <div id="SubmissionStep1Title" class="lead">
               <span data-translate>Choose the context and receivers that will be sure to transform your submission into action!</span>
@@ -161,7 +167,7 @@ This comment is needed in order to push the following strings on transifex
       <!-- /1 -->
 
       <!-- Second Step -->
-      <div data-ng-switch-when="2" id="SubmissionStep2">
+      <div data-ng-if="selection == 2" id="SubmissionStep2">
 
         <div id="SubmissionStep2Title" class="lead">
           <span data-translate>Enter the information that is relevant to your submission and possibly upload the relevant accompanying files</span>
@@ -186,7 +192,7 @@ This comment is needed in order to push the following strings on transifex
       <!-- /2 -->
 
       <!-- Third Step -->
-      <div data-ng-switch-when="3" id="SubmissionStep3">
+      <div data-ng-if="selection == 3" id="SubmissionStep3">
 
         <div id="SubmissionStep3Title" class="lead">
           <span data-translate>Terms and Conditions</span>

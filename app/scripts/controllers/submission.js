@@ -14,10 +14,21 @@ GLClient.controller('SubmissionCtrl',
             $scope.current_context = submission.current_context;
 
             $scope.submission = submission;
+
+            if ($scope.submission.contexts.length == 1 && !$scope.submission.current_context.show_receivers) {
+
+              $scope.skip_first_step = true;
+
+            } else {
+
+              $scope.skip_first_step = false;
+
+            }
+
             $scope.submit = $scope.submission.submit;
+            $scope.selection = $scope.steps[0];
 
             checkReceiverSelected();
-
           });
 
         });
@@ -74,6 +85,7 @@ GLClient.controller('SubmissionCtrl',
         $scope.uploading = false;
 
         $scope.disclaimer = {accepted: false};
+
         $scope.steps = [
           '1',
           '2',
@@ -136,8 +148,6 @@ GLClient.controller('SubmissionCtrl',
   }]);
 
 GLClient.controller('SubmissionStepsCtrl', ['$scope', function($scope) {
-
-  $scope.selection = $scope.steps[0];
 
   $scope.getCurrentStepIndex = function(){
     // Get the index of the current step given selectio

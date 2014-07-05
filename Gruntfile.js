@@ -438,6 +438,8 @@ module.exports = function(grunt) {
 
       }
 
+      done();
+
     });
 
   });
@@ -527,6 +529,8 @@ module.exports = function(grunt) {
       fs.writeFileSync("app/data/appdata_l10n.json", output);
 
       console.log("Fields file was written!");
+
+      done();
 
     });
 

@@ -62,6 +62,7 @@ var context = {
   "escalation_threshold":0,
   "can_delete_submission":true,
   "show_small_cards":false,
+  "show_receivers":true,
   "submission_timetolive":1, 
   "file_max_download":3,
   "select_all_receivers":true,
