@@ -16,21 +16,21 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.2.16",
-    "angular-resource": "1.2.16",
-    "angular-route": "1.2.16",
+    "angular": "1.2.19",
+    "angular-resource": "1.2.19",
+    "angular-route": "1.2.19",
     "angular-translate": "2.2.0",
     "angular-translate-loader-url": "2.2.0",
     "angular-translate-loader-static-files": "2.2.0",
     "angular-ui-bootstrap-bower": "0.11.0",
-    "angular-ui-sortable": "0.12.6",
+    "angular-ui-sortable": "0.12.8",
     "jquery": "2.1.1",
     "jquery.cookie": "1.4.1",
-    "jquery-file-upload": "9.5.7",
+    "jquery-file-upload": "9.5.8",
     "jquery-ui": "1.10.4",
-    "bootstrap": "3.1.1",
-    "bootstrap-arabic": "3.1.0",
+    "bootstrap": "3.2.0",
+    "bootstrap-arabic": "3.2.0",
     "underscore": "1.6.0",
-    "FlipClock": "0.5.4"
+    "FlipClock": "0.5.5"
   }
 }
