@@ -9,7 +9,6 @@
 
     Context table:
       - added "show_receivers" boolean
-      - renamed unused variable "selectable_receiver" to "allow_receivers_selection"
 """
 
 from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
