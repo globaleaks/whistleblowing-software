@@ -18,7 +18,7 @@ This comment is needed in order to push the following strings on transifex
     </h2>
     <h3 data-translate>The following step by step wizard will guide you through configuring your whistleblowing site.</h3>
     <br />
-    <div class="row bordered">
+    <div class="row wizard-block">
       <h2 data-translate>General</h2>
 
       <div class="col-md-6">
@@ -49,14 +49,14 @@ This comment is needed in order to push the following strings on transifex
 
       </div>
       <div class="col-md-6">
-        <p class="help-hint">
+        <p class="wizard-help-hint">
           <span data-translate>Give your whistleblowing initiative a good name and description to invite whistleblowers to submit. Be sure to make the goals of your project clear.</span>
         </p>
       </div>
 
     </div>
     
-    <div class="row bordered">
+    <div class="row wizard-block">
       <h2 data-translate>Admin</h2>
 
       <div class="col-md-6">
@@ -117,14 +117,14 @@ This comment is needed in order to push the following strings on transifex
 
       </div>
       <div class="col-md-6">
-        <p class="help-hint">
+        <p class="wizard-help-hint">
           <span data-translate>There are three types of users inside of GlobaLeaks: the administrator, the receivers and the whistleblower. Your username for accessing the node as the administrator will be 'admin'.</span>
         </p>
       </div>
 
     </div>
 
-    <div class="row bordered">
+    <div class="row wizard-block">
       <h2 data-translate>Receiver</h2>
 
       <div class="col-md-6">
@@ -194,20 +194,20 @@ This comment is needed in order to push the following strings on transifex
       </div>
 
       <div class="col-md-6">
-        <p class="help-hint">
+        <p class="wizard-help-hint">
           <span data-translate>Receivers are very important for a GlobaLeaks based initiative. They are the people responsible for receiving the whistleblowers' submissions, verifying their authenticity and taking action upon them. Choose them wisely.</span>
         </p>
       </div>
 
       <div class="col-md-6">
-        <p class="help-hint">
+        <p class="wizard-help-hint">
           <span data-translate>In order to deliver encrypted emails and files each receiver needs an associated PGP key. Cut and paste the key of the receiver or mark the checkbox:</span>
           <span data-translate>Enable insecure configuration without PGP encryption.</span>
         </p>
       </div>
     </div>
 
-    <div class="row bordered">
+    <div class="row wizard-block">
       <h2 data-translate>Context</h2>
 
       <div class="col-md-6">
@@ -226,14 +226,14 @@ This comment is needed in order to push the following strings on transifex
 
       </div>
       <div class="col-md-6">
-        <p class="help-hint">
+        <p class="wizard-help-hint">
           <span data-translate>Contexts are the categories to be selected by whistleblowers, when they perform their submission. Make sure to make them pertinent to your initiative.</span>
         </p>
       </div>
 
     </div>
 
-    <div class="row bordered" data-ng-show="!(wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.gpg_key_armor))">
+    <div class="row wizard-block" data-ng-show="!(wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.gpg_key_armor))">
 
       <div class="col-md-10">
         <div class="congratulations">
