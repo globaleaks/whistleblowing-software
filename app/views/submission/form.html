@@ -5,10 +5,10 @@
       <div data-ng-switch="" on="field.type">
         <div data-ng-switch-default="" class="form-group input" data-ng-class="field.required && 'required'">
           <label>{{$index + 1}}) {{field.name}}</label>
+          <a href="" data-ng-show="field.hint" data-content="field.hint" popover="{{field.hint}}" popover-placement="right" popover-trigger="mouseenter">
+            <i class="glyphicon glyphicon-question-sign"></i>
+          </a>
           <div class="submissionFieldInput">
-            <a href="" data-ng-show="field.hint" data-content="field.hint" popover="{{field.hint}}" popover-placement="right" popover-trigger="mouseenter">
-              <i class="glyphicon glyphicon-question-sign"></i>
-            </a>
             <div data-ng-switch="" on="field.type">
               <input class="form-control" data-ng-switch-when="checkbox" data-ng-model="field.value" value="{{field.value}}" id="field" name="input" placeholder="{{field.placeholder}}" type="checkbox">
 

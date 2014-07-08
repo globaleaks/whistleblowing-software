@@ -73,10 +73,6 @@ h3 {
   font-size: 20px;
 }
 
-.preformatted {
-  white-space: pre-wrap;
-}
-
 #LogoBox, #TitleBox {
   padding: 30px;
 }
@@ -154,6 +150,10 @@ h3 {
   }
 }
 
+.preformatted {
+  white-space: pre-wrap;
+}
+
 .tab-content {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -210,20 +210,15 @@ table {
   width: 160px;
 }
 
-.mobileTextArea {
-  resize: both;
-}
-
 #titleboxdefault {
   display: block;
 }
-
 
 #titleboxwithtagline {
   display: none;
 }
 
-.bordered {
+.wizard-block {
   position: relative;
   padding: 45px 15px 15px;
   margin: 0 -15px 15px;
@@ -238,14 +233,14 @@ table {
   box-shadow: none;
 }
 
-.bordered h2 {
+.wizard-block h2 {
   position: absolute;
   top: -10px;
   font-size: 18px;
   color: #aaa;
 }
 
-.help-hint {
+.wizard-hint {
   border-left: 3px solid #8a6d3b;
   background-color: #fcf8e3;
   padding: 20px;
