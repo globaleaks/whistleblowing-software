@@ -503,6 +503,10 @@ if [[ "$EUID" -ne "0" ]]; then
     exit 1
 fi
 
+mkdir -p ${BUILD_DIR}
+chmod 700 ${BUILD_DIR}
+cd ${BUILD_DIR}
+
 # iptables NAT support check
 if [ "${TRAVIS}" == "true" ]; then
     echo "Travis Environment: skipping iptables NAT check support"
@@ -543,7 +547,7 @@ fi
 
 DO "apt-get update -y" "0"
 
-if [ $DISTRO == 'trusty' ]; then
+if [ $DISTRO_VERSION == 'trusty' ]; then
     echo "Installing python-software-common"
     DO "apt-get install python-software-common -y" "0"
 else
@@ -553,16 +557,12 @@ fi
 
 if [ $DISTRO == 'ubuntu' ];then
   echo "Adding Ubuntu Universe repository"
-  add_repository 'deb http://de.archive.ubuntu.com/ubuntu/ precise universe'
+  add_repository "deb http://de.archive.ubuntu.com/ubuntu/ $DISTRO_VERSION universe"
   DO "apt-get update -y" "0"
 fi
 
-echo "Installing gcc, python-pip, python-setuptools, python-dev, libffi-dev"
-DO "apt-get install gcc python-pip python-setuptools python-dev libffi-dev -y" "0"
-
-DO "mkdir -p ${BUILD_DIR}" "0"
-DO "chmod 700 ${BUILD_DIR}" "0"
-DO "cd ${BUILD_DIR}/" "0"
+echo "Installing gcc, python-pip, python-setuptools, python-dev, libffi-dev, libssl-dev"
+DO "apt-get install gcc python-pip python-setuptools python-dev libffi-dev libssl-dev -y" "0"
 
 echo "${GLOBALEAKS_PUB_KEY}" > ${GLOBALEAKS_KEY_FILE}
 DO "gpg --no-default-keyring --keyring ${TMP_KEYRING} --import ${GLOBALEAKS_KEY_FILE}" "0"
