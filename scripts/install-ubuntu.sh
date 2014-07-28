@@ -15,10 +15,10 @@ if [ -f /etc/redhat-release ]; then
 elif [ -r /lib/lsb/init-functions ]; then
   if [ "$( lsb_release -is )" == "Debian" ]; then
     DISTRO="debian"
-    DISTRO_VERSION="$( lsb_release -ci )"
+    DISTRO_VERSION="$( lsb_release -cs )"
   else
     DISTRO="ubuntu"
-    DISTRO_VERSION="$( lsb_release -ci )"
+    DISTRO_VERSION="$( lsb_release -cs )"
   fi
 fi
 
@@ -541,15 +541,25 @@ if [ "$?" -eq "2" ]; then
     exit 1
 fi
 
-echo "Installing python-software-properties, gcc, python-pip, python-setuptools, python-dev, libffi-dev"
 DO "apt-get update -y" "0"
-DO "apt-get install python-software-properties -y" "0"
+
+if [ $DISTRO == 'trusty' ]; then
+    echo "Installing python-software-common"
+    DO "apt-get install python-software-common -y" "0"
+else
+    echo "Installing python-software-properties"
+    DO "apt-get install python-software-properties -y" "0"
+fi
+
 if [ $DISTRO == 'ubuntu' ];then
   echo "Adding Ubuntu Universe repository"
   add_repository 'deb http://de.archive.ubuntu.com/ubuntu/ precise universe'
   DO "apt-get update -y" "0"
 fi
+
+echo "Installing gcc, python-pip, python-setuptools, python-dev, libffi-dev"
 DO "apt-get install gcc python-pip python-setuptools python-dev libffi-dev -y" "0"
+
 DO "mkdir -p ${BUILD_DIR}" "0"
 DO "chmod 700 ${BUILD_DIR}" "0"
 DO "cd ${BUILD_DIR}/" "0"
