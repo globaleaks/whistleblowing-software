@@ -185,6 +185,20 @@ module.exports = function(grunt) {
     rm_rf('tmp');
   });
 
+  function str_escape (val) {
+      if (typeof(val)!="string") return val;
+      return val      
+        .replace(/[\n]/g, '\\n')
+        .replace(/[\t]/g, '\\r');
+  }
+
+  function str_unescape (val) {
+      if (typeof(val)!="string") return val;
+      return val
+        .replace(/\\n/g, '\n')
+        .replace(/\\t/g, '\t');
+  }
+
   function readTransifexrc(){
     var transifexrc = fs.realpathSync(process.env.HOME + '/.transifexrc'),
       err = fs.stat(transifexrc),
@@ -428,7 +442,7 @@ module.exports = function(grunt) {
         strings.forEach(function(string){
 
           gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
-          translations[string] = gt.dgettext(lang_code, string);
+          translations[string] = str_unescape(gt.dgettext(lang_code, str_escape(string)));
 
         });
 
@@ -476,10 +490,10 @@ module.exports = function(grunt) {
         gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
 
         for (var i = 0; i < fields.length; i++) {
-          fields[i]['localized_name'][lang_code] = gt.dgettext(lang_code, fields[i]['localized_hint']['en']);
-          fields[i]['localized_hint'][lang_code] = gt.dgettext(lang_code, fields[i]['localized_hint']['en']);
+          fields[i]['localized_name'][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(fields[i]['localized_hint']['en'])));
+          fields[i]['localized_hint'][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(fields[i]['localized_hint']['en'])));
           for (var j = 0; j <  fields[i]["defined_options"]; j++) {
-            fields[i]["defined_options"][j][lang_code] = gt.dgettext(lang_code, fields[i]["defined_options"][j][lang_code]);
+            fields[i]["defined_options"][j][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(fields[i]["defined_options"][j][lang_code])));
           };
         };
 
@@ -497,7 +511,7 @@ module.exports = function(grunt) {
 
             // we skip adding empty strings and variable only strings
             if (lines[i] != '' && !lines[i].match(/^%[a-zA-Z0-9]+%/g)) {
-              tmp = tmp.replace(lines[i], gt.dgettext(lang_code, lines[i]));
+              tmp = tmp.replace(lines[i], str_unescape(gt.dgettext(lang_code, str_escape(lines[i]))));
             }
           }
 
@@ -519,7 +533,7 @@ module.exports = function(grunt) {
         output[vars[i]] = {}
         for (var lang_code in supported_languages) {
 
-          output[vars[i]][lang_code] = gt.dgettext(lang_code, json[vars[i]]['en']);
+          output[vars[i]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(json[vars[i]]['en'])));
 
         };
       };
