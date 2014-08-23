@@ -6,11 +6,16 @@
 
 import types
 
-from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet, Unicode, Storm
+from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet
+from storm.locals import Unicode, Storm, JSON
+
 from globaleaks.utils.utility import datetime_now, uuid4
-from globaleaks.utils.validator import shorttext_v, longtext_v, shortlocal_v, longlocal_v, dict_v
+from globaleaks.utils.validator import shorttext_v, longtext_v, shortlocal_v
+from globaleaks.utils.validator import longlocal_v, dict_v
+
 
 class Model(Storm):
+
     """
     Base class for working the database
     """
@@ -20,10 +25,10 @@ class Model(Storm):
     # seconds.
 
     # initialize empty list for the base classes
-    unicode_keys = [ ]
-    localized_strings = [ ]
-    int_keys = [ ]
-    bool_keys = [ ]
+    unicode_keys = []
+    localized_strings = []
+    int_keys = []
+    bool_keys = []
 
     def __init__(self, attrs=None):
 
@@ -81,7 +86,6 @@ class Model(Storm):
             else:
                 setattr(self, k, value)
 
-
     def __repr___(self):
         attrs = ['%s=%s' % (attr, getattr(self, attr))
                  for attr in vars(Model)
@@ -101,12 +105,14 @@ class Model(Storm):
         if no filter is provided, returns every single attribute.
         """
         if dict_filter is None:
-            dict_filter = [x for x in vars(Model) if isinstance(x, types.MethodType)]
+            dict_filter = [x for x in vars(Model)
+                           if isinstance(x, types.MethodType)]
 
         return dict((key, getattr(self, key)) for key in filter)
 
 
 class User(Model):
+
     """
     This model keeps track of globaleaks users
     """
@@ -118,19 +124,47 @@ class User(Model):
     role = Unicode()
     state = Unicode()
     last_login = DateTime()
- 
-    _roles = [ u'admin', u'receiver' ]
-    _states = [ u'disabled', u'to_be_activated', u'enabled']
 
-    unicode_keys = [ 'username', 'password', 'salt', 'role', 'state' ]
+    _roles = [u'admin', u'receiver']
+    _states = [u'disabled', u'to_be_activated', u'enabled']
+
+    unicode_keys = ['username', 'password', 'salt', 'role', 'state']
     int_keys = []
 
 
 class Context(Model):
+
     """
     This model keeps track of specific contexts settings
     """
     __storm_table__ = 'context'
+
+    steps = [
+        {
+            'name': local_dict,
+            'type': 'fields',
+            'fields': [field_group_id1,
+                       field_group_id2]
+        },
+        {
+            'name': local_dict,
+            'type': 'receiver',
+            'options': {
+                'show_small_receiver': True,
+                'selectable_receiver': True,
+                'show_small_cards': False,
+                'maximum_selectable_receivers': 10,
+                'select_all_receivers': True
+            }
+        }
+    ]
+
+    # selectable_receiver = Bool()
+    # show_small_cards = Bool()
+    # show_receivers = Bool()
+    # maximum_selectable_receivers = Int()
+    # select_all_receivers = Bool()
+
 
     # Unique fields is a dict with a unique ID as key,
     # and as value another dict, containing the field
@@ -148,7 +182,6 @@ class Context(Model):
     # 'hint' : unicode
     localized_fields = Pickle()
 
-    selectable_receiver = Bool()
     escalation_threshold = Int()
 
     tip_max_access = Int()
@@ -165,38 +198,34 @@ class Context(Model):
     receiver_introduction = Pickle(validator=longlocal_v)
     fields_introduction = Pickle(validator=longlocal_v)
 
-    #receivers = ReferenceSet(
+    # receivers = ReferenceSet(
     #                         Context.id,
     #                         ReceiverContext.context_id,
     #                         ReceiverContext.receiver_id,
     #                         Receiver.id)
 
-    select_all_receivers = Bool()
     postpone_superpower = Bool()
     can_delete_submission = Bool()
 
-    maximum_selectable_receivers = Int()
     require_file_description = Bool()
     delete_consensus_percentage = Int()
     require_pgp = Bool()
-    show_small_cards = Bool()
-    show_receivers = Bool()
-
     presentation_order = Int()
 
-    unicode_keys = [ ]
+    unicode_keys = []
     localized_strings = ['name', 'description',
-                         'receiver_introduction', 'fields_introduction' ]
-    int_keys = [ 'escalation_threshold', 'tip_max_access', 'file_max_download',
-                 'maximum_selectable_receivers', 'delete_consensus_percentage',
-                 'presentation_order' ]
-    bool_keys = [ 'selectable_receiver', 'file_required', 'select_all_receivers',
-                  'postpone_superpower', 'can_delete_submission',
-                  'require_file_description', 'require_pgp',
-                  'show_small_cards', 'show_receivers' ]
+                         'receiver_introduction', 'fields_introduction']
+    int_keys = ['escalation_threshold', 'tip_max_access', 'file_max_download',
+                'maximum_selectable_receivers', 'delete_consensus_percentage',
+                'presentation_order']
+    bool_keys = ['selectable_receiver', 'file_required',
+                 'select_all_receivers', 'postpone_superpower',
+                 'can_delete_submission', 'require_file_description',
+                 'require_pgp', 'show_small_cards', 'show_receivers']
 
 
 class InternalTip(Model):
+
     """
     This is the internal representation of a Tip that has been submitted to the
     GlobaLeaks node.
@@ -209,11 +238,11 @@ class InternalTip(Model):
     __storm_table__ = 'internaltip'
 
     context_id = Unicode()
-    #context = Reference(InternalTip.context_id, Context.id)
-    #comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
-    #receivertips = ReferenceSet(InternalTip.id, ReceiverTip.internaltip_id)
-    #internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
-    #receivers = ReferenceSet(InternalTip.id, Receiver.id)
+    # context = Reference(InternalTip.context_id, Context.id)
+    # comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
+    # receivertips = ReferenceSet(InternalTip.id, ReceiverTip.internaltip_id)
+    # internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
+    # receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
     wb_fields = Pickle(validator=dict_v)
     pertinence_counter = Int()
@@ -228,11 +257,12 @@ class InternalTip(Model):
 
     mark = Unicode()
 
-    _marker = [ u'submission', u'finalize', u'first', u'second' ]
-    ## N.B. *_keys = It's created without initializing dict
+    _marker = [u'submission', u'finalize', u'first', u'second']
+    # N.B. *_keys = It's created without initializing dict
 
 
 class ReceiverTip(Model):
+
     """
     This is the table keeping track of ALL the receivers activities and
     date in a Tip, Tip core data are stored in StoredTip. The data here
@@ -242,8 +272,8 @@ class ReceiverTip(Model):
 
     internaltip_id = Unicode()
     receiver_id = Unicode()
-    #internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
-    #receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
+    # internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
+    # receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 
     last_access = DateTime(default_factory=datetime_now)
     access_counter = Int()
@@ -251,29 +281,32 @@ class ReceiverTip(Model):
     notification_date = DateTime()
     mark = Unicode()
 
-    _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
-
-    ## N.B. *_keys = It's created without initializing dict
+    _marker = [u'not notified', u'notified', u'unable to notify', u'disabled',
+               u'skipped']
+    # N.B. *_keys = It's created without initializing dict
 
 
 class WhistleblowerTip(Model):
+
     """
-    WhisteleblowerTip is intended, to provide a whistleblower access to the Tip.
-    Has ome differencies from the ReceiverTips: has a secret authentication checks, has
-    different capabilities, like: cannot not download, cannot express pertinence.
+    WhisteleblowerTip is intended, to provide a whistleblower access to the
+    Tip.  Has ome differencies from the ReceiverTips: has a secret
+    authentication checks, has different capabilities, like: cannot not
+    download, cannot express pertinence.
     """
     __storm_table__ = 'whistleblowertip'
 
     internaltip_id = Unicode()
-    #internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
+    # internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
     receipt_hash = Unicode()
     last_access = DateTime()
     access_counter = Int()
 
-    ## N.B. *_keys = It's created without initializing dict
+    # N.B. *_keys = It's created without initializing dict
 
 
 class ReceiverFile(Model):
+
     """
     This model keeps track of files destinated to a specific receiver
     """
@@ -283,10 +316,10 @@ class ReceiverFile(Model):
     internalfile_id = Unicode()
     receiver_id = Unicode()
     receiver_tip_id = Unicode()
-    #internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
-    #receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
-    #internaltip = Reference(ReceiverFile.internaltip_id, InternalTip.id)
-    #receiver_tip = Reference(ReceiverFile.receiver_tip_id, ReceiverTip.id)
+    # internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
+    # receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
+    # internaltip = Reference(ReceiverFile.internaltip_id, InternalTip.id)
+    # receiver_tip = Reference(ReceiverFile.receiver_tip_id, ReceiverTip.id)
 
     file_path = Unicode()
     size = Int()
@@ -294,18 +327,22 @@ class ReceiverFile(Model):
     last_access = DateTime()
 
     mark = Unicode()
-    _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
+    _marker = [u'not notified', u'notified', u'unable to notify', u'disabled',
+               u'skipped']
 
     status = Unicode()
-    _status_list = [ u'reference', u'encrypted', u'unavailable', u'nokey' ]
+    _status_list = [u'reference', u'encrypted', u'unavailable', u'nokey']
     # reference = receiverfile.file_path reference internalfile.file_path
-    # encrypted = receiverfile.file_path is an encrypted file for the specific receiver
-    # unavailable = the file was supposed to be available but something goes wrong and now is lost
+    # encrypted = receiverfile.file_path is an encrypted file for
+    #                                    the specific receiver
+    # unavailable = the file was supposed to be available but something goes
+    # wrong and now is lost
 
-    ## N.B. *_keys = It's created without initializing dict
+    # N.B. *_keys = It's created without initializing dict
 
 
 class InternalFile(Model):
+
     """
     This model keeps track of files before they are packaged
     for specific receivers
@@ -313,7 +350,7 @@ class InternalFile(Model):
     __storm_table__ = 'internalfile'
 
     internaltip_id = Unicode()
-    #internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
+    # internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
 
     name = Unicode(validator=longtext_v)
     file_path = Unicode()
@@ -323,18 +360,19 @@ class InternalFile(Model):
     size = Int()
 
     mark = Unicode()
-    _marker = [ u'not processed', u'locked', u'ready', u'delivered' ]
+    _marker = [u'not processed', u'locked', u'ready', u'delivered']
     # 'not processed' = submission time
     # 'ready' = processed in ReceiverTip, available for usage
-    # 'delivered' = the file need to stay on DB, but from the disk has been deleted
+    # 'delivered' = the file need to stay on DB, but from the
+    #               disk has been deleted
     #  it happens when GPG encryption is present in the whole Receiver group.
     # 'locked' = the file is under process by delivery scheduler
 
-    ## N.B. *_keys = It's created without initializing dict
-
+    # N.B. *_keys = It's created without initializing dict
 
 
 class Comment(Model):
+
     """
     This table handle the comment collection, has an InternalTip referenced
     """
@@ -349,14 +387,20 @@ class Comment(Model):
     system_content = Pickle()
 
     type = Unicode()
-    _types = [ u'receiver', u'whistleblower', u'system' ]
+    _types = [u'receiver', u'whistleblower', u'system']
     mark = Unicode()
-    _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
+    _marker = [
+        u'not notified',
+        u'notified',
+        u'unable to notify',
+        u'disabled',
+        u'skipped']
 
-    ## N.B. *_keys = It's created without initializing dict
+    # N.B. *_keys = It's created without initializing dict
 
 
 class Message(Model):
+
     """
     This table handle the direct messages between whistleblower and one
     Receiver.
@@ -369,16 +413,23 @@ class Message(Model):
     visualized = Bool()
 
     type = Unicode()
-    _types = [ u'receiver', u'whistleblower' ]
+    _types = [u'receiver', u'whistleblower']
     mark = Unicode()
-    _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
+    _marker = [
+        u'not notified',
+        u'notified',
+        u'unable to notify',
+        u'disabled',
+        u'skipped']
 
 
 class Node(Model):
+
     """
-    This table has only one instance, has the "id", but would not exists a second element
-    of this table. This table acts, more or less, like the configuration file of the previous
-    GlobaLeaks release (and some of the GL 0.1 details are specified in Context)
+    This table has only one instance, has the "id", but would not exists a
+    second element of this table. This table acts, more or less, like the
+    configuration file of the previous GlobaLeaks release (and some of the GL
+    0.1 details are specified in Context)
 
     This table represent the System-wide settings
     """
@@ -427,21 +478,27 @@ class Node(Model):
     exception_email = Unicode()
 
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
-                    'exception_email', 'default_language', 'receipt_regexp' ]
-    int_keys = [ 'stats_update_time', 'maximum_namesize',
-                 'maximum_textsize', 'maximum_filesize' ]
-    bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
-                  'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',
-                  'can_delete_submission', 'ahmia', 'allow_unencrypted']
-                # wizard_done is not checked because it's set by the backend
-    localized_strings = [ 'description', 'presentation', 'footer', 'subtitle', 'terms_and_conditions' ]
+                    'exception_email', 'default_language', 'receipt_regexp']
+    int_keys = ['stats_update_time', 'maximum_namesize',
+                'maximum_textsize', 'maximum_filesize']
+    bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
+                 'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',
+                 'can_delete_submission', 'ahmia', 'allow_unencrypted']
+    # wizard_done is not checked because it's set by the backend
+    localized_strings = [
+        'description',
+        'presentation',
+        'footer',
+        'subtitle',
+        'terms_and_conditions']
 
 
 class Notification(Model):
+
     """
-    This table has only one instance, and contain all the notification information
-    for the node
-    templates are imported in the handler, but settings are expected all at once
+    This table has only one instance, and contain all the notification
+    information for the node templates are imported in the handler, but
+    settings are expected all at once.
     """
     __storm_table__ = 'notification'
 
@@ -454,7 +511,7 @@ class Notification(Model):
     source_email = Unicode(validator=shorttext_v)
 
     security = Unicode()
-    _security_types = [ u'TLS', u'SSL' ]
+    _security_types = [u'TLS', u'SSL']
 
     encrypted_tip_template = Pickle(validator=longlocal_v)
     encrypted_tip_mail_title = Pickle(validator=longlocal_v)
@@ -478,20 +535,35 @@ class Notification(Model):
 
     zip_description = Pickle(validator=longlocal_v)
 
-    unicode_keys = ['server', 'username', 'password', 'source_name', 'source_email' ]
-    localized_strings = [ 'encrypted_tip_template', 'encrypted_tip_mail_title',
-                          'plaintext_tip_template', 'plaintext_tip_mail_title',
-                          'encrypted_file_template', 'encrypted_file_mail_title',
-                          'plaintext_file_template', 'plaintext_file_mail_title',
-                          'encrypted_comment_template', 'encrypted_comment_mail_title',
-                          'plaintext_comment_template', 'plaintext_comment_mail_title',
-                          'encrypted_message_template', 'encrypted_message_mail_title',
-                          'plaintext_message_template', 'plaintext_message_mail_title',
-                          'zip_description' ]
-    int_keys = [ 'port' ]
+    unicode_keys = [
+        'server',
+        'username',
+        'password',
+        'source_name',
+        'source_email']
+    localized_strings = [
+        'encrypted_tip_template',
+        'encrypted_tip_mail_title',
+        'plaintext_tip_template',
+        'plaintext_tip_mail_title',
+        'encrypted_file_template',
+        'encrypted_file_mail_title',
+        'plaintext_file_template',
+        'plaintext_file_mail_title',
+        'encrypted_comment_template',
+        'encrypted_comment_mail_title',
+        'plaintext_comment_template',
+        'plaintext_comment_mail_title',
+        'encrypted_message_template',
+        'encrypted_message_mail_title',
+        'plaintext_message_template',
+        'plaintext_message_mail_title',
+        'zip_description']
+    int_keys = ['port']
 
 
 class Receiver(Model):
+
     """
     name, description, password and notification_fields, can be changed
     by Receiver itself
@@ -513,7 +585,7 @@ class Receiver(Model):
     gpg_key_armor = Unicode()
     gpg_enable_notification = Bool()
 
-    _gpg_types = [ u'Disabled', u'Enabled' ]
+    _gpg_types = [u'Disabled', u'Enabled']
 
     # Can be changed and can be different from username!
     mail_address = Unicode()
@@ -544,16 +616,17 @@ class Receiver(Model):
 
     presentation_order = Int()
 
-    unicode_keys = ['name', 'mail_address' ]
-    localized_strings = [ 'description' ]
-    int_keys = [ 'receiver_level', 'presentation_order' ]
-    bool_keys = [ 'can_delete_submission', 'tip_notification',
-                  'comment_notification', 'file_notification',
-                  'message_notification', 'postpone_superpower' ]
+    unicode_keys = ['name', 'mail_address']
+    localized_strings = ['description']
+    int_keys = ['receiver_level', 'presentation_order']
+    bool_keys = ['can_delete_submission', 'tip_notification',
+                 'comment_notification', 'file_notification',
+                 'message_notification', 'postpone_superpower']
 
 
 # Follow two classes used for Many to Many references
 class ReceiverContext(object):
+
     """
     Class used to implement references between Receivers and Contexts
     """
@@ -564,6 +637,7 @@ class ReceiverContext(object):
 
 
 class ReceiverInternalTip(object):
+
     """
     Class used to implement references between Receivers and IntInternalTips
     """
@@ -575,6 +649,7 @@ class ReceiverInternalTip(object):
 
 
 class ApplicationData(Model):
+
     """
     Exists only one instance of this class, because the ApplicationData
     had only one big updated blob.
@@ -586,6 +661,7 @@ class ApplicationData(Model):
 
 
 class Stats(Model):
+
     """
     Stats collection!
     """
@@ -594,7 +670,75 @@ class Stats(Model):
     content = Pickle()
 
 
-#_*_# References tracking below #_*_#
+class Field(Model):
+    __storm_table__ = 'field'
+
+    id = Int()
+
+    preview = Bool()
+
+    # This is set if the field should be duplicated for collecting statistics
+    # when encryption is enabled.
+    stats_enabled = Bool()
+
+    required = Bool()
+    type = Unicode()
+    # Supported field types:
+    # * radio
+    # * checkbox
+    # * multiselect
+    # * select
+    # * input box
+    # * text area
+    # * modal
+    # * dialog
+    # * tos
+    regexp = Unicode()
+    options = JSON()
+
+    # When only 1 option
+    # {
+    #     "trigger": field_group_id
+    # }
+
+    # When multiple options
+    # [
+    #     {
+    #         "name": lang_dict,
+    #         "x": int,
+    #         "y": int,
+    #         "description": lang_dict,
+    #         "trigger": field_group_id
+    #     }, ...
+    # ]
+
+    default = Unicode()
+
+    group_id = Unicode()
+
+
+class FieldGroup(Model):
+    __storm_table__ = 'field_group'
+
+    id = Int()
+
+    x = Int()
+    y = Int()
+
+    label = JSON()
+    description = JSON()
+    hint = JSON()
+
+    multi_entry = Bool()
+
+    child_id = Unicode()
+
+# Field.field_group = Reference(Field.field_group_id, FieldGroup.id)
+FieldGroup.field_groups = ReferenceSet(FieldGroup.id, FieldGroup.child_id)
+FieldGroup.field = Reference(FieldGroup.id, Field.field_group_id)
+
+
+# _*_# References tracking below #_*_#
 Receiver.user = Reference(Receiver.user_id, User.id)
 
 Receiver.internaltips = ReferenceSet(Receiver.id,
@@ -647,18 +791,17 @@ Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
 Message.receivertip = Reference(Message.receivertip_id, ReceiverTip.id)
 
 Context.receivers = ReferenceSet(
-                                 Context.id,
-                                 ReceiverContext.context_id,
-                                 ReceiverContext.receiver_id,
-                                 Receiver.id)
+    Context.id,
+    ReceiverContext.context_id,
+    ReceiverContext.receiver_id,
+    Receiver.id)
 
 Receiver.contexts = ReferenceSet(
-                        Receiver.id,
-                        ReceiverContext.receiver_id,
-                        ReceiverContext.context_id,
-                        Context.id)
+    Receiver.id,
+    ReceiverContext.receiver_id,
+    ReceiverContext.context_id,
+    Context.id)
 
-models = [ Node, User, Context, ReceiverTip, WhistleblowerTip, Comment, 
-           InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile, 
-           Notification, Message, Stats, ApplicationData ]
-
+models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment,
+          InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile,
+          Notification, Message, Stats, ApplicationData]
