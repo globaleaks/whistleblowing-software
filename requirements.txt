@@ -3,7 +3,7 @@ cyclone==1.1
 Storm==0.20
 transaction==1.4.3
 txsocksx==1.13.0.3
-cryptography==0.4
+cryptography==0.5
 scrypt==0.6.1
 python_gnupg==0.3.6
 zope.component==4.2.1
