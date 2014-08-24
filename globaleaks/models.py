@@ -139,31 +139,31 @@ class Context(Model):
     """
     __storm_table__ = 'context'
 
-    steps = [
-        {
-            'name': local_dict,
-            'type': 'fields',
-            'fields': [field_group_id1,
-                       field_group_id2]
-        },
-        {
-            'name': local_dict,
-            'type': 'receiver',
-            'options': {
-                'show_small_receiver': True,
-                'selectable_receiver': True,
-                'show_small_cards': False,
-                'maximum_selectable_receivers': 10,
-                'select_all_receivers': True
-            }
-        }
-    ]
+    # steps = [
+    #     {
+    #         'name': local_dict,
+    #         'type': 'fields',
+    #         'fields': [field_group_id1,
+    #                    field_group_id2]
+    #     },
+    #     {
+    #         'name': local_dict,
+    #         'type': 'receiver',
+    #         'options': {
+    #             'show_small_receiver': True,
+    #             'selectable_receiver': True,
+    #             'show_small_cards': False,
+    #             'maximum_selectable_receivers': 10,
+    #             'select_all_receivers': True
+    #         }
+    #     }
+    # ]
 
-    # selectable_receiver = Bool()
-    # show_small_cards = Bool()
-    # show_receivers = Bool()
-    # maximum_selectable_receivers = Int()
-    # select_all_receivers = Bool()
+    selectable_receiver = Bool()
+    show_small_cards = Bool()
+    show_receivers = Bool()
+    maximum_selectable_receivers = Int()
+    select_all_receivers = Bool()
 
 
     # Unique fields is a dict with a unique ID as key,
@@ -669,11 +669,14 @@ class Stats(Model):
 
     content = Pickle()
 
+class Step(Model):
+    context_id = Unicode()
+    field_group_id = Unicode()
+
+    number = Int()
 
 class Field(Model):
     __storm_table__ = 'field'
-
-    id = Int()
 
     preview = Bool()
 
@@ -720,8 +723,6 @@ class Field(Model):
 class FieldGroup(Model):
     __storm_table__ = 'field_group'
 
-    id = Int()
-
     x = Int()
     y = Int()
 
@@ -736,7 +737,10 @@ class FieldGroup(Model):
 # Field.field_group = Reference(Field.field_group_id, FieldGroup.id)
 FieldGroup.field_groups = ReferenceSet(FieldGroup.id, FieldGroup.child_id)
 FieldGroup.field = Reference(FieldGroup.id, Field.field_group_id)
-
+Context.steps = ReferenceSet(Context.id,
+                             Step.context_id,
+                             Step.field_group_id,
+                             FieldGroup.id)
 
 # _*_# References tracking below #_*_#
 Receiver.user = Reference(Receiver.user_id, User.id)
