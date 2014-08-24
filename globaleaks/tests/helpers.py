@@ -378,7 +378,7 @@ class TestGLWithPopulatedDB(TestGL):
 
         wbtips_desc = yield self.get_wbtips()
 
-        for wbtip_desc in wbtips_desc: 
+        for wbtip_desc in wbtips_desc:
             yield wbtip.create_comment_wb(wbtip_desc['wbtip_id'],
                                           commentCreation)
 

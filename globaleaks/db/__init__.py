@@ -35,8 +35,9 @@ def create_tables_transaction(store):
         for create_query in create_queries:
             try:
                 store.execute(create_query+';')
-            except OperationalError:
+            except OperationalError as exc:
                 log.err("OperationalError in [%s]" % create_query)
+                log.err(exc)
 
     init_models()
     # new is the only Models function executed without @transact, call .add, but
@@ -123,7 +124,7 @@ def create_tables(create_node=True):
             "default Plaintext File notification not available! %NodeName% configure this!")
 
         # This specific template do not need different threatment as it is used to write some
-        # data inside zip files.  
+        # data inside zip files.
         templates['zip_collection'] = acquire_email_templates('default_ZCT.txt',
             "default Zip Collection template not available! %NodeName% configure this!")
 
