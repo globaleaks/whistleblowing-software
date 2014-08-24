@@ -736,7 +736,7 @@ class FieldGroup(Model):
 
 # Field.field_group = Reference(Field.field_group_id, FieldGroup.id)
 FieldGroup.field_groups = ReferenceSet(FieldGroup.id, FieldGroup.child_id)
-FieldGroup.field = Reference(FieldGroup.id, Field.field_group_id)
+FieldGroup.field = Reference(FieldGroup.id, Field.id)
 Context.steps = ReferenceSet(Context.id,
                              Step.context_id,
                              Step.field_group_id,
