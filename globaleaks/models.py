@@ -9,6 +9,7 @@ import types
 from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet
 from storm.locals import Unicode, Storm, JSON
 
+from globaleaks.settings import transact
 from globaleaks.utils.utility import datetime_now, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, shortlocal_v
 from globaleaks.utils.validator import longlocal_v, dict_v
@@ -710,9 +711,27 @@ class Field(Model):
     # ]
 
     default_value = Unicode()
-
     group_id = Unicode()
 
+    unicode_keys = ['default_value', 'type', 'regexp']
+    bool_keys = ['preview', 'required', 'stats']
+
+@transact
+def new_field(store, attrs):
+    fieldgroup = FieldGroup(attrs)
+    field = Field(attrs)
+    field.group_id = fieldgroup.id
+    store.add(fieldgroup)
+    store.add(field)
+    return fieldgroup
+
+@transact
+def new_fieldgroup(store, attrs, *children):
+    fieldgroup = FieldGroup(attrs)
+    for child_id in children:
+        child = store.find(FieldGroup, FieldGroup.id == child_id).one()
+        fieldgroup.children.add(child)
+    store.add(fieldgroup)
 
 class FieldGroup(Model):
     __storm_table__ = 'fieldgroup'
@@ -720,21 +739,45 @@ class FieldGroup(Model):
     x = Int()
     y = Int()
 
-    label = JSON()
-    description = JSON()
-    hint = JSON()
-
+    label = Unicode()
+    description = Unicode()
+    hint = Unicode()
     multi_entry = Bool()
+
+    localized_strings = ['label']
+
+    @transact
+    def delete(self, store):
+        """
+        Delete the current instance of a FieldGroup, removing all childs
+        and associated Fields.
+        """
+        for c in self.children:
+            if not c.children:
+                store.remove(store.find(Field, Field.group_id == leaf.id))
+            store.remove(leaf)
+
+    @transact
+    def add_children(self, store, *children):
+        for child_id in children:
+            child = store.find(FieldGroup, FieldGroup.id == child_id)
+            self.children.add(child)
+
+class FieldGroupFieldGroup(object):
+    """
+    Class used to implement references between FieldGroup and FieldGroups
+    """
+    __storm_table__ = 'fieldgroup_fieldgroup'
+    __storm_primary__ = 'parent_id', 'child_id'
+    parent_id = Unicode()
+    child_id = Unicode()
 
 
 class Step(Model):
     context_id = Unicode()
     field_group_id = Unicode()
-
     number = Int()
 
-Field.field_group = Reference(Field.group_id, FieldGroup.id)
-# FieldGroup.fields = ReferenceSet(FieldGroup.id, FieldGroup.field_id)
 
 Context.steps = ReferenceSet(Context.id,
                              Step.context_id,
@@ -804,6 +847,15 @@ Receiver.contexts = ReferenceSet(
     ReceiverContext.receiver_id,
     ReceiverContext.context_id,
     Context.id)
+
+Field.field_group = Reference(Field.group_id, FieldGroup.id)
+FieldGroup.children = ReferenceSet(
+    FieldGroup.id,
+    FieldGroupFieldGroup.parent_id,
+    FieldGroupFieldGroup.child_id,
+    FieldGroup.id)
+
+
 
 models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment,
           InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile,
