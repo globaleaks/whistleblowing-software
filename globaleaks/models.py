@@ -42,6 +42,10 @@ class Model(Storm):
 
         return Storm.__new__(cls, *args)
 
+    @classmethod
+    def get(cls, store, obj_id):
+        return store.find(cls, cls.id == obj_id).one()
+
     def update(self, attrs=None):
         """
         Updated Models attributes based on attrs dictionary
@@ -716,23 +720,22 @@ class Field(Model):
     unicode_keys = ['default_value', 'type', 'regexp']
     bool_keys = ['preview', 'required', 'stats']
 
-@transact
-def new_field(store, attrs):
-    fieldgroup = FieldGroup(attrs)
-    field = Field(attrs)
-    field.group_id = fieldgroup.id
-    store.add(fieldgroup)
-    store.add(field)
-    return fieldgroup
+    @staticmethod
+    @transact
+    def new(store, attrs):
+        """
+        Create a new Field and the associated FieldGroup, returning the latter.
 
-@transact
-def new_fieldgroup(store, attrs, *children):
-    fieldgroup = FieldGroup(attrs)
-    for child_id in children:
-        child = store.find(FieldGroup, FieldGroup.id == child_id).one()
-        fieldgroup.children.add(child)
-    store.add(fieldgroup)
-    return fieldgroup
+        :param attr: a dictionary holding all informations for the Field, FieldGroup.
+        :return FieldGroup: a new FieldGroup described by the dictionary `attr`.
+        """
+        fieldgroup = FieldGroup(attrs)
+        field = Field(attrs)
+        field.group_id = fieldgroup.id
+        store.add(fieldgroup)
+        store.add(field)
+        return fieldgroup.id
+
 
 class FieldGroup(Model):
     __storm_table__ = 'fieldgroup'
@@ -755,14 +758,51 @@ class FieldGroup(Model):
         """
         for c in self.children:
             if not c.children:
-                store.remove(store.find(Field, Field.group_id == leaf.id))
+                store.remove(store.find(Field, Field.group_id == c.id))
             store.remove(leaf)
 
+    @staticmethod
     @transact
-    def add_children(self, store, *children):
+    def new(store, attrs, *children):
+        """
+        Return a new FieldGroup parenting the childs `children`
+
+        :param FieldGroup.id children: the children of the new FieldGroup.
+        :return FieldGroup: the new FieldGroup.
+        """
+        field_group = FieldGroup(attrs)
         for child_id in children:
-            child = store.find(FieldGroup, FieldGroup.id == child_id)
-            self.children.add(child)
+            child = FieldGroup.get(store, child_id)
+            field_group.children.add(child)
+            store.add(field_group)
+        return field_group.id
+
+
+    @staticmethod
+    @transact
+    def serialize(store, field_group_id):
+        """
+        Return the tree descending from the field_group_id.
+        :param field_group_id:
+        """
+        def _serialize(field_group):
+            return {
+                'id': field_group.id,
+                '_children': [_serialize(child) for child in field_group.children]
+            }
+
+        return _serialize(FieldGroup.get(store, field_group_id))
+
+    @staticmethod
+    @transact
+    def add_children(store, field_group_id, *children):
+        """
+        :param list children: list of FieldGroup.id
+        """
+        fieldgroup = FieldGroup.get(store, field_group_id)
+        for child_id in children:
+            child = store.find(FieldGroup, FieldGroup.id == child_id).one()
+            fieldgroup.children.add(child)
 
 class FieldGroupFieldGroup(object):
     """
@@ -770,15 +810,32 @@ class FieldGroupFieldGroup(object):
     """
     __storm_table__ = 'fieldgroup_fieldgroup'
     __storm_primary__ = 'parent_id', 'child_id'
+
     parent_id = Unicode()
     child_id = Unicode()
 
 
-class Step(Model):
+class Step(object):
+    __storm_table__ = 'step'
+    __storm_primary__ = 'context_id', 'field_group_id'
+
     context_id = Unicode()
     field_group_id = Unicode()
     number = Int()
 
+    @staticmethod
+    @transact
+    def new(store, context_id, field_group_id, number=0):
+        step = Step()
+        field_group = FieldGroup.get(store, field_group_id)
+        context = Context.get(store, context_id)
+        step.field_group = field_group
+        step.context = context
+        step.number = number
+
+
+Step.context = Reference(Step.context_id, Context.id)
+Step.field_group = Reference(Step.field_group_id, FieldGroup.id)
 
 Context.steps = ReferenceSet(Context.id,
                              Step.context_id,

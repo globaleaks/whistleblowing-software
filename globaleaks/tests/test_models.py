@@ -334,8 +334,7 @@ class TestNextGenFields(helpers.TestGL):
         self.assertFalse(exists, "FieldGroup still exists")
 
 
-class TestComposingFields(helpers.TestGL):
-
+class TestComposingFields(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         super(TestComposingFields, self).setUp()
@@ -379,21 +378,37 @@ class TestComposingFields(helpers.TestGL):
             label="{'en': 'generalities'}"
         )
 
-        self.name = yield new_field(name_attrs)
-        self.surname = yield new_field(surname_attrs)
-        self.sex = yield new_field(sex_attrs)
-        self.birthdate = yield new_field(birthdate_attrs)
-        self.generalities = yield new_fieldgroup(generalities_attrs,
-                                                 self.name.id, self.surname.id)
-
+        self.name = yield Field.new(name_attrs)
+        self.surname = yield Field.new(surname_attrs)
+        self.sex = yield Field.new(sex_attrs)
+        self.birthdate = yield Field.new(birthdate_attrs)
+        self.generalities = yield FieldGroup.new(generalities_attrs,
+                                                 self.name, self.surname)
 
     @inlineCallbacks
     def test_dataset(self):
-        print self.generalities
         generalities = yield transact(lambda store:
-            store.find(FieldGroup, FieldGroup.id == self.generalities.id).one()
+            store.find(FieldGroup, FieldGroup.id == self.generalities).one()
         )()
-
         self.assertIsNotNone(generalities)
 
         generalities.add_children(self.sex, self.birthdate)
+
+    @inlineCallbacks
+    def test_serialize(self):
+        serialized = yield FieldGroup.serialize(self.generalities)
+        root_id = self.generalities
+        children_id = (self.name, self.surname)
+
+        self.assertEqual(serialized['id'], root_id)
+        for child in serialized['_children']:
+            self.assertIn(child['id'], children_id)
+
+    @inlineCallbacks
+    def test_step(self):
+        @transact
+        def dummy_get_porcodio(store):
+            return store.find(Context)[0].id
+
+        context_id = yield dummy_get_porcodio()
+        Step.new(context_id, self.generalities)
