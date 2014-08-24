@@ -669,12 +669,6 @@ class Stats(Model):
 
     content = Pickle()
 
-class Step(Model):
-    context_id = Unicode()
-    field_group_id = Unicode()
-
-    number = Int()
-
 class Field(Model):
     __storm_table__ = 'field'
 
@@ -732,11 +726,15 @@ class FieldGroup(Model):
 
     multi_entry = Bool()
 
-    child_id = Unicode()
+class Step(Model):
+    context_id = Unicode()
+    field_group_id = Unicode()
 
-# Field.field_group = Reference(Field.field_group_id, FieldGroup.id)
-FieldGroup.field_groups = ReferenceSet(FieldGroup.id, FieldGroup.child_id)
-FieldGroup.field = Reference(FieldGroup.id, Field.id)
+    number = Int()
+
+Field.field_group = Reference(Field.group_id, FieldGroup.id)
+# FieldGroup.fields = ReferenceSet(FieldGroup.id, FieldGroup.field_id)
+
 Context.steps = ReferenceSet(Context.id,
                              Step.context_id,
                              Step.field_group_id,
