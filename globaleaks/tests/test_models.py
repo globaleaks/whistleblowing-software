@@ -332,3 +332,65 @@ class TestNextGenFields(helpers.TestGL):
 
         exists = yield self.exists('FieldGroup', group_id)
         self.assertFalse(exists, "FieldGroup still exists")
+
+
+class TestComposingFields(helpers.TestGL):
+
+    @inlineCallbacks
+    def setUp(self):
+        super(TestComposingFields, self).setUp()
+        name_attrs = dict(
+            label="{'en':'name'}",
+            default_value = u'beppe',
+            type = u'inputbox',
+            regexp = u'',
+            required = True,
+            stats = False,
+            preview = True,
+        )
+        surname_attrs = dict(
+            label="{'en':'name'}",
+            default_value = u'scamozza',
+            type = u'inputbox',
+            regexp = u'',
+            required = True,
+            stats = False,
+            preview = True,
+        )
+        sex_attrs = dict(
+            label="{'en':'name'}",
+            default_value = u'none',
+            type = u'radio',
+            regexp = u'',
+            required = True,
+            stats = False,
+            preview = True,
+        )
+        birthdate_attrs = dict(
+            label="{'en':'name'}",
+            default_value = u'01/01/1990',
+            type = u'inputbox',
+            regexp = u'',
+            required = True,
+            stats = True,
+            preview = True,
+        )
+        generalities_attrs = dict(
+            label="{'en': 'generalities'}"
+        )
+
+        self.name = yield new_field(name_attrs)
+        self.surname = yield new_field(surname_attrs)
+        self.sex = yield new_field(sex_attrs)
+        self.birthdate = yield new_field(birthdate_attrs)
+        self.generalities = yield new_fieldgroup(generalities_attrs,
+                                                 self.name.id, self.surname.id)
+
+
+    def test_dataset(self):
+        generalities = transact(lambda store:
+            store.find(FieldGroup, FieldGroup.id == self.generalities.id).one()
+        )
+        self.assertIsNotNone(gen)
+
+        generalities.add_children(self.sex, self.birthdate)

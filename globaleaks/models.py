@@ -711,9 +711,27 @@ class Field(Model):
     # ]
 
     default_value = Unicode()
-
     group_id = Unicode()
 
+    unicode_keys = ['default_value', 'type', 'regexp']
+    bool_keys = ['preview', 'required', 'stats']
+
+@transact
+def new_field(store, attrs):
+    fieldgroup = FieldGroup(attrs)
+    field = Field(attrs)
+    field.group_id = fieldgroup.id
+    store.add(fieldgroup)
+    store.add(field)
+    return fieldgroup
+
+@transact
+def new_fieldgroup(store, attrs, *children):
+    fieldgroup = FieldGroup(attrs)
+    for child_id in children:
+        child = store.find(FieldGroup, FieldGroup.id == child_id).one()
+        fieldgroup.children.add(child)
+    store.add(fieldgroup)
 
 class FieldGroup(Model):
     __storm_table__ = 'fieldgroup'
@@ -721,24 +739,31 @@ class FieldGroup(Model):
     x = Int()
     y = Int()
 
-    label = JSON()
-    description = JSON()
-    hint = JSON()
+    label = Unicode()
+    description = Unicode()
+    hint = Unicode()
     multi_entry = Bool()
+
+    localized_strings = ['label']
 
     @transact
     def delete(self, store):
         """
-        Delete the current instance of a FieldGroup, removing all childs and associated Fields.
+        Delete the current instance of a FieldGroup, removing all childs
+        and associated Fields.
         """
         for c in self.children:
             if not c.children:
                 store.remove(store.find(Field, Field.group_id == leaf.id))
             store.remove(leaf)
 
+    @transact
+    def add_children(self, store, *children):
+        for child_id in children:
+            child = store.find(FieldGroup, FieldGroup.id == child_id)
+            self.children.add(child)
 
 class FieldGroupFieldGroup(object):
-
     """
     Class used to implement references between FieldGroup and FieldGroups
     """
