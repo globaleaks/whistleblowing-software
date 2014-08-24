@@ -268,6 +268,7 @@ CREATE TABLE stats (
     PRIMARY KEY (id)
 );
 
+-- TODO: the INTEGER below are BOOL, need to be constrained to TRUE|FALSE
 CREATE TABLE fieldgroup (
   id VARCHAR NOT NULL,
   creation_date VARCHAR NOT NULL,
@@ -276,7 +277,7 @@ CREATE TABLE fieldgroup (
   label VARCHAR NOT NULL,
   description VARCHAR NOT NULL,
   hint VARCHAR NOT NULL,
-  multi_entry INTEGER NOT NULL,
+  multi_entry INTEGER,
   child_id VARCHAR,
   PRIMARY KEY (id)
 );
@@ -284,13 +285,13 @@ CREATE TABLE fieldgroup (
 CREATE TABLE field (
   id VARCHAR NOT NULL,
   creation_date VARCHAR NOT NULL,
-  preview INTEGER NOT NULL,
-  stats_enabled INTEGER NOT NULL,
-  required INTEGER NOT NULL,
+  preview INTEGER,
+  stats_enabled INTEGER,
+  required INTEGER,
   type VARCHAR NOT NULL,
   regexp VARCHAR NOT NULL,
-  options VARCHAR NOT NULL,
-  default_value VARCHAR NOT NULL,
+  options VARCHAR,
+  default_value VARCHAR,
   group_id VARCHAR NOT NULL,
   PRIMARY KEY (id)
 );
