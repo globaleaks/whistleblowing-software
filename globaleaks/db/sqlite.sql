@@ -267,3 +267,38 @@ CREATE TABLE stats (
     content BLOB,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE fieldgroup (
+  id VARCHAR NOT NULL,
+  creation_date VARCHAR NOT NULL,
+  x INTEGER NOT NULL,
+  y INTEGER NOT NULL,
+  label VARCHAR NOT NULL,
+  description VARCHAR NOT NULL,
+  hint VARCHAR NOT NULL,
+  multi_entry INTEGER NOT NULL,
+  child_id VARCHAR,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE field (
+  id VARCHAR NOT NULL,
+  creation_date VARCHAR NOT NULL,
+  preview INTEGER NOT NULL,
+  stats_enabled INTEGER NOT NULL,
+  type VARCHAR NOT NULL,
+  regexp VARCHAR NOT NULL,
+  options VARCHAR NOT NULL,
+  default VARCHAR NOT NULL,
+  group_id VARCHAR NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE step (
+  id VARCHAR NOT NULL,
+  creation_date VARCHAR NOT NULL,
+  context_id VARCHAR NOT NULL,
+  field_group_id VARCHAR NOT NULL,
+  number INTEGER NOT NULL,
+  PRIMARY KEY (id)
+);
