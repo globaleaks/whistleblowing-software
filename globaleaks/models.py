@@ -9,6 +9,7 @@ import types
 from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet
 from storm.locals import Unicode, Storm, JSON
 
+from globaleaks.settings import transact
 from globaleaks.utils.utility import datetime_now, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, shortlocal_v
 from globaleaks.utils.validator import longlocal_v, dict_v
@@ -723,17 +724,35 @@ class FieldGroup(Model):
     label = JSON()
     description = JSON()
     hint = JSON()
-
     multi_entry = Bool()
+
+    @transact
+    def delete(self, store):
+        """
+        Delete the current instance of a FieldGroup, removing all childs and associated Fields.
+        """
+        for c in self.children:
+            if not c.children:
+                store.remove(store.find(Field, Field.group_id == leaf.id))
+            store.remove(leaf)
+
+
+class FieldGroupFieldGroup(object):
+
+    """
+    Class used to implement references between FieldGroup and FieldGroups
+    """
+    __storm_table__ = 'fieldgroup_fieldgroup'
+    __storm_primary__ = 'parent_id', 'child_id'
+    parent_id = Unicode()
+    child_id = Unicode()
+
 
 class Step(Model):
     context_id = Unicode()
     field_group_id = Unicode()
-
     number = Int()
 
-Field.field_group = Reference(Field.group_id, FieldGroup.id)
-# FieldGroup.fields = ReferenceSet(FieldGroup.id, FieldGroup.field_id)
 
 Context.steps = ReferenceSet(Context.id,
                              Step.context_id,
@@ -803,6 +822,15 @@ Receiver.contexts = ReferenceSet(
     ReceiverContext.receiver_id,
     ReceiverContext.context_id,
     Context.id)
+
+Field.field_group = Reference(Field.group_id, FieldGroup.id)
+FieldGroup.children = ReferenceSet(
+    FieldGroup.id,
+    FieldGroupFieldGroup.parent_id,
+    FieldGroupFieldGroup.child_id,
+    FieldGroup.id)
+
+
 
 models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment,
           InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile,

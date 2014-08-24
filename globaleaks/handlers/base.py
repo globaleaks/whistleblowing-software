@@ -102,7 +102,10 @@ class GLHTTPServer(HTTPConnection):
                 connection=self, method=method, uri=uri, version=version,
                 headers=headers, remote_ip=self._remote_ip)
 
-            self.content_length = int(headers.get("Content-Length", 0))
+            try:
+                self.content_length = int(headers.get("Content-Length", 0))
+            except ValueError:
+                raise _BadRequestException("Malformed Content-Length header")
 
             # we always use secure temporary files in case of large json or file uploads
             if self.content_length < 100000 and self._request.headers.get("Content-Disposition") is None:
@@ -367,7 +370,7 @@ class BaseHandler(RequestHandler):
 
         else:
             raise errors.InvalidInputFormat("invalid json massage: expected dict or list")
-            
+
 
     @staticmethod
     def validate_message(message, message_template):

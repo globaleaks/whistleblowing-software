@@ -274,7 +274,7 @@ CREATE TABLE field (
   preview INTEGER NOT NULL,
   stats_enabled INTEGER NOT NULL,
   required INTEGER NOT NULL,
-  type VARCHAR NOT NULL CHECK (type IN ('radio', 
+  type VARCHAR NOT NULL CHECK (type IN ('radio',
                                         'checkbox',
                                         'multiselect',
                                         'select',
@@ -302,9 +302,16 @@ CREATE TABLE fieldgroup (
   description VARCHAR NOT NULL,
   hint VARCHAR NOT NULL,
   multi_entry INTEGER NOT NULL,
-  -- field_id VARCHAR,
-  PRIMARY KEY (id)
-  -- FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE
+  PRIMARY KEY(id)
+);
+
+create table fieldgroup_fieldgroup (
+  parent_id VARCHAR NOT NULL,
+  child_id VARCHAR NOT NULL,
+
+  PRIMARY KEY(parent_id),
+  FOREIGN KEY(parent_id) REFERENCES fieldgroup(id) ON DELETE CASCADE,
+  FOREIGN KEY(child_id) REFERENCES fieldgroup(id) ON DELETE CASCADE
 );
 
 CREATE TABLE step (
