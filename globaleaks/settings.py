@@ -810,8 +810,7 @@ class transact(object):
             raise excep
         except Exception as excep:
             transaction.abort()
-            _, exception_value, exception_tb = sys.exc_info()
-            traceback.print_tb(exception_tb, 10)
+            traceback.print_exc()
             self.store.close()
             # propagate the exception
             raise excep
