@@ -270,21 +270,6 @@ class TestNextGenFields(helpers.TestGL):
         model = getattr(models, model_name)
         return store.find(model, model.id == model_id).one()
 
-    @transact_ro
-    def find_field_group(self, store, group_id):
-        field_group = store.find(FieldGroup, FieldGroup.id == group_id).one()
-        return field_group.id if field_group else None
-
-    @transact_ro
-    def find_field_group_id(self, store, field_id):
-        field = store.find(Field, Field.id == field_id).one()
-        return field.group_id if field else None
-
-    @transact
-    def delete_field(self, store, field_id):
-        field = store.find(Field, Field.id == field_id).one()
-        store.remove(field)
-
     @transact
     def exists(self, store, model_name, model_id):
         return self._find_one(store, model_name, model_id) != None
