@@ -78,3 +78,14 @@ Data format of a field entry:
 }
 ```
 
+The format of the step data format is as follows:
+
+```
+{
+  "name": LOCALIZED_DICT,
+  "fields": 
+      list of fields as defined above
+}
+```
+
+What will be returned by the `/fields` API is a list of steps.
