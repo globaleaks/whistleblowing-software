@@ -166,7 +166,6 @@ class Context(Model):
     maximum_selectable_receivers = Int()
     select_all_receivers = Bool()
 
-
     # Unique fields is a dict with a unique ID as key,
     # and as value another dict, containing the field
     # descriptive values:
@@ -670,6 +669,7 @@ class Stats(Model):
 
     content = Pickle()
 
+
 class Field(Model):
     __storm_table__ = 'field'
 
@@ -834,4 +834,5 @@ FieldGroup.children = ReferenceSet(
 
 models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment,
           InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile,
-          Notification, Message, Stats, ApplicationData, Field, FieldGroup, Step]
+          Notification, Message, Stats, ApplicationData, Field, FieldGroup,
+          Step]
