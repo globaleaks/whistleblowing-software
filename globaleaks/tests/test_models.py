@@ -245,9 +245,9 @@ class TestNextGenFields(helpers.TestGL):
         field_group = FieldGroup()
         field_group.x = 1
         field_group.y = 1
-        field_group.label = {'en': 'test label'}
-        field_group.description = {'en': 'test description'}
-        field_group.hint = {'en': 'test hint'}
+        field_group.label = "{'en': 'test label'}"
+        field_group.description = "{'en': 'test description'}"
+        field_group.hint = "{'en': 'test hint'}"
         field_group.multi_entry = True
         store.add(field_group)
 
@@ -387,10 +387,13 @@ class TestComposingFields(helpers.TestGL):
                                                  self.name.id, self.surname.id)
 
 
+    @inlineCallbacks
     def test_dataset(self):
-        generalities = transact(lambda store:
+        print self.generalities
+        generalities = yield transact(lambda store:
             store.find(FieldGroup, FieldGroup.id == self.generalities.id).one()
-        )
-        self.assertIsNotNone(gen)
+        )()
+
+        self.assertIsNotNone(generalities)
 
         generalities.add_children(self.sex, self.birthdate)
