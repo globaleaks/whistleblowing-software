@@ -265,12 +265,10 @@ class TestNextGenFields(helpers.TestGL):
 
         return field.id
 
-    @transact_ro
-    def find_field(self, store, field_id):
-        field = store.find(Field, Field.id == field_id).one()
-        if field is None:
-            return None
-        return field.id
+    def _find_one(self, store, model_name, model_id):
+        from globaleaks import models
+        model = getattr(models, model_name)
+        return store.find(model, model.id == model_id).one()
 
     @transact_ro
     def find_field_group(self, store, group_id):
@@ -288,39 +286,49 @@ class TestNextGenFields(helpers.TestGL):
         store.remove(field)
 
     @transact
-    def delete_field_group(self, store, field_group_id):
-        field_group = store.find(FieldGroup,
-                                 FieldGroup.id == field_group_id).one()
-        store.remove(field_group)
+    def exists(self, store, model_name, model_id):
+        return self._find_one(store, model_name, model_id) != None
+
+    @transact_ro
+    def find(self, store, model_name, model_id, attr):
+        m = self._find_one(store, model_name, model_id)
+        if m is None:
+            return None
+        return getattr(m, attr)
+
+    @transact
+    def delete(self, store, model_name, model_id):
+        m = self._find_one(store, model_name, model_id)
+        store.remove(m)
 
     @inlineCallbacks
     def test_field_creation(self):
         field_id = yield self.create_field()
-        exists = yield self.find_field(field_id)
-        assert exists is not None
+        exists = yield self.exists('Field', field_id)
+        self.assertTrue(exists, "Field does not exist")
 
 
     @inlineCallbacks
     def test_delete_field(self):
         field_id = yield self.create_field()
-        group_id = yield self.find_field_group_id(field_id)
-        yield self.delete_field(field_id)
+        group_id = yield self.find('Field', field_id, 'group_id')
+        yield self.delete('Field', field_id)
 
-        field_id = yield self.find_field(field_id)
-        self.assertIsNone(field_id)
+        exists = yield self.exists('Field', field_id)
+        self.assertFalse(exists, "Field still exists")
+        exists = yield self.exists('FieldGroup', group_id)
+        self.assertFalse(exists, "FieldGroup still exists")
 
-        group_id = yield self.find_field_group(group_id)
-        self.assertIsNone(group_id)
     test_delete_field.skip = "Still have to guarantee this kind of consistency"
 
     @inlineCallbacks
     def test_delete_field_group(self):
         field_id = yield self.create_field()
-        group_id = yield self.find_field_group_id(field_id)
-        yield self.delete_field_group(group_id)
+        group_id = yield self.find('Field', field_id, 'group_id')
+        yield self.delete('FieldGroup', group_id)
 
-        field_id = yield self.find_field(field_id)
-        self.assertIsNone(field_id)
+        exists = yield self.exists('Field', field_id)
+        self.assertFalse(exists, "Field still exists")
 
-        group_id = yield self.find_field_group(group_id)
-        self.assertIsNone(group_id)
+        exists = yield self.exists('FieldGroup', group_id)
+        self.assertFalse(exists, "FieldGroup still exists")
