@@ -236,3 +236,93 @@ class TestModels(helpers.TestGL):
     def test_invalid_receiver_description_oversize(self):
         self.assertFailure(self.do_invalid_receiver_description_oversize(),
                            errors.InvalidInputFormat)
+
+
+class TestNextGenFields(helpers.TestGL):
+
+    @transact
+    def create_field(self, store):
+        field_group = FieldGroup()
+        field_group.x = 1
+        field_group.y = 1
+        field_group.label = {'en': 'test label'}
+        field_group.description = {'en': 'test description'}
+        field_group.hint = {'en': 'test hint'}
+        field_group.multi_entry = True
+        store.add(field_group)
+
+        field = Field()
+        field.preview = True
+        field.required = False
+        field.stats_enabled = True
+        field.type = 'checkbox'
+        field.regexp = '.*'
+        field.options = {}
+        field.default_value = 'foo'
+        field.field_group = field_group
+
+        store.add(field)
+
+        return field.id
+
+    @transact_ro
+    def find_field(self, store, field_id):
+        field = store.find(Field, Field.id == field_id).one()
+        if field is None:
+            return None
+        return field.id
+
+    @transact_ro
+    def find_field_group(self, store, group_id):
+        field_group = store.find(FieldGroup, FieldGroup.id == group_id).one()
+        if field_group is None:
+            return None
+        return field_group.id
+
+    @transact_ro
+    def find_field_group_id(self, store, field_id):
+        field = store.find(Field, Field.id == field_id).one()
+        if field is None:
+            return None
+        return field.group_id
+
+    @transact
+    def delete_field(self, store, field_id):
+        field = store.find(Field, Field.id == field_id).one()
+        store.remove(field)
+
+    @transact
+    def delete_field_group(self, store, field_group_id):
+        field_group = store.find(FieldGroup,
+                                 FieldGroup.id == field_group_id).one()
+        store.remove(field_group)
+
+    @inlineCallbacks
+    def test_field_creation(self):
+        field_id = yield self.create_field()
+        exists = yield self.find_field(field_id)
+        assert exists is not None
+
+    @inlineCallbacks
+    def test_delete_field(self):
+        field_id = yield self.create_field()
+        group_id = yield self.find_field_group_id(field_id)
+        yield self.delete_field(field_id)
+
+        field_id = yield self.find_field(field_id)
+        self.assertIsNone(field_id)
+
+        group_id = yield self.find_field_group(group_id)
+        self.assertIsNone(group_id)
+
+    @inlineCallbacks
+    def test_delete_field_group(self):
+        field_id = yield self.create_field()
+        group_id = yield self.find_field_group_id(field_id)
+        yield self.delete_field_group(group_id)
+
+        field_id = yield self.find_field(field_id)
+        self.assertIsNone(field_id)
+
+        group_id = yield self.find_field_group(group_id)
+        self.assertIsNone(group_id)
