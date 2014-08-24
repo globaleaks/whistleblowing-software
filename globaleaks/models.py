@@ -165,23 +165,6 @@ class Context(Model):
     maximum_selectable_receivers = Int()
     select_all_receivers = Bool()
 
-
-    # Unique fields is a dict with a unique ID as key,
-    # and as value another dict, containing the field
-    # descriptive values:
-    # "presentation_order" : int
-    # "preview" : bool
-    # "required" : bool
-    # "type" : unicode
-    # "options" : dict (optional!)
-    unique_fields = Pickle()
-
-    # Localized fields is a dict having as keys, the same
-    # keys of unique_fields, and as value a dict, containing:
-    # 'name' : unicode
-    # 'hint' : unicode
-    localized_fields = Pickle()
-
     escalation_threshold = Int()
 
     tip_max_access = Int()
@@ -734,6 +717,9 @@ class FieldGroup(Model):
 
     child_id = Unicode()
 
+
+# _*_# References tracking below #_*_#
+
 # Field.field_group = Reference(Field.field_group_id, FieldGroup.id)
 FieldGroup.field_groups = ReferenceSet(FieldGroup.id, FieldGroup.child_id)
 FieldGroup.field = Reference(FieldGroup.id, Field.id)
@@ -742,7 +728,6 @@ Context.steps = ReferenceSet(Context.id,
                              Step.field_group_id,
                              FieldGroup.id)
 
-# _*_# References tracking below #_*_#
 Receiver.user = Reference(Receiver.user_id, User.id)
 
 Receiver.internaltips = ReferenceSet(Receiver.id,
