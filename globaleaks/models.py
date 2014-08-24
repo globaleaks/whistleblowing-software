@@ -715,13 +715,13 @@ class Field(Model):
     #     }, ...
     # ]
 
-    default = Unicode()
+    default_value = Unicode()
 
     group_id = Unicode()
 
 
 class FieldGroup(Model):
-    __storm_table__ = 'field_group'
+    __storm_table__ = 'fieldgroup'
 
     x = Int()
     y = Int()
@@ -808,4 +808,4 @@ Receiver.contexts = ReferenceSet(
 
 models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment,
           InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile,
-          Notification, Message, Stats, ApplicationData]
+          Notification, Message, Stats, ApplicationData, Field, FieldGroup, Step]

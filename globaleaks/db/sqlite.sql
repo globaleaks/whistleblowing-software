@@ -286,10 +286,11 @@ CREATE TABLE field (
   creation_date VARCHAR NOT NULL,
   preview INTEGER NOT NULL,
   stats_enabled INTEGER NOT NULL,
+  required INTEGER NOT NULL,
   type VARCHAR NOT NULL,
   regexp VARCHAR NOT NULL,
   options VARCHAR NOT NULL,
-  default VARCHAR NOT NULL,
+  default_value VARCHAR NOT NULL,
   group_id VARCHAR NOT NULL,
   PRIMARY KEY (id)
 );

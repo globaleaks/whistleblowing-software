@@ -236,3 +236,44 @@ class TestModels(helpers.TestGL):
     def test_invalid_receiver_description_oversize(self):
         self.assertFailure(self.do_invalid_receiver_description_oversize(),
                            errors.InvalidInputFormat)
+
+
+class TestNextGenFields(helpers.TestGL):
+
+    @transact
+    def create_field(self, store):
+        field_group = FieldGroup()
+        field_group.x = 1
+        field_group.y = 1
+        field_group.label = {'en': 'test label'}
+        field_group.description = {'en': 'test description'}
+        field_group.hint = {'en': 'test hint'}
+        field_group.multi_entry = True
+        field_group.child_id = None
+        store.add(field_group)
+
+        field = Field()
+        field.preview = True
+        field.required = False
+        field.stats_enabled = True
+        field.type = ''
+        field.regexp = '.*'
+        field.options = {}
+        field.default_value = 'foo'
+        field.group_id = field_group.id
+        store.add(field)
+
+        return field.id
+
+    @transact_ro
+    def find_field(self, store, field_id):
+        field = store.find(Field, Field.id == field_id).one()
+        if field is None:
+            return None
+        return field.id
+
+    @inlineCallbacks
+    def test_field_creation(self):
+        field_id = yield self.create_field()
+        exists = yield self.find_field(field_id)
+        assert exists != None
