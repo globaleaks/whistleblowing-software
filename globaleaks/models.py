@@ -732,6 +732,7 @@ def new_fieldgroup(store, attrs, *children):
         child = store.find(FieldGroup, FieldGroup.id == child_id).one()
         fieldgroup.children.add(child)
     store.add(fieldgroup)
+    return fieldgroup
 
 class FieldGroup(Model):
     __storm_table__ = 'fieldgroup'
