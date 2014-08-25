@@ -373,7 +373,6 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
 
         fo.context_import(context)
 
-
     except Exception as excep:
         log.err("Unable to create fields: %s" % excep)
         raise excep
