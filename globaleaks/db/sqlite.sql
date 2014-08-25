@@ -316,12 +316,10 @@ create table fieldgroup_fieldgroup (
 );
 
 CREATE TABLE step (
-  id VARCHAR NOT NULL,
-  creation_date VARCHAR NOT NULL,
   context_id VARCHAR NOT NULL,
   field_group_id VARCHAR NOT NULL,
   number INTEGER NOT NULL,
-  PRIMARY KEY (id),
+  PRIMARY KEY (context_id, field_group_id),
   FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
   FOREIGN KEY(field_group_id) REFERENCES fieldgroup(id) ON DELETE CASCADE
 );
