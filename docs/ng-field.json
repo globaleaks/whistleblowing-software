@@ -18,10 +18,13 @@
     "regexp": ".*",
     "options": {
       "one": {
-        "en": "Option 1"
+        'label' : {
+            "en": "Option 1"
+        }
+        'trigger': unicode,
       }
     },
-    "default": "one",
+    "default_value": "one", # TODO - so the trigger is already expanded ?
     "preview": true
   },
   {

@@ -17,10 +17,9 @@ Data format of a field entry:
         
         * radio 
         * checkbox
-        * multiselect
-        * select
-        
-        * input_box
+
+        * text,
+        * int,
         * text_area
 
         * modal
@@ -36,7 +35,7 @@ Data format of a field entry:
       a dict specifying the options to be passed to the field.
       In the case of input_box, text_area, this is an empty dict.
 
-      For radio, checkbox, multiselect the format is:
+      For radio, checkbox the format is:
           {
             VALUE[0]: {
               "text": LOCALIZED_DICT[0],
@@ -73,6 +72,19 @@ Data format of a field entry:
           {
             "fields":
                 contains a list of fields in the format that is defined above
+          }
+
+      For the text the format is:
+
+          {
+            "min":
+                number of minimum character size of the input
+            "max":
+                number of maximum character size of the input
+
+            In both case, 0 means 'no requirements'
+
+          (note: there are an hardcoded limit of IDONTREMEMBER byte on the DB)
           }
 
 }
