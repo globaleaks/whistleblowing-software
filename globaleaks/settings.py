@@ -95,7 +95,7 @@ class GLSettingsClass:
         # store name
         self.store_name = 'main_store'
 
-        # Database variables for MYSQL 
+        # Database variables for MYSQL
         self.db_username = 'admin'
         self.db_password = 'globaleaks'
         self.db_hostname = 'localhost'
@@ -352,7 +352,7 @@ class GLSettingsClass:
         def start_pdb(signal, trace):
             import pdb
             pdb.set_trace()
-            
+
         signal.signal(signal.SIGQUIT, start_pdb)
 
     def validate_tor_dir_struct(self, tor_dir):
@@ -736,7 +736,7 @@ class GLSettingsClass:
 
         for f in os.listdir(GLSetting.submission_path):
             try:
-                path = os.path.join(GLSetting.submission_path, f) 
+                path = os.path.join(GLSetting.submission_path, f)
                 result = GLSetting.AES_file_regexp_comp.match(f)
                 if result is not None:
                     if not os.path.isfile("%s%s" % (keypath, result.group(1)) ):
@@ -755,7 +755,7 @@ class transact(object):
     Because Storm sucks.
     """
     tp = ThreadPool(0, GLSetting.db_thread_pool_size)
-    
+
     readonly = False
 
     def __init__(self, method):
@@ -810,8 +810,7 @@ class transact(object):
             raise excep
         except Exception as excep:
             transaction.abort()
-            _, exception_value, exception_tb = sys.exc_info()
-            traceback.print_tb(exception_tb, 10)
+            traceback.print_exc()
             self.store.close()
             # propagate the exception
             raise excep
