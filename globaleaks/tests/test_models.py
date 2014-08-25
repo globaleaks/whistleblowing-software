@@ -284,11 +284,6 @@ class TestNextGenFields(helpers.TestGL):
             return None
         return getattr(m, attr)
 
-    @transact
-    def delete(self, store, model_name, model_id):
-        m = self._find_one(store, model_name, model_id)
-        store.remove(m)
-
     @inlineCallbacks
     def test_field_creation(self):
         field_id = yield self.create_field()
@@ -311,87 +306,73 @@ class TestNextGenFields(helpers.TestGL):
     @inlineCallbacks
     def test_delete_field_group(self):
         field_id = yield self.create_field()
-        group_id = yield self.find('Field', field_id, 'group_id')
-        yield self.delete('FieldGroup', group_id)
+        group_id = field_id
+        yield FieldGroup.get(group_id).delete(group_id)
 
         exists = yield self.exists('Field', field_id)
         self.assertFalse(exists, "Field still exists")
 
         exists = yield self.exists('FieldGroup', group_id)
         self.assertFalse(exists, "FieldGroup still exists")
-
+    test_delete_field_group.skip = 'not yet'
 
 class TestComposingFields(helpers.TestGLWithPopulatedDB):
+    fixtures = ['fields.json']
+
     @inlineCallbacks
     def setUp(self):
         yield super(TestComposingFields, self).setUp()
-        name_attrs = dict(
-            label="{'en':'name'}",
-            default_value=u'beppe',
-            type=u'inputbox',
-            regexp=u'',
-            required=True,
-            stats=False,
-            preview=True,
-        )
-        surname_attrs = dict(
-            label="{'en':'name'}",
-            default_value=u'scamozza',
-            type=u'inputbox',
-            regexp=u'',
-            required=True,
-            stats=False,
-            preview=True,
-        )
-        sex_attrs = dict(
-            label="{'en':'name'}",
-            default_value=u'none',
-            type=u'radio',
-            regexp=u'',
-            required=True,
-            stats=False,
-            preview=True,
-        )
-        birthdate_attrs = dict(
-            label="{'en':'name'}",
-            default_value=u'01/01/1990',
-            type=u'inputbox',
-            regexp=u'',
-            required=True,
-            stats=True,
-            preview=True,
-        )
-        generalities_attrs = dict(
-            label="{'en': 'generalities'}"
-        )
 
-        self.name = yield Field.new(name_attrs)
-        self.surname = yield Field.new(surname_attrs)
-        self.sex = yield Field.new(sex_attrs)
-        self.birthdate = yield Field.new(birthdate_attrs)
-        self.generalities = yield FieldGroup.new(generalities_attrs,
-                                                 self.name, self.surname)
+        self.birthdate_id = u"27121164-0d0f-4180-9e9c-b1f72e815105"
+        self.name_id = u"25521164-0d0f-4f80-9e9c-93f72e815105"
+        self.surname_id = u"25521164-1d0f-5f80-8e8c-93f73e815156"
+        self.sex_id = u"98891164-1a0b-5b80-8b8b-93b73b815156"
+
+        self.generalities_id = u"37242164-1b1f-1110-1e1c-b1f12e815105"
+
+
+    @transact_ro
+    def _get_children(self, store, field_group_id):
+        field_group = FieldGroup.get(store, field_group_id)
+        return [c.id for c in field_group.children]
+
     @inlineCallbacks
-    def test_dataset(self):
-        generalities = yield transact(lambda store:
-            store.find(FieldGroup, FieldGroup.id == self.generalities).one()
-        )()
+    def test_add_children(self):
+        children = yield self._get_children(self.generalities_id)
+        self.assertIn(self.name_id, children)
+        self.assertIn(self.birthdate_id, children)
+        self.assertNotIn(self.surname_id, children)
+        self.assertNotIn(self.sex_id, children)
 
-        self.assertIsNotNone(generalities)
+        FieldGroup.add_children(self.generalities_id,
+                                self.surname_id, self.sex_id)
+        children = yield self._get_children(self.generalities_id)
+        self.assertIn(self.surname_id, children)
+        self.assertIn(self.name_id, children)
+        self.assertIn(self.sex_id, children)
 
-        generalities.add_children(self.sex, self.birthdate)
 
     @inlineCallbacks
     def test_serialize_field_group(self):
-        serialized = yield FieldGroup.serialize(self.generalities)
-        root_id = self.generalities
-        children_id = (self.name, self.surname)
+        serialized = yield FieldGroup.serialize(self.generalities_id)
+        root_id = self.generalities_id
+        children_id = (self.name_id, self.birthdate_id)
 
         self.assertEqual(serialized['id'], root_id)
         for child in serialized['_children']:
             self.assertIn(child['id'], children_id)
 
+
     @inlineCallbacks
     def test_step(self):
+        @transact
+        def new_mock_step(store, context_id):
+            return Step.new(store, context_id, self.generalities_id)
+
+        @transact
+        def step_exists(store, step_id):
+            return bool(Step.get(store, step_id))
+
         context_id = yield self.dummyContext['id']
-        Step.new(context_id, self.generalities)
+        step_id = yield new_mock_step(context_id)
+        self.assertTrue(step_exists(step_id))

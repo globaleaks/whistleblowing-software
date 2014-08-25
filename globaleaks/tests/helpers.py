@@ -75,7 +75,10 @@ log.debug = UTlog().debug
 
 class TestGL(unittest.TestCase):
     encryption_scenario = 'MIXED' # receivers with pgp and receivers without pgp
+    _fixtures_path = os.path.join(os.path.dirname(__file__),
+                                  'fixtures', '')
 
+    @inlineCallbacks
     def setUp(self):
         GLSetting.set_devel_mode()
         GLSetting.logging = None
@@ -100,7 +103,20 @@ class TestGL(unittest.TestCase):
 
         notification.MailNotification.mail_flush = mail_flush_mock
 
-        return db.create_tables(create_node=True)
+        yield db.create_tables(create_node=True)
+        yield self._load_fixtures()
+
+    @transact
+    def _load_fixtures(self, store):
+        for fixture in getattr(self, 'fixtures', []):
+            with open(self._fixtures_path+fixture) as f:
+                data = json.loads(f.read())
+
+            for mock in data:
+                mock_class = getattr(models, mock['class'])
+                mock_id = mock_class.new(store, mock['fields'])
+                obj = mock_class.get(store, mock_id)
+                obj.id = mock['fields']['id']
 
     def setUp_dummy(self):
         dummyStuff = MockDict()
@@ -257,10 +273,10 @@ class TestGL(unittest.TestCase):
 
 
 class TestGLWithPopulatedDB(TestGL):
+
     @inlineCallbacks
     def setUp(self):
         yield TestGL.setUp(self)
-
         yield self.fill_data()
 
     def receiver_assertion(self, source_r, created_r):
@@ -295,7 +311,6 @@ class TestGLWithPopulatedDB(TestGL):
     def fill_data(self):
         try:
             yield do_appdata_init()
-
         except Exception as excp:
             print "Fail fill_data/do_appdata_init: %s" % excp
             raise  excp
@@ -387,6 +402,8 @@ class TestGLWithPopulatedDB(TestGL):
 
         yield delivery_sched.DeliverySchedule().operation()
         yield notification_sched.NotificationSchedule().operation()
+
+
 
 class TestHandler(TestGLWithPopulatedDB):
     """
@@ -513,7 +530,6 @@ class MockDict():
         }
 
         self.dummyReceiver = {
-            'id': unicode(uuid4()),
             'password': VALID_PASSWORD1,
             'name': u'Ned Stark',
             'description': u'King MockDummy Receiver',
@@ -539,7 +555,6 @@ class MockDict():
         }
 
         self.dummyContext = {
-            'id': unicode(uuid4()),
             # localized stuff
             'name': u'Already localized name',
             'description': u'Already localized desc',

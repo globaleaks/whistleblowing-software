@@ -32,7 +32,6 @@ class Model(Storm):
     bool_keys = []
 
     def __init__(self, attrs=None):
-
         if attrs is not None:
             self.update(attrs)
 
@@ -45,6 +44,11 @@ class Model(Storm):
     @classmethod
     def get(cls, store, obj_id):
         return store.find(cls, cls.id == obj_id).one()
+
+    @classmethod
+    def new(cls, store, attrs):
+        obj = cls(attrs)
+        return obj.id
 
     def update(self, attrs=None):
         """
@@ -715,13 +719,11 @@ class Field(Model):
     # ]
 
     default_value = Unicode()
-    group_id = Unicode()
 
     unicode_keys = ['default_value', 'type', 'regexp']
     bool_keys = ['preview', 'required', 'stats']
 
     @staticmethod
-    @transact
     def new(store, attrs):
         """
         Create a new Field and the associated FieldGroup, returning the latter.
@@ -729,12 +731,18 @@ class Field(Model):
         :param attr: a dictionary holding all informations for the Field, FieldGroup.
         :return FieldGroup: a new FieldGroup described by the dictionary `attr`.
         """
-        fieldgroup = FieldGroup(attrs)
+        field_group = FieldGroup(attrs)
         field = Field(attrs)
-        field.group_id = fieldgroup.id
-        store.add(fieldgroup)
+        field.field_group = field_group
+        store.add(field_group)
         store.add(field)
-        return fieldgroup.id
+        return field.id
+
+    def __setattr__(self, name, value):
+        if name == 'id':
+            self.field_group.id = value
+        Model.__setattr__(self, name, value)
+
 
 
 class FieldGroup(Model):
@@ -762,8 +770,7 @@ class FieldGroup(Model):
             store.remove(leaf)
 
     @staticmethod
-    @transact
-    def new(store, attrs, *children):
+    def new(store, attrs):
         """
         Return a new FieldGroup parenting the childs `children`
 
@@ -771,10 +778,10 @@ class FieldGroup(Model):
         :return FieldGroup: the new FieldGroup.
         """
         field_group = FieldGroup(attrs)
-        for child_id in children:
+        store.add(field_group)
+        for child_id in attrs.get('_children', []):
             child = FieldGroup.get(store, child_id)
             field_group.children.add(child)
-            store.add(field_group)
         return field_group.id
 
 
@@ -823,8 +830,11 @@ class Step(object):
     field_group_id = Unicode()
     number = Int()
 
+    @classmethod
+    def get(cls, store, context_id):
+        return store.find(cls, cls.context_id == context_id)
+
     @staticmethod
-    @transact
     def new(store, context_id, field_group_id, number=0):
         step = Step()
         field_group = FieldGroup.get(store, field_group_id)
@@ -906,7 +916,7 @@ Receiver.contexts = ReferenceSet(
     ReceiverContext.context_id,
     Context.id)
 
-Field.field_group = Reference(Field.group_id, FieldGroup.id)
+Field.field_group = Reference(Field.id, FieldGroup.id)
 FieldGroup.children = ReferenceSet(
     FieldGroup.id,
     FieldGroupFieldGroup.parent_id,

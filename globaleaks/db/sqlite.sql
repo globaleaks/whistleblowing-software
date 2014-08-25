@@ -286,12 +286,11 @@ CREATE TABLE field (
                                         )
                                ),
   regexp VARCHAR NOT NULL,
-  options VARCHAR NOT NULL
-DEFAULT '{}',
+  options VARCHAR NOT NULL DEFAULT '{}',
   default_value VARCHAR NOT NULL,
-  group_id VARCHAR NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY(group_id) REFERENCES fieldgroup(id) ON DELETE CASCADE
+  FOREIGN KEY (id) REFERENCES fieldgroup(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 );
 
 CREATE TABLE fieldgroup (
@@ -310,9 +309,13 @@ create table fieldgroup_fieldgroup (
   parent_id VARCHAR NOT NULL,
   child_id VARCHAR NOT NULL,
 
-  PRIMARY KEY(parent_id, child_id),
-  FOREIGN KEY(parent_id) REFERENCES fieldgroup(id) ON DELETE CASCADE,
-  FOREIGN KEY(child_id) REFERENCES fieldgroup(id) ON DELETE CASCADE
+  PRIMARY KEY(parent_id, child_id)
+  FOREIGN KEY(parent_id) REFERENCES fieldgroup(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+  FOREIGN KEY(child_id) REFERENCES fieldgroup(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 );
 
 CREATE TABLE step (
@@ -321,5 +324,7 @@ CREATE TABLE step (
   number INTEGER NOT NULL,
   PRIMARY KEY (context_id, field_group_id),
   FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
-  FOREIGN KEY(field_group_id) REFERENCES fieldgroup(id) ON DELETE CASCADE
+  FOREIGN KEY(field_group_id) REFERENCES fieldgroup(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 );
