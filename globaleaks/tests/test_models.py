@@ -324,7 +324,7 @@ class TestNextGenFields(helpers.TestGL):
 class TestComposingFields(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
-        super(TestComposingFields, self).setUp()
+        yield super(TestComposingFields, self).setUp()
         name_attrs = dict(
             label="{'en':'name'}",
             default_value=u'beppe',
@@ -382,7 +382,7 @@ class TestComposingFields(helpers.TestGLWithPopulatedDB):
         generalities.add_children(self.sex, self.birthdate)
 
     @inlineCallbacks
-    def test_serialize(self):
+    def test_serialize_field_group(self):
         serialized = yield FieldGroup.serialize(self.generalities)
         root_id = self.generalities
         children_id = (self.name, self.surname)
@@ -393,9 +393,5 @@ class TestComposingFields(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_step(self):
-        @transact
-        def dummy_get_porcodio(store):
-            return store.find(Context)[0].id
-
-        context_id = yield dummy_get_porcodio()
+        context_id = yield self.dummyContext['id']
         Step.new(context_id, self.generalities)
