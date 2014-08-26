@@ -45,7 +45,7 @@
       "stats": false,
       "regexp": "",
       "required": true,
-      "type": "radio",
+      "type": "radiobutton",
       "id": "98891164-1a0b-5b80-8b8b-93b73b815156",
       "label": "{'en':'name'}"
     },

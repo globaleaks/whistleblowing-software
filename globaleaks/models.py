@@ -32,8 +32,7 @@ class Model(Storm):
     bool_keys = []
 
     def __init__(self, attrs=None):
-        if attrs is not None:
-            self.update(attrs)
+        self.update(attrs)
 
     def __new__(cls, *args, **kw):
         cls.__storm_table__ = cls.__name__.lower()
