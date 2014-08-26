@@ -190,7 +190,7 @@ adminContextDesc = {
     'show_small_cards': bool,
     'show_receivers': bool,
     'presentation_order': int,
-    'step': AssertionError("Need to be update the Context format")
+#    'step': AssertionError("Need to be update the Context format")
 }
 
 adminReceiverDesc = {
@@ -311,7 +311,7 @@ AnomalyLine = {
 
 AnomaliesCollection = [ AnomalyLine ]
 
-nodeReceiver = { 
+nodeReceiver = {
      'update_date': unicode,
      'receiver_level': int,
      'name': unicode,
@@ -425,4 +425,3 @@ adminStepDesc = {
     'name'  : unicode,
     'fields' : [ adminFieldDesc ]
 }
-

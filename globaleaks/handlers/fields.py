@@ -114,6 +114,22 @@ def delete_field(field_id):
     raise Exception("Not implemented ATM %s" % str(field_id))
 
 
+@transact
+def get_context_fieldtree(store, context_id):
+    """
+    Return the serialized field_group tree belonging to a specific context.
+
+    :return dict: a nested disctionary represending the tree.
+    """
+    #  context = Context.get(store, context_id)
+    steps = store.find(Step, Step.context_id == context_id).order_by(Step.number)
+    ret = []
+    for step in steps:
+        field = FieldGroup.get(store, step.field_group_id)
+        ret.append(FieldGroup.serialize(store, field.id))
+    return ret
+
+
 class FieldsCollection(BaseHandler):
     """
 
@@ -145,7 +161,6 @@ class FieldsCollection(BaseHandler):
         Errors: InvalidInputFormat, FieldNotFound
         """
         request = self.validate_message(self.request.body, requests.adminFieldDesc)
-
         response = yield create_field(request, self.request.language)
 
         self.set_status(201) # Created
@@ -203,4 +218,3 @@ class FieldInstance(BaseHandler):
         """
         yield delete_field(field_id)
         self.set_status(200)
-
