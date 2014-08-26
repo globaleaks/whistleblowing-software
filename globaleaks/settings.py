@@ -804,6 +804,7 @@ class transact(object):
                 result = function(self.store, *args, **kwargs)
         except (exceptions.IntegrityError, exceptions.DisconnectionError):
             transaction.abort()
+            traceback.print_exc()
             result = None
         except HTTPError as excep:
             transaction.abort()
