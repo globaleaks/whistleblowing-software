@@ -703,20 +703,6 @@ def delete_receiver(store, receiver_id):
 
     store.remove(receiver.user)
 
-@transact
-def get_context_fieldtree(store, context_id):
-    """
-    Return the serialized field_group tree belonging to a specific context.
-
-    :return dict: a nested disctionary represending the tree.
-    """
-    #  context = Context.get(store, context_id)
-    steps = store.find(Step, Step.context_id == context_id).order_by(Step.number)
-    ret = []
-    for step in steps:
-        field = FieldGroup.get(store, step.field_group_id)
-        ret.append(FieldGroup.serialize(store, field.id))
-    return ret
 
 # ---------------------------------
 # Below starts the Cyclone handlers
@@ -851,42 +837,6 @@ class ContextInstance(BaseHandler):
         """
         yield delete_context(context_id)
         self.set_status(200)
-
-class FieldCollection(BaseHandler):
-    """
-    List all available fields present.
-    """
-    @authenticated('admin')
-    @inlineCallbacks
-    def get(self, *uriargs):
-        """
-        Parameters: None
-        Response: adminFieldList
-        Errors: None
-
-        Admin operation: return all the receiver present in the Node
-        """
-        self.set_status(200)
-        self.finish(response)
-
-
-class FieldContextInstance(BaseHandler):
-    """
-    List all available fields present, given a certain context.
-    """
-    @authenticated('admin')
-    @inlineCallbacks
-    def get(self, context_id, *uriargs):
-        """
-        Parameters: None
-        Response: adminFieldList
-        Errors:
-
-        Admin operation: return all the receiver present in the Node
-        """
-        response = get_context_fieldtree(context_id)
-        self.set_status(200)
-        self.finish(response)
 
 
 class ReceiversCollection(BaseHandler):
