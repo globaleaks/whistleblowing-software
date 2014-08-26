@@ -11,7 +11,7 @@ from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
 from globaleaks.handlers import node, submission, rtip, wbtip, admin, receiver, \
                                 files, authentication, admstaticfiles, statistics,\
-                                admlangfiles, overview, collection, wizard
+                                admlangfiles, overview, collection, wizard, fields
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 
 # Here is mapped a path and the associated class to be invoked,
@@ -89,6 +89,9 @@ spec = [
     (r'/admin/receiver', admin.ReceiversCollection),
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
     (r'/admin/notification', admin.NotificationInstance),
+
+    (r'/admin/fields', fields.FieldsCollection),
+    (r'/admin/fields/' + field_regexp, fields.FieldInstance),
 
     (r'/admin/anomalies', statistics.AnomaliesCollection),
     (r'/admin/stats', statistics.StatsCollection),

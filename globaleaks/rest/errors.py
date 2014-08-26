@@ -446,3 +446,9 @@ class FileUploadFlood(FloodException):
         self.reason = "Too many file uploads in %d seconds" % seconds
         self.arguments = []
         self.arguments.append(seconds)
+
+class FieldNotFound(GLException):
+    error_code = 58
+    status_code = 404
+    reason = "Not found a Field with the specified ID"
+
