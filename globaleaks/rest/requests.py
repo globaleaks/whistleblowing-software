@@ -190,6 +190,7 @@ adminContextDesc = {
     'show_small_cards': bool,
     'show_receivers': bool,
     'presentation_order': int,
+    'step': AssertionError("Need to be update the Context format")
 }
 
 adminReceiverDesc = {
@@ -325,6 +326,7 @@ nodeReceiver = {
 
 nodeReceiverCollection = [ nodeReceiver ]
 
+# TODO - TO be removed when migration is complete
 field = {
     'incremental_number': int,
     'name': unicode,
@@ -399,5 +401,28 @@ internalTipDesc = {
     'expiration_date': dateType,
     'download_limit': int,
     'escalation_threshold': int,
+}
+
+# TODO if the admin has visibility to different variables compared to the WB
+# if its so, rename to FieldDesc (generic)
+
+adminFieldDesc = {
+    'label': unicode,
+    'description': unicode,
+    'hint': unicode,
+    'multi_entry': bool,
+    'x': int,
+    'y': int,
+    'type': unicode, # constrained
+    'default_value': unicode,
+    'required': bool,
+    'regexp':unicode,
+    'options': dict, # we can't define a format here ? because the key need to be strict to field_id format ?
+    'preview': bool
+}
+
+adminStepDesc = {
+    'name'  : unicode,
+    'fields' : [ adminFieldDesc ]
 }
 
