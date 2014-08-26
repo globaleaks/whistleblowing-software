@@ -344,7 +344,7 @@ TT_2_Privato = [
                         'en': u"Yes"
                     },
                     'trigger':u"00000000-0000-0000-0000-000SiAZIENDA",
-                }
+                },
                 "two": {
                     'label' :{
                         "it": u"No",
