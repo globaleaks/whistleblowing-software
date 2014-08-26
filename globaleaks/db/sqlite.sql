@@ -271,21 +271,19 @@ CREATE TABLE stats (
 CREATE TABLE field (
   id VARCHAR NOT NULL,
   creation_date VARCHAR NOT NULL,
-  preview INTEGER NOT NULL,
+  preview INTEGER,
   stats_enabled INTEGER NOT NULL DEFAULT 0,
-  required INTEGER NOT NULL,
-  type VARCHAR NOT NULL CHECK (type IN ('radio',
+  required INTEGER,
+  type VARCHAR NOT NULL CHECK (TYPE IN ('radiobutton',
                                         'checkbox',
-                                        'text',
-                                        'int',
+                                        'inputbox',
                                         'textarea',
                                         'modal',
                                         'dialog',
                                         'tos'
-                                        )
-                               ),
+                                        )),
   regexp VARCHAR NOT NULL,
-  options VARCHAR NOT NULL DEFAULT '{}',
+  options VARCHAR DEFAULT '{}',
   default_value VARCHAR NOT NULL,
   FOREIGN KEY (id) REFERENCES fieldgroup(id)
     ON UPDATE CASCADE
