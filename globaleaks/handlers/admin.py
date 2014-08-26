@@ -404,7 +404,7 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
     c = store.add(context)
 
     for receiver_id in receivers:
-        receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+        receiver = Receiver.get(store, receiver_id)
         if not receiver:
             log.err("Creation error: unexistent context can't be associated")
             raise errors.ReceiverIdNotFound
@@ -598,7 +598,7 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
 
     contexts = request.get('contexts', [])
     for context_id in contexts:
-        context = store.find(Context, Context.id == context_id).one()
+        context = Context.get(store, context_id)
         if not context:
             log.err("Creation error: invalid Context can't be associated")
             raise errors.ContextIdNotFound
@@ -619,7 +619,7 @@ def get_receiver(store, receiver_id, language=GLSetting.memory_copy.default_lang
         (dict) the receiver
 
     """
-    receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+    receiver = Receiver.get(store, receiver_id)
 
     if not receiver:
         log.err("Requested in receiver")
@@ -635,7 +635,7 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
     raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
     not exist.
     """
-    receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+    receiver = Receiver.get(store, receiver_id)
 
     if not receiver:
         raise errors.ReceiverIdNotFound
@@ -672,7 +672,7 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
         receiver.contexts.remove(context)
 
     for context_id in contexts:
-        context = store.find(Context, Context.id == context_id).one()
+        context = Context.get(store, context_id)
         if not context:
             log.err("Update error: unexistent context can't be associated")
             raise errors.ContextIdNotFound
@@ -690,7 +690,7 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
 @transact
 def delete_receiver(store, receiver_id):
 
-    receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+    receiver = Receiver.get(store, receiver_id)
 
     if not receiver:
         log.err("Invalid receiver requested in removal")
@@ -703,6 +703,20 @@ def delete_receiver(store, receiver_id):
 
     store.remove(receiver.user)
 
+@transact
+def get_context_fieldtree(store, context_id):
+    """
+    Return the serialized field_group tree belonging to a specific context.
+
+    :return dict: a nested disctionary represending the tree.
+    """
+    #  context = Context.get(store, context_id)
+    steps = store.find(Step, Step.context_id == context_id).order_by(Step.number)
+    ret = []
+    for step in steps:
+        field = FieldGroup.get(store, step.field_group_id)
+        ret.append(FieldGroup.serialize(store, field.id))
+    return ret
 
 # ---------------------------------
 # Below starts the Cyclone handlers
@@ -837,6 +851,43 @@ class ContextInstance(BaseHandler):
         """
         yield delete_context(context_id)
         self.set_status(200)
+
+class FieldCollection(BaseHandler):
+    """
+    List all available fields present.
+    """
+    @authenticated('admin')
+    @inlineCallbacks
+    def get(self, *uriargs):
+        """
+        Parameters: None
+        Response: adminFieldList
+        Errors: None
+
+        Admin operation: return all the receiver present in the Node
+        """
+        self.set_status(200)
+        self.finish(response)
+
+
+class FieldContextInstance(BaseHandler):
+    """
+    List all available fields present, given a certain context.
+    """
+    @authenticated('admin')
+    @inlineCallbacks
+    def get(self, context_id, *uriargs):
+        """
+        Parameters: None
+        Response: adminFieldList
+        Errors:
+
+        Admin operation: return all the receiver present in the Node
+        """
+        response = get_context_fieldtree(context_id)
+        self.set_status(200)
+        self.finish(response)
+
 
 class ReceiversCollection(BaseHandler):
     """
@@ -1045,4 +1096,3 @@ class NotificationInstance(BaseHandler):
 
         self.set_status(202) # Updated
         self.finish(response)
-
