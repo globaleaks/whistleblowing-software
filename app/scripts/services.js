@@ -120,7 +120,7 @@ angular.module('resourceServices.authentication', [])
 
           if (self.id) {
             h['X-Session'] = self.id;
-          };
+          }
 
           if ($.cookie('XSRF-TOKEN')) {
             h['X-XSRF-TOKEN'] = $.cookie('XSRF-TOKEN');
