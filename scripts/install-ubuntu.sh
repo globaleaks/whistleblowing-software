@@ -547,10 +547,7 @@ fi
 
 DO "apt-get update -y" "0"
 
-if [ $DISTRO_VERSION == 'trusty' ]; then
-    echo "Installing python-software-common"
-    DO "apt-get install python-software-common -y" "0"
-else
+if [ $DISTRO_VERSION != 'trusty' ]; then
     echo "Installing python-software-properties"
     DO "apt-get install python-software-properties -y" "0"
 fi
@@ -561,8 +558,8 @@ if [ $DISTRO == 'ubuntu' ];then
   DO "apt-get update -y" "0"
 fi
 
-echo "Installing gcc, python-pip, python-setuptools, python-dev, libffi-dev, libssl-dev"
-DO "apt-get install gcc python-pip python-setuptools python-dev libffi-dev libssl-dev -y" "0"
+echo "Installing gcc, python-setuptools, python-dev, libffi-dev, libssl-dev"
+DO "apt-get install gcc python-setuptools python-dev libffi-dev libssl-dev -y" "0"
 
 echo "${GLOBALEAKS_PUB_KEY}" > ${GLOBALEAKS_KEY_FILE}
 DO "gpg --no-default-keyring --keyring ${TMP_KEYRING} --import ${GLOBALEAKS_KEY_FILE}" "0"
@@ -603,7 +600,6 @@ if [ "${INSTALL_PIP}" -eq "1" ] ; then
   fi
   DO "python setup.py install" "0"
 fi
-
 
 if [ -f ${DIR}/../../GLBackend_tmp/requirements.txt ]; then
   PIP_DEPS=`cat ${DIR}/../../GLBackend_tmp/requirements.txt`
