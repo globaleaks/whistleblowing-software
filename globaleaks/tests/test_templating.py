@@ -69,7 +69,7 @@ class notifTemplateTest(helpers.TestGL):
         self.failIfEqual(rits.count(), 0,
                          "in our Eternal Mangekyō Sharingan, no ReceiverTip are available")
 
-        # just because 
+        # just because
         # storm.exceptions.UnorderedError: Can't use first() on unordered result set
         rits.order_by(Desc(ReceiverTip.id))
         return serialize_receivertip(rits.first())
@@ -87,7 +87,7 @@ class notifTemplateTest(helpers.TestGL):
 
             receiver_dict = yield admin.get_receiver(self.createdReceiver['id'])
             context_dict = yield admin.get_context(self.createdContext['id'])
-            notif_dict = yield admin.get_notification()
+            notif_dict = yield admin.notification.get_notification()
 
             yield admin.import_memory_variables()
             node_dict = yield admin.admin_serialize_node()
@@ -132,7 +132,7 @@ class notifTemplateTest(helpers.TestGL):
         self.assertTrue(self.createdContext.has_key('id'))
 
         self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
-        
+
         self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
         self.assertTrue(self.createdReceiver.has_key('id'))
 
@@ -283,7 +283,7 @@ class notifTemplateTest(helpers.TestGL):
 
         yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
 
-        # adding funny configured variables 
+        # adding funny configured variables
         self.templates['default_ETNT.txt']['en'] += " %OttimoDireiOOOttimoDirei%"
 
         # with the event, we can finally call the format checks

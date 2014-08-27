@@ -134,7 +134,7 @@ class CollectionDownload(BaseHandler):
         rtip_dict = yield get_rtip_info(rtip_id)
         collection_tip_dict = yield get_collection_info(rtip_id)
         context_dict = yield admin.get_context(rtip_dict['context_id'])
-        notif_dict = yield admin.get_notification()
+        notif_dict = yield admin.notification.get_notification()
 
         mock_event = Event(
             type = u'zip_collection',
