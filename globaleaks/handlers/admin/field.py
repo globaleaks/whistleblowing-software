@@ -17,6 +17,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.models import ApplicationData, Field, FieldGroup, FieldGroupFieldGroup, Step
 from globaleaks.utils.utility import log, datetime_now, datetime_null, datetime_to_ISO8601
 
+
 def serialize_field(field, field_group):
     """
     This function is called only inside a @transact[_ro]

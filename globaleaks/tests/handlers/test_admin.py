@@ -117,7 +117,7 @@ class TestNodeInstance(helpers.TestHandler):
         yield handler.put()
 
 class TestNotificationInstance(helpers.TestHandler):
-    _handler = admin.NotificationInstance
+    _handler = admin.notification.NotificationInstance
 
     @inlineCallbacks
     def test_update_notification(self):
@@ -196,7 +196,7 @@ class TestContextInstance(helpers.TestHandler):
 
             # 1000 hours are more than three days, and a Tip can't live less than a submission
             handler = self.request(self.dummyContext, role='admin')
-    
+
             yield self.assertFailure(handler.put(self.dummyContext['id']), errors.InvalidTipSubmCombo)
 
     @inlineCallbacks
@@ -449,4 +449,3 @@ class TestAdminStaticFileList(helpers.TestHandler):
                 self.assertEqual(self.fakeFile['body_len'], f['size'])
 
         self.assertTrue(found)
-
