@@ -103,6 +103,9 @@ def wizard(store, request, language=GLSetting.memory_copy.default_language):
     context = request['context']
     node = request['node']
 
+    node['default_language'] = language
+    node['languages_enabled'] = [ language ]
+
     try:
         context_dict = db_create_context(store, context, language)
     except Exception as excep:
