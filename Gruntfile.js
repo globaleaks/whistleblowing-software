@@ -525,18 +525,19 @@ module.exports = function(grunt) {
       output['fields'] = fields;
       output['templates'] = templates;
 
-      var vars = ["node_presentation", "node_footer", "node_subtitle", "node_terms_and_conditions"]
-      for (var i in vars) {
+      output['node'] = {};
+
+      for (var k in json['node']){
 
         gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
 
-        output[vars[i]] = {}
+        output['node'][k] = {};
         for (var lang_code in supported_languages) {
 
-          output[vars[i]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(json[vars[i]]['en'])));
+          output['node'][k][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(json['node'][k]['en'])));
 
-        };
-      };
+        }
+      }
 
       output = JSON.stringify(output);
 
