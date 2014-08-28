@@ -32,7 +32,7 @@ from storm.zope.zstorm import ZStorm
 from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
 
-from globaleaks import __version__, DATABASE_VERSION
+from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
@@ -175,7 +175,7 @@ class GLSettingsClass:
         self.defaults.receipt_regexp = u'[0-9]{16}'
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
         self.defaults.submission_seconds_of_life = (3600 * 24) * 3
-        self.defaults.languages_enabled = ['en']
+        self.defaults.languages_enabled = LANGUAGES_SUPPORTED_CODES
 
         self.memory_copy = OD()
         # Some operation, like check for maximum file, can't access
