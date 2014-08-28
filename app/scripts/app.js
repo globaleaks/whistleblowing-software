@@ -16,21 +16,20 @@ var GLClient = angular.module('GLClient', [
   ]).
   config(['$routeProvider', '$translateProvider', '$tooltipProvider', function($routeProvider, $translateProvider, $tooltipProvider) {
 
-
     $routeProvider.
-      when('/wizard', {
+      when('/wizard/:lang?', {
         templateUrl: 'views/wizard/main.html',
         controller: 'WizardCtrl',
         header_title: 'GlobaLeaks Wizard',
         header_subtitle: 'Step-by-step setup'
       }).
-      when('/submission', {
+      when('/submission/:lang?', {
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
         header_title: 'Blow the Whistle',
         header_subtitle: ''
       }).
-      when('/status', {
+      when('/status/:lang?', {
         templateUrl: 'views/whistleblower/tip.html',
         controller: 'StatusCtrl',
         header_title: 'Whistleblower Interface',

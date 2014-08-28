@@ -1,6 +1,8 @@
-GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$location',  '$translate', 'Node', 'Authentication',
-  function($scope, $rootScope, $http, $route, $location, $translate, Node, Authentication) {
+GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$translate', 'Node', 'Authentication',
+  function($scope, $rootScope, $http, $route, $routeParams, $location, $translate, Node, Authentication) {
     $scope.started = true;
+
+    console.log($route);
 
     $scope.custom_stylesheet = '/static/custom_stylesheet.css';
     $scope.logo = '/static/globaleaks_logo.png';
@@ -8,7 +10,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$lo
     $scope.update_node = function () {
       Node.get(function (node) {
         $scope.node = node;
-        if (!$scope.node.wizard_done) {
+        if (!$scope.node.wizard_done && $route.current.$$route.controller != "WizardCtrl") {
           $location.path('/wizard');
         }
       });
@@ -89,6 +91,13 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$lo
 
     };
 
+    $scope.$on('$routeChangeSuccess', function() {
+      if($routeParams.lang) {
+        $rootScope.language = $scope.language = $routeParams.lang;
+      }
+    });
+
+    console.log(JSON.stringify($routeParams));
     $scope.$on("REFRESH", refresh);
 
     $rootScope.$watch('language', function (newVal, oldVal) {
