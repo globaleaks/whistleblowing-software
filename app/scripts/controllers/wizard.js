@@ -1,6 +1,6 @@
-GLClient.controller('WizardCtrl', ['$scope', '$location', '$http', '$modal', 'Admin',
+GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$http', '$modal', 'Admin',
                     'DefaultAppdata', 'passwordWatcher',
-                    'changePasswordWatcher', function($scope, $location, $http, $modal,
+                    'changePasswordWatcher', function($scope, $rootScope, $location, $http, $modal,
                                                       Admin, DefaultAppdata,
                                                       passwordWatcher,
                                                       changePasswordWatcher) {
@@ -24,7 +24,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$http', '$modal', 'Ad
         return;
       var modalInstance = $modal.open({
         templateUrl: 'views/partials/disable_encryption.html',
-        controller: 'DisableEncryptionCtrl',
+        controller: 'DisableEncryptionCtrl'
       });
 
       modalInstance.result.then(function(result){
@@ -51,6 +51,12 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$http', '$modal', 'Ad
         });
       }
     };
+
+    $scope.$watch("language", function (newVal, oldVal) {
+      if (newVal && newVal !== oldVal) {
+        $rootScope.language = $scope.language;
+      }
+    });
 
   }
 ]);

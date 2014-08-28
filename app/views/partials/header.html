@@ -20,21 +20,21 @@
         </div>
       </div>
       <div id="titleboxwithtagline">
-          <a href="/#/">
-            <div id="logo"></div>
-          </a>
-          <div id="tagline" data-ng-show="isHomepage()">
-            {{ node.subtitle }}
-          </div>
-          <div id="tagline" data-ng-hide="isHomepage()">
-            <span>{{ header_title | translate }}</span>
-            <span data-ng-show="hasSubtitle()">
-               - <span>{{ header_subtitle | translate }}</span>
-            </span>
-          </div>
+        <a href="/#/">
+          <div id="logo"></div>
+        </a>
+        <div id="tagline" data-ng-show="isHomepage()">
+          {{ node.subtitle }}
+        </div>
+        <div id="tagline" data-ng-hide="isHomepage()">
+          <span>{{ header_title | translate }}</span>
+          <span data-ng-show="hasSubtitle()">
+             - <span>{{ header_subtitle | translate }}</span>
+          </span>
+        </div>
       </div>
     </span>
-    <span id="ToolbarBox" class="pull-right" data-ng-include="'views/partials/toolbar.html'"></span>
+    <span id="ToolbarBox" class="pull-right" data-ng-if="!isWizard()" data-ng-include="'views/partials/toolbar.html'"></span>
   </div>
   <div class="clearfix"></div>
 </div>
