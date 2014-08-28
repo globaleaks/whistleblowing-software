@@ -24,19 +24,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'GlobaLeaks Wizard',
         header_subtitle: 'Step-by-step setup'
       }).
-      when('/wizard:lang', {
-        templateUrl: 'views/wizard/main.html',
-        controller: 'WizardCtrl',
-        header_title: 'GlobaLeaks Wizard',
-        header_subtitle: 'Step-by-step setup'
-      }).
       when('/submission', {
-        templateUrl: 'views/submission/main.html',
-        controller: 'SubmissionCtrl',
-        header_title: 'Blow the Whistle',
-        header_subtitle: ''
-      }).
-      when('/submission/:lang', {
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
         header_title: 'Blow the Whistle',
@@ -48,25 +36,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Whistleblower Interface',
         header_subtitle: 'Tip Status Page'
       }).
-      when('/status/:tip_id', {
-        templateUrl: 'views/receiver/tip.html',
-        controller: 'StatusCtrl',
-        header_title: 'Receiver Interface',
-        header_subtitle: 'Tip Status Page'
-      }).
-      when('/status/:tip_id/:lang', {
-        templateUrl: 'views/receiver/tip.html',
-        controller: 'StatusCtrl',
-        header_title: 'Receiver Interface',
-        header_subtitle: 'Tip Status Page'
-      }).
       when('/receiver/preferences', {
-        templateUrl: 'views/receiver/preferences.html',
-        controller: 'ReceiverPreferencesCtrl',
-        header_title: 'Receiver Interface',
-        header_subtitle: ''
-      }).
-      when('/receiver/preferences/:lang', {
         templateUrl: 'views/receiver/preferences.html',
         controller: 'ReceiverPreferencesCtrl',
         header_title: 'Receiver Interface',
@@ -78,19 +48,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Receiver Interface',
         header_subtitle: 'Your Tips'
       }).
-      when('/receiver/tips/:lang', {
-        templateUrl: 'views/receiver/tips.html',
-        controller: 'ReceiverTipsCtrl',
-        header_title: 'Receiver Interface',
-        header_subtitle: 'Your Tips'
-      }).
       when('/admin/landing', {
-        templateUrl: 'views/admin/landing.html',
-        controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Landing Page'
-      }).
-      when('/admin/landing:lang', {
         templateUrl: 'views/admin/landing.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
@@ -102,19 +60,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration Interface',
         header_subtitle: 'Content Settings'
       }).
-      when('/admin/content/:lang', {
-        templateUrl: 'views/admin/content.html',
-        controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Content Settings'
-      }).
       when('/admin/contexts', {
-        templateUrl: 'views/admin/contexts.html',
-        controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Contexts Configuration'
-      }).
-      when('/admin/contexts/:lang', {
         templateUrl: 'views/admin/contexts.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
@@ -126,19 +72,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration Interface',
         header_subtitle: 'Receivers Configuration'
       }).
-      when('/admin/receivers/:lang', {
-        templateUrl: 'views/admin/receivers.html',
-        controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Receivers Configuration'
-      }).
       when('/admin/mail', {
-        templateUrl: 'views/admin/mail.html',
-        controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Mail Configuration'
-      }).
-      when('/admin/mail/:lang', {
         templateUrl: 'views/admin/mail.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
@@ -150,19 +84,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration Interface',
         header_subtitle: 'Advanced Settings'
       }).
-      when('/admin/advanced_settings/:lang', {
-        templateUrl: 'views/admin/advanced.html',
-        controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Advanced Settings'
-      }).
       when('/admin/password', {
-        templateUrl: 'views/admin/password.html',
-        controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Password Configuration'
-      }).
-      when('/admin/password/:lang', {
         templateUrl: 'views/admin/password.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
@@ -174,19 +96,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration Interface',
         header_subtitle: 'Users Overview'
       }).
-      when('/admin/overview/users/:lang', {
-        templateUrl: 'views/admin/users_overview.html',
-        controller: 'OverviewCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Users Overview'
-      }).
       when('/admin/overview/tips', {
-        templateUrl: 'views/admin/tips_overview.html',
-        controller: 'OverviewCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Tips Overview'
-      }).
-      when('/admin/overview/tips/:lang', {
         templateUrl: 'views/admin/tips_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration Interface',
@@ -198,19 +108,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration Interface',
         header_subtitle: 'Files Overview'
       }).
-      when('/admin/overview/files/:lang', {
-        templateUrl: 'views/admin/files_overview.html',
-        controller: 'OverviewCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Files Overview'
-      }).
       when('/admin/stats/', {
-        templateUrl: 'views/admin/stats.html',
-        controller: 'StatisticsCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'System Stats'
-      }).
-      when('/admin/stats/:lang', {
         templateUrl: 'views/admin/stats.html',
         controller: 'StatisticsCtrl',
         header_title: 'Administration Interface',
@@ -222,31 +120,13 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Login',
         header_subtitle: ''
       }).
-      when('/login/:lang', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
-        header_title: 'Login',
-        header_subtitle: ''
-      }).
       when('/start', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
         header_title: '',
         header_subtitle: '',
       }).
-      when('/start/:lang', {
-        templateUrl: 'views/home.html',
-        controller: 'HomeCtrl',
-        header_title: '',
-        header_subtitle: '',
-      }).
       when('/', {
-        templateUrl: 'views/home.html',
-        controller: 'HomeCtrl',
-        header_title: '',
-        header_subtitle: '',
-      }).
-      when('/:lang', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
         header_title: '',
