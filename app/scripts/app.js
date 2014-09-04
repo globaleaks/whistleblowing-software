@@ -123,13 +123,25 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
         header_title: '',
-        header_subtitle: '',
+        header_subtitle: ''
+      }).
+      when('/start/:lang', {
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl',
+        header_title: '',
+        header_subtitle: ''
       }).
       when('/', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
         header_title: '',
-        header_subtitle: '',
+        header_subtitle: ''
+      }).
+      when('/:lang', {
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl',
+        header_title: '',
+        header_subtitle: ''
       }).
       otherwise({
         redirectTo: '/'

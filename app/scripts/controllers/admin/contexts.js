@@ -16,10 +16,10 @@ GLClient.controller('AdminContextsCtrl',
     });
   };
 
-  $scope.delete = function(context) {
+  $scope.perform_delete = function(context) {
     var idx = _.indexOf($scope.admin.contexts, context);
 
-    context.$delete(function(){
+    context['$delete'](function(){
       $scope.admin.contexts.splice(idx, 1);
     });
 
@@ -86,7 +86,7 @@ GLClient.controller('AdminContextsCtrl',
     });
 
     modalInstance.result.then(
-       function(result) { $scope.delete(result); },
+       function(result) { $scope.perform_delete(result); },
        function(result) { }
     );
   };

@@ -6,10 +6,10 @@ function($scope, $modal) {
     });
   };
 
-  $scope.delete = function(receiver) {
+  $scope.perform_delete = function(receiver) {
     var idx = _.indexOf($scope.admin.receivers, receiver);
 
-    receiver.$delete(function(){
+    receiver['$delete'](function(){
       $scope.admin.receivers.splice(idx, 1);
     });
 
@@ -28,7 +28,7 @@ function($scope, $modal) {
     });
 
     modalInstance.result.then(
-       function(result) { $scope.delete(result); },
+       function(result) { $scope.perform_delete(result); },
        function(result) { }
     );
   };
