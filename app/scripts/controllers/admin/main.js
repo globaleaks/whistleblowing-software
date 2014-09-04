@@ -181,8 +181,8 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', 'Defa
     $scope.update_static_files();
   };
 
-  $scope.delete = function (url) {
-    $http.delete(url).success(function (response) {
+  $scope.perform_delete = function (url) {
+    $http['delete'](url).success(function (response) {
       $scope.update_static_files();
     });
   };

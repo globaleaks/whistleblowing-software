@@ -36,7 +36,7 @@ angular.module('resourceServices.authentication', [])
             var error = {
               'message': 'Session expired!',
                  'code': 401,
-                  'url': $location.path(),
+                  'url': $location.path()
             };
 
             $rootScope.errors.push(error);
@@ -110,7 +110,10 @@ angular.module('resourceServices.authentication', [])
         };
 
         $rootScope.logout = function() {
-          $http.delete('/authentication').then(self.logout_performed,
+          // we use $http['delete'] in place of $http.delete due to
+          // the magical IE7/IE8 that do not allow delete as identifier
+          // https://github.com/globaleaks/GlobaLeaks/issues/943
+          $http['delete']('/authentication').then(self.logout_performed,
                                                self.logout_performed);
 
         };
@@ -276,7 +279,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             self.current_context_receivers.push(receiver);
             if (!receiver.disabled)
               self.receivers_selected[receiver.id] = self.current_context.select_all_receivers != false;
-          };
+          }
         });
       };
 
@@ -339,11 +342,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.submit = function() {
         if (!self.receivers_selected) {
           return;
-        };
+        }
 
         if (!self.current_submission) {
           return;
-        };
+        }
 
         // Set the submission field values
         _.each(self.current_context.fields, function(field, k) {
@@ -369,7 +372,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           if (result) {
             self.receipt = self.current_submission.receipt;
             self.completed = true;
-          };
+          }
         });
 
       };
