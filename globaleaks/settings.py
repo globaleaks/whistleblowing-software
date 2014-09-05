@@ -802,8 +802,10 @@ class transact(object):
                 result = function(self.instance, self.store, *args, **kwargs)
             else:
                 result = function(self.store, *args, **kwargs)
+
         except (exceptions.IntegrityError, exceptions.DisconnectionError):
             transaction.abort()
+            # we print the exception here because we do not propagate it
             traceback.print_exc()
             result = None
         except HTTPError as excep:
@@ -811,7 +813,6 @@ class transact(object):
             raise excep
         except Exception as excep:
             transaction.abort()
-            traceback.print_exc()
             self.store.close()
             # propagate the exception
             raise excep

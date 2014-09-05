@@ -232,6 +232,24 @@ class TestGL(unittest.TestCase):
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
 
+
+    def _find_one(self, store, model_name, model_id):
+        from globaleaks import models
+        model = getattr(models, model_name)
+        return store.find(model, model.id == model_id).one()
+
+    @transact
+    def _exists(self, store, model_name, model_id):
+        return self._find_one(store, model_name, model_id) is not None
+
+    @transact_ro
+    def _find(self, store, model_name, model_id, attr):
+        m = self._find_one(store, model_name, model_id)
+        if m is None:
+            return None
+        return getattr(m, attr)
+
+
     @transact_ro
     def get_finalized_submissions_ids(self, store):
         ids = []
