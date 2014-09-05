@@ -317,9 +317,9 @@ create table fieldgroup_fieldgroup (
 
 CREATE TABLE step (
   context_id VARCHAR NOT NULL,
-  field_group_id VARCHAR NOT NULL,
   number INTEGER NOT NULL,
-  PRIMARY KEY (context_id, field_group_id),
+  field_group_id VARCHAR NOT NULL,
+  PRIMARY KEY (context_id, number, field_group_id),
   FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
   FOREIGN KEY(field_group_id) REFERENCES fieldgroup(id)
     ON UPDATE CASCADE

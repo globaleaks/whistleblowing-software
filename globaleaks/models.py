@@ -41,13 +41,17 @@ class Model(Storm):
         return Storm.__new__(cls, *args)
 
     @classmethod
+    def new(cls, store, attrs):
+        obj = cls(attrs)
+        return obj.id
+
+    @classmethod
     def get(cls, store, obj_id):
         return store.find(cls, cls.id == obj_id).one()
 
     @classmethod
-    def new(cls, store, attrs):
-        obj = cls(attrs)
-        return obj.id
+    def delete(cls, store, obj_id):
+        store.remove(store.find(cls, cls.id == obj_id).one())
 
     def update(self, attrs=None):
         """
@@ -631,52 +635,6 @@ class Receiver(Model):
                  'message_notification', 'postpone_superpower']
 
 
-# Follow two classes used for Many to Many references
-class ReceiverContext(object):
-
-    """
-    Class used to implement references between Receivers and Contexts
-    """
-    __storm_table__ = 'receiver_context'
-    __storm_primary__ = 'context_id', 'receiver_id'
-    context_id = Unicode()
-    receiver_id = Unicode()
-
-
-class ReceiverInternalTip(object):
-
-    """
-    Class used to implement references between Receivers and IntInternalTips
-    """
-    __storm_table__ = 'receiver_internaltip'
-    __storm_primary__ = 'receiver_id', 'internaltip_id'
-
-    receiver_id = Unicode()
-    internaltip_id = Unicode()
-
-
-class ApplicationData(Model):
-
-    """
-    Exists only one instance of this class, because the ApplicationData
-    had only one big updated blob.
-    """
-    __storm_table__ = 'applicationdata'
-
-    version = Int()
-    fields = Pickle()
-
-
-class Stats(Model):
-
-    """
-    Stats collection!
-    """
-    __storm_table__ = 'stats'
-
-    content = Pickle()
-
-
 class Field(Model):
     __storm_table__ = 'field'
 
@@ -730,12 +688,36 @@ class Field(Model):
         :param attr: a dictionary holding all informations for the Field, FieldGroup.
         :return FieldGroup: a new FieldGroup described by the dictionary `attr`.
         """
-        field_group = FieldGroup(attrs)
+
+        group_attrs = {}
+
+        # check and separation of attrs part of FieldGroup
+        for k in ('label', 'description', 'hint', 'multi_entry'):
+            try:
+                group_attrs[k] = attrs[k]
+            except:
+                raise ValueError('field missing key: %s' % k)
+            del attrs[k]
+
+        group_attrs['x'] = 0
+        group_attrs['y'] = 0
+
+        field_group = FieldGroup(group_attrs)
         field = Field(attrs)
         field.field_group = field_group
         store.add(field_group)
         store.add(field)
         return field.id
+
+    @classmethod
+    def delete(cls, store, obj_id):
+        """
+        Delete the field.
+        As a field is always the composition of a Field and a FieldGroup that acts as
+        his parent due to an external reference, to delete the field we simply need to
+        delete the parent (the fieldgroup)
+        """
+        FieldGroup.delete(store, obj_id)
 
     def __setattr__(self, name, value):
         if name == 'id':
@@ -755,18 +737,7 @@ class FieldGroup(Model):
     hint = Unicode()
     multi_entry = Bool()
 
-    localized_strings = ['label']
-
-    @transact
-    def delete(self, store):
-        """
-        Delete the current instance of a FieldGroup, removing all childs
-        and associated Fields.
-        """
-        for c in self.children:
-            if not c.children:
-                store.remove(store.find(Field, Field.group_id == c.id))
-            store.remove(leaf)
+    localized_strings = ['label', 'description', 'hint']
 
     @staticmethod
     def new(store, attrs):
@@ -777,12 +748,38 @@ class FieldGroup(Model):
         :return FieldGroup: the new FieldGroup.
         """
         field_group = FieldGroup(attrs)
-        store.add(field_group)
+
         for child_id in attrs.get('_children', []):
             child = FieldGroup.get(store, child_id)
             field_group.children.add(child)
+
+        store.add(field_group)
         return field_group.id
 
+    @classmethod
+    def delete(cls, store, obj_id):
+        """
+        Delete the FieldGroup associated with obj_id
+        A FieldGroup can have childrens (other FieldGroups eventually directly connected to a Field as leaf)
+        In such situation the delete operation prevents the deletion of the parent
+        This is to enforce the application to remove starting from the leafs (things that is logical and clear to the user)
+        TODO: in the future we may evaluate something like a delete_all that starting from a root FieldGroup deletes all
+              the children that are not associated to any other parent. this would be probably to be done in a separated
+              delete_all as we do not want to enforce any automatic behaviour that can remain optional.
+        """
+
+        obj = cls.get(store, obj_id)
+
+        if store.find(FieldGroupFieldGroup, FieldGroupFieldGroup.parent_id == obj_id).count() != 0:
+            raise Exception("Cannot remove a FieldGroup associated with some children")
+
+        for c in obj.children:
+            # The delete routine proceed recursively.
+            # Every exception triggered by a nested call revert the action also on the parents;
+            # this behaviour is exactly what we want by design.
+            FieldGroup.delete(store, c.obj_id)
+
+        store.remove(obj)
 
     @staticmethod
     @transact
@@ -820,21 +817,32 @@ class FieldGroupFieldGroup(object):
     parent_id = Unicode()
     child_id = Unicode()
 
+    unicode_keys = ['parent_id', 'child_id']
+
+    @staticmethod
+    def new(store, attrs):
+        """
+        Create a new FieldGroupFieldGroup associating two FieldGroups identified by their id.
+
+        :param attr: a dictionary holding the parent_id and the child_id.
+        :return FieldGroup: a new FieldGroupFieldGroup described by the dictionary `attr`.
+        """
+
+        field_group_field_group = FieldGroupFieldGroup(attrs)
+        store.add(field_group_field_group)
+        return field_group_field_group.id
+
 
 class Step(object):
     __storm_table__ = 'step'
-    __storm_primary__ = 'context_id', 'field_group_id'
+    __storm_primary__ = 'context_id', 'number'
 
     context_id = Unicode()
     field_group_id = Unicode()
     number = Int()
 
-    @classmethod
-    def get(cls, store, context_id):
-        return store.find(cls, cls.context_id == context_id)
-
     @staticmethod
-    def new(store, context_id, field_group_id, number=0):
+    def new(store, context_id, number, field_group_id):
         step = Step()
         field_group = FieldGroup.get(store, field_group_id)
         context = Context.get(store, context_id)
@@ -842,14 +850,88 @@ class Step(object):
         step.context = context
         step.number = number
 
+    @classmethod
+    def get(cls, store, context_id, number):
+        return store.find(Step, Step.context_id == context_id, Step.number == number)
 
-Step.context = Reference(Step.context_id, Context.id)
-Step.field_group = Reference(Step.field_group_id, FieldGroup.id)
+
+    @classmethod
+    def delete(cls, store, context_id, number):
+        # delete the step numered as number and associated with context_id
+        pass
+
+class ApplicationData(Model):
+
+    """
+    Exists only one instance of this class, because the ApplicationData
+    had only one big updated blob.
+    """
+    __storm_table__ = 'applicationdata'
+
+    version = Int()
+    fields = Pickle()
+
+
+class Stats(Model):
+
+    """
+    Stats collection!
+    """
+    __storm_table__ = 'stats'
+
+    content = Pickle()
+
+
+# Follow classes used for Many to Many references
+class ReceiverContext(object):
+
+    """
+    Class used to implement references between Receivers and Contexts
+    """
+    __storm_table__ = 'receiver_context'
+    __storm_primary__ = 'context_id', 'receiver_id'
+    context_id = Unicode()
+    receiver_id = Unicode()
+
+class ReceiverInternalTip(object):
+
+    """
+    Class used to implement references between Receivers and IntInternalTips
+    """
+    __storm_table__ = 'receiver_internaltip'
+    __storm_primary__ = 'receiver_id', 'internaltip_id'
+
+    receiver_id = Unicode()
+    internaltip_id = Unicode()
+
+class ReceiverContext(object):
+
+    """
+    Class used to implement references between Receivers and Contexts
+    """
+    __storm_table__ = 'receiver_context'
+    __storm_primary__ = 'context_id', 'receiver_id'
+    context_id = Unicode()
+    receiver_id = Unicode()
+
+class ReceiverContext(object):
+
+    """
+    Class used to implement references between Receivers and Contexts
+    """
+    __storm_table__ = 'receiver_context'
+    __storm_primary__ = 'context_id', 'receiver_id'
+    context_id = Unicode()
+    receiver_id = Unicode()
+
 
 Context.steps = ReferenceSet(Context.id,
                              Step.context_id,
                              Step.field_group_id,
                              FieldGroup.id)
+
+Step.context = Reference(Step.context_id, Context.id)
+Step.field_group = Reference(Step.field_group_id, FieldGroup.id)
 
 # _*_# References tracking below #_*_#
 Receiver.user = Reference(Receiver.user_id, User.id)
@@ -916,13 +998,12 @@ Receiver.contexts = ReferenceSet(
     Context.id)
 
 Field.field_group = Reference(Field.id, FieldGroup.id)
+
 FieldGroup.children = ReferenceSet(
     FieldGroup.id,
     FieldGroupFieldGroup.parent_id,
     FieldGroupFieldGroup.child_id,
     FieldGroup.id)
-
-
 
 models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment,
           InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile,

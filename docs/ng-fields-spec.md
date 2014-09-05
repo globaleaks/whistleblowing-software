@@ -1,4 +1,4 @@
-Data format of a field entry:
+The following is the data format of a field entry used in handler I/O:
 
 ```
 {
@@ -26,14 +26,18 @@ Data format of a field entry:
         * dialog
 
         * tos
-        * group
 
-  "regexp":
-      a regular expression that the field should match
+        * group
 
   "options":
       a dict specifying the options to be passed to the field.
       In the case of input_box, text_area, this is an empty dict.
+
+      For input_box and text_area the format is:
+          {
+            "regexp": unicode
+                a regular expression that the field should match
+          }
 
       For radio, checkbox the format is:
           {

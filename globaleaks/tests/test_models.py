@@ -245,76 +245,78 @@ class TestNextGenFields(helpers.TestGL):
 
     @transact
     def create_field(self, store):
-        field_group = FieldGroup()
-        field_group.x = 1
-        field_group.y = 1
-        field_group.label = "{'en': 'test label'}"
-        field_group.description = "{'en': 'test description'}"
-        field_group.hint = "{'en': 'test hint'}"
-        field_group.multi_entry = True
-        store.add(field_group)
 
-        field = Field()
-        field.preview = True
-        field.required = False
-        field.stats_enabled = True
-        field.type = 'checkbox'
-        field.regexp = '.*'
-        field.options = {}
-        field.default_value = 'foo'
-        field.field_group = field_group
+        attrs = {
+            'label': "{'en': 'test label'}",
+            'description': "{'en': 'test description'}",
+            'hint': "{'en': 'test hint'}",
+            'multi_entry': False,
+            'preview': True,
+            'required': False,
+            'stats_enabled': True,
+            'type': 'checkbox',
+            'regexp': '.*',
+            'options': {},
+            'default_value': 'foo',
+            'stats': False
+        }
 
-        store.add(field)
+        field_id = Field.new(store, attrs)
 
-        return field.id
-
-    def _find_one(self, store, model_name, model_id):
-        from globaleaks import models
-        model = getattr(models, model_name)
-        return store.find(model, model.id == model_id).one()
+        return field_id # returns field_id
 
     @transact
-    def exists(self, store, model_name, model_id):
-        return self._find_one(store, model_name, model_id) is not None
+    def create_field_group(self, store):
 
-    @transact_ro
-    def find(self, store, model_name, model_id, attr):
-        m = self._find_one(store, model_name, model_id)
-        if m is None:
-            return None
-        return getattr(m, attr)
+        attrs = {
+            'label': "{'en': 'test label'}",
+            'description': "{'en': 'test description'}",
+            'hint': "{'en': 'test hint'}",
+            'multi_entry': False
+        }
+
+        return FieldGroup.new(store, attrs) # returns field_group_id
+
+    @transact
+    def transact_field_delete(self, store, field_id):
+        Field.delete(store, field_id)
 
     @inlineCallbacks
-    def test_field_creation(self):
+    def test_001_field_creation(self):
         field_id = yield self.create_field()
-        exists = yield self.exists('Field', field_id)
+        exists = yield self._exists('Field', field_id)
         self.assertTrue(exists, "Field does not exist")
 
     @inlineCallbacks
-    def test_delete_field(self):
+    def test_002_delete_field(self):
         field_id = yield self.create_field()
-        group_id = yield self.find('Field', field_id, 'group_id')
-        yield self.delete('Field', field_id)
+        yield self.transact_field_delete(field_id)
 
-        exists = yield self.exists('Field', field_id)
+        exists = yield self._exists('Field', field_id)
         self.assertFalse(exists, "Field still exists")
-        exists = yield self.exists('FieldGroup', group_id)
+        exists = yield self._exists('FieldGroup', field_id)
         self.assertFalse(exists, "FieldGroup still exists")
-
-    test_delete_field.skip = "Still have to guarantee this kind of consistency"
 
     @inlineCallbacks
-    def test_delete_field_group(self):
+    def test_003_field_group_creation(self):
+        field_group_id = yield self.create_field_group()
+        exists = yield self._exists('FieldGroup', field_group_id)
+        self.assertTrue(exists, "FieldGroup does not exist")
+
+    @inlineCallbacks
+    def test_004_delete_field_group_with_children(self):
         field_id = yield self.create_field()
         group_id = field_id
-        yield FieldGroup.get(group_id).delete(group_id)
 
-        exists = yield self.exists('Field', field_id)
+        field_group_id = yield self.create_field_group()
+
+        yield self.transact_field_delete(field_id)
+
+        exists = yield self._exists('Field', field_id)
         self.assertFalse(exists, "Field still exists")
-
-        exists = yield self.exists('FieldGroup', group_id)
+        exists = yield self._exists('FieldGroup', field_id)
         self.assertFalse(exists, "FieldGroup still exists")
-    test_delete_field_group.skip = 'not yet'
+
 
 class TestComposingFields(helpers.TestGLWithPopulatedDB):
     fixtures = ['fields.json']
@@ -330,6 +332,9 @@ class TestComposingFields(helpers.TestGLWithPopulatedDB):
 
         self.generalities_id = u"37242164-1b1f-1110-1e1c-b1f12e815105"
 
+    @transact
+    def transact_field_group_delete(self, store, field_group_id):
+        FieldGroup.delete(store, field_group_id)
 
     @transact_ro
     def _get_children(self, store, field_group_id):
@@ -337,7 +342,7 @@ class TestComposingFields(helpers.TestGLWithPopulatedDB):
         return [c.id for c in field_group.children]
 
     @inlineCallbacks
-    def test_add_children(self):
+    def test_001_add_children(self):
         children = yield self._get_children(self.generalities_id)
         self.assertIn(self.name_id, children)
         self.assertIn(self.birthdate_id, children)
@@ -351,9 +356,8 @@ class TestComposingFields(helpers.TestGLWithPopulatedDB):
         self.assertIn(self.name_id, children)
         self.assertIn(self.sex_id, children)
 
-
     @inlineCallbacks
-    def test_serialize_field_group(self):
+    def test_002_serialize_field_group(self):
         serialized = yield FieldGroup.serialize(self.generalities_id)
         root_id = self.generalities_id
         children_id = (self.name_id, self.birthdate_id)
@@ -364,15 +368,39 @@ class TestComposingFields(helpers.TestGLWithPopulatedDB):
 
 
     @inlineCallbacks
-    def test_step(self):
+    def test_003_delete_field_group_with_children_should_fail(self):
+        # Should fail with Exception and FieldGroup still present
+
+        children = yield self._get_children(self.generalities_id)
+
+
+        FieldGroup.add_children(self.generalities_id,
+                                self.surname_id, self.sex_id)
+
+        self.assertFailure(self.transact_field_group_delete(self.generalities_id),
+                           Exception)
+
+    @inlineCallbacks
+    def test_004_delete_field_group_with_children_should_succed(self):
+        # Should fail with Exception and FieldGroup still present
+
+        children = yield self._get_children(self.generalities_id)
+
+        for c in children:
+            yield self.transact_field_group_delete(c)
+
+        yield self.transact_field_group_delete(self.generalities_id)
+
+    @inlineCallbacks
+    def test_005_new_step(self):
         @transact
-        def new_mock_step(store, context_id):
-            return Step.new(store, context_id, self.generalities_id)
+        def create_step(store, context_id, number):
+            return Step.new(store, context_id, number, self.generalities_id)
 
         @transact
-        def step_exists(store, step_id):
-            return bool(Step.get(store, step_id))
+        def step_exists(store, context_id, step_id):
+            return bool(Step.get(store, context_id, step_id))
 
         context_id = yield self.dummyContext['id']
-        step_id = yield new_mock_step(context_id)
-        self.assertTrue(step_exists(step_id))
+        step_id = yield create_step(context_id, 0)
+        self.assertTrue(step_exists(context_id, step_id))

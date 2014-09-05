@@ -18,26 +18,62 @@ from globaleaks.models import ApplicationData, Field, FieldGroup, FieldGroupFiel
 from globaleaks.utils.utility import log, datetime_now, datetime_null, datetime_to_ISO8601
 
 
-def serialize_field(field, field_group):
+def serialize_field_group(store, field_group):
     """
-    This function is called only inside a @transact[_ro]
-
-    @param field: Storm object
-    @param field_group: Storm object
-    @return: TODO stabilize field format for GLClient
-
-    AT THE MOMENT WE'RE RETURNING A STATIC FIELD IN CLIENT VERSION
+    Function that perform serialization of a field given the id
+    whenever the fieldgroup is directly associated with a Field the serialization include Field informations.
+    :param store: the store object to be used
+    :param field_group: the field_group object to be serialized
+    :return: a serialization of the object
     """
-    from globaleaks.tests.TI_testdata import TI_1
-    return TI_1
 
+    ret =  {
+        'id': field_group.id,
+        'label': field_group.label,
+        'description': field_group.description,
+        'hint': field_group.hint,
+        'multi_entry': field_group.multi_entry,
+        'x': field_group.x,
+        'y': field_group.y,
+    }
+
+    field = store.find(Field, Field.id == field_group.id).one()
+
+    if field:
+        ret.update({
+            'type': field.type,
+            'stats_enabled': field.stats_enabled,
+            'required': field.required,
+            'options': field.options,
+            'preview': False
+        })
+    else:
+        ret.update({
+            'childrens': [f.id for f in field_group.children]
+        })
+
+    return ret
+
+@transact_ro
+def transact_serialize_field_group(store, field_group_id):
+    """
+    Transaction that perform serialization of a FieldGroup_ given the id
+    whenever the fieldgroup is directly associated with a Field the serialization include Field informations.
+    :param store: the store object provided by the transact decorator
+    :param field_id: the field_id of the object to be serialized
+    :return: a serialization of the object identified by field_id
+    """
+
+    field_group = store.find(FieldGroup, FieldGroup.id == unicode(field_group_id)).one()
+
+    return serialize_field_group(store, field_group)
 
 # HACK
 def convert_answer_to_request(answer_field):
     """
     @param answer_field: something defined in
         globaleaks.tests.TI_testdata
-    @return: something WITH ONLY ONE LANGUAGE ('it'
+    @return: a dict localized in a specific language only (e.g., in 'it')
     """
     return  {
         'label' : u'Sei un dipendente pubblico o privato ?',
@@ -46,10 +82,9 @@ def convert_answer_to_request(answer_field):
         'multi_entry' : True,
         'x' : 1,
         'y' : 1,
-        'type' : 'checkbox',
+        'type' : 'selectbox',
         'stats_enabled' : True,
         'required' : True,
-        'regexp' : '.*', # this is fine, or just saying 'None' is good ? TODO check
         'options': {
                 'RANDOMKEY' : {
                         'label': u'Dipendente pubblico',
@@ -78,7 +113,7 @@ def create_field(store, request, language=GLSetting.memory_copy.default_language
 
 
 @transact_ro
-def get_field_list(store, language=GLSetting.memory_copy.default_language):
+def transact_get_field_list(store, language=GLSetting.memory_copy.default_language):
     """
     Returns:
         (dict) the current field list serialized.
@@ -89,7 +124,12 @@ def get_field_list(store, language=GLSetting.memory_copy.default_language):
     B = store.find(FieldGroup)
     C = store.find(FieldGroupFieldGroup)
     D = store.find(Step)
+
     field_list = []
+
+    for f in B:
+        serialized_field = serialize_field_group(store, f)
+        field_list.append(serialized_field)
 
     return field_list
 
@@ -98,17 +138,15 @@ def get_field_list(store, language=GLSetting.memory_copy.default_language):
 def get_field(store, field_id, language=GLSetting.memory_copy.default_language):
     """
     Returns:
-        (dict) the currently configured node.
+        (dict) the currently configured field.
     """
-    context = store.find(Field, Field.id == unicode(field_id)).one()
+    field = store.find(Field, Field.id == unicode(field_id)).one()
 
-    if not context:
-        log.err("Requested invalid context")
-        raise errors.ContextIdNotFound
+    if not field:
+        log.err("Requested invalid field")
+        raise errors.FieldIdNotFound
 
-    from globaleaks.tests.TI_testdata import TI_1
-    # maker has already implemented serialization - but is not commited H.F.S.!
-    return TI_1
+    return {}
 
 @transact
 def delete_field(field_id):
@@ -134,7 +172,7 @@ def get_context_fieldtree(store, context_id):
 class FieldsCollection(BaseHandler):
     """
 
-    /admin/context
+    /admin/fields
     """
 
     @transport_security_check('admin')
@@ -147,7 +185,7 @@ class FieldsCollection(BaseHandler):
         Errors: None
         """
         # XXX TODO REMIND: is pointless define Response format because we're not making output validation
-        response = yield get_field_list(self.request.language)
+        response = yield transact_get_field_list(self.request.language)
 
         self.set_status(200)
         self.finish(response)

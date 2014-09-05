@@ -449,3 +449,16 @@ class TestAdminStaticFileList(helpers.TestHandler):
                 self.assertEqual(self.fakeFile['body_len'], f['size'])
 
         self.assertTrue(found)
+
+
+class TestAdminFieldsCollection(helpers.TestHandler):
+
+        _handler = admin.field.FieldsCollection
+
+        fixtures = ['fields.json']
+
+        @inlineCallbacks
+        def test_get(self):
+            handler = self.request(role='admin')
+            yield handler.get()
+            #print self.responses
