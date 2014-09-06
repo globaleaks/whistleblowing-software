@@ -227,6 +227,14 @@ CREATE TABLE receiver_internaltip (
     FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
 
+CREATE TABLE field_field (
+    parent_id VARCHAR NOT NULL,
+    child_id VARCHAR NOT NULL,
+    PRIMARY KEY (parent_id, child_id),
+    FOREIGN KEY (parent_id) REFERENCES field(id) ON DELETE CASCADE,
+    FOREIGN KEY (child_id) REFERENCES field(id) ON DELETE CASCADE
+);
+
 CREATE TABLE receivertip (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
@@ -269,59 +277,39 @@ CREATE TABLE stats (
 );
 
 CREATE TABLE field (
-  id VARCHAR NOT NULL,
-  creation_date VARCHAR NOT NULL,
-  preview INTEGER,
-  stats_enabled INTEGER NOT NULL DEFAULT 0,
-  required INTEGER,
-  type VARCHAR NOT NULL CHECK (TYPE IN ('radiobutton',
-                                        'checkbox',
-                                        'inputbox',
-                                        'textarea',
-                                        'modal',
-                                        'dialog',
-                                        'tos'
-                                        )),
-  regexp VARCHAR NOT NULL,
-  options VARCHAR DEFAULT '{}',
-  default_value VARCHAR NOT NULL,
-  FOREIGN KEY (id) REFERENCES fieldgroup(id)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
-);
-
-CREATE TABLE fieldgroup (
-  id VARCHAR NOT NULL,
-  creation_date VARCHAR NOT NULL,
-  x INTEGER NOT NULL DEFAULT 0,
-  y INTEGER NOT NULL DEFAULT 0,
-  label VARCHAR NOT NULL,
-  description VARCHAR NOT NULL DEFAULT '',
-  hint VARCHAR NOT NULL DEFAULT '',
-  multi_entry INTEGER NOT NULL DEFAULT 0,
-  PRIMARY KEY(id)
-);
-
-create table fieldgroup_fieldgroup (
-  parent_id VARCHAR NOT NULL,
-  child_id VARCHAR NOT NULL,
-
-  PRIMARY KEY(parent_id, child_id)
-  FOREIGN KEY(parent_id) REFERENCES fieldgroup(id)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE,
-  FOREIGN KEY(child_id) REFERENCES fieldgroup(id)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    label VARCHAR NOT NULL,
+    description VARCHAR NOT NULL DEFAULT '',
+    hint VARCHAR NOT NULL DEFAULT '',
+    multi_entry INTEGER NOT NULL DEFAULT 0,
+    required INTEGER,
+    preview INTEGER,
+    stats_enabled INTEGER NOT NULL DEFAULT 0,
+    x INTEGER NOT NULL DEFAULT 0,
+    y INTEGER NOT NULL DEFAULT 0,
+    type VARCHAR NOT NULL CHECK (TYPE IN ('inputbox',
+                                          'textarea',
+                                          'selectbox',
+                                          'radiobutton',
+                                          'checkbox',
+                                          'multiselect',
+                                          'modal',
+                                          'dialog',
+                                          'tos',
+                                          'fieldgroup'
+                                          )),
+    options VARCHAR DEFAULT '{}',
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE step (
   context_id VARCHAR NOT NULL,
   number INTEGER NOT NULL,
-  field_group_id VARCHAR NOT NULL,
-  PRIMARY KEY (context_id, number, field_group_id),
+  field_id VARCHAR NOT NULL,
+  PRIMARY KEY (context_id, number, field_id),
   FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
-  FOREIGN KEY(field_group_id) REFERENCES fieldgroup(id)
+  FOREIGN KEY(field_id) REFERENCES field(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );

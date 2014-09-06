@@ -8,54 +8,49 @@
 import os
 import shutil
 
+from twisted.internet import defer
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import errors, requests
-from globaleaks.models import ApplicationData, Field, FieldGroup, FieldGroupFieldGroup, Step
+from globaleaks.models import ApplicationData, Field, Step
 from globaleaks.utils.utility import log, datetime_now, datetime_null, datetime_to_ISO8601
 
 
-def serialize_field_group(store, field_group):
+def admin_serialize_field(store, field, language):
     """
     Function that perform serialization of a field given the id
     whenever the fieldgroup is directly associated with a Field the serialization include Field informations.
     :param store: the store object to be used
-    :param field_group: the field_group object to be serialized
+    :param field: the field object to be serialized
     :return: a serialization of the object
     """
-
     ret =  {
-        'id': field_group.id,
-        'label': field_group.label,
-        'description': field_group.description,
-        'hint': field_group.hint,
-        'multi_entry': field_group.multi_entry,
-        'x': field_group.x,
-        'y': field_group.y,
+        'id': field.id,
+        'label': field.label,
+        'description': field.description,
+        'hint': field.hint,
+        'multi_entry': field.multi_entry,
+        'required': field.required,
+        'preview': False,
+        'stats_enabled': field.stats_enabled,
+        'type': field.type,
+        'x': field.x,
+        'y': field.y,
+        'options': field.options
     }
 
-    field = store.find(Field, Field.id == field_group.id).one()
-
-    if field:
+    if field.children:
         ret.update({
-            'type': field.type,
-            'stats_enabled': field.stats_enabled,
-            'required': field.required,
-            'options': field.options,
-            'preview': False
-        })
-    else:
-        ret.update({
-            'childrens': [f.id for f in field_group.children]
+            'children': [f.id for f in field.children]
         })
 
     return ret
 
 @transact_ro
-def transact_serialize_field_group(store, field_group_id):
+def transact_admin_serialize_field(store, field_id):
     """
     Transaction that perform serialization of a FieldGroup_ given the id
     whenever the fieldgroup is directly associated with a Field the serialization include Field informations.
@@ -64,52 +59,43 @@ def transact_serialize_field_group(store, field_group_id):
     :return: a serialization of the object identified by field_id
     """
 
-    field_group = store.find(FieldGroup, FieldGroup.id == unicode(field_group_id)).one()
+    field = store.find(FieldGroup, FieldGroup.id == unicode(field_id)).one()
 
-    return serialize_field_group(store, field_group)
+    return admin_serialize_field(store, field)
 
-# HACK
-def convert_answer_to_request(answer_field):
-    """
-    @param answer_field: something defined in
-        globaleaks.tests.TI_testdata
-    @return: a dict localized in a specific language only (e.g., in 'it')
-    """
-    return  {
-        'label' : u'Sei un dipendente pubblico o privato ?',
-        'description' :u"Descrizione - Cosa devo mettere qui ?",
-        'hint' : u'Se sei un dipendente pubblico non sarai mai licenziato: complimenti! ಠ_ಠ ',
-        'multi_entry' : True,
-        'x' : 1,
-        'y' : 1,
-        'type' : 'selectbox',
-        'stats_enabled' : True,
-        'required' : True,
-        'options': {
-                'RANDOMKEY' : {
-                        'label': u'Dipendente pubblico',
-                        'trigger': u'00000000-0000-0000-0000-0000PUBBLICO',
-                        },
-                'OTHERRANDOM' : {
-                        'label': u'Dipendente privato',
-                        'trigger': u'00000000-0000-0000-0000-00000PRIVATO',
-                    }
-            },
-        'default_value' : True,
-        'preview' : False,
-    }
+def db_create_field(store, request, language=GLSetting.memory_copy.default_language):
+    field = Field.new(store, request)
 
+    return field
 
 @transact
-def update_field(store, field_id, request, language=GLSetting.memory_copy.default_language):
-    pass
+def transact_create_field(store, request, language=GLSetting.memory_copy.default_language):
+    field = db_create_field(store, request, language=language)
 
+    return admin_serialize_field(store, field, language)
+
+
+def db_update_field(store, field_id, request, language=GLSetting.memory_copy.default_language):
+    field = Field.get(store, field_id)
+
+    try:
+        field.update(request)
+    except Exception as dberror:
+        log.err("Unable to update receiver %s: %s" % (receiver.name, dberror))
+        raise errors.InvalidInputFormat(dberror)
+
+    return field
 
 @transact
-def create_field(store, request, language=GLSetting.memory_copy.default_language):
-    request = convert_answer_to_request(None)
+def transact_update_field(store, field_id, request, language=GLSetting.memory_copy.default_language):
+    """
+    Updates the specified receiver with the details.
+    raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
+    not exist.
+    """
+    field = db_update_field(store, field_id, request, language=GLSetting.memory_copy.default_language)
 
-    pass
+    return admin_serialize_field(store, field, language)
 
 
 @transact_ro
@@ -121,14 +107,12 @@ def transact_get_field_list(store, language=GLSetting.memory_copy.default_langua
 
     # TODO clarify the madness: Field, FieldGroup, Step, FieldGroupFieldGroup
     A = store.find(Field)
-    B = store.find(FieldGroup)
-    C = store.find(FieldGroupFieldGroup)
-    D = store.find(Step)
+    B = store.find(Step)
 
     field_list = []
 
-    for f in B:
-        serialized_field = serialize_field_group(store, f)
+    for f in A:
+        serialized_field = admin_serialize_field(store, f, language)
         field_list.append(serialized_field)
 
     return field_list
@@ -149,14 +133,20 @@ def get_field(store, field_id, language=GLSetting.memory_copy.default_language):
     return {}
 
 @transact
-def delete_field(field_id):
-    raise Exception("Not implemented ATM %s" % str(field_id))
+def transact_delete_field(store, field_id):
+    field = store.find(Field, Field.id == unicode(field_id)).one()
+
+    if not field:
+        log.err("Requested invalid field")
+        raise errors.FieldIdNotFound
+
+    store.remove(field)
 
 
 @transact
 def get_context_fieldtree(store, context_id):
     """
-    Return the serialized field_group tree belonging to a specific context.
+    Return the serialized field tree belonging to a specific context.
 
     :return dict: a nested disctionary represending the tree.
     """
@@ -164,7 +154,7 @@ def get_context_fieldtree(store, context_id):
     steps = store.find(Step, Step.context_id == context_id).order_by(Step.number)
     ret = []
     for step in steps:
-        field = FieldGroup.get(store, step.field_group_id)
+        field = FieldGroup.get(store, step.field_id)
         ret.append(FieldGroup.serialize(store, field.id))
     return ret
 
@@ -197,10 +187,10 @@ class FieldsCollection(BaseHandler):
         """
         Request: adminFieldDesc
         Response: adminFieldDesc
-        Errors: InvalidInputFormat, FieldNotFound
+        Errors: InvalidInputFormat, FieldIdNotFound
         """
         request = self.validate_message(self.request.body, requests.adminFieldDesc)
-        response = yield create_field(request, self.request.language)
+        response = yield transact_create_field(request, self.request.language)
 
         self.set_status(201) # Created
         self.finish(response)
@@ -221,11 +211,30 @@ class FieldInstance(BaseHandler):
         """
         Parameters: field_id
         Response: adminFieldDesc
-        Errors: FieldNotFound, InvalidInputFormat
+        Errors: FieldIdNotFound, InvalidInputFormat
         """
         response = yield get_field(field_id, self.request.language)
 
         self.set_status(200)
+        self.finish(response)
+
+
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def post(self, *uriargs):
+        """
+        Request: adminFieldDesc
+        Response: adminFieldDesc
+        Errors: InvalidInputFormat, FieldIdNotFound
+        """
+
+        request = self.validate_message(self.request.body,
+                                        requests.adminFieldDesc)
+
+        response = yield transact_create_field(request, self.request.language)
+
+        self.set_status(201) # Created
         self.finish(response)
 
     @transport_security_check('admin')
@@ -235,13 +244,13 @@ class FieldInstance(BaseHandler):
         """
         Request: adminFieldDesc
         Response: adminFieldDesc
-        Errors: InvalidInputFormat, FieldNotFound
+        Errors: InvalidInputFormat, FieldIdNotFound
         """
 
         request = self.validate_message(self.request.body,
                                         requests.adminFieldDesc)
 
-        response = yield update_field(field_id, request, self.request.language)
+        response = yield transact_update_field(field_id, request, self.request.language)
 
         self.set_status(202) # Updated
         self.finish(response)
@@ -253,7 +262,7 @@ class FieldInstance(BaseHandler):
         """
         Request: None
         Response: None
-        Errors: InvalidInputFormat, FieldNotFound
+        Errors: InvalidInputFormat, FieldIdNotFound
         """
-        yield delete_field(field_id)
+        yield transact_delete_field(field_id)
         self.set_status(200)

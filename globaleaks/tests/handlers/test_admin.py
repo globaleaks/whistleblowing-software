@@ -451,6 +451,119 @@ class TestAdminStaticFileList(helpers.TestHandler):
         self.assertTrue(found)
 
 
+class TestAdminFieldsInstance(helpers.TestHandler):
+
+        _handler = admin.field.FieldInstance
+
+        @inlineCallbacks
+        def test_001_get(self):
+
+            request = {
+                'label': "{'en': 'test label'}",
+                'description': "{'en': 'test description'}",
+                'hint': "{'en': 'test hint'}",
+                'multi_entry': False,
+                'type': 'checkbox',
+                'options': {},
+                'required': False,
+                'preview': False,
+                'stats_enabled': True,
+                'x': 0,
+                'y': 0
+            }
+
+            handler = self.request(request, role='admin')
+            yield handler.post()
+
+            response1 = self.responses[0]
+
+            # get of the created field should succeed
+            yield handler.get(self.responses[0]['id'])
+
+            response2 = self.responses[0]
+
+            self.assertEqual(response1, response2)
+
+        @inlineCallbacks
+        def test_002_post(self):
+
+            request = {
+                'label': "{'en': 'test label'}",
+                'description': "{'en': 'test description'}",
+                'hint': "{'en': 'test hint'}",
+                'multi_entry': False,
+                'type': 'checkbox',
+                'options': {},
+                'required': False,
+                'preview': False,
+                'stats_enabled': True,
+                'x': 0,
+                'y': 0
+            }
+
+            handler = self.request(request, role='admin')
+            yield handler.post()
+
+
+        @inlineCallbacks
+        def test_003_put(self):
+
+            request = {
+                'label': "{'en': 'test label'}",
+                'description': "{'en': 'test description'}",
+                'hint': "{'en': 'test hint'}",
+                'multi_entry': False,
+                'type': 'checkbox',
+                'options': {},
+                'required': False,
+                'preview': False,
+                'stats_enabled': True,
+                'x': 0,
+                'y': 0
+            }
+
+            handler = self.request(request, role='admin')
+
+            yield handler.post()
+
+            response1 = self.responses[0]
+            response1['type'] = 'inputbox'
+
+            handler = self.request(self.responses[0], role='admin')
+            yield handler.put(self.responses[0]['id'])
+
+            response2 = self.responses[0]
+
+            self.assertEqual(response1, response2)
+
+        @inlineCallbacks
+        def test_004_delete(self):
+
+            request = {
+                'label': "{'en': 'test label'}",
+                'description': "{'en': 'test description'}",
+                'hint': "{'en': 'test hint'}",
+                'multi_entry': False,
+                'type': 'checkbox',
+                'options': {},
+                'required': False,
+                'preview': False,
+                'stats_enabled': True,
+                'x': 0,
+                'y': 0
+            }
+
+            handler = self.request(request, role='admin')
+
+            yield handler.post()
+
+            handler = self.request(self.responses[0], role='admin')
+            yield handler.delete(self.responses[0]['id'])
+
+
+            # second deletion operation should fail
+            self.assertFailure(handler.delete(self.responses[0]['id']), errors.FieldIdNotFound)
+
 class TestAdminFieldsCollection(helpers.TestHandler):
 
         _handler = admin.field.FieldsCollection
@@ -458,7 +571,6 @@ class TestAdminFieldsCollection(helpers.TestHandler):
         fixtures = ['fields.json']
 
         @inlineCallbacks
-        def test_get(self):
+        def test_001_get(self):
             handler = self.request(role='admin')
             yield handler.get()
-            #print self.responses

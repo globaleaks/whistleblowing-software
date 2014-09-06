@@ -114,9 +114,11 @@ class TestGL(unittest.TestCase):
 
             for mock in data:
                 mock_class = getattr(models, mock['class'])
-                mock_id = mock_class.new(store, mock['fields'])
-                obj = mock_class.get(store, mock_id)
-                obj.id = mock['fields']['id']
+
+                obj = mock_class.new(store, mock['fields'])
+
+                if 'id' in mock['fields']: # reference tables do not have an associated id
+                    obj.id = mock['fields']['id']
 
     def setUp_dummy(self):
         dummyStuff = MockDict()
