@@ -12,28 +12,31 @@ The following is the data format of a field entry used in handler I/O:
       defines the x axis positioning of the field
   "y":
       defines the y axis positioning of the field
+  "required": bool
+      defines if the field answer is required
+  "preview": bool
+      defines if the field has to be shown in tips preview
+  "stats_enabled": bool
+     defines if the field is subject to stats
   "type":
       can be any one of the following:
-        
-        * radio 
-        * checkbox
 
-        * text,
-        * int,
-        * text_area
-
-        * modal
-        * dialog
-
-        * tos
-
-        * group
+       * inputbox
+       * textarea
+       * selectbox
+       * radiobutton
+       * checkbox
+       * multiselect
+       * modal
+       * dialog
+       * tos
+       * fieldgroup        
 
   "options":
       a dict specifying the options to be passed to the field.
       In the case of input_box, text_area, this is an empty dict.
 
-      For input_box and text_area the format is:
+      For input_box the format is:
           {
             "regexp": unicode
                 a regular expression that the field should match
@@ -100,8 +103,9 @@ The format of the step data format is as follows:
 {
   "name": LOCALIZED_DICT,
   "fields": 
-      list of fields as defined above
+      list of fields id
 }
 ```
 
-What will be returned by the `/fields` API is a list of steps.
+What will be returned by the `/fields` API is a list of fields.
+What will be returned by the `/context/id` API is the list of steps.
