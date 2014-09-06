@@ -1,79 +1,105 @@
 [
   {
     "fields": {
-      "default_value": "01/01/1990",
-      "preview": true,
-      "stats": true,
-      "regexp": "",
-      "required": true,
-      "type": "inputbox",
       "id": "27121164-0d0f-4180-9e9c-b1f72e815105",
       "label": "{'en':'name'}",
       "description": "{'en':'description'}",
       "hint": "{'en':'hint'}",
-      "multi_entry": true
+      "multi_entry": true,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "inputbox",
+      "option": {},
+      "_children": []
     },
     "class": "Field"
   },
   {
     "fields": {
-      "default_value": "beppe",
-      "preview": true,
-      "stats": false,
-      "regexp": "",
-      "required": true,
-      "type": "inputbox",
       "id": "25521164-0d0f-4f80-9e9c-93f72e815105",
-      "label": "{'en':'name'}",
+      "label": "{'en':'surname'}",
       "description": "{'en':'description'}",
       "hint": "{'en':'hint'}",
-      "multi_entry": true
+      "multi_entry": true,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "inputbox",
+      "option": {},
+      "_children": []
     },
     "class": "Field"
   },
   {
     "fields": {
-      "default_value": "scamozza",
-      "preview": true,
-      "stats": false,
-      "regexp": "",
-      "required": true,
-      "type": "inputbox",
       "id": "25521164-1d0f-5f80-8e8c-93f73e815156",
       "label": "{'en':'name'}",
       "description": "{'en':'description'}",
       "hint": "{'en':'hint'}",
-      "multi_entry": true
+      "multi_entry": true,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "inputbox",
+      "option": {},
+      "_children": []
     },
     "class": "Field"
   },
   {
     "fields": {
-      "default_value": "none",
-      "preview": true,
-      "stats": false,
-      "regexp": "",
-      "required": true,
-      "type": "radiobutton",
       "id": "98891164-1a0b-5b80-8b8b-93b73b815156",
+      "label": "{'en':'gender'}",
+      "description": "{'en':'description'}",
+      "hint": "{'en':'hint'}",
+      "multi_entry": true,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "radiobutton",
+      "option": {},
+      "_children": []
+    },
+    "class": "Field"
+  },
+  {
+    "fields": {
+      "id": "37242164-1b1f-1110-1e1c-b1f12e815105",
       "label": "{'en':'name'}",
       "description": "{'en':'description'}",
       "hint": "{'en':'hint'}",
-      "multi_entry": true
+      "multi_entry": true,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "fieldgroup",
+      "option": {}
     },
     "class": "Field"
   },
   {
     "fields": {
-      "_children": [
-        "27121164-0d0f-4180-9e9c-b1f72e815105",
-        "25521164-0d0f-4f80-9e9c-93f72e815105"
-      ],
-      "id": "37242164-1b1f-1110-1e1c-b1f12e815105",
-      "label": "{'en': 'generalities'}",
-      "description": "{'en':'description'}",
-      "hint": "{'en':'hint'}"
+      "parent_id": "37242164-1b1f-1110-1e1c-b1f12e815105",
+      "child_id": "27121164-0d0f-4180-9e9c-b1f72e815105"
     },
-    "class": "FieldGroup"
+    "class": "FieldField"
+  },
+  {
+    "fields": {
+      "parent_id": "37242164-1b1f-1110-1e1c-b1f12e815105",
+      "child_id": "25521164-0d0f-4f80-9e9c-93f72e815105"
+    },
+    "class": "FieldField"
   }
 ]

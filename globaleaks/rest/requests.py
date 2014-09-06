@@ -413,12 +413,11 @@ adminFieldDesc = {
     'multi_entry': bool,
     'x': int,
     'y': int,
-    'type': unicode, # constrained
-    'default_value': unicode,
     'required': bool,
-    'regexp':unicode,
-    'options': dict, # we can't define a format here ? because the key need to be strict to field_id format ?
-    'preview': bool
+    'preview': bool,
+    'stats_enabled': bool,
+    'type': unicode, # constrained
+    'options': dict, # we can't define a format here ? because the key need to be strict to field_type format ?
 }
 
 adminStepDesc = {
