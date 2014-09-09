@@ -1,11 +1,11 @@
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.tests import helpers
-
+# XXX. REMOVE THIS EVIL IMPORT *
 from globaleaks.models import *
 from globaleaks import models
-from globaleaks.settings import transact, transact_ro
 from globaleaks.rest import errors
+from globaleaks.settings import transact, transact_ro
+from globaleaks.tests import helpers
 from globaleaks.utils.structures import Fields
 
 
