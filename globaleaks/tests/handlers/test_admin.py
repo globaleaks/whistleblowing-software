@@ -472,12 +472,10 @@ class TestAdminFieldsInstance(helpers.TestHandler):
         def test_get(self):
             handler = self.request(self.sample_request, role='admin')
             yield handler.post()
-
-            response1 = self.responses[0]
+            response1, = self.responses
             # get of the created field should succeed
-            yield handler.get(self.responses[0]['id'])
-
-            response2 = self.responses[0]
+            yield handler.get(response1['id'])
+            response2, = self.responses
             self.assertEqual(response1, response2)
 
         @inlineCallbacks
@@ -491,26 +489,26 @@ class TestAdminFieldsInstance(helpers.TestHandler):
             handler = self.request(self.sample_request, role='admin')
             yield handler.post()
 
-            response1 = self.responses[0]
+            response1, = self.responses
             response1['type'] = 'inputbox'
             handler = self.request(self.responses[0], role='admin')
-            yield handler.put(self.responses[0]['id'])
+            # XXX: no idea how responses works, I would usually assume to have
+            # my responses list empty for every  new request
+            self.responses = []
+            yield handler.put(response1['id'])
 
-            response2 = self.responses[0]
-
+            response2, = self.responses
             self.assertEqual(response1, response2)
 
         @inlineCallbacks
         def test_delete(self):
             handler = self.request(self.sample_request, role='admin')
             yield handler.post()
-
             handler = self.request(self.responses[0], role='admin')
             yield handler.delete(self.responses[0]['id'])
-
-
             # second deletion operation should fail
             self.assertFailure(handler.delete(self.responses[0]['id']), errors.FieldIdNotFound)
+
 
 class TestAdminFieldsCollection(helpers.TestHandler):
         _handler = admin.field.FieldsCollection
