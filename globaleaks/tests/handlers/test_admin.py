@@ -456,8 +456,7 @@ class TestAdminFieldsInstance(helpers.TestHandler):
         _handler = admin.field.FieldInstance
 
         @inlineCallbacks
-        def test_001_get(self):
-
+        def test_get(self):
             request = {
                 'label': "{'en': 'test label'}",
                 'description': "{'en': 'test description'}",
@@ -471,22 +470,18 @@ class TestAdminFieldsInstance(helpers.TestHandler):
                 'x': 0,
                 'y': 0
             }
-
             handler = self.request(request, role='admin')
             yield handler.post()
 
             response1 = self.responses[0]
-
             # get of the created field should succeed
             yield handler.get(self.responses[0]['id'])
 
             response2 = self.responses[0]
-
             self.assertEqual(response1, response2)
 
         @inlineCallbacks
-        def test_002_post(self):
-
+        def test_post(self):
             request = {
                 'label': "{'en': 'test label'}",
                 'description': "{'en': 'test description'}",
@@ -506,8 +501,7 @@ class TestAdminFieldsInstance(helpers.TestHandler):
 
 
         @inlineCallbacks
-        def test_003_put(self):
-
+        def test_put(self):
             request = {
                 'label': "{'en': 'test label'}",
                 'description': "{'en': 'test description'}",
@@ -537,7 +531,7 @@ class TestAdminFieldsInstance(helpers.TestHandler):
             self.assertEqual(response1, response2)
 
         @inlineCallbacks
-        def test_004_delete(self):
+        def test_delete(self):
 
             request = {
                 'label': "{'en': 'test label'}",
@@ -565,12 +559,10 @@ class TestAdminFieldsInstance(helpers.TestHandler):
             self.assertFailure(handler.delete(self.responses[0]['id']), errors.FieldIdNotFound)
 
 class TestAdminFieldsCollection(helpers.TestHandler):
-
         _handler = admin.field.FieldsCollection
-
         fixtures = ['fields.json']
 
         @inlineCallbacks
-        def test_001_get(self):
+        def test_get(self):
             handler = self.request(role='admin')
             yield handler.get()
