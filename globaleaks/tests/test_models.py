@@ -199,27 +199,27 @@ class TestModels(helpers.TestGL):
     def test_context_add_and_get(self):
         context_id = yield self.context_add()
         context_id = yield self.context_get(context_id)
-        self.assertTrue(context_id is not None)
+        self.assertIsNotNone(context_id)
 
     @inlineCallbacks
     def test_context_add_and_del(self):
         context_id = yield self.context_add()
         yield self.context_del(context_id)
         context_id = yield self.context_get(context_id)
-        self.assertTrue(context_id is None)
+        self.assertIsNone(context_id)
 
     @inlineCallbacks
     def test_receiver_add_and_get(self):
         receiver_id = yield self.receiver_add()
         receiver_id = yield self.receiver_get(receiver_id)
-        self.assertTrue(receiver_id is not None)
+        self.assertIsNotNone(receiver_id)
 
     @inlineCallbacks
     def test_receiver_add_and_del(self):
         receiver_id = yield self.receiver_add()
         yield self.receiver_del(receiver_id)
         receiver_id = yield self.receiver_get(receiver_id)
-        self.assertTrue(receiver_id is None)
+        self.assertIsNone(receiver_id)
 
     @inlineCallbacks
     def test_context_receiver_reference_1(self):
