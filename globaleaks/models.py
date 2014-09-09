@@ -30,9 +30,6 @@ class BaseModel(object):
         # the __storm_table__ attribut is set as the lowercase classname
         if not hasattr(cls, '__storm_table__'):
             cls.__storm_table__ = cls.__name__.lower()
-
-        # maybe check here for attrs validation, and eventually return None
-
         return Storm.__new__(cls, *args)
 
     @classmethod
