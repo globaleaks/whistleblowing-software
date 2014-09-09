@@ -242,28 +242,22 @@ class TestModels(helpers.TestGL):
                            errors.InvalidInputFormat)
 
 
-class TestNextGenFields(helpers.TestGL):
+class TestField(helpers.TestGL):
+    fixtures = ['fields.json']
+
+    @inlineCallbacks
+    def setUp(self):
+        yield super(TestField, self).setUp()
+
+        self.birthdate_id = u"27121164-0d0f-4180-9e9c-b1f72e815105"
+        self.name_id = u"25521164-0d0f-4f80-9e9c-93f72e815105"
+        self.surname_id = u"25521164-1d0f-5f80-8e8c-93f73e815156"
+        self.sex_id = u"98891164-1a0b-5b80-8b8b-93b73b815156"
+
+        self.generalities_id = u"37242164-1b1f-1110-1e1c-b1f12e815105"
 
     @transact
-    def create_field(self, store):
-        attrs = {
-            'label': "{'en': 'test label'}",
-            'description': "{'en': 'test description'}",
-            'hint': "{'en': 'test hint'}",
-            'multi_entry': False,
-            'type': 'checkbox',
-            'options': {},
-            'required': False,
-            'preview': False,
-            'stats_enabled': True,
-            'x': 0,
-            'y': 0
-        }
-
-        return Field.new(store, attrs).id
-
-    @transact
-    def create_field_group(self, store):
+    def create_field(self, store, **custom_attrs):
         attrs = {
             'label': "{'en': 'test label'}",
             'description': "{'en': 'test description'}",
@@ -277,49 +271,8 @@ class TestNextGenFields(helpers.TestGL):
             'x': 0,
             'y': 0
         }
-
+        attrs.update(custom_attrs)
         return Field.new(store, attrs).id
-
-    @transact
-    def transact_field_delete(self, store, field_id):
-        Field.delete(store, field_id)
-
-    @inlineCallbacks
-    def test_field_creation(self):
-        field_id = yield self.create_field()
-        yield self.assert_model_exists(models.Field, field_id)
-
-    @inlineCallbacks
-    def test_delete_field(self):
-        field_id = yield self.create_field()
-        yield self.transact_field_delete(field_id)
-        yield self.assert_model_exists(models.Field, field_id)
-
-    @inlineCallbacks
-    def test_field_group_creation(self):
-        field_group_id = yield self.create_field_group()
-        yield self.assert_model_exists(models.Field, field_group_id)
-
-    @inlineCallbacks
-    def test_delete_field_group_with_children(self):
-        field_id = yield self.create_field()
-        field_group_id = yield self.create_field_group()
-        yield self.transact_field_delete(field_group_id)
-
-
-class TestComposingFields(helpers.TestGLWithPopulatedDB):
-    fixtures = ['fields.json']
-
-    @inlineCallbacks
-    def setUp(self):
-        yield super(TestComposingFields, self).setUp()
-
-        self.birthdate_id = u"27121164-0d0f-4180-9e9c-b1f72e815105"
-        self.name_id = u"25521164-0d0f-4f80-9e9c-93f72e815105"
-        self.surname_id = u"25521164-1d0f-5f80-8e8c-93f73e815156"
-        self.sex_id = u"98891164-1a0b-5b80-8b8b-93b73b815156"
-
-        self.generalities_id = u"37242164-1b1f-1110-1e1c-b1f12e815105"
 
     @transact
     def field_delete(self, store, field_id):
@@ -330,9 +283,13 @@ class TestComposingFields(helpers.TestGLWithPopulatedDB):
         field = Field.get(store, field_id)
         return [c.id for c in field.children]
 
-    @transact
-    def create_step(self, store, context_id, number):
-        return Step.new(store, context_id, number, self.generalities_id)
+    @inlineCallbacks
+    def test_add_field(self):
+        field_id = yield self.create_field()
+        yield self.assert_model_exists(models.Field, field_id)
+
+        field_if = yield self.create_field(type='checkbox')
+        yield self.assert_model_exists(models.Field, field_id)
 
     @inlineCallbacks
     def test_add_children(self):
@@ -349,21 +306,35 @@ class TestComposingFields(helpers.TestGLWithPopulatedDB):
         self.assertIn(self.name_id, children)
         self.assertIn(self.sex_id, children)
 
-
     @inlineCallbacks
     def test_delete_field_child(self):
         children = yield self.get_children(self.generalities_id)
         for c in children:
             yield self.field_delete(c)
 
+        children = yield self.get_children(self.generalities_id)
+        self.assertEqual(len(children), 0)
+
     @inlineCallbacks
     def test_delete_field_group(self):
-        # Should fail with Exception and FieldGroup still present
         children = yield self.get_children(self.generalities_id)
-        for c in children:
-            yield self.field_delete(c)
+        self.assertGreater(len(children), 0)
 
         yield self.field_delete(self.generalities_id)
+        yield self.assert_model_not_exists(models.Field, self.generalities_id)
+
+
+class TestStep(helpers.TestGLWithPopulatedDB):
+    fixtures = ['fields.json']
+
+    @inlineCallbacks
+    def setUp(self):
+        yield super(TestStep, self).setUp()
+        self.generalities_id = u"37242164-1b1f-1110-1e1c-b1f12e815105"
+
+    @transact
+    def create_step(self, store, context_id, number):
+        return Step.new(store, context_id, number, self.generalities_id)
 
     @inlineCallbacks
     def test_new_step(self):

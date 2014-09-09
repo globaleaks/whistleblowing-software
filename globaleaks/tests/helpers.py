@@ -236,19 +236,21 @@ class TestGL(unittest.TestCase):
 
     @transact_ro
     def _exists(self, store, model, *id_args, **id_kwargs):
+        if not id_args and not id_kwargs:
+            raise ValueError
         return model.get(store, *id_args, **id_kwargs) is not None
 
     @inlineCallbacks
     def assert_model_exists(self, model, *id_args, **id_kwargs):
         existing = yield self._exists(model, *id_args, **id_kwargs)
-        msg =  "The following has *NOT* been found on the store: {} {}".format(id_args, id_kwargs)
-        self.assertIsNotNone(existing, msg)
+        msg =  'The following has *NOT* been found on the store: {} {}'.format(id_args, id_kwargs)
+        self.assertTrue(existing, msg)
 
     @inlineCallbacks
     def assert_model_not_exists(self, model, *id_args, **id_kwargs):
         existing = yield self._exists(model, *id_args, **id_kwargs)
-        msg =  "The following model has been found on the store: {} {}".format(id_args, id_kwargs)
-        self.assertIsNone(existing, msg)
+        msg =  'The following model has been found on the store: {} {}'.format(id_args, id_kwargs)
+        self.assertFalse(existing, msg)
 
     @transact_ro
     def get_finalized_submissions_ids(self, store):
