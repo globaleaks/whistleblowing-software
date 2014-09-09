@@ -234,23 +234,21 @@ class TestGL(unittest.TestCase):
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
 
-
-    def _find_one(self, store, model_name, model_id):
-        from globaleaks import models
-        model = getattr(models, model_name)
-        return store.find(model, model.id == model_id).one()
-
-    @transact
-    def _exists(self, store, model_name, model_id):
-        return self._find_one(store, model_name, model_id) is not None
-
     @transact_ro
-    def _find(self, store, model_name, model_id, attr):
-        m = self._find_one(store, model_name, model_id)
-        if m is None:
-            return None
-        return getattr(m, attr)
+    def _exists(self, store, model, *id_args, **id_kwargs):
+        return model.get(store, *id_args, **id_kwargs) is not None
 
+    @inlineCallbacks
+    def assert_model_exists(self, model, *id_args, **id_kwargs):
+        existing = yield self._exists(model, *id_args, **id_kwargs)
+        msg =  "The following has *NOT* been found on the store: {} {}".format(id_args, id_kwargs)
+        self.assertIsNotNone(existing, msg)
+
+    @inlineCallbacks
+    def assert_model_not_exists(self, model, *id_args, **id_kwargs):
+        existing = yield self._exists(model, *id_args, **id_kwargs)
+        msg =  "The following model has been found on the store: {} {}".format(id_args, id_kwargs)
+        self.assertIsNone(existing, msg)
 
     @transact_ro
     def get_finalized_submissions_ids(self, store):

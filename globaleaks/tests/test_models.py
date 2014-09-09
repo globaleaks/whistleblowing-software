@@ -3,6 +3,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 
 from globaleaks.models import *
+from globaleaks import models
 from globaleaks.settings import transact, transact_ro
 from globaleaks.rest import errors
 from globaleaks.utils.structures import Fields
@@ -245,7 +246,6 @@ class TestNextGenFields(helpers.TestGL):
 
     @transact
     def create_field(self, store):
-
         attrs = {
             'label': "{'en': 'test label'}",
             'description': "{'en': 'test description'}",
@@ -264,7 +264,6 @@ class TestNextGenFields(helpers.TestGL):
 
     @transact
     def create_field_group(self, store):
-
         attrs = {
             'label': "{'en': 'test label'}",
             'description': "{'en': 'test description'}",
@@ -288,28 +287,23 @@ class TestNextGenFields(helpers.TestGL):
     @inlineCallbacks
     def test_field_creation(self):
         field_id = yield self.create_field()
-        exists = yield self._exists('Field', field_id)
-        self.assertTrue(exists, "Field does not exist")
+        yield self.assert_model_exists(models.Field, field_id)
 
     @inlineCallbacks
     def test_delete_field(self):
         field_id = yield self.create_field()
         yield self.transact_field_delete(field_id)
-
-        exists = yield self._exists('Field', field_id)
-        self.assertFalse(exists, "Field still exists")
+        yield self.assert_model_exists(models.Field, field_id)
 
     @inlineCallbacks
     def test_field_group_creation(self):
         field_group_id = yield self.create_field_group()
-        exists = yield self._exists('Field', field_group_id)
-        self.assertTrue(exists, "Field does not exist")
+        yield self.assert_model_exists(models.Field, field_group_id)
 
     @inlineCallbacks
     def test_delete_field_group_with_children(self):
         field_id = yield self.create_field()
         field_group_id = yield self.create_field_group()
-
         yield self.transact_field_delete(field_group_id)
 
 
@@ -340,10 +334,6 @@ class TestComposingFields(helpers.TestGLWithPopulatedDB):
     def create_step(self, store, context_id, number):
         return Step.new(store, context_id, number, self.generalities_id)
 
-    @transact
-    def step_exists(self, store, context_id, step_id):
-        return Step.get(store, context_id, step_id) is not None
-
     @inlineCallbacks
     def test_add_children(self):
         children = yield self.get_children(self.generalities_id)
@@ -369,9 +359,7 @@ class TestComposingFields(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_delete_field_group(self):
         # Should fail with Exception and FieldGroup still present
-
         children = yield self.get_children(self.generalities_id)
-
         for c in children:
             yield self.field_delete(c)
 
@@ -381,4 +369,4 @@ class TestComposingFields(helpers.TestGLWithPopulatedDB):
     def test_new_step(self):
         context_id = yield self.dummyContext['id']
         step_id = yield self.create_step(context_id, 0)
-        self.assertTrue(self.step_exists(context_id, step_id))
+        yield self.assert_model_exists(models.Step, context_id, step_id)
