@@ -1,9 +1,6 @@
 # -*- coding: UTF-8
 """
-fields
-******
-
-Implementation of the code executed when an HTTP client reach /admin/fields URI
+Implementation of the code executed when an HTTP client reach /admin/fields URI.
 """
 from twisted.internet.defer import inlineCallbacks
 
@@ -17,7 +14,9 @@ from globaleaks.utils.utility import log
 def admin_serialize_field(field, language):
     """
     Function that perform serialization of a field given the id
-    whenever the fieldgroup is directly associated with a Field the serialization include Field informations.
+    whenever the fieldgroup is directly associated with a Field the
+    serialization include Field informations.
+
     :param field: the field object to be serialized
     :return: a serialization of the object
     """
@@ -63,16 +62,16 @@ def update_field(store, field_id, request, language=GLSetting.memory_copy.defaul
 @transact_ro
 def get_field_list(store, language=GLSetting.memory_copy.default_language):
     """
-    Returns:
-        (dict) the current field list serialized.
+    :return: the current field list serialized.
+    :rtype: dict
     """
     return [admin_serialize_field(f, language) for f in store.find(Field)]
 
 @transact_ro
 def get_field(store, field_id, language=GLSetting.memory_copy.default_language):
     """
-    Returns:
-        (dict) the currently configured field.
+    :return: the currently configured field.
+    :rtype: dict
     """
     field = Field.get(store, field_id)
     if not field:
@@ -117,13 +116,15 @@ class FieldsCollection(BaseHandler):
     @inlineCallbacks
     def get(self, *uriargs):
         """
+        Return a list of all the fields available.
+
         Parameters: None
         Response: adminFieldList
         Errors: None
         """
-        # XXX TODO REMIND: is pointless define Response format because we're not making output validation
+        # XXX TODO REMIND: is pointless define Response format because we're not
+        # making output validation
         response = yield get_field_list(self.request.language)
-
         self.set_status(200)
         self.finish(response)
 
@@ -132,16 +133,16 @@ class FieldsCollection(BaseHandler):
     @inlineCallbacks
     def post(self, *uriargs):
         """
-        Request: adminFieldDesc
-        Response: adminFieldDesc
-        Errors: InvalidInputFormat, FieldIdNotFound
+        Rearrange a field tree, moving field to the group selected by the user,
+        and groups to the correspective steps.
+
+        :raises InvalidInputFormat: if the tree sent presents some inconsistencies.
         """
-        request = self.validate_message(self.request.body, requests.adminFieldDesc)
+        request = self.validate_message(self.request.body,
+                                        requests.adminFieldTree)
         response = yield create_field(request, self.request.language)
-
-        self.set_status(201) # Created
+        self.set_status(201)
         self.finish(response)
-
 
 
 class FieldInstance(BaseHandler):
@@ -155,20 +156,24 @@ class FieldInstance(BaseHandler):
     @inlineCallbacks
     def get(self, field_id, *uriargs):
         """
-        Parameters: field_id
-        Response: adminFieldDesc
-        Errors: FieldIdNotFound, InvalidInputFormat
+        Get the field identified by field_id
+
+        :param field_id:
+        :rtype: adminFieldDesc
+        :raises FieldIdNotFound: if there is no field with such id.
+        :raises InvalidInputFormat: if validation fails.
         """
         response = yield get_field(field_id, self.request.language)
         self.set_status(200)
         self.finish(response)
-
 
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
     def post(self, *uriargs):
         """
+        Create a new field.
+
         Request: adminFieldDesc
         Response: adminFieldDesc
         Errors: InvalidInputFormat, FieldIdNotFound
@@ -176,8 +181,7 @@ class FieldInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.adminFieldDesc)
         response = yield create_field(request, self.request.language)
-
-        self.set_status(201) # Created
+        self.set_status(201)
         self.finish(response)
 
     @transport_security_check('admin')
@@ -185,6 +189,8 @@ class FieldInstance(BaseHandler):
     @inlineCallbacks
     def put(self, field_id, *uriargs):
         """
+        Update a single field's attributes.
+
         Request: adminFieldDesc
         Response: adminFieldDesc
         Errors: InvalidInputFormat, FieldIdNotFound
@@ -192,7 +198,6 @@ class FieldInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.adminFieldDesc)
         response = yield update_field(field_id, request, self.request.language)
-
         self.set_status(202) # Updated
         self.finish(response)
 
@@ -201,6 +206,8 @@ class FieldInstance(BaseHandler):
     @inlineCallbacks
     def delete(self, field_id, *uriargs):
         """
+        Delete a single field.
+
         Request: None
         Response: None
         Errors: InvalidInputFormat, FieldIdNotFound
