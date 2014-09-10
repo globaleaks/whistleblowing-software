@@ -7,12 +7,12 @@ Implementation of the code executed when an HTTP client reach /admin/fields URI
 """
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.rest import errors, requests
 from globaleaks.models import Field, Step
-
+from globaleaks.rest import errors, requests
+from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.utils.utility import log
 
 def admin_serialize_field(store, field, language):
     """

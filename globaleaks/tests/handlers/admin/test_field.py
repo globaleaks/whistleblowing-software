@@ -83,12 +83,20 @@ class TestAdminFieldInstance(helpers.TestHandler):
 
         @inlineCallbacks
         def test_delete(self):
+            """
+            Create a new field, then attempt to delete it.
+            """
             handler = self.request(self.sample_request, role='admin')
             yield handler.post()
+            self.assertEqual(len(self.responses), 1)
+            field_id = self.responses[0].get('id')
+            self.assertIsNotNone(field_id)
+
             handler = self.request(self.responses[0], role='admin')
-            yield handler.delete(self.responses[0]['id'])
+            yield handler.delete(field_id)
+            self.assertEqual(handler.get_status(), 200)
             # second deletion operation should fail
-            self.assertFailure(handler.delete(self.responses[0]['id']), errors.FieldIdNotFound)
+            self.assertFailure(handler.delete(field_id), errors.FieldIdNotFound)
 
 
 class TestAdminFieldsCollection(helpers.TestHandler):
