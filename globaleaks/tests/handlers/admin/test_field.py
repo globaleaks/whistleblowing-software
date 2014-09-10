@@ -35,13 +35,18 @@ class TestAdminFieldInstance(helpers.TestHandler):
 
         @inlineCallbacks
         def test_get(self):
+            """
+            Create a new field, the get it back using the receieved id.
+            """
             handler = self.request(self.sample_request, role='admin')
             yield handler.post()
-            response1, = self.responses
-            # get of the created field should succeed
-            yield handler.get(response1['id'])
-            response2, = self.responses
-            self.assertEqual(response1, response2)
+            self.assertEqual(len(self.responses), 1)
+            self.assertIn('id', self.responses[0])
+
+            field_id = self.responses[0]['id']
+            yield handler.get(field_id)
+            self.assertEqual(len(self.responses), 2)
+            self.assertEqual(field_id, self.responses[1]['id'])
 
         @inlineCallbacks
         def test_post(self):
