@@ -27,7 +27,7 @@ def admin_serialize_field(store, field, language):
     :param field: the field object to be serialized
     :return: a serialization of the object
     """
-    ret =  {
+    return {
         'id': field.id,
         'label': field.label,
         'description': field.description,
@@ -39,15 +39,9 @@ def admin_serialize_field(store, field, language):
         'type': field.type,
         'x': field.x,
         'y': field.y,
-        'options': field.options
+        'options': field.options or {},
+        'children': [f.id for f in field.children],
     }
-
-    if field.children:
-        ret.update({
-            'children': [f.id for f in field.children]
-        })
-
-    return ret
 
 @transact_ro
 def transact_admin_serialize_field(store, field_id):
@@ -58,65 +52,39 @@ def transact_admin_serialize_field(store, field_id):
     :param field_id: the field_id of the object to be serialized
     :return: a serialization of the object identified by field_id
     """
-
-    field = store.find(FieldGroup, FieldGroup.id == unicode(field_id)).one()
-
+    field = Field.get(store, field_id)
     return admin_serialize_field(store, field)
 
-def db_create_field(store, request, language=GLSetting.memory_copy.default_language):
-    field = Field.new(store, request)
-
-    return field
-
 @transact
-def transact_create_field(store, request, language=GLSetting.memory_copy.default_language):
-    field = db_create_field(store, request, language=language)
-
+def create_field(store, request, language=GLSetting.memory_copy.default_language):
+    """
+    Add a new field to the store, then return the new serialized object.
+    """
+    field = Field.new(store, request)
     return admin_serialize_field(store, field, language)
 
-
-def db_update_field(store, field_id, request, language=GLSetting.memory_copy.default_language):
-    field = Field.get(store, field_id)
-
-    try:
-        field.update(request)
-    except Exception as dberror:
-        log.err("Unable to update receiver %s: %s" % (receiver.name, dberror))
-        raise errors.InvalidInputFormat(dberror)
-
-    return field
-
 @transact
-def transact_update_field(store, field_id, request, language=GLSetting.memory_copy.default_language):
+def update_field(store, field_id, request, language=GLSetting.memory_copy.default_language):
     """
     Updates the specified receiver with the details.
     raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
     not exist.
     """
-    field = db_update_field(store, field_id, request, language=GLSetting.memory_copy.default_language)
-
+    field = Field.get(store, field_id)
+    try:
+        field.update(request)
+    except Exception as dberror:
+        log.err("Unable to update receiver %s: %s" % (receiver.name, dberror))
+        raise errors.InvalidInputFormat(dberror)
     return admin_serialize_field(store, field, language)
 
-
 @transact_ro
-def transact_get_field_list(store, language=GLSetting.memory_copy.default_language):
+def get_field_list(store, language=GLSetting.memory_copy.default_language):
     """
     Returns:
         (dict) the current field list serialized.
     """
-
-    # TODO clarify the madness: Field, FieldGroup, Step, FieldGroupFieldGroup
-    A = store.find(Field)
-    B = store.find(Step)
-
-    field_list = []
-
-    for f in A:
-        serialized_field = admin_serialize_field(store, f, language)
-        field_list.append(serialized_field)
-
-    return field_list
-
+    return [admin_serialize_field(store, f, language) for f in store.find(Field)]
 
 @transact_ro
 def get_field(store, field_id, language=GLSetting.memory_copy.default_language):
@@ -124,8 +92,7 @@ def get_field(store, field_id, language=GLSetting.memory_copy.default_language):
     Returns:
         (dict) the currently configured field.
     """
-    field = store.find(Field, Field.id == unicode(field_id)).one()
-
+    field = Field.get(store, field_id)
     if not field:
         log.err("Requested invalid field")
         raise errors.FieldIdNotFound
@@ -133,15 +100,16 @@ def get_field(store, field_id, language=GLSetting.memory_copy.default_language):
     return {}
 
 @transact
-def transact_delete_field(store, field_id):
-    field = store.find(Field, Field.id == unicode(field_id)).one()
-
-    if not field:
-        log.err("Requested invalid field")
+def delete_field(store, field_id):
+    """
+    Remove the field object corresponding to field_id from the store.
+    If it is not found, raises a FieldIdNotFound error.
+    """
+    try:
+        Field.delete(store, field_id)
+    except ValueError:
+        log.err('Requested invalid field: {}'.format(field_id))
         raise errors.FieldIdNotFound
-
-    store.remove(field)
-
 
 @transact
 def get_context_fieldtree(store, context_id):
@@ -161,10 +129,8 @@ def get_context_fieldtree(store, context_id):
 
 class FieldsCollection(BaseHandler):
     """
-
     /admin/fields
     """
-
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
@@ -175,7 +141,7 @@ class FieldsCollection(BaseHandler):
         Errors: None
         """
         # XXX TODO REMIND: is pointless define Response format because we're not making output validation
-        response = yield transact_get_field_list(self.request.language)
+        response = yield get_field_list(self.request.language)
 
         self.set_status(200)
         self.finish(response)
@@ -190,7 +156,7 @@ class FieldsCollection(BaseHandler):
         Errors: InvalidInputFormat, FieldIdNotFound
         """
         request = self.validate_message(self.request.body, requests.adminFieldDesc)
-        response = yield transact_create_field(request, self.request.language)
+        response = yield create_field(request, self.request.language)
 
         self.set_status(201) # Created
         self.finish(response)
@@ -203,7 +169,6 @@ class FieldInstance(BaseHandler):
 
     /admin/field/field_id
     """
-
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
@@ -214,7 +179,6 @@ class FieldInstance(BaseHandler):
         Errors: FieldIdNotFound, InvalidInputFormat
         """
         response = yield get_field(field_id, self.request.language)
-
         self.set_status(200)
         self.finish(response)
 
@@ -228,11 +192,9 @@ class FieldInstance(BaseHandler):
         Response: adminFieldDesc
         Errors: InvalidInputFormat, FieldIdNotFound
         """
-
         request = self.validate_message(self.request.body,
                                         requests.adminFieldDesc)
-
-        response = yield transact_create_field(request, self.request.language)
+        response = yield create_field(request, self.request.language)
 
         self.set_status(201) # Created
         self.finish(response)
@@ -246,11 +208,9 @@ class FieldInstance(BaseHandler):
         Response: adminFieldDesc
         Errors: InvalidInputFormat, FieldIdNotFound
         """
-
         request = self.validate_message(self.request.body,
                                         requests.adminFieldDesc)
-
-        response = yield transact_update_field(field_id, request, self.request.language)
+        response = yield update_field(field_id, request, self.request.language)
 
         self.set_status(202) # Updated
         self.finish(response)
@@ -264,5 +224,5 @@ class FieldInstance(BaseHandler):
         Response: None
         Errors: InvalidInputFormat, FieldIdNotFound
         """
-        yield transact_delete_field(field_id)
+        yield delete_field(field_id)
         self.set_status(200)
