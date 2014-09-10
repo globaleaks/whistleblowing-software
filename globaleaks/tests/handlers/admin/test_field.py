@@ -130,3 +130,23 @@ class TestAdminFieldCollection(helpers.TestHandler):
             for field in fields:
                 for child in field['children']:
                     self.assertIn(child, ids)
+
+        @inlineCallbacks
+        def test_put(self):
+            """
+            Update the field tree with nasty stuff, like cyclic graphs, inexisting ids.
+            """
+            generalities_fieldgroup_id = "37242164-1b1f-1110-1e1c-b1f12e815105"
+            sex_field_id = "98891164-1a0b-5b80-8b8b-93b73b815156"
+            surname_field_id = u"25521164-1d0f-5f80-8e8c-93f73e815156"
+            good_tree = [{
+                'id': generalities_fieldgroup_id,
+                'children': [sex_field_id, surname_field_id],
+            }]
+
+            handler = self.request(good_tree, role='admin')
+            yield handler.put()
+
+            invalid_tree = []
+            recursing_tree = []
+        test_put.skip = 'not yet properly implemented.'

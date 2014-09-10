@@ -106,6 +106,39 @@ def get_context_fieldtree(store, context_id):
         ret.append(FieldGroup.serialize(store, field.id))
     return ret
 
+def fieldtree_ancestors(store, field_id):
+    yield field_id
+    parents = [p.parent_id for p in
+               store.find(FieldField, FieldField.child_id == field_id)]
+    for parent_id in parents:
+        yield parent_id
+        # yield from field_ancestors(store, parent_id)
+        for grandpa in field_ancestors(store, parent_id): yield grandpa
+    else:
+        return
+
+@transact
+def update_fieldtree(store, tree):
+    """
+    """
+    for node in tree:
+        field = Field.get(store, node['id'])
+        children = node['children']
+        # check field do exists
+        if not field:
+            raise errors.InvalidInputFormat
+        # check children do exist
+        if any(Field.get(store, child['id']) is None
+               for child in children):
+            raise errors.InvalidInputFormat
+        # check the graph is non-recursive
+        ancestors = list(fieldtree_ancestors(store, field.id))
+        if any(child in ancestors for child in children):
+            raise errors.InvalidInputFormat
+        # everything fine, update the tree.
+        field.children = children
+
+
 
 class FieldsCollection(BaseHandler):
     """
@@ -131,7 +164,7 @@ class FieldsCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def post(self, *uriargs):
+    def put(self, *uriargs):
         """
         Rearrange a field tree, moving field to the group selected by the user,
         and groups to the correspective steps.
@@ -140,7 +173,7 @@ class FieldsCollection(BaseHandler):
         """
         request = self.validate_message(self.request.body,
                                         requests.adminFieldTree)
-        response = yield create_field(request, self.request.language)
+        yield update_field_tree(request)
         self.set_status(201)
         self.finish(response)
 
