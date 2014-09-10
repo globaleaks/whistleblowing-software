@@ -5,18 +5,13 @@ fields
 
 Implementation of the code executed when an HTTP client reach /admin/fields URI
 """
-import os
-import shutil
-
-from twisted.internet import defer
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import errors, requests
-from globaleaks.models import ApplicationData, Field, Step
-from globaleaks.utils.utility import log, datetime_now, datetime_null, datetime_to_ISO8601
+from globaleaks.models import Field, Step
 
 
 def admin_serialize_field(store, field, language):
