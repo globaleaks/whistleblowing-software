@@ -1,10 +1,10 @@
 # -*- coding: UTF-8
-#
-#   fields
-#   ******
-#
-# Implementation of the code executed when an HTTP client reach /admin/fields URI
-#
+"""
+fields
+******
+
+Implementation of the code executed when an HTTP client reach /admin/fields URI
+"""
 import os
 import shutil
 
