@@ -1,21 +1,19 @@
 # -*- coding: utf-8 -*-
 #from __future__ import unicode_literals
-import random
-import os
-
 import json
+import os
+import random
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.rest.errors import InvalidInputFormat
-from globaleaks.tests import helpers
-from globaleaks.rest import requests, errors
-from globaleaks.handlers import admin, admstaticfiles
-from globaleaks.settings import GLSetting
 from globaleaks import __version__
+from globaleaks.handlers import admin, admstaticfiles
 from globaleaks.models import Node, Context, Receiver
+from globaleaks.rest.errors import InvalidInputFormat
+from globaleaks.rest import requests, errors
+from globaleaks.settings import GLSetting
 from globaleaks.utils.utility import uuid4
-
+from globaleaks.tests import helpers
 
 
 class TestAdminFieldsInstance(helpers.TestHandler):
