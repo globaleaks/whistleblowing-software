@@ -69,17 +69,23 @@ class TestAdminFieldInstance(helpers.TestHandler):
             handler = self.request(self.sample_request, role='admin')
             yield handler.post()
             self.assertEqual(len(self.responses), 1)
-            self.assertIn('id', self.responses[0])
+            field_id = self.responses[0].get('id')
+            self.assertIsNotNone(field_id)
 
             updated_sample_request = self.sample_request
             updated_sample_request.update(type='inputbox')
-
             handler = self.request(updated_sample_request, role='admin')
-            yield handler.put(self.responses[0]['id'])
+            yield handler.put(field_id)
             self.assertEqual(len(self.responses), 2)
             self.assertNotEqual(self.responses[0], self.responses[1])
-            self.assertEqual(self.responses[1]['id'], self.responses[0]['id'])
+            self.assertEqual(field_id, self.responses[1]['id'])
             self.assertEqual(self.responses[1]['type'], 'inputbox')
+
+            wrong_sample_request = self.sample_request
+            wrong_sample_request.update(type='nonexistingfieldtype')
+            handler = self.request(wrong_sample_request, role='admin')
+            self.assertFailure(handler.put(field_id), errors.InvalidInputFormat)
+
 
         @inlineCallbacks
         def test_delete(self):

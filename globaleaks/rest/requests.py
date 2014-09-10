@@ -416,7 +416,17 @@ adminFieldDesc = {
     'required': bool,
     'preview': bool,
     'stats_enabled': bool,
-    'type': unicode, # constrained
+    'type': (r'^('
+             'inputbox|'
+             'textarea|'
+             'selectbox|'
+             'radiobutton|'
+             'checkbox|'
+             'multiselect|'
+             'modal|'
+             'dialog|'
+             'tos|'
+             'fieldgroup)$'),
     'options': dict, # we can't define a format here ? because the key need to be strict to field_type format ?
 }
 
