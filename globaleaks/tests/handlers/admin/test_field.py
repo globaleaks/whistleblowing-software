@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-#from __future__ import unicode_literals
+from __future__ import unicode_literals
+
 import json
 import os
 import random
@@ -19,9 +20,9 @@ from globaleaks.tests import helpers
 class TestAdminFieldsInstance(helpers.TestHandler):
         _handler = admin.field.FieldInstance
         sample_request = {
-            'label': "{'en': 'test label'}",
-            'description': "{'en': 'test description'}",
-            'hint': "{'en': 'test hint'}",
+            'label': '{"en": "test label"}',
+            'description': '{"en": "test description"}',
+            'hint': '{"en": "test hint"}',
             'multi_entry': False,
             'type': 'checkbox',
             'options': {},
@@ -31,7 +32,6 @@ class TestAdminFieldsInstance(helpers.TestHandler):
             'x': 0,
             'y': 0
         }
-
 
         @inlineCallbacks
         def test_get(self):
