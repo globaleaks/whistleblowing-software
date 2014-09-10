@@ -430,7 +430,14 @@ adminFieldDesc = {
     'options': dict, # we can't define a format here ? because the key need to be strict to field_type format ?
 }
 
+adminFieldTree = [
+    {
+        'id': uuid_regexp,
+        'children': [{'id': uuid_regexp}],
+    },
+]
+
 adminStepDesc = {
     'name'  : unicode,
-    'fields' : [ adminFieldDesc ]
+    'fields' : [ adminFieldDesc ],
 }
