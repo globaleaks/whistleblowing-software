@@ -17,7 +17,7 @@ from globaleaks.utils.utility import uuid4
 from globaleaks.tests import helpers
 
 
-class TestAdminFieldsInstance(helpers.TestHandler):
+class TestAdminFieldInstance(helpers.TestHandler):
         _handler = admin.field.FieldInstance
         sample_request = {
             'label': '{"en": "test label"}',
@@ -45,25 +45,36 @@ class TestAdminFieldsInstance(helpers.TestHandler):
 
         @inlineCallbacks
         def test_post(self):
+            """
+            Attempt to create a new field via a post request.
+            """
             handler = self.request(self.sample_request, role='admin')
             yield handler.post()
+            self.assertEqual(len(self.responses), 1)
 
+            resp, = self.responses
+            self.assertIn('id', resp)
+            self.assertNotEqual(resp.get('options'), None)
 
         @inlineCallbacks
         def test_put(self):
+            """
+            Attempt to update a field, changing its type via a put request.
+            """
             handler = self.request(self.sample_request, role='admin')
             yield handler.post()
+            self.assertEqual(len(self.responses), 1)
+            self.assertIn('id', self.responses[0])
 
-            response1, = self.responses
-            response1['type'] = 'inputbox'
-            handler = self.request(self.responses[0], role='admin')
-            # XXX: no idea how responses works, I would usually assume to have
-            # my responses list empty for every  new request
-            self.responses = []
-            yield handler.put(response1['id'])
+            updated_sample_request = self.sample_request
+            updated_sample_request.update(type='inputbox')
 
-            response2, = self.responses
-            self.assertEqual(response1, response2)
+            handler = self.request(updated_sample_request, role='admin')
+            yield handler.put(self.responses[0]['id'])
+            self.assertEqual(len(self.responses), 2)
+            self.assertNotEqual(self.responses[0], self.responses[1])
+            self.assertEqual(self.responses[1]['id'], self.responses[0]['id'])
+            self.assertEqual(self.responses[1]['type'], 'inputbox')
 
         @inlineCallbacks
         def test_delete(self):
