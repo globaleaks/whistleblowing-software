@@ -96,8 +96,7 @@ def get_field(store, field_id, language=GLSetting.memory_copy.default_language):
     if not field:
         log.err("Requested invalid field")
         raise errors.FieldIdNotFound
-
-    return {}
+    return admin_serialize_field(store, field, language)
 
 @transact
 def delete_field(store, field_id):
