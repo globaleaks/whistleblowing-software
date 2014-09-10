@@ -14,11 +14,10 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.utility import log
 
-def admin_serialize_field(store, field, language):
+def admin_serialize_field(field, language):
     """
     Function that perform serialization of a field given the id
     whenever the fieldgroup is directly associated with a Field the serialization include Field informations.
-    :param store: the store object to be used
     :param field: the field object to be serialized
     :return: a serialization of the object
     """
@@ -38,25 +37,13 @@ def admin_serialize_field(store, field, language):
         'children': [f.id for f in field.children],
     }
 
-@transact_ro
-def transact_admin_serialize_field(store, field_id):
-    """
-    Transaction that perform serialization of a FieldGroup_ given the id
-    whenever the fieldgroup is directly associated with a Field the serialization include Field informations.
-    :param store: the store object provided by the transact decorator
-    :param field_id: the field_id of the object to be serialized
-    :return: a serialization of the object identified by field_id
-    """
-    field = Field.get(store, field_id)
-    return admin_serialize_field(store, field)
-
 @transact
 def create_field(store, request, language=GLSetting.memory_copy.default_language):
     """
     Add a new field to the store, then return the new serialized object.
     """
     field = Field.new(store, request)
-    return admin_serialize_field(store, field, language)
+    return admin_serialize_field(field, language)
 
 @transact
 def update_field(store, field_id, request, language=GLSetting.memory_copy.default_language):
@@ -71,7 +58,7 @@ def update_field(store, field_id, request, language=GLSetting.memory_copy.defaul
     except Exception as dberror:
         log.err("Unable to update receiver %s: %s" % (receiver.name, dberror))
         raise errors.InvalidInputFormat(dberror)
-    return admin_serialize_field(store, field, language)
+    return admin_serialize_field(field, language)
 
 @transact_ro
 def get_field_list(store, language=GLSetting.memory_copy.default_language):
@@ -79,7 +66,7 @@ def get_field_list(store, language=GLSetting.memory_copy.default_language):
     Returns:
         (dict) the current field list serialized.
     """
-    return [admin_serialize_field(store, f, language) for f in store.find(Field)]
+    return [admin_serialize_field(f, language) for f in store.find(Field)]
 
 @transact_ro
 def get_field(store, field_id, language=GLSetting.memory_copy.default_language):
@@ -91,7 +78,7 @@ def get_field(store, field_id, language=GLSetting.memory_copy.default_language):
     if not field:
         log.err("Requested invalid field")
         raise errors.FieldIdNotFound
-    return admin_serialize_field(store, field, language)
+    return admin_serialize_field(field, language)
 
 @transact
 def delete_field(store, field_id):
