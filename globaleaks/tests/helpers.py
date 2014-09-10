@@ -126,10 +126,10 @@ class TestGL(unittest.TestCase):
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyNotification = dummyStuff.dummyNotification
-        self.dummyReceiverUser_1 = self.get_dummy_receiver_user("receiver1")
-        self.dummyReceiverUser_2 = self.get_dummy_receiver_user("receiver2")
-        self.dummyReceiver_1 = self.get_dummy_receiver("receiver1") # the one without PGP
-        self.dummyReceiver_2 = self.get_dummy_receiver("receiver2") # the one with PGP
+        self.dummyReceiverUser_1 = self.get_dummy_receiver_user('receiver1')
+        self.dummyReceiverUser_2 = self.get_dummy_receiver_user('receiver2')
+        self.dummyReceiver_1 = self.get_dummy_receiver('receiver1') # the one without PGP
+        self.dummyReceiver_2 = self.get_dummy_receiver('receiver2') # the one with PGP
 
         if self.encryption_scenario == 'MIXED':
             self.dummyReceiver_1['gpg_key_armor'] = None
@@ -149,7 +149,7 @@ class TestGL(unittest.TestCase):
     def localization_set(self, dict_l, dict_c, language):
         ret = dict(dict_l)
 
-        for attr in getattr(dict_c, "localized_strings"):
+        for attr in getattr(dict_c, 'localized_strings'):
             ret[attr] = {}
             ret[attr][language] = unicode(dict_l[attr])
 
@@ -163,10 +163,10 @@ class TestGL(unittest.TestCase):
     def get_dummy_receiver(self, descpattern):
         new_r = dict(MockDict().dummyReceiver)
         new_r['name'] = new_r['username'] =\
-        new_r['mail_address'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
+        new_r['mail_address'] = unicode('%s@%s.xxx' % (descpattern, descpattern))
         new_r['password'] = VALID_PASSWORD1
         # localized dict required in desc
-        new_r['description'] =  "am I ignored ? %s" % descpattern
+        new_r['description'] =  'am I ignored ? %s' % descpattern
         return new_r
 
     def get_dummy_submission(self, context_id, context_admin_data_fields):
@@ -180,9 +180,9 @@ class TestGL(unittest.TestCase):
         dummySubmissionDict = {}
         dummySubmissionDict['wb_fields'] = {}
 
-        dummyvalue = "https://dailyfoodporn.wordpress.com && " \
-                     "http://www.zerocalcare.it/ && " \
-                     "http://www.giantitp.com"
+        dummyvalue = ('https://dailyfoodporn.wordpress.com && '
+                      'http://www.zerocalcare.it/ && '
+                      'http://www.giantitp.com')
 
         for field_desc in context_admin_data_fields:
             dummySubmissionDict['wb_fields'][field_desc['key']] = { u'value': dummyvalue,
@@ -203,7 +203,7 @@ class TestGL(unittest.TestCase):
             content_type = 'application/octet'
 
         if content is None:
-            content = "ANTANI"
+            content = 'ANTANI'
 
         temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
 
@@ -300,8 +300,8 @@ class TestGLWithPopulatedDB(TestGL):
         yield self.fill_data()
 
     def receiver_assertion(self, source_r, created_r):
-        self.assertEqual(source_r['name'], created_r['name'], "name")
-        self.assertEqual(source_r['can_delete_submission'], created_r['can_delete_submission'], "delete")
+        self.assertEqual(source_r['name'], created_r['name'], 'name')
+        self.assertEqual(source_r['can_delete_submission'], created_r['can_delete_submission'], 'delete')
 
     def context_assertion(self, source_c, created_c):
         self.assertEqual(source_c['tip_max_access'], created_c['tip_max_access'])
@@ -329,59 +329,31 @@ class TestGLWithPopulatedDB(TestGL):
 
     @inlineCallbacks
     def fill_data(self):
-        try:
-            yield do_appdata_init()
-        except Exception as excp:
-            print "Fail fill_data/do_appdata_init: %s" % excp
-            raise  excp
+        yield do_appdata_init()
 
         receivers_ids = []
 
-        try:
-            self.dummyReceiver_1 = yield create_receiver(self.dummyReceiver_1)
-            receivers_ids.append(self.dummyReceiver_1['id'])
-            self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2)
-            receivers_ids.append(self.dummyReceiver_2['id'])
-        except Exception as excp:
-            print "Fail fill_data/create_receiver: %s" % excp
-            raise  excp
-
-        try:
-            self.dummyContext['receivers'] = receivers_ids
-            self.dummyContext = yield create_context(self.dummyContext)
-        except Exception as excp:
-            print "Fail fill_data/create_context: %s" % excp
-            raise  excp
+        # fill_data/create_receiver
+        self.dummyReceiver_1 = yield create_receiver(self.dummyReceiver_1)
+        receivers_ids.append(self.dummyReceiver_1['id'])
+        self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2)
+        receivers_ids.append(self.dummyReceiver_2['id'])
+        # fill_data/create_context
+        self.dummyContext['receivers'] = receivers_ids
+        self.dummyContext = yield create_context(self.dummyContext)
 
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = receivers_ids
         self.dummySubmission['wb_fields'] = fill_random_fields(self.dummyContext)
-
-        try:
-            self.dummySubmissionNotFinalized = yield create_submission(self.dummySubmission, finalize=False)
-        except Exception as excp:
-            print "Fail fill_data/create_submission: %s" % excp
-            raise  excp
-
-        try:
-            self.dummySubmission = yield create_submission(self.dummySubmission, finalize=False)
-        except Exception as excp:
-            print "Fail fill_data/create_submission: %s" % excp
-            raise  excp
+        # fill_data/create_submission
+        self.dummySubmissionNotFinalized = yield create_submission(self.dummySubmission, finalize=False)
+        self.dummySubmission = yield create_submission(self.dummySubmission, finalize=False)
 
         yield self.emulate_file_upload(self.dummySubmission['id'])
-
-        try:
-            submission = yield update_submission(self.dummySubmission['id'], self.dummySubmission, finalize=True)
-        except Exception as excp:
-            print "Fail fill_data/update_submission: %s" % excp
-            raise  excp
-
-        try:
-            self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
-        except Exception as excp:
-            print "Fail fill_data/create_whistleblower: %s" % excp
-            raise  excp
+        # fill_data/update_submssion
+        submission = yield update_submission(self.dummySubmission['id'], self.dummySubmission, finalize=True)
+        # fill_data/create_whistleblower
+        self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
 
         assert self.dummyReceiver_1.has_key('id')
         assert self.dummyReceiver_2.has_key('id')
@@ -697,14 +669,14 @@ class MockDict():
 
 def template_keys(first_a, second_a, name):
 
-    ret_string = "[%s]" % name
+    ret_string = '[{}]'.format(name)
     for x in first_a:
-        ret_string += " %s" % x
+        ret_string += ' {}'.format(x)
 
-    ret_string += " == "
+    ret_string += ' == '
 
     for x in second_a:
-        ret_string += " %s" % x
+        ret_string += ' {}'.format(x)
 
     return ret_string
 
@@ -716,7 +688,7 @@ def fill_random_fields(context_desc):
 
     assert isinstance(context_desc, dict)
     fields_list = context_desc['fields']
-    assert isinstance(fields_list, list), "Missing fields!"
+    assert isinstance(fields_list, list), 'Missing fields!'
     assert len(fields_list) >= 1
 
     ret_dict = {}
@@ -743,7 +715,7 @@ def default_context_fields():
 
     source = opportunistic_appdata_init()
     if not source.has_key('fields'):
-        raise Exception("Invalid Application Data initialization")
+        raise Exception('Invalid Application Data initialization')
 
     f = source['fields']
     fo = Fields()
