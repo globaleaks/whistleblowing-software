@@ -105,11 +105,28 @@ class TestAdminFieldInstance(helpers.TestHandler):
             self.assertFailure(handler.delete(field_id), errors.FieldIdNotFound)
 
 
-class TestAdminFieldsCollection(helpers.TestHandler):
+class TestAdminFieldCollection(helpers.TestHandler):
         _handler = admin.field.FieldsCollection
         fixtures = ['fields.json']
 
         @inlineCallbacks
         def test_get(self):
+            """
+            Retrieve a list of all fields, and verify that they do exist in the
+            database.
+            """
             handler = self.request(role='admin')
             yield handler.get()
+            fields, = self.responses
+
+            ids = [field.get('id') for field in fields]
+            types = [field.get('type') for field in fields]
+            self.assertGreater(len(fields), 0)
+            self.assertNotIn(None, ids)
+            self.assertIn('25521164-1d0f-5f80-8e8c-93f73e815156', ids)
+            self.assertGreater(types.count('fieldgroup'), 0)
+
+            # check children are present in the list as well
+            for field in fields:
+                for child in field['children']:
+                    self.assertIn(child, ids)
