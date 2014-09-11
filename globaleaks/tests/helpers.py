@@ -1,4 +1,8 @@
 # -*- coding: UTF-8
+"""
+Utilities and basic TestCases.
+"""
+from __future__ import with_statement
 
 import json
 import os
@@ -27,36 +31,20 @@ from globaleaks.third_party import rstr
 from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.security import GLSecureTemporaryFile
 
+from . import TEST_DIR
+
+## constants
+
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
-VALID_SALT1 = security.get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
-VALID_SALT2 = security.get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
+VALID_SALT1 = security.get_salt(rstr.xeger(r'[A-Za-z0-9]{56}'))
+VALID_SALT2 = security.get_salt(rstr.xeger(r'[A-Za-z0-9]{56}'))
 VALID_HASH1 = security.hash_password(VALID_PASSWORD1, VALID_SALT1)
 VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
-
 INVALID_PASSWORD = u'antani'
 
-VALID_PGP_KEY = """
------BEGIN PGP PUBLIC KEY BLOCK-----
-Version: GnuPG v1
-
-mI0EU0//vQEEAMmBw+uswfhiixtMsshUn1Mq4xv+qR3hMsx3IDadc1LEaxnjHYu3
-iUvyd4vc7tNv1Jc6akRJLtLJ+MKpovv6wH9zdfQghu7ZksYnRnYAYQLdZXszsBos
-Z1pK70wC9JcRwvmCM0/9AVvmgxeE1hOOZNq4NbvmGwJ3jO87gN4Wh5TpABEBAAG0
-IXBncEBleGFtcGxlLm5ldCA8cGdwQGV4YW1wbGUubmV0Poi4BBMBAgAiBQJTT/+9
-AhsDBgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAAKCRArJVUVaOSTRbbWA/9+tVBa
-JF3JRZ6dnEuKULF5sIKJHz/RX/IZ6+HF4YY4OFtC7lHyTTKaPh4Cb7vpPvi5S/On
-TQT8lhmEk6fSdQEGxteyl1/Lm6HLKne9sUSIBNKZFO/lgWfcDUeT+/R1Trr04zdj
-QqvTQAZqO80FvVFziXv2s76q6L/z2pu7scvV37iNBFNP/70BBACy3IpJpwxr5mRG
-vKizf6fdL0sgl3CzFD0ziyGtlnxIv33TbvRcO+7uWOiK76PehZQZnpLITPE5G96H
-cXq2JI8gvi0QFG8fnjpTog6vIT/ldaoUiOon/ohg3ahnkaVpZQBMg5wp5/rpL5eD
-O5wGeEGVJxhUP1Wgk02mRsB53NdPbQARAQABiJ8EGAECAAkFAlNP/70CGwwACgkQ
-KyVVFWjkk0WZTwP/QGFfPZoXQItxfgLfXQ03Mo1G5dBepog2fFTxores3Nz0rsgt
-PL4QgDcz+ocengVlXpZVcoRcLfDs5bJybyyvSMAaqUinYZBX125HSLxNCaPCMKY7
-1+PeA5pTch+CRTjJS0NhOLyffMjPIwGW0Dus6vQEOi8AOlCJLX6uqd7Z854=
-=sV8Y
------END PGP PUBLIC KEY BLOCK-----
-"""
+with open(os.path.join(TEST_DIR, 'valid_pgp_key.txt')) as pgp_file:
+    VALID_PGP_KEY = pgp_file.read()
 
 transact.tp = FakeThreadPool()
 
@@ -75,8 +63,7 @@ log.debug = UTlog().debug
 
 class TestGL(unittest.TestCase):
     encryption_scenario = 'MIXED' # receivers with pgp and receivers without pgp
-    _fixtures_path = os.path.join(os.path.dirname(__file__),
-                                  'fixtures', '')
+    _fixtures_path = os.path.join(TEST_DIR, 'fixtures', '')
 
     @inlineCallbacks
     def setUp(self):
