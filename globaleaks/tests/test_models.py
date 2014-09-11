@@ -1,4 +1,6 @@
 from __future__ import unicode_literals
+
+from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
 # XXX. REMOVE THIS EVIL IMPORT *
@@ -292,23 +294,6 @@ class TestField(helpers.TestGL):
         yield self.assert_model_exists(models.Field, field_id)
 
     @inlineCallbacks
-    def test_add_children(self):
-        children = yield self.get_children(self.generalities_id)
-        self.assertIn(self.name_id, children)
-        self.assertIn(self.birthdate_id, children)
-        self.assertNotIn(self.surname_id, children)
-        self.assertNotIn(self.sex_id, children)
-
-        Field.add_children(self.generalities_id,
-                           self.surname_id, self.sex_id)
-        children = yield self.get_children(self.generalities_id)
-        self.assertIn(self.surname_id, children)
-        self.assertIn(self.name_id, children)
-        self.assertIn(self.sex_id, children)
-    test_add_children.skip = ('Method add_children shall be rewritten'
-                              'to be suitable for handlers.')
-
-    @inlineCallbacks
     def test_delete_field_child(self):
         children = yield self.get_children(self.generalities_id)
         for c in children:
@@ -339,7 +324,10 @@ class TestStep(helpers.TestGLWithPopulatedDB):
         return Step.new(store, context_id, number, self.generalities_id)
 
     @inlineCallbacks
-    def test_new_step(self):
+    def test_new(self):
         context_id = yield self.dummyContext['id']
-        step_id = yield self.create_step(context_id, 0)
-        yield self.assert_model_exists(models.Step, context_id, step_id)
+
+        yield self.create_step(context_id, 0)
+        yield self.assert_model_exists(models.Step, context_id, 0)
+        # creation of another step with same number should fail
+        self.assertFailure(self.create_step(context_id, 0), exceptions.IntegrityError)

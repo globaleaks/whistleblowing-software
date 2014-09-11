@@ -668,32 +668,6 @@ class Field(Model):
     localized_strings = ['label', 'description', 'hint']
     bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled']
 
-    @staticmethod
-    def new(store, attrs):
-        """
-        Create a new Field
-
-        :param attr: a dictionary holding all informations for the Field
-        :return Field: a new Field described by the dictionary `attr`.
-        """
-
-        field = Field(attrs)
-
-        store.add(field)
-
-        return field
-
-    @staticmethod
-    @transact
-    def add_children(store, field_id, *children):
-        """
-        :param list children: list of Field.id
-        """
-        field = Field.get(store, field_id)
-        for child_id in children:
-            child = store.find(Field, Field.id == child_id).one()
-            field.children.add(child)
-
 class Step(BaseModel):
     __storm_table__ = 'step'
     __storm_primary__ = 'context_id', 'number'
@@ -714,13 +688,12 @@ class Step(BaseModel):
 
     @classmethod
     def get(cls, store, context_id, number):
-        return store.find(Step, Step.context_id == context_id, Step.number == number)
-
+        return store.find(Step, Step.context_id == context_id, Step.number == number).one()
 
     @classmethod
     def delete(cls, store, context_id, number):
         # delete the step numbered as number and associated with context_id
-        pass
+        raise NotImplementedError
 
 class ApplicationData(Model):
 
