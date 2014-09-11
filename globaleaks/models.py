@@ -121,14 +121,14 @@ class Model(BaseModel):
     def get(cls, store, obj_id):
         return store.find(cls, cls.id == obj_id).one()
 
-    @classmethod
-    def delete(cls, store, obj_id):
-        store.remove(store.find(cls, cls.id == obj_id).one())
-
+    def delete(self, store):
+        obj = cls.get(store, obj_id)
+        if not obj:
+            raise ValueError('{} not found on database.'.format(obj_id))
+        store.remove(obj)
 
 
 class User(Model):
-
     """
     This model keeps track of globaleaks users
     """
@@ -668,6 +668,14 @@ class Field(Model):
     localized_strings = ['label', 'description', 'hint']
     bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled']
 
+    # XXX the instance already knows about the store, are we sure there's no way
+    # to obtain it?
+    def delete(self, store):
+        for child in self.children:
+            child.delete(store)
+        store.remove(self)
+
+
 class Step(BaseModel):
     __storm_table__ = 'step'
     __storm_primary__ = 'context_id', 'number'
@@ -690,13 +698,8 @@ class Step(BaseModel):
     def get(cls, store, context_id, number):
         return store.find(Step, Step.context_id == context_id, Step.number == number).one()
 
-    @classmethod
-    def delete(cls, store, context_id, number):
-        # delete the step numbered as number and associated with context_id
-        raise NotImplementedError
 
 class ApplicationData(Model):
-
     """
     Exists only one instance of this class, because the ApplicationData
     had only one big updated blob.
