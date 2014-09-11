@@ -127,7 +127,8 @@ def update_fieldtree(store, tree):
     errmsg = 'Invalid or not existent field ids in request.'
     for node in tree:
         field = Field.get(store, node['id'])
-        if not field: raise errors.InvalidInputFormat(errmsg)
+        if not field or field.type != 'fieldgroup':
+            raise errors.InvalidInputFormat(errmsg)
         children = node['children']
         ancestors = set(fieldtree_ancestors(store, field.id))
 
