@@ -87,13 +87,21 @@ def get_field(store, field_id, language=GLSetting.memory_copy.default_language):
 def delete_field(store, field_id):
     """
     Remove the field object corresponding to field_id from the store.
-    If it is not found, raises a FieldIdNotFound error.
+    If the field has children, remove them as well.
+    If the field is immediately attached to a step object, remove it as well.
+
+    :param field_id: the id correstponding to the field.
+    :raises FieldIdNotFound: if no such field is found.
     """
-    try:
-        Field.delete(store, field_id)
-    except ValueError:
-        log.err('Requested invalid field: {}'.format(field_id))
+    field = Field.get(store, field_id)
+    if not field:
         raise errors.FieldIdNotFound
+    step = store.find(Step, Step.field == field.id)
+    if step.any():
+        step = step.one()
+        step.delete(store)
+    field.delete(store)
+
 
 @transact
 def get_context_fieldtree(store, context_id):
