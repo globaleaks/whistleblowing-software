@@ -1,19 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import json
-import os
-import random
-
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import __version__
-from globaleaks.handlers import admin, admstaticfiles
-from globaleaks.models import Node, Context, Receiver
-from globaleaks.rest.errors import InvalidInputFormat
+from globaleaks.handlers import admin
+from globaleaks.models import Field
 from globaleaks.rest import requests, errors
-from globaleaks.settings import GLSetting
-from globaleaks.utils.utility import uuid4
+from globaleaks.settings import transact_ro
 from globaleaks.tests import helpers
 
 
@@ -109,6 +102,21 @@ class TestAdminFieldCollection(helpers.TestHandler):
         _handler = admin.field.FieldsCollection
         fixtures = ['fields.json']
 
+        @transact_ro
+        def _get_children(self, store, field_id):
+            field = Field.get(store, field_id)
+            return [child.id for child in field.children]
+
+        @inlineCallbacks
+        def assert_is_child(self, child_id, field_id):
+            children = yield self._get_children(field_id)
+            self.assertIn(child_id, children)
+
+        @inlineCallbacks
+        def assert_is_not_child(self, child_id, field_id):
+            children = yield self._get_children(field_id)
+            self.assertNotIn(child_id, children)
+
         @inlineCallbacks
         def test_get(self):
             """
@@ -136,17 +144,50 @@ class TestAdminFieldCollection(helpers.TestHandler):
             """
             Update the field tree with nasty stuff, like cyclic graphs, inexisting ids.
             """
-            generalities_fieldgroup_id = "37242164-1b1f-1110-1e1c-b1f12e815105"
-            sex_field_id = "98891164-1a0b-5b80-8b8b-93b73b815156"
-            surname_field_id = u"25521164-1d0f-5f80-8e8c-93f73e815156"
+            generalities_fieldgroup_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
+            sex_field_id = '98891164-1a0b-5b80-8b8b-93b73b815156'
+            surname_field_id = '25521164-1d0f-5f80-8e8c-93f73e815156'
+            name_field_id = '25521164-0d0f-4f80-9e9c-93f72e815105'
+            invalid_id = '00000000-1d0f-5f80-8e8c-93f700000000'
+            # simple edits shall work
             good_tree = [{
                 'id': generalities_fieldgroup_id,
                 'children': [sex_field_id, surname_field_id],
             }]
-
             handler = self.request(good_tree, role='admin')
             yield handler.put()
-
-            invalid_tree = []
-            recursing_tree = []
-        test_put.skip = 'not yet properly implemented.'
+            yield self.assert_model_exists(Field, generalities_fieldgroup_id)
+            yield self.assert_is_child(sex_field_id, generalities_fieldgroup_id)
+            yield self.assert_is_not_child(name_field_id,
+                                           generalities_fieldgroup_id)
+            # parent id MUST exist
+            invalid_tree = [{
+                'id': invalid_id,
+                'children': [name_field_id, sex_field_id]  * 3,
+            }]
+            handler = self.request(invalid_tree, role='admin')
+            self.assertFailure(handler.put(), errors.InvalidInputFormat)
+            # child ids MUST exist
+            invalid_tree = [{
+                'id': generalities_fieldgroup_id,
+                'children': [name_field_id, invalid_id, sex_field_id] * 100,
+            }]
+            handler = self.request(invalid_tree, role='admin')
+            self.assertFailure(handler.put(), errors.InvalidInputFormat)
+            yield self.assert_is_not_child(invalid_id, generalities_fieldgroup_id)
+            yield self.assert_is_child(sex_field_id, generalities_fieldgroup_id)
+            yield self.assert_is_not_child(name_field_id,
+                                           generalities_fieldgroup_id)
+            # parent MUST not refer to itself in child
+            # XXX. shall test with a bigger connected component
+            recursing_tree = [{
+                'id': generalities_fieldgroup_id,
+                'children': [generalities_fieldgroup_id],
+            }]
+            self.assertFailure(handler.put(), errors.InvalidInputFormat)
+            # a child not of type 'fieldgroup' MUST never have children.
+            invalid_tree = [{
+                'id': name_field_id,
+                'children': [sex_field_id],
+            }]
+            self.assertFailure(handler.put(), errors.InvalidInputFormat)

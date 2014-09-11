@@ -4,6 +4,7 @@ Implementation of the code executed when an HTTP client reach /admin/fields URI.
 """
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.models import Field, Step
@@ -108,12 +109,11 @@ def get_context_fieldtree(store, context_id):
 
 def fieldtree_ancestors(store, field_id):
     yield field_id
-    parents = [p.parent_id for p in
-               store.find(FieldField, FieldField.child_id == field_id)]
-    for parent_id in parents:
-        yield parent_id
+    parents = store.find(models.FieldField, models.FieldField.child_id == field_id)
+    for parent in parents:
+        yield parent.id
         # yield from field_ancestors(store, parent_id)
-        for grandpa in field_ancestors(store, parent_id): yield grandpa
+        for grandpa in field_ancestors(store, parent.id): yield grandpa
     else:
         return
 
@@ -121,23 +121,20 @@ def fieldtree_ancestors(store, field_id):
 def update_fieldtree(store, tree):
     """
     """
+    errmsg = 'Invalid or not existent field ids in request.'
     for node in tree:
         field = Field.get(store, node['id'])
+        if not field: raise errors.InvalidInputFormat(errmsg)
         children = node['children']
-        # check field do exists
-        if not field:
-            raise errors.InvalidInputFormat
-        # check children do exist
-        if any(Field.get(store, child['id']) is None
-               for child in children):
-            raise errors.InvalidInputFormat
-        # check the graph is non-recursive
-        ancestors = list(fieldtree_ancestors(store, field.id))
-        if any(child in ancestors for child in children):
-            raise errors.InvalidInputFormat
-        # everything fine, update the tree.
-        field.children = children
+        ancestors = set(fieldtree_ancestors(store, field.id))
 
+        field.children.clear()
+        for child_id in children:
+            child = Field.get(store, child_id)
+            # check child do exists and graph is not recursive
+            if not child or child in ancestors:
+                raise errors.InvalidInputFormat(errmsg)
+            field.children.add(child)
 
 
 class FieldsCollection(BaseHandler):
@@ -173,9 +170,9 @@ class FieldsCollection(BaseHandler):
         """
         request = self.validate_message(self.request.body,
                                         requests.adminFieldTree)
-        yield update_field_tree(request)
+        yield update_fieldtree(request)
         self.set_status(201)
-        self.finish(response)
+        self.finish({'result': 'ok'})
 
 
 class FieldInstance(BaseHandler):
