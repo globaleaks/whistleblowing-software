@@ -111,6 +111,13 @@ def get_context_fieldtree(store, context_id):
     return ret
 
 def fieldtree_ancestors(store, field_id):
+    """
+    Given a field_id, recursively extract its parents.
+
+    :param store: appendix to access to the database.
+    :param field_id: the parent id.
+    :return: a generator of Field.id
+    """
     yield field_id
     parents = store.find(models.FieldField, models.FieldField.child_id == field_id)
     for parent in parents:
@@ -123,6 +130,9 @@ def fieldtree_ancestors(store, field_id):
 @transact
 def update_fieldtree(store, tree):
     """
+    Update field groups to host different fields, making sure that:
+    - the tree is non-recursive
+    - the tree is consistent with the fields present.
     """
     errmsg = 'Invalid or not existent field ids in request.'
     for node in tree:
