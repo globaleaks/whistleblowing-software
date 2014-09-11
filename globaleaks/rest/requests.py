@@ -433,7 +433,7 @@ adminFieldDesc = {
 adminFieldTree = [
     {
         'id': uuid_regexp,
-        'children': [{'id': uuid_regexp}],
+        'children': [uuid_regexp],
     },
 ]
 
