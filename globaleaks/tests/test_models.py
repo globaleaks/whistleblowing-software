@@ -288,7 +288,7 @@ class TestField(helpers.TestGL):
         field_id = yield self.create_field()
         yield self.assert_model_exists(models.Field, field_id)
 
-        field_if = yield self.create_field(type='checkbox')
+        field_id = yield self.create_field(type='checkbox')
         yield self.assert_model_exists(models.Field, field_id)
 
     @inlineCallbacks
