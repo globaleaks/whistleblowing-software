@@ -2,6 +2,8 @@
 """
 Implementation of the code executed when an HTTP client reach /admin/fields URI.
 """
+from __future__ import unicode_literals
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
@@ -56,7 +58,8 @@ def update_field(store, field_id, request, language=GLSetting.memory_copy.defaul
     try:
         field.update(request)
     except Exception as dberror:
-        log.err("Unable to update receiver %s: %s" % (receiver.name, dberror))
+        log.err('Unable to update receiver {r}: {e}'.format(
+            r=receiver.name, e=dberror))
         raise errors.InvalidInputFormat(dberror)
     return admin_serialize_field(field, language)
 
@@ -76,7 +79,7 @@ def get_field(store, field_id, language=GLSetting.memory_copy.default_language):
     """
     field = Field.get(store, field_id)
     if not field:
-        log.err("Requested invalid field")
+        log.err('Invalid field requested')
         raise errors.FieldIdNotFound
     return admin_serialize_field(field, language)
 
