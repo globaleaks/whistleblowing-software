@@ -48,7 +48,7 @@ with open(os.path.join(TEST_DIR, 'valid_pgp_key.txt')) as pgp_file:
 
 transact.tp = FakeThreadPool()
 
-class UTlog():
+class UTlog:
 
     @staticmethod
     def err(stuff):
@@ -58,8 +58,8 @@ class UTlog():
     def debug(stuff):
         pass
 
-log.err = UTlog().err
-log.debug = UTlog().debug
+log.err = UTlog.err
+log.debug = UTlog.debug
 
 class TestGL(unittest.TestCase):
     encryption_scenario = 'MIXED' # receivers with pgp and receivers without pgp
@@ -101,7 +101,6 @@ class TestGL(unittest.TestCase):
 
             for mock in data:
                 mock_class = getattr(models, mock['class'])
-
                 obj = mock_class.new(store, mock['fields'])
 
                 if 'id' in mock['fields']: # reference tables do not have an associated id
