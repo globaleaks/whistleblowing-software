@@ -1,5 +1,5 @@
 #!/bin/sh
 
-find globaleaks/ -name '*.pyc' -exec rm -f {} \;
+find globaleaks/ -name '*.pyc' -delete
 
 ./bin/globaleaks --start-clean 1 $@
