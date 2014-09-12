@@ -10,11 +10,11 @@ import os
 from cyclone import httpserver
 from cyclone.web import Application
 from cyclone.util import ObjectDict as OD
-from twisted.trial import unittest
-from twisted.test import proto_helpers
 from twisted.internet import threads
 from twisted.internet import defer
 from twisted.internet.defer import inlineCallbacks
+from twisted.trial import unittest
+from twisted.test import proto_helpers
 from storm.twisted.testing import FakeThreadPool
 
 from globaleaks import db, models, security
@@ -43,6 +43,9 @@ VALID_HASH1 = security.hash_password(VALID_PASSWORD1, VALID_SALT1)
 VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
 INVALID_PASSWORD = u'antani'
 
+FIXTURES_PATH = os.path.join(TEST_DIR, 'fixtures')
+
+
 with open(os.path.join(TEST_DIR, 'valid_pgp_key.txt')) as pgp_file:
     VALID_PGP_KEY = pgp_file.read()
 
@@ -61,9 +64,39 @@ class UTlog:
 log.err = UTlog.err
 log.debug = UTlog.debug
 
+
+def export_fixture(*models):
+    """
+    Return a valid json object holding all informations handled by the fields.
+
+    :param field: the field we want to export.
+    :rtype: str
+    :return: a valid JSON string exporting the field.
+    """
+    return json.dumps([{
+        'fields': model.dict(),
+        'class': model.__class__.__name__,
+    } for model in models], indent=2)
+
+@transact
+def import_fixture(store, fixture):
+    """
+    Import a valid json object holding all informations, and stores them in the database.
+
+    :return: The traditional deferred used for transaction in GlobaLeaks.
+    """
+    with open(os.path.join(FIXTURES_PATH, fixture)) as f:
+        data = json.loads(f.read())
+        for mock in data:
+            mock_class = getattr(models, mock['class'])
+            obj = mock_class.new(store, mock['fields'])
+
+            if 'id' in mock['fields']: # reference tables do not have an associated id
+                obj.id = mock['fields']['id']
+
+
 class TestGL(unittest.TestCase):
     encryption_scenario = 'MIXED' # receivers with pgp and receivers without pgp
-    _fixtures_path = os.path.join(TEST_DIR, 'fixtures', '')
 
     @inlineCallbacks
     def setUp(self):
@@ -91,20 +124,9 @@ class TestGL(unittest.TestCase):
         notification.MailNotification.mail_flush = mail_flush_mock
 
         yield db.create_tables(create_node=True)
-        yield self._load_fixtures()
 
-    @transact
-    def _load_fixtures(self, store):
         for fixture in getattr(self, 'fixtures', []):
-            with open(self._fixtures_path+fixture) as f:
-                data = json.loads(f.read())
-
-            for mock in data:
-                mock_class = getattr(models, mock['class'])
-                obj = mock_class.new(store, mock['fields'])
-
-                if 'id' in mock['fields']: # reference tables do not have an associated id
-                    obj.id = mock['fields']['id']
+            yield import_fixture(fixture)
 
     def setUp_dummy(self):
         dummyStuff = MockDict()
