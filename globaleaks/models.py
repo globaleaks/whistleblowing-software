@@ -8,13 +8,45 @@ import types
 
 from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet
 from storm.locals import Unicode, Storm, JSON
+from storm.properties import Property, PropertyPublisherMeta
 
 from globaleaks.settings import transact
 from globaleaks.utils.utility import datetime_now, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, shortlocal_v
 from globaleaks.utils.validator import longlocal_v, dict_v
 
-class BaseModel(object):
+class MetaModel(PropertyPublisherMeta):
+    def __init__(cls, name, bases, attrs):
+        # guess public attributes, as they define the object.
+        public_attrs = set([key for key, val in attrs.iteritems()
+        # it is not private
+                            if not key.startswith('_')
+        # this is going to be dealt at metaclass level shortly. aha.
+                            if not key in ('int_keys', 'bool_keys', 'unicode_keys', 'localized_strings')
+        # it is not a public method
+                            if isinstance(val, Property)
+        ])
+        for base in bases:
+            public_attrs |= getattr(base, '_public_attrs', set())
+        # guess attributes types magically instead of specifying them.
+        # int_keys = [key for key in public_attrs
+        #             if isinstance(attrs[key], Int)]
+        # bool_keys = [key for key in public_attrs
+        #              if isinstance(attrs[key], Bool)]
+        # # if not provided, set storm_table's name to the class name.
+
+        # # populate class attributes with the inferred new inormations.
+        cls._public_attrs = public_attrs
+        # attrs['int_keys'] = int_keys
+        # attrs['bool_keys'] = bool_keys
+        return super(MetaModel, cls).__init__(name, bases, attrs)
+
+L10NUnicode = type('L10NUnicode', (Unicode, ), {})
+
+class BaseModel(Storm):
+    """
+    """
+    __metaclass__ = MetaModel
 
     # initialize empty list for the base classes
     unicode_keys = []
@@ -22,15 +54,13 @@ class BaseModel(object):
     int_keys = []
     bool_keys = []
 
-    def __init__(self, attrs=None):
-        self.update(attrs)
-
     def __new__(cls, *args, **kw):
-        # if not explicitly set by the Class,
-        # the __storm_table__ attribut is set as the lowercase classname
         if not hasattr(cls, '__storm_table__'):
             cls.__storm_table__ = cls.__name__.lower()
         return Storm.__new__(cls, *args)
+
+    def __init__(self, attrs=None):
+        self.update(attrs)
 
     @classmethod
     def new(cls, store, attrs):
@@ -96,16 +126,19 @@ class BaseModel(object):
 
         return Storm.__setattr__(self, name, value)
 
-    def dict(self, dict_filter=None):
+    def dict(self, *keys):
         """
-        return a dictionary serialization of the current model.
+        Return a dictionary serialization of the current model.
         if no filter is provided, returns every single attribute.
-        """
-        if dict_filter is None:
-            dict_filter = [x for x in vars(Model)
-                           if isinstance(x, types.MethodType)]
 
-        return dict((key, getattr(self, key)) for key in filter)
+        :raises KeyError: if a key is not recognized as public attribute.
+        """
+        keys = set(keys or self._public_attrs)
+        not_allowed_keys = keys - self._public_attrs
+        if not_allowed_keys:
+            raise KeyError('Invalid keys: {}'.format(not_allowed_keys))
+        else:
+            return {key: getattr(self, key) for key in keys & self._public_attrs}
 
 
 class Model(BaseModel):
