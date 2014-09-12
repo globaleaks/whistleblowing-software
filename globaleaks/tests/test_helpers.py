@@ -1,6 +1,9 @@
 """
 Testandi ipsos testes.
 """
+from __future__ import unicode_literals
+
+import json
 import os
 
 from twisted.internet.defer import inlineCallbacks
@@ -21,21 +24,29 @@ class TestFixtures(helpers.TestGL):
                 yield helpers.import_fixture(fixture)
                 # XXX. what exately we do test here?
 
-    @inlineCallbacks
     def test_export_fixture(self):
         """
         After creating a mock model, test that all relevant informations are
         exported successfully.
         """
-        class FakeModel(models.Model):
+        class FakeModel(models.BaseModel):
+            id = models.Int(primary=True)
             mockattr1 = models.Unicode()
             mockattr2 = models.Int()
             mockattr3 = models.Bool()
 
-        m = FakeModel(attrs=dict(mockattr1='a', mockattr2=1, mockattr3=True))
-        fixture = helpers.export_fixture(m)
+        m = FakeModel()
+        m.mockattr1 = 'hello world!'
+        m.mockattr2 = 1
+        m.mockattr3 = True
+
+        fixture = json.loads(helpers.export_fixture(m))
         self.assertEqual(len(fixture), 1)
         fixture, = fixture
         self.assertIn('class', fixture)
         self.assertIn('fields', fixture)
         self.assertIn('mockattr1', fixture['fields'])
+        self.assertEqual(fixture['fields']['mockattr1'], 'hello world!')
+        self.assertEqual(fixture['fields']['mockattr2'], 1)
+        self.assertEqual(set(fixture['fields']),
+                         {'id', 'mockattr1', 'mockattr2', 'mockattr3'})
