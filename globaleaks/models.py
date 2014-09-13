@@ -1,9 +1,7 @@
 # -*- coding: UTF-8
-#   config
-#   ******
-#
-# GlobaLeaks ORM Models definition
-
+"""
+GlobaLeaks ORM Models definitions.
+"""
 import types
 
 from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet
@@ -28,25 +26,39 @@ class MetaModel(PropertyPublisherMeta):
         ])
         for base in bases:
             public_attrs |= getattr(base, '_public_attrs', set())
-        # guess attributes types magically instead of specifying them.
-        # int_keys = [key for key in public_attrs
-        #             if isinstance(attrs[key], Int)]
-        # bool_keys = [key for key in public_attrs
-        #              if isinstance(attrs[key], Bool)]
-        # # if not provided, set storm_table's name to the class name.
-
-        # # populate class attributes with the inferred new inormations.
+        # # guess attributes types magically instead of specifying them.
+        # if not hasattr(cls, 'int_keys'):
+        #     cls.int_keys = [key for key in public_attrs
+        #                     if isinstance(attrs[key], Int)]
+        # if not hasattr(cls, 'bool_keys'):
+        #     bool_keys = [key for key in public_attrs
+        #                  if isinstance(attrs[key], Bool)])
+        # if not hasattr(cls, 'localized_strings'):
+        #     localized_strings = set([key for key in public_attrs
+        #                              if isinstance(attrs[key], L10NUnicode])
+        #     cls.localized_strings = list(localized_strings)
+        # if not hasattr(cls, 'unicode_keys'):
+        #     unicode_keys = set([key for key in public_attrs
+        #                         if isinstance(attrs[key], Unicode)])
+        #     cls.unicode_keys = list(unicode_keys - localized_strings)
+        # if not provided, set storm_table's name to the class name.
+        if not hasattr(cls, '__storm_table__'):
+            cls.__storm_table__ = cls.__name__.lower()
+        # if storm_table is none, this means the model is abstract and no table
+        # shall be created for it.
+        elif cls.__storm_table__ is None:
+            del cls.__storm_table__
+        # populate class attributes with the inferred new inormations.
         cls._public_attrs = public_attrs
-        # attrs['int_keys'] = int_keys
-        # attrs['bool_keys'] = bool_keys
         return super(MetaModel, cls).__init__(name, bases, attrs)
 
-L10NUnicode = type('L10NUnicode', (Unicode, ), {})
+# L10NUnicode = type('L10NUnicode', (Unicode, ), {})
 
 class BaseModel(Storm):
     """
     """
     __metaclass__ = MetaModel
+    __storm_table__ = None
 
     # initialize empty list for the base classes
     unicode_keys = []
@@ -54,16 +66,18 @@ class BaseModel(Storm):
     int_keys = []
     bool_keys = []
 
-    def __new__(cls, *args, **kw):
-        if not hasattr(cls, '__storm_table__'):
-            cls.__storm_table__ = cls.__name__.lower()
-        return Storm.__new__(cls, *args)
-
     def __init__(self, attrs=None):
         self.update(attrs)
 
     @classmethod
     def new(cls, store, attrs):
+        """
+        Add a new object to the store, filling its data with the attributes
+        given.
+
+        :param store:
+        :param attrs: The dictionary containing initial values for the
+        """
         obj = cls(attrs)
         store.add(obj)
         return obj
@@ -145,6 +159,7 @@ class Model(BaseModel):
     """
     Base class for working the database
     """
+    __storm_table__ = None
     id = Unicode(primary=True, default_factory=uuid4)
     creation_date = DateTime(default_factory=datetime_now)
     # Note on creation last_update and last_access may be out of sync by some
