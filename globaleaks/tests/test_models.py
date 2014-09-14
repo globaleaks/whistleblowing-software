@@ -3,8 +3,6 @@ from __future__ import unicode_literals
 from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
-# XXX. REMOVE THIS EVIL IMPORT *
-from globaleaks.models import *
 from globaleaks import models
 from globaleaks.rest import errors
 from globaleaks.settings import transact, transact_ro
@@ -17,8 +15,8 @@ class TestModels(helpers.TestGL):
 
     @transact
     def context_add(self, store):
-        c = self.localization_set(self.dummyContext, Context, 'en')
-        context = Context(c)
+        c = self.localization_set(self.dummyContext, models.Context, 'en')
+        context = models.Context(c)
 
         fo = Fields()
         fo.update_fields('en', self.dummyContext['fields'])
@@ -34,21 +32,21 @@ class TestModels(helpers.TestGL):
 
     @transact_ro
     def context_get(self, store, context_id):
-        context = store.find(Context, Context.id == context_id).one()
+        context = models.Context.get(store, context_id)
         if context is None:
             return None
         return context.id
 
     @transact
     def context_del(self, store, context_id):
-        context = store.find(Context, Context.id == context_id).one()
+        context = models.Context.get(store, context_id)
         if context is not None:
             store.remove(context)
 
     @transact
     def receiver_add(self, store):
-        r = self.localization_set(self.dummyReceiver_1, Receiver, 'en')
-        receiver_user = User(self.dummyReceiverUser_1)
+        r = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
+        receiver_user = models.User(self.dummyReceiverUser_1)
         receiver_user.last_login = self.dummyReceiverUser_1['last_login']
 
         receiver_user.username = str(
@@ -56,9 +54,9 @@ class TestModels(helpers.TestGL):
         receiver_user.password = self.dummyReceiverUser_1['password']
         store.add(receiver_user)
 
-        receiver = Receiver(r)
+        receiver = models.Receiver(r)
         receiver.user = receiver_user
-        receiver.gpg_key_status = Receiver._gpg_types[0]
+        receiver.gpg_key_status = models.Receiver._gpg_types[0]
         receiver.mail_address = self.dummyReceiver_1['mail_address']
 
         store.add(receiver)
@@ -69,26 +67,26 @@ class TestModels(helpers.TestGL):
 
     @transact_ro
     def receiver_get(self, store, receiver_id):
-        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+        receiver = models.Receiver.get(store, receiver_id)
         if receiver is None:
             return None
         return receiver.id
 
     @transact
     def receiver_del(self, store, receiver_id):
-        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+        receiver = models.Receiver.get(store, receiver_id)
         if receiver is not None:
             store.remove(receiver)
 
     @transact
     def create_context_with_receivers(self, store):
-        c = self.localization_set(self.dummyContext, Context, 'en')
-        r = self.localization_set(self.dummyReceiver_1, Receiver, 'en')
+        c = self.localization_set(self.dummyContext, models.Context, 'en')
+        r = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
 
-        receiver_user1 = User(self.dummyReceiverUser_1)
+        receiver_user1 = models.User(self.dummyReceiverUser_1)
         receiver_user1.last_login = self.dummyReceiverUser_1['last_login']
 
-        receiver_user2 = User(self.dummyReceiverUser_1)
+        receiver_user2 = models.User(self.dummyReceiverUser_1)
         receiver_user2.last_login = self.dummyReceiverUser_1['last_login']
 
         # Avoid receivers with the same username!
@@ -98,7 +96,7 @@ class TestModels(helpers.TestGL):
         store.add(receiver_user1)
         store.add(receiver_user2)
 
-        context = Context(c)
+        context = models.Context(c)
 
         fo = Fields()
         fo.update_fields('en', self.dummyContext['fields'])
@@ -110,14 +108,15 @@ class TestModels(helpers.TestGL):
             context.submission_disclaimer = \
             context.submission_introduction = {'en': 'Localized76w'}
 
-        receiver1 = Receiver(r)
-        receiver2 = Receiver(r)
+        receiver1 = models.Receiver(r)
+        receiver2 = models.Receiver(r)
 
         receiver1.user = receiver_user1
         receiver2.user = receiver_user2
-        receiver1.gpg_key_status = receiver2.gpg_key_status = Receiver._gpg_types[
-            0]
-        receiver1.mail_address = receiver2.mail_address = 'x@x.it'
+        receiver1.gpg_key_status = models.Receiver._gpg_types[0]
+        receiver2.gpg_key_status = models.Receiver._gpg_types[0]
+        receiver1.mail_address = 'x@x.it'
+        receiver2.mail_address = 'x@x.it'
 
         context.receivers.add(receiver1)
         context.receivers.add(receiver2)
@@ -128,23 +127,21 @@ class TestModels(helpers.TestGL):
 
     @transact
     def create_receiver_with_contexts(self, store):
-        c = self.localization_set(self.dummyContext, Context, 'en')
-        r = self.localization_set(self.dummyReceiver_1, Receiver, 'en')
+        c = self.localization_set(self.dummyContext, models.Context, 'en')
+        r = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
 
-        receiver_user = User(self.dummyReceiverUser_1)
+        receiver_user = models.User(self.dummyReceiverUser_1)
         receiver_user.last_login = self.dummyReceiverUser_1['last_login']
-
         # Avoid receivers with the same username!
-        receiver_user.username = unicode("xxx")
-
+        receiver_user.username = u'xxx'
         store.add(receiver_user)
 
-        receiver = Receiver(r)
+        receiver = models.Receiver(r)
         receiver.user = receiver_user
-        receiver.gpg_key_status = Receiver._gpg_types[0]
+        receiver.gpg_key_status = models.Receiver._gpg_types[0]
         receiver.mail_address = unicode('y@y.it')
 
-        context1 = Context(c)
+        context1 = models.Context(c)
 
         fo = Fields()
         fo.update_fields('en', self.dummyContext['fields'])
@@ -156,7 +153,7 @@ class TestModels(helpers.TestGL):
             context1.submission_disclaimer = \
             context1.submission_introduction = {'en': 'Valar Morghulis'}
 
-        context2 = Context(c)
+        context2 = models.Context(c)
 
         fo.context_import(context2)
 
@@ -173,7 +170,7 @@ class TestModels(helpers.TestGL):
 
     @transact_ro
     def list_receivers_of_context(self, store, context_id):
-        context = store.find(Context, Context.id == context_id).one()
+        context = models.Context.get(store, context_id)
         receivers = []
         for receiver in context.receivers:
             receivers.append(receiver.id)
@@ -181,21 +178,24 @@ class TestModels(helpers.TestGL):
 
     @transact_ro
     def list_context_of_receivers(self, store, receiver_id):
-        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
-        contexts = []
-        for context in receiver.contexts:
-            contexts.append(context.id)
-        return contexts
+        """
+        Return the list of context ids associated with the receiver identified
+        by receiver_id.
+        """
+        receiver = models.Receiver.get(store, receiver_id)
+        return [context.id for context in receiver.contexts]
 
     @transact
     def do_invalid_receiver_0length_name(self, store):
         self.dummyReceiver_1['name'] = ''
-        Receiver(self.dummyReceiver_1)
+        r = models.Receiver(self.dummyReceiver_1)
+        store.add(r)
 
     @transact
     def do_invalid_receiver_description_oversize(self, store):
         self.dummyReceiver_1['description'] = 'A' * 5000
-        Receiver(self.dummyReceiver_1)
+        models.Receiver(self.dummyReceiver_1)
+        store.add(r)
 
     @inlineCallbacks
     def test_context_add_and_get(self):
@@ -274,15 +274,15 @@ class TestField(helpers.TestGL):
             'y': 0
         }
         attrs.update(custom_attrs)
-        return Field.new(store, attrs).id
+        return models.Field.new(store, attrs).id
 
     @transact
     def field_delete(self, store, field_id):
-        Field.get(store, field_id).delete(store)
+        models.Field.get(store, field_id).delete(store)
 
     @transact_ro
     def get_children(self, store, field_id):
-        field = Field.get(store, field_id)
+        field = models.Field.get(store, field_id)
         return [c.id for c in field.children]
 
     @inlineCallbacks
@@ -336,7 +336,7 @@ class TestStep(helpers.TestGL):
 
     @transact
     def create_step(self, store, context_id, number):
-        return Step.new(store, context_id, number, self.generalities_id)
+        return models.Step.new(store, context_id, number, self.generalities_id)
 
     @inlineCallbacks
     def test_new(self):
