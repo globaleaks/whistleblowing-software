@@ -89,17 +89,18 @@ def import_fixture(store, fixture):
         data = json.loads(f.read())
         for mock in data:
             mock_class = getattr(models, mock['class'])
-            obj = mock_class.new(store, mock['fields'])
 
-            if 'id' in mock['fields']: # reference tables do not have an associated id
-                obj.id = mock['fields']['id']
+            obj = mock_class()
+            for key, val in mock['fields'].iteritems(): # reference tables do not have an associated id
+                setattr(obj, key, val)
+            store.add(obj)
 
 
 class TestGL(unittest.TestCase):
     encryption_scenario = 'MIXED' # receivers with pgp and receivers without pgp
 
     @inlineCallbacks
-    def setUp(self):
+    def setUp(self, create_node=True):
         GLSetting.set_devel_mode()
         GLSetting.logging = None
         GLSetting.scheduler_threadpool = FakeThreadPool()
@@ -123,7 +124,7 @@ class TestGL(unittest.TestCase):
 
         notification.MailNotification.mail_flush = mail_flush_mock
 
-        yield db.create_tables(create_node=True)
+        yield db.create_tables(create_node)
 
         for fixture in getattr(self, 'fixtures', []):
             yield import_fixture(fixture)
