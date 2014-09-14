@@ -257,6 +257,3 @@ def apply_cli_options(store):
         return [ node.hidden_service, node.public_site ]
     else:
         return None
-
-
-

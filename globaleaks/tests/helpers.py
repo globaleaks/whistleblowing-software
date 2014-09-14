@@ -152,8 +152,8 @@ class TestGL(unittest.TestCase):
 
         self.dummyNode = dummyStuff.dummyNode
 
-        self.assertTrue(os.listdir(GLSetting.submission_path) == [])
-        self.assertTrue(os.listdir(GLSetting.tmp_upload_path) == [])
+        self.assertEqual(os.listdir(GLSetting.submission_path),  [])
+        self.assertEqual(os.listdir(GLSetting.tmp_upload_path), [])
 
     def localization_set(self, dict_l, dict_c, language):
         ret = dict(dict_l)
