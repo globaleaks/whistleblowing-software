@@ -60,8 +60,10 @@ def create_tables(create_node=True):
     """
     Override transactor for testing.
     """
-    if GLSetting.db_type == 'sqlite' and os.path.exists(GLSetting.db_uri.replace('sqlite:', '').split('?')[0]):
-        return succeed(None)
+    if GLSetting.db_type == 'sqlite':
+        db_path = GLSetting.db_uri.replace('sqlite:', '').split('?', 1)[0]
+        if os.path.exists(db_path):
+            return succeed(None)
 
     deferred = create_tables_transaction()
     if create_node:
