@@ -2,57 +2,18 @@
 """
 GlobaLeaks ORM Models definitions.
 """
+from __future__ import absolute_import
 import types
 
-from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet
+from storm.locals import Bool, Int, Pickle, Reference, ReferenceSet
 from storm.locals import Unicode, Storm, JSON
-from storm.properties import Property, PropertyPublisherMeta
 
 from globaleaks.settings import transact
 from globaleaks.utils.utility import datetime_now, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, shortlocal_v
 from globaleaks.utils.validator import longlocal_v, dict_v
 
-class MetaModel(PropertyPublisherMeta):
-    def __init__(cls, name, bases, attrs):
-        # guess public attributes, as they define the object.
-        public_attrs = set([key for key, val in attrs.iteritems()
-        # it is not private
-                            if not key.startswith('_')
-        # this is going to be dealt at metaclass level shortly. aha.
-                            if not key in ('int_keys', 'bool_keys', 'unicode_keys', 'localized_strings')
-        # it is not a public method
-                            if isinstance(val, Property)
-        ])
-        for base in bases:
-            public_attrs |= getattr(base, '_public_attrs', set())
-        # # guess attributes types magically instead of specifying them.
-        # if not hasattr(cls, 'int_keys'):
-        #     cls.int_keys = [key for key in public_attrs
-        #                     if isinstance(attrs[key], Int)]
-        # if not hasattr(cls, 'bool_keys'):
-        #     bool_keys = [key for key in public_attrs
-        #                  if isinstance(attrs[key], Bool)])
-        # if not hasattr(cls, 'localized_strings'):
-        #     localized_strings = set([key for key in public_attrs
-        #                              if isinstance(attrs[key], L10NUnicode])
-        #     cls.localized_strings = list(localized_strings)
-        # if not hasattr(cls, 'unicode_keys'):
-        #     unicode_keys = set([key for key in public_attrs
-        #                         if isinstance(attrs[key], Unicode)])
-        #     cls.unicode_keys = list(unicode_keys - localized_strings)
-        # if not provided, set storm_table's name to the class name.
-        if not hasattr(cls, '__storm_table__'):
-            cls.__storm_table__ = cls.__name__.lower()
-        # if storm_table is none, this means the model is abstract and no table
-        # shall be created for it.
-        elif cls.__storm_table__ is None:
-            del cls.__storm_table__
-        # populate class attributes with the inferred new inormations.
-        cls._public_attrs = public_attrs
-        return super(MetaModel, cls).__init__(name, bases, attrs)
-
-# L10NUnicode = type('L10NUnicode', (Unicode, ), {})
+from .properties import MetaModel, DateTime
 
 class BaseModel(Storm):
     """
@@ -70,7 +31,7 @@ class BaseModel(Storm):
         self.update(attrs)
 
     @classmethod
-    def new(cls, store, attrs):
+    def new(cls, store, attrs=None):
         """
         Add a new object to the store, filling its data with the attributes
         given.
@@ -84,7 +45,7 @@ class BaseModel(Storm):
 
     def update(self, attrs=None):
         """
-        Updated Models attributes based on attrs dictionary
+        Updated Models attributes from dict.
         """
         # May raise ValueError and AttributeError
         if attrs is None:
@@ -128,17 +89,22 @@ class BaseModel(Storm):
                 setattr(self, k, value)
 
     def __repr___(self):
-        attrs = ['%s=%s' % (attr, getattr(self, attr))
-                 for attr in vars(Model)
-                 if isinstance(attr, types.MethodType)]
+        attrs = ['{}={}'.format(attr, getattr(self, attr))
+                 for attr in self._public_attrs]
         return '<%s model with values %s>' % (self.__name__, ', '.join(attrs))
+
+    # def __getattr__(self, name):
+    #     if name == 'store':
+    #         return vars(self)[name]
+    #     else:
+    #         raise AttributeError('{} has no attribute: {}'.format(
+    #             self.__class__.__name__, name))
 
     def __setattr__(self, name, value):
         # harder better faster stronger
         if isinstance(value, str):
             value = unicode(value)
-
-        return Storm.__setattr__(self, name, value)
+        return super(BaseModel, self).__setattr__(name, value)
 
     def dict(self, *keys):
         """
@@ -195,7 +161,6 @@ class User(Model):
 
 
 class Context(Model):
-
     """
     This model keeps track of specific contexts settings
     """
@@ -284,7 +249,6 @@ class Context(Model):
 
 
 class InternalTip(Model):
-
     """
     This is the internal representation of a Tip that has been submitted to the
     GlobaLeaks node.
@@ -321,7 +285,6 @@ class InternalTip(Model):
 
 
 class ReceiverTip(Model):
-
     """
     This is the table keeping track of ALL the receivers activities and
     date in a Tip, Tip core data are stored in StoredTip. The data here
@@ -344,7 +307,6 @@ class ReceiverTip(Model):
 
 
 class WhistleblowerTip(Model):
-
     """
     WhisteleblowerTip is intended, to provide a whistleblower access to the
     Tip.  Has ome differencies from the ReceiverTips: has a secret
@@ -361,7 +323,6 @@ class WhistleblowerTip(Model):
 
 
 class ReceiverFile(Model):
-
     """
     This model keeps track of files destinated to a specific receiver
     """
@@ -395,7 +356,6 @@ class ReceiverFile(Model):
 
 
 class InternalFile(Model):
-
     """
     This model keeps track of files before they are packaged
     for specific receivers
@@ -423,7 +383,6 @@ class InternalFile(Model):
 
 
 class Comment(Model):
-
     """
     This table handle the comment collection, has an InternalTip referenced
     """
@@ -449,7 +408,6 @@ class Comment(Model):
 
 
 class Message(Model):
-
     """
     This table handle the direct messages between whistleblower and one
     Receiver.
@@ -471,7 +429,6 @@ class Message(Model):
 
 
 class Node(Model):
-
     """
     This table has only one instance, has the "id", but would not exists a
     second element of this table. This table acts, more or less, like the
@@ -606,7 +563,6 @@ class Notification(Model):
 
 
 class Receiver(Model):
-
     """
     name, description, password and notification_fields, can be changed
     by Receiver itself
@@ -759,7 +715,6 @@ class ApplicationData(Model):
 
 
 class Stats(Model):
-
     """
     Stats collection!
     """
@@ -770,7 +725,6 @@ class Stats(Model):
 
 # Follow classes used for Many to Many references
 class ReceiverContext(BaseModel):
-
     """
     Class used to implement references between Receivers and Contexts
     """
@@ -780,7 +734,6 @@ class ReceiverContext(BaseModel):
     receiver_id = Unicode()
 
 class ReceiverInternalTip(BaseModel):
-
     """
     Class used to implement references between Receivers and IntInternalTips
     """
@@ -792,7 +745,6 @@ class ReceiverInternalTip(BaseModel):
 
 
 class FieldField(BaseModel):
-
     """
     Class used to implement references between Fields and Fields!
     parent - child relation used to implement fieldgroups
@@ -883,7 +835,6 @@ Receiver.contexts = ReferenceSet(
     ReceiverContext.receiver_id,
     ReceiverContext.context_id,
     Context.id)
-
 
 models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment,
           InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile,

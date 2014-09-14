@@ -76,7 +76,7 @@ def export_fixture(*models):
     return json.dumps([{
         'fields': model.dict(),
         'class': model.__class__.__name__,
-    } for model in models], indent=2)
+    } for model in models], default=str, indent=2)
 
 @transact
 def import_fixture(store, fixture):

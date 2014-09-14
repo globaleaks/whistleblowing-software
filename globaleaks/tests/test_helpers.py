@@ -29,8 +29,7 @@ class TestFixtures(helpers.TestGL):
         After creating a mock model, test that all relevant informations are
         exported successfully.
         """
-        class FakeModel(models.BaseModel):
-            id = models.Int(primary=True)
+        class FakeModel(models.Model):
             mockattr1 = models.Unicode()
             mockattr2 = models.Int()
             mockattr3 = models.Bool()
@@ -49,4 +48,4 @@ class TestFixtures(helpers.TestGL):
         self.assertEqual(fixture['fields']['mockattr1'], 'hello world!')
         self.assertEqual(fixture['fields']['mockattr2'], 1)
         self.assertEqual(set(fixture['fields']),
-                         {'id', 'mockattr1', 'mockattr2', 'mockattr3'})
+            models.Model._public_attrs | {'mockattr1', 'mockattr2', 'mockattr3'})
