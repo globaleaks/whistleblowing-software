@@ -61,10 +61,6 @@ def create_tables(create_node=True):
     Override transactor for testing.
     """
     if GLSetting.db_type == 'sqlite' and os.path.exists(GLSetting.db_uri.replace('sqlite:', '').split('?')[0]):
-        # Here we instance every model so that __storm_table__ gets set via
-        # __new__
-        for model in models.models:
-            model()
         return succeed(None)
 
     deferred = create_tables_transaction()
