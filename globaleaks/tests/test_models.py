@@ -311,13 +311,28 @@ class TestField(helpers.TestGL):
         yield self.assert_model_not_exists(models.Field, self.generalities_id)
 
 
-class TestStep(helpers.TestGLWithPopulatedDB):
-    fixtures = ['fields.json']
+class TestStep(helpers.TestGL):
+    fixtures = ['fields.json', 'test_gl_with_populated_db.json']
 
     @inlineCallbacks
     def setUp(self):
-        yield super(TestStep, self).setUp()
+        from globaleaks import db
+        yield db.create_tables(create_node=False)
+        from globaleaks.settings import GLSetting
+        GLSetting.bind_addresses = ['localhost']
+        GLSetting.set_devel_mode()
+        GLSetting.logging = None
+        #GLSetting.scheduler_threadpool = FakeThreadPool()
+        GLSetting.memory_copy.allow_unencrypted = True
+        GLSetting.sessions = {}
+        GLSetting.failed_login_attempts = 0
+        GLSetting.working_path = './working_path'
+        GLSetting.ramdisk_path = './working_path/ramdisk'
+        GLSetting.eval_paths()
+        GLSetting.remove_directories()
+        GLSetting.create_directories()
         self.generalities_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
+        yield super(TestStep, self).setUp(create_node=False)
 
     @transact
     def create_step(self, store, context_id, number):
@@ -325,7 +340,7 @@ class TestStep(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_new(self):
-        context_id = yield self.dummyContext['id']
+        context_id = '34948a37-201e-44e0-bede-67212f1b7ee6'
 
         yield self.create_step(context_id, 0)
         yield self.assert_model_exists(models.Step, context_id, 0)
