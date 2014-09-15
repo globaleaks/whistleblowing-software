@@ -280,6 +280,13 @@ class TestField(helpers.TestGL):
     def field_delete(self, store, field_id):
         models.Field.get(store, field_id).delete(store)
 
+    @transact
+    def add_children(self, store, field_id, *field_ids):
+        parent = models.Field.get(store, field_id)
+        for field_id in field_ids:
+            field = models.Field.get(store, field_id)
+            parent.children.add(field)
+
     @transact_ro
     def get_children(self, store, field_id):
         field = models.Field.get(store, field_id)
@@ -292,6 +299,28 @@ class TestField(helpers.TestGL):
 
         field_id = yield self.create_field(type='checkbox')
         yield self.assert_model_exists(models.Field, field_id)
+
+    @inlineCallbacks
+    def test_add_field_group(self):
+        field1_id = yield self.create_field(
+            label='{"en": "the first testable field"}',
+            type='checkbox'
+        )
+        field2_id = yield self.create_field(
+            label='{"en": "the second testable field"}',
+            type='inputbox'
+        )
+        fieldgroup_id = yield self.create_field(
+            label='{"en": "a testable group of fields."}',
+            type='fieldgroup',
+            x=1, y=2,
+        )
+        yield self.assert_model_exists(models.Field, fieldgroup_id)
+        yield self.assert_model_exists(models.Field, field2_id)
+        yield self.add_children(fieldgroup_id, field1_id, field2_id)
+        fieldgroup_children = yield self.get_children(fieldgroup_id)
+        self.assertIn(field1_id, fieldgroup_children)
+        self.assertIn(field2_id, fieldgroup_children)
 
     @inlineCallbacks
     def test_delete_field_child(self):
