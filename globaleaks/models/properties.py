@@ -21,6 +21,13 @@ __all__ = ['MetaModel']
 
 
 class MetaModel(PropertyPublisherMeta):
+    """
+    Globaleaks Models metaclass.
+    - Take care to select public attributes (i.e. columns of the databases
+      represented as class public attributes) as this apparently is not available
+      in Storm;
+    - Provide a default naming for database table.
+    """
     def __init__(cls, name, bases, attrs):
         # guess public attributes, as they define the object.
         public_attrs = set([key for key, val in attrs.iteritems()

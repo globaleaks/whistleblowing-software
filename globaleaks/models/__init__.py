@@ -17,6 +17,10 @@ from .properties import MetaModel, DateTime
 
 class BaseModel(Storm):
     """
+    Globaleaks's most basic model.
+
+    Define a set of methods  on the top of Storm to simplify
+    creation/access/update/deletions of data.
     """
     __metaclass__ = MetaModel
     __storm_table__ = None
@@ -123,7 +127,8 @@ class BaseModel(Storm):
 
 class Model(BaseModel):
     """
-    Base class for working the database
+    Base class for working the database, already integrating an id, and a
+    creation_date.
     """
     __storm_table__ = None
     id = Unicode(primary=True, default_factory=uuid4)
@@ -144,7 +149,7 @@ class Model(BaseModel):
 
 class User(Model):
     """
-    This model keeps track of globaleaks users
+    This model keeps track of globaleaks users.
     """
     username = Unicode(validator=shorttext_v)
     password = Unicode()
@@ -162,7 +167,7 @@ class User(Model):
 
 class Context(Model):
     """
-    This model keeps track of specific contexts settings
+    This model keeps track of specific contexts settings.
     """
     # steps = [
     #     {
