@@ -612,6 +612,7 @@ class MockDict():
             'ahmia': False,
             'anomaly_checks': False,
             'allow_unencrypted': True,
+            'x_frame_options': 'deny',
             'configured': False,
             'wizard_done': False,
             'custom_homepage': False,

@@ -15,6 +15,7 @@ hidden_service_regexp          = r'^http://[0-9a-z]{16}\.onion$'
 hidden_service_regexp_or_empty = r'^http://[0-9a-z]{16}\.onion$$|^$'
 web_url_regexp                 = r'^http(s?)://(\w+)\.(.*)$'
 web_url_regexp_or_empty        = r'^http(s?)://(\w+)\.(.*)$|^$'
+x_frame_options_regexp         = r'^(deny)|(sameorigin)|(allow-from (http(s?)://(\w+)\.(.*)$|^))$'
 
 dateType = r'(.*)'
 
@@ -114,6 +115,7 @@ adminNodeDesc = {
     'ahmia': bool,
     'anomaly_checks': bool,
     'allow_unencrypted': bool,
+    'x_frame_options': x_frame_options_regexp,
     'wizard_done': bool,
     'receipt_regexp': unicode,
     'terms_and_conditions': unicode,
