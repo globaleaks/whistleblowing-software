@@ -16,11 +16,10 @@ from globaleaks.utils.utility import log
 
 def admin_serialize_field(field, language):
     """
-    Function that perform serialization of a field given the id
-    whenever the fieldgroup is directly associated with a Field the
-    serialization include Field informations.
+    Serialize a field, localizing its content depending on the language.
 
     :param field: the field object to be serialized
+    :param language: the language in which to localize data
     :return: a serialization of the object
     """
     return {
