@@ -107,6 +107,15 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <label data-translate>X-Frame-Options configuration</label>
+      <input class="form-control" name="x_frame_options" data-ng-model="admin.node.x_frame_options" value="{{node.x_frame_options}}" data-ng-pattern="/^(deny)|(sameorigin)|(allow-from (http(s?)://(\w+)\.(.*)$|^))$/" type="text">
+      <p class="has-error" data-ng-show="advancedForm.x_frame_options.$error.pattern">
+        <span data-translate>Invalid format for X-Frame Options (should be "deny", "sameorigin" or "allow-from http(s)://url")</span>
+      </p>
+    </div>
+
+
   </div>
 </div>
 
