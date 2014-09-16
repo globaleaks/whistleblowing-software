@@ -96,6 +96,7 @@ def create_tables(create_node=True):
             'ahmia' : False, # disabled too
             'anomaly_checks' : False, # need to disabled in this stage as it need to be tuned
             'allow_unencrypted': GLSetting.memory_copy.allow_unencrypted,
+            'x_frame_options': GLSetting.memory_copy.x_frame_options,
             'exception_email' : GLSetting.defaults.exception_email,
             'default_language' : GLSetting.memory_copy.default_language,
         }
