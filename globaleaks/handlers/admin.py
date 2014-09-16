@@ -69,6 +69,7 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         'reset_homepage': False,
         'anomaly_checks': node.anomaly_checks,
         'allow_unencrypted': node.allow_unencrypted,
+        'x_frame_options': node.x_frame_options,
         'wizard_done': node.wizard_done,
         'receipt_regexp': node.receipt_regexp,
         'configured': True if associated else False,

@@ -152,6 +152,7 @@ CREATE TABLE node (
     anomaly_checks INTEGER NOT NULL,
     exception_email VARCHAR NOT NULL,
     allow_unencrypted INTEGER NOT NULL,
+    x_frame_options VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
 
