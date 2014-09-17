@@ -24,40 +24,22 @@ dateType = r'(.*)'
 contentType = r'(.*)'
 
 fileDict = {
-    "name": unicode,
-    "description": unicode,
-    "size": int,
-    "content_type": contentType,
-    "date": dateType,
+    'name': unicode,
+    'description': unicode,
+    'size': int,
+    'content_type': contentType,
+    'date': dateType,
     }
 
 formFieldsDict = {
-    "key": unicode,
-    "presentation_order": int,
-    "name": unicode,
-    "required": bool,
-    "preview": bool,
-    "hint": unicode,
-    "type": unicode
+    'key': unicode,
+    'presentation_order': int,
+    'name': unicode,
+    'required': bool,
+    'preview': bool,
+    'hint': unicode,
+    'type': unicode,
 }
-
-wizardFieldDesc = {
-    "incremental_number": int,
-    "localized_name": dict,
-    "localized_hint": dict,
-    "type": unicode,
-    "trigger": list,
-    "defined_options": list, # can be None, I don't remember if can be other ?
-}
-
-wizardFieldUpdate = {
-    "version": int,
-    "fields": [ wizardFieldDesc ],
-    'node_presentation': dict,
-    'node_footer': dict,
-    'node_subtitle': dict,
-}
-
 
 authDict = {
     'username' : unicode,
@@ -70,7 +52,7 @@ wbSubmissionDesc = {
     'context_id' : uuid_regexp,
     'receivers' : [ uuid_regexp ],
     'files' : [ uuid_regexp ],
-    'finalize' : bool
+    'finalize' : bool,
 }
 
 receiverReceiverDesc = {
@@ -99,7 +81,7 @@ actorsCommentDesc = {
 actorsTipOpsDesc = {
     'global_delete' : bool,
     'extend': bool,
-    'is_pertinent': bool
+    'is_pertinent': bool,
 }
 
 adminNodeDesc = {
@@ -215,13 +197,6 @@ adminReceiverDesc = {
     'presentation_order': int,
 }
 
-wizardFirstSetup = {
-    'receiver' : adminReceiverDesc,
-    'context' : adminContextDesc,
-    'node' : adminNodeDesc,
-    'appdata' : wizardFieldUpdate,
-}
-
 anonNodeDesc = {
     'name': unicode,
     'subtitle': unicode,
@@ -311,16 +286,16 @@ AnomalyLine = {
 AnomaliesCollection = [ AnomalyLine ]
 
 nodeReceiver = { 
-     'update_date': unicode,
-     'receiver_level': int,
-     'name': unicode,
-     'tags': [ unicode ],
-     'contexts': [ uuid_regexp ],
-     'description': unicode,
-     'presentation_order': int,
-     'gpg_key_status': unicode,
-     'id': uuid_regexp,
-     'creation_date': dateType,
+    'update_date': unicode,
+    'receiver_level': int,
+    'name': unicode,
+    'tags': [ unicode ],
+    'contexts': [ uuid_regexp ],
+    'description': unicode,
+    'presentation_order': int,
+    'gpg_key_status': unicode,
+    'id': uuid_regexp,
+    'creation_date': dateType,
 }
 
 nodeReceiverCollection = [ nodeReceiver ]
@@ -401,3 +376,31 @@ internalTipDesc = {
     'escalation_threshold': int,
 }
 
+wizardFieldDesc = {
+    'incremental_number': int,
+    'localized_name': dict,
+    'localized_hint': dict,
+    'type': unicode,
+    'trigger': list,
+    'defined_options': list, # can be None, I don't remember if can be other ?
+}
+
+wizardNodeDesc = {
+    'presentation': dict,
+    'footer': dict,
+    'subtitle': dict,
+    'terms_and_conditions': dict,
+}
+
+wizardFieldUpdate = {
+    'version': int,
+    'fields': [ wizardFieldDesc ],
+    'node': wizardNodeDesc,
+}
+
+wizardFirstSetup = {
+    'receiver' : adminReceiverDesc,
+    'context' : adminContextDesc,
+    'node' : adminNodeDesc,
+    'appdata' : wizardFieldUpdate,
+}
