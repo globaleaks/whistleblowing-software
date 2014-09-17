@@ -4,7 +4,7 @@
   Changes
 
     Node table:
-      - introduced x_frame_options.
+      - introduced x_frame_options_mode and x_frame_options_allow_from.
 
 """
 
@@ -48,15 +48,19 @@ class Node_version_13(Model):
 class Replacer1314(TableReplacer):
 
     def migrate_Node(self):
-        print "%s Node migration assistant: (x_frame_options)" % self.std_fancy
+        print "%s Node migration assistant: (x_frame_options_mode, x_frame_options_allow_from)" % self.std_fancy
 
         old_node = self.store_old.find(self.get_right_model("Node", 13)).one()
         new_node = self.get_right_model("Node", 14)()
 
         for k, v in new_node._storm_columns.iteritems():
 
-            if v.name == 'x_frame_options':
-                new_node.x_frame_options = 'deny';
+            if v.name == 'x_frame_options_mode':
+                new_node.x_frame_options_mode = 'deny';
+                continue
+
+            if v.name == 'x_frame_options_allow_from':
+                new_node.x_frame_options_allow_from = '';
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name))
