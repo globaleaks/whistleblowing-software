@@ -7,15 +7,16 @@
 # These specifications may be used with rest.validateMessage() inside of the
 # handler to verify if the request is correct.
 
-uuid_regexp                    = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
-receiver_img_regexp            = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png$'
-email_regexp                   = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
-email_regexp_or_empty          = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
-hidden_service_regexp          = r'^http://[0-9a-z]{16}\.onion$'
-hidden_service_regexp_or_empty = r'^http://[0-9a-z]{16}\.onion$$|^$'
-web_url_regexp                 = r'^http(s?)://(\w+)\.(.*)$'
-web_url_regexp_or_empty        = r'^http(s?)://(\w+)\.(.*)$|^$'
-x_frame_options_regexp         = r'^(deny)|(sameorigin)|(allow-from (http(s?)://(\w+)\.(.*)$|^))$'
+uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
+receiver_img_regexp               = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png$'
+email_regexp                      = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
+email_regexp_or_empty             = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
+hidden_service_regexp             = r'^http://[0-9a-z]{16}\.onion$'
+hidden_service_regexp_or_empty    = r'^http://[0-9a-z]{16}\.onion$$|^$'
+web_url_regexp                    = r'^http(s?)://(\w+)\.(.*)$'
+web_url_regexp_or_empty           = r'^http(s?)://(\w+)\.(.*)$|^$'
+x_frame_options_mode_regexp       = r'^(deny)|(allow-from)$'
+x_frame_options_allow_from_regexp = r'^(http(s?)://(\w+)\.(.*)$|^)?$'
 
 dateType = r'(.*)'
 
@@ -115,7 +116,8 @@ adminNodeDesc = {
     'ahmia': bool,
     'anomaly_checks': bool,
     'allow_unencrypted': bool,
-    'x_frame_options': x_frame_options_regexp,
+    'x_frame_options_mode': x_frame_options_mode_regexp,
+    'x_frame_options_allow_from': x_frame_options_allow_from_regexp,
     'wizard_done': bool,
     'receipt_regexp': unicode,
     'terms_and_conditions': unicode,

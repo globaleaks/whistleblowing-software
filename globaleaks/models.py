@@ -416,7 +416,8 @@ class Node(Model):
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
     allow_unencrypted = Bool()
-    x_frame_options = Unicode()
+    x_frame_options_mode = Unicode()
+    x_frame_options_allow_from = Unicode()
 
     # privileges configurable in node/context/receiver
     postpone_superpower = Bool()
@@ -428,7 +429,8 @@ class Node(Model):
     exception_email = Unicode()
 
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
-                    'exception_email', 'default_language', 'receipt_regexp', 'x_frame_options' ]
+                    'exception_email', 'default_language', 'receipt_regexp',
+                    'x_frame_options_mode', 'x_frame_options_allow_from' ]
     int_keys = [ 'stats_update_time', 'maximum_namesize',
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
