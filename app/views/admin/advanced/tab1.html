@@ -109,9 +109,17 @@
 
     <div class="form-group">
       <label data-translate>X-Frame-Options configuration</label>
-      <input class="form-control" name="x_frame_options" data-ng-model="admin.node.x_frame_options" value="{{node.x_frame_options}}" data-ng-pattern="/^(deny)|(sameorigin)|(allow-from (http(s?)://(\w+)\.(.*)$|^))$/" type="text">
-      <p class="has-error" data-ng-show="advancedForm.x_frame_options.$error.pattern">
-        <span data-translate>Invalid format for X-Frame Options (should be "deny", "sameorigin" or "allow-from http(s)://url")</span>
+      <select class="form-control" name="x_frame_options_mode" data-ng-model="admin.node.x_frame_options_mode" value="{{node.x_frame_options_mode}}">
+        <option value="deny">deny</option>
+        <option value="allow-from">allow-from</option>
+      </select>
+    </div>
+
+    <div class="form-group" ng-show="admin.node.x_frame_options_mode == 'allow-from'">
+      <label data-translate>X-Frame-Options Allow-From configuration</label>
+      <input class="form-control" name="x_frame_options_allow_from" data-ng-model="admin.node.x_frame_options_allow_from" value="{{node.x_frame_options_allow_from}}" data-ng-pattern="/^(http(s?)://(\w+)\.(.*)$|^)$/" type="text">
+      <p class="has-error" data-ng-show="advancedForm.x_frame_options_allow_from.$error.pattern">
+        <span data-translate>Invalid format for X-Frame Options Allow-From (should be http(s)://url")</span>
       </p>
     </div>
 
