@@ -108,7 +108,7 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>Support embedding globaleaks inside of IFRAMEs</label>
+      <label data-translate>Support embedding GlobaLeaks inside of IFRAMEs</label>
       <select class="form-control" name="x_frame_options_mode" data-ng-model="admin.node.x_frame_options_mode" value="{{node.x_frame_options_mode}}">
         <option value="deny">Deny</option>
         <option value="allow-from">Allow from</option>
@@ -119,7 +119,7 @@
       <label data-translate>URL of website to contain the IFRAME</label>
       <input class="form-control" name="x_frame_options_allow_from" data-ng-model="admin.node.x_frame_options_allow_from" value="{{node.x_frame_options_allow_from}}" data-ng-pattern="/^(http(s?)://(\w+)\.(.*)$|^)$/" type="text">
       <p class="has-error" data-ng-show="advancedForm.x_frame_options_allow_from.$error.pattern">
-        <span data-translate>Invalid format for the URL of the website to contain the IFRAME (should be http(s)://url)</span>
+        <span data-translate>Invalid format for the URL of the website to contain the IFRAME (should be https://url)</span>
       </p>
     </div>
 
