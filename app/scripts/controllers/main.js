@@ -2,8 +2,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
   function($scope, $rootScope, $http, $route, $routeParams, $location, $translate, Node, Authentication) {
     $scope.started = true;
 
-    console.log($route);
-
     $scope.custom_stylesheet = '/static/custom_stylesheet.css';
     $scope.logo = '/static/globaleaks_logo.png';
 
@@ -97,7 +95,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       }
     });
 
-    console.log(JSON.stringify($routeParams));
     $scope.$on("REFRESH", refresh);
 
     $rootScope.$watch('language', function (newVal, oldVal) {
