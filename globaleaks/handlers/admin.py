@@ -76,7 +76,9 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         'configured': True if associated else False,
         'password': u"",
         'old_password': u"",
-        'custom_homepage': custom_homepage
+        'custom_homepage': custom_homepage,
+        'disable_privacy_badge': node.disable_privacy_badge,
+        'disable_security_awareness_questions': node.disable_security_awareness_questions
     }
 
     for attr in mo.get_localized_attrs():
@@ -118,6 +120,7 @@ def admin_serialize_context(context, language=GLSetting.memory_copy.default_lang
         "require_pgp": context.require_pgp,
         "show_small_cards": context.show_small_cards,
         "show_receivers": context.show_receivers,
+        "enable_private_messages": context.enable_private_messages,
         "presentation_order": context.presentation_order,
         "fields": fo.dump_fields(language)
     }
