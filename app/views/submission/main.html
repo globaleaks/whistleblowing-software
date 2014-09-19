@@ -227,7 +227,7 @@ This comment is needed in order to push the following strings on transifex
         </a>
       </li>
     </ul>
-    <div class="pager pull-left" style="margin-left: 20px">
+    <div class="pager pull-left" style="margin-left: 20px" data-ng-show="!hasNextStep()">
       <div class="btn btn-success" data-ng-click="submit()" data-ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
         <i class="glyphicon glyphicon-ok"></i>
         <span data-translate>Submit</span>
