@@ -249,3 +249,8 @@ table {
 .wizard-receiver-password {
   font-size: 16px;
 }
+
+.preload_error {
+  width: 70%;
+  margin: 100px auto;
+}

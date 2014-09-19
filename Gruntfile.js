@@ -62,7 +62,9 @@ module.exports = function(grunt) {
     // usemin handler should point to the file containing
     // the usemin blocks to be parsed
     'useminPrepare': {
-      html: 'tmp/index.html',
+      html: ['tmp/index.html',
+             'tmp/globaleaks.html',
+      ],
       options: {
         dest: 'tmp'
       }
@@ -120,6 +122,26 @@ module.exports = function(grunt) {
       },
     },
 
+   'string-replace': {
+      inline: {
+        files: {
+          'tmp/index.html': 'tmp/index.html',
+        },
+        options: {
+          replacements: [
+            {
+              pattern: '<script src="scripts.js"></script>',
+              replacement: ''
+            },
+            {
+              pattern: '<!-- start_globaleaks(); -->',
+              replacement: 'start_globaleaks();'
+            }
+          ]
+        }
+      }
+    },
+
     karma: {
       unit: {
         configFile: 'karma.conf.js'
@@ -155,32 +177,21 @@ module.exports = function(grunt) {
       fs.rmdirSync(dir);
     };
 
-    grunt.file.mkdir('build');
-    grunt.file.mkdir('build/data');
-    grunt.file.mkdir('build/fonts');
-    grunt.file.mkdir('build/img');
-    grunt.file.mkdir('build/l10n');
 
-    grunt.file.copy('tmp/styles.css', 'build/styles.css');
-    grunt.file.copy('tmp/styles-rtl.css', 'build/styles-rtl.css');
-    grunt.file.copy('tmp/scripts.js', 'build/scripts.js');
-    grunt.file.copy('tmp/index.html', 'build/index.html');
+    grunt.file.mkdir('build/');
 
-    grunt.file.recurse('tmp/data', function(absdir, rootdir, subdir, filename) {
-        grunt.file.copy(absdir, path.join('build/data', subdir || '', filename || ''));
-    });
+    var files = ['globaleaks.html', 'index.html', 'loader.js', 'styles.css', 'styles-rtl.css']
+    for (var x in files) {
+        grunt.file.copy('tmp/' + files[x], 'build/' + files[x])
+    }
 
-    grunt.file.recurse('tmp/fonts', function(absdir, rootdir, subdir, filename) {
-        grunt.file.copy(absdir, path.join('build/fonts', subdir || '', filename || ''));
-    });
-
-    grunt.file.recurse('tmp/img', function(absdir, rootdir, subdir, filename) {
-        grunt.file.copy(absdir, path.join('build/img', subdir || '', filename || ''));
-    });
-
-    grunt.file.recurse('tmp/l10n', function(absdir, rootdir, subdir, filename) {
-        grunt.file.copy(absdir, path.join('build/l10n', subdir || '', filename || ''));
-    });
+    var dirs = ['data', 'fonts', 'img', 'l10n']
+    for (var x in dirs) {
+      grunt.file.mkdir(dirs[x]);
+      grunt.file.recurse('tmp/' + dirs[x], function(absdir, rootdir, subdir, filename) {
+        grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
+      });
+    }
 
     rm_rf('tmp');
   });
@@ -556,7 +567,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'uglify', 'lineremover', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'uglify', 'string-replace', 'lineremover', 'manifest', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('unittest',
     ['build', 'karma', 'coveralls']);
