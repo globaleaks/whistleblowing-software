@@ -6,9 +6,12 @@ from globaleaks.handlers import wizard
 
 appdata_blob = {
    "version":1,
-   "node_subtitle": { "en": "subtitle bello"},
-   "node_footer": { "en": "footer brutto"},
-   "node_presentation": { "en": "presentation cattivo"},
+   "node": {
+     "subtitle": { "en": "subtitle bello"},
+     "footer": { "en": "footer brutto"},
+     "presentation": { "en": "presentation cattivo"},
+     "terms_and_conditions": { "en": "terms_and_conditions malevoli"}
+   },
    "fields": [
      {
        "incremental_number":0,
