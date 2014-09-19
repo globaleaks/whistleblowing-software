@@ -765,6 +765,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.tags = [];
         context.show_small_cards = false;
         context.show_receivers = true;
+        context.enable_private_messages = true;
         context.presentation_order = 0;
         return context;
       };
