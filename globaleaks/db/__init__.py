@@ -100,6 +100,9 @@ def create_tables(create_node=True):
             'x_frame_options_allow_from': GLSetting.memory_copy.x_frame_options_allow_from,
             'exception_email' : GLSetting.defaults.exception_email,
             'default_language' : GLSetting.memory_copy.default_language,
+            'disable_privacy_badge': False,
+            'disable_security_awareness_questions': False,
+
         }
 
         templates = {}

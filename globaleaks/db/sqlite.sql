@@ -67,6 +67,7 @@ CREATE TABLE context (
     require_pgp INTEGER NOT NULL,
     show_small_cards INTEGER NOT NULL,
     show_receivers INTEGER NOT NULL,
+    enable_private_messages INTEGER NOT NULL,
     presentation_order INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
@@ -154,6 +155,8 @@ CREATE TABLE node (
     allow_unencrypted INTEGER NOT NULL,
     x_frame_options_mode VARCHAR NOT NULL,
     x_frame_options_allow_from VARCHAR,
+    disable_privacy_badge INTEGER NOT NULL,
+    disable_security_awareness_questions INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 

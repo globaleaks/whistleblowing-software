@@ -181,6 +181,7 @@ class Context(Model):
     require_pgp = Bool()
     show_small_cards = Bool()
     show_receivers = Bool()
+    enable_private_messages = Bool()
 
     presentation_order = Int()
 
@@ -193,7 +194,7 @@ class Context(Model):
     bool_keys = [ 'selectable_receiver', 'file_required', 'select_all_receivers',
                   'postpone_superpower', 'can_delete_submission',
                   'require_file_description', 'require_pgp',
-                  'show_small_cards', 'show_receivers' ]
+                  'show_small_cards', 'show_receivers', "enable_private_messages" ]
 
 
 class InternalTip(Model):
@@ -422,9 +423,14 @@ class Node(Model):
     # privileges configurable in node/context/receiver
     postpone_superpower = Bool()
     can_delete_submission = Bool()
+
     ahmia = Bool()
     wizard_done = Bool(default=False)
     anomaly_checks = Bool(default=False)
+
+    disable_privacy_badge = Bool(default=False)
+    disable_security_awareness_questions = Bool(default=False)
+    
 
     exception_email = Unicode()
 
@@ -435,7 +441,8 @@ class Node(Model):
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',
-                  'can_delete_submission', 'ahmia', 'allow_unencrypted']
+                  'can_delete_submission', 'ahmia', 'allow_unencrypted',
+                  'disable_privacy_badge', 'disable_security_awareness_questions' ]
                 # wizard_done is not checked because it's set by the backend
     localized_strings = [ 'description', 'presentation', 'footer', 'subtitle', 'terms_and_conditions' ]
 
