@@ -20,6 +20,7 @@
     "grunt-usemin": "2.3.0",
     "grunt-concat-css": "0.3.1",
     "grunt-line-remover": "0.0.2",
+    "grunt-string-replace": "1.0.0",
     "matchdep": "0.3.0",
     "mocha": "1.20.1",
     "node-gettext": "0.2.14",
