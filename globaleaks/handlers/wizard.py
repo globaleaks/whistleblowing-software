@@ -78,7 +78,7 @@ def admin_update_appdata(store, loaded_appdata):
             raise excep
 
         if 'presentation' in loaded_appdata['node']:
-            node.presentation = loaded_appdata['node']['node_presentation']
+            node.presentation = loaded_appdata['node']['presentation']
 
         if 'footer' in loaded_appdata['node']:
             node.footer = loaded_appdata['node']['footer']
