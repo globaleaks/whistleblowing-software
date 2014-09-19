@@ -65,7 +65,7 @@
         </div>
       </div>
 
-      <div data-ng-include="'views/partials/privacybox.html'"></div>
+      <div data-ng-include="'views/partials/privacybox.html'" data-ng-show="!node.disable_privacy_badge"></div>
       <div data-ng-include="'views/partials/messageconsole.html'"></div>
 
       <div data-ng-include="'views/partials/header.html'"></div>
