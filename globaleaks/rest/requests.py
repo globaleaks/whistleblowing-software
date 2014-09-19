@@ -121,6 +121,8 @@ adminNodeDesc = {
     'wizard_done': bool,
     'receipt_regexp': unicode,
     'terms_and_conditions': unicode,
+    'disable_privacy_badge': bool,
+    'disable_security_awareness_questions': bool,
     'configured': bool,
 }
 
@@ -175,6 +177,7 @@ adminContextDesc = {
     'select_all_receivers': bool,
     'show_small_cards': bool,
     'show_receivers': bool,
+    'enable_private_messages': bool, 
     'presentation_order': int,
 }
 
@@ -228,6 +231,8 @@ anonNodeDesc = {
     'wizard_done': bool,
     'configured': bool,
     'receipt_regexp': unicode,
+    'disable_privacy_badge': bool,
+    'disable_security_awareness_questions': bool
 }
 
 TipOverview = {
@@ -328,6 +333,7 @@ nodeContext = {
     'maximum_selectable_receivers': int,
     'show_small_cards': bool,
     'show_receivers': bool,
+    'enable_private_messages': bool,
     'file_max_download': int,
     'require_pgp': bool,
     'tip_max_access': int,
