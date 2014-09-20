@@ -178,7 +178,7 @@ class FileAdd(FileHandler):
         Errors: TipIdNotFound
         """
         stats_counter('file_uploaded')
-        itip_id = yield get_tip_by_wbtip(self.current_user['user_id'])
+        itip_id = yield get_tip_by_wbtip(self.current_user.user_id)
 
         # Call the master class method
         yield self.handle_file_upload(itip_id)
