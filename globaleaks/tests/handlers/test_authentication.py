@@ -1,4 +1,5 @@
 from cyclone.util import ObjectDict
+from twisted.internet import task
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
@@ -6,6 +7,8 @@ from globaleaks.handlers import authentication, admin, base
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks.utils import utility
+
+future = 100
 
 class ClassToTestUnauthenticatedDecorator(base.BaseHandler):
     @authentication.unauthenticated
@@ -24,122 +27,26 @@ class TestSessionUpdateOnUnauthRequests(helpers.TestHandler):
 
     @inlineCallbacks
     def test_001_successful_session_update_on_unauth_request(self):
-        date1 = utility.datetime_now()
-        
-        GLSetting.sessions = {}
-        GLSetting.sessions[u'antani'] = ObjectDict()
-        GLSetting.sessions[u'antani']['user_id'] = u'admin'
-        GLSetting.sessions[u'antani']['role'] = u'admin'
-        GLSetting.sessions[u'antani']['id'] = u'antani'
-        GLSetting.sessions[u'antani']['refreshdate'] = date1
-
-        handler = self.request({}, headers={'X-Session': 'antani'})
+        session = authentication.GLSession('admin', 'admin')
+        date1 = session.getTime()
+        authentication.reactor.advance(future)
+        handler = self.request({}, headers={'X-Session': session.id})
         yield handler.get()
-        
-        date2 = GLSetting.sessions.values()[0].refreshdate
-        
-        self.assertNotEqual(date1, date2)
+        date2 = GLSetting.sessions[session.id].getTime()
+        self.assertEqual(date1+future, date2)
 
 class TestSessionUpdateOnAuthRequests(helpers.TestHandler):
     _handler = ClassToTestAuthenticatedDecorator
 
     @inlineCallbacks
     def test_001_successful_session_update_on_auth_request(self):
-        
-        date1 = utility.datetime_now()
-        
-        GLSetting.sessions = {}
-        GLSetting.sessions[u'antani'] = ObjectDict()
-        GLSetting.sessions[u'antani']['user_id'] = u'admin'
-        GLSetting.sessions[u'antani']['role'] = u'admin'
-        GLSetting.sessions[u'antani']['id'] = u'antani'
-        GLSetting.sessions[u'antani']['refreshdate'] = date1
-
-        handler = self.request({}, headers={'X-Session': 'antani'})
+        session = authentication.GLSession('admin', 'admin')
+        date1 = session.getTime()
+        authentication.reactor.advance(future)
+        handler = self.request({}, headers={'X-Session': session.id})
         yield handler.get()
-        
-        date2 = GLSetting.sessions.values()[0].refreshdate
-        
-        self.assertNotEqual(date1, date2)
-
-class TestSessionExpiryOnUnauthRequests(helpers.TestHandler):
-    _handler = ClassToTestUnauthenticatedDecorator
-
-    @inlineCallbacks
-    def test_001_successful_session_expiry_on_unauth_request(self):
-        
-        date1 = utility.datetime_null() # oh a very old date!
-        
-        GLSetting.sessions = {}
-        GLSetting.sessions[u'antani'] = ObjectDict()
-        GLSetting.sessions[u'antani']['user_id'] = u'admin'
-        GLSetting.sessions[u'antani']['role'] = u'admin'
-        GLSetting.sessions[u'antani']['id'] = u'antani'
-        GLSetting.sessions[u'antani']['refreshdate'] = date1
-
-        handler = self.request({}, headers={'X-Session': 'antani'})
-        
-        yield handler.get()
-        
-        self.assertTrue(handler.current_user is None)
-        self.assertEqual(len(GLSetting.sessions.keys()), 0)
-
-class TestSessionExpiryOnAuthRequests(helpers.TestHandler):
-    _handler = ClassToTestAuthenticatedDecorator
-
-    def test_001_successful_session_expiry_on_admin_auth_request(self):
-    
-        date1 = utility.datetime_null() # oh a very old date!
-        
-        GLSetting.sessions = {}
-        GLSetting.sessions[u'antani'] = ObjectDict()
-        GLSetting.sessions[u'antani']['user_id'] = u'admin'
-        GLSetting.sessions[u'antani']['role'] = u'admin'
-        GLSetting.sessions[u'antani']['id'] = u'antani'
-        GLSetting.sessions[u'antani']['refreshdate'] = date1
-
-        handler = self.request({}, headers={'X-Session': 'antani'})
-
-        self.assertRaises(errors.AdminSessionExpired, handler.get)
-        
-        self.assertTrue(handler.current_user is None)
-        self.assertEqual(len(GLSetting.sessions.keys()), 0)
-
-    def test_002_successful_session_expiry_on_receiver_auth_request(self):
-
-        date1 = utility.datetime_null() # oh a very old date!
-
-        GLSetting.sessions = {}
-        GLSetting.sessions[u'antani'] = ObjectDict()
-        GLSetting.sessions[u'antani']['user_id'] = u'receiver'
-        GLSetting.sessions[u'antani']['role'] = u'receiver'
-        GLSetting.sessions[u'antani']['id'] = u'antani'
-        GLSetting.sessions[u'antani']['refreshdate'] = date1
-
-        handler = self.request({}, headers={'X-Session': 'antani'})
-
-        self.assertRaises(errors.ReceiverSessionExpired, handler.get)
-
-        self.assertTrue(handler.current_user is None)
-        self.assertEqual(len(GLSetting.sessions.keys()), 0)
-
-    def test_003_successful_session_expiry_on_wb_auth_request(self):
-
-        date1 = utility.datetime_null() # oh a very old date!
-
-        GLSetting.sessions = {}
-        GLSetting.sessions[u'antani'] = ObjectDict()
-        GLSetting.sessions[u'antani']['user_id'] = u'wb'
-        GLSetting.sessions[u'antani']['role'] = u'wb'
-        GLSetting.sessions[u'antani']['id'] = u'antani'
-        GLSetting.sessions[u'antani']['refreshdate'] = date1
-
-        handler = self.request({}, headers={'X-Session': 'antani'})
-
-        self.assertRaises(errors.WBSessionExpired, handler.get)
-
-        self.assertTrue(handler.current_user is None)
-        self.assertEqual(len(GLSetting.sessions.keys()), 0)
+        date2 = GLSetting.sessions[session.id].getTime()
+        self.assertEqual(date1+future, date2)
 
 class TestAuthentication(helpers.TestHandler):
     _handler = authentication.AuthenticationHandler
@@ -396,7 +303,6 @@ class TestAuthentication(helpers.TestHandler):
         for i in xrange(0, failed_login):
             try:
                 failure = yield handler.post()
-                print type(failure)
             except errors.InvalidAuthRequest:
                 continue
             except Exception as excep:
@@ -426,7 +332,6 @@ class TestAuthentication(helpers.TestHandler):
         for i in xrange(0, failed_login):
             try:
                 failure = yield handler.post()
-                print type(failure)
             except errors.InvalidAuthRequest:
                 continue
             except Exception as excep:
@@ -441,21 +346,3 @@ class TestAuthentication(helpers.TestHandler):
         self.assertTrue(len(sleep_list), failed_login)
         for i in xrange(1, len(sleep_list)):
             self.assertTrue(i <= sleep_list[i])
-
-    @inlineCallbacks
-    def test_020_expiry_date(self):
-        auth_request = {
-            'username': self.dummyReceiverUser_1['username'],
-            'password': helpers.VALID_PASSWORD1,
-            'role': 'receiver'
-        }
-        handler = self.request(auth_request)
-        yield handler.post()
-
-        self.assertTrue('session_id' in self.responses[0])
-        self.assertTrue('session_expiration' in self.responses[0])
-
-        # may differ of one or two seconds ? may!
-        expected_expiration = utility.get_future_epoch(GLSetting.defaults.lifetimes[auth_request['role']])
-        expiration_date = self.responses[0]['session_expiration']
-        self.assertApproximates(expected_expiration, expiration_date, 2)

@@ -8,14 +8,13 @@ from cyclone.web import Application
 from cyclone.util import ObjectDict as OD
 from twisted.trial import unittest
 from twisted.test import proto_helpers
-from twisted.internet import threads
-from twisted.internet import defer
+from twisted.internet import threads, defer, task
 from twisted.internet.defer import inlineCallbacks
 from storm.twisted.testing import FakeThreadPool
 
 from globaleaks import db, models, security
 from globaleaks.settings import GLSetting, transact, transact_ro
-from globaleaks.handlers import files, rtip, wbtip
+from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
@@ -59,6 +58,7 @@ PL4QgDcz+ocengVlXpZVcoRcLfDs5bJybyyvSMAaqUinYZBX125HSLxNCaPCMKY7
 """
 
 transact.tp = FakeThreadPool()
+authentication.reactor = task.Clock()
 
 class UTlog():
 
@@ -74,9 +74,11 @@ log.err = UTlog().err
 log.debug = UTlog().debug
 
 class TestGL(unittest.TestCase):
+
     encryption_scenario = 'MIXED' # receivers with pgp and receivers without pgp
 
     def setUp(self):
+
         GLSetting.set_devel_mode()
         GLSetting.logging = None
         GLSetting.scheduler_threadpool = FakeThreadPool()
@@ -484,15 +486,8 @@ class TestHandler(TestGLWithPopulatedDB):
         handler.check_xsrf_cookie = mock_pass
 
         if role:
-            session_id = '4tehlulz'
-            new_session = OD(
-                   refreshdate=datetime_now(),
-                   id=session_id,
-                   role=role,
-                   user_id=user_id
-            )
-            GLSetting.sessions[session_id] = new_session
-            handler.request.headers['X-Session'] = session_id
+            session = authentication.GLSession(user_id, role)
+            handler.request.headers['X-Session'] = session.id
         return handler
 
 
