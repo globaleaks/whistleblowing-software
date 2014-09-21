@@ -36,8 +36,8 @@ def pip_to_requirements(s):
 
 def get_requires():
     with open('requirements.txt') as f:
-        requires = map(pip_to_requirements, f.readlines())
-        return requires
+        requires = [pip_to_requirements(line) for line in f]
+    return requires
 
 def list_files(path):
     result = []
