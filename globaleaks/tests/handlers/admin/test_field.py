@@ -160,6 +160,10 @@ class TestAdminFieldCollection(helpers.TestHandler):
             yield self.assert_is_child(sex_field_id, generalities_fieldgroup_id)
             yield self.assert_is_not_child(name_field_id,
                                            generalities_fieldgroup_id)
+            # response shall contain informations about the updated objects
+            fields, = self.responses
+            self.assertIn(generalities_fieldgroup_id,
+                          [field['id'] for field in fields])
             # parent id MUST exist
             invalid_tree = [{
                 'id': invalid_id,
