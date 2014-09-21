@@ -694,13 +694,16 @@ class Step(BaseModel):
     number = Int()
 
     @staticmethod
-    def new(store, context_id, number, field_id):
+    def new(store, context_id, field_id):
         step = Step()
         field = Field.get(store, field_id)
         context = Context.get(store, context_id)
+        # automatically set step number.
+        # apparently storm does not provide anything similar, and I have to do all by myself.
+        previous_steps = store.find(Step, Step.context_id == context_id).order_by(Step.number)
+        step.number = 1 if previous_steps.is_empty() else previous_steps.last().number + 1
         step.field = field
         step.context = context
-        step.number = number
         store.add(step)
 
     @classmethod
