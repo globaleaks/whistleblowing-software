@@ -12,7 +12,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.models import Field, Step
 from globaleaks.rest import errors, requests
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.utility import log
 
 def admin_serialize_field(field, language):
@@ -40,7 +40,7 @@ def admin_serialize_field(field, language):
     }
 
 @transact
-def create_field(store, request, language=GLSetting.memory_copy.default_language):
+def create_field(store, request, language):
     """
     Add a new field to the store, then return the new serialized object.
     """
@@ -48,7 +48,7 @@ def create_field(store, request, language=GLSetting.memory_copy.default_language
     return admin_serialize_field(field, language)
 
 @transact
-def update_field(store, field_id, request, language=GLSetting.memory_copy.default_language):
+def update_field(store, field_id, request, language):
     """
     Updates the specified receiver with the details.
     raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
@@ -64,7 +64,7 @@ def update_field(store, field_id, request, language=GLSetting.memory_copy.defaul
     return admin_serialize_field(field, language)
 
 @transact_ro
-def get_field_list(store, language=GLSetting.memory_copy.default_language):
+def get_field_list(store, language):
     """
     :return: the current field list serialized.
     :rtype: dict
@@ -72,7 +72,7 @@ def get_field_list(store, language=GLSetting.memory_copy.default_language):
     return [admin_serialize_field(f, language) for f in store.find(Field)]
 
 @transact_ro
-def get_field(store, field_id, language=GLSetting.memory_copy.default_language):
+def get_field(store, field_id, language):
     """
     :return: the currently configured field.
     :rtype: dict
