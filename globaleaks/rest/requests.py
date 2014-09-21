@@ -7,14 +7,16 @@
 # These specifications may be used with rest.validateMessage() inside of the
 # handler to verify if the request is correct.
 
-uuid_regexp                    = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
-receiver_img_regexp            = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png$'
-email_regexp                   = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
-email_regexp_or_empty          = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
-hidden_service_regexp          = r'^http://[0-9a-z]{16}\.onion$'
-hidden_service_regexp_or_empty = r'^http://[0-9a-z]{16}\.onion$$|^$'
-web_url_regexp                 = r'^http(s?)://(\w+)\.(.*)$'
-web_url_regexp_or_empty        = r'^http(s?)://(\w+)\.(.*)$|^$'
+uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
+receiver_img_regexp               = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png$'
+email_regexp                      = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
+email_regexp_or_empty             = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
+hidden_service_regexp             = r'^http://[0-9a-z]{16}\.onion$'
+hidden_service_regexp_or_empty    = r'^http://[0-9a-z]{16}\.onion$$|^$'
+web_url_regexp                    = r'^http(s?)://(\w+)\.(.*)$'
+web_url_regexp_or_empty           = r'^http(s?)://(\w+)\.(.*)$|^$'
+x_frame_options_mode_regexp       = r'^(deny)|(allow-from)$'
+x_frame_options_allow_from_regexp = r'^(http(s?)://(\w+)\.(.*)$|^)?$'
 
 dateType = r'(.*)'
 
@@ -24,40 +26,22 @@ dateType = r'(.*)'
 contentType = r'(.*)'
 
 fileDict = {
-    "name": unicode,
-    "description": unicode,
-    "size": int,
-    "content_type": contentType,
-    "date": dateType,
+    'name': unicode,
+    'description': unicode,
+    'size': int,
+    'content_type': contentType,
+    'date': dateType,
     }
 
 formFieldsDict = {
-    "key": unicode,
-    "presentation_order": int,
-    "name": unicode,
-    "required": bool,
-    "preview": bool,
-    "hint": unicode,
-    "type": unicode
+    'key': unicode,
+    'presentation_order': int,
+    'name': unicode,
+    'required': bool,
+    'preview': bool,
+    'hint': unicode,
+    'type': unicode,
 }
-
-wizardFieldDesc = {
-    "incremental_number": int,
-    "localized_name": dict,
-    "localized_hint": dict,
-    "type": unicode,
-    "trigger": list,
-    "defined_options": list, # can be None, I don't remember if can be other ?
-}
-
-wizardFieldUpdate = {
-    "version": int,
-    "fields": [ wizardFieldDesc ],
-    'node_presentation': dict,
-    'node_footer': dict,
-    'node_subtitle': dict,
-}
-
 
 authDict = {
     'username' : unicode,
@@ -70,7 +54,7 @@ wbSubmissionDesc = {
     'context_id' : uuid_regexp,
     'receivers' : [ uuid_regexp ],
     'files' : [ uuid_regexp ],
-    'finalize' : bool
+    'finalize' : bool,
 }
 
 receiverReceiverDesc = {
@@ -99,7 +83,7 @@ actorsCommentDesc = {
 actorsTipOpsDesc = {
     'global_delete' : bool,
     'extend': bool,
-    'is_pertinent': bool
+    'is_pertinent': bool,
 }
 
 adminNodeDesc = {
@@ -132,6 +116,8 @@ adminNodeDesc = {
     'ahmia': bool,
     'anomaly_checks': bool,
     'allow_unencrypted': bool,
+    'x_frame_options_mode': x_frame_options_mode_regexp,
+    'x_frame_options_allow_from': x_frame_options_allow_from_regexp,
     'wizard_done': bool,
     'receipt_regexp': unicode,
     'terms_and_conditions': unicode,
@@ -213,13 +199,6 @@ adminReceiverDesc = {
     'gpg_key_status': unicode,
     'gpg_enable_notification': bool,
     'presentation_order': int,
-}
-
-wizardFirstSetup = {
-    'receiver' : adminReceiverDesc,
-    'context' : adminContextDesc,
-    'node' : adminNodeDesc,
-    'appdata' : wizardFieldUpdate,
 }
 
 anonNodeDesc = {
@@ -311,16 +290,16 @@ AnomalyLine = {
 AnomaliesCollection = [ AnomalyLine ]
 
 nodeReceiver = { 
-     'update_date': unicode,
-     'receiver_level': int,
-     'name': unicode,
-     'tags': [ unicode ],
-     'contexts': [ uuid_regexp ],
-     'description': unicode,
-     'presentation_order': int,
-     'gpg_key_status': unicode,
-     'id': uuid_regexp,
-     'creation_date': dateType,
+    'update_date': unicode,
+    'receiver_level': int,
+    'name': unicode,
+    'tags': [ unicode ],
+    'contexts': [ uuid_regexp ],
+    'description': unicode,
+    'presentation_order': int,
+    'gpg_key_status': unicode,
+    'id': uuid_regexp,
+    'creation_date': dateType,
 }
 
 nodeReceiverCollection = [ nodeReceiver ]
@@ -401,3 +380,31 @@ internalTipDesc = {
     'escalation_threshold': int,
 }
 
+wizardFieldDesc = {
+    'incremental_number': int,
+    'localized_name': dict,
+    'localized_hint': dict,
+    'type': unicode,
+    'trigger': list,
+    'defined_options': list, # can be None, I don't remember if can be other ?
+}
+
+wizardNodeDesc = {
+    'presentation': dict,
+    'footer': dict,
+    'subtitle': dict,
+    'terms_and_conditions': dict,
+}
+
+wizardFieldUpdate = {
+    'version': int,
+    'fields': [ wizardFieldDesc ],
+    'node': wizardNodeDesc,
+}
+
+wizardFirstSetup = {
+    'receiver' : adminReceiverDesc,
+    'context' : adminContextDesc,
+    'node' : adminNodeDesc,
+    'appdata' : wizardFieldUpdate,
+}
