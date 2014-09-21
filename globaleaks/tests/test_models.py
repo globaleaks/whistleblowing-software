@@ -244,6 +244,26 @@ class TestModels(helpers.TestGL):
                            errors.InvalidInputFormat)
 
 
+
+
+@transact
+def create_field(store, **custom_attrs):
+    attrs = {
+        'label': '{"en": "test label"}',
+        'description': '{"en": "test description"}',
+        'hint': '{"en": "test hint"}',
+        'multi_entry': False,
+        'type': 'fieldgroup',
+        'options': {},
+        'required': False,
+        'preview': False,
+        'stats_enabled': True,
+        'x': 0,
+        'y': 0
+    }
+    attrs.update(custom_attrs)
+    return models.Field.new(store, attrs).id
+
 class TestField(helpers.TestGL):
     fixtures = ['fields.json']
 
@@ -257,24 +277,6 @@ class TestField(helpers.TestGL):
         self.sex_id = '98891164-1a0b-5b80-8b8b-93b73b815156'
 
         self.generalities_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
-
-    @transact
-    def create_field(self, store, **custom_attrs):
-        attrs = {
-            'label': '{"en": "test label"}',
-            'description': '{"en": "test description"}',
-            'hint': '{"en": "test hint"}',
-            'multi_entry': False,
-            'type': 'fieldgroup',
-            'options': {},
-            'required': False,
-            'preview': False,
-            'stats_enabled': True,
-            'x': 0,
-            'y': 0
-        }
-        attrs.update(custom_attrs)
-        return models.Field.new(store, attrs).id
 
     @transact
     def field_delete(self, store, field_id):
@@ -294,23 +296,23 @@ class TestField(helpers.TestGL):
 
     @inlineCallbacks
     def test_add_field(self):
-        field_id = yield self.create_field()
+        field_id = yield create_field()
         yield self.assert_model_exists(models.Field, field_id)
 
-        field_id = yield self.create_field(type='checkbox')
+        field_id = yield create_field(type='checkbox')
         yield self.assert_model_exists(models.Field, field_id)
 
     @inlineCallbacks
     def test_add_field_group(self):
-        field1_id = yield self.create_field(
+        field1_id = yield create_field(
             label='{"en": "the first testable field"}',
             type='checkbox'
         )
-        field2_id = yield self.create_field(
+        field2_id = yield create_field(
             label='{"en": "the second testable field"}',
             type='inputbox'
         )
-        fieldgroup_id = yield self.create_field(
+        fieldgroup_id = yield create_field(
             label='{"en": "a testable group of fields."}',
             type='fieldgroup',
             x=1, y=2,
@@ -343,7 +345,6 @@ class TestField(helpers.TestGL):
 class TestStep(helpers.TestGL):
     fixtures = ['fields.json', 'test_gl_with_populated_db.json']
 
-
     @inlineCallbacks
     def setUp(self):
         from globaleaks import db
@@ -365,14 +366,26 @@ class TestStep(helpers.TestGL):
         yield super(TestStep, self).setUp(create_node=False)
 
     @transact
-    def create_step(self, store, context_id, number):
-        return models.Step.new(store, context_id, number, self.generalities_id)
+    def create_step(self, store, context_id, fieldgroup_id):
+        return models.Step.new(store, context_id, fieldgroup_id)
 
     @inlineCallbacks
     def test_new(self):
         context_id = '34948a37-201e-44e0-bede-67212f1b7ee6'
 
-        yield self.create_step(context_id, 0)
-        yield self.assert_model_exists(models.Step, context_id, 0)
-        # creation of another step with same number should fail
-        self.assertFailure(self.create_step(context_id, 0), exceptions.IntegrityError)
+        # tabula rasa.
+        steps = yield transact(lambda store: store.find(models.Step).is_empty())()
+        self.assertTrue(steps)
+
+        yield self.create_step(context_id, self.generalities_id)
+        fuffa = yield transact(lambda store: list(store.find(models.Step)))()
+        #print fuffa[0].number
+        yield self.assert_model_exists(models.Step, context_id, 1)
+        # creation of another step with same context and fieldgroup shall fail.
+        self.assertFailure(self.create_step(context_id, self.generalities_id),
+                           exceptions.IntegrityError)
+        # creation of another step bindded to the same context and different
+        # fieldgroup shall succeed.
+        another_fieldgroup = yield create_field(type='fieldgroup')
+        yield self.create_step(context_id, another_fieldgroup)
+        yield self.assert_model_exists(models.Step, context_id, 2)
