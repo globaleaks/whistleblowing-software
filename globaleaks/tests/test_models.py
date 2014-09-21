@@ -343,6 +343,7 @@ class TestField(helpers.TestGL):
 class TestStep(helpers.TestGL):
     fixtures = ['fields.json', 'test_gl_with_populated_db.json']
 
+
     @inlineCallbacks
     def setUp(self):
         from globaleaks import db

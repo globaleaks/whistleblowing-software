@@ -4,6 +4,7 @@ Implementation of the code executed when an HTTP client reach /admin/fields URI.
 """
 from __future__ import unicode_literals
 
+from twisted.internet import defer
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
@@ -100,7 +101,6 @@ def delete_field(store, field_id):
         step = step.one()
         step.delete(store)
     field.delete(store)
-
 
 @transact
 def get_context_fieldtree(store, context_id):
@@ -216,6 +216,25 @@ class FieldInstance(BaseHandler):
         """
         response = yield get_field(field_id, self.request.language)
         self.set_status(200)
+        self.finish(response)
+
+
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def post(self, *uriargs):
+        """
+        Request: adminFieldDesc
+        Response: adminFieldDesc
+        Errors: InvalidInputFormat, FieldIdNotFound
+        """
+
+        request = self.validate_message(self.request.body,
+                                        requests.adminFieldDesc)
+
+        response = yield create_field(request, self.request.language)
+
+        self.set_status(201) # Created
         self.finish(response)
 
     @transport_security_check('admin')

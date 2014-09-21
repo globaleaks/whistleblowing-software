@@ -738,6 +738,7 @@ class ReceiverContext(BaseModel):
     context_id = Unicode()
     receiver_id = Unicode()
 
+
 class ReceiverInternalTip(BaseModel):
     """
     Class used to implement references between Receivers and IntInternalTips
