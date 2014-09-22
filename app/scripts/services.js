@@ -806,6 +806,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     return Admin;
 
 }]).
+  constant('CONSTANTS', {
+     "email_regexp": /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i
+}).
   config(['$httpProvider', function($httpProvider) {
     $httpProvider.responseInterceptors.push('globaleaksInterceptor');
 }]);

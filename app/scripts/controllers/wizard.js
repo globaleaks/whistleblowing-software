@@ -1,9 +1,12 @@
 GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$http', '$modal', 'Admin',
-                    'DefaultAppdata', 'passwordWatcher',
-                    'changePasswordWatcher', function($scope, $rootScope, $location, $http, $modal,
+                    'DefaultAppdata', 'passwordWatcher', 'changePasswordWatcher', 'CONSTANTS',
+                    function($scope, $rootScope, $location, $http, $modal,
                                                       Admin, DefaultAppdata,
                                                       passwordWatcher,
-                                                      changePasswordWatcher) {
+                                                      changePasswordWatcher,
+                                                      CONSTANTS) {
+
+    $scope.email_regexp = CONSTANTS.email_regexp;
 
     finished = false;
     if ($scope.role != 'admin') {
