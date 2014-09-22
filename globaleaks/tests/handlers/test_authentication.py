@@ -1,5 +1,3 @@
-from cyclone.util import ObjectDict
-from twisted.internet import task
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
@@ -8,7 +6,7 @@ from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks.utils import utility
 
-future = 100
+FUTURE = 100
 
 class ClassToTestUnauthenticatedDecorator(base.BaseHandler):
     @authentication.unauthenticated
@@ -29,11 +27,11 @@ class TestSessionUpdateOnUnauthRequests(helpers.TestHandler):
     def test_001_successful_session_update_on_unauth_request(self):
         session = authentication.GLSession('admin', 'admin')
         date1 = session.getTime()
-        authentication.reactor.advance(future)
+        authentication.reactor.advance(FUTURE)
         handler = self.request({}, headers={'X-Session': session.id})
         yield handler.get()
         date2 = GLSetting.sessions[session.id].getTime()
-        self.assertEqual(date1+future, date2)
+        self.assertEqual(date1+FUTURE, date2)
 
 class TestSessionUpdateOnAuthRequests(helpers.TestHandler):
     _handler = ClassToTestAuthenticatedDecorator
@@ -42,11 +40,11 @@ class TestSessionUpdateOnAuthRequests(helpers.TestHandler):
     def test_001_successful_session_update_on_auth_request(self):
         session = authentication.GLSession('admin', 'admin')
         date1 = session.getTime()
-        authentication.reactor.advance(future)
+        authentication.reactor.advance(FUTURE)
         handler = self.request({}, headers={'X-Session': session.id})
         yield handler.get()
         date2 = GLSetting.sessions[session.id].getTime()
-        self.assertEqual(date1+future, date2)
+        self.assertEqual(date1+FUTURE, date2)
 
 class TestAuthentication(helpers.TestHandler):
     _handler = authentication.AuthenticationHandler
