@@ -64,8 +64,8 @@
 
     <div class="form-group">
       <label data-translate>Email</label>
-      <input class="form-control" data-ng-model="admin.node.email" value="{{admin.node.email}}" name="email" type="email">
-      <p class="has-error" data-ng-show="contentForm.email.$error.email">
+      <input class="form-control" data-ng-model="admin.node.email" value="{{admin.node.email}}" name="email" data-ng-pattern="email_regexp" type="text">
+      <p class="has-error" data-ng-show="contentForm.email.$error.pattern">
         <span data-translate>Invalid email address</span>
       </p>
     </div>

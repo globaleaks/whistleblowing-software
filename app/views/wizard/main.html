@@ -84,11 +84,11 @@ This comment is needed in order to push the following strings on transifex
               <span data-translate>Email</span>
             </label>
             <div class="col-md-8">
-              <input name="admin_email" type="email" class="form-control" placeholder="" data-ng-model="admin.node.email" required>
+              <input name="admin_email" type="text" class="form-control" placeholder="" data-ng-model="admin.node.email" data-ng-pattern="email_regexp" required>
               <span class="help-block">
                 <span data-translate>Enter your email address</span>
               </span>
-              <p class="has-error" data-ng-show="wizard.admin_email.$error.email">
+              <p class="has-error" data-ng-show="wizard.admin_email.$error.pattern">
                 <span data-translate>Invalid email address</span>
               </p>
             </div>
@@ -162,7 +162,7 @@ This comment is needed in order to push the following strings on transifex
           <div class="form-group col-md-12">
             <label class="col-md-4">Email</label>
             <div class="col-md-8">
-              <input name="receiver_email" type="email" class="form-control" placeholder="" data-ng-model="receiver.mail_address" required>
+              <input name="receiver_email" type="text" class="form-control" placeholder="" data-ng-model="receiver.mail_address" data-ng-pattern="email_regexp" required>
               <span class="help-block">
                 <span data-translate>Enter the email address through which the receiver will be notified</span>
               </span>
