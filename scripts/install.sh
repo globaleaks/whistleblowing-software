@@ -547,6 +547,8 @@ fi
 
 DO "apt-get update -y" "0"
 
+DO "locale-gen en_US.UTF-8" "0"
+
 if [ $DISTRO_VERSION != 'trusty' ]; then
     echo "Installing python-software-properties"
     DO "apt-get install python-software-properties -y" "0"
@@ -556,7 +558,6 @@ if [ $DISTRO == 'ubuntu' ];then
   echo "Adding Ubuntu Universe repository"
   add_repository "deb http://de.archive.ubuntu.com/ubuntu/ $DISTRO_VERSION universe"
   DO "apt-get update -y" "0"
-  DO "apt-get install language-pack-en -y" "0"
 fi
 
 echo "Installing gcc, python-setuptools, python-dev, libffi-dev, libssl-dev"
