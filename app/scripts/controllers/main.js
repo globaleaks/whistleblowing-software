@@ -111,7 +111,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
         $scope.update_node();
 
-        //$route.reload();
+        $route.reload();
       }
 
     });
