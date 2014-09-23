@@ -17,16 +17,25 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication'
       });
     };
 
-    $scope.goToSubmission = function () {
+    $scope.goToSubmission = function (stage) {
       if (!$scope.anonymous && !$scope.node.tor2web_submission)
         return;
 
-      if ($scope.anonymous || $scope.node.disable_security_awareness_questions || $scope.answer.value == 'b') {
-        $location.path("/submission");
-      } else {
-        $scope.showQuestions = true;
+      if (stage == 1) {
+        // Before showing the security awareness badge
+        if ($scope.anonymous ||
+            $scope.node.disable_security_awareness_badge) {
+          $location.path("/submission");
+        } else {
+          $scope.showQuestions = true;
+        }
+      } else if (stage == 2) {
+        // After showing the security awareness badge
+        if ($scope.node.disable_security_awareness_questions ||
+            $scope.answer.value == 'b') {
+          $location.path("/submission");
+        }
       }
-
     };
     
 }]);

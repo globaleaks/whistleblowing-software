@@ -39,6 +39,20 @@
       </div>
     </div>
 
+    <div class="form-group" ng-show="!admin.node.disable_security_awareness_badge">
+      <label data-translate>Security Awareness Text</label>
+      <div>
+        <textarea class="form-control" data-ng-model="admin.node.security_awareness">{{admin.node.security_awareness}}</textarea>
+      </div>
+    </div>
+
+    <div class="form-group" ng-show="!admin.node.disable_security_awareness_badge">
+      <label>
+        <input data-ng-model="admin.node.disable_security_awareness_questions" type="checkbox">
+        <span data-translate>Disable the security awareness questions</span>
+      </label>
+    </div>
+
     <div class="form-group">
       <label data-translate>Email</label>
       <input class="form-control" data-ng-model="admin.node.email" value="{{admin.node.email}}" name="email" type="email">
