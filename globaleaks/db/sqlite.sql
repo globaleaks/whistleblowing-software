@@ -129,6 +129,7 @@ CREATE TABLE node (
     subtitle BLOB NOT NULL,
     footer BLOB NOT NULL,
     terms_and_conditions BLOB NOT NULL,
+    security_awareness BLOB NOT NULL,
     email VARCHAR NOT NULL,
     hidden_service VARCHAR NOT NULL,
     receipt_regexp VARCHAR NOT NULL,
@@ -156,6 +157,7 @@ CREATE TABLE node (
     x_frame_options_mode VARCHAR NOT NULL,
     x_frame_options_allow_from VARCHAR,
     disable_privacy_badge INTEGER NOT NULL,
+    disable_security_awareness_badge INTEGER NOT NULL,
     disable_security_awareness_questions INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
