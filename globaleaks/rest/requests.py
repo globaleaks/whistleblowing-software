@@ -92,6 +92,8 @@ adminNodeDesc = {
     'presentation' : unicode,
     'subtitle': unicode,
     'footer': unicode,
+    'terms_and_conditions': unicode,
+    'security_awareness': unicode,
     'hidden_service' : hidden_service_regexp_or_empty,
     'public_site' : web_url_regexp_or_empty,
     'stats_update_time' : int,
@@ -122,6 +124,7 @@ adminNodeDesc = {
     'receipt_regexp': unicode,
     'terms_and_conditions': unicode,
     'disable_privacy_badge': bool,
+    'disable_security_awareness_badge': bool,
     'disable_security_awareness_questions': bool,
     'configured': bool,
 }
@@ -207,9 +210,11 @@ adminReceiverDesc = {
 anonNodeDesc = {
     'name': unicode,
     'subtitle': unicode,
-    'description' : unicode,
-    'presentation' : unicode,
+    'description': unicode,
+    'presentation': unicode,
+    'terms_and_conditions': unicode,
     'footer': unicode,
+    'security_awareness': unicode,
     'hidden_service' : hidden_service_regexp_or_empty,
     'public_site' : web_url_regexp_or_empty,
     'email' : email_regexp,
@@ -232,6 +237,7 @@ anonNodeDesc = {
     'configured': bool,
     'receipt_regexp': unicode,
     'disable_privacy_badge': bool,
+    'disable_security_awareness_badge': bool,
     'disable_security_awareness_questions': bool
 }
 
