@@ -403,7 +403,8 @@ class Node(Model):
     footer = Pickle(validator=longlocal_v)
     subtitle = Pickle(validator=longlocal_v)
     terms_and_conditions = Pickle(validator=longlocal_v)
-    security_awareness = Pickle(validator=longlocal_v)
+    security_awareness_title = Pickle(validator=longlocal_v)
+    security_awareness_text = Pickle(validator=longlocal_v)
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -448,7 +449,8 @@ class Node(Model):
                   'disable_security_awareness_questions' ]
                 # wizard_done is not checked because it's set by the backend
     localized_strings = [ 'description', 'presentation', 'footer', 'subtitle',
-                          'terms_and_conditions', 'security_awareness' ]
+                          'terms_and_conditions', 'security_awareness_title',
+                          'security_awareness_text' ]
 
 
 class Notification(Model):
