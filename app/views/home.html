@@ -1,4 +1,4 @@
-<div id="SecurityAwarenessBox" class="not-anonymous-question modal" data-ng-show="!node.disable_security_awareness_questions && showQuestions">
+<div id="SecurityAwarenessBox" class="not-anonymous-question modal" data-ng-show="!node.disable_security_awareness_badge && showQuestions">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,57 +10,44 @@
         </h3>
       </div>
       <div class="modal-body">
-        <p>
-          <span data-translate>With a HTTPS submission you are exposing yourself to the risks that someone else will know that you have submitted something, without knowing what you have submitted.</span>
-        </p>
+        <div class="preformatted">{{node.security_awareness}}</div>
 
-        <p>
-          <span data-translate>Instead with an Anonymous Submission you are fully protected, it is not possible for a third party to know that you have submitted something nor what you have submitted.</span>
-        </p>
-      
-        <p>
-          <span data-translate>We strongly advise you to go for an Anonymous Submission.</span>
-        </p>
-
-        <p>
-          <span data-translate>To make an Anonymous Submission, instead of using your usual Web Browser (Internet Explorer, Chrome, Firefox, Opera, etc.) you should use the</span>
-          <a href="https://www.torproject.org/download">Tor Browser Bundle</a>,
-          <span data-translate>this is a special piece of software designed to enable Anonymous Web Browsing.</span>
-        </p>
-
-        <p class="lead">
-          <span data-translate>Which of the following statements is true?</span>
-        </p>
+        <div data-ng-show="!node.disable_security_awareness_questions"> 
+          <br /><br />
+          <p class="lead">
+            <span data-translate>Which of the following statements is true?</span>
+          </p>
     
-        <input data-ng-model="answer.value" value="a" type="radio"> 
-        <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'a')}" data-translate>HTTPS protects my identity, but not the content of my leak</span><br />
-        <input data-ng-model="answer.value" value="b" type="radio"> 
-        <span data-ng-class="{'bg-success': (answer.value && answer.value == 'b')}" data-translate>HTTPS protects the content of my leak but not my identity</span><br />
-        <input data-ng-model="answer.value" value="c" type="radio"> 
-        <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'c')}" data-translate>HTTPS does not protect the content of my leak nor my identity</span><br />
-        <input data-ng-model="answer.value" value="d" type="radio"> 
-        <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'd')}" data-translate>HTTPS does protect my identity and the content of my leak</span><br />
+          <input data-ng-model="answer.value" value="a" type="radio"> 
+          <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'a')}" data-translate>HTTPS protects my identity, but not the content of my leak</span><br />
+          <input data-ng-model="answer.value" value="b" type="radio"> 
+          <span data-ng-class="{'bg-success': (answer.value && answer.value == 'b')}" data-translate>HTTPS protects the content of my leak but not my identity</span><br />
+          <input data-ng-model="answer.value" value="c" type="radio"> 
+          <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'c')}" data-translate>HTTPS does not protect the content of my leak nor my identity</span><br />
+          <input data-ng-model="answer.value" value="d" type="radio"> 
+          <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'd')}" data-translate>HTTPS does protect my identity and the content of my leak</span><br />
 
-        <br /></br />
+          <br /></br />
 
-        <div data-ng-show="(answer.value && answer.value == 'b')">
-          <div class="bg-warning">
-            <span data-translate>You are aware of the risks involved. Go ahead, but consider yourself warned.</span>
+          <div data-ng-show="(answer.value && answer.value == 'b')">
+            <div class="bg-warning">
+              <span data-translate>You are aware of the risks involved. Go ahead, but consider yourself warned.</span>
+            </div>
+          </div>           
+          <div data-ng-show="!answer.value">
+            <div>
+              <span>&nbsp;</span>
+            </div>
           </div>
-        </div>           
-        <div data-ng-show="!answer.value">
-          <div>
-            <span>&nbsp;</span>
-          </div>
-        </div>
-        <div data-ng-show="(answer.value && answer.value != 'b')">
-          <div class="bg-danger">
-            <span data-translate>Wrong Answer!</span>
+          <div data-ng-show="(answer.value && answer.value != 'b')">
+            <div class="bg-danger">
+              <span data-translate>Wrong Answer!</span>
+            </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <a data-ng-click="goToSubmission()" data-ng-disabled="!answer.value || answer.value != 'b'" class="btn btn-warning">
+        <a data-ng-click="goToSubmission(2)" data-ng-disabled="!node.disable_security_awareness_questions && (!answer.value || answer.value != 'b')" class="btn btn-warning">
           <span data-translate>Proceed to submission</span>
         </a>
       </div>
@@ -94,7 +81,7 @@
           </button>
         </div>
         <div class="row" data-ng-show="node.tor2web_submission || anonymous">
-          <a data-ng-click="goToSubmission()" class="btn btn-primary">
+          <a data-ng-click="goToSubmission(1)" class="btn btn-primary">
             <i class="glyphicon glyphicon-bullhorn"></i>
             <span data-translate>Blow the Whistle</span>
           </a>
