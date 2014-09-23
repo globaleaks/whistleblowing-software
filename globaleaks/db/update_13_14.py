@@ -82,7 +82,8 @@ class Replacer1314(TableReplacer):
     def migrate_Node(self):
         print "%s Node migration assistant: (x_frame_options_mode, x_frame_options_allow_from, \
                                              disable_privacy_badge, disable_security_awareness_badge, \
-                                             disable_security_awareness_questions, security_awareness" % self.std_fancy
+                                             disable_security_awareness_questions, security_awareness_title, \
+                                             security_awareness_text" % self.std_fancy
 
         appdata = opportunistic_appdata_init()
 
@@ -111,8 +112,12 @@ class Replacer1314(TableReplacer):
                 new_node.disable_security_awareness_questions = False
                 continue
 
-            if v.name == 'security_awareness':
-                new_node.security_awareness = appdata['node']['security_awareness']
+            if v.name == 'security_awareness_title':
+                new_node.security_awareness_title = appdata['node']['security_awareness_title']
+                continue
+
+            if v.name == 'security_awareness_text':
+                new_node.security_awareness_text = appdata['node']['security_awareness_text']
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name))
