@@ -180,7 +180,7 @@ module.exports = function(grunt) {
 
     grunt.file.mkdir('build/');
 
-    var files = ['globaleaks.html', 'index.html', 'loader.js', 'styles.css', 'styles-rtl.css']
+    var files = ['globaleaks.html', 'index.html', 'loader.js', 'styles.css', 'styles-rtl.css', 'scripts.js']
     for (var x in files) {
         grunt.file.copy('tmp/' + files[x], 'build/' + files[x])
     }
