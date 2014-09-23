@@ -73,11 +73,12 @@ def create_tables(create_node=True):
 
         only_node = {
             'name':  u"",
-            'description':  dict({ GLSetting.memory_copy.default_language: u"" }),
-            'presentation':  dict({ GLSetting.memory_copy.default_language: u"" }),
-            'footer':  dict({ GLSetting.memory_copy.default_language: u"" }),
-            'subtitle':  dict({ GLSetting.memory_copy.default_language: u"" }),
-            'terms_and_conditions':  dict({ GLSetting.memory_copy.default_language: u"" }),
+            'description': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'presentation': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'footer': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'subtitle': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'terms_and_conditions': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'security_awareness': dict({ GLSetting.memory_copy.default_language: u"" }),
             'hidden_service':  u"",
             'public_site':  u"",
             'email':  u"",
@@ -101,6 +102,7 @@ def create_tables(create_node=True):
             'exception_email' : GLSetting.defaults.exception_email,
             'default_language' : GLSetting.memory_copy.default_language,
             'disable_privacy_badge': False,
+            'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
 
         }

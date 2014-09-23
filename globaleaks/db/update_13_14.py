@@ -15,6 +15,7 @@ from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
+from globaleaks.db.datainit import opportunistic_appdata_init
 
 class Node_version_13(Model):
     __storm_table__ = 'node'
@@ -79,7 +80,11 @@ class Context_version_13(Model):
 class Replacer1314(TableReplacer):
 
     def migrate_Node(self):
-        print "%s Node migration assistant: (x_frame_options_mode, x_frame_options_allow_from)" % self.std_fancy
+        print "%s Node migration assistant: (x_frame_options_mode, x_frame_options_allow_from, \
+                                             disable_privacy_badge, disable_security_awareness_badge, \
+                                             disable_security_awareness_questions, security_awareness" % self.std_fancy
+
+        appdata = opportunistic_appdata_init()
 
         old_node = self.store_old.find(self.get_right_model("Node", 13)).one()
         new_node = self.get_right_model("Node", 14)()
@@ -98,8 +103,16 @@ class Replacer1314(TableReplacer):
                 new_node.disable_privacy_badge = False
                 continue
 
+            if v.name == 'disable_security_awareness_badge':
+                new_node.disable_security_awareness_badge = False
+                continue
+
             if v.name == 'disable_security_awareness_questions':
                 new_node.disable_security_awareness_questions = False
+                continue
+
+            if v.name == 'security_awareness':
+                new_node.security_awareness = appdata['node']['security_awareness']
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name))

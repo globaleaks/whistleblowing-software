@@ -78,6 +78,7 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         'old_password': u"",
         'custom_homepage': custom_homepage,
         'disable_privacy_badge': node.disable_privacy_badge,
+        'disable_security_awareness_badge': node.disable_security_awareness_badge,
         'disable_security_awareness_questions': node.disable_security_awareness_questions
     }
 
