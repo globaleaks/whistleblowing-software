@@ -169,7 +169,7 @@ var GLClient = angular.module('GLClient', [
       $route.reload();
     };
 
-    function overloadReload(e) {
+    function overrideReload(e) {
        if (((e.which || e.keyCode) == 116) || /* F5 */
            ((e.which || e.keyCode) == 82 && (e.ctrlKey || e.metaKey))) {  /* (ctrl or meta) + r */ 
            e.preventDefault();
@@ -178,7 +178,7 @@ var GLClient = angular.module('GLClient', [
        }
     };
 
-    $(document).bind("keydown", overloadReload);
+    $(document).bind("keydown", overrideReload);
 
     $rootScope.reload = reload;
 
