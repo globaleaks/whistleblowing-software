@@ -403,6 +403,7 @@ class Node(Model):
     footer = Pickle(validator=longlocal_v)
     subtitle = Pickle(validator=longlocal_v)
     terms_and_conditions = Pickle(validator=longlocal_v)
+    security_awareness = Pickle(validator=longlocal_v)
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -429,6 +430,7 @@ class Node(Model):
     anomaly_checks = Bool(default=False)
 
     disable_privacy_badge = Bool(default=False)
+    disable_security_awareness_badge = Bool(default=False)
     disable_security_awareness_questions = Bool(default=False)
     
 
@@ -442,9 +444,11 @@ class Node(Model):
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',
                   'can_delete_submission', 'ahmia', 'allow_unencrypted',
-                  'disable_privacy_badge', 'disable_security_awareness_questions' ]
+                  'disable_privacy_badge', 'disable_security_awareness_badge',
+                  'disable_security_awareness_questions' ]
                 # wizard_done is not checked because it's set by the backend
-    localized_strings = [ 'description', 'presentation', 'footer', 'subtitle', 'terms_and_conditions' ]
+    localized_strings = [ 'description', 'presentation', 'footer', 'subtitle',
+                          'terms_and_conditions', 'security_awareness' ]
 
 
 class Notification(Model):
