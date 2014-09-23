@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" data-ng-app="GLClient" data-ng-controller="MainCtrl">
+<html data-ng-app="GLClient" data-ng-controller="MainCtrl">
   <head>
     <title>GlobaLeaks</title>
     <meta charset="utf-8">
@@ -114,12 +114,12 @@
     <script src="scripts/templates.js"></script>
     <!-- endbuild -->
 
-    <script>
+    <script type="text/javascript">
       function loadjsfile(filepath) {
        var fileref = document.createElement('script')
-       fileref.setAttribute("type","text/javascript")
+       fileref.setAttribute("type", "text/javascript")
        fileref.setAttribute("src", filepath)
-       if (typeof fileref!="undefined") {
+       if (typeof fileref != "undefined") {
          document.getElementsByTagName("head")[0].appendChild(fileref)
        }
       }
