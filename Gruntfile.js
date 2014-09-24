@@ -83,15 +83,13 @@ module.exports = function(grunt) {
     cssmin: {
       combine: {
         files: {
-          'tmp/styles-rtl.css': [ 'tmp/components/bootstrap-arabic/dist/css/bootstrap.css',
+          'tmp/styles-rtl.css': [ 'tmp/components/bootstrap-arabic/dist/css/bootstrap-arabic.css',
                                   'tmp/components/jquery-file-upload/css/jquery.fileupload.css',
                                   'tmp/components/jquery-file-upload/css/jquery.fileupload-ui.css',
-                                  'tmp/components/FlipClock/compiled/flipclock.css',
                                   'tmp/styles/main.css',
                                   'tmp/styles/admin.css',
                                   'tmp/styles/home.css',
-                                  'tmp/styles/submission.css',
-                                  'tmp/styles/custom-glclient.css' ]
+                                  'tmp/styles/submission.css']
         }
       }
     },
