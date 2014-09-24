@@ -275,7 +275,6 @@ class TestField(helpers.TestGL):
         self.name_id = '25521164-0d0f-4f80-9e9c-93f72e815105'
         self.surname_id = '25521164-1d0f-5f80-8e8c-93f73e815156'
         self.sex_id = '98891164-1a0b-5b80-8b8b-93b73b815156'
-
         self.generalities_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
 
     @transact
@@ -363,6 +362,7 @@ class TestStep(helpers.TestGL):
         GLSetting.remove_directories()
         GLSetting.create_directories()
         self.generalities_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
+        self.context_id = '34948a37-201e-44e0-bede-67212f1b7ee6'
         yield super(TestStep, self).setUp(create_node=False)
 
     @transact
@@ -371,32 +371,50 @@ class TestStep(helpers.TestGL):
 
     @inlineCallbacks
     def test_new(self):
-        context_id = '34948a37-201e-44e0-bede-67212f1b7ee6'
-
         # tabula rasa.
         steps = yield transact(lambda store: store.find(models.Step).is_empty())()
         self.assertTrue(steps)
 
-        yield self.create_step(context_id, self.generalities_id)
-        yield self.assert_model_exists(models.Step, context_id, 1)
+        yield self.create_step(self.context_id, self.generalities_id)
+        yield self.assert_model_exists(models.Step, self.context_id, 1)
         # creation of another step with same context and fieldgroup shall fail.
-        self.assertFailure(self.create_step(context_id, self.generalities_id),
+        self.assertFailure(self.create_step(self.context_id, self.generalities_id),
                            exceptions.IntegrityError)
         # creation of another step bindded to the same context and different
         # fieldgroup shall succeed.
         second_fieldgroup = yield create_field(type='fieldgroup')
-        yield self.create_step(context_id, second_fieldgroup)
-        yield self.assert_model_exists(models.Step, context_id, 2)
+        yield self.create_step(self.context_id, second_fieldgroup)
+        yield self.assert_model_exists(models.Step, self.context_id, 2)
         # creation of a new step, with an explicit number (the bottom) shall succeed.
         third_fieldgroup = yield create_field(type='fieldgroup')
-        yield self.create_step(context_id, third_fieldgroup, 3)
-        yield self.assert_model_exists(models.Step, context_id, 3)
+        yield self.create_step(self.context_id, third_fieldgroup, 3)
+        yield self.assert_model_exists(models.Step, self.context_id, 3)
         # creation of a new step in the middle shall move all others
         wannabe_first_fieldgroup = yield create_field(type='fieldgroup')
-        yield self.create_step(context_id, wannabe_first_fieldgroup, 1)
-        yield self.assert_model_exists(models.Step, context_id, 1)
-        yield self.assert_model_exists(models.Step, context_id, 4)
+        yield self.create_step(self.context_id, wannabe_first_fieldgroup, 1)
+        yield self.assert_model_exists(models.Step, self.context_id, 1)
+        yield self.assert_model_exists(models.Step, self.context_id, 4)
         first_fieldgroup = yield transact(
-            lambda store: models.Step.get(store, context_id, 1).field_id
+            lambda store: models.Step.get(store, self.context_id, 1).field_id
         )()
         self.assertEqual(wannabe_first_fieldgroup, first_fieldgroup)
+
+    @inlineCallbacks
+    def test_delete(self):
+        # deletion and re-creation of one step associated to a context shall
+        # never fail
+        yield self.create_step(self.context_id, self.generalities_id)
+        yield self.assert_model_exists(models.Step, self.context_id, 1)
+        yield transact(
+            lambda store: models.Step.get(store, self.context_id, 1).delete(store)
+        )()
+        yield self.create_step(self.context_id, self.generalities_id)
+        yield self.assert_model_exists(models.Step, self.context_id, 1)
+        # creation of a new step, and deletion of the first one, shall trigger
+        # decrement of step number
+        another_fieldgroup = yield create_field(type='fieldgroup')
+        yield self.create_step(self.context_id, another_fieldgroup)
+        yield transact(
+            lambda store: models.Step.get(store, self.context_id, 1).delete(store)
+        )()
+        yield self.assert_model_exists(models.Step, self.context_id, 1)
