@@ -36,8 +36,8 @@ This comment is needed in order to push the following strings on transifex
                       <span data-translate>Email Address</span>
                       (<span data-translate>Username</span>)
                     </label>
-                    <input class="form-control" name="email" data-ng-model="new_receiver.email" type="email" required>
-                    <p class="has-error" data-ng-show="newReceiver.email.$error.email">
+                    <input class="form-control" name="email" data-ng-model="new_receiver.email" ng-pattern="email_regexp" type="text" required>
+                    <p class="has-error" data-ng-show="newReceiver.email.$error.pattern">
                       <span data-translate>Invalid email address</span>
                     </p>
                   </div>
@@ -160,8 +160,8 @@ This comment is needed in order to push the following strings on transifex
                       </div>
                       <div class="form-group">
                         <label data-translate>Email Address (Username)</label>
-                        <input class="form-control" name="email" data-ng-model="receiver.mail_address" type="email" required>
-                        <p class="has-error" data-ng-show="receiverForm.email.$error.email">
+                        <input class="form-control" name="email" data-ng-model="receiver.mail_address" type="text" ng-pattern="email_regexp" required>
+                        <p class="has-error" data-ng-show="receiverForm.email.$error.pattern">
                           <span data-translate>Invalid email address</span>
                         </p>
                       </div>
