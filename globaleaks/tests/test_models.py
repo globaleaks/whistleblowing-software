@@ -366,8 +366,8 @@ class TestStep(helpers.TestGL):
         yield super(TestStep, self).setUp(create_node=False)
 
     @transact
-    def create_step(self, store, context_id, fieldgroup_id):
-        return models.Step.new(store, context_id, fieldgroup_id)
+    def create_step(self, store, *args, **kwargs):
+        return models.Step.new(store, *args, **kwargs)
 
     @inlineCallbacks
     def test_new(self):
@@ -378,14 +378,25 @@ class TestStep(helpers.TestGL):
         self.assertTrue(steps)
 
         yield self.create_step(context_id, self.generalities_id)
-        fuffa = yield transact(lambda store: list(store.find(models.Step)))()
-        #print fuffa[0].number
         yield self.assert_model_exists(models.Step, context_id, 1)
         # creation of another step with same context and fieldgroup shall fail.
         self.assertFailure(self.create_step(context_id, self.generalities_id),
                            exceptions.IntegrityError)
         # creation of another step bindded to the same context and different
         # fieldgroup shall succeed.
-        another_fieldgroup = yield create_field(type='fieldgroup')
-        yield self.create_step(context_id, another_fieldgroup)
+        second_fieldgroup = yield create_field(type='fieldgroup')
+        yield self.create_step(context_id, second_fieldgroup)
         yield self.assert_model_exists(models.Step, context_id, 2)
+        # creation of a new step, with an explicit number (the bottom) shall succeed.
+        third_fieldgroup = yield create_field(type='fieldgroup')
+        yield self.create_step(context_id, third_fieldgroup, 3)
+        yield self.assert_model_exists(models.Step, context_id, 3)
+        # creation of a new step in the middle shall move all others
+        wannabe_first_fieldgroup = yield create_field(type='fieldgroup')
+        yield self.create_step(context_id, wannabe_first_fieldgroup, 1)
+        yield self.assert_model_exists(models.Step, context_id, 1)
+        yield self.assert_model_exists(models.Step, context_id, 4)
+        first_fieldgroup = yield transact(
+            lambda store: models.Step.get(store, context_id, 1).field_id
+        )()
+        self.assertEqual(wannabe_first_fieldgroup, first_fieldgroup)

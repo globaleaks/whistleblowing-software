@@ -5,6 +5,7 @@ GlobaLeaks ORM Models definitions.
 from __future__ import absolute_import
 import types
 
+from storm import expr
 from storm.locals import Bool, Int, Pickle, Reference, ReferenceSet
 from storm.locals import Unicode, Storm, JSON
 
@@ -691,20 +692,62 @@ class Step(BaseModel):
 
     context_id = Unicode()
     field_id = Unicode()
+    # XXX.
+    # there are better structures that we could use rather than a linear ordering.
+    # (like a tree-like, so that update is O(lg n) < O(n)).
     number = Int()
 
     @staticmethod
-    def new(store, context_id, field_id):
+    def _new_bottom(store, step, context, field):
+        previous_steps = store.find(Step, Step.context_id == context.id)
+        step.number = previous_steps.count() + 1
+        step.field = field
+        step.context = context
+
+    @staticmethod
+    def _new_middle(store, step, context, field, number):
+        # we want to introduce a step at position n, so
+        # we first MUST update steps with number > n and same context_id
+        # (in reverse order) and THEN set our step.
+        previous_steps = store.find(Step, Step.context_id == context.id,
+                                    Step.number <= number)
+        next_steps = store.find(Step, Step.context_id == context.id,
+                                Step.number >= number).order_by(expr.Desc(Step.number))
+        if number > previous_steps.count() + 1:
+            raise ValueError("Invalid input data.")
+        # update following models
+        for next_step in next_steps:
+            next_step.number += 1
+        step.number = number
+        step.field = field
+        step.context = context
+
+
+    @staticmethod
+    def new(store, context_id, field_id, number=None):
+        """
+        Add a new step at the given position.
+
+        :param number: the number to add
+
+        :return: the shiny new step.
+        :raises ValueError: if number is invalid,
+                               context_id is not found,
+                               field_id not found.
+        """
         step = Step()
         field = Field.get(store, field_id)
         context = Context.get(store, context_id)
-        # automatically set step number.
-        # apparently storm does not provide anything similar, and I have to do all by myself.
-        previous_steps = store.find(Step, Step.context_id == context_id).order_by(Step.number)
-        step.number = 1 if previous_steps.is_empty() else previous_steps.last().number + 1
-        step.field = field
-        step.context = context
+        if (field is None or
+            context is None or
+            number is not None and number <= 0):
+            raise ValueError("Invalid input data.")
+        if number is None:
+            Step._new_bottom(store, step, context, field)
+        else:
+            Step._new_middle(store, step, context, field, number)
         store.add(step)
+        return step
 
     @classmethod
     def get(cls, store, context_id, number):
