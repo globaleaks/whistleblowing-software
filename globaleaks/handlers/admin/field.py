@@ -164,6 +164,60 @@ def update_fieldtree(store, tree, language):
         resp.append(admin_serialize_field(field, language))
     return resp
 
+@transact
+def delete_steps(store, steps_desc):
+    """
+    Remove a collection of steps, given their context_id and number.
+
+    :raises errors.ModelNotFound: if any of the items has not been found on the
+                                  database.
+    """
+    steps = [Step.get(store, step_desc['context_id'], step_desc['number'])
+             for step_desc in steps_desc]
+    if None in steps:
+        raise errors.ModelNotFound(Step)
+    for step in steps:
+        step.delete(store)
+
+class StepsCollection(BaseHandler):
+    """
+    /admin/fields/step/
+    """
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def post(self, *uriargs):
+        """
+        Create a new step.
+        If a precise location is given, put it in the described location and
+        shift all the others.
+        the others.
+        """
+        # validate
+        # create a new fieldgroup
+        # create a new step
+
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def put(self, *uriargs):
+        """
+        Update the step orders.
+        """
+
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def delete(self, *uriargs):
+        """
+        Remove a step.
+        """
+        request = self.validate_message(self.request.body,
+                                         requests.adminStepDescList)
+        yield delete_steps(request)
+        self.set_status(200)
+        # XXX. not sure about what we should return in here.
+
 
 class FieldsCollection(BaseHandler):
     """

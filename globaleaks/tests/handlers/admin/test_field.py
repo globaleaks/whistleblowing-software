@@ -4,9 +4,9 @@ from __future__ import unicode_literals
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import admin
-from globaleaks.models import Field
+from globaleaks import models
 from globaleaks.rest import requests, errors
-from globaleaks.settings import transact_ro
+from globaleaks.settings import transact, transact_ro
 from globaleaks.tests import helpers
 
 
@@ -104,7 +104,7 @@ class TestAdminFieldCollection(helpers.TestHandler):
 
         @transact_ro
         def _get_children(self, store, field_id):
-            field = Field.get(store, field_id)
+            field = models.Field.get(store, field_id)
             return [child.id for child in field.children]
 
         @inlineCallbacks
@@ -156,7 +156,7 @@ class TestAdminFieldCollection(helpers.TestHandler):
             }]
             handler = self.request(good_tree, role='admin')
             yield handler.put()
-            yield self.assert_model_exists(Field, generalities_fieldgroup_id)
+            yield self.assert_model_exists(models.Field, generalities_fieldgroup_id)
             yield self.assert_is_child(sex_field_id, generalities_fieldgroup_id)
             yield self.assert_is_not_child(name_field_id,
                                            generalities_fieldgroup_id)
@@ -195,3 +195,26 @@ class TestAdminFieldCollection(helpers.TestHandler):
                 'children': [sex_field_id],
             }]
             self.assertFailure(handler.put(), errors.InvalidInputFormat)
+
+
+class TestAdminStepCollection(helpers.TestHandler):
+    _handler = admin.field.StepsCollection
+    fixtures = ['fields.json']
+
+    @transact
+    def create_step(self, store, *args, **kwargs):
+        return models.Step.new(store, *args, **kwargs)
+
+    @inlineCallbacks
+    def test_delete(self):
+        context_id = self.dummyContext['id']
+        generalities_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
+
+
+        yield self.create_step(context_id, generalities_id)
+        request = [
+            {'context_id': context_id, 'number': 1}
+        ]
+        handler = self.request(request, role='admin')
+        yield handler.delete()
+        yield self.assert_model_not_exists(models.Step, context_id, 1)

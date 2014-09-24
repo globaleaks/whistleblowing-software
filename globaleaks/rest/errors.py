@@ -451,3 +451,17 @@ class FieldIdNotFound(GLException):
     error_code = 58
     status_code = 404
     reason = "Not found a Field with the specified ID"
+
+
+class ModelNotFound(GLException):
+    """
+    Error class for a generic model
+    """
+    error_code = 59
+    status_code = 404
+
+    def __init__(self, model=None):
+        if model is None:
+            self.reason = "Model not found"
+        else:
+            self.reason = "Model of type {} has not been found".format(model)
