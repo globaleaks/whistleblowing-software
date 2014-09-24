@@ -305,11 +305,13 @@ CREATE TABLE field (
 
 CREATE TABLE step (
   context_id VARCHAR NOT NULL,
-  number INTEGER NOT NULL,
+  number INTEGER NOT NULL CHECK(number > 0),
   field_id VARCHAR NOT NULL,
   PRIMARY KEY (context_id, field_id),
   FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
   FOREIGN KEY(field_id) REFERENCES field(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
+  UNIQUE (context_id, field_id)
+  UNIQUE (context_id, number)
 );
