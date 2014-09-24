@@ -9,18 +9,16 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$http',
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     finished = false;
-    if ($scope.role != 'admin') {
-      $scope.login('admin', 'globaleaks', 'admin', function(response){
-        $scope.admin = new Admin();
-        $scope.receiver = new $scope.admin.new_receiver();
-        $scope.receiver.password = GLCrypto.randomString(20);
-        $scope.context = $scope.admin.new_context();
-        passwordWatcher($scope, 'admin.node.password');
-        changePasswordWatcher($scope, "admin.node.old_password",
-          "admin.node.password", "admin.node.check_password");
 
-      });
-    }
+    $scope.login('admin', 'globaleaks', 'admin', function(response){
+      $scope.admin = new Admin();
+      $scope.receiver = new $scope.admin.new_receiver();
+      $scope.receiver.password = GLCrypto.randomString(20);
+      $scope.context = $scope.admin.new_context();
+      passwordWatcher($scope, 'admin.node.password');
+      changePasswordWatcher($scope, "admin.node.old_password",
+        "admin.node.password", "admin.node.check_password");
+    });
 
     $scope.open_modal_allow_unencrypted = function() {
       if ($scope.admin.node.allow_unencrypted)
