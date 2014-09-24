@@ -141,11 +141,9 @@ class Model(BaseModel):
     def get(cls, store, obj_id):
         return store.find(cls, cls.id == obj_id).one()
 
+    @classmethod
     def delete(self, store):
-        obj = cls.get(store, obj_id)
-        if not obj:
-            raise ValueError('{} not found on database.'.format(obj_id))
-        store.remove(obj)
+        store.remove(self)
 
 
 class User(Model):
@@ -752,6 +750,16 @@ class Step(BaseModel):
     @classmethod
     def get(cls, store, context_id, number):
         return store.find(Step, Step.context_id == context_id, Step.number == number).one()
+
+    def delete(self, store):
+        """
+        Delete a step object, updating (if necessary) all other steps.
+        """
+        next_steps = store.find(Step, Step.context_id == self.context_id,
+                                Step.number > self.number)
+        store.remove(self)
+        for next_step in next_steps:
+            next_step.number -= 1
 
 
 class ApplicationData(Model):
