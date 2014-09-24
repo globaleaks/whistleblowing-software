@@ -437,7 +437,10 @@ adminFieldTree = [
     },
 ]
 
+
 adminStepDesc = {
-    'name'  : unicode,
-    'fields' : [ adminFieldDesc ],
+    'context_id': uuid_regexp,
+    'number': int,
 }
+
+adminStepDescList = [ adminStepDesc ]
