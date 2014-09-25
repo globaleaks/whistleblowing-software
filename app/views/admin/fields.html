@@ -1,0 +1,112 @@
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+<span data-translate>Fields Configuration</span>
+<span data-translate>Administration Interface</span>
+
+<span data-translate>Presentation Order</span> <- this has been removed by the way we
+                                          do not want to loose present translations
+
+<span data-translate>Click to edit, Drag to order</span>
+
+-->
+<div id="ContentBox" class="container">
+  <div class="row">
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+    <div class="col-md-9">
+
+      <div data-ng-controller="AdminFieldsAddCtrl">
+        <div class="row">
+          <form name="newField" novalidate>
+            <div class="addField configItem col-md-6">
+              <h4><span data-translate>Add new field</span></h4>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label data-translate>Label</label>
+                    <input class="form-control" data-ng-model="new_field_label" type="text" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <button class="pull-left btn btn-success" data-ng-disabled="newField.$invalid" data-ng-click="add_field(new_field_label)">
+                      <i class="glyphicon glyphicon-ok"></i>
+                      <span data-translate>Add</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <br /><br />
+
+        <div data-ng-show="admin.fields.length != 0">
+          <div class="row text-right">
+            <button class="btn btn-success" data-ng-click="save_all()" type="submit" >
+              <i class="glyphicon glyphicon-ok"></i>
+              <span data-translate>Save All</span>
+            </button>
+          </div>
+
+          <div data-ng-model="admin.fields">
+
+            <div class="row" data-ng-repeat="field in admin.fields | orderBy:'label'">
+              <form name="fieldForm" data-ng-controller="AdminFieldsEditorCtrl" novalidate>
+                <div class="configItem fieldItem"  data-ng-class="{'configItemLast': $last}">
+
+                  <div class="row" data-ng-click="toggleEditing()">
+                    <div class="editorHeader fieldEditorHeader">
+                      <div data-ng-show="!editing">
+                        <span class="col-md-7 pull-left editorHeaderTitle">{{ field.name }}</span>
+                        <span class="col-md-1 pull-right editorHeaderButtons">
+                          <i class="glyphicon glyphicon-th"></i>
+                        </span>
+                      </div>
+
+                      <div data-ng-show="editing">
+                        <span class="col-md-7 pull-left editorHeaderTitle">{{ field.name }}</span>
+                        <span class="col-md-3 pull-right editorHeaderButtons" data-ng-show="editing">
+                          <button class="btn btn-success saveField" data-ng-disabled="fieldForm.$pristine" data-ng-click="update(field)" type="submit" >
+                            <i class="glyphicon glyphicon-ok"></i>
+                            <span data-translate>Save</span>
+                          </button>
+
+                          <a class="btn btn-danger deleteField" data-ng-click="deleteDialog(field)">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            <span data-translate>Delete</span>
+                          </a>
+                        </span>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="editor fieldEditor" data-ng-if="editing">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label data-translate>Name</label>
+                          <input class="form-control" data-ng-maxlength="40" data-ng-model="field.name" value="{{label.name}}" type="text">
+                        </div>
+                        <div class="form-group">
+                          <label data-translate>Description</label>
+                          <div>
+                            <textarea class="form-control" data-ng-model="field.description">{{field.description}}</textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -546,6 +546,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('Contexts', ['$resource', function($resource) {
     return $resource('/contexts');
 }]).
+  factory('Fields', ['$resource', function($resource) {
+    return $resource('/fields');
+}]).
   factory('Receivers', ['$resource', function($resource) {
     return $resource('/receivers');
 }]).
@@ -768,6 +771,22 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.enable_private_messages = true;
         context.presentation_order = 0;
         return context;
+      };
+
+      self.new_field = function () {
+        var field = new adminFieldsResource;
+        field.label = '',
+        field.description = '',
+        field.hint = '',
+        field.multi_entry = false;
+        field.type = 'checkbox';
+        field.options = '{}';
+        field.required = false;
+        field.preview = false;
+        field.stats_enabled = false;
+        field.x = 0;
+        field.y = 0;
+        return field;
       };
 
       self.new_receiver = function () {
