@@ -107,7 +107,6 @@ def authenticated(role):
                 log.debug("Authentication OK (%s)" % cls.current_user.user_role )
                 return method_handler(cls, *args, **kwargs)
 
-            # else, if role != cls.current_user.user_role
             error = "Good login in wrong scope: you %s, expected %s" % \
                     (cls.current_user.user_role, role)
 

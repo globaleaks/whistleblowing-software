@@ -15,7 +15,6 @@ class TempObj(components.Componentized):
     _reactor = reactor
     _expireCall = None
 
-
     def __init__(self, parent, id, timeout, reactor=None):
         """
         Initialize the temporary object with its expiring timeout.
@@ -33,6 +32,7 @@ class TempObj(components.Componentized):
         self.timeout = timeout
 
         self.expireCallbacks = []
+        self.touch()
 
         self._expireCall = self._reactor.callLater(
             self.timeout, self.expire)
