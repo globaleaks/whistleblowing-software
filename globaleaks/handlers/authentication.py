@@ -22,6 +22,7 @@ from globaleaks.third_party import rstr
 reactor = None
 
 class GLSession(tempobj.TempObj):
+
     def __init__(self, user_id, user_role):
         self.user_role = user_role
         self.user_id = user_id
@@ -30,6 +31,11 @@ class GLSession(tempobj.TempObj):
                                  rstr.xeger(r'[A-Za-z0-9]{42}'),
                                  GLSetting.defaults.lifetimes[user_role],
                                  reactor)
+
+    def __repr__(self):
+        session_string = "%s %s expire in %s" % \
+                         (self.user_role, self.user_id, self._expireCall)
+        return session_string
 
 def random_login_delay():
     """
@@ -64,18 +70,19 @@ def random_login_delay():
 
 def update_session(user):
     """
-    Returns True if the session is still valid, False instead.
-    Timed out sessions are destroyed.
+    Returns
+            False if no session is found
+            True if the session is active and update the session
+                via utils/tempobj.TempObj.touch()
     """
 
-    # a get in a temporary object automagically perform the update
-    session_info = GLSetting.sessions.get(user.id, None)
+    session_obj = GLSetting.sessions.get(user.id, None)
 
-    if session_info:
-        session_info.touch()
-        return True
-    else:
+    if not session_obj:
         return False
+
+    session_obj.touch()
+    return True
 
 
 def authenticated(role):
@@ -96,25 +103,11 @@ def authenticated(role):
             if not cls.current_user:
                 raise errors.NotAuthenticated
 
-            # we need to copy the role as after update_session it may no exist anymore
-            copy_role = cls.current_user.user_role
-
-            if not update_session(cls.current_user):
-                if copy_role == 'admin':
-                    raise errors.AdminSessionExpired()
-                elif copy_role == 'wb':
-                    raise errors.WBSessionExpired()
-                elif copy_role == 'receiver':
-                    raise errors.ReceiverSessionExpired()
-                else:
-                    raise AssertionError("Developer mistake: %s" % cls.current_user)
-
             if role == '*' or role == cls.current_user.user_role:
                 log.debug("Authentication OK (%s)" % cls.current_user.user_role )
                 return method_handler(cls, *args, **kwargs)
 
             # else, if role != cls.current_user.user_role
-
             error = "Good login in wrong scope: you %s, expected %s" % \
                     (cls.current_user.user_role, role)
 
