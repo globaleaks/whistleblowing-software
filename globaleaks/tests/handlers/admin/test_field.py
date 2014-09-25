@@ -9,29 +9,30 @@ from globaleaks.rest import requests, errors
 from globaleaks.settings import transact, transact_ro
 from globaleaks.tests import helpers
 
+sample_field = {
+        'label': '{"en": "test label"}',
+        'description': '{"en": "test description"}',
+        'hint': '{"en": "test hint"}',
+        'multi_entry': False,
+        'type': 'checkbox',
+        'options': {},
+        'required': False,
+        'preview': False,
+        'stats_enabled': True,
+        'x': 0,
+        'y': 0
+}
+
 
 class TestAdminFieldInstance(helpers.TestHandler):
         _handler = admin.field.FieldInstance
-        sample_request = {
-            'label': '{"en": "test label"}',
-            'description': '{"en": "test description"}',
-            'hint': '{"en": "test hint"}',
-            'multi_entry': False,
-            'type': 'checkbox',
-            'options': {},
-            'required': False,
-            'preview': False,
-            'stats_enabled': True,
-            'x': 0,
-            'y': 0
-        }
 
         @inlineCallbacks
         def test_get(self):
             """
             Create a new field, the get it back using the receieved id.
             """
-            handler = self.request(self.sample_request, role='admin')
+            handler = self.request(sample_field, role='admin')
             yield handler.post()
             self.assertEqual(len(self.responses), 1)
             self.assertIn('id', self.responses[0])
@@ -42,50 +43,36 @@ class TestAdminFieldInstance(helpers.TestHandler):
             self.assertEqual(field_id, self.responses[1]['id'])
 
         @inlineCallbacks
-        def test_post(self):
-            """
-            Attempt to create a new field via a post request.
-            """
-            handler = self.request(self.sample_request, role='admin')
-            yield handler.post()
-            self.assertEqual(len(self.responses), 1)
-
-            resp, = self.responses
-            self.assertIn('id', resp)
-            self.assertNotEqual(resp.get('options'), None)
-
-        @inlineCallbacks
         def test_put(self):
             """
             Attempt to update a field, changing its type via a put request.
             """
-            handler = self.request(self.sample_request, role='admin')
+            handler = self.request(sample_field, role='admin')
             yield handler.post()
             self.assertEqual(len(self.responses), 1)
             field_id = self.responses[0].get('id')
             self.assertIsNotNone(field_id)
 
-            updated_sample_request = self.sample_request
-            updated_sample_request.update(type='inputbox')
-            handler = self.request(updated_sample_request, role='admin')
+            updated_sample_field = sample_field
+            updated_sample_field.update(type='inputbox')
+            handler = self.request(updated_sample_field, role='admin')
             yield handler.put(field_id)
             self.assertEqual(len(self.responses), 2)
             self.assertNotEqual(self.responses[0], self.responses[1])
             self.assertEqual(field_id, self.responses[1]['id'])
             self.assertEqual(self.responses[1]['type'], 'inputbox')
 
-            wrong_sample_request = self.sample_request
-            wrong_sample_request.update(type='nonexistingfieldtype')
-            handler = self.request(wrong_sample_request, role='admin')
+            wrong_sample_field = sample_field
+            wrong_sample_field.update(type='nonexistingfieldtype')
+            handler = self.request(wrong_sample_field, role='admin')
             self.assertFailure(handler.put(field_id), errors.InvalidInputFormat)
-
 
         @inlineCallbacks
         def test_delete(self):
             """
             Create a new field, then attempt to delete it.
             """
-            handler = self.request(self.sample_request, role='admin')
+            handler = self.request(sample_field, role='admin')
             yield handler.post()
             self.assertEqual(len(self.responses), 1)
             field_id = self.responses[0].get('id')
@@ -138,6 +125,19 @@ class TestAdminFieldCollection(helpers.TestHandler):
             for field in fields:
                 for child in field['children']:
                     self.assertIn(child, ids)
+
+        @inlineCallbacks
+        def test_post(self):
+            """
+            Attempt to create a new field via a post request.
+            """
+            handler = self.request(sample_field, role='admin')
+            yield handler.post()
+            self.assertEqual(len(self.responses), 1)
+
+            resp, = self.responses
+            self.assertIn('id', resp)
+            self.assertNotEqual(resp.get('options'), None)
 
         @inlineCallbacks
         def test_put(self):
