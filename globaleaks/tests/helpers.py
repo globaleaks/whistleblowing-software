@@ -586,6 +586,8 @@ class MockDict():
             'footer': u'check it out https://www.youtube.com/franksentus ;)',
             'subtitle': u'https://twitter.com/TheHackersNews/status/410457372042092544/photo/1',
             'terms_and_conditions': u'',
+            'security_awareness_title': u'',
+            'security_awareness_text': u'',
             'hidden_service':  u"http://1234567890123456.onion",
             'public_site':  u"https://globaleaks.org",
             'email':  u"email@dummy.net",
@@ -619,6 +621,7 @@ class MockDict():
             'wizard_done': False,
             'custom_homepage': False,
             'disable_privacy_badge': False,
+            'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
         }
 

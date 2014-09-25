@@ -18,7 +18,6 @@ class TestInfoCollection(helpers.TestHandler):
 
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
-        self.assertEqual(len(self.responses[0]), 34)
         self._handler.validate_message(json.dumps(self.responses[0]), requests.anonNodeDesc)
 
 
@@ -48,7 +47,6 @@ class TestAhmiaDescriptionHandler(helpers.TestHandler):
         yield handler.get()
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
-        self.assertEqual(len(self.responses[0]), 7)
         self._handler.validate_message(json.dumps(self.responses[0]), requests.ahmiaDesc)
 
 
@@ -62,7 +60,6 @@ class TestContextsCollection(helpers.TestHandler):
 
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
-        self.assertEqual(len(self.responses[0]), 1)
         self._handler.validate_message(json.dumps(self.responses[0]), requests.nodeContextCollection)
 
 
@@ -76,5 +73,4 @@ class TestReceiversCollection(helpers.TestHandler):
 
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
-        self.assertEqual(len(self.responses[0]), 2)
         self._handler.validate_message(json.dumps(self.responses[0]), requests.nodeReceiverCollection)
