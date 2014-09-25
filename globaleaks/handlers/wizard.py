@@ -77,14 +77,17 @@ def admin_update_appdata(store, loaded_appdata):
             log.debug("Failed Fields initialization %s" % excep)
             raise excep
 
-        if 'node_presentation' in loaded_appdata:
-            node.presentation = loaded_appdata['node_presentation']
+        if 'presentation' in loaded_appdata['node']:
+            node.presentation = loaded_appdata['node']['presentation']
 
-        if 'node_footer' in loaded_appdata:
-            node.footer = loaded_appdata['node_footer']
+        if 'footer' in loaded_appdata['node']:
+            node.footer = loaded_appdata['node']['footer']
 
-        if 'node_subtitle' in loaded_appdata:
-            node.subtitle = loaded_appdata['node_subtitle']
+        if 'subtitle' in loaded_appdata['node']:
+            node.subtitle = loaded_appdata['node']['subtitle']
+
+        if 'terms_and_contitions' in loaded_appdata['node']:
+            node.terms_and_conditions = loaded_appdata['node']['terms_and_conditions']
 
     else:
         log.err("NOT updating the Application Data Fields current %d proposed %d" %
@@ -102,6 +105,9 @@ def wizard(store, request, language=GLSetting.memory_copy.default_language):
     receiver = request['receiver']
     context = request['context']
     node = request['node']
+
+    node['default_language'] = language
+    node['languages_enabled'] = [ language ]
 
     try:
         context_dict = db_create_context(store, context, language)

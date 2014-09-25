@@ -238,18 +238,23 @@ class Context(Model):
     require_file_description = Bool()
     delete_consensus_percentage = Int()
     require_pgp = Bool()
+    show_small_cards = Bool()
+    show_receivers = Bool()
+    enable_private_messages = Bool()
+
+
     presentation_order = Int()
 
     unicode_keys = []
     localized_strings = ['name', 'description',
-                         'receiver_introduction', 'fields_introduction']
-    int_keys = ['escalation_threshold', 'tip_max_access', 'file_max_download',
-                'maximum_selectable_receivers', 'delete_consensus_percentage',
-                'presentation_order']
-    bool_keys = ['selectable_receiver', 'file_required',
-                 'select_all_receivers', 'postpone_superpower',
-                 'can_delete_submission', 'require_file_description',
-                 'require_pgp', 'show_small_cards', 'show_receivers']
+                         'receiver_introduction', 'fields_introduction' ]
+    int_keys = [ 'escalation_threshold', 'tip_max_access', 'file_max_download',
+                 'maximum_selectable_receivers', 'delete_consensus_percentage',
+                 'presentation_order' ]
+    bool_keys = [ 'selectable_receiver', 'file_required', 'select_all_receivers',
+                  'postpone_superpower', 'can_delete_submission',
+                  'require_file_description', 'require_pgp',
+                  'show_small_cards', 'show_receivers', "enable_private_messages" ]
 
 
 class InternalTip(Model):
@@ -459,6 +464,8 @@ class Node(Model):
     footer = Pickle(validator=longlocal_v)
     subtitle = Pickle(validator=longlocal_v)
     terms_and_conditions = Pickle(validator=longlocal_v)
+    security_awareness_title = Pickle(validator=longlocal_v)
+    security_awareness_text = Pickle(validator=longlocal_v)
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -473,30 +480,38 @@ class Node(Model):
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
     allow_unencrypted = Bool()
+    x_frame_options_mode = Unicode()
+    x_frame_options_allow_from = Unicode()
 
     # privileges configurable in node/context/receiver
     postpone_superpower = Bool()
     can_delete_submission = Bool()
+
     ahmia = Bool()
     wizard_done = Bool(default=False)
     anomaly_checks = Bool(default=False)
 
+    disable_privacy_badge = Bool(default=False)
+    disable_security_awareness_badge = Bool(default=False)
+    disable_security_awareness_questions = Bool(default=False)
+
+
     exception_email = Unicode()
 
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
-                    'exception_email', 'default_language', 'receipt_regexp']
-    int_keys = ['stats_update_time', 'maximum_namesize',
-                'maximum_textsize', 'maximum_filesize']
-    bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
-                 'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',
-                 'can_delete_submission', 'ahmia', 'allow_unencrypted']
-    # wizard_done is not checked because it's set by the backend
-    localized_strings = [
-        'description',
-        'presentation',
-        'footer',
-        'subtitle',
-        'terms_and_conditions']
+                    'exception_email', 'default_language', 'receipt_regexp',
+                    'x_frame_options_mode', 'x_frame_options_allow_from' ]
+    int_keys = [ 'stats_update_time', 'maximum_namesize',
+                 'maximum_textsize', 'maximum_filesize' ]
+    bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
+                  'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',
+                  'can_delete_submission', 'ahmia', 'allow_unencrypted',
+                  'disable_privacy_badge', 'disable_security_awareness_badge',
+                  'disable_security_awareness_questions' ]
+                # wizard_done is not checked because it's set by the backend
+    localized_strings = [ 'description', 'presentation', 'footer', 'subtitle',
+                          'terms_and_conditions', 'security_awareness_title',
+                          'security_awareness_text' ]
 
 
 class Notification(Model):

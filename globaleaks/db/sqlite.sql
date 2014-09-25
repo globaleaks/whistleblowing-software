@@ -67,6 +67,7 @@ CREATE TABLE context (
     require_pgp INTEGER NOT NULL,
     show_small_cards INTEGER NOT NULL,
     show_receivers INTEGER NOT NULL,
+    enable_private_messages INTEGER NOT NULL,
     presentation_order INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
@@ -128,6 +129,8 @@ CREATE TABLE node (
     subtitle BLOB NOT NULL,
     footer BLOB NOT NULL,
     terms_and_conditions BLOB NOT NULL,
+    security_awareness_title BLOB NOT NULL,
+    security_awareness_text BLOB NOT NULL,
     email VARCHAR NOT NULL,
     hidden_service VARCHAR NOT NULL,
     receipt_regexp VARCHAR NOT NULL,
@@ -152,6 +155,11 @@ CREATE TABLE node (
     anomaly_checks INTEGER NOT NULL,
     exception_email VARCHAR NOT NULL,
     allow_unencrypted INTEGER NOT NULL,
+    x_frame_options_mode VARCHAR NOT NULL,
+    x_frame_options_allow_from VARCHAR,
+    disable_privacy_badge INTEGER NOT NULL,
+    disable_security_awareness_badge INTEGER NOT NULL,
+    disable_security_awareness_questions INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 
