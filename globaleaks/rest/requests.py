@@ -451,3 +451,8 @@ adminStepDeleteList = [
         'number': int,
     }
 ]
+
+adminStepUpdate = {
+    'context_id': uuid_regexp,
+    'fields': [ int ],
+}

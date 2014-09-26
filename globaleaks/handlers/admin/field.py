@@ -192,6 +192,27 @@ def create_step(store, request, context_id, number, language):
     return admin_serialize_step(step, language)
 
 @transact
+def update_steps(store, request):
+    """
+    Rearrange a colleciton of steps, given their field_id, number, and a new
+    ordering.
+    """
+    context = models.Context.get(store, request['context_id'])
+    if context is None:
+        raise errors.ModelNotFound(models.Context)
+    steps = store.find(models.Step, Step.context == context)
+    fields = [models.Field.get(store, field_id)
+              for field_id in request['fields']]
+    # assert that fields exist, and that they are just as before
+    if None in fields:
+        raise errors.InvalidInputFormat('fields')
+    if set(fields) != set(step.field.id for step in steps):
+        raise errors.InvalidInputFormat('fields')
+    steps.remove()
+    for number, field_id in enumerate(request['fields']):
+        Step.new(context_id, field_id, number)
+
+@transact
 def delete_steps(store, steps_desc):
     """
     Remove a collection of steps, given their context_id and number.
@@ -247,6 +268,10 @@ class StepsCollection(BaseHandler):
         """
         Update the step orders.
         """
+        request = self.validate_message(self.request.body,
+                                        requests.adminStepUpdate)
+        yield update_steps(request)
+        self.set_status(202)
 
     @transport_security_check('admin')
     @authenticated('admin')
