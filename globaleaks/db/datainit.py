@@ -66,8 +66,17 @@ def initialize_node(store, results, only_node, templates, appdata):
     new_appdata.version = appdata['version']
     store.add(new_appdata)
 
-    for k in appdata['node']:
-        setattr(node, k, appdata['node'][k])
+    if 'node_presentation' in appdata:
+        node.presentation = appdata['node_presentation']
+
+    if 'node_footer' in appdata:
+        node.footer = appdata['node_footer']
+
+    if 'node_subtitle' in appdata:
+        node.subtitle = appdata['node_subtitle']
+
+    if 'node_terms_and_conditions' in appdata:
+        node.terms_and_conditions = appdata['node_terms_and_conditions']
 
     node.languages_enabled = GLSetting.defaults.languages_enabled
 
@@ -111,19 +120,42 @@ def initialize_node(store, results, only_node, templates, appdata):
 
     # Those fields are sets as default in order to show to the Admin the various
     # 'variables' used in the template.
+    notification.encrypted_tip_template = { GLSetting.memory_copy.default_language:
+                                            templates['encrypted_tip'] }
+    notification.encrypted_tip_mail_title = { GLSetting.memory_copy.default_language:
+                                              "[Tip %TipNum%] for %ReceiverName% in %ContextName%: new Tip (Encrypted)" }
 
-    for k in appdata['templates']:
+    notification.plaintext_tip_template= { GLSetting.memory_copy.default_language:
+                                           templates['plaintext_tip'] }
+    notification.plaintext_tip_mail_title = { GLSetting.memory_copy.default_language:
+                                              "[Tip %TipNum%] for %ReceiverName% in %ContextName%: new ClearText" }
 
-        # Todo handle pgp_expiration_alert and pgp_expiration_notice already included in GLClient/app/data/txt
-        # and internationalized with right support on backend db.
-        if k in ['pgp_expiration_alert', 'pgp_expiration_notice']:
-            continue
+    notification.encrypted_message_template = { GLSetting.memory_copy.default_language: templates['encrypted_message'] }
+    notification.encrypted_message_mail_title = { GLSetting.memory_copy.default_language:
+                                                  "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New message (Encrypted)" }
 
-        if k in appdata['templates']:
-            setattr(notification, k, appdata['templates'][k])
+    notification.plaintext_message_template = { GLSetting.memory_copy.default_language: templates['plaintext_message'] }
+    notification.plaintext_message_mail_title = { GLSetting.memory_copy.default_language:
+                                                  "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New message" }
 
-    # Todo handle pgp_expiration_alert and pgp_expiration_notice already included in GLClient/app/data/txt
-    # and internationalized with right support on backend db.
+    notification.encrypted_file_template = { GLSetting.memory_copy.default_language: templates['encrypted_file'] }
+    notification.encrypted_file_mail_title = { GLSetting.memory_copy.default_language:
+                                               "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File attached (Encrypted)" }
+
+    notification.plaintext_file_template = { GLSetting.memory_copy.default_language: templates['plaintext_file'] }
+    notification.plaintext_file_mail_title = { GLSetting.memory_copy.default_language:
+                                               "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File attached" }
+
+    notification.encrypted_comment_template = { GLSetting.memory_copy.default_language: templates['encrypted_comment'] }
+    notification.encrypted_comment_mail_title = { GLSetting.memory_copy.default_language:
+                                                  "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New comment (Encrypted)" }
+
+    notification.plaintext_comment_template = { GLSetting.memory_copy.default_language: templates['plaintext_comment'] }
+    notification.plaintext_comment_mail_title = { GLSetting.memory_copy.default_language:
+                                                  "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New comment" }
+
+    notification.zip_description = { GLSetting.memory_copy.default_language:
+                                     templates['zip_collection'] }
 
     store.add(notification)
 
@@ -147,9 +179,6 @@ def import_memory_variables(store):
 
         GLSetting.memory_copy.anomaly_checks = node.anomaly_checks
         GLSetting.memory_copy.allow_unencrypted = node.allow_unencrypted
-
-        GLSetting.memory_copy.x_frame_options_mode = node.x_frame_options_mode
-        GLSetting.memory_copy.x_frame_options_allow_from = node.x_frame_options_allow_from
 
         GLSetting.memory_copy.exception_email = node.exception_email
         GLSetting.memory_copy.default_language = node.default_language

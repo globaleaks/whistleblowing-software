@@ -1,20 +1,14 @@
-globaleaks (2.60.14) unstable; urgency=low
-
-  * GlobaLeaks 2.60.14 Release (Restored exception mailing list)
-
- -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 26 Aug 2014 01:06:00 +0002
-
 globaleaks (2.60.13) unstable; urgency=low
 
   * GlobaLeaks 2.60.13 Release (Added support for Ubuntu 14.04)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 29 Jul 2014 23:35:00 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 29 July 2014 23:35:00 +0002
 
 globaleaks (2.60.12) unstable; urgency=low
 
   * GlobaLeaks 2.60.12 Release (UI Fixes)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 08 Jul 2014 13:25:00 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 08 July 2014 13:25:00 +0002
 
 globaleaks (2.60.11) unstable; urgency=low
 

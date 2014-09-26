@@ -55,7 +55,6 @@ class TTip(helpers.TestGL):
         'require_pgp': False,
         'show_small_cards': False,
         'show_receivers': True,
-        'enable_private_messages': True,
         'presentation_order': 0,
     }
 

@@ -30,7 +30,6 @@ def wb_serialize_tip(internaltip, language=GLSetting.memory_copy.default_languag
         'pertinence' : internaltip.pertinence_counter,
         'escalation_threshold' : internaltip.escalation_threshold,
         'fields' : internaltip.wb_fields,
-        'enable_private_messages' : internaltip.context.enable_private_messages 
     }
 
     # context_name and context_description are localized field

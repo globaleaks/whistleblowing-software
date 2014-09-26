@@ -89,7 +89,7 @@ class Replacer1213(TableReplacer):
         for k, v in new_node._storm_columns.iteritems():
 
             if v.name == 'terms_and_conditions':
-                new_node.terms_and_conditions = appdata['node']['terms_and_conditions'] 
+                new_node.terms_and_conditions = appdata['node_terms_and_conditions'] 
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name))
