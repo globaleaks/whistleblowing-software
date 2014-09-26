@@ -1,4 +1,4 @@
-<div id="PrivacyBox" data-ng-controller="PrivacyBoxCtrl">
+<div id="PrivacyBox" data-ng-controller="PrivacyBoxCtrl" data-ng-show="!node.disable_privacy_badge">
   <div data-ng-mouseenter="showBox()" data-ng-mouseleave="hideBox()">
     <button data-ng-show="displayBox" type="button" class="close" data-ng-click="hideBox()">
     <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
