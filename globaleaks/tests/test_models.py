@@ -244,8 +244,6 @@ class TestModels(helpers.TestGL):
                            errors.InvalidInputFormat)
 
 
-
-
 @transact
 def create_field(store, **custom_attrs):
     attrs = {

@@ -726,7 +726,8 @@ class Step(BaseModel):
         """
         Add a new step at the given position.
 
-        :param number: the number to add
+        :param number: the number to add. If None, the step is added at the
+                       bottom, and the number is automatically calculated.
 
         :return: the shiny new step.
         :raises ValueError: if number is invalid,
@@ -749,7 +750,9 @@ class Step(BaseModel):
 
     @classmethod
     def get(cls, store, context_id, number):
-        return store.find(Step, Step.context_id == context_id, Step.number == number).one()
+        return store.find(Step,
+                          Step.context_id == context_id,
+                          Step.number == number).one()
 
     def delete(self, store):
         """

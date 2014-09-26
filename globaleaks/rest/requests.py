@@ -437,10 +437,17 @@ adminFieldTree = [
     },
 ]
 
-
 adminStepDesc = {
     'context_id': uuid_regexp,
-    'number': int,
+    'number' : int,
+    'label': unicode,
+    'description': unicode,
+    'hint': unicode,
 }
 
-adminStepDescList = [ adminStepDesc ]
+adminStepDeleteList = [
+    {
+        'context_id': uuid_regexp,
+        'number': int,
+    }
+]
