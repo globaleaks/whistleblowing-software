@@ -103,6 +103,8 @@ def authenticated(role):
             if not cls.current_user:
                 raise errors.NotAuthenticated
 
+            update_session(cls.current_user)
+
             if role == '*' or role == cls.current_user.user_role:
                 log.debug("Authentication OK (%s)" % cls.current_user.user_role )
                 return method_handler(cls, *args, **kwargs)

@@ -32,7 +32,6 @@ class TempObj(components.Componentized):
         self.timeout = timeout
 
         self.expireCallbacks = []
-        self.touch()
 
         self._expireCall = self._reactor.callLater(
             self.timeout, self.expire)
