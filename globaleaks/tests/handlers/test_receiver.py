@@ -18,7 +18,7 @@ class TestReceiverInstance(helpers.TestHandler):
         rcvrs = yield admin.get_receiver_list()
         for rcvr in rcvrs:
             handler = self.request(role='receiver')
-            handler.current_user['user_id'] = rcvr['id']
+            handler.current_user.user_id = rcvr['id']
 
             yield handler.get()
 
@@ -29,12 +29,12 @@ class TestReceiverInstance(helpers.TestHandler):
         rcvrs = yield admin.get_receiver_list()
         for rcvr in rcvrs:
             handler = self.request(role='receiver')
-            handler.current_user['user_id'] = rcvr['id']
+            handler.current_user.user_id = rcvr['id']
 
             yield handler.get()
 
             handler = self.request(self.responses[0], role='receiver')
-            handler.current_user['user_id'] = rcvr['id']
+            handler.current_user.user_id = rcvr['id']
             yield handler.put()
 
     @inlineCallbacks
@@ -44,14 +44,14 @@ class TestReceiverInstance(helpers.TestHandler):
         rcvrs = yield admin.get_receiver_list()
         for rcvr in rcvrs:
             handler = self.request(role='receiver')
-            handler.current_user['user_id'] = rcvr['id']
+            handler.current_user.user_id = rcvr['id']
 
             yield handler.get()
 
             self.responses[0]['gpg_key_remove'] = True
 
             handler = self.request(self.responses[0], role='receiver')
-            handler.current_user['user_id'] = rcvr['id']
+            handler.current_user.user_id = rcvr['id']
             yield handler.put()
 
 class TestTipsCollection(helpers.TestHandler):
