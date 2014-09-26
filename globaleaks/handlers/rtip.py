@@ -44,7 +44,6 @@ def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.
         'potential_expiration_date' : \
             datetime_to_ISO8601(utc_future_date(seconds=internaltip.context.tip_timetolive)),
         'extend' : False,
-        'enable_private_messages': internaltip.context.enable_private_messages
     }
 
     # context_name and context_description are localized field

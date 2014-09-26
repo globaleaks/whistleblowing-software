@@ -583,7 +583,6 @@ class MockDict():
             'require_pgp': False,
             'show_small_cards': False,
             'show_receivers': False,
-            'enable_private_messages': True,
             'presentation_order': 0,
         }
 
@@ -629,13 +628,9 @@ class MockDict():
             'ahmia': False,
             'anomaly_checks': False,
             'allow_unencrypted': True,
-            'x_frame_options_mode': 'deny',
-            'x_frame_options_allow_from': '',
             'configured': False,
             'wizard_done': False,
             'custom_homepage': False,
-            'disable_privacy_badge': False,
-            'disable_security_awareness_questions': False,
         }
 
         self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',

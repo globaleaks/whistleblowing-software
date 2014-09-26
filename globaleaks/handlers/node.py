@@ -55,16 +55,11 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'wizard_done': node.wizard_done,
       'anomaly_checks': node.anomaly_checks,
       'allow_unencrypted': node.allow_unencrypted,
-      'x_frame_options_mode': node.x_frame_options_mode,
-      'x_frame_options_allow_from': node.x_frame_options_allow_from,
       'receipt_regexp': node.receipt_regexp,
       'configured': True if associated else False,
       'password': u"",
       'old_password': u"",
-      'custom_homepage': custom_homepage,
-      'disable_privacy_badge': node.disable_privacy_badge,
-      'disable_security_awareness_badge': node.disable_security_awareness_badge,
-      'disable_security_awareness_questions': node.disable_security_awareness_questions
+      'custom_homepage': custom_homepage
     }
 
     mo = Rosetta()
@@ -100,7 +95,6 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         'require_pgp': context.require_pgp,
         "show_small_cards": context.show_small_cards,
         "show_receivers": context.show_receivers,
-        "enable_private_messages": context.enable_private_messages,
         "presentation_order": context.presentation_order,
                      # list is needed because .values returns a generator
         "receivers": list(context.receivers.values(models.Receiver.id)),

@@ -32,7 +32,7 @@ from storm.zope.zstorm import ZStorm
 from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
 
-from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
+from globaleaks import __version__, DATABASE_VERSION
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
@@ -162,8 +162,6 @@ class GLSettingsClass:
         # (Node, Receiver or Context) and then can be updated by
         # the admin using the Admin interface (advanced settings)
         self.defaults.allow_unencrypted = False
-        self.defaults.x_frame_options_mode = 'deny'
-        self.defaults.x_frame_options_allow_from = ''
         self.defaults.tor2web_admin = False
         self.defaults.tor2web_submission = False
         self.defaults.tor2web_receiver = False
@@ -177,7 +175,7 @@ class GLSettingsClass:
         self.defaults.receipt_regexp = u'[0-9]{16}'
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
         self.defaults.submission_seconds_of_life = (3600 * 24) * 3
-        self.defaults.languages_enabled = LANGUAGES_SUPPORTED_CODES
+        self.defaults.languages_enabled = ['en']
 
         self.memory_copy = OD()
         # Some operation, like check for maximum file, can't access
@@ -187,8 +185,6 @@ class GLSettingsClass:
         self.memory_copy.maximum_textsize = self.defaults.maximum_textsize
         self.memory_copy.maximum_namesize = self.defaults.maximum_namesize
         self.memory_copy.allow_unencrypted = self.defaults.allow_unencrypted
-        self.memory_copy.x_frame_options_mode = self.defaults.x_frame_options_mode
-        self.memory_copy.x_frame_options_allow_from = self.defaults.x_frame_options_allow_from
         self.memory_copy.tor2web_admin = self.defaults.tor2web_admin
         self.memory_copy.tor2web_submission = self.defaults.tor2web_submission
         self.memory_copy.tor2web_receiver = self.defaults.tor2web_receiver

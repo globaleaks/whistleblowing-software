@@ -72,13 +72,11 @@ def create_tables(create_node=True):
 
         only_node = {
             'name':  u"",
-            'description': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'presentation': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'footer': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'subtitle': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'terms_and_conditions': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'security_awareness_title': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'security_awareness_text': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'description':  dict({ GLSetting.memory_copy.default_language: u"" }),
+            'presentation':  dict({ GLSetting.memory_copy.default_language: u"" }),
+            'footer':  dict({ GLSetting.memory_copy.default_language: u"" }),
+            'subtitle':  dict({ GLSetting.memory_copy.default_language: u"" }),
+            'terms_and_conditions':  dict({ GLSetting.memory_copy.default_language: u"" }),
             'hidden_service':  u"",
             'public_site':  u"",
             'email':  u"",
@@ -97,14 +95,8 @@ def create_tables(create_node=True):
             'ahmia' : False, # disabled too
             'anomaly_checks' : False, # need to disabled in this stage as it need to be tuned
             'allow_unencrypted': GLSetting.memory_copy.allow_unencrypted,
-            'x_frame_options_mode': GLSetting.memory_copy.x_frame_options_mode,
-            'x_frame_options_allow_from': GLSetting.memory_copy.x_frame_options_allow_from,
             'exception_email' : GLSetting.defaults.exception_email,
             'default_language' : GLSetting.memory_copy.default_language,
-            'disable_privacy_badge': False,
-            'disable_security_awareness_badge': False,
-            'disable_security_awareness_questions': False,
-
         }
 
         templates = {}

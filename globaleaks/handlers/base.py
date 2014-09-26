@@ -223,11 +223,9 @@ class BaseHandler(RequestHandler):
         # to avoid Robots spidering, indexing, caching
         self.set_header("X-Robots-Tag", "noindex")
 
-        # to mitigate clickjaking attacks on iframes
-        if GLSetting.memory_copy.x_frame_options_mode == 'deny':
+        if not GLSetting.devel_mode:
+            # to mitigate clickjaking attacks on iframes
             self.set_header("X-Frame-Options", "deny")
-        else:
-            self.set_header("X-Frame-Options", "allow-from: " + GLSetting.memory_copy.x_frame_options_allow_from)
 
         lang = self.request.headers.get('GL-Language', None)
 
