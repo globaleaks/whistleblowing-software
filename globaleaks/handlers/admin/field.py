@@ -39,6 +39,24 @@ def admin_serialize_field(field, language):
         'children': [f.id for f in field.children],
     }
 
+def admin_serialize_step(step, language):
+    """
+    Serialize a step, localizing its content depending on the language.
+    XXX. provide i10n feature.
+
+    :param step: the step object to be serialized.
+    :param language: the language in which to localize data
+    :return: a serialization of the object
+    """
+    return {
+        'context_id': step.context.id,
+        'field_id': step.field.id,
+        'number': step.number,
+        'label': step.field.label,
+        'description': step.field.description,
+        'hint': step.field.hint,
+    }
+
 @transact
 def create_field(store, request, language):
     """
@@ -165,6 +183,15 @@ def update_fieldtree(store, tree, language):
     return resp
 
 @transact
+def create_step(store, request, context_id, number, language):
+    """
+    Add a new step to the store, then return the new serialized object.
+    """
+    field = models.Field.new(store, request)
+    step = models.Step.new(store, context_id, field.id, number)
+    return admin_serialize_step(step, language)
+
+@transact
 def delete_steps(store, steps_desc):
     """
     Remove a collection of steps, given their context_id and number.
@@ -191,11 +218,27 @@ class StepsCollection(BaseHandler):
         Create a new step.
         If a precise location is given, put it in the described location and
         shift all the others.
-        the others.
         """
-        # validate
-        # create a new fieldgroup
-        # create a new step
+        request = self.validate_message(self.request.body,
+                                        requests.adminStepDesc)
+        context_id = request.pop('context_id')
+        # XXX. dreaming of optional json parameters..
+        number = request.pop('number', None) or None
+        # XXX. models shall introduce by themselves all this data, if not provided.
+        request.update(
+            multi_entry=False,
+            type='fieldgroup',
+            options={},
+            preview=None,
+            stats_enabled=None,
+            x=0,
+            y=0,
+            required=None,
+        )
+        response = yield create_step(request, context_id, number,
+                                     self.request.language)
+        self.set_status(201)
+        self.finish(response)
 
     @transport_security_check('admin')
     @authenticated('admin')
@@ -213,7 +256,7 @@ class StepsCollection(BaseHandler):
         Remove a step.
         """
         request = self.validate_message(self.request.body,
-                                         requests.adminStepDescList)
+                                        requests.adminStepDeleteList)
         yield delete_steps(request)
         self.set_status(200)
         # XXX. not sure about what we should return in here.
@@ -252,9 +295,7 @@ class FieldsCollection(BaseHandler):
 
         request = self.validate_message(self.request.body,
                                         requests.adminFieldDesc)
-
         response = yield create_field(request, self.request.language)
-
         self.set_status(201)
         self.finish(response)
 

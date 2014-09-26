@@ -201,20 +201,51 @@ class TestAdminStepCollection(helpers.TestHandler):
     _handler = admin.field.StepsCollection
     fixtures = ['fields.json']
 
+    @property
+    def sample_step(self):
+        return {
+            'context_id': None,
+            'number': None,
+            'label': '{"en": "test label"}',
+            'description': '{"en": "test description"}',
+            'hint': '{"en": "test hint"}',
+        }
+
+    @inlineCallbacks
+    def setUp(self):
+        yield super(TestAdminStepCollection, self).setUp()
+        self.context_id = self.dummyContext['id']
+        self.generalities_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
+        self.step_id = yield self.create_step(self.context_id,
+                                              self.generalities_id)
+
     @transact
     def create_step(self, store, *args, **kwargs):
         return models.Step.new(store, *args, **kwargs)
 
     @inlineCallbacks
+    def test_post(self):
+        request = self.sample_step
+        request['context_id'] = self.context_id
+        # attempt to create a new step shall succeed
+        handler = self.request(request, role='admin')
+        yield handler.post()
+        yield self.assert_model_exists(models.Step, self.context_id, 2)
+        self.assertEqual(handler.get_status(), 201)
+        # create a new one with similar data
+        request['label'] = '{"en": "a new dummy label"}'
+        handler = self.request(request, role='admin')
+        yield handler.post()
+        self.assertEqual(handler.get_status(), 201)
+        yield self.assert_model_exists(models.Step, self.context_id, 3)
+
+
+
+    @inlineCallbacks
     def test_delete(self):
-        context_id = self.dummyContext['id']
-        generalities_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
-
-
-        yield self.create_step(context_id, generalities_id)
         request = [
-            {'context_id': context_id, 'number': 1}
+            {'context_id': self.context_id, 'number': 1}
         ]
         handler = self.request(request, role='admin')
         yield handler.delete()
-        yield self.assert_model_not_exists(models.Step, context_id, 1)
+        yield self.assert_model_not_exists(models.Step, self.context_id, 1)
