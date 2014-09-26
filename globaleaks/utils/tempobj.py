@@ -45,9 +45,15 @@ class TempObj(components.Componentized):
         """
         Expire of the object.
         """
-        del self.parent[self.id]
+
+        try:
+            del self.parent[self.id]
+        except KeyError:
+            pass
+
         for c in self.expireCallbacks:
             c()
+
         self.expireCallbacks = []
         if self._expireCall:
             if self._expireCall.active():
