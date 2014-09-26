@@ -8,9 +8,11 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.admin import db_create_context, db_create_receiver, db_update_node
+from globaleaks.handlers.admin import db_create_context, db_create_receiver, db_update_node, \
+    anon_serialize_node, get_public_context_list, get_public_receiver_list
+
 from globaleaks.rest import errors, requests
 from globaleaks.models import *
 from globaleaks.utils.utility import log
@@ -126,6 +128,7 @@ def wizard(store, request, language=GLSetting.memory_copy.default_language):
 
     try:
         db_update_node(store, node, True, language)
+
     except Exception as excep:
         log.err("Failed Node initialization %s" % excep)
         raise excep
@@ -180,6 +183,14 @@ class FirstSetup(BaseHandler):
                 requests.wizardFirstSetup)
 
         yield wizard(request, self.request.language)
+
+        # cache must be updated in particular to set wizard_done = True
+        public_node_desc = yield anon_serialize_node(self.request.language)
+        GLApiCache('node', self.request.language, public_node_desc)
+        public_contexts_list = yield get_public_context_list(self.request.language)
+        GLApiCache('contexts', self.request.language, public_contexts_list)
+        public_receivers_list = yield get_public_receiver_list(self.request.language)
+        GLApiCache('receivers', self.request.language, public_receivers_list)
 
         self.set_status(201) # Created
         self.finish()
