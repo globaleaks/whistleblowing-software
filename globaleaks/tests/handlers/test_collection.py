@@ -29,7 +29,7 @@ class TestCollectionDownload(helpers.TestHandler):
 
         for rtip_desc in rtips_desc:
             handler = self.request({}, role='receiver')
-            handler.current_user['user_id'] = rtip_desc['receiver_id']
+            handler.current_user.user_id = rtip_desc['receiver_id']
             yield handler.post(rtip_desc['rtip_id'], compression)
 
     @inlineCallbacks

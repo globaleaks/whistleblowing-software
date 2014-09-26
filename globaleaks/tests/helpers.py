@@ -2,30 +2,28 @@
 
 import json
 import os
-
 from cyclone import httpserver
 from cyclone.web import Application
-from cyclone.util import ObjectDict as OD
+from storm.twisted.testing import FakeThreadPool
+from twisted.internet import threads, defer, task
+from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 from twisted.test import proto_helpers
-from twisted.internet import threads
-from twisted.internet import defer
-from twisted.internet.defer import inlineCallbacks
-from storm.twisted.testing import FakeThreadPool
 
 from globaleaks import db, models, security
-from globaleaks.settings import GLSetting, transact, transact_ro
-from globaleaks.handlers import files, rtip, wbtip
+from globaleaks.db.datainit import opportunistic_appdata_init
+from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
-from globaleaks.jobs import delivery_sched, notification_sched, pgp_check_sched
+from globaleaks.jobs import delivery_sched, notification_sched
+from globaleaks.models import ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.plugins import notification
-from globaleaks.utils.utility import datetime_null, datetime_now, uuid4, log
+from globaleaks.settings import GLSetting, transact, transact_ro
+from globaleaks.utils.utility import datetime_null, uuid4, log
 from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
-from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.security import GLSecureTemporaryFile
+
 
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
@@ -59,6 +57,7 @@ PL4QgDcz+ocengVlXpZVcoRcLfDs5bJybyyvSMAaqUinYZBX125HSLxNCaPCMKY7
 """
 
 transact.tp = FakeThreadPool()
+authentication.reactor = task.Clock()
 
 class UTlog():
 
@@ -74,9 +73,11 @@ log.err = UTlog().err
 log.debug = UTlog().debug
 
 class TestGL(unittest.TestCase):
+
     encryption_scenario = 'MIXED' # receivers with pgp and receivers without pgp
 
     def setUp(self):
+
         GLSetting.set_devel_mode()
         GLSetting.logging = None
         GLSetting.scheduler_threadpool = FakeThreadPool()
@@ -484,15 +485,8 @@ class TestHandler(TestGLWithPopulatedDB):
         handler.check_xsrf_cookie = mock_pass
 
         if role:
-            session_id = '4tehlulz'
-            new_session = OD(
-                   refreshdate=datetime_now(),
-                   id=session_id,
-                   role=role,
-                   user_id=user_id
-            )
-            GLSetting.sessions[session_id] = new_session
-            handler.request.headers['X-Session'] = session_id
+            session = authentication.GLSession(user_id, role)
+            handler.request.headers['X-Session'] = session.id
         return handler
 
 
