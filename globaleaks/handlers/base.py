@@ -20,7 +20,7 @@ from cgi import parse_header
 from cryptography.hazmat.primitives.constant_time import bytes_eq
 
 from twisted.python.failure import Failure
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.internet import fdesc
 
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
@@ -702,3 +702,38 @@ def anomaly_check(element):
         return call_handler
 
     return wrapper
+
+
+
+
+class GLApiCache:
+
+    memory_cache_dict = {}
+
+    @classmethod
+    @inlineCallbacks
+    def get(cls, resource_name, language, function, *args, **kwargs):
+
+        if cls.memory_cache_dict.has_key(resource_name) \
+                and cls.memory_cache_dict[resource_name].has_key(language):
+            returnValue(cls.memory_cache_dict[resource_name][language])
+
+        result = yield function(*args, **kwargs)
+        GLApiCache(resource_name, language, result)
+        returnValue(result)
+
+    @classmethod
+    def invalidate(cls, resource_name):
+        """
+        When a function has an update, all the language need to be
+        invalidated, because the change is still effective
+        """
+        if cls.memory_cache_dict.has_key(resource_name):
+            cls.memory_cache_dict[resource_name] = {}
+
+    def __init__(self, resource_name, language, answer):
+
+        if not GLApiCache.memory_cache_dict.has_key(resource_name):
+            GLApiCache.memory_cache_dict.update({resource_name : {}})
+
+        GLApiCache.memory_cache_dict[resource_name].update({language: answer})
