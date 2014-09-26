@@ -239,7 +239,13 @@ class TestAdminStepCollection(helpers.TestHandler):
         self.assertEqual(handler.get_status(), 201)
         yield self.assert_model_exists(models.Step, self.context_id, 3)
 
-
+    def test_put(self):
+        empty_request = {
+            'context_id': self.context_id,
+            'fields': []
+        }
+        handler = self.request(empty_request, role='admin')
+        self.assertFailure(handler.put(), errors.InvalidInputFormat)
 
     @inlineCallbacks
     def test_delete(self):
