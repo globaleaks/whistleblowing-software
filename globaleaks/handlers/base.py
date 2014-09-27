@@ -703,9 +703,6 @@ def anomaly_check(element):
 
     return wrapper
 
-
-
-
 class GLApiCache:
 
     memory_cache_dict = {}
@@ -713,27 +710,38 @@ class GLApiCache:
     @classmethod
     @inlineCallbacks
     def get(cls, resource_name, language, function, *args, **kwargs):
+        try:
+            if resource_name in cls.memory_cache_dict \
+                    and language in cls.memory_cache_dict[resource_name]:
+                returnValue(cls.memory_cache_dict[resource_name][language])
 
-        if cls.memory_cache_dict.has_key(resource_name) \
-                and cls.memory_cache_dict[resource_name].has_key(language):
-            returnValue(cls.memory_cache_dict[resource_name][language])
-
-        result = yield function(*args, **kwargs)
-        GLApiCache(resource_name, language, result)
-        returnValue(result)
+            value = yield function(*args, **kwargs)
+            if resource_name not in cls.memory_cache_dict:
+               cls.memory_cache_dict[resource_name] = {}
+            cls.memory_cache_dict[resource_name][language] = value
+            returnValue(value)
+        except KeyError:
+            log.debug("KeyError exception while operating on the cache; probable race")
+            returnValue(None)
 
     @classmethod
-    def invalidate(cls, resource_name):
+    def set(cls, resource_name, language, value):
+        try:
+            if resource_name not in GLApiCache.memory_cache_dict:
+                cls.memory_cache_dict[resource_name] = {}
+
+            cls.memory_cache_dict[resource_name][language] = value
+        except KeyError:
+            log.debug("KeyError exception while operating on the cache; probable race")
+            returnValue(None)
+
+    @classmethod
+    def invalidate(cls, resource_name = None):
         """
         When a function has an update, all the language need to be
         invalidated, because the change is still effective
         """
-        if cls.memory_cache_dict.has_key(resource_name):
-            cls.memory_cache_dict[resource_name] = {}
-
-    def __init__(self, resource_name, language, answer):
-
-        if not GLApiCache.memory_cache_dict.has_key(resource_name):
-            GLApiCache.memory_cache_dict.update({resource_name : {}})
-
-        GLApiCache.memory_cache_dict[resource_name].update({language: answer})
+        if resource_name is None:
+            cls.memory_cache_dict = {}
+        else:
+            cls.memory_cache_dict.pop(resource_name, None)

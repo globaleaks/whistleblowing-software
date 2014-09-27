@@ -13,6 +13,7 @@ from twisted.test import proto_helpers
 from globaleaks import db, models, security
 from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.handlers import files, rtip, wbtip, authentication
+from globaleaks.handlers.base import GLApiCache
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
 from globaleaks.jobs import delivery_sched, notification_sched
@@ -417,6 +418,8 @@ class TestHandler(TestGLWithPopulatedDB):
         # we need to reset settings.session to keep each test independent
         GLSetting.sessions = dict()
 
+        # we need to reset GLApiCache to keep each test independent
+        GLApiCache.invalidate()
 
     def request(self, jbody=None, role=None, user_id=None, headers=None, body='',
                 remote_ip='0.0.0.0', method='MOCK', kwargs={}):
