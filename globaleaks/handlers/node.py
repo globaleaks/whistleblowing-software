@@ -7,6 +7,8 @@
 
 import os
 
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.utils.utility import datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.settings import transact_ro, GLSetting, stats_counter
@@ -22,9 +24,12 @@ def anon_serialize_ahmia(store, language=GLSetting.memory_copy.default_language)
     """
     node = store.find(models.Node).one()
 
+    mo = Rosetta()
+    mo.acquire_storm_object(node)
+
     ahmia_description = {
         "title": node.name,
-        "description": node.description,
+        "description": mo.dump_translated('description', language),
 
         # TODO support tags/keyword in Node.
         "keywords": "%s (GlobaLeaks instance)" % node.name,
@@ -37,6 +42,7 @@ def anon_serialize_ahmia(store, language=GLSetting.memory_copy.default_language)
         "contactInformation": u'',
         "type": "GlobaLeaks"
     }
+
     return ahmia_description
 
 @transact_ro
@@ -123,6 +129,7 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         'require_pgp': context.require_pgp,
         "show_small_cards": context.show_small_cards,
         "show_receivers": context.show_receivers,
+        "enable_private_messages": context.enable_private_messages,
         "presentation_order": context.presentation_order,
                      # list is needed because .values returns a generator
         "receivers": list(context.receivers.values(models.Receiver.id)),
@@ -177,6 +184,7 @@ class InfoCollection(BaseHandler):
 
     @transport_security_check("unauth")
     @unauthenticated
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -199,16 +207,22 @@ class AhmiaDescriptionHandler(BaseHandler):
 
     @transport_security_check("unauth")
     @unauthenticated
+    @inlineCallbacks
     def get(self, *uriargs):
 
         stats_counter('anon_requests')
 
-        if not GLSetting.memory_copy.ahmia_description:
+        node_info = yield GLApiCache.get('node', self.request.language,
+                                         anon_serialize_node, self.request.language)
+
+        if node_info['ahmia']:
+            ret = yield GLApiCache.get('ahmia', self.request.language,
+                                   anon_serialize_ahmia, self.request.language)
+
+            self.finish(ret)
+        else: # in case of disabled option we return 404
             self.set_status(404)
             self.finish()
-        else:
-            GLApiCache.get('ahmia', self.request.language,
-                              anon_serialize_ahmia, self.request.language)
 
 
 @transact_ro
@@ -233,6 +247,7 @@ class ContextsCollection(BaseHandler):
     """
     @transport_security_check("unauth")
     @unauthenticated
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -266,6 +281,7 @@ class ReceiversCollection(BaseHandler):
 
     @transport_security_check("unauth")
     @unauthenticated
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None

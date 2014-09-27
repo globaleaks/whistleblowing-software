@@ -760,7 +760,7 @@ class NodeInstance(BaseHandler):
         # update 'node' cache calling the 'public' side of /node
         public_node_desc = yield anon_serialize_node(self.request.language)
         GLApiCache.invalidate('node')
-        GLApiCache('node', self.request.language, public_node_desc)
+        GLApiCache.set('node', self.request.language, public_node_desc)
 
         self.set_status(202) # Updated
         self.finish(node_description)
@@ -801,7 +801,7 @@ class ContextsCollection(BaseHandler):
         # get the updated list of contexts, and update the cache
         public_contexts_list = yield get_public_context_list(self.request.language)
         GLApiCache.invalidate('contexts')
-        GLApiCache('contexts', self.request.language, public_contexts_list)
+        GLApiCache.set('contexts', self.request.language, public_contexts_list)
 
         self.set_status(201) # Created
         self.finish(response)
@@ -843,7 +843,7 @@ class ContextInstance(BaseHandler):
         # get the updated list of contexts, and update the cache
         public_contexts_list = yield get_public_context_list(self.request.language)
         GLApiCache.invalidate('contexts')
-        GLApiCache('contexts', self.request.language, public_contexts_list)
+        GLApiCache.set('contexts', self.request.language, public_contexts_list)
 
         self.set_status(202) # Updated
         self.finish(response)
@@ -862,7 +862,7 @@ class ContextInstance(BaseHandler):
         # get the updated list of contexts, and update the cache
         public_contexts_list = yield get_public_context_list(self.request.language)
         GLApiCache.invalidate('contexts')
-        GLApiCache('contexts', self.request.language, public_contexts_list)
+        GLApiCache.set('contexts', self.request.language, public_contexts_list)
 
         self.set_status(200) # Ok and return no content
         self.finish()
@@ -907,7 +907,7 @@ class ReceiversCollection(BaseHandler):
         # get the updated list of receivers, and update the cache
         public_receivers_list = yield get_public_receiver_list(self.request.language)
         GLApiCache.invalidate('receivers')
-        GLApiCache('receivers', self.request.language, public_receivers_list)
+        GLApiCache.set('receivers', self.request.language, public_receivers_list)
 
         self.set_status(201) # Created
         self.finish(response)
@@ -956,7 +956,7 @@ class ReceiverInstance(BaseHandler):
         # get the updated list of receivers, and update the cache
         public_receivers_list = yield get_public_receiver_list(self.request.language)
         GLApiCache.invalidate('receivers')
-        GLApiCache('receivers', self.request.language, public_receivers_list)
+        GLApiCache.set('receivers', self.request.language, public_receivers_list)
 
         self.set_status(201)
         self.finish(response)
@@ -976,7 +976,7 @@ class ReceiverInstance(BaseHandler):
         # get the updated list of receivers, and update the cache
         public_receivers_list = yield get_public_receiver_list(self.request.language)
         GLApiCache.invalidate('receivers')
-        GLApiCache('receivers', self.request.language, public_receivers_list)
+        GLApiCache.set('receivers', self.request.language, public_receivers_list)
 
         self.set_status(200) # OK and return not content
         self.finish()

@@ -30,6 +30,7 @@ class TestAhmiaDescriptionHandler(helpers.TestHandler):
 
         nodedict = helpers.MockDict().dummyNode
         nodedict['ahmia'] = False
+
         yield admin.update_node(nodedict)
 
         yield handler.get()
