@@ -340,6 +340,8 @@ class TestField(helpers.TestGL):
 
 
 class TestStep(helpers.TestGL):
+    skip = ('"test_gl_with_populated_db.json" must be updated'
+            'in order to run this test.')
     fixtures = ['fields.json', 'test_gl_with_populated_db.json']
 
     @inlineCallbacks
