@@ -9,12 +9,41 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.utils.utility import log, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.settings import transact_ro, GLSetting, stats_counter
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks import models, LANGUAGES_SUPPORTED
+
+
+@transact_ro
+def anon_serialize_ahmia(store, language=GLSetting.memory_copy.default_language):
+    """
+    Request reaches only if ahmia is enabled
+    """
+    node = store.find(models.Node).one()
+
+    mo = Rosetta()
+    mo.acquire_storm_object(node)
+
+    ahmia_description = {
+        "title": node.name,
+        "description": mo.dump_translated('description', language),
+
+        # TODO support tags/keyword in Node.
+        "keywords": "%s (GlobaLeaks instance)" % node.name,
+        "relation": node.public_site,
+
+        # TODO ask Ahmia to support a list of languages
+        "language": node.default_language,
+
+        # TODO say to the admin that its email will be public
+        "contactInformation": u'',
+        "type": "GlobaLeaks"
+    }
+
+    return ahmia_description
 
 @transact_ro
 def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
@@ -163,8 +192,9 @@ class InfoCollection(BaseHandler):
         Errors: NodeNotFound
         """
         stats_counter('anon_requests')
-        response = yield anon_serialize_node(self.request.language)
-        self.finish(response)
+        ret = yield GLApiCache.get('node', self.request.language,
+                                   anon_serialize_node, self.request.language)
+        self.finish(ret)
 
 
 class AhmiaDescriptionHandler(BaseHandler):
@@ -180,27 +210,19 @@ class AhmiaDescriptionHandler(BaseHandler):
     @inlineCallbacks
     def get(self, *uriargs):
 
-        log.debug("Requested Ahmia description file")
-        node_info = yield anon_serialize_node(self.request.language)
+        stats_counter('anon_requests')
+
+        node_info = yield GLApiCache.get('node', self.request.language,
+                                         anon_serialize_node, self.request.language)
 
         if node_info['ahmia']:
+            ret = yield GLApiCache.get('ahmia', self.request.language,
+                                   anon_serialize_ahmia, self.request.language)
 
-            ahmia_description = {
-                "title": node_info['name'],
-                "description": node_info['description'],
-                # we've not yet keywords, need to add them in Node ?
-                "keywords": "%s (GlobaLeaks instance)" % node_info['name'],
-                "relation": node_info['public_site'],
-                "language": node_info['default_language'],
-                "contactInformation": u'', # we've removed Node.email_addr
-                "type": "GlobaLeaks"
-            }
-
-            self.finish(ahmia_description)
-
+            self.finish(ret)
         else: # in case of disabled option we return 404
-
             self.set_status(404)
+            self.finish()
 
 
 @transact_ro
@@ -232,9 +254,12 @@ class ContextsCollection(BaseHandler):
         Response: publicContextList
         Errors: None
         """
+
         stats_counter('anon_requests')
-        response = yield get_public_context_list(self.request.language)
-        self.finish(response)
+        ret = yield GLApiCache.get('contexts', self.request.language,
+                                   get_public_context_list, self.request.language)
+        self.finish(ret)
+
 
 @transact_ro
 def get_public_receiver_list(store, default_lang):
@@ -263,6 +288,8 @@ class ReceiversCollection(BaseHandler):
         Response: publicReceiverList
         Errors: None
         """
+
         stats_counter('anon_requests')
-        response = yield get_public_receiver_list(self.request.language)
-        self.finish(response)
+        ret = yield GLApiCache.get('receivers', self.request.language,
+                                   get_public_receiver_list, self.request.language)
+        self.finish(ret)
