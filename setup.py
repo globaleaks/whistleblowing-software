@@ -7,7 +7,7 @@ import shutil
 import hashlib
 import urllib2
 from zipfile import ZipFile
-from distutils.core import setup
+from setuptools import setup
 
 ######################################################################
 # Temporary fix to https://github.com/globaleaks/GlobaLeaks/issues/572
@@ -36,8 +36,8 @@ def pip_to_requirements(s):
 
 def get_requires():
     with open('requirements.txt') as f:
-        requires = map(pip_to_requirements, f.readlines())
-        return requires
+        requires = [pip_to_requirements(line) for line in f]
+    return requires
 
 def list_files(path):
     result = []
