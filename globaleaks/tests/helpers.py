@@ -6,29 +6,27 @@ from __future__ import with_statement
 
 import json
 import os
-
 from cyclone import httpserver
 from cyclone.web import Application
-from cyclone.util import ObjectDict as OD
-from twisted.internet import threads
-from twisted.internet import defer
+from storm.twisted.testing import FakeThreadPool
+from twisted.internet import threads, defer, task
 from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 from twisted.test import proto_helpers
-from storm.twisted.testing import FakeThreadPool
 
 from globaleaks import db, models, security
-from globaleaks.settings import GLSetting, transact, transact_ro
-from globaleaks.handlers import files, rtip, wbtip
+from globaleaks.db.datainit import opportunistic_appdata_init
+from globaleaks.handlers import files, rtip, wbtip, authentication
+from globaleaks.handlers.base import GLApiCache
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
-from globaleaks.jobs import delivery_sched, notification_sched, pgp_check_sched
+from globaleaks.jobs import delivery_sched, notification_sched
+from globaleaks.models import ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.plugins import notification
-from globaleaks.utils.utility import datetime_null, datetime_now, uuid4, log
+from globaleaks.settings import GLSetting, transact, transact_ro
+from globaleaks.utils.utility import datetime_null, uuid4, log
 from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
-from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.security import GLSecureTemporaryFile
 
 from . import TEST_DIR
@@ -50,6 +48,7 @@ with open(os.path.join(TEST_DIR, 'valid_pgp_key.txt')) as pgp_file:
     VALID_PGP_KEY = pgp_file.read()
 
 transact.tp = FakeThreadPool()
+authentication.reactor = task.Clock()
 
 class UTlog:
 
@@ -97,6 +96,7 @@ def import_fixture(store, fixture):
 
 
 class TestGL(unittest.TestCase):
+
     encryption_scenario = 'MIXED' # receivers with pgp and receivers without pgp
 
     @inlineCallbacks
@@ -434,6 +434,8 @@ class TestHandler(TestGLWithPopulatedDB):
         # we need to reset settings.session to keep each test independent
         GLSetting.sessions = dict()
 
+        # we need to reset GLApiCache to keep each test independent
+        GLApiCache.invalidate()
 
     def request(self, jbody=None, role=None, user_id=None, headers=None, body='',
                 remote_ip='0.0.0.0', method='MOCK', kwargs={}):
@@ -502,15 +504,8 @@ class TestHandler(TestGLWithPopulatedDB):
         handler.check_xsrf_cookie = mock_pass
 
         if role:
-            session_id = '4tehlulz'
-            new_session = OD(
-                   refreshdate=datetime_now(),
-                   id=session_id,
-                   role=role,
-                   user_id=user_id
-            )
-            GLSetting.sessions[session_id] = new_session
-            handler.request.headers['X-Session'] = session_id
+            session = authentication.GLSession(user_id, role)
+            handler.request.headers['X-Session'] = session.id
         return handler
 
 
@@ -602,6 +597,8 @@ class MockDict():
             'footer': u'check it out https://www.youtube.com/franksentus ;)',
             'subtitle': u'https://twitter.com/TheHackersNews/status/410457372042092544/photo/1',
             'terms_and_conditions': u'',
+            'security_awareness_title': u'',
+            'security_awareness_text': u'',
             'hidden_service':  u"http://1234567890123456.onion",
             'public_site':  u"https://globaleaks.org",
             'email':  u"email@dummy.net",
@@ -635,6 +632,7 @@ class MockDict():
             'wizard_done': False,
             'custom_homepage': False,
             'disable_privacy_badge': False,
+            'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
         }
 

@@ -5,7 +5,7 @@
 
 import operator
 
-__version__ = '2.60.14'
+__version__ = '2.60.17'
 DATABASE_VERSION = 14
 
 # Add here by hand the languages supported!
@@ -37,6 +37,7 @@ LANGUAGES_SUPPORTED = [
  { "code": "th", "name": "Thai" },
  { "code": "tr", "name": "Turkish" },
  { "code": "vi", "name": "Vietnamese" },
+ { "code": "zh_CN", "name": "Chinese (China)" },
 ]
 
 # Sorting the list of dict using the key 'code'

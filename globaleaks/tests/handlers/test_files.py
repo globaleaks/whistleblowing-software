@@ -33,7 +33,7 @@ class TestFileAdd(helpers.TestHandler):
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb', body=self.get_dummy_file())
-            handler.current_user['user_id'] = wbtip_desc['wbtip_id']
+            handler.current_user.user_id = wbtip_desc['wbtip_id']
             yield handler.post()
 
 class TestDownload(helpers.TestHandler):
@@ -46,5 +46,5 @@ class TestDownload(helpers.TestHandler):
             rfiles_desc = yield self.get_rfiles(rtip_desc['rtip_id'])
             for rfile_desc in rfiles_desc:
                 handler = self.request(role='receiver')
-                handler.current_user['user_id'] = rtip_desc['receiver_id']
+                handler.current_user.user_id = rtip_desc['receiver_id']
                 yield handler.post(rtip_desc['rtip_id'], rfile_desc['rfile_id'])
