@@ -106,8 +106,8 @@ class WBTipInstance(BaseHandler):
         contain the internaltip)
         """
 
-        answer = yield get_internaltip_wb(self.current_user['user_id'], self.request.language)
-        answer['files'] = yield get_files_wb(self.current_user['user_id'])
+        answer = yield get_internaltip_wb(self.current_user.user_id, self.request.language)
+        answer['files'] = yield get_files_wb(self.current_user.user_id)
 
         self.set_status(200)
         self.finish(answer)
@@ -178,7 +178,7 @@ class WBTipCommentCollection(BaseHandler):
         Response: actorsCommentList
         Errors: InvalidTipAuthToken
         """
-        wb_comment_list = yield get_comment_list_wb(self.current_user['user_id'])
+        wb_comment_list = yield get_comment_list_wb(self.current_user.user_id)
 
         self.set_status(200)
         self.finish(wb_comment_list)
@@ -194,7 +194,7 @@ class WBTipCommentCollection(BaseHandler):
         """
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
-        answer = yield create_comment_wb(self.current_user['user_id'], request)
+        answer = yield create_comment_wb(self.current_user.user_id, request)
 
         self.set_status(201) # Created
         self.finish(answer)
@@ -305,7 +305,7 @@ class WBTipReceiversCollection(BaseHandler):
         Response: actorsReceiverList
         Errors: InvalidTipAuthToken
         """
-        answer = yield get_receiver_list_wb(self.current_user['user_id'], self.request.language)
+        answer = yield get_receiver_list_wb(self.current_user.user_id, self.request.language)
 
         self.set_status(200)
         self.finish(answer)
@@ -403,7 +403,7 @@ class WBTipMessageCollection(BaseHandler):
     @inlineCallbacks
     def get(self, receiver_id):
 
-        messages = yield get_messages_content(self.current_user['user_id'], receiver_id)
+        messages = yield get_messages_content(self.current_user.user_id, receiver_id)
 
         self.set_status(200)
         self.finish(messages)
@@ -415,7 +415,7 @@ class WBTipMessageCollection(BaseHandler):
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
 
-        message = yield create_message_wb(self.current_user['user_id'], receiver_id, request)
+        message = yield create_message_wb(self.current_user.user_id, receiver_id, request)
 
         self.set_status(201) # Created
         self.finish(message)

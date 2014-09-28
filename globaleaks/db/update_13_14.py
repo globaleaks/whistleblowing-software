@@ -8,7 +8,6 @@
 
     Context table:
       - introduced enable_private_messages
-
 """
 
 from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
@@ -145,4 +144,3 @@ class Replacer1314(TableReplacer):
             self.store_new.add(new_context)
 
         self.store_new.commit()
-

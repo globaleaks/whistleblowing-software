@@ -159,7 +159,7 @@ class TestTipInstance(TTip):
             self.get_wb_receipt_on_finalized()
 
             self.wb_tip_id = yield authentication.login_wb(self.receipt)
-            # is the self.current_user['user_id']
+            # is the self.current_user.user_id
 
         self.assertTrue(re.match(requests.uuid_regexp, self.wb_tip_id))
 

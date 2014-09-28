@@ -242,7 +242,6 @@ class Context(Model):
     show_receivers = Bool()
     enable_private_messages = Bool()
 
-
     presentation_order = Int()
 
     unicode_keys = []
@@ -494,7 +493,6 @@ class Node(Model):
     disable_privacy_badge = Bool(default=False)
     disable_security_awareness_badge = Bool(default=False)
     disable_security_awareness_questions = Bool(default=False)
-
 
     exception_email = Unicode()
 
