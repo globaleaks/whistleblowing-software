@@ -92,8 +92,8 @@ spec = [
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
     (r'/admin/notification', admin.notification.NotificationInstance),
 
-    (r'/admin/fields', admin.field.FieldsCollection),
-    (r'/admin/fields/' + field_regexp, admin.field.FieldInstance),
+    (r'/admin/field', admin.field.FieldsCollection),
+    (r'/admin/field/' + field_regexp, admin.field.FieldInstance),
 
     (r'/admin/anomalies', statistics.AnomaliesCollection),
     (r'/admin/stats', statistics.StatsCollection),
