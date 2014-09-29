@@ -659,9 +659,7 @@ class Field(Model):
     # * inputbox
     # * textarea
     # * selectbox
-    # * radiobutton
     # * checkbox
-    # * multiselect
     # * modal
     # * dialog
     # * tos

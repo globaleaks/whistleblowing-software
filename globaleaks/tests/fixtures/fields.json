@@ -65,7 +65,7 @@
       "stats_enabled": true,
       "x": 0,
       "y": 0,
-      "type": "radiobutton",
+      "type": "selectbox",
       "option": {},
       "_children": []
     },
