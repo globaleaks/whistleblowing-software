@@ -29,7 +29,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Blow the Whistle',
         header_subtitle: ''
       }).
-      when('/status/:lang?', {
+      when('/status/:tip_id/:lang?', {
         templateUrl: 'views/whistleblower/tip.html',
         controller: 'StatusCtrl',
         header_title: 'Whistleblower Interface',
@@ -125,7 +125,13 @@ var GLClient = angular.module('GLClient', [
         header_title: '',
         header_subtitle: ''
       }).
-      when('/:lang?', {
+      when('/:lang', {
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl',
+        header_title: '',
+        header_subtitle: ''
+      }).
+      when('/', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
         header_title: '',
