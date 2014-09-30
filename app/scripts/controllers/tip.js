@@ -78,6 +78,7 @@ ModalDeleteTipCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance'
 ModalPostponeTipCtrl = ['$scope', '$http', '$route', '$location', 'Tip', '$modalInstance', 'tip_id',
                         function ($scope, $http, $route, $location, Tip, $modalInstance, tip_id) {
 
+
   $scope.tip_id = tip_id;
 
   var TipID = {tip_id: $scope.tip_id};
