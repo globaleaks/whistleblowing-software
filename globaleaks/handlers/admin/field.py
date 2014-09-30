@@ -313,6 +313,8 @@ class FieldsCollection(BaseHandler):
     @inlineCallbacks
     def post(self, *uriargs):
         """
+        Create a new field.
+
         Request: adminFieldDesc
         Response: adminFieldDesc
         Errors: InvalidInputFormat, FieldIdNotFound
@@ -393,20 +395,3 @@ class FieldInstance(BaseHandler):
         """
         yield delete_field(field_id)
         self.set_status(200)
-
-    @transport_security_check('admin')
-    @authenticated('admin')
-    @inlineCallbacks
-    def post(self, *uriargs):
-        """
-        Create a new field.
-
-        Request: adminFieldDesc
-        Response: adminFieldDesc
-        Errors: InvalidInputFormat, FieldIdNotFound
-        """
-        request = self.validate_message(self.request.body,
-                                        requests.adminFieldDesc)
-        response = yield create_field(request, self.request.language)
-        self.set_status(201)
-        self.finish(response)
