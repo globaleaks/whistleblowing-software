@@ -20,73 +20,30 @@ sample_field = {
         'preview': False,
         'stats_enabled': True,
         'x': 0,
-        'y': 0
+        'y': 0,
+        'children': []
 }
 
+@transact
+def create_field(store, **custom_attrs):
+    attrs = {
+        'label': '{"en": "test label"}',
+        'description': '{"en": "test description"}',
+        'hint': '{"en": "test hint"}',
+        'multi_entry': False,
+        'type': 'fieldgroup',
+        'options': {},
+        'required': False,
+        'preview': False,
+        'stats_enabled': True,
+        'x': 0,
+        'y': 0
+    }
+    attrs.update(custom_attrs)
+    return models.Field.new(store, attrs).id
 
 class TestAdminFieldInstance(helpers.TestHandler):
         _handler = admin.field.FieldInstance
-
-        @inlineCallbacks
-        def test_get(self):
-            """
-            Create a new field, the get it back using the receieved id.
-            """
-            handler = self.request(sample_field, role='admin')
-            yield handler.post()
-            self.assertEqual(len(self.responses), 1)
-            self.assertIn('id', self.responses[0])
-
-            field_id = self.responses[0]['id']
-            yield handler.get(field_id)
-            self.assertEqual(len(self.responses), 2)
-            self.assertEqual(field_id, self.responses[1]['id'])
-
-        @inlineCallbacks
-        def test_put(self):
-            """
-            Attempt to update a field, changing its type via a put request.
-            """
-            handler = self.request(sample_field, role='admin')
-            yield handler.post()
-            self.assertEqual(len(self.responses), 1)
-            field_id = self.responses[0].get('id')
-            self.assertIsNotNone(field_id)
-
-            updated_sample_field = sample_field
-            updated_sample_field.update(type='inputbox')
-            handler = self.request(updated_sample_field, role='admin')
-            yield handler.put(field_id)
-            self.assertEqual(len(self.responses), 2)
-            self.assertNotEqual(self.responses[0], self.responses[1])
-            self.assertEqual(field_id, self.responses[1]['id'])
-            self.assertEqual(self.responses[1]['type'], 'inputbox')
-
-            wrong_sample_field = sample_field
-            wrong_sample_field.update(type='nonexistingfieldtype')
-            handler = self.request(wrong_sample_field, role='admin')
-            self.assertFailure(handler.put(field_id), errors.InvalidInputFormat)
-
-        @inlineCallbacks
-        def test_delete(self):
-            """
-            Create a new field, then attempt to delete it.
-            """
-            handler = self.request(sample_field, role='admin')
-            yield handler.post()
-            self.assertEqual(len(self.responses), 1)
-            field_id = self.responses[0].get('id')
-            self.assertIsNotNone(field_id)
-
-            handler = self.request(self.responses[0], role='admin')
-            yield handler.delete(field_id)
-            self.assertEqual(handler.get_status(), 200)
-            # second deletion operation should fail
-            self.assertFailure(handler.delete(field_id), errors.FieldIdNotFound)
-
-
-class TestAdminFieldCollection(helpers.TestHandler):
-        _handler = admin.field.FieldsCollection
         fixtures = ['fields.json']
 
         @transact_ro
@@ -103,6 +60,107 @@ class TestAdminFieldCollection(helpers.TestHandler):
         def assert_is_not_child(self, child_id, field_id):
             children = yield self._get_children(field_id)
             self.assertNotIn(child_id, children)
+
+        @inlineCallbacks
+        def test_get(self):
+            """
+            Create a new field, the get it back using the receieved id.
+            """
+            field_id = yield create_field()
+
+            handler = self.request(sample_field, role='admin')
+            yield handler.get(field_id)
+            self.assertEqual(len(self.responses), 1)
+            self.assertEqual(field_id, self.responses[0]['id'])
+
+        @inlineCallbacks
+        def test_put(self):
+            """
+            Attempt to update a field, changing its type via a put request.
+            """
+            field_id = yield create_field()
+
+            updated_sample_field = sample_field
+            updated_sample_field.update(type='inputbox')
+            handler = self.request(updated_sample_field, role='admin')
+            yield handler.put(field_id)
+            self.assertEqual(len(self.responses), 1)
+            self.assertEqual(field_id, self.responses[0]['id'])
+            self.assertEqual(self.responses[0]['type'], 'inputbox')
+
+            wrong_sample_field = sample_field
+            wrong_sample_field.update(type='nonexistingfieldtype')
+            handler = self.request(wrong_sample_field, role='admin')
+            self.assertFailure(handler.put(field_id), errors.InvalidInputFormat)
+
+        @inlineCallbacks
+        def test_put(self):
+            """
+            Update the field tree with nasty stuff, like cyclic graphs, inexisting ids.
+            """
+            generalities_fieldgroup_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
+            sex_field_id = '98891164-1a0b-5b80-8b8b-93b73b815156'
+            surname_field_id = '25521164-1d0f-5f80-8e8c-93f73e815156'
+            name_field_id = '25521164-0d0f-4f80-9e9c-93f72e815105'
+            invalid_id = '00000000-1d0f-5f80-8e8c-93f700000000'
+
+            handler = self.request(role='admin')
+            yield handler.get(generalities_fieldgroup_id)
+
+            # simple edits shall work
+            self.responses[0]['children'] = [sex_field_id, surname_field_id]
+
+            handler = self.request(self.responses[0], role='admin')
+            yield handler.put(generalities_fieldgroup_id)
+            yield self.assert_model_exists(models.Field, generalities_fieldgroup_id)
+            yield self.assert_is_child(sex_field_id, generalities_fieldgroup_id)
+            yield self.assert_is_not_child(name_field_id,
+                                           generalities_fieldgroup_id)
+
+            # invalid tree
+            self.responses[0]['children'] = [name_field_id, sex_field_id]  * 3
+            handler = self.request(self.responses[0], role='admin')
+            self.assertFailure(handler.put(generalities_fieldgroup_id), errors.InvalidInputFormat)
+
+            # invalid tree
+            self.responses[0]['children'] = [name_field_id, invalid_id, sex_field_id] * 100
+            handler = self.request(self.responses[0], role='admin')
+            self.assertFailure(handler.put(generalities_fieldgroup_id), errors.InvalidInputFormat)
+            yield self.assert_is_not_child(invalid_id, generalities_fieldgroup_id)
+            yield self.assert_is_child(sex_field_id, generalities_fieldgroup_id)
+            yield self.assert_is_not_child(name_field_id,
+                                           generalities_fieldgroup_id)
+
+            # parent MUST not refer to itself in child
+            # XXX. shall test with a bigger connected component
+            self.responses[0]['children'] = [generalities_fieldgroup_id]
+            handler = self.request(self.responses[0], role='admin')
+            self.assertFailure(handler.put(generalities_fieldgroup_id), errors.InvalidInputFormat)
+
+            # a child not of type 'fieldgroup' MUST never have children.
+            yield handler.get(name_field_id)
+            self.responses[2]['children'] = [sex_field_id]
+            handler = self.request(self.responses[2], role='admin')
+            self.assertFailure(handler.put(generalities_fieldgroup_id), errors.InvalidInputFormat)
+
+
+        @inlineCallbacks
+        def test_delete(self):
+            """
+            Create a new field, then attempt to delete it.
+            """
+            field_id = yield create_field()
+
+            handler = self.request(sample_field, role='admin')
+            yield handler.delete(field_id)
+            self.assertEqual(handler.get_status(), 200)
+            # second deletion operation should fail
+            self.assertFailure(handler.delete(field_id), errors.FieldIdNotFound)
+
+
+class TestAdminFieldCollection(helpers.TestHandler):
+        _handler = admin.field.FieldsCollection
+        fixtures = ['fields.json']
 
         @inlineCallbacks
         def test_get(self):
@@ -138,64 +196,6 @@ class TestAdminFieldCollection(helpers.TestHandler):
             resp, = self.responses
             self.assertIn('id', resp)
             self.assertNotEqual(resp.get('options'), None)
-
-        @inlineCallbacks
-        def test_put(self):
-            """
-            Update the field tree with nasty stuff, like cyclic graphs, inexisting ids.
-            """
-            generalities_fieldgroup_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
-            sex_field_id = '98891164-1a0b-5b80-8b8b-93b73b815156'
-            surname_field_id = '25521164-1d0f-5f80-8e8c-93f73e815156'
-            name_field_id = '25521164-0d0f-4f80-9e9c-93f72e815105'
-            invalid_id = '00000000-1d0f-5f80-8e8c-93f700000000'
-            # simple edits shall work
-            good_tree = [{
-                'id': generalities_fieldgroup_id,
-                'children': [sex_field_id, surname_field_id],
-            }]
-            handler = self.request(good_tree, role='admin')
-            yield handler.put()
-            yield self.assert_model_exists(models.Field, generalities_fieldgroup_id)
-            yield self.assert_is_child(sex_field_id, generalities_fieldgroup_id)
-            yield self.assert_is_not_child(name_field_id,
-                                           generalities_fieldgroup_id)
-            # response shall contain informations about the updated objects
-            fields, = self.responses
-            self.assertIn(generalities_fieldgroup_id,
-                          [field['id'] for field in fields])
-            # parent id MUST exist
-            invalid_tree = [{
-                'id': invalid_id,
-                'children': [name_field_id, sex_field_id]  * 3,
-            }]
-            handler = self.request(invalid_tree, role='admin')
-            self.assertFailure(handler.put(), errors.InvalidInputFormat)
-            # child ids MUST exist
-            invalid_tree = [{
-                'id': generalities_fieldgroup_id,
-                'children': [name_field_id, invalid_id, sex_field_id] * 100,
-            }]
-            handler = self.request(invalid_tree, role='admin')
-            self.assertFailure(handler.put(), errors.InvalidInputFormat)
-            yield self.assert_is_not_child(invalid_id, generalities_fieldgroup_id)
-            yield self.assert_is_child(sex_field_id, generalities_fieldgroup_id)
-            yield self.assert_is_not_child(name_field_id,
-                                           generalities_fieldgroup_id)
-            # parent MUST not refer to itself in child
-            # XXX. shall test with a bigger connected component
-            recursing_tree = [{
-                'id': generalities_fieldgroup_id,
-                'children': [generalities_fieldgroup_id],
-            }]
-            self.assertFailure(handler.put(), errors.InvalidInputFormat)
-            # a child not of type 'fieldgroup' MUST never have children.
-            invalid_tree = [{
-                'id': name_field_id,
-                'children': [sex_field_id],
-            }]
-            self.assertFailure(handler.put(), errors.InvalidInputFormat)
-
 
 class TestAdminStepCollection(helpers.TestHandler):
     _handler = admin.field.StepsCollection
