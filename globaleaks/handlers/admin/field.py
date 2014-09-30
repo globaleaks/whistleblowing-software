@@ -68,17 +68,40 @@ def create_field(store, request, language):
 @transact
 def update_field(store, field_id, request, language):
     """
-    Updates the specified receiver with the details.
-    raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
+    Updates the specified field with the details.
+    raises :class:`globaleaks.errors.FieldIdNotFound` if the field does
     not exist.
     """
+    errmsg = 'Invalid or not existent field ids in request.'
+
     field = Field.get(store, field_id)
     try:
+        if not field:
+            raise errors.InvalidInputFormat(errmsg)
+
         field.update(request)
+
+        # children handling:
+        #  - old children are cleared
+        #  - new provided childrens are evaluated and added
+        children = request['children']
+        if children and field.type != 'fieldgroup':
+            raise errors.InvalidInputFormat(errmsg)
+   
+        ancestors = set(fieldtree_ancestors(store, field.id))
+        field.children.clear()
+        for child_id in children:
+            child = Field.get(store, child_id)
+            # check child do exists and graph is not recursive
+            if not child or child.id in ancestors:
+                raise errors.InvalidInputFormat(errmsg)
+            field.children.add(child)
+
     except Exception as dberror:
-        log.err('Unable to update receiver {r}: {e}'.format(
-            r=receiver.name, e=dberror))
+        log.err('Unable to update field {f}: {e}'.format(
+            f=field.label, e=dberror))
         raise errors.InvalidInputFormat(dberror)
+
     return admin_serialize_field(field, language)
 
 @transact_ro
@@ -146,9 +169,9 @@ def fieldtree_ancestors(store, field_id):
     yield field_id
     parents = store.find(models.FieldField, models.FieldField.child_id == field_id)
     for parent in parents:
-        yield parent.id
-        # yield from field_ancestors(store, parent_id)
-        for grandpa in field_ancestors(store, parent.id): yield grandpa
+        if parent.parent_id != field_id:
+            yield parent.parent_id
+            for grandpa in fieldtree_ancestors(store, parent.parent_id): yield grandpa
     else:
         return
 
@@ -323,22 +346,6 @@ class FieldsCollection(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.adminFieldDesc)
         response = yield create_field(request, self.request.language)
-        self.set_status(201)
-        self.finish(response)
-
-    @transport_security_check('admin')
-    @authenticated('admin')
-    @inlineCallbacks
-    def put(self, *uriargs):
-        """
-        Rearrange a field tree, moving field to the group selected by the user,
-        and groups to the correspective steps.
-
-        :raises InvalidInputFormat: if the tree sent presents some inconsistencies.
-        """
-        request = self.validate_message(self.request.body,
-                                        requests.adminFieldTree)
-        response = yield update_fieldtree(request, self.request.language)
         self.set_status(201)
         self.finish(response)
 

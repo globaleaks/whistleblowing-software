@@ -419,14 +419,8 @@ adminFieldDesc = {
              'tos|'
              'fieldgroup)$'),
     'options': dict, # we can't define a format here ? because the key need to be strict to field_type format ?
+    'children': [ uuid_regexp ],
 }
-
-adminFieldTree = [
-    {
-        'id': uuid_regexp,
-        'children': [uuid_regexp],
-    },
-]
 
 adminStepDesc = {
     'context_id': uuid_regexp,
