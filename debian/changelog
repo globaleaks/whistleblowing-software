@@ -1,12 +1,18 @@
+globaleaks (2.60.18) unstable; urgency=low
+
+  * GlobaLeaks 2.60.18 Release (Minor Bugfixing)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 30 Sep 2014 17:55:00 +0002
+
 globaleaks (2.60.17) unstable; urgency=low
 
-  * GlobaLeaks 2.60.17 Integration fixes
+  * GlobaLeaks 2.60.17 Release (Integration fixes)
 
  -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 26 Sep 2014 11:30:00 +0002
 
 globaleaks (2.60.16) unstable; urgency=low
 
-  * GlobaLeaks 2.60.16 Packaging fixes
+  * GlobaLeaks 2.60.16 Release (Packaging fixes)
 
  -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 25 Sep 2014 19:32:00 +0002
 
@@ -200,7 +206,7 @@ globaleaks (2.54.1) unstable; urgency=low
 
   * GlobaLeaks 2.54.1 Release (Minor Fixes)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 27 Beb 2014 17:40:00 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 27 Feb 2014 17:40:00 +0002
 
 globaleaks (2.54) unstable; urgency=low
 
