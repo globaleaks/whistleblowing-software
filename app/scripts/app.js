@@ -30,6 +30,12 @@ var GLClient = angular.module('GLClient', [
         header_subtitle: ''
       }).
       when('/status/:tip_id/:lang?', {
+        templateUrl: 'views/receiver/tip.html',
+        controller: 'StatusCtrl',
+        header_title: 'Receiver Interface',
+        header_subtitle: 'Tip Status Page'
+      }).
+      when('/status/:lang?', {
         templateUrl: 'views/whistleblower/tip.html',
         controller: 'StatusCtrl',
         header_title: 'Whistleblower Interface',
