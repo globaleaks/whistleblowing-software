@@ -176,36 +176,6 @@ def fieldtree_ancestors(store, field_id):
         return
 
 @transact
-def update_fieldtree(store, tree, language):
-    """
-    Update field groups to host different fields, making sure that:
-    - the tree is non-recursive
-    - the tree is consistent with the fields present.
-
-    :return: a serialized summary of the items that have been modified.
-    """
-    errmsg = 'Invalid or not existent field ids in request.'
-    resp = []
-
-    for node in tree:
-        field = Field.get(store, node['id'])
-        if not field or field.type != 'fieldgroup':
-            raise errors.InvalidInputFormat(errmsg)
-        children = node['children']
-        ancestors = set(fieldtree_ancestors(store, field.id))
-        # re-make the list of children with the one receieved.
-        field.children.clear()
-        for child_id in children:
-            child = Field.get(store, child_id)
-            # check child do exists and graph is not recursive
-            if not child or child in ancestors:
-                raise errors.InvalidInputFormat(errmsg)
-            field.children.add(child)
-            # add (serialized) current item as response
-        resp.append(admin_serialize_field(field, language))
-    return resp
-
-@transact
 def create_step(store, request, context_id, number, language):
     """
     Add a new step to the store, then return the new serialized object.
