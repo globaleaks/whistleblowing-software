@@ -51,15 +51,17 @@ This comment is needed in order to push the following strings on transifex
                     <p class="has-error" data-ng-show="unsafe_password">
                       <span data-translate>The choosen password is unsafe, it should have</span>:
                     </p>
-                    <li class="has-error" data-ng-hide="pwdHasLetter">
-                      <span data-translate>At least one letter</span>
-                    </li>
-                    <li class="has-error" data-ng-hide="pwdHasNumber">
-                      <span data-translate>At least one number</span>
-                    </li>
-                    <li class="has-error" data-ng-hide="pwdValidLength">
-                      <span data-translate>At least 8 characters</span>
-                    </li>
+                    <ul>
+                      <li class="has-error" data-ng-hide="pwdHasLetter">
+                        <span data-translate>At least one letter</span>
+                      </li>
+                      <li class="has-error" data-ng-hide="pwdHasNumber">
+                        <span data-translate>At least one number</span>
+                      </li>
+                      <li class="has-error" data-ng-hide="pwdValidLength">
+                        <span data-translate>At least 8 characters</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -174,15 +176,17 @@ This comment is needed in order to push the following strings on transifex
                         <p class="has-error" data-ng-show="unsafe_password">
                           <span data-translate>The choosen password is unsafe, it should have</span>:
                         </p>
-                        <li class="has-error" data-ng-hide="pwdHasLetter">
-                          <span data-translate>At least one letter</span>
-                        </li>
-                        <li class="has-error" data-ng-hide="pwdHasNumber">
-                          <span data-translate>At least one number</span>
-                        </li>
-                        <li class="has-error" data-ng-hide="pwdValidLength">
-                          <span data-translate>At least 8 characters</span>
-                        </li>
+                        <ul>
+                          <li class="has-error" data-ng-hide="pwdHasLetter">
+                            <span data-translate>At least one letter</span>
+                          </li>
+                          <li class="has-error" data-ng-hide="pwdHasNumber">
+                            <span data-translate>At least one number</span>
+                          </li>
+                          <li class="has-error" data-ng-hide="pwdValidLength">
+                            <span data-translate>At least 8 characters</span>
+                          </li>
+                        </ul>
                       </div>
                       <div class="form-group">
                         <label data-translate>Description</label>
@@ -207,7 +211,7 @@ This comment is needed in order to push the following strings on transifex
                             </span>
                             <span class="col-md-10">{{context.name}}</span>
                           </div>
-                        </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
