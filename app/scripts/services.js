@@ -727,6 +727,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           {update:
           {method: 'PUT'}
           }),
+        adminFieldsResource = $resource('/admin/field/:field_id',
+          {field_id: '@id'},
+          {update:
+          {method: 'PUT'}
+          }),
         adminReceiversResource = $resource('/admin/receiver/:receiver_id',
           {receiver_id: '@id'},
           {update:
@@ -736,6 +741,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         adminNotificationResource = $resource('/admin/notification', {}, {update: {method: 'PUT'}});
 
       adminContextsResource.prototype.toString = function() { return "Admin Context"; };
+      adminContextsResource.prototype.toString = function() { return "Admin Field"; };
       adminReceiversResource.prototype.toString = function() { return "Admin Receiver"; };
       adminNodeResource.prototype.toString = function() { return "Admin Node"; };
       adminNotificationResource.prototype.toString = function() { return "Admin Notification"; };
@@ -773,14 +779,17 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         return context;
       };
 
+      self.field = adminFieldsResource;
+      self.fields = adminFieldsResource.query();
+
       self.new_field = function () {
         var field = new adminFieldsResource;
-        field.label = '',
-        field.description = '',
-        field.hint = '',
+        field.label = '';
+        field.description = '';
+        field.hint = '';
         field.multi_entry = false;
         field.type = 'checkbox';
-        field.options = '{}';
+        field.options = {};
         field.required = false;
         field.preview = false;
         field.stats_enabled = false;
@@ -788,6 +797,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         field.y = 0;
         return field;
       };
+
+      self.receiver = adminReceiversResource;
+      self.receivers = adminReceiversResource.query();
 
       self.new_receiver = function () {
         var receiver = new adminReceiversResource;
@@ -811,9 +823,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.presentation_order = 0;
         return receiver;
       };
-
-      self.receiver = adminReceiversResource;
-      self.receivers = adminReceiversResource.query();
 
       self.node = adminNodeResource.get(function(){
         self.node.password = '';

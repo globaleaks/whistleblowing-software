@@ -25,14 +25,27 @@ This comment is needed in order to push the following strings on transifex
                 <div class="col-md-12">
                   <div class="form-group">
                     <label data-translate>Label</label>
-                    <input class="form-control" data-ng-model="new_field_label" type="text" required>
+                    <input class="form-control" data-ng-model="new_field.label" type="text" required>
+                  </div>
+                  <div class="form-group">
+                    <label data-translate>Type</label>
+                    <select id="editFieldType" class="form-control" data-ng-model="new_field.type" data-ng-required="">
+                      <option value="inputbox" data-translate>Text</option>
+                      <option value="textarea" data-translate>Textarea</option>
+                      <option value="selectbox" data-translate>Selectbox</option>
+                      <option value="checkbox" data-translate>Checkbox</option>
+                      <option value="modal" data-translate>Modal Window</option>
+                      <option value="dialog" data-translate>Dialog Window</option>
+                      <option value="tos" data-translate>Terms of Service</option>
+                      <option value="fieldgroup" data-translate>Field Group</option>
+                    </select>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <button class="pull-left btn btn-success" data-ng-disabled="newField.$invalid" data-ng-click="add_field(new_field_label)">
+                    <button class="pull-left btn btn-success" data-ng-disabled="newField.$invalid" data-ng-click="add_field()">
                       <i class="glyphicon glyphicon-ok"></i>
                       <span data-translate>Add</span>
                     </button>
@@ -42,10 +55,11 @@ This comment is needed in order to push the following strings on transifex
             </div>
           </form>
         </div>
+      </div>
 
-        <br /><br />
+      <br /><br />
 
-        <div data-ng-show="admin.fields.length != 0">
+      <div data-ng-controller="AdminFieldsCtrl" data-ng-show="admin.fields.length != 0">
           <div class="row text-right">
             <button class="btn btn-success" data-ng-click="save_all()" type="submit" >
               <i class="glyphicon glyphicon-ok"></i>
@@ -60,29 +74,26 @@ This comment is needed in order to push the following strings on transifex
                 <div class="configItem fieldItem"  data-ng-class="{'configItemLast': $last}">
 
                   <div class="row" data-ng-click="toggleEditing()">
-                    <div class="editorHeader fieldEditorHeader">
+                    <div class="editorHeader fieldsEditorHeader">
                       <div data-ng-show="!editing">
-                        <span class="col-md-7 pull-left editorHeaderTitle">{{ field.name }}</span>
+                        <span class="col-md-7 pull-left editorHeaderTitle">{{ field.label }}</span>
                         <span class="col-md-1 pull-right editorHeaderButtons">
                           <i class="glyphicon glyphicon-th"></i>
                         </span>
                       </div>
-
                       <div data-ng-show="editing">
-                        <span class="col-md-7 pull-left editorHeaderTitle">{{ field.name }}</span>
-                        <span class="col-md-3 pull-right editorHeaderButtons" data-ng-show="editing">
+                        <span class="col-md-7 pull-left editorHeaderTitle">{{ field.label }}</span>
+                        <span class="col-md-3 pull-right editorHeaderButtons">
                           <button class="btn btn-success saveField" data-ng-disabled="fieldForm.$pristine" data-ng-click="update(field)" type="submit" >
                             <i class="glyphicon glyphicon-ok"></i>
                             <span data-translate>Save</span>
                           </button>
-
                           <a class="btn btn-danger deleteField" data-ng-click="deleteDialog(field)">
                             <i class="glyphicon glyphicon-remove"></i>
                             <span data-translate>Delete</span>
                           </a>
                         </span>
                       </div>
-
                     </div>
                   </div>
 
@@ -91,7 +102,7 @@ This comment is needed in order to push the following strings on transifex
                       <div class="col-md-6">
                         <div class="form-group">
                           <label data-translate>Name</label>
-                          <input class="form-control" data-ng-maxlength="40" data-ng-model="field.name" value="{{label.name}}" type="text">
+                          <input class="form-control" data-ng-maxlength="40" data-ng-model="field.label" value="{{field.label}}" type="text">
                         </div>
                         <div class="form-group">
                           <label data-translate>Description</label>
@@ -99,14 +110,78 @@ This comment is needed in order to push the following strings on transifex
                             <textarea class="form-control" data-ng-model="field.description">{{field.description}}</textarea>
                           </div>
                         </div>
+                        <div class="form-group">
+                          <label data-translate>Hint</label>
+                          <div>
+                            <textarea class="form-control" data-ng-model="field.hint">{{field.hint}}</textarea>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label data-translate>Type</label>
+                          <select id="editFieldType" class="form-control" data-ng-model="field.type" data-ng-required="">
+                            <option value="inputbox" data-translate>Text</option>
+                            <option value="textarea" data-translate>Textarea</option>
+                            <option value="selectbox" data-translate>Selectbox</option>
+                            <option value="checkbox" data-translate>Checkbox</option>
+                            <option value="modal" data-translate>Modal Window</option>
+                            <option value="dialog" data-translate>Dialog Window</option>
+                            <option value="tos" data-translate>Terms of Service</option>
+                            <option value="fieldgroup" data-translate>Field Group</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <div>
+                            <input data-ng-model="field.multi_entry" value="{{field.multi_entry}}" type="checkbox">
+                            <label data-translate>Accept multiple answers for the field</label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div>
+                            <input data-ng-model="field.preview" value="{{field.preview}}" type="checkbox">
+                            <label data-translate>Show in preview</label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div>
+                            <input data-ng-model="field.stats_enabled" value="{{field.stats_enabled}}" type="checkbox">
+                            <label data-translate>Enable statistics on the field</label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label data-translate>Horizontal order (X)</label>
+                          <input class="form-control" data-ng-maxlength="40" data-ng-model="field.x" value="{{field.x}}" type="number" min="0" max="99">
+                        </div>
+                        <div class="form-group">
+                          <label data-translate>Vertical order (Y)</label>
+                          <input class="form-control" data-ng-maxlength="40" data-ng-model="field.y" value="{{field.y}}" type="number" min="0" max="99">
+                        </div>
                       </div>
+
+                      <div class="col-md-6" ng-show="field.type == 'fieldgroup'">
+                        <label data-translate>Fields Composition</label>
+                        <div class="selectionList">
+                          <div data-ng-repeat="f in admin.fields | filter:filterSelf">
+                            <div class="row" data-ng-click="toggle(f)">
+                            <span class="col-md-1">
+                              <span data-ng-show="isSelected(f)">
+                                <i class="glyphicon glyphicon-check"></i>
+                              </span>
+                              <span data-ng-show="!isSelected(f)">
+                                <i class="glyphicon glyphicon-unchecked"></i>
+                              </span>
+                            </span>
+                              <span class="col-md-10">{{f.label}}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                 </div>
               </form>
             </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </div>

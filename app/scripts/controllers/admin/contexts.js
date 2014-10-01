@@ -22,7 +22,6 @@ GLClient.controller('AdminContextsCtrl',
     context['$delete'](function(){
       $scope.admin.contexts.splice(idx, 1);
     });
-
   };
 
   $scope.addField = function (context) {
