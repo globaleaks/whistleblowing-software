@@ -7,10 +7,6 @@
   margin-top: 60px;
 }
 
-#HomePageBox .btn {
-  font-size: 32px;
-}
-
 .homeSplash .lang {
   font-size: 20px;
   height: 40px;
@@ -131,4 +127,25 @@
   width: 100%;
   height: 200px;
   direction: ltr;
+}
+
+#HomePageBoxHeader, #BlowTheWhistleBox, #WhistleblowerLoginBox {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#HomePageBoxNodePresentation {
+  font-size: 60px;
+}
+
+#HomePageBoxNodeDescription {
+  font-size: 36px;
+}
+
+#WhistleblowerSubmitBox, #WhistleblowerLoginBox {
+  margin-bottom: 30px;
+}
+
+#WhistleblowerSubmitBoxHeader, #WhistleblowerSubmitBoxButton .btn {
+  font-size: 40px;
 }
