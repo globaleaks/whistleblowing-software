@@ -17,7 +17,7 @@ This comment is needed in order to push the following strings on transifex
   </div>
 </div>
 <div ui-sortable="fieldsSortableOptions" data-ng-model="context.fields">
-  <div data-ng-repeat="field in context.fields | orderBy:'presentation_order'" class="contextFieldsa" data-ng-controller="AdminFieldEditorCtrl">
+  <div data-ng-repeat="field in context.fields | orderBy:'presentation_order'" class="contextFields" data-ng-controller="AdminFieldEditorCtrl">
     <div class="field">
       <div class="fieldEditorHeader" data-ng-init="editing=false" data-ng-click="editing=!editing">
         {{field.name}}&nbsp;
