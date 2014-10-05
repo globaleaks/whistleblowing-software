@@ -143,9 +143,14 @@
 }
 
 #WhistleblowerSubmitBox, #WhistleblowerLoginBox {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
-#WhistleblowerSubmitBoxHeader, #WhistleblowerSubmitBoxButton .btn {
-  font-size: 40px;
+#WhistleblowerSubmitBoxHeader {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+#WhistleblowerSubmitBoxButton .btn {
+  font-size: 36px;
 }
