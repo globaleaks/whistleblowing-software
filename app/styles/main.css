@@ -61,11 +61,11 @@
   margin-right: 20px;
 }
 
-h1, #HomePageBoxNodePresentation, #WhistleblowerLoginBoxHeader, #ReceiverLoginBoxHeader {
+h1 {
   font-size: 60px;
 }
 
-h2, #HomePageBoxNodeDescription {
+h2 {
   font-size: 36px;
 }
 
@@ -109,11 +109,6 @@ h3 {
 
 #ToolbarBox {
   max-width: 20%;
-}
-
-#HomePageBoxHeader, #BlowTheWhistleBox, #WhistleblowerLoginBox, #ReceiverLoginBox {
-  margin-top: 25px;
-  margin-bottom: 25px;
 }
 
 /** Submission details **/
