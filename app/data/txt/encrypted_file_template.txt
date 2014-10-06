@@ -1,6 +1,6 @@
 Esteemed %ReceiverName%,
 
-This is an e-mail message to notify you that a whistleblower has updated a submission with new material.
+This is an e-mail notification to notify you that a whistleblower has updated a submission with new material.
 
 This has happened on context %ContextName% at %EventTime%.
 
