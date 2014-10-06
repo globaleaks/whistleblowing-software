@@ -5,7 +5,10 @@
 
 import operator
 
+__author__ = 'Random GlobaLeaks Developers'
+__email__ = 'info@globaleaks.org'
 __version__ = '2.60.29'
+
 DATABASE_VERSION = 14
 
 # Add here by hand the languages supported!
