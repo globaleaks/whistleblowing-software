@@ -812,13 +812,13 @@ class transact(object):
         except HTTPError as excep:
             transaction.abort()
             raise excep
-        except Exception as excep:
+        except Exception:
             transaction.abort()
             _, exception_value, exception_tb = sys.exc_info()
             traceback.print_tb(exception_tb, 10)
             self.store.close()
             # propagate the exception
-            raise excep
+            raise
         else:
             if not self.readonly:
                 self.store.commit()

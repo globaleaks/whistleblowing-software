@@ -291,10 +291,10 @@ class RTipInstance(BaseHandler):
         the various cases are managed differently.
         """
 
-        yield increment_receiver_access_count(self.current_user['user_id'], tip_id)
-        answer = yield get_internaltip_receiver(self.current_user['user_id'], tip_id, self.request.language)
+        yield increment_receiver_access_count(self.current_user.user_id, tip_id)
+        answer = yield get_internaltip_receiver(self.current_user.user_id, tip_id, self.request.language)
         answer['collection'] = '/rtip/' + tip_id + '/collection'
-        answer['files'] = yield get_files_receiver(self.current_user['user_id'], tip_id)
+        answer['files'] = yield get_files_receiver(self.current_user.user_id, tip_id)
 
         self.set_status(200)
         self.finish(answer)
@@ -310,7 +310,7 @@ class RTipInstance(BaseHandler):
         request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
 
         if request['extend']:
-            yield postpone_expiration_date(self.current_user['user_id'], tip_id)
+            yield postpone_expiration_date(self.current_user.user_id, tip_id)
 
         self.set_status(202) # Updated
         self.finish()
@@ -331,9 +331,9 @@ class RTipInstance(BaseHandler):
         request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
 
         if request['global_delete']:
-            yield delete_internal_tip(self.current_user['user_id'], tip_id)
+            yield delete_internal_tip(self.current_user.user_id, tip_id)
         else:
-            yield delete_receiver_tip(self.current_user['user_id'], tip_id)
+            yield delete_receiver_tip(self.current_user.user_id, tip_id)
 
         self.set_status(200) # Success
         self.finish()
@@ -397,7 +397,7 @@ class RTipCommentCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        comment_list = yield get_comment_list_receiver(self.current_user['user_id'], tip_id)
+        comment_list = yield get_comment_list_receiver(self.current_user.user_id, tip_id)
 
         self.set_status(200)
         self.finish(comment_list)
@@ -414,7 +414,7 @@ class RTipCommentCollection(BaseHandler):
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
 
-        answer = yield create_comment_receiver(self.current_user['user_id'], tip_id, request)
+        answer = yield create_comment_receiver(self.current_user.user_id, tip_id, request)
 
         self.set_status(201) # Created
         self.finish(answer)
@@ -462,7 +462,7 @@ class RTipReceiversCollection(BaseHandler):
         Response: actorsReceiverList
         Errors: InvalidTipAuthToken
         """
-        answer = yield get_receiver_list_receiver(self.current_user['user_id'], tip_id, self.request.language)
+        answer = yield get_receiver_list_receiver(self.current_user.user_id, tip_id, self.request.language)
 
         self.set_status(200)
         self.finish(answer)
@@ -531,7 +531,7 @@ class ReceiverMsgCollection(BaseHandler):
     @inlineCallbacks
     def get(self, tip_id):
 
-        answer = yield get_messages_list(self.current_user['user_id'], tip_id)
+        answer = yield get_messages_list(self.current_user.user_id, tip_id)
 
         self.set_status(200)
         self.finish(answer)
@@ -548,7 +548,7 @@ class ReceiverMsgCollection(BaseHandler):
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
 
-        message = yield create_message_receiver(self.current_user['user_id'], tip_id, request)
+        message = yield create_message_receiver(self.current_user.user_id, tip_id, request)
 
         self.set_status(201) # Created
         self.finish(message)

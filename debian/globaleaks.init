@@ -122,15 +122,18 @@ network_sandboxing_start()
         do
             iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
         done
-        for IP_SRC in "${ALLOWED_DST_IP[@]}"
-        do
-            iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
-        done
         iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -j DROP
     done
 
     # OUTBOUND
-    # All outbound connections from GlobaLeaks goes trough Tor
+    # All outbound connections from GlobaLeaks goes through Tor except of allowed and enstablished connections.
+    for IP_DST in "${ALLOWED_DST_IP[@]}"
+    do
+        for IP_SRC in "${ALLOWED_SRC_IP[@]}"
+        do
+            iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -d ${IP_SRC} -s ${IP_DST} -j ACCEPT
+        done
+    done
     iptables -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USER} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
     iptables -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
     iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
@@ -158,13 +161,19 @@ network_sandboxing_stop()
     do
         for IP_SRC in "${ALLOWED_SRC_IP[@]}"
         do
-            iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -s ${IP_SRC} -j ACCEPT
+            iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
         done
         iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -j DROP
     done
 
     # OUTBOUND
-    # All outbound connections from GlobaLeaks goes trough Tor
+    for IP_DST in "${ALLOWED_DST_IP[@]}"
+    do
+        for IP_SRC in "${ALLOWED_SRC_IP[@]}"
+        do
+            iptables -D OUTPUT -m state --state RELATED,ESTABLISHED -d ${IP_SRC} -s ${IP_DST} -j ACCEPT
+        done
+    done
     iptables -t nat -D OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USER} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
     iptables -t nat -D OUTPUT ! -o lo -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
     iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp --dport ${TORTRANSPORT} -j ACCEPT

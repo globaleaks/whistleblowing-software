@@ -17,7 +17,7 @@ class TestWBTipInstance(helpers.TestHandler):
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb')
-            handler.current_user['user_id'] = wbtip_desc['wbtip_id']
+            handler.current_user.user_id = wbtip_desc['wbtip_id']
 
             yield handler.get()
 
@@ -29,7 +29,7 @@ class TestWBTipCommentCollection(helpers.TestHandler):
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb')
-            handler.current_user['user_id'] = wbtip_desc['wbtip_id']
+            handler.current_user.user_id = wbtip_desc['wbtip_id']
 
             yield handler.get()
 
@@ -42,7 +42,7 @@ class TestWBTipCommentCollection(helpers.TestHandler):
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb', body=json.dumps(body))
-            handler.current_user['user_id'] = wbtip_desc['wbtip_id']
+            handler.current_user.user_id = wbtip_desc['wbtip_id']
 
             yield handler.post(wbtip_desc['wbtip_id'])
 
@@ -54,7 +54,7 @@ class TestWBTipMessageCollection(helpers.TestHandler):
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb')
-            handler.current_user['user_id'] = wbtip_desc['wbtip_id']
+            handler.current_user.user_id = wbtip_desc['wbtip_id']
 
             for rcvr_id in wbtip_desc['wbtip_receivers']:
                 yield handler.get(rcvr_id)
@@ -68,7 +68,7 @@ class TestWBTipMessageCollection(helpers.TestHandler):
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb', body=json.dumps(body))
-            handler.current_user['user_id'] = wbtip_desc['wbtip_id']
+            handler.current_user.user_id = wbtip_desc['wbtip_id']
 
             for rcvr_id in wbtip_desc['wbtip_receivers']:
                 yield handler.post(rcvr_id)
@@ -81,6 +81,6 @@ class TestWBTipReceiversCollection(helpers.TestHandler):
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb')
-            handler.current_user['user_id'] = wbtip_desc['wbtip_id']
+            handler.current_user.user_id = wbtip_desc['wbtip_id']
 
             yield handler.get()
