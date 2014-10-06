@@ -327,23 +327,7 @@ class GPGKeyIDNotUnique(GLException):
     error_code = 42
     status_code =  406
 
-class AdminSessionExpired(GLException):
-    reason = "Admin session expired (max time: %s seconds) " % \
-             GLSetting.defaults.lifetimes['admin']
-    error_code = 43
-    status_code = 419 # Authentication Timeout
-
-class WBSessionExpired(GLException):
-    reason = "Whistleblower session expired (max time: %s seconds) " % \
-             GLSetting.defaults.lifetimes['wb']
-    error_code = 44
-    status_code = 419 # Authentication Timeout
-
-class ReceiverSessionExpired(GLException):
-    error_code = 45
-    status_code = 419 # Authentication Timeout
-    reason = "Receiver session expired (max time: %s seconds) " % \
-             GLSetting.defaults.lifetimes['receiver']
+# UNUSED ERROR CODE 43 44 45 HERE!
 
 class InvalidTipTimeToLive(GLException):
     """

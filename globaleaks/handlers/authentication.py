@@ -7,18 +7,35 @@
 
 from twisted.internet.defer import inlineCallbacks
 from storm.exceptions import NotOneError
-from cyclone.util import ObjectDict as OD
 
+from globaleaks import security
 from globaleaks.models import Node, User
 from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.models import Receiver, WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
-from globaleaks.utils import utility
+from globaleaks.utils import utility, tempobj
 from globaleaks.utils.utility import log
 from globaleaks.third_party import rstr
-from globaleaks import security
 
+# needed in order to allow UT override
+reactor = None
+
+class GLSession(tempobj.TempObj):
+
+    def __init__(self, user_id, user_role):
+        self.user_role = user_role
+        self.user_id = user_id
+        tempobj.TempObj.__init__(self,
+                                 GLSetting.sessions,
+                                 rstr.xeger(r'[A-Za-z0-9]{42}'),
+                                 GLSetting.defaults.lifetimes[user_role],
+                                 reactor)
+
+    def __repr__(self):
+        session_string = "%s %s expire in %s" % \
+                         (self.user_role, self.user_id, self._expireCall)
+        return session_string
 
 def random_login_delay():
     """
@@ -53,30 +70,19 @@ def random_login_delay():
 
 def update_session(user):
     """
-    Returns True if the session is still valid, False instead.
-    Timed out sessions are destroyed.
+    Returns
+            False if no session is found
+            True if the session is active and update the session
+                via utils/tempobj.TempObj.touch()
     """
-    session_info = GLSetting.sessions[user.id]
-    
-    if utility.is_expired(session_info.refreshdate,
-                          seconds=GLSetting.defaults.lifetimes[user.role]):
 
-        log.debug("Authentication Expired (%s) %s seconds" % (
-                  user.role,
-                  GLSetting.defaults.lifetimes[user.role] ))
+    session_obj = GLSetting.sessions.get(user.id, None)
 
-        del GLSetting.sessions[user.id]
-        
+    if not session_obj:
         return False
 
-    else:
-
-        # update the access time to the latest
-        GLSetting.sessions[user.id].refreshdate = utility.datetime_now()
-        GLSetting.sessions[user.id].expirydate = utility.get_future_epoch(
-            seconds=GLSetting.defaults.lifetimes[user.role])
-
-        return True
+    session_obj.touch()
+    return True
 
 
 def authenticated(role):
@@ -97,27 +103,14 @@ def authenticated(role):
             if not cls.current_user:
                 raise errors.NotAuthenticated
 
-            # we need to copy the role as after update_session it may no exist anymore
-            copy_role = cls.current_user.role
+            update_session(cls.current_user)
 
-            if not update_session(cls.current_user):
-                if copy_role == 'admin':
-                    raise errors.AdminSessionExpired()
-                elif copy_role == 'wb':
-                    raise errors.WBSessionExpired()
-                elif copy_role == 'receiver':
-                    raise errors.ReceiverSessionExpired()
-                else:
-                    raise AssertionError("Developer mistake: %s" % cls.current_user)
-
-            if role == '*' or role == cls.current_user.role:
-                log.debug("Authentication OK (%s)" % cls.current_user.role )
+            if role == '*' or role == cls.current_user.user_role:
+                log.debug("Authentication OK (%s)" % cls.current_user.user_role )
                 return method_handler(cls, *args, **kwargs)
 
-            # else, if role != cls.current_user.role
-
             error = "Good login in wrong scope: you %s, expected %s" % \
-                    (cls.current_user.role, role)
+                    (cls.current_user.user_role, role)
 
             log.err(error)
 
@@ -283,18 +276,8 @@ class AuthenticationHandler(BaseHandler):
                 case of an admin it will be set to 'admin', in the case of the
                 'wb' it will be the whistleblower id.
         """
-        self.session_id = rstr.xeger(r'[A-Za-z0-9]{42}')
-
-        # This is the format to preserve sessions in memory
-        # Key = session_id, values "last access" "id" "role"
-        new_session = OD(
-               refreshdate=utility.datetime_now(),
-               id=self.session_id,
-               role=role,
-               user_id=user_id,
-               expirydate=utility.get_future_epoch(seconds=GLSetting.defaults.lifetimes[role])
-        )
-        GLSetting.sessions[self.session_id] = new_session
+        session = GLSession(user_id, role)
+        self.session_id = session.id
         return self.session_id
 
     @authenticated('*')
@@ -307,9 +290,9 @@ class AuthenticationHandler(BaseHandler):
 
         auth_answer = {
             'session_id': self.current_user.id,
-            'role': self.current_user.role,
+            'role': self.current_user.user_role,
             'user_id': unicode(self.current_user.user_id),
-            'session_expiration': int(self.current_user.expirydate),
+            'session_expiration': int(self.current_user.getTime()),
         }
 
         self.write(auth_answer)
@@ -358,7 +341,7 @@ class AuthenticationHandler(BaseHandler):
                 'role': 'admin',
                 'session_id': new_session_id,
                 'user_id': unicode(authorized_username),
-                'session_expiration': int(GLSetting.sessions[new_session_id].expirydate),
+                'session_expiration': int(GLSetting.sessions[new_session_id].getTime()),
             }
 
         elif role == 'wb':
@@ -374,7 +357,7 @@ class AuthenticationHandler(BaseHandler):
                 'role': 'admin',
                 'session_id': new_session_id,
                 'user_id': unicode(wbtip_id),
-                'session_expiration': int(GLSetting.sessions[new_session_id].expirydate),
+                'session_expiration': int(GLSetting.sessions[new_session_id].getTime()),
             }
 
         elif role == 'receiver':
@@ -390,7 +373,7 @@ class AuthenticationHandler(BaseHandler):
                 'role': 'receiver',
                 'session_id': new_session_id,
                 'user_id': unicode(receiver_id),
-                'session_expiration': int(GLSetting.sessions[new_session_id].expirydate),
+                'session_expiration': int(GLSetting.sessions[new_session_id].getTime()),
             }
 
         else:
