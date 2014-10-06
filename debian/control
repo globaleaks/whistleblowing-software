@@ -7,6 +7,7 @@ Build-Depends:
  , python (>= 2.7)
  , dh-apparmor
 X-Python-Version: 2.7
+Vcs-Git: git://github.com/globaleaks/GlobaLeaks.git
 Standards-Version: 3.9.1
 
 Package: globaleaks
@@ -23,5 +24,7 @@ Depends:
  , apparmor
  , apparmor-utils
  , libffi-dev
-Description: GlobaLeaks is an open source project aimed to create a worldwide, anonymous, censorship-resistant, distributed whistleblowing platform.
+Description: An opensource whistleblowing platform.
+ GlobaLeaks is an open source project aimed to create a worldwide, anonymous,
+ censorship-resistant, distributed whistleblowing platform.
 Provides: ${python:Provides}
