@@ -7,7 +7,7 @@ import shutil
 import hashlib
 import urllib2
 from zipfile import ZipFile
-from distutils.core import setup
+from setuptools import setup
 
 ######################################################################
 # Temporary fix to https://github.com/globaleaks/GlobaLeaks/issues/572
