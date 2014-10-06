@@ -1,9 +1,14 @@
 #!/usr/bin/make -f
 
 export PYBUILD_NAME=globaleaks
+#export PYBUILD_DISABLE=test
 
 %:
 	dh $@ --with python2 --buildsystem=pybuild
+
+override_dh_auto_test:
+	PYBUILD_SYSTEM=custom \
+	PYBUILD_TEST_ARGS="trial {dir}/globaleaks" dh_auto_test
 
 override_dh_install:
 	mkdir debian/globaleaks/etc
