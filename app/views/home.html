@@ -1,3 +1,13 @@
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+<span data-translate>Enter your receipt</span>
+<span data-translate>View Tip</span>
+<span data-translate>Are you a receiver?</span>
+<span data-translate>Login page</span>
+
+-->
 <div id="SecurityAwarenessBox" class="not-anonymous-question modal" data-ng-show="!node.disable_security_awareness_badge && showQuestions">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -6,7 +16,7 @@
           <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
         </button>
         <h3>
-          <span data-translate>{{node.security_awareness_title}}</span>
+          <span>{{node.security_awareness_title}}</span>
         </h3>
       </div>
       <div class="modal-body">
@@ -67,7 +77,7 @@
       </div>
     </div>
 
-    <div id="BlowTheWhistleBox" class="ng-cloak row">
+    <div id="WhistleblowerLoginBox" class="ng-cloak row">
       <div data-ng-show="node.configured">
         <div class="row" data-ng-show="!node.tor2web_submission && !anonymous">
           <p class="has-error">
@@ -81,10 +91,35 @@
           </button>
         </div>
         <div class="row" data-ng-show="node.tor2web_submission || anonymous">
-          <a data-ng-click="goToSubmission(1)" class="btn btn-primary">
-            <i class="glyphicon glyphicon-bullhorn"></i>
-            <span data-translate>Blow the Whistle</span>
-          </a>
+          <div id="WhistleblowerSubmitBox">
+            <div id="WhistleblowerSubmitBoxHeader">
+              <span data-translate>Are you a whistleblower?</span>
+            </div>
+            <div id="WhistleblowerSubmitBoxButton">
+              <a data-ng-click="goToSubmission(1)" class="btn btn-primary">
+                <i class="glyphicon glyphicon-bullhorn"></i>
+                <span data-translate>Blow the Whistle</span>
+              </a>
+            </div>
+          </div>
+          <div id="WhistleblowerLoginBox" class="center-block">
+            <form role="form">
+                <div class="row">
+                  <h3 data-translate>Have you already filed a submission? Enter your receipt.</h3>
+                </div>
+                <div class="form-group col-md-6 col-md-offset-3">
+                  <div class="input-group">
+                    <input class="form-control" data-ng-model="receipt" type="text">
+                    <span class="input-group-btn">
+                      <button data-ng-click="view_tip(receipt)" class="btn btn-primary" data-ng-disabled="!receipt || receipt == ''" type="button">
+                        <i class="glyphicon glyphicon-log-in"></i>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       <div data-ng-hide="node.configured">
@@ -92,45 +127,6 @@
         <a href="/#/admin/contexts">
           <span data-translate>Admin interface and configure at least one context</span>
         </a>
-      </div>
-    </div>
-
-    <div id="WhistleblowerLoginBox" class="row">
-      <div class="col-md-offset-2 col-md-8">
-        <div id="WhistleblowerLoginBoxHeader">
-          <span data-translate>Are you a whistleblower?</span>
-        </div>
-        <form class="form-horizontal" role="form">
-          <div class="form-group">
-            <label class="row">
-              <span data-translate>Enter your receipt</span>
-            </label>
-            <div class="row">
-              <span class="col-md-offset-3 col-md-6">
-                <input class="form-control" data-ng-model="receipt" type="text">
-              </span>
-            </div>
-            <br />
-            <div class="row">
-              <a data-ng-click="view_tip(receipt)" class="btn btn-primary" data-ng-disabled="!receipt || receipt == ''">
-                <i class="glyphicon glyphicon-log-in"></i>
-                <span data-translate>View Tip</span>
-              </a>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <div id="ReceiverLoginBox" class="row">
-      <div class="col-md-offset-2 col-md-8">
-        <div id="ReceiverLoginBoxHeader">
-          <span data-translate>Are you a receiver?</span>
-        </div>
-        <div>
-          <span data-translate>This is the</span>
-          <a href="#/login"><span data-translate>Login page</span></a>
-        </div>
       </div>
     </div>
 
