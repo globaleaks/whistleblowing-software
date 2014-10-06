@@ -5,6 +5,7 @@ Priority: optional
 Build-Depends:
  debhelper (>= 7.4.3)
  , python (>= 2.7)
+ , python-setuptools
  , dh-apparmor
 X-Python-Version: 2.7
 Vcs-Git: git://github.com/globaleaks/GlobaLeaks.git
@@ -14,8 +15,8 @@ Package: globaleaks
 Architecture: all
 X-Python-Version: 2.7
 Depends:
- ${misc:Depends}
- , python (>= 2.7)
+ ${python:Depends}
+ , ${misc:Depends}
  , tor
  , iptables
  , build-essential
