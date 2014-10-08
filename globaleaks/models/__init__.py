@@ -194,22 +194,6 @@ class Context(Model):
     maximum_selectable_receivers = Int()
     select_all_receivers = Bool()
 
-    # Unique fields is a dict with a unique ID as key,
-    # and as value another dict, containing the field
-    # descriptive values:
-    # "presentation_order" : int
-    # "preview" : bool
-    # "required" : bool
-    # "type" : unicode
-    # "options" : dict (optional!)
-    unique_fields = Pickle()
-
-    # Localized fields is a dict having as keys, the same
-    # keys of unique_fields, and as value a dict, containing:
-    # 'name' : unicode
-    # 'hint' : unicode
-    localized_fields = Pickle()
-
     escalation_threshold = Int()
 
     tip_max_access = Int()
@@ -224,7 +208,6 @@ class Context(Model):
     name = Pickle(validator=shortlocal_v)
     description = Pickle(validator=longlocal_v)
     receiver_introduction = Pickle(validator=longlocal_v)
-    fields_introduction = Pickle(validator=longlocal_v)
 
     # receivers = ReferenceSet(
     #                         Context.id,
@@ -245,8 +228,7 @@ class Context(Model):
     presentation_order = Int()
 
     unicode_keys = []
-    localized_strings = ['name', 'description',
-                         'receiver_introduction', 'fields_introduction' ]
+    localized_strings = ['name', 'description', 'receiver_introduction']
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'file_max_download',
                  'maximum_selectable_receivers', 'delete_consensus_percentage',
                  'presentation_order' ]
@@ -695,45 +677,22 @@ class Field(Model):
         store.remove(self)
 
 
-class Step(BaseModel):
-    __storm_table__ = 'step'
-    __storm_primary__ = 'context_id', 'number'
-
+class Step(Model):
     context_id = Unicode()
-    field_id = Unicode()
+    label = Unicode()
+    description = Unicode()
+    hint = Unicode()
     # XXX.
     # there are better structures that we could use rather than a linear ordering.
     # (like a tree-like, so that update is O(lg n) < O(n)).
     number = Int()
 
-    @staticmethod
-    def _new_bottom(store, step, context, field):
-        previous_steps = store.find(Step, Step.context_id == context.id)
-        step.number = previous_steps.count() + 1
-        step.field = field
-        step.context = context
+    unicode_keys = ['context_id']
+    int_keys = ['number']
+    localized_strings = ['label', 'description', 'hint']
 
     @staticmethod
-    def _new_middle(store, step, context, field, number):
-        # we want to introduce a step at position n, so
-        # we first MUST update steps with number > n and same context_id
-        # (in reverse order) and THEN set our step.
-        previous_steps = store.find(Step, Step.context_id == context.id,
-                                    Step.number <= number)
-        next_steps = store.find(Step, Step.context_id == context.id,
-                                Step.number >= number).order_by(expr.Desc(Step.number))
-        if number > previous_steps.count() + 1:
-            raise ValueError("Invalid input data.")
-        # update following models
-        for next_step in next_steps:
-            next_step.number += 1
-        step.number = number
-        step.field = field
-        step.context = context
-
-
-    @staticmethod
-    def new(store, context_id, field_id, number=None):
+    def new(store, attrs=None):
         """
         Add a new step at the given position.
 
@@ -745,36 +704,16 @@ class Step(BaseModel):
                                context_id is not found,
                                field_id not found.
         """
-        step = Step()
-        field = Field.get(store, field_id)
-        context = Context.get(store, context_id)
-        if (field is None or
-            context is None or
-            number is not None and number <= 0):
-            raise ValueError("Invalid input data.")
-        if number is None:
-            Step._new_bottom(store, step, context, field)
-        else:
-            Step._new_middle(store, step, context, field, number)
+        previous_steps = store.find(Step, Step.context_id == attrs['context_id'])
+        attrs['number'] = previous_steps.count() + 1
+
+        step = Step(attrs)
         store.add(step)
         return step
 
     @classmethod
-    def get(cls, store, context_id, number):
-        return store.find(Step,
-                          Step.context_id == context_id,
-                          Step.number == number).one()
-
     def delete(self, store):
-        """
-        Delete a step object, updating (if necessary) all other steps.
-        """
-        next_steps = store.find(Step, Step.context_id == self.context_id,
-                                Step.number > self.number)
         store.remove(self)
-        for next_step in next_steps:
-            next_step.number -= 1
-
 
 class ApplicationData(Model):
     """
@@ -832,13 +771,23 @@ class FieldField(BaseModel):
     unicode_keys = ['parent_id', 'child_id']
 
 
+class StepField(BaseModel):
+    """
+    Class used to implement references between Steps and Fields!
+    """
+    __storm_table__ = 'step_field'
+    __storm_primary__ = 'step_id', 'field_id'
+
+    step_id = Unicode()
+    field_id = Unicode()
+
+    unicode_keys = ['step_id', 'field_id']
+
+
 Context.steps = ReferenceSet(Context.id,
-                             Step.context_id,
-                             Step.field_id,
-                             Field.id)
+                             Step.context_id)
 
 Step.context = Reference(Step.context_id, Context.id)
-Step.field = Reference(Step.field_id, Field.id)
 
 # _*_# References tracking below #_*_#
 Receiver.user = Reference(Receiver.user_id, User.id)
@@ -896,6 +845,12 @@ Field.children = ReferenceSet(
     Field.id,
     FieldField.parent_id,
     FieldField.child_id,
+    Field.id)
+
+Step.children = ReferenceSet(
+    Step.id,
+    StepField.step_id,
+    StepField.field_id,
     Field.id)
 
 Context.receivers = ReferenceSet(

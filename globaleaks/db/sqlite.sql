@@ -45,8 +45,6 @@ CREATE TABLE context (
     creation_date VARCHAR NOT NULL,
     description BLOB NOT NULL,
     escalation_threshold INTEGER,
-    unique_fields BLOB NOT NULL,
-    localized_fields BLOB NOT NULL,
     file_max_download INTEGER NOT NULL,
     file_required INTEGER NOT NULL,
     last_update VARCHAR,
@@ -56,7 +54,6 @@ CREATE TABLE context (
     tip_timetolive INTEGER NOT NULL,
     submission_timetolive INTEGER NOT NULL,
     receiver_introduction BLOB NOT NULL,
-    fields_introduction BLOB NOT NULL,
     tags BLOB,
     select_all_receivers INTEGER NOT NULL,
     postpone_superpower INTEGER NOT NULL,
@@ -243,6 +240,15 @@ CREATE TABLE field_field (
     FOREIGN KEY (child_id) REFERENCES field(id) ON DELETE CASCADE
 );
 
+CREATE TABLE step_field (
+    step_id VARCHAR NOT NULL,
+    field_id VARCHAR NOT NULL,
+    PRIMARY KEY (step_id, field_id),
+    UNIQUE (field_id)
+    FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
+    FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE
+);
+
 CREATE TABLE receivertip (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
@@ -303,6 +309,7 @@ CREATE TABLE field (
                                           'modal',
                                           'dialog',
                                           'tos',
+                                          'fileupload',
                                           'fieldgroup'
                                           )),
     options VARCHAR DEFAULT '{}',
@@ -310,14 +317,14 @@ CREATE TABLE field (
 );
 
 CREATE TABLE step (
-  context_id VARCHAR NOT NULL,
-  number INTEGER NOT NULL CHECK(number > 0),
-  field_id VARCHAR NOT NULL,
-  PRIMARY KEY (context_id, field_id),
-  FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
-  FOREIGN KEY(field_id) REFERENCES field(id)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
-  UNIQUE (context_id, field_id)
-  UNIQUE (context_id, number)
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    label VARCHAR NOT NULL,
+    description VARCHAR NOT NULL DEFAULT '',
+    hint VARCHAR NOT NULL DEFAULT '',
+    context_id VARCHAR NOT NULL,
+    number INTEGER NOT NULL CHECK(number > 0),
+    PRIMARY KEY (id)
+    UNIQUE (context_id, number),
+    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE
 );

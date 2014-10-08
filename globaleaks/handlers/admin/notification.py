@@ -1,6 +1,7 @@
 import os
 import shutil
 
+from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
@@ -69,7 +70,7 @@ def update_notification(store, request, language=GLSetting.memory_copy.default_l
 
     try:
         notif.update(request)
-    except Exception as dberror:
+    except DatabaseError as dberror:
         log.err("Unable to update Notification: %s" % dberror)
         raise errors.InvalidInputFormat(dberror)
 

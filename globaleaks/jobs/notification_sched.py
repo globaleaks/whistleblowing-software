@@ -18,7 +18,6 @@ from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.plugins import notification
 from globaleaks.handlers import admin, rtip
-
 from globaleaks.handlers.admin.notification import admin_serialize_notification
 
 
@@ -76,6 +75,7 @@ class NotificationSchedule(GLJob):
                 :class:`globaleaks.plugins.base.Event`).
 
         """
+        language = GLSetting.memory_copy.default_language
         events = []
 
         # settings.notification_plugins contain a list of supported plugin
@@ -89,7 +89,7 @@ class NotificationSchedule(GLJob):
             models.ReceiverTip.mark == models.ReceiverTip._marker[0]
         )
 
-        node_desc = admin.db_admin_serialize_node(store, GLSetting.memory_copy.default_language)
+        node_desc = admin.db_admin_serialize_node(store, language)
 
         if not_notified_tips.count():
             log.debug("Receiver Tips found to be notified: %d" % not_notified_tips.count() )
@@ -106,9 +106,9 @@ class NotificationSchedule(GLJob):
                 log.err("(tip_notification) Integrity failure: missing InternalTip|Context")
                 continue
 
-            context_desc = admin.admin_serialize_context(receiver_tip.internaltip.context, GLSetting.memory_copy.default_language)
+            context_desc = admin.admin_serialize_context(receiver_tip.internaltip.context, language)
 
-            receiver_desc = admin.admin_serialize_receiver(receiver_tip.receiver, GLSetting.memory_copy.default_language)
+            receiver_desc = admin.admin_serialize_receiver(receiver_tip.receiver, language)
             if not receiver_desc.has_key('mail_address'):
                 log.err("Receiver %s lack of email address!" % receiver_tip.receiver.name)
                 continue
@@ -134,6 +134,9 @@ class NotificationSchedule(GLJob):
                             node_info=node_desc,
                             receiver_info=receiver_desc,
                             context_info=context_desc,
+                            fields_info = admin.db_get_context_fields(store,
+                                                                      context_desc['id'],
+                                                                      language),
                             plugin=plugin)
             events.append((unicode(receiver_tip.id), event))
 
@@ -192,6 +195,7 @@ class NotificationSchedule(GLJob):
 
 
         """
+        language = GLSetting.memory_copy.default_language
         events = []
         cplugin = GLSetting.notification_plugins[0]
 
@@ -201,7 +205,7 @@ class NotificationSchedule(GLJob):
                                            models.Message.mark == models.Message._marker[0]
         )
 
-        node_desc = admin.db_admin_serialize_node(store, GLSetting.memory_copy.default_language)
+        node_desc = admin.db_admin_serialize_node(store, language)
 
         if not_notified_messages.count():
             log.debug("Messages found to be notified: %d" % not_notified_messages.count() )
@@ -229,7 +233,7 @@ class NotificationSchedule(GLJob):
                 log.err("Receiver %s lack of email address!" % receiver.name)
                 continue
 
-            receiver_desc = admin.admin_serialize_receiver(receiver, GLSetting.memory_copy.default_language)
+            receiver_desc = admin.admin_serialize_receiver(receiver, language)
             log.debug("Messages receiver: %s" % message.receivertip.receiver.name)
 
             context = message.receivertip.internaltip.context
@@ -237,7 +241,7 @@ class NotificationSchedule(GLJob):
                 log.err("Reference chain fail!")
                 continue
 
-            context_desc = admin.admin_serialize_context(context, GLSetting.memory_copy.default_language)
+            context_desc = admin.admin_serialize_context(context, language)
 
             message_desc = rtip.receiver_serialize_message(message)
             message.mark = u'notified' # models.Message._marker[1]
@@ -264,6 +268,9 @@ class NotificationSchedule(GLJob):
                           node_info=node_desc,
                           receiver_info=receiver_desc,
                           context_info=context_desc,
+                          fields_info = admin.db_get_context_fields(store,
+                                                                    context_desc['id'],
+                                                                    language),
                           plugin=plugin)
 
             events.append(((unicode(message.id), unicode(receiver.id)), event))
@@ -322,6 +329,7 @@ class NotificationSchedule(GLJob):
 
 
         """
+        language = GLSetting.memory_copy.default_language
         events = []
         cplugin = GLSetting.notification_plugins[0]
 
@@ -331,7 +339,7 @@ class NotificationSchedule(GLJob):
             models.Comment.mark == models.Comment._marker[0]
         )
 
-        node_desc = admin.db_admin_serialize_node(store, GLSetting.memory_copy.default_language)
+        node_desc = admin.db_admin_serialize_node(store, language)
 
         if not_notified_comments.count():
             log.debug("Comments found to be notified: %d" % not_notified_comments.count() )
@@ -358,7 +366,7 @@ class NotificationSchedule(GLJob):
                 log.err("(comment_notification) Integrity check failure Context")
                 continue
 
-            context_desc = admin.admin_serialize_context(comment.internaltip.context, GLSetting.memory_copy.default_language)
+            context_desc = admin.admin_serialize_context(comment.internaltip.context, language)
 
             # XXX BUG! All notification is marked as correctly send,
             # This can't be managed by callback, and can't be managed by actual DB design
@@ -366,7 +374,7 @@ class NotificationSchedule(GLJob):
 
             for receiver in comment.internaltip.receivers:
 
-                receiver_desc = admin.admin_serialize_receiver(receiver, GLSetting.memory_copy.default_language)
+                receiver_desc = admin.admin_serialize_receiver(receiver, language)
                 if not receiver_desc.has_key('mail_address'):
                     log.err("Receiver %s lack of email address!" % receiver.name)
                     continue
@@ -403,6 +411,9 @@ class NotificationSchedule(GLJob):
                     node_info=node_desc,
                     receiver_info=receiver_desc,
                     context_info=context_desc,
+                    fields_info = admin.db_get_context_fields(store,
+                                                              context_desc['id'],
+                                                              language),
                     plugin=plugin)
 
                 events.append(((unicode(comment.id), unicode(receiver.id)), event))
@@ -460,6 +471,7 @@ class NotificationSchedule(GLJob):
                 :class:`globaleaks.plugins.base.Event`).
 
         """
+        language = GLSetting.memory_copy.default_language
         events = []
         cplugin = GLSetting.notification_plugins[0]
 
@@ -469,7 +481,7 @@ class NotificationSchedule(GLJob):
             models.ReceiverFile.mark == models.ReceiverFile._marker[0]
         )
 
-        node_desc = admin.db_admin_serialize_node(store, GLSetting.memory_copy.default_language)
+        node_desc = admin.db_admin_serialize_node(store, language)
 
         if not_notified_rfiles.count():
             log.debug("Receiverfiles found to be notified: %d" % not_notified_rfiles.count() )
@@ -495,9 +507,9 @@ class NotificationSchedule(GLJob):
                 continue
 
             context_desc = admin.admin_serialize_context(rfile.internalfile.internaltip.context,
-                GLSetting.memory_copy.default_language)
+                                                         language)
 
-            receiver_desc = admin.admin_serialize_receiver(rfile.receiver, GLSetting.memory_copy.default_language)
+            receiver_desc = admin.admin_serialize_receiver(rfile.receiver, language)
             if not receiver_desc.has_key('mail_address'):
                 log.err("Receiver %s lack of email address!" % rfile.receiver.user.name)
                 continue
@@ -533,6 +545,9 @@ class NotificationSchedule(GLJob):
                 node_info=node_desc,
                 receiver_info=receiver_desc,
                 context_info=context_desc,
+                fields_info = admin.db_get_context_fields(store,
+                                                          context_desc['id'],
+                                                          language),
                 plugin=plugin)
 
             events.append(((unicode(rfile.id), unicode(rfile.receiver.id)), event))

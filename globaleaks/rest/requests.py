@@ -86,6 +86,13 @@ actorsTipOpsDesc = {
     'is_pertinent': bool,
 }
 
+adminStepDesc = {
+    'label': unicode,
+    'hint': unicode,
+    'description': unicode,
+    'children': [ uuid_regexp ]
+}
+
 adminNodeDesc = {
     'name': unicode,
     'description' : unicode,
@@ -162,7 +169,6 @@ adminContextDesc = {
     'name': unicode,
     'description': unicode,
     'receiver_introduction': unicode,
-    'fields_introduction': unicode,
     'postpone_superpower': bool,
     'can_delete_submission': bool,
     'maximum_selectable_receivers': int,
@@ -175,7 +181,7 @@ adminContextDesc = {
     'file_max_download' : int,
     'escalation_threshold' : int,
     'receivers' : [ uuid_regexp ],
-    'fields': [ formFieldsDict ],
+    'steps': [ adminStepDesc ],
     'file_required': bool,
     'tags' : [ unicode ],
     'select_all_receivers': bool,
@@ -335,7 +341,6 @@ nodeContext = {
     'select_all_receivers': bool,
     'name': unicode,
     'presentation_order': int,
-    'fields': [ field ],
     'description': unicode,
     'selectable_receiver': bool,
     'tip_timetolive': int,
@@ -417,32 +422,11 @@ adminFieldDesc = {
              'modal|'
              'dialog|'
              'tos|'
+             'fileupload|'
              'fieldgroup)$'),
     'options': dict, # we can't define a format here ? because the key need to be strict to field_type format ?
     'children': [ uuid_regexp ],
 }
-
-adminStepDesc = {
-    'context_id': uuid_regexp,
-    'number' : int,
-    'label': unicode,
-    'description': unicode,
-    'hint': unicode,
-}
-
-adminStepDeleteList = [
-    {
-        'context_id': uuid_regexp,
-        'number': int,
-    }
-]
-
-adminStepUpdate = {
-    'context_id': uuid_regexp,
-    'fields': [ int ],
-}
-
-adminStepDescList = [ adminStepDesc ]
 
 wizardFieldDesc = {
     'incremental_number': int,
@@ -460,7 +444,7 @@ wizardNodeDesc = {
     'terms_and_conditions': dict,
 }
 
-wizardFieldUpdate = {
+wizardAppdataDesc = {
     'version': int,
     'fields': [ wizardFieldDesc ],
     'node': wizardNodeDesc,
@@ -470,5 +454,5 @@ wizardFirstSetup = {
     'receiver' : adminReceiverDesc,
     'context' : adminContextDesc,
     'node' : adminNodeDesc,
-    'appdata' : wizardFieldUpdate,
+    'appdata' : wizardAppdataDesc,
 }

@@ -7,8 +7,6 @@ from globaleaks import models
 from globaleaks.rest import errors
 from globaleaks.settings import transact, transact_ro
 from globaleaks.tests import helpers
-from globaleaks.utils.structures import Fields
-
 
 class TestModels(helpers.TestGL):
     receiver_inc = 0
@@ -17,10 +15,6 @@ class TestModels(helpers.TestGL):
     def context_add(self, store):
         c = self.localization_set(self.dummyContext, models.Context, 'en')
         context = models.Context(c)
-
-        fo = Fields()
-        fo.update_fields('en', self.dummyContext['fields'])
-        fo.context_import(context)
 
         context.tags = self.dummyContext['tags']
         context.submission_timetolive = context.tip_timetolive = 1000
@@ -98,10 +92,6 @@ class TestModels(helpers.TestGL):
 
         context = models.Context(c)
 
-        fo = Fields()
-        fo.update_fields('en', self.dummyContext['fields'])
-        fo.context_import(context)
-
         context.tags = self.dummyContext['tags']
         context.submission_timetolive = context.tip_timetolive = 1000
         context.description = context.name = \
@@ -143,10 +133,6 @@ class TestModels(helpers.TestGL):
 
         context1 = models.Context(c)
 
-        fo = Fields()
-        fo.update_fields('en', self.dummyContext['fields'])
-        fo.context_import(context1)
-
         context1.tags = self.dummyContext['tags']
         context1.submission_timetolive = context1.tip_timetolive = 1000
         context1.description = context1.name = \
@@ -154,8 +140,6 @@ class TestModels(helpers.TestGL):
             context1.submission_introduction = {'en': 'Valar Morghulis'}
 
         context2 = models.Context(c)
-
-        fo.context_import(context2)
 
         context2.tags = self.dummyContext['tags']
         context2.submission_timetolive = context2.tip_timetolive = 1000
@@ -226,12 +210,14 @@ class TestModels(helpers.TestGL):
     @inlineCallbacks
     def test_context_receiver_reference_1(self):
         context_id = yield self.create_context_with_receivers()
+        yield self.assert_model_exists(models.Context, context_id)
         receivers = yield self.list_receivers_of_context(context_id)
         self.assertEqual(2, len(receivers))
 
     @inlineCallbacks
     def test_context_receiver_reference_2(self):
         receiver_id = yield self.create_receiver_with_contexts()
+        yield self.assert_model_exists(models.Receiver, receiver_id)
         contexts = yield self.list_context_of_receivers(receiver_id)
         self.assertEqual(2, len(contexts))
 
@@ -340,9 +326,9 @@ class TestField(helpers.TestGL):
 
 
 class TestStep(helpers.TestGL):
-    skip = ('"test_gl_with_populated_db.json" must be updated'
-            'in order to run this test.')
-    fixtures = ['fields.json', 'test_gl_with_populated_db.json']
+    #skip = ('"test_gl_with_populated_db.json" must be updated'
+    #        'in order to run this test.')
+    fixtures = ['fields.json', "test_gl_with_populated_db.json"]
 
     @inlineCallbacks
     def setUp(self):
@@ -366,55 +352,34 @@ class TestStep(helpers.TestGL):
         yield super(TestStep, self).setUp(create_node=False)
 
     @transact
-    def create_step(self, store, *args, **kwargs):
-        return models.Step.new(store, *args, **kwargs)
+    def create_step(self, store, context_id, field_id):
+        step = {
+          'context_id': context_id,
+          'number': 1,
+          'label': "",
+          'description': "",
+          'hint': ""
+        }
+
+        step = models.Step.new(store, step)
+        field = models.Field.get(store, field_id)
+        step.children.add(field)
+        return step.id
 
     @inlineCallbacks
     def test_new(self):
-        # tabula rasa.
+        # tabula rasa elettrificata
+        # https://www.youtube.com/watch?v=1kGQaE3OFoI
         steps = yield transact(lambda store: store.find(models.Step).is_empty())()
         self.assertTrue(steps)
 
-        yield self.create_step(self.context_id, self.generalities_id)
-        yield self.assert_model_exists(models.Step, self.context_id, 1)
+        step1 = yield self.create_step(self.context_id, self.generalities_id)
+        yield self.assert_model_exists(models.Step, step1)
         # creation of another step with same context and fieldgroup shall fail.
         self.assertFailure(self.create_step(self.context_id, self.generalities_id),
                            exceptions.IntegrityError)
         # creation of another step bindded to the same context and different
         # fieldgroup shall succeed.
         second_fieldgroup = yield create_field(type='fieldgroup')
-        yield self.create_step(self.context_id, second_fieldgroup)
-        yield self.assert_model_exists(models.Step, self.context_id, 2)
-        # creation of a new step, with an explicit number (the bottom) shall succeed.
-        third_fieldgroup = yield create_field(type='fieldgroup')
-        yield self.create_step(self.context_id, third_fieldgroup, 3)
-        yield self.assert_model_exists(models.Step, self.context_id, 3)
-        # creation of a new step in the middle shall move all others
-        wannabe_first_fieldgroup = yield create_field(type='fieldgroup')
-        yield self.create_step(self.context_id, wannabe_first_fieldgroup, 1)
-        yield self.assert_model_exists(models.Step, self.context_id, 1)
-        yield self.assert_model_exists(models.Step, self.context_id, 4)
-        first_fieldgroup = yield transact(
-            lambda store: models.Step.get(store, self.context_id, 1).field_id
-        )()
-        self.assertEqual(wannabe_first_fieldgroup, first_fieldgroup)
-
-    @inlineCallbacks
-    def test_delete(self):
-        # deletion and re-creation of one step associated to a context shall
-        # never fail
-        yield self.create_step(self.context_id, self.generalities_id)
-        yield self.assert_model_exists(models.Step, self.context_id, 1)
-        yield transact(
-            lambda store: models.Step.get(store, self.context_id, 1).delete(store)
-        )()
-        yield self.create_step(self.context_id, self.generalities_id)
-        yield self.assert_model_exists(models.Step, self.context_id, 1)
-        # creation of a new step, and deletion of the first one, shall trigger
-        # decrement of step number
-        another_fieldgroup = yield create_field(type='fieldgroup')
-        yield self.create_step(self.context_id, another_fieldgroup)
-        yield transact(
-            lambda store: models.Step.get(store, self.context_id, 1).delete(store)
-        )()
-        yield self.assert_model_exists(models.Step, self.context_id, 1)
+        step2 = yield self.create_step(self.context_id, second_fieldgroup)
+        yield self.assert_model_exists(models.Step, step2)

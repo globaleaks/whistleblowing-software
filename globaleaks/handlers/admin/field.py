@@ -4,7 +4,7 @@ Implementation of the code executed when an HTTP client reach /admin/fields URI.
 """
 from __future__ import unicode_literals
 
-from twisted.internet import defer
+from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
@@ -19,8 +19,8 @@ def admin_serialize_field(field, language):
     """
     Serialize a field, localizing its content depending on the language.
 
-    :param field: the field object to be serialized
-    :param language: the language in which to localize data
+    :param: field: the field object to be serialized
+    :param: language: the language in which to localize data
     :return: a serialization of the object
     """
     return {
@@ -39,28 +39,14 @@ def admin_serialize_field(field, language):
         'children': [f.id for f in field.children],
     }
 
-def admin_serialize_step(step, language):
-    """
-    Serialize a step, localizing its content depending on the language.
-    XXX. provide i10n feature.
-
-    :param step: the step object to be serialized.
-    :param language: the language in which to localize data
-    :return: a serialization of the object
-    """
-    return {
-        'context_id': step.context.id,
-        'field_id': step.field.id,
-        'number': step.number,
-        'label': step.field.label,
-        'description': step.field.description,
-        'hint': step.field.hint,
-    }
-
 @transact
 def create_field(store, request, language):
     """
     Add a new field to the store, then return the new serialized object.
+    :param: store: the store reference
+    :param: request: the field definition dict
+    :param: language: the language of the field definition dict
+    :return: a serialization of the object
     """
     field = Field.new(store, request)
     return admin_serialize_field(field, language)
@@ -71,6 +57,11 @@ def update_field(store, field_id, request, language):
     Updates the specified field with the details.
     raises :class:`globaleaks.errors.FieldIdNotFound` if the field does
     not exist.
+    :param: store: the store reference
+    :param: field_id: the field_id of the field to update
+    :param: request: the field definition dict
+    :param: language: the language of the field definition dict
+    :return: a serialization of the object
     """
     errmsg = 'Invalid or not existent field ids in request.'
 
@@ -97,7 +88,7 @@ def update_field(store, field_id, request, language):
                 raise errors.InvalidInputFormat(errmsg)
             field.children.add(child)
 
-    except Exception as dberror:
+    except DatabaseError as dberror:
         log.err('Unable to update field {f}: {e}'.format(
             f=field.label, e=dberror))
         raise errors.InvalidInputFormat(dberror)
@@ -107,14 +98,21 @@ def update_field(store, field_id, request, language):
 @transact_ro
 def get_field_list(store, language):
     """
+    Serialize all the fields of the node, localizing their content depending on the language.
+
     :return: the current field list serialized.
-    :rtype: dict
+    :param language: the language of the field definition dict
+    :rtype: list of dict
     """
     return [admin_serialize_field(f, language) for f in store.find(Field)]
 
 @transact_ro
 def get_field(store, field_id, language):
     """
+    Serialize a speficied field, localizing its content depending on the language.
+
+    :param field_id: the id corresponding to the field.
+    :param: language: the language in which to localize data
     :return: the currently configured field.
     :rtype: dict
     """
@@ -128,19 +126,16 @@ def get_field(store, field_id, language):
 def delete_field(store, field_id):
     """
     Remove the field object corresponding to field_id from the store.
+
     If the field has children, remove them as well.
     If the field is immediately attached to a step object, remove it as well.
 
-    :param field_id: the id correstponding to the field.
-    :raises FieldIdNotFound: if no such field is found.
+    :param: field_id: the id corresponding to the field.
+    :raise: FieldIdNotFound: if no such field is found.
     """
     field = Field.get(store, field_id)
     if not field:
         raise errors.FieldIdNotFound
-    step = store.find(Step, Step.field == field.id)
-    if step.any():
-        step = step.one()
-        step.delete(store)
     field.delete(store)
 
 @transact
@@ -148,7 +143,8 @@ def get_context_fieldtree(store, context_id):
     """
     Return the serialized field tree belonging to a specific context.
 
-    :return dict: a nested disctionary represending the tree.
+    :param context_id: the id corresponding to the context.
+    :return dict: a nested dictionary represending the tree.
     """
     #  context = Context.get(store, context_id)
     steps = store.find(Step, Step.context_id == context_id).order_by(Step.number)
@@ -174,111 +170,6 @@ def fieldtree_ancestors(store, field_id):
             for grandpa in fieldtree_ancestors(store, parent.parent_id): yield grandpa
     else:
         return
-
-@transact
-def create_step(store, request, context_id, number, language):
-    """
-    Add a new step to the store, then return the new serialized object.
-    """
-    field = models.Field.new(store, request)
-    step = models.Step.new(store, context_id, field.id, number)
-    return admin_serialize_step(step, language)
-
-@transact
-def update_steps(store, request):
-    """
-    Rearrange a colleciton of steps, given their field_id, number, and a new
-    ordering.
-    """
-    context = models.Context.get(store, request['context_id'])
-    if context is None:
-        raise errors.ModelNotFound(models.Context)
-    steps = store.find(models.Step, Step.context == context)
-    fields = [models.Field.get(store, field_id)
-              for field_id in request['fields']]
-    # assert that fields exist, and that they are just as before
-    if None in fields:
-        raise errors.InvalidInputFormat('fields')
-    if set(fields) != set(step.field.id for step in steps):
-        raise errors.InvalidInputFormat('fields')
-    steps.remove()
-    for number, field_id in enumerate(request['fields']):
-        Step.new(context_id, field_id, number)
-
-@transact
-def delete_steps(store, steps_desc):
-    """
-    Remove a collection of steps, given their context_id and number.
-
-    :raises errors.ModelNotFound: if any of the items has not been found on the
-                                  database.
-    """
-    steps = [Step.get(store, step_desc['context_id'], step_desc['number'])
-             for step_desc in steps_desc]
-    if None in steps:
-        raise errors.ModelNotFound(Step)
-    for step in steps:
-        step.delete(store)
-
-class StepsCollection(BaseHandler):
-    """
-    /admin/fields/step/
-    """
-    @transport_security_check('admin')
-    @authenticated('admin')
-    @inlineCallbacks
-    def post(self, *uriargs):
-        """
-        Create a new step.
-        If a precise location is given, put it in the described location and
-        shift all the others.
-        """
-        request = self.validate_message(self.request.body,
-                                        requests.adminStepDesc)
-        context_id = request.pop('context_id')
-        # XXX. dreaming of optional json parameters..
-        number = request.pop('number', None) or None
-        # XXX. models shall introduce by themselves all this data, if not provided.
-        request.update(
-            multi_entry=False,
-            type='fieldgroup',
-            options={},
-            preview=None,
-            stats_enabled=None,
-            x=0,
-            y=0,
-            required=None,
-        )
-        response = yield create_step(request, context_id, number,
-                                     self.request.language)
-        self.set_status(201)
-        self.finish(response)
-
-    @transport_security_check('admin')
-    @authenticated('admin')
-    @inlineCallbacks
-    def put(self, *uriargs):
-        """
-        Update the step orders.
-        """
-        request = self.validate_message(self.request.body,
-                                        requests.adminStepUpdate)
-        yield update_steps(request)
-        self.set_status(202)
-
-    @transport_security_check('admin')
-    @authenticated('admin')
-    @inlineCallbacks
-    def delete(self, *uriargs):
-        """
-        Remove a step.
-        """
-        request = self.validate_message(self.request.body,
-                                        requests.adminStepDeleteList)
-        yield delete_steps(request)
-        self.set_status(200)
-        # XXX. not sure about what we should return in here.
-
 
 class FieldsCollection(BaseHandler):
     """

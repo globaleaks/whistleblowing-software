@@ -339,7 +339,10 @@
       "tor2web_submission": false,
       "public_site": "",
       "receipt_regexp": "[0-9]{16}",
-      "hidden_service": ""
+      "hidden_service": "",
+      "security_awareness_title": {"en": ""},
+      "security_awareness_text": {"en": ""},
+      "x_frame_options_mode": "deny"
     },
     "class": "Node"
   },
@@ -507,9 +510,6 @@
       },
       "tags": null,
       "selectable_receiver": false,
-      "fields_introduction": {
-        "en": "These are our fields"
-      },
       "name": {
         "en": "Already localized name"
       },
@@ -532,7 +532,8 @@
       "file_required": false,
       "maximum_selectable_receivers": 0,
       "tip_max_access": 10,
-      "require_file_description": false
+      "require_file_description": false,
+      "enable_private_messages": true
     },
     "class": "Context"
   }

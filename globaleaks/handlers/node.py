@@ -112,7 +112,9 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
 
     mo = Rosetta()
     mo.acquire_storm_object(context)
-    fo = Fields(context.localized_fields, context.unique_fields)
+
+    steps = [ anon_serialize_step(s, language)
+              for s in context.steps.order_by(models.Step.number) ]
 
     context_dict = {
         "id": context.id,
@@ -135,7 +137,7 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         "receivers": list(context.receivers.values(models.Receiver.id)),
         'name': mo.dump_translated('name', language),
         "description": mo.dump_translated('description', language),
-        "fields": fo.dump_fields(language)
+        "steps": steps
     }
 
     if not len(context_dict['receivers']):
@@ -143,6 +145,45 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
 
     return context_dict
 
+def anon_serialize_field(field, language):
+    """
+    Serialize a field, localizing its content depending on the language.
+
+    :param field: the field object to be serialized
+    :param language: the language in which to localize data
+    :return: a serialization of the object
+    """
+    return {
+        'id': field.id,
+        'label': field.label,
+        'description': field.description,
+        'hint': field.hint,
+        'multi_entry': field.multi_entry,
+        'required': field.required,
+        'preview': False,
+        'stats_enabled': field.stats_enabled,
+        'type': field.type,
+        'x': field.x,
+        'y': field.y,
+        'options': field.options or {},
+        'children': [f.id for f in field.children],
+    }
+
+def anon_serialize_step(step, language):
+    """
+    Serialize a step, localizing its content depending on the language.
+    XXX. provide i10n feature.
+
+    :param step: the step object to be serialized.
+    :param language: the language in which to localize data
+    :return: a serialization of the object
+    """
+    return {
+        'label': step.label,
+        'description': step.description,
+        'hint': step.hint,
+        'children': [f.id for f in step.children.order_by(models.Field.y)],
+    }
 
 def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
     """
@@ -260,6 +301,32 @@ class ContextsCollection(BaseHandler):
                                    get_public_context_list, self.request.language)
         self.finish(ret)
 
+@transact_ro
+def get_public_field_list(store, language):
+    """
+    :return: the current field list serialized.
+    :rtype: dict
+    """
+    return [anon_serialize_field(f, language) for f in store.find(models.Field)]
+
+class FieldsCollection(BaseHandler):
+    """
+    /admin/fields
+    """
+    @transport_security_check('unauth')
+    @unauthenticated
+    @inlineCallbacks
+    def get(self, *uriargs):
+        """
+        Return a list of all the fields available.
+
+        Parameters: None
+        Response: adminFieldList
+        Errors: None
+        """
+        ret = yield get_public_field_list(self.request.language)
+        self.set_status(200)
+        self.finish(ret)
 
 @transact_ro
 def get_public_receiver_list(store, default_lang):

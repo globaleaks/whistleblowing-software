@@ -8,23 +8,22 @@ import os
 import shutil
 
 from twisted.internet.defer import inlineCallbacks
-
-from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.handlers.base import BaseHandler, GLApiCache
+from globaleaks import security, models, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
+from globaleaks.db.datainit import import_memory_variables
+from globaleaks.handlers.admin.field import admin_serialize_field
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list, anon_serialize_node
+from globaleaks.handlers.base import BaseHandler, GLApiCache
+from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list, anon_serialize_node, anon_serialize_step
+from globaleaks.models import Receiver, Context, Field, Node, User
 from globaleaks.rest import errors, requests
-from globaleaks.models import Receiver, Context, Node, Notification, User, ApplicationData
-from globaleaks import security, models
+from globaleaks.security import gpg_options_parse
+from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.third_party import rstr
 from globaleaks.utils import structures
 from globaleaks.utils.utility import log, datetime_now, datetime_null, seconds_convert, datetime_to_ISO8601
-from globaleaks.db.datainit import import_memory_variables
-from globaleaks.security import gpg_options_parse
-from globaleaks import LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
-from globaleaks.third_party import rstr
-
 
 from . import field, notification
+
 
 def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_language):
 
@@ -89,11 +88,58 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
 def admin_serialize_node(store, language=GLSetting.memory_copy.default_language):
     return db_admin_serialize_node(store, language)
 
+def db_create_step(store, context_id, steps, language):
+    """
+    Add a new step to the store, then return the new serialized object.
+    """
+    # TODO FIX_WITH_NEW_FIELDS_DESIGN
+    # steps need to be localized!
+    context = models.Context.get(store, context_id)
+    if context is None:
+        raise errors.ContextIdNotFound
+
+    for step in steps:
+        step['context_id'] = context_id
+        s = models.Step.new(store, step)
+        for field_id in step['children']:
+            field = Field.get(store, field_id)
+            if not field:
+                log.err("Creation error: unexistent field can't be associated")
+                raise errors.FieldIdNotFound
+            s.children.add(field)
+
+def db_update_steps(store, context_id, steps, language):
+    """
+    Update steps removing old field associated and recreating new.
+    """
+    # TODO FIX_WITH_NEW_FIELDS_DESIGN
+    # steps need to be localized!
+    context = models.Context.get(store, context_id)
+    if context is None:
+        raise errors.ContextIdNotFound
+
+    old_steps = store.find(models.Step, models.Step.context_id == context_id)
+    old_steps.remove()
+
+    for step in steps:
+        step['context_id'] = context_id
+        s = models.Step.new(store, step)
+        i = 1
+        for field_id in step['children']:
+            field = models.Field.get(store, field_id)
+            i += 1
+            field.y = i
+            if not field:
+                log.err("Creation error: unexistent field can't be associated")
+                raise errors.FieldIdNotFound
+            s.children.add(field)
+
 def admin_serialize_context(context, language=GLSetting.memory_copy.default_language):
 
     mo = structures.Rosetta()
     mo.acquire_storm_object(context)
-    fo = structures.Fields(context.localized_fields, context.unique_fields)
+
+    steps = [ anon_serialize_step(s, language) for s in context.steps ]
 
     context_dict = {
         "id": context.id,
@@ -121,7 +167,7 @@ def admin_serialize_context(context, language=GLSetting.memory_copy.default_lang
         "show_receivers": context.show_receivers,
         "enable_private_messages": context.enable_private_messages,
         "presentation_order": context.presentation_order,
-        "fields": fo.dump_fields(language)
+        "steps": steps
     }
 
     for attr in mo.get_localized_attrs():
@@ -193,7 +239,7 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
     old_password = request.get('old_password', None)
 
     if password and old_password and len(password) and len(old_password):
-        admin = store.find(User, (User.username == unicode('admin'))).one()
+        admin = store.find(User, (User.username == u'admin')).one()
         admin.password = security.change_password(admin.password,
                                     old_password, password, admin.salt)
     try:
@@ -273,7 +319,7 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
     # name, description tor2web boolean value are acquired here
     try:
         node.update(request)
-    except Exception as dberror:
+    except DatabaseError as dberror:
         log.err("Unable to update Node: %s" % dberror)
         raise errors.InvalidInputFormat(dberror)
 
@@ -346,6 +392,7 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
         (dict) representing the configured context
     """
     receivers = request.get('receivers', [])
+    steps = request.get('steps', [])
 
     mo = structures.Rosetta()
     mo.acquire_request(language, request, Context)
@@ -353,33 +400,6 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
         request[attr] = mo.get_localized_dict(attr)
 
     context = Context(request)
-
-    try:
-        fo = structures.Fields(context.localized_fields, context.unique_fields)
-        # When a new context is created, if no fields has been assigned assigns defaults
-        # fields are treated as missing in 3 cases: key missing, != list, list empty
-        if 'fields' not in request or \
-            not isinstance(request['fields'], list) or \
-            not request['fields']:
-
-            try:
-                appdata = store.find(ApplicationData).one()
-                fo.default_fields(appdata.fields)
-            except Exception as excep:
-                log.err("Invalid initialization of ApplicationData [for %s]!" %
-                        context.name)
-                log.err(excep)
-                raise excep
-
-        else:
-            # print "?? :( Fields supply by the source", request['fields'], "in lang:", language
-            fo.update_fields(language, request['fields'])
-
-        fo.context_import(context)
-
-    except Exception as excep:
-        log.err("Unable to create fields: %s" % excep)
-        raise excep
 
     # Integrity checks related on name (need to exists, need to be unique)
     # are performed only using the default language at the moment (XXX)
@@ -414,7 +434,10 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
             raise errors.ReceiverIdNotFound
         c.receivers.add(receiver)
 
+    db_create_step(store, context.id, steps, language)
+
     log.debug("Created context %s (using %s)" % (context_name, language) )
+
     return admin_serialize_context(context, language)
 
 @transact
@@ -425,15 +448,53 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
 def get_context(store, context_id, language=GLSetting.memory_copy.default_language):
     """
     Returns:
-        (dict) the currently configured node.
+        (dict) the context with the specified id.
     """
-    context = store.find(Context, Context.id == unicode(context_id)).one()
+    context = store.find(Context, Context.id == context_id).one()
 
     if not context:
         log.err("Requested invalid context")
         raise errors.ContextIdNotFound
 
     return admin_serialize_context(context, language)
+
+def db_get_fields_recursively(store, field, language):
+    # TODO FIX_WITH_NEW_FIELDS_DESIGN 
+    # fields need to be localized!
+    ret = []
+    for children in field.children:
+        s = admin_serialize_field(children, 'en')
+        ret.append(s)
+        ret += db_get_fields_recursively(store, children)
+    return ret
+
+def db_get_context_fields(store, context_id, language=GLSetting.memory_copy.default_language):
+    """
+    Returns:
+        (dict) the fields associated with the context with the specified id.
+    """
+
+    context = store.find(Context, Context.id == context_id).one()
+
+    if not context:
+        log.err("Requested invalid context")
+        raise errors.ContextIdNotFound
+
+    steps_list = context.steps
+
+    fields = []
+
+    for ss in steps_list:
+        for children in ss.children:
+            s = admin_serialize_field(children, 'en')
+            fields.append(s)
+            fields += db_get_fields_recursively(store, children, language)
+
+    return fields
+
+@transact_ro
+def get_context_fields(store, context_id, language=GLSetting.memory_copy.default_language):
+    return db_get_context_fields(store, context_id, language)
 
 @transact
 def update_context(store, context_id, request, language=GLSetting.memory_copy.default_language):
@@ -452,7 +513,7 @@ def update_context(store, context_id, request, language=GLSetting.memory_copy.de
     Returns:
             (dict) the serialized object updated
     """
-    context = store.find(Context, Context.id == unicode(context_id)).one()
+    context = store.find(Context, Context.id == context_id).one()
 
     if not context:
          raise errors.ContextIdNotFound
@@ -466,8 +527,10 @@ def update_context(store, context_id, request, language=GLSetting.memory_copy.de
         context.receivers.remove(receiver)
 
     receivers = request.get('receivers', [])
+    steps = request.get('steps', [])
+
     for receiver_id in receivers:
-        receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
         if not receiver:
             log.err("Update error: unexistent receiver can't be associated")
             raise errors.ReceiverIdNotFound
@@ -482,21 +545,15 @@ def update_context(store, context_id, request, language=GLSetting.memory_copy.de
                        request['maximum_selectable_receivers'])
         request['maximum_selectable_receivers'] = 0
 
-    try:
-        fo = structures.Fields(context.localized_fields, context.unique_fields)
-        fo.update_fields(language, request['fields'])
-        fo.context_import(context)
-    except Exception as excep:
-        log.err("Unable to update fields: %s" % excep)
-        raise excep
-
     context.last_update = datetime_now()
 
     try:
         context.update(request)
-    except Exception as dberror:
+    except DatabaseError as dberror:
         log.err("Unable to update context %s: %s" % (context.name, dberror))
         raise errors.InvalidInputFormat(dberror)
+
+    db_update_steps(store, context.id, steps, language)
 
     return admin_serialize_context(context, language)
 
@@ -509,7 +566,7 @@ def delete_context(store, context_id):
     Args:
         context_id: the context id of the context to remove.
     """
-    context = store.find(Context, Context.id == unicode(context_id)).one()
+    context = store.find(Context, Context.id == context_id).one()
 
     if not context:
         log.err("Invalid context requested in removal")
@@ -685,7 +742,7 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
     receiver.last_update = datetime_now()
     try:
         receiver.update(request)
-    except Exception as dberror:
+    except DatabaseError as dberror:
         log.err("Unable to update receiver %s: %s" % (receiver.name, dberror))
         raise errors.InvalidInputFormat(dberror)
 
