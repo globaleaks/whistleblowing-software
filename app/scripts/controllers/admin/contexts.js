@@ -10,6 +10,10 @@ GLClient.controller('AdminContextsCtrl',
     });
   };
 
+  $scope.save_context = function (context) {
+    $scope.update(context);
+  };
+
   $scope.save_all = function () {
     angular.forEach($scope.admin.contexts, function (context, key) {
       $scope.update(context);
@@ -22,20 +26,6 @@ GLClient.controller('AdminContextsCtrl',
     context['$delete'](function(){
       $scope.admin.contexts.splice(idx, 1);
     });
-  };
-
-  $scope.addField = function (context) {
-    if (context.fields === undefined) {
-      context.fields = [];
-    }
-    context.fields.push({presentation_order: 0,
-      name: "",
-      hint: "",
-      key: '',
-      value: '',
-      type: 'text',
-      preview: false,
-      required: false});
   };
 
   $scope.sortableOptions = {

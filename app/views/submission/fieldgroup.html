@@ -1,19 +1,17 @@
-<fieldset>
-  <div data-ng-repeat="field in $parent.current_context.steps[selection - 1].children">
+<fieldset class="submissionFieldgroup">
+  <div data-ng-repeat="field in indexed_fields[$parent.field].children">
     <div data-ng-form="" name="subForm" class="submissionField">
       <div data-ng-switch="" on="indexed_fields[field].type">
         <div data-ng-switch-default="" class="form-group input" data-ng-class="indexed_fields[field].required && 'required'">
           <div>
-            <label>{{$index + 1}}) {{indexed_fields[field].label}}</label>
+            <label>{{indexed_fields[field].label}}</label>
             <a href="" data-ng-show="indexed_fields[field].hint" data-content="indexed_fields[field].hint" popover="{{indexed_fields[field].hint}}" popover-placement="right" popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-question-sign"></i>
             </a>
           </div> 
           <div class="submissionFieldInput">
             <div class="row">
-              <div data-ng-switch="" on="indexed_fields[field].type" class="col-md-4">
-                <input class="form-control" data-ng-switch-when="checkbox" data-ng-model="indexed_fields[field].value" value="{{indexed_fields[field].value}}" id="field" name="input" placeholder="{{indexed_fields[field].placeholder}}" type="checkbox">
-
+              <div data-ng-switch="" on="indexed_fields[field].type">
                 <input class="form-control" data-ng-switch-when="text" data-ng-model="indexed_fields[field].value" data-ng-required="indexed_fields[field].required" name="input" value="{{indexed_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder}}" type="text">
 
                 <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="indexed_fields[field].value" data-ng-required="indexed_fields[field].required" placeholder="{{indexed_fields[field].placeholder}}">{{indexed_fields[field].value}}</textarea>
@@ -54,21 +52,22 @@
                 </div>
 
                 <div data-ng-switch-when="fileupload">
+                  <label data-translate>Description</label>
+                  <input class="form-control" data-ng-switch-when="text" data-ng-model="indexed_fields[field].value" name="input" value="fieldgroup" type="text">
                   <div data-ng-include="'views/partials/fileupload.html'"></div>
                 </div>
               
                 <div data-ng-switch-when="fieldgroup">
-                  <div data-ng-include="'views/submission/fieldgroup.html'"></div>
+                  <input class="form-control" data-ng-switch-when="text" data-ng-model="indexed_fields[field].value" name="input" value="fieldgroup" type="hidden">
+                  <div class="submissionDetails" data-ng-include="'views/submission/fieldgroup.html'"></div>
                 </div>
 
                 <input class="form-control" data-ng-switch-default="" data-ng-model="indexed_fields[field].value" data-ng-required="indexed_fields[field].required" name="input" value="{{indexed_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder}}" type="text">
               </div>
             </div>
-
             <div class="has-error" data-ng-show="subForm.$invalid">
               <span data-translate>This field cannot be empty</span>
             </div>
-
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ This comment is needed in order to push the following strings on transifex
 <span data-translate>This receiver has not configured the encryption key.</span>
 <span data-translate>Select this receiver.</span>
 <span data-translate>Unselect this receiver.</span>
+<span data-translate>Details</span>
 
 -->
 <div class="ng-cloak container" data-ng-show="!node.configured && node.name">
@@ -22,56 +23,47 @@ This comment is needed in order to push the following strings on transifex
 
 <div data-ng-controller="SubmissionStepsCtrl" id="ContentBox" class="container submission" data-ng-show="node.name && node.configured">
 
+  <div id="ContextPickSelector" data-ng-show="submission.contexts.length > 1">
+    <div id="SubmissionStep1Title" class="lead">
+      <span data-translate>Choose the context and receivers that will be sure to transform your submission into action!</span>
+    </div>
+
+            <span class="lead" data-ng-show="node.configured">
+              <span data-translate>I want to report on</span>
+            </span>
+
+    <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'">
+    </select>
+
+  </div>
+  <div id="ContextIntroductionBox">
+    {{submission.current_context.description}}
+  </div>
+
   <div class="tabbable tabs-below">
 
     <ul class="nav nav-tabs">
-      <li data-ng-if="!skip_first_step" data-ng-class="{active: getCurrentStepIndex()==0, disabled: uploading}">
+      <li data-ng-if="!skip_first_step" data-ng-class="{active: selection==0, disabled: uploading}">
         <a href="javascript:void(0)" data-ng-click="goToStep(0)" data-ng-disabled="uploading">
            <span>
               1 - <span data-translate>Receiver selection</span>
             </span>
         </a>
       </li>
-      <li data-ng-class="{active: getCurrentStepIndex()==1, disabled: uploading}">
-        <a href="javascript:void(0)" data-ng-click="goToStep(1)" data-ng-disabled="uploading">
-            <span>
-              <span data-ng-if="skip_first_step">1 - </span>
-              <span data-ng-if="!skip_first_step">2 - </span>
-              <span data-translate>Fill out your submission</span>
-            </span>
-        </a>
-      </li>
-      <li data-ng-class="{active: getCurrentStepIndex()==2, disabled: uploading}">
-        <a href="javascript:void(0)" data-ng-click="goToStep(2)" data-ng-disabled="uploading">
-            <span>
-              <span data-ng-if="skip_first_step">2 - </span>
-              <span data-ng-if="!skip_first_step">3 - </span>
-              <span data-translate>Final Step</span>
-            </span>
+      <li data-ng-repeat="step in submission.current_context.steps" data-ng-class="{active: selection==$index + 1, disabled: uploading}">
+        <a href="javascript:void(0)" data-ng-click="goToStep($index + 1)" data-ng-disabled="uploading">
+          <span>
+            <span data-ng-if="skip_first_step">{{$index + 1}} - </span>
+            <span data-ng-if="!skip_first_step">{{$index + 2}} - </span>
+            <span data-translate>{{step.label}}</span>
+          </span>
         </a>
       </li>
     </ul>
 
     <div class="tab-content">
 
-      <!-- First Step -->
-      <div data-ng-if="selection == 1" id="SubmissionStep1" class="receiverCards">
-        <div id="ContextPickSelector" data-ng-show="submission.contexts.length > 1">
-            <div id="SubmissionStep1Title" class="lead">
-              <span data-translate>Choose the context and receivers that will be sure to transform your submission into action!</span>
-            </div>
-
-            <span class="lead" data-ng-show="node.configured">
-              <span data-translate>I want to report on</span>
-            </span>
-
-            <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'">
-            </select>
-
-        </div>
-        <div id="ContextIntroductionBox">
-          {{submission.current_context.description}}
-        </div>
+      <div data-ng-if="selection == 0" id="SubmissionStepReceiver" class="receiverCards">
 
         <div id="ReceiverIntroductionBox">
           {{submission.current_context.receiver_introduction}}
@@ -164,50 +156,22 @@ This comment is needed in order to push the following strings on transifex
         </div>
 
       </div>
-      <!-- /1 -->
 
-      <!-- Second Step -->
-      <div data-ng-if="selection == 2" id="SubmissionStep2">
+      <!-- Configured Context Steps -->
+      <div data-ng-repeat="step in submission.current_context.steps"
+        <div data-ng-if="selection == $index + 1" id="SubmissionStep">
 
-        <div id="SubmissionStep2Title" class="lead">
-          <span data-translate>Enter the information that is relevant to your submission and possibly upload the relevant accompanying files</span>
+        <div class="preformatted">
+          {{step.description}}
         </div>
-        <div>
-          {{submission.current_context.fields_introduction}}
-        </div>
-
         <div class="row">
-
-          <div class="col-md-12" data-ng-form="submissionForm" data-ng-controller="SubmissionFormController"> 
-            <div class="submissionDetails" data-ng-include="'views/submission/form.html'"></div>
+          <div class="col-md-12" data-ng-form="submissionForm" data-ng-controller="SubmissionFormController">  
+            <div data-ng-include="'views/submission/form.html'"></div>
           </div>
-
-        </div>
-
-        <div class="row">
-          <div class="col-md-6" data-ng-include="'views/partials/fileupload.html'"></div>
         </div>
 
       </div>
-      <!-- /2 -->
-
-      <!-- Third Step -->
-      <div data-ng-if="selection == 3" id="SubmissionStep3">
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="preformatted">{{node.terms_and_conditions}}</div>
-            <div class="form-group">
-              <input data-ng-model="disclaimer.accepted" value="true" type="checkbox"> 
-              <label data-translate>Agree</label>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-      <!-- /3 -->
+      <!-- / Configured Context Steps -->
 
     </div>
 
@@ -228,7 +192,7 @@ This comment is needed in order to push the following strings on transifex
       </li>
     </ul>
     <div class="pager pull-left" style="margin-left: 20px" data-ng-show="!hasNextStep()">
-      <div class="btn btn-success" data-ng-click="submit()" data-ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
+      <div class="btn btn-success" data-ng-click="submit()" data-ng-disabled="uploading || invalidForm || !receiver_selected">
         <i class="glyphicon glyphicon-ok"></i>
         <span data-translate>Submit</span>
       </div>

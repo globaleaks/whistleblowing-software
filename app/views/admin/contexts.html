@@ -57,7 +57,7 @@ This comment is needed in order to push the following strings on transifex
             </button>
           </div>
 
-          <div ui-sortable="sortableOptions" data-ng-model="admin.contexts">
+          <div ui-sortable data-ng-model="admin.contexts">
 
             <div class="row" data-ng-repeat="context in admin.contexts | orderBy:'presentation_order'">
               <form name="contextForm" data-ng-controller="AdminContextsEditorCtrl" novalidate>
@@ -75,7 +75,7 @@ This comment is needed in order to push the following strings on transifex
                       <div data-ng-show="editing">
                         <span class="col-md-7 pull-left editorHeaderTitle">{{ context.name }}</span>
                         <span class="col-md-3 pull-right editorHeaderButtons">
-                          <button class="btn btn-success saveContext" data-ng-disabled="contextForm.$pristine" data-ng-click="update(context)" type="submit" >
+                          <button class="btn btn-success saveContext" data-ng-disabled="contextForm.$pristine" data-ng-click="save_context(context)" type="submit" >
                             <i class="glyphicon glyphicon-ok"></i>
                             <span data-translate>Save</span>
                           </button>
@@ -103,7 +103,6 @@ This comment is needed in order to push the following strings on transifex
                             <textarea class="form-control" data-ng-model="context.description">{{context.description}}</textarea>
                           </div>
                         </div>
-                        <div data-ng-include="'views/admin/fieldeditor.html'"></div>
                       </div>
                       <div class="col-md-6">
                         <label data-translate>Receivers</label>
@@ -123,71 +122,8 @@ This comment is needed in order to push the following strings on transifex
                           </div>
                         </div>
                       </div>
-                    </div>
-
-                    <button class="btn btn-info" data-ng-click="advanced_edit = !advanced_edit" data-ng-init="advanced_edit=false">
-                      <i class="glyphicon glyphicon-plus"></i>
-                      <span data-translate>Advanced settings</span>
-                    </button>
-
-                    <div class="row" data-ng-show="advanced_edit">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label data-translate>Incomplete submissions expiry time (hours)</label>
-                          <input class="form-control" data-ng-model="context.submission_timetolive" value="{{context.submission_timetolive}}" type="number">
-                        </div>
-                        <div class="form-group">
-                          <label data-translate>Maximum file downloads</label>
-                          <input class="form-control" data-ng-model="context.file_max_download" value="{{context.file_max_download}}" type="number">
-                        </div>
-                        <div class="form-group">
-                          <label data-translate>Submitted Tip expiry time (days)</label>
-                          <input class="form-control" data-ng-model="context.tip_timetolive" value="{{context.tip_timetolive}}" type="number">
-                        </div>
-                        <div class="form-group table-bordered">
-                          <input data-ng-model="context.file_required" value="{{context.file_required}}" type="checkbox">
-                          <label data-translate>Require at least one file to be uploaded</label>
-                        </div>
-                        <div class="form-group table-bordered">
-                          <input data-ng-model="context.select_all_receivers" value="{{context.select_all_receivers}}" type="checkbox">
-                          <label data-translate>Select all receivers by default</label>
-                        </div>
-                        <div class="form-group" data-ng-show="!context.select_all_receivers">
-                          <label><p data-translate>Maximum number of selectable Receivers:</p> <p data-translate>(0 = unlimited)</p></label>
-                          <input class="form-control" data-ng-model="context.maximum_selectable_receivers" value="{{context.maximum_selectable_receivers}}" type="number">
-                        </div>
-                        <div class="form-group table-bordered">
-                          <input data-ng-model="context.show_receivers" value="{{context.show_receivers}}" type="checkbox">
-                          <label data-translate>Show receivers</label>
-                        </div>
-                        <div class="form-group table-bordered">
-                          <input data-ng-model="context.show_small_cards" value="{{context.show_small_cards}}" type="checkbox">
-                          <label data-translate>Show small receiver cards on submission interface</label>
-                        </div>
-                        <div class="form-group table-bordered">
-                          <input data-ng-model="context.enable_private_messages" value="{{context.enable_private_messages}}" type="checkbox">
-                          <label data-translate>Enable private messages</label>
-                        </div>
-                        <div class="form-group table-bordered">
-                          <input data-ng-model="context.postpone_superpower" value="{{context.postpone_superpower}}" type="checkbox">
-                          <label data-translate>Permit Receivers to postpone expiration date of the Tips</label>
-                          <div data-ng-show="context.postpone_superpower">
-                          <span class="label label-info">
-                            <span data-translate>now Enabled:</span>
-                          </span>
-                            <span data-translate>Receivers of this Context will be able to postpone expiration date of the Tips.</span>
-                          </div>
-                        </div>
-                        <div class="form-group table-bordered">
-                          <input data-ng-model="context.can_delete_submission" value="{{context.can_delete_submission}}" type="checkbox">
-                          <label data-translate>Permit Receivers to delete Tips</label>
-                          <div data-ng-show="context.can_delete_submission">
-                          <span class="label label-info">
-                            <span data-translate>now Enabled:</span>
-                          </span>
-                            <span data-translate>Receivers of this Context will be able to delete Tips and their content.</span>
-                          </div>
-                        </div>
+                      <div class="col-md-12">
+                        <div data-ng-include="'views/admin/steps_editor.html'"></div>
                       </div>
                     </div>
                   </div>
