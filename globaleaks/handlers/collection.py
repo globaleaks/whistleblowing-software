@@ -134,6 +134,7 @@ class CollectionDownload(BaseHandler):
         rtip_dict = yield get_rtip_info(rtip_id)
         collection_tip_dict = yield get_collection_info(rtip_id)
         context_dict = yield admin.get_context(rtip_dict['context_id'])
+        fields_dict = yield admin.get_context_fields(context_dict['id'])
         notif_dict = yield admin.notification.get_notification()
 
         mock_event = Event(
@@ -143,6 +144,7 @@ class CollectionDownload(BaseHandler):
             node_info = node_dict,
             receiver_info = receiver_dict,
             context_info = context_dict,
+            fields_info = fields_dict,
             plugin = None,
             trigger_info = collection_tip_dict,
             trigger_parent = rtip_dict

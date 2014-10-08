@@ -150,10 +150,10 @@ class SubmissionFailFields(GLException):
     error_code = 22
     status_code = 412 # Precondition Failed
 
-    def __init__(self, wrong_fields):
-        self.reason = "Submission do not validate the input fields [%s]" % wrong_fields
+    def __init__(self, wrong_field):
+        self.reason = "Submission do not validate the input fields [%s]" % wrong_field
         self.arguments = []
-        self.arguments.append(wrong_fields)
+        self.arguments.append(wrong_field)
 
 
 class InvalidTipAuthToken(GLException):

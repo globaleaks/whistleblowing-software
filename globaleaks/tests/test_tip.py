@@ -36,6 +36,22 @@ class TTip(helpers.TestGL):
     # are used in the tip hollow
     # and is not a pattern defile
 
+    dummySteps = [{
+        'label': u'Presegnalazione',
+        'description': u'',
+        'hint': u'',
+        'children': [u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
+                     u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
+                     u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f']
+        },
+        {
+          'label': u'Segnalazione',
+          'description': u'',
+          'hint': u'',
+          'children': []
+        }
+    ]
+
     tipContext = {
         'name': u'CtxName', 'description': u'dummy context with default fields',
         'escalation_threshold': 1,
@@ -46,7 +62,6 @@ class TTip(helpers.TestGL):
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
         'select_all_receivers': True,
         'receiver_introduction': u"¡⅜⅛⅝⅞⅝⅛⅛¡⅛⅛⅛",
-        'fields_introduction': u"dcsdcsdc¼¼",
         'postpone_superpower': False,
         'can_delete_submission': False,
         'maximum_selectable_receivers': 0,
@@ -57,6 +72,7 @@ class TTip(helpers.TestGL):
         'show_receivers': True,
         'enable_private_messages': True,
         'presentation_order': 0,
+        'steps': dummySteps
     }
 
     tipReceiver1 = {
@@ -115,6 +131,18 @@ class TestTipInstance(TTip):
 
         basehandler.validate_jmessage(self.tipContext, requests.adminContextDesc)
 
+        # the test context need fields to be present
+        from globaleaks.handlers.admin.field import create_field
+        for idx, field in enumerate(self.dummyFields):
+            f = yield create_field(field, 'en')
+            self.dummyFields[idx]['id'] = f['id']
+
+        self.tipContext['steps'][0]['children'] = [
+            self.dummyFields[0]['id'], # Field 1
+            self.dummyFields[1]['id'], # Field 2
+            self.dummyFields[4]['id']  # Generalities
+        ]
+
         self.context_desc = yield admin.create_context(self.tipContext)
 
         self.tipReceiver1['contexts'] = self.tipReceiver2['contexts'] = [ self.context_desc['id'] ]
@@ -131,8 +159,10 @@ class TestTipInstance(TTip):
 
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['id']])
 
+        fields = yield admin.get_context_fields(self.context_desc['id'])
+
         dummySubmissionDict = self.get_dummy_submission(
-            self.context_desc['id'], self.context_desc['fields'])
+            self.context_desc['id'], fields)
         basehandler.validate_jmessage(dummySubmissionDict, requests.wbSubmissionDesc)
 
         self.submission_desc = yield submission.create_submission(dummySubmissionDict, finalize=True)

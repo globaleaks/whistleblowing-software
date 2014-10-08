@@ -141,6 +141,23 @@ class TestContextsCollection(helpers.TestHandler):
         for attrname in Context.localized_strings:
             self.dummyContext[attrname] = u"³²¼½¬¼³²"
 
+        # the test context need fields to be present
+        from globaleaks.handlers.admin.field import create_field
+        for idx, field in enumerate(self.dummyFields):
+            self.dummyFields[idx]['id'] = yield create_field(field, 'en')
+
+        # the test context need fields to be present
+        from globaleaks.handlers.admin.field import create_field
+        for idx, field in enumerate(self.dummyFields):
+            f = yield create_field(field, 'en')
+            self.dummyFields[idx]['id'] = f['id']
+
+        self.dummyContext['steps'][0]['children'] = [
+            self.dummyFields[0]['id'], # Field 1
+            self.dummyFields[1]['id'], # Field 2
+            self.dummyFields[4]['id']  # Generalities
+        ]
+
         handler = self.request(self.dummyContext, role='admin')
         yield handler.post()
 

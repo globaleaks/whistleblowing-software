@@ -25,7 +25,6 @@ TI_context = {
     'tags': [],
     'file_required': False,
     'receiver_introduction': u'These are our receivers',
-    'fields_introduction': u'These are our fields',
     'postpone_superpower': False,
     'can_delete_submission': False,
     'maximum_selectable_receivers': 0,

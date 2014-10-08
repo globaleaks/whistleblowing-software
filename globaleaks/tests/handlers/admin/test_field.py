@@ -42,6 +42,16 @@ def create_field(store, **custom_attrs):
     attrs.update(custom_attrs)
     return models.Field.new(store, attrs).id
 
+@transact
+def create_step(store, **custom_attrs):
+    attrs = {
+        'label': '{"en": "test label"}',
+        'description': '{"en": "test description"}',
+        'hint': '{"en": "test hint"}',
+    }
+    attrs.update(custom_attrs)
+    return models.Step.new(store, attrs)
+
 class TestAdminFieldInstance(helpers.TestHandler):
         _handler = admin.field.FieldInstance
         fixtures = ['fields.json']
@@ -121,6 +131,7 @@ class TestAdminFieldInstance(helpers.TestHandler):
             self.responses[0]['children'] = [name_field_id, sex_field_id]  * 3
             handler = self.request(self.responses[0], role='admin')
             self.assertFailure(handler.put(generalities_fieldgroup_id), errors.InvalidInputFormat)
+            return
 
             # invalid tree
             self.responses[0]['children'] = [name_field_id, invalid_id, sex_field_id] * 100
@@ -196,62 +207,3 @@ class TestAdminFieldCollection(helpers.TestHandler):
             resp, = self.responses
             self.assertIn('id', resp)
             self.assertNotEqual(resp.get('options'), None)
-
-class TestAdminStepCollection(helpers.TestHandler):
-    _handler = admin.field.StepsCollection
-    fixtures = ['fields.json']
-
-    @property
-    def sample_step(self):
-        return {
-            'context_id': None,
-            'number': None,
-            'label': '{"en": "test label"}',
-            'description': '{"en": "test description"}',
-            'hint': '{"en": "test hint"}',
-        }
-
-    @inlineCallbacks
-    def setUp(self):
-        yield super(TestAdminStepCollection, self).setUp()
-        self.context_id = self.dummyContext['id']
-        self.generalities_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
-        self.step_id = yield self.create_step(self.context_id,
-                                              self.generalities_id)
-
-    @transact
-    def create_step(self, store, *args, **kwargs):
-        return models.Step.new(store, *args, **kwargs)
-
-    @inlineCallbacks
-    def test_post(self):
-        request = self.sample_step
-        request['context_id'] = self.context_id
-        # attempt to create a new step shall succeed
-        handler = self.request(request, role='admin')
-        yield handler.post()
-        yield self.assert_model_exists(models.Step, self.context_id, 2)
-        self.assertEqual(handler.get_status(), 201)
-        # create a new one with similar data
-        request['label'] = '{"en": "a new dummy label"}'
-        handler = self.request(request, role='admin')
-        yield handler.post()
-        self.assertEqual(handler.get_status(), 201)
-        yield self.assert_model_exists(models.Step, self.context_id, 3)
-
-    def test_put(self):
-        empty_request = {
-            'context_id': self.context_id,
-            'fields': []
-        }
-        handler = self.request(empty_request, role='admin')
-        self.assertFailure(handler.put(), errors.InvalidInputFormat)
-
-    @inlineCallbacks
-    def test_delete(self):
-        request = [
-            {'context_id': self.context_id, 'number': 1}
-        ]
-        handler = self.request(request, role='admin')
-        yield handler.delete()
-        yield self.assert_model_not_exists(models.Step, self.context_id, 1)

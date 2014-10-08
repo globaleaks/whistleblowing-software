@@ -6,6 +6,7 @@
 #   Contains all the logic for handling tip related operations, managed by
 #   the whistleblower, handled and executed within /wbtip/* URI PATH interaction.
 
+from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
@@ -383,7 +384,7 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
 
     try:
         store.add(msg)
-    except Exception as dberror:
+    except DatabaseError as dberror:
         log.err("Unable to add WB message from %s: %s" % (rtip.receiver.name, dberror))
         raise dberror
 

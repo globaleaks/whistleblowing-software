@@ -6,6 +6,7 @@
 # in order to checks integrity between exclusive options, provide defaults,
 # supports extensions (without changing DB format)
 
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.utils.utility import log
 from globaleaks.settings import GLSetting
 
@@ -31,37 +32,16 @@ class Fields:
         self.noisy = False
         self._localization = localization if localization else {}
         self._fields = fields if fields else {}
-        self._langcodes = []
+        self._langcodes = LANGUAGES_SUPPORTED_CODES
         self.debug_status('__init__')
-
-    def context_import(self, context_storm_object):
-
-        assert hasattr(context_storm_object, '__storm_table__'), \
-            "context_import expect only a Storm object"
-        assert hasattr(context_storm_object, 'localized_fields'), \
-            "missing localized fields"
-        assert hasattr(context_storm_object, 'unique_fields'), \
-            "missing unique fields"
-
-        self.debug_status('context_import')
-        context_storm_object.localized_fields = self._localization
-        context_storm_object.unique_fields = self._fields
-
 
     def default_fields(self, appdata_fields):
         """
         @param appdata_fields: the content of the ApplicationData.fields
         @return:
         """
-        # first, get the amount of translated languages
-        for block in appdata_fields:
-
-            # this is just to init variable, we don't collect text here.
-            for langcode, transtring in block['localized_name'].iteritems():
-                self._localization[langcode] = dict()
-                self._langcodes.append(langcode)
-
-            break
+        for langcode in self._langcodes:
+            self._localization[langcode] = dict()
 
         for original_order, block in enumerate(appdata_fields):
 

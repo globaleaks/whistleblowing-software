@@ -56,7 +56,6 @@ tags = Pickle()
 name = Pickle()
 description = Pickle()
 receiver_introduction = Pickle()
-fields_introduction = Pickle()
 
 # presentation_order = Int()
 

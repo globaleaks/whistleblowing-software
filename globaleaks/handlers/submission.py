@@ -12,6 +12,7 @@ from globaleaks.settings import transact, transact_ro, GLSetting, stats_counter
 from globaleaks.models import *
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler, anomaly_check
+from globaleaks.handlers.admin import db_get_context_fields
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
@@ -199,8 +200,18 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
 
     try:
         wb_fields = request['wb_fields']
-        fo = Fields(context.localized_fields, context.unique_fields)
-        fo.validate_fields(wb_fields, language, strict_validation=finalize)
+        # TODO FIX_WITH_NEW_FIELDS_DESIGN
+        # fo = Fields(context.localized_fields, context.unique_fields)
+        # fo.validate_fields(wb_fields, language, strict_validation=finalize)
+        fields = db_get_context_fields(store, context.id)
+        fields_ids = [ field['id'] for field in fields]
+        for f in fields:
+            if f['required']:
+                if f['id'] not in wb_fields:
+                    raise errors.SubmissionFailFields("missing required field %s" % f['id'])
+        for wbf in wb_fields:
+            if wbf not in fields_ids:
+                raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
         submission.wb_fields = wb_fields
     except Exception as excep:
         log.err("Submission create: fields validation fail: %s" % excep)
@@ -246,8 +257,19 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
 
     try:
         wb_fields = request['wb_fields']
-        fo = Fields(context.localized_fields, context.unique_fields)
-        fo.validate_fields(wb_fields, language, strict_validation=finalize)
+        # TODO FIX_WITH_NEW_FIELDS_DESIGN
+        # fo = Fields(context.localized_fields, context.unique_fields)
+        # fo.validate_fields(wb_fields, language, strict_validation=finalize)
+        fields = db_get_context_fields(store, context.id)
+        fields_ids = [ field['id'] for field in fields]
+        for f in fields:
+            if f['required']:
+                if f['id'] not in wb_fields:
+                    raise errors.SubmissionFailFields("missing required field %s" % f['id'])
+        for wbf in wb_fields:
+            if wbf not in fields_ids:
+                raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
+
         submission.wb_fields = wb_fields
     except Exception as excep:
         log.err("Submission update: fields validation fail: %s" % excep)

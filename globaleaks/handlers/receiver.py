@@ -203,19 +203,20 @@ def get_receiver_tip_list(store, receiver_id, language=GLSetting.memory_copy.def
 
         preview_data = []
 
-        fo = Fields(rtip.internaltip.context.localized_fields, rtip.internaltip.context.unique_fields)
-        for preview_key, preview_label in fo.get_preview_keys(language).iteritems():
+         # TODO FIX_WITH_NEW_FIELDS_DESIGN
+        #fo = Fields(rtip.internaltip.context.localized_fields, rtip.internaltip.context.unique_fields)
+        #for preview_key, preview_label in fo.get_preview_keys(language).iteritems():
 
-            # preview in a format angular.js likes
-            try:
-                entry = dict({'label' : preview_label,
-                              'text': rtip.internaltip.wb_fields[preview_key] })
+        #    # preview in a format angular.js likes
+        #    try:
+        #        entry = dict({'label' : preview_label,
+        #                      'text': rtip.internaltip.wb_fields[preview_key] })
 
-            except KeyError as xxx:
-                log.err("Legacy error: suppressed 'preview_keys' %s" % xxx.message )
-                continue
+        #    except KeyError as xxx:
+        #        log.err("Legacy error: suppressed 'preview_keys' %s" % xxx.message )
+        #        continue
 
-            preview_data.append(entry)
+        #    preview_data.append(entry)
 
         single_tip_sum.update({ 'preview' : preview_data })
         rtip_summary_list.append(single_tip_sum)

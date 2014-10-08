@@ -35,6 +35,8 @@ spec = [
 
     (r'/contexts', node.ContextsCollection),
 
+    (r'/fields', node.FieldsCollection),
+
     (r'/receivers' , node.ReceiversCollection),
 
     #  ahmia.fi integration with description.json file

@@ -160,7 +160,7 @@ class AppdataCollection(BaseHandler):
     def post(self, *uriargs):
 
         request = self.validate_message(self.request.body,
-                requests.wizardFieldUpdate)
+                requests.wizardAppdataDesc)
 
         app_fields_dump = yield admin_update_appdata(request)
 

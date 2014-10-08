@@ -18,7 +18,8 @@ from globaleaks import db, models, security
 from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLApiCache
-from globaleaks.handlers.admin import create_context, create_receiver
+from globaleaks.handlers.admin import create_context, create_receiver, db_get_context_fields
+from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
 from globaleaks.jobs import delivery_sched, notification_sched
 from globaleaks.models import ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
@@ -132,6 +133,7 @@ class TestGL(unittest.TestCase):
     def setUp_dummy(self):
         dummyStuff = MockDict()
 
+        self.dummyFields = dummyStuff.dummyFields
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyNotification = dummyStuff.dummyNotification
@@ -194,8 +196,8 @@ class TestGL(unittest.TestCase):
                       'http://www.giantitp.com')
 
         for field_desc in context_admin_data_fields:
-            dummySubmissionDict['wb_fields'][field_desc['key']] = { u'value': dummyvalue,
-                                                                    u'answer_order': 0 }
+            dummySubmissionDict['wb_fields'][field_desc['id']] = { u'value': dummyvalue,
+                                                                   u'answer_order': 0 }
 
         dummySubmissionDict['receivers'] = []
         dummySubmissionDict['files'] = []
@@ -347,14 +349,26 @@ class TestGLWithPopulatedDB(TestGL):
         receivers_ids.append(self.dummyReceiver_1['id'])
         self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2)
         receivers_ids.append(self.dummyReceiver_2['id'])
+
+        # fill_data/create_fields
+        for idx, field in enumerate(self.dummyFields):
+            f = yield create_field(field, 'en')
+            self.dummyFields[idx]['id'] = f['id']
+
+        self.dummyContext['steps'][0]['children'] = [
+            self.dummyFields[0]['id'], # Field 1
+            self.dummyFields[1]['id'], # Field 2
+            self.dummyFields[4]['id']  # Generalities
+        ]
+
         # fill_data/create_context
         self.dummyContext['receivers'] = receivers_ids
         self.dummyContext = yield create_context(self.dummyContext)
 
+        # fill_data/create_submission
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = receivers_ids
-        self.dummySubmission['wb_fields'] = fill_random_fields(self.dummyContext)
-        # fill_data/create_submission
+        self.dummySubmission['wb_fields'] = yield fill_random_fields(self.dummyContext)
         self.dummySubmissionNotFinalized = yield create_submission(self.dummySubmission, finalize=False)
         self.dummySubmission = yield create_submission(self.dummySubmission, finalize=False)
 
@@ -550,12 +564,103 @@ class MockDict():
             'presentation_order': 0,
         }
 
+        self.dummyFields = [{
+            'id': u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
+            'label': u'Field 1',
+            'type': u'inputbox',
+            'preview': False,
+            'description': u'',
+            'hint': u'',
+            'multi_entry': False,
+            'stats_enabled': False,
+            'required': True, # <- first field is special,
+            'children': [],   #    it's marked as required!!!
+            'options': {},
+            'y': 2,
+            'x': 0
+            },
+            {
+            'id': u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
+            'label': u'Field 2',
+            'type': u'inputbox',
+            'preview': False,
+            'description': u'',
+            'hint': u'',
+            'multi_entry': False,
+            'stats_enabled': False,
+            'required': False,
+            'children': [],
+            'options': {},
+            'y': 3,
+            'x': 0
+            },
+            {
+            'id': u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
+            'label': u'Name',
+            'type': u'inputbox',
+            'preview': False,
+            'description': u'',
+            'hint': u'',
+            'multi_entry': False,
+            'stats_enabled': False,
+            'required': False,
+            'children': [],
+            'options': {},
+            'y': 0,
+            'x': 0
+            },
+            {
+            'id': u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
+            'label': u'Surname',
+            'type': u'inputbox',
+            'preview': False,
+            'description': u'',
+            'hint': u'',
+            'multi_entry': False,
+            'stats_enabled': False,
+            'required': False,
+            'children': [],
+            'options': {},
+            'y': 0,
+            'x': 0
+            },
+            {
+            'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
+            'label': u'Generalities',
+            'type': u'fieldgroup',
+            'preview': False,
+            'description': u'',
+            'hint': u'',
+            'multi_entry': False,
+            'stats_enabled': False,
+            'required': False,
+            'children': [u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
+                         u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2'],
+            'options': {},
+            'y': 4,
+            'x': 0
+            }]
+
+        self.dummySteps = [{
+            'label': u'Presegnalazione',
+            'description': u'',
+            'hint': u'',
+            'children': [u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
+                         u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
+                         u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f']
+            },
+            {
+              'label': u'Segnalazione',
+              'description': u'',
+              'hint': u'',
+              'children': []
+            }]
+
         self.dummyContext = {
             # localized stuff
             'name': u'Already localized name',
             'description': u'Already localized desc',
-            # fields, usually filled in content by fill_random_fields
-            'fields': default_context_fields(),
+            'steps': self.dummySteps,
             'selectable_receiver': False,
             'select_all_receivers': True,
             'tip_max_access': 10,
@@ -569,7 +674,6 @@ class MockDict():
             'tags': [],
             'file_required': False,
             'receiver_introduction': u'These are our receivers',
-            'fields_introduction': u'These are our fields',
             'postpone_superpower': False,
             'can_delete_submission': False,
             'maximum_selectable_receivers': 0,
@@ -584,7 +688,7 @@ class MockDict():
 
         self.dummySubmission = {
             'context_id': '',
-            'wb_fields': fill_random_fields(self.dummyContext),
+            'wb_fields': [],
             'finalize': False,
             'receivers': [],
             'files': [],
@@ -692,36 +796,30 @@ def template_keys(first_a, second_a, name):
 
     return ret_string
 
-def fill_random_fields(context_desc):
+@transact
+def fill_random_fields(store, context_desc):
     """
     getting the context dict, take 'fields'.
     then populate a valid dict of key : value, usable as wb_fields
     """
 
     assert isinstance(context_desc, dict)
-    fields_list = context_desc['fields']
-    assert isinstance(fields_list, list), 'Missing fields!'
-    assert len(fields_list) >= 1
+    steps_list = context_desc['steps']
+    assert isinstance(steps_list, list), 'Missing fields!'
+    assert len(steps_list) >= 1
+
+    fields = db_get_context_fields(store, context_desc['id'])
 
     ret_dict = {}
     i = 0
-    for sf in fields_list:
-
-        assert sf.has_key(u'name')
-        assert sf.has_key(u'key')
-        assert sf.has_key(u'hint')
-        assert sf.has_key(u'presentation_order')
-        assert sf.has_key(u'type')
-        # not all element are checked now
-
+    for sf in fields:
         unicode_weird = ''.join(unichr(x) for x in range(0x400, 0x4FF) )
-        ret_dict.update({ sf.get(u'key') : { u'value': unicode_weird,
-                                             u'answer_order': i } })
+        ret_dict.update({ sf.get(u'id') : { u'value': unicode_weird,
+                                            u'answer_order': i } })
 
         i += 1
 
     return ret_dict
-
 
 def default_context_fields():
 
@@ -766,7 +864,6 @@ def do_appdata_init(store):
         store.add(appdata)
 
     fo = Fields()
-    fo.noisy = True
     fo.default_fields(appdata.fields)
     (unique_fields, localized_fields) = fo.extensive_dump()
 
