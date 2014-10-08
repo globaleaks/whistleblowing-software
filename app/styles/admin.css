@@ -34,7 +34,7 @@
   margin-top: 20px;
 }
 
-.field {
+.step, .field {
   position: relative;
   border: 1px solid rgb(204, 204, 204);
   margin-bottom: 20px;
@@ -44,15 +44,14 @@
   margin-top: 10px;
 }
 
-.fieldEditorHeader {
+.stepEditorHeader, .fieldEditorHeader {
   padding: 20px;
 }
 
-.fieldEditorBody {
+.stepEditorBody, .fieldEditorBody {
   background-color: rgb(250, 250, 250);
   padding: 20px;
 }
-
 
 .editorHeader {
   background-color: rgb(252, 252, 252);

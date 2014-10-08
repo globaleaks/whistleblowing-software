@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$rootScope', '$location', 'Authentication', 'Node', 'Submission', 'Receivers', 'WhistleblowerTip',
-      function ($scope, $rootScope, $location, Authentication, Node, Submission, Receivers, WhistleblowerTip) {
+    ['$scope', '$rootScope', '$location', 'Authentication', 'Node', 'Submission', 'Fields', 'Receivers', 'WhistleblowerTip',
+      function ($scope, $rootScope, $location, Authentication, Node, Submission, Fields, Receivers, WhistleblowerTip) {
 
         $rootScope.invalidForm = true;
         $scope.receiptConfimation = "";
@@ -18,12 +18,12 @@ GLClient.controller('SubmissionCtrl',
             if ($scope.submission.contexts.length == 1 && !$scope.submission.current_context.show_receivers) {
 
               $scope.skip_first_step = true;
-              $scope.selection = $scope.steps[1];
+              $scope.selection = 1;
 
             } else {
 
               $scope.skip_first_step = false;
-              $scope.selection = $scope.steps[0];
+              $scope.selection = 0;
 
             }
 
@@ -87,12 +87,6 @@ GLClient.controller('SubmissionCtrl',
 
         $scope.disclaimer = {accepted: false};
 
-        $scope.steps = [
-          '1',
-          '2',
-          '3'
-        ];
-
         // Watch for changes in certain variables
         $scope.$watch('submission.current_context', function () {
           if ($scope.current_context) {
@@ -148,11 +142,16 @@ GLClient.controller('SubmissionCtrl',
     }, true);
   }]);
 
-GLClient.controller('SubmissionStepsCtrl', ['$scope', function($scope) {
+GLClient.controller('SubmissionStepsCtrl', ['$scope', 'Fields', function($scope, Fields) {
+
+  $scope.fields = Fields.query(function () {
+    $scope.indexed_fields = _.reduce($scope.fields, function (o, item) {
+      o[item.id] = item; return o 
+    }, {});
+  });
 
   $scope.getCurrentStepIndex = function(){
-    // Get the index of the current step given selectio
-    return _.indexOf($scope.steps, $scope.selection);
+    return $scope.selection;
   };
 
   // Go to a defined step index
@@ -160,24 +159,21 @@ GLClient.controller('SubmissionStepsCtrl', ['$scope', function($scope) {
     if ( $scope.uploading )
       return;
 
-    if ( !_.isUndefined($scope.steps[index]) )
-    {
-      $scope.selection = $scope.steps[index];
-    }
+    $scope.selection = index;
   };
 
   $scope.hasNextStep = function(){
-    var stepIndex = $scope.getCurrentStepIndex();
-    var nextStep = stepIndex + 1;
-    // Return true if there is a next step, false if not
-    return !_.isUndefined($scope.steps[nextStep]);
+    if ( $scope.$parent.current_context == undefined )
+      return false;
+
+    return $scope.selection < $scope.$parent.current_context.steps.length;
   };
 
   $scope.hasPreviousStep = function(){
-    var stepIndex = $scope.getCurrentStepIndex();
-    var previousStep = stepIndex - 1;
-    // Return true if there is a next step, false if not
-    return !_.isUndefined($scope.steps[previousStep]);
+    if ( $scope.$parent.current_context == undefined )
+      return false;
+
+    return $scope.selection > 0;
   };
 
   $scope.incrementStep = function() {
@@ -186,9 +182,7 @@ GLClient.controller('SubmissionStepsCtrl', ['$scope', function($scope) {
 
     if ( $scope.hasNextStep() )
     {
-      var stepIndex = $scope.getCurrentStepIndex();
-      var nextStep = stepIndex + 1;
-      $scope.selection = $scope.steps[nextStep];
+      $scope.selection = $scope.selection + 1;
     }
   };
 
@@ -198,9 +192,7 @@ GLClient.controller('SubmissionStepsCtrl', ['$scope', function($scope) {
 
     if ( $scope.hasPreviousStep() )
     {
-      var stepIndex = $scope.getCurrentStepIndex();
-      var previousStep = stepIndex - 1;
-      $scope.selection = $scope.steps[previousStep];
+      $scope.selection = $scope.selection - 1;
     }
   };
 

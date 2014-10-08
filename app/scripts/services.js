@@ -719,24 +719,35 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     }
 }]).
   factory('Admin', ['$rootScope','$resource', function($rootScope, $resource) {
+    var self = this,
+      forEach = angular.forEach;
 
     function Admin() {
       var self = this,
         adminContextsResource = $resource('/admin/context/:context_id',
           {context_id: '@id'},
-          {update:
-          {method: 'PUT'}
-          }),
+          {
+            update: {
+              method: 'PUT'
+            }
+          }
+        ),
         adminFieldsResource = $resource('/admin/field/:field_id',
           {field_id: '@id'},
-          {update:
-          {method: 'PUT'}
-          }),
+          {
+            update: {
+              method: 'PUT'
+            }
+          }
+        ),
         adminReceiversResource = $resource('/admin/receiver/:receiver_id',
           {receiver_id: '@id'},
-          {update:
-          {method: 'PUT'}
-          }),
+          {
+            update: {
+              method: 'PUT'
+            }
+          }
+        ),
         adminNodeResource = $resource('/admin/node', {}, {update: {method: 'PUT'}}),
         adminNotificationResource = $resource('/admin/notification', {}, {update: {method: 'PUT'}});
 
@@ -753,7 +764,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         var context = new adminContextsResource;
         context.name = "";
         context.description = "";
-        context.fields = [];
+        context.steps = [];
         context.receivers = [];
         context.escalation_threshold = 0;
         context.file_max_download = 3;
@@ -764,7 +775,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.tip_timetolive = 15;
         context.submission_timetolive = 48;
         context.receiver_introduction = "";
-        context.fields_introduction = "";
         context.postpone_superpower = false;
         context.can_delete_submission = false;
         context.maximum_selectable_receivers = 0;
@@ -795,6 +805,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         field.stats_enabled = false;
         field.x = 0;
         field.y = 0;
+        field.children = [];
         return field;
       };
 
