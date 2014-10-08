@@ -4,6 +4,7 @@ Section: web
 Priority: optional
 Build-Depends:
  debhelper (>= 7.4.3)
+ , dh-python
  , python (>= 2.7)
  , python-setuptools
  , dh-apparmor
@@ -20,8 +21,15 @@ Depends:
  , tor
  , iptables
  , build-essential
- , python-dev
  , python-pip
+ , python-cryptography
+ , python-twisted
+ , python-transaction
+ , python-gnupg
+ , python-zope.component
+ , python-cyclone
+ , python-storm
+ , python-scrypt
  , apparmor
  , apparmor-utils
  , libffi-dev
