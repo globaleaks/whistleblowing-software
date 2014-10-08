@@ -9,3 +9,4 @@ testing_dir
 .idea/*
 glenv
 build
+doc/_*
