@@ -9,9 +9,14 @@ GLClient.controller('SubmissionCtrl',
           $scope.node = node;
 
           new Submission(function (submission) {
+            $scope.submission = submission;
+
             $scope.maximumFilesize = submission.maximum_filesize;
 
             $scope.current_context = submission.current_context;
+
+            $scope.fields = submission.fields;
+            $scope.indexed_fields = submission.indexed_fields;
 
             $scope.submission = submission;
 
@@ -144,12 +149,6 @@ GLClient.controller('SubmissionCtrl',
 
 GLClient.controller('SubmissionStepsCtrl', ['$scope', 'Fields', function($scope, Fields) {
 
-  $scope.fields = Fields.query(function () {
-    $scope.indexed_fields = _.reduce($scope.fields, function (o, item) {
-      o[item.id] = item; return o 
-    }, {});
-  });
-
   $scope.getCurrentStepIndex = function(){
     return $scope.selection;
   };
@@ -163,14 +162,14 @@ GLClient.controller('SubmissionStepsCtrl', ['$scope', 'Fields', function($scope,
   };
 
   $scope.hasNextStep = function(){
-    if ( $scope.$parent.current_context == undefined )
+    if ( $scope.current_context == undefined )
       return false;
 
-    return $scope.selection < $scope.$parent.current_context.steps.length;
+    return $scope.selection < $scope.current_context.steps.length;
   };
 
   $scope.hasPreviousStep = function(){
-    if ( $scope.$parent.current_context == undefined )
+    if ( $scope.current_context == undefined )
       return false;
 
     return $scope.selection > 0;
