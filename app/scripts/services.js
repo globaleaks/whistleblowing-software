@@ -234,7 +234,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$resource', '$filter', 'Node', 'Contexts', 'Receivers', function($resource, $filter, Node, Contexts, Receivers) {
+  factory('Submission', ['$resource', '$filter', 'Node', 'Contexts', 'Fields', 'Receivers',
+  function($resource, $filter, Node, Contexts, Fields, Receivers) {
 
     var submissionResource = $resource('/submission/:submission_id/',
         {submission_id: '@id'},
@@ -265,7 +266,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.current_context = null;
       self.maximum_filesize = null;
       self.allow_unencrypted = null;
+      self.current_context_fields = [];
       self.current_context_receivers = [];
+      self.current_submission = null; 
       self.receivers_selected = {};
       self.completed = false;
       self.receipt = null;
@@ -290,6 +293,29 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         Contexts.query(function(contexts){
           self.contexts = contexts;
           self.current_context = $filter('orderBy')(self.contexts, 'presentation_order')[0];
+          Fields.query(function (fields) {
+            self.fields = fields;
+            self.indexed_fields = _.reduce(self.fields, function (o, item) {
+              o[item.id] = item; return o
+            }, {});
+            self.get_fields_recursively = function(field) {
+              var ret = [];
+              forEach(field['children'], function(f) {
+                ret.push(f);
+                ret.concat(self.get_fields_recursively(self.indexed_fields[f]));
+              });
+              return ret;
+            }
+            var ccf = [];
+            forEach(self.current_context['steps'], function(s) {
+              forEach(s['children'], function(c) {
+                ccf.push(c);
+                ccf = ccf.concat(self.get_fields_recursively(self.indexed_fields[c]));
+              });
+            });
+            self.current_context_fields = ccf;
+          });
+
           Receivers.query(function(receivers){
             self.receivers = [];
             forEach(receivers, function(receiver){
@@ -303,7 +329,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           });
         });
       });
-     
+
       /**
        * @name Submission.create
        * @description
@@ -325,6 +351,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
           });
           self.current_submission.wb_fields = {};
+
           if (cb)
             cb();
         });
@@ -348,14 +375,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           return;
         }
 
-        // Set the submission field values
-        _.each(self.current_context.fields, function(field, k) {
-          self.current_submission.wb_fields[field.key] = {
-            'value': field.value || "",
-            'answer_order': self.current_context.fields[k]['presentation_order']
-          }
-        });
-
         // Set the currently selected receivers
         self.receivers = [];
         // remind this clean the collected list of receiver_id
@@ -365,6 +384,13 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             self.current_submission.receivers.push(id);
           }
         });
+
+        // Set the submission field values
+        _.each(self.current_submission.wb_fields, function(field, k) {
+          console.log(k);
+          self.current_submission.wb_fields[k]['answer_order'] = self.indexed_fields[k]['y'];
+        });
+
         self.current_submission.finalize = true;
 
         self.current_submission.$submit(function(result){
