@@ -196,8 +196,7 @@ class TestGL(unittest.TestCase):
                       'http://www.giantitp.com')
 
         for field_desc in context_admin_data_fields:
-            dummySubmissionDict['wb_fields'][field_desc['id']] = { u'value': dummyvalue,
-                                                                   u'answer_order': 0 }
+            dummySubmissionDict['wb_fields'][field_desc['id']] = { u'value': dummyvalue }
 
         dummySubmissionDict['receivers'] = []
         dummySubmissionDict['files'] = []
@@ -814,8 +813,7 @@ def fill_random_fields(store, context_desc):
     i = 0
     for sf in fields:
         unicode_weird = ''.join(unichr(x) for x in range(0x400, 0x4FF) )
-        ret_dict.update({ sf.get(u'id') : { u'value': unicode_weird,
-                                            u'answer_order': i } })
+        ret_dict.update({ sf.get(u'id') : { u'value': unicode_weird }
 
         i += 1
 

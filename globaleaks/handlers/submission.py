@@ -203,7 +203,7 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
         # TODO FIX_WITH_NEW_FIELDS_DESIGN
         # fo = Fields(context.localized_fields, context.unique_fields)
         # fo.validate_fields(wb_fields, language, strict_validation=finalize)
-        fields = db_get_context_fields(store, context.id)
+        fields = db_get_context_fields(store, context.id, language)
         fields_ids = [ field['id'] for field in fields]
         for f in fields:
             if f['required']:
@@ -260,7 +260,7 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
         # TODO FIX_WITH_NEW_FIELDS_DESIGN
         # fo = Fields(context.localized_fields, context.unique_fields)
         # fo.validate_fields(wb_fields, language, strict_validation=finalize)
-        fields = db_get_context_fields(store, context.id)
+        fields = db_get_context_fields(store, context.id, language)
         fields_ids = [ field['id'] for field in fields]
         for f in fields:
             if f['required']:
