@@ -31,9 +31,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
         step.children = [];
       }
 
-      console.log($scope.step.children);
-      console.log($scope.field_to_add);
-
       step.children.push($scope.field_to_add);
 
       step.children = _.uniq(step.children, function(item){return JSON.stringify(item);});
