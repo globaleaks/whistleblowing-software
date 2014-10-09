@@ -465,7 +465,7 @@ def db_get_fields_recursively(store, field, language):
     for children in field.children:
         s = admin_serialize_field(children, 'en')
         ret.append(s)
-        ret += db_get_fields_recursively(store, children)
+        ret += db_get_fields_recursively(store, children, language)
     return ret
 
 def db_get_context_fields(store, context_id, language=GLSetting.memory_copy.default_language):

@@ -200,7 +200,7 @@ class Fields:
                 raise InvalidInputFormat("Submitted content '%s' wrong format (not a dict)" %
                                          self._localization[lang][key]['name'])
 
-            for k in ['value', 'answer_order']:
+            for k in ['value']:
                 if k not in wb_fields[key]:
                     raise InvalidInputFormat("Submitted field %s is malformed (missing %s)" %
                                              (self._localization[lang][key]['name'], k) )
