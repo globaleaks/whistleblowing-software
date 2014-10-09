@@ -385,9 +385,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           }
         });
 
-        // Set the submission field values
+        // Set the submission field answer 
         _.each(self.current_submission.wb_fields, function(field, k) {
-          console.log(k);
           self.current_submission.wb_fields[k]['answer_order'] = self.indexed_fields[k]['y'];
         });
 
