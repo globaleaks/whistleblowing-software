@@ -54,7 +54,7 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
 
     custom_homepage = False
 
-    try: 
+    try:
         custom_homepage = os.path.isfile(os.path.join(GLSetting.static_path, "custom_homepage.html"))
     except:
         pass
