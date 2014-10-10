@@ -112,7 +112,7 @@ def get_field(store, field_id, language):
     Serialize a speficied field, localizing its content depending on the language.
 
     :param field_id: the id corresponding to the field.
-    :param: language: the language in which to localize data
+    :param language: the language in which to localize data
     :return: the currently configured field.
     :rtype: dict
     """
@@ -130,7 +130,7 @@ def delete_field(store, field_id):
     If the field has children, remove them as well.
     If the field is immediately attached to a step object, remove it as well.
 
-    :param: field_id: the id corresponding to the field.
+    :param field_id: the id corresponding to the field.
     :raise: FieldIdNotFound: if no such field is found.
     """
     field = Field.get(store, field_id)
