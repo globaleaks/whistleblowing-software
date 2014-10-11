@@ -11,9 +11,12 @@ override_dh_auto_test:
 	PYBUILD_TEST_ARGS="trial {dir}/globaleaks" dh_auto_test
 
 override_dh_install:
-	mkdir debian/globaleaks/etc
-	mkdir debian/globaleaks/etc/apparmor.d
-	mkdir debian/globaleaks/etc/apparmor.d/local
+#   install man page
+	python setup.py build_sphinx -b man
+	mkdir -p debian/globaleaks/usr/share/man
+	cp doc/_build/man/globaleaks.1 debian/globaleaks/usr/share/man/
+#   install apparmor profile
+	mkdir -p debian/globaleaks/etc/apparmor.d/local
 	cp debian/globaleaks.apparmor-profile debian/globaleaks/etc/apparmor.d/usr.bin.globaleaks
 	dh_apparmor --profile-name=usr.bin.globaleaks
 	dh_install --fail-missing

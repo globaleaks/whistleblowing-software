@@ -4,9 +4,10 @@ Section: web
 Priority: optional
 Build-Depends:
  debhelper (>= 7.4.3)
- , dh-python
  , python (>= 2.7)
  , python-setuptools
+ , python-sphinx
+ , dh-python
  , dh-apparmor
 X-Python-Version: 2.7
 Vcs-Git: git://github.com/globaleaks/GlobaLeaks.git
