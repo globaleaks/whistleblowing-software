@@ -117,7 +117,8 @@ build_glbackend()
   fi
 
   unzip ${GLC_BUILD}/*.zip -d .
-  mv glclient-*/* glclient/
+  rm -vrf glclient/
+  mv glclient-* glclient/
 
   echo "[+] Building GLBackend"
   POSTINST=debian/postinst
