@@ -109,9 +109,7 @@ build_glclient()
 
   echo "Revision used: ${GLCLIENT_REVISION}"
 
-  if ! test $TAG; then
-    TAG=${GLCLIENT_REVISION}
-  fi
+  TAG=${GLCLIENT_REVISION}
 
   if [ -f ${GLC_BUILD}/glclient-${TAG}.tar.gz ]; then
     echo "${GLC_BUILD}/glclient-${TAG}.tar.gz already present"
