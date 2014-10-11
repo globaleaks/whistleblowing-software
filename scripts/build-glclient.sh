@@ -1,5 +1,5 @@
 #!/bin/bash
-#!/bin/bash
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . ${DIR}/common_inc.sh
 
@@ -42,7 +42,7 @@ auto_env_setup()
   cd ${BUILD_DIR}
   if [ -d ${GLCLIENT_TMP} ]; then
     echo "[+] detected and removing ${GLCLIENT_TMP}"
-    rm -rf ${GLCLIENT_TMP} 
+    rm -rf ${GLCLIENT_TMP}
   fi
   if [ -d ${GLCLIENT_DIR} ]; then
     echo "[+] detected source repository in ${GLCLIENT_DIR}"
@@ -68,7 +68,7 @@ interactive_env_setup()
       echo "Cannot proceed"
       exit
     fi
-    rm -rf ${GLCLIENT_TMP} 
+    rm -rf ${GLCLIENT_TMP}
   fi
   if [ -d ${GLCLIENT_DIR} ]; then
     echo "Directory ${GLCLIENT_DIR} already present. "

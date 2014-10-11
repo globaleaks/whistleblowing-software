@@ -2,14 +2,14 @@
 
 set -e
 
-sudo -i bash -x -c 'mkdir -p /data/globaleaks /data/globaleaks/tests'
+sudo -i bash -x -c 'mkdir -p /data/globaleaks/tests'
 sudo -i bash -x -c 'chown travis:travis /data/globaleaks -R'
 
 git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks
 cd /data/globaleaks/GlobaLeaks
 git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
 /data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh -c${TRAVIS_BRANCH} -b${TRAVIS_BRANCH}
-# the following is the emulation of the installation guide: 
+# the following is the emulation of the installation guide:
 #   https://github.com/globaleaks/GlobaLeaks/wiki/Installation-guide
 sudo -i bash -x -c 'apt-get update -y'
 sudo -i bash -x -c 'apt-get install python-software-properties -y'
@@ -60,8 +60,6 @@ cd /data/globaleaks/tests/GLClient
 git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
 
 if [ "${TRAVIS_REPO_SLUG}" = "globaleaks/GLBackend" ]; then
-  cd /data/globaleaks/tests/GLBackend
-  git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
   pip install coverage
   pip install coveralls
   coverage run $(which trial) globaleaks
