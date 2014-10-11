@@ -423,6 +423,8 @@ module.exports = function(grunt) {
 
     extractPotFromJSONFile('app/data/appdata.json')
 
+    grunt.file.mkdir("pot");
+
     fs.writeFileSync("pot/en.po", gt.compilePO("en"));
 
     console.log("Written " + translationStringCount + " string to pot/en.po.");
