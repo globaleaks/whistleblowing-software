@@ -11,7 +11,7 @@ DO_SUDO 'chown travis:travis /data/globaleaks -R'
 git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks
 cd /data/globaleaks/GlobaLeaks
 git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
-/data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh -c${TRAVIS_BRANCH} -b${TRAVIS_BRANCH}
+/data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh ${TRAVIS_BRANCH} ${TRAVIS_BRANCH}
 
 # The following emulates the installation guide:
 #   https://github.com/globaleaks/GlobaLeaks/wiki/Installation-guide
