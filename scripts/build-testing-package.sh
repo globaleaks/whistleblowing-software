@@ -1,58 +1,17 @@
 #!/bin/bash
+
+if [ ! \( -r "$1" \) -o \( -z "$2" \) ]
+    then
+    echo "${BASH_SOURCE[0]} <client_revision> <backend_revision>"
+    exit 1
+fi
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . ${DIR}/common_inc.sh
 
-usage()
-{
-cat << EOF
-usage: ./${SCRIPTNAME} options
+TAGC=$1
+TAGB=$2
 
-OPTIONS:
-   -h   Show this message
-   -c   To build a specific client version
-   -b   To build a specific backend version
-   -y   Assume 'yes' to all questions
-EOF
-}
-
-AUTOYES=0
-while getopts “hc:b:y” OPTION
-do
-  case $OPTION in
-    h)
-      usage
-      exit 1
-      ;;
-    c)
-      TAGC=$OPTARG
-      ;;
-    b)
-      TAGB=$OPTARG
-      ;;
-    y)
-      AUTOYES=1
-      ;;
-    ?)
-      usage
-      exit
-      ;;
-    esac
-done
-
-if [ $AUTOYES -eq 1 ]; then
-  OPTS="-y"
-else
-  OPTS=""
-fi
-
-if test $TAGC; then
-  ${DIR}/build-glclient.sh -v $TAGC $OPTS
-else
-  ${DIR}/build-glclient.sh $OPTS
-fi
-
-if test $TAGB; then
-  ${DIR}/build-glbackend.sh -v $TAGB -n $OPTS
-else
-  ${DIR}/build-glbackend.sh -n $OPTS
-fi
+sudo apt-get install -y devscript equivs
+${DIR}/build-glclient.sh -v $TAGC
+${DIR}/build-glbackend.sh -v $TAGB
