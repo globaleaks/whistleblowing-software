@@ -9,8 +9,9 @@ if [[ $EUID -eq 0 ]]; then
   exit 1
 fi
 
-GLBACKEND_GIT_REPO="https://github.com/globaleaks/GLBackend.git"
-GLCLIENT_GIT_REPO="https://github.com/globaleaks/GLClient.git"
+OWNER="${TRAVIS_REPO_SLUG%/*}"
+GLBACKEND_GIT_REPO="https://github.com/$OWNER/GLBackend.git"
+GLCLIENT_GIT_REPO="https://github.com/$OWNER/GLClient.git"
 
 REPO_DIR='/data/deb'
 WEB_DIR='/data/website/builds'
