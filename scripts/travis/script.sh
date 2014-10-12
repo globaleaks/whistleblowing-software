@@ -15,13 +15,6 @@ git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
 
 # The following emulates the installation guide:
 #   https://github.com/globaleaks/GlobaLeaks/wiki/Installation-guide
-## Install tor
-DO_SUDO 'add-apt-repository "deb http://deb.torproject.org/torproject.org $(lsb_release -s -c) main" -y'
-DO_SUDO 'gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x886DDD89'
-DO_SUDO 'gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -'
-DO_SUDO 'apt-get update -y'
-DO_SUDO 'apt-get install -y tor tor-geoipdb'
-
 DO_SUDO 'mkdir -p /data/globaleaks/deb/'
 DO_SUDO 'cp /data/globaleaks/GLBackend_tmp/glbackend_build/deb_dist/globaleaks*deb /data/globaleaks/deb/'
 DO_SUDO 'chmod +x /data/globaleaks/GlobaLeaks/scripts/install-ubuntu.sh'
@@ -53,7 +46,6 @@ DO_SUDO 'TRAVIS=true/etc/init.d/globaleaks restart'
 
 git clone https://github.com/globaleaks/GLClient /data/globaleaks/GlobaLeaks_UT
 cd /data/globaleaks/GlobaLeaks_UT && (git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null)
-DO_SUDO 'apt-get install -y nodejs npm'
 DO_SUDO 'cd /data/globaleaks/GlobaLeaks_UT && npm install -d'
 DO_SUDO 'cd /data/globaleaks/GlobaLeaks_UT && node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*'
 
