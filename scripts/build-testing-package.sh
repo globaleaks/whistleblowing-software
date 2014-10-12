@@ -12,6 +12,5 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TAGC=$1
 TAGB=$2
 
-sudo apt-get install -y devscript equivs
 ${DIR}/build-glclient.sh -v $TAGC
 ${DIR}/build-glbackend.sh -v $TAGB
