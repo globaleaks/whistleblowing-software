@@ -1,55 +1,61 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
-sudo -i bash -x -c 'mkdir -p /data/globaleaks/tests'
-sudo -i bash -x -c 'chown travis:travis /data/globaleaks -R'
+DO_SUDO() { sudo -i bash -x -c "$@" ; };
+
+# Clone the repository
+DO_SUDO 'mkdir -p /data/globaleaks/tests'
+DO_SUDO 'chown travis:travis /data/globaleaks -R'
 
 git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks
 cd /data/globaleaks/GlobaLeaks
 git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
 /data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh -c${TRAVIS_BRANCH} -b${TRAVIS_BRANCH}
-# the following is the emulation of the installation guide:
+
+# The following emulates the installation guide:
 #   https://github.com/globaleaks/GlobaLeaks/wiki/Installation-guide
-sudo -i bash -x -c 'apt-get update -y'
-sudo -i bash -x -c 'apt-get install python-software-properties -y'
-sudo -i bash -x -c 'add-apt-repository "deb http://deb.torproject.org/torproject.org $(lsb_release -s -c) main" -y'
-sudo -i bash -x -c 'gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x886DDD89'
-sudo -i bash -x -c 'gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -'
-sudo -i bash -x -c 'apt-get update'
-sudo -i bash -x -c 'apt-get install tor tor-geoipdb -y'
-sudo -i bash -x -c 'mkdir -p /data/globaleaks/deb/'
-sudo -i bash -x -c 'cp /data/globaleaks/GLBackend_tmp/glbackend_build/deb_dist/globaleaks*deb /data/globaleaks/deb/'
-sudo -i bash -x -c 'chmod +x /data/globaleaks/GlobaLeaks/scripts/install.sh'
-sudo TRAVIS=true -i bash -x -c '/data/globaleaks/GlobaLeaks/scripts/install.sh'
-sudo -i bash -x -c 'echo "VirtualAddrNetwork 10.23.47.0/10" >> /etc/tor/torrc'
-sudo -i bash -x -c 'echo "AutomapHostsOnResolve 1" >> /etc/tor/torrc'
-sudo -i bash -x -c 'echo "TransPort 9040" >> /etc/tor/torrc'
-sudo -i bash -x -c 'echo "TransListenAddress 127.0.0.1" >> /etc/tor/torrc'
-sudo -i bash -x -c 'echo "DNSPort 5353" >> /etc/tor/torrc'
-sudo -i bash -x -c 'echo "DNSListenAddress 127.0.0.1" >> /etc/tor/torrc'
-sudo -i bash -x -c 'echo "HiddenServiceDir /var/globaleaks/torhs/" >> /etc/tor/torrc'
-sudo -i bash -x -c 'echo "HiddenServicePort 80 127.0.0.1:8082" >> /etc/tor/torrc'
-sudo -i bash -x -c '/etc/init.d/tor restart'
-#sudo -i bash -x -c 'echo "[db]" > /etc/globaleaks'
-#sudo -i bash -x -c 'echo "type: mysql" >> /etc/globaleaks'
-#sudo -i bash -x -c 'echo "username: root" >> /etc/globaleaks'
-#sudo -i bash -x -c 'echo "password: globaleaks" >> /etc/globaleaks'
-#sudo -i bash -x -c 'echo "hostname: localhost" >> /etc/globaleaks'
-#sudo -i bash -x -c 'echo "name: globaleaks" >> /etc/globaleaks'
+## Install tor
+DO_SUDO 'add-apt-repository "deb http://deb.torproject.org/torproject.org $(lsb_release -s -c) main" -y'
+DO_SUDO 'gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x886DDD89'
+DO_SUDO 'gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -'
+DO_SUDO 'apt-get update -y'
+DO_SUDO 'apt-get install -y tor tor-geoipdb'
+
+DO_SUDO 'mkdir -p /data/globaleaks/deb/'
+DO_SUDO 'cp /data/globaleaks/GLBackend_tmp/glbackend_build/deb_dist/globaleaks*deb /data/globaleaks/deb/'
+DO_SUDO 'chmod +x /data/globaleaks/GlobaLeaks/scripts/install-ubuntu.sh'
+DO_SUDO 'TRAVIS=true /data/globaleaks/GlobaLeaks/scripts/install-ubuntu.sh'
+
+DO_SUDO 'echo "VirtualAddrNetwork 10.23.47.0/10" >> /etc/tor/torrc'
+DO_SUDO 'echo "AutomapHostsOnResolve 1" >> /etc/tor/torrc'
+DO_SUDO 'echo "TransPort 9040" >> /etc/tor/torrc'
+DO_SUDO 'echo "TransListenAddress 127.0.0.1" >> /etc/tor/torrc'
+DO_SUDO 'echo "DNSPort 5353" >> /etc/tor/torrc'
+DO_SUDO 'echo "DNSListenAddress 127.0.0.1" >> /etc/tor/torrc'
+DO_SUDO 'echo "HiddenServiceDir /var/globaleaks/torhs/" >> /etc/tor/torrc'
+DO_SUDO 'echo "HiddenServicePort 80 127.0.0.1:8082" >> /etc/tor/torrc'
+DO_SUDO '/etc/init.d/tor restart'
+
+# DO_SUDO "[db]" > /etc/globaleaks'
+# DO_SUDO "type: mysql" >> /etc/globaleaks'
+# DO_SUDO "username: root" >> /etc/globaleaks'
+# DO_SUDO "password: globaleaks" >> /etc/globaleaks'
+# DO_SUDO "hostname: localhost" >> /etc/globaleaks'
+# DO_SUDO "name: globaleaks" >> /etc/globaleaks'
+
 # damn travis seems to have problm on /dev/shm, making a special configuration for this
-sudo -i bash -x -c 'mkdir /var/globaleaks/ramdisk && chown globaleaks:globaleaks /var/globaleaks/ramdisk && chmod 700 /var/globaleaks/ramdisk'
-sudo -i bash -x -c 'sed -i "s/RAM_DISK=\/dev\/shm\/globaleaks\//RAM_DISK=\/var\/globaleaks\/ramdisk\//g" /etc/default/globaleaks'
-sudo TRAVIS=true -i bash -x -c '/etc/init.d/globaleaks restart'
-sleep 10
+DO_SUDO 'mkdir /var/globaleaks/ramdisk && \
+         chown globaleaks:globaleaks /var/globaleaks/ramdisk && \
+         chmod 700 /var/globaleaks/ramdisk'
+DO_SUDO 'sed -i "s/RAM_DISK=\/dev\/shm\/globaleaks\//RAM_DISK=/var/globaleaks/ramdisk//g" /etc/default/globaleaks'
+DO_SUDO 'TRAVIS=true/etc/init.d/globaleaks restart'
 
 git clone https://github.com/globaleaks/GLClient /data/globaleaks/GlobaLeaks_UT
 cd /data/globaleaks/GlobaLeaks_UT && (git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null)
-sudo -i bash -x -c 'add-apt-repository ppa:chris-lea/node.js -y'
-sudo -i bash -x -c 'apt-get update -y'
-sudo -i bash -x -c 'apt-get install nodejs -y'
-sudo -i bash -x -c 'cd /data/globaleaks/GlobaLeaks_UT && npm install -d'
-sudo -i bash -x -c 'cd /data/globaleaks/GlobaLeaks_UT && node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*'
+DO_SUDO 'apt-get install -y nodejs npm'
+DO_SUDO 'cd /data/globaleaks/GlobaLeaks_UT && npm install -d'
+DO_SUDO 'cd /data/globaleaks/GlobaLeaks_UT && node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*'
 
 git clone https://github.com/globaleaks/GLBackend /data/globaleaks/tests/GLBackend
 cd /data/globaleaks/tests/GLBackend
