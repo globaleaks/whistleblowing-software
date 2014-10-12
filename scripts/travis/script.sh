@@ -4,14 +4,8 @@ set -e
 
 DO_SUDO() { sudo -i bash -x -c "$@" ; };
 
-# Clone the repository
-DO_SUDO 'mkdir -p /data/globaleaks/tests'
-DO_SUDO 'chown travis:travis /data/globaleaks -R'
-
-git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks
-cd /data/globaleaks/GlobaLeaks
-git checkout ${TRAVIS_BRANCH} > /dev/null || git checkout HEAD > /dev/null
-/data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh ${TRAVIS_BRANCH} ${TRAVIS_BRANCH}
+./scripts/build-testing-package.sh ${TRAVIS_BRANCH} ${TRAVIS_BRANCH}
+exit
 
 # The following emulates the installation guide:
 #   https://github.com/globaleaks/GlobaLeaks/wiki/Installation-guide
@@ -41,7 +35,7 @@ DO_SUDO '/etc/init.d/tor restart'
 DO_SUDO 'mkdir /var/globaleaks/ramdisk && \
          chown globaleaks:globaleaks /var/globaleaks/ramdisk && \
          chmod 700 /var/globaleaks/ramdisk'
-DO_SUDO 'sed -i "s/RAM_DISK=\/dev\/shm\/globaleaks\//RAM_DISK=/var/globaleaks/ramdisk//g" /etc/default/globaleaks'
+DO_SUDO 'sed -i "s/RAM_DISK=\/dev\/shm\/globaleaks\//RAM_DISK=\/var\/globaleaks\/ramdisk\//g" /etc/default/globaleaks'
 DO_SUDO 'TRAVIS=true/etc/init.d/globaleaks restart'
 
 git clone https://github.com/globaleaks/GLClient /data/globaleaks/GlobaLeaks_UT
