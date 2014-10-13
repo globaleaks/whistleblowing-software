@@ -9,39 +9,41 @@
             <i class="glyphicon glyphicon-question-sign"></i>
           </a>
           <div class="submissionFieldInput">
-            <div data-ng-switch="" on="field.type">
-              <input class="form-control" data-ng-switch-when="checkbox" data-ng-model="field.value" value="{{field.value}}" id="field" name="input" placeholder="{{field.placeholder}}" type="checkbox">
+            <div class="row">
+              <div data-ng-switch="" on="field.type" class="col-md-4">
+                <input class="form-control" data-ng-switch-when="checkbox" data-ng-model="field.value" value="{{field.value}}" id="field" name="input" placeholder="{{field.placeholder}}" type="checkbox">
 
-              <input class="form-control" data-ng-switch-when="text" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text">
+                <input class="form-control" data-ng-switch-when="text" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text">
 
-              <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="field.value" data-ng-required="field.required" placeholder="{{field.placeholder}}">{{field.value}}</textarea>
+                <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="field.value" data-ng-required="field.required" placeholder="{{field.placeholder}}">{{field.value}}</textarea>
 
-              <select class="form-control" data-ng-switch-when="select" name="input" data-ng-model="field.value" data-ng-required="field.required">
-                <option data-ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
-              </select>
+                <select class="form-control" data-ng-switch-when="select" name="input" data-ng-model="field.value" data-ng-required="field.required">
+                  <option data-ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
+                </select>
 
-              <select class="form-control" data-ng-switch-when="multiple" name="input" data-ng-model="field.value" multiple="">
-                <option data-ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
-              </select>
+                <select class="form-control" data-ng-switch-when="multiple" name="input" data-ng-model="field.value" multiple="">
+                  <option data-ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
+                </select>
 
-              <fieldset data-ng-switch-when="radio">
-                <div data-ng-repeat="option in field.options">
-                  <input data-ng-model="field.value" data-ng-required="field.required" value="{{option.value}}" type="radio">
-                  <label>{{option.name}}</label>
-                </div>
-              </fieldset>
+                <fieldset data-ng-switch-when="radio">
+                  <div data-ng-repeat="option in field.options">
+                    <input data-ng-model="field.value" data-ng-required="field.required" value="{{option.value}}" type="radio">
+                    <label>{{option.name}}</label>
+                  </div>
+                </fieldset>
 
-              <div data-ng-switch-when="checkboxes">
-                <div data-ng-repeat="option in field.options">
+                <div data-ng-switch-when="checkboxes">
+                  <div data-ng-repeat="option in field.options">
                     <input name="{{option.name}}" 
                         data-ng-model="field.value[option.name]"
                         type="checkbox">
                     <label>{{field.options[$index].name}}</label>
+                  </div>
                 </div>
+
+                <input class="form-control" data-ng-switch-default="" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text">
+
               </div>
-
-              <input class="form-control" data-ng-switch-default="" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text">
-
             </div>
 
             <p class="has-error" data-ng-show="subForm.$invalid">
