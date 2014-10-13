@@ -1,6 +1,6 @@
 #!/bin/bash
 GLOBALEAKS_DIR="$(readlink -f `dirname ${BASH_SOURCE[0]}`/..)"
-. ${GLOBALEAKS_DIR}/scripts/common_inc.sh
+. $GLOBALEAKS_DIR/scripts/common_inc.sh
 
 usage()
 {

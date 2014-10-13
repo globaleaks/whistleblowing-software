@@ -1,11 +1,10 @@
 #!/bin/bash
-
 set -e
 
 DO_SUDO() { sudo -i bash -x -c "$@" ; };
 
-./scripts/build-testing-package.sh ${TRAVIS_BRANCH} ${TRAVIS_BRANCH}
-exit
+./scripts/build-testing-package.sh
+exit 0
 
 # The following emulates the installation guide:
 #   https://github.com/globaleaks/GlobaLeaks/wiki/Installation-guide
