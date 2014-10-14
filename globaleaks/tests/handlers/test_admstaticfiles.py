@@ -115,5 +115,6 @@ class TestStaticFileList(helpers.TestHandler):
 
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
+        print self.responses[0]
         self.assertEqual(len(self.responses[0]), 5)
         self._handler.validate_message(json.dumps(self.responses[0]), requests.staticFileCollection)
