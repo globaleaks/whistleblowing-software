@@ -52,6 +52,7 @@ class TestNodeInstance(helpers.TestHandler):
                                 'configured' ]:
                 continue
 
+            print response_key
             self.assertEqual(self.responses[0][response_key],
                              self.dummyNode[response_key])
 

@@ -813,7 +813,7 @@ def fill_random_fields(store, context_desc):
     i = 0
     for sf in fields:
         unicode_weird = ''.join(unichr(x) for x in range(0x400, 0x4FF) )
-        ret_dict.update({ sf.get(u'id') : { u'value': unicode_weird }
+        ret_dict.update({ sf.get(u'id') : { u'value': unicode_weird }})
 
         i += 1
 
