@@ -293,9 +293,9 @@ CREATE TABLE stats (
 CREATE TABLE field (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
-    label VARCHAR NOT NULL,
-    description VARCHAR NOT NULL DEFAULT '',
-    hint VARCHAR NOT NULL DEFAULT '',
+    label TEXT NOT NULL,
+    description TEXT NOT NULL DEFAULT '',
+    hint TEXT NOT NULL DEFAULT '',
     multi_entry INTEGER NOT NULL DEFAULT 0,
     required INTEGER,
     preview INTEGER,
@@ -312,7 +312,7 @@ CREATE TABLE field (
                                           'fileupload',
                                           'fieldgroup'
                                           )),
-    options VARCHAR DEFAULT '{}',
+    options TEXT DEFAULT '{}',
     PRIMARY KEY (id)
 );
 

@@ -621,10 +621,10 @@ class Receiver(Model):
 
 
 class Field(Model):
-    label = Unicode()
-    description = Unicode()
-    hint = Unicode()
-    multi_entry = Bool()
+    label = JSON()
+    description = JSON()
+    hint = JSON()
+    multi_entry = JSON()
 
     required = Bool()
     preview = Bool()
