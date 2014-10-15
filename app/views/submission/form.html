@@ -11,8 +11,6 @@
           <div class="submissionFieldInput">
             <div class="row">
               <div data-ng-switch="" on="field.type" class="col-md-4">
-                <input class="form-control" data-ng-switch-when="checkbox" data-ng-model="field.value" value="{{field.value}}" id="field" name="input" placeholder="{{field.placeholder}}" type="checkbox">
-
                 <input class="form-control" data-ng-switch-when="text" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text">
 
                 <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="field.value" data-ng-required="field.required" placeholder="{{field.placeholder}}">{{field.value}}</textarea>
