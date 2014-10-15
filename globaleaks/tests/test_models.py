@@ -229,25 +229,6 @@ class TestModels(helpers.TestGL):
         self.assertFailure(self.do_invalid_receiver_description_oversize(),
                            errors.InvalidInputFormat)
 
-
-@transact
-def create_field(store, **custom_attrs):
-    attrs = {
-        'label': '{"en": "test label"}',
-        'description': '{"en": "test description"}',
-        'hint': '{"en": "test hint"}',
-        'multi_entry': False,
-        'type': 'fieldgroup',
-        'options': {},
-        'required': False,
-        'preview': False,
-        'stats_enabled': True,
-        'x': 0,
-        'y': 0
-    }
-    attrs.update(custom_attrs)
-    return models.Field.new(store, attrs).id
-
 class TestField(helpers.TestGL):
     fixtures = ['fields.json']
 
@@ -279,23 +260,23 @@ class TestField(helpers.TestGL):
 
     @inlineCallbacks
     def test_add_field(self):
-        field_id = yield create_field()
+        field_id = yield helpers.create_dummy_field()
         yield self.assert_model_exists(models.Field, field_id)
 
-        field_id = yield create_field(type='checkbox')
+        field_id = yield helpers.create_dummy_field(type='checkbox')
         yield self.assert_model_exists(models.Field, field_id)
 
     @inlineCallbacks
     def test_add_field_group(self):
-        field1_id = yield create_field(
+        field1_id = yield helpers.create_dummy_field(
             label='{"en": "the first testable field"}',
             type='checkbox'
         )
-        field2_id = yield create_field(
+        field2_id = yield helpers.create_dummy_field(
             label='{"en": "the second testable field"}',
             type='inputbox'
         )
-        fieldgroup_id = yield create_field(
+        fieldgroup_id = yield helpers.create_dummy_field(
             label='{"en": "a testable group of fields."}',
             type='fieldgroup',
             x=1, y=2,
@@ -380,6 +361,6 @@ class TestStep(helpers.TestGL):
                            exceptions.IntegrityError)
         # creation of another step bindded to the same context and different
         # fieldgroup shall succeed.
-        second_fieldgroup = yield create_field(type='fieldgroup')
+        second_fieldgroup = yield helpers.create_dummy_field(type='fieldgroup')
         step2 = yield self.create_step(self.context_id, second_fieldgroup)
         yield self.assert_model_exists(models.Step, step2)

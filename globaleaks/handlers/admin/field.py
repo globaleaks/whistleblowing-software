@@ -13,6 +13,7 @@ from globaleaks.handlers.authentication import authenticated, transport_security
 from globaleaks.models import Field, Step
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro
+from globaleaks.utils import structures
 from globaleaks.utils.utility import log
 
 def admin_serialize_field(field, language):
@@ -23,11 +24,16 @@ def admin_serialize_field(field, language):
     :param: language: the language in which to localize data
     :return: a serialization of the object
     """
-    return {
+
+    # naif likes if we add reference links
+    # this code is inspired by:
+    #  - https://www.youtube.com/watch?v=KtNsUgKgj9g
+
+    mo = structures.Rosetta()
+    mo.acquire_storm_object(field)
+
+    field_dict = {
         'id': field.id,
-        'label': field.label,
-        'description': field.description,
-        'hint': field.hint,
         'multi_entry': field.multi_entry,
         'required': field.required,
         'preview': False,
@@ -39,6 +45,12 @@ def admin_serialize_field(field, language):
         'children': [f.id for f in field.children],
     }
 
+    for attr in mo.get_localized_attrs():
+        field_dict[attr] = mo.dump_translated(attr, language)
+
+    return field_dict
+
+
 @transact
 def create_field(store, request, language):
     """
@@ -48,6 +60,11 @@ def create_field(store, request, language):
     :param: language: the language of the field definition dict
     :return: a serialization of the object
     """
+    mo = structures.Rosetta()
+    mo.acquire_request(language, request, Field)
+    for attr in mo.get_localized_attrs():
+        request[attr] = mo.get_localized_dict(attr)
+
     field = Field.new(store, request)
     return admin_serialize_field(field, language)
 
@@ -69,6 +86,11 @@ def update_field(store, field_id, request, language):
     try:
         if not field:
             raise errors.InvalidInputFormat(errmsg)
+
+        mo = structures.Rosetta()
+        mo.acquire_request(language, request, Field)
+        for attr in mo.get_localized_attrs():
+            request[attr] = mo.get_localized_dict(attr)
 
         field.update(request)
 

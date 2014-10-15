@@ -568,8 +568,8 @@ class MockDict():
             'label': u'Field 1',
             'type': u'inputbox',
             'preview': False,
-            'description': u'',
-            'hint': u'',
+            'description': u"field description",
+            'hint': u'field hint',
             'multi_entry': False,
             'stats_enabled': False,
             'required': True, # <- first field is special,
@@ -583,8 +583,8 @@ class MockDict():
             'label': u'Field 2',
             'type': u'inputbox',
             'preview': False,
-            'description': u'',
-            'hint': u'',
+            'description': "description",
+            'hint': u'field hint',
             'multi_entry': False,
             'stats_enabled': False,
             'required': False,
@@ -598,8 +598,8 @@ class MockDict():
             'label': u'Name',
             'type': u'inputbox',
             'preview': False,
-            'description': u'',
-            'hint': u'',
+            'description': u"field description",
+            'hint': u'field hint',
             'multi_entry': False,
             'stats_enabled': False,
             'required': False,
@@ -613,8 +613,8 @@ class MockDict():
             'label': u'Surname',
             'type': u'inputbox',
             'preview': False,
-            'description': u'',
-            'hint': u'',
+            'description': u"field description",
+            'hint': u'field hint',
             'multi_entry': False,
             'stats_enabled': False,
             'required': False,
@@ -628,8 +628,8 @@ class MockDict():
             'label': u'Generalities',
             'type': u'fieldgroup',
             'preview': False,
-            'description': u'',
-            'hint': u'',
+            'description': u"field description",
+            'hint': u'field hint',
             'multi_entry': False,
             'stats_enabled': False,
             'required': False,
@@ -866,3 +866,21 @@ def do_appdata_init(store):
     (unique_fields, localized_fields) = fo.extensive_dump()
 
     return unique_fields, localized_fields
+
+@transact
+def create_dummy_field(store, **custom_attrs):
+    attrs = {
+        'label': '{"en": "test label"}',
+        'description': '{"en": "test description"}',
+        'hint': '{"en": "test hint"}',
+        'multi_entry': False,
+        'type': 'fieldgroup',
+        'options': {},
+        'required': False,
+        'preview': False,
+        'stats_enabled': True,
+        'x': 0,
+        'y': 0
+    }
+    attrs.update(custom_attrs)
+    return models.Field.new(store, attrs).id
