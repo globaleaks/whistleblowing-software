@@ -33,6 +33,14 @@
   display: none;
 }
 
+#PageTitle {
+  font-size: 60px;
+}
+
+#PageSubtitle {
+  font-size: 36px;
+}
+
 #ContentBox {
   margin: 50px auto;
 }
@@ -46,7 +54,6 @@
   padding-right: 10px;
 }
 
-/* Footer */
 #FooterBox {
   padding: 70px 0;
   border-top: 1px solid #E5E5E5;
