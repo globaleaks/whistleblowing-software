@@ -10,7 +10,7 @@ from globaleaks.handlers.authentication import authenticated, transport_security
 from globaleaks.rest import errors, requests
 from globaleaks.models import Receiver, Context, Node, Notification, User, ApplicationData
 from globaleaks import security, models
-from globaleaks.utils import structures
+from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log, datetime_now, datetime_null, seconds_convert, datetime_to_ISO8601
 from globaleaks.db.datainit import import_memory_variables
 from globaleaks.security import gpg_options_parse
@@ -19,7 +19,7 @@ from globaleaks.third_party import rstr
 
 
 def admin_serialize_notification(notif, language=GLSetting.memory_copy.default_language):
-    notification_dict = {
+    ret_dict = {
         'server': notif.server if notif.server else u"",
         'port': notif.port if notif.port else u"",
         'username': notif.username if notif.username else u"",
@@ -30,12 +30,7 @@ def admin_serialize_notification(notif, language=GLSetting.memory_copy.default_l
         'disable': GLSetting.notification_temporary_disable,
     }
 
-    mo = structures.Rosetta()
-    mo.acquire_storm_object(notif)
-    for attr in mo.get_localized_attrs():
-        notification_dict[attr] = mo.dump_translated(attr, language)
-
-    return notification_dict
+    return get_localized_values(ret_dict, notif, language)
 
 @transact_ro
 def get_notification(store, language=GLSetting.memory_copy.default_language):
@@ -56,10 +51,7 @@ def update_notification(store, request, language=GLSetting.memory_copy.default_l
         log.err("Database error or application error: %s" % excep )
         raise excep
 
-    mo = structures.Rosetta()
-    mo.acquire_request(language, request, Notification)
-    for attr in mo.get_localized_attrs():
-        request[attr] = mo.get_localized_dict(attr)
+    fill_localized_keys(request, Notification, language)
 
     if request['security'] in Notification._security_types:
         notif.security = request['security']

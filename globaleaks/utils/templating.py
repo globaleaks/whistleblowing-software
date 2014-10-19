@@ -204,9 +204,7 @@ class EncryptedTipKeyword(TipKeyword):
         self.keyword_list += EncryptedTipKeyword.encrypted_tip_keywords
 
     def TipFields(self):
-        # TODO FIX_WITH_NEW_FIELDS_DESIGN
-        # fields are {}
-        return dump_submission_fields({}, self.tip['wb_fields'])
+        return dump_submission_fields(self.fields, self.tip['wb_fields'])
 
 
 class CommentKeyword(TipKeyword):

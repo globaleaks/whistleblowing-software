@@ -679,9 +679,9 @@ class Field(Model):
 
 class Step(Model):
     context_id = Unicode()
-    label = Unicode()
-    description = Unicode()
-    hint = Unicode()
+    label = JSON()
+    description = JSON()
+    hint = JSON()
     # XXX.
     # there are better structures that we could use rather than a linear ordering.
     # (like a tree-like, so that update is O(lg n) < O(n)).

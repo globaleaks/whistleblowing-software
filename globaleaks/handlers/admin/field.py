@@ -13,7 +13,7 @@ from globaleaks.handlers.authentication import authenticated, transport_security
 from globaleaks.models import Field, Step
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro
-from globaleaks.utils import structures
+from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log
 
 def admin_serialize_field(field, language):
@@ -29,10 +29,7 @@ def admin_serialize_field(field, language):
     # this code is inspired by:
     #  - https://www.youtube.com/watch?v=KtNsUgKgj9g
 
-    mo = structures.Rosetta()
-    mo.acquire_storm_object(field)
-
-    field_dict = {
+    ret_dict = {
         'id': field.id,
         'multi_entry': field.multi_entry,
         'required': field.required,
@@ -45,11 +42,7 @@ def admin_serialize_field(field, language):
         'children': [f.id for f in field.children],
     }
 
-    for attr in mo.get_localized_attrs():
-        field_dict[attr] = mo.dump_translated(attr, language)
-
-    return field_dict
-
+    return get_localized_values(ret_dict, field, language)
 
 @transact
 def create_field(store, request, language):
@@ -60,10 +53,7 @@ def create_field(store, request, language):
     :param: language: the language of the field definition dict
     :return: a serialization of the object
     """
-    mo = structures.Rosetta()
-    mo.acquire_request(language, request, Field)
-    for attr in mo.get_localized_attrs():
-        request[attr] = mo.get_localized_dict(attr)
+    fill_localized_keys(request, Field, language)
 
     field = Field.new(store, request)
     return admin_serialize_field(field, language)
@@ -87,10 +77,7 @@ def update_field(store, field_id, request, language):
         if not field:
             raise errors.InvalidInputFormat(errmsg)
 
-        mo = structures.Rosetta()
-        mo.acquire_request(language, request, Field)
-        for attr in mo.get_localized_attrs():
-            request[attr] = mo.get_localized_dict(attr)
+        fill_localized_keys(request, Field, language)
 
         field.update(request)
 
@@ -184,7 +171,6 @@ def fieldtree_ancestors(store, field_id):
     :param field_id: the parent id.
     :return: a generator of Field.id
     """
-    yield field_id
     parents = store.find(models.FieldField, models.FieldField.child_id == field_id)
     for parent in parents:
         if parent.parent_id != field_id:

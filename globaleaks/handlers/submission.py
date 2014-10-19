@@ -16,7 +16,6 @@ from globaleaks.handlers.admin import db_get_context_fields
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
-from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 
@@ -33,10 +32,8 @@ def wb_serialize_internaltip(internaltip):
         'mark' : internaltip.mark,
         'pertinence' : internaltip.pertinence_counter,
         'escalation_threshold' : internaltip.escalation_threshold,
-                  # list is needed because .values returns a generator
-        'files' : list(internaltip.internalfiles.values(InternalFile.id)),
-                      # list is needed because .values returns a generator
-        'receivers' : list(internaltip.receivers.values(Context.id)),
+        'files' : [f.id for f in internaltip.internalfiles],
+        'receivers' : [r.id for r in internaltip.receivers]
     }
 
     return response
@@ -200,9 +197,6 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
 
     try:
         wb_fields = request['wb_fields']
-        # TODO FIX_WITH_NEW_FIELDS_DESIGN
-        # fo = Fields(context.localized_fields, context.unique_fields)
-        # fo.validate_fields(wb_fields, language, strict_validation=finalize)
         fields = db_get_context_fields(store, context.id, language)
         fields_ids = [ field['id'] for field in fields]
         for f in fields:
@@ -257,9 +251,6 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
 
     try:
         wb_fields = request['wb_fields']
-        # TODO FIX_WITH_NEW_FIELDS_DESIGN
-        # fo = Fields(context.localized_fields, context.unique_fields)
-        # fo.validate_fields(wb_fields, language, strict_validation=finalize)
         fields = db_get_context_fields(store, context.id, language)
         fields_ids = [ field['id'] for field in fields]
         for f in fields:

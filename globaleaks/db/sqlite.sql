@@ -319,9 +319,9 @@ CREATE TABLE field (
 CREATE TABLE step (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
-    label VARCHAR NOT NULL,
-    description VARCHAR NOT NULL DEFAULT '',
-    hint VARCHAR NOT NULL DEFAULT '',
+    label TEXT NOT NULL,
+    description TEXT NOT NULL,
+    hint TEXT NOT NULL,
     context_id VARCHAR NOT NULL,
     number INTEGER NOT NULL CHECK(number > 0),
     PRIMARY KEY (id)

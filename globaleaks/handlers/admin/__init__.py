@@ -14,12 +14,12 @@ from globaleaks.handlers.admin.field import admin_serialize_field
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list, anon_serialize_node, anon_serialize_step
-from globaleaks.models import Receiver, Context, Field, Node, User
+from globaleaks.models import Receiver, Context, Field, Step, Node, User
 from globaleaks.rest import errors, requests
 from globaleaks.security import gpg_options_parse
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.third_party import rstr
-from globaleaks.utils import structures
+from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log, datetime_now, datetime_null, seconds_convert, datetime_to_ISO8601
 
 from . import field, notification
@@ -29,14 +29,11 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
 
     node = store.find(Node).one()
 
-    mo = structures.Rosetta()
-    mo.acquire_storm_object(node)
-
     # Contexts and Receivers relationship
     associated = store.find(models.ReceiverContext).count()
     custom_homepage = os.path.isfile(os.path.join(GLSetting.static_path, "custom_homepage.html"))
 
-    node_dict = {
+    ret_dict = {
         "name": node.name,
         "presentation": node.presentation,
         "creation_date": datetime_to_ISO8601(node.creation_date),
@@ -79,10 +76,7 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         'disable_security_awareness_questions': node.disable_security_awareness_questions
     }
 
-    for attr in mo.get_localized_attrs():
-        node_dict[attr] = mo.dump_translated(attr, language)
-
-    return node_dict
+    return get_localized_values(ret_dict, node, language)
 
 @transact_ro
 def admin_serialize_node(store, language=GLSetting.memory_copy.default_language):
@@ -92,14 +86,15 @@ def db_create_step(store, context_id, steps, language):
     """
     Add a new step to the store, then return the new serialized object.
     """
-    # TODO FIX_WITH_NEW_FIELDS_DESIGN
-    # steps need to be localized!
     context = models.Context.get(store, context_id)
     if context is None:
         raise errors.ContextIdNotFound
 
     for step in steps:
         step['context_id'] = context_id
+
+        fill_localized_keys(step, Step, language)
+
         s = models.Step.new(store, step)
         for field_id in step['children']:
             field = Field.get(store, field_id)
@@ -112,8 +107,6 @@ def db_update_steps(store, context_id, steps, language):
     """
     Update steps removing old field associated and recreating new.
     """
-    # TODO FIX_WITH_NEW_FIELDS_DESIGN
-    # steps need to be localized!
     context = models.Context.get(store, context_id)
     if context is None:
         raise errors.ContextIdNotFound
@@ -123,6 +116,9 @@ def db_update_steps(store, context_id, steps, language):
 
     for step in steps:
         step['context_id'] = context_id
+
+        fill_localized_keys(step, Step, language)
+
         s = models.Step.new(store, step)
         i = 1
         for field_id in step['children']:
@@ -136,12 +132,9 @@ def db_update_steps(store, context_id, steps, language):
 
 def admin_serialize_context(context, language=GLSetting.memory_copy.default_language):
 
-    mo = structures.Rosetta()
-    mo.acquire_storm_object(context)
-
     steps = [ anon_serialize_step(s, language) for s in context.steps ]
 
-    context_dict = {
+    ret_dict = {
         "id": context.id,
         "creation_date": datetime_to_ISO8601(context.creation_date),
         "last_update": datetime_to_ISO8601(context.last_update),
@@ -149,8 +142,7 @@ def admin_serialize_context(context, language=GLSetting.memory_copy.default_lang
         "tip_max_access": context.tip_max_access,
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
-                     # list is needed because .values returns a generator
-        "receivers": list(context.receivers.values(models.Receiver.id)),
+        "receivers": [r.id for r in context.receivers],
         "tags": context.tags if context.tags else [],
         "file_required": context.file_required,
         # tip expressed in day, submission in hours
@@ -170,17 +162,11 @@ def admin_serialize_context(context, language=GLSetting.memory_copy.default_lang
         "steps": steps
     }
 
-    for attr in mo.get_localized_attrs():
-        context_dict[attr] = mo.dump_translated(attr, language)
-
-    return context_dict
+    return get_localized_values(ret_dict, context, language) 
 
 def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
 
-    mo = structures.Rosetta()
-    mo.acquire_storm_object(receiver)
-
-    receiver_dict = {
+    ret_dict = {
         "id": receiver.id,
         "name": receiver.name,
         "creation_date": datetime_to_ISO8601(receiver.creation_date),
@@ -192,8 +178,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "user_id": receiver.user.id,
         'mail_address': receiver.mail_address,
         "password": u"",
-                    # list is needed because .values returns a generator
-        "contexts": list(receiver.contexts.values(models.Context.id)),
+        "contexts": [c.id for c in receiver.contexts],
         "tags": receiver.tags,
         "gpg_key_info": receiver.gpg_key_info,
         "gpg_key_armor": receiver.gpg_key_armor,
@@ -208,11 +193,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "presentation_order": receiver.presentation_order,
     }
 
-    # only 'description' at the moment is a localized object here
-    for attr in mo.get_localized_attrs():
-        receiver_dict[attr] = mo.dump_translated(attr, language)
-
-    return receiver_dict
+    return get_localized_values(ret_dict, receiver, language)
 
 def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_copy.default_language):
     """
@@ -230,10 +211,7 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
     """
     node = store.find(Node).one()
 
-    mo = structures.Rosetta()
-    mo.acquire_request(language, request, Node)
-    for attr in mo.get_localized_attrs():
-        request[attr] = mo.get_localized_dict(attr)
+    fill_localized_keys(request, Node, language)
 
     password = request.get('password', None)
     old_password = request.get('old_password', None)
@@ -394,10 +372,7 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
     receivers = request.get('receivers', [])
     steps = request.get('steps', [])
 
-    mo = structures.Rosetta()
-    mo.acquire_request(language, request, Context)
-    for attr in mo.get_localized_attrs():
-        request[attr] = mo.get_localized_dict(attr)
+    fill_localized_keys(request, Context, language)
 
     context = Context(request)
 
@@ -459,11 +434,9 @@ def get_context(store, context_id, language=GLSetting.memory_copy.default_langua
     return admin_serialize_context(context, language)
 
 def db_get_fields_recursively(store, field, language):
-    # TODO FIX_WITH_NEW_FIELDS_DESIGN 
-    # fields need to be localized!
     ret = []
     for children in field.children:
-        s = admin_serialize_field(children, 'en')
+        s = admin_serialize_field(children, language)
         ret.append(s)
         ret += db_get_fields_recursively(store, children, language)
     return ret
@@ -518,10 +491,7 @@ def update_context(store, context_id, request, language=GLSetting.memory_copy.de
     if not context:
          raise errors.ContextIdNotFound
 
-    mo = structures.Rosetta()
-    mo.acquire_request(language, request, Context)
-    for attr in mo.get_localized_attrs():
-        request[attr] = mo.get_localized_dict(attr)
+    fill_localized_keys(request, Context, language)
 
     for receiver in context.receivers:
         context.receivers.remove(receiver)
@@ -611,10 +581,7 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
         (dict) the configured receiver
     """
 
-    mo = structures.Rosetta()
-    mo.acquire_request(language, request, Receiver)
-    for attr in mo.get_localized_attrs():
-        request[attr] = mo.get_localized_dict(attr)
+    fill_localized_keys(request, Receiver, language)
 
     mail_address = request['mail_address']
 
@@ -701,10 +668,7 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    mo = structures.Rosetta()
-    mo.acquire_request(language, request, Receiver)
-    for attr in mo.get_localized_attrs():
-        request[attr] = mo.get_localized_dict(attr)
+    fill_localized_keys(request, receiver, language)
 
     mail_address = request['mail_address']
 

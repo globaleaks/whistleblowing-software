@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 
+import copy
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
@@ -34,13 +36,16 @@ class SubmissionTest(helpers.TestGL):
         # helpers.TestGL.tearDown(self) is done only in the last test
         pass
 
-    aContext1 = TTip.tipContext
+    aContext1 = copy.deepcopy(TTip.tipContext)
 
     aContext2 = {
         'name': u'UNUSED', 'description': u'UNUSED',
         'escalation_threshold': u'0', 'tip_max_access': u'2',
-        'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
-        'receivers': [], 'fields': helpers.default_context_fields(), 'submission_timetolive': 100,
+        'tip_timetolive': 200,
+        'file_max_download': 2,
+        'selectable_receiver': True,
+        'receivers': [],
+        'submission_timetolive': 100,
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
         'select_all_receivers': True,
         'receiver_introduction': u"bleh",
@@ -57,8 +62,8 @@ class SubmissionTest(helpers.TestGL):
         'steps': {}
     }
 
-    aReceiver1 = TTip.tipReceiver1
-    aReceiver2 = TTip.tipReceiver2
+    aReceiver1 = copy.deepcopy(TTip.tipReceiver1)
+    aReceiver2 = copy.deepcopy(TTip.tipReceiver2)
 
 
 class TestTipInstance(SubmissionTest):
