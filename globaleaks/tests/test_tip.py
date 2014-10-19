@@ -10,8 +10,6 @@ from globaleaks.rest import errors, requests
 from globaleaks.handlers import base, admin, submission, authentication, receiver, rtip, wbtip
 from globaleaks.jobs import delivery_sched
 from globaleaks import models
-from globaleaks.tests.helpers import default_context_fields
-
 STATIC_PASSWORD = u'bungabunga ;( 12345'
 
 class MockHandler(base.BaseHandler):
@@ -56,7 +54,6 @@ class TTip(helpers.TestGL):
         'name': u'CtxName', 'description': u'dummy context with default fields',
         'escalation_threshold': 1,
         'tip_max_access': 2, 
-        'fields' : default_context_fields(),
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': False,
         'receivers': [], 'submission_timetolive': 100,
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
@@ -129,6 +126,7 @@ class TestTipInstance(TTip):
         for attrname in models.Context.localized_strings:
             self.tipContext[attrname] = stuff
 
+        print self.tipContext
         basehandler.validate_jmessage(self.tipContext, requests.adminContextDesc)
 
         # the test context need fields to be present

@@ -9,7 +9,8 @@ from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
 from globaleaks.utils.utility import log, acquire_bool, datetime_to_ISO8601
-from globaleaks.utils.structures import Rosetta, Fields
+from globaleaks.utils.structures import Rosetta, get_localized_values
+from globaleaks.handlers.admin import db_get_context_fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, Context, ReceiverTip, ReceiverFile, Message, Node
 from globaleaks.settings import transact, transact_ro, GLSetting
@@ -20,7 +21,7 @@ from globaleaks.security import change_password, gpg_options_parse
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
-    receiver_dict = {
+    ret_dict = {
         "id": receiver.id,
         "name": receiver.name,
         "update_date": datetime_to_ISO8601(receiver.last_update),
@@ -40,20 +41,15 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "comment_notification" : receiver.comment_notification,
         "message_notification" : receiver.message_notification,
         "mail_address": receiver.mail_address,
-                    # list is needed because .values returns a generator
-        "contexts": list(receiver.contexts.values(Context.id)),
+        "contexts": [c.id for c in receiver.contexts],
         "password": u'',
         "old_password": u'',
     }
 
-    mo = Rosetta()
-    mo.acquire_storm_object(receiver)
-    receiver_dict["description"] = mo.dump_translated('description', language)
-
     for context in receiver.contexts:
-        receiver_dict['contexts'].append(context.id)
+        ret_dict['contexts'].append(context.id)
 
-    return receiver_dict
+    return get_localized_values(ret_dict, receiver, language)
 
 @transact_ro
 def get_receiver_settings(store, receiver_id, language=GLSetting.memory_copy.default_language):
@@ -203,20 +199,14 @@ def get_receiver_tip_list(store, receiver_id, language=GLSetting.memory_copy.def
 
         preview_data = []
 
-         # TODO FIX_WITH_NEW_FIELDS_DESIGN
-        #fo = Fields(rtip.internaltip.context.localized_fields, rtip.internaltip.context.unique_fields)
-        #for preview_key, preview_label in fo.get_preview_keys(language).iteritems():
+        fields = db_get_context_fields(store, rtip.internaltip.context.id, language)
+        fields_ids = [ field['id'] for field in fields]
+        for f in fields:
+            if f['preview']:
+                entry = dict({'label' : f['label'],
+                              'text': rtip.internaltip.wb_fields[f['id']] })
 
-        #    # preview in a format angular.js likes
-        #    try:
-        #        entry = dict({'label' : preview_label,
-        #                      'text': rtip.internaltip.wb_fields[preview_key] })
-
-        #    except KeyError as xxx:
-        #        log.err("Legacy error: suppressed 'preview_keys' %s" % xxx.message )
-        #        continue
-
-        #    preview_data.append(entry)
+                preview_data.append(entry)
 
         single_tip_sum.update({ 'preview' : preview_data })
         rtip_summary_list.append(single_tip_sum)

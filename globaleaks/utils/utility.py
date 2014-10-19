@@ -425,13 +425,13 @@ def dump_submission_fields(fields, wb_fields):
     dumptext = u""
     for sf in fields:
         if sf['type'] != 'text':
-            log.debug("Ignored dump of field %s because is not a Text" % sf['name'])
+            log.debug("Ignored dump of field %s because is not a Text" % sf['label'])
             continue
 
-        fnl = len(sf['name'])
+        fnl = len(sf['label'])
         # dumptext += ("="*fnl)+"\n"+sf['name']+"\n("+sf['hint']+")\n"+("="*fnl)+"\n"
-        dumptext += ("="*fnl)+"\n"+sf['name']+"\n"+("="*fnl)+"\n"
-        dumptext += wb_fields[ fields[0]['key'] ]['value']+"\n\n"
+        dumptext += ("="*fnl)+"\n"+sf['label']+"\n"+("="*fnl)+"\n"
+        dumptext += wb_fields[ fields[0]['id'] ]['value']+"\n\n"
 
     return dumptext
 

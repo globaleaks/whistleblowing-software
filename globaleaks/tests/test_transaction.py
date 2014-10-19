@@ -6,7 +6,6 @@ from globaleaks.tests import helpers
 
 from globaleaks.settings import transact, transact_ro
 from globaleaks.models import *
-from globaleaks.utils.structures import Fields
 
 class TestTransaction(helpers.TestGLWithPopulatedDB):
 

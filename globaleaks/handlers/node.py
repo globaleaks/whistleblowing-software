@@ -10,7 +10,7 @@ import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.utils.utility import datetime_to_ISO8601
-from globaleaks.utils.structures import Rosetta, Fields
+from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.settings import transact_ro, GLSetting, stats_counter
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
@@ -27,7 +27,7 @@ def anon_serialize_ahmia(store, language=GLSetting.memory_copy.default_language)
     mo = Rosetta()
     mo.acquire_storm_object(node)
 
-    ahmia_description = {
+    ret_dict = {
         "title": node.name,
         "description": mo.dump_translated('description', language),
 
@@ -43,7 +43,7 @@ def anon_serialize_ahmia(store, language=GLSetting.memory_copy.default_language)
         "type": "GlobaLeaks"
     }
 
-    return ahmia_description
+    return ret_dict
 
 @transact_ro
 def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
@@ -59,7 +59,7 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
     except:
         pass
 
-    node_dict = {
+    ret_dict = {
       'name': node.name,
       'hidden_service': node.hidden_service,
       'public_site': node.public_site,
@@ -96,12 +96,7 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'disable_security_awareness_questions': node.disable_security_awareness_questions
     }
 
-    mo = Rosetta()
-    mo.acquire_storm_object(node)
-    for attr in mo.get_localized_attrs():
-        node_dict[attr] = mo.dump_translated(attr, language)
-
-    return node_dict
+    return get_localized_values(ret_dict, node, language)
 
 def anon_serialize_context(context, language=GLSetting.memory_copy.default_language):
     """
@@ -110,13 +105,14 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         (e.g. checks if almost one receiver is associated)
     """
 
-    mo = Rosetta()
-    mo.acquire_storm_object(context)
+    receivers = [r.id for r in context.receivers]
+    if not len(receivers):
+        return None
 
     steps = [ anon_serialize_step(s, language)
               for s in context.steps.order_by(models.Step.number) ]
 
-    context_dict = {
+    ret_dict = {
         "id": context.id,
         "escalation_threshold": 0,
         "file_max_download": context.file_max_download,
@@ -133,17 +129,11 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         "show_receivers": context.show_receivers,
         "enable_private_messages": context.enable_private_messages,
         "presentation_order": context.presentation_order,
-                     # list is needed because .values returns a generator
-        "receivers": list(context.receivers.values(models.Receiver.id)),
-        'name': mo.dump_translated('name', language),
-        "description": mo.dump_translated('description', language),
+        "receivers": receivers,
         "steps": steps
     }
 
-    if not len(context_dict['receivers']):
-        return None
-
-    return context_dict
+    return get_localized_values(ret_dict, context, language)
 
 def anon_serialize_field(field, language):
     """
@@ -153,7 +143,8 @@ def anon_serialize_field(field, language):
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
-    return {
+
+    ret_dict = {
         'id': field.id,
         'label': field.label,
         'description': field.description,
@@ -169,6 +160,8 @@ def anon_serialize_field(field, language):
         'children': [f.id for f in field.children],
     }
 
+    return get_localized_values(ret_dict, field, language)
+
 def anon_serialize_step(step, language):
     """
     Serialize a step, localizing its content depending on the language.
@@ -178,12 +171,15 @@ def anon_serialize_step(step, language):
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
-    return {
+
+    ret_dict = {
         'label': step.label,
         'description': step.description,
         'hint': step.hint,
         'children': [f.id for f in step.children.order_by(models.Field.y)],
     }
+
+    return get_localized_values(ret_dict, step, language)
 
 def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
     """
@@ -192,27 +188,24 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
         (e.g. checks if almost one context is associated, or, in
          node where GPG encryption is enforced, that a valid key is registered)
     """
-    mo = Rosetta()
-    mo.acquire_storm_object(receiver)
 
-    receiver_dict = {
+    contexts = [c.id for c in receiver.contexts]
+    if not len(contexts):
+        return None
+
+    ret_dict = {
         "creation_date": datetime_to_ISO8601(receiver.creation_date),
         "update_date": datetime_to_ISO8601(receiver.last_update),
         "name": receiver.name,
-        "description": mo.dump_translated('description', language),
         "id": receiver.id,
         "receiver_level": receiver.receiver_level,
         "tags": receiver.tags,
         "presentation_order": receiver.presentation_order,
         "gpg_key_status": receiver.gpg_key_status,
-                    # list is needed because .values returns a generator
-        "contexts": list(receiver.contexts.values(models.Context.id))
+        "contexts": contexts
     }
 
-    if not len(receiver_dict['contexts']):
-        return None
-
-    return receiver_dict
+    return get_localized_values(ret_dict, receiver, language)
 
 
 class InfoCollection(BaseHandler):

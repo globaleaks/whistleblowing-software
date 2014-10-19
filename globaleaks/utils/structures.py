@@ -114,4 +114,21 @@ class Rosetta:
             return "# Missing translation for '%s' in '%s'" % \
                    (attrname, language)
 
+def fill_localized_keys(dictionary, model, language):
+    mo = Rosetta()
+    mo.acquire_request(language, dictionary, model)
+
+    for attr in mo.get_localized_attrs():
+        dictionary[attr] = mo.get_localized_dict(attr)
+
+    return dictionary
+
+def get_localized_values(dictionary, obj, language):
+    mo = Rosetta()
+    mo.acquire_storm_object(obj)
+
+    for attr in mo.get_localized_attrs():
+        dictionary[attr] = mo.dump_translated(attr, language)
+
+    return dictionary
 

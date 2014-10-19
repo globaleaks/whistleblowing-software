@@ -20,7 +20,7 @@ from globaleaks.rest import errors
 
 
 def wb_serialize_tip(internaltip, language=GLSetting.memory_copy.default_language):
-    itip_dict = {
+    ret_dict = {
         'context_id': internaltip.context.id,
         'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
         'last_activity' : datetime_to_ISO8601(internaltip.creation_date),
@@ -34,14 +34,15 @@ def wb_serialize_tip(internaltip, language=GLSetting.memory_copy.default_languag
         'enable_private_messages' : internaltip.context.enable_private_messages 
     }
 
-    # context_name and context_description are localized field
+    # context_name and context_description are localized fields
     mo = Rosetta()
     mo.acquire_storm_object(internaltip.context)
     for attr in ['name', 'description' ]:
         key = "context_%s" % attr
-        itip_dict[key] = mo.dump_translated(attr, language)
+        ret_dict[key] = mo.dump_translated(attr, language)
 
-    return itip_dict
+    return ret_dict
+
 
 def wb_serialize_file(internalfile):
     wb_file_desc = {
@@ -247,6 +248,7 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
             mo = Rosetta()
             mo.acquire_storm_object(receiver)
             receiver_desc["description"] = mo.dump_translated("description", language)
+
             receiver_list.append(receiver_desc)
 
         return receiver_list

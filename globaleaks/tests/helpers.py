@@ -26,7 +26,6 @@ from globaleaks.models import ReceiverTip, ReceiverFile, WhistleblowerTip, Inter
 from globaleaks.plugins import notification
 from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.utils.utility import datetime_null, uuid4, log
-from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
 from globaleaks.security import GLSecureTemporaryFile
 
@@ -642,16 +641,16 @@ class MockDict():
 
         self.dummySteps = [{
             'label': u'Presegnalazione',
-            'description': u'',
-            'hint': u'',
+            'description': u'Step Description',
+            'hint': u'Step Hint',
             'children': [u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
                          u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
                          u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f']
             },
             {
               'label': u'Segnalazione',
-              'description': u'',
-              'hint': u'',
+              'description': u'Step Description',
+              'hint': u'Step Hint',
               'children': []
             }]
 
@@ -819,35 +818,8 @@ def fill_random_fields(store, context_desc):
 
     return ret_dict
 
-def default_context_fields():
-
-    source = opportunistic_appdata_init()
-    if not source.has_key('fields'):
-        raise Exception('Invalid Application Data initialization')
-
-    f = source['fields']
-    fo = Fields()
-    fo.noisy = True
-    fo.default_fields(f)
-    default_fields_unhappy = fo.dump_fields('en')
-
-    ret_fields = []
-    the_first_is_required = False
-
-    for field in default_fields_unhappy:
-
-        if not the_first_is_required:
-            field['required'] = True
-            the_first_is_required = True
-
-        ret_fields.append(field)
-
-    return ret_fields
-
-
 @transact
 def do_appdata_init(store):
-
     try:
         appdata = store.find(models.ApplicationData).one()
 
@@ -860,12 +832,6 @@ def do_appdata_init(store):
         appdata.version = source['version']
         appdata.fields = source['fields']
         store.add(appdata)
-
-    fo = Fields()
-    fo.default_fields(appdata.fields)
-    (unique_fields, localized_fields) = fo.extensive_dump()
-
-    return unique_fields, localized_fields
 
 @transact
 def create_dummy_field(store, **custom_attrs):
