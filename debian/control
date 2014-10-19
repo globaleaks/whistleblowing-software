@@ -7,6 +7,15 @@ Build-Depends:
  , python (>= 2.7)
  , python-setuptools
  , python-sphinx
+ , python-twisted
+ , python-cryptography
+ , python-twisted
+ , python-transaction
+ , python-gnupg
+ , python-zope.component
+ , python-cyclone
+ , python-storm
+ , python-scrypt
  , dh-python
  , dh-apparmor
 X-Python-Version: 2.7
@@ -22,15 +31,6 @@ Depends:
  , tor
  , iptables
  , build-essential
- , python-pip
- , python-cryptography
- , python-twisted
- , python-transaction
- , python-gnupg
- , python-zope.component
- , python-cyclone
- , python-storm
- , python-scrypt
  , apparmor
  , apparmor-utils
  , libffi-dev
