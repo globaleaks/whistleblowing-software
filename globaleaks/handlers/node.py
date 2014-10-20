@@ -146,9 +146,6 @@ def anon_serialize_field(field, language):
 
     ret_dict = {
         'id': field.id,
-        'label': field.label,
-        'description': field.description,
-        'hint': field.hint,
         'multi_entry': field.multi_entry,
         'required': field.required,
         'preview': False,
@@ -173,9 +170,7 @@ def anon_serialize_step(step, language):
     """
 
     ret_dict = {
-        'label': step.label,
-        'description': step.description,
-        'hint': step.hint,
+        'id': step.id,
         'children': [f.id for f in step.children.order_by(models.Field.y)],
     }
 
