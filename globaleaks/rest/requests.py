@@ -424,7 +424,7 @@ adminFieldDesc = {
              'tos|'
              'fileupload|'
              'fieldgroup)$'),
-    'options': dict, # we can't define a format here ? because the key need to be strict to field_type format ?
+    'options': list,
     'children': [ uuid_regexp ],
 }
 

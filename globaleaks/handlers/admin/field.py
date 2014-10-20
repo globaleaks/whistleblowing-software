@@ -10,6 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
+from globaleaks.handlers.node import anon_serialize_option
 from globaleaks.models import Field, Step
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro
@@ -20,14 +21,16 @@ def admin_serialize_field(field, language):
     """
     Serialize a field, localizing its content depending on the language.
 
-    :param: field: the field object to be serialized
-    :param: language: the language in which to localize data
+    :param field: the field object to be serialized
+    :param language: the language in which to localize data
     :return: a serialization of the object
     """
 
     # naif likes if we add reference links
     # this code is inspired by:
     #  - https://www.youtube.com/watch?v=KtNsUgKgj9g
+
+    options = [ anon_serialize_option(o, language) for o in field.options ]
 
     ret_dict = {
         'id': field.id,
@@ -38,11 +41,58 @@ def admin_serialize_field(field, language):
         'type': field.type,
         'x': field.x,
         'y': field.y,
-        'options': field.options or {},
+        'options': options,
         'children': [f.id for f in field.children],
     }
 
     return get_localized_values(ret_dict, field, language)
+
+def db_update_options(store, field_id, options, language):
+    """
+    Update options
+    """
+    print "a"
+    field = models.Field.get(store, field_id)
+    if field is None:
+        raise errors.FieldIdNotFound
+
+    print "b"
+    old_options = store.find(models.FieldOption, models.FieldOption.field_id == field_id)
+
+    print "c"
+    indexed_old_options = {}
+    for o in old_options:
+        indexed_old_options[o.id] = o
+
+    print "d"
+    n = 1
+    for option in options:
+        opt_dict = {}
+        opt_dict['field_id'] = field_id
+        opt_dict['number'] = n
+
+        # FIXME_OPTIONS
+        # fill_localized_keys(step, Step, language)
+
+        # check for reuse (needed to keep translations)
+        if 'id' in option and option['id'] in indexed_old_options:
+           o = indexed_old_options[option['id']]
+           o.update(opt_dict)
+
+           # remove key from old steps to be removed
+           del indexed_old_options[option['id']]
+        else:
+           o = models.FieldOption.new(store, opt_dict)
+        print o.number
+
+        o.attrs = option
+
+        n += 1
+
+    print "e"
+    # remove all the not reused old options
+    for o in indexed_old_options:
+        store.remove(o)
 
 @transact
 def create_field(store, request, language):
@@ -96,6 +146,8 @@ def update_field(store, field_id, request, language):
             if not child or child.id in ancestors:
                 raise errors.InvalidInputFormat(errmsg)
             field.children.add(child)
+
+        db_update_options(store, field.id, request['options'], language)
 
     except DatabaseError as dberror:
         log.err('Unable to update field {f}: {e}'.format(

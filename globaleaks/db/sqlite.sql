@@ -312,8 +312,17 @@ CREATE TABLE field (
                                           'fileupload',
                                           'fieldgroup'
                                           )),
-    options TEXT DEFAULT '{}',
     PRIMARY KEY (id)
+);
+
+CREATE TABLE fieldoption (
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    field_id VARCHAR NOT NULL,
+    attrs TEXT NOT NULL DEFAULT '{}',
+    number INTEGER NOT NULL CHECK(number > 0),
+    PRIMARY KEY (id),
+    FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE
 );
 
 CREATE TABLE step (

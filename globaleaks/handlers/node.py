@@ -135,6 +135,23 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
 
     return get_localized_values(ret_dict, context, language)
 
+def anon_serialize_option(option, language):
+    """
+    Serialize a field option, localizing its content depending on the language.
+
+    :param option: the field option object to be serialized
+    :param language: the language in which to localize data
+    :return: a serialization of the object
+    """
+
+    # FIXME_OPTIONS_L10N
+    ret_dict = {
+        'id': option.id,
+        'attrs': option.attrs
+    }
+
+    return ret_dict
+
 def anon_serialize_field(field, language):
     """
     Serialize a field, localizing its content depending on the language.
@@ -143,6 +160,8 @@ def anon_serialize_field(field, language):
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
+
+    options = [ anon_serialize_options(o, language) for o in field.options ]
 
     ret_dict = {
         'id': field.id,
@@ -153,7 +172,7 @@ def anon_serialize_field(field, language):
         'type': field.type,
         'x': field.x,
         'y': field.y,
-        'options': field.options or {},
+        'options': options,
         'children': [f.id for f in field.children],
     }
 
@@ -162,7 +181,6 @@ def anon_serialize_field(field, language):
 def anon_serialize_step(step, language):
     """
     Serialize a step, localizing its content depending on the language.
-    XXX. provide i10n feature.
 
     :param step: the step object to be serialized.
     :param language: the language in which to localize data
