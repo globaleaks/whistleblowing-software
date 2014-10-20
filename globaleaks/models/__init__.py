@@ -678,6 +678,8 @@ class Field(Model):
 
 
 class Step(Model):
+    __storm_table__ = 'step'
+
     context_id = Unicode()
     label = JSON()
     description = JSON()
@@ -691,29 +693,6 @@ class Step(Model):
     int_keys = ['number']
     localized_strings = ['label', 'description', 'hint']
 
-    @staticmethod
-    def new(store, attrs=None):
-        """
-        Add a new step at the given position.
-
-        :param number: the number to add. If None, the step is added at the
-                       bottom, and the number is automatically calculated.
-
-        :return: the shiny new step.
-        :raises ValueError: if number is invalid,
-                               context_id is not found,
-                               field_id not found.
-        """
-        previous_steps = store.find(Step, Step.context_id == attrs['context_id'])
-        attrs['number'] = previous_steps.count() + 1
-
-        step = Step(attrs)
-        store.add(step)
-        return step
-
-    @classmethod
-    def delete(self, store):
-        store.remove(self)
 
 class ApplicationData(Model):
     """

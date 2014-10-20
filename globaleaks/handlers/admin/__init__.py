@@ -90,8 +90,10 @@ def db_create_step(store, context_id, steps, language):
     if context is None:
         raise errors.ContextIdNotFound
 
+    n = 1
     for step in steps:
         step['context_id'] = context_id
+        step['number'] = n
 
         fill_localized_keys(step, Step, language)
 
@@ -103,6 +105,8 @@ def db_create_step(store, context_id, steps, language):
                 raise errors.FieldIdNotFound
             s.children.add(field)
 
+        n += 1
+
 def db_update_steps(store, context_id, steps, language):
     """
     Update steps removing old field associated and recreating new.
@@ -112,14 +116,31 @@ def db_update_steps(store, context_id, steps, language):
         raise errors.ContextIdNotFound
 
     old_steps = store.find(models.Step, models.Step.context_id == context_id)
-    old_steps.remove()
 
+    indexed_old_steps = {}
+    for o in old_steps:
+        indexed_old_steps[o.id] = o
+
+    n = 1
     for step in steps:
         step['context_id'] = context_id
+        step['number'] = n
 
         fill_localized_keys(step, Step, language)
 
-        s = models.Step.new(store, step)
+        # check for reuse (needed to keep translations)
+        if 'id' in step and step['id'] in indexed_old_steps:
+           s = indexed_old_steps[step['id']]
+           for field in s.children:
+               s.children.remove(field)
+
+           s.update(step)
+
+           # remove key from old steps to be removed
+           del indexed_old_steps[step['id']]
+        else:
+           s = models.Step.new(store, step)
+
         i = 1
         for field_id in step['children']:
             field = models.Field.get(store, field_id)
@@ -129,6 +150,13 @@ def db_update_steps(store, context_id, steps, language):
                 log.err("Creation error: unexistent field can't be associated")
                 raise errors.FieldIdNotFound
             s.children.add(field)
+
+        n += 1
+
+    # remove all the not reused old steps
+    for o in indexed_old_steps:
+        store.remove(o)
+
 
 def admin_serialize_context(context, language=GLSetting.memory_copy.default_language):
 
@@ -491,13 +519,13 @@ def update_context(store, context_id, request, language=GLSetting.memory_copy.de
     if not context:
          raise errors.ContextIdNotFound
 
+    receivers = request.get('receivers', [])
+    steps = request.get('steps', [])
+
     fill_localized_keys(request, Context, language)
 
     for receiver in context.receivers:
         context.receivers.remove(receiver)
-
-    receivers = request.get('receivers', [])
-    steps = request.get('steps', [])
 
     for receiver_id in receivers:
         receiver = store.find(Receiver, Receiver.id == receiver_id).one()
@@ -668,7 +696,7 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    fill_localized_keys(request, receiver, language)
+    fill_localized_keys(request, Receiver, language)
 
     mail_address = request['mail_address']
 

@@ -41,7 +41,6 @@ class Rosetta:
             "missing localized fields"
 
         self._localized_attrs = getattr(storm_object, 'localized_strings')
-        self._localized_strings = {}
 
         for attr in self._localized_attrs:
             single_dict = getattr(storm_object, attr)
@@ -52,7 +51,7 @@ class Rosetta:
 
             self._localized_strings[attr] = single_dict
 
-    def acquire_request(self, language, request, storm_class=None):
+    def acquire_request(self, language, request, storm_class="None"):
         assert storm_class or self._localized_attrs, \
             "Invalid usage of acquire_request: specify the class or acquire_storm_object"
 
@@ -93,7 +92,6 @@ class Rosetta:
         else:
             log.debug("Empty localized dict for attr %s" % attrname)
             return {}
-
 
     def dump_translated(self, attrname, language):
         assert self._localized_strings, \
