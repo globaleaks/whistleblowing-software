@@ -646,7 +646,6 @@ class Field(Model):
     # * dialog
     # * tos
     # * fieldgroup
-    options = JSON()
 
     # When only 1 option
     # {
@@ -676,6 +675,15 @@ class Field(Model):
             child.delete(store)
         store.remove(self)
 
+class FieldOption(Model):
+    _storm_table__ = 'option'
+
+    field_id = Unicode()
+    number = Int()
+    attrs = JSON()
+
+    unicode_keys = ['field_id']
+    int_keys = ['number']
 
 class Step(Model):
     __storm_table__ = 'step'
@@ -684,9 +692,6 @@ class Step(Model):
     label = JSON()
     description = JSON()
     hint = JSON()
-    # XXX.
-    # there are better structures that we could use rather than a linear ordering.
-    # (like a tree-like, so that update is O(lg n) < O(n)).
     number = Int()
 
     unicode_keys = ['context_id']
@@ -761,6 +766,12 @@ class StepField(BaseModel):
     field_id = Unicode()
 
     unicode_keys = ['step_id', 'field_id']
+
+
+Field.options = ReferenceSet(Field.id,
+                             FieldOption.field_id)
+
+FieldOption.field = Reference(FieldOption.field_id, Field.id)
 
 
 Context.steps = ReferenceSet(Context.id,
