@@ -1,4 +1,3 @@
-
 <fieldset>
   <div data-ng-repeat="field in current_context.steps[selection - 1].children">
     <div data-ng-form="" name="subForm" class="submissionField">
@@ -13,34 +12,21 @@
           <div class="submissionFieldInput">
             <div class="row">
               <div data-ng-switch="" on="indexed_fields[field].type" class="col-md-4">
-                <input class="form-control" data-ng-switch-when="text" data-ng-model="submission.current_submission.wb_fields[field].value" data-ng-required="indexed_fields[field].required" name="input" value="{{submission.current_submission.wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder}}" type="text">
+                <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="submission.current_submission.wb_fields[field].value" data-ng-required="indexed_fields[field].required" name="input" value="{{submission.current_submission.wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder}}" type="text">
 
                 <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="submission.current_submission.wb_fields[field].value" data-ng-required="indexed_fields[field].required" placeholder="{{indexed_fields[field].placeholder}}">{{submission.current_submission.wb_fields[field].value}}</textarea>
 
-                <select class="form-control" data-ng-switch-when="select" name="input" data-ng-model="submission.current_submission.wb_fields[field].value" data-ng-required="indexed_fields[field].required">
-                  <option data-ng-repeat="option in indexed_fields[field].options" value="{{option.value}}">{{option.name}}</option>
+                <select class="form-control" data-ng-switch-when="selectbox" name="input" data-ng-model="submission.current_submission.wb_fields[field].value" data-ng-required="indexed_fields[field].required">
+                  <option data-ng-repeat="option in indexed_fields[field].options" value="{{option.id}}">{{option.attrs.name}}</option>
                 </select>
 
-                <select class="form-control" data-ng-switch-when="multiple" name="input" data-ng-model="submission.current_submission.wb_fields[field].value" multiple="">
-                  <option data-ng-repeat="option in indexed_fields[field].options" value="{{option.value}}">{{option.name}}</option>
-                </select>
-
-                <fieldset data-ng-switch-when="radio">
+                <div data-ng-switch-when="checkbox">
                   <div data-ng-repeat="option in indexed_fields[field].options">
-                    <input data-ng-model="submission.current_submission.wb_fields[field].value" data-ng-required="indexed_fields[field].required" value="{{option.value}}" type="radio">
-                    <label>{{option.name}}</label>
+                    <input name="{{option.attrs.name}}"
+                        data-ng-model="submission.current_submission.wb_fields[field].value[option.id]"
+                        type="checkbox">
+                    <label>{{option.attrs.name}}</label>
                   </div>
-                </fieldset>
-
-                <div data-ng-switch-when="checkboxes">
-                  <div data-ng-repeat="option in indexed_fields[field].options">
-                    <input name="input" data-ng-model="submission.current_submission.wb_fields[field].value[option.name]" data-ng-value="{{option.value}}" type="checkbox">
-                    <label>{{option.name}}</label>
-                  </div>
-                </div>
-
-                <div data-ng-switch-when="modal">
-                  <div class="preformatted">TO_BE_DONE_WITH_OPTIONS_DEFINITION</div>
                 </div>
 
                 <div data-ng-switch-when="dialog">
@@ -57,10 +43,9 @@
                 </div>
               
                 <div data-ng-switch-when="fieldgroup">
-                  <div data-ng-include="'views/submission/fieldgroup.html'"></div>
+                  <div data-ng-include="'views/submission/form.html'"></div>
                 </div>
 
-                <input class="form-control" data-ng-switch-default="" data-ng-model="submission.current_submission.wb_fields[field].value" data-ng-required="indexed_fields[field].required" name="input" value="{{submission.current_submission.wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder}}" type="text">
               </div>
             </div>
 

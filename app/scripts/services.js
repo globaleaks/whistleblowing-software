@@ -314,18 +314,19 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               });
             });
             self.current_context_fields = ccf;
-          });
 
-          Receivers.query(function(receivers){
-            self.receivers = [];
-            forEach(receivers, function(receiver){
-              receiver.disabled = false;
-              if (!self.allow_unencrypted && receiver.gpg_key_status !== 'Enabled')
-                receiver.disabled = true; 
-              self.receivers.push(receiver);
+            Receivers.query(function(receivers){
+              self.receivers = [];
+              forEach(receivers, function(receiver){
+                receiver.disabled = false;
+                if (!self.allow_unencrypted && receiver.gpg_key_status !== 'Enabled')
+                  receiver.disabled = true;
+                self.receivers.push(receiver);
+              });
+              setCurrentContextReceivers();
+
+              fn(self); // Callback!
             });
-            setCurrentContextReceivers();
-            fn(self);
           });
         });
       });
@@ -819,7 +820,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         field.hint = '';
         field.multi_entry = false;
         field.type = 'checkbox';
-        field.options = {};
+        field.options = [];
         field.required = false;
         field.preview = false;
         field.stats_enabled = false;

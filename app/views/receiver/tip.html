@@ -54,32 +54,30 @@ This comment is needed in order to push the following strings on transifex
         <dl data-ng-repeat="field in fields">
           <dt>
             <span>
-              {{$index + 1}}) {{fieldFormat[field.key].name}}
+              {{$index + 1}}) {{indexed_fields[field.key].label}}
             </span>
-            <a data-ng-show="fieldFormat[field.key].hint" popover="{{fieldFormat[field.key].hint}}" popover-placement="right" popover-trigger="mouseenter">
-              <span class="glyphicon glyphicon-info-sign"></span>
+            <a data-ng-show="indexed_fields[field.key].hint" popover="{{indexed_fields[field.key].hint}}" popover-placement="right" popover-trigger="mouseenter">
+              <span class="glyphicon glyphicon-info-sign"}}></span>
             </a>
           </dt>
-        
-          <div data-ng-switch="" on="fieldFormat[field.key].type">
-      
-            <dd data-ng-switch-when="checkboxes">
+
+          <div data-ng-switch="" on="indexed_fields[field.key].type">
+
+            <dd data-ng-switch-when="inputbox" class="preformatted">{{field.value}}</dd>
+
+            <dd data-ng-switch-when="textarea" class="preformatted">{{field.value}}</dd>
+
+            <dd data-ng-switch-when="selectbox" class="preformatted">{{ get_option_name(indexed_fields[field.key], field.value) }}></dd>
+
+            <dd data-ng-switch-when="checkbox">
               <ul>
-                <li data-ng-repeat="checkbox in fieldFormat[field.key].options">
-                  {{checkbox.name}} 
-                  <span data-ng-hide="field.value[checkbox.name]"><i class="glyphicon glyphicon-unchecked"></i></span>
-                  <span data-ng-show="field.value[checkbox.name]"><i class="glyphicon glyphicon-check"></i></span>
+                <li data-ng-repeat="checkbox in indexed_fields[field.key].options">
+                  {{checkbox.attrs.name}}
+                  <span data-ng-hide="field.value[checkbox.id]"><i class="glyphicon glyphicon-unchecked"></i></span>
+                  <span data-ng-show="field.value[checkbox.id]"><i class="glyphicon glyphicon-check"></i></span>
                 </li>
               </ul>
             </dd>
-
-            <dd data-ng-switch-when="multiple">
-              <ul>
-                <li data-ng-repeat="selection in field.value">{{selection}}</li>
-              </ul>
-
-            </dd>
-            <dd data-ng-switch-default="" class="preformatted">{{field.value}}</dd>
 
           </div>
         </dl>
