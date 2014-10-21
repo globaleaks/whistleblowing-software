@@ -76,7 +76,7 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         'disable_security_awareness_questions': node.disable_security_awareness_questions
     }
 
-    return get_localized_values(ret_dict, node, language)
+    return get_localized_values(ret_dict, node, node.localized_strings, language)
 
 @transact_ro
 def admin_serialize_node(store, language=GLSetting.memory_copy.default_language):
@@ -95,7 +95,7 @@ def db_create_step(store, context_id, steps, language):
         step['context_id'] = context_id
         step['number'] = n
 
-        fill_localized_keys(step, Step, language)
+        fill_localized_keys(step, Step.localized_strings, language)
 
         s = models.Step.new(store, step)
         for field_id in step['children']:
@@ -126,7 +126,7 @@ def db_update_steps(store, context_id, steps, language):
         step['context_id'] = context_id
         step['number'] = n
 
-        fill_localized_keys(step, Step, language)
+        fill_localized_keys(step, Step.localized_strings, language)
 
         # check for reuse (needed to keep translations)
         if 'id' in step and step['id'] in indexed_old_steps:
@@ -190,7 +190,7 @@ def admin_serialize_context(context, language=GLSetting.memory_copy.default_lang
         "steps": steps
     }
 
-    return get_localized_values(ret_dict, context, language) 
+    return get_localized_values(ret_dict, context, context.localized_strings, language) 
 
 def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
 
@@ -221,7 +221,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "presentation_order": receiver.presentation_order,
     }
 
-    return get_localized_values(ret_dict, receiver, language)
+    return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
 
 def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_copy.default_language):
     """
@@ -239,7 +239,7 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
     """
     node = store.find(Node).one()
 
-    fill_localized_keys(request, Node, language)
+    fill_localized_keys(request, Node.localized_strings, language)
 
     password = request.get('password', None)
     old_password = request.get('old_password', None)
@@ -400,7 +400,7 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
     receivers = request.get('receivers', [])
     steps = request.get('steps', [])
 
-    fill_localized_keys(request, Context, language)
+    fill_localized_keys(request, Context.localized_strings, language)
 
     context = Context(request)
 
@@ -522,7 +522,7 @@ def update_context(store, context_id, request, language=GLSetting.memory_copy.de
     receivers = request.get('receivers', [])
     steps = request.get('steps', [])
 
-    fill_localized_keys(request, Context, language)
+    fill_localized_keys(request, Context.localized_strings, language)
 
     for receiver in context.receivers:
         context.receivers.remove(receiver)
@@ -609,7 +609,7 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
         (dict) the configured receiver
     """
 
-    fill_localized_keys(request, Receiver, language)
+    fill_localized_keys(request, Receiver.localized_strings, language)
 
     mail_address = request['mail_address']
 
@@ -696,7 +696,7 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    fill_localized_keys(request, Receiver, language)
+    fill_localized_keys(request, Receiver.localized_strings, language)
 
     mail_address = request['mail_address']
 

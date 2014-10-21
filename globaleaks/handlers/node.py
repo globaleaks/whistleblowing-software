@@ -29,7 +29,7 @@ def anon_serialize_ahmia(store, language=GLSetting.memory_copy.default_language)
 
     ret_dict = {
         "title": node.name,
-        "description": mo.dump_translated('description', language),
+        "description": mo.dump_localized_attr('description', language),
 
         # TODO support tags/keyword in Node.
         "keywords": "%s (GlobaLeaks instance)" % node.name,
@@ -96,7 +96,7 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'disable_security_awareness_questions': node.disable_security_awareness_questions
     }
 
-    return get_localized_values(ret_dict, node, language)
+    return get_localized_values(ret_dict, node, node.localized_strings, language)
 
 def anon_serialize_context(context, language=GLSetting.memory_copy.default_language):
     """
@@ -133,7 +133,7 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         "steps": steps
     }
 
-    return get_localized_values(ret_dict, context, language)
+    return get_localized_values(ret_dict, context, context.localized_strings, language)
 
 def anon_serialize_option(option, language):
     """
@@ -145,6 +145,7 @@ def anon_serialize_option(option, language):
     """
 
     # FIXME_OPTIONS_L10N
+
     ret_dict = {
         'id': option.id,
         'attrs': option.attrs
@@ -161,7 +162,7 @@ def anon_serialize_field(field, language):
     :return: a serialization of the object
     """
 
-    options = [ anon_serialize_options(o, language) for o in field.options ]
+    options = [ anon_serialize_option(o, language) for o in field.options ]
 
     ret_dict = {
         'id': field.id,
@@ -176,7 +177,7 @@ def anon_serialize_field(field, language):
         'children': [f.id for f in field.children],
     }
 
-    return get_localized_values(ret_dict, field, language)
+    return get_localized_values(ret_dict, field, field.localized_strings, language)
 
 def anon_serialize_step(step, language):
     """
@@ -192,7 +193,7 @@ def anon_serialize_step(step, language):
         'children': [f.id for f in step.children.order_by(models.Field.y)],
     }
 
-    return get_localized_values(ret_dict, step, language)
+    return get_localized_values(ret_dict, step, step.localized_strings, language)
 
 def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
     """
@@ -218,7 +219,7 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
         "contexts": contexts
     }
 
-    return get_localized_values(ret_dict, receiver, language)
+    return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
 
 
 class InfoCollection(BaseHandler):

@@ -49,7 +49,7 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
     for context in receiver.contexts:
         ret_dict['contexts'].append(context.id)
 
-    return get_localized_values(ret_dict, receiver, language)
+    return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
 
 @transact_ro
 def get_receiver_settings(store, receiver_id, language=GLSetting.memory_copy.default_language):
@@ -193,9 +193,9 @@ def get_receiver_tip_list(store, receiver_id, language=GLSetting.memory_copy.def
             'can_delete_submission': can_delete_submission,
         })
 
-        mo = Rosetta()
+        mo = Rosetta(rtip.internaltip.context.localized_strings)
         mo.acquire_storm_object(rtip.internaltip.context)
-        single_tip_sum["context_name"] = mo.dump_translated('name', language)
+        single_tip_sum["context_name"] = mo.dump_localized_attr('name', language)
 
         preview_data = []
 

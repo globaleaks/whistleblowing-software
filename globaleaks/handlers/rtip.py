@@ -48,11 +48,11 @@ def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.
     }
 
     # context_name and context_description are localized fields
-    mo = Rosetta()
+    mo = Rosetta(internaltip.context.localized_strings)
     mo.acquire_storm_object(internaltip.context)
     for attr in ['name', 'description' ]:
         key = "context_%s" % attr
-        ret_dict[key] = mo.dump_translated(attr, language)
+        ret_dict[key] = mo.dump_localized_attr(attr, language)
 
     return ret_dict
 
@@ -438,9 +438,9 @@ def get_receiver_list_receiver(store, user_id, tip_id, language=GLSetting.memory
             "access_counter": rtip.access_counter,
         }
 
-        mo = Rosetta()
+        mo = Rosetta(rtip.receiver.localized_strings)
         mo.acquire_storm_object(rtip.receiver)
-        receiver_desc["description"] = mo.dump_translated("description", language)
+        receiver_desc["description"] = mo.dump_localized_attr("description", language)
 
         receiver_list.append(receiver_desc)
 
