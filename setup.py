@@ -7,7 +7,9 @@ import shutil
 import hashlib
 import urllib2
 from zipfile import ZipFile
+
 from setuptools import setup
+from setuptools.command.test import test as _TestCommand
 
 ######################################################################
 # Temporary fix to https://github.com/globaleaks/GlobaLeaks/issues/572
@@ -48,6 +50,15 @@ def list_files(path):
 
     return result
 
+class TestCommand(_TestCommand):
+    def run_tests(self):
+        from twisted.trial import runner, reporter
+
+        testsuite_runner= runner.TrialRunner(reporter.TreeReporter)
+        loader = runner.TestLoader()
+        suite = loader.loadByNames([self.test_suite])
+        testsuite_runner.run(suite)
+
 data_files = [
     ('/usr/share/globaleaks/glclient',
      list_files(os.path.join(glclient_path))),
@@ -69,7 +80,9 @@ setup(
     author=globaleaks.__author__,
     author_email=globaleaks.__email__,
     url='https://globaleaks.org/',
+    cmdclass={'test': TestCommand},
     package_dir={'globaleaks': 'globaleaks'},
+    test_suite='globaleaks.tests',
     package_data={'globaleaks': [
         'db/sqlite.sql',
         'db/default_ECNT.txt',
