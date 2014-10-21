@@ -117,7 +117,7 @@
 
     <div class="form-group" ng-show="admin.node.x_frame_options_mode == 'allow-from'">
       <label data-translate>URL of website to contain the IFRAME</label>
-      <input class="form-control" name="x_frame_options_allow_from" data-ng-model="admin.node.x_frame_options_allow_from" value="{{node.x_frame_options_allow_from}}" data-ng-pattern="/^(http(s?)://(\w+)\.(.*)$|^)$/" type="text">
+      <input class="form-control" name="x_frame_options_allow_from" data-ng-model="admin.node.x_frame_options_allow_from" value="{{node.x_frame_options_allow_from}}" data-ng-pattern="http_or_https_regexp" type="text">
       <p class="has-error" data-ng-show="advancedForm.x_frame_options_allow_from.$error.pattern">
         <span data-translate>Invalid format for the URL of the website to contain the IFRAME (should be https://url)</span>
       </p>
