@@ -807,7 +807,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
 }]).
   constant('CONSTANTS', {
-     "email_regexp": /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i
+     /* email regexp is an edited version of angular.js input.js in order to avoid domains with not tld */ 
+     "email_regexp": /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+     "https_regexp": /^(https://(\w+)\.(.*)$|^)$/,
+     "http_or_https_regexp": /^(http(s?)://(\w+)\.(.*)$|^)$/
 }).
   config(['$httpProvider', function($httpProvider) {
     $httpProvider.responseInterceptors.push('globaleaksInterceptor');

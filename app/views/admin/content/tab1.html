@@ -80,9 +80,9 @@
 
     <div class="form-group">
       <label data-translate>Tor2web Public Site (url)</label>
-      <input class="form-control" name="public_site" data-ng-model="admin.node.public_site" data-ng-pattern="/^https://[0-9a-z.:]*$/" type="url">
+      <input class="form-control" name="public_site" data-ng-model="admin.node.public_site" data-ng-pattern="https_regexp" type="url">
       <p class="has-error" data-ng-show="contentForm.public_site.$error.pattern">
-        <span data-translate>Invalid format for public site (should be https://thirteenchars123.tor2web.org)</span>
+        <span data-translate>Invalid format for public site (should be an https url like https://thirteenchars123.tor2web.org)</span>
       </p>
     </div>
 
