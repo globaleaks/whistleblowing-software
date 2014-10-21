@@ -52,10 +52,10 @@ GLClient.controller('FormBuilderCtrl',
     $scope.newField.options.push({ order: 0 });
   };
 
-  $scope.typeSwitch = function(type) {
-    if (_.indexOf(['checkboxes','select','radio'], type) === -1)
-      return type;
-    return 'multiple';
+  $scope.typeSwitch = function (type) {
+    if (_.indexOf(['checkbox', 'selectbox'], type) !== -1)
+      return 'checkbox_or_selectbox';
+    return type;
   };
 
 }]);

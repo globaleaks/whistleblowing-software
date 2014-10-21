@@ -37,6 +37,7 @@ This comment is needed in order to push the following strings on transifex
                       <option value="modal" data-translate>Modal Window</option>
                       <option value="dialog" data-translate>Dialog Window</option>
                       <option value="tos" data-translate>Terms of Service</option>
+                      <option value="fileupload" data-translate>File Upload</option>
                       <option value="fieldgroup" data-translate>Field Group</option>
                     </select>
                   </div>
@@ -154,6 +155,29 @@ This comment is needed in order to push the following strings on transifex
                         <div class="form-group">
                           <label data-translate>Vertical order (Y)</label>
                           <input class="form-control" data-ng-maxlength="40" data-ng-model="field.y" value="{{field.y}}" type="number" min="0" max="99">
+                        </div>
+                        <div class="form-group">
+                          <div data-ng-switch="" on="typeSwitch(field.type)" class="row">
+                            <div class="col-md-offset-1 col-md-10">
+                              <div data-ng-switch-default=""></div>
+                              <div data-ng-switch-when="checkbox_or_selectbox">
+                                <label data-translate>Options</label>
+                                <div data-ng-repeat="option in field.options">
+                                  <form class="form-inline">
+                                    <div class="form-group">
+                                      <label data-translate>Name</label>
+                                      <input class="form-control" data-ng-model="option.attrs.name"  value="{{option.attrs.name}}" type="text">
+                                    </div>
+                                  </form>
+                                </div>
+                                <div>
+                                <button class="btn btn-info" data-ng-click="addOption(field)">
+                                  <i class="glyphicon glyphicon-plus-sign"></i> 
+                                  <span data-translate>Add option</span>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
 

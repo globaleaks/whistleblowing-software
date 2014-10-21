@@ -1,12 +1,22 @@
 GLClient.controller('StatusCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', 'Authentication', 'Tip', 'WBTip', 'Contexts', 'ReceiverPreferences',
-  function($scope, $rootScope, $location, $route, $routeParams, $http, Authentication, Tip, WBTip, Contexts, ReceiverPreferences) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', 'Authentication', 'Tip', 'WBTip', 'Contexts', 'Fields', 'ReceiverPreferences',
+  function($scope, $rootScope, $location, $route, $routeParams, $http, Authentication, Tip, WBTip, Contexts, Fields, ReceiverPreferences) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.session = Authentication.id;
     $scope.xsrf_token = $.cookie('XSRF-TOKEN');
     $scope.target_file = '#';
 
     $scope.auth_landing_page = Authentication.auth_landing_page;
+
+    $scope.get_option_name = function(field, opt_id) {
+        var ret = '';
+        field.options.forEach(function(o){
+            if (o.id == opt_id) {
+                ret = o.attrs.name;
+            }
+        });
+        return ret;
+    }
 
     if (Authentication.role === 'wb') {
       var url = '/wbtip/upload';
@@ -33,31 +43,31 @@ GLClient.controller('StatusCtrl',
       new WBTip(function(tip){
 
         Contexts.query(function(contexts){
-          $scope.tip = tip;
 
-          $scope.contexts = contexts;
+          Fields.query(function (fields) {
+            $scope.indexed_fields = _.reduce(fields, function (o, item) {
+              o[item.id] = item; return o
+            }, {});
 
-          $scope.fieldFormat = {};
-          $scope.fields = [];
+            $scope.tip = tip;
+            $scope.contexts = contexts;
 
-          angular.forEach(contexts, function(context, k){
-            if (context.id == $scope.tip.context_id) {
-              $scope.current_context = context;
-            }
-          });
+            angular.forEach(contexts, function(context, k){
+              if (context.id == $scope.tip.context_id) {
+                $scope.current_context = context;
+              }
+            });
 
-          angular.forEach($scope.current_context.fields,
-                          function(field){
-            $scope.fieldFormat[field.key] = field;
-          });
+            $scope.fields = [];
+            angular.forEach(tip.fields,
+                            function(field, k){
+              $scope.fields.push({
+                                  'key': k,
+                                  'value': field.value,
+                                  'answer_order': field.answer_order
+                                });
+            });
 
-          angular.forEach(tip.fields,
-                          function(field, k){
-            $scope.fields.push({
-                                'key': k,
-                                'value': field.value,
-                                'answer_order': field.answer_order
-                              });
           });
 
 
@@ -85,57 +95,55 @@ GLClient.controller('StatusCtrl',
 
         Contexts.query(function(contexts){
           $scope.tip = tip;
-
           $scope.contexts = contexts;
 
-          $scope.fieldFormat = {};
-          $scope.fields = [];
+          Fields.query(function (fields) {
+            $scope.indexed_fields = _.reduce(fields, function (o, item) {
+              o[item.id] = item; return o
+            }, {});
 
-          angular.forEach(contexts, function(context, k){
-            if (context.id == $scope.tip.context_id) {
-              $scope.current_context = context;
-            }
-          });
-          angular.forEach($scope.current_context.fields,
-                          function(field){
-            $scope.fieldFormat[field.key] = field; 
-          });
-
-          angular.forEach(tip.fields,
-                          function(field, k){
-            $scope.fields.push({
-                                'key': k,
-                                'value': field.value,
-                                'answer_order': field.answer_order
-                              });
-          });
-
-          $scope.increaseDownloadCount = function(file) {
-            if (file.downloads < $scope.tip.download_limit) {
-              file.downloads = parseInt(file.downloads) + 1;
-            }
-          };
-
-          $scope.increaseDownloadCounts = function () {
-            for (file in $scope.tip.files) {
-              if ($scope.tip.files[file].downloads < $scope.tip.download_limit) {
-                $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
+            angular.forEach(contexts, function(context, k){
+              if (context.id == $scope.tip.context_id) {
+                $scope.current_context = context;
               }
-            }
-          };
+            });
+
+            $scope.fields = [];
+            angular.forEach(tip.fields,
+                            function(field, k){
+              $scope.fields.push({
+                                  'key': k,
+                                  'value': field.value,
+                                  'answer_order': field.answer_order
+                                });
+            });
+
+            $scope.increaseDownloadCount = function(file) {
+              if (file.downloads < $scope.tip.download_limit) {
+                file.downloads = parseInt(file.downloads) + 1;
+              }
+            };
+
+            $scope.increaseDownloadCounts = function () {
+              for (file in $scope.tip.files) {
+                if ($scope.tip.files[file].downloads < $scope.tip.download_limit) {
+                  $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
+                }
+              }
+            };
           
-          $scope.download_all_enabled = function() {
-            download_all = false;
+            $scope.download_all_enabled = function() {
+              download_all = false;
       
-            for (file in $scope.tip.files) { 
-              if ($scope.tip.files[file].downloads < $scope.tip.download_limit) { 
-                download_all = true;
+              for (file in $scope.tip.files) { 
+                if ($scope.tip.files[file].downloads < $scope.tip.download_limit) { 
+                  download_all = true;
+                } 
               } 
-            } 
 
-            return download_all;
-          }
-
+              return download_all;
+            }
+          });
         });
       });
     } else {
