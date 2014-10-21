@@ -4,6 +4,8 @@ GLClient.controller('AdminCtrl',
 function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
 
   $scope.email_regexp = CONSTANTS.email_regexp;
+  $scope.https_regexp = CONSTANTS.https_regexp;
+  $scope.http_or_https_regexp = CONSTANTS.http_or_https_regexp;
 
   // XXX this should actually be defined per controller
   // otherwise every time you open a new page the button appears enabled
