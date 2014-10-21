@@ -45,26 +45,22 @@ def admin_serialize_field(field, language):
         'children': [f.id for f in field.children],
     }
 
-    return get_localized_values(ret_dict, field, language)
+    return get_localized_values(ret_dict, field, field.localized_strings, language)
 
 def db_update_options(store, field_id, options, language):
     """
     Update options
     """
-    print "a"
     field = models.Field.get(store, field_id)
     if field is None:
         raise errors.FieldIdNotFound
 
-    print "b"
     old_options = store.find(models.FieldOption, models.FieldOption.field_id == field_id)
 
-    print "c"
     indexed_old_options = {}
     for o in old_options:
         indexed_old_options[o.id] = o
 
-    print "d"
     n = 1
     for option in options:
         opt_dict = {}
@@ -83,13 +79,11 @@ def db_update_options(store, field_id, options, language):
            del indexed_old_options[option['id']]
         else:
            o = models.FieldOption.new(store, opt_dict)
-        print o.number
 
-        o.attrs = option
+        o.attrs = option['attrs']
 
         n += 1
 
-    print "e"
     # remove all the not reused old options
     for o in indexed_old_options:
         store.remove(o)
@@ -103,7 +97,9 @@ def create_field(store, request, language):
     :param: language: the language of the field definition dict
     :return: a serialization of the object
     """
-    fill_localized_keys(request, Field, language)
+    print request
+    fill_localized_keys(request, Field.localized_strings, language)
+    print request
 
     field = Field.new(store, request)
     return admin_serialize_field(field, language)
@@ -127,7 +123,7 @@ def update_field(store, field_id, request, language):
         if not field:
             raise errors.InvalidInputFormat(errmsg)
 
-        fill_localized_keys(request, Field, language)
+        fill_localized_keys(request, Field.localized_strings, language)
 
         field.update(request)
 

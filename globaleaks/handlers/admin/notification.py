@@ -30,7 +30,7 @@ def admin_serialize_notification(notif, language=GLSetting.memory_copy.default_l
         'disable': GLSetting.notification_temporary_disable,
     }
 
-    return get_localized_values(ret_dict, notif, language)
+    return get_localized_values(ret_dict, notif, notif.localized_strings, language)
 
 @transact_ro
 def get_notification(store, language=GLSetting.memory_copy.default_language):
@@ -51,7 +51,7 @@ def update_notification(store, request, language=GLSetting.memory_copy.default_l
         log.err("Database error or application error: %s" % excep )
         raise excep
 
-    fill_localized_keys(request, Notification, language)
+    fill_localized_keys(request, Notification.localized_strings, language)
 
     if request['security'] in Notification._security_types:
         notif.security = request['security']
