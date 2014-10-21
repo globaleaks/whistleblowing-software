@@ -186,7 +186,7 @@ def apply_cli_options(store):
         composed_t2w_url = 'https://%s.tor2web.org' % GLSetting.unchecked_tor_input['hostname_tor_content']
 
         if not (re.match(requests.hidden_service_regexp, composed_hs_url) or \
-                re.match(requests.web_url_regexp, composed_t2w_url)):
+                re.match(requests.https_url_regexp, composed_t2w_url)):
             print "[!!] Invalid content found in the 'hostname' file specified (%s): Ignored" % \
                   GLSetting.unchecked_tor_input['hostname_tor_content']
         else:
@@ -203,7 +203,7 @@ def apply_cli_options(store):
             verb = "Overwritting"
 
     if GLSetting.cmdline_options.public_website:
-        if not re.match(requests.web_url_regexp, GLSetting.cmdline_options.public_website):
+        if not re.match(requests.https_url_regexp, GLSetting.cmdline_options.public_website):
             print "[!!] Invalid public site: %s: Ignored" % GLSetting.cmdline_options.public_website
         else:
             print "[+] %s public site in the DB: %s" % (verb, GLSetting.cmdline_options.public_website)

@@ -13,8 +13,8 @@ email_regexp                      = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|
 email_regexp_or_empty             = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
 hidden_service_regexp             = r'^http://[0-9a-z]{16}\.onion$'
 hidden_service_regexp_or_empty    = r'^http://[0-9a-z]{16}\.onion$$|^$'
-web_url_regexp                    = r'^http(s?)://(\w+)\.(.*)$'
-web_url_regexp_or_empty           = r'^http(s?)://(\w+)\.(.*)$|^$'
+https_url_regexp                  = r'^https://(\w+)\.(.*)$'
+https_url_regexp_or_empty         = r'^https://(\w+)\.(.*)$|^$'
 x_frame_options_mode_regexp       = r'^(deny)|(allow-from)$'
 x_frame_options_allow_from_regexp = r'^(http(s?)://(\w+)\.(.*)$|^)?$'
 
@@ -96,7 +96,7 @@ adminNodeDesc = {
     'security_awareness_title': unicode,
     'security_awareness_text': unicode,
     'hidden_service' : hidden_service_regexp_or_empty,
-    'public_site' : web_url_regexp_or_empty,
+    'public_site' : https_url_regexp_or_empty,
     'stats_update_time' : int,
     'email' : email_regexp_or_empty, # FIXME old versions of globaleaks have an empty value
     'password' : unicode,            # and in addition the email is not set before wizard.
@@ -218,7 +218,7 @@ anonNodeDesc = {
     'security_awareness_title': unicode,
     'security_awareness_text': unicode,
     'hidden_service' : hidden_service_regexp_or_empty,
-    'public_site' : web_url_regexp_or_empty,
+    'public_site' : https_url_regexp_or_empty,
     'email' : email_regexp,
     'languages_enabled': [ unicode ],
     'languages_supported': list,
