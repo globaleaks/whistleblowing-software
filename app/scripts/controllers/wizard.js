@@ -1,6 +1,6 @@
-GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$http', '$modal', 'Admin',
+GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route', '$http', '$modal', 'Admin',
                     'DefaultAppdata', 'passwordWatcher', 'changePasswordWatcher', 'CONSTANTS',
-                    function($scope, $rootScope, $location, $http, $modal,
+                    function($scope, $rootScope, $location, $route, $http, $modal,
                                                       Admin, DefaultAppdata,
                                                       passwordWatcher,
                                                       changePasswordWatcher,
@@ -47,7 +47,9 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$http',
           };
 
           $http.post('/admin/wizard', $scope.wizard).success(function(response) {
-            $location.path("/admin/landing")
+            /* needed in order to reload node variables */
+            $rootScope.$broadcast("REFRESH");
+            $location.path("/admin/landing");
           });
         });
       }
