@@ -1,7 +1,7 @@
 GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route', '$http', '$modal', 'Admin',
-                    'DefaultAppdata', 'passwordWatcher', 'changePasswordWatcher', 'CONSTANTS',
+                    'Node', 'DefaultAppdata', 'passwordWatcher', 'changePasswordWatcher', 'CONSTANTS',
                     function($scope, $rootScope, $location, $route, $http, $modal,
-                                                      Admin, DefaultAppdata,
+                                                      Admin, Node, DefaultAppdata,
                                                       passwordWatcher,
                                                       changePasswordWatcher,
                                                       CONSTANTS) {
@@ -9,16 +9,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     finished = false;
-
-    $scope.login('admin', 'globaleaks', 'admin', function(response){
-      $scope.admin = new Admin();
-      $scope.receiver = new $scope.admin.new_receiver();
-      $scope.receiver.password = GLCrypto.randomString(20);
-      $scope.context = $scope.admin.new_context();
-      passwordWatcher($scope, 'admin.node.password');
-      changePasswordWatcher($scope, "admin.node.old_password",
-        "admin.node.password", "admin.node.check_password");
-    });
 
     $scope.open_modal_allow_unencrypted = function() {
       if ($scope.admin.node.allow_unencrypted)
@@ -58,6 +48,24 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
     $scope.$watch("language", function (newVal, oldVal) {
       if (newVal && newVal !== oldVal) {
         $rootScope.language = $scope.language;
+      }
+    });
+
+    Node.get(function (node) {
+      $scope.node = node;
+      if ($scope.node.wizard_done) {
+        /* if the wizard has been already performed redirect to the homepage */
+        $location.path('/');
+      } else {
+        $scope.login('admin', 'globaleaks', 'admin', function(response){
+          $scope.admin = new Admin();
+          $scope.receiver = new $scope.admin.new_receiver();
+          $scope.receiver.password = GLCrypto.randomString(20);
+          $scope.context = $scope.admin.new_context();
+          passwordWatcher($scope, 'admin.node.password');
+          changePasswordWatcher($scope, "admin.node.old_password",
+            "admin.node.password", "admin.node.check_password");
+        });
       }
     });
 
