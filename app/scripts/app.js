@@ -165,22 +165,16 @@ var GLClient = angular.module('GLClient', [
 
     $http.defaults.transformRequest.push(globaleaksRequestInterceptor);
 
-    var reload = function () {
-      $route.reload();
-    };
-
     function overrideReload(e) {
        if (((e.which || e.keyCode) == 116) || /* F5 */
            ((e.which || e.keyCode) == 82 && (e.ctrlKey || e.metaKey))) {  /* (ctrl or meta) + r */ 
            e.preventDefault();
            $rootScope.$broadcast("REFRESH");
-           reload();
+           $route.reload();
        }
     };
 
     $(document).bind("keydown", overrideReload);
-
-    $rootScope.reload = reload;
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         if (current.$$route) {
