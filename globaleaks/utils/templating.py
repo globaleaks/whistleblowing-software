@@ -95,7 +95,8 @@ class _KeyWord(object):
         '%HiddenService%',
         '%PublicSite%',
         '%ReceiverName%',
-        '%ContextName%'
+        '%ContextName%',
+        '%NodeSignature%'
     ]
 
     def __init__(self, node_desc, context_desc, receiver_desc):
@@ -105,12 +106,6 @@ class _KeyWord(object):
         self.node = node_desc
         self.context = context_desc
         self.receiver = receiver_desc
-
-        # basic assumption that can eventually be removed...
-        assert self.node.has_key('name')
-        assert self.context.has_key('name')
-        assert self.receiver.has_key('name')
-
 
     def NodeName(self):
         return self.node['name']
@@ -126,6 +121,12 @@ class _KeyWord(object):
 
     def ContextName(self):
         return self.context['name']
+
+    def NodeSignature(self):
+        # FIXME currently the NodeSignature is mapped on node name;
+        # in future we could evaluate to introduce a different
+        # variable to permit better customizations.
+        return self.node['name']
 
 class TipKeyword(_KeyWord):
 
