@@ -6,10 +6,6 @@ export PYBUILD_NAME=globaleaks
 %:
 	dh $@ --with python2 --buildsystem=pybuild
 
-override_dh_auto_test:
-	PYBUILD_SYSTEM=custom \
-	PYBUILD_TEST_ARGS="trial {dir}/globaleaks" dh_auto_test
-
 override_dh_install:
 #   install man page
 	python setup.py build_sphinx -b man
