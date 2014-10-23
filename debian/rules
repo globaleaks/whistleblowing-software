@@ -9,8 +9,6 @@ export PYBUILD_NAME=globaleaks
 override_dh_install:
 #   install man page
 	python setup.py build_sphinx -b man
-	mkdir -p debian/globaleaks/usr/share/man
-	cp doc/_build/man/globaleaks.1 debian/globaleaks/usr/share/man/
 #   install apparmor profile
 	mkdir -p debian/globaleaks/etc/apparmor.d/local
 	cp debian/globaleaks.apparmor-profile debian/globaleaks/etc/apparmor.d/usr.bin.globaleaks
