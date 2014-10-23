@@ -1,3 +1,9 @@
+globaleaks (2.60.27) unstable; urgency=low
+
+  * GlobaLeaks 2.60.27 Release (Minor UI fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 23 Sep 2014 11:43:00 +0002
+
 globaleaks (2.60.26) unstable; urgency=low
 
   * GlobaLeaks 2.60.26 Release (Minor UI fixes)
