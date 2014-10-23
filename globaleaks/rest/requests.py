@@ -13,8 +13,8 @@ email_regexp                      = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|
 email_regexp_or_empty             = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
 hidden_service_regexp             = r'^http://[0-9a-z]{16}\.onion$'
 hidden_service_regexp_or_empty    = r'^http://[0-9a-z]{16}\.onion$$|^$'
-https_url_regexp                  = r'^https://(\w+)\.(.*)$'
-https_url_regexp_or_empty         = r'^https://(\w+)\.(.*)$|^$'
+https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
+https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 x_frame_options_mode_regexp       = r'^(deny)|(allow-from)$'
 x_frame_options_allow_from_regexp = r'^(http(s?)://(\w+)\.(.*)$|^)?$'
 
