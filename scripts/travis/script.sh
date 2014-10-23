@@ -3,7 +3,7 @@ set -e
 
 DO_SUDO() { sudo -i bash -x -c "$@" ; };
 
-DO_SUDO 'cd GLClient/ && node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*'
+#DO_SUDO 'cd GLClient/ && node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*'
 
 cd GLBackend
 coverage run setup.py test

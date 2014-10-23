@@ -9,7 +9,7 @@ sudo apt-get install python-pip
     sudo pip install coverage coveralls
 )
 
-(cd GLClient && \
-    sudo -i npm install --silent -g grunt-cli bower && \
-    sudo npm install
-)
+# (cd GLClient && \
+#     sudo -i npm install --silent -g grunt-cli bower && \
+#     sudo npm install
+# )
