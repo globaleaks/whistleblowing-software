@@ -13,7 +13,6 @@ GLBACKEND_GIT_REPO="https://github.com/globaleaks/GLBackend.git"
 GLCLIENT_GIT_REPO="https://github.com/globaleaks/GLClient.git"
 
 REPO_DIR='/data/deb'
-WEB_DIR='/data/website/builds'
 
 if test ${GLOBALEAKS_BUILD_ENV}; then
   BUILD_DIR=${GLOBALEAKS_BUILD_ENV}

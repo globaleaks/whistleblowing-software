@@ -12,9 +12,6 @@ cd ${GLB_BUILD}/deb_dist
 echo "[+] Adding deb package to the local repository"
 dput local globaleaks*changes
 
-echo "[+] Adding glclient build to the local repository"
-cp ${GLC_BUILD}/glclient-* /data/website/builds/GLClient/
-
 # XXX why are we doing this? This seems quite hackish and it seems to be due to
 # a bug inside of debuild. Are we sure we are using debuild properly?
 # Previously builds did not require this hack to be present.
