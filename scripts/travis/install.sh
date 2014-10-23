@@ -1,8 +1,15 @@
 #!/bin/sh
 sudo apt-get install tor tor-geoipdb
 sudo apt-get install nodejs npm
-sudo apt-get install equivs devscripts
+sudo apt-get install python-pip
 
-sudo mk-build-deps -i -r GLBackend/debian/control
 
-sudo -i npm install -g grunt-cli bower
+(cd GLBackend && \
+    sudo pip install -r requirements.txt && \
+    sudo pip install coverage coveralls
+)
+
+(cd GLClient && \
+    sudo -i npm install --silent -g grunt-cli bower && \
+    sudo npm install
+)
