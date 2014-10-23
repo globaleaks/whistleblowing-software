@@ -15,23 +15,15 @@ class TestEmail(helpers.TestGL):
 
     @inlineCallbacks
     def test_anomalies(self):
-
         yield helpers.TestGL.setUp(self)
-
-        print "First round 10"
+        # First round 10
         self.increment_accesses(10)
         statistics_sched.AnomaliesSchedule().operation()
-
-        print "Second round 30"
+        # Second round 30
         self.increment_accesses(30)
         statistics_sched.AnomaliesSchedule().operation()
-
-        print "Third round 30"
+        # Third round 30
         self.increment_accesses(30)
         statistics_sched.AnomaliesSchedule().operation()
-
-        print "Stats!"
+        # Stats!
         yield statistics_sched.StatisticsSchedule().operation()
-
-
-
