@@ -129,30 +129,26 @@
   direction: ltr;
 }
 
-#HomePageBoxHeader, #BlowTheWhistleBox, #WhistleblowerLoginBox {
-  margin-top: 30px;
-  margin-bottom: 30px;
+#HomePageBoxHeader, #BlowTheWhistleBox, #WhistleblowerLoginBox, #GlobaLeaksInfoBox {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #HomePageBoxNodePresentation {
-  font-size: 60px;
+  font-size: 40px;
 }
 
 #HomePageBoxNodeDescription {
-  font-size: 36px;
-}
-
-#WhistleblowerSubmitBox, #WhistleblowerLoginBox {
-  margin-bottom: 20px;
+  font-size: 32px;
 }
 
 #WhistleblowerSubmitBoxHeader {
-  font-size: 60px;
-  margin-bottom: 20px;
+  font-size: 40px;
 }
 
-#WhistleblowerSubmitBoxButton .btn {
-  font-size: 36px;
+#WhistleblowerSubmitBoxButton  .btn, #WhistleblowerSubmitBoxButtonDisabled .btn {
+  font-size: 32px;
+  margin: 20px;
 }
 
 #GlobaleaksInfoBox {

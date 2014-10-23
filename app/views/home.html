@@ -77,16 +77,16 @@ This comment is needed in order to push the following strings on transifex
 
     <div id="WhistleblowerLoginBox" class="ng-cloak row">
       <div data-ng-show="node.configured">
-        <div class="row" data-ng-show="!node.tor2web_submission && !anonymous">
-          <p class="has-error">
-            <span data-translate>You are connecting to the node without anonymity and this node supports only anonymous submissions</span>
-          </p>
-        </div>
-        <div class="row" data-ng-show="!node.tor2web_submission && !anonymous">
+        <div id="WhistleblowerSubmitBoxButtonDisabled" class="row" data-ng-show="!node.tor2web_submission && !anonymous">
           <button class="btn btn-danger" disabled="disabled">
             <i class="glyphicon glyphicon-ban-circle"></i>
             <span data-translate>Whistleblowing disabled</span>
           </button>
+        </div>
+        <div class="row" data-ng-show="!node.tor2web_submission && !anonymous">
+          <p class="has-error">
+            <span data-translate>You are connecting to the node without anonymity and this node supports only anonymous submissions</span>
+          </p>
         </div>
         <div class="row" data-ng-show="node.tor2web_submission || anonymous">
           <div id="WhistleblowerSubmitBox">
