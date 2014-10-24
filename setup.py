@@ -7,7 +7,7 @@ import shutil
 import hashlib
 import urllib2
 from zipfile import ZipFile
-from distutils.core import setup
+from setuptools import setup
 
 ######################################################################
 # Temporary fix to https://github.com/globaleaks/GlobaLeaks/issues/572
@@ -16,7 +16,7 @@ from distutils import version
 version.StrictVersion = version.LooseVersion
 ######################################################################
 
-from globaleaks import __version__
+import globaleaks
 
 glclient_path = 'glclient'
 
@@ -64,32 +64,42 @@ data_files = [
 ]
 
 setup(
-    name="globaleaks",
-    version = __version__,
-    author="Random GlobaLeaks developers",
-    author_email = "info@globaleaks.org",
-    url="https://globaleaks.org/",
+    name='globaleaks',
+    version=globaleaks.__version__,
+    author=globaleaks.__author__,
+    author_email=globaleaks.__email__,
+    url='https://globaleaks.org/',
     package_dir={'globaleaks': 'globaleaks'},
-    package_data = {'globaleaks': [
-                                   'db/sqlite.sql',
-                                   'db/default_ECNT.txt',
-                                   'db/default_EFNT.txt',
-                                   'db/default_EMNT.txt',
-                                   'db/default_ETNT.txt',
-                                   'db/default_PCNT.txt',
-                                   'db/default_PFNT.txt',
-                                   'db/default_PMNT.txt',
-                                   'db/default_PTNT.txt',
-                                   'db/default_ZCT.txt',
-                                   'db/default_MNT.txt'
-                                 ]},
-    packages=['globaleaks', 'globaleaks.db', 'globaleaks.handlers',
-        'globaleaks.jobs', 'globaleaks.plugins', 'globaleaks.rest',
-        'globaleaks.utils', 'globaleaks.third_party', 'globaleaks.third_party.rstr'],
+    package_data={'globaleaks': [
+        'db/sqlite.sql',
+        'db/default_ECNT.txt',
+        'db/default_EFNT.txt',
+        'db/default_EMNT.txt',
+        'db/default_ETNT.txt',
+        'db/default_PCNT.txt',
+        'db/default_PFNT.txt',
+        'db/default_PMNT.txt',
+        'db/default_PTNT.txt',
+        'db/default_ZCT.txt',
+        'db/default_MNT.txt',
+    ]},
+    packages=[
+        'globaleaks',
+        'globaleaks.db',
+        'globaleaks.handlers',
+        'globaleaks.jobs',
+        'globaleaks.plugins',
+        'globaleaks.rest',
+        'globaleaks.third_party',
+        'globaleaks.third_party.rstr',
+        'globaleaks.utils',
+    ],
     data_files=data_files,
-    scripts=["bin/globaleaks",
-             "scripts/glclient-build",
-             "bin/globaleaksadmin",
-             "bin/gl-fix-permissions"],
-    requires = get_requires(),
+    scripts=[
+        'bin/globaleaks',
+        'bin/globaleaksadmin',
+        'scripts/glclient-build',
+        'bin/gl-fix-permissions',
+    ],
+    requires=get_requires(),
 )
