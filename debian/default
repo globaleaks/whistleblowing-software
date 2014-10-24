@@ -9,7 +9,7 @@ LOGLEVEL=CRITICAL
 #   Examples:
 #     -1: disabled
 #      N: logs the first N requests/responses
-#      0: unlimited 
+#      0: unlimited
 HTTPLOG=-1
 
 # STORMDEBUG = [0/1]
@@ -20,12 +20,12 @@ HTTPLOG=-1
 #      1: enabled
 STORMDEBUG=0
 
-# USER = [user_name]
-#   permits to configure the USER privileges of the globaleaks process
+# USERNAME = [user_name]
+#   permits to configure the user privileges of the globaleaks process
 USER=globaleaks
 
 # GROUP = [group_name]
-#   permits to configure the GROUP privileges of the globaleaks process
+#   permits to configure the group privileges of the globaleaks process
 GROUP=globaleaks
 
 # HOSTS_LIST = [ip_address, hostname, other_hostname]
