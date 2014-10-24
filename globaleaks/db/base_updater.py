@@ -22,42 +22,34 @@ def variableToSQL(var_type, db_type):
     if isinstance(var_type, BoolVariable):
         sqlite_type = {
             "sqlite": "INTEGER",
-            "mysql": "TINYINT(1)",
         }
     elif isinstance(var_type, DateTimeVariable):
         sqlite_type = {
             "sqlite": "VARCHAR",
-            "mysql": "DATETIME",
         }
     elif isinstance(var_type, EnumVariable):
         sqlite_type = {
             "sqlite": "BLOB",
-            "mysql": "BLOB",
         }
     elif isinstance(var_type, IntVariable):
         sqlite_type = {
             "sqlite": "INTEGER",
-            "mysql": "INT"
         }
     elif isinstance(var_type, RawStrVariable):
         sqlite_type = {
             "sqlite": "BLOB",
-            "mysql": "BLOB",
         }
     elif isinstance(var_type, UnicodeVariable):
         sqlite_type = {
             "sqlite": "VARCHAR",
-            "mysql": "VARCHAR",
         }
     elif isinstance(var_type, JSONVariable):
         sqlite_type = {
             "sqlite": "BLOB",
-            "mysql": "BLOB"
         }
     elif isinstance(var_type, PickleVariable):
         sqlite_type = {
             "sqlite": "BLOB",
-            "mysql": "BLOB"
         }
     else:
         raise AssertionError("Invalid var_type: %s" % var_type)
