@@ -24,11 +24,36 @@ NAME=$(basename $(readlink -nf $0))
 
 SCRIPTNAME=$0
 
-if test -e /etc/default/globaleaks ; then
-    . /etc/default/globaleaks
-else
-    echo "Error: missing globaleaks default file"
-    exit 0
+if test -e "/etc/default/globaleaks" ; then
+   . "/etc/default/globaleaks"
+fi
+
+if [ -d "/etc/default/globaleaks.d" ]; then
+   for i in "/etc/default/globaleaks.d/"*; do
+       if [ -f "$i" ]; then
+           ## If the last character is a ~, ignore that file, because it was created
+           ## by some editor, which creates backup files.
+           if [ "${i: -1}" = "~" ]; then
+               true "skip $i"
+               continue
+           fi
+           ## Skipping files such as .dpkg-old and .dpkg-dist.
+           if ( echo "$i" | grep -q ".dpkg-" ); then
+               true "skip $i"
+               continue
+           fi
+           bash_n_exit_code="0"
+           bash_n_output="$(bash -n "$i" 2>&1)" || { bash_n_exit_code="$?" ; true; };
+           if [ ! "$bash_n_exit_code" = "0" ]; then
+               echo "Invalid config file: $i
+bash_n_exit_code: $bash_n_exit_code
+bash_n_output:
+$bash_n_output" >&2
+               exit 1
+           fi
+           . "$i"
+       fi
+   done
 fi
 
 . /lib/init/vars.sh
@@ -109,7 +134,7 @@ network_sandboxing_start()
 
     check_iptables
 
-    iptables -L | grep ${USER} >/dev/null 2>&1
+    iptables -L | grep ${USERNAME} >/dev/null 2>&1
     if [ "$?" -eq "0" ]; then
         log_action_end_msg 0 "already enabled."
         return
@@ -134,12 +159,12 @@ network_sandboxing_start()
             iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -d ${IP_SRC} -s ${IP_DST} -j ACCEPT
         done
     done
-    iptables -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USER} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
-    iptables -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
-    iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
-    iptables -t filter -A OUTPUT -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j ACCEPT
-    iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
-    iptables -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USER} -j DROP
+    iptables -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
+    iptables -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
+    iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
+    iptables -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j ACCEPT
+    iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
+    iptables -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
 
     log_action_end_msg 0
 }
@@ -150,7 +175,7 @@ network_sandboxing_stop()
 
     check_iptables
 
-    iptables -L | grep ${USER} >/dev/null 2>&1
+    iptables -L | grep ${USERNAME} >/dev/null 2>&1
     if [ "$?" -ne "0" ]; then
         log_action_end_msg 0 "already disabled."
         return
@@ -174,12 +199,12 @@ network_sandboxing_stop()
             iptables -D OUTPUT -m state --state RELATED,ESTABLISHED -d ${IP_SRC} -s ${IP_DST} -j ACCEPT
         done
     done
-    iptables -t nat -D OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USER} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
-    iptables -t nat -D OUTPUT ! -o lo -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
-    iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
-    iptables -t filter -D OUTPUT -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j ACCEPT
-    iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
-    iptables -t filter -D OUTPUT ! -o lo -m owner --uid-owner ${USER} -j DROP
+    iptables -t nat -D OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
+    iptables -t nat -D OUTPUT ! -o lo -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
+    iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
+    iptables -t filter -D OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j ACCEPT
+    iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
+    iptables -t filter -D OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
 
     log_action_end_msg 0
 }
@@ -204,14 +229,14 @@ do_start()
     GLBACKEND_ARGS="--ip=${IPS}
                     --port=${LISTENING_PORT}
                     --accept-host=${HOSTS}
-                    --user=${USER} --group=${GROUP}
+                    --user=${USERNAME} --group=${GROUP}
                     --working-path=${WORKING_DIR}
                     --ramdisk=${RAM_DISK}
                     --tor-dir=${TOR_DIR}
                     --loglevel=${LOGLEVEL}
                     --http-log=${HTTPLOG}"
 
-    
+
     if [ "${STORMDEBUG}" -eq "1" ]; then
         GLBACKEND_ARGS+=" --storm-debug"
     fi
@@ -220,8 +245,8 @@ do_start()
 
     read_pid
 
-    if ! id -u ${USER} >/dev/null 2>&1; then
-       log_end_msg 1 "unexistent user (${USER})"
+    if ! id -u ${USERNAME} >/dev/null 2>&1; then
+       log_end_msg 1 "unexistent user (${USERNAME})"
        exit 1
     fi
 
