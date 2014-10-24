@@ -95,11 +95,6 @@ class GLSettingsClass:
         # store name
         self.store_name = 'main_store'
 
-        # Database variables for MYSQL 
-        self.db_username = 'admin'
-        self.db_password = 'globaleaks'
-        self.db_hostname = 'localhost'
-        # Can either be sqlite or mysql
         self.db_type = 'sqlite'
         # Database version tracking
         self.db_version = DATABASE_VERSION
@@ -310,25 +305,10 @@ class GLSettingsClass:
         # gnupg path is used by GPG as temporary directory with keyring and files encryption.
         self.gpgroot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
 
-        # This part of code runs only when MySQL is configured.
-        if os.path.exists(self.config_file_path):
-            config = ConfigParser()
-            config.read(self.config_file_path)
-            self.db_type = config.get('db', 'type')
-            self.db_username = config.get('db', 'username')
-            self.db_pasword = config.get('db', 'password')
-            self.db_hostname = config.get('db', 'hostname')
-            self.db_name = config.get('db', 'name')
-            print "\033[1;33mExperimental DB Configuration detected!\033[0m", \
-                self.db_hostname, self.db_username, self.db_type
-
-        # this is the default, happen when file above is not found
         if self.db_type == 'sqlite':
             self.db_uri = 'sqlite:' + \
                                  os.path.abspath(os.path.join(self.gldb_path,
                                      'glbackend-%d.db?foreign_keys=ON' % DATABASE_VERSION))
-        elif self.db_type == 'mysql':
-            self.db_uri = "mysql://%s:%s@%s/%s" % (self.db_username, self.db_password, self.db_hostname, self.db_name)
 
         # If we see that there is a custom build of GLClient, use that one.
         custom_glclient_path = '/var/globaleaks/custom-glclient'
@@ -356,7 +336,7 @@ class GLSettingsClass:
         def start_pdb(signal, trace):
             import pdb
             pdb.set_trace()
-            
+
         signal.signal(signal.SIGQUIT, start_pdb)
 
     def validate_tor_dir_struct(self, tor_dir):
