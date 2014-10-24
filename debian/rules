@@ -1,9 +1,7 @@
 #!/usr/bin/make -f
 
-export PYBUILD_NAME=globaleaks
-
 %:
-	dh $@ --with python2 --buildsystem=pybuild
+	dh $@ --with python2 --buildsystem=python_distutils
 
 override_dh_install:
 	mkdir debian/globaleaks/etc
@@ -15,3 +13,4 @@ override_dh_install:
 
 override_dh_installinit:
 	dh_installinit --update-rcd-params="defaults 99"
+
