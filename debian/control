@@ -2,30 +2,13 @@ Source: globaleaks
 Maintainer: Random GlobaLeaks developers <info@globaleaks.org>
 Section: web
 Priority: optional
-Build-Depends:
- debhelper (>= 7.4.3)
- , python (>= 2.7)
- , python-setuptools
- , dh-apparmor
+Build-Depends: python (>= 2.7), debhelper (>= 7.4.3)
 X-Python-Version: 2.7
-Vcs-Git: git://github.com/globaleaks/GlobaLeaks.git
 Standards-Version: 3.9.1
 
 Package: globaleaks
 Architecture: all
 X-Python-Version: 2.7
-Depends:
- ${python:Depends}
- , ${misc:Depends}
- , tor
- , iptables
- , build-essential
- , python-dev
- , python-pip
- , apparmor
- , apparmor-utils
- , libffi-dev
-Description: An opensource whistleblowing platform.
- GlobaLeaks is an open source project aimed to create a worldwide, anonymous,
- censorship-resistant, distributed whistleblowing platform.
+Depends: ${misc:Depends}, python (>= 2.7), tor, iptables, build-essential, python-dev, python-pip, apparmor, apparmor-utils, libffi-dev
+Description: GlobaLeaks is an open source project aimed to create a worldwide, anonymous, censorship-resistant, distributed whistleblowing platform.
 Provides: ${python:Provides}
