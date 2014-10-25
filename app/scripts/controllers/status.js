@@ -18,6 +18,14 @@ GLClient.controller('StatusCtrl',
         return ret;
     }
 
+    $scope.filterFields = function(field) {
+        if($scope.indexed_fields[field.key].type != 'fileupload') {
+            return true;
+        } else {
+          return false;
+        }
+    };
+
     if (Authentication.role === 'wb') {
 
       $scope.fileupload_url = '/wbtip/upload';

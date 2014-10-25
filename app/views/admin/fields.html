@@ -160,7 +160,27 @@ This comment is needed in order to push the following strings on transifex
                         <div class="form-group" data-ng-show="field.options.length">
                           <label data-translate>Options</label>
                           <div data-ng-switch="" on="typeSwitch(field.type)" class="row">
-                            <div class="col-md-offset-1 col-md-10">
+                            <div class="col-md-offset-1 col-md-11">
+                              <div data-ng-switch-when="tos">
+                                <div class="row">
+                                  <div class="form-inline">
+                                    <div class="form-group">
+                                      <label data-translate>Clause</label>
+                                      <div>
+                                        <textarea class="form-control" data-ng-model="field.options[0].attrs.clause">{{field.options[0].attrs.clause}}</textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-inline">
+                                    <div class="form-group">
+                                      <label data-translate>Agreement Text</label>
+                                      <div>
+                                        <textarea class="form-control" data-ng-model="field.options[0].attrs.agreement_statement">{{field.options[0].attrs.agreement_statement}}</textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                               <div data-ng-switch-when="fileupload">
                                 <div class="row">
                                   <div class="form-inline">
