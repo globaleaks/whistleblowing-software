@@ -27,14 +27,10 @@ This comment is needed in order to push the following strings on transifex
     <div id="SubmissionStep1Title" class="lead">
       <span data-translate>Choose the context and receivers that will be sure to transform your submission into action!</span>
     </div>
-
-            <span class="lead" data-ng-show="node.configured">
-              <span data-translate>I want to report on</span>
-            </span>
-
-    <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'">
-    </select>
-
+    <span class="lead" data-ng-show="node.configured">
+      <span data-translate>I want to report on</span>
+    </span>
+    <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'"></select>
   </div>
   <div id="ContextIntroductionBox">
     {{submission.current_context.description}}
@@ -158,7 +154,7 @@ This comment is needed in order to push the following strings on transifex
       </div>
 
       <!-- Configured Context Steps -->
-      <div data-ng-repeat="step in submission.current_context.steps"
+      <div data-ng-repeat="step in submission.current_context.steps">
         <div data-ng-if="selection == $index + 1" id="SubmissionStep">
 
         <div class="preformatted">

@@ -177,9 +177,6 @@ This comment is needed in order to push the following strings on transifex
                   <span data-translate>Filename</span>
                 </th>
                 <th>
-                  <span data-translate>Description</span>
-                </th>
-                <th>
                   <span data-translate>Download</span>
                 </th>
                 <th>
@@ -197,9 +194,6 @@ This comment is needed in order to push the following strings on transifex
               <tr data-ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
                 <td>
                   {{file.name}}
-                </td>
-                <td>
-                  {{getFileDescription(file.id)}}
                 </td>
                 <td data-ng-show="file.status != 'unavailable'">
                   <form id="fileDownload" method="POST" action="{{file.href}}">

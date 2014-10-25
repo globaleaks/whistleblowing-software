@@ -48,10 +48,6 @@
 
                 <div data-ng-switch-when="fileupload">
                   <div data-ng-include="'views/partials/fileupload_single.html'" class="col-md-12"></div>
-                  <div data-ng-if="indexed_fields[field].options[0].attrs.require_description">
-                    <div data-translate>File description</div>
-                    <textarea class="form-control" data-ng-model="submission.current_submission.wb_fields[field].value.file_description" data-ng-required="indexed_fields[field].options[0].attrs.require_description" placeholder="{{indexed_fields[field].placeholder}}">{{submission.current_submission.wb_fields[field].value.file_description}}</textarea>
-                  </div>
                 </div>
               
                 <div data-ng-switch-when="fieldgroup">
