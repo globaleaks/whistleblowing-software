@@ -12,7 +12,7 @@
           <div class="submissionFieldInput">
             <div class="row">
               <div data-ng-switch="" on="indexed_fields[field].type" class="col-md-4">
-                <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="submission.current_submission.wb_fields[field].value" data-ng-required="indexed_fields[field].required" name="input" value="{{submission.current_submission.wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder}}" type="text">
+                <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="submission.current_submission.wb_fields[field].value" data-ng-required="indexed_fields[field].required" name="input" value="{{submission.current_submission.wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder}}" type="text" />
 
                 <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="submission.current_submission.wb_fields[field].value" data-ng-required="indexed_fields[field].required" placeholder="{{indexed_fields[field].placeholder}}">{{submission.current_submission.wb_fields[field].value}}</textarea>
 
@@ -24,18 +24,26 @@
                   <div data-ng-repeat="option in indexed_fields[field].options">
                     <input name="{{option.attrs.name}}"
                         data-ng-model="submission.current_submission.wb_fields[field].value[option.id]"
-                        type="checkbox">
+                        placeholder="{{indexed_fields[field].placeholder || 'false'}}" 
+                        type="checkbox" />
                     <label>{{option.attrs.name}}</label>
                   </div>
                 </div>
 
                 <div data-ng-switch-when="dialog">
-                  <div class="preformatted">TO_BE_DONE_WITH_OPTIONS_DEFINITION</div>
+                  <div class="preformatted">DIALOG FIELD TYPE INTERFACE STILL NEED TO BE IMPLEMENTED</div>
+                </div>
+
+                <div data-ng-switch-when="modal">
+                  <div class="preformatted">MODAL FIELD TYPE INTERFACE STILL NEED TO BE IMPLEMENTED</div>
                 </div>
 
                 <div data-ng-switch-when="tos">
-                  <div class="preformatted">TO_BE_DONE_WITH_OPTIONS_DEFINITION</div>
-                  <input class="form-control" data-ng-switch-when="checkbox" data-ng-model="submission.current_submission.wb_fields[field].value" value="{{submission.current_submission.wb_fields[field].value}}" id="field" name="input" placeholder="{{indexed_fields[field].placeholder}}" type="checkbox">
+                  <textarea class="form-control" data-ng-readonly="true">{{indexed_fields[field].options[0].attrs.clause}}</textarea>
+                  <div class="form-group">
+                    <input data-ng-model="submission.current_submission.wb_fields[field].value" value="{{submission.current_submission.wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder || 'false'}}" type="checkbox" />
+                    <label data-translate>{{indexed_fields[field].options[0].attrs.agreement_statement}}</label>
+                  </div>
                 </div>
 
                 <div data-ng-switch-when="fileupload">

@@ -26,7 +26,7 @@ This comment is needed in order to push the following strings on transifex
           <dt><span data-translate>Expiration Date</span></dt>
           <dd>{{ tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}</dd>
         </dl>
-        <dl data-ng-repeat="field in fields">
+        <dl data-ng-repeat="field in fields | filter:filterFields">
           <dt>
             <span>
               {{$index + 1}}) {{indexed_fields[field.key].label}}
@@ -42,7 +42,7 @@ This comment is needed in order to push the following strings on transifex
 
             <dd data-ng-switch-when="textarea" class="preformatted">{{field.value}}</dd>
 
-            <dd data-ng-switch-when="selectbox" class="preformatted">{{ get_option_name(indexed_fields[field.key], field.value) }}></dd>
+            <dd data-ng-switch-when="selectbox" class="preformatted">{{ get_option_name(indexed_fields[field.key], field.value) }}</dd>
  
             <dd data-ng-switch-when="checkbox">
               <ul>
@@ -52,6 +52,11 @@ This comment is needed in order to push the following strings on transifex
                   <span data-ng-show="field.value[checkbox.id]"><i class="glyphicon glyphicon-check"></i></span>
                 </li>
               </ul>
+            </dd>
+
+            <dd data-ng-switch-when="tos">
+              <span ng-if="field.value == true" data-translate>Accepted</span>
+              <span ng-if="field.value == false" data-translate>Not accepted</span>
             </dd>
 
           </div>
