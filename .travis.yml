@@ -4,6 +4,9 @@ python:
 before_install:
   - ./scripts/travis/before_install.sh
 install:
-  - ./scripts/travis/install.sh
+  - sudo apt-get install tor tor-geoipdb python-pip
+  - pip install -r GLBackend/requirements.txt
+  - pip install coverage coveralls
 script:
-  - ./scripts/travis/script.sh
+  - cd GLBackend
+  - coverage run setup.py test && coveralls || true
