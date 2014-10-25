@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
+from __future__ import print_function
+
 import os
 import re
 import sys
@@ -23,8 +25,8 @@ import globaleaks
 glclient_path = 'glclient'
 
 if not sys.version_info[:2] == (2, 7):
-    print "Error, GlobaLeaks is tested only with python 2.7"
-    print "https://github.com/globaleaks/GlobaLeaks/wiki/Technical-requirements"
+    print('Error, GlobaLeaks is tested only with python 2.7')
+    print('https://github.com/globaleaks/GlobaLeaks/wiki/Technical-requirements')
     raise AssertionError
 
 def pip_to_requirements(s):
