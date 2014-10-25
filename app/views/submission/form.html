@@ -1,6 +1,6 @@
 <fieldset>
   <div data-ng-repeat="field in current_context.steps[selection - 1].children">
-    <div data-ng-form="" name="subForm" class="submissionField">
+    <div data-ng-controller="SubmissionFieldCtrl" data-ng-form="" name="subForm" class="submissionField">
       <div data-ng-switch="" on="indexed_fields[field].type">
         <div data-ng-switch-default="" class="form-group input" data-ng-class="indexed_fields[field].required && 'required'">
           <div>
@@ -39,7 +39,11 @@
                 </div>
 
                 <div data-ng-switch-when="fileupload">
-                  <div data-ng-include="'views/partials/fileupload.html'"></div>
+                  <div data-ng-include="'views/partials/fileupload_single.html'" class="col-md-12"></div>
+                  <div data-ng-if="indexed_fields[field].options[0].attrs.require_description">
+                    <div data-translate>File description</div>
+                    <textarea class="form-control" data-ng-model="submission.current_submission.wb_fields[field].value.file_description" data-ng-required="indexed_fields[field].options[0].attrs.require_description" placeholder="{{indexed_fields[field].placeholder}}">{{submission.current_submission.wb_fields[field].value.file_description}}</textarea>
+                  </div>
                 </div>
               
                 <div data-ng-switch-when="fieldgroup">

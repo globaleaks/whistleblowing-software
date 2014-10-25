@@ -19,14 +19,8 @@ GLClient.controller('StatusCtrl',
     }
 
     if (Authentication.role === 'wb') {
-      var url = '/wbtip/upload';
 
-      $scope.options = {
-        url: url,
-        multipart: false,
-        headers: Authentication.headers(),
-        autoUpload: true,
-      };
+      $scope.fileupload_url = '/wbtip/upload';
 
       $scope.queue = [];
 
@@ -63,8 +57,7 @@ GLClient.controller('StatusCtrl',
                             function(field, k){
               $scope.fields.push({
                                   'key': k,
-                                  'value': field.value,
-                                  'answer_order': field.answer_order
+                                  'value': field.value
                                 });
             });
 
@@ -113,8 +106,7 @@ GLClient.controller('StatusCtrl',
                             function(field, k){
               $scope.fields.push({
                                   'key': k,
-                                  'value': field.value,
-                                  'answer_order': field.answer_order
+                                  'value': field.value
                                 });
             });
 
@@ -130,7 +122,7 @@ GLClient.controller('StatusCtrl',
                   $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
                 }
               }
-            };
+           };
           
             $scope.download_all_enabled = function() {
               download_all = false;
@@ -171,6 +163,21 @@ GLClient.controller('StatusCtrl',
         }
       });
     };
+
+    $scope.getFileDescription = function (id) {
+      ret = '';
+      angular.forEach($scope.tip.fields,
+                      function(field, k){
+        console.log(k);
+        console.log(id);
+        console.log(field.value);
+        if ( field.value.file_id == id && field.value.file_description != undefined ) {
+          ret = field.value.file_description;
+          return;
+        }
+      });
+      return ret;
+    }
 
   }]);
 
