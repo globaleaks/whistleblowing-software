@@ -4,11 +4,16 @@ python:
 before_install:
   - ./scripts/travis/before_install.sh
 install:
-  - sudo apt-get install tor tor-geoipdb python-pip
+  - sudo apt-get install tor tor-geoipdb python-pip nodejs
   - cd $TRAVIS_BUILD_DIR/GLBackend
   - pip install -r requirements.txt
   - pip install coverage coveralls
+  - cd $TRAVIS_BUILD_DIR/GLClient
+  - npm install grunt-cli bower
+  - npm install
+
 script:
   - cd $TRAVIS_BUILD_DIR/GLBackend
   - coverage run setup.py test
   - coveralls || true
+  - cd $TRAVIS_BUILD_DIR/GLClient
