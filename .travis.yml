@@ -4,7 +4,7 @@ python:
 before_install:
   - ./scripts/travis/before_install.sh
 install:
-  - sudo apt-get install tor tor-geoipdb python-pip nodejs
+  - sudo apt-get install tor tor-geoipdb nodejs
   - cd $TRAVIS_BUILD_DIR/GLBackend
   - pip install -r requirements.txt
   - pip install coverage coveralls
