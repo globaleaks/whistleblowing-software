@@ -76,9 +76,6 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.view_tip = function (receipt) {
-    if ($scope.receiptConfirmation != receipt)
-      return;
-
     WhistleblowerTip(receipt, function () {
       $location.path('/status/');
     });
@@ -127,10 +124,7 @@ controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $ro
           if ($scope.submission.current_submission.wb_fields[$scope.field] == undefined) {
             $scope.submission.current_submission.wb_fields[$scope.field] = {};
           }
-          if ($scope.submission.current_submission.wb_fields[$scope.field].value == undefined) {
-            $scope.submission.current_submission.wb_fields[$scope.field].value = {};
-          }
-          $scope.submission.current_submission.wb_fields[$scope.field].value.file_id = k.id;
+          $scope.submission.current_submission.wb_fields[$scope.field].value = k.id;
         }
       });
     }
