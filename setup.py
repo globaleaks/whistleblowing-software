@@ -44,7 +44,14 @@ def get_requires():
         return requires
 
 def list_files(path):
+    """
+    Return the list of files present in a directory.
+    """
     result = []
+    if not os.path.exists(path):
+        print('Warning: {} does not exist.'.format(path))
+        return []
+
     for f in os.listdir(path):
         f = os.path.join(path, f)
         if os.path.isfile(f):
