@@ -130,12 +130,5 @@ angular.module('submissionUI', []).
 
       element.fadeOut(fadeout_delay);
     };
-}).
-  directive('glClock', function() {
-    return function(scope, element, attrs) {
-      var clock = $(element).FlipClock({});
-      clock.setTime(scope.seconds);
-      clock.setCountdown(true);
-    }
 });
 
