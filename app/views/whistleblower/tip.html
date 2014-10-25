@@ -109,6 +109,9 @@ This comment is needed in order to push the following strings on transifex
                   <span data-translate>Filename</span>
                 </th>
                 <th>
+                  <span data-translate>Description</span>
+                </th>
+                <th>
                   <span data-translate>Upload Date</span>
                 </th>
                 <th>
@@ -120,9 +123,12 @@ This comment is needed in order to push the following strings on transifex
               </tr>
             </thead>
             <tbody id="fileListBody" data-ng-repeat="file in tip.files">
-              <tr data-ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
+              <tr>
                 <td>
                   {{file.name}}
+                </td>
+                <td>
+                  {{getFileDescription(file.id)}}
                 </td>
                 <td>
                   {{file.creation_date | date:'dd-MM-yyyy' }}
@@ -147,7 +153,7 @@ This comment is needed in order to push the following strings on transifex
     </div>
 
     <div class="col-md-12">
-      <div data-ng-include="'views/partials/fileupload.html'"></div>
+      <div data-ng-include="'views/partials/fileupload_multiple.html'"></div>
     </div>
 
   </div>
