@@ -17,3 +17,6 @@ script:
   - coverage run setup.py test
   - coveralls || true
   - cd $TRAVIS_BUILD_DIR/GLClient
+  - grunt build
+  - $TRAVIS_BUILD_DIR/GLBackend/bin/globaleaks -z
+  - node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*
