@@ -168,9 +168,6 @@ GLClient.controller('StatusCtrl',
       ret = '';
       angular.forEach($scope.tip.fields,
                       function(field, k){
-        console.log(k);
-        console.log(id);
-        console.log(field.value);
         if ( field.value.file_id == id && field.value.file_description != undefined ) {
           ret = field.value.file_description;
           return;
