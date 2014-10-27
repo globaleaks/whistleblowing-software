@@ -1,0 +1,38 @@
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+<span data-translate>Login</span>
+
+-->
+<div id="ContentBox" class="container">
+  <div id="LoginBox">
+    <div class="row" data-ng-show="errors[0].code == 29">
+      <div class="col-md-9">
+        <div class="alert alert-error alert-warning">
+          <strong><span data-translate>Authentication Failed</span></strong>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <form class=form-inline" name="loginForm" novalidate="">
+          <div class="form-group">
+            <label data-translate>Username:</label>
+            <input class="form-control" name="username" data-ng-model="loginUsername" type="text">
+          </div>
+
+          <div class="form-group">
+            <label data-translate>Password:</label>
+            <input class="form-control" name="password" data-ng-model="loginPassword" type="password">
+          </div>
+
+          <button class="btn btn-success" data-ng-disable="loginForm.$invalid" data-ng-click="login(loginUsername, loginPassword, loginRole)">
+            <i class="glyphicon glyphicon-log-in"></i>
+            <span data-translate>Login</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

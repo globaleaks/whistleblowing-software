@@ -1,0 +1,379 @@
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+<span data-translate>Loading Tip page...</span>
+<span data-translate>Tip Status Page</span>
+<span data-translate>This receiver has configured the encryption key.</span>
+<span data-translate>This receiver has not configured the encryption key.</span>
+<span data-translate>The file is unavailable due to an internal error.</span>
+<span data-translate>file unavailable</span>
+
+-->
+<div id="ContentBox" class="container statusPage ng-cloak">
+  <div class="row" data-ng-show="preferences.gpg_key_status != 'Enabled'">
+    <div class="col-md-12">
+      <div class="alert alert-warning">
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        <strong><span data-translate>Warning!</span></strong>
+        <span data-translate>You have not configured your encryption keys, so the files will be stored on the GlobaLeaks node un-encrypted.</span>
+        <span data-translate>This may lead to unintended access to the files by the server administrator or others in case the server is compromised.</span>
+        <span data-translate>Please configure your PGP keys in the receiver preferences page.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" data-ng-show="tip_unencrypted">
+    <div class="col-md-12">
+      <div class="alert alert-warning">
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        <strong><span data-translate>Warning!</span></strong>
+        <span data-translate>One or more of the receivers of this tip has not configured a PGP key.</span>
+        <span data-translate>This means that the submitted files will be stored in plaintext on the node.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" data-ng-controller="TipCtrl">
+    <div class="col-md-6">
+      <div class="col-md-12">
+        <dl>
+          <dt>
+            {{ tip.context_name }}
+            <a data-ng-show="tip.context_description" popover="{{tip.context_description}}" popover-placement="right" popover-trigger="mouseenter">
+              <span class="glyphicon glyphicon-info-sign"></span>
+            </a>
+          </dt>
+          <br />
+          <dt><span data-translate>Submission date</span></dt>
+          <dd>{{ tip.creation_date | date:'dd-MM-yyyy HH:mm' }}</dd>
+          <br />
+          <dt><span data-translate>Expiration Date</span></dt>
+          <dd>{{ tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}</dd>
+        </dl>
+        <dl data-ng-repeat="field in fields | orderBy:'answer_order'">
+          <dt>
+            <span>
+              {{$index + 1}}) {{fieldFormat[field.key].name}}
+            </span>
+            <a data-ng-show="fieldFormat[field.key].hint" popover="{{fieldFormat[field.key].hint}}" popover-placement="right" popover-trigger="mouseenter">
+              <span class="glyphicon glyphicon-info-sign"></span>
+            </a>
+          </dt>
+        
+          <div data-ng-switch="" on="fieldFormat[field.key].type">
+      
+            <dd data-ng-switch-when="checkboxes">
+              <ul>
+                <li data-ng-repeat="checkbox in fieldFormat[field.key].options">
+                  {{checkbox.name}} 
+                  <span data-ng-hide="field.value[checkbox.name]"><i class="glyphicon glyphicon-unchecked"></i></span>
+                  <span data-ng-show="field.value[checkbox.name]"><i class="glyphicon glyphicon-check"></i></span>
+                </li>
+              </ul>
+            </dd>
+
+            <dd data-ng-switch-when="multiple">
+              <ul>
+                <li data-ng-repeat="selection in field.value">{{selection}}</li>
+              </ul>
+
+            </dd>
+            <dd data-ng-switch-default="" class="preformatted">{{field.value}}</dd>
+
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="col-md-12">
+        <h3>{{ "Options" }}</h3>
+        <span data-ng-show="tip.postpone_superpower">
+          <button data-ng-click="tip_extend(tip.id)" class="btn btn-sm btn-warning">
+            <i class="glyphicon glyphicon-time"></i>
+            <span data-translate>Postpone Tip expiration date</span>
+          </button>
+        </span>
+        <span data-ng-show="tip.can_delete_submission">
+          <button data-ng-click="tip_delete(tip.id, true)" class="btn btn-sm btn-danger">
+            <i class="glyphicon glyphicon-trash"></i>
+            <span data-translate>Delete Tip</span>
+          </button>
+        </span>
+      </div>
+      <br />
+
+      <div class="col-md-12">
+        <h3 data-translate>Receiver List</h3>
+        <table class="table table-striped" id="receiverList">
+          <thead>
+            <tr>
+              <th><span data-translate>Name</span></th>
+              <th><span data-translate>Description</span></th>
+              <th><span data-translate>Access counter</span></th>
+            </tr>
+          </thead>
+          <tbody id="receiverListBody">
+            <tr data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
+              <td>
+                <span data-ng-switch="" on="receiver.gpg_key_status">
+                  <span data-ng-switch-when="Enabled">
+                    <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                  </span>
+                  <span data-ng-switch-when="Disabled">
+                    <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                  </span>
+                </span>
+                {{receiver.name}}
+              </td>
+              <td>{{receiver.description}}</td>
+              <td>{{receiver.access_counter}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <h3>
+        <span data-translate>Files</span>
+      </h3>
+      <div class="well" data-ng-show="tip.files">
+        <div ng-if="tip.collection">
+          <form id="fileCollectionDownload" method="POST" action="{{tip.collection}}" ng-cloak>
+            <input type="hidden" name="x-session" value="{{session}}">
+            <input type="hidden" name="xsrf-token" value="{{xsrf_token}}">
+            <button type="submit"
+                    data-ng-show="download_all_enabled()"
+                    data-ng-click="increaseDownloadCounts()"
+                    class="btn btn-xs btn-default ng-cloak">
+               <i class="glyphicon glyphicon-download"></i>
+               <span data-translate>download all files</span>
+            </button>
+          </form>
+        </div>
+        <br />
+        <a class="input-small" data-ng-click="show_new_files = !show_new_files" data-ng-init="show_new_files = false" data-ng-show="!show_new_files">
+          <span data-translate>show only files not yet downloaded</span>
+        </a>
+        <a class="input-small" data-ng-click="show_new_files = !show_new_files" data-ng-show="show_new_files">
+          <span data-translate>show all the files</span>
+        </a>
+        <br /><br />
+        <div class="table-container">
+          <table class="table table-striped" id="fileList">
+            <thead>
+              <tr>
+                <th>
+                  <span data-translate>Filename</span>
+                </th>
+                <th>
+                  <span data-translate>Download</span>
+                </th>
+                <th>
+                  <span data-translate>Upload Date</span>
+                </th>
+                <th>
+                  <span data-translate>Content Type</span>
+                </th>
+                <th>
+                  <span data-translate>File Size</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="fileListBody" data-ng-repeat="file in tip.files">
+              <tr data-ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
+                <td>
+                  {{file.name}}
+                </td>
+                <td data-ng-show="file.status != 'unavailable'">
+                  <form id="fileDownload" method="POST" action="{{file.href}}">
+                    <input type="hidden" name="x-session" value="{{session}}">
+                    <input type="hidden" name="xsrf-token" value="{{xsrf_token}}">
+                    <button type="submit"
+                            data-ng-class="{'disabled': file.downloads >= tip.download_limit}"
+                            data-ng-click="increaseDownloadCount(file)"
+                            class="btn btn-xs btn-default ng-cloak">
+                      <i class="glyphicon glyphicon-download"></i>
+                      <span data-translate>download</span>
+                      ({{file.downloads}}/{{tip.download_limit}})
+                    </button>
+                  </form>
+                </td>
+                <td data-ng-show="file.status == 'unavailable'">
+                  <div class="label label-warning" popover="{{ 'The file is unavailable due to an internal error.' | translate }}" popover-placement="bottom" popover-trigger="mouseenter" data-translate>file unavailable</div>
+                </td>
+                <td data-ng-show="file.status == 'nokey'">
+                  <div class="label label-warning" popover="{{ 'The file is unavailable due to missing pgp key.' | translate }}" popover-placement="bottom" popover-trigger="mouseenter" data-translate>file unavailable</div>
+                </td>
+                <td>
+                  {{file.creation_date | date:'dd-MM-yyyy' }}
+                </td>
+                <td>
+                  {{file.content_type}}
+                </td>
+                <td>
+                  {{file.size}} Bytes
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" data-ng-hide="tip.files">
+      <p>
+        <span data-translate>No files have been uploaded!</span>
+      </p>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-5">
+      <h3>
+        <span data-translate>Comments</span>
+      </h3>
+      <textarea data-ng-model="newCommentContent" class="form-control"></textarea>
+      <br />
+      <button class="btn btn-success" data-ng-click="newComment()" data-ng-disabled="!newCommentContent || newCommentContent == ''">
+        <i class="glyphicon glyphicon-comment"></i>
+        <span data-translate>Add Comment</span>
+      </button>
+      <br /><br />
+      <div data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
+        <div data-ng-switch="" on="comment.type">
+
+          <div data-ng-switch-when="whistleblower" class="alert alert-info">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+                  <span data-translate>Whistleblower</span>
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div class="preformatted">{{comment.content}}</div>
+          </div>
+
+          <div data-ng-switch-when="receiver" class="alert alert-success">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+		  {{comment.author}}
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div class="preformatted">{{comment.content}}</div>
+          </div>
+
+          <div data-ng-switch-when="system" class="alert alert-warning">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+                  <span data-translate>System</span>
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+
+            <!-- {{comment.content}} -->
+            <div data-ng-switch="" on="comment.system_content.type">
+               <div data-ng-switch-when="1">
+                 <span data-translate>The user</span>
+                 {{comment.system_content.receiver_name}}
+                 <span data-translate>has postponed Tip expiration to</span>
+                 {{comment.system_content.expire_on | date:'dd-MM-yyyy HH:mm' }}
+               </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-offset-2 col-md-5" ng-show="tip.enable_private_messages && tip.receivers.length > 1">
+      <div>
+        <h3>
+          <span data-translate>Private Messages with the Whistleblower</span>
+        </h3>
+      </div>
+      <textarea data-ng-model="newMessageContent" class="form-control"></textarea>
+      <br />
+      <button class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!newMessageContent || newMessageContent == ''">
+        <i class="glyphicon glyphicon-envelope"></i>
+        <span data-translate>Send Private Message</span>
+      </button>
+      <br /><br />
+      <div data-ng-repeat="message in tip.messages | orderBy:'creation_date':true">
+        <div data-ng-switch="" on="message.type">
+
+          <div data-ng-switch-when="whistleblower" class="alert alert-info">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+		  <span data-translate>Whistleblower</span>
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ message.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div class="preformatted">{{message.content}}</div>
+          </div>
+
+          <div data-ng-switch-when="receiver" class="alert alert-success">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+		  {{message.author}}
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ message.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div class="preformatted">{{message.content}}</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+<span data-translate>Loading Tip page...</span>
+
+-->
+

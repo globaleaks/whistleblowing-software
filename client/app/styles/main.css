@@ -1,0 +1,258 @@
+#PageBox {
+  width: 100%;
+}
+
+#HeaderBox {
+  overflow: hidden;
+  padding: 40px 0;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+  background: Teal;
+}
+
+#HeaderBox:after, #HeaderBox:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+#HeaderBoxHomeContent {
+  text-align: center;
+}
+
+#HeaderBox {
+  border-bottom: 1px solid #ddd;
+}
+#HeaderBox h1 {
+  font-size: 40px;
+}
+#HeaderBox p {
+  margin-bottom: 20px;
+}
+#HeaderBox .navbar {
+  display: none;
+}
+
+#PageTitle {
+  font-size: 40px;
+}
+
+#PageSubtitle {
+  font-size: 32px;
+}
+
+#ContentBox {
+  margin: 50px auto;
+}
+
+#messageConsole {
+  width: 200px;
+  position: fixed;
+  z-index: 99999;
+  top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#FooterBox {
+  padding: 70px 0;
+  border-top: 1px solid #E5E5E5;
+  background-color: #F5F5F5;
+  color: #777;
+  text-align: center;
+  font-size: 20px;
+}
+
+#LogoBox, #TitleBox, #ToolbarBox {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+#LogoBox, #TitleBox {
+  padding: 30px;
+}
+
+#TitleBox {
+  max-width: 60%;
+}
+
+#LogoBox {
+  max-width: 20%;
+}
+
+#Logobox img {
+  max-width: 100%;
+}
+
+#LogoBox h1 {
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+#LogoBox p {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 30px;
+}
+
+#LogoBox img {
+  max-width: 100%;
+}
+
+#ToolbarBox {
+  max-width: 20%;
+}
+
+/** Submission details **/
+
+.submissionDetails textarea {
+  width: 300px;
+  height: 200px;
+}
+
+.receipt {
+    text-align: center;
+}
+.receipt h2 {
+    font-family: sans-serif
+}
+
+#PrivacyBox {
+  padding: 10px;
+  background-color: #fcf8e3;
+  color: #c09853;
+  font-size: 20px;
+}
+
+#ToolTipBox {
+  position: relative;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  z-index: 99999;
+}
+@media (max-width: 550px) {
+  .toolTip {
+    position: absolute;
+  }
+}
+
+.preformatted {
+  white-space: pre-wrap;
+}
+
+.tab-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Display the pending requests */
+.pending-requests {
+  position: fixed;
+  top: 100px;
+  z-index: 999;
+  width: 400px;
+  margin-left: -200px;
+  left: 50%;
+  border-radius: 10px;
+}
+
+.pending-requests .message {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+/* minor hacks needed to not modify some code written for angular and bootstrap 2.0.3 */
+
+.has-error {
+  color: #b94a48;
+}
+
+.modal {
+  display: inline;
+}
+@media (max-width: 550px) {
+  .modal.not-anonymous-question {
+    top: 120px;
+    z-index: 10001;
+  }
+  .modal.not-anonymous-question h3 {
+    font-size: 18px;
+  }
+}
+
+.bootstrapping, .bootstrapping img {
+  max-width: 100%;
+}
+
+table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.img-thumbnail {
+  position: relative;
+  width: 160px;
+}
+
+#titleboxdefault {
+  display: block;
+}
+
+#titleboxwithtagline {
+  display: none;
+}
+
+.wizard-block {
+  position: relative;
+  padding: 45px 15px 15px;
+  margin: 0 -15px 15px;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+  border-color: #e5e5e5 #eee #eee;
+  border-style: solid;
+  margin-left: 0;
+  margin-right: 0;
+  border-width: 1px;
+  border-color: #ddd;
+  border-radius: 4px 4px 0 0;
+  box-shadow: none;
+}
+
+.wizard-block h2 {
+  position: absolute;
+  top: -10px;
+  font-size: 18px;
+  color: #aaa;
+}
+
+.wizard-hint {
+  border-left: 3px solid #8a6d3b;
+  background-color: #fcf8e3;
+  padding: 20px;
+}
+
+.wizard-receiver-password {
+  font-size: 16px;
+}
+
+.preload_error {
+  width: 70%;
+  margin: 100px auto;
+}

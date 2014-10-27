@@ -1,0 +1,19 @@
+<div id="ToolTipBox" data-ng-controller="toolTipCtrl">
+  <div id="LoginStatusBox" class="logout alert alert-warning" data-ng-hide="!session_id">
+    <div id="RoleBox">
+      <label>
+        <span data-translate>Currently logged in</span>
+        (<a href="{{auth_landing_page}}">{{role}}</a>)
+      </label>
+    </div>
+    <div id="LogoutBox">
+      <button class="btn btn-danger" data-ng-click="logout()">
+        <i class="glyphicon glyphicon-log-out"></i>
+        <span data-translate>Logout</span>
+      </button>
+    </div>
+  </div>
+  <div id="LanguagePickerBox" class="languagePick alert alert-warning" data-ng-hide="!show_language_selector">
+    <select data-ng-model="language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'" class="form-control"></select>
+  </div>
+</div>
