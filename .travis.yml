@@ -5,18 +5,18 @@ before_install:
   - ./scripts/travis/before_install.sh
 install:
   - sudo apt-get install tor tor-geoipdb nodejs
-  - cd $TRAVIS_BUILD_DIR/GLBackend
+  - cd $TRAVIS_BUILD_DIR/GLBackend  # to install backend dependencies
   - pip install -r requirements.txt
   - pip install coverage coveralls
-  - cd $TRAVIS_BUILD_DIR/GLClient
+  - cd $TRAVIS_BUILD_DIR/GLClient  # to install frontend dependencies
   - npm install grunt-cli bower
   - npm install
 
 script:
-  - cd $TRAVIS_BUILD_DIR/GLBackend
+  - cd $TRAVIS_BUILD_DIR/GLBackend  # to run backend tests
   - coverage run setup.py test
   - coveralls || true
-  - cd $TRAVIS_BUILD_DIR/GLClient
+  - cd $TRAVIS_BUILD_DIR/GLClient  # to run frontend tests
   - grunt build
   - $TRAVIS_BUILD_DIR/GLBackend/bin/globaleaks -z
   - node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*
