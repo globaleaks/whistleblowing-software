@@ -1,0 +1,34 @@
+#!/bin/bash
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
+if ! id -u globaleaks >/dev/null 2>&1; then
+  useradd globaleaks -u 1337 -b /var/globaleaks/ -s /bin/false
+fi
+
+if [ ! -d /var/globaleaks ]; then
+  mkdir -p /var/globaleaks
+  chown globaleaks:debian-tor /var/globaleaks
+  chmod 750 /var/globaleaks
+fi
+
+if [ ! -d /var/globaleaks/torhs ]; then
+  mkdir -p /var/globaleaks/torhs/
+  chown debian-tor:debian-tor /var/globaleaks/torhs/
+  chmod 700 /var/globaleaks/torhs
+fi
+
+if [ ! -d /var/run/globaleaks ]; then
+  mkdir -p /var/run/globaleaks
+  chown globaleaks:globaleaks /var/run/globaleaks
+  chmod 750 /var/run/globaleaks
+fi
+
+if [ ! -d /dev/shm/globaleaks ]; then
+  mkdir -p /dev/shm/globaleaks
+  chown globaleaks:globaleaks /dev/shm/globaleaks
+  chmod 750 /dev/shm/globaleaks
+fi

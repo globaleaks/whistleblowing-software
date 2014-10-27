@@ -1,0 +1,305 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+
+import os
+import sys
+import sqlite3
+
+from storm.locals import create_database, Store
+from copy import copy
+
+from globaleaks import models
+from globaleaks.security import hash_password, get_salt
+from globaleaks.third_party import rstr
+from globaleaks import DATABASE_VERSION
+from globaleaks.utils.utility import randint
+
+DEFAULT_OUTPUT_DBNAME = "/tmp/cleaned_glbackend.db"
+DUMMY_UNICODE_TEXT = u"¹²³ HelLlo! I'm the Batman"
+
+def _fancy_print(tablename, elements=0):
+    if elements:
+        print u' ¬æ  %d elements exported from %s' %\
+              (elements, tablename)
+    else:
+        print u' ¬æ  exported %s' % tablename
+
+
+_uuid_track = {}
+_incremental_counter = 1
+
+def _change_tracking_uuid(sourceuuid):
+    """
+    @param sourceuuid: one of the UUID used in the node
+    @return: an incremental unsafe UUID, the same UUID is returned
+        from the same source
+
+    r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+    A000A000-0000-0000-0000- [ 12 number ]
+
+    """
+    global _incremental_counter
+
+    def create_uuid(incremental_number):
+        numstr = "%s" % incremental_number
+        retstr = "A000A000-0000-0000-0000-%s%s" % (
+            ((12 - len(numstr)) * "0"), numstr
+        )
+        return unicode(retstr)
+
+    if not _uuid_track.has_key(sourceuuid):
+        _uuid_track[sourceuuid] = _incremental_counter
+        _incremental_counter += 1
+
+    return create_uuid(_uuid_track[sourceuuid])
+
+
+def do_storm_copy(source_store_obj):
+    thecopy = source_store_obj.__class__()
+
+    for k, v in source_store_obj._storm_columns.iteritems():
+        setattr(thecopy, v.name, getattr(source_store_obj, v.name) )
+
+    return thecopy
+
+
+def do_safexport(dbfile, export_print):
+
+    # source
+    gl_database = create_database("sqlite:%s" % dbfile)
+    source_store = Store(gl_database)
+
+    q = """
+        SELECT name, type, sql
+        FROM sqlite_master
+        WHERE sql NOT NULL AND type == 'table'
+        """
+
+    sqlschema = source_store.execute(q)
+
+    # source copy the data to export
+    contexts = source_store.find(models.Context)
+    receivers = source_store.find(models.Receiver)
+    users = source_store.find(models.User)
+    node = source_store.find(models.Node)
+    notification = source_store.find(models.Notification)
+    itips = source_store.find(models.InternalTip)
+    rtips = source_store.find(models.ReceiverTip)
+    comments = source_store.find(models.Comment)
+    messages = source_store.find(models.Message)
+    ifiles = source_store.find(models.InternalFile)
+    rfiles = source_store.find(models.ReceiverFile)
+    wbtips = source_store.find(models.WhistleblowerTip)
+    stats = source_store.find(models.Stats)
+    appdata = source_store.find(models.ApplicationData)
+    ctxrcvr = source_store.find(models.ReceiverContext)
+    tiprcvr = source_store.find(models.ReceiverInternalTip)
+
+    if export_print:
+        funny_print("Context", "%s" % contexts.count())
+        funny_print("Receivers", "%s" % receivers.count())
+        funny_print("Users", "%s" % users.count())
+        funny_print("InternalTips", "%s" % itips.count())
+        funny_print("ReceiverTips", "%s" % rtips.count())
+        funny_print("Comments", "%s" % comments.count())
+        funny_print("Messages", "%s" % messages.count())
+        funny_print("InternalFile", "%s" % ifiles.count())
+        funny_print("ReceiverFile", "%s" % rfiles.count())
+        funny_print("WhistleblowerTips", "%s" % wbtips.count())
+        funny_print("ReceiverContext", "%s" % ctxrcvr.count())
+        funny_print("InternalTipReceiver", "%s" % tiprcvr.count())
+        funny_print("Notification", "%s" % notification.count())
+        funny_print("ApplicationData", "%s" % appdata.count())
+        funny_print("Node", "%s" % node.count())
+        funny_print("Stats", "%s" % stats.count())
+        return
+
+    # export
+    os.unlink(DEFAULT_OUTPUT_DBNAME)
+    export_fname = "sqlite:%s" % DEFAULT_OUTPUT_DBNAME
+    export_database = create_database(export_fname)
+    export_store = Store(export_database)
+
+    for table in sqlschema:
+        if len(table) == 3:
+            print table[2]
+            export_store.execute(table[2] + ";")
+        else:
+            print "Unexpected behavior, call the globaleaks issues management"
+            raise AssertionError("Pimpiripacchio: %d" % len(table))
+
+    export_store.commit()
+
+    # Here start the data cleaning for privacy concern
+    # ------------------------------------------------
+
+    _fancy_print("Context", contexts.count())
+    for context in contexts:
+        copy_context = do_storm_copy(context)
+        copy_context.id = _change_tracking_uuid(context.id)
+        export_store.add(copy_context)
+
+    _fancy_print("Receiver", receivers.count())
+    for receiver in receivers:
+        copy_receiver = do_storm_copy(receiver)
+        copy_receiver.id = _change_tracking_uuid(receiver.id)
+        copy_receiver.user_id = _change_tracking_uuid(receiver.user_id)
+        export_store.add(copy_receiver)
+
+    _fancy_print("Users", users.count())
+    for user in users:
+        copy_user = do_storm_copy(user)
+        copy_user.id = _change_tracking_uuid(user.id)
+        export_store.add(copy_user)
+
+    _fancy_print("ReceiverContext", ctxrcvr.count())
+    for rc_combo in ctxrcvr:
+        copy_rc_combo = do_storm_copy(rc_combo)
+        copy_rc_combo.context_id = _change_tracking_uuid(rc_combo.context_id)
+        copy_rc_combo.receiver_id = _change_tracking_uuid(rc_combo.receiver_id)
+        export_store.add(copy_rc_combo)
+
+    _fancy_print("ReceiverInternalTip", tiprcvr.count())
+    for rt_combo in tiprcvr:
+        copy_rt_combo = do_storm_copy(rt_combo)
+        copy_rt_combo.internaltip_id = _change_tracking_uuid(rc_combo.internaltip_id)
+        copy_rt_combo.receiver_id = _change_tracking_uuid(rc_combo.receiver_id)
+        export_store.add(copy_rt_combo)
+
+    _fancy_print("InternalTip", itips.count())
+    for itip in itips:
+        copy_itip = do_storm_copy(itip)
+
+        # wb_fields need to be cleared with spare unicode, if sets
+        for k, v in itip.wb_fields.iteritems():
+            if isinstance(copy_itip.wb_fields[k], unicode):
+                copy_itip.wb_fields[k] = u'¹_clæred_²_data_³'
+        # the key are UUIDv4 too, but are not changed ATM
+
+        copy_itip.id = _change_tracking_uuid(itip.id)
+        copy_itip.context_id = _change_tracking_uuid(itip.context_id)
+        export_store.add(copy_itip)
+
+    _fancy_print("ReceiverTip", rtips.count())
+    for rtip in rtips:
+        copy_rtip = do_storm_copy(rtip)
+        copy_rtip.id = _change_tracking_uuid(rtip.id)
+        copy_rtip.internaltip_id = _change_tracking_uuid(rtip.internaltip_id)
+        copy_rtip.receiver_id = _change_tracking_uuid(rtip.receiver_id)
+        export_store.add(copy_rtip)
+
+    _fancy_print("WhistleblowerTip", wbtips.count())
+    for wtip in wbtips:
+        copy_wtip = do_storm_copy(wtip)
+        copy_wtip.id = _change_tracking_uuid(wtip.id)
+        copy_wtip.internaltip_id = _change_tracking_uuid(wtip.internaltip_id)
+        export_store.add(copy_wtip)
+
+    _fancy_print("Messages", messages.count())
+    for message in messages:
+        copy_message = do_storm_copy(message)
+        copy_message.id = _change_tracking_uuid(message.id)
+        copy_message.receivertip_id = _change_tracking_uuid(message.receivertip_id)
+        copy_message.content = DUMMY_UNICODE_TEXT
+        export_store.add(copy_message)
+
+    _fancy_print("Comments", comments.count())
+    for comment in comments:
+        copy_comment = do_storm_copy(comment)
+        copy_comment.id = _change_tracking_uuid(comment.id)
+        copy_comment.internaltip_id = _change_tracking_uuid(comment.internaltip_id)
+        copy_comment.content = DUMMY_UNICODE_TEXT
+        export_store.add(copy_comment)
+
+    # TODO - change node password - change all the receipt - change all receiver password
+    # TODO - notification + node
+    # TODO - receiverfiles + internalfiles
+
+    export_store.commit()
+
+
+
+def do_resetpass(dbfile, password=None):
+
+    salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
+
+    if not password:
+        password = rstr.xeger('[A-Za-z0-9]{16}')
+    hashed_password = hash_password(password, salt)
+
+    QUERY = 'UPDATE user SET salt="%s", password="%s"' % (salt, hashed_password)
+    QUERY += 'WHERE role="admin";'
+
+    conn = sqlite3.connect(dbfile)
+    c = conn.cursor()
+    c.execute(QUERY)
+    conn.commit()
+    conn.close()
+
+    return password
+
+
+def funny_print(stringz, details):
+
+    block = 40
+    print stringz, " " * (block - len(stringz)), details
+
+def check_file(isafile):
+    print "checking file: %s" % isafile
+    if not os.path.isfile(isafile):
+        print "Missing file: %s" % isafile
+        quit()
+
+
+if len(sys.argv) == 1:
+    print "\nGlobaLeaks backend administator interface: Missing command\n"
+    funny_print(" safexport <DBFILE> [print]","(export without sensitive data)")
+    funny_print(" resetpass <DBFILE> [password]","(reset admin password)")
+    funny_print(" backup <WORKINGDIR> <BACKUPNAME>","(create a zipped backup)")
+    funny_print(" restore <WORKINGDIR> <BACKUPNAME>","(restore a backup in workingdir)")
+    print "default DBFILE is /var/globaleaks/db/glbackend-*.db"
+    if not randint(1, 50) % 42:
+        print "\n fnord"
+    quit()
+
+if sys.argv[1] == 'safexport' and len(sys.argv) >= 3:
+    try:
+        check_file(sys.argv[2])
+        # if 'print' is present, or something else, just dump to stdout
+        do_safexport(sys.argv[2], True if len(sys.argv) == 4 else None )
+        # shall be another dedicated option!
+    except Exception as excep:
+        print "Something is going wrong: %s" % excep
+
+elif sys.argv[1] == 'resetpass' and (len(sys.argv) == 3 or len(sys.argv) == 4):
+    try:
+        check_file(sys.argv[2])
+
+        if len(sys.argv) == 4:
+            password = do_resetpass(sys.argv[2], sys.argv[3])
+        else:
+            password = do_resetpass(sys.argv[2])
+
+        print "================================="
+        print "||   Your new admin password   ||"
+        print "================================="
+        print "     Username: admin"
+        print "     Password: %s" % password
+        print "================================="
+    except Exception as excep:
+        print "Something is going wrong: %s" % excep
+
+elif sys.argv[1] == 'backup' and len(sys.argv) == 4:
+    print "backup not yet implemented"
+    pass
+elif sys.argv[1] == 'restore' and len(sys.argv)== 4:
+    print "restore do not yet implemented"
+    pass
+else:
+    print "wrong usabe of %s command (missing option or bad keyword)" % sys.argv[1]
+    print "Run %s without argument can trigger the help" % sys.argv[1]
+    if not randint(20, 50) % 42:
+        print "\n fnord"
+    quit()
+
+
