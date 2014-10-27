@@ -14,47 +14,47 @@ from globaleaks import DATABASE_VERSION
 
 # This code is take directly from the GlobaLeaks-pre-model-refactor
 
-def variableToSQL(var_type, db_type):
+def variableToSQL(var, db_type):
     """
     We take as input a storm.variable and we output the SQLite string it
     represents.
     """
-    if isinstance(var_type, BoolVariable):
-        sqlite_type = {
+    if isinstance(var, BoolVariable):
+        data_mapping = {
             "sqlite": "INTEGER",
         }
-    elif isinstance(var_type, DateTimeVariable):
-        sqlite_type = {
+    elif isinstance(var, DateTimeVariable):
+        data_mapping = {
             "sqlite": "VARCHAR",
         }
-    elif isinstance(var_type, EnumVariable):
-        sqlite_type = {
+    elif isinstance(var, EnumVariable):
+        data_mapping = {
             "sqlite": "BLOB",
         }
-    elif isinstance(var_type, IntVariable):
-        sqlite_type = {
+    elif isinstance(var, IntVariable):
+        data_mapping = {
             "sqlite": "INTEGER",
         }
-    elif isinstance(var_type, RawStrVariable):
-        sqlite_type = {
+    elif isinstance(var, RawStrVariable):
+        data_mapping = {
             "sqlite": "BLOB",
         }
-    elif isinstance(var_type, UnicodeVariable):
-        sqlite_type = {
+    elif isinstance(var, UnicodeVariable):
+        data_mapping = {
             "sqlite": "VARCHAR",
         }
-    elif isinstance(var_type, JSONVariable):
-        sqlite_type = {
+    elif isinstance(var, JSONVariable):
+        data_mapping = {
             "sqlite": "BLOB",
         }
-    elif isinstance(var_type, PickleVariable):
-        sqlite_type = {
+    elif isinstance(var, PickleVariable):
+        data_mapping = {
             "sqlite": "BLOB",
         }
     else:
-        raise AssertionError("Invalid var_type: %s" % var_type)
+        raise AssertionError("Invalid var: %s" % var)
 
-    return "%s" % sqlite_type[db_type]
+    return "%s" % data_mapping[db_type]
 
 def varsToParametersSQL(variables, primary_keys, db_type):
     """
@@ -99,10 +99,10 @@ def generateCreateQuery(model):
     for attr in dir(model):
         a = getattr(model, attr)
         if isinstance(a, PropertyColumn):
-            var_stype = a.variable_factory()
-            var_type = variableToSQL(var_stype, GLSetting.db_type)
+            var = a.variable_factory()
+            data_mapping = variableToSQL(var, GLSetting.db_type)
             name = a.name
-            variables.append((name, var_type))
+            variables.append((name, data_mapping))
             if a.primary:
                 primary_keys.append(name)
 
