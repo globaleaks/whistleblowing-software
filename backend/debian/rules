@@ -1,0 +1,21 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=globaleaks
+#export PYBUILD_DISABLE=test
+
+%:
+	dh $@ --with python2 --buildsystem=pybuild
+
+override_dh_installman:
+	python setup.py build_sphinx -b man
+	dh_installman
+
+override_dh_install:
+#   install apparmor profile
+	mkdir -p debian/globaleaks/etc/apparmor.d/local
+	cp debian/globaleaks.apparmor-profile debian/globaleaks/etc/apparmor.d/usr.bin.globaleaks
+	dh_apparmor --profile-name=usr.bin.globaleaks
+	dh_install --fail-missing
+
+override_dh_installinit:
+	dh_installinit --update-rcd-params="defaults 99"

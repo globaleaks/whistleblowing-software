@@ -1,0 +1,13 @@
+*.py[co]
+*.bak
+.*.swp
+workingdir
+testing_dir
+*.egg-info
+*.log
+*_trial_temp*
+.idea/*
+glenv
+build
+dist
+doc/_*
