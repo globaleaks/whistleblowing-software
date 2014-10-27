@@ -1,0 +1,130 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label data-translate>Current initiative logo</label>
+      <div class="imageUpload" data-ng-controller="FileUploadCtrl">
+        <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
+          <div data-ng-show="uploadfile" class="uploadfile">
+            <span class="col-md-12 changePicture">
+              <span data-translate>Change picture</span>
+            </span>
+            <div pragmatic-file-upload="" data-ng-src="/admin/staticfiles/globaleaks_logo">
+              <div class="fileselector">
+                <input type="file" style="z-index: 2147483647">
+              </div>
+            </div>
+            <div class="uploadProgress hide">
+              <div class="progress progress-striped">
+                <div class="progress-bar" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+          <img data-ng-src="/static/globaleaks_logo.png" class="img-thumbnail baseimage" style="z-index: 0">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>
+        <span data-translate>Graphic Customization</span>
+        (<span data-translate>CSS</span>)
+      </label>
+      <div class="well well-large uploadfile" data-ng-controller="FileUploadCtrl">
+        <span generic-file-upload="" data-ng-src="/admin/staticfiles/custom_stylesheet">
+          <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
+            <span class="glyphicon glyphicon-plus"></span>
+            <span data-translate>Load</span>
+            <input type="file" name="files[]" multiple data-ng-disabled="disabled">
+          </span>
+        </span>
+        <span class="uploadProgress hide">
+          <span class="progress progress-striped">
+            <span class="progress-bar" style="width: 0%;"></span>
+          </span>
+        </span>
+        <a class="btn btn-primary" data-ng-href="{{'/static/custom_stylesheet.css'}}" download="custom_stylesheet.css">
+          <span class="glyphicon glyphicon-download"></span>
+          <span data-translate>Download</span>
+        </a>
+        <div>
+          <input data-ng-model="admin.node.reset_css" type="checkbox">
+          <label data-translate>Reset custom CSS</label>
+        </div>
+      </div>
+      <label>
+        <span data-translate>Graphic Customization</span>
+        (<span data-translate>Home Page</span>)
+      </label>
+      <div class="well well-large uploadfile" data-ng-controller="FileUploadCtrl">
+        <span generic-file-upload="" data-ng-src="/admin/staticfiles/custom_homepage">
+          <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
+            <span class="glyphicon glyphicon-plus"></span>
+            <span data-translate>Load</span>
+            <input type="file" name="files[]" multiple data-ng-disabled="disabled">
+          </span>
+        </span>
+        <span class="uploadProgress hide">
+          <span class="progress progress-striped">
+            <span class="progress-bar" style="width: 0%;"></span>
+          </span>
+        </span>
+        <a class="btn btn-primary" data-ng-href="{{'/static/homepage.html'}}" download="homepage.html">
+          <span class="glyphicon glyphicon-download"></span>
+          <span data-translate>Download</span>
+        </a>
+        <div>
+          <input data-ng-model="admin.node.reset_homepage" type="checkbox">
+          <label data-translate>Reset custom Home Page</label>
+        </div>
+      </div>
+      <label data-translate>Load Custom File</label>
+      <br />
+      <span data-translate>The file will be available at the url: /static/$filename</span>
+      <div class="well well-large uploadfile" data-ng-controller="FileUploadCtrl">
+        <span generic-file-upload="" data-ng-src="/admin/staticfiles/customization">
+          <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
+            <span class="glyphicon glyphicon-plus"></span>
+            <span data-translate>Load</span>
+            <input type="file" name="files[]" multiple data-ng-disabled="disabled">
+          </span>
+        </span>
+        <span class="uploadProgress hide">
+          <span class="progress progress-striped">
+            <span class="progress-bar" style="width: 0%;"></span>
+          </span>
+        </span>
+      </div>
+      <div class="table-container">
+        <table data-ng-show="staticfiles" class="table table-striped" id="fileList">
+          <thead>
+            <tr>
+              <th>
+                <span data-translate>Filename</span>
+              </th>
+              <th>
+                <span data-translate>File Operations</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="fileListBody" data-ng-repeat="file in staticfiles | orderBy:'filename'">
+            <tr>
+              <td>
+                {{file.filename}}
+              </td>
+              <td>
+                <a class="btn btn-primary" data-ng-href="{{'/static/' + file.filename}}" download="{{file.filename}}">
+                  <span class="glyphicon glyphicon-download"></span>
+                  <span data-translate>Download</span>
+                </a>
+                <button class="btn btn-danger" data-ng-click="perform_delete('/admin/staticfiles/' + file.filename)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                  <span data-translate>Delete</span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,147 @@
+<div class="row">
+  <div class="col-md-6">
+    <p>
+      <b><span data-translate>You're running GlobaLeaks version</span> {{admin.node.version}}</b>
+    </p>
+
+    <p>
+      <span data-translate>This section contains settings that may break your installation. Please refer to the</span>
+      <a href="https://github.com/globaleaks/GlobaLeaks/wiki/Advanced-configuration" target="_blank" rel="noreferrer" data-translate>Advanced configuration</a>.
+    </p>
+
+    <div class="form-group">
+      <label data-translate>Exception mail address</label>
+      <input class="form-control" data-ng-model="admin.node.exception_email" name="email" type="text" data-ng-pattern="email_regexp">
+        <p class="has-error" data-ng-show="advancedForm.email.$error.pattern">
+        <span data-translate>Invalid email address</span>
+      </p>
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.anomaly_checks" type="checkbox">
+        <span data-translate>Enable checks for anomalies</span>
+      </label>
+      <div data-ng-show="admin.node.anomaly_checks">
+        <span class="label label-info" data-translate>Enabled</span>
+        <span data-translate>Checks for anomalies will be now performed on each request.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Receipt format (regular expression)</label>
+      <input class="form-control" data-ng-model="admin.node.receipt_regexp" value="{{node.receipt_regexp}}" type="text">
+      <span data-translate>Resulting receipt example:</span> <b>{{admin.node.receipt_example}}</b>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>File size limit (in Megabytes)</label>
+      <input class="form-control" data-ng-model="admin.node.maximum_filesize" type="text">
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Text size limit (in bytes)</label>
+      <input class="form-control" data-ng-model="admin.node.maximum_textsize" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.allow_unencrypted" ng-click="open_modal_allow_unencrypted()" type="checkbox">
+        <span data-translate>Enable insecure configuration without PGP encryption.</span>
+      </label>
+      <div data-ng-show="admin.node.allow_unencrypted">
+        <span class="label label-danger" data-translate>Danger</span>
+        <span data-translate>By enabling this option, the system will be storing the submitted files unecrypted on your node.</span>
+        <span data-translate>This happens whenever encryption is unavailable.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.postpone_superpower" type="checkbox">
+        <span data-translate>Permit Receivers to postpone expiration date of the Tips</span>
+      </label>
+      <div data-ng-show="admin.node.postpone_superpower">
+        <span class="label label-info" data-translate>Enabled</span>
+        <span data-translate>Receivers will be able to postpone Tips expiration.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.can_delete_submission" type="checkbox">
+        <span data-translate>Permit Receivers to delete Tips</span>
+      </label>
+      <div data-ng-show="admin.node.can_delete_submission">
+        <span class="label label-info" data-translate>Enabled</span>
+	<span data-translate>Receivers will be able to delete Tips and their content.</span>
+      </div>
+    </div>
+
+    <!--
+
+    Commented out as the feature it is not implemented/merged in the backend.
+    The code on the GLClient is complete and putted here in order to allow user to translate the feature texts on transifex
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.indexing" type="checkbox">
+        <span data-translate>Enable search engines indexing</span>
+      </label>
+      <div data-ng-show="admin.node.">
+        <span class="label label-info" data-translate>Enabled</span>
+        <span data-translate>Search engine spiders will be allowed to spider the application.</span>
+      </div>
+    </div>
+
+    -->
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.ahmia" type="checkbox">
+        <span data-translate>Enable Ahmia publishing</span>
+      </label>
+      <div data-ng-show="admin.node.ahmia">
+        <span class="label label-info" data-translate>Enabled</span>
+        <span data-translate>Node metadata will be now published using Ahmia JSON format.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Support embedding GlobaLeaks inside of IFRAMEs</label>
+      <select class="form-control" name="x_frame_options_mode" data-ng-model="admin.node.x_frame_options_mode" value="{{node.x_frame_options_mode}}">
+        <option value="deny">Deny</option>
+        <option value="allow-from">Allow from</option>
+      </select>
+    </div>
+
+    <div class="form-group" ng-show="admin.node.x_frame_options_mode == 'allow-from'">
+      <label data-translate>URL of website to contain the IFRAME</label>
+      <input class="form-control" name="x_frame_options_allow_from" data-ng-model="admin.node.x_frame_options_allow_from" value="{{node.x_frame_options_allow_from}}" data-ng-pattern="http_or_https_regexp" type="text">
+      <p class="has-error" data-ng-show="advancedForm.x_frame_options_allow_from.$error.pattern">
+        <span data-translate>Invalid format for the URL of the website to contain the IFRAME (should be https://url)</span>
+      </p>
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.disable_privacy_badge" type="checkbox">
+        <span data-translate>Disable the privacy badge</span>
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.disable_security_awareness_badge" type="checkbox">
+        <span data-translate>Disable the security awareness badge</span>
+      </label>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+

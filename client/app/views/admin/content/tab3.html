@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label data-translate>Languages Configuration</label>
+      <div data-ng-repeat="language in admin.node.languages_supported | orderBy:'name'">
+        <div>
+          <input data-ng-model="languages_enabled_edit[language.code]" type="checkbox">
+          <label>{{ language.name }} [{{ language.code }}]</label>
+          <a data-ng-init="isCollapsed = true" data-ng-click="isCollapsed = !isCollapsed">
+            <i class="glyphicon glyphicon-plus-sign" data-ng-show="isCollapsed"></i>
+            <i class="glyphicon glyphicon-minus-sign" data-ng-show="!isCollapsed"></i>
+          </a>
+        </div>
+        <div data-ng-show="!isCollapsed">
+          <div class="well well-large uploadfile" data-ng-controller="FileUploadCtrl">
+            <span pragmatic-file-upload="" data-ng-src="{{'/l10n/' + language.code + '.json' }}">
+              <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
+                <span class="glyphicon glyphicon-plus"></span>
+                <span data-translate>Load</span>
+                <input type="file" name="files[]" multiple data-ng-disabled="disabled">
+              </span>
+            </span>
+            <span class="uploadProgress hide">
+              <span class="progress progress-striped">
+                <span class="progress-bar" style="width: 0%"></span>
+              </span>
+            </span>
+            <a class="btn btn-primary" data-ng-class="{disabled: disabled}" data-ng-href="{{'/l10n/' + language.code + '.json'}}" download="{{language.code + '.json'}}">
+              <span class="glyphicon glyphicon-download"></span>
+              <span data-translate>Download</span>
+            </a>
+            <a class="btn btn-danger" data-ng-class="{disabled: disabled}" data-ng-click="perform_delete('/l10n/' + language.code + '.json')">
+              <span class="glyphicon glyphicon-trash"></span>
+              <span data-translate>Reset</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Default language</label>
+      <select class="form-control" data-ng-model="admin.node.default_language" data-ng-options="item.code as item.name for item in languages_default_selector | orderBy:'name'"></select>
+    </div>
+  </div>
+</div>

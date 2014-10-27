@@ -1,0 +1,35 @@
+<div id="HeaderBox">
+  <div id="HeaderBoxContent">
+    <span id="LogoBox" class="pull-left">
+      <a href="/#/"><img data-ng-src="{{ logo }}" class="img-rounded"></a>
+    </span>
+    <span id="TitleBox" class="pull-left">
+      <div id="titleboxdefault">
+        <div data-ng-show="isHomepage()" class="TitleBoxHomepage">
+          <div id="PageTitle">{{ node.name }}</div>
+          <div id="PageSubtitle" data-ng-if="hasSubtitle()">{{ node.subtitle }}</div>
+        </div>
+        <div data-ng-hide="isHomepage()" class="TitleBoxNotHomepage">
+          <div id="PageTitle">{{ header_title | translate }}</div>
+          <div id="PageSubtitle" data-ng-if="hasSubtitle()">{{ header_subtitle | translate }}</div>
+        </div>
+      </div>
+      <div id="titleboxwithtagline">
+        <a href="/#/">
+          <div id="logo"></div>
+        </a>
+        <div id="tagline" data-ng-show="isHomepage()" data-ng-if="hasSubtitle()">
+          {{ node.subtitle }}
+        </div>
+        <div id="tagline" data-ng-hide="isHomepage()">
+          <span id="PageTitle">{{ header_title | translate }}</span>
+          <span id="PageSubtitle" data-ng-if="hasSubtitle()">
+             - <span>{{ header_subtitle | translate }}</span>
+          </span>
+        </div>
+      </div>
+    </span>
+    <span id="ToolbarBox" class="pull-right" data-ng-if="!isWizard()" data-ng-include="'views/partials/toolbar.html'"></span>
+  </div>
+  <div class="clearfix"></div>
+</div>

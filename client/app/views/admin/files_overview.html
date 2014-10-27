@@ -1,0 +1,52 @@
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+<span data-translate>Files Overview</span>
+<span data-translate>Administration Interface</span>
+
+-->
+<div id="ContentBox" class="container"   data-ng-controller="OverviewCtrl">
+  <div class="row">
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+    <div class="col-md-9">
+      <p>
+        <span data-translate>This interface may help you spot anomalies with your Node.</span><br />
+        <span data-translate>The table below shows the files present in the submission directory, and their relationship with the internal database.</span>
+      </p>
+      <div class="table-responsive">
+        <table class="table table-bordered" id="fileList">
+          <thead>
+            <tr>
+              <th class="col-md-6">
+                <span data-translate>File</span>
+              </th>
+              <th class="col-md-2">
+                <span data-translate>Info</span>
+              </th>
+              <th class="col-md-2">
+                <span data-translate>Size</span>
+              </th>
+              <th class="col-md-2">
+                <span data-translate>References</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="fileListBody">
+            <tr data-ng-repeat="file in files">
+              <td class="col-md-6">
+                 {{file.name}}<br /><br />
+                 {{file.creation_date | date:'dd-MM-yyyy HH:mm' }} <br /><br />
+                 {{file.itip}} <br /><br />
+                 {{file.path}}
+              </td>
+              <td class="col-md-2">{{file.content_type}}</td>
+              <td class="col-md-2">{{file.size}}</td>
+              <td class="col-md-2">#{{file.rfiles}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> 
+    </div>
+  </div>
+</div>

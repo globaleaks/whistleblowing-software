@@ -1,0 +1,55 @@
+/** Receiver selection page **/
+
+#ContextPickSelector, #ContextIntroductionBox, #ReceiverIntroductionBox {
+  margin-bottom: 30px;
+}
+
+.receiverCards {
+  position: relative;
+}
+
+.receiverCard {
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #DDD;
+  border-radius: 10px;
+  word-wrap: break-word;
+}
+
+.receiverCard.selected {
+  background-color: #DFF0D8;
+}
+
+.receiverCard.disabled {
+  background-color: #f2dede;
+}
+
+.submissionField {
+  padding-bottom: 15px;
+}
+
+.submissionFieldInput {
+  padding-left: 15px;
+}
+
+#ReceiverSelectionBoxBig .receiverCardTitle {
+  font-size: 20px;
+}
+
+#ReceiverSelectionBoxBig .receiverCard {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 550px) {
+  .submission .nav.nav-tabs {
+    display: none;
+  }
+  
+  .receiverCard {
+    max-width: 95%;
+  }
+}
+
+#MaxSelectableReceiverBox {
+  margin-bottom: 30px;
+}
