@@ -1,25 +1,5 @@
 #!/bin/bash
 
-# setup global variables
-# XXX. these are going to be sourced from
-# ./scripts/common_inc.sh
-# later on.
-OWNER="${TRAVIS_REPO_SLUG%/*}"
-GLBACKEND_GIT_REPO="https://github.com/$OWNER/GLBackend.git"
-GLCLIENT_GIT_REPO="https://github.com/$OWNER/GLClient.git"
-
-TAG="$TRAVIS_BRANCH"
-
-# clone backend and client
-git clone $GLBACKEND_GIT_REPO
-git clone $GLCLIENT_GIT_REPO
-
-(cd GLBackend/ && \
- git checkout $TAG >& /dev/null || git checkout HEAD >& /dev/null)
-(cd GLClient/ && \
- git checkout $TAG >& /dev/null || git checkout HEAD >& /dev/null)
-
-
 # Add tor repository.
 sudo add-apt-repository \
     "deb http://deb.torproject.org/torproject.org $(lsb_release -s -c) main"
