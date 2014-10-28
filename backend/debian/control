@@ -4,6 +4,7 @@ Section: web
 Priority: optional
 Build-Depends:
  debhelper (>= 7.4.3)
+ , npm
  , python (>= 2.7)
  , python-setuptools
  , python-sphinx

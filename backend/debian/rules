@@ -6,6 +6,14 @@ export PYBUILD_NAME=globaleaks
 %:
 	dh $@ --with python2 --buildsystem=pybuild
 
+build-client:
+	cd ../client && npm install grunt bower
+	cd ../client &&	npm install
+	cd ../client && grunt build
+	ln -s ../client/build glclient
+
+override_dh_auto_build: build-client
+
 override_dh_installman:
 	python setup.py build_sphinx -b man
 	dh_installman
