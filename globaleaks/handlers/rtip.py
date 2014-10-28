@@ -66,6 +66,8 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     if receiverfile.status != 'unavailable':
 
         ret_dict = {
+            'id': receiverfile.id,
+            'ifile_id': internalfile.id,
             'status': receiverfile.status,
             'href' : "/rtip/" + receivertip_id + "/download/" + receiverfile.id,
             # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
@@ -79,6 +81,8 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     else: # == 'unavailable' in this case internal file metadata is returned.
 
         ret_dict = {
+            'id': receiverfile.id,
+            'ifile_id': internalfile.id,
             'status': 'unavailable',
             'href' : "",
             'name' : internalfile.name, # original filename

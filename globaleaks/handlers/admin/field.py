@@ -97,11 +97,12 @@ def create_field(store, request, language):
     :param: language: the language of the field definition dict
     :return: a serialization of the object
     """
-    print request
     fill_localized_keys(request, Field.localized_strings, language)
-    print request
 
     field = Field.new(store, request)
+
+    db_update_options(store, field.id, request['options'], language)
+
     return admin_serialize_field(field, language)
 
 @transact

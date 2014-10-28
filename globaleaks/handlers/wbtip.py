@@ -46,6 +46,7 @@ def wb_serialize_tip(internaltip, language=GLSetting.memory_copy.default_languag
 
 def wb_serialize_file(internalfile):
     wb_file_desc = {
+        'id': internalfile.id,
         'name' : internalfile.name,
         'content_type' : internalfile.content_type,
         'creation_date' : datetime_to_ISO8601(internalfile.creation_date),
