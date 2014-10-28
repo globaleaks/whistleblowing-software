@@ -1,6 +1,8 @@
 GLClient.controller('StatusCtrl',
   ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', 'Authentication', 'Tip', 'WBTip', 'Contexts', 'Fields', 'ReceiverPreferences',
   function($scope, $rootScope, $location, $route, $routeParams, $http, Authentication, Tip, WBTip, Contexts, Fields, ReceiverPreferences) {
+
+
     $scope.tip_id = $routeParams.tip_id;
     $scope.session = Authentication.id;
     $scope.xsrf_token = $.cookie('XSRF-TOKEN');
@@ -8,23 +10,20 @@ GLClient.controller('StatusCtrl',
 
     $scope.auth_landing_page = Authentication.auth_landing_page;
 
-    $scope.get_option_name = function(field, opt_id) {
-        var ret = '';
-        field.options.forEach(function(o){
-            if (o.id == opt_id) {
-                ret = o.attrs.name;
-            }
-        });
-        return ret;
+    $scope.getFields = function(field) {
+      if (field === undefined) {
+        return $scope.tip.fields;
+      } else {
+        return field.children; }
     }
 
     $scope.filterFields = function(field) {
-        if($scope.indexed_fields[field.key].type != 'fileupload') {
-            return true;
-        } else {
-          return false;
-        }
-    };
+      if(field.type != 'fileupload') {
+        return true;
+      } else {
+        return false;
+      }
+    }
 
     if (Authentication.role === 'wb') {
 
@@ -42,63 +41,56 @@ GLClient.controller('StatusCtrl',
         }
       }, true);
 
-      new WBTip(function(tip){
+      $scope.tip = new WBTip(function(tip){
 
         Contexts.query(function(contexts){
 
           Fields.query(function (fields) {
-            $scope.indexed_fields = _.reduce(fields, function (o, item) {
-              o[item.id] = item; return o
-            }, {});
 
             $scope.tip = tip;
-            $scope.contexts = contexts;
 
             angular.forEach(contexts, function(context, k){
-              if (context.id == $scope.tip.context_id) {
+              if (context.id == tip.context_id) {
                 $scope.current_context = context;
               }
             });
 
-            $scope.fields = [];
-            angular.forEach(tip.fields,
-                            function(field, k){
-              $scope.fields.push({
-                                  'key': k,
-                                  'value': field.value
-                                });
-            });
+            $scope.indexed_fields = _.reduce(fields, function (o, item) {
+              o[item.id] = item; return o
+            }, {});
+
+
+            $scope.$watch('tip.msg_receiver_selected', function(){
+              if ($scope.tip) {
+                $scope.tip.updateMessages();
+              }
+            }, true);
 
           });
 
-
         });
       });
-
-      $scope.$watch('tip.msg_receiver_selected', function(){
-        if ($scope.tip) {
-          $scope.tip.updateMessages();
-        }
-      }, true);
 
     } else if (Authentication.role === 'receiver') {
       $scope.preferences = ReceiverPreferences.get();
     
       var TipID = {tip_id: $scope.tip_id};
-      new Tip(TipID, function(tip){
-        
-        $scope.tip_unencrypted = false;
-        angular.forEach(tip.receivers, function(receiver){
-          if (receiver.gpg_key_status == 'Disabled' && receiver.receiver_id !== tip.receiver_id) {
-            $scope.tip_unencrypted = true;
-          };
-        });
+      $scope.tip = new Tip(TipID, function(tip){
 
         Contexts.query(function(contexts){
-          $scope.tip = tip;
-          $scope.contexts = contexts;
 
           Fields.query(function (fields) {
+
+            $scope.tip = tip;
+
+            $scope.tip_unencrypted = false;
+            angular.forEach(tip.receivers, function(receiver){
+              if (receiver.gpg_key_status == 'Disabled' && receiver.receiver_id !== tip.receiver_id) {
+                $scope.tip_unencrypted = true;
+              };
+            });
+
+
             $scope.indexed_fields = _.reduce(fields, function (o, item) {
               o[item.id] = item; return o
             }, {});
@@ -130,7 +122,7 @@ GLClient.controller('StatusCtrl',
                   $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
                 }
               }
-           };
+            };
           
             $scope.download_all_enabled = function() {
               download_all = false;
@@ -139,7 +131,13 @@ GLClient.controller('StatusCtrl',
                 if ($scope.tip.files[file].downloads < $scope.tip.download_limit) { 
                   download_all = true;
                 } 
-              } 
+              }
+
+              $scope.$watch('tip.msg_receiver_selected', function(){
+                if ($scope.tip) {
+                  $scope.tip.updateMessages();
+                }
+              }, true);
 
               return download_all;
             }
@@ -161,29 +159,6 @@ GLClient.controller('StatusCtrl',
       $scope.tip.newMessage($scope.newMessageContent);
       $scope.newMessageContent = '';
     };
-
-
-    $scope.getField = function(field_name) {
-      angular.forEach($scope.current_context.fields,
-                      function(field){
-        if ( field.key  == field_name ) {
-          return field; 
-        }
-      });
-    };
-
-    $scope.getFileDescription = function (id) {
-      ret = '';
-      angular.forEach($scope.tip.fields,
-                      function(field, k){
-        if ( field.value.file_id == id && field.value.file_description != undefined ) {
-          ret = field.value.file_description;
-          return;
-        }
-      });
-      return ret;
-    }
-
   }]);
 
 GLClient.controller('FileDetailsCtrl', ['$scope', function($scope){

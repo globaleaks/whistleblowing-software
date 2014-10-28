@@ -1,29 +1,37 @@
-<fieldset>
-  <div data-ng-repeat="field in current_context.steps[selection - 1].children">
+<fieldset data-ng-init="show_index = (field === undefined) ? true : false; fields = (field === undefined) ? current_context.steps[selection - 1].children : indexed_fields[field].children; wb_fields = (field === undefined) ? submission.current_submission.wb_fields : wb_fields[field].children">
+  <div data-ng-repeat="field in fields" data-ng-init="wb_fields[field].children = {};">
     <div data-ng-controller="SubmissionFieldCtrl" data-ng-form="" name="subForm" class="submissionField">
       <div data-ng-switch="" on="indexed_fields[field].type">
         <div data-ng-switch-default="" class="form-group input" data-ng-class="indexed_fields[field].required && 'required'">
           <div>
-            <label>{{$index + 1}}) {{indexed_fields[field].label}}</label>
+            <label ng-if="show_index">{{$index + 1}}) {{indexed_fields[field].label}}</label>
+            <label ng-if="!show_index">{{indexed_fields[field].label}}</label>
             <a href="" data-ng-show="indexed_fields[field].hint" data-content="indexed_fields[field].hint" popover="{{indexed_fields[field].hint}}" popover-placement="right" popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-question-sign"></i>
             </a>
           </div> 
           <div class="submissionFieldInput">
+            <input type="hidden" ng-init="wb_fields[field].order = $index" ng-model="wb_fields[field].order">
+            <input type="hidden" ng-init="wb_fields[field].label = indexed_fields[field].label" ng-model="wb_fields[field].label">
+            <input type="hidden" ng-init="wb_fields[field].type = indexed_fields[field].type" ng-model="wb_fields[field].type">
             <div class="row">
+               <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="wb_fields[field].value" data-ng-required="indexed_fields[field].required" name="input" value="{{wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder}}" type="text" />
+
               <div data-ng-switch="" on="indexed_fields[field].type" class="col-md-4">
-                <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="submission.current_submission.wb_fields[field].value" data-ng-required="indexed_fields[field].required" name="input" value="{{submission.current_submission.wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder}}" type="text" />
+                <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="wb_fields[field].value" data-ng-required="indexed_fields[field].required" name="input" value="{{wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder}}" type="text" />
 
-                <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="submission.current_submission.wb_fields[field].value" data-ng-required="indexed_fields[field].required" placeholder="{{indexed_fields[field].placeholder}}">{{submission.current_submission.wb_fields[field].value}}</textarea>
+                <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="wb_fields[field].value" data-ng-required="indexed_fields[field].required" placeholder="{{indexed_fields[field].placeholder}}">{{wb_fields[field].value}}</textarea>
 
-                <select class="form-control" data-ng-switch-when="selectbox" name="input" data-ng-model="submission.current_submission.wb_fields[field].value" data-ng-required="indexed_fields[field].required">
-                  <option data-ng-repeat="option in indexed_fields[field].options" value="{{option.id}}">{{option.attrs.name}}</option>
+                <select class="form-control" data-ng-switch-when="selectbox" name="input" data-ng-model="wb_fields[field].value" data-ng-required="indexed_fields[field].required">
+                  <option data-ng-repeat="option in indexed_fields[field].options" value="{{option.attrs.name}}">{{option.attrs.name}}</option>
                 </select>
 
                 <div data-ng-switch-when="checkbox">
-                  <div data-ng-repeat="option in indexed_fields[field].options">
+                  <div data-ng-repeat="option in indexed_fields[field].options"; data-ng-init="wb_fields[field].value[option.id] = {};">
+                    <input type="hidden" ng-init="wb_fields[field].value[option.id].order = $index" ng-model="wb_fields[field].value[option.id].order">
+                    <input type="hidden" ng-init="wb_fields[field].value[option.id].name = option.attrs.name" ng-model="wb_fields[field].value[option.id].name">
                     <input name="{{option.attrs.name}}"
-                        data-ng-model="submission.current_submission.wb_fields[field].value[option.id]"
+                        data-ng-model="wb_fields[field].value[option.id].value"
                         placeholder="{{indexed_fields[field].placeholder || 'false'}}" 
                         type="checkbox" />
                     <label>{{option.attrs.name}}</label>
@@ -41,7 +49,7 @@
                 <div data-ng-switch-when="tos">
                   <textarea class="form-control" data-ng-readonly="true">{{indexed_fields[field].options[0].attrs.clause}}</textarea>
                   <div class="form-group">
-                    <input data-ng-model="submission.current_submission.wb_fields[field].value" value="{{submission.current_submission.wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder || 'false'}}" type="checkbox" />
+                    <input data-ng-model="wb_fields[field].value" value="{{wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder || 'false'}}" type="checkbox" />
                     <label data-translate>{{indexed_fields[field].options[0].attrs.agreement_statement}}</label>
                   </div>
                 </div>

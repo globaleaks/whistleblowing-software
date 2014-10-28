@@ -3,6 +3,7 @@ GLClient.controller('SubmissionCtrl',
       function ($scope, $rootScope, $location, Authentication, Node, Submission, Fields, Receivers, WhistleblowerTip) {
 
   $rootScope.invalidForm = true;
+
   $scope.receiptConfimation = "";
 
   Node.get(function (node) {

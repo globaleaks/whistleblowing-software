@@ -249,3 +249,7 @@ table {
   width: 70%;
   margin: 100px auto;
 }
+
+.nestedField {
+  padding-left: 15px;
+}
