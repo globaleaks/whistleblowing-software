@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.node import anon_serialize_option
+from globaleaks.handlers.node import anon_serialize_option, get_field_option_localized_keys
 from globaleaks.models import Field, Step
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro
@@ -30,7 +30,7 @@ def admin_serialize_field(field, language):
     # this code is inspired by:
     #  - https://www.youtube.com/watch?v=KtNsUgKgj9g
 
-    options = [ anon_serialize_option(o, language) for o in field.options ]
+    options = [ anon_serialize_option(o, field.type, language) for o in field.options ]
 
     ret_dict = {
         'id': field.id,
@@ -67,20 +67,19 @@ def db_update_options(store, field_id, options, language):
         opt_dict['field_id'] = field_id
         opt_dict['number'] = n
 
-        # FIXME_OPTIONS
-        # fill_localized_keys(step, Step, language)
+        keys = get_field_option_localized_keys(field.type)
+        fill_localized_keys(option['attrs'], keys, language)
+        opt_dict['attrs'] = option['attrs']
 
         # check for reuse (needed to keep translations)
         if 'id' in option and option['id'] in indexed_old_options:
            o = indexed_old_options[option['id']]
-           o.update(opt_dict)
+           o.update(opt_dict, keys)
 
            # remove key from old steps to be removed
            del indexed_old_options[option['id']]
         else:
-           o = models.FieldOption.new(store, opt_dict)
-
-        o.attrs = option['attrs']
+           o = models.FieldOption.new(store, opt_dict, keys)
 
         n += 1
 

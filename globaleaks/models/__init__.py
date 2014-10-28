@@ -685,6 +685,29 @@ class FieldOption(Model):
     unicode_keys = ['field_id']
     int_keys = ['number']
 
+    def __init__(self, attrs=None, localized_keys=[]):
+        self.attrs = dict()
+        self.update(attrs, localized_keys)
+
+    @classmethod
+    def new(cls, store, attrs=None, localized_keys=[]):
+        obj = cls(attrs, localized_keys)
+        store.add(obj)
+        return obj
+
+    def update(self, attrs=None, localized_keys=[]):
+        BaseModel.update(self, attrs)
+
+        for k in localized_keys:
+            value = attrs['attrs'][k]
+            previous = self.attrs.get(k, None)
+            if previous and isinstance(previous, dict):
+                previous.update(value)
+                self.attrs[k] = previous
+            else:
+                self.attrs[k] = value
+
+
 class Step(Model):
     __storm_table__ = 'step'
 
