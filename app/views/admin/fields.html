@@ -156,7 +156,6 @@ This comment is needed in order to push the following strings on transifex
                           <label data-translate>Vertical order (Y)</label>
                           <input class="form-control" data-ng-maxlength="40" data-ng-model="field.y" value="{{field.y}}" type="number" min="0" max="99">
                         </div>
-                        {{ field.options }}
                         <div class="form-group" data-ng-show="field.options.length">
                           <label data-translate>Options</label>
                           <div data-ng-switch="" on="typeSwitch(field.type)" class="row">
@@ -209,6 +208,7 @@ This comment is needed in order to push the following strings on transifex
                             </div>
                           </div>
                         </div>
+                      </div>
                       </div>
 
                       <div class="col-md-6" ng-show="field.type == 'fieldgroup'">
