@@ -11,7 +11,6 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.node import anon_serialize_option, get_field_option_localized_keys
-from globaleaks.models import Field, Step
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
@@ -97,7 +96,7 @@ def create_field(store, request, language):
     :param: language: the language of the field definition dict
     :return: a serialization of the object
     """
-    fill_localized_keys(request, Field.localized_strings, language)
+    fill_localized_keys(request, models.Field.localized_strings, language)
 
     field = Field.new(store, request)
 
@@ -119,12 +118,12 @@ def update_field(store, field_id, request, language):
     """
     errmsg = 'Invalid or not existent field ids in request.'
 
-    field = Field.get(store, field_id)
+    field = models.Field.get(store, field_id)
     try:
         if not field:
             raise errors.InvalidInputFormat(errmsg)
 
-        fill_localized_keys(request, Field.localized_strings, language)
+        fill_localized_keys(request, models.Field.localized_strings, language)
 
         field.update(request)
 
@@ -138,10 +137,21 @@ def update_field(store, field_id, request, language):
         ancestors = set(fieldtree_ancestors(store, field.id))
         field.children.clear()
         for child_id in children:
-            child = Field.get(store, child_id)
+            child = models.Field.get(store, child_id)
             # check child do exists and graph is not recursive
             if not child or child.id in ancestors:
                 raise errors.InvalidInputFormat(errmsg)
+
+            parent_association =  store.find(models.FieldField, models.FieldField.child_id == child.id)
+            # if child already associated to a different parent avoid association
+            if parent_association.count():
+                raise errors.InvalidInputFormat("field already associated to a parent (fieldgroup)")
+
+            parent_association =  store.find(models.StepField, models.StepField.field_id == child.id)
+            # if child already associated to a different parent avoid association
+            if parent_association.count():
+                raise errors.InvalidInputFormat("field already associated to a parent (step)")
+
             field.children.add(child)
 
         db_update_options(store, field.id, request['options'], language)
@@ -162,7 +172,7 @@ def get_field_list(store, language):
     :param language: the language of the field definition dict
     :rtype: list of dict
     """
-    return [admin_serialize_field(f, language) for f in store.find(Field)]
+    return [admin_serialize_field(f, language) for f in store.find(models.Field)]
 
 @transact_ro
 def get_field(store, field_id, language):
@@ -174,7 +184,7 @@ def get_field(store, field_id, language):
     :return: the currently configured field.
     :rtype: dict
     """
-    field = Field.get(store, field_id)
+    field = models.Field.get(store, field_id)
     if not field:
         log.err('Invalid field requested')
         raise errors.FieldIdNotFound
@@ -191,7 +201,7 @@ def delete_field(store, field_id):
     :param field_id: the id corresponding to the field.
     :raise: FieldIdNotFound: if no such field is found.
     """
-    field = Field.get(store, field_id)
+    field = models.Field.get(store, field_id)
     if not field:
         raise errors.FieldIdNotFound
     field.delete(store)
@@ -205,11 +215,11 @@ def get_context_fieldtree(store, context_id):
     :return dict: a nested dictionary represending the tree.
     """
     #  context = Context.get(store, context_id)
-    steps = store.find(Step, Step.context_id == context_id).order_by(Step.number)
+    steps = store.find(models.Step, models.Step.context_id == context_id).order_by(models.Step.number)
     ret = []
     for step in steps:
-        field = FieldGroup.get(store, step.field_id)
-        ret.append(FieldGroup.serialize(store, field.id))
+        field = models.FieldGroup.get(store, step.field_id)
+        ret.append(models.FieldGroup.serialize(store, field.id))
     return ret
 
 def fieldtree_ancestors(store, field_id):

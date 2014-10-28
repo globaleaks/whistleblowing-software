@@ -14,7 +14,7 @@ from globaleaks.handlers.admin.field import admin_serialize_field
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list, anon_serialize_node, anon_serialize_step
-from globaleaks.models import Receiver, Context, Field, Step, Node, User
+from globaleaks.models import Receiver, Context, Field, Step, Node, User, FieldField, StepField
 from globaleaks.rest import errors, requests
 from globaleaks.security import gpg_options_parse
 from globaleaks.settings import transact, transact_ro, GLSetting
@@ -103,6 +103,17 @@ def db_create_step(store, context_id, steps, language):
             if not field:
                 log.err("Creation error: unexistent field can't be associated")
                 raise errors.FieldIdNotFound
+
+            parent_association =  store.find(FieldField, FieldField.child_id == field_id)
+            # if child already associated to a different parent avoid association
+            if parent_association.count():
+                raise errors.InvalidInputFormat("field already associated to a parent (fieldgroup)")
+
+            parent_association =  store.find(StepField, StepField.child_id == field_id)
+            # if child already associated to a different parent avoid association
+            if parent_association.count():
+                raise errors.InvalidInputFormat("field already associated to a parent (step)")
+
             s.children.add(field)
 
         n += 1
@@ -149,6 +160,17 @@ def db_update_steps(store, context_id, steps, language):
             if not field:
                 log.err("Creation error: unexistent field can't be associated")
                 raise errors.FieldIdNotFound
+
+            parent_association =  store.find(FieldField, FieldField.child_id == field_id)
+            # if child already associated to a different parent avoid association
+            if parent_association.count():
+                raise errors.InvalidInputFormat("field already associated to a parent (fieldgroup)")
+
+            parent_association =  store.find(StepField, StepField.field_id == field_id)
+            # if child already associated to a different parent avoid association
+            if parent_association.count():
+                raise errors.InvalidInputFormat("field already associated to a parent (step)")
+
             s.children.add(field)
 
         n += 1
