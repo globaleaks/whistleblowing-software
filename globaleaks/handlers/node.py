@@ -16,6 +16,14 @@ from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks import models, LANGUAGES_SUPPORTED
 
+def get_field_option_localized_keys(field_type):
+    localized_keys = []
+    if field_type == 'checkbox' or field_type =='selectbox':
+        localized_keys = ['name']
+    elif field_type == 'tos':
+        localized_keys = ['clause', 'agreement_statement']
+
+    return localized_keys
 
 @transact_ro
 def anon_serialize_ahmia(store, language=GLSetting.memory_copy.default_language):
@@ -135,7 +143,7 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
 
     return get_localized_values(ret_dict, context, context.localized_strings, language)
 
-def anon_serialize_option(option, language):
+def anon_serialize_option(option, field_type, language):
     """
     Serialize a field option, localizing its content depending on the language.
 
@@ -144,12 +152,14 @@ def anon_serialize_option(option, language):
     :return: a serialization of the object
     """
 
-    # FIXME_OPTIONS_L10N
-
     ret_dict = {
         'id': option.id,
-        'attrs': option.attrs
+        'attrs': {}
     }
+
+    keys = get_field_option_localized_keys(field_type)
+    
+    get_localized_values(ret_dict['attrs'], option.attrs, keys, language)
 
     return ret_dict
 
@@ -162,7 +172,7 @@ def anon_serialize_field(field, language):
     :return: a serialization of the object
     """
 
-    options = [ anon_serialize_option(o, language) for o in field.options ]
+    options = [ anon_serialize_option(o, field.type, language) for o in field.options ]
 
     ret_dict = {
         'id': field.id,
