@@ -18,17 +18,17 @@ def opportunistic_appdata_init():
     """
     Setup application data evaluating the presence of the following paths:
         - production data path: /usr/share/globaleaks/glclient/data/
-        - development data paths: ../GLClient/app/data/
-                                  ../../GLClient/app/data/
+        - development data paths: ../client/app/data/
+                                  ../../client/app/data/
     """
 
     # Fields and applicative data initialization
 
     fields_l10n = [ "/usr/share/globaleaks/glclient/data/appdata_l10n.json",
-                    "../GLClient/app/data/appdata_l10n.json",
-                    "../GLClient/build/data/appdata_l10n.json",
-                    "../../GLClient/app/data/appdata_l10n.json",
-                    "../../GLClient/build/data/appdata_l10n.json"]
+                    "../client/app/data/appdata_l10n.json",
+                    "../client/build/data/appdata_l10n.json",
+                    "../../client/app/data/appdata_l10n.json",
+                    "../../client/build/data/appdata_l10n.json"]
 
     appdata_dict = None
 
@@ -43,7 +43,7 @@ def opportunistic_appdata_init():
                 return appdata_dict
 
     if not appdata_dict:
-        print "No GLClient (appdata_l10n.json) file found in fixed paths!"
+        print "No client (appdata_l10n.json) file found in fixed paths!"
         return dict({'version': 1, 'fields': []}) # empty!
 
     return appdata_dict
@@ -114,7 +114,7 @@ def initialize_node(store, results, only_node, templates, appdata):
 
     for k in appdata['templates']:
 
-        # Todo handle pgp_expiration_alert and pgp_expiration_notice already included in GLClient/app/data/txt
+        # Todo handle pgp_expiration_alert and pgp_expiration_notice already included in client/app/data/txt
         # and internationalized with right support on backend db.
         if k in ['pgp_expiration_alert', 'pgp_expiration_notice']:
             continue
@@ -122,7 +122,7 @@ def initialize_node(store, results, only_node, templates, appdata):
         if k in appdata['templates']:
             setattr(notification, k, appdata['templates'][k])
 
-    # Todo handle pgp_expiration_alert and pgp_expiration_notice already included in GLClient/app/data/txt
+    # Todo handle pgp_expiration_alert and pgp_expiration_notice already included in client/app/data/txt
     # and internationalized with right support on backend db.
 
     store.add(notification)
@@ -228,6 +228,3 @@ def apply_cli_options(store):
         return [ node.hidden_service, node.public_site ]
     else:
         return None
-
-
-
