@@ -52,7 +52,7 @@ def create_step(store, **custom_attrs):
     attrs.update(custom_attrs)
     return models.Step.new(store, attrs)
 
-class TestAdminFieldInstance(helpers.TestHandler):
+class TestAdminFieldInstance(helpers.TestHandlerWithPopulatedDB):
         _handler = admin.field.FieldInstance
         fixtures = ['fields.json']
 
@@ -169,7 +169,7 @@ class TestAdminFieldInstance(helpers.TestHandler):
             self.assertFailure(handler.delete(field_id), errors.FieldIdNotFound)
 
 
-class TestAdminFieldCollection(helpers.TestHandler):
+class TestAdminFieldCollection(helpers.TestHandlerWithPopulatedDB):
         _handler = admin.field.FieldsCollection
         fixtures = ['fields.json']
 

@@ -11,7 +11,7 @@ from globaleaks.tests import helpers
 from globaleaks.handlers import collection
 from globaleaks.models import ReceiverTip
 
-class TestCollectionDownload(helpers.TestHandler):
+class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
     _handler = collection.CollectionDownload
 
     @transact_ro

@@ -20,7 +20,7 @@ class ClassToTestAuthenticatedDecorator(base.BaseHandler):
         self.set_status(200)
         self.finish("test")
 
-class TestSessionUpdateOnUnauthRequests(helpers.TestHandler):
+class TestSessionUpdateOnUnauthRequests(helpers.TestHandlerWithPopulatedDB):
     _handler = ClassToTestUnauthenticatedDecorator
 
     @inlineCallbacks
@@ -33,7 +33,7 @@ class TestSessionUpdateOnUnauthRequests(helpers.TestHandler):
         date2 = GLSetting.sessions[session.id].getTime()
         self.assertEqual(date1+FUTURE, date2)
 
-class TestSessionUpdateOnAuthRequests(helpers.TestHandler):
+class TestSessionUpdateOnAuthRequests(helpers.TestHandlerWithPopulatedDB):
     _handler = ClassToTestAuthenticatedDecorator
 
     @inlineCallbacks
@@ -46,7 +46,7 @@ class TestSessionUpdateOnAuthRequests(helpers.TestHandler):
         date2 = GLSetting.sessions[session.id].getTime()
         self.assertEqual(date1+FUTURE, date2)
 
-class TestAuthentication(helpers.TestHandler):
+class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     _handler = authentication.AuthenticationHandler
 
     @inlineCallbacks

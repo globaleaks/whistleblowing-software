@@ -8,7 +8,7 @@ from globaleaks.tests import helpers
 from globaleaks.handlers import receiver, admin
 from globaleaks.settings import GLSetting
 
-class TestReceiverInstance(helpers.TestHandler):
+class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = receiver.ReceiverInstance
 
     @inlineCallbacks
@@ -54,12 +54,12 @@ class TestReceiverInstance(helpers.TestHandler):
             handler.current_user.user_id = rcvr['id']
             yield handler.put()
 
-class TestTipsCollection(helpers.TestHandler):
+class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = receiver.TipsCollection
 
     @inlineCallbacks
     def test_get(self):
-        # FIXME currently the helpers.TestHandler do not populate any tip
+        # FIXME currently the helpers.TestHandlerWithPopulatedDB do not populate any tip
         #       so that very few code is covered. 
         handler = self.request(role='receiver')
         yield handler.get()

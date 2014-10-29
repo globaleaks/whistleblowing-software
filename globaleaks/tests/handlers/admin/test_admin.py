@@ -18,7 +18,7 @@ from globaleaks.utils.utility import uuid4
 # special guest:
 from io import BytesIO as StringIO
 
-class TestNodeInstance(helpers.TestHandler):
+class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.NodeInstance
 
     @inlineCallbacks
@@ -116,7 +116,7 @@ class TestNodeInstance(helpers.TestHandler):
         handler = self.request(self.dummyNode, role='admin')
         yield handler.put()
 
-class TestNotificationInstance(helpers.TestHandler):
+class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.notification.NotificationInstance
 
     @inlineCallbacks
@@ -127,7 +127,7 @@ class TestNotificationInstance(helpers.TestHandler):
          self.assertEqual(self.responses[0]['server'], 'stuff')
 
 
-class TestContextsCollection(helpers.TestHandler):
+class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.ContextsCollection
 
     def test_get(self):
@@ -166,7 +166,7 @@ class TestContextsCollection(helpers.TestHandler):
         self.assertEqual(self.responses[0]['description'], stuff)
 
 
-class TestContextInstance(helpers.TestHandler):
+class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.ContextInstance
 
     @inlineCallbacks
@@ -229,7 +229,7 @@ class TestContextInstance(helpers.TestHandler):
         yield self.assertFailure(handler.get(self.dummyContext['id']),
                      errors.ContextIdNotFound)
 
-class TestReceiversCollection(helpers.TestHandler):
+class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.ReceiversCollection
 
     @inlineCallbacks
@@ -286,7 +286,7 @@ class TestReceiversCollection(helpers.TestHandler):
         yield self.assertFailure(handler.post(), errors.ExpectedUniqueField)
 
 
-class TestReceiverInstance(helpers.TestHandler):
+class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.ReceiverInstance
 
     @inlineCallbacks
@@ -359,7 +359,7 @@ class TestReceiverInstance(helpers.TestHandler):
                      errors.ReceiverIdNotFound)
 
 
-class TestAdminStaticFileInstance(helpers.TestHandler):
+class TestAdminStaticFileInstance(helpers.TestHandlerWithPopulatedDB):
     """
     Sadly we can't use the official handler test, because in a
     file upload, Cyclone and GL patches transform the body in a StringIO.
@@ -410,7 +410,7 @@ class TestAdminStaticFileInstance(helpers.TestHandler):
         yield handler.delete(self.fakeFile['filename'])
 
 
-class TestAdminStaticFileList(helpers.TestHandler):
+class TestAdminStaticFileList(helpers.TestHandlerWithPopulatedDB):
     """
     """
     _handler = admstaticfiles.StaticFileList

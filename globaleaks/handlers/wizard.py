@@ -5,17 +5,19 @@
 #
 # This interface is used to fill the Node defaults whenever they are updated
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.admin import db_create_context, db_create_receiver, db_update_node, \
                                       anon_serialize_node, get_public_context_list, get_public_receiver_list
+from globaleaks.handlers.admin.field import db_create_field
 
 from globaleaks.rest import errors, requests
 from globaleaks.models import *
 from globaleaks.utils.utility import log
+
+import copy
+from twisted.internet.defer import inlineCallbacks
 
 
 @transact_ro
@@ -104,12 +106,19 @@ def admin_update_appdata(store, loaded_appdata):
 @transact
 def wizard(store, request, language=GLSetting.memory_copy.default_language):
 
-    receiver = request['receiver']
-    context = request['context']
     node = request['node']
+    context = request['context']
+    receiver = request['receiver']
 
     node['default_language'] = language
     node['languages_enabled'] = [ language ]
+
+    try:
+        db_update_node(store, node, True, language)
+
+    except Exception as excep:
+        log.err("Failed Node initialization %s" % excep)
+        raise excep
 
     try:
         context_dict = db_create_context(store, context, language)
@@ -117,20 +126,13 @@ def wizard(store, request, language=GLSetting.memory_copy.default_language):
         log.err("Failed Context initialization %s" % excep)
         raise excep
 
-    # associate the new context to the receiver 
+    # associate the new context to the receiver
     receiver['contexts'] = [ context_dict['id'] ]
 
     try:
         receiver_dict = db_create_receiver(store, receiver, language)
     except Exception as excep:
         log.err("Failed Receiver Finitialization %s" % excep)
-        raise excep
-
-    try:
-        db_update_node(store, node, True, language)
-
-    except Exception as excep:
-        log.err("Failed Node initialization %s" % excep)
         raise excep
 
 # ---------------------------------
