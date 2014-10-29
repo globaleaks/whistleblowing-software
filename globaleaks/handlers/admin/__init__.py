@@ -7,7 +7,9 @@
 import os
 import shutil
 
+from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
+
 from globaleaks import security, models, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db.datainit import import_memory_variables
 from globaleaks.handlers.admin.field import admin_serialize_field

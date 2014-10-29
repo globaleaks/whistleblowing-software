@@ -87,8 +87,7 @@ def db_update_options(store, field_id, options, language):
         o = store.find(models.FieldOption, models.FieldOption.id == opt_id).one()
         store.remove(o)
 
-@transact
-def create_field(store, request, language):
+def db_create_field(store, request, language):
     """
     Add a new field to the store, then return the new serialized object.
     :param: store: the store reference
@@ -103,6 +102,10 @@ def create_field(store, request, language):
     db_update_options(store, field.id, request['options'], language)
 
     return admin_serialize_field(field, language)
+
+@transact
+def create_field(store, request, language):
+    return db_create_field(store, request, language)
 
 @transact
 def update_field(store, field_id, request, language):

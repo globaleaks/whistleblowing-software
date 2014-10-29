@@ -22,7 +22,7 @@ from globaleaks.handlers.admin import create_context, create_receiver, db_get_co
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
 from globaleaks.jobs import delivery_sched, notification_sched
-from globaleaks.models import ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
+from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.plugins import notification
 from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.utils.utility import datetime_null, uuid4, log
@@ -88,11 +88,7 @@ def import_fixture(store, fixture):
         data = json.loads(f.read())
         for mock in data:
             mock_class = getattr(models, mock['class'])
-
-            obj = mock_class()
-            for key, val in mock['fields'].iteritems(): # reference tables do not have an associated id
-                setattr(obj, key, val)
-            store.add(obj)
+            db_forge_obj(store, mock_class, mock['fields'])
 
 
 class TestGL(unittest.TestCase):
@@ -429,7 +425,12 @@ class TestHandler(TestGLWithPopulatedDB):
         """
         override default handlers' get_store with a mock store used for testing/
         """
-        yield TestGLWithPopulatedDB.setUp(self)
+        # we bypass TestGLWith Populated DB to test against clean DB.
+        yield TestGL.setUp(self)
+
+        self.initialization()
+
+    def initialization(self):
         self.responses = []
 
         def mock_write(cls, response=None):
@@ -520,6 +521,14 @@ class TestHandler(TestGLWithPopulatedDB):
             handler.request.headers['X-Session'] = session.id
         return handler
 
+class TestHandlerWithPopulatedDB(TestHandler):
+    @inlineCallbacks
+    def setUp(self):
+        """
+        override default handlers' get_store with a mock store used for testing/
+        """
+        yield TestGLWithPopulatedDB.setUp(self)
+        self.initialization()
 
 class MockDict():
     """

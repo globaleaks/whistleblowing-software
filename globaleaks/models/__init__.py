@@ -16,6 +16,17 @@ from globaleaks.utils.validator import longlocal_v, dict_v
 
 from .properties import MetaModel, DateTime
 
+def db_forge_obj(store, mock_class, mock_fields):
+    obj = mock_class()
+    for key, val in mock_fields.iteritems():
+        setattr(obj, key, val)
+    store.add(obj)
+    return obj
+
+@transact
+def forge_obj(store, mock_class, mock_fields):
+    return db_forge_obj(store, mock_class, mock_fields)
+
 class BaseModel(Storm):
     """
     Globaleaks's most basic model.

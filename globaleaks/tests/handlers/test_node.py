@@ -8,7 +8,7 @@ from globaleaks.tests import helpers
 from globaleaks.handlers import node, admin
 from globaleaks.settings import GLSetting
 
-class TestInfoCollection(helpers.TestHandler):
+class TestInfoCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = node.InfoCollection
 
     @inlineCallbacks
@@ -21,7 +21,7 @@ class TestInfoCollection(helpers.TestHandler):
         self._handler.validate_message(json.dumps(self.responses[0]), requests.anonNodeDesc)
 
 
-class TestAhmiaDescriptionHandler(helpers.TestHandler):
+class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
     _handler = node.AhmiaDescriptionHandler
 
     @inlineCallbacks
@@ -51,7 +51,7 @@ class TestAhmiaDescriptionHandler(helpers.TestHandler):
         self._handler.validate_message(json.dumps(self.responses[0]), requests.ahmiaDesc)
 
 
-class TestContextsCollection(helpers.TestHandler):
+class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = node.ContextsCollection
 
     @inlineCallbacks
@@ -64,7 +64,7 @@ class TestContextsCollection(helpers.TestHandler):
         self._handler.validate_message(json.dumps(self.responses[0]), requests.nodeContextCollection)
 
 
-class TestReceiversCollection(helpers.TestHandler):
+class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = node.ReceiversCollection
 
     @inlineCallbacks
