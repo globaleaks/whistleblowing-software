@@ -32,7 +32,7 @@ def anon_serialize_ahmia(store, language=GLSetting.memory_copy.default_language)
     """
     node = store.find(models.Node).one()
 
-    mo = Rosetta()
+    mo = Rosetta(node.localized_strings)
     mo.acquire_storm_object(node)
 
     ret_dict = {

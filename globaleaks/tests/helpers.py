@@ -573,7 +573,7 @@ class MockDict():
             'stats_enabled': False,
             'required': True, # <- first field is special,
             'children': [],   #    it's marked as required!!!
-            'options': {},
+            'options': [],
             'y': 2,
             'x': 0
             },
@@ -588,7 +588,7 @@ class MockDict():
             'stats_enabled': False,
             'required': False,
             'children': [],
-            'options': {},
+            'options': [],
             'y': 3,
             'x': 0
             },
@@ -603,7 +603,7 @@ class MockDict():
             'stats_enabled': False,
             'required': False,
             'children': [],
-            'options': {},
+            'options': [],
             'y': 0,
             'x': 0
             },
@@ -618,7 +618,7 @@ class MockDict():
             'stats_enabled': False,
             'required': False,
             'children': [],
-            'options': {},
+            'options': [],
             'y': 0,
             'x': 0
             },
@@ -634,7 +634,7 @@ class MockDict():
             'required': False,
             'children': [u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
                          u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2'],
-            'options': {},
+            'options': [],
             'y': 4,
             'x': 0
             }]

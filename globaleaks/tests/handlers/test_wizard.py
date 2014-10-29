@@ -84,6 +84,7 @@ class TestFirstSetup(helpers.TestHandler):
             'appdata' : appdata_blob,
         }
 
+        print wizard_blob
         handler = self.request(wizard_blob, role='admin')
         yield handler.post()
 

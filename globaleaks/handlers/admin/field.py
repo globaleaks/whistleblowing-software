@@ -98,7 +98,7 @@ def create_field(store, request, language):
     """
     fill_localized_keys(request, models.Field.localized_strings, language)
 
-    field = Field.new(store, request)
+    field = models.Field.new(store, request)
 
     db_update_options(store, field.id, request['options'], language)
 
