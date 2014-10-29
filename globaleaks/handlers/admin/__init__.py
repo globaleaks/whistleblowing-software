@@ -109,7 +109,7 @@ def db_create_step(store, context_id, steps, language):
             if parent_association.count():
                 raise errors.InvalidInputFormat("field already associated to a parent (fieldgroup)")
 
-            parent_association =  store.find(StepField, StepField.child_id == field_id)
+            parent_association =  store.find(StepField, StepField.field_id == field_id)
             # if child already associated to a different parent avoid association
             if parent_association.count():
                 raise errors.InvalidInputFormat("field already associated to a parent (step)")

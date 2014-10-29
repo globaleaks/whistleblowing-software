@@ -310,6 +310,7 @@ class TestStep(helpers.TestGL):
     #skip = ('"test_gl_with_populated_db.json" must be updated'
     #        'in order to run this test.')
     fixtures = ['fields.json', "test_gl_with_populated_db.json"]
+    step_number = 1
 
     @inlineCallbacks
     def setUp(self):
@@ -336,11 +337,13 @@ class TestStep(helpers.TestGL):
     def create_step(self, store, context_id, field_id):
         step = {
           'context_id': context_id,
-          'number': 1,
+          'number': self.step_number,
           'label': "",
           'description': "",
           'hint': ""
         }
+
+        self.step_number += 1
 
         step = models.Step.new(store, step)
         field = models.Field.get(store, field_id)
@@ -357,8 +360,8 @@ class TestStep(helpers.TestGL):
         step1 = yield self.create_step(self.context_id, self.generalities_id)
         yield self.assert_model_exists(models.Step, step1)
         # creation of another step with same context and fieldgroup shall fail.
-        self.assertFailure(self.create_step(self.context_id, self.generalities_id),
-                           exceptions.IntegrityError)
+        self.assertFailure(self.create_step(self.context_id, self.generalities_id), exceptions.IntegrityError)
+
         # creation of another step bindded to the same context and different
         # fieldgroup shall succeed.
         second_fieldgroup = yield helpers.create_dummy_field(type='fieldgroup')
