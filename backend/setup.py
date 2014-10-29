@@ -22,7 +22,8 @@ version.StrictVersion = version.LooseVersion
 
 import globaleaks
 
-glclient_path = 'glclient'
+GLCLIENT_PATH = os.path.join(os.path.dirname(__file__),
+                             '..', 'client', 'build')
 
 if not sys.version_info[:2] == (2, 7):
     print('Error, GlobaLeaks is tested only with python 2.7')
@@ -70,15 +71,15 @@ class TestCommand(_TestCommand):
 
 data_files = [
     ('/usr/share/globaleaks/glclient',
-     list_files(os.path.join(glclient_path))),
+     list_files(os.path.join(GLCLIENT_PATH))),
     ('/usr/share/globaleaks/glclient/data',
-     list_files(os.path.join(glclient_path, 'data'))),
+     list_files(os.path.join(GLCLIENT_PATH, 'data'))),
     ('/usr/share/globaleaks/glclient/fonts',
-     list_files(os.path.join(glclient_path, 'fonts'))),
+     list_files(os.path.join(GLCLIENT_PATH, 'fonts'))),
     ('/usr/share/globaleaks/glclient/img',
-     list_files(os.path.join(glclient_path, 'img'))),
+     list_files(os.path.join(GLCLIENT_PATH, 'img'))),
     ('/usr/share/globaleaks/glclient/l10n',
-     list_files(os.path.join(glclient_path, 'l10n'))),
+     list_files(os.path.join(GLCLIENT_PATH, 'l10n'))),
     ('/usr/share/globaleaks/glbackend',
      ['requirements.txt'] + list_files('staticdata'))
 ]

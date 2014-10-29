@@ -10,7 +10,6 @@ build-client:
 	cd ../client && npm install grunt bower
 	cd ../client &&	npm install
 	cd ../client && grunt build
-	ln -s ../client/build glclient
 
 override_dh_auto_build: build-client
 
