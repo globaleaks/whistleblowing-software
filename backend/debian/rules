@@ -6,10 +6,13 @@ export PYBUILD_NAME=globaleaks
 %:
 	dh $@ --with python2 --buildsystem=pybuild
 
+# XXX. At the time of this writing, Debian has ITP #673727 to package grunt-cli.
+# Unfortunately, it is not crurrently available as package, so we have to
+# install it locally.
 build-client:
-	cd ../client && npm install grunt bower
-	cd ../client &&	npm install
-	cd ../client && grunt build
+	cd ../client &&	npm install grunt-cli
+	cd ../client && npm install
+	cd ../client && ./node_modules/grunt-cli/bin/grunt build
 
 override_dh_auto_build: build-client
 
