@@ -9,7 +9,7 @@ install:
   - pip install -r requirements.txt
   - pip install coverage coveralls
   - cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
-  - npm install grunt-cli bower
+  - sudo npm install -g grunt grunt-cli
   - npm install
 
 script:
