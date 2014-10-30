@@ -6,6 +6,7 @@ Build-Depends:
  debhelper (>= 7.4.3)
  , npm
  , python (>= 2.7)
+ , python-pip
  , python-setuptools
  , python-sphinx
  , python-twisted
