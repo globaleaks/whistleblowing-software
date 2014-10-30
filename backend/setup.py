@@ -10,6 +10,7 @@ import hashlib
 import urllib2
 from zipfile import ZipFile
 
+from pip.req import parse_requirements
 from setuptools import setup
 from setuptools.command.test import test as _TestCommand
 
@@ -30,19 +31,8 @@ if not sys.version_info[:2] == (2, 7):
     print('https://github.com/globaleaks/GlobaLeaks/wiki/Technical-requirements')
     raise AssertionError
 
-def pip_to_requirements(s):
-    """
-    Change a PIP-style requirements.txt string into one suitable for setup.py
-    """
-    m = re.match('(.*)([>=]=[.0-9a-zA-Z]*).*', s)
-    if m:
-        return '%s (%s)' % (m.group(1), m.group(2))
-    return s.strip()
 
-def get_requires():
-    with open('requirements.txt') as f:
-        requires = map(pip_to_requirements, f.readlines())
-        return requires
+install_requires = [str(r.req) for r in parse_requirements('requirements.txt')]
 
 def list_files(path):
     """
@@ -124,5 +114,5 @@ setup(
         'scripts/glclient-build',
         'bin/gl-fix-permissions',
     ],
-    requires=get_requires(),
+    install_requires=install_requires,
 )
