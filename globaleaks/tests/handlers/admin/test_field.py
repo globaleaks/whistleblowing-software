@@ -10,12 +10,12 @@ from globaleaks.settings import transact, transact_ro
 from globaleaks.tests import helpers
 
 sample_field = {
-        'label': '{"en": "test label"}',
-        'description': '{"en": "test description"}',
-        'hint': '{"en": "test hint"}',
+        'label': u"test label",
+        'description': u"test description",
+        'hint': u"test hint",
         'multi_entry': False,
         'type': 'checkbox',
-        'options': {},
+        'options': [],
         'required': False,
         'preview': False,
         'stats_enabled': True,
@@ -27,12 +27,12 @@ sample_field = {
 @transact
 def create_field(store, **custom_attrs):
     attrs = {
-        'label': '{"en": "test label"}',
-        'description': '{"en": "test description"}',
-        'hint': '{"en": "test hint"}',
+        'label': {"en": "test label"},
+        'description': {"en": "test description"},
+        'hint': {"en": "test hint"},
         'multi_entry': False,
         'type': 'fieldgroup',
-        'options': {},
+        'options': [],
         'required': False,
         'preview': False,
         'stats_enabled': True,
@@ -45,9 +45,9 @@ def create_field(store, **custom_attrs):
 @transact
 def create_step(store, **custom_attrs):
     attrs = {
-        'label': '{"en": "test label"}',
-        'description': '{"en": "test description"}',
-        'hint': '{"en": "test hint"}',
+        'label': {"en": "test label"},
+        'description': {"en": "test description"},
+        'hint': {"en": "test hint"},
     }
     attrs.update(custom_attrs)
     return models.Step.new(store, attrs)

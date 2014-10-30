@@ -18,11 +18,11 @@ from globaleaks.plugins.notification import MailNotification
 from globaleaks.plugins.base import Event
 from globaleaks.utils.templating import Templating
 
-from globaleaks.tests.helpers import MockDict, fill_random_fields, TestHandler, VALID_PGP_KEY
+from globaleaks.tests.helpers import MockDict, fill_random_fields, TestHandlerWithPopulatedDB, VALID_PGP_KEY
 
 GPGROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
 
-class TestReceiverSetKey(TestHandler):
+class TestReceiverSetKey(TestHandlerWithPopulatedDB):
     _handler = receiver.ReceiverInstance
 
     receiver_desc = {

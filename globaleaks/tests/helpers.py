@@ -845,12 +845,12 @@ def do_appdata_init(store):
 @transact
 def create_dummy_field(store, **custom_attrs):
     attrs = {
-        'label': '{"en": "test label"}',
-        'description': '{"en": "test description"}',
-        'hint': '{"en": "test hint"}',
+        'label': { "en": "test label" },
+        'description': { "en": "test description" },
+        'hint': { "en": "test hint" },
         'multi_entry': False,
         'type': 'fieldgroup',
-        'options': {},
+        'options': [],
         'required': False,
         'preview': False,
         'stats_enabled': True,

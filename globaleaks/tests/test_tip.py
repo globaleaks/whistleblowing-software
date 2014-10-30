@@ -126,7 +126,6 @@ class TestTipInstance(TTip):
         for attrname in models.Context.localized_strings:
             self.tipContext[attrname] = stuff
 
-        print self.tipContext
         basehandler.validate_jmessage(self.tipContext, requests.adminContextDesc)
 
         # the test context need fields to be present
