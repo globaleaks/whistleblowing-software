@@ -428,13 +428,11 @@ adminFieldDesc = {
     'children': [ uuid_regexp ],
 }
 
-wizardFieldDesc = {
-    'incremental_number': int,
-    'localized_name': dict,
-    'localized_hint': dict,
-    'type': unicode,
-    'trigger': list,
-    'defined_options': list, # can be None, I don't remember if can be other ?
+wizardStepDesc = {
+    'label': dict,
+    'hint': dict,
+    'description': dict,
+    'children': list, 
 }
 
 wizardNodeDesc = {
@@ -446,7 +444,7 @@ wizardNodeDesc = {
 
 wizardAppdataDesc = {
     'version': int,
-    'fields': [ wizardFieldDesc ],
+    'fields': [ wizardStepDesc ],
     'node': wizardNodeDesc,
 }
 

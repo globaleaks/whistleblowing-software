@@ -4,6 +4,7 @@
 #   *****
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
+import copy
 import os
 import shutil
 
@@ -16,7 +17,7 @@ from globaleaks.handlers.admin.field import admin_serialize_field
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list, anon_serialize_node, anon_serialize_step
-from globaleaks.models import Receiver, Context, Field, Step, Node, User, FieldField, StepField
+from globaleaks import models
 from globaleaks.rest import errors, requests
 from globaleaks.security import gpg_options_parse
 from globaleaks.settings import transact, transact_ro, GLSetting
@@ -29,7 +30,7 @@ from . import field, notification
 
 def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_language):
 
-    node = store.find(Node).one()
+    node = store.find(models.Node).one()
 
     # Contexts and Receivers relationship
     associated = store.find(models.ReceiverContext).count()
@@ -97,21 +98,21 @@ def db_create_step(store, context_id, steps, language):
         step['context_id'] = context_id
         step['number'] = n
 
-        fill_localized_keys(step, Step.localized_strings, language)
+        fill_localized_keys(step, models.Step.localized_strings, language)
 
         s = models.Step.new(store, step)
         for field_id in step['children']:
-            field = Field.get(store, field_id)
+            field = models.Field.get(store, field_id)
             if not field:
                 log.err("Creation error: unexistent field can't be associated")
                 raise errors.FieldIdNotFound
 
-            parent_association =  store.find(FieldField, FieldField.child_id == field_id)
+            parent_association =  store.find(models.FieldField, models.FieldField.child_id == field_id)
             # if child already associated to a different parent avoid association
             if parent_association.count():
                 raise errors.InvalidInputFormat("field already associated to a parent (fieldgroup)")
 
-            parent_association =  store.find(StepField, StepField.field_id == field_id)
+            parent_association =  store.find(models.StepField, models.StepField.field_id == field_id)
             # if child already associated to a different parent avoid association
             if parent_association.count():
                 raise errors.InvalidInputFormat("field already associated to a parent (step)")
@@ -139,7 +140,7 @@ def db_update_steps(store, context_id, steps, language):
         step['context_id'] = context_id
         step['number'] = n
 
-        fill_localized_keys(step, Step.localized_strings, language)
+        fill_localized_keys(step, models.Step.localized_strings, language)
 
         # check for reuse (needed to keep translations)
         if 'id' in step and step['id'] in indexed_old_steps:
@@ -163,12 +164,12 @@ def db_update_steps(store, context_id, steps, language):
                 log.err("Creation error: unexistent field can't be associated")
                 raise errors.FieldIdNotFound
 
-            parent_association =  store.find(FieldField, FieldField.child_id == field_id)
+            parent_association =  store.find(models.FieldField, models.FieldField.child_id == field_id)
             # if child already associated to a different parent avoid association
             if parent_association.count():
                 raise errors.InvalidInputFormat("field already associated to a parent (fieldgroup)")
 
-            parent_association =  store.find(StepField, StepField.field_id == field_id)
+            parent_association =  store.find(models.StepField, models.StepField.field_id == field_id)
             # if child already associated to a different parent avoid association
             if parent_association.count():
                 raise errors.InvalidInputFormat("field already associated to a parent (step)")
@@ -261,15 +262,15 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
         the last update time of the node as a :class:`datetime.datetime`
         instance
     """
-    node = store.find(Node).one()
+    node = store.find(models.Node).one()
 
-    fill_localized_keys(request, Node.localized_strings, language)
+    fill_localized_keys(request, models.Node.localized_strings, language)
 
     password = request.get('password', None)
     old_password = request.get('old_password', None)
 
     if password and old_password and len(password) and len(old_password):
-        admin = store.find(User, (User.username == u'admin')).one()
+        admin = store.find(models.User, models.User.username == u'admin').one()
         admin.password = security.change_password(admin.password,
                                     old_password, password, admin.salt)
     try:
@@ -367,7 +368,7 @@ def get_context_list(store, language=GLSetting.memory_copy.default_language):
     Returns:
         (dict) the current context list serialized.
     """
-    contexts = store.find(Context)
+    contexts = store.find(models.Context)
     context_list = []
 
     for context in contexts:
@@ -424,9 +425,9 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
     receivers = request.get('receivers', [])
     steps = request.get('steps', [])
 
-    fill_localized_keys(request, Context.localized_strings, language)
+    fill_localized_keys(request, models.Context.localized_strings, language)
 
-    context = Context(request)
+    context = models.Context(request)
 
     # Integrity checks related on name (need to exists, need to be unique)
     # are performed only using the default language at the moment (XXX)
@@ -455,13 +456,42 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
     c = store.add(context)
 
     for receiver_id in receivers:
-        receiver = Receiver.get(store, receiver_id)
+        receiver = models.Receiver.get(store, receiver_id)
         if not receiver:
             log.err("Creation error: unexistent context can't be associated")
             raise errors.ReceiverIdNotFound
         c.receivers.add(receiver)
 
-    db_create_step(store, context.id, steps, language)
+    if steps: 
+        db_create_step(store, context.id, steps, language)
+    else:
+        appdata = store.find(models.ApplicationData).one()
+        steps = appdata.fields
+        n_s = 1
+        for step in steps:
+            f_children = copy.deepcopy(step['children'])
+            del step['children']
+            s = models.db_forge_obj(store, models.Step, step)
+            for f_child in f_children:
+                o_children = copy.deepcopy(f_child['options'])
+                del f_child['options']
+                # FIXME currently default updata do not handle fieldgroups
+                # all this block must be redesigned in order to be called recursively
+                del f_child['children']  
+                f = models.db_forge_obj(store, models.Field, f_child)
+                n_o = 1
+                for o_child in o_children:
+                     o = models.db_forge_obj(store, models.FieldOption, o_child)
+                     o.field_id = f.id
+                     o.number = n_o
+                     f.options.add(o)
+                     n_o += 1
+                f.step_id = s.id
+                s.children.add(f)
+            s.context_id = context.id
+            s.number = n_s
+            context.steps.add(s)
+            n_s += 1
 
     log.debug("Created context %s (using %s)" % (context_name, language) )
 
@@ -477,7 +507,7 @@ def get_context(store, context_id, language=GLSetting.memory_copy.default_langua
     Returns:
         (dict) the context with the specified id.
     """
-    context = store.find(Context, Context.id == context_id).one()
+    context = store.find(models.Context, models.Context.id == context_id).one()
 
     if not context:
         log.err("Requested invalid context")
@@ -499,7 +529,7 @@ def db_get_context_fields(store, context_id, language=GLSetting.memory_copy.defa
         (dict) the fields associated with the context with the specified id.
     """
 
-    context = store.find(Context, Context.id == context_id).one()
+    context = store.find(models.Context, models.Context.id == context_id).one()
 
     if not context:
         log.err("Requested invalid context")
@@ -538,7 +568,7 @@ def update_context(store, context_id, request, language=GLSetting.memory_copy.de
     Returns:
             (dict) the serialized object updated
     """
-    context = store.find(Context, Context.id == context_id).one()
+    context = store.find(models.Context, models.Context.id == context_id).one()
 
     if not context:
          raise errors.ContextIdNotFound
@@ -546,13 +576,13 @@ def update_context(store, context_id, request, language=GLSetting.memory_copy.de
     receivers = request.get('receivers', [])
     steps = request.get('steps', [])
 
-    fill_localized_keys(request, Context.localized_strings, language)
+    fill_localized_keys(request, models.Context.localized_strings, language)
 
     for receiver in context.receivers:
         context.receivers.remove(receiver)
 
     for receiver_id in receivers:
-        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+        receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
         if not receiver:
             log.err("Update error: unexistent receiver can't be associated")
             raise errors.ReceiverIdNotFound
@@ -588,7 +618,7 @@ def delete_context(store, context_id):
     Args:
         context_id: the context id of the context to remove.
     """
-    context = store.find(Context, Context.id == context_id).one()
+    context = store.find(models.Context, models.Context.id == context_id).one()
 
     if not context:
         log.err("Invalid context requested in removal")
@@ -605,7 +635,7 @@ def get_receiver_list(store, language=GLSetting.memory_copy.default_language):
     """
     receiver_list = []
 
-    receivers = store.find(Receiver)
+    receivers = store.find(models.Receiver)
     for receiver in receivers:
         receiver_list.append(admin_serialize_receiver(receiver, language))
 
@@ -633,12 +663,12 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
         (dict) the configured receiver
     """
 
-    fill_localized_keys(request, Receiver.localized_strings, language)
+    fill_localized_keys(request, models.Receiver.localized_strings, language)
 
     mail_address = request['mail_address']
 
     # Pretend that username is unique:
-    homonymous = store.find(User, User.username == mail_address).count()
+    homonymous = store.find(models.User, models.User.username == mail_address).count()
     if homonymous:
         log.err("Creation error: already present receiver with the requested username: %s" % mail_address)
         raise errors.ExpectedUniqueField('mail_address', mail_address)
@@ -661,7 +691,7 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
     receiver_user.last_login = datetime_null()
     store.add(receiver_user)
 
-    receiver = Receiver(request)
+    receiver = models.Receiver(request)
     receiver.user = receiver_user
 
     receiver.mail_address = mail_address
@@ -678,7 +708,7 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
 
     contexts = request.get('contexts', [])
     for context_id in contexts:
-        context = Context.get(store, context_id)
+        context = models.Context.get(store, context_id)
         if not context:
             log.err("Creation error: invalid Context can't be associated")
             raise errors.ContextIdNotFound
@@ -699,7 +729,7 @@ def get_receiver(store, receiver_id, language=GLSetting.memory_copy.default_lang
         (dict) the receiver
 
     """
-    receiver = Receiver.get(store, receiver_id)
+    receiver = models.Receiver.get(store, receiver_id)
 
     if not receiver:
         log.err("Requested in receiver")
@@ -715,16 +745,16 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
     raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
     not exist.
     """
-    receiver = Receiver.get(store, receiver_id)
+    receiver = models.Receiver.get(store, receiver_id)
 
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    fill_localized_keys(request, Receiver.localized_strings, language)
+    fill_localized_keys(request, models.Receiver.localized_strings, language)
 
     mail_address = request['mail_address']
 
-    homonymous = store.find(User, User.username == mail_address).one()
+    homonymous = store.find(models.User, models.User.username == mail_address).one()
     if homonymous and homonymous.id != receiver.user_id:
         log.err("Update error: already present receiver with the requested username: %s" % mail_address)
         raise errors.ExpectedUniqueField('mail_address', mail_address)
@@ -749,7 +779,7 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
         receiver.contexts.remove(context)
 
     for context_id in contexts:
-        context = Context.get(store, context_id)
+        context = models.Context.get(store, context_id)
         if not context:
             log.err("Update error: unexistent context can't be associated")
             raise errors.ContextIdNotFound
@@ -767,7 +797,7 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
 @transact
 def delete_receiver(store, receiver_id):
 
-    receiver = Receiver.get(store, receiver_id)
+    receiver = models.Receiver.get(store, receiver_id)
 
     if not receiver:
         log.err("Invalid receiver requested in removal")
