@@ -300,6 +300,7 @@ CREATE TABLE field (
     required INTEGER,
     preview INTEGER,
     stats_enabled INTEGER NOT NULL DEFAULT 0,
+    is_template INTEGER NOT NULL DEFAULT 0,
     x INTEGER NOT NULL DEFAULT 0,
     y INTEGER NOT NULL DEFAULT 0,
     type VARCHAR NOT NULL CHECK (TYPE IN ('inputbox',

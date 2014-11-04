@@ -162,12 +162,12 @@ def db_update_steps(store, context_id, steps, language):
                 log.err("Creation error: unexistent field can't be associated")
                 raise errors.FieldIdNotFound
 
-            parent_association =  store.find(models.FieldField, models.FieldField.child_id == field_id)
+            parent_association = store.find(models.FieldField, models.FieldField.child_id == field_id)
             # if child already associated to a different parent avoid association
             if parent_association.count():
                 raise errors.InvalidInputFormat("field already associated to a parent (fieldgroup)")
 
-            parent_association =  store.find(models.StepField, models.StepField.field_id == field_id)
+            parent_association = store.find(models.StepField, models.StepField.field_id == field_id)
             # if child already associated to a different parent avoid association
             if parent_association.count():
                 raise errors.InvalidInputFormat("field already associated to a parent (step)")
@@ -407,6 +407,17 @@ def generate_example_receipt(regexp):
     return unicode(rstr.xeger(regexp))
 
 
+def field_is_present(store, field):
+    result = store.find(models.Field,
+                        models.Field.label == field['label'],
+                        models.Field.description == field['description'],
+                        models.Field.hint == field['hint'],
+                        models.Field.multi_entry == field['multi_entry'],
+                        models.Field.type == field['type'],
+                        models.Field.preview == field['preview'])
+    return result.count() > 0
+
+
 def db_create_context(store, request, language=GLSetting.memory_copy.default_language):
     """
     Creates a new context from the request of a client.
@@ -460,12 +471,16 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
             raise errors.ReceiverIdNotFound
         c.receivers.add(receiver)
 
-    if steps: 
+    if steps:
         db_create_step(store, context.id, steps, language)
     else:
         appdata = store.find(models.ApplicationData).one()
         steps = copy.deepcopy(appdata.fields)
         n_s = 1
+        for step in steps:
+            for f_child in step['children']:
+                if not field_is_present(store, f_child):
+                    f_child['is_template'] = True
         for step in steps:
             f_children = copy.deepcopy(step['children'])
             del step['children']
@@ -475,7 +490,7 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
                 del f_child['options']
                 # FIXME currently default updata do not handle fieldgroups
                 # all this block must be redesigned in order to be called recursively
-                del f_child['children']  
+                del f_child['children']
                 f = models.db_forge_obj(store, models.Field, f_child)
                 n_o = 1
                 for o_child in o_children:
