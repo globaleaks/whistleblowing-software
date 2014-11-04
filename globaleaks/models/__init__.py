@@ -642,6 +642,10 @@ class Field(Model):
     # when encryption is enabled.
     stats_enabled = Bool()
 
+    # This indicates that this field should be used as a template for composing
+    # new steps.
+    is_template = Bool()
+
     x = Int()
     y = Int()
 
@@ -675,7 +679,7 @@ class Field(Model):
     unicode_keys = ['type']
     int_keys = ['x', 'y']
     localized_strings = ['label', 'description', 'hint']
-    bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled']
+    bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled', 'is_template']
 
     # XXX the instance already knows about the store, are we sure there's no way
     # to obtain it?

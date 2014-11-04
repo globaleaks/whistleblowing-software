@@ -54,7 +54,8 @@ def db_update_options(store, field_id, options, language):
     if field is None:
         raise errors.FieldIdNotFound
 
-    old_options = store.find(models.FieldOption, models.FieldOption.field_id == field_id)
+    old_options = store.find(models.FieldOption,
+                             models.FieldOption.field_id == field_id)
 
     indexed_old_options = {}
     for o in old_options:
@@ -95,6 +96,7 @@ def db_create_field(store, request, language):
     :param: language: the language of the field definition dict
     :return: a serialization of the object
     """
+    request['is_template'] = True
     fill_localized_keys(request, models.Field.localized_strings, language)
 
     field = models.Field.new(store, request)
@@ -136,7 +138,7 @@ def update_field(store, field_id, request, language):
         children = request['children']
         if children and field.type != 'fieldgroup':
             raise errors.InvalidInputFormat(errmsg)
-   
+
         ancestors = set(fieldtree_ancestors(store, field.id))
         field.children.clear()
         for child_id in children:
@@ -166,6 +168,7 @@ def update_field(store, field_id, request, language):
 
     return admin_serialize_field(field, language)
 
+
 @transact_ro
 def get_field_list(store, language):
     """
@@ -175,7 +178,8 @@ def get_field_list(store, language):
     :param language: the language of the field definition dict
     :rtype: list of dict
     """
-    return [admin_serialize_field(f, language) for f in store.find(models.Field)]
+    return [admin_serialize_field(f, language) for f in store.find(models.Field, models.Field.is_template == True)]
+
 
 @transact_ro
 def get_field(store, field_id, language):
