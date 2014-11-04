@@ -63,24 +63,6 @@ def admin_update_appdata(store, loaded_appdata):
 
         appdata.version = loaded_appdata['version']
 
-        try:
-
-            log.debug("Validating %d fields" % len(loaded_appdata['fields']))
-
-            accepted_types = [ "text", "radio", "select", "checkboxes",
-                               "textarea", "number", "url", "phone", "email" ]
-
-            for field in loaded_appdata['fields']:
-                if field['type'] not in accepted_types:
-                    log.debug("Invalid type received: %s" % field['type'])
-                    raise errors.InvalidInputFormat("Invalid type supply")
-
-            appdata.fields = loaded_appdata['fields']
-
-        except Exception as excep:
-            log.debug("Failed Fields initialization %s" % excep)
-            raise excep
-
         if 'presentation' in loaded_appdata['node']:
             node.presentation = loaded_appdata['node']['presentation']
 
