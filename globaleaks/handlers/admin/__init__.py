@@ -464,7 +464,7 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
         db_create_step(store, context.id, steps, language)
     else:
         appdata = store.find(models.ApplicationData).one()
-        steps = appdata.fields
+        steps = copy.deepcopy(appdata.fields)
         n_s = 1
         for step in steps:
             f_children = copy.deepcopy(step['children'])
