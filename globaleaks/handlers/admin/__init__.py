@@ -11,7 +11,7 @@ import shutil
 from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import security, models, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
+from globaleaks import security, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db.datainit import import_memory_variables
 from globaleaks.handlers.admin.field import admin_serialize_field
 from globaleaks.handlers.authentication import authenticated, transport_security_check
@@ -24,8 +24,6 @@ from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.third_party import rstr
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log, datetime_now, datetime_null, seconds_convert, datetime_to_ISO8601
-
-from . import field, notification
 
 
 def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_language):
@@ -215,7 +213,7 @@ def admin_serialize_context(context, language=GLSetting.memory_copy.default_lang
         "steps": steps
     }
 
-    return get_localized_values(ret_dict, context, context.localized_strings, language) 
+    return get_localized_values(ret_dict, context, context.localized_strings, language)
 
 def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
 

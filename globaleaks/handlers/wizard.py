@@ -10,13 +10,11 @@ from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.admin import db_create_context, db_create_receiver, db_update_node, \
                                       anon_serialize_node, get_public_context_list, get_public_receiver_list
-from globaleaks.handlers.admin.field import db_create_field
 
 from globaleaks.rest import errors, requests
 from globaleaks.models import *
 from globaleaks.utils.utility import log
 
-import copy
 from twisted.internet.defer import inlineCallbacks
 
 
@@ -25,7 +23,7 @@ def admin_serialize_appdata(store, language=GLSetting.memory_copy.default_langua
 
     appdata = store.find(ApplicationData).one()
 
-    # this condition happen only in the UnitTest
+    # this condition happens only in the UnitTest
     if not appdata:
         version = 0
         fields = []
@@ -130,7 +128,7 @@ def wizard(store, request, language=GLSetting.memory_copy.default_language):
     receiver['contexts'] = [ context_dict['id'] ]
 
     try:
-        receiver_dict = db_create_receiver(store, receiver, language)
+        db_create_receiver(store, receiver, language)
     except Exception as excep:
         log.err("Failed Receiver Finitialization %s" % excep)
         raise excep
