@@ -3,9 +3,7 @@
 GlobaLeaks ORM Models definitions.
 """
 from __future__ import absolute_import
-import types
 
-from storm import expr
 from storm.locals import Bool, Int, Pickle, Reference, ReferenceSet
 from storm.locals import Unicode, Storm, JSON
 
@@ -741,6 +739,7 @@ class ApplicationData(Model):
     __storm_table__ = 'applicationdata'
 
     version = Int()
+    # XXX why is this a Pickle? ~ A.
     fields = Pickle()
 
 
