@@ -1,0 +1,25 @@
+<dl data-ng-repeat="field in getFields(field) | filter:filterFields | orderBy:'order'">
+
+  <dt ng-class="{nestedField: $parent.field}">
+    <span data-ng-if="!$parent.field">{{$index + 1}}) {{field.label}}</span>
+    <span data-ng-if="$parent.field">{{field.label}}</span>
+  </dt>
+
+  <div data-ng-switch="" on="field.type" ng-class="{nestedField: $parent.field}">
+    <dd data-ng-switch-when="inputbox" class="preformatted">{{field.value}}</dd>
+
+    <dd data-ng-switch-when="textarea" class="preformatted">{{field.value}}</dd>
+
+    <dd data-ng-switch-when="selectbox" class="preformatted">{{ field.value }}</dd>
+
+    <dd data-ng-switch-when="tos">
+      <span ng-if="field.value" data-translate>Accepted</span>
+      <span ng-if="field.value" data-translate>Not accepted</span>
+    </dd>
+
+    <dd data-ng-switch-when="fieldgroup">
+      <div data-ng-include="'views/partials/tip_fields.html'"></div>
+    </dd>
+
+  </dl>
+</div>
