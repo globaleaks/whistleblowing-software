@@ -9,6 +9,59 @@
   margin-bottom: 5px;
 }
 
+.templateFieldAdder {
+  /* FIXME there is a bug where the gradient is being covered by the children
+   * templateFieldCard items.*/
+  background:
+    linear-gradient(#fff 30%, rgba(255,0,0,0)),
+    linear-gradient(rgba(255,0,0,0), #fff 70%) 0 100%,
+    radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)),
+    radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+  background:
+    linear-gradient(#fff 30%, rgba(255,0,0,0)),
+    linear-gradient(rgba(255,0,0,0), #fff 70%) 0 100%,
+    radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-size: 100% 60px, 100% 60px, 100% 10px, 100% 10px;
+  background-attachment: local, local, scroll, scroll;
+
+  max-height: 220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.templateFieldCard {
+  background-color: #fff;
+  border-radius: 3px;
+
+  -moz-border-radius: 3px;
+  box-shadow: 2px 1px 5px #888888;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.templateFieldCard h2 {
+  font-size: 20px;
+  margin: 0px;
+}
+
+.inline-block-row .col-xs-6 {
+  float:none;
+  display:inline-block;
+}
+
+.addField {
+  margin-bottom: 10px;
+}
+
+.addFieldButton {
+  vertical-align: bottom;
+}
+
 .configItemLast {
   margin-bottom: 30px;
 }
@@ -17,7 +70,7 @@
   background-color: #f9f9f9;
 }
 
-.addReceiver, .addContext, .addField {
+.addReceiver, .addContext {
   padding: 10px;
 }
 
@@ -49,9 +102,10 @@
 .step {
   padding: 16px;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 3px;
 
-  -moz-border-radius: 5px;
+  -moz-border-radius: 3px;
+  box-shadow: 2px 1px 5px #888888;
 }
 
 .step .stepIndex {
