@@ -16,47 +16,7 @@ This comment is needed in order to push the following strings on transifex
     <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
 
-      <div data-ng-controller="AdminFieldsAddCtrl">
-        <div class="row">
-          <form name="newField" novalidate>
-            <div class="addField configItem col-md-6">
-              <h4><span data-translate>Add new field</span></h4>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label data-translate>Label</label>
-                    <input class="form-control" data-ng-model="new_field.label" type="text" required>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Type</label>
-                    <select id="editFieldType" class="form-control" data-ng-model="new_field.type" required>
-                      <option value="inputbox" data-translate>Text</option>
-                      <option value="textarea" data-translate>Textarea</option>
-                      <option value="selectbox" data-translate>Selectbox</option>
-                      <option value="checkbox" data-translate>Checkbox</option>
-                      <option value="modal" data-translate>Modal Window</option>
-                      <option value="dialog" data-translate>Dialog Window</option>
-                      <option value="tos" data-translate>Terms of Service</option>
-                      <option value="fileupload" data-translate>File Upload</option>
-                      <option value="fieldgroup" data-translate>Field Group</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <button class="pull-left btn btn-success" data-ng-disabled="newField.$invalid" data-ng-click="add_field()">
-                      <i class="glyphicon glyphicon-ok"></i>
-                      <span data-translate>Add</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+      <div data-ng-include="'views/admin/add_fields.html'"></div>
 
       <br /><br />
 

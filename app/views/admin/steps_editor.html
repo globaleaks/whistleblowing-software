@@ -36,7 +36,8 @@ This comment is needed in order to push the following strings on transifex
   <div class="row">
     <div ui-sortable data-ng-model="context.steps">
         <div data-ng-repeat="step in context.steps" 
-             class="stepBox col-md-6"
+             class="stepBox"
+             data-ng-class="{'col-md-6': !editing, 'col-md-12': editing}"
              data-ng-init="editing=false"
              data-ng-controller="AdminStepEditorCtrl">
           <div class="step">
@@ -46,30 +47,27 @@ This comment is needed in order to push the following strings on transifex
             </div>
             <div data-ng-form="" name="editStep" class="stepEditorBody" data-ng-show="editing">
               <hr>
-              <div class="form-group">
-                <label data-translate>Label</label>
-                <input class="form-control" data-ng-model="step.label" type="text">
-              </div>
-              <div class="form-group">
-                <label data-translate>Hint</label>
-                <input class="form-control" data-ng-model="step.hint" type="text">
-              </div>
-              <div class="form-group">
-                <label data-translate>Description</label>
-                <div>
-                  <textarea class="form-control" data-ng-model="step.description">{{step.description}}</textarea>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label data-translate>Label</label>
+                  <input class="form-control" data-ng-model="step.label" type="text">
+                </div>
+                <div class="form-group col-md-6">
+                  <label data-translate>Hint</label>
+                  <input class="form-control" data-ng-model="step.hint" type="text">
                 </div>
               </div>
-              <div class="form-group">
-                <label data-translate>Add field</label>
-                <div class="input-group">
-                  <select data-ng-model="field_to_add" data-ng-options="item.id as item.label for item in admin.fields | orderBy:'name'" class="form-control"></select>
-                  <span class="input-group-btn">
-                    <button data-ng-click="add_field_to_step()" class="btn btn-primary" data-ng-disabled="!field_to_add || field_to_add == ''" type="button">
-                      <i class="glyphicon glyphicon-plus-sign"></i>
-                    </button>
-                  </span>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label data-translate>Description</label>
+                  <div>
+                    <textarea class="form-control" data-ng-model="step.description">{{step.description}}</textarea>
+                  </div>
                 </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6" data-ng-include="'views/admin/add_fields.html'"></div>
+                <div class="col-md-6" data-ng-include="'views/admin/add_fields_template.html'"></div>
               </div>
               <div class="form-group" data-ng-if="step.children.length">
                 <label data-translate>Configured fields:</label>
