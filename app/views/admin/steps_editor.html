@@ -33,12 +33,14 @@ This comment is needed in order to push the following strings on transifex
 <br /><br />
 <div data-ng-if="context.steps.length">
   <h4><span data-translate>Configured steps:</span></h4>
-  <div ui-sortable data-ng-model="context.steps">
-    <div class="row">
-      <div data-ng-repeat="step in context.steps">
-        <div class="stepBox col-md-6" data-ng-controller="AdminStepEditorCtrl">
+  <div class="row">
+    <div ui-sortable data-ng-model="context.steps">
+        <div data-ng-repeat="step in context.steps" 
+             class="stepBox col-md-6"
+             data-ng-init="editing=false"
+             data-ng-controller="AdminStepEditorCtrl">
           <div class="step">
-            <div class="stepEditorHeader" data-ng-init="editing=false">
+            <div class="stepEditorHeader">
               <div class="stepIndex">{{$index}}</div>
               <h2>{{step.label}}</h2>
             </div>
@@ -105,6 +107,5 @@ This comment is needed in order to push the following strings on transifex
         </div>
         <div class="clearfix" ng-if="$index%context.steps.length==context.steps.length-1"></div>
       </div>
-    </div>
   </div>
 </div>
