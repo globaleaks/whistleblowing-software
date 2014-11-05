@@ -42,7 +42,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
     });
 
     $scope.deleteStep = function(step) {
-      var idx = _.indexOf($scope.context.step, step);
+      var idx = _.indexOf($scope.context.steps, step);
       $scope.context.steps.splice(idx, 1);
     };
 
