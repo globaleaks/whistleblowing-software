@@ -87,13 +87,18 @@ This comment is needed in order to push the following strings on transifex
             </div>
             <hr>
             <div class="stepActions">
-              <button class="btn actionButton"
+              <button class="btn btn-default actionButton"
                       data-ng-show="!editing"
                       data-ng-click="editing=!editing">Edit</button>
               <button class="btn btn-success actionButton"
                       data-ng-show="editing"
                       data-ng-click="save_context(context);editing=!editing"
                       type="submit">Save</button>
+              <button 
+                class="btn btn-default actionButton"
+                data-ng-show="editing"
+                data-ng-click="editing=!editing">Cancel
+              </button>
               <button class="btn btn-danger actionButton"
                       data-ng-click="deleteStep(step)"
                       popover="{{ Delete | translate }}"
