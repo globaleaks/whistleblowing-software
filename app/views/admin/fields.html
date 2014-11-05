@@ -70,7 +70,7 @@ This comment is needed in order to push the following strings on transifex
 
           <div data-ng-model="admin.fields">
 
-            <div class="row" data-ng-repeat="field in admin.fields | orderBy:'label'">
+            <div class="row" data-ng-repeat="field in admin.fields | filter:{is_template: true} | orderBy:'label'">
               <form name="fieldForm" data-ng-controller="AdminFieldsEditorCtrl" novalidate>
                 <div class="configItem fieldItem"  data-ng-class="{'configItemLast': $last}">
 
