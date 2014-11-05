@@ -93,6 +93,31 @@
   margin-bottom: 20px;
 }
 
+/** Field editing **/
+
+.card {
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 3px;
+
+  -moz-border-radius: 3px;
+  box-shadow: 2px 1px 5px #888888;
+}
+
+.card h2 {
+  font-size: 24px;
+}
+
+.fieldEditorHeader {
+  padding: 20px;
+}
+
+.fieldEditorBody {
+  background-color: rgb(250, 250, 250);
+  padding: 20px;
+}
+
+
 /** Step editing **/
 
 .stepBox {
@@ -135,15 +160,6 @@
 
 .contextFields {
   margin-top: 10px;
-}
-
-.fieldEditorHeader {
-  padding: 20px;
-}
-
-.fieldEditorBody {
-  background-color: rgb(250, 250, 250);
-  padding: 20px;
 }
 
 .editorHeader {

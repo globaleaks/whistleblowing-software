@@ -37,13 +37,6 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$modal',
 
 GLClient.controller('AdminFieldsEditorCtrl', ['$scope',
   function($scope) {
-
-    $scope.editing = false;
-
-    $scope.toggleEditing = function () {
-      $scope.editing = $scope.editing ^ 1;
-    };
-
     $scope.save_field = function() {
       $scope.update($scope.field);
     }
