@@ -1,74 +1,12 @@
 <div class="templateFieldAdder">
   <div class="row">
-    <div class="col-md-6">
-      <div class="templateFieldCard">
-        <h2>Some field name</h2>
+    <div data-ng-repeat="field in admin.fields | filter:{is_template: true}">
+      <div class="col-md-6">
+        <div class="templateFieldCard">
+          <h2>{{field.label}}</h2>
+        </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="templateFieldCard">
-        <h2>Some field name</h2>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="templateFieldCard">
-        <h2>Some field name</h2>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="templateFieldCard">
-        <h2>Some field name</h2>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="templateFieldCard">
-        <h2>Some field name</h2>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="templateFieldCard">
-        <h2>Some field name</h2>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="templateFieldCard">
-        <h2>Some field name</h2>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="templateFieldCard">
-        <h2>Some field name</h2>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="templateFieldCard">
-        <h2>Some field name</h2>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="templateFieldCard">
-        <h2>Some field name</h2>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="templateFieldCard">
-        <h2>Some field name</h2>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="templateFieldCard">
-        <h2>Some field name</h2>
-      </div>
+      <div class="clearfix" data-ng-if="$index % 2 == 1"></div>
     </div>
   </div>
 </div>

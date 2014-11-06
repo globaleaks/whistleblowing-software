@@ -35,11 +35,19 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
 
       step.children = _.uniq(step.children, function(item){return JSON.stringify(item);});
     }
-
+    
     $scope.indexed_fields = {};
     angular.forEach($scope.admin.fields, function (field, key) {
-      $scope.indexed_fields[field.id] = field.label;
+      $scope.indexed_fields[field.id] = field;
     });
+
+    $scope.get_fields = function(step) {
+      var fields = [];
+      angular.forEach(step.children, function(field_idx){
+        fields.push($scope.indexed_fields[field_idx]);
+      });
+      return fields;
+    }
 
     $scope.deleteStep = function(step) {
       var idx = _.indexOf($scope.context.steps, step);

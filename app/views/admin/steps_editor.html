@@ -73,15 +73,8 @@ This comment is needed in order to push the following strings on transifex
               <div class="form-group" data-ng-if="step.children.length">
                 <label data-translate>Configured fields:</label>
                   <div ui-sortable data-ng-model="step.children">
-                    <div data-ng-repeat="field in step.children">
-                      <div class="field">
-                        <b>{{$index}})</b> {{indexed_fields[field]}}&nbsp;
-                        <div class="pull-right" data-ng-show="editing">
-                          <button class="btn btn-xs btn-danger" data-ng-click="deleteField(field)" popover="{{ Delete | translate }}" popover-placement="right" popover-trigger="mouseenter">
-                            <i class="glyphicon glyphicon-remove"></i>
-                          </button>
-                        </div>
-                      </div>
+                    <div data-ng-repeat="field in get_fields(step)">
+                      <div data-ng-include="'views/admin/edit_field.html'"></div>
                     </div>
                   </div>
               </div>
