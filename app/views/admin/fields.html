@@ -25,9 +25,9 @@ This comment is needed in order to push the following strings on transifex
 
       <div data-ng-controller="AdminFieldsCtrl" data-ng-show="admin.fields.length != 0">
         <div data-ng-model="admin.fields">
-
-          <div data-ng-repeat="field in admin.fields | filter:{is_template: true}" 
-            class="fieldBox"
+         
+          <div data-ng-repeat="field in admin.fields | filter:{is_template: true}">
+          <div class="fieldBox"
             data-ng-class="{'col-md-6': !editing, 'col-md-12': editing}"
             data-ng-init="editing=false" data-ng-controller="AdminFieldsEditorCtrl">
 
@@ -206,9 +206,9 @@ This comment is needed in order to push the following strings on transifex
                 </div>
               </div>
             </form>
-
-            <div class="clearfix" ng-if="$last"></div>
-            <!-- end repeat -->
+          </div>
+          <div class="clearfix" ng-if="$index % 2 == 1"></div>
+          <!-- end repeat -->
           </div>
         </div>
       </div>
