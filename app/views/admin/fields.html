@@ -26,7 +26,7 @@ This comment is needed in order to push the following strings on transifex
       <div data-ng-controller="AdminFieldsCtrl" data-ng-show="admin.fields.length != 0">
         <div data-ng-model="admin.fields">
          
-          <div data-ng-repeat="field in admin.fields | filter:{is_template: true}">
+          <div data-ng-repeat="field_key in admin.fields | filter:{is_template: true}">
             <div data-ng-include="'views/admin/edit_field.html'"></div>
           <!-- end repeat -->
           </div>

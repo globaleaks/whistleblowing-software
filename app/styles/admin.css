@@ -28,11 +28,22 @@
   background-attachment: local, local, scroll, scroll;
 
   max-height: 220px;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   padding-right: 10px;
   padding-left: 10px;
 }
+
+.templateFieldAdderContainer ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+.templateFieldAdderContainer ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
 
 .templateFieldCard {
   background-color: #fff;
