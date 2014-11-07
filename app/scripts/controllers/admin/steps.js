@@ -21,6 +21,12 @@ GLClient.controller('AdminStepAddCtrl', ['$scope',
   }
 ]);
 
+GLClient.controller('AdminFieldsTemplateAdderCtrl', ['$scope',
+  function($scope) {
+    $scope.field = $scope.get_field($scope.field_key);
+  }
+]);
+
 GLClient.controller('AdminStepEditorCtrl', ['$scope',
   function($scope) {
 
@@ -36,17 +42,22 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
       step.children = _.uniq(step.children, function(item){return JSON.stringify(item);});
     }
     
-    $scope.indexed_fields = {};
+    $scope.template_field_keys = [];
     angular.forEach($scope.admin.fields, function (field, key) {
-      $scope.indexed_fields[field.id] = field;
+      if (field.is_template === true) {
+        $scope.template_field_keys.push(field.id);
+      }
     });
 
-    $scope.get_fields = function(step) {
-      var fields = [];
-      angular.forEach(step.children, function(field_idx){
-        fields.push($scope.indexed_fields[field_idx]);
+    $scope.get_field = function(field_key) {
+      var selected_field = undefined;
+      angular.forEach($scope.admin.fields, function (field, key) {
+        if (field.id == field_key) {
+          selected_field = field;
+          return;
+        }
       });
-      return fields;
+      return selected_field;
     }
 
     $scope.deleteStep = function(step) {
@@ -57,6 +68,22 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
     $scope.deleteField = function(field) {
       var idx = _.indexOf($scope.step.children, field);
       $scope.step.children.splice(idx, 1);
+    };
+    
+    var originalFields = $scope.template_field_keys.slice();
+    $scope.sortableOptions = {
+      connectWith: ".configuredFields",
+      stop: function (e, ui) {
+        // if the element is removed from the first container
+        if ($(e.target).hasClass('templateFieldAdder') &&
+            ui.item.sortable.droptarget &&
+            e.target != ui.item.sortable.droptarget[0]) {
+          console.log(ui);
+          console.log(e);
+          // clone the original model to restore the removed item
+          $scope.template_field_keys = originalFields.slice();
+        }
+      }
     };
 
   }

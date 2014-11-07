@@ -35,7 +35,7 @@ This comment is needed in order to push the following strings on transifex
   <h4><span data-translate>Configured steps:</span></h4>
   <div class="row">
     <div ui-sortable data-ng-model="context.steps">
-        <div data-ng-repeat="step in context.steps">
+      <div data-ng-repeat="step in context.steps">
         <div 
              class="stepBox"
              data-ng-class="{'col-md-6': !editing, 'col-md-12': editing}"
@@ -72,8 +72,8 @@ This comment is needed in order to push the following strings on transifex
               </div>
               <div class="form-group" data-ng-if="step.children.length">
                 <label data-translate>Configured fields:</label>
-                  <div ui-sortable data-ng-model="step.children">
-                    <div data-ng-repeat="field in get_fields(step)">
+                  <div ui-sortable data-ng-model="step.children" class="configuredFields">
+                    <div data-ng-repeat="field_key in step.children">
                       <div data-ng-include="'views/admin/edit_field.html'"></div>
                     </div>
                   </div>
@@ -102,9 +102,9 @@ This comment is needed in order to push the following strings on transifex
           </div>
         <!-- Step end -->
         </div>
-        <div class="clearfix" ng-if="$index % 2 == 1"></div>
+      <div class="clearfix" ng-if="$last"></div>
       <!-- Repeat end -->
       </div>
-      </div>
+    </div>
   </div>
 </div>

@@ -1,8 +1,8 @@
-<div class="templateFieldAdder">
-  <div class="row">
-    <div data-ng-repeat="field in admin.fields | filter:{is_template: true}">
+<div class="templateFieldAdderContainer">
+  <div class="row templateFieldAdder" ng-model="template_field_keys" ui-sortable="sortableOptions">
+    <div data-ng-repeat="field_key in template_field_keys">
       <div class="col-md-6">
-        <div class="templateFieldCard">
+        <div class="templateFieldCard" data-ng-controller="AdminFieldsTemplateAdderCtrl">
           <h2>{{field.label}}</h2>
         </div>
       </div>
