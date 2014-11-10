@@ -34,6 +34,16 @@
   padding-left: 10px;
 }
 
+.templateFieldAdder .placeholder,
+.configuredFields .placeholder {
+  height: 100px;
+  width: 50%;
+  float: left;
+  border: 3px dotted #f1f1f1;
+  border-radius: 4px;
+  visibility: visible;
+}
+
 .templateFieldAdderContainer ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
@@ -43,7 +53,6 @@
     background-color: rgba(0,0,0,.5);
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
-
 
 .templateFieldCard {
   background-color: #fff;
@@ -82,7 +91,7 @@
 }
 
 .addReceiver, .addContext {
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .fileDetails {
