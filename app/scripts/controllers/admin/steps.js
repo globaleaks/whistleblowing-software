@@ -42,6 +42,11 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
       step.children = _.uniq(step.children, function(item){return JSON.stringify(item);});
     }
     
+    $scope.onDrop = function($data, $event, step) {
+      console.log($data);
+      console.log($event);
+    }
+   
     $scope.template_field_keys = [];
     angular.forEach($scope.admin.fields, function (field, key) {
       if (field.is_template === true) {
@@ -72,17 +77,8 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
     
     var originalFields = $scope.template_field_keys.slice();
     $scope.sortableOptions = {
-      connectWith: ".configuredFields",
       placeholder: "placeholder",
-      stop: function (e, ui) {
-        // if the element is removed from the first container
-        if ($(e.target).hasClass('templateFieldAdder') &&
-            ui.item.sortable.droptarget &&
-            e.target != ui.item.sortable.droptarget[0]) {
-          // clone the original model to restore the removed item
-          $scope.template_field_keys = originalFields.slice();
-        }
-      }
+      handle: ".stepEditorHeader"
     };
 
   }
