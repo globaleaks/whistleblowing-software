@@ -29,31 +29,31 @@ GLClient.controller('AdminFieldsTemplateAdderCtrl', ['$scope',
 
 GLClient.controller('AdminStepEditorCtrl', ['$scope',
   function($scope) {
+    $scope.template_field_keys = [];
+    $scope.template_fields = {};
+    angular.forEach($scope.admin.fields, function (field, key) {
+      if (field.is_template === true) {
+        $scope.template_field_keys.push(field.id);
+        $scope.template_fields[field.id] = field;
+      }
+    });
 
     $scope.add_field_to_step = function() {
       step = $scope.step;
 
-      if (step.children == undefined) {
-        step.children = [];
-      }
-
+      step.children = step.children || [];
       step.children.push($scope.field_to_add);
 
       step.children = _.uniq(step.children, function(item){return JSON.stringify(item);});
-    }
+    };
     
-    $scope.onDrop = function($data, $event, step) {
-      console.log($data);
-      console.log($event);
-    }
+    $scope.add_field_from_template = function(field_id, step) {
+      $scope.admin.new_field_from_template(field_id, step.id).then(function(field){
+        step.children = step.children || [];
+        step.children.push(field.id);
+      });
+    };
    
-    $scope.template_field_keys = [];
-    angular.forEach($scope.admin.fields, function (field, key) {
-      if (field.is_template === true) {
-        $scope.template_field_keys.push(field.id);
-      }
-    });
-
     $scope.get_field = function(field_key) {
       var selected_field = undefined;
       angular.forEach($scope.admin.fields, function (field, key) {
@@ -63,7 +63,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
         }
       });
       return selected_field;
-    }
+    };
 
     $scope.deleteStep = function(step) {
       var idx = _.indexOf($scope.context.steps, step);
@@ -75,11 +75,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
       $scope.step.children.splice(idx, 1);
     };
     
-    var originalFields = $scope.template_field_keys.slice();
-    $scope.sortableOptions = {
-      placeholder: "placeholder",
-      handle: ".stepEditorHeader"
-    };
 
   }
 ]);

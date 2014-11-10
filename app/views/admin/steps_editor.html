@@ -74,7 +74,7 @@ This comment is needed in order to push the following strings on transifex
                 <label data-translate>Configured fields:</label>
                   <div data-ng-model="step.children"
                        class="configuredFields"
-                       data-ui-on-drop="onDrop($data, $event, step)">
+                       data-ui-on-drop="add_field_from_template($data, step)">
                     <div data-ng-repeat="field_key in step.children">
                       <div data-ng-include="'views/admin/edit_field.html'"></div>
                     </div>
