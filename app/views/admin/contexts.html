@@ -17,36 +17,32 @@ This comment is needed in order to push the following strings on transifex
     <div class="col-md-9">
 
       <div data-ng-controller="AdminContextsCtrl">
-        <div class="row">
-          <form name="newContext" novalidate>
-            <div class="addContext configItem col-md-6">
-              <h4><span data-translate>Add new context</span></h4>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label data-translate>Name</label>
-                    <input class="form-control" data-ng-model="new_context_name" type="text" required>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <button class="pull-left btn btn-success" data-ng-disabled="newContext.$invalid" data-ng-click="add_context(new_context_name)">
-                      <i class="glyphicon glyphicon-ok"></i>
-                      <span data-translate>Add</span>
-                    </button>
-                  </div>
+        <form name="newContext" novalidate class="col-md-12">
+          <div class="addContext col-md-6">
+            <h4><span data-translate>Add new context</span></h4>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label data-translate>Name</label>
+                  <input class="form-control" data-ng-model="new_context_name" type="text" required>
                 </div>
               </div>
             </div>
-          </form>
-        </div>
-
-        <br /><br />
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <button class="pull-left btn btn-success" data-ng-disabled="newContext.$invalid" data-ng-click="add_context(new_context_name)">
+                    <i class="glyphicon glyphicon-ok"></i>
+                    <span data-translate>Add</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
 
         <div data-ng-show="admin.contexts.length != 0">
-          <div class="row text-right">
+          <div class="text-right">
             <button class="btn btn-success" data-ng-click="reorder_contexts_alphabetically()">
               <i class="glyphicon glyphicon-sort-by-alphabet"></i>
               <span data-translate>Reorder Contexts alphabetically</span>
@@ -59,7 +55,7 @@ This comment is needed in order to push the following strings on transifex
 
           <div ui-sortable data-ng-model="admin.contexts">
 
-            <div class="row" data-ng-repeat="context in admin.contexts | orderBy:'presentation_order'">
+            <div data-ng-repeat="context in admin.contexts | orderBy:'presentation_order'">
               <form name="contextForm" data-ng-controller="AdminContextsEditorCtrl" novalidate>
                 <div class="configItem contextItem"  data-ng-class="{'configItemLast': $last}">
 
