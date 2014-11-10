@@ -79,7 +79,12 @@ GLClient.controller('AdminContextsCtrl',
        function(result) { }
     );
   };
-  
+
+  $scope.sortableOptions = {
+    placeholder: "placeholder",
+    handle: ".handle"
+  };
+
 }]);
 
 GLClient.controller('AdminContextsEditorCtrl', ['$scope',
@@ -105,4 +110,5 @@ GLClient.controller('AdminContextsEditorCtrl', ['$scope',
         $scope.context.receivers.splice(idx, 1);
       }
     }
+
 }]);

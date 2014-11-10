@@ -53,14 +53,14 @@ This comment is needed in order to push the following strings on transifex
             </button>
           </div>
 
-          <div ui-sortable data-ng-model="admin.contexts">
+          <div ui-sortable="sortableOptions" data-ng-model="admin.contexts">
 
             <div data-ng-repeat="context in admin.contexts | orderBy:'presentation_order'">
               <form name="contextForm" data-ng-controller="AdminContextsEditorCtrl" novalidate>
                 <div class="configItem contextItem"  data-ng-class="{'configItemLast': $last}">
 
                   <div class="row" data-ng-click="toggleEditing()">
-                    <div class="editorHeader contextEditorHeader">
+                    <div class="editorHeader contextEditorHeader handle">
                       <div data-ng-show="!editing">
                         <span class="col-md-7 pull-left editorHeaderTitle">{{ context.name }}</span>
                         <span class="col-md-1 pull-right editorHeaderButtons" popover="{{ 'Click to edit, Drag to order' | translate }}" popover-placement="left" popover-trigger="mouseenter">
