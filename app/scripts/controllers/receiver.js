@@ -77,7 +77,7 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
 
 }]);
 
-GLClient.controller('ReceiverTipsCtrl', ['$scope', '$http', '$route', '$location', '$modal', 'ReceiverTips',
-  function($scope, $http, $route, $location, $modal, ReceiverTips) {
+GLClient.controller('ReceiverTipsCtrl', ['$scope', 'ReceiverTips',
+  function($scope, ReceiverTips) {
   $scope.tips = ReceiverTips.query();
 }]);
