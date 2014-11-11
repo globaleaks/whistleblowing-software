@@ -33,6 +33,7 @@ def admin_serialize_field(field, language):
 
     ret_dict = {
         'id': field.id,
+        'is_template': field.is_template,
         'multi_entry': field.multi_entry,
         'required': field.required,
         'preview': False,
@@ -245,6 +246,21 @@ def fieldtree_ancestors(store, field_id):
     else:
         return
 
+@transact
+def duplicate_field_template(store, request, language):
+    """
+    Duplicate a Field Template assigning it to a Context in a Specified Step
+    :return: a serialization of the new field in the specified language
+    """
+    field_id = request['field_template_id']
+    context_id = request['context_id']
+    step_id = request['step_id']
+
+    template = store.find(models.Field, models.Field.id == field_id).one()
+    template.copy(store)
+
+    return admin_serialize_field(field)
+
 class FieldsCollection(BaseHandler):
     """
     /admin/fields
@@ -260,8 +276,6 @@ class FieldsCollection(BaseHandler):
         Response: adminFieldList
         Errors: None
         """
-        # XXX TODO REMIND: is pointless define Response format because we're not
-        # making output validation
         response = yield get_field_list(self.request.language)
         self.set_status(200)
         self.finish(response)

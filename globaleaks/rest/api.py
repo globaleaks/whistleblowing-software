@@ -90,6 +90,7 @@ spec = [
     (r'/admin/node', admin.NodeInstance),
     (r'/admin/context', admin.ContextsCollection),
     (r'/admin/context/' + uuid_regexp, admin.ContextInstance),
+    (r'/admin/context/' + uuid_regexp + r'/templatecopy', admin.ContextFieldTemplateCopy),
     (r'/admin/receiver', admin.ReceiversCollection),
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
     (r'/admin/notification', admin.notification.NotificationInstance),

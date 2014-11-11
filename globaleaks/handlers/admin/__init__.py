@@ -13,7 +13,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import security, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db.datainit import import_memory_variables
-from globaleaks.handlers.admin.field import admin_serialize_field
+from globaleaks.handlers.admin.field import admin_serialize_field, duplicate_field_template
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list, anon_serialize_node, anon_serialize_step
@@ -989,6 +989,27 @@ class ContextInstance(BaseHandler):
         self.set_status(200) # Ok and return no content
         self.finish()
 
+class ContextFieldTemplateCopy(BaseHandler):
+    """
+    classic CRUD in the single Context Field resource.
+    """
+
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def post(self, *uriargs):
+        """
+        Request: adminContextFieldTemplateCopyDesc
+        Response: adminContextDesc
+
+        Copy a field template and assign it to specified context and step
+        """
+        request = self.validate_message(self.request.body, requests.adminContextFieldTemplateCopyDesc)
+
+        response = yield duplicate_field_template(request)
+
+        self.set_status(201) # Created
+        self.finish(response)
 
 class ReceiversCollection(BaseHandler):
     """

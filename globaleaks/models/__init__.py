@@ -4,6 +4,8 @@ GlobaLeaks ORM Models definitions.
 """
 from __future__ import absolute_import
 
+import copy
+
 from storm.locals import Bool, Int, Pickle, Reference, ReferenceSet
 from storm.locals import Unicode, Storm, JSON
 
@@ -633,8 +635,8 @@ class Field(Model):
     label = JSON()
     description = JSON()
     hint = JSON()
-    multi_entry = JSON()
 
+    multi_entry = Bool()
     required = Bool()
     preview = Bool()
 
@@ -688,6 +690,28 @@ class Field(Model):
             child.delete(store)
         store.remove(self)
 
+    def copy(self, store):
+        obj_copy = self.__class__()
+        print self.label
+        obj_copy.label = copy.deepcopy(self.label)
+        obj_copy.description = copy.deepcopy(self.label)
+        obj_copy.hint = copy.deepcopy(self.label)
+        obj_copy.multi_entry = self.multi_entry
+        obj_copy.required = self.required
+        obj_copy.stats_enabled = self.stats_enabled
+        obj_copy.is_template = False
+        obj_copy.x = self.x
+        obj_copy.y = self.y
+        obj_copy.type = self.type
+        for child in self.children:
+            child_copy = child.copy(store)
+            obj_copy.children.add(child_copy)
+        for opt in self.options:
+            opt_copy = opt.copy(store)
+            obj_copy.options.add(opt_copy)
+        store.add(obj_copy)
+        return obj_copy
+
 class FieldOption(Model):
     _storm_table__ = 'option'
 
@@ -720,6 +744,12 @@ class FieldOption(Model):
             else:
                 self.attrs[k] = value
 
+    def copy(self, store):
+        obj_copy = self.__class__()
+        obj_copy.field_id = self.field_id
+        obj_copy.number = self.number
+        obj_copy.attrs = copy.deepcopy(self.attrs)
+        return obj_copy
 
 class Step(Model):
     __storm_table__ = 'step'
@@ -809,7 +839,6 @@ Field.options = ReferenceSet(Field.id,
                              FieldOption.field_id)
 
 FieldOption.field = Reference(FieldOption.field_id, Field.id)
-
 
 Context.steps = ReferenceSet(Context.id,
                              Step.context_id)
