@@ -315,7 +315,6 @@ class TestStep(helpers.TestGL):
     @inlineCallbacks
     def setUp(self):
         from globaleaks import db
-        yield db.create_tables(create_node=False)
         from globaleaks.settings import GLSetting
         GLSetting.bind_addresses = ['localhost']
         GLSetting.set_devel_mode()
@@ -331,6 +330,7 @@ class TestStep(helpers.TestGL):
         GLSetting.create_directories()
         self.generalities_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
         self.context_id = '34948a37-201e-44e0-bede-67212f1b7ee6'
+        yield db.create_tables(create_node=False)
         yield super(TestStep, self).setUp(create_node=False)
 
     @transact
@@ -350,6 +350,18 @@ class TestStep(helpers.TestGL):
         step.children.add(field)
         return step.id
 
+    @transact
+    def copy_field_template(self, store, field_id, context_id, step_id):
+        field = models.Field.get(store, field_id)
+        step = models.Step.get(store, step_id)
+        max = 0
+        for child in step.children:
+            if child.y > max:
+                max = child.y
+        new_field = field.copy(store)
+        new_field.y = max + 1
+        step.children.add(new_field)
+
     @inlineCallbacks
     def test_new(self):
         # tabula rasa elettrificata
@@ -362,8 +374,18 @@ class TestStep(helpers.TestGL):
         # creation of another step with same context and fieldgroup shall fail.
         self.assertFailure(self.create_step(self.context_id, self.generalities_id), exceptions.IntegrityError)
 
-        # creation of another step bindded to the same context and different
+        # creation of another step binded to the same context and different
         # fieldgroup shall succeed.
         second_fieldgroup = yield helpers.create_dummy_field(type='fieldgroup')
         step2 = yield self.create_step(self.context_id, second_fieldgroup)
         yield self.assert_model_exists(models.Step, step2)
+
+    @inlineCallbacks
+    def test_new_copy_field_template(self):
+        steps = yield transact(lambda store: store.find(models.Step).is_empty())()
+        self.assertTrue(steps)
+
+        step = yield self.create_step(self.context_id, self.generalities_id)
+        yield self.assert_model_exists(models.Step, step)
+
+        self.copy_field_template(self.generalities_id, self.context_id, step)

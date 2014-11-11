@@ -189,7 +189,13 @@ adminContextDesc = {
     'show_receivers': bool,
     'enable_private_messages': bool,
     'presentation_order': int,
-#    'step': AssertionError("Need to be update the Context format")
+    'steps': list
+}
+
+adminContextFieldTemplateCopy = {
+    'field_template_id': uuid_regexp,
+    'context_id': uuid_regexp,
+    'step_id': uuid_regexp,
 }
 
 adminReceiverDesc = {

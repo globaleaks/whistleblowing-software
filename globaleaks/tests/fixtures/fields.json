@@ -6,6 +6,7 @@
       "description": {"en": "description"},
       "hint": {"en": "hint"},
       "multi_entry": false,
+      "is_template": false,
       "required": true,
       "preview": true,
       "stats_enabled": true,
@@ -22,6 +23,7 @@
       "label": {"en": "surname"},
       "description": {"en": "description"},
       "hint": {"en":"hint"},
+      "is_template": false,
       "multi_entry": false,
       "required": true,
       "preview": true,
@@ -39,6 +41,7 @@
       "label": {"en": "gender"},
       "description": {"en": "description"},
       "hint": {"en": "hint"},
+      "is_template": false,
       "multi_entry": true,
       "required": true,
       "preview": true,
@@ -56,6 +59,7 @@
       "label": {"en": "birthdate"},
       "description": {"en": "description"},
       "hint": {"en": "hint"},
+      "is_template": false,
       "multi_entry": false,
       "required": true,
       "preview": true,
@@ -73,6 +77,7 @@
       "label": {"en": "generalities"},
       "description": {"en": "description"},
       "hint": {"en": "hint"},
+      "is_template": false,
       "multi_entry": true,
       "required": true,
       "preview": true,
@@ -97,5 +102,28 @@
       "child_id": "25521164-1d0f-5f80-8e8c-93f73e815156"
     },
     "class": "FieldField"
+  },
+  {
+    "fields": {
+      "parent_id": "37242164-1b1f-1110-1e1c-b1f12e815105",
+      "child_id": "98891164-1a0b-5b80-8b8b-93b73b815156"
+    },
+    "class": "FieldField"
+  },
+  {
+    "fields": {
+      "field_id": "98891164-1a0b-5b80-8b8b-93b73b815156",
+      "number": 1,
+      "attrs": {"name": "Female"}
+    },
+    "class": "FieldOption"
+  },
+  {
+    "fields": {
+      "field_id": "98891164-1a0b-5b80-8b8b-93b73b815156",
+      "number": 2,
+      "attrs": {"name": "Male"}
+    },
+    "class": "FieldOption"
   }
 ]
