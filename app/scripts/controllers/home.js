@@ -1,6 +1,6 @@
 'use strict';
 
-GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal', 
+GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
                     'Node', 'Authentication',
                     'WhistleblowerTip', 'Contexts', 'Receivers',
   function ($scope, $location, $modal, Node, Authentication, WhistleblowerTip, Contexts, Receivers) {
@@ -20,14 +20,14 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
 
     var open_quiz = function () {
       var modalInstance = $modal.open({
-        templateUrl: 'views/partials/quiz.html',
+        templateUrl: 'views/partials/security_awareness_quiz.html',
         controller: 'QuizCtrl',
         size: 'lg',
         scope: $scope
       });
     };
 
-    $scope.goToSubmission = function (stage) {
+    $scope.goToSubmission = function () {
       if (!$scope.anonymous && !$scope.node.tor2web_submission)
         return;
       // Before showing the security awareness badge
@@ -52,4 +52,9 @@ GLClient.controller('QuizCtrl', ['$scope', '$modalInstance', '$location',
       $location.path("/submission");
     }
   }
+
+  $scope.cancel = function () {
+    $modalInstance.close();
+  };
+
 }]);
