@@ -1,8 +1,9 @@
 'use strict';
 
-GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication',
+GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal', 
+                    'Node', 'Authentication',
                     'WhistleblowerTip', 'Contexts', 'Receivers',
-  function ($scope, $location, Node, Authentication, WhistleblowerTip, Contexts, Receivers) {
+  function ($scope, $location, $modal, Node, Authentication, WhistleblowerTip, Contexts, Receivers) {
     $scope.receipt = '';
     $scope.configured = false;
     $scope.step = 1;
@@ -17,25 +18,38 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication'
       });
     };
 
+    var open_quiz = function () {
+      var modalInstance = $modal.open({
+        templateUrl: 'views/partials/quiz.html',
+        controller: 'QuizCtrl',
+        size: 'lg',
+        scope: $scope
+      });
+    };
+
     $scope.goToSubmission = function (stage) {
       if (!$scope.anonymous && !$scope.node.tor2web_submission)
         return;
-
-      if (stage == 1) {
-        // Before showing the security awareness badge
-        if ($scope.anonymous ||
-            $scope.node.disable_security_awareness_badge) {
-          $location.path("/submission");
-        } else {
-          $scope.showQuestions = true;
-        }
-      } else if (stage == 2) {
-        // After showing the security awareness badge
-        if ($scope.node.disable_security_awareness_questions ||
-            $scope.answer.value == 'b') {
-          $location.path("/submission");
-        }
+      // Before showing the security awareness badge
+      if ($scope.anonymous ||
+          $scope.node.disable_security_awareness_badge) {
+        $location.path("/submission");
+      } else {
+        open_quiz();
       }
     };
     
+}]);
+
+
+GLClient.controller('QuizCtrl', ['$scope', '$modalInstance', '$location',
+                    function($scope, $modalInstance, $location) {
+  $scope.goToSubmission = function() {
+    // After showing the security awareness badge
+    if ($scope.node.disable_security_awareness_questions ||
+        $scope.answer.value == 'b') {
+      $modalInstance.close();
+      $location.path("/submission");
+    }
+  }
 }]);
