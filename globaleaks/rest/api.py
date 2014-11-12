@@ -90,13 +90,17 @@ spec = [
     (r'/admin/node', admin.NodeInstance),
     (r'/admin/context', admin.ContextsCollection),
     (r'/admin/context/' + uuid_regexp, admin.ContextInstance),
-    (r'/admin/context/' + uuid_regexp + r'/templatecopy', admin.ContextFieldTemplateCopy),
     (r'/admin/receiver', admin.ReceiversCollection),
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
     (r'/admin/notification', admin.notification.NotificationInstance),
 
-    (r'/admin/field', admin.field.FieldsCollection),
-    (r'/admin/field/' + field_regexp, admin.field.FieldInstance),
+    (r'/admin/fields', admin.field.FieldCollection),
+    (r'/admin/field', admin.field.FieldCreate),
+    (r'/admin/field' + uuid_regexp, admin.field.FieldUpdate),
+
+    (r'/admin/fieldtemplates', admin.field.FieldsTemplateCollection),
+    (r'/admin/fieldtemplate', admin.field.FieldTemplateCreate),
+    (r'/admin/fieldtemplate/' + field_regexp, admin.field.FieldTemplateUpdate),
 
     (r'/admin/anomalies', statistics.AnomaliesCollection),
     (r'/admin/stats', statistics.StatsCollection),

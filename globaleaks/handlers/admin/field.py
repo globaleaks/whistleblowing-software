@@ -171,9 +171,9 @@ def update_field(store, field_id, request, language):
 
 
 @transact_ro
-def get_field_list(store, language):
+def get_field_template_list(store, language):
     """
-    Serialize all the fields of the node, localizing their content depending on the language.
+    Serialize all the field templates of the node, localizing their content depending on the language.
 
     :return: the current field list serialized.
     :param language: the language of the field definition dict
@@ -181,6 +181,16 @@ def get_field_list(store, language):
     """
     return [admin_serialize_field(f, language) for f in store.find(models.Field, models.Field.is_template == True)]
 
+@transact_ro
+def get_field_list(store, language):
+    """
+    Serialize all the fields of the node associated to a context and localizing their content depending on the language.
+
+    :return: the current field list serialized.
+    :param language: the language of the field definition dict
+    :rtype: list of dict
+    """
+    return [admin_serialize_field(f, language) for f in store.find(models.Field, models.Field.is_template == False)]
 
 @transact_ro
 def get_field(store, field_id, language):
@@ -258,10 +268,102 @@ def duplicate_field_template(store, request, language):
 
     template = store.find(models.Field, models.Field.id == field_id).one()
     template.copy(store)
-
     return admin_serialize_field(field)
 
-class FieldsCollection(BaseHandler):
+
+class FieldsTemplateCollection(BaseHandler):
+    """
+    /admin/fieldtemplates
+    """
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def get(self, *uriargs):
+        """
+        Return a list of all the fields templates available.
+
+        Parameters: None
+        Response: adminFieldList
+        Errors: None
+        """
+        response = yield get_field_template_list(self.request.language)
+        self.set_status(200)
+        self.finish(response)
+
+class FieldTemplateCreate(BaseHandler):
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def post(self, *uriargs):
+        """
+        Create a new field template.
+
+        Request: adminFieldDesc
+        Response: adminFieldDesc
+        Errors: InvalidInputFormat, FieldIdNotFound
+        """
+
+        request = self.validate_message(self.request.body,
+                                        requests.adminFieldDesc)
+        response = yield create_field(request, self.request.language)
+        self.set_status(201)
+        self.finish(response)
+
+class FieldTemplateUpdate(BaseHandler):
+    """
+    Operation to iterate over a specific requested Field template
+
+    /admin/fieldtemplate/field_id
+    """
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def get(self, field_id, *uriargs):
+        """
+        Get the field identified by field_id
+
+        :param field_id:
+        :rtype: adminFieldDesc
+        :raises FieldIdNotFound: if there is no field with such id.
+        :raises InvalidInputFormat: if validation fails.
+        """
+        response = yield get_field_template(field_id, self.request.language)
+        self.set_status(200)
+        self.finish(response)
+
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def put(self, field_id, *uriargs):
+        """
+        Update a single field template's attributes.
+
+        Request: adminFieldDesc
+        Response: adminFieldDesc
+        Errors: InvalidInputFormat, FieldIdNotFound
+        """
+        request = self.validate_message(self.request.body,
+                                        requests.adminFieldDesc)
+        request['is_template'] = True
+        response = yield update_field(field_id, request, self.request.language)
+        self.set_status(202) # Updated
+        self.finish(response)
+
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def delete(self, field_id, *uriargs):
+        """
+        Delete a single field template.
+
+        Request: None
+        Response: None
+        Errors: InvalidInputFormat, FieldIdNotFound
+        """
+        yield delete_field(field_id)
+        self.set_status(200)
+
+class FieldCollection(BaseHandler):
     """
     /admin/fields
     """
@@ -270,7 +372,7 @@ class FieldsCollection(BaseHandler):
     @inlineCallbacks
     def get(self, *uriargs):
         """
-        Return a list of all the fields available.
+        Return a list of all the fields available in a node.
 
         Parameters: None
         Response: adminFieldList
@@ -280,6 +382,11 @@ class FieldsCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
+class FieldCreate(BaseHandler):
+    """
+    Operation to create a new field associated to a context
+    /admin/field
+    """
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
@@ -294,21 +401,22 @@ class FieldsCollection(BaseHandler):
 
         request = self.validate_message(self.request.body,
                                         requests.adminFieldDesc)
+
+        request['is_template'] = False
         response = yield create_field(request, self.request.language)
         self.set_status(201)
         self.finish(response)
 
-
-class FieldInstance(BaseHandler):
+class FieldUpdate(BaseHandler):
     """
     Operation to iterate over a specific requested Field
 
-    /admin/field/field_id
+    /admin/field
     """
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, field_id, *uriargs):
+    def get(self, *uriargs):
         """
         Get the field identified by field_id
 
@@ -324,7 +432,7 @@ class FieldInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, field_id, *uriargs):
+    def put(self, *uriargs):
         """
         Update a single field's attributes.
 
@@ -334,6 +442,7 @@ class FieldInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body,
                                         requests.adminFieldDesc)
+        request['is_template'] = False
         response = yield update_field(field_id, request, self.request.language)
         self.set_status(202) # Updated
         self.finish(response)
@@ -341,7 +450,7 @@ class FieldInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def delete(self, field_id, *uriargs):
+    def delete(self, *uriargs):
         """
         Delete a single field.
 

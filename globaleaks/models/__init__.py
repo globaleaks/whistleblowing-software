@@ -6,8 +6,7 @@ from __future__ import absolute_import
 
 import copy
 
-from storm.locals import Bool, Int, Pickle, Reference, ReferenceSet
-from storm.locals import Unicode, Storm, JSON
+from storm.locals import Bool, Int, Pickle, Reference, ReferenceSet, Unicode, Storm, JSON
 
 from globaleaks.settings import transact
 from globaleaks.utils.utility import datetime_now, uuid4
@@ -172,7 +171,6 @@ class User(Model):
     _states = [u'disabled', u'to_be_activated', u'enabled']
 
     unicode_keys = ['username', 'password', 'salt', 'role', 'state']
-    int_keys = []
 
 
 class Context(Model):
