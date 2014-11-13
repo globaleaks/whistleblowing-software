@@ -106,7 +106,7 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
 
     return get_localized_values(ret_dict, node, node.localized_strings, language)
 
-def anon_serialize_context(context, language=GLSetting.memory_copy.default_language):
+def anon_serialize_context(store, context, language=GLSetting.memory_copy.default_language):
     """
     @param context: a valid Storm object
     @return: a dict describing the contexts available for submission,
@@ -117,7 +117,7 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
     if not len(receivers):
         return None
 
-    steps = [ anon_serialize_step(s, language)
+    steps = [ anon_serialize_step(store, s, language)
               for s in context.steps.order_by(models.Step.number) ]
     ret_dict = {
         "id": context.id,
@@ -162,7 +162,7 @@ def anon_serialize_option(option, field_type, language):
 
     return ret_dict
 
-def anon_serialize_field(field, language):
+def anon_serialize_field(store, field, language):
     """
     Serialize a field, localizing its content depending on the language.
 
@@ -173,8 +173,16 @@ def anon_serialize_field(field, language):
 
     options = [ anon_serialize_option(o, field.type, language) for o in field.options ]
 
+    sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
+    step_id = sf.step_id if sf else ''
+
+    ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
+    fieldgroup_id = ff.id if ff else ''
+
     ret_dict = {
         'id': field.id,
+        'step_id': step_id,
+        'fieldgroup_id': fieldgroup_id,
         'multi_entry': field.multi_entry,
         'required': field.required,
         'preview': False,
@@ -188,7 +196,7 @@ def anon_serialize_field(field, language):
 
     return get_localized_values(ret_dict, field, field.localized_strings, language)
 
-def anon_serialize_step(step, language):
+def anon_serialize_step(store, step, language):
     """
     Serialize a step, localizing its content depending on the language.
 
@@ -197,9 +205,13 @@ def anon_serialize_step(step, language):
     :return: a serialization of the object
     """
 
+    fields = dict()
+    for f in step.children.order_by(models.Field.y):
+        fields[f.id] = anon_serialize_field(store, f, language)
+
     ret_dict = {
         'id': step.id,
-        'children': [f.id for f in step.children.order_by(models.Field.y)],
+        'children': fields
     }
 
     return get_localized_values(ret_dict, step, step.localized_strings, language)
@@ -288,7 +300,7 @@ def get_public_context_list(store, default_lang):
     contexts = store.find(models.Context)
 
     for context in contexts:
-        context_desc = anon_serialize_context(context, default_lang)
+        context_desc = anon_serialize_context(store, context, default_lang)
         # context not yet ready for submission return None
         if context_desc:
             context_list.append(context_desc)
@@ -323,7 +335,7 @@ def get_public_field_list(store, language):
     :return: the current field list serialized.
     :rtype: dict
     """
-    return [anon_serialize_field(f, language) for f in store.find(models.Field)]
+    return [anon_serialize_field(store, f, language) for f in store.find(models.Field)]
 
 class FieldsCollection(BaseHandler):
     """

@@ -106,7 +106,7 @@ class NotificationSchedule(GLJob):
                 log.err("(tip_notification) Integrity failure: missing InternalTip|Context")
                 continue
 
-            context_desc = admin.admin_serialize_context(receiver_tip.internaltip.context, language)
+            context_desc = admin.admin_serialize_context(store, receiver_tip.internaltip.context, language)
 
             receiver_desc = admin.admin_serialize_receiver(receiver_tip.receiver, language)
             if not receiver_desc.has_key('mail_address'):
@@ -241,7 +241,7 @@ class NotificationSchedule(GLJob):
                 log.err("Reference chain fail!")
                 continue
 
-            context_desc = admin.admin_serialize_context(context, language)
+            context_desc = admin.admin_serialize_context(store, context, language)
 
             message_desc = rtip.receiver_serialize_message(message)
             message.mark = u'notified' # models.Message._marker[1]
@@ -366,7 +366,7 @@ class NotificationSchedule(GLJob):
                 log.err("(comment_notification) Integrity check failure Context")
                 continue
 
-            context_desc = admin.admin_serialize_context(comment.internaltip.context, language)
+            context_desc = admin.admin_serialize_context(store, comment.internaltip.context, language)
 
             # XXX BUG! All notification is marked as correctly send,
             # This can't be managed by callback, and can't be managed by actual DB design
@@ -506,7 +506,8 @@ class NotificationSchedule(GLJob):
                 log.err("(file_notification) Integrity check failure (File+Tip)")
                 continue
 
-            context_desc = admin.admin_serialize_context(rfile.internalfile.internaltip.context,
+            context_desc = admin.admin_serialize_context(store,
+                                                         rfile.internalfile.internaltip.context,
                                                          language)
 
             receiver_desc = admin.admin_serialize_receiver(rfile.receiver, language)
