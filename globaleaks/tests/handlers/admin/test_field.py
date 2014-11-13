@@ -10,6 +10,10 @@ from globaleaks.settings import transact, transact_ro
 from globaleaks.tests import helpers
 
 sample_field = {
+        'template_id': '',
+        'is_template': True,
+        'step_id': '',
+        'fieldgroup_id': '',
         'label': u"test label",
         'description': u"test description",
         'hint': u"test hint",
@@ -27,6 +31,10 @@ sample_field = {
 @transact
 def create_field(store, **custom_attrs):
     attrs = {
+        'template_id': '',
+        'is_template': True,
+        'step_id': '',
+        'fieldgroup_id': '',
         'label': {"en": "test label"},
         'description': {"en": "test description"},
         'hint': {"en": "test hint"},
@@ -52,8 +60,8 @@ def create_step(store, **custom_attrs):
     attrs.update(custom_attrs)
     return models.Step.new(store, attrs)
 
-class TestAdminFieldInstance(helpers.TestHandlerWithPopulatedDB):
-        _handler = admin.field.FieldInstance
+class TestAdminFieldUpdate(helpers.TestHandlerWithPopulatedDB):
+        _handler = admin.field.FieldUpdate
         fixtures = ['fields.json']
 
         @transact_ro
@@ -84,7 +92,7 @@ class TestAdminFieldInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertEqual(field_id, self.responses[0]['id'])
 
         @inlineCallbacks
-        def test_put(self):
+        def test_put_1(self):
             """
             Attempt to update a field, changing its type via a put request.
             """
@@ -104,7 +112,7 @@ class TestAdminFieldInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertFailure(handler.put(field_id), errors.InvalidInputFormat)
 
         @inlineCallbacks
-        def test_put(self):
+        def test_put_2(self):
             """
             Update the field tree with nasty stuff, like cyclic graphs, inexisting ids.
             """
@@ -120,6 +128,8 @@ class TestAdminFieldInstance(helpers.TestHandlerWithPopulatedDB):
             # simple edits shall work
             self.responses[0]['children'] = [sex_field_id, surname_field_id]
 
+            print self.responses[0]
+
             handler = self.request(self.responses[0], role='admin')
             yield handler.put(generalities_fieldgroup_id)
             yield self.assert_model_exists(models.Field, generalities_fieldgroup_id)
@@ -131,7 +141,6 @@ class TestAdminFieldInstance(helpers.TestHandlerWithPopulatedDB):
             self.responses[0]['children'] = [name_field_id, sex_field_id]  * 3
             handler = self.request(self.responses[0], role='admin')
             self.assertFailure(handler.put(generalities_fieldgroup_id), errors.InvalidInputFormat)
-            return
 
             # invalid tree
             self.responses[0]['children'] = [name_field_id, invalid_id, sex_field_id] * 100
@@ -151,6 +160,7 @@ class TestAdminFieldInstance(helpers.TestHandlerWithPopulatedDB):
             # a child not of type 'fieldgroup' MUST never have children.
             yield handler.get(name_field_id)
             self.responses[2]['children'] = [sex_field_id]
+            print self.responses[0]
             handler = self.request(self.responses[2], role='admin')
             self.assertFailure(handler.put(generalities_fieldgroup_id), errors.InvalidInputFormat)
 
@@ -167,6 +177,9 @@ class TestAdminFieldInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertEqual(handler.get_status(), 200)
             # second deletion operation should fail
             self.assertFailure(handler.delete(field_id), errors.FieldIdNotFound)
+
+        def test_create_field_associated_to_step(self):
+            pass
 
 
 class TestAdminFieldCollection(helpers.TestHandlerWithPopulatedDB):

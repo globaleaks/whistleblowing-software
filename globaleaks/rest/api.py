@@ -94,9 +94,9 @@ spec = [
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
     (r'/admin/notification', admin.notification.NotificationInstance),
 
-    (r'/admin/fields', admin.field.FieldCollection),
+    (r'/admin/fields', admin.field.FieldsCollection),
     (r'/admin/field', admin.field.FieldCreate),
-    (r'/admin/field' + uuid_regexp, admin.field.FieldUpdate),
+    (r'/admin/field/' + uuid_regexp, admin.field.FieldUpdate),
 
     (r'/admin/fieldtemplates', admin.field.FieldsTemplateCollection),
     (r'/admin/fieldtemplate', admin.field.FieldTemplateCreate),

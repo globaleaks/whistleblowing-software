@@ -179,6 +179,10 @@ def anon_serialize_field(store, field, language):
     ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
     fieldgroup_id = ff.id if ff else ''
 
+    fields = dict()
+    for f in field.children.order_by(models.Field.y):
+        fields[f.id] = anon_serialize_field(store, f, language)
+
     ret_dict = {
         'id': field.id,
         'step_id': step_id,
@@ -191,7 +195,7 @@ def anon_serialize_field(store, field, language):
         'x': field.x,
         'y': field.y,
         'options': options,
-        'children': [f.id for f in field.children],
+        'children': fields,
     }
 
     return get_localized_values(ret_dict, field, field.localized_strings, language)
