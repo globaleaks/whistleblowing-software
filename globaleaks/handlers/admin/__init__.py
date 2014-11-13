@@ -181,9 +181,9 @@ def db_update_steps(store, context_id, steps, language):
         store.remove(o)
 
 
-def admin_serialize_context(context, language=GLSetting.memory_copy.default_language):
+def admin_serialize_context(store, context, language=GLSetting.memory_copy.default_language):
 
-    steps = [ anon_serialize_step(s, language) for s in context.steps ]
+    steps = [ anon_serialize_step(store, s, language) for s in context.steps ]
 
     ret_dict = {
         "id": context.id,
@@ -370,7 +370,7 @@ def get_context_list(store, language=GLSetting.memory_copy.default_language):
     context_list = []
 
     for context in contexts:
-        context_list.append(admin_serialize_context(context, language))
+        context_list.append(admin_serialize_context(store, context, language))
 
     return context_list
 
@@ -508,7 +508,7 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
 
     log.debug("Created context %s (using %s)" % (context_name, language) )
 
-    return admin_serialize_context(context, language)
+    return admin_serialize_context(store, context, language)
 
 @transact
 def create_context(store, request, language=GLSetting.memory_copy.default_language):
@@ -526,7 +526,7 @@ def get_context(store, context_id, language=GLSetting.memory_copy.default_langua
         log.err("Requested invalid context")
         raise errors.ContextIdNotFound
 
-    return admin_serialize_context(context, language)
+    return admin_serialize_context(store, context, language)
 
 def db_get_fields_recursively(store, field, language):
     ret = []
@@ -620,7 +620,7 @@ def update_context(store, context_id, request, language=GLSetting.memory_copy.de
 
     db_update_steps(store, context.id, steps, language)
 
-    return admin_serialize_context(context, language)
+    return admin_serialize_context(store, context, language)
 
 @transact
 def delete_context(store, context_id):

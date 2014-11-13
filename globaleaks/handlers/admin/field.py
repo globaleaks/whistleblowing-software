@@ -16,7 +16,7 @@ from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log
 
-def admin_serialize_field(field, language):
+def admin_serialize_field(store, field, language):
     """
     Serialize a field, localizing its content depending on the language.
 
@@ -31,9 +31,17 @@ def admin_serialize_field(field, language):
 
     options = [ anon_serialize_option(o, field.type, language) for o in field.options ]
 
+    sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
+    step_id = sf.step_id if sf else ''
+
+    ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
+    fieldgroup_id = ff.id if ff else ''
+
     ret_dict = {
         'id': field.id,
         'is_template': field.is_template,
+        'step_id': step_id,
+        'fieldgroup_id': fieldgroup_id,
         'multi_entry': field.multi_entry,
         'required': field.required,
         'preview': False,
@@ -104,7 +112,7 @@ def db_create_field(store, request, language):
 
     db_update_options(store, field.id, request['options'], language)
 
-    return admin_serialize_field(field, language)
+    return admin_serialize_field(store, field, language)
 
 @transact
 def create_field(store, request, language):
@@ -167,7 +175,7 @@ def update_field(store, field_id, request, language):
             f=field.label, e=dberror))
         raise errors.InvalidInputFormat(dberror)
 
-    return admin_serialize_field(field, language)
+    return admin_serialize_field(store, field, language)
 
 
 @transact_ro
@@ -179,7 +187,7 @@ def get_field_template_list(store, language):
     :param language: the language of the field definition dict
     :rtype: list of dict
     """
-    return [admin_serialize_field(f, language) for f in store.find(models.Field, models.Field.is_template == True)]
+    return [admin_serialize_field(store, f, language) for f in store.find(models.Field, models.Field.is_template == True)]
 
 @transact_ro
 def get_field_list(store, language):
@@ -190,7 +198,7 @@ def get_field_list(store, language):
     :param language: the language of the field definition dict
     :rtype: list of dict
     """
-    return [admin_serialize_field(f, language) for f in store.find(models.Field, models.Field.is_template == False)]
+    return [admin_serialize_field(store, f, language) for f in store.find(models.Field, models.Field.is_template == False)]
 
 @transact_ro
 def get_field(store, field_id, language):
@@ -206,7 +214,7 @@ def get_field(store, field_id, language):
     if not field:
         log.err('Invalid field requested')
         raise errors.FieldIdNotFound
-    return admin_serialize_field(field, language)
+    return admin_serialize_field(store, field, language)
 
 @transact
 def delete_field(store, field_id):
@@ -268,7 +276,7 @@ def duplicate_field_template(store, request, language):
 
     template = store.find(models.Field, models.Field.id == field_id).one()
     template.copy(store)
-    return admin_serialize_field(field)
+    return admin_serialize_field(store, field, field)
 
 
 class FieldsTemplateCollection(BaseHandler):
@@ -384,7 +392,8 @@ class FieldCollection(BaseHandler):
 
 class FieldCreate(BaseHandler):
     """
-    Operation to create a new field associated to a context
+    Operation to create a field
+
     /admin/field
     """
     @transport_security_check('admin')
