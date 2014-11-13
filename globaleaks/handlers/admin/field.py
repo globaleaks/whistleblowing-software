@@ -16,6 +16,22 @@ from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log
 
+def associate_field(field, step_id=None, fieldgroup_id=None):
+    if step_id:
+        step = store.find(models.Step, models.Step.id == step_id).one()
+        step.children.add(field)
+    elif fielgroup_id:
+        field = store.find(models.Field, models.Field.id == fielgroup_id).one()
+        field.children.add(field)
+
+def disassociate_field(field):
+    sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
+    if sf:
+        store.remove(sf)
+    ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
+    if ff:
+        store.remove(ff)
+
 def admin_serialize_field(store, field, language):
     """
     Serialize a field, localizing its content depending on the language.
@@ -105,12 +121,26 @@ def db_create_field(store, request, language):
     :param: language: the language of the field definition dict
     :return: a serialization of the object
     """
-    request['is_template'] = True
+    step_id = None
+    fieldgroup_id = None
+
+    if not request['is_template']:
+        if 'step_id' in request:
+            step_id = request['step_id']
+
+        if 'fieldgroup_id' in request:
+            fieldgroup_id = request['fieldgroup_id']
+
+    if step_id is not None and fieldgroup_id is not None:
+        raise errors.InvalidInputFormat("cannot associate a field to both a step and a fieldgroup")
+
     fill_localized_keys(request, models.Field.localized_strings, language)
 
     field = models.Field.new(store, request)
 
     db_update_options(store, field.id, request['options'], language)
+
+    associate_field(field, step_id, fieldgroup_id)
 
     return admin_serialize_field(store, field, language)
 
@@ -131,6 +161,16 @@ def update_field(store, field_id, request, language):
     :return: a serialization of the object
     """
     errmsg = 'Invalid or not existent field ids in request.'
+
+    step_id = None
+    fieldgroup_id = None
+
+    if not request['is_template']:
+        if 'step_id' in request:
+            step_id = request['step_id']
+
+        if 'fieldgroup_id' in request:
+            fieldgroup_id = request['fieldgroup_id']
 
     field = models.Field.get(store, field_id)
     try:
@@ -169,6 +209,11 @@ def update_field(store, field_id, request, language):
             field.children.add(child)
 
         db_update_options(store, field.id, request['options'], language)
+
+        # remove current step/field fieldgroup/field association
+        disassociate_field(field)
+
+        associate_field(step_id, field_id)
 
     except DatabaseError as dberror:
         log.err('Unable to update field {f}: {e}'.format(
