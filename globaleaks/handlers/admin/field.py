@@ -16,15 +16,23 @@ from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log
 
-def associate_field(field, step_id=None, fieldgroup_id=None):
+def associate_field(store, field, step_id=None, fieldgroup_id=None):
     if step_id:
+        if field.is_template:
+            raise errors.InvalidInputFormat("Cannot associate a field template to a step")
+
         step = store.find(models.Step, models.Step.id == step_id).one()
         step.children.add(field)
-    elif fielgroup_id:
-        field = store.find(models.Field, models.Field.id == fielgroup_id).one()
-        field.children.add(field)
 
-def disassociate_field(field):
+    elif fieldgroup_id:
+        fieldgroup = store.find(models.Field, models.Field.id == fieldgroup_id).one()
+
+        if field.is_template != fieldgroup.is_template:
+            raise errors.InvalidInputFormat("Cannot associate field templates with fields")
+
+        fieldgroup.children.add(field)
+
+def disassociate_field(store, field):
     sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
     if sf:
         store.remove(sf)
@@ -51,7 +59,7 @@ def admin_serialize_field(store, field, language):
     step_id = sf.step_id if sf else ''
 
     ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
-    fieldgroup_id = ff.id if ff else ''
+    fieldgroup_id = ff.parent_id if ff else ''
 
     ret_dict = {
         'id': field.id,
@@ -113,6 +121,22 @@ def db_update_options(store, field_id, options, language):
         o = store.find(models.FieldOption, models.FieldOption.id == opt_id).one()
         store.remove(o)
 
+def field_integrity_check(request):
+    is_template = request['is_template']
+    step_id = request['step_id']
+    fieldgroup_id = request['fieldgroup_id']
+
+    if is_template == False and \
+       step_id == '' and \
+       fieldgroup_id == '':
+        raise errors.InvalidInputFormat("Each field should be a template or be associated to a step/fieldgroup")
+
+    if not is_template:
+        if step_id is not None and fieldgroup_id is not None:
+            raise errors.InvalidInputFormat("cannot associate a field to both a step and a fieldgroup")
+
+    return is_template, step_id, fieldgroup_id
+
 def db_create_field(store, request, language):
     """
     Add a new field to the store, then return the new serialized object.
@@ -121,26 +145,17 @@ def db_create_field(store, request, language):
     :param: language: the language of the field definition dict
     :return: a serialization of the object
     """
-    step_id = None
-    fieldgroup_id = None
+    is_template, step_id, fieldgroup_id = field_integrity_check(request)
 
-    if not request['is_template']:
-        if 'step_id' in request:
-            step_id = request['step_id']
+    if request['template_id'] == '':
+        fill_localized_keys(request, models.Field.localized_strings, language)
+        field = models.Field.new(store, request)
+        db_update_options(store, field.id, request['options'], language)
+    else:
+        template = store.find(models.Field, models.Field.id == request['template_id']).one()
+        field = template.copy(store, is_template)
 
-        if 'fieldgroup_id' in request:
-            fieldgroup_id = request['fieldgroup_id']
-
-    if step_id is not None and fieldgroup_id is not None:
-        raise errors.InvalidInputFormat("cannot associate a field to both a step and a fieldgroup")
-
-    fill_localized_keys(request, models.Field.localized_strings, language)
-
-    field = models.Field.new(store, request)
-
-    db_update_options(store, field.id, request['options'], language)
-
-    associate_field(field, step_id, fieldgroup_id)
+    associate_field(store, field, step_id, fieldgroup_id)
 
     return admin_serialize_field(store, field, language)
 
@@ -162,15 +177,7 @@ def update_field(store, field_id, request, language):
     """
     errmsg = 'Invalid or not existent field ids in request.'
 
-    step_id = None
-    fieldgroup_id = None
-
-    if not request['is_template']:
-        if 'step_id' in request:
-            step_id = request['step_id']
-
-        if 'fieldgroup_id' in request:
-            fieldgroup_id = request['fieldgroup_id']
+    is_template, step_id, fieldgroup_id = field_integrity_check(request)
 
     field = models.Field.get(store, field_id)
     try:
@@ -211,9 +218,9 @@ def update_field(store, field_id, request, language):
         db_update_options(store, field.id, request['options'], language)
 
         # remove current step/field fieldgroup/field association
-        disassociate_field(field)
+        disassociate_field(store, field)
 
-        associate_field(step_id, field_id)
+        associate_field(store, field, step_id, field_id)
 
     except DatabaseError as dberror:
         log.err('Unable to update field {f}: {e}'.format(
@@ -309,21 +316,6 @@ def fieldtree_ancestors(store, field_id):
     else:
         return
 
-@transact
-def duplicate_field_template(store, request, language):
-    """
-    Duplicate a Field Template assigning it to a Context in a Specified Step
-    :return: a serialization of the new field in the specified language
-    """
-    field_id = request['field_template_id']
-    context_id = request['context_id']
-    step_id = request['step_id']
-
-    template = store.find(models.Field, models.Field.id == field_id).one()
-    template.copy(store)
-    return admin_serialize_field(store, field, field)
-
-
 class FieldsTemplateCollection(BaseHandler):
     """
     /admin/fieldtemplates
@@ -397,7 +389,6 @@ class FieldTemplateUpdate(BaseHandler):
         """
         request = self.validate_message(self.request.body,
                                         requests.adminFieldDesc)
-        request['is_template'] = True
         response = yield update_field(field_id, request, self.request.language)
         self.set_status(202) # Updated
         self.finish(response)
@@ -416,7 +407,7 @@ class FieldTemplateUpdate(BaseHandler):
         yield delete_field(field_id)
         self.set_status(200)
 
-class FieldCollection(BaseHandler):
+class FieldsCollection(BaseHandler):
     """
     /admin/fields
     """
@@ -456,7 +447,6 @@ class FieldCreate(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.adminFieldDesc)
 
-        request['is_template'] = False
         response = yield create_field(request, self.request.language)
         self.set_status(201)
         self.finish(response)
@@ -470,7 +460,7 @@ class FieldUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self, field_id, *uriargs):
         """
         Get the field identified by field_id
 
@@ -486,7 +476,7 @@ class FieldUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, *uriargs):
+    def put(self, field_id, *uriargs):
         """
         Update a single field's attributes.
 
@@ -496,7 +486,6 @@ class FieldUpdate(BaseHandler):
         """
         request = self.validate_message(self.request.body,
                                         requests.adminFieldDesc)
-        request['is_template'] = False
         response = yield update_field(field_id, request, self.request.language)
         self.set_status(202) # Updated
         self.finish(response)
@@ -504,7 +493,7 @@ class FieldUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def delete(self, *uriargs):
+    def delete(self, field_id, *uriargs):
         """
         Delete a single field.
 
