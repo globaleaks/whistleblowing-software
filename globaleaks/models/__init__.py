@@ -688,21 +688,20 @@ class Field(Model):
             child.delete(store)
         store.remove(self)
 
-    def copy(self, store):
+    def copy(self, store, is_template):
         obj_copy = self.__class__()
-        print self.label
         obj_copy.label = copy.deepcopy(self.label)
         obj_copy.description = copy.deepcopy(self.label)
         obj_copy.hint = copy.deepcopy(self.label)
         obj_copy.multi_entry = self.multi_entry
         obj_copy.required = self.required
         obj_copy.stats_enabled = self.stats_enabled
-        obj_copy.is_template = False
+        obj_copy.is_template = is_template
         obj_copy.x = self.x
         obj_copy.y = self.y
         obj_copy.type = self.type
         for child in self.children:
-            child_copy = child.copy(store)
+            child_copy = child.copy(store, is_template)
             obj_copy.children.add(child_copy)
         for opt in self.options:
             opt_copy = opt.copy(store)

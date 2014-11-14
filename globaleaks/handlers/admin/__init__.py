@@ -13,10 +13,10 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import security, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db.datainit import import_memory_variables
-from globaleaks.handlers.admin.field import admin_serialize_field
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler, GLApiCache
-from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list, anon_serialize_node, anon_serialize_step
+from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list, \
+    anon_serialize_node, anon_serialize_step, anon_serialize_field
 from globaleaks import models
 from globaleaks.rest import errors, requests
 from globaleaks.security import gpg_options_parse
@@ -531,7 +531,7 @@ def get_context(store, context_id, language=GLSetting.memory_copy.default_langua
 def db_get_fields_recursively(store, field, language):
     ret = []
     for children in field.children:
-        s = admin_serialize_field(store, children, language)
+        s = anon_serialize_field(store, children, language)
         ret.append(s)
         ret += db_get_fields_recursively(store, children, language)
     return ret
@@ -554,7 +554,7 @@ def db_get_context_fields(store, context_id, language=GLSetting.memory_copy.defa
 
     for ss in steps_list:
         for children in ss.children:
-            s = admin_serialize_field(store, children, 'en')
+            s = anon_serialize_field(store, children, 'en')
             fields.append(s)
             fields += db_get_fields_recursively(store, children, language)
 

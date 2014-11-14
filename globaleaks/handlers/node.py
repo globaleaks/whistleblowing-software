@@ -171,13 +171,17 @@ def anon_serialize_field(store, field, language):
     :return: a serialization of the object
     """
 
+    # naif likes if we add reference links
+    # this code is inspired by:
+    #  - https://www.youtube.com/watch?v=KtNsUgKgj9g
+
     options = [ anon_serialize_option(o, field.type, language) for o in field.options ]
 
     sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
     step_id = sf.step_id if sf else ''
 
     ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
-    fieldgroup_id = ff.id if ff else ''
+    fieldgroup_id = ff.parent_id if ff else ''
 
     fields = dict()
     for f in field.children.order_by(models.Field.y):
@@ -185,6 +189,7 @@ def anon_serialize_field(store, field, language):
 
     ret_dict = {
         'id': field.id,
+        'is_template': field.is_template,
         'step_id': step_id,
         'fieldgroup_id': fieldgroup_id,
         'multi_entry': field.multi_entry,
