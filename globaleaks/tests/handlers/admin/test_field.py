@@ -128,8 +128,6 @@ class TestAdminFieldUpdate(helpers.TestHandlerWithPopulatedDB):
             # simple edits shall work
             self.responses[0]['children'] = [sex_field_id, surname_field_id]
 
-            print self.responses[0]
-
             handler = self.request(self.responses[0], role='admin')
             yield handler.put(generalities_fieldgroup_id)
             yield self.assert_model_exists(models.Field, generalities_fieldgroup_id)
@@ -152,7 +150,6 @@ class TestAdminFieldUpdate(helpers.TestHandlerWithPopulatedDB):
                                            generalities_fieldgroup_id)
 
             # parent MUST not refer to itself in child
-            # XXX. shall test with a bigger connected component
             self.responses[0]['children'] = [generalities_fieldgroup_id]
             handler = self.request(self.responses[0], role='admin')
             self.assertFailure(handler.put(generalities_fieldgroup_id), errors.InvalidInputFormat)
@@ -160,9 +157,9 @@ class TestAdminFieldUpdate(helpers.TestHandlerWithPopulatedDB):
             # a child not of type 'fieldgroup' MUST never have children.
             yield handler.get(name_field_id)
             self.responses[2]['children'] = [sex_field_id]
-            print self.responses[0]
             handler = self.request(self.responses[2], role='admin')
-            self.assertFailure(handler.put(generalities_fieldgroup_id), errors.InvalidInputFormat)
+            self.assertFailure(handler.put(name_field_id), errors.InvalidInputFormat)
+            yield self.assert_is_not_child(name_field_id, sex_field_id)
 
 
         @inlineCallbacks
@@ -200,13 +197,17 @@ class TestAdminFieldCollection(helpers.TestHandlerWithPopulatedDB):
             types = [field.get('type') for field in fields]
             self.assertGreater(len(fields), 0)
             self.assertNotIn(None, ids)
-            self.assertIn('25521164-1d0f-5f80-8e8c-93f73e815156', ids)
+            self.assertIn('15521164-1d0f-5f80-8e8c-93f73e815156', ids)
             self.assertGreater(types.count('fieldgroup'), 0)
 
             # check children are present in the list as well
             for field in fields:
                 for child in field['children']:
                     self.assertIn(child, ids)
+
+class TestAdminFieldCreate(helpers.TestHandlerWithPopulatedDB):
+        _handler = admin.field.FieldCreate
+        fixtures = ['fields.json']
 
         @inlineCallbacks
         def test_post(self):

@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.node import anon_serialize_option, get_field_option_localized_keys
+from globaleaks.handlers.node import anon_serialize_field, anon_serialize_option, get_field_option_localized_keys
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
@@ -39,45 +39,6 @@ def disassociate_field(store, field):
     ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
     if ff:
         store.remove(ff)
-
-def admin_serialize_field(store, field, language):
-    """
-    Serialize a field, localizing its content depending on the language.
-
-    :param field: the field object to be serialized
-    :param language: the language in which to localize data
-    :return: a serialization of the object
-    """
-
-    # naif likes if we add reference links
-    # this code is inspired by:
-    #  - https://www.youtube.com/watch?v=KtNsUgKgj9g
-
-    options = [ anon_serialize_option(o, field.type, language) for o in field.options ]
-
-    sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
-    step_id = sf.step_id if sf else ''
-
-    ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
-    fieldgroup_id = ff.parent_id if ff else ''
-
-    ret_dict = {
-        'id': field.id,
-        'is_template': field.is_template,
-        'step_id': step_id,
-        'fieldgroup_id': fieldgroup_id,
-        'multi_entry': field.multi_entry,
-        'required': field.required,
-        'preview': False,
-        'stats_enabled': field.stats_enabled,
-        'type': field.type,
-        'x': field.x,
-        'y': field.y,
-        'options': options,
-        'children': [f.id for f in field.children],
-    }
-
-    return get_localized_values(ret_dict, field, field.localized_strings, language)
 
 def db_update_options(store, field_id, options, language):
     """
@@ -157,7 +118,7 @@ def db_create_field(store, request, language):
 
     associate_field(store, field, step_id, fieldgroup_id)
 
-    return admin_serialize_field(store, field, language)
+    return anon_serialize_field(store, field, language)
 
 @transact
 def create_field(store, request, language):
@@ -193,14 +154,15 @@ def update_field(store, field_id, request, language):
         #  - new provided childrens are evaluated and added
         children = request['children']
         if children and field.type != 'fieldgroup':
-            raise errors.InvalidInputFormat(errmsg)
+            raise errors.InvalidInputFormat("children can be associated only to fields of type fieldgroup")
 
         ancestors = set(fieldtree_ancestors(store, field.id))
+
         field.children.clear()
         for child_id in children:
             child = models.Field.get(store, child_id)
             # check child do exists and graph is not recursive
-            if not child or child.id in ancestors:
+            if not child or child.id == field.id or child.id in ancestors:
                 raise errors.InvalidInputFormat(errmsg)
 
             parent_association =  store.find(models.FieldField, models.FieldField.child_id == child.id)
@@ -220,14 +182,14 @@ def update_field(store, field_id, request, language):
         # remove current step/field fieldgroup/field association
         disassociate_field(store, field)
 
-        associate_field(store, field, step_id, field_id)
+        associate_field(store, field, step_id, fieldgroup_id)
 
-    except DatabaseError as dberror:
+    except Exception as dberror:
         log.err('Unable to update field {f}: {e}'.format(
             f=field.label, e=dberror))
         raise errors.InvalidInputFormat(dberror)
 
-    return admin_serialize_field(store, field, language)
+    return anon_serialize_field(store, field, language)
 
 
 @transact_ro
@@ -239,7 +201,7 @@ def get_field_template_list(store, language):
     :param language: the language of the field definition dict
     :rtype: list of dict
     """
-    return [admin_serialize_field(store, f, language) for f in store.find(models.Field, models.Field.is_template == True)]
+    return [anon_serialize_field(store, f, language) for f in store.find(models.Field, models.Field.is_template == True)]
 
 @transact_ro
 def get_field_list(store, language):
@@ -250,7 +212,7 @@ def get_field_list(store, language):
     :param language: the language of the field definition dict
     :rtype: list of dict
     """
-    return [admin_serialize_field(store, f, language) for f in store.find(models.Field, models.Field.is_template == False)]
+    return [anon_serialize_field(store, f, language) for f in store.find(models.Field, models.Field.is_template == False)]
 
 @transact_ro
 def get_field(store, field_id, language):
@@ -266,7 +228,7 @@ def get_field(store, field_id, language):
     if not field:
         log.err('Invalid field requested')
         raise errors.FieldIdNotFound
-    return admin_serialize_field(store, field, language)
+    return anon_serialize_field(store, field, language)
 
 @transact
 def delete_field(store, field_id):

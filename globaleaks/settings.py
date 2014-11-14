@@ -819,6 +819,7 @@ class transact(object):
             transaction.abort()
             self.store.close()
             # propagate the exception
+            print excep
             raise excep
         else:
             if not self.readonly:
