@@ -81,6 +81,9 @@ def update_receiver_settings(store, receiver_id, request, language=GLSetting.mem
                                                  new_password,
                                                  receiver.user.salt)
 
+        if receiver.user.state == 'password_change_needed':
+            receiver.user.state = 'enabled'
+
     mail_address = request['mail_address']
 
     if mail_address != receiver.mail_address:
