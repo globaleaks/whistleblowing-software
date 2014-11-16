@@ -30,8 +30,6 @@ profile usr.bin.globaleaks {
     /etc/python2.7/** r,
     /etc/mime.types r,
 
-    deny /usr/lib/python2.7/dist-packages/globaleaks/** rwlk,
-
     deny /usr/bin/gcc-** x, # needed to silent deny errors for gpg trying to use gcc wtf?!
     deny /sbin/ldconfig x,  # needed to silent deny errors for gpg
 
