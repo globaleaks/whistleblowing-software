@@ -120,6 +120,8 @@ class GLSettingsClass:
             'MailNotification',
             ]
 
+        self.default_password = 'globaleaks'
+
         # session tracking, in the singleton classes
         self.sessions = dict()
         self.failed_login_attempts = 0 # statisticals, referred to latest_period
