@@ -9,7 +9,7 @@ from globaleaks.handlers import admlangfiles
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile
 
-class TestLanguageFileHandler(helpers.TestHandler):
+class TestLanguageFileHandler(helpers.TestHandlerWithPopulatedDB):
     _handler = admlangfiles.LanguageFileHandler
 
     @inlineCallbacks

@@ -167,7 +167,7 @@ class GLSettingsClass:
         self.defaults.maximum_namesize = 128
         self.defaults.maximum_textsize = 4096
         self.defaults.maximum_filesize = 30 # expressed in megabytes
-        self.defaults.exception_email = u"globaleaks-stackexception@lists.globaleaks.org"
+        self.defaults.exception_email = "globaleaks-stackexception@lists.globaleaks.org"
         # Context dependent values:
         self.defaults.receipt_regexp = u'[0-9]{16}'
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
@@ -720,7 +720,7 @@ class GLSettingsClass:
 
         for f in os.listdir(GLSetting.submission_path):
             try:
-                path = os.path.join(GLSetting.submission_path, f) 
+                path = os.path.join(GLSetting.submission_path, f)
                 result = GLSetting.AES_file_regexp_comp.match(f)
                 if result is not None:
                     if not os.path.isfile("%s%s" % (keypath, result.group(1)) ):
@@ -739,7 +739,7 @@ class transact(object):
     Because Storm sucks.
     """
     tp = ThreadPool(0, GLSetting.db_thread_pool_size)
-    
+
     readonly = False
 
     def __init__(self, method):
@@ -786,16 +786,17 @@ class transact(object):
                 result = function(self.instance, self.store, *args, **kwargs)
             else:
                 result = function(self.store, *args, **kwargs)
+
         except (exceptions.IntegrityError, exceptions.DisconnectionError):
             transaction.abort()
+            # we print the exception here because we do not propagate it
+            traceback.print_exc()
             result = None
         except HTTPError as excep:
             transaction.abort()
             raise excep
         except Exception:
             transaction.abort()
-            _, exception_value, exception_tb = sys.exc_info()
-            traceback.print_tb(exception_tb, 10)
             self.store.close()
             # propagate the exception
             raise

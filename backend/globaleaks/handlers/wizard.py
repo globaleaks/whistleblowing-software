@@ -5,8 +5,6 @@
 #
 # This interface is used to fill the Node defaults whenever they are updated
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import authenticated, transport_security_check
@@ -17,13 +15,15 @@ from globaleaks.rest import errors, requests
 from globaleaks.models import *
 from globaleaks.utils.utility import log
 
+from twisted.internet.defer import inlineCallbacks
+
 
 @transact_ro
 def admin_serialize_appdata(store, language=GLSetting.memory_copy.default_language):
 
     appdata = store.find(ApplicationData).one()
 
-    # this condition happen only in the UnitTest
+    # this condition happens only in the UnitTest
     if not appdata:
         version = 0
         fields = []
@@ -61,24 +61,6 @@ def admin_update_appdata(store, loaded_appdata):
 
         appdata.version = loaded_appdata['version']
 
-        try:
-
-            log.debug("Validating %d fields" % len(loaded_appdata['fields']))
-
-            accepted_types = [ "text", "radio", "select", "checkboxes",
-                               "textarea", "number", "url", "phone", "email" ]
-
-            for field in loaded_appdata['fields']:
-                if field['type'] not in accepted_types:
-                    log.debug("Invalid type received: %s" % field['type'])
-                    raise errors.InvalidInputFormat("Invalid type supply")
-
-            appdata.fields = loaded_appdata['fields']
-
-        except Exception as excep:
-            log.debug("Failed Fields initialization %s" % excep)
-            raise excep
-
         if 'presentation' in loaded_appdata['node']:
             node.presentation = loaded_appdata['node']['presentation']
 
@@ -104,12 +86,19 @@ def admin_update_appdata(store, loaded_appdata):
 @transact
 def wizard(store, request, language=GLSetting.memory_copy.default_language):
 
-    receiver = request['receiver']
-    context = request['context']
     node = request['node']
+    context = request['context']
+    receiver = request['receiver']
 
     node['default_language'] = language
     node['languages_enabled'] = [ language ]
+
+    try:
+        db_update_node(store, node, True, language)
+
+    except Exception as excep:
+        log.err("Failed Node initialization %s" % excep)
+        raise excep
 
     try:
         context_dict = db_create_context(store, context, language)
@@ -117,20 +106,13 @@ def wizard(store, request, language=GLSetting.memory_copy.default_language):
         log.err("Failed Context initialization %s" % excep)
         raise excep
 
-    # associate the new context to the receiver 
+    # associate the new context to the receiver
     receiver['contexts'] = [ context_dict['id'] ]
 
     try:
-        receiver_dict = db_create_receiver(store, receiver, language)
+        db_create_receiver(store, receiver, language)
     except Exception as excep:
         log.err("Failed Receiver Finitialization %s" % excep)
-        raise excep
-
-    try:
-        db_update_node(store, node, True, language)
-
-    except Exception as excep:
-        log.err("Failed Node initialization %s" % excep)
         raise excep
 
 # ---------------------------------
@@ -160,7 +142,7 @@ class AppdataCollection(BaseHandler):
     def post(self, *uriargs):
 
         request = self.validate_message(self.request.body,
-                requests.wizardFieldUpdate)
+                requests.wizardAppdataDesc)
 
         app_fields_dump = yield admin_update_appdata(request)
 

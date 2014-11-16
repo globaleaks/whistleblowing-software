@@ -9,7 +9,7 @@ from globaleaks.handlers import statistics
 from globaleaks.settings import GLSetting
 from globaleaks.jobs.statistics_sched import AnomaliesSchedule, StatisticsSchedule
 
-class TestAnomaliesCollection(helpers.TestHandler):
+class TestAnomaliesCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = statistics.AnomaliesCollection
 
     @inlineCallbacks
@@ -29,7 +29,7 @@ class TestAnomaliesCollection(helpers.TestHandler):
         self.assertEqual(len(self.responses[0]), 4)
         self._handler.validate_message(json.dumps(self.responses[0]), requests.AnomaliesCollection)
 
-class TestStatsCollection(helpers.TestHandler):
+class TestStatsCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = statistics.StatsCollection
 
     @inlineCallbacks

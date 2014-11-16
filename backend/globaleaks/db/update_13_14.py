@@ -6,12 +6,8 @@
     Node table:
       - introduced x_frame_options_mode and x_frame_options_allow_from.
 
-<<<<<<< HEAD
     Context table:
       - introduced enable_private_messages
-
-=======
->>>>>>> origin/feature/automatic_sessions
 """
 
 from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime

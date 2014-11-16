@@ -10,7 +10,7 @@ __copyright__ = u'Hermes Center for Transparency and Digital Human Rights.'
 __email__ = u'info@globaleaks.org'
 __version__ = u'2.60.29'
 
-DATABASE_VERSION = 14
+DATABASE_VERSION = 15
 
 # Add here by hand the languages supported!
 # copy paste format from 'grunt updateTranslations'

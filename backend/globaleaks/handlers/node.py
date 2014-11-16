@@ -10,12 +10,20 @@ import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.utils.utility import datetime_to_ISO8601
-from globaleaks.utils.structures import Rosetta, Fields
+from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.settings import transact_ro, GLSetting, stats_counter
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks import models, LANGUAGES_SUPPORTED
 
+def get_field_option_localized_keys(field_type):
+    localized_keys = []
+    if field_type == 'checkbox' or field_type =='selectbox':
+        localized_keys = ['name']
+    elif field_type == 'tos':
+        localized_keys = ['clause', 'agreement_statement']
+
+    return localized_keys
 
 @transact_ro
 def anon_serialize_ahmia(store, language=GLSetting.memory_copy.default_language):
@@ -24,12 +32,12 @@ def anon_serialize_ahmia(store, language=GLSetting.memory_copy.default_language)
     """
     node = store.find(models.Node).one()
 
-    mo = Rosetta()
+    mo = Rosetta(node.localized_strings)
     mo.acquire_storm_object(node)
 
-    ahmia_description = {
+    ret_dict = {
         "title": node.name,
-        "description": mo.dump_translated('description', language),
+        "description": mo.dump_localized_attr('description', language),
 
         # TODO support tags/keyword in Node.
         "keywords": "%s (GlobaLeaks instance)" % node.name,
@@ -43,7 +51,7 @@ def anon_serialize_ahmia(store, language=GLSetting.memory_copy.default_language)
         "type": "GlobaLeaks"
     }
 
-    return ahmia_description
+    return ret_dict
 
 @transact_ro
 def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
@@ -54,12 +62,12 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
 
     custom_homepage = False
 
-    try: 
+    try:
         custom_homepage = os.path.isfile(os.path.join(GLSetting.static_path, "custom_homepage.html"))
     except:
         pass
 
-    node_dict = {
+    ret_dict = {
       'name': node.name,
       'hidden_service': node.hidden_service,
       'public_site': node.public_site,
@@ -96,25 +104,22 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'disable_security_awareness_questions': node.disable_security_awareness_questions
     }
 
-    mo = Rosetta()
-    mo.acquire_storm_object(node)
-    for attr in mo.get_localized_attrs():
-        node_dict[attr] = mo.dump_translated(attr, language)
+    return get_localized_values(ret_dict, node, node.localized_strings, language)
 
-    return node_dict
-
-def anon_serialize_context(context, language=GLSetting.memory_copy.default_language):
+def anon_serialize_context(store, context, language=GLSetting.memory_copy.default_language):
     """
     @param context: a valid Storm object
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """
 
-    mo = Rosetta()
-    mo.acquire_storm_object(context)
-    fo = Fields(context.localized_fields, context.unique_fields)
+    receivers = [r.id for r in context.receivers]
+    if not len(receivers):
+        return None
 
-    context_dict = {
+    steps = [ anon_serialize_step(store, s, language)
+              for s in context.steps.order_by(models.Step.number) ]
+    ret_dict = {
         "id": context.id,
         "escalation_threshold": 0,
         "file_max_download": context.file_max_download,
@@ -131,18 +136,94 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         "show_receivers": context.show_receivers,
         "enable_private_messages": context.enable_private_messages,
         "presentation_order": context.presentation_order,
-                     # list is needed because .values returns a generator
-        "receivers": list(context.receivers.values(models.Receiver.id)),
-        'name': mo.dump_translated('name', language),
-        "description": mo.dump_translated('description', language),
-        "fields": fo.dump_fields(language)
+        "receivers": receivers,
+        "steps": steps
     }
 
-    if not len(context_dict['receivers']):
-        return None
+    return get_localized_values(ret_dict, context, context.localized_strings, language)
 
-    return context_dict
+def anon_serialize_option(option, field_type, language):
+    """
+    Serialize a field option, localizing its content depending on the language.
 
+    :param option: the field option object to be serialized
+    :param language: the language in which to localize data
+    :return: a serialization of the object
+    """
+
+    ret_dict = {
+        'id': option.id,
+        'attrs': {}
+    }
+
+    keys = get_field_option_localized_keys(field_type)
+    
+    get_localized_values(ret_dict['attrs'], option.attrs, keys, language)
+
+    return ret_dict
+
+def anon_serialize_field(store, field, language):
+    """
+    Serialize a field, localizing its content depending on the language.
+
+    :param field: the field object to be serialized
+    :param language: the language in which to localize data
+    :return: a serialization of the object
+    """
+
+    # naif likes if we add reference links
+    # this code is inspired by:
+    #  - https://www.youtube.com/watch?v=KtNsUgKgj9g
+
+    options = [ anon_serialize_option(o, field.type, language) for o in field.options ]
+
+    sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
+    step_id = sf.step_id if sf else ''
+
+    ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
+    fieldgroup_id = ff.parent_id if ff else ''
+
+    fields = dict()
+    for f in field.children.order_by(models.Field.y):
+        fields[f.id] = anon_serialize_field(store, f, language)
+
+    ret_dict = {
+        'id': field.id,
+        'is_template': field.is_template,
+        'step_id': step_id,
+        'fieldgroup_id': fieldgroup_id,
+        'multi_entry': field.multi_entry,
+        'required': field.required,
+        'preview': False,
+        'stats_enabled': field.stats_enabled,
+        'type': field.type,
+        'x': field.x,
+        'y': field.y,
+        'options': options,
+        'children': fields,
+    }
+
+    return get_localized_values(ret_dict, field, field.localized_strings, language)
+
+def anon_serialize_step(store, step, language):
+    """
+    Serialize a step, localizing its content depending on the language.
+
+    :param step: the step object to be serialized.
+    :param language: the language in which to localize data
+    :return: a serialization of the object
+    """
+
+    fields = dict()
+    for f in step.children.order_by(models.Field.y):
+        fields[f.id] = anon_serialize_field(store, f, language)
+
+    ret_dict = {
+        'id': step.id,
+        'children': fields
+    }
+
+    return get_localized_values(ret_dict, step, step.localized_strings, language)
 
 def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
     """
@@ -151,27 +232,24 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
         (e.g. checks if almost one context is associated, or, in
          node where GPG encryption is enforced, that a valid key is registered)
     """
-    mo = Rosetta()
-    mo.acquire_storm_object(receiver)
 
-    receiver_dict = {
+    contexts = [c.id for c in receiver.contexts]
+    if not len(contexts):
+        return None
+
+    ret_dict = {
         "creation_date": datetime_to_ISO8601(receiver.creation_date),
         "update_date": datetime_to_ISO8601(receiver.last_update),
         "name": receiver.name,
-        "description": mo.dump_translated('description', language),
         "id": receiver.id,
         "receiver_level": receiver.receiver_level,
         "tags": receiver.tags,
         "presentation_order": receiver.presentation_order,
         "gpg_key_status": receiver.gpg_key_status,
-                    # list is needed because .values returns a generator
-        "contexts": list(receiver.contexts.values(models.Context.id))
+        "contexts": contexts
     }
 
-    if not len(receiver_dict['contexts']):
-        return None
-
-    return receiver_dict
+    return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
 
 
 class InfoCollection(BaseHandler):
@@ -231,7 +309,7 @@ def get_public_context_list(store, default_lang):
     contexts = store.find(models.Context)
 
     for context in contexts:
-        context_desc = anon_serialize_context(context, default_lang)
+        context_desc = anon_serialize_context(store, context, default_lang)
         # context not yet ready for submission return None
         if context_desc:
             context_list.append(context_desc)
@@ -260,6 +338,32 @@ class ContextsCollection(BaseHandler):
                                    get_public_context_list, self.request.language)
         self.finish(ret)
 
+@transact_ro
+def get_public_field_list(store, language):
+    """
+    :return: the current field list serialized.
+    :rtype: dict
+    """
+    return [anon_serialize_field(store, f, language) for f in store.find(models.Field)]
+
+class FieldsCollection(BaseHandler):
+    """
+    /admin/fields
+    """
+    @transport_security_check('unauth')
+    @unauthenticated
+    @inlineCallbacks
+    def get(self, *uriargs):
+        """
+        Return a list of all the fields available.
+
+        Parameters: None
+        Response: adminFieldList
+        Errors: None
+        """
+        ret = yield get_public_field_list(self.request.language)
+        self.set_status(200)
+        self.finish(ret)
 
 @transact_ro
 def get_public_receiver_list(store, default_lang):
