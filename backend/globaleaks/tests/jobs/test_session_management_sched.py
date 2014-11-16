@@ -17,9 +17,9 @@ class TestSessionManagementSched(helpers.TestGL):
     @inlineCallbacks
     def test_session_management_sched(self):
 
-        authentication.GLSession('admin', 'admin') # 1!
-        authentication.GLSession('admin', 'admin') # 2!
-        authentication.GLSession('admin', 'admin') # 3!
+        authentication.GLSession('admin', 'admin', 'enabled') # 1!
+        authentication.GLSession('admin', 'admin', 'enabled') # 2!
+        authentication.GLSession('admin', 'admin', 'enabled') # 3!
 
         self.assertEqual(len(GLSetting.sessions), 3)
         authentication.reactor.advance(GLSetting.defaults.lifetimes['admin'])

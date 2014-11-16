@@ -120,7 +120,7 @@ class User(Model):
     last_login = DateTime()
  
     _roles = [ u'admin', u'receiver' ]
-    _states = [ u'disabled', u'to_be_activated', u'enabled']
+    _states = [ u'disabled', u'password_change_needed', u'enabled']
 
     unicode_keys = [ 'username', 'password', 'salt', 'role', 'state' ]
     int_keys = []
