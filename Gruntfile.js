@@ -151,7 +151,22 @@ module.exports = function(grunt) {
             debug: true,
             coverage_dir: 'coverage'
       }
-    }
+    },
+
+    confirm: {
+      updateTranslations: {
+        options: {
+          // Static text.
+          question: 'WARNING:\n'+
+                    'this task may cause translations loss and should be executed only on master/devel branches so that only\n'+
+                    'translation sentences are kept in sync with the ones that need to be delivered in next release package.\n\n'+
+                    'Are you sure you want to proceed (Y/N) ?',
+          continue: function(answer) {
+            return answer === 'Y';
+          }
+        }
+      }
+    },
 
   });
 
@@ -563,7 +578,7 @@ module.exports = function(grunt) {
   });
 
   // Run this task to update translation related files
-  grunt.registerTask('updateTranslations', ['updateTranslationsSource', 'makeTranslations', 'makeAppData']);
+  grunt.registerTask('updateTranslations', ['confirm', 'updateTranslationsSource', 'makeTranslations', 'makeAppData']);
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
