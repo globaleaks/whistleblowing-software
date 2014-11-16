@@ -31,6 +31,10 @@
     "jquery-ui": "1.11.1",
     "bootstrap": "3.2.0",
     "bootstrap-arabic": "3.2.0",
-    "underscore": "1.7.0"
+    "underscore": "1.7.0",
+    "angular-native-dragdrop": "~1.0.6"
+  },
+  "resolutions": {
+    "angular": "1.2.25"
   }
 }

@@ -1,3 +1,11 @@
+html {
+  background-color: #F5F5F5;
+}
+
+body {
+  background-color: #fff;
+}
+
 #PageBox {
   width: 100%;
 }
@@ -255,4 +263,8 @@ table {
 .preload_error {
   width: 70%;
   margin: 100px auto;
+}
+
+.nestedField {
+  padding-left: 15px;
 }

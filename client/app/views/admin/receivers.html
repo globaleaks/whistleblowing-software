@@ -19,7 +19,7 @@ This comment is needed in order to push the following strings on transifex
       <div data-ng-controller="AdminReceiverAddCtrl">
         <div class="row">
           <form name="newReceiver">
-            <div class="addReceiver configItem col-md-6">
+            <div class="addReceiver col-md-6">
               <h4><span data-translate>Add new receiver</span></h4>
               <div class="row">
                 <div class="col-md-12">
@@ -29,7 +29,6 @@ This comment is needed in order to push the following strings on transifex
                     <p class="has-error" data-ng-show="newReceiver.name.$error.maxlength">
                       <span data-translate>Receiver name too long</span>
                     </p>
-                    <!-- XXX fix this so that it works on right to left languages. -->
                   </div>
                   <div class="form-group">
                     <label>
@@ -112,7 +111,7 @@ This comment is needed in order to push the following strings on transifex
 
                     <div data-ng-show="editing">
                       <span class="col-md-7 pull-left editorHeaderTitle">{{receiver.name}}</span>
-                      <span class="col-md-3 pull-right editorHeaderButtons" data-ng-show="editing">
+                      <span class="col-md-3 pull-right editorHeaderButtons">
                         <button class="btn btn-success saveReceiver" data-ng-disabled="receiverForm.$invalid || unsafe_password" data-ng-click="save_receiver()" type="submit" >
                           <i class="glyphicon glyphicon-ok"></i>
                           <span data-translate>Save</span>
@@ -132,7 +131,7 @@ This comment is needed in order to push the following strings on transifex
                 <div class="editor receiverEditor" data-ng-if="editing">
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="imageUpload" data-ng-controller="FileUploadCtrl">
+                      <div class="imageUpload" data-ng-controller="AdminFileUploadCtrl">
                         <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
                           <div data-ng-show="uploadfile" class="uploadfile">
                             <span class="col-md-12 changePicture">
