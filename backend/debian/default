@@ -22,7 +22,7 @@ STORMDEBUG=0
 
 # USERNAME = [user_name]
 #   permits to configure the user privileges of the globaleaks process
-USER=globaleaks
+USERNAME=globaleaks
 
 # GROUP = [group_name]
 #   permits to configure the group privileges of the globaleaks process
