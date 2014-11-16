@@ -45,8 +45,6 @@ CREATE TABLE context (
     creation_date VARCHAR NOT NULL,
     description BLOB NOT NULL,
     escalation_threshold INTEGER,
-    unique_fields BLOB NOT NULL,
-    localized_fields BLOB NOT NULL,
     file_max_download INTEGER NOT NULL,
     file_required INTEGER NOT NULL,
     last_update VARCHAR,
@@ -56,7 +54,6 @@ CREATE TABLE context (
     tip_timetolive INTEGER NOT NULL,
     submission_timetolive INTEGER NOT NULL,
     receiver_introduction BLOB NOT NULL,
-    fields_introduction BLOB NOT NULL,
     tags BLOB,
     select_all_receivers INTEGER NOT NULL,
     postpone_superpower INTEGER NOT NULL,
@@ -235,6 +232,23 @@ CREATE TABLE receiver_internaltip (
     FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
 
+CREATE TABLE field_field (
+    parent_id VARCHAR NOT NULL,
+    child_id VARCHAR NOT NULL,
+    PRIMARY KEY (parent_id, child_id),
+    FOREIGN KEY (parent_id) REFERENCES field(id) ON DELETE CASCADE,
+    FOREIGN KEY (child_id) REFERENCES field(id) ON DELETE CASCADE
+);
+
+CREATE TABLE step_field (
+    step_id VARCHAR NOT NULL,
+    field_id VARCHAR NOT NULL,
+    PRIMARY KEY (step_id, field_id),
+    UNIQUE (field_id)
+    FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
+    FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE
+);
+
 CREATE TABLE receivertip (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
@@ -274,4 +288,53 @@ CREATE TABLE stats (
     creation_date VARCHAR NOT NULL,
     content BLOB,
     PRIMARY KEY (id)
+);
+
+CREATE TABLE field (
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    label TEXT NOT NULL,
+    description TEXT NOT NULL DEFAULT '',
+    hint TEXT NOT NULL DEFAULT '',
+    multi_entry INTEGER NOT NULL DEFAULT 0,
+    required INTEGER,
+    preview INTEGER,
+    stats_enabled INTEGER NOT NULL DEFAULT 0,
+    is_template INTEGER NOT NULL DEFAULT 0,
+    x INTEGER NOT NULL DEFAULT 0,
+    y INTEGER NOT NULL DEFAULT 0,
+    type VARCHAR NOT NULL CHECK (TYPE IN ('inputbox',
+                                          'textarea',
+                                          'selectbox',
+                                          'checkbox',
+                                          'modal',
+                                          'dialog',
+                                          'tos',
+                                          'fileupload',
+                                          'fieldgroup'
+                                          )),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE fieldoption (
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    field_id VARCHAR NOT NULL,
+    attrs TEXT NOT NULL DEFAULT '{}',
+    number INTEGER NOT NULL CHECK(number > 0),
+    PRIMARY KEY (id),
+    FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE
+);
+
+CREATE TABLE step (
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    label TEXT NOT NULL,
+    description TEXT NOT NULL,
+    hint TEXT NOT NULL,
+    context_id VARCHAR NOT NULL,
+    number INTEGER NOT NULL CHECK(number > 0),
+    PRIMARY KEY (id)
+    UNIQUE (context_id, number),
+    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE
 );

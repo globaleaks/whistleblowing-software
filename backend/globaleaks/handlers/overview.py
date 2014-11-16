@@ -38,9 +38,9 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
             "comments": [],
         }
 
-        mo = Rosetta()
+        mo = Rosetta(itip.context.localized_strings)
         mo.acquire_storm_object(itip.context)
-        tip_description['context_name'] = mo.dump_translated('name', language)
+        tip_description['context_name'] = mo.dump_localized_attr('name', language)
 
         # strip uncompleted submission, until GLClient open new submission
         # also if no data has been supply

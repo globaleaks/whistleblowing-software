@@ -9,9 +9,10 @@
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
-from globaleaks.handlers import node, submission, rtip, wbtip, admin, receiver, \
+from globaleaks.handlers import node, submission, rtip, wbtip, receiver, \
                                 files, authentication, admstaticfiles, statistics,\
                                 admlangfiles, overview, collection, wizard
+from globaleaks.handlers import admin
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 
 # Here is mapped a path and the associated class to be invoked,
@@ -26,12 +27,15 @@ from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 # [ special guest that do not respect this rule: SubmissionCreate ]
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+field_regexp = uuid_regexp
 
 spec = [
     ## Node Handler ##
     (r'/node', node.InfoCollection),
 
     (r'/contexts', node.ContextsCollection),
+
+    (r'/fields', node.FieldsCollection),
 
     (r'/receivers' , node.ReceiversCollection),
 
@@ -88,7 +92,15 @@ spec = [
     (r'/admin/context/' + uuid_regexp, admin.ContextInstance),
     (r'/admin/receiver', admin.ReceiversCollection),
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
-    (r'/admin/notification', admin.NotificationInstance),
+    (r'/admin/notification', admin.notification.NotificationInstance),
+
+    (r'/admin/fields', admin.field.FieldsCollection),
+    (r'/admin/field', admin.field.FieldCreate),
+    (r'/admin/field/' + uuid_regexp, admin.field.FieldUpdate),
+
+    (r'/admin/fieldtemplates', admin.field.FieldsTemplateCollection),
+    (r'/admin/fieldtemplate', admin.field.FieldTemplateCreate),
+    (r'/admin/fieldtemplate/' + field_regexp, admin.field.FieldTemplateUpdate),
 
     (r'/admin/anomalies', statistics.AnomaliesCollection),
     (r'/admin/stats', statistics.StatsCollection),
@@ -140,4 +152,3 @@ spec.append(
         {'path': GLSetting.glclient_path, 'default_filename': "index.html" }
     )
 )
-

@@ -18,8 +18,10 @@ class TestEmail(helpers.TestGLWithPopulatedDB):
     def setUp(self):
         yield helpers.TestGLWithPopulatedDB.setUp(self)
 
+        fields = yield helpers.fill_random_fields(self.dummyContext)
+
         self.recipe = yield submission.create_submission({
-            'wb_fields': helpers.fill_random_fields(self.dummyContext),
+            'wb_fields': fields,
             'context_id': self.dummyContext['id'],
             'receivers': [self.dummyReceiver_1['id']],
             'files': [],

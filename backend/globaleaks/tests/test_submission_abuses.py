@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 
+import copy
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
@@ -34,17 +36,19 @@ class SubmissionTest(helpers.TestGL):
         # helpers.TestGL.tearDown(self) is done only in the last test
         pass
 
-    aContext1 = TTip.tipContext
+    aContext1 = copy.deepcopy(TTip.tipContext)
 
     aContext2 = {
         'name': u'UNUSED', 'description': u'UNUSED',
         'escalation_threshold': u'0', 'tip_max_access': u'2',
-        'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
-        'receivers': [], 'fields': helpers.default_context_fields(), 'submission_timetolive': 100,
+        'tip_timetolive': 200,
+        'file_max_download': 2,
+        'selectable_receiver': True,
+        'receivers': [],
+        'submission_timetolive': 100,
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
         'select_all_receivers': True,
         'receiver_introduction': u"bleh",
-        'fields_introduction': u"dcsdcsdc¼¼",
         'postpone_superpower': False,
         'can_delete_submission': False,
         'maximum_selectable_receivers': 0,
@@ -55,10 +59,11 @@ class SubmissionTest(helpers.TestGL):
         'show_receivers': False,
         'enable_private_messages': True,
         'presentation_order': 0,
+        'steps': {}
     }
 
-    aReceiver1 = TTip.tipReceiver1
-    aReceiver2 = TTip.tipReceiver2
+    aReceiver1 = copy.deepcopy(TTip.tipReceiver1)
+    aReceiver2 = copy.deepcopy(TTip.tipReceiver2)
 
 
 class TestTipInstance(SubmissionTest):
@@ -74,7 +79,20 @@ class TestTipInstance(SubmissionTest):
         for attrname in Context.localized_strings:
             SubmissionTest.aContext1[attrname] = stuff
 
-        basehandler.validate_jmessage( SubmissionTest.aContext1, adminContextDesc)
+        basehandler.validate_jmessage(SubmissionTest.aContext1, adminContextDesc)
+
+        # the test context need fields to be present
+        from globaleaks.handlers.admin.field import create_field
+        for idx, field in enumerate(self.dummyFields):
+            f = yield create_field(field, 'en')
+            self.dummyFields[idx]['id'] = f['id']
+
+        SubmissionTest.aContext1['steps'][0]['children'] = [
+            self.dummyFields[0]['id'], # Field 1
+            self.dummyFields[1]['id'], # Field 2
+            self.dummyFields[4]['id']  # Generalities
+        ]
+
         SubmissionTest.context_used = yield admin.create_context(SubmissionTest.aContext1)
 
         # Correctly, TTip.tipContext has not selectable receiver, and we want test it in the 2nd test
@@ -116,8 +134,9 @@ class TestTipInstance(SubmissionTest):
     def test_002_create_submission_missing_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
+        fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
         submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                             SubmissionTest.context_used['fields']) )
+                                                             fields) )
         submission_request['finalize'] = True
 
         yield self.assertFailure(submission.create_submission(submission_request, finalize=True),
@@ -128,8 +147,9 @@ class TestTipInstance(SubmissionTest):
     def test_003_create_submission_flip_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
+        fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
         submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                             SubmissionTest.context_used['fields']) )
+                                                             fields) )
 
         submission_request['receivers'] = [ SubmissionTest.receiver_unused['id'] ]
         submission_request['finalize'] = True
@@ -141,8 +161,9 @@ class TestTipInstance(SubmissionTest):
     def test_004_create_submission_both_valid_and_invalid_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                             SubmissionTest.context_used['fields']) )
+        fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
+	submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
+                                                             fields) )
 
         submission_request['receivers'] = [ SubmissionTest.receiver_unused['id'],
                                             SubmissionTest.receiver_used['id']  ]
@@ -156,8 +177,9 @@ class TestTipInstance(SubmissionTest):
     def test_005_create_valid_submission(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
+        fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
         submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                             SubmissionTest.context_used['fields']) )
+                                                             fields) )
 
         submission_request['receivers'] = [ SubmissionTest.receiver_used['id']  ]
         submission_request['finalize'] = True
@@ -168,15 +190,15 @@ class TestTipInstance(SubmissionTest):
     def test_006_fail_create_huge_submission(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
+        fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
         submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                             SubmissionTest.context_used['fields']) )
+                                                             fields) )
 
         submission_request['receivers'] = [ SubmissionTest.receiver_used['id'] ]
         submission_request['context_id'] = SubmissionTest.context_used['id']
 
         for key in submission_request['wb_fields'].keys():
-            submission_request['wb_fields'][key] = { u'value': unicode("You know nothing John Snow" * 100 * 100),
-                                                     u'answer_order': 0 }
+            submission_request['wb_fields'][key] = { u'value': unicode("You know nothing John Snow" * 100 * 100) }
 
         submission_request['finalize'] = True
 

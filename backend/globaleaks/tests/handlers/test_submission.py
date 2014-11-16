@@ -10,7 +10,7 @@ from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.models import InternalTip
 
-class Test_001_SubmissionCreate(helpers.TestHandler):
+class Test_001_SubmissionCreate(helpers.TestHandlerWithPopulatedDB):
     _handler = submission.SubmissionCreate
 
     @inlineCallbacks
@@ -36,7 +36,7 @@ class Test_001_SubmissionCreate(helpers.TestHandler):
         self.assertEqual(len(self.responses), 1)
         self._handler.validate_message(json.dumps(self.responses[0]), requests.internalTipDesc)
 
-class Test_002_SubmissionInstance(helpers.TestHandler):
+class Test_002_SubmissionInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = submission.SubmissionInstance
 
     def test_001_get_unexistent_submission(self):

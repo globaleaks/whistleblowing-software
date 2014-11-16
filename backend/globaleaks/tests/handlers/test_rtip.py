@@ -9,7 +9,7 @@ from globaleaks.handlers import admin, rtip
 from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.models import ReceiverTip
 
-class TestRTipInstance(helpers.TestHandler):
+class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = rtip.RTipInstance
 
     @inlineCallbacks
@@ -95,7 +95,7 @@ class TestRTipInstance(helpers.TestHandler):
 
             self.assertFailure(handler.delete("unexistent_tip"), errors.TipIdNotFound)
 
-class TestRTipCommentCollection(helpers.TestHandler):
+class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = rtip.RTipCommentCollection
 
     @inlineCallbacks
@@ -120,7 +120,7 @@ class TestRTipCommentCollection(helpers.TestHandler):
 
             yield handler.post(rtip_desc['rtip_id'])
 
-class TestReceiverMsgCollection(helpers.TestHandler):
+class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = rtip.ReceiverMsgCollection
 
     @inlineCallbacks
@@ -145,7 +145,7 @@ class TestReceiverMsgCollection(helpers.TestHandler):
 
             yield handler.post(rtip_desc['rtip_id'])
 
-class TestRTipReceiversCollection(helpers.TestHandler):
+class TestRTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = rtip.RTipReceiversCollection
 
     @inlineCallbacks

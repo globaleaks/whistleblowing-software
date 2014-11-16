@@ -7,7 +7,7 @@ from globaleaks.rest import requests
 from globaleaks.tests import helpers
 from globaleaks.handlers import overview
 
-class TestUsersOverview(helpers.TestHandler):
+class TestUsersOverview(helpers.TestHandlerWithPopulatedDB):
     _handler = overview.Users
 
     @inlineCallbacks
@@ -21,7 +21,7 @@ class TestUsersOverview(helpers.TestHandler):
         self._handler.validate_message(json.dumps(self.responses[0]), requests.UsersOverview)
 
 
-class TestTipsOverview(helpers.TestHandler):
+class TestTipsOverview(helpers.TestHandlerWithPopulatedDB):
     _handler = overview.Tips
 
     @inlineCallbacks
@@ -35,7 +35,7 @@ class TestTipsOverview(helpers.TestHandler):
         self._handler.validate_message(json.dumps(self.responses[0]), requests.TipsOverview)
 
 
-class TestFilesOverview(helpers.TestHandler):
+class TestFilesOverview(helpers.TestHandlerWithPopulatedDB):
     _handler = overview.Files
 
     @inlineCallbacks
