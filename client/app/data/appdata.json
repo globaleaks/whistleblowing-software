@@ -22,40 +22,95 @@
   },
   "fields" : [
     {
-      "incremental_number": 0,
-      "localized_name": {
-        "en": "Short title"
-      },
-      "localized_hint": {
-        "en": "Describe your submission with a few words"
-      },
-      "type": "text",
-      "trigger": [],
-      "defined_options": []
+      "label": { "en": "Fill out your submission" },
+      "description": {"en": ""},
+      "hint": {"en": ""},
+      "children" : [
+        {
+          "label": { "en": "Short title" },
+          "type": "inputbox",
+          "preview": false,
+          "description": {"en": "Describe your submission with a few words"},
+          "hint": {"en": ""},
+          "multi_entry": false,
+          "stats_enabled": false,
+          "required": true,
+          "children": [],
+          "options": [],
+          "y": 1,
+          "x": 0
+        },
+        {
+          "label": { "en": "Short title" },
+          "type": "inputbox",
+          "preview": false,
+          "description": {"en": "Describe the details of the submission"},
+          "hint": {"en": ""},
+          "multi_entry": false,
+          "stats_enabled": false,
+          "required": true,
+          "children": [],
+          "options": [],
+          "y": 2,
+          "x": 0
+        },
+        {
+          "label": { "en": "Files description" },
+          "type": "inputbox",
+          "preview": false,
+          "description": {"en": "Describe the attachments of the submission"},
+          "hint": {"en": ""},
+          "multi_entry": false,
+          "stats_enabled": false,
+          "required": true,
+          "children": [],
+          "options": [],
+          "y": 3,
+          "x": 0
+        },
+        {
+          "label": { "en": "Files" },
+          "type": "inputbox",
+          "preview": false,
+          "description": {"en": "Attach files relevant to the submission"},
+          "hint": {"en": ""},
+          "multi_entry": true,
+          "stats_enabled": false,
+          "required": true,
+          "children": [],
+          "options": [],
+          "y": 4,
+          "x": 0
+        }
+      ]
     },
     {
-      "incremental_number": 1,
-      "localized_name": {
-        "en": "Full description"
-      },
-      "localized_hint": {
-        "en": "Describe the details of the submission"
-      },
-      "type": "textarea",
-      "trigger": [],
-      "defined_options": []
-    },
-    {
-      "incremental_number": 2,
-      "localized_name": {
-        "en": "Files description"
-      },
-      "localized_hint": {
-        "en": "Describe the attachments of the submission"
-      },
-      "type": "textarea",
-      "trigger": [],
-      "defined_options": []
+      "label": { "en": "Final Step" },
+      "description": { "en": "" },
+      "hint": { "en": "Step Hint" },
+      "children": [
+        {
+          "label": { "en": "Terms and Conditions" },
+          "type": "tos",
+          "preview": false,
+          "description": {"en": ""},
+          "hint": {"en": ""},
+          "multi_entry": true,
+          "stats_enabled": false,
+          "required": true,
+          "children": [],
+          "options": [
+            {
+              "attrs": {
+                "clause": { "en": "clause" },
+                "agreement_statement": { "en": "agrement_statement" }
+              }
+            }
+          ],
+          "y": 1,
+          "x": 0
+        }
+      ]
     }
   ],
   "templates" : {

@@ -1,59 +1,77 @@
-<fieldset>
-  <legend><span data-translate>Details</span></legend>
-  <div data-ng-repeat="field in submission.current_context.fields">
-    <div data-ng-form="" name="subForm" class="submissionField">
-      <div data-ng-switch="" on="field.type">
-        <div data-ng-switch-default="" class="form-group input" data-ng-class="field.required && 'required'">
-          <label>{{$index + 1}}) {{field.name}}</label>
-          <a href="" data-ng-show="field.hint" data-content="field.hint" popover="{{field.hint}}" popover-placement="right" popover-trigger="mouseenter">
-            <i class="glyphicon glyphicon-question-sign"></i>
-          </a>
+<fieldset data-ng-init="show_index = (field === undefined) ? true : false; fields = (field === undefined) ? current_context.steps[selection - 1].children : indexed_fields[field].children; wb_fields = (field === undefined) ? submission.current_submission.wb_fields : wb_fields[field].children">
+  <div data-ng-repeat="field in fields" data-ng-init="wb_fields[field].children = {};">
+    <div data-ng-controller="SubmissionFieldCtrl" data-ng-form="" name="subForm" class="submissionField">
+      <div data-ng-switch="" on="indexed_fields[field].type">
+        <div data-ng-switch-default="" class="form-group input" data-ng-class="indexed_fields[field].required && 'required'">
+          <div>
+            <label ng-if="show_index">{{$index + 1}}) {{indexed_fields[field].label}}</label>
+            <label ng-if="!show_index">{{indexed_fields[field].label}}</label>
+            <a href="" data-ng-show="indexed_fields[field].hint" data-content="indexed_fields[field].hint" popover="{{indexed_fields[field].hint}}" popover-placement="right" popover-trigger="mouseenter">
+              <i class="glyphicon glyphicon-question-sign"></i>
+            </a>
+          </div> 
           <div class="submissionFieldInput">
+            <input type="hidden" ng-init="wb_fields[field].order = $index" ng-model="wb_fields[field].order">
+            <input type="hidden" ng-init="wb_fields[field].label = indexed_fields[field].label" ng-model="wb_fields[field].label">
+            <input type="hidden" ng-init="wb_fields[field].type = indexed_fields[field].type" ng-model="wb_fields[field].type">
             <div class="row">
-              <div data-ng-switch="" on="field.type" class="col-md-4">
-                <input class="form-control" data-ng-switch-when="text" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text">
+               <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="wb_fields[field].value" data-ng-required="indexed_fields[field].required" name="input" value="{{wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder}}" type="text" />
 
-                <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="field.value" data-ng-required="field.required" placeholder="{{field.placeholder}}">{{field.value}}</textarea>
+              <div data-ng-switch="" on="indexed_fields[field].type" class="col-md-4">
+                <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="wb_fields[field].value" data-ng-required="indexed_fields[field].required" name="input" value="{{wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder}}" type="text" />
 
-                <select class="form-control" data-ng-switch-when="select" name="input" data-ng-model="field.value" data-ng-required="field.required">
-                  <option data-ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
+                <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="wb_fields[field].value" data-ng-required="indexed_fields[field].required" placeholder="{{indexed_fields[field].placeholder}}">{{wb_fields[field].value}}</textarea>
+
+                <select class="form-control" data-ng-switch-when="selectbox" name="input" data-ng-model="wb_fields[field].value" data-ng-required="indexed_fields[field].required">
+                  <option data-ng-repeat="option in indexed_fields[field].options" value="{{option.attrs.name}}">{{option.attrs.name}}</option>
                 </select>
 
-                <select class="form-control" data-ng-switch-when="multiple" name="input" data-ng-model="field.value" multiple="">
-                  <option data-ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
-                </select>
-
-                <fieldset data-ng-switch-when="radio">
-                  <div data-ng-repeat="option in field.options">
-                    <input data-ng-model="field.value" data-ng-required="field.required" value="{{option.value}}" type="radio">
-                    <label>{{option.name}}</label>
-                  </div>
-                </fieldset>
-
-                <div data-ng-switch-when="checkboxes">
-                  <div data-ng-repeat="option in field.options">
-                    <input name="{{option.name}}" 
-                        data-ng-model="field.value[option.name]"
-                        type="checkbox">
-                    <label>{{field.options[$index].name}}</label>
+                <div data-ng-switch-when="checkbox">
+                  <div data-ng-repeat="option in indexed_fields[field].options"; data-ng-init="wb_fields[field].value[option.id] = {};">
+                    <input type="hidden" ng-init="wb_fields[field].value[option.id].order = $index" ng-model="wb_fields[field].value[option.id].order">
+                    <input type="hidden" ng-init="wb_fields[field].value[option.id].name = option.attrs.name" ng-model="wb_fields[field].value[option.id].name">
+                    <input name="{{option.attrs.name}}"
+                        data-ng-model="wb_fields[field].value[option.id].value"
+                        placeholder="{{indexed_fields[field].placeholder || 'false'}}" 
+                        type="checkbox" />
+                    <label>{{option.attrs.name}}</label>
                   </div>
                 </div>
 
-                <!-- default switch is needed as currently we lack specific code for number,email,phonenumber and other specific validations so that they are threated using this default" -->
-                <input class="form-control" data-ng-switch-default="" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text">
+                <div data-ng-switch-when="dialog">
+                  <div class="preformatted">DIALOG FIELD TYPE INTERFACE STILL NEED TO BE IMPLEMENTED</div>
+                </div>
+
+                <div data-ng-switch-when="modal">
+                  <div class="preformatted">MODAL FIELD TYPE INTERFACE STILL NEED TO BE IMPLEMENTED</div>
+                </div>
+
+                <div data-ng-switch-when="tos">
+                  <textarea class="form-control" data-ng-readonly="true">{{indexed_fields[field].options[0].attrs.clause}}</textarea>
+                  <div class="form-group">
+                    <input data-ng-model="wb_fields[field].value" value="{{wb_fields[field].value}}" placeholder="{{indexed_fields[field].placeholder || 'false'}}" type="checkbox" />
+                    <label data-translate>{{indexed_fields[field].options[0].attrs.agreement_statement}}</label>
+                  </div>
+                </div>
+
+                <div data-ng-switch-when="fileupload">
+                  <div data-ng-include="'views/partials/fileupload_single.html'" class="col-md-12"></div>
+                </div>
+              
+                <div data-ng-switch-when="fieldgroup">
+                  <div data-ng-include="'views/submission/form.html'"></div>
+                </div>
 
               </div>
             </div>
 
-            <p class="has-error" data-ng-show="subForm.$invalid">
+            <div class="has-error" data-ng-show="subForm.$invalid">
               <span data-translate>This field cannot be empty</span>
-            </p>
+            </div>
 
           </div>
         </div>
-
       </div>
     </div>
-
   </div>
 </fieldset>

@@ -8,6 +8,7 @@ var GLClient = angular.module('GLClient', [
     'ngRoute',
     'ui.bootstrap',
     'ui.sortable',
+    'ang-drag-drop',
     'resourceServices',
     'submissionUI',
     'GLClientFilters',
@@ -70,6 +71,12 @@ var GLClient = angular.module('GLClient', [
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Contexts Configuration'
+      }).
+      when('/admin/fields/:lang?', {
+        templateUrl: 'views/admin/fields.html',
+        controller: 'AdminCtrl',
+        header_title: 'Administration Interface',
+        header_subtitle: 'Fields Configuration'
       }).
       when('/admin/receivers/:lang?', {
         templateUrl: 'views/admin/receivers.html',
