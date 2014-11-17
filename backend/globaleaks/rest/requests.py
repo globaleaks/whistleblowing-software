@@ -410,7 +410,7 @@ internalTipDesc = {
 # TODO if the admin has visibility to different variables compared to the WB
 # if its so, rename to FieldDesc (generic)
 
-adminFieldDesc = {
+FieldDesc = {
     'label': unicode,
     'description': unicode,
     'hint': unicode,

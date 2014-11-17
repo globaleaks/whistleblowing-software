@@ -5,6 +5,7 @@ Implementation of the code executed when an HTTP client reach /admin/fields URI.
 from __future__ import unicode_literals
 
 from storm.exceptions import DatabaseError
+from storm.expr import And
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
@@ -93,7 +94,7 @@ def field_integrity_check(request):
         raise errors.InvalidInputFormat("Each field should be a template or be associated to a step/fieldgroup")
 
     if not is_template:
-        if step_id is not None and fieldgroup_id is not None:
+        if step_id is '' and fieldgroup_id is '':
             raise errors.InvalidInputFormat("cannot associate a field to both a step and a fieldgroup")
 
     return is_template, step_id, fieldgroup_id
@@ -165,15 +166,8 @@ def update_field(store, field_id, request, language):
             if not child or child.id == field.id or child.id in ancestors:
                 raise errors.InvalidInputFormat(errmsg)
 
-            parent_association =  store.find(models.FieldField, models.FieldField.child_id == child.id)
-            # if child already associated to a different parent avoid association
-            if parent_association.count():
-                raise errors.InvalidInputFormat("field already associated to a parent (fieldgroup)")
-
-            parent_association =  store.find(models.StepField, models.StepField.field_id == child.id)
-            # if child already associated to a different parent avoid association
-            if parent_association.count():
-                raise errors.InvalidInputFormat("field already associated to a parent (step)")
+            # remove current step/field fieldgroup/field association
+            disassociate_field(store, child)
 
             field.children.add(child)
 
@@ -191,31 +185,19 @@ def update_field(store, field_id, request, language):
 
     return anon_serialize_field(store, field, language)
 
-
 @transact_ro
-def get_field_template_list(store, language):
+def get_field_list(store, is_template, language):
     """
-    Serialize all the field templates of the node, localizing their content depending on the language.
+    Serialize all the fields (templates or not templates) localizing their content depending on the language.
 
     :return: the current field list serialized.
     :param language: the language of the field definition dict
     :rtype: list of dict
     """
-    return [anon_serialize_field(store, f, language) for f in store.find(models.Field, models.Field.is_template == True)]
+    return [anon_serialize_field(store, f, language) for f in store.find(models.Field, models.Field.is_template == is_template)]
 
 @transact_ro
-def get_field_list(store, language):
-    """
-    Serialize all the fields of the node associated to a context and localizing their content depending on the language.
-
-    :return: the current field list serialized.
-    :param language: the language of the field definition dict
-    :rtype: list of dict
-    """
-    return [anon_serialize_field(store, f, language) for f in store.find(models.Field, models.Field.is_template == False)]
-
-@transact_ro
-def get_field(store, field_id, language):
+def get_field(store, field_id, is_template, language):
     """
     Serialize a speficied field, localizing its content depending on the language.
 
@@ -224,14 +206,14 @@ def get_field(store, field_id, language):
     :return: the currently configured field.
     :rtype: dict
     """
-    field = models.Field.get(store, field_id)
+    field = store.find(models.Field, And(models.Field.id == field_id, models.Field.is_template == is_template)).one()
     if not field:
         log.err('Invalid field requested')
         raise errors.FieldIdNotFound
     return anon_serialize_field(store, field, language)
 
 @transact
-def delete_field(store, field_id):
+def delete_field(store, field_id, is_template):
     """
     Remove the field object corresponding to field_id from the store.
 
@@ -241,7 +223,7 @@ def delete_field(store, field_id):
     :param field_id: the id corresponding to the field.
     :raise: FieldIdNotFound: if no such field is found.
     """
-    field = models.Field.get(store, field_id)
+    field = store.find(models.Field, And(models.Field.id == field_id, models.Field.is_template == is_template)).one()
     if not field:
         raise errors.FieldIdNotFound
     field.delete(store)
@@ -278,7 +260,7 @@ def fieldtree_ancestors(store, field_id):
     else:
         return
 
-class FieldsTemplateCollection(BaseHandler):
+class FieldTemplatesCollection(BaseHandler):
     """
     /admin/fieldtemplates
     """
@@ -290,10 +272,10 @@ class FieldsTemplateCollection(BaseHandler):
         Return a list of all the fields templates available.
 
         Parameters: None
-        Response: adminFieldList
+        Response: FieldList
         Errors: None
         """
-        response = yield get_field_template_list(self.request.language)
+        response = yield get_field_list(True, self.request.language)
         self.set_status(200)
         self.finish(response)
 
@@ -305,13 +287,17 @@ class FieldTemplateCreate(BaseHandler):
         """
         Create a new field template.
 
-        Request: adminFieldDesc
-        Response: adminFieldDesc
+        Request: FieldDesc
+        Response: FieldDesc
         Errors: InvalidInputFormat, FieldIdNotFound
         """
 
         request = self.validate_message(self.request.body,
-                                        requests.adminFieldDesc)
+                                        requests.FieldDesc)
+
+        # enforce difference between /admin/field and /admin/fieldtemplate
+        request['is_template'] = True
+
         response = yield create_field(request, self.request.language)
         self.set_status(201)
         self.finish(response)
@@ -330,11 +316,11 @@ class FieldTemplateUpdate(BaseHandler):
         Get the field identified by field_id
 
         :param field_id:
-        :rtype: adminFieldDesc
+        :rtype: FieldDesc
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        response = yield get_field_template(field_id, self.request.language)
+        response = yield get_field(field_id, True, self.request.language)
         self.set_status(200)
         self.finish(response)
 
@@ -345,12 +331,16 @@ class FieldTemplateUpdate(BaseHandler):
         """
         Update a single field template's attributes.
 
-        Request: adminFieldDesc
-        Response: adminFieldDesc
+        Request: FieldDesc
+        Response: FieldDesc
         Errors: InvalidInputFormat, FieldIdNotFound
         """
         request = self.validate_message(self.request.body,
-                                        requests.adminFieldDesc)
+                                        requests.FieldDesc)
+
+        # enforce difference between /admin/field and /admin/fieldtemplate
+        request['is_template'] = True
+
         response = yield update_field(field_id, request, self.request.language)
         self.set_status(202) # Updated
         self.finish(response)
@@ -366,27 +356,8 @@ class FieldTemplateUpdate(BaseHandler):
         Response: None
         Errors: InvalidInputFormat, FieldIdNotFound
         """
-        yield delete_field(field_id)
+        yield delete_field(field_id, True)
         self.set_status(200)
-
-class FieldsCollection(BaseHandler):
-    """
-    /admin/fields
-    """
-    @transport_security_check('admin')
-    @authenticated('admin')
-    @inlineCallbacks
-    def get(self, *uriargs):
-        """
-        Return a list of all the fields available in a node.
-
-        Parameters: None
-        Response: adminFieldList
-        Errors: None
-        """
-        response = yield get_field_list(self.request.language)
-        self.set_status(200)
-        self.finish(response)
 
 class FieldCreate(BaseHandler):
     """
@@ -401,14 +372,16 @@ class FieldCreate(BaseHandler):
         """
         Create a new field.
 
-        Request: adminFieldDesc
-        Response: adminFieldDesc
+        Request: FieldDesc
+        Response: FieldDesc
         Errors: InvalidInputFormat, FieldIdNotFound
         """
 
         request = self.validate_message(self.request.body,
-                                        requests.adminFieldDesc)
+                                        requests.FieldDesc)
 
+        # enforce difference between /admin/field and /admin/fieldtemplate
+        request['is_template'] = False
         response = yield create_field(request, self.request.language)
         self.set_status(201)
         self.finish(response)
@@ -427,11 +400,11 @@ class FieldUpdate(BaseHandler):
         Get the field identified by field_id
 
         :param field_id:
-        :rtype: adminFieldDesc
+        :rtype: FieldDesc
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        response = yield get_field(field_id, self.request.language)
+        response = yield get_field(field_id, False, self.request.language)
         self.set_status(200)
         self.finish(response)
 
@@ -442,12 +415,16 @@ class FieldUpdate(BaseHandler):
         """
         Update a single field's attributes.
 
-        Request: adminFieldDesc
-        Response: adminFieldDesc
+        Request: FieldDesc
+        Response: FieldDesc
         Errors: InvalidInputFormat, FieldIdNotFound
         """
         request = self.validate_message(self.request.body,
-                                        requests.adminFieldDesc)
+                                        requests.FieldDesc)
+
+        # enforce difference between /admin/field and /admin/fieldtemplate
+        request['is_template'] = False
+
         response = yield update_field(field_id, request, self.request.language)
         self.set_status(202) # Updated
         self.finish(response)
@@ -463,5 +440,5 @@ class FieldUpdate(BaseHandler):
         Response: None
         Errors: InvalidInputFormat, FieldIdNotFound
         """
-        yield delete_field(field_id)
+        yield delete_field(field_id, False)
         self.set_status(200)

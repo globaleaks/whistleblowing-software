@@ -3,6 +3,7 @@
 #   ******************
 from __future__ import with_statement
 
+import json
 import re
 import os
 
@@ -25,19 +26,19 @@ def opportunistic_appdata_init():
     # Fields and applicative data initialization
 
     fields_l10n = [ "/usr/share/globaleaks/glclient/data/appdata_l10n.json",
-                    "../client/app/data/appdata_l10n.json",
-                    "../client/build/data/appdata_l10n.json",
-                    "../../client/app/data/appdata_l10n.json",
-                    "../../client/build/data/appdata_l10n.json"]
+                    "../../../client/app/data/appdata_l10n.json",
+                    "../../../client/build/data/appdata_l10n.json"]
 
     appdata_dict = None
 
+    this_directory = os.path.dirname(__file__)
+
     for fl10n in fields_l10n:
+        fl10n_file = os.path.join(this_directory, fl10n)
 
-        if os.path.exists(fl10n):
+        if os.path.exists(fl10n_file):
 
-            with file(fl10n, 'r') as f:
-                import json
+            with file(fl10n_file, 'r') as f:
                 json_string = f.read()
                 appdata_dict = json.loads(json_string)
                 return appdata_dict

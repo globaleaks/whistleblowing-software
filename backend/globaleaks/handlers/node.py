@@ -338,14 +338,6 @@ class ContextsCollection(BaseHandler):
                                    get_public_context_list, self.request.language)
         self.finish(ret)
 
-@transact_ro
-def get_public_field_list(store, language):
-    """
-    :return: the current field list serialized.
-    :rtype: dict
-    """
-    return [anon_serialize_field(store, f, language) for f in store.find(models.Field)]
-
 class FieldsCollection(BaseHandler):
     """
     /admin/fields
@@ -364,6 +356,25 @@ class FieldsCollection(BaseHandler):
         ret = yield get_public_field_list(self.request.language)
         self.set_status(200)
         self.finish(ret)
+
+class FieldsCollection(BaseHandler):
+    """
+    /admin/fields
+    """
+    @transport_security_check('admin')
+    @unauthenticated
+    @inlineCallbacks
+    def get(self, *uriargs):
+        """
+        Return a list of all the fields available in a node.
+
+        Parameters: None
+        Response: adminFieldList
+        Errors: None
+        """
+        response = yield get_field_list(self.request.language)
+        self.set_status(200)
+        self.finish(response)
 
 @transact_ro
 def get_public_receiver_list(store, default_lang):

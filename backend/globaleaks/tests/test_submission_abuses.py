@@ -59,7 +59,7 @@ class SubmissionTest(helpers.TestGL):
         'show_receivers': False,
         'enable_private_messages': True,
         'presentation_order': 0,
-        'steps': {}
+        'steps': []
     }
 
     aReceiver1 = copy.deepcopy(TTip.tipReceiver1)
