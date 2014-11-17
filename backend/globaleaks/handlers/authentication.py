@@ -7,6 +7,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 from storm.exceptions import NotOneError
+from storm.expr import And
 
 from globaleaks import security
 from globaleaks.models import Node, User
@@ -23,7 +24,7 @@ reactor = None
 
 class GLSession(tempobj.TempObj):
 
-def __init__(self, user_id, user_role, user_status):
+    def __init__(self, user_id, user_role, user_status):
         self.user_role = user_role
         self.user_id = user_id
         self.user_role = user_role
@@ -253,7 +254,7 @@ def login_admin(store, username, password):
 
     if not security.check_password(password, admin_user.password, admin_user.salt):
         log.debug("Admin login: Invalid password")
-        return False,, None
+        return False, None
     else:
         log.debug("Admin: Authorized admin %s" % username)
         admin_user.last_login = utility.datetime_now()
@@ -334,7 +335,7 @@ class AuthenticationHandler(BaseHandler):
             if authorized_username is False:
                 GLSetting.failed_login_attempts += 1
                 raise errors.InvalidAuthRequest
-            new_session_id = self.generate_session(authorized_username, role, status
+            new_session_id = self.generate_session(authorized_username, role, status)
 
             auth_answer = {
                 'role': 'admin',
@@ -375,6 +376,7 @@ class AuthenticationHandler(BaseHandler):
                 'session_id': new_session_id,
                 'user_id': unicode(receiver_id),
                 'session_expiration': int(GLSetting.sessions[new_session_id].getTime()),
+                'status': status
             }
 
         else:
