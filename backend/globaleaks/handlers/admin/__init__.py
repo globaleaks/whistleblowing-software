@@ -15,6 +15,7 @@ from globaleaks import security, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db.datainit import import_memory_variables
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler, GLApiCache
+from globaleaks.handlers.admin.field import disassociate_field
 from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list, \
     anon_serialize_node, anon_serialize_step, anon_serialize_field
 from globaleaks import models
@@ -105,15 +106,8 @@ def db_create_step(store, context_id, steps, language):
                 log.err("Creation error: unexistent field can't be associated")
                 raise errors.FieldIdNotFound
 
-            parent_association =  store.find(models.FieldField, models.FieldField.child_id == field_id)
-            # if child already associated to a different parent avoid association
-            if parent_association.count():
-                raise errors.InvalidInputFormat("field already associated to a parent (fieldgroup)")
-
-            parent_association =  store.find(models.StepField, models.StepField.field_id == field_id)
-            # if child already associated to a different parent avoid association
-            if parent_association.count():
-                raise errors.InvalidInputFormat("field already associated to a parent (step)")
+            # remove current step/field fieldgroup/field association
+            disassociate_field(store, field)
 
             s.children.add(field)
 
@@ -162,15 +156,8 @@ def db_update_steps(store, context_id, steps, language):
                 log.err("Creation error: unexistent field can't be associated")
                 raise errors.FieldIdNotFound
 
-            parent_association = store.find(models.FieldField, models.FieldField.child_id == field_id)
-            # if child already associated to a different parent avoid association
-            if parent_association.count():
-                raise errors.InvalidInputFormat("field already associated to a parent (fieldgroup)")
-
-            parent_association = store.find(models.StepField, models.StepField.field_id == field_id)
-            # if child already associated to a different parent avoid association
-            if parent_association.count():
-                raise errors.InvalidInputFormat("field already associated to a parent (step)")
+            # remove current step/field fieldgroup/field association
+            disassociate_field(store, field)
 
             s.children.add(field)
 
@@ -534,6 +521,8 @@ def db_get_fields_recursively(store, field, language):
         s = anon_serialize_field(store, children, language)
         ret.append(s)
         ret += db_get_fields_recursively(store, children, language)
+
+    a = [ field['label'] for field in ret]
     return ret
 
 def db_get_context_fields(store, context_id, language=GLSetting.memory_copy.default_language):
@@ -558,6 +547,7 @@ def db_get_context_fields(store, context_id, language=GLSetting.memory_copy.defa
             fields.append(s)
             fields += db_get_fields_recursively(store, children, language)
 
+    a = [ field['label'] for field in fields]
     return fields
 
 @transact_ro

@@ -358,7 +358,7 @@ class TestStep(helpers.TestGL):
         for child in step.children:
             if child.y > max:
                 max = child.y
-        new_field = field.copy(store)
+        new_field = field.copy(store, False)
         new_field.y = max + 1
         step.children.add(new_field)
 

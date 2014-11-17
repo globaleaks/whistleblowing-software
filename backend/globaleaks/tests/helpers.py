@@ -4,6 +4,7 @@ Utilities and basic TestCases.
 """
 from __future__ import with_statement
 
+import copy
 import json
 import os
 from cyclone import httpserver
@@ -129,6 +130,7 @@ class TestGL(unittest.TestCase):
         dummyStuff = MockDict()
 
         self.dummyFields = dummyStuff.dummyFields
+        self.dummyFieldTemplates = dummyStuff.dummyFieldTemplates
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyNotification = dummyStuff.dummyNotification
@@ -344,20 +346,34 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2)
         receivers_ids.append(self.dummyReceiver_2['id'])
 
-        # fill_data/create_fields
+        # fill_data/create_context
+        self.dummyContext['receivers'] = receivers_ids
+        self.dummyContext = yield create_context(self.dummyContext)
+
+        # fill_data: create cield templates
+        for idx, field in enumerate(self.dummyFieldTemplates):
+            f = yield create_field(field, 'en')
+            self.dummyFieldTemplates[idx]['id'] = f['id']
+
+        # fill_data: create fields and associate them to the context steps
         for idx, field in enumerate(self.dummyFields):
+            field['is_template'] = False
+            if idx <= 2:
+                # "Field 1", "Field 2" and "Generalities" are associated to the first step
+                field['step_id'] = self.dummyContext['steps'][0]['id']
+            else:
+                # Name, Surname, Gender" are associated to field "Generalities"
+                # "Field 1" and "Field 2" are associated to the first step
+                field['fieldgroup_id'] = self.dummyFields[2]['id']
+               
             f = yield create_field(field, 'en')
             self.dummyFields[idx]['id'] = f['id']
 
         self.dummyContext['steps'][0]['children'] = [
             self.dummyFields[0]['id'], # Field 1
             self.dummyFields[1]['id'], # Field 2
-            self.dummyFields[4]['id']  # Generalities
+            self.dummyFields[2]['id']  # Generalities
         ]
-
-        # fill_data/create_context
-        self.dummyContext['receivers'] = receivers_ids
-        self.dummyContext = yield create_context(self.dummyContext)
 
         # fill_data/create_submission
         self.dummySubmission['context_id'] = self.dummyContext['id']
@@ -571,7 +587,7 @@ class MockDict():
             'presentation_order': 0,
         }
 
-        self.dummyFields = [{
+        self.dummyFieldTemplates = [{
             'id': u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
             'template_id': '',
             'is_template': True,
@@ -607,6 +623,25 @@ class MockDict():
             'children': [],
             'options': [],
             'y': 3,
+            'x': 0
+            },
+            {
+            'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
+            'template_id': '',
+            'is_template': True,
+            'step_id': '',
+            'fieldgroup_id': '',
+            'label': u'Generalities',
+            'type': u'fieldgroup',
+            'preview': False,
+            'description': u"field description",
+            'hint': u'field hint',
+            'multi_entry': False,
+            'stats_enabled': False,
+            'required': False,
+            'children': [],
+            'options': [],
+            'y': 4,
             'x': 0
             },
             {
@@ -646,35 +681,15 @@ class MockDict():
             'options': [],
             'y': 0,
             'x': 0
-            },
-            {
-            'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
-            'template_id': '',
-            'is_template': True,
-            'step_id': '',
-            'fieldgroup_id': '',
-            'label': u'Generalities',
-            'type': u'fieldgroup',
-            'preview': False,
-            'description': u"field description",
-            'hint': u'field hint',
-            'multi_entry': False,
-            'stats_enabled': False,
-            'required': False,
-            'children': [u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
-                         u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2'],
-            'options': [],
-            'y': 4,
-            'x': 0
             }]
+
+        self.dummyFields = copy.deepcopy(self.dummyFieldTemplates)
 
         self.dummySteps = [{
             'label': u'Presegnalazione',
             'description': u'Step Description',
             'hint': u'Step Hint',
-            'children': [u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
-                         u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
-                         u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f']
+            'children': []
             },
             {
               'label': u'Segnalazione',
