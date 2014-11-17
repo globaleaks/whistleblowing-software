@@ -7,7 +7,7 @@ CREATE TABLE user (
     password VARCHAR NOT NULL,
     salt VARCHAR NOT NULL,
     role VARCHAR NOT NULL CHECK (role IN ('admin', 'receiver')),
-    state VARCHAR NOT NULL CHECK (state IN ('disabled', 'to_be_activated', 'enabled')),
+    state VARCHAR NOT NULL CHECK (state IN ('disabled', 'password_change_needed', 'enabled')),
     last_login VARCHAR NOT NULL,
     last_update VARCHAR,
     PRIMARY KEY (id),
