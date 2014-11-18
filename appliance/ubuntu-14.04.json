@@ -1,4 +1,8 @@
 {
+    "variables": {
+        "machine_name": "ubuntu-14.04"
+    },
+
     "builders": [
         {
             "type": "virtualbox-iso",
@@ -22,25 +26,13 @@
             "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
             "virtualbox_version_file": ".vbox_version",
             "ssh_username": "vagrant",
-            "ssh_password": "vagrant"
+            "ssh_password": "vagrant",
+            "output_directory": "output-{{user `machine_name`}}",
+            "vm_name": "globaleaks-{{user `machine_name`}}"
         }
     ],
 
     "provisioners": [
-        {
-            "type": "shell",
-            "script": "scripts/vagrant.sh",
-            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
-        },
-        {
-            "type": "shell",
-            "script": "scripts/virtualbox.sh",
-            "override": {
-                "virtualbox-iso": {
-                    "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
-                }
-            }
-        },
         {
             "type": "file",
             "source": "../globaleaks_2.60.29_all.deb",
@@ -49,13 +41,9 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/globaleaks.sh"
-            ],
-            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
-        },
-        {
-            "type": "shell",
-            "scripts": [
+                "scripts/vagrant.sh",
+                "scripts/virtualbox.sh",
+                "scripts/globaleaks.sh",
                 "scripts/vm_cleanup.sh"
             ],
             "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
