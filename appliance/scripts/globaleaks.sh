@@ -9,11 +9,6 @@ wget http://ftp.de.debian.org/debian/pool/main/p/python-cryptography/python-cryp
 dpkg -i python-cryptography* || true
 apt install -fy
 
-# XXX. Temporairly disable iptables, as it currently locks me out from ssh.
-apt install -y iptables
-mv /sbin/iptables /sbin/iptables.1
-ln -s /bin/true /sbin/iptables
-
 # install globaleaks
 dpkg -i globaleaks* || true
 apt install -fy
