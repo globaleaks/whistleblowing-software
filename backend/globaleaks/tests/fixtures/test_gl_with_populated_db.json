@@ -348,19 +348,6 @@
   },
   {
     "fields": {
-      "username": "admin",
-      "creation_date": "2014-09-13 09:01:53.297396",
-      "state": "enabled",
-      "last_login": "1970-01-01 00:00:00.000000",
-      "role": "admin",
-      "password": "53797ee7e7d6e11945c72c37590a144bb48ff10208577eb895f7a71e4cef590687a2c1a0ec7382078b49f6e4ddf435a5e69ae666939a5b333c102c44f9d16dfa",
-      "salt": "68c643673fae26986a1c5a63de27be1b",
-      "id": "e0f7d68a-15a9-41f3-bd8a-882277c19ba6"
-    },
-    "class": "User"
-  },
-  {
-    "fields": {
       "source_name": "Default GlobaLeaks sender",
       "creation_date": "2014-09-13 09:01:53.297589",
       "zip_description": {
