@@ -53,7 +53,7 @@
     "post-processors": [
         {
             "type": "vagrant",
-            "keep_input_artifact": true
+            "output": "packer_{{.Provider}}_{{user `machine_name`}}.box"
         }
     ]
 }
