@@ -36,6 +36,27 @@ def get_sample_field():
     }
     return sample_field
 
+class TestFieldCreate(helpers.TestHandlerWithPopulatedDB):
+        _handler = admin.field.FieldCreate
+        fixtures = ['fields.json']
+
+        @inlineCallbacks
+        def test_post(self):
+            """
+            Attempt to create a new field via a post request.
+            """
+            attrs = get_sample_field()
+            attrs['is_template'] = False
+            attrs['step_id'] = yield get_step_id(self.dummyContext['id'])
+            handler = self.request(attrs, role='admin')
+            yield handler.post()
+            self.assertEqual(len(self.responses), 1)
+
+            resp, = self.responses
+            self.assertIn('id', resp)
+            self.assertNotEqual(resp.get('options'), None)
+
+
 class TestFieldUpdate(helpers.TestHandlerWithPopulatedDB):
         _handler = admin.field.FieldUpdate
         fixtures = ['fields.json']
@@ -117,8 +138,8 @@ class TestFieldUpdate(helpers.TestHandlerWithPopulatedDB):
             pass
 
 
-class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
-        _handler = admin.field.FieldTemplatesCollection
+class TestFieldsCollection(helpers.TestHandlerWithPopulatedDB):
+        _handler = admin.field.FieldsCollection
         fixtures = ['fields.json']
 
         @inlineCallbacks

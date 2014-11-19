@@ -35,8 +35,6 @@ spec = [
 
     (r'/contexts', node.ContextsCollection),
 
-    (r'/fields', node.FieldsCollection),
-
     (r'/receivers' , node.ReceiversCollection),
 
     #  ahmia.fi integration with description.json file
@@ -94,7 +92,7 @@ spec = [
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
     (r'/admin/notification', admin.notification.NotificationInstance),
 
-    (r'/admin/fields', node.FieldsCollection),
+    (r'/admin/fields', admin.field.FieldsCollection),
     (r'/admin/field', admin.field.FieldCreate),
     (r'/admin/field' + uuid_regexp, admin.field.FieldUpdate),
 
