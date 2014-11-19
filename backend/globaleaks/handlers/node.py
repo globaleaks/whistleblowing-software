@@ -162,6 +162,17 @@ def anon_serialize_option(option, field_type, language):
 
     return ret_dict
 
+@transact_ro
+def get_field_list(store, is_template, language):
+    """
+    Serialize all the fields (templates or not templates) localizing their content depending on the language.
+
+    :return: the current field list serialized.
+    :param language: the language of the field definition dict
+    :rtype: list of dict
+    """
+    return [anon_serialize_field(store, f, language) for f in store.find(models.Field, models.Field.is_template == is_template)]
+
 def anon_serialize_field(store, field, language):
     """
     Serialize a field, localizing its content depending on the language.
@@ -372,7 +383,7 @@ class FieldsCollection(BaseHandler):
         Response: adminFieldList
         Errors: None
         """
-        response = yield get_field_list(self.request.language)
+        response = yield get_field_list(False, self.request.language)
         self.set_status(200)
         self.finish(response)
 

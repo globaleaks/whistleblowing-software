@@ -754,14 +754,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
           }
         ),
-        adminFieldsResource = $resource('/admin/field/:field_id',
-          {field_id: '@id'},
-          {
-            update: {
-              method: 'PUT'
-            }
-          }
-        ),
+        adminFieldsResource = $resource('/admin/fields', {}, {}),
         adminReceiversResource = $resource('/admin/receiver/:receiver_id',
           {receiver_id: '@id'},
           {

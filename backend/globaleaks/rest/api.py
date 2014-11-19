@@ -98,7 +98,7 @@ spec = [
     (r'/admin/field', admin.field.FieldCreate),
     (r'/admin/field' + uuid_regexp, admin.field.FieldUpdate),
 
-    (r'/admin/fieldtemplates', admin.field.FieldsTemplateCollection),
+    (r'/admin/fieldtemplates', admin.field.FieldTemplatesCollection),
     (r'/admin/fieldtemplate', admin.field.FieldTemplateCreate),
     (r'/admin/fieldtemplate/' + field_regexp, admin.field.FieldTemplateUpdate),
 
