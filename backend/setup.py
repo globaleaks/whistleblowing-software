@@ -111,7 +111,6 @@ setup(
     scripts=[
         'bin/globaleaks',
         'bin/globaleaksadmin',
-        'scripts/glclient-build',
         'bin/gl-fix-permissions',
     ],
     install_requires=install_requires,
