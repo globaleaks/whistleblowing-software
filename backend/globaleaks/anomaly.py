@@ -289,6 +289,8 @@ class Alarm:
 
     def get_token_difficulty(self):
         """
+        THIS FUNCTION IS NOT YET CALL
+
         This function return the difficulty that will be enforced in the
         token, whenever is File or Submission, here is evaluated with a dict.
         """
@@ -298,7 +300,6 @@ class Alarm:
             'proof_of_work': False,
         }
 
-        # TODO make a proper assessment between pissed off users and defeated DoS
         if Alarm.stress_levels['activity'] >= 1:
             self.difficulty_dict['graph_captcha'] = True
 

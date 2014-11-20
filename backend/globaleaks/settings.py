@@ -20,7 +20,6 @@ import getpass
 import tempfile
 import transaction
 
-from ConfigParser import ConfigParser
 from optparse import OptionParser
 from ctypes import CDLL
 

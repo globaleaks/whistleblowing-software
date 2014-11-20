@@ -152,9 +152,8 @@ class AnomaliesCollection(BaseHandler):
 
 
     @transport_security_check("admin")
-    # TODO is temporary to test interface without login!!
-    # @authenticated("admin")
-    # @inlineCallbacks
+    @authenticated("admin")
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Anomalies history is track in Alarm, but is also stored in the
@@ -165,8 +164,7 @@ class AnomaliesCollection(BaseHandler):
 class AnomalyHistoryCollection(BaseHandler):
 
     @transport_security_check("admin")
-    # TODO is temporary to test interface without login!!
-    # @authenticated("admin")
+    @authenticated("admin")
     @inlineCallbacks
     def get(self, *uriargs):
 
@@ -192,8 +190,7 @@ class StatsCollection(BaseHandler):
     """
 
     @transport_security_check("admin")
-    # TODO is temporary to test interface without login!!
-    # @authenticated("admin")
+    @authenticated("admin")
     @inlineCallbacks
     def get(self, weeks_in_the_past):
 
@@ -289,15 +286,9 @@ class RecentEventsCollection(BaseHandler):
 
         return eventmap
 
-    def get_summary_experiment(self, templist):
-
-        print templist
-
-
 
     @transport_security_check("admin")
-    # TODO is temporary to test interface without login!!
-    # @authenticated("admin")
+    @authenticated("admin")
     def get(self, kind, *uriargs):
 
         if not kind in [ 'bubble', 'details', 'summary', 'summaryE', 'fake' ]:

@@ -92,8 +92,7 @@ def admin_update_appdata(store, loaded_appdata):
             node.terms_and_conditions = loaded_appdata['node']['terms_and_conditions']
 
     else:
-        log.err("NOT updating the Application Data Fields current %d proposed %d" %
-                (appdata.version, version))
+        log.err("NOT updating the Application Data Fields %d" % appdata.version)
 
     # in both cases, update or not, return the running version
     return {
