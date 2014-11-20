@@ -36,7 +36,6 @@ Depends:
  , build-essential
  , apparmor
  , apparmor-utils
- , libffi-dev
 Description: Opensource whistleblowing platform.
  GlobaLeaks is an open source project aimed to create a worldwide, anonymous,
  censorship-resistant, distributed whistleblowing platform.

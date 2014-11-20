@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 #        .;''-.
@@ -38,9 +38,6 @@ set -e
 #                      /   '
 
 remove() {
-
-  cat ${BASH_SOURCE[0]} | head -n 36 | tail -n 35
-
   echo
   echo "[+] Sorry to hear you did not enjoy your leaking experience"
   echo "    send us an email to info@globaleaks.org"
