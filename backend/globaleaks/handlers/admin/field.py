@@ -111,6 +111,8 @@ def db_create_field(store, request, language):
     """
     is_template, step_id, fieldgroup_id = field_integrity_check(request)
 
+    # XXX you probably want to split this if else statement into two functions
+    # that are called create_field_from_template and create_field
     if request['template_id'] == '':
         fill_localized_keys(request, models.Field.localized_strings, language)
         field = models.Field.new(store, request)

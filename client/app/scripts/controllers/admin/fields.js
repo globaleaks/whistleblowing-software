@@ -33,6 +33,10 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$modal',
       );
     };
   }
+
+  $scope.create_field = function() {
+    return $scope.admin.new_template_field();
+  };
 ]);
 
 GLClient.controller('AdminFieldsEditorCtrl', ['$scope',
@@ -96,7 +100,7 @@ GLClient.controller('AdminFieldsAddCtrl', ['$scope',
     $scope.new_field = {};
 
     $scope.add_field = function(label) {
-      field = new $scope.admin.new_field();
+      var field = new $scope.create_field();
 
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
@@ -115,7 +119,7 @@ GLClient.controller('AdminFieldsAddCtrl', ['$scope',
       }
 
       field.$save(function(new_field){
-        $scope.admin.fields.push(new_field);
+        $scope.fields.push(new_field);
         $scope.new_field = {};
       });
     }
