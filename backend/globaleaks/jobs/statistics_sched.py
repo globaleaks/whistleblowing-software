@@ -1,105 +1,145 @@
-# -*- coding: UTF-8
+# -*- coding: utf-8 -*-
+#
 #   statistics_sched
 #   ****************
 #
 #  Statistics works collecting every N-th minutes the amount of important
 #  operations happened
-import sys
+#
+#  This impact directly the statistics collection for OpenData purpose and
+#  private information.
+#  The anomaly detection based on stress level measurement.
+
+import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
-from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
-from globaleaks.settings import GLSetting, transact, external_counted_events
-from globaleaks.models import Stats
+from globaleaks.settings import GLSetting, transact
+from globaleaks.models import WeekStats, Anomalies
+from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
+
 
 
 @transact
-def acquire_statistics(store, anomalies_collection):
-    newstat = Stats()
-    newstat.content = dict(anomalies_collection)
+def save_anomalies(store, when_anomaly, anomaly_desc, alarm_raised):
+
+   newanom = Anomalies()
+
+   newanom.alarm = alarm_raised
+   newanom.stored_when = when_anomaly
+   newanom.events = anomaly_desc
+
+   store.add(newanom)
+
+@transact
+def save_statistics(store, start, end, activity_collection):
+
+    newstat = WeekStats()
+
+    log.debug("since %s to %s I've collected: %s" %
+              (start, end, activity_collection) )
+
+    now = datetime_now()
+    newstat.iso_year = now.isocalendar()[0]
+    newstat.iso_week = now.isocalendar()[1]
+    newstat.iso_day = now.isocalendar()[2]
+    newstat.iso_hour = now.hour
+
+    newstat.summary = activity_collection
+    newstat.freemb = ResourceChecker.get_free_space()
+
     store.add(newstat)
 
-# 'new_submission' : 0,
-# 'finalized_submission': 0,
-# 'anon_requests': 0,
-# 'file_uploaded': 0,
-
-# the level of the alarm in 30 seconds, to be moved in GLSetting
-alarm_level = {
-    'new_submission' : 20, # test
-    'finalized_submission': 5,
-    'anon_requests': 100, # this is just an amazing value, don't know if useful
-    'file_uploaded': 10, # this is untrue, if someone select 30 little .doc, it's fine !?
-}
-
-alarm_template = {
-    'new_submission' : "Has been reached 20 sumbmissions in 30 seconds",
-    'finalized_submission': "Has been reached 5 finalized Tip in 30 seconds",
-    'anon_requests': "Anonymous request more than 100 in 30 seconds",
-    'file_uploaded': "10 files has been uploaded in the last 30 seconds"
-}
 
 class AnomaliesSchedule(GLJob):
+    """
+    This class check for Anomalies, using the Alarm() object
+    implemented in anomaly.py
+    """
 
     def operation(self):
         """
         Every X seconds is checked if anomalies are happening
         from anonymous interaction (submission/file/comments/whatever flood)
-
-        two thing are done:
-            1) checks if the threshold are under the 'danger level'
-            2) copy them in the admin statistics memory table, this table is
-                dumped in the database by scheduled ops StatisticsSchedule below
+        If the alarm has been raise, logs in the DB the event.
         """
+        from globaleaks.anomaly import Alarm
 
-        try:
-            # print this log message only if something need to be reported
-            if GLSetting.anomalies_counter['new_submission'] > 0 or \
-               GLSetting.anomalies_counter['finalized_submission'] > 0 or \
-               GLSetting.anomalies_counter['anon_requests'] > 0 or \
-               GLSetting.anomalies_counter['file_uploaded'] > 0:
+        delta = Alarm().compute_activity_level()
 
-                log.debug("Anomalies checks [started submission %d, " \
-                          "finalized submission %d, anon req %d, new files %d]" %
-                          ( GLSetting.anomalies_counter['new_submission'],
-                            GLSetting.anomalies_counter['finalized_submission'],
-                            GLSetting.anomalies_counter['anon_requests'],
-                            GLSetting.anomalies_counter['file_uploaded'] ) )
-
-            # the newer on top of the older
-            GLSetting.anomalies_list = [ GLSetting.anomalies_counter ] + GLSetting.anomalies_list
-
-            # check the anomalies
-            for element, alarm in alarm_level.iteritems():
-                if GLSetting.anomalies_counter[element] > alarm:
-                    GLSetting.anomalies_messages.append(
-                        { 
-                          'creation_date': datetime_to_ISO8601(datetime_now()),
-                          'message': alarm_template[element]
-                        })
-
-            # clean the next collection dictionary
-            GLSetting.anomalies_counter = dict(external_counted_events)
-
-        except Exception as excep:
-            log.err("Unable to collect the anomaly counters: %s" % excep)
-            sys.excepthook(*sys.exc_info())
+        return delta
 
 
 class StatisticsSchedule(GLJob):
+    """
+    Statistics just flush two temporary queue and store them
+    in the database.
+    """
+
+    collection_start_datetime = None
 
     @inlineCallbacks
     def operation(self):
+        """
+        executed every 60 minutes
+        """
 
-        try:
-            stat_sum = dict(external_counted_events)
-            for segment in GLSetting.anomalies_list:
-                for key in external_counted_events.keys():
-                    stat_sum[key] += segment[key]
+        from globaleaks.handlers.statistics import AnomaliesCollection
+        # AnomaliesCollection queue is dumped in the appropriate row
+        from globaleaks.handlers.statistics import RecentEventsCollection
+        # RecentEventsQueue is synthesized and dumped in the stats classic row
 
-            yield acquire_statistics(stat_sum)
+        for when, anomaly_blob in dict(AnomaliesCollection.RecentAnomaliesQ).iteritems():
+            # anomaly_blob is composed by [ { "kind" : $number }, alarm_level ]
+            yield save_anomalies(when, anomaly_blob[0], anomaly_blob[1])
 
-        except Exception as excep:
-            log.err("Unable to dump the anomalies in to the stats: %s" % excep)
-            sys.excepthook(*sys.exc_info())
+        AnomaliesCollection.RecentAnomaliesQ = dict()
 
+        # Addres the statistics. the time start and end are in string
+        # without the last 8 bytes, to let d3.js parse easily (or investigate),
+        # creation_date, default model, is ignored in the visualisation
+        current_time = datetime_to_ISO8601(datetime_now())[:-8]
+        statistic_summary = {}
+
+        #  {  'id' : expired_event.event_id
+        #     'when' : datetime_to_ISO8601(expired_event.creation_date)[:-8],
+        #     'event' : expired_event.event_type, 'duration' :   }
+
+        for descblob in RecentEventsCollection.RecentEventQueue:
+            if not descblob.has_key('event'):
+                continue
+            statistic_summary.setdefault(descblob['event'], 0)
+            statistic_summary[descblob['event']] += 1
+
+        yield save_statistics(StatisticsSchedule.collection_start_datetime,
+                              current_time, statistic_summary)
+
+        RecentEventsCollection.RecentEventQueue = []
+        StatisticsSchedule.collection_start_datetime = current_time
+
+        log.debug("Saved stats and time updated, keys saved %d" %
+                  len(statistic_summary.keys()))
+
+
+class ResourceChecker(GLJob):
+    """
+    ResourceChecker is a scheduled job that verify the available
+    resources in the GlobaLeaks box.
+    At the moment is implemented only a monitor for the disk space,
+    because the files that might be uploaded depend directly from
+    this resource.
+    """
+
+    @classmethod
+    def get_free_space(cls):
+        statvfs = os.statvfs(GLSetting.working_path)
+        free_mega_bytes = statvfs.f_frsize * statvfs.f_bavail / (1024 * 1024)
+        return free_mega_bytes
+
+    def operation(self):
+
+        from globaleaks.anomaly import Alarm
+        free_mega_bytes = ResourceChecker.get_free_space()
+
+        alarm = Alarm()
+        alarm.report_disk_usage(free_mega_bytes)
