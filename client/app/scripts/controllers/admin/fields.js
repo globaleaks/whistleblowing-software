@@ -32,11 +32,11 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$modal',
          function(result) { }
       );
     };
-  }
 
-  $scope.create_field = function() {
-    return $scope.admin.new_template_field();
-  };
+    $scope.create_field = function() {
+      return $scope.admin.new_template_field();
+    };
+  }
 ]);
 
 GLClient.controller('AdminFieldsEditorCtrl', ['$scope',
