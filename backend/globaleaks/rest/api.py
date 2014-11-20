@@ -91,7 +91,11 @@ spec = [
     (r'/admin/notification', admin.NotificationInstance),
 
     (r'/admin/anomalies', statistics.AnomaliesCollection),
-    (r'/admin/stats', statistics.StatsCollection),
+    # the number below, represent the amount of week in the past requested.
+    (r'/admin/stats/(\d+)', statistics.StatsCollection),
+    # (\w+) can be: 'summary', 'bubble' or 'details'
+    (r'/admin/activities/(\w+)', statistics.RecentEventsCollection),
+    (r'/admin/history', statistics.AnomalyHistoryCollection),
 
     (r'/admin/wizard', wizard.FirstSetup),
 
