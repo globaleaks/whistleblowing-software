@@ -410,6 +410,11 @@ internalTipDesc = {
 # TODO if the admin has visibility to different variables compared to the WB
 # if its so, rename to FieldDesc (generic)
 
+FieldDescFromTemplate = {
+    'template_id': uuid_regexp,
+    'step_id': uuid_regexp
+}
+
 FieldDesc = {
     'label': unicode,
     'description': unicode,
@@ -438,7 +443,7 @@ wizardStepDesc = {
     'label': dict,
     'hint': dict,
     'description': dict,
-    'children': list, 
+    'children': list,
 }
 
 wizardNodeDesc = {

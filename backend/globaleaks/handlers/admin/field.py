@@ -4,6 +4,7 @@ Implementation of the code executed when an HTTP client reach /admin/fields URI.
 """
 from __future__ import unicode_literals
 
+import json
 from storm.exceptions import DatabaseError
 from storm.expr import And
 from twisted.internet.defer import inlineCallbacks
@@ -85,16 +86,17 @@ def db_update_options(store, field_id, options, language):
 
 def field_integrity_check(request):
     is_template = request['is_template']
-    step_id = request['step_id']
-    fieldgroup_id = request['fieldgroup_id']
+    step_id = request.get('step_id')
+    fieldgroup_id = request.get('fieldgroup_id')
 
     if is_template == False and \
-       step_id == '' and \
-       fieldgroup_id == '':
+       (step_id == '' or step_id == None) and \
+       (fieldgroup_id == '' or field_group == None):
         raise errors.InvalidInputFormat("Each field should be a template or be associated to a step/fieldgroup")
 
     if not is_template:
-        if step_id is '' and fieldgroup_id is '':
+        if (step_id == '' or step_id == None) and \
+            (fieldgroup_id == '' or fieldgroup_id == None):
             raise errors.InvalidInputFormat("cannot associate a field to both a step and a fieldgroup")
 
     return is_template, step_id, fieldgroup_id
@@ -115,6 +117,9 @@ def db_create_field(store, request, language):
         db_update_options(store, field.id, request['options'], language)
     else:
         template = store.find(models.Field, models.Field.id == request['template_id']).one()
+        if not template:
+            raise errors.InvalidInputFormat("The specified template id %s does not exist" %
+                                            request.get('template_id'))
         field = template.copy(store, is_template)
 
     associate_field(store, field, step_id, fieldgroup_id)
@@ -395,9 +400,13 @@ class FieldCreate(BaseHandler):
         Response: FieldDesc
         Errors: InvalidInputFormat, FieldIdNotFound
         """
-
-        request = self.validate_message(self.request.body,
-                                        requests.FieldDesc)
+        tmp = json.loads(self.request.body)
+        if 'template_id' in tmp and tmp['template_id'] != '':
+            request = self.validate_message(self.request.body,
+                                            requests.FieldDescFromTemplate)
+        else:
+            request = self.validate_message(self.request.body,
+                                            requests.FieldDesc)
 
         # enforce difference between /admin/field and /admin/fieldtemplate
         request['is_template'] = False
