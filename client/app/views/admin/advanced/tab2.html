@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="form-group">
+      <input data-ng-model="admin.node.tor2web_admin" type="checkbox">
+      <label data-translate>Permit Admin access via Tor2web</label>
+      <div data-ng-show="admin.node.tor2web_admin">
+        <span class="label label-info" data-translate>Enabled</span>
+        <span data-translate>Admin can access via Tor2web.</span> <span data-translate>This is safe only if you're using a dedicated Tor2web server.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input data-ng-model="admin.node.tor2web_receiver" type="checkbox">
+      <label data-translate>Permit Receivers access via Tor2web</label>
+      <div data-ng-show="admin.node.tor2web_receiver">
+        <span class="label label-info" data-translate>Enabled</span>
+        <span data-translate>Receivers can access via Tor2web.</span> <span data-translate>This is dangerous and it's recommended instead to train receivers in the use of Tor and Enigmail.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input data-ng-model="admin.node.tor2web_submission" type="checkbox">
+      <label data-translate>Permit Whistleblower submissions via Tor2web</label>
+      <div data-ng-show="admin.node.tor2web_submission">
+        <span class="label label-info" data-translate>Enabled</span>
+        <span data-translate>Whistleblowers can perform submissions via Tor2web.</span>
+        <span data-translate>This won't preserve Whistleblower's anonymity while preserving submission confidentiality.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input data-ng-init="admin.node.tor2web_unauth" data-ng-model="admin.node.tor2web_unauth" type="checkbox">
+      <label data-translate>Permit access of public resources via Tor2web</label>
+      <div data-ng-show="admin.node.tor2web_unauth">
+        <span class="label label-info" data-translate>Enabled</span>
+        <span data-translate>Public resources can be accessed via Tor2web.</span>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+<span data-translate>Fields Configuration</span>
+<span data-translate>Administration Interface</span>
+
+<span data-translate>Presentation Order</span> <- this has been removed by the way we
+                                          do not want to loose present translations
+
+<span data-translate>Click to edit, Drag to order</span>
+
+-->
+<div id="ContentBox" class="container">
+  <div class="row">
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+    <div class="col-md-9">
+
+      <div class="col-md-6">
+        <div data-ng-include="'views/admin/add_fields.html'"></div>
+      </div>
+      <div class="clearfix"></div>
+
+      <br /><br />
+
+      <div data-ng-controller="AdminFieldsCtrl" data-ng-show="admin.fields.length != 0">
+        <div data-ng-model="admin.fields">
+         
+          <div data-ng-repeat="field_key in admin.fields | filter:{is_template: true}">
+            <div data-ng-include="'views/admin/edit_field.html'"></div>
+          <!-- end repeat -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

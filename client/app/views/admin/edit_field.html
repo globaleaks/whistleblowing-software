@@ -1,0 +1,182 @@
+<div class="fieldBox"
+  data-ng-class="{'col-md-6': !editing, 'col-md-12': editing}"
+  data-ng-init="editing=false" data-ng-controller="AdminFieldsEditorCtrl">
+
+  <form name="fieldForm" novalidate>
+
+    <div class="configItem fieldCard card"  data-ng-class="{'configItemLast': $last}">
+      <div class="row">
+        <div class="fieldEditorHeader">
+          <div class="fieldIndex" data-ng-show="step">{{$index}}</div>
+          <h2 class="col-md-7 pull-left">{{ field.label }}</span>
+        </div>
+      </div>
+
+      <div class="fieldEditor" data-ng-if="editing">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label data-translate>Name</label>
+            <input class="form-control" data-ng-maxlength="40" data-ng-model="field.label" value="{{field.label}}" type="text">
+          </div>
+          <div class="form-group col-md-6">
+            <label data-translate>Hint</label>
+            <div>
+              <textarea class="form-control" data-ng-model="field.hint">{{field.hint}}</textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label data-translate>Description</label>
+            <textarea class="form-control" data-ng-model="field.description">{{field.description}}</textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label data-translate>Type</label>
+            <select id="editFieldType" class="form-control" data-ng-model="field.type" data-ng-required="">
+              <option value="inputbox" data-translate>Text</option>
+              <option value="textarea" data-translate>Textarea</option>
+              <option value="selectbox" data-translate>Selectbox</option>
+              <option value="checkbox" data-translate>Checkbox</option>
+              <option value="modal" data-translate>Modal Window</option>
+              <option value="dialog" data-translate>Dialog Window</option>
+              <option value="tos" data-translate>Terms of Service</option>
+              <option value="fieldgroup" data-translate>Field Group</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <div>
+                <input data-ng-model="field.multi_entry" value="{{field.multi_entry}}" type="checkbox">
+                <label data-translate>Accept multiple answers for the field</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <input data-ng-model="field.preview" value="{{field.preview}}" type="checkbox">
+                <label data-translate>Show in preview</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <input data-ng-model="field.stats_enabled" value="{{field.stats_enabled}}" type="checkbox">
+                <label data-translate>Enable statistics on the field</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class=row>
+          <div class="form-group col-md-6">
+            <label data-translate>Horizontal order (X)</label>
+            <input class="form-control" data-ng-maxlength="40" data-ng-model="field.x" value="{{field.x}}" type="number" min="0" max="99">
+          </div>
+          <div class="form-group col-md-6">
+            <label data-translate>Vertical order (Y)</label>
+            <input class="form-control" data-ng-maxlength="40" data-ng-model="field.y" value="{{field.y}}" type="number" min="0" max="99">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-6" data-ng-show="field.options.length">
+            <label data-translate>Options</label>
+            <div data-ng-switch="" on="typeSwitch(field.type)" class="row">
+              <div class="col-md-offset-1 col-md-11">
+                <div data-ng-switch-when="tos">
+                  <div class="row">
+                    <div class="form-inline">
+                      <div class="form-group">
+                        <label data-translate>Clause</label>
+                        <div>
+                          <textarea class="form-control" data-ng-model="field.options[0].attrs.clause">{{field.options[0].attrs.clause}}</textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-inline">
+                      <div class="form-group">
+                        <label data-translate>Agreement Text</label>
+                        <div>
+                          <textarea class="form-control" data-ng-model="field.options[0].attrs.agreement_statement">{{field.options[0].attrs.agreement_statement}}</textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div data-ng-switch-when="checkbox_or_selectbox">
+                  <div data-ng-repeat="option in field.options">
+                    <div class="form-inline">
+                      <div class="form-group">
+                        <label data-translate>Name</label>
+                        <input class="form-control" data-ng-model="option.attrs.name"  value="{{option.attrs.name}}" type="text" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6" ng-show="field.type == 'fieldgroup'">
+            <label data-translate>Fields Composition</label>
+            <div class="selectionList">
+              <div data-ng-repeat="f in admin.fields | filter:filterSelf">
+                <div class="row" data-ng-click="toggle(f)">
+                  <span class="col-md-1">
+                    <span data-ng-show="isSelected(f)">
+                      <i class="glyphicon glyphicon-check"></i>
+                    </span>
+                    <span data-ng-show="!isSelected(f)">
+                      <i class="glyphicon glyphicon-unchecked"></i>
+                    </span>
+                  </span>
+                  <span class="col-md-10">{{f.label}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end aditional options -->
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <div data-ng-switch="" on="typeSwitch(field.type)">
+              <div data-ng-switch-when="checkbox_or_selectbox">
+                <a data-ng-click="addOption(field)">
+                  <i class="glyphicon glyphicon-plus-sign"></i>
+                  <span data-translate>Add option</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end field editor -->
+      </div>
+      <hr>
+      <div class="stepActions">
+        <button 
+          class="btn btn-default actionButton"
+          data-ng-show="!editing"
+          data-ng-click="editing=!editing">Edit
+        </button>
+        <button 
+          class="btn btn-success actionButton ng-hide" 
+          data-ng-show="editing" 
+          data-ng-click="update_field(field);editing=!editing"
+          type="submit">Save</button>
+        <button 
+          class="btn btn-default actionButton"
+          data-ng-show="editing"
+          data-ng-click="editing=!editing">Cancel
+        </button>
+        <button 
+          class="btn btn-danger actionButton ng-scope" 
+          data-ng-click="deleteDialog(field)" 
+          popover="" 
+          popover-placement="right" 
+          popover-trigger="mouseenter">Delete</button>
+      </div>
+      <div class="cardActions">
+      </div>
+    </div>
+  </form>
+</div>
+<div class="clearfix" ng-if="$index % 2 == 1"></div>

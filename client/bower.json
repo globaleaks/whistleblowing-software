@@ -1,0 +1,40 @@
+{
+  "name": "GLClient",
+  "version": "2.60.29",
+  "homepage": "https://github.com/globaleaks/GLClient",
+  "authors": [
+    "Random GlobaLeaks Developers <info@globaleaks.org>"
+  ],
+  "main": "app",
+  "private": true,
+  "directory": "app/components/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.2.25",
+    "angular-resource": "1.2.25",
+    "angular-route": "1.2.25",
+    "angular-translate": "2.4.0",
+    "angular-translate-loader-url": "2.4.0",
+    "angular-translate-loader-static-files": "2.4.0",
+    "angular-ui-bootstrap-bower": "0.11.0",
+    "angular-ui-sortable": "0.12.11",
+    "bowser": "0.7.1",
+    "jquery": "2.1.1",
+    "jquery.cookie": "1.4.1",
+    "jquery-file-upload": "9.8.0",
+    "jquery-ui": "1.11.1",
+    "bootstrap": "3.2.0",
+    "bootstrap-arabic": "3.2.0",
+    "underscore": "1.7.0",
+    "angular-native-dragdrop": "~1.0.6"
+  },
+  "resolutions": {
+    "angular": "1.2.25"
+  }
+}

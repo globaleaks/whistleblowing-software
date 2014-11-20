@@ -1,0 +1,77 @@
+# LOGLEVEL = [log_level]
+#   permits to configure the globaleaks debug loglevel
+#   DEBUG, INFO, ERROR, CRITICAL
+LOGLEVEL=CRITICAL
+
+# HTTPLOG = [http log_level]
+#   permits to configure the number of globaleaks http loglevel
+#
+#   Examples:
+#     -1: disabled
+#      N: logs the first N requests/responses
+#      0: unlimited
+HTTPLOG=-1
+
+# STORMDEBUG = [0/1]
+#   permits to enable storm query debugging
+#
+#   Examples:
+#      0: disabled
+#      1: enabled
+STORMDEBUG=0
+
+# USERNAME = [user_name]
+#   permits to configure the user privileges of the globaleaks process
+USER=globaleaks
+
+# GROUP = [group_name]
+#   permits to configure the group privileges of the globaleaks process
+GROUP=globaleaks
+
+# HOSTS_LIST = [ip_address, hostname, other_hostname]
+#   permits to configure a list of hosts at which globaleaks will be reachable
+HOSTS_LIST=127.0.0.1,localhost
+
+# APPARMOR_SANDBOXING = [0/1]
+#   permits to enable apparmor sandboxing; requires apparmor
+APPARMOR_SANDBOXING=1
+
+# NETWORK_SANDBOXING = [0/1]
+#   permits to enable network sandboxing; requires iptables
+NETWORK_SANDBOXING=1
+
+# ALLOWED_SRC_IP = ( ip_address1 ip_address2 ... )
+#   permits to configure a list of ip address used for outbound connections
+ALLOWED_SRC_IP=( 127.0.0.1 )
+
+# ALLOWED_DST_IP = ( ip_address1 ip_address2 ... )
+#   permits to configure a list of ip address used for inbound connections
+ALLOWED_DST_IP=( 127.0.0.1 )
+
+# LISTENING_PORT = [port_number]
+#   permits to configure a port at which globaleaks process will bind to
+LISTENING_PORT=8082
+
+# TORSOCKSPORT = [port_number]
+#   permits to configure a Tor Sock Port for outbound connections
+TORSOCKSPORT=9050
+
+# TORTRANSPORT = [port_number]
+#   permits to configure a Tor Trans Port for outbound connections
+TORTRANSPORT=9040
+
+# TORDNSPORT = [port_number]
+#   permits to configure a Tor DNS Port for outbound connections
+TORDNSPORT=5353
+
+# WORKING_DIR
+#   must be configured with the daemon working directory
+WORKING_DIR=/var/globaleaks/
+
+# RAM_DISK
+#   must be configured with a RAM disk path to be used for globaleaks
+RAM_DISK=/dev/shm/globaleaks/
+
+# TOR_DIR
+#   this contain the Tor hidden service directory
+TOR_DIR=/var/globaleaks/torhs/

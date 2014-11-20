@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "node": {
+    "presentation": {
+      "en": "This is the default welcome message"
+    },
+    "footer": {
+      "en": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights"
+    },
+    "subtitle": {
+      "en": "This is the initiative subtitle: write your slogan here!"
+    },
+    "terms_and_conditions": {
+      "en": "To ensure your anonymity be sure that you are visiting this site using the Tor Browser Bundle.\nYou acknowledge that failure to do so will result in the inability to technically protect your anonymity.\nTo further enhance your security, please follow these instructions:\n1) In the event that you would like to remain anonymous, do not submit any personal information. (e.g. your name or relationship to the offender. Do not submit any information that can be traced back to you.)\n2) Please do not submit your report on a PC provided by your employer. Particularly an intranet connection may jeopardize your anonymity.\n\nBy checking the box below you agree to these terms and conditions."
+    },
+    "security_awareness_title": {
+      "en": "Warning! You are not Anonymous."
+    },
+    "security_awareness_text": {
+      "en": "With a HTTPS submission you are exposing yourself to the risks that someone else will know that you have submitted something, without knowing what you have submitted.\n\nInstead with an Anonymous Submission you are fully protected, it is not possible for a third party to know that you have submitted something nor what you have submitted.\n\nWe strongly advise you to go for an Anonymous Submission.\n\nTo make an Anonymous Submission, instead of using your usual Web Browser (Internet Explorer, Chrome, Firefox, Opera, etc.) you should use the Tor Browser Bundle. This is a special piece of software designed to enable Anonymous Web Browsing."
+    }
+  },
+  "fields" : [
+    {
+      "label": { "en": "Fill out your submission" },
+      "description": {"en": ""},
+      "hint": {"en": ""},
+      "children" : [
+        {
+          "label": { "en": "Short title" },
+          "type": "inputbox",
+          "preview": false,
+          "description": {"en": "Describe your submission with a few words"},
+          "hint": {"en": ""},
+          "multi_entry": false,
+          "stats_enabled": false,
+          "required": true,
+          "children": [],
+          "options": [],
+          "y": 1,
+          "x": 0
+        },
+        {
+          "label": { "en": "Short title" },
+          "type": "inputbox",
+          "preview": false,
+          "description": {"en": "Describe the details of the submission"},
+          "hint": {"en": ""},
+          "multi_entry": false,
+          "stats_enabled": false,
+          "required": true,
+          "children": [],
+          "options": [],
+          "y": 2,
+          "x": 0
+        },
+        {
+          "label": { "en": "Files description" },
+          "type": "inputbox",
+          "preview": false,
+          "description": {"en": "Describe the attachments of the submission"},
+          "hint": {"en": ""},
+          "multi_entry": false,
+          "stats_enabled": false,
+          "required": true,
+          "children": [],
+          "options": [],
+          "y": 3,
+          "x": 0
+        },
+        {
+          "label": { "en": "Files" },
+          "type": "inputbox",
+          "preview": false,
+          "description": {"en": "Attach files relevant to the submission"},
+          "hint": {"en": ""},
+          "multi_entry": true,
+          "stats_enabled": false,
+          "required": true,
+          "children": [],
+          "options": [],
+          "y": 4,
+          "x": 0
+        }
+      ]
+    },
+    {
+      "label": { "en": "Final Step" },
+      "description": { "en": "" },
+      "hint": { "en": "Step Hint" },
+      "children": [
+        {
+          "label": { "en": "Terms and Conditions" },
+          "type": "tos",
+          "preview": false,
+          "description": {"en": ""},
+          "hint": {"en": ""},
+          "multi_entry": true,
+          "stats_enabled": false,
+          "required": true,
+          "children": [],
+          "options": [
+            {
+              "attrs": {
+                "clause": { "en": "clause" },
+                "agreement_statement": { "en": "agrement_statement" }
+              }
+            }
+          ],
+          "y": 1,
+          "x": 0
+        }
+      ]
+    }
+  ],
+  "templates" : {
+  }
+}

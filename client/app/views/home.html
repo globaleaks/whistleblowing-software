@@ -1,0 +1,83 @@
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+<span data-translate>Enter your receipt</span>
+<span data-translate>View Tip</span>
+<span data-translate>Are you a receiver?</span>
+<span data-translate>Login page</span>
+
+-->
+<div id="ContentBox" class="container">
+  <div id="HomePageBox">
+
+    <div id="HomePageBoxHeader">
+      <div id="HomePageBoxNodePresentation">
+        {{ node.presentation }}
+      </div>
+      <div id="HomePageBoxNodeDescription" class="preformatted">{{node.description}}</div>
+    </div>
+
+    <div id="WhistleblowerLoginBox" class="ng-cloak row">
+      <div data-ng-show="node.configured">
+        <div id="WhistleblowerSubmitBoxButtonDisabled" class="row" data-ng-show="!node.tor2web_submission && !anonymous">
+          <button class="btn btn-danger" disabled="disabled">
+            <i class="glyphicon glyphicon-ban-circle"></i>
+            <span data-translate>Whistleblowing disabled</span>
+          </button>
+        </div>
+        <div class="row" data-ng-show="!node.tor2web_submission && !anonymous">
+          <p class="has-error">
+            <span data-translate>You are connecting to the node without anonymity and this node supports only anonymous submissions</span>
+          </p>
+        </div>
+        <div class="row" data-ng-show="node.tor2web_submission || anonymous">
+          <div id="WhistleblowerSubmitBox">
+            <div id="WhistleblowerSubmitBoxHeader">
+              <span data-translate>Are you a whistleblower?</span>
+            </div>
+            <div id="WhistleblowerSubmitBoxButton">
+              <a data-ng-click="goToSubmission()" class="btn btn-primary">
+                <i class="glyphicon glyphicon-bullhorn"></i>
+                <span data-translate>Blow the Whistle</span>
+              </a>
+            </div>
+          </div>
+          <div id="WhistleblowerLoginBox" class="center-block">
+            <form role="form">
+                <div class="row">
+                  <h3 data-translate>Have you already filed a submission? Enter your receipt.</h3>
+                </div>
+                <div class="form-group col-md-6 col-md-offset-3">
+                  <div class="input-group">
+                    <input class="form-control" data-ng-model="receipt" type="text">
+                    <span class="input-group-btn">
+                      <button data-ng-click="view_tip(receipt)" class="btn btn-primary" data-ng-disabled="!receipt || receipt == ''" type="button">
+                        <i class="glyphicon glyphicon-log-in"></i>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div data-ng-hide="node.configured">
+        <span data-translate>Your node is not configured! Please use the</span>
+        <a href="/#/admin/contexts">
+          <span data-translate>Admin interface and configure at least one context</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="GlobaleaksInfoBox" class="row">
+      <div class="col-md-12">
+        <span data-translate>This platform makes use of GlobaLeaks software specifically designed to protect the identity of the submitter and of the receiver in the exchange of leaked materials.</span><br />
+        <span data-translate>The software is developed by the non-profit Hermes Center for Transparency and Digital Human Rights.</span>
+        <a href="http://logioshermes.org/home/about-mission/support-us/" target="_blank" rel="noreferrer"><span data-translate>Please support Hermes through their donation page.</span></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+<span data-translate>Advanced Settings</span>
+<span data-translate>Administration Interface</span>
+
+-->
+<div id="ContentBox" class="container">
+  <div class="row">
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+    <div class="col-md-9">
+
+      <div class="row">
+        <form name="advancedForm" data-ng-controller="AdminAdvancedCtrl" novalidate>
+          <tabset class="tab-content">
+            <tab data-ng-repeat="tab in tabs" heading="{{ tab.title | translate }}" active="tab.active" disabled="tab.disabled">
+            <div data-ng-include="tab.template" data-ng-controller="tab.ctrl"></div>
+            </tab>
+          </tabset>
+
+          <div class="form-group">
+            <button class="btn btn-success" data-ng-disabled="advancedForm.$invalid " data-ng-click="updateNode(admin.node)">
+              <i class="glyphicon glyphicon-ok"></i>
+              <span data-translate>Save</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

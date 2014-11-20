@@ -1,0 +1,305 @@
+<!--
+
+This comment is needed in order to push the following strings on transifex
+
+<span data-translate>Receivers Configuration</span>
+<span data-translate>Administration Interface</span>
+
+<span data-translate>Presentation Order</span> <- this has been removed by the way we
+                                          do not want to loose present translations
+
+<span data-translate>Click to edit, Drag to order</span>
+
+-->
+<div id="ContentBox" class="container">
+  <div class="row">
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+    <div class="col-md-9">
+
+      <div data-ng-controller="AdminReceiverAddCtrl">
+        <div class="row">
+          <form name="newReceiver">
+            <div class="addReceiver col-md-6">
+              <h4><span data-translate>Add new receiver</span></h4>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label data-translate>Name</label>
+                    <input class="form-control" name="name" data-ng-maxlength="40" data-ng-model="new_receiver.name" type="text" required>
+                    <p class="has-error" data-ng-show="newReceiver.name.$error.maxlength">
+                      <span data-translate>Receiver name too long</span>
+                    </p>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <span data-translate>Email Address</span>
+                      (<span data-translate>Username</span>)
+                    </label>
+                    <input class="form-control" name="email" data-ng-model="new_receiver.email" ng-pattern="email_regexp" type="text" required>
+                    <p class="has-error" data-ng-show="newReceiver.email.$error.pattern">
+                      <span data-translate>Invalid email address</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label data-translate>Password</label>
+                    <input class="form-control" data-ng-model="new_receiver.password" type="password" required>
+                    <p class="has-error" data-ng-show="unsafe_password">
+                      <span data-translate>The choosen password is unsafe, it should have</span>:
+                    </p>
+                    <ul>
+                      <li class="has-error" data-ng-hide="pwdHasLetter">
+                        <span data-translate>At least one letter</span>
+                      </li>
+                      <li class="has-error" data-ng-hide="pwdHasNumber">
+                        <span data-translate>At least one number</span>
+                      </li>
+                      <li class="has-error" data-ng-hide="pwdValidLength">
+                        <span data-translate>At least 8 characters</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <button class="pull-left btn btn-success" data-ng-disabled="newReceiver.$invalid || unsafe_password" data-ng-click="add_receiver()">
+                      <i class="glyphicon glyphicon-ok"></i>
+                      <span data-translate>Add</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <br /><br />
+
+      <div data-ng-controller="AdminReceiversCtrl" data-ng-show="admin.receivers.length != 0">
+
+        <div class="row text-right">
+          <button class="btn btn-success" data-ng-click="reorder_receivers_alphabetically()">
+            <i class="glyphicon glyphicon-sort-by-alphabet"></i>
+            <span data-translate>Reorder Receivers alphabetically</span>
+          </button>
+          <button class="btn btn-success" data-ng-click="save_all()" type="submit">
+            <i class="glyphicon glyphicon-ok"></i>
+            <span data-translate>Save All</span>
+          </button>
+        </div>
+
+        <div ui-sortable="sortableOptions" data-ng-model="admin.receivers">
+
+          <div class="row receiverList" data-ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'">
+
+            <form name="receiverForm" data-ng-controller="AdminReceiversEditorCtrl" novalidate>
+              <div class="configItem receiverItem" data-ng-class="{'configItemLast': $last}">
+                <div class="row" data-ng-click="toggleEditing()">
+                  <div class="editorHeader receiverEditorHeader">
+                    <div data-ng-show="!editing">
+                      <span class="col-md-7 pull-left editorHeaderTitle">{{receiver.name}}</span>
+                      <span class="col-md-1 pull-right editorHeaderButtons" popover="{{ 'Click to edit, Drag to order' | translate }}" popover-placement="left" popover-trigger="mouseenter">
+                        <i class="glyphicon glyphicon-th"></i>
+                      </span>
+                    </div>
+
+                    <div data-ng-show="editing">
+                      <span class="col-md-7 pull-left editorHeaderTitle">{{receiver.name}}</span>
+                      <span class="col-md-3 pull-right editorHeaderButtons">
+                        <button class="btn btn-success saveReceiver" data-ng-disabled="receiverForm.$invalid || unsafe_password" data-ng-click="save_receiver()" type="submit" >
+                          <i class="glyphicon glyphicon-ok"></i>
+                          <span data-translate>Save</span>
+                        </button>
+
+                        <a class="btn btn-danger deleteReceiver" data-ng-click="deleteDialog(receiver)">
+                          <i class="glyphicon glyphicon-remove"></i>
+                          <span data-translate>Delete</span>
+                        </a>
+                      </span>
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="editor receiverEditor" data-ng-if="editing">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="imageUpload" data-ng-controller="AdminFileUploadCtrl">
+                        <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
+                          <div data-ng-show="uploadfile" class="uploadfile">
+                            <span class="col-md-12 changePicture">
+                              <span data-translate>Change picture</span>
+                            </span>
+                            <div pragmatic-file-upload data-ng-src="{{receiverImgUrl()}}">
+                              <div class="fileselector">
+                                <input type="file" style="z-index: 2147483647">
+                              </div>
+                            </div>
+                            <div class="uploadProgress hide">
+                              <div class="progress progress-striped">
+                                <div class="progress-bar" style="width: 0%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <img data-ng-src="{{receiverImgReloadUrl()}}" class="img-thumbnail baseimage" style="z-index: 0">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label data-translate>Name</label>
+                        <input class="form-control" name="name" data-ng-maxlength="40" data-ng-model="receiver.name" type="text" required>
+                        <p class="has-error" data-ng-show="receiverForm.name.$error.maxlength">
+                          <span data-translate>Receiver name too long</span>
+                        </p>
+                      </div>
+                      <div class="form-group">
+                        <label data-translate>Email Address (Username)</label>
+                        <input class="form-control" name="email" data-ng-model="receiver.mail_address" type="text" ng-pattern="email_regexp" required>
+                        <p class="has-error" data-ng-show="receiverForm.email.$error.pattern">
+                          <span data-translate>Invalid email address</span>
+                        </p>
+                      </div>
+                      <div class="form-group">
+                        <label>
+                          <span data-translate>Password</span>
+                        </label>
+                        <!-- remind: this need to be random & mailed to the inactive user -->
+                        <input class="form-control" data-ng-model="receiver.password" type="password">
+                        <p class="has-error" data-ng-show="unsafe_password">
+                          <span data-translate>The choosen password is unsafe, it should have</span>:
+                        </p>
+                        <ul>
+                          <li class="has-error" data-ng-hide="pwdHasLetter">
+                            <span data-translate>At least one letter</span>
+                          </li>
+                          <li class="has-error" data-ng-hide="pwdHasNumber">
+                            <span data-translate>At least one number</span>
+                          </li>
+                          <li class="has-error" data-ng-hide="pwdValidLength">
+                            <span data-translate>At least 8 characters</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="form-group">
+                        <label data-translate>Description</label>
+                        <div>
+                          <textarea class="form-control" data-ng-model="receiver.description">{{receiver.description}}</textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label data-translate>Contexts</label>
+                      <div class="selectionList">
+                        <div data-ng-repeat="context in admin.contexts">
+                          <div class="row" data-ng-click="toggle(context)">
+                            <span class="col-md-1">
+                              <span data-ng-show="isSelected(context)">
+                                <i class="glyphicon glyphicon-check"></i>
+                              </span>
+                              <span data-ng-show="!isSelected(context)">
+                                <i class="glyphicon glyphicon-unchecked"></i>
+                              </span>
+                            </span>
+                            <span class="col-md-10">{{context.name}}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group table-bordered">
+                        <input data-ng-model="receiver.postpone_superpower" type="checkbox" data-ng-disabled="node.postpone_superpower">
+                        <label data-translate>Permit the Receiver to postpone expiration date of the Tips</label>
+                        <div data-ng-show="receiver.postpone_superpower && !node.postpone_superpower">
+                          <span class="label label-info">
+                            <span data-translate>now Enabled:</span>
+                          </span>
+                          <span data-translate>The Receiver will be able to postpone Tip expiration.</span>
+                        </div>
+                        <div data-ng-show="node.postpone_superpower">
+                          <span class="label label-info">
+                            <span data-translate>now Enabled:</span>
+                          </span>
+                          {{ "The setting is enabled at Node level."}}
+                        </div>
+                      </div>
+
+                      <div class="form-group table-bordered">
+                        <input data-ng-model="receiver.can_delete_submission" type="checkbox" data-ng-disabled="node.can_delete_submission">
+                        <label data-translate>Permit the Receiver to delete Tips</label>
+                        <div data-ng-show="receiver.can_delete_submission && !node.can_delete_submission">
+                          <span class="label label-info">
+                            <span data-translate>now Enabled:</span>
+                          </span>
+                          <span data-translate>The Receiver will be able to delete Tips and their content.</span>
+                        </div>
+                        <div data-ng-show="node.can_delete_submission">
+                          <span class="label label-info">
+                            <span data-translate>now Enabled:</span>
+                          </span>
+                          {{ "The setting is enabled at Node level."}}
+                        </div>
+                      </div>
+
+                      <div class="form-group" data-ng-show="receiver.gpg_key_info">
+                        <div class="alert alert-success">
+                          <span data-translate>Encryption is enabled!</span>
+                          <span data-translate>Notifications and Files will be encrypted.</span>
+                        </div>
+
+                        <p>
+                          <span data-translate>PGP Key details</span>
+                          <br />
+                          <span data-translate>The fingerprint is:</span>
+                          <b>{{receiver.gpg_key_fingerprint}}</b>
+                        </p>
+
+                        <div>
+                          <pre>{{receiver.gpg_key_info}}</pre>
+                        </div>
+
+                        <div class="form-group table-bordered">
+                          <input data-ng-model="receiver.gpg_key_remove" type="checkbox">
+                          <label data-translate>Remove the PGP key</label>
+                        </div>
+
+                      </div>
+
+                      <div class="form-group" data-ng-hide="receiver.gpg_key_fingerprint">
+                        <div class="alert alert-danger">
+                          <span data-translate>Encryption is not enabled!</span>
+                          <span data-translate>Notifications and Files won't be encrypted.</span>
+                        </div>
+
+                        <button class="btn btn-info" data-ng-init="send_key=false" data-ng-click="send_key = !send_key">
+                          <i class="glyphicon glyphicon-plus" data-ng-hide="send_key"></i>
+                          <i class="glyphicon glyphicon-minus" data-ng-show="send_key"></i>
+                          <span data-translate>Configure a PGP key</span>
+                        </button>
+
+                        <div data-ng-show="send_key">
+                          <br />
+                          <label data-translate>Paste the PGP Key here:</label>
+                          <textarea class="form-control" data-ng-model="receiver.gpg_key_armor"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

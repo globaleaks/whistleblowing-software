@@ -1,0 +1,340 @@
+/** Configuration Pages **/
+
+.configItem {
+  line-height: 20px;
+  vertical-align: top;
+  border: 1px solid rgb(204, 204, 204);
+  background-color: rgb(252, 252, 252);
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.templateFieldAdder {
+  /* FIXME there is a bug where the gradient is being covered by the children
+   * templateFieldCard items.*/
+  background:
+    linear-gradient(#fff 30%, rgba(255,0,0,0)),
+    linear-gradient(rgba(255,0,0,0), #fff 70%) 0 100%,
+    radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)),
+    radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+  background:
+    linear-gradient(#fff 30%, rgba(255,0,0,0)),
+    linear-gradient(rgba(255,0,0,0), #fff 70%) 0 100%,
+    radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-size: 100% 60px, 100% 60px, 100% 10px, 100% 10px;
+  background-attachment: local, local, scroll, scroll;
+
+  max-height: 220px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.templateFieldAdder .placeholder,
+.configuredFields .placeholder {
+  height: 100px;
+  width: 50%;
+  float: left;
+  border: 3px dotted #f1f1f1;
+  border-radius: 4px;
+  visibility: visible;
+}
+
+.templateFieldAdderContainer ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+.templateFieldAdderContainer ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.templateFieldCard {
+  background-color: #fff;
+  border-radius: 3px;
+
+  -moz-border-radius: 3px;
+  box-shadow: 2px 1px 5px #888888;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.templateFieldCard h2 {
+  font-size: 20px;
+  margin: 0px;
+}
+
+.inline-block-row .col-xs-6 {
+  float:none;
+  display:inline-block;
+}
+
+.addField {
+  margin-bottom: 10px;
+}
+
+.addFieldButton {
+  vertical-align: bottom;
+}
+
+.configItemLast {
+  margin-bottom: 30px;
+}
+
+.odd {
+  background-color: #f9f9f9;
+}
+
+.addReceiver, .addContext {
+  /* padding: 10px; */
+}
+
+.fileDetails {
+  list-style: none;
+  margin: 0 0 10px 20px;
+}
+
+.invalidReceiver {
+  background-color: red;
+}
+
+.config-sidebar {
+  margin-top: 20px;
+}
+
+.field {
+  position: relative;
+  border: 1px solid rgb(204, 204, 204);
+  margin-bottom: 20px;
+}
+
+/** Field editing **/
+
+.card {
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 3px;
+
+  -moz-border-radius: 3px;
+  box-shadow: 2px 1px 5px #888888;
+}
+
+.card h2 {
+  font-size: 24px;
+}
+
+.card button {
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  color: #000;
+}
+
+.card button:hover {
+  border: none;
+  box-shadow: 2px 1px 5px #888888;
+}
+
+.fieldEditorHeader {
+  padding: 20px;
+}
+
+.fieldEditorHeader h2 {
+  margin-top: 0px;
+}
+
+.fieldEditorBody {
+  background-color: rgb(250, 250, 250);
+  padding: 20px;
+}
+
+.fieldIndex {
+  width: 50px;
+  float: left;
+  background-color: #616161;
+  text-align: center;
+  height: 30px;
+  padding-top: 5px;
+  border-radius: 100px;
+  margin-right: 10px;
+  color: #fff;
+}
+
+/** Step editing **/
+
+.stepBox {
+  padding: 0 5px 10px 5px;
+}
+
+.step {
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 3px;
+
+  -moz-border-radius: 3px;
+  box-shadow: 2px 1px 5px #888888;
+}
+
+.step .stepIndex {
+  width: 50px;
+  float: left;
+  background-color: #616161;
+  text-align: center;
+  height: 30px;
+  padding-top: 5px;
+  border-radius: 100px;
+  margin-right: 10px;
+  color: #fff;
+}
+
+.stepEditorHeader {
+}
+
+.stepEditorHeader h2 {
+  font-size: 24px;
+}
+
+.stepEditorBody {
+
+}
+
+/** END **/
+
+.contextFields {
+  margin-top: 10px;
+}
+
+.editorHeader {
+  background-color: rgb(252, 252, 252);
+}
+
+.editorHeader:hover {
+  background-color: rgb(252, 252, 248);
+}
+
+.editorHeaderTitle, .editorHeaderButtons {
+  letter-spacing: -1px;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: bold;
+  display: block;
+  margin: 10px;
+}
+
+.editor {
+  background-color: rgb(240, 240, 240);
+  padding: 20px;
+}
+
+/** **/
+
+.imageUpload .profile {
+  position: relative;
+  width: 160px;
+}
+
+.imageUpload .profile .uploadfile {
+}
+
+.imageUpload .profile .changePicture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  text-align: center;
+  background-color: #0088cc;
+  z-index: 2;
+}
+
+.imageUpload .profile .uploadfile span {
+  color: white;
+}
+
+.imageUpload .profile .close {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  color: #fff;
+  text-shadow: 0 1px 0 #000;
+  opacity: 0.8;
+}
+
+.imageUpload .profile .fileselector {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+}
+
+.imageUpload .profile .fileselector input {
+  position: relative;
+  opacity: 0;
+  height: 100%;
+  z-index: 2147483647;
+}
+
+
+.uploadProgress {
+  position: relative;
+}
+
+.uploadProgress .progress {
+  position: absolute;
+  top: 50px;
+  left: 5px;
+  z-index: 10;
+  display: block;
+  width: 100%;
+}
+
+.selectionList {
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #cccccc;
+}
+
+.selectionList .row {
+  margin-left: 0;
+}
+
+.selectionDetails {
+  margin-bottom: 10px;
+  padding: 3px 13px 3px 3px;
+}
+
+.selectionDetails.selected, 
+.selectionDetails.selected:hover {
+  border: 3px solid #5bb75b;
+  padding: 0 10px 0 0;
+}
+
+.selectionDetails:hover {
+  border: 3px solid #ccc;
+  padding: 0 10px 0 0;
+}
+
+.selectionContextItem {
+  position: relative;
+  list-style: none;
+  padding-left: 10px;
+  margin-left: 10px;
+  padding: 3px 13px 3px 3px;
+}
+.selectionContextItem:hover {
+  color: #0088cc;
+}
+.selectionContextItem .checkbox {
+  display: inline;
+  top: 0;
+  position: absolute;
+  left: -40px;
+}

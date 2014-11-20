@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-hidden="true" data-ng-click="cancel()">
+     <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+  </button>
+  <h2>Postpone Tip Expiration</h2>
+</div>
+<div class="modal-body">
+  <div class="alert alert-danger">
+    <div>
+      <span data-translate>Are you sure that you want to postpone tip expiration date?</span>
+      <br />
+      <span data-translate>By clicking extend, you will extend the Tip expiration date to:</span>
+      {{ tip.potential_expiration_date | date:'dd-MM-yyyy HH:mm' }}
+    </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn" data-ng-click="cancel()">
+    <i class="glyphicon glyphicon-remove"></i>
+    <span data-translate>Cancel</span>
+  </button>
+  <button class="btn btn-danger" data-ng-click="ok()" data-ng-disabled="!tip">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>Confirm Extension</span>
+  </button>
+</div>
