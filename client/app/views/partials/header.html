@@ -7,7 +7,7 @@
       <div id="titleboxdefault">
         <div data-ng-show="isHomepage()" class="TitleBoxHomepage">
           <div id="PageTitle">{{ node.name }}</div>
-          <div id="PageSubtitle" data-ng-if="hasSubtitle()">{{ node.subtitle }}</div>
+          <div id="PageSubtitle">{{ node.subtitle }}</div>
         </div>
         <div data-ng-hide="isHomepage()" class="TitleBoxNotHomepage">
           <div id="PageTitle">{{ header_title | translate }}</div>
@@ -18,7 +18,7 @@
         <a href="/#/">
           <div id="logo"></div>
         </a>
-        <div id="tagline" data-ng-show="isHomepage()" data-ng-if="hasSubtitle()">
+        <div id="tagline" data-ng-show="isHomepage()">
           {{ node.subtitle }}
         </div>
         <div id="tagline" data-ng-hide="isHomepage()">
