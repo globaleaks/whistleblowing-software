@@ -1,5 +1,6 @@
 #!/bin/sh
 # This is the pre installation script for globaleaks
+set -e
 
 lsb_release -c | grep precise >/dev/null 2>&-
 if [ "$?" -ne "0" ]; then
