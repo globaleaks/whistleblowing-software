@@ -110,7 +110,7 @@ setup(
     data_files=data_files,
     scripts=[
         'bin/globaleaks',
-        'bin/globaleaksadmin',
+        'bin/gl-admin',
         'bin/gl-fix-permissions',
     ],
     install_requires=install_requires,
