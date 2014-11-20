@@ -467,7 +467,7 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
         for step in steps:
             for f_child in step['children']:
                 if not field_is_present(store, f_child):
-                    f_child['is_template'] = True
+                    f_child['is_template'] = False
         for step in steps:
             f_children = copy.deepcopy(step['children'])
             del step['children']
