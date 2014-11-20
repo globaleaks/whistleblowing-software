@@ -1,8 +1,6 @@
 #!/bin/sh
 # This is the post installation script for globaleaks
 
-/usr/bin/gl-fix-permissions
-
 if [ ! -f /etc/apparmor.d/usr.sbin.tor ]; then
   ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
 fi
