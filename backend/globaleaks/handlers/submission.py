@@ -8,7 +8,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import transact, transact_ro, GLSetting, stats_counter
+from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.models import *
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
@@ -317,10 +317,8 @@ class SubmissionCreate(BaseHandler):
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
         if request['finalize']:
-            stats_counter('finalized_submission')
             finalize = True
         else:
-            stats_counter('new_submission')
             finalize = False
 
         status = yield create_submission(request, finalize)
@@ -372,7 +370,6 @@ class SubmissionInstance(BaseHandler):
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
         if request['finalize']:
-            stats_counter('finalized_submission')
             finalize = True
         else:
             finalize = False

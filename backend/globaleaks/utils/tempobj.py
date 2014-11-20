@@ -1,3 +1,5 @@
+#-*- coding: utf-8 -*-
+
 from twisted.internet import reactor
 from twisted.python import components
 

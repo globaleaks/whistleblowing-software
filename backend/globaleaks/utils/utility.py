@@ -8,7 +8,6 @@ import cgi
 import codecs
 import inspect
 import logging
-import re
 import os
 import sys
 import time
