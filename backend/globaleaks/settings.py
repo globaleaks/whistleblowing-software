@@ -42,25 +42,6 @@ verbosity_dict = {
     'CRITICAL': logging.CRITICAL
 }
 
-external_counted_events = {
-    'new_submission' : 0,
-    'finalized_submission': 0,
-    'anon_requests': 0,
-    'file_uploaded': 0,
-}
-
-def stats_counter(element):
-    """
-    Stats counter is called every 30 seconds and make a first dump of the
-    variable in memory: GLSetting.anomailes_counter
-    Then in jobs/statistics_sched.py is transformed in statistic.
-
-    @param element: one of the four element above
-    @return: None, but increment internal counters
-    """
-    assert GLSetting.anomalies_counter.has_key(element), "Invalid usage of stats_counter"
-    GLSetting.anomalies_counter[element] += 1
-
 
 class GLSettingsClass:
 
@@ -205,14 +186,6 @@ class GLSettingsClass:
         self.memory_copy.notif_security = None
         # import_memory_variables is called after create_tables and node+notif updating
 
-        self.anomalies_counter = dict(external_counted_events)
-        # this dict keep track of some 'external' events and is
-        # cleaned periodically (10 minutes in stats)
-        self.anomalies_list = []
-        # this is the collection of the messages shall be reported to the admin
-        self.anomalies_messages = []
-        # maximum amount of element riported by /admin/anomalies and /admin/stats
-        self.anomalies_report_limit = 20
 
         # Default delay threshold
         self.delay_threshold = 0.800
