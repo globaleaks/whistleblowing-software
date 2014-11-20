@@ -11,7 +11,7 @@ This comment is needed in order to push the following strings on transifex
 <span data-translate>Click to edit, Drag to order</span>
 
 -->
-<div id="ContentBox" class="container">
+<div id="ContentBox" class="container" data-ng-controller="AdminFieldsCtrl">
   <div class="row">
     <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
@@ -23,7 +23,7 @@ This comment is needed in order to push the following strings on transifex
 
       <br /><br />
 
-      <div data-ng-controller="AdminFieldsCtrl" data-ng-show="admin.fields.length != 0">
+      <div data-ng-show="admin.fields.length != 0">
         <div data-ng-model="admin.fields">
          
           <div data-ng-repeat="field_key in admin.fields | filter:{is_template: true}">

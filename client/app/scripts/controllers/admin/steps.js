@@ -47,6 +47,10 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
         step.children.push(field.id);
       });
     };
+
+    $scope.create_field = function() {
+      return $scope.admin.new_field_to_step($scope.step.id);
+    };
    
     $scope.deleteStep = function(step) {
       var idx = _.indexOf($scope.context.steps, step);

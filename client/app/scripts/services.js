@@ -764,6 +764,14 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           }
         ),
         adminFieldTemplatesResource = $resource('/admin/fieldtemplates'),
+        adminFieldTemplateResource = $resource('/admin/fieldtemplate/:template_id',
+          {template_id: '@id'},
+          {
+            update: {
+              method: 'PUT' 
+            }
+          }
+        ),
         adminReceiversResource = $resource('/admin/receiver/:receiver_id',
           {receiver_id: '@id'},
           {
@@ -816,17 +824,25 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         return context;
       };
 
-      self.field = adminFieldResource;
       self.template_fields = {};
       self.field_templates = adminFieldTemplatesResource.query(function(){
         angular.forEach(self.field_templates, function(field){
           self.template_fields[field.id] = field;
         });
       });
-      self.fields = adminFieldsResource.query();
+      self.template_field = adminTemplateFieldResource;
 
-      self.new_field = function () {
-        var field = new adminFieldsResource;
+      self.field = adminFieldResource;
+      self.fields = adminFieldsResource.query();
+      
+      self.new_field_to_step = function(step_id) {
+        var field = new adminFieldResource;
+        field.step_id = step_id;
+        return field;
+      };
+
+      self.new_template_field = function () {
+        var field = new adminTemplateFieldResource;
         field.label = '';
         field.is_template = true;
         field.description = '';
