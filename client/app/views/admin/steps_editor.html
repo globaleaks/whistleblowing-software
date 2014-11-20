@@ -70,12 +70,12 @@ This comment is needed in order to push the following strings on transifex
                 <div class="col-md-6" data-ng-include="'views/admin/add_fields.html'"></div>
                 <div class="col-md-6" data-ng-include="'views/admin/add_fields_template.html'"></div>
               </div>
-              <div class="form-group" data-ng-if="step.children.length">
+              <div class="form-group" data-ng-if="step.children">
                 <label data-translate>Configured fields:</label>
                   <div data-ng-model="step.children"
                        class="configuredFields"
                        data-ui-on-drop="add_field_from_template($data, step)">
-                    <div data-ng-repeat="field_key in step.children">
+                    <div data-ng-repeat="field in step.children">
                       <div data-ng-include="'views/admin/edit_field.html'"></div>
                     </div>
                   </div>

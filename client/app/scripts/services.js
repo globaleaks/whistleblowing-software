@@ -754,7 +754,15 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
           }
         ),
-        adminFieldsResource = $resource('/admin/fields', {}, {}),
+        adminFieldsResource = $resource('/admin/fields'),
+        adminFieldResource = $resource('/admin/field/:field_id', 
+          {field_id: '@id'},
+          {
+            update: {
+              method: 'PUT' 
+            }
+          }
+        ),
         adminReceiversResource = $resource('/admin/receiver/:receiver_id',
           {receiver_id: '@id'},
           {
@@ -771,6 +779,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       adminReceiversResource.prototype.toString = function() { return "Admin Receiver"; };
       adminNodeResource.prototype.toString = function() { return "Admin Node"; };
       adminNotificationResource.prototype.toString = function() { return "Admin Notification"; };
+      adminFieldResource.prototype.toString = function() { return "Admin Field"; };
+      adminFieldsResource.prototype.toString = function() { return "Admin Fields"; };
 
       self.context = adminContextsResource;
       self.contexts = adminContextsResource.query();
@@ -804,7 +814,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         return context;
       };
 
-      self.field = adminFieldsResource;
+      self.field = adminFieldResource;
       self.template_fields = {};
       self.fields = adminFieldsResource.query(function(){
         angular.forEach(self.fields, function(field){
@@ -830,47 +840,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         return field;
       };
 
-      self.new_field_from_template = function(field_id, step_id) {
-        var field = new adminFieldsResource,
-          deferred = $q.defer(),
-          template_field = self.template_fields[field_id];
-
-        field.is_template = false;
-        field.label = template_field.label;
-        field.description = template_field.description;
-        field.hint = template_field.hint;
-        field.multi_entry = template_field.multi_entry;
-        field.type = template_field.type;
-        field.options = template_field.options;
-        field.required = template_field.required;
-        field.preview = template_field.preview;
-        field.stats_enabled = template_field.stats_enabled;
-        field.x = template_field.x;
-        field.y = template_field.y;
-        field.children = [];
-        // XXX Add support for specifying what is the step to operate on.
-        // field.step = step_id
-        var child_field_promises = [];
-        for (var child_id in template_field.children) {
-          child_field_promises.push(self.new_field_from_template(child_id));
-        }
-        if (child_field_promises.length > 0) {
-          $q.all(child_field_promises).then(function(children) {
-            angular.forEach(children, function(child){
-              field.children.push(child.id);
-            });
-            field.$save(function(created_field){
-              self.fields.push(created_field);
-              deferred.resolve(created_field);
-            });
-          });
-        } else {
-          field.$save(function(created_field){
-            self.fields.push(created_field);
-            deferred.resolve(created_field);
-          });
-        }
-        return deferred.promise;
+      self.new_field_from_template = function(step_id, fieldgroup_id) {
+        var field = new adminFieldsResource;
+        field.step_id = step_id;
+        field.fieldgroup_id = fieldgroup_id;
+        return field.$save();
       }
 
       self.receiver = adminReceiversResource;
