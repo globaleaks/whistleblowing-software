@@ -28,12 +28,12 @@ from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone import escape, httputil
 from cyclone.escape import native_str, parse_qs_bytes
 
-from globaleaks.jobs.statistics_sched import alarm_level
 from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
 from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 from globaleaks.security import GLSecureTemporaryFile
+from globaleaks.anomaly import incoming_event_monitored, outcome_event_monitored, EventTrack
 
 def validate_host(host_key):
     """
@@ -409,6 +409,17 @@ class BaseHandler(RequestHandler):
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
+        # This is the event tracker, used for anomaly detection and stats measurement
+        # At the moment is only used the function in .XX
+        # for event in incoming_event_monitored:
+        #     if event['handler_check'](self.request.uri):
+        #         EventTrack(event)
+        #         if event['anomaly_management']:
+        #             # may raise Exception
+        #             event['anomaly_management'](self.request)
+        # take a look in anomaly.py 'event_monitored' variable
+
+
         # if 0 is infinite logging of the requests
         if GLSetting.http_log >= 0:
 
@@ -457,6 +468,22 @@ class BaseHandler(RequestHandler):
         It's here implemented to supports the I/O logging if requested
         with the command line options --io $number_of_request_recorded
         """
+
+        # This is the event tracker, used to keep track of the
+        # outcome of the events.
+        if not hasattr(self, '_status_code'):
+            log.debug("Developer, check this out")
+            if GLSetting.devel_mode:
+                import pdb; pdb.set_trace()
+
+        for event in outcome_event_monitored:
+            if event['handler_check'](self.request.uri) and \
+                    event['method'] == self.request.method and \
+                    event['status_checker'](self._status_code):
+                EventTrack(event, self.request.request_time())
+                # if event['anomaly_management']:
+                #    event['anomaly_management'](self.request)
+
         if hasattr(self, 'globaleaks_io_debug'):
             try:
                 content = ("<" * 15)
@@ -648,7 +675,6 @@ class BaseRedirectHandler(BaseHandler, RedirectHandler):
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
-
 class GLApiCache:
 
     memory_cache_dict = {}
@@ -691,3 +717,4 @@ class GLApiCache:
             cls.memory_cache_dict = {}
         else:
             cls.memory_cache_dict.pop(resource_name, None)
+
