@@ -23,19 +23,14 @@ GLClient.controller('AdminStepAddCtrl', ['$scope',
 
 GLClient.controller('AdminFieldsTemplateAdderCtrl', ['$scope',
   function($scope) {
+    $scope.field = $scope.template_fields[$scope.field_key];
   }
 ]);
 
 GLClient.controller('AdminStepEditorCtrl', ['$scope',
   function($scope) {
-    $scope.template_field_keys = [];
-    $scope.template_fields = {};
-    angular.forEach($scope.admin.fields, function (field, key) {
-      if (field.is_template === true) {
-        $scope.template_field_keys.push(field.id);
-        $scope.template_fields[field.id] = field;
-      }
-    });
+    $scope.template_field_keys = Object.keys($scope.admin.template_fields);
+    $scope.template_fields = $scope.admin.template_fields;
 
     $scope.add_field_to_step = function() {
       step = $scope.step;
