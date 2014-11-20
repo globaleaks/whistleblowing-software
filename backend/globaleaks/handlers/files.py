@@ -14,14 +14,13 @@ import shutil
 
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
-from cyclone.web import StaticFileHandler
 
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.rest import errors
-from globaleaks.models import ReceiverTip, ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
+from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.security import access_tip
 
 def serialize_file(internalfile):
