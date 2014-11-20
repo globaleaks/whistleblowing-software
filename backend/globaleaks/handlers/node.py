@@ -11,7 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.utils.utility import datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta, Fields
-from globaleaks.settings import transact_ro, GLSetting, stats_counter
+from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks import models, LANGUAGES_SUPPORTED
@@ -192,7 +192,6 @@ class InfoCollection(BaseHandler):
         Response: publicNodeDesc
         Errors: NodeNotFound
         """
-        stats_counter('anon_requests')
         ret = yield GLApiCache.get('node', self.request.language,
                                    anon_serialize_node, self.request.language)
         self.finish(ret)
@@ -210,8 +209,6 @@ class AhmiaDescriptionHandler(BaseHandler):
     @unauthenticated
     @inlineCallbacks
     def get(self, *uriargs):
-
-        stats_counter('anon_requests')
 
         node_info = yield GLApiCache.get('node', self.request.language,
                                          anon_serialize_node, self.request.language)
@@ -256,7 +253,6 @@ class ContextsCollection(BaseHandler):
         Errors: None
         """
 
-        stats_counter('anon_requests')
         ret = yield GLApiCache.get('contexts', self.request.language,
                                    get_public_context_list, self.request.language)
         self.finish(ret)
@@ -290,7 +286,6 @@ class ReceiversCollection(BaseHandler):
         Errors: None
         """
 
-        stats_counter('anon_requests')
         ret = yield GLApiCache.get('receivers', self.request.language,
                                    get_public_receiver_list, self.request.language)
         self.finish(ret)
