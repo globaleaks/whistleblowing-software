@@ -6,10 +6,6 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$modal',
       });
     };
 
-    $scope.get_field = function(field_key) {
-      return field_key; 
-    };
-
     $scope.perform_delete = function(field) {
       var idx = _.indexOf($scope.admin.fields, field);
 
@@ -41,8 +37,6 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$modal',
 
 GLClient.controller('AdminFieldsEditorCtrl', ['$scope',
   function($scope) {
-    $scope.field = $scope.get_field($scope.field_key);
-
     $scope.save_field = function() {
       $scope.update($scope.field);
     }

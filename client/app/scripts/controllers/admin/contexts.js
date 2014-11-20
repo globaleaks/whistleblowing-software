@@ -91,7 +91,7 @@ GLClient.controller('AdminContextsEditorCtrl', ['$scope',
   function($scope) {
 
     $scope.editing = $scope.context.description === undefined;
-
+    
     $scope.toggleEditing = function () {
       $scope.editing = $scope.editing ^ 1;
     };

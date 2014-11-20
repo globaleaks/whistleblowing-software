@@ -23,7 +23,6 @@ GLClient.controller('AdminStepAddCtrl', ['$scope',
 
 GLClient.controller('AdminFieldsTemplateAdderCtrl', ['$scope',
   function($scope) {
-    $scope.field = $scope.get_field($scope.field_key);
   }
 ]);
 
@@ -54,17 +53,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
       });
     };
    
-    $scope.get_field = function(field_key) {
-      var selected_field = undefined;
-      angular.forEach($scope.admin.fields, function (field, key) {
-        if (field.id == field_key) {
-          selected_field = field;
-          return;
-        }
-      });
-      return selected_field;
-    };
-
     $scope.deleteStep = function(step) {
       var idx = _.indexOf($scope.context.steps, step);
       $scope.context.steps.splice(idx, 1);
@@ -74,6 +62,11 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
       var idx = _.indexOf($scope.step.children, field);
       $scope.step.children.splice(idx, 1);
     };
+
+    $scope.update_field = function(field) {
+      var updated_field = new $scope.admin.field(field);
+      return updated_field.$update();
+    }
     
 
   }
