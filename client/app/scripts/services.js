@@ -763,6 +763,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
           }
         ),
+        adminFieldTemplatesResource = $resource('/admin/fieldtemplates'),
         adminReceiversResource = $resource('/admin/receiver/:receiver_id',
           {receiver_id: '@id'},
           {
@@ -781,6 +782,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       adminNotificationResource.prototype.toString = function() { return "Admin Notification"; };
       adminFieldResource.prototype.toString = function() { return "Admin Field"; };
       adminFieldsResource.prototype.toString = function() { return "Admin Fields"; };
+      adminFieldTemplatesResource.prototype.toString = function() { return "Admin Field Templates"; };
 
       self.context = adminContextsResource;
       self.contexts = adminContextsResource.query();
@@ -816,11 +818,12 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       self.field = adminFieldResource;
       self.template_fields = {};
-      self.fields = adminFieldsResource.query(function(){
-        angular.forEach(self.fields, function(field){
+      self.field_templates = adminFieldTemplatesResource.query(function(){
+        angular.forEach(self.field_templates, function(field){
           self.template_fields[field.id] = field;
         });
       });
+      self.fields = adminFieldsResource.query();
 
       self.new_field = function () {
         var field = new adminFieldsResource;
@@ -840,10 +843,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         return field;
       };
 
-      self.new_field_from_template = function(step_id, fieldgroup_id) {
-        var field = new adminFieldsResource;
+      self.new_field_from_template = function(step_id, template_id) {
+        var field = new adminFieldResource;
         field.step_id = step_id;
-        field.fieldgroup_id = fieldgroup_id;
+        field.template_id = template_id;
         return field.$save();
       }
 
