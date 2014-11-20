@@ -12,6 +12,7 @@ export PYBUILD_NAME=globaleaks
 build-client:
 	cd ../client &&	npm install grunt-cli
 	cd ../client && npm install
+	cd ../client && ./node_modules/bower/bin/bower install
 	cd ../client && ./node_modules/grunt-cli/bin/grunt build
 
 override_dh_auto_build: build-client
