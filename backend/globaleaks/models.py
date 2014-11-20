@@ -6,7 +6,7 @@
 
 import types
 
-from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet, Unicode, Storm
+from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet, Unicode, Storm, JSON
 from globaleaks.utils.utility import datetime_now, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, shortlocal_v, longlocal_v, dict_v
 
@@ -604,13 +604,24 @@ class ApplicationData(Model):
     fields = Pickle()
 
 
-class Stats(Model):
-    """
-    Stats collection!
-    """
-    __storm_table__ = 'stats'
+class WeekStats(Model):
+    __storm_table__ = 'weekstats'
 
-    content = Pickle()
+    summary = JSON()
+    iso_year = Int()
+    iso_week = Int()
+    iso_day = Int()
+    iso_hour = Int()
+    freemb = Int()
+
+
+class Anomalies(Model):
+    __storm_table__ = 'anomalies'
+
+    stored_when = Unicode() # is a Datetime but string
+    alarm = Int()
+    events = JSON()
+
 
 
 #_*_# References tracking below #_*_#
@@ -679,5 +690,5 @@ Receiver.contexts = ReferenceSet(
 
 models = [ Node, User, Context, ReceiverTip, WhistleblowerTip, Comment, 
            InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile, 
-           Notification, Message, Stats, ApplicationData ]
+           Notification, Message, WeekStats, Anomalies, ApplicationData ]
 
