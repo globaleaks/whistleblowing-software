@@ -46,6 +46,9 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',
     };
 
     $scope.isSelected = function (field) {
+      // XXX this very inefficient as it cycles infinitely on the f in
+      // admin.fields | filter:filterSelf ng-repeat even when you are not using
+      // a field group.
       if (!$scope.field.children) {
         return false; 
       }
