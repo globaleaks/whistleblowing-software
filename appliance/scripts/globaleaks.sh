@@ -15,22 +15,3 @@ apt install -fy
 # install globaleaks
 dpkg -i globaleaks* || true
 apt install -fy
-
-# XXX. This should be moved in {pre,post}{inst,rm} debian scripts, or either
-# handled directly inside GlobaLeaks.
-cat <<EOF >> /etc/tor/torrc
-
-# GlobaLeaks Configuration.
-VirtualAddrNetwork 10.23.47.0/10
-AutomapHostsOnResolve 1
-TransPort 9040
-TransListenAddress 127.0.0.1
-DNSPort 5353
-DNSListenAddress 127.0.0.1
-HiddenServiceDir /var/globaleaks/torhs/
-HiddenServicePort 80 127.0.0.1:8082
-EOF
-## finally, restart tor in order to reload /etc/torrc.
-## XXX. Supposedly, if we remove this line every machine will have a different hidden service.
-## What should the default be?
-service tor restart
