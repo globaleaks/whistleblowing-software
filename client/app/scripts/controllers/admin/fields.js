@@ -43,21 +43,28 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',
   function($scope) {
     $scope.save_field = function() {
       $scope.update($scope.field);
-    }
+    };
 
     $scope.isSelected = function (field) {
-      return $scope.field.children.indexOf(field.id) !== -1;
+      if (!$scope.field.children) {
+        return false; 
+      }
+      return Object.keys($scope.field.children).indexOf(field.id) !== -1;
     };
 
     $scope.toggle = function(field) {
-      var idx = $scope.field.children.indexOf(field.id);
+      if ($scope.isSelected(field)) {
+        delete $scope.field.children[field.id];
+      } else {
+        $scope.field.children[field.id] = field;
+      }
       $scope.fieldForm.$dirty = true;
       $scope.fieldForm.$pristine = false;
-      if (idx === -1) {
-        $scope.field.children.push(field.id);
-      } else {
-        $scope.field.children.splice(idx, 1);
-      }
+    }
+
+    $scope.update_field = function(field) {
+      var updated_field = new $scope.admin.field_template(field);
+      return updated_field.$update();
     }
 
     $scope.filterSelf = function(field)
