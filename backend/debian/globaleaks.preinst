@@ -2,11 +2,6 @@
 # This is the pre installation script for globaleaks
 set -e
 
-lsb_release -c | grep precise >/dev/null 2>&-
-if [ "$?" -ne "0" ]; then
-    echo "WARNING! Currently GlobaLeaks offers only Ubuntu 12.04 (precise) support"
-fi
-
 if [ -f /etc/rc2.d/S20globaleaks ]; then
     # older versions of the globaleaks deb installed globaleaks with
     # default sequence (20). The following commands make the manual fixes
