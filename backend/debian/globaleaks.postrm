@@ -38,10 +38,6 @@ set -e
 #                      /   '
 
 remove() {
-  echo
-  echo "[+] Sorry to hear you did not enjoy your leaking experience"
-  echo "    send us an email to info@globaleaks.org"
-
 }
 
 purge() {
