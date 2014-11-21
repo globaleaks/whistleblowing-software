@@ -859,7 +859,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         return field;
       };
 
-      self.new_field_from_template = function(step_id, template_id) {
+      self.new_field_from_template = function(template_id, step_id) {
         var field = new adminFieldResource;
         field.step_id = step_id;
         field.template_id = template_id;

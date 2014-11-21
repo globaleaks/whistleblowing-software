@@ -113,7 +113,7 @@ def db_create_field(store, request, language):
 
     # XXX you probably want to split this if else statement into two functions
     # that are called create_field_from_template and create_field
-    if request['template_id'] == '':
+    if not 'template_id' in request:
         fill_localized_keys(request, models.Field.localized_strings, language)
         field = models.Field.new(store, request)
         db_update_options(store, field.id, request['options'], language)
