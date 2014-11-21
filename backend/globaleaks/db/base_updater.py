@@ -137,22 +137,23 @@ class TableReplacer:
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
         self.table_history = {
-            'Node' : [ Node_version_5, Node_version_6, Node_version_7, Node_version_9, None, Node_version_11, None, Node_version_12, Node_version_13, models.Node],
-            'User' : [ User_version_5, User_version_9, None, None, None, models.User, None, None, None, None],
-            'Context' : [ Context_version_6, None, Context_version_7, Context_version_8, Context_version_11, None, None, Context_version_12, Context_version_13, models.Context],
-            'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, Receiver_version_9, models.Receiver, None, None, None, None],
-            'ReceiverFile' : [ models.ReceiverFile, None, None, None, None, None, None, None, None, None],
-            'Notification': [ Notification_version_7, None, None, Notification_version_8, models.Notification, None, None, None, None, None],
-            'Comment': [ Comment_version_5, models.Comment, None, None, None, None, None, None, None, None],
-            'InternalTip' : [ InternalTip_version_10, None, None, None, None, None, models.InternalTip, None, None, None],
-            'InternalFile' : [ InternalFile_version_7, None, None, InternalFile_version_10, None, None, models.InternalFile, None, None, None],
-            'WhistleblowerTip' : [ models.WhistleblowerTip, None, None, None, None, None, None, None, None, None],
-            'ReceiverTip' : [ models.ReceiverTip, None, None, None, None, None, None , None, None, None],
-            'ReceiverInternalTip' : [ models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None],
-            'ReceiverContext' : [ models.ReceiverContext, None, None, None, None, None, None, None, None, None],
-            'Message' : [ models.Message, None, None, None, None, None, None, None, None, None],
-            'Stats' : [models.Stats, None, None, None, None, None, None, None, None, None],
-            'ApplicationData' : [ApplicationData_version_10, None, None, None, None, None, None, models.ApplicationData, None, None],
+            'Node' : [ Node_version_5, Node_version_6, Node_version_7, Node_version_9, None, Node_version_11, None, Node_version_12, Node_version_13, models.Node, None],
+            'User' : [ User_version_5, User_version_9, None, None, None, models.User, None, None, None, None, None],
+            'Context' : [ Context_version_6, None, Context_version_7, Context_version_8, Context_version_11, None, None, Context_version_12, Context_version_13, models.Context, None],
+            'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, Receiver_version_9, models.Receiver, None, None, None, None, None],
+            'ReceiverFile' : [ models.ReceiverFile, None, None, None, None, None, None, None, None, None, None],
+            'Notification': [ Notification_version_7, None, None, Notification_version_8, models.Notification, None, None, None, None, None, None],
+            'Comment': [ Comment_version_5, models.Comment, None, None, None, None, None, None, None, None, None],
+            'InternalTip' : [ InternalTip_version_10, None, None, None, None, None, models.InternalTip, None, None, None, None],
+            'InternalFile' : [ InternalFile_version_7, None, None, InternalFile_version_10, None, None, models.InternalFile, None, None, None, None],
+            'WhistleblowerTip' : [ models.WhistleblowerTip, None, None, None, None, None, None, None, None, None, None],
+            'ReceiverTip' : [ models.ReceiverTip, None, None, None, None, None, None , None, None, None, None],
+            'ReceiverInternalTip' : [ models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None, None],
+            'ReceiverContext' : [ models.ReceiverContext, None, None, None, None, None, None, None, None, None, None],
+            'Message' : [ models.Message, None, None, None, None, None, None, None, None, None, None],
+            'WeekStats' : [models.WeekStats, None, None, None, None, None, None, None, None, None, None],
+            'Anomalies' : [models.Anomalies, None, None, None, None, None, None, None, None, None, None],
+            'ApplicationData' : [ApplicationData_version_10, None, None, None, None, None, None, models.ApplicationData, None, None, None],
         }
 
         for k, v in self.table_history.iteritems():
@@ -343,12 +344,33 @@ class TableReplacer:
 
     def migrate_Stats(self):
         """
-        has been created between 9 and 10!
+        has been created between 9 and 10, and replaced in WeekStats on 15
         """
         if self.start_ver < 10:
             return
 
+        if self.start_ver > 14:
+            return
+
         self._perform_copy_list("Stats")
+
+    def migrate_WeekStats(self):
+        """
+        Created between 14 and 15
+        """
+        if self.start_ver < 15:
+            return
+
+        self._perform_copy_list("WeekStats")
+
+    def migrate_Anomalies(self):
+        """
+        Created between 14 and 15
+        """
+        if self.start_ver < 15:
+            return
+
+        self._perform_copy_list("Anomalies")
 
     def migrate_ApplicationData(self):
         """
