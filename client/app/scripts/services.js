@@ -830,7 +830,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           self.template_fields[field.id] = field;
         });
       });
-      self.template_field = adminFieldTemplateResource;
+      self.field_template = adminFieldTemplateResource;
 
       self.field = adminFieldResource;
       self.fields = adminFieldsResource.query();
