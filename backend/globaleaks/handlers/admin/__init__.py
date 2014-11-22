@@ -126,6 +126,7 @@ def db_update_steps(store, context_id, steps, language):
     indexed_old_steps = {}
     for o in old_steps:
         indexed_old_steps[o.id] = o
+        store.remove(o)
 
     n = 1
     for step in steps:
@@ -141,6 +142,7 @@ def db_update_steps(store, context_id, steps, language):
                s.children.remove(field)
 
            s.update(step)
+           store.add(s)
 
            # remove key from old steps to be removed
            del indexed_old_steps[step['id']]
@@ -162,10 +164,6 @@ def db_update_steps(store, context_id, steps, language):
             s.children.add(field)
 
         n += 1
-
-    # remove all the not reused old steps
-    for o in indexed_old_steps:
-        store.remove(o)
 
 
 def admin_serialize_context(store, context, language=GLSetting.memory_copy.default_language):
