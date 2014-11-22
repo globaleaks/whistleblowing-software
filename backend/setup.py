@@ -2,6 +2,7 @@
 #-*- coding: utf-8 -*-
 from __future__ import print_function
 
+from importlib import import_module
 import os
 import re
 import sys
@@ -56,7 +57,7 @@ class TestCommand(_TestCommand):
 
         testsuite_runner= runner.TrialRunner(reporter.TreeReporter)
         loader = runner.TestLoader()
-        suite = loader.loadByNames([self.test_suite])
+        suite = loader.loadPackage(import_module(self.test_suite), True)
         testsuite_runner.run(suite)
 
 data_files = [
