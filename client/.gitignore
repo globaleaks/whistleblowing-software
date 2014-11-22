@@ -1,5 +1,6 @@
-node_modules/*
-app/components/*
-pot/*
-build/*
+.tmp/
+node_modules/
+app/components/
+pot/
+build/
 dest

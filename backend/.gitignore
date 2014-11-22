@@ -3,6 +3,7 @@
 .*.swp
 workingdir
 testing_dir
+*.egg/
 *.egg-info
 *.log
 *_trial_temp*
@@ -11,3 +12,9 @@ glenv
 build
 dist
 doc/_*
+
+.pybuild/
+debian/files
+debian/globaleaks/
+debian/*.debhelper
+debian/*.substvars
