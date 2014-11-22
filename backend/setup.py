@@ -3,12 +3,7 @@
 from __future__ import print_function
 
 import os
-import re
 import sys
-import shutil
-import hashlib
-import urllib2
-from zipfile import ZipFile
 
 from pip.req import parse_requirements
 from setuptools import setup
