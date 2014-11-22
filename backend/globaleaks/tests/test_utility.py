@@ -1,14 +1,14 @@
-from twisted.trial import unittest
-
 import re
 import time
+
+from twisted.trial import unittest
 
 from globaleaks.utils import utility
 from globaleaks.settings import GLSetting
 
 class TestUtility(unittest.TestCase):
 
-    def test_001_log_encode_html_str(self):
+    def test_log_encode_html_str(self):
         self.assertEqual(utility.log_encode_html("<"), '&lt;')
         self.assertEqual(utility.log_encode_html(">"), '&gt;')
         self.assertEqual(utility.log_encode_html("'"), '&#39;')
@@ -17,7 +17,7 @@ class TestUtility(unittest.TestCase):
 
         self.assertEqual(utility.log_encode_html("<>'/\\"), '&lt;&gt;&#39;&#47;&#92;')
 
-    def test_002_log_remove_escapes(self):
+    def test_log_remove_escapes(self):
         for c in map(chr, range(32)):
             self.assertNotEqual(utility.log_remove_escapes(c), c)
 
@@ -35,11 +35,11 @@ class TestUtility(unittest.TestCase):
 
         self.assertEqual(utility.log_remove_escapes(start), end)
 
-    def test_004_uuid4(self):
+    def test_uuid4(self):
         self.assertIsNotNone(re.match(r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})',
                              utility.uuid4()))
 
-    def test_005_uuid4_debug(self):
+    def test_uuid4_debug(self):
         GLSetting.debug_option_UUID_human = "antani"
         self.assertEqual(utility.uuid4(), "antani00-0000-0000-0000-000000000001")
         self.assertEqual(utility.uuid4(), "antani00-0000-0000-0000-000000000002")
@@ -47,7 +47,7 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(utility.uuid4(), "antani00-0000-0000-0000-000000000004")
         self.assertEqual(utility.uuid4(), "antani00-0000-0000-0000-000000000005")
 
-    def test_006_randint(self):
+    def test_randint(self):
         self.assertEqual(utility.randint(0), 0)
         self.assertEqual(utility.randint(0, 0), 0)
         self.assertEqual(utility.randint(9, 9), 9)
@@ -55,24 +55,24 @@ class TestUtility(unittest.TestCase):
         number = self.assertTrue(utility.randint(1, 2))
         self.assertTrue(number>0 and number<3)
 
-    def test_007_randbits(self):
+    def test_randbits(self):
         self.assertEqual(len(utility.randbits(4)), 0)
         self.assertEqual(len(utility.randbits(8)), 1)
         self.assertEqual(len(utility.randbits(9)), 1)
         self.assertEqual(len(utility.randbits(16)), 2)
 
-    def test_008_random_choice(self):
+    def test_random_choice(self):
         population = [0, 1, 2, 3, 4, 5]
         self.assertTrue(utility.random_choice(population) in population)
 
-    def test_009_random_shuffle(self):
+    def test_random_shuffle(self):
         ordered = [0, 1, 2, 3, 4, 5]
         shuffle = utility.random_shuffle(ordered)
         self.assertEqual(len(ordered), len(shuffle))
         for i in ordered:
             self.assertTrue(i in shuffle)
 
-    def test_010_utc_dynamic_date(self):
+    def test_utc_dynamic_date(self):
         a = utility.utc_dynamic_date(utility.datetime_null())
         b = utility.utc_dynamic_date(utility.datetime_null(), seconds=0, minutes=0, hours=0)
         self.assertTrue(a==b)
@@ -89,7 +89,7 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(c, d)
         self.assertEqual(d, e)
 
-    def test_011_utc_future_date(self):
+    def test_utc_future_date(self):
         a = utility.datetime_now()
         b = utility.utc_future_date(seconds=99)
         c = utility.utc_future_date(minutes=99)
@@ -98,8 +98,8 @@ class TestUtility(unittest.TestCase):
         self.assertTrue(b<c)
         self.assertTrue(c<d)
 
-    def test_012_get_future_epoch(self):
-        a = time.time() 
+    def test_get_future_epoch(self):
+        a = time.time()
         b = utility.get_future_epoch(seconds=1)
         c = utility.get_future_epoch(seconds=2)
         d = utility.get_future_epoch(seconds=3)
@@ -107,13 +107,13 @@ class TestUtility(unittest.TestCase):
         self.assertTrue(b<c)
         self.assertTrue(c<d)
 
-    def test_013_is_expired(self):
+    def test_is_expired(self):
         self.assertFalse(utility.is_expired(None))
         self.assertTrue(utility.is_expired(utility.datetime_null()))
         self.assertTrue(utility.is_expired(utility.datetime_now()))
         self.assertFalse(utility.is_expired(utility.utc_future_date(seconds=1337)))
 
-    def test_014_datetime_to_ISO8601_to_datetime_to_dot_dot_dot(self):
+    def test_datetime_to_ISO8601_to_datetime_to_dot_dot_dot(self):
         a = utility.datetime_null()
         b = utility.datetime_to_ISO8601(a)
         c = utility.ISO8601_to_datetime(b)
@@ -121,15 +121,15 @@ class TestUtility(unittest.TestCase):
         self.assertTrue(a, c)
         self.assertTrue(b, d)
 
-    def test_015_datetime_to_pretty_str(self):
+    def test_datetime_to_pretty_str(self):
         self.assertEqual(utility.datetime_to_pretty_str(None), 'Thursday 01 January 1970 00:00 (UTC)')
         self.assertEqual(utility.datetime_to_pretty_str(utility.datetime_null()), 'Thursday 01 January 1970 00:00 (UTC)')
 
-    def test_016_ISO8601_to_pretty_str(self):
+    def test_ISO8601_to_pretty_str(self):
         self.assertEqual(utility.ISO8601_to_pretty_str(None), 'Thursday 01 January 1970 00:00 (UTC)')
         self.assertEqual(utility.ISO8601_to_pretty_str('1970-01-01T00:00:00Z'), 'Thursday 01 January 1970 00:00 (UTC)')
 
-    def test_017_acquire_bool(self):
+    def test_acquire_bool(self):
         self.assertTrue(utility.acquire_bool('true'))
         self.assertTrue(utility.acquire_bool(u'true'))
         self.assertTrue(utility.acquire_bool(True))
@@ -137,12 +137,13 @@ class TestUtility(unittest.TestCase):
         self.assertFalse(utility.acquire_bool(None))
         self.assertFalse(utility.acquire_bool('antani'))
 
-    def test_018_log(self):
+    def test_log(self):
         utility.log.info("info")
         utility.log.err("err")
         utility.log.debug("debug")
         utility.log.msg("msg")
 
-    def test_019_start_logging(self):
+    def test_start_logging(self):
         GLSetting.logfile = 'test_logfile'
         utility.log.start_logging()
+    test_start_logging.skip = 'This test does not really test anything.'
