@@ -53,14 +53,6 @@
         }
     ],
 
-    "provisioners": [
-        {
-            "type": "file",
-            "source": "../globaleaks_2.60.29_all.deb",
-            "destination": "globaleaks_2.60.29_all.deb"
-        }
-    ],
-
     "post-processors": [
         {
             "type": "vagrant",
