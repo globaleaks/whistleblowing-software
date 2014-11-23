@@ -28,8 +28,7 @@ Package: globaleaks
 Architecture: all
 X-Python-Version: 2.7
 Depends:
- ${python:Depends}
- , ${misc:Depends}
+  ${misc:Depends}
  , python-pip
  , tor
  , iptables
