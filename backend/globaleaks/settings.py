@@ -84,6 +84,12 @@ def set_default_uri(self, name, default_uri):
 
     self._default_databases[name].raw_connect = raw_connect
 
+# XXX. This line monkeypatches storm 0.19 with a patch merged in version 0.20.
+# The best solution here would be to accept only Storm>=0.20, though
+# the non-availability of python-storm 0.20 in {debian, ubuntu} official
+# repositiories was responsable for this ugly hack. See
+# <https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=764638>
+# for further informations.
 ZStorm.set_default_uri = set_default_uri
 
 class GLSettingsClass:
