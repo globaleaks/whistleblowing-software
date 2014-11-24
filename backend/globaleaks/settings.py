@@ -28,7 +28,6 @@ from twisted.python.threadpool import ThreadPool
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 from storm import exceptions, tracer
-from storm.databases.sqlite import sqlite
 from storm.zope.zstorm import ZStorm
 from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
@@ -62,35 +61,6 @@ def stats_counter(element):
     assert GLSetting.anomalies_counter.has_key(element), "Invalid usage of stats_counter"
     GLSetting.anomalies_counter[element] += 1
 
-def set_default_uri(self, name, default_uri):
-    """Set C{default_uri} as the default URI for stores called C{name}."""
-
-    def raw_connect():
-        _self = self._default_databases[name]
-
-        # See the story at the end to understand why we set isolation_level.
-        raw_connection = sqlite.connect(_self._filename, timeout=_self._timeout,
-                                        isolation_level=None)
-        if _self._synchronous is not None:
-            raw_connection.execute("PRAGMA synchronous = %s" %
-                                   (_self._synchronous,))
-
-        raw_connection.execute("PRAGMA foreign_keys = ON")
-
-        return raw_connection
-
-    self._default_databases[name] = self._get_database(default_uri)
-    self._default_uris[name] = default_uri
-
-    self._default_databases[name].raw_connect = raw_connect
-
-# XXX. This line monkeypatches storm 0.19 with a patch merged in version 0.20.
-# The best solution here would be to accept only Storm>=0.20, though
-# the non-availability of python-storm 0.20 in {debian, ubuntu} official
-# repositiories was responsable for this ugly hack. See
-# <https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=764638>
-# for further informations.
-ZStorm.set_default_uri = set_default_uri
 
 class GLSettingsClass:
 
