@@ -26,10 +26,10 @@ This comment is needed in order to push the following strings on transifex
       <div data-ng-show="fields.length != 0">
         <div data-ng-model="fields">
          
-          <div data-ng-repeat="field in fields">
-            <div data-ng-include="'views/admin/edit_field.html'"></div>
-          <!-- end repeat -->
+          <div data-ng-repeat="field in admin.field_templates">
+            <div data-ng-include="'views/admin/fields_editor.html'"></div>
           </div>
+
         </div>
       </div>
     </div>

@@ -23,6 +23,7 @@ def perform_version_update(starting_ver, ending_ver, start_path):
     from globaleaks.db.update_11_12 import Replacer1112
     from globaleaks.db.update_12_13 import Replacer1213
     from globaleaks.db.update_13_14 import Replacer1314
+    from globaleaks.db.update_14_15 import Replacer1415
 
     releases_supported = {
         "56" : Replacer56,
@@ -34,6 +35,7 @@ def perform_version_update(starting_ver, ending_ver, start_path):
         "1112": Replacer1112,
         "1213": Replacer1213,
         "1314": Replacer1314,
+        "1415": Replacer1415,
     }
     
     to_delete_on_fail = []

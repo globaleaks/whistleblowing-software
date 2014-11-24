@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$rootScope', '$location', 'Authentication', 'Node', 'Submission', 'Fields', 'Receivers', 'WhistleblowerTip',
-      function ($scope, $rootScope, $location, Authentication, Node, Submission, Fields, Receivers, WhistleblowerTip) {
+    ['$scope', '$rootScope', '$location', 'Authentication', 'Node', 'Submission', 'Receivers', 'WhistleblowerTip',
+      function ($scope, $rootScope, $location, Authentication, Node, Submission, Receivers, WhistleblowerTip) {
 
   $rootScope.invalidForm = true;
 
@@ -136,7 +136,7 @@ controller('SubmissionFormController', ['$scope', '$rootScope', function ($scope
     $rootScope.invalidForm = $scope.submissionForm.$invalid;
   }, true);
 }]).
-controller('SubmissionStepsCtrl', ['$scope', 'Fields', function($scope, Fields) {
+controller('SubmissionStepsCtrl', ['$scope', function($scope) {
 
   $scope.getCurrentStepIndex = function(){
     return $scope.selection;
