@@ -1,11 +1,15 @@
-GLClient.controller('AdminFieldsCtrl', ['$scope', '$modal',
-  function($scope, $modal) {
+GLClient.controller('AdminFieldsCtrl', ['$scope',
+                    function($scope, $modal) {
     $scope.fields = $scope.admin.field_templates;
 
     $scope.save_all = function () {
       angular.forEach($scope.admin.fields, function (field, key) {
         $scope.update(fields);
       });
+    };
+    
+    $scope.addField = function(field) {
+      $scope.fields.push(new_field);
     };
 
     $scope.deleteField = function(field) {
@@ -26,6 +30,18 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$modal',
       });
     }
 
+    $scope.create_field = function() {
+      return $scope.admin.new_template_field();
+    };
+  }
+]);
+
+GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
+  function($scope, $modal) {
+    $scope.save_field = function() {
+      $scope.update($scope.field);
+    };
+
     $scope.deleteDialog = function(field){
       var modalInstance = $modal.open({
           templateUrl:  'views/partials/field_delete.html',
@@ -44,17 +60,6 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$modal',
       );
     };
 
-    $scope.create_field = function() {
-      return $scope.admin.new_template_field();
-    };
-  }
-]);
-
-GLClient.controller('AdminFieldsEditorCtrl', ['$scope',
-  function($scope) {
-    $scope.save_field = function() {
-      $scope.update($scope.field);
-    };
 
     $scope.isSelected = function (field) {
       // XXX this very inefficient as it cycles infinitely on the f in
@@ -119,6 +124,7 @@ GLClient.controller('AdminFieldsAddCtrl', ['$scope',
       var field = new $scope.create_field();
 
       field.label = $scope.new_field.label;
+      field.description = $scope.new_field.label;
       field.type = $scope.new_field.type;
 
       if (field.type == 'tos') {
@@ -135,7 +141,7 @@ GLClient.controller('AdminFieldsAddCtrl', ['$scope',
       }
 
       field.$save(function(new_field){
-        $scope.fields.push(new_field);
+        $scope.addField(new_field);
         $scope.new_field = {};
       });
     }
