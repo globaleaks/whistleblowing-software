@@ -8,7 +8,7 @@ GLClient.controller('AdminFieldsCtrl', ['$scope',
       });
     };
     
-    $scope.addField = function(field) {
+    $scope.addField = function(new_field) {
       $scope.fields.push(new_field);
     };
 
