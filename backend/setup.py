@@ -53,7 +53,8 @@ class TestCommand(_TestCommand):
         testsuite_runner= runner.TrialRunner(reporter.TreeReporter)
         loader = runner.TestLoader()
         suite = loader.loadPackage(import_module(self.test_suite), True)
-        testsuite_runner.run(suite)
+        test_result = testsuite_runner.run(suite)
+        sys.exit(not test_result.wasSuccessful())
 
 data_files = [
     ('/usr/share/globaleaks/glclient',
