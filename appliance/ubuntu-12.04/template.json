@@ -40,12 +40,15 @@
         },
         {
             "type": "shell",
+            "script": "scripts/vagrant.sh"
+        },
+        {
+            "type": "shell",
             "inline": ["sudo rm -R /var/lib/apt/lists/partial/*   # hack to workaround ubuntu complaining to update"]
         },
         {
             "type": "shell",
             "scripts": [
-                "scripts/vagrant.sh",
                 "scripts/virtualbox.sh",
                 "scripts/vm_cleanup.sh"
             ],
