@@ -234,8 +234,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$resource', '$filter', 'Node', 'Contexts', 'Fields', 'Receivers',
-  function($resource, $filter, Node, Contexts, Fields, Receivers) {
+  factory('Submission', ['$resource', '$filter', 'Node', 'Contexts', 'Receivers',
+  function($resource, $filter, Node, Contexts, Receivers) {
 
     var submissionResource = $resource('/submission/:submission_id/',
         {submission_id: '@id'},
@@ -293,40 +293,16 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         Contexts.query(function(contexts){
           self.contexts = contexts;
           self.current_context = $filter('orderBy')(self.contexts, 'presentation_order')[0];
-          Fields.query(function (fields) {
-            self.fields = fields;
-            self.indexed_fields = _.reduce(self.fields, function (o, item) {
-              o[item.id] = item; return o
-            }, {});
-            self.get_fields_recursively = function(field) {
-              var ret = [];
-              forEach(field['children'], function(f) {
-                ret.push(f);
-                ret.concat(self.get_fields_recursively(self.indexed_fields[f]));
-              });
-              return ret;
-            }
-            var ccf = [];
-            forEach(self.current_context['steps'], function(s) {
-              forEach(s['children'], function(c) {
-                ccf.push(c);
-                ccf = ccf.concat(self.get_fields_recursively(self.indexed_fields[c]));
-              });
+          Receivers.query(function(receivers){
+            self.receivers = [];
+            forEach(receivers, function(receiver){
+              receiver.disabled = false;
+              if (!self.allow_unencrypted && receiver.gpg_key_status !== 'Enabled')
+                receiver.disabled = true;
+              self.receivers.push(receiver);
             });
-            self.current_context_fields = ccf;
-
-            Receivers.query(function(receivers){
-              self.receivers = [];
-              forEach(receivers, function(receiver){
-                receiver.disabled = false;
-                if (!self.allow_unencrypted && receiver.gpg_key_status !== 'Enabled')
-                  receiver.disabled = true;
-                self.receivers.push(receiver);
-              });
-              setCurrentContextReceivers();
-
-              fn(self); // Callback!
-            });
+            setCurrentContextReceivers();
+            fn(self); // Callback!
           });
         });
       });
@@ -566,9 +542,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   factory('Contexts', ['$resource', function($resource) {
     return $resource('/contexts');
-}]).
-  factory('Fields', ['$resource', function($resource) {
-    return $resource('/fields');
 }]).
   factory('Receivers', ['$resource', function($resource) {
     return $resource('/receivers');
