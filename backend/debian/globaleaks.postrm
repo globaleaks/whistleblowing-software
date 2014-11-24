@@ -38,7 +38,7 @@ set -e
 #                      /   '
 
 remove() {
-    sudo sed -i '/# BEGIN GlobaLeaks Configuration - DO NOT EDIT!/,/# END GlobaLeaks Configuration - DO NOT EDIT!/d' /etc/tor/torrc
+    sed -i '/# BEGIN GlobaLeaks Configuration - DO NOT EDIT!/,/# END GlobaLeaks Configuration - DO NOT EDIT!/d' /etc/tor/torrc
 }
 
 purge() {
