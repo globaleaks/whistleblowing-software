@@ -837,6 +837,21 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       
       self.new_field_to_step = function(step_id) {
         var field = new adminFieldResource;
+        field.label = '';
+        field.type = '';
+        field.description = '';
+
+        field.is_template = false;
+        field.hint = '';
+        field.multi_entry = false;
+        field.options = [];
+        field.required = false;
+        field.preview = false;
+        field.stats_enabled = false;
+        field.x = 0;
+        field.y = 0;
+        field.children = [];
+
         field.step_id = step_id;
         return field;
       };
@@ -844,11 +859,12 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.new_template_field = function () {
         var field = new adminFieldTemplateResource;
         field.label = '';
-        field.is_template = true;
+        field.type = '';
         field.description = '';
+
+        field.is_template = true;
         field.hint = '';
         field.multi_entry = false;
-        field.type = 'checkbox';
         field.options = [];
         field.required = false;
         field.preview = false;
