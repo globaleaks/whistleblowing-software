@@ -62,6 +62,14 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
       $scope.step.children.splice(idx, 1);
     };
 
+    $scope.perform_delete = function(field) {
+      $scope.admin.field.delete({
+        field_id: field.id
+      }, function(){
+        $scope.deleteField(field);
+      });
+    }
+
     $scope.update_field = function(field) {
       var updated_field = new $scope.admin.field(field);
       return updated_field.$update();

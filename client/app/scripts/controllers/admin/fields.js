@@ -1,18 +1,29 @@
 GLClient.controller('AdminFieldsCtrl', ['$scope', '$modal',
   function($scope, $modal) {
+    $scope.fields = $scope.admin.field_templates;
+
     $scope.save_all = function () {
       angular.forEach($scope.admin.fields, function (field, key) {
         $scope.update(fields);
       });
     };
 
+    $scope.deleteField = function(field) {
+      var idx = _.indexOf($scope.fields, field);
+      $scope.fields.splice(idx, 1);
+    };
+
+    $scope.update_field = function(field) {
+      var updated_field = new $scope.admin.field_template(field);
+      return updated_field.$update();
+    }
+
     $scope.perform_delete = function(field) {
-      var idx = _.indexOf($scope.admin.fields, field);
-
-      field['$delete'](function(){
-        $scope.admin.fields.splice(idx, 1);
+      $scope.admin.field_template.delete({
+        template_id: field.id
+      }, function(){
+        $scope.deleteField(field);
       });
-
     }
 
     $scope.deleteDialog = function(field){
@@ -63,11 +74,6 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',
       }
       $scope.fieldForm.$dirty = true;
       $scope.fieldForm.$pristine = false;
-    }
-
-    $scope.update_field = function(field) {
-      var updated_field = new $scope.admin.field_template(field);
-      return updated_field.$update();
     }
 
     $scope.filterSelf = function(field)
