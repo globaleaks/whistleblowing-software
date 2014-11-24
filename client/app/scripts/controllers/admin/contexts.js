@@ -62,7 +62,7 @@ GLClient.controller('AdminContextsCtrl',
     }
   };
 
-  $scope.deleteDialog = function(context){
+  $scope.contextDeleteDialog = function(context){
     var modalInstance = $modal.open({
         templateUrl:  'views/partials/context_delete.html',
         controller: 'ConfirmableDialogCtrl',

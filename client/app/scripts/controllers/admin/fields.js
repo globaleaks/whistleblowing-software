@@ -42,7 +42,7 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
       $scope.update($scope.field);
     };
 
-    $scope.deleteDialog = function(field){
+    $scope.fieldDeleteDialog = function(field){
       var modalInstance = $modal.open({
           templateUrl:  'views/partials/field_delete.html',
           controller: 'ConfirmableDialogCtrl',
