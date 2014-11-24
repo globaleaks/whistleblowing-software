@@ -8,7 +8,7 @@ GLClient.controller('AdminFieldsCtrl', ['$scope',
       });
     };
     
-    $scope.addField = function(field) {
+    $scope.addField = function(new_field) {
       $scope.fields.push(new_field);
     };
 
@@ -42,7 +42,7 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
       $scope.update($scope.field);
     };
 
-    $scope.deleteDialog = function(field){
+    $scope.fieldDeleteDialog = function(field){
       var modalInstance = $modal.open({
           templateUrl:  'views/partials/field_delete.html',
           controller: 'ConfirmableDialogCtrl',

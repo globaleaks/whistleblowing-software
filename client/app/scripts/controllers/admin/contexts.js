@@ -28,12 +28,6 @@ GLClient.controller('AdminContextsCtrl',
     });
   };
 
-  $scope.sortableOptions = {
-    stop: function(e, ui) {
-      $scope.update_contexts_order();
-    }
-  };
-
   $scope.reorder_contexts_alphabetically = function () {
     $scope.admin.contexts = _($scope.admin.contexts).sortBy(function (context) {
       return context.name;
@@ -62,7 +56,7 @@ GLClient.controller('AdminContextsCtrl',
     }
   };
 
-  $scope.deleteDialog = function(context){
+  $scope.contextDeleteDialog = function(context){
     var modalInstance = $modal.open({
         templateUrl:  'views/partials/context_delete.html',
         controller: 'ConfirmableDialogCtrl',
@@ -82,7 +76,11 @@ GLClient.controller('AdminContextsCtrl',
 
   $scope.sortableOptions = {
     placeholder: "placeholder",
-    handle: ".handle"
+    handle: ".handle",
+    axis: 'x',
+    stop: function(e, ui) {
+      $scope.update_contexts_order();
+    }
   };
 
 }]);
@@ -91,7 +89,19 @@ GLClient.controller('AdminContextsEditorCtrl', ['$scope',
   function($scope) {
 
     $scope.editing = $scope.context.description === undefined;
-    
+
+     $scope.sortableOptions = {
+      placeholder: "placeholder",
+      handle: ".handle",
+      axis: 'x',
+      stop: function(e, ui) {
+        $scope.contextForm.$dirty = true;
+        $scope.contextForm.$pristine = false;
+        $scope.update_contexts_order();
+      }
+    };
+
+   
     $scope.toggleEditing = function () {
       $scope.editing = $scope.editing ^ 1;
     };

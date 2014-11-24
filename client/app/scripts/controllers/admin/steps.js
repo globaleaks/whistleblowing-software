@@ -27,8 +27,8 @@ GLClient.controller('AdminFieldsTemplateAdderCtrl', ['$scope',
   }
 ]);
 
-GLClient.controller('AdminStepEditorCtrl', ['$scope',
-  function($scope) {
+GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
+  function($scope, $modal) {
     $scope.template_field_keys = Object.keys($scope.admin.template_fields);
     $scope.template_fields = $scope.admin.template_fields;
 
@@ -62,13 +62,35 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope',
       }, function(){
         $scope.deleteField(field);
       });
-    }
+    };
+
+    $scope.perform_delete_step = function(step) {
+      $scope.deleteStep(step);
+      $scope.update($scope.context);
+    };
 
     $scope.update_field = function(field) {
       var updated_field = new $scope.admin.field(field);
       return updated_field.$update();
-    }
-    
+    };
+
+    $scope.stepDeleteDialog = function(step){
+      var modalInstance = $modal.open({
+          templateUrl:  'views/partials/step_delete.html',
+          controller: 'ConfirmableDialogCtrl',
+          resolve: {
+            object: function () {
+              return step;
+            }
+          }
+
+      });
+
+      modalInstance.result.then(
+         function(result) { $scope.perform_delete_step(result); },
+         function(result) { }
+      );
+    };
 
   }
 ]);
