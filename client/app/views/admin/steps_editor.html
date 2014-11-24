@@ -96,7 +96,7 @@ This comment is needed in order to push the following strings on transifex
                 data-ng-click="editing=!editing">Cancel
               </button>
               <button class="btn btn-danger actionButton"
-                      data-ng-click="deleteStep(step)"
+                      data-ng-click="stepDeleteDialog(step)"
                       popover="{{ Delete | translate }}"
                       popover-placement="right"
                       popover-trigger="mouseenter">Delete</button>
@@ -104,7 +104,7 @@ This comment is needed in order to push the following strings on transifex
           </div>
         <!-- Step end -->
         </div>
-      <div class="clearfix" ng-if="$last"></div>
+        <div class="clearfix" ng-if="$last"></div>
       <!-- Repeat end -->
       </div>
     </div>
