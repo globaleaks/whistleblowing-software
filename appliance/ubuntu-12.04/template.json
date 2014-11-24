@@ -40,17 +40,11 @@
         },
         {
             "type": "shell",
-            "script": "scripts/vagrant.sh"
-        },
-        {
-            "type": "shell",
-            "inline": ["sudo rm -R /var/lib/apt/lists/partial/*   # hack to workaround ubuntu complaining to update"]
-        },
-        {
-            "type": "shell",
             "scripts": [
-                "scripts/virtualbox.sh",
-                "scripts/vm_cleanup.sh"
+                "scripts/base.sh",
+                "scripts/vagrant.sh",
+                "scripts/cleanup.sh",
+                "scripts/zerodisk.sh"
             ],
             "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
         }
