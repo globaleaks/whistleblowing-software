@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.python.util import untilConcludes
 from twisted.internet import reactor
 
-from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
+from globaleaks.utils.utility import log, datetime_now
 from globaleaks.db import create_tables, check_schema_version, clean_untracked_files
 from globaleaks.db.datainit import import_memory_variables, apply_cli_options
 from globaleaks.settings import GLSetting
@@ -65,8 +65,7 @@ def start_asynchronous():
                       # stats.start, GLSetting.stats_minutes_delta * 60)
                 # more verbose approach to stats
                 delay, stats.start, 60 * 60)
-    statistics_sched.StatisticsSchedule.collection_start_datetime = \
-        datetime_to_ISO8601(current_time)[:-8]
+    statistics_sched.StatisticsSchedule.collection_start_datetime = current_time
 
 
 

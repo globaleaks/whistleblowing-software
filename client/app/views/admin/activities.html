@@ -8,61 +8,46 @@ This comment is needed in order to push the following strings on transifex
 <span data-translate>Here you can check the latest anomalies detected</span>
 
 -->
-<div id="ContentBox" class="container" data-ng-controller="StatisticsCtrl">
+<div id="ContentBox" class="container" data-ng-controller="ActivitiesCtrl">
   <div class="row">
     <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
       <div class="row">
         <div class="col-md-12">
-          <h3 data-translate>System Stats</h3>
+          <h3 data-translate>Recent Activities</h3>
           <p>
-            <span data-translate>This interface shows you the statistics for the last hours.</span>
+            <span data-translate>This interface shows the latest activity in your node</span>
           </p>
-          <pre>
-            {{stats}}
-          </pre>
-          <i>TODO need to be trasformed in an heatmap.</i>
-          <table class="table table-bordered" id="receiverList">
+          <table class="table table-bordered" id="RecentEventList">
           <thead>
               <tr>
                 <th class="col-md-2">
-                  <span data-translate>Week</span>
+                  <span data-translate>#</span>
                 </th>
                 <th class="col-md-2">
-                  <span data-translate>year</span>
+                  <span data-translate>Event date</span>
                 </th>
                 <th class="col-md-2">
-                  <span data-translate>summary</span>
+                  <span data-translate>Event type</span>
                 </th>
                 <th class="col-md-2">
-                  <span data-translate>day/hours</span>
-                </th>
-                <th class="col-md-2">
-                  <span data-translate>freemegabytes</span>
+                  <span data-translate>Time required</span>
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr data-ng-repeat="stat in stats">
-                <!--
+              <tr data-ng-repeat="activity in activities">
                 <td class="col-md-2">
-                  {{stat.creation_date | date:'dd-MM-yyyy HH:mm'}}
-                </td>
-                -->
-                <td class="col-md-2">
-                  {{stat.year}}
+                  {{activity.id}}
                 </td>
                 <td class="col-md-2">
-                  {{stat.week}}
+                  {{activity.creation_date | date:'dd HH:mm'}}
                 </td>
                 <td class="col-md-2">
-                  {{stat.summary}}
+                  {{activity.type}}
                 </td>
                 <td class="col-md-2">
-                  {{stat.day}} / {{stat.hour}}
-                </td>
-                <td class="col-md-2">
-                  {{stat.freemegabytes}}
+                  {{activity.duration}}
                 </td>
               </tr>
             </tbody>
