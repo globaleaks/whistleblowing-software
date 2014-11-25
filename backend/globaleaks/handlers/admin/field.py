@@ -18,6 +18,25 @@ from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log
 
+def get_field_association(store, field_id):
+    ret1 = None
+    ret2 = None
+    print field_id
+
+    sf = store.find(models.StepField)
+    print "associated"
+    for s in sf:
+        print s.field_id
+
+    sf = store.find(models.StepField, models.StepField.field_id == field_id).one()
+    if sf:
+        ret1 = sf.step_id
+    ff = store.find(models.FieldField, models.FieldField.child_id == field_id).one()
+    if ff:
+        ret2 = ff.parent_id
+
+    return ret1, ret2
+
 def associate_field(store, field, step_id=None, fieldgroup_id=None):
     if step_id:
         if field.is_template:
@@ -34,11 +53,11 @@ def associate_field(store, field, step_id=None, fieldgroup_id=None):
 
         fieldgroup.children.add(field)
 
-def disassociate_field(store, field):
-    sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
+def disassociate_field(store, field_id):
+    sf = store.find(models.StepField, models.StepField.field_id == field_id).one()
     if sf:
         store.remove(sf)
-    ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
+    ff = store.find(models.FieldField, models.FieldField.child_id == field_id).one()
     if ff:
         store.remove(ff)
 
@@ -97,7 +116,7 @@ def field_integrity_check(request):
     if not is_template:
         if (step_id == '' or step_id == None) and \
             (fieldgroup_id == '' or fieldgroup_id == None):
-            raise errors.InvalidInputFormat("cannot associate a field to both a step and a fieldgroup")
+            raise errors.InvalidInputFormat("Cannot associate a field to both a step and a fieldgroup")
 
     return is_template, step_id, fieldgroup_id
 
@@ -174,14 +193,14 @@ def update_field(store, field_id, request, language):
                 raise errors.InvalidInputFormat(errmsg)
 
             # remove current step/field fieldgroup/field association
-            disassociate_field(store, child)
+            disassociate_field(store, child_id)
 
             field.children.add(child)
 
         db_update_options(store, field.id, request['options'], language)
 
         # remove current step/field fieldgroup/field association
-        disassociate_field(store, field)
+        disassociate_field(store, field_id)
 
         associate_field(store, field, step_id, fieldgroup_id)
 
