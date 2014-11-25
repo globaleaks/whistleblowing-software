@@ -581,11 +581,13 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
     receiver_password = security.hash_password(password, receiver_salt)
 
     receiver_user_dict = {
-            'username': mail_address,
-            'password': receiver_password,
-            'salt': receiver_salt,
-            'role': u'receiver',
-            'state': u'password_change_needed',
+        'username': mail_address,
+        'password': receiver_password,
+        'salt': receiver_salt,
+        'role': u'receiver',
+        'state': u'password_change_needed',
+        'language': u"en",
+        'timezone': 0,
     }
 
     receiver_user = models.User(receiver_user_dict)

@@ -88,7 +88,9 @@ def initialize_node(store, results, only_node, templates, appdata):
         'salt': admin_salt,
         'role': u'admin',
         'state': u'enabled',
-        }
+        'language': u"en",
+        'timezone': 0,
+    }
 
     admin = models.User(admin_dict)
 

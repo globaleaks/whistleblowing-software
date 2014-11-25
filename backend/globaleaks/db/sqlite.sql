@@ -10,6 +10,8 @@ CREATE TABLE user (
     state VARCHAR NOT NULL CHECK (state IN ('disabled', 'password_change_needed', 'enabled')),
     last_login VARCHAR NOT NULL,
     last_update VARCHAR,
+    language VARCHAR NOT NULL,
+    timezone INTEGER DEFAULT 0,
     PRIMARY KEY (id),
     UNIQUE (username)
 );
