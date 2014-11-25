@@ -10,6 +10,7 @@ import sys
 
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import models
 from globaleaks.rest import errors
 from globaleaks.jobs.base import GLJob
 from globaleaks.plugins.base import Event
@@ -18,7 +19,6 @@ from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.plugins import notification
 from globaleaks.handlers import admin, rtip
-from globaleaks.models import Receiver
 
 def serialize_receivertip(receiver_tip):
     rtip_dict = {
@@ -46,23 +46,10 @@ def serialize_internalfile(ifile):
 
 
 class NotificationSchedule(GLJob):
-    notification_settings = None
 
-    @transact_ro
-    def _get_notification_settings(self, store):
-        """
-        notification setting need to contains bot template
-        and systemsettings
-        """
-        from globaleaks.handlers.admin import admin_serialize_notification
-
+    def _get_notification_settings(self, store, language):
         notif = store.find(models.Notification).one()
-
-        if not notif.server:
-            return None
-
-        return admin_serialize_notification(notif, GLSetting.memory_copy.default_language)
-
+        return admin.admin_serialize_notification(notif, language)
 
     @transact
     def create_tip_notification_events(self, store, notification_counter):
@@ -127,8 +114,10 @@ class NotificationSchedule(GLJob):
             else:
                 template_type = u'plaintext_tip'
 
+            notification_settings = self._get_notification_settings(store, receiver_desc['language'])
+
             event = Event(type=template_type, trigger='Tip',
-                            notification_settings=self.notification_settings,
+                            notification_settings=notification_settings,
                             trigger_info=tip_desc,
                             trigger_parent=None,
                             node_info=node_desc,
@@ -221,7 +210,7 @@ class NotificationSchedule(GLJob):
 
             tip_desc = serialize_receivertip(message.receivertip)
 
-            receiver = store.find(Receiver, Receiver.id == message.receivertip.receiver_id).one()
+            receiver = store.find(models.Receiver, models.Receiver.id == message.receivertip.receiver_id).one()
             if not receiver:
                 log.err("Message %s do not find receiver!?" % message.id)
 
@@ -257,8 +246,10 @@ class NotificationSchedule(GLJob):
             else:
                 template_type = u'plaintext_message'
 
+            notification_settings = self._get_notification_settings(store, receiver_desc['language'])
+
             event = Event(type=template_type, trigger='Message',
-                          notification_settings=self.notification_settings,
+                          notification_settings=notification_settings,
                           trigger_info=message_desc,
                           trigger_parent=tip_desc,
                           node_info=node_desc,
@@ -396,8 +387,10 @@ class NotificationSchedule(GLJob):
                 else:
                     template_type = u'plaintext_comment'
 
+                notification_settings = self._get_notification_settings(store, receiver_desc['language'])
+
                 event = Event(type=template_type, trigger='Comment',
-                    notification_settings=self.notification_settings,
+                    notification_settings=notification_settings,
                     trigger_info=comment_desc,
                     trigger_parent=tip_desc,
                     node_info=node_desc,
@@ -526,8 +519,10 @@ class NotificationSchedule(GLJob):
             else:
                 template_type = u'plaintext_file'
 
+            notification_settings = self._get_notification_settings(store, receiver_desc['language'])
+
             event = Event(type=template_type, trigger='File',
-                notification_settings=self.notification_settings,
+                notification_settings=notification_settings,
                 trigger_info=file_desc,
                 trigger_parent=tip_desc,
                 node_info=node_desc,
@@ -566,7 +561,7 @@ class NotificationSchedule(GLJob):
         rfile.mark = models.ReceiverFile._marker[2] # 'unable to notify'
 
         log.debug("Email: -[Fail] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, rfile.receiver.user.username))
-    
+
     @inlineCallbacks
     def do_receiverfile_notification(self, receiverfile_events):
         for receiverfile_receiver_id, event in receiverfile_events:
@@ -597,13 +592,6 @@ class NotificationSchedule(GLJob):
         notified or not.
         """
         try:
-            # Initialize Notification setting system wide
-            self.notification_settings = yield self._get_notification_settings()
-
-            if not self.notification_settings:
-                log.err("Node has not Notification configured, Notification disabled!")
-                return
-
             if GLSetting.notification_temporary_disable:
                 log.err("Node has Notification temporary disabled")
                 return

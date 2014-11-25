@@ -51,6 +51,16 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <label data-translate>Language</label>
+    <select class="form-control" data-ng-model="preferences.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
+  </div>
+
+  <div class="form-group">
+    <label data-translate>Timezone</label>
+    <select class="form-control" data-ng-model="preferences.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
+  </div>
+
   <button type="submit" class="btn btn-success" data-ng-click="pref_save()">
     <i class="glyphicon glyphicon-ok"></i>
     <span data-translate>Update notification settings</span>
