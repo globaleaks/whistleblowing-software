@@ -1,0 +1,65 @@
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+<span data-translate>System Checks</span>
+<span data-translate>Anomaly Checks</span>
+<span data-translate>Administration Interface</span>
+<span data-translate>Here you can check the latest anomalies detected</span>
+
+-->
+<div id="ContentBox" class="container" data-ng-controller="AnomaliesCtrl">
+  <div class="row">
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 data-translate>Anomalies recorded</h3>
+          <p>
+            <span data-translate>This interface shows you the anomalous behavior spotted by GlobaLeaks software.</span>
+          </p>
+          <p>
+            <span data-translate>Anomaly are analized automatically in order to spot abuses or atipical event. Being an anonymous system, GlobaLeaks cannot perform anomaly detection based on a single user behavior. Are used the following threshold before declare the anomaly:</span>
+          </p>
+          <ul>
+            <li>XXX</li>
+            <li>YZZ</li>
+          </ul>
+          <pre>
+            {{hanomalies}}
+          </pre>
+          <table class="table table-bordered" id="AnomaliesHistoryList">
+          <thead>
+              <tr>
+                <th class="col-md-2">
+                  <span data-translate>Date</span>
+                </th>
+                <th class="col-md-2">
+                  <span data-translate>Alarm Level</span>
+                </th>
+                <th class="col-md-2">
+                  <span data-translate>Events</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="hanomaly in hanomalies">
+                <td class="col-md-2">
+                  {{hanomaly.when | date:'dd-MM-yyyy HH:mm'}}
+                </td>
+                <td class="col-md-2">
+                  {{hanomaly.alarm}}
+                </td>
+                <td class="col-md-2">
+                  {{hanomaly.events}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -6,15 +6,21 @@ GLClient.controller('OverviewCtrl', ['$scope', 'ReceiverOverview', 'TipOverview'
       $scope.files = FileOverview.query();
 }]);
 
-GLClient.controller('StatisticsCtrl', ['$scope', 'Node', 'StatsCollection', 'AnomaliesCollection',
-    function($scope, Node, StatsCollection, AnomaliesCollection) {
+GLClient.controller('StatisticsCtrl', ['$scope', 'Node', 'StatsCollection', 
+    function($scope, Node, StatsCollection) {
 
-        Node.get(function(node) {
+        $scope.stats = StatsCollection.query();
+}]);
 
-          $scope.anomaly_checks = node.anomaly_checks;
+GLClient.controller('AnomaliesCtrl', ['$scope', 'Node', 'AnomaliesHistCollection',
+    function($scope, Node, AnomaliesHistCollection) {
 
-        });
+        $scope.hanomalies = AnomaliesHistCollection.query();
+}]);
+
+GLClient.controller('ActivitiesCtrl', ['$scope', 'Node', 'ActivitiesCollection', 'AnomaliesCollection',
+    function($scope, Node, ActivitiesCollection, AnomaliesCollection) {
 
         $scope.anomalies = AnomaliesCollection.query();
-        $scope.stats = StatsCollection.query();
+        $scope.activities = ActivitiesCollection.query();
 }]);

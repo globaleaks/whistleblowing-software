@@ -25,7 +25,7 @@ def get_stats(store, delta_week):
     At the moment do not support negative number and change of the year.
     """
 
-    target_week = datetime_now().isocalendar()[1] - delta_week
+    target_week = int(datetime_now().isocalendar()[1]) - delta_week
 
     hourlyentry = store.find(WeekStats)
 
@@ -35,15 +35,15 @@ def get_stats(store, delta_week):
     for hourdata in hourlyentry:
 
         # This need to be optimized at store.find level
-        if hourdata.start.iso_week != target_week:
+        if int(hourdata.start.isocalendar()[1]) != target_week:
             continue
 
         last_stats_dict = {
             'summary' : hourdata.summary,
-            'year' : hourdata.start.iso_year,
-            'week' :  hourdata.start.iso_week,
-            'hour' : hourdata.start.iso_hour,
-            'day' : hourdata.start.iso_day,
+            'year' : int(hourdata.start.isocalendar()[0]),
+            'week' :  int(hourdata.start.isocalendar()[1]),
+            'hour' : int(hourdata.start.isoformat()[11:13]),
+            'day' : int(hourdata.start.isocalendar()[2]),
             'freemegabytes' : hourdata.freemb,
         }
         week_stats.append(last_stats_dict)
@@ -157,7 +157,6 @@ class AnomaliesCollection(BaseHandler):
 
     @transport_security_check("admin")
     @authenticated("admin")
-    @inlineCallbacks
     def get(self, *uriargs):
         """
         Anomalies history is track in Alarm, but is also stored in the
@@ -295,7 +294,7 @@ class RecentEventsCollection(BaseHandler):
     @authenticated("admin")
     def get(self, kind, *uriargs):
 
-        if not kind in [ 'bubble', 'details', 'summary', 'summaryE', 'fake' ]:
+        if not kind in [ 'bubble', 'details', 'summary', 'fake' ]:
             raise errors.InvalidInputFormat(kind)
 
         if kind == 'fake':
@@ -316,8 +315,6 @@ class RecentEventsCollection(BaseHandler):
             )
         elif kind == 'details':
             self.finish(templist)
-        elif kind == 'summaryE':
-            self.finish(self.get_summary_experiment(templist))
         else: # summary
             self.finish(self.get_summary(templist))
 

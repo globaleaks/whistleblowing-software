@@ -576,10 +576,17 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     return $resource('/admin/overview/files');
 }]).
   factory('StatsCollection', ['$resource', function($resource) {
-    return $resource('/admin/stats');
+    return $resource('/admin/stats/0');
+    /* TODO enhance: asking /1 return the current_week -1, /2 two week ago */
 }]).
   factory('AnomaliesCollection', ['$resource', function($resource) {
     return $resource('/admin/anomalies');
+}]).
+  factory('AnomaliesHistCollection', ['$resource', function($resource) {
+    return $resource('/admin/history');
+}]).
+  factory('ActivitiesCollection', ['$resource', function($resource) {
+    return $resource('/admin/activities/details');
 }]).
   factory('StaticFiles', ['$resource', function($resource) {
     return $resource('/admin/staticfiles');
