@@ -40,7 +40,7 @@
 
     <div class="form-group">
       <label data-translate>Default language</label>
-      <select class="form-control" data-ng-model="admin.node.default_language" data-ng-options="item.code as item.name for item in languages_default_selector | orderBy:'name'"></select>
+      <select class="form-control" data-ng-model="admin.node.default_language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
     </div>
   </div>
 </div>

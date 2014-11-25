@@ -63,11 +63,21 @@
     </span>
 
     <div class="form-group">
-      <label data-translate>Email</label>
+      <label data-translate>Admin Email</label>
       <input class="form-control" data-ng-model="admin.node.email" value="{{admin.node.email}}" name="email" data-ng-pattern="email_regexp" type="text">
       <p class="has-error" data-ng-show="contentForm.email.$error.pattern">
         <span data-translate>Invalid email address</span>
       </p>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Admin Language</label>
+      <select class="form-control" data-ng-model="admin.node.admin_language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Admin Timezone</label>
+      <select class="form-control" data-ng-model="admin.node.admin_timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
     </div>
 
     <div class="form-group">

@@ -67,6 +67,7 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'languages_enabled': node.languages_enabled,
       'languages_supported': LANGUAGES_SUPPORTED,
       'default_language' : node.default_language,
+      'default_timezone' : node.default_timezone,
       # extended settings info:
       'maximum_namesize': node.maximum_namesize,
       'maximum_textsize': node.maximum_textsize,

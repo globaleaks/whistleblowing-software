@@ -88,7 +88,9 @@ def initialize_node(store, results, only_node, appdata):
         'salt': admin_salt,
         'role': u'admin',
         'state': u'enabled',
-        }
+        'language': u"en",
+        'timezone': 0,
+    }
 
     admin = models.User(admin_dict)
 
@@ -153,6 +155,7 @@ def import_memory_variables(store):
 
         GLSetting.memory_copy.exception_email = node.exception_email
         GLSetting.memory_copy.default_language = node.default_language
+        GLSetting.memory_copy.default_timezone = node.default_timezone
 
         # Email settings are copyed because they are used when an exception raises
         # and we can't go to check in the DB, because that's shall be exception source
