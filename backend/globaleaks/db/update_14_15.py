@@ -10,11 +10,12 @@
       - introduced enable_private_messages
 """
 
+import copy
 from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.models import Model, Field, FieldOption, Step, db_forge_obj
+from globaleaks.models import Model, Field, FieldOption, Step, Context, db_forge_obj
 from globaleaks.db.datainit import opportunistic_appdata_init
 
 class Context_version_14(Model):
@@ -127,3 +128,32 @@ class Replacer1415(TableReplacer):
             self.store_new.add(new_context)
 
         self.store_new.commit()
+
+    def migrate_InternalTip(self):
+        print "%s InternalTip migration assistant" % self.std_fancy
+
+        old_rtips = self.store_old.find(self.get_right_model("InternalTip", 14))
+        context_model = self.get_right_model("Context", 14)
+        for old_rtip in old_rtips:
+            wb_fields_copy = copy.deepcopy(old_rtip.wb_fields)
+            for wb_field in wb_fields_copy:
+                del wb_fields_copy[wb_field]['answer_order']
+                c = self.store_old.find(context_model, context_model.id == old_rtip.context_id).one()
+                for f in c.unique_fields:
+                    if f == wb_field:
+                        wb_fields_copy[wb_field]['label'] = c.unique_fields[f]['name']
+                        if c.unique_fields[f]['type'] in ['email',
+                                                                    'phone',
+                                                                    'url',
+                                                                    'number',
+                                                                    'text']:
+                            wb_fields_copy[wb_field]['type'] = 'inputbox'
+                        elif c.unique_fields[f]['type'] in ['radio', 'select']:
+                            wb_fields_copy[wb_field]['type'] = 'selectbox'
+                        elif c.unique_fields[f]['type'] in ['multiple', 'checkboxes']:
+                            wb_fields_copy[wb_field]['type'] = 'checkbox'
+                        else:
+                            wb_fields_copy[wb_field]['type'] = c.unique_fields[f]['type']
+
+                print wb_fields_copy[wb_field]
+        raise "aaa"
