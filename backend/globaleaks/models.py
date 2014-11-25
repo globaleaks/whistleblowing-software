@@ -118,6 +118,9 @@ class User(Model):
     role = Unicode()
     state = Unicode()
     last_login = DateTime()
+    language = Unicode()
+    timezone = Int()
+
  
     _roles = [ u'admin', u'receiver' ]
     _states = [ u'disabled', u'password_change_needed', u'enabled']
