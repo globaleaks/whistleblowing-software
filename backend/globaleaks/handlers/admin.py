@@ -149,6 +149,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "user_id": receiver.user.id,
         'mail_address': receiver.mail_address,
         "password": u"",
+        "state": receiver.user.state,
                     # list is needed because .values returns a generator
         "contexts": list(receiver.contexts.values(models.Context.id)),
         "tags": receiver.tags,
@@ -667,6 +668,8 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
 
     # the email address it's also the username, stored in User
     receiver.user.username = mail_address
+
+    receiver.user.state = request['state']
 
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
