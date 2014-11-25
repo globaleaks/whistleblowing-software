@@ -123,7 +123,7 @@ def wizard(store, request, language=GLSetting.memory_copy.default_language):
     try:
         receiver_dict = db_create_receiver(store, receiver, language)
     except Exception as excep:
-        log.err("Failed Receiver Finitialization %s" % excep)
+        log.err("Failed Receiver Initialization %s" % excep)
         raise excep
 
     try:
