@@ -206,7 +206,7 @@ adminReceiverDesc = {
     'gpg_key_status': unicode,
     'gpg_enable_notification': bool,
     'presentation_order': int,
-    'status': unicode,
+    'state': unicode,
 }
 
 anonNodeDesc = {
