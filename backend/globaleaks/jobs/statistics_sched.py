@@ -94,7 +94,7 @@ class StatisticsSchedule(GLJob):
         # Addres the statistics. the time start and end are in string
         # without the last 8 bytes, to let d3.js parse easily (or investigate),
         # creation_date, default model, is ignored in the visualisation
-        current_time = datetime_to_ISO8601(datetime_now())[:-8]
+        current_time = datetime_now()
         statistic_summary = {}
 
         #  {  'id' : expired_event.event_id
