@@ -36,16 +36,12 @@ def save_statistics(store, start, end, activity_collection):
 
     newstat = WeekStats()
 
-    log.debug("since %s to %s I've collected: %s" %
-              (start, end, activity_collection) )
+    if activity_collection:
+        log.debug("since %s to %s I've collected: %s" %
+                  (start, end, activity_collection) )
 
-    now = datetime_now()
-    newstat.iso_year = now.isocalendar()[0]
-    newstat.iso_week = now.isocalendar()[1]
-    newstat.iso_day = now.isocalendar()[2]
-    newstat.iso_hour = now.hour
-
-    newstat.summary = activity_collection
+    newstat.start = start
+    newstat.summary = dict(activity_collection)
     newstat.freemb = ResourceChecker.get_free_space()
 
     store.add(newstat)
@@ -57,7 +53,7 @@ class AnomaliesSchedule(GLJob):
     implemented in anomaly.py
     """
 
-    def operation(self):
+    def operation(self, alarm_enable=True):
         """
         Every X seconds is checked if anomalies are happening
         from anonymous interaction (submission/file/comments/whatever flood)
@@ -65,7 +61,7 @@ class AnomaliesSchedule(GLJob):
         """
         from globaleaks.anomaly import Alarm
 
-        delta = Alarm().compute_activity_level()
+        delta = Alarm().compute_activity_level(notification=alarm_enable)
 
         return delta
 
