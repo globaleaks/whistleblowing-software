@@ -570,9 +570,12 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
         log.err("Creation error: already present receiver with the requested username: %s" % mail_address)
         raise errors.ExpectedUniqueField('mail_address', mail_address)
 
-    password = request.get('password')
+    password = request['password']
+    if len(password) and password != GLSetting.default_password:
+        security.check_password_format(password)
+    else:
+        password = GLSetting.default_password
 
-    security.check_password_format(password)
     receiver_salt = security.get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
     receiver_password = security.hash_password(password, receiver_salt)
 
@@ -581,7 +584,7 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
             'password': receiver_password,
             'salt': receiver_salt,
             'role': u'receiver',
-            'state': u'enabled',
+            'state': u'password_change_needed',
     }
 
     receiver_user = models.User(receiver_user_dict)
