@@ -272,7 +272,6 @@ CREATE TABLE applicationdata (
     PRIMARY KEY (id)
 );
 
-
 CREATE TABLE anomalies (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
@@ -286,10 +285,7 @@ CREATE TABLE anomalies (
 CREATE TABLE weekstats (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
-    iso_year INTEGER NOT NULL,
-    iso_week INTEGER NOT NULL,
-    iso_day INTEGER NOT NULL,
-    iso_hour INTEGER NOT NULL,
+    start VARCHAR NOT NULL,
     freemb INTEGER,
     summary BLOB,
     PRIMARY KEY (id)
