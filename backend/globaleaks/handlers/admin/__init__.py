@@ -15,7 +15,7 @@ from globaleaks import security, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db.datainit import import_memory_variables
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler, GLApiCache
-from globaleaks.handlers.admin.field import disassociate_field
+from globaleaks.handlers.admin.field import disassociate_field, get_field_association
 from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list, \
     anon_serialize_node, anon_serialize_step, anon_serialize_field
 from globaleaks import models
@@ -107,9 +107,11 @@ def db_create_step(store, context_id, steps, language):
                 raise errors.FieldIdNotFound
 
             # remove current step/field fieldgroup/field association
-            disassociate_field(store, field)
-
-            s.children.add(field)
+            a_s, a_f = get_field_association(store, field.id)
+            if a_s != s.id:
+                print "disassociate"
+                disassociate_field(store, field.id)
+                s.children.add(field)
 
         n += 1
 
@@ -136,12 +138,10 @@ def db_update_steps(store, context_id, steps, language):
 
         # check for reuse (needed to keep translations)
         if 'id' in step and step['id'] in indexed_old_steps:
-           s = indexed_old_steps[step['id']]
            for field in s.children:
                s.children.remove(field)
 
            s.update(step)
-           store.add(s)
 
            # remove key from old steps to be removed
            del indexed_old_steps[step['id']]
@@ -158,9 +158,11 @@ def db_update_steps(store, context_id, steps, language):
                 raise errors.FieldIdNotFound
 
             # remove current step/field fieldgroup/field association
-            disassociate_field(store, field)
-
-            s.children.add(field)
+            a_s, a_f = get_field_association(store, field.id)
+            if a_s != None and a_s != s.id:
+                print "disassociate!"
+                disassociate_field(store, field.id)
+                s.children.add(field)
 
         n += 1
 
