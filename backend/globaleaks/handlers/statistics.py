@@ -27,19 +27,23 @@ def get_stats(store, delta_week):
 
     target_week = datetime_now().isocalendar()[1] - delta_week
 
-    hourlyentry = store.find(WeekStats, WeekStats.iso_week == target_week, WeekStats.iso_hour)
+    hourlyentry = store.find(WeekStats)
 
     week_stats = []
     last_stats_dict = {}
 
     for hourdata in hourlyentry:
 
+        # This need to be optimized at store.find level
+        if hourdata.start.iso_week != target_week:
+            continue
+
         last_stats_dict = {
             'summary' : hourdata.summary,
-            'year' :  hourdata.iso_year,
-            'week' :  hourdata.iso_week,
-            'hour' : hourdata.iso_hour,
-            'day' : hourdata.iso_day,
+            'year' : hourdata.start.iso_year,
+            'week' :  hourdata.start.iso_week,
+            'hour' : hourdata.start.iso_hour,
+            'day' : hourdata.start.iso_day,
             'freemegabytes' : hourdata.freemb,
         }
         week_stats.append(last_stats_dict)

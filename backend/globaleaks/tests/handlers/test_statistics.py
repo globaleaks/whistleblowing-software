@@ -1,33 +1,15 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
+from twisted.internet import task
 
-import json
-
-from globaleaks.rest import requests
 from globaleaks.tests import helpers
 from globaleaks.handlers import statistics
-from globaleaks.settings import GLSetting
 from globaleaks.jobs.statistics_sched import AnomaliesSchedule, StatisticsSchedule
+from globaleaks import anomaly
+from globaleaks.utils.utility import datetime_now
 
-class TestAnomaliesCollection(helpers.TestHandler):
-    _handler = statistics.AnomaliesCollection
-
-    @inlineCallbacks
-    def test_get(self):
-        GLSetting.anomalies_counter['new_submission'] = 1000
-        GLSetting.anomalies_counter['finalized_submission'] = 1000
-        GLSetting.anomalies_counter['anon_requests'] = 1000
-        GLSetting.anomalies_counter['file_uploaded'] = 1000
-
-        AnomaliesSchedule().operation()
-
-        handler = self.request({}, role='admin')
-        yield handler.get()
-
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
-        self.assertEqual(len(self.responses[0]), 4)
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.AnomaliesCollection)
+anomaly.reactor = task.Clock()
+StatisticsSchedule.collection_start_datetime = datetime_now()
 
 class TestStatsCollection(helpers.TestHandler):
     _handler = statistics.StatsCollection
@@ -35,12 +17,36 @@ class TestStatsCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
 
-        StatisticsSchedule().operation()
-
         handler = self.request({}, role='admin')
-        yield handler.get()
-
+        yield handler.get(0)
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
-        self.assertEqual(len(self.responses[0]), 1)
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.StatsCollection)
+        self.assertEqual(len(self.responses[0]), 7 * 24)
+
+        anomaly.pollute_Event_for_testing(5)
+
+        yield AnomaliesSchedule().operation(alarm_enable=False)
+
+        handler = self.request({}, role='admin')
+        yield handler.get(0)
+
+        self.assertEqual(len(self.responses), 2)
+        self.assertEqual(len(self.responses[1]), 7 * 24)
+
+
+class TestAnomHistCollection(helpers.TestHandler):
+    _handler = statistics.AnomalyHistoryCollection
+
+    @inlineCallbacks
+    def test_get(self):
+
+        anomaly.pollute_Event_for_testing(10)
+        yield AnomaliesSchedule().operation(alarm_enable=False)
+
+        yield StatisticsSchedule().operation()
+        handler = self.request({}, role='admin')
+        yield handler.get(0)
+        self.assertTrue(isinstance(self.responses, list))
+        self.assertEqual(len(self.responses), 1)
+
+

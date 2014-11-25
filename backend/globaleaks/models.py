@@ -607,11 +607,8 @@ class ApplicationData(Model):
 class WeekStats(Model):
     __storm_table__ = 'weekstats'
 
+    start = DateTime()
     summary = JSON()
-    iso_year = Int()
-    iso_week = Int()
-    iso_day = Int()
-    iso_hour = Int()
     freemb = Int()
 
 
