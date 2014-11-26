@@ -112,7 +112,6 @@ def create_tables(create_node=True):
         }
 
         appdata_dict = opportunistic_appdata_init()
-        # here is ok!
 
         # Initialize the node + notification table
         deferred.addCallback(initialize_node, only_node, appdata_dict)

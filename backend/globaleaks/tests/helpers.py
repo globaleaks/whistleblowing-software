@@ -6,12 +6,12 @@ from cyclone import httpserver
 from cyclone.web import Application
 from storm.twisted.testing import FakeThreadPool
 from twisted.internet import threads, defer, task
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 
 from globaleaks import db, models, security
-from globaleaks.db.datainit import opportunistic_appdata_init
+from globaleaks.db.datainit import opportunistic_appdata_init, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLApiCache
 from globaleaks.handlers.admin import create_context, create_receiver
@@ -20,6 +20,7 @@ from globaleaks.jobs import delivery_sched, notification_sched
 from globaleaks.models import ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.plugins import notification
 from globaleaks.settings import GLSetting, transact, transact_ro
+from globaleaks.utils import mailutils
 from globaleaks.utils.utility import datetime_null, uuid4, log
 from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
@@ -77,6 +78,7 @@ class TestGL(unittest.TestCase):
 
     encryption_scenario = 'MIXED' # receivers with pgp and receivers without pgp
 
+    @defer.inlineCallbacks
     def setUp(self):
 
         GLSetting.set_devel_mode()
@@ -102,7 +104,9 @@ class TestGL(unittest.TestCase):
 
         notification.MailNotification.mail_flush = mail_flush_mock
 
-        return db.create_tables(create_node=True)
+        yield db.create_tables(create_node=True)
+
+        import_memory_variables()
 
     def setUp_dummy(self):
         dummyStuff = MockDict()

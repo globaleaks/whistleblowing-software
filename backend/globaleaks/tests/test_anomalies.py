@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 
-from twisted.internet import task
+from twisted.internet import task, defer
 
+from globaleaks import anomaly
 from globaleaks.tests import helpers
 from globaleaks.jobs import statistics_sched
 from globaleaks.settings import GLSetting
-from globaleaks import anomaly
 
 anomaly.reactor = task.Clock()
 
@@ -53,6 +53,7 @@ class TestAlarm(helpers.TestGL):
         self.assertFalse(a.get_token_difficulty()['human_captcha'])
 
 
+    @defer.inlineCallbacks
     def test_compute_activity_level(self):
         """
         remind: activity level is called every 30 seconds by
@@ -68,11 +69,11 @@ class TestAlarm(helpers.TestGL):
             anomaly.EventTrackQueue.take_current_snapshot()
         ), previous_len * 2)
 
-        activity_level = anomaly.Alarm().compute_activity_level(notification=False)
+        activity_level = yield anomaly.Alarm().compute_activity_level(notification=False)
         description = anomaly.Alarm().get_description_status()
         self.assertEqual(activity_level, 2)
 
         # Has not slow comeback to 0
-        activity_level = anomaly.Alarm().compute_activity_level(notification=False)
+        activity_level = yield anomaly.Alarm().compute_activity_level(notification=False)
         self.assertEqual(activity_level, 0)
 
