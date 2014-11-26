@@ -12,7 +12,10 @@ from storm.exceptions import OperationalError
 from globaleaks.utils.utility import log
 from globaleaks.settings import transact, transact_ro, ZStorm, GLSetting
 from globaleaks import models
-from globaleaks.db import updater_manager
+from globaleaks.db import updater_manager, base_updater
+
+base_updater.TableReplacer.testing = True
+
 from globaleaks.db.datainit import initialize_node, opportunistic_appdata_init
 
 def init_models():

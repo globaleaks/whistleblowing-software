@@ -388,6 +388,12 @@ class Alarm:
         TODO put a GLSetting + Admin configuration variable,
         now is hardcoded to notice at >= 1
         """
+
+        @transact_ro
+        def _get_admin_email(store):
+            node = store.find(models.Node).one()
+            return node.email
+
         @transact_ro
         def _get_message_template(store):
             admin_user = store.find(models.User, models.User.username == u'admin').one()
@@ -441,29 +447,19 @@ class Alarm:
                 function(),
                 message[where + len(keyword):])
 
-        print message
-
         if Alarm.last_alarm_email:
             if not is_expired(Alarm.last_alarm_email, minutes=10):
                 log.debug("Alert email want be send, but the threshold of 10 minutes is not yet reached since %s" %
                     datetime_to_ISO8601(Alarm.last_alarm_email))
                 return
 
-        # antispam - test - put the TODO in GLSettings
-        # usare email di admin
-        # chiedere all'admin di mettere email in script di migrazione
-        to_address = "%s@%s.%s" % ("evilaliv3", "globaleaks", "org")
-        print GLSetting.memory_copy
+        to_address = yield _get_admin_email()
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
                                     GLSetting.memory_copy.notif_source_email,
                                     "Tester",
                                     to_address,
                                     "ALERT: Anomaly detection",
                                     message)
-
-        print "a"
-        # self.finished = self.mail_flush(event.notification_settings['source_email
-        # [ receiver_mail ], message, event)
 
         log.debug('Alarm Email for admin: connecting to [%s:%d]' %
                     (GLSetting.memory_copy.notif_server,
