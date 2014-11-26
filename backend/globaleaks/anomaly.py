@@ -11,34 +11,13 @@
 # https://docs.google.com/a/apps.globaleaks.org/document/d/1P-uHM5K3Hhe_KD6YvARbRTuqjVOVj0VkI7qPO9aWFQw/edit
 #
 
+from twisted.internet import defer
+
+from globaleaks import models
+from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import log, datetime_now, is_expired, datetime_to_ISO8601
-from globaleaks.settings import GLSetting
 from globaleaks.utils.tempobj import TempObj
-
-
-MESSAGE_TEMPLATE =\
-"""
-Dear Globaleaks Node Administrator,
-We're a problem (or an opportunity, up to you).
-
-Something in your GlobaLeaks Node is triggering an unexpected activity.
-
-Maybe is a flood, maybe your whistleblowing initiatiative has attracted visibility.
-
-Activities:
-
-Alarm level: %ActivityAlarmLevel%
-%ActivityDump%
-
-Disk space:
-
-Alarm level: %DiskAlarmLevel%
-%DiskDump%
-
-for more info, login in your Administration panel and check on Stats and Anomalies.
-"""
-
 
 reactor = None
 
@@ -314,7 +293,7 @@ class Alarm:
 
         return self.difficulty_dict
 
-
+    @defer.inlineCallbacks
     def compute_activity_level(self, notification=True):
         """
         This function is called by the scheduled task, to update the
@@ -396,11 +375,12 @@ class Alarm:
 
         # Alarm notification get the copy of the latest activities
         if notification:
-            self.admin_alarm_notification()
+            yield self.admin_alarm_notification()
 
-        return (Alarm.stress_levels['activity'] - previous_activity_sl)
+        defer.returnValue(Alarm.stress_levels['activity'] - previous_activity_sl)
 
 
+    @defer.inlineCallbacks
     def admin_alarm_notification(self):
         """
         This function put a mail in queue for the Admin, if the
@@ -408,6 +388,18 @@ class Alarm:
         TODO put a GLSetting + Admin configuration variable,
         now is hardcoded to notice at >= 1
         """
+        @transact_ro
+        def _get_message_template(store):
+            admin_user = store.find(models.User, models.User.username == u'admin').one()
+            notif = store.find(models.Notification).one()
+            template = notif.admin_anomaly_template
+            if admin_user.language in template:
+                return template[admin_user.language]
+            elif GLSetting.memory_copy.default_language in template:
+                return template[GLSetting.memory_copy.default_language]
+            else:
+                raise Exception("Cannot find any language for admin notification")
+
         def _aal():
             return "%s" % Alarm.stress_levels['activity']
 
@@ -441,13 +433,15 @@ class Alarm:
             "%DiskDump%" : _dd,
         }
 
-        message = MESSAGE_TEMPLATE
+        message = yield _get_message_template()
         for keyword, function in KeyWordTemplate.iteritems():
             where = message.find(keyword)
             message = "%s%s%s" % (
                 message[:where],
                 function(),
                 message[where + len(keyword):])
+
+        print message
 
         if Alarm.last_alarm_email:
             if not is_expired(Alarm.last_alarm_email, minutes=10):
@@ -458,7 +452,8 @@ class Alarm:
         # antispam - test - put the TODO in GLSettings
         # usare email di admin
         # chiedere all'admin di mettere email in script di migrazione
-        to_address = "%s@%s.%s" % ("vecna", "globaleaks", "org")
+        to_address = "%s@%s.%s" % ("evilaliv3", "globaleaks", "org")
+        print GLSetting.memory_copy
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
                                     GLSetting.memory_copy.notif_source_email,
                                     "Tester",
@@ -466,6 +461,7 @@ class Alarm:
                                     "ALERT: Anomaly detection",
                                     message)
 
+        print "a"
         # self.finished = self.mail_flush(event.notification_settings['source_email
         # [ receiver_mail ], message, event)
 
@@ -475,15 +471,15 @@ class Alarm:
 
         Alarm.last_alarm_email = datetime_now()
 
-        return sendmail(authentication_username=GLSetting.memory_copy.notif_username,
-                        authentication_password=GLSetting.memory_copy.notif_password,
-                        from_address=GLSetting.memory_copy.notif_source_email,
-                        to_address=[ to_address ],
-                        message_file=message,
-                        smtp_host=GLSetting.memory_copy.notif_server,
-                        smtp_port=GLSetting.memory_copy.notif_port,
-                        security=GLSetting.memory_copy.notif_security,
-                        event=None)
+        yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
+                       authentication_password=GLSetting.memory_copy.notif_password,
+                       from_address=GLSetting.memory_copy.notif_source_email,
+                       to_address=[ to_address ],
+                       message_file=message,
+                       smtp_host=GLSetting.memory_copy.notif_server,
+                       smtp_port=GLSetting.memory_copy.notif_port,
+                       security=GLSetting.memory_copy.notif_security,
+                       event=None)
 
 
     def report_disk_usage(self, free_mega_bytes):
