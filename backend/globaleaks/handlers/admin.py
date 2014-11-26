@@ -598,7 +598,7 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
         'salt': receiver_salt,
         'role': u'receiver',
         'state': u'password_change_needed',
-        'language': u"en",
+        'language': u'en',
         'timezone': 0,
     }
 

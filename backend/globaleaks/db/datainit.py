@@ -88,7 +88,7 @@ def initialize_node(store, results, only_node, appdata):
         'salt': admin_salt,
         'role': u'admin',
         'state': u'enabled',
-        'language': u"en",
+        'language': u'en',
         'timezone': 0,
     }
 
