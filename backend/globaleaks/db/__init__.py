@@ -80,11 +80,11 @@ def create_tables(create_node=True):
             'terms_and_conditions': dict({ GLSetting.memory_copy.default_language: u"" }),
             'security_awareness_title': dict({ GLSetting.memory_copy.default_language: u"" }),
             'security_awareness_text': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'hidden_service':  u"",
-            'public_site':  u"",
-            'email':  u"",
+            'hidden_service': u"",
+            'public_site': u"",
+            'email': u"",
             'receipt_regexp': u"[0-9]{16}",
-            'stats_update_time':  2, # hours,
+            'stats_update_time': 2, # hours,
             # advanced settings
             'maximum_filesize' : GLSetting.defaults.maximum_filesize,
             'maximum_namesize' : GLSetting.defaults.maximum_namesize,
@@ -102,44 +102,20 @@ def create_tables(create_node=True):
             'x_frame_options_allow_from': GLSetting.memory_copy.x_frame_options_allow_from,
             'exception_email' : GLSetting.defaults.exception_email,
             'default_language' : GLSetting.memory_copy.default_language,
+            'default_timezone' : 0,
+            'admin_language' : GLSetting.memory_copy.default_language,
+            'admin_timezone' : 0,
             'disable_privacy_badge': False,
             'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
 
         }
 
-        templates = {}
-
-        templates['encrypted_tip'] = acquire_email_templates('default_ETNT.txt',
-            "default Encrypted Tip notification not available! %NodeName% configure this!")
-        templates['plaintext_tip'] = acquire_email_templates('default_PTNT.txt',
-            "default Plaintext Tip notification not available! %NodeName% configure this!")
-
-        templates['encrypted_comment'] = acquire_email_templates('default_ECNT.txt',
-            "default Encrypted Comment notification not available! %NodeName% configure this!")
-        templates['plaintext_comment'] = acquire_email_templates('default_PCNT.txt',
-            "default Plaintext Comment notification not available! %NodeName% configure this!")
-
-        templates['encrypted_message'] = acquire_email_templates('default_EMNT.txt',
-             "default Encrypted Message notification not available! %NodeName% configure this!")
-        templates['plaintext_message'] = acquire_email_templates('default_PMNT.txt',
-             "default Plaintext Message notification not available! %NodeName% configure this!")
-
-        templates['encrypted_file'] = acquire_email_templates('default_EFNT.txt',
-            "default Encrypted File notification not available! %NodeName% configure this!")
-        templates['plaintext_file'] = acquire_email_templates('default_PFNT.txt',
-            "default Plaintext File notification not available! %NodeName% configure this!")
-
-        # This specific template do not need different threatment as it is used to write some
-        # data inside zip files.  
-        templates['zip_collection'] = acquire_email_templates('default_ZCT.txt',
-            "default Zip Collection template not available! %NodeName% configure this!")
-
         appdata_dict = opportunistic_appdata_init()
         # here is ok!
 
         # Initialize the node + notification table
-        deferred.addCallback(initialize_node, only_node, templates, appdata_dict)
+        deferred.addCallback(initialize_node, only_node, appdata_dict)
 
     return deferred
 

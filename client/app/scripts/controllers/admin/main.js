@@ -6,6 +6,7 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
   $scope.http_or_https_regexp = CONSTANTS.http_or_https_regexp;
+  $scope.timezones = CONSTANTS.timezones;
 
   // XXX this should actually be defined per controller
   // otherwise every time you open a new page the button appears enabled
@@ -21,7 +22,7 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
   $scope.admin = new Admin();
 
   $scope.languages_enabled_edit = {};
-  $scope.languages_default_selector = {};
+  $scope.languages_enabled_selector = {};
 
   function CollapseLanguages($scope) {
     $scope.isCollapsed = false;
@@ -46,7 +47,7 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
 
   $scope.$watch('languages_enabled', function(){
     if ($scope.languages_enabled) {
-      $scope.languages_default_selector = {};
+      $scope.languages_enabled_selector = {};
       $.each($scope.languages_supported, function(lang){
         $scope.languages_enabled_edit[lang] = lang in $scope.languages_enabled;
       });
@@ -56,7 +57,7 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
 
   $scope.$watch('languages_enabled_edit', function() {
     if ($scope.languages_enabled) {
-      var languages_default_selector = [];
+      var languages_enabled_selector = [];
       var change_default = false;
       var language_selected = $scope.admin.node.default_language;
       if (! $scope.languages_enabled_edit[$scope.admin.node.default_language]) {
@@ -65,7 +66,7 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
 
       $.each($scope.languages_supported, function(lang) {
         if ($scope.languages_enabled_edit[lang]) {
-          languages_default_selector.push({'name': $scope.languages_supported[lang], 'code': lang});
+          languages_enabled_selector.push({'name': $scope.languages_supported[lang], 'code': lang});
 
           if (change_default === true) {
             language_selected = lang;
@@ -74,8 +75,17 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
         }
       });
 
+      var languages_enabled = [];
+      $.each($scope.languages_enabled_edit, function(lang, enabled) {
+        if (enabled) {
+          languages_enabled.push(lang);
+        }
+      });
+
       $scope.admin.node.default_language = language_selected;
-      $scope.languages_default_selector = languages_default_selector;
+      $scope.admin.node.languages_enabled = languages_enabled;
+
+      $scope.languages_enabled_selector = languages_enabled_selector;
 
     }
   }, true);
@@ -90,15 +100,6 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
       node.password = "";
     if (node.old_password === undefined)
       node.old_password = "";
-
-    var languages_enabled = [];
-    $.each($scope.languages_enabled_edit, function(lang, enabled) {
-      if (enabled) {
-        languages_enabled.push(lang);
-      }
-    });
-
-    node.languages_enabled = languages_enabled;
 
     $scope.update(node);
 
