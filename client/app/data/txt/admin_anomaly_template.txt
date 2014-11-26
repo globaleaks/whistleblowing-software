@@ -1,0 +1,18 @@
+Dear Globaleaks Node Administrator,
+We have a problem (or an opportunity, up to you).
+
+Something in your GlobaLeaks Node is triggering an unexpected activity.
+
+Maybe is a flood, maybe your whistleblowing initiatiative has attracted visibility.
+
+Activities:
+
+Alarm level: %ActivityAlarmLevel%
+%ActivityDump%
+
+Disk space:
+
+Alarm level: %DiskAlarmLevel%
+%DiskDump%
+
+for more info, login in your Administration panel and check on Stats and Anomalies.

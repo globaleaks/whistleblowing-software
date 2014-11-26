@@ -192,6 +192,7 @@ CREATE TABLE notification (
     encrypted_comment_mail_title BLOB,
     plaintext_comment_template BLOB,
     plaintext_comment_mail_title BLOB,
+    admin_anomaly_template BLOB,
     zip_description BLOB,
     PRIMARY KEY (id)
 );
