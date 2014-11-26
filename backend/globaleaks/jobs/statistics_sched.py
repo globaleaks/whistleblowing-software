@@ -11,8 +11,9 @@
 #  The anomaly detection based on stress level measurement.
 
 import os
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet import defer
 
+from globaleaks.anomaly import Alarm
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSetting, transact
 from globaleaks.models import WeekStats, Anomalies
@@ -53,17 +54,14 @@ class AnomaliesSchedule(GLJob):
     implemented in anomaly.py
     """
 
+    @defer.inlineCallbacks
     def operation(self, alarm_enable=True):
         """
         Every X seconds is checked if anomalies are happening
         from anonymous interaction (submission/file/comments/whatever flood)
         If the alarm has been raise, logs in the DB the event.
         """
-        from globaleaks.anomaly import Alarm
-
-        delta = Alarm().compute_activity_level(notification=alarm_enable)
-
-        return delta
+        yield Alarm().compute_activity_level(notification=alarm_enable)
 
 
 class StatisticsSchedule(GLJob):
@@ -74,7 +72,7 @@ class StatisticsSchedule(GLJob):
 
     collection_start_datetime = None
 
-    @inlineCallbacks
+    @defer.inlineCallbacks
     def operation(self):
         """
         executed every 60 minutes

@@ -495,6 +495,8 @@ class Notification(Model):
     plaintext_message_template = Pickle(validator=longlocal_v)
     plaintext_message_mail_title = Pickle(validator=longlocal_v)
 
+    admin_anomaly_template = Pickle(validator=longlocal_v)
+
     zip_description = Pickle(validator=longlocal_v)
 
     unicode_keys = ['server', 'username', 'password', 'source_name', 'source_email' ]
