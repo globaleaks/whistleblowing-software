@@ -59,8 +59,10 @@ function($scope, $modal) {
 
 }]);
 
-GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher',
-  function($scope, passwordWatcher) {
+GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher', 'CONSTANTS',
+  function($scope, passwordWatcher, CONSTANTS) {
+
+    $scope.timezones = CONSTANTS.timezones;
 
     passwordWatcher($scope, 'receiver.password');
 

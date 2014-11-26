@@ -71,9 +71,8 @@ receiverReceiverDesc = {
     "file_notification": bool,
     "tip_notification": bool,
     "message_notification": bool,
-    # remind:
-    # notification language, a default need to be provided
-    # and need to be sets by receiver (atm: 'en')
+    "language": unicode,
+    "timezone": unicode,
 }
 
 actorsCommentDesc = {
@@ -128,6 +127,8 @@ adminNodeDesc = {
     'disable_security_awareness_badge': bool,
     'disable_security_awareness_questions': bool,
     'configured': bool,
+    'admin_language': unicode,
+    'admin_timezone': unicode,
 }
 
 adminNotificationDesc = {
@@ -207,6 +208,8 @@ adminReceiverDesc = {
     'gpg_enable_notification': bool,
     'presentation_order': int,
     'state': unicode,
+    "language": unicode,
+    "timezone": unicode,
 }
 
 anonNodeDesc = {

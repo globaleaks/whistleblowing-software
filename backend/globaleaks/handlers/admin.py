@@ -30,6 +30,8 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
     mo = structures.Rosetta()
     mo.acquire_storm_object(node)
 
+    admin = store.find(User, (User.username == unicode('admin'))).one()
+
     # Contexts and Receivers relationship
     associated = store.find(models.ReceiverContext).count()
 
@@ -55,6 +57,7 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         "languages_supported": LANGUAGES_SUPPORTED,
         "languages_enabled": node.languages_enabled,
         "default_language" : node.default_language,
+        'default_timezone' : node.default_timezone,
         'maximum_filesize': node.maximum_filesize,
         'maximum_namesize': node.maximum_namesize,
         'maximum_textsize': node.maximum_textsize,
@@ -80,7 +83,9 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         'custom_homepage': custom_homepage,
         'disable_privacy_badge': node.disable_privacy_badge,
         'disable_security_awareness_badge': node.disable_security_awareness_badge,
-        'disable_security_awareness_questions': node.disable_security_awareness_questions
+        'disable_security_awareness_questions': node.disable_security_awareness_questions,
+        'admin_language': admin.language,
+        'admin_timezone': admin.timezone
     }
 
     for attr in mo.get_localized_attrs():
@@ -164,6 +169,8 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "file_notification": True if receiver.file_notification else False,
         "message_notification": True if receiver.message_notification else False,
         "presentation_order": receiver.presentation_order,
+        'language': receiver.user.language,
+        'timezone': receiver.user.timezone
     }
 
     # only 'description' at the moment is a localized object here
@@ -193,13 +200,18 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
     for attr in mo.get_localized_attrs():
         request[attr] = mo.get_localized_dict(attr)
 
+    admin = store.find(User, (User.username == unicode('admin'))).one()
+
+    admin.language = request.get('admin_language', GLSetting.memory_copy.default_language)
+    admin.timezone = request.get('admin_timezone', GLSetting.memory_copy.default_timezone)
+
     password = request.get('password', None)
     old_password = request.get('old_password', None)
 
     if password and old_password and len(password) and len(old_password):
-        admin = store.find(User, (User.username == unicode('admin'))).one()
         admin.password = security.change_password(admin.password,
                                     old_password, password, admin.salt)
+
     try:
         receipt_example = generate_example_receipt(request['receipt_regexp'])
 
@@ -675,6 +687,9 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
 
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
+
+    receiver.user.language = request.get('language', GLSetting.memory_copy.default_language)
+    receiver.user.timezone = request.get('timezone', GLSetting.memory_copy.default_timezone)
 
     password = request['password']
     if len(password):
