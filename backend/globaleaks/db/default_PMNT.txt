@@ -1,9 +1,0 @@
-Esteemed %ReceiverName%,
-
-This is an E-Mail message to notify you about
-a new Message from the Whisleblower in %EventTime%.
-
-The message is related to the Tip: %TipTorURL%
-
-Take Care,
-%NodeName%, a GlobaLeaks node
