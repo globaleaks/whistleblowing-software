@@ -364,6 +364,36 @@ def ISO8601_to_pretty_str(isodate):
 
     return datetime_to_pretty_str(date)
 
+def datetime_to_pretty_str_tz(date):
+    """
+    print a datetime in pretty formatted str format
+    """
+    if date is None:
+        date = datetime_null()
+
+    return date.strftime("%A %d %B %Y %H:%M")
+
+def ISO8601_to_pretty_str_tz(isodate, tz):
+    """
+    convert a ISO8601 in pretty formatted str format
+    """
+    if isodate is None:
+        isodate = datetime_null().isoformat()
+
+    date = datetime(year=int(isodate[0:4]),
+                    month=int(isodate[5:7]),
+                    day=int(isodate[8:10]),
+                    hour=int(isodate[11:13]),
+                    minute=int(isodate[14:16]),
+                    second=int(isodate[17:19]) )
+
+    tz_i, tz_d = divmod(tz, 1)
+    tz_d, _  = divmod(tz_d * 100, 1)
+
+    date += timedelta(hours=tz_i, minutes=tz_d)
+
+    return datetime_to_pretty_str_tz(date)
+
 def seconds_convert(value, conversion_factor, minv=0, maxv=0):
     """
     @param value:
