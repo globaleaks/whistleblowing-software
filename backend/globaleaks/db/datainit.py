@@ -50,7 +50,7 @@ def opportunistic_appdata_init():
 
 
 @transact
-def initialize_node(store, results, only_node, templates, appdata):
+def initialize_node(store, results, only_node, appdata):
     """
     TODO refactor with languages the email_template, develop a dedicated
     function outside the node, and inquire fucking YHWH about the
