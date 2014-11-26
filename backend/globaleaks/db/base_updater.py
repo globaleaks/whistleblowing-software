@@ -114,6 +114,7 @@ class TableReplacer:
     """
     This is the base class used by every Updater
     """
+    test = False
 
     def __init__(self, old_db_file, new_db_file, start_ver):
 
