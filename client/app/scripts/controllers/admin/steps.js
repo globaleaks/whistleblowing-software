@@ -32,6 +32,31 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     $scope.template_field_keys = Object.keys($scope.admin.template_fields);
     $scope.template_fields = $scope.admin.template_fields;
 
+    $scope.composable_fields = angular.copy($scope.step.children);
+    angular.forEach($scope.step.children, function(field_group, key) {
+      if (field_group.type == 'fieldgroup') {
+        angular.forEach(field_group.children, function(field, key) {
+          $scope.composable_fields[key] = field;
+        });
+      }
+    });
+
+    $scope.toggle_field = function(field, field_group) {
+      if (field_group.children && field_group.children[field.id]) {
+        // Remove it from the fieldgroup 
+        $scope.step.children = $scope.step.children || {};
+        $scope.step.children[field.id] = field;
+        $scope.composable_fields[field.id] = field;
+        delete field_group.children[field.id];
+      } else {
+        // Add it to the fieldgroup 
+        field_group.children = field_group.children || {};
+        field_group.children[field.id] = field;
+        $scope.composable_fields[field.id] = field;
+        delete $scope.step.children[field.id];
+      }
+    }
+
     $scope.add_field_from_template = function(field_id, step) {
       $scope.admin.new_field_from_template(field_id, step.id).then(function(field){
         step.children = step.children || [];
