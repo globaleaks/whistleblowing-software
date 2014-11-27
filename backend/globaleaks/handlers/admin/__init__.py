@@ -138,6 +138,7 @@ def db_update_steps(store, context_id, steps, language):
 
         # check for reuse (needed to keep translations)
         if 'id' in step and step['id'] in indexed_old_steps:
+           s = indexed_old_steps[step['id']]
            for field in s.children:
                s.children.remove(field)
 
