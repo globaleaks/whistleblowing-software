@@ -124,7 +124,8 @@ class User(Model):
     _roles = [ u'admin', u'receiver' ]
     _states = [ u'disabled', u'password_change_needed', u'enabled']
 
-    unicode_keys = [ 'username', 'password', 'salt', 'role', 'state', 'language' ]
+    unicode_keys = [ 'username', 'password', 'salt', 'role',
+                     'state', 'language' ]
     int_keys = [ 'timezone' ]
 
 
