@@ -1,6 +1,35 @@
-GLClient.controller('AdminFieldsCtrl', ['$scope',
-                    function($scope, $modal) {
-    $scope.fields = $scope.admin.field_templates;
+GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
+                    function($scope, $filter) {
+    $scope.composable_fields = {};
+    $scope.admin.field_templates.$promise
+      .then(function(fields) {
+        $scope.fields = fields;
+        angular.forEach(fields, function(field_group, key){
+          $scope.composable_fields[field_group.id] = field_group;
+          if (field_group.type == 'fieldgroup') {
+            angular.forEach(field_group.children, function(field, key) {
+              $scope.composable_fields[key] = field;
+            });
+          }
+        });
+      });
+
+    $scope.toggle_field = function(field, field_group) {
+      if (field_group.children && field_group.children[field.id]) {
+        // Remove it from the fieldgroup 
+        $scope.fields = $scope.fields || {};
+        $scope.fields.push(field);
+        $scope.composable_fields[field.id] = field;
+        delete field_group.children[field.id];
+      } else {
+        // Add it to the fieldgroup 
+        field_group.children = field_group.children || {};
+        field_group.children[field.id] = field;
+        $scope.composable_fields[field.id] = field;
+        $scope.admin.field_templates = $filter('filter')($scope.admin.field_templates, 
+                                                         {id: '!'+field.id}, true);
+      }
+    }
 
     $scope.save_all = function () {
       angular.forEach($scope.admin.fields, function (field, key) {
@@ -69,22 +98,6 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
         return false; 
       }
       return Object.keys($scope.field.children).indexOf(field.id) !== -1;
-    };
-
-    $scope.toggle = function(field) {
-      if ($scope.isSelected(field)) {
-        delete $scope.field.children[field.id];
-      } else {
-        $scope.field.children[field.id] = field;
-      }
-      $scope.fieldForm.$dirty = true;
-      $scope.fieldForm.$pristine = false;
-    }
-
-    $scope.filterSelf = function(field)
-    {
-      // avoid auto reference
-      return $scope.field.id != field.id;
     };
 
     function tokenize(input) {
