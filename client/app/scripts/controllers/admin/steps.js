@@ -68,7 +68,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     $scope.add_field_from_template = function(field_id, step) {
       $scope.admin.new_field_from_template(field_id, step.id).then(function(field){
         step.children = step.children || [];
-        step.children.push(field.id);
+        step.children[field.id] = field;
       });
     };
    
