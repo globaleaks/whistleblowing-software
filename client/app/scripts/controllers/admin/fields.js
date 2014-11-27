@@ -4,7 +4,7 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
     $scope.admin.field_templates.$promise
       .then(function(fields) {
         $scope.fields = fields;
-        angular.forEach(fields, function(field_group, key){
+        angular.forEach(fields, function(field_group, key) {
           $scope.composable_fields[field_group.id] = field_group;
           if (field_group.type == 'fieldgroup') {
             angular.forEach(field_group.children, function(field, key) {
@@ -15,6 +15,7 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
       });
 
     $scope.toggle_field = function(field, field_group) {
+      $scope.field_group_toggled = true;
       if (field_group.children && field_group.children[field.id]) {
         // Remove it from the fieldgroup 
         $scope.fields = $scope.fields || {};
@@ -32,8 +33,9 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
     }
 
     $scope.save_all = function () {
-      angular.forEach($scope.admin.fields, function (field, key) {
-        $scope.update(fields);
+      // XXX this is highly inefficient, could be refactored/improved.
+      angular.forEach($scope.admin.field_templates, function (field, key) {
+        $scope.update_field(field);
       });
     };
     
@@ -48,6 +50,10 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
 
     $scope.update_field = function(field) {
       var updated_field = new $scope.admin.field_template(field);
+      if ($scope.field_group_toggled) {
+        $scope.field_group_toggled = false;
+        $scope.save_all();
+      }
       return updated_field.$update();
     }
 
@@ -67,6 +73,8 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
 
 GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
   function($scope, $modal) {
+    $scope.field_group_toggled = false;
+
     $scope.save_field = function() {
       $scope.update($scope.field);
     };

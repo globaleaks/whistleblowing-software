@@ -41,7 +41,15 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       }
     });
 
+    $scope.save_all = function () {
+      // XXX this is highly inefficient, could be refactored/improved.
+      angular.forEach($scope.step.children, function (field, key) {
+        $scope.update_field(field);
+      });
+    };
+ 
     $scope.toggle_field = function(field, field_group) {
+      $scope.field_group_toggled = true;
       if (field_group.children && field_group.children[field.id]) {
         // Remove it from the fieldgroup 
         $scope.step.children = $scope.step.children || {};
@@ -96,6 +104,10 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
 
     $scope.update_field = function(field) {
       var updated_field = new $scope.admin.field(field);
+      if ($scope.field_group_toggled) {
+        $scope.field_group_toggled = false;
+        $scope.save_all();
+      }
       return updated_field.$update();
     };
 
