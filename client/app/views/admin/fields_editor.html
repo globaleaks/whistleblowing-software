@@ -119,8 +119,8 @@
           <div class="col-md-6" ng-show="field.type == 'fieldgroup'">
             <label data-translate>Fields Composition</label>
             <div class="selectionList">
-              <div data-ng-repeat="f in admin.fields | filter:filterSelf">
-                <div class="row" data-ng-click="toggle(f)">
+              <div data-ng-repeat="f in composable_fields">
+                <div class="row" data-ng-click="toggle_field(f, field)">
                   <span class="col-md-1">
                     <span data-ng-show="isSelected(f)">
                       <i class="glyphicon glyphicon-check"></i>
