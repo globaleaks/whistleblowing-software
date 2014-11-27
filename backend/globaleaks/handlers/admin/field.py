@@ -110,7 +110,7 @@ def field_integrity_check(request):
 
     if is_template == False and \
        (step_id == '' or step_id == None) and \
-       (fieldgroup_id == '' or field_group == None):
+       (fieldgroup_id == '' or fieldgroup_id == None):
         raise errors.InvalidInputFormat("Each field should be a template or be associated to a step/fieldgroup")
 
     if not is_template:
