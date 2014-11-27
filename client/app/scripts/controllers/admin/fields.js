@@ -18,12 +18,14 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
       $scope.field_group_toggled = true;
       if (field_group.children && field_group.children[field.id]) {
         // Remove it from the fieldgroup 
+        field.fieldgroup_id = "";
         $scope.fields = $scope.fields || {};
         $scope.fields.push(field);
         $scope.composable_fields[field.id] = field;
         delete field_group.children[field.id];
       } else {
         // Add it to the fieldgroup 
+        field.fieldgroup_id = field_group.id;
         field_group.children = field_group.children || {};
         field_group.children[field.id] = field;
         $scope.composable_fields[field.id] = field;
