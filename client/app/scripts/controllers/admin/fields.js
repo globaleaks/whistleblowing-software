@@ -20,7 +20,7 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
         // Remove it from the fieldgroup 
         field.fieldgroup_id = "";
         $scope.fields = $scope.fields || {};
-        $scope.fields.push(field);
+        $scope.admin.field_templates.push(field);
         $scope.composable_fields[field.id] = field;
         delete field_group.children[field.id];
       } else {

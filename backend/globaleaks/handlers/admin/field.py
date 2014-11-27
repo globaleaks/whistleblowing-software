@@ -21,12 +21,8 @@ from globaleaks.utils.utility import log
 def get_field_association(store, field_id):
     ret1 = None
     ret2 = None
-    print field_id
 
     sf = store.find(models.StepField)
-    print "associated"
-    for s in sf:
-        print s.field_id
 
     sf = store.find(models.StepField, models.StepField.field_id == field_id).one()
     if sf:
@@ -278,13 +274,20 @@ def fieldtree_ancestors(store, field_id):
 @transact_ro
 def get_field_list(store, is_template, language):
     """
-    Serialize all the fields (templates or not templates) localizing their content depending on the language.
+    Serialize all the root fields (templates or not templates)
+    localizing their content depending on the language.
 
     :return: the current field list serialized.
     :param language: the language of the field definition dict
     :rtype: list of dict
     """
-    return [anon_serialize_field(store, f, language) for f in store.find(models.Field, models.Field.is_template == is_template)]
+    ret = []
+
+    for f in store.find(models.Field, models.Field.is_template == is_template):
+        if not store.find(models.FieldField, models.FieldField.child_id == f.id).one():
+            ret.append(anon_serialize_field(store, f, language))
+
+    return ret
 
 class FieldTemplatesCollection(BaseHandler):
     """
