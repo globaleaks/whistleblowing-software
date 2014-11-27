@@ -120,7 +120,7 @@
             <label data-translate>Fields Composition</label>
             <div class="selectionList">
               <div data-ng-repeat="f in composable_fields">
-                <div class="row" data-ng-click="toggle_field(f, field)">
+                <div class="row" data-ng-click="toggle_field(f, field)" ng-show="f.id != field.id">
                   <span class="col-md-1">
                     <span data-ng-show="isSelected(f)">
                       <i class="glyphicon glyphicon-check"></i>
