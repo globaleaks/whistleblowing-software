@@ -185,7 +185,7 @@ class notifTemplateTest(helpers.TestGL):
         self.mockSubmission['finalize'] = True
         self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
         self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
-        self.mockSubmission['wb_fields'] = yield helpers.fill_random_fields(self.createdContext)
+        self.mockSubmission['wb_steps'] = yield helpers.fill_random_fields(self.createdContext['id'])
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()
@@ -223,7 +223,7 @@ class notifTemplateTest(helpers.TestGL):
         self.mockSubmission['finalize'] = True
         self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
         self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
-        self.mockSubmission['wb_fields'] = yield helpers.fill_random_fields(self.createdContext)
+        self.mockSubmission['wb_steps'] = yield helpers.fill_random_fields(self.createdContext['id'])
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()
@@ -258,7 +258,7 @@ class notifTemplateTest(helpers.TestGL):
         self.mockSubmission['finalize'] = True
         self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
         self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
-        self.mockSubmission['wb_fields'] = yield helpers.fill_random_fields(self.createdContext)
+        self.mockSubmission['wb_steps'] = yield helpers.fill_random_fields(self.createdContext['id'])
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()

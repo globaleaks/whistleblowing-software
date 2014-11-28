@@ -30,7 +30,7 @@ def wb_serialize_tip(internaltip, language=GLSetting.memory_copy.default_languag
         'mark' : internaltip.mark,
         'pertinence' : internaltip.pertinence_counter,
         'escalation_threshold' : internaltip.escalation_threshold,
-        'fields' : internaltip.wb_fields,
+        'wb_steps' : internaltip.wb_steps,
         'enable_private_messages' : internaltip.context.enable_private_messages 
     }
 

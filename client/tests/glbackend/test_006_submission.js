@@ -129,10 +129,10 @@ describe('POST /submission', function(){
       it('responds with ', function(done){
 
         var new_submission = {};
-        new_submission.wb_fields = {};
+        new_submission.wb_steps = {};
 
         contexts[i].fields.forEach(function (field) {
-          new_submission.wb_fields[field.key]  = { 'value': "first", 'answer_order': 0 };
+          new_submission.wb_steps[field.key]  = { 'value': "first", 'answer_order': 0 };
         })
 
         new_submission.context_id = contexts_ids[i];
@@ -206,7 +206,7 @@ describe('POST /submission', function(){
       it('responds with ', function(done){
 
         submissions[i].receivers = [];
-        submissions[i].wb_fields = {};
+        submissions[i].wb_steps = {};
 
         submissions[i].finalize = 'true';
 
@@ -242,10 +242,10 @@ describe('POST /submission', function(){
       it('responds with ', function(done){
 
         submissions[i].receivers = receivers_ids;
-        submissions[i].wb_fields = {};
+        submissions[i].wb_steps = {};
 
         contexts[i].fields.forEach(function (field) {
-          submissions[i].wb_fields[field.key] = { 'value': "second", 'answer_order': 0 };
+          submissions[i].wb_steps[field.key] = { 'value': "second", 'answer_order': 0 };
         })
 
         submissions[i].finalize = 'true';

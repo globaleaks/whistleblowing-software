@@ -130,19 +130,18 @@ class TestCleaning(helpers.TestGL):
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['id']])
         self.assertEqual(self.receiver2_desc['contexts'], [ self.context_desc['id']])
 
-        fields = yield admin.get_context_fields(self.context_desc['id'])
-        dummySubmission = self.get_dummy_submission(self.context_desc['id'], fields)
+        dummySubmission = self.get_dummy_submission(self.context_desc['id'])
         basehandler.validate_jmessage( dummySubmission, requests.wbSubmissionDesc)
 
         self.submission_desc = yield submission.create_submission(dummySubmission, finalize=False)
 
-        self.assertEqual(self.submission_desc['wb_fields'], dummySubmission['wb_fields'])
+        self.assertEqual(self.submission_desc['wb_steps'], dummySubmission['wb_steps'])
         self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[0])
 
     @inlineCallbacks
     def do_finalize_submission(self):
         self.submission_desc['finalize'] = True
-        self.submission_desc['wb_fields'] = yield helpers.fill_random_fields(self.context_desc)
+        self.submission_desc['wb_steps'] = yield helpers.fill_random_fields(self.context_desc)
         self.submission_desc = yield submission.update_submission(
             self.submission_desc['id'],
             self.submission_desc,

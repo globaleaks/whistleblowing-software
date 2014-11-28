@@ -11,10 +11,18 @@ GLClient.controller('StatusCtrl',
     $scope.auth_landing_page = Authentication.auth_landing_page;
 
     $scope.getFields = function(field) {
+      ret = [];
       if (field === undefined) {
-        return $scope.tip.fields;
+        fields = $scope.tip.fields;
       } else {
-        return field.children; }
+        fields = field.children;
+      }
+
+      angular.forEach(fields, function(field, k) {
+        ret.push(field);
+      });
+
+      return ret;
     }
 
     $scope.filterFields = function(field) {

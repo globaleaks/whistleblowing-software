@@ -19,7 +19,7 @@ from globaleaks import db, models, security
 from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLApiCache
-from globaleaks.handlers.admin import create_context, create_receiver, db_get_context_fields
+from globaleaks.handlers.admin import create_context, create_receiver, db_get_context_steps
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
 from globaleaks.jobs import delivery_sched, notification_sched
@@ -177,7 +177,8 @@ class TestGL(unittest.TestCase):
         new_r['description'] =  'am I ignored ? %s' % descpattern
         return new_r
 
-    def get_dummy_submission(self, context_id, context_admin_data_fields):
+    @defer.inlineCallbacks
+    def get_dummy_submission(self, context_id):
         """
         this may works until the content of the fields do not start to be validated. like
         numbers shall contain only number, and not URL.
@@ -186,20 +187,13 @@ class TestGL(unittest.TestCase):
         need to be enhanced generating appropriate data based on the fields.type
         """
         dummySubmissionDict = {}
-        dummySubmissionDict['wb_fields'] = {}
-
-        dummyvalue = ('https://dailyfoodporn.wordpress.com && '
-                      'http://www.zerocalcare.it/ && '
-                      'http://www.giantitp.com')
-
-        for field_desc in context_admin_data_fields:
-            dummySubmissionDict['wb_fields'][field_desc['id']] = { u'value': dummyvalue }
-
+        dummySubmissionDict['context_id'] = context_id
+        dummySubmissionDict['wb_steps'] = yield fill_random_fields(context_id)
         dummySubmissionDict['receivers'] = []
         dummySubmissionDict['files'] = []
         dummySubmissionDict['finalize'] = True
-        dummySubmissionDict['context_id'] = context_id
-        return dummySubmissionDict
+
+        defer.returnValue(dummySubmissionDict)
 
     def get_dummy_file(self, filename=None, content_type=None, content=None):
 
@@ -378,7 +372,7 @@ class TestGLWithPopulatedDB(TestGL):
         # fill_data/create_submission
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = receivers_ids
-        self.dummySubmission['wb_fields'] = yield fill_random_fields(self.dummyContext)
+        self.dummySubmission['wb_steps'] = yield fill_random_fields(self.dummyContext['id'])
         self.dummySubmissionNotFinalized = yield create_submission(self.dummySubmission, finalize=False)
         self.dummySubmission = yield create_submission(self.dummySubmission, finalize=False)
 
@@ -589,7 +583,6 @@ class MockDict():
 
         self.dummyFieldTemplates = [{
             'id': u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
-            'template_id': '',
             'is_template': True,
             'step_id': '',
             'fieldgroup_id': '',
@@ -608,7 +601,6 @@ class MockDict():
             },
             {
             'id': u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
-            'template_id': '',
             'is_template': True,
             'step_id': '',
             'fieldgroup_id': '',
@@ -627,7 +619,6 @@ class MockDict():
             },
             {
             'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
-            'template_id': '',
             'is_template': True,
             'step_id': '',
             'fieldgroup_id': '',
@@ -646,7 +637,6 @@ class MockDict():
             },
             {
             'id': u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
-            'template_id': '',
             'is_template': True,
             'step_id': '',
             'fieldgroup_id': '',
@@ -665,7 +655,6 @@ class MockDict():
             },
             {
             'id': u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
-            'template_id': '',
             'is_template': True,
             'step_id': '',
             'fieldgroup_id': '',
@@ -730,7 +719,7 @@ class MockDict():
 
         self.dummySubmission = {
             'context_id': '',
-            'wb_fields': [],
+            'wb_steps': [],
             'finalize': False,
             'receivers': [],
             'files': [],
@@ -838,29 +827,23 @@ def template_keys(first_a, second_a, name):
 
     return ret_string
 
+def fill_random_field_recursively(field):
+    field['value'] = ''#.join(unichr(x) for x in range(0x400, 0x4FF))
+    for c in field['children']:
+        fill_random_field_recursively(field['children'][c])
+
 @transact
-def fill_random_fields(store, context_desc):
+def fill_random_fields(store, context_id):
     """
-    getting the context dict, take 'fields'.
-    then populate a valid dict of key : value, usable as wb_fields
+    return randomly populated contexts associated to specified context
     """
+    steps = db_get_context_steps(store, context_id)
 
-    assert isinstance(context_desc, dict)
-    steps_list = context_desc['steps']
-    assert isinstance(steps_list, list), 'Missing fields!'
-    assert len(steps_list) >= 1
+    for step in steps:
+        for field in step['children']:
+            fill_random_field_recursively(step['children'][field])
 
-    fields = db_get_context_fields(store, context_desc['id'])
-
-    ret_dict = {}
-    i = 0
-    for sf in fields:
-        unicode_weird = ''.join(unichr(x) for x in range(0x400, 0x4FF) )
-        ret_dict.update({ sf.get(u'id') : { u'value': unicode_weird }})
-
-        i += 1
-
-    return ret_dict
+    return steps
 
 @transact
 def do_appdata_init(store):

@@ -8,6 +8,8 @@
 # supporter KeyWords are here documented:
 # https://github.com/globaleaks/GlobaLeaks/wiki/Customization-guide#customize-notification
 
+import copy
+
 from globaleaks.settings import GLSetting
 from globaleaks.utils.utility import log, ISO8601_to_pretty_str, dump_file_list, dump_submission_fields
 
@@ -205,7 +207,13 @@ class EncryptedTipKeyword(TipKeyword):
         self.keyword_list += EncryptedTipKeyword.encrypted_tip_keywords
 
     def TipFields(self):
-        return dump_submission_fields(self.fields, self.tip['wb_fields'])
+        # FIX_FIELDS_REFACTOR
+        wb_steps = []
+        for step in self.tip['wb_steps']:
+             for field in step['children']:
+                 wb_steps[field] = copy.deepcopy(field)
+
+        return dump_submission_fields(self.fields, wb_steps)
 
 
 class CommentKeyword(TipKeyword):

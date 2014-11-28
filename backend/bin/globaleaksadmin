@@ -170,10 +170,10 @@ def do_safexport(dbfile, export_print):
     for itip in itips:
         copy_itip = do_storm_copy(itip)
 
-        # wb_fields need to be cleared with spare unicode, if sets
-        for k, v in itip.wb_fields.iteritems():
-            if isinstance(copy_itip.wb_fields[k], unicode):
-                copy_itip.wb_fields[k] = u'¹_clæred_²_data_³'
+        # wb_steps need to be cleared with spare unicode, if sets
+        for k, v in itip.wb_steps.iteritems():
+            if isinstance(copy_itip.wb_steps[k], unicode):
+                copy_itip.wb_steps[k] = u'¹_clæred_²_data_³'
         # the key are UUIDv4 too, but are not changed ATM
 
         copy_itip.id = _change_tracking_uuid(itip.id)

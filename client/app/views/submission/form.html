@@ -1,5 +1,6 @@
-<fieldset data-ng-init="show_index = (field === undefined) ? true : false; fields = (field === undefined) ? current_context.steps[selection - 1].children : field.children; wb_fields = (field === undefined) ? submission.current_submission.wb_fields : wb_fields[field.id].children">
-  <div data-ng-repeat="field in fields" data-ng-init="wb_fields[field.id].children = {};">
+<fieldset data-ng-init="show_index = (field === undefined) ? true : false; step = selection - 1; fields = (field === undefined) ? submission.current_submission.wb_steps[step].children : field.children;">
+  {{fields}}
+  <div data-ng-repeat="field in fields">
     <div data-ng-controller="SubmissionFieldCtrl" data-ng-form="" name="subForm" class="submissionField">
       <div data-ng-switch="" on="field.type">
         <div data-ng-switch-default="" class="form-group input" data-ng-class="field.required && 'required'">
@@ -11,26 +12,24 @@
             </a>
           </div> 
           <div class="submissionFieldInput">
-            <input type="hidden" ng-init="wb_fields[field.id].label = field.label" ng-model="wb_fields[field.id].label">
-            <input type="hidden" ng-init="wb_fields[field.id].type = field.type" ng-model="wb_fields[field.id].type">
             <div class="row">
-               <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="wb_fields[field.id].value" data-ng-required="field.required" name="input" value="{{wb_fields[field.id].value}}" placeholder="{{field.placeholder}}" type="text" />
+               <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text" />
 
               <div data-ng-switch="" on="field.type" class="col-md-4">
-                <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="wb_fields[field.id].value" data-ng-required="field.required" name="input" value="{{wb_fields[field.id].value}}" placeholder="{{field.placeholder}}" type="text" />
+                <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text" />
 
-                <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="wb_fields[field.id].value" data-ng-required="field.required" placeholder="{{field.placeholder}}">{{wb_fields[field.id].value}}</textarea>
+                <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="field.value" data-ng-required="field.required" placeholder="{{field.placeholder}}">{{field.value}}</textarea>
 
-                <select class="form-control" data-ng-switch-when="selectbox" name="input" data-ng-model="wb_fields[field.id].value" data-ng-required="field.required">
+                <select class="form-control" data-ng-switch-when="selectbox" name="input" data-ng-model="field.value" data-ng-required="field.required">
                   <option data-ng-repeat="option in field.options" value="{{option.attrs.name}}">{{option.attrs.name}}</option>
                 </select>
 
                 <div data-ng-switch-when="checkbox">
-                  <div data-ng-repeat="option in field.options"; data-ng-init="wb_fields[field.id].value[option.id] = {};">
-                    <input type="hidden" ng-init="wb_fields[field.id].value[option.id].order = $index" ng-model="wb_fields[field.id].value[option.id].order">
-                    <input type="hidden" ng-init="wb_fields[field.id].value[option.id].name = option.attrs.name" ng-model="wb_fields[field.id].value[option.id].name">
+                  <div data-ng-repeat="option in field.options"; data-ng-init="field.value[option.id] = {};">
+                    <input type="hidden" ng-init="field.value[option.id].order = $index" ng-model="field.value[option.id].order">
+                    <input type="hidden" ng-init="field.value[option.id].name = option.attrs.name" ng-model="field.value[option.id].name">
                     <input name="{{option.attrs.name}}"
-                        data-ng-model="wb_fields[field.id].value[option.id].value"
+                        data-ng-model="field.value[option.id].value"
                         placeholder="{{field.placeholder || 'false'}}"
                         type="checkbox" />
                     <label>{{option.attrs.name}}</label>
@@ -48,7 +47,7 @@
                 <div data-ng-switch-when="tos">
                   <textarea class="form-control" data-ng-readonly="true">{{field.options[0].attrs.clause}}</textarea>
                   <div class="form-group">
-                    <input data-ng-model="wb_fields[field.id].value" value="{{wb_fields[field.id].value}}" placeholder="{{field.placeholder || 'false'}}" type="checkbox" />
+                    <input data-ng-model="field.value" value="{{field.value}}" placeholder="{{field.placeholder || 'false'}}" type="checkbox" />
                     <label data-translate>{{field.options[0].attrs.agreement_statement}}</label>
                   </div>
                 </div>

@@ -28,7 +28,7 @@ def serialize_receivertip(receiver_tip):
         'last_access' : datetime_to_ISO8601(receiver_tip.last_access),
         'expressed_pertinence' : receiver_tip.expressed_pertinence,
         'access_counter' : receiver_tip.access_counter,
-        'wb_fields': receiver_tip.internaltip.wb_fields,
+        'wb_steps': receiver_tip.internaltip.wb_steps,
         'context_id': receiver_tip.internaltip.context.id,
     }
     return rtip_dict
@@ -134,9 +134,9 @@ class NotificationSchedule(GLJob):
                             node_info=node_desc,
                             receiver_info=receiver_desc,
                             context_info=context_desc,
-                            fields_info = admin.db_get_context_fields(store,
-                                                                      context_desc['id'],
-                                                                      language),
+                            steps_info = admin.db_get_context_steps(store,
+                                                                    context_desc['id'],
+                                                                    language),
                             plugin=plugin)
             events.append((unicode(receiver_tip.id), event))
 
@@ -268,9 +268,9 @@ class NotificationSchedule(GLJob):
                           node_info=node_desc,
                           receiver_info=receiver_desc,
                           context_info=context_desc,
-                          fields_info = admin.db_get_context_fields(store,
-                                                                    context_desc['id'],
-                                                                    language),
+                          steps_info = admin.db_get_context_steps(store,
+                                                                  context_desc['id'],
+                                                                  language),
                           plugin=plugin)
 
             events.append(((unicode(message.id), unicode(receiver.id)), event))
@@ -411,9 +411,9 @@ class NotificationSchedule(GLJob):
                     node_info=node_desc,
                     receiver_info=receiver_desc,
                     context_info=context_desc,
-                    fields_info = admin.db_get_context_fields(store,
-                                                              context_desc['id'],
-                                                              language),
+                    steps_info = admin.db_get_context_steps(store,
+                                                            context_desc['id'],
+                                                            language),
                     plugin=plugin)
 
                 events.append(((unicode(comment.id), unicode(receiver.id)), event))
@@ -546,9 +546,9 @@ class NotificationSchedule(GLJob):
                 node_info=node_desc,
                 receiver_info=receiver_desc,
                 context_info=context_desc,
-                fields_info = admin.db_get_context_fields(store,
-                                                          context_desc['id'],
-                                                          language),
+                steps_info = admin.db_get_context_steps(store,
+                                                        context_desc['id'],
+                                                        language),
                 plugin=plugin)
 
             events.append(((unicode(rfile.id), unicode(rfile.receiver.id)), event))

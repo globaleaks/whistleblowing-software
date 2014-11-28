@@ -135,25 +135,25 @@ class Replacer1415(TableReplacer):
         old_rtips = self.store_old.find(self.get_right_model("InternalTip", 14))
         context_model = self.get_right_model("Context", 14)
         for old_rtip in old_rtips:
-            wb_fields_copy = copy.deepcopy(old_rtip.wb_fields)
-            for wb_field in wb_fields_copy:
-                del wb_fields_copy[wb_field]['answer_order']
+            wb_steps_copy = copy.deepcopy(old_rtip.wb_steps)
+            for wb_field in wb_steps_copy:
+                del wb_steps_copy[wb_field]['answer_order']
                 c = self.store_old.find(context_model, context_model.id == old_rtip.context_id).one()
                 for f in c.unique_fields:
                     if f == wb_field:
-                        wb_fields_copy[wb_field]['label'] = c.unique_fields[f]['name']
+                        wb_steps_copy[wb_field]['label'] = c.unique_fields[f]['name']
                         if c.unique_fields[f]['type'] in ['email',
                                                                     'phone',
                                                                     'url',
                                                                     'number',
                                                                     'text']:
-                            wb_fields_copy[wb_field]['type'] = 'inputbox'
+                            wb_steps_copy[wb_field]['type'] = 'inputbox'
                         elif c.unique_fields[f]['type'] in ['radio', 'select']:
-                            wb_fields_copy[wb_field]['type'] = 'selectbox'
+                            wb_steps_copy[wb_field]['type'] = 'selectbox'
                         elif c.unique_fields[f]['type'] in ['multiple', 'checkboxes']:
-                            wb_fields_copy[wb_field]['type'] = 'checkbox'
+                            wb_steps_copy[wb_field]['type'] = 'checkbox'
                         else:
-                            wb_fields_copy[wb_field]['type'] = c.unique_fields[f]['type']
+                            wb_steps_copy[wb_field]['type'] = c.unique_fields[f]['type']
 
-                print wb_fields_copy[wb_field]
+                print wb_steps_copy[wb_field]
         raise "aaa"

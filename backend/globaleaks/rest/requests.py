@@ -50,7 +50,7 @@ authDict = {
 }
 
 wbSubmissionDesc = {
-    'wb_fields' : dict,
+    'wb_steps' : list,
     'context_id' : uuid_regexp,
     'receivers' : [ uuid_regexp ],
     'files' : [ uuid_regexp ],
@@ -393,7 +393,7 @@ staticFileCollectionElem = {
 staticFileCollection = [ staticFileCollectionElem ]
 
 internalTipDesc = {
-    'wb_fields': dict,
+    'wb_steps': list,
     'pertinence': int,
     'receivers': [ uuid_regexp ],
     'context_id': uuid_regexp,

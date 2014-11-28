@@ -17,7 +17,6 @@ def get_step_id(store, context_id):
 
 def get_sample_field():
     sample_field = {
-        'template_id': '',
         'is_template': True,
         'step_id': '',
         'fieldgroup_id': '',
@@ -156,13 +155,14 @@ class TestFieldsCollection(helpers.TestHandlerWithPopulatedDB):
             types = [field.get('type') for field in fields]
             self.assertGreater(len(fields), 0)
             self.assertNotIn(None, ids)
-            self.assertIn('15521164-1d0f-5f80-8e8c-93f73e815156', ids)
+            self.assertIn('17121164-0d0f-4180-9e9c-b1f72e815105', ids)
             self.assertGreater(types.count('fieldgroup'), 0)
 
-            # check children are present in the list as well
+            # check tha childrens are not present in the list
+            # as the list should contain only parents fields
             for field in fields:
                 for child in field['children']:
-                    self.assertIn(child, ids)
+                    self.assertNotIn(child, ids)
 
 class TestFieldTemplateCreate(helpers.TestHandlerWithPopulatedDB):
         _handler = admin.field.FieldTemplateCreate
@@ -303,13 +303,14 @@ class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
             types = [field.get('type') for field in fields]
             self.assertGreater(len(fields), 0)
             self.assertNotIn(None, ids)
-            self.assertIn('25521164-1d0f-5f80-8e8c-93f73e815156', ids)
+            self.assertIn('27121164-0d0f-4180-9e9c-b1f72e815105', ids)
             self.assertGreater(types.count('fieldgroup'), 0)
 
-            # check children are present in the list as well
+            # check tha childrens are not present in the list
+            # as the list should contain only parents fields
             for field in fields:
                 for child in field['children']:
-                    self.assertIn(child, ids)
+                    self.assertNotIn(child, ids)
 
 
 class TestFieldTemplateCreate(helpers.TestHandlerWithPopulatedDB):

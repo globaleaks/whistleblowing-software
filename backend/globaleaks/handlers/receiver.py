@@ -204,7 +204,7 @@ def get_receiver_tip_list(store, receiver_id, language=GLSetting.memory_copy.def
         for f in fields:
             if f['preview']:
                 entry = dict({'label' : f['label'],
-                              'text': rtip.internaltip.wb_fields[f['id']] })
+                              'text': rtip.internaltip.wb_steps[f['id']] })
 
                 preview_data.append(entry)
 

@@ -15,7 +15,7 @@ from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import authentication, submission, wbtip
-from globaleaks.handlers.admin import update_context, create_receiver, get_receiver_list, get_context_fields
+from globaleaks.handlers.admin import update_context, create_receiver, get_receiver_list
 from globaleaks.handlers.receiver import get_receiver_tip_list
 from globaleaks.handlers.files import download_all_files, serialize_receiver_file
 from globaleaks.handlers.collection import get_compression_opts, CollectionStreamer
@@ -59,7 +59,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         submission_desc['context_id'] = self.dummyContext['id']
         submission_desc['finalize'] = True
-        submission_desc['wb_fields'] = yield helpers.fill_random_fields(self.dummyContext)
+        submission_desc['wb_steps'] = yield helpers.fill_random_fields(self.dummyContext)
         yield self.assertFailure(submission.create_submission(submission_desc, finalize=True), errors.FileRequiredMissing)
 
     @inlineCallbacks
@@ -85,9 +85,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         # remind: return a tuple (serzialized_itip, wb_itip)
         wb_tip = yield wbtip.get_internaltip_wb(wb_access_id)
 
-        # In the WB/Receiver Tip interface, wb_fields are called fields.
-        # This can be uniformed when API would be cleaned of the _id
-        self.assertTrue(wb_tip.has_key('fields'))
+        self.assertTrue(wb_tip.has_key('wb_steps'))
 
     @inlineCallbacks
     def test_create_receiverfiles_allow_unencrypted_true_no_keys_loaded(self):
@@ -255,7 +253,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         status = yield submission.create_submission(submission_desc, finalize=False)
 
-        status['wb_fields'] = yield helpers.fill_random_fields(self.dummyContext)
+        status['wb_steps'] = yield helpers.fill_random_fields(self.dummyContext)
         status['finalize'] = True
 
         status = yield submission.update_submission(status['id'], status, finalize=True)
@@ -265,7 +263,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         wb_tip = yield wbtip.get_internaltip_wb(wb_access_id)
 
-        self.assertTrue(wb_tip.has_key('fields'))
+        self.assertTrue(wb_tip.has_key('wb_steps'))
 
     @inlineCallbacks
     def test_unable_to_access_finalized(self):
@@ -284,9 +282,8 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_fields_fail_unexpected_presence(self):
 
-        fields = yield get_context_fields(self.dummyContext['id'])
-        sbmt = self.get_dummy_submission(self.dummyContext['id'], fields)
-        sbmt['wb_fields'].update({ 'alien' : 'predator' })
+        sbmt = yield self.get_dummy_submission(self.dummyContext['id'])
+        sbmt['wb_steps'].update({ 'alien' : 'predator' })
 
         yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
 
@@ -294,10 +291,12 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     def test_fields_fail_missing_required(self):
 
         required_key = unicode(self.dummyFields[0]['id']) # first of the dummy field is
-                                                 # marked as required!
+                                                          # marked as required!
                                                     
-        fields = yield get_context_fields(self.dummyContext['id'])
-        sbmt = self.get_dummy_submission(self.dummyContext['id'], fields)
-        del sbmt['wb_fields'][required_key]
+        sbmt = yield self.get_dummy_submission(self.dummyContext['id'])
+        for s in sbmt['wb_steps']:
+            if required_key in s['children']:
+                del s['children'][required_key]
+        #[required_key]
 
         yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
