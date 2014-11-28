@@ -119,7 +119,7 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
                     trigger_info = {
                         'creation_date': '2013-05-13T17:49:26.105485', #epoch!
                         'id': 'useless',
-                        'wb_fields' : fill_random_fields(self.dummyContext),
+                        'wb_steps' : fill_random_fields(self.dummyContext['id']),
                     },
                     node_info = MockDict().dummyNode,
                     receiver_info = MockDict().dummyReceiver,
@@ -246,7 +246,7 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
         new_subm['context_id'] = new_context_output['id']
         new_subm['receivers'] = [ asdr_output['id'],
                                   yanr_output['id'] ]
-        new_subm['wb_fields'] = yield fill_random_fields(new_context_output)
+        new_subm['wb_steps'] = yield fill_random_fields(new_context_output)
         new_subm_output = yield create_submission(new_subm, False)
         # self.submission_assertion(new_subm, new_subm_output)
 

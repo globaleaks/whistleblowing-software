@@ -19,7 +19,7 @@ from globaleaks.models import Model
 class InternalTip_version_10(Model): # no change at all!
     __storm_table__ = 'internaltip'
     context_id = Unicode()
-    wb_fields = Pickle()
+    wb_steps = Pickle()
     pertinence_counter = Int()
     expiration_date = DateTime()
     last_activity = DateTime()
@@ -51,12 +51,12 @@ class Replacer1011(TableReplacer):
 
             for k, v in new_itip._storm_columns.iteritems():
 
-                if v.name == 'wb_fields':
-                    new_itip.wb_fields = {}
+                if v.name == 'wb_steps':
+                    new_itip.wb_steps = {}
                     i = 0
-                    for key in old_itip.wb_fields:
-                        new_itip.wb_fields[key] = {
-                            u'value': old_itip.wb_fields[key],
+                    for key in old_itip.wb_steps:
+                        new_itip.wb_steps[key] = {
+                            u'value': old_itip.wb_steps[key],
                             u'answer_order': i
                         }
                         i += 1

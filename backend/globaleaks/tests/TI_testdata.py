@@ -10,7 +10,6 @@ TI_context = {
     # localized stuff
     'name': u'Already localized name',
     'description': u'Already localized desc',
-    # fields, usually filled in content by fill_random_fields
     'steps': [ ],
     'selectable_receiver': False,
     'select_all_receivers': True,

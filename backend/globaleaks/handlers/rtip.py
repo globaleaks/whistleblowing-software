@@ -33,7 +33,7 @@ def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.
         'mark' : internaltip.mark,
         'pertinence' : internaltip.pertinence_counter,
         'escalation_threshold' : internaltip.escalation_threshold,
-        'fields' : internaltip.wb_fields,
+        'wb_steps' : internaltip.wb_steps,
 
         # these two fields are at the moment unsent by the client, but kept
         # maintained in unitTest. (tickets in wishlist)

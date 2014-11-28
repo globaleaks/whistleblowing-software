@@ -316,7 +316,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.create = function(cb) {
         self.current_submission = new submissionResource({
           context_id: self.current_context.id,
-          wb_fields: {}, files: [], finalize: false, receivers: []
+          wb_steps: _.clone(self.current_context.steps),
+          files: [], finalize: false, receivers: []
         });
 
         setCurrentContextReceivers();
@@ -327,7 +328,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               self.current_context.fields[k].value = {};
             }
           });
-          self.current_submission.wb_fields = {};
+          self.current_submission.wb_steps = _.clone(self.current_context.steps);
 
           if (cb)
             cb();

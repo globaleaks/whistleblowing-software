@@ -122,10 +122,10 @@ controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $ro
           $scope.$parent.uploading = true;
         } else {
           $scope.submission.current_submission.files.push(k.id);
-          if ($scope.submission.current_submission.wb_fields[$scope.field] == undefined) {
-            $scope.submission.current_submission.wb_fields[$scope.field] = {};
+          if ($scope.submission.current_submission.wb_steps[$scope.field] == undefined) {
+            $scope.submission.current_submission.wb_steps[$scope.field] = {};
           }
-          $scope.submission.current_submission.wb_fields[$scope.field].value = k.id;
+          $scope.submission.current_submission.wb_steps[$scope.field].value = k.id;
         }
       });
     }

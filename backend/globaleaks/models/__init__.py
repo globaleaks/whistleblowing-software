@@ -266,7 +266,7 @@ class InternalTip(Model):
     # internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
     # receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
-    wb_fields = Pickle(validator=dict_v)
+    wb_steps = JSON()
     pertinence_counter = Int()
     expiration_date = DateTime()
     last_activity = DateTime()

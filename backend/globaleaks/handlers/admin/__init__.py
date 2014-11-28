@@ -109,7 +109,6 @@ def db_create_step(store, context_id, steps, language):
             # remove current step/field fieldgroup/field association
             a_s, a_f = get_field_association(store, field.id)
             if a_s != s.id:
-                print "disassociate"
                 disassociate_field(store, field.id)
                 s.children.add(field)
 
@@ -161,7 +160,6 @@ def db_update_steps(store, context_id, steps, language):
             # remove current step/field fieldgroup/field association
             a_s, a_f = get_field_association(store, field.id)
             if a_s != None and a_s != s.id:
-                print "disassociate!"
                 disassociate_field(store, field.id)
                 s.children.add(field)
 
@@ -556,6 +554,24 @@ def db_get_context_fields(store, context_id, language=GLSetting.memory_copy.defa
 @transact_ro
 def get_context_fields(store, context_id, language=GLSetting.memory_copy.default_language):
     return db_get_context_fields(store, context_id, language)
+
+def db_get_context_steps(store, context_id, language=GLSetting.memory_copy.default_language):
+    """
+    Returns:
+        (dict) the steps associated with the context with the specified id.
+    """
+
+    context = store.find(models.Context, models.Context.id == context_id).one()
+
+    if not context:
+        log.err("Requested invalid context")
+        raise errors.ContextIdNotFound
+
+    return [ anon_serialize_step(store, s, language) for s in context.steps ]
+
+@transact_ro
+def get_context_steps(store, context_id, language=GLSetting.memory_copy.default_language):
+    return db_get_context_steps(store, context_id, language)
 
 @transact
 def update_context(store, context_id, request, language=GLSetting.memory_copy.default_language):

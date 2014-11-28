@@ -156,15 +156,12 @@ class TestTipInstance(TTip):
 
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['id']])
 
-        fields = yield admin.get_context_fields(self.context_desc['id'])
-
-        dummySubmissionDict = self.get_dummy_submission(
-            self.context_desc['id'], fields)
+        dummySubmissionDict = self.get_dummy_submission(self.context_desc['id']
         basehandler.validate_jmessage(dummySubmissionDict, requests.wbSubmissionDesc)
 
         self.submission_desc = yield submission.create_submission(dummySubmissionDict, finalize=True)
 
-        self.assertEqual(self.submission_desc['wb_fields'], dummySubmissionDict['wb_fields'])
+        self.assertEqual(self.submission_desc['wb_steps'], dummySubmissionDict['wb_steps'])
         self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[1])
         # Ok, now the submission has been finalized, the tests can start.
 
@@ -205,7 +202,7 @@ class TestTipInstance(TTip):
 
         self.wb_data = yield wbtip.get_internaltip_wb(self.wb_tip_id)
 
-        self.assertEqual(self.wb_data['fields'], self.submission_desc['wb_fields'])
+        self.assertEqual(self.wb_data['wb_steps'], self.submission_desc['wb_steps'])
 
     @inlineCallbacks
     def create_receivers_tip(self):
@@ -240,11 +237,11 @@ class TestTipInstance(TTip):
 
             self.receiver1_data = yield rtip.get_internaltip_receiver(auth1, tmp2)
 
-            self.assertEqual(self.receiver1_data['fields'], self.submission_desc['wb_fields'])
+            self.assertEqual(self.receiver1_data['wb_steps'], self.submission_desc['wb_steps'])
             self.assertEqual(self.receiver1_data['access_counter'], 0)
 
         self.receiver2_data = yield rtip.get_internaltip_receiver(auth2, self.rtip2_id)
-        self.assertEqual(self.receiver2_data['fields'], self.submission_desc['wb_fields'])
+        self.assertEqual(self.receiver2_data['wb_steps'], self.submission_desc['wb_steps'])
         self.assertEqual(self.receiver2_data['access_counter'], 0)
 
     @inlineCallbacks

@@ -6,6 +6,8 @@
 #   Implements a GlobaLeaks submission, then the operations performed
 #   by an HTTP client in /submission URI
 
+import copy
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting, stats_counter
@@ -26,7 +28,7 @@ def wb_serialize_internaltip(internaltip):
         'context_id': internaltip.context_id,
         'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
-        'wb_fields' : internaltip.wb_fields,
+        'wb_steps' : internaltip.wb_steps,
         'download_limit' : internaltip.download_limit,
         'access_limit' : internaltip.access_limit,
         'mark' : internaltip.mark,
@@ -196,19 +198,25 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
         raise excep
 
     try:
-        wb_fields = request['wb_fields']
+        wb_fields = {}
+        for step in request['wb_steps']:
+             for f_id in step['children']:
+                 wb_fields[f_id] = copy.deepcopy(step['children'][f_id])
+
         fields = db_get_context_fields(store, context.id, language)
         fields_ids = [ field['id'] for field in fields]
 
-        if finalize == u'finalize':
+        if finalize:
             # required fields are checked only on field finalization
             for f in fields:
                 if f['required'] and f['id'] not in wb_fields:
                     raise errors.SubmissionFailFields("missing required field %s" % f['id'])
+
         for wbf in wb_fields:
             if wbf not in fields_ids:
                 raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
-        submission.wb_fields = wb_fields
+
+        submission.wb_steps = request['wb_steps']
     except Exception as excep:
         log.err("Submission create: fields validation fail: %s" % excep)
         raise excep
@@ -252,17 +260,25 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
         raise excep
 
     try:
-        wb_fields = request['wb_fields']
+        wb_fields = {}
+        for step in request['wb_steps']:
+             for f_id in step['children']:
+                 wb_fields[f_id] = copy.deepcopy(step['children'][f_id])
+
         fields = db_get_context_fields(store, context.id, language)
         fields_ids = [ field['id'] for field in fields]
-        for f in fields:
-            if f['required'] and f['id'] not in wb_fields:
+
+        if finalize:
+            # required fields are checked only on field finalization
+            for f in fields:
+                if f['required'] and f['id'] not in wb_fields:
                     raise errors.SubmissionFailFields("missing required field %s" % f['id'])
+
         for wbf in wb_fields:
             if wbf not in fields_ids:
                 raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
 
-        submission.wb_fields = wb_fields
+        submission.wb_steps = request['wb_steps']
     except Exception as excep:
         log.err("Submission update: fields validation fail: %s" % excep)
         log.exception(excep)

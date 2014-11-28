@@ -135,8 +135,7 @@ class TestTipInstance(SubmissionTest):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
-        submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                             fields) )
+        submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
         submission_request['finalize'] = True
 
         yield self.assertFailure(submission.create_submission(submission_request, finalize=True),
@@ -162,8 +161,7 @@ class TestTipInstance(SubmissionTest):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
-	submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                             fields) )
+	submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
 
         submission_request['receivers'] = [ SubmissionTest.receiver_unused['id'],
                                             SubmissionTest.receiver_used['id']  ]
@@ -178,8 +176,7 @@ class TestTipInstance(SubmissionTest):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
-        submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                             fields) )
+        submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
 
         submission_request['receivers'] = [ SubmissionTest.receiver_used['id']  ]
         submission_request['finalize'] = True
@@ -191,14 +188,13 @@ class TestTipInstance(SubmissionTest):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
-        submission_request = dict( self.get_dummy_submission(SubmissionTest.context_used['id'],
-                                                             fields) )
+        submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
 
         submission_request['receivers'] = [ SubmissionTest.receiver_used['id'] ]
         submission_request['context_id'] = SubmissionTest.context_used['id']
 
-        for key in submission_request['wb_fields'].keys():
-            submission_request['wb_fields'][key] = { u'value': unicode("You know nothing John Snow" * 100 * 100) }
+        for key in submission_request['wb_steps'].keys():
+            submission_request['wb_steps'][key] = { u'value': unicode("You know nothing John Snow" * 100 * 100) }
 
         submission_request['finalize'] = True
 

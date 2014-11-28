@@ -420,7 +420,7 @@ def caller_name(skip=2):
 
 # Dumping utility
 
-def dump_submission_fields(fields, wb_fields):
+def dump_submission_fields(fields, wb_steps):
 
     dumptext = u""
     for sf in fields:
@@ -431,7 +431,7 @@ def dump_submission_fields(fields, wb_fields):
         fnl = len(sf['label'])
         # dumptext += ("="*fnl)+"\n"+sf['name']+"\n("+sf['hint']+")\n"+("="*fnl)+"\n"
         dumptext += ("="*fnl)+"\n"+sf['label']+"\n"+("="*fnl)+"\n"
-        dumptext += wb_fields[ fields[0]['id'] ]['value']+"\n\n"
+        dumptext += wb_steps[ fields[0]['id'] ]['value']+"\n\n"
 
     return dumptext
 
