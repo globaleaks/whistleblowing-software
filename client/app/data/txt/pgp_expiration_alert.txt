@@ -1,10 +1,10 @@
-Esteemed %ReceiverName%,
+Dear %ReceiverName%,
 
-This is an e-mail notification to notify you that your PGP key is going to expire on %PGPExpirationDate%
+This is an e-mail to inform you that your PGP key will expire on %PGPExpirationDate%
 
-Without a valid PGP key, the system won't be able to send you encrypted notifications.
+Without a valid PGP key, the system will not be able to send you encrypted notifications.
 
-You are invited to extend its validity and reload it on the platform or to upload a new key.
+You should extend its validity and update the key present on the GlobaLeaks nodes you are subscribed to or upload a new key.
 
-Take Care,
+Kind regards,
 %NodeSignature%
