@@ -179,9 +179,9 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
     submission.creation_date = datetime_now()
 
     if finalize:
-        submission.mark = InternalTip._marker[1] # Finalized
+        submission.mark = u'finalize'  # Finalized
     else:
-        submission.mark = InternalTip._marker[0] # Submission
+        submission.mark = u'submission' # Submission
 
     try:
         store.add(submission)
@@ -199,9 +199,11 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
         wb_fields = request['wb_fields']
         fields = db_get_context_fields(store, context.id, language)
         fields_ids = [ field['id'] for field in fields]
-        for f in fields:
-            if f['required']:
-                if f['id'] not in wb_fields:
+
+        if finalize == u'finalize':
+            # required fields are checked only on field finalization
+            for f in fields:
+                if f['required'] and f['id'] not in wb_fields:
                     raise errors.SubmissionFailFields("missing required field %s" % f['id'])
         for wbf in wb_fields:
             if wbf not in fields_ids:
@@ -238,7 +240,7 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
         log.err("Can't be changed context in a submission update")
         raise errors.ContextIdNotFound("Context are immutable")
 
-    if submission.mark != InternalTip._marker[0]:
+    if submission.mark != u'submission':
         log.err("Submission %s do not permit update (status %s)" % (submission_id, submission.mark))
         raise errors.SubmissionConcluded
 
@@ -254,8 +256,7 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
         fields = db_get_context_fields(store, context.id, language)
         fields_ids = [ field['id'] for field in fields]
         for f in fields:
-            if f['required']:
-                if f['id'] not in wb_fields:
+            if f['required'] and f['id'] not in wb_fields:
                     raise errors.SubmissionFailFields("missing required field %s" % f['id'])
         for wbf in wb_fields:
             if wbf not in fields_ids:
@@ -275,7 +276,9 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
         raise excep
 
     if finalize:
-        submission.mark = InternalTip._marker[1] # Finalized
+        submission.mark = u'finalize'  # Finalized
+    else:
+        submission.mark = u'submission' # Submission
 
     submission_dict = wb_serialize_internaltip(submission)
     return submission_dict
@@ -299,7 +302,7 @@ def delete_submission(store, submission_id):
         log.err("Invalid Submission requested %s in DELETE" % submission_id)
         raise errors.SubmissionIdNotFound
 
-    if submission.mark != submission._marker[0]:
+    if submission.mark != u'submission':
         log.err("Submission %s already concluded (status: %s)" % (submission_id, submission.mark))
         raise errors.SubmissionConcluded
 
