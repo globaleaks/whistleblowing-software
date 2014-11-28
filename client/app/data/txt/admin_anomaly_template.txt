@@ -1,11 +1,10 @@
 Dear Globaleaks Node Administrator,
-We have a problem (or an opportunity, up to you).
+The anomaly detection system of your GlobaLeaks node has identified some unexpected activity.
+This could be the sign of an attack or just a spike in usage due to the increased visibility of your initiative.
 
-Something in your GlobaLeaks Node is triggering an unexpected activity.
+You are receiving this email because you should look into this to determine if the cause is malicious or not.
 
-Maybe is a flood, maybe your whistleblowing initiatiative has attracted visibility.
-
-Activities:
+Here is the list of activities that have triggered the anomaly detection:
 
 Alarm level: %ActivityAlarmLevel%
 %ActivityDump%
@@ -15,4 +14,5 @@ Disk space:
 Alarm level: %DiskAlarmLevel%
 %DiskDump%
 
-for more info, login in your Administration panel and check on Stats and Anomalies.
+For more info, login in your Administration panel and navigate to the Stats and Anomalies section.
+
