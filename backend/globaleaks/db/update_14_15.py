@@ -4,10 +4,10 @@
   Changes
 
     Node table:
-      - introduced x_frame_options_mode and x_frame_options_allow_from.
+      - introduced default_language and default_timezone
 
-    Context table:
-      - introduced enable_private_messages
+    User table:
+      - introduced language and timezone
 """
 
 import copy
