@@ -36,6 +36,7 @@ Depends:
  , gcc
  , python-dev
  , libffi-dev
+ , libssl-dev
 # End of packages required by pip
  , ${misc:Depends}
  , python-pip
