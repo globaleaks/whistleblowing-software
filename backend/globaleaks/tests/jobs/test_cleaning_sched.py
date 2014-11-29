@@ -162,7 +162,7 @@ class TipCleaning(TestCleaning):
         yield cleaning_sched.CleaningSchedule().operation()
 
     @inlineCallbacks
-    def test_001_unfinished_submission_life_and_expire(self):
+    def test_unfinished_submission_life_and_expire(self):
         yield self.do_setup_tip_environment()
         yield self.check_tip_not_expired()
         yield self.force_submission_expire()
@@ -170,8 +170,8 @@ class TipCleaning(TestCleaning):
         yield self.test_cleaning()
 
     @inlineCallbacks
-    def test_002_tip_life_and_expire(self):
-        yield self.do_setup_tip_environment()       
+    def test_tip_life_and_expire(self):
+        yield self.do_setup_tip_environment()
         yield self.do_finalize_submission()
 
         yield delivery_sched.DeliverySchedule().operation()
@@ -184,7 +184,7 @@ class TipCleaning(TestCleaning):
         yield self.test_cleaning()
 
     @inlineCallbacks
-    def test_003_tip_life_postpone(self):
+    def test_tip_life_postpone(self):
         yield self.do_setup_tip_environment()
         yield self.do_finalize_submission()
 
@@ -199,7 +199,7 @@ class TipCleaning(TestCleaning):
         yield self.test_postpone_survive_cleaning()
 
     @inlineCallbacks
-    def test_004_tip_life_and_expire_with_files(self):
+    def test_tip_life_and_expire_with_files(self):
         yield self.do_setup_tip_environment()
 
         yield self.emulate_file_upload(self.submission_desc['id'])
