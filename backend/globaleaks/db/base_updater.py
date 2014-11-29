@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 
+from twisted.python import log
 from storm.exceptions import OperationalError
 from storm.locals import create_database, Store
 from storm.properties import PropertyColumn
@@ -8,9 +9,9 @@ from storm.variables import BoolVariable, DateTimeVariable
 from storm.variables import EnumVariable, IntVariable, RawStrVariable
 from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
 
-from globaleaks import models
+from globaleaks import DATABASE_VERSION, models
 from globaleaks.settings import GLSetting
-from globaleaks import DATABASE_VERSION
+
 
 # This code is take directly from the GlobaLeaks-pre-model-refactor
 
@@ -52,7 +53,7 @@ def variableToSQL(var, db_type):
             "sqlite": "BLOB",
         }
     else:
-        raise AssertionError("Invalid var: %s" % var)
+        raise ValueError('Invalid var: {}'.format(var))
 
     return "%s" % data_mapping[db_type]
 
@@ -159,34 +160,34 @@ class TableReplacer:
         for k, v in self.table_history.iteritems():
             # +1 because count start from 0,
             # -5 because the relase 0,1,2,3,4 are not supported anymore
-            assert len(v) == (DATABASE_VERSION + 1 - 5), \
-                "I'm expecting a table with %d statuses (%s)" % (DATABASE_VERSION, k)
+            if len(v) != (DATABASE_VERSION + 1 - 5):
+                msg = 'Expecting a table with {} statuses ({})'.format(DATABASE_VERSION, k)
+                raise TypeError(msg)
 
-        print "%s Opening old DB: %s" % (self.debug_info, old_db_file)
-        old_database = create_database("sqlite:%s" % self.old_db_file)
+
+        log.msg('{} Opening old DB: {}'.format(self.debug_info, old_db_file))
+        old_database = create_database('sqlite:'+self.old_db_file)
         self.store_old = Store(old_database)
 
         GLSetting.db_file = new_db_file
 
-        new_database = create_database("sqlite:%s" % new_db_file)
+        new_database = create_database('sqlite:'+new_db_file)
         self.store_new = Store(new_database)
 
         if self.start_ver + 1 == DATABASE_VERSION:
-
-            print "%s Acquire SQL schema %s" % (self.debug_info, GLSetting.db_schema_file)
+            log.msg('{} Acquire SQL schema {}'.format(self.debug_info, GLSetting.db_schema_file))
 
             if not os.access(GLSetting.db_schema_file, os.R_OK):
-                print "Unable to access %s" % GLSetting.db_schema_file
-                raise Exception("Unable to access db schema file")
+                log.msg('Unable to access', GLSetting.db_schema_file)
+                raise IOError('Unable to access db schema file')
 
             with open(GLSetting.db_schema_file) as f:
-                create_queries = ''.join(f.readlines()).split(';')
+                create_queries = ''.join(f).split(';')
                 for create_query in create_queries:
                     try:
                         self.store_new.execute(create_query+';')
-                    except OperationalError:
-                        print "OperationalError in [%s]" % create_query
-
+                    except OperationalError as e:
+                        log.warn('OperationalError in "{}": e'.format(create_query))
             self.store_new.commit()
             return
             # return here and manage the migrant versions here:
@@ -201,7 +202,7 @@ class TableReplacer:
             try:
                 self.store_new.execute(create_query+';')
             except OperationalError as excep:
-                print "%s OperationalError in [%s]" % (self.debug_info, create_query)
+                log.warn('{} OperationalError in [{}]'.format(self.debug_info, create_query))
                 raise excep
 
         self.store_new.commit()
@@ -221,11 +222,13 @@ class TableReplacer:
         table_index = (version - 5)
 
         if not self.table_history.has_key(table_name):
-            print "Not implemented usage of get_right_model %s (%s %d)" % (
+            msg = 'Not implemented usage of get_right_model {} ({} {})'.format(
                 __file__, table_name, self.start_ver)
-            raise NotImplementedError
+            raise NotImplementedError(msg)
 
-        assert version <= DATABASE_VERSION, "wrong developer brainsync"
+        if version >  DATABASE_VERSION:
+            raise ValueError('Version supplied must be less or equal to {}'.format(
+                DATABASE_VERSION))
 
         if self.table_history[table_name][table_index]:
             # print "Immediate return %s = %s at version %d" % \
@@ -263,10 +266,11 @@ class TableReplacer:
         return right_query
 
     def _perform_copy_list(self, table_name):
-
-        print "%s default %s migration assistant: #%d" % (
-            self.debug_info, table_name,
-            self.store_old.find(self.get_right_model(table_name, self.start_ver)).count())
+        models_count = self.store_old.find(
+            self.get_right_model(table_name, self.start_ver)
+        ).count()
+        log.msg('{} default {} migration assistant: #{}'.format(
+            self.debug_info, table_name, models_count))
 
         old_objects = self.store_old.find(self.get_right_model(table_name, self.start_ver))
 
@@ -282,7 +286,7 @@ class TableReplacer:
         self.store_new.commit()
 
     def _perform_copy_single(self, table_name):
-        print "%s default %s migration assistant" % (self.debug_info, table_name)
+        log.msg('{} default {} migration assistant'.format(self.debug_info, table_name))
 
         old_obj = self.store_old.find(self.get_right_model(table_name, self.start_ver)).one()
         new_obj = self.get_right_model(table_name, self.start_ver + 1)()
