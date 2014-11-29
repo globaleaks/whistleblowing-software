@@ -507,6 +507,8 @@ class MockDict():
             'role': u'receiver',
             'state': u'enabled',
             'last_login': datetime_null(),
+            'timezone': 0,
+            'language': u'en'
         }
 
         self.dummyReceiver = {
@@ -533,6 +535,8 @@ class MockDict():
             'gpg_enable_notification': False,
             'gpg_key_remove': False,
             'presentation_order': 0,
+            'timezone': 0,
+            'language': u'en'
         }
 
         self.dummyContext = {
@@ -620,6 +624,10 @@ class MockDict():
             'disable_privacy_badge': False,
             'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
+            'default_timezone': 0,
+            'default_language': u'en',
+            'admin_timezone': 0,
+            'admin_language': u'en'
         }
 
         self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',

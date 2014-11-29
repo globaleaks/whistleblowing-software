@@ -124,6 +124,7 @@ class NotificationSchedule(GLJob):
                             receiver_info=receiver_desc,
                             context_info=context_desc,
                             plugin=plugin)
+
             events.append((unicode(receiver_tip.id), event))
 
         return events, notification_counter
