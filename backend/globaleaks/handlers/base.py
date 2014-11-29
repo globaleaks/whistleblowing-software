@@ -553,6 +553,8 @@ class BaseHandler(RequestHandler):
 
     @property
     def current_user(self):
+        session_id = None
+
         session_id = self.request.headers.get('X-Session')
 
         if session_id is None:

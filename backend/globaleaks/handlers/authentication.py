@@ -7,7 +7,6 @@
 
 from twisted.internet.defer import inlineCallbacks
 from storm.exceptions import NotOneError
-from storm.expr import And
 
 from globaleaks import security
 from globaleaks.models import Node, User
@@ -24,11 +23,9 @@ reactor = None
 
 class GLSession(tempobj.TempObj):
 
-    def __init__(self, user_id, user_role, user_status):
+    def __init__(self, user_id, user_role):
         self.user_role = user_role
         self.user_id = user_id
-        self.user_role = user_role
-        self.user_status = user_status
         tempobj.TempObj.__init__(self,
                                  GLSetting.sessions,
                                  rstr.xeger(r'[A-Za-z0-9]{42}'),
@@ -224,21 +221,21 @@ def login_receiver(store, username, password):
 
     login_receiver return the receiver.id
     """
-    receiver_user = store.find(User, And(User.username == username, User.state != u'disabled')).one()
+    receiver_user = store.find(User, User.username == username).one()
 
     if not receiver_user or receiver_user.role != 'receiver':
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
-        return False, None
+        return False
 
     if not security.check_password(password, receiver_user.password, receiver_user.salt):
         log.debug("Receiver login: Invalid password")
-        return False, None
+        return False
     else:
         log.debug("Receiver: Authorized receiver %s" % username)
         receiver_user.last_login = utility.datetime_now()
         receiver = store.find(Receiver, (Receiver.user_id == receiver_user.id)).one()
         store.commit() # the transact was read only! on success we apply the commit()
-        return receiver.id, receiver_user.state
+        return receiver.id
 
 @transact_ro  # read only transact; manual commit on success needed
 def login_admin(store, username, password):
@@ -250,24 +247,27 @@ def login_admin(store, username, password):
 
     if not admin_user or admin_user.role != 'admin':
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
-        return False, None
+        return False
 
     if not security.check_password(password, admin_user.password, admin_user.salt):
         log.debug("Admin login: Invalid password")
-        return False, None
+        return False
     else:
         log.debug("Admin: Authorized admin %s" % username)
         admin_user.last_login = utility.datetime_now()
         store.commit() # the transact was read only! on success we apply the commit()
-        return username, admin_user.state
+        return username
 
 class AuthenticationHandler(BaseHandler):
     """
-    Login handler
+    Login page for administrator
+    Extra attributes:
+      session_id - current id session for the user
+      get_session(username, password) - generates a new session_id
     """
     session_id = None
 
-    def generate_session(self, user_id, role, status):
+    def generate_session(self, role, user_id):
         """
         Args:
             role: can be either 'admin', 'wb' or 'receiver'
@@ -276,7 +276,7 @@ class AuthenticationHandler(BaseHandler):
                 case of an admin it will be set to 'admin', in the case of the
                 'wb' it will be the whistleblower id.
         """
-        session = GLSession(user_id, role, status)
+        session = GLSession(user_id, role)
         self.session_id = session.id
         return self.session_id
 
@@ -331,18 +331,17 @@ class AuthenticationHandler(BaseHandler):
 
         if role == 'admin':
 
-            authorized_username, status = yield login_admin(username, password)
+            authorized_username = yield login_admin(username, password)
             if authorized_username is False:
                 GLSetting.failed_login_attempts += 1
                 raise errors.InvalidAuthRequest
-            new_session_id = self.generate_session(authorized_username, role, status)
+            new_session_id = self.generate_session(role, authorized_username)
 
             auth_answer = {
                 'role': 'admin',
                 'session_id': new_session_id,
                 'user_id': unicode(authorized_username),
                 'session_expiration': int(GLSetting.sessions[new_session_id].getTime()),
-                'status': status
             }
 
         elif role == 'wb':
@@ -352,31 +351,29 @@ class AuthenticationHandler(BaseHandler):
                 GLSetting.failed_login_attempts += 1
                 raise errors.InvalidAuthRequest
 
-            new_session_id = self.generate_session(wbtip_id, role, 'enabled')
+            new_session_id = self.generate_session(role, wbtip_id)
 
             auth_answer = {
                 'role': 'admin',
                 'session_id': new_session_id,
                 'user_id': unicode(wbtip_id),
                 'session_expiration': int(GLSetting.sessions[new_session_id].getTime()),
-                'status': 'enabled'
             }
 
         elif role == 'receiver':
 
-            receiver_id, status = yield login_receiver(username, password)
+            receiver_id = yield login_receiver(username, password)
             if receiver_id is False:
                 GLSetting.failed_login_attempts += 1
                 raise errors.InvalidAuthRequest
 
-            new_session_id = self.generate_session(receiver_id, role, status)
+            new_session_id = self.generate_session(role, receiver_id)
 
             auth_answer = {
                 'role': 'receiver',
                 'session_id': new_session_id,
                 'user_id': unicode(receiver_id),
                 'session_expiration': int(GLSetting.sessions[new_session_id].getTime()),
-                'status': status
             }
 
         else:
