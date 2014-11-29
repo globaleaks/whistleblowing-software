@@ -124,6 +124,7 @@ class NotificationSchedule(GLJob):
                             receiver_info=receiver_desc,
                             context_info=context_desc,
                             plugin=plugin)
+
             events.append((unicode(receiver_tip.id), event))
 
         return events, notification_counter
@@ -210,7 +211,7 @@ class NotificationSchedule(GLJob):
 
             tip_desc = serialize_receivertip(message.receivertip)
 
-            receiver = store.find(Receiver, models.Receiver.id == message.receivertip.receiver_id).one()
+            receiver = store.find(models.Receiver, models.Receiver.id == message.receivertip.receiver_id).one()
             if not receiver:
                 log.err("Message %s do not find receiver!?" % message.id)
 
@@ -246,7 +247,7 @@ class NotificationSchedule(GLJob):
             else:
                 template_type = u'plaintext_message'
 
-            notification_settings = self._get_notification_settings(receiver_desc['language'])
+            notification_settings = self._get_notification_settings(store, receiver_desc['language'])
 
             event = Event(type=template_type, trigger='Message',
                           notification_settings=notification_settings,
@@ -387,7 +388,7 @@ class NotificationSchedule(GLJob):
                 else:
                     template_type = u'plaintext_comment'
 
-                notification_settings = self._get_notification_settings(receiver_desc['language'])
+                notification_settings = self._get_notification_settings(store, receiver_desc['language'])
 
                 event = Event(type=template_type, trigger='Comment',
                     notification_settings=notification_settings,
@@ -519,7 +520,7 @@ class NotificationSchedule(GLJob):
             else:
                 template_type = u'plaintext_file'
 
-            notification_settings = self._get_notification_settings(receiver_desc['language'])
+            notification_settings = self._get_notification_settings(store, receiver_desc['language'])
 
             event = Event(type=template_type, trigger='File',
                 notification_settings=notification_settings,
@@ -561,7 +562,7 @@ class NotificationSchedule(GLJob):
         rfile.mark = models.ReceiverFile._marker[2] # 'unable to notify'
 
         log.debug("Email: -[Fail] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, rfile.receiver.user.username))
-    
+
     @inlineCallbacks
     def do_receiverfile_notification(self, receiverfile_events):
         for receiverfile_receiver_id, event in receiverfile_events:
