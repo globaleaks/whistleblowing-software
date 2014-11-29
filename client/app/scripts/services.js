@@ -796,8 +796,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.gpg_enable_notification = false;
         receiver.presentation_order = 0;
         receiver.status = 'password_change_needed'
-        receiver.language = 'en'
-        receiver.timezone = '0'
         return receiver;
       };
 
@@ -818,40 +816,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
      /* email regexp is an edited version of angular.js input.js in order to avoid domains with not tld */ 
      "email_regexp": /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
      "https_regexp": /^(https:\/\/([a-z0-9-]+)\.(.*)$|^)$/,
-     "http_or_https_regexp": /^(http(s?):\/\/([a-z0-9-]+)\.(.*)$|^)$/,
-     "timezones": [
-        {"timezone": -12.0, "label": "(GMT -12:00) Eniwetok, Kwajalein"},
-        {"timezone": -11.0, "label": "(GMT -11:00) Midway Island, Samoa"},
-        {"timezone": -10.0, "label": "(GMT -10:00) Hawaii"},
-        {"timezone": -9.0, "label": "(GMT -9:00) Alaska"},
-        {"timezone": -8.0, "label": "(GMT -8:00) Pacific Time (US &amp; Canada)"},
-        {"timezone": -7.0, "label": "(GMT -7:00) Mountain Time (US &amp; Canada)"},
-        {"timezone": -6.0, "label": "(GMT -6:00) Central Time (US &amp; Canada), Mexico City"},
-        {"timezone": -5.0, "label": "(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima"},
-        {"timezone": -4.0, "label": "(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz"},
-        {"timezone": -3.5, "label": "(GMT -3:30) Newfoundland"},
-        {"timezone": -3.0, "label": "(GMT -3:00) Brazil, Buenos Aires, Georgetown"},
-        {"timezone": -2.0, "label": "(GMT -2:00) Mid-Atlantic"},
-        {"timezone": -1.0, "label": "(GMT -1:00 hour) Azores, Cape Verde Islands"},
-        {"timezone": 0.0, "label": "(GMT) Western Europe Time, London, Lisbon, Casablanca"},
-        {"timezone": 1.0, "label": "(GMT +1:00 hour) Brussels, Copenhagen, Madrid, Paris"},
-        {"timezone": 2.0, "label": "(GMT +2:00) Kaliningrad, South Africa"},
-        {"timezone": 3.0, "label": "(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg"},
-        {"timezone": 3.5, "label": "(GMT +3:30) Tehran"},
-        {"timezone": 4.0, "label": "(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi"},
-        {"timezone": 4.5, "label": "(GMT +4:30) Kabul"},
-        {"timezone": 5.0, "label": "(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent"},
-        {"timezone": 5.5, "label": "(GMT +5:30) Bombay, Calcutta, Madras, New Delhi"},
-        {"timezone": 5.75, "label": "(GMT +5:45) Kathmandu"},
-        {"timezone": 6.0, "label": "(GMT +6:00) Almaty, Dhaka, Colombo"},
-        {"timezone": 7.0, "label": "(GMT +7:00) Bangkok, Hanoi, Jakarta"},
-        {"timezone": 8.0, "label": "(GMT +8:00) Beijing, Perth, Singapore, Hong Kong"},
-        {"timezone": 9.0, "label": "(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk"},
-        {"timezone": 9.5, "label": "(GMT +9:30) Adelaide, Darwin"},
-        {"timezone": 10.0, "label": "(GMT +10:00) Eastern Australia, Guam, Vladivostok"},
-        {"timezone": 11.0, "label": "(GMT +11:00) Magadan, Solomon Islands, New Caledonia"},
-        {"timezone": 12.0, "label": "(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka"}
-     ]
+     "http_or_https_regexp": /^(http(s?):\/\/([a-z0-9-]+)\.(.*)$|^)$/
 }).
   config(['$httpProvider', function($httpProvider) {
     $httpProvider.responseInterceptors.push('globaleaksInterceptor');
