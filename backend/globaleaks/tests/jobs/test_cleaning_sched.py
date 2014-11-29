@@ -140,7 +140,7 @@ class TestCleaning(TTip):
             finalize=True)
 
         self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[1])
-        
+
         submission.create_whistleblower_tip(self.submission_desc)
 
     # -------------------------------------------

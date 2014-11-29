@@ -112,4 +112,5 @@ setup(
         'bin/gl-fix-permissions',
     ],
     install_requires=install_requires,
+    tests_require=['mock'],
 )
