@@ -72,7 +72,7 @@ receiverReceiverDesc = {
     "tip_notification": bool,
     "message_notification": bool,
     "language": unicode,
-    "timezone": unicode,
+    "timezone": int,
 }
 
 actorsCommentDesc = {
@@ -128,7 +128,7 @@ adminNodeDesc = {
     'disable_security_awareness_questions': bool,
     'configured': bool,
     'admin_language': unicode,
-    'admin_timezone': unicode,
+    'admin_timezone': int,
 }
 
 adminNotificationDesc = {
@@ -207,9 +207,8 @@ adminReceiverDesc = {
     'gpg_key_status': unicode,
     'gpg_enable_notification': bool,
     'presentation_order': int,
-    'state': unicode,
     "language": unicode,
-    "timezone": unicode,
+    "timezone": int,
 }
 
 anonNodeDesc = {

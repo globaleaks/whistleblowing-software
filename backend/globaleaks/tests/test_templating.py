@@ -117,8 +117,8 @@ class notifTemplateTest(helpers.TestGL):
             # we simply check for file opening while translation
             # related things happen at db level
             with open(tp_path) as f:
-                self.templates[t] = { "en" : f.read() }
-                self.assertGreater(self.templates[t]['en'], 0)
+                self.templates[t] = f.read()
+                self.assertGreater(self.templates[t], 0)
 
     @inlineCallbacks
     def test_keywords_conversion(self):
@@ -142,25 +142,25 @@ class notifTemplateTest(helpers.TestGL):
 
         self.templates = {}
         for t in self.templates_list:
-            self.templates[t] = { 'en': u"" }
+            self.templates[t] = ""
 
             for k in notifTemplateTest.generic_keyword_list:
-                self.templates[t]['en'] += " " + k
+                self.templates[t] += " " + k
 
         for k in notifTemplateTest.tip_keyword_list:
-            self.templates['default_ETNT.txt']['en'] += " " + k
-            self.templates['default_PTNT.txt']['en'] += " " + k
+            self.templates['default_ETNT.txt'] += " " + k
+            self.templates['default_PTNT.txt'] += " " + k
 
         for k in notifTemplateTest.protected_keyword_list:
-            self.templates['default_ETNT.txt']['en'] += " " + k
+            self.templates['default_ETNT.txt'] += " " + k
 
         for k in notifTemplateTest.comment_keyword_list:
-            self.templates['default_ECNT.txt']['en'] += " " + k
-            self.templates['default_PCNT.txt']['en'] += " " + k
+            self.templates['default_ECNT.txt'] += " " + k
+            self.templates['default_PCNT.txt'] += " " + k
 
         for k in notifTemplateTest.file_keyword_list:
-            self.templates['default_EFNT.txt']['en'] += " " + k
-            self.templates['default_PFNT.txt']['en'] += " " + k
+            self.templates['default_EFNT.txt'] += " " + k
+            self.templates['default_PFNT.txt'] += " " + k
 
         # THE REAL CONVERSION TEST START HERE:
         self.mockSubmission = helpers.MockDict().dummySubmission
@@ -188,11 +188,11 @@ class notifTemplateTest(helpers.TestGL):
 
         # http://witchwind.wordpress.com/2013/12/15/piv-is-always-rape-ok/
         # wtf has the internet in those days ? bwahahaah
-        tip_num_test = Templating().format_template({'en': u'%TipNum%'}, self.event)
+        tip_num_test = Templating().format_template(u'%TipNum%', self.event)
         new_id = self.event.trigger_info['id'].replace('1', '2')
         new_id.replace('3', '4')
         self.event.trigger_info['id'] = new_id.replace('5', '6')
-        different_num = Templating().format_template({'en': u'%TipNum%'}, self.event)
+        different_num = Templating().format_template(u'%TipNum%', self.event)
         self.assertNotEqual(tip_num_test, different_num)
 
 
@@ -284,7 +284,7 @@ class notifTemplateTest(helpers.TestGL):
         yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
 
         # adding funny configured variables 
-        self.templates['default_ETNT.txt']['en'] += " %OttimoDireiOOOttimoDirei%"
+        self.templates['default_ETNT.txt'] += " %OttimoDireiOOOttimoDirei%"
 
         # with the event, we can finally call the format checks
         gentext = Templating().format_template(self.templates['default_ETNT.txt'], self.event)

@@ -157,7 +157,7 @@ class GLSettingsClass:
         self.defaults.submission_seconds_of_life = (3600 * 24) * 3
 
         self.defaults.default_language = u'en'
-        self.defaults.default_timezone = u"0.0"
+        self.defaults.default_timezone = 0
         self.defaults.languages_enabled = LANGUAGES_SUPPORTED_CODES
 
         self.memory_copy = OD()
@@ -699,7 +699,7 @@ class GLSettingsClass:
 
         for f in os.listdir(GLSetting.submission_path):
             try:
-                path = os.path.join(GLSetting.submission_path, f) 
+                path = os.path.join(GLSetting.submission_path, f)
                 result = GLSetting.AES_file_regexp_comp.match(f)
                 if result is not None:
                     if not os.path.isfile("%s%s" % (keypath, result.group(1)) ):
@@ -718,7 +718,7 @@ class transact(object):
     Because Storm sucks.
     """
     tp = ThreadPool(0, GLSetting.db_thread_pool_size)
-    
+
     readonly = False
 
     def __init__(self, method):
