@@ -61,7 +61,6 @@ angular.module('resourceServices.authentication', [])
               self.username = username;
               self.role = role;
               self.session = response.session;
-              self.status = response.status;
 
               var auth_landing_page = "";
 
@@ -71,11 +70,7 @@ angular.module('resourceServices.authentication', [])
                   auth_landing_page = "/admin/landing";
               }
               if (role == 'receiver') {
-                if (self.status == 'password_change_needed') {
-                    auth_landing_page = "/receiver/firstlogin";
-                } else {
-                    auth_landing_page = "/receiver/tips";
-                }
+                auth_landing_page = "/receiver/tips";
               }
               if (role == 'wb') {
                 auth_landing_page = "/status";
@@ -795,7 +790,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.gpg_key_status = 'ignored';
         receiver.gpg_enable_notification = false;
         receiver.presentation_order = 0;
-        receiver.status = 'password_change_needed'
         return receiver;
       };
 

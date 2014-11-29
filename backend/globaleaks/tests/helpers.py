@@ -488,7 +488,7 @@ class TestHandler(TestGLWithPopulatedDB):
         handler.check_xsrf_cookie = mock_pass
 
         if role:
-            session = authentication.GLSession(user_id, role, 'enabled')
+            session = authentication.GLSession(user_id, role)
             handler.request.headers['X-Session'] = session.id
         return handler
 

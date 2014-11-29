@@ -6,35 +6,6 @@ GLClient.controller('ReceiverSidebarCtrl', ['$scope', '$location', function($sco
   $scope.active[current_menu] = "active";
 }]);
 
-GLClient.controller('ReceiverFirstLoginCtrl', ['$scope', '$rootScope', '$location', 'ReceiverPreferences', 'changePasswordWatcher',
-  function($scope, $rootScope, $location, ReceiverPreferences, changePasswordWatcher) {
-
-    $scope.preferences = ReceiverPreferences.get();
-
-    changePasswordWatcher($scope, "preferences.old_password",
-        "preferences.password", "preferences.check_password");
-
-    $scope.pass_save = function () {
-
-      // avoid changing any GPG setting
-      $scope.preferences.gpg_key_remove = false;
-      $scope.preferences.gpg_key_armor = '';
-
-      $scope.preferences.$update(function () {
-
-        if (!$rootScope.successes) {
-          $rootScope.successes = [];
-        }
-
-        $rootScope.successes.push({message: 'Updated your password!'});
-
-        $location.path("/receiver/tips");
-
-      });
-    };
-
-}]);
-
 GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'ReceiverPreferences', 'changePasswordWatcher',
   function($scope, $rootScope, ReceiverPreferences, changePasswordWatcher) {
 
