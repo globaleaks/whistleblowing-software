@@ -1,3 +1,5 @@
+#!/bin/sh
+# update machine
 apt-get update
 
 # Install the VirtualBox guest additions

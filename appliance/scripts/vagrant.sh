@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Set up sudo
 echo %vagrant ALL=NOPASSWD:ALL > /etc/sudoers.d/vagrant

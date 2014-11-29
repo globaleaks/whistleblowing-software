@@ -41,12 +41,14 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/vagrant.sh",
-                "scripts/virtualbox.sh",
-                "scripts/globaleaks.sh",
-                "scripts/vm_cleanup.sh"
+                "../scripts/vagrant.sh",
+                "../scripts/virtualbox.sh",
+                "scripts/preinst-globaleaks.sh",
+                "../scripts/globaleaks.sh",
+                "../scripts/cleanup.sh",
+                "../scripts/zerodisk.sh"
             ],
-            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
+            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S '{{.Path}}'"
         }
     ],
 
