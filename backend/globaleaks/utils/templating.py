@@ -8,13 +8,12 @@
 # supporter KeyWords are here documented:
 # https://github.com/globaleaks/GlobaLeaks/wiki/Customization-guide#customize-notification
 
-from globaleaks import models
 from globaleaks.settings import GLSetting
-from globaleaks.utils.utility import log, ISO8601_to_pretty_str_tz, dump_file_list, dump_submission_fields
+from globaleaks.utils.utility import log, ISO8601_to_pretty_str, dump_file_list, dump_submission_fields
 
 class Templating:
 
-    def format_template(self, raw_template, event_dicts):
+    def format_template(self, template, event_dicts):
         """
         TODO research on integration of http://docs.python.org/2/library/email
         """
@@ -48,6 +47,22 @@ class Templating:
         # we've now:
         # 1) template => directly from Notification.*_template
         # 2) keyword_converter => object aligned with Event type and data
+
+        # is template == dict, we can need to select a language to use.
+        # currently used language is the node default, but in future it would be
+        # nice to use a receiver preference variable.
+        if isinstance(template, dict): 
+
+            if not template.has_key(GLSetting.memory_copy.default_language):
+                log.err("Missing notification template in the default language!")
+                raise Exception("Missing notification template in the default language")
+
+            raw_template = template[GLSetting.memory_copy.default_language]
+
+        else: # if != dict we expcect an already localized template
+
+            raw_template = template
+
 
         for kw in keyword_converter.keyword_list:
 
@@ -171,7 +186,7 @@ class TipKeyword(_KeyWord):
         return unicode(retval)
 
     def EventTime(self):
-        return ISO8601_to_pretty_str_tz(self.tip['creation_date'], float(self.receiver['timezone']))
+        return ISO8601_to_pretty_str(self.tip['creation_date'])
 
 
 class EncryptedTipKeyword(TipKeyword):
@@ -207,7 +222,7 @@ class CommentKeyword(TipKeyword):
         return self.comment['type']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str_tz(self.comment['creation_date'], float(self.receiver['timezone']))
+        return ISO8601_to_pretty_str(self.comment['creation_date'])
 
 
 class EncryptedCommentKeyword(CommentKeyword):
@@ -249,7 +264,8 @@ class MessageKeyword(TipKeyword):
         return self.message['author']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str_tz(self.message['creation_date'], float(self.receiver['timezone']))
+        return ISO8601_to_pretty_str(self.message['creation_date'])
+
 
 class EncryptedMessageKeyword(MessageKeyword):
 
@@ -287,7 +303,7 @@ class FileKeyword(TipKeyword):
         return self.file['name']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str_tz(self.file['creation_date'], float(self.receiver['timezone']))
+        return ISO8601_to_pretty_str(self.file['creation_date'])
 
     def FileSize(self):
         return self.file['size']

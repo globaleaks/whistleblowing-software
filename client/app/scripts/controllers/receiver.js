@@ -35,8 +35,8 @@ GLClient.controller('ReceiverFirstLoginCtrl', ['$scope', '$rootScope', '$locatio
 
 }]);
 
-GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'ReceiverPreferences', 'changePasswordWatcher', 'CONSTANTS',
-  function($scope, $rootScope, ReceiverPreferences, changePasswordWatcher, CONSTANTS) {
+GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'ReceiverPreferences', 'changePasswordWatcher',
+  function($scope, $rootScope, ReceiverPreferences, changePasswordWatcher) {
 
     $scope.tabs = [
       {
@@ -57,8 +57,6 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
     ];
 
     $scope.navType = 'pills';
-
-    $scope.timezones = CONSTANTS.timezones;
 
     $scope.preferences = ReceiverPreferences.get();
 

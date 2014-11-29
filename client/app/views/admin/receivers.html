@@ -29,6 +29,7 @@ This comment is needed in order to push the following strings on transifex
                     <p class="has-error" data-ng-show="newReceiver.name.$error.maxlength">
                       <span data-translate>Receiver name too long</span>
                     </p>
+                    <!-- XXX fix this so that it works on right to left languages. -->
                   </div>
                   <div class="form-group">
                     <label>
@@ -185,20 +186,11 @@ This comment is needed in order to push the following strings on transifex
                       </div>
                       <div class="form-group">
                         <label data-translate>Status</label>
-                        <select class="form-control" data-ng-model="receiver.state">
+                        <select id="editFieldType" class="form-control" data-ng-model="receiver.status" data-ng-required="">
                           <option value="disabled" data-translate>Disabled</option>
                           <option value="enabled" data-translate>Enabled</option>
                           <option value="password_change_needed" data-translate>Password Change Needed</option>
                         </select>
-                      </div>
-                      <div class="form-group">
-                        <label data-translate>Language</label>
-                        <select class="form-control" data-ng-model="receiver.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
-                      </div>
-
-                      <div class="form-group">
-                        <label data-translate>Timezone</label>
-                        <select class="form-control" data-ng-model="receiver.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
                       </div>
                     </div>
 

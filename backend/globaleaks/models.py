@@ -118,15 +118,12 @@ class User(Model):
     role = Unicode()
     state = Unicode()
     last_login = DateTime()
-    language = Unicode()
-    timezone = Int()
-
+ 
     _roles = [ u'admin', u'receiver' ]
     _states = [ u'disabled', u'password_change_needed', u'enabled']
 
-    unicode_keys = [ 'username', 'password', 'salt', 'role',
-                     'state', 'language' ]
-    int_keys = [ 'timezone' ]
+    unicode_keys = [ 'username', 'password', 'salt', 'role', 'state' ]
+    int_keys = []
 
 
 class Context(Model):
@@ -399,7 +396,6 @@ class Node(Model):
 
     languages_enabled = Pickle()
     default_language = Unicode()
-    default_timezone = Int()
 
     # localized string
     description = Pickle(validator=longlocal_v)
@@ -445,7 +441,7 @@ class Node(Model):
                     'exception_email', 'default_language', 'receipt_regexp',
                     'x_frame_options_mode', 'x_frame_options_allow_from' ]
     int_keys = [ 'stats_update_time', 'maximum_namesize',
-                 'maximum_textsize', 'maximum_filesize', 'default_timezone' ]
+                 'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',
                   'can_delete_submission', 'ahmia', 'allow_unencrypted',
