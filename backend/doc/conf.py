@@ -234,8 +234,9 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'globaleaks', u'GlobaLeaks Documentation',
-     [u'Random GlobaLeaks Developers'], 1)
+    ('bin.globaleaks', 'globaleaks',
+     u'Opensource whistleblowing platform',
+     [globaleaks.__author__], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -249,7 +250,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'GlobaLeaks', u'GlobaLeaks Documentation',
-   u'Random GlobaLeaks Developers', 'GlobaLeaks', 'One line description of project.',
+   globaleaks.__copyright__, 'GlobaLeaks', 'One line description of project.',
    'Miscellaneous'),
 ]
 
