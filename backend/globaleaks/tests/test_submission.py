@@ -44,7 +44,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         status = yield submission.create_submission(submission_desc, finalize=False)
 
-        self.assertEqual(status['mark'], u'submission')
+        self.assertEqual(status['mark'], 'submission')
 
     @inlineCallbacks
     def test_fail_submission_missing_required_file(self):
@@ -53,7 +53,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         del mycopy['id']
 
         for attrname in models.Context.localized_strings:
-            mycopy[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
+            mycopy[attrname] = '⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
 
         context_status = yield create_context(mycopy)
         submission_desc = dict(self.dummySubmission)
@@ -75,7 +75,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         status = yield submission.update_submission(status['id'], status, finalize=True)
 
-        self.assertEqual(status['mark'], u'finalize')
+        self.assertEqual(status['mark'], 'finalize')
 
         receipt = yield submission.create_whistleblower_tip(status)
 
@@ -108,7 +108,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
             for elem in receivermap:
                 rfdesc = yield delivery_sched.receiverfile_create(ifile_path,
                                     elem['path'], elem['status'], elem['size'], elem['receiver'])
-                self.assertEqual(rfdesc['mark'], u'not notified')
+                self.assertEqual(rfdesc['mark'], 'not notified')
                 self.assertEqual(rfdesc['receiver_id'], elem['receiver']['id'])
 
         self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['id'])
@@ -120,8 +120,8 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertEqual(len(self.rfi), 8)
 
         for i in range(0, 8):
-            self.assertTrue(self.rfi[i]['mark'] in [u'not notified', u'skipped'])
-            self.assertTrue(self.rfi[i]['status'] in [u'reference', u'encrypted'])
+            self.assertTrue(self.rfi[i]['mark'] in ['not notified', 'skipped'])
+            self.assertTrue(self.rfi[i]['status'] in ['reference', 'encrypted'])
 
         # verify the checksum returned by whistleblower POV, I'm not using
         #  wfv = yield tip.get_files_wb()
@@ -150,7 +150,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
             for elem in receivermap:
                 rfdesc = yield delivery_sched.receiverfile_create(ifile_path,
                                     elem['path'], elem['status'], elem['size'], elem['receiver'])
-                self.assertEqual(rfdesc['mark'], u'not notified')
+                self.assertEqual(rfdesc['mark'], 'not notified')
                 self.assertEqual(rfdesc['receiver_id'], elem['receiver']['id'])
 
         self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['id'])
@@ -163,8 +163,8 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertEqual(len(self.rfi), 8)
         # no rfiles are created for the receivers that have no key
         for i in range(0, 8):
-            self.assertTrue(self.rfi[i]['mark'] in [u'not notified', u'skipped'])
-            self.assertTrue(self.rfi[i]['status'] in [u'reference', u'nokey'])
+            self.assertTrue(self.rfi[i]['mark'] in ['not notified', 'skipped'])
+            self.assertTrue(self.rfi[i]['status'] in ['reference', 'nokey'])
 
         # verify the checksum returned by whistleblower POV, I'm not using
         #  wfv = yield tip.get_files_wb()
@@ -188,7 +188,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.dummyContext['escalation_threshold'] = 0
 
         for attrname in models.Context.localized_strings:
-            self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
+            self.dummyContext[attrname] = '⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
 
         context_status = yield update_context(self.dummyContext['id'], self.dummyContext)
 
@@ -234,7 +234,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.dummyContext['escalation_threshold'] = 0
 
         for attrname in models.Context.localized_strings:
-            self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
+            self.dummyContext[attrname] = '⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
 
         context_status = yield update_context(self.dummyContext['id'], self.dummyContext)
 
@@ -292,11 +292,11 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         sbmt['wb_fields'] = {}
         i = 0
         for sf in self.dummyContext['fields']:
-            assert (sf['type'] == u'text' or sf['type'] == u'textarea'), \
+            assert (sf['type'] == 'text' or sf['type'] == 'textarea'), \
                     "Dummy fields had only 'text' when this test has been dev"
 
-            sbmt['wb_fields'].update({ sf['key'] : { u'value': "something",
-                                                     u'answer_order': i} })
+            sbmt['wb_fields'].update({sf['key'] : {'value': "something",
+                                                   'answer_order': i}})
 
             i += 1
 
