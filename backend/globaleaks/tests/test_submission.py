@@ -37,7 +37,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     encryption_scenario = 'ALL_PLAINTEXT'
 
     @inlineCallbacks
-    def test_001_create_submission(self):
+    def test_create_submission(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = False
         del submission_desc['id']
@@ -47,7 +47,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertEqual(status['mark'], u'submission')
 
     @inlineCallbacks
-    def test_002_fail_submission_missing_required_file(self):
+    def test_fail_submission_missing_required_file(self):
         mycopy = dict(self.dummyContext)
         mycopy['file_required'] = True
         del mycopy['id']
@@ -64,7 +64,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         yield self.assertFailure(submission.create_submission(submission_desc, finalize=True), errors.FileRequiredMissing)
 
     @inlineCallbacks
-    def test_003_create_submission_attach_files_finalize_and_access_wbtip(self):
+    def create_submission_attach_files_finalize_and_access_wbtip(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
         del submission_desc['id']
@@ -91,9 +91,9 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertTrue(wb_tip.has_key('fields'))
 
     @inlineCallbacks
-    def test_004_create_receiverfiles_allow_unencrypted_true_no_keys_loaded(self):
+    def test_create_receiverfiles_allow_unencrypted_true_no_keys_loaded(self):
 
-        yield self.test_003_create_submission_attach_files_finalize_and_access_wbtip()
+        yield self.create_submission_attach_files_finalize_and_access_wbtip()
 
         # create receivertip its NEEDED to create receiverfile
         self.rt = yield delivery_sched.tip_creation()
@@ -130,11 +130,11 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertEqual(len(self.wbfls), 4)
 
     @inlineCallbacks
-    def test_005_create_receiverfiles_allow_unencrypted_false_no_keys_loaded(self):
+    def test_create_receiverfiles_allow_unencrypted_false_no_keys_loaded(self):
 
         GLSetting.memory_copy.allow_unencrypted = False
 
-        yield self.test_003_create_submission_attach_files_finalize_and_access_wbtip()
+        yield self.create_submission_attach_files_finalize_and_access_wbtip()
 
         # create receivertip its NEEDED to create receiverfile
         self.rt = yield delivery_sched.tip_creation()
@@ -173,7 +173,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertEqual(len(self.wbfls), 4)
 
     @inlineCallbacks
-    def test_006_submission_with_receiver_selection_allow_unencrypted_true_no_keys_loaded(self):
+    def test_submission_with_receiver_selection_allow_unencrypted_true_no_keys_loaded(self):
 
         # for some reason, the first receiver is no more with the same ID
         self.receivers = yield get_receiver_list()
@@ -217,7 +217,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
 
     @inlineCallbacks
-    def test_007_submission_with_receiver_selection_allow_unencrypted_false_no_keys_loaded(self):
+    def test_submission_with_receiver_selection_allow_unencrypted_false_no_keys_loaded(self):
 
         GLSetting.memory_copy.allow_unencrypted = False
 
@@ -248,7 +248,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         yield self.assertFailure(submission.create_submission(submission_request, finalize=True), errors.SubmissionFailFields)
 
     @inlineCallbacks
-    def test_008_update_submission(self):
+    def test_update_submission(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = False
         submission_desc['context_id'] = self.dummyContext['id']
@@ -270,7 +270,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
 
     @inlineCallbacks
-    def test_009_unable_to_access_finalized(self):
+    def test_unable_to_access_finalized(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
         submission_desc['context_id'] = self.dummyContext['id']
@@ -285,7 +285,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
 
     @inlineCallbacks
-    def test_010_fields_validator_all_fields(self):
+    def test_fields_validator_all_fields(self):
 
         sbmt = dict(self.dummySubmission)
 
@@ -308,7 +308,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
             self.assertTrue(False)
 
     @inlineCallbacks
-    def test_010_fields_fail_unexpected_presence(self):
+    def test_fields_fail_unexpected_presence(self):
 
         sbmt = self.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])
         sbmt['wb_fields'].update({ 'alien' : 'predator' })
@@ -316,7 +316,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
 
     @inlineCallbacks
-    def test_011_fields_fail_missing_required(self):
+    def test_fields_fail_missing_required(self):
 
         required_key = self.dummyContext['fields'][0]['key']
         sbmt = self.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])
