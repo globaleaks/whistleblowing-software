@@ -33,46 +33,46 @@ class TestCollectionDownload(helpers.TestHandler):
             yield handler.post(rtip_desc['rtip_id'], compression)
 
     @inlineCallbacks
-    def test_001_post_download_zipstored(self):
+    def test_post_download_zipstored(self):
         yield self.download('zipstored')
 
     @inlineCallbacks
-    def test_002_post_download_zipdeflated(self):
+    def test_post_download_zipdeflated(self):
         yield self.download('zipdeflated')
 
     @inlineCallbacks
-    def test_003_post_download_tar(self):
+    def test_post_download_tar(self):
         yield self.download('tar')
 
     @inlineCallbacks
-    def test_004_post_download_targz(self):
+    def test_post_download_targz(self):
         yield self.download('targz')
 
     @inlineCallbacks
-    def test_005_post_download_tarbz2(self):
+    def test_post_download_tarbz2(self):
         yield self.download('tarbz2')
 
     @inlineCallbacks
-    def test_006_post_download_zipstored_with_files_removed_due_to_whatever(self):
+    def test_post_download_zipstored_with_files_removed_due_to_whatever(self):
         shutil.rmtree(GLSetting.submission_path)
         yield self.download('zipstored')
 
     @inlineCallbacks
-    def test_007_post_download_zipdeflated_with_files_removed_due_to_whatever(self):
+    def test_post_download_zipdeflated_with_files_removed_due_to_whatever(self):
         shutil.rmtree(GLSetting.submission_path)
         yield self.download('zipdeflated')
 
     @inlineCallbacks
-    def test_008_post_download_tar_with_files_removed_due_to_whatever(self):
+    def test_post_download_tar_with_files_removed_due_to_whatever(self):
         shutil.rmtree(GLSetting.submission_path)
         yield self.download('tar')
 
     @inlineCallbacks
-    def test_009_post_download_targz_with_files_removed_due_to_whatever(self):
+    def test_post_download_targz_with_files_removed_due_to_whatever(self):
         shutil.rmtree(GLSetting.submission_path)
         yield self.download('targz')
 
     @inlineCallbacks
-    def test_010_post_download_tarbz2_with_files_removed_due_to_whatever(self):
+    def test_post_download_tarbz2_with_files_removed_due_to_whatever(self):
         shutil.rmtree(GLSetting.submission_path)
         yield self.download('tarbz2')
