@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks
-
 import json
+
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.rest import requests, errors
 from globaleaks.tests import helpers
@@ -13,15 +13,15 @@ class TestFileInstance(helpers.TestHandler):
     _handler = files.FileInstance
 
     @inlineCallbacks
-    def test_001_post_file_on_not_finalized_submission(self):
+    def test_post_file_on_not_finalized_submission(self):
         handler = self.request(body=self.get_dummy_file())
         yield handler.post(self.dummySubmissionNotFinalized['id'])
 
-    def test_002_post_file_finalized_submission(self):
+    def test_post_file_finalized_submission(self):
         handler = self.request(body=self.get_dummy_file())
         self.assertFailure(handler.post(self.dummySubmission['id']), errors.SubmissionConcluded)
 
-    def test_003_post_file_on_unexistent_submission(self):
+    def test_post_file_on_unexistent_submission(self):
         handler = self.request(body=self.get_dummy_file())
         self.assertFailure(handler.post(u'unexistent_submission'), errors.SubmissionIdNotFound)
 
@@ -29,7 +29,7 @@ class TestFileAdd(helpers.TestHandler):
     _handler = files.FileAdd
 
     @inlineCallbacks
-    def test_001_post(self):
+    def test_post(self):
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb', body=self.get_dummy_file())
@@ -40,7 +40,7 @@ class TestDownload(helpers.TestHandler):
     _handler = files.Download
 
     @inlineCallbacks
-    def test_001_post(self):
+    def test_post(self):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             rfiles_desc = yield self.get_rfiles(rtip_desc['rtip_id'])
