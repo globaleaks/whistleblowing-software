@@ -28,15 +28,24 @@ Package: globaleaks
 Architecture: all
 X-Python-Version: 2.7
 Depends:
- ${python:Depends}
+# The following substitution variable shall be uncommented once we get
+# all globaleaks dependencies into debian.
+# ${python:Depends}
+# XXX. The following packages, instead, are required in order to use pip
+# to install globaleaks dependencies.
+ , gcc
+ , python-dev
+ , libffi-dev
+ , libssl-dev
+# End of packages required by pip
  , ${misc:Depends}
+ , python-pip
  , tor
  , iptables
  , build-essential
  , apparmor
  , apparmor-utils
- , libffi-dev
-Description: An opensource whistleblowing platform.
+Description: Opensource whistleblowing platform.
  GlobaLeaks is an open source project aimed to create a worldwide, anonymous,
  censorship-resistant, distributed whistleblowing platform.
 Provides: ${python:Provides}
