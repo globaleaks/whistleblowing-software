@@ -1,20 +1,14 @@
 #!/bin/bash
 
 ### BEGIN INIT INFO
-# GlobaLeaks startup script for Ubuntu and Debian Linux servers
-#
-# cp globaleaks.init /etc/init.d/globaleaks
-#
-# To automatically start at reboot
-# sudo update-rc.d globaleaks defaults
-#
 # Provides:          globaleaks
 # Required-Start:    $local_fs $remote_fs $network $named $time tor
 # Required-Stop:     $local_fs $remote_fs $network $named $time
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: globaleaks initscript
-# Description:       This file starts up the globaleaks server.
+# Short-Description: Start the GlobaLeaks server.
+# Description:       Start The GlobaLeaks server, an opensource, anonymous,
+#                    censorship-resistant whistleblowing platform.
 ### END INIT INFO
 
 # Author: Giovanni Pellerano <evilaliv3@globaleaks.org>

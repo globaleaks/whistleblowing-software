@@ -1,0 +1,61 @@
+{
+    "variables": {
+        "machine_name": "ubuntu-12.04"
+    },
+
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.5-server-amd64.iso",
+            "iso_checksum": "af224223de99e2a730b67d7785b657f549be0d63221188e105445f75fb8305c9",
+            "iso_checksum_type": "sha256",
+            "boot_wait": "5s",
+            "boot_command": [
+                "<esc><esc><enter><wait>",
+                "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+                "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+                "hostname={{ .Name }} ",
+                "fb=false debconf/frontend=noninteractive ",
+                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+                "initrd=/install/initrd.gz -- <enter>"
+            ],
+            "guest_os_type": "Ubuntu_64",
+            "http_directory": "http",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "ssh_wait_timeout": "20m",
+            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+            "virtualbox_version_file": ".vbox_version",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "output_directory": "output-{{user `machine_name`}}",
+            "vm_name": "globaleaks-{{user `machine_name`}}"
+        }
+    ],
+
+    "provisioners": [
+        {
+            "type": "file",
+            "source": "../../globaleaks_2.60.29_all.deb",
+            "destination": "globaleaks_2.60.29_all.deb"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/update-system.sh",
+                "../scripts/vagrant.sh",
+                "../scripts/virtualbox.sh",
+                "../scripts/globaleaks.sh",
+                "../scripts/cleanup.sh",
+                "../scripts/zerodisk.sh"
+            ],
+            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S '{{.Path}}'"
+        }
+    ],
+
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "output": "packer_{{.Provider}}_{{user `machine_name`}}.box"
+        }
+    ]
+}
