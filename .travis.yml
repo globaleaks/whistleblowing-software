@@ -20,4 +20,4 @@ script:
   - cd $TRAVIS_BUILD_DIR/client  # to run frontend tests
   - bower install && grunt build
   - $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z
-  - node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*
+  - node_modules/mocha/bin/mocha -R list tests/glbackend/test_00[12356]*
