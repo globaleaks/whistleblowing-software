@@ -52,7 +52,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'GlobaLeaks'
-copyright = globaleaks.__copyright__
+copyright = u'{} All rights reversed. Ⓚ'.format(globaleaks.__copyright__)
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -250,7 +250,8 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'GlobaLeaks', u'GlobaLeaks Documentation',
-   globaleaks.__copyright__, 'GlobaLeaks', 'One line description of project.',
+   copyright,
+   'GlobaLeaks', 'Opensource whistleblowing platform',
    'Miscellaneous'),
 ]
 
