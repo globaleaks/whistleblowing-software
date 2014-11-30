@@ -44,6 +44,8 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "contexts": list(receiver.contexts.values(Context.id)),
         "password": u'',
         "old_password": u'',
+        'language': receiver.user.language,
+        'timezone': receiver.user.timezone
     }
 
     mo = Rosetta()
@@ -72,6 +74,9 @@ def update_receiver_settings(store, receiver_id, request, language=GLSetting.mem
     if not receiver:
         raise errors.ReceiverIdNotFound
 
+    receiver.user.language = request.get('language', GLSetting.memory_copy.default_language)
+    receiver.user.timezone = request.get('timezone', GLSetting.memory_copy.default_timezone)
+
     new_password = request['password']
     old_password = request['old_password']
 
@@ -80,6 +85,9 @@ def update_receiver_settings(store, receiver_id, request, language=GLSetting.mem
                                                  old_password,
                                                  new_password,
                                                  receiver.user.salt)
+
+        if receiver.user.state == 'password_change_needed':
+            receiver.user.state = 'enabled'
 
     mail_address = request['mail_address']
 

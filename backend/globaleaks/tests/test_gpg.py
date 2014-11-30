@@ -29,7 +29,11 @@ class TestReceiverSetKey(TestHandler):
         'username': 'evilaliv3@useless_information_on_this_test.org',
         'name': 'assertion',
         'gpg_key_fingerprint': 'CF4A22020873A76D1DCB68D32B25551568E49345',
-        'gpg_key_status': Receiver._gpg_types[1] }
+        'gpg_key_status': Receiver._gpg_types[1],
+        'language': u'en',
+        'timezone': 0,
+        }
+        
 
     receiver_only_update = {
         'gpg_key_armor': None, 'gpg_key_remove': False,
@@ -46,6 +50,8 @@ class TestReceiverSetKey(TestHandler):
         "file_notification": True,
         "tip_notification": False,
         "message_notification": False,
+        "language": u"en",
+        "timezone": 0
     }
 
     @inlineCallbacks
@@ -110,9 +116,9 @@ class TestReceiverSetKey(TestHandler):
 
     def test_Class_encryption_message(self):
 
-        dummy_template = { "en" : "In %EventTime% you've got a crush for Taryn Southern, yay!!"
-                            "more info on: https://www.youtube.com/watch?v=C7JZ4F3zJdY "
-                            "and know that you're not alone!" }
+        dummy_template = "In %EventTime% you've got a crush for Taryn Southern, yay!! \
+                         more info on: https://www.youtube.com/watch?v=C7JZ4F3zJdY \
+                         and know that you're not alone!"
 
         mock_event = Event(type=u'encrypted_tip', trigger='Tip',
                     notification_settings = dummy_template,

@@ -29,7 +29,6 @@ This comment is needed in order to push the following strings on transifex
                     <p class="has-error" data-ng-show="newReceiver.name.$error.maxlength">
                       <span data-translate>Receiver name too long</span>
                     </p>
-                    <!-- XXX fix this so that it works on right to left languages. -->
                   </div>
                   <div class="form-group">
                     <label>
@@ -47,28 +46,18 @@ This comment is needed in order to push the following strings on transifex
                 <div class="col-md-12">
                   <div class="form-group">
                     <label data-translate>Password</label>
-                    <input class="form-control" data-ng-model="new_receiver.password" type="password" required>
-                    <p class="has-error" data-ng-show="unsafe_password">
-                      <span data-translate>The choosen password is unsafe, it should have</span>:
-                    </p>
-                    <ul>
-                      <li class="has-error" data-ng-hide="pwdHasLetter">
-                        <span data-translate>At least one letter</span>
-                      </li>
-                      <li class="has-error" data-ng-hide="pwdHasNumber">
-                        <span data-translate>At least one number</span>
-                      </li>
-                      <li class="has-error" data-ng-hide="pwdValidLength">
-                        <span data-translate>At least 8 characters</span>
-                      </li>
-                    </ul>
+                    <input type="hidden" ng-init="new_receiver.password = 'globaleaks'">
+                    <div>
+                      <span data-translate>By default receivers password is:</span> <span class="label label-primary">globaleaks</span></br>
+                      <span data-translate>The system forces users to change the password at first login.</span>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <button class="pull-left btn btn-success" data-ng-disabled="newReceiver.$invalid || unsafe_password" data-ng-click="add_receiver()">
+                    <button class="pull-left btn btn-success" data-ng-disabled="newReceiver.$invalid" data-ng-click="add_receiver()">
                       <i class="glyphicon glyphicon-ok"></i>
                       <span data-translate>Add</span>
                     </button>
@@ -193,6 +182,23 @@ This comment is needed in order to push the following strings on transifex
                         <div>
                           <textarea class="form-control" data-ng-model="receiver.description">{{receiver.description}}</textarea>
                         </div>
+                      </div>
+                      <div class="form-group">
+                        <label data-translate>Status</label>
+                        <select class="form-control" data-ng-model="receiver.state">
+                          <option value="disabled" data-translate>Disabled</option>
+                          <option value="enabled" data-translate>Enabled</option>
+                          <option value="password_change_needed" data-translate>Password Change Needed</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label data-translate>Language</label>
+                        <select class="form-control" data-ng-model="receiver.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
+                      </div>
+
+                      <div class="form-group">
+                        <label data-translate>Timezone</label>
+                        <select class="form-control" data-ng-model="receiver.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
                       </div>
                     </div>
 

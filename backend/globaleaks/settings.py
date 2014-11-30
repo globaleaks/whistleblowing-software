@@ -120,6 +120,8 @@ class GLSettingsClass:
             'MailNotification',
             ]
 
+        self.default_password = 'globaleaks'
+
         # session tracking, in the singleton classes
         self.sessions = dict()
         self.failed_login_attempts = 0 # statisticals, referred to latest_period
@@ -168,10 +170,14 @@ class GLSettingsClass:
         self.defaults.maximum_textsize = 4096
         self.defaults.maximum_filesize = 30 # expressed in megabytes
         self.defaults.exception_email = u"globaleaks-stackexception@lists.globaleaks.org"
+
         # Context dependent values:
         self.defaults.receipt_regexp = u'[0-9]{16}'
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
         self.defaults.submission_seconds_of_life = (3600 * 24) * 3
+
+        self.defaults.default_language = u'en'
+        self.defaults.default_timezone = 0
         self.defaults.languages_enabled = LANGUAGES_SUPPORTED_CODES
 
         self.memory_copy = OD()
@@ -191,7 +197,8 @@ class GLSettingsClass:
         self.memory_copy.anomaly_checks = self.defaults.anomaly_checks
         self.memory_copy.exception_email = self.defaults.exception_email
         # updated by globaleaks/db/__init__.import_memory_variables
-        self.memory_copy.default_language = 'en'
+        self.memory_copy.default_language = self.defaults.default_language
+        self.memory_copy.default_timezone = self.defaults.default_timezone
         self.memory_copy.notif_server = None
         self.memory_copy.notif_port = None
         self.memory_copy.notif_username = None
@@ -720,7 +727,7 @@ class GLSettingsClass:
 
         for f in os.listdir(GLSetting.submission_path):
             try:
-                path = os.path.join(GLSetting.submission_path, f) 
+                path = os.path.join(GLSetting.submission_path, f)
                 result = GLSetting.AES_file_regexp_comp.match(f)
                 if result is not None:
                     if not os.path.isfile("%s%s" % (keypath, result.group(1)) ):
@@ -739,7 +746,7 @@ class transact(object):
     Because Storm sucks.
     """
     tp = ThreadPool(0, GLSetting.db_thread_pool_size)
-    
+
     readonly = False
 
     def __init__(self, method):
