@@ -26,7 +26,10 @@ This comment is needed in order to push the following strings on transifex
           <dt><span data-translate>Expiration Date</span></dt>
           <dd>{{ tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}</dd>
         </dl>
-        <dd data-ng-include="'views/partials/tip_fields.html'"></dd>
+       <div data-ng-repeat="step in tip.wb_steps">
+         <dt>{{ $index + 1 }}) {{ step.label }}</dt>
+         <dd data-ng-include="'views/partials/tip_fields.html'"></dd>
+       </div>
       </div>
     </div>
 

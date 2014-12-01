@@ -11,7 +11,7 @@
 import copy
 
 from globaleaks.settings import GLSetting
-from globaleaks.utils.utility import log, ISO8601_to_pretty_str, dump_file_list, dump_submission_fields
+from globaleaks.utils.utility import log, ISO8601_to_pretty_str, dump_file_list, dump_submission_steps
 
 class Templating:
 
@@ -41,7 +41,7 @@ class Templating:
         # For each Event type, we've to dispatch the right _KeyWord class
         keyword_converter = supported_event_types[event_dicts.type](event_dicts.node_info,
                                                                     event_dicts.context_info,
-                                                                    event_dicts.fields_info,
+                                                                    event_dicts.steps_info,
                                                                     event_dicts.receiver_info,
                                                                     event_dicts.trigger_info,
                                                                     event_dicts.trigger_parent)
@@ -207,13 +207,7 @@ class EncryptedTipKeyword(TipKeyword):
         self.keyword_list += EncryptedTipKeyword.encrypted_tip_keywords
 
     def TipFields(self):
-        # FIX_FIELDS_REFACTOR
-        wb_steps = []
-        for step in self.tip['wb_steps']:
-             for field in step['children']:
-                 wb_steps[field] = copy.deepcopy(field)
-
-        return dump_submission_fields(self.fields, wb_steps)
+        return dump_submission_steps(self.tip['wb_steps'])
 
 
 class CommentKeyword(TipKeyword):

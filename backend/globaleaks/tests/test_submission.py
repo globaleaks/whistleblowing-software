@@ -59,7 +59,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         submission_desc['context_id'] = self.dummyContext['id']
         submission_desc['finalize'] = True
-        submission_desc['wb_steps'] = yield helpers.fill_random_fields(self.dummyContext)
+        submission_desc['wb_steps'] = yield helpers.fill_random_fields(self.dummyContext['id'])
         yield self.assertFailure(submission.create_submission(submission_desc, finalize=True), errors.FileRequiredMissing)
 
     @inlineCallbacks
@@ -253,7 +253,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         status = yield submission.create_submission(submission_desc, finalize=False)
 
-        status['wb_steps'] = yield helpers.fill_random_fields(self.dummyContext)
+        status['wb_steps'] = yield helpers.fill_random_fields(self.dummyContext['id'])
         status['finalize'] = True
 
         status = yield submission.update_submission(status['id'], status, finalize=True)
@@ -283,7 +283,19 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     def test_fields_fail_unexpected_presence(self):
 
         sbmt = yield self.get_dummy_submission(self.dummyContext['id'])
-        sbmt['wb_steps'].update({ 'alien' : 'predator' })
+
+        found_at_least_a_field = False
+
+        for s in sbmt['wb_steps']:
+            for f in s['children']:
+                # we assign a random id to the first field
+                tmp = s['children'][f]
+                del s['children'][f]
+                s['children']['alien'] = tmp
+                found_at_least_a_field = True
+                break
+
+        self.assertTrue(found_at_least_a_field)
 
         yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
 

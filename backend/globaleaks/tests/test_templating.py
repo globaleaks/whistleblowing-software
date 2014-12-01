@@ -121,7 +121,7 @@ class notifTemplateTest(helpers.TestGL):
 
             receiver_dict = yield admin.get_receiver(self.createdReceiver['id'])
             context_dict = yield admin.get_context(self.createdContext['id'])
-            fields_dict = yield admin.get_context_fields(self.createdContext['id'])
+            steps_dict = yield admin.get_context_steps(self.createdContext['id'])
             notif_dict = yield admin.notification.get_notification()
 
             yield admin.import_memory_variables()
@@ -136,7 +136,7 @@ class notifTemplateTest(helpers.TestGL):
                 node_info = node_dict,
                 receiver_info = receiver_dict,
                 context_info = context_dict,
-                fields_info = fields_dict,
+                steps_info = steps_dict,
                 plugin = None,
                 trigger_info = tip_dict,
                 trigger_parent = None

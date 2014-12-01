@@ -194,7 +194,7 @@ def anon_serialize_field(store, field, language):
         'fieldgroup_id': fieldgroup_id,
         'multi_entry': field.multi_entry,
         'required': field.required,
-        'preview': False,
+        'preview': field.preview,
         'stats_enabled': field.stats_enabled,
         'type': field.type,
         'x': field.x,
