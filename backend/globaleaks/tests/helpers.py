@@ -594,7 +594,7 @@ class MockDict():
             'multi_entry': False,
             'stats_enabled': False,
             'required': True, # <- first field is special,
-            'children': [],   #    it's marked as required!!!
+            'children': {},   #    it's marked as required!!!
             'options': [],
             'y': 2,
             'x': 0
@@ -612,7 +612,7 @@ class MockDict():
             'multi_entry': False,
             'stats_enabled': False,
             'required': False,
-            'children': [],
+            'children': {},
             'options': [],
             'y': 3,
             'x': 0
@@ -630,7 +630,7 @@ class MockDict():
             'multi_entry': False,
             'stats_enabled': False,
             'required': False,
-            'children': [],
+            'children': {},
             'options': [],
             'y': 4,
             'x': 0
@@ -648,7 +648,7 @@ class MockDict():
             'multi_entry': False,
             'stats_enabled': False,
             'required': False,
-            'children': [],
+            'children': {},
             'options': [],
             'y': 0,
             'x': 0
@@ -666,7 +666,7 @@ class MockDict():
             'multi_entry': False,
             'stats_enabled': False,
             'required': False,
-            'children': [],
+            'children': {},
             'options': [],
             'y': 0,
             'x': 0
@@ -678,13 +678,13 @@ class MockDict():
             'label': u'Presegnalazione',
             'description': u'Step Description',
             'hint': u'Step Hint',
-            'children': []
+            'children': {}
             },
             {
               'label': u'Segnalazione',
               'description': u'Step Description',
               'hint': u'Step Hint',
-              'children': []
+              'children': {}
             }]
 
         self.dummyContext = {
@@ -828,7 +828,7 @@ def template_keys(first_a, second_a, name):
     return ret_string
 
 def fill_random_field_recursively(field):
-    field['value'] = ''#.join(unichr(x) for x in range(0x400, 0x4FF))
+    field['value'] = 'aaa'#.join(unichr(x) for x in range(0x400, 0x4FF))
     for c in field['children']:
         fill_random_field_recursively(field['children'][c])
 

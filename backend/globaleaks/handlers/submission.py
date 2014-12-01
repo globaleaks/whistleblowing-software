@@ -162,6 +162,34 @@ def import_files(store, submission, files, finalize):
                   submission.context.name)
         raise errors.FileRequiredMissing
 
+def verify_fields_recursively(fields, wb_fields):
+
+   if type(fields) == list:
+       tmp = {}
+       for elem in fields:
+           tmp[elem['id']] = copy.deepcopy(elem)
+       fields = tmp
+
+   for f in fields:
+       if f not in wb_fields:
+           raise errors.SubmissionFailFields("missing field (no structure present): %s" % f)
+
+       if fields[f]['required'] and wb_fields[f]['value'] == '':
+           raise errors.SubmissionFailFields("missing required field (no value provided): %s" % f)
+
+       if type(wb_fields[f]['children']) == list:
+           wb_f_dict = {}
+           for elem in wb_fields[f]['children']:
+               wb_f_dict[elem['id']] = elem
+       else:
+           wb_f_dict = wb_fields[f]['children']
+
+       verify_fields_recursively(fields[f]['children'], wb_f_dict)
+
+   for wbf in wb_fields:
+       if wbf not in fields:
+           raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
+
 
 @transact
 def create_submission(store, request, finalize, language=GLSetting.memory_copy.default_language):
@@ -204,17 +232,9 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
                  wb_fields[f_id] = copy.deepcopy(step['children'][f_id])
 
         fields = db_get_context_fields(store, context.id, language)
-        fields_ids = [ field['id'] for field in fields]
 
         if finalize:
-            # required fields are checked only on field finalization
-            for f in fields:
-                if f['required'] and f['id'] not in wb_fields:
-                    raise errors.SubmissionFailFields("missing required field %s" % f['id'])
-
-        for wbf in wb_fields:
-            if wbf not in fields_ids:
-                raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
+            verify_fields_recursively(fields, wb_fields)
 
         submission.wb_steps = request['wb_steps']
     except Exception as excep:
@@ -269,14 +289,7 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
         fields_ids = [ field['id'] for field in fields]
 
         if finalize:
-            # required fields are checked only on field finalization
-            for f in fields:
-                if f['required'] and f['id'] not in wb_fields:
-                    raise errors.SubmissionFailFields("missing required field %s" % f['id'])
-
-        for wbf in wb_fields:
-            if wbf not in fields_ids:
-                raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
+            verify_fields_recursively(fields, wb_fields)
 
         submission.wb_steps = request['wb_steps']
     except Exception as excep:

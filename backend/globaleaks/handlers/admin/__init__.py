@@ -544,11 +544,9 @@ def db_get_context_fields(store, context_id, language=GLSetting.memory_copy.defa
 
     for ss in steps_list:
         for children in ss.children:
-            s = anon_serialize_field(store, children, 'en')
-            fields.append(s)
-            fields += db_get_fields_recursively(store, children, language)
+            f = anon_serialize_field(store, children, 'en')
+            fields.append(f)
 
-    a = [ field['label'] for field in fields]
     return fields
 
 @transact_ro

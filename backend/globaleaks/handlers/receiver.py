@@ -199,14 +199,11 @@ def get_receiver_tip_list(store, receiver_id, language=GLSetting.memory_copy.def
 
         preview_data = []
 
-        fields = db_get_context_fields(store, rtip.internaltip.context.id, language)
-        fields_ids = [ field['id'] for field in fields]
-        for f in fields:
-            if f['preview']:
-                entry = dict({'label' : f['label'],
-                              'text': rtip.internaltip.wb_steps[f['id']] })
-
-                preview_data.append(entry)
+        for s in rtip.internaltip.wb_steps:
+            for f in s['children']:
+                field = s['children'][f]
+                if field['preview']:
+                    preview_data.append(field)
 
         single_tip_sum.update({ 'preview' : preview_data })
         rtip_summary_list.append(single_tip_sum)

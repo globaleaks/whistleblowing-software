@@ -124,7 +124,7 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
                     node_info = MockDict().dummyNode,
                     receiver_info = MockDict().dummyReceiver,
                     context_info = MockDict().dummyContext,
-                    fields_info = {},
+                    steps_info = {},
                     plugin = MailNotification(),
                     trigger_parent = {} )
 

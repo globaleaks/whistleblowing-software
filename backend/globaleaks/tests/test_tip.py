@@ -156,7 +156,7 @@ class TestTipInstance(TTip):
 
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['id']])
 
-        dummySubmissionDict = self.get_dummy_submission(self.context_desc['id']
+        dummySubmissionDict = self.get_dummy_submission(self.context_desc['id'])
         basehandler.validate_jmessage(dummySubmissionDict, requests.wbSubmissionDesc)
 
         self.submission_desc = yield submission.create_submission(dummySubmissionDict, finalize=True)
