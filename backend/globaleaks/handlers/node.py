@@ -150,10 +150,9 @@ def anon_serialize_option(option, field_type, language):
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
-
     ret_dict = {
         'id': option.id,
-        'attrs': option.attrs
+        'attrs': {}
     }
 
     keys = get_field_option_localized_keys(field_type)
