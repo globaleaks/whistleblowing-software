@@ -249,7 +249,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     };
 
-    return function(fn) {
+    return function(fn, context_id) {
       /**
        * This factory returns a Submission object that will call the fn
        * callback once all the information necessary for creating a submission
@@ -263,7 +263,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       self.contexts = [];
       self.receivers = [];
-      self.current_context = null;
+      self.current_context = undefined;
       self.maximum_filesize = null;
       self.allow_unencrypted = null;
       self.current_context_fields = [];
@@ -292,7 +292,13 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
         Contexts.query(function(contexts){
           self.contexts = contexts;
-          self.current_context = $filter('orderBy')(self.contexts, 'presentation_order')[0];
+          if (context_id) {
+            self.current_context = $filter('filter')(self.contexts, 
+                                                     {"id": context_id})[0];
+          }
+          if (self.current_context === undefined) {
+            self.current_context = $filter('orderBy')(self.contexts, 'presentation_order')[0];
+          }
           Receivers.query(function(receivers){
             self.receivers = [];
             forEach(receivers, function(receiver){
