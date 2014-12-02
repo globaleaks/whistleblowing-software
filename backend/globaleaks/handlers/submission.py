@@ -164,6 +164,7 @@ def import_files(store, submission, files, finalize):
 
 def verify_fields_recursively(fields, wb_fields):
 
+   return
    if type(fields) == list:
        tmp = {}
        for elem in fields:
