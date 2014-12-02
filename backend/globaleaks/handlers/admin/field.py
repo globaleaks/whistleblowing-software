@@ -72,6 +72,7 @@ def db_update_options(store, field_id, options, language):
     for o in old_options:
         indexed_old_options[o.id] = o
 
+    new_options = []
     n = 1
     for option in options:
         opt_dict = {}
@@ -87,10 +88,10 @@ def db_update_options(store, field_id, options, language):
            o = indexed_old_options[option['id']]
            o.update(opt_dict, keys)
 
-           # remove key from old steps to be removed
+           new_options.append(indexed_old_options[option['id']])
            del indexed_old_options[option['id']]
         else:
-           o = models.FieldOption.new(store, opt_dict, keys)
+           new_options.append(models.FieldOption(attrs))
 
         n += 1
 
@@ -98,6 +99,12 @@ def db_update_options(store, field_id, options, language):
     for opt_id in indexed_old_options:
         o = store.find(models.FieldOption, models.FieldOption.id == opt_id).one()
         store.remove(o)
+
+    for o in indexed_old_options:
+        store.remove(indexed_old_options[o.id])
+
+    for n in new_options:
+        store.add(n)
 
 def field_integrity_check(request):
     is_template = request['is_template']
