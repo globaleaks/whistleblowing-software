@@ -19,7 +19,7 @@ from globaleaks import db, models, security
 from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLApiCache
-from globaleaks.handlers.admin import create_context, create_receiver, db_get_context_steps
+from globaleaks.handlers.admin import create_context, update_context, create_receiver, db_get_context_steps
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
 from globaleaks.jobs import delivery_sched, notification_sched
@@ -368,6 +368,8 @@ class TestGLWithPopulatedDB(TestGL):
             self.dummyFields[1]['id'], # Field 2
             self.dummyFields[2]['id']  # Generalities
         ]
+
+        yield update_context(self.dummyContext['id'], self.dummyContext)
 
         # fill_data/create_submission
         self.dummySubmission['context_id'] = self.dummyContext['id']

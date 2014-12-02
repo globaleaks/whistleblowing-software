@@ -309,6 +309,5 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         for s in sbmt['wb_steps']:
             if required_key in s['children']:
                 del s['children'][required_key]
-        #[required_key]
 
         yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
