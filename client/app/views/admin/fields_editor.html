@@ -113,6 +113,16 @@
                     </div>
                   </div>
                 </div>
+                <div data-ng-switch-when="fileupload">
+                  <div data-ng-repeat="option in field.options">
+                    <div class="form-inline">
+                      <div class="form-group">
+                        <label data-translate>Name</label>
+                        <input class="form-control" data-ng-model="option.attrs.name"  value="{{option.attrs.name}}" type="text" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -144,6 +154,12 @@
                 <a data-ng-click="addOption(field)">
                   <i class="glyphicon glyphicon-plus-sign"></i>
                   <span data-translate>Add option</span>
+                </a>
+              </div>
+              <div data-ng-switch-when="fileupload">
+                <a data-ng-click="addOption(field)">
+                  <i class="glyphicon glyphicon-plus-sign"></i>
+                  <span data-translate>Add description</span>
                 </a>
               </div>
             </div>

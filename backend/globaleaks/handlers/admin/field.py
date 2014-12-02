@@ -90,7 +90,7 @@ def db_update_options(store, field_id, options, language):
            new_options.append(indexed_old_options[option['id']])
            del indexed_old_options[option['id']]
         else:
-           new_options.append(models.FieldOption(attrs))
+           new_options.append(models.FieldOption(opt_dict))
 
         n += 1
 

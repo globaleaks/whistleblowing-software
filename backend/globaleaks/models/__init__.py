@@ -41,6 +41,7 @@ class BaseModel(Storm):
     localized_strings = []
     int_keys = []
     bool_keys = []
+    json_keys = []
 
     def __init__(self, attrs=None):
         self.update(attrs)
@@ -75,6 +76,7 @@ class BaseModel(Storm):
         cls_unicode_keys = getattr(self, "unicode_keys")
         cls_int_keys = getattr(self, "int_keys")
         cls_bool_keys = getattr(self, "bool_keys")
+        cls_json_keys = getattr(self, "json_keys")
         cls_localized_keys = getattr(self, "localized_strings")
 
         for k in cls_unicode_keys:
@@ -83,6 +85,10 @@ class BaseModel(Storm):
 
         for k in cls_int_keys:
             value = int(attrs[k])
+            setattr(self, k, value)
+
+        for k in cls_json_keys:
+            value = attrs[k]
             setattr(self, k, value)
 
         for k in cls_bool_keys:
@@ -718,6 +724,7 @@ class FieldOption(Model):
 
     unicode_keys = ['field_id']
     int_keys = ['number']
+    json_keys = ['attrs']
 
     def __init__(self, attrs=None, localized_keys=[]):
         self.attrs = dict()
