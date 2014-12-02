@@ -14,7 +14,7 @@ from globaleaks.settings import transact, transact_ro, GLSetting, stats_counter
 from globaleaks.models import *
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler, anomaly_check
-from globaleaks.handlers.admin import db_get_context_fields
+from globaleaks.handlers.admin import db_get_context_steps
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
@@ -163,14 +163,6 @@ def import_files(store, submission, files, finalize):
         raise errors.FileRequiredMissing
 
 def verify_fields_recursively(fields, wb_fields):
-
-   return
-   if type(fields) == list:
-       tmp = {}
-       for elem in fields:
-           tmp[elem['id']] = copy.deepcopy(elem)
-       fields = tmp
-
    for f in fields:
        if f not in wb_fields:
            raise errors.SubmissionFailFields("missing field (no structure present): %s" % f)
@@ -178,18 +170,24 @@ def verify_fields_recursively(fields, wb_fields):
        if fields[f]['required'] and wb_fields[f]['value'] == '':
            raise errors.SubmissionFailFields("missing required field (no value provided): %s" % f)
 
-       if type(wb_fields[f]['children']) == list:
-           wb_f_dict = {}
-           for elem in wb_fields[f]['children']:
-               wb_f_dict[elem['id']] = elem
-       else:
-           wb_f_dict = wb_fields[f]['children']
-
-       verify_fields_recursively(fields[f]['children'], wb_f_dict)
+       verify_fields_recursively(fields[f]['children'], wb_fields[f]['children'])
 
    for wbf in wb_fields:
        if wbf not in fields:
            raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
+
+def verify_steps(steps, wb_steps):
+    indexed_fields  = {}
+    for step in steps:
+        for f_id in step['children']:
+            indexed_fields[f_id] = copy.deepcopy(step['children'][f_id])
+
+    indexed_wb_fields = {}
+    for step in wb_steps:
+        for f_id in step['children']:
+            indexed_wb_fields[f_id] = copy.deepcopy(step['children'][f_id])
+
+    return verify_fields_recursively(indexed_fields, indexed_wb_fields)
 
 
 @transact
@@ -227,17 +225,13 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
         raise excep
 
     try:
-        wb_fields = {}
-        for step in request['wb_steps']:
-             for f_id in step['children']:
-                 wb_fields[f_id] = copy.deepcopy(step['children'][f_id])
-
-        fields = db_get_context_fields(store, context.id, language)
+        wb_steps = request['wb_steps']
 
         if finalize:
-            verify_fields_recursively(fields, wb_fields)
+            steps = db_get_context_steps(store, context.id, language)
+            verify_steps(steps, wb_steps)
 
-        submission.wb_steps = request['wb_steps']
+        submission.wb_steps = wb_steps
     except Exception as excep:
         log.err("Submission create: fields validation fail: %s" % excep)
         raise excep
@@ -281,18 +275,12 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
         raise excep
 
     try:
-        wb_fields = {}
-        for step in request['wb_steps']:
-             for f_id in step['children']:
-                 wb_fields[f_id] = copy.deepcopy(step['children'][f_id])
-
-        fields = db_get_context_fields(store, context.id, language)
-        fields_ids = [ field['id'] for field in fields]
-
+        wb_steps = request['wb_steps']
         if finalize:
-            verify_fields_recursively(fields, wb_fields)
+            steps = db_get_context_steps(store, context.id, language)
+            verify_steps(steps, wb_steps)
 
-        submission.wb_steps = request['wb_steps']
+        submission.wb_steps = wb_steps
     except Exception as excep:
         log.err("Submission update: fields validation fail: %s" % excep)
         log.exception(excep)

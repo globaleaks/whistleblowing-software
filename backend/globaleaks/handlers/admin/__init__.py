@@ -160,9 +160,13 @@ def db_update_steps(store, context_id, steps, language):
 
             # remove current step/field fieldgroup/field association
             a_s, a_f = get_field_association(store, field.id)
-            if a_s != None and a_s != s.id:
+            if a_s == None:
+                s.children.add(field)
+            elif a_s != s.id:
                 disassociate_field(store, field.id)
                 s.children.add(field)
+            else: # the else condition means a_s == s.id; already associated!
+                pass
 
         n += 1
 
