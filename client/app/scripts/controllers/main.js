@@ -90,8 +90,8 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     };
 
     $scope.$on('$routeChangeSuccess', function() {
-      if($routeParams.lang) {
-        $rootScope.language = $scope.language = $routeParams.lang;
+      if($location.search().lang) {
+        $rootScope.language = $scope.language = $location.search().lang;
       }
     });
 
