@@ -6,6 +6,10 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.receiptConfimation = "";
   var context_id = $location.search().context;
+  var receivers = $location.search().receivers;
+  if (receivers) {
+    receivers = JSON.parse(receivers);
+  }
 
   Node.get(function (node) {
     $scope.node = node;
@@ -33,7 +37,7 @@ GLClient.controller('SubmissionCtrl',
       $scope.submit = $scope.submission.submit;
 
       checkReceiverSelected();
-    }, context_id);
+    }, context_id, receivers);
 
   });
 
