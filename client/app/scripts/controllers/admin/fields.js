@@ -158,10 +158,6 @@ GLClient.controller('AdminFieldsAddCtrl', ['$scope',
         });
       }
 
-      if (field.type == 'fileupload') {
-        field.options.push({'attrs': {'require_description': false}});
-      }
-
       field.$save(function(new_field){
         $scope.addField(new_field);
         $scope.new_field = {};
