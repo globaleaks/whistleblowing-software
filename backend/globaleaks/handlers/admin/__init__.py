@@ -147,7 +147,7 @@ def db_update_steps(store, context_id, steps, language):
            new_steps.append(indexed_old_steps[step['id']])
            del indexed_old_steps[step['id']]
         else:
-           new_steps.append(models.Step(attrs))
+           new_steps.append(models.Step(step))
 
         i = 1
         for field_id in step['children']:
