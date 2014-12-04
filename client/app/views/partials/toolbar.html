@@ -18,20 +18,15 @@
       </span>
     </div>
     <div data-ng-show="showLoginForm() && !session_id" class="pull-right">
-      <form role="form">
-        <div data-translate>Have you already filed a submission? Enter your receipt.</div>
-        <div class="form-group">
-          <div class="input-group">
-            <input class="form-control" data-ng-model="receipt" type="text" />
-              <span class="input-group-btn">
-                <button data-ng-click="view_tip(receipt)" class="btn btn-primary" data-ng-disabled="!receipt || receipt == ''" type="button">
-                  <i class="glyphicon glyphicon-log-in"></i>
-                </button>
-              </span>
-            </div>
+      <div data-translate>Have you already filed a submission? Enter your receipt.</div>
+      <div data-ng-include="'views/partials/wb_login.html'"></div>
+      <div class="row LoginErrorBox" data-ng-show="errors[0].code == 29">
+        <div class="col-md-12">
+          <div class="alert alert-danger">
+            <div data-translate>The Key Code is either invalid or the Tip has expired.</div>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
