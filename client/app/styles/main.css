@@ -2,43 +2,45 @@
   width: 100%;
 }
 
-#HeaderBox {
+#HeaderBox, #HeaderBoxHomepage {
   overflow: hidden;
-  padding: 40px 0;
-  color: #fff;
-  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
-  background: Teal;
+  color: #FFF;
+  background: #428bca;
+  border-bottom: 1px solid #357ebd;
+  padding: 40px;
 }
 
-#HeaderBox:after, #HeaderBox:after {
+#HeaderBox:after, #HeaderBox:after, #HeaderBoxHompage:after, #HeaderBoxHomepage:after {
   clear: both;
   content: "";
   display: block;
 }
 
 #HeaderBoxHomeContent {
-  text-align: center;
 }
 
-#HeaderBox {
-  border-bottom: 1px solid #ddd;
-}
-#HeaderBox h1 {
-  font-size: 40px;
-}
-#HeaderBox p {
+#HeaderBox p, #HeaderBoxHomepage p {
   margin-bottom: 20px;
 }
-#HeaderBox .navbar {
+
+#HeaderBox .navbar, #HeaderBoxHomepage .navbar {
   display: none;
 }
 
 #PageTitle {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 #PageSubtitle {
-  font-size: 32px;
+  font-size: 22px;
+}
+
+#PageTitleHomepage {
+  font-size: 40px;
+}
+
+#PageSubtitleHomepage {
+  font-size: 30px;
 }
 
 #ContentBox {
@@ -63,9 +65,26 @@
   font-size: 20px;
 }
 
-#LogoBox, #TitleBox, #ToolbarBox {
+#LogoBox, #TitleBox, #ToolbarBox, #LogoBoxHomepage, #TitleBoxHomepage, #ToolbarBoxHomepage {
   margin-left: 20px;
   margin-right: 20px;
+  height: 200px;
+}
+
+#LogoBox, #LogoBoxHomepage {
+  text-align: center;
+}
+
+#LanguagePickerBox {
+  margin-top: 10px;
+}
+
+#LoginStatusBox {
+  color: #000;
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #FFF;
+  border-radius: 15px;
 }
 
 h1 {
@@ -80,42 +99,21 @@ h3 {
   font-size: 20px;
 }
 
-#LogoBox, #TitleBox {
-  padding: 30px;
+#LogoBox, #LogoBoxHomepage {
+  width: 300px;
+}
+
+#LogoBox img, #LogoBoxHomepage img {
+  margin: 0 auto;
+  height: 200px;
 }
 
 #TitleBox {
   max-width: 60%;
 }
 
-#LogoBox {
-  max-width: 20%;
-}
-
-#Logobox img {
-  max-width: 100%;
-}
-
-#LogoBox h1 {
-  font-size: 40px;
-  font-weight: bold;
-  letter-spacing: -2px;
-  line-height: 1;
-}
-
-#LogoBox p {
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 1.25;
-  margin-bottom: 30px;
-}
-
-#LogoBox img {
-  max-width: 100%;
-}
-
 #ToolbarBox {
-  max-width: 20%;
+  max-width: 25%;
 }
 
 /** Submission details **/
@@ -141,9 +139,6 @@ h3 {
 
 #ToolTipBox {
   position: relative;
-  top: 10px;
-  right: 10px;
-  padding: 10px;
   z-index: 99999;
 }
 @media (max-width: 550px) {
