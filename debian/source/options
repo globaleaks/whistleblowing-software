@@ -1,0 +1,15 @@
+tar-ignore = GlobaLeaks/doc/_build
+
+tar-ignore = GlobaLeaks/appliance/*/packer_cache
+tar-ignore = GlobaLeaks/appliance/*/.vagrant
+tar-ignore = *.box
+
+tar-ignore = GlobaLeaks/client/node_modules
+tar-ignore = GlobaLeaks/client/build
+tar-ignore = GlobaLeaks/client/app/components
+
+tar-ignore = *.py[co]
+tar-ignore = GlobaLeaks/backend/*.egg
+tar-ignore = GlobaLeaks/backend/testing_dir
+tar-ignore = GlobaLeaks/backend/_trial_temp
+tar-ignore = GlobaLeaks/.pybuild
