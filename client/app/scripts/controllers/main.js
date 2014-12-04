@@ -43,12 +43,21 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     $scope.update_node();
 
     $scope.isWizard = function () {
-      return ($location.path() == '/wizard');
+      return $location.path() == '/wizard';
     };
 
     $scope.isHomepage = function () {
-      return ($location.path() == '/');
+      return $location.path() == '/';
     };
+
+    $scope.isLoginPage = function () {
+      return $location.path() == '/login';
+    };
+
+    $scope.showLoginForm = function () {
+      return (!$scope.isHomepage() &&
+              !$scope.isLoginPage());
+    }
 
     $scope.hasSubtitle = function () {
       return $scope.header_subtitle != '';
