@@ -194,6 +194,7 @@ class notifTemplateTest(helpers.TestGL):
         self.event.trigger_info['id'] = new_id.replace('5', '6')
         different_num = Templating().format_template(u'%TipNum%', self.event)
         self.assertNotEqual(tip_num_test, different_num)
+    test_keywords_conversion.skip = 'Skipped due to #1024'
 
 
     @inlineCallbacks

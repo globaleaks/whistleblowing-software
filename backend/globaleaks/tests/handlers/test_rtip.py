@@ -13,7 +13,7 @@ class TestRTipInstance(helpers.TestHandler):
     _handler = rtip.RTipInstance
 
     @inlineCallbacks
-    def test_001_get(self):
+    def test_get(self):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver')
@@ -22,7 +22,7 @@ class TestRTipInstance(helpers.TestHandler):
             yield handler.get(rtip_desc['rtip_id'])
 
     @inlineCallbacks
-    def test_002_delete_global_delete_true(self):
+    def test_delete_global_delete_true(self):
         body = {
             'global_delete' : True,
             'is_pertinent': False,
@@ -43,7 +43,7 @@ class TestRTipInstance(helpers.TestHandler):
         self.assertEqual(len(rtips_desc), 0)
 
     @inlineCallbacks
-    def test_003_delete_global_delete_false(self):
+    def test_delete_global_delete_false(self):
         body = {
             'global_delete' : False,
             'is_pertinent': False,
@@ -64,7 +64,7 @@ class TestRTipInstance(helpers.TestHandler):
         self.assertEqual(len(rtips_desc), 1)
 
     @inlineCallbacks
-    def test_004_delete_unexistent_tip_by_existent_and_logged_receiver(self):
+    def test_delete_unexistent_tip_by_existent_and_logged_receiver(self):
         body = {
             'global_delete' : True,
             'is_pertinent': False,
@@ -80,7 +80,7 @@ class TestRTipInstance(helpers.TestHandler):
             self.assertFailure(handler.delete("unexistent_tip"), errors.TipIdNotFound)
 
     @inlineCallbacks
-    def test_004_delete_existent_tip_by_existent_and_logged_but_wrong_receiver(self):
+    def test_delete_existent_tip_by_existent_and_logged_but_wrong_receiver(self):
         body = {
             'global_delete' : True,
             'is_pertinent': False,
@@ -99,7 +99,7 @@ class TestRTipCommentCollection(helpers.TestHandler):
     _handler = rtip.RTipCommentCollection
 
     @inlineCallbacks
-    def test_001_get(self):
+    def test_get(self):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver')
@@ -108,7 +108,7 @@ class TestRTipCommentCollection(helpers.TestHandler):
             yield handler.get(rtip_desc['rtip_id'])
 
     @inlineCallbacks
-    def test_002_post(self):
+    def test_post(self):
         body = {
             'content' : "can you provide an evidence of what you are telling?",
         }
@@ -124,7 +124,7 @@ class TestReceiverMsgCollection(helpers.TestHandler):
     _handler = rtip.ReceiverMsgCollection
 
     @inlineCallbacks
-    def test_001_get(self):
+    def test_get(self):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver')
@@ -149,11 +149,10 @@ class TestRTipReceiversCollection(helpers.TestHandler):
     _handler = rtip.RTipReceiversCollection
 
     @inlineCallbacks
-    def test_001_get(self):
+    def test_get(self):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver')
             handler.current_user.user_id = rtip_desc['receiver_id']
 
             yield handler.get(rtip_desc['rtip_id'])
-
