@@ -132,8 +132,8 @@ h3 {
 
 #PrivacyBox {
   padding: 10px;
-  background-color: #fcf8e3;
-  color: #c09853;
+  background-color: #222;
+  color: #FFF;
   font-size: 20px;
 }
 
@@ -250,4 +250,27 @@ table {
 .preload_error {
   width: 70%;
   margin: 100px auto;
+}
+
+.LoginErrorBox, .LoginErrorBoxHomepage {
+  margin-top: 10px;
+}
+
+.LoginErrorBox {
+  text-align: left;
+}
+
+.LoginErroBoxHomepage {
+  text-align: center;
+}
+
+.LoginErrorBox .alert {
+  margin: 0px;
+}
+
+.keyinput {
+  width: inherit;
+  display: inline;
+  font-family: monospace;
+  font-weight: bold;
 }

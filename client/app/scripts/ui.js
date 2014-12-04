@@ -130,5 +130,33 @@ angular.module('submissionUI', []).
 
       element.fadeOut(fadeout_delay);
     };
+}).
+  directive('receiptvalidator', function($q, $timeout) {
+    return {
+      require: 'ngModel',
+      link: function(scope, elm, attrs, ngModel) {
+        ngModel.$setValidity('receiptvalidator', false);
+        ngModel.$parsers.unshift(function(viewValue) {
+          var result = '';
+          ngModel.$setValidity('receiptvalidator', false);
+          viewValue = viewValue.replace(/\D/g,'');
+          while (viewValue.length > 0) {
+            result += viewValue.substring(0, 4);
+            if(viewValue.length >= 4) {
+              if (result.length < 19) {
+                result += ' ';
+              }
+              viewValue = viewValue.substring(4);
+            } else {
+              break;
+            }
+          }
+          $(elm).val(result);
+          if (result.length == 19) {
+            ngModel.$setValidity('receiptvalidator', true);
+          }
+          return result;
+        });
+      }
+    };
 });
-

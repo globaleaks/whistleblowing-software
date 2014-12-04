@@ -186,6 +186,7 @@ var GLClient = angular.module('GLClient', [
         if (current.$$route) {
           $rootScope.header_title = current.$$route.header_title;
           $rootScope.header_subtitle = current.$$route.header_subtitle;
+          $rootScope.errors = [];
         }
     });
 
