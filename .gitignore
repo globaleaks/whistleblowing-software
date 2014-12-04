@@ -3,3 +3,5 @@ globaleaks*_*.changes
 globaleaks*_*.deb
 globaleaks*_*.dsc
 globaleaks*_*.tar.xz
+
+doc/_build
