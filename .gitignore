@@ -1,7 +1,11 @@
-globaleaks*_*.build
-globaleaks*_*.changes
-globaleaks*_*.deb
-globaleaks*_*.dsc
-globaleaks*_*.tar.xz
+.pybuild/
+
+debian/files
+debian/*.debhelper
+debian/*.log
+debian/globaleaks.substvars
+debian/globaleaks/
 
 doc/_build
+
+appliance/*/Vagrantfile
