@@ -2,6 +2,7 @@ tar-ignore = GlobaLeaks/doc/_build
 
 tar-ignore = GlobaLeaks/appliance/*/packer_cache
 tar-ignore = GlobaLeaks/appliance/*/.vagrant
+tar-ignore = GlobaLeaks/appliance/*/output-*
 tar-ignore = *.box
 
 tar-ignore = GlobaLeaks/client/node_modules
