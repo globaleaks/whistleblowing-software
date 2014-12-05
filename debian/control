@@ -34,6 +34,7 @@ Depends:
 # XXX. The following packages, instead, are required in order to use pip
 # to install globaleaks dependencies.
  , gcc
+ , python
  , python-dev
  , libffi-dev
  , libssl-dev
