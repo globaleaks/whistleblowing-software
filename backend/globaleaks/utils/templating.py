@@ -8,9 +8,8 @@
 # supporter KeyWords are here documented:
 # https://github.com/globaleaks/GlobaLeaks/wiki/Customization-guide#customize-notification
 
-from globaleaks import models
 from globaleaks.settings import GLSetting
-from globaleaks.utils.utility import log, ISO8601_to_pretty_str_tz, dump_file_list, dump_submission_fields
+from globaleaks.utils.utility import ISO8601_to_pretty_str_tz, dump_file_list, dump_submission_fields
 
 class Templating:
 
@@ -30,19 +29,18 @@ class Templating:
                                   u'plaintext_comment' : CommentKeyword,
                                   u'encrypted_message' : EncryptedMessageKeyword,
                                   u'plaintext_message' : MessageKeyword,
-                                  u'zip_collection' : ZipFileKeyword,
+                                  u'zip_collection' : ZipFileKeyword
                                 }
 
         if event_dicts.type not in supported_event_types.keys():
-            raise AssertionError("%s at the moment supported: %s is NOT " %
-                                 (supported_event_types, event_dicts.type))
+            raise AssertionError("%s at the moment supported: [%s] is NOT " %
+                                 (supported_event_types.keys(), event_dicts.type))
 
         # For each Event type, we've to dispatch the right _KeyWord class
-        keyword_converter = supported_event_types[event_dicts.type](event_dicts.node_info,
-                                                                    event_dicts.context_info,
-                                                                    event_dicts.receiver_info,
-                                                                    event_dicts.trigger_info,
-                                                                    event_dicts.trigger_parent)
+        TemplatClass = supported_event_types[event_dicts.type]
+        keyword_converter = TemplatClass(event_dicts.node_info, event_dicts.context_info,
+                                         event_dicts.receiver_info, event_dicts.trigger_info,
+                                         event_dicts.trigger_parent)
         # Each event has the same initializer, also if trigger_info differs :)
 
         # we've now:
@@ -54,8 +52,6 @@ class Templating:
             if raw_template.count(kw):
                 # if %SomeKeyword% matches, call keyword_converter.SomeKeyword function
                 variable_content = getattr(keyword_converter, kw[1:-1])()
-
-                # TODO: test with recursion, what if Node.name contain %NodeName% ?
                 raw_template = raw_template.replace(kw, variable_content)
 
         # Is no more Raw, because all the keywords that shall be converted in
@@ -128,6 +124,7 @@ class TipKeyword(_KeyWord):
 
         self.keyword_list += TipKeyword.tip_keywords
         self.tip = tip_desc
+        assert isinstance(self.tip, dict)
 
     def TipTorURL(self):
         if len(self.node['hidden_service']):
