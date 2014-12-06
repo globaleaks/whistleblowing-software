@@ -122,7 +122,6 @@ adminNodeDesc = {
     'x_frame_options_allow_from': x_frame_options_allow_from_regexp,
     'wizard_done': bool,
     'receipt_regexp': unicode,
-    'terms_and_conditions': unicode,
     'disable_privacy_badge': bool,
     'disable_security_awareness_badge': bool,
     'disable_security_awareness_questions': bool,
