@@ -167,7 +167,8 @@ def verify_fields_recursively(fields, wb_fields):
        if f not in wb_fields:
            raise errors.SubmissionFailFields("missing field (no structure present): %s" % f)
 
-       if fields[f]['required'] and wb_fields[f]['value'] == '':
+       if fields[f]['required'] and ('value' not in wb_fields[f] or
+                                     wb_fields[f]['value'] == ''):
            raise errors.SubmissionFailFields("missing required field (no value provided): %s" % f)
 
        verify_fields_recursively(fields[f]['children'], wb_fields[f]['children'])

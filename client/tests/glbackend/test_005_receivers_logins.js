@@ -12,7 +12,7 @@ var app = request(host);
 
 var authentication;
 
-var population_order = 42;
+var population_order = 3;
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
