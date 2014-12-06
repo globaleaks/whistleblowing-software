@@ -239,7 +239,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$resource', '$filter', 'Node', 'Contexts', 'Receivers', function($resource, $filter, Node, Contexts, Receivers) {
+  factory('Submission', ['$resource', '$filter', 'Node', 'Contexts', 'Receivers',
+  function($resource, $filter, Node, Contexts, Receivers) {
 
     var submissionResource = $resource('/submission/:submission_id/',
         {submission_id: '@id'},
@@ -270,7 +271,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.current_context = null;
       self.maximum_filesize = null;
       self.allow_unencrypted = null;
+      self.current_context_fields = [];
       self.current_context_receivers = [];
+      self.current_submission = null; 
       self.receivers_selected = {};
       self.completed = false;
       self.receipt = null;
@@ -300,15 +303,15 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             forEach(receivers, function(receiver){
               receiver.disabled = false;
               if (!self.allow_unencrypted && receiver.gpg_key_status !== 'Enabled')
-                receiver.disabled = true; 
+                receiver.disabled = true;
               self.receivers.push(receiver);
             });
             setCurrentContextReceivers();
-            fn(self);
+            fn(self); // Callback!
           });
         });
       });
-     
+
       /**
        * @name Submission.create
        * @description
@@ -318,7 +321,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.create = function(cb) {
         self.current_submission = new submissionResource({
           context_id: self.current_context.id,
-          wb_fields: {}, files: [], finalize: false, receivers: []
+          wb_steps: _.clone(self.current_context.steps),
+          files: [], finalize: false, receivers: []
         });
 
         setCurrentContextReceivers();
@@ -329,7 +333,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               self.current_context.fields[k].value = {};
             }
           });
-          self.current_submission.wb_fields = {};
+          self.current_submission.wb_steps = _.clone(self.current_context.steps);
+
           if (cb)
             cb();
         });
@@ -353,14 +358,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           return;
         }
 
-        // Set the submission field values
-        _.each(self.current_context.fields, function(field, k) {
-          self.current_submission.wb_fields[field.key] = {
-            'value': field.value || "",
-            'answer_order': self.current_context.fields[k]['presentation_order']
-          }
-        });
-
         // Set the currently selected receivers
         self.receivers = [];
         // remind this clean the collected list of receiver_id
@@ -370,6 +367,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             self.current_submission.receivers.push(id);
           }
         });
+
         self.current_submission.finalize = true;
 
         self.current_submission.$submit(function(result){
@@ -720,27 +718,58 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         /* To be implemented */
     }
 }]).
-  factory('Admin', ['$rootScope','$resource', function($rootScope, $resource) {
+  factory('Admin', ['$rootScope','$resource', '$q', function($rootScope,
+                                                             $resource, $q) {
+    var self = this,
+      forEach = angular.forEach;
 
     function Admin() {
       var self = this,
         adminContextsResource = $resource('/admin/context/:context_id',
           {context_id: '@id'},
-          {update:
-          {method: 'PUT'}
-          }),
+          {
+            update: {
+              method: 'PUT'
+            }
+          }
+        ),
+        adminFieldsResource = $resource('/admin/fields'),
+        adminFieldResource = $resource('/admin/field/:field_id', 
+          {field_id: '@id'},
+          {
+            update: {
+              method: 'PUT' 
+            }
+          }
+        ),
+        adminFieldTemplatesResource = $resource('/admin/fieldtemplates'),
+        adminFieldTemplateResource = $resource('/admin/fieldtemplate/:template_id',
+          {template_id: '@id'},
+          {
+            update: {
+              method: 'PUT' 
+            }
+          }
+        ),
         adminReceiversResource = $resource('/admin/receiver/:receiver_id',
           {receiver_id: '@id'},
-          {update:
-          {method: 'PUT'}
-          }),
+          {
+            update: {
+              method: 'PUT'
+            }
+          }
+        ),
         adminNodeResource = $resource('/admin/node', {}, {update: {method: 'PUT'}}),
         adminNotificationResource = $resource('/admin/notification', {}, {update: {method: 'PUT'}});
 
       adminContextsResource.prototype.toString = function() { return "Admin Context"; };
+      adminContextsResource.prototype.toString = function() { return "Admin Field"; };
       adminReceiversResource.prototype.toString = function() { return "Admin Receiver"; };
       adminNodeResource.prototype.toString = function() { return "Admin Node"; };
       adminNotificationResource.prototype.toString = function() { return "Admin Notification"; };
+      adminFieldResource.prototype.toString = function() { return "Admin Field"; };
+      adminFieldsResource.prototype.toString = function() { return "Admin Fields"; };
+      adminFieldTemplatesResource.prototype.toString = function() { return "Admin Field Templates"; };
 
       self.context = adminContextsResource;
       self.contexts = adminContextsResource.query();
@@ -749,7 +778,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         var context = new adminContextsResource;
         context.name = "";
         context.description = "";
-        context.fields = [];
+        context.steps = [];
         context.receivers = [];
         context.escalation_threshold = 0;
         context.file_max_download = 3;
@@ -760,7 +789,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.tip_timetolive = 15;
         context.submission_timetolive = 48;
         context.receiver_introduction = "";
-        context.fields_introduction = "";
         context.postpone_superpower = false;
         context.can_delete_submission = false;
         context.maximum_selectable_receivers = 0;
@@ -774,6 +802,67 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.presentation_order = 0;
         return context;
       };
+
+      self.template_fields = {};
+      self.field_templates = adminFieldTemplatesResource.query(function(){
+        angular.forEach(self.field_templates, function(field){
+          self.template_fields[field.id] = field;
+        });
+      });
+      self.field_template = adminFieldTemplateResource;
+
+      self.field = adminFieldResource;
+      self.fields = adminFieldsResource.query();
+      
+      self.new_field_to_step = function(step_id) {
+        var field = new adminFieldResource;
+        field.label = '';
+        field.type = '';
+        field.description = '';
+
+        field.is_template = false;
+        field.hint = '';
+        field.multi_entry = false;
+        field.options = [];
+        field.required = false;
+        field.preview = false;
+        field.stats_enabled = false;
+        field.x = 0;
+        field.y = 0;
+        field.children = [];
+
+        field.step_id = step_id;
+        return field;
+      };
+
+      self.new_template_field = function () {
+        var field = new adminFieldTemplateResource;
+        field.label = '';
+        field.type = '';
+        field.description = '';
+
+        field.is_template = true;
+        field.hint = '';
+        field.multi_entry = false;
+        field.options = [];
+        field.required = false;
+        field.preview = false;
+        field.stats_enabled = false;
+        field.x = 0;
+        field.y = 0;
+        field.children = [];
+        return field;
+      };
+
+      self.new_field_from_template = function(template_id, step_id) {
+        var field = new adminFieldResource;
+        field.step_id = step_id;
+        field.template_id = template_id;
+        return field.$save();
+      }
+
+      self.receiver = adminReceiversResource;
+      self.receivers = adminReceiversResource.query();
 
       self.new_receiver = function () {
         var receiver = new adminReceiversResource;
@@ -800,9 +889,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.timezone = '0'
         return receiver;
       };
-
-      self.receiver = adminReceiversResource;
-      self.receivers = adminReceiversResource.query();
 
       self.node = adminNodeResource.get(function(){
         self.node.password = '';

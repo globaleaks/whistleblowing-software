@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.rest import errors
 from globaleaks.security import GLBGPG, get_expirations
 from globaleaks.handlers import receiver, files
-from globaleaks.handlers.admin import create_receiver, create_context, get_context_list
+from globaleaks.handlers.admin import create_receiver, create_context, get_context_list, get_context_fields
 from globaleaks.handlers.submission import create_submission, update_submission
 from globaleaks.settings import GLSetting
 from globaleaks.models import Receiver
@@ -18,11 +18,11 @@ from globaleaks.plugins.notification import MailNotification
 from globaleaks.plugins.base import Event
 from globaleaks.utils.templating import Templating
 
-from globaleaks.tests.helpers import MockDict, fill_random_fields, TestHandler, VALID_PGP_KEY
+from globaleaks.tests.helpers import MockDict, fill_random_fields, TestHandlerWithPopulatedDB, VALID_PGP_KEY
 
 GPGROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
 
-class TestReceiverSetKey(TestHandler):
+class TestReceiverSetKey(TestHandlerWithPopulatedDB):
     _handler = receiver.ReceiverInstance
 
     receiver_desc = {
@@ -125,11 +125,12 @@ class TestReceiverSetKey(TestHandler):
                     trigger_info = {
                         'creation_date': '2013-05-13T17:49:26.105485', #epoch!
                         'id': 'useless',
-                        'wb_fields' : fill_random_fields(self.dummyContext),
+                        'wb_steps' : fill_random_fields(self.dummyContext['id']),
                     },
                     node_info = MockDict().dummyNode,
                     receiver_info = MockDict().dummyReceiver,
                     context_info = MockDict().dummyContext,
+                    steps_info = {},
                     plugin = MailNotification(),
                     trigger_parent = {} )
 
@@ -208,7 +209,21 @@ class TestReceiverSetKey(TestHandler):
     @inlineCallbacks
     def test_submission_file_delivery_gpg(self):
 
-        new_context = dict(MockDict().dummyContext)
+        new_fields = MockDict().dummyFields
+        new_context = MockDict().dummyContext
+
+        # the test context need fields to be present
+        from globaleaks.handlers.admin.field import create_field
+        for idx, field in enumerate(self.dummyFields):
+            f = yield create_field(field, 'en')
+            new_fields[idx]['id'] = f['id']
+
+        new_context['steps'][0]['children'] = [
+            new_fields[0]['id'], # Field 1
+            new_fields[1]['id'], # Field 2
+            new_fields[4]['id']  # Generalities
+        ]
+
         new_context['name'] = "this uniqueness is no more checked due to the lang"
         new_context_output = yield create_context(new_context)
         self.context_assertion(new_context, new_context_output)
@@ -237,7 +252,7 @@ class TestReceiverSetKey(TestHandler):
         new_subm['context_id'] = new_context_output['id']
         new_subm['receivers'] = [ asdr_output['id'],
                                   yanr_output['id'] ]
-        new_subm['wb_fields'] = fill_random_fields(new_context_output)
+        new_subm['wb_steps'] = yield fill_random_fields(new_context_output['id'])
         new_subm_output = yield create_submission(new_subm, False)
         # self.submission_assertion(new_subm, new_subm_output)
 
@@ -270,34 +285,6 @@ class TestReceiverSetKey(TestHandler):
         # completed in love! http://www.youtube.com/watch?v=CqLAwt8T3Ps
 
         # TODO checks the lacking of the plaintext file!, then would be completed in absolute love
-
-
-#    @inlineCallbacks
-#    def test_invalid_dtest_submission_file_delivery_gpgicated_key(self):
-#
-#        self.receiver_only_update = dict(MockDict().dummyReceiver)
-#        self.receiver_only_update['gpg_key_armor'] = unicode(VALID_PGP_KEY)
-#        self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
-#        self.receiver_only_update['gpg_key_remove'] = False
-#        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
-#        yield handler.put()
-#        self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
-#            u'CF4A22020873A76D1DCB68D32B25551568E49345')
-#        self.assertEqual(self.responses[0]['gpg_key_status'], Receiver._gpg_types[1])
-#
-#        # second receiver creation!
-#        new_receiver = dict(MockDict().dummyReceiver)
-#        new_receiver['name'] = new_receiver['username'] = \
-#            new_receiver['mail_address'] = "quercia@nana.ptg"
-#        new_receiver_output = yield create_receiver(new_receiver)
-#
-#        handler = self.request(self.receiver_only_update, role='receiver', user_id=new_receiver_output['id'])
-#        try:
-#            yield handler.put()
-#            self.assertTrue(False)
-#        except
-#        except Exception as excep:
-
 
     def test_expiration_checks(self):
 

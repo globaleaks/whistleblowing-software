@@ -17,7 +17,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     $scope.update = function (model) {
       var success = {};
       success.message = "Updated " + model;
-      model.$update(function () {
+      model.$update(function(result) {
         if (!$scope.successes) {
           $scope.successes = [];
         }

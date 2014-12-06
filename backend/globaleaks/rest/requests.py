@@ -50,7 +50,7 @@ authDict = {
 }
 
 wbSubmissionDesc = {
-    'wb_fields' : dict,
+    'wb_steps' : list,
     'context_id' : uuid_regexp,
     'receivers' : [ uuid_regexp ],
     'files' : [ uuid_regexp ],
@@ -83,6 +83,13 @@ actorsTipOpsDesc = {
     'global_delete' : bool,
     'extend': bool,
     'is_pertinent': bool,
+}
+
+adminStepDesc = {
+    'label': unicode,
+    'hint': unicode,
+    'description': unicode,
+    'children': [ uuid_regexp ]
 }
 
 adminNodeDesc = {
@@ -163,7 +170,6 @@ adminContextDesc = {
     'name': unicode,
     'description': unicode,
     'receiver_introduction': unicode,
-    'fields_introduction': unicode,
     'postpone_superpower': bool,
     'can_delete_submission': bool,
     'maximum_selectable_receivers': int,
@@ -176,14 +182,21 @@ adminContextDesc = {
     'file_max_download' : int,
     'escalation_threshold' : int,
     'receivers' : [ uuid_regexp ],
-    'fields': [ formFieldsDict ],
+    'steps': [ adminStepDesc ],
     'file_required': bool,
     'tags' : [ unicode ],
     'select_all_receivers': bool,
     'show_small_cards': bool,
     'show_receivers': bool,
-    'enable_private_messages': bool, 
+    'enable_private_messages': bool,
     'presentation_order': int,
+    'steps': list
+}
+
+adminContextFieldTemplateCopy = {
+    'field_template_id': uuid_regexp,
+    'context_id': uuid_regexp,
+    'step_id': uuid_regexp,
 }
 
 adminReceiverDesc = {
@@ -305,21 +318,22 @@ AnomalyLine = {
 
 AnomaliesCollection = [ AnomalyLine ]
 
-nodeReceiver = { 
-    'update_date': unicode,
-    'receiver_level': int,
-    'name': unicode,
-    'tags': [ unicode ],
-    'contexts': [ uuid_regexp ],
-    'description': unicode,
-    'presentation_order': int,
-    'gpg_key_status': unicode,
-    'id': uuid_regexp,
-    'creation_date': dateType,
+nodeReceiver = {
+     'update_date': unicode,
+     'receiver_level': int,
+     'name': unicode,
+     'tags': [ unicode ],
+     'contexts': [ uuid_regexp ],
+     'description': unicode,
+     'presentation_order': int,
+     'gpg_key_status': unicode,
+     'id': uuid_regexp,
+     'creation_date': dateType,
 }
 
 nodeReceiverCollection = [ nodeReceiver ]
 
+# TODO - TO be removed when migration is complete
 field = {
     'incremental_number': int,
     'name': unicode,
@@ -336,7 +350,6 @@ nodeContext = {
     'select_all_receivers': bool,
     'name': unicode,
     'presentation_order': int,
-    'fields': [ field ],
     'description': unicode,
     'selectable_receiver': bool,
     'tip_timetolive': int,
@@ -383,7 +396,7 @@ staticFileCollectionElem = {
 staticFileCollection = [ staticFileCollectionElem ]
 
 internalTipDesc = {
-    'wb_fields': dict,
+    'wb_steps': list,
     'pertinence': int,
     'receivers': [ uuid_regexp ],
     'context_id': uuid_regexp,
@@ -397,13 +410,43 @@ internalTipDesc = {
     'escalation_threshold': int,
 }
 
-wizardFieldDesc = {
-    'incremental_number': int,
-    'localized_name': dict,
-    'localized_hint': dict,
-    'type': unicode,
-    'trigger': list,
-    'defined_options': list, # can be None, I don't remember if can be other ?
+# TODO if the admin has visibility to different variables compared to the WB
+# if its so, rename to FieldDesc (generic)
+
+FieldDescFromTemplate = {
+    'template_id': uuid_regexp,
+    'step_id': uuid_regexp
+}
+
+FieldDesc = {
+    'label': unicode,
+    'description': unicode,
+    'hint': unicode,
+    'multi_entry': bool,
+    'x': int,
+    'y': int,
+    'required': bool,
+    'preview': bool,
+    'stats_enabled': bool,
+    'type': (r'^('
+             'inputbox|'
+             'textarea|'
+             'selectbox|'
+             'checkbox|'
+             'modal|'
+             'dialog|'
+             'tos|'
+             'fileupload|'
+             'fieldgroup)$'),
+    'options': list,
+    'children': [ uuid_regexp ],
+}
+
+wizardStepDesc = {
+    'label': dict,
+    'hint': dict,
+    'description': dict,
+    'children': list,
 }
 
 wizardNodeDesc = {
@@ -413,9 +456,9 @@ wizardNodeDesc = {
     'terms_and_conditions': dict,
 }
 
-wizardFieldUpdate = {
+wizardAppdataDesc = {
     'version': int,
-    'fields': [ wizardFieldDesc ],
+    'fields': [ wizardStepDesc ],
     'node': wizardNodeDesc,
 }
 
@@ -423,5 +466,5 @@ wizardFirstSetup = {
     'receiver' : adminReceiverDesc,
     'context' : adminContextDesc,
     'node' : adminNodeDesc,
-    'appdata' : wizardFieldUpdate,
+    'appdata' : wizardAppdataDesc,
 }

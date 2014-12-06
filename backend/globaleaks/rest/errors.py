@@ -150,10 +150,10 @@ class SubmissionFailFields(GLException):
     error_code = 22
     status_code = 412 # Precondition Failed
 
-    def __init__(self, wrong_fields):
-        self.reason = "Submission do not validate the input fields [%s]" % wrong_fields
+    def __init__(self, wrong_field):
+        self.reason = "Submission do not validate the input fields [%s]" % wrong_field
         self.arguments = []
-        self.arguments.append(wrong_fields)
+        self.arguments.append(wrong_field)
 
 
 class InvalidTipAuthToken(GLException):
@@ -430,3 +430,22 @@ class FileUploadFlood(FloodException):
         self.reason = "Too many file uploads in %d seconds" % seconds
         self.arguments = []
         self.arguments.append(seconds)
+
+class FieldIdNotFound(GLException):
+    error_code = 58
+    status_code = 404
+    reason = "Not found a Field with the specified ID"
+
+
+class ModelNotFound(GLException):
+    """
+    Error class for a generic model
+    """
+    error_code = 59
+    status_code = 404
+
+    def __init__(self, model=None):
+        if model is None:
+            self.reason = "Model not found"
+        else:
+            self.reason = "Model of type {} has not been found".format(model)

@@ -450,18 +450,9 @@ def caller_name(skip=2):
 
 # Dumping utility
 
-def dump_submission_fields(fields, wb_fields):
+def dump_submission_steps(wb_steps):
 
-    dumptext = u""
-    for sf in fields:
-        if sf['type'] != 'text':
-            log.debug("Ignored dump of field %s because is not a Text" % sf['name'])
-            continue
-
-        fnl = len(sf['name'])
-        # dumptext += ("="*fnl)+"\n"+sf['name']+"\n("+sf['hint']+")\n"+("="*fnl)+"\n"
-        dumptext += ("="*fnl)+"\n"+sf['name']+"\n"+("="*fnl)+"\n"
-        dumptext += wb_fields[ fields[0]['key'] ]['value']+"\n\n"
+    dumptext = u"FIELD_MAIL_DUMP_STILL_NEED_TO_BE_IMPLEMENTED"
 
     return dumptext
 

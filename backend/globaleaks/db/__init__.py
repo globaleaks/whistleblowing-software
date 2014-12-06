@@ -35,8 +35,9 @@ def create_tables_transaction(store):
         for create_query in create_queries:
             try:
                 store.execute(create_query+';')
-            except OperationalError:
+            except OperationalError as exc:
                 log.err("OperationalError in [%s]" % create_query)
+                log.err(exc)
 
     init_models()
     # new is the only Models function executed without @transact, call .add, but
@@ -59,12 +60,10 @@ def create_tables(create_node=True):
     """
     Override transactor for testing.
     """
-    if GLSetting.db_type == 'sqlite' and os.path.exists(GLSetting.db_uri.replace('sqlite:', '').split('?')[0]):
-        # Here we instance every model so that __storm_table__ gets set via
-        # __new__
-        for model in models.models:
-            model()
-        return succeed(None)
+    if GLSetting.db_type == 'sqlite':
+        db_path = GLSetting.db_uri.replace('sqlite:', '').split('?', 1)[0]
+        if os.path.exists(db_path):
+            return succeed(None)
 
     deferred = create_tables_transaction()
     if create_node:
@@ -110,6 +109,33 @@ def create_tables(create_node=True):
             'disable_security_awareness_questions': False,
 
         }
+
+        templates = {}
+
+        templates['encrypted_tip'] = acquire_email_templates('default_ETNT.txt',
+            "default Encrypted Tip notification not available! %NodeName% configure this!")
+        templates['plaintext_tip'] = acquire_email_templates('default_PTNT.txt',
+            "default Plaintext Tip notification not available! %NodeName% configure this!")
+
+        templates['encrypted_comment'] = acquire_email_templates('default_ECNT.txt',
+            "default Encrypted Comment notification not available! %NodeName% configure this!")
+        templates['plaintext_comment'] = acquire_email_templates('default_PCNT.txt',
+            "default Plaintext Comment notification not available! %NodeName% configure this!")
+
+        templates['encrypted_message'] = acquire_email_templates('default_EMNT.txt',
+             "default Encrypted Message notification not available! %NodeName% configure this!")
+        templates['plaintext_message'] = acquire_email_templates('default_PMNT.txt',
+             "default Plaintext Message notification not available! %NodeName% configure this!")
+
+        templates['encrypted_file'] = acquire_email_templates('default_EFNT.txt',
+            "default Encrypted File notification not available! %NodeName% configure this!")
+        templates['plaintext_file'] = acquire_email_templates('default_PFNT.txt',
+            "default Plaintext File notification not available! %NodeName% configure this!")
+
+        # This specific template do not need different threatment as it is used to write some
+        # data inside zip files.
+        templates['zip_collection'] = acquire_email_templates('default_ZCT.txt',
+            "default Zip Collection template not available! %NodeName% configure this!")
 
         appdata_dict = opportunistic_appdata_init()
         # here is ok!

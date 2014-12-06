@@ -515,14 +515,6 @@ module.exports = function(grunt) {
 
         gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
 
-        for (var i = 0; i < fields.length; i++) {
-          fields[i]['localized_name'][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(fields[i]['localized_hint']['en'])));
-          fields[i]['localized_hint'][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(fields[i]['localized_hint']['en'])));
-          for (var j = 0; j <  fields[i]["defined_options"]; j++) {
-            fields[i]["defined_options"][j][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(fields[i]["defined_options"][j][lang_code])));
-          };
-        };
-
         for (var template_name in templates_sources) {
           
           if (!(template_name in templates)) {
