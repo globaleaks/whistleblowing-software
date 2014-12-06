@@ -6,6 +6,7 @@
 # Implementation of classes handling the HTTP request to /node, public
 # exposed API.
 
+import operator
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
@@ -241,11 +242,14 @@ class RecentEventsCollection(BaseHandler):
             'id' : expired_event.event_id,
             'creation_date' : datetime_to_ISO8601(expired_event.creation_date)[:-8],
             'event' :  expired_event.event_type,
-            'duration' : round(expired_event.request_time, 2),
+            'duration' : round(expired_event.request_time, 1),
             })
         )
 
     def print_bubble(self, templist):
+        """
+        This visualisation output is not used ATM
+        """
 
         eventmap = dict()
         for event in outcome_event_monitored:
@@ -294,13 +298,8 @@ class RecentEventsCollection(BaseHandler):
     @authenticated("admin")
     def get(self, kind, *uriargs):
 
-        if not kind in [ 'bubble', 'details', 'summary', 'fake' ]:
+        if not kind in [ 'bubble', 'details', 'summary' ]:
             raise errors.InvalidInputFormat(kind)
-
-        if kind == 'fake':
-            pollute_Event_for_testing()
-            self.finish()
-            return
 
         templist = []
 
@@ -308,6 +307,8 @@ class RecentEventsCollection(BaseHandler):
         templist += EventTrackQueue.take_current_snapshot()
         # the already stocked by side, until Stats dump them in 1hour
         templist += RecentEventsCollection.RecentEventQueue
+
+        templist.sort(key=operator.itemgetter('id'))
 
         if kind == 'bubble':
             self.finish(

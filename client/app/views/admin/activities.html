@@ -7,6 +7,20 @@ This comment is needed in order to push the following strings on transifex
 <span data-translate>Administration Interface</span>
 <span data-translate>Here you can check the latest anomalies detected</span>
 
+The following strings are returned by the 'name' in anomaly.py, and in transiflex
+is probably need an explanation about obscure string like 'file' (means "file uploaded")
+or the wb_* receiver_* that point author type and event.
+
+<span data-translate>login_failure</span>
+<span data-translate>login_success</span>
+<span data-translate>submission_started</span>
+<span data-translate>submission_completed</span>
+<span data-translate>wb_comment</span>
+<span data-translate>wb_message</span>
+<span data-translate>file</span>
+<span data-translate>receiver_comment</span>
+<span data-translate>receiver_message</span>
+
 -->
 <div id="ContentBox" class="container" data-ng-controller="ActivitiesCtrl">
   <div class="row">
@@ -22,16 +36,16 @@ This comment is needed in order to push the following strings on transifex
           <thead>
               <tr>
                 <th class="col-md-2">
-                  <span data-translate>#</span>
+                  <span data-translate>Event ID</span><span style="color: red;">*</span>
                 </th>
                 <th class="col-md-2">
-                  <span data-translate>Event date</span>
+                  <span data-translate>Time</span>
                 </th>
                 <th class="col-md-2">
-                  <span data-translate>Event type</span>
+                  <span data-translate>Event</span>
                 </th>
                 <th class="col-md-2">
-                  <span data-translate>Time required</span>
+                  <span data-translate>Request elapsed time</span>
                 </th>
               </tr>
             </thead>
@@ -44,7 +58,7 @@ This comment is needed in order to push the following strings on transifex
                   {{activity.creation_date | date:'dd HH:mm'}}
                 </td>
                 <td class="col-md-2">
-                  {{activity.type}}
+                  <span data-translate>{{activity.event}}</span>
                 </td>
                 <td class="col-md-2">
                   {{activity.duration}}
@@ -52,6 +66,12 @@ This comment is needed in order to push the following strings on transifex
               </tr>
             </tbody>
           </table>
+          <div>
+            <span style="color: red;">*</span>
+            <span data-translate>
+              The incremental number here display is kept only for one hour; This visualisation is useful for an admin supporting their user and checking service reliability.
+            </span>
+          </div>
         </div>
       </div>
     </div>

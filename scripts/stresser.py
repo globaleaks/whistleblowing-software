@@ -204,9 +204,9 @@ def submissionFuzz(request_delay, submission_count):
             i += 1
             print "%d) submissionFuzz ing: %s" % (cnt, context['name'])
             time.sleep(0.5)
-            # submissionWorkflow(context, request_delay, submission_count)
+            submissionWorkflow(context, request_delay, submission_count)
             doStuff()
 
 
-submissionFuzz(0, 44)
+submissionFuzz(2, 44)
 reactor.run()
