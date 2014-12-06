@@ -12,7 +12,6 @@ from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.admin import db_create_context, db_create_receiver, db_update_node, \
                                       anon_serialize_node, get_public_context_list, get_public_receiver_list
-from globaleaks.db.datainit import import_memory_variables
 
 from globaleaks.rest import errors, requests
 from globaleaks.models import *
@@ -128,7 +127,6 @@ def wizard(store, request, language=GLSetting.memory_copy.default_language):
 
     try:
         db_update_node(store, node, True, language)
-        import_memory_variables()
 
     except Exception as excep:
         log.err("Failed Node initialization %s" % excep)
@@ -178,9 +176,6 @@ class FirstSetup(BaseHandler):
     @inlineCallbacks
     def post(self, *uriargs):
         """
-        Receive the reduced configuration setting to create a simple Globaleaks
-        working node: the goal is having at least one receiver, one context,
-        and consider the database able to deal submission.
         """
 
         request = self.validate_message(self.request.body,
