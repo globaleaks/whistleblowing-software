@@ -72,6 +72,17 @@ This comment is needed in order to push the following strings on transifex
           </p>
         </div>
 
+        <div class="form-group col-md-12">
+          <label class="col-md-8">
+            <input data-ng-model="admin.node.tor2web_submission" ng-switch="admin.node.tor2web_submission" type="checkbox">
+            <span data-translate>Permit Whistleblower submissions via Tor2web</span>
+            <div data-ng-show="admin.node.tor2web_submission">
+              <span class="label label-info" data-translate>Enabled</span>
+              <span data-translate>This won't preserve Whistleblower's anonymity while preserving submission confidentiality.</span>
+            </div>
+          </label>
+        </div>
+
       </div>
 
       <div class="row wizard-block">
