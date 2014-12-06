@@ -677,13 +677,13 @@ class MockDict():
         self.dummyFields = copy.deepcopy(self.dummyFieldTemplates)
 
         self.dummySteps = [{
-            'label': u'Presegnalazione',
+            'label': u'Step 1',
             'description': u'Step Description',
             'hint': u'Step Hint',
             'children': {}
             },
             {
-              'label': u'Segnalazione',
+              'label': u'Step 2',
               'description': u'Step Description',
               'hint': u'Step Hint',
               'children': {}

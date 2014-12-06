@@ -10,9 +10,10 @@ from storm.expr import And
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.node import anon_serialize_field, anon_serialize_option, get_field_option_localized_keys
+from globaleaks.handlers.node import anon_serialize_field, anon_serialize_option, \
+    get_field_option_localized_keys, get_public_context_list
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
@@ -334,6 +335,7 @@ class FieldTemplateCreate(BaseHandler):
         request['is_template'] = True
 
         response = yield create_field(request, self.request.language)
+
         self.set_status(201)
         self.finish(response)
 
@@ -441,6 +443,12 @@ class FieldCreate(BaseHandler):
         # enforce difference between /admin/field and /admin/fieldtemplate
         request['is_template'] = False
         response = yield create_field(request, self.request.language)
+
+        # get the updated list of contexts, and update the cache
+        public_contexts_list = yield get_public_context_list(self.request.language)
+        GLApiCache.invalidate('contexts')
+        GLApiCache.set('contexts', self.request.language, public_contexts_list)
+
         self.set_status(201)
         self.finish(response)
 
@@ -463,6 +471,12 @@ class FieldUpdate(BaseHandler):
         :raises InvalidInputFormat: if validation fails.
         """
         response = yield get_field(field_id, False, self.request.language)
+
+        # get the updated list of contexts, and update the cache
+        public_contexts_list = yield get_public_context_list(self.request.language)
+        GLApiCache.invalidate('contexts')
+        GLApiCache.set('contexts', self.request.language, public_contexts_list)
+
         self.set_status(200)
         self.finish(response)
 
@@ -484,6 +498,12 @@ class FieldUpdate(BaseHandler):
         request['is_template'] = False
 
         response = yield update_field(field_id, request, self.request.language)
+
+        # get the updated list of contexts, and update the cache
+        public_contexts_list = yield get_public_context_list(self.request.language)
+        GLApiCache.invalidate('contexts')
+        GLApiCache.set('contexts', self.request.language, public_contexts_list)
+
         self.set_status(202) # Updated
         self.finish(response)
 

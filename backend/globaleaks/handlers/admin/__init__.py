@@ -178,7 +178,8 @@ def db_update_steps(store, context_id, steps, language):
 
 def admin_serialize_context(store, context, language=GLSetting.memory_copy.default_language):
 
-    steps = [ anon_serialize_step(store, s, language) for s in context.steps ]
+    steps = [ anon_serialize_step(store, s, language)
+              for s in context.steps.order_by(models.Step.number) ]
 
     ret_dict = {
         "id": context.id,
