@@ -155,7 +155,7 @@ class EventTrack(TempObj):
             'creation_date' : datetime_to_ISO8601(self.creation_date)[:-8],
             'event' : self.event_type,
             'id' : self.event_id,
-            'duration' : self.request_time,
+            'duration' : round(self.request_time, 1),
         }
 
     def __init__(self, event_obj, request_time, debug=False):
