@@ -110,11 +110,18 @@ def get_anomaly_history(store, limit):
     for i, anom in enumerate(anomal):
         if limit == i:
             break
-        full_anomal.append({
+        anomaly_entry = dict({
             'when' : anom.stored_when,
             'alarm' : anom.alarm,
-            'events': anom.events
+            'events': [],
         })
+        for event_name, event_amount in anom.events.iteritems():
+            anomaly_entry['events'].append({
+                'name' : event_name,
+                'amount' : event_amount,
+            })
+        full_anomal.append(anomaly_entry)
+
     return list(full_anomal)
 
 @transact

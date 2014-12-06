@@ -18,23 +18,29 @@ This comment is needed in order to push the following strings on transifex
           <p>
             <span data-translate>This interface shows you the anomalous behavior spotted by GlobaLeaks software.</span>
           </p>
-          <p>
-            <span data-translate>Anomaly are analized automatically in order to spot abuses or atipical event. Being an anonymous system, GlobaLeaks cannot perform anomaly detection based on a single user behavior. Are used the following threshold before declare the anomaly:</span>
-          </p>
-          <ul>
-            <li>XXX</li>
-            <li>YZZ</li>
-          </ul>
-          <pre>
-            {{hanomalies}}
-          </pre>
+          <div data-translate>Anomaly are analyzed automatically in order to spot abuses or atypical bursts.</div>
+          <div data-translate>Being an anonymous system, GlobaLeaks cannot perform anomaly detection based on a single user behavior.</div>
+          <div data-translate>Are used the following threshold before declare an anomalous behavior:</div>
+
+          <div class="AnomaliesSummaryLevels" data-ng-show="showLevel">
+            <span class="label label-info" data-translate>login_failure</span> 5<br>
+            <span class="label label-info" data-translate>login_success</span> 3<br>
+            <span class="label label-info" data-translate>submission_started</span> 5<br>
+            <span class="label label-info" data-translate>submission_completed</span> 4<br>
+            <span class="label label-info" data-translate>wb_comment</span> 4<br>
+            <span class="label label-info" data-translate>wb_message</span> 4<br>
+            <span class="label label-info" data-translate>file</span> 11<br>
+            <span class="label label-info" data-translate>receiver_comment</span> 3<br>
+            <span class="label label-info" data-translate>receiver_message</span> 3<br>
+          </div>
+
           <table class="table table-bordered" id="AnomaliesHistoryList">
           <thead>
               <tr>
                 <th class="col-md-2">
                   <span data-translate>Date</span>
                 </th>
-                <th class="col-md-2">
+                <th class="col-md-1">
                   <span data-translate>Alarm Level</span>
                 </th>
                 <th class="col-md-2">
@@ -47,11 +53,13 @@ This comment is needed in order to push the following strings on transifex
                 <td class="col-md-2">
                   {{hanomaly.when | date:'dd-MM-yyyy HH:mm'}}
                 </td>
-                <td class="col-md-2">
+                <td class="col-md-1">
                   {{hanomaly.alarm}}
                 </td>
                 <td class="col-md-2">
-                  {{hanomaly.events}}
+                  <span data-ng-repeat="single_event in hanomaly.events">
+                    <span class="label label-info">{{single_event.name}}</span> {{single_event.amount}}<br>
+                  </span>
                 </td>
               </tr>
             </tbody>
