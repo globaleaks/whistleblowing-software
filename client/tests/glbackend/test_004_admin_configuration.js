@@ -391,7 +391,7 @@ describe('POST /admin/context', function () {
           .set('X-Session', authentication['session_id'])
           .expect(201)
           .end(function (err, res) {
-  
+
             if (err) {
               return done(err);
             }
