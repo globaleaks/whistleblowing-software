@@ -111,7 +111,7 @@ describe("Node Admin API functionality", function(){
     receivers: [dummyReceiverID],
     // XXX perhaps this should go as a paramater
     submission_gus: 'XXX',
-    wb_fields: [
+    wb_steps: [
       {'someFancyName': 'Some Fancy Content'}
     ],
     expiration_time: 'XXX',

@@ -6,6 +6,7 @@ from storm.expr import Desc
 
 from globaleaks.tests import helpers
 from globaleaks.handlers import admin, submission
+from globaleaks.handlers.admin.field import create_field
 from globaleaks.jobs import delivery_sched
 from globaleaks.plugins.base import Event
 from globaleaks.settings import transact_ro
@@ -58,6 +59,39 @@ class notifTemplateTest(helpers.TestGL):
 
     templates = {}
 
+    @inlineCallbacks
+    def setUp(self):
+        yield super(notifTemplateTest, self).setUp()
+
+        ### INITIALIZE BLOCK
+        self.mockContext =helpers.MockDict().dummyContext
+        self.mockReceiver = helpers.MockDict().dummyReceiver
+        self.mockNode = helpers.MockDict().dummyNode
+        self.mockFields = helpers.MockDict().dummyFields
+
+        for idx, field in enumerate(self.mockFields):
+            f = yield create_field(field, 'en')
+            self.mockFields[idx]['id'] = f['id']
+
+        self.mockContext['steps'][0]['children'] = [
+            self.mockFields[0]['id'], # Field 1
+            self.mockFields[1]['id'], # Field 2
+            self.mockFields[4]['id']  # Generalities
+        ]
+
+
+        self.createdContext = yield admin.create_context(self.mockContext)
+        self.assertTrue(self.createdContext.has_key('id'))
+
+        self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
+
+        self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
+        self.assertTrue(self.createdReceiver.has_key('id'))
+
+        self.createdNode = yield admin.update_node(self.mockNode)
+        self.assertTrue(self.createdNode.has_key('version'))
+        ### END OF THE INITIALIZE BLOCK
+
     @transact_ro
     def get_a_fucking_random_submission(self, store):
 
@@ -69,7 +103,7 @@ class notifTemplateTest(helpers.TestGL):
         self.failIfEqual(rits.count(), 0,
                          "in our Eternal Mangekyō Sharingan, no ReceiverTip are available")
 
-        # just because 
+        # just because
         # storm.exceptions.UnorderedError: Can't use first() on unordered result set
         rits.order_by(Desc(ReceiverTip.id))
         return serialize_receivertip(rits.first())
@@ -87,7 +121,8 @@ class notifTemplateTest(helpers.TestGL):
 
             receiver_dict = yield admin.get_receiver(self.createdReceiver['id'])
             context_dict = yield admin.get_context(self.createdContext['id'])
-            notif_dict = yield admin.get_notification()
+            steps_dict = yield admin.get_context_steps(self.createdContext['id'])
+            notif_dict = yield admin.notification.get_notification()
 
             yield admin.import_memory_variables()
             node_dict = yield admin.admin_serialize_node()
@@ -101,6 +136,7 @@ class notifTemplateTest(helpers.TestGL):
                 node_info = node_dict,
                 receiver_info = receiver_dict,
                 context_info = context_dict,
+                steps_info = steps_dict,
                 plugin = None,
                 trigger_info = tip_dict,
                 trigger_parent = None
@@ -122,24 +158,6 @@ class notifTemplateTest(helpers.TestGL):
 
     @inlineCallbacks
     def test_keywords_conversion(self):
-
-        ### INITIALIZE BLOCK
-        self.mockContext =helpers.MockDict().dummyContext
-        self.mockReceiver = helpers.MockDict().dummyReceiver
-        self.mockNode = helpers.MockDict().dummyNode
-
-        self.createdContext = yield admin.create_context(self.mockContext)
-        self.assertTrue(self.createdContext.has_key('id'))
-
-        self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
-        
-        self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
-        self.assertTrue(self.createdReceiver.has_key('id'))
-
-        self.createdNode = yield admin.update_node(self.mockNode)
-        self.assertTrue(self.createdNode.has_key('version'))
-        ### END OF THE INITIALIZE BLOCK
-
         self.templates = {}
         for t in self.templates_list:
             self.templates[t] = ""
@@ -167,7 +185,7 @@ class notifTemplateTest(helpers.TestGL):
         self.mockSubmission['finalize'] = True
         self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
         self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
-        self.mockSubmission['wb_fields'] = helpers.fill_random_fields(self.createdContext)
+        self.mockSubmission['wb_steps'] = yield helpers.fill_random_fields(self.createdContext['id'])
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()
@@ -184,7 +202,6 @@ class notifTemplateTest(helpers.TestGL):
         self.assertSubstring(self.createdNode['hidden_service'], gentext)
 
         ## HERE ARE ADDED SOME CHECK
-        self.assertSubstring("=================", gentext)
 
         # http://witchwind.wordpress.com/2013/12/15/piv-is-always-rape-ok/
         # wtf has the internet in those days ? bwahahaah
@@ -202,29 +219,12 @@ class notifTemplateTest(helpers.TestGL):
 
         self._load_defaults()
 
-        ### INITIALIZE BLOCK
-        self.mockContext = helpers.MockDict().dummyContext
-        self.mockReceiver = helpers.MockDict().dummyReceiver
-        self.mockNode = helpers.MockDict().dummyNode
-
-        self.createdContext = yield admin.create_context(self.mockContext)
-        self.assertTrue(self.createdContext.has_key('id'))
-
-        self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
-
-        self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
-        self.assertTrue(self.createdReceiver.has_key('id'))
-
-        self.createdNode = yield admin.update_node(self.mockNode)
-        self.assertTrue(self.createdNode.has_key('version'))
-        ### END OF THE INITIALIZE BLOCK
-
         # THE REAL CONVERSION TEST START HERE:
         self.mockSubmission = helpers.MockDict().dummySubmission
         self.mockSubmission['finalize'] = True
         self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
         self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
-        self.mockSubmission['wb_fields'] = helpers.fill_random_fields(self.createdContext)
+        self.mockSubmission['wb_steps'] = yield helpers.fill_random_fields(self.createdContext['id'])
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()
@@ -247,23 +247,6 @@ class notifTemplateTest(helpers.TestGL):
         https://github.com/globaleaks/GlobaLeaks/issues/268
         """
 
-        ### INITIALIZE BLOCK
-        self.mockContext = helpers.MockDict().dummyContext
-        self.mockReceiver = helpers.MockDict().dummyReceiver
-        self.mockNode = helpers.MockDict().dummyNode
-
-        self.createdContext = yield admin.create_context(self.mockContext)
-        self.assertTrue(self.createdContext.has_key('id'))
-
-        self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
-
-        self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
-        self.assertTrue(self.createdReceiver.has_key('id'))
-
-        self.createdNode = yield admin.update_node(self.mockNode)
-        self.assertTrue(self.createdNode.has_key('version'))
-        ### END OF THE INITIALIZE BLOCK
-
         # be sure of Tor2Web capability
         for attrname in Node.localized_strings:
             self.mockNode[attrname] = self.mockNode[attrname]['en']
@@ -276,7 +259,7 @@ class notifTemplateTest(helpers.TestGL):
         self.mockSubmission['finalize'] = True
         self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
         self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
-        self.mockSubmission['wb_fields'] = helpers.fill_random_fields(self.createdContext)
+        self.mockSubmission['wb_steps'] = yield helpers.fill_random_fields(self.createdContext['id'])
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()
@@ -284,7 +267,7 @@ class notifTemplateTest(helpers.TestGL):
 
         yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
 
-        # adding funny configured variables 
+        # adding funny configured variables
         self.templates['default_ETNT.txt'] += " %OttimoDireiOOOttimoDirei%"
 
         # with the event, we can finally call the format checks

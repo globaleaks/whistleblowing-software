@@ -10,7 +10,11 @@
 
 from globaleaks import models
 from globaleaks.settings import GLSetting
-from globaleaks.utils.utility import log, ISO8601_to_pretty_str_tz, dump_file_list, dump_submission_fields
+from globaleaks.utils.utility import (ISO8601_to_pretty_str,
+                                      ISO8601_to_pretty_str_tz,
+                                      log,
+                                      dump_file_list, dump_submission_steps)
+
 
 class Templating:
 
@@ -40,6 +44,7 @@ class Templating:
         # For each Event type, we've to dispatch the right _KeyWord class
         keyword_converter = supported_event_types[event_dicts.type](event_dicts.node_info,
                                                                     event_dicts.context_info,
+                                                                    event_dicts.steps_info,
                                                                     event_dicts.receiver_info,
                                                                     event_dicts.trigger_info,
                                                                     event_dicts.trigger_parent)
@@ -84,12 +89,13 @@ class _KeyWord(object):
         '%NodeSignature%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc):
+    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc):
 
         self.keyword_list = _KeyWord.shared_keywords
 
         self.node = node_desc
         self.context = context_desc
+        self.fields = fields_desc
         self.receiver = receiver_desc
 
     def NodeName(self):
@@ -122,9 +128,10 @@ class TipKeyword(_KeyWord):
         '%EventTime%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, *x):
+    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, *x):
 
-        super(TipKeyword, self).__init__(node_desc, context_desc, receiver_desc)
+        super(TipKeyword, self).__init__(node_desc, context_desc,
+                                         fields_desc, receiver_desc)
 
         self.keyword_list += TipKeyword.tip_keywords
         self.tip = tip_desc
@@ -180,13 +187,14 @@ class EncryptedTipKeyword(TipKeyword):
         '%TipFields%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, *x):
+    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, *x):
 
-        super(EncryptedTipKeyword, self).__init__(node_desc, context_desc, receiver_desc, tip_desc, None)
+        super(EncryptedTipKeyword, self).__init__(node_desc, context_desc, fields_desc,
+                                                  receiver_desc, tip_desc, None)
         self.keyword_list += EncryptedTipKeyword.encrypted_tip_keywords
 
     def TipFields(self):
-        return dump_submission_fields(self.context['fields'], self.tip['wb_fields'])
+        return dump_submission_steps(self.tip['wb_steps'])
 
 
 class CommentKeyword(TipKeyword):
@@ -196,9 +204,9 @@ class CommentKeyword(TipKeyword):
         '%EventTime%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, comment_desc, tip_desc):
+    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, comment_desc, tip_desc):
 
-        super(CommentKeyword, self).__init__(node_desc, context_desc, receiver_desc, tip_desc)
+        super(CommentKeyword, self).__init__(node_desc, context_desc, fields_desc, receiver_desc, tip_desc)
 
         self.keyword_list += CommentKeyword.comment_keywords
         self.comment = comment_desc
@@ -218,7 +226,7 @@ class EncryptedCommentKeyword(CommentKeyword):
 
     def __init__(self, node_desc, context_desc, receiver_desc, comment_desc, tip_desc):
 
-        super(EncryptedCommentKeyword, self).__init__(node_desc, context_desc,
+        super(EncryptedCommentKeyword, self).__init__(node_desc, context_desc, fields_desc,
                                                       receiver_desc, comment_desc, tip_desc)
         self.keyword_list += EncryptedCommentKeyword.encrypted_comment_keywords
 
@@ -237,9 +245,11 @@ class MessageKeyword(TipKeyword):
         '%EventTime%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, message_desc, tip_desc):
+    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, message_desc, tip_desc):
 
-        super(MessageKeyword, self).__init__(node_desc, context_desc, receiver_desc, tip_desc)
+        super(MessageKeyword, self).__init__(node_desc, context_desc,
+                                             fields_desc, receiver_desc,
+                                             tip_desc)
 
         self.keyword_list += MessageKeyword.message_keywords
         self.message = message_desc
@@ -257,10 +267,11 @@ class EncryptedMessageKeyword(MessageKeyword):
         '%MessageContent%',
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, message_desc, tip_desc):
+    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, message_desc, tip_desc):
 
         super(EncryptedMessageKeyword, self).__init__(node_desc, context_desc,
-                                                      receiver_desc, message_desc, tip_desc)
+                                                      fields_desc, receiver_desc,
+                                                      message_desc, tip_desc)
         self.keyword_list += EncryptedMessageKeyword.encrypted_message_keywords
 
     def MessageContent(self):
@@ -276,9 +287,11 @@ class FileKeyword(TipKeyword):
         '%FileType%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, file_desc, tip_desc):
+    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, file_desc, tip_desc):
 
-        super(FileKeyword, self).__init__(node_desc, context_desc, receiver_desc, tip_desc)
+        super(FileKeyword, self).__init__(node_desc, context_desc,
+                                          fields_desc, receiver_desc,
+                                          tip_desc)
 
         self.keyword_list += FileKeyword.file_keywords
         self.file = file_desc
@@ -305,10 +318,11 @@ class EncryptedFileKeyword(FileKeyword):
         '%FileDescription%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, file_desc, tip_desc):
+    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, file_desc, tip_desc):
 
         super(EncryptedFileKeyword, self).__init__(node_desc, context_desc,
-                                                   receiver_desc, file_desc, tip_desc)
+                                                   fields_desc, receiver_desc,
+                                                   file_desc, tip_desc)
         self.keyword_list += EncryptedFileKeyword.encrypted_file_keywords
 
     def FileDescription(self):
@@ -323,9 +337,11 @@ class ZipFileKeyword(TipKeyword):
         '%TotalSize%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, zip_desc, tip_desc):
+    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, zip_desc, tip_desc):
 
-        super(ZipFileKeyword, self).__init__(node_desc, context_desc, receiver_desc, tip_desc)
+        super(ZipFileKeyword, self).__init__(node_desc, context_desc,
+                                             fields_desc, receiver_desc,
+                                             tip_desc)
 
         self.keyword_list += ZipFileKeyword.zip_file_keywords
         self.zip = zip_desc
@@ -338,4 +354,3 @@ class ZipFileKeyword(TipKeyword):
 
     def TotalSize(self):
         return str(self.zip['total_size'])
-

@@ -6,6 +6,7 @@
 #   Contains all the logic for handling tip related operations, managed by
 #   the whistleblower, handled and executed within /wbtip/* URI PATH interaction.
 
+from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
@@ -19,7 +20,7 @@ from globaleaks.rest import errors
 
 
 def wb_serialize_tip(internaltip, language=GLSetting.memory_copy.default_language):
-    itip_dict = {
+    ret_dict = {
         'context_id': internaltip.context.id,
         'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
         'last_activity' : datetime_to_ISO8601(internaltip.creation_date),
@@ -29,21 +30,23 @@ def wb_serialize_tip(internaltip, language=GLSetting.memory_copy.default_languag
         'mark' : internaltip.mark,
         'pertinence' : internaltip.pertinence_counter,
         'escalation_threshold' : internaltip.escalation_threshold,
-        'fields' : internaltip.wb_fields,
+        'wb_steps' : internaltip.wb_steps,
         'enable_private_messages' : internaltip.context.enable_private_messages 
     }
 
-    # context_name and context_description are localized field
-    mo = Rosetta()
+    # context_name and context_description are localized fields
+    mo = Rosetta(internaltip.context.localized_strings)
     mo.acquire_storm_object(internaltip.context)
     for attr in ['name', 'description' ]:
         key = "context_%s" % attr
-        itip_dict[key] = mo.dump_translated(attr, language)
+        ret_dict[key] = mo.dump_localized_attr(attr, language)
 
-    return itip_dict
+    return ret_dict
+
 
 def wb_serialize_file(internalfile):
     wb_file_desc = {
+        'id': internalfile.id,
         'name' : internalfile.name,
         'content_type' : internalfile.content_type,
         'creation_date' : datetime_to_ISO8601(internalfile.creation_date),
@@ -243,9 +246,10 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
                 # XXX ReceiverTip last activity ?
             }
 
-            mo = Rosetta()
+            mo = Rosetta(receiver.localized_strings)
             mo.acquire_storm_object(receiver)
-            receiver_desc["description"] = mo.dump_translated("description", language)
+            receiver_desc["description"] = mo.dump_localized_attr("description", language)
+
             receiver_list.append(receiver_desc)
 
         return receiver_list
@@ -281,9 +285,9 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
                 # XXX ReceiverTip last activity ?
             }
 
-            mo = Rosetta()
+            mo = Rosetta(rtip.receiver.localized_strings)
             mo.acquire_storm_object(rtip.receiver)
-            receiver_desc["description"] = mo.dump_translated("description", language)
+            receiver_desc["description"] = mo.dump_localized_attr("description", language)
 
             receiver_list.append(receiver_desc)
 
@@ -383,7 +387,7 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
 
     try:
         store.add(msg)
-    except Exception as dberror:
+    except DatabaseError as dberror:
         log.err("Unable to add WB message from %s: %s" % (rtip.receiver.name, dberror))
         raise dberror
 

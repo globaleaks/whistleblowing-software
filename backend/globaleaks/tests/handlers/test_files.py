@@ -9,7 +9,7 @@ from globaleaks.handlers import files
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile
 
-class TestFileInstance(helpers.TestHandler):
+class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = files.FileInstance
 
     @inlineCallbacks
@@ -25,7 +25,7 @@ class TestFileInstance(helpers.TestHandler):
         handler = self.request(body=self.get_dummy_file())
         self.assertFailure(handler.post(u'unexistent_submission'), errors.SubmissionIdNotFound)
 
-class TestFileAdd(helpers.TestHandler):
+class TestFileAdd(helpers.TestHandlerWithPopulatedDB):
     _handler = files.FileAdd
 
     @inlineCallbacks
@@ -36,7 +36,7 @@ class TestFileAdd(helpers.TestHandler):
             handler.current_user.user_id = wbtip_desc['wbtip_id']
             yield handler.post()
 
-class TestDownload(helpers.TestHandler):
+class TestDownload(helpers.TestHandlerWithPopulatedDB):
     _handler = files.Download
 
     @inlineCallbacks

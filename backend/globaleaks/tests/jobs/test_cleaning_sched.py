@@ -26,29 +26,7 @@ class MockHandler(base.BaseHandler):
     def __init__(self):
         pass
 
-class TTip(helpers.TestGL):
-
-    # filled in setup
-    context_desc = None
-    receiver1_desc = receiver2_desc = None
-    submission_desc = None
-
-    # filled while the emulation tests
-    receipt = None
-    itip_id = wb_tip_id = rtip1_id = rtip2_id = None
-    wb_data = receiver1_data = receiver2_data = None
-
-    # https://www.youtube.com/watch?v=ja46oa2ZML8 couple of cups, and tests!:
-
-    tipContext = TTip.tipContext
-    tipReceiver1 = copy.deepcopy(TTip.tipReceiver1)
-    tipReceiver1['postpone_superpower'] = True
-    tipReceiver2 = copy.deepcopy(TTip.tipReceiver2)
-    tipReceiver2['postpone_superpower'] = True
-    tipOptions = TTip.tipOptions
-    commentCreation = TTip.commentCreation
-
-class TestCleaning(TTip):
+class TestCleaning(helpers.TestGL):
 
     # Test model is a prerequisite for create e valid environment where Tip lives
 
@@ -56,7 +34,28 @@ class TestCleaning(TTip):
     #                          two receiver ("first" level 1, "second" level 2)
     # Test context would just contain two receiver, one level 1 and the other level 2
 
-    # They are defined in TTip. This unitTest DO NOT TEST HANDLERS but transaction functions
+    def setUp(self):
+        helpers.TestGL.setUp(self)
+
+        # filled in setup
+        self.context_desc = None
+        self.receiver1_desc = receiver2_desc = None
+        self.submission_desc = None
+
+        # filled while the emulation tests
+        self.receipt = None
+        self.itip_id = self.wb_tip_id = self.rtip1_id = self.rtip2_id = None
+        self.wb_data = self.receiver1_data = self.receiver2_data = None
+
+        # https://www.youtube.com/watch?v=ja46oa2ZML8 couple of cups, and tests!:
+
+        self.tipContext = copy.deepcopy(TTip.tipContext)
+        self.tipReceiver1 = copy.deepcopy(TTip.tipReceiver1)
+        self.tipReceiver1['postpone_superpower'] = True
+        self.tipReceiver2 = copy.deepcopy(TTip.tipReceiver2)
+        self.tipReceiver2['postpone_superpower'] = True
+        self.tipOptions = TTip.tipOptions
+        self.commentCreation = TTip.commentCreation
 
     @transact
     def test_postpone_survive_cleaning(self, store):
@@ -98,8 +97,17 @@ class TestCleaning(TTip):
 
         basehandler = MockHandler()
 
-        for attrname in models.Context.localized_strings:
-            self.tipContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
+        # the test context need fields to be present
+        from globaleaks.handlers.admin.field import create_field
+        for idx, field in enumerate(self.dummyFields):
+            f = yield create_field(field, 'en')
+            self.dummyFields[idx]['id'] = f['id']
+
+        self.tipContext['steps'][0]['children'] = [
+            self.dummyFields[0]['id'], # Field 1
+            self.dummyFields[1]['id'], # Field 2
+            self.dummyFields[4]['id']  # Generalities
+        ]
 
         basehandler.validate_jmessage(self.tipContext, requests.adminContextDesc)
         self.context_desc = yield admin.create_context(self.tipContext)
@@ -122,18 +130,18 @@ class TestCleaning(TTip):
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['id']])
         self.assertEqual(self.receiver2_desc['contexts'], [ self.context_desc['id']])
 
-        dummySubmission = self.get_dummy_submission(self.context_desc['id'], self.context_desc['fields'])
+        dummySubmission = yield self.get_dummy_submission(self.context_desc['id'])
         basehandler.validate_jmessage( dummySubmission, requests.wbSubmissionDesc)
 
         self.submission_desc = yield submission.create_submission(dummySubmission, finalize=False)
 
-        self.assertEqual(self.submission_desc['wb_fields'], dummySubmission['wb_fields'])
+        self.assertEqual(self.submission_desc['wb_steps'], dummySubmission['wb_steps'])
         self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[0])
 
     @inlineCallbacks
     def do_finalize_submission(self):
         self.submission_desc['finalize'] = True
-        self.submission_desc['wb_fields'] = helpers.fill_random_fields(self.context_desc)
+        self.submission_desc['wb_steps'] = yield helpers.fill_random_fields(self.context_desc['id'])
         self.submission_desc = yield submission.update_submission(
             self.submission_desc['id'],
             self.submission_desc,

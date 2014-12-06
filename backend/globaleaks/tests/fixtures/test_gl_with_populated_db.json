@@ -1,0 +1,529 @@
+[
+  {
+    "fields": {
+      "fields": [
+        {
+          "localized_name": {
+            "el": "\u03a0\u03b5\u03c1\u03b9\u03b3\u03c1\u03ac\u03c8\u03c4\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03bf\u03b2\u03bf\u03bb\u03ae \u03c3\u03b1\u03c2 \u03bc\u03b5 \u03bb\u03af\u03b3\u03b1 \u03bb\u03cc\u03b3\u03b9\u03b1",
+            "en": "Describe your submission with a few words",
+            "vi": "Describe your submission with a few words",
+            "ca": "Descriu el teu enviament en poques paraules",
+            "it": "Descrivi la tua segnalazione con poche parole",
+            "sr_RS": "\u041e\u043f\u0438\u0448\u0438 \u043f\u0440\u0438\u0458\u0430\u0432\u0443 \u0441\u0430 \u043f\u0430\u0440 \u0440\u0435\u0447\u0438",
+            "ar": "\u0627\u0644\u0631\u062c\u0627\u0621 \u0643\u062a\u0627\u0628\u0629 \u0646\u0628\u0630\u0629 \u0639\u0646 \u0627\u0644\u062a\u0642\u0631\u064a\u0631",
+            "cs": "Popi\u0161te n\u011bkolika slovy v\u00e1\u0161 p\u0159\u00edspevek",
+            "es": "Describa su env\u00edo en unas pocas palabras",
+            "ru": "Describe your submission with a few words",
+            "nl": "Omschrijf je inzending met een paar woorden.",
+            "tr": "G\u00f6nderinizi birka\u00e7 kelime ile tan\u0131mlay\u0131n",
+            "sr_RS@latin": "Opi\u0161i prijavu sa par re\u010di",
+            "hu_HU": "Felt\u00f6lt\u00f6tt anyag r\u00f6vid le\u00edr\u00e1sa",
+            "hr_HR": "Opi\u0161ite svoju predaju u nekoliko rije\u010di",
+            "pt_PT": "Descreva em poucas palavras a sua submiss\u00e3o",
+            "pl": "Opisz swoje zg\u0142oszenie w kilku s\u0142owach",
+            "fr": "D\u00e9crivez votre alerte en quelques mots",
+            "bg": "Describe your submission with a few words",
+            "th": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e2d\u0e18\u0e34\u0e1a\u0e32\u0e22\u0e40\u0e1a\u0e32\u0e30\u0e41\u0e2a\u0e02\u0e2d\u0e07\u0e17\u0e48\u0e32\u0e19\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e2a\u0e31\u0e49\u0e19\u0e46",
+            "pt_BR": "Descreva em poucas palavras a sua submiss\u00e3o",
+            "de": "Beschreiben Sie Ihre Einreichung mit ein paar Worten",
+            "sv": "Beskriv ditt tips med n\u00e5gra f\u00e5 ord",
+            "sk": "Op\u00ed\u0161te p\u00e1r slovami va\u0161e podanie",
+            "lv": "Aprakstiet savu zi\u0146ojumu da\u017eos v\u0101rdos",
+            "nb_NO": "Beskriv din innsendelse med f\u00e5 ord"
+          },
+          "incremental_number": 0,
+          "localized_hint": {
+            "el": "\u03a0\u03b5\u03c1\u03b9\u03b3\u03c1\u03ac\u03c8\u03c4\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03bf\u03b2\u03bf\u03bb\u03ae \u03c3\u03b1\u03c2 \u03bc\u03b5 \u03bb\u03af\u03b3\u03b1 \u03bb\u03cc\u03b3\u03b9\u03b1",
+            "en": "Describe your submission with a few words",
+            "vi": "Describe your submission with a few words",
+            "ca": "Descriu el teu enviament en poques paraules",
+            "it": "Descrivi la tua segnalazione con poche parole",
+            "sr_RS": "\u041e\u043f\u0438\u0448\u0438 \u043f\u0440\u0438\u0458\u0430\u0432\u0443 \u0441\u0430 \u043f\u0430\u0440 \u0440\u0435\u0447\u0438",
+            "ar": "\u0627\u0644\u0631\u062c\u0627\u0621 \u0643\u062a\u0627\u0628\u0629 \u0646\u0628\u0630\u0629 \u0639\u0646 \u0627\u0644\u062a\u0642\u0631\u064a\u0631",
+            "cs": "Popi\u0161te n\u011bkolika slovy v\u00e1\u0161 p\u0159\u00edspevek",
+            "es": "Describa su env\u00edo en unas pocas palabras",
+            "ru": "Describe your submission with a few words",
+            "nl": "Omschrijf je inzending met een paar woorden.",
+            "tr": "G\u00f6nderinizi birka\u00e7 kelime ile tan\u0131mlay\u0131n",
+            "sr_RS@latin": "Opi\u0161i prijavu sa par re\u010di",
+            "hu_HU": "Felt\u00f6lt\u00f6tt anyag r\u00f6vid le\u00edr\u00e1sa",
+            "hr_HR": "Opi\u0161ite svoju predaju u nekoliko rije\u010di",
+            "pt_PT": "Descreva em poucas palavras a sua submiss\u00e3o",
+            "pl": "Opisz swoje zg\u0142oszenie w kilku s\u0142owach",
+            "fr": "D\u00e9crivez votre alerte en quelques mots",
+            "bg": "Describe your submission with a few words",
+            "th": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e2d\u0e18\u0e34\u0e1a\u0e32\u0e22\u0e40\u0e1a\u0e32\u0e30\u0e41\u0e2a\u0e02\u0e2d\u0e07\u0e17\u0e48\u0e32\u0e19\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e2a\u0e31\u0e49\u0e19\u0e46",
+            "pt_BR": "Descreva em poucas palavras a sua submiss\u00e3o",
+            "de": "Beschreiben Sie Ihre Einreichung mit ein paar Worten",
+            "sv": "Beskriv ditt tips med n\u00e5gra f\u00e5 ord",
+            "sk": "Op\u00ed\u0161te p\u00e1r slovami va\u0161e podanie",
+            "lv": "Aprakstiet savu zi\u0146ojumu da\u017eos v\u0101rdos",
+            "nb_NO": "Beskriv din innsendelse med f\u00e5 ord"
+          },
+          "trigger": [],
+          "defined_options": [],
+          "type": "text"
+        },
+        {
+          "localized_name": {
+            "el": "\u03a0\u03b5\u03c1\u03b9\u03b3\u03c1\u03ac\u03c8\u03c4\u03b5 \u03c4\u03b7\u03c2 \u03bb\u03b5\u03c0\u03c4\u03bf\u03bc\u03ad\u03c1\u03b5\u03b9\u03b5\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03bf\u03b2\u03bf\u03bb\u03ae\u03c2",
+            "en": "Describe the details of the submission",
+            "vi": "Describe the details of the submission",
+            "ca": "Descriu els detalls de l'enviament",
+            "it": "Descrivi la tua segnalazione nel dettaglio",
+            "sr_RS": "\u0414\u0435\u0442\u0430\u0459\u043d\u0438\u0458\u0435 \u043e\u043f\u0438\u0448\u0438 \u043f\u0440\u0438\u0458\u0430\u0432\u0443",
+            "ar": "\u0648\u0635\u0641 \u0627\u0644\u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u0644\u0628\u0644\u0627\u063a ",
+            "cs": "Popsat detaily pod\u00e1n\u00ed",
+            "es": "Describa los detalles del env\u00edo",
+            "ru": "Describe the details of the submission",
+            "nl": "Omschrijf de details van de inzending",
+            "tr": "G\u00f6nderi ayr\u0131nt\u0131lar\u0131n\u0131 a\u00e7\u0131klay\u0131n",
+            "sr_RS@latin": "Detaljnije opi\u0161i prijavu",
+            "hu_HU": "Felt\u00f6lt\u00f6tt anyag r\u00e9szletei",
+            "hr_HR": "Opi\u0161ite detalje predaje",
+            "pt_PT": "Descreva os detalhes da submiss\u00e3o",
+            "pl": "Opisz szczeg\u00f3\u0142y zg\u0142oszenia",
+            "fr": "D\u00e9crivez les d\u00e9tails de votre alerte",
+            "bg": "Describe the details of the submission",
+            "th": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e2d\u0e18\u0e34\u0e1a\u0e32\u0e22\u0e23\u0e32\u0e22\u0e25\u0e30\u0e40\u0e2d\u0e35\u0e22\u0e14\u0e02\u0e2d\u0e07\u0e40\u0e1a\u0e32\u0e30\u0e41\u0e2a",
+            "pt_BR": "Descreva em detalhes a sua submiss\u00e3o",
+            "de": "Beschreiben Sie die Details Ihrer Einreichung",
+            "sv": "Beskriv detaljerna f\u00f6r tipset",
+            "sk": "Pop\u00ed\u0161te detaily podania",
+            "lv": "Aprakstiet zi\u0146ojuma deta\u013cas",
+            "nb_NO": "Beskriv detaljene i denne innsendelsen"
+          },
+          "incremental_number": 1,
+          "localized_hint": {
+            "el": "\u03a0\u03b5\u03c1\u03b9\u03b3\u03c1\u03ac\u03c8\u03c4\u03b5 \u03c4\u03b7\u03c2 \u03bb\u03b5\u03c0\u03c4\u03bf\u03bc\u03ad\u03c1\u03b5\u03b9\u03b5\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03bf\u03b2\u03bf\u03bb\u03ae\u03c2",
+            "en": "Describe the details of the submission",
+            "vi": "Describe the details of the submission",
+            "ca": "Descriu els detalls de l'enviament",
+            "it": "Descrivi la tua segnalazione nel dettaglio",
+            "sr_RS": "\u0414\u0435\u0442\u0430\u0459\u043d\u0438\u0458\u0435 \u043e\u043f\u0438\u0448\u0438 \u043f\u0440\u0438\u0458\u0430\u0432\u0443",
+            "ar": "\u0648\u0635\u0641 \u0627\u0644\u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u0644\u0628\u0644\u0627\u063a ",
+            "cs": "Popsat detaily pod\u00e1n\u00ed",
+            "es": "Describa los detalles del env\u00edo",
+            "ru": "Describe the details of the submission",
+            "nl": "Omschrijf de details van de inzending",
+            "tr": "G\u00f6nderi ayr\u0131nt\u0131lar\u0131n\u0131 a\u00e7\u0131klay\u0131n",
+            "sr_RS@latin": "Detaljnije opi\u0161i prijavu",
+            "hu_HU": "Felt\u00f6lt\u00f6tt anyag r\u00e9szletei",
+            "hr_HR": "Opi\u0161ite detalje predaje",
+            "pt_PT": "Descreva os detalhes da submiss\u00e3o",
+            "pl": "Opisz szczeg\u00f3\u0142y zg\u0142oszenia",
+            "fr": "D\u00e9crivez les d\u00e9tails de votre alerte",
+            "bg": "Describe the details of the submission",
+            "th": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e2d\u0e18\u0e34\u0e1a\u0e32\u0e22\u0e23\u0e32\u0e22\u0e25\u0e30\u0e40\u0e2d\u0e35\u0e22\u0e14\u0e02\u0e2d\u0e07\u0e40\u0e1a\u0e32\u0e30\u0e41\u0e2a",
+            "pt_BR": "Descreva em detalhes a sua submiss\u00e3o",
+            "de": "Beschreiben Sie die Details Ihrer Einreichung",
+            "sv": "Beskriv detaljerna f\u00f6r tipset",
+            "sk": "Pop\u00ed\u0161te detaily podania",
+            "lv": "Aprakstiet zi\u0146ojuma deta\u013cas",
+            "nb_NO": "Beskriv detaljene i denne innsendelsen"
+          },
+          "trigger": [],
+          "defined_options": [],
+          "type": "textarea"
+        },
+        {
+          "localized_name": {
+            "el": "\u03a0\u03b5\u03c1\u03b9\u03b3\u03c1\u03b1\u03c6\u03ae \u03c3\u03c5\u03bd\u03b7\u03bc\u03bc\u03ad\u03bd\u03c9\u03bd \u03c5\u03c0\u03bf\u03b2\u03bf\u03bb\u03ae\u03c2",
+            "en": "Describe the attachments of the submission",
+            "vi": "Describe the attachments of the submission",
+            "ca": "Descriu els adjunts de l'enviament",
+            "it": "Descrivi i file allegati alla segnalazione",
+            "sr_RS": "\u041e\u043f\u0438\u0448\u0438 \u0434\u0430\u0442\u043e\u0442\u0435\u043a\u0435 \u043f\u0440\u0438\u0458\u0430\u0432\u0435",
+            "ar": "\u0648\u0635\u0641 \u0627\u0644\u0645\u062a\u0639\u0644\u0642\u0627\u062a \u0644\u0644\u0628\u0644\u0627\u063a ",
+            "cs": "Popi\u0161te p\u0159\u00edlohy pod\u00e1n\u00ed",
+            "es": "Describa los adjuntos del env\u00edo",
+            "ru": "Describe the attachments of the submission",
+            "nl": "Omschrijf de bijlagen van de inzending",
+            "tr": "G\u00f6nderinin eklerini a\u00e7\u0131klay\u0131n",
+            "sr_RS@latin": "Opi\u0161i datoteke prijave",
+            "hu_HU": "A felt\u00f6lt\u00f6tt anyag csatolm\u00e1nyainak le\u00edr\u00e1sa",
+            "hr_HR": "Opi\u0161ite privitke predaje",
+            "pt_PT": "Descreva os anexos da submiss\u00e3o",
+            "pl": "Opisz za\u0142\u0105czniki do zg\u0142oszenia",
+            "fr": "D\u00e9crivez les fichiers joints \u00e0 votre alerte",
+            "bg": "Describe the attachments of the submission",
+            "th": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e2d\u0e18\u0e34\u0e1a\u0e32\u0e22\u0e23\u0e32\u0e22\u0e25\u0e30\u0e40\u0e2d\u0e35\u0e22\u0e14\u0e02\u0e2d\u0e07\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23\u0e41\u0e19\u0e1a",
+            "pt_BR": "Descreva os anexos de sua submiss\u00e3o",
+            "de": "Beschreiben Sie die Anh\u00e4nge der Einreichung",
+            "sv": "Beskriv bilagorna till tipset",
+            "sk": "Pop\u00ed\u0161te pr\u00edlohy podania",
+            "lv": "Aprakstiet zi\u0146ojuma pielikumus",
+            "nb_NO": "Beskriv vedleggene til innsendelsen."
+          },
+          "incremental_number": 2,
+          "localized_hint": {
+            "el": "\u03a0\u03b5\u03c1\u03b9\u03b3\u03c1\u03b1\u03c6\u03ae \u03c3\u03c5\u03bd\u03b7\u03bc\u03bc\u03ad\u03bd\u03c9\u03bd \u03c5\u03c0\u03bf\u03b2\u03bf\u03bb\u03ae\u03c2",
+            "en": "Describe the attachments of the submission",
+            "vi": "Describe the attachments of the submission",
+            "ca": "Descriu els adjunts de l'enviament",
+            "it": "Descrivi i file allegati alla segnalazione",
+            "sr_RS": "\u041e\u043f\u0438\u0448\u0438 \u0434\u0430\u0442\u043e\u0442\u0435\u043a\u0435 \u043f\u0440\u0438\u0458\u0430\u0432\u0435",
+            "ar": "\u0648\u0635\u0641 \u0627\u0644\u0645\u062a\u0639\u0644\u0642\u0627\u062a \u0644\u0644\u0628\u0644\u0627\u063a ",
+            "cs": "Popi\u0161te p\u0159\u00edlohy pod\u00e1n\u00ed",
+            "es": "Describa los adjuntos del env\u00edo",
+            "ru": "Describe the attachments of the submission",
+            "nl": "Omschrijf de bijlagen van de inzending",
+            "tr": "G\u00f6nderinin eklerini a\u00e7\u0131klay\u0131n",
+            "sr_RS@latin": "Opi\u0161i datoteke prijave",
+            "hu_HU": "A felt\u00f6lt\u00f6tt anyag csatolm\u00e1nyainak le\u00edr\u00e1sa",
+            "hr_HR": "Opi\u0161ite privitke predaje",
+            "pt_PT": "Descreva os anexos da submiss\u00e3o",
+            "pl": "Opisz za\u0142\u0105czniki do zg\u0142oszenia",
+            "fr": "D\u00e9crivez les fichiers joints \u00e0 votre alerte",
+            "bg": "Describe the attachments of the submission",
+            "th": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e2d\u0e18\u0e34\u0e1a\u0e32\u0e22\u0e23\u0e32\u0e22\u0e25\u0e30\u0e40\u0e2d\u0e35\u0e22\u0e14\u0e02\u0e2d\u0e07\u0e40\u0e2d\u0e01\u0e2a\u0e32\u0e23\u0e41\u0e19\u0e1a",
+            "pt_BR": "Descreva os anexos de sua submiss\u00e3o",
+            "de": "Beschreiben Sie die Anh\u00e4nge der Einreichung",
+            "sv": "Beskriv bilagorna till tipset",
+            "sk": "Pop\u00ed\u0161te pr\u00edlohy podania",
+            "lv": "Aprakstiet zi\u0146ojuma pielikumus",
+            "nb_NO": "Beskriv vedleggene til innsendelsen."
+          },
+          "trigger": [],
+          "defined_options": [],
+          "type": "textarea"
+        }
+      ],
+      "version": 1,
+      "id": "b3d771d7-524e-453f-ae38-22fab2806599",
+      "creation_date": "2014-09-13 09:01:53.159001"
+    },
+    "class": "ApplicationData"
+  },
+  {
+    "fields": {
+      "subtitle": {
+        "el": "\u0391\u03c5\u03c4\u03ae \u03b5\u03af\u03bd\u03b1\u03b9 \u03b7 \u03bb\u03b5\u03b6\u03ac\u03bd\u03c4\u03b1 \u03c4\u03b7\u03c2 \u03c0\u03c1\u03c9\u03c4\u03bf\u03b2\u03bf\u03c5\u03bb\u03af\u03b1\u03c2: \u03b3\u03c1\u03ac\u03c8\u03b5 \u03b5\u03b4\u03ce \u03c4\u03bf \u03c3\u03bb\u03cc\u03b3\u03ba\u03b1\u03bd \u03c3\u03bf\u03c5!",
+        "en": "This is the initiative subtitle: write your slogan here!",
+        "vi": "This is the initiative subtitle: write your slogan here!",
+        "ca": "Aquest \u00e9s el subt\u00edtitol de la iniciativa: escriu el teu esl\u00f2gan aqu\u00ed!",
+        "it": "Questo \u00e8 il sottotitolo dell'iniziativa: scrivi il qui il tuo slogan!",
+        "sr_RS": "This is the initiative subtitle: write your slogan here!",
+        "ar": "\u0647\u0630\u0627 \u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0641\u0631\u0639\u064a \u0644\u0644\u0645\u0628\u0627\u062f\u0631\u0629: \u0636\u0639 \u0634\u0639\u0627\u0631\u0643 \u0647\u0646\u0627!",
+        "cs": "This is the initiative subtitle: write your slogan here!",
+        "es": "Este es el subt\u00edtulo de la iniciativa: \u00a1Escriba su eslogan aqu\u00ed!",
+        "ru": "This is the initiative subtitle: write your slogan here!",
+        "nl": "Dit is de subtitel van het initiatief: schrijf je slogan hier!",
+        "tr": "Bu bir giri\u015fim alt ba\u015fl\u0131\u011f\u0131d\u0131r: slogan\u0131n\u0131z\u0131 buraya yaz\u0131n!",
+        "sr_RS@latin": "This is the initiative subtitle: write your slogan here!",
+        "hu_HU": "Ez a kezdem\u00e9nyez\u00e9s alc\u00edm\u00e9nek helye: \u00edrja ide a szlogenj\u00e9t!",
+        "hr_HR": "Ovo je titl inicijative: napi\u0161ite svoj slogan ovdje!",
+        "pt_PT": "This is the initiative subtitle: write your slogan here!",
+        "pl": "To jest podtytu\u0142 inicjatywy: napisz tu sw\u00f3j slogan!",
+        "fr": "Ceci est le sous-titre de l'initiative : \u00e9crivez votre slogan ici !",
+        "bg": "This is the initiative subtitle: write your slogan here!",
+        "th": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e40\u0e02\u0e35\u0e22\u0e19\u0e2a\u0e42\u0e25\u0e41\u0e01\u0e19\u0e41\u0e25\u0e30\u0e1a\u0e23\u0e23\u0e22\u0e32\u0e22\u0e42\u0e04\u0e23\u0e07\u0e01\u0e32\u0e23\u0e02\u0e2d\u0e07\u0e17\u0e48\u0e32\u0e19\u0e17\u0e35\u0e48\u0e19\u0e35\u0e48",
+        "pt_BR": "Este \u00e9 o subt\u00edtulo da iniciativa de den\u00fancia: escreva o seu slogan aqui!",
+        "de": "Dies ist der Untertitel Ihrer Initiative: Schreiben Sie hier Ihr Motto!",
+        "sv": "Det h\u00e4r \u00e4r en initiativ undertext: skriv din slogan h\u00e4r!",
+        "sk": "Toto je podtitulok iniciat\u00edvy: nap\u00ed\u0161te v\u00e1\u0161 slogan sem!",
+        "lv": "\u0160is ir iniciat\u012bvas apak\u0161virsraksts: pievienojiet \u0161eit savu saukli!",
+        "nb_NO": "Dette er initiativets undertekst: skriv ditt slagord her!"
+      },
+      "default_language": "en",
+      "postpone_superpower": false,
+      "creation_date": "2014-09-13 09:01:53.174403",
+      "id": "afc28e70-0117-4ed8-b294-ed3ccc87625a",
+      "maximum_textsize": 4096,
+      "maximum_namesize": 128,
+      "tor2web_admin": false,
+      "exception_email": "globaleaks-stackexception@lists.globaleaks.org",
+      "last_update": null,
+      "can_delete_submission": false,
+      "receipt_salt": "7dc94422b268eca3f2010ea382dbd238",
+      "presentation": {
+        "el": "\u0391\u03c5\u03c4\u03cc \u03b5\u03af\u03bd\u03b1\u03b9 \u03c4\u03bf \u03c0\u03c1\u03bf\u03b5\u03c0\u03b9\u03bb\u03b5\u03b3\u03bc\u03ad\u03bd\u03bf \u03bc\u03ae\u03bd\u03c5\u03bc\u03b1 \u03ba\u03b1\u03bb\u03c9\u03c3\u03bf\u03c1\u03af\u03c3\u03bc\u03b1\u03c4\u03bf\u03c2",
+        "en": "This is the default welcome message",
+        "vi": "This is the default welcome message",
+        "ca": "Aquest \u00e9s el missatge de benvinguda predeterminat",
+        "it": "Questo \u00e8 il saluto di benvenuto predefinito",
+        "sr_RS": "This is the default welcome message",
+        "ar": "\u0647\u0630\u0647 \u0631\u0633\u0627\u0644\u0629 \u0627\u0644\u062a\u0631\u062d\u064a\u0628 \u0627\u0644\u0639\u0627\u062f\u064a\u0629",
+        "cs": "Toto je p\u0159ednastaven\u00e1 uv\u00edtac\u00ed str\u00e1nka.",
+        "es": "Este es el mensaje de bienvenida predeterminado ",
+        "ru": "This is the default welcome message",
+        "nl": "Dit is het standaard begroetings bericht",
+        "tr": "Bu, \u00f6ntan\u0131ml\u0131 kar\u015f\u0131lama iletisidir",
+        "sr_RS@latin": "This is the default welcome message",
+        "hu_HU": "Ez az alap \u00fcdv\u00f6zl\u0151 \u00fczenet.",
+        "hr_HR": "Ovo je zadana poruka dobrodo\u0161lice",
+        "pt_PT": "This is the default welcome message",
+        "pl": "To jest domy\u015blna wiadomo\u015b\u0107 powitalna",
+        "fr": "Ceci est le message d'accueil par d\u00e9faut",
+        "bg": "This is the default welcome message",
+        "th": "\u0e02\u0e49\u0e2d\u0e04\u0e27\u0e32\u0e21\u0e15\u0e49\u0e2d\u0e19\u0e23\u0e31\u0e1a",
+        "pt_BR": "Esta \u00e9 a mensagem de boas-vindas padr\u00e3o",
+        "de": "Dies ist die Standard-Begr\u00fc\u00dfungsnachricht",
+        "sv": "Det h\u00e4r \u00e4r det vanliga v\u00e4lkomstmeddelandet",
+        "sk": "Toto je predvolen\u00e1 uv\u00edtacia spr\u00e1va",
+        "lv": "\u0160\u012b ir standarta sveiciena zi\u0146a",
+        "nb_NO": "Dette er standard-velkomstmeldingen"
+      },
+      "email": "",
+      "languages_enabled": [
+        "en"
+      ],
+      "ahmia": false,
+      "description": {
+        "en": ""
+      },
+      "terms_and_conditions": {
+        "el": "\u0393\u03b9\u03b1 \u03bd\u03b1 \u03b5\u03be\u03b1\u03c3\u03c6\u03b1\u03bb\u03b9\u03c3\u03c4\u03b5\u03af \u03b7 \u03b1\u03bd\u03c9\u03bd\u03c5\u03bc\u03af\u03b1 \u03c3\u03b1\u03c2 \u03ba\u03b1\u03b9 \u03bd\u03b1 \u03b5\u03af\u03c3\u03c4\u03b5 \u03c3\u03af\u03b3\u03bf\u03c5\u03c1\u03bf\u03b9 \u03bf\u03c4\u03b9 \u03b5\u03c0\u03b9\u03c3\u03ba\u03b5\u03c6\u03b8\u03ae\u03ba\u03b1\u03c4\u03b5 \u03b1\u03c5\u03c4\u03b7 \u03c4\u03b7\u03bd \u03c3\u03b5\u03bb\u03b9\u03b4\u03b1 \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b7\u03c3\u03c4\u03b5 \u03c4\u03bf Tor Browser Bundle.\n\u0395\u03c0\u03b9\u03b2\u03b5\u03b2\u03b1\u03b9\u03ce\u03bd\u03b5\u03c4\u03b5 \u03cc\u03c4\u03b9 \u03b7 \u03b1\u03c0\u03bf\u03c4\u03c5\u03c7\u03af\u03b1 \u03c3\u03b1\u03c2 \u03bd\u03b1 \u03c4\u03bf \u03ba\u03ac\u03bd\u03b5\u03c4\u03b5 \u03b8\u03b1 \u03ad\u03c7\u03b5\u03b9 \u03c9\u03c2 \u03b1\u03c0\u03bf\u03c4\u03ad\u03bb\u03b5\u03c3\u03bc\u03b1 \u03c4\u03b7 \u03bc\u03b7 \u03b4\u03c5\u03bd\u03b1\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1 \u03c0\u03c1\u03bf\u03c3\u03c4\u03b1\u03c3\u03af\u03b1\u03c2 \u03c4\u03b7\u03c2 \u03b1\u03bd\u03c9\u03bd\u03c5\u03bc\u03af\u03b1\u03c2 \u03c3\u03b1\u03c2 \u03bc\u03b5 \u03c4\u03b5\u03c7\u03bd\u03b9\u03ba\u03ac \u03bc\u03ad\u03c3\u03b1.\n\u0393\u03b9\u03b1 \u03c4\u03b7\u03bd \u03c0\u03b5\u03c1\u03b1\u03b9\u03c4\u03ad\u03c1\u03c9 \u03b5\u03bd\u03af\u03c3\u03c7\u03c5\u03c3\u03b7 \u03c4\u03b7\u03c2 \u03b1\u03c3\u03c6\u03ac\u03bb\u03b5\u03b9\u03b1\u03c2 \u03c3\u03b1\u03c2, \u03b1\u03ba\u03bf\u03bb\u03bf\u03c5\u03b8\u03ae\u03c3\u03c4\u03b5 \u03c4\u03b9\u03c2 \u03c0\u03b1\u03c1\u03b1\u03ba\u03ac\u03c4\u03c9 \u03bf\u03b4\u03b7\u03b3\u03af\u03b5\u03c2:\n1) \u03a3\u03b5 \u03c0\u03b5\u03c1\u03af\u03c0\u03c4\u03c9\u03c3\u03b7 \u03c0\u03bf\u03c5 \u03b8\u03b1 \u03b8\u03ad\u03bb\u03b1\u03c4\u03b5 \u03bd\u03b1 \u03b4\u03b9\u03b1\u03c4\u03b7\u03c1\u03ae\u03c3\u03b5\u03c4\u03b5 \u03c4\u03b7\u03bd \u03b1\u03bd\u03c9\u03bd\u03c5\u03bc\u03af\u03b1 \u03c3\u03b1\u03c2, \u03bc\u03b7\u03bd \u03c5\u03c0\u03bf\u03b2\u03ac\u03bb\u03bb\u03b5\u03c4\u03b5 \u03c4\u03b1 \u03c0\u03c1\u03bf\u03c3\u03c9\u03c0\u03b9\u03ba\u03ac \u03c3\u03b1\u03c2 \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03b1. (\u03c0.\u03c7. \u03c4\u03bf \u03cc\u03bd\u03bf\u03bc\u03ac \u03c3\u03b1\u03c2 \u03ae \u03c3\u03c7\u03ad\u03c3\u03b7 \u03bc\u03b5 \u03c4\u03bf\u03bd \u03b4\u03c1\u03ac\u03c3\u03c4\u03b7. \u039c\u03b7\u03bd \u03c5\u03c0\u03bf\u03b2\u03ac\u03bb\u03b5\u03c4\u03b5 \u03cc\u03bb\u03b5\u03c2 \u03c4\u03b9\u03c2 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c0\u03bf\u03c5 \u03bc\u03c0\u03bf\u03c1\u03bf\u03cd\u03bd \u03bd\u03b1 \u03b1\u03bd\u03b1\u03c7\u03b8\u03bf\u03cd\u03bd \u03c3\u03b5 \u03c3\u03b1\u03c2.)\n2) \u03a3\u03b1\u03c2 \u03c0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03bf\u03cd\u03bc\u03b5 \u03bd\u03b1 \u03bc\u03b7\u03bd \u03c5\u03c0\u03bf\u03b2\u03ac\u03bb\u03b5\u03c4\u03b5 \u03c4\u03b7\u03bd \u03ad\u03ba\u03b8\u03b5\u03c3\u03ae \u03c3\u03b1\u03c2 \u03c3\u03b5 \u03ad\u03bd\u03b1\u03bd \u03c5\u03c0\u03bf\u03bb\u03bf\u03b3\u03b9\u03c3\u03c4\u03ae \u03c0\u03bf\u03c5 \u03c0\u03b1\u03c1\u03ad\u03c7\u03b5\u03c4\u03b1\u03b9 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03b5\u03c1\u03b3\u03bf\u03b4\u03cc\u03c4\u03b7 \u03c3\u03b1\u03c2. \u0399\u03b4\u03b9\u03b1\u03af\u03c4\u03b5\u03c1\u03b1 \u03bc\u03b9\u03b1 \u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7 intranet \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03b8\u03ad\u03c3\u03b5\u03b9 \u03c3\u03b5 \u03ba\u03af\u03bd\u03b4\u03c5\u03bd\u03bf \u03c4\u03b7\u03bd \u03b1\u03bd\u03c9\u03bd\u03c5\u03bc\u03af\u03b1 \u03c3\u03b1\u03c2.\n\n\u0395\u03c0\u03b9\u03bb\u03ad\u03b3\u03bf\u03bd\u03c4\u03b1\u03c2 \u03c4\u03bf \u03c0\u03b1\u03c1\u03b1\u03ba\u03ac\u03c4\u03c9 \u03c0\u03bb\u03b1\u03af\u03c3\u03b9\u03bf \u03c3\u03c5\u03bc\u03c6\u03c9\u03bd\u03b5\u03af\u03c4\u03b5 \u03bc\u03b5 \u03b1\u03c5\u03c4\u03bf\u03cd\u03c2 \u03c4\u03bf\u03c5\u03c2 \u03cc\u03c1\u03bf\u03c5\u03c2 \u03ba\u03b1\u03b9 \u03c4\u03b9\u03c2 \u03c0\u03c1\u03bf\u03cb\u03c0\u03bf\u03b8\u03ad\u03c3\u03b5\u03b9\u03c2.",
+        "en": "To ensure your anonymity be sure that you are visiting this site using the Tor Browser Bundle.\nYou acknowledge that failure to do so will result in the inability to technically protect your anonymity.\nTo further enhance your security, please follow these instructions:\n1) In the event that you would like to remain anonymous, do not submit any personal information. (e.g. your name or relationship to the offender. Do not submit any information that can be traced back to you.)\n2) Please do not submit your report on a PC provided by your employer. Particularly an intranet connection may jeopardize your anonymity.\n\nBy checking the box below you agree to these terms and conditions.",
+        "vi": "\u0110\u1ec3 \u0111\u1ea3m b\u1ea3o t\u00ednh \u1ea9n danh khi b\u1ea1n \u0111ang truy c\u1eadp trang n\u00e0y, h\u00e3y s\u1eed d\u1ee5ng Tor Browser Bundle.\nN\u1ebfu nh\u01b0 b\u1ea1n v\u1eabn bi\u1ebft \u0111i\u1ec1u n\u00e0y v\u00e0 ti\u1ebfp t\u1ee5c thao t\u00e1c th\u00ec c\u1ea7n nh\u1edb r\u1eb1ng h\u1eadu qu\u1ea3 c\u1ee7a h\u00e0nh \u0111\u1ed9ng n\u00e0y c\u1ee7a b\u1ea1n l\u00e0 kh\u1ea3 n\u0103ng kh\u00f4ng an to\u00e0n khi danh t\u00ednh c\u1ee7a b\u1ea1n c\u00f3 th\u1ec3 \u0111\u01b0\u1ee3c k\u1ebb l\u1ea1 m\u1eb7t bi\u1ebft r\u00f5.\n\u0110\u1ec3 c\u00f3 th\u1ec3 t\u0103ng t\u00ednh an to\u00e0n, h\u00e3y l\u00e0m theo c\u00e1c b\u01b0\u1edbc h\u01b0\u1edbng d\u1eabn sau:\n1) Trong nh\u1eefng s\u1ef1 ki\u1ec7n y\u00eau c\u1ea7u t\u00ednh \u1ea9n danh, kh\u00f4ng n\u00ean \u0111\u1ec7 tr\u00ecnh b\u1ea5t k\u1ef3 th\u00f4ng tin thu\u1ed9c v\u1ec1 c\u00e1 nh\u00e2n. (v\u00ed d\u1ee5 nh\u01b0 t\u00ean c\u1ee7a b\u1ea1n ho\u1eb7c m\u1ed1i quan h\u1ec7 v\u1edbi \u0111\u1ed1i t\u01b0\u1ee3ng. Kh\u00f4ng n\u00ean \u0111\u1ec7 tr\u00ecnh b\u1ea5t k\u1ef3 th\u00f4ng tin m\u00e0 ng\u01b0\u1eddi kh\u00e1c c\u00f3 th\u1ec3 truy ra d\u1ea5u v\u1ebft v\u1ec1 b\u1ea1n.)\n2) Kh\u00f4ng \u0111\u1ec7 tr\u00ecnh b\u00e1o c\u00e1o c\u1ee7a b\u1ea1n tr\u00ean m\u1ed9t m\u00e1y t\u00ednh \u0111\u01b0\u1ee3c cung c\u1ea5p b\u1edfi ng\u01b0\u1eddi ch\u1ee7 c\u1ee7a b\u1ea1n \u1edf s\u1edf l\u00e0m hay c\u00f4ng ty. M\u1ed9t k\u1ebft n\u1ed1i m\u1ea1ng l\u01b0\u1edbi c\u00f3 th\u1ec3 l\u00e0m l\u1ed9 ra t\u00ednh \u1ea9n danh c\u1ee7a b\u1ea1n.\n\nB\u1eb1ng vi\u1ec7c ch\u1ecdn v\u00e0o \u00f4 b\u00ean d\u01b0\u1edbi n\u00e0y th\u00ec b\u1ea1n \u0111\u00e3 \u0111\u1ed3ng th\u1eddi ch\u1ea5p nh\u1eadn c\u00e1c \u0111i\u1ec1u kho\u1ea3n v\u00e0 \u0111i\u1ec1u ki\u1ec7n.",
+        "ca": "Per garantitzar el teu anonimat assegura't que est\u00e0 visitant aquest lloc utilitzant el Tor Browser Bundle.\nReconeixes que un error al fer aix\u00f2 desembocar\u00e0 en la impossibilitat de protegir t\u00e8cnicament el teu anonimat.\nPer millorar el teu nivell de seguretat, segueix aquestes instruccions:\n1) En cas que desitgis seguir en l'anonimat, no entreguis informaci\u00f3 personal (ex. el teu nom o la teva relaci\u00f3 amb aquells objectes de la informaci\u00f3, no entreguis cap tipus d'informaci\u00f3 que pugui ser rastrejada en el retorn cap a tu).\n2) No envi\u00efs el teu informe des d'un PC proporcionat pel teu cap de la feina. Particularment una connexi\u00f3 d'intranet pot posar en perill el teu anonimat.\n\nMarcant la casella seg\u00fcent acceptes aquests t\u00e8rmes i condicions.",
+        "it": "Per assicurare il tuo anonimato accertati di star visitando il sito usando il Tor Browser Bundle.\nConfermi che il non farlo avr\u00e0 come conseguenza l'impossibilit\u00e0 di proteggere il tuo anonimato.\nPer migliorare ulteriormente la tua sicurezza, segui le seguenti istruzioni\n1) Nel caso in cui volessi rimanere anonimo, non inviare nessun tipo di dato personali (come il tuo nome o il tipo di rapporto che hai con la persona che denunci. Non inviare alcuna informazione che potrebbe essere utilizzata per rintracciarti)\n2) Per favore non inviare alcun dato da un PC fornitoti dal tuo datore di lavoro. Una connessione in una rete locale potrebbe mettere a repentaglio il tuo anonimato.\n\nMarcando la casella seguente accetti i termini e le condizioni.",
+        "sr_RS": "\u0414\u0430 \u0431\u0438\u0441\u0442\u0435 \u043e\u0431\u0435\u0437\u0431\u0435\u0434\u0438\u043b\u0438 \u0441\u0432\u043e\u0458\u0443 \u0430\u043d\u043e\u043d\u0438\u043c\u043d\u043e\u0441\u0442 \u043f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u0435 \u0434\u0430 \u043b\u0438 \u043e\u0442\u0432\u0430\u0440\u0430\u0442\u0435 \u043e\u0432\u0430\u0458 \u0441\u0430\u0458\u0442 \u043a\u043e\u0440\u0438\u0441\u0442\u0435\u045b\u0438 Tor Browser Bundle.\n\u041d\u0430\u043f\u043e\u043c\u0438\u045a\u0435\u043c\u043e \u0434\u0430 \u0430\u043a\u043e \u043d\u0435 \u0443\u0440\u0430\u0434\u0438\u0442\u0435 \u0442\u0440\u0430\u0436\u0435\u043d\u043e \u0440\u0435\u0437\u0443\u043b\u0442\u0430\u0442 \u045b\u0435 \u0431\u0438\u0442\u0438 \u043d\u0430\u0448\u0430 \u043d\u0435\u043c\u043e\u0433\u0443\u045b\u043d\u043e\u0441\u0442 \u0434\u0430 \u0412\u0430\u043c \u0437\u0430\u0448\u0442\u0438\u0442\u0438\u043c\u043e \u0430\u043d\u043e\u043d\u0438\u043c\u043d\u043e\u0441\u0442.\n\u0414\u0430 \u0431\u0438\u0441\u0442\u0435 \u043f\u043e\u0431\u043e\u0459\u0448\u0430\u043b\u0438 \u043d\u0438\u0432\u043e \u0441\u0438\u0433\u0443\u0440\u043d\u043e\u0441\u0442\u0438, \u043c\u043e\u043b\u0438\u043c \u0412\u0430\u0441 \u043f\u0440\u043e\u0447\u0438\u0442\u0430\u0458\u0442\u0435 \u0441\u043b\u0435\u0434\u0435\u045b\u0435 \u0438\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u0458\u0435:\n1) \u0423 \u0441\u043b\u0443\u0447\u0430\u0458\u0443 \u0434\u0430 \u0436\u0430\u043b\u0438\u0442\u0435 \u0434\u0430 \u0437\u0430\u0434\u0440\u0436\u0438\u0442\u0435 \u0430\u043d\u043e\u043d\u0438\u043c\u043d\u043e\u0441\u0442, \u043d\u0435\u043c\u043e\u0458\u0442\u0435 \u0443\u043d\u043e\u0441\u0438\u0442\u0438 \u0441\u0432\u043e\u0458\u0435 \u043b\u0438\u0447\u043d\u0435 \u043f\u043e\u0434\u0430\u0442\u043a\u0435. (\u043d\u043f\u0440. \u0412\u0430\u0448 \u043e\u0434\u043d\u043e\u0441 \u0441\u0430 \u043e\u043f\u0442\u0443\u0436\u0435\u043d\u0438\u043c. \u041d\u0435\u043c\u043e\u0458\u0442\u0435 \u0441\u043b\u0430\u0442\u0438 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0458\u0435 \u043a\u043e\u0458\u0435 \u043c\u043e\u0433\u0443 \u0434\u0430 \u0431\u0443\u0434\u0443 \u0431\u0438\u043b\u043e \u043a\u0430\u043a\u0430\u0432 \u0442\u0440\u0430\u0433 \u043d\u0430\u0437\u0430\u0434 \u0434\u043e \u0412\u0430\u0441.)\n2) \u041d\u0435\u043c\u043e\u0458\u0442\u0435 \u0441\u043b\u0430\u0442\u0438 \u043f\u043e\u0434\u0430\u0442\u043a\u0435 \u0441\u0430 \u0440\u0430\u0447\u0443\u043d\u0430\u0440\u0430 \u043a\u043e\u0458\u0438 \u0412\u0430\u043c \u0458\u0435 \u043e\u0431\u0435\u0437\u0431\u0435\u0434\u0438\u043e \u043f\u043e\u0441\u043b\u043e\u0434\u0430\u0432\u0430\u0446. \u0418\u043d\u0442\u0440\u0430\u043d\u0435\u0442 \u0432\u0435\u0437\u0435 \u043f\u043e\u0441\u0435\u0431\u043d\u043e \u043c\u043e\u0433\u0443 \u0434\u0430 \u0443\u0433\u0440\u043e\u0437\u0435 \u0412\u0430\u0448\u0443 \u0430\u043d\u043e\u043d\u0438\u043c\u043d\u043e\u0441\u0442.\n\n\u041e\u0431\u0435\u043b\u0435\u0436\u0430\u0432\u0430\u045a\u0435\u043c \u043f\u043e\u0459\u0435 \u0438\u0441\u043f\u043e\u0434 \u0441\u043b\u0430\u0436\u0435\u0442\u0435 \u0441\u0430 \u0443\u0441\u043b\u043e\u0432\u0438\u043c\u0430 \u043a\u043e\u0440\u0438\u0448\u045b\u0435\u045a\u0430.",
+        "ar": "\u0644\u0636\u0645\u0627\u0646 \u0639\u062f\u0645 \u0627\u0644\u0643\u0634\u0641 \u0639\u0646 \u0647\u0648\u064a\u062a\u0643 \u0627\u0644\u0631\u062c\u0627\u0621 \u0627\u0644\u062a\u0623\u0643\u062f \u0645\u0646 \u0623\u0646\u0643 \u062a\u0632\u0648\u0631 \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062d\u0629 \u0645\u0633\u062a\u0639\u0645\u0644\u0627 Tor Browser Bundle.\n \u0623\u0646\u062a \u062a\u0642\u0631 \u0628\u0623\u0646 \u0639\u062f\u0645 \u0627\u0644\u0642\u064a\u0627\u0645 \u0628\u0630\u0644\u0643 \u0633\u064a\u0624\u062f\u064a \u0625\u0644\u0649 \u0639\u062f\u0645 \u0627\u0644\u0642\u062f\u0631\u0629 \u062a\u0642\u0646\u064a\u0627 \u0639\u0644\u0649 \u062d\u0645\u0627\u064a\u0629 \u0647\u0648\u064a\u062a\u0643.\n\u0644\u062a\u0642\u0648\u0651\u064a\u0629 \u0623\u0645\u0646\u0643\u060c \u0627\u0644\u0631\u062c\u0627\u0621 \u0627\u062a\u0628\u0639\\\u064a \u0647\u0630\u0647 \u0627\u0644\u0625\u0631\u0634\u0627\u062f\u0627\u062a\n1) \u0625\u0630\u0627 \u0623\u0631\u062f\u062a \u0639\u062f\u0645 \u0627\u0644\u0643\u0634\u0641 \u0639\u0646 \u0647\u0648\u064a\u062a\u0643\u060c \u0644\u0627 \u062a\u0642\u062f\u0651\u0645 \u0623\u064a \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0634\u062e\u0635\u064a\u0629 (\u0639\u0644\u0649 \u0633\u0628\u064a\u0644 \u0627\u0644\u0645\u062b\u0627\u0644\u060c \u0627\u0633\u0645\u0643\u060c \u0639\u0644\u0627\u0642\u062a\u0643 \u0628\u0627\u0644\u0634\u062e\u0635 \u0627\u0644\u0645\u0628\u0644\u063a \u0639\u0646\u0647\u060c \u0623\u0648 \u0623\u064a \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0642\u0627\u0628\u0644\u0629 \u0644\u0627\u0642\u062a\u0641\u0627\u0621 \u0623\u062b\u0631\u0643.)\n2) \u064a\u0631\u062c\u0649 \u0639\u062f\u0645 \u062a\u0642\u062f\u064a\u0645 \u0627\u0644\u062a\u0642\u0631\u064a\u0631 \u0627\u0644\u062e\u0627\u0635 \u0628\u0643 \u0639\u0644\u0649 \u062c\u0647\u0627\u0632 \u0643\u0645\u0628\u064a\u0648\u062a\u0631 \u064a\u0648\u0641\u0631\u0647 \u0635\u0627\u062d\u0628 \u0639\u0645\u0644\u0643. \u0641\u0627\u062a\u0635\u0627\u0644\u0643 \u0628\u0627\u0644\u0634\u0628\u0643\u0629 \u0642\u062f \u064a\u0639\u0631\u0636 \u0647\u0648\u064a\u062a\u0643 \u0644\u0644\u062e\u0637\u0631.\n\n\u0628\u062a\u062d\u0642\u0642 \u0627\u0644\u062e\u0627\u0646\u0629 \u0623\u062f\u0646\u0627\u0647\u060c \u0641\u0625\u0646\u0643 \u062a\u0648\u0627\u0641\u0642 \u0639\u0644\u0649 \u0647\u0630\u0647 \u0627\u0644\u0634\u0631\u0648\u0637 \u0648\u0627\u0644\u0623\u062d\u0643\u0627\u0645.",
+        "cs": "Pro zaji\u0161t\u011bn\u00ed Va\u0161\u00ed anonymity zabezpe\u010dte, \u017ee nav\u0161t\u011bvujete tuto str\u00e1nku pomoc\u00ed Tor Browser Bundle.\nSouhlas\u00edte, \u017ee chyba, kterou ud\u011bl\u00e1te, m\u016f\u017ee m\u00edt d\u016fsledek v technick\u00e9m omezen\u00ed ochrany Va\u0161\u00ed identity.\nPro dal\u0161\u00ed vylep\u0161en\u00ed Va\u0161\u00ed bezpe\u010dnosti n\u00e1sledujte tyto instrukce:\n1) V okam\u017eiku, kdy chcete z\u016fstat v anonymit\u011b, nepos\u00edlejte \u017e\u00e1dn\u00e1 osobn\u00ed data (tj. jm\u00e9no, vztah k vin\u00edkovi). Nepos\u00edlejte tak\u00e9 \u017e\u00e1dn\u00e9 informace pomoc\u00ed kter\u00fdch je mo\u017en\u00e9 V\u00e1s zp\u011btn\u011b vystopovat.\n2) Pros\u00edm nepos\u00edlejte V\u00e1\u0161 report na PC poskytnut\u00e9 Va\u0161\u00edm zam\u011bstnavatelem. \u010c\u00e1ste\u010dn\u011b i prost\u0159ed\u00ed intranetu m\u016f\u017ee ohrozit Va\u0161i anonymitu.\n\nZa\u0161krtnut\u00edm boxu n\u00ed\u017ee souhlas\u00edte s t\u011bmito podm\u00ednkami u\u017eit\u00ed.",
+        "es": "Para garantizar su anonimato aseg\u00farese de que est\u00e1 visitando este sitio utilizando el Tor Browser Bundle.\nUsted reconoce que un fallo al hacer esto resultar\u00e1 en la imposibilidad de proteger t\u00e9cnicamente su anonimato.\nPara mejorar su nivel de seguridad, siga estas instrucciones:\n1) En caso de que deseara permanecer en el anonimato, no entregue informaci\u00f3n personal alguna (ej. su nombre o su relaci\u00f3n con aquellos objeto de la informaci\u00f3n, no entregue informaci\u00f3n alguna que pueda ser rastreada de vuelta hacia usted).\n2) No env\u00ede su informe desde un PC proporcionado por su empleador. Particularmente una conexi\u00f3n de intranet puede poner en peligro su anonimato.\n\nMarcando la casilla siguiente acepta estos t\u00e9rminos y condiciones.",
+        "ru": "\u0414\u043b\u044f \u0442\u043e\u0433\u043e, \u0447\u0442\u043e\u0431\u044b \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0438\u0442\u044c \u0441\u0432\u043e\u044e \u0430\u043d\u043e\u043d\u0438\u043c\u043d\u043e\u0441\u0442\u044c, \u043f\u043e\u0441\u0435\u0449\u0430\u0439\u0442\u0435 \u044d\u0442\u043e\u0442 \u0441\u0430\u0439\u0442 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u044f Tor Browser Bundle.\n\u0412\u044b \u043e\u0441\u043e\u0437\u043d\u0430\u0435\u0442\u0435, \u0447\u0442\u043e \u043e\u0442\u043a\u0430\u0437 \u043e\u0442 \u044d\u0442\u043e\u0433\u043e \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f \u043f\u0440\u0438\u0432\u0435\u0434\u0435\u0442 \u043a \u043d\u0435\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442\u0438 \u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u043e\u0439 \u0437\u0430\u0449\u0438\u0442\u044b \u0432\u0430\u0448\u0435\u0439 \u0430\u043d\u043e\u043d\u0438\u043c\u043d\u043e\u0441\u0442\u0438.\n\u0427\u0442\u043e\u0431\u044b \u043f\u043e\u0432\u044b\u0441\u0438\u0442\u044c \u0443\u0440\u043e\u0432\u0435\u043d\u044c \u0432\u0430\u0448\u0435\u0439 \u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u0438, \u043f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0441\u043b\u0435\u0434\u0443\u0439\u0442\u0435 \u0438\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u0438:\n1) \u0415\u0441\u043b\u0438 \u0432\u044b \u0445\u043e\u0442\u0438\u0442\u0435 \u0441\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0430\u043d\u043e\u043d\u0438\u043c\u043d\u043e\u0441\u0442\u044c, \u043d\u0435 \u043f\u0435\u0440\u0435\u0434\u0430\u0432\u0430\u0439\u0442\u0435 \u043d\u0438\u043a\u0430\u043a\u0443\u044e \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u0443\u044e \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e (\u0442\u0430\u043a\u0443\u044e \u043a\u0430\u043a \u0432\u0430\u0448\u0435 \u0438\u043c\u044f) \u0438 \u043d\u0435 \u0443\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u0442\u0435 \u0432\u0430\u0448\u0443 \u0441\u0432\u044f\u0437\u044c \u0441 \u043f\u0440\u0430\u0432\u043e\u043d\u0430\u0440\u0443\u0448\u0438\u0442\u0435\u043b\u0435\u043c. \u041d\u0435 \u0443\u043a\u0430\u0437\u044b\u0432\u0430\u0439\u0442\u0435 \u043d\u0438\u043a\u0430\u043a\u0443\u044e \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044e, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u043c\u043e\u0436\u0435\u0442 \u0443\u043a\u0430\u0437\u044b\u0432\u0430\u0442\u044c \u043d\u0430 \u0432\u0430\u0441.\n2) \u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u043d\u0435 \u043f\u0435\u0440\u0435\u0434\u0430\u0432\u0430\u0439\u0442\u0435 \u0432\u0430\u0448 \u043e\u0442\u0447\u0435\u0442 \u0441 \u041f\u041a, \u043f\u0440\u0435\u0434\u043e\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u043d\u043e\u0433\u043e \u0432\u0430\u0448\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u043e\u0434\u0430\u0442\u0435\u043b\u0435\u043c. \u0418\u043d\u0442\u0440\u0430\u043d\u0435\u0442-\u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0435 \u043c\u043e\u0436\u0435\u0442 \u043f\u043e\u0434\u0432\u0435\u0440\u0433\u043d\u0443\u0442\u044c \u043e\u0441\u043e\u0431\u043e\u0439 \u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u0438 \u0432\u0430\u0448\u0443 \u0430\u043d\u043e\u043d\u0438\u043c\u043d\u043e\u0441\u0442\u044c.\n\n\u041e\u0442\u043c\u0435\u0442\u0438\u0432 \u0440\u0430\u0441\u043f\u043e\u043b\u043e\u0436\u0435\u043d\u043d\u044b\u0439 \u043d\u0438\u0436\u0435 \u0431\u043b\u043e\u043a, \u0432\u044b \u043f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u0442\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u0430 \u0438 \u0443\u0441\u043b\u043e\u0432\u0438\u044f.",
+        "nl": "To ensure your anonymity be sure that you are visiting this site using the Tor Browser Bundle.\nYou acknowledge that failure to do so will result in the inability to technically protect your anonymity.\nTo further enhance your security, please follow these instructions:\n1) In the event that you would like to remain anonymous, do not submit any personal information. (e.g. your name or relationship to the offender. Do not submit any information that can be traced back to you.)\n2) Please do not submit your report on a PC provided by your employer. Particularly an intranet connection may jeopardize your anonymity.\n\nBy checking the box below you agree to these terms and conditions.",
+        "tr": "Anonimli\u011finizi garantiye almak i\u00e7in bu sayfay\u0131 Tor Taray\u0131c\u0131 Paketi kullanarak ziyaret etti\u011finizden emin olun.\nBu i\u015flemdeki ba\u015far\u0131s\u0131zl\u0131\u011f\u0131n, anonim kimli\u011finizin teknik olarak korunamamas\u0131 ile sonu\u00e7lanaca\u011f\u0131n\u0131 do\u011fruluyorsunuz.\nG\u00fcvenli\u011finizi daha da artt\u0131rmak i\u00e7in, l\u00fctfen bu talimatlar\u0131 izleyin:\n1) Anonim kalmak istiyorsan\u0131z ki\u015fisel bilgilerinizi vermeyin (\u00d6rn. ad\u0131n\u0131z veya su\u00e7luyla ili\u015fkiniz. Sizi izletebilecek herhangi bir bilgi vermeyin.).\n2) L\u00fctfen raporunuzu i\u015fvereniniz taraf\u0131ndan verilmi\u015f bir bilgisayarda sunmay\u0131n. \u00d6zellikle intranet ba\u011flant\u0131lar\u0131 anonimli\u011finizi tehlikeye atablir.\n\nA\u015fa\u011f\u0131daki kutuyu i\u015faretleyerek ko\u015ful ve \u015fartlar\u0131 kabul ediyorsunuz.",
+        "sr_RS@latin": "D\u0430 bist\u0435 \u043eb\u0435zb\u0435dili sv\u043e\u0458u \u0430n\u043enimn\u043est pr\u043ev\u0435rit\u0435 d\u0430 li \u043etv\u0430r\u0430t\u0435 \u043ev\u0430\u0458 s\u0430\u0458t k\u043erist\u0435\u0107i Tor Browser Bundle.\nN\u0430p\u043eminj\u0435m\u043e d\u0430 \u0430k\u043e n\u0435 ur\u0430dit\u0435 tr\u0430\u017e\u0435n\u043e r\u0435zult\u0430t \u0107\u0435 biti n\u0430\u0161\u0430 n\u0435m\u043egu\u0107n\u043est d\u0430 V\u0430m z\u0430\u0161titim\u043e \u0430n\u043enimn\u043est.\nD\u0430 bist\u0435 p\u043eb\u043el\u0458\u0161\u0430li niv\u043e sigurn\u043esti, m\u043elim V\u0430s pr\u043e\u010dit\u0430\u0458t\u0435 sl\u0435d\u0435\u0107\u0435 instrukci\u0458\u0435:\n1) U slu\u010d\u0430\u0458u d\u0430 \u017e\u0430lit\u0435 d\u0430 z\u0430dr\u017eit\u0435 \u0430n\u043enimn\u043est, n\u0435m\u043e\u0458t\u0435 un\u043esiti sv\u043e\u0458\u0435 li\u010dn\u0435 p\u043ed\u0430tk\u0435. (npr. V\u0430\u0161 \u043edn\u043es s\u0430 \u043eptu\u017e\u0435nim. N\u0435m\u043e\u0458t\u0435 sl\u0430ti inf\u043erm\u0430ci\u0458\u0435 k\u043e\u0458\u0435 m\u043egu d\u0430 budu bil\u043e k\u0430k\u0430v tr\u0430g n\u0430z\u0430d d\u043e V\u0430s.)\n2) N\u0435m\u043e\u0458t\u0435 sl\u0430ti p\u043ed\u0430tk\u0435 s\u0430 r\u0430\u010dun\u0430r\u0430 k\u043e\u0458i V\u0430m \u0458\u0435 \u043eb\u0435zb\u0435di\u043e p\u043esl\u043ed\u0430v\u0430c. Intr\u0430n\u0435t v\u0435z\u0435 p\u043es\u0435bn\u043e m\u043egu d\u0430 ugr\u043ez\u0435 V\u0430\u0161u \u0430n\u043enimn\u043est.\n\n\u041eb\u0435l\u0435\u017e\u0430v\u0430nj\u0435m p\u043el\u0458\u0435 isp\u043ed sl\u0430\u017e\u0435t\u0435 s\u0430 usl\u043evim\u0430 k\u043eri\u0161\u0107\u0435nj\u0430.",
+        "hu_HU": "Anonimit\u00e1s\u00e1nak biztos\u00edt\u00e1s\u00e1hoz gy\u0151z\u0151dj\u00f6n meg arr\u00f3l, hogy az oldalt a k\u00f6vetkez\u0151vel kereste fel Tor Browser Bundle.\nElfogadja, hogy ennek hi\u00e1ny\u00e1ban technikailag nem megoldhat\u00f3 az anonimit\u00e1s\u00e1nak meg\u0151rz\u00e9se.\nBiztons\u00e1g\u00e1nak meger\u0151s\u00edt\u00e9s\u00e9hez, k\u00e9rj\u00fck, k\u00f6vesse az al\u00e1bbi instrukci\u00f3kat:\n1) Ha meg szeretn\u00e9 \u0151rizni n\u00e9vtelens\u00e9g\u00e9t, ne k\u00fcldj\u00f6n el semmilyen szem\u00e9lyes inform\u00e1ci\u00f3t! (Pl. a nev\u00e9t vagy azt, hogy milyen kapcsolatban \u00e1ll a b\u0171nelk\u00f6vet\u0151vel. Ne k\u00fcldj\u00f6n el semmi olyan inform\u00e1ci\u00f3t, amely alapj\u00e1n visszakereshet\u0151 lenne a kil\u00e9te!)\n2) Ne k\u00fcldj\u00f6n semmit munkahelyi (irodai) sz\u00e1m\u00edt\u00f3g\u00e9p\u00e9r\u0151l vagy a munk\u00e1ltat\u00f3ja \u00e1ltal biztos\u00edtott laptopr\u00f3l, \u00e9s semmik\u00e9ppen ne haszn\u00e1ljon a k\u00fcld\u00e9sre intranet h\u00e1l\u00f3zatot, mert azon kereszt\u00fcl nem biztos\u00edthat\u00f3 a n\u00e9vtelens\u00e9ge!\n\nAz al\u00e1bbi doboz \"kipip\u00e1l\u00e1s\u00e1val\" beleegyezik a felhaszn\u00e1l\u00e1si felt\u00e9telekbe.",
+        "hr_HR": "Da biste osigurali svoju anonimnost, provjerite da posje\u0107ujete ovu stranicu pomo\u0107u Tor Browser Bundle.\nPrihva\u0107ate da ako to ne u\u010dinite, ne\u0107emo biti u mogu\u0107nosti tehni\u010dki za\u0161tititi Va\u0161u anonimnost.\nDa biste dalje pobolj\u0161ali svoju sigurnost, molimo da slijedite ove upute:\n1) U slu\u010daju da \u017eelite ostati anonimni, nemojte davati nikakve osobne informacije. (npr. Va\u0161e ime ili vezu s prijestupnikom. Nemojte davati nikakve informacije koje mogu natrag voditi do Vas.)\n2) Molimo, nemojte predati svoje izvje\u0161\u0107e na ra\u010dunalu Va\u0161eg poslodavca. Intranet veza posebice mo\u017ee ugroziti Va\u0161u anonimnost.\n\nOdabirom ku\u0107ice ispod sla\u017eete se s ovim odredbama i uvjetima.",
+        "pt_PT": "Para assegurar o seu anonimato, certifique-se que visita este site utilizando o Tor Browser Bundle.\nYou acknowledge that failure to do so will result in the inability to technically protect your anonymity.\nPara melhorar ainda mais a sua seguran\u00e7a, por favor, siga estas instru\u00e7\u00f5es:\n1) No caso de pretender continuar an\u00f3nimo, n\u00e3o submeta qualquer informa\u00e7\u00e3o pessoal (ex.: o seu nome ou parentesco com o ofensor. N\u00e3o submeta qualquer informa\u00e7\u00e3o que possa ser rastreada at\u00e9 \u00e0 sua pessoa.).\n2) Por favor, n\u00e3o submeta a sua informa\u00e7\u00e3o num PC do seu empregador. Particularmente numa conex\u00e3o intranet que poder\u00e1 p\u00f4r em risco o seu anonimato.\n\nAo selecionar esta caixa, est\u00e1 a concordar com os termos e condi\u00e7\u00f5es.",
+        "pl": "Aby zapewni\u0107 sobie anonimowo\u015b\u0107 b\u0105d\u017a pewny, \u017ce odwiedzasz tej witryny przy u\u017cyciu Tor Browser Bundle.\nPrzyznajesz, \u017ce je\u015bli tego nie zrobisz to zapewnienie Ci anonimowo\u015bci b\u0119dzie technicznie niemo\u017cliwe.\nAby poprawi\u0107 swoje bezpiecze\u0144stwo, nale\u017cy post\u0119powa\u0107 zgodnie z tymi instrukcjami:\n1) Je\u015bli chcia\u0142by\u015b zachowa\u0107 anonimowo\u015b\u0107, nie podawaj \u017cadnych informacji osobistych. (np. twoje imi\u0119 lub co \u0142\u0105czy ci\u0119 ze sprawc\u0105. Nie podawaj \u017cadnych informacji kt\u00f3re mog\u0142yby pos\u0142u\u017cy\u0107 do namierzenia twojej osoby)\n2) Prosz\u0119 nie zg\u0142aszaj raport\u00f3w z komputera kt\u00f3ry by\u0142 dostarczony przez twojego pracodawc\u0119. Zw\u0142aszcza po\u0142\u0105czenie z intranetem zagra\u017ca twojej anonimowo\u015bci.\n\nZaznaczaj\u0105c poni\u017csze pole wyra\u017casz zgod\u0119 na te warunki.",
+        "fr": "Afin d'assurer votre anonymat assurez-vous que vous visitez ce site en utilisant Tor Browser Bundle.\nVous acceptez qu'une incapacit\u00e9 \u00e0 faire cela entra\u00eenera l'incapacit\u00e9 technique de protection de votre anonymat.\nAfin d'am\u00e9liorer d'avantage votre s\u00e9curit\u00e9, veuillez suivre ces instructions :\n1) Dans le cas o\u00f9 vous souhaiteriez rester anonyme, ne diffusez aucune information personnelle (comme votre \u00e2ge ou le niveau de votre relation avec les personnes en question. Ne donnez aucune information qui puisse permettre de remonter jusqu'\u00e0 vous.)\n2) Veuillez ne pas soumettre un rapport depuis un ordinateur fourni par votre employeur. Une connexion depuis un intranet peut particuli\u00e8rement mettre en danger votre anonymat.\n\nEn cochant la case ci-dessous, vous acceptez ces termes et conditions.",
+        "bg": "To ensure your anonymity be sure that you are visiting this site using the Tor Browser Bundle.\nYou acknowledge that failure to do so will result in the inability to technically protect your anonymity.\nTo further enhance your security, please follow these instructions:\n1) In the event that you would like to remain anonymous, do not submit any personal information. (e.g. your name or relationship to the offender. Do not submit any information that can be traced back to you.)\n2) Please do not submit your report on a PC provided by your employer. Particularly an intranet connection may jeopardize your anonymity.\n\nBy checking the box below you agree to these terms and conditions.",
+        "th": "\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e43\u0e2b\u0e49\u0e41\u0e19\u0e48\u0e43\u0e08\u0e27\u0e48\u0e32\u0e17\u0e48\u0e32\u0e19\u0e40\u0e1b\u0e47\u0e19\u0e1a\u0e38\u0e04\u0e04\u0e25\u0e19\u0e34\u0e23\u0e19\u0e32\u0e21 \u0e17\u0e48\u0e32\u0e19\u0e04\u0e27\u0e23\u0e40\u0e22\u0e35\u0e48\u0e22\u0e21\u0e0a\u0e21\u0e40\u0e27\u0e47\u0e1a\u0e44\u0e0b\u0e15\u0e4c\u0e19\u0e35\u0e49\u0e42\u0e14\u0e22\u0e01\u0e32\u0e23\u0e43\u0e0a\u0e49 Tor Browser Bundle.\n\u0e17\u0e48\u0e32\u0e19\u0e23\u0e31\u0e1a\u0e17\u0e23\u0e32\u0e1a\u0e27\u0e48\u0e32\u0e01\u0e32\u0e23\u0e44\u0e21\u0e48\u0e1b\u0e0f\u0e34\u0e1a\u0e31\u0e15\u0e34\u0e15\u0e32\u0e21\u0e08\u0e30\u0e21\u0e35\u0e1c\u0e25\u0e43\u0e19\u0e17\u0e32\u0e07\u0e40\u0e17\u0e04\u0e19\u0e34\u0e04\u0e17\u0e33\u0e43\u0e2b\u0e49\u0e44\u0e21\u0e48\u0e2a\u0e32\u0e21\u0e32\u0e23\u0e16\u0e1b\u0e01\u0e1b\u0e34\u0e14\u0e15\u0e31\u0e27\u0e17\u0e48\u0e32\u0e19\u0e44\u0e14\u0e49\n\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e40\u0e1e\u0e34\u0e48\u0e21\u0e04\u0e27\u0e32\u0e21\u0e1b\u0e25\u0e2d\u0e14\u0e20\u0e31\u0e22 \u0e01\u0e23\u0e38\u0e13\u0e32\u0e17\u0e33\u0e15\u0e32\u0e21\u0e04\u0e33\u0e2a\u0e31\u0e48\u0e07\u0e40\u0e2b\u0e25\u0e48\u0e32\u0e19\u0e35\u0e49:\n1) \u0e2b\u0e32\u0e01\u0e17\u0e48\u0e32\u0e19\u0e44\u0e21\u0e48\u0e15\u0e49\u0e2d\u0e07\u0e01\u0e32\u0e23\u0e40\u0e1b\u0e34\u0e14\u0e40\u0e1c\u0e22\u0e15\u0e31\u0e27 \u0e01\u0e23\u0e38\u0e13\u0e32\u0e07\u0e14\u0e43\u0e0a\u0e49\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e2a\u0e48\u0e27\u0e19\u0e15\u0e31\u0e27\u0e02\u0e2d\u0e07\u0e17\u0e48\u0e32\u0e19 ( \u0e40\u0e0a\u0e48\u0e19 \u0e0a\u0e37\u0e48\u0e2d\u0e08\u0e23\u0e34\u0e07\u0e02\u0e2d\u0e07\u0e17\u0e48\u0e32\u0e19 \u0e2b\u0e23\u0e37\u0e2d \u0e04\u0e27\u0e32\u0e21\u0e2a\u0e31\u0e21\u0e1e\u0e31\u0e19\u0e18\u0e4c\u0e02\u0e2d\u0e07\u0e17\u0e48\u0e32\u0e19\u0e01\u0e31\u0e1a\u0e1c\u0e39\u0e49\u0e17\u0e35\u0e48\u0e17\u0e48\u0e32\u0e19\u0e15\u0e49\u0e2d\u0e07\u0e01\u0e32\u0e23\u0e41\u0e08\u0e49\u0e07\u0e40\u0e1a\u0e32\u0e30\u0e41\u0e2a \u0e01\u0e23\u0e38\u0e13\u0e32\u0e2d\u0e22\u0e48\u0e32\u0e2a\u0e48\u0e07\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e43\u0e14\u0e17\u0e35\u0e48\u0e2a\u0e32\u0e21\u0e32\u0e23\u0e16\u0e2a\u0e37\u0e1a\u0e01\u0e25\u0e31\u0e1a\u0e16\u0e36\u0e07\u0e17\u0e48\u0e32\u0e19\u0e44\u0e14\u0e49\n2) \u0e42\u0e1b\u0e23\u0e14\u0e2d\u0e22\u0e48\u0e32\u0e43\u0e0a\u0e49\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e04\u0e2d\u0e21\u0e1e\u0e34\u0e27\u0e40\u0e15\u0e2d\u0e23\u0e4c\u0e02\u0e2d\u0e07\u0e2d\u0e07\u0e04\u0e4c\u0e01\u0e23 \u0e42\u0e14\u0e22\u0e40\u0e09\u0e1e\u0e32\u0e30\u0e01\u0e32\u0e23\u0e40\u0e02\u0e49\u0e32\u0e23\u0e30\u0e1a\u0e1a\u0e1c\u0e48\u0e32\u0e19\u0e04\u0e2d\u0e21\u0e1e\u0e34\u0e27\u0e40\u0e15\u0e2d\u0e23\u0e4c\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\u0e20\u0e32\u0e22\u0e43\u0e19\u0e2d\u0e07\u0e04\u0e4c\u0e01\u0e23\u0e2b\u0e23\u0e37\u0e2d\u0e2d\u0e34\u0e19\u0e17\u0e23\u0e32\u0e40\u0e19\u0e47\u0e17 \u0e0b\u0e36\u0e48\u0e07\u0e2d\u0e32\u0e08\u0e21\u0e35\u0e04\u0e27\u0e32\u0e21\u0e40\u0e2a\u0e35\u0e48\u0e22\u0e07\u0e15\u0e48\u0e2d\u0e01\u0e32\u0e23\u0e40\u0e1b\u0e34\u0e14\u0e40\u0e1c\u0e22\u0e15\u0e31\u0e27\u0e17\u0e48\u0e32\u0e19\n\n\u0e01\u0e32\u0e23\u0e43\u0e2a\u0e48\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e2b\u0e21\u0e32\u0e22\u0e43\u0e19\u0e01\u0e25\u0e48\u0e2d\u0e07\u0e14\u0e49\u0e32\u0e19\u0e25\u0e48\u0e32\u0e07\u0e19\u0e35\u0e49\u0e2b\u0e21\u0e32\u0e22\u0e04\u0e27\u0e32\u0e21\u0e27\u0e48\u0e32\u0e17\u0e48\u0e32\u0e19\u0e22\u0e2d\u0e21\u0e23\u0e31\u0e1a\u0e02\u0e49\u0e2d\u0e01\u0e33\u0e2b\u0e19\u0e14\u0e41\u0e25\u0e30\u0e40\u0e07\u0e37\u0e48\u0e2d\u0e19\u0e44\u0e02\u0e15\u0e48\u0e32\u0e07\u0e46\u0e41\u0e25\u0e49\u0e27",
+        "pt_BR": "Para garantir o seu anonimato esteja certo de que est\u00e1 visitando este site usando o Tor Browser Bundle.\nVoc\u00ea reconhece que n\u00e3o faz\u00ea-lo resultar\u00e1 na incapacidade de proteger tecnicamente seu anonimato.\nPara aumentar ainda mais a sua seguran\u00e7a, por favor, siga estas instru\u00e7\u00f5es:\n1) No caso em que voc\u00ea queira permanecer no anonimato, n\u00e3o submeta qualquer informa\u00e7\u00e3o pessoal. (por exemplo, seu nome ou rela\u00e7\u00e3o com o agressor. N\u00e3o apresente qualquer informa\u00e7\u00e3o que pode ser rastreada at\u00e9 voc\u00ea.)\n2) Por favor, n\u00e3o submeta o seu relat\u00f3rio em um PC fornecido pelo seu empregador. Particularmente uma conex\u00e3o intranet pode comprometer seu anonimato.\n\nAo marcar a caixa abaixo, voc\u00ea concorda com estes termos e condi\u00e7\u00f5es.",
+        "de": "Um Ihre Anonymit\u00e4t sicherstellen zu k\u00f6nnen, nutzen Sie bitte zum Aufruf dieser Seite ausschliesslich Tor Browser Bundle.\nSie best\u00e4tigen, dass das Unterlassen dazu f\u00fchren kann, dass Ihre Anonymit\u00e4t nicht gesichert werden kann.\nZur weiteren Verbesserung Ihrer Sicherheit folgen Sie bitte diesen Anweisungen:\n1) Sollten Sie anonym bleiben wollen, reichen Sie keinerlei pers\u00f6nliche Informationen ein (z. B. Ihren Namen oder Ihre Beziehung zu anderen Personen. \u00dcbertragen Sie keine Informationen anhand derer Sie zur\u00fcckverfolgt werden k\u00f6nnten.)\n2) Bitte nutzen Sie diese Website nicht von einem Computer Ihres Arbeitgebers. Eine Intranet-Verbindung kann Ihre Anonymit\u00e4t gef\u00e4hrden.\n\nBitte best\u00e4tigen Sie, dass Sie die Hinweise gelesen und verstanden haben.",
+        "sv": "F\u00f6r att s\u00e4kerst\u00e4lla din anonymitet, kontrollera att du bes\u00f6ker den h\u00e4r sajten genom att anv\u00e4nda Tor Browser Bundle.\nDu medger att genom att strunta i det blir det om\u00f6jligt att tekniskt skydda din anonymitet.\nF\u00f6r att vidare f\u00f6rb\u00e4ttra din s\u00e4kerhet, f\u00f6lj de h\u00e4r instruktionerna:\n1) Om du skulle vilja forts\u00e4tta vara anonym, skicka inte in n\u00e5gon privat infomation. (t.ex. ditt namn eller din relation till lag\u00f6vertr\u00e4daren. Skicka inte in n\u00e5gon information som kan sp\u00e5ras tillbaka till dig.)\n2) Skicka inte in ditt tips fr\u00e5n en dator p\u00e5 din arbetsplats. Framf\u00f6rallt intran\u00e4t kan s\u00e4tta din anonymitet p\u00e5 spel.\n\nGenom att klicka i rutan nedan g\u00e5r du med p\u00e5 detta anv\u00e4ndaravtal.",
+        "sk": "Na zabezpe\u010denie va\u0161ej anonymity sa uistite, \u017ee nav\u0161tevujete t\u00fato str\u00e1nku prostredn\u00edctvom Tor Browser Bundle.\nBeriete na vedomie, \u017ee v pr\u00edpade zlyhania bude technicky nemo\u017en\u00e9 ochr\u00e1ni\u0165 va\u0161u anonymitu.\nPre \u010fal\u0161ie zv\u00fd\u0161enie za\u0161ej bezpe\u010dnosti postupujte pros\u00edm pod\u013ea nasleduj\u00facich pokynov: \n1) Ak by ste chceli zosta\u0165 v anonymite, neposielajte \u017eiadne svoje osobn\u00e9 inform\u00e1cie. (napr. va\u0161e meno alebo vz\u0165ah k p\u00e1chate\u013eovi. Skr\u00e1tka \u017eiadne inform\u00e1cie, ktor\u00e9 by mohli umo\u017eni\u0165 v\u00e1s vystopova\u0165.)\n2) Pros\u00edme neposielajte hl\u00e1senie prostredn\u00edctvom po\u010d\u00edta\u010da poskytnut\u00e9ho va\u0161im zamestn\u00e1vate\u013eom. Konkr\u00e9tne intranetov\u00e9 pripojenie m\u00f4\u017ee \u013eahko ohrozi\u0165 va\u0161u anonymitu.\n\nZa\u0161krtnut\u00edm pol\u00ed\u010dka ni\u017e\u0161ie s\u00fahlas\u00edte s t\u00fdmito pravidlami a podmienkami.",
+        "lv": "Lai nodro\u0161in\u0101tu savu anonimit\u0101ti, p\u0101rliecinieties, ka apmekl\u0113jat \u0161o lapu, izmantojot  Tor Browser Bundle.\nJ\u016bs apzinaties, ka to nedarot, neb\u016bs iesp\u0113jams tehniski aizsarg\u0101t J\u016bsu anonimit\u0101ti. \nLai uzlabotu savu dro\u0161\u012bbu, l\u016bdzu sekojiet \u0161\u012bm instrukcij\u0101m:\n1) Ja J\u016bs izv\u0113laties palikt anon\u012bms, neievadiet nek\u0101du person\u012bgu inform\u0101ciju par sevi (piem\u0113ram, savu v\u0101rdu vai attiec\u012bbas ar piemin\u0113to personu). Neievadiet nek\u0101du inform\u0101ciju, kas var\u0113tu nor\u0101d\u012bt atpaka\u013c uz Jums.\n2) L\u016bdzu neiesniedziet zi\u0146ojumu, izmantojot datoru, ko nodro\u0161in\u0101jis J\u016bsu darba dev\u0113js. \u012apa\u0161i iek\u0161\u0113j\u0101 t\u012bkla savienojums var pak\u013caut riskam J\u016bsu anonimit\u0101ti.\n\nAtz\u012bm\u0113jot izv\u0113les r\u016bti\u0146u zem\u0101k, J\u016bs piekr\u012btat \u0161iem noteikumiem.",
+        "nb_NO": "For \u00e5 holde din anonymitet i hevd, forsikre deg om at du bes\u00f8ker denne siden ved bruk av Tor Browser Bundle.\nDu erkjenner at om ikke s\u00e5 gj\u00f8res kan din anonymitet teknisk sett ikke beskyttes.\nFor \u00e5 ytterligere heve din sikkerhet, f\u00f8lg disse instruksjonene:\n1) Hvis du vil fortsette \u00e5 v\u00e6re anonym s\u00e5 unng\u00e5 \u00e5 sende inn personlig informasjon. (eksempelvis navnet ditt eller din relasjon til gjerningsmann. Ikke send inn noen informasjon som kan spores tilbake til deg.)\n2) Ikke send inn din rapport p\u00e5 en jobb-PC. Spesielt vil en intranett-tilkobling kunne sette din anonymitet i fare.\n\nVed \u00e5 krysse av i feltet nedenfor samtykker du til disse vilk\u00e5r og betingelser."
+      },
+      "stats_update_time": 2,
+      "tor2web_receiver": false,
+      "anomaly_checks": false,
+      "wizard_done": false,
+      "allow_unencrypted": true,
+      "name": "",
+      "footer": {
+        "el": "\u03a4\u03c1\u03bf\u03c6\u03bf\u03b4\u03bf\u03c4\u03b5\u03af\u03c4\u03b1\u03b9 \u03bc\u03b5 \u03c0\u03b5\u03c1\u03b7\u03c6\u03ac\u03bd\u03b9\u03b1 \u03b1\u03c0\u03cc \u03c4\u03bf GlobaLeaks, \u03c4\u03b1 \u03c0\u03bd\u03b5\u03c5\u03bc\u03b1\u03c4\u03b9\u03ba\u03ac \u03b4\u03b9\u03ba\u03b1\u03b9\u03ce\u03bc\u03b1\u03c4\u03b1 \u03b1\u03bd\u03ae\u03ba\u03bf\u03c5\u03bd \u03c3\u03c4\u03bf Hermes Center for Transparency and Digital Human Rights",
+        "en": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights",
+        "vi": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights",
+        "ca": "orgullosament impulsat per GlobaLeaks, copyright Hermes Center for Transparency and Digital Human Rights",
+        "it": "fieri di basarci su GlobaLeaks, copyright dell'Hermes Center for Transparency and Digital Human Rights",
+        "sr_RS": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights",
+        "ar": "\u0645\u062f\u0639\u0648\u0645\u0629 \u0628\u0641\u062e\u0631 \u0645\u0646 GlobaLeaks. \u0627\u0644\u062d\u0642\u0648\u0642 \u0627\u0644\u0641\u0643\u0631\u064a\u0629 \u0645\u062d\u0641\u0648\u0638\u0629 \u0644 \"\u0645\u0631\u0643\u0632 \u0647\u064a\u0631\u0645\u064a\u0633 \u0644\u0644\u0634\u0641\u0627\u0641\u064a\u0629 \u0648 \u062d\u0642\u0648\u0642 \u0627\u0644\u0625\u0646\u0633\u0627\u0646 \u0627\u0644\u0625\u0644\u064a\u0643\u062a\u0631\u0648\u0646\u064a\u0629\".",
+        "cs": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights",
+        "es": "orgullosamente impulsado por GlobaLeaks, copyright Hermes Center for Transparency and Digital Human Rights",
+        "ru": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights",
+        "nl": "trots aangedreven door GlobaLeaks, copyright bij Hermes Centrum voor Transparantie en Digital mensenrechten ",
+        "tr": "GlobaLeaks taraf\u0131ndan gururla sa\u011flanmaktad\u0131r ve Kamuyu Ayd\u0131nlatma ve Say\u0131sal \u0130nsan Haklar\u0131 i\u00e7in Hermes Merkezi taraf\u0131ndan telif hakk\u0131 alt\u0131ndad\u0131r",
+        "sr_RS@latin": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights",
+        "hu_HU": "a GlobaLeaks b\u00fcszk\u00e9n mutatja be, a szerz\u0151i jog tulajdonosa a Hermes K\u00f6zpont az \u00c1tl\u00e1that\u00f3s\u00e1g\u00e9rt \u00e9s a Digit\u00e1lis Emberi Jogok\u00e9rt",
+        "hr_HR": "ponosno pokre\u0107e GlobaLeaks, autorska prava Hermes centra za transparentnost i digitalna ljudska prava",
+        "pt_PT": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights",
+        "pl": "z dum\u0105 prowadzony przez GlobaLeaks, prawa autorskie Hermes Center for Transparency oraz Digital Human Rights",
+        "fr": "fi\u00e8rement motoris\u00e9 par GlobaLeaks, copyright par Hermes Center for Transparency and Digital Human Rights (Centre Herm\u00e8s pour la Transparence et les Droits Num\u00e9riques de l'homme)",
+        "bg": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights",
+        "th": "\u0e19\u0e33\u0e40\u0e2a\u0e19\u0e2d\u0e14\u0e49\u0e27\u0e22\u0e04\u0e27\u0e32\u0e21\u0e20\u0e32\u0e04\u0e20\u0e39\u0e21\u0e34\u0e43\u0e08\u0e42\u0e14\u0e22\u0e42\u0e01\u0e25\u0e1a\u0e2d\u0e25\u0e25\u0e35\u0e04\u0e2a\u0e4c \u0e25\u0e34\u0e02\u0e2a\u0e34\u0e17\u0e18\u0e34\u0e4c\u0e02\u0e2d\u0e07\u0e40\u0e2e\u0e2d\u0e23\u0e4c\u0e40\u0e21\u0e2a \u0e40\u0e0b\u0e47\u0e19\u0e40\u0e15\u0e2d\u0e23\u0e4c\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e04\u0e27\u0e32\u0e21\u0e42\u0e1b\u0e23\u0e48\u0e07\u0e43\u0e2a\u0e41\u0e25\u0e30\u0e2a\u0e34\u0e17\u0e18\u0e34\u0e21\u0e19\u0e38\u0e29\u0e22\u0e0a\u0e19\u0e41\u0e1a\u0e1a\u0e14\u0e34\u0e08\u0e34\u0e15\u0e31\u0e25",
+        "pt_BR": "orgulhosamente desenvolvido na GlobaLeaks, com direitos autorais pelo Hermes Center por Digital Transpar\u00eancia e Direitos Humanos",
+        "de": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights",
+        "sv": "\u00e4r stolt baserat p\u00e5 GlobaLeaks, upphovsr\u00e4tt innehavs av Hermes Center for Transparency and Digital Human Rights",
+        "sk": "s hrdos\u0165ou be\u017e\u00ed na GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights",
+        "lv": "darbojas, izmantojot GlobaLeaks, autorties\u012bbas pieder Hermes Center for Transparency and Digital Human Rights",
+        "nb_NO": "stolt drevet av GlobaLeaks, kopirett Hermes Center for Transparency and Digital Human Rights  / Hermes senter for etterettlighet og digitale menneskerettigheter"
+      },
+      "tor2web_unauth": true,
+      "maximum_filesize": 30,
+      "tor2web_submission": false,
+      "public_site": "",
+      "receipt_regexp": "[0-9]{16}",
+      "hidden_service": "",
+      "security_awareness_title": {"en": ""},
+      "security_awareness_text": {"en": ""},
+      "x_frame_options_mode": "deny"
+    },
+    "class": "Node"
+  },
+  {
+    "fields": {
+      "source_name": "Default GlobaLeaks sender",
+      "creation_date": "2014-09-13 09:01:53.297589",
+      "zip_description": {
+        "en": "The following files may contain sensitive information, for the Whistleblower\nand for the involved person and organization.\n\nPlease, do never disclose these files until an appropriate analysis and \nredaction.\n\nFiles number: %FilesNumber%\nTotal uncompressed size: %TotalSize%\n\nFile details and integrity checksum:\n\n%FileList%\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n\n\n"
+      },
+      "source_email": "sendaccount@lists.globaleaks.org",
+      "encrypted_file_template": {
+        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that a Whistleblower\nhas updated a submission with new material.\n\nThe Tip can be reached via Tor at: %TipTorURL%\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
+      },
+      "port": 587,
+      "plaintext_file_mail_title": {
+        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File attached"
+      },
+      "plaintext_tip_template": {
+        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that someone has selected you as a valuable recipient\nof WhistleBlowing material in the form of a Globaleaks tip-off. This message has been created\nby the GlobaLeaks Node %NodeName%, in \"%ContextName%\".\n\nThis tip-off has been sent to you by an anonymous whistleblower. She/He would like you\nto pay special attention to the information and material contained therein. Please consider\nthat whistleblowers often expose themselves to high personal risks in order to protect the\npublic good. Therefore the material that they provide with this tip-off should be considered\nof high importance.\n\nYou can download the material from the following URLs:\n\nvia Tor:\n%TipTorURL%\nor:\n%TipT2WURL%\n\nSubmission date: %EventTime%\n\nPlease do not forward or share this e-mail: each tip-off has a limited number of downloads and\naccess before being destroyed forever, nobody (even the node administrator) can recover and\nexpired or dead tip-off.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
+      },
+      "id": "833b42a5-c476-48f2-9777-c20622d00bbd",
+      "plaintext_message_mail_title": {
+        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New message"
+      },
+      "encrypted_comment_mail_title": {
+        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New comment (Encrypted)"
+      },
+      "encrypted_message_template": {
+        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you about a new Message\nfrom the Whisleblower, in %EventTime%.\n\nThe message is related to the Tip: %TipTorURL% \n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
+      },
+      "username": "sendaccount@lists.globaleaks.org",
+      "plaintext_tip_mail_title": {
+        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: new ClearText"
+      },
+      "encrypted_message_mail_title": {
+        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New message (Encrypted)"
+      },
+      "plaintext_comment_template": {
+        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that %CommentSource%\nhas added a comment to a previously notified Tip (%TipTorURL%) in %EventTime%\n\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
+      },
+      "plaintext_comment_mail_title": {
+        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New comment"
+      },
+      "encrypted_tip_template": {
+        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that someone has selected you as a valuable recipient\nof WhistleBlowing material in the form of a Globaleaks tip-off. This message has been created\nby the GlobaLeaks Node %NodeName%, in \"%ContextName%\".\n\nThis tip-off has been sent to you by an anonymous whistleblower. She/He would like you\nto pay special attention to the information and material contained therein. Please consider\nthat whistleblowers often expose themselves to high personal risks in order to protect the\npublic good. Therefore the material that they provide with this tip-off should be considered\nof high importance.\n\nYou can download the material from the following URLs:\n\nvia Tor:\n%TipTorURL%\nor:\n%TipT2WURL%\n\nSubmission date: %EventTime%\n\nPlease do not forward or share this e-mail: each tip-off has a limited number of downloads and\naccess before being destroyed forever, nobody (even the node administrator) can recover and\nexpired or dead tip-off.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
+      },
+      "encrypted_tip_mail_title": {
+        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: new Tip (Encrypted)"
+      },
+      "password": "sendaccount99",
+      "plaintext_file_template": {
+        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that a Whistleblower\nhas updated a submission with new material.\n\nThe Tip can be reached via Tor at: %TipTorURL%\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
+      },
+      "server": "mail.headstrong.de",
+      "plaintext_message_template": {
+        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you about\na new Message from the Whisleblower in %EventTime%.\n\nThe message is related to the Tip: %TipTorURL%\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
+      },
+      "encrypted_comment_template": {
+        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that %CommentSource%\nhas added a comment to a previously notified Tip (%TipTorURL%) in %EventTime%.\n\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
+      },
+      "security": "TLS",
+      "encrypted_file_mail_title": {
+        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File attached (Encrypted)"
+      }
+    },
+    "class": "Notification"
+  },
+  {
+    "fields": {
+      "username": "receiver1@receiver1.xxx",
+      "creation_date": "2014-09-13 09:01:53.483794",
+      "state": "enabled",
+      "last_login": "1970-01-01 00:00:00.000000",
+      "role": "receiver",
+      "language": "en",
+      "password": "d19f1f63ac7efa0f0c6e830a61a895dccb58a1f355d4bbd725d3d06e85bcdb10266897c22c945bfb50dfa069811459904be44f67d8736c30e5779ea5b05e0b43",
+      "salt": "9be1486c3b8df25b2363011069242ae3",
+      "id": "6e6ecbfe-981d-40ff-aedb-90c624865ffe"
+    },
+    "class": "User"
+  },
+  {
+    "fields": {
+      "username": "receiver2@receiver2.xxx",
+      "creation_date": "2014-09-13 09:01:53.626540",
+      "state": "enabled",
+      "last_login": "1970-01-01 00:00:00.000000",
+      "role": "receiver",
+      "language": "en",
+      "password": "ef455506de6bf9c5e3649464c510a1dbc7df51480bb3f234ca09b865b1966ef0825251682c9012f64b168b4635bcae4561ac53d2ebbc97b8186b003d6f5a423a",
+      "salt": "4066953a5e04abf27bf6c853d467271b",
+      "id": "c2e5da1c-7212-477c-acb3-403ead07cc69"
+    },
+    "class": "User"
+  },
+  {
+    "fields": {
+      "receiver_introduction": {
+        "en": "These are our receivers"
+      },
+      "presentation_order": 0,
+      "postpone_superpower": false,
+      "creation_date": "2014-09-13 09:01:53.682297",
+      "delete_consensus_percentage": 0,
+      "require_pgp": false,
+      "unique_fields": {
+        "55a36c31-4851-40de-b56f-2f8ba190492f": {
+          "incremental_number": 2,
+          "name": "Describe the attachments of the submission",
+          "hint": "Describe the attachments of the submission",
+          "required": false,
+          "presentation_order": 2,
+          "trigger": [],
+          "key": "55a36c31-4851-40de-b56f-2f8ba190492f",
+          "preview": false,
+          "type": "textarea"
+        },
+        "30a44064-38f1-41f7-934e-1cfaf7d4ea50": {
+          "incremental_number": 1,
+          "name": "Describe the details of the submission",
+          "hint": "Describe the details of the submission",
+          "required": false,
+          "presentation_order": 1,
+          "trigger": [],
+          "key": "30a44064-38f1-41f7-934e-1cfaf7d4ea50",
+          "preview": false,
+          "type": "textarea"
+        },
+        "9a4c7e98-8773-4114-b26f-5c975a762357": {
+          "incremental_number": 0,
+          "name": "Describe your submission with a few words",
+          "hint": "Describe your submission with a few words",
+          "required": true,
+          "presentation_order": 0,
+          "trigger": [],
+          "key": "9a4c7e98-8773-4114-b26f-5c975a762357",
+          "preview": false,
+          "type": "text"
+        }
+      },
+      "last_update": null,
+      "id": "34948a37-201e-44e0-bede-67212f1b7ee6",
+      "tip_timetolive": 1728000,
+      "escalation_threshold": 1,
+      "can_delete_submission": false,
+      "show_small_cards": false,
+      "submission_timetolive": 172800,
+      "file_max_download": 1,
+      "show_receivers": false,
+      "select_all_receivers": true,
+      "description": {
+        "en": "Already localized desc"
+      },
+      "tags": null,
+      "selectable_receiver": false,
+      "name": {
+        "en": "Already localized name"
+      },
+      "localized_fields": {
+        "en": {
+          "55a36c31-4851-40de-b56f-2f8ba190492f": {
+            "name": "Describe the attachments of the submission",
+            "hint": "Describe the attachments of the submission"
+          },
+          "30a44064-38f1-41f7-934e-1cfaf7d4ea50": {
+            "name": "Describe the details of the submission",
+            "hint": "Describe the details of the submission"
+          },
+          "9a4c7e98-8773-4114-b26f-5c975a762357": {
+            "name": "Describe your submission with a few words",
+            "hint": "Describe your submission with a few words"
+          }
+        }
+      },
+      "file_required": false,
+      "maximum_selectable_receivers": 0,
+      "tip_max_access": 10,
+      "require_file_description": false,
+      "enable_private_messages": true
+    },
+    "class": "Context"
+  }
+]

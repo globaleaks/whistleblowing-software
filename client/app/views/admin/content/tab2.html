@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="form-group">
       <label data-translate>Current initiative logo</label>
-      <div class="imageUpload" data-ng-controller="FileUploadCtrl">
+      <div class="imageUpload" data-ng-controller="AdminFileUploadCtrl">
         <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
           <div data-ng-show="uploadfile" class="uploadfile">
             <span class="col-md-12 changePicture">
@@ -28,7 +28,7 @@
         <span data-translate>Graphic Customization</span>
         (<span data-translate>CSS</span>)
       </label>
-      <div class="well well-large uploadfile" data-ng-controller="FileUploadCtrl">
+      <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
         <span generic-file-upload="" data-ng-src="/admin/staticfiles/custom_stylesheet">
           <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
             <span class="glyphicon glyphicon-plus"></span>
@@ -54,7 +54,7 @@
         <span data-translate>Graphic Customization</span>
         (<span data-translate>Home Page</span>)
       </label>
-      <div class="well well-large uploadfile" data-ng-controller="FileUploadCtrl">
+      <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
         <span generic-file-upload="" data-ng-src="/admin/staticfiles/custom_homepage">
           <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
             <span class="glyphicon glyphicon-plus"></span>
@@ -79,7 +79,7 @@
       <label data-translate>Load Custom File</label>
       <br />
       <span data-translate>The file will be available at the url: /static/$filename</span>
-      <div class="well well-large uploadfile" data-ng-controller="FileUploadCtrl">
+      <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
         <span generic-file-upload="" data-ng-src="/admin/staticfiles/customization">
           <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
             <span class="glyphicon glyphicon-plus"></span>

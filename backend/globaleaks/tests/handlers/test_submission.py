@@ -11,7 +11,7 @@ import tarfile
 from twisted.internet.defer import inlineCallbacks
 
 # override GLSetting
-from globaleaks.settings import GLSetting, transact_ro
+from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.jobs import delivery_sched
@@ -42,27 +42,26 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         status = yield submission.create_submission(submission_desc, finalize=False)
 
-        self.assertEqual(status['mark'], 'submission')
+        self.assertEqual(status['mark'], u'submission')
 
     @inlineCallbacks
     def test_fail_submission_missing_required_file(self):
-        mycopy = dict(self.dummyContext)
-        mycopy['file_required'] = True
-        del mycopy['id']
+        @transact
+        def change_context_config(store):
+            context = store.find(models.Context, models.Context.id == self.dummyContext['id']).one()
+            context.file_required = True
 
-        for attrname in models.Context.localized_strings:
-            mycopy[attrname] = '⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
+        yield change_context_config()
 
-        context_status = yield create_context(mycopy)
         submission_desc = dict(self.dummySubmission)
 
-        submission_desc['context_id'] = context_status['id']
+        submission_desc['context_id'] = self.dummyContext['id']
         submission_desc['finalize'] = True
-        submission_desc['wb_fields'] = helpers.fill_random_fields(mycopy)
+        submission_desc['wb_steps'] = yield helpers.fill_random_fields(self.dummyContext['id'])
         yield self.assertFailure(submission.create_submission(submission_desc, finalize=True), errors.FileRequiredMissing)
 
     @inlineCallbacks
-    def create_submission_attach_files_finalize_and_access_wbtip(self):
+    def test_create_submission_attach_files_finalize_and_access_wbtip(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
         del submission_desc['id']
@@ -73,7 +72,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         status = yield submission.update_submission(status['id'], status, finalize=True)
 
-        self.assertEqual(status['mark'], 'finalize')
+        self.assertEqual(status['mark'], u'finalize')
 
         receipt = yield submission.create_whistleblower_tip(status)
 
@@ -84,14 +83,12 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         # remind: return a tuple (serzialized_itip, wb_itip)
         wb_tip = yield wbtip.get_internaltip_wb(wb_access_id)
 
-        # In the WB/Receiver Tip interface, wb_fields are called fields.
-        # This can be uniformed when API would be cleaned of the _id
-        self.assertTrue(wb_tip.has_key('fields'))
+        self.assertTrue(wb_tip.has_key('wb_steps'))
 
     @inlineCallbacks
     def test_create_receiverfiles_allow_unencrypted_true_no_keys_loaded(self):
 
-        yield self.create_submission_attach_files_finalize_and_access_wbtip()
+        yield self.test_create_submission_attach_files_finalize_and_access_wbtip()
 
         # create receivertip its NEEDED to create receiverfile
         self.rt = yield delivery_sched.tip_creation()
@@ -106,7 +103,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
             for elem in receivermap:
                 rfdesc = yield delivery_sched.receiverfile_create(ifile_path,
                                     elem['path'], elem['status'], elem['size'], elem['receiver'])
-                self.assertEqual(rfdesc['mark'], 'not notified')
+                self.assertEqual(rfdesc['mark'], u'not notified')
                 self.assertEqual(rfdesc['receiver_id'], elem['receiver']['id'])
 
         self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['id'])
@@ -118,8 +115,8 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertEqual(len(self.rfi), 8)
 
         for i in range(0, 8):
-            self.assertTrue(self.rfi[i]['mark'] in ['not notified', 'skipped'])
-            self.assertTrue(self.rfi[i]['status'] in ['reference', 'encrypted'])
+            self.assertTrue(self.rfi[i]['mark'] in [u'not notified', u'skipped'])
+            self.assertTrue(self.rfi[i]['status'] in [u'reference', u'encrypted'])
 
         # verify the checksum returned by whistleblower POV, I'm not using
         #  wfv = yield tip.get_files_wb()
@@ -132,7 +129,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         GLSetting.memory_copy.allow_unencrypted = False
 
-        yield self.create_submission_attach_files_finalize_and_access_wbtip()
+        yield self.test_create_submission_attach_files_finalize_and_access_wbtip()
 
         # create receivertip its NEEDED to create receiverfile
         self.rt = yield delivery_sched.tip_creation()
@@ -148,7 +145,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
             for elem in receivermap:
                 rfdesc = yield delivery_sched.receiverfile_create(ifile_path,
                                     elem['path'], elem['status'], elem['size'], elem['receiver'])
-                self.assertEqual(rfdesc['mark'], 'not notified')
+                self.assertEqual(rfdesc['mark'], u'not notified')
                 self.assertEqual(rfdesc['receiver_id'], elem['receiver']['id'])
 
         self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['id'])
@@ -161,8 +158,8 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertEqual(len(self.rfi), 8)
         # no rfiles are created for the receivers that have no key
         for i in range(0, 8):
-            self.assertTrue(self.rfi[i]['mark'] in ['not notified', 'skipped'])
-            self.assertTrue(self.rfi[i]['status'] in ['reference', 'nokey'])
+            self.assertTrue(self.rfi[i]['mark'] in [u'not notified', u'skipped'])
+            self.assertTrue(self.rfi[i]['status'] in [u'reference', u'nokey'])
 
         # verify the checksum returned by whistleblower POV, I'm not using
         #  wfv = yield tip.get_files_wb()
@@ -186,7 +183,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.dummyContext['escalation_threshold'] = 0
 
         for attrname in models.Context.localized_strings:
-            self.dummyContext[attrname] = '⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
+            self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
 
         context_status = yield update_context(self.dummyContext['id'], self.dummyContext)
 
@@ -232,7 +229,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.dummyContext['escalation_threshold'] = 0
 
         for attrname in models.Context.localized_strings:
-            self.dummyContext[attrname] = '⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
+            self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
 
         context_status = yield update_context(self.dummyContext['id'], self.dummyContext)
 
@@ -254,7 +251,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         status = yield submission.create_submission(submission_desc, finalize=False)
 
-        status['wb_fields'] = helpers.fill_random_fields(self.dummyContext)
+        status['wb_steps'] = yield helpers.fill_random_fields(self.dummyContext['id'])
         status['finalize'] = True
 
         status = yield submission.update_submission(status['id'], status, finalize=True)
@@ -264,8 +261,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         wb_tip = yield wbtip.get_internaltip_wb(wb_access_id)
 
-        self.assertTrue(wb_tip.has_key('fields'))
-
+        self.assertTrue(wb_tip.has_key('wb_steps'))
 
     @inlineCallbacks
     def test_unable_to_access_finalized(self):
@@ -281,49 +277,40 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
             return
         self.assertTrue(False)
 
-
-    @inlineCallbacks
-    def test_fields_validator_all_fields(self):
-
-        sbmt = dict(self.dummySubmission)
-
-        sbmt['wb_fields'] = {}
-        i = 0
-        for sf in self.dummyContext['fields']:
-            assert (sf['type'] == 'text' or sf['type'] == 'textarea'), \
-                    "Dummy fields had only 'text' when this test has been dev"
-
-            sbmt['wb_fields'].update({sf['key'] : {'value': "something",
-                                                   'answer_order': i}})
-
-            i += 1
-
-        try:
-            status = yield submission.create_submission(sbmt, finalize=True)
-            self.assertEqual(status['wb_fields'], sbmt['wb_fields'] )
-        except Exception as excep:
-            print "Unexpected error: %s", excep
-            self.assertTrue(False)
-
     @inlineCallbacks
     def test_fields_fail_unexpected_presence(self):
 
-        sbmt = self.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])
-        sbmt['wb_fields'].update({ 'alien' : 'predator' })
+        sbmt = yield self.get_dummy_submission(self.dummyContext['id'])
+
+        found_at_least_a_field = False
+
+        for s in sbmt['wb_steps']:
+            for f in s['children']:
+                # we assign a random id to the first field
+                tmp = s['children'][f]
+                del s['children'][f]
+                s['children']['alien'] = tmp
+                found_at_least_a_field = True
+                break
+
+        self.assertTrue(found_at_least_a_field)
 
         yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
 
     @inlineCallbacks
     def test_fields_fail_missing_required(self):
 
-        required_key = self.dummyContext['fields'][0]['key']
-        sbmt = self.get_dummy_submission(self.dummyContext['id'], self.dummyContext['fields'])
-        del sbmt['wb_fields'][required_key]
+        required_key = unicode(self.dummyFields[0]['id']) # first of the dummy field is
+                                                          # marked as required!
+
+        sbmt = yield self.get_dummy_submission(self.dummyContext['id'])
+        for s in sbmt['wb_steps']:
+            if required_key in s['children']:
+                del s['children'][required_key]
 
         yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
 
-
-class Test_001_SubmissionCreate(helpers.TestHandler):
+class Test_001_SubmissionCreate(helpers.TestHandlerWithPopulatedDB):
     _handler = submission.SubmissionCreate
 
     @inlineCallbacks
@@ -350,7 +337,7 @@ class Test_001_SubmissionCreate(helpers.TestHandler):
         self._handler.validate_message(json.dumps(self.responses[0]), requests.internalTipDesc)
 
 
-class Test_002_SubmissionInstance(helpers.TestHandler):
+class Test_002_SubmissionInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = submission.SubmissionInstance
 
     def test_001_get_unexistent_submission(self):

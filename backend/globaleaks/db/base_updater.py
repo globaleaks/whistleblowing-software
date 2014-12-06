@@ -129,7 +129,7 @@ class TableReplacer:
         from globaleaks.db.update_11_12 import Node_version_11, ApplicationData_version_11, Context_version_11
         from globaleaks.db.update_12_13 import Node_version_12, Context_version_12
         from globaleaks.db.update_13_14 import Node_version_13, Context_version_13
-        from globaleaks.db.update_14_15 import Node_version_14, User_version_14
+        from globaleaks.db.update_14_15 import Node_version_14, User_version_14, Context_version_14
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -141,7 +141,7 @@ class TableReplacer:
         self.table_history = {
             'Node' : [ Node_version_5, Node_version_6, Node_version_7, Node_version_9, None, Node_version_11, None, Node_version_12, Node_version_13, Node_version_14, models.Node],
             'User' : [ User_version_5, User_version_9, None, None, None, User_version_14, None, None, None, None, models.User],
-            'Context' : [ Context_version_6, None, Context_version_7, Context_version_8, Context_version_11, None, None, Context_version_12, Context_version_13, models.Context, None],
+            'Context' : [ Context_version_6, None, Context_version_7, Context_version_8, Context_version_11, None, None, Context_version_12, Context_version_13, Context_version_14, models.Context],
             'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, Receiver_version_9, models.Receiver, None, None, None, None, None],
             'ReceiverFile' : [ models.ReceiverFile, None, None, None, None, None, None, None, None, None, None],
             'Notification': [ Notification_version_7, None, None, Notification_version_8, models.Notification, None, None, None, None, None, None],
@@ -363,3 +363,30 @@ class TableReplacer:
             return
 
         self._perform_copy_list("ApplicationData")
+
+    def migrate_Field(self):
+        """
+        has been created between 14 and 15!
+        """
+        if self.start_ver < 15:
+            return
+
+        self._perform_copy_list("Field")
+
+    def migrate_FieldField(self):
+        """
+        has been created between 14 and 15!
+        """
+        if self.start_ver < 15:
+            return
+
+        self._perform_copy_list("FieldField")
+
+    def migrate_Step(self):
+        """
+        has been created between 14 and 15!
+        """
+        if self.start_ver < 15:
+            return
+
+        self._perform_copy_list("Step")

@@ -1,3 +1,11 @@
+html {
+  background-color: #F5F5F5;
+}
+
+body {
+  background-color: #fff;
+}
+
 #PageBox {
   width: 100%;
 }
@@ -273,4 +281,8 @@ table {
   display: inline;
   font-family: monospace;
   font-weight: bold;
+
+
+.nested {
+  padding-left: 15px;
 }

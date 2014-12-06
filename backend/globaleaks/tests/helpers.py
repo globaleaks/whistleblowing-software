@@ -1,5 +1,10 @@
 # -*- coding: UTF-8
+"""
+Utilities and basic TestCases.
+"""
+from __future__ import with_statement
 
+import copy
 import json
 import os
 from cyclone import httpserver
@@ -14,53 +19,39 @@ from globaleaks import db, models, security
 from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLApiCache
-from globaleaks.handlers.admin import create_context, create_receiver
+from globaleaks.handlers.admin import create_context, update_context, create_receiver, db_get_context_steps
+from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
 from globaleaks.jobs import delivery_sched, notification_sched
-from globaleaks.models import ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
+from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.plugins import notification
 from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.utils.utility import datetime_null, uuid4, log
-from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
 from globaleaks.security import GLSecureTemporaryFile
 
+from . import TEST_DIR
+
+## constants
 
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
-VALID_SALT1 = security.get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
-VALID_SALT2 = security.get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
+VALID_SALT1 = security.get_salt(rstr.xeger(r'[A-Za-z0-9]{56}'))
+VALID_SALT2 = security.get_salt(rstr.xeger(r'[A-Za-z0-9]{56}'))
 VALID_HASH1 = security.hash_password(VALID_PASSWORD1, VALID_SALT1)
 VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
-
 INVALID_PASSWORD = u'antani'
 
-VALID_PGP_KEY = """
------BEGIN PGP PUBLIC KEY BLOCK-----
-Version: GnuPG v1
+FIXTURES_PATH = os.path.join(TEST_DIR, 'fixtures')
 
-mI0EU0//vQEEAMmBw+uswfhiixtMsshUn1Mq4xv+qR3hMsx3IDadc1LEaxnjHYu3
-iUvyd4vc7tNv1Jc6akRJLtLJ+MKpovv6wH9zdfQghu7ZksYnRnYAYQLdZXszsBos
-Z1pK70wC9JcRwvmCM0/9AVvmgxeE1hOOZNq4NbvmGwJ3jO87gN4Wh5TpABEBAAG0
-IXBncEBleGFtcGxlLm5ldCA8cGdwQGV4YW1wbGUubmV0Poi4BBMBAgAiBQJTT/+9
-AhsDBgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAAKCRArJVUVaOSTRbbWA/9+tVBa
-JF3JRZ6dnEuKULF5sIKJHz/RX/IZ6+HF4YY4OFtC7lHyTTKaPh4Cb7vpPvi5S/On
-TQT8lhmEk6fSdQEGxteyl1/Lm6HLKne9sUSIBNKZFO/lgWfcDUeT+/R1Trr04zdj
-QqvTQAZqO80FvVFziXv2s76q6L/z2pu7scvV37iNBFNP/70BBACy3IpJpwxr5mRG
-vKizf6fdL0sgl3CzFD0ziyGtlnxIv33TbvRcO+7uWOiK76PehZQZnpLITPE5G96H
-cXq2JI8gvi0QFG8fnjpTog6vIT/ldaoUiOon/ohg3ahnkaVpZQBMg5wp5/rpL5eD
-O5wGeEGVJxhUP1Wgk02mRsB53NdPbQARAQABiJ8EGAECAAkFAlNP/70CGwwACgkQ
-KyVVFWjkk0WZTwP/QGFfPZoXQItxfgLfXQ03Mo1G5dBepog2fFTxores3Nz0rsgt
-PL4QgDcz+ocengVlXpZVcoRcLfDs5bJybyyvSMAaqUinYZBX125HSLxNCaPCMKY7
-1+PeA5pTch+CRTjJS0NhOLyffMjPIwGW0Dus6vQEOi8AOlCJLX6uqd7Z854=
-=sV8Y
------END PGP PUBLIC KEY BLOCK-----
-"""
+
+with open(os.path.join(TEST_DIR, 'valid_pgp_key.txt')) as pgp_file:
+    VALID_PGP_KEY = pgp_file.read()
 
 transact.tp = FakeThreadPool()
 authentication.reactor = task.Clock()
 
-class UTlog():
+class UTlog:
 
     @staticmethod
     def err(stuff):
@@ -70,15 +61,43 @@ class UTlog():
     def debug(stuff):
         pass
 
-log.err = UTlog().err
-log.debug = UTlog().debug
+log.err = UTlog.err
+log.debug = UTlog.debug
+
+
+def export_fixture(*models):
+    """
+    Return a valid json object holding all informations handled by the fields.
+
+    :param field: the field we want to export.
+    :rtype: str
+    :return: a valid JSON string exporting the field.
+    """
+    return json.dumps([{
+        'fields': model.dict(),
+        'class': model.__class__.__name__,
+    } for model in models], default=str, indent=2)
+
+@transact
+def import_fixture(store, fixture):
+    """
+    Import a valid json object holding all informations, and stores them in the database.
+
+    :return: The traditional deferred used for transaction in GlobaLeaks.
+    """
+    with open(os.path.join(FIXTURES_PATH, fixture)) as f:
+        data = json.loads(f.read())
+        for mock in data:
+            mock_class = getattr(models, mock['class'])
+            db_forge_obj(store, mock_class, mock['fields'])
+
 
 class TestGL(unittest.TestCase):
 
     encryption_scenario = 'MIXED' # receivers with pgp and receivers without pgp
 
-    def setUp(self):
-
+    @inlineCallbacks
+    def setUp(self, create_node=True):
         GLSetting.set_devel_mode()
         GLSetting.logging = None
         GLSetting.scheduler_threadpool = FakeThreadPool()
@@ -102,18 +121,23 @@ class TestGL(unittest.TestCase):
 
         notification.MailNotification.mail_flush = mail_flush_mock
 
-        return db.create_tables(create_node=True)
+        yield db.create_tables(create_node)
+
+        for fixture in getattr(self, 'fixtures', []):
+            yield import_fixture(fixture)
 
     def setUp_dummy(self):
         dummyStuff = MockDict()
 
+        self.dummyFields = dummyStuff.dummyFields
+        self.dummyFieldTemplates = dummyStuff.dummyFieldTemplates
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyNotification = dummyStuff.dummyNotification
-        self.dummyReceiverUser_1 = self.get_dummy_receiver_user("receiver1")
-        self.dummyReceiverUser_2 = self.get_dummy_receiver_user("receiver2")
-        self.dummyReceiver_1 = self.get_dummy_receiver("receiver1") # the one without PGP
-        self.dummyReceiver_2 = self.get_dummy_receiver("receiver2") # the one with PGP
+        self.dummyReceiverUser_1 = self.get_dummy_receiver_user('receiver1')
+        self.dummyReceiverUser_2 = self.get_dummy_receiver_user('receiver2')
+        self.dummyReceiver_1 = self.get_dummy_receiver('receiver1') # the one without PGP
+        self.dummyReceiver_2 = self.get_dummy_receiver('receiver2') # the one with PGP
 
         if self.encryption_scenario == 'MIXED':
             self.dummyReceiver_1['gpg_key_armor'] = None
@@ -127,13 +151,13 @@ class TestGL(unittest.TestCase):
 
         self.dummyNode = dummyStuff.dummyNode
 
-        self.assertTrue(os.listdir(GLSetting.submission_path) == [])
-        self.assertTrue(os.listdir(GLSetting.tmp_upload_path) == [])
+        self.assertEqual(os.listdir(GLSetting.submission_path),  [])
+        self.assertEqual(os.listdir(GLSetting.tmp_upload_path), [])
 
     def localization_set(self, dict_l, dict_c, language):
         ret = dict(dict_l)
 
-        for attr in getattr(dict_c, "localized_strings"):
+        for attr in getattr(dict_c, 'localized_strings'):
             ret[attr] = {}
             ret[attr][language] = unicode(dict_l[attr])
 
@@ -147,13 +171,14 @@ class TestGL(unittest.TestCase):
     def get_dummy_receiver(self, descpattern):
         new_r = dict(MockDict().dummyReceiver)
         new_r['name'] = new_r['username'] =\
-        new_r['mail_address'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
+        new_r['mail_address'] = unicode('%s@%s.xxx' % (descpattern, descpattern))
         new_r['password'] = VALID_PASSWORD1
         # localized dict required in desc
-        new_r['description'] =  "am I ignored ? %s" % descpattern
+        new_r['description'] =  'am I ignored ? %s' % descpattern
         return new_r
 
-    def get_dummy_submission(self, context_id, context_admin_data_fields):
+    @defer.inlineCallbacks
+    def get_dummy_submission(self, context_id):
         """
         this may works until the content of the fields do not start to be validated. like
         numbers shall contain only number, and not URL.
@@ -162,21 +187,13 @@ class TestGL(unittest.TestCase):
         need to be enhanced generating appropriate data based on the fields.type
         """
         dummySubmissionDict = {}
-        dummySubmissionDict['wb_fields'] = {}
-
-        dummyvalue = "https://dailyfoodporn.wordpress.com && " \
-                     "http://www.zerocalcare.it/ && " \
-                     "http://www.giantitp.com"
-
-        for field_desc in context_admin_data_fields:
-            dummySubmissionDict['wb_fields'][field_desc['key']] = { u'value': dummyvalue,
-                                                                    u'answer_order': 0 }
-
+        dummySubmissionDict['context_id'] = context_id
+        dummySubmissionDict['wb_steps'] = yield fill_random_fields(context_id)
         dummySubmissionDict['receivers'] = []
         dummySubmissionDict['files'] = []
         dummySubmissionDict['finalize'] = True
-        dummySubmissionDict['context_id'] = context_id
-        return dummySubmissionDict
+
+        defer.returnValue(dummySubmissionDict)
 
     def get_dummy_file(self, filename=None, content_type=None, content=None):
 
@@ -187,7 +204,7 @@ class TestGL(unittest.TestCase):
             content_type = 'application/octet'
 
         if content is None:
-            content = "ANTANI"
+            content = 'ANTANI'
 
         temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
 
@@ -217,6 +234,24 @@ class TestGL(unittest.TestCase):
             )
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
+
+    @transact_ro
+    def _exists(self, store, model, *id_args, **id_kwargs):
+        if not id_args and not id_kwargs:
+            raise ValueError
+        return model.get(store, *id_args, **id_kwargs) is not None
+
+    @inlineCallbacks
+    def assert_model_exists(self, model, *id_args, **id_kwargs):
+        existing = yield self._exists(model, *id_args, **id_kwargs)
+        msg =  'The following has *NOT* been found on the store: {} {}'.format(id_args, id_kwargs)
+        self.assertTrue(existing, msg)
+
+    @inlineCallbacks
+    def assert_model_not_exists(self, model, *id_args, **id_kwargs):
+        existing = yield self._exists(model, *id_args, **id_kwargs)
+        msg =  'The following model has been found on the store: {} {}'.format(id_args, id_kwargs)
+        self.assertFalse(existing, msg)
 
     @transact_ro
     def get_finalized_submissions_ids(self, store):
@@ -259,15 +294,15 @@ class TestGL(unittest.TestCase):
 
 
 class TestGLWithPopulatedDB(TestGL):
+
     @inlineCallbacks
     def setUp(self):
         yield TestGL.setUp(self)
-
         yield self.fill_data()
 
     def receiver_assertion(self, source_r, created_r):
-        self.assertEqual(source_r['name'], created_r['name'], "name")
-        self.assertEqual(source_r['can_delete_submission'], created_r['can_delete_submission'], "delete")
+        self.assertEqual(source_r['name'], created_r['name'], 'name')
+        self.assertEqual(source_r['can_delete_submission'], created_r['can_delete_submission'], 'delete')
 
     def context_assertion(self, source_c, created_c):
         self.assertEqual(source_c['tip_max_access'], created_c['tip_max_access'])
@@ -295,60 +330,59 @@ class TestGLWithPopulatedDB(TestGL):
 
     @inlineCallbacks
     def fill_data(self):
-        try:
-            yield do_appdata_init()
-
-        except Exception as excp:
-            print "Fail fill_data/do_appdata_init: %s" % excp
-            raise  excp
+        yield do_appdata_init()
 
         receivers_ids = []
 
-        try:
-            self.dummyReceiver_1 = yield create_receiver(self.dummyReceiver_1)
-            receivers_ids.append(self.dummyReceiver_1['id'])
-            self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2)
-            receivers_ids.append(self.dummyReceiver_2['id'])
-        except Exception as excp:
-            print "Fail fill_data/create_receiver: %s" % excp
-            raise  excp
+        # fill_data/create_receiver
+        self.dummyReceiver_1 = yield create_receiver(self.dummyReceiver_1)
+        receivers_ids.append(self.dummyReceiver_1['id'])
+        self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2)
+        receivers_ids.append(self.dummyReceiver_2['id'])
 
-        try:
-            self.dummyContext['receivers'] = receivers_ids
-            self.dummyContext = yield create_context(self.dummyContext)
-        except Exception as excp:
-            print "Fail fill_data/create_context: %s" % excp
-            raise  excp
+        # fill_data/create_context
+        self.dummyContext['receivers'] = receivers_ids
+        self.dummyContext = yield create_context(self.dummyContext)
 
+        # fill_data: create cield templates
+        for idx, field in enumerate(self.dummyFieldTemplates):
+            f = yield create_field(field, 'en')
+            self.dummyFieldTemplates[idx]['id'] = f['id']
+
+        # fill_data: create fields and associate them to the context steps
+        for idx, field in enumerate(self.dummyFields):
+            field['is_template'] = False
+            if idx <= 2:
+                # "Field 1", "Field 2" and "Generalities" are associated to the first step
+                field['step_id'] = self.dummyContext['steps'][0]['id']
+            else:
+                # Name, Surname, Gender" are associated to field "Generalities"
+                # "Field 1" and "Field 2" are associated to the first step
+                field['fieldgroup_id'] = self.dummyFields[2]['id']
+               
+            f = yield create_field(field, 'en')
+            self.dummyFields[idx]['id'] = f['id']
+
+        self.dummyContext['steps'][0]['children'] = [
+            self.dummyFields[0]['id'], # Field 1
+            self.dummyFields[1]['id'], # Field 2
+            self.dummyFields[2]['id']  # Generalities
+        ]
+
+        yield update_context(self.dummyContext['id'], self.dummyContext)
+
+        # fill_data/create_submission
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = receivers_ids
-        self.dummySubmission['wb_fields'] = fill_random_fields(self.dummyContext)
-
-        try:
-            self.dummySubmissionNotFinalized = yield create_submission(self.dummySubmission, finalize=False)
-        except Exception as excp:
-            print "Fail fill_data/create_submission: %s" % excp
-            raise  excp
-
-        try:
-            self.dummySubmission = yield create_submission(self.dummySubmission, finalize=False)
-        except Exception as excp:
-            print "Fail fill_data/create_submission: %s" % excp
-            raise  excp
+        self.dummySubmission['wb_steps'] = yield fill_random_fields(self.dummyContext['id'])
+        self.dummySubmissionNotFinalized = yield create_submission(self.dummySubmission, finalize=False)
+        self.dummySubmission = yield create_submission(self.dummySubmission, finalize=False)
 
         yield self.emulate_file_upload(self.dummySubmission['id'])
-
-        try:
-            submission = yield update_submission(self.dummySubmission['id'], self.dummySubmission, finalize=True)
-        except Exception as excp:
-            print "Fail fill_data/update_submission: %s" % excp
-            raise  excp
-
-        try:
-            self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
-        except Exception as excp:
-            print "Fail fill_data/create_whistleblower: %s" % excp
-            raise  excp
+        # fill_data/update_submssion
+        submission = yield update_submission(self.dummySubmission['id'], self.dummySubmission, finalize=True)
+        # fill_data/create_whistleblower
+        self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
 
         assert self.dummyReceiver_1.has_key('id')
         assert self.dummyReceiver_2.has_key('id')
@@ -380,7 +414,7 @@ class TestGLWithPopulatedDB(TestGL):
 
         wbtips_desc = yield self.get_wbtips()
 
-        for wbtip_desc in wbtips_desc: 
+        for wbtip_desc in wbtips_desc:
             yield wbtip.create_comment_wb(wbtip_desc['wbtip_id'],
                                           commentCreation)
 
@@ -389,6 +423,8 @@ class TestGLWithPopulatedDB(TestGL):
 
         yield delivery_sched.DeliverySchedule().operation()
         yield notification_sched.NotificationSchedule().operation()
+
+
 
 class TestHandler(TestGLWithPopulatedDB):
     """
@@ -401,7 +437,12 @@ class TestHandler(TestGLWithPopulatedDB):
         """
         override default handlers' get_store with a mock store used for testing/
         """
-        yield TestGLWithPopulatedDB.setUp(self)
+        # we bypass TestGLWith Populated DB to test against clean DB.
+        yield TestGL.setUp(self)
+
+        self.initialization()
+
+    def initialization(self):
         self.responses = []
 
         def mock_write(cls, response=None):
@@ -492,6 +533,14 @@ class TestHandler(TestGLWithPopulatedDB):
             handler.request.headers['X-Session'] = session.id
         return handler
 
+class TestHandlerWithPopulatedDB(TestHandler):
+    @inlineCallbacks
+    def setUp(self):
+        """
+        override default handlers' get_store with a mock store used for testing/
+        """
+        yield TestGLWithPopulatedDB.setUp(self)
+        self.initialization()
 
 class MockDict():
     """
@@ -512,7 +561,6 @@ class MockDict():
         }
 
         self.dummyReceiver = {
-            'id': unicode(uuid4()),
             'password': VALID_PASSWORD1,
             'name': u'Ned Stark',
             'description': u'King MockDummy Receiver',
@@ -539,13 +587,117 @@ class MockDict():
             'language': u'en'
         }
 
+        self.dummyFieldTemplates = [{
+            'id': u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
+            'is_template': True,
+            'step_id': '',
+            'fieldgroup_id': '',
+            'label': u'Field 1',
+            'type': u'inputbox',
+            'preview': False,
+            'description': u"field description",
+            'hint': u'field hint',
+            'multi_entry': False,
+            'stats_enabled': False,
+            'required': True, # <- first field is special,
+            'children': {},   #    it's marked as required!!!
+            'options': [],
+            'y': 2,
+            'x': 0
+            },
+            {
+            'id': u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
+            'is_template': True,
+            'step_id': '',
+            'fieldgroup_id': '',
+            'label': u'Field 2',
+            'type': u'inputbox',
+            'preview': False,
+            'description': "description",
+            'hint': u'field hint',
+            'multi_entry': False,
+            'stats_enabled': False,
+            'required': False,
+            'children': {},
+            'options': [],
+            'y': 3,
+            'x': 0
+            },
+            {
+            'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
+            'is_template': True,
+            'step_id': '',
+            'fieldgroup_id': '',
+            'label': u'Generalities',
+            'type': u'fieldgroup',
+            'preview': False,
+            'description': u"field description",
+            'hint': u'field hint',
+            'multi_entry': False,
+            'stats_enabled': False,
+            'required': False,
+            'children': {},
+            'options': [],
+            'y': 4,
+            'x': 0
+            },
+            {
+            'id': u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
+            'is_template': True,
+            'step_id': '',
+            'fieldgroup_id': '',
+            'label': u'Name',
+            'type': u'inputbox',
+            'preview': False,
+            'description': u"field description",
+            'hint': u'field hint',
+            'multi_entry': False,
+            'stats_enabled': False,
+            'required': False,
+            'children': {},
+            'options': [],
+            'y': 0,
+            'x': 0
+            },
+            {
+            'id': u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
+            'is_template': True,
+            'step_id': '',
+            'fieldgroup_id': '',
+            'label': u'Surname',
+            'type': u'inputbox',
+            'preview': False,
+            'description': u"field description",
+            'hint': u'field hint',
+            'multi_entry': False,
+            'stats_enabled': False,
+            'required': False,
+            'children': {},
+            'options': [],
+            'y': 0,
+            'x': 0
+            }]
+
+        self.dummyFields = copy.deepcopy(self.dummyFieldTemplates)
+
+        self.dummySteps = [{
+            'label': u'Step 1',
+            'description': u'Step Description',
+            'hint': u'Step Hint',
+            'children': {}
+            },
+            {
+              'label': u'Step 2',
+              'description': u'Step Description',
+              'hint': u'Step Hint',
+              'children': {}
+            }]
+
         self.dummyContext = {
-            'id': unicode(uuid4()),
             # localized stuff
             'name': u'Already localized name',
             'description': u'Already localized desc',
-            # fields, usually filled in content by fill_random_fields
-            'fields': default_context_fields(),
+            'steps': self.dummySteps,
             'selectable_receiver': False,
             'select_all_receivers': True,
             'tip_max_access': 10,
@@ -559,7 +711,6 @@ class MockDict():
             'tags': [],
             'file_required': False,
             'receiver_introduction': u'These are our receivers',
-            'fields_introduction': u'These are our fields',
             'postpone_superpower': False,
             'can_delete_submission': False,
             'maximum_selectable_receivers': 0,
@@ -574,7 +725,7 @@ class MockDict():
 
         self.dummySubmission = {
             'context_id': '',
-            'wb_fields': fill_random_fields(self.dummyContext),
+            'wb_steps': [],
             'finalize': False,
             'receivers': [],
             'files': [],
@@ -675,77 +826,37 @@ class MockDict():
 
 def template_keys(first_a, second_a, name):
 
-    ret_string = "[%s]" % name
+    ret_string = '[{}]'.format(name)
     for x in first_a:
-        ret_string += " %s" % x
+        ret_string += ' {}'.format(x)
 
-    ret_string += " == "
+    ret_string += ' == '
 
     for x in second_a:
-        ret_string += " %s" % x
+        ret_string += ' {}'.format(x)
 
     return ret_string
 
-def fill_random_fields(context_desc):
+def fill_random_field_recursively(field):
+    field['value'] = 'aaa'#.join(unichr(x) for x in range(0x400, 0x4FF))
+    for c in field['children']:
+        fill_random_field_recursively(field['children'][c])
+
+@transact
+def fill_random_fields(store, context_id):
     """
-    getting the context dict, take 'fields'.
-    then populate a valid dict of key : value, usable as wb_fields
+    return randomly populated contexts associated to specified context
     """
+    steps = db_get_context_steps(store, context_id)
 
-    assert isinstance(context_desc, dict)
-    fields_list = context_desc['fields']
-    assert isinstance(fields_list, list), "Missing fields!"
-    assert len(fields_list) >= 1
+    for step in steps:
+        for field in step['children']:
+            fill_random_field_recursively(step['children'][field])
 
-    ret_dict = {}
-    i = 0
-    for sf in fields_list:
-
-        assert sf.has_key(u'name')
-        assert sf.has_key(u'key')
-        assert sf.has_key(u'hint')
-        assert sf.has_key(u'presentation_order')
-        assert sf.has_key(u'type')
-        # not all element are checked now
-
-        unicode_weird = ''.join(unichr(x) for x in range(0x400, 0x4FF) )
-        ret_dict.update({ sf.get(u'key') : { u'value': unicode_weird,
-                                             u'answer_order': i } })
-
-        i += 1
-
-    return ret_dict
-
-
-def default_context_fields():
-
-    source = opportunistic_appdata_init()
-    if not source.has_key('fields'):
-        raise Exception("Invalid Application Data initialization")
-
-    f = source['fields']
-    fo = Fields()
-    fo.noisy = True
-    fo.default_fields(f)
-    default_fields_unhappy = fo.dump_fields('en')
-
-    ret_fields = []
-    the_first_is_required = False
-
-    for field in default_fields_unhappy:
-
-        if not the_first_is_required:
-            field['required'] = True
-            the_first_is_required = True
-
-        ret_fields.append(field)
-
-    return ret_fields
-
+    return steps
 
 @transact
 def do_appdata_init(store):
-
     try:
         appdata = store.find(models.ApplicationData).one()
 
@@ -759,9 +870,21 @@ def do_appdata_init(store):
         appdata.fields = source['fields']
         store.add(appdata)
 
-    fo = Fields()
-    fo.noisy = True
-    fo.default_fields(appdata.fields)
-    (unique_fields, localized_fields) = fo.extensive_dump()
-
-    return unique_fields, localized_fields
+@transact
+def create_dummy_field(store, **custom_attrs):
+    attrs = {
+        'label': { "en": "test label" },
+        'description': { "en": "test description" },
+        'hint': { "en": "test hint" },
+        "is_template": False,
+        'multi_entry': False,
+        'type': 'fieldgroup',
+        'options': [],
+        'required': False,
+        'preview': False,
+        'stats_enabled': True,
+        'x': 0,
+        'y': 0
+    }
+    attrs.update(custom_attrs)
+    return models.Field.new(store, attrs).id

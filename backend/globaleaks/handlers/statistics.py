@@ -22,7 +22,7 @@ def admin_serialize_stats(store, language=GLSetting.memory_copy.default_language
     stats.order_by(Desc(Stats.creation_date))
 
     full_stats = []
-    limit  =0
+    limit = 0
     for stat in stats:
 
         limit += 1
