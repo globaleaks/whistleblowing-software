@@ -119,6 +119,7 @@ def anon_serialize_context(store, context, language=GLSetting.memory_copy.defaul
 
     steps = [ anon_serialize_step(store, s, language)
               for s in context.steps.order_by(models.Step.number) ]
+
     ret_dict = {
         "id": context.id,
         "escalation_threshold": 0,
