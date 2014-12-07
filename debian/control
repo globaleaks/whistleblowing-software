@@ -28,17 +28,7 @@ Package: globaleaks
 Architecture: all
 X-Python-Version: 2.7
 Depends:
-# The following substitution variable shall be uncommented once we get
-# all globaleaks dependencies into debian.
-# ${python:Depends}
-# XXX. The following packages, instead, are required in order to use pip
-# to install globaleaks dependencies.
- , gcc
- , python
- , python-dev
- , libffi-dev
- , libssl-dev
-# End of packages required by pip
+ ${python:Depends}
  , ${misc:Depends}
  , python-pip
  , tor
