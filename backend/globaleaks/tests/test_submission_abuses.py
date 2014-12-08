@@ -192,12 +192,11 @@ class TestTipInstance(SubmissionTest):
         submission_request['receivers'] = [ SubmissionTest.receiver_used['id'] ]
         submission_request['context_id'] = SubmissionTest.context_used['id']
 
-        for wb_fields in submission_request['wb_steps']:
-            wb_fields['value'] = unicode("You know nothing John Snow" * 100  * 100)
+        for wb_step in submission_request['wb_steps']:
+            for cid in wb_step['children']:
+                wb_step['children'][cid]['value'] = unicode("You know nothing John Snow" * 100  * 100)
 
         submission_request['finalize'] = True
 
         yield self.assertFailure(submission.create_submission(submission_request, finalize=True),
                                  InvalidInputFormat)
-
-    test_006_fail_create_huge_submission.skip = True

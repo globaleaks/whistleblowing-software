@@ -837,13 +837,17 @@ def template_keys(first_a, second_a, name):
 
     return ret_string
 
-def fill_random_field_recursively(field):
-    field['value'] = 'aaa'#.join(unichr(x) for x in range(0x400, 0x4FF))
+def fill_random_field_recursively(field, value=None):
+    if value is None:
+        field['value'] = unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))
+    else:
+        field['value'] = unicode(value)
+
     for c in field['children']:
         fill_random_field_recursively(field['children'][c])
 
 @transact
-def fill_random_fields(store, context_id):
+def fill_random_fields(store, context_id, value=None):
     """
     return randomly populated contexts associated to specified context
     """

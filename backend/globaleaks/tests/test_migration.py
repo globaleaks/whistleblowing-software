@@ -26,9 +26,6 @@ from globaleaks.tests import helpers
 from globaleaks.db import base_updater, check_db_files
 from globaleaks.settings import GLSetting
 
-skip = 'Skipped due to #1044'
-
-
 def test_dbs_migration(directory):
     GLSetting.gldb_path = 'db_test'    # path where check_db_files looks in
     path = os.path.join(os.path.dirname(os.path.realpath(__file__)), directory)
