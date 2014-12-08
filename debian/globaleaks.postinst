@@ -2,11 +2,6 @@
 # This is the post installation script for globaleaks
 set -e
 
-# XXX. Hardcore installation of globaleaks dependencies using pip.
-# Please remove this line once up-to-date python-storm and python-cryptography
-# will be available in debian.
-pip install -r /usr/share/globaleaks/glbackend/requirements.txt
-
 if [ ! -f /etc/apparmor.d/usr.sbin.tor ]; then
   ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
 fi
