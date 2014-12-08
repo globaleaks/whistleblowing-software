@@ -129,7 +129,7 @@ class TableReplacer:
         from globaleaks.db.update_11_12 import Node_version_11, ApplicationData_version_11, Context_version_11
         from globaleaks.db.update_12_13 import Node_version_12, Context_version_12
         from globaleaks.db.update_13_14 import Node_version_13, Context_version_13
-        from globaleaks.db.update_14_15 import Node_version_14, User_version_14, Context_version_14
+        from globaleaks.db.update_14_15 import Node_version_14, User_version_14, Context_version_14, InternalTip_version_14
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -146,7 +146,7 @@ class TableReplacer:
             'ReceiverFile' : [ models.ReceiverFile, None, None, None, None, None, None, None, None, None, None],
             'Notification': [ Notification_version_7, None, None, Notification_version_8, models.Notification, None, None, None, None, None, None],
             'Comment': [ Comment_version_5, models.Comment, None, None, None, None, None, None, None, None, None],
-            'InternalTip' : [ InternalTip_version_10, None, None, None, None, None, models.InternalTip, None, None, None, None],
+            'InternalTip' : [ InternalTip_version_10, None, None, None, None, None, InternalTip_version_14, None, None, None, models.InternalTip],
             'InternalFile' : [ InternalFile_version_7, None, None, InternalFile_version_10, None, None, models.InternalFile, None, None, None, None],
             'WhistleblowerTip' : [ models.WhistleblowerTip, None, None, None, None, None, None, None, None, None, None],
             'ReceiverTip' : [ models.ReceiverTip, None, None, None, None, None, None , None, None, None, None],

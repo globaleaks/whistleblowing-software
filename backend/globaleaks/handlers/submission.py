@@ -171,6 +171,10 @@ def verify_fields_recursively(fields, wb_fields):
                                      wb_fields[f]['value'] == ''):
            raise errors.SubmissionFailFields("missing required field (no value provided): %s" % f)
 
+       if isinstance(wb_fields[f]['value'], unicode):
+           if len(wb_fields[f]['value']) > GLSetting.memory_copy.maximum_textsize:
+               raise errors.InvalidInputFormat("field value overcomes size limitation")
+
        verify_fields_recursively(fields[f]['children'], wb_fields[f]['children'])
 
    for wbf in wb_fields:
