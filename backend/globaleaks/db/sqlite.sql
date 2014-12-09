@@ -130,6 +130,8 @@ CREATE TABLE node (
     terms_and_conditions BLOB NOT NULL,
     security_awareness_title BLOB NOT NULL,
     security_awareness_text BLOB NOT NULL,
+    whistleblowing_question BLOB NOT NULL,
+    whistleblowing_button BLOB NOT NULL,
     email VARCHAR NOT NULL,
     hidden_service VARCHAR NOT NULL,
     receipt_regexp VARCHAR NOT NULL,

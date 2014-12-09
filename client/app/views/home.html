@@ -34,12 +34,12 @@ This comment is needed in order to push the following strings on transifex
         <div class="row" data-ng-show="node.tor2web_submission || anonymous">
           <div id="WhistleblowerSubmitBox">
             <div id="WhistleblowerSubmitBoxHeader">
-              <span data-translate>Are you a whistleblower?</span>
+              <span>{{node.whistleblowing_question}}</span>
             </div>
             <div id="WhistleblowerSubmitBoxButton">
               <a data-ng-click="goToSubmission()" class="btn btn-primary">
                 <i class="glyphicon glyphicon-bullhorn"></i>
-                <span data-translate>Blow the Whistle</span>
+                <span data-translate>{{node.whistleblowing_button}}</span>
               </a>
             </div>
           </div>
@@ -53,7 +53,7 @@ This comment is needed in order to push the following strings on transifex
                 <div class="alert alert-danger">
                   <div>
                     <span data-translate>Cannot Login</span>:
-                    <span>The Key Code is either invalid or the Tip has expired.</span>
+                    <span data-translate>The Key Code is either invalid or the Tip has expired.</span>
                   </div>
                   <div data-translate>Please check your Key Code and try again or make a new Submission.</div>
                 </div>

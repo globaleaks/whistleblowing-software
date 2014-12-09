@@ -101,6 +101,8 @@ adminNodeDesc = {
     'terms_and_conditions': unicode,
     'security_awareness_title': unicode,
     'security_awareness_text': unicode,
+    'whistleblowing_question': unicode,
+    'whistleblowing_button': unicode,
     'hidden_service' : hidden_service_regexp_or_empty,
     'public_site' : https_url_regexp_or_empty,
     'stats_update_time' : int,

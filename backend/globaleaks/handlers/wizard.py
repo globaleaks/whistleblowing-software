@@ -61,17 +61,13 @@ def admin_update_appdata(store, loaded_appdata):
 
         appdata.version = loaded_appdata['version']
 
-        if 'presentation' in loaded_appdata['node']:
-            node.presentation = loaded_appdata['node']['presentation']
+        for key in  ['presentation', 'footer', 'subtitle',
+                     'terms_and_conditions', 'security_awareness_title',
+                     'security_awareness_text', 'whistleblowing_question',
+                     'whistleblowing_button']:
 
-        if 'footer' in loaded_appdata['node']:
-            node.footer = loaded_appdata['node']['footer']
-
-        if 'subtitle' in loaded_appdata['node']:
-            node.subtitle = loaded_appdata['node']['subtitle']
-
-        if 'terms_and_contitions' in loaded_appdata['node']:
-            node.terms_and_conditions = loaded_appdata['node']['terms_and_conditions']
+            if key in loaded_appdata['node']:
+                setattr(node, key, loaded_appdata['node'][key])
 
     else:
         log.err("NOT updating the Application Data Fields current %d proposed %d" %

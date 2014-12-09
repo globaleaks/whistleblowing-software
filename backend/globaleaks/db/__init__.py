@@ -79,6 +79,8 @@ def create_tables(create_node=True):
             'terms_and_conditions': dict({ GLSetting.memory_copy.default_language: u"" }),
             'security_awareness_title': dict({ GLSetting.memory_copy.default_language: u"" }),
             'security_awareness_text': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'whistleblowing_question': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'whistleblowing_button': dict({ GLSetting.memory_copy.default_language: u"" }),
             'hidden_service': u"",
             'public_site': u"",
             'email': u"",

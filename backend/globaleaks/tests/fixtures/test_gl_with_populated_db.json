@@ -342,6 +342,8 @@
       "hidden_service": "",
       "security_awareness_title": {"en": ""},
       "security_awareness_text": {"en": ""},
+      "whistleblowing_question": {"en": ""},
+      "whistleblowing_button": {"en": ""},
       "x_frame_options_mode": "deny"
     },
     "class": "Node"
