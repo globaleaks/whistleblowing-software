@@ -18,6 +18,12 @@
     },
     "security_awareness_text": {
       "en": "With a HTTPS submission you are exposing yourself to the risks that someone else will know that you have submitted something, without knowing what you have submitted.\n\nInstead with an Anonymous Submission you are fully protected, it is not possible for a third party to know that you have submitted something nor what you have submitted.\n\nWe strongly advise you to go for an Anonymous Submission.\n\nTo make an Anonymous Submission, instead of using your usual Web Browser (Internet Explorer, Chrome, Firefox, Opera, etc.) you should use the Tor Browser Bundle. This is a special piece of software designed to enable Anonymous Web Browsing."
+    },
+    "whistleblowing_question": {
+      "en": "Are you a whistleblower?"
+    },
+    "whistleblowing_button": {
+      "en": "Blow the whistle"
     }
   },
   "fields" : [

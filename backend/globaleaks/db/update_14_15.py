@@ -25,7 +25,7 @@ from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.models import Model, Field, FieldOption, Step, Context, db_forge_obj
-
+from globaleaks.db.datainit import opportunistic_appdata_init
 
 class Node_version_14(Model):
     __storm_table__ = 'node'
@@ -118,7 +118,10 @@ class Context_version_14(Model):
 class Replacer1415(TableReplacer):
 
     def migrate_Node(self):
-        print "%s Node migration assistant: added default_language and default_timezone" % self.std_fancy
+        print "%s Node migration assistant: added default_language and default_timezone" \
+              "whistleblowing_question, whistleblowing_button" % self.std_fancy
+
+        appdata = opportunistic_appdata_init()
 
         old_node = self.store_old.find(self.get_right_model("Node", 14)).one()
         new_node = self.get_right_model("Node", 15)()
@@ -131,6 +134,14 @@ class Replacer1415(TableReplacer):
 
             if v.name == 'default_language':
                 new_node.default_language = u'en';
+                continue
+
+            if v.name == 'whistleblowing_question':
+                new_node.whistleblowing_question = appdata['node']['whistleblowing_question']
+                continue
+
+            if v.name == 'whistleblowing_button':
+                new_node.whistleblowing_button = appdata['node']['whistleblowing_button']
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name))

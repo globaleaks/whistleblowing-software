@@ -114,13 +114,6 @@ class BaseModel(Storm):
                  for attr in self._public_attrs]
         return '<%s model with values %s>' % (self.__name__, ', '.join(attrs))
 
-    # def __getattr__(self, name):
-    #     if name == 'store':
-    #         return vars(self)[name]
-    #     else:
-    #         raise AttributeError('{} has no attribute: {}'.format(
-    #             self.__class__.__name__, name))
-
     def __setattr__(self, name, value):
         # harder better faster stronger
         if isinstance(value, str):
@@ -496,11 +489,15 @@ class Node(Model):
     disable_security_awareness_badge = Bool(default=False)
     disable_security_awareness_questions = Bool(default=False)
 
+    whistleblowing_question = JSON()
+    whistleblowing_button = JSON()
+
+
     exception_email = Unicode()
 
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
                     'exception_email', 'default_language', 'receipt_regexp',
-                    'x_frame_options_mode', 'x_frame_options_allow_from' ]
+                    'x_frame_options_mode', 'x_frame_options_allow_from']
     int_keys = [ 'stats_update_time', 'maximum_namesize',
                  'maximum_textsize', 'maximum_filesize', 'default_timezone' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
@@ -511,7 +508,8 @@ class Node(Model):
                 # wizard_done is not checked because it's set by the backend
     localized_strings = [ 'description', 'presentation', 'footer', 'subtitle',
                           'terms_and_conditions', 'security_awareness_title',
-                          'security_awareness_text' ]
+                          'security_awareness_text', 'whistleblowing_question',
+                          'whistleblowing_button'  ]
 
 
 class Notification(Model):
