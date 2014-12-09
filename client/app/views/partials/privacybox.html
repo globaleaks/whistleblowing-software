@@ -1,9 +1,6 @@
 <div id="PrivacyBox" data-ng-controller="PrivacyBoxCtrl" data-ng-show="!node.disable_privacy_badge">
-  <div data-ng-mouseenter="showBox()" data-ng-mouseleave="hideBox()">
-    <button data-ng-show="displayBox" type="button" class="close" data-ng-click="hideBox()">
-    <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
-    </button>
-    <div data-ng-switch="" on="privacy">
+  <div data-ng-mouseenter="showBox()" data-ng-mouseleave="hideBox()" class="row">
+    <div data-ng-switch="" on="privacy" id="PrivacyBoxTextBox" class="col-md-11">
       <div data-ng-switch-when="high">
         <div data-ng-show="!displayBox">
           <span class="label label-success">
@@ -17,32 +14,34 @@
             <span data-translate>Congratulations!</span>
           </span>
           <div>
-            <p>
-              <span data-translate>It appears that you are using Tor. To better protect your anonymity, be sure that you are using the</span>
-              <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer">Tor Browser Bundle</a>.
-              <span data-translate>Keep in mind that using Tor Browser Bundle does not replace good security practices and it cannot protect you in the event your computer has been compromised. You are strongly advised to read the</span>
-              <a href="https://securityinabox.org/" target="_blank" rel="noreferrer">security in a box</a>
-              <span data-translate>manual for practical security best practices.</span>
-            </p>
+            <div data-translate>Good job! You are using the Tor Browser that gives you extra privacy and security when browsing the internet.</div>
+            <div data-translate>Keep in mind that using the Tor Browser does not replace good security practices and it cannot protect you in the event of your computer being hacked.</div>
+            <div data-translate>To learn more you should read the security in a box manual for practical security best practices: </div>
+            <a href="https://securityinabox.org/" target="_blank" rel="noreferrer">
+              [ <span data-translate>Visit the security in a box website</span> ]
+            </a>
           </div>
         </div>
       </div>
-      <div data-ng-switch-when="unknown">
+      <div data-ng-switch-when="medium">
         <div data-ng-show="!displayBox">
-          <span class="label label-danger">
-            <i class="glyphicon glyphicon-exclamation-sign"></i>
-            <span data-translate>Warning!</span>
+          <span class="label label-success">
+            <i class="glyphicon glyphicon-ok-circle"></i>
+            <span data-translate>Congratulations!</span>
           </span>
         </div>
-        <div data-ng-show="displayBox" class="privacyBox-ext">
-          <span class="label label-danger">
-            <i class="glyphicon glyphicon-exclamation-sign"></i>
-            <span data-translate>Warning!</span>
+        <div data-ng-show="displayBox">
+          <span class="label label-success">
+            <i class="glyphicon glyphicon-ok-circle"></i>
+            <span data-translate>Congratulations!</span>
           </span>
           <div>
-            <p>
-              <span data-translate>We were not able to determine if you are anonymous or not, please proceed with care</span>
-            </p>
+            <div data-translate>It appears that you are anonymously browsing this site using Tor, but your are not using the recommended safest internet browser.</div>
+            <div data-translate>The Tor Browser includes various privacy and security enhancements not present in other browsers.</div>
+            <div data-translate>You are strongly suggested to use the Tor Browser, unless you know what you are doing.</div>
+            <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer">
+              [ <span data-translate>Download the Tor Browser</span> ]
+            </a>
           </div>
         </div>
       </div>
@@ -59,16 +58,23 @@
             <span data-translate>Danger!</span>
           </span>
           <div>
-            <p>
-              <span data-translate>It appears that you are not using Tor. You are strongly advised to</span>
-              <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer">
-                <span data-translate>download a copy of the Tor Browser Bundle</span>
-              </a>
-              <span data-translate>before continuing.</span>
-            </p>
+            <div data-translate>It appears that you are browsing this site without any extra privacy and security!</div>
+            <div data-translate>You are strongly advised to visit this site using the desktop app called Tor Browser, that protects your identity.</div>
+            <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer">
+              [ <span data-translate>Download the Tor Browser</span> ]
+            </a>
+            <div data-ng-show="node.hidden_service != ''">
+              <span data-translate>Then, copy and paste the following address into the installed Tor Browser:</span>
+              <span>{{node.hidden_service}}</span>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div id="PrivacyBoxCloseButton" class="col-md-1">
+      <a data-ng-show="displayBox" type="button" data-ng-click="hideBox()">
+        <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+      </a>
     </div>
   </div>
 </div>
