@@ -145,6 +145,14 @@ h3 {
   font-size: 20px;
 }
 
+#PrivacyBoxTextBox {
+  text-align: left;
+}
+
+#PrivacyBoxCloseButton {
+  text-align: right;
+}
+
 #ToolTipBox {
   position: relative;
   z-index: 99999;
