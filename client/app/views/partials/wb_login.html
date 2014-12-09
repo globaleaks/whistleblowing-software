@@ -1,0 +1,9 @@
+<form name="form" novalidate>
+  <span class="keyinput">
+    <input class="form-control keyinput" type="text" placeholder="XXXX-XXXX-XXXX-XXXX" maxlength="19" size="19" ng-model="receipt" name="receipt" receiptvalidator>
+  </span>
+  <span class="keybutton">
+    <button data-ng-click="view_tip(receipt)" class="btn btn-primary" data-ng-disabled="form.receipt.$error.receiptvalidator" type="button" data-translate>Login</button>
+  </span>
+</form>
+
