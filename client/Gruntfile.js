@@ -172,6 +172,12 @@ module.exports = function(grunt) {
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+  var resource = grunt.option('resource')
+  if (resource == undefined ||
+      (resource != 'master' && resource != 'devel')) {
+    resource = 'master';
+  }
+
   var path = require('path'),
     superagent = require('superagent'),
     fs = require('fs'),
@@ -249,7 +255,7 @@ module.exports = function(grunt) {
     sourceFile = 'pot/en.po';
 
   function fetchTxSource(cb){
-    var url = baseurl + '/resource/glclient-02-enpo/content',
+    var url = baseurl + '/resource/' + resource + '/content',
       login = readTransifexrc();
 
     agent.get(url)
@@ -263,7 +269,7 @@ module.exports = function(grunt) {
   }
 
   function updateTxSource(cb){
-    var url = baseurl + '/resource/glclient-02-enpo/content/',
+    var url = baseurl + '/resource/' + resource + '/content/',
       content = grunt.file.read(sourceFile),
       login = readTransifexrc();
 
@@ -278,7 +284,7 @@ module.exports = function(grunt) {
   }
 
   function listLanguages(cb){
-    var url = baseurl + '/resource/glclient-02-enpo/?details',
+    var url = baseurl + '/resource/' + resource + '/?details',
       login = readTransifexrc();
 
     agent.get(url)
@@ -291,7 +297,7 @@ module.exports = function(grunt) {
   }
 
   function fetchTxTranslationsForLanguage(langCode, cb) {
-    var resourceUrl = baseurl + '/resource/glclient-02-enpo/',
+    var resourceUrl = baseurl + '/resource/' + resource + '/',
       login = readTransifexrc();
 
     agent.get(resourceUrl + 'stats/' + langCode + '/')
