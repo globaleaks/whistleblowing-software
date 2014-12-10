@@ -10,11 +10,10 @@ Has been downloaded and imported as third party library in our package, because:
 
 Is stated in the rstr documentation that:
 
-*rstr uses the Python random module internally to generate psuedorandom text.
-This library is not suitable for password-generation or other cryptographic applications.*
+*rstr uses the Python random module internally to generate psuedorandom text so
+this library is not suitable for password-generation or other cryptographic applications.*
 
-but GLBackend is using Crypto.Random safe generation, and then a patch has been applied. 
-
+instead in GlobaLeaks it's used os.urandom for safe generation, and then a patch has been applied.
 
 *In order to help security audit, the integration procedures has been split in these commits*
 
