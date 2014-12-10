@@ -61,11 +61,11 @@ def randint(start, end=None):
 def randbits(bits):
     return os.urandom(int(bits/8))
 
-def random_choice(population):
+def choice(population):
     size = len(population)
     return population[randint(size-1)]
 
-def random_shuffle(x):
+def shuffle(x):
     for i in reversed(xrange(1, len(x))):
         j = randint(0, i)
         x[i], x[j] = x[j], x[i]
