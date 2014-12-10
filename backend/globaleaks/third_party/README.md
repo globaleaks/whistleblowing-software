@@ -20,9 +20,9 @@ but GLBackend is using Crypto.Random safe generation, and then a patch has been 
 
 **downloaded in Dec 10 2014 **: https://bitbucket.org/leapfrogdevelopment/rstr/get/default.zip
 
-**committed unmodified**: https://github.com/globaleaks/GlobaLeaks/commit/
+**committed unmodified**: https://github.com/globaleaks/GlobaLeaks/commit/d2876d782fbb8fc4ac0170a721ab2610590536d4
 
-**patch using Crypto.Random**: https://github.com/globaleaks/GlobaLeaks/commit/
+**patched using os.random**: https://github.com/globaleaks/GlobaLeaks/commit/3c23797bbb17c988696bf566df0a66748aee66a
 
 # Usage
 
