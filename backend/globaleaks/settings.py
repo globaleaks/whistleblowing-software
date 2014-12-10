@@ -29,10 +29,42 @@ from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 from storm import exceptions, tracer
 from storm.zope.zstorm import ZStorm
+from storm.databases.sqlite import sqlite
 from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
 
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
+
+# this monkey patching is needed in order to support foreign keys on
+# versions of Storm < 0.20.
+# the code in there is written by me (evilaliv3) and is the same
+# that i proposed upstream to Storm and is now included in Storm
+# starting from 0.20
+def set_default_uri(self, name, default_uri):
+
+    def raw_connect():
+
+        _self = self._default_databases[name]
+
+        # See the story at the end to understand why we set isolation_level.
+        raw_connection = sqlite.connect(_self._filename, timeout=_self._timeout,
+                                        isolation_level=None)
+
+        if _self._synchronous is not None:
+            raw_connection.execute("PRAGMA synchronous = %s" %
+                                    (_self._synchronous,))
+
+        #raw_connection.execute("PRAGMA foreign_keys = ON")
+
+        return raw_connection
+
+    self._default_databases[name] = self._get_database(default_uri)
+    self._default_uris[name] = default_uri
+
+    self._default_databases[name].raw_connect = raw_connect
+
+# apply the monkeypatching!
+ZStorm.set_default_uri = set_default_uri
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
@@ -60,7 +92,6 @@ def stats_counter(element):
     """
     assert GLSetting.anomalies_counter.has_key(element), "Invalid usage of stats_counter"
     GLSetting.anomalies_counter[element] += 1
-
 
 class GLSettingsClass:
 
@@ -779,6 +810,7 @@ class transact(object):
         """
         zstorm = ZStorm()
         zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_uri)
+
         return zstorm.get(GLSetting.store_name)
 
     def _wrap(self, function, *args, **kwargs):
@@ -787,6 +819,7 @@ class transact(object):
         passing the store to it.
         """
         self.store = self.get_store()
+
         try:
             if self.instance:
                 result = function(self.instance, self.store, *args, **kwargs)
