@@ -254,7 +254,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     };
 
-    return function(fn) {
+    return function(fn, context_id, receivers) {
       /**
        * This factory returns a Submission object that will call the fn
        * callback once all the information necessary for creating a submission
@@ -268,7 +268,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       self.contexts = [];
       self.receivers = [];
-      self.current_context = null;
+      self.current_context = undefined;
       self.maximum_filesize = null;
       self.allow_unencrypted = null;
       self.current_context_fields = [];
@@ -285,8 +285,13 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           // enumerate only the receivers of the current context
           if (self.current_context.receivers.indexOf(receiver.id) !== -1) {
             self.current_context_receivers.push(receiver);
-            if (!receiver.disabled)
+            if (receivers) {
+              if (receiver.id in receivers) {
+                self.receivers_selected[receiver.id];
+              }
+            } else if (!receiver.disabled) {
               self.receivers_selected[receiver.id] = self.current_context.select_all_receivers != false;
+            }
           }
         });
       };
@@ -297,7 +302,13 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
         Contexts.query(function(contexts){
           self.contexts = contexts;
-          self.current_context = $filter('orderBy')(self.contexts, 'presentation_order')[0];
+          if (context_id) {
+            self.current_context = $filter('filter')(self.contexts, 
+                                                     {"id": context_id})[0];
+          }
+          if (self.current_context === undefined) {
+            self.current_context = $filter('orderBy')(self.contexts, 'presentation_order')[0];
+          }
           Receivers.query(function(receivers){
             self.receivers = [];
             forEach(receivers, function(receiver){
