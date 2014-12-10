@@ -1,7 +1,7 @@
 # RSTR - xeger
 
 Is a package described here: https://bitbucket.org/leapfrogdevelopment/rstr/ developed 
-by Brendam McCollam, and supply one of our GlobaLeaks needings. 
+by Brendam McCollam, and supply one of our GlobaLeaks needs.
 
 Has been downloaded and imported as third party library in our package, because:
 
@@ -18,11 +18,11 @@ but GLBackend is using Crypto.Random safe generation, and then a patch has been 
 
 *In order to help security audit, the integration procedures has been split in these commits*
 
-**downloaded in Mar 8 2013**: https://bitbucket.org/leapfrogdevelopment/rstr/get/default.zip
+**downloaded in Dec 10 2014 **: https://bitbucket.org/leapfrogdevelopment/rstr/get/default.zip
 
-**committed unmodified**: https://github.com/globaleaks/GLBackend/commit/d55007115d8a0f153148c8c3392dcaf52aa83c6c
+**committed unmodified**: https://github.com/globaleaks/GlobaLeaks/commit/
 
-**patch using Crypto.Random**: https://github.com/globaleaks/GLBackend/commit/deed6084ccc8deadddd60ba47902712ca963c202
+**patch using Crypto.Random**: https://github.com/globaleaks/GlobaLeaks/commit/
 
 # Usage
 
