@@ -76,7 +76,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         receipt = yield submission.create_whistleblower_tip(status)
 
-        self.assertTrue(re.match(self.dummyNode['receipt_regexp'], receipt))
+        self.assertTrue(re.match(GLSetting.defaults.receipt_regexp, receipt))
 
         wb_access_id = yield authentication.login_wb(receipt)
 

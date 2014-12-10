@@ -171,7 +171,6 @@ var context = {
   "postpone_superpower":false,
   "delete_consensus_percentage":0,
   "require_pgp":false,
-  "receipt_regexp":"[0-9]{10}",
   "tip_timetolive":15,
   "escalation_threshold":0,
   "can_delete_submission":true,

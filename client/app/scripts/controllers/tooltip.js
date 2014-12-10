@@ -9,7 +9,7 @@ GLClient.controller('toolTipCtrl',
   });
 
   $scope.view_tip = function(receipt) {
-    console.log(receipt);
+    receipt = receipt.replace(/\D/g,'');
     WhistleblowerTip(receipt, function() {
       $location.path('/status');
     });

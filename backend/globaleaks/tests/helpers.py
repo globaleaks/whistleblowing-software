@@ -745,7 +745,6 @@ class MockDict():
             'hidden_service':  u"http://1234567890123456.onion",
             'public_site':  u"https://globaleaks.org",
             'email':  u"email@dummy.net",
-            'receipt_regexp': u'[0-9]{16}',
             'stats_update_time':  2, # hours,
             'languages_supported': [], # ignored
             'languages_enabled':  [ "it" , "en" ],

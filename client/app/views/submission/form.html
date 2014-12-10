@@ -1,5 +1,4 @@
 <fieldset data-ng-init="show_index = (field === undefined) ? true : false; step = selection - 1; fields = (field === undefined) ? submission.current_submission.wb_steps[step].children : field.children;">
-  {{fields}}
   <div data-ng-repeat="field in fields">
     <div data-ng-controller="SubmissionFieldCtrl" data-ng-form="" name="subForm" class="submissionField">
       <div data-ng-switch="" on="field.type">

@@ -82,10 +82,23 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.view_tip = function (receipt) {
+    receipt = receipt.replace(/\D/g,'');
     WhistleblowerTip(receipt, function () {
       $location.path('/status/');
     });
   };
+
+  $scope.format_receipt = function (receipt) {
+    if (receipt && receipt.length == 16) {
+      return receipt.substr(0, 4) + ' ' +
+             receipt.substr(4, 4) + ' ' +
+             receipt.substr(8, 4) + ' ' +
+             receipt.substr(12, 4);
+    } else {
+      console.log("receipt");
+      return receipt;
+    }
+  }          
 
   $scope.uploading = false;
 
