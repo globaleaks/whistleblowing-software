@@ -61,13 +61,13 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(len(utility.randbits(9)), 1)
         self.assertEqual(len(utility.randbits(16)), 2)
 
-    def test_random_choice(self):
+    def test_choice(self):
         population = [0, 1, 2, 3, 4, 5]
-        self.assertTrue(utility.random_choice(population) in population)
+        self.assertTrue(utility.choice(population) in population)
 
-    def test_random_shuffle(self):
+    def test_shuffle(self):
         ordered = [0, 1, 2, 3, 4, 5]
-        shuffle = utility.random_shuffle(ordered)
+        shuffle = utility.shuffle(ordered)
         self.assertEqual(len(ordered), len(shuffle))
         for i in ordered:
             self.assertTrue(i in shuffle)
