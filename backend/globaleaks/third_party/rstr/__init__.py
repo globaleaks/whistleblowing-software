@@ -1,5 +1,5 @@
-from rstr.rstr_base import Rstr
-from rstr.rstr_base import default_instance as _default_instance
+from rstr_base import Rstr
+from rstr_base import default_instance as _default_instance
 
 rstr = _default_instance.rstr
 xeger = _default_instance.xeger

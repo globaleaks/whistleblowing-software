@@ -1,7 +1,7 @@
 import unittest
-import rstr.tests.test_rstr
-import rstr.tests.test_xeger
-import rstr.tests.test_package_level_access
+import test_rstr
+import test_xeger
+import test_package_level_access
 
 
 def suite():

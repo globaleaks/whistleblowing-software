@@ -1,6 +1,6 @@
 import re
 import string
-from random import choice, randint
+from globaleaks.utils.utility import randint, choice
 from itertools import chain
 import sys
 

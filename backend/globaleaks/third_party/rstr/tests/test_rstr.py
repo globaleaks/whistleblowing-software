@@ -2,7 +2,7 @@ import re
 import unittest
 import sys
 
-from rstr.rstr_base import Rstr
+from globaleaks.third_party.rstr.rstr_base import Rstr
 
 if sys.version_info[0] >= 3:
     unichr = chr
