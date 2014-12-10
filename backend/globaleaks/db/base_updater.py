@@ -187,7 +187,7 @@ class TableReplacer:
                     try:
                         self.store_new.execute(create_query+';')
                     except OperationalError as e:
-                        log.warn('OperationalError in "{}": e'.format(create_query))
+                        log.msg('OperationalError in "{}": e'.format(create_query))
             self.store_new.commit()
             return
             # return here and manage the migrant versions here:
@@ -202,7 +202,7 @@ class TableReplacer:
             try:
                 self.store_new.execute(create_query+';')
             except OperationalError as excep:
-                log.warn('{} OperationalError in [{}]'.format(self.debug_info, create_query))
+                log.msg('{} OperationalError in [{}]'.format(self.debug_info, create_query))
                 raise excep
 
         self.store_new.commit()
