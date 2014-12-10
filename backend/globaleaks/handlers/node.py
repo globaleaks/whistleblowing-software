@@ -95,7 +95,6 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'allow_unencrypted': node.allow_unencrypted,
       'x_frame_options_mode': node.x_frame_options_mode,
       'x_frame_options_allow_from': node.x_frame_options_allow_from,
-      'receipt_regexp': node.receipt_regexp,
       'configured': True if associated else False,
       'password': u"",
       'old_password': u"",

@@ -44,8 +44,6 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         "last_update": datetime_to_ISO8601(node.last_update),
         "hidden_service": node.hidden_service,
         "public_site": node.public_site,
-        "receipt_regexp": node.receipt_regexp,
-        "receipt_example": generate_example_receipt(node.receipt_regexp),
         "stats_update_time": node.stats_update_time,
         "email": node.email,
         "version": GLSetting.version_string,
@@ -71,7 +69,6 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         'x_frame_options_mode': node.x_frame_options_mode,
         'x_frame_options_allow_from': node.x_frame_options_allow_from,
         'wizard_done': node.wizard_done,
-        'receipt_regexp': node.receipt_regexp,
         'configured': True if associated else False,
         'password': u"",
         'old_password': u"",
@@ -280,18 +277,6 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
         admin.password = security.change_password(admin.password,
                                     old_password, password, admin.salt)
 
-    try:
-        receipt_example = generate_example_receipt(request['receipt_regexp'])
-
-        if len(receipt_example) != 16:
-            raise Exception
-
-    except Exception as excep:
-        log.err("Only receipt returning 16 bytes are accepted. Sets to default: [0-9]{16}")
-        request['receipt_regexp'] = u"[0-9]{16}"
-        receipt_example = generate_example_receipt(request['receipt_regexp'])
-
-
     # check the 'reset_css' boolean option: remove an existent custom CSS
     if request['reset_css']:
         custom_css_path = os.path.join(GLSetting.static_path, "%s.css" % GLSetting.reserved_names.css)
@@ -354,7 +339,10 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
             log.debug("wizard completed: Node initialized")
             node.wizard_done = True
 
-    # name, description tor2web boolean value are acquired here
+    # since change of regexp format to XXXX-XXXX-XXXX-XXXX
+    # we removed the possibility to customize the receipt from the GLCllient
+    request['receipt_regexp'] = GLSetting.defaults.receipt_regexp
+
     try:
         node.update(request)
     except DatabaseError as dberror:
@@ -402,19 +390,6 @@ def acquire_context_timetolive(request):
         raise errors.InvalidTipSubmCombo()
 
     return submission_ttl, tip_ttl
-
-def generate_example_receipt(regexp):
-    """
-    @param regexp:
-    @return:
-
-    this function it's used to show to the Admin an example of the
-    receipt_regexp configured, and if an error happen, it's
-    works as validator.
-    The exception is raised over and a default regexp is put
-    """
-    return unicode(rstr.xeger(regexp))
-
 
 def field_is_present(store, field):
     result = store.find(models.Field,

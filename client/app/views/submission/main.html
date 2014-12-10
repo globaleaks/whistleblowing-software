@@ -196,31 +196,28 @@
       </div>
       <div class="modal-body">
 
-        <p>
         <span data-translate>This receipt will allow you to login as the whistleblower for this Tip.</span>
         <span data-translate>Through this system receivers will be able to ask you questions on the Tip and you will be able to write a reply.</span> 
         <span data-translate>You will also be able to keep track of who has viewed your submission and downloaded the files.</span>
         <span data-translate>Moreover, it will allow you to add other files to your submission.</span> 
-        </p>
 
-        <p>
         <span data-translate>Beware of the fact that this receipt, if fallen into the wrong hands, will lead to identifying you as the whistleblower for this Tip.</span>
-        </p>
     
-        <p>
         <span data-translate>If you are interested in keeping it, please save it in a secure place and make sure it does not fall into the wrong hands</span> 
-        </p>
 
-        <h2>{{submission.receipt}}</h2>
+        <h2>{{format_receipt(submission.receipt)}}</h2>
 
-        <p>
         <span data-translate>Please copy in the box below your receipt to access the tip interface.</span> 
-        </p>
-        <input class="form-control" data-ng-model="receiptConfirmation" type="text">
+
+        <form name="form" novalidate>
+          <span class="keyinput">
+            <input class="form-control keyinput" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19" ng-model="receipt" name="receipt" receiptvalidator>
+          </span>
+        </form>
 
       </div>
       <div class="modal-footer">
-        <a data-ng-click="view_tip(submission.receipt)" data-ng-disabled="submission.receipt != receiptConfirmation" class="btn btn-success">
+        <a data-ng-click="view_tip(submission.receipt)" data-ng-disabled="format_receipt(submission.receipt) != receipt" class="btn btn-success">
          <i class="glyphicon glyphicon-log-in"></i>
          <span data-translate>View Tip</span>
         </a>

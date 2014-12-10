@@ -13,6 +13,8 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
     $scope.showQuestions = false;
 
     $scope.view_tip = function(receipt) {
+      receipt = receipt.replace(/\D/g,'');
+      console.log(receipt);
       WhistleblowerTip(receipt, function() {
         $location.path('/status');
       });
