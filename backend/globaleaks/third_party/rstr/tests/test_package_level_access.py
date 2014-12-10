@@ -1,7 +1,7 @@
 import unittest
 import re
 
-import rstr
+from globaleaks.third_party import rstr
 
 
 class TestPackageLevelFunctions(unittest.TestCase):
