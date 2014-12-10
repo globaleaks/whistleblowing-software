@@ -5,6 +5,11 @@ GLClient.controller('SubmissionCtrl',
   $rootScope.invalidForm = true;
 
   $scope.receiptConfimation = "";
+  var context_id = $location.search().context;
+  var receivers = $location.search().receivers;
+  if (receivers) {
+    receivers = JSON.parse(receivers);
+  }
 
   Node.get(function (node) {
     $scope.node = node;
@@ -13,7 +18,7 @@ GLClient.controller('SubmissionCtrl',
       $scope.submission = submission;
 
       $scope.maximumFilesize = submission.maximum_filesize;
-
+      
       $scope.current_context = submission.current_context;
 
       $scope.fields = submission.fields;
@@ -32,7 +37,7 @@ GLClient.controller('SubmissionCtrl',
       $scope.submit = $scope.submission.submit;
 
       checkReceiverSelected();
-    });
+    }, context_id, receivers);
 
   });
 
@@ -85,16 +90,14 @@ GLClient.controller('SubmissionCtrl',
   $scope.uploading = false;
 
   $scope.disclaimer = {accepted: false};
-
+  
   // Watch for changes in certain variables
   $scope.$watch('submission.current_context', function () {
     if ($scope.current_context) {
       $scope.submission.create(function () {
         $scope.fileupload_url = '/submission/' + $scope.submission.current_submission.id + '/file';
-
       });
       checkReceiverSelected();
-
      }
   }, false);
 

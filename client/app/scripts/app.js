@@ -18,133 +18,127 @@ var GLClient = angular.module('GLClient', [
   config(['$routeProvider', '$translateProvider', '$tooltipProvider', function($routeProvider, $translateProvider, $tooltipProvider) {
 
     $routeProvider.
-      when('/wizard/:lang?', {
+      when('/wizard', {
         templateUrl: 'views/wizard/main.html',
         controller: 'WizardCtrl',
         header_title: 'GlobaLeaks Wizard',
         header_subtitle: 'Step-by-step setup'
       }).
-      when('/submission/:lang?', {
+      when('/submission', {
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
         header_title: 'Blow the Whistle',
         header_subtitle: ''
       }).
-      when('/status/:tip_id/:lang?', {
+      when('/status/:tip_id', {
         templateUrl: 'views/receiver/tip.html',
         controller: 'StatusCtrl',
         header_title: 'Receiver Interface',
         header_subtitle: 'Tip Status Page'
       }).
-      when('/status/:lang?', {
+      when('/status', {
         templateUrl: 'views/whistleblower/tip.html',
         controller: 'StatusCtrl',
         header_title: 'Whistleblower Interface',
         header_subtitle: 'Tip Status Page'
       }).
-      when('/receiver/firstlogin/:lang?', {
+      when('/receiver/firstlogin', {
         templateUrl: 'views/receiver/firstlogin.html',
         controller: 'ReceiverFirstLoginCtrl',
         header_title: 'Receiver First Login',
         header_subtitle: ''
       }).
-      when('/receiver/preferences/:lang?', {
+      when('/receiver/preferences', {
         templateUrl: 'views/receiver/preferences.html',
         controller: 'ReceiverPreferencesCtrl',
         header_title: 'Receiver Interface',
         header_subtitle: ''
       }).
-      when('/receiver/tips/:lang?', {
+      when('/receiver/tips', {
         templateUrl: 'views/receiver/tips.html',
         controller: 'ReceiverTipsCtrl',
         header_title: 'Receiver Interface',
         header_subtitle: 'Your Tips'
       }).
-      when('/admin/landing/:lang?', {
+      when('/admin/landing', {
         templateUrl: 'views/admin/landing.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Landing Page'
       }).
-      when('/admin/content/:lang?', {
+      when('/admin/content', {
         templateUrl: 'views/admin/content.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Content Settings'
       }).
-      when('/admin/contexts/:lang?', {
+      when('/admin/contexts', {
         templateUrl: 'views/admin/contexts.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Contexts Configuration'
       }).
-      when('/admin/fields/:lang?', {
+      when('/admin/fields', {
         templateUrl: 'views/admin/fields.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Fields Configuration'
       }).
-      when('/admin/receivers/:lang?', {
+      when('/admin/receivers', {
         templateUrl: 'views/admin/receivers.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Receivers Configuration'
       }).
-      when('/admin/mail/:lang?', {
+      when('/admin/mail', {
         templateUrl: 'views/admin/mail.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Mail Configuration'
       }).
-      when('/admin/advanced_settings/:lang?', {
+      when('/admin/advanced_settings', {
         templateUrl: 'views/admin/advanced.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Advanced Settings'
       }).
-      when('/admin/password/:lang?', {
+      when('/admin/password', {
         templateUrl: 'views/admin/password.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Password Configuration'
       }).
-      when('/admin/overview/users/:lang?', {
+      when('/admin/overview/users', {
         templateUrl: 'views/admin/users_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Users Overview'
       }).
-      when('/admin/overview/tips/:lang?', {
+      when('/admin/overview/tips', {
         templateUrl: 'views/admin/tips_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Tips Overview'
       }).
-      when('/admin/overview/files/:lang?', {
+      when('/admin/overview/files', {
         templateUrl: 'views/admin/files_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Files Overview'
       }).
-      when('/admin/stats/:lang?', {
+      when('/admin/stats', {
         templateUrl: 'views/admin/stats.html',
         controller: 'StatisticsCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'System Stats'
       }).
-      when('/login/:lang?', {
+      when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
         header_subtitle: ''
       }).
-      when('/start/:lang?', {
-        templateUrl: 'views/home.html',
-        controller: 'HomeCtrl',
-        header_title: '',
-        header_subtitle: ''
-      }).
-      when('/:lang', {
+      when('/start', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
         header_title: '',
