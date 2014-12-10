@@ -538,10 +538,9 @@ def gpg_options_parse(receiver, request):
 
     if receiver.gpg_key_status == Receiver._gpg_types[1]:
         receiver.gpg_enable_notification = encrypt_notification
-        log.debug("Receiver %s sets GPG usage: notification %s, file %s" %
+        log.debug("Receiver %s sets GPG usage: notification %s)" %
                   (receiver.user.username,
-                   "YES" if encrypt_notification else "NO",
-                   "YES" if encrypt_file else "NO"))
+                   "YES" if encrypt_notification else "NO"))
 
     if new_gpg_key:
 
