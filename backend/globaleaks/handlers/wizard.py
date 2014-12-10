@@ -71,7 +71,7 @@ def admin_update_appdata(store, loaded_appdata):
 
     else:
         log.err("NOT updating the Application Data Fields current %d proposed %d" %
-                (appdata.version, version))
+                (appdata.version, loaded_appdata['version']))
 
     # in both cases, update or not, return the running version
     return {
