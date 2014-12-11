@@ -90,14 +90,11 @@ def delete_weekstats_history(store):
 
     allws = store.find(WeekStats)
     log.info("Deleting %d entries from hourly statistics table" % allws.count())
-    for ws in allws:
-        store.remove(ws)
 
-    # I'll put store.commit() here to check the amount of seconds between
-    # the previous and the next log entry. is redundant anyway because @transact
-    # supply.
-    store.commit()
-    log.info("Week statistics removal complete. Now you're like a gringo without history, please invade Iraq")
+    allws.remove()
+
+    #Now you're like a gringo without history, please invade Iraq
+    log.info("Week statistics removal completed.")
 
 
 @transact_ro
@@ -133,14 +130,11 @@ def delete_anomaly_history(store):
 
     allanom = store.find(Anomalies)
     log.info("Deleting %d entries from Anomalies History table" % allanom.count())
-    for anom in allanom:
-        store.remove(anom)
 
-    # I'll put store.commit() here to check the amount of seconds between
-    # the previous and the next log entry. is redundant anyway because @transact
-    # supply.
-    store.commit()
-    log.info("Anomalies collection removal complete. Now you're like a child in the jungle")
+    allanom.remove()
+
+    # Now you're like a child in the jungle
+    log.info("Anomalies collection removal completed.")
 
 
 class AnomaliesCollection(BaseHandler):
@@ -187,7 +181,7 @@ class AnomalyHistoryCollection(BaseHandler):
     @inlineCallbacks
     def delete(self, *uriargs):
 
-        log.info("Anoalies history delete command received!")
+        log.info("Received anomalies history delete command")
         yield delete_anomaly_history()
         self.set_status(200)
 
@@ -220,7 +214,7 @@ class StatsCollection(BaseHandler):
     @inlineCallbacks
     def delete(self, *uriargs):
 
-        log.info("Statistic delete command received!")
+        log.info("Received statistic history delete command")
         yield delete_weekstats_history()
         self.set_status(200)
 
