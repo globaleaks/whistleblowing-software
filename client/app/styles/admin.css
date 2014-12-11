@@ -174,9 +174,11 @@
   margin-left: 10px;
   padding: 3px 13px 3px 3px;
 }
+
 .selectionContextItem:hover {
   color: #0088cc;
 }
+
 .selectionContextItem .checkbox {
   display: inline;
   top: 0;
@@ -187,3 +189,23 @@
 #AnomaliesThresholdsSummary, #AnomaliesHistoryTable {
   margin-bottom: 20px;
 }
+
+rect.bordered {
+  stroke: #FFFFFF;
+  stroke-width:2px;
+}
+
+text.mono {
+  font-size: 9pt;
+  font-family: Consolas, courier;
+  fill: #aaa;
+}
+
+text.axis-workweek {
+  fill: #000;
+}
+
+text.axis-worktime {
+  fill: #000;
+}
+
