@@ -577,7 +577,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   factory('StatsCollection', ['$resource', function($resource) {
     return $resource('/admin/stats/0');
-    /* TODO enhance: asking /1 return the current_week -1, /2 two week ago */
 }]).
   factory('AnomaliesCollection', ['$resource', function($resource) {
     return $resource('/admin/anomalies');
