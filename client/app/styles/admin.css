@@ -183,3 +183,7 @@
   position: absolute;
   left: -40px;
 }
+
+#AnomaliesThresholdsSummary, #AnomaliesHistoryTable {
+  margin-bottom: 20px;
+}

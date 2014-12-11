@@ -14,27 +14,25 @@ This comment is needed in order to push the following strings on transifex
     <div class="col-md-9">
       <div class="row">
         <div class="col-md-12">
-          <h3 data-translate>Anomalies recorded</h3>
-          <p>
-            <span data-translate>This interface shows you the anomalous behavior spotted by GlobaLeaks software.</span>
-          </p>
-          <div data-translate>Anomaly are analyzed automatically in order to spot abuses or atypical bursts.</div>
-          <div data-translate>Being an anonymous system, GlobaLeaks cannot perform anomaly detection based on a single user behavior.</div>
-          <div data-translate>Are used the following threshold before declare an anomalous behavior:</div>
+          <div data-translate>This interface shows you the anomalous behavior spotted by the system.</div>
+          <div data-translate>Anomaly are analyzed automatically in order to spot abuses or atypical usage bursts.</div>
+          <div data-translate>Being the GlobaLeaks user anonymous, the system can't perform anomaly detection based on per user policies.</div>
+          <div data-translate>Currently policy adopted to identify anomalies is to check some thresholds using an observation window of 30 seconds.</div>
+          <div data-translate>The following are the thresholds used to identify an anomalous behaviour:</div>
 
-          <div class="AnomaliesSummaryLevels" data-ng-show="showLevel">
-            <span class="label label-info" data-translate>login_failure</span> 5<br>
-            <span class="label label-info" data-translate>login_success</span> 3<br>
-            <span class="label label-info" data-translate>submission_started</span> 5<br>
-            <span class="label label-info" data-translate>submission_completed</span> 4<br>
-            <span class="label label-info" data-translate>wb_comment</span> 4<br>
-            <span class="label label-info" data-translate>wb_message</span> 4<br>
-            <span class="label label-info" data-translate>file</span> 11<br>
-            <span class="label label-info" data-translate>receiver_comment</span> 3<br>
-            <span class="label label-info" data-translate>receiver_message</span> 3<br>
+          <div id="AnomaliesThresholdsSummary" data-ng-show="showLevel">
+            <span class="label label-info" data-translate>Login Failures</span>: 5<br />
+            <span class="label label-info" data-translate>Login Successes</span>: 3<br />
+            <span class="label label-info" data-translate>Submissions Started</span>: 5<br />
+            <span class="label label-info" data-translate>Submissions Completed</span>: 4<br />
+            <span class="label label-info" data-translate>Whistleblower Comments</span>: 4<br />
+            <span class="label label-info" data-translate>Whistleblower Messages</span>: 4<br />
+            <span class="label label-info" data-translate>Uploaded Files</span>: 11<br />
+            <span class="label label-info" data-translate>Receiver Comments</span>: 3<br />
+            <span class="label label-info" data-translate>Receiver Messages</span>: 3<br />
           </div>
 
-          <table class="table table-bordered" id="AnomaliesHistoryList">
+          <table id="AnomaliesHistoryTable" class="table table-bordered">
           <thead>
               <tr>
                 <th class="col-md-2">
