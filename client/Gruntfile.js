@@ -158,8 +158,8 @@ module.exports = function(grunt) {
         options: {
           // Static text.
           question: 'WARNING:\n'+
-                    'this task may cause translations loss and should be executed only on master/devel branches so that only\n'+
-                    'translation sentences are kept in sync with the ones that need to be delivered in next release package.\n\n'+
+                    'this task may cause translations loss and should be executed only on master/devel branches so that only\n' +
+                    'translation sentences are kept in sync with the ones that need to be delivered in next release package.\n\n' +
                     'Are you sure you want to proceed (Y/N) ?',
           continue: function(answer) {
             return answer === 'Y';
@@ -173,6 +173,12 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   var resource = grunt.option('resource')
+
+  if (resource != 'master' && resource != 'devel') {
+    grunt.fail.warn("WARNING: when performing grunt tasks you should indicate explicitly the translation resource name\n" +
+                    "Available resources are: master, devel\n" +
+                    "e.g.: grunt updateTranslations --resource devel");
+  }
 
   var path = require('path'),
     superagent = require('superagent'),
@@ -374,13 +380,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('updateTranslationsSource', function() {
-
-    if (resource != 'master' && resource != 'devel') {
-      console.log("WARNING: when pushing translation on transifex you should indicate the resource name");
-      console.log("Available resources are: master, devel");
-      console.log("e.g.: grunt updateTranslations --resource devel");
-      return false;
-    }
 
     var done = this.async(),
       gt = new Gettext(),
