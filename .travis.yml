@@ -18,7 +18,7 @@ script:
   - coverage run setup.py test
   - coveralls || true
   - cd $TRAVIS_BUILD_DIR/client  # to run frontend tests
-  - bower install && grunt build
+  - bower install && grunt build --resource master
   - $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z
   - node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*
   - cd $TRAVIS_BUILD_DIR/  # to run static analysis
