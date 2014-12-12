@@ -8,9 +8,9 @@ GLClient.controller('toolTipCtrl',
     }
   });
 
-  $scope.view_tip = function(receipt) {
-    receipt = receipt.replace(/\D/g,'');
-    WhistleblowerTip(receipt, function() {
+  $scope.view_tip = function(keycode) {
+    keycode = keycode.replace(/\D/g,'');
+    WhistleblowerTip(keycode, function() {
       $location.path('/status');
     });
   };

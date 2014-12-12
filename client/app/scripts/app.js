@@ -30,6 +30,12 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Blow the Whistle',
         header_subtitle: ''
       }).
+      when('/receipt', {
+        templateUrl: 'views/submission/receipt.html',
+        controller: 'ReceiptController',
+        header_title: 'Submission successfully completed!',
+        header_subtitle: 'Write down your keycode'
+      }).
       when('/status/:tip_id', {
         templateUrl: 'views/receiver/tip.html',
         controller: 'StatusCtrl',

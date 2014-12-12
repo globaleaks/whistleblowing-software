@@ -32,7 +32,8 @@
     "bootstrap": "3.2.0",
     "bootstrap-arabic": "3.2.0",
     "underscore": "1.7.0",
-    "angular-native-dragdrop": "~1.0.6"
+    "angular-native-dragdrop": "1.0.6",
+    "font-awesome": "4.2.0"
   },
   "resolutions": {
     "angular": "1.2.25"

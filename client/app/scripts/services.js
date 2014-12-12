@@ -114,6 +114,8 @@ angular.module('resourceServices.authentication', [])
             $location.path('/login');
         };
 
+        self.keycode = '';
+
         $rootScope.logout = function() {
           // we use $http['delete'] in place of $http.delete due to
           // the magical IE7/IE8 that do not allow delete as identifier
@@ -239,8 +241,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$resource', '$filter', 'Node', 'Contexts', 'Receivers',
-  function($resource, $filter, Node, Contexts, Receivers) {
+  factory('Submission', ['$resource', '$filter', '$location', 'Authentication', 'Node', 'Contexts', 'Receivers',
+  function($resource, $filter, $location, Authentication, Node, Contexts, Receivers) {
 
     var submissionResource = $resource('/submission/:submission_id/',
         {submission_id: '@id'},
@@ -275,8 +277,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.current_context_receivers = [];
       self.current_submission = null; 
       self.receivers_selected = {};
-      self.completed = false;
-      self.receipt = null;
 
       var setCurrentContextReceivers = function() {
         self.receivers_selected = {};
@@ -382,10 +382,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.current_submission.finalize = true;
 
         self.current_submission.$submit(function(result){
-          // The submission has completed
           if (result) {
-            self.receipt = self.current_submission.receipt;
-            self.completed = true;
+            Authentication.keycode = self.current_submission.receipt;
+            $location.url("/receipt");
           }
         });
 
@@ -546,9 +545,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   factory('WhistleblowerTip', ['$rootScope', '$resource', 'WBTip', 'Authentication',
     function($rootScope, $resource, WBTip, Authentication){
-    return function(receipt, fn) {
+    return function(keycode, fn) {
       var self = this;
-      $rootScope.login('', receipt, 'wb')
+      $rootScope.login('', keycode, 'wb')
       .then(function() {
         fn();
       });

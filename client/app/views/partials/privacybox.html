@@ -1,6 +1,6 @@
 <div id="PrivacyBox" data-ng-controller="PrivacyBoxCtrl" data-ng-show="!node.disable_privacy_badge">
-  <div data-ng-mouseenter="showBox()" data-ng-mouseleave="hideBox()" class="row">
-    <div data-ng-switch="" on="privacy" id="PrivacyBoxTextBox" class="col-md-11">
+  <div data-ng-mouseenter="showBox()" data-ng-mouseleave="hideBox()">
+    <div data-ng-switch="" on="privacy" id="PrivacyBoxTextBox" class="pull-left">
       <div data-ng-switch-when="high">
         <div data-ng-show="!displayBox">
           <span class="label label-success">
@@ -71,10 +71,11 @@
         </div>
       </div>
     </div>
-    <div id="PrivacyBoxCloseButton" class="col-md-1">
+    <div id="PrivacyBoxCloseButton" class="pull-right">
       <a data-ng-show="displayBox" type="button" data-ng-click="hideBox()">
         <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
       </a>
     </div>
+    <div class="clearfix">
   </div>
 </div>

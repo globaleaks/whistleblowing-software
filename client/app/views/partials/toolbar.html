@@ -18,12 +18,12 @@
       </span>
     </div>
     <div data-ng-show="showLoginForm() && !session_id" class="pull-right">
-      <div data-translate>Have you already filed a submission? Enter your receipt.</div>
+      <div data-translate>Have you already filed a submission? Enter your key code.</div>
       <div data-ng-include="'views/partials/wb_login.html'"></div>
       <div class="row LoginErrorBox" data-ng-show="errors[0].code == 29">
         <div class="col-md-12">
           <div class="alert alert-danger">
-            <div data-translate>The Key Code is either invalid or the Tip has expired.</div>
+            <div data-translate>The key code is either invalid or the submission has expired.</div>
           </div>
         </div>
       </div>

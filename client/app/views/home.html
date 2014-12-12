@@ -35,7 +35,7 @@
           </div>
           <div id="WhistleblowerLoginBox" class="center-block">
             <div>
-              <h3 data-translate>Have you already filed a submission? Enter your receipt.</h3>
+              <h3 data-translate>Have you already filed a submission? Enter your key code.</h3>
             </div>
             <div data-ng-include="'views/partials/wb_login.html'"></div>
             <div class="LoginErrorBoxHomepage row" data-ng-show="errors[0].code == 29">
@@ -43,9 +43,9 @@
                 <div class="alert alert-danger">
                   <div>
                     <span data-translate>Cannot Login</span>:
-                    <span data-translate>The Key Code is either invalid or the Tip has expired.</span>
+                    <span data-translate>The key code is either invalid or the submission has expired.</span>
                   </div>
-                  <div data-translate>Please check your Key Code and try again or make a new Submission.</div>
+                  <div data-translate>Please check your key code and try again or make a new Submission.</div>
                 </div>
               </div>
             </div>

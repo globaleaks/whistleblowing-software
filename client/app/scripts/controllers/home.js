@@ -4,7 +4,7 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
                     'Node', 'Authentication',
                     'WhistleblowerTip', 'Contexts', 'Receivers',
   function ($scope, $location, $modal, Node, Authentication, WhistleblowerTip, Contexts, Receivers) {
-    $scope.receipt = '';
+    $scope.keycode = '';
     $scope.configured = false;
     $scope.step = 1;
     $scope.answer = {value: null};
@@ -12,10 +12,10 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
     $scope.correctAnswer = false;
     $scope.showQuestions = false;
 
-    $scope.view_tip = function(receipt) {
-      receipt = receipt.replace(/\D/g,'');
-      console.log(receipt);
-      WhistleblowerTip(receipt, function() {
+    $scope.view_tip = function(keycode) {
+      keycode = keycode.replace(/\D/g,'');
+      console.log(keycode);
+      WhistleblowerTip(keycode, function() {
         $location.path('/status');
       });
     };

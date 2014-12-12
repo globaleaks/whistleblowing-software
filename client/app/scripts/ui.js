@@ -131,14 +131,14 @@ angular.module('submissionUI', []).
       element.fadeOut(fadeout_delay);
     };
 }).
-  directive('receiptvalidator', function($q, $timeout) {
+  directive('keycodevalidator', function($q, $timeout) {
     return {
       require: 'ngModel',
       link: function(scope, elm, attrs, ngModel) {
-        ngModel.$setValidity('receiptvalidator', false);
+        ngModel.$setValidity('keycodevalidator', false);
         ngModel.$parsers.unshift(function(viewValue) {
           var result = '';
-          ngModel.$setValidity('receiptvalidator', false);
+          ngModel.$setValidity('keycodevalidator', false);
           viewValue = viewValue.replace(/\D/g,'');
           while (viewValue.length > 0) {
             result += viewValue.substring(0, 4);
@@ -153,10 +153,25 @@ angular.module('submissionUI', []).
           }
           $(elm).val(result);
           if (result.length == 19) {
-            ngModel.$setValidity('receiptvalidator', true);
+            ngModel.$setValidity('keycodevalidator', true);
           }
           return result;
         });
       }
     };
+}).
+  directive('ccNumber', function(){
+    return {
+      scope: {
+        "ccNumber": "&",
+      },
+      link: function(scope, elm, attrs) {
+        var svgItem = $(elm)[0];
+        svgItem.addEventListener("load",function() {
+          var ccnumber = svgItem.contentDocument;
+          ccnumber = ccnumber.getElementById("ccnumber");
+          ccnumber.innerHTML = scope.ccNumber();
+        });
+      }
+    }
 });
