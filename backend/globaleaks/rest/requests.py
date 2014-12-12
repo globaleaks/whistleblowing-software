@@ -15,8 +15,6 @@ hidden_service_regexp             = r'^http://[0-9a-z]{16}\.onion$'
 hidden_service_regexp_or_empty    = r'^http://[0-9a-z]{16}\.onion$$|^$'
 https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
-x_frame_options_mode_regexp       = r'^(deny)|(allow-from)$'
-x_frame_options_allow_from_regexp = r'^(http(s?)://(\w+)\.(.*)$|^)?$'
 
 dateType = r'(.*)'
 
@@ -98,7 +96,6 @@ adminNodeDesc = {
     'presentation' : unicode,
     'subtitle': unicode,
     'footer': unicode,
-    'terms_and_conditions': unicode,
     'security_awareness_title': unicode,
     'security_awareness_text': unicode,
     'whistleblowing_question': unicode,
@@ -127,10 +124,7 @@ adminNodeDesc = {
     'ahmia': bool,
     'anomaly_checks': bool,
     'allow_unencrypted': bool,
-    'x_frame_options_mode': x_frame_options_mode_regexp,
-    'x_frame_options_allow_from': x_frame_options_allow_from_regexp,
     'wizard_done': bool,
-    'terms_and_conditions': unicode,
     'disable_privacy_badge': bool,
     'disable_security_awareness_badge': bool,
     'disable_security_awareness_questions': bool,
@@ -230,7 +224,6 @@ anonNodeDesc = {
     'subtitle': unicode,
     'description': unicode,
     'presentation': unicode,
-    'terms_and_conditions': unicode,
     'footer': unicode,
     'security_awareness_title': unicode,
     'security_awareness_text': unicode,
@@ -453,7 +446,6 @@ wizardNodeDesc = {
     'presentation': dict,
     'footer': dict,
     'subtitle': dict,
-    'terms_and_conditions': dict,
 }
 
 wizardAppdataDesc = {
