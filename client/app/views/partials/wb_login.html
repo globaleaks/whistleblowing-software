@@ -1,8 +1,8 @@
 <form name="form" novalidate>
   <span class="keyinput">
-    <input class="form-control keyinput" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19" ng-model="receipt" name="receipt" receiptvalidator>
+    <input class="form-control keyinput" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19" ng-model="formatted_keycode" name="keycode" keycodevalidator>
   </span>
   <span class="keybutton">
-    <button data-ng-click="view_tip(receipt)" class="btn btn-primary" data-ng-disabled="form.receipt.$error.receiptvalidator" type="button" data-translate>Login</button>
+    <button data-ng-click="view_tip(formatted_keycode)" class="btn btn-primary" data-ng-disabled="form.keycode.$error.keycodevalidator" type="button" data-translate>Login</button>
   </span>
 </form>

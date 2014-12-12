@@ -21,7 +21,6 @@ from cStringIO import StringIO
 import os
 import shutil
 
-from mock import patch
 from globaleaks.tests import helpers
 from globaleaks.db import base_updater, check_db_files
 from globaleaks.settings import GLSetting
@@ -39,10 +38,8 @@ def test_dbs_migration(directory):
 
 
 class TestMigrationRoutines(helpers.TestGL):
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_migration_of_default_dbs(self, log):
+    def test_migration_of_default_dbs(self):
         test_dbs_migration('db/empty')
 
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_migration_of_populated_dbs(self, log):
+    def test_migration_of_populated_dbs(self):
         test_dbs_migration('db/populated')

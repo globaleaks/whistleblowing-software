@@ -131,18 +131,18 @@ h3 {
   height: 200px;
 }
 
-.receipt {
+.keycode {
     text-align: center;
 }
-.receipt h2 {
+.keycode h2 {
     font-family: sans-serif
 }
 
 #PrivacyBox {
-  padding: 10px;
   background-color: #222;
   color: #FFF;
   font-size: 20px;
+  padding: 10px 20px 10px 20px;
 }
 
 #PrivacyBoxTextBox {
@@ -293,4 +293,8 @@ table {
 
 .nested {
   padding-left: 15px;
+}
+
+.noteAsterisk {
+  color: red;
 }

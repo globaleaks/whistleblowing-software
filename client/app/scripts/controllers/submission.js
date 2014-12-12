@@ -4,7 +4,6 @@ GLClient.controller('SubmissionCtrl',
 
   $rootScope.invalidForm = true;
 
-  $scope.receiptConfimation = "";
   var context_id = $location.search().context;
   var receivers = $location.search().receivers;
   if (receivers) {
@@ -80,25 +79,6 @@ GLClient.controller('SubmissionCtrl',
       $scope.submission.receivers_selected[receiver.id] = !$scope.submission.receivers_selected[receiver.id];
     }
   };
-
-  $scope.view_tip = function (receipt) {
-    receipt = receipt.replace(/\D/g,'');
-    WhistleblowerTip(receipt, function () {
-      $location.path('/status/');
-    });
-  };
-
-  $scope.format_receipt = function (receipt) {
-    if (receipt && receipt.length == 16) {
-      return receipt.substr(0, 4) + ' ' +
-             receipt.substr(4, 4) + ' ' +
-             receipt.substr(8, 4) + ' ' +
-             receipt.substr(12, 4);
-    } else {
-      console.log("receipt");
-      return receipt;
-    }
-  }          
 
   $scope.uploading = false;
 
@@ -200,5 +180,27 @@ controller('SubmissionStepsCtrl', ['$scope', function($scope) {
       $scope.selection = $scope.selection - 1;
     }
   };
+}]).
+controller('ReceiptController', ['$scope', 'Authentication', 'WhistleblowerTip',
+  function($scope, Authentication, WhistleblowerTip) {
 
+  format_keycode = function(keycode) {
+    if (keycode && keycode.length == 16) {
+      return keycode.substr(0, 4) + ' ' +
+             keycode.substr(4, 4) + ' ' +
+             keycode.substr(8, 4) + ' ' +
+             keycode.substr(12, 4);
+    } else {
+      return keycode;
+    }
+  }
+
+  $scope.keycode = Authentication.keycode;
+  $scope.formatted_keycode = format_keycode($scope.keycode);
+  $scope.view_tip = function (keycode) {
+    keycode = keycode.replace(/\D/g,'');
+    WhistleblowerTip(keycode, function () {
+      $location.path('/status/');
+    });
+  };
 }]);

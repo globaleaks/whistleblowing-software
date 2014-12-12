@@ -1,4 +1,4 @@
-<div class="ng-cloak container" data-ng-show="!node.configured && node.name">
+<div id="ContentBox" class="ng-cloak container" data-ng-show="!node.configured && node.name">
   <h2 data-translate>This node is not configured.</h2>
   <p>
     <span data-translate>You will not be able to send a submission.</span><br />
@@ -186,43 +186,3 @@
   </div>
 
 </div>
-
-<!-- This will be visualized once the subission is created -->
-<div class="submission-receipt modal" data-ng-show="submission.completed">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 data-translate>Submission Created!</h2>
-      </div>
-      <div class="modal-body">
-
-        <span data-translate>This receipt will allow you to login as the whistleblower for this Tip.</span>
-        <span data-translate>Through this system receivers will be able to ask you questions on the Tip and you will be able to write a reply.</span> 
-        <span data-translate>You will also be able to keep track of who has viewed your submission and downloaded the files.</span>
-        <span data-translate>Moreover, it will allow you to add other files to your submission.</span> 
-
-        <span data-translate>Beware of the fact that this receipt, if fallen into the wrong hands, will lead to identifying you as the whistleblower for this Tip.</span>
-    
-        <span data-translate>If you are interested in keeping it, please save it in a secure place and make sure it does not fall into the wrong hands</span> 
-
-        <h2>{{format_receipt(submission.receipt)}}</h2>
-
-        <span data-translate>Please copy in the box below your receipt to access the tip interface.</span> 
-
-        <form name="form" novalidate>
-          <span class="keyinput">
-            <input class="form-control keyinput" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19" ng-model="receipt" name="receipt" receiptvalidator>
-          </span>
-        </form>
-
-      </div>
-      <div class="modal-footer">
-        <a data-ng-click="view_tip(submission.receipt)" data-ng-disabled="format_receipt(submission.receipt) != receipt" class="btn btn-success">
-         <i class="glyphicon glyphicon-log-in"></i>
-         <span data-translate>View Tip</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End -->

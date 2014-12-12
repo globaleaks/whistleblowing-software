@@ -19,7 +19,7 @@ var contexts = new Array();
 var contexts_ids = new Array();
 var submissions = new Array();
 var files = new Array();
-var wb_receipts  = new Array();
+var wb_keycodes  = new Array();
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
@@ -42,7 +42,7 @@ var validate_mandatory_headers = function(headers) {
 var valid_login = function(i) {
   return {
     "username": "",
-    "password": wb_receipts[i],
+    "password": wb_keycodes[i],
     "role": "wb"
   }
 }
@@ -271,7 +271,7 @@ describe('POST /submission', function(){
 
               submissions.push(res.body);
 
-              wb_receipts.push(res.body.receipt);
+              wb_keycodes.push(res.body.receipt);
 
               done();
             }
