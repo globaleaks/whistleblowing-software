@@ -1,4 +1,4 @@
-GLClient.controller('toolTipCtrl',
+GLClient.controller('UserCtrl',
   ['$scope', '$rootScope', 'WhistleblowerTip',
   function($scope, $rootScope, WhistleblowerTip) {
 

@@ -58,7 +58,7 @@ body {
 #messageConsole {
   width: 200px;
   position: fixed;
-  z-index: 99999;
+  z-index: 99;
   top: 20px;
   padding-left: 10px;
   padding-right: 10px;
@@ -73,10 +73,12 @@ body {
   font-size: 20px;
 }
 
-#LogoBox, #TitleBox, #ToolbarBox, #LogoBoxHomepage, #TitleBoxHomepage, #ToolbarBoxHomepage {
+#LogoBox, #TitleBox, #UserBox, #LogoBoxHomepage, #TitleBoxHomepage, #UserBoxHomepage {
+  position: relative;
+  height: 200px;
+  z-index: 99;
   margin-left: 20px;
   margin-right: 20px;
-  height: 200px;
 }
 
 #LogoBox, #LogoBoxHomepage {
@@ -116,11 +118,11 @@ h3 {
   height: 200px;
 }
 
-#TitleBox {
+#TitleBox, #TitleBoxHomepage {
   max-width: 60%;
 }
 
-#ToolbarBox {
+#UserBox. #UserBoxHomepage {
   max-width: 25%;
 }
 
@@ -153,16 +155,6 @@ h3 {
   text-align: right;
 }
 
-#ToolTipBox {
-  position: relative;
-  z-index: 99999;
-}
-@media (max-width: 550px) {
-  .toolTip {
-    position: absolute;
-  }
-}
-
 .preformatted {
   white-space: pre-wrap;
 }
@@ -176,7 +168,7 @@ h3 {
 .pending-requests {
   position: fixed;
   top: 100px;
-  z-index: 999;
+  z-index: 99;
   width: 400px;
   margin-left: -200px;
   left: 50%;
@@ -202,7 +194,7 @@ h3 {
 @media (max-width: 550px) {
   .modal.not-anonymous-question {
     top: 120px;
-    z-index: 10001;
+    z-index: 99;
   }
   .modal.not-anonymous-question h3 {
     font-size: 18px;
