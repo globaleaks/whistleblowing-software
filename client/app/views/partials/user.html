@@ -1,4 +1,4 @@
-<div id="ToolTipBox" data-ng-controller="toolTipCtrl">
+<div data-ng-controller="UserCtrl">
   <div id="LanguagePickerBox" class="languagePick row" data-ng-hide="!show_language_selector">
     <div class="pull-right">
         <select data-ng-model="language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'" class="form-control"></select>
