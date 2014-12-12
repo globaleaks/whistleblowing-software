@@ -62,9 +62,8 @@ def admin_update_appdata(store, loaded_appdata):
         appdata.version = loaded_appdata['version']
 
         for key in  ['presentation', 'footer', 'subtitle',
-                     'terms_and_conditions', 'security_awareness_title',
-                     'security_awareness_text', 'whistleblowing_question',
-                     'whistleblowing_button']:
+                     'security_awareness_title', 'security_awareness_text',
+                     'whistleblowing_question', 'whistleblowing_button']:
 
             if key in loaded_appdata['node']:
                 setattr(node, key, loaded_appdata['node'][key])

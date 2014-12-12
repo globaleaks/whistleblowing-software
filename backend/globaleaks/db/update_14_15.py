@@ -8,7 +8,6 @@
 
     User table:
       - introduced language and timezone
-      - introduced x_frame_options_mode and x_frame_options_allow_from.
 
     Context table:
       - fields refactored entirely adding Field and Step table;

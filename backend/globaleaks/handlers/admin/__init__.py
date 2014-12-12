@@ -66,8 +66,6 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         'reset_homepage': False,
         'anomaly_checks': node.anomaly_checks,
         'allow_unencrypted': node.allow_unencrypted,
-        'x_frame_options_mode': node.x_frame_options_mode,
-        'x_frame_options_allow_from': node.x_frame_options_allow_from,
         'wizard_done': node.wizard_done,
         'configured': True if associated else False,
         'password': u"",
