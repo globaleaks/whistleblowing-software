@@ -35,36 +35,45 @@ from cyclone.util import ObjectDict as OD
 
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 
-# this monkey patching is needed in order to support foreign keys on
-# versions of Storm < 0.20.
-# the code in there is written by me (evilaliv3) and is the same
-# that i proposed upstream to Storm and is now included in Storm
-# starting from 0.20
-def set_default_uri(self, name, default_uri):
 
-    def raw_connect():
+# XXX. MONKEYPATCH TO SUPPORT STORM 0.19
+import storm.databases.sqlite
 
-        _self = self._default_databases[name]
+class SQLite(storm.databases.sqlite.Database):
 
+    connection_factory = storm.databases.sqlite.SQLiteConnection
+
+    def __init__(self, uri):
+        if sqlite is storm.databases.sqlite.dummy:
+            raise storm.databases.sqlite.DatabaseModuleError("'pysqlite2' module not found")
+        self._filename = uri.database or ":memory:"
+        self._timeout = float(uri.options.get("timeout", 5))
+        self._synchronous = uri.options.get("synchronous")
+        self._journal_mode = uri.options.get("journal_mode")
+        self._foreign_keys = uri.options.get("foreign_keys")
+
+    def raw_connect(self):
         # See the story at the end to understand why we set isolation_level.
-        raw_connection = sqlite.connect(_self._filename, timeout=_self._timeout,
+        raw_connection = sqlite.connect(self._filename, timeout=self._timeout,
                                         isolation_level=None)
-
-        if _self._synchronous is not None:
+        if self._synchronous is not None:
             raw_connection.execute("PRAGMA synchronous = %s" %
-                                    (_self._synchronous,))
+                                   (self._synchronous,))
 
-        #raw_connection.execute("PRAGMA foreign_keys = ON")
+        if self._journal_mode is not None:
+            raw_connection.execute("PRAGMA journal_mode = %s" %
+                                   (self._journal_mode,))
+
+        if self._foreign_keys is not None:
+            raw_connection.execute("PRAGMA foreign_keys = %s" %
+                                   (self._foreign_keys,))
 
         return raw_connection
 
-    self._default_databases[name] = self._get_database(default_uri)
-    self._default_uris[name] = default_uri
 
-    self._default_databases[name].raw_connect = raw_connect
-
-# apply the monkeypatching!
-ZStorm.set_default_uri = set_default_uri
+storm.databases.sqlite.SQLite = SQLite
+storm.databases.sqlite.create_from_uri = SQLite
+# XXX. END MONKEYPATCH
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
