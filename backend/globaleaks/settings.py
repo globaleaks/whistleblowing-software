@@ -29,10 +29,51 @@ from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 from storm import exceptions, tracer
 from storm.zope.zstorm import ZStorm
+from storm.databases.sqlite import sqlite
 from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
 
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
+
+
+# XXX. MONKEYPATCH TO SUPPORT STORM 0.19
+import storm.databases.sqlite
+
+class SQLite(storm.databases.sqlite.Database):
+
+    connection_factory = storm.databases.sqlite.SQLiteConnection
+
+    def __init__(self, uri):
+        if sqlite is storm.databases.sqlite.dummy:
+            raise storm.databases.sqlite.DatabaseModuleError("'pysqlite2' module not found")
+        self._filename = uri.database or ":memory:"
+        self._timeout = float(uri.options.get("timeout", 5))
+        self._synchronous = uri.options.get("synchronous")
+        self._journal_mode = uri.options.get("journal_mode")
+        self._foreign_keys = uri.options.get("foreign_keys")
+
+    def raw_connect(self):
+        # See the story at the end to understand why we set isolation_level.
+        raw_connection = sqlite.connect(self._filename, timeout=self._timeout,
+                                        isolation_level=None)
+        if self._synchronous is not None:
+            raw_connection.execute("PRAGMA synchronous = %s" %
+                                   (self._synchronous,))
+
+        if self._journal_mode is not None:
+            raw_connection.execute("PRAGMA journal_mode = %s" %
+                                   (self._journal_mode,))
+
+        if self._foreign_keys is not None:
+            raw_connection.execute("PRAGMA foreign_keys = %s" %
+                                   (self._foreign_keys,))
+
+        return raw_connection
+
+
+storm.databases.sqlite.SQLite = SQLite
+storm.databases.sqlite.create_from_uri = SQLite
+# XXX. END MONKEYPATCH
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
@@ -60,7 +101,6 @@ def stats_counter(element):
     """
     assert GLSetting.anomalies_counter.has_key(element), "Invalid usage of stats_counter"
     GLSetting.anomalies_counter[element] += 1
-
 
 class GLSettingsClass:
 
@@ -775,6 +815,7 @@ class transact(object):
         """
         zstorm = ZStorm()
         zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_uri)
+
         return zstorm.get(GLSetting.store_name)
 
     def _wrap(self, function, *args, **kwargs):
@@ -783,6 +824,7 @@ class transact(object):
         passing the store to it.
         """
         self.store = self.get_store()
+
         try:
             if self.instance:
                 result = function(self.instance, self.store, *args, **kwargs)
