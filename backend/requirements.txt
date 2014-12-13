@@ -1,6 +1,6 @@
 Twisted==13.2.0
 cyclone==1.1
-Storm==0.19
+Storm>=0.19
 transaction>=1.1.1
 txsocksx
 cryptography>=0.5
