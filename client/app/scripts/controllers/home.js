@@ -14,7 +14,6 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
 
     $scope.view_tip = function(keycode) {
       keycode = keycode.replace(/\D/g,'');
-      console.log(keycode);
       WhistleblowerTip(keycode, function() {
         $location.path('/status');
       });

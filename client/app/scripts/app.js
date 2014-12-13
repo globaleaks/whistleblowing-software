@@ -205,14 +205,6 @@ var GLClient = angular.module('GLClient', [
       $.removeCookie('cookiesenabled');
     }
 
-    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        if (current.$$route) {
-          $rootScope.header_title = current.$$route.header_title;
-          $rootScope.header_subtitle = current.$$route.header_subtitle;
-        }
-    });
-
-
     /* initialization of privacy detection variables */
     $rootScope.privacy = 'unknown';
     $rootScope.anonymous = false;

@@ -501,10 +501,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             if (self.tip.msg_receiver_selected) {
               messageResource.query({id: self.tip.msg_receiver_selected}, function (messageCollection) {
                 self.tip.messages = messageCollection;
-
-                // XXX perhaps make this return a lazyly instanced item.
-                // look at $resource code for inspiration.
-                fn(self.tip);
               });
             }
           };
@@ -524,19 +520,14 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               });
             });
 
-            if (self.tip.msg_receiver_selected) {
-              self.tip.updateMessages();
-            }
-
           });
 
           commentsResource.query({}, function(commentsCollection){
             self.tip.comments = commentsCollection;
 
-            // XXX perhaps make this return a lazyly instanced item.
-            // look at $resource code for inspiration.
-            fn(self.tip);
-          });
+          })
+
+          fn(self.tip);
 
         });
       });

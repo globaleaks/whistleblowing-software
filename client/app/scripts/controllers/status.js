@@ -35,6 +35,8 @@ GLClient.controller('StatusCtrl',
 
     if (Authentication.role === 'wb') {
 
+      $scope.userrole = 'wb';
+
       $scope.fileupload_url = '/wbtip/upload';
 
       $scope.queue = [];
@@ -61,16 +63,27 @@ GLClient.controller('StatusCtrl',
             }
           });
 
-          $scope.$watch('tip.msg_receiver_selected', function(){
-            if ($scope.tip) {
-              $scope.tip.updateMessages();
+          $scope.$watch('tip.msg_receiver_selected', function (newVal, oldVal) {
+            if (newVal && newVal !== oldVal) {
+              if ($scope.tip) {
+                $scope.tip.updateMessages();
+              }
             }
-          }, true);
+          }, false);
+
+          if ($scope.tip.receivers.length == 1 && $scope.tip.msg_receiver_selected == null) {
+            $scope.tip.msg_receiver_selected = $scope.tip.msg_receivers_selector[0]['key'];
+          }
+
+          $scope.tip.updateMessages();
 
         });
       });
 
     } else if (Authentication.role === 'receiver') {
+
+      $scope.userrole = 'receiver';
+
       $scope.preferences = ReceiverPreferences.get();
     
       var TipID = {tip_id: $scope.tip_id};
@@ -117,12 +130,6 @@ GLClient.controller('StatusCtrl',
               } 
             }
 
-            //$scope.$watch('tip.msg_receiver_selected', function(){
-            //  if ($scope.tip) {
-            //    $scope.tip.updateMessages();
-            //  }
-            //}, true);
-
             return download_all;
           }
         });
@@ -134,14 +141,15 @@ GLClient.controller('StatusCtrl',
     }
 
     $scope.newComment = function() {
-      $scope.tip.newComment($scope.newCommentContent);
-      $scope.newCommentContent = '';
+      $scope.tip.newComment($scope.tip.newCommentContent);
+      $scope.tip.newCommentContent = '';
     };
 
     $scope.newMessage = function() {
-      $scope.tip.newMessage($scope.newMessageContent);
-      $scope.newMessageContent = '';
+      $scope.tip.newMessage($scope.tip.newMessageContent);
+      $scope.tip.newMessageContent = '';
     };
+
   }]);
 
 GLClient.controller('FileDetailsCtrl', ['$scope', function($scope){
