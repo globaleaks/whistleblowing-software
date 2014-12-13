@@ -1,5 +1,11 @@
 <div id="messageConsole">
-  <div data-ng-repeat="error in errors" data-ng-show="error.code != 29">
+  <div data-ng-repeat="error in errors" data-ng-show="error.code != 29 && error.code != 60">
+    <!--
+      Currently we skip authentication errors (29) and TipMessagesNotFound Error (60):
+
+      The first has a special handling, the latter need to not be shown as it happens
+      when a Whistleblower access the Tip page before ReceiverTips are created.
+    -->
     <div class="alert alert-error errorMessage alert-warning alert-dismissable" fadeout="">
       <button type="button" class="close" data-dismiss="alert">×</button>
       <p><strong>{{error.url}}</strong></p>

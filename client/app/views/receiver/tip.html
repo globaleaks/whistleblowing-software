@@ -100,7 +100,7 @@
     </div>
   </div>
 
-  <hr>
+  <hr />
   
   <div class="row">
     <div class="col-md-12">
@@ -199,144 +199,8 @@
 
   </div>
 
-  <hr>
+  <hr />
 
-  <div class="row">
-    <div class="col-md-5">
-      <h3>
-        <span data-translate>Comments</span>
-      </h3>
-      <textarea data-ng-model="newCommentContent" class="form-control"></textarea>
-      <br />
-      <button class="btn btn-success" data-ng-click="newComment()" data-ng-disabled="!newCommentContent || newCommentContent == ''">
-        <i class="glyphicon glyphicon-comment"></i>
-        <span data-translate>Add Comment</span>
-      </button>
-      <br /><br />
-      <div data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
-        <div data-ng-switch="" on="comment.type">
-
-          <div data-ng-switch-when="whistleblower" class="alert alert-info">
-            <div class="row">
-              <div class="col-md-6">
-                <strong>
-                  <span data-translate>Whistleblower</span>
-                </strong>
-              </div>
-              <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
-                </strong>
-              </div>
-            </div>
-            <div class="preformatted">{{comment.content}}</div>
-          </div>
-
-          <div data-ng-switch-when="receiver" class="alert alert-success">
-            <div class="row">
-              <div class="col-md-6">
-                <strong>
-		  {{comment.author}}
-                </strong>
-              </div>
-              <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
-                </strong>
-              </div>
-            </div>
-            <div class="preformatted">{{comment.content}}</div>
-          </div>
-
-          <div data-ng-switch-when="system" class="alert alert-warning">
-            <div class="row">
-              <div class="col-md-6">
-                <strong>
-                  <span data-translate>System</span>
-                </strong>
-              </div>
-              <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
-                </strong>
-              </div>
-            </div>
-
-            <!-- {{comment.content}} -->
-            <div data-ng-switch="" on="comment.system_content.type">
-               <div data-ng-switch-when="1">
-                 <span data-translate>The user</span>
-                 {{comment.system_content.receiver_name}}
-                 <span data-translate>has postponed Tip expiration to</span>
-                 {{comment.system_content.expire_on | date:'dd-MM-yyyy HH:mm' }}
-               </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-offset-2 col-md-5" ng-show="tip.enable_private_messages && tip.receivers.length > 1">
-      <div>
-        <h3>
-          <span data-translate>Private Messages with the Whistleblower</span>
-        </h3>
-      </div>
-      <textarea data-ng-model="newMessageContent" class="form-control"></textarea>
-      <br />
-      <button class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!newMessageContent || newMessageContent == ''">
-        <i class="glyphicon glyphicon-envelope"></i>
-        <span data-translate>Send Private Message</span>
-      </button>
-      <br /><br />
-      <div data-ng-repeat="message in tip.messages | orderBy:'creation_date':true">
-        <div data-ng-switch="" on="message.type">
-
-          <div data-ng-switch-when="whistleblower" class="alert alert-info">
-            <div class="row">
-              <div class="col-md-6">
-                <strong>
-		  <span data-translate>Whistleblower</span>
-                </strong>
-              </div>
-              <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{ message.creation_date | date:'dd-MM-yyyy HH:mm' }}
-                </strong>
-              </div>
-            </div>
-            <div class="preformatted">{{message.content}}</div>
-          </div>
-
-          <div data-ng-switch-when="receiver" class="alert alert-success">
-            <div class="row">
-              <div class="col-md-6">
-                <strong>
-		  {{message.author}}
-                </strong>
-              </div>
-              <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{ message.creation_date | date:'dd-MM-yyyy HH:mm' }}
-                </strong>
-              </div>
-            </div>
-            <div class="preformatted">{{message.content}}</div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
+  <div data-ng-include="'views/partials/tip_communication.html'"></div>
 
 </div>
-
-<!-- 
-
-This comment is needed in order to push the following strings on transifex
-
-<span data-translate>Loading Tip page...</span>
-
--->
-

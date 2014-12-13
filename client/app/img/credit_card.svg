@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 749.1 467.8" enable-background="new 0 0 749.1 467.8" xml:space="preserve">
+  <g>
+	  <path fill="#428bca" d="M55.7,0h637.7c30.6,0,55.7,25.1,55.7,55.7v356.4c0,30.6-25.1,55.7-55.7,55.7H55.7 C25.1,467.8,0,442.7,0,412.1V55.7C0,25.1,25.1,0,55.7,0z"/>
+  	<rect x="577.1" y="317.9" fill="none" width="146.8" height="76.6"/>
+	  <text transform="matrix(1 0 0 1 420.6312 120.0411)"><tspan x="0" y="0" font-family="'sans-serif'" font-size="38.2189">CREDIT CARD</tspan></text>
+  	<rect x="0" y="227.7" fill="none" width="749.1" height="40.7"/>
+  	<text id="ccnumber" transform="matrix(1 0 0 1 71.909 261.9498)" fill="#FFFFFF" font-family="'OCRAExtended'" font-size="52.7421">XXXX XXXX XXXX XXXX</text>
+	  <g>
+		  <path fill="#DEDEDE" d="M124,75.7h30.3c26.2,0,47.6,21.4,47.6,47.6v11.9c0,26.2-21.4,47.6-47.6,47.6H124	c-26.2,0-47.6-21.4-47.6-47.6v-11.9C76.4,97.1,97.8,75.7,124,75.7z"/>
+  		<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="199.1" y1="108.3" x2="79.1" y2="108.3"/>
+	  	<line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="79.1" y1="151.3" x2="199.1" y2="151.3"/>
+		  <circle fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="139.1" cy="129.2" r="20.7"/>
+  	</g>
+	  <rect x="74.9" y="369.5" fill="none" width="526.1" height="30"/>
+  	<text transform="matrix(1 0 0 1 74.8767 398.668)" font-family="'sans-serif'" font-size="38.2189">YOUR NAME</text>
+  	<rect x="131.1" y="304.5" fill="none" width="102" height="31.9"/>
+	  <text transform="matrix(1 0 0 1 131.0593 333.6641)" fill="#FFFFFF" font-family="'sans-serif'" font-size="38.2189">12/13</text>
+  	<rect x="74.1" y="304.5" fill="none" width="43.6" height="31.9"/>
+	  <text transform="matrix(1 0 0 1 75.4821 316.1905)"><tspan x="0" y="0" font-family="'sans-serif'" font-size="15.2876">VALID </tspan><tspan x="-0.7" y="18.3" font-family="'sans-serif'" font-size="15.2876">FROM</tspan></text>
+  	<rect x="332.1" y="304.5" fill="none" width="102" height="31.9"/>
+  	<text transform="matrix(1 0 0 1 332.0901 333.6641)" fill="#FFFFFF" font-family="'sans-serif'" font-size="38.2189">12/18</text>
+	  <rect x="253" y="304.5" fill="none" width="65.7" height="31.9"/>
+  	<text transform="matrix(1 0 0 1 257.4124 316.1905)"><tspan x="0" y="0" font-family="'sans-serif'" font-size="15.2876">EXPIRES</tspan><tspan x="31.4" y="18.3" font-family="'sans-serif'" font-size="15.2876">END</tspan></text>
+  </g>
+</svg>

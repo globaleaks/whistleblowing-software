@@ -436,7 +436,6 @@ class FieldIdNotFound(GLException):
     status_code = 404
     reason = "Not found a Field with the specified ID"
 
-
 class ModelNotFound(GLException):
     """
     Error class for a generic model
@@ -449,3 +448,8 @@ class ModelNotFound(GLException):
             self.reason = "Model not found"
         else:
             self.reason = "Model of type {} has not been found".format(model)
+
+class TipMessagesNotFound(GLException):
+    error_code = 60
+    status_code = 404
+    reason = "Not found Tip Messages for the specified ID"

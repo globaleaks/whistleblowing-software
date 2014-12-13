@@ -1,0 +1,47 @@
+<div id="ContentBox" class="submissionReceipt container">
+  <div class="row">
+    <p id="keycodeThanks1" data-translate>Thank you!</p>
+    <p id="keycodeTranks2" data-translate>Your submission was successful.</p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div id="keycodeConfirmBox" class="row">
+        <div class="row">
+          <div class="col-md-2">
+            <i id="keycodeKey" class="fa fa-key"></i>
+          </div>
+          <div class="col-md-10">
+            <span data-translate>Remember your key code for this submission.</span>
+            <span class="noteAsterisk">*</span>
+            <div id="keycodeBox">{{formatted_keycode}}</div>
+            <div>
+              <span class="noteAsterisk">*</span>
+              <span data-translate>Your keycode will work for two weeks after which all information will disappear</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <p data-translate>We will try to get back to you as soon as possible - to see any messages we send you or if you think of anything else you should have added, use the 16 digit number below to login and view any comments.</p>
+      </div>
+      <div class="row">
+        <a data-ng-click="view_tip(formatted_keycode)" data-translate>View your submission</a>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div id="keycodeToolTip">
+        <p data-translate>Top tip: How to hide your key code</p>
+        <p data-translate>A useful way to hide your keycode submission number, is to write it down like a credit card number i.e. include an expiry date too.</p>
+        <p data-translate>Example:</p>
+        <div class="row">
+          <div class="col-md-8">
+            <object cc-number="formatted_keycode" data="img/credit_card.svg" type="image/svg+xml"></object>
+          </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
