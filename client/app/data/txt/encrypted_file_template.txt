@@ -1,4 +1,4 @@
-Esteemed %ReceiverName%,
+Dear %ReceiverName%,
 
 This is an e-mail notification to notify you that a whistleblower has updated a submission with new material.
 
@@ -6,5 +6,5 @@ This has happened on context %ContextName% at %EventTime%.
 
 You can read it at: %TipTorURL%
 
-Take Care,
+Kind regards,
 %NodeSignature%

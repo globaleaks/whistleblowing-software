@@ -84,7 +84,6 @@ class StatisticsSchedule(GLJob):
         # RecentEventsQueue is synthesized and dumped in the stats classic row
 
         for when, anomaly_blob in dict(AnomaliesCollection.RecentAnomaliesQ).iteritems():
-            # anomaly_blob is composed by [ { "kind" : $number }, alarm_level ]
             yield save_anomalies(when, anomaly_blob[0], anomaly_blob[1])
 
         AnomaliesCollection.RecentAnomaliesQ = dict()

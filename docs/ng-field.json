@@ -1,0 +1,99 @@
+[
+  {
+    "name": {
+      "en": "step 1"
+    },
+    "fields": [
+      {
+        "label": {
+          "en": "Checkbox"
+        },
+        "description": {
+          "en": "This is a checkbox"
+        },
+        "hint": {
+          "en": "hint hint ;)"
+        },
+        "multi_entry": true,
+        "x": 1,
+        "y": 0,
+        "type": "checkbox",
+        "stats_enabled": true,
+        "required": true,
+        "regexp": ".*",
+        "options": {
+          "one": {
+            "en": "Option 1"
+          }
+        },
+        "default_value": "one",
+        "preview": true
+      },
+      {
+        "label": {
+          "en": "Anagraphics"
+        },
+        "description": {
+          "en": "Anagraphics"
+        },
+        "hint": {
+          "en": "hint hint ;)"
+        },
+        "type": "group",
+        "multi_entry": true,
+        "x": 1,
+        "y": 0,
+        "options": {
+          "fields": [
+            {
+              "label": {
+                "en": "Name"
+              },
+              "description": {
+                "en": "Your name please"
+              },
+              "hint": {
+                "en": "hint hint ;)"
+              },
+              "multi_entry": true,
+              "x": 1,
+              "y": 0,
+              "type": "checkbox",
+              "stats_enabled": true,
+              "required": true,
+              "regexp": ".*",
+              "options": {
+                "one": {
+                  "en": "Option 1"
+                }
+              },
+              "default_valeu": "one",
+              "preview": true
+            },
+            {
+              "label": {
+                "en": "Surname"
+              },
+              "description": {
+                "en": "This is your surname"
+              },
+              "hint": {
+                "en": "hint hint ;)"
+              },
+              "multi_entry": true,
+              "x": 1,
+              "y": 0,
+              "type": "checkbox",
+              "stats_enabled": true,
+              "required": true,
+              "regexp": ".*",
+              "options": {},
+              "default_value": "one",
+              "preview": true
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

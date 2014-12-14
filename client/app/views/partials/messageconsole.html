@@ -1,9 +1,15 @@
 <div id="messageConsole">
-  <div data-ng-repeat="error in errors">
+  <div data-ng-repeat="error in errors" data-ng-show="error.code != 29 && error.code != 60">
+    <!--
+      Currently we skip authentication errors (29) and TipMessagesNotFound Error (60):
+
+      The first has a special handling, the latter need to not be shown as it happens
+      when a Whistleblower access the Tip page before ReceiverTips are created.
+    -->
     <div class="alert alert-error errorMessage alert-warning alert-dismissable" fadeout="">
       <button type="button" class="close" data-dismiss="alert">×</button>
       <p><strong>{{error.url}}</strong></p>
-      <div data-ng-switch="" on="error.code">
+      <div data-ng-switch="" on="error.code" >
 
         <div data-ng-switch-when="18">
           <span data-translate>Your user has reached the maximum number of accesses to this Tip</span>
@@ -51,10 +57,6 @@
 
         <div data-ng-switch-when="31">
           <span data-translate>Internal Server Error</span> ({{error.arguments[0]}})
-        </div>
-
-        <div data-ng-switch-when="29">
-          <span data-translate>Authentication Failed</span>
         </div>
 
         <div data-ng-switch-when="36">
@@ -148,7 +150,6 @@
         <div data-ng-switch-when="401">
           <span data-translate>Session expired</span>
         </div>
-
 
       </div>
     </div>

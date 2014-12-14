@@ -1,13 +1,3 @@
-<!-- 
-
-This comment is needed in order to push the following strings on transifex
-
-<span data-translate>Loading Tip page...</span>
-<span data-translate>Tip Status Page</span>
-<span data-translate>This receiver has configured the encryption key.</span>
-<span data-translate>This receiver has not configured the encryption key.</span>
-
-//-->
 <div id="ContentBox" class="container statusPage ng-cloak">
   <div class="row" data-ng-controller="TipCtrl">
     <div class="col-md-6">
@@ -26,38 +16,13 @@ This comment is needed in order to push the following strings on transifex
           <dt><span data-translate>Expiration Date</span></dt>
           <dd>{{ tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}</dd>
         </dl>
-        <dl data-ng-repeat="field in fields | orderBy:'answer_order'">
-          <dt>
-            <span>
-              {{$index + 1}}) {{fieldFormat[field.key].name}}
-            </span>
-            <a data-ng-show="fieldFormat[field.value].hint" popover="{{fieldFormat[field.value].hint}}" popover-placement="right" popover-trigger="mouseenter">
-              <span class="glyphicon glyphicon-info-sign"}}></span>
-            </a>
-          </dt>
-        
-          <div data-ng-switch="" on="fieldFormat[field.key].type">
-      
-            <dd data-ng-switch-when="checkboxes">
-              <ul>
-                <li data-ng-repeat="checkbox in fieldFormat[field.key].options">
-                  {{checkbox.name}} 
-                  <span data-ng-hide="field.value[checkbox.name]"><i class="glyphicon glyphicon-unchecked"></i></span> 
-                  <span data-ng-show="field.value[checkbox.name]"><i class="glyphicon glyphicon-check"></i></span>
-                </li>
-              </ul>
-            </dd>
-
-            <dd data-ng-switch-when="multiple">
-              <ul>
-                <li data-ng-repeat="selection in field.value">{{selection}}</li>
-              </ul>
-
-            </dd>
-            <dd data-ng-switch-default="" class="preformatted">{{field.value}}</dd>
-
-          </div>
-        </dl>
+       <div data-ng-repeat="step in tip.wb_steps">
+         <dt>
+           <span data-translate>Step</span>
+           <span>{{ $index + 1 }}: {{ step.label }}</span>
+         </dt>
+         <dd data-ng-include="'views/partials/tip_fields.html'"></dd>
+       </div>
       </div>
     </div>
 
@@ -95,7 +60,7 @@ This comment is needed in order to push the following strings on transifex
     </div>
   </div>
 
-  <hr>
+  <hr />
 
   <div class="row">
     <div class="col-md-12">
@@ -122,7 +87,7 @@ This comment is needed in order to push the following strings on transifex
               </tr>
             </thead>
             <tbody id="fileListBody" data-ng-repeat="file in tip.files">
-              <tr data-ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
+              <tr>
                 <td>
                   {{file.name}}
                 </td>
@@ -149,139 +114,13 @@ This comment is needed in order to push the following strings on transifex
     </div>
 
     <div class="col-md-12">
-      <div data-ng-include="'views/partials/fileupload.html'"></div>
+      <div data-ng-include="'views/partials/fileupload_multiple.html'"></div>
     </div>
 
   </div>
 
-  <hr>
+  <hr />
 
-  <div class="row">
-    <div class="col-md-5">
-      <h3>
-        <span data-translate>Comments</span>
-      </h3>
-      <textarea data-ng-model="newCommentContent" class="form-control"></textarea>
-      <br />
-      <button class="btn btn-success" data-ng-click="newComment()" data-ng-disabled="!newCommentContent || newCommentContent == ''">
-        <i class="glyphicon glyphicon-comment"></i>
-        <span data-translate>Add Comment</span>
-      </button>
-      <br /><br />
-      <div data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
-        <div data-ng-switch="" on="comment.type">
-
-          <div data-ng-switch-when="whistleblower" class="alert alert-info">
-            <div class="row">
-              <div class="col-md-6">
-                <strong>
-                  <span data-translate>Whistleblower</span>
-                </strong>
-              </div>
-              <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
-                </strong>
-              </div>
-            </div>
-            <div class="preformatted">{{comment.content}}</div>
-          </div>
-
-          <div data-ng-switch-when="receiver" class="alert alert-success">
-            <div class="row">
-              <div class="col-md-6">
-                <strong>
-		  {{comment.author}}
-                </strong>
-              </div>
-              <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
-                </strong>
-              </div>
-            </div>
-            <div class="preformatted">{{comment.content}}</div>
-          </div>
-
-          <div data-ng-switch-when="system" class="alert alert-warning">
-            <strong>
-              <span data-translate>System</span>
-            </strong>
-              <!-- {{comment.content}} -->
-              <div data-ng-switch="" on="comment.system_content.type">
-                 <div data-ng-switch-when="1">
-                   <span data-translate>The user</span>
-                   {{comment.system_content.receiver_name}}
-                   <span data-translate>On date</span>
-                   {{comment.system_content.now | date:'dd-MM-yyyy HH:mm' }}
-                   <span data-translate>has postponed Tip expiration to</span>
-                   {{comment.system_content.expire_on | date:'dd-MM-yyyy HH:mm' }}
-                 </div>
-              </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-offset-2 col-md-5" ng-show="tip.enable_private_messages && tip.receivers.length > 1">
-      <div class="row">
-        <h3>
-          <div class="col-md-6">
-            <span data-translate>Private Messages</span>
-          </div>
-          <div class="col-md-6">
-            <select data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
-          </div>
-        </h3>
-      </div>
-      <textarea data-ng-model="newMessageContent" class="form-control"></textarea>
-      <br />
-      <button class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.msg_receiver_selected || tip.msg_receiver_selected == '' || !newMessageContent || newMessageContent == ''">
-        <i class="glyphicon glyphicon-comment"></i>
-        <span data-translate>Send Private Message</span>
-      </button>
-      <br /><br />
-      <div data-ng-repeat="message in tip.messages | orderBy:'creation_date':true">
-        <div data-ng-switch="" on="message.type">
-
-          <div data-ng-switch-when="whistleblower" class="alert alert-info">
-            <div class="row">
-              <div class="col-md-6">
-                <strong>
-		  <span data-translate>Whistleblower</span>
-                </strong>
-              </div>
-              <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{ message.creation_date | date:'dd-MM-yyyy HH:mm' }}
-                </strong>
-              </div>
-            </div>
-            <div class="preformatted">{{message.content}}</div>
-          </div>
-
-          <div data-ng-switch-when="receiver" class="alert alert-success">
-            <div class="row">
-              <div class="col-md-6">
-                <strong>
-		  {{message.author}}
-                </strong>
-              </div>
-              <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{ message.creation_date | date:'dd-MM-yyyy HH:mm' }}
-                </strong>
-              </div>
-            </div>
-            <div class="preformatted">
-              {{message.content}}
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
+  <div data-ng-include="'views/partials/tip_communication.html'"></div>
 
 </div>

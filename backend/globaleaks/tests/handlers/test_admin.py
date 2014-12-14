@@ -117,7 +117,7 @@ class TestNodeInstance(helpers.TestHandler):
         yield handler.put()
 
 class TestNotificationInstance(helpers.TestHandler):
-    _handler = admin.NotificationInstance
+    _handler = admin.notification.NotificationInstance
 
     @inlineCallbacks
     def test_update_notification(self):
@@ -127,7 +127,7 @@ class TestNotificationInstance(helpers.TestHandler):
          self.assertEqual(self.responses[0]['server'], 'stuff')
 
 
-class TestContextsCollection(helpers.TestHandler):
+class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.ContextsCollection
 
     def test_get(self):
@@ -149,7 +149,7 @@ class TestContextsCollection(helpers.TestHandler):
         self.assertEqual(self.responses[0]['description'], stuff)
 
 
-class TestContextInstance(helpers.TestHandler):
+class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.ContextInstance
 
     @inlineCallbacks
@@ -212,7 +212,7 @@ class TestContextInstance(helpers.TestHandler):
         yield self.assertFailure(handler.get(self.dummyContext['id']),
                      errors.ContextIdNotFound)
 
-class TestReceiversCollection(helpers.TestHandler):
+class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.ReceiversCollection
 
     @inlineCallbacks
@@ -269,7 +269,7 @@ class TestReceiversCollection(helpers.TestHandler):
         yield self.assertFailure(handler.post(), errors.ExpectedUniqueField)
 
 
-class TestReceiverInstance(helpers.TestHandler):
+class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.ReceiverInstance
 
     @inlineCallbacks

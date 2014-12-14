@@ -158,8 +158,8 @@ module.exports = function(grunt) {
         options: {
           // Static text.
           question: 'WARNING:\n'+
-                    'this task may cause translations loss and should be executed only on master/devel branches so that only\n'+
-                    'translation sentences are kept in sync with the ones that need to be delivered in next release package.\n\n'+
+                    'this task may cause translations loss and should be executed only on master/devel branches so that only\n' +
+                    'translation sentences are kept in sync with the ones that need to be delivered in next release package.\n\n' +
                     'Are you sure you want to proceed (Y/N) ?',
           continue: function(answer) {
             return answer === 'Y';
@@ -171,6 +171,14 @@ module.exports = function(grunt) {
   });
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
+  var resource = grunt.option('resource')
+
+  if (resource != 'master' && resource != 'devel') {
+    grunt.fail.warn("WARNING: when performing grunt tasks you should indicate explicitly the translation resource name\n" +
+                    "Available resources are: master, devel\n" +
+                    "e.g.: grunt updateTranslations --resource devel");
+  }
 
   var path = require('path'),
     superagent = require('superagent'),
@@ -249,7 +257,7 @@ module.exports = function(grunt) {
     sourceFile = 'pot/en.po';
 
   function fetchTxSource(cb){
-    var url = baseurl + '/resource/glclient-02-enpo/content',
+    var url = baseurl + '/resource/' + resource + '/content',
       login = readTransifexrc();
 
     agent.get(url)
@@ -263,7 +271,7 @@ module.exports = function(grunt) {
   }
 
   function updateTxSource(cb){
-    var url = baseurl + '/resource/glclient-02-enpo/content/',
+    var url = baseurl + '/resource/' + resource + '/content/',
       content = grunt.file.read(sourceFile),
       login = readTransifexrc();
 
@@ -278,7 +286,7 @@ module.exports = function(grunt) {
   }
 
   function listLanguages(cb){
-    var url = baseurl + '/resource/glclient-02-enpo/?details',
+    var url = baseurl + '/resource/' + resource + '/?details',
       login = readTransifexrc();
 
     agent.get(url)
@@ -291,7 +299,7 @@ module.exports = function(grunt) {
   }
 
   function fetchTxTranslationsForLanguage(langCode, cb) {
-    var resourceUrl = baseurl + '/resource/glclient-02-enpo/',
+    var resourceUrl = baseurl + '/resource/' + resource + '/',
       login = readTransifexrc();
 
     agent.get(resourceUrl + 'stats/' + langCode + '/')
@@ -372,6 +380,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('updateTranslationsSource', function() {
+
     var done = this.async(),
       gt = new Gettext(),
       strings,
@@ -514,14 +523,6 @@ module.exports = function(grunt) {
       for (var lang_code in supported_languages) {
 
         gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
-
-        for (var i = 0; i < fields.length; i++) {
-          fields[i]['localized_name'][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(fields[i]['localized_hint']['en'])));
-          fields[i]['localized_hint'][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(fields[i]['localized_hint']['en'])));
-          for (var j = 0; j <  fields[i]["defined_options"]; j++) {
-            fields[i]["defined_options"][j][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(fields[i]["defined_options"][j][lang_code])));
-          };
-        };
 
         for (var template_name in templates_sources) {
           

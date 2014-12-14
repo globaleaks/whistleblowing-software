@@ -6,16 +6,18 @@
 #   Implements a GlobaLeaks submission, then the operations performed
 #   by an HTTP client in /submission URI
 
+import copy
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.models import *
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.admin import db_get_context_steps
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
-from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 
@@ -26,16 +28,14 @@ def wb_serialize_internaltip(internaltip):
         'context_id': internaltip.context_id,
         'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
-        'wb_fields' : internaltip.wb_fields,
+        'wb_steps' : internaltip.wb_steps,
         'download_limit' : internaltip.download_limit,
         'access_limit' : internaltip.access_limit,
         'mark' : internaltip.mark,
         'pertinence' : internaltip.pertinence_counter,
         'escalation_threshold' : internaltip.escalation_threshold,
-                  # list is needed because .values returns a generator
-        'files' : list(internaltip.internalfiles.values(InternalFile.id)),
-                      # list is needed because .values returns a generator
-        'receivers' : list(internaltip.receivers.values(Context.id)),
+        'files' : [f.id for f in internaltip.internalfiles],
+        'receivers' : [r.id for r in internaltip.receivers]
     }
 
     return response
@@ -162,6 +162,38 @@ def import_files(store, submission, files, finalize):
                   submission.context.name)
         raise errors.FileRequiredMissing
 
+def verify_fields_recursively(fields, wb_fields):
+   for f in fields:
+       if f not in wb_fields:
+           raise errors.SubmissionFailFields("missing field (no structure present): %s" % f)
+
+       if fields[f]['required'] and ('value' not in wb_fields[f] or
+                                     wb_fields[f]['value'] == ''):
+           raise errors.SubmissionFailFields("missing required field (no value provided): %s" % f)
+
+       if isinstance(wb_fields[f]['value'], unicode):
+           if len(wb_fields[f]['value']) > GLSetting.memory_copy.maximum_textsize:
+               raise errors.InvalidInputFormat("field value overcomes size limitation")
+
+       verify_fields_recursively(fields[f]['children'], wb_fields[f]['children'])
+
+   for wbf in wb_fields:
+       if wbf not in fields:
+           raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
+
+def verify_steps(steps, wb_steps):
+    indexed_fields  = {}
+    for step in steps:
+        for f_id in step['children']:
+            indexed_fields[f_id] = copy.deepcopy(step['children'][f_id])
+
+    indexed_wb_fields = {}
+    for step in wb_steps:
+        for f_id in step['children']:
+            indexed_wb_fields[f_id] = copy.deepcopy(step['children'][f_id])
+
+    return verify_fields_recursively(indexed_fields, indexed_wb_fields)
+
 
 @transact
 def create_submission(store, request, finalize, language=GLSetting.memory_copy.default_language):
@@ -181,9 +213,9 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
     submission.creation_date = datetime_now()
 
     if finalize:
-        submission.mark = InternalTip._marker[1] # Finalized
+        submission.mark = u'finalize'  # Finalized
     else:
-        submission.mark = InternalTip._marker[0] # Submission
+        submission.mark = u'submission' # Submission
 
     try:
         store.add(submission)
@@ -198,10 +230,13 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
         raise excep
 
     try:
-        wb_fields = request['wb_fields']
-        fo = Fields(context.localized_fields, context.unique_fields)
-        fo.validate_fields(wb_fields, language, strict_validation=finalize)
-        submission.wb_fields = wb_fields
+        wb_steps = request['wb_steps']
+
+        if finalize:
+            steps = db_get_context_steps(store, context.id, language)
+            verify_steps(steps, wb_steps)
+
+        submission.wb_steps = wb_steps
     except Exception as excep:
         log.err("Submission create: fields validation fail: %s" % excep)
         raise excep
@@ -233,7 +268,7 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
         log.err("Can't be changed context in a submission update")
         raise errors.ContextIdNotFound("Context are immutable")
 
-    if submission.mark != InternalTip._marker[0]:
+    if submission.mark != u'submission':
         log.err("Submission %s do not permit update (status %s)" % (submission_id, submission.mark))
         raise errors.SubmissionConcluded
 
@@ -245,10 +280,12 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
         raise excep
 
     try:
-        wb_fields = request['wb_fields']
-        fo = Fields(context.localized_fields, context.unique_fields)
-        fo.validate_fields(wb_fields, language, strict_validation=finalize)
-        submission.wb_fields = wb_fields
+        wb_steps = request['wb_steps']
+        if finalize:
+            steps = db_get_context_steps(store, context.id, language)
+            verify_steps(steps, wb_steps)
+
+        submission.wb_steps = wb_steps
     except Exception as excep:
         log.err("Submission update: fields validation fail: %s" % excep)
         log.exception(excep)
@@ -262,7 +299,9 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
         raise excep
 
     if finalize:
-        submission.mark = InternalTip._marker[1] # Finalized
+        submission.mark = u'finalize'  # Finalized
+    else:
+        submission.mark = u'submission' # Submission
 
     submission_dict = wb_serialize_internaltip(submission)
     return submission_dict
@@ -286,7 +325,7 @@ def delete_submission(store, submission_id):
         log.err("Invalid Submission requested %s in DELETE" % submission_id)
         raise errors.SubmissionIdNotFound
 
-    if submission.mark != submission._marker[0]:
+    if submission.mark != u'submission':
         log.err("Submission %s already concluded (status: %s)" % (submission_id, submission.mark))
         raise errors.SubmissionConcluded
 

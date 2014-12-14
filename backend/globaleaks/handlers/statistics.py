@@ -96,7 +96,6 @@ def delete_weekstats_history(store):
     #Now you're like a gringo without history, please invade Iraq
     log.info("Week statistics removal completed.")
 
-
 @transact_ro
 def get_anomaly_history(store, limit):
 

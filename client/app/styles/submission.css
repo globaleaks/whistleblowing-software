@@ -17,7 +17,7 @@
 }
 
 .receiverCard.selected {
-  background-color: #DFF0D8;
+  background-color: #fcf8e3;;
 }
 
 .receiverCard.disabled {
@@ -30,6 +30,11 @@
 
 .submissionFieldInput {
   padding-left: 15px;
+}
+
+.submissionFieldgroup {
+  padding: 20px;
+  border: 1px solid #eee;
 }
 
 #ReceiverSelectionBoxBig .receiverCardTitle {
@@ -52,4 +57,74 @@
 
 #MaxSelectableReceiverBox {
   margin-bottom: 30px;
+}
+
+#keycodeThanks1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#keycodeThanks2 {
+  font-size: 24px;
+}
+
+#keycodeConfirmBox {
+  background-color: #F5F5F5;
+  border: 1px solid #222;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+#keycodeToolTip {
+  position: relative;
+  padding: 10px;
+  background: #FFF;
+  border-radius: 10px;
+  margin-left: 30px;
+  border: 1px solid rgb(204, 204, 204);
+  box-shadow: 2px 1px 5px #888888;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+#keycodeToolTip:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 15px 15px 15px 0;
+  border-color: transparent #ccc;
+  display: block;
+  width: 0;
+  left: -15px;
+  top: 17px;
+  z-index: 1;
+}
+
+.submissionReceipt {
+  padding-bottom: 20px;
+}
+
+.submissionReceipt h3 {
+  font-size: 36px;
+}
+
+.submissionReceipt h4 {
+  font-weight: 200;
+}
+
+#keycodeBox {
+  margin: 20px auto;
+  padding: 20px;
+  width: 80%;
+  text-align: center;
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #FFF;
+  border-radius: 15px;
+}
+
+#keycodeKey {
+  font-size: 60px;
 }

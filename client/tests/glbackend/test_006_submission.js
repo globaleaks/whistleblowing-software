@@ -10,7 +10,7 @@ var host = 'http://127.0.0.1:8082';
 
 var app = request(host);
 
-var population_order = 42;
+var population_order = 4;
 var submission_population_order = 4;
 
 var receivers = new Array();
@@ -19,7 +19,7 @@ var contexts = new Array();
 var contexts_ids = new Array();
 var submissions = new Array();
 var files = new Array();
-var wb_receipts  = new Array();
+var wb_keycodes  = new Array();
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
@@ -42,7 +42,7 @@ var validate_mandatory_headers = function(headers) {
 var valid_login = function(i) {
   return {
     "username": "",
-    "password": wb_receipts[i],
+    "password": wb_keycodes[i],
     "role": "wb"
   }
 }
@@ -53,6 +53,23 @@ var invalid_login = function(i) {
     "password": "antani",
     "role": "wb"
   }
+}
+
+var fill_field_recursively = function(field) {
+  field['value'] = 'antani';
+  for (var i = 0; i < field.children.length; j++) {
+    fill_field_recursively(field.children[i]);
+  };
+}
+
+var fill_steps = function(steps) {
+  for (i in steps) {
+    for (c in steps[i].children) {
+      fill_field_recursively(steps[i].children[c]);
+    }
+  };
+
+  return steps
 }
 
 describe('GET /contexts', function(){
@@ -129,17 +146,11 @@ describe('POST /submission', function(){
       it('responds with ', function(done){
 
         var new_submission = {};
-        new_submission.wb_fields = {};
-
-        contexts[i].fields.forEach(function (field) {
-          new_submission.wb_fields[field.key]  = { 'value': "first", 'answer_order': 0 };
-        })
-
         new_submission.context_id = contexts_ids[i];
+        new_submission.receivers = receivers_ids;
+        new_submission.wb_steps = fill_steps(contexts[i].steps);
         new_submission.files = [];
         new_submission.finalize = false;
-
-        new_submission.receivers = receivers_ids;
 
         app
           .post('/submission')
@@ -204,9 +215,8 @@ describe('POST /submission', function(){
   for (var i=0; i<submission_population_order; i++) {
     (function (i) {
       it('responds with ', function(done){
-
         submissions[i].receivers = [];
-        submissions[i].wb_fields = {};
+        submissions[i].wb_steps = [];
 
         submissions[i].finalize = 'true';
 
@@ -242,12 +252,7 @@ describe('POST /submission', function(){
       it('responds with ', function(done){
 
         submissions[i].receivers = receivers_ids;
-        submissions[i].wb_fields = {};
-
-        contexts[i].fields.forEach(function (field) {
-          submissions[i].wb_fields[field.key] = { 'value': "second", 'answer_order': 0 };
-        })
-
+        submissions[i].wb_steps = fill_steps(contexts[i].steps);
         submissions[i].finalize = 'true';
 
         app
@@ -266,7 +271,7 @@ describe('POST /submission', function(){
 
               submissions.push(res.body);
 
-              wb_receipts.push(res.body.receipt);
+              wb_keycodes.push(res.body.receipt);
 
               done();
             }

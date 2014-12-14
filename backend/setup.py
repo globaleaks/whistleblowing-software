@@ -107,9 +107,9 @@ setup(
     data_files=data_files,
     scripts=[
         'bin/globaleaks',
-        'bin/globaleaksadmin',
-        'scripts/glclient-build',
+        'bin/gl-admin',
         'bin/gl-fix-permissions',
     ],
     install_requires=install_requires,
+    tests_require=['mock'],
 )
