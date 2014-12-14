@@ -26,31 +26,37 @@
 #OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 #IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+import random
 import string
 import itertools
-from globaleaks.utils.utility import random_choice, randint, random_shuffle
 from copy import copy
 from functools import partial
 from xeger import Xeger
 
+from globaleaks.utils.utility import randint, choice, shuffle
+random.randint = randint
+random.choice = choice
+random.shuffle = shuffle
+
 
 ALPHABETS = {'printable': string.printable,
-              'letters': string.letters,
-              'uppercase': string.uppercase,
-              'lowercase': string.lowercase,
-              'digits': string.digits,
-              'punctuation': string.punctuation,
-              'nondigits': string.letters + string.punctuation,
-              'nonletters': string.digits + string.punctuation,
-              'whitespace': string.whitespace,
-              'nonwhitespace': string.printable.strip(),
-              'normal': string.letters + string.digits + ' ',
-              'word': string.letters + string.digits + '_',
-              'nonword': ''.join(set(string.printable).difference(string.letters +
-                                                          string.digits + '_')),
-              'postalsafe': string.letters + string.digits + ' .-#/',
-              'urlsafe': string.letters + string.digits + '-._~',
-              'domainsafe': string.letters + string.digits + '-'
+             'letters': string.ascii_letters,
+             'uppercase': string.ascii_uppercase,
+             'lowercase': string.ascii_lowercase,
+             'digits': string.digits,
+             'punctuation': string.punctuation,
+             'nondigits': string.ascii_letters + string.punctuation,
+             'nonletters': string.digits + string.punctuation,
+             'whitespace': string.whitespace,
+             'nonwhitespace': string.printable.strip(),
+             'normal': string.ascii_letters + string.digits + ' ',
+             'word': string.ascii_letters + string.digits + '_',
+             'nonword': ''.join(set(string.printable)
+                                .difference(string.ascii_letters +
+                                            string.digits + '_')),
+             'postalsafe': string.ascii_letters + string.digits + ' .-#/',
+             'urlsafe': string.ascii_letters + string.digits + '-._~',
+             'domainsafe': string.ascii_letters + string.digits + '-'
             }
 
 
@@ -78,8 +84,8 @@ class RstrBase(object):
     urlsafe() uses an alphabet of unreserved characters safe for use in URLs.
     From section 2.3 of RFC 3986: "Characters that are allowed in a URI but
     do not have a reserved purpose are called unreserved. These include
-    uppercase and lowercase letters, decimal digits, hyphen, period, underscore,
-    and tilde.
+    uppercase and lowercase letters, decimal digits, hyphen, period,
+    underscore, and tilde.
 
     domainsafe() uses an alphabet of characters allowed in hostnames, and
     consequently, in internet domains: letters, digits, and the hyphen.
@@ -112,14 +118,14 @@ class RstrBase(object):
         By default, rstr() will return a string between 1 and 10 characters.
         You can specify a second argument to get an exact length of string.
 
-        If you want a string in a range of lengths, specify the start and end of
-        that range as the second and third arguments.
+        If you want a string in a range of lengths, specify the start and end
+        of that range as the second and third arguments.
 
         If you want to make certain that particular characters appear in the
         generated string, specify them as "include".
 
-        If you want to *prevent* certain characters from appearing, pass them as
-        'exclude'.
+        If you want to *prevent* certain characters from appearing, pass them
+        as 'exclude'.
 
         """
         popul = [char for char in list(alphabet) if char not in list(exclude)]
@@ -131,10 +137,10 @@ class RstrBase(object):
                 k = start_range
 
         if end_range:
-            k = randint(start_range, end_range)
+            k = random.randint(start_range, end_range)
 
         result = sample_wr(popul, k) + list(include)
-        random_shuffle(result)
+        random.shuffle(result)
         return ''.join(result)
 
 
@@ -144,6 +150,7 @@ class Rstr(RstrBase, Xeger):
 
 default_instance = Rstr()
 
+
 def sample_wr(population, k):
     """Samples k random elements (with replacement) from a population"""
-    return [random_choice(population) for i in itertools.repeat(None, k)]
+    return [random.choice(population) for i in itertools.repeat(None, k)]

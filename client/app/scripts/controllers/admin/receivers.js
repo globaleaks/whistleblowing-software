@@ -15,7 +15,7 @@ function($scope, $modal) {
 
   };
 
-  $scope.deleteDialog = function(receiver){
+  $scope.receiverDeleteDialog = function(receiver){
     var modalInstance = $modal.open({
         templateUrl:  'views/partials/receiver_delete.html',
         controller: 'ConfirmableDialogCtrl',

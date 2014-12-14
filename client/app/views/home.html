@@ -1,13 +1,3 @@
-<!-- 
-
-This comment is needed in order to push the following strings on transifex
-
-<span data-translate>Enter your receipt</span>
-<span data-translate>View Tip</span>
-<span data-translate>Are you a receiver?</span>
-<span data-translate>Login page</span>
-
--->
 <div id="ContentBox" class="container">
   <div id="HomePageBox">
 
@@ -34,33 +24,32 @@ This comment is needed in order to push the following strings on transifex
         <div class="row" data-ng-show="node.tor2web_submission || anonymous">
           <div id="WhistleblowerSubmitBox">
             <div id="WhistleblowerSubmitBoxHeader">
-              <span data-translate>Are you a whistleblower?</span>
+              <span>{{node.whistleblowing_question}}</span>
             </div>
             <div id="WhistleblowerSubmitBoxButton">
               <a data-ng-click="goToSubmission()" class="btn btn-primary">
                 <i class="glyphicon glyphicon-bullhorn"></i>
-                <span data-translate>Blow the Whistle</span>
+                <span data-translate>{{node.whistleblowing_button}}</span>
               </a>
             </div>
           </div>
           <div id="WhistleblowerLoginBox" class="center-block">
-            <form role="form">
-                <div class="row">
-                  <h3 data-translate>Have you already filed a submission? Enter your receipt.</h3>
-                </div>
-                <div class="form-group col-md-6 col-md-offset-3">
-                  <div class="input-group">
-                    <input class="form-control" data-ng-model="receipt" type="text">
-                    <span class="input-group-btn">
-                      <button data-ng-click="view_tip(receipt)" class="btn btn-primary" data-ng-disabled="!receipt || receipt == ''" type="button">
-                        <i class="glyphicon glyphicon-log-in"></i>
-                      </button>
-                    </span>
+            <div>
+              <h3 data-translate>Have you already filed a submission? Enter your key code.</h3>
+            </div>
+            <div data-ng-include="'views/partials/wb_login.html'"></div>
+            <div class="LoginErrorBoxHomepage row" data-ng-show="errors[0].code == 29">
+              <div class="col-md-12">
+                <div class="alert alert-danger">
+                  <div>
+                    <span data-translate>Cannot Login</span>:
+                    <span data-translate>The key code is either invalid or the submission has expired.</span>
                   </div>
+                  <div data-translate>Please check your key code and try again or make a new Submission.</div>
                 </div>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
       <div data-ng-hide="node.configured">

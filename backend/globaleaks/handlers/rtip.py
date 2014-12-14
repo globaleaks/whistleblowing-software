@@ -18,13 +18,13 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
 
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.models import Node, Comment, ReceiverFile, Message
+from globaleaks.models import Node, Comment, ReceiverFile, Message, InternalTip
 from globaleaks.rest import errors
 from globaleaks.security import access_tip
 
 def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.default_language):
 
-    itip_dict = {
+    ret_dict = {
         'context_id': internaltip.context.id,
         'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
@@ -33,7 +33,7 @@ def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.
         'mark' : internaltip.mark,
         'pertinence' : internaltip.pertinence_counter,
         'escalation_threshold' : internaltip.escalation_threshold,
-        'fields' : internaltip.wb_fields,
+        'wb_steps' : internaltip.wb_steps,
 
         # these two fields are at the moment unsent by the client, but kept
         # maintained in unitTest. (tickets in wishlist)
@@ -47,14 +47,14 @@ def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.
         'enable_private_messages': internaltip.context.enable_private_messages
     }
 
-    # context_name and context_description are localized field
-    mo = Rosetta()
+    # context_name and context_description are localized fields
+    mo = Rosetta(internaltip.context.localized_strings)
     mo.acquire_storm_object(internaltip.context)
     for attr in ['name', 'description' ]:
         key = "context_%s" % attr
-        itip_dict[key] = mo.dump_translated(attr, language)
+        ret_dict[key] = mo.dump_localized_attr(attr, language)
 
-    return itip_dict
+    return ret_dict
 
 def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     """
@@ -65,7 +65,9 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
 
     if receiverfile.status != 'unavailable':
 
-        rfile_dict = {
+        ret_dict = {
+            'id': receiverfile.id,
+            'ifile_id': internalfile.id,
             'status': receiverfile.status,
             'href' : "/rtip/" + receivertip_id + "/download/" + receiverfile.id,
             # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
@@ -78,7 +80,9 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
 
     else: # == 'unavailable' in this case internal file metadata is returned.
 
-        rfile_dict = {
+        ret_dict = {
+            'id': receiverfile.id,
+            'ifile_id': internalfile.id,
             'status': 'unavailable',
             'href' : "",
             'name' : internalfile.name, # original filename
@@ -88,7 +92,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
             'downloads': unicode(receiverfile.downloads) # this counter is always valid
         }
 
-    return rfile_dict
+    return ret_dict
 
 
 @transact_ro
@@ -438,9 +442,9 @@ def get_receiver_list_receiver(store, user_id, tip_id, language=GLSetting.memory
             "access_counter": rtip.access_counter,
         }
 
-        mo = Rosetta()
+        mo = Rosetta(rtip.receiver.localized_strings)
         mo.acquire_storm_object(rtip.receiver)
-        receiver_desc["description"] = mo.dump_translated("description", language)
+        receiver_desc["description"] = mo.dump_localized_attr("description", language)
 
         receiver_list.append(receiver_desc)
 

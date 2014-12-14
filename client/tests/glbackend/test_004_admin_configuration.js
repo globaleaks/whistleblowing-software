@@ -10,13 +10,14 @@ var host = 'http://127.0.0.1:8082';
 
 var app = request(host);
 
-var population_order = 42;
+var population_order = 4;
 
 var receivers = new Array();
 var receivers_ids = new Array();
 var contexts = new Array();
 var contexts_ids = new Array();
-var contexts_list = new Array();
+var fields = new Array();
+var fields_ids = new Array();
 
 var authentication;
 var node;
@@ -31,6 +32,8 @@ var receiver = {
   can_delete_submission: false,
   comment_notification: false,
   contexts: [],
+  timezone: 0,
+  language: "en",
   description: "",
   file_notification: false,
   gpg_enable_files: false,
@@ -51,20 +54,130 @@ var receiver = {
   tip_notification: false,
 }
 
+var fields = [
+  {
+    id: '',
+    is_template: false,
+    step_id: '',
+    fieldgroup_id: '',
+    label: 'Field 1',
+    type: 'inputbox',
+    preview: false,
+    description: 'field description',
+    hint: 'field hint',
+    multi_entry: false,
+    stats_enabled: false,
+    required: true,
+    children: {},
+    options: [],
+    y: 2,
+    x: 0
+  },
+  {
+    id: '',
+    is_template: false,
+    step_id: '',
+    fieldgroup_id: '',
+    label: 'Field 2',
+    type: 'inputbox',
+    preview: false,
+    description: 'description',
+    hint: 'field hint',
+    multi_entry: false,
+    stats_enabled: false,
+    required: false,
+    children: {},
+    options: [],
+    y: 3,
+    x: 0
+  },
+  {
+    id: '',
+    is_template: false,
+    step_id: '',
+    fieldgroup_id: '',
+    label: 'Field 2',
+    type: 'inputbox',
+    preview: false,
+    description: 'description',
+    hint: 'field hint',
+    multi_entry: false,
+    stats_enabled: false,
+    required: false,
+    children: {},
+    options: [],
+    y: 3,
+    x: 0
+  },
+  {
+    id: '',
+    is_template: false,
+    step_id: '',
+    fieldgroup_id: '',
+    label: 'Generalities',
+    type: 'fieldgroup',
+    preview: false,
+    description: 'field description',
+    hint: 'field hint',
+    multi_entry: false,
+    stats_enabled: false,
+    required: false,
+    children: {},
+    options: [],
+    y: 4,
+    x: 0
+  },
+  {
+    id: '',
+    is_template: false,
+    step_id: '',
+    fieldgroup_id: '',
+    label: 'Name',
+    type: 'inputbox',
+    preview: false,
+    description: 'field description',
+    hint: 'field hint',
+    multi_entry: false,
+    stats_enabled: false,
+    required: false,
+    children: {},
+    options: [],
+    y: 0,
+    x: 0
+  },
+  {
+    id: '',
+    is_template: false,
+    step_id: '',
+    fieldgroup_id: '',
+    label: 'Surname',
+    type: 'inputbox',
+    preview: false,
+    description: 'field description',
+    hint: 'field hint',
+    multi_entry: false,
+    stats_enabled: false,
+    required: false,
+    children: {},
+    options: [],
+    y: 0,
+    x: 0
+  }
+]
+
 var context = {
   "receiver_introduction":"foca",
   "presentation_order":0,
   "postpone_superpower":false,
   "delete_consensus_percentage":0,
   "require_pgp":false,
-  "receipt_regexp":"[0-9]{10}",
-  "tip_timetolive":15, 
+  "tip_timetolive":15,
   "escalation_threshold":0,
   "can_delete_submission":true,
   "show_small_cards":false,
   "show_receivers":true,
   "enable_private_messages":true,
-  "submission_timetolive":1, 
+  "submission_timetolive":1,
   "file_max_download":3,
   "select_all_receivers":true,
   "description":"XXXXX ħ ÐÐ",
@@ -72,153 +185,18 @@ var context = {
   "selectable_receiver":false,
   "require_file_description":false,
   "name":"Context 1",
-  "fields":[
-    {
-      "name":"first",
-      "hint":"the first",
-      "required":true,
-      "presentation_order":1,
-      "value":"",
-      "key":"",
-      "preview":true,
-      "type":"text"
-    },
-    {
-      "name":"second",
-      "hint":"the second",
-      "required":true,
-      "presentation_order":2,
-      "value":"",
-      "key":"",
-      "preview":true,
-      "type":"radio",
-      "options": [
-        {
-          "order":0,
-          "value":"a",
-          "name":"a"
-        },
-        {
-          "order":0,
-          "value":"b",
-          "name":"b"
-        },
-        {
-          "order":0,
-          "value":"c",
-          "name":"c"
-        }
-      ]
-    },
-    {
-      "name":"third",
-      "hint":"the third",
-      "required":true,
-      "presentation_order":3,
-      "value":"",
-      "key":"",
-      "preview":true,
-      "type":"select",
-      "options": [
-        {
-          "order":0,
-          "value":"a",
-          "name":"the 4th do not exist"
-        },
-        {
-          "order":0,
-          "value":"b",
-          "name":"il 4° non esiste"
-	},
-        {
-          "order":0,
-          "value":"c",
-          "name":"blah"
-        }
-      ]
-    },
-    {
-      "name":"fifth",
-      "hint":"teh 5th",
-      "required":true,
-      "presentation_order":5,
-      "value":"",
-      "key":"",
-      "preview":true,
-      "type":"checkboxes",
-      "options":
-        [
-          {
-            "order":0,
-            "value":"a",
-            "name":"a"
-          },
-          {
-            "order":0,
-            "value":"b",
-            "name":"b"
-	  },
-          {
-            "order":0,
-            "value":"c",
-            "name":"c"
-          },
-          {
-            "order":0,
-            "value":"d",
-            "name":"d"
-          }
-        ]
-    },
-    {
-      "name":"sixth",
-      "hint":"666 number of the beast!",
-      "required":true,
-      "presentation_order":6,
-      "value":"",
-      "key":"",
-      "preview":true,
-      "type":"textarea"
-    },
-    {
-      "name":"seventh",
-      "hint":"seven figthers! (it's a number!)",
-      "required":true,
-      "presentation_order":7,
-      "value":"123",
-      "key":"",
-      "preview":true,
-      "type":"number"
-    },
-    {
-      "name":"eighth",
-      "hint":"eighththththth (url)",
-      "required":true,
-      "presentation_order":0,
-      "value":"https://globaleaks.org",
-      "key":"",
-      "preview":true,
-      "type":"url"
-    },
-    {
-      "name":"nineth",
-      "hint":"nine hell (phone)",
-      "required":true,
-      "presentation_order":8,
-      "value":"+3933932143413",
-      "key":"",
-      "preview":true,
-      "type":"phone"
-    },
-    {
-      "name":"tenth",
-      "hint":"the 10th in english (email)",
-      "presentation_order":9,
-      "required":true,
-      "value":"email@domain.tld",
-      "key":"",
-      "preview":true,
-      "type":"email"
+  "steps":[
+     {
+       'label': 'Step 1',
+       'description': 'Step Description',
+       'hint': 'Step Hint',
+       'children': {}
+     },
+     {
+       'label': 'Step 2',
+       'description': 'Step Description',
+       'hint': 'Step Hint',
+       'children': {}
     }
   ],
   "file_required":false,
@@ -317,17 +295,17 @@ describe('PUT /admin/node', function () {
   })
 })
 
-// we popolate population_order contexts
+// we popolate population_order/2 contexts
 for (var i=0; i<population_order / 2; i++) {
   describe('POST /admin/context', function () {
+    it('responds 201 on POST /admin/context ' + i + ' (authenticated, valid context)', function (done) {
 
-    var newObject = JSON.parse(JSON.stringify(context));
-    newObject.name = 'Context ' + i ;
-    newObject.presentation_order = i;
-    newObject.name = 'Context ' + i + ' (selectable receivers: TRUE)';
-    newObject.selectable_receiver = true;
+      var newObject = JSON.parse(JSON.stringify(context));
+      newObject.name = 'Context ' + i;
+      newObject.presentation_order = i;
+      newObject.name = 'Context ' + i + ' (selectable receivers: TRUE)';
+      newObject.selectable_receiver = true;
 
-    it('responds 201 on POST /admin/context (authenticated, valid context[' + i + '])', function (done) {
       app
         .post('/admin/context')
         .send(newObject)
@@ -348,81 +326,125 @@ for (var i=0; i<population_order / 2; i++) {
           contexts_ids.push(res.body.id);
 
           done();
+
         });
     })
   })
 }
 
 // we popolate population_order receivers
-for (var i=0; i<population_order; i++) {
-  describe('POST /admin/receiver', function () {
+describe('POST /admin/receiver', function () {
+  for (var i=0; i<population_order; i++) {
+    (function (i) {
+      it('responds 201 on POST /admin/receiver ' + i + ' (authenticated, valid receiver)', function (done) {
 
-    var newObject = JSON.parse(JSON.stringify(receiver));
-    newObject.mail_address = 'receiver' + i + '@antani.gov';
-    newObject.password = newObject.mail_address;
-    newObject.name = 'Receiver ' + i;
-    newObject.contexts = contexts_ids;
-    newObject.presentation_order = i;
+        var newObject = JSON.parse(JSON.stringify(receiver));
+        newObject.mail_address = 'receiver' + i + '@antani.gov';
+        newObject.password = newObject.mail_address;
+        newObject.name = 'Receiver ' + i;
+        newObject.contexts = contexts_ids;
+        newObject.presentation_order = i;
 
-    it('responds 201 on POST /admin/receiver (authenticated, valid receiver[' + i + '])', function (done) {
-      app
-        .post('/admin/receiver')
-        .send(newObject)
-        .set('X-XSRF-TOKEN', 'antani')
-        .set('cookie', 'XSRF-TOKEN=antani')
-        .set('X-Session', authentication['session_id'])
-        .expect(201)
-        .end(function (err, res) {
+        app
+          .post('/admin/receiver')
+          .send(newObject)
+          .set('X-XSRF-TOKEN', 'antani')
+          .set('cookie', 'XSRF-TOKEN=antani')
+          .set('X-Session', authentication['session_id'])
+          .expect(201)
+          .end(function (err, res) {
 
-          if (err) {
-            return done(err);
-          }
+            if (err) {
+              return done(err);
+            }
 
-          validate_mandatory_headers(res.headers);
+            validate_mandatory_headers(res.headers);
 
-          receivers.push(res.body);
+            receivers.push(res.body);
 
-          receivers_ids.push(res.body.id);
+            receivers_ids.push(res.body.id);
 
-          done();
+            done();
+
         });
-    })
-  })
-}
+      })
+    })(i);
+  }
+})
 
 // we popolate population_order/2 contexts
-for (var i=population_order/2; i<population_order; i++) {
-  describe('POST /admin/context', function () {
+describe('POST /admin/context', function () {
+  for (var i=population_order/2; i<population_order; i++) {
+    (function (i) {
+      it('responds 201 on POST /admin/context ' + i + ' (authenticated, valid context)', function (done) {
+        var newObject = JSON.parse(JSON.stringify(context));
+        newObject.name = 'Context ' + i ;
+        newObject.presentation_order = i;
+        newObject.name = 'Context ' + i + ' (selectable receivers: TRUE)';
+        newObject.receivers = receivers_ids;
+        newObject.selectable_receiver = true;
 
-    var newObject = JSON.parse(JSON.stringify(context));
-    newObject.name = 'Context ' + i;
-    newObject.receivers = receivers_ids;
-    newObject.presentation_order = i;
-    newObject.name = 'Context ' + i + ' (selectable receivers: FALSE)';
-    newObject.selectable_receiver = false;
+        app
+          .post('/admin/context')
+          .send(newObject)
+          .set('X-XSRF-TOKEN', 'antani')
+          .set('cookie', 'XSRF-TOKEN=antani')
+          .set('X-Session', authentication['session_id'])
+          .expect(201)
+          .end(function (err, res) {
 
-    it('responds 201 on POST /admin/context (authenticated, valid context[' + i + '])', function (done) {
-      app
-        .post('/admin/context')
-        .send(newObject)
-        .set('X-XSRF-TOKEN', 'antani')
-        .set('cookie', 'XSRF-TOKEN=antani')
-        .set('X-Session', authentication['session_id'])
-        .expect(201)
-        .end(function (err, res) {
+            if (err) {
+              return done(err);
+            }
 
-          if (err) {
-            return done(err);
-          }
+            validate_mandatory_headers(res.headers);
 
-          validate_mandatory_headers(res.headers);
+            contexts.push(res.body);
 
-          contexts.push(res.body);
+            contexts_ids.push(res.body.id);
 
-          contexts_ids.push(res.body.id);
+            done();
 
-          done();
         });
-    })
-  })
-}
+      })
+    })(i);
+  }
+})
+
+// we popolate fields for each context
+describe('POST /admin/field', function () {
+  for (var i=0; i<population_order; i++) {
+    for (var j=0; j<fields.length; j++) {
+      (function (i, j) {
+        it('responds 201 on POST /admin/field, valid field', function (done) {
+
+            var newObject = JSON.parse(JSON.stringify(fields[j]));
+            newObject.step_id = contexts[i]['steps'][0]['id']
+
+            app
+              .post('/admin/field')
+              .send(newObject)
+              .set('X-XSRF-TOKEN', 'antani')
+              .set('cookie', 'XSRF-TOKEN=antani')
+              .set('X-Session', authentication['session_id'])
+              .expect(201)
+              .end(function (err, res) {
+
+                if (err) {
+                  return done(err);
+                }
+
+                validate_mandatory_headers(res.headers);
+
+                 fields.push(res.body);
+
+                fields_ids.push(res.body.id);
+
+                done();
+
+              });
+        })
+      })(i, j);
+    }
+  }
+})

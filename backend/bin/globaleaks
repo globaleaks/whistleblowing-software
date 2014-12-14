@@ -99,23 +99,6 @@ from globaleaks.utils.utility import log, query_yes_no
 from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 
-###
-# eadem mutata resurgo https://gitorious.org/gulch-ann/gulch-ann/blobs/master/src/python/pyl.py#line222
-###
-def colorize(txt, col):
-    """
-    Colorized output.
-    Plataform dependent: Linux
-    """
-    color_dict = {
-            'GREY':   0, 'RED':   1, 'GREEN':   2,
-            'YELLOW': 3, 'BLUE':  4, 'MAGENTA': 5,
-            'CYAN':   6, 'WHITE': 7, 'BLACK':   8
-            }
-    return '\033[1;3%dm%s\033[0m' %(color_dict[col], txt)
-
-
-
 GLSetting.parser.add_option("-n", "--nodaemon", action='store_true',
     help="don't daemonize [default: %default]",
     dest="nodaemon", default=GLSetting.nodaemon)
@@ -231,50 +214,6 @@ if GLSetting.cmdline_options.version:
     print "GlobaLeaks Version:", GLSetting.version_string
     print "GlobaLeaks DB version:", DATABASE_VERSION
     quit()
-
-print colorize("""
-MMMMMMMMM.$$$$$$$$$$$$$$$Z.DNNNNNNNNNNNNNNN .NNNNNNNNNNNNNNNZ.NNNNNNNNNNNNNNNN M
-MMMMMMMM Z$ZZZZZZZZZZZZZ$..NNNNNNNNNNNNNNN7.NNNNNNNNNNNNNNNN.NNNNNNNNNNNNNNNNM.M
-MMMMMMM.,Z$ZZZZZZZZZZZZZ=.NNNNNNNNNNNNNNNM.NNNNNNNNNNNNNNNN.DNNNNNNNNNNNNNNNNM.M
-MMMMMM+.ZZZZZZZZZZZZZZZZ.MNNNNNNNNNNNNNNM.NNNNNNNNNNNNNNNN ,NNNNNNNNNNNNNNNNNM.M
-MMMMMN.$ZZZZZZZZZZZZZZ$.NNNNNNNNNNNNNNNN.:NNNNNNNNNNNNNNM=.NNNNNNNNNNNNNNNNNNM.M
-MMMMM.Z$ZZZZZ$ZZZZZZZ$.ZNNNNNNNNNNNNNNN..NNNNNNNNNNNNNNN$.NNNNNNNNNNNNNNNNNNNM.M
-MMMM.IZZZZZ~.+ZZZZZZ$..MNNNNM..NNNNNNN8.NNNNNN..NNNNNNNN.MNNNNN..MNNNNNNNNNNNM.M
-MMM..ZZZZZZZZZZZZZZ$I.NNNNNNNNNNNNNNNN.NNNNNNNNNNNNNNNM.8NNNNNNNNNNNNNNNNNNNNM.M
-MMO.ZZZZZZZZZZZZZZZZ.MNNNNNNNNNNNNNNN.DNNNNNNNNNNNNNNN.=NNNNNNNNNNNNNNNNNNNNNM M
-MM.ZZZZZZZZZZZZZZZZ.NNNNNNNNNNNNNNNN.~NNNNNNNNNNNNNNN~.NNNNNNNNNNNNNNNNNNNNNNM.M
-M.$$$$Z$ZZZZZZZZZ$.,NNNNNNNNNNNNNNN= NNNNNNNNNNNNNNN8.NNNNNNNNNNNNNNNNNNNNNNNM M
-   .. Z$ZZZZZZZZZ......,NNNNNNNNNN$......NNNNNNNNNNM......NNNNNNNNNNNNNNNNNNNM M
-MMMMM ZZZZZZZZZZZZZZZ$..NNNNNNNNNNNNNNN: +NNNNNNNNNNNNNN8.:MNNNNNNNNNNNNNNNNNM M
-MMMM.?ZZZZZZZZZZZ$$=.?   :.MNNNNNNNN8.~. .$.INNNNNNNNN.,   ..:MNNNNNNNNNNNNNNM M
-MMMM.$Z$ZZZZZZZZZZZ       ..NNNNNNNN  . .   .MNNNNNNN.        ?NNNNNNNNNNNNNNM M
-MMM . .Z$ZZZZZZ$Z7.        .NNNNNNM.         MNNNNNN.         ?NNNNNNNNNNNNNNM M
-MMM . ..ZZZZZZZZ$      .   .M:NNNN.         .N7?NNN:          ?N:MNNNNNNNNNNNM M
-MM:.. ..7ZZZZZZZ$             .MNN.         ..  MNN:    .     =. =NNNNNNNNNNNM M
-MM... ..$ZZZZZZZ$             7NNN.   . .     ..NNN:            .NNNNNNNNNNNNM M
-M8.::~ZZZZZZZZZZ$           ..MNNN.           .NNNN:            ONNNNNNNNNNNNM M
-M.$ZZZZZZZZZZZZZ$ . .     . .NNNNN.   . .     .NNNN:            NNNNNNNNNNNNNM M
-M.ZZZZZZZZZZZZZZ$ . .       .NNNNN.         ..NNNNN:          .NNNNNNNNNNNNNNM M
-""", random.choice(('RED', 'GREEN', 'BLUE', 'YELLOW', 'CYAN')))
-
-header = [
-    [15*" "+"  ____ _       _          ", " _ ", 15*" "+" _ "+18*" "],
-    [15*" "+"/ ____| |     | |         ", "| |", 15*" "+"| |"+18*" "],
-    [14*" "+"| |  __| | ___ | |__   __ _", "| |", "      ___  __ _| | _____            "],
-    [14*" "+"| | |_ | |/ _ \| '_ \ / _\`", "| |", "     / _ \/ _\`| |/ / __|           "],
-    [14*" "+"| |__| | | (_) | |_) | (_| ", "| |____", "|  __/ (_| |   <\__ \           "],
-    [15*" "+"\_____|_|\___/|_.__/ \__,_", "|______|", "\___|\__,_|_|\_\___/           "],
-]
-
-for txt1, l, txt2 in header:
-    print colorize(txt1, 'RED') + colorize(l, 'MAGENTA') + colorize(txt2, 'RED')
-
-print '\n'
-print colorize('Welcome', 'CYAN'), colorize('to', 'YELLOW'), 'Globa'+colorize('Leaks', 'RED')
-print ("Alpha release of GlobaLeaks %s\n"
-       "Actually, you may require our supports to makes GL works: irc.oftc.net #globaleaks can help you" %
-        GLSetting.version_string)
-print ("And don't forget to read docs in: https://github.com/globaleaks/GlobaLeaks/wiki\n")
 
 GLSetting.load_cmdline_options()
 

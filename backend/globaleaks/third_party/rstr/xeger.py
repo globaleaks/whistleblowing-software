@@ -1,7 +1,13 @@
 import re
 import string
-from globaleaks.utils.utility import randint, random_choice
+from globaleaks.utils.utility import randint, choice
 from itertools import chain
+import sys
+
+
+if sys.version_info[0] >= 3:
+    unichr = chr
+    xrange = range
 
 #The * and + characters in a regular expression
 # match up to any number of repeats in theory,
@@ -10,6 +16,7 @@ from itertools import chain
 #generated strings. This sets an upper-bound on
 #repeats generated from + and * characters.
 STAR_PLUS_LIMIT = 100
+
 
 class Xeger(object):
     """Inspired by the Java library Xeger: http://code.google.com/p/xeger/
@@ -29,19 +36,20 @@ class Xeger(object):
                   }
 
         self._cases = {"literal": lambda x: unichr(x),
-             "not_literal": lambda x: random_choice(
+             "not_literal": lambda x: choice(
                                 string.printable.replace(unichr(x), '')),
              "at": lambda x: '',
              "in": lambda x: self._handle_in(x),
-             "any": lambda x: self.printable(1),
-             "range": lambda x: [unichr(i) for i in xrange(x[0], x[1]+1)],
+             "any": lambda x: self.printable(1, exclude='\n'),
+             "range": lambda x: [unichr(i) for i in xrange(x[0], x[1] + 1)],
              "category": lambda x: self._categories[x](),
              'branch': lambda x: ''.join(self._handle_state(i) for
-                                                            i in random_choice(x[1])),
+                                                            i in choice(x[1])),
              "subpattern": lambda x: self._handle_group(x),
              "assert": lambda x: ''.join(self._handle_state(i) for i in x[1]),
              "assert_not": lambda x: '',
              "groupref": lambda x: self._cache[x],
+             'min_repeat': lambda x: self._handle_repeat(*x),
              'max_repeat': lambda x: self._handle_repeat(*x),
              'negate': lambda x: [False],
              }
@@ -78,9 +86,9 @@ class Xeger(object):
                                                      i in value)))
         if candidates[0] is False:
             candidates = set(string.printable).difference(candidates[1:])
-            return random_choice(list(candidates))
+            return choice(list(candidates))
         else:
-            return random_choice(candidates)
+            return choice(candidates)
 
     def _handle_repeat(self, start_range, end_range, value):
         result = []

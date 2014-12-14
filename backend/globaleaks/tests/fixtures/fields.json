@@ -1,0 +1,246 @@
+[
+  {
+    "fields": {
+      "id": "25521164-0d0f-4f80-9e9c-93f72e815105",
+      "label": {"en": "name"},
+      "description": {"en": "description"},
+      "hint": {"en": "hint"},
+      "multi_entry": false,
+      "is_template": true,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "inputbox"
+    },
+    "class": "Field"
+  },
+  {
+    "fields": {
+      "id": "25521164-1d0f-5f80-8e8c-93f73e815156",
+      "label": {"en": "surname"},
+      "description": {"en": "description"},
+      "hint": {"en":"hint"},
+      "is_template": true,
+      "multi_entry": false,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "inputbox"
+    },
+    "class": "Field"
+  },
+  {
+    "fields": {
+      "id": "98891164-1a0b-5b80-8b8b-93b73b815156",
+      "label": {"en": "gender"},
+      "description": {"en": "description"},
+      "hint": {"en": "hint"},
+      "is_template": true,
+      "multi_entry": true,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "selectbox"
+    },
+    "class": "Field"
+  },
+  {
+    "fields": {
+      "id": "27121164-0d0f-4180-9e9c-b1f72e815105",
+      "label": {"en": "birthdate"},
+      "description": {"en": "description"},
+      "hint": {"en": "hint"},
+      "is_template": true,
+      "multi_entry": false,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "inputbox"
+    },
+    "class": "Field"
+  },
+  {
+    "fields": {
+      "id": "37242164-1b1f-1110-1e1c-b1f12e815105",
+      "label": {"en": "generalities"},
+      "description": {"en": "description"},
+      "hint": {"en": "hint"},
+      "is_template": true,
+      "multi_entry": true,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "fieldgroup"
+    },
+    "class": "Field"
+  },
+  {
+    "fields": {
+      "parent_id": "37242164-1b1f-1110-1e1c-b1f12e815105",
+      "child_id": "25521164-0d0f-4f80-9e9c-93f72e815105"
+    },
+    "class": "FieldField"
+  },
+  {
+    "fields": {
+      "parent_id": "37242164-1b1f-1110-1e1c-b1f12e815105",
+      "child_id": "25521164-1d0f-5f80-8e8c-93f73e815156"
+    },
+    "class": "FieldField"
+  },
+  {
+    "fields": {
+      "parent_id": "37242164-1b1f-1110-1e1c-b1f12e815105",
+      "child_id": "98891164-1a0b-5b80-8b8b-93b73b815156"
+    },
+    "class": "FieldField"
+  },
+  {
+    "fields": {
+      "field_id": "98891164-1a0b-5b80-8b8b-93b73b815156",
+      "number": 1,
+      "attrs": {"name": {"en": "Female"}}
+    },
+    "class": "FieldOption"
+  },
+  {
+    "fields": {
+      "field_id": "98891164-1a0b-5b80-8b8b-93b73b815156",
+      "number": 2,
+      "attrs": {"name": {"en": "Male"}}
+    },
+    "class": "FieldOption"
+  },
+  {
+    "fields": {
+      "id": "15521164-0d0f-4f80-9e9c-93f72e815105",
+      "label": {"en": "name"},
+      "description": {"en": "description"},
+      "hint": {"en": "hint"},
+      "multi_entry": false,
+      "is_template": false,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "inputbox"
+    },
+    "class": "Field"
+  },
+  {
+    "fields": {
+      "id": "15521164-1d0f-5f80-8e8c-93f73e815156",
+      "label": {"en": "surnamea"},
+      "description": {"en": "description"},
+      "hint": {"en":"hint"},
+      "is_template": false,
+      "multi_entry": false,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "inputbox"
+    },
+    "class": "Field"
+  },
+  {
+    "fields": {
+      "id": "18891164-1a0b-5b80-8b8b-93b73b815156",
+      "label": {"en": "gender"},
+      "description": {"en": "description"},
+      "hint": {"en": "hint"},
+      "is_template": false,
+      "multi_entry": true,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "selectbox"
+    },
+    "class": "Field"
+  },
+  {
+    "fields": {
+      "id": "17121164-0d0f-4180-9e9c-b1f72e815105",
+      "label": {"en": "birthdate"},
+      "description": {"en": "description"},
+      "hint": {"en": "hint"},
+      "is_template": false,
+      "multi_entry": false,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "inputbox"
+    },
+    "class": "Field"
+  },
+  {
+    "fields": {
+      "id": "17242164-1b1f-1110-1e1c-b1f12e815105",
+      "label": {"en": "generalities"},
+      "description": {"en": "description"},
+      "hint": {"en": "hint"},
+      "is_template": false,
+      "multi_entry": true,
+      "required": true,
+      "preview": true,
+      "stats_enabled": true,
+      "x": 0,
+      "y": 0,
+      "type": "fieldgroup"
+    },
+    "class": "Field"
+  },
+  {
+    "fields": {
+      "parent_id": "17242164-1b1f-1110-1e1c-b1f12e815105",
+      "child_id": "15521164-0d0f-4f80-9e9c-93f72e815105"
+    },
+    "class": "FieldField"
+  },
+  {
+    "fields": {
+      "parent_id": "17242164-1b1f-1110-1e1c-b1f12e815105",
+      "child_id": "15521164-1d0f-5f80-8e8c-93f73e815156"
+    },
+    "class": "FieldField"
+  },
+  {
+    "fields": {
+      "parent_id": "17242164-1b1f-1110-1e1c-b1f12e815105",
+      "child_id": "18891164-1a0b-5b80-8b8b-93b73b815156"
+    },
+    "class": "FieldField"
+  },
+  {
+    "fields": {
+      "field_id": "18891164-1a0b-5b80-8b8b-93b73b815156",
+      "number": 1,
+      "attrs": {"name": {"en": "Female"}}
+    },
+    "class": "FieldOption"
+  },
+  {
+    "fields": {
+      "field_id": "18891164-1a0b-5b80-8b8b-93b73b815156",
+      "number": 2,
+      "attrs": {"name": {"en": "Male"}}
+    },
+    "class": "FieldOption"
+  }
+]

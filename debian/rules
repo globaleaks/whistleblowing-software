@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=globaleaks
+export PYBUILD_DISABLE=test
+
+%:
+	dh $@ --with python2 --buildsystem=pybuild --sourcedirectory=backend/
+
+# XXX. At the time of this writing, Debian has ITP #673727 to package grunt-cli.
+# Unfortunately, it is not crurrently available as package, so we have to
+# install it locally.
+build-client:
+	cd client && npm install grunt-cli
+	cd client && npm install
+	cd client && ./node_modules/bower/bin/bower install
+	cd client && ./node_modules/grunt-cli/bin/grunt build
+
+override_dh_auto_build: build-client
+
+override_dh_installman:
+	cd backend && python setup.py build_sphinx -b man
+	dh_installman
+
+override_dh_install:
+#   install apparmor profile
+	mkdir -p debian/globaleaks/etc/apparmor.d/
+	cp debian/globaleaks.apparmor-profile debian/globaleaks/etc/apparmor.d/usr.bin.globaleaks
+	dh_apparmor --profile-name=usr.bin.globaleaks
+	dh_install --fail-missing
+
+override_dh_installinit:
+	dh_installinit --update-rcd-params="defaults 99"

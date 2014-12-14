@@ -17,7 +17,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     $scope.update = function (model) {
       var success = {};
       success.message = "Updated " + model;
-      model.$update(function () {
+      model.$update(function(result) {
         if (!$scope.successes) {
           $scope.successes = [];
         }
@@ -43,12 +43,21 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     $scope.update_node();
 
     $scope.isWizard = function () {
-      return ($location.path() == '/wizard');
+      return $location.path() == '/wizard';
     };
 
     $scope.isHomepage = function () {
-      return ($location.path() == '/');
+      return $location.path() == '/';
     };
+
+    $scope.isLoginPage = function () {
+      return $location.path() == '/login';
+    };
+
+    $scope.showLoginForm = function () {
+      return (!$scope.isHomepage() &&
+              !$scope.isLoginPage());
+    }
 
     $scope.hasSubtitle = function () {
       return $scope.header_subtitle != '';
@@ -90,8 +99,8 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     };
 
     $scope.$on('$routeChangeSuccess', function() {
-      if($routeParams.lang) {
-        $rootScope.language = $scope.language = $routeParams.lang;
+      if($location.search().lang) {
+        $rootScope.language = $scope.language = $location.search().lang;
       }
     });
 

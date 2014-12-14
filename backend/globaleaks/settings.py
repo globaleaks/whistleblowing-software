@@ -28,10 +28,51 @@ from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 from storm import exceptions, tracer
 from storm.zope.zstorm import ZStorm
+from storm.databases.sqlite import sqlite
 from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
 
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
+
+
+# XXX. MONKEYPATCH TO SUPPORT STORM 0.19
+import storm.databases.sqlite
+
+class SQLite(storm.databases.sqlite.Database):
+
+    connection_factory = storm.databases.sqlite.SQLiteConnection
+
+    def __init__(self, uri):
+        if sqlite is storm.databases.sqlite.dummy:
+            raise storm.databases.sqlite.DatabaseModuleError("'pysqlite2' module not found")
+        self._filename = uri.database or ":memory:"
+        self._timeout = float(uri.options.get("timeout", 5))
+        self._synchronous = uri.options.get("synchronous")
+        self._journal_mode = uri.options.get("journal_mode")
+        self._foreign_keys = uri.options.get("foreign_keys")
+
+    def raw_connect(self):
+        # See the story at the end to understand why we set isolation_level.
+        raw_connection = sqlite.connect(self._filename, timeout=self._timeout,
+                                        isolation_level=None)
+        if self._synchronous is not None:
+            raw_connection.execute("PRAGMA synchronous = %s" %
+                                   (self._synchronous,))
+
+        if self._journal_mode is not None:
+            raw_connection.execute("PRAGMA journal_mode = %s" %
+                                   (self._journal_mode,))
+
+        if self._foreign_keys is not None:
+            raw_connection.execute("PRAGMA foreign_keys = %s" %
+                                   (self._foreign_keys,))
+
+        return raw_connection
+
+
+storm.databases.sqlite.SQLite = SQLite
+storm.databases.sqlite.create_from_uri = SQLite
+# XXX. END MONKEYPATCH
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
@@ -41,6 +82,24 @@ verbosity_dict = {
     'CRITICAL': logging.CRITICAL
 }
 
+external_counted_events = {
+    'new_submission' : 0,
+    'finalized_submission': 0,
+    'anon_requests': 0,
+    'file_uploaded': 0,
+}
+
+def stats_counter(element):
+    """
+    Stats counter is called every 30 seconds and make a first dump of the
+    variable in memory: GLSetting.anomailes_counter
+    Then in jobs/statistics_sched.py is transformed in statistic.
+
+    @param element: one of the four element above
+    @return: None, but increment internal counters
+    """
+    assert GLSetting.anomalies_counter.has_key(element), "Invalid usage of stats_counter"
+    GLSetting.anomalies_counter[element] += 1
 
 class GLSettingsClass:
 
@@ -139,8 +198,6 @@ class GLSettingsClass:
         # (Node, Receiver or Context) and then can be updated by
         # the admin using the Admin interface (advanced settings)
         self.defaults.allow_unencrypted = False
-        self.defaults.x_frame_options_mode = 'deny'
-        self.defaults.x_frame_options_allow_from = ''
         self.defaults.tor2web_admin = False
         self.defaults.tor2web_submission = False
         self.defaults.tor2web_receiver = False
@@ -150,7 +207,6 @@ class GLSettingsClass:
         self.defaults.maximum_textsize = 4096
         self.defaults.maximum_filesize = 30 # expressed in megabytes
         self.defaults.exception_email = u"globaleaks-stackexception@lists.globaleaks.org"
-
         # Context dependent values:
         self.defaults.receipt_regexp = u'[0-9]{16}'
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
@@ -168,8 +224,6 @@ class GLSettingsClass:
         self.memory_copy.maximum_textsize = self.defaults.maximum_textsize
         self.memory_copy.maximum_namesize = self.defaults.maximum_namesize
         self.memory_copy.allow_unencrypted = self.defaults.allow_unencrypted
-        self.memory_copy.x_frame_options_mode = self.defaults.x_frame_options_mode
-        self.memory_copy.x_frame_options_allow_from = self.defaults.x_frame_options_allow_from
         self.memory_copy.tor2web_admin = self.defaults.tor2web_admin
         self.memory_copy.tor2web_submission = self.defaults.tor2web_submission
         self.memory_copy.tor2web_receiver = self.defaults.tor2web_receiver
@@ -752,6 +806,7 @@ class transact(object):
         """
         zstorm = ZStorm()
         zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_uri)
+
         return zstorm.get(GLSetting.store_name)
 
     def _wrap(self, function, *args, **kwargs):
@@ -760,21 +815,23 @@ class transact(object):
         passing the store to it.
         """
         self.store = self.get_store()
+
         try:
             if self.instance:
                 result = function(self.instance, self.store, *args, **kwargs)
             else:
                 result = function(self.store, *args, **kwargs)
+
         except (exceptions.IntegrityError, exceptions.DisconnectionError):
             transaction.abort()
+            # we print the exception here because we do not propagate it
+            traceback.print_exc()
             result = None
         except HTTPError as excep:
             transaction.abort()
             raise excep
         except Exception:
             transaction.abort()
-            _, exception_value, exception_tb = sys.exc_info()
-            traceback.print_tb(exception_tb, 10)
             self.store.close()
             # propagate the exception
             raise

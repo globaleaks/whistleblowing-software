@@ -3,6 +3,7 @@ import unittest
 
 from globaleaks.third_party.rstr.rstr_base import Rstr
 
+
 class TestXeger(unittest.TestCase):
     def setUp(self):
         self.rs = Rstr()
@@ -10,6 +11,15 @@ class TestXeger(unittest.TestCase):
     def test_literals(self):
         pattern = r'foo'
         assert re.match(pattern, self.rs.xeger(pattern))
+
+    def test_dot(self):
+        """
+        Verify that the dot character doesn't produce newlines.
+        See: https://bitbucket.org/leapfrogdevelopment/rstr/issue/1/
+        """
+        pattern = r'.+'
+        for i in range(100):
+            assert re.match(pattern, self.rs.xeger(pattern))
 
     def test_digit(self):
         pattern = r'\d'
@@ -77,4 +87,12 @@ class TestXeger(unittest.TestCase):
 
     def test_backreference(self):
         pattern = r'(foo|bar)baz\1'
+        assert re.match(pattern, self.rs.xeger(pattern))
+
+    def test_zero_or_more_greedy(self):
+        pattern = r'a*'
+        assert re.match(pattern, self.rs.xeger(pattern))
+
+    def test_zero_or_more_non_greedy(self):
+        pattern = r'a*?'
         assert re.match(pattern, self.rs.xeger(pattern))

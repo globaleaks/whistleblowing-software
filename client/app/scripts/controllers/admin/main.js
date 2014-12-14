@@ -116,7 +116,7 @@ GLClient.controller('AdminPasswordCtrl', ['$scope', 'changePasswordWatcher',
         "admin.node.password", "admin.node.check_password");
 }]);
 
-GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http){
+GLClient.controller('AdminFileUploadCtrl', ['$scope', '$http', function($scope, $http){
 
     $scope.random = Math.round(Math.random()*1000000);
 

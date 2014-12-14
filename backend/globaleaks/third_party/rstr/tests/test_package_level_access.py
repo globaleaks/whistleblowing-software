@@ -3,6 +3,7 @@ import re
 
 from globaleaks.third_party import rstr
 
+
 class TestPackageLevelFunctions(unittest.TestCase):
 
     def test_rstr(self):

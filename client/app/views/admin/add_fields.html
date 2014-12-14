@@ -1,0 +1,33 @@
+<div data-ng-controller="AdminFieldsAddCtrl" class="addField">
+  <form name="newField" novalidate>
+    <h4><span data-translate>Add new field</span></h4>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label data-translate>Label</label>
+        <input class="form-control" data-ng-model="new_field.label" type="text" required>
+      </div>
+    </div>
+    <div class="row inline-block-row">
+      <div class="col-md-6 col-xs-6">
+        <label data-translate>Type</label>
+        <select id="editFieldType" class="form-control" data-ng-model="new_field.type" required>
+          <option value="inputbox" data-translate>Text</option>
+          <option value="textarea" data-translate>Textarea</option>
+          <option value="selectbox" data-translate>Selectbox</option>
+          <option value="checkbox" data-translate>Checkbox</option>
+          <option value="fileupload" data-translate>File Upload</option>
+          <option value="modal" data-translate>Modal Window</option>
+          <option value="dialog" data-translate>Dialog Window</option>
+          <option value="tos" data-translate>Terms of Service</option>
+          <option value="fieldgroup" data-translate>Field Group</option>
+        </select>
+      </div>
+      <div class="col-md-4 col-xs-6 addFieldButton">
+        <button class="pull-left btn btn-success" data-ng-disabled="newField.$invalid" data-ng-click="add_field()">
+          <i class="glyphicon glyphicon-ok"></i>
+          <span data-translate>Add</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

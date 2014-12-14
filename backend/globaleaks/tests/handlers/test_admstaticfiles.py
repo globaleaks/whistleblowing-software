@@ -9,7 +9,7 @@ from globaleaks.handlers import admstaticfiles
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile
 
-class TestStaticFileInstance(helpers.TestHandler):
+class TestStaticFileInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admstaticfiles.StaticFileInstance
 
     @inlineCallbacks
@@ -105,7 +105,7 @@ class TestStaticFileInstance(helpers.TestHandler):
         self.assertRaises(errors.StaticFileNotFound, handler.delete, filename='validblabla')
 
 
-class TestStaticFileList(helpers.TestHandler):
+class TestStaticFileList(helpers.TestHandlerWithPopulatedDB):
     _handler = admstaticfiles.StaticFileList
 
     @inlineCallbacks

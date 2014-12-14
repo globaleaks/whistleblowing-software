@@ -1,7 +1,13 @@
 import re
 import unittest
+import sys
 
 from globaleaks.third_party.rstr.rstr_base import Rstr
+
+if sys.version_info[0] >= 3:
+    unichr = chr
+    xrange = range
+
 
 class TestRstr(unittest.TestCase):
     def setUp(self):
@@ -89,8 +95,10 @@ class TestCustomAlphabets(unittest.TestCase):
         rs.add_alphabet('evens', '02468')
         assert re.match('^[02468]{1,10}$', rs.evens())
 
+
 def main():
     unittest.main()
+
 
 if __name__ == '__main__':
     main()

@@ -1,44 +1,54 @@
+html {
+  background-color: #F5F5F5;
+}
+
+body {
+  background-color: #fff;
+}
+
 #PageBox {
   width: 100%;
 }
 
-#HeaderBox {
+#HeaderBox, #HeaderBoxHomepage {
   overflow: hidden;
-  padding: 40px 0;
-  color: #fff;
-  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
-  background: Teal;
+  color: #FFF;
+  background: #428bca;
+  border-bottom: 1px solid #357ebd;
+  padding: 40px;
 }
 
-#HeaderBox:after, #HeaderBox:after {
+#HeaderBox:after, #HeaderBox:after, #HeaderBoxHompage:after, #HeaderBoxHomepage:after {
   clear: both;
   content: "";
   display: block;
 }
 
 #HeaderBoxHomeContent {
-  text-align: center;
 }
 
-#HeaderBox {
-  border-bottom: 1px solid #ddd;
-}
-#HeaderBox h1 {
-  font-size: 40px;
-}
-#HeaderBox p {
+#HeaderBox p, #HeaderBoxHomepage p {
   margin-bottom: 20px;
 }
-#HeaderBox .navbar {
+
+#HeaderBox .navbar, #HeaderBoxHomepage .navbar {
   display: none;
 }
 
 #PageTitle {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 #PageSubtitle {
-  font-size: 32px;
+  font-size: 22px;
+}
+
+#PageTitleHomepage {
+  font-size: 40px;
+}
+
+#PageSubtitleHomepage {
+  font-size: 30px;
 }
 
 #ContentBox {
@@ -48,7 +58,7 @@
 #messageConsole {
   width: 200px;
   position: fixed;
-  z-index: 99999;
+  z-index: 99;
   top: 20px;
   padding-left: 10px;
   padding-right: 10px;
@@ -63,9 +73,28 @@
   font-size: 20px;
 }
 
-#LogoBox, #TitleBox, #ToolbarBox {
+#LogoBox, #TitleBox, #UserBox, #LogoBoxHomepage, #TitleBoxHomepage, #UserBoxHomepage {
+  position: relative;
+  height: 200px;
+  z-index: 99;
   margin-left: 20px;
   margin-right: 20px;
+}
+
+#LogoBox, #LogoBoxHomepage {
+  text-align: center;
+}
+
+#LanguagePickerBox {
+  margin-top: 10px;
+}
+
+#LoginStatusBox {
+  color: #000;
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #FFF;
+  border-radius: 15px;
 }
 
 h1 {
@@ -80,42 +109,21 @@ h3 {
   font-size: 20px;
 }
 
-#LogoBox, #TitleBox {
-  padding: 30px;
+#LogoBox, #LogoBoxHomepage {
+  width: 300px;
 }
 
-#TitleBox {
+#LogoBox img, #LogoBoxHomepage img {
+  margin: 0 auto;
+  height: 200px;
+}
+
+#TitleBox, #TitleBoxHomepage {
   max-width: 60%;
 }
 
-#LogoBox {
-  max-width: 20%;
-}
-
-#Logobox img {
-  max-width: 100%;
-}
-
-#LogoBox h1 {
-  font-size: 40px;
-  font-weight: bold;
-  letter-spacing: -2px;
-  line-height: 1;
-}
-
-#LogoBox p {
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 1.25;
-  margin-bottom: 30px;
-}
-
-#LogoBox img {
-  max-width: 100%;
-}
-
-#ToolbarBox {
-  max-width: 20%;
+#UserBox. #UserBoxHomepage {
+  max-width: 25%;
 }
 
 /** Submission details **/
@@ -125,31 +133,26 @@ h3 {
   height: 200px;
 }
 
-.receipt {
+.keycode {
     text-align: center;
 }
-.receipt h2 {
+.keycode h2 {
     font-family: sans-serif
 }
 
 #PrivacyBox {
-  padding: 10px;
-  background-color: #fcf8e3;
-  color: #c09853;
+  background-color: #222;
+  color: #FFF;
   font-size: 20px;
+  padding: 10px 20px 10px 20px;
 }
 
-#ToolTipBox {
-  position: relative;
-  top: 10px;
-  right: 10px;
-  padding: 10px;
-  z-index: 99999;
+#PrivacyBoxTextBox {
+  text-align: left;
 }
-@media (max-width: 550px) {
-  .toolTip {
-    position: absolute;
-  }
+
+#PrivacyBoxCloseButton {
+  text-align: right;
 }
 
 .preformatted {
@@ -165,7 +168,7 @@ h3 {
 .pending-requests {
   position: fixed;
   top: 100px;
-  z-index: 999;
+  z-index: 99;
   width: 400px;
   margin-left: -200px;
   left: 50%;
@@ -191,7 +194,7 @@ h3 {
 @media (max-width: 550px) {
   .modal.not-anonymous-question {
     top: 120px;
-    z-index: 10001;
+    z-index: 99;
   }
   .modal.not-anonymous-question h3 {
     font-size: 18px;
@@ -255,4 +258,35 @@ table {
 .preload_error {
   width: 70%;
   margin: 100px auto;
+}
+
+.LoginErrorBox, .LoginErrorBoxHomepage {
+  margin-top: 10px;
+}
+
+.LoginErrorBox {
+  text-align: left;
+}
+
+.LoginErroBoxHomepage {
+  text-align: center;
+}
+
+.LoginErrorBox .alert {
+  margin: 0px;
+}
+
+.keyinput {
+  width: inherit;
+  display: inline;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.nested {
+  padding-left: 15px;
+}
+
+.noteAsterisk {
+  color: red;
 }

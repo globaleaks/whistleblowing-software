@@ -11,5 +11,5 @@ File details:
 
 %FileList%
 
-Take Care,
+Kind regards,
 %NodeSignature%

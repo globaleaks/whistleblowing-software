@@ -1,0 +1,156 @@
+  <div class="row">
+    <div class="col-md-5" ng-if="tip.enable_private_messages && tip.receivers.length > 1">
+      <h3>
+        <span data-translate>Additional Information</span>
+      </h3>
+      <textarea data-ng-model="tip.newCommentContent" class="form-control"></textarea>
+      <br />
+      <button class="btn btn-success" data-ng-click="newComment()" data-ng-disabled="!tip.newCommentContent || tip.newCommentContent == ''">
+        <i class="glyphicon glyphicon-comment"></i>
+        <span data-translate>Add Additional Information</span>
+      </button>
+      <br /><br />
+      <div data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
+        <div data-ng-switch="" on="comment.type">
+
+          <div data-ng-switch-when="whistleblower" class="alert alert-info">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+                  <span data-translate>Whistleblower</span>
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div class="preformatted">{{comment.content}}</div>
+          </div>
+
+          <div data-ng-switch-when="receiver" class="alert alert-success">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+		  {{comment.author}}
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div class="preformatted">{{comment.content}}</div>
+          </div>
+
+          <div data-ng-switch-when="system" class="alert alert-warning">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+                  <span data-translate>System</span>
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+
+            <div data-ng-switch="" on="comment.system_content.type">
+               <div data-ng-switch-when="1">
+                 <span data-translate>The user</span>
+                 {{comment.system_content.receiver_name}}
+                 <span data-translate>has postponed Tip expiration to</span>
+                 {{comment.system_content.expire_on | date:'dd-MM-yyyy HH:mm' }}
+               </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-2" ng-if="tip.enable_private_messages && tip.receivers.length > 1"></div>
+
+    <div class="col-md-5">
+      <div data-ng-switch="" on="role">
+        <div data-ng-switch-when="receiver">
+          <div>
+            <h3>
+              <span data-translate>Private Messages</span>
+            </h3>
+          </div>
+        </div>
+        <div data-ng-switch-when="wb">
+          <div class="row">
+            <h3>
+              <div class="col-md-6">
+                <span data-translate>Private Messages</span>
+              </div>
+              <div class="col-md-6" data-ng-if="tip.receivers.length > 1">
+                <select data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
+              </div>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <textarea data-ng-model="tip.newMessageContent" class="form-control"></textarea>
+      <br />
+      <div data-ng-switch="" on="role">
+        <div data-ng-switch-when="receiver">
+          <button class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!text || text == ''">
+            <i class="glyphicon glyphicon-envelope"></i>
+            <span data-translate>Send Private Message</span>
+          </button>
+        </div>
+        <div data-ng-switch-when="wb">
+          <button class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.msg_receiver_selected || tip.msg_receiver_selected == '' || !tip.newMessageContent || tip.newMessageContent == ''">
+            <i class="glyphicon glyphicon-envelope"></i>
+            <span data-translate>Send Private Message</span>
+          </button>
+        </div>
+      </div>
+      <br /><br />
+      <div data-ng-repeat="message in tip.messages | orderBy:'creation_date':true">
+        <div data-ng-switch="" on="message.type">
+
+          <div data-ng-switch-when="whistleblower" class="alert alert-info">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+		  <span data-translate>Whistleblower</span>
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ message.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div class="preformatted">{{message.content}}</div>
+          </div>
+
+          <div data-ng-switch-when="receiver" class="alert alert-success">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+		  {{message.author}}
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ message.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div class="preformatted">{{message.content}}</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+

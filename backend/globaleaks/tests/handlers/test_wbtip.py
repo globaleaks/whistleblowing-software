@@ -9,7 +9,7 @@ from globaleaks.handlers import admin, wbtip
 from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.models import ReceiverTip
 
-class TestWBTipInstance(helpers.TestHandler):
+class TestWBTipInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = wbtip.WBTipInstance
 
     @inlineCallbacks
@@ -21,7 +21,7 @@ class TestWBTipInstance(helpers.TestHandler):
 
             yield handler.get()
 
-class TestWBTipCommentCollection(helpers.TestHandler):
+class TestWBTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = wbtip.WBTipCommentCollection
 
     @inlineCallbacks
@@ -46,7 +46,7 @@ class TestWBTipCommentCollection(helpers.TestHandler):
 
             yield handler.post(wbtip_desc['wbtip_id'])
 
-class TestWBTipMessageCollection(helpers.TestHandler):
+class TestWBTipMessageCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = wbtip.WBTipMessageCollection
 
     @inlineCallbacks
@@ -73,7 +73,7 @@ class TestWBTipMessageCollection(helpers.TestHandler):
             for rcvr_id in wbtip_desc['wbtip_receivers']:
                 yield handler.post(rcvr_id)
 
-class TestWBTipReceiversCollection(helpers.TestHandler):
+class TestWBTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = wbtip.WBTipReceiversCollection
 
     @inlineCallbacks
