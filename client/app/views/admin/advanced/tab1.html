@@ -11,15 +11,15 @@
 
     <div class="form-group">
       <label data-translate>Exception mail address</label>
-      <input class="form-control" data-ng-model="admin.node.exception_email" name="email" type="text" data-ng-pattern="email_regexp">
-        <p class="has-error" data-ng-show="advancedForm.email.$error.pattern">
+      <input class="form-control" data-ng-model="admin.node.exception_email" name="email" type="text" data-ng-pattern="email_regexp" />
+      <p class="has-error" data-ng-show="advancedForm.email.$error.pattern">
         <span data-translate>Invalid email address</span>
       </p>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.anomaly_checks" type="checkbox">
+        <input data-ng-model="admin.node.anomaly_checks" type="checkbox" />
         <span data-translate>Enable checks for anomalies</span>
       </label>
       <div data-ng-show="admin.node.anomaly_checks">
@@ -30,17 +30,17 @@
 
     <div class="form-group">
       <label data-translate>File size limit (in Megabytes)</label>
-      <input class="form-control" data-ng-model="admin.node.maximum_filesize" type="text">
+      <input class="form-control" data-ng-model="admin.node.maximum_filesize" type="text" />
     </div>
 
     <div class="form-group">
       <label data-translate>Text size limit (in bytes)</label>
-      <input class="form-control" data-ng-model="admin.node.maximum_textsize" type="text">
+      <input class="form-control" data-ng-model="admin.node.maximum_textsize" type="text" />
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.allow_unencrypted" ng-click="open_modal_allow_unencrypted()" type="checkbox">
+        <input data-ng-model="admin.node.allow_unencrypted" ng-click="open_modal_allow_unencrypted()" type="checkbox" />
         <span data-translate>Enable insecure configuration without PGP encryption.</span>
       </label>
       <div data-ng-show="admin.node.allow_unencrypted">
@@ -52,7 +52,7 @@
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.enable_custom_privacy_badge" type="checkbox">
+        <input data-ng-model="admin.node.enable_custom_privacy_badge" type="checkbox" />
         <span data-translate>Enable custom privacy badge</span>
       </label>
       <div data-ng-show="admin.node.enable_custom_privacy_badge">
@@ -64,7 +64,7 @@
       <label data-translate>Custom Privacy Badge</label>
       <label data-translate>(TBB condition)</label>
       <div>
-        <textarea class="form-control" data-ng-model="admin.node.custom_privacy_badge_tbb">{{admin.node.custom_privacy_badge_tbb}}</textarea>
+        <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_tbb" type="text" />
       </div>
     </div>
 
@@ -72,7 +72,7 @@
       <label data-translate>Custom Privacy Badge</label>
       <label data-translate>(Tor condition)</label>
       <div>
-        <textarea class="form-control" data-ng-model="admin.node.custom_privacy_badge_tor">{{admin.node.custom_privacy_badge_tor}}</textarea>
+        <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_tor" type="text" />
       </div>
     </div>
 
@@ -80,13 +80,13 @@
       <label data-translate>Custom Privacy Badge</label>
       <label data-translate>(Traditional Browser)</label>
       <div>
-        <textarea class="form-control" data-ng-model="admin.node.custom_privacy_badge_none">{{admin.node.custom_privacy_badge_none}}</textarea>
+        <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_none" type=text" />
       </div>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.postpone_superpower" type="checkbox">
+        <input data-ng-model="admin.node.postpone_superpower" type="checkbox" />
         <span data-translate>Permit Receivers to postpone expiration date of the Tips</span>
       </label>
       <div data-ng-show="admin.node.postpone_superpower">
@@ -97,7 +97,7 @@
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.can_delete_submission" type="checkbox">
+        <input data-ng-model="admin.node.can_delete_submission" type="checkbox" />
         <span data-translate>Permit Receivers to delete Tips</span>
       </label>
       <div data-ng-show="admin.node.can_delete_submission">
@@ -113,7 +113,7 @@
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.indexing" type="checkbox">
+        <input data-ng-model="admin.node.indexing" type="checkbox" />
         <span data-translate>Enable search engines indexing</span>
       </label>
       <div data-ng-show="admin.node.">
@@ -126,7 +126,7 @@
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.ahmia" type="checkbox">
+        <input data-ng-model="admin.node.ahmia" type="checkbox" />
         <span data-translate>Enable Ahmia publishing</span>
       </label>
       <div data-ng-show="admin.node.ahmia">
@@ -137,14 +137,14 @@
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.disable_privacy_badge" type="checkbox">
+        <input data-ng-model="admin.node.disable_privacy_badge" type="checkbox" />
         <span data-translate>Disable the privacy badge</span>
       </label>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.disable_security_awareness_badge" type="checkbox">
+        <input data-ng-model="admin.node.disable_security_awareness_badge" type="checkbox" />
         <span data-translate>Disable the security awareness badge</span>
       </label>
     </div>
