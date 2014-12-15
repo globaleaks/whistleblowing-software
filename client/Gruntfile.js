@@ -174,10 +174,8 @@ module.exports = function(grunt) {
 
   var resource = grunt.option('resource')
 
-  if (resource != 'master' && resource != 'devel') {
-    grunt.fail.warn("WARNING: when performing grunt tasks you should indicate explicitly the translation resource name\n" +
-                    "Available resources are: master, devel\n" +
-                    "e.g.: grunt updateTranslations --resource devel");
+  if (resource == undefined) {
+    resource = 'master'
   }
 
   var path = require('path'),
@@ -368,18 +366,14 @@ module.exports = function(grunt) {
     });
   }
 
-  grunt.registerTask('pushTx', function(){
-    var done = this.async();
-    updateTxSource(done);
-  });
-
-  grunt.registerTask('pullTx', function(){
-    var done = this.async();
-
-    fetchTxTranslations(done);
-  });
-
   grunt.registerTask('updateTranslationsSource', function() {
+
+    resource = grunt.option('resource')
+    if (resource != 'master' && resource != 'devel') {
+        grunt.fail.warn("WARNING: when updating translations you should indicate explicitly the translation resource name\n" +
+                        "Available resources are: master, devel\n" +
+                        "e.g.: grunt updateTranslations --resource devel");
+    }
 
     var done = this.async(),
       gt = new Gettext(),
