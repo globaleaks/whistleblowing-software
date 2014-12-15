@@ -33,7 +33,7 @@
     "bootstrap": "3.2.0",
     "bootstrap-arabic": "3.2.0",
     "underscore": "1.7.0",
-    "d3": "3.4.13"
+    "d3": "3.4.13",
     "angular-native-dragdrop": "1.0.6",
     "font-awesome": "4.2.0"
   },
