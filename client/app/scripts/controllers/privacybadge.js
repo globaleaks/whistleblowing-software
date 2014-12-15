@@ -1,4 +1,4 @@
-GLClient.controller('PrivacyBoxCtrl',
+GLClient.controller('PrivacyBadgeBoxCtrl',
   ['$scope', '$http', '$rootScope',
   function($scope, $http, $rootScope) {
 
@@ -24,8 +24,8 @@ GLClient.controller('PrivacyBoxCtrl',
       $scope.boxes = 'closed';
     }
 
-    $scope.displayBox = false;
-    $scope.boxes = 'closed';
+    $scope.displayBox = true;
+    $scope.boxes = 'open';
 
     /** XXX we are making the *strong* assumption that the GlobaLeaks instances
      *  will only be served as a Tor Hidden Service.

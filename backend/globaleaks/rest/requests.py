@@ -131,6 +131,10 @@ adminNodeDesc = {
     'configured': bool,
     'admin_language': unicode,
     'admin_timezone': int,
+    'enable_custom_privacy_badge': bool,
+    'custom_privacy_badge_tbb': unicode,
+    'custom_privacy_badge_tor': unicode,
+    'custom_privacy_badge_none': unicode,
 }
 
 adminNotificationDesc = {
@@ -249,7 +253,12 @@ anonNodeDesc = {
     'configured': bool,
     'disable_privacy_badge': bool,
     'disable_security_awareness_badge': bool,
-    'disable_security_awareness_questions': bool
+    'disable_security_awareness_questions': bool,
+    'enable_custom_privacy_badge': bool,
+    'custom_privacy_badge_tbb': unicode,
+    'custom_privacy_badge_tor': unicode,
+    'custom_privacy_badge_none': unicode,
+
 }
 
 TipOverview = {

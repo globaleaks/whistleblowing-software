@@ -97,7 +97,10 @@ def create_tables(create_node=True):
             'disable_privacy_badge': False,
             'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
-
+            'enable_custom_privacy_badge': False,
+            'custom_privacy_badge_tbb': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'custom_privacy_badge_tor': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'custom_privacy_badge_none': dict({ GLSetting.memory_copy.default_language: u"" }),
         }
 
         appdata_dict = opportunistic_appdata_init()

@@ -182,6 +182,22 @@ class Replacer1415(TableReplacer):
                 new_node.whistleblowing_button = appdata['node']['whistleblowing_button']
                 continue
 
+            if v.name == 'enable_custom_privacy_badge':
+                new_node.enable_custom_privacy_badge = False
+                continue
+
+            if v.name == 'custom_privacy_badge_tbb':
+                new_node.custom_privacy_badge_tbb = {'en': ''}
+                continue
+
+            if v.name == 'custom_privacy_badge_tor':
+                new_node.custom_privacy_badge_tor = {'en': ''}
+                continue
+
+            if v.name == 'custom_privacy_badge_none':
+                new_node.custom_privacy_badge_none = {'en': ''}
+                continue
+
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
