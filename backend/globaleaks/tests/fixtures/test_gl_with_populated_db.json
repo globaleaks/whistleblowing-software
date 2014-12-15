@@ -343,7 +343,11 @@
       "security_awareness_title": {"en": ""},
       "security_awareness_text": {"en": ""},
       "whistleblowing_question": {"en": ""},
-      "whistleblowing_button": {"en": ""}
+      "whistleblowing_button": {"en": ""},
+      "enable_custom_privacy_badge": false,
+      "custom_privacy_badge_tbb": {"en": ""},
+      "custom_privacy_badge_tor": {"en": ""},
+      "custom_privacy_badge_none": {"en": ""}
     },
     "class": "Node"
   },

@@ -786,7 +786,11 @@ class MockDict():
             'default_timezone': 0,
             'default_language': u'en',
             'admin_timezone': 0,
-            'admin_language': u'en'
+            'admin_language': u'en',
+            'enable_custom_privacy_badge': False,
+            'custom_privacy_badge_tbb': u'',
+            'custom_privacy_badge_tor': u'',
+            'custom_privacy_badge_none': u'',
         }
 
         self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',
