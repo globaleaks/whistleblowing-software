@@ -68,7 +68,6 @@ class ContextCapability(_CapabilityClass):
 
     bool_vars = [
         'selectable_receiver',
-        'file_required',
         'select_all_receivers',
         'require_file_description',
         'require_pgp',
@@ -92,7 +91,6 @@ class ContextCapability(_CapabilityClass):
         # setting the default before loading
 
         self.selectable_receiver = True
-        self.file_required = False
         self.select_all_receivers = True # This is the default: all selected
         self.require_file_description = False # still not implemented!
         self.require_pgp = False

@@ -126,7 +126,6 @@ def anon_serialize_context(store, context, language=GLSetting.memory_copy.defaul
         "id": context.id,
         "escalation_threshold": 0,
         "file_max_download": context.file_max_download,
-        "file_required": context.file_required,
         "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
         "tip_timetolive": context.tip_timetolive,
@@ -185,9 +184,9 @@ def anon_serialize_field(store, field, language):
     ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
     fieldgroup_id = ff.parent_id if ff else ''
 
-    fields = dict()
+    fields = []
     for f in field.children.order_by(models.Field.y):
-        fields[f.id] = anon_serialize_field(store, f, language)
+        fields.append(anon_serialize_field(store, f, language))
 
     ret_dict = {
         'id': field.id,
@@ -202,7 +201,7 @@ def anon_serialize_field(store, field, language):
         'x': field.x,
         'y': field.y,
         'options': options,
-        'children': fields,
+        'children': fields
     }
 
     return get_localized_values(ret_dict, field, field.localized_strings, language)
@@ -216,9 +215,9 @@ def anon_serialize_step(store, step, language):
     :return: a serialization of the object
     """
 
-    fields = dict()
+    fields = []
     for f in step.children.order_by(models.Field.y):
-        fields[f.id] = anon_serialize_field(store, f, language)
+        fields.append(anon_serialize_field(store, f, language))
 
     ret_dict = {
         'id': step.id,

@@ -156,11 +156,6 @@ def import_files(store, submission, files, finalize):
             raise errors.FileIdNotFound
 
         ifile.internaltip_id = submission.id
-   
-    if finalize and submission.context.file_required and not len(files):
-        log.debug("Missing file for a submission in context %s" %
-                  submission.context.name)
-        raise errors.FileRequiredMissing
 
 def verify_fields_recursively(fields, wb_fields):
    for f in fields:
@@ -175,7 +170,15 @@ def verify_fields_recursively(fields, wb_fields):
            if len(wb_fields[f]['value']) > GLSetting.memory_copy.maximum_textsize:
                raise errors.InvalidInputFormat("field value overcomes size limitation")
 
-       verify_fields_recursively(fields[f]['children'], wb_fields[f]['children'])
+       indexed_fields  = {}
+       for f_c in fields[f]['children']:
+           indexed_fields[f_c['id']] = copy.deepcopy(f_c)
+
+       indexed_wb_fields = {}
+       for f_c in wb_fields[f]['children']:
+           indexed_wb_fields[f_c['id']] = copy.deepcopy(f_c)
+
+       verify_fields_recursively(indexed_fields, indexed_wb_fields)
 
    for wbf in wb_fields:
        if wbf not in fields:
@@ -184,16 +187,15 @@ def verify_fields_recursively(fields, wb_fields):
 def verify_steps(steps, wb_steps):
     indexed_fields  = {}
     for step in steps:
-        for f_id in step['children']:
-            indexed_fields[f_id] = copy.deepcopy(step['children'][f_id])
+        for f in step['children']:
+            indexed_fields[f['id']] = copy.deepcopy(f)
 
     indexed_wb_fields = {}
     for step in wb_steps:
-        for f_id in step['children']:
-            indexed_wb_fields[f_id] = copy.deepcopy(step['children'][f_id])
+        for f in step['children']:
+            indexed_wb_fields[f['id']] = copy.deepcopy(f)
 
     return verify_fields_recursively(indexed_fields, indexed_wb_fields)
-
 
 @transact
 def create_submission(store, request, finalize, language=GLSetting.memory_copy.default_language):
