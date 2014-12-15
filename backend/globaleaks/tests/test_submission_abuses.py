@@ -46,7 +46,7 @@ class SubmissionTest(helpers.TestGL):
         'selectable_receiver': True,
         'receivers': [],
         'submission_timetolive': 100,
-        'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
+        'tags' : [ u'one', u'two', u'y' ],
         'select_all_receivers': True,
         'receiver_introduction': u"bleh",
         'postpone_superpower': False,
@@ -193,8 +193,8 @@ class TestTipInstance(SubmissionTest):
         submission_request['context_id'] = SubmissionTest.context_used['id']
 
         for wb_step in submission_request['wb_steps']:
-            for cid in wb_step['children']:
-                wb_step['children'][cid]['value'] = unicode("You know nothing John Snow" * 100  * 100)
+            for c in wb_step['children']:
+                c['value'] = unicode("You know nothing John Snow" * 100  * 100)
 
         submission_request['finalize'] = True
 

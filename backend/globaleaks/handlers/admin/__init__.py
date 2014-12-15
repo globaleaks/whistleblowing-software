@@ -104,8 +104,8 @@ def db_create_step(store, context_id, steps, language):
         fill_localized_keys(step, models.Step.localized_strings, language)
 
         s = models.Step.new(store, step)
-        for field_id in step['children']:
-            field = models.Field.get(store, field_id)
+        for f in step['children']:
+            field = models.Field.get(store, f['id'])
             if not field:
                 log.err("Creation error: unexistent field can't be associated")
                 raise errors.FieldIdNotFound
@@ -154,8 +154,8 @@ def db_update_steps(store, context_id, steps, language):
            new_steps.append(models.Step(step))
 
         i = 1
-        for field_id in step['children']:
-            field = models.Field.get(store, field_id)
+        for f in step['children']:
+            field = models.Field.get(store, f['id'])
             i += 1
             field.y = i
             if not field:
@@ -195,7 +195,6 @@ def admin_serialize_context(store, context, language=GLSetting.memory_copy.defau
         "escalation_threshold": context.escalation_threshold,
         "receivers": [r.id for r in context.receivers],
         "tags": context.tags if context.tags else [],
-        "file_required": context.file_required,
         # tip expressed in day, submission in hours
         "tip_timetolive": context.tip_timetolive / (60 * 60 * 24),
         "submission_timetolive": context.submission_timetolive / (60 * 60),

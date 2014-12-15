@@ -373,9 +373,9 @@ class TestGLWithPopulatedDB(TestGL):
             self.dummyFields[idx]['id'] = f['id']
 
         self.dummyContext['steps'][0]['children'] = [
-            self.dummyFields[0]['id'], # Field 1
-            self.dummyFields[1]['id'], # Field 2
-            self.dummyFields[2]['id']  # Generalities
+            self.dummyFields[0], # Field 1
+            self.dummyFields[1], # Field 2
+            self.dummyFields[2]  # Generalities
         ]
 
         yield update_context(self.dummyContext['id'], self.dummyContext)
@@ -718,7 +718,6 @@ class MockDict():
             'escalation_threshold': 1,
             'receivers' : [],
             'tags': [],
-            'file_required': False,
             'receiver_introduction': u'These are our receivers',
             'postpone_superpower': False,
             'can_delete_submission': False,
@@ -856,7 +855,7 @@ def fill_random_field_recursively(field, value=None):
         field['value'] = unicode(value)
 
     for c in field['children']:
-        fill_random_field_recursively(field['children'][c])
+        fill_random_field_recursively(c)
 
 @transact
 def fill_random_fields(store, context_id, value=None):
@@ -867,7 +866,7 @@ def fill_random_fields(store, context_id, value=None):
 
     for step in steps:
         for field in step['children']:
-            fill_random_field_recursively(step['children'][field])
+            fill_random_field_recursively(field)
 
     return steps
 

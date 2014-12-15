@@ -45,22 +45,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertEqual(status['mark'], u'submission')
 
     @inlineCallbacks
-    def test_fail_submission_missing_required_file(self):
-        @transact
-        def change_context_config(store):
-            context = store.find(models.Context, models.Context.id == self.dummyContext['id']).one()
-            context.file_required = True
-
-        yield change_context_config()
-
-        submission_desc = dict(self.dummySubmission)
-
-        submission_desc['context_id'] = self.dummyContext['id']
-        submission_desc['finalize'] = True
-        submission_desc['wb_steps'] = yield helpers.fill_random_fields(self.dummyContext['id'])
-        yield self.assertFailure(submission.create_submission(submission_desc, finalize=True), errors.FileRequiredMissing)
-
-    @inlineCallbacks
     def test_create_submission_attach_files_finalize_and_access_wbtip(self):
         submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
@@ -287,9 +271,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         for s in sbmt['wb_steps']:
             for f in s['children']:
                 # we assign a random id to the first field
-                tmp = s['children'][f]
-                del s['children'][f]
-                s['children']['alien'] = tmp
+                f['id'] = 'alien'
                 found_at_least_a_field = True
                 break
 
@@ -304,9 +286,17 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
                                                           # marked as required!
 
         sbmt = yield self.get_dummy_submission(self.dummyContext['id'])
+        i = 0
+        done = False
         for s in sbmt['wb_steps']:
-            if required_key in s['children']:
-                del s['children'][required_key]
+            for f in s['children']:
+                if f['id'] == required_key:
+                    s['children'].pop(i)
+                    done = True
+                    break
+            if done:
+                break
+            i += 1
 
         yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
 

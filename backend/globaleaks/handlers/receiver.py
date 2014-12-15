@@ -209,9 +209,8 @@ def get_receiver_tip_list(store, receiver_id, language=GLSetting.memory_copy.def
 
         for s in rtip.internaltip.wb_steps:
             for f in s['children']:
-                field = s['children'][f]
-                if field['preview']:
-                    preview_data.append(field)
+                if f['preview']:
+                    preview_data.append(f)
 
         single_tip_sum.update({ 'preview' : preview_data })
         rtip_summary_list.append(single_tip_sum)

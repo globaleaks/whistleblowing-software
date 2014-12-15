@@ -181,8 +181,8 @@ controller('SubmissionStepsCtrl', ['$scope', function($scope) {
     }
   };
 }]).
-controller('ReceiptController', ['$scope', 'Authentication', 'WhistleblowerTip',
-  function($scope, Authentication, WhistleblowerTip) {
+controller('ReceiptController', ['$scope', '$location', 'Authentication', 'WhistleblowerTip',
+  function($scope, $location, Authentication, WhistleblowerTip) {
 
   format_keycode = function(keycode) {
     if (keycode && keycode.length == 16) {

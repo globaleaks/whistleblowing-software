@@ -523,7 +523,6 @@
           }
         }
       },
-      "file_required": false,
       "maximum_selectable_receivers": 0,
       "tip_max_access": 10,
       "require_file_description": false,

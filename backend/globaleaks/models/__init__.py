@@ -210,7 +210,6 @@ class Context(Model):
 
     tip_max_access = Int()
     file_max_download = Int()
-    file_required = Bool()
     tip_timetolive = Int()
     submission_timetolive = Int()
     last_update = DateTime()
@@ -244,7 +243,7 @@ class Context(Model):
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'file_max_download',
                  'maximum_selectable_receivers', 'delete_consensus_percentage',
                  'presentation_order' ]
-    bool_keys = [ 'selectable_receiver', 'file_required', 'select_all_receivers',
+    bool_keys = [ 'selectable_receiver', 'select_all_receivers',
                   'postpone_superpower', 'can_delete_submission',
                   'require_file_description', 'require_pgp',
                   'show_small_cards', 'show_receivers', "enable_private_messages" ]
