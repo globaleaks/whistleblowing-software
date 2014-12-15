@@ -828,8 +828,8 @@ class FieldField(BaseModel):
     unicode_keys = ['parent_id', 'child_id']
 
 
-class WeekStats(Model):
-    __storm_table__ = 'weekstats'
+class Stats(Model):
+    __storm_table__ = 'Stats'
 
     start = DateTime()
     summary = JSON()
@@ -946,4 +946,4 @@ Receiver.contexts = ReferenceSet(
 models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment,
           InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile,
           Notification, Message, Stats, Field, FieldField, Step,
-          WeekStats, Anomalies, ApplicationData]
+          Stats, Anomalies, ApplicationData]

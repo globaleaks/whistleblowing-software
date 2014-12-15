@@ -89,18 +89,6 @@ external_counted_events = {
     'file_uploaded': 0,
 }
 
-def stats_counter(element):
-    """
-    Stats counter is called every 30 seconds and make a first dump of the
-    variable in memory: GLSetting.anomailes_counter
-    Then in jobs/statistics_sched.py is transformed in statistic.
-
-    @param element: one of the four element above
-    @return: None, but increment internal counters
-    """
-    assert GLSetting.anomalies_counter.has_key(element), "Invalid usage of stats_counter"
-    GLSetting.anomalies_counter[element] += 1
-
 class GLSettingsClass:
 
     initialized = False

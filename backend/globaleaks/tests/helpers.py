@@ -15,14 +15,14 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 
-from globaleaks import db, models, security
+from globaleaks import db, models, security, anomaly
 from globaleaks.db.datainit import opportunistic_appdata_init, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLApiCache
 from globaleaks.handlers.admin import create_context, update_context, create_receiver, db_get_context_steps
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
-from globaleaks.jobs import delivery_sched, notification_sched
+from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched
 from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.plugins import notification
 from globaleaks.settings import GLSetting, transact, transact_ro
@@ -51,6 +51,8 @@ with open(os.path.join(TEST_DIR, 'valid_pgp_key.txt')) as pgp_file:
 
 transact.tp = FakeThreadPool()
 authentication.reactor = task.Clock()
+anomaly.reactor = task.Clock()
+anomaly.notification = False
 
 class UTlog:
 
@@ -128,6 +130,10 @@ class TestGL(unittest.TestCase):
             yield import_fixture(fixture)
 
         import_memory_variables()
+
+        anomaly.Alarm.reset()
+        anomaly.EventTrackQueue.reset()
+        statistics_sched.StatisticsSchedule.reset()
 
     def setUp_dummy(self):
         dummyStuff = MockDict()

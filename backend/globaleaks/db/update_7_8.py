@@ -3,7 +3,6 @@
 from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.db import acquire_email_templates
 from globaleaks.models import Model
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 
@@ -284,14 +283,10 @@ class Replacer78(TableReplacer):
         for k, v in new_notification._storm_columns.iteritems():
 
             if v.name == 'encrypted_tip_template':
-                new_notification.encrypted_tip_template = every_language(
-                        acquire_email_templates(
-                            'default_ETNT.txt',
-                            "default Encrypted Tip notification not available! %NodeName% configure this!"))
+                new_notification.encrypted_tip_template = every_language("")
                 continue
             if v.name == 'encrypted_tip_mail_title':
-                new_notification.encrypted_tip_mail_title = every_language(
-                    "[%NodeName%] Encrypted Tip")
+                new_notification.encrypted_tip_mail_title = every_language("")
                 continue
             if v.name == 'plaintext_tip_template':
                 new_notification.plaintext_tip_template  = old_notification.tip_template
@@ -300,10 +295,7 @@ class Replacer78(TableReplacer):
                 new_notification.plaintext_tip_mail_title = old_notification.tip_mail_title
                 continue
             if v.name == 'zip_description':
-                new_notification.zip_description = every_language(
-                        acquire_email_templates(
-                            'default_ZCT.txt',
-                            "default Zip Collection template not available! %NodeName% configure this!"))
+                new_notification.zip_description = every_language("")
                 continue
             if v.name == 'message_template':
                 new_notification.message_template = every_language("This is an E-Mail message to notify you about a new Message from the Whisleblower.")

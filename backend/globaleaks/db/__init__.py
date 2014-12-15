@@ -46,19 +46,6 @@ def create_tables_transaction(store):
     # new is the only Models function executed without @transact, call .add, but
     # the called has to .commit and .close, operations commonly performed by decorator
 
-def acquire_email_templates(filename, fallback):
-
-    templ_f = os.path.join(GLSetting.static_db_source, filename)
-
-    if not os.path.isfile(templ_f):
-        return fallback
-
-    # else, load from the .txt files
-    with open( templ_f) as templfd:
-        template_text = templfd.read()
-        log.info("Loading %d bytes from template: %s" % (len(template_text), filename))
-        return template_text
-
 def create_tables(create_node=True):
     """
     Override transactor for testing.
@@ -112,33 +99,6 @@ def create_tables(create_node=True):
             'disable_security_awareness_questions': False,
 
         }
-
-        templates = {}
-
-        templates['encrypted_tip'] = acquire_email_templates('default_ETNT.txt',
-            "default Encrypted Tip notification not available! %NodeName% configure this!")
-        templates['plaintext_tip'] = acquire_email_templates('default_PTNT.txt',
-            "default Plaintext Tip notification not available! %NodeName% configure this!")
-
-        templates['encrypted_comment'] = acquire_email_templates('default_ECNT.txt',
-            "default Encrypted Comment notification not available! %NodeName% configure this!")
-        templates['plaintext_comment'] = acquire_email_templates('default_PCNT.txt',
-            "default Plaintext Comment notification not available! %NodeName% configure this!")
-
-        templates['encrypted_message'] = acquire_email_templates('default_EMNT.txt',
-             "default Encrypted Message notification not available! %NodeName% configure this!")
-        templates['plaintext_message'] = acquire_email_templates('default_PMNT.txt',
-             "default Plaintext Message notification not available! %NodeName% configure this!")
-
-        templates['encrypted_file'] = acquire_email_templates('default_EFNT.txt',
-            "default Encrypted File notification not available! %NodeName% configure this!")
-        templates['plaintext_file'] = acquire_email_templates('default_PFNT.txt',
-            "default Plaintext File notification not available! %NodeName% configure this!")
-
-        # This specific template do not need different threatment as it is used to write some
-        # data inside zip files.
-        templates['zip_collection'] = acquire_email_templates('default_ZCT.txt',
-            "default Zip Collection template not available! %NodeName% configure this!")
 
         appdata_dict = opportunistic_appdata_init()
 
