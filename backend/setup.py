@@ -82,16 +82,6 @@ setup(
     test_suite='globaleaks.tests',
     package_data={'globaleaks': [
         'db/sqlite.sql',
-        'db/default_ECNT.txt',
-        'db/default_EFNT.txt',
-        'db/default_EMNT.txt',
-        'db/default_ETNT.txt',
-        'db/default_PCNT.txt',
-        'db/default_PFNT.txt',
-        'db/default_PMNT.txt',
-        'db/default_PTNT.txt',
-        'db/default_ZCT.txt',
-        'db/default_MNT.txt',
     ]},
     packages=[
         'globaleaks',

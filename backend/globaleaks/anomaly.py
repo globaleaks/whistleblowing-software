@@ -19,7 +19,9 @@ from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import log, datetime_now, is_expired, datetime_to_ISO8601
 from globaleaks.utils.tempobj import TempObj
 
+# needed in order to allow UT override
 reactor = None
+notification = True
 
 # follow the checker, they are executed from handlers/base.py
 # prepare() or flush()
@@ -198,13 +200,13 @@ class EventTrackQueue:
     queue = dict()
     event_absolute_counter = 0
 
-    @classmethod
-    def event_number(cls):
+    @staticmethod
+    def event_number():
         EventTrackQueue.event_absolute_counter += 1
         return EventTrackQueue.event_absolute_counter
 
-    @classmethod
-    def take_current_snapshot(cls):
+    @staticmethod
+    def take_current_snapshot():
         """
         Called only by the handler /admin/activities
         """
@@ -215,6 +217,10 @@ class EventTrackQueue:
 
         return serialized_ret
 
+    @staticmethod
+    def reset():
+        EventTrackQueue.queue = dict()
+        EventTrackQueue.event_absolute_counter = 0
 
 
 class Alarm:
@@ -266,35 +272,16 @@ class Alarm:
     def __init__(self):
         self.current_time = datetime_now()
 
-    def get_token_difficulty(self):
-        """
-        THIS FUNCTION IS NOT YET CALL
-
-        This function return the difficulty that will be enforced in the
-        token, whenever is File or Submission, here is evaluated with a dict.
-        """
-        self.difficulty_dict = {
-            'human_captcha': False,
-            'graph_captcha': False,
-            'proof_of_work': False,
+    @staticmethod
+    def reset():
+        Alarm.stress_levels = {
+            'disk_space' : 0,
+            'activity' : 0,
         }
 
-        if Alarm.stress_levels['activity'] >= 1:
-            self.difficulty_dict['graph_captcha'] = True
-
-        if Alarm.stress_levels['disk_space'] >= 1:
-            self.difficulty_dict['human_captcha'] = True
-
-        log.debug("get_token_difficulty in %s is: HC:%s, GC:%s, PoW:%s" % (
-                  self.current_time,
-                  "Y" if self.difficulty_dict['human_captcha'] else "N",
-                  "Y" if self.difficulty_dict['graph_captcha'] else "N",
-                  "Y" if self.difficulty_dict['proof_of_work'] else "N" ) )
-
-        return self.difficulty_dict
-
+    @staticmethod
     @defer.inlineCallbacks
-    def compute_activity_level(self, notification=True):
+    def compute_activity_level():
         """
         This function is called by the scheduled task, to update the
         Alarm level.
@@ -306,16 +293,16 @@ class Alarm:
         from globaleaks.handlers.statistics import AnomaliesCollection
 
         debug_reason = ""
-        self.number_of_anomalies = 0
+        Alarm.number_of_anomalies = 0
 
-        self.current_event_matrix = {}
+        current_event_matrix = {}
 
         requests_timing = []
 
         for event_id, event_obj in EventTrackQueue.queue.iteritems():
 
-            self.current_event_matrix.setdefault(event_obj.event_type, 0)
-            self.current_event_matrix[event_obj.event_type] += 1
+            current_event_matrix.setdefault(event_obj.event_type, 0)
+            current_event_matrix[event_obj.event_type] += 1
             requests_timing.append(event_obj.request_time)
 
         if len(requests_timing) > 2:
@@ -323,22 +310,13 @@ class Alarm:
                      (round(max(requests_timing), 2), round(min(requests_timing), 2) )
             )
 
-        # at the moment there is just the OUTCOME_ catch
-        # for event_name, threshold in Alarm.INCOMING_ANOMALY_MAP.iteritems():
-        #     if self.current_event_matrix.has_key(event_name):
-        #         if self.current_event_matrix[event_name] > threshold:
-        #             self.number_of_anomalies += 1
-        #             debug_reason = "%s[Incoming %s: %d>%d] " % \
-        #                            (debug_reason, event_name,
-        #                             self.current_event_matrix[event_name], threshold)
-
         for event_name, threshold in Alarm.OUTCOME_ANOMALY_MAP.iteritems():
-            if self.current_event_matrix.has_key(event_name):
-                if self.current_event_matrix[event_name] > threshold:
-                    self.number_of_anomalies += 1
+            if current_event_matrix.has_key(event_name):
+                if current_event_matrix[event_name] > threshold:
+                    Alarm.number_of_anomalies += 1
                     debug_reason = "%s[Incoming %s: %d>%d] " % \
                                    (debug_reason, event_name,
-                                    self.current_event_matrix[event_name], threshold)
+                                    current_event_matrix[event_name], threshold)
 
 
         previous_activity_sl = Alarm.stress_levels['activity']
@@ -347,10 +325,10 @@ class Alarm:
         # is raised at RED (two), and then is decremented at YELLOW (one) in the
         # next evaluation.
 
-        if self.number_of_anomalies >= 2:
+        if Alarm.number_of_anomalies >= 2:
             report_function = log.msg
             Alarm.stress_levels['activity'] = 2
-        elif self.number_of_anomalies == 1:
+        elif Alarm.number_of_anomalies == 1:
             report_function = log.info
             Alarm.stress_levels['activity'] = 1
         else:
@@ -362,8 +340,8 @@ class Alarm:
             Alarm.stress_levels['activity'] = 1
 
         # if there are some anomaly or we're nearby, record it.
-        if self.number_of_anomalies >= 1 or Alarm.stress_levels['activity'] >= 1:
-            AnomaliesCollection.update_AnomalyQ(self.current_event_matrix,
+        if Alarm.number_of_anomalies >= 1 or Alarm.stress_levels['activity'] >= 1:
+            AnomaliesCollection.update_AnomalyQ(current_event_matrix,
                                                 Alarm.stress_levels['activity'])
 
         if previous_activity_sl or Alarm.stress_levels['activity']:
@@ -375,13 +353,13 @@ class Alarm:
 
         # Alarm notification get the copy of the latest activities
         if notification:
-            yield self.admin_alarm_notification()
+            yield Alarm.admin_alarm_notification(current_event_matrix)
 
         defer.returnValue(Alarm.stress_levels['activity'] - previous_activity_sl)
 
-
+    @staticmethod
     @defer.inlineCallbacks
-    def admin_alarm_notification(self):
+    def admin_alarm_notification(event_matrix):
         """
         This function put a mail in queue for the Admin, if the
         configured threshold has been reached for Alarm notification.
@@ -412,7 +390,7 @@ class Alarm:
         def _ad():
 
             retstr = ""
-            for event, amount in self.current_event_matrix.iteritems():
+            for event, amount in event_matrix.iteritems():
                 retstr = "%s: %d\n%s" % (event, amount, retstr)
             return retstr
 
@@ -420,12 +398,12 @@ class Alarm:
             return "%s" % Alarm.stress_levels['disk_space']
 
         def _dd():
-            return "%s Megabytes" % self.latest_measured_freespace
+            return "%s Megabytes" % Alarm.latest_measured_freespace
 
         message_required = False
-        if self.stress_levels['activity'] >= 1:
+        if Alarm.stress_levels['activity'] >= 1:
             message_required = True
-        if self.stress_levels['disk_space'] >= 1:
+        if Alarm.stress_levels['disk_space'] >= 1:
             message_required = True
 
         if not message_required:
@@ -477,6 +455,32 @@ class Alarm:
                        security=GLSetting.memory_copy.notif_security,
                        event=None)
 
+    def get_token_difficulty(self):
+        """
+        THIS FUNCTION IS NOT YET CALL
+
+        This function return the difficulty that will be enforced in the
+        token, whenever is File or Submission, here is evaluated with a dict.
+        """
+        self.difficulty_dict = {
+            'human_captcha': False,
+            'graph_captcha': False,
+            'proof_of_work': False,
+        }
+
+        if Alarm.stress_levels['activity'] >= 1:
+            self.difficulty_dict['graph_captcha'] = True
+
+        if Alarm.stress_levels['disk_space'] >= 1:
+            self.difficulty_dict['human_captcha'] = True
+
+        log.debug("get_token_difficulty in %s is: HC:%s, GC:%s, PoW:%s" % (
+                  self.current_time,
+                  "Y" if self.difficulty_dict['human_captcha'] else "N",
+                  "Y" if self.difficulty_dict['graph_captcha'] else "N",
+                  "Y" if self.difficulty_dict['proof_of_work'] else "N" ) )
+
+        return self.difficulty_dict
 
     def report_disk_usage(self, free_mega_bytes):
         """
@@ -501,13 +505,14 @@ class Alarm:
             Alarm.stress_levels['disk_space'] = 0
 
 
-    def get_description_status(self):
+    @staticmethod
+    def get_description_status():
         """
         This function is useful to get some debug log
         """
         return "Alarm CPU %d, Disk %d" % (
-            self.stress_levels['activity'],
-            self.stress_levels['disk_space'] )
+            Alarm.stress_levels['activity'],
+            Alarm.stress_levels['disk_space'] )
 
 
 

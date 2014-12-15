@@ -10,103 +10,163 @@ from globaleaks.handlers.admin.field import create_field
 from globaleaks.jobs import delivery_sched
 from globaleaks.plugins.base import Event
 from globaleaks.settings import transact_ro
-from globaleaks.models import Node, InternalTip, ReceiverTip
+from globaleaks.models import Node, Notification, InternalTip, ReceiverTip
 from globaleaks.jobs.notification_sched import serialize_receivertip
 from globaleaks.utils.templating import Templating
 
+generic_keyword_list = [
+    '%NodeName%',
+    '%HiddenService%',
+    '%PublicSite%',
+    '%ReceiverName%',
+    '%ContextName%',
+]
+
+tip_keyword_list = [
+    '%TipTorURL%',
+    '%TipT2WURL%',
+    '%TipNum%',
+]
+
+protected_keyword_list = [
+    '%TipFields%'
+]
+
+comment_keyword_list = [
+    '%CommentSource%',
+]
+
+file_keyword_list = [
+    '%FileName%',
+    '%FileType%',
+    '%FileSize%',
+]
+
+alarm_keyword_list = [
+    "%ActivityAlarmLevel%",
+    "%ActivityDump%",
+    "%DiskAlarmLevel%",
+    "%DiskDump%",
+]
+
+templates_desc = {
+    "admin_anomaly_template":
+        [generic_keyword_list, alarm_keyword_list],
+
+    "encrypted_comment_mail_title":
+        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
+
+    "encrypted_comment_template":
+        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
+
+    "encrypted_file_mail_title":
+        [generic_keyword_list, tip_keyword_list, file_keyword_list],
+
+    "encrypted_file_template":
+        [generic_keyword_list, tip_keyword_list, file_keyword_list],
+
+    "encrypted_message_mail_title":
+        [generic_keyword_list, tip_keyword_list],
+
+    "encrypted_message_template" :
+        [generic_keyword_list, tip_keyword_list],
+
+    "encrypted_tip_mail_template":
+        [generic_keyword_list, tip_keyword_list],
+
+    "encrypted_tip_mail_title":
+        [generic_keyword_list, tip_keyword_list],
+
+    "encrypted_tip_template":
+        [generic_keyword_list, tip_keyword_list, protected_keyword_list],
+
+    "pgp_expiration_alert":
+        [generic_keyword_list],
+
+    "pgp_expiration_notice":
+        [generic_keyword_list],
+
+    "plaintext_comment_mail_title":
+        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
+
+    "plaintext_comment_template":
+        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
+
+    "plaintext_file_mail_title":
+        [generic_keyword_list, tip_keyword_list, file_keyword_list],
+
+    "plaintext_file_template":
+        [generic_keyword_list, tip_keyword_list, file_keyword_list],
+
+    "plaintext_message_mail_title":
+        [generic_keyword_list, tip_keyword_list],
+
+    "plaintext_message_template":
+        [generic_keyword_list, tip_keyword_list],
+
+    "plaintext_tip_mail_title":
+        [generic_keyword_list, tip_keyword_list],
+
+    "plaintext_tip_template":
+        [generic_keyword_list, tip_keyword_list],
+
+    "zip_description.txt":
+        [generic_keyword_list, tip_keyword_list]
+}
+
+# Templating 'supported_event_type' is a method variable with a different pattern
+# the whole test can be re-engineered
+supported_event_types = { u'encrypted_tip' : 'Tip',
+                          u'plaintext_tip' : 'Tip',
+                          u'encrypted_file' : 'File',
+                          u'plaintext_file' : 'File',
+                          u'encrypted_comment' : 'Comment',
+                          u'plaintext_comment' : 'Comment',
+                          u'encrypted_message' : 'Message',
+                          u'plaintext_message' : 'Message',
+                          u'zip_collection' : 'Collection'
+                          }
 
 class notifTemplateTest(helpers.TestGL):
+    """
+    Not yet implemented, but present in templating.py
 
-    templates_list = [
-        'default_ETNT.txt',
-        'default_PTNT.txt',
-        'default_ECNT.txt',
-        'default_PCNT.txt',
-        'default_EMNT.txt',
-        'default_PMNT.txt',
-        'default_EFNT.txt',
-        'default_PFNT.txt',
-        'default_ZCT.txt'
-    ]
-
-    generic_keyword_list = [
-        '%NodeName%',
-        '%HiddenService%',
-        '%PublicSite%',
-        '%ReceiverName%',
-        '%ContextName%',
-    ]
-
-    tip_keyword_list = [
-        '%TipTorURL%',
-        '%TipT2WURL%',
-        '%TipNum%',
-    ]
-
-    protected_keyword_list = [
-        '%TipFields%'
-    ]
-
-    comment_keyword_list = [
-        '%CommentSource%',
-    ]
-
-    file_keyword_list = [
-        '%FileName%',
-        '%FileType%',
-        '%FileSize%',
-    ]
-
-    templates = {}
+    u'encrypted_expiring_tip' : 'Tip',
+    u'plaintext_expiring_tip' : 'Tip',
+    """
 
     @inlineCallbacks
-    def setUp(self):
-        yield super(notifTemplateTest, self).setUp()
+    def _fill_event_dict(self, event_type, event_trigger):
+        """
+        A notification is based on the Node, Context and Receiver values,
+        that has to be taken from the database.
+        """
+        receiver_dict = yield admin.get_receiver(self.createdReceiver['id'])
+        context_dict = yield admin.get_context(self.createdContext['id'])
+        steps_dict = yield admin.get_context_steps(self.createdContext['id'])
+        notif_dict = yield admin.notification.get_notification()
 
-        ### INITIALIZE BLOCK
-        self.mockContext =helpers.MockDict().dummyContext
-        self.mockReceiver = helpers.MockDict().dummyReceiver
-        self.mockNode = helpers.MockDict().dummyNode
-        self.mockFields = helpers.MockDict().dummyFields
+        yield admin.import_memory_variables()
+        node_dict = yield admin.admin_serialize_node()
 
-        for idx, field in enumerate(self.mockFields):
-            f = yield create_field(field, 'en')
-            self.mockFields[idx]['id'] = f['id']
+        # is a mock 'trigger_info' and 'trigger_parent' at the moment
+        self.tip['name'] = ' foo '
+        self.tip['size'] = ' 123 '
+        self.tip['content_type'] = ' application/javascript '
+        self.tip['creation_date'] = context_dict['creation_date']
+        self.tip['type'] = ' sorry maker '
+        # this is requested in the file cases
 
-        self.mockContext['steps'][0]['children'] = [
-            self.mockFields[0]['id'], # Field 1
-            self.mockFields[1]['id'], # Field 2
-            self.mockFields[4]['id']  # Generalities
-        ]
-
-
-        self.createdContext = yield admin.create_context(self.mockContext)
-        self.assertTrue(self.createdContext.has_key('id'))
-
-        self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
-
-        self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
-        self.assertTrue(self.createdReceiver.has_key('id'))
-
-        self.createdNode = yield admin.update_node(self.mockNode)
-        self.assertTrue(self.createdNode.has_key('version'))
-        ### END OF THE INITIALIZE BLOCK
-
-    @transact_ro
-    def get_a_fucking_random_submission(self, store):
-
-        aits = store.find(InternalTip)
-        self.failIfEqual(aits.count(), 0,
-                         "in our Eternal Mangekyō Sharingan, no InternalTip are available")
-
-        rits = store.find(ReceiverTip)
-        self.failIfEqual(rits.count(), 0,
-                         "in our Eternal Mangekyō Sharingan, no ReceiverTip are available")
-
-        # just because
-        # storm.exceptions.UnorderedError: Can't use first() on unordered result set
-        rits.order_by(Desc(ReceiverTip.id))
-        return serialize_receivertip(rits.first())
+        self.event = Event(type = event_type,
+                           trigger = event_trigger,
+                           notification_settings = notif_dict,
+                           node_info = node_dict,
+                           receiver_info = receiver_dict,
+                           context_info = context_dict,
+                steps_info = steps_dict,
+                           plugin = None,
+                           trigger_info = self.tip,
+                           trigger_parent = self.tip )
 
     @inlineCallbacks
     def _fill_event(self, event_type, trigger, trigger_id):
@@ -142,140 +202,75 @@ class notifTemplateTest(helpers.TestGL):
                 trigger_parent = None
             )
 
-    def _load_defaults(self):
-        # CWD is on _trial_temp
-
-        tps_path = 'globaleaks/db/'
-
-        for t in self.templates_list:
-            tp_path = os.path.join(os.getcwd(), '..', tps_path, t)
-
-            # we simply check for file opening while translation
-            # related things happen at db level
-            with open(tp_path) as f:
-                self.templates[t] = f.read()
-                self.assertGreater(self.templates[t], 0)
+    @transact_ro
+    def _load_defaults(self, store):
+        notif = store.find(Notification).one()
+        for t, _ in self.templates_desc:
+            self.templates[t] = getattr(notif, t)['en']
 
     @inlineCallbacks
     def test_keywords_conversion(self):
         self.templates = {}
-        for t in self.templates_list:
+        for t, keywords_list in templates_desc.iteritems():
+
             self.templates[t] = ""
 
-            for k in notifTemplateTest.generic_keyword_list:
-                self.templates[t] += " " + k
+            for kwl in keywords_list:
+                for keyword in kwl:
+                    self.templates[t] += " " + keyword + " / "
 
-        for k in notifTemplateTest.tip_keyword_list:
-            self.templates['default_ETNT.txt'] += " " + k
-            self.templates['default_PTNT.txt'] += " " + k
+        ### INITIALIZE DATABASE
+        self.mockContext =helpers.MockDict().dummyContext
+        self.mockReceiver = helpers.MockDict().dummyReceiver
+        self.mockNode = helpers.MockDict().dummyNode
 
-        for k in notifTemplateTest.protected_keyword_list:
-            self.templates['default_ETNT.txt'] += " " + k
+        self.createdContext = yield admin.create_context(self.mockContext)
+        self.assertTrue(self.createdContext.has_key('id'))
 
-        for k in notifTemplateTest.comment_keyword_list:
-            self.templates['default_ECNT.txt'] += " " + k
-            self.templates['default_PCNT.txt'] += " " + k
+        self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
 
-        for k in notifTemplateTest.file_keyword_list:
-            self.templates['default_EFNT.txt'] += " " + k
-            self.templates['default_PFNT.txt'] += " " + k
+        self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
+        self.assertTrue(self.createdReceiver.has_key('id'))
 
-        # THE REAL CONVERSION TEST START HERE:
-        self.mockSubmission = helpers.MockDict().dummySubmission
-        self.mockSubmission['finalize'] = True
-        self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
-        self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
-        self.mockSubmission['wb_steps'] = yield helpers.fill_random_fields(self.createdContext['id'])
-        self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
-
-        created_rtip = yield delivery_sched.tip_creation()
-        self.assertEqual(len(created_rtip), 1)
-
-        yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
-
-        # with the event, we can finally call the template filler
-        gentext = Templating().format_template(self.templates['default_ETNT.txt'], self.event)
-
-        self.assertSubstring(self.createdContext['name'], gentext)
-        self.assertSubstring(created_rtip[0], gentext)
-        self.assertSubstring(self.createdNode['public_site'], gentext)
-        self.assertSubstring(self.createdNode['hidden_service'], gentext)
-
-        ## HERE ARE ADDED SOME CHECK
-
-        # http://witchwind.wordpress.com/2013/12/15/piv-is-always-rape-ok/
-        # wtf has the internet in those days ? bwahahaah
-        tip_num_test = Templating().format_template(u'%TipNum%', self.event)
-        new_id = self.event.trigger_info['id'].replace('1', '2')
-        new_id.replace('3', '4')
-        self.event.trigger_info['id'] = new_id.replace('5', '6')
-        different_num = Templating().format_template(u'%TipNum%', self.event)
-        self.assertNotEqual(tip_num_test, different_num)
-    test_keywords_conversion.skip = 'Skipped due to #1024'
-
-
-    @inlineCallbacks
-    def test_default_template_keywords(self):
-
-        self._load_defaults()
-
-        # THE REAL CONVERSION TEST START HERE:
-        self.mockSubmission = helpers.MockDict().dummySubmission
-        self.mockSubmission['finalize'] = True
-        self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
-        self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
-        self.mockSubmission['wb_steps'] = yield helpers.fill_random_fields(self.createdContext['id'])
-        self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
-
-        created_rtip = yield delivery_sched.tip_creation()
-        self.assertEqual(len(created_rtip), 1)
-
-        yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
-
-        # with the event, we can finally call the template filler
-        gentext = Templating().format_template(self.templates['default_ETNT.txt'], self.event)
-
-        self.assertSubstring(self.createdContext['name'], gentext)
-        self.assertSubstring(created_rtip[0], gentext)
-        self.assertSubstring(self.createdNode['public_site'], gentext)
-
-
-    @inlineCallbacks
-    def test_tor2web_absence(self):
-        """
-        This test checks:
-        https://github.com/globaleaks/GlobaLeaks/issues/268
-        """
-
-        # be sure of Tor2Web capability
-        for attrname in Node.localized_strings:
-            self.mockNode[attrname] = self.mockNode[attrname]['en']
         self.createdNode = yield admin.update_node(self.mockNode)
-        yield admin.import_memory_variables()
+        self.assertTrue(self.createdNode.has_key('version'))
+        ### END OF THE INITIALIZE BLOCK
 
-        self._load_defaults()
-
+        # THE REAL CONVERSION TEST START HERE:
         self.mockSubmission = helpers.MockDict().dummySubmission
         self.mockSubmission['finalize'] = True
         self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
         self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
-        self.mockSubmission['wb_steps'] = yield helpers.fill_random_fields(self.createdContext['id'])
+        self.mockSubmission['wb_fields'] = helpers.fill_random_fields(self.createdContext)
         self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
 
         created_rtip = yield delivery_sched.tip_creation()
         self.assertEqual(len(created_rtip), 1)
 
-        yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
+        # some doubt in the next two lines: is just to have a mock tip
+        self.tip = dict(self.mockSubmission)
+        self.tip['id'] = created_rtip[0]
 
-        # adding funny configured variables
-        self.templates['default_ETNT.txt'] += " %OttimoDireiOOOttimoDirei%"
+        for fname, template in self.templates.iteritems():
 
-        # with the event, we can finally call the format checks
-        gentext = Templating().format_template(self.templates['default_ETNT.txt'], self.event)
+            # look for appropriate event_type, event_trigger
+            event_type = u''
+            event_trigger = ''
+            for e_t, e_tri in supported_event_types.iteritems():
+                if fname.startswith(e_t):
+                    event_type = e_t
+                    event_trigger = e_tri
+                    break
 
-        self.assertSubstring(self.createdContext['name'], gentext)
-        self.assertSubstring(created_rtip[0], gentext)
-        self.assertNotSubstring("%TipT2WURL%", gentext)
+            if not event_type:
+                # we've nothing to do not!
+                break
 
-        # test against funny configured variables
-        self.assertSubstring("%OttimoDireiOOOttimoDirei%", gentext)
+            yield self._fill_event_dict(event_type, event_trigger)
+
+            # with the event, we can finally call the template filler
+            gentext = Templating().format_template(template, self.event)
+
+            self.assertSubstring(self.createdContext['name'], gentext)
+            self.assertSubstring(self.createdNode['public_site'], gentext)
+            self.assertSubstring(self.createdNode['hidden_service'], gentext)

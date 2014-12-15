@@ -26,6 +26,14 @@ from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.models import Model, Field, FieldOption, Step, Context, db_forge_obj
 from globaleaks.db.datainit import opportunistic_appdata_init
 
+def every_language(default_text):
+    return_dict = {}
+
+    for code in LANGUAGES_SUPPORTED_CODES:
+        return_dict.update({code : default_text})
+
+    return return_dict
+
 class Node_version_14(Model):
     __storm_table__ = 'node'
     name = Unicode()
@@ -113,6 +121,37 @@ class Context_version_14(Model):
     show_receivers = Bool()
     enable_private_messages = Bool()
     presentation_order = Int()
+
+class Notification_version_14(Model):
+    __storm_table__ = 'notification'
+    server = Unicode()
+    port = Int()
+    username = Unicode()
+    password = Unicode()
+    source_name = Unicode()
+    source_email = Unicode()
+    security = Unicode()
+    encrypted_tip_template = Pickle()
+    encrypted_tip_mail_title = Pickle()
+    plaintext_tip_template = Pickle()
+    plaintext_tip_mail_title = Pickle()
+    encrypted_file_template = Pickle()
+    encrypted_file_mail_title = Pickle()
+    plaintext_file_template = Pickle()
+    plaintext_file_mail_title = Pickle()
+    encrypted_comment_template = Pickle()
+    encrypted_comment_mail_title = Pickle()
+    plaintext_comment_template = Pickle()
+    plaintext_comment_mail_title = Pickle()
+    encrypted_message_template = Pickle()
+    encrypted_message_mail_title = Pickle()
+    plaintext_message_template = Pickle()
+    plaintext_message_mail_title = Pickle()
+    zip_description = Pickle()
+
+class Stats_version_14(Model):
+    __storm_table__ = 'stats'
+    content = Pickle()
 
 class Replacer1415(TableReplacer):
 
@@ -297,4 +336,25 @@ class Replacer1415(TableReplacer):
 
             self.store_new.add(new_itip)
 
+        self.store_new.commit()
+
+    def migrate_Notification(self):
+        print "%s Notification migration assistant: (admin_anomaly_template)" % self.std_fancy
+
+        old_notification = self.store_old.find(self.get_right_model("Notification", 14)).one()
+        new_notification = self.get_right_model("Notification", 15)()
+
+        for k, v in new_notification._storm_columns.iteritems():
+
+            if v.name == 'admin_anomaly_template':
+                new_notification.admin_anomaly_template = every_language("")
+                continue
+
+            setattr(new_notification, v.name, getattr(old_notification, v.name) )
+
+        self.store_new.add(new_notification)
+        self.store_new.commit()
+
+    def migrate_Stats(self):
+        print "%s Stats migration assistant: trash all old stats" % self.std_fancy
         self.store_new.commit()

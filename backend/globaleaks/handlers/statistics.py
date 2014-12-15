@@ -14,7 +14,8 @@ from globaleaks.rest import errors
 from globaleaks.settings import transact_ro, transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
-from globaleaks.models import WeekStats, Anomalies
+from globaleaks.jobs.statistics_sched import StatisticsSchedule
+from globaleaks.models import Stats, Anomalies
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, log
 from globaleaks.anomaly import EventTrackQueue, outcome_event_monitored, pollute_Event_for_testing
 
@@ -28,7 +29,7 @@ def get_stats(store, delta_week):
 
     target_week = int(datetime_now().isocalendar()[1]) - delta_week
 
-    hourlyentry = store.find(WeekStats)
+    hourlyentry = store.find(Stats)
 
     week_stats = []
     last_stats_dict = {}
@@ -88,7 +89,7 @@ def delete_weekstats_history(store):
         delete. In the long term this shall cause a memory exhaustion
     """
 
-    allws = store.find(WeekStats)
+    allws = store.find(Stats)
     log.info("Deleting %d entries from hourly statistics table" % allws.count())
 
     allws.remove()
@@ -143,14 +144,10 @@ class AnomaliesCollection(BaseHandler):
     reach the thresholds defined in GLSettings)
     """
 
-    # This is a class level var that collect the latest anomalies collected.
-    # Every 10 minutes they are flushed out in the statistics
-    RecentAnomaliesQ = {}
-
     @classmethod
     def update_AnomalyQ(cls, event_matrix, alarm_level):
         # called from statistics_sched
-        AnomaliesCollection.RecentAnomaliesQ.update({
+        StatisticsSchedule.RecentAnomaliesQ.update({
             datetime_to_ISO8601(datetime_now())[:-8] :
                 [ event_matrix, alarm_level ]
         })
@@ -163,7 +160,7 @@ class AnomaliesCollection(BaseHandler):
         Anomalies history is track in Alarm, but is also stored in the
         DB in order to provide a good history.
         """
-        self.finish(AnomaliesCollection.RecentAnomaliesQ)
+        self.finish(StatisticsSchedule.RecentAnomaliesQ)
 
 class AnomalyHistoryCollection(BaseHandler):
 
@@ -225,10 +222,6 @@ class RecentEventsCollection(BaseHandler):
     and provide real time update about the GlobaLeaks status
     """
 
-    # This is a class variable that collect the last 0 to 10 minutes of events.
-    # Every 10 minutes is flushed in the statistics
-    RecentEventQueue = []
-
     @classmethod
     def update_RecentEventQ(cls, expired_event):
         """
@@ -238,7 +231,7 @@ class RecentEventsCollection(BaseHandler):
         This is not show anyway.
         """
 
-        RecentEventsCollection.RecentEventQueue.append(dict({
+        StatisticsSchedule.RecentEventQ.append(dict({
             'id' : expired_event.event_id,
             'creation_date' : datetime_to_ISO8601(expired_event.creation_date)[:-8],
             'event' :  expired_event.event_type,
@@ -306,7 +299,7 @@ class RecentEventsCollection(BaseHandler):
         # the current 30 seconds
         templist += EventTrackQueue.take_current_snapshot()
         # the already stocked by side, until Stats dump them in 1hour
-        templist += RecentEventsCollection.RecentEventQueue
+        templist += StatisticsSchedule.RecentEventQ
 
         templist.sort(key=operator.itemgetter('id'))
 

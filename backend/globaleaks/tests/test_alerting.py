@@ -24,14 +24,11 @@ class TestStatistics(helpers.TestGL):
         How create anomalies: a lots of event + compute stress
         """
 
-        # clean current queues
-        anomaly.Alarm().compute_activity_level(notification=False)
-        AnomaliesCollection.RecentAnomaliesQ = dict()
-
         # start test
         ANOMALIES_AMOUNT = 10
         anomaly.pollute_Event_for_testing(ANOMALIES_AMOUNT)
-        anomaly.Alarm().compute_activity_level(notification=False)
+
+        anomaly.Alarm.compute_activity_level()
 
         # but we got only one anomaly, because the computation make one
         # product for every thirty seconds
@@ -46,9 +43,9 @@ class TestStatistics(helpers.TestGL):
         #           'login_failure': 80},
         #       2]}
 
-        anomdet = AnomaliesCollection.RecentAnomaliesQ.values()[0]
-        self.assertEqual(len(AnomaliesCollection.RecentAnomaliesQ.keys()), 1)
-        original_when = AnomaliesCollection.RecentAnomaliesQ.keys()[0]
+        anomdet = StatisticsSchedule.RecentAnomaliesQ.values()[0]
+        self.assertEqual(len(StatisticsSchedule.RecentAnomaliesQ.keys()), 1)
+        original_when = StatisticsSchedule.RecentAnomaliesQ.keys()[0]
 
         self.assertTrue(isinstance(anomdet, list))
         self.assertTrue(len(anomdet), 2)
@@ -67,7 +64,3 @@ class TestStatistics(helpers.TestGL):
         # now if we get our anomalies, we expect the same 10, right ?
         AH = yield get_anomaly_history(limit=10)
         self.assertEqual(original_when, AH[0]['when'])
-
-
-
-

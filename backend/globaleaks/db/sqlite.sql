@@ -297,7 +297,7 @@ CREATE TABLE anomalies (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE weekstats (
+CREATE TABLE stats (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
     start VARCHAR NOT NULL,
