@@ -490,6 +490,10 @@ class Node(Model):
     whistleblowing_question = JSON()
     whistleblowing_button = JSON()
 
+    enable_custom_privacy_badge = Bool()
+    custom_privacy_badge_tbb = JSON()
+    custom_privacy_badge_tor = JSON()
+    custom_privacy_badge_none = JSON()
 
     exception_email = Unicode()
 
@@ -501,12 +505,13 @@ class Node(Model):
                   'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',
                   'can_delete_submission', 'ahmia', 'allow_unencrypted',
                   'disable_privacy_badge', 'disable_security_awareness_badge',
-                  'disable_security_awareness_questions' ]
+                  'disable_security_awareness_questions', 'enable_custom_privacy_badge' ]
                 # wizard_done is not checked because it's set by the backend
     localized_strings = [ 'description', 'presentation', 'footer', 'subtitle',
                           'terms_and_conditions', 'security_awareness_title',
                           'security_awareness_text', 'whistleblowing_question',
-                          'whistleblowing_button'  ]
+                          'whistleblowing_button', 'custom_privacy_badge_tbb',
+                          'custom_privacy_badge_tor', 'custom_privacy_badge_none' ]
 
 
 class Notification(Model):

@@ -1,6 +1,6 @@
-<div id="PrivacyBox" data-ng-controller="PrivacyBoxCtrl" data-ng-show="!node.disable_privacy_badge">
-  <div data-ng-mouseenter="showBox()" data-ng-mouseleave="hideBox()">
-    <div data-ng-switch="" on="privacy" id="PrivacyBoxTextBox" class="pull-left">
+<div id="PrivacyBadgeBox" data-ng-controller="PrivacyBadgeBoxCtrl" data-ng-show="!node.disable_privacy_badge">
+  <div id="PrivacyBadge" data-ng-mouseenter="showBox()" ng-if="!node.enable_custom_privacy_badge">
+    <div data-ng-switch="" on="privacy" id="PrivacyBadgeTextBox" class="pull-left">
       <div data-ng-switch-when="high">
         <div data-ng-show="!displayBox">
           <span class="label label-success">
@@ -76,6 +76,23 @@
         <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
       </a>
     </div>
-    <div class="clearfix">
+    <div class="clearfix"></div>
+  </div>
+  <div id="PrivacyBadgeCustom" ng-if="node.enable_custom_privacy_badge">
+    <div data-ng-switch="" on="privacy" id="PrivacyBoxTextBox">
+      <div data-ng-switch-when="high">
+        <span id="PrivacyBadgeCustomIconTBB">&nbsp;</span>
+        <span id="PrivacyBadgeCustomTextTBB">{{node.custom_privacy_badge_tbb}}</span>
+      </div>
+      <div data-ng-switch-when="medium">
+        <span id="PrivacyBadgeCustomIconTor">&nbsp;</span>
+        <span id="PrivacyBadgeCustomTextTor">{{node.custom_privacy_badge_tor}}</span>
+      </div>
+      <div data-ng-switch-when="low">
+        <span id="PrivacyBadgeCustomIconNone">&nbsp;</span>
+        <span id="PrivacyBadgeCustomTextNone">{{node.custom_privacy_badge_none}}</span>
+      </div>
+    </div>
+    <div class="clearfix"></div>
   </div>
 </div>

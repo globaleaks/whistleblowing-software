@@ -52,6 +52,40 @@
 
     <div class="form-group">
       <label>
+        <input data-ng-model="admin.node.enable_custom_privacy_badge" type="checkbox">
+        <span data-translate>Enable custom privacy badge</span>
+      </label>
+      <div data-ng-show="admin.node.enable_custom_privacy_badge">
+        <span class="label label-info" data-translate>Enabled</span>
+      </div>
+    </div>
+
+    <div class="form-group" ng-show="admin.node.enable_custom_privacy_badge">
+      <label data-translate>Custom Privacy Badge</label>
+      <label data-translate>(TBB condition)</label>
+      <div>
+        <textarea class="form-control" data-ng-model="admin.node.custom_privacy_badge_tbb">{{admin.node.custom_privacy_badge_tbb}}</textarea>
+      </div>
+    </div>
+
+    <div class="form-group" ng-show="admin.node.enable_custom_privacy_badge">
+      <label data-translate>Custom Privacy Badge</label>
+      <label data-translate>(Tor condition)</label>
+      <div>
+        <textarea class="form-control" data-ng-model="admin.node.custom_privacy_badge_tor">{{admin.node.custom_privacy_badge_tor}}</textarea>
+      </div>
+    </div>
+
+    <div class="form-group" ng-show="admin.node.enable_custom_privacy_badge">
+      <label data-translate>Custom Privacy Badge</label>
+      <label data-translate>(Traditional Browser)</label>
+      <div>
+        <textarea class="form-control" data-ng-model="admin.node.custom_privacy_badge_none">{{admin.node.custom_privacy_badge_none}}</textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
         <input data-ng-model="admin.node.postpone_superpower" type="checkbox">
         <span data-translate>Permit Receivers to postpone expiration date of the Tips</span>
       </label>

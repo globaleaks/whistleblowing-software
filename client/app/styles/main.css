@@ -140,18 +140,18 @@ h3 {
     font-family: sans-serif
 }
 
-#PrivacyBox {
+#PrivacyBadgeBox {
   background-color: #222;
   color: #FFF;
   font-size: 20px;
   padding: 10px 20px 10px 20px;
 }
 
-#PrivacyBoxTextBox {
+#PrivacyBadgeTextBox {
   text-align: left;
 }
 
-#PrivacyBoxCloseButton {
+#PrivacyBadgeBoxCloseButton {
   text-align: right;
 }
 
@@ -289,4 +289,12 @@ table {
 
 .noteAsterisk {
   color: red;
+}
+
+#PrivacyBadgeCustomIconNone {
+  width: 32px;
+  height: 32px;
+  background-image: url("https://demo.globaleaks.org/favicon.ico");
+  float: left;
+  margin-right: 10px;
 }

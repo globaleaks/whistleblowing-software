@@ -160,6 +160,10 @@ CREATE TABLE node (
     disable_privacy_badge INTEGER NOT NULL,
     disable_security_awareness_badge INTEGER NOT NULL,
     disable_security_awareness_questions INTEGER NOT NULL,
+    enable_custom_privacy_badge INTEGER NOT NULL,
+    custom_privacy_badge_tbb BLOB NOT NULL,
+    custom_privacy_badge_tor BLOB NOT NULL,
+    custom_privacy_badge_none BLOB NOT NULL,
     PRIMARY KEY (id)
 );
 
