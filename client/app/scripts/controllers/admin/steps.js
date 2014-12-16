@@ -29,17 +29,24 @@ GLClient.controller('AdminFieldsTemplateAdderCtrl', ['$scope',
 
 GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
   function($scope, $modal) {
+    $scope.composable_fields = {};
     $scope.template_field_keys = Object.keys($scope.admin.template_fields);
     $scope.template_fields = $scope.admin.template_fields;
-
-    $scope.composable_fields = angular.copy($scope.step.children);
-    angular.forEach($scope.step.children, function(field_group, key) {
-      if (field_group.type == 'fieldgroup') {
-        angular.forEach(field_group.children, function(field, key) {
-          $scope.composable_fields[key] = field;
-        });
+    angular.forEach($scope.step.children, function(field, index) {
+      $scope.composable_fields[field.id] = field;
+      if (field.type == 'fieldgroup') {
+        angular.forEach(field.children, function(field_c, index_c) {
+          $scope.composable_fields[field_c.id] = field_c;
+       });
       }
     });
+
+    $scope.deleteFromList = function(list, elem) {
+      var idx = _.indexOf(list, elem);
+      if (idx != -1) {
+        list.splice(idx, 1);
+      }
+    };
 
     $scope.save_all = function () {
       // XXX this is highly inefficient, could be refactored/improved.
@@ -50,32 +57,32 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
  
     $scope.toggle_field = function(field, field_group) {
       $scope.field_group_toggled = true;
-      if (field_group.children && field_group.children[field.id]) {
+      if (field_group.children && (_.indexOf(field_group.children, field) !== -1)) {
         // Remove it from the fieldgroup 
-        field.fieldgroup_id = "";
-        $scope.step.children = $scope.step.children || {};
-        $scope.step.children[field.id] = field;
-        $scope.composable_fields[field.id] = field;
-        delete field_group.children[field.id];
+        field.fieldgroup_id = '';
+        field.step_id = $scope.step.id;
+        $scope.step.children = $scope.step.children || [];
+        $scope.step.children.push(field);
+        $scope.deleteFromList(field_group.children, field);
       } else {
         // Add it to the fieldgroup 
+        field.step_id = '';
         field.fieldgroup_id = field_group.id;
-        field_group.children = field_group.children || {};
-        field_group.children[field.id] = field;
-        $scope.composable_fields[field.id] = field;
-        delete $scope.step.children[field.id];
+        field_group.children = field_group.children || [];
+        field_group.children.push(field);
+        $scope.deleteFromList($scope.step.children, field);
       }
     }
 
     $scope.add_field_from_template = function(field_id, step) {
       $scope.admin.new_field_from_template(field_id, step.id).then(function(field){
         step.children = step.children || [];
-        step.children[field.id] = field;
+        step.children.push(field);
       });
     };
    
     $scope.addField = function(field) {
-      $scope.step.children[field.id] = field;
+      $scope.step.children.push(field);
     };
 
     $scope.create_field = function() {
@@ -88,7 +95,8 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.deleteField = function(field) {
-      delete $scope.step.children[field.id];
+      var idx = _.indexOf($scope.step.children, field);
+      $scope.step.children.splice(idx, 1);
     };
 
     $scope.perform_delete = function(field) {
@@ -130,6 +138,22 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
          function(result) { }
       );
     };
+
+  $scope.sortableStepsOptions = {
+    placeholder: "placeholder",
+    handle: ".handle",
+    stop: function(e, ui) {
+      console.log("stop");
+    }
+  };
+
+  $scope.sortableFieldsOptions = {
+    placeholder: "placeholder",
+    handle: ".handle",
+    stop: function(e, ui) {
+      console.log("stop");
+    }
+  };
 
   }
 ]);

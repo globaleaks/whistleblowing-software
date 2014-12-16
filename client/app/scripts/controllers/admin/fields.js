@@ -4,30 +4,36 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
     $scope.admin.field_templates.$promise
       .then(function(fields) {
         $scope.fields = fields;
-        angular.forEach(fields, function(field_group, key) {
-          $scope.composable_fields[field_group.id] = field_group;
-          if (field_group.type == 'fieldgroup') {
-            angular.forEach(field_group.children, function(field, key) {
-              $scope.composable_fields[key] = field;
+        angular.forEach(fields, function(field, index) {
+          $scope.composable_fields[field.id] = field;
+          if (field.type == 'fieldgroup') {
+            angular.forEach(field.children, function(field_c, index_c) {
+              $scope.composable_fields[field_c.id] = field_c;
             });
           }
         });
+
       });
+
+    $scope.deleteFromList = function(list, elem) {
+      var idx = _.indexOf(list, elem);
+      if (idx != -1) {
+        list.splice(idx, 1);
+      }
+    };
 
     $scope.toggle_field = function(field, field_group) {
       $scope.field_group_toggled = true;
-      if (field_group.children && field_group.children[field.id]) {
+      if (field_group.children && (_.indexOf(field_group.children, field) !== -1)) {
         // Remove it from the fieldgroup 
         field.fieldgroup_id = "";
         $scope.admin.field_templates.push(field);
-        $scope.composable_fields[field.id] = field;
-        delete field_group.children[field.id];
+        $scope.deleteFromList(field_group.children, field);
       } else {
         // Add it to the fieldgroup 
         field.fieldgroup_id = field_group.id;
-        field_group.children = field_group.children || {};
-        field_group.children[field.id] = field;
-        $scope.composable_fields[field.id] = field;
+        field_group.children = field_group.children || [];
+        field_group.children.push(field);
         $scope.admin.field_templates = $filter('filter')($scope.admin.field_templates, 
                                                          {id: '!'+field.id}, true);
       }
@@ -106,7 +112,7 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
       if (!$scope.field.children) {
         return false; 
       }
-      return Object.keys($scope.field.children).indexOf(field.id) !== -1;
+      return $scope.field.children.indexOf(field) !== -1;
     };
 
     function tokenize(input) {

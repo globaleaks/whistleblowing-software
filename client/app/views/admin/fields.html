@@ -12,7 +12,7 @@
 
       <div data-ng-show="fields.length != 0">
         <div data-ng-model="fields">
-          <div data-ng-repeat="field in admin.field_templates">
+          <div data-ng-repeat="field in admin.field_templates | orderBy:'label'">
             <div data-ng-include="'views/admin/fields_editor.html'"></div>
           </div>
 

@@ -7,9 +7,9 @@ GLClient.controller('StatisticsCtrl', ['$scope', 'Node', 'StatsCollection',
       gridSize = Math.floor(width / 24),
       legendElementWidth = gridSize*2,
       buckets = 9,
-      colors = ["#e5e5e5","#e5e5e5","e3e9f1", "1d88ca", "#d3e0f1","#aec7e5","#5d8fca","#3573bd","151a31"],
+      colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"],
       days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-      times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+      times = ["1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12am", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm", "12pm"];
 
     /* 2014-11-09T13:38:22.707125Z  with [:-8] */
     var parseISODate = d3.time.format("%Y-%m-%dT%H:%M:%S").parse;
@@ -56,10 +56,8 @@ GLClient.controller('StatisticsCtrl', ['$scope', 'Node', 'StatsCollection',
       });
 
       var colorScale = d3.scale.quantile()
-          .domain([0, buckets - 1, d3.max(data, function (d) {
-          return d.value;
-          })])
-      .range(colors);
+          .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+          .range(colors);
 
       d3.selectAll("#chart > *").remove();
 
@@ -102,13 +100,7 @@ GLClient.controller('StatisticsCtrl', ['$scope', 'Node', 'StatsCollection',
           .style("fill", colors[0]);
 
       heatMap.transition().duration(1000)
-          .style("fill", function(d) {
-              if (d.freemegabytes == -1) {
-          return "#E5E5E5";
-              } else {
-          return colorScale(d.value);
-              }
-          });
+          .style("fill", function(d) { return colorScale(d.value); });
 
       heatMap.append("title").text(function(d) {
           if (d.freemegabytes == -1) {

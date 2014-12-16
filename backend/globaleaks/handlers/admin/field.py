@@ -189,14 +189,14 @@ def update_field(store, field_id, request, language):
         ancestors = set(fieldtree_ancestors(store, field.id))
 
         field.children.clear()
-        for child_id in children:
-            child = models.Field.get(store, child_id)
+        for c in children:
+            child = models.Field.get(store, c['id'])
             # check child do exists and graph is not recursive
             if not child or child.id == field.id or child.id in ancestors:
                 raise errors.InvalidInputFormat(errmsg)
 
             # remove current step/field fieldgroup/field association
-            disassociate_field(store, child_id)
+            disassociate_field(store, child.id)
 
             field.children.add(child)
 
@@ -208,8 +208,7 @@ def update_field(store, field_id, request, language):
         associate_field(store, field, step_id, fieldgroup_id)
 
     except Exception as dberror:
-        log.err('Unable to update field {f}: {e}'.format(
-            f=field.label, e=dberror))
+        log.err('Unable to update field: {e}'.format(e=dberror))
         raise errors.InvalidInputFormat(dberror)
 
     return anon_serialize_field(store, field, language)
