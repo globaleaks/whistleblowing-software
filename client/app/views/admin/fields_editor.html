@@ -119,6 +119,9 @@
                         <div class="form-group">
                           <label data-translate>Name</label>
                           <input class="form-control" data-ng-model="option.attrs.name"  value="{{option.attrs.name}}" type="text" />
+                          <button class="btn btn-danger cardActionButton" data-ng-click="delOption(field, option)">
+                            <i class="glyphicon glyphicon-remove"></i>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -129,6 +132,9 @@
                         <div class="form-group">
                           <label data-translate>Name</label>
                           <input class="form-control" data-ng-model="option.attrs.name"  value="{{option.attrs.name}}" type="text" />
+                          <button class="btn btn-danger cardActionButton" data-ng-click="delOption(field, option)">
+                            <i class="glyphicon glyphicon-remove"></i>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -158,22 +164,22 @@
       <hr />
       <div class="stepActions">
         <button 
-          class="btn btn-default actionButton cardActionButton"
+          class="btn btn-default cardActionButton"
           data-ng-show="!editing"
           data-ng-click="editing=!editing">Edit
         </button>
         <button 
-          class="btn btn-success actionButton cardActionButton"
+          class="btn btn-success cardActionButton"
           data-ng-show="editing" 
           data-ng-click="update_field(field);editing=!editing"
           type="submit">Save</button>
         <button 
-          class="btn btn-default actionButton cardActionButton"
+          class="btn btn-default cardActionButton"
           data-ng-show="editing"
           data-ng-click="editing=!editing">Cancel
         </button>
         <button 
-          class="btn btn-danger actionButton cardActionButton"
+          class="btn btn-danger cardActionButton"
           data-ng-click="fieldDeleteDialog(field)" 
           popover="" 
           popover-placement="right" 

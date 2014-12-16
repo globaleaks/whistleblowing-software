@@ -74,19 +74,19 @@
             </div>
             <hr>
             <div class="stepActions">
-              <button class="btn btn-default actionButton cardActionButton"
+              <button class="btn btn-default cardActionButton"
                       data-ng-show="!editing"
                       data-ng-click="editing=!editing">Edit</button>
-              <button class="btn btn-success actionButton cardActionButton"
+              <button class="btn btn-success cardActionButton"
                       data-ng-show="editing"
                       data-ng-click="save_context(context);editing=!editing"
                       type="submit">Save</button>
               <button 
-                class="btn btn-default actionButton cardActionButton"
+                class="btn btn-default cardActionButton"
                 data-ng-show="editing"
                 data-ng-click="editing=!editing">Cancel
               </button>
-              <button class="btn btn-danger actionButton cardActionButton"
+              <button class="btn btn-danger cardActionButton"
                       data-ng-click="stepDeleteDialog(step)"
                       popover="{{ Delete | translate }}"
                       popover-placement="right"

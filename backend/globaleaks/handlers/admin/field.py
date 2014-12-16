@@ -96,12 +96,8 @@ def db_update_options(store, field_id, options, language):
         n += 1
 
     # remove all the not reused old options
-    for opt_id in indexed_old_options:
-        o = store.find(models.FieldOption, models.FieldOption.id == opt_id).one()
-        store.remove(o)
-
     for o in indexed_old_options:
-        store.remove(indexed_old_options[o.id])
+        store.remove(indexed_old_options[o])
 
     for n in new_options:
         store.add(n)
