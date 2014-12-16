@@ -132,6 +132,11 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
       field.options.push({});
     };
 
+    $scope.delOption = function(field, option) {
+      var index = field.options.indexOf(option);
+      field.options.splice(index, 1);
+   }
+
     $scope.$watch('field.type', function (newVal, oldVal) {
 
       if (newVal && newVal !== oldVal) {
