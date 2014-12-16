@@ -219,9 +219,9 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
             new_fields[idx]['id'] = f['id']
 
         new_context['steps'][0]['children'] = [
-            new_fields[0]['id'], # Field 1
-            new_fields[1]['id'], # Field 2
-            new_fields[4]['id']  # Generalities
+            new_fields[0], # Field 1
+            new_fields[1], # Field 2
+            new_fields[4]  # Generalities
         ]
 
         new_context['name'] = "this uniqueness is no more checked due to the lang"

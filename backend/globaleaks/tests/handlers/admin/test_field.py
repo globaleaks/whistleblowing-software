@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import admin
+from globaleaks.handlers.node import anon_serialize_field
 from globaleaks.handlers.admin.field import create_field
 from globaleaks import models
 from globaleaks.rest import requests, errors
@@ -187,6 +188,11 @@ class TestFieldTemplateUpdate(helpers.TestHandlerWithPopulatedDB):
         fixtures = ['fields.json']
 
         @transact_ro
+        def _get_field(self, store, field_id):
+            field = models.Field.get(store, field_id)
+            return anon_serialize_field(store, field, 'en')
+
+        @transact_ro
         def _get_children(self, store, field_id):
             field = models.Field.get(store, field_id)
             return [child.id for child in field.children]
@@ -248,20 +254,26 @@ class TestFieldTemplateUpdate(helpers.TestHandlerWithPopulatedDB):
             yield handler.get(generalities_fieldgroup_id)
 
             # simple edits shall work
-            self.responses[0]['children'] = [sex_field_id, surname_field_id]
+            sex_field = yield self._get_field(sex_field_id)
+            surname_field = yield self._get_field(surname_field_id)
+
+            self.responses[0]['children'] = [sex_field,
+                                             surname_field]
 
             handler = self.request(self.responses[0], role='admin')
             yield handler.put(generalities_fieldgroup_id)
             yield self.assert_model_exists(models.Field, generalities_fieldgroup_id)
 
             # parent MUST not refer to itself in child
-            self.responses[0]['children'] = [generalities_fieldgroup_id]
+            generalities_fieldgroup = yield self._get_field(generalities_fieldgroup_id)
+            self.responses[0]['children'] = [generalities_fieldgroup]
             handler = self.request(self.responses[0], role='admin')
             self.assertFailure(handler.put(generalities_fieldgroup_id), errors.InvalidInputFormat)
 
             # a child not of type 'fieldgroup' MUST never have children.
             yield handler.get(name_field_id)
-            self.responses[2]['children'] = [sex_field_id]
+            sex_field = yield self._get_field(sex_field_id)
+            self.responses[2]['children'] = [sex_field]
             handler = self.request(self.responses[2], role='admin')
             self.assertFailure(handler.put(name_field_id), errors.InvalidInputFormat)
             yield self.assert_is_not_child(name_field_id, sex_field_id)

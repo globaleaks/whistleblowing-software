@@ -87,7 +87,7 @@ adminStepDesc = {
     'label': unicode,
     'hint': unicode,
     'description': unicode,
-    'children': [ uuid_regexp ]
+    'children': list
 }
 
 adminNodeDesc = {
@@ -439,7 +439,7 @@ FieldDesc = {
              'fileupload|'
              'fieldgroup)$'),
     'options': list,
-    'children': [ uuid_regexp ],
+    'children': list,
 }
 
 wizardStepDesc = {

@@ -9,6 +9,10 @@
   margin-bottom: 5px;
 }
 
+#StepsConfigCard, #FieldsConfigCard {
+  margin-top: 30px;
+}
+
 .templateFieldAdder {
   /* FIXME there is a bug where the gradient is being covered by the children
    * templateFieldCard items.*/
@@ -128,14 +132,14 @@
   font-size: 24px;
 }
 
-.card button {
+.cardActionButton {
   text-transform: uppercase;
   background: none;
   border: none;
   color: #000;
 }
 
-.card button:hover {
+.cardActionButton button:hover {
   border: none;
   box-shadow: 2px 1px 5px #888888;
 }

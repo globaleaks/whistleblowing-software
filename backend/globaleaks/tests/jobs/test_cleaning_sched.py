@@ -104,9 +104,9 @@ class TestCleaning(helpers.TestGL):
             self.dummyFields[idx]['id'] = f['id']
 
         self.tipContext['steps'][0]['children'] = [
-            self.dummyFields[0]['id'], # Field 1
-            self.dummyFields[1]['id'], # Field 2
-            self.dummyFields[4]['id']  # Generalities
+            self.dummyFields[0], # Field 1
+            self.dummyFields[1], # Field 2
+            self.dummyFields[4]  # Generalities
         ]
 
         basehandler.validate_jmessage(self.tipContext, requests.adminContextDesc)
