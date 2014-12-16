@@ -514,4 +514,10 @@ class FieldUpdate(BaseHandler):
         Errors: InvalidInputFormat, FieldIdNotFound
         """
         yield delete_field(field_id, False)
+
+        # get the updated list of contexts, and update the cache
+        public_contexts_list = yield get_public_context_list(self.request.language)
+        GLApiCache.invalidate('contexts')
+        GLApiCache.set('contexts', self.request.language, public_contexts_list)
+
         self.set_status(200)
