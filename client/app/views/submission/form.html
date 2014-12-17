@@ -52,10 +52,10 @@
                 <div data-ng-switch-when="fileupload">
                   <div data-ng-switch="" on="field.multi_entry">
                     <div data-ng-switch-when="false">
-                      <div data-ng-include="'views/partials/fileupload_single.html'" class="col-md-12"></div>
+                      <div data-ng-init="fileupload_mode = 'single'" data-ng-include="'views/partials/fileupload.html'" class="col-md-12"></div>
                     </div>
                     <div data-ng-switch-when="true">
-                      <div data-ng-include="'views/partials/fileupload_multiple.html'" class="col-md-12"></div>
+                      <div data-ng-init="fileupload_mode = 'multiple'" data-ng-include="'views/partials/fileupload.html'" class="col-md-12"></div>
                     </div>
                   </div>
                 </div>

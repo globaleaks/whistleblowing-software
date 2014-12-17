@@ -1,20 +1,22 @@
-GLClient.controller('WBFileUploadCtrlSingle', ['$scope', 'Authentication', function($scope, Authentication) {
-  $scope.options = {
-    url: $scope.fileupload_url,
-    multipart: false,
-    headers: Authentication.headers(),
-    autoUpload: true,
-    maxNumberOfFiles: 1,
-    maxFileSize: $scope.node.maximum_filesize * 1024 * 1024
-  };
-}]).
-controller('WBFileUploadCtrlMultiple', ['$scope', 'Authentication', function($scope, Authentication) {
-  $scope.options = {
-    url: $scope.fileupload_url,
-    multipart: false,
-    headers: Authentication.headers(),
-    autoUpload: true,
-    maxFileSize: $scope.node.maximum_filesize * 1024 * 1024
-  };
+GLClient.controller('WBFileUploadCtrl', ['$scope', 'Authentication', function($scope, Authentication) {
+  if ($scope.fileupload_mode == undefined || $scope.fileupload_mode == 'multiple') {
+    $scope.options = {
+      url: $scope.fileupload_url,
+      multipart: false,
+      headers: Authentication.headers(),
+      autoUpload: true,
+      maxFileSize: $scope.node.maximum_filesize * 1024 * 1024
+    };
+  } else { // 'single'
+    $scope.options = {
+      url: $scope.fileupload_url,
+      multipart: false,
+      headers: Authentication.headers(),
+      autoUpload: true,
+      maxFileSize: $scope.node.maximum_filesize * 1024 * 1024,
+      maxNumberOfFiles: 1
+    };
+  }
+  console.log($scope.options);
+  console.log($scope.fileupload_mode);
 }]);
-
