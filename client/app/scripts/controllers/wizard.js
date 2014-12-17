@@ -29,6 +29,11 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
         finished = true;
         DefaultAppdata.get(function(res) {
           $scope.admin.node.old_password = 'globaleaks';
+
+          /* configure tor2web admin right based on detected user access */
+          $scope.admin.node.tor2web_admin = !$scope.anonymous;
+          console.log($scope.admin.node);
+
           $scope.wizard = {
             'node': $scope.admin.node,
             'appdata': res,

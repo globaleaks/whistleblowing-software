@@ -179,17 +179,25 @@ class GLSettingsClass:
 
         self.www_form_urlencoded_maximum_size = 1024
 
-        self.defaults = OD()
+
         # Default values, used to initialize DB at the first start,
         # or whenever the value is not supply by client.
         # These value are then stored in the single instance
         # (Node, Receiver or Context) and then can be updated by
         # the admin using the Admin interface (advanced settings)
-        self.defaults.allow_unencrypted = False
-        self.defaults.tor2web_admin = False
+        self.defaults = OD()
+
+        # default tor2web_admin setting is set to True;
+        # the setting is then switched based on automatic user detection during wizard:
+        #
+        #   - if the admin performs the wizard via tor2web the permission is kept True
+        #   - if the admin performs the wizard via Tor the permission is set to False
+        self.defaults.tor2web_admin = True
+
         self.defaults.tor2web_submission = False
         self.defaults.tor2web_receiver = False
         self.defaults.tor2web_unauth = True
+        self.defaults.allow_unencrypted = False
         self.defaults.anomaly_checks = False
         self.defaults.maximum_namesize = 128
         self.defaults.maximum_textsize = 4096

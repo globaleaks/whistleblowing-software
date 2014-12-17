@@ -407,17 +407,6 @@ class BaseHandler(RequestHandler):
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
-        # This is the event tracker, used for anomaly detection and stats measurement
-        # At the moment is only used the function in .XX
-        # for event in incoming_event_monitored:
-        #     if event['handler_check'](self.request.uri):
-        #         EventTrack(event)
-        #         if event['anomaly_management']:
-        #             # may raise Exception
-        #             event['anomaly_management'](self.request)
-        # take a look in anomaly.py 'event_monitored' variable
-
-
         # if 0 is infinite logging of the requests
         if GLSetting.http_log >= 0:
 
@@ -565,16 +554,7 @@ class BaseHandler(RequestHandler):
         needed_diff = uniform_delay - request_time
 
         if needed_diff > 0:
-            #print "uniform delay of %.2fms to reach %.2fms" % (
-            #    (1000.0 * needed_diff),
-            #    (1000.0 * uniform_delay)
-            #)
             yield deferred_sleep(needed_diff)
-        else:
-            #print "uniform delay of %.2fms it's more than %.2fms" % (
-            #    (1000.0 * request_time ), (1000.0 * uniform_delay)
-            #)
-            pass
 
     @property
     def current_user(self):
