@@ -1,21 +1,18 @@
-<fieldset data-ng-init="show_index = (field === undefined) ? true : false; step = selection - 1; fields = (field === undefined) ? submission.current_submission.wb_steps[step].children : field.children;">
-  <div data-ng-repeat="field in fields | orderBy:'y'">
-    {{fields}}
-    <div data-ng-controller="SubmissionFieldCtrl" data-ng-form="" name="subForm" class="submissionField">
+<fieldset data-ng-init="toplevel = (field === undefined) ? true : false; step = $index; fields = (field === undefined) ? submission.current_submission.wb_steps[step].children : field.children;">
+  <div data-ng-repeat="field in fields | orderBy:'y'" data-ng-controller="SubmissionFieldCtrl" data-ng-form="submissionFieldForm" class="submissionField">
+    <div>
       <div data-ng-switch="" on="field.type">
-        <div data-ng-switch-default="" class="form-group input" data-ng-class="field.required && 'required'">
+        <div data-ng-switch-default="" class="form-group input">
           <div>
-            <label ng-if="show_index">{{$index + 1}}) {{field.label}}</label>
-            <label ng-if="!show_index">{{field.labe}}</label>
+            <label ng-if="toplevel">{{$index + 1}}) {{field.label}}</label>
+            <label ng-if="!toplevel">{{field.label}}</label>
             <a href="" data-ng-show="field.hint" data-content="field.hint" popover="{{field.hint}}" popover-placement="right" popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-question-sign"></i>
             </a>
           </div> 
           <div class="submissionFieldInput">
             <div class="row">
-               <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text" />
-
-              <div data-ng-switch="" on="field.type" class="col-md-4">
+              <div data-ng-switch="" on="field.type" data-ng-class="{'col-md-4': toplevel}">
                 <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text" />
 
                 <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="field.value" data-ng-required="field.required" placeholder="{{field.placeholder}}">{{field.value}}</textarea>
@@ -47,13 +44,20 @@
                 <div data-ng-switch-when="tos">
                   <textarea class="form-control" data-ng-readonly="true">{{field.options[0].attrs.clause}}</textarea>
                   <div class="form-group">
-                    <input data-ng-model="field.value" value="{{field.value}}" placeholder="{{field.placeholder || 'false'}}" type="checkbox" />
+                    <input data-ng-model="field.value" data-ng-required="field.required" name=input value="{{field.value}}" placeholder="{{field.placeholder || 'false'}}" type="checkbox" />
                     <label data-translate>{{field.options[0].attrs.agreement_statement}}</label>
                   </div>
                 </div>
 
                 <div data-ng-switch-when="fileupload">
-                  <div data-ng-include="'views/partials/fileupload_single.html'" class="col-md-12"></div>
+                  <div data-ng-switch="" on="field.multi_entry">
+                    <div data-ng-switch-when="false">
+                      <div data-ng-include="'views/partials/fileupload_single.html'" class="col-md-12"></div>
+                    </div>
+                    <div data-ng-switch-when="true">
+                      <div data-ng-include="'views/partials/fileupload_multiple.html'" class="col-md-12"></div>
+                    </div>
+                  </div>
                 </div>
               
                 <div data-ng-switch-when="fieldgroup">
@@ -63,7 +67,7 @@
               </div>
             </div>
 
-            <div class="has-error" data-ng-show="subForm.$invalid">
+            <div class="has-error" data-ng-show="submissionFieldForm.$invalid">
               <span data-translate>This field cannot be empty</span>
             </div>
 

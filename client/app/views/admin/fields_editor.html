@@ -71,7 +71,7 @@
                 <option value="fieldgroup" data-translate>Field Group</option>
               </select>
             </div>
-            <div class="form-group" ng-show="field.type == 'fieldgroup'">
+            <div class="form-group" ng-show="field.type == 'fieldgroup' && composable_fields">
               <label data-translate>Fields Composition</label>
               <div class="selectionList">
                 <div data-ng-repeat="f in composable_fields">

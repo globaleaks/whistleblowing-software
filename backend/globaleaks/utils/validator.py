@@ -101,7 +101,10 @@ def shortlocal_v(_self, attr, value):
     """
     remove = [lang for lang in value if lang not in LANGUAGES_SUPPORTED_CODES]
     for k in remove:
-       del value[lang]
+       try:
+         del value[unicode(lang)]
+       except KeyError:
+         pass
        log.debug("(%s) Invalid language code in %s, ignoring it" % (lang, attr))
 
     for lang, text in value.iteritems():
@@ -125,7 +128,10 @@ def longlocal_v(_self, attr, value):
     """
     remove = [lang for lang in value if lang not in LANGUAGES_SUPPORTED_CODES]
     for k in remove:
-       del value[lang]
+       try:
+         del value[unicode(lang)]
+       except KeyError:
+         pass
        log.debug("(%s) Invalid language code in %s, ignoring it" % (lang, attr))
 
     for lang, text in value.iteritems():

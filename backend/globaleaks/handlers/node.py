@@ -154,7 +154,8 @@ def anon_serialize_option(option, field_type, language):
     """
     ret_dict = {
         'id': option.id,
-        'attrs': {}
+        'attrs': {},
+        'value': ''
     }
 
     keys = get_field_option_localized_keys(field_type)
@@ -201,7 +202,8 @@ def anon_serialize_field(store, field, language):
         'x': field.x,
         'y': field.y,
         'options': options,
-        'children': fields
+        'children': fields,
+        'value': ''
     }
 
     return get_localized_values(ret_dict, field, field.localized_strings, language)
