@@ -10,7 +10,17 @@
 
       <dd data-ng-switch-when="textarea" class="preformatted">{{field.value}}</dd>
 
-      <dd data-ng-switch-when="selectbox" class="preformatted">{{ field.value }}</dd>
+      <dd data-ng-switch-when="selectbox" class="preformatted">{{field.value}}</dd>
+
+      <dd data-ng-switch-when="checkbox">
+        <ul>
+          <div data-ng-repeat="answer in field.value">
+            <span data-ng-hide="answer.value"><i class="glyphicon glyphicon-unchecked"></i></span>
+            <span data-ng-show="answer.value"><i class="glyphicon glyphicon-check"></i></span>
+            {{answer.name}}
+          </div>
+        </ul>
+      </dd>
 
       <dd data-ng-switch-when="tos">
         <span ng-if="field.value" data-translate>Accepted</span>

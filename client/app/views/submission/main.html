@@ -1,4 +1,4 @@
-<div id="ContentBox" class="ng-cloak container" data-ng-show="!node.configured && node.name">
+<div id="ContentBox" class="ng-cloak container" data-ng-show="!(node.name && node.configured)">
   <h2 data-translate>This node is not configured.</h2>
   <p>
     <span data-translate>You will not be able to send a submission.</span><br />
@@ -10,100 +10,55 @@
 </div>
 
 <div data-ng-controller="SubmissionStepsCtrl" id="ContentBox" class="container submission" data-ng-show="node.name && node.configured">
+  <form name="submissionForm" data-ng-controller="SubmissionFormController">
 
-  <div id="ContextPickSelector" data-ng-show="submission.contexts.length > 1">
-    <div id="SubmissionStep1Title" class="lead">
-      <span data-translate>Choose the context and receivers that will be sure to transform your submission into action!</span>
+    <div id="ContextPickSelector" data-ng-show="submission.contexts.length > 1">
+      <div id="SubmissionStep1Title" class="lead">
+        <span data-translate>Choose the context and receivers that will be sure to transform your submission into action!</span>
+      </div>
+      <span class="lead">
+        <span data-translate>I want to report on</span>
+      </span>
+      <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'"></select>
     </div>
-    <span class="lead" data-ng-show="node.configured">
-      <span data-translate>I want to report on</span>
-    </span>
-    <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'"></select>
-  </div>
-  <div id="ContextIntroductionBox">
-    {{submission.current_context.description}}
-  </div>
+    <div id="ContextIntroductionBox">
+      {{submission.current_context.description}}
+    </div>
 
-  <div class="tabbable tabs-below">
+    <div class="tabbable tabs-below">
 
-    <ul class="nav nav-tabs">
-      <li data-ng-if="!skip_first_step" data-ng-class="{active: selection==0, disabled: uploading}">
-        <a href="javascript:void(0)" data-ng-click="goToStep(0)" data-ng-disabled="uploading">
-           <span>
-              1 - <span data-translate>Receiver selection</span>
-            </span>
-        </a>
-      </li>
-      <li data-ng-repeat="step in submission.current_context.steps" data-ng-class="{active: selection==$index + 1, disabled: uploading}">
-        <a href="javascript:void(0)" data-ng-click="goToStep($index + 1)" data-ng-disabled="uploading">
-          <span>
+      <ul class="nav nav-tabs">
+        <li data-ng-show="!skip_first_step" data-ng-class="{active: selection==0, disabled: uploading}">
+          <a href="javascript:void(0)" data-ng-click="goToStep(0)" data-ng-disabled="uploading">
+            1 - <span data-translate>Receiver selection</span>
+          </a>
+        </li>
+        <li data-ng-repeat="step in submission.current_context.steps" data-ng-class="{active: selection==$index + 1, disabled: uploading}">
+          <a href="javascript:void(0)" data-ng-click="goToStep($index + 1)" data-ng-disabled="uploading">
             <span data-ng-if="skip_first_step">{{$index + 1}} - </span>
             <span data-ng-if="!skip_first_step">{{$index + 2}} - </span>
             <span data-translate>{{step.label}}</span>
-          </span>
-        </a>
-      </li>
-    </ul>
+          </a>
+        </li>
+      </ul>
 
-    <div class="tab-content">
+      <div class="tab-content">
 
-      <div data-ng-if="selection == 0" id="SubmissionStepReceiver" class="receiverCards">
+        <div data-ng-show="selection == 0" id="SubmissionStepReceiver" class="receiverCards">
 
-        <div id="ReceiverIntroductionBox">
-          {{submission.current_context.receiver_introduction}}
-        </div>
-
-        <div data-ng-show="submission.current_context.maximum_selectable_receivers != 0 && !submission.current_context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
-          <div><span data-translate>Maximum number of selectable Receivers:</span> {{submission.current_context.maximum_selectable_receivers}}</div>
-          <div><span data-translate>Receivers selected:</span> {{selected_receivers_count()}}</div>
-        </div>
-
-        <div id="ReceiverSelectionBoxBig" data-ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" data-ng-show="!submission.current_context.show_small_cards">
-          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.disabled}" data-ng-click="switch_selection(receiver)">
-            <div class="row receiverCardTitle">
-              <div class="col-md-10">
-                <label>
-                  <span data-ng-switch="" on="receiver.gpg_key_status">
-                    <span data-ng-switch-when="Enabled">
-                      <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
-                    </span>
-                    <span data-ng-switch-when="Disabled">
-                      <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
-                    </span>
-                  </span>
-                  &nbsp;{{receiver.name}}
-                </label>
-              </div>
-              <div class="col-md-1" ng-hide="receiver.disabled">
-                <div data-ng-show="submission.receivers_selected[receiver.id]">
-                  <i class="glyphicon glyphicon-check" popover="{{ 'Unselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
-                </div>
-                <div data-ng-show="!submission.receivers_selected[receiver.id]">
-                  <i class="glyphicon glyphicon-unchecked" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-5">
-                <img data-ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
-              </div>
-              <div class="col-md-offset-1 col-md-6" ng-show="!receiver.disabled">
-                <p>{{receiver.description}}</p>
-              </div>
-              <div class="col-md-offset-1 col-md-6" ng-show="receiver.disabled">
-                <div data-translate>This receiver is disabled due to missing PGP key.</div>
-                <div data-translate>To enable it, his public key must be loaded by the admin or by the receiver.</div>
-              </div>
-            </div>
+          <div id="ReceiverIntroductionBox">
+            {{submission.current_context.receiver_introduction}}
           </div>
-          <div class="clearfix" data-ng-show="$index % 2"></div>
-        </div>
 
-        <div id="ReceiverSelectionBoxSmall" data-ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" data-ng-show="submission.current_context.show_small_cards">
-          <div class="form-group col-md-3">
-            <div data-ng-click="switch_selection(receiver)" class="receiverCard" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.disabled}">
+          <div data-ng-show="submission.current_context.maximum_selectable_receivers != 0 && !submission.current_context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
+            <div><span data-translate>Maximum number of selectable Receivers:</span> {{submission.current_context.maximum_selectable_receivers}}</div>
+            <div><span data-translate>Receivers selected:</span> {{selected_receivers_count()}}</div>
+          </div>
+
+          <div id="ReceiverSelectionBoxBig" data-ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" data-ng-show="!submission.current_context.show_small_cards">
+            <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.disabled}" data-ng-click="switch_selection(receiver)">
               <div class="row receiverCardTitle">
-                <div class="col-md-9">
+                <div class="col-md-10">
                   <label>
                     <span data-ng-switch="" on="receiver.gpg_key_status">
                       <span data-ng-switch-when="Enabled">
@@ -113,76 +68,117 @@
                         <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                       </span>
                     </span>
-                    &nbsp;{{receiver.name}}
+                    <span>&nbsp;{{receiver.name}}</span>
                   </label>
-                  <div data-ng-show="receiver.disabled">
-                    <span data-translate>Disabled</span>
-                  </div>
                 </div>
-
                 <div class="col-md-1" ng-hide="receiver.disabled">
                   <div data-ng-show="submission.receivers_selected[receiver.id]">
-                    <i class="glyphicon glyphicon-check" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    <i class="glyphicon glyphicon-check" popover="{{ 'Unselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </div>
                   <div data-ng-show="!submission.receivers_selected[receiver.id]">
-                    <i class="glyphicon glyphicon-unchecked" popover="{{ 'Unselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    <i class="glyphicon glyphicon-unchecked" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-5">
                   <img data-ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
+                </div>
+                <div class="col-md-offset-1 col-md-6" ng-show="!receiver.disabled">
+                  <p>{{receiver.description}}</p>
+                </div>
+                <div class="col-md-offset-1 col-md-6" ng-show="receiver.disabled">
+                  <div data-translate>This receiver is disabled due to missing PGP key.</div>
+                  <div data-translate>To enable it, his public key must be loaded by the admin or by the receiver.</div>
                 </div>
               </div>
             </div>
+            <div class="clearfix" data-ng-show="$index % 2"></div>
           </div>
-          <div class="clearfix" data-ng-show="!(($index + 1) % 4)"></div>
+
+          <div id="ReceiverSelectionBoxSmall" data-ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" data-ng-show="submission.current_context.show_small_cards">
+            <div class="form-group col-md-3">
+              <div data-ng-click="switch_selection(receiver)" class="receiverCard" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.disabled}">
+                <div class="row receiverCardTitle">
+                  <div class="col-md-9">
+                    <label>
+                      <span data-ng-switch="" on="receiver.gpg_key_status">
+                        <span data-ng-switch-when="Enabled">
+                          <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                        </span>
+                        <span data-ng-switch-when="Disabled">
+                          <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                        </span>
+                      </span>
+                      <span>&nbsp;{{receiver.name}}</span>
+                    </label>
+                    <div data-ng-show="receiver.disabled">
+                      <span data-translate>Disabled</span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-1" ng-hide="receiver.disabled">
+                    <div data-ng-show="submission.receivers_selected[receiver.id]">
+                      <i class="glyphicon glyphicon-check" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    </div>
+                    <div data-ng-show="!submission.receivers_selected[receiver.id]">
+                      <i class="glyphicon glyphicon-unchecked" popover="{{ 'Unselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <img data-ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix" data-ng-show="!(($index + 1) % 4)"></div>
+          </div>
+
         </div>
+
+        <!-- Configured Context Steps -->
+        <div data-ng-repeat="step in submission.current_context.steps">
+          <div class="SubmissionStep" data-ng-show="selection == $index + 1">
+            <div class="preformatted" data-ng-show="step.description">{{step.description}}</div>
+            <div class="row">
+              <div class="col-md-12" data-ng-form="submissionForm" data-ng-controller="SubmissionFormController">
+                <div data-ng-include="'views/submission/form.html'"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- / Configured Context Steps -->
 
       </div>
 
-      <!-- Configured Context Steps -->
-      <div data-ng-repeat="step in submission.current_context.steps">
-        <div data-ng-if="selection == $index + 1" id="SubmissionStep">
+      <!-- END steps -->
 
-        <div class="preformatted">
-          {{step.description}}
-        </div>
-        <div class="row">
-          <div class="col-md-12" data-ng-form="submissionForm" data-ng-controller="SubmissionFormController">  
-            <div data-ng-include="'views/submission/form.html'"></div>
-          </div>
-        </div>
+      <div class="clearfix"></div>
 
+      <ul class="pager pull-left">
+        <li data-ng-class="{disabled: uploading}" class="previous" data-ng-hide="!hasPreviousStep()">
+          <a data-ng-click="decrementStep()">
+            <span data-translate>Previous Step</span>
+          </a>
+        </li>
+        <li data-ng-class="{disabled: uploading}" class="next" data-ng-hide="!hasNextStep()">
+          <a data-ng-click="incrementStep()">
+            <span data-translate>Next Step</span>
+          </a>
+        </li>
+      </ul>
+      <div class="pager pull-left" style="margin-left: 20px" data-ng-show="!hasNextStep()">
+        <div class="btn btn-success" data-ng-click="submit()" data-ng-disabled="uploading || submissionForm.$invalid || !receiver_selected">
+          <i class="glyphicon glyphicon-ok"></i>
+          <span data-translate>Submit</span>
+        </div>
       </div>
-      <!-- / Configured Context Steps -->
 
+      <div class="clearfix"></div>
     </div>
 
-    <!-- END steps -->
-
-    <div class="clearfix"></div>
-
-    <ul class="pager pull-left">
-      <li data-ng-class="{disabled: uploading}" class="previous" data-ng-hide="!hasPreviousStep()">
-        <a data-ng-click="decrementStep()">
-          <span data-translate>Previous Step</span>
-        </a>
-      </li>
-      <li data-ng-class="{disabled: uploading}" class="next" data-ng-hide="!hasNextStep()">
-        <a data-ng-click="incrementStep()">
-          <span data-translate>Next Step</span>
-        </a>
-      </li>
-    </ul>
-    <div class="pager pull-left" style="margin-left: 20px" data-ng-show="!hasNextStep()">
-      <div class="btn btn-success" data-ng-click="submit()" data-ng-disabled="uploading || invalidForm || !receiver_selected">
-        <i class="glyphicon glyphicon-ok"></i>
-        <span data-translate>Submit</span>
-      </div>
-    </div>
-
-    <div class="clearfix"></div>
-  </div>
-
+  </form>
 </div>

@@ -164,7 +164,7 @@ GLClient.controller('AdminFieldsAddCtrl', ['$scope',
         field.options.push({'attrs':
           {
             'clause': '',
-            'agreemet_statement': ''
+            'agreement_statement': ''
           }
         });
       }
