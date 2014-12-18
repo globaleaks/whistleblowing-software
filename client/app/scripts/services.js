@@ -257,7 +257,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     };
 
-    return function(fn, context_id, receivers) {
+    return function(fn, context_id, receivers_ids) {
       /**
        * This factory returns a Submission object that will call the fn
        * callback once all the information necessary for creating a submission
@@ -286,12 +286,14 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           // enumerate only the receivers of the current context
           if (self.current_context.receivers.indexOf(receiver.id) !== -1) {
             self.current_context_receivers.push(receiver);
-            if (receivers) {
-              if (receiver.id in receivers) {
-                self.receivers_selected[receiver.id];
+            if (receivers_ids) {
+              if (receivers_ids.indexOf(receiver.id) != -1) {
+                self.receivers_selected[receiver.id] = true;
               }
-            } else if (receiver.configuration == 'default') {
-              self.receivers_selected[receiver.id] = self.current_context.select_all_receivers != false;
+            }
+
+            if (receiver.configuration == 'default') {
+              //self.receivers_selected[receiver.id] = self.current_context.select_all_receivers != false;
             } else if (receiver.configuration == 'hidden') {
               self.receivers_selected[receiver.id] = true;
             }

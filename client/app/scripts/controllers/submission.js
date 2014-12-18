@@ -5,9 +5,15 @@ GLClient.controller('SubmissionCtrl',
   $rootScope.invalidForm = true;
 
   var context_id = $location.search().context;
-  var receivers = $location.search().receivers;
-  if (receivers) {
-    receivers = JSON.parse(receivers);
+  var receivers_ids = $location.search().receivers;
+
+  if (receivers_ids) {
+    try {
+      receivers_ids = JSON.parse(receivers_ids);
+    }
+    catch(err) {
+      receivers_ids = undefined;
+    }
   }
 
   Node.get(function (node) {
@@ -36,7 +42,7 @@ GLClient.controller('SubmissionCtrl',
       $scope.submit = $scope.submission.submit;
 
       checkReceiverSelected();
-    }, context_id, receivers);
+    }, context_id, receivers_ids);
 
   });
 
