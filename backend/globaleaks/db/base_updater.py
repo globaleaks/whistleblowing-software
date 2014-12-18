@@ -129,7 +129,8 @@ class TableReplacer:
         from globaleaks.db.update_11_12 import Node_version_11, ApplicationData_version_11, Context_version_11
         from globaleaks.db.update_12_13 import Node_version_12, Context_version_12
         from globaleaks.db.update_13_14 import Node_version_13, Context_version_13
-        from globaleaks.db.update_14_15 import Node_version_14, User_version_14, Context_version_14, InternalTip_version_14, Notification_version_14, Stats_version_14
+        from globaleaks.db.update_14_15 import Node_version_14, User_version_14, Context_version_14, Receiver_version_14, \
+            InternalTip_version_14, Notification_version_14, Stats_version_14
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -142,7 +143,7 @@ class TableReplacer:
             'Node' : [ Node_version_5, Node_version_6, Node_version_7, Node_version_9, None, Node_version_11, None, Node_version_12, Node_version_13, Node_version_14, models.Node],
             'User' : [ User_version_5, User_version_9, None, None, None, User_version_14, None, None, None, None, models.User],
             'Context' : [ Context_version_6, None, Context_version_7, Context_version_8, Context_version_11, None, None, Context_version_12, Context_version_13, Context_version_14, models.Context],
-            'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, Receiver_version_9, models.Receiver, None, None, None, None, None],
+            'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, Receiver_version_9, Receiver_version_14, None, None, None, None, models.Receiver],
             'ReceiverFile' : [ models.ReceiverFile, None, None, None, None, None, None, None, None, None, None],
             'Notification': [ Notification_version_7, None, None, Notification_version_8, Notification_version_14, None, None, None, None, None, models.Notification],
             'Comment': [ Comment_version_5, models.Comment, None, None, None, None, None, None, None, None, None],
