@@ -107,8 +107,13 @@ class TestGL(unittest.TestCase):
         GLSetting.memory_copy.allow_unencrypted = True
         GLSetting.sessions = {}
         GLSetting.failed_login_attempts = 0
-        GLSetting.working_path = './working_path'
-        GLSetting.ramdisk_path = './working_path/ramdisk'
+
+        if os.path.isdir('/dev/shm'):
+          GLSetting.working_path = '/dev/shm/globaleaks'
+          GLSetting.ramdisk_path = '/dev/shm/globaleaks/ramdisk'
+        else:
+            GLSetting.working_path = './working_path'
+            GLSetting.ramdisk_path = './working_path/ramdisk'
 
         GLSetting.eval_paths()
         GLSetting.remove_directories()

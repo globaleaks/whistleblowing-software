@@ -138,9 +138,8 @@ class GLSettingsClass:
         self.working_path = '/var/globaleaks'
         self.static_source = '/usr/share/globaleaks/glbackend'
         self.glclient_path = '/usr/share/globaleaks/glclient'
-        self.ramdisk_path = '/dev/shm/globaleaks'
-        if not os.path.isdir(self.ramdisk_path):
-            self.ramdisk_path = tempfile.mkdtemp()
+
+        self.set_ramdisk_path()
 
         # list of plugins available in the software
         self.notification_plugins = [
@@ -345,11 +344,20 @@ class GLSettingsClass:
             self.glclient_path = custom_glclient_path
 
 
+    def set_ramdisk_path(self):
+        self.ramdisk_path = '/dev/shm/globaleaks'
+        if not os.path.isdir('/dev/shm'):
+            self.ramdisk_path = os.path.join(self.working_path, 'ramdisk')
+
+        self.log_debug("Setting ramdisk to: %s" % self.ramdisk_path)
+
     def set_devel_mode(self):
         self.devel_mode = True
         self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')
         self.static_source = os.path.join(self.root_path, 'staticdata')
+
+        self.set_ramdisk_path()
 
         self.glclient_path = os.path.abspath(os.path.join(self.root_path, "..", "client", "build"))
         if not os.path.exists(self.glclient_path):
