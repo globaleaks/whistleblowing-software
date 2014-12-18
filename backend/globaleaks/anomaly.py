@@ -448,7 +448,7 @@ class Alarm:
         yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
                        authentication_password=GLSetting.memory_copy.notif_password,
                        from_address=GLSetting.memory_copy.notif_source_email,
-                       to_address=[ to_address ],
+                       to_address=to_address,
                        message_file=message,
                        smtp_host=GLSetting.memory_copy.notif_server,
                        smtp_port=GLSetting.memory_copy.notif_port,

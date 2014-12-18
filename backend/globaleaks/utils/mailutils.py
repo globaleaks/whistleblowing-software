@@ -115,6 +115,12 @@ def sendmail(authentication_username, authentication_password, from_address,
                     % (smtp_host, smtp_port, exc.code, exc.resp))
         SMTPClient.sendError(self, exc)
 
+    if from_address == '' or to_address == '':
+        log.err("Failed to send email")
+        log.err("Invalid from/to addresses: ('%s', '%s')"
+                 % (from_address, to_address))
+        return
+
     try:
         security = str(security)
         result_deferred = Deferred()
