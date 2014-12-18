@@ -25,6 +25,7 @@ from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.models import Model, Field, FieldOption, Step, Context, db_forge_obj
 from globaleaks.db.datainit import opportunistic_appdata_init
+from globaleaks.utils.utility import datetime_null
 
 def every_language(default_text):
     return_dict = {}
@@ -122,6 +123,28 @@ class Context_version_14(Model):
     enable_private_messages = Bool()
     presentation_order = Int()
 
+class Receiver_version_14(Model):
+    __storm_table__ = 'receiver'
+    user_id = Unicode()
+    name = Unicode()
+    description = Pickle()
+    gpg_key_info = Unicode()
+    gpg_key_fingerprint = Unicode()
+    gpg_key_status = Unicode()
+    gpg_key_armor = Unicode()
+    gpg_enable_notification = Bool()
+    mail_address = Unicode()
+    can_delete_submission = Bool()
+    postpone_superpower = Bool()
+    receiver_level = Int()
+    last_update = DateTime()
+    tags = Pickle()
+    tip_notification = Bool()
+    comment_notification = Bool()
+    file_notification = Bool()
+    message_notification = Bool()
+    presentation_order = Int()
+
 class Notification_version_14(Model):
     __storm_table__ = 'notification'
     server = Unicode()
@@ -204,7 +227,8 @@ class Replacer1415(TableReplacer):
         self.store_new.commit()
 
     def migrate_User(self):
-        print "%s User migration assistant: (language, timezone)" % self.std_fancy
+        print "%s User migration assistant: (language, timezone," \
+              "password_change_needed, password_change_date)" % self.std_fancy
 
         old_users = self.store_old.find(self.get_right_model("User", 14))
 
@@ -220,6 +244,14 @@ class Replacer1415(TableReplacer):
 
                 if v.name == 'timezone':
                     new_user.timezone = 0
+                    continue
+
+                if v.name == 'password_change_needed':
+                    new_user.password_change_needed = False
+                    continue
+
+                if v.name == 'password_change_date':
+                    new_user.password_change_date = datetime_null()
                     continue
 
                 setattr(new_user, v.name, getattr(old_user, v.name))
@@ -312,6 +344,25 @@ class Replacer1415(TableReplacer):
             self.store_new.add(new_context)
 
         self.store_new.commit()
+
+    def migrate_Receiver(self):
+        print "%s Receiver migration assistant: (configuration)" % self.std_fancy
+
+        old_receivers = self.store_old.find(self.get_right_model("Receiver", 14))
+
+        for old_receiver in old_receivers:
+            new_receiver = self.get_right_model("Receiver", 15)()
+
+            for k, v in new_receiver._storm_columns.iteritems():
+
+                if v.name == 'configuration':
+                    new_receiver.configuration = 'default'
+                    continue
+
+                setattr(new_receiver, v.name, getattr(old_receiver, v.name) )
+
+            self.store_new.add(new_receiver)
+            self.store_new.commit()
 
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy
