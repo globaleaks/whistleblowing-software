@@ -99,8 +99,10 @@ class TestGL(unittest.TestCase):
 
     encryption_scenario = 'MIXED' # receivers with pgp and receivers without pgp
 
+    create_node = True
+
     @inlineCallbacks
-    def setUp(self, create_node=True):
+    def setUp(self):
         GLSetting.set_devel_mode()
         GLSetting.logging = None
         GLSetting.scheduler_threadpool = FakeThreadPool()
@@ -129,7 +131,7 @@ class TestGL(unittest.TestCase):
 
         notification.MailNotification.mail_flush = mail_flush_mock
 
-        yield db.create_tables(create_node)
+        yield db.create_tables(self.create_node)
 
         for fixture in getattr(self, 'fixtures', []):
             yield import_fixture(fixture)

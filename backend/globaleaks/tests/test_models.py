@@ -318,26 +318,10 @@ class TestStep(helpers.TestGL):
     fixtures = ['fields.json', "test_gl_with_populated_db.json"]
     step_number = 1
 
-    @inlineCallbacks
-    def setUp(self):
-        from globaleaks import db
-        from globaleaks.settings import GLSetting
-        GLSetting.bind_addresses = ['localhost']
-        GLSetting.set_devel_mode()
-        GLSetting.logging = None
-        #GLSetting.scheduler_threadpool = FakeThreadPool()
-        GLSetting.memory_copy.allow_unencrypted = True
-        GLSetting.sessions = {}
-        GLSetting.failed_login_attempts = 0
-        GLSetting.working_path = './working_path'
-        GLSetting.ramdisk_path = './working_path/ramdisk'
-        GLSetting.eval_paths()
-        GLSetting.remove_directories()
-        GLSetting.create_directories()
-        self.generalities_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
-        self.context_id = '34948a37-201e-44e0-bede-67212f1b7ee6'
-        yield db.create_tables(create_node=False)
-        yield super(TestStep, self).setUp(create_node=False)
+    generalities_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
+    context_id = '34948a37-201e-44e0-bede-67212f1b7ee6'
+
+    create_node = False
 
     @transact
     def create_step(self, store, context_id, field_id):
