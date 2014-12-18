@@ -55,23 +55,24 @@
             <div><span data-translate>Receivers selected:</span> {{selected_receivers_count()}}</div>
           </div>
 
-          <div id="ReceiverSelectionBoxBig" data-ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" data-ng-show="!submission.current_context.show_small_cards">
-            <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.disabled}" data-ng-click="switch_selection(receiver)">
+          <div id="ReceiverSelectionBoxBig" data-ng-repeat="receiver in submission.current_context_receivers | filter:filterReceivers | orderBy:'presentation_order'" data-ng-show="!submission.current_context.show_small_cards">
+            <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.configuration == 'unselectable' || (!submission.allow_unencrypted && receiver.missing_pgp)}" data-ng-click="switch_selection(receiver)">
               <div class="row receiverCardTitle">
                 <div class="col-md-10">
                   <label>
-                    <span data-ng-switch="" on="receiver.gpg_key_status">
-                      <span data-ng-switch-when="Enabled">
-                        <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
-                      </span>
-                      <span data-ng-switch-when="Disabled">
-                        <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
-                      </span>
+                    <span data-ng-if="receiver.configuration == 'default' && !receiver.missing_pgp">
+                      <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    </span>
+                    <span data-ng-if="receiver.configuration == 'unselectable'">
+                      <i class="glyphicon glyphicon-ban-circle" popover="{{ 'This receiver is still not enabled to receive submissions.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    </span>
+                    <span data-ng-if="receiver.configuration != 'unselectable' && receiver.missing_pgp">
+                      <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                     </span>
                     <span>&nbsp;{{receiver.name}}</span>
                   </label>
                 </div>
-                <div class="col-md-1" ng-hide="receiver.disabled">
+                <div class="col-md-1" ng-hide="receiver.selectable">
                   <div data-ng-show="submission.receivers_selected[receiver.id]">
                     <i class="glyphicon glyphicon-check" popover="{{ 'Unselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                   </div>
@@ -84,10 +85,13 @@
                 <div class="col-md-5">
                   <img data-ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
                 </div>
-                <div class="col-md-offset-1 col-md-6" ng-show="!receiver.disabled">
+		<div class="col-md-offset-1 col-md-6" ng-show="receiver.status == 'enabled'">
                   <p>{{receiver.description}}</p>
                 </div>
-                <div class="col-md-offset-1 col-md-6" ng-show="receiver.disabled">
+                <div class="col-md-offset-1 col-md-6" ng-show="receiver.status == 'unselectable'">
+                  <p data-translate>This receiver is still not enabled to receive submissions.</p>
+                </div>
+                <div class="col-md-offset-1 col-md-6" ng-show="receiver.status == 'pgp_needed'">
                   <div data-translate>This receiver is disabled due to missing PGP key.</div>
                   <div data-translate>To enable it, his public key must be loaded by the admin or by the receiver.</div>
                 </div>
@@ -96,28 +100,29 @@
             <div class="clearfix" data-ng-show="$index % 2"></div>
           </div>
 
-          <div id="ReceiverSelectionBoxSmall" data-ng-repeat="receiver in submission.current_context_receivers | orderBy:'presentation_order'" data-ng-show="submission.current_context.show_small_cards">
+          <div id="ReceiverSelectionBoxSmall" data-ng-repeat="receiver in submission.current_context_receivers | filter:filterReceivers | orderBy:'presentation_order'" data-ng-show="submission.current_context.show_small_cards">
             <div class="form-group col-md-3">
-              <div data-ng-click="switch_selection(receiver)" class="receiverCard" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.disabled}">
+              <div data-ng-click="switch_selection(receiver)" class="receiverCard" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.configuration == 'unselectable' || (!submission.allow_unencrypted && receiver.missing_pgp)}">
                 <div class="row receiverCardTitle">
                   <div class="col-md-9">
                     <label>
-                      <span data-ng-switch="" on="receiver.gpg_key_status">
-                        <span data-ng-switch-when="Enabled">
-                          <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
-                        </span>
-                        <span data-ng-switch-when="Disabled">
-                          <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
-                        </span>
+                      <span data-ng-if="receiver.configuration == 'default' && !receiver.missing_pgp">
+                        <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                      </span>
+                      <span data-ng-if="receiver.configuration == 'unselectable'">
+                        <i class="glyphicon glyphicon-ban-circle" popover="{{ 'This receiver is still not enabled to receive submissions.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                      </span>
+                      <span data-ng-if="receiver.configuration != 'unselectable' && receiver.missing_pgp">
+                        <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                       </span>
                       <span>&nbsp;{{receiver.name}}</span>
                     </label>
-                    <div data-ng-show="receiver.disabled">
+                    <div data-ng-show="receiver.status != 'enabled'">
                       <span data-translate>Disabled</span>
                     </div>
                   </div>
 
-                  <div class="col-md-1" ng-hide="receiver.disabled">
+                  <div class="col-md-1" ng-hide="receiver.selectable">
                     <div data-ng-show="submission.receivers_selected[receiver.id]">
                       <i class="glyphicon glyphicon-check" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                     </div>

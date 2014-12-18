@@ -91,11 +91,13 @@ def initialize_node(store, results, only_node, appdata):
         'state': u'enabled',
         'language': u"en",
         'timezone': 0,
+        'password_change_needed': False,
     }
 
     admin = models.User(admin_dict)
 
     admin.last_login = datetime_null()
+    admin.password_change_date = datetime_null()
 
     store.add(admin)
 
@@ -119,9 +121,6 @@ def initialize_node(store, results, only_node, appdata):
 
         # Todo handle pgp_expiration_alert and pgp_expiration_notice already included in client/app/data/txt
         # and internationalized with right support on backend db.
-        if k in ['pgp_expiration_alert', 'pgp_expiration_notice']:
-            continue
-
         if k in appdata['templates']:
             setattr(notification, k, appdata['templates'][k])
 
@@ -169,7 +168,6 @@ def import_memory_variables(store):
 
     except Exception as e:
         raise errors.InvalidInputFormat("Cannot import memory variables: %s" % e)
-
 
 @transact
 def apply_cli_options(store):

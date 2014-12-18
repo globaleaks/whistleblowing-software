@@ -73,17 +73,24 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.switch_selection = function (receiver) {
-    if (receiver.disabled)
+    if (receiver.configuration != 'default' || (!$scope.submission.allow_unencrypted && receiver.missing_pgp)) {
       return;
+    }
     if ($scope.submission.receivers_selected[receiver.id] || $scope.selectable()) {
       $scope.submission.receivers_selected[receiver.id] = !$scope.submission.receivers_selected[receiver.id];
     }
   };
 
+  $scope.filterReceivers = function(receiver) {
+    if(receiver.configuration != 'hidden') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   $scope.uploading = false;
 
-  $scope.disclaimer = {accepted: false};
-  
   // Watch for changes in certain variables
   $scope.$watch('submission.current_context', function () {
     if ($scope.current_context) {

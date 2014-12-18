@@ -145,7 +145,7 @@ class GLSettingsClass:
         # list of plugins available in the software
         self.notification_plugins = [
             'MailNotification',
-            ]
+        ]
 
         self.default_password = 'globaleaks'
 

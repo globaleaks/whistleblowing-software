@@ -136,6 +136,7 @@
                           <span data-translate>Receiver name too long</span>
                         </p>
                       </div>
+
                       <div class="form-group">
                         <label data-translate>Email Address (Username)</label>
                         <input class="form-control" name="email" data-ng-model="receiver.mail_address" type="text" ng-pattern="email_regexp" required>
@@ -143,6 +144,7 @@
                           <span data-translate>Invalid email address</span>
                         </p>
                       </div>
+
                       <div class="form-group">
                         <label>
                           <span data-translate>Password</span>
@@ -164,20 +166,43 @@
                           </li>
                         </ul>
                       </div>
+
+                      <div class="form-group">
+                        <label data-translate>Password Change</label>
+                        <input data-ng-model="receiver.password_change_needed" type="checkbox">
+                        <label data-translate>Force Password Change</label>
+                        <div data-ng-show="receiver.password_change_needed">
+                          <span class="label label-info">
+                            <span data-translate>now Enabled:</span>
+                          </span>
+                          <span data-translate>The Receiver will forced to change its password on next login.</span>
+                        </div>
+                      </div>
+
                       <div class="form-group">
                         <label data-translate>Description</label>
                         <div>
                           <textarea class="form-control" data-ng-model="receiver.description">{{receiver.description}}</textarea>
                         </div>
                       </div>
+
                       <div class="form-group">
                         <label data-translate>Status</label>
                         <select class="form-control" data-ng-model="receiver.state">
                           <option value="disabled" data-translate>Disabled</option>
                           <option value="enabled" data-translate>Enabled</option>
-                          <option value="password_change_needed" data-translate>Password Change Needed</option>
                         </select>
                       </div>
+
+                      <div class="form-group">
+                        <label data-translate>Configuration</label>
+                        <select class="form-control" data-ng-model="receiver.configuration">
+                          <option value="default" data-translate>Default</option>
+                          <option value="hidden" data-translate>Hidden</option>
+                          <option value="unselectable" data-translate>Unselectable</option>
+                        </select>
+                      </div>
+
                       <div class="form-group">
                         <label data-translate>Language</label>
                         <select class="form-control" data-ng-model="receiver.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>

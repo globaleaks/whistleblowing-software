@@ -167,13 +167,15 @@ class User(Model):
     last_login = DateTime()
     language = Unicode()
     timezone = Int()
+    password_change_needed = Bool()
+    password_change_date = DateTime()
 
     _roles = [ u'admin', u'receiver' ]
-    _states = [ u'disabled', u'password_change_needed', u'enabled']
+    _states = [ u'disabled', u'enabled']
 
     unicode_keys = [ 'username', 'password', 'salt', 'role',
                      'state', 'language' ]
-    int_keys = [ 'timezone' ]
+    int_keys = [ 'timezone', 'password_change_needed' ]
 
 
 class Context(Model):
@@ -531,6 +533,8 @@ class Notification(Model):
     security = Unicode()
     _security_types = [u'TLS', u'SSL']
 
+    admin_anomaly_template = Pickle(validator=longlocal_v)
+
     encrypted_tip_template = Pickle(validator=longlocal_v)
     encrypted_tip_mail_title = Pickle(validator=longlocal_v)
     plaintext_tip_template = Pickle(validator=longlocal_v)
@@ -551,7 +555,8 @@ class Notification(Model):
     plaintext_message_template = Pickle(validator=longlocal_v)
     plaintext_message_mail_title = Pickle(validator=longlocal_v)
 
-    admin_anomaly_template = Pickle(validator=longlocal_v)
+    pgp_expiration_alert = Pickle(validator=longlocal_v)
+    pgp_expiration_notice = Pickle(validator=longlocal_v)
 
     zip_description = Pickle(validator=longlocal_v)
 
@@ -562,6 +567,9 @@ class Notification(Model):
         'source_name',
         'source_email']
     localized_strings = [
+        'admin_anomaly_template',
+        'pgp_expiration_alert',
+        'pgp_expiration_notice',
         'encrypted_tip_template',
         'encrypted_tip_mail_title',
         'plaintext_tip_template',
@@ -595,14 +603,14 @@ class Receiver(Model):
     # localization string
     description = Pickle(validator=longlocal_v)
 
+    configuration = Unicode()
+
     # of GPG key fields
     gpg_key_info = Unicode()
     gpg_key_fingerprint = Unicode()
     gpg_key_status = Unicode()
     gpg_key_armor = Unicode()
     gpg_enable_notification = Bool()
-
-    _gpg_types = [u'Disabled', u'Enabled']
 
     # Can be changed and can be different from username!
     mail_address = Unicode()
@@ -633,7 +641,10 @@ class Receiver(Model):
 
     presentation_order = Int()
 
-    unicode_keys = ['name', 'mail_address']
+    _configuration = [u'default', u'hidden', u'unselectable']
+    _gpg_types = [u'Disabled', u'Enabled']
+
+    unicode_keys = ['name', 'mail_address', 'configuration']
     localized_strings = ['description']
     int_keys = ['receiver_level', 'presentation_order']
     bool_keys = ['can_delete_submission', 'tip_notification',

@@ -58,7 +58,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/receiver/preferences.html',
         controller: 'ReceiverPreferencesCtrl',
         header_title: 'Receiver Interface',
-        header_subtitle: ''
+        header_subtitle: 'Preferences'
       }).
       when('/receiver/tips', {
         templateUrl: 'views/receiver/tips.html',

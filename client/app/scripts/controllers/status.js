@@ -33,6 +33,14 @@ GLClient.controller('StatusCtrl',
       }
     }
 
+    $scope.filterReceivers = function(receiver) {
+      if(receiver.configuration != 'hidden') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     if (Authentication.role === 'wb') {
 
       $scope.userrole = 'wb';

@@ -409,6 +409,12 @@
       "encrypted_comment_template": {
         "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that %CommentSource%\nhas added a comment to a previously notified Tip (%TipTorURL%) in %EventTime%.\n\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
       },
+      "pgp_expiration_alert": {
+        "en": ""
+      },
+      "pgp_expiration_notice": {
+        "en": ""
+      },
       "security": "TLS",
       "encrypted_file_mail_title": {
         "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File attached (Encrypted)"
@@ -426,6 +432,8 @@
       "language": "en",
       "password": "d19f1f63ac7efa0f0c6e830a61a895dccb58a1f355d4bbd725d3d06e85bcdb10266897c22c945bfb50dfa069811459904be44f67d8736c30e5779ea5b05e0b43",
       "salt": "9be1486c3b8df25b2363011069242ae3",
+      "password_change_needed": false,
+      "password_change_date": "1970-01-01 00:00:00.000000",
       "id": "6e6ecbfe-981d-40ff-aedb-90c624865ffe"
     },
     "class": "User"
@@ -440,6 +448,8 @@
       "language": "en",
       "password": "ef455506de6bf9c5e3649464c510a1dbc7df51480bb3f234ca09b865b1966ef0825251682c9012f64b168b4635bcae4561ac53d2ebbc97b8186b003d6f5a423a",
       "salt": "4066953a5e04abf27bf6c853d467271b",
+      "password_change_needed": false,
+      "password_change_date": "1970-01-01 00:00:00.000000",
       "id": "c2e5da1c-7212-477c-acb3-403ead07cc69"
     },
     "class": "User"

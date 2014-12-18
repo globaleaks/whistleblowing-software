@@ -245,6 +245,8 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
         "update_date": datetime_to_ISO8601(receiver.last_update),
         "name": receiver.name,
         "id": receiver.id,
+        "state": receiver.user.state,
+        "configuration": receiver.configuration, 
         "receiver_level": receiver.receiver_level,
         "tags": receiver.tags,
         "presentation_order": receiver.presentation_order,

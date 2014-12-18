@@ -366,6 +366,14 @@ class Replacer1415(TableReplacer):
                 new_notification.admin_anomaly_template = every_language("")
                 continue
 
+            if v.name == 'pgp_expiration_alert':
+                new_notification.pgp_expiration_alert = every_language("")
+                continue
+
+            if v.name == 'pgp_expiration_notice':
+                new_notification.pgp_expiration_notice = every_language("")
+                continue
+
             setattr(new_notification, v.name, getattr(old_notification, v.name) )
 
         self.store_new.add(new_notification)

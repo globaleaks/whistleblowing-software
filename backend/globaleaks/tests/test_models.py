@@ -42,6 +42,7 @@ class TestModels(helpers.TestGL):
         r = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
         receiver_user = models.User(self.dummyReceiverUser_1)
         receiver_user.last_login = self.dummyReceiverUser_1['last_login']
+        receiver_user.password_change_date = self.dummyReceiverUser_1['password_change_date']
 
         receiver_user.username = str(
             self.receiver_inc) + self.dummyReceiver_1['mail_address']
@@ -79,9 +80,13 @@ class TestModels(helpers.TestGL):
 
         receiver_user1 = models.User(self.dummyReceiverUser_1)
         receiver_user1.last_login = self.dummyReceiverUser_1['last_login']
+        receiver_user1.password_change_date = self.dummyReceiverUser_1['password_change_date']
+
 
         receiver_user2 = models.User(self.dummyReceiverUser_1)
         receiver_user2.last_login = self.dummyReceiverUser_1['last_login']
+        receiver_user2.password_change_date = self.dummyReceiverUser_1['password_change_date']
+
 
         # Avoid receivers with the same username!
         receiver_user1.username = 'xxx'
@@ -122,6 +127,7 @@ class TestModels(helpers.TestGL):
 
         receiver_user = models.User(self.dummyReceiverUser_1)
         receiver_user.last_login = self.dummyReceiverUser_1['last_login']
+        receiver_user.password_change_date = self.dummyReceiverUser_1['password_change_date']
         # Avoid receivers with the same username!
         receiver_user.username = u'xxx'
         store.add(receiver_user)
