@@ -155,7 +155,6 @@ CREATE TABLE node (
     can_delete_submission INTEGER NOT NULL,
     ahmia INTEGER NOT NULL,
     wizard_done INTEGER NOT NULL,
-    anomaly_checks INTEGER NOT NULL,
     exception_email VARCHAR NOT NULL,
     allow_unencrypted INTEGER NOT NULL,
     disable_privacy_badge INTEGER NOT NULL,

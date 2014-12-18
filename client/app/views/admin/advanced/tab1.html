@@ -18,17 +18,6 @@
     </div>
 
     <div class="form-group">
-      <label>
-        <input data-ng-model="admin.node.anomaly_checks" type="checkbox" />
-        <span data-translate>Enable checks for anomalies</span>
-      </label>
-      <div data-ng-show="admin.node.anomaly_checks">
-        <span class="label label-info" data-translate>Enabled</span>
-        <span data-translate>Checks for anomalies will be now performed on each request.</span>
-      </div>
-    </div>
-
-    <div class="form-group">
       <label data-translate>File size limit (in Megabytes)</label>
       <input class="form-control" data-ng-model="admin.node.maximum_filesize" type="text" />
     </div>

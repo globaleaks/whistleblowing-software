@@ -482,7 +482,6 @@ class Node(Model):
 
     ahmia = Bool()
     wizard_done = Bool(default=False)
-    anomaly_checks = Bool(default=False)
 
     disable_privacy_badge = Bool(default=False)
     disable_security_awareness_badge = Bool(default=False)
@@ -503,7 +502,7 @@ class Node(Model):
     int_keys = [ 'stats_update_time', 'maximum_namesize',
                  'maximum_textsize', 'maximum_filesize', 'default_timezone' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
-                  'tor2web_unauth', 'postpone_superpower', 'anomaly_checks',
+                  'tor2web_unauth', 'postpone_superpower',
                   'can_delete_submission', 'ahmia', 'allow_unencrypted',
                   'disable_privacy_badge', 'disable_security_awareness_badge',
                   'disable_security_awareness_questions', 'enable_custom_privacy_badge' ]

@@ -302,7 +302,6 @@
       },
       "stats_update_time": 2,
       "tor2web_receiver": false,
-      "anomaly_checks": false,
       "wizard_done": false,
       "allow_unencrypted": true,
       "name": "",
