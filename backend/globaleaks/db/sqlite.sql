@@ -7,11 +7,13 @@ CREATE TABLE user (
     password VARCHAR NOT NULL,
     salt VARCHAR NOT NULL,
     role VARCHAR NOT NULL CHECK (role IN ('admin', 'receiver')),
-    state VARCHAR NOT NULL CHECK (state IN ('disabled', 'password_change_needed', 'enabled')),
+    state VARCHAR NOT NULL CHECK (state IN ('disabled', 'enabled')),
     last_login VARCHAR NOT NULL,
     last_update VARCHAR,
     language VARCHAR NOT NULL,
     timezone INTEGER DEFAULT 0,
+    password_change_needed INTEGER NOT NULL,
+    password_change_date VARCHAR NOT NULL,
     PRIMARY KEY (id),
     UNIQUE (username)
 );
@@ -193,6 +195,8 @@ CREATE TABLE notification (
     plaintext_comment_template BLOB,
     plaintext_comment_mail_title BLOB,
     admin_anomaly_template BLOB,
+    pgp_expiration_alert BLOB,
+    pgp_expiration_notice BLOB,
     zip_description BLOB,
     PRIMARY KEY (id)
 );
@@ -200,6 +204,7 @@ CREATE TABLE notification (
 CREATE TABLE receiver (
     id VARCHAR NOT NULL,
     user_id VARCHAR NOT NULL,
+    configuration VARCHAR NOT NULL CHECK (configuration IN ('default', 'hidden', 'unselectable')),
     creation_date VARCHAR NOT NULL,
     can_delete_submission INTEGER NOT NULL,
     postpone_superpower INTEGER NOT NULL,

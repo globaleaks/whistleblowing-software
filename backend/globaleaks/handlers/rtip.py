@@ -44,7 +44,7 @@ def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.
         'potential_expiration_date' : \
             datetime_to_ISO8601(utc_future_date(seconds=internaltip.context.tip_timetolive)),
         'extend' : False,
-        'enable_private_messages': internaltip.context.enable_private_messages
+        'enable_private_messages': internaltip.context.enable_private_messages,
     }
 
     # context_name and context_description are localized fields
@@ -431,6 +431,9 @@ def get_receiver_list_receiver(store, user_id, tip_id, language=GLSetting.memory
 
     receiver_list = []
     for rtip in rtip.internaltip.receivertips:
+
+        if rtip.receiver.configuration == 'hidden':
+            continue
 
         receiver_desc = {
             "gpg_key_status": rtip.receiver.gpg_key_status,

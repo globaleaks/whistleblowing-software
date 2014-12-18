@@ -38,7 +38,7 @@
             </tr>
           </thead>
           <tbody id="receiverListBody">
-            <tr data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
+            <tr data-ng-repeat="receiver in tip.receivers | filter:filterReceivers | orderBy:'name'">
               <td>
                 <span data-ng-switch="" on="receiver.gpg_key_status">
                   <span data-ng-switch-when="Enabled">

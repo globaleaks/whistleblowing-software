@@ -17,6 +17,4 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', 'Authentication', function($s
       maxNumberOfFiles: 1
     };
   }
-  console.log($scope.options);
-  console.log($scope.fileupload_mode);
 }]);

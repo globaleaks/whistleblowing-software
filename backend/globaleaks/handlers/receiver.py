@@ -8,16 +8,15 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.utils.utility import log, acquire_bool, datetime_to_ISO8601
-from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.handlers.admin import db_get_context_fields
+from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, Context, ReceiverTip, ReceiverFile, Message, Node
-from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, gpg_options_parse
-
+from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.utils.structures import Rosetta, get_localized_values
+from globaleaks.utils.utility import log, acquire_bool, datetime_to_ISO8601, datetime_now
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
@@ -82,8 +81,10 @@ def update_receiver_settings(store, receiver_id, request, language=GLSetting.mem
                                                  new_password,
                                                  receiver.user.salt)
 
-        if receiver.user.state == 'password_change_needed':
-            receiver.user.state = 'enabled'
+        if receiver.user.password_change_needed:
+            receiver.user.password_change_needed = False
+
+        receiver.user.password_change_date = datetime_now()
 
     mail_address = request['mail_address']
 

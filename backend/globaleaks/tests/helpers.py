@@ -566,11 +566,14 @@ class MockDict():
             'state': u'enabled',
             'last_login': datetime_null(),
             'timezone': 0,
-            'language': u'en'
+            'language': u'en',
+            'password_change_needed': False,
+            'password_change_date': datetime_null()
         }
 
         self.dummyReceiver = {
             'password': VALID_PASSWORD1,
+            'password_change_needed': False,
             'name': u'Ned Stark',
             'description': u'King MockDummy Receiver',
             # Email can be different from the user, but at the creation time is used
@@ -593,10 +596,12 @@ class MockDict():
             'gpg_key_remove': False,
             'presentation_order': 0,
             'timezone': 0,
-            'language': u'en'
+            'language': u'en',
+            'configuration': 'default'
         }
 
-        self.dummyFieldTemplates = [{
+        self.dummyFieldTemplates = [
+        {
             'id': u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
             'is_template': True,
             'step_id': '',
@@ -613,8 +618,8 @@ class MockDict():
             'options': [],
             'y': 2,
             'x': 0
-            },
-            {
+        },
+        {
             'id': u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
             'is_template': True,
             'step_id': '',
@@ -631,8 +636,8 @@ class MockDict():
             'options': [],
             'y': 3,
             'x': 0
-            },
-            {
+        },
+        {
             'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
             'is_template': True,
             'step_id': '',
@@ -649,8 +654,8 @@ class MockDict():
             'options': [],
             'y': 4,
             'x': 0
-            },
-            {
+        },
+        {
             'id': u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
             'is_template': True,
             'step_id': '',
@@ -667,8 +672,8 @@ class MockDict():
             'options': [],
             'y': 0,
             'x': 0
-            },
-            {
+        },
+        {
             'id': u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
             'is_template': True,
             'step_id': '',
@@ -677,30 +682,31 @@ class MockDict():
             'type': u'inputbox',
             'preview': False,
             'description': u"field description",
-            'hint': u'field hint',
-            'multi_entry': False,
-            'stats_enabled': False,
-            'required': False,
-            'children': {},
-            'options': [],
-            'y': 0,
-            'x': 0
-            }]
+                'hint': u'field hint',
+                'multi_entry': False,
+                'stats_enabled': False,
+                'required': False,
+                'children': {},
+                'options': [],
+                'y': 0,
+                'x': 0
+        }]
 
         self.dummyFields = copy.deepcopy(self.dummyFieldTemplates)
 
-        self.dummySteps = [{
+        self.dummySteps = [
+        {
             'label': u'Step 1',
             'description': u'Step Description',
             'hint': u'Step Hint',
             'children': {}
-            },
-            {
+        },
+        {
               'label': u'Step 2',
               'description': u'Step Description',
               'hint': u'Step Hint',
               'children': {}
-            }]
+        }]
 
         self.dummyContext = {
             # localized stuff
@@ -830,6 +836,9 @@ class MockDict():
             'plaintext_message_template': u'%B EventTime% %TipUN%',
             'encrypted_message_mail_title': u'T %EventTime %TipUN',
             'plaintext_message_mail_title': u'T %EventTime %TipUN',
+            'admin_anomaly_template': u'TODO',
+            'pgp_expiration_alert': u'TODO',
+            'pgp_expiration_notice': u'TODO',
             'zip_description': u'TODO',
             'disable': False,
         }

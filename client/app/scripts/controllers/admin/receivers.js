@@ -104,15 +104,12 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher', 'C
 GLClient.controller('AdminReceiverAddCtrl', ['$scope', 'passwordWatcher',
   function($scope, passwordWatcher) {
 
-    passwordWatcher($scope, 'new_receiver.password');
-
     $scope.new_receiver = {};
 
     $scope.add_receiver = function() {
       receiver = new $scope.admin.new_receiver();
 
       receiver.name = $scope.new_receiver.name;
-      receiver.password = $scope.new_receiver.password;
       receiver.mail_address = $scope.new_receiver.email;
 
       receiver.$save(function(new_receiver){

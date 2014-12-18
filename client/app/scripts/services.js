@@ -61,7 +61,8 @@ angular.module('resourceServices.authentication', [])
               self.username = username;
               self.role = role;
               self.session = response.session;
-              self.status = response.status;
+              self.state = response.state;
+              self.password_change_needed = response.password_change_needed;
 
               var auth_landing_page = "";
 
@@ -71,7 +72,7 @@ angular.module('resourceServices.authentication', [])
                   auth_landing_page = "/admin/landing";
               }
               if (role == 'receiver') {
-                if (self.status == 'password_change_needed') {
+                if (self.password_change_needed) {
                     auth_landing_page = "/receiver/firstlogin";
                 } else {
                     auth_landing_page = "/receiver/tips";
@@ -289,8 +290,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               if (receiver.id in receivers) {
                 self.receivers_selected[receiver.id];
               }
-            } else if (!receiver.disabled) {
+            } else if (receiver.configuration == 'default') {
               self.receivers_selected[receiver.id] = self.current_context.select_all_receivers != false;
+            } else if (receiver.configuration == 'hidden') {
+              self.receivers_selected[receiver.id] = true;
             }
           }
         });
@@ -312,9 +315,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           Receivers.query(function(receivers){
             self.receivers = [];
             forEach(receivers, function(receiver){
-              receiver.disabled = false;
-              if (!self.allow_unencrypted && receiver.gpg_key_status !== 'Enabled')
-                receiver.disabled = true;
+              if (receiver.gpg_key_status !== 'Enabled') {
+                receiver.missing_pgp = true;
+              }
               self.receivers.push(receiver);
             });
             setCurrentContextReceivers();
@@ -872,9 +875,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       self.new_receiver = function () {
         var receiver = new adminReceiversResource;
+        receiver.password = '';
         receiver.contexts = [];
-        receiver.description = "";
-        receiver.mail_address = "";
+        receiver.description = '';
+        receiver.mail_address = '';
         receiver.can_delete_submission = false;
         receiver.postpone_superpower = false;
         receiver.receiver_level = 1;
@@ -890,7 +894,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.gpg_key_status = 'ignored';
         receiver.gpg_enable_notification = false;
         receiver.presentation_order = 0;
-        receiver.status = 'password_change_needed'
+        receiver.state = 'enable';
+        receiver.configuration = 'default';
+        receiver.password_change_needed = true;
         receiver.language = 'en'
         receiver.timezone = '0'
         return receiver;

@@ -145,6 +145,7 @@ adminNotificationDesc = {
     'password': unicode,
     'source_name' : unicode,
     'source_email' : email_regexp,
+    'admin_anomaly_template': unicode,
     'encrypted_tip_template': unicode,
     'encrypted_tip_mail_title': unicode,
     'plaintext_tip_template': unicode,
@@ -161,6 +162,8 @@ adminNotificationDesc = {
     'encrypted_message_mail_title': unicode,
     'plaintext_message_template': unicode,
     'plaintext_message_mail_title': unicode,
+    'pgp_expiration_alert': unicode,
+    'pgp_expiration_notice': unicode,
     'zip_description': unicode,
     'disable': bool,
 }

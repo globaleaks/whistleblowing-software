@@ -52,6 +52,8 @@ var receiver = {
   receiver_level: 1,
   tags: [],
   tip_notification: false,
+  configuration: "default",
+  password_change_needed: false,
 }
 
 var fields = [
@@ -68,7 +70,7 @@ var fields = [
     multi_entry: false,
     stats_enabled: false,
     required: true,
-    children: {},
+    children: [],
     options: [],
     y: 2,
     x: 0
@@ -86,7 +88,7 @@ var fields = [
     multi_entry: false,
     stats_enabled: false,
     required: false,
-    children: {},
+    children: [],
     options: [],
     y: 3,
     x: 0
@@ -104,7 +106,7 @@ var fields = [
     multi_entry: false,
     stats_enabled: false,
     required: false,
-    children: {},
+    children: [],
     options: [],
     y: 3,
     x: 0
@@ -122,7 +124,7 @@ var fields = [
     multi_entry: false,
     stats_enabled: false,
     required: false,
-    children: {},
+    children: [],
     options: [],
     y: 4,
     x: 0
@@ -140,7 +142,7 @@ var fields = [
     multi_entry: false,
     stats_enabled: false,
     required: false,
-    children: {},
+    children: [],
     options: [],
     y: 0,
     x: 0
@@ -158,7 +160,7 @@ var fields = [
     multi_entry: false,
     stats_enabled: false,
     required: false,
-    children: {},
+    children: [],
     options: [],
     y: 0,
     x: 0
@@ -436,7 +438,7 @@ describe('POST /admin/field', function () {
 
                 validate_mandatory_headers(res.headers);
 
-                 fields.push(res.body);
+                fields.push(res.body);
 
                 fields_ids.push(res.body.id);
 

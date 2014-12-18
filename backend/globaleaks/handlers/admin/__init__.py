@@ -229,6 +229,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         'mail_address': receiver.mail_address,
         "password": u"",
         "state": receiver.user.state,
+        "configuration": receiver.configuration,
         "contexts": [c.id for c in receiver.contexts],
         "tags": receiver.tags,
         "gpg_key_info": receiver.gpg_key_info,
@@ -242,8 +243,9 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "file_notification": True if receiver.file_notification else False,
         "message_notification": True if receiver.message_notification else False,
         "presentation_order": receiver.presentation_order,
-        'language': receiver.user.language,
-        'timezone': receiver.user.timezone
+        "language": receiver.user.language,
+        "timezone": receiver.user.timezone,
+        "password_change_needed": receiver.user.password_change_needed
     }
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
@@ -704,13 +706,16 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
         'password': receiver_password,
         'salt': receiver_salt,
         'role': u'receiver',
-        'state': u'password_change_needed',
+        'state': u'enabled',
         'language': u"en",
         'timezone': 0,
+        'password_change_needed': True,
     }
 
     receiver_user = models.User(receiver_user_dict)
     receiver_user.last_login = datetime_null()
+    receiver_user.password_change_needed = request['password_change_needed']
+    receiver_user.password_change_date = datetime_null()
     store.add(receiver_user)
 
     receiver = models.Receiver(request)
@@ -799,6 +804,7 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
     if len(password):
         security.check_password_format(password)
         receiver.user.password = security.hash_password(password, receiver.user.salt)
+        receiver.user.password_change_date = datetime_now()
 
     contexts = request.get('contexts', [])
 

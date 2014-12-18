@@ -228,17 +228,17 @@ def login_receiver(store, username, password):
 
     if not receiver_user or receiver_user.role != 'receiver':
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
-        return False, None
+        return False, None, None
 
     if not security.check_password(password, receiver_user.password, receiver_user.salt):
         log.debug("Receiver login: Invalid password")
-        return False, None
+        return False, None, None
     else:
         log.debug("Receiver: Authorized receiver %s" % username)
         receiver_user.last_login = utility.datetime_now()
         receiver = store.find(Receiver, (Receiver.user_id == receiver_user.id)).one()
         store.commit() # the transact was read only! on success we apply the commit()
-        return receiver.id, receiver_user.state
+        return receiver.id, receiver_user.state, receiver_user.password_change_needed
 
 @transact_ro  # read only transact; manual commit on success needed
 def login_admin(store, username, password):
@@ -250,16 +250,16 @@ def login_admin(store, username, password):
 
     if not admin_user or admin_user.role != 'admin':
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
-        return False, None
+        return False, None, None
 
     if not security.check_password(password, admin_user.password, admin_user.salt):
         log.debug("Admin login: Invalid password")
-        return False, None
+        return False, None, None
     else:
         log.debug("Admin: Authorized admin %s" % username)
         admin_user.last_login = utility.datetime_now()
         store.commit() # the transact was read only! on success we apply the commit()
-        return username, admin_user.state
+        return username, admin_user.state, admin_user.password_change_needed
 
 class AuthenticationHandler(BaseHandler):
     """
@@ -331,7 +331,7 @@ class AuthenticationHandler(BaseHandler):
 
         if role == 'admin':
 
-            authorized_username, status = yield login_admin(username, password)
+            authorized_username, status, pcn = yield login_admin(username, password)
             if authorized_username is False:
                 GLSetting.failed_login_attempts += 1
                 raise errors.InvalidAuthRequest
@@ -342,7 +342,8 @@ class AuthenticationHandler(BaseHandler):
                 'session_id': new_session_id,
                 'user_id': unicode(authorized_username),
                 'session_expiration': int(GLSetting.sessions[new_session_id].getTime()),
-                'status': status
+                'status': status,
+                'password_change_needed': pcn
             }
 
         elif role == 'wb':
@@ -359,12 +360,13 @@ class AuthenticationHandler(BaseHandler):
                 'session_id': new_session_id,
                 'user_id': unicode(wbtip_id),
                 'session_expiration': int(GLSetting.sessions[new_session_id].getTime()),
-                'status': 'enabled'
+                'status': 'enabled',
+                'password_change_needed': False
             }
 
         elif role == 'receiver':
 
-            receiver_id, status = yield login_receiver(username, password)
+            receiver_id, status, pcn = yield login_receiver(username, password)
             if receiver_id is False:
                 GLSetting.failed_login_attempts += 1
                 raise errors.InvalidAuthRequest
@@ -376,7 +378,8 @@ class AuthenticationHandler(BaseHandler):
                 'session_id': new_session_id,
                 'user_id': unicode(receiver_id),
                 'session_expiration': int(GLSetting.sessions[new_session_id].getTime()),
-                'status': status
+                'status': status,
+                'password_change_needed': pcn
             }
 
         else:

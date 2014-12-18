@@ -84,7 +84,9 @@ class TTip(helpers.TestGL):
         'gpg_key_remove': False, 'gpg_key_armor': None, 'gpg_enable_notification': False,
         'presentation_order': 0,
         'timezone': 0,
-        'language': u'en'
+        'language': u'en',
+        'password_change_needed': True,
+        'configuration': 'default'
     }
 
     tipReceiver2 = {
@@ -99,7 +101,9 @@ class TTip(helpers.TestGL):
         'gpg_key_remove': False, 'gpg_key_armor': None, 'gpg_enable_notification': False,
         'presentation_order': 0,
         'timezone': 0,
-        'language': u'en'
+        'language': u'en',
+        'password_change_needed': True,
+        'configuration': 'default'
     }
 
     tipOptions = {
@@ -223,10 +227,10 @@ class TestTipInstance(TTip):
     @inlineCallbacks
     def access_receivers_tip(self):
 
-        auth1, _ = yield authentication.login_receiver(self.receiver1_desc['username'], STATIC_PASSWORD)
+        auth1, _, _ = yield authentication.login_receiver(self.receiver1_desc['username'], STATIC_PASSWORD)
         self.assertEqual(auth1, self.receiver1_desc['id'])
 
-        auth2, _ = yield authentication.login_receiver(self.receiver2_desc['username'], STATIC_PASSWORD)
+        auth2, _, _ = yield authentication.login_receiver(self.receiver2_desc['username'], STATIC_PASSWORD)
         self.assertEqual(auth2, self.receiver2_desc['id'])
 
         # we does not know the association auth# sefl.rtip#_id
