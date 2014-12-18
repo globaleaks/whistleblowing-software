@@ -13,11 +13,14 @@ from storm.expr import Desc
 from globaleaks.rest import errors
 from globaleaks.settings import transact_ro, transact
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, authenticated
+from globaleaks.handlers.authentication import transport_security_check, \
+    authenticated
 from globaleaks.jobs.statistics_sched import StatisticsSchedule
 from globaleaks.models import Stats, Anomalies
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, log
-from globaleaks.anomaly import EventTrackQueue, outcome_event_monitored, pollute_Event_for_testing
+from globaleaks.anomaly import EventTrackQueue, outcome_event_monitored, \
+    pollute_Event_for_testing
+
 
 @transact_ro
 def get_stats(store, delta_week):
@@ -41,12 +44,12 @@ def get_stats(store, delta_week):
             continue
 
         last_stats_dict = {
-            'summary' : hourdata.summary,
-            'year' : int(hourdata.start.isocalendar()[0]),
-            'week' :  int(hourdata.start.isocalendar()[1]),
-            'hour' : int(hourdata.start.isoformat()[11:13]),
-            'day' : int(hourdata.start.isocalendar()[2]),
-            'freemegabytes' : hourdata.freemb,
+            'summary': hourdata.summary,
+            'year': int(hourdata.start.isocalendar()[0]),
+            'week':  int(hourdata.start.isocalendar()[1]),
+            'hour': int(hourdata.start.isoformat()[11:13]),
+            'day': int(hourdata.start.isocalendar()[2]),
+            'freemegabytes': hourdata.freemb,
         }
         week_stats.append(last_stats_dict)
 
@@ -90,12 +93,14 @@ def delete_weekstats_history(store):
     """
 
     allws = store.find(Stats)
-    log.info("Deleting %d entries from hourly statistics table" % allws.count())
+    log.info("Deleting %d entries from hourly statistics table"
+             % allws.count())
 
     allws.remove()
 
     #Now you're like a gringo without history, please invade Iraq
     log.info("Week statistics removal completed.")
+
 
 @transact_ro
 def get_anomaly_history(store, limit):
@@ -108,18 +113,19 @@ def get_anomaly_history(store, limit):
         if limit == i:
             break
         anomaly_entry = dict({
-            'when' : anom.stored_when,
-            'alarm' : anom.alarm,
+            'when': anom.stored_when,
+            'alarm': anom.alarm,
             'events': [],
         })
         for event_name, event_amount in anom.events.iteritems():
             anomaly_entry['events'].append({
-                'name' : event_name,
-                'amount' : event_amount,
+                'name': event_name,
+                'amount': event_amount,
             })
         full_anomal.append(anomaly_entry)
 
     return list(full_anomal)
+
 
 @transact
 def delete_anomaly_history(store):
@@ -129,7 +135,8 @@ def delete_anomaly_history(store):
     """
 
     allanom = store.find(Anomalies)
-    log.info("Deleting %d entries from Anomalies History table" % allanom.count())
+    log.info("Deleting %d entries from Anomalies History table"
+             % allanom.count())
 
     allanom.remove()
 
@@ -147,11 +154,11 @@ class AnomaliesCollection(BaseHandler):
     @classmethod
     def update_AnomalyQ(cls, event_matrix, alarm_level):
         # called from statistics_sched
-        StatisticsSchedule.RecentAnomaliesQ.update({
-            datetime_to_ISO8601(datetime_now())[:-8] :
-                [ event_matrix, alarm_level ]
-        })
+        date = datetime_to_ISO8601(datetime_now())[:-8]
 
+        StatisticsSchedule.RecentAnomaliesQ.update({
+            date: [event_matrix, alarm_level]
+        })
 
     @transport_security_check("admin")
     @authenticated("admin")
@@ -161,6 +168,7 @@ class AnomaliesCollection(BaseHandler):
         DB in order to provide a good history.
         """
         self.finish(StatisticsSchedule.RecentAnomaliesQ)
+
 
 class AnomalyHistoryCollection(BaseHandler):
 
@@ -182,11 +190,10 @@ class AnomalyHistoryCollection(BaseHandler):
         self.set_status(200)
 
 
-
 class StatsCollection(BaseHandler):
     """
-    This Handler returns the list of the stats, stats is the aggregated amount of
-    activities recorded in the delta defined in GLSettings
+    This Handler returns the list of the stats, stats is the aggregated
+    amount of activities recorded in the delta defined in GLSettings
     /admin/stats
     """
 
@@ -204,7 +211,6 @@ class StatsCollection(BaseHandler):
         stats_block = yield get_stats(proper_delta)
         self.finish(stats_block)
 
-
     @transport_security_check("admin")
     @authenticated("admin")
     @inlineCallbacks
@@ -213,7 +219,6 @@ class StatsCollection(BaseHandler):
         log.info("Received statistic history delete command")
         yield delete_weekstats_history()
         self.set_status(200)
-
 
 
 class RecentEventsCollection(BaseHandler):
@@ -230,12 +235,14 @@ class RecentEventsCollection(BaseHandler):
         less, but only the serialisation in memory.
         This is not show anyway.
         """
+        date = datetime_to_ISO8601(expired_event.creation_date)[:-8]
 
-        StatisticsSchedule.RecentEventQ.append(dict({
-            'id' : expired_event.event_id,
-            'creation_date' : datetime_to_ISO8601(expired_event.creation_date)[:-8],
-            'event' :  expired_event.event_type,
-            'duration' : round(expired_event.request_time, 1),
+        StatisticsSchedule.RecentEventQ.append(
+            dict({
+                'id': expired_event.event_id,
+                'creation_date': date,
+                'event':  expired_event.event_type,
+                'duration': round(expired_event.request_time, 1),
             })
         )
 
@@ -257,21 +264,22 @@ class RecentEventsCollection(BaseHandler):
             "children": [
                 {
                     'name': 'login',
-                    'children' : [
-                        { 'name': 'success', 'size': eventmap['login_success'] },
-                        { 'name': 'failure', 'size': eventmap['login_failure'] },
-                        ]
+                    'children': [
+                        {'name': 'success', 'size': eventmap['login_success']},
+                        {'name': 'failure', 'size': eventmap['login_failure']},
+                    ]
                 },
                 {
                     'name': 'submission',
-                    'children' : [
-                        { 'name': 'started', 'size': eventmap['submission_started']},
-                        { 'name': 'completed', 'size': eventmap['submission_completed']},
-                        ]
+                    'children': [
+                        {'name': 'started',
+                         'size': eventmap['submission_started']},
+                        {'name': 'completed',
+                         'size': eventmap['submission_completed']},
+                    ]
                 },
-                { 'name' : 'wb_comment', 'size': eventmap['wb_comment'] },
-                { 'name' : 'file', 'size': eventmap['file'] }
-            ]
+                {'name': 'wb_comment', 'size': eventmap['wb_comment']},
+                {'name': 'file', 'size': eventmap['file']}]
         }
         return retdict
 
@@ -286,12 +294,11 @@ class RecentEventsCollection(BaseHandler):
 
         return eventmap
 
-
     @transport_security_check("admin")
     @authenticated("admin")
     def get(self, kind, *uriargs):
 
-        if not kind in [ 'bubble', 'details', 'summary' ]:
+        if not kind in ['bubble', 'details', 'summary']:
             raise errors.InvalidInputFormat(kind)
 
         templist = []
@@ -309,6 +316,5 @@ class RecentEventsCollection(BaseHandler):
             )
         elif kind == 'details':
             self.finish(templist)
-        else: # summary
+        else:  # summary
             self.finish(self.get_summary(templist))
-
