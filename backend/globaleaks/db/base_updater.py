@@ -57,6 +57,7 @@ def variableToSQL(var, db_type):
 
     return "%s" % data_mapping[db_type]
 
+
 def varsToParametersSQL(variables, primary_keys, db_type):
     """
     Takes as input a list of variables (convered to SQLite syntax and in the
@@ -82,6 +83,7 @@ def varsToParametersSQL(variables, primary_keys, db_type):
         params += "%s %s)" % variables[-1]
     return params
 
+
 def generateCreateQuery(model):
     """
     This takes as input a Storm model and outputs the creation query for it.
@@ -92,7 +94,7 @@ def generateCreateQuery(model):
     else:
         table_name = model.__storm_table__
 
-    query = "CREATE TABLE "+ table_name + " "
+    query = "CREATE TABLE " + table_name + " "
 
     variables = []
     primary_keys = []
