@@ -11,14 +11,8 @@ GLClient.controller('OverviewCtrl', ['$scope', '$location', 'ReceiverOverview', 
       $scope.active[current_menu] = "active";
 }]);
 
-GLClient.controller('StatisticsCtrl', ['$scope', 'Node', 'StatsCollection', 'AnomaliesCollection',
+GLClient.controller('StatisticsCtrl', ['$scope', 'StatsCollection', 'AnomaliesCollection',
     function($scope, Node, StatsCollection, AnomaliesCollection) {
-
-        Node.get(function(node) {
-
-          $scope.anomaly_checks = node.anomaly_checks;
-
-        });
 
         $scope.anomalies = AnomaliesCollection.query();
 

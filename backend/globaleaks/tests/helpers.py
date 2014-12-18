@@ -787,7 +787,6 @@ class MockDict():
             'reset_css': False,
             'reset_homepage': False,
             'ahmia': False,
-            'anomaly_checks': False,
             'allow_unencrypted': True,
             'configured': False,
             'wizard_done': False,
