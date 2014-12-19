@@ -18,15 +18,19 @@ GLClient.controller('StatisticsCtrl', ['$scope', 'Node', 'StatsCollection',
 
       /*
       {
-      "day": 6,
-      "freemegabytes": 5627,
-      "hour": 19,
-      "summary": {
-      "login_failure": 28
+          "day": 6,
+          "freemegabytes": 5627,
+          "hour": 19,
+          "summary": {
+              "login_failure": 28
+          },
+          "week": 46,
+          "year": 2014
       },
-      "week": 46,
-      "year": 2014
-      },
+      freemegabytes is also a marker:
+          A) -1 missing result: node shut down
+          B) -2 future hour, we can't have data
+          C) -3
       */
 
       data.forEach(function(d) {
@@ -97,14 +101,32 @@ GLClient.controller('StatisticsCtrl', ['$scope', 'Node', 'StatsCollection',
           .attr("class", "hour bordered")
           .attr("width", gridSize)
           .attr("height", gridSize)
-          .style("fill", colors[0]);
+          .style("fill", function(d) {
+              return colors[0]
+          });
 
       heatMap.transition().duration(1000)
-          .style("fill", function(d) { return colorScale(d.value); });
+          .style("fill", function(d) {
+              console.log(d);
+              if (d.freemegabytes == -1) {
+                  return '#ffffff';
+              }
+              if (d.freemegabytes == -2) {
+                  return '#000000';
+              }
+              if (d.freemegabytes == -3) {
+                  return '#AA0A0A'; // a random color that will sound like an eyepunch
+              }
+              return colorScale(d.value);
+          });
 
       heatMap.append("title").text(function(d) {
           if (d.freemegabytes == -1) {
-              return "Missing data for this hour";
+              return "Not avail statistics for this future hour";
+          } else if (d.freemegabytes == -2) {
+              return "Missing data: in this hour the node was off";
+          } else if (d.freemegabytes == -3) {
+              return "Current hour: check in activities";
           } else {
               return (
                 "MBytes free: " + d.freemegabytes + "\n" +
@@ -127,7 +149,9 @@ GLClient.controller('StatisticsCtrl', ['$scope', 'Node', 'StatsCollection',
           .attr("y", height)
           .attr("width", legendElementWidth)
           .attr("height", gridSize / 2)
-          .style("fill", function(d, i) { return colors[i]; });
+          .style("fill", function(d, i) {
+              return colors[i];
+          });
 
       legend.append("text")
          .attr("class", "mono")

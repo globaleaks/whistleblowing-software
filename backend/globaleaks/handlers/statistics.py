@@ -31,6 +31,9 @@ def get_stats(store, delta_week):
     """
 
     target_week = int(datetime_now().isocalendar()[1]) - delta_week
+    # we loop 1 to 7, this return 0 to 6, therefore: +1
+    current_wday = (datetime_now().weekday() + 1) 
+    current_hour = datetime_now().hour
 
     hourlyentry = store.find(Stats)
 
@@ -61,7 +64,9 @@ def get_stats(store, delta_week):
     if not len(week_stats):
         last_stats_dict['year'] = datetime_now().year
 
-    # else, supply default for the missing hour
+    # else, supply default for the missing hour.
+    # an hour can miss for two reason: the node was down (alarm)
+    # or the hour is in the future (just don't display nothing)
     for day in xrange(1, 8):
         for hour in xrange(1, 25):
 
@@ -73,13 +78,27 @@ def get_stats(store, delta_week):
             if not missing_hour:
                 continue
 
+            # freemegabytes is used as status value in the case the
+            # stats for the hour are missing. the possibilities are:
+            # the hour is lacking from the results: takes value: -1
+            # the hour is in the future, takes value: -2
+            # the hour is the current hour (in the current day): -3
+            # I'm using negative numbers because free MBs can never be < 0
+            if current_wday > day:
+                marker = -2
+            elif current_wday == day and current_hour > hour:
+                marker = -2
+            elif current_wday == day and current_hour == hour:
+                marker = -3
+            else:
+                marker = -1
             week_stats.append({
                 'summary': {},
                 'year': last_stats_dict['year'],
                 'week': target_week,
                 'hour': hour,
                 'day': day,
-                'freemegabytes': -1,
+                'freemegabytes': marker
             })
 
     return list(week_stats)
@@ -246,43 +265,6 @@ class RecentEventsCollection(BaseHandler):
             })
         )
 
-    def print_bubble(self, templist):
-        """
-        This visualisation output is not used ATM
-        """
-
-        eventmap = dict()
-        for event in outcome_event_monitored:
-            eventmap.setdefault(event['name'], 0)
-
-        # TODO make a sum/mix/man/all the timings ?
-        for e in templist:
-            eventmap[e['event']] += 1
-
-        retdict = {
-            "name": 'Node recent activities',
-            "children": [
-                {
-                    'name': 'login',
-                    'children': [
-                        {'name': 'success', 'size': eventmap['login_success']},
-                        {'name': 'failure', 'size': eventmap['login_failure']},
-                    ]
-                },
-                {
-                    'name': 'submission',
-                    'children': [
-                        {'name': 'started',
-                         'size': eventmap['submission_started']},
-                        {'name': 'completed',
-                         'size': eventmap['submission_completed']},
-                    ]
-                },
-                {'name': 'wb_comment', 'size': eventmap['wb_comment']},
-                {'name': 'file', 'size': eventmap['file']}]
-        }
-        return retdict
-
     def get_summary(self, templist):
 
         eventmap = dict()
@@ -298,7 +280,7 @@ class RecentEventsCollection(BaseHandler):
     @authenticated("admin")
     def get(self, kind, *uriargs):
 
-        if kind not in ['bubble', 'details', 'summary']:
+        if kind not in ['details', 'summary']:
             raise errors.InvalidInputFormat(kind)
 
         templist = []
@@ -310,11 +292,8 @@ class RecentEventsCollection(BaseHandler):
 
         templist.sort(key=operator.itemgetter('id'))
 
-        if kind == 'bubble':
-            self.finish(
-                self.print_bubble(templist)
-            )
-        elif kind == 'details':
+        if kind == 'details':
             self.finish(templist)
-        else:  # summary
+        else: # kind == 'summary':
             self.finish(self.get_summary(templist))
+
