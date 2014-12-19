@@ -80,7 +80,6 @@ actorsCommentDesc = {
 actorsTipOpsDesc = {
     'global_delete' : bool,
     'extend': bool,
-    'is_pertinent': bool,
 }
 
 adminStepDesc = {
@@ -174,17 +173,12 @@ adminContextDesc = {
     'postpone_superpower': bool,
     'can_delete_submission': bool,
     'maximum_selectable_receivers': int,
-    'require_file_description': bool,
-    'delete_consensus_percentage': int,
-    'require_pgp': bool,
     'selectable_receiver': bool,
     'tip_max_access' : int,
     'tip_timetolive' : int,
     'file_max_download' : int,
-    'escalation_threshold' : int,
     'receivers' : [ uuid_regexp ],
     'steps': [ adminStepDesc ],
-    'tags' : [ unicode ],
     'select_all_receivers': bool,
     'show_small_cards': bool,
     'show_receivers': bool,
@@ -205,10 +199,8 @@ adminReceiverDesc = {
     'name': unicode,
     'description': unicode,
     'contexts': [ uuid_regexp ],
-    'receiver_level': int,
     'can_delete_submission': bool,
     'postpone_superpower': bool,
-    'tags': [ unicode ],
     'tip_notification': bool,
     'file_notification': bool,
     'comment_notification': bool,
@@ -274,7 +266,6 @@ TipOverview = {
     'comments': list,
     'wb_last_access': unicode,
     'expiration_date': dateType,
-    'pertinence_counter': int,
 }
 
 TipsOverview = [ TipOverview ]
@@ -322,9 +313,7 @@ AnomaliesCollection = [ AnomalyLine ]
 
 nodeReceiver = {
      'update_date': unicode,
-     'receiver_level': int,
      'name': unicode,
-     'tags': [ unicode ],
      'contexts': [ uuid_regexp ],
      'description': unicode,
      'presentation_order': int,
@@ -361,12 +350,10 @@ nodeContext = {
     'show_receivers': bool,
     'enable_private_messages': bool,
     'file_max_download': int,
-    'require_pgp': bool,
     'tip_max_access': int,
     'id': uuid_regexp,
     'receivers': [ uuid_regexp ],
     'submission_disclaimer': unicode,
-    'escalation_threshold': int,
 }
 
 nodeContextCollection = [ nodeContext ]
@@ -398,7 +385,6 @@ staticFileCollection = [ staticFileCollectionElem ]
 
 internalTipDesc = {
     'wb_steps': list,
-    'pertinence': int,
     'receivers': [ uuid_regexp ],
     'context_id': uuid_regexp,
     'access_limit': int,
@@ -408,7 +394,6 @@ internalTipDesc = {
     'files': [ uuid_regexp ],
     'expiration_date': dateType,
     'download_limit': int,
-    'escalation_threshold': int,
 }
 
 # TODO if the admin has visibility to different variables compared to the WB

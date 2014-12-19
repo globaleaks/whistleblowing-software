@@ -164,7 +164,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         self.dummyContext['receivers'] = rcvrs_ids
         self.dummyContext['selectable_receiver'] = True
-        self.dummyContext['escalation_threshold'] = 0
 
         for attrname in models.Context.localized_strings:
             self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
@@ -210,7 +209,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         self.dummyContext['receivers'] = rcvrs_ids
         self.dummyContext['selectable_receiver'] = True
-        self.dummyContext['escalation_threshold'] = 0
 
         for attrname in models.Context.localized_strings:
             self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'

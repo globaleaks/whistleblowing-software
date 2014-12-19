@@ -27,13 +27,6 @@ class MockHandler(base.BaseHandler):
         pass
 
 class TestCleaning(helpers.TestGL):
-
-    # Test model is a prerequisite for create e valid environment where Tip lives
-
-    # The test environment has one context (escalation 1, tip TTL 2, max file download 1)
-    #                          two receiver ("first" level 1, "second" level 2)
-    # Test context would just contain two receiver, one level 1 and the other level 2
-
     def setUp(self):
         helpers.TestGL.setUp(self)
 

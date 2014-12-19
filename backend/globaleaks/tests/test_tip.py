@@ -51,20 +51,19 @@ class TTip(helpers.TestGL):
     ]
 
     tipContext = {
-        'name': u'CtxName', 'description': u'dummy context with default fields',
-        'escalation_threshold': 1,
+        'name': u'CtxName',
+        'description': u'dummy context with default fields',
         'tip_max_access': 2, 
-        'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': False,
-        'receivers': [], 'submission_timetolive': 100,
-        'tags' : [ u'one', u'two', u'y' ],
+        'tip_timetolive': 200,
+        'file_max_download': 2,
+        'selectable_receiver': False,
+        'receivers': [],
+        'submission_timetolive': 100,
         'select_all_receivers': True,
         'receiver_introduction': u"¡⅜⅛⅝⅞⅝⅛⅛¡⅛⅛⅛",
         'postpone_superpower': False,
         'can_delete_submission': False,
         'maximum_selectable_receivers': 0,
-        'require_file_description': False,
-        'delete_consensus_percentage': 0,
-        'require_pgp': False,
         'show_small_cards': False,
         'show_receivers': True,
         'enable_private_messages': True,
@@ -74,14 +73,19 @@ class TTip(helpers.TestGL):
 
     tipReceiver1 = {
         'mail_address': u'first@winstonsmith.org',
-        'name': u'first', 'description': u"I'm tha 1st",
-        'receiver_level': u'1', 'can_delete_submission': True,
-        'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
-        'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
+        'name': u'first',
+        'description': u"I'm tha 1st",
+        'can_delete_submission': True,
+        'password': STATIC_PASSWORD,
+        'file_notification': False,
+        'comment_notification': True,
+        'tip_notification': False,
+        'gpg_key_status': u'Disabled',
         'message_notification': True,
         'postpone_superpower': False,
         'gpg_key_info': None, 'gpg_key_fingerprint': None,
-        'gpg_key_remove': False, 'gpg_key_armor': None, 'gpg_enable_notification': False,
+        'gpg_key_remove': False, 'gpg_key_armor': None,
+        'gpg_enable_notification': False,
         'presentation_order': 0,
         'timezone': 0,
         'language': u'en',
@@ -91,14 +95,21 @@ class TTip(helpers.TestGL):
 
     tipReceiver2 = {
         'mail_address': u'second@winstonsmith.org',
-        'name': u'second', 'description': u"I'm tha 2nd",
-        'receiver_level': u'1', 'can_delete_submission': False,
-        'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
+        'name': u'second',
+        'description': u"I'm tha 2nd",
+        'can_delete_submission': False,
+        'password': STATIC_PASSWORD,
+        'file_notification': False,
         'message_notification': True,
         'postpone_superpower': True,
-        'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
-        'gpg_key_info': None, 'gpg_key_fingerprint': None,
-        'gpg_key_remove': False, 'gpg_key_armor': None, 'gpg_enable_notification': False,
+        'comment_notification': True,
+        'tip_notification': False,
+        'gpg_key_status': u'Disabled',
+        'gpg_key_info': None,
+        'gpg_key_fingerprint': None,
+        'gpg_key_remove': False,
+        'gpg_key_armor': None,
+        'gpg_enable_notification': False,
         'presentation_order': 0,
         'timezone': 0,
         'language': u'en',
@@ -108,7 +119,6 @@ class TTip(helpers.TestGL):
 
     tipOptions = {
         'global_delete': False,
-        'is_pertinent': False,
     }
 
     commentCreation = {
@@ -116,14 +126,6 @@ class TTip(helpers.TestGL):
     }
 
 class TestTipInstance(TTip):
-
-    # Test model is a prerequisite for create e valid environment where Tip lives
-
-    # The test environment has one context (escalation 1, tip TTL 2, max file download 1)
-    #                          two receiver ("first" level 1, "second" level 2)
-    # Test context would just contain two receiver, one level 1 and the other level 2
-
-    # They are defined in TTip. This unitTest DO NOT TEST HANDLERS but transaction functions
 
     @inlineCallbacks
     def setup_tip_environment(self):
@@ -282,12 +284,6 @@ class TestTipInstance(TTip):
         self.assertEqual(counter, 1)
 
     @inlineCallbacks
-    def receiver1_express_positive_vote(self):
-        vote_sum = yield rtip.manage_pertinence(
-            self.receiver1_desc['id'], self.rtip1_id, True)
-        self.assertEqual(vote_sum, 1)
-
-    @inlineCallbacks
     def receiver1_get_tip_list(self):
         tiplist = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'])
 
@@ -296,21 +292,6 @@ class TestTipInstance(TTip):
         self.assertTrue(isinstance(tiplist[0], dict))
         self.assertTrue(isinstance(tiplist[0]['preview'], list))
         # then the content here depends on the fields
-
-    @inlineCallbacks
-    def receiver2_express_negative_vote(self):
-        vote_sum = yield rtip.manage_pertinence(
-            self.receiver2_desc['id'], self.rtip2_id, False)
-        self.assertEqual(vote_sum, 0)
-
-    @inlineCallbacks
-    def receiver2_fail_double_vote(self):
-        try:
-            yield rtip.manage_pertinence(
-                self.receiver2_desc['id'], self.rtip2_id, False)
-            self.assertTrue(False)
-        except errors.TipPertinenceExpressed:
-            self.assertTrue(True)
 
     @inlineCallbacks
     def receiver_2_get_banned_for_too_much_access(self):
@@ -663,9 +644,6 @@ class TestTipInstance(TTip):
         yield self.increment_access_counter()
         # this is the only test on receiver handler and not in tip handler:
         yield self.receiver1_get_tip_list()
-        yield self.receiver1_express_positive_vote()
-        yield self.receiver2_express_negative_vote()
-        yield self.receiver2_fail_double_vote()
         yield self.receiver_2_get_banned_for_too_much_access()
         yield self.receiver_RW_comments()
         yield self.wb_RW_comments()

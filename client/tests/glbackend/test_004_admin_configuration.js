@@ -49,8 +49,6 @@ var receiver = {
   password: "receiver1@antani.gov", // used 'receiverN@antani.gov' for population
   postpone_superpower: true,
   presentation_order: 0,
-  receiver_level: 1,
-  tags: [],
   tip_notification: false,
   configuration: "default",
   password_change_needed: false,
@@ -171,10 +169,7 @@ var context = {
   "receiver_introduction":"foca",
   "presentation_order":0,
   "postpone_superpower":false,
-  "delete_consensus_percentage":0,
-  "require_pgp":false,
   "tip_timetolive":15,
-  "escalation_threshold":0,
   "can_delete_submission":true,
   "show_small_cards":false,
   "show_receivers":true,
@@ -183,9 +178,7 @@ var context = {
   "file_max_download":3,
   "select_all_receivers":true,
   "description":"XXXXX ħ ÐÐ",
-  "tags":[],
   "selectable_receiver":false,
-  "require_file_description":false,
   "name":"Context 1",
   "steps":[
      {
@@ -204,7 +197,6 @@ var context = {
   "file_required":false,
   "maximum_selectable_receivers":0,
   "tip_max_access":500,
-  "fields_introduction":"something",
   "receivers": []
 }
 

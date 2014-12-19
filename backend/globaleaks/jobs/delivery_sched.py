@@ -90,10 +90,6 @@ def receiverfile_planning(store):
     This function roll over the InternalFile uploaded, extract a path, id and
     receivers associated, one entry for each combination. representing the
     ReceiverFile that need to be created.
-
-    REMIND: (keyword) escalation escalate pertinence vote
-    here need to be updated whenever an escalation is implemented.
-    checking of status and marker and recipients
     """
 
     try:
@@ -256,20 +252,15 @@ def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_d
 
 
 # called in a transact!
-def create_receivertip(store, receiver, internaltip, tier):
+def create_receivertip(store, receiver, internaltip):
     """
     Create ReceiverTip for the required tier of Receiver.
     """
-    log.debug('Creating ReceiverTip for: %s (level %d in request %d)'
-            % (receiver.name, receiver.receiver_level, tier))
-
-    if receiver.receiver_level != tier:
-        return
+    log.debug('Creating ReceiverTip for: %s' % receiver.name)
 
     receivertip = ReceiverTip()
     receivertip.internaltip_id = internaltip.id
     receivertip.access_counter = 0
-    receivertip.expressed_pertinence = 0
     receivertip.receiver_id = receiver.id
     receivertip.mark = u'not notified'
 
@@ -291,7 +282,7 @@ def tip_creation(store):
     for internaltip in finalized:
 
         for receiver in internaltip.receivers:
-            rtip_id = create_receivertip(store, receiver, internaltip, 1)
+            rtip_id = create_receivertip(store, receiver, internaltip)
 
             created_rtip.append(rtip_id)
 

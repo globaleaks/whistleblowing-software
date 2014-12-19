@@ -31,13 +31,7 @@ def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.
         'download_limit' : internaltip.download_limit,
         'access_limit' : internaltip.access_limit,
         'mark' : internaltip.mark,
-        'pertinence' : internaltip.pertinence_counter,
-        'escalation_threshold' : internaltip.escalation_threshold,
         'wb_steps' : internaltip.wb_steps,
-
-        # these two fields are at the moment unsent by the client, but kept
-        # maintained in unitTest. (tickets in wishlist)
-        'is_pertinent' : False,
         'global_delete' : False,
         # this field "inform" the receiver of the new expiration date that can
         # be set, only if PUT with extend = True is updated
@@ -118,7 +112,6 @@ def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_c
 
     # are added here because part of ReceiverTip, not InternalTip
     tip_desc['access_counter'] = rtip.access_counter
-    tip_desc['expressed_pertinence'] = rtip.expressed_pertinence
     tip_desc['id'] = rtip.id
     tip_desc['receiver_id'] = user_id
 
@@ -194,38 +187,6 @@ def delete_internal_tip(store, user_id, tip_id):
 
 
 @transact
-def manage_pertinence(store, user_id, tip_id, vote):
-    """
-    Assign in ReceiverTip the expressed vote (checks if already present)
-    Roll over all the rTips with a vote
-    re-count the Overall Pertinence
-    Assign the Overall Pertinence to the InternalTip
-    """
-    rtip = access_tip(store, user_id, tip_id)
-
-    # expressed_pertinence has these meanings:
-    # 0 = unassigned
-    # 1 = negative vote
-    # 2 = positive vote
-
-    if rtip.expressed_pertinence:
-        raise errors.TipPertinenceExpressed
-
-    rtip.expressed_pertinence = 2 if vote else 1
-
-    vote_sum = 0
-    for rtip in rtip.internaltip.receivertips:
-        if not rtip.expressed_pertinence:
-            continue
-        if rtip.expressed_pertinence == 1:
-            vote_sum -= 1
-        else:
-            vote_sum += 1
-
-    rtip.internaltip.pertinence_counter = vote_sum
-    return vote_sum
-
-@transact
 def postpone_expiration_date(store, user_id, tip_id):
     rtip = access_tip(store, user_id, tip_id)
 
@@ -278,7 +239,7 @@ class RTipInstance(BaseHandler):
     This interface expose the Receiver Tip
     """
 
-    @transport_security_check('wb')
+    @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id, *uriargs):
@@ -303,7 +264,7 @@ class RTipInstance(BaseHandler):
         self.set_status(200)
         self.finish(answer)
 
-    @transport_security_check('wb')
+    @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
     def put(self, tip_id, *uriargs):
@@ -319,7 +280,7 @@ class RTipInstance(BaseHandler):
         self.set_status(202) # Updated
         self.finish()
 
-    @transport_security_check('wb')
+    @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
     def delete(self, tip_id, *uriargs):
@@ -391,7 +352,7 @@ class RTipCommentCollection(BaseHandler):
     permitted.
     """
 
-    @transport_security_check('wb')
+    @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id, *uriargs):
@@ -406,7 +367,7 @@ class RTipCommentCollection(BaseHandler):
         self.set_status(200)
         self.finish(comment_list)
 
-    @transport_security_check('wb')
+    @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id, *uriargs):
@@ -440,8 +401,6 @@ def get_receiver_list_receiver(store, user_id, tip_id, language=GLSetting.memory
             "can_delete_submission": rtip.receiver.can_delete_submission,
             "name": unicode(rtip.receiver.name),
             "receiver_id": unicode(rtip.receiver.id),
-            "receiver_level": int(rtip.receiver.receiver_level),
-            "tags": rtip.receiver.tags,
             "access_counter": rtip.access_counter,
         }
 
@@ -460,7 +419,7 @@ class RTipReceiversCollection(BaseHandler):
     GET /tip/<auth_tip_id>/receivers
     """
 
-    @transport_security_check('wb')
+    @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id):
@@ -528,12 +487,10 @@ def create_message_receiver(store, user_id, tip_id, request):
 
 class ReceiverMsgCollection(BaseHandler):
     """
-    RT6
-    lost of all the messages exchanged with the WB, ability
-    to send direct message to the WB.
+    This interface return the lists of the private messages exchanged.
     """
 
-    @transport_security_check('wb')
+    @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id):
@@ -543,7 +500,7 @@ class ReceiverMsgCollection(BaseHandler):
         self.set_status(200)
         self.finish(answer)
 
-    @transport_security_check('wb')
+    @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id):
