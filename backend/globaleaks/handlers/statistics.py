@@ -32,7 +32,7 @@ def get_stats(store, delta_week):
 
     target_week = int(datetime_now().isocalendar()[1]) - delta_week
     # we loop 1 to 7, this return 0 to 6, therefore: +1
-    current_wday = (datetime_now().weekday() + 1) 
+    current_wday = (datetime_now().weekday() + 1)
     current_hour = datetime_now().hour
 
     hourlyentry = store.find(Stats)
@@ -53,7 +53,7 @@ def get_stats(store, delta_week):
             'year': int(hourdata.start.isocalendar()[0]),
             'summary': hourdata.summary,
             'freemegabytes': hourdata.freemb,
-            'valid': 0 # 0 means valid data
+            'valid': 0  # 0 means valid data
         }
         week_stats.append(last_stats_dict)
 
@@ -296,6 +296,5 @@ class RecentEventsCollection(BaseHandler):
 
         if kind == 'details':
             self.finish(templist)
-        else: # kind == 'summary':
+        else:  # kind == 'summary':
             self.finish(self.get_summary(templist))
-
