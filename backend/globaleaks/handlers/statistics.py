@@ -98,7 +98,7 @@ def delete_weekstats_history(store):
 
     allws.remove()
 
-    #Now you're like a gringo without history, please invade Iraq
+    # Now you're like a gringo without history, please invade Iraq
     log.info("Week statistics removal completed.")
 
 
@@ -298,7 +298,7 @@ class RecentEventsCollection(BaseHandler):
     @authenticated("admin")
     def get(self, kind, *uriargs):
 
-        if not kind in ['bubble', 'details', 'summary']:
+        if kind not in ['bubble', 'details', 'summary']:
             raise errors.InvalidInputFormat(kind)
 
         templist = []
