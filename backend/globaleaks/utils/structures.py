@@ -54,10 +54,9 @@ class Rosetta:
         if translated_dict.has_key(language):
             return translated_dict[language]
         elif translated_dict.has_key(default_language):
-            return "*_Translate in '%s' [%s]" % (language, translated_dict[default_language])
+            return translated_dict[default_language]
         else:
-            return "# Missing translation for '%s' in '%s'" % \
-                   (attr, language)
+            return ""
 
 def fill_localized_keys(dictionary, attrs, language):
     mo = Rosetta(attrs)
