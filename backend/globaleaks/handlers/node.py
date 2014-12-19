@@ -123,7 +123,6 @@ def anon_serialize_context(store, context, language=GLSetting.memory_copy.defaul
 
     ret_dict = {
         "id": context.id,
-        "escalation_threshold": 0,
         "file_max_download": context.file_max_download,
         "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
@@ -132,7 +131,6 @@ def anon_serialize_context(store, context, language=GLSetting.memory_copy.defaul
         "submission_disclaimer": u'NYI', # unicode(context.submission_disclaimer), # optlang
         "select_all_receivers": context.select_all_receivers,
         "maximum_selectable_receivers": context.maximum_selectable_receivers,
-        'require_pgp': context.require_pgp,
         "show_small_cards": context.show_small_cards,
         "show_receivers": context.show_receivers,
         "enable_private_messages": context.enable_private_messages,
@@ -246,8 +244,6 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
         "id": receiver.id,
         "state": receiver.user.state,
         "configuration": receiver.configuration, 
-        "receiver_level": receiver.receiver_level,
-        "tags": receiver.tags,
         "presentation_order": receiver.presentation_order,
         "gpg_key_status": receiver.gpg_key_status,
         "contexts": contexts

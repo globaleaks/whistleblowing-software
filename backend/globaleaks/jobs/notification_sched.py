@@ -27,7 +27,6 @@ def serialize_receivertip(receiver_tip):
         'id': receiver_tip.id,
         'creation_date' : datetime_to_ISO8601(receiver_tip.creation_date),
         'last_access' : datetime_to_ISO8601(receiver_tip.last_access),
-        'expressed_pertinence' : receiver_tip.expressed_pertinence,
         'access_counter' : receiver_tip.access_counter,
         'wb_steps': receiver_tip.internaltip.wb_steps,
         'context_id': receiver_tip.internaltip.context.id,

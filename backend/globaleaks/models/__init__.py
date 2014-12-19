@@ -208,14 +208,11 @@ class Context(Model):
     maximum_selectable_receivers = Int()
     select_all_receivers = Bool()
 
-    escalation_threshold = Int()
-
     tip_max_access = Int()
     file_max_download = Int()
     tip_timetolive = Int()
     submission_timetolive = Int()
     last_update = DateTime()
-    tags = Pickle()
 
     # localized stuff
     name = Pickle(validator=shortlocal_v)
@@ -231,9 +228,6 @@ class Context(Model):
     postpone_superpower = Bool()
     can_delete_submission = Bool()
 
-    require_file_description = Bool()
-    delete_consensus_percentage = Int()
-    require_pgp = Bool()
     show_small_cards = Bool()
     show_receivers = Bool()
     enable_private_messages = Bool()
@@ -242,12 +236,11 @@ class Context(Model):
 
     unicode_keys = []
     localized_strings = ['name', 'description', 'receiver_introduction']
-    int_keys = [ 'escalation_threshold', 'tip_max_access', 'file_max_download',
-                 'maximum_selectable_receivers', 'delete_consensus_percentage',
+    int_keys = [ 'tip_max_access', 'file_max_download',
+                 'maximum_selectable_receivers',
                  'presentation_order' ]
     bool_keys = [ 'selectable_receiver', 'select_all_receivers',
                   'postpone_superpower', 'can_delete_submission',
-                  'require_file_description', 'require_pgp',
                   'show_small_cards', 'show_receivers', "enable_private_messages" ]
 
 
@@ -261,8 +254,6 @@ class InternalTip(Model):
     All of those element has a Storm Reference with the InternalTip.id,
     never vice-versa
     """
-    __storm_table__ = 'internaltip'
-
     context_id = Unicode()
     # context = Reference(InternalTip.context_id, Context.id)
     # comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
@@ -271,13 +262,11 @@ class InternalTip(Model):
     # receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
     wb_steps = JSON()
-    pertinence_counter = Int()
     expiration_date = DateTime()
     last_activity = DateTime()
 
     # the LIMITS are stored in InternalTip because and admin may
     # need change them. These values are copied by Context
-    escalation_threshold = Int()
     access_limit = Int()
     download_limit = Int()
 
@@ -300,7 +289,6 @@ class ReceiverTip(Model):
 
     last_access = DateTime(default_factory=datetime_now)
     access_counter = Int()
-    expressed_pertinence = Int()
     notification_date = DateTime()
     mark = Unicode()
 
@@ -312,17 +300,15 @@ class ReceiverTip(Model):
 class WhistleblowerTip(Model):
     """
     WhisteleblowerTip is intended, to provide a whistleblower access to the
-    Tip.  Has ome differencies from the ReceiverTips: has a secret
-    authentication checks, has different capabilities, like: cannot not
-    download, cannot express pertinence.
+    Tip. It has some differencies from the ReceiverTips: It has a secret
+    authentication receipt and different capabilities, like: cannot not
+    download.
     """
     internaltip_id = Unicode()
     # internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
     receipt_hash = Unicode()
     last_access = DateTime()
     access_counter = Int()
-
-    # N.B. *_keys = It's created without initializing dict
 
 
 class ReceiverFile(Model):
@@ -458,7 +444,6 @@ class Node(Model):
     presentation = Pickle(validator=longlocal_v)
     footer = Pickle(validator=longlocal_v)
     subtitle = Pickle(validator=longlocal_v)
-    terms_and_conditions = Pickle(validator=longlocal_v)
     security_awareness_title = Pickle(validator=longlocal_v)
     security_awareness_text = Pickle(validator=longlocal_v)
 
@@ -508,7 +493,7 @@ class Node(Model):
                   'disable_security_awareness_questions', 'enable_custom_privacy_badge' ]
                 # wizard_done is not checked because it's set by the backend
     localized_strings = [ 'description', 'presentation', 'footer', 'subtitle',
-                          'terms_and_conditions', 'security_awareness_title',
+                          'security_awareness_title',
                           'security_awareness_text', 'whistleblowing_question',
                           'whistleblowing_button', 'custom_privacy_badge_tbb',
                           'custom_privacy_badge_tor', 'custom_privacy_badge_none' ]
@@ -618,14 +603,7 @@ class Receiver(Model):
     can_delete_submission = Bool()
     postpone_superpower = Bool()
 
-    # receiver_tier = 1 or 2. Mean being part of the first or second level
-    # of receivers body. if threshold is configured in the context. default 1
-    receiver_level = Int()
-
     last_update = DateTime()
-
-    # Group which the Receiver is part of
-    tags = Pickle()
 
     # personal advanced settings
     tip_notification = Bool()
@@ -645,7 +623,7 @@ class Receiver(Model):
 
     unicode_keys = ['name', 'mail_address', 'configuration']
     localized_strings = ['description']
-    int_keys = ['receiver_level', 'presentation_order']
+    int_keys = ['presentation_order']
     bool_keys = ['can_delete_submission', 'tip_notification',
                  'comment_notification', 'file_notification',
                  'message_notification', 'postpone_superpower']
@@ -732,8 +710,6 @@ class Field(Model):
         return obj_copy
 
 class FieldOption(Model):
-    _storm_table__ = 'option'
-
     field_id = Unicode()
     number = Int()
     attrs = JSON()
@@ -772,8 +748,6 @@ class FieldOption(Model):
         return obj_copy
 
 class Step(Model):
-    __storm_table__ = 'step'
-
     context_id = Unicode()
     label = JSON()
     description = JSON()
@@ -790,20 +764,9 @@ class ApplicationData(Model):
     Exists only one instance of this class, because the ApplicationData
     had only one big updated blob.
     """
-    __storm_table__ = 'applicationdata'
-
     version = Int()
     # XXX why is this a Pickle? ~ A.
     fields = Pickle()
-
-
-class Stats(Model):
-    """
-    Stats collection!
-    """
-    __storm_table__ = 'stats'
-
-    content = Pickle()
 
 
 # Follow classes used for Many to Many references
@@ -843,16 +806,12 @@ class FieldField(BaseModel):
 
 
 class Stats(Model):
-    __storm_table__ = 'Stats'
-
     start = DateTime()
     summary = JSON()
     freemb = Int()
 
 
 class Anomalies(Model):
-    __storm_table__ = 'anomalies'
-
     stored_when = Unicode() # is a Datetime but string
     alarm = Int()
     events = JSON()
@@ -959,5 +918,5 @@ Receiver.contexts = ReferenceSet(
 
 models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment,
           InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile,
-          Notification, Message, Stats, Field, FieldField, Step,
+          Notification, Message, Field, FieldField, Step,
           Stats, Anomalies, ApplicationData]

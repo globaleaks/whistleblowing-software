@@ -191,19 +191,14 @@ def admin_serialize_context(store, context, language=GLSetting.memory_copy.defau
         "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
         "file_max_download": context.file_max_download,
-        "escalation_threshold": context.escalation_threshold,
         "receivers": [r.id for r in context.receivers],
-        "tags": context.tags if context.tags else [],
         # tip expressed in day, submission in hours
         "tip_timetolive": context.tip_timetolive / (60 * 60 * 24),
         "submission_timetolive": context.submission_timetolive / (60 * 60),
         "select_all_receivers": context.select_all_receivers,
         "postpone_superpower": context.postpone_superpower,
         "can_delete_submission": context.can_delete_submission,
-        "require_file_description": context.require_file_description,
-        "delete_consensus_percentage": context.delete_consensus_percentage,
         "maximum_selectable_receivers": context.maximum_selectable_receivers,
-        "require_pgp": context.require_pgp,
         "show_small_cards": context.show_small_cards,
         "show_receivers": context.show_receivers,
         "enable_private_messages": context.enable_private_messages,
@@ -220,7 +215,6 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "name": receiver.name,
         "creation_date": datetime_to_ISO8601(receiver.creation_date),
         "last_update": datetime_to_ISO8601(receiver.last_update),
-        "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "postpone_superpower": receiver.postpone_superpower,
         "username": receiver.user.username,
@@ -230,7 +224,6 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "state": receiver.user.state,
         "configuration": receiver.configuration,
         "contexts": [c.id for c in receiver.contexts],
-        "tags": receiver.tags,
         "gpg_key_info": receiver.gpg_key_info,
         "gpg_key_armor": receiver.gpg_key_armor,
         "gpg_key_remove": False,
@@ -434,10 +427,6 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
     if len(context_name) < 1:
         log.err("Invalid request: name is an empty string")
         raise errors.InvalidInputFormat("Context name is missing (1 char required)")
-
-    if context.escalation_threshold and context.selectable_receiver:
-        log.err("Parameter conflict in context creation")
-        raise errors.ContextParameterConflict
 
     if request['select_all_receivers']:
         if request['maximum_selectable_receivers']:
@@ -721,7 +710,6 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
     receiver.user = receiver_user
 
     receiver.mail_address = mail_address
-    receiver.tags = request['tags']
 
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
@@ -786,7 +774,6 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
         raise errors.ExpectedUniqueField('mail_address', mail_address)
 
     receiver.mail_address = mail_address
-    receiver.tags = request['tags']
 
     # the email address it's also the username, stored in User
     receiver.user.username = mail_address

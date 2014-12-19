@@ -25,7 +25,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     def test_delete_global_delete_true(self):
         body = {
             'global_delete' : True,
-            'is_pertinent': False,
             'extend': False
         }
 
@@ -46,7 +45,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     def test_delete_global_delete_false(self):
         body = {
             'global_delete' : False,
-            'is_pertinent': False,
             'extend': False
         }
 
@@ -67,7 +65,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     def test_delete_unexistent_tip_by_existent_and_logged_receiver(self):
         body = {
             'global_delete' : True,
-            'is_pertinent': False,
             'extend': False
         }
 
@@ -83,7 +80,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     def test_delete_existent_tip_by_existent_and_logged_but_wrong_receiver(self):
         body = {
             'global_delete' : True,
-            'is_pertinent': False,
             'extend': False
         }
 

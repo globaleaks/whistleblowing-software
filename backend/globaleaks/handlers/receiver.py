@@ -25,7 +25,6 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "name": receiver.name,
         "update_date": datetime_to_ISO8601(receiver.last_update),
         "creation_date": datetime_to_ISO8601(receiver.creation_date),
-        "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.user.username,
         "gpg_key_info": receiver.gpg_key_info,
@@ -34,7 +33,6 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "gpg_key_armor": receiver.gpg_key_armor,
         "gpg_key_status": receiver.gpg_key_status,
         "gpg_enable_notification": receiver.gpg_enable_notification,
-        "tags": receiver.tags,
         "tip_notification" : receiver.tip_notification,
         "file_notification" : receiver.file_notification,
         "comment_notification" : receiver.comment_notification,
@@ -188,7 +186,6 @@ def get_receiver_tip_list(store, receiver_id, language=GLSetting.memory_copy.def
 
         single_tip_sum = dict({
             'id' : rtip.id,
-            'expressed_pertinence': rtip.expressed_pertinence,
             'creation_date' : datetime_to_ISO8601(rtip.creation_date),
             'last_access' : datetime_to_ISO8601(rtip.last_access),
             'expiration_date' : datetime_to_ISO8601(rtip.internaltip.expiration_date),

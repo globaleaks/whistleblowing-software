@@ -16,7 +16,6 @@ class TestModels(helpers.TestGL):
         c = self.localization_set(self.dummyContext, models.Context, 'en')
         context = models.Context(c)
 
-        context.tags = self.dummyContext['tags']
         context.submission_timetolive = context.tip_timetolive = 1000
         context.description = context.name = \
             context.submission_disclaimer = \
@@ -97,7 +96,6 @@ class TestModels(helpers.TestGL):
 
         context = models.Context(c)
 
-        context.tags = self.dummyContext['tags']
         context.submission_timetolive = context.tip_timetolive = 1000
         context.description = context.name = \
             context.submission_disclaimer = \
@@ -139,7 +137,6 @@ class TestModels(helpers.TestGL):
 
         context1 = models.Context(c)
 
-        context1.tags = self.dummyContext['tags']
         context1.submission_timetolive = context1.tip_timetolive = 1000
         context1.description = context1.name = \
             context1.submission_disclaimer = \
@@ -147,7 +144,6 @@ class TestModels(helpers.TestGL):
 
         context2 = models.Context(c)
 
-        context2.tags = self.dummyContext['tags']
         context2.submission_timetolive = context2.tip_timetolive = 1000
         context2.description = context2.name =\
             context2.submission_disclaimer = \

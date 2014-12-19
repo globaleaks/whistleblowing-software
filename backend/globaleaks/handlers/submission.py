@@ -32,8 +32,6 @@ def wb_serialize_internaltip(internaltip):
         'download_limit' : internaltip.download_limit,
         'access_limit' : internaltip.access_limit,
         'mark' : internaltip.mark,
-        'pertinence' : internaltip.pertinence_counter,
-        'escalation_threshold' : internaltip.escalation_threshold,
         'files' : [f.id for f in internaltip.internalfiles],
         'receivers' : [r.id for r in internaltip.receivers]
     }
@@ -206,11 +204,9 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
 
     submission = InternalTip()
 
-    submission.escalation_threshold = context.escalation_threshold
     submission.access_limit = context.tip_max_access
     submission.download_limit = context.file_max_download
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
-    submission.pertinence_counter = 0
     submission.context_id = context.id
     submission.creation_date = datetime_now()
 

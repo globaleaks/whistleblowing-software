@@ -792,7 +792,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.description = "";
         context.steps = [];
         context.receivers = [];
-        context.escalation_threshold = 0;
         context.file_max_download = 3;
         context.tip_max_access = 500;
         context.selectable_receiver = true;
@@ -803,10 +802,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.postpone_superpower = false;
         context.can_delete_submission = false;
         context.maximum_selectable_receivers = 0;
-        context.require_file_description = false;
-        context.delete_consensus_percentage = 0;
-        context.require_pgp = false;
-        context.tags = [];
         context.show_small_cards = false;
         context.show_receivers = true;
         context.enable_private_messages = true;
@@ -883,8 +878,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.mail_address = '';
         receiver.can_delete_submission = false;
         receiver.postpone_superpower = false;
-        receiver.receiver_level = 1;
-        receiver.tags = [];
         receiver.tip_notification = true;
         receiver.file_notification = true;
         receiver.comment_notification = true;

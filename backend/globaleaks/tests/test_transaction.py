@@ -97,7 +97,6 @@ class TestTransaction(helpers.TestGLWithPopulatedDB):
         c = self.localization_set(self.dummyContext, Context, 'en')
         context = Context(c)
 
-        context.tags = self.dummyContext['tags']
         context.submission_timetolive = context.tip_timetolive = 1000
         context.description = context.name = \
             context.submission_disclaimer = \

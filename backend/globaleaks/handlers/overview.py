@@ -31,7 +31,6 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
             "creation_lifetime": datetime_to_ISO8601(itip.creation_date),
             "expiration_date": datetime_to_ISO8601(itip.expiration_date),
             "context_id": itip.context_id,
-            "pertinence_counter": itip.pertinence_counter,
             "status": itip.mark,
             "receivertips": [],
             "internalfiles": [],
