@@ -98,7 +98,7 @@ def dump_file_fs(uploaded_file):
 
 
 @transact_ro
-def get_tip_by_submission(store, itip_id):
+def validate_itip_id(store, itip_id):
 
     itip = store.find(InternalTip,
                       InternalTip.id == itip_id).one()
@@ -109,11 +109,11 @@ def get_tip_by_submission(store, itip_id):
     if itip.mark != InternalTip._marker[0]:
         log.err("Denied access on a concluded submission")
         raise errors.SubmissionConcluded
-    else:
-        return itip.id
+
+    return True
 
 @transact_ro
-def get_tip_by_wbtip(store, wb_tip_id):
+def get_itip_id_by_wbtip_id(store, wb_tip_id):
 
     wb_tip = store.find(WhistleblowerTip,
                         WhistleblowerTip.id == wb_tip_id).one()
@@ -175,7 +175,7 @@ class FileAdd(FileHandler):
         Response: Unknown
         Errors: TipIdNotFound
         """
-        itip_id = yield get_tip_by_wbtip(self.current_user.user_id)
+        itip_id = yield get_itip_id_by_wbtip_id(self.current_user.user_id)
 
         # Call the master class method
         yield self.handle_file_upload(itip_id)
@@ -195,10 +195,10 @@ class FileInstance(FileHandler):
         Response: Unknown
         Errors: SubmissionIdNotFound, SubmissionConcluded
         """
-        itip_id = yield get_tip_by_submission(submission_id)
+        yield validate_itip_id(submission_id)
 
         # Call the master class method
-        yield self.handle_file_upload(itip_id)
+        yield self.handle_file_upload(submission_id)
 
 
 @transact
