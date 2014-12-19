@@ -39,15 +39,15 @@ Is evaluated when in the 30 second window between the first and the last, has a 
 At the moment the anomalies threshold are (defined in anomaly.py Alarm class)
 
   OUTCOME_ANOMALY_MAP = {
-            'login_failure': 5,
-            'login_success': 3,
-            'submission_started': 5,
-            'submission_completed': 4,
-            'wb_comment': 4,
-            'wb_message': 4,
-            'file': 11,
-            'receiver_comment': 3,
-            'receiver_message': 3,
+            'logins_failed': 5,
+            'logins_successful': 3,
+            'submissions_started': 5,
+            'submissions_completed': 4,
+            'wb_comments': 4,
+            'wb_messages': 4,
+            'uploaded_files': 11,
+            'receiver_comments': 3,
+            'receiver_messages': 3,
     }
 
 There are two separated dictionary, because the OUTCOME and the INCOMING
@@ -108,39 +108,43 @@ Need to be defined the proper way to export a certain window time.
 
     {
         "day": 6, 
-        "freemegabytes": 5666, 
-        "hour": 18, 
-        "summary": {}, 
+        "hour": 18,
         "week": 46, 
         "year": 2014
+        "summary": {},
+        "freemegabytes": 5666,
+        "valid": 0
     }, 
     {
         "day": 6, 
-        "freemegabytes": 5627, 
         "hour": 19, 
-        "summary": {
-            "login_failure": 28
-        }, 
         "week": 46, 
-        "year": 2014
+        "year": 2014,
+        "summary": {
+            "logins_failed": 28
+        },
+        "freemegabytes": 5627,
+        "valid": 0
     }, 
     {
         "day": 6, 
-        "freemegabytes": 5618, 
         "hour": 20, 
-        "summary": {
-            "login_failure": 61
-        }, 
         "week": 46, 
-        "year": 2014
+        "year": 2014,
+        "summary": {
+            "logins_failed": 61
+        },
+        "freemegabytes": 5618,
+        "valid": 0
     }, 
     {
         "day": 1, 
-        "freemegabytes": -1, 
         "hour": 1, 
-        "summary": {}, 
         "week": 46, 
-        "year": 2014
+        "year": 2014,
+        "summary": {},
+        "freemegabytes": 0,
+        "valid": 0
     }, 
 
 

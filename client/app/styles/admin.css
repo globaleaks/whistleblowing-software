@@ -349,7 +349,11 @@
   margin-bottom: 20px;
 }
 
-rect.bordered {
+.hour {
+  text-align: left;
+}
+
+.bordered {
   stroke: #FFFFFF;
   stroke-width:2px;
 }

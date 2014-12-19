@@ -75,63 +75,63 @@ incoming_event_monitored = [
 
 outcome_event_monitored = [
     {
-        'name': 'login_failure',
+        'name': 'logins_failed',
         'method': 'POST',
         'handler_check': login_check,
         'status_checker': failure_status_check,
         'anomaly_management': None,
     },
     {
-        'name': 'login_success',
+        'name': 'logins_successful',
         'method': 'POST',
         'handler_check': login_check,
         'status_checker': ok_status_check,
         'anomaly_management': None,
     },
     {
-        'name': 'submission_started',
+        'name': 'submissions_started',
         'method': 'POST',
         'handler_check': submission_check,
         'status_checker': created_status_check,
         'anomaly_management': None,
     },
     {
-        'name': 'submission_completed',
+        'name': 'submissions_completed',
         'method': 'PUT',
         'handler_check': submission_check,
         'status_checker': update_status_check,
         'anomaly_management': None,
     },
     {
-        'name': 'wb_comment',
+        'name': 'wb_comments',
         'handler_check' : wb_comment_check,
         'status_checker': created_status_check,
         'anomaly_management': None,
         'method': 'POST'
     },
     {
-        'name': 'wb_message',
+        'name': 'wb_messages',
         'handler_check': wb_message_check,
         'status_checker': created_status_check,
         'anomaly_management': None,
         'method': 'POST'
     },
     {
-        'name': 'file',
+        'name': 'uploaded_files',
         'handler_check': file_upload_check,
         'status_checker': created_status_check,
         'anomaly_management': None,
         'method': 'POST'
     },
     {
-        'name': 'receiver_comment',
+        'name': 'receiver_comments',
         'handler_check': rcvr_comment_check,
         'status_checker': created_status_check,
         'anomaly_management': None,
         'method': 'POST'
     },
     {
-        'name': 'receiver_message',
+        'name': 'receiver_messages',
         'handler_check': rcvr_message_check,
         'status_checker': created_status_check,
         'anomaly_management': None,
@@ -249,15 +249,15 @@ class Alarm:
     }
 
     OUTCOME_ANOMALY_MAP = {
-        'login_failure': 5,
-        'login_success': 3,
-        'submission_started': 5,
-        'submission_completed': 4,
-        'wb_comment': 4,
-        'wb_message': 4,
-        'file': 11,
-        'receiver_comment': 3,
-        'receiver_message': 3,
+        'logins_failed': 5,
+        'logins_successful': 3,
+        'submissions_started': 5,
+        'submissions_completed': 4,
+        'wb_comments': 4,
+        'wb_messages': 4,
+        'uploaded_files': 11,
+        'receiver_comments': 3,
+        'receiver_messages': 3,
     }
 
     # the level of the alarm in 30 seconds

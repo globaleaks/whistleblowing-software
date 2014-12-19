@@ -47,12 +47,13 @@ def get_stats(store, delta_week):
             continue
 
         last_stats_dict = {
-            'summary': hourdata.summary,
-            'year': int(hourdata.start.isocalendar()[0]),
-            'week':  int(hourdata.start.isocalendar()[1]),
             'hour': int(hourdata.start.isoformat()[11:13]),
             'day': int(hourdata.start.isocalendar()[2]),
+            'week':  int(hourdata.start.isocalendar()[1]),
+            'year': int(hourdata.start.isocalendar()[0]),
+            'summary': hourdata.summary,
             'freemegabytes': hourdata.freemb,
+            'valid': 0 # 0 means valid data
         }
         week_stats.append(last_stats_dict)
 
@@ -78,12 +79,12 @@ def get_stats(store, delta_week):
             if not missing_hour:
                 continue
 
-            # freemegabytes is used as status value in the case the
-            # stats for the hour are missing. the possibilities are:
-            # the hour is lacking from the results: takes value: -1
-            # the hour is in the future, takes value: -2
+            # valid is used as status variable.
+            # in the case the stats for the hour are missing it
+            # assumes the following values:
+            # the hour is lacking from the results: -1
+            # the hour is in the future:  -2
             # the hour is the current hour (in the current day): -3
-            # I'm using negative numbers because free MBs can never be < 0
             if current_wday > day:
                 marker = -2
             elif current_wday == day and current_hour > hour:
@@ -93,12 +94,13 @@ def get_stats(store, delta_week):
             else:
                 marker = -1
             week_stats.append({
-                'summary': {},
                 'year': last_stats_dict['year'],
                 'week': target_week,
                 'hour': hour,
                 'day': day,
-                'freemegabytes': marker
+                'summary': {},
+                'freemegabytes': 0,
+                'valid': marker
             })
 
     return list(week_stats)
