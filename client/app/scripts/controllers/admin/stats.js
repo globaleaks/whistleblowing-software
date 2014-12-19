@@ -1,5 +1,5 @@
-GLClient.controller('StatisticsCtrl', ['$scope', 'Node', 'StatsCollection', 
-  function($scope, Node, StatsCollection) {
+GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollection',
+  function($scope, $filter, Node, StatsCollection) {
 
     var margin = { top: 50, right: 0, bottom: 100, left: 30 },
       width = 960 - margin.left - margin.right,
@@ -18,19 +18,21 @@ GLClient.controller('StatisticsCtrl', ['$scope', 'Node', 'StatsCollection',
 
       /*
       {
-          "day": 6,
-          "freemegabytes": 5627,
           "hour": 19,
+          "day": 6,
+          "week": 46,
+          "year": 2014
           "summary": {
               "login_failure": 28
           },
-          "week": 46,
-          "year": 2014
+          "freemegabytes": 5627
+          "valid": 0
       },
-      freemegabytes is also a marker:
-          A) -1 missing result: node shut down
-          B) -2 future hour, we can't have data
-          C) -3
+      valid is a status flag:
+          A) 0 means that data is meaningful
+          B) -1 missing result: node shut down
+          C) -2 future hour, we can't have data
+          D) -3 current hour
       */
 
       data.forEach(function(d) {
@@ -40,22 +42,24 @@ GLClient.controller('StatisticsCtrl', ['$scope', 'Node', 'StatsCollection',
           d.day =+ d.day;
           d.hour =+ d.hour;
 
-          if(d.summary['submission_started']) { d.submission_started = +d.summary['submission_started']; } else { d.submission_started = 0 }
-          d.value = d.submission_started;
-          if(d.summary['submission_completed']) { d.submission_completed = +d.summary['submission_completed']; } else { d.submission_completed = 0 }
-          d.value += d.submission_completed;
-          if(d.summary['login_failure']) { d.login_failure = +d.summary['login_failure']; } else {d.login_failure = 0 }
-          d.value += d.login_failure;
-          if(d.summary['login_success']) { d.login_success= +d.summary['login_success']; } else { d.login_success= 0 }
-          d.value += d.login_success;
-          if(d.summary['wb_comment']) { d.wb_comment = +d.summary['wb_comment']; } else { d.wb_comment = 0 }
-          d.value += d.wb_comment;
-          if(d.summary['wb_message']) { d.wb_message= +d.summary['wb_message']; } else { d.wb_message= 0 }
-          d.value += d.wb_message;
-          if(d.summary['receiver_comment']) { d.receiver_comment = +d.summary['receiver_comment']; } else { d.receiver_comment = 0 }
-          d.value += d.receiver_comment;
-          if(d.summary['receiver_message']) { d.receiver_message = +d.summary['receiver_message']; } else { d.receiver_message = 0 }
-          d.value += d.receiver_message;
+          if(d.summary['logins_failed']) { d.logins_failed = +d.summary['logins_failure']; } else {d.logins_failed = 0 }
+          d.value += d.logins_failed;
+          if(d.summary['logins_successful']) { d.logins_successful = +d.summary['logins_successful']; } else { d.logins_successful = 0 }
+          d.value += d.logins_successful;
+          if(d.summary['submissions_started']) { d.submissions_started = +d.summary['submissions_started']; } else { d.submissions_started = 0 }
+          d.value = d.submissions_started;
+          if(d.summary['submissions_completed']) { d.submissions_completed = +d.summary['submissions_completed']; } else { d.submissions_completed = 0 }
+          d.value += d.submissions_completed;
+          if(d.summary['uploaded_files']) { d.uploaded_files = +d.summary['uploaded_files']; } else { d.uploaded_files = 0 }
+          d.value = d.uploaded_files;
+          if(d.summary['wb_comments']) { d.wb_comments = +d.summary['wb_comments']; } else { d.wb_comments = 0 }
+          d.value += d.wb_comments;
+          if(d.summary['wb_messages']) { d.wb_messages = +d.summary['wb_messages']; } else { d.wb_messages = 0 }
+          d.value += d.wb_messages;
+          if(d.summary['receiver_comments']) { d.receiver_comments = +d.summary['receiver_comments']; } else { d.receiver_comments = 0 }
+          d.value += d.receiver_comments;
+          if(d.summary['receiver_messages']) { d.receiver_messages = +d.summary['receiver_messages']; } else { d.receiver_messages = 0 }
+          d.value += d.receiver_messages;
 
       });
 
@@ -107,34 +111,38 @@ GLClient.controller('StatisticsCtrl', ['$scope', 'Node', 'StatsCollection',
 
       heatMap.transition().duration(1000)
           .style("fill", function(d) {
-              console.log(d);
-              if (d.freemegabytes == -1) {
-                  return '#ffffff';
+              if (d.valid == -1) {
+                  return '#FFF';
               }
-              if (d.freemegabytes == -2) {
-                  return '#000000';
+              if (d.valid == -2) {
+                  return '#000';
               }
-              if (d.freemegabytes == -3) {
-                  return '#AA0A0A'; // a random color that will sound like an eyepunch
+              if (d.valid == -3) {
+                  return 'red';
               }
               return colorScale(d.value);
           });
 
       heatMap.append("title").text(function(d) {
-          if (d.freemegabytes == -1) {
-              return "Not avail statistics for this future hour";
-          } else if (d.freemegabytes == -2) {
-              return "Missing data: in this hour the node was off";
-          } else if (d.freemegabytes == -3) {
-              return "Current hour: check in activities";
+          // if strings are updated here remember to update client/translation.html to push them on transifex
+          if (d.valid == -1) {
+              return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('no stats available for the future.');
+          } else if (d.valid == -2) {
+              return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('in this hour the node was off.');
+          } else if (d.valid == -3) {
+              return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('no stats available for current hour; check activities page.');
           } else {
               return (
-                "MBytes free: " + d.freemegabytes + "\n" +
-                "#Failed Logins: " + d.login_failure + "\n" +
-                "#Successful Logins: " + d.login_success + "\n" +
-                "#WB Messages/Comments: " + d.wb_message +"/"+ d.wb_comment + "\n" +
-                "#Started/Completed Submissions: " + d.submission_started + "/" + d.submission_completed + "\n" +
-                "#Receiver Messages/Comments: " + d.receiver_message + "/" + d.receiver_comment + "\n"
+                $filter('translate')('Failed logins') + ': ' + d.logins_failed + '\n' +
+                $filter('translate')('Successful logins') + ': ' + d.logins_successful + '\n' +
+                $filter('translate')('Started submissions') + ' : ' + d.submissions_started + '\n' +
+                $filter('translate')('Completed submissions') + ' : ' + d.submissions_completed + '\n' +
+                $filter('translate')('Uploaded files') + ' : ' + d.uploaded_files + '\n' +
+                $filter('translate')('Whistleblower Comments') + ': ' + d.wb_comments + '\n' +
+                $filter('translate')('Whistleblower Message') + ': ' + d.wb_messages + '\n' +
+                $filter('translate')('Receiver comments') + ': ' + d.receiver_comments + '\n' +
+                $filter('translate')('Receiver messages') + ': ' + d.receiver_messages + '\n' +
+                $filter('translate')('Free megabytes') + ': ' + d.freemegabytes + '\n'
               );
           }
       });

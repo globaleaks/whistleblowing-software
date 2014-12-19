@@ -30,19 +30,6 @@ class TestStatistics(helpers.TestGL):
 
         anomaly.Alarm.compute_activity_level()
 
-        # but we got only one anomaly, because the computation make one
-        # product for every thirty seconds
-
-        # what matter is the content of the anomaly:
-        # (Pdb) p AnomaliesCollection.RecentAnomaliesQ
-        # {'2014-11-18T14:18:02':
-        #       [{  'file': 80, 'receiver_message': 80,
-        #           'wb_comment': 80, 'submission_completed': 80,
-        #           'submission_started': 80, 'wb_message': 80,
-        #           'login_success': 80, 'receiver_comment': 80,
-        #           'login_failure': 80},
-        #       2]}
-
         anomdet = StatisticsSchedule.RecentAnomaliesQ.values()[0]
         self.assertEqual(len(StatisticsSchedule.RecentAnomaliesQ.keys()), 1)
         original_when = StatisticsSchedule.RecentAnomaliesQ.keys()[0]
