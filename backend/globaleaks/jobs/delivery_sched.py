@@ -121,6 +121,10 @@ def receiverfile_planning(store):
             except OSError as excep:
                 log.err("Unable to delete keyfile %s: %s" % (keypath, excep.strerror))
 
+            # if the file is not associated to any tip it should be
+            # removed to avoid infinite loop
+            store.remove(filex)
+
             continue
 
         # here we select the file which deserve to be processed.
