@@ -337,7 +337,7 @@ class Replacer1415(TableReplacer):
 
                     step1.children.add(field)
 
-                except::
+                except:
                     continue
 
             self.store_new.add(new_context)
