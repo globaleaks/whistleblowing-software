@@ -10,13 +10,10 @@ To learn how to setup your own GlobaLeaks platform, look at [Globaleaks Wiki
 documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
 Join our [Development Mailing List](http://lists.globaleaks.org/listinfo/dev);
-here we collect all the knowledge that is not specific to the backend or
-client component.
 
-| GlobaLeaks build status | GLBackend code coverage | GLClient code coverage
-|:-------------:|:-------------:|:-------------:|
-| [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GLBackend/badge.png)](https://coveralls.io/r/globaleaks/GLBackend) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GLClient/badge.png)](https://coveralls.io/r/globaleaks/GLClient) |
-
+| Build status | Code coverage
+|:-------------:|:-------------:|
+| [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png)](https://coveralls.io/r/globaleaks/GlobLeaks)
 ## Donations
 
 You can support our project, that's funded by volounteering effort, donations and research grants from cool grantors such as [Open Technology Fund](https://www.opentechfund.org/) that has already supported us!.
@@ -28,18 +25,13 @@ You can support our project, that's funded by volounteering effort, donations an
 
 The main components of are:
 
- * [GLBackend](https://github.com/globaleaks/GLBackend),
-a Python backend based on [Twisted](https://twistedmatrix.com/);
- * [GLClient](https://github.com/globaleaks/GLClient),
-a Clientside Web App based on [AngularJS](http://angularjs.org/)
+ * GLBackend,a Python backend based on [Twisted](https://twistedmatrix.com/);
+ * GLClient, a Clientside Web App based on [AngularJS](http://angularjs.org/)
 and [Bootstrap](http://getbootstrap.com/).
 
 ## Documentation
 * Official website: [www.globaleaks.org](https://globaleaks.org/)
 * [GlobaLeaks wiki](https://github.com/globaleaks/GlobaLeaks/wiki/Home)
-* [GLBackend wiki](https://github.com/globaleaks/GLBackend/wiki/Home)
-* [GLClient wiki](https://github.com/globaleaks/GLClient/wiki/Home)
-
 
 ## License
 Copyright (C) 2011-2014 Hermes No Profit Association - GlobaLeaks Project
