@@ -25,7 +25,7 @@ from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.models import Model, Field, FieldOption, Step, Context, db_forge_obj
 from globaleaks.db.datainit import opportunistic_appdata_init
-from globaleaks.utils.utility import datetime_null
+from globaleaks.utils.utility import datetime_null, uuid4
 
 def every_language(default_text):
     return_dict = {}
@@ -365,39 +365,104 @@ class Replacer1415(TableReplacer):
 
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy
+        steps = opportunistic_appdata_init()['fields']
+        i = 1
+        for step in steps:
+            step['number'] = i
+            step['label'] = step['label']['en']
+            step['hint'] = step['hint']['en']
+            step['description'] = step['description']['en']
+            for c in step['children']:
+                c['label'] = c['label']['en']
+                if c['type'] == 'tos':
+                    c['value'] = True
+            i += 1
 
         old_itips = self.store_old.find(self.get_right_model("InternalTip", 14))
         context_model = self.get_right_model("Context", 14)
         for old_itip in old_itips:
             new_itip = self.get_right_model("InternalTip", 15)()
             try:
-                wb_steps_copy = copy.deepcopy(old_itip.wb_fields)
-                for wb_field in wb_steps_copy:
-                    del wb_steps_copy[wb_field]['answer_order']
+                wb_steps = copy.deepcopy(steps)
+                wb_fields_copy = copy.deepcopy(old_itip.wb_fields)
+                for wb_field in wb_fields_copy:
+                    wb_fields_copy[wb_field]["id"] = ""
+                    wb_fields_copy[wb_field]["step_id"] = ""
+                    wb_fields_copy[wb_field]["fieldgroup_id"] = ""
+                    wb_fields_copy[wb_field]["description"] = ""
+                    wb_fields_copy[wb_field]["hint"] = ""
+                    wb_fields_copy[wb_field]["multi_entry"] = False
+                    wb_fields_copy[wb_field]["stats_enabled"] = False
+                    wb_fields_copy[wb_field]["required"] = False
+                    wb_fields_copy[wb_field]["is_template"] = False
+                    wb_fields_copy[wb_field]["options"] = []
+                    wb_fields_copy[wb_field]["y"] = wb_fields_copy[wb_field]['answer_order']
+                    wb_fields_copy[wb_field]["x"] = 0
+                    wb_fields_copy[wb_field]["preview"] = False
+                    wb_fields_copy[wb_field]["children"] = []
+                    wb_fields_copy[wb_field]["options"] = []
+                    del wb_fields_copy[wb_field]['answer_order']
                     c = self.store_old.find(context_model, context_model.id == old_itip.context_id).one()
                     for f in c.unique_fields:
                         if f == wb_field:
-                            wb_steps_copy[wb_field]['label'] = c.unique_fields[f]['name']
+                            wb_fields_copy[wb_field]['label'] = c.unique_fields[f]['name']
                             if c.unique_fields[f]['type'] in ['email',
                                                               'phone',
                                                               'url',
                                                               'number',
                                                               'text']:
-                                wb_steps_copy[wb_field]['type'] = 'inputbox'
+                                wb_fields_copy[wb_field]['type'] = 'inputbox'
                             elif c.unique_fields[f]['type'] in ['radio', 'select']:
-                                wb_steps_copy[wb_field]['type'] = 'selectbox'
+                                wb_fields_copy[wb_field]['type'] = 'selectbox'
                             elif c.unique_fields[f]['type'] in ['multiple', 'checkboxes']:
-                                wb_steps_copy[wb_field]['type'] = 'checkbox'
+                                wb_fields_copy[wb_field]['type'] = 'checkbox'
                             else:
-                                wb_steps_copy[wb_field]['type'] = c.unique_fields[f]['type']
+                                wb_fields_copy[wb_field]['type'] = c.unique_fields[f]['type']
+
+                            if wb_fields_copy[wb_field]['type'] in ['selectbox', 'checkbox'] and \
+                                    'options' in c.unique_fields[f]:
+
+                                val = {}
+
+                                j = 1
+                                for o in c.unique_fields[f]['options']:
+                                    opt_dict = {}
+                                    opt_dict['id'] = uuid4()
+                                    opt_dict['attrs'] = {}
+                                    opt_dict['attrs']['name'] = o['name']
+                                    opt_dict['value'] = ''
+
+                                    wb_fields_copy[wb_field]['options'].append(opt_dict)
+
+                                    if wb_fields_copy[wb_field]['type'] == 'checkbox':
+                                        opt_name = o['name']
+                                        if opt_name in wb_fields_copy[wb_field]["value"] and \
+                                                wb_fields_copy[wb_field]["value"][opt_name]:
+                                            opt_val = True
+                                        else:
+                                            opt_val = False
+
+                                        val[opt_dict['id']] = {
+                                            'order': j,
+                                            'value': opt_val,
+                                            'name': o['name']
+                                        }
+                                    j += 1
+
+                                if wb_fields_copy[wb_field]['type'] == 'checkbox':
+                                    wb_fields_copy[wb_field]["value"] = val
+                                # else: it's already initialized with copy
+
+
+                wb_steps[0]['children'] = wb_fields_copy
 
                 for k, v in new_itip._storm_columns.iteritems():
                     if v.name == 'wb_steps':
-                        new_itip.wb_steps = wb_steps_copy;
+                        new_itip.wb_steps = wb_steps;
                         continue
 
                     setattr(new_itip, v.name, getattr(old_itip, v.name))
-            except:
+            except Exception as e:
                 continue
 
             self.store_new.add(new_itip)
