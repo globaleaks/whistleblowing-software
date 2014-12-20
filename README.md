@@ -11,15 +11,16 @@ documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
 Join our [Development Mailing List](http://lists.globaleaks.org/listinfo/dev);
 
-| Build status | Code coverage
-|:-------------:|:-------------:|
-| [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png)](https://coveralls.io/r/globaleaks/GlobLeaks)
+| Branch | Build Status | Code Coverage
+| ------------- |:-------------:|:-------------:|
+| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png?branch=master)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png?branch=master)](https://coveralls.io/r/globaleaks/GLBackend?branch=master)
+| [devel]([https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png?branch=devel)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png?branch=devel)](https://coveralls.io/r/globaleaks/GLBackend?branch=devel)
+
 ## Donations
 
 You can support our project, that's funded by volounteering effort, donations and research grants from cool grantors such as [Open Technology Fund](https://www.opentechfund.org/) that has already supported us!.
 
 [Help us](http://logioshermes.org/home/about-mission/support-us/) by sending us a small donation!
-
 
 ## GlobaLeaks main components
 
