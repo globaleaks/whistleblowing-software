@@ -17,7 +17,7 @@ script:
   - cd $TRAVIS_BUILD_DIR/backend  # to run backend tests
   - coverage run setup.py test
   - coveralls || true
-  - cd $TRAVIS_BUILD_DIR/client  # to run frontend tests
+  - cd $TRAVIS_BUILD_DIR/client  # to test backend handlers
   - bower install && grunt build --resource master
   - $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z
   - node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*

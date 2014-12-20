@@ -291,7 +291,6 @@ class Replacer1415(TableReplacer):
                 try:
 
                     field_dict = {}
-                    field_dict['id'] = old_context.unique_fields[f]['key']
                     field_dict['label'] = {}
                     field_dict['hint'] = {}
                     field_dict['description'] = {}
