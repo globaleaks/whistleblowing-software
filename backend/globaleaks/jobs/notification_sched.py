@@ -96,7 +96,8 @@ class NotificationSchedule(GLJob):
                 break
 
             if not receiver_tip.internaltip or not receiver_tip.internaltip.context:
-                log.err("(tip_notification) Integrity failure: missing InternalTip|Context")
+                log.err("(tip_notification) Integrity failure: missing (InternalTip/Context)")
+                store.remove(receiver_tip)
                 continue
 
             context_desc = admin.admin_serialize_context(store, receiver_tip.internaltip.context, language)
@@ -212,6 +213,7 @@ class NotificationSchedule(GLJob):
             if notification_counter >= GLSetting.notification_limit:
                 log.debug("Notification counter has reached the suggested limit: %d (messages)" %
                           notification_counter)
+                store.remove(message)
                 break
 
             if message.receivertip is None:
@@ -348,6 +350,7 @@ class NotificationSchedule(GLJob):
             if notification_counter >= GLSetting.notification_limit:
                 log.debug("Notification counter has reached the suggested limit: %d (comment)" %
                           notification_counter)
+                store.remove(comment)
                 break
 
             if comment.internaltip is None or comment.internaltip.receivers is None:
@@ -362,6 +365,7 @@ class NotificationSchedule(GLJob):
 
             if not comment.internaltip.context:
                 log.err("(comment_notification) Integrity check failure Context")
+                store.remove(comment)
                 continue
 
             context_desc = admin.admin_serialize_context(store, comment.internaltip.context, language)
@@ -492,18 +496,20 @@ class NotificationSchedule(GLJob):
             if notification_counter >= GLSetting.notification_limit:
                 log.debug("Notification counter has reached the suggested limit: %d (files)" %
                           notification_counter)
+                store.remove(rfile)
                 break
 
             if not rfile.internalfile:
                 log.err("(file_notification) Integrity check failure (InternalFile)")
+                store.remove(rfile)
                 continue
 
             file_desc = serialize_internalfile(rfile.internalfile)
 
-            if  not rfile.internalfile or \
-                not rfile.internalfile.internaltip or \
+            if not rfile.internalfile.internaltip or \
                 not rfile.internalfile.internaltip.context:
-                log.err("(file_notification) Integrity check failure (File+Tip)")
+                log.err("(file_notification) Integrity check failure (InternalTip/Context)")
+                store.remove(rfile)
                 continue
 
             context_desc = admin.admin_serialize_context(store,
