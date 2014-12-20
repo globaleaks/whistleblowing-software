@@ -128,11 +128,6 @@ h3 {
 
 /** Submission details **/
 
-.submissionDetails textarea {
-  width: 300px;
-  height: 200px;
-}
-
 .keycode {
     text-align: center;
 }
@@ -191,19 +186,6 @@ h3 {
 .modal {
   display: inline;
 }
-@media (max-width: 550px) {
-  .modal.not-anonymous-question {
-    top: 120px;
-    z-index: 10;
-  }
-  .modal.not-anonymous-question h3 {
-    font-size: 18px;
-  }
-}
-
-.bootstrapping, .bootstrapping img {
-  max-width: 100%;
-}
 
 table {
   table-layout: fixed;
@@ -223,6 +205,7 @@ table {
   display: none;
 }
 
+/** Wizard **/
 .wizard-block {
   position: relative;
   padding: 45px 15px 15px;
@@ -255,11 +238,6 @@ table {
   font-size: 16px;
 }
 
-.preload_error {
-  width: 70%;
-  margin: 100px auto;
-}
-
 .LoginErrorBox, .LoginErrorBoxHomepage {
   margin-top: 10px;
 }
@@ -283,6 +261,7 @@ table {
   font-weight: bold;
 }
 
+/** Fields submission/tip page **/
 .nested {
   padding-left: 15px;
 }
