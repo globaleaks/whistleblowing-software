@@ -1,0 +1,2 @@
+tar-ignore = GlobaLeaks/.git
+tar-ignore = .gitignore

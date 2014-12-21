@@ -1,0 +1,56 @@
+<!-- The file upload form used as target for the file upload widget -->
+<div data-ng-form="" id="fileupload" action="" method="POST" enctype="multipart/form-data" data-ng-app="GLClient.fileuploader" data-ng-controller="WBFileUploadCtrl" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
+  <div class="row fileupload-buttonbar">
+    <div class="col-md-7">
+      <!-- The fileinput-button span is used to style the file input field as button -->
+      <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled || (fileupload_mode == 'single' && queue.length)}">
+        <i class="glyphicon glyphicon-paperclip"></i>
+        <span data-translate>Add file</span>
+        <input data-ng-show="fileupload_mode == 'single'" type="file" name="files[]" data-ng-disabled="disabled" />
+        <input data-ng-show="fileupload_mode == 'multiple'" type="file" name="files[]" data-ng-disabled="disabled" multiple />
+      </span>
+      <!-- The global file processing state -->
+      <span class="fileupload-process"></span>
+    </div>
+    <!-- The global progress state -->
+    <div class="col-md-5 fade" data-ng-class="{in: active()}">
+      <!-- The global progress bar -->
+      <div class="progress progress-striped active" data-file-upload-progress="progress()">
+        <div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div>
+      </div>
+      <!-- The extended global progress state -->
+      <div class="progress-extended">&nbsp;</div>
+    </div>
+  </div>
+  <!-- The table listing the files available for upload/download -->
+  <table class="table table-striped files ng-cloak">
+    <tr data-ng-repeat="file in queue" data-ng-class="{'processing': file.$processing()}">
+      <td data-ng-switch data-on="!!file.thumbnailUrl">
+        <div class="preview" data-ng-switch-when="true">
+          <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery><img data-ng-src="{{file.thumbnailUrl}}" alt=""></a>
+        </div>
+        <div class="preview" data-ng-switch-default data-file-upload-preview="file"></div>
+      </td>
+      <td>
+        <p class="name" data-ng-switch data-on="!!file.url">
+          <span data-ng-switch-when="true" data-ng-switch data-on="!!file.thumbnailUrl">
+            <a data-ng-switch-when="true" data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery>{{file.name}}</a>
+            <a data-ng-switch-default data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}">{{file.name}}</a>
+          </span>
+          <span data-ng-switch-default>{{file.name}}</span>
+        </p>
+        <strong data-ng-show="file.error" class="error text-danger">{{file.error}}</strong>
+      </td>
+      <td>
+        <p class="size">{{file.size | formatFileSize}}</p>
+        <div class="progress progress-striped active fade" data-ng-class="{pending: 'in'}[file.$state()]" data-file-upload-progress="file.$progress()"><div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div></div>
+      </td>
+      <td>
+        <button type="button" class="btn btn-warning cancel" data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
+          <i class="glyphicon glyphicon-ban-circle"></i>
+          <span data-translate>Cancel</span>
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>

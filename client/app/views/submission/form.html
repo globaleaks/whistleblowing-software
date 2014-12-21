@@ -1,0 +1,79 @@
+<fieldset data-ng-init="toplevel = (field === undefined) ? true : false; step = $index; fields = (field === undefined) ? submission.current_submission.wb_steps[step].children : field.children;">
+  <div data-ng-repeat="field in fields | orderBy:'y'" data-ng-controller="SubmissionFieldCtrl" data-ng-form="submissionFieldForm" class="submissionField">
+    <div>
+      <div data-ng-switch="" on="field.type">
+        <div data-ng-switch-default="" class="form-group input">
+          <div>
+            <label ng-if="toplevel">{{$index + 1}}) {{field.label}}</label>
+            <label ng-if="!toplevel">{{field.label}}</label>
+            <a href="" data-ng-show="field.hint" data-content="field.hint" popover="{{field.hint}}" popover-placement="right" popover-trigger="mouseenter">
+              <i class="glyphicon glyphicon-question-sign"></i>
+            </a>
+          </div> 
+          <div class="submissionFieldInput">
+            <div class="row">
+              <div data-ng-switch="" on="field.type" data-ng-class="{'col-md-4': toplevel}">
+                <input class="form-control" data-ng-switch-when="inputbox" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text" />
+
+                <textarea class="form-control" data-ng-switch-when="textarea" data-ng-model="field.value" data-ng-required="field.required" placeholder="{{field.placeholder}}">{{field.value}}</textarea>
+
+                <select class="form-control" data-ng-switch-when="selectbox" name="input" data-ng-model="field.value" data-ng-required="field.required">
+                  <option data-ng-repeat="option in field.options" value="{{option.attrs.name}}">{{option.attrs.name}}</option>
+                </select>
+
+                <div data-ng-switch-when="checkbox">
+                  <div data-ng-repeat="option in field.options"; data-ng-init="field.value[option.id] = {};">
+                    <input type="hidden" ng-init="field.value[option.id].order = $index" ng-model="field.value[option.id].order">
+                    <input type="hidden" ng-init="field.value[option.id].name = option.attrs.name" ng-model="field.value[option.id].name">
+                    <input name="{{option.attrs.name}}"
+                        data-ng-model="field.value[option.id].value"
+                        placeholder="{{field.placeholder || 'false'}}"
+                        type="checkbox" />
+                    <label>{{option.attrs.name}}</label>
+                  </div>
+                </div>
+
+                <div data-ng-switch-when="dialog">
+                  <div class="preformatted">DIALOG FIELD TYPE INTERFACE STILL NEED TO BE IMPLEMENTED</div>
+                </div>
+
+                <div data-ng-switch-when="modal">
+                  <div class="preformatted">MODAL FIELD TYPE INTERFACE STILL NEED TO BE IMPLEMENTED</div>
+                </div>
+
+                <div data-ng-switch-when="tos">
+                  <textarea class="form-control" data-ng-readonly="true">{{field.options[0].attrs.clause}}</textarea>
+                  <div class="form-group">
+                    <input data-ng-model="field.value" data-ng-required="field.required" name=input value="{{field.value}}" placeholder="{{field.placeholder || 'false'}}" type="checkbox" />
+                    <label{{field.options[0].attrs.agreement_statement}}</label>
+                  </div>
+                </div>
+
+                <div data-ng-switch-when="fileupload">
+                  <div data-ng-switch="" on="field.multi_entry">
+                    <div data-ng-switch-when="false">
+                      <div data-ng-init="fileupload_mode = 'single'" data-ng-include="'views/partials/fileupload.html'" class="col-md-12"></div>
+                    </div>
+                    <div data-ng-switch-when="true">
+                      <div data-ng-init="fileupload_mode = 'multiple'" data-ng-include="'views/partials/fileupload.html'" class="col-md-12"></div>
+                    </div>
+                  </div>
+                </div>
+              
+                <div data-ng-switch-when="fieldgroup">
+                  <div data-ng-include="'views/submission/form.html'"></div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="has-error" data-ng-show="submissionFieldForm.$invalid">
+              <span data-translate>This field cannot be empty</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fieldset>

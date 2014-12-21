@@ -1,0 +1,52 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-hidden="true" data-ng-click="cancel()">
+    <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+  </button>
+  <h3>
+    <span>{{node.security_awareness_title}}</span>
+  </h3>
+</div>
+<div class="modal-body">
+  <div class="preformatted">{{node.security_awareness_text}}</div>
+
+  <div data-ng-show="!node.disable_security_awareness_questions">
+    <br /><br />
+    <p class="lead">
+      <span data-translate>Which of the following statements is true?</span>
+    </p>
+
+    <input data-ng-model="answer.value" value="a" type="radio">
+    <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'a')}" data-translate>HTTPS protects my identity, but not the content of my leak</span><br />
+    <input data-ng-model="answer.value" value="b" type="radio">
+    <span data-ng-class="{'bg-success': (answer.value && answer.value == 'b')}" data-translate>HTTPS protects the content of my leak but not my identity</span><br />
+    <input data-ng-model="answer.value" value="c" type="radio">
+    <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'c')}" data-translate>HTTPS does not protect the content of my leak nor my identity</span><br />
+    <input data-ng-model="answer.value" value="d" type="radio">
+    <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'd')}" data-translate>HTTPS does protect my identity and the content of my leak</span><br />
+
+    <br /></br />
+
+    <div data-ng-show="(answer.value && answer.value == 'b')">
+      <div class="bg-warning">
+        <span data-translate>You are aware of the risks involved. Go ahead, but consider yourself warned.</span>
+      </div>
+    </div>
+    <div data-ng-show="!answer.value">
+      <div>
+        <span>&nbsp;</span>
+      </div>
+    </div>
+    <div data-ng-show="(answer.value && answer.value != 'b')">
+      <div class="bg-danger">
+        <span data-translate>Wrong Answer!</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <a data-ng-click="goToSubmission()"
+      data-ng-disabled="!node.disable_security_awareness_questions && (!answer.value || answer.value != 'b')"
+      class="btn btn-warning">
+    <span data-translate>Proceed to submission</span>
+  </a>
+</div>

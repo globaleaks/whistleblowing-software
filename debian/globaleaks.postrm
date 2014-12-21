@@ -1,0 +1,63 @@
+#!/bin/sh
+set -e
+
+#        .;''-.
+#      .' |    `._
+#     /`  ;       `'.
+#   .'     \         \
+#  ,'\|    `|         |
+#  | -'_     \ `'.__,J
+# ;'   `.     `'.__.'
+# |      `"-.___ ,'
+# '-,           /
+# |.-`-.______-|
+# }      __.--'L
+# ;   _,-  _.-"`\         ___
+# `7-;"   '  _,,--._  ,-'`__ `.
+#  |/      ,'-     .7'.-"--.7 |        _.-'
+#  ;     ,'      .' .'  .-. \/       .'
+#   ;   /       / .'.-     ` |__   .'
+#    \ |      .' /  |    \_)-   `'/   _.-'``
+#     _,.--../ .'     \_) '`_      \'`
+#   '`f-'``'.`\;;'    ''`  '-`      |
+#      \`.__. ;;;,   )              /
+#       `-._,|;;;,, /\            ,'
+#        / /<_;;;;'   `-._    _,-'
+#       | '- /;;;;;,      `t'` \. I like nonsence.
+#       `'-'`_.|,';;;,      '._/| It wakes up the brain cells!
+#       ,_.-'  \ |;;;;;    `-._/
+#             / `;\ |;;;,  `"     - Theodor Seuss Geisel -
+#           .'     `'`\;;, /
+#          '           ;;;'|
+#              .--.    ;.:`\    _.--,
+#             |    `'./;' _ '_.'     |
+#              \_     `"7f `)       /
+#              |`   _.-'`t-'`"-.,__.'
+#              `'-'`/;;  | |   \ mx
+#                  ;;;  ,' |    `
+#                      /   '
+
+remove() {
+    sed -i '/# BEGIN GlobaLeaks Configuration - DO NOT EDIT!/,/# END GlobaLeaks Configuration - DO NOT EDIT!/d' /etc/tor/torrc || true
+}
+
+purge() {
+  echo "Forcefully purging all globaleaks data except /var/globaleaks/torhs directory"
+  rm -rf /var/globaleaks/db
+  rm -rf /var/globaleaks/files
+  rm -rf /var/globaleaks/log
+  rm -rf /var/run/globaleaks
+}
+
+case "$1" in
+  "purge")
+    purge
+    ;;
+  "remove")
+    remove
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

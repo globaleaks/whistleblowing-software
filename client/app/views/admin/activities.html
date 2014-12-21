@@ -1,0 +1,37 @@
+<div id="ContentBox" class="container" data-ng-controller="ActivitiesCtrl">
+  <div class="row">
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-bordered" id="RecentEventList">
+          <thead>
+              <tr>
+                <th class="col-md-2">
+                  <span data-translate>Event ID</span>
+                </th>
+                <th class="col-md-2">
+                  <span data-translate>Time</span>
+                </th>
+                <th class="col-md-2">
+                  <span data-translate>Event</span>
+                </th>
+                <th class="col-md-2">
+                  <span data-translate>Response time</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="activity in activities">
+                <td class="col-md-2">{{activity.id}}</td>
+                <td class="col-md-2">{{activity.creation_date | date:'dd HH:mm'}}</td>
+                <td class="col-md-2">{{activity.event}}</td>
+                <td class="col-md-2">{{activity.duration}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

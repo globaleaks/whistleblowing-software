@@ -1,0 +1,60 @@
+<div id="ContentBox" class="container"   data-ng-controller="OverviewCtrl">
+  <div class="row">
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+    <div class="col-md-9">
+      <p>
+      <span data-translate>This interface shows the activity of the users of your node. This may be helpful in detecting anomalies and supporting the Receivers of your node.</span>
+      </p>
+      <div ng-if="users.length">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-horizontal">
+              <span class="form-group col-md-12" data-ng-init="search.id = users.length ? users[0].id : ''">
+                <label class="control-label col-md-4">
+                  <span data-translate>Receiver</span>:
+                </label>
+                <div class="col-md-6">
+                  <select data-ng-model="search.id" class="form-control">
+                    <option data-ng-repeat="receiver in users" value="{{receiver.id}}">
+                      <span>{{receiver.name}}</span>
+                    </option>
+                  </select>
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered" id="receiverList">
+            <thead>
+              <tr>
+                <th class="col-md-6">
+                  <span data-translate>Receiver Tips</span>
+                </th>
+                <th class="col-md-6">
+                  <span data-translate>Files and Downloads</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="receiverListBody">
+              <tr data-ng-repeat="receiver in users | filter:search">
+                <td class="col-md-4">
+                  <div data-ng-repeat="rtip in receiver.receivertips">
+                    <span class="glyphicon glyphicon-book"></span>
+                    {{rtip.status}} {{rtip.last_access | date:'dd-MM-yyyy HH:mm'}} ({{rtip.access_counter}})
+                  </div>
+                </td>
+                <td class="col-md-4">
+                  <div data-ng-repeat="rfile in receiver.receiverfiles">
+                    <span class="glyphicon glyphicon-file"></span>
+                    {{rfile.file_name}} ({{rfile.downloads}}), {{rfile.last_access | date:'dd-MM-yyyy HH:mm'}}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

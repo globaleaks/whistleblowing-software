@@ -1,0 +1,126 @@
+<div id="ContentBox" class="container statusPage ng-cloak">
+  <div class="row" data-ng-controller="TipCtrl">
+    <div class="col-md-6">
+      <div class="col-md-12">
+        <dl>
+          <dt>
+            {{ tip.context_name }}
+            <a data-ng-show="tip.context_description" popover="{{tip.context_description}}" popover-placement="right" popover-trigger="mouseenter">
+              <span class="glyphicon glyphicon-info-sign"></span>
+            </a>
+          </dt>
+          <br />
+          <dt><span data-translate>Submission date</span></dt>
+          <dd>{{ tip.creation_date | date:'dd-MM-yyyy HH:mm' }}</dd>
+          <br />
+          <dt><span data-translate>Expiration Date</span></dt>
+          <dd>{{ tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}</dd>
+        </dl>
+       <div data-ng-repeat="step in tip.wb_steps">
+         <dt>
+           <span data-translate>Step</span>
+           <span>{{ $index + 1 }}: {{ step.label }}</span>
+         </dt>
+         <dd data-ng-include="'views/partials/tip_fields.html'"></dd>
+       </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="col-md-12">
+        <h3 data-translate>Receiver List</h3>
+        <table class="table table-striped" id="receiverList">
+          <thead>
+            <tr>
+              <th><span data-translate>Name</span></th>
+              <th><span data-translate>Description</span></th>
+              <th><span data-translate>Access counter</span></th>
+            </tr>
+          </thead>
+          <tbody id="receiverListBody">
+            <tr data-ng-repeat="receiver in tip.receivers | filter:filterReceivers | orderBy:'name'">
+              <td>
+                <span data-ng-switch="" on="receiver.gpg_key_status">
+                  <span data-ng-switch-when="Enabled">
+                    <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                  </span>
+                  <span data-ng-switch-when="Disabled">
+                    <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                  </span>
+                </span>
+                {{receiver.name}}
+              </td>
+              <td>{{receiver.description}}</td>
+              <td>{{receiver.access_counter}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>
+        <span data-translate>Files</span>
+      </h3>
+      <div class="well" data-ng-show="tip.files">
+        <div class="table-container">
+          <table class="table table-striped" id="fileList">
+            <thead>
+              <tr>
+                <th>
+                  <span data-translate>Filename</span>
+                </th>
+                <th>
+                  <span data-translate>Upload Date</span>
+                </th>
+                <th>
+                  <span data-translate>Content Type</span>
+                </th>
+                <th>
+                  <span data-translate>File Size</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="fileListBody" data-ng-repeat="file in tip.files">
+              <tr>
+                <td>
+                  {{file.name}}
+                </td>
+                <td>
+                  {{file.creation_date | date:'dd-MM-yyyy' }}
+                </td>
+                <td>
+                  {{file.content_type}}
+                </td>
+                <td>
+                  {{file.size}} Bytes
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" data-ng-hide="tip.files">
+      <p>
+        <span data-translate>No files have been uploaded!</span>
+      </p>
+    </div>
+
+    <div class="col-md-12">
+      <div data-ng-init="fileupload_mode = 'multiple'" data-ng-include="'views/partials/fileupload.html'"></div>
+    </div>
+
+  </div>
+
+  <hr />
+
+  <div data-ng-include="'views/partials/tip_communication.html'"></div>
+
+</div>
