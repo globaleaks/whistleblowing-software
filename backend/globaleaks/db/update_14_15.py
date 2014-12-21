@@ -45,6 +45,7 @@ class Node_version_14(Model):
     last_update = DateTime()
     receipt_regexp = Unicode()
     languages_enabled = Pickle()
+    default_language = Unicode()
     description = Pickle()
     presentation = Pickle()
     footer = Pickle()
@@ -193,10 +194,6 @@ class Replacer1415(TableReplacer):
                 new_node.default_timezone= 0;
                 continue
 
-            if v.name == 'default_language':
-                new_node.default_language = u'en';
-                continue
-
             if v.name == 'whistleblowing_question':
                 new_node.whistleblowing_question = appdata['node']['whistleblowing_question']
                 continue
@@ -270,6 +267,7 @@ class Replacer1415(TableReplacer):
         for step in steps:
             step['number'] = i
             del step['children']
+
             i += 1
 
         for old_context in old_contexts:
@@ -365,13 +363,17 @@ class Replacer1415(TableReplacer):
 
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy
-        steps = opportunistic_appdata_init()['fields']
+        steps = []
+
+        steps.append(opportunistic_appdata_init()['fields'][0])
+
         i = 1
         for step in steps:
             step['number'] = i
             step['label'] = step['label']['en']
             step['hint'] = step['hint']['en']
             step['description'] = step['description']['en']
+            step['children'] = []  # wipe out default fields
             for c in step['children']:
                 c['label'] = c['label']['en']
                 if c['type'] == 'tos':
