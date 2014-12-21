@@ -6,7 +6,7 @@ from __future__ import absolute_import
 
 import copy
 
-from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet, Unicode, Storm, JSON
+from storm.locals import Bool, DateTime, Int, Reference, ReferenceSet, Unicode, Storm, JSON
 
 from globaleaks.settings import transact
 from globaleaks.utils.utility import datetime_now, uuid4
@@ -215,9 +215,9 @@ class Context(Model):
     last_update = DateTime()
 
     # localized stuff
-    name = Pickle(validator=shortlocal_v)
-    description = Pickle(validator=longlocal_v)
-    receiver_introduction = Pickle(validator=longlocal_v)
+    name = JSON()
+    description = JSON()
+    receiver_introduction = JSON()
 
     # receivers = ReferenceSet(
     #                         Context.id,
@@ -381,7 +381,7 @@ class Comment(Model):
     content = Unicode(validator=longtext_v)
 
     # In case of system_content usage, content has repr() equiv
-    system_content = Pickle()
+    system_content = JSON()
 
     type = Unicode()
     _types = [u'receiver', u'whistleblower', u'system']
@@ -435,17 +435,17 @@ class Node(Model):
     # this has a dedicated validator in update_node()
     receipt_regexp = Unicode()
 
-    languages_enabled = Pickle()
+    languages_enabled = JSON()
     default_language = Unicode()
     default_timezone = Int()
 
     # localized string
-    description = Pickle(validator=longlocal_v)
-    presentation = Pickle(validator=longlocal_v)
-    footer = Pickle(validator=longlocal_v)
-    subtitle = Pickle(validator=longlocal_v)
-    security_awareness_title = Pickle(validator=longlocal_v)
-    security_awareness_text = Pickle(validator=longlocal_v)
+    description = JSON()
+    presentation = JSON()
+    footer = JSON()
+    subtitle = JSON()
+    security_awareness_title = JSON()
+    security_awareness_text = JSON()
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -517,32 +517,32 @@ class Notification(Model):
     security = Unicode()
     _security_types = [u'TLS', u'SSL']
 
-    admin_anomaly_template = Pickle(validator=longlocal_v)
+    admin_anomaly_template = JSON()
 
-    encrypted_tip_template = Pickle(validator=longlocal_v)
-    encrypted_tip_mail_title = Pickle(validator=longlocal_v)
-    plaintext_tip_template = Pickle(validator=longlocal_v)
-    plaintext_tip_mail_title = Pickle(validator=longlocal_v)
+    encrypted_tip_template = JSON()
+    encrypted_tip_mail_title = JSON()
+    plaintext_tip_template = JSON()
+    plaintext_tip_mail_title = JSON()
 
-    encrypted_file_template = Pickle(validator=longlocal_v)
-    encrypted_file_mail_title = Pickle(validator=longlocal_v)
-    plaintext_file_template = Pickle(validator=longlocal_v)
-    plaintext_file_mail_title = Pickle(validator=longlocal_v)
+    encrypted_file_template = JSON()
+    encrypted_file_mail_title = JSON()
+    plaintext_file_template = JSON()
+    plaintext_file_mail_title = JSON()
 
-    encrypted_comment_template = Pickle(validator=longlocal_v)
-    encrypted_comment_mail_title = Pickle(validator=longlocal_v)
-    plaintext_comment_template = Pickle(validator=longlocal_v)
-    plaintext_comment_mail_title = Pickle(validator=longlocal_v)
+    encrypted_comment_template = JSON()
+    encrypted_comment_mail_title = JSON()
+    plaintext_comment_template = JSON()
+    plaintext_comment_mail_title = JSON()
 
-    encrypted_message_template = Pickle(validator=longlocal_v)
-    encrypted_message_mail_title = Pickle(validator=longlocal_v)
-    plaintext_message_template = Pickle(validator=longlocal_v)
-    plaintext_message_mail_title = Pickle(validator=longlocal_v)
+    encrypted_message_template = JSON()
+    encrypted_message_mail_title = JSON()
+    plaintext_message_template = JSON()
+    plaintext_message_mail_title = JSON()
 
-    pgp_expiration_alert = Pickle(validator=longlocal_v)
-    pgp_expiration_notice = Pickle(validator=longlocal_v)
+    pgp_expiration_alert = JSON()
+    pgp_expiration_notice = JSON()
 
-    zip_description = Pickle(validator=longlocal_v)
+    zip_description = JSON()
 
     unicode_keys = [
         'server',
@@ -585,7 +585,7 @@ class Receiver(Model):
     name = Unicode(validator=shorttext_v)
 
     # localization string
-    description = Pickle(validator=longlocal_v)
+    description = JSON()
 
     configuration = Unicode()
 
@@ -765,8 +765,7 @@ class ApplicationData(Model):
     had only one big updated blob.
     """
     version = Int()
-    # XXX why is this a Pickle? ~ A.
-    fields = Pickle()
+    fields = JSON()
 
 
 # Follow classes used for Many to Many references
