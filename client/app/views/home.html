@@ -2,9 +2,7 @@
   <div id="HomePageBox">
 
     <div id="HomePageBoxHeader">
-      <div id="HomePageBoxNodePresentation">
-        {{ node.presentation }}
-      </div>
+      <div id="HomePageBoxNodePresentation">{{ node.presentation }}</div>
       <div id="HomePageBoxNodeDescription" class="preformatted">{{node.description}}</div>
     </div>
 
@@ -29,7 +27,7 @@
             <div id="WhistleblowerSubmitBoxButton">
               <a data-ng-click="goToSubmission()" class="btn btn-primary">
                 <i class="glyphicon glyphicon-bullhorn"></i>
-                <span data-translate>{{node.whistleblowing_button}}</span>
+                <span>{{node.whistleblowing_button}}</span>
               </a>
             </div>
           </div>
@@ -45,7 +43,7 @@
                     <span data-translate>Cannot Login</span>:
                     <span data-translate>The key code is either invalid or the submission has expired.</span>
                   </div>
-                  <div data-translate>Please check your key code and try again or make a new Submission.</div>
+                  <div data-translate>Please check your key code and try again or make a new submission.</div>
                 </div>
               </div>
             </div>

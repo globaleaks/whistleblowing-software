@@ -35,18 +35,20 @@
           <div class="card step">
             <div class="stepEditorHeader handle" data-ng-click="editing=!editing">
               <div class="stepIndex">{{$index + 1}}</div>
-              <h2>{{step.label}}</h2>
+              <div>{{step.label}}</div>
             </div>
             <div data-ng-form="" name="editStep" class="stepEditorBody" data-ng-show="editing">
-              <hr>
+              <hr/>
               <div class="row">
                 <div class="form-group col-md-6">
                   <label data-translate>Label</label>
-                  <input class="form-control" data-ng-model="step.label" type="text">
+                  <input class="form-control" data-ng-model="step.label" type="text" />
                 </div>
+              </div>
+              <div class="row">
                 <div class="form-group col-md-6">
                   <label data-translate>Hint</label>
-                  <input class="form-control" data-ng-model="step.hint" type="text">
+                  <input class="form-control" data-ng-model="step.hint" type="text" />
                 </div>
               </div>
               <div class="row">

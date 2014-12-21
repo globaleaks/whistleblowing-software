@@ -37,7 +37,7 @@
           <a href="javascript:void(0)" data-ng-click="goToStep($index + 1)" data-ng-disabled="uploading">
             <span data-ng-if="skip_first_step">{{$index + 1}} - </span>
             <span data-ng-if="!skip_first_step">{{$index + 2}} - </span>
-            <span data-translate>{{step.label}}</span>
+            <span>{{step.label}}</span>
           </a>
         </li>
       </ul>
