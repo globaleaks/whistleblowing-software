@@ -1,0 +1,10 @@
+Dear %ReceiverName%,
+
+This is an e-mail notification to notify you that %CommentSource% has commented on a previous submission.
+
+This has happened on context %ContextName% at %EventTime%.
+
+You can read it at: %TipTorURL%
+
+Kind regards,
+%NodeSignature%

@@ -1,0 +1,16 @@
+Dear %ReceiverName%,
+
+This is an e-mail notification to notify you that a whistleblower has selected you as a valuable recipient for his/her submission.
+
+They would like you to pay special attention to the information and material contained therein. Please keep in mind that whistleblowers often expose themselves to high personal risks for the public interest. Therefore the material that they provide with this tip-off should be considered of high importance.
+
+The submission can be accessed:
+via Tor at: %TipTorURL%
+via Tor2web at: %TipT2WURL%
+
+Submission date: %EventTime%
+
+Please do not forward or share this e-mail: each tip-off allows a limited number of accesses and downloads before being destroyed forever and nobody (even the node administrator) can recover an expired or dead tip-off.
+
+Kind regards,
+%NodeSignature%

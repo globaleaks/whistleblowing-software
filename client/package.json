@@ -1,0 +1,37 @@
+{
+  "author": "Random GlobaLeaks Developers",
+  "name": "GLClient",
+  "version": "2.60.32",
+  "dependencies": {
+    "bower": "*"
+  },
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "grunt-angular-templates": "0.5.6",
+    "grunt-css": "0.5.4",
+    "grunt-confirm": "0.1.1",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-concat": "0.4.0",
+    "grunt-contrib-copy": "0.5.0",
+    "grunt-contrib-cssmin": "0.10.0",
+    "grunt-contrib-jshint": "0.10.0",
+    "grunt-contrib-uglify": "0.5.0",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-manifest": "0.4.0",
+    "grunt-usemin": "2.3.0",
+    "grunt-concat-css": "0.3.1",
+    "grunt-line-remover": "0.0.2",
+    "grunt-string-replace": "1.0.0",
+    "matchdep": "0.3.0",
+    "mocha": "1.20.1",
+    "node-gettext": "0.2.14",
+    "should": "4.0.4",
+    "superagent": "0.18.1",
+    "supertest": "0.13.0",
+    "karma": "0.12.16",
+    "karma-coverage": "0.2.4",
+    "karma-mocha": "0.1.4",
+    "grunt-karma": "0.8.3",
+    "grunt-karma-coveralls": "2.5.1"
+  }
+}

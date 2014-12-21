@@ -1,0 +1,201 @@
+<!-- 
+
+This file is not used as template by the application and discarded using build.
+The only aim of the file is:
+ 1) to push strings that can't be puished in an other ways
+ 2) to anticipate translations on transifex in case translations need to be pushed
+ 3) to prevent losing translations in case some strings are under removal
+
+/views/home.html:
+<span data-translate>Enter your key code</span>
+<span data-translate>View Tip</span>
+<span data-translate>Are you a receiver?</span>
+<span data-translate>Login page</span>
+
+/views/login.html:
+<span data-translate>Login</span>
+
+/views/admin/advanced.html:
+<span data-translate>Advanced Settings</span>
+<span data-translate>Administration Interface</span>
+removed from advanced.html:
+<span data-translate>Enable checks for anomalies</span>
+<span data-translate>Checks for anomalies will be now performed on each request.</span>
+
+
+/views/admin/content.html
+<span data-translate>Content Settings</span>
+<span data-translate>Administration Interface</span>
+<span data-translate>Main Configuration</span>
+<span data-translate>Theme Customization</span>
+<span data-translate>Translation Customization</span>
+
+/views/admin/contexts.html:
+<span data-translate>Contexts Configuration</span>
+<span data-translate>Administration Interface</span>
+<span data-translate>Presentation Order</span>
+<span data-translate>Click to edit, Drag to order</span>
+
+removed from context since fields refactor:
+<label data-translate>Require at least one file to be uploaded</label
+
+/views/admin/fields.html:
+<span data-translate>Fields Configuration</span>
+<span data-translate>Administration Interface</span>
+<span data-translate>Presentation Order</span>
+<span data-translate>Click to edit, Drag to order</span>
+
+/views/admin/files_overview.html
+<span data-translate>Files Overview</span>
+<span data-translate>Administration Interface</span>
+
+/views/admin/landing.html:
+<span data-translate>Landing Page</span>
+<span data-translate>Administration Interface</span>
+
+/views/admin/mail.html:
+<span data-translate>Mail Configuration</span>
+<span data-translate>Administration Interface</span>
+<span data-translate>Main Configuration</span>
+<span data-translate>Notification Templates</span>
+<span data-translate>Plaintext Notification Templates</span>
+<span data-translate>Encrypted Notification Templates</span>
+
+/views/admin/password.html:
+<span data-translate>Mail Configuration</span>
+<span data-translate>Administration Interface</span>
+
+/views/admin/receivers.html:
+<span data-translate>Receivers Configuration</span>
+<span data-translate>Administration Interface</span>
+<span data-translate>Presentation Order</span>
+<span data-translate>Click to edit, Drag to order</span>
+
+/views/admin/stats.html:
+<span data-translate>System Stats</span>
+<span data-translate>Administration Interface</span>
+<span data-translate>Missing data');
+<span data-translate>no stats available for the future.');
+<span data-translate>during this hour the node was off.');
+<span data-translate>no stats available for current hour; check activities page.');
+<span data-translate>Free megabytes<span>
+<span data-translate>Failed logins</span>
+<span data-translate>Successful logins</span>
+<span data-translate>Started submissions</span>
+<span data-translate>Completed submissions</span>
+<span data-translate>Whistleblower comments</span>
+<span data-translate>Whistleblower messages</span>
+<span data-translate>Uploaded files</span>
+<span data-translate>Receiver comments</span>
+<span data-translate>Receiver messages</span>
+
+
+/views/admin/steps.html:
+<span data-translate>Delete</span>
+
+/views/admin/tips_overview.html:
+<span data-translate>Tips Overview</span>
+<span data-translate>Administration Interface</span>
+
+/views/admin/users_overview.html:
+<span data-translate>Users Overview</span>
+<span data-translate>Administration Interface</span>
+
+/view/admin/activities.html
+<span data-translate>Recent Activities/span>
+<span data-translate>Administration Interface</span>
+
+/view/admin/anomalies.html
+<span data-translate>Anomalies/span>
+<span data-translate>Administration Interface</span
+
+/views/receiver/preferences.html:
+<span data-translate>Preferences</span>
+<span data-translate>Receiver Interface</span>
+<span data-translate>Password Configuration</span>
+<span data-translate>Notification Settings</span>
+<span data-translate>Encryption Settings</span>
+
+/views/receiver/tip.html:
+<span data-translate>Loading Tip page...</span>
+<span data-translate>Tip Status Page</span>
+<span data-translate>This receiver has configured the encryption key.</span>
+<span data-translate>This receiver has not configured the encryption key.</span>
+<span data-translate>The file is unavailable due to an internal error.</span>
+<span data-translate>file unavailable</span>
+
+/views/receiver/tips.html:
+<span data-translate>Your Tips</span>
+<span data-translate>Receiver Interface</span>
+<span data-translate>Creation Date</span>
+<span data-translate>Expiration Date</span>
+<span data-translate>Last Access</span>
+<span data-translate>Files</span>
+<span data-translate>Comments</span>
+
+/views/submission/main.html:
+<span data-translate>Blow the Whistle</span>
+<span data-translate>This receiver has configured the encryption key.</span>
+<span data-translate>This receiver has not configured the encryption key.</span>
+<span data-translate>Select this receiver.</span>
+<span data-translate>Unselect this receiver.</span>
+<span data-translate>Details</span>
+
+/views/submission/keycode:
+<span data-translate>Submission successfully completed!</span>
+<span data-translate>Write down your key code</span>
+
+/views/whistleblower/tip.html:
+<span data-translate>Loading Tip page...</span>
+<span data-translate>Tip Status Page</span>
+<span data-translate>This receiver has configured the encryption key.</span>
+<span data-translate>This receiver has not configured the encryption key.</span>
+
+/views/wizard/main.html:
+<span data-translate>GlobaLeaks Wizard</span>
+<span data-translate>Step-by-step setup</span>
+
+old strings used in the privacy badge and not used since time:
+<span data-translate>Warning!</span>
+<span data-translate>We were not able to determine if you are anonymous or not, please proceed with care</span>
+
+old strings  uses in old keycode format:
+<h2 data-translate>Submission Created!</h2>
+<span data-translate>This keycode will allow you to login as the whistleblower for this Tip.</span>
+<span data-translate>Through this system receivers will be able to ask you questions on the Tip and you will be able to write a reply.</span>
+<span data-translate>You will also be able to keep track of who has viewed your submission and downloaded the files.</span>
+<span data-translate>Moreover, it will allow you to add other files to your submission.</span>
+<span data-translate>Beware of the fact that this keycode, if fallen into the wrong hands, will lead to identifying you as the whistleblower for this Tip.</span>
+<span data-translate>If you are interested in keeping it, please save it in a secure place and make sure it does not fall into the wrong hands</span>
+<span data-translate>Please copy in the box below your keycode to access the tip interface.</span>
+<span data-translate>View Tip</span>
+
+anticipation of Amnesty UX rework thanks to JoyLab consultancy:
+<span data-translate>Setup</span>
+<span data-translate>Select Language</span>
+<span data-translate>Please select which language you wish to use.</span>
+<span data-translate>Get Started</span>
+<span data-translate>Already submitted? Use your key code</span>
+<span data-translate>Find</span>
+<span data-translate>Select Files</span>
+<span data-translate>Send</span>
+<span data-translate>Add your Message</span>
+<span data-translate>Uploading files...</span>
+<span data-translate>Delete</span>
+<span data-translate>Add more files</span>
+<span data-translate>Thank you</span>
+<span data-translate>Your submission was successful.</span>
+<span data-translate>Remember your key code for this submission</span>
+<span data-translate>We will try to get back to you as soon as possible - to see any messages we send you or if you think of anything else you should have added, use the 16 digit number below to login and view any comments.</span>
+<span data-translate>View your submission</span>
+<span data-translate>Top tip: How to hide your key code</span>
+<span data-translate>A useful way to hide your keycode submission number, is to write it down like a credit card number i.e. include an expiry date too.</span>
+<span data-translate>Example</span>
+<span data-translate>Your Submission</span>
+<span data-translate>Created</span>
+<span data-translate>Expires</span>
+<span data-translate>Files</span>
+<span data-translate>back</span>
+<span data-translate>continue</span>
+
+-->

@@ -10,12 +10,11 @@ To learn how to setup your own GlobaLeaks platform, look at [Globaleaks Wiki
 documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
 Join our [Development Mailing List](http://lists.globaleaks.org/listinfo/dev);
-here we collect all the knowledge that is not specific to the backend or
-client component.
 
-| GlobaLeaks build status | GLBackend code coverage | GLClient code coverage
-|:-------------:|:-------------:|:-------------:|
-| [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GLBackend/badge.png)](https://coveralls.io/r/globaleaks/GLBackend) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GLClient/badge.png)](https://coveralls.io/r/globaleaks/GLClient) |
+| Branch | Build Status | Code Coverage
+| ------------- |:-------------:|:-------------:|
+| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png?branch=master)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master)
+| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png?branch=devel)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel)
 
 ## Donations
 
@@ -23,23 +22,17 @@ You can support our project, that's funded by volounteering effort, donations an
 
 [Help us](http://logioshermes.org/home/about-mission/support-us/) by sending us a small donation!
 
-
 ## GlobaLeaks main components
 
 The main components of are:
 
- * [GLBackend](https://github.com/globaleaks/GLBackend),
-a Python backend based on [Twisted](https://twistedmatrix.com/);
- * [GLClient](https://github.com/globaleaks/GLClient),
-a Clientside Web App based on [AngularJS](http://angularjs.org/)
+ * GLBackend,a Python backend based on [Twisted](https://twistedmatrix.com/);
+ * GLClient, a Clientside Web App based on [AngularJS](http://angularjs.org/)
 and [Bootstrap](http://getbootstrap.com/).
 
 ## Documentation
 * Official website: [www.globaleaks.org](https://globaleaks.org/)
 * [GlobaLeaks wiki](https://github.com/globaleaks/GlobaLeaks/wiki/Home)
-* [GLBackend wiki](https://github.com/globaleaks/GLBackend/wiki/Home)
-* [GLClient wiki](https://github.com/globaleaks/GLClient/wiki/Home)
-
 
 ## License
 Copyright (C) 2011-2014 Hermes No Profit Association - GlobaLeaks Project

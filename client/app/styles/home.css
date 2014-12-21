@@ -1,0 +1,43 @@
+/* Home Splash screen jumbotron */
+/* Language selector */
+
+#HomePageBox {
+  text-align: center;
+  color: #5a5a5a;
+  margin-top: 60px;
+}
+
+#spinnerBox {
+  position: relative;
+  background: #fff;
+  color: #fff;
+  width: 100%;
+  height: 200px;
+  direction: ltr;
+}
+
+#HomePageBoxHeader, #BlowTheWhistleBox, #WhistleblowerLoginBox, #GlobaLeaksInfoBox {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#HomePageBoxNodePresentation {
+  font-size: 40px;
+}
+
+#HomePageBoxNodeDescription {
+  font-size: 32px;
+}
+
+#WhistleblowerSubmitBoxHeader {
+  font-size: 40px;
+}
+
+#WhistleblowerSubmitBoxButton  .btn, #WhistleblowerSubmitBoxButtonDisabled .btn {
+  font-size: 32px;
+  margin: 20px;
+}
+
+#GlobaleaksInfoBox {
+  text-align: center;
+}

@@ -1,0 +1,23 @@
+<div id="ContentBox" class="container" data-ng-controller="AdminFieldsCtrl">
+  <div class="row">
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+    <div class="col-md-9">
+
+      <div class="col-md-6">
+        <div data-ng-include="'views/admin/add_fields.html'"></div>
+      </div>
+      <div class="clearfix"></div>
+
+      <br /><br />
+
+      <div data-ng-show="fields.length != 0">
+        <div data-ng-model="fields">
+          <div data-ng-repeat="field in admin.field_templates | orderBy:'label'">
+            <div data-ng-include="'views/admin/fields_editor.html'"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

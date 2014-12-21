@@ -1,0 +1,105 @@
+<br />
+<div data-ng-controller="AdminStepAddCtrl">
+  <h4><span data-translate>Add new step</span></h4>
+  <div data-ng-form="" name="newStep">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label data-translate>Label</label>
+          <input class="form-control" data-ng-model="new_step_label" type="text" required>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <button class="pull-left btn btn-success" data-ng-disabled="newStep.$invalid" data-ng-click="add_step()">
+            <i class="glyphicon glyphicon-ok"></i>
+            <span data-translate>Add</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="StepsConfigCard" data-ng-if="context.steps.length">
+  <h4><span data-translate>Configured steps:</span></h4>
+  <div>
+    <div data-ng-model="context.steps">
+      <div data-ng-repeat="step in context.steps">
+        <div 
+             class="stepBox"
+             data-ng-class="{'col-md-6': !editing, 'col-md-12': editing}"
+             data-ng-init="editing=false"
+             data-ng-controller="AdminStepEditorCtrl">
+          <div class="card step">
+            <div class="configEditorHeader handle" data-ng-click="editing=!editing">
+              <span class="badge">{{$index + 1}}</span>
+              <span>{{step.label}}</span>
+            </div>
+            <div data-ng-form="" name="editStep" data-ng-show="editing">
+              <hr/>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label data-translate>Label</label>
+                  <input class="form-control" data-ng-model="step.label" type="text" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label data-translate>Hint</label>
+                  <input class="form-control" data-ng-model="step.hint" type="text" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label data-translate>Description</label>
+                  <div>
+                    <textarea class="form-control" data-ng-model="step.description">{{step.description}}</textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6" data-ng-include="'views/admin/add_fields.html'"></div>
+                <div class="col-md-6" data-ng-include="'views/admin/add_fields_template.html'"></div>
+              </div>
+              <div id="FieldsConfigCard" class="form-group" data-ng-if="step.children">
+                <label data-translate>Configured fields:</label>
+                  <div ui-sortable="sortableFieldsOptions" data-ng-model="step.children"
+                       class="configuredFields"
+                       data-ui-on-drop="add_field_from_template($data, step)">
+                    <div data-ng-repeat="field in step.children | orderBy:'y'">
+                      <div data-ng-include="'views/admin/fields_editor.html'"></div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <hr>
+            <div class="stepActions">
+              <button class="btn btn-default cardActionButton"
+                      data-ng-show="!editing"
+                      data-ng-click="editing=!editing">Edit</button>
+              <button class="btn btn-success cardActionButton"
+                      data-ng-show="editing"
+                      data-ng-click="save_context(context);editing=!editing"
+                      type="submit">Save</button>
+              <button 
+                class="btn btn-default cardActionButton"
+                data-ng-show="editing"
+                data-ng-click="editing=!editing">Cancel
+              </button>
+              <button class="btn btn-danger cardActionButton"
+                      data-ng-click="stepDeleteDialog(step)"
+                      popover="{{ Delete | translate }}"
+                      popover-placement="right"
+                      popover-trigger="mouseenter">Delete</button>
+            </div>
+          </div>
+        <!-- Step end -->
+        </div>
+        <div class="clearfix" ng-if="$last"></div>
+      <!-- Repeat end -->
+      </div>
+    </div>
+  </div>
+</div>

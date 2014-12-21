@@ -1,1 +1,11 @@
-.vagrant
+.pybuild/
+
+debian/files
+debian/*.debhelper
+debian/*.log
+debian/globaleaks.substvars
+debian/globaleaks/
+
+doc/_build
+
+appliance/*/Vagrantfile

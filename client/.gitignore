@@ -1,0 +1,6 @@
+.tmp/
+node_modules/
+app/components/
+pot/
+build/
+dest

@@ -1,0 +1,164 @@
+<div id="messageConsole">
+  <div data-ng-repeat="error in errors" data-ng-show="error.code != 29 && error.code != 60">
+    <!--
+      Currently we skip authentication errors (29) and TipMessagesNotFound Error (60):
+
+      The first has a special handling, the latter need to not be shown as it happens
+      when a Whistleblower access the Tip page before ReceiverTips are created.
+    -->
+    <div class="alert alert-error errorMessage alert-warning alert-dismissable" fadeout="">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <p><strong>{{error.url}}</strong></p>
+      <div data-ng-switch="" on="error.code" >
+
+        <div data-ng-switch-when="18">
+          <span data-translate>Your user has reached the maximum number of accesses to this Tip</span>
+        </div>
+
+        <div data-ng-switch-when="35">
+          <span data-translate>The specified comment was not found</span>
+        </div>
+
+        <div data-ng-switch-when="12">
+          <span data-translate>No Context was found with the specified ID</span>
+        </div>
+
+        <div data-ng-switch-when="17">
+          <span data-translate>Some parameters provided in the context creation can't work together</span>
+        </div>
+
+        <div data-ng-switch-when="33">
+          <span data-translate>You've reached the maximum number of downloads for this file</span>
+        </div>
+
+        <div data-ng-switch-when="19">
+          <span data-translate>A field expected to be unique already has this value</span> ({{error.arguments[0]}}:{{error.arguments[1]}})
+        </div>
+
+        <div data-ng-switch-when="26">
+          <span data-translate>No File was found with the specified ID</span>
+        </div>
+
+        <div data-ng-switch-when="25">
+          <span data-translate>Operation Forbidden</span>
+        </div>
+
+        <div data-ng-switch-when="0">
+          <span data-translate>GLTypesError not set</span>
+        </div>
+
+        <div data-ng-switch-when="40">
+          <span data-translate>The PGP key proposed can't be imported</span>
+        </div>
+
+        <div data-ng-switch-when="39">
+          <span data-translate>The upload request exceeds the size limits</span> ({{error.arguments[0]}} MB)
+        </div>
+
+        <div data-ng-switch-when="31">
+          <span data-translate>Internal Server Error</span> ({{error.arguments[0]}})
+        </div>
+
+        <div data-ng-switch-when="36">
+          <span data-translate>The specified host does not match any configured one</span>
+        </div>
+
+        <div data-ng-switch-when="10">
+          <span data-translate>Invalid Input Format</span> [{{error.arguments[0]}}]
+        </div>
+
+        <div data-ng-switch-when="34">
+          <span data-translate>The specified old password is not valid</span>
+        </div>
+
+        <div data-ng-switch-when="24">
+          <span data-translate>Invalid Authentication in scope</span>: {{error.arguments[0]}}
+        </div>
+
+        <div data-ng-switch-when="23">
+          <span data-translate>Authentication in Tip failed</span>
+        </div>
+
+        <div data-ng-switch-when="32">
+          <span data-translate>No email was specified</span>
+        </div>
+
+        <div data-ng-switch-when="16">
+          <span data-translate>Node not found</span>
+        </div>
+
+        <div data-ng-switch-when="30">
+          <span data-translate>Not Authenticated</span>
+        </div>
+
+        <div data-ng-switch-when="20">
+          <span data-translate>Not found a Receiver with the specified ID</span>
+        </div>
+
+        <div data-ng-switch-when="38">
+          <span data-translate>The file uploaded has a reserved name</span>
+        </div>
+
+        <div data-ng-switch-when="41">
+          <span data-translate>The time for your role</span> ({{error.arguments[0]}}) <span data-translate>is</span> {{error.arguments[1]}}
+        </div>
+
+        <div data-ng-switch-when="11">
+          <span data-translate>Statistics Disabled</span>
+        </div>
+
+        <div data-ng-switch-when="28">
+          <span data-translate>The submission that you tried to be update has been already finalized</span>
+        </div>
+
+        <div data-ng-switch-when="22">
+          <span data-translate>Submission does not validate the input fields</span> [{{error.arguments[0]}}]
+        </div>
+
+        <div data-ng-switch-when="21">
+          <span data-translate>No Submission was found with the specified ID</span>
+        </div>
+
+        <div data-ng-switch-when="42">
+          <span data-translate>Invalid time range supplied for</span> {{error.arguments[0]}}:{{error.arguments[1]}}
+        </div>
+
+        <div data-ng-switch-when="13">
+          <span data-translate>No Tip was found with the specified ID</span>
+        </div>
+
+        <div data-ng-switch-when="15">
+          <span data-translate>Pertinence evaluation has been already expressed</span>
+        </div>
+
+        <div data-ng-switch-when="14">
+          <span data-translate>Not found a Receiver with the specified ID</span>
+        </div>
+
+        <div data-ng-switch-when="37">
+          <span data-translate>Resource can be accessed only within the Tor network</span>
+        </div>
+
+        <div data-ng-switch-when="49">
+          <span data-translate>A file attachment is required to complete the submission</span>
+        </div>
+
+        <div data-ng-switch-when="100">
+          <span data-translate>Request timed out</span>
+        </div>
+
+        <div data-ng-switch-when="401">
+          <span data-translate>Session expired</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div data-ng-repeat="success in successes">
+    <div class="alert alert-success successMessage alert-dismissable" fadeout="">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <p><strong><span data-translate>Success!</span></strong> {{success.message}}</p>
+    </div>
+  </div>
+</div>

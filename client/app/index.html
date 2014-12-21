@@ -1,0 +1,145 @@
+<!doctype html>
+<html data-ng-app="GLClient" data-ng-controller="MainCtrl">
+  <head>
+    <title ng-bind="node.name">GlobaLeaks</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+
+    <!-- build:css styles.css -->
+    <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="components/jquery-file-upload/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="components/jquery-file-upload/css/jquery.fileupload-ui.css">
+    <link rel="stylesheet" href="components/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/admin.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/submission.css">
+    <!-- endbuild -->
+
+    <!-- runtime loading of RTL / LTR version -->
+    <link rel="stylesheet" data-ng-href="{{ build_stylesheet }}" href="/styles.css">
+
+    <!-- stylesheet downloaded from the GLBackend -->
+    <link rel="stylesheet" data-ng-href="{{ custom_stylesheet }}" href="/static/custom_stylesheet.css">
+
+    <style type="text/css">
+      [ng\:cloak], [ng-cloak], [ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- this is resolved by angular-js only at the end of the startup (js loading) -->
+    <div data-ng-include="'globaleaks.html'"></div>
+
+    <noscript>
+      <div class="preload_error">
+        <h1>Error! :(</h1>
+        <br /><br />
+        <p>
+          Your browser is not running Javascript, and It's required to
+          use GlobaLeaks anonymous submission client, because is entirely
+          Javascript based.<br /><br />
+
+          It's common believe that Javascript and security don't sound
+          well together, for this reason we suggest to use GlobaLeaks,
+          with Tor Browser Bundle, an extremely tuned FireFox browser
+          with Tor integrated.
+
+          Here you can found and download the latest release of:
+          <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser Bundle</a>.
+        </p>
+      </div>
+    </noscript>
+
+    <div id="error_unsupported_browser" class="preload_error" style="display: none">
+      <h1>Warning! :(</h1>
+      <br /><br />
+      <p>
+        You are running an unsupported (and potentially vulnerable) browser.<br /><br />
+        You are strongly advised to download and install the
+        <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser Bundle</a>
+        to securely and anonymously access this GlobaLeaks site.
+      </p>
+    </div>
+
+    <!-- build:js loader.js -->
+    <script src="components/bowser/bowser.min.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts.js -->
+    <script src="components/jquery/dist/jquery.js"></script>
+    <script src="components/jquery.cookie/jquery.cookie.js"></script>
+    <script src="components/angular/angular.js"></script>
+    <script src="components/underscore/underscore.js"></script>
+    <script src="components/angular-resource/angular-resource.js"></script>
+    <script src="components/angular-route/angular-route.js"></script>
+    <script src="components/angular-translate/angular-translate.js"></script>
+    <script src="components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
+    <script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="components/jquery-ui/jquery-ui.js"></script>
+    <script src="components/jquery-file-upload/js/jquery.iframe-transport.js"></script>
+    <script src="components/jquery-file-upload/js/jquery.fileupload.js"></script>
+    <script src="components/jquery-file-upload/js/jquery.fileupload-process.js"></script>
+    <script src="components/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
+    <script src="components/jquery-file-upload/js/jquery.fileupload-angular.js"></script>
+    <script src="components/angular-ui-sortable/sortable.js"></script>
+    <script src="components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
+    <script src="components/angular-native-dragdrop/draganddrop.js"></script>
+    <script src="components/d3/d3.js"></script>
+    <script src="scripts/vendor/spin.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/services.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/filters.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/fileupload.js"></script>
+    <script src="scripts/controllers/wizard.js"></script>
+    <script src="scripts/controllers/privacybadge.js"></script>
+    <script src="scripts/controllers/home.js"></script>
+    <script src="scripts/controllers/status.js"></script>
+    <script src="scripts/controllers/receiver.js"></script>
+    <script src="scripts/controllers/tip.js"></script>
+    <script src="scripts/controllers/admin/main.js"></script>
+    <script src="scripts/controllers/admin/receivers.js"></script>
+    <script src="scripts/controllers/admin/contexts.js"></script>
+    <script src="scripts/controllers/admin/steps.js"></script>
+    <script src="scripts/controllers/admin/fields.js"></script>
+    <script src="scripts/controllers/admin/overview.js"></script>
+    <script src="scripts/controllers/admin/stats.js"></script>
+    <script src="scripts/controllers/submission.js"></script>
+    <script src="scripts/controllers/formbuilder.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/user.js"></script>
+    <script src="scripts/templates.js"></script>
+    <!-- endbuild -->
+
+    <script type="text/javascript">
+      function loadjsfile(filepath) {
+       var fileref = document.createElement('script')
+       fileref.setAttribute("type", "text/javascript")
+       fileref.setAttribute("src", filepath)
+       if (typeof fileref != "undefined") {
+         document.getElementsByTagName("head")[0].appendChild(fileref)
+       }
+      }
+        
+      function start_globaleaks() {
+        if (bowser.msie && bowser.version <= 8) {
+          var error = document.getElementById("error_unsupported_browser");
+          error.setAttribute("style", "block");
+        } else {
+          loadjsfile("scripts.js");
+        }
+      }
+
+      <!-- start_globaleaks(); -->
+    </script>
+
+  </body>
+</html>

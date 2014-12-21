@@ -1,0 +1,98 @@
+<div id="PrivacyBadgeBox" data-ng-controller="PrivacyBadgeBoxCtrl" data-ng-show="!node.disable_privacy_badge">
+  <div id="PrivacyBadge" data-ng-mouseenter="showBox()" ng-if="!node.enable_custom_privacy_badge">
+    <div data-ng-switch="" on="privacy" id="PrivacyBadgeTextBox" class="pull-left">
+      <div data-ng-switch-when="high">
+        <div data-ng-show="!displayBox">
+          <span class="label label-success">
+            <i class="glyphicon glyphicon-ok-circle"></i>
+            <span data-translate>Congratulations!</span>
+          </span>
+        </div>
+        <div data-ng-show="displayBox">
+          <span class="label label-success">
+            <i class="glyphicon glyphicon-ok-circle"></i>
+            <span data-translate>Congratulations!</span>
+          </span>
+          <div>
+            <div data-translate>Good job! You are using the Tor Browser that gives you extra privacy and security when browsing the internet.</div>
+            <div data-translate>Keep in mind that using the Tor Browser does not replace good security practices and it cannot protect you in the event of your computer being hacked.</div>
+            <div data-translate>To learn more you should read the security in a box manual for practical security best practices: </div>
+            <a href="https://securityinabox.org/" target="_blank" rel="noreferrer">
+              [ <span data-translate>Visit the security in a box website</span> ]
+            </a>
+          </div>
+        </div>
+      </div>
+      <div data-ng-switch-when="medium">
+        <div data-ng-show="!displayBox">
+          <span class="label label-success">
+            <i class="glyphicon glyphicon-ok-circle"></i>
+            <span data-translate>Congratulations!</span>
+          </span>
+        </div>
+        <div data-ng-show="displayBox">
+          <span class="label label-success">
+            <i class="glyphicon glyphicon-ok-circle"></i>
+            <span data-translate>Congratulations!</span>
+          </span>
+          <div>
+            <div data-translate>It appears that you are anonymously browsing this site using Tor, but you are not using the recommended safest internet browser.</div>
+            <div data-translate>The Tor Browser includes various privacy and security enhancements not present in other browsers.</div>
+            <div data-translate>You are strongly suggested to use the Tor Browser, unless you know what you are doing.</div>
+            <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer">
+              [ <span data-translate>Download the Tor Browser</span> ]
+            </a>
+          </div>
+        </div>
+      </div>
+      <div data-ng-switch-when="low">
+        <div data-ng-show="!displayBox">
+          <span class="label label-danger">
+            <i class="glyphicon glyphicon-warning-sign"></i>
+            <span data-translate>Danger!</span>
+          </span>
+        </div>
+        <div data-ng-show="displayBox" class="privacyBox-ext">
+          <span class="label label-danger">
+            <i class="glyphicon glyphicon-warning-sign"></i>
+            <span data-translate>Danger!</span>
+          </span>
+          <div>
+            <div data-translate>It appears that you are browsing this site without any extra privacy and security!</div>
+            <div data-translate>You are strongly advised to visit this site using the desktop app called Tor Browser, that protects your identity.</div>
+            <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer">
+              [ <span data-translate>Download the Tor Browser</span> ]
+            </a>
+            <div data-ng-show="node.hidden_service != ''">
+              <span data-translate>Then, copy and paste the following address into the installed Tor Browser:</span>
+              <span>{{node.hidden_service}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="PrivacyBoxCloseButton" class="pull-right">
+      <a data-ng-show="displayBox" type="button" data-ng-click="hideBox()">
+        <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+      </a>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div id="PrivacyBadgeCustom" ng-if="node.enable_custom_privacy_badge">
+    <div data-ng-switch="" on="privacy" id="PrivacyBoxTextBox">
+      <div data-ng-switch-when="high">
+        <span id="PrivacyBadgeCustomIconTBB"></span>
+        <span id="PrivacyBadgeCustomTextTBB">{{node.custom_privacy_badge_tbb}}</span>
+      </div>
+      <div data-ng-switch-when="medium">
+        <span id="PrivacyBadgeCustomIconTor"></span>
+        <span id="PrivacyBadgeCustomTextTor">{{node.custom_privacy_badge_tor}}</span>
+      </div>
+      <div data-ng-switch-when="low">
+        <span id="PrivacyBadgeCustomIconNone"></span>
+        <span id="PrivacyBadgeCustomTextNone">{{node.custom_privacy_badge_none}}</span>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>

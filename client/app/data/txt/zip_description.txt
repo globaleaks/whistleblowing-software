@@ -1,0 +1,15 @@
+The following represents a description of the file collection and its content.
+
+The included files may contain information that could lead to the identification of the whistleblower and/or that is sensitive for the people and organisations involved.
+
+Please never disclose these files until an appropriate analysis, fact checking, journalistic and technical redaction process. For more information about redaction of documents you should consult this page: https://github.com/globaleaks/GlobaLeaks/wiki/Redaction-process.
+
+Files number: %FilesNumber%
+Total uncompressed size: %TotalSize%
+
+File details:
+
+%FileList%
+
+Kind regards,
+%NodeSignature%

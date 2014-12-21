@@ -1,0 +1,144 @@
+<div id="ContentBox" class="container"   data-ng-controller="OverviewCtrl">
+  <div class="row">
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+    <div class="col-md-9">
+      <p>
+      <span data-translate>This interface may help you understand how the Node is used by the whistleblower. It displays the submissions currently on the node and a few statistics on the kind of usage (activity, files, comments).</span>
+      </p>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-horizontal">
+            <span class="form-group col-md-6" data-ng-init="orderProp='creation_date'">
+              <label class="control-label col-md-4">
+                <span data-translate>Order by:</span>
+              </label>
+              <div class="col-md-6">
+                <select data-ng-model="orderProp" class="form-control">
+                  <option value="status" data-translate>Status</option>
+                  <option value="creation_date" data-translate>Creation</option>
+                  <option value="expiration_date" data-translate>Expiration</option>
+                  <option value="wb_last_access" data-translate>WB Last Access</option>
+                  <option value="context_name" data-translate>Context Name</option>
+                </select>
+              </div>
+            </span>
+            <span class="form-group col-md-6" data-ng-init="reverse='true'">
+              <label class="control-label col-md-4">
+                <span data-translate>Order:</span>
+              </label>
+              <div class="col-md-4">
+                <select data-ng-model="reverse" class="form-control">
+                  <option value="true" data-translate>Desc</option>
+                  <option value="false" data-translate>Asc</option>
+                </select>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered" id="tipList">
+          <thead>
+            <tr>
+              <th class="col-md-1">
+                <span data-translate>Status</span>
+              </th>
+              <th class="col-md-5">
+                <span data-translate>Date</span>
+              </th>
+              <th><span data-translate>Info</span></th>
+            </tr>
+          </thead>
+
+          <tbody id="tipListBody">
+            <tr data-ng-repeat="tip in tips | orderBy:orderProp:reverse">
+              <td class="col-md-1">{{tip.status}}</td>
+              <td class="col-md-5">
+                <div class="row">
+                  <span class="col-md-6">
+                    <b><span data-translate>Creation Date</span></b>
+                  </span>
+                  <span class="col-md-6">
+                    {{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}
+                  </span>
+                </div>
+                <div class="row">
+                  <span class="col-md-6">
+                    <b><span data-translate>Expiration Date</span></b>
+                  </span>
+                  <span class="col-md-6">
+                    {{tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}
+                  </span>
+                </div>
+                <div class="row">
+                  <span class="col-md-6">
+                    <b><span data-translate>WB Last Access</span></b>
+                  </span>
+                  <span class="col-md-6">
+                    {{tip.wb_last_access | date:'dd-MM-yyyy HH:mm' }} ({{tip.wb_access_counter}})
+                  </span>
+                </div>
+              </td>
+              <td class="col-md-6">
+                <div class="row">
+                  <div class="col-md-12">
+                    <b><span data-translate>Context</span>:</b>
+                    <a href="/#/admin/contexts">{{tip.context_name}}</a>
+                  </div>
+                </div>
+                <br />
+                <a data-ng-click="show_details = !show_details" data-ng-init="show_details=false" data-ng-show="!show_details">
+                  <p data-translate>Show details</p>
+                </a>
+                <a data-ng-click="show_details = !show_details" data-ng-show="show_details">
+                  <p data-translate>Hide details</p>
+                </a>
+                <div data-ng-show="show_details">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <b>Receiver Tips:</b>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-offset-1 col-md-11">
+                      <div data-ng-repeat="rtip in tip.receivertips">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        {{rtip.status}} ({{rtip.access_counter}})
+                        <a href="/#/admin/receivers">{{rtip.receiver_name}}</a>
+                        {{rtip.receiver_username}}
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+                  <div class="row">
+                    <div class="col-md-12">
+                      <b><span data-translate>Files</span>:</b>
+                    </div>
+                    <div class="col-sm-offset-1 col-md-11">
+                      <div data-ng-repeat="ifile in tip.internalfiles">
+                         <span class="glyphicon glyphicon-file"></span>
+                        {{ifile.name}} ({{ifile.size}}) {{ifile.content_type}}
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+                  <div class="row">
+                    <div class="col-md-12">
+                      <b><span data-translate>Comments</span>:</b>
+                    </div>
+                    <div class="col-sm-offset-1 col-md-11">
+                      <div data-ng-repeat="comment in tip.comments">
+                         <span class="glyphicon glyphicon-comment"></span>
+                        {{comment.type}} ({{comment.lifetime | date:'dd-MM-yyyy HH:mm' }})
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

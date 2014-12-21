@@ -1,0 +1,288 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+
+from __future__ import with_statement
+
+import os
+import random
+import re
+import sys
+import pip
+
+from pkg_resources import parse_version
+
+def pip_version_check(path):
+    def version_number_compare(version1, version2):
+        return cmp(parse_version(version1), parse_version(version2))
+
+    installed_packages = dict()
+    for dist in pip.get_installed_distributions(local_only=False):
+        installed_packages[dist.project_name.lower()] = dist.version
+
+    unmet_requirements = []
+    with open(path, "r") as rf:
+        p = re.compile('\s*(?P<package>[a-zA-Z0-9_.]+)(?P<condition>([<=>]){2}|([<>]){1})?(?P<version>\S+)?')
+        while 1:
+            requirement = rf.readline().strip()
+            if not requirement:
+                break
+            match = p.match(requirement)
+            if match:
+                package = match.group('package').lower()
+                version = match.group('version')
+                condition = match.group('condition')
+
+                if package in installed_packages:
+                    pass
+                elif package.replace('_', '-') in installed_packages:
+                    package = package.replace('_', '-')
+                else:
+                    unmet_requirements.append([requirement, ""])
+                    continue
+
+                if condition:
+                    installed_version = installed_packages[package]
+
+                    check = version_number_compare(installed_version, version)
+                    if condition == "<":
+                        if check >= 0:
+                            unmet_requirements.append([requirement, installed_version])
+                            continue
+                    elif condition == "<=":
+                        if check > 0:
+                            unmet_requirements.append([requirement, installed_version])
+                            continue
+                    elif condition == "==":
+                        if check != 0:
+                            unmet_requirements.append([requirement, installed_version])
+                            continue
+                    elif condition == ">=":
+                        if check < 0:
+                            unmet_requirements.append([requirement, installed_version])
+                            continue
+                    elif condition == ">":
+                        if check <= 0:
+                            unmet_requirements.append([requirement, installed_version])
+                            continue
+
+    if unmet_requirements:
+        print "Some GlobaLeaks requirements are unmet\n"
+        print "Unmet requirements:"
+        for unmet_requirement_desc in unmet_requirements:
+            if unmet_requirement_desc[1] != "":
+                print "\t", unmet_requirement_desc[0] + " [ Installed", unmet_requirement_desc[1], "]"
+            else:
+                print "\t", unmet_requirement_desc[0]
+        print "\n"
+        print "The problem can be solved by:"
+        print "1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki"
+        print "2) Installing missing requirements using rm -rf /tmp/pip-build-root/ && pip install -r /usr/share/globaleaks/glbackend/requirements.txt"
+        quit(-1)
+
+sys.excepthook = None
+
+this_directory = os.path.dirname(__file__)
+root = os.path.abspath(os.path.join(this_directory, '..'))
+sys.path.insert(0, root)
+
+path = os.path.join(root, 'requirements.txt')
+if os.path.exists(path):
+    pip_version_check(path)
+else:
+    pip_version_check('/usr/share/globaleaks/glbackend/requirements.txt')
+
+from twisted.python import usage
+
+from globaleaks import runner, DATABASE_VERSION
+from globaleaks.db import check_db_files
+from globaleaks.utils.utility import log, query_yes_no
+from globaleaks.utils.mailutils import mail_exception
+from globaleaks.settings import GLSetting
+
+GLSetting.parser.add_option("-n", "--nodaemon", action='store_true',
+    help="don't daemonize [default: %default]",
+    dest="nodaemon", default=GLSetting.nodaemon)
+
+GLSetting.parser.add_option("-l", "--loglevel", type="choice",
+    choices=['CRITICAL', 'ERROR', 'INFO', 'DEBUG'],
+    help="set log level [default: %default]",
+    dest="loglevel", default=GLSetting.loglevel)
+
+GLSetting.parser.add_option("-s", "--storm-debug", action='store_true',
+    help="enable storm debugging [default: %default]",
+    dest="storm_debug", default=GLSetting.storm_debug)
+
+GLSetting.parser.add_option("-j", "--http-log", type="int",
+    help="enable HTTP I/O logging and limit the number of logged Requests/Responses (-1=disabled, 0=unlimited) [default: %default]",
+    dest="http_log", default=GLSetting.http_log)
+
+GLSetting.parser.add_option("-i", "--ip", type="string",
+    help="IP address(s) used for listening [default: %default]",
+    dest="ip", default=GLSetting.bind_addresses)
+
+GLSetting.parser.add_option("-p", "--port", type="int",
+    help="TCP port used for listening [default: %default]",
+    dest="port", default=GLSetting.bind_port)
+
+GLSetting.parser.add_option("-a", "--accept-host", type="string",
+    help="specify a list comma separated of hostname acceptable by the HTTP server"\
+            "If some hosts are specified, defaults are not more included in the allowed list) [default: %default]",
+    dest="host_list", default=GLSetting.accepted_hosts)
+
+GLSetting.parser.add_option("-o", "--socks-host", type="string",
+    help="set Socks host to use for Tor [default: %default]",
+    dest="socks_host", default=GLSetting.socks_host)
+
+GLSetting.parser.add_option("-P", "--socks-port", type="int",
+    help="set Socks port to use for Tor [default: %default]",
+    dest="socks_port", default=GLSetting.socks_port)
+
+GLSetting.parser.add_option("-t", "--delay", type="int",
+    help="security delay threshold to prevent side channels analysis (ms) [default: 800]",
+    dest="delay", default=800)
+
+GLSetting.parser.add_option("-d", "--disable-tor-socks", action='store_true',
+    help="disable Tor Socks for notifications [default: Tor enabled]",
+    dest="disable_tor_socks", default=(not GLSetting.tor_socks_enable))
+
+GLSetting.parser.add_option("-D", "--tor-dir", type="string",
+    help="Tor directory, acquire hidden service and set onion.to proxy [default: None]",
+    dest="tor_dir")
+
+GLSetting.parser.add_option("-H", "--hidden-service", type="string",
+    help="hidden service (http:// needed) [default: None]",
+    dest="hidden_service")
+
+GLSetting.parser.add_option("-T", "--tor2web", type="string",
+    help="public website url (https:// needed) [default: None]",
+    dest="public_website")
+
+GLSetting.parser.add_option("-u", "--user", type="string",
+    help="set the user to run as [default: current_user]",
+    dest="user")
+
+GLSetting.parser.add_option("-g", "--group", type="string",
+    help="set the group to run as [default: current_user]",
+    dest="group")
+
+GLSetting.parser.add_option("-w", "--working-path", type="string",
+    help="set the glbackend working directory [default: %default]",
+    dest="working_path", default=GLSetting.working_path)
+
+GLSetting.parser.add_option("-c", "--start-clean", action='store_true',
+    help="start a clean globaleks install [default: %default]",
+    dest="start_clean", default=GLSetting.start_clean)
+
+GLSetting.parser.add_option("-k", "--kill", type="int",
+    help="signal to send to the current globaleaks process (if exists) [default: don't kill]",
+    dest="kill", default=0)
+
+GLSetting.parser.add_option("-z", "--devel-mode", action='store_true',
+    help="hack some configs and enable some additional features useful during development' [default: %default]",
+    dest="devel_mode", default=GLSetting.devel_mode)
+
+GLSetting.parser.add_option("--disable-mail", action='store_true',
+    help="disable Notifications [default: Enabled]",
+    dest="notification_temporary_disable", default=(GLSetting.notification_temporary_disable))
+
+GLSetting.parser.add_option("-x", "--skip-wizard", action='store_true',
+    help="skip globaleaks installation wizard' [default: False]",
+    dest="skip_wizard")
+
+GLSetting.parser.add_option("-C", "--glc-path", type='string',
+    help="specify GLClient path [default: %default]",
+    dest="glc_path", default=GLSetting.glc_path)
+
+GLSetting.parser.add_option("-R", "--ramdisk", type="string",
+    help="optionally specify a path used by GnuGP operations [default: absent]",
+    dest="ramdisk")
+
+GLSetting.parser.add_option("--XXX", type='string',
+    help="hardcore debug only options: check NOTES.md file",
+    dest="xxx")
+
+GLSetting.parser.add_option("-v", "--version", action='store_true',
+    help="show the version of the software (spoiler: %s)" % GLSetting.version_string,
+    dest="version")
+
+
+
+# here the options are parsed, because sys.argv array is whack below
+(GLSetting.cmdline_options, args) = GLSetting.parser.parse_args()
+
+if GLSetting.cmdline_options.version:
+    print "GlobaLeaks Version:", GLSetting.version_string
+    print "GlobaLeaks DB version:", DATABASE_VERSION
+    quit()
+
+GLSetting.load_cmdline_options()
+
+if GLSetting.start_clean:
+    if query_yes_no("Globaleaks --start-clean is going to delete %s\nAre you sure?" % GLSetting.working_path, "no"):
+        GLSetting.remove_directories()
+elif GLSetting.cmdline_options.kill:
+    try:
+        with open(GLSetting.pidfile_path, "r") as fd:
+            target_pid = int(fd.read())
+        os.kill(target_pid, GLSetting.cmdline_options.kill)
+        os.remove(GLSetting.pidfile_path)
+    except Exception as excep:
+        print "Unable kill PID found in %s: kill option ignored (%s)" %\
+              (GLSetting.pidfile_path, excep)
+
+os.umask(077)
+GLSetting.create_directories()
+GLSetting.cleaning_dead_files()
+
+backend_script = os.path.join(GLSetting.root_path, 'globaleaks', 'backend.py')
+
+args = []
+args +=['-y', backend_script]
+if GLSetting.nodaemon:
+    args += ['-n']
+
+# we does not need this due to GLSetting.drop_privileges()
+# in fact we need to drop privileges before directory creation
+#args +=['--uid', GLSetting.user]
+#args +=['--gid', GLSetting.group]args +=['--rundir', GLSetting.working_path]
+args +=['--pidfile', GLSetting.pidfile_path]
+
+# we disable twistd logging as we manage only a globaleaks controlled logging
+args +=['--logfile', os.devnull]
+
+sys.argv[1:] = args
+
+
+def run_glbackend():
+    # Check DB version and eventually convert them,
+    # this step is made before the twisted start
+    check_db_files()
+
+
+    log.start_logging()
+
+    sys.excepthook = mail_exception
+
+    config = runner.ServerOptions()
+    try:
+        config.parseOptions()
+    except usage.error, ue:
+        print "%s: %s" % (sys.argv[0], ue)
+    else:
+        print "Starting GlobaLeaks"
+        try:
+
+            runner.GLBaseRunner(config).run()
+
+            # this is a blocking operation, until app exit
+            print "Exiting GlobaLeaks"
+        except OSError as ose:
+            print "Unable to start globaleaks: %s: %s" % (ose.strerror, ose.filename)
+            quit(ose.errno)
+        except Exception as excep:
+            print "Unable to start globaleaks: %s" % excep
+            quit(-1)
+
+# "And now his watch begins"
+run_glbackend()
+# "And now his watch is ended"

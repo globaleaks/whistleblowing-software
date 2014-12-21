@@ -1,0 +1,68 @@
+<div class="col-md-8">
+  <div class="form-group table-bordered">
+    <input data-ng-model="preferences.tip_notification" type="checkbox">
+    <label>
+      <span data-translate>Enable Tip notification</span>
+    </label>
+    <div data-ng-show="preferences.tip_notification">
+      <span class="btn-info">
+        <span data-translate>now Enabled:</span>
+      </span>
+      <span data-translate>Every new Tip you receive will trigger an email with a link to it.</span>
+    </div>
+  </div>
+
+  <div class="form-group table-bordered">
+    <input data-ng-model="preferences.message_notification" type="checkbox">
+    <label>
+      <span data-translate>Enable Message notification</span>
+    </label>
+    <div data-ng-show="preferences.message_notification">
+      <span class="btn-info">
+        <span data-translate>now Enabled:</span>
+      </span>
+      <span data-translate>Each message written by the whistleblower specifically for you will trigger an email.</span>
+    </div>
+  </div>
+
+  <div class="form-group table-bordered">
+    <input data-ng-model="preferences.comment_notification" type="checkbox">
+    <label>
+      <span data-translate>Enable Comment notification</span>
+    </label>
+    <div data-ng-show="preferences.comment_notification">
+      <span class="btn-info">
+        <span data-translate>now Enabled:</span>
+      </span>
+      <span data-translate>Every comment, written by the whistleblower or the receivers, will trigger an email.</span>
+    </div>
+  </div>
+
+  <div class="form-group table-bordered">
+    <input data-ng-model="preferences.file_notification" type="checkbox">
+    <label>
+      <span data-translate>Enable File notification</span>
+    </label>
+    <div data-ng-show="preferences.file_notification">
+      <span class="btn-info">
+        <span data-translate>now Enabled:</span>
+      </span>
+      <span data-translate>For every file available for download you will be notified via email with related information.</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label data-translate>Language</label>
+    <select class="form-control" data-ng-model="preferences.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
+  </div>
+
+  <div class="form-group">
+    <label data-translate>Timezone</label>
+    <select class="form-control" data-ng-model="preferences.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
+  </div>
+
+  <button type="submit" class="btn btn-success" data-ng-click="pref_save()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>Update notification settings</span>
+  </button>
+</div>

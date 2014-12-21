@@ -1,0 +1,35 @@
+#!/bin/sh
+# This is the post installation script for globaleaks
+set -e
+
+if [ ! -f /etc/apparmor.d/usr.sbin.tor ]; then
+  ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
+fi
+
+if [ ! "`grep "globaleaks" /etc/apparmor.d/local/system_tor`" ]; then
+  echo "/var/globaleaks/torhs/ w," >> /etc/apparmor.d/local/system_tor
+  echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
+fi
+
+
+# XXX. This should be handled directly inside GlobaLeaks, in order to have a
+# fair control over errors, conflicting preferences, etc.
+if ! $(grep -q GlobaLeaks /etc/tor/torrc); then
+    cat <<EOF >> /etc/tor/torrc
+# BEGIN GlobaLeaks Configuration - DO NOT EDIT!
+VirtualAddrNetwork 10.23.47.0/10
+AutomapHostsOnResolve 1
+TransPort 9040
+TransListenAddress 127.0.0.1
+DNSPort 5353
+DNSListenAddress 127.0.0.1
+HiddenServiceDir /var/globaleaks/torhs/
+HiddenServicePort 80 127.0.0.1:8082
+# END GlobaLeaks Configuration - DO NOT EDIT!
+EOF
+fi
+
+# Create tor hidden service directories with proper permissions and globaeleaks user.
+gl-fix-permissions
+
+#DEBHELPER#

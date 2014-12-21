@@ -1,11 +1,25 @@
 language: python
-services:
-  - mysql
 python:
   - "2.7"
+before_install:
+  - sudo add-apt-repository -y ppa:chris-lea/node.js
+  - sudo apt-get update -qq
 install:
-  - curl -s https://raw.githubusercontent.com/globaleaks/GlobaLeaks/master/scripts/travis/install.sh | sh
-before_script:
-  - curl -s https://raw.githubusercontent.com/globaleaks/GlobaLeaks/master/scripts/travis/before_script.sh | sh
+  - sudo apt-get install tor tor-geoipdb nodejs
+  - cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
+  - pip install -r requirements.txt
+  - pip install coverage coveralls pep8
+  - cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
+  - npm install -g grunt grunt-cli bower
+  - npm install
+
 script:
-  - curl -s https://raw.githubusercontent.com/globaleaks/GlobaLeaks/master/scripts/travis/script.sh | sh
+  - cd $TRAVIS_BUILD_DIR/backend  # to run backend tests
+  - coverage run setup.py test
+  - coveralls || true
+  - cd $TRAVIS_BUILD_DIR/client  # to test backend handlers
+  - bower install && grunt build --resource master
+  - $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z
+  - node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*
+  - cd $TRAVIS_BUILD_DIR/  # to run static analysis
+  - ./scripts/travis/lint.sh
