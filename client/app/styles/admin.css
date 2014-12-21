@@ -179,32 +179,8 @@
   padding: 16px;
   background-color: #fff;
   border-radius: 3px;
-
   -moz-border-radius: 3px;
   box-shadow: 2px 1px 5px #888888;
-}
-
-.step .stepIndex {
-  width: 50px;
-  float: left;
-  background-color: #616161;
-  text-align: center;
-  height: 30px;
-  padding-top: 5px;
-  border-radius: 100px;
-  margin-right: 10px;
-  color: #fff;
-}
-
-.stepEditorHeader {
-}
-
-.stepEditorHeader h2 {
-  font-size: 24px;
-}
-
-.stepEditorBody {
-
 }
 
 /** END **/
@@ -281,9 +257,8 @@
   position: relative;
   opacity: 0;
   height: 100%;
-  z-index: 2147483647;
+  z-index: 99;
 }
-
 
 .uploadProgress {
   position: relative;

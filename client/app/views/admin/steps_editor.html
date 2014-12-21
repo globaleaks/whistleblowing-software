@@ -33,11 +33,11 @@
              data-ng-init="editing=false"
              data-ng-controller="AdminStepEditorCtrl">
           <div class="card step">
-            <div class="stepEditorHeader handle" data-ng-click="editing=!editing">
-              <div class="stepIndex">{{$index + 1}}</div>
-              <div>{{step.label}}</div>
+            <div class="configEditorHeader handle" data-ng-click="editing=!editing">
+              <span class="badge">{{$index + 1}}</span>
+              <span>{{step.label}}</span>
             </div>
-            <div data-ng-form="" name="editStep" class="stepEditorBody" data-ng-show="editing">
+            <div data-ng-form="" name="editStep" data-ng-show="editing">
               <hr/>
               <div class="row">
                 <div class="form-group col-md-6">
