@@ -171,18 +171,6 @@ class TestModels(helpers.TestGL):
         receiver = models.Receiver.get(store, receiver_id)
         return [context.id for context in receiver.contexts]
 
-    @transact
-    def do_invalid_receiver_0length_name(self, store):
-        self.dummyReceiver_1['name'] = ''
-        r = models.Receiver(self.dummyReceiver_1)
-        store.add(r)
-
-    @transact
-    def do_invalid_receiver_description_oversize(self, store):
-        self.dummyReceiver_1['description'] = 'A' * 5000
-        models.Receiver(self.dummyReceiver_1)
-        store.add(r)
-
     @inlineCallbacks
     def test_context_add_and_get(self):
         context_id = yield self.context_add()
@@ -223,13 +211,6 @@ class TestModels(helpers.TestGL):
         contexts = yield self.list_context_of_receivers(receiver_id)
         self.assertEqual(2, len(contexts))
 
-    def test_invalid_receiver_0length_name(self):
-        self.assertFailure(self.do_invalid_receiver_0length_name(),
-                           errors.InvalidInputFormat)
-
-    def test_invalid_receiver_description_oversize(self):
-        self.assertFailure(self.do_invalid_receiver_description_oversize(),
-                           errors.InvalidInputFormat)
 
 class TestField(helpers.TestGL):
     fixtures = ['fields.json']
