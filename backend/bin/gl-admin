@@ -296,8 +296,8 @@ elif sys.argv[1] == 'restore' and len(sys.argv)== 4:
     print "restore do not yet implemented"
     pass
 else:
-    print "wrong usabe of %s command (missing option or bad keyword)" % sys.argv[1]
-    print "Run %s without argument can trigger the help" % sys.argv[1]
+    print "Wrong usage of %s command (missing option or bad keyword)" % sys.argv[0]
+    print "Run %s without arguments to trigger the help" % sys.argv[0]
     if not randint(20, 50) % 42:
         print "\n fnord"
     quit()
