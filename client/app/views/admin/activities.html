@@ -4,12 +4,11 @@
     <div class="col-md-9">
       <div class="row">
         <div class="col-md-12">
-          <span data-translate>This interface shows the latest activity in your node</span>
           <table class="table table-bordered" id="RecentEventList">
           <thead>
               <tr>
                 <th class="col-md-2">
-                  <span data-translate>Event ID</span><span style="color: red;">*</span>
+                  <span data-translate>Event ID</span>
                 </th>
                 <th class="col-md-2">
                   <span data-translate>Time</span>
@@ -18,34 +17,21 @@
                   <span data-translate>Event</span>
                 </th>
                 <th class="col-md-2">
-                  <span data-translate>Request elapsed time</span>
+                  <span data-translate>Response time</span>
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr data-ng-repeat="activity in activities">
-                <td class="col-md-2">
-                  {{activity.id}}
-                </td>
-                <td class="col-md-2">
-                  {{activity.creation_date | date:'dd HH:mm'}}
-                </td>
-                <td class="col-md-2">
-                  <span data-translate>{{activity.event}}</span>
-                </td>
-                <td class="col-md-2">
-                  {{activity.duration}}
-                </td>
+                <td class="col-md-2">{{activity.id}}</td>
+                <td class="col-md-2">{{activity.creation_date | date:'dd HH:mm'}}</td>
+                <td class="col-md-2">{{activity.event}}</td>
+                <td class="col-md-2">{{activity.duration}}</td>
               </tr>
             </tbody>
           </table>
-          <div>
-            <span style="color: red;">*</span>
-            <span data-translate>The incremental number here display is kept only for one hour; This visualisation is useful for an admin supporting their user and checking service reliability.</span>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
