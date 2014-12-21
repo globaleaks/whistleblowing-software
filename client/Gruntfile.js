@@ -83,7 +83,7 @@ module.exports = function(grunt) {
     cssmin: {
       combine: {
         files: {
-          'tmp/styles-rtl.css': [ 'tmp/components/bootstrap-arabic/dist/css/bootstrap-arabic.css',
+          'tmp/styles-rtl.css': [ 'tmp/components/bootstrap-rtl/dist/css/bootstrap-rtl.css',
                                   'tmp/components/jquery-file-upload/css/jquery.fileupload.css',
                                   'tmp/components/jquery-file-upload/css/jquery.fileupload-ui.css',
                                   'tmp/styles/main.css',
