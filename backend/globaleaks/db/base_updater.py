@@ -6,8 +6,8 @@ from storm.exceptions import OperationalError
 from storm.locals import create_database, Store
 from storm.properties import PropertyColumn
 from storm.variables import BoolVariable, DateTimeVariable
-from storm.variables import EnumVariable, IntVariable, RawStrVariable
-from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
+from storm.variables import EnumVariable, IntVariable, RawStrVariable, PickleVariable
+from storm.variables import UnicodeVariable, JSONVariable
 
 from globaleaks import DATABASE_VERSION, models
 from globaleaks.settings import GLSetting
@@ -132,7 +132,8 @@ class TableReplacer:
         from globaleaks.db.update_12_13 import Node_version_12, Context_version_12
         from globaleaks.db.update_13_14 import Node_version_13, Context_version_13
         from globaleaks.db.update_14_15 import Node_version_14, User_version_14, Context_version_14, Receiver_version_14, \
-            InternalTip_version_14, Notification_version_14, Stats_version_14
+            InternalTip_version_14, Notification_version_14, Stats_version_14, ApplicationData_version_14, \
+            Comment_version_14
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -148,7 +149,7 @@ class TableReplacer:
             'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, Receiver_version_9, Receiver_version_14, None, None, None, None, models.Receiver],
             'ReceiverFile' : [ models.ReceiverFile, None, None, None, None, None, None, None, None, None, None],
             'Notification': [ Notification_version_7, None, None, Notification_version_8, Notification_version_14, None, None, None, None, None, models.Notification],
-            'Comment': [ Comment_version_5, models.Comment, None, None, None, None, None, None, None, None, None],
+            'Comment': [ Comment_version_5, Comment_version_14, None, None, None, None, None, None, None, None, models.Comment],
             'InternalTip' : [ InternalTip_version_10, None, None, None, None, None, InternalTip_version_14, None, None, None, models.InternalTip],
             'InternalFile' : [ InternalFile_version_7, None, None, InternalFile_version_10, None, None, models.InternalFile, None, None, None, None],
             'WhistleblowerTip' : [ models.WhistleblowerTip, None, None, None, None, None, None, None, None, None, None],
@@ -157,7 +158,7 @@ class TableReplacer:
             'ReceiverContext' : [ models.ReceiverContext, None, None, None, None, None, None, None, None, None, None],
             'Message' : [ models.Message, None, None, None, None, None, None, None, None, None, None],
             'Stats' : [Stats_version_14, None, None, None, None, None, None, None, None, None, models.Stats],
-            'ApplicationData' : [ApplicationData_version_10, None, None, None, None, None, None, models.ApplicationData, None, None, None],
+            'ApplicationData' : [ApplicationData_version_10, None, None, None, None, None, None, ApplicationData_version_14, None, None, models.ApplicationData],
         }
 
         for k, v in self.table_history.iteritems():

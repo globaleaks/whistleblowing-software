@@ -84,7 +84,7 @@ class User_version_14(Model):
     last_login = DateTime()
 
 class InternalTip_version_14(Model):
-    __storm_table__ = "internaltip"
+    __storm_table__ = 'internaltip'
     context_id = Unicode()
     wb_fields = Pickle()
     pertinence_counter = Int()
@@ -176,6 +176,20 @@ class Notification_version_14(Model):
 class Stats_version_14(Model):
     __storm_table__ = 'stats'
     content = Pickle()
+
+class ApplicationData_version_14(Model):
+    __storm_table__ = 'applicationdata'
+    version = Int()
+    fields = Pickle()
+
+class Comment_version_14(Model):
+    __storm_table__ = 'comment'
+    internaltip_id = Unicode()
+    author = Unicode()
+    content = Unicode()
+    system_content = Pickle()
+    type = Unicode()
+    mark = Unicode()
 
 class Replacer1415(TableReplacer):
 
