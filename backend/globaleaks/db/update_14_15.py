@@ -454,7 +454,8 @@ class Replacer1415(TableReplacer):
                                 # else: it's already initialized with copy
 
 
-                wb_steps[0]['children'] = wb_fields_copy
+                for f in wb_fields_copy:
+                    wb_steps[0]['children'].append(wb_fields_copy[f])
 
                 for k, v in new_itip._storm_columns.iteritems():
                     if v.name == 'wb_steps':
