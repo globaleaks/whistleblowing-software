@@ -7,7 +7,7 @@ import os
 import sys
 
 from pip.req import parse_requirements
-from setuptools import setup
+from setuptools import find_packages, setup
 from setuptools.command.test import test as _TestCommand
 
 ######################################################################
@@ -83,17 +83,7 @@ setup(
     package_data={'globaleaks': [
         'db/sqlite.sql',
     ]},
-    packages=[
-        'globaleaks',
-        'globaleaks.db',
-        'globaleaks.handlers',
-        'globaleaks.jobs',
-        'globaleaks.plugins',
-        'globaleaks.rest',
-        'globaleaks.third_party',
-        'globaleaks.third_party.rstr',
-        'globaleaks.utils',
-    ],
+    packages=find_packages(exclude=['*.tests', '*.tests.*']),
     data_files=data_files,
     scripts=[
         'bin/globaleaks',
