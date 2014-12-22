@@ -78,21 +78,28 @@
             <div class="stepActions">
               <button class="btn btn-default cardActionButton"
                       data-ng-show="!editing"
-                      data-ng-click="editing=!editing">Edit</button>
+                      data-ng-click="editing=!editing">
+                <span data-translate>Edit</span>
+              </button>
               <button class="btn btn-success cardActionButton"
                       data-ng-show="editing"
                       data-ng-click="save_context(context);editing=!editing"
-                      type="submit">Save</button>
+                      type="submit">
+                <span data-translate>Save</span>
+              </button>
               <button 
                 class="btn btn-default cardActionButton"
                 data-ng-show="editing"
-                data-ng-click="editing=!editing">Cancel
+                data-ng-click="editing=!editing">
+                <span data-translate>Cancel</span>
               </button>
               <button class="btn btn-danger cardActionButton"
                       data-ng-click="stepDeleteDialog(step)"
                       popover="{{ Delete | translate }}"
                       popover-placement="right"
-                      popover-trigger="mouseenter">Delete</button>
+                      popover-trigger="mouseenter">
+               <span data-translate>Delete</span>
+              </button>
             </div>
           </div>
         <!-- Step end -->

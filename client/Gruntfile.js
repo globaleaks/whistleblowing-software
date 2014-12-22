@@ -427,6 +427,9 @@ module.exports = function(grunt) {
       }
     };
 
+    /* Extract strings view file used to anticipate strings on transifex */
+    extractPotFromHTMLFile('app/translations.html');
+
     grunt.file.recurse('app/views/', function(absdir, rootdir, subdir, filename) {
       var filepath = path.join('app/views/', subdir || '', filename || '');
       extractPotFromHTMLFile(filepath);
