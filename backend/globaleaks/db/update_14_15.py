@@ -277,6 +277,12 @@ class Replacer1415(TableReplacer):
         old_contexts = self.store_old.find(self.get_right_model("Context", 14))
 
         steps = opportunistic_appdata_init()['fields']
+        tos_dict = copy.deepcopy(steps[1]['children'][0])
+        tos_opt_dict = copy.deepcopy(tos_dict['options'][0])
+        tos_opt_dict['number'] = 1
+        print tos_opt_dict
+        del tos_dict['children']
+        del tos_dict['options']
         i = 1
         for step in steps:
             step['number'] = i
@@ -352,6 +358,11 @@ class Replacer1415(TableReplacer):
                 except:
                     continue
 
+            tos_opt = db_forge_obj(self.store_new, FieldOption, tos_opt_dict)
+            tos = db_forge_obj(self.store_new, Field, tos_dict)
+            tos.options.add(tos_opt)
+            step2.children.add(tos)
+
             self.store_new.add(new_context)
 
         self.store_new.commit()
@@ -388,11 +399,6 @@ class Replacer1415(TableReplacer):
             step['hint'] = step['hint']['en']
             step['description'] = step['description']['en']
             step['children'] = []  # wipe out default fields
-            for c in step['children']:
-                c['label'] = c['label']['en']
-                if c['type'] == 'tos':
-                    c['value'] = True
-            i += 1
 
         old_itips = self.store_old.find(self.get_right_model("InternalTip", 14))
         context_model = self.get_right_model("Context", 14)
