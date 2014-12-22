@@ -32,7 +32,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
 
           /* configure tor2web admin right based on detected user access */
           $scope.admin.node.tor2web_admin = !$scope.anonymous;
-          console.log($scope.admin.node);
 
           $scope.wizard = {
             'node': $scope.admin.node,
