@@ -568,7 +568,6 @@ module.exports = function(grunt) {
 
           for (var lang_code in supported_languages) {
             option['attrs'][keys[k]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(option['attrs'][keys[k]]['en'])));
-            console.log(str_unescape(gt.dgettext(lang_code, str_escape(option['attrs'][keys[k]]['en']))));
           }
         }
       }
@@ -588,7 +587,6 @@ module.exports = function(grunt) {
         }
 
         if (field['type'] == 'tos') {
-          console.log("tos!");
           tos_translate(field['options'][0]);
         }
       }
