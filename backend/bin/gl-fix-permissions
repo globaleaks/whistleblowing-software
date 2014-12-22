@@ -9,26 +9,18 @@ if ! id -u globaleaks >/dev/null 2>&1; then
   useradd globaleaks -u 1337 -b /var/globaleaks/ -s /bin/false
 fi
 
-if [ ! -d /var/globaleaks ]; then
-  mkdir -p /var/globaleaks
-  chown globaleaks:debian-tor /var/globaleaks
-  chmod 750 /var/globaleaks
-fi
+[ -d /var/globaleaks ] ||  mkdir -p /var/globaleaks
+chown globaleaks:debian-tor /var/globaleaks
+chmod 750 /var/globaleaks
 
-if [ ! -d /var/globaleaks/torhs ]; then
-  mkdir -p /var/globaleaks/torhs/
-  chown debian-tor:debian-tor /var/globaleaks/torhs/
-  chmod 700 /var/globaleaks/torhs
-fi
+[ -d /var/globaleaks/torhs ] || mkdir -p /var/globaleaks/torhs/
+chown debian-tor:debian-tor /var/globaleaks/torhs/
+chmod 700 /var/globaleaks/torhs
 
-if [ ! -d /var/run/globaleaks ]; then
-  mkdir -p /var/run/globaleaks
-  chown globaleaks:globaleaks /var/run/globaleaks
-  chmod 750 /var/run/globaleaks
-fi
+[ -d /var/run/globaleaks ] || mkdir -p /var/run/globaleaks
+chown globaleaks:globaleaks /var/run/globaleaks
+chmod 750 /var/run/globaleaks
 
-if [ ! -d /dev/shm/globaleaks ]; then
-  mkdir -p /dev/shm/globaleaks
-  chown globaleaks:globaleaks /dev/shm/globaleaks
-  chmod 750 /dev/shm/globaleaks
-fi
+[ -d /dev/shm/globaleaks ] || mkdir -p /dev/shm/globaleaks
+chown globaleaks:globaleaks /dev/shm/globaleaks
+chmod 750 /dev/shm/globaleaks
