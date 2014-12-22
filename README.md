@@ -26,7 +26,7 @@ You can support our project, that's funded by volounteering effort, donations an
 
 The main components of are:
 
- * GLBackend,a Python backend based on [Twisted](https://twistedmatrix.com/);
+ * GLBackend, a Python backend based on [Twisted](https://twistedmatrix.com/);
  * GLClient, a Clientside Web App based on [AngularJS](http://angularjs.org/)
 and [Bootstrap](http://getbootstrap.com/).
 
