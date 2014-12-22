@@ -286,9 +286,16 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           // enumerate only the receivers of the current context
           if (self.current_context.receivers.indexOf(receiver.id) !== -1) {
             self.current_context_receivers.push(receiver);
+
+            if (!self.current_context.show_receivers) {
+                self.receivers_selected[receiver.id] = true;
+                return;
+            }
+
             if (receivers_ids) {
               if (receivers_ids.indexOf(receiver.id) != -1) {
                 self.receivers_selected[receiver.id] = true;
+                return;
               }
             }
 

@@ -501,6 +501,10 @@ module.exports = function(grunt) {
 
       gt.addTextdomain("en", fileContents);
 
+      for (var lang_code in supported_languages) {
+        gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
+      }
+
       var json = JSON.parse(fs.readFileSync("app/data/appdata.json")),
           output = {},
           version = json['version'],
@@ -518,8 +522,6 @@ module.exports = function(grunt) {
       });
 
       for (var lang_code in supported_languages) {
-
-        gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
 
         for (var template_name in templates_sources) {
           
@@ -553,14 +555,44 @@ module.exports = function(grunt) {
 
       for (var k in json['node']){
 
-        gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
-
         output['node'][k] = {};
         for (var lang_code in supported_languages) {
-
           output['node'][k][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(json['node'][k]['en'])));
 
         }
+      }
+
+      var tos_translate = function(option) {
+        var keys = ['clause', 'agreement_statement']
+        for (var k in keys){
+
+          for (var lang_code in supported_languages) {
+            option['attrs'][keys[k]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(option['attrs'][keys[k]]['en'])));
+          }
+        }
+      }
+
+      var field_translate = function(field) {
+        var keys = ['label', 'description', 'hint']
+        for (var k in keys){
+
+          for (var lang_code in supported_languages) {
+            field[keys[k]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(field[keys[k]]['en'])));
+          }
+
+        }
+
+        for (var c in field['children']){
+          field_translate(field['children'][c]);
+        }
+
+        if (field['type'] == 'tos') {
+          tos_translate(field['options'][0]);
+        }
+      }
+
+      for (var f in output['fields']){
+          field_translate(output['fields'][f]);
       }
 
       output = JSON.stringify(output);
