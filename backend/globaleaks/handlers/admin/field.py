@@ -241,22 +241,6 @@ def delete_field(store, field_id, is_template):
         raise errors.FieldIdNotFound
     field.delete(store)
 
-@transact
-def get_context_fieldtree(store, context_id):
-    """
-    Return the serialized field tree belonging to a specific context.
-
-    :param context_id: the id corresponding to the context.
-    :return dict: a nested dictionary represending the tree.
-    """
-    #  context = Context.get(store, context_id)
-    steps = store.find(models.Step, models.Step.context_id == context_id).order_by(models.Step.number)
-    ret = []
-    for step in steps:
-        field = models.FieldGroup.get(store, step.field_id)
-        ret.append(models.FieldGroup.serialize(store, field.id))
-    return ret
-
 def fieldtree_ancestors(store, field_id):
     """
     Given a field_id, recursively extract its parents.
