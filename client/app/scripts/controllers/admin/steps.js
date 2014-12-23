@@ -139,21 +139,5 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       );
     };
 
-  $scope.sortableStepsOptions = {
-    placeholder: "placeholder",
-    handle: ".handle",
-    stop: function(e, ui) {
-      console.log("stop");
-    }
-  };
-
-  $scope.sortableFieldsOptions = {
-    placeholder: "placeholder",
-    handle: ".handle",
-    stop: function(e, ui) {
-      console.log("stop");
-    }
-  };
-
   }
 ]);
