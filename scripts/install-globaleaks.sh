@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# user permission check
+if ! [ $(id -u) = 0 ]; then
+    echo "Error: GlobaLeaks install script must be runned by root"
+    exit 1
+fi
+
 # if the distro version is not recognized precise is used
 DISTRO_VERSION="$( lsb_release -cs )"
 case ${DISTRO_VERSION} in
