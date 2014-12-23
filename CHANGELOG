@@ -1,4 +1,7 @@
-Changes in version 2.60.24 - 2014-12-22
+Changes in version 2.60.43 - 2014-12-22
+    o Updated Translations
+
+Changes in version 2.60.42 - 2014-12-22
     o Added support for Field Templates configuration
     o Added support for Context Steps configuration
     o Implemented caching for API
@@ -67,7 +70,7 @@ Changes in version 2.60.22 - 2014-10-22
       - https://github.com/globaleaks/GlobaLeaks/issues/992
       - https://github.com/globaleaks/GlobaLeaks/issues/990
 
-Changes in version 2.60.26 - 2014-09-25
+Changes in version 2.60.16 - 2014-09-25
   This release includes the following new translations:
     Chinese, Greek, Latvian, Polish, Thai, Turkish
 
@@ -579,7 +582,6 @@ Changes in version 2.23 - 2013-06-28
     o Improve receipt acceptance page.
 
 Changes in version 0.2.0.21 - 2013-06-24
-
     o receiver view updated with AdvSett
     o solved critical security flaw in Receiver auth
     o updated init guide examples related to network sandboxing
