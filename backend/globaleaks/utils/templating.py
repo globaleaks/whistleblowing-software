@@ -219,7 +219,7 @@ class EncryptedCommentKeyword(CommentKeyword):
         '%CommentContent%',
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, comment_desc, tip_desc):
+    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, comment_desc, tip_desc):
 
         super(EncryptedCommentKeyword, self).__init__(node_desc, context_desc, fields_desc,
                                                       receiver_desc, comment_desc, tip_desc)
