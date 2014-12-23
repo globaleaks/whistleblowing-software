@@ -14,7 +14,7 @@ fi
 
 # XXX. This should be handled directly inside GlobaLeaks, in order to have a
 # fair control over errors, conflicting preferences, etc.
-if ! $(grep -q GlobaLeaks /etc/tor/torrc); then
+if ! $(grep -q -i GlobaLeaks /etc/tor/torrc); then
     cat <<EOF >> /etc/tor/torrc
 # BEGIN GlobaLeaks Configuration - DO NOT EDIT!
 VirtualAddrNetwork 10.23.47.0/10
