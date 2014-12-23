@@ -1,3 +1,21 @@
+globaleaks (2.60.43) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 23 Dec 2014 19:40:03 +0100
+
+globaleaks (2.60.42) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/:
+    + Fix lintian errors in package.
+    + Move directory top-level.
+  * debian/globaleaks.postinst:
+    + Install python dependencies in postinstall script
+    + Handle tor configuration (automatic, dull).
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 22 Dec 2014 15:12:48 +0100
+
 globaleaks (2.60.32) unstable; urgency=low
 
   * GlobaLeaks 2.60.32 Release (Added Japanese and Ukrainian)
