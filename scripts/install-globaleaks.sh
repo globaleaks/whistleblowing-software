@@ -17,8 +17,8 @@ if [ ! -f /etc/apt/sources.list.d/globaleaks ]; then
     echo "deb http://deb.globaleaks.org $DISTRO_VERSION/" > /etc/apt/sources.list.d/globaleaks.list
 fi
 
-gpg --recv-keys --armor 24045008
-gpg --export --armor 24045008 | apt-key add -
+gpg --keyserver keys.gnupg.net --recv-keys 24045008
+gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -
 
 apt-get update
 apt-get install globaleaks
