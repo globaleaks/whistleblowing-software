@@ -65,7 +65,7 @@ class TestLanguageFileHandler(helpers.TestHandlerWithPopulatedDB):
         self.assertRaises(errors.LangFileNotFound, handler.delete, lang='en')
 
     @inlineCallbacks
-    def test_delete_not_existent_custom_lang(self):
+    def test_delete_existent_custom_lang(self):
 
         # we load a custom translation for en
         yield self.test_post()
