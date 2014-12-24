@@ -17,7 +17,7 @@ if [ ! -f /etc/apt/sources.list.d/globaleaks ]; then
     echo "deb http://deb.globaleaks.org $DISTRO_VERSION/" > /etc/apt/sources.list.d/globaleaks.list
 fi
 
-gpg --keyserver keys.gnupg.net --recv-keys 24045008
+gpg --keyserver keys.gnupg.net --recv-keys B353922AE4457748559E777832E6792624045008
 gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -
 
 apt-get update
