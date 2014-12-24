@@ -13,8 +13,8 @@ case ${DISTRO_VERSION} in
     *) DISTRO_VERSION='precise';;
 esac
 
-if ! $(grep -q globaleaks /etc/apt/sources.list); then
-  echo "deb http://deb.globaleaks.org $DISTRO_VERSION/" > /etc/apt/sources.list
+if [ ! -f /etc/apt/sources.list.d/globaleaks ]; then
+    echo "deb http://deb.globaleaks.org $DISTRO_VERSION/" > /etc/apt/sources.list.d/globaleaks.list
 fi
 
 gpg --recv-keys --armor 24045008
