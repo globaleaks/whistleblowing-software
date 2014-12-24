@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # user permission check
-if ! [ $(id -u) = 0 ]; then
+if [ ! $(id -u) = 0 ]; then
     echo "Error: GlobaLeaks install script must be runned by root"
     exit 1
 fi
