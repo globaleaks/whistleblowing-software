@@ -134,9 +134,6 @@ class TestFieldUpdate(helpers.TestHandlerWithPopulatedDB):
             # second deletion operation should fail
             self.assertFailure(handler.delete(field['id']), errors.FieldIdNotFound)
 
-        def test_create_field_associated_to_step(self):
-            pass
-
 
 class TestFieldsCollection(helpers.TestHandlerWithPopulatedDB):
         _handler = admin.field.FieldsCollection
@@ -293,9 +290,6 @@ class TestFieldTemplateUpdate(helpers.TestHandlerWithPopulatedDB):
             # second deletion operation should fail
             self.assertFailure(handler.delete(field['id']), errors.FieldIdNotFound)
 
-        def test_create_field_associated_to_step(self):
-            pass
-
 
 class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
         _handler = admin.field.FieldTemplatesCollection
@@ -323,21 +317,3 @@ class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
             for field in fields:
                 for child in field['children']:
                     self.assertNotIn(child, ids)
-
-
-class TestFieldTemplateCreate(helpers.TestHandlerWithPopulatedDB):
-        _handler = admin.field.FieldTemplateCreate
-        fixtures = ['fields.json']
-
-        @inlineCallbacks
-        def test_post(self):
-            """
-            Attempt to create a new field via a post request.
-            """
-            handler = self.request(get_sample_field(), role='admin')
-            yield handler.post()
-            self.assertEqual(len(self.responses), 1)
-
-            resp, = self.responses
-            self.assertIn('id', resp)
-            self.assertNotEqual(resp.get('options'), None)
