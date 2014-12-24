@@ -44,7 +44,7 @@
           "x": 0
         },
         {
-          "label": { "en": "Short title" },
+          "label": { "en": "Full description" },
           "type": "inputbox",
           "preview": false,
           "description": {"en": "Describe the details of the submission"},
