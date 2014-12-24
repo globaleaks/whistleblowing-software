@@ -16,9 +16,9 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.2.27",
-    "angular-resource": "1.2.27",
-    "angular-route": "1.2.27",
+    "angular": "1.2.28",
+    "angular-resource": "1.2.28",
+    "angular-route": "1.2.28",
     "angular-translate": "2.5.2",
     "angular-translate-loader-url": "2.5.2",
     "angular-translate-loader-static-files": "2.5.2",
@@ -33,11 +33,10 @@
     "bootstrap": "3.3.1",
     "bootstrap-rtl": "3.3.1-rc1",
     "underscore": "1.7.0",
-    "d3": "3.4.13",
-    "angular-native-dragdrop": "1.0.6",
+    "d3": "3.5.2",
     "font-awesome": "4.2.0"
   },
   "resolutions": {
-    "angular": "1.2.27"
+    "angular": "1.2.28"
   }
 }
