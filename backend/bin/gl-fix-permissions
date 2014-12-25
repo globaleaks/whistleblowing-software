@@ -2,12 +2,8 @@
 
 # user permission check
 if [ ! $(id -u) = 0 ]; then
-    echo "Error: GlobaLeaks install script must be runned by root"
+    echo "Error: gl-fix-permissions script must be runned by root"
     exit 1
-fi
-
-if ! id -u globaleaks >/dev/null 2>&1; then
-  useradd globaleaks -u 1337 -b /var/globaleaks/ -s /bin/false
 fi
 
 [ -d /var/globaleaks ] ||  mkdir -p /var/globaleaks
