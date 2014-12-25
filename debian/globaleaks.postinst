@@ -2,6 +2,10 @@
 # This is the post installation script for globaleaks
 set -e
 
+if ! id -u globaleaks >/dev/null 2>&1; then
+  useradd globaleaks -b /var/globaleaks/ -s /bin/false
+fi
+
 if [ ! -f /etc/apparmor.d/usr.sbin.tor ]; then
   ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
 fi
