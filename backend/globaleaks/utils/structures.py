@@ -29,18 +29,20 @@ class Rosetta:
         self._localized_attrs = attrs
 
     def acquire_storm_object(self, obj):
-        for attr in self._localized_attrs:
-            self._localized_strings[attr] = getattr(obj, attr)
+        self._localized_strings = {
+            attr: getattr(obj, attr) for attr in self._localized_attrs
+        }
 
     def acquire_multilang_dict(self, obj):
-        for attr in self._localized_attrs:
-            self._localized_strings[attr] = obj[attr]
+        self._localized_strings = {
+            attr: obj[attr] for attr in self._localized_attrs
+        }
 
     def singlelang_to_multilang_dict(self, obj, language):
-        ret = {}
-        for attr in self._localized_attrs:
-            ret[attr] = {}
-            ret[attr][language] = obj[attr]
+        ret = {
+            attr: {language: obj[attr]} for attr in self._localized_attrs
+        }
+
         return ret
 
     def dump_localized_attr(self, attr, language):
