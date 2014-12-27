@@ -31,7 +31,7 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
         nodedict = helpers.MockDict().dummyNode
         nodedict['ahmia'] = False
 
-        yield admin.update_node(nodedict)
+        yield admin.update_node(nodedict, True, 'en')
 
         yield handler.get()
         self.assertTrue(isinstance(self.responses, list))
@@ -43,7 +43,7 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
 
         nodedict = helpers.MockDict().dummyNode
         nodedict['ahmia'] = True
-        yield admin.update_node(nodedict)
+        yield admin.update_node(nodedict, True, 'en')
 
         yield handler.get()
         self.assertTrue(isinstance(self.responses, list))

@@ -12,7 +12,7 @@ from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import security, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
-from globaleaks.db.datainit import import_memory_variables
+from globaleaks.db.datainit import db_import_memory_variables
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.admin.field import disassociate_field, get_field_association
@@ -27,7 +27,7 @@ from globaleaks.utils.structures import fill_localized_keys, get_localized_value
 from globaleaks.utils.utility import log, datetime_now, datetime_null, seconds_convert, datetime_to_ISO8601
 
 
-def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_language):
+def db_admin_serialize_node(store, language):
 
     node = store.find(models.Node).one()
 
@@ -84,8 +84,8 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
     return get_localized_values(ret_dict, node, node.localized_strings, language)
 
 @transact_ro
-def admin_serialize_node(store, language=GLSetting.memory_copy.default_language):
-    return db_admin_serialize_node(store, language)
+def admin_serialize_node(*args):
+    return db_admin_serialize_node(*args)
 
 def db_create_step(store, context_id, steps, language):
     """
@@ -179,7 +179,7 @@ def db_update_steps(store, context_id, steps, language):
     for n in new_steps:
         store.add(n)
 
-def admin_serialize_context(store, context, language=GLSetting.memory_copy.default_language):
+def admin_serialize_context(store, context, language):
 
     steps = [ anon_serialize_step(store, s, language)
               for s in context.steps.order_by(models.Step.number) ]
@@ -208,7 +208,7 @@ def admin_serialize_context(store, context, language=GLSetting.memory_copy.defau
 
     return get_localized_values(ret_dict, context, context.localized_strings, language)
 
-def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
+def admin_serialize_receiver(receiver, language):
 
     ret_dict = {
         "id": receiver.id,
@@ -242,7 +242,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
 
-def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_copy.default_language):
+def db_update_node(store, request, wizard_done, language):
     """
     Update the node, setting the last update time on it.
 
@@ -345,15 +345,17 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
         raise errors.InvalidInputFormat(dberror)
 
     node.last_update = datetime_now()
+
+    db_import_memory_variables(store)
+
     return db_admin_serialize_node(store, language)
 
-
 @transact
-def update_node(store, request, wizard_done=False, language=GLSetting.memory_copy.default_language):
-    return db_update_node(store, request, wizard_done, language)
+def update_node(*args):
+    return db_update_node(*args)
 
 @transact_ro
-def get_context_list(store, language=GLSetting.memory_copy.default_language):
+def get_context_list(store, language):
     """
     Returns:
         (dict) the current context list serialized.
@@ -397,7 +399,7 @@ def field_is_present(store, field):
     return result.count() > 0
 
 
-def db_create_context(store, request, language=GLSetting.memory_copy.default_language):
+def db_create_context(store, request, language):
     """
     Creates a new context from the request of a client.
 
@@ -486,11 +488,11 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
     return admin_serialize_context(store, context, language)
 
 @transact
-def create_context(store, request, language=GLSetting.memory_copy.default_language):
-    return db_create_context(store, request, language=language)
+def create_context(*args):
+    return db_create_context(*args)
 
 @transact_ro
-def get_context(store, context_id, language=GLSetting.memory_copy.default_language):
+def get_context(store, context_id, language):
     """
     Returns:
         (dict) the context with the specified id.
@@ -510,37 +512,10 @@ def db_get_fields_recursively(store, field, language):
         ret.append(s)
         ret += db_get_fields_recursively(store, children, language)
 
-    a = [ field['label'] for field in ret]
+    a = [field['label'] for field in ret]
     return ret
 
-def db_get_context_fields(store, context_id, language=GLSetting.memory_copy.default_language):
-    """
-    Returns:
-        (dict) the fields associated with the context with the specified id.
-    """
-
-    context = store.find(models.Context, models.Context.id == context_id).one()
-
-    if not context:
-        log.err("Requested invalid context")
-        raise errors.ContextIdNotFound
-
-    steps_list = context.steps
-
-    fields = []
-
-    for ss in steps_list:
-        for children in ss.children:
-            f = anon_serialize_field(store, children, 'en')
-            fields.append(f)
-
-    return fields
-
-@transact_ro
-def get_context_fields(store, context_id, language=GLSetting.memory_copy.default_language):
-    return db_get_context_fields(store, context_id, language)
-
-def db_get_context_steps(store, context_id, language=GLSetting.memory_copy.default_language):
+def db_get_context_steps(store, context_id, language):
     """
     Returns:
         (dict) the steps associated with the context with the specified id.
@@ -552,14 +527,14 @@ def db_get_context_steps(store, context_id, language=GLSetting.memory_copy.defau
         log.err("Requested invalid context")
         raise errors.ContextIdNotFound
 
-    return [ anon_serialize_step(store, s, language) for s in context.steps ]
+    return [anon_serialize_step(store, s, language) for s in context.steps]
 
 @transact_ro
-def get_context_steps(store, context_id, language=GLSetting.memory_copy.default_language):
-    return db_get_context_steps(store, context_id, language)
+def get_context_steps(*args):
+    return db_get_context_steps(*args)
 
 @transact
-def update_context(store, context_id, request, language=GLSetting.memory_copy.default_language):
+def update_context(store, context_id, request, language):
     """
     Updates the specified context. If the key receivers is specified we remove
     the current receivers of the Context and reset set it to the new specified
@@ -635,7 +610,7 @@ def delete_context(store, context_id):
 
 
 @transact_ro
-def get_receiver_list(store, language=GLSetting.memory_copy.default_language):
+def get_receiver_list(store, language):
     """
     Returns:
         (list) the list of receivers
@@ -663,7 +638,7 @@ def create_random_receiver_portrait(receiver_uuid):
         raise excep
 
 
-def db_create_receiver(store, request, language=GLSetting.memory_copy.default_language):
+def db_create_receiver(store, request, language):
     """
     Creates a new receiver.
     Returns:
@@ -731,11 +706,11 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
     return admin_serialize_receiver(receiver, language)
 
 @transact
-def create_receiver(store, request, language=GLSetting.memory_copy.default_language):
-    return db_create_receiver(store, request, language)
+def create_receiver(*args):
+    return db_create_receiver(*args)
 
 @transact_ro
-def get_receiver(store, receiver_id, language=GLSetting.memory_copy.default_language):
+def get_receiver(store, receiver_id, language):
     """
     raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
     not exist.
@@ -753,7 +728,7 @@ def get_receiver(store, receiver_id, language=GLSetting.memory_copy.default_lang
 
 
 @transact
-def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.default_language):
+def update_receiver(store, receiver_id, request, language):
     """
     Updates the specified receiver with the details.
     raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
@@ -869,12 +844,7 @@ class NodeInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                 requests.adminNodeDesc)
 
-        yield update_node(request, language=self.request.language)
-
-        # align the memory variables with the new updated data
-        yield import_memory_variables()
-
-        node_description = yield admin_serialize_node(self.request.language)
+        node_description = yield update_node(request, True, self.request.language)
 
         # update 'node' cache calling the 'public' side of /node
         public_node_desc = yield anon_serialize_node(self.request.language)

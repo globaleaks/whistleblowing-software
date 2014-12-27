@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.rest import errors
 from globaleaks.security import GLBGPG, get_expirations
 from globaleaks.handlers import receiver, files
-from globaleaks.handlers.admin import create_receiver, create_context, get_context_list, get_context_fields
+from globaleaks.handlers.admin import create_receiver, create_context, get_context_list
 from globaleaks.handlers.submission import create_submission, update_submission
 from globaleaks.settings import GLSetting
 from globaleaks.models import Receiver
@@ -225,7 +225,7 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
         ]
 
         new_context['name'] = "this uniqueness is no more checked due to the lang"
-        new_context_output = yield create_context(new_context)
+        new_context_output = yield create_context(new_context, 'en')
         self.context_assertion(new_context, new_context_output)
 
         doubletest = yield get_context_list('en')
@@ -235,14 +235,14 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
         yanr['name'] = yanr['mail_address'] = u"quercia@nana.ptg"
         yanr['gpg_key_armor'] = unicode(VALID_PGP_KEY)
         yanr['contexts'] = [ new_context_output['id']]
-        yanr_output = yield create_receiver(yanr)
+        yanr_output = yield create_receiver(yanr, 'en')
         self.receiver_assertion(yanr, yanr_output)
 
         asdr = dict(MockDict().dummyReceiver)
         asdr['name'] = asdr['mail_address'] = u"nocibo@rocco.tnc"
         asdr['gpg_key_armor'] = unicode(VALID_PGP_KEY)
         asdr['contexts'] = [ new_context_output['id']]
-        asdr_output = yield create_receiver(asdr)
+        asdr_output = yield create_receiver(asdr, 'en')
         self.receiver_assertion(asdr, asdr_output)
 
         new_subm = dict(MockDict().dummySubmission)
@@ -253,7 +253,7 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
         new_subm['receivers'] = [ asdr_output['id'],
                                   yanr_output['id'] ]
         new_subm['wb_steps'] = yield fill_random_fields(new_context_output['id'])
-        new_subm_output = yield create_submission(new_subm, False)
+        new_subm_output = yield create_submission(new_subm, False, 'en')
         # self.submission_assertion(new_subm, new_subm_output)
 
         self.emulate_file_upload(new_subm_output['id'])
@@ -262,7 +262,7 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
 
         new_subm['id'] = new_subm_output['id']
         new_subm['finalize'] = True
-        new_subm_output = yield update_submission(new_subm['id'], new_subm, True)
+        new_subm_output = yield update_submission(new_subm['id'], new_subm, True, 'en')
 
         yield DeliverySchedule().operation()
 

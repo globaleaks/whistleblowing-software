@@ -8,6 +8,7 @@ from globaleaks.tests import helpers
 from globaleaks.rest.requests import adminContextDesc, adminReceiverDesc
 from globaleaks.rest.errors import GLException, InvalidInputFormat
 from globaleaks.handlers import base, admin, submission
+from globaleaks.handlers.admin.field import create_field
 from globaleaks.tests.test_tip import TTip
 from globaleaks.models import Context, Receiver
 
@@ -79,7 +80,6 @@ class TestTipInstance(SubmissionTest):
         basehandler.validate_jmessage(SubmissionTest.aContext1, adminContextDesc)
 
         # the test context need fields to be present
-        from globaleaks.handlers.admin.field import create_field
         for idx, field in enumerate(self.dummyFields):
             f = yield create_field(field, 'en')
             self.dummyFields[idx]['id'] = f['id']
@@ -90,7 +90,7 @@ class TestTipInstance(SubmissionTest):
             self.dummyFields[4]  # Generalities
         ]
 
-        SubmissionTest.context_used = yield admin.create_context(SubmissionTest.aContext1)
+        SubmissionTest.context_used = yield admin.create_context(SubmissionTest.aContext1, 'en')
 
         # Correctly, TTip.tipContext has not selectable receiver, and we want test it in the 2nd test
         SubmissionTest.context_used['selectable_receiver'] = True
@@ -99,26 +99,26 @@ class TestTipInstance(SubmissionTest):
             SubmissionTest.context_used[attrname] = stuff
 
         SubmissionTest.context_used = yield admin.update_context(SubmissionTest.context_used['id'],
-            SubmissionTest.context_used)
+            SubmissionTest.context_used, 'en')
 
-        basehandler.validate_jmessage( SubmissionTest.aContext2, adminContextDesc)
-        SubmissionTest.context_unused = yield admin.create_context(SubmissionTest.aContext2)
+        basehandler.validate_jmessage(SubmissionTest.aContext2, adminContextDesc)
+        SubmissionTest.context_unused = yield admin.create_context(SubmissionTest.aContext2, 'en')
 
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
         self.assertTrue(len(SubmissionTest.context_unused['id']) > 1)
 
-        SubmissionTest.aReceiver1['contexts'] = [ SubmissionTest.context_used['id'] ]
+        SubmissionTest.aReceiver1['contexts'] = [SubmissionTest.context_used['id']]
 
         for attrname in Receiver.localized_strings:
             SubmissionTest.aReceiver1[attrname] = stuff * 2
             SubmissionTest.aReceiver2[attrname] = stuff * 4
 
-        basehandler.validate_jmessage( SubmissionTest.aReceiver1, adminReceiverDesc )
-        SubmissionTest.receiver_used = yield admin.create_receiver(SubmissionTest.aReceiver1)
+        basehandler.validate_jmessage(SubmissionTest.aReceiver1, adminReceiverDesc)
+        SubmissionTest.receiver_used = yield admin.create_receiver(SubmissionTest.aReceiver1, 'en')
 
-        SubmissionTest.aReceiver2['contexts'] = [ SubmissionTest.context_unused['id'] ]
-        basehandler.validate_jmessage( SubmissionTest.aReceiver2, adminReceiverDesc )
-        SubmissionTest.receiver_unused = yield admin.create_receiver(SubmissionTest.aReceiver2)
+        SubmissionTest.aReceiver2['contexts'] = [SubmissionTest.context_unused['id']]
+        basehandler.validate_jmessage(SubmissionTest.aReceiver2, adminReceiverDesc)
+        SubmissionTest.receiver_unused = yield admin.create_receiver(SubmissionTest.aReceiver2, 'en')
 
         self.assertTrue(SubmissionTest.receiver_used['name'] == SubmissionTest.aReceiver1['name'])
         self.assertTrue(SubmissionTest.receiver_unused['name'] == SubmissionTest.aReceiver2['name'])
@@ -131,11 +131,10 @@ class TestTipInstance(SubmissionTest):
     def test_002_create_submission_missing_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
         submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
         submission_request['finalize'] = True
 
-        yield self.assertFailure(submission.create_submission(submission_request, finalize=True),
+        yield self.assertFailure(submission.create_submission(submission_request, True, 'en'),
                                  GLException)
 
 
@@ -143,27 +142,25 @@ class TestTipInstance(SubmissionTest):
     def test_003_create_submission_flip_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
         submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
 
-        submission_request['receivers'] = [ SubmissionTest.receiver_unused['id'] ]
+        submission_request['receivers'] = [SubmissionTest.receiver_unused['id']]
         submission_request['finalize'] = True
 
-        yield self.assertFailure(submission.create_submission(submission_request, finalize=True),
+        yield self.assertFailure(submission.create_submission(submission_request, True, 'en'),
                                  GLException)
 
     @inlineCallbacks
     def test_004_create_submission_both_valid_and_invalid_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
 	submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
 
-        submission_request['receivers'] = [ SubmissionTest.receiver_unused['id'],
-                                            SubmissionTest.receiver_used['id']  ]
+        submission_request['receivers'] = [SubmissionTest.receiver_unused['id'],
+                                            SubmissionTest.receiver_used['id']]
         submission_request['finalize'] = True
 
-        yield self.assertFailure(submission.create_submission(submission_request, finalize=True),
+        yield self.assertFailure(submission.create_submission(submission_request, True, 'en'),
                                  GLException)
 
 
@@ -171,22 +168,20 @@ class TestTipInstance(SubmissionTest):
     def test_005_create_valid_submission(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
         submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
 
-        submission_request['receivers'] = [ SubmissionTest.receiver_used['id']  ]
+        submission_request['receivers'] = [SubmissionTest.receiver_used['id']]
         submission_request['finalize'] = True
 
-        yield submission.create_submission(submission_request, finalize=True)
+        yield submission.create_submission(submission_request, True, 'en')
 
     @inlineCallbacks
     def test_006_fail_create_huge_submission(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
-        fields = yield admin.get_context_fields(SubmissionTest.context_used['id'])
         submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
 
-        submission_request['receivers'] = [ SubmissionTest.receiver_used['id'] ]
+        submission_request['receivers'] = [SubmissionTest.receiver_used['id']]
         submission_request['context_id'] = SubmissionTest.context_used['id']
 
         for wb_step in submission_request['wb_steps']:
@@ -195,5 +190,5 @@ class TestTipInstance(SubmissionTest):
 
         submission_request['finalize'] = True
 
-        yield self.assertFailure(submission.create_submission(submission_request, finalize=True),
+        yield self.assertFailure(submission.create_submission(submission_request, True, 'en'),
                                  InvalidInputFormat)

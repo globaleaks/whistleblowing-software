@@ -307,7 +307,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
                 print excep, "Has been raised wrongly"
                 self.assertTrue(False)
 
-        receiver_status = yield admin.get_receiver(self.dummyReceiver_1['id'])
+        receiver_status = yield admin.get_receiver(self.dummyReceiver_1['id'], 'en')
         self.assertEqual(GLSetting.failed_login_attempts, failed_login)
 
     @inlineCallbacks
@@ -336,7 +336,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
                 print excep, "Has been raised wrongly"
                 self.assertTrue(False)
 
-        receiver_status = yield admin.get_receiver(self.dummyReceiver_1['id'])
+        receiver_status = yield admin.get_receiver(self.dummyReceiver_1['id'], 'en')
 
         self.assertEqual(GLSetting.failed_login_attempts, failed_login)
 

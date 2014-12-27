@@ -12,13 +12,13 @@ from globaleaks.models import Receiver, Context, Node, Notification, User, Appli
 from globaleaks import security, models
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log, datetime_now, datetime_null, seconds_convert, datetime_to_ISO8601
-from globaleaks.db.datainit import import_memory_variables
+from globaleaks.db.datainit import db_import_memory_variables
 from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.third_party import rstr
 
 
-def admin_serialize_notification(notif, language=GLSetting.memory_copy.default_language):
+def admin_serialize_notification(notif, language):
     ret_dict = {
         'server': notif.server if notif.server else u"",
         'port': notif.port if notif.port else u"",
@@ -33,7 +33,7 @@ def admin_serialize_notification(notif, language=GLSetting.memory_copy.default_l
     return get_localized_values(ret_dict, notif, notif.localized_strings, language)
 
 @transact_ro
-def get_notification(store, language=GLSetting.memory_copy.default_language):
+def get_notification(store, language):
     try:
         notif = store.find(Notification).one()
     except Exception as excep:
@@ -43,7 +43,7 @@ def get_notification(store, language=GLSetting.memory_copy.default_language):
     return admin_serialize_notification(notif, language)
 
 @transact
-def update_notification(store, request, language=GLSetting.memory_copy.default_language):
+def update_notification(store, request, language):
 
     try:
         notif = store.find(Notification).one()
@@ -72,6 +72,8 @@ def update_notification(store, request, language=GLSetting.memory_copy.default_l
                  "DISABLE" if request['disable'] else "ENABLE")
         )
         GLSetting.notification_temporary_disable = request['disable']
+
+    db_import_memory_variables(store)
 
     return admin_serialize_notification(notif, language)
 
@@ -110,9 +112,6 @@ class NotificationInstance(BaseHandler):
             requests.adminNotificationDesc)
 
         response = yield update_notification(request, self.request.language)
-
-        # align the memory variables with the new updated data
-        yield import_memory_variables()
 
         self.set_status(202) # Updated
         self.finish(response)

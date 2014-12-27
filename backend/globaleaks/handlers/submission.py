@@ -38,8 +38,7 @@ def wb_serialize_internaltip(internaltip):
 
     return response
 
-@transact
-def create_whistleblower_tip(store, submission_desc):
+def db_create_whistleblower_tip(store, submission_desc):
     """
     The plaintext receipt is returned only now, and then is
     stored hashed in the WBtip table
@@ -58,6 +57,10 @@ def create_whistleblower_tip(store, submission_desc):
     store.add(wbtip)
 
     return return_value_receipt
+
+@transact
+def create_whistleblower_tip(*args):
+    return db_create_whistleblower_tip(*args)
 
 
 # Remind: has a store between argumentos because called by a @ŧransact
@@ -134,7 +137,6 @@ def import_receivers(store, submission, receiver_id_list, required=False):
         log.err("Receivers required to be selected, not empty")
         raise errors.SubmissionFailFields("Needed at least one Receiver selected [2]")
 
-
 # Remind: it's a store without @transaction because called by a @ŧransact
 def import_files(store, submission, files, finalize):
     """
@@ -195,8 +197,7 @@ def verify_steps(steps, wb_steps):
 
     return verify_fields_recursively(indexed_fields, indexed_wb_fields)
 
-@transact
-def create_submission(store, request, finalize, language=GLSetting.memory_copy.default_language):
+def db_create_submission(store, request, finalize, language):
     context = store.find(Context, Context.id == unicode(request['context_id'])).one()
     if not context:
         log.err("Context requested: [%s] not found!" % request['context_id'])
@@ -249,8 +250,10 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
     return submission_dict
 
 @transact
-def update_submission(store, submission_id, request, finalize, language=GLSetting.memory_copy.default_language):
+def create_submission(*args):
+    return db_create_submission(*args)
 
+def db_update_submission(store, submission_id, request, finalize, language):
     context = store.find(Context, Context.id == unicode(request['context_id'])).one()
     if not context:
         log.err("Context requested: [%s] not found!" % request['context_id'])
@@ -304,6 +307,9 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
     submission_dict = wb_serialize_internaltip(submission)
     return submission_dict
 
+@transact
+def update_submission(*args):
+    return db_update_submission(*args)
 
 @transact_ro
 def get_submission(store, submission_id):
@@ -351,20 +357,21 @@ class SubmissionCreate(BaseHandler):
         header session_id is used as authentication secret for the next interaction.
         expire after the time set by Admin (Context dependent setting)
         """
+        @transact
+        def post_transact(store, request, language):
+            status = db_create_submission(store, request, request['finalize'], language)
+
+            if request['finalize']:
+                receipt = db_create_whistleblower_tip(store, status)
+                status.update({'receipt': receipt})
+            else:
+                status.update({'receipt' : ''})
+
+            return status
+
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
-        if request['finalize']:
-            finalize = True
-        else:
-            finalize = False
-
-        status = yield create_submission(request, finalize)
-
-        if finalize:
-            receipt = yield create_whistleblower_tip(status)
-            status.update({'receipt': receipt})
-        else:
-            status.update({'receipt' : ''})
+        status = yield post_transact(request, self.request.language)
 
         self.set_status(201) # Created
         self.finish(status)
@@ -404,20 +411,22 @@ class SubmissionInstance(BaseHandler):
 
         PUT update the submission and finalize if requested.
         """
+        @transact
+        def put_transact(store, submission_id, finalize, language):
+            status = db_update_submission(store, submission_id, request,
+                                          request['finalize'], self.request.language)
+
+            if request['finalize']:
+                receipt = db_create_whistleblower_tip(store, status)
+                status.update({'receipt': receipt})
+            else:
+                status.update({'receipt' : ''})
+
+            return status
+
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
-        if request['finalize']:
-            finalize = True
-        else:
-            finalize = False
-
-        status = yield update_submission(submission_id, request, finalize, self.request.language)
-
-        if finalize:
-            receipt = yield create_whistleblower_tip(status)
-            status.update({'receipt': receipt})
-        else:
-            status.update({'receipt' : ''})
+        status = yield put_transact(submission_id, request, self.request.language)
 
         self.set_status(202) # Updated
         self.finish(status)

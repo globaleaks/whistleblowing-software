@@ -18,8 +18,7 @@ from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta
 
 @transact_ro
-def collect_tip_overview(store, language=GLSetting.memory_copy.default_language):
-
+def collect_tip_overview(store, language):
     tip_description_list = []
     all_itips = store.find(models.InternalTip)
     all_itips.order_by(Desc(models.InternalTip.creation_date))
@@ -93,7 +92,6 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
 
 @transact_ro
 def collect_users_overview(store):
-
     users_description_list = []
 
     all_receivers = store.find(models.Receiver)

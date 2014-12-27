@@ -16,7 +16,7 @@ from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import authentication, submission, wbtip
-from globaleaks.handlers.admin import create_context, update_context, create_receiver, get_receiver_list
+from globaleaks.handlers.admin import update_context, get_receiver_list
 from globaleaks.rest import requests, errors
 from globaleaks.models import InternalTip
 
@@ -40,7 +40,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         submission_desc['finalize'] = False
         del submission_desc['id']
 
-        status = yield submission.create_submission(submission_desc, finalize=False)
+        status = yield submission.create_submission(submission_desc, False, 'en')
 
         self.assertEqual(status['mark'], u'submission')
 
@@ -50,11 +50,11 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         submission_desc['finalize'] = True
         del submission_desc['id']
 
-        status = yield submission.create_submission(submission_desc, finalize=False)
+        status = yield submission.create_submission(submission_desc, False, 'en')
 
         yield self.emulate_file_upload(self.dummySubmission['id'])
 
-        status = yield submission.update_submission(status['id'], status, finalize=True)
+        status = yield submission.update_submission(status['id'], status, True, 'en')
 
         self.assertEqual(status['mark'], u'finalize')
 
@@ -65,7 +65,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         wb_access_id = yield authentication.login_wb(receipt)
 
         # remind: return a tuple (serzialized_itip, wb_itip)
-        wb_tip = yield wbtip.get_internaltip_wb(wb_access_id)
+        wb_tip = yield wbtip.get_internaltip_wb(wb_access_id, 'en')
 
         self.assertTrue(wb_tip.has_key('wb_steps'))
 
@@ -155,7 +155,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     def test_submission_with_receiver_selection_allow_unencrypted_true_no_keys_loaded(self):
 
         # for some reason, the first receiver is no more with the same ID
-        self.receivers = yield get_receiver_list()
+        self.receivers = yield get_receiver_list('en')
 
         rcvrs_ids = []
 
@@ -168,7 +168,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         for attrname in models.Context.localized_strings:
             self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
 
-        context_status = yield update_context(self.dummyContext['id'], self.dummyContext)
+        context_status = yield update_context(self.dummyContext['id'], self.dummyContext, 'en')
 
         # Create a new request with selected three of the four receivers
         submission_request= dict(self.dummySubmission)
@@ -178,7 +178,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         submission_request['receivers'] = rcvrs_ids
 
-        status = yield submission.create_submission(submission_request, finalize=False)
+        status = yield submission.create_submission(submission_request, False, 'en')
         just_empty_eventually_internaltip = yield delivery_sched.tip_creation()
 
         # Checks, the submission need to be the same now
@@ -188,7 +188,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         submission_request['context_id'] = context_status['id'] # reused
         status['receivers'] = rcvrs_ids
 
-        status = yield submission.update_submission(status['id'], status, finalize=True)
+        status = yield submission.update_submission(status['id'], status, True, 'en')
 
         receiver_tips = yield delivery_sched.tip_creation()
         self.assertEqual(len(receiver_tips), len(status['receivers']))
@@ -200,7 +200,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         GLSetting.memory_copy.allow_unencrypted = False
 
         # for some reason, the first receiver is no more with the same ID
-        self.receivers = yield get_receiver_list()
+        self.receivers = yield get_receiver_list('en')
 
         rcvrs_ids = []
 
@@ -213,7 +213,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         for attrname in models.Context.localized_strings:
             self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
 
-        context_status = yield update_context(self.dummyContext['id'], self.dummyContext)
+        context_status = yield update_context(self.dummyContext['id'], self.dummyContext, 'en')
 
         # Create a new request with selected three of the four receivers
         submission_request= dict(self.dummySubmission)
@@ -222,7 +222,8 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         submission_request['finalize'] = False
         submission_request['receivers'] = rcvrs_ids
 
-        yield self.assertFailure(submission.create_submission(submission_request, finalize=True), errors.SubmissionFailFields)
+        yield self.assertFailure(submission.create_submission(submission_request, True, 'en'),
+                                 errors.SubmissionFailFields)
 
     @inlineCallbacks
     def test_update_submission(self):
@@ -231,17 +232,17 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         submission_desc['context_id'] = self.dummyContext['id']
         submission_desc['id'] = submission_desc['mark'] = None
 
-        status = yield submission.create_submission(submission_desc, finalize=False)
+        status = yield submission.create_submission(submission_desc, False, 'en')
 
         status['wb_steps'] = yield helpers.fill_random_fields(self.dummyContext['id'])
         status['finalize'] = True
 
-        status = yield submission.update_submission(status['id'], status, finalize=True)
+        status = yield submission.update_submission(status['id'], status, True, 'en')
 
         receipt = yield submission.create_whistleblower_tip(status)
         wb_access_id = yield authentication.login_wb(receipt)
 
-        wb_tip = yield wbtip.get_internaltip_wb(wb_access_id)
+        wb_tip = yield wbtip.get_internaltip_wb(wb_access_id, 'en')
 
         self.assertTrue(wb_tip.has_key('wb_steps'))
 
@@ -251,9 +252,9 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         submission_desc['finalize'] = True
         submission_desc['context_id'] = self.dummyContext['id']
 
-        status = yield submission.create_submission(submission_desc, finalize=True)
+        status = yield submission.create_submission(submission_desc, True, 'en')
         try:
-            yield submission.update_submission(status['id'], status, finalize=True)
+            yield submission.update_submission(status['id'], status, True, 'en')
         except errors.SubmissionConcluded:
             self.assertTrue(True)
             return
@@ -275,7 +276,8 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         self.assertTrue(found_at_least_a_field)
 
-        yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
+        yield self.assertFailure(submission.create_submission(sbmt, True, 'en'),
+                                 errors.SubmissionFailFields)
 
     @inlineCallbacks
     def test_fields_fail_missing_required(self):
@@ -296,7 +298,8 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
                 break
             i += 1
 
-        yield self.assertFailure(submission.create_submission(sbmt, finalize=True), errors.SubmissionFailFields)
+        yield self.assertFailure(submission.create_submission(sbmt, True, 'en'),
+                                 errors.SubmissionFailFields)
 
 class Test_001_SubmissionCreate(helpers.TestHandlerWithPopulatedDB):
     _handler = submission.SubmissionCreate
@@ -348,7 +351,7 @@ class Test_002_SubmissionInstance(helpers.TestHandlerWithPopulatedDB):
         submission_desc['finalize'] = False
         del submission_desc['id']
 
-        status = yield submission.create_submission(submission_desc, finalize=False)
+        status = yield submission.create_submission(submission_desc, False, 'en')
 
         status['finalize'] = False
 
@@ -363,7 +366,7 @@ class Test_002_SubmissionInstance(helpers.TestHandlerWithPopulatedDB):
         submission_desc['finalize'] = False
         del submission_desc['id']
 
-        status = yield submission.create_submission(submission_desc, finalize=False)
+        status = yield submission.create_submission(submission_desc, False, 'en')
 
         status['finalize'] = True
 
@@ -382,7 +385,7 @@ class Test_002_SubmissionInstance(helpers.TestHandlerWithPopulatedDB):
         submission_desc['finalize'] = False
         del submission_desc['id']
 
-        status = yield submission.create_submission(submission_desc, finalize=False)
+        status = yield submission.create_submission(submission_desc, False, 'en')
 
         handler = self.request({})
         yield handler.delete(status['id'])

@@ -5,7 +5,6 @@
 #
 # This interface is used to fill the Node defaults whenever they are updated
 
-from globaleaks.db.datainit import import_memory_variables
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.admin import db_create_context, db_create_receiver, db_update_node, \
@@ -20,7 +19,7 @@ from twisted.internet.defer import inlineCallbacks
 
 
 @transact_ro
-def admin_serialize_appdata(store, language=GLSetting.memory_copy.default_language):
+def admin_serialize_appdata(store, language):
 
     appdata = store.find(ApplicationData).one()
 
@@ -80,7 +79,7 @@ def admin_update_appdata(store, loaded_appdata):
     }
 
 @transact
-def wizard(store, request, language=GLSetting.memory_copy.default_language):
+def wizard(store, request, language):
 
     node = request['node']
     context = request['context']
@@ -161,9 +160,6 @@ class FirstSetup(BaseHandler):
                 requests.wizardFirstSetup)
 
         yield wizard(request, self.request.language)
-
-        # align the memory variables with the new updated data
-        yield import_memory_variables()
 
         # cache must be updated in particular to set wizard_done = True
         public_node_desc = yield anon_serialize_node(self.request.language)

@@ -129,8 +129,7 @@ def initialize_node(store, results, only_node, appdata):
 
     store.add(notification)
 
-@transact_ro
-def import_memory_variables(store):
+def db_import_memory_variables(store):
     """
     to get fast checks, import (same) of the Node variable in GLSetting,
     this function is called every time that Node is updated.
@@ -167,6 +166,10 @@ def import_memory_variables(store):
 
     except Exception as e:
         raise errors.InvalidInputFormat("Cannot import memory variables: %s" % e)
+
+@transact_ro
+def import_memory_variables(*args):
+    return db_import_memory_variables(*args)
 
 @transact
 def apply_cli_options(store):

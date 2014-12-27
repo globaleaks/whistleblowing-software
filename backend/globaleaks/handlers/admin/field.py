@@ -147,8 +147,8 @@ def db_create_field(store, request, language):
     return anon_serialize_field(store, field, language)
 
 @transact
-def create_field(store, request, language):
-    return db_create_field(store, request, language)
+def create_field(*args):
+    return db_create_field(*args)
 
 @transact
 def update_field(store, field_id, request, language):

@@ -78,7 +78,6 @@ def update_session(user):
             True if the session is active and update the session
                 via utils/tempobj.TempObj.touch()
     """
-
     session_obj = GLSetting.sessions.get(user.id, None)
 
     if not session_obj:
@@ -404,4 +403,3 @@ class AuthenticationHandler(BaseHandler):
 
         self.set_status(200)
         self.finish()
-

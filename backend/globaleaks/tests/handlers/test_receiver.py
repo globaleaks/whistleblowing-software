@@ -15,7 +15,7 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         handler = self.request(role='receiver')
 
-        rcvrs = yield admin.get_receiver_list()
+        rcvrs = yield admin.get_receiver_list('en')
         for rcvr in rcvrs:
             handler = self.request(role='receiver')
             handler.current_user.user_id = rcvr['id']
@@ -26,7 +26,7 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     def test_put_data_obtained_with_get(self):
         handler = self.request(role='receiver')
 
-        rcvrs = yield admin.get_receiver_list()
+        rcvrs = yield admin.get_receiver_list('en')
         for rcvr in rcvrs:
             handler = self.request(role='receiver')
             handler.current_user.user_id = rcvr['id']
@@ -41,7 +41,7 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     def test_put_with_remove_pgp_flag_true(self):
         handler = self.request(role='receiver')
 
-        rcvrs = yield admin.get_receiver_list()
+        rcvrs = yield admin.get_receiver_list('en')
         for rcvr in rcvrs:
             handler = self.request(role='receiver')
             handler.current_user.user_id = rcvr['id']
