@@ -142,8 +142,3 @@ class TestUtility(unittest.TestCase):
         utility.log.err("err")
         utility.log.debug("debug")
         utility.log.msg("msg")
-
-    def test_start_logging(self):
-        GLSetting.logfile = 'test_logfile'
-        utility.log.start_logging()
-    test_start_logging.skip = 'This test does not really test anything.'

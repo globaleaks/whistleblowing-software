@@ -280,7 +280,6 @@ class Replacer1415(TableReplacer):
         tos_dict = copy.deepcopy(steps[1]['children'][0])
         tos_opt_dict = copy.deepcopy(tos_dict['options'][0])
         tos_opt_dict['number'] = 1
-        print tos_opt_dict
         del tos_dict['children']
         del tos_dict['options']
         i = 1
