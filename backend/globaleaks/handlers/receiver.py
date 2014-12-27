@@ -8,7 +8,6 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.handlers.admin import db_get_context_fields
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, Context, ReceiverTip, ReceiverFile, Message, Node
@@ -19,7 +18,7 @@ from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, acquire_bool, datetime_to_ISO8601, datetime_now
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
-def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
+def receiver_serialize_receiver(receiver, language):
     ret_dict = {
         "id": receiver.id,
         "name": receiver.name,
@@ -51,7 +50,7 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
 
 @transact_ro
-def get_receiver_settings(store, receiver_id, language=GLSetting.memory_copy.default_language):
+def get_receiver_settings(store, receiver_id, language):
     receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
 
     if not receiver:
@@ -60,7 +59,7 @@ def get_receiver_settings(store, receiver_id, language=GLSetting.memory_copy.def
     return receiver_serialize_receiver(receiver, language)
 
 @transact
-def update_receiver_settings(store, receiver_id, request, language=GLSetting.memory_copy.default_language):
+def update_receiver_settings(store, receiver_id, request, language):
     receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
     receiver.description[language] = request['description']
 
@@ -147,7 +146,7 @@ class ReceiverInstance(BaseHandler):
 
 
 @transact_ro
-def get_receiver_tip_list(store, receiver_id, language=GLSetting.memory_copy.default_language):
+def get_receiver_tip_list(store, receiver_id, language):
 
     rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
     rtiplist.order_by(Desc(ReceiverTip.creation_date))

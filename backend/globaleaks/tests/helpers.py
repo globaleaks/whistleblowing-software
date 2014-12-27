@@ -136,7 +136,7 @@ class TestGL(unittest.TestCase):
         for fixture in getattr(self, 'fixtures', []):
             yield import_fixture(fixture)
 
-        import_memory_variables()
+        yield import_memory_variables()
 
         anomaly.Alarm.reset()
         anomaly.EventTrackQueue.reset()
@@ -351,14 +351,14 @@ class TestGLWithPopulatedDB(TestGL):
         receivers_ids = []
 
         # fill_data/create_receiver
-        self.dummyReceiver_1 = yield create_receiver(self.dummyReceiver_1)
+        self.dummyReceiver_1 = yield create_receiver(self.dummyReceiver_1, 'en')
         receivers_ids.append(self.dummyReceiver_1['id'])
-        self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2)
+        self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2, 'en')
         receivers_ids.append(self.dummyReceiver_2['id'])
 
         # fill_data/create_context
         self.dummyContext['receivers'] = receivers_ids
-        self.dummyContext = yield create_context(self.dummyContext)
+        self.dummyContext = yield create_context(self.dummyContext, 'en')
 
         # fill_data: create cield templates
         for idx, field in enumerate(self.dummyFieldTemplates):
@@ -385,18 +385,18 @@ class TestGLWithPopulatedDB(TestGL):
             self.dummyFields[2]  # Generalities
         ]
 
-        yield update_context(self.dummyContext['id'], self.dummyContext)
+        yield update_context(self.dummyContext['id'], self.dummyContext, 'en')
 
         # fill_data/create_submission
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = receivers_ids
         self.dummySubmission['wb_steps'] = yield fill_random_fields(self.dummyContext['id'])
-        self.dummySubmissionNotFinalized = yield create_submission(self.dummySubmission, finalize=False)
-        self.dummySubmission = yield create_submission(self.dummySubmission, finalize=False)
+        self.dummySubmissionNotFinalized = yield create_submission(self.dummySubmission, False, 'en')
+        self.dummySubmission = yield create_submission(self.dummySubmission, False, 'en')
 
         yield self.emulate_file_upload(self.dummySubmission['id'])
         # fill_data/update_submssion
-        submission = yield update_submission(self.dummySubmission['id'], self.dummySubmission, finalize=True)
+        submission = yield update_submission(self.dummySubmission['id'], self.dummySubmission, True, 'en')
         # fill_data/create_whistleblower
         self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
 
@@ -869,7 +869,7 @@ def fill_random_fields(store, context_id, value=None):
     """
     return randomly populated contexts associated to specified context
     """
-    steps = db_get_context_steps(store, context_id)
+    steps = db_get_context_steps(store, context_id, 'en')
 
     for step in steps:
         for field in step['children']:

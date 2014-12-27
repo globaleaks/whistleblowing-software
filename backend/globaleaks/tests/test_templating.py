@@ -141,13 +141,12 @@ class notifTemplateTest(helpers.TestGL):
         A notification is based on the Node, Context and Receiver values,
         that has to be taken from the database.
         """
-        receiver_dict = yield admin.get_receiver(self.createdReceiver['id'])
-        context_dict = yield admin.get_context(self.createdContext['id'])
-        steps_dict = yield admin.get_context_steps(self.createdContext['id'])
-        notif_dict = yield admin.notification.get_notification()
+        receiver_dict = yield admin.get_receiver(self.createdReceiver['id'], 'en')
+        context_dict = yield admin.get_context(self.createdContext['id'], 'en')
+        steps_dict = yield admin.get_context_steps(self.createdContext['id'], 'en')
+        notif_dict = yield admin.notification.get_notification('en')
 
-        yield admin.import_memory_variables()
-        node_dict = yield admin.admin_serialize_node()
+        node_dict = yield admin.admin_serialize_node('en')
 
         # is a mock 'trigger_info' and 'trigger_parent' at the moment
         self.tip['name'] = ' foo '
@@ -179,13 +178,12 @@ class notifTemplateTest(helpers.TestGL):
 
         if event_type == u'encrypted_tip' and trigger == 'Tip':
 
-            receiver_dict = yield admin.get_receiver(self.createdReceiver['id'])
-            context_dict = yield admin.get_context(self.createdContext['id'])
-            steps_dict = yield admin.get_context_steps(self.createdContext['id'])
-            notif_dict = yield admin.notification.get_notification()
+            receiver_dict = yield admin.get_receiver(self.createdReceiver['id'], 'en')
+            context_dict = yield admin.get_context(self.createdContext['id'], 'en')
+            steps_dict = yield admin.get_context_steps(self.createdContext['id'], 'en')
+            notif_dict = yield admin.notification.get_notification('en')
 
-            yield admin.import_memory_variables()
-            node_dict = yield admin.admin_serialize_node()
+            node_dict = yield admin.admin_serialize_node('en')
 
             tip_dict = yield self.get_a_fucking_random_submission()
 
@@ -224,15 +222,15 @@ class notifTemplateTest(helpers.TestGL):
         self.mockReceiver = helpers.MockDict().dummyReceiver
         self.mockNode = helpers.MockDict().dummyNode
 
-        self.createdContext = yield admin.create_context(self.mockContext)
+        self.createdContext = yield admin.create_context(self.mockContext, 'en')
         self.assertTrue(self.createdContext.has_key('id'))
 
         self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
 
-        self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
+        self.createdReceiver = yield admin.create_receiver(self.mockReceiver, 'en')
         self.assertTrue(self.createdReceiver.has_key('id'))
 
-        self.createdNode = yield admin.update_node(self.mockNode)
+        self.createdNode = yield admin.update_node(self.mockNode, True, 'en')
         self.assertTrue(self.createdNode.has_key('version'))
         ### END OF THE INITIALIZE BLOCK
 
@@ -242,7 +240,7 @@ class notifTemplateTest(helpers.TestGL):
         self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
         self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
         self.mockSubmission['wb_fields'] = helpers.fill_random_fields(self.createdContext)
-        self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
+        self.createdSubmission = yield submission.create_submission(self.mockSubmission, True, 'en')
 
         created_rtip = yield delivery_sched.tip_creation()
         self.assertEqual(len(created_rtip), 1)

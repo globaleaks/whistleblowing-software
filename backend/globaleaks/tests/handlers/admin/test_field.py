@@ -5,6 +5,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import admin
 from globaleaks.handlers.node import anon_serialize_field
+from globaleaks.handlers.admin import create_context
 from globaleaks.handlers.admin.field import create_field
 from globaleaks import models
 from globaleaks.rest import requests, errors
@@ -36,7 +37,7 @@ def get_sample_field():
     }
     return sample_field
 
-class TestFieldCreate(helpers.TestHandlerWithPopulatedDB):
+class TestFieldCreate(helpers.TestHandler):
         _handler = admin.field.FieldCreate
         fixtures = ['fields.json']
 
@@ -47,6 +48,7 @@ class TestFieldCreate(helpers.TestHandlerWithPopulatedDB):
             """
             attrs = get_sample_field()
             attrs['is_template'] = False
+            self.dummyContext = yield create_context(self.dummyContext, 'en')
             attrs['step_id'] = yield get_step_id(self.dummyContext['id'])
             handler = self.request(attrs, role='admin')
             yield handler.post()
@@ -57,7 +59,7 @@ class TestFieldCreate(helpers.TestHandlerWithPopulatedDB):
             self.assertNotEqual(resp.get('options'), None)
 
 
-class TestFieldUpdate(helpers.TestHandlerWithPopulatedDB):
+class TestFieldUpdate(helpers.TestHandler):
         _handler = admin.field.FieldUpdate
         fixtures = ['fields.json']
 
@@ -83,6 +85,7 @@ class TestFieldUpdate(helpers.TestHandlerWithPopulatedDB):
             """
             attrs = get_sample_field()
             attrs['is_template'] = False
+            self.dummyContext = yield create_context(self.dummyContext, 'en')
             attrs['step_id'] = yield get_step_id(self.dummyContext['id'])
             field = yield create_field(attrs, 'en')
 
@@ -98,11 +101,13 @@ class TestFieldUpdate(helpers.TestHandlerWithPopulatedDB):
             """
             attrs = get_sample_field()
             attrs['is_template'] = False
+            self.dummyContext = yield create_context(self.dummyContext, 'en')
             attrs['step_id'] = yield get_step_id(self.dummyContext['id'])
             field = yield create_field(attrs, 'en')
 
             updated_sample_field = get_sample_field()
             updated_sample_field['is_template'] = False
+            self.dummyContext = yield create_context(self.dummyContext, 'en')
             updated_sample_field['step_id'] = yield get_step_id(self.dummyContext['id'])
             updated_sample_field.update(type='inputbox')
             handler = self.request(updated_sample_field, role='admin')
@@ -125,6 +130,7 @@ class TestFieldUpdate(helpers.TestHandlerWithPopulatedDB):
             """
             attrs = get_sample_field()
             attrs['is_template'] = False
+            self.dummyContext = yield create_context(self.dummyContext, 'en')
             attrs['step_id'] = yield get_step_id(self.dummyContext['id'])
             field = yield create_field(attrs, 'en')
 

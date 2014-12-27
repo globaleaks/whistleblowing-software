@@ -103,7 +103,7 @@ class TestCleaning(helpers.TestGL):
         ]
 
         basehandler.validate_jmessage(self.tipContext, requests.adminContextDesc)
-        self.context_desc = yield admin.create_context(self.tipContext)
+        self.context_desc = yield admin.create_context(self.tipContext, 'en')
 
         self.tipReceiver1['contexts'] = self.tipReceiver2['contexts'] = [ self.context_desc['id'] ]
 
@@ -111,12 +111,12 @@ class TestCleaning(helpers.TestGL):
             self.tipReceiver2[attrname] = u'222222’‘ª‘ª’‘ÐŊ'
             self.tipReceiver1[attrname] = u'⅛¡⅜⅛’ŊÑŦŊ1111111’‘ª‘ª’‘ÐŊ'
 
-        basehandler.validate_jmessage( self.tipReceiver1, requests.adminReceiverDesc )
-        basehandler.validate_jmessage( self.tipReceiver2, requests.adminReceiverDesc )
+        basehandler.validate_jmessage(self.tipReceiver1, requests.adminReceiverDesc)
+        basehandler.validate_jmessage(self.tipReceiver2, requests.adminReceiverDesc)
 
         try:
-            self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1)
-            self.receiver2_desc = yield admin.create_receiver(self.tipReceiver2)
+            self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1, 'en')
+            self.receiver2_desc = yield admin.create_receiver(self.tipReceiver2, 'en')
         except Exception as exxxx:
             self.assertTrue(False)
 
@@ -124,9 +124,9 @@ class TestCleaning(helpers.TestGL):
         self.assertEqual(self.receiver2_desc['contexts'], [ self.context_desc['id']])
 
         dummySubmission = yield self.get_dummy_submission(self.context_desc['id'])
-        basehandler.validate_jmessage( dummySubmission, requests.wbSubmissionDesc)
+        basehandler.validate_jmessage(dummySubmission, requests.wbSubmissionDesc)
 
-        self.submission_desc = yield submission.create_submission(dummySubmission, finalize=False)
+        self.submission_desc = yield submission.create_submission(dummySubmission, False, 'en')
 
         self.assertEqual(self.submission_desc['wb_steps'], dummySubmission['wb_steps'])
         self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[0])
@@ -138,7 +138,8 @@ class TestCleaning(helpers.TestGL):
         self.submission_desc = yield submission.update_submission(
             self.submission_desc['id'],
             self.submission_desc,
-            finalize=True)
+            True,
+            'en')
 
         self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[1])
 
@@ -152,9 +153,9 @@ class TipCleaning(TestCleaning):
 
     @inlineCallbacks
     def postpone_tip_expiration(self):
-        recv_desc = yield admin.get_receiver_list()
+        recv_desc = yield admin.get_receiver_list('en')
         self.assertEqual(len(recv_desc), 2)
-        rtip_desc = yield receiver.get_receiver_tip_list(recv_desc[0]['id'])
+        rtip_desc = yield receiver.get_receiver_tip_list(recv_desc[0]['id'], 'en')
         self.assertEqual(len(rtip_desc), 1)
         tip_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[2])
         self.assertEqual(len(tip_list), 1)

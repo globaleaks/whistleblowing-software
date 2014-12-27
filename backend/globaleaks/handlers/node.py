@@ -26,7 +26,7 @@ def get_field_option_localized_keys(field_type):
     return localized_keys
 
 @transact_ro
-def anon_serialize_ahmia(store, language=GLSetting.memory_copy.default_language):
+def anon_serialize_ahmia(store, language):
     """
     Request reaches only if ahmia is enabled
     """
@@ -54,7 +54,7 @@ def anon_serialize_ahmia(store, language=GLSetting.memory_copy.default_language)
     return ret_dict
 
 @transact_ro
-def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
+def anon_serialize_node(store, language):
     node = store.find(models.Node).one()
 
     # Contexts and Receivers relationship
@@ -107,7 +107,7 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
 
     return get_localized_values(ret_dict, node, node.localized_strings, language)
 
-def anon_serialize_context(store, context, language=GLSetting.memory_copy.default_language):
+def anon_serialize_context(store, context, language):
     """
     @param context: a valid Storm object
     @return: a dict describing the contexts available for submission,
@@ -174,7 +174,7 @@ def anon_serialize_field(store, field, language):
     # this code is inspired by:
     #  - https://www.youtube.com/watch?v=KtNsUgKgj9g
 
-    options = [ anon_serialize_option(o, field.type, language) for o in field.options ]
+    options = [anon_serialize_option(o, field.type, language) for o in field.options]
 
     sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
     step_id = sf.step_id if sf else ''
@@ -225,7 +225,7 @@ def anon_serialize_step(store, step, language):
 
     return get_localized_values(ret_dict, step, step.localized_strings, language)
 
-def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
+def anon_serialize_receiver(receiver, language):
     """
     @param receiver: a valid Storm object
     @return: a dict describing the receivers available in the node
@@ -301,12 +301,12 @@ class AhmiaDescriptionHandler(BaseHandler):
 
 
 @transact_ro
-def get_public_context_list(store, default_lang):
+def get_public_context_list(store, language):
     context_list = []
     contexts = store.find(models.Context)
 
     for context in contexts:
-        context_desc = anon_serialize_context(store, context, default_lang)
+        context_desc = anon_serialize_context(store, context, language)
         # context not yet ready for submission return None
         if context_desc:
             context_list.append(context_desc)
@@ -335,12 +335,12 @@ class ContextsCollection(BaseHandler):
         self.finish(ret)
 
 @transact_ro
-def get_public_receiver_list(store, default_lang):
+def get_public_receiver_list(store, language):
     receiver_list = []
     receivers = store.find(models.Receiver)
 
     for receiver in receivers:
-        receiver_desc = anon_serialize_receiver(receiver, default_lang)
+        receiver_desc = anon_serialize_receiver(receiver, language)
         # receiver not yet ready for submission return None
         if receiver_desc:
             receiver_list.append(receiver_desc)

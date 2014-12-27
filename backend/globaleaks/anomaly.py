@@ -161,7 +161,6 @@ class EventTrack(TempObj):
         }
 
     def __init__(self, event_obj, request_time, debug=False):
-
         self.debug = debug
         self.creation_date = datetime_now()
         self.event_id = EventTrackQueue.event_number()
@@ -515,9 +514,7 @@ class Alarm:
             Alarm.stress_levels['disk_space'] )
 
 
-
 def pollute_Event_for_testing(number_of_times=1):
-
     for _ in xrange(number_of_times):
         for event_obj in outcome_event_monitored:
 

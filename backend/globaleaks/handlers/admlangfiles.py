@@ -101,4 +101,3 @@ class LanguageFileHandler(BaseStaticFileHandler):
 
         self.set_status(200)
         self.finish()
-

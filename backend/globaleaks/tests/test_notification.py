@@ -26,7 +26,7 @@ class TestEmail(helpers.TestGLWithPopulatedDB):
             'receivers': [self.dummyReceiver_1['id']],
             'files': [],
             'finalize': True,
-            }, finalize=True)
+            }, True, 'en')
 
         yield delivery_sched.tip_creation()
 

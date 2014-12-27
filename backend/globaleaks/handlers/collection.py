@@ -93,14 +93,14 @@ def get_collection_info(store, rtip_id):
     return collection_dict
 
 @transact_ro
-def get_receiver_from_rtip(store, rtip_id):
+def get_receiver_from_rtip(store, rtip_id, language):
     rtip = store.find(ReceiverTip, ReceiverTip.id == rtip_id).one()
 
     if not rtip:
         log.err("Download of a Zip file without ReceiverTip associated!")
         raise errors.TipIdNotFound
 
-    return admin.admin_serialize_receiver(rtip.receiver, GLSetting.memory_copy.default_language)
+    return admin.admin_serialize_receiver(rtip.receiver, language)
 
 
 class CollectionStreamer(object):
@@ -129,13 +129,13 @@ class CollectionDownload(BaseHandler):
 
         opts = get_compression_opts(compression)
 
-        node_dict = yield admin.admin_serialize_node()
-        receiver_dict = yield get_receiver_from_rtip(rtip_id)
+        node_dict = yield admin.admin_serialize_node(self.request.language)
+        receiver_dict = yield get_receiver_from_rtip(rtip_id, self.request.language)
         rtip_dict = yield get_rtip_info(rtip_id)
         collection_tip_dict = yield get_collection_info(rtip_id)
-        context_dict = yield admin.get_context(rtip_dict['context_id'])
-        steps_dict = yield admin.get_context_steps(context_dict['id'])
-        notif_dict = yield admin.notification.get_notification()
+        context_dict = yield admin.get_context(rtip_dict['context_id'], 'en')
+        steps_dict = yield admin.get_context_steps(context_dict['id'], 'en')
+        notif_dict = yield admin.notification.get_notification(self.request.language)
 
         mock_event = Event(
             type = u'zip_collection',

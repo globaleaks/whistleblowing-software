@@ -22,7 +22,7 @@ from globaleaks.models import Node, Comment, ReceiverFile, Message, InternalTip
 from globaleaks.rest import errors
 from globaleaks.security import access_tip
 
-def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.default_language):
+def receiver_serialize_internal_tip(internaltip, language):
 
     ret_dict = {
         'context_id': internaltip.context.id,
@@ -105,10 +105,10 @@ def get_files_receiver(store, user_id, tip_id):
 
 
 @transact_ro
-def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_copy.default_language):
+def get_internaltip_receiver(store, user_id, tip_id, language):
     rtip = access_tip(store, user_id, tip_id)
 
-    tip_desc = receiver_serialize_internal_tip(rtip.internaltip)
+    tip_desc = receiver_serialize_internal_tip(rtip.internaltip, language)
 
     # are added here because part of ReceiverTip, not InternalTip
     tip_desc['access_counter'] = rtip.access_counter
@@ -386,7 +386,7 @@ class RTipCommentCollection(BaseHandler):
 
 
 @transact_ro
-def get_receiver_list_receiver(store, user_id, tip_id, language=GLSetting.memory_copy.default_language):
+def get_receiver_list_receiver(store, user_id, tip_id, language):
 
     rtip = access_tip(store, user_id, tip_id)
 

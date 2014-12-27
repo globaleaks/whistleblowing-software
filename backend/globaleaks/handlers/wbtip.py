@@ -19,7 +19,7 @@ from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
 from globaleaks.rest import errors
 
 
-def wb_serialize_tip(internaltip, language=GLSetting.memory_copy.default_language):
+def wb_serialize_tip(internaltip, language):
     ret_dict = {
         'context_id': internaltip.context.id,
         'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
@@ -68,7 +68,7 @@ def get_files_wb(store, wb_tip_id):
 
 
 @transact
-def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_language):
+def get_internaltip_wb(store, tip_id, language):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
 
     if not wbtip:
@@ -203,7 +203,7 @@ class WBTipCommentCollection(BaseHandler):
 
 
 @transact_ro
-def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.default_language):
+def get_receiver_list_wb(store, wb_tip_id, language):
     """
     @return:
         This function contain the serialization of the receiver, this function is
