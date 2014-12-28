@@ -14,7 +14,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       });
     };
 
-    $scope.update = function (model) {
+    $scope.update = function (model, cb, errcb) {
       var success = {};
       success.message = "Updated " + model;
       model.$update(function(result) {
@@ -22,19 +22,15 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
           $scope.successes = [];
         }
         $scope.successes.push(success);
-      });
+      }).then(
+        function() { if (cb != undefined) cb(); },
+        function() { if (errcb != undefined) errcb(); }
+      );
     };
 
     $scope.randomFluff = function () {
       return Math.round(Math.random() * 1000000);
     };
-
-    var refresh = function () {
-      $scope.custom_stylesheet = '/static/custom_stylesheet.css?' + $scope.randomFluff();
-      $scope.logo = '/static/globaleaks_logo.png?' + $scope.randomFluff();
-    };
-
-    $scope.$on("REFRESH", refresh);
 
     $scope.$on('$routeChangeStart', function (next, current) {
       $scope.update_node();
@@ -64,6 +60,9 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     }
 
     var refresh = function () {
+
+      $scope.custom_stylesheet = '/static/custom_stylesheet.css?' + $scope.randomFluff();
+      $scope.logo = '/static/globaleaks_logo.png?' + $scope.randomFluff();
 
       $scope.session_id = Authentication.id;
       $scope.auth_landing_page = Authentication.auth_landing_page;
