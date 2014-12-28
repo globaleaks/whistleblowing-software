@@ -110,7 +110,7 @@ def db_create_step(store, context_id, steps, language):
                 raise errors.FieldIdNotFound
 
             # remove current step/field fieldgroup/field association
-            a_s, a_f = get_field_association(store, field.id)
+            a_s, _ = get_field_association(store, field.id)
             if a_s != s.id:
                 disassociate_field(store, field.id)
                 s.children.add(field)
@@ -141,16 +141,16 @@ def db_update_steps(store, context_id, steps, language):
 
         # check for reuse (needed to keep translations)
         if 'id' in step and step['id'] in indexed_old_steps:
-           s = indexed_old_steps[step['id']]
-           for field in s.children:
-               s.children.remove(field)
+            s = indexed_old_steps[step['id']]
+            for field in s.children:
+                s.children.remove(field)
 
-           s.update(step)
+            s.update(step)
 
-           new_steps.append(indexed_old_steps[step['id']])
-           del indexed_old_steps[step['id']]
+            new_steps.append(indexed_old_steps[step['id']])
+            del indexed_old_steps[step['id']]
         else:
-           new_steps.append(models.Step(step))
+            new_steps.append(models.Step(step))
 
         i = 1
         for f in step['children']:
@@ -162,8 +162,8 @@ def db_update_steps(store, context_id, steps, language):
                 raise errors.FieldIdNotFound
 
             # remove current step/field fieldgroup/field association
-            a_s, a_f = get_field_association(store, field.id)
-            if a_s == None:
+            a_s, _ = get_field_association(store, field.id)
+            if a_s is None:
                 s.children.add(field)
             elif a_s != s.id:
                 disassociate_field(store, field.id)
@@ -188,7 +188,7 @@ def admin_serialize_context(store, context, language):
         "id": context.id,
         "creation_date": datetime_to_ISO8601(context.creation_date),
         "last_update": datetime_to_ISO8601(context.last_update),
-        "selectable_receiver": context.selectable_receiver,
+	"selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
         "file_max_download": context.file_max_download,
         "receivers": [r.id for r in context.receivers],
@@ -471,11 +471,11 @@ def db_create_context(store, request, language):
                 f = models.db_forge_obj(store, models.Field, f_child)
                 n_o = 1
                 for o_child in o_children:
-                     o = models.db_forge_obj(store, models.FieldOption, o_child)
-                     o.field_id = f.id
-                     o.number = n_o
-                     f.options.add(o)
-                     n_o += 1
+                    o = models.db_forge_obj(store, models.FieldOption, o_child)
+                    o.field_id = f.id
+                    o.number = n_o
+                    f.options.add(o)
+                    n_o += 1
                 f.step_id = s.id
                 s.children.add(f)
             s.context_id = context.id
@@ -512,7 +512,6 @@ def db_get_fields_recursively(store, field, language):
         ret.append(s)
         ret += db_get_fields_recursively(store, children, language)
 
-    a = [field['label'] for field in ret]
     return ret
 
 def db_get_context_steps(store, context_id, language):
@@ -820,7 +819,7 @@ class NodeInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Parameters: None
         Response: adminNodeDesc
@@ -833,7 +832,7 @@ class NodeInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, *uriargs):
+    def put(self):
         """
         Request: adminNodeDesc
         Response: adminNodeDesc
@@ -863,7 +862,7 @@ class ContextsCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Parameters: None
         Response: adminContextList
@@ -877,7 +876,7 @@ class ContextsCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def post(self, *uriargs):
+    def post(self):
         """
         Request: adminContextDesc
         Response: adminContextDesc
@@ -906,7 +905,7 @@ class ContextInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, context_id, *uriargs):
+    def get(self, context_id):
         """
         Parameters: context_id
         Response: adminContextDesc
@@ -920,7 +919,7 @@ class ContextInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, context_id, *uriargs):
+    def put(self, context_id):
         """
         Request: adminContextDesc
         Response: adminContextDesc
@@ -946,7 +945,7 @@ class ContextInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def delete(self, context_id, *uriargs):
+    def delete(self, context_id):
         """
         Request: adminContextDesc
         Response: None
@@ -973,7 +972,7 @@ class ReceiversCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Parameters: None
         Response: adminReceiverList
@@ -989,7 +988,7 @@ class ReceiversCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def post(self, *uriargs):
+    def post(self):
         """
         Request: adminReceiverDesc
         Response: adminReceiverDesc
@@ -1026,7 +1025,7 @@ class ReceiverInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, receiver_id, *uriargs):
+    def get(self, receiver_id):
         """
         Parameters: receiver_id
         Response: adminReceiverDesc
@@ -1042,7 +1041,7 @@ class ReceiverInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, receiver_id, *uriargs):
+    def put(self, receiver_id):
         """
         Request: adminReceiverDesc
         Response: adminReceiverDesc
@@ -1068,7 +1067,7 @@ class ReceiverInstance(BaseHandler):
     @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
-    def delete(self, receiver_id, *uriargs):
+    def delete(self, receiver_id):
         """
         Parameter: receiver_id
         Request: None

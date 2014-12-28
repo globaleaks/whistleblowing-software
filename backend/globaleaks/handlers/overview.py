@@ -196,7 +196,7 @@ def collect_files_overview(store):
             'content_type': rfile.internalfile.content_type,
             'size': rfile.size,
             'itip': rfile.internaltip_id,
-            'creation_date': datetime_to_ISO8601(ifile.creation_date),
+            'creation_date': datetime_to_ISO8601(rfile.internalfile.creation_date),
             'rfiles': 1,
             'stored': None,
             'path': '',
@@ -216,7 +216,7 @@ def collect_files_overview(store):
                 disk_files.remove(filename)
 
         else:
-            if ifile.mark == 'encrypted' or ifile.mark == 'reference':
+            if rfile.internalfile.mark == 'encrypted' or rfile.internalfile.mark == 'reference':
                 log.err("ReceiverFile %s references a not existent file: %s" %
                         (file_desc['id'], rfile.file_path) )
             file_desc['stored'] = False
@@ -253,7 +253,7 @@ class Tips(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Parameters: None
         Response: TipsOverviewList
@@ -274,7 +274,7 @@ class Users(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Parameters: None
         Response: UsersOverviewList
@@ -297,7 +297,7 @@ class Files(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Parameters: None
         Response: FilesOverviewList

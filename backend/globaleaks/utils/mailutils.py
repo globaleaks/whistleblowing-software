@@ -9,10 +9,9 @@ import binascii
 import logging
 import re
 import os
-import time
 import traceback
 import StringIO
-from datetime import datetime, timedelta
+from datetime import datetime
 from calendar import timegm
 from email import utils as mailutils
 

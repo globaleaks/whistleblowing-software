@@ -18,13 +18,12 @@
 """
 
 import copy
-from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
+from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import opportunistic_appdata_init
-from globaleaks.models import Model, Field, FieldOption, Step, Context, db_forge_obj
-from globaleaks.db.datainit import opportunistic_appdata_init
+from globaleaks.models import Model, Field, FieldOption, Step, db_forge_obj
 from globaleaks.utils.utility import datetime_null, uuid4
 
 def every_language(default_text):
@@ -202,7 +201,7 @@ class Replacer1415(TableReplacer):
         old_node = self.store_old.find(self.get_right_model("Node", 14)).one()
         new_node = self.get_right_model("Node", 15)()
 
-        for k, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.iteritems():
 
             if v.name == 'default_timezone':
                 new_node.default_timezone= 0;
@@ -247,7 +246,7 @@ class Replacer1415(TableReplacer):
 
             new_user = self.get_right_model("User", 15)()
 
-            for k, v in new_user._storm_columns.iteritems():
+            for _, v in new_user._storm_columns.iteritems():
 
                 if v.name == 'language':
                     new_user.language = u'en'
@@ -298,7 +297,7 @@ class Replacer1415(TableReplacer):
             step2 = db_forge_obj(self.store_new, Step, steps[1])
             new_context.steps.add(step2)
 
-            for k, v in new_context._storm_columns.iteritems():
+            for _, v in new_context._storm_columns.iteritems():
                 if v.name == 'steps':
                     continue
 
@@ -354,7 +353,7 @@ class Replacer1415(TableReplacer):
 
                     step1.children.add(field)
 
-                except:
+                except Exception:
                     continue
 
             tos_opt = db_forge_obj(self.store_new, FieldOption, tos_opt_dict)
@@ -374,7 +373,7 @@ class Replacer1415(TableReplacer):
         for old_receiver in old_receivers:
             new_receiver = self.get_right_model("Receiver", 15)()
 
-            for k, v in new_receiver._storm_columns.iteritems():
+            for _, v in new_receiver._storm_columns.iteritems():
 
                 if v.name == 'configuration':
                     new_receiver.configuration = 'default'
@@ -478,13 +477,14 @@ class Replacer1415(TableReplacer):
                 for f in wb_fields_copy:
                     wb_steps[0]['children'].append(wb_fields_copy[f])
 
-                for k, v in new_itip._storm_columns.iteritems():
+                for _, v in new_itip._storm_columns.iteritems():
                     if v.name == 'wb_steps':
                         new_itip.wb_steps = wb_steps;
                         continue
 
                     setattr(new_itip, v.name, getattr(old_itip, v.name))
-            except Exception as e:
+
+            except Exception:
                 continue
 
             self.store_new.add(new_itip)
@@ -497,7 +497,7 @@ class Replacer1415(TableReplacer):
         old_notification = self.store_old.find(self.get_right_model("Notification", 14)).one()
         new_notification = self.get_right_model("Notification", 15)()
 
-        for k, v in new_notification._storm_columns.iteritems():
+        for _, v in new_notification._storm_columns.iteritems():
 
             if v.name == 'admin_anomaly_template':
                 new_notification.admin_anomaly_template = every_language("")

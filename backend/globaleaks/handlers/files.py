@@ -255,7 +255,7 @@ class Download(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def post(self, tip_id, rfile_id, *uriargs):
+    def post(self, tip_id, rfile_id):
 
         rfile = yield download_file(self.current_user.user_id, tip_id, rfile_id)
 

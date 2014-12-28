@@ -178,13 +178,12 @@ adminContextDesc = {
     'tip_timetolive' : int,
     'file_max_download' : int,
     'receivers' : [ uuid_regexp ],
-    'steps': [ adminStepDesc ],
+    'steps': list,
     'select_all_receivers': bool,
     'show_small_cards': bool,
     'show_receivers': bool,
     'enable_private_messages': bool,
     'presentation_order': int,
-    'steps': list
 }
 
 adminContextFieldTemplateCopy = {

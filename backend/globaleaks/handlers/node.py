@@ -263,7 +263,7 @@ class InfoCollection(BaseHandler):
     @transport_security_check("unauth")
     @unauthenticated
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Parameters: None
         Response: publicNodeDesc
@@ -285,7 +285,7 @@ class AhmiaDescriptionHandler(BaseHandler):
     @transport_security_check("unauth")
     @unauthenticated
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
 
         node_info = yield GLApiCache.get('node', self.request.language,
                                          anon_serialize_node, self.request.language)
@@ -323,7 +323,7 @@ class ContextsCollection(BaseHandler):
     @transport_security_check("unauth")
     @unauthenticated
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Parameters: None
         Response: publicContextList
@@ -355,7 +355,7 @@ class ReceiversCollection(BaseHandler):
     @transport_security_check("unauth")
     @unauthenticated
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Parameters: None
         Response: publicReceiverList

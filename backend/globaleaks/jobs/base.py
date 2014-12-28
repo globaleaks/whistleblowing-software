@@ -4,6 +4,7 @@
 #
 # Base class for implement the scheduled tasks
 
+import sys
 from twisted.internet import task
 from twisted.python.failure import Failure
 

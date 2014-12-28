@@ -25,7 +25,7 @@ from cyclone.escape import native_str, parse_qs_bytes
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
 
-from globaleaks.anomaly import incoming_event_monitored, outcome_event_monitored, EventTrack
+from globaleaks.anomaly import outcome_event_monitored, EventTrack
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile
@@ -575,14 +575,14 @@ class BaseHandler(RequestHandler):
 
     @property
     def is_whistleblower(self):
-        if not self.current_user or not self.current_user.has_key('role'):
+        if not self.current_user or 'role' not in self.current_user:
             raise errors.NotAuthenticated
 
         return self.current_user['role'] == 'wb'
 
     @property
     def is_receiver(self):
-        if not self.current_user or not self.current_user.has_key('role'):
+        if not self.current_user or 'role' not in self.current_user:
             raise errors.NotAuthenticated
 
         return self.current_user['role'] == 'receiver'
@@ -653,7 +653,7 @@ class BaseRedirectHandler(BaseHandler, RedirectHandler):
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
-class GLApiCache:
+class GLApiCache(object):
 
     memory_cache_dict = {}
 
@@ -667,7 +667,7 @@ class GLApiCache:
 
             value = yield function(*args, **kwargs)
             if resource_name not in cls.memory_cache_dict:
-               cls.memory_cache_dict[resource_name] = {}
+                cls.memory_cache_dict[resource_name] = {}
             cls.memory_cache_dict[resource_name][language] = value
             returnValue(value)
         except KeyError:

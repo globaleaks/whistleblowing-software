@@ -10,13 +10,13 @@ FUTURE = 100
 
 class ClassToTestUnauthenticatedDecorator(base.BaseHandler):
     @authentication.unauthenticated
-    def get(self, *uriargs):
+    def get(self):
         self.set_status(200)
         self.finish("test")
 
 class ClassToTestAuthenticatedDecorator(base.BaseHandler):
     @authentication.authenticated('admin')
-    def get(self, *uriargs):
+    def get(self):
         self.set_status(200)
         self.finish("test")
 

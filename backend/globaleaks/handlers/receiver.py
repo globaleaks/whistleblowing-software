@@ -10,7 +10,7 @@ from storm.expr import Desc
 
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import Receiver, Context, ReceiverTip, ReceiverFile, Message, Node
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node
 from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, gpg_options_parse
 from globaleaks.settings import transact, transact_ro, GLSetting

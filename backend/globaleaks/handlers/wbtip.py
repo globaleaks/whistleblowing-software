@@ -14,7 +14,7 @@ from globaleaks.handlers.authentication import transport_security_check, authent
 from globaleaks.rest import requests
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601, datetime_to_pretty_str
 from globaleaks.utils.structures import Rosetta
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, transact_ro
 from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
 from globaleaks.rest import errors
 
@@ -108,7 +108,7 @@ class WBTipInstance(BaseHandler):
         contain the internaltip)
         """
 
-        answer = yield get_internaltip_wb(self.current_user.user_id, self.request.language)
+        answer = yield get_internaltip_wb(self.current_user.user_id, 'en')
         answer['files'] = yield get_files_wb(self.current_user.user_id)
 
         self.set_status(200)
@@ -174,7 +174,7 @@ class WBTipCommentCollection(BaseHandler):
     @transport_security_check('wb')
     @authenticated('wb')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Parameters: None
         Response: actorsCommentList
@@ -188,7 +188,7 @@ class WBTipCommentCollection(BaseHandler):
     @transport_security_check('wb')
     @authenticated('wb')
     @inlineCallbacks
-    def post(self, *uriargs):
+    def post(self):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc

@@ -282,7 +282,7 @@ class FieldTemplatesCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Return a list of all the fields templates available.
 
@@ -298,7 +298,7 @@ class FieldTemplateCreate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def post(self, *uriargs):
+    def post(self):
         """
         Create a new field template.
 
@@ -327,7 +327,7 @@ class FieldTemplateUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, field_id, *uriargs):
+    def get(self, field_id):
         """
         Get the field identified by field_id
 
@@ -343,7 +343,7 @@ class FieldTemplateUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, field_id, *uriargs):
+    def put(self, field_id):
         """
         Update a single field template's attributes.
 
@@ -364,7 +364,7 @@ class FieldTemplateUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def delete(self, field_id, *uriargs):
+    def delete(self, field_id):
         """
         Delete a single field template.
 
@@ -382,7 +382,7 @@ class FieldsCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Return a list of all the fields available in a node.
 
@@ -403,7 +403,7 @@ class FieldCreate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def post(self, *uriargs):
+    def post(self):
         """
         Create a new field.
 
@@ -440,7 +440,7 @@ class FieldUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, field_id, *uriargs):
+    def get(self, field_id):
         """
         Get the field identified by field_id
 
@@ -462,7 +462,7 @@ class FieldUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, field_id, *uriargs):
+    def put(self, field_id):
         """
         Update a single field's attributes.
 
@@ -489,7 +489,7 @@ class FieldUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def delete(self, field_id, *uriargs):
+    def delete(self, field_id):
         """
         Delete a single field.
 
