@@ -11,7 +11,8 @@ import copy
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.models import Context, InternalTip, Receiver, ReceiverInternalTip, WhistleblowerTip, Node
+from globaleaks.models import Context, InternalTip, Receiver, ReceiverInternalTip, \
+    WhistleblowerTip, Node, InternalFile
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin import db_get_context_steps
