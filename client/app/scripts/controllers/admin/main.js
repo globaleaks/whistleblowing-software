@@ -1,4 +1,3 @@
-
 GLClient.controller('AdminCtrl',
     ['$scope', '$rootScope', '$http', '$route', '$location', 'Admin', 'Node', 'CONSTANTS',
 function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
@@ -47,7 +46,7 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
 
   $scope.$watch('languages_enabled', function(){
     if ($scope.languages_enabled) {
-      $scope.languages_enabled_selector = {};
+      $scope.languages_enabled_edit = {};
       $.each($scope.languages_supported, function(lang){
         $scope.languages_enabled_edit[lang] = lang in $scope.languages_enabled;
       });
@@ -101,11 +100,12 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
     if (node.old_password === undefined)
       node.old_password = "";
 
-    $scope.update(node);
+    var cb = function() {
+      $rootScope.$broadcast("REFRESH");
+      $route.reload();
+    }
 
-    $rootScope.$broadcast("REFRESH");
-
-    $route.reload();
+    $scope.update(node, cb);
   }
 
 }]);
