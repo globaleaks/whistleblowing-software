@@ -10,13 +10,6 @@ from pip.req import parse_requirements
 from setuptools import find_packages, setup
 from setuptools.command.test import test as _TestCommand
 
-######################################################################
-# Temporary fix to https://github.com/globaleaks/GlobaLeaks/issues/572
-#                  https://github.com/habnabit/txsocksx/issues/5
-from distutils import version
-version.StrictVersion = version.LooseVersion
-######################################################################
-
 import globaleaks
 
 GLCLIENT_PATH = os.path.join(os.path.dirname(__file__),

@@ -6,12 +6,11 @@ from __future__ import absolute_import
 
 import copy
 
-from storm.locals import Bool, DateTime, Int, Reference, ReferenceSet, Unicode, Storm, JSON
+from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
 
 from globaleaks.settings import transact
 from globaleaks.utils.utility import datetime_now, uuid4
-from globaleaks.utils.validator import shorttext_v, longtext_v, shortlocal_v
-from globaleaks.utils.validator import longlocal_v, dict_v
+from globaleaks.utils.validator import shorttext_v, longtext_v
 
 from .properties import MetaModel, DateTime
 
@@ -491,7 +490,9 @@ class Node(Model):
                   'can_delete_submission', 'ahmia', 'allow_unencrypted',
                   'disable_privacy_badge', 'disable_security_awareness_badge',
                   'disable_security_awareness_questions', 'enable_custom_privacy_badge' ]
-                # wizard_done is not checked because it's set by the backend
+
+    # wizard_done is not checked because it's set by the backend
+
     localized_strings = [ 'description', 'presentation', 'footer', 'subtitle',
                           'security_awareness_title',
                           'security_awareness_text', 'whistleblowing_question',
@@ -718,27 +719,28 @@ class FieldOption(Model):
     int_keys = ['number']
     json_keys = ['attrs']
 
-    def __init__(self, attrs=None, localized_keys=[]):
+    def __init__(self, attrs=None, localized_keys=None):
         self.attrs = dict()
         self.update(attrs, localized_keys)
 
     @classmethod
-    def new(cls, store, attrs=None, localized_keys=[]):
+    def new(cls, store, attrs=None, localized_keys=None):
         obj = cls(attrs, localized_keys)
         store.add(obj)
         return obj
 
-    def update(self, attrs=None, localized_keys=[]):
+    def update(self, attrs=None, localized_keys=None):
         BaseModel.update(self, attrs)
 
-        for k in localized_keys:
-            value = attrs['attrs'][k]
-            previous = self.attrs.get(k, None)
-            if previous and isinstance(previous, dict):
-                previous.update(value)
-                self.attrs[k] = previous
-            else:
-                self.attrs[k] = value
+        if localized_keys:
+            for k in localized_keys:
+                value = attrs['attrs'][k]
+                previous = self.attrs.get(k, None)
+                if previous and isinstance(previous, dict):
+                    previous.update(value)
+                    self.attrs[k] = previous
+                else:
+                    self.attrs[k] = value
 
     def copy(self, store):
         obj_copy = self.__class__()

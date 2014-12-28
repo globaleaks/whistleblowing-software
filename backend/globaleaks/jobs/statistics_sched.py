@@ -22,13 +22,13 @@ from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 @transact
 def save_anomalies(store, when_anomaly, anomaly_desc, alarm_raised):
 
-   newanom = Anomalies()
+    newanom = Anomalies()
 
-   newanom.alarm = alarm_raised
-   newanom.stored_when = when_anomaly
-   newanom.events = anomaly_desc
+    newanom.alarm = alarm_raised
+    newanom.stored_when = when_anomaly
+    newanom.events = anomaly_desc
 
-   store.add(newanom)
+    store.add(newanom)
 
 @transact
 def save_statistics(store, start, end, activity_collection):
@@ -53,7 +53,7 @@ class AnomaliesSchedule(GLJob):
     """
 
     @defer.inlineCallbacks
-    def operation(self, alarm_enable=True):
+    def operation(self):
         """
         Every X seconds is checked if anomalies are happening
         from anonymous interaction (submission/file/comments/whatever flood)
@@ -99,7 +99,7 @@ class StatisticsSchedule(GLJob):
         #     'event' : expired_event.event_type, 'duration' :   }
 
         for descblob in StatisticsSchedule.RecentEventQ:
-            if not descblob.has_key('event'):
+            if 'even' not in descblob:
                 continue
             statistic_summary.setdefault(descblob['event'], 0)
             statistic_summary[descblob['event']] += 1
@@ -130,8 +130,6 @@ class ResourceChecker(GLJob):
         return free_mega_bytes
 
     def operation(self):
-
-        from globaleaks.anomaly import Alarm
         free_mega_bytes = ResourceChecker.get_free_space()
 
         alarm = Alarm()

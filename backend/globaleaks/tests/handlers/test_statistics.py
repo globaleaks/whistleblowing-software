@@ -25,7 +25,7 @@ class TestStatsCollection(helpers.TestHandler):
 
         anomaly.pollute_Event_for_testing(5)
 
-        yield AnomaliesSchedule().operation(alarm_enable=False)
+        yield AnomaliesSchedule().operation()
 
         handler = self.request({}, role='admin')
         yield handler.get(0)
@@ -41,11 +41,11 @@ class TestAnomHistCollection(helpers.TestHandler):
     def test_get(self):
 
         anomaly.pollute_Event_for_testing(10)
-        yield AnomaliesSchedule().operation(alarm_enable=False)
+        yield AnomaliesSchedule().operation()
 
         yield StatisticsSchedule().operation()
         handler = self.request({}, role='admin')
-        yield handler.get(0)
+        yield handler.get()
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
 

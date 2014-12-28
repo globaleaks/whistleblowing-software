@@ -11,15 +11,14 @@ import sys
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.rest import errors
 from globaleaks.jobs.base import GLJob
-from globaleaks.plugins.base import Event
-from globaleaks import models
-from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.utils.utility import log, datetime_to_ISO8601
-from globaleaks.plugins import notification
 from globaleaks.handlers import admin, rtip
 from globaleaks.handlers.admin.notification import admin_serialize_notification
+from globaleaks.plugins import notification
+from globaleaks.plugins.base import Event
+from globaleaks.rest import errors
+from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.utils.utility import log, datetime_to_ISO8601
 
 
 def serialize_receivertip(receiver_tip):
@@ -103,7 +102,7 @@ class NotificationSchedule(GLJob):
             context_desc = admin.admin_serialize_context(store, receiver_tip.internaltip.context, language)
 
             receiver_desc = admin.admin_serialize_receiver(receiver_tip.receiver, language)
-            if not receiver_desc.has_key('mail_address'):
+            if 'mail_address' not in receiver_desc:
                 log.err("Receiver %s lack of email address!" % receiver_tip.receiver.name)
                 continue
 
@@ -377,7 +376,7 @@ class NotificationSchedule(GLJob):
             for receiver in comment.internaltip.receivers:
 
                 receiver_desc = admin.admin_serialize_receiver(receiver, language)
-                if not receiver_desc.has_key('mail_address'):
+                if 'mail_address' not in receiver_desc:
                     log.err("Receiver %s lack of email address!" % receiver.name)
                     continue
 
@@ -517,7 +516,7 @@ class NotificationSchedule(GLJob):
                                                          language)
 
             receiver_desc = admin.admin_serialize_receiver(rfile.receiver, language)
-            if not receiver_desc.has_key('mail_address'):
+            if 'mail_address' not in receiver_desc:
                 log.err("Receiver %s lack of email address!" % rfile.receiver.user.name)
                 continue
 

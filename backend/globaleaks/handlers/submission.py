@@ -11,7 +11,7 @@ import copy
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.models import *
+from globaleaks.models import Context, InternalTip, Receiver, ReceiverInternalTip, WhistleblowerTip, Node
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin import db_get_context_steps
@@ -43,8 +43,6 @@ def db_create_whistleblower_tip(store, submission_desc):
     The plaintext receipt is returned only now, and then is
     stored hashed in the WBtip table
     """
-    assert submission_desc is not None and submission_desc.has_key('id')
-
     wbtip = WhistleblowerTip()
 
     node = store.find(Node).one()
@@ -117,7 +115,7 @@ def import_receivers(store, submission, receiver_id_list, required=False):
                     (receiver_id, excep))
             raise errors.ReceiverIdNotFound
 
-        if not context in receiver.contexts:
+        if context not in receiver.contexts:
             raise errors.InvalidInputFormat("Forged receiver selection, you fuzzer! <:")
 
         try:
@@ -138,7 +136,7 @@ def import_receivers(store, submission, receiver_id_list, required=False):
         raise errors.SubmissionFailFields("Needed at least one Receiver selected [2]")
 
 # Remind: it's a store without @transaction because called by a @ŧransact
-def import_files(store, submission, files, finalize):
+def import_files(store, submission, files):
     """
     @param submission: the Storm obj
     @param files: the list of InternalFiles UUIDs
@@ -223,7 +221,7 @@ def db_create_submission(store, request, finalize, language):
         raise errors.InternalServerError("Unable to commit on DB")
 
     try:
-        import_files(store, submission, request['files'], finalize)
+        import_files(store, submission, request['files'])
     except Exception as excep:
         log.err("Submission create: files import fail: %s" % excep)
         raise excep
@@ -267,14 +265,14 @@ def db_update_submission(store, submission_id, request, finalize, language):
     # this may happen if a submission try to update a context
     if submission.context_id != context.id:
         log.err("Can't be changed context in a submission update")
-        raise errors.ContextIdNotFound("Context are immutable")
+        raise errors.ContextIdNotFound()
 
     if submission.mark != u'submission':
         log.err("Submission %s do not permit update (status %s)" % (submission_id, submission.mark))
         raise errors.SubmissionConcluded
 
     try:
-        import_files(store, submission, request['files'], finalize)
+        import_files(store, submission, request['files'])
     except Exception as excep:
         log.err("Submission update: files import fail: %s" % excep)
         log.exception(excep)
@@ -345,7 +343,7 @@ class SubmissionCreate(BaseHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def post(self, *uriargs):
+    def post(self):
         """
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
@@ -386,7 +384,7 @@ class SubmissionInstance(BaseHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def get(self, submission_id, *uriargs):
+    def get(self, submission_id):
         """
         Parameters: submission_id
         Response: wbSubmissionDesc
@@ -402,7 +400,7 @@ class SubmissionInstance(BaseHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def put(self, submission_id, *uriargs):
+    def put(self, submission_id):
         """
         Parameter: submission_id
         Request: wbSubmissionDesc
@@ -435,7 +433,7 @@ class SubmissionInstance(BaseHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def delete(self, submission_id, *uriargs):
+    def delete(self, submission_id):
         """
         Parameter: submission_id
         Request:

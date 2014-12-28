@@ -832,7 +832,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         field.label = '';
         field.type = '';
         field.description = '';
-
         field.is_template = false;
         field.hint = '';
         field.multi_entry = false;
@@ -845,6 +844,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         field.children = [];
 
         field.step_id = step_id;
+        field_fieldgroup_id = '';
         return field;
       };
 
@@ -853,7 +853,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         field.label = '';
         field.type = '';
         field.description = '';
-
         field.is_template = true;
         field.hint = '';
         field.multi_entry = false;
@@ -864,6 +863,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         field.x = 0;
         field.y = 0;
         field.children = [];
+
+        field.step_id = '';
+        field_fieldgroup_id = '';
         return field;
       };
 

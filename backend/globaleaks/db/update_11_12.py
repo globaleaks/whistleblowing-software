@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
+from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
@@ -78,7 +78,7 @@ class Replacer1112(TableReplacer):
         old_node = self.store_old.find(self.get_right_model("Node", 11)).one()
         new_node = self.get_right_model("Node", 12)()
 
-        for k, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.iteritems():
 
             if v.name == 'receipt_regexp':
                 new_node.receipt_regexp = u'[0-9]{16}'
@@ -101,7 +101,7 @@ class Replacer1112(TableReplacer):
         old_ad = self.store_old.find(self.get_right_model("ApplicationData", 11)).one()
         new_ad = self.get_right_model("ApplicationData", 12)()
 
-        for k, v in new_ad._storm_columns.iteritems():
+        for _, v in new_ad._storm_columns.iteritems():
 
             if v.name == 'version' :
                 new_ad.version = old_ad.fields_version

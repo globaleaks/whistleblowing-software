@@ -59,7 +59,7 @@ class TempObj(components.Componentized):
         self.expireCallbacks = []
         if self._expireCall:
             if self._expireCall.active():
-              self._expireCall.cancel()
+                self._expireCall.cancel()
 
             # Break reference cycle.
             self._expireCall = None

@@ -17,8 +17,8 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
                                      datetime_to_ISO8601, datetime_to_pretty_str
 
 from globaleaks.utils.structures import Rosetta
-from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.models import Node, Comment, ReceiverFile, Message, InternalTip
+from globaleaks.settings import transact, transact_ro
+from globaleaks.models import Node, Comment, ReceiverFile, Message
 from globaleaks.rest import errors
 from globaleaks.security import access_tip
 
@@ -36,7 +36,7 @@ def receiver_serialize_internal_tip(internaltip, language):
         # this field "inform" the receiver of the new expiration date that can
         # be set, only if PUT with extend = True is updated
         'potential_expiration_date' : \
-            datetime_to_ISO8601(utc_future_date(seconds=internaltip.context.tip_timetolive)),
+                datetime_to_ISO8601(utc_future_date(seconds=internaltip.context.tip_timetolive)),
         'extend' : False,
         'enable_private_messages': internaltip.context.enable_private_messages,
     }
@@ -137,10 +137,8 @@ def increment_receiver_access_count(store, user_id, tip_id):
     if rtip.access_counter > rtip.internaltip.access_limit:
         raise errors.AccessLimitExceeded
 
-    log.debug(
-        "Tip %s access garanted to user %s access_counter %d on limit %d" %
-       (rtip.id, rtip.receiver.name, rtip.access_counter, rtip.internaltip.access_limit)
-    )
+    log.debug("Tip %s access garanted to user %s access_counter %d on limit %d" %
+              (rtip.id, rtip.receiver.name, rtip.access_counter, rtip.internaltip.access_limit))
 
     return rtip.access_counter
 
@@ -242,7 +240,7 @@ class RTipInstance(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def get(self, tip_id, *uriargs):
+    def get(self, tip_id):
         """
         Parameters: None
         Response: actorsTipDesc
@@ -257,7 +255,7 @@ class RTipInstance(BaseHandler):
         """
 
         yield increment_receiver_access_count(self.current_user.user_id, tip_id)
-        answer = yield get_internaltip_receiver(self.current_user.user_id, tip_id, self.request.language)
+        answer = yield get_internaltip_receiver(self.current_user.user_id, tip_id, 'en')
         answer['collection'] = '/rtip/' + tip_id + '/collection'
         answer['files'] = yield get_files_receiver(self.current_user.user_id, tip_id)
 
@@ -267,7 +265,7 @@ class RTipInstance(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def put(self, tip_id, *uriargs):
+    def put(self, tip_id):
         """
         Some special operation over the Tip are handled here
         """
@@ -283,7 +281,7 @@ class RTipInstance(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def delete(self, tip_id, *uriargs):
+    def delete(self, tip_id):
         """
         Request: actorsTipOpsDesc
         Response: None
@@ -355,7 +353,7 @@ class RTipCommentCollection(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def get(self, tip_id, *uriargs):
+    def get(self, tip_id):
         """
         Parameters: None
         Response: actorsCommentList
@@ -370,7 +368,7 @@ class RTipCommentCollection(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def post(self, tip_id, *uriargs):
+    def post(self, tip_id):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc

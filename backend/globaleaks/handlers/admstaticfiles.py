@@ -166,9 +166,9 @@ class StaticFileInstance(BaseStaticFileHandler):
                 raise errors.InternalServerError(excpd.__repr__())
 
         elif filename == 'customization' and \
-             not re.match(receiver_img_regexp, uploaded_file['filename'] + ".png"):
-                path = os.path.join(GLSetting.static_path, uploaded_file['filename'])
-                log.debug("Received request to save %s in path %s" %
+                not re.match(receiver_img_regexp, uploaded_file['filename'] + ".png"):
+            path = os.path.join(GLSetting.static_path, uploaded_file['filename'])
+            log.debug("Received request to save %s in path %s" %
                           (uploaded_file['filename'], path))
         else:
             try:

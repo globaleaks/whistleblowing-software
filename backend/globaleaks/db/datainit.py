@@ -51,7 +51,7 @@ def opportunistic_appdata_init():
 
 
 @transact
-def initialize_node(store, results, only_node, appdata):
+def initialize_node(store, result, only_node, appdata):
     """
     TODO refactor with languages the email_template, develop a dedicated
     function outside the node, and inquire fucking YHWH about the
@@ -182,7 +182,7 @@ def apply_cli_options(store):
 
     verb = "Hardwriting"
     accepted = {}
-    if GLSetting.unchecked_tor_input.has_key('hostname_tor_content'):
+    if 'hostname_tor_content' in GLSetting.unchecked_tor_input:
         composed_hs_url = 'http://%s' % GLSetting.unchecked_tor_input['hostname_tor_content']
         composed_t2w_url = 'https://%s.tor2web.org' % GLSetting.unchecked_tor_input['hostname_tor_content']
 
