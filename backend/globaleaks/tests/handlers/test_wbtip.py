@@ -44,7 +44,7 @@ class TestWBTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
             handler = self.request(role='wb', body=json.dumps(body))
             handler.current_user.user_id = wbtip_desc['wbtip_id']
 
-            yield handler.post(wbtip_desc['wbtip_id'])
+            yield handler.post()
 
 class TestWBTipMessageCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = wbtip.WBTipMessageCollection
