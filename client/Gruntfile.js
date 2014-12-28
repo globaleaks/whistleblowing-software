@@ -261,10 +261,14 @@ module.exports = function(grunt) {
     agent.get(url)
       .auth(login.username, login.password)
       .end(function(err, res){
-        var content = JSON.parse(res.text)['content'];
-        fs.writeFileSync(sourceFile, content);
-        console.log("Written source to " + sourceFile + ".");
-        cb();
+        if (res.ok) {
+          var content = JSON.parse(res.text)['content'];
+          fs.writeFileSync(sourceFile, content);
+          console.log("Written source to " + sourceFile + ".");
+          cb();
+        } else {
+          console.log('Error: ' + res.text);
+        }
     });
   }
 
@@ -278,8 +282,11 @@ module.exports = function(grunt) {
       .set('Content-Type', 'application/json')
       .send({'content': content})
       .end(function(err, res){
-        console.log(res.text);
-        cb();
+        if (res.ok) {
+          cb();
+        } else {
+          console.log('Error: ' + res.text);
+        }
     });
   }
 
@@ -287,11 +294,17 @@ module.exports = function(grunt) {
     var url = baseurl + '/resource/' + resource + '/?details',
       login = readTransifexrc();
 
+    console.log(url);
+
     agent.get(url)
       .auth(login.username, login.password)
       .end(function(err, res){
-        var result = JSON.parse(res.text);
-        cb(result);
+        if (res.ok) {
+          var result = JSON.parse(res.text);
+          cb(result);
+        } else {
+          console.log('Error: ' + res.text);
+        }
     });
 
   }
@@ -303,19 +316,27 @@ module.exports = function(grunt) {
     agent.get(resourceUrl + 'stats/' + langCode + '/')
       .auth(login.username, login.password)
       .end(function(err, res){
-        var content = JSON.parse(res.text);
+        if (res.ok) {
+          var content = JSON.parse(res.text);
 
-        if (content.translated_entities > content.untranslated_entities) {
-          agent.get(resourceUrl + 'translation/' + langCode + '/')
-            .auth(login.username, login.password)
-            .end(function(err, res){
-            var content = JSON.parse(res.text)['content'];
-            cb(content);
-          });
+          if (content.translated_entities > content.untranslated_entities) {
+            agent.get(resourceUrl + 'translation/' + langCode + '/')
+              .auth(login.username, login.password)
+              .end(function(err, res){
+                if (res.ok) {
+                  var content = JSON.parse(res.text)['content'];
+                  cb(content);
+                } else {
+                  console.log('Error: ' + res.text);
+                }
+            });
+          } else {
+            cb();
+          }
         } else {
-          cb();
+          console.log('Error: ' + res.text);
         }
-      });
+      })
   }
 
   function fetchTxTranslations(cb){
@@ -498,7 +519,6 @@ module.exports = function(grunt) {
       fileContents = fs.readFileSync("pot/en.po");
 
     fetchTxTranslations(function(supported_languages){
-
       gt.addTextdomain("en", fileContents);
 
       for (var lang_code in supported_languages) {
