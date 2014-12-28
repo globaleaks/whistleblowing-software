@@ -93,19 +93,17 @@ def shortlocal_v(_self, attr, value):
     if not value:
         return value
 
-    """
-    If a language does not exist, it does not mean that a malicious input have been provided,
-    this condition in fact may happen when a language is removed from the package and 
-    so the proper way to handle it so is simply to log the issue and discard the input.
-    https://github.com/globaleaks/GlobaLeaks/issues/879
-    """
+    # If a language does not exist, it does not mean that a malicious input have been provided,
+    # this condition in fact may happen when a language is removed from the package and 
+    # so the proper way to handle it so is simply to log the issue and discard the input.
+    # https://github.com/globaleaks/GlobaLeaks/issues/879
     remove = [lang for lang in value if lang not in LANGUAGES_SUPPORTED_CODES]
     for k in remove:
-       try:
-         del value[unicode(lang)]
-       except KeyError:
-         pass
-       log.debug("(%s) Invalid language code in %s, ignoring it" % (lang, attr))
+        try:
+            del value[unicode(k)]
+        except KeyError:
+            pass
+        log.debug("(%s) Invalid language code in %s, ignoring it" % (lang, attr))
 
     for lang, text in value.iteritems():
         shorttext_v(None, None, text)
@@ -120,19 +118,17 @@ def longlocal_v(_self, attr, value):
     if not value:
         return value
 
-    """
-    If a language does not exist, it does not mean that a malicious input have been provided,
-    this condition in fact may happen when a language is removed from the package and 
-    so the proper way to handle it so is simply to log the issue and discard the input.
-    https://github.com/globaleaks/GlobaLeaks/issues/879
-    """
+    # If a language does not exist, it does not mean that a malicious input have been provided,
+    # this condition in fact may happen when a language is removed from the package and
+    # so the proper way to handle it so is simply to log the issue and discard the input.
+    # https://github.com/globaleaks/GlobaLeaks/issues/879
     remove = [lang for lang in value if lang not in LANGUAGES_SUPPORTED_CODES]
     for k in remove:
-       try:
-         del value[unicode(lang)]
-       except KeyError:
-         pass
-       log.debug("(%s) Invalid language code in %s, ignoring it" % (lang, attr))
+        try:
+            del value[unicode(k)]
+        except KeyError:
+            pass
+        log.debug("(%s) Invalid language code in %s, ignoring it" % (lang, attr))
 
     for lang, text in value.iteritems():
         longtext_v(None, attr, text)
