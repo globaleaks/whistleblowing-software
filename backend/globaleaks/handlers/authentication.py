@@ -282,7 +282,7 @@ class AuthenticationHandler(BaseHandler):
     @authenticated('*')
     def get(self):
         if self.current_user and \
-                not self.current_user.id in GLSetting.sessions:
+                self.current_user.id not in GLSetting.sessions:
             raise errors.NotAuthenticated
 
         auth_answer = {
