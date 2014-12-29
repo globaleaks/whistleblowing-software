@@ -98,7 +98,7 @@
           "preview": false,
           "description": {"en": ""},
           "hint": {"en": ""},
-          "multi_entry": true,
+          "multi_entry": false,
           "stats_enabled": false,
           "required": true,
           "children": [],
