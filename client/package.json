@@ -6,9 +6,9 @@
     "bower": "*"
   },
   "devDependencies": {
-    "grunt": "0.4.5",
+    "grunt": "^0.4.5",
     "grunt-angular-templates": "0.5.7",
-    "grunt-css": "0.5.4",
+    "grunt-concat-css": "0.3.1",
     "grunt-confirm": "0.1.1",
     "grunt-contrib-clean": "0.6.0",
     "grunt-contrib-concat": "0.5.0",
@@ -17,21 +17,21 @@
     "grunt-contrib-jshint": "0.10.0",
     "grunt-contrib-uglify": "0.7.0",
     "grunt-contrib-watch": "0.6.1",
-    "grunt-manifest": "0.4.0",
-    "grunt-usemin": "3.0.0",
-    "grunt-concat-css": "0.3.1",
+    "grunt-css": "0.5.4",
+    "grunt-karma": "0.9.0",
+    "grunt-karma-coveralls": "2.5.3",
     "grunt-line-remover": "0.0.2",
+    "grunt-manifest": "0.4.0",
     "grunt-string-replace": "1.0.0",
+    "grunt-usemin": "3.0.0",
+    "karma": "0.12.28",
+    "karma-coverage": "0.2.7",
+    "karma-mocha": "0.1.10",
     "matchdep": "0.3.0",
     "mocha": "2.1.0",
     "node-gettext": "0.2.14",
     "should": "4.4.1",
     "superagent": "0.21.0",
-    "supertest": "0.15.0",
-    "karma": "0.12.28",
-    "karma-coverage": "0.2.7",
-    "karma-mocha": "0.1.10",
-    "grunt-karma": "0.9.0",
-    "grunt-karma-coveralls": "2.5.3"
+    "supertest": "0.15.0"
   }
 }
