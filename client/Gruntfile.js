@@ -8,21 +8,6 @@ module.exports = function(grunt) {
       dest: 'tmp/'
     },
 
-    watch: {
-      files: [
-        'app/*.html',
-        'app/styles/**/*.scss',
-        'app/styles/**/*.css',
-        'app/scripts/**/*.js',
-        'app/views/**/*.html',
-        'app/data/*',
-        'app/fonts/*',
-        'app/img/*',
-        'app/l10n/*',
-      ],
-      tasks: ['build']
-    },
-
     lint: {
       files: ['Gruntfile.js', 'app/scripts/**/*.js'],
     },
@@ -170,7 +155,24 @@ module.exports = function(grunt) {
 
   });
 
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+  // Prefer explicit to loadNpmTasks to:
+  //   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+  //
+  // the reasons is during time strangely the automating loading was causing problems.
+  grunt.loadNpmTasks('grunt-angular-templates');
+  grunt.loadNpmTasks('grunt-confirm');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-line-remover');
+  grunt.loadNpmTasks('grunt-manifest');
+  grunt.loadNpmTasks('grunt-string-replace');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-karma-coveralls');
 
   var resource = grunt.option('resource')
 
@@ -293,8 +295,6 @@ module.exports = function(grunt) {
   function listLanguages(cb){
     var url = baseurl + '/resource/' + resource + '/?details',
       login = readTransifexrc();
-
-    console.log(url);
 
     agent.get(url)
       .auth(login.username, login.password)
