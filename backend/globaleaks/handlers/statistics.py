@@ -124,7 +124,6 @@ def delete_weekstats_history(store):
 
 @transact_ro
 def get_anomaly_history(store, limit):
-
     anomal = store.find(Anomalies)
     anomal.order_by(Desc(Anomalies.creation_date))
 
@@ -191,7 +190,6 @@ class AnomaliesCollection(BaseHandler):
 
 
 class AnomalyHistoryCollection(BaseHandler):
-
     @transport_security_check("admin")
     @authenticated("admin")
     @inlineCallbacks
@@ -203,10 +201,9 @@ class AnomalyHistoryCollection(BaseHandler):
     @authenticated("admin")
     @inlineCallbacks
     def delete(self):
-
         log.info("Received anomalies history delete command")
         yield delete_anomaly_history()
-        self.set_status(200)
+        self.finish([])
 
 
 class StatsCollection(BaseHandler):
@@ -220,7 +217,6 @@ class StatsCollection(BaseHandler):
     @authenticated("admin")
     @inlineCallbacks
     def get(self, weeks_in_the_past):
-
         proper_delta = (int(weeks_in_the_past) * -1)
         if proper_delta:
             log.debug("Asking statistics for %d weeks ago" % proper_delta)
@@ -234,10 +230,9 @@ class StatsCollection(BaseHandler):
     @authenticated("admin")
     @inlineCallbacks
     def delete(self):
-
         log.info("Received statistic history delete command")
         yield delete_weekstats_history()
-        self.set_status(200)
+        self.finish([])
 
 
 class RecentEventsCollection(BaseHandler):
@@ -266,7 +261,6 @@ class RecentEventsCollection(BaseHandler):
         )
 
     def get_summary(self, templist):
-
         eventmap = dict()
         for event in outcome_event_monitored:
             eventmap.setdefault(event['name'], 0)
@@ -279,7 +273,6 @@ class RecentEventsCollection(BaseHandler):
     @transport_security_check("admin")
     @authenticated("admin")
     def get(self, kind):
-
         if kind not in ['details', 'summary']:
             raise errors.InvalidInputFormat(kind)
 
