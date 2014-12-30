@@ -10,6 +10,7 @@ class MockHandler(base.BaseHandler):
     def __init__(self):
         pass
 
+
 class TestValidate(unittest.TestCase):
 
     _handler = base.BaseHandler
@@ -103,6 +104,7 @@ class TestValidate(unittest.TestCase):
 
     def test_validate_host(self):
         self.assertFalse(base.validate_host(""))
+        self.assertTrue(base.validate_host("127.0.0.1"))
         self.assertTrue(base.validate_host("thirteenchars123.onion"))
         self.assertTrue(base.validate_host("thirteenchars123.onion:31337"))
         self.assertFalse(base.validate_host("invalid.onion"))
