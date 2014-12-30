@@ -505,15 +505,6 @@ def get_context(store, context_id, language):
 
     return admin_serialize_context(store, context, language)
 
-def db_get_fields_recursively(store, field, language):
-    ret = []
-    for children in field.children:
-        s = anon_serialize_field(store, children, language)
-        ret.append(s)
-        ret += db_get_fields_recursively(store, children, language)
-
-    return ret
-
 def db_get_context_steps(store, context_id, language):
     """
     Returns:
