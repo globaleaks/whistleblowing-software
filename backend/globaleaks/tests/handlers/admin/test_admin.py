@@ -18,6 +18,8 @@ from globaleaks.utils.utility import uuid4
 # special guest:
 from io import BytesIO as StringIO
 
+stuff = u"³²¼½¬¼³²"
+
 class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.NodeInstance
 
@@ -33,7 +35,6 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         self.dummyNode['hidden_service'] = 'http://abcdef1234567890.onion'
         self.dummyNode['public_site'] = 'https://blogleaks.blogspot.com'
 
-        stuff = u"³²¼½¬¼³²"
         for attrname in Node.localized_strings:
             self.dummyNode[attrname] = stuff
 
@@ -137,19 +138,16 @@ class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_post(self):
 
-        stuff = u"³²¼½¬¼³²"
         for attrname in Context.localized_strings:
-            self.dummyContext[attrname] = u"³²¼½¬¼³²"
+            self.dummyContext[attrname] = stuff
 
         # the test context need fields to be present
-        from globaleaks.handlers.admin.field import create_field
         for idx, field in enumerate(self.dummyFields):
-            self.dummyFields[idx]['id'] = yield create_field(field, 'en')
+            self.dummyFields[idx]['id'] = yield admin.field.create_field(field, 'en')
 
         # the test context need fields to be present
-        from globaleaks.handlers.admin.field import create_field
         for idx, field in enumerate(self.dummyFields):
-            f = yield create_field(field, 'en')
+            f = yield admin.field.create_field(field, 'en')
             self.dummyFields[idx]['id'] = f['id']
 
         self.dummyContext['steps'][0]['children'] = [
@@ -177,9 +175,8 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put(self):
-        stuff = u"³²¼½¬¼³²"
         for attrname in Context.localized_strings:
-            self.dummyContext[attrname] = u"³²¼½¬¼³²"
+            self.dummyContext[attrname] = stuff
 
         handler = self.request(self.dummyContext, role='admin')
         yield handler.put(self.dummyContext['id'])
@@ -188,11 +185,34 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(self.responses[0]['description'], stuff)
 
     @inlineCallbacks
+    def test_put_delete_all_steps(self):
+        for attrname in Context.localized_strings:
+            self.dummyContext[attrname] = stuff
+
+        self.dummyContext['steps'] = []
+        handler = self.request(self.dummyContext, role='admin')
+        yield handler.put(self.dummyContext['id'])
+        self.assertEqual(len(self.responses[0]['steps']), 0)
+
+    @inlineCallbacks
+    def test_put_delete_fields_of_all_steps(self):
+        for attrname in Context.localized_strings:
+            self.dummyContext[attrname] = stuff
+
+        for s in self.dummyContext['steps']:
+            s['children'] = []
+
+        handler = self.request(self.dummyContext, role='admin')
+        yield handler.put(self.dummyContext['id'])
+
+        for s in self.responses[0]['steps']:
+            self.assertEqual(len(s['children']), 0)
+
+    @inlineCallbacks
     def test_update_context_timetolive(self):
         self.dummyContext['submission_timetolive'] = 23 # hours
         self.dummyContext['tip_timetolive'] = 100 # days
 
-        stuff = u"³²¼½¬¼³²"
         for attrname in Context.localized_strings:
             self.dummyContext[attrname] = stuff
 
@@ -206,7 +226,6 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
     def test_update_context_invalid_timetolive(self):
         self.dummyContext['submission_timetolive'] = 1000 # hours
         self.dummyContext['tip_timetolive'] = 3 # days
-        stuff = u"³²¼½¬¼³²"
 
         for attrname in Context.localized_strings:
             self.dummyContext[attrname] = stuff
@@ -247,7 +266,6 @@ class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):
         self.dummyReceiver_1['mail_address'] = new_email
         self.dummyReceiver_1['password'] = helpers.VALID_PASSWORD1
 
-        stuff = u"³²¼½¬¼³²"
         for attrname in Receiver.localized_strings:
             self.dummyReceiver_1[attrname] = stuff
 
@@ -260,7 +278,6 @@ class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):
         self.dummyReceiver_1['mail_address'] = "[antani@xx.it"
         self.dummyReceiver_1['password'] = helpers.VALID_PASSWORD1
 
-        stuff = u"³²¼½¬¼³²"
         for attrname in Receiver.localized_strings:
             self.dummyReceiver_1[attrname] = stuff
 
@@ -274,7 +291,6 @@ class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):
         self.dummyReceiver_1['mail_address'] = "evilamaker.py@vecllais.naif"
         self.dummyReceiver_1['password'] = helpers.VALID_PASSWORD1
 
-        stuff = u"³²¼½¬¼³²"
         for attrname in Receiver.localized_strings:
             self.dummyReceiver_1[attrname] = stuff
 
@@ -304,7 +320,6 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
         self.dummyReceiver_1['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
         self.dummyReceiver_1['password'] = u'12345678antani'
 
-        stuff = u"³²¼½¬¼³²"
         for attrname in Receiver.localized_strings:
             self.dummyReceiver_1[attrname] = stuff
 
@@ -319,7 +334,6 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
         self.dummyReceiver_1['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
         self.dummyReceiver_1['password'] = u""
 
-        stuff = u"³²¼½¬¼³²"
         for attrname in Receiver.localized_strings:
             self.dummyReceiver_1[attrname] = stuff
 
@@ -336,7 +350,6 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
         self.dummyReceiver_1['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
         self.dummyReceiver_1['password'] = u'12345678andaletter'
 
-        stuff = u"³²¼½¬¼³²"
         for attrname in Receiver.localized_strings:
             self.dummyReceiver_1[attrname] = stuff
 
