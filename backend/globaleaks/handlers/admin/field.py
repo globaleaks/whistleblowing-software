@@ -96,8 +96,8 @@ def db_update_options(store, field_id, options, language):
         n += 1
 
     # remove all the not reused old options
-    for o in indexed_old_options:
-        store.remove(indexed_old_options[o])
+    for o_id in indexed_old_options:
+        store.remove(indexed_old_options[o_id])
 
     for n in new_options:
         store.add(n)

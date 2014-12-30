@@ -173,8 +173,8 @@ def db_update_steps(store, context_id, steps, language):
 
         n += 1
 
-    for o in indexed_old_steps:
-        store.remove(indexed_old_steps[o.id])
+    for o_id in indexed_old_steps:
+        store.remove(indexed_old_steps[o_id])
 
     for n in new_steps:
         store.add(n)
