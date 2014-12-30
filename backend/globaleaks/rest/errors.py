@@ -297,7 +297,7 @@ class ReservedFileName(GLException):
 
 class HTTPRawLimitReach(GLException):
     """
-    Raised by GLHTTPServer, when a raw upload is bigger than acceptable
+    Raised by GLHTTPConnection, when a raw upload is bigger than acceptable
     """
     error_code = 39
     status_code = 400 # Generic 400 error

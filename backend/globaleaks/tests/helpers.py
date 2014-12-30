@@ -18,7 +18,7 @@ from twisted.test import proto_helpers
 from globaleaks import db, models, security, anomaly
 from globaleaks.db.datainit import opportunistic_appdata_init, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
-from globaleaks.handlers.base import GLApiCache
+from globaleaks.handlers.base import GLApiCache, GLHTTPConnection
 from globaleaks.handlers.admin import create_context, update_context, create_receiver, db_get_context_steps
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
@@ -526,7 +526,7 @@ class TestHandler(TestGLWithPopulatedDB):
         application = Application([])
 
         tr = proto_helpers.StringTransport()
-        connection = httpserver.HTTPConnection()
+        connection = GLHTTPConnection()
         connection.factory = application
         connection.makeConnection(tr)
 

@@ -38,16 +38,16 @@ def validate_host(host_key):
     and if matched, return True, else return False
     Is used by all the Web handlers inherit from Cyclone
     """
-    # hidden service has not a :port
-    if len(host_key) == 22 and host_key.endswith('.onion'):
-        return True
-
     # strip eventually port
     hostchunk = str(host_key).split(":")
     if len(hostchunk) == 2:
         host_key = hostchunk[0]
 
-    if host_key in GLSetting.accepted_hosts:
+    # hidden service has not a :port
+    if re.match(r'^[0-9a-z]{16}\.onion$', host_key):
+        return True
+
+    if host_key != '' and host_key in GLSetting.accepted_hosts:
         return True
 
     log.debug("Error in host requested: %s not accepted between: %s " %
@@ -56,7 +56,7 @@ def validate_host(host_key):
     return False
 
 
-class GLHTTPServer(HTTPConnection):
+class GLHTTPConnection(HTTPConnection):
     file_upload = False
 
     def __init__(self):
