@@ -111,7 +111,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
         $translate.use($rootScope.language);
 
-        if (newVal != "ar") {
+        if (newVal != "ar" && newVal != "he") {
           $scope.build_stylesheet = "/styles.css";
         } else {
           $scope.build_stylesheet = "/styles-rtl.css";
