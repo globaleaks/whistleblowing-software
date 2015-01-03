@@ -10,7 +10,8 @@ from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSO
 
 from globaleaks.settings import transact
 from globaleaks.utils.utility import datetime_now, uuid4
-from globaleaks.utils.validator import shorttext_v, longtext_v
+from globaleaks.utils.validator import shorttext_v, longtext_v, \
+    shortlocal_v, longlocal_v, dict_v
 
 from .properties import MetaModel, DateTime
 
@@ -213,10 +214,10 @@ class Context(Model):
     submission_timetolive = Int()
     last_update = DateTime()
 
-    # localized stuff
-    name = JSON()
-    description = JSON()
-    receiver_introduction = JSON()
+    # localized strings
+    name = JSON(validator=shortlocal_v)
+    description = JSON(validator=longlocal_v)
+    receiver_introduction = JSON(validator=longlocal_v)
 
     # receivers = ReferenceSet(
     #                         Context.id,
@@ -438,13 +439,13 @@ class Node(Model):
     default_language = Unicode()
     default_timezone = Int()
 
-    # localized string
-    description = JSON()
-    presentation = JSON()
-    footer = JSON()
-    subtitle = JSON()
-    security_awareness_title = JSON()
-    security_awareness_text = JSON()
+    # localized strings
+    description = JSON(validator=longlocal_v)
+    presentation = JSON(validator=longlocal_v)
+    footer = JSON(validator=longlocal_v)
+    subtitle = JSON(validator=longlocal_v)
+    security_awareness_title = JSON(validator=longlocal_v)
+    security_awareness_text = JSON(validator=longlocal_v)
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -518,30 +519,30 @@ class Notification(Model):
     security = Unicode()
     _security_types = [u'TLS', u'SSL']
 
-    admin_anomaly_template = JSON()
+    admin_anomaly_template = JSON(validator=longlocal_v)
 
-    encrypted_tip_template = JSON()
-    encrypted_tip_mail_title = JSON()
-    plaintext_tip_template = JSON()
-    plaintext_tip_mail_title = JSON()
+    encrypted_tip_template = JSON(validator=longlocal_v)
+    encrypted_tip_mail_title = JSON(validator=longlocal_v)
+    plaintext_tip_template = JSON(validator=longlocal_v)
+    plaintext_tip_mail_title = JSON(validator=longlocal_v)
 
-    encrypted_file_template = JSON()
-    encrypted_file_mail_title = JSON()
-    plaintext_file_template = JSON()
-    plaintext_file_mail_title = JSON()
+    encrypted_file_template = JSON(validator=longlocal_v)
+    encrypted_file_mail_title = JSON(validator=longlocal_v)
+    plaintext_file_template = JSON(validator=longlocal_v)
+    plaintext_file_mail_title = JSON(validator=longlocal_v)
 
-    encrypted_comment_template = JSON()
-    encrypted_comment_mail_title = JSON()
-    plaintext_comment_template = JSON()
-    plaintext_comment_mail_title = JSON()
+    encrypted_comment_template = JSON(validator=longlocal_v)
+    encrypted_comment_mail_title = JSON(validator=longlocal_v)
+    plaintext_comment_template = JSON(validator=longlocal_v)
+    plaintext_comment_mail_title = JSON(validator=longlocal_v)
 
-    encrypted_message_template = JSON()
-    encrypted_message_mail_title = JSON()
-    plaintext_message_template = JSON()
-    plaintext_message_mail_title = JSON()
+    encrypted_message_template = JSON(validator=longlocal_v)
+    encrypted_message_mail_title = JSON(validator=longlocal_v)
+    plaintext_message_template = JSON(validator=longlocal_v)
+    plaintext_message_mail_title = JSON(validator=longlocal_v)
 
-    pgp_expiration_alert = JSON()
-    pgp_expiration_notice = JSON()
+    pgp_expiration_alert = JSON(validator=longlocal_v)
+    pgp_expiration_notice = JSON(validator=longlocal_v)
 
     zip_description = JSON()
 
@@ -585,8 +586,8 @@ class Receiver(Model):
 
     name = Unicode(validator=shorttext_v)
 
-    # localization string
-    description = JSON()
+    # localization strings
+    description = JSON(validator=longlocal_v)
 
     configuration = Unicode()
 
@@ -631,9 +632,9 @@ class Receiver(Model):
 
 
 class Field(Model):
-    label = JSON()
-    description = JSON()
-    hint = JSON()
+    label = JSON(validator=shortlocal_v)
+    description = JSON(validator=longlocal_v)
+    hint = JSON(validator=shortlocal_v)
 
     multi_entry = Bool()
     required = Bool()
