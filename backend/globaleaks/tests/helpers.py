@@ -193,6 +193,26 @@ class TestGL(unittest.TestCase):
         new_r['description'] =  'am I ignored ? %s' % descpattern
         return new_r
 
+    def get_dummy_field(self):
+        dummy_f = {
+            'is_template': True,
+            'step_id': '',
+            'fieldgroup_id': '',
+            'label': u'antani',
+            'type': u'inputbox',
+            'preview': False,
+            'description': u"field description",
+            'hint': u'field hint',
+            'multi_entry': False,
+            'stats_enabled': False,
+            'required': False,
+            'options': [],
+            'children': [],
+            'y': 1,
+            'x': 1,
+        }
+        return dummy_f
+
     @defer.inlineCallbacks
     def get_dummy_submission(self, context_id):
         """

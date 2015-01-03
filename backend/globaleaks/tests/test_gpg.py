@@ -212,17 +212,7 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
         new_fields = MockDict().dummyFields
         new_context = MockDict().dummyContext
 
-        # the test context need fields to be present
-        from globaleaks.handlers.admin.field import create_field
-        for idx, field in enumerate(self.dummyFields):
-            f = yield create_field(field, 'en')
-            new_fields[idx]['id'] = f['id']
-
-        new_context['steps'][0]['children'] = [
-            new_fields[0], # Field 1
-            new_fields[1], # Field 2
-            new_fields[4]  # Generalities
-        ]
+        new_context['steps'][0]['children'] = []
 
         new_context['name'] = "this uniqueness is no more checked due to the lang"
         new_context_output = yield create_context(new_context, 'en')
