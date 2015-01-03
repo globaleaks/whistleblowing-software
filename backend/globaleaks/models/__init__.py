@@ -11,7 +11,7 @@ from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSO
 from globaleaks.settings import transact
 from globaleaks.utils.utility import datetime_now, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, \
-    shortlocal_v, longlocal_v, dict_v
+    shortlocal_v, longlocal_v
 
 from .properties import MetaModel, DateTime
 
