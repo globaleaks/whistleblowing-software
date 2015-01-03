@@ -220,6 +220,9 @@ class BaseHandler(RequestHandler):
         self.set_header("Pragma", "no-cache")
         self.set_header("Expires", "-1")
 
+        # to avoid information leakage via referrer
+        self.set_header("Content-Security-Policy", "referrer no-referrer")
+
         # to avoid Robots spidering, indexing, caching
         self.set_header("X-Robots-Tag", "noindex")
 
