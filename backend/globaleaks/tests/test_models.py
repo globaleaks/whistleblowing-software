@@ -252,15 +252,15 @@ class TestField(helpers.TestGL):
     @inlineCallbacks
     def test_add_field_group(self):
         field1_id = yield helpers.create_dummy_field(
-            label='{"en": "the first testable field"}',
+            label={"en": "the first testable field"},
             type='checkbox'
         )
         field2_id = yield helpers.create_dummy_field(
-            label='{"en": "the second testable field"}',
+            label= {"en": "the second testable field"},
             type='inputbox'
         )
         fieldgroup_id = yield helpers.create_dummy_field(
-            label='{"en": "a testable group of fields."}',
+            label={"en": "a testable group of fields."},
             type='fieldgroup',
             x=1, y=2,
         )
@@ -305,9 +305,9 @@ class TestStep(helpers.TestGL):
         step = {
           'context_id': context_id,
           'number': self.step_number,
-          'label': "",
-          'description': "",
-          'hint': ""
+          'label': {},
+          'description': {},
+          'hint': {}
         }
 
         self.step_number += 1
