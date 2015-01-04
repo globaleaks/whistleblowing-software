@@ -11,7 +11,7 @@ Event = namedtuple('Event',
                     'trigger_info', 'node_info', 'receiver_info',
                     'context_info', 'steps_info', 'plugin', 'trigger_parent'])
 
-class GLPlugin:
+class GLPlugin(object):
     def validate_admin_opt(self, admin_fields):
         """
         @param admin_fields: the received admin fields, before being saved

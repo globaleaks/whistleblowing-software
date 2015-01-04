@@ -5,18 +5,17 @@ Implementation of the code executed when an HTTP client reach /admin/fields URI.
 from __future__ import unicode_literals
 
 import json
-from storm.exceptions import DatabaseError
 from storm.expr import And
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.node import anon_serialize_field, anon_serialize_option, \
+from globaleaks.handlers.node import anon_serialize_field, \
     get_field_option_localized_keys, get_public_context_list
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro
-from globaleaks.utils.structures import fill_localized_keys, get_localized_values
+from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log
 
 def get_field_association(store, field_id):
@@ -85,13 +84,13 @@ def db_update_options(store, field_id, options, language):
 
         # check for reuse (needed to keep translations)
         if 'id' in option and option['id'] in indexed_old_options:
-           o = indexed_old_options[option['id']]
-           o.update(opt_dict, keys)
+            o = indexed_old_options[option['id']]
+            o.update(opt_dict, keys)
 
-           new_options.append(indexed_old_options[option['id']])
-           del indexed_old_options[option['id']]
+            new_options.append(indexed_old_options[option['id']])
+            del indexed_old_options[option['id']]
         else:
-           new_options.append(models.FieldOption(opt_dict))
+            new_options.append(models.FieldOption(opt_dict))
 
         n += 1
 
@@ -107,14 +106,14 @@ def field_integrity_check(request):
     step_id = request.get('step_id')
     fieldgroup_id = request.get('fieldgroup_id')
 
-    if is_template == False and \
-       (step_id == '' or step_id == None) and \
-       (fieldgroup_id == '' or fieldgroup_id == None):
+    if not is_template and \
+       (step_id == '' or step_id is None) and \
+       (fieldgroup_id == '' or fieldgroup_id is None):
         raise errors.InvalidInputFormat("Each field should be a template or be associated to a step/fieldgroup")
 
     if not is_template:
-        if (step_id == '' or step_id == None) and \
-            (fieldgroup_id == '' or fieldgroup_id == None):
+        if (step_id == '' or step_id is None) and \
+            (fieldgroup_id == '' or fieldgroup_id is None):
             raise errors.InvalidInputFormat("Cannot associate a field to both a step and a fieldgroup")
 
     return is_template, step_id, fieldgroup_id
@@ -127,11 +126,11 @@ def db_create_field(store, request, language):
     :param: language: the language of the field definition dict
     :return: a serialization of the object
     """
-    is_template, step_id, fieldgroup_id = field_integrity_check(request)
+    _, step_id, fieldgroup_id = field_integrity_check(request)
 
     # XXX you probably want to split this if else statement into two functions
     # that are called create_field_from_template and create_field
-    if not 'template_id' in request:
+    if 'template_id' not in request:
         fill_localized_keys(request, models.Field.localized_strings, language)
         field = models.Field.new(store, request)
         db_update_options(store, field.id, request['options'], language)
@@ -254,8 +253,6 @@ def fieldtree_ancestors(store, field_id):
         if parent.parent_id != field_id:
             yield parent.parent_id
             for grandpa in fieldtree_ancestors(store, parent.parent_id): yield grandpa
-    else:
-        return
 
 @transact_ro
 def get_field_list(store, is_template, language):

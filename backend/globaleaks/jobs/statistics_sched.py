@@ -17,7 +17,7 @@ from globaleaks.anomaly import Alarm
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSetting, transact
 from globaleaks.models import Stats, Anomalies
-from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
+from globaleaks.utils.utility import log, datetime_now
 
 @transact
 def save_anomalies(store, when_anomaly, anomaly_desc, alarm_raised):

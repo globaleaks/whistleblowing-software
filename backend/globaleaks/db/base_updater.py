@@ -113,7 +113,7 @@ def generateCreateQuery(model):
     return query
 
 
-class TableReplacer:
+class TableReplacer(object):
     """
     This is the base class used by every Updater
     """
@@ -158,7 +158,7 @@ class TableReplacer:
             'ReceiverContext' : [ models.ReceiverContext, None, None, None, None, None, None, None, None, None, None],
             'Message' : [ models.Message, None, None, None, None, None, None, None, None, None, None],
             'Stats' : [Stats_version_14, None, None, None, None, None, None, None, None, None, models.Stats],
-            'ApplicationData' : [ApplicationData_version_10, None, None, None, None, None, None, ApplicationData_version_14, None, None, models.ApplicationData],
+            'ApplicationData' : [ApplicationData_version_10, None, None, None, None, ApplicationData_version_11, None, ApplicationData_version_14, None, None, models.ApplicationData],
         }
 
         for k, v in self.table_history.iteritems():
@@ -191,7 +191,7 @@ class TableReplacer:
                     try:
                         self.store_new.execute(create_query+';')
                     except OperationalError as e:
-                        log.msg('OperationalError in "{}": e'.format(create_query))
+                        log.msg('OperationalError in "{}"'.format(create_query))
             self.store_new.commit()
             return
             # return here and manage the migrant versions here:
@@ -225,7 +225,7 @@ class TableReplacer:
 
         table_index = (version - 5)
 
-        if not self.table_history.has_key(table_name):
+        if table_name not in self.table_history:
             msg = 'Not implemented usage of get_right_model {} ({} {})'.format(
                 __file__, table_name, self.start_ver)
             raise NotImplementedError(msg)
@@ -246,8 +246,6 @@ class TableReplacer:
 
         while version >= 0:
             if self.table_history[table_name][table_index]:
-            # print ".. returning %s = %s" %\
-            #           ( table_name, self.table_history[table_name][table_index] )
                 return self.table_history[table_name][table_index]
             table_index -= 1
 
@@ -282,7 +280,7 @@ class TableReplacer:
             new_obj = self.get_right_model(table_name, self.start_ver + 1)()
 
             # Storm internals simply reversed
-            for k, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.iteritems():
                 setattr(new_obj, v.name, getattr(old_obj, v.name) )
 
             self.store_new.add(new_obj)
@@ -296,7 +294,7 @@ class TableReplacer:
         new_obj = self.get_right_model(table_name, self.start_ver + 1)()
 
         # Storm internals simply reversed
-        for k, v in new_obj._storm_columns.iteritems():
+        for _, v in new_obj._storm_columns.iteritems():
             setattr(new_obj, v.name, getattr(old_obj, v.name) )
 
         self.store_new.add(new_obj)

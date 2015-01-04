@@ -6,18 +6,14 @@
 # in order to checks integrity between exclusive options, provide defaults,
 # supports extensions (without changing DB format)
 
-from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.models import Model
-from globaleaks.utils.utility import log
 from globaleaks.settings import GLSetting
 
-from globaleaks.rest.errors import InvalidInputFormat, SubmissionFailFields
-
-from globaleaks.utils.utility import uuid4
+from globaleaks.rest.errors import SubmissionFailFields
 
 # Localized strings utility management
 
-class Rosetta:
+class Rosetta(object):
     """
     This Class can manage all the localized strings inside
     one Storm object. AKA: manage three language on a single
@@ -53,9 +49,9 @@ class Rosetta:
 
         translated_dict = self._localized_strings[attr]
 
-        if translated_dict.has_key(language):
+        if language in translated_dict:
             return translated_dict[language]
-        elif translated_dict.has_key(default_language):
+        elif default_language in translated_dict:
             return translated_dict[default_language]
         else:
             return ""

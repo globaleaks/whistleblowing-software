@@ -373,36 +373,36 @@ class ExtendTipLifeNotEnabled(GLException):
     status_code = 403
 
 class StaticFileNotFound(GLException):
-   """
-   It has been requested an operation on a non existent static file
-   """
-   reason = "Requested an operation on a non existent static file"
-   error_code = 51
-   status_code = 404
+    """
+    It has been requested an operation on a non existent static file
+    """
+    reason = "Requested an operation on a non existent static file"
+    error_code = 51
+    status_code = 404
 
 class LangFileNotFound(GLException):
-   """
-   It has been requested an operation on a non existent language file
-   """
-   reason = "Requested an operation on a non existent language file"
-   error_code = 52
-   status_code = 404
+    """
+    It has been requested an operation on a non existent language file
+    """
+    reason = "Requested an operation on a non existent language file"
+    error_code = 52
+    status_code = 404
 
 class DirectoryTraversalError(GLException):
-   """
-   Blocked file operation out of the expected path
-   """
-   reason = "Blocked file operation out of the expected path"
-   error_code = 53
-   status_code = 403
+    """
+    Blocked file operation out of the expected path
+    """
+    reason = "Blocked file operation out of the expected path"
+    error_code = 53
+    status_code = 403
 
 class UnexistentDownloadToken(GLException):
-   """
-   The requested download token does not exists or is expired.
-   """
-   reason = "The requested download token does not exists or is expired"
-   error_code = 54
-   status_code = 404
+    """
+    The requested download token does not exists or is expired.
+    """
+    reason = "The requested download token does not exists or is expired"
+    error_code = 54
+    status_code = 404
 
 class FloodException(GLException):
     error_code = 55

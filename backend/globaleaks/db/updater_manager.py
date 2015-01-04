@@ -53,13 +53,9 @@ def perform_version_update(starting_ver, ending_ver, start_path):
             if not starting_ver:
                 old_db_file = os.path.abspath(os.path.join(
                     GLSetting.gldb_path, 'glbackend.db'))
-                backup_file = os.path.abspath(os.path.join(
-                    GLSetting.gldb_path, 'conversion_backup_%d_%d.bak' % (starting_ver, starting_ver + 1)))
             else:
                 old_db_file = os.path.abspath(os.path.join(
                     GLSetting.gldb_path, 'glbackend-%d.db' % starting_ver))
-                backup_file = os.path.abspath(os.path.join(
-                    GLSetting.gldb_path, 'conversion_backup_%d_%d.bak' % (starting_ver, starting_ver + 1)))
 
             new_db_file = os.path.abspath(os.path.join(GLSetting.gldb_path, 'glbackend-%d.db' % (starting_ver + 1)))
             
@@ -69,7 +65,7 @@ def perform_version_update(starting_ver, ending_ver, start_path):
             print "  Updating DB from version %d to version %d" % (starting_ver, starting_ver + 1)
 
             update_key = "%d%d" % (starting_ver, starting_ver + 1)
-            if not releases_supported.has_key(update_key):
+            if update_key not in releases_supported:
                 raise NotImplementedError("mistake detected! %s" % update_key)
 
             try:
@@ -113,7 +109,6 @@ def perform_version_update(starting_ver, ending_ver, start_path):
                 print "Error removing new db file on conversion fail: %s" % excep
                 # we can't stop if one files removal fails
                 # and we continue trying deleting others files
-                pass
         # propagate the exception
         raise except_info
 
@@ -126,4 +121,3 @@ def perform_version_update(starting_ver, ending_ver, start_path):
             print "Error removing old db file on conversion success: %s" % excep.message
             # we can't stop if one files removal fails
             # and we continue trying deleting others files
-            pass

@@ -9,9 +9,6 @@ from storm.variables import DateTimeVariable as _DateTimeVariable
 # Storm's metaclass is going to be extended.
 from storm.properties import PropertyPublisherMeta
 
-from globaleaks.utils.validator import shorttext_v, shortlocal_v
-from globaleaks.utils.validator import dict_v
-
 __all__ = ['MetaModel']
 
 
@@ -33,9 +30,10 @@ class MetaModel(PropertyPublisherMeta):
         # it is not a public method, but a column
                             if isinstance(val, Property)
         ])
+
         for base in bases:
-            public_attrs |= getattr(base, '_public_attrs', set()
-)
+            public_attrs |= getattr(base, '_public_attrs', set())
+
         if not hasattr(cls, '__storm_table__'):
             cls.__storm_table__ = cls.__name__.lower()
         # if storm_table is none, this means the model is abstract and no table
@@ -43,7 +41,7 @@ class MetaModel(PropertyPublisherMeta):
         elif cls.__storm_table__ is None:
             del cls.__storm_table__
 
-        # populate class attributes with the inferred new inormations.
+        # populate class attributes with the inferred new informations.
         cls._public_attrs = public_attrs
 
         return super(MetaModel, cls).__init__(name, bases, attrs)

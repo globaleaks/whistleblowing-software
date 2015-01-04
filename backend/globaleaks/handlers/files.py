@@ -207,7 +207,7 @@ def download_file(store, user_id, tip_id, file_id):
     Auth temporary disabled, just Tip_id and File_id required
     """
 
-    rtip = access_tip(store, user_id, tip_id)
+    access_tip(store, user_id, tip_id)
 
     rfile = store.find(ReceiverFile,
                        ReceiverFile.id == unicode(file_id)).one()
@@ -230,7 +230,7 @@ def download_file(store, user_id, tip_id, file_id):
 @transact
 def download_all_files(store, user_id, tip_id):
 
-    rtip = access_tip(store, user_id, tip_id)
+    access_tip(store, user_id, tip_id)
 
     rfiles = store.find(ReceiverFile,
                         ReceiverFile.receiver_tip_id == unicode(tip_id))

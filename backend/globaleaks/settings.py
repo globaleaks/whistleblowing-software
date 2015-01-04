@@ -17,7 +17,6 @@ import socket
 import pwd
 import grp
 import getpass
-import tempfile
 import transaction
 
 from optparse import OptionParser
@@ -89,7 +88,7 @@ external_counted_events = {
     'file_uploaded': 0,
 }
 
-class GLSettingsClass:
+class GLSettingsClass(object):
 
     initialized = False
 
@@ -150,8 +149,10 @@ class GLSettingsClass:
 
         # session tracking, in the singleton classes
         self.sessions = dict()
-        self.failed_login_attempts = 0 # statisticals, referred to latest_period
-                                       # and resetted by session_management sched
+
+        # statistical, referred to latest period
+        # and resetted by session_management sched
+        self.failed_login_attempts = 0
 
         # download tocken trackin
         self.download_tokens = dict()
@@ -636,7 +637,7 @@ class GLSettingsClass:
 
         if new_environment:
             almost_one_file = 0
-            for path, subpath, files in os.walk(self.static_source):
+            for _, _, files in os.walk(self.static_source):
                 almost_one_file += 1
                 # REMIND: at the moment are not supported subpaths
                 for single_file in files:
