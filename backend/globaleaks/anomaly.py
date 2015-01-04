@@ -191,7 +191,7 @@ class EventTrack(TempObj):
         return "%s" % self.serialize_event()
 
 
-class EventTrackQueue:
+class EventTrackQueue(object):
     """
     This class has only a class variable, used to stock the queue of the
     event happened on the latest minutes.
@@ -211,7 +211,7 @@ class EventTrackQueue:
         """
         serialized_ret = []
 
-        for event_id, event_obj in EventTrackQueue.queue.iteritems():
+        for _, event_obj in EventTrackQueue.queue.iteritems():
             serialized_ret.append(event_obj.serialize_event())
 
         return serialized_ret
@@ -222,7 +222,7 @@ class EventTrackQueue:
         EventTrackQueue.event_absolute_counter = 0
 
 
-class Alarm:
+class Alarm(object):
     """
     This class implement some classmethod used to report general
     usage of the system and the class itself return and operate
@@ -310,7 +310,7 @@ class Alarm:
             )
 
         for event_name, threshold in Alarm.OUTCOME_ANOMALY_MAP.iteritems():
-            if current_event_matrix.has_key(event_name):
+            if event_name in current_event_matrix:
                 if current_event_matrix[event_name] > threshold:
                     Alarm.number_of_anomalies += 1
                     debug_reason = "%s[Incoming %s: %d>%d] " % \

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
+from storm.locals import Int, Pickle, Unicode, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
@@ -49,7 +49,7 @@ class Replacer1011(TableReplacer):
 
             new_itip = self.get_right_model("InternalTip", 11)()
 
-            for k, v in new_itip._storm_columns.iteritems():
+            for _, v in new_itip._storm_columns.iteritems():
 
                 if v.name == 'wb_fields':
                     new_itip.wb_fields = {}
@@ -77,7 +77,7 @@ class Replacer1011(TableReplacer):
 
             new_ifile = self.get_right_model("InternalFile", 11)()
 
-            for k, v in new_ifile._storm_columns.iteritems():
+            for _, v in new_ifile._storm_columns.iteritems():
 
                 # fix against issue https://github.com/globaleaks/GlobaLeaks/issues/850
                 # and related to the addiction of some validation in latest releases

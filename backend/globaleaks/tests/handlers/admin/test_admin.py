@@ -58,7 +58,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_update_node_invalid_lang(self):
-        self.dummyNode['languages_enabled'] = ["en", "shit" ]
+        self.dummyNode['languages_enabled'] = ["en", "shit"]
         handler = self.request(self.dummyNode, role='admin')
 
         yield self.assertFailure(handler.put(), InvalidInputFormat)

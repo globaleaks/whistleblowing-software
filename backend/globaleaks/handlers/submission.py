@@ -157,31 +157,31 @@ def import_files(store, submission, files):
         ifile.internaltip_id = submission.id
 
 def verify_fields_recursively(fields, wb_fields):
-   for f in fields:
-       if f not in wb_fields:
-           raise errors.SubmissionFailFields("missing field (no structure present): %s" % f)
+    for f in fields:
+        if f not in wb_fields:
+            raise errors.SubmissionFailFields("missing field (no structure present): %s" % f)
 
-       if fields[f]['required'] and ('value' not in wb_fields[f] or
-                                     wb_fields[f]['value'] == ''):
-           raise errors.SubmissionFailFields("missing required field (no value provided): %s" % f)
+        if fields[f]['required'] and ('value' not in wb_fields[f] or
+                                      wb_fields[f]['value'] == ''):
+            raise errors.SubmissionFailFields("missing required field (no value provided): %s" % f)
 
-       if isinstance(wb_fields[f]['value'], unicode):
-           if len(wb_fields[f]['value']) > GLSetting.memory_copy.maximum_textsize:
-               raise errors.InvalidInputFormat("field value overcomes size limitation")
+        if isinstance(wb_fields[f]['value'], unicode):
+            if len(wb_fields[f]['value']) > GLSetting.memory_copy.maximum_textsize:
+                raise errors.InvalidInputFormat("field value overcomes size limitation")
 
-       indexed_fields  = {}
-       for f_c in fields[f]['children']:
-           indexed_fields[f_c['id']] = copy.deepcopy(f_c)
+        indexed_fields  = {}
+        for f_c in fields[f]['children']:
+            indexed_fields[f_c['id']] = copy.deepcopy(f_c)
 
-       indexed_wb_fields = {}
-       for f_c in wb_fields[f]['children']:
-           indexed_wb_fields[f_c['id']] = copy.deepcopy(f_c)
+        indexed_wb_fields = {}
+        for f_c in wb_fields[f]['children']:
+            indexed_wb_fields[f_c['id']] = copy.deepcopy(f_c)
 
-       verify_fields_recursively(indexed_fields, indexed_wb_fields)
+        verify_fields_recursively(indexed_fields, indexed_wb_fields)
 
-   for wbf in wb_fields:
-       if wbf not in fields:
-           raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
+    for wbf in wb_fields:
+        if wbf not in fields:
+            raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
 
 def verify_steps(steps, wb_steps):
     indexed_fields  = {}

@@ -22,7 +22,7 @@ from tempfile import _TemporaryFileWrapper
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log, acquire_bool
 from globaleaks.settings import GLSetting
-from globaleaks.models import *
+from globaleaks.models import ReceiverTip, Receiver
 from globaleaks.third_party.rstr import xeger
 
 
@@ -87,7 +87,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         log.debug("Key initialization at %s" % self.keypath)
 
         with open(self.keypath, 'w') as kf:
-           pickle.dump(saved_struct, kf)
+            pickle.dump(saved_struct, kf)
 
         if not os.path.isfile(self.keypath):
             log.err("Unable to write keyfile %s" % self.keypath)
@@ -275,7 +275,7 @@ def change_password(base64_stored, old_password, new_password, salt_input):
     return hash_password(new_password, salt_input)
 
 
-class GLBGPG:
+class GLBGPG(object):
     """
     GPG has not a dedicated class, because one of the function is called inside a transact, and
     I'm not quite confident on creating an object that operates on the filesystem knowing
@@ -286,7 +286,7 @@ class GLBGPG:
         """
         every time is needed, a new keyring is created here.
         """
-        if receiver_desc.has_key('gpg_key_status') and \
+        if 'gpg_key_status' in receiver_desc and \
                         receiver_desc['gpg_key_status'] != Receiver._gpg_types[1]: # Enabled
             log.err("Requested GPG initialization for a receiver without GPG configured! %s" %
                     receiver_desc['username'])
@@ -366,14 +366,9 @@ class GLBGPG:
             log.err("Error in GPG import_keys: %s" % excep)
             return False
 
-        # Error reported in stderr may just be warning, this is because is not raise an exception here
-        # if self.ke.stderr:
-        #     log.err("Receiver %s in uploaded GPG key has raise and alarm:\n< %s >" %
-        #             (self.receiver_desc['username'], (self.ke.stderr.replace("\n", "\n  "))[:-3]))
-
         if not (hasattr(key, 'results') and
                 len(key.results) >= 1 and
-                key.results[0].has_key('fingerprint')):
+                'fingerprint' in key.results[0]):
             log.err("User error: unable to import GPG key in the keyring")
             return False
 
@@ -422,7 +417,6 @@ class GLBGPG:
             log.err("Falure in encrypting file %s %s (%s)" % ( plainpath,
                                                                self.receiver_desc['username'],
                                                                self.receiver_desc['gpg_key_fingerprint']))
-            log.err(encrypt_obj.stderr)
             raise errors.GPGKeyInvalid
 
         log.debug("Encrypting for %s (%s) file %s (%d bytes)" %
@@ -474,7 +468,6 @@ class GLBGPG:
             log.err("Falure in encrypting %d bytes for %s (%s)" % (len(plaintext),
                                                                    self.receiver_desc['username'],
                                                                    self.receiver_desc['gpg_key_fingerprint']))
-            log.err(encrypt_obj.stderr)
             raise errors.GPGKeyInvalid
 
         log.debug("Encrypting for %s (%s) %d byte of plain data (%d cipher output)" %

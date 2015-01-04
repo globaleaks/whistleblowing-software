@@ -176,7 +176,6 @@ class InternalFile_version_7(Model):
 
 class Replacer78(TableReplacer):
 
-
     def migrate_Context(self):
         print "%s Context migration assistant: (privileges, introductions, PGP enforcing) #%d" % (
             self.std_fancy, self.store_old.find(self.get_right_model("Context", 7)).count() )
@@ -187,7 +186,7 @@ class Replacer78(TableReplacer):
 
             new_obj = self.get_right_model("Context", 8)()
 
-            for k, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.iteritems():
 
                 if v.name == 'receiver_introduction':
                     new_obj.receiver_introduction = every_language(u"Here you can optionally put info on Receivers, policies, etc")
@@ -232,7 +231,7 @@ class Replacer78(TableReplacer):
 
             new_obj = self.get_right_model("InternalFile", 8)()
 
-            for k, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.iteritems():
 
                 if v.name == 'description':
                     new_obj.description = u''
@@ -253,7 +252,7 @@ class Replacer78(TableReplacer):
 
             new_obj = self.get_right_model("Receiver", 8)()
 
-            for k, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.iteritems():
 
                 if v.name == 'mail_address':
                     new_obj.mail_address = old_obj.notification_fields['mail_address']
@@ -280,7 +279,7 @@ class Replacer78(TableReplacer):
         old_notification = self.store_old.find(self.get_right_model("Notification", 7)).one()
         new_notification = self.get_right_model("Notification", 8)()
 
-        for k, v in new_notification._storm_columns.iteritems():
+        for _, v in new_notification._storm_columns.iteritems():
 
             if v.name == 'encrypted_tip_template':
                 new_notification.encrypted_tip_template = every_language("")
@@ -316,7 +315,7 @@ class Replacer78(TableReplacer):
         old_node = self.store_old.find(self.get_right_model("Node", 7)).one()
         new_node = self.get_right_model("Node", 8)()
 
-        for k, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.iteritems():
 
             if v.name == 'can_delete_submission':
                 new_node.can_delete_submission = False

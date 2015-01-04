@@ -60,12 +60,7 @@ def anon_serialize_node(store, language):
     # Contexts and Receivers relationship
     associated = store.find(models.ReceiverContext).count()
 
-    custom_homepage = False
-
-    try:
-        custom_homepage = os.path.isfile(os.path.join(GLSetting.static_path, "custom_homepage.html"))
-    except:
-        pass
+    custom_homepage = os.path.isfile(os.path.join(GLSetting.static_path, "custom_homepage.html"))
 
     ret_dict = {
       'name': node.name,

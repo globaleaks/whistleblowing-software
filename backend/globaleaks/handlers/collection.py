@@ -7,7 +7,6 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-import os
 import tarfile
 import StringIO
 
@@ -16,7 +15,7 @@ from globaleaks.handlers.files import download_all_files, serialize_receiver_fil
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers import admin
 from globaleaks.rest import errors
-from globaleaks.settings import GLSetting, transact_ro
+from globaleaks.settings import transact_ro
 from globaleaks.utils.zipstream import ZipStream, ZIP_STORED, ZIP_DEFLATED
 from globaleaks.plugins.base import Event
 from globaleaks.jobs.notification_sched import serialize_receivertip
@@ -109,7 +108,7 @@ class CollectionStreamer(object):
 
     def write(self, data):
         if len(data) > 0:
-          self.handler.write(data)
+            self.handler.write(data)
 
 
 class CollectionDownload(BaseHandler):
