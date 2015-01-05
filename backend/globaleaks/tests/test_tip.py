@@ -72,6 +72,7 @@ class TTip(helpers.TestGL):
 
     tipReceiver1 = {
         'mail_address': u'first@winstonsmith.org',
+        'ping_mail_address': u'',
         'name': u'first',
         'description': u"I'm tha 1st",
         'can_delete_submission': True,
@@ -94,6 +95,7 @@ class TTip(helpers.TestGL):
 
     tipReceiver2 = {
         'mail_address': u'second@winstonsmith.org',
+        'ping_mail_address': u'',
         'name': u'second',
         'description': u"I'm tha 2nd",
         'can_delete_submission': False,

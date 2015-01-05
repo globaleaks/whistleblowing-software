@@ -289,7 +289,6 @@ class Replacer1415(TableReplacer):
             i += 1
 
         for old_context in old_contexts:
-
             new_context = self.get_right_model("Context", 15)()
 
             step1 = db_forge_obj(self.store_new, Step, steps[0])
@@ -382,7 +381,7 @@ class Replacer1415(TableReplacer):
                 setattr(new_receiver, v.name, getattr(old_receiver, v.name) )
 
             self.store_new.add(new_receiver)
-            self.store_new.commit()
+        self.store_new.commit()
 
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy

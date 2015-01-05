@@ -217,12 +217,13 @@ def login_receiver(store, username, password):
 
     login_receivers returns a tuple (username, state, pcn)
     """
-    receiver_user = store.find(User, And(User.username == username,
+    receiver_user = store.find(User, And(User.id == username,
                                          User.role == u'receiver',
                                          User.state != u'disabled')).one()
 
-    if not security.check_password(password, receiver_user.password, receiver_user.salt):
-        log.debug("Receiver login: Invalid password")
+    if not receiver_user or \
+            not security.check_password(password, receiver_user.password, receiver_user.salt):
+        log.debug("Receiver login: Invalid credentials")
         return False, None, None
 
     log.debug("Receiver login: Authorized receiver")
@@ -239,7 +240,8 @@ def login_admin(store, username, password):
     admin_user = store.find(User, And(User.username == username,
                                       User.role == u'admin')).one()
 
-    if not security.check_password(password, admin_user.password, admin_user.salt):
+    if not admin_user or \
+            not security.check_password(password, admin_user.password, admin_user.salt):
         log.debug("Admin login: Invalid password")
         return False, None, None
 
