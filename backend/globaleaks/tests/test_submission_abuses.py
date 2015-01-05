@@ -128,6 +128,7 @@ class TestTipInstance(SubmissionTest):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
+        submission_request['receivers'] = []
         submission_request['finalize'] = True
 
         yield self.assertFailure(submission.create_submission(submission_request, True, 'en'),
