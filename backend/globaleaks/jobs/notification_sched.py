@@ -522,17 +522,22 @@ class NotificationMail:
 @transact
 def save_event_db(store, event_dict):
 
-    for _, evnt in event_dict.iteritems():
+    for event_id, evnt in event_dict.iteritems():
+
         e = EventLogs()
 
         e.description = {
-            'trigger': evnt.trigger,
             'received_info': evnt.receiver_info,
             'context_info': evnt.context_info,
             'trigger_parent': evnt.trigger_parent,
             'trigger_info': evnt.trigger_info,
         }
-        e.title = "test"
+        # this is important to link Event with ReceiverFile|Message|Comment|ReceiverTip
+        e.event_reference = {
+            'id': event_id,
+            'kind': evnt.trigger
+        }
+        e.title = "Title [%s]" % evnt.trigger
         e.receiver_id = evnt.receiver_info['id']
         e.mail_sent = False
 
