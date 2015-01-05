@@ -217,6 +217,17 @@ CREATE TABLE receiver (
     FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
+CREATE TABLE eventlogs (
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    description VARCHAR NOT NULL,
+    title VARCHAR NOT NULL,
+    receiver_id VARCHAR NOT NULL,
+    mail_sent INTEGER,
+    PRIMARY KEY (id),
+    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
+);
+
 CREATE TABLE receiver_context (
     context_id VARCHAR NOT NULL,
     receiver_id VARCHAR NOT NULL,

@@ -9,7 +9,8 @@ from collections import namedtuple
 Event = namedtuple('Event',
                    ['type', 'trigger', 'notification_settings',
                     'trigger_info', 'node_info', 'receiver_info',
-                    'context_info', 'steps_info', 'plugin', 'trigger_parent'])
+                    'context_info', 'steps_info', 'plugin', 'trigger_parent',
+                    'do_mail'])
 
 class GLPlugin(object):
     def validate_admin_opt(self, admin_fields):
