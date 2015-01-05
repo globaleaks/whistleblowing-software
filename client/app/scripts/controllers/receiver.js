@@ -112,3 +112,7 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope', 'ReceiverTips',
   function($scope, ReceiverTips) {
   $scope.tips = ReceiverTips.query();
 }]);
+
+GLClient.controller('ReceiverNotificationCtrl', ['$scope', 'ReceiverNotification', function($scope, ReceiverNotification) {
+  $scope.activities = ReceiverNotification.query();
+}]);
