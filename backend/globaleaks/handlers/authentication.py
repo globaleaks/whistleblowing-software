@@ -195,25 +195,19 @@ def login_wb(store, receipt):
     """
     Login wb return the WhistleblowerTip.id
     """
-    try:
-        node = store.find(Node).one()
-        hashed_receipt = security.hash_password(receipt, node.receipt_salt)
-        wb_tip = store.find(WhistleblowerTip,
-                            WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
-    except NotOneError:
-        # This is one of the fatal error that never need to happen
-        log.err("Expected unique fields (receipt) not unique when hashed %s" % receipt)
-        return False
+    node = store.find(Node).one()
+    hashed_receipt = security.hash_password(receipt, node.receipt_salt)
+    wb_tip = store.find(WhistleblowerTip,
+                        WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
 
     if not wb_tip:
-        log.debug("Whistleblower: Invalid receipt")
+        log.debug("Whistleblower login: Invalid receipt")
         return False
 
-    log.debug("Whistleblower: Valid receipt")
+    log.debug("Whistleblower login: Valid receipt")
     wb_tip.last_access = utility.datetime_now()
     store.commit() # the transact was read only! on success we apply the commit()
-    return unicode(wb_tip.id)
-
+    return wb_tip.id
 
 @transact_ro  # read only transact; manual commit on success needed
 def login_receiver(store, username, password):
@@ -221,44 +215,38 @@ def login_receiver(store, username, password):
     This login receiver need to collect also the amount of unsuccessful
     consecutive logins, because this element may bring to password lockdown.
 
-    login_receiver return the receiver.id
+    login_receivers returns a tuple (username, state, pcn)
     """
-    receiver_user = store.find(User, And(User.username == username, User.state != u'disabled')).one()
-
-    if not receiver_user or receiver_user.role != 'receiver':
-        log.debug("Receiver: Fail auth, username %s do not exists" % username)
-        return False, None, None
+    receiver_user = store.find(User, And(User.username == username,
+                                         User.role == u'receiver',
+                                         User.state != u'disabled')).one()
 
     if not security.check_password(password, receiver_user.password, receiver_user.salt):
         log.debug("Receiver login: Invalid password")
         return False, None, None
-    else:
-        log.debug("Receiver: Authorized receiver %s" % username)
-        receiver_user.last_login = utility.datetime_now()
-        receiver = store.find(Receiver, (Receiver.user_id == receiver_user.id)).one()
-        store.commit() # the transact was read only! on success we apply the commit()
-        return receiver.id, receiver_user.state, receiver_user.password_change_needed
+
+    log.debug("Receiver login: Authorized receiver")
+    receiver_user.last_login = utility.datetime_now()
+    receiver = store.find(Receiver, (Receiver.user_id == receiver_user.id)).one()
+    store.commit() # the transact was read only! on success we apply the commit()
+    return receiver.id, receiver_user.state, receiver_user.password_change_needed
 
 @transact_ro  # read only transact; manual commit on success needed
 def login_admin(store, username, password):
     """
-    login_admin return the 'username' of the administrator
+    login_admin returns a tuple (username, state, pcn)
     """
-
-    admin_user = store.find(User, User.username == username).one()
-
-    if not admin_user or admin_user.role != 'admin':
-        log.debug("Receiver: Fail auth, username %s do not exists" % username)
-        return False, None, None
+    admin_user = store.find(User, And(User.username == username,
+                                      User.role == u'admin')).one()
 
     if not security.check_password(password, admin_user.password, admin_user.salt):
         log.debug("Admin login: Invalid password")
         return False, None, None
-    else:
-        log.debug("Admin: Authorized admin %s" % username)
-        admin_user.last_login = utility.datetime_now()
-        store.commit() # the transact was read only! on success we apply the commit()
-        return username, admin_user.state, admin_user.password_change_needed
+
+    log.debug("Admin login: Authorized admin")
+    admin_user.last_login = utility.datetime_now()
+    store.commit() # the transact was read only! on success we apply the commit()
+    return username, admin_user.state, admin_user.password_change_needed
 
 class AuthenticationHandler(BaseHandler):
     """
@@ -294,7 +282,6 @@ class AuthenticationHandler(BaseHandler):
 
         self.write(auth_answer)
 
-
     @unauthenticated
     @inlineCallbacks
     def post(self):
@@ -312,7 +299,7 @@ class AuthenticationHandler(BaseHandler):
             yield utility.deferred_sleep(delay)
 
         if role not in ['admin', 'wb', 'receiver']:
-            raise errors.InvalidInputFormat("Authentication role %s" % str(role) )
+            raise errors.InvalidInputFormat("Denied login request: invalid role requested")
 
         if get_tor2web_header(self.request.headers):
             if not accept_tor2web(role):
@@ -321,72 +308,34 @@ class AuthenticationHandler(BaseHandler):
             else:
                 log.debug("Accepted login request on Tor2web for role '%s'" % role)
 
-        # Then verify credential, if the channel shall be trusted
-        #
-        # Here is created the session struct, is now explicit in the
-        # three roles, because 'user_id' has a different meaning for every role
-
         if role == 'admin':
-
-            authorized_username, status, pcn = yield login_admin(username, password)
-            if authorized_username is False:
-                GLSetting.failed_login_attempts += 1
-                raise errors.InvalidAuthRequest
-            new_session_id = self.generate_session(authorized_username, role, status)
-
-            auth_answer = {
-                'role': 'admin',
-                'session_id': new_session_id,
-                'user_id': unicode(authorized_username),
-                'session_expiration': int(GLSetting.sessions[new_session_id].getTime()),
-                'status': status,
-                'password_change_needed': pcn
-            }
+            user_id, status, pcn = yield login_admin(username, password)
 
         elif role == 'wb':
+            user_id = yield login_wb(password)
+            status = 'enabled'
+            pcn = False
 
-            wbtip_id = yield login_wb(password)
-            if wbtip_id is False:
-                GLSetting.failed_login_attempts += 1
-                raise errors.InvalidAuthRequest
+        else:  # role == 'receiver'
+            user_id, status, pcn = yield login_receiver(username, password)
 
-            new_session_id = self.generate_session(wbtip_id, role, 'enabled')
-
-            auth_answer = {
-                'role': 'admin',
-                'session_id': new_session_id,
-                'user_id': unicode(wbtip_id),
-                'session_expiration': int(GLSetting.sessions[new_session_id].getTime()),
-                'status': 'enabled',
-                'password_change_needed': False
-            }
-
-        elif role == 'receiver':
-
-            receiver_id, status, pcn = yield login_receiver(username, password)
-            if receiver_id is False:
-                GLSetting.failed_login_attempts += 1
-                raise errors.InvalidAuthRequest
-
-            new_session_id = self.generate_session(receiver_id, role, status)
-
-            auth_answer = {
-                'role': 'receiver',
-                'session_id': new_session_id,
-                'user_id': unicode(receiver_id),
-                'session_expiration': int(GLSetting.sessions[new_session_id].getTime()),
-                'status': status,
-                'password_change_needed': pcn
-            }
-
-        else:
-
-            log.err("Invalid role proposed to authenticate!")
+        if user_id is False:
+            GLSetting.failed_login_attempts += 1
             raise errors.InvalidAuthRequest
+
+        session_id = self.generate_session(user_id, role, status)
+
+        auth_answer = {
+            'role': role,
+            'session_id': session_id,
+            'user_id': user_id,
+            'session_expiration': int(GLSetting.sessions[session_id].getTime()),
+            'status': status,
+            'password_change_needed': pcn
+        }
 
         yield self.uniform_answers_delay()
         self.write(auth_answer)
-
 
     @authenticated('*')
     def delete(self):

@@ -59,7 +59,7 @@ angular.module('resourceServices.authentication', [])
               self.id = response.session_id;
               self.user_id = response.user_id;
               self.username = username;
-              self.role = role;
+              self.role = response.role;
               self.session = response.session;
               self.state = response.state;
               self.password_change_needed = response.password_change_needed;
@@ -68,17 +68,17 @@ angular.module('resourceServices.authentication', [])
 
               setExpiration(response.session_expiration);
 
-              if (role == 'admin') {
+              if (self.role == 'admin') {
                   auth_landing_page = "/admin/landing";
               }
-              if (role == 'receiver') {
+              if (self.role == 'receiver') {
                 if (self.password_change_needed) {
                     auth_landing_page = "/receiver/firstlogin";
                 } else {
                     auth_landing_page = "/receiver/tips";
                 }
               }
-              if (role == 'wb') {
+              if (self.role == 'wb') {
                 auth_landing_page = "/status";
               }
 
@@ -300,8 +300,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
 
             if (receiver.configuration == 'default') {
-              //self.receivers_selected[receiver.id] = self.current_context.select_all_receivers != false;
-            } else if (receiver.configuration == 'hidden') {
+              self.receivers_selected[receiver.id] = self.current_context.select_all_receivers != false;
+            } else if (receiver.configuration == 'forcefully_selected') {
               self.receivers_selected[receiver.id] = true;
             }
           }
@@ -801,7 +801,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.receivers = [];
         context.file_max_download = 3;
         context.tip_max_access = 500;
-        context.selectable_receiver = true;
         context.select_all_receivers = true;
         context.tip_timetolive = 15;
         context.submission_timetolive = 48;
@@ -885,6 +884,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.contexts = [];
         receiver.description = '';
         receiver.mail_address = '';
+        receiver.unsecure_mail_address = '';
         receiver.can_delete_submission = false;
         receiver.postpone_superpower = false;
         receiver.tip_notification = true;

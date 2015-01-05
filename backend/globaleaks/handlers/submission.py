@@ -61,33 +61,8 @@ def db_create_whistleblower_tip(store, submission_desc):
 def create_whistleblower_tip(*args):
     return db_create_whistleblower_tip(*args)
 
-
-# Remind: has a store between argumentos because called by a @ŧransact
 def import_receivers(store, submission, receiver_id_list, required=False):
     context = submission.context
-
-    # As first we check if Context has some policies
-    if not context.selectable_receiver:
-        for receiver in context.receivers:
-            # Skip adding receivers that don't have PGP enabled if encrypted only.
-            if not GLSetting.memory_copy.allow_unencrypted and \
-                    receiver.gpg_key_status != u'Enabled':
-                continue
-            # Add only the receiver not yet associated in Many-to-Many
-            check = store.find(ReceiverInternalTip,
-                ( ReceiverInternalTip.receiver_id == receiver.id,
-                  ReceiverInternalTip.internaltip_id == submission.id) ).one()
-            if not check:
-                submission.receivers.add(receiver)
-
-        reloaded_submission = store.find(InternalTip, InternalTip.id == submission.id).one()
-        log.debug("Context [%s] has a fixed receivers corpus #%d SID = %s" %
-                (reloaded_submission.context.name[GLSetting.memory_copy.default_language],
-                 reloaded_submission.receivers.count(), submission.id) )
-        return
-
-    # Before has been handled the 'fixed receiver corpus',
-    # Below we handle receiver personal selection
 
     # Clean the previous list of selected Receiver
     for prevrec in submission.receivers:

@@ -163,7 +163,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
             rcvrs_ids.append(rcvr['id'])
 
         self.dummyContext['receivers'] = rcvrs_ids
-        self.dummyContext['selectable_receiver'] = True
 
         for attrname in models.Context.localized_strings:
             self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
@@ -208,7 +207,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
             rcvrs_ids.append(rcvr['id'])
 
         self.dummyContext['receivers'] = rcvrs_ids
-        self.dummyContext['selectable_receiver'] = True
 
         for attrname in models.Context.localized_strings:
             self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
