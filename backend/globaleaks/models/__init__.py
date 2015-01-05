@@ -631,6 +631,21 @@ class Receiver(Model):
                  'message_notification', 'postpone_superpower']
 
 
+class EventLogs(Model):
+    """
+    Class used to keep track of the notification to be display to the receiver
+    """
+
+    description = JSON()
+    title = Unicode()
+    receiver_id = Unicode()
+
+    # XXX This can be used to keep track mail reliability ??
+    mail_sent = Bool()
+
+
+
+
 class Field(Model):
     label = JSON(validator=shortlocal_v)
     description = JSON(validator=longlocal_v)
@@ -894,6 +909,8 @@ Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
 
 Message.receivertip = Reference(Message.receivertip_id, ReceiverTip.id)
 
+EventLogs.receiver = Reference(EventLogs.receiver_id, Receiver.id)
+
 Field.children = ReferenceSet(
     Field.id,
     FieldField.parent_id,
@@ -921,4 +938,4 @@ Receiver.contexts = ReferenceSet(
 models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment,
           InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile,
           Notification, Message, Field, FieldField, Step,
-          Stats, Anomalies, ApplicationData]
+          Stats, Anomalies, ApplicationData, EventLogs ]
