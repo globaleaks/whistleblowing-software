@@ -37,6 +37,7 @@ def receiver_serialize_receiver(receiver, language):
         "comment_notification" : receiver.comment_notification,
         "message_notification" : receiver.message_notification,
         "mail_address": receiver.mail_address,
+        "ping_mail_address": receiver.ping_mail_address,
         "contexts": [c.id for c in receiver.contexts],
         "password": u'',
         "old_password": u'',

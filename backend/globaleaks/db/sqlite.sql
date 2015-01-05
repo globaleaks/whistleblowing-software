@@ -62,7 +62,7 @@ CREATE TABLE context (
     show_small_cards INTEGER NOT NULL,
     show_receivers INTEGER NOT NULL,
     enable_private_messages INTEGER NOT NULL,
-    presentation_order INTEGER NOT NULL,
+    presentation_order INTEGER,
     PRIMARY KEY (id)
 );
 
@@ -206,13 +206,13 @@ CREATE TABLE receiver (
     tip_notification INTEGER NOT NULL,
     message_notification INTEGER NOT NULL,
     mail_address VARCHAR NOT NULL,
-    unsecure_mail_address VARCHAR,
+    ping_mail_address VARCHAR,
     gpg_key_status VARCHAR NOT NULL CHECK (gpg_key_status IN ('Disabled', 'Enabled')),
     gpg_key_info VARCHAR,
     gpg_key_fingerprint VARCHAR,
     gpg_key_armor VARCHAR,
     gpg_enable_notification INTEGER,
-    presentation_order INTEGER NOT NULL,
+    presentation_order INTEGER,
     PRIMARY KEY (id),
     FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE
 );

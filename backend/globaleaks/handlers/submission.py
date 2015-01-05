@@ -77,7 +77,7 @@ def import_receivers(store, submission, receiver_id_list, required=False):
 
     if required and (not len(receiver_id_list)):
         log.err("Receivers required to be selected, not empty")
-        raise errors.SubmissionFailFields("Needed almost one Receiver selected [1]")
+        raise errors.SubmissionFailFields("Needed almost one Receiver selected")
 
     if context.maximum_selectable_receivers and \
                     len(receiver_id_list) > context.maximum_selectable_receivers:
@@ -106,7 +106,7 @@ def import_receivers(store, submission, receiver_id_list, required=False):
 
         log.debug("+receiver [%s] In tip (%s) #%d" %\
                 (receiver.name, submission.id, submission.receivers.count() ) )
-    
+   
     if required and submission.receivers.count() == 0:
         log.err("Receivers required to be selected, not empty")
         raise errors.SubmissionFailFields("Needed at least one Receiver selected [2]")

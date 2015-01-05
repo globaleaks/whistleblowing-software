@@ -578,7 +578,7 @@ class Receiver(Model):
     gpg_enable_notification = Bool()
 
     mail_address = Unicode()
-    unsecure_mail_address = Unicode()
+    ping_mail_address = Unicode()
 
     # Admin chosen options
     can_delete_submission = Bool()
@@ -602,7 +602,7 @@ class Receiver(Model):
     _configuration = [u'default', u'forcefully_selected', u'unselectable']
     _gpg_types = [u'Disabled', u'Enabled']
 
-    unicode_keys = ['name', 'mail_address', 'configuration']
+    unicode_keys = ['name', 'mail_address', 'ping_mail_address', 'configuration']
     localized_strings = ['description']
     int_keys = ['presentation_order']
     bool_keys = ['can_delete_submission', 'tip_notification',

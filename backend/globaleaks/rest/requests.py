@@ -61,7 +61,7 @@ receiverReceiverDesc = {
     'old_password': unicode,
     # 'username' : unicode, XXX at creation time is the same of mail_address
     'mail_address': email_regexp,
-    'unsecure_mail_address': email_regexp_or_empty,
+    'ping_mail_address': email_regexp_or_empty,
     'description': unicode,
     'gpg_key_armor': unicode,
     'gpg_key_remove': bool,

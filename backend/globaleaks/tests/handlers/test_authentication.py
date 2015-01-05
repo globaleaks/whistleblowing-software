@@ -84,7 +84,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_successful_receiver_login(self):
         handler = self.request({
-           'username': self.dummyReceiverUser_1['username'],
+           'username': self.dummyReceiverUser_1['id'],
            'password': helpers.VALID_PASSWORD1,
            'role': 'receiver'
         })
@@ -95,7 +95,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_accept_receiver_login_in_tor2web(self):
         handler = self.request({
-           'username': self.dummyReceiverUser_1['username'],
+           'username': self.dummyReceiverUser_1['id'],
            'password': helpers.VALID_PASSWORD1,
            'role': 'receiver'
         }, headers={'X-Tor2Web': 'whatever'})
@@ -106,7 +106,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     def test_deny_receiver_login_in_tor2web(self):
         handler = self.request({
-           'username': self.dummyReceiverUser_1['username'],
+           'username': self.dummyReceiverUser_1['id'],
            'password': helpers.VALID_PASSWORD1,
            'role': 'receiver'
         }, headers={'X-Tor2Web': 'whatever'})
@@ -181,7 +181,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_successful_receiver_logout(self):
         # Login
         handler = self.request({
-            'username': self.dummyReceiverUser_1['username'],
+            'username': self.dummyReceiverUser_1['id'],
             'password': helpers.VALID_PASSWORD1,
             'role': 'receiver'
         })
@@ -292,7 +292,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_failed_login_counter(self):
         handler = self.request({
-            'username': self.dummyReceiverUser_1['username'],
+            'username': self.dummyReceiverUser_1['id'],
             'password': 'INVALIDPASSWORD',
             'role': 'receiver'
         })
@@ -314,7 +314,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_bruteforce_login_protection(self):
 
         handler = self.request({
-            'username': self.dummyReceiverUser_1['username'],
+            'username': self.dummyReceiverUser_1['id'],
             'password': 'INVALIDPASSWORD',
             'role': 'receiver'
         })

@@ -219,7 +219,7 @@ def admin_serialize_receiver(receiver, language):
         "username": receiver.user.username,
         "user_id": receiver.user.id,
         "mail_address": receiver.mail_address,
-        "unsecure_mail_address": receiver.unsecure_mail_address,
+        "ping_mail_address": receiver.ping_mail_address,
         "password": u"",
         "state": receiver.user.state,
         "configuration": receiver.configuration,
