@@ -182,27 +182,6 @@ class Context(Model):
     """
     This model keeps track of specific contexts settings.
     """
-    # steps = [
-    #     {
-    #         'name': local_dict,
-    #         'type': 'fields',
-    #         'fields': [field_group_id1,
-    #                    field_group_id2]
-    #     },
-    #     {
-    #         'name': local_dict,
-    #         'type': 'receiver',
-    #         'options': {
-    #             'show_small_receiver': True,
-    #             'selectable_receiver': True,
-    #             'show_small_cards': False,
-    #             'maximum_selectable_receivers': 10,
-    #             'select_all_receivers': True
-    #         }
-    #     }
-    # ]
-
-    selectable_receiver = Bool()
     show_small_cards = Bool()
     show_receivers = Bool()
     maximum_selectable_receivers = Int()
@@ -239,7 +218,7 @@ class Context(Model):
     int_keys = [ 'tip_max_access', 'file_max_download',
                  'maximum_selectable_receivers',
                  'presentation_order' ]
-    bool_keys = [ 'selectable_receiver', 'select_all_receivers',
+    bool_keys = [ 'select_all_receivers',
                   'postpone_superpower', 'can_delete_submission',
                   'show_small_cards', 'show_receivers', "enable_private_messages" ]
 
@@ -598,8 +577,8 @@ class Receiver(Model):
     gpg_key_armor = Unicode()
     gpg_enable_notification = Bool()
 
-    # Can be changed and can be different from username!
     mail_address = Unicode()
+    unsecure_mail_address = Unicode()
 
     # Admin chosen options
     can_delete_submission = Bool()
@@ -620,7 +599,7 @@ class Receiver(Model):
 
     presentation_order = Int()
 
-    _configuration = [u'default', u'hidden', u'unselectable']
+    _configuration = [u'default', u'forcefully_selected', u'unselectable']
     _gpg_types = [u'Disabled', u'Enabled']
 
     unicode_keys = ['name', 'mail_address', 'configuration']

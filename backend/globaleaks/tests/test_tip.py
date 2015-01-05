@@ -56,7 +56,6 @@ class TTip(helpers.TestGL):
         'tip_max_access': 2, 
         'tip_timetolive': 200,
         'file_max_download': 2,
-        'selectable_receiver': False,
         'receivers': [],
         'submission_timetolive': 100,
         'select_all_receivers': True,

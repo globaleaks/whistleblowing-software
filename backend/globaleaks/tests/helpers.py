@@ -372,8 +372,10 @@ class TestGLWithPopulatedDB(TestGL):
 
         # fill_data/create_receiver
         self.dummyReceiver_1 = yield create_receiver(self.dummyReceiver_1, 'en')
+        self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['user_id']
         receivers_ids.append(self.dummyReceiver_1['id'])
         self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2, 'en')
+        self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['user_id']
         receivers_ids.append(self.dummyReceiver_2['id'])
 
         # fill_data/create_context
@@ -738,7 +740,6 @@ class MockDict():
             'name': u'Already localized name',
             'description': u'Already localized desc',
             'steps': self.dummySteps,
-            'selectable_receiver': False,
             'select_all_receivers': True,
             'tip_max_access': 10,
             # tip_timetolive is expressed in days

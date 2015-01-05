@@ -24,7 +24,7 @@ class TestSessionUpdateOnUnauthRequests(helpers.TestHandlerWithPopulatedDB):
     _handler = ClassToTestUnauthenticatedDecorator
 
     @inlineCallbacks
-    def test_001_successful_session_update_on_unauth_request(self):
+    def test_successful_session_update_on_unauth_request(self):
         session = authentication.GLSession('admin', 'admin', 'enabled')
         date1 = session.getTime()
         authentication.reactor.advance(FUTURE)
@@ -37,7 +37,7 @@ class TestSessionUpdateOnAuthRequests(helpers.TestHandlerWithPopulatedDB):
     _handler = ClassToTestAuthenticatedDecorator
 
     @inlineCallbacks
-    def test_001_successful_session_update_on_auth_request(self):
+    def test_successful_session_update_on_auth_request(self):
         session = authentication.GLSession('admin', 'admin', 'enabled')
         date1 = session.getTime()
         authentication.reactor.advance(FUTURE)
@@ -50,7 +50,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     _handler = authentication.AuthenticationHandler
 
     @inlineCallbacks
-    def test_001_successful_admin_login(self):
+    def test_successful_admin_login(self):
         handler = self.request({
            'username': 'admin',
            'password': 'globaleaks',
@@ -61,7 +61,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
     @inlineCallbacks
-    def test_002_accept_admin_login_in_tor2web(self):
+    def test_accept_admin_login_in_tor2web(self):
         handler = self.request({
             'username': 'admin',
             'password': 'globaleaks',
@@ -72,7 +72,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
-    def test_003_deny_admin_login_in_tor2web(self):
+    def test_deny_admin_login_in_tor2web(self):
         handler = self.request({
             'username': 'admin',
             'password': 'globaleaks',
@@ -82,7 +82,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
-    def test_004_successful_receiver_login(self):
+    def test_successful_receiver_login(self):
         handler = self.request({
            'username': self.dummyReceiverUser_1['username'],
            'password': helpers.VALID_PASSWORD1,
@@ -93,7 +93,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
     @inlineCallbacks
-    def test_005_accept_receiver_login_in_tor2web(self):
+    def test_accept_receiver_login_in_tor2web(self):
         handler = self.request({
            'username': self.dummyReceiverUser_1['username'],
            'password': helpers.VALID_PASSWORD1,
@@ -104,7 +104,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
-    def test_006_deny_receiver_login_in_tor2web(self):
+    def test_deny_receiver_login_in_tor2web(self):
         handler = self.request({
            'username': self.dummyReceiverUser_1['username'],
            'password': helpers.VALID_PASSWORD1,
@@ -115,7 +115,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
-    def test_007_successful_whistleblower_login(self):
+    def test_successful_whistleblower_login(self):
         handler = self.request({
            'username': '',
            'password': self.dummyWBTip,
@@ -126,7 +126,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
     @inlineCallbacks
-    def test_008_accept_whistleblower_login_in_tor2web(self):
+    def test_accept_whistleblower_login_in_tor2web(self):
         handler = self.request({
            'username': '',
            'password': self.dummyWBTip,
@@ -137,7 +137,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
-    def test_009_deny_whistleblower_login_in_tor2web(self):
+    def test_deny_whistleblower_login_in_tor2web(self):
         handler = self.request({
            'username': '',
            'password': self.dummyWBTip,
@@ -147,7 +147,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
-    def test_010_successful_admin_logout(self):
+    def test_successful_admin_logout(self):
         # Login
         handler = self.request({
             'username': 'admin',
@@ -178,7 +178,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
     @inlineCallbacks
-    def test_011_successful_receiver_logout(self):
+    def test_successful_receiver_logout(self):
         # Login
         handler = self.request({
             'username': self.dummyReceiverUser_1['username'],
@@ -210,7 +210,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
 
     @inlineCallbacks
-    def test_012_successful_whistleblower_logout(self):
+    def test_successful_whistleblower_logout(self):
         # Login
         handler = self.request({
             'username': '',
@@ -240,7 +240,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
-    def test_013_invalid_admin_login_wrong_password(self):
+    def test_invalid_admin_login_wrong_password(self):
         handler = self.request({
            'username': 'admin',
            'password': 'INVALIDPASSWORD',
@@ -250,7 +250,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertFailure(d, errors.InvalidAuthRequest)
         return d
 
-    def test_014_invalid_receiver_login_wrong_password(self):
+    def test_invalid_receiver_login_wrong_password(self):
         handler = self.request({
            'username': 'scemo',
            'password': 'INVALIDPASSWORD',
@@ -260,7 +260,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertFailure(d, errors.InvalidAuthRequest)
         return d
 
-    def test_015_invalid_whistleblower_login_wrong_receipt(self):
+    def test_invalid_whistleblower_login_wrong_receipt(self):
         handler = self.request({
            'username': '',
            'password': 'INVALIDPASSWORD',
@@ -270,7 +270,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertFailure(d, errors.InvalidAuthRequest)
         return d
 
-    def test_016_invalid_input_format_missing_role(self):
+    def test_invalid_input_format_missing_role(self):
         handler = self.request({
            'username': '',
            'password': '',
@@ -279,7 +279,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertFailure(d, errors.InvalidInputFormat)
         return d
 
-    def test_017_invalid_input_format_wrong_role(self):
+    def test_invalid_input_format_wrong_role(self):
         handler = self.request({
            'username': 'ratzinger',
            'password': '',
@@ -290,7 +290,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         return d
 
     @inlineCallbacks
-    def test_018_failed_login_counter(self):
+    def test_failed_login_counter(self):
         handler = self.request({
             'username': self.dummyReceiverUser_1['username'],
             'password': 'INVALIDPASSWORD',
@@ -311,7 +311,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(GLSetting.failed_login_attempts, failed_login)
 
     @inlineCallbacks
-    def test_019_bruteforce_login_protection(self):
+    def test_bruteforce_login_protection(self):
 
         handler = self.request({
             'username': self.dummyReceiverUser_1['username'],
