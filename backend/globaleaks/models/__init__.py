@@ -639,6 +639,7 @@ class EventLogs(Model):
     description = JSON()
     title = Unicode()
     receiver_id = Unicode()
+    event_reference = JSON()
 
     # XXX This can be used to keep track mail reliability ??
     mail_sent = Bool()

@@ -10,7 +10,7 @@ from storm.expr import Desc
 
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node, EventLogs
 from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, gpg_options_parse
 from globaleaks.settings import transact, transact_ro, GLSetting
@@ -48,6 +48,22 @@ def receiver_serialize_receiver(receiver, language):
         ret_dict['contexts'].append(context.id)
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
+
+def serialize_event(evnt):
+    """
+    At the moment is not important going in event,description to dig into the
+    details (but will be a nice improvement provide the beginning of the comment,
+    or the filename/filetype, etc)
+    """
+
+    ret_dict = {
+        'id': evnt.id,
+        'mail_sent': evnt.mail_sent,
+        'title': evnt.title,
+    }
+    return ret_dict
+
+
 
 @transact_ro
 def get_receiver_settings(store, receiver_id, language):
@@ -235,3 +251,62 @@ class TipsCollection(BaseHandler):
 
         self.set_status(200)
         self.finish(answer)
+
+@transact
+def get_receiver_notif(store, receiver_id, language):
+    """
+    The returned struct contain two list, recent activities
+    (latest files, comments, "activities" in general), and
+    recent tips.
+    """
+    eventlst = store.find(EventLogs, EventLogs.receiver_id == receiver_id)
+    eventlst.order_by(Desc(EventLogs.creation_date))
+
+    ret = {
+        'activities': [],
+        'tips': []
+    }
+    for evnt in eventlst:
+
+        if evnt.event_reference['kind'] != u'Tip':
+            ret['activities'].append(serialize_event(evnt))
+        else:
+            ret['tips'].append(serialize_event(evnt))
+
+    return ret
+
+@transact
+def delete_receiver_notif(store, receiver_id):
+
+    te = store.find(EventLogs, EventLogs.receiver_id == receiver_id)
+    log.debug("Removing %d for receiver %s" % (
+        te.count(),
+        receiver_id
+    ))
+
+class NotificationCollection(BaseHandler):
+    """
+    This interface return a list of the notification for the receiver,
+    is used in the landing page, and want be a list of the recent
+    activities for the journalist/rcvr.
+    """
+
+    @transport_security_check('receiver')
+    @authenticated('receiver')
+    @inlineCallbacks
+    def get(self):
+
+        display_event = yield get_receiver_notif(self.current_user.user_id, self.request.language)
+        print "Get display_events (tip %d) (mish %d) " % (
+            len(display_event['tips']),
+            len(display_event['activities'])
+        )
+        self.set_status(200) # Success
+        self.finish(display_event)
+
+    @inlineCallbacks
+    def delete(self):
+        # support DELETE /receiver/notification/(activities|tips) for mass-selective delete ?
+
+        yield delete_receiver_notif(self.current_user.user_id)
+        self.set_status(202) # Updated

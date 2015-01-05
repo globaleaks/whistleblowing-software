@@ -220,6 +220,7 @@ CREATE TABLE receiver (
 CREATE TABLE eventlogs (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
+    event_reference VARCHAR NOT NULL,
     description VARCHAR NOT NULL,
     title VARCHAR NOT NULL,
     receiver_id VARCHAR NOT NULL,
