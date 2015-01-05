@@ -75,7 +75,7 @@ angular.module('resourceServices.authentication', [])
                 if (self.password_change_needed) {
                     auth_landing_page = "/receiver/firstlogin";
                 } else {
-                    auth_landing_page = "/receiver/tips";
+                    auth_landing_page = "/receiver/activities";
                 }
               }
               if (role == 'wb') {
@@ -570,6 +570,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   factory('ReceiverTips', ['$resource', function($resource) {
     return $resource('/receiver/tips', {}, {'update': {method: 'PUT'}});
+}]).
+  factory('ReceiverNotification', ['$resource', function($resource) {
+    /* TODO: need to be supported DELETE */
+    return $resource('/receiver/notification');
 }]).
   factory('AdminNode', ['$resource', function($resource) {
     return $resource('/admin/node', {},
