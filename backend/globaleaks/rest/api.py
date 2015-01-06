@@ -84,7 +84,7 @@ spec = [
 
     (r'/receiver/tips', receiver.TipsCollection),
 
-    (r'/receiver/notification', receiver.NotificationCollection),
+    (r'/receiver/notifications', receiver.NotificationCollection),
 
     ## Admin Handlers ##
     (r'/admin/node', admin.NodeInstance),

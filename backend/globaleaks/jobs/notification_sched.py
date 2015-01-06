@@ -51,7 +51,7 @@ def serialize_internalfile(ifile, rfile_id):
 # Note: is used tip.serialize_comment until more information are not
 # requested in Comment notification template (like some Tip info)
 
-class EventLogger:
+class EventLogger(object):
     """
     This is the base class, is derived in
     TipEventLogger, CommentEventLogger, MessageEventLogger and FileEventLogger
@@ -73,7 +73,7 @@ class EventLogger:
     # moment they are not implemented, and therefore is a classvariable
     plugin = getattr(notification, GLSetting.notification_plugins[0])()
 
-    def __init__(self, language=GLSetting.memory_copy.default_language):
+    def __init__(self, language):
         self.events = {}
         self.language = language
 
@@ -92,28 +92,28 @@ class EventLogger:
                 receiver.gpg_key_status == u'Enabled' else u'plaintext_message'
             if not receiver.message_notification:
                 log.debug("Receiver %s has %s notification disabled" %
-                          (receiver.user.username, self.trigger) )
+                          (receiver.user.username, self.trigger))
             return receiver.message_notification
         elif self.trigger == 'Tip':
             self.template_type = u'encrypted_tip' if \
                 receiver.gpg_key_status == u'Enabled' else u'plaintext_tip'
             if not receiver.tip_notification:
                 log.debug("Receiver %s has %s notification disabled" %
-                          (receiver.user.username, self.trigger) )
+                          (receiver.user.username, self.trigger))
             return receiver.tip_notification
         elif self.trigger == 'Comment':
             self.template_type = u'encrypted_comment' if \
                 receiver.gpg_key_status == u'Enabled' else u'plaintext_comment'
             if not receiver.comment_notification:
                 log.debug("Receiver %s has %s notification disabled" %
-                          (receiver.user.username, self.trigger) )
+                          (receiver.user.username, self.trigger))
             return receiver.comment_notification
         elif self.trigger == 'File':
             self.template_type = u'encrypted_file' if \
                 receiver.gpg_key_status == u'Enabled' else u'plaintext_file'
             if not receiver.file_notification:
                 log.debug("Receiver %s has %s notification disabled" %
-                          (receiver.user.username, self.trigger) )
+                          (receiver.user.username, self.trigger))
             return receiver.file_notification
         else:
             raise Exception("self.trigger of unexpected kind ? %s" % self.trigger)
@@ -162,7 +162,7 @@ class TipEventLogger(EventLogger):
         )
 
         if not_notified_tips.count():
-            log.debug("Receiver Tips found to be notified: %d" % not_notified_tips.count() )
+            log.debug("Receiver Tips found to be notified: %d" % not_notified_tips.count())
 
         for receiver_tip in not_notified_tips:
 
@@ -183,8 +183,8 @@ class TipEventLogger(EventLogger):
 
             # append the event (use the self.* and the iteration serialization):
             self.append_event(trigger_info=tip_desc, 
-                    trigger_parent=None, 
-                    event_id=tip_desc['id'] )
+                              trigger_parent=None, 
+                              event_id=tip_desc['id'])
 
 
 # TODO remind that when do_mail is False:
@@ -204,7 +204,7 @@ class MessageEventLogger(EventLogger):
         )
 
         if not_notified_messages.count():
-            log.debug("Messages found to be notified: %d" % not_notified_messages.count() )
+            log.debug("Messages found to be notified: %d" % not_notified_messages.count())
 
         for message in not_notified_messages:
 
@@ -235,7 +235,7 @@ class MessageEventLogger(EventLogger):
             # append the event based on the self.* and the iteration serialization:
             self.append_event(trigger_info=message_desc, 
                     trigger_parent=tip_desc, 
-                    event_id=message_desc['id'] )
+                    event_id=message_desc['id'])
 
 class CommentEventLogger(EventLogger):
 
@@ -252,7 +252,7 @@ class CommentEventLogger(EventLogger):
 
         if not_notified_comments.count():
             log.debug("Comments found to be notified: %d" %
-                      not_notified_comments.count() )
+                      not_notified_comments.count())
 
         for comment in not_notified_comments:
 
@@ -272,8 +272,8 @@ class CommentEventLogger(EventLogger):
             comment.mark = models.Comment._marker[1] # 'notified'
 
             # for every comment, iterate on the associated receiver(s)
-            log.debug("Comments from %s - Receiver(s) %d" % (
-                comment.author, comment.internaltip.receivers.count() ) )
+            log.debug("Comments from %s - Receiver(s) %d" % \
+                      (comment.author, comment.internaltip.receivers.count()))
 
             for receiver in comment.internaltip.receivers:
 
@@ -291,7 +291,7 @@ class CommentEventLogger(EventLogger):
 
                 self.append_event(trigger_info=comment_desc, 
                         trigger_parent=rtip_desc, 
-                        event_id=comment_desc['id'] )
+                        event_id=comment_desc['id'])
 
 
 class FileEventLogger(EventLogger):
@@ -308,7 +308,7 @@ class FileEventLogger(EventLogger):
         )
 
         if not_notified_rfiles.count():
-            log.debug("new [Files✖Receiver] found to be notified: %d" % not_notified_rfiles.count() )
+            log.debug("new [Files✖Receiver] found to be notified: %d" % not_notified_rfiles.count())
 
         for rfile in not_notified_rfiles:
 
@@ -329,7 +329,7 @@ class FileEventLogger(EventLogger):
 
             self.append_event(trigger_info=file_desc, 
                     trigger_parent=rtip_desc,
-                    event_id=file_desc['receiverfile_id'] )
+                    event_id=file_desc['receiverfile_id'])
 
 
 
@@ -552,7 +552,7 @@ class NotificationSchedule(GLJob):
             if rfile.receiver_tip.mark == models.ReceiverTip._marker[0]: # 'not notified'
                 rfile.mark = models.ReceiverFile._marker[4] # 'skipped'
                 log.debug("Skipped notification of %s (for %s) because Tip not yet notified" %
-                          (rfile.internalfile.name, rfile.receiver.name) )
+                          (rfile.internalfile.name, rfile.receiver.name))
                 store.commit()
                 continue
     """
