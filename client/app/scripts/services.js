@@ -884,7 +884,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.contexts = [];
         receiver.description = '';
         receiver.mail_address = '';
-        receiver.unsecure_mail_address = '';
+        receiver.ping_mail_address = '';
         receiver.can_delete_submission = false;
         receiver.postpone_superpower = false;
         receiver.tip_notification = true;
