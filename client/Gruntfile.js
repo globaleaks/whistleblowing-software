@@ -143,8 +143,7 @@ module.exports = function(grunt) {
         options: {
           // Static text.
           question: 'WARNING:\n'+
-                    'this task may cause translations loss and should be executed only on master branche so that only\n' +
-                    'translation sentences are kept in sync with the ones that need to be delivered in next release package.\n\n' +
+                    'this task may cause translations loss and should be executed only on master branch.\n\n' +
                     'Are you sure you want to proceed (Y/N) ?',
           continue: function(answer) {
             return answer === 'Y';
