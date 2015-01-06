@@ -44,10 +44,11 @@ var receiver = {
   gpg_key_remove: false,
   gpg_key_status: "ignored",
   mail_address: "receiver1@antani.gov", // used 'Receiver N' for population
+  ping_mail_address: "",
   unsecure_mail_address: "unsecure@live.com",
   message_notification: false,
   name: "receiver1@antani.gov", // used 'receiverN@antani.gov' for population
-  password: "receiver1@antani.gov", // used 'receiverN@antani.gov' for population
+  password: "ringobongos3cur1ty",
   postpone_superpower: true,
   presentation_order: 0,
   tip_notification: false,
@@ -333,7 +334,6 @@ describe('POST /admin/receiver', function () {
 
         var newObject = JSON.parse(JSON.stringify(receiver));
         newObject.mail_address = 'receiver' + i + '@antani.gov';
-        newObject.password = newObject.mail_address;
         newObject.name = 'Receiver ' + i;
         newObject.contexts = contexts_ids;
         newObject.presentation_order = i;
