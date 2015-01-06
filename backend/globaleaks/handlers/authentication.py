@@ -217,38 +217,41 @@ def login_receiver(store, username, password):
 
     login_receivers returns a tuple (username, state, pcn)
     """
-    receiver_user = store.find(User, And(User.id == username,
-                                         User.role == u'receiver',
-                                         User.state != u'disabled')).one()
+    receiver = store.find(Receiver, (Receiver.id == username)).one()
 
-    if not receiver_user or \
-            not security.check_password(password, receiver_user.password, receiver_user.salt):
+    if not receiver or \
+            receiver.user.role != u'receiver' or \
+            receiver.user.state == u'disabled' or \
+            not security.check_password(password,
+                                        receiver.user.password,
+                                        receiver.user.salt):
         log.debug("Receiver login: Invalid credentials")
         return False, None, None
 
     log.debug("Receiver login: Authorized receiver")
-    receiver_user.last_login = utility.datetime_now()
-    receiver = store.find(Receiver, (Receiver.user_id == receiver_user.id)).one()
+    receiver.user.last_login = utility.datetime_now()
     store.commit() # the transact was read only! on success we apply the commit()
-    return receiver.id, receiver_user.state, receiver_user.password_change_needed
+    return receiver.id, receiver.user.state, receiver.user.password_change_needed
 
 @transact_ro  # read only transact; manual commit on success needed
 def login_admin(store, username, password):
     """
     login_admin returns a tuple (username, state, pcn)
     """
-    admin_user = store.find(User, And(User.username == username,
-                                      User.role == u'admin')).one()
+    user = store.find(User, And(User.username == username,
+                                User.role == u'admin',
+                                User.state != u'disabled')).one()
 
-    if not admin_user or \
-            not security.check_password(password, admin_user.password, admin_user.salt):
-        log.debug("Admin login: Invalid password")
+    if not user or not security.check_password(password,
+                                               user.password,
+                                               user.salt):
+        log.debug("Admin login: Invalid credentials")
         return False, None, None
 
     log.debug("Admin login: Authorized admin")
-    admin_user.last_login = utility.datetime_now()
+    user.last_login = utility.datetime_now()
     store.commit() # the transact was read only! on success we apply the commit()
-    return username, admin_user.state, admin_user.password_change_needed
+    return user.username, user.state, user.password_change_needed
 
 class AuthenticationHandler(BaseHandler):
     """
@@ -267,7 +270,7 @@ class AuthenticationHandler(BaseHandler):
         """
         session = GLSession(user_id, role, status)
         self.session_id = session.id
-        return self.session_id
+        return session
 
     @authenticated('*')
     def get(self):
@@ -278,8 +281,10 @@ class AuthenticationHandler(BaseHandler):
         auth_answer = {
             'session_id': self.current_user.id,
             'role': self.current_user.user_role,
-            'user_id': unicode(self.current_user.user_id),
+            'user_id': self.current_user.user_id,
             'session_expiration': int(self.current_user.getTime()),
+            'status': self.current_user.user_status,
+            'password_change_needed': False
         }
 
         self.write(auth_answer)
@@ -325,14 +330,14 @@ class AuthenticationHandler(BaseHandler):
             GLSetting.failed_login_attempts += 1
             raise errors.InvalidAuthRequest
 
-        session_id = self.generate_session(user_id, role, status)
+        session = self.generate_session(user_id, role, status)
 
         auth_answer = {
             'role': role,
-            'session_id': session_id,
-            'user_id': user_id,
-            'session_expiration': int(GLSetting.sessions[session_id].getTime()),
-            'status': status,
+            'session_id': session.id,
+            'user_id': session.user_id,
+            'session_expiration': int(GLSetting.sessions[session.id].getTime()),
+            'status': session.user_status,
             'password_change_needed': pcn
         }
 
