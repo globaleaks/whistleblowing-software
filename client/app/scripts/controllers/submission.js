@@ -87,14 +87,6 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
-  $scope.filterReceivers = function(receiver) {
-    if(receiver.configuration != 'hidden') {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   $scope.uploading = false;
 
   // Watch for changes in certain variables

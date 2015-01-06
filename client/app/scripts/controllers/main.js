@@ -47,7 +47,8 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     };
 
     $scope.isLoginPage = function () {
-      return $location.path() == '/login';
+      return ($location.path() == '/login' ||
+              $location.path() == '/admin');
     };
 
     $scope.showLoginForm = function () {

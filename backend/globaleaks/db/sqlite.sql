@@ -51,7 +51,6 @@ CREATE TABLE context (
     file_max_download INTEGER NOT NULL,
     last_update VARCHAR,
     name BLOB NOT NULL,
-    selectable_receiver INTEGER NOT NULL,
     tip_max_access INTEGER NOT NULL,
     tip_timetolive INTEGER NOT NULL,
     submission_timetolive INTEGER NOT NULL,
@@ -63,7 +62,7 @@ CREATE TABLE context (
     show_small_cards INTEGER NOT NULL,
     show_receivers INTEGER NOT NULL,
     enable_private_messages INTEGER NOT NULL,
-    presentation_order INTEGER NOT NULL,
+    presentation_order INTEGER,
     PRIMARY KEY (id)
 );
 
@@ -195,7 +194,7 @@ CREATE TABLE notification (
 CREATE TABLE receiver (
     id VARCHAR NOT NULL,
     user_id VARCHAR NOT NULL,
-    configuration VARCHAR NOT NULL CHECK (configuration IN ('default', 'hidden', 'unselectable')),
+    configuration VARCHAR NOT NULL CHECK (configuration IN ('default', 'forcefully_selected', 'unselectable')),
     creation_date VARCHAR NOT NULL,
     can_delete_submission INTEGER NOT NULL,
     postpone_superpower INTEGER NOT NULL,
@@ -214,7 +213,7 @@ CREATE TABLE receiver (
     gpg_key_fingerprint VARCHAR,
     gpg_key_armor VARCHAR,
     gpg_enable_notification INTEGER,
-    presentation_order INTEGER NOT NULL,
+    presentation_order INTEGER,
     PRIMARY KEY (id),
     FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE
 );
