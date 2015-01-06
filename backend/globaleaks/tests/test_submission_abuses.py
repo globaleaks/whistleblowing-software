@@ -45,7 +45,6 @@ class SubmissionTest(helpers.TestGL):
         'tip_max_access': u'2',
         'tip_timetolive': 200,
         'file_max_download': 2,
-        'selectable_receiver': True,
         'receivers': [],
         'submission_timetolive': 100,
         'select_all_receivers': True,
@@ -92,9 +91,6 @@ class TestTipInstance(SubmissionTest):
 
         SubmissionTest.context_used = yield admin.create_context(SubmissionTest.aContext1, 'en')
 
-        # Correctly, TTip.tipContext has not selectable receiver, and we want test it in the 2nd test
-        SubmissionTest.context_used['selectable_receiver'] = True
-
         for attrname in Context.localized_strings:
             SubmissionTest.context_used[attrname] = stuff
 
@@ -132,6 +128,7 @@ class TestTipInstance(SubmissionTest):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
+        submission_request['receivers'] = []
         submission_request['finalize'] = True
 
         yield self.assertFailure(submission.create_submission(submission_request, True, 'en'),

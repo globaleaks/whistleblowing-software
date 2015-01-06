@@ -480,7 +480,6 @@
       "description": {
         "en": "Already localized desc"
       },
-      "selectable_receiver": false,
       "name": {
         "en": "Already localized name"
       },

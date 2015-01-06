@@ -19,7 +19,7 @@ from globaleaks import db, models, security, anomaly
 from globaleaks.db.datainit import opportunistic_appdata_init, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLApiCache, GLHTTPConnection
-from globaleaks.handlers.admin import create_context, update_context, create_receiver, db_get_context_steps
+from globaleaks.handlers.admin import create_context, get_context, update_context, create_receiver, db_get_context_steps
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
 from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched
@@ -225,7 +225,7 @@ class TestGL(unittest.TestCase):
         dummySubmissionDict = {}
         dummySubmissionDict['context_id'] = context_id
         dummySubmissionDict['wb_steps'] = yield fill_random_fields(context_id)
-        dummySubmissionDict['receivers'] = []
+        dummySubmissionDict['receivers'] = (yield get_context(context_id, 'en'))['receivers']
         dummySubmissionDict['files'] = []
         dummySubmissionDict['finalize'] = True
 
@@ -372,8 +372,10 @@ class TestGLWithPopulatedDB(TestGL):
 
         # fill_data/create_receiver
         self.dummyReceiver_1 = yield create_receiver(self.dummyReceiver_1, 'en')
+        self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['user_id']
         receivers_ids.append(self.dummyReceiver_1['id'])
         self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2, 'en')
+        self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['user_id']
         receivers_ids.append(self.dummyReceiver_2['id'])
 
         # fill_data/create_context
@@ -606,6 +608,7 @@ class MockDict():
             # Email can be different from the user, but at the creation time is used
             # the same address, therefore we keep the same of dummyReceiver.username
             'mail_address': self.dummyReceiverUser['username'],
+            'ping_mail_address': '',
             'can_delete_submission': True,
             'postpone_superpower': False,
             'contexts' : [],
@@ -738,7 +741,6 @@ class MockDict():
             'name': u'Already localized name',
             'description': u'Already localized desc',
             'steps': self.dummySteps,
-            'selectable_receiver': False,
             'select_all_receivers': True,
             'tip_max_access': 10,
             # tip_timetolive is expressed in days
