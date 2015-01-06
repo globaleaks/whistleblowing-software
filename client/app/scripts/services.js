@@ -573,7 +573,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   factory('ReceiverNotification', ['$resource', function($resource) {
     /* TODO: need to be supported DELETE */
-    return $resource('/receiver/notification');
+    return $resource('/receiver/notifications');
 }]).
   factory('AdminNode', ['$resource', function($resource) {
     return $resource('/admin/node', {},

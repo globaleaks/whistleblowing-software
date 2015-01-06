@@ -51,8 +51,8 @@ def receiver_serialize_receiver(receiver, language):
 
 def serialize_event(evnt):
     """
-    At the moment is not important going in event,description to dig into the
-    details (but will be a nice improvement provide the beginning of the comment,
+    At the moment is not important to extract relevant information from the event_description but
+    in the future it would be a nice improvement to get for example the beginning of the comment,
     or the filename/filetype, etc)
     """
 
@@ -255,7 +255,7 @@ class TipsCollection(BaseHandler):
 @transact
 def get_receiver_notif(store, receiver_id, language):
     """
-    The returned struct contain two list, recent activities
+    The returned struct contains two lists, recent activities
     (latest files, comments, "activities" in general), and
     recent tips.
     """
