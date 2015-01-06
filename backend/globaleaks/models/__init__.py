@@ -463,21 +463,21 @@ class Node(Model):
 
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
                     'exception_email', 'default_language', 'receipt_regexp']
-    int_keys = [ 'stats_update_time', 'maximum_namesize',
-                 'maximum_textsize', 'maximum_filesize', 'default_timezone' ]
-    bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
-                  'tor2web_unauth', 'postpone_superpower',
-                  'can_delete_submission', 'ahmia', 'allow_unencrypted',
-                  'disable_privacy_badge', 'disable_security_awareness_badge',
-                  'disable_security_awareness_questions', 'enable_custom_privacy_badge' ]
+    int_keys = ['stats_update_time', 'maximum_namesize',
+                'maximum_textsize', 'maximum_filesize', 'default_timezone']
+    bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
+                 'tor2web_unauth', 'postpone_superpower',
+                 'can_delete_submission', 'ahmia', 'allow_unencrypted',
+                 'disable_privacy_badge', 'disable_security_awareness_badge',
+                 'disable_security_awareness_questions', 'enable_custom_privacy_badge']
 
     # wizard_done is not checked because it's set by the backend
 
-    localized_strings = [ 'description', 'presentation', 'footer', 'subtitle',
-                          'security_awareness_title',
-                          'security_awareness_text', 'whistleblowing_question',
-                          'whistleblowing_button', 'custom_privacy_badge_tbb',
-                          'custom_privacy_badge_tor', 'custom_privacy_badge_none' ]
+    localized_strings = ['description', 'presentation', 'footer', 'subtitle',
+                         'security_awareness_title',
+                         'security_awareness_text', 'whistleblowing_question',
+                         'whistleblowing_button', 'custom_privacy_badge_tbb',
+                         'custom_privacy_badge_tor', 'custom_privacy_badge_none']
 
 
 class Notification(Model):
@@ -523,7 +523,14 @@ class Notification(Model):
     pgp_expiration_alert = JSON(validator=longlocal_v)
     pgp_expiration_notice = JSON(validator=longlocal_v)
 
-    zip_description = JSON()
+    zip_description = JSON(validator=longlocal_v)
+
+    ping_mail_template = JSON(validator=longlocal_v)
+    ping_mail_title = JSON(validator=longlocal_v)
+
+    disable_admin_notification_emails = Bool(default=False)
+    disable_receivers_notification_emails = Bool(default=False)
+    disable_receivers_ping_emails = Bool(default=True)
 
     unicode_keys = [
         'server',
@@ -551,8 +558,15 @@ class Notification(Model):
         'encrypted_message_mail_title',
         'plaintext_message_template',
         'plaintext_message_mail_title',
-        'zip_description']
-    int_keys = ['port']
+        'zip_description',
+        'ping_mail_template',
+        'ping_mail_title']
+    int_keys = [
+        'port',
+        'disable_admin_notification_emails',
+        'disable_receivers_notification_emails',
+        'disable_receivers_ping_emails']
+
 
 
 class Receiver(Model):

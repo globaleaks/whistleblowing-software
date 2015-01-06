@@ -856,11 +856,15 @@ class MockDict():
             'plaintext_message_template': u'%B EventTime% %TipUN%',
             'encrypted_message_mail_title': u'T %EventTime %TipUN',
             'plaintext_message_mail_title': u'T %EventTime %TipUN',
-            'admin_anomaly_template': u'TODO',
-            'pgp_expiration_alert': u'TODO',
-            'pgp_expiration_notice': u'TODO',
-            'zip_description': u'TODO',
-            'disable': False,
+            'admin_anomaly_template': u'QWERTY',
+            'pgp_expiration_alert': u'QWERTY',
+            'pgp_expiration_notice': u'QWERTY',
+            'zip_description': u'QWERTY',
+            'ping_mail_template': u'QWERTY',
+            'ping_mail_title': u'QUERTY',
+            'disable_admin_notification_emails': False,
+            'disable_receivers_notification_emails': False,
+            'disable_receivers_ping_emails': False,
         }
 
 

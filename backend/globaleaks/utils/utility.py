@@ -22,6 +22,7 @@ from twisted.python import logfile as twlogfile
 from twisted.python import util
 from twisted.python.failure import Failure
 
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
 
 def uuid4():
@@ -49,6 +50,13 @@ def uuid4():
     else:
         return unicode(UUID(bytes=os.urandom(16), version=4))
 
+def every_language(default_text):
+    return_dict = {}
+
+    for code in LANGUAGES_SUPPORTED_CODES:
+        return_dict.update({code : default_text})
+
+    return return_dict
 
 def randint(start, end=None):
     if not end:

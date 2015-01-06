@@ -24,7 +24,7 @@ from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.models import Model, Field, FieldOption, Step, db_forge_obj
-from globaleaks.utils.utility import datetime_null, uuid4
+from globaleaks.utils.utility import datetime_null, uuid4, every_language
 
 class Context_version_15(Model):
     __storm_table__ = 'context'
@@ -75,6 +75,37 @@ class Receiver_version_15(Model):
     message_notification = Bool()
 
 
+class Notification_version_15(Model):
+    __storm_table__ = 'notification'
+    server = Unicode()
+    port = Int()
+    username = Unicode()
+    password = Unicode()
+    source_name = Unicode()
+    source_email = Unicode()
+    security = Unicode()
+    admin_anomaly_template = JSON()
+    encrypted_tip_template = JSON()
+    encrypted_tip_mail_title = JSON()
+    plaintext_tip_template = JSON()
+    plaintext_tip_mail_title = JSON()
+    encrypted_file_template = JSON()
+    encrypted_file_mail_title = JSON()
+    plaintext_file_template = JSON()
+    plaintext_file_mail_title = JSON()
+    encrypted_comment_template = JSON()
+    encrypted_comment_mail_title = JSON()
+    plaintext_comment_template = JSON()
+    plaintext_comment_mail_title = JSON()
+    encrypted_message_template = JSON()
+    encrypted_message_mail_title = JSON()
+    plaintext_message_template = JSON()
+    plaintext_message_mail_title = JSON()
+    pgp_expiration_alert = JSON()
+    pgp_expiration_notice = JSON()
+    zip_description = JSON()
+
+
 class Replacer1516(TableReplacer):
 
     def migrate_Context(self):
@@ -112,7 +143,7 @@ class Replacer1516(TableReplacer):
                     continue
 
                 if v.name == 'ping_mail_address':
-                    new_receiver.ping_mail_address = ''
+                    new_receiver.ping_mail_address = new_receiver.mail_address
                     continue
 
                 if v.name == 'presentation_order':
@@ -149,3 +180,35 @@ class Replacer1516(TableReplacer):
 
         self.store_new.commit()
 
+    def migrate_Notification(self):
+        print "%s Notification migration assistant: (disable_notification flags, ping_templates)" % self.std_fancy
+
+        old_notification = self.store_old.find(self.get_right_model("Notification", 15)).one()
+        new_notification = self.get_right_model("Notification", 16)()
+
+        for _, v in new_notification._storm_columns.iteritems():
+
+            if v.name == 'disable_admin_notification_emails':
+                new_notification.disable_admin_notification_emails = False
+                continue
+
+            if v.name == 'disable_receivers_notification_emails':
+                new_notification.disable_receivers_notification_emails = False
+                continue
+
+            if v.name == 'disable_receivers_ping_emails':
+                new_notification.disabvle_receivers_ping_emails = True
+                continue
+
+            if v.name == 'ping_mail_template':
+                new_notification.ping_mail_template = every_language("")
+                continue
+
+            if v.name == 'ping_mail_title':
+                new_notification.ping_mail_title = every_language("")
+                continue
+
+            setattr(new_notification, v.name, getattr(old_notification, v.name) )
+
+        self.store_new.add(new_notification)
+        self.store_new.commit()

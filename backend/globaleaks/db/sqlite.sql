@@ -188,6 +188,11 @@ CREATE TABLE notification (
     pgp_expiration_alert BLOB,
     pgp_expiration_notice BLOB,
     zip_description BLOB,
+    ping_mail_template BLOB,
+    ping_mail_title BLOB,
+    disable_admin_notification_emails INTEGER NOT NULL,
+    disable_receivers_notification_emails INTEGER NOT NULL,
+    disable_receivers_ping_emails INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 
