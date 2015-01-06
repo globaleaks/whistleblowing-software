@@ -428,7 +428,6 @@ class TestGLWithPopulatedDB(TestGL):
         assert self.dummySubmission.has_key('id')
 
         yield delivery_sched.DeliverySchedule().operation()
-        yield notification_sched.NotificationSchedule().operation()
 
         commentCreation = {
             'content': 'comment!',
@@ -460,7 +459,6 @@ class TestGLWithPopulatedDB(TestGL):
                 yield wbtip.create_message_wb(wbtip_desc['wbtip_id'], receiver_id, messageCreation)
 
         yield delivery_sched.DeliverySchedule().operation()
-        yield notification_sched.NotificationSchedule().operation()
 
 
 
