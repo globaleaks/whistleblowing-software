@@ -124,6 +124,10 @@ def initialize_node(store, result, only_node, appdata):
         if k in appdata['templates']:
             setattr(notification, k, appdata['templates'][k])
 
+    # This templates are under study so that customization is fully up to the adopter
+    notification.ping_mail_template = {'en': ''}
+    notification.ping_mail_title = {'en': ''}
+
     # Todo handle pgp_expiration_alert and pgp_expiration_notice already included in client/app/data/txt
     # and internationalized with right support on backend db.
 

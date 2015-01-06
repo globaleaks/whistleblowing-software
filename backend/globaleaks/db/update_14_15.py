@@ -24,15 +24,7 @@ from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.models import Model, Field, FieldOption, Step, db_forge_obj
-from globaleaks.utils.utility import datetime_null, uuid4
-
-def every_language(default_text):
-    return_dict = {}
-
-    for code in LANGUAGES_SUPPORTED_CODES:
-        return_dict.update({code : default_text})
-
-    return return_dict
+from globaleaks.utils.utility import datetime_null, uuid4, every_language
 
 class Node_version_14(Model):
     __storm_table__ = 'node'

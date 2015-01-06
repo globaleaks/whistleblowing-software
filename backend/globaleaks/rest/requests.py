@@ -164,7 +164,11 @@ adminNotificationDesc = {
     'pgp_expiration_alert': unicode,
     'pgp_expiration_notice': unicode,
     'zip_description': unicode,
-    'disable': bool,
+    'ping_mail_template': unicode,
+    'ping_mail_title': unicode,
+    'disable_admin_notification_emails': bool,
+    'disable_receivers_notification_emails': bool,
+    'disable_receivers_ping_emails': bool,
 }
 
 adminContextDesc = {

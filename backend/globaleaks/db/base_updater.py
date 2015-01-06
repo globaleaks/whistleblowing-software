@@ -134,7 +134,7 @@ class TableReplacer(object):
         from globaleaks.db.update_14_15 import Node_version_14, User_version_14, Context_version_14, Receiver_version_14, \
             InternalTip_version_14, Notification_version_14, Stats_version_14, ApplicationData_version_14, \
             Comment_version_14
-        from globaleaks.db.update_15_16 import Context_version_15, Receiver_version_15
+        from globaleaks.db.update_15_16 import Context_version_15, Receiver_version_15, Notification_version_15
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -149,7 +149,7 @@ class TableReplacer(object):
             'Context' : [ Context_version_6, None, Context_version_7, Context_version_8, Context_version_11, None, None, Context_version_12, Context_version_13, Context_version_14, Context_version_15, models.Context],
             'Receiver': [ Receiver_version_7, None, None, Receiver_version_8, Receiver_version_9, Receiver_version_14, None, None, None, None, Receiver_version_15, models.Receiver],
             'ReceiverFile' : [ models.ReceiverFile, None, None, None, None, None, None, None, None, None, None, None],
-            'Notification': [ Notification_version_7, None, None, Notification_version_8, Notification_version_14, None, None, None, None, None, models.Notification, None],
+            'Notification': [ Notification_version_7, None, None, Notification_version_8, Notification_version_14, None, None, None, None, None, Notification_version_15, models.Notification],
             'Comment': [ Comment_version_5, Comment_version_14, None, None, None, None, None, None, None, None, models.Comment, None],
             'InternalTip' : [ InternalTip_version_10, None, None, None, None, None, InternalTip_version_14, None, None, None, models.InternalTip, None],
             'InternalFile' : [ InternalFile_version_7, None, None, InternalFile_version_10, None, None, models.InternalFile, None, None, None, None, None],

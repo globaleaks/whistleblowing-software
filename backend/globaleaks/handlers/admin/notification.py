@@ -21,7 +21,9 @@ def admin_serialize_notification(notif, language):
         'security': notif.security if notif.security else u"",
         'source_name' : notif.source_name,
         'source_email' : notif.source_email,
-        'disable': GLSetting.notification_temporary_disable,
+        'disable_admin_notification_emails': notif.disable_admin_notification_emails,
+        'disable_receivers_notification_emails': notif.disable_receivers_notification_emails,
+        'disable_receivers_ping_emails': notif.disable_receivers_ping_emails
     }
 
     return get_localized_values(ret_dict, notif, notif.localized_strings, language)
@@ -59,13 +61,6 @@ def update_notification(store, request, language):
     except DatabaseError as dberror:
         log.err("Unable to update Notification: %s" % dberror)
         raise errors.InvalidInputFormat(dberror)
-
-    if request['disable'] != GLSetting.notification_temporary_disable:
-        log.msg("Switching notification mode: was %s and now is %s" %
-                ("DISABLE" if GLSetting.notification_temporary_disable else "ENABLE",
-                 "DISABLE" if request['disable'] else "ENABLE")
-        )
-        GLSetting.notification_temporary_disable = request['disable']
 
     db_import_memory_variables(store)
 

@@ -620,10 +620,6 @@ class NotificationSchedule(GLJob):
         notified or not.
         """
         try:
-            if GLSetting.notification_temporary_disable:
-                log.err("Node has Notification temporary disabled")
-                return
-
             limit_counter = 0
             (tip_events, limit_counter) = yield self.create_tip_notification_events(limit_counter)
             (comment_events, limit_counter) = yield self.create_comment_notification_events(limit_counter)

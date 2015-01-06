@@ -59,6 +59,7 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
     $scope.navType = 'pills';
 
     $scope.timezones = CONSTANTS.timezones;
+    $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.preferences = ReceiverPreferences.get();
 
