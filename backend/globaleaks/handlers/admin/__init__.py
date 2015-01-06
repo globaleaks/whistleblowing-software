@@ -17,7 +17,7 @@ from globaleaks.handlers.authentication import authenticated, transport_security
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.admin.field import disassociate_field, get_field_association
 from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list, \
-    anon_serialize_node, anon_serialize_step, anon_serialize_field
+    anon_serialize_node, anon_serialize_step
 from globaleaks import models
 from globaleaks.rest import errors, requests
 from globaleaks.security import gpg_options_parse
@@ -188,7 +188,6 @@ def admin_serialize_context(store, context, language):
         "id": context.id,
         "creation_date": datetime_to_ISO8601(context.creation_date),
         "last_update": datetime_to_ISO8601(context.last_update),
-	"selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
         "file_max_download": context.file_max_download,
         "receivers": [r.id for r in context.receivers],
@@ -219,7 +218,8 @@ def admin_serialize_receiver(receiver, language):
         "postpone_superpower": receiver.postpone_superpower,
         "username": receiver.user.username,
         "user_id": receiver.user.id,
-        'mail_address': receiver.mail_address,
+        "mail_address": receiver.mail_address,
+        "ping_mail_address": receiver.ping_mail_address,
         "password": u"",
         "state": receiver.user.state,
         "configuration": receiver.configuration,
@@ -543,7 +543,7 @@ def update_context(store, context_id, request, language):
     context = store.find(models.Context, models.Context.id == context_id).one()
 
     if not context:
-         raise errors.ContextIdNotFound
+        raise errors.ContextIdNotFound
 
     receivers = request.get('receivers', [])
     steps = request.get('steps', [])
@@ -673,7 +673,6 @@ def db_create_receiver(store, request, language):
 
     receiver = models.Receiver(request)
     receiver.user = receiver_user
-
     receiver.mail_address = mail_address
 
     # The various options related in manage GPG keys are used here.

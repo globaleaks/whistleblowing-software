@@ -103,7 +103,7 @@ def shortlocal_v(_self, attr, value):
             del value[unicode(k)]
         except KeyError:
             pass
-        log.debug("(%s) Invalid language code in %s, ignoring it" % (lang, attr))
+        log.debug("(%s) Invalid language code in %s, ignoring it" % (k, attr))
 
     for lang, text in value.iteritems():
         shorttext_v(None, None, text)
@@ -128,7 +128,7 @@ def longlocal_v(_self, attr, value):
             del value[unicode(k)]
         except KeyError:
             pass
-        log.debug("(%s) Invalid language code in %s, ignoring it" % (lang, attr))
+        log.debug("(%s) Invalid language code in %s, ignoring it" % (k, attr))
 
     for lang, text in value.iteritems():
         longtext_v(None, attr, text)

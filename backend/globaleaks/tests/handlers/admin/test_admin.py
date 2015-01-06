@@ -58,7 +58,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_update_node_invalid_lang(self):
-        self.dummyNode['languages_enabled'] = ["en", "shit" ]
+        self.dummyNode['languages_enabled'] = ["en", "shit"]
         handler = self.request(self.dummyNode, role='admin')
 
         yield self.assertFailure(handler.put(), InvalidInputFormat)
@@ -141,20 +141,7 @@ class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
         for attrname in Context.localized_strings:
             self.dummyContext[attrname] = stuff
 
-        # the test context need fields to be present
-        for idx, field in enumerate(self.dummyFields):
-            self.dummyFields[idx]['id'] = yield admin.field.create_field(field, 'en')
-
-        # the test context need fields to be present
-        for idx, field in enumerate(self.dummyFields):
-            f = yield admin.field.create_field(field, 'en')
-            self.dummyFields[idx]['id'] = f['id']
-
-        self.dummyContext['steps'][0]['children'] = [
-            self.dummyFields[0], # Field 1
-            self.dummyFields[1], # Field 2
-            self.dummyFields[4]  # Generalities
-        ]
+        self.dummyContext['steps'][0]['children'] = []
 
         handler = self.request(self.dummyContext, role='admin')
         yield handler.post()

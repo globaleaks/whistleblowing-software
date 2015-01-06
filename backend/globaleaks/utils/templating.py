@@ -11,10 +11,9 @@
 from globaleaks.settings import GLSetting
 from globaleaks.utils.utility import (ISO8601_to_pretty_str,
                                       ISO8601_to_pretty_str_tz,
-                                      log,
                                       dump_file_list, dump_submission_steps)
 
-class Templating:
+class Templating(object):
 
     def format_template(self, raw_template, event_dicts):
         """

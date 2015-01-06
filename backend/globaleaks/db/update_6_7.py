@@ -82,7 +82,7 @@ class Replacer67(TableReplacer):
             new_obj.unique_fields = {}
 
             # Storm internals simply reversed
-            for k, v in old_obj._storm_columns.iteritems():
+            for _, v in old_obj._storm_columns.iteritems():
 
                 if v.name == 'fields':
 

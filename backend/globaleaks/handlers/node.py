@@ -60,12 +60,7 @@ def anon_serialize_node(store, language):
     # Contexts and Receivers relationship
     associated = store.find(models.ReceiverContext).count()
 
-    custom_homepage = False
-
-    try:
-        custom_homepage = os.path.isfile(os.path.join(GLSetting.static_path, "custom_homepage.html"))
-    except:
-        pass
+    custom_homepage = os.path.isfile(os.path.join(GLSetting.static_path, "custom_homepage.html"))
 
     ret_dict = {
       'name': node.name,
@@ -124,7 +119,6 @@ def anon_serialize_context(store, context, language):
     ret_dict = {
         "id": context.id,
         "file_max_download": context.file_max_download,
-        "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
         "tip_timetolive": context.tip_timetolive,
         "submission_introduction": u'NYI', # unicode(context.submission_introduction), # optlang
@@ -340,6 +334,9 @@ def get_public_receiver_list(store, language):
     receivers = store.find(models.Receiver)
 
     for receiver in receivers:
+        if receiver.user.state == u'disabled':
+            continue
+
         receiver_desc = anon_serialize_receiver(receiver, language)
         # receiver not yet ready for submission return None
         if receiver_desc:

@@ -11,7 +11,7 @@
 
 """
 
-from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
+from storm.locals import Int, Bool, Pickle, Unicode, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
@@ -90,7 +90,7 @@ class Replacer1314(TableReplacer):
         old_node = self.store_old.find(self.get_right_model("Node", 13)).one()
         new_node = self.get_right_model("Node", 14)()
 
-        for k, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.iteritems():
 
             if v.name == 'x_frame_options_mode':
                 new_node.x_frame_options_mode = 'deny';
