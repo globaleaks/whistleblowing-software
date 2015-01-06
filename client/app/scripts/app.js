@@ -150,10 +150,16 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration Interface',
         header_subtitle: 'Recent Activities'
       }).
+      when('/admin', {
+        templateUrl: 'views/admin.html',
+        controller: 'LoginCtrl',
+        header_title: 'Admin Login',
+        header_subtitle: ''
+      }).
       when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
-        header_title: 'Login',
+        header_title: 'Receiver Login',
         header_subtitle: ''
       }).
       when('/start', {

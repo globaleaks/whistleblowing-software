@@ -56,7 +56,6 @@ class TTip(helpers.TestGL):
         'tip_max_access': 2, 
         'tip_timetolive': 200,
         'file_max_download': 2,
-        'selectable_receiver': False,
         'receivers': [],
         'submission_timetolive': 100,
         'select_all_receivers': True,
@@ -73,6 +72,7 @@ class TTip(helpers.TestGL):
 
     tipReceiver1 = {
         'mail_address': u'first@winstonsmith.org',
+        'ping_mail_address': u'',
         'name': u'first',
         'description': u"I'm tha 1st",
         'can_delete_submission': True,
@@ -95,6 +95,7 @@ class TTip(helpers.TestGL):
 
     tipReceiver2 = {
         'mail_address': u'second@winstonsmith.org',
+        'ping_mail_address': u'',
         'name': u'second',
         'description': u"I'm tha 2nd",
         'can_delete_submission': False,
@@ -229,10 +230,10 @@ class TestTipInstance(TTip):
     @inlineCallbacks
     def access_receivers_tip(self):
 
-        auth1, _, _ = yield authentication.login_receiver(self.receiver1_desc['username'], STATIC_PASSWORD)
+        auth1, _, _ = yield authentication.login_receiver(self.receiver1_desc['id'], STATIC_PASSWORD)
         self.assertEqual(auth1, self.receiver1_desc['id'])
 
-        auth2, _, _ = yield authentication.login_receiver(self.receiver2_desc['username'], STATIC_PASSWORD)
+        auth2, _, _ = yield authentication.login_receiver(self.receiver2_desc['id'], STATIC_PASSWORD)
         self.assertEqual(auth2, self.receiver2_desc['id'])
 
         # we does not know the association auth# sefl.rtip#_id

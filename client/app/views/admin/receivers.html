@@ -20,7 +20,6 @@
                   <div class="form-group">
                     <label>
                       <span data-translate>Email Address</span>
-                      (<span data-translate>Username</span>)
                     </label>
                     <input class="form-control" name="email" data-ng-model="new_receiver.email" ng-pattern="email_regexp" type="text" required>
                     <p class="has-error" data-ng-show="newReceiver.email.$error.pattern">
@@ -138,9 +137,20 @@
                       </div>
 
                       <div class="form-group">
-                        <label data-translate>Email Address (Username)</label>
+                        <label data-translate>Email Address</label>
                         <input class="form-control" name="email" data-ng-model="receiver.mail_address" type="text" ng-pattern="email_regexp" required>
                         <p class="has-error" data-ng-show="receiverForm.email.$error.pattern">
+                          <span data-translate>Invalid email address</span>
+                        </p>
+                      </div>
+
+                      <div class="form-group">
+                        <label data-translate>Ping Email Address</label>
+                        <input class="form-control" name="ping_email" data-ng-model="receiver.ping_mail_address" type="text" ng-pattern="email_regexp">
+                        <div>
+                          <span data-translate>This email will be used for ping notifications.</span>
+                        </div>
+                        <p class="has-error" data-ng-show="receiverForm.ping_email.$error.pattern">
                           <span data-translate>Invalid email address</span>
                         </p>
                       </div>
@@ -197,7 +207,7 @@
                         <label data-translate>Configuration</label>
                         <select class="form-control" data-ng-model="receiver.configuration">
                           <option value="default" data-translate>Default</option>
-                          <option value="hidden" data-translate>Hidden</option>
+                          <option value="forcefully_selected" data-translate>Forcefully Selected</option>
                           <option value="unselectable" data-translate>Unselectable</option>
                         </select>
                       </div>
