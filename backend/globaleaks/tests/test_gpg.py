@@ -36,22 +36,25 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
         
 
     receiver_only_update = {
-        'gpg_key_armor': None, 'gpg_key_remove': False,
-        "gpg_key_info": None, "gpg_key_fingerprint": None,
+        'gpg_key_armor': None,
+        'gpg_key_remove': False,
+        'gpg_key_info': None,
+        'gpg_key_fingerprint': None,
         'gpg_key_status': Receiver._gpg_types[0], # Disabled
-        "gpg_enable_notification": False,
-        'name' : "irrelevant",
-        'password' : "",
-        'old_password': "",
-        'username' : "irrelevant",
+        'gpg_enable_notification': False,
+        'name': 'irrelevant',
+        'password': '',
+        'old_password': '',
+        'username' : 'irrelevant',
         'mail_address': 'am_i_ignored_or_not@email.xxx',
-        'description' : "A new description",
-        "comment_notification": True,
-        "file_notification": True,
-        "tip_notification": False,
-        "message_notification": False,
-        "language": u"en",
-        "timezone": 0
+        'ping_mail_address': '',
+        'description' : 'A new description',
+        'comment_notification': True,
+        'file_notification': True,
+        'tip_notification': False,
+        'message_notification': False,
+        'language': u'en',
+        'timezone': 0
     }
 
     @inlineCallbacks

@@ -109,49 +109,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertEqual(len(self.wbfls), 4)
 
     @inlineCallbacks
-    def test_create_receiverfiles_allow_unencrypted_false_no_keys_loaded(self):
-
-        GLSetting.memory_copy.allow_unencrypted = False
-
-        yield self.test_create_submission_attach_files_finalize_and_access_wbtip()
-
-        # create receivertip its NEEDED to create receiverfile
-        self.rt = yield delivery_sched.tip_creation()
-        self.assertTrue(isinstance(self.rt, list))
-
-        self.rfilesdict = yield delivery_sched.receiverfile_planning()
-        # return a list of lists [ "file_id", status, "f_path", len, "receiver_desc" ]
-        self.assertTrue(isinstance(self.rfilesdict, dict))
-
-
-        for ifile_path, receivermap in self.rfilesdict.iteritems():
-            yield delivery_sched.encrypt_where_available(receivermap)
-            for elem in receivermap:
-                rfdesc = yield delivery_sched.receiverfile_create(ifile_path,
-                                    elem['path'], elem['status'], elem['size'], elem['receiver'])
-                self.assertEqual(rfdesc['mark'], u'not notified')
-                self.assertEqual(rfdesc['receiver_id'], elem['receiver']['id'])
-
-        self.fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['id'])
-        self.assertTrue(isinstance(self.fil, list))
-        self.assertEqual(len(self.fil), 4)
-
-        self.rfi = yield delivery_sched.get_receiverfile_by_itip(self.dummySubmission['id'])
-        self.assertTrue(isinstance(self.rfi, list))
-
-        self.assertEqual(len(self.rfi), 8)
-        # no rfiles are created for the receivers that have no key
-        for i in range(0, 8):
-            self.assertTrue(self.rfi[i]['mark'] in [u'not notified', u'skipped'])
-            self.assertTrue(self.rfi[i]['status'] in [u'reference', u'nokey'])
-
-        # verify the checksum returned by whistleblower POV, I'm not using
-        #  wfv = yield tip.get_files_wb()
-        # because is not generated a WhistleblowerTip in this test
-        self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.dummySubmission['id'])
-        self.assertEqual(len(self.wbfls), 4)
-
-    @inlineCallbacks
     def test_submission_with_receiver_selection_allow_unencrypted_true_no_keys_loaded(self):
 
         # for some reason, the first receiver is no more with the same ID
@@ -163,7 +120,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
             rcvrs_ids.append(rcvr['id'])
 
         self.dummyContext['receivers'] = rcvrs_ids
-        self.dummyContext['selectable_receiver'] = True
 
         for attrname in models.Context.localized_strings:
             self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
@@ -208,7 +164,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
             rcvrs_ids.append(rcvr['id'])
 
         self.dummyContext['receivers'] = rcvrs_ids
-        self.dummyContext['selectable_receiver'] = True
 
         for attrname in models.Context.localized_strings:
             self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'

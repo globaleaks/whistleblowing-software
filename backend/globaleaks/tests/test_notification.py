@@ -55,7 +55,7 @@ class TestEmail(helpers.TestGLWithPopulatedDB):
 
         # 100 as limit
         (tip_events, enqueued) = yield aps.create_tip_notification_events(0)
-        self.assertEqual(enqueued, 2)
+        self.assertEqual(enqueued, 1)
 
         yield aps.do_tip_notification(tip_events)
 

@@ -4,18 +4,54 @@
   Changes
 
     Receiver table:
-      - introduced ping_mail_address 
+      - introduced ping_mail_address, ping_
 
     Notification table:
       - introduced two boolean TODO - write what they are 
       - introduced ping templates
+
+    Node table:
+      - introduced default_language and default_timezone
+
+    User table:
+      - introduced language and timezone
+
+    Context table:
+      - fields refactored entirely adding Field and Step table;
+      - all data is migrated.
+
+    InternalTip table:
+      - changed from wb_fields to wb_steps; all data is migrated.
 """
 
-from storm.locals import JSON, Int, Bool, Unicode, DateTime
-
-from globaleaks import LANGUAGES_SUPPORTED_CODES
+from storm.locals import Int, Bool, Unicode, DateTime, JSON, ReferenceSet
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.models import Model
+from globaleaks.models import Model, Step
+
+class Context_version_15(Model):
+    __storm_table__ = 'context'
+    selectable_receiver = Bool()
+    show_small_cards = Bool()
+    show_receivers = Bool()
+    maximum_selectable_receivers = Int()
+    select_all_receivers = Bool()
+    tip_max_access = Int()
+    file_max_download = Int()
+    tip_timetolive = Int()
+    submission_timetolive = Int()
+    last_update = DateTime()
+    name = JSON()
+    description = JSON()
+    receiver_introduction = JSON()
+    postpone_superpower = Bool()
+    can_delete_submission = Bool()
+    enable_private_messages = Bool()
+    presentation_order = Int()
+
+# this has never been performed during old migration script and will need
+# to be done in situations like the one generated in this particular migration
+Context_version_15.steps = ReferenceSet(Context_version_15.id,
+                                        Step.context_id)
 
 
 class Receiver_version_15(Model):
@@ -40,31 +76,81 @@ class Receiver_version_15(Model):
     presentation_order = Int()
 
 
-
 class Replacer1516(TableReplacer):
 
+    def migrate_Context(self):
+        print "%s Context migration assistant" % self.std_fancy
+
+        old_contexts = self.store_old.find(self.get_right_model("Context", 15))
+
+        for old_context in old_contexts:
+
+            new_context = self.get_right_model("Context", 16)()
+
+            for _, v in new_context._storm_columns.iteritems():
+                setattr(new_context, v.name, getattr(old_context, v.name))
+
+            self.store_new.add(new_context)
+
+        self.store_new.commit()
+
     def migrate_Receiver(self):
-        print ("%s Receiver migration assistant: added ping_(mail_address|notification)" %
-                self.std_fancy)
+        print "%s Receiver migration assistant" % self.std_fancy
 
         old_receivers = self.store_old.find(self.get_right_model("Receiver", 15))
 
-        for ore in old_receivers:
+        for old_receiver in old_receivers:
 
-            new_receiver = self.get_right_model("Receiver", 16)()
+            new_receiver = self.get_right_model("Receiver", 15)()
 
             for _, v in new_receiver._storm_columns.iteritems():
 
+                if v.name == 'configuration':
+                    if old_receiver.configuration == 'hidden':
+                        new_receiver.configuration = 'forcefully_selected'
+                    else:
+                        new_receiver.configuration = old_receiver.configuration
+                    continue
+
+                if v.name == 'presentation_order':
+                    if old_receiver.presentation_order == 0:
+                        new_receiver.presentation_order = 1
+                    continue
+
                 if v.name == 'ping_mail_address':
-                    new_receiver.ping_mail_address = ore.mail_address
+                    new_receiver.ping_mail_address = old_receiver.mail_address
                     continue
 
                 if v.name == 'ping_notification':
                     new_receiver.ping_notification = False
+                    continue
 
-                setattr(new_receiver, v.name, getattr(ore, v.name))
+                setattr(new_receiver, v.name, getattr(old_receiver, v.name))
 
             self.store_new.add(new_receiver)
+
+        self.store_new.commit()
+
+    def migrate_Field(self):
+        print "%s Field migration assistant" % self.std_fancy
+
+        old_fields = self.store_old.find(self.get_right_model("Field", 15))
+
+        for old_field in old_fields:
+
+            new_field = self.get_right_model("Field", 16)()
+
+            for _, v in new_field._storm_columns.iteritems():
+                if v.name == 'is_template':
+                    if old_field.is_template is None:
+                        new_field.is_template = False
+                    else:
+                        new_field.is_template = old_field.is_template
+                    continue
+
+                setattr(new_field, v.name, getattr(old_field, v.name))
+
+            self.store_new.add(new_field)
 
         self.store_new.commit()
 
