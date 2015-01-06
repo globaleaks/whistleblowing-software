@@ -19,15 +19,15 @@ def opportunistic_appdata_init():
     """
     Setup application data evaluating the presence of the following paths:
         - production data path: /usr/share/globaleaks/glclient/data/
-        - development data paths: ../client/app/data/
-                                  ../../client/app/data/
+        - development data paths: ../client/build/data/
+                                  ../client/app/data/
     """
 
     # Fields and applicative data initialization
 
     fields_l10n = [ "/usr/share/globaleaks/glclient/data/appdata_l10n.json",
-                    "../../../client/app/data/appdata_l10n.json",
-                    "../../../client/build/data/appdata_l10n.json"]
+                    "../../../client/build/data/appdata_l10n.json",
+                    "../../../client/app/data/appdata_l10n.json"]
 
     appdata_dict = None
 

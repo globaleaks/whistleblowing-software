@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "angular": "1.2.28",
+    "angular-elastic": "2.4.2",
     "angular-resource": "1.2.28",
     "angular-route": "1.2.28",
     "angular-translate": "2.5.2",
