@@ -37,8 +37,7 @@ class GLJob(task.LoopingCall):
 
                 mail_exception(exc_type, exc_value, exc_tb)
 
-            except:
-
+            except Exception:
                 pass
 
     def operation(self):

@@ -72,12 +72,22 @@
                     <span>&nbsp;{{receiver.name}}</span>
                   </label>
                 </div>
-                <div class="col-md-1" ng-hide="receiver.selectable">
+                <div class="col-md-1">
                   <div data-ng-show="submission.receivers_selected[receiver.id]">
-                    <i class="glyphicon glyphicon-check" popover="{{ 'Unselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    <div data-ng-show="receiver.configuration == 'default'">
+                      <i class="glyphicon glyphicon-check" popover="{{ 'Unselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    </div>
+                    <div data-ng-show="receiver.configuration != 'default'">
+                      <i class="glyphicon glyphicon-check" popover="{{ 'This receiver cannot be deselected' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    </div>
                   </div>
                   <div data-ng-show="!submission.receivers_selected[receiver.id]">
-                    <i class="glyphicon glyphicon-unchecked" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    <div data-ng-show="receiver.configuration == 'default'">
+                      <i class="glyphicon glyphicon-unchecked" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    </div>
+                    <div data-ng-show="receiver.configuration != 'default'">
+                      <i class="glyphicon glyphicon-check" popover="{{ 'This receiver cannot be selected' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -122,14 +132,25 @@
                     </div>
                   </div>
 
-                  <div class="col-md-1" ng-hide="receiver.selectable">
+                  <div class="col-md-1">
                     <div data-ng-show="submission.receivers_selected[receiver.id]">
-                      <i class="glyphicon glyphicon-check" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                      <div data-ng-show="receiver.configuration == 'default'">
+                        <i class="glyphicon glyphicon-check" popover="{{ 'Unselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                      </div>
+                      <div data-ng-show="receiver.configuration != 'default'">
+                        <i class="glyphicon glyphicon-check" popover="{{ 'This receiver cannot be deselected' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                      </div>
                     </div>
                     <div data-ng-show="!submission.receivers_selected[receiver.id]">
-                      <i class="glyphicon glyphicon-unchecked" popover="{{ 'Unselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                      <div data-ng-show="receiver.configuration == 'default'">
+                        <i class="glyphicon glyphicon-unchecked" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                      </div>
+                      <div data-ng-show="receiver.configuration != 'default'">
+                        <i class="glyphicon glyphicon-check" popover="{{ 'This receiver cannot be selected' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                      </div>
                     </div>
                   </div>
+
                 </div>
                 <div class="row">
                   <div class="col-md-12">

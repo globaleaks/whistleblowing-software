@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
+from storm.locals import  Int, Bool, Pickle, Unicode, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model

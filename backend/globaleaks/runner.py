@@ -61,10 +61,7 @@ def start_asynchronous():
 
     current_time = datetime_now()
     delay = (60 * 60) - (current_time.minute * 60) - current_time.second
-    reactor.callLater( # GLSetting.stats_minutes_delta * 60,
-                      # stats.start, GLSetting.stats_minutes_delta * 60)
-                # more verbose approach to stats
-                delay, stats.start, 60 * 60)
+    reactor.callLater(delay, stats.start, 60 * 60)
     statistics_sched.StatisticsSchedule.collection_start_datetime = current_time
 
 

@@ -155,7 +155,7 @@ def check_db_files():
     """
     This function checks the DB version and executes eventually the DB update scripts
     """
-    for (path, dirs, files) in os.walk(GLSetting.gldb_path):
+    for (path, _, files) in os.walk(GLSetting.gldb_path):
 
         try:
             starting_ver, abspath = find_current_db_version(path, files)
@@ -166,10 +166,10 @@ def check_db_files():
                 try:
                     updater_manager.perform_version_update(starting_ver, GLSetting.db_version, abspath)
                     print "GlobaLeaks database version %d: update complete!" % GLSetting.db_version
-                except Exception as excep:
+                except Exception:
                     print "GlobaLeaks database version %d: update failure :(" % GLSetting.db_version
                     print "Verbose exception traceback:"
-                    exc_type, exc_value, exc_traceback = sys.exc_info()
+                    _, _, exc_traceback = sys.exc_info()
                     traceback.print_tb(exc_traceback)
                     quit(-1)
 
@@ -270,5 +270,5 @@ def clean_untracked_files(res):
             file_to_remove = os.path.join(GLSetting.submission_path, filesystem_file)
             try:
                 os.remove(file_to_remove)
-            except OSError as e:
+            except OSError:
                 log.err("Failed to remove untracked file" % file_to_remove)

@@ -36,22 +36,25 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
         
 
     receiver_only_update = {
-        'gpg_key_armor': None, 'gpg_key_remove': False,
-        "gpg_key_info": None, "gpg_key_fingerprint": None,
+        'gpg_key_armor': None,
+        'gpg_key_remove': False,
+        'gpg_key_info': None,
+        'gpg_key_fingerprint': None,
         'gpg_key_status': Receiver._gpg_types[0], # Disabled
-        "gpg_enable_notification": False,
-        'name' : "irrelevant",
-        'password' : "",
-        'old_password': "",
-        'username' : "irrelevant",
+        'gpg_enable_notification': False,
+        'name': 'irrelevant',
+        'password': '',
+        'old_password': '',
+        'username' : 'irrelevant',
         'mail_address': 'am_i_ignored_or_not@email.xxx',
-        'description' : "A new description",
-        "comment_notification": True,
-        "file_notification": True,
-        "tip_notification": False,
-        "message_notification": False,
-        "language": u"en",
-        "timezone": 0
+        'ping_mail_address': '',
+        'description' : 'A new description',
+        'comment_notification': True,
+        'file_notification': True,
+        'tip_notification': False,
+        'message_notification': False,
+        'language': u'en',
+        'timezone': 0
     }
 
     @inlineCallbacks
@@ -212,17 +215,7 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
         new_fields = MockDict().dummyFields
         new_context = MockDict().dummyContext
 
-        # the test context need fields to be present
-        from globaleaks.handlers.admin.field import create_field
-        for idx, field in enumerate(self.dummyFields):
-            f = yield create_field(field, 'en')
-            new_fields[idx]['id'] = f['id']
-
-        new_context['steps'][0]['children'] = [
-            new_fields[0], # Field 1
-            new_fields[1], # Field 2
-            new_fields[4]  # Generalities
-        ]
+        new_context['steps'][0]['children'] = []
 
         new_context['name'] = "this uniqueness is no more checked due to the lang"
         new_context_output = yield create_context(new_context, 'en')

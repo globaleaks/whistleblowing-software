@@ -117,7 +117,7 @@ class Replacer89(TableReplacer):
 
             new_obj = self.get_right_model("Context", 9)()
 
-            for k, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.iteritems():
 
                 if v.name == 'presentation_order':
                     new_obj.presentation_order = 0
@@ -139,7 +139,7 @@ class Replacer89(TableReplacer):
 
             new_obj = self.get_right_model("Receiver", 9)()
 
-            for k, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.iteritems():
 
                 if v.name == 'presentation_order':
                     new_obj.presentation_order = 0
@@ -175,7 +175,7 @@ class Replacer89(TableReplacer):
 
             new_obj = self.get_right_model("InternalFile", 9)()
 
-            for k, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.iteritems():
 
                 if v.name == 'description':
                     if not old_obj.description or not len(old_obj.description):
@@ -194,7 +194,7 @@ class Replacer89(TableReplacer):
         old_notification = self.store_old.find(self.get_right_model("Notification", 8)).one()
         new_notification = self.get_right_model("Notification", 9)()
 
-        for k, v in new_notification._storm_columns.iteritems():
+        for _, v in new_notification._storm_columns.iteritems():
 
             if v.name == 'encrypted_file_template':
                 new_notification.encrypted_file_template = old_notification.file_template

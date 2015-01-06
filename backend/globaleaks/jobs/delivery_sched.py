@@ -16,7 +16,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
-                              ReceiverFile, Receiver
+                              ReceiverFile
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.utility import log 
 from globaleaks.security import GLBGPG, GLSecureFile
@@ -146,7 +146,7 @@ def receiverfile_planning(store):
 
             for receiver in filex.internaltip.receivers:
 
-                if not ifilesmap.has_key(filex.file_path):
+                if filex.file_path not in ifilesmap:
                     ifilesmap[filex.file_path] = list()
 
                 receiver_desc = admin_serialize_receiver(receiver, GLSetting.memory_copy.default_language)
@@ -185,12 +185,6 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
     required keys are checked on top
 
     """
-    assert isinstance(recipient_gpg, dict), "invalid recipient"
-    assert recipient_gpg.has_key('gpg_key_armor'), "missing key"
-    assert recipient_gpg.has_key('gpg_key_status'), "missing status"
-    assert recipient_gpg['gpg_key_status'] == u'Enabled', "GPG not enabled"
-    assert recipient_gpg.has_key('name'), "missing recipient Name"
-
     gpoj = GLBGPG(recipient_gpg)
 
     if not gpoj.validate_key(recipient_gpg['gpg_key_armor']):
@@ -204,17 +198,10 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
 
     gpoj.destroy_environment()
 
-    assert (encrypted_file_size > 1), "File generated is empty or size is 0"
-    assert os.path.isfile(encrypted_file_path), "Output generated is not a file!"
-
     return encrypted_file_path, encrypted_file_size
 
 @transact
 def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_desc):
-
-    assert type(1) == type(recv_size)
-    assert isinstance(receiver_desc, dict)
-    assert os.path.isfile(os.path.join(GLSetting.submission_path, if_path))
 
     try:
         ifile = store.find(InternalFile, InternalFile.file_path == unicode(if_path)).one()

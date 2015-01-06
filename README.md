@@ -9,7 +9,9 @@ development of the GlobaLeaks platform as a whole.
 To learn how to setup your own GlobaLeaks platform, look at [Globaleaks Wiki
 documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
-Join our [Development Mailing List](http://lists.globaleaks.org/listinfo/dev);
+Join our [Development Mailing List](http://lists.globaleaks.org/mailman/listinfo/globaleaks-dev);
+
+If you're considering setting up a Whistleblowing initiatives by using GlobaLeaks, please [let us know](mailto:support@logioshermes.org), we'd love to help you out!
 
 | Branch | Build Status | Code Coverage | Code Quality
 | ------------- |:-------------:|:-------------:|:-------------:|

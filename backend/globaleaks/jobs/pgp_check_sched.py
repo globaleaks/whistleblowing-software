@@ -9,13 +9,11 @@
 #     if keys configured by receiver are going
 #     to expire in short time, if so, send a warning email to the recipient.
 #
-import datetime
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import Receiver
-from globaleaks.settings import GLSetting, transact
+from globaleaks.settings import transact
 from globaleaks.security import GLBGPG
 
 __all__ = ['PGPCheckSchedule']
