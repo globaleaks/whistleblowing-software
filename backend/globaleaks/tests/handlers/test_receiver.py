@@ -54,6 +54,23 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
             handler.current_user.user_id = rcvr['id']
             yield handler.put()
 
+    @inlineCallbacks
+    def test_ping_mail_change(self):
+        handler = self.request(role='receiver')
+
+        rcvrs = yield admin.get_receiver_list('en')
+        for rcvr in rcvrs:
+            handler = self.request(role='receiver')
+            handler.current_user.user_id = rcvr['id']
+
+            yield handler.get()
+
+            self.responses[0]['ping_mail_address'] = 'ortomio@x.x'
+
+            handler = self.request(self.responses[0], role='receiver')
+            handler.current_user.user_id = rcvr['id']
+            yield handler.put()
+
 class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = receiver.TipsCollection
 

@@ -220,6 +220,7 @@ def admin_serialize_receiver(receiver, language):
         "username": receiver.user.username,
         "user_id": receiver.user.id,
         'mail_address': receiver.mail_address,
+        'ping_mail_address': receiver.ping_mail_address,
         "password": u"",
         "state": receiver.user.state,
         "configuration": receiver.configuration,
@@ -234,6 +235,7 @@ def admin_serialize_receiver(receiver, language):
         "tip_notification": True if receiver.tip_notification else False,
         "file_notification": True if receiver.file_notification else False,
         "message_notification": True if receiver.message_notification else False,
+        "ping_notification": True if receiver.ping_notification else False,
         "presentation_order": receiver.presentation_order,
         "language": receiver.user.language,
         "timezone": receiver.user.timezone,
@@ -671,10 +673,11 @@ def db_create_receiver(store, request, language):
     receiver_user.password_change_date = datetime_null()
     store.add(receiver_user)
 
+    # ping_mail_address is duplicated at creation time from mail_address
+    request.update({'ping_mail_address': mail_address})
+
     receiver = models.Receiver(request)
     receiver.user = receiver_user
-
-    receiver.mail_address = mail_address
 
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
@@ -738,10 +741,12 @@ def update_receiver(store, receiver_id, request, language):
         log.err("Update error: already present receiver with the requested username: %s" % mail_address)
         raise errors.ExpectedUniqueField('mail_address', mail_address)
 
+    # This is when the Admin update the 'receiver.mail_address',
     receiver.mail_address = mail_address
-
     # the email address it's also the username, stored in User
     receiver.user.username = mail_address
+    # but the admin has to update the 'ping_mail_address explicitly, and
+    # at the moment Admin cannot -- because UI do not support that.
 
     receiver.user.state = request['state']
 

@@ -598,8 +598,10 @@ class Receiver(Model):
     gpg_key_armor = Unicode()
     gpg_enable_notification = Bool()
 
-    # Can be changed and can be different from username!
+    # Can be changed only by admin (but also differ from username!)
     mail_address = Unicode()
+    # Can be changed by the user itself
+    ping_mail_address = Unicode()
 
     # Admin chosen options
     can_delete_submission = Bool()
@@ -607,11 +609,11 @@ class Receiver(Model):
 
     last_update = DateTime()
 
-    # personal advanced settings
     tip_notification = Bool()
     comment_notification = Bool()
     file_notification = Bool()
     message_notification = Bool()
+    ping_notification = Bool()
 
     # contexts = ReferenceSet("Context.id",
     #                         "ReceiverContext.context_id",
@@ -623,12 +625,14 @@ class Receiver(Model):
     _configuration = [u'default', u'hidden', u'unselectable']
     _gpg_types = [u'Disabled', u'Enabled']
 
-    unicode_keys = ['name', 'mail_address', 'configuration']
+    unicode_keys = ['name', 'mail_address',
+                    'ping_mail_address', 'configuration']
     localized_strings = ['description']
     int_keys = ['presentation_order']
     bool_keys = ['can_delete_submission', 'tip_notification',
                  'comment_notification', 'file_notification',
-                 'message_notification', 'postpone_superpower']
+                 'message_notification', 'postpone_superpower',
+                 'ping_notification']
 
 
 class EventLogs(Model):

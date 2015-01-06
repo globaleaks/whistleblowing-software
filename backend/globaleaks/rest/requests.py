@@ -61,6 +61,9 @@ receiverReceiverDesc = {
     'old_password': unicode,
     # 'username' : unicode, XXX at creation time is the same of mail_address
     'mail_address' : email_regexp,
+    # mail_address contain the 'admin' inserted mail
+    "ping_mail_address": email_regexp,
+    # ping_mail_address is a copy of 'mail_address' if unset.
     'description' : unicode,
     'gpg_key_armor': unicode,
     'gpg_key_remove': bool,
@@ -69,6 +72,7 @@ receiverReceiverDesc = {
     "file_notification": bool,
     "tip_notification": bool,
     "message_notification": bool,
+    "ping_notification": bool,
     "language": unicode,
     "timezone": int,
 }

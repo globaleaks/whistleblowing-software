@@ -73,9 +73,9 @@ class EventLogger(object):
     # moment they are not implemented, and therefore is a classvariable
     plugin = getattr(notification, GLSetting.notification_plugins[0])()
 
-    def __init__(self, language):
+    def __init__(self):
         self.events = {}
-        self.language = language
+        self.language = GLSetting.defaults.default_language
 
         # Assigned by the subclass
         self.context_desc = {}
