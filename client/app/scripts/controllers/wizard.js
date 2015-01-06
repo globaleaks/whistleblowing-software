@@ -27,24 +27,21 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
     $scope.finish = function() {
       if (!finished) {
         finished = true;
-        DefaultAppdata.get(function(res) {
-          $scope.admin.node.old_password = 'globaleaks';
+        $scope.admin.node.old_password = 'globaleaks';
 
-          /* configure tor2web admin right based on detected user access */
-          $scope.admin.node.tor2web_admin = !$scope.anonymous;
+        /* configure tor2web admin right based on detected user access */
+        $scope.admin.node.tor2web_admin = !$scope.anonymous;
 
-          $scope.wizard = {
-            'node': $scope.admin.node,
-            'appdata': res,
-            'receiver': $scope.receiver,
-            'context': $scope.context
-          };
+        $scope.wizard = {
+          'node': $scope.admin.node,
+          'receiver': $scope.receiver,
+          'context': $scope.context
+        };
 
-          $http.post('/admin/wizard', $scope.wizard).success(function(response) {
-            /* needed in order to reload node variables */
-            $rootScope.$broadcast("REFRESH");
-            $location.path("/admin/landing");
-          });
+        $http.post('/admin/wizard', $scope.wizard).success(function(response) {
+          /* needed in order to reload node variables */
+          $rootScope.$broadcast("REFRESH");
+          $location.path("/admin/landing");
         });
       }
     };

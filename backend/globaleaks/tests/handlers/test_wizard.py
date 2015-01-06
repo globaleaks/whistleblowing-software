@@ -33,8 +33,6 @@ class TestFirstSetup(helpers.TestHandler):
     @inlineCallbacks
     def test_post(self):
 
-        appdata_blob = opportunistic_appdata_init()
-
         # FIX currently wizard create contexts only with default fields
         # so only valid requests are the one with steps = []
         self.dummyContext['steps'] = []
@@ -44,7 +42,6 @@ class TestFirstSetup(helpers.TestHandler):
             'fields' : self.dummyFields,
             'context' : self.dummyContext,
             'node' : self.dummyNode,
-            'appdata' : appdata_blob,
         }
 
         handler = self.request(wizard_blob, role='admin')

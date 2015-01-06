@@ -449,5 +449,4 @@ wizardFirstSetup = {
     'receiver' : adminReceiverDesc,
     'context' : adminContextDesc,
     'node' : adminNodeDesc,
-    'appdata' : wizardAppdataDesc,
 }
