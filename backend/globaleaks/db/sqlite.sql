@@ -210,8 +210,9 @@ CREATE TABLE receiver (
     file_notification INTEGER NOT NULL,
     tip_notification INTEGER NOT NULL,
     message_notification INTEGER NOT NULL,
+    ping_notification INTEGER NOT NULL,
     mail_address VARCHAR NOT NULL,
-    ping_mail_address VARCHAR,
+    ping_mail_address VARCHAR NOT NULL,
     gpg_key_status VARCHAR NOT NULL CHECK (gpg_key_status IN ('Disabled', 'Enabled')),
     gpg_key_info VARCHAR,
     gpg_key_fingerprint VARCHAR,
@@ -220,6 +221,18 @@ CREATE TABLE receiver (
     presentation_order INTEGER,
     PRIMARY KEY (id),
     FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE
+);
+
+CREATE TABLE eventlogs (
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    event_reference VARCHAR NOT NULL,
+    description VARCHAR NOT NULL,
+    title VARCHAR NOT NULL,
+    receiver_id VARCHAR NOT NULL,
+    mail_sent INTEGER,
+    PRIMARY KEY (id),
+    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
 );
 
 CREATE TABLE receiver_context (

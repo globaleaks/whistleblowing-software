@@ -75,7 +75,7 @@ angular.module('resourceServices.authentication', [])
                 if (self.password_change_needed) {
                     auth_landing_page = "/receiver/firstlogin";
                 } else {
-                    auth_landing_page = "/receiver/tips";
+                    auth_landing_page = "/receiver/activities";
                 }
               }
               if (self.role == 'wb') {
@@ -571,6 +571,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('ReceiverTips', ['$resource', function($resource) {
     return $resource('/receiver/tips', {}, {'update': {method: 'PUT'}});
 }]).
+  factory('ReceiverNotification', ['$resource', function($resource) {
+    /* TODO: need to be supported DELETE */
+    return $resource('/receiver/notifications');
+}]).
   factory('AdminNode', ['$resource', function($resource) {
     return $resource('/admin/node', {},
       {update:
@@ -873,7 +877,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         field.step_id = step_id;
         field.template_id = template_id;
         return field.$save();
-      }
+      };
 
       self.receiver = adminReceiversResource;
       self.receivers = adminReceiversResource.query();
@@ -891,6 +895,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.file_notification = true;
         receiver.comment_notification = true;
         receiver.message_notification = true;
+        receiver.ping_notification = false;
         receiver.gpg_key_info = '';
         receiver.gpg_key_fingerprint = '';
         receiver.gpg_key_remove = false;
@@ -901,8 +906,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.state = 'enable';
         receiver.configuration = 'default';
         receiver.password_change_needed = true;
-        receiver.language = 'en'
-        receiver.timezone = '0'
+        receiver.language = 'en';
+        receiver.timezone = '0';
         return receiver;
       };
 

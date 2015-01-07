@@ -591,7 +591,9 @@ class Receiver(Model):
     gpg_key_armor = Unicode()
     gpg_enable_notification = Bool()
 
+    # Can be changed only by admin (but also differ from username!)
     mail_address = Unicode()
+    # Can be changed by the user itself
     ping_mail_address = Unicode()
 
     # Admin chosen options
@@ -600,11 +602,11 @@ class Receiver(Model):
 
     last_update = DateTime()
 
-    # personal advanced settings
     tip_notification = Bool()
     comment_notification = Bool()
     file_notification = Bool()
     message_notification = Bool()
+    ping_notification = Bool()
 
     # contexts = ReferenceSet("Context.id",
     #                         "ReceiverContext.context_id",
@@ -616,12 +618,30 @@ class Receiver(Model):
     _configuration = [u'default', u'forcefully_selected', u'unselectable']
     _gpg_types = [u'Disabled', u'Enabled']
 
-    unicode_keys = ['name', 'mail_address', 'ping_mail_address', 'configuration']
+    unicode_keys = ['name', 'mail_address',
+                    'ping_mail_address', 'configuration']
     localized_strings = ['description']
     int_keys = ['presentation_order']
     bool_keys = ['can_delete_submission', 'tip_notification',
                  'comment_notification', 'file_notification',
-                 'message_notification', 'postpone_superpower']
+                 'message_notification', 'postpone_superpower',
+                 'ping_notification']
+
+
+class EventLogs(Model):
+    """
+    Class used to keep track of the notification to be display to the receiver
+    """
+
+    description = JSON()
+    title = Unicode()
+    receiver_id = Unicode()
+    event_reference = JSON()
+
+    # XXX This can be used to keep track mail reliability ??
+    mail_sent = Bool()
+
+
 
 
 class Field(Model):
@@ -887,6 +907,8 @@ Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
 
 Message.receivertip = Reference(Message.receivertip_id, ReceiverTip.id)
 
+EventLogs.receiver = Reference(EventLogs.receiver_id, Receiver.id)
+
 Field.children = ReferenceSet(
     Field.id,
     FieldField.parent_id,
@@ -914,4 +936,4 @@ Receiver.contexts = ReferenceSet(
 models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment,
           InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile,
           Notification, Message, Field, FieldField, Step,
-          Stats, Anomalies, ApplicationData]
+          Stats, Anomalies, ApplicationData, EventLogs ]
