@@ -10,10 +10,8 @@ from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks import models
 from globaleaks.handlers.admin import db_admin_serialize_node
 from globaleaks.jobs.base import GLJob
-from globaleaks.rest import errors
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.utils.utility import log, datetime_to_ISO8601
-
+from globaleaks.utils.utility import log
 from globaleaks.models import EventLogs
 from globaleaks.handlers.admin.notification import admin_serialize_notification
 from globaleaks.plugins import notification
@@ -24,9 +22,6 @@ from twisted.internet.defer import inlineCallbacks
 
 
 class NotificationMail:
-    """
-    TODO Has to be implemented in the appropriate plugin class
-    """
 
     def __init__(self, plugin_used):
         self.plugin_used = plugin_used
@@ -147,11 +142,23 @@ class MailflushSchedule(GLJob):
         plugin = getattr(notification, GLSetting.notification_plugins[0])()
         notifcb = NotificationMail(plugin)
 
+        notification_counter = 0
+
         for qe in queue_events:
+
+            deferred_sleep(2)
             notifcb.do_every_notification(qe)
             yield deferred_sleep(2)
 
-        # TODO implement ping as an appropriate plugin
+            # note, this settings has to be multiply for 4 (seconds in this iteration)
+            # and the results need to be shorter than the periodic running time
+            # specified in runner.py, that's why is set at FIVE minutes.
+            if notification_counter >= GLSetting.notification_limit:
+                log.debug("Notification counter has reached the suggested limit: %d (tip)" %
+                          notification_counter)
+                break
+
+        # Whishlist: implement ping as an appropriate plugin
         receiver_synthesis = {}
         for qe in queue_events:
 
@@ -164,4 +171,7 @@ class MailflushSchedule(GLJob):
 
         yield self.ping_mail_flush(receiver_synthesis)
 
-        # TODO implement digest as an appropriate plugin
+        # Whishlist: implement digest as an appropriate plugin
+
+
+
