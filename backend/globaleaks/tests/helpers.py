@@ -22,7 +22,7 @@ from globaleaks.handlers.base import GLApiCache, GLHTTPConnection
 from globaleaks.handlers.admin import create_context, get_context, update_context, create_receiver, db_get_context_steps
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
-from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched
+from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched, mailflush_sched
 from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.plugins import notification
 from globaleaks.settings import GLSetting, transact, transact_ro
@@ -123,13 +123,10 @@ class TestGL(unittest.TestCase):
 
         self.setUp_dummy()
 
-        # This mocks out the MailNotification plugin so it does not actually
-        # require to perform a connection to send an email.
-        # XXX we probably want to create a proper mock of the ESMTPSenderFactory
-        def mail_flush_mock(self, from_address, to_address, message_file, event):
+        def sendmail_mock(*args):
             return defer.succeed(None)
 
-        notification.MailNotification.mail_flush = mail_flush_mock
+        mailutils.sendmail = sendmail_mock
 
         yield db.create_tables(self.create_node)
 
