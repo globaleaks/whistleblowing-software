@@ -5,20 +5,18 @@
 #
 # Flush the email that has to be sent, is based on EventLog
 # database table.
-from globaleaks.utils.mailutils import MIME_mail_build, sendmail
-
-from globaleaks import models
-from globaleaks.handlers.admin import db_admin_serialize_node
-from globaleaks.jobs.base import GLJob
-from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.utils.utility import log
-from globaleaks.models import EventLogs
-from globaleaks.handlers.admin.notification import admin_serialize_notification
-from globaleaks.plugins import notification
-from globaleaks.utils.utility import deferred_sleep
 
 from cyclone.util import ObjectDict as OD
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.utils.mailutils import MIME_mail_build, sendmail
+from globaleaks.models import EventLogs, Notification
+from globaleaks.handlers.admin import db_admin_serialize_node
+from globaleaks.jobs.base import GLJob
+from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.plugins import notification
+from globaleaks.utils.utility import deferred_sleep, log
+from globaleaks.utils.templating import Templating
 
 
 class NotificationMail:
@@ -40,14 +38,14 @@ class NotificationMail:
     def every_notification_succeeded(self, store, result, event_id):
 
         log.debug("Mail delivered correctly for event %s, [%s]" % (event_id, result))
-        evnt = store.find(models.EventLogs, models.EventLogs.id == event_id).one()
+        evnt = store.find(EventLogs, EventLogs.id == event_id).one()
         evnt.mail_sent = True
 
     @transact
     def every_notification_failed(self, store, failure, event_id):
 
         log.err("Mail deliver failure for event %s (%s)" % (event_id, failure))
-        evnt = store.find(models.EventLogs, models.EventLogs.id == event_id).one()
+        evnt = store.find(EventLogs, EventLogs.id == event_id).one()
         evnt.mail_sent = True
 
 
@@ -62,8 +60,8 @@ def load_complete_events(store):
     the loop continue, one mail per time.
     """
 
-    notification_settings = admin_serialize_notification(
-        store.find(models.Notification).one(), 'en'
+    notification_settings = notification.admin_serialize_notification(
+        store.find(Notification).one(), 'en'
     )
 
     node_desc = db_admin_serialize_node(store, 'en')
@@ -98,7 +96,7 @@ def load_complete_events(store):
 
 class MailflushSchedule(GLJob):
 
-    def ping_mail_flush(self, receiver_dict):
+    def ping_mail_flush(self, notification_settings, receiver_dict):
         """
         TODO This function should be implemented as a clean and testable pligin in the
         way defined in plugin/base.py and plugin/notification.py, and/or is the opportunity
@@ -110,8 +108,18 @@ class MailflushSchedule(GLJob):
 
             whinkles, receiver_name = _data
 
-            title = "There are %d good reason to..." % whinkles
-            body = "\nConnect exactly where you know!, our dear %s ;)\n" % receiver_name
+            fakeevent = OD()
+            fakeevent.type = u'ping_mail'
+            # we've to accomplish the same amount of Attrs looked in templating.py TemplatClass
+            fakeevent.node_info = fakeevent.context_info = fakeevent.steps_info = None
+            fakeevent.receiver_info = {'name': receiver_name}
+            fakeevent.trigger_info = {'counter': whinkles}
+            fakeevent.trigger_parent = None
+
+            body = Templating().format_template(
+                notification_settings['encrypted_tip_template'], fakeevent)
+            title = Templating().format_template(
+                notification_settings['encrypted_tip_mail_title'], fakeevent)
 
             message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
                                       GLSetting.memory_copy.notif_source_email,
@@ -120,8 +128,8 @@ class MailflushSchedule(GLJob):
                                       title,
                                       body)
 
-            event = OD()
-            event.type = "Ping mail for %s (%d info)" % (receiver_mail, whinkles)
+            fakeevent2 = OD()
+            fakeevent2.type = "Ping mail for %s (%d info)" % (receiver_mail, whinkles)
 
             return sendmail(authentication_username=GLSetting.memory_copy.notif_username,
                             authentication_password=GLSetting.memory_copy.notif_password,
@@ -132,7 +140,7 @@ class MailflushSchedule(GLJob):
                             smtp_host=GLSetting.memory_copy.notif_server,
                             smtp_port=GLSetting.memory_copy.notif_port,
                             security=GLSetting.memory_copy.notif_security,
-                            event=event)
+                            event=fakeevent2)
 
     @inlineCallbacks
     def operation(self):
@@ -146,12 +154,11 @@ class MailflushSchedule(GLJob):
 
         for qe in queue_events:
 
-            deferred_sleep(2)
             notifcb.do_every_notification(qe)
-            yield deferred_sleep(2)
+            yield deferred_sleep(3)
 
-            # note, this settings has to be multiply for 4 (seconds in this iteration)
-            # and the results need to be shorter than the periodic running time
+            # note, this settings has to be multiply for 3 (seconds in this iteration)
+            # and the results (30 * 3) need to be shorter than the periodic running time
             # specified in runner.py, that's why is set at FIVE minutes.
             if notification_counter >= GLSetting.notification_limit:
                 log.debug("Notification counter has reached the suggested limit: %d (tip)" %
@@ -169,7 +176,11 @@ class MailflushSchedule(GLJob):
                                           [0, qe.receiver_info['name']])
             receiver_synthesis[qe.receiver_info['ping_mail_address']][0] += 1
 
-        yield self.ping_mail_flush(receiver_synthesis)
+        if len(receiver_synthesis.keys()):
+            # I'm taking the element [0] of the list but every element has the same
+            # notification setting. is passed to ping_mail_flush because of the Templating()
+            yield self.ping_mail_flush(queue_events[0].notification_settings,
+                                       receiver_synthesis)
 
         # Whishlist: implement digest as an appropriate plugin
 

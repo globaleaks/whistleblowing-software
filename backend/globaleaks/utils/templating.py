@@ -9,8 +9,7 @@
 # https://github.com/globaleaks/GlobaLeaks/wiki/Customization-guide#customize-notification
 
 from globaleaks.settings import GLSetting
-from globaleaks.utils.utility import (ISO8601_to_pretty_str,
-                                      ISO8601_to_pretty_str_tz,
+from globaleaks.utils.utility import (ISO8601_to_pretty_str_tz,
                                       dump_file_list, dump_submission_steps)
 
 class Templating(object):
@@ -31,7 +30,8 @@ class Templating(object):
                                   u'plaintext_comment' : CommentKeyword,
                                   u'encrypted_message' : EncryptedMessageKeyword,
                                   u'plaintext_message' : MessageKeyword,
-                                  u'zip_collection' : ZipFileKeyword
+                                  u'zip_collection' : ZipFileKeyword,
+                                  u'ping_mail' : PingMailKeyword,
                                 }
 
         if event_dicts.type not in supported_event_types.keys():
@@ -348,3 +348,25 @@ class ZipFileKeyword(TipKeyword):
 
     def TotalSize(self):
         return str(self.zip['total_size'])
+
+
+class PingMailKeyword(object):
+
+    ping_keyword = [
+        '%ReceiverName%',
+        '%EventCount%'
+    ]
+
+    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, ping_info, trigger_info):
+        """
+        This is a reduced version because PingMail are
+        thinked to have least information as possible
+        """
+        self.name = receiver_desc['name']
+        self.counter = ping_info['counter']
+
+    def ReceiverName(self):
+        return str(self.name)
+
+    def EventCount(self):
+        return str(self.counter)
