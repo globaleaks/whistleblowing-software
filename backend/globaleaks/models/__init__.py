@@ -530,7 +530,6 @@ class Notification(Model):
 
     disable_admin_notification_emails = Bool(default=False)
     disable_receivers_notification_emails = Bool(default=False)
-    disable_receivers_ping_emails = Bool(default=True)
 
     unicode_keys = [
         'server',
@@ -564,9 +563,7 @@ class Notification(Model):
     int_keys = [
         'port',
         'disable_admin_notification_emails',
-        'disable_receivers_notification_emails',
-        'disable_receivers_ping_emails']
-
+        'disable_receivers_notification_emails']
 
 
 class Receiver(Model):
@@ -606,7 +603,8 @@ class Receiver(Model):
     comment_notification = Bool()
     file_notification = Bool()
     message_notification = Bool()
-    ping_notification = Bool()
+
+    ping_notification = Bool(default=False)
 
     # contexts = ReferenceSet("Context.id",
     #                         "ReceiverContext.context_id",

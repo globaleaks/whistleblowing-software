@@ -60,13 +60,16 @@
       <span class="btn-info">
         <span data-translate>now Enabled:</span>
       </span>
-      <span data-translate>For every notification above, you'll receiver an apparently meaningless email, is suggested to be used in mobility with unsafe email, or when you've not your PGP keys.</span>
+      <span data-translate>For every activity, the system will send you an apparently meaningless email. This is suggested to be used in mobility even with an unsafe email or when you've not your PGP key with you.</span>
     </div>
   </div>
 
-  <div class="form-group">
-    <label data-translate>Ping Mail address</label>
-    <input class="form-control" data-ng-model="preferences.ping_mail_address" type="text">
+  <div class="form-group" data-ng-show="preferences.enable_ping_notification">
+    <label data-translate>Ping Email Address</label>
+    <input class="form-control" name="ping_email" data-ng-model="preferences.ping_mail_address" type="text" ng-pattern="email_regexp">
+    <p class="has-error" data-ng-show="receiverPreferencesForm.ping_email.$error.pattern">
+      <span data-translate>Invalid email address</span>
+    </p>
   </div>
 
   <div class="form-group">
@@ -77,17 +80,6 @@
   <div class="form-group">
     <label data-translate>Timezone</label>
     <select class="form-control" data-ng-model="preferences.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
-  </div>
-
-  <div class="form-group">
-    <label data-translate>Ping Email Address</label>
-    <input class="form-control" name="ping_email" data-ng-model="preferences.ping_mail_address" type="text" ng-pattern="email_regexp">
-    <div>
-      <span data-translate>If enabled on the platform, the system will use this email to send you alerts about new activities.</span>
-    </div>
-    <p class="has-error" data-ng-show="receiverPreferencesForm.ping_email.$error.pattern">
-      <span data-translate>Invalid email address</span>
-    </p>
   </div>
 
   <button type="submit" class="btn btn-success" data-ng-click="pref_save()">

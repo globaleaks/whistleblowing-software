@@ -133,7 +133,7 @@ class Replacer1516(TableReplacer):
 
         for old_receiver in old_receivers:
 
-            new_receiver = self.get_right_model("Receiver", 15)()
+            new_receiver = self.get_right_model("Receiver", 16)()
 
             for _, v in new_receiver._storm_columns.iteritems():
 
