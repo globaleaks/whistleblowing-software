@@ -45,7 +45,7 @@ def start_asynchronous():
     reactor.callLater(20, notification.start, GLSetting.notification_minutes_delta * 60)
     reactor.callLater(30, clean.start, GLSetting.cleaning_hours_delta * 3600)
     reactor.callLater(60, pgp_check.start, GLSetting.pgp_check_hours_delta * 3600)
-    reactor.callLater(15, mailflush.start, 10)
+    reactor.callLater(120, mailflush.start, GLSetting.mailflush_minutes_delta * 60)
 
 
     # anti flood protection, anomaly collection, stats
