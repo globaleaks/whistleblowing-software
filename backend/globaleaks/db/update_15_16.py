@@ -3,6 +3,13 @@
 """
   Changes
 
+    Receiver table:
+      - introduced ping_mail_address, ping_
+
+    Notification table:
+      - introduced two boolean TODO - write what they are 
+      - introduced ping templates
+
     Node table:
       - introduced default_language and default_timezone
 
@@ -17,14 +24,10 @@
       - changed from wb_fields to wb_steps; all data is migrated.
 """
 
-import copy
-from storm.locals import Pickle, Int, Bool, Unicode, DateTime, JSON, ReferenceSet
-
-from globaleaks import LANGUAGES_SUPPORTED_CODES
+from storm.locals import Int, Bool, Unicode, DateTime, JSON, ReferenceSet
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.db.datainit import opportunistic_appdata_init
-from globaleaks.models import Model, Field, FieldOption, Step, db_forge_obj
-from globaleaks.utils.utility import datetime_null, uuid4, every_language
+from globaleaks.models import Model, Field, Step
+from globaleaks.utils.utility import every_language
 
 class Context_version_15(Model):
     __storm_table__ = 'context'
@@ -43,8 +46,6 @@ class Context_version_15(Model):
     receiver_introduction = JSON()
     postpone_superpower = Bool()
     can_delete_submission = Bool()
-    show_small_cards = Bool()
-    show_receivers = Bool()
     enable_private_messages = Bool()
     presentation_order = Int()
 
@@ -73,6 +74,7 @@ class Receiver_version_15(Model):
     comment_notification = Bool()
     file_notification = Bool()
     message_notification = Bool()
+    presentation_order = Int()
 
 
 class Notification_version_15(Model):
@@ -137,18 +139,22 @@ class Replacer1516(TableReplacer):
 
                 if v.name == 'configuration':
                     if old_receiver.configuration == 'hidden':
-                        new_receiver.configuration == 'forcefully_selected'
+                        new_receiver.configuration = 'forcefully_selected'
                     else:
                         new_receiver.configuration = old_receiver.configuration
-                    continue
-
-                if v.name == 'ping_mail_address':
-                    new_receiver.ping_mail_address = new_receiver.mail_address
                     continue
 
                 if v.name == 'presentation_order':
                     if old_receiver.presentation_order == 0:
                         new_receiver.presentation_order = 1
+                    continue
+
+                if v.name == 'ping_mail_address':
+                    new_receiver.ping_mail_address = old_receiver.mail_address
+                    continue
+
+                if v.name == 'ping_notification':
+                    new_receiver.ping_notification = False
                     continue
 
                 setattr(new_receiver, v.name, getattr(old_receiver, v.name))
@@ -194,10 +200,6 @@ class Replacer1516(TableReplacer):
 
             if v.name == 'disable_receivers_notification_emails':
                 new_notification.disable_receivers_notification_emails = False
-                continue
-
-            if v.name == 'disable_receivers_ping_emails':
-                new_notification.disabvle_receivers_ping_emails = True
                 continue
 
             if v.name == 'ping_mail_template':

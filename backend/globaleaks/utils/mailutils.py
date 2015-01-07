@@ -316,12 +316,13 @@ def mail_exception(etype, value, tback):
                "From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
                                       GLSetting.memory_copy.notif_source_email),
                "To: %s" % GLSetting.memory_copy.exception_email,
-               "Subject: GLBackend Exception %s [%d]" % (
-                   __version__, mail_exception.mail_counter),
+               "Subject: GL Exception %s %s [%d]" % (
+                   " ".join(os.uname()),
+                   __version__,
+                   mail_exception.mail_counter),
                "Content-Type: text/plain; charset=ISO-8859-1",
                "Content-Transfer-Encoding: 8bit",
                None,
-               "Source: %s" % " ".join(os.uname()),
                "Version: %s" % __version__]
 
         tmp.append(error_message)

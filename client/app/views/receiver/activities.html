@@ -1,0 +1,52 @@
+<div id="ContentBox" class="container">
+  <div class="row">
+    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/receiver/sidebar.html'" data-ng-controller="ReceiverSidebarCtrl"></div>
+    <!-- Begin main content -->
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-horizontal">
+            <span data-translate>Latest activities on Tips</span>
+          </div>
+        </div>
+      </div>
+      <div class="table table-responsive">
+        <table class="table table-bordered" id="activitiesEventListDesc">
+          <thead>
+            <tr>
+              <!-- # and "Mailed" width can just be three char, the other 90% of the size -->
+              <th class="col-md-2">
+                <span>#</span>
+              </th>
+              <th class="col-md-4">
+                <span data-translate>What</span>
+              </th>
+              <th class="col-md-2">
+                <span data-translate>When</span>
+              </th>
+              <th><span data-translate>Mailed</span></th>
+            </tr>
+          </thead>
+          <tbody id="activitiesEventList" data-ng-controller="ReceiverNotificationCtrl">
+            <tr data-ng-repeat="x in activities.activities">
+              <td class="col-md-2">
+                <pre>
+                  {{x}}
+                </pre>
+              </td>
+              <td class="col-md-4">
+                sth
+              </td>
+              <td class="col-md-2">
+                sth
+              </td>
+              <td>
+                sth
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
