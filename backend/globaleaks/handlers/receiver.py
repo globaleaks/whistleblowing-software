@@ -60,6 +60,7 @@ def serialize_event(evnt):
 
     ret_dict = {
         'id': evnt.id,
+        "creation_date": datetime_to_ISO8601(evnt.creation_date),
         'mail_sent': evnt.mail_sent,
         'title': evnt.title,
     }

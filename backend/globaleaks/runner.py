@@ -25,7 +25,7 @@ def start_asynchronous():
     """
     from globaleaks.jobs import session_management_sched, statistics_sched, \
                                 notification_sched, delivery_sched, cleaning_sched, \
-                                pgp_check_sched
+                                pgp_check_sched, mailflush_sched
 
     # Here we prepare the scheduled,
     # schedules will be started by reactor after reactor.run()
@@ -34,6 +34,7 @@ def start_asynchronous():
     notification = notification_sched.NotificationSchedule()
     clean = cleaning_sched.CleaningSchedule()
     pgp_check = pgp_check_sched.PGPCheckSchedule()
+    mailflush = mailflush_sched.MailflushSchedule()
 
     # here we prepare the schedule:
     #  - first argument is the first run delay in seconds
@@ -44,6 +45,7 @@ def start_asynchronous():
     reactor.callLater(20, notification.start, GLSetting.notification_minutes_delta * 60)
     reactor.callLater(30, clean.start, GLSetting.cleaning_hours_delta * 3600)
     reactor.callLater(60, pgp_check.start, GLSetting.pgp_check_hours_delta * 3600)
+    reactor.callLater(15, mailflush.start, 10)
 
 
     # anti flood protection, anomaly collection, stats

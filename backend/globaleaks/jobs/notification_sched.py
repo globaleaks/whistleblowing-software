@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- encoding: utf-8 -*-
 #
 #   notification_sched
 #   ******************
@@ -14,7 +14,6 @@ from globaleaks import models
 from globaleaks.jobs.base import GLJob
 from globaleaks.handlers import admin, rtip
 from globaleaks.handlers.admin.notification import admin_serialize_notification
-from globaleaks.plugins import notification
 from globaleaks.plugins.base import Event
 from globaleaks.rest import errors
 from globaleaks.settings import transact, transact_ro, GLSetting
@@ -67,14 +66,8 @@ class EventLogger(object):
 
     """
 
-    # settings.notification_plugins contain a list of supported plugin
-    # at the moment only 1. so [0] is used.
-    # different context/receiver may use different code-plugin, just at the
-    # moment they are not implemented, and therefore is a classvariable
-    plugin = getattr(notification, GLSetting.notification_plugins[0])()
-
     def __init__(self):
-        self.events = {}
+        self.events = []
         self.language = GLSetting.defaults.default_language
 
         # Assigned by the subclass
@@ -118,34 +111,19 @@ class EventLogger(object):
         else:
             raise Exception("self.trigger of unexpected kind ? %s" % self.trigger)
 
-    @transact_ro
-    def load_node(self, store):
-        """
-        called directly by constructor
-        notification setting need to contains both template
-        and systemsettings.
-        """
-        self.node_desc = admin.db_admin_serialize_node(store, self.language)
-        self.notification_desc = admin_serialize_notification(
-            store.find(models.Notification).one(),
-            self.language
-        )
 
-    def append_event(self, trigger_info, trigger_parent, event_id):
+    def append_event(self, trigger_info, trigger_parent):
 
         assert hasattr(self, 'trigger'), "Superclass has not initialized self.trigger"
         event = Event(type=self.template_type, trigger=self.trigger,
                         steps_info=self.steps_info_desc,
                         trigger_info=trigger_info,
                         trigger_parent=trigger_parent,
-                        notification_settings=self.notification_desc,
-                        node_info=self.node_desc,
                         receiver_info=self.receiver_desc,
                         context_info=self.context_desc,
-                        do_mail=self.do_mail,
-                        plugin=EventLogger.plugin)
+                        do_mail=self.do_mail)
 
-        self.events.update({unicode(event_id): event })
+        self.events.append(event )
 
 class TipEventLogger(EventLogger):
 
@@ -169,6 +147,7 @@ class TipEventLogger(EventLogger):
             self.do_mail = self.import_receiver(receiver_tip.receiver)
 
             tip_desc = serialize_receivertip(receiver_tip)
+            receiver_tip.mark = models.ReceiverTip._marker[1] # notified
 
             # this check is to avoid ask continuously the same context:
             if not self.context_desc.has_key('id') or \
@@ -183,8 +162,7 @@ class TipEventLogger(EventLogger):
 
             # append the event (use the self.* and the iteration serialization):
             self.append_event(trigger_info=tip_desc, 
-                              trigger_parent=None, 
-                              event_id=tip_desc['id'])
+                              trigger_parent=None)
 
 
 # TODO remind that when do_mail is False:
@@ -209,9 +187,7 @@ class MessageEventLogger(EventLogger):
         for message in not_notified_messages:
 
             message_desc = rtip.receiver_serialize_message(message)
-
-            # !? is pretty useless ?
-            message.mark = u'notified' # models.Message._marker[1]
+            message.mark = models.Message._marker[1] # notified
 
             # message.type can be 'receiver' or 'wb' at the moment, we care of the 2nd
             if message.type == u"receiver":
@@ -234,8 +210,7 @@ class MessageEventLogger(EventLogger):
 
             # append the event based on the self.* and the iteration serialization:
             self.append_event(trigger_info=message_desc, 
-                    trigger_parent=tip_desc, 
-                    event_id=message_desc['id'])
+                    trigger_parent=tip_desc)
 
 class CommentEventLogger(EventLogger):
 
@@ -267,8 +242,6 @@ class CommentEventLogger(EventLogger):
                                                                   self.language)
 
             comment_desc = rtip.receiver_serialize_comment(comment)
-
-            # This is useless like the same thing in Message above
             comment.mark = models.Comment._marker[1] # 'notified'
 
             # for every comment, iterate on the associated receiver(s)
@@ -289,9 +262,8 @@ class CommentEventLogger(EventLogger):
 
                 rtip_desc = serialize_receivertip(receivertip)
 
-                self.append_event(trigger_info=comment_desc, 
-                        trigger_parent=rtip_desc, 
-                        event_id=comment_desc['id'])
+                self.append_event(trigger_info=comment_desc,
+                        trigger_parent=rtip_desc)
 
 
 class FileEventLogger(EventLogger):
@@ -324,219 +296,35 @@ class FileEventLogger(EventLogger):
 
             file_desc = serialize_internalfile(rfile.internalfile, rfile.id)
             rtip_desc = serialize_receivertip(rfile.receiver_tip)
+            rfile.mark = models.ReceiverFile._marker[1] # notified
 
             self.do_mail = self.import_receiver(rfile.receiver)
 
             self.append_event(trigger_info=file_desc, 
-                    trigger_parent=rtip_desc,
-                    event_id=file_desc['receiverfile_id'])
+                    trigger_parent=rtip_desc)
 
-
-
-
-
-
-
-
-class NotificationMail:
-    """
-    Has to be implement in the appropriate plugin class
-
-            if notification_counter >= GLSetting.notification_limit:
-                log.debug("Notification counter has reached the suggested limit: %d (tip)" %
-                          notification_counter)
-                break
-
-    """
-
-    @transact
-    def receiverfile_notification_succeeded(self, store, result, receiverfile_id):
-        """
-        This is called when the Receiver File notification has succeeded
-        """
-        rfile = store.find(models.ReceiverFile, models.ReceiverFile.id == receiverfile_id).one()
-
-        if not rfile:
-            raise errors.FileIdNotFound
-
-        rfile.mark = models.ReceiverFile._marker[1] # 'notified'
-
-        log.debug("Email: +[Success] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, rfile.receiver.user.username))
-
-    @transact
-    def receiverfile_notification_failed(self, store, failure, receiverfile_id):
-        """
-        This is called when the Receiver File notification has failed.
-        """
-        rfile = store.find(models.ReceiverFile, models.ReceiverFile.id == receiverfile_id).one()
-
-        if not rfile:
-            raise errors.FileIdNotFound
-
-        rfile.mark = models.ReceiverFile._marker[2] # 'unable to notify'
-
-        log.debug("Email: -[Fail] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, rfile.receiver.user.username))
-
-    @inlineCallbacks
-    def do_receiverfile_notification(self, receiverfile_events):
-
-        for receiverfile_id, event in receiverfile_events.iteritems():
-
-            notify = event.plugin.do_notify(event)
-
-            if notify is None:
-                continue
-
-            notify.addCallback(self.receiverfile_notification_succeeded, receiverfile_id)
-            notify.addErrback(self.receiverfile_notification_failed, receiverfile_id)
-
-            # we need to wait on single mail send basis to not be prone to DoS
-            # and be forced to open so many outgoing connections.
-            yield notify
-
-
-    @transact_ro
-    def comment_notification_succeeded(self, store, result, comment_id):
-        """
-        This is called when the comment notification has succeeded
-        """
-        comment = store.find(models.Comment, models.Comment.id == comment_id).one()
-        # comment.mark  = ?
-        log.debug("Email: +[Success] Notification of comment from %s" % comment.author)
-
-    @transact_ro
-    def comment_notification_failed(self, store, failure, comment_id):
-        """
-        This is called when the comment notification has failed.
-        """
-        comment = store.find(models.Comment, models.Comment.id == comment_id).one()
-        log.debug("Email: -[Fail] Notification of comment from %s" % comment.author)
-
-    @inlineCallbacks
-    def do_comment_notification(self, comment_events):
-
-        for comment_id, event in comment_events.iteritems():
-
-            notify = event.plugin.do_notify(event)
-
-            if notify is None:
-                continue
-
-            notify.addCallback(self.comment_notification_succeeded, comment_id)
-            notify.addErrback(self.comment_notification_failed, comment_id)
-
-            # we need to wait on single mail send basis to not be prone to DoS
-            # and be forced to open so many outgoing connections.
-            yield notify
-
-    @transact
-    def tip_notification_succeeded(self, store, result, tip_id):
-        """
-        This is called when the tip notification has succeeded
-        """
-        receiver_tip = store.find(models.ReceiverTip, models.ReceiverTip.id == tip_id).one()
-
-        if not receiver_tip:
-            raise errors.TipIdNotFound
-
-        log.debug("Email: +[Success] Notification Tip receiver %s" % receiver_tip.receiver.user.username)
-        receiver_tip.mark = models.ReceiverTip._marker[1] # 'notified'
-
-    @transact
-    def tip_notification_failed(self, store, failure, tip_id):
-        """
-        This is called when the tip notification has failed.
-        """
-        receiver_tip = store.find(models.ReceiverTip, models.ReceiverTip.id == tip_id).one()
-
-        if not receiver_tip:
-            raise errors.TipIdNotFound
-
-        log.debug("Email: -[Fail] Notification Tip receiver %s" % receiver_tip.receiver.user.username)
-        receiver_tip.mark = models.ReceiverTip._marker[2] # 'unable to notify'
-
-    @inlineCallbacks
-    def do_tip_notification(self, tip_events):
-        """
-        This function fill the table events with new notification, to be display at the
-        receive login
-        """
-
-        for tip_id, event in tip_events.iteritems():
-
-            # plugin is the email, and the email notification may be disable globally,
-            # in this case, is there checked to be skipped
-            if GLSetting.notification_temporary_disable:
-                log.debug("Email notification of [%s %s] temporarly disable" % event.type, event.receiver_info)
-                continue
-
-            notify = event.plugin.do_notify(event)
-
-            if notify is None:
-                continue
-
-            notify.addCallback(self.tip_notification_succeeded, tip_id)
-            notify.addErrback(self.tip_notification_failed, tip_id)
-
-            # we need to wait on single mail send basis to not be prone to DoS
-            # and be forced to open so many outgoing connections.
-            yield notify
-
-
-    @transact_ro
-    def message_notification_succeeded(self, store, result, message_id):
-        """
-        This is called when the message notification has succeeded
-        """
-        message = models.Message.get(store, message_id)
-        log.debug("Email: +[Success] Notification of message for %s" %
-                  message.receivertip.receiver.user.username)
-
-    @transact_ro
-    def message_notification_failed(self, store, failure, message_id):
-        """
-        This is called when the message notification has failed.
-        """
-        message = store.find(models.Message, models.Message.id == message_id).one()
-        log.debug("Email: -[Fail] Notification of message receiver %s" %
-                  message.receivertip.receiver.user.username)
-
-    @inlineCallbacks
-    def do_message_notification(self, message_events):
-
-        for message_id, event in message_events.iteritems():
-
-            notify = event.plugin.do_notify(event)
-
-            if notify is None:
-                continue
-
-            notify.addCallback(self.message_notification_succeeded, message_id)
-            notify.addErrback(self.message_notification_failed, message_id)
-
-            # we need to wait on single mail send basis to not be prone to DoS
-            # and be forced to open so many outgoing connections.
-            yield notify
 
 
 @transact
 def save_event_db(store, event_dict):
 
-    for event_id, evnt in event_dict.iteritems():
+    for evnt in event_dict:
 
         e = EventLogs()
 
         e.description = {
-            'received_info': evnt.receiver_info,
+            'receiver_info': evnt.receiver_info,
             'context_info': evnt.context_info,
             'trigger_parent': evnt.trigger_parent,
             'trigger_info': evnt.trigger_info,
+            'steps_info': evnt.steps_info,
+            'type': evnt.type,
         }
-        # this is important to link Event with ReceiverFile|Message|Comment|ReceiverTip
+        # this is important to associate Event with ReceiverFile|Message|Comment|ReceiverTip
         e.event_reference = {
-            'id': event_id,
             'kind': evnt.trigger
         }
+        # why is a JSON ? now is
         e.title = "Title [%s]" % evnt.trigger
         e.receiver_id = evnt.receiver_info['id']
         e.mail_sent = False
@@ -562,25 +350,22 @@ class NotificationSchedule(GLJob):
         # TODO: remove notification_status from Model different of EventLogs
 
         tips_events = TipEventLogger()
-        yield tips_events.load_node()
         yield tips_events.load_tips()
         yield save_event_db(tips_events.events)
 
         comments_events = CommentEventLogger()
-        yield comments_events.load_node()
         yield comments_events.load_comments()
         yield save_event_db(comments_events.events)
 
         messages_events = MessageEventLogger()
-        yield messages_events.load_node()
         yield messages_events.load_messages()
         yield save_event_db(messages_events.events)
 
         files_events = FileEventLogger()
-        yield files_events.load_node()
         yield files_events.load_files()
         yield save_event_db(files_events.events)
 
+        """
         notifcb = NotificationMail()
 
         # There is no more check in notification_limit now, just flush out:
@@ -602,3 +387,4 @@ class NotificationSchedule(GLJob):
         except Exception as excep:
             log.err("Error in Mail Notification: %s" % excep)
             log.debug(sys.exc_info())
+        """
