@@ -139,14 +139,13 @@ class CollectionDownload(BaseHandler):
         mock_event = Event(
             type = u'zip_collection',
             trigger = 'Download',
-            notification_settings = notif_dict,
             node_info = node_dict,
             receiver_info = receiver_dict,
             context_info = context_dict,
             steps_info = steps_dict,
-            plugin = None,
             trigger_info = collection_tip_dict,
-            trigger_parent = rtip_dict
+            trigger_parent = rtip_dict,
+            do_mail = False,
         )
 
         formatted_coll = Templating().format_template(notif_dict['zip_description'], mock_event).encode('utf-8')

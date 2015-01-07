@@ -22,8 +22,7 @@ def admin_serialize_notification(notif, language):
         'source_name' : notif.source_name,
         'source_email' : notif.source_email,
         'disable_admin_notification_emails': notif.disable_admin_notification_emails,
-        'disable_receivers_notification_emails': notif.disable_receivers_notification_emails,
-        'disable_receivers_ping_emails': notif.disable_receivers_ping_emails
+        'disable_receivers_notification_emails': notif.disable_receivers_notification_emails
     }
 
     return get_localized_values(ret_dict, notif, notif.localized_strings, language)

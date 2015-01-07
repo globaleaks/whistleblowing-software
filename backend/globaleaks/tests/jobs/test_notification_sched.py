@@ -36,9 +36,7 @@ class TestEmail(helpers.TestGLWithPopulatedDB):
     def test_sendmail(self):
         aps = NotificationSchedule()
 
-        # 100 as limit
-        (tip_events, enqueued) = yield aps.create_tip_notification_events(0)
-        self.assertEqual(enqueued, 1)
+        yield aps.operation()
 
-        yield aps.do_tip_notification(tip_events)
+        # TODO To be completed
 

@@ -94,7 +94,6 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_accept_receiver_login_in_tor2web(self):
-        print self.dummyReceiver_1['id']
         handler = self.request({
            'username': self.dummyReceiver_1['id'],
            'password': helpers.VALID_PASSWORD1,

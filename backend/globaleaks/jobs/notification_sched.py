@@ -115,13 +115,15 @@ class EventLogger(object):
     def append_event(self, trigger_info, trigger_parent):
 
         assert hasattr(self, 'trigger'), "Superclass has not initialized self.trigger"
-        event = Event(type=self.template_type, trigger=self.trigger,
-                        steps_info=self.steps_info_desc,
-                        trigger_info=trigger_info,
-                        trigger_parent=trigger_parent,
-                        receiver_info=self.receiver_desc,
-                        context_info=self.context_desc,
-                        do_mail=self.do_mail)
+        event = Event(type=self.template_type,
+                      trigger=self.trigger,
+                      node_info={},
+                      steps_info=self.steps_info_desc,
+                      trigger_info=trigger_info,
+                      trigger_parent=trigger_parent,
+                      receiver_info=self.receiver_desc,
+                      context_info=self.context_desc,
+                      do_mail=self.do_mail)
 
         self.events.append(event )
 
