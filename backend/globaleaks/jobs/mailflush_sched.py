@@ -25,13 +25,7 @@ from twisted.internet.defer import inlineCallbacks
 
 class NotificationMail:
     """
-    Has to be implement in the appropriate plugin class
-
-            if notification_counter >= GLSetting.notification_limit:
-                log.debug("Notification counter has reached the suggested limit: %d (tip)" %
-                          notification_counter)
-                break
-
+    TODO Has to be implemented in the appropriate plugin class
     """
 
     def __init__(self, plugin_used):
@@ -42,14 +36,10 @@ class NotificationMail:
 
         notify = self.plugin_used.do_notify(eventOD)
 
-        if notify is None:
-            print "XXX investigate in this condition, if happen"
-            yield deferred_sleep(1.0)
-        else:
+        if notify:
             notify.addCallback(self.every_notification_succeeded, eventOD.storm_id)
             notify.addErrback(self.every_notification_failed, eventOD.storm_id)
             yield notify
-
 
     @transact
     def every_notification_succeeded(self, store, result, event_id):
@@ -111,45 +101,43 @@ def load_complete_events(store):
     return event_list
 
 
-def ping_mail_flush(receiver_dict):
-    """
-    This is a temporary class, ping_mail has to be implemented in the clean and testable
-    way defined in plugin/base.py and plugin/notification.py, and/or is the opportunity
-    to review these classes, at the moment is a simplify version thst just create a
-    ping email and send it via sendmail.
-    """
-
-    for receiver_mail, _data in receiver_dict.iteritems():
-
-        whinkles, receiver_name = _data
-        print "Ping", receiver_mail, whinkles, receiver_name
-
-        title = "There are %d good reason to..." % whinkles
-        body = "\nConnect exactly where you know!, our dear %s ;)\n" % receiver_name
-
-        message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
-                                  GLSetting.memory_copy.notif_source_email,
-                                  receiver_name,
-                                  receiver_mail,
-                                  title,
-                                  body)
-
-        event = OD()
-        event.type = "Ping mail for %s (%d info)" % (receiver_mail, whinkles)
-
-        return sendmail(authentication_username=GLSetting.memory_copy.notif_username,
-                        authentication_password=GLSetting.memory_copy.notif_password,
-                        from_address='whinklermail@globaleaks.org',
-                        # this has to be == notification_settings['source_email'],
-                        to_address= [ receiver_mail ],
-                        message_file=message,
-                        smtp_host=GLSetting.memory_copy.notif_server,
-                        smtp_port=GLSetting.memory_copy.notif_port,
-                        security=GLSetting.memory_copy.notif_security,
-                        event=event)
-
-
 class MailflushSchedule(GLJob):
+
+    def ping_mail_flush(self, receiver_dict):
+        """
+        TODO This function should be implemented as a clean and testable pligin in the
+        way defined in plugin/base.py and plugin/notification.py, and/or is the opportunity
+        to review these classes, at the moment is a simplified version that just create a
+        ping email and send it via sendmail.
+        """
+
+        for receiver_mail, _data in receiver_dict.iteritems():
+
+            whinkles, receiver_name = _data
+
+            title = "There are %d good reason to..." % whinkles
+            body = "\nConnect exactly where you know!, our dear %s ;)\n" % receiver_name
+
+            message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
+                                      GLSetting.memory_copy.notif_source_email,
+                                      receiver_name,
+                                      receiver_mail,
+                                      title,
+                                      body)
+
+            event = OD()
+            event.type = "Ping mail for %s (%d info)" % (receiver_mail, whinkles)
+
+            return sendmail(authentication_username=GLSetting.memory_copy.notif_username,
+                            authentication_password=GLSetting.memory_copy.notif_password,
+                            from_address='whinklermail@globaleaks.org',
+                            # this has to be == notification_settings['source_email'],
+                            to_address= [ receiver_mail ],
+                            message_file=message,
+                            smtp_host=GLSetting.memory_copy.notif_server,
+                            smtp_port=GLSetting.memory_copy.notif_port,
+                            security=GLSetting.memory_copy.notif_security,
+                            event=event)
 
     @inlineCallbacks
     def operation(self):
@@ -160,9 +148,8 @@ class MailflushSchedule(GLJob):
         notifcb = NotificationMail(plugin)
 
         for qe in queue_events:
-            deferred_sleep(2)
             notifcb.do_every_notification(qe)
-            deferred_sleep(2)
+            yield deferred_sleep(2)
 
         # TODO implement ping as an appropriate plugin
         receiver_synthesis = {}
@@ -175,7 +162,6 @@ class MailflushSchedule(GLJob):
                                           [0, qe.receiver_info['name']])
             receiver_synthesis[qe.receiver_info['ping_mail_address']][0] += 1
 
-
-        ping_mail_flush(receiver_synthesis)
+        yield self.ping_mail_flush(receiver_synthesis)
 
         # TODO implement digest as an appropriate plugin

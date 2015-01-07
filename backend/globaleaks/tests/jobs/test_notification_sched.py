@@ -15,9 +15,7 @@ from globaleaks.jobs.notification_sched import NotificationSchedule
 class TestEmail(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestGLWithPopulatedDB.setUp(self)
-
+    def test_sendmail(self):
         yield NotificationSchedule().operation()
 
         wb_steps = yield helpers.fill_random_fields(self.dummyContext['id'])
@@ -32,11 +30,9 @@ class TestEmail(helpers.TestGLWithPopulatedDB):
 
         yield delivery_sched.tip_creation()
 
-    @inlineCallbacks
-    def test_sendmail(self):
-        aps = NotificationSchedule()
+        aps1 = NotificationSchedule()
 
-        yield aps.operation()
+        yield aps1.operation()
 
-        # TODO To be completed
-
+        # TODO to be completed with real tests.
+        #      now we simply perform operations to raise code coverage
