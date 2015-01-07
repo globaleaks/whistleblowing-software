@@ -65,7 +65,7 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
 
             yield handler.get()
 
-            self.responses[0]['ping_mail_address'] = 'ortomio@x.x'
+            self.responses[0]['ping_mail_address'] = 'ortomio@x.com'
 
             handler = self.request(self.responses[0], role='receiver')
             handler.current_user.user_id = rcvr['id']

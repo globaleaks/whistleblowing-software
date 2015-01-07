@@ -614,6 +614,7 @@ class MockDict():
             'file_notification': True,
             'comment_notification': True,
             'message_notification': True,
+            'ping_notification': False,
             'gpg_key_info': u'',
             'gpg_key_fingerprint' : u'',
             'gpg_key_status': models.Receiver._gpg_types[0], # disabled
@@ -862,7 +863,6 @@ class MockDict():
             'ping_mail_title': u'QUERTY',
             'disable_admin_notification_emails': False,
             'disable_receivers_notification_emails': False,
-            'disable_receivers_ping_emails': False,
         }
 
 

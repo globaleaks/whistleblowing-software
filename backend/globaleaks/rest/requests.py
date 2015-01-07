@@ -170,8 +170,7 @@ adminNotificationDesc = {
     'ping_mail_template': unicode,
     'ping_mail_title': unicode,
     'disable_admin_notification_emails': bool,
-    'disable_receivers_notification_emails': bool,
-    'disable_receivers_ping_emails': bool,
+    'disable_receivers_notification_emails': bool
 }
 
 adminContextDesc = {

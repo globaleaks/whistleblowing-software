@@ -23,7 +23,6 @@ from cyclone.util import ObjectDict as OD
 from twisted.internet.defer import inlineCallbacks
 
 
-
 class NotificationMail:
     """
     Has to be implement in the appropriate plugin class
@@ -65,7 +64,6 @@ class NotificationMail:
         log.err("Mail deliver failure for event %s (%s)" % (event_id, failure))
         evnt = store.find(models.EventLogs, models.EventLogs.id == event_id).one()
         evnt.mail_sent = True
-
 
 
 @transact_ro
@@ -151,13 +149,10 @@ def ping_mail_flush(receiver_dict):
                         event=event)
 
 
-
-
 class MailflushSchedule(GLJob):
 
     @inlineCallbacks
     def operation(self):
-
 
         queue_events = yield load_complete_events()
 
@@ -184,7 +179,3 @@ class MailflushSchedule(GLJob):
         ping_mail_flush(receiver_synthesis)
 
         # TODO implement digest as an appropriate plugin
-
-
-
-

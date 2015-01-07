@@ -158,14 +158,13 @@ class notifTemplateTest(helpers.TestGL):
 
         self.event = Event(type = event_type,
                            trigger = event_trigger,
-                           notification_settings = notif_dict,
                            node_info = node_dict,
                            receiver_info = receiver_dict,
                            context_info = context_dict,
-                steps_info = steps_dict,
-                           plugin = None,
+                           steps_info = steps_dict,
                            trigger_info = self.tip,
-                           trigger_parent = self.tip )
+                           trigger_parent = self.tip,
+                           do_mail=False)
 
     @inlineCallbacks
     def _fill_event(self, event_type, trigger, trigger_id):
