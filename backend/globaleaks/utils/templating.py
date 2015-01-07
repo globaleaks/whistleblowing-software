@@ -34,9 +34,6 @@ class Templating(object):
                                   u'zip_collection' : ZipFileKeyword
                                 }
 
-        print "XXXXX"
-        print event_dicts
-        print "XXXXX"
         if event_dicts.type not in supported_event_types.keys():
             raise AssertionError("%s at the moment supported: [%s] is NOT " %
                                  (supported_event_types.keys(), event_dicts.type))
