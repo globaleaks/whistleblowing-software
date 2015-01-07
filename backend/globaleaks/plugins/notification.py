@@ -141,7 +141,6 @@ class MailNotification(Notification):
                    GLSetting.memory_copy.notif_port,
                    to_address[0], GLSetting.memory_copy.notif_security))
 
-        return
         return sendmail(authentication_username=GLSetting.memory_copy.notif_username,
                         authentication_password=GLSetting.memory_copy.notif_password,
                         from_address= from_address,
