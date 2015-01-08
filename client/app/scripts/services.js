@@ -42,8 +42,19 @@ angular.module('resourceServices.authentication', [])
             $rootScope.errors.push(error);
 
             $timeout(function() {
-              $location.path('/login');
-              $location.search('src='+source_path);
+              var redirect_path = '/login';
+
+              // Only redirect if we are not on the login page
+              if (source_path.indexOf('/admin') === 0) {
+                  redirect_path = '/admin';
+              }
+
+              // Only redirect if we are not alread on the login pagr
+              if ($location.path() !== redirect_path) {
+                $location.path(redirect_path);
+                $location.search('src='+source_path);
+              };
+
             }, 3000);
 
           } else {
@@ -219,9 +230,16 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           if (error.code == 24) {
               $rootScope.logout();
           } else {
+            var redirect_path = '/login';
+
             // Only redirect if we are not on the login page
-            if ($location.path().indexOf('/login') === -1) {
-              $location.path('/login');
+            if (source_path.indexOf('/admin') === 0) {
+                redirect_path = '/admin';
+            }
+
+            // Only redirect if we are not alread on the login pagr
+            if ($location.path() !== redirect_path) {
+              $location.path(redirect_path);
               $location.search('src='+source_path);
             };
           }
