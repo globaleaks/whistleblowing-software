@@ -20,15 +20,24 @@ from globaleaks.models import Stats, Anomalies
 from globaleaks.utils.utility import log, datetime_now
 
 @transact
-def save_anomalies(store, when_anomaly, anomaly_desc, alarm_raised):
+def save_anomalies(store, anomalies_list):
 
-    newanom = Anomalies()
+    anomalies_counter = 0
+    for anomaly in anomalies_list:
+        anomalies_counter += 1
+        when_anomaly, anomaly_desc, alarm_raised = anomaly
 
-    newanom.alarm = alarm_raised
-    newanom.stored_when = when_anomaly
-    newanom.events = anomaly_desc
+        newanom = Anomalies()
 
-    store.add(newanom)
+        newanom.alarm = alarm_raised
+        newanom.stored_when = when_anomaly
+        newanom.events = anomaly_desc
+
+        store.add(newanom)
+
+    if anomalies_counter:
+        log.debug("Saved %d anomalies collected during the last hour" % anomalies_counter)
+
 
 @transact
 def save_statistics(store, start, end, activity_collection):
@@ -58,8 +67,38 @@ class AnomaliesSchedule(GLJob):
         Every X seconds is checked if anomalies are happening
         from anonymous interaction (submission/file/comments/whatever flood)
         If the alarm has been raise, logs in the DB the event.
+
+        This copy data inside StatisticsSchedule.RecentAnomaliesQ
         """
         yield Alarm.compute_activity_level()
+
+
+def get_anomalies():
+    anomalies = []
+    for when, anomaly_blob in dict(StatisticsSchedule.RecentAnomaliesQ).iteritems():
+        anomalies.append(
+            [ when, anomaly_blob[0], anomaly_blob[1] ]
+        )
+    return anomalies
+
+def clean_anomalies():
+    StatisticsSchedule.RecentAnomaliesQ = dict()
+
+def get_statistics():
+    statsummary = {}
+
+    for descblob in StatisticsSchedule.RecentEventQ:
+        # descblob format:
+        #  {  'id' : expired_event.event_id
+        #     'when' : datetime_to_ISO8601(expired_event.creation_date)[:-8],
+        #     'event' : expired_event.event_type, 'duration' :   }
+        if 'event' not in descblob:
+            continue
+        statsummary.setdefault(descblob['event'], 0)
+        statsummary[descblob['event']] += 1
+
+    return statsummary
+
 
 
 class StatisticsSchedule(GLJob):
@@ -83,26 +122,14 @@ class StatisticsSchedule(GLJob):
         executed every 60 minutes
         """
 
-        for when, anomaly_blob in dict(StatisticsSchedule.RecentAnomaliesQ).iteritems():
-            yield save_anomalies(when, anomaly_blob[0], anomaly_blob[1])
+        # ------- Anomalies section ------
+        anomalies_to_save = get_anomalies()
+        yield save_anomalies(anomalies_to_save)
+        clean_anomalies()
+        # ------- END of Anomalies section ------
 
-        StatisticsSchedule.RecentAnomaliesQ = dict()
-
-        # Addres the statistics. the time start and end are in string
-        # without the last 8 bytes, to let d3.js parse easily (or investigate),
-        # creation_date, default model, is ignored in the visualisation
         current_time = datetime_now()
-        statistic_summary = {}
-
-        #  {  'id' : expired_event.event_id
-        #     'when' : datetime_to_ISO8601(expired_event.creation_date)[:-8],
-        #     'event' : expired_event.event_type, 'duration' :   }
-
-        for descblob in StatisticsSchedule.RecentEventQ:
-            if 'even' not in descblob:
-                continue
-            statistic_summary.setdefault(descblob['event'], 0)
-            statistic_summary[descblob['event']] += 1
+        statistic_summary = get_statistics()
 
         yield save_statistics(StatisticsSchedule.collection_start_datetime,
                               current_time, statistic_summary)
