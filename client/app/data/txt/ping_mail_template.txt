@@ -1,3 +1,3 @@
 Dear %ReceiverName%,
 
-There are %EventCount% good reason to connect exactly where you know!
+There are %EventCount% good reasons to connect exactly where you know!
