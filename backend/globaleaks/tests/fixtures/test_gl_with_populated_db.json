@@ -391,7 +391,7 @@
       },
       "ping_mail_title": {
         "en": "There are %EventCount% good reason to..."
-      }
+      },
       "security": "TLS",
       "encrypted_file_mail_title": {
         "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File attached (Encrypted)"
