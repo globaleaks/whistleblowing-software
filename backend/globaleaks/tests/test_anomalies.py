@@ -25,33 +25,6 @@ class TestAlarm(helpers.TestGL):
         x = anomaly.EventTrackQueue.take_current_snapshot()
         self.assertTrue(len(x) > 1)
 
-
-    def test_token_difficulty(self):
-        self.skipTest("Captcha difficulty implemented but not updated")
-
-        a = anomaly.Alarm()
-
-        self.assertEqual(anomaly.outcome_event_monitored[3]['name'], 'submission_completed')
-        for x in xrange(100):
-            # emulate 100 submission completed
-            anomaly.EventTrack(anomaly.outcome_event_monitored[3], 0.0)
-
-        d = anomaly.Alarm.compute_activity_level()
-
-        # adjust the stress_level and check if the expected behavior is placed
-        anomaly.Alarm.stress_levels['activity'] = 1
-        self.assertTrue(a.get_token_difficulty()['graph_captcha'])
-
-        anomaly.Alarm.stress_levels['activity'] = 0
-        self.assertFalse(a.get_token_difficulty()['graph_captcha'])
-
-        anomaly.Alarm.stress_levels['disk_space'] = 1
-        self.assertTrue(a.get_token_difficulty()['human_captcha'])
-
-        anomaly.Alarm.stress_levels['disk_space'] = 0
-        self.assertFalse(a.get_token_difficulty()['human_captcha'])
-
-
     @defer.inlineCallbacks
     def test_compute_activity_level(self):
         """

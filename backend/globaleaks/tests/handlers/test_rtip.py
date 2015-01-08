@@ -14,6 +14,8 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
+        yield self.perform_submission()
+
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver')
@@ -24,6 +26,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_delete_global_delete_true(self):
         yield self.perform_submission()
+
         rtips_desc = yield self.get_rtips()
         self.assertEqual(len(rtips_desc), 2)
 
@@ -44,6 +47,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_delete_global_delete_false(self):
         yield self.perform_submission()
+
         rtips_desc = yield self.get_rtips()
         self.assertEqual(len(rtips_desc), 2)
 
@@ -63,6 +67,8 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_delete_unexistent_tip_by_existent_and_logged_receiver(self):
+        yield self.perform_submission()
+
         body = {
             'global_delete' : True,
             'extend': False
@@ -78,6 +84,8 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_delete_existent_tip_by_existent_and_logged_but_wrong_receiver(self):
+        yield self.perform_submission()
+
         body = {
             'global_delete' : True,
             'extend': False
@@ -96,6 +104,8 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
+        yield self.perform_submission()
+
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver')
@@ -105,6 +115,8 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
+        yield self.perform_submission()
+
         body = {
             'content' : "can you provide an evidence of what you are telling?",
         }
@@ -121,6 +133,8 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
+        yield self.perform_submission()
+
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver')
@@ -130,6 +144,8 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_002_post(self):
+        yield self.perform_submission()
+
         body = {
             'content' : "can you provide an evidence of what you are telling?",
         }
@@ -146,6 +162,8 @@ class TestRTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
+        yield self.perform_submission()
+
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver')
