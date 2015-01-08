@@ -14,10 +14,12 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post_file_on_not_finalized_submission(self):
+        yield self.perform_submission()
         handler = self.request(body=self.get_dummy_file())
         yield handler.post(self.dummySubmissionNotFinalized['id'])
 
     def test_post_file_finalized_submission(self):
+        yield self.perform_submission()
         handler = self.request(body=self.get_dummy_file())
         self.assertFailure(handler.post(self.dummySubmission['id']), errors.SubmissionConcluded)
 

@@ -34,7 +34,6 @@ from globaleaks.security import GLSecureTemporaryFile
 from . import TEST_DIR
 
 ## constants
-
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
 VALID_SALT1 = security.get_salt(rstr.xeger(r'[A-Za-z0-9]{56}'))
@@ -224,7 +223,7 @@ class TestGL(unittest.TestCase):
         dummySubmissionDict['wb_steps'] = yield fill_random_fields(context_id)
         dummySubmissionDict['receivers'] = (yield get_context(context_id, 'en'))['receivers']
         dummySubmissionDict['files'] = []
-        dummySubmissionDict['finalize'] = True
+        dummySubmissionDict['finalize'] = False
 
         defer.returnValue(dummySubmissionDict)
 
@@ -406,17 +405,17 @@ class TestGLWithPopulatedDB(TestGL):
 
         yield update_context(self.dummyContext['id'], self.dummyContext, 'en')
 
-        # fill_data/create_submission
+    @inlineCallbacks
+    def perform_submission(self):
+
         self.dummySubmission['context_id'] = self.dummyContext['id']
-        self.dummySubmission['receivers'] = receivers_ids
+        self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['wb_steps'] = yield fill_random_fields(self.dummyContext['id'])
         self.dummySubmissionNotFinalized = yield create_submission(self.dummySubmission, False, 'en')
         self.dummySubmission = yield create_submission(self.dummySubmission, False, 'en')
 
         yield self.emulate_file_upload(self.dummySubmission['id'])
-        # fill_data/update_submssion
         submission = yield update_submission(self.dummySubmission['id'], self.dummySubmission, True, 'en')
-        # fill_data/create_whistleblower
         self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
 
         assert self.dummyReceiver_1.has_key('id')
@@ -456,7 +455,7 @@ class TestGLWithPopulatedDB(TestGL):
                 yield wbtip.create_message_wb(wbtip_desc['wbtip_id'], receiver_id, messageCreation)
 
         yield delivery_sched.DeliverySchedule().operation()
-
+        yield notification_sched.NotificationSchedule().operation()
 
 
 class TestHandler(TestGLWithPopulatedDB):
