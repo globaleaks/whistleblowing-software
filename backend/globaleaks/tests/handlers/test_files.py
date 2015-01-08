@@ -20,6 +20,7 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(body=self.get_dummy_file())
         yield handler.post(self.submission_desc['id'])
 
+    @inlineCallbacks
     def test_post_file_finalized_submission(self):
         yield self.perform_submission()
         handler = self.request(body=self.get_dummy_file())
@@ -34,6 +35,8 @@ class TestFileAdd(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
+        yield self.perform_submission()
+
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb', body=self.get_dummy_file())
@@ -45,6 +48,8 @@ class TestDownload(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
+        yield self.perform_submission()
+
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             rfiles_desc = yield self.get_rfiles(rtip_desc['rtip_id'])

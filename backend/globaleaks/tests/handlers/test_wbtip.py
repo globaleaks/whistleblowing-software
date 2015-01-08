@@ -14,6 +14,8 @@ class TestWBTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_001_get(self):
+        yield self.perform_submission()
+
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb')
@@ -26,6 +28,8 @@ class TestWBTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_001_get(self):
+        yield self.perform_submission()
+
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb')
@@ -35,6 +39,8 @@ class TestWBTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_002_post(self):
+        yield self.perform_submission()
+
         body = {
             'content' : "can you provide an evidence of what you are telling?",
         }
@@ -51,6 +57,8 @@ class TestWBTipMessageCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_001_get(self):
+        yield self.perform_submission()
+
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb')
@@ -61,6 +69,8 @@ class TestWBTipMessageCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_002_post(self):
+        yield self.perform_submission()
+
         body = {
             'content' : "can you provide an evidence of what you are telling?",
         }
@@ -78,6 +88,8 @@ class TestWBTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_001_get(self):
+        yield self.perform_submission()
+
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb')
