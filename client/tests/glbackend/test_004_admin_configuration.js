@@ -52,6 +52,7 @@ var receiver = {
   postpone_superpower: true,
   presentation_order: 0,
   tip_notification: false,
+  ping_notification: false,
   configuration: "default",
   password_change_needed: false,
 }
