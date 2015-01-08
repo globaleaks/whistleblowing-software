@@ -352,7 +352,7 @@ class ZipFileKeyword(TipKeyword):
 
 class PingMailKeyword(object):
 
-    ping_keyword = [
+    keyword_list = [
         '%ReceiverName%',
         '%EventCount%'
     ]
