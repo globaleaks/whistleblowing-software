@@ -25,14 +25,14 @@ angular.module('resourceServices.authentication', [])
           var current_date = new Date();
 
           $rootScope.session_expiration = expirationDate;
-          $timeout(checkExpiration, expirationDate - current_date);
+          $timeout(checkExpiration, expirationDate - (current_date / 1000));
         },
 
         checkExpiration = function() {
           var current_date = new Date();
           var expiration_date = $rootScope.session_expiration;
 
-          if (expiration_date >= current_date) {
+          if ((current_date / 1000) >= expiration_date) {
             var error = {
               'message': 'Session expired!',
                  'code': 401,
