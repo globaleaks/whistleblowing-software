@@ -49,6 +49,9 @@ class Rosetta(object):
 
         translated_dict = self._localized_strings[attr]
 
+        if not isinstance(translated_dict, dict):
+            return ""
+
         if language in translated_dict:
             return translated_dict[language]
         elif default_language in translated_dict:

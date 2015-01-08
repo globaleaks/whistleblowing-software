@@ -21,6 +21,7 @@ from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLApiCache, GLHTTPConnection
 from globaleaks.handlers.admin import create_context, get_context, update_context, create_receiver, db_get_context_steps
 from globaleaks.handlers.admin.field import create_field
+from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
 from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched, mailflush_sched
 from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
@@ -145,7 +146,6 @@ class TestGL(unittest.TestCase):
         self.dummyFieldTemplates = dummyStuff.dummyFieldTemplates
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
-        self.dummyNotification = dummyStuff.dummyNotification
         self.dummyReceiverUser_1 = self.get_dummy_receiver_user('receiver1')
         self.dummyReceiverUser_2 = self.get_dummy_receiver_user('receiver2')
         self.dummyReceiver_1 = self.get_dummy_receiver('receiver1') # the one without PGP
@@ -805,54 +805,6 @@ class MockDict():
             'custom_privacy_badge_tbb': u'',
             'custom_privacy_badge_tor': u'',
             'custom_privacy_badge_none': u'',
-        }
-
-        self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',
-                                           '%PublicSite%', '%ReceiverName%',
-                                           '%ContextName%' ]
-        self.tip_template_keywords = [ '%TipTorURL%', '%TipT2WURL%', '%EventTime%' ]
-        self.comment_template_keywords = [ '%CommentSource%', '%EventTime%' ]
-        self.file_template_keywords = [ '%FileName%', '%EventTime%',
-                                        '%FileSize%', '%FileType%' ]
-
-        self.dummyNotification = {
-            'server': u'mail.foobar.xxx',
-            'port': 12345,
-            'username': u'xxxx@xxx.y',
-            'password': u'antani',
-            'security': u'SSL',
-            'source_name': u'UnitTest Helper Name',
-            'source_email': u'unit@test.help',
-            'encrypted_tip_template': template_keys(self.tip_template_keywords,
-                                          self.generic_template_keywords, "Tip"),
-            'plaintext_tip_template': template_keys(self.tip_template_keywords,
-                                                    self.generic_template_keywords, "Tip"),
-            'encrypted_tip_mail_title': u'xXx',
-            'plaintext_tip_mail_title': u'XxX',
-            'encrypted_file_template':template_keys(self.file_template_keywords,
-                                          self.generic_template_keywords, "File"),
-            'plaintext_file_template':template_keys(self.file_template_keywords,
-                                          self.generic_template_keywords, "File"),
-            'encrypted_file_mail_title': u'kkk',
-            'plaintext_file_mail_title': u'kkk',
-            'encrypted_comment_template': template_keys(self.comment_template_keywords,
-                                              self.generic_template_keywords, "Comment"),
-            'plaintext_comment_template': template_keys(self.comment_template_keywords,
-                                              self.generic_template_keywords, "Comment"),
-            'encrypted_comment_mail_title': u'yyy',
-            'plaintext_comment_mail_title': u'yyy',
-            'encrypted_message_template': u'%B EventTime% %TipUN%',
-            'plaintext_message_template': u'%B EventTime% %TipUN%',
-            'encrypted_message_mail_title': u'T %EventTime %TipUN',
-            'plaintext_message_mail_title': u'T %EventTime %TipUN',
-            'admin_anomaly_template': u'QWERTY',
-            'pgp_expiration_alert': u'QWERTY',
-            'pgp_expiration_notice': u'QWERTY',
-            'zip_description': u'QWERTY',
-            'ping_mail_template': u'QWERTY',
-            'ping_mail_title': u'QUERTY',
-            'disable_admin_notification_emails': False,
-            'disable_receivers_notification_emails': False,
         }
 
 
