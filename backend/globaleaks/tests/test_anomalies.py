@@ -46,3 +46,4 @@ class TestAlarm(helpers.TestGL):
         activity_level = yield anomaly.Alarm.compute_activity_level()
         self.assertEqual(activity_level, 0)
 
+
