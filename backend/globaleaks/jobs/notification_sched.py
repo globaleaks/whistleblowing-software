@@ -327,7 +327,7 @@ def save_event_db(store, event_dict):
             'kind': evnt.trigger
         }
         # why is a JSON ? now is
-        e.title = "Title [%s]" % evnt.trigger
+        e.title = "%s" % evnt.trigger
         e.receiver_id = evnt.receiver_info['id']
         e.mail_sent = False
 
