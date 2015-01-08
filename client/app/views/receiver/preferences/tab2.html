@@ -64,7 +64,7 @@
     </div>
   </div>
 
-  <div class="form-group" data-ng-show="preferences.enable_ping_notification">
+  <div class="form-group" data-ng-show="preferences.ping_notification">
     <label data-translate>Ping Email Address</label>
     <input class="form-control" name="ping_email" data-ng-model="preferences.ping_mail_address" type="text" ng-pattern="email_regexp">
     <p class="has-error" data-ng-show="receiverPreferencesForm.ping_email.$error.pattern">
