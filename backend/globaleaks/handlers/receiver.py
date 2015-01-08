@@ -40,10 +40,10 @@ def receiver_serialize_receiver(receiver, language):
         "mail_address": receiver.mail_address,
         "ping_mail_address": receiver.ping_mail_address,
         "contexts": [c.id for c in receiver.contexts],
-        "password": u'',
-        "old_password": u'',
-        'language': receiver.user.language,
-        'timezone': receiver.user.timezone
+        "password": u"",
+        "old_password": u"",
+        "language": receiver.user.language,
+        "timezone": receiver.user.timezone
     }
 
     for context in receiver.contexts:
@@ -280,6 +280,7 @@ def get_receiver_notif(store, receiver_id, language):
         'activities': [],
         'tips': []
     }
+
     for evnt in eventlst:
 
         if evnt.event_reference['kind'] != u'Tip':
@@ -311,10 +312,6 @@ class NotificationCollection(BaseHandler):
     def get(self):
 
         display_event = yield get_receiver_notif(self.current_user.user_id, self.request.language)
-        print "Get display_events (tip %d) (mish %d) " % (
-            len(display_event['tips']),
-            len(display_event['activities'])
-        )
         self.set_status(200) # Success
         self.finish(display_event)
 

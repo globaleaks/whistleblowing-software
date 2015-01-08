@@ -116,6 +116,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_successful_whistleblower_login(self):
+        yield self.perform_submission()
         handler = self.request({
            'username': '',
            'password': self.dummyWBTip,
@@ -127,6 +128,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_accept_whistleblower_login_in_tor2web(self):
+        yield self.perform_submission()
         handler = self.request({
            'username': '',
            'password': self.dummyWBTip,
@@ -138,6 +140,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
     def test_deny_whistleblower_login_in_tor2web(self):
+        yield self.perform_submission()
         handler = self.request({
            'username': '',
            'password': self.dummyWBTip,
@@ -211,7 +214,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_successful_whistleblower_logout(self):
-        # Login
+        yield self.perform_submission()
         handler = self.request({
             'username': '',
             'password': self.dummyWBTip,

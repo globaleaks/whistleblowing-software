@@ -23,14 +23,14 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_delete_global_delete_true(self):
+        yield self.perform_submission()
+        rtips_desc = yield self.get_rtips()
+        self.assertEqual(len(rtips_desc), 2)
+
         body = {
             'global_delete' : True,
             'extend': False
         }
-
-        rtips_desc = yield self.get_rtips()
-
-        self.assertEqual(len(rtips_desc), 2)
 
         # we deleete the first and then we verify that the second does not exist anymore
         handler = self.request(role='receiver', body=json.dumps(body))
@@ -43,14 +43,14 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_delete_global_delete_false(self):
+        yield self.perform_submission()
+        rtips_desc = yield self.get_rtips()
+        self.assertEqual(len(rtips_desc), 2)
+
         body = {
             'global_delete' : False,
             'extend': False
         }
-
-        rtips_desc = yield self.get_rtips()
-
-        self.assertEqual(len(rtips_desc), 2)
 
         # we delete the first than we verify that the second still exists
         handler = self.request(role='receiver', body=json.dumps(body))

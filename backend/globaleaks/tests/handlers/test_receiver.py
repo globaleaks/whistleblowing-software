@@ -5,8 +5,10 @@ import json
 
 from globaleaks.rest import requests
 from globaleaks.tests import helpers
-from globaleaks.handlers import receiver, admin
+from globaleaks.handlers import receiver, admin, submission
 from globaleaks.settings import GLSetting
+from globaleaks.jobs import delivery_sched
+from globaleaks.jobs.notification_sched import NotificationSchedule
 
 class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = receiver.ReceiverInstance
@@ -80,3 +82,28 @@ class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
         #       so that very few code is covered. 
         handler = self.request(role='receiver')
         yield handler.get()
+
+class TestNotificationCollection(helpers.TestHandlerWithPopulatedDB):
+    _handler = receiver.NotificationCollection
+    
+    @inlineCallbacks
+    def test_get(self):
+        yield self.perform_submission()
+
+        handler = self.request(role='receiver')
+        handler.current_user.user_id = self.dummyReceiver_1['id']
+        yield handler.get()
+
+        self.assertEqual(len(self.responses), 1)
+        self.assertEqual(len(self.responses[0]['tips']), 1)
+        self.assertEqual(len(self.responses[0]['activities']), 5)
+
+    @inlineCallbacks
+    def test_delete(self):
+        yield self.perform_submission()
+
+        handler = self.request(role='receiver')
+        handler.current_user.user_id = self.dummyReceiver_1['id']
+        yield handler.delete()
+
+        self.assertEqual(len(self.responses), 0)

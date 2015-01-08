@@ -12,6 +12,8 @@ class TestUsersOverview(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
+        yield self.perform_submission()
+
         handler = self.request({}, role='admin')
         yield handler.get()
 
@@ -26,6 +28,8 @@ class TestTipsOverview(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
+        yield self.perform_submission()
+
         handler = self.request({}, role='admin')
         yield handler.get()
 
@@ -40,6 +44,8 @@ class TestFilesOverview(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
+        yield self.perform_submission()
+
         handler = self.request({}, role='admin')
         yield handler.get()
 
