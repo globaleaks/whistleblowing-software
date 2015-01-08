@@ -5,7 +5,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.rest import requests, errors
 from globaleaks.tests import helpers
-from globaleaks.handlers import files
+from globaleaks.handlers import files, submission
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile
 
@@ -14,9 +14,11 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post_file_on_not_finalized_submission(self):
-        yield self.perform_submission()
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+        self.submission_desc = yield submission.create_submission(self.submission_desc, False, 'en')
+
         handler = self.request(body=self.get_dummy_file())
-        yield handler.post(self.dummySubmissionNotFinalized['id'])
+        yield handler.post(self.submission_desc['id'])
 
     def test_post_file_finalized_submission(self):
         yield self.perform_submission()
