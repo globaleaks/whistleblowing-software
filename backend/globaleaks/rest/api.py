@@ -128,6 +128,10 @@ spec.append(
     (r'/login', BaseRedirectHandler, {'url': '/#/login'} )
 )
 
+spec.append(
+    (r'/admin', BaseRedirectHandler, {'url': '/#/admin'} )
+)
+
 ## Static files services (would remain also if Client is not served by Backend)
 spec.append(
     (r'/(favicon.ico)', BaseStaticFileHandler, {'path': GLSetting.static_path })
