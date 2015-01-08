@@ -121,11 +121,20 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.notification.NotificationInstance
 
     @inlineCallbacks
-    def test_update_notification(self):
-         self.dummyNotification['server'] = 'stuff'
-         handler = self.request(self.dummyNotification, role='admin')
+    def test_get(self):
+         handler = self.request(role='admin')
+         yield handler.get()
+         self.assertEqual(self.responses[0]['server'], 'mail.headstrong.de')
+
+    @inlineCallbacks
+    def test_put(self):
+         handler = self.request(role='admin')
+         yield handler.get()
+
+         self.responses[0]['server'] = 'stuff'
+         handler = self.request(self.responses[0], role='admin')
          yield handler.put()
-         self.assertEqual(self.responses[0]['server'], 'stuff')
+         self.assertEqual(self.responses[1]['server'], 'stuff')
 
 
 class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):

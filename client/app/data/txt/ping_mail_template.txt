@@ -1,0 +1,3 @@
+Dear %ReceiverName%,
+
+There are %EventCount% good reason to connect exactly where you know!

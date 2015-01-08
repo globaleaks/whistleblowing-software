@@ -124,13 +124,6 @@ def initialize_node(store, result, only_node, appdata):
         if k in appdata['templates']:
             setattr(notification, k, appdata['templates'][k])
 
-    # This templates are under study so that customization is fully up to the adopter
-    notification.ping_mail_template = {'en': ''}
-    notification.ping_mail_title = {'en': ''}
-
-    # Todo handle pgp_expiration_alert and pgp_expiration_notice already included in client/app/data/txt
-    # and internationalized with right support on backend db.
-
     store.add(notification)
 
 def db_import_memory_variables(store):
@@ -205,7 +198,7 @@ def apply_cli_options(store):
                 accepted.update({ 'public_site' : unicode(composed_t2w_url) })
                 print "[+] %s public site in the DB: %s" % (verb, composed_t2w_url)
 
-            verb = "Overwritting"
+            verb = "Overwriting"
 
     if GLSetting.cmdline_options.public_website:
         if not re.match(requests.https_url_regexp, GLSetting.cmdline_options.public_website):
