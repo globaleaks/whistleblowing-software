@@ -78,9 +78,10 @@ class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
-        # FIXME currently the helpers.TestHandlerWithPopulatedDB do not populate any tip
-        #       so that very few code is covered. 
+        yield self.perform_submission()
+
         handler = self.request(role='receiver')
+        handler.current_user.user_id = self.dummyReceiver_1['id']
         yield handler.get()
 
 class TestNotificationCollection(helpers.TestHandlerWithPopulatedDB):
