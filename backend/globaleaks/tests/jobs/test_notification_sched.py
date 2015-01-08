@@ -12,27 +12,18 @@ GLSetting.memory_copy.notif_source_name = "name fake"
 GLSetting.memory_copy.notif_source_email = "mail@fake.xxx"
 
 
-class TestEmail(helpers.TestGLWithPopulatedDB):
+class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
-    def test_sendmail(self):
-        yield NotificationSchedule().operation()
+    def setUp(self):
+        yield helpers.TestGLWithPopulatedDB.setUp(self)
+        yield self.perform_submission()
 
-        wb_steps = yield helpers.fill_random_fields(self.dummyContext['id'])
+    @inlineCallbacks
+    def test_notification_schedule(self):
+        aps = NotificationSchedule()
 
-        self.recipe = yield submission.create_submission({
-            'wb_steps': wb_steps,
-            'context_id': self.dummyContext['id'],
-            'receivers': [self.dummyReceiver_1['id']],
-            'files': [],
-            'finalize': True,
-            }, True, 'en')
-
-        yield delivery_sched.tip_creation()
-
-        aps1 = NotificationSchedule()
-
-        yield aps1.operation()
+        yield aps.operation()
 
         # TODO to be completed with real tests.
         #      now we simply perform operations to raise code coverage

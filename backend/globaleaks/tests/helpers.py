@@ -411,17 +411,11 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['wb_steps'] = yield fill_random_fields(self.dummyContext['id'])
-        self.dummySubmissionNotFinalized = yield create_submission(self.dummySubmission, False, 'en')
         self.dummySubmission = yield create_submission(self.dummySubmission, False, 'en')
 
         yield self.emulate_file_upload(self.dummySubmission['id'])
         submission = yield update_submission(self.dummySubmission['id'], self.dummySubmission, True, 'en')
         self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
-
-        assert self.dummyReceiver_1.has_key('id')
-        assert self.dummyReceiver_2.has_key('id')
-        assert self.dummyContext.has_key('id')
-        assert self.dummySubmission.has_key('id')
 
         yield delivery_sched.DeliverySchedule().operation()
 
@@ -444,7 +438,6 @@ class TestGLWithPopulatedDB(TestGL):
                                                rtip_desc['rtip_id'],
                                                messageCreation)
 
-
         wbtips_desc = yield self.get_wbtips()
 
         for wbtip_desc in wbtips_desc:
@@ -455,7 +448,6 @@ class TestGLWithPopulatedDB(TestGL):
                 yield wbtip.create_message_wb(wbtip_desc['wbtip_id'], receiver_id, messageCreation)
 
         yield delivery_sched.DeliverySchedule().operation()
-        yield notification_sched.NotificationSchedule().operation()
 
 
 class TestHandler(TestGLWithPopulatedDB):
