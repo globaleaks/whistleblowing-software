@@ -80,8 +80,8 @@ def load_complete_events(store):
 
         # event level information are decoded form DB in the old 'Event'|nametuple format:
         eventcomplete.receiver_info = stev.description['receiver_info']
-        eventcomplete.trigger_parent = stev.description['trigger_parent']
-        eventcomplete.trigger_info = stev.description['trigger_info']
+        eventcomplete.tip_info = stev.description['tip_info']
+        eventcomplete.subevent_info = stev.description['subevent_info']
         eventcomplete.context_info = stev.description['context_info']
         eventcomplete.steps_info = stev.description['steps_info']
 
@@ -107,15 +107,17 @@ class MailflushSchedule(GLJob):
 
         for receiver_mail, _data in receiver_dict.iteritems():
 
-            whinkles, receiver_name = _data
+            winks, receiver_name = _data
 
             fakeevent = OD()
             fakeevent.type = u'ping_mail'
             # we've to accomplish the same amount of Attrs looked in templating.py TemplatClass
-            fakeevent.node_info = fakeevent.context_info = fakeevent.steps_info = None
-            fakeevent.receiver_info = {'name': receiver_name}
-            fakeevent.trigger_info = {'counter': whinkles}
-            fakeevent.trigger_parent = None
+            fakeevent.node_info = None
+            fakeevent.context_info = None
+            fakeevent.steps_info = None
+            fakeevent.receiver_info = receiver_dict
+            fakeevent.tip_info = None
+            fakeevent.subevent_info = {'counter': winks}
 
             body = Templating().format_template(
                 notification_settings['encrypted_tip_template'], fakeevent)
@@ -130,12 +132,11 @@ class MailflushSchedule(GLJob):
                                       body)
 
             fakeevent2 = OD()
-            fakeevent2.type = "Ping mail for %s (%d info)" % (receiver_mail, whinkles)
+            fakeevent2.type = "Ping mail for %s (%d info)" % (receiver_mail, winks)
 
             return sendmail(authentication_username=GLSetting.memory_copy.notif_username,
                             authentication_password=GLSetting.memory_copy.notif_password,
-                            from_address='whinklermail@globaleaks.org',
-                            # this has to be == notification_settings['source_email'],
+                            from_address=GLSetting.memory_copy.source_email,
                             to_address= [ receiver_mail ],
                             message_file=message,
                             smtp_host=GLSetting.memory_copy.notif_server,

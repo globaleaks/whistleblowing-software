@@ -64,7 +64,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         # remind: return a tuple (serzialized_itip, wb_itip)
         wb_tip = yield wbtip.get_internaltip_wb(wb_access_id, 'en')
 
-        self.assertTrue(wb_tip.has_key('wb_steps'))
+        self.assertTrue('wb_steps' in wb_tip)
 
     @inlineCallbacks
     def test_create_receiverfiles_allow_unencrypted_true_no_keys_loaded(self):
@@ -144,7 +144,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         wb_tip = yield wbtip.get_internaltip_wb(wb_access_id, 'en')
 
-        self.assertTrue(wb_tip.has_key('wb_steps'))
+        self.assertTrue('wb_steps' in wb_tip)
 
     @inlineCallbacks
     def test_unable_to_update_finalized(self):

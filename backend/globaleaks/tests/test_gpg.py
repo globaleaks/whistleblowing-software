@@ -126,7 +126,7 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
 
         mock_event = Event(type=u'encrypted_tip',
                            trigger='Tip',
-                           trigger_info = {
+                           tip_info = {
                                'creation_date': '2013-05-13T17:49:26.105485', #epoch!
                                'id': 'useless',
                                'wb_steps' : fill_random_fields(self.dummyContext['id']),
@@ -135,7 +135,7 @@ class TestReceiverSetKey(TestHandlerWithPopulatedDB):
                            receiver_info = MockDict().dummyReceiver,
                            context_info = MockDict().dummyContext,
                            steps_info = {},
-                           trigger_parent = {},
+                           subevent_info = {},
                            do_mail=False)
 
         mail_content = Templating().format_template(dummy_template, mock_event)
