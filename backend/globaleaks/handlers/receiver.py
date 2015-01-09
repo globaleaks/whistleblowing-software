@@ -63,7 +63,7 @@ def serialize_event(evnt):
         "creation_date": datetime_to_ISO8601(evnt.creation_date),
         'title': evnt.title,
         'mail_sent': evnt.mail_sent,
-        'receivertip_id': evnt.receivertip_id
+        'tip_id': evnt.receivertip_id
     }
     return ret_dict
 
@@ -71,7 +71,7 @@ def serialize_event(evnt):
 
 @transact_ro
 def get_receiver_settings(store, receiver_id, language):
-    receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+    receiver = store.find(Receiver, Receiver.id == receiver_id).one()
 
     if not receiver:
         raise errors.ReceiverIdNotFound
@@ -84,7 +84,7 @@ def update_receiver_settings(store, receiver_id, request, language):
     TODO: remind that 'description' is imported, but is not permitted
         by UI to be modified right now.
     """
-    receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+    receiver = store.find(Receiver, Receiver.id == receiver_id).one()
     receiver.description[language] = request['description']
 
     if not receiver:
