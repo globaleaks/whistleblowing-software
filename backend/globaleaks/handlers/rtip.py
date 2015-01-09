@@ -89,8 +89,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     return ret_dict
 
 
-@transact_ro
-def get_files_receiver(store, user_id, tip_id):
+def db_get_files_receiver(store, user_id, tip_id):
     rtip = access_tip(store, user_id, tip_id)
 
     receiver_files = store.find(ReceiverFile,
@@ -104,8 +103,7 @@ def get_files_receiver(store, user_id, tip_id):
     return files_list
 
 
-@transact
-def get_internaltip_receiver(store, user_id, tip_id, language):
+def db_get_tip_receiver(store, user_id, tip_id, language):
     rtip = access_tip(store, user_id, tip_id)
 
     # Events related to this tip and for which the email have been sent can be removed
@@ -131,8 +129,7 @@ def get_internaltip_receiver(store, user_id, tip_id, language):
 
     return tip_desc
 
-@transact
-def increment_receiver_access_count(store, user_id, tip_id):
+def db_increment_receiver_access_count(store, user_id, tip_id):
     rtip = access_tip(store, user_id, tip_id)
 
     rtip.access_counter += 1
@@ -236,6 +233,16 @@ def postpone_expiration_date(store, user_id, tip_id):
     rtip.internaltip.comments.add(comment)
 
 
+@transact
+def get_tip(store, user_id, tip_id, language):
+    db_increment_receiver_access_count(store, user_id, tip_id)
+    answer = db_get_tip_receiver(store, user_id, tip_id, language)
+    answer['collection'] = '/rtip/' + tip_id + '/collection'
+    answer['files'] = db_get_files_receiver(store, user_id, tip_id)
+
+    return answer
+
+
 class RTipInstance(BaseHandler):
     """
     This interface expose the Receiver Tip
@@ -258,10 +265,7 @@ class RTipInstance(BaseHandler):
         the various cases are managed differently.
         """
 
-        yield increment_receiver_access_count(self.current_user.user_id, tip_id)
-        answer = yield get_internaltip_receiver(self.current_user.user_id, tip_id, 'en')
-        answer['collection'] = '/rtip/' + tip_id + '/collection'
-        answer['files'] = yield get_files_receiver(self.current_user.user_id, tip_id)
+        answer = yield get_tip(self.current_user.user_id, tip_id, 'en')
 
         self.set_status(200)
         self.finish(answer)

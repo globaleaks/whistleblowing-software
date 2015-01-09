@@ -54,8 +54,7 @@ def wb_serialize_file(internalfile):
     return wb_file_desc
 
 
-@transact_ro
-def get_files_wb(store, wb_tip_id):
+def db_get_files_wb(store, wb_tip_id):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wb_tip_id)).one()
 
     file_list = []
@@ -67,8 +66,7 @@ def get_files_wb(store, wb_tip_id):
     return file_list
 
 
-@transact
-def get_internaltip_wb(store, tip_id, language):
+def db_get_internaltip_wb(store, tip_id, language):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
 
     if not wbtip:
@@ -85,6 +83,12 @@ def get_internaltip_wb(store, tip_id, language):
 
     return tip_desc
 
+@transact
+def get_tip(store, tip_id, language):
+    answer = db_get_internaltip_wb(store, tip_id, language)
+    answer['files'] = db_get_files_wb(store, tip_id)
+
+    return answer
 
 class WBTipInstance(BaseHandler):
     """
@@ -108,8 +112,7 @@ class WBTipInstance(BaseHandler):
         contain the internaltip)
         """
 
-        answer = yield get_internaltip_wb(self.current_user.user_id, 'en')
-        answer['files'] = yield get_files_wb(self.current_user.user_id)
+        answer = yield get_tip(self.current_user.user_id, 'en')
 
         self.set_status(200)
         self.finish(answer)
