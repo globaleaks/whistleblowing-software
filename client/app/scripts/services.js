@@ -75,25 +75,26 @@ angular.module('resourceServices.authentication', [])
               self.state = response.state;
               self.password_change_needed = response.password_change_needed;
 
-              var auth_landing_page = "";
+              self.homepage = '';
+              self.auth_landing_page = '';
 
               setExpiration(response.session_expiration);
 
               if (self.role == 'admin') {
-                  auth_landing_page = "/admin/landing";
+                  self.homepage = '/#/admin/landing';
+                  self.auth_landing_page = '/admin/landing';
               }
               if (self.role == 'receiver') {
+                self.homepage = '/#/receiver/activities';
                 if (self.password_change_needed) {
-                    auth_landing_page = "/receiver/firstlogin";
+                    self.auth_landing_page = '/receiver/firstlogin';
                 } else {
-                    auth_landing_page = "/receiver/activities";
+                    self.auth_landing_page = '/receiver/activities';
                 }
               }
               if (self.role == 'wb') {
-                auth_landing_page = "/status";
+                self.auth_landing_page = '/status';
               }
-
-              self.auth_landing_page = "/#" + auth_landing_page;
 
               if (cb){
                 return cb(response);
@@ -103,7 +104,7 @@ angular.module('resourceServices.authentication', [])
                 $location.path($routeParams['src']);
 
               } else {
-                $location.path(auth_landing_page);
+                $location.path(self.auth_landing_page);
               }
 
               $location.search('');
@@ -119,11 +120,16 @@ angular.module('resourceServices.authentication', [])
           self.username = null;
           self.role = null;
           self.session = null;
+          self.homepage = null;
+          self.auth_langing_page = null;
 
-          if (role === 'wb')
+          if (role === 'wb') {
             $location.path('/');
-          else
+          } else if (role === 'admin') {
+            $location.path('/admin');
+          } else {
             $location.path('/login');
+          }
         };
 
         self.keycode = '';
