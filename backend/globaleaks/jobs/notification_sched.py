@@ -113,7 +113,6 @@ class EventLogger(object):
 
 
     def append_event(self, tip_info, subevent_info):
-
         event = Event(type=self.template_type,
                       trigger=self.trigger,
                       node_info={},
@@ -316,7 +315,7 @@ def save_event_db(store, event_dict):
             'receiver_info': evnt.receiver_info,
             'context_info': evnt.context_info,
             'tip_info': evnt.tip_info,
-            'subevent': evnt.subevent_info,
+            'subevent_info': evnt.subevent_info,
             'steps_info': evnt.steps_info,
             'type': evnt.type,
         }
@@ -325,8 +324,9 @@ def save_event_db(store, event_dict):
             'kind': evnt.trigger
         }
         # why is a JSON ? now is
-        e.title = "%s" % evnt.trigger
+        e.title = evnt.trigger
         e.receiver_id = evnt.receiver_info['id']
+        e.receivertip_id = evnt.tip_info['id']
         e.mail_sent = False
 
         store.add(e)
@@ -334,7 +334,7 @@ def save_event_db(store, event_dict):
 
 class NotificationSchedule(GLJob):
     """
-    REMIND:
+    REMINDER:
             # by ticket https://github.com/globaleaks/GlobaLeaks/issues/444
             # send notification of file only if notification of tip is already on send status
             if rfile.receiver_tip.mark == models.ReceiverTip._marker[0]: # 'not notified'

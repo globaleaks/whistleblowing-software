@@ -66,6 +66,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       $scope.logo = '/static/globaleaks_logo.png?' + $scope.randomFluff();
 
       $scope.session_id = Authentication.id;
+      $scope.homepage = Authentication.homepage;
       $scope.auth_landing_page = Authentication.auth_landing_page;
       $scope.role = Authentication.role;
 
@@ -129,6 +130,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       return Authentication.id;
     }, function (newVal, oldVal) {
       $scope.session_id = Authentication.id;
+      $scope.homepage = Authentication.homepage;
       $scope.auth_landing_page = Authentication.auth_landing_page;
       $scope.role = Authentication.role;
     });

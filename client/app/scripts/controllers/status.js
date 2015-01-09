@@ -8,8 +8,6 @@ GLClient.controller('StatusCtrl',
     $scope.xsrf_token = $.cookie('XSRF-TOKEN');
     $scope.target_file = '#';
 
-    $scope.auth_landing_page = Authentication.auth_landing_page;
-
     $scope.getFields = function(field) {
       ret = [];
       if (field === undefined) {
