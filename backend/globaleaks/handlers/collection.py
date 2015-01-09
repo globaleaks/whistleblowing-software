@@ -143,8 +143,8 @@ class CollectionDownload(BaseHandler):
             receiver_info = receiver_dict,
             context_info = context_dict,
             steps_info = steps_dict,
-            trigger_info = collection_tip_dict,
-            trigger_parent = rtip_dict,
+            tip_info = rtip_dict,
+            subevent_info = collection_tip_dict,
             do_mail = False,
         )
 

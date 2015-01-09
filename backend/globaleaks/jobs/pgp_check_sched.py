@@ -51,17 +51,6 @@ class PGPCheckSchedule(GLJob):
         yield self.pgp_validation_check()
 
 
-untranslated_template ="""
-This is an untranslated message from a GlobaLeaks node.
-The PGP/GPG key configured by you: %s
-
-Please extend their validity and update online, or upload a new
-key.
-
-When the key expire, if you've sets encrypted notification, they 
-would not be send anymore at all.
-"""
-
 """
      @transact
      def check_expiration_date(self, store):
@@ -75,7 +64,7 @@ would not be send anymore at all.
              if sr.gpg_key_status == Receiver._gpg_types[1]: # Enabled
                  keylist.append(sr.gpg_key_armor)
 
-                 if keytrack.has_key(sr.gpg_key_fingerprint):
+                 if 'gpg_key_fingerprint' in keytrack:
                      log.err("[!?] Duplicated key fingerprint between %s and %s" %
                              (sr.user.username, keytrack[sr.gpg_key_fingerprint]))
 

@@ -14,6 +14,11 @@ from globaleaks.models import ReceiverTip
 class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
     _handler = collection.CollectionDownload
 
+    @inlineCallbacks
+    def setUp(self):
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+        yield self.perform_submission()
+
     @transact_ro
     def get_rtips(self, store):
         rtips_desc = []
@@ -34,50 +39,41 @@ class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post_download_zipstored(self):
-        yield self.perform_submission()
         yield self.download('zipstored')
 
     @inlineCallbacks
     def test_post_download_zipdeflated(self):
-        yield self.perform_submission()
         yield self.download('zipdeflated')
 
     @inlineCallbacks
     def test_post_download_tar(self):
-        yield self.perform_submission()
         yield self.download('tar')
 
     @inlineCallbacks
     def test_post_download_targz(self):
-        yield self.perform_submission()
         yield self.download('targz')
 
     @inlineCallbacks
     def test_post_download_tarbz2(self):
-        yield self.perform_submission()
         yield self.download('tarbz2')
 
     @inlineCallbacks
     def test_post_download_zipstored_with_files_removed_due_to_whatever(self):
-        yield self.perform_submission()
         shutil.rmtree(GLSetting.submission_path)
         yield self.download('zipstored')
 
     @inlineCallbacks
     def test_post_download_zipdeflated_with_files_removed_due_to_whatever(self):
-        yield self.perform_submission()
         shutil.rmtree(GLSetting.submission_path)
         yield self.download('zipdeflated')
 
     @inlineCallbacks
     def test_post_download_tar_with_files_removed_due_to_whatever(self):
-        yield self.perform_submission()
         shutil.rmtree(GLSetting.submission_path)
         yield self.download('tar')
 
     @inlineCallbacks
     def test_post_download_targz_with_files_removed_due_to_whatever(self):
-        yield self.perform_submission()
         shutil.rmtree(GLSetting.submission_path)
         yield self.download('targz')
 

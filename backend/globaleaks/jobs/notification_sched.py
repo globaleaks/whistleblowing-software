@@ -112,15 +112,14 @@ class EventLogger(object):
             raise Exception("self.trigger of unexpected kind ? %s" % self.trigger)
 
 
-    def append_event(self, trigger_info, trigger_parent):
+    def append_event(self, tip_info, subevent_info):
 
-        assert hasattr(self, 'trigger'), "Superclass has not initialized self.trigger"
         event = Event(type=self.template_type,
                       trigger=self.trigger,
                       node_info={},
                       steps_info=self.steps_info_desc,
-                      trigger_info=trigger_info,
-                      trigger_parent=trigger_parent,
+                      tip_info=tip_info,
+                      subevent_info=subevent_info,
                       receiver_info=self.receiver_desc,
                       context_info=self.context_desc,
                       do_mail=self.do_mail)
@@ -163,8 +162,8 @@ class TipEventLogger(EventLogger):
                                                                   self.language)
 
             # append the event (use the self.* and the iteration serialization):
-            self.append_event(trigger_info=tip_desc, 
-                              trigger_parent=None)
+            self.append_event(tip_info=tip_desc,
+                              subevent_info=None)
 
 
 # TODO remind that when do_mail is False:
@@ -195,7 +194,6 @@ class MessageEventLogger(EventLogger):
             if message.type == u"receiver":
                 continue
 
-            # trigger_parent:
             tip_desc = serialize_receivertip(message.receivertip)
 
             self.do_mail = self.import_receiver(message.receivertip.receiver)
@@ -211,8 +209,8 @@ class MessageEventLogger(EventLogger):
                                                                   self.language)
 
             # append the event based on the self.* and the iteration serialization:
-            self.append_event(trigger_info=message_desc, 
-                    trigger_parent=tip_desc)
+            self.append_event(tip_info=tip_desc,
+                              subevent_info=message_desc)
 
 class CommentEventLogger(EventLogger):
 
@@ -262,10 +260,10 @@ class CommentEventLogger(EventLogger):
                     (models.ReceiverTip.internaltip_id == comment.internaltip_id,
                      models.ReceiverTip.receiver_id == receiver.id)).one()
 
-                rtip_desc = serialize_receivertip(receivertip)
+                tip_desc = serialize_receivertip(receivertip)
 
-                self.append_event(trigger_info=comment_desc,
-                        trigger_parent=rtip_desc)
+                self.append_event(tip_info=tip_desc,
+                                  subevent_info=comment_desc)
 
 
 class FileEventLogger(EventLogger):
@@ -297,13 +295,13 @@ class FileEventLogger(EventLogger):
                                                                   self.language)
 
             file_desc = serialize_internalfile(rfile.internalfile, rfile.id)
-            rtip_desc = serialize_receivertip(rfile.receiver_tip)
+            tip_desc = serialize_receivertip(rfile.receiver_tip)
             rfile.mark = models.ReceiverFile._marker[1] # notified
 
             self.do_mail = self.import_receiver(rfile.receiver)
 
-            self.append_event(trigger_info=file_desc, 
-                    trigger_parent=rtip_desc)
+            self.append_event(tip_info=tip_desc,
+                              subevent_info=file_desc)
 
 
 
@@ -317,8 +315,8 @@ def save_event_db(store, event_dict):
         e.description = {
             'receiver_info': evnt.receiver_info,
             'context_info': evnt.context_info,
-            'trigger_parent': evnt.trigger_parent,
-            'trigger_info': evnt.trigger_info,
+            'tip_info': evnt.tip_info,
+            'subevent': evnt.subevent_info,
             'steps_info': evnt.steps_info,
             'type': evnt.type,
         }

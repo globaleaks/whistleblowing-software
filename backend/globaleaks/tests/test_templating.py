@@ -148,12 +148,12 @@ class notifTemplateTest(helpers.TestGL):
 
         node_dict = yield admin.admin_serialize_node('en')
 
-        # is a mock 'trigger_info' and 'trigger_parent' at the moment
-        self.tip['name'] = ' foo '
-        self.tip['size'] = ' 123 '
-        self.tip['content_type'] = ' application/javascript '
-        self.tip['creation_date'] = context_dict['creation_date']
-        self.tip['type'] = ' sorry maker '
+        self.file_desc  = {}
+        self.file_desc['name'] = ' foo '
+        self.file_desc['size'] = ' 123 '
+        self.file_desc['content_type'] = ' application/javascript '
+        self.file_desc['creation_date'] = context_dict['creation_date']
+        self.file_desc['type'] = ' sorry maker '
         # this is requested in the file cases
 
         self.event = Event(type = event_type,
@@ -162,8 +162,8 @@ class notifTemplateTest(helpers.TestGL):
                            receiver_info = receiver_dict,
                            context_info = context_dict,
                            steps_info = steps_dict,
-                           trigger_info = self.tip,
-                           trigger_parent = self.tip,
+                           tip_info = self.tip,
+                           subevent_info = self.file_desc,
                            do_mail=False)
 
     @inlineCallbacks
@@ -195,8 +195,8 @@ class notifTemplateTest(helpers.TestGL):
                 context_info = context_dict,
                 steps_info = steps_dict,
                 plugin = None,
-                trigger_info = tip_dict,
-                trigger_parent = None
+                tip_info = tip_dict,
+                subevent_info = None
             )
 
     @transact_ro
@@ -222,15 +222,15 @@ class notifTemplateTest(helpers.TestGL):
         self.mockNode = helpers.MockDict().dummyNode
 
         self.createdContext = yield admin.create_context(self.mockContext, 'en')
-        self.assertTrue(self.createdContext.has_key('id'))
+        self.assertTrue('id' in self.createdContext)
 
         self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
 
         self.createdReceiver = yield admin.create_receiver(self.mockReceiver, 'en')
-        self.assertTrue(self.createdReceiver.has_key('id'))
+        self.assertTrue('id' in self.createdReceiver)
 
         self.createdNode = yield admin.update_node(self.mockNode, True, 'en')
-        self.assertTrue(self.createdNode.has_key('version'))
+        self.assertTrue('version' in self.createdNode)
         ### END OF THE INITIALIZE BLOCK
 
         # THE REAL CONVERSION TEST START HERE:
