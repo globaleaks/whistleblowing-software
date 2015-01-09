@@ -107,7 +107,7 @@ class AccessLimitExceeded(GLException):
     """
     The access counter for a Tip has reached the limit
     """
-    reason = "The receiver has reach the maximum amount of access for this Tip"
+    reason = "The receiver has reached the maximum amount of access for this Tip"
     error_code = 18
     status_code = 503 # Servie Unavailable
 

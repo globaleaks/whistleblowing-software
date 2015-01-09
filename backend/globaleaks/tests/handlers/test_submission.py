@@ -62,7 +62,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         wb_access_id = yield authentication.login_wb(receipt)
 
         # remind: return a tuple (serzialized_itip, wb_itip)
-        wb_tip = yield wbtip.get_internaltip_wb(wb_access_id, 'en')
+        wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
 
         self.assertTrue('wb_steps' in wb_tip)
 
@@ -142,7 +142,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         receipt = yield submission.create_whistleblower_tip(self.submission_desc)
         wb_access_id = yield authentication.login_wb(receipt)
 
-        wb_tip = yield wbtip.get_internaltip_wb(wb_access_id, 'en')
+        wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
 
         self.assertTrue('wb_steps' in wb_tip)
 
