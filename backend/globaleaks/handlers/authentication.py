@@ -71,14 +71,14 @@ def random_login_delay():
 
     return 0
 
-def update_session(user):
+def update_session(session):
     """
     Returns
             False if no session is found
             True if the session is active and update the session
                 via utils/tempobj.TempObj.touch()
     """
-    session_obj = GLSetting.sessions.get(user.id, None)
+    session_obj = GLSetting.sessions.get(session.id, None)
 
     if not session_obj:
         return False
@@ -210,14 +210,14 @@ def login_wb(store, receipt):
     return wb_tip.id
 
 @transact_ro  # read only transact; manual commit on success needed
-def login_receiver(store, username, password):
+def login_receiver(store, receiver_id, password):
     """
     This login receiver need to collect also the amount of unsuccessful
     consecutive logins, because this element may bring to password lockdown.
 
-    login_receivers returns a tuple (username, state, pcn)
+    login_receivers returns a tuple (receiver_id, state, pcn)
     """
-    receiver = store.find(Receiver, (Receiver.id == username)).one()
+    receiver = store.find(Receiver, (Receiver.id == receiver_id)).one()
 
     if not receiver or \
             receiver.user.role != u'receiver' or \
@@ -236,7 +236,7 @@ def login_receiver(store, username, password):
 @transact_ro  # read only transact; manual commit on success needed
 def login_admin(store, username, password):
     """
-    login_admin returns a tuple (username, state, pcn)
+    login_admin returns a tuple (user_id, state, pcn)
     """
     user = store.find(User, And(User.username == username,
                                 User.role == u'admin',
@@ -251,7 +251,7 @@ def login_admin(store, username, password):
     log.debug("Admin login: Authorized admin")
     user.last_login = utility.datetime_now()
     store.commit() # the transact was read only! on success we apply the commit()
-    return user.username, user.state, user.password_change_needed
+    return user.id, user.state, user.password_change_needed
 
 class AuthenticationHandler(BaseHandler):
     """
