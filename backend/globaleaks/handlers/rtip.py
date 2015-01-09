@@ -7,7 +7,7 @@
 #   receiver side. These classes are executed in the /rtip/* URI PATH 
 
 from twisted.internet.defer import inlineCallbacks
-from storm.expr import Desc
+from storm.expr import Desc, And
 
 from globaleaks.handlers.base import BaseHandler 
 from globaleaks.handlers.authentication import transport_security_check, authenticated
@@ -18,7 +18,7 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
 
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro
-from globaleaks.models import Node, Comment, ReceiverFile, Message
+from globaleaks.models import Node, Comment, ReceiverFile, Message, EventLogs
 from globaleaks.rest import errors
 from globaleaks.security import access_tip
 
@@ -104,9 +104,13 @@ def get_files_receiver(store, user_id, tip_id):
     return files_list
 
 
-@transact_ro
+@transact
 def get_internaltip_receiver(store, user_id, tip_id, language):
     rtip = access_tip(store, user_id, tip_id)
+
+    # Events related to this tip and for which the email have been sent can be removed
+    eventlst = store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
+                                         EventLogs.mail_sent == True)).remove()
 
     tip_desc = receiver_serialize_internal_tip(rtip.internaltip, language)
 
