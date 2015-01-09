@@ -634,6 +634,7 @@ class EventLogs(Model):
     description = JSON()
     title = Unicode()
     receiver_id = Unicode()
+    receivertip_id = Unicode()
     event_reference = JSON()
 
     # XXX This can be used to keep track mail reliability ??
@@ -906,6 +907,7 @@ Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
 Message.receivertip = Reference(Message.receivertip_id, ReceiverTip.id)
 
 EventLogs.receiver = Reference(EventLogs.receiver_id, Receiver.id)
+EventLogs.rtip = Reference(EventLogs.receivertip_id, ReceiverTip.id)
 
 Field.children = ReferenceSet(
     Field.id,

@@ -229,9 +229,11 @@ CREATE TABLE eventlogs (
     description VARCHAR NOT NULL,
     title VARCHAR NOT NULL,
     receiver_id VARCHAR NOT NULL,
+    receivertip_id VARCHAR,
     mail_sent INTEGER,
     PRIMARY KEY (id),
-    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
+    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
+    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE
 );
 
 CREATE TABLE receiver_context (

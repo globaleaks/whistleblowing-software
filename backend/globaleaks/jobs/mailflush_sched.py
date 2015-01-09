@@ -45,7 +45,7 @@ class NotificationMail:
     @transact
     def every_notification_failed(self, store, failure, event_id):
 
-        log.err("Mail deliver failure for event %s (%s)" % (event_id, failure))
+        log.err("Mail delivery failure for event %s (%s)" % (event_id, failure))
         evnt = store.find(EventLogs, EventLogs.id == event_id).one()
         evnt.mail_sent = True
 
