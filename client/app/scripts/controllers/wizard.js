@@ -1,7 +1,7 @@
 GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route', '$http', '$modal', 'Admin',
-                    'Node', 'DefaultAppdata', 'passwordWatcher', 'changePasswordWatcher', 'CONSTANTS',
+                    'DefaultAppdata', 'passwordWatcher', 'changePasswordWatcher', 'CONSTANTS',
                     function($scope, $rootScope, $location, $route, $http, $modal,
-                                                      Admin, Node, DefaultAppdata,
+                                                      Admin, DefaultAppdata,
                                                       passwordWatcher,
                                                       changePasswordWatcher,
                                                       CONSTANTS) {
@@ -52,25 +52,22 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
       }
     });
 
-    Node.get(function (node) {
-      $scope.node = node;
-      if ($scope.node.wizard_done) {
-        /* if the wizard has been already performed redirect to the homepage */
-        $location.path('/');
-      } else {
-        $scope.login('admin', 'globaleaks', 'admin', function(response){
-          $scope.admin = new Admin();
-          $scope.receiver = new $scope.admin.new_receiver();
-          $scope.receiver.password = ''; // this causes the system to set the default password
-                                         // the system will then force the user to change the password
-                                         // at first login
-          $scope.context = $scope.admin.new_context();
-          passwordWatcher($scope, 'admin.node.password');
-          changePasswordWatcher($scope, "admin.node.old_password",
-            "admin.node.password", "admin.node.check_password");
-        });
-      }
-    });
+    if ($scope.node.wizard_done) {
+      /* if the wizard has been already performed redirect to the homepage */
+      $location.path('/');
+    } else {
+      $scope.login('admin', 'globaleaks', 'admin', function(response){
+        $scope.admin = new Admin();
+        $scope.receiver = new $scope.admin.new_receiver();
+        $scope.receiver.password = ''; // this causes the system to set the default password
+                                       // the system will then force the user to change the password
+                                       // at first login
+        $scope.context = $scope.admin.new_context();
+        passwordWatcher($scope, 'admin.node.password');
+        changePasswordWatcher($scope, "admin.node.old_password",
+          "admin.node.password", "admin.node.check_password");
+      });
+    }
 
   }
 ]);

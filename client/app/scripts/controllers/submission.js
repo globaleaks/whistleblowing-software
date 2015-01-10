@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$rootScope', '$location', 'Authentication', 'Node', 'Submission', 'Receivers', 'WhistleblowerTip',
-      function ($scope, $rootScope, $location, Authentication, Node, Submission, Receivers, WhistleblowerTip) {
+    ['$scope', '$rootScope', '$location', 'Authentication', 'Submission', 'Receivers', 'WhistleblowerTip',
+      function ($scope, $rootScope, $location, Authentication, Submission, Receivers, WhistleblowerTip) {
 
   $rootScope.invalidForm = true;
 
@@ -16,35 +16,30 @@ GLClient.controller('SubmissionCtrl',
     }
   }
 
-  Node.get(function (node) {
-    $scope.node = node;
+  new Submission(function (submission) {
+    $scope.submission = submission;
 
-    new Submission(function (submission) {
-      $scope.submission = submission;
-
-      $scope.maximumFilesize = submission.maximum_filesize;
+    $scope.maximumFilesize = submission.maximum_filesize;
       
-      $scope.current_context = submission.current_context;
+    $scope.current_context = submission.current_context;
 
-      $scope.fields = submission.fields;
-      $scope.indexed_fields = submission.indexed_fields;
+    $scope.fields = submission.fields;
+    $scope.indexed_fields = submission.indexed_fields;
 
-      $scope.submission = submission;
+    $scope.submission = submission;
 
-      if ($scope.submission.contexts.length == 1 && !$scope.submission.current_context.show_receivers) {
-        $scope.skip_first_step = true;
-        $scope.selection = 1;
-      } else {
-        $scope.skip_first_step = false;
-        $scope.selection = 0;
-      }
+    if ($scope.submission.contexts.length == 1 && !$scope.submission.current_context.show_receivers) {
+      $scope.skip_first_step = true;
+      $scope.selection = 1;
+    } else {
+      $scope.skip_first_step = false;
+      $scope.selection = 0;
+    }
 
-      $scope.submit = $scope.submission.submit;
+    $scope.submit = $scope.submission.submit;
 
-      checkReceiverSelected();
-    }, context_id, receivers_ids);
-
-  });
+    checkReceiverSelected();
+  }, context_id, receivers_ids);
 
   var checkReceiverSelected = function () {
     $scope.receiver_selected = false;
