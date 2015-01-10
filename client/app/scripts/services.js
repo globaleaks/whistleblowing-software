@@ -195,7 +195,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           } else {
             var redirect_path = '/login';
 
-            console.log(source_path);
             // If we are wb on the status page, redirect to homepage
             if (source_path === '/status') {
                 redirect_path = '/';
@@ -223,8 +222,32 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       });
     }
 }]).
-  factory('Node', ['$resource', function($resource) {
-    return $resource('/node');
+  factory('GLCache', function ($cacheFactory) {
+    return $cacheFactory('GLCache');
+}).
+  factory('Node', ['$resource', 'GLCache', function($resource, GLCache) {
+    return $resource('/node', {}, {
+      get: {
+        method: 'GET',
+        cache: GLCache
+      }
+    })
+}]).
+  factory('Contexts', ['$resource', 'GLCache', function($resource, GLCache) {
+    return $resource('/contexts', {}, {
+      get: {
+        method: 'GET',
+        cache: GLCache
+      }
+    })
+}]).
+  factory('Receivers', ['$resource', 'GLCache', function($resource, GLCache) {
+    return $resource('/receivers', {}, {
+      get: {
+        method: 'GET',
+        cache: GLCache
+      }
+    })
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
@@ -542,15 +565,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       });
     };
 }]).
-  factory('DefaultAppdata', ['$resource', function($resource) {
-    return $resource('/data/appdata_l10n.json', {});
-}]).
-  factory('Contexts', ['$resource', function($resource) {
-    return $resource('/contexts');
-}]).
-  factory('Receivers', ['$resource', function($resource) {
-    return $resource('/receivers');
-}]).
   factory('ReceiverPreferences', ['$resource', function($resource) {
     return $resource('/receiver/preferences', {}, {'update': {method: 'PUT'}});
 }]).
@@ -558,174 +572,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     return $resource('/receiver/tips', {}, {'update': {method: 'PUT'}});
 }]).
   factory('ReceiverNotification', ['$resource', function($resource) {
-    /* TODO: need to be supported DELETE */
     return $resource('/receiver/notifications');
-}]).
-  factory('AdminNode', ['$resource', function($resource) {
-    return $resource('/admin/node', {},
-      {update:
-          {method: 'PUT'}
-      });
 }]).
   factory('ReceiverOverview', ['$resource', function($resource) {
     return $resource('/admin/overview/users');
-}]).
-  factory('TipOverview', ['$resource', function($resource) {
-    return $resource('/admin/overview/tips');
-}]).
-  factory('FileOverview', ['$resource', function($resource) {
-    return $resource('/admin/overview/files');
-}]).
-  factory('StatsCollection', ['$resource', function($resource) {
-    return $resource('/admin/stats/0');
-}]).
-  factory('AnomaliesCollection', ['$resource', function($resource) {
-    return $resource('/admin/anomalies');
-}]).
-  factory('AnomaliesHistCollection', ['$resource', function($resource) {
-    return $resource('/admin/history');
-}]).
-  factory('ActivitiesCollection', ['$resource', function($resource) {
-    return $resource('/admin/activities/details');
-}]).
-  factory('StaticFiles', ['$resource', function($resource) {
-    return $resource('/admin/staticfiles');
-}]).
-  factory('cookiesEnabled', function(){
-
-  return function() {
-
-    var enabled = false;
-    document.cookie = 'cookiesenabled=true;';
-    if (document.cookie == "") {
-      enabled = false;
-    } else {
-      enabled = true;
-      $.removeCookie('cookiesenabled');
-    }
-    return enabled;
-  }
-}).
-  factory('passwordWatcher', ['$parse', function($parse) {
-    return function(scope, password) {
-      /** This is used to watch the new password and check that is 
-       *  effectively the same. Sets a local variable mismatch_password.
-       *
-       *  @param {obj} scope the scope under which we should register watchers
-       *                     and insert the mismatch_password field.
-       *  @param {string} old_password the old password model name.
-       *  @param {string} password the new password model name.
-       *  @param {string} check_password need to be equal to the new password.
-       **/
-      scope.mismatch_password = false;
-      scope.unsafe_password = false;
-      scope.pwdValidLength = true;
-      scope.pwdHasLetter = true;
-      scope.pwdHasNumber = true;
-
-      var validatePasswordChange = function () {
-        if (scope.$eval(password) !== undefined && scope.$eval(password) != '') {
-          scope.pwdValidLength = ( scope.$eval(password)).length >= 8;
-          scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password))) ? true : false;
-          scope.pwdHasNumber = ( /\d/.test(scope.$eval(password))) ? true : false;
-          scope.unsafe_password = !(scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber);
-        } else {
-          /*
-           * This values permits to not show errors when
-           * the user has not yed typed any password.
-           */
-          scope.unsafe_password = false;
-          scope.pwdValidLength = true;
-          scope.pwdHasLetter = true;
-          scope.pwdHasNumber = true;
-        }
-      };
-
-      scope.$watch(password, function(){
-          validatePasswordChange();
-      }, true);
-
-    }
-}]).
-  factory('changePasswordWatcher', ['$parse', function($parse) {
-    return function(scope, old_password, password, check_password) {
-      /** This is used to watch the new password and check that is 
-       *  effectively the same. Sets a local variable mismatch_password.
-       *
-       *  @param {obj} scope the scope under which we should register watchers
-       *                     and insert the mismatch_password field.
-       *  @param {string} old_password the old password model name.
-       *  @param {string} password the new password model name.
-       *  @param {string} check_password need to be equal to the new password.
-       **/
-
-      scope.invalid = true;
-
-      scope.mismatch_password = false;
-      scope.missing_old_password = false;
-      scope.unsafe_password = false;
-
-      scope.pwdValidLength = true;
-      scope.pwdHasLetter = true;
-      scope.pwdHasNumber = true;
-
-      var validatePasswordChange = function () {
-
-        if (scope.$eval(password) !== undefined && scope.$eval(password) != '') {
-          scope.pwdValidLength = ( scope.$eval(password)).length >= 8;
-          scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password))) ? true : false;
-          scope.pwdHasNumber = ( /\d/.test(scope.$eval(password))) ? true : false;
-          scope.unsafe_password = !(scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber);
-        } else {
-          /*
-           * This values permits to not show errors when
-           * the user has not yed typed any password.
-           */
-          scope.unsafe_password = false;
-          scope.pwdValidLength = true;
-          scope.pwdHasLetter = true;
-          scope.pwdHasNumber = true;
-        }
-
-        if (scope.$eval(password) === undefined ||
-          scope.$eval(password) === '' ||
-          scope.$eval(password) === scope.$eval(check_password)) {
-          scope.mismatch_password = false;
-        } else {
-          scope.mismatch_password = true;
-        }
-
-        if (scope.$eval(old_password) !== undefined && (scope.$eval(old_password)).length >= 1) {
-          scope.missing_old_password = false;
-        } else {
-          scope.missing_old_password = true;
-        }
-
-        scope.invalid = scope.$eval(password) === undefined ||
-          scope.$eval(password) === '' ||
-          scope.mismatch_password ||
-          scope.unsafe_password ||
-          scope.missing_old_password;
-      };
-
-      scope.$watch(password, function(){
-          validatePasswordChange();
-      }, true);
-
-      scope.$watch(old_password, function(){
-          validatePasswordChange();
-      }, true);
-
-      scope.$watch(check_password, function(){
-          validatePasswordChange();
-      }, true);
-
-    }
-}]).
-  factory('changeParamsWatcher', ['$parse', function($parse) {
-    return function(scope) {
-        /* To be implemented */
-    }
 }]).
   factory('Admin', ['$rootScope','$resource', '$q', function($rootScope,
                                                              $resource, $q) {
@@ -906,6 +756,167 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     }
     return Admin;
 
+}]).
+  factory('AdminNode', ['$resource', function($resource) {
+    return $resource('/admin/node', {},
+      {update:
+          {method: 'PUT'}
+      });
+}]).
+  factory('TipOverview', ['$resource', function($resource) {
+    return $resource('/admin/overview/tips');
+}]).
+  factory('FileOverview', ['$resource', function($resource) {
+    return $resource('/admin/overview/files');
+}]).
+  factory('StatsCollection', ['$resource', function($resource) {
+    return $resource('/admin/stats/0');
+}]).
+  factory('AnomaliesCollection', ['$resource', function($resource) {
+    return $resource('/admin/anomalies');
+}]).
+  factory('AnomaliesHistCollection', ['$resource', function($resource) {
+    return $resource('/admin/history');
+}]).
+  factory('ActivitiesCollection', ['$resource', function($resource) {
+    return $resource('/admin/activities/details');
+}]).
+  factory('StaticFiles', ['$resource', function($resource) {
+    return $resource('/admin/staticfiles');
+}]).
+  factory('DefaultAppdata', ['$resource', function($resource) {
+    return $resource('/data/appdata_l10n.json', {});
+}]).
+  factory('cookiesEnabled', function(){
+
+  return function() {
+
+    var enabled = false;
+    document.cookie = 'cookiesenabled=true;';
+    if (document.cookie == "") {
+      enabled = false;
+    } else {
+      enabled = true;
+      $.removeCookie('cookiesenabled');
+    }
+    return enabled;
+  }
+}).
+  factory('passwordWatcher', ['$parse', function($parse) {
+    return function(scope, password) {
+      /** This is used to watch the new password and check that is
+       *  effectively the same. Sets a local variable mismatch_password.
+       *
+       *  @param {obj} scope the scope under which we should register watchers
+       *                     and insert the mismatch_password field.
+       *  @param {string} old_password the old password model name.
+       *  @param {string} password the new password model name.
+       *  @param {string} check_password need to be equal to the new password.
+       **/
+      scope.mismatch_password = false;
+      scope.unsafe_password = false;
+      scope.pwdValidLength = true;
+      scope.pwdHasLetter = true;
+      scope.pwdHasNumber = true;
+
+      var validatePasswordChange = function () {
+        if (scope.$eval(password) !== undefined && scope.$eval(password) != '') {
+          scope.pwdValidLength = ( scope.$eval(password)).length >= 8;
+          scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password))) ? true : false;
+          scope.pwdHasNumber = ( /\d/.test(scope.$eval(password))) ? true : false;
+          scope.unsafe_password = !(scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber);
+        } else {
+          /*
+           * This values permits to not show errors when
+           * the user has not yed typed any password.
+           */
+          scope.unsafe_password = false;
+          scope.pwdValidLength = true;
+          scope.pwdHasLetter = true;
+          scope.pwdHasNumber = true;
+        }
+      };
+
+      scope.$watch(password, function(){
+          validatePasswordChange();
+      }, true);
+
+    }
+}]).
+  factory('changePasswordWatcher', ['$parse', function($parse) {
+    return function(scope, old_password, password, check_password) {
+      /** This is used to watch the new password and check that is
+       *  effectively the same. Sets a local variable mismatch_password.
+       *
+       *  @param {obj} scope the scope under which we should register watchers
+       *                     and insert the mismatch_password field.
+       *  @param {string} old_password the old password model name.
+       *  @param {string} password the new password model name.
+       *  @param {string} check_password need to be equal to the new password.
+       **/
+
+      scope.invalid = true;
+
+      scope.mismatch_password = false;
+      scope.missing_old_password = false;
+      scope.unsafe_password = false;
+
+      scope.pwdValidLength = true;
+      scope.pwdHasLetter = true;
+      scope.pwdHasNumber = true;
+
+      var validatePasswordChange = function () {
+
+        if (scope.$eval(password) !== undefined && scope.$eval(password) != '') {
+          scope.pwdValidLength = ( scope.$eval(password)).length >= 8;
+          scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password))) ? true : false;
+          scope.pwdHasNumber = ( /\d/.test(scope.$eval(password))) ? true : false;
+          scope.unsafe_password = !(scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber);
+        } else {
+          /*
+           * This values permits to not show errors when
+           * the user has not yed typed any password.
+           */
+          scope.unsafe_password = false;
+          scope.pwdValidLength = true;
+          scope.pwdHasLetter = true;
+          scope.pwdHasNumber = true;
+        }
+
+        if (scope.$eval(password) === undefined ||
+          scope.$eval(password) === '' ||
+          scope.$eval(password) === scope.$eval(check_password)) {
+          scope.mismatch_password = false;
+        } else {
+          scope.mismatch_password = true;
+        }
+
+        if (scope.$eval(old_password) !== undefined && (scope.$eval(old_password)).length >= 1) {
+          scope.missing_old_password = false;
+        } else {
+          scope.missing_old_password = true;
+        }
+
+        scope.invalid = scope.$eval(password) === undefined ||
+          scope.$eval(password) === '' ||
+          scope.mismatch_password ||
+          scope.unsafe_password ||
+          scope.missing_old_password;
+      };
+
+      scope.$watch(password, function(){
+          validatePasswordChange();
+      }, true);
+
+      scope.$watch(old_password, function(){
+          validatePasswordChange();
+      }, true);
+
+      scope.$watch(check_password, function(){
+          validatePasswordChange();
+      }, true);
+
+    }
 }]).
   constant('CONSTANTS', {
      /* email regexp is an edited version of angular.js input.js in order to avoid domains with not tld */ 

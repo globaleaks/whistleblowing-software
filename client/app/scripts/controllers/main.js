@@ -1,13 +1,12 @@
-GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$translate', 'Node', 'Authentication',
-  function($scope, $rootScope, $http, $route, $routeParams, $location, $translate, Node, Authentication) {
+GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$translate', 'Authentication', 'Node', 'GLCache',
+  function($scope, $rootScope, $http, $route, $routeParams, $location, $translate, Authentication, Node, GLCache) {
     $scope.started = true;
 
     $scope.custom_stylesheet = '/static/custom_stylesheet.css';
     $scope.logo = '/static/globaleaks_logo.png';
 
     $scope.update_node = function () {
-      Node.get(function (node) {
-        $scope.node = node;
+      $scope.node = Node.get(function (node) {
         if (!$scope.node.wizard_done && $route.current.$$route.controller != "WizardCtrl") {
           $location.path('/wizard');
         }
@@ -32,12 +31,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       return Math.round(Math.random() * 1000000);
     };
 
-    $scope.$on('$routeChangeStart', function (next, current) {
-      $scope.update_node();
-    });
-
-    $scope.update_node();
-
     $scope.isWizard = function () {
       return $location.path() == '/wizard';
     };
@@ -60,7 +53,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       return $scope.header_subtitle != '';
     }
 
-    var refresh = function () {
+    var init = function () {
 
       $scope.custom_stylesheet = '/static/custom_stylesheet.css?' + $scope.randomFluff();
       $scope.logo = '/static/globaleaks_logo.png?' + $scope.randomFluff();
@@ -70,7 +63,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       $scope.auth_landing_page = Authentication.auth_landing_page;
       $scope.role = Authentication.role;
 
-      Node.get(function (node) {
+      $scope.node = Node.get(function (node) {
 
         if ($rootScope.language == undefined || $.inArray($rootScope.language, node.languages_enabled) == -1) {
           $rootScope.language = node.default_language;
@@ -105,11 +98,17 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       }
     });
 
-    $scope.$on("REFRESH", refresh);
+    $scope.$on("REFRESH", function() {
+      GLCache.removeAll();
+      init();
+    });
 
     $rootScope.$watch('language', function (newVal, oldVal) {
 
       if (newVal && newVal !== oldVal) {
+
+        if(oldVal === undefined && newVal === $scope.node.default_language)
+          return;
 
         $translate.use($rootScope.language);
 
@@ -119,9 +118,9 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
           $scope.build_stylesheet = "/styles-rtl.css";
         }
 
-        $scope.update_node();
+        GLCache.removeAll();
+        init();
 
-        $route.reload();
       }
 
     });
@@ -135,7 +134,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       $scope.role = Authentication.role;
     });
 
-    refresh();
+    init();
   }
 
 ]);
