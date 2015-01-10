@@ -259,6 +259,7 @@ table {
   display: inline;
   font-family: monospace;
   font-weight: bold;
+  text-align: center;
 }
 
 /** Fields submission/tip page **/
