@@ -195,12 +195,17 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           } else {
             var redirect_path = '/login';
 
-            // Only redirect if we are not on the login page
-            if (source_path.indexOf('/admin') === 0) {
+            console.log(source_path);
+            // If we are wb on the status page, redirect to homepage
+            if (source_path === '/status') {
+                redirect_path = '/';
+            }
+            // If we are admin on the /admin(/*) pages, redirect to /admin
+            else if (source_path.indexOf('/admin') === 0) {
                 redirect_path = '/admin';
             }
 
-            // Only redirect if we are not alread on the login pagr
+            // Only redirect if we are not alread on the login page
             if ($location.path() !== redirect_path) {
               $location.path(redirect_path);
               $location.search('src='+source_path);
