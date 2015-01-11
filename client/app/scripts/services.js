@@ -124,7 +124,7 @@ angular.module('resourceServices.authentication', [])
 }]);
 
 angular.module('resourceServices', ['ngResource', 'resourceServices.authentication', 'ui.bootstrap']).
-  factory('globaleaksInterceptor', ['$q', '$injector', '$rootScope', '$location', 
+  factory('globalInterceptor', ['$q', '$injector', '$rootScope', '$location',
   function($q, $injector, $rootScope, $location) {
     var requestTimeout = 30000,
       $http = null, $modal = null;
@@ -225,11 +225,22 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('GLCache', function ($cacheFactory) {
     return $cacheFactory('GLCache');
 }).
-  factory('Node', ['$resource', 'GLCache', function($resource, GLCache) {
+  factory('nodeInterceptor', ['$q', '$route', '$location', function($q, $route, $location) {
+    return {
+      'response': function(response) {
+        if (!response.resource.wizard_done && $route.current.$$route.controller != "WizardCtrl") {
+          $location.path('/wizard');
+        }
+        return response.resource;
+      }
+    };
+}]).
+  factory('Node', ['$resource', 'GLCache', 'nodeInterceptor', function($resource, GLCache, nodeInterceptor) {
     return $resource('/node', {}, {
       get: {
         method: 'GET',
-        cache: GLCache
+        cache: GLCache,
+        interceptor: nodeInterceptor
       }
     })
 }]).
@@ -958,5 +969,5 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
      ]
 }).
   config(['$httpProvider', function($httpProvider) {
-    $httpProvider.responseInterceptors.push('globaleaksInterceptor');
+    $httpProvider.responseInterceptors.push('globalInterceptor');
 }]);

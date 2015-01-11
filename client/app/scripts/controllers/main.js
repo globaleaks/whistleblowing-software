@@ -73,6 +73,8 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         $scope.languages_supported = {};
         $scope.languages_enabled = [];
         $scope.languages_enabled_selector = [];
+        console.log(node);
+        console.log(node.languages_supported);
         $.each(node.languages_supported, function (idx) {
           var code = node.languages_supported[idx]['code'];
           $scope.languages_supported[code] = node.languages_supported[idx]['name'];
