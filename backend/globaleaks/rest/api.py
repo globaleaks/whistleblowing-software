@@ -1,11 +1,8 @@
 # -*- coding: UTF-8
-#   api
+#   API
 #   ***
 #
-#   Contains all the logic for handling tip related operations.
-#   This contains the specification of the API.
-#   Read this if you want to have an overall view of what API calls are handled
-#   by what.
+#   This file contains the URI mapping for the GlobaLeaks API.
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
@@ -15,148 +12,98 @@ from globaleaks.handlers import node, submission, rtip, wbtip, receiver, \
 from globaleaks.handlers import admin
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 
-# Here is mapped a path and the associated class to be invoked,
-# Two kind of Classes:
-#
-# * Instance
-#         MAY supports: PUT, DELETE, GET
-# * Collection
-#         supports GET operation, returning a list of elements, and (maybe) POST
-#         for create a new elements of the collection.
-#
-# [ special guest that do not respect this rule: SubmissionCreate ]
-
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 field_regexp = uuid_regexp
 
+# Here is created the mapping betweehn urls and the associated handler.
+#
+# Most of th handlers conform to the following rules:
+#
+# * Create class: POST
+#     manages the creation of a single resource
+#
+# * Instance: GET, PUT, DELETE, GET
+#     manages the get, the update and the deletion of a single resource
+#
+# * Collection: GET
+#    manages the get of a collection of resources
+
 spec = [
-    ## Node Handler ##
-    (r'/node', node.InfoCollection),
+    ## Authentication Handler ##
+    (r'/authentication', authentication.AuthenticationHandler),
 
+    ## Main Public Handlers ##
+    (r'/node', node.NodeInstance),
     (r'/contexts', node.ContextsCollection),
-
     (r'/receivers' , node.ReceiversCollection),
 
-    #  ahmia.fi integration with description.json file
+    # Fake file hosting the Ahmia.fi descriptor
     (r'/(description.json)', node.AhmiaDescriptionHandler),
 
     ## Submission Handlers ##
     (r'/submission', submission.SubmissionCreate),
-
     (r'/submission/' + uuid_regexp, submission.SubmissionInstance),
-
     (r'/submission/' + uuid_regexp + '/file', files.FileInstance),
 
-    (r'/authentication', authentication.AuthenticationHandler),
-
     ## Receiver Tip Handlers ##
-
     (r'/rtip/' + uuid_regexp, rtip.RTipInstance),
-
     (r'/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
-
     (r'/rtip/' + uuid_regexp + r'/receivers', rtip.RTipReceiversCollection),
-
-    #  (Download a single file)
     (r'/rtip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
-
-    #  (Download all the file in various archive formats)
-    (r'/rtip/' + uuid_regexp + '/collection(?:/(zipstored|zipdeflated|tar|targz|tarbz2))?', collection.CollectionDownload),
-
+    (r'/rtip/' + uuid_regexp + '/collection(?:/(zipstored|zipdeflated|tar|targz|tarbz2))?',
+            collection.CollectionDownload),
     (r'/rtip/' + uuid_regexp + '/messages', rtip.ReceiverMsgCollection),
 
     ## Whistleblower Tip Handlers
-
     (r'/wbtip', wbtip.WBTipInstance),
-
     (r'/wbtip/comments', wbtip.WBTipCommentCollection),
-
     (r'/wbtip/receivers', wbtip.WBTipReceiversCollection),
-
     (r'/wbtip/upload', files.FileAdd),
-
-    #  W5 interaction with a single receiver
     (r'/wbtip/messages/' + uuid_regexp, wbtip.WBTipMessageCollection),
 
     ## Receiver Handlers ##
-
     (r'/receiver/preferences', receiver.ReceiverInstance),
-
     (r'/receiver/tips', receiver.TipsCollection),
-
     (r'/receiver/notifications', receiver.NotificationCollection),
 
     ## Admin Handlers ##
     (r'/admin/node', admin.NodeInstance),
-    (r'/admin/context', admin.ContextsCollection),
+    (r'/admin/contexts', admin.ContextsCollection),
+    (r'/admin/context', admin.ContextCreate),
     (r'/admin/context/' + uuid_regexp, admin.ContextInstance),
-    (r'/admin/receiver', admin.ReceiversCollection),
+    (r'/admin/receivers', admin.ReceiversCollection),
+    (r'/admin/receiver', admin.ReceiverCreate),
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
     (r'/admin/notification', admin.notification.NotificationInstance),
-
     (r'/admin/fields', admin.field.FieldsCollection),
     (r'/admin/field', admin.field.FieldCreate),
-    (r'/admin/field/' + uuid_regexp, admin.field.FieldUpdate),
-
+    (r'/admin/field/' + uuid_regexp, admin.field.FieldInstance),
     (r'/admin/fieldtemplates', admin.field.FieldTemplatesCollection),
     (r'/admin/fieldtemplate', admin.field.FieldTemplateCreate),
-    (r'/admin/fieldtemplate/' + field_regexp, admin.field.FieldTemplateUpdate),
-
+    (r'/admin/fieldtemplate/' + field_regexp, admin.field.FieldTemplateInstance),
     (r'/admin/anomalies', statistics.AnomaliesCollection),
-    # the number below, represent the amount of week in the past requested.
     (r'/admin/stats/(\d+)', statistics.StatsCollection),
-    # (\w+) can be: 'summary', 'bubble' or 'details'
     (r'/admin/activities/(\w+)', statistics.RecentEventsCollection),
     (r'/admin/history', statistics.AnomalyHistoryCollection),
-
     (r'/admin/wizard', wizard.FirstSetup),
-
     (r'/admin/appdata', wizard.AppdataCollection),
-    # (r'/admin/templates', wizard.TemplateCollection),
-
     (r'/admin/staticfiles', admstaticfiles.StaticFileList),
-    (r'/admin/staticfiles/(.*)', admstaticfiles.StaticFileInstance, {'path': GLSetting.static_path }),
-
+    (r'/admin/staticfiles/(.*)', admstaticfiles.StaticFileInstance,
+            {'path': GLSetting.static_path}),
     (r'/admin/overview/tips', overview.Tips),
     (r'/admin/overview/users', overview.Users),
     (r'/admin/overview/files', overview.Files),
 
-]
-
-## Utility redirect,
-spec.append(
-    (r'/login', BaseRedirectHandler, {'url': '/#/login'} )
-)
-
-spec.append(
-    (r'/admin', BaseRedirectHandler, {'url': '/#/admin'} )
-)
-
-## Static files services (would remain also if Client is not served by Backend)
-spec.append(
-    (r'/(favicon.ico)', BaseStaticFileHandler, {'path': GLSetting.static_path })
-)
-
-spec.append(
-    (r'/(robots.txt)', BaseStaticFileHandler, {'path': GLSetting.static_path })
-)
-
-spec.append(
-    (r'/static/(.*)', BaseStaticFileHandler, {'path': GLSetting.static_path })
-)
-
-## Special files (l10n/$lang.json)
-
-spec.append(
-    (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json', admlangfiles.LanguageFileHandler, {
-        'path': GLSetting.static_path
-    })
-)
-
-## Main Web app ##
-# * /
-spec.append(
+    ## Special Files Handlers##
+    (r'/(favicon.ico)', BaseStaticFileHandler, {'path': GLSetting.static_path}),
+    (r'/(robots.txt)', BaseStaticFileHandler, {'path': GLSetting.static_path}),
+    (r'/static/(.*)', BaseStaticFileHandler, {'path': GLSetting.static_path}),
+    (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
+            admlangfiles.LanguageFileHandler, {'path': GLSetting.static_path}),
     (r'/(.*)', BaseStaticFileHandler,
-        {'path': GLSetting.glclient_path, 'default_filename': "index.html" }
-    )
-)
+            {'path': GLSetting.glclient_path, 'default_filename': "index.html"}),
+
+    ## Some Useful Redirects ##
+    (r'/login', BaseRedirectHandler, {'url': '/#/login'}),
+    (r'/admin', BaseRedirectHandler, {'url': '/#/admin'})
+]

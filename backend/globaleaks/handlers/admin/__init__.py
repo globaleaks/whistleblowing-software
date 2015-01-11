@@ -28,7 +28,13 @@ from globaleaks.utils.utility import log, datetime_now, datetime_null, seconds_c
 
 
 def db_admin_serialize_node(store, language):
+    """
+    Serialize node infos.
 
+    :param store: the store on which perform queries.
+    :param language: the language in which to localize data.
+    :return: a dictionary including the node configuration.
+    """
     node = store.find(models.Node).one()
 
     admin = store.find(models.User, (models.User.username == unicode('admin'))).one()
@@ -83,13 +89,20 @@ def db_admin_serialize_node(store, language):
 
     return get_localized_values(ret_dict, node, node.localized_strings, language)
 
+
 @transact_ro
 def admin_serialize_node(*args):
     return db_admin_serialize_node(*args)
 
+
 def db_create_step(store, context_id, steps, language):
     """
-    Add a new step to the store, then return the new serialized object.
+    Add the specified steps
+
+    :param store: the store on which perform queries.
+    :param context_id: the id of the context on which register specified steps.
+    :param steps: a dictionary containing the new steps.
+    :param language: the language of the specified steps.
     """
     context = models.Context.get(store, context_id)
     if context is None:
@@ -119,7 +132,12 @@ def db_create_step(store, context_id, steps, language):
 
 def db_update_steps(store, context_id, steps, language):
     """
-    Update steps removing old field associated and recreating new.
+    Update steps
+
+    :param store: the store on which perform queries.
+    :param context_id: the id of the context on which register specified steps.
+    :param steps: a dictionary containing the steps to be updated.
+    :param language: the language of the specified steps.
     """
     context = models.Context.get(store, context_id)
     if context is None:
@@ -180,9 +198,15 @@ def db_update_steps(store, context_id, steps, language):
         store.add(n)
 
 def admin_serialize_context(store, context, language):
+    """
+    Serialize the specified context
 
-    steps = [ anon_serialize_step(store, s, language)
-              for s in context.steps.order_by(models.Step.number) ]
+    :param store: the store on which perform queries.
+    :param language: the language in which to localize data.
+    :return: a dictionary representing the serialization of the context.
+    """
+    steps = [anon_serialize_step(store, s, language)
+           for s in context.steps.order_by(models.Step.number)]
 
     ret_dict = {
         "id": context.id,
@@ -208,7 +232,13 @@ def admin_serialize_context(store, context, language):
     return get_localized_values(ret_dict, context, context.localized_strings, language)
 
 def admin_serialize_receiver(receiver, language):
+    """
+    Serialize the specified receiver
 
+    :param store: the store on which perform queries.
+    :param language: the language in which to localize data
+    :return: a dictionary representing the serialization of the receiver
+    """
     ret_dict = {
         "id": receiver.id,
         "name": receiver.name,
@@ -217,7 +247,6 @@ def admin_serialize_receiver(receiver, language):
         "can_delete_submission": receiver.can_delete_submission,
         "postpone_superpower": receiver.postpone_superpower,
         "username": receiver.user.username,
-        "user_id": receiver.user.id,
         'mail_address': receiver.mail_address,
         'ping_mail_address': receiver.ping_mail_address,
         "password": u"",
@@ -245,17 +274,11 @@ def admin_serialize_receiver(receiver, language):
 
 def db_update_node(store, request, wizard_done, language):
     """
-    Update the node, setting the last update time on it.
+    Update and serialize the node infos
 
-    Password:
-        If old_password and password are present, password update is performed
-
-    URLs:
-        If one url is present, is properly validated
-
-    Returns:
-        the last update time of the node as a :class:`datetime.datetime`
-        instance
+    :param store: the store on which perform queries.
+    :param language: the language in which to localize data
+    :return: a dictionary representing the serialization of the node
     """
     node = store.find(models.Node).one()
 
@@ -327,13 +350,8 @@ def db_update_node(store, request, wizard_done, language):
         node.default_language = node.languages_enabled[0]
         log.err("Default language not set!? fallback on %s" % node.default_language)
 
-    # default False in creation, default False in the option.
     if wizard_done:
-        if node.wizard_done:
-            log.err("wizard completed more than one time!?")
-        else:
-            log.debug("wizard completed: Node initialized")
-            node.wizard_done = True
+        node.wizard_done = True
 
     # since change of regexp format to XXXX-XXXX-XXXX-XXXX
     # we removed the possibility to customize the receipt from the GLCllient
@@ -358,8 +376,11 @@ def update_node(*args):
 @transact_ro
 def get_context_list(store, language):
     """
-    Returns:
-        (dict) the current context list serialized.
+    Returns the context list.
+
+    :param store: the store on which perform queries.
+    :param language: the language in which to localize data.
+    :return: a dictionary representing the serialization of the contexts.
     """
     contexts = store.find(models.Context)
     context_list = []
@@ -805,17 +826,13 @@ def delete_receiver(store, receiver_id):
 
 
 class NodeInstance(BaseHandler):
-    """
-    Get the node main settings, update the node main settings, it works in a single static
-    table, in models/admin.py
-
-    /node
-    """
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
+        Get the node infos.
+
         Parameters: None
         Response: adminNodeDesc
         Errors: NodeNotFound
@@ -829,14 +846,14 @@ class NodeInstance(BaseHandler):
     @inlineCallbacks
     def put(self):
         """
+        Update the node infos.
+
         Request: adminNodeDesc
         Response: adminNodeDesc
         Errors: InvalidInputFormat
-
-        Changes the node public node configuration settings.
         """
         request = self.validate_message(self.request.body,
-                requests.adminNodeDesc)
+                                        requests.adminNodeDesc)
 
         node_description = yield update_node(request, True, self.request.language)
 
@@ -848,17 +865,15 @@ class NodeInstance(BaseHandler):
         self.set_status(202) # Updated
         self.finish(node_description)
 
-class ContextsCollection(BaseHandler):
-    """
-    Return a list of all the available contexts, in elements.
 
-    /admin/context
-    """
+class ContextsCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
+        Return all the contexts.
+
         Parameters: None
         Response: adminContextList
         Errors: None
@@ -868,16 +883,21 @@ class ContextsCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
+
+class ContextCreate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
+        Create a new context.
+
         Request: adminContextDesc
         Response: adminContextDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
-        request = self.validate_message(self.request.body, requests.adminContextDesc)
+        request = self.validate_message(self.request.body,
+                                        requests.adminContextDesc)
 
         response = yield create_context(request, self.request.language)
 
@@ -892,16 +912,15 @@ class ContextsCollection(BaseHandler):
         self.set_status(201) # Created
         self.finish(response)
 
-class ContextInstance(BaseHandler):
-    """
-    classic CRUD in the single Context resource.
-    """
 
+class ContextInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
     def get(self, context_id):
         """
+        Get the specified context.
+
         Parameters: context_id
         Response: adminContextDesc
         Errors: ContextIdNotFound, InvalidInputFormat
@@ -916,9 +935,14 @@ class ContextInstance(BaseHandler):
     @inlineCallbacks
     def put(self, context_id):
         """
+        Update the specified context.
+
+        Parameters: context_id
         Request: adminContextDesc
         Response: adminContextDesc
         Errors: InvalidInputFormat, ContextIdNotFound, ReceiverIdNotFound
+
+        Updates the specified context.
         """
 
         request = self.validate_message(self.request.body,
@@ -942,6 +966,8 @@ class ContextInstance(BaseHandler):
     @inlineCallbacks
     def delete(self, context_id):
         """
+        Delete the specified context.
+
         Request: adminContextDesc
         Response: None
         Errors: InvalidInputFormat, ContextIdNotFound
@@ -959,40 +985,39 @@ class ContextInstance(BaseHandler):
         self.set_status(200) # Ok and return no content
         self.finish()
 
-class ReceiversCollection(BaseHandler):
-    """
-    List all available receivers present in the node.
-    """
 
+class ReceiversCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
+        Return all the receivers.
+
         Parameters: None
         Response: adminReceiverList
         Errors: None
-
-        Admin operation: return all the receiver present in the Node
         """
         response = yield get_receiver_list(self.request.language)
 
         self.set_status(200)
         self.finish(response)
 
+
+class ReceiverCreate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
+        Get the specified receiver.
+
         Request: adminReceiverDesc
         Response: adminReceiverDesc
         Errors: InvalidInputFormat, ContextIdNotFound
-
-        Create a new receiver
         """
         request = self.validate_message(self.request.body,
-                requests.adminReceiverDesc)
+                                        requests.adminReceiverDesc)
 
         response = yield create_receiver(request, self.request.language)
 
@@ -1007,26 +1032,18 @@ class ReceiversCollection(BaseHandler):
         self.set_status(201) # Created
         self.finish(response)
 
-class ReceiverInstance(BaseHandler):
-    """
-    AdminReceivers: classic CRUD in a 'receiver' resource
-    A receiver can stay in more than one context, then is expected in POST/PUT
-    operations a list of tarGET contexts is passed. Operation here, mostly are
-    handled by models/receiver.py, and act on the administrative side of the
-    receiver. a receiver performing operation in their profile, has an API
-    implemented in handlers.receiver
-    """
 
+class ReceiverInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
     def get(self, receiver_id):
         """
+        Get the specified receiver.
+
         Parameters: receiver_id
         Response: adminReceiverDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
-
-        Get an existent Receiver instance.
         """
         response = yield get_receiver(receiver_id, self.request.language)
 
@@ -1038,11 +1055,12 @@ class ReceiverInstance(BaseHandler):
     @inlineCallbacks
     def put(self, receiver_id):
         """
+        Update the specified receiver.
+
+        Parameters: receiver_id
         Request: adminReceiverDesc
         Response: adminReceiverDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound, ContextId
-
-        Update information about a Receiver, return the instance updated.
         """
         request = self.validate_message(self.request.body, requests.adminReceiverDesc)
 
@@ -1064,7 +1082,9 @@ class ReceiverInstance(BaseHandler):
     @authenticated('admin')
     def delete(self, receiver_id):
         """
-        Parameter: receiver_id
+        Delete the specified receiver.
+
+        Parameters: receiver_id
         Request: None
         Response: None
         Errors: InvalidInputFormat, ReceiverIdNotFound

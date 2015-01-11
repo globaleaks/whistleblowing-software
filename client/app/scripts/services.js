@@ -566,8 +566,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     };
 }]).
-  factory('WhistleblowerTip', ['$rootScope', '$resource', 'WBTip', 'Authentication',
-    function($rootScope, $resource, WBTip, Authentication){
+  factory('WhistleblowerTip', ['$rootScope',
+    function($rootScope){
     return function(keycode, fn) {
       var self = this;
       $rootScope.login('', keycode, 'wb')
@@ -588,14 +588,14 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('ReceiverOverview', ['$resource', function($resource) {
     return $resource('/admin/overview/users');
 }]).
-  factory('Admin', ['$rootScope','$resource', '$q', function($rootScope,
-                                                             $resource, $q) {
+  factory('Admin', ['$resource', function($resource) {
     var self = this,
       forEach = angular.forEach;
 
     function Admin() {
       var self = this,
-        adminContextsResource = $resource('/admin/context/:context_id',
+        adminContextsResource = $resource('/admin/contexts'),
+        adminContextResource = $resource('/admin/context/:context_id',
           {context_id: '@id'},
           {
             update: {
@@ -621,7 +621,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
           }
         ),
-        adminReceiversResource = $resource('/admin/receiver/:receiver_id',
+        adminReceiversResource = $resource('/admin/receivers'),
+        adminReceiverResource = $resource('/admin/receiver/:receiver_id',
           {receiver_id: '@id'},
           {
             update: {
@@ -632,20 +633,22 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         adminNodeResource = $resource('/admin/node', {}, {update: {method: 'PUT'}}),
         adminNotificationResource = $resource('/admin/notification', {}, {update: {method: 'PUT'}});
 
-      adminContextsResource.prototype.toString = function() { return "Admin Context"; };
-      adminContextsResource.prototype.toString = function() { return "Admin Field"; };
-      adminReceiversResource.prototype.toString = function() { return "Admin Receiver"; };
       adminNodeResource.prototype.toString = function() { return "Admin Node"; };
-      adminNotificationResource.prototype.toString = function() { return "Admin Notification"; };
+      adminContextsResource.prototype.toString = function() { return "Admin Contexts"; };
+      adminContextResource.prototype.toString = function() { return "Admin Context"; };
       adminFieldResource.prototype.toString = function() { return "Admin Field"; };
       adminFieldsResource.prototype.toString = function() { return "Admin Fields"; };
+      adminFieldTemplateResource.prototype.toString = function() { return "Admin Field Template"; };
       adminFieldTemplatesResource.prototype.toString = function() { return "Admin Field Templates"; };
+      adminReceiversResource.prototype.toString = function() { return "Admin Receivers"; };
+      adminReceiverResource.prototype.toString = function() { return "Admin Receiver"; };
+      adminNotificationResource.prototype.toString = function() { return "Admin Notification"; };
 
-      self.context = adminContextsResource;
+      self.context = adminContextResource;
       self.contexts = adminContextsResource.query();
 
       self.new_context = function() {
-        var context = new adminContextsResource;
+        var context = new adminContextResource;
         context.name = "";
         context.description = "";
         context.steps = [];
@@ -672,9 +675,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           self.template_fields[field.id] = field;
         });
       });
-      self.field_template = adminFieldTemplateResource;
 
-      self.field = adminFieldResource;
       self.fields = adminFieldsResource.query();
       
       self.new_field_to_step = function(step_id) {
@@ -692,9 +693,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         field.x = 0;
         field.y = 0;
         field.children = [];
-
+        field.fieldgroup_id = '';
         field.step_id = step_id;
-        field_fieldgroup_id = '';
+        field.template_id = '';
         return field;
       };
 
@@ -713,9 +714,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         field.x = 0;
         field.y = 0;
         field.children = [];
-
+        field.fieldgroup_id = '';
         field.step_id = '';
-        field_fieldgroup_id = '';
+        field.template_id = '';
         return field;
       };
 
@@ -726,11 +727,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         return field.$save();
       };
 
-      self.receiver = adminReceiversResource;
+      self.receiver = adminReceiverResource;
       self.receivers = adminReceiversResource.query();
 
       self.new_receiver = function () {
-        var receiver = new adminReceiversResource;
+        var receiver = new adminReceiverResource;
         receiver.password = '';
         receiver.contexts = [];
         receiver.description = '';
@@ -762,6 +763,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.node.password = '';
         self.node.old_password = '';
       });
+
+      self.field_template = adminFieldTemplateResource;
+      self.field = adminFieldResource;
 
       self.notification = adminNotificationResource.get();
     }

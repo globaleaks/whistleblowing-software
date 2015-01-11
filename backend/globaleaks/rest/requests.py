@@ -2,12 +2,13 @@
 #   Requests
 #   ********
 #
-# This file contain the specification of all the requests that can be made by a
+# This file contains the specification of all the requests that can be made by a
 # GLClient to a GLBackend.
-# These specifications may be used with rest.validateMessage() inside of the
-# handler to verify if the request is correct.
+# These specifications may be used with rest.validateMessage() inside each of the API
+# handler in order to verify if the request is correct.
 
 uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
+uuid_regexp_or_empty              = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'
 receiver_img_regexp               = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png$'
 email_regexp                      = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
 email_regexp_or_empty             = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
@@ -400,15 +401,9 @@ internalTipDesc = {
     'download_limit': int,
 }
 
-# TODO if the admin has visibility to different variables compared to the WB
-# if its so, rename to FieldDesc (generic)
-
-FieldDescFromTemplate = {
-    'template_id': uuid_regexp,
-    'step_id': uuid_regexp
-}
-
 FieldDesc = {
+    'template_id': uuid_regexp_or_empty,
+    'step_id': uuid_regexp_or_empty,
     'label': unicode,
     'description': unicode,
     'hint': unicode,

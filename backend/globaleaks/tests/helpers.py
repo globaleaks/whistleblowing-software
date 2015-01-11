@@ -192,6 +192,7 @@ class TestGL(unittest.TestCase):
     def get_dummy_field(self):
         dummy_f = {
             'is_template': True,
+            'template_id': '',
             'step_id': '',
             'fieldgroup_id': '',
             'label': u'antani',
@@ -368,10 +369,8 @@ class TestGLWithPopulatedDB(TestGL):
 
         # fill_data/create_receiver
         self.dummyReceiver_1 = yield create_receiver(self.dummyReceiver_1, 'en')
-        self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['user_id']
         receivers_ids.append(self.dummyReceiver_1['id'])
         self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2, 'en')
-        self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['user_id']
         receivers_ids.append(self.dummyReceiver_2['id'])
 
         # fill_data/create_context
@@ -621,6 +620,7 @@ class MockDict():
         {
             'id': u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
             'is_template': True,
+            'template_id': '',
             'step_id': '',
             'fieldgroup_id': '',
             'label': u'Field 1',
@@ -639,6 +639,7 @@ class MockDict():
         {
             'id': u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
             'is_template': True,
+            'template_id': '',
             'step_id': '',
             'fieldgroup_id': '',
             'label': u'Field 2',
@@ -657,6 +658,7 @@ class MockDict():
         {
             'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
             'is_template': True,
+            'template_id': '',
             'step_id': '',
             'fieldgroup_id': '',
             'label': u'Generalities',
@@ -675,6 +677,7 @@ class MockDict():
         {
             'id': u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
             'is_template': True,
+            'template_id': '',
             'step_id': '',
             'fieldgroup_id': '',
             'label': u'Name',
@@ -693,6 +696,7 @@ class MockDict():
         {
             'id': u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
             'is_template': True,
+            'template_id': '',
             'step_id': '',
             'fieldgroup_id': '',
             'label': u'Surname',

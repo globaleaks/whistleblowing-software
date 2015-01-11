@@ -262,7 +262,8 @@ class TipsCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        answer = yield get_receiver_tip_list(self.current_user.user_id, self.request.language)
+        answer = yield get_receiver_tip_list(self.current_user.user_id,
+            self.request.language)
 
         self.set_status(200)
         self.finish(answer)

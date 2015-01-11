@@ -61,6 +61,7 @@ var fields = [
   {
     id: '',
     is_template: false,
+    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Field 1',
@@ -79,6 +80,7 @@ var fields = [
   {
     id: '',
     is_template: false,
+    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Field 2',
@@ -97,6 +99,7 @@ var fields = [
   {
     id: '',
     is_template: false,
+    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Field 2',
@@ -115,6 +118,7 @@ var fields = [
   {
     id: '',
     is_template: false,
+    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Generalities',
@@ -133,6 +137,7 @@ var fields = [
   {
     id: '',
     is_template: false,
+    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Name',
@@ -151,6 +156,7 @@ var fields = [
   {
     id: '',
     is_template: false,
+    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Surname',
