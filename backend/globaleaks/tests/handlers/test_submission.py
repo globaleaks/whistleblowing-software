@@ -269,7 +269,7 @@ class Test_SubmissionInstance(helpers.TestHandlerWithPopulatedDB):
 
         self.assertNotEqual(self.responses[0]['receipt'], '')
 
-    def test_005_delete_unexistent_submission(self):
+    def test_delete_unexistent_submission(self):
         handler = self.request({})
         self.assertFailure(handler.delete("unextistent"), errors.SubmissionIdNotFound)
 

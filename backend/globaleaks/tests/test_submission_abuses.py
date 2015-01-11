@@ -66,7 +66,7 @@ class SubmissionTest(helpers.TestGL):
 class TestTipInstance(SubmissionTest):
 
     @inlineCallbacks
-    def test_001_setup_submission_environment(self):
+    def test_setup_submission_environment(self):
         helpers.TestGL.setUp(self)
         
         basehandler = MockHandler()
@@ -124,7 +124,7 @@ class TestTipInstance(SubmissionTest):
 
 
     @inlineCallbacks
-    def test_002_create_submission_missing_receiver(self):
+    def test_create_submission_missing_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
@@ -136,7 +136,7 @@ class TestTipInstance(SubmissionTest):
 
 
     @inlineCallbacks
-    def test_003_create_submission_flip_receiver(self):
+    def test_create_submission_flip_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
@@ -148,7 +148,7 @@ class TestTipInstance(SubmissionTest):
                                  GLException)
 
     @inlineCallbacks
-    def test_004_create_submission_both_valid_and_invalid_receiver(self):
+    def test_create_submission_both_valid_and_invalid_receiver(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
 	submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
@@ -162,7 +162,7 @@ class TestTipInstance(SubmissionTest):
 
 
     @inlineCallbacks
-    def test_005_create_valid_submission(self):
+    def test_create_valid_submission(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
@@ -173,7 +173,7 @@ class TestTipInstance(SubmissionTest):
         yield submission.create_submission(submission_request, True, 'en')
 
     @inlineCallbacks
-    def test_006_fail_create_huge_submission(self):
+    def test_fail_create_huge_submission(self):
         self.assertTrue(len(SubmissionTest.context_used['id']) > 1)
 
         submission_request = yield self.get_dummy_submission(SubmissionTest.context_used['id'])
