@@ -8,8 +8,8 @@ from globaleaks.tests import helpers
 from globaleaks.handlers import node, admin
 from globaleaks.settings import GLSetting
 
-class TestInfoCollection(helpers.TestHandlerWithPopulatedDB):
-    _handler = node.InfoCollection
+class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
+    _handler = node.NodeInstance
 
     @inlineCallbacks
     def test_get(self):

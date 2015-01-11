@@ -39,10 +39,20 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
       }
     }
 
+    $scope.save_field = function(field, called_from_save_all) {
+      var updated_field = new $scope.admin.field_template(field);
+      if ($scope.field_group_toggled) {
+        $scope.field_group_toggled = false;
+        if (!called_from_save_all) {
+          $scope.save_all();
+        }
+      }
+      return $scope.update(updated_field);
+    };
+ 
     $scope.save_all = function () {
-      // XXX this is highly inefficient, could be refactored/improved.
       angular.forEach($scope.admin.field_templates, function (field, key) {
-        $scope.update_field(field);
+        $scope.save_field(field, true);
       });
     };
     
@@ -54,15 +64,6 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
       var idx = _.indexOf($scope.fields, field);
       $scope.fields.splice(idx, 1);
     };
-
-    $scope.update_field = function(field) {
-      var updated_field = new $scope.admin.field_template(field);
-      if ($scope.field_group_toggled) {
-        $scope.field_group_toggled = false;
-        $scope.save_all();
-      }
-      return updated_field.$update();
-    }
 
     $scope.perform_delete = function(field) {
       $scope.admin.field_template.delete({
@@ -81,10 +82,6 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
 GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
   function($scope, $modal) {
     $scope.field_group_toggled = false;
-
-    $scope.save_field = function() {
-      $scope.update($scope.field);
-    };
 
     $scope.fieldDeleteDialog = function(field){
       var modalInstance = $modal.open({

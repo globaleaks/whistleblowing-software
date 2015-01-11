@@ -28,7 +28,7 @@ def get_field_option_localized_keys(field_type):
 @transact_ro
 def anon_serialize_ahmia(store, language):
     """
-    Request reaches only if ahmia is enabled
+    Serialize Ahmia.fi descriptor.
     """
     node = store.find(models.Node).one()
 
@@ -55,6 +55,9 @@ def anon_serialize_ahmia(store, language):
 
 @transact_ro
 def anon_serialize_node(store, language):
+    """
+    Serialize node infor.
+    """
     node = store.find(models.Node).one()
 
     # Contexts and Receivers relationship
@@ -104,6 +107,8 @@ def anon_serialize_node(store, language):
 
 def anon_serialize_context(store, context, language):
     """
+    Serialize context description
+
     @param context: a valid Storm object
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
@@ -183,6 +188,7 @@ def anon_serialize_field(store, field, language):
     ret_dict = {
         'id': field.id,
         'is_template': field.is_template,
+        'template_id': '',
         'step_id': step_id,
         'fieldgroup_id': fieldgroup_id,
         'multi_entry': field.multi_entry,
@@ -203,7 +209,7 @@ def anon_serialize_step(store, step, language):
     """
     Serialize a step, localizing its content depending on the language.
 
-    :param step: the step object to be serialized.
+    :param step: the setep to be serialized.
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
@@ -221,10 +227,11 @@ def anon_serialize_step(store, step, language):
 
 def anon_serialize_receiver(receiver, language):
     """
-    @param receiver: a valid Storm object
-    @return: a dict describing the receivers available in the node
-        (e.g. checks if almost one context is associated, or, in
-         node where GPG encryption is enforced, that a valid key is registered)
+    Serialize a receiver description
+
+    :param receiver: the receiver to be serialized
+    :param language: the language in which to localize data
+    :return: a serializtion of the object
     """
 
     contexts = [c.id for c in receiver.contexts]
@@ -246,54 +253,6 @@ def anon_serialize_receiver(receiver, language):
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
 
 
-class InfoCollection(BaseHandler):
-    """
-    U1
-    Returns information on the GlobaLeaks node. This includes submission
-    parameters (contexts description, fields, public receiver list).
-    Contains System-wide properties.
-    """
-
-    @transport_security_check("unauth")
-    @unauthenticated
-    @inlineCallbacks
-    def get(self):
-        """
-        Parameters: None
-        Response: publicNodeDesc
-        Errors: NodeNotFound
-        """
-        ret = yield GLApiCache.get('node', self.request.language,
-                                   anon_serialize_node, self.request.language)
-        self.finish(ret)
-
-
-class AhmiaDescriptionHandler(BaseHandler):
-    """
-    Description of Ahmia 'protocol' is in:
-    https://ahmia.fi/documentation/
-    and we're supporting the Hidden Service description proposal from:
-    https://ahmia.fi/documentation/descriptionProposal/
-    """
-
-    @transport_security_check("unauth")
-    @unauthenticated
-    @inlineCallbacks
-    def get(self):
-
-        node_info = yield GLApiCache.get('node', self.request.language,
-                                         anon_serialize_node, self.request.language)
-
-        if node_info['ahmia']:
-            ret = yield GLApiCache.get('ahmia', self.request.language,
-                                   anon_serialize_ahmia, self.request.language)
-
-            self.finish(ret)
-        else: # in case of disabled option we return 404
-            self.set_status(404)
-            self.finish()
-
-
 @transact_ro
 def get_public_context_list(store, language):
     context_list = []
@@ -307,26 +266,6 @@ def get_public_context_list(store, language):
 
     return context_list
 
-
-class ContextsCollection(BaseHandler):
-    """
-    Return the public list of contexts, those information are shown in client
-    and would be memorized in a third party indexer service. This is way some dates
-    are returned within.
-    """
-    @transport_security_check("unauth")
-    @unauthenticated
-    @inlineCallbacks
-    def get(self):
-        """
-        Parameters: None
-        Response: publicContextList
-        Errors: None
-        """
-
-        ret = yield GLApiCache.get('contexts', self.request.language,
-                                   get_public_context_list, self.request.language)
-        self.finish(ret)
 
 @transact_ro
 def get_public_receiver_list(store, language):
@@ -344,21 +283,62 @@ def get_public_receiver_list(store, language):
 
     return receiver_list
 
-class ReceiversCollection(BaseHandler):
-    """
-    Return the description of all the receivers visible from the outside.
-    """
 
+class NodeInstance(BaseHandler):
     @transport_security_check("unauth")
     @unauthenticated
     @inlineCallbacks
     def get(self):
         """
-        Parameters: None
-        Response: publicReceiverList
-        Errors: None
+        Get the node infos.
         """
+        ret = yield GLApiCache.get('node', self.request.language,
+                                   anon_serialize_node, self.request.language)
+        self.finish(ret)
 
+
+class AhmiaDescriptionHandler(BaseHandler):
+    @transport_security_check("unauth")
+    @unauthenticated
+    @inlineCallbacks
+    def get(self):
+        """
+        Get the Ahmia.fi descriptor
+        """
+        node_info = yield GLApiCache.get('node', self.request.language,
+                                         anon_serialize_node, self.request.language)
+
+        if node_info['ahmia']:
+            ret = yield GLApiCache.get('ahmia', self.request.language,
+                                   anon_serialize_ahmia, self.request.language)
+
+            self.finish(ret)
+        else: # in case of disabled option we return 404
+            self.set_status(404)
+            self.finish()
+
+
+class ContextsCollection(BaseHandler):
+    @transport_security_check("unauth")
+    @unauthenticated
+    @inlineCallbacks
+    def get(self):
+        """
+        Get all the contexts.
+        """
+        ret = yield GLApiCache.get('contexts', self.request.language,
+                                   get_public_context_list, self.request.language)
+        self.finish(ret)
+
+
+class ReceiversCollection(BaseHandler):
+    @transport_security_check("unauth")
+    @unauthenticated
+    @inlineCallbacks
+    def get(self):
+        """
+        Gets all the receivers.
+        """
         ret = yield GLApiCache.get('receivers', self.request.language,
                                    get_public_receiver_list, self.request.language)
         self.finish(ret)

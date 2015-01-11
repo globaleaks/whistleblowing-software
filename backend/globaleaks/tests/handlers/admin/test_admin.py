@@ -144,6 +144,10 @@ class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(role='admin')
         return handler.get()
 
+
+class TestContextsCreate(helpers.TestHandlerWithPopulatedDB):
+    _handler = admin.ContextCreate
+
     @inlineCallbacks
     def test_post(self):
 
@@ -253,6 +257,10 @@ class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):
         yield handler.get()
 
         self.assertEqual(len(self.responses[0]), 2)
+
+
+class TestReceiverCreate(helpers.TestHandlerWithPopulatedDB):
+    _handler = admin.ReceiverCreate
 
     @inlineCallbacks
     def test_post(self):

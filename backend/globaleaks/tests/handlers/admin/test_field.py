@@ -39,8 +39,8 @@ class TestFieldCreate(helpers.TestHandler):
             self.assertNotEqual(resp.get('options'), None)
 
 
-class TestFieldUpdate(helpers.TestHandler):
-        _handler = admin.field.FieldUpdate
+class TestFieldInstance(helpers.TestHandler):
+        _handler = admin.field.FieldInstance
         fixtures = ['fields.json']
 
         @transact_ro
@@ -166,8 +166,8 @@ class TestFieldTemplateCreate(helpers.TestHandlerWithPopulatedDB):
             self.assertNotEqual(resp.get('options'), None)
 
 
-class TestFieldTemplateUpdate(helpers.TestHandlerWithPopulatedDB):
-        _handler = admin.field.FieldTemplateUpdate
+class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
+        _handler = admin.field.FieldTemplateInstance
         fixtures = ['fields.json']
 
         @transact_ro

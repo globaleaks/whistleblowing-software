@@ -88,7 +88,7 @@
                     <div data-ng-show="editing">
                       <span class="col-md-7 pull-left editorHeaderTitle">{{receiver.name}}</span>
                       <span class="col-md-3 pull-right editorHeaderButtons">
-                        <button class="btn btn-success saveReceiver" data-ng-disabled="receiverForm.$invalid || unsafe_password" data-ng-click="save_receiver()" type="submit" >
+                        <button class="btn btn-success saveReceiver" data-ng-disabled="receiverForm.$invalid || unsafe_password" data-ng-click="save_receiver(receiver)" type="submit" >
                           <i class="glyphicon glyphicon-ok"></i>
                           <span data-translate>Save</span>
                         </button>

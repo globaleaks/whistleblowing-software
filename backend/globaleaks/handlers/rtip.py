@@ -478,8 +478,6 @@ def create_message_receiver(store, user_id, tip_id, request):
     msg.author = rtip.receiver.name
     msg.visualized = False
 
-    # remind: is safest use this convention, and probably we've to
-    # change in the whole code the usage of Model._type[ndx]
     msg.type = u'receiver'
     msg.mark = u'skipped'
 
