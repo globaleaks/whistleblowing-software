@@ -21,7 +21,7 @@
                     <label>
                       <span data-translate>Email Address</span>
                     </label>
-                    <input class="form-control" name="email" data-ng-model="new_receiver.email" ng-pattern="email_regexp" type="text" required>
+                    <input class="form-control" name="email" data-ng-model="new_receiver.email" data-ng-pattern="email_regexp" type="text" required>
                     <p class="has-error" data-ng-show="newReceiver.email.$error.pattern">
                       <span data-translate>Invalid email address</span>
                     </p>
@@ -32,7 +32,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label data-translate>Password</label>
-                    <input type="hidden" ng-init="new_receiver.password = 'globaleaks'">
+                    <input type="hidden" data-ng-init="new_receiver.password = 'globaleaks'">
                     <div>
                       <span data-translate>By default receivers password is:</span> <span class="label label-primary">globaleaks</span></br>
                       <span data-translate>The system forces users to change the password at first login.</span>
@@ -138,7 +138,7 @@
 
                       <div class="form-group">
                         <label data-translate>Email Address</label>
-                        <input class="form-control" name="email" data-ng-model="receiver.mail_address" type="text" ng-pattern="email_regexp" required>
+                        <input class="form-control" name="email" data-ng-model="receiver.mail_address" type="text" data-ng-pattern="email_regexp" required>
                         <p class="has-error" data-ng-show="receiverForm.email.$error.pattern">
                           <span data-translate>Invalid email address</span>
                         </p>
@@ -218,7 +218,7 @@
 
                       <div class="form-group" data-ng-show="receiver.ping_notification">
                         <label data-translate>Ping Email Address</label>
-                        <input class="form-control" name="ping_email" data-ng-model="receiver.ping_mail_address" type="text" ng-pattern="email_regexp">
+                        <input class="form-control" name="ping_email" data-ng-model="receiver.ping_mail_address" type="text" data-ng-pattern="email_regexp">
                         <div>
                           <span data-translate>This email will be used for ping notifications.</span>
                         </div>

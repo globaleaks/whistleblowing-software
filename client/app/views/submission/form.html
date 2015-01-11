@@ -33,8 +33,8 @@
 
                 <div data-ng-switch-when="checkbox" data-ng-class="{'col-md-4': toplevel}">
                   <div data-ng-repeat="option in field.options"; data-ng-init="field.value[option.id] = {};">
-                    <input type="hidden" ng-init="field.value[option.id].order = $index" ng-model="field.value[option.id].order">
-                    <input type="hidden" ng-init="field.value[option.id].name = option.attrs.name" ng-model="field.value[option.id].name">
+                    <input type="hidden" data-ng-init="field.value[option.id].order = $index" data-ng-model="field.value[option.id].order">
+                    <input type="hidden" data-ng-init="field.value[option.id].name = option.attrs.name" data-ng-model="field.value[option.id].name">
                     <input name="{{option.attrs.name}}"
                         data-ng-model="field.value[option.id].value"
                         placeholder="{{field.placeholder || 'false'}}"

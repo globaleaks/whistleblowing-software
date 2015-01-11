@@ -90,13 +90,13 @@
                 <div class="col-md-5">
                   <img data-ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
                 </div>
-		<div class="col-md-offset-1 col-md-6" ng-show="receiver.status == 'enabled'">
+		<div class="col-md-offset-1 col-md-6" data-ng-show="receiver.status == 'enabled'">
                   <p>{{receiver.description}}</p>
                 </div>
-                <div class="col-md-offset-1 col-md-6" ng-show="receiver.status == 'unselectable'">
+                <div class="col-md-offset-1 col-md-6" data-ng-show="receiver.status == 'unselectable'">
                   <p data-translate>This receiver is still not enabled to receive submissions.</p>
                 </div>
-                <div class="col-md-offset-1 col-md-6" ng-show="receiver.status == 'pgp_needed'">
+                <div class="col-md-offset-1 col-md-6" data-ng-show="receiver.status == 'pgp_needed'">
                   <div data-translate>This receiver is disabled due to missing PGP key.</div>
                   <div data-translate>To enable it, his public key must be loaded by the admin or by the receiver.</div>
                 </div>

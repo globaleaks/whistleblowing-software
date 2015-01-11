@@ -25,7 +25,7 @@
 
     <div class="form-group">
       <label data-translate>Source Email</label>
-      <input class="form-control" name="source_email" data-ng-model="admin.notification.source_email" type="text" ng-pattern="email_regexp">
+      <input class="form-control" name="source_email" data-ng-model="admin.notification.source_email" type="text" data-ng-pattern="email_regexp">
     </div>
     <p class="has-error" data-ng-show="notificationForm.source_email.$error.pattern">
       <span data-translate>Invalid email address</span>
