@@ -71,11 +71,11 @@
                 <option value="fieldgroup" data-translate>Field Group</option>
               </select>
             </div>
-            <div class="form-group" ng-show="field.type == 'fieldgroup' && composable_fields">
+            <div class="form-group" data-ng-show="field.type == 'fieldgroup' && composable_fields">
               <label data-translate>Fields Composition</label>
               <div class="selectionList">
                 <div data-ng-repeat="f in composable_fields">
-                  <div class="row" data-ng-click="toggle_field(f, field)" ng-show="f.id != field.id">
+                  <div class="row" data-ng-click="toggle_field(f, field)" data-ng-show="f.id != field.id">
                     <span class="col-md-1">
                       <span data-ng-show="isSelected(f)">
                         <i class="glyphicon glyphicon-check"></i>
@@ -194,5 +194,5 @@
     </div>
   </form>
 </div>
-<div class="clearfix" ng-if="$index % 2 == 1"></div>
-<div class="clearfix" ng-if="$last"></div>
+<div class="clearfix" data-ng-if="$index % 2 == 1"></div>
+<div class="clearfix" data-ng-if="$last"></div>

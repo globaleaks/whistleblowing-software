@@ -4,7 +4,7 @@
         <select data-ng-model="language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'" class="form-control"></select>
     </div>
   </div>
-  <div id="LoginStatusBox" class="row" ng-if="showLoginForm() || session_id">
+  <div id="LoginStatusBox" class="row" data-ng-if="showLoginForm() || session_id">
     <div data-ng-show="session_id" class="pull-right">
       <span id="RoleBox">
         <label>

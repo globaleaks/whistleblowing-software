@@ -1,5 +1,5 @@
 <div id="PrivacyBadgeBox" data-ng-controller="PrivacyBadgeBoxCtrl" data-ng-show="!node.disable_privacy_badge">
-  <div id="PrivacyBadge" data-ng-mouseenter="showBox()" ng-if="!node.enable_custom_privacy_badge">
+  <div id="PrivacyBadge" data-ng-mouseenter="showBox()" data-ng-if="!node.enable_custom_privacy_badge">
     <div data-ng-switch="" on="privacy" id="PrivacyBadgeTextBox" class="pull-left">
       <div data-ng-switch-when="high">
         <div data-ng-show="!displayBox">
@@ -78,7 +78,7 @@
     </div>
     <div class="clearfix"></div>
   </div>
-  <div id="PrivacyBadgeCustom" ng-if="node.enable_custom_privacy_badge">
+  <div id="PrivacyBadgeCustom" data-ng-if="node.enable_custom_privacy_badge">
     <div data-ng-switch="" on="privacy" id="PrivacyBoxTextBox">
       <div data-ng-switch-when="high">
         <span id="PrivacyBadgeCustomIconTBB"></span>
