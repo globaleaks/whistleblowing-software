@@ -154,7 +154,7 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
             yield handler.get(rtip_desc['rtip_id'])
 
     @inlineCallbacks
-    def test_002_post(self):
+    def test_post(self):
         body = {
             'content' : "can you provide an evidence of what you are telling?",
         }
