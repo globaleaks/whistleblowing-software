@@ -168,11 +168,6 @@ class Stats_version_14(Model):
     __storm_table__ = 'stats'
     content = Pickle()
 
-class ApplicationData_version_14(Model):
-    __storm_table__ = 'applicationdata'
-    version = Int()
-    fields = Pickle()
-
 class Comment_version_14(Model):
     __storm_table__ = 'comment'
     internaltip_id = Unicode()

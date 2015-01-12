@@ -5,12 +5,6 @@ from storm.locals import  Int, Bool, Pickle, Unicode, DateTime
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
 
-class ApplicationData_version_10(Model):
-    __storm_table__ = 'applicationdata'
-    fields_version = Int()
-    fields = Pickle()
-
-
 class Node_version_9(Model):
     __storm_table__ = 'node'
 
@@ -42,6 +36,7 @@ class Node_version_9(Model):
     # is added
     # wizard_done = Bool()
     # anomaly_checks = Bool()
+
 
 class Receiver_version_9(Model):
     __storm_table__ = 'receiver'
@@ -142,16 +137,3 @@ class Replacer910(TableReplacer):
 
             self.store_new.add(new_obj)
         self.store_new.commit()
-
-    def epilogue(self):
-        print "%s Epilogue function in migration assistant: (stats, appdata)" % \
-              self.std_fancy
-
-        # first stats is not generated here, do not need
-        appdata = ApplicationData_version_10()
-        appdata.fields_version = 0
-        appdata.fields = list()
-
-        self.store_new.add(appdata)
-        self.store_new.commit()
-
