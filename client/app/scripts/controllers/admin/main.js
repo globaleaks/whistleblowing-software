@@ -1,6 +1,6 @@
 GLClient.controller('AdminCtrl',
-    ['$scope', '$rootScope', '$http', '$route', '$location', 'Admin', 'Node', 'CONSTANTS',
-function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
+    ['$scope', '$rootScope', '$http', '$route', '$location', 'Admin', 'Node', 'GLCache', 'CONSTANTS',
+function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CONSTANTS) {
 
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
@@ -28,7 +28,6 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
   }
 
   Node.get(function(node) {
-
     $scope.languages_supported = {};
     $scope.languages_enabled = [];
     $scope.languages_enabled_selector = [];
@@ -41,53 +40,52 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, CONSTANTS) {
       }
     });
 
-  });
-
-
-  $scope.$watch('languages_enabled', function(){
-    if ($scope.languages_enabled) {
-      $scope.languages_enabled_edit = {};
-      $.each($scope.languages_supported, function(lang){
-        $scope.languages_enabled_edit[lang] = lang in $scope.languages_enabled;
-      });
-    }
-
-  }, true);
-
-  $scope.$watch('languages_enabled_edit', function() {
-    if ($scope.languages_enabled) {
-      var languages_enabled_selector = [];
-      var change_default = false;
-      var language_selected = $scope.admin.node.default_language;
-      if (! $scope.languages_enabled_edit[$scope.admin.node.default_language]) {
-        change_default = true;
+    $scope.$watch('languages_enabled', function(){
+      if ($scope.languages_enabled) {
+        $scope.languages_enabled_edit = {};
+        $.each($scope.languages_supported, function(lang){
+          $scope.languages_enabled_edit[lang] = lang in $scope.languages_enabled;
+        });
       }
 
-      $.each($scope.languages_supported, function(lang) {
-        if ($scope.languages_enabled_edit[lang]) {
-          languages_enabled_selector.push({'name': $scope.languages_supported[lang], 'code': lang});
+    }, true);
 
-          if (change_default === true) {
-            language_selected = lang;
-            change_default = false;
+    $scope.$watch('languages_enabled_edit', function() {
+      if ($scope.languages_enabled) {
+        var languages_enabled_selector = [];
+        var change_default = false;
+        var language_selected = $scope.admin.node.default_language;
+        if (! $scope.languages_enabled_edit[$scope.admin.node.default_language]) {
+          change_default = true;
+        }
+
+        $.each($scope.languages_supported, function(lang) {
+          if ($scope.languages_enabled_edit[lang]) {
+            languages_enabled_selector.push({'name': $scope.languages_supported[lang], 'code': lang});
+
+            if (change_default === true) {
+              language_selected = lang;
+              change_default = false;
+            }
           }
-        }
-      });
+        });
 
-      var languages_enabled = [];
-      $.each($scope.languages_enabled_edit, function(lang, enabled) {
-        if (enabled) {
-          languages_enabled.push(lang);
-        }
-      });
+        var languages_enabled = [];
+        $.each($scope.languages_enabled_edit, function(lang, enabled) {
+          if (enabled) {
+            languages_enabled.push(lang);
+          }
+        });
 
-      $scope.admin.node.default_language = language_selected;
-      $scope.admin.node.languages_enabled = languages_enabled;
+        $scope.admin.node.default_language = language_selected;
+        $scope.admin.node.languages_enabled = languages_enabled;
+        console.log(languages_enabled);
 
-      $scope.languages_enabled_selector = languages_enabled_selector;
+        $scope.languages_enabled_selector = languages_enabled_selector;
 
-    }
-  }, true);
+      }
+    }, true);
+  });
 
   // We need to have a special function for updating the node since we need to add old_password and password attribute
   // if they are not present
