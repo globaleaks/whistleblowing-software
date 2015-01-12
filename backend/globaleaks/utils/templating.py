@@ -356,13 +356,13 @@ class PingMailKeyword(object):
         '%EventCount%'
     ]
 
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_info, ping_info):
+    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, ping_desc):
         """
         This is a reduced version because PingMail are
         thinked to have least information as possible
         """
         self.name = receiver_desc['name']
-        self.counter = ping_info['counter']
+        self.counter = ping_desc['counter']
 
     def ReceiverName(self):
         return str(self.name)

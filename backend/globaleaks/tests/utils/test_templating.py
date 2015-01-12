@@ -49,6 +49,11 @@ alarm_keyword_list = [
     "%DiskDump%",
 ]
 
+ping_keyword_list = [
+    "%ReceiverName%",
+    "%EventCount%"
+]
+
 templates_desc = {
     "admin_anomaly_template":
         [generic_keyword_list, alarm_keyword_list],
@@ -111,20 +116,27 @@ templates_desc = {
         [generic_keyword_list, tip_keyword_list],
 
     "zip_description.txt":
-        [generic_keyword_list, tip_keyword_list]
+        [generic_keyword_list, tip_keyword_list],
+
+    "ping_mail_template":
+        [ping_keyword_list],
+
+    "ping_mail_title":
+        [ping_keyword_list]
 }
 
 # Templating 'supported_event_type' is a method variable with a different pattern
 # the whole test can be re-engineered
-supported_event_types = { u'encrypted_tip' : 'Tip',
-                          u'plaintext_tip' : 'Tip',
-                          u'encrypted_file' : 'File',
-                          u'plaintext_file' : 'File',
-                          u'encrypted_comment' : 'Comment',
-                          u'plaintext_comment' : 'Comment',
-                          u'encrypted_message' : 'Message',
-                          u'plaintext_message' : 'Message',
-                          u'zip_collection' : 'Collection'
+supported_event_types = { u'encrypted_tip': 'Tip',
+                          u'plaintext_tip': 'Tip',
+                          u'encrypted_file': 'File',
+                          u'plaintext_file': 'File',
+                          u'encrypted_comment': 'Comment',
+                          u'plaintext_comment': 'Comment',
+                          u'encrypted_message': 'Message',
+                          u'plaintext_message': 'Message',
+                          u'zip_collection': 'Collection',
+                          u'ping_mail': 'Tip'
                           }
 
 class notifTemplateTest(helpers.TestGL):
@@ -148,13 +160,17 @@ class notifTemplateTest(helpers.TestGL):
 
         node_dict = yield admin.admin_serialize_node('en')
 
-        self.file_desc  = {}
-        self.file_desc['name'] = ' foo '
-        self.file_desc['size'] = ' 123 '
-        self.file_desc['content_type'] = ' application/javascript '
-        self.file_desc['creation_date'] = context_dict['creation_date']
-        self.file_desc['type'] = ' sorry maker '
+        self.subevent = {}
+
         # this is requested in the file cases
+        if event_type != 'ping_mail':
+          self.subevent['name'] = ' foo '
+          self.subevent['size'] = ' 123 '
+          self.subevent['content_type'] = ' application/javascript '
+          self.subevent['creation_date'] = context_dict['creation_date']
+          self.subevent['type'] = ' sorry maker '
+        else:
+          self.subevent = {'counter': 42}
 
         self.event = Event(type = event_type,
                            trigger = event_trigger,
@@ -163,41 +179,8 @@ class notifTemplateTest(helpers.TestGL):
                            context_info = context_dict,
                            steps_info = steps_dict,
                            tip_info = self.tip,
-                           subevent_info = self.file_desc,
+                           subevent_info = self.subevent,
                            do_mail=False)
-
-    @inlineCallbacks
-    def _fill_event(self, event_type, trigger, trigger_id):
-        """
-        Here I'm testing only encrypted_tip because trigger a bigger
-        amount of %KeyWords%
-        """
-        self.assertEqual(event_type, u'encrypted_tip')
-        self.assertEqual(trigger, 'Tip')
-
-        if event_type == u'encrypted_tip' and trigger == 'Tip':
-
-            receiver_dict = yield admin.get_receiver(self.createdReceiver['id'], 'en')
-            context_dict = yield admin.get_context(self.createdContext['id'], 'en')
-            steps_dict = yield admin.get_context_steps(self.createdContext['id'], 'en')
-            notif_dict = yield admin.notification.get_notification('en')
-
-            node_dict = yield admin.admin_serialize_node('en')
-
-            tip_dict = yield self.get_a_fucking_random_submission()
-
-            self.event = Event(
-                type = u'encrypted_tip',
-                trigger = 'Tip',
-                notification_settings = notif_dict,
-                node_info = node_dict,
-                receiver_info = receiver_dict,
-                context_info = context_dict,
-                steps_info = steps_dict,
-                plugin = None,
-                tip_info = tip_dict,
-                subevent_info = None
-            )
 
     @transact_ro
     def _load_defaults(self, store):
@@ -217,7 +200,7 @@ class notifTemplateTest(helpers.TestGL):
                     self.templates[t] += " " + keyword + " / "
 
         ### INITIALIZE DATABASE
-        self.mockContext =helpers.MockDict().dummyContext
+        self.mockContext = helpers.MockDict().dummyContext
         self.mockReceiver = helpers.MockDict().dummyReceiver
         self.mockNode = helpers.MockDict().dummyNode
 
@@ -248,26 +231,26 @@ class notifTemplateTest(helpers.TestGL):
         self.tip = dict(self.mockSubmission)
         self.tip['id'] = created_rtip[0]
 
-        for fname, template in self.templates.iteritems():
-
+        for template_name, template in self.templates.iteritems():
             # look for appropriate event_type, event_trigger
             event_type = u''
             event_trigger = ''
             for e_t, e_tri in supported_event_types.iteritems():
-                if fname.startswith(e_t):
+                if template_name.startswith(e_t):
                     event_type = e_t
                     event_trigger = e_tri
                     break
 
             if not event_type:
                 # we've nothing to do not!
-                break
+                continue
 
             yield self._fill_event_dict(event_type, event_trigger)
 
             # with the event, we can finally call the template filler
             gentext = Templating().format_template(template, self.event)
 
-            self.assertSubstring(self.createdContext['name'], gentext)
-            self.assertSubstring(self.createdNode['public_site'], gentext)
-            self.assertSubstring(self.createdNode['hidden_service'], gentext)
+            if template_name != 'ping_mail_template' and template_name != 'ping_mail_title':
+                self.assertSubstring(self.createdContext['name'], gentext)
+                self.assertSubstring(self.createdNode['public_site'], gentext)
+                self.assertSubstring(self.createdNode['hidden_service'], gentext)
