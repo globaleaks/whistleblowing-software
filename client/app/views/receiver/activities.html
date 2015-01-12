@@ -27,7 +27,7 @@
                   </a>
                 </td>
                 <td class="col-md-2">
-                  <span data-translate>{{x.creation_date | date:'dd-MM-yyyy HH:mm' }}</span>
+                  <span>{{x.creation_date | date:'dd-MM-yyyy HH:mm' }}</span>
                 </td>
                 <td>
                   <span data-ng-if="x.mail_sent" class="glyphicon glyphicon-envelope"></span>
@@ -69,7 +69,7 @@
                   <span data-translate>{{x.creation_date | date:'dd-MM-yyyy HH:mm' }}</span>
                 </td>
                 <td class="col-md-4">
-                  <span data-translate>{{x.title}}</span>
+                  <span>{{x.title | translate}}</span>
                 </td>
                 <td>
                   <span data-ng-if="x.mail_sent" class="glyphicon glyphicon-envelope"></span>
