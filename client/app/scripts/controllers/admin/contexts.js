@@ -23,9 +23,10 @@ GLClient.controller('AdminContextsCtrl',
   };
 
   $scope.perform_delete = function(context) {
-    var idx = _.indexOf($scope.admin.contexts, context);
-
-    context['$delete'](function(){
+    $scope.admin.context['$delete']({
+      context_id: context.id
+    }, function(){
+      var idx = _.indexOf($scope.admin.contexts, context);
       $scope.admin.contexts.splice(idx, 1);
     });
   };
