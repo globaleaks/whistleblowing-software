@@ -772,12 +772,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     return Admin;
 
 }]).
-  factory('AdminNode', ['$resource', function($resource) {
-    return $resource('/admin/node', {},
-      {update:
-          {method: 'PUT'}
-      });
-}]).
   factory('TipOverview', ['$resource', function($resource) {
     return $resource('/admin/overview/tips');
 }]).
