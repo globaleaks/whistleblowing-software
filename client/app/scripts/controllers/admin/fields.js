@@ -66,7 +66,7 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
     };
 
     $scope.perform_delete = function(field) {
-      $scope.admin.field_template.delete({
+      $scope.admin.field_template['$delete']({
         template_id: field.id
       }, function(){
         $scope.deleteField(field);

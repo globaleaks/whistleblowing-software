@@ -100,7 +100,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.perform_delete = function(field) {
-      $scope.admin.field.delete({
+      $scope.admin.field['$delete']({
         field_id: field.id
       }, function(){
         $scope.deleteField(field);

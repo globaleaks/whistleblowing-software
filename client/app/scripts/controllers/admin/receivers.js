@@ -25,9 +25,10 @@ function($scope, $modal) {
   };
 
   $scope.perform_delete = function(receiver) {
-    var idx = _.indexOf($scope.admin.receivers, receiver);
-
-    receiver['$delete'](function(){
+    $scope.admin.receiver['$delete']({
+      receiver_id: receiver.id
+    }, function(){
+      var idx = _.indexOf($scope.admin.receivers, receiver);
       $scope.admin.receivers.splice(idx, 1);
     });
 
