@@ -47,6 +47,8 @@ def opportunistic_appdata_init():
         print "No client (appdata_l10n.json) file found in fixed paths!"
         return dict({'version': 1, 'fields': []}) # empty!
 
+    print appdata_dict
+
     return appdata_dict
 
 

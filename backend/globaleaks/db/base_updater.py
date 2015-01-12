@@ -10,6 +10,7 @@ from storm.variables import EnumVariable, IntVariable, RawStrVariable, PickleVar
 from storm.variables import UnicodeVariable, JSONVariable
 
 from globaleaks import DATABASE_VERSION, models
+from globaleaks.db.datainit import opportunistic_appdata_init
 from globaleaks.settings import GLSetting
 
 
@@ -125,15 +126,13 @@ class TableReplacer(object):
         from globaleaks.db.update_7_8 import Node_version_7, Notification_version_7, Context_version_7, \
             Receiver_version_7, InternalFile_version_7
         from globaleaks.db.update_8_9 import Context_version_8, Receiver_version_8, Notification_version_8
-        from globaleaks.db.update_9_10 import Node_version_9, ApplicationData_version_10, \
-            Receiver_version_9, User_version_9
+        from globaleaks.db.update_9_10 import Node_version_9, Receiver_version_9, User_version_9
         from globaleaks.db.update_10_11 import InternalTip_version_10, InternalFile_version_10
-        from globaleaks.db.update_11_12 import Node_version_11, ApplicationData_version_11, Context_version_11
+        from globaleaks.db.update_11_12 import Node_version_11, Context_version_11
         from globaleaks.db.update_12_13 import Node_version_12, Context_version_12
         from globaleaks.db.update_13_14 import Node_version_13, Context_version_13
         from globaleaks.db.update_14_15 import Node_version_14, User_version_14, Context_version_14, Receiver_version_14, \
-            InternalTip_version_14, Notification_version_14, Stats_version_14, ApplicationData_version_14, \
-            Comment_version_14
+            InternalTip_version_14, Notification_version_14, Stats_version_14, Comment_version_14
         from globaleaks.db.update_15_16 import Context_version_15, Receiver_version_15, Notification_version_15
 
         self.old_db_file = old_db_file
@@ -159,7 +158,7 @@ class TableReplacer(object):
             'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None, None, None],
             'Message': [models.Message, None, None, None, None, None, None, None, None, None, None, None],
             'Stats': [Stats_version_14, None, None, None, None, None, None, None, None, None, models.Stats, None],
-            'ApplicationData': [ApplicationData_version_10, None, None, None, None, ApplicationData_version_11, None, ApplicationData_version_14, None, None, models.ApplicationData, None],
+            'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None, None],
             'Field': [models.Field, None, None, None, None, None, None, None, None, None, None, None],
             'FieldOption': [models.FieldOption, None, None, None, None, None, None, None, None, None, None, None],
             'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None, None, None],
@@ -367,12 +366,18 @@ class TableReplacer(object):
 
     def migrate_ApplicationData(self):
         """
-        has been created between 9 and 10!
+        Update of default Application Data
+        There is no need to migrate it, we always simply need
+        to load the updated version from the filesystem.
         """
-        if self.start_ver < 10:
+        if self.start_ver < (DATABASE_VERSION - 1):
             return
 
-        self._perform_copy_list("ApplicationData")
+        appdata = opportunistic_appdata_init()
+        new_appdata = models.ApplicationData()
+        new_appdata.fields = appdata['fields']
+        new_appdata.version = appdata['version']
+        self.store_new.add(new_appdata)
 
     def migrate_Field(self):
         """
