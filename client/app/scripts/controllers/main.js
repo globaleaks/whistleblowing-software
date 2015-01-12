@@ -88,8 +88,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
       $translate.use($rootScope.language);
 
-      $route.reload();
-
     };
 
     $scope.$on('$routeChangeSuccess', function() {
@@ -101,6 +99,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     $scope.$on("REFRESH", function() {
       GLCache.removeAll();
       init();
+      $route.reload();
     });
 
     $rootScope.$watch('language', function (newVal, oldVal) {
