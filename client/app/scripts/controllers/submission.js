@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$rootScope', '$location', 'Authentication', 'Submission', 'Receivers', 'WhistleblowerTip',
-      function ($scope, $rootScope, $location, Authentication, Submission, Receivers, WhistleblowerTip) {
+    ['$scope', '$rootScope', '$location', '$modal', 'Authentication', 'Submission', 'Receivers', 'WhistleblowerTip',
+      function ($scope, $rootScope, $location, $modal, Authentication, Submission, Receivers, WhistleblowerTip) {
 
   $rootScope.invalidForm = true;
 
@@ -107,6 +107,7 @@ GLClient.controller('SubmissionCtrl',
       }
     }
   });
+
 }]).
 controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
   $scope.queue = [];
