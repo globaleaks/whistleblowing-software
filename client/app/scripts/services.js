@@ -222,9 +222,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       });
     }
 }]).
-  factory('GLCache', function ($cacheFactory) {
+  factory('GLCache',['$cacheFactory', function ($cacheFactory) {
     return $cacheFactory('GLCache');
-}).
+}]).
   factory('nodeInterceptor', ['$q', '$route', '$location', function($q, $route, $location) {
     return {
       'response': function(response) {
