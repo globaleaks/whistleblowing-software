@@ -172,21 +172,15 @@ class notifTemplateTest(helpers.TestGL):
         else:
           self.subevent = {'counter': 42}
 
-        self.event = Event(type = event_type,
-                           trigger = event_trigger,
-                           node_info = node_dict,
-                           receiver_info = receiver_dict,
-                           context_info = context_dict,
-                           steps_info = steps_dict,
-                           tip_info = self.tip,
-                           subevent_info = self.subevent,
+        self.event = Event(type=event_type,
+                           trigger=event_trigger,
+                           node_info=node_dict,
+                           receiver_info=receiver_dict,
+                           context_info=context_dict,
+                           steps_info=steps_dict,
+                           tip_info=self.tip,
+                           subevent_info=self.subevent,
                            do_mail=False)
-
-    @transact_ro
-    def _load_defaults(self, store):
-        notif = store.find(Notification).one()
-        for t, _ in self.templates_desc:
-            self.templates[t] = getattr(notif, t)['en']
 
     @inlineCallbacks
     def test_keywords_conversion(self):

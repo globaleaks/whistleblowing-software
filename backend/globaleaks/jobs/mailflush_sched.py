@@ -97,7 +97,7 @@ def load_complete_events(store):
 
 class MailflushSchedule(GLJob):
 
-    def ping_mail_flush(self, notification_settings, receiver_dict):
+    def ping_mail_flush(self, notification_settings, receivers_syntesis):
         """
         TODO This function should be implemented as a clean and testable pligin in the
         way defined in plugin/base.py and plugin/notification.py, and/or is the opportunity
@@ -105,9 +105,12 @@ class MailflushSchedule(GLJob):
         ping email and send it via sendmail.
         """
 
-        for receiver_mail, _data in receiver_dict.iteritems():
+        for receiver_id, data in receivers_syntesis.iteritems():
 
-            winks, receiver_name = _data
+            receiver_dict, winks = data
+
+            receiver_name = receiver_dict['name']
+            receiver_email = receiver_dict['ping_mail_address']
 
             fakeevent = OD()
             fakeevent.type = u'ping_mail'
@@ -120,24 +123,24 @@ class MailflushSchedule(GLJob):
             fakeevent.subevent_info = {'counter': winks}
 
             body = Templating().format_template(
-                notification_settings['encrypted_tip_template'], fakeevent)
+                notification_settings['ping_mail_template'], fakeevent)
             title = Templating().format_template(
-                notification_settings['encrypted_tip_mail_title'], fakeevent)
+                notification_settings['ping_mail_title'], fakeevent)
 
             message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
                                       GLSetting.memory_copy.notif_source_email,
                                       receiver_name,
-                                      receiver_mail,
+                                      receiver_email,
                                       title,
                                       body)
 
             fakeevent2 = OD()
-            fakeevent2.type = "Ping mail for %s (%d info)" % (receiver_mail, winks)
+            fakeevent2.type = "Ping mail for %s (%d info)" % (receiver_email, winks)
 
             return sendmail(authentication_username=GLSetting.memory_copy.notif_username,
                             authentication_password=GLSetting.memory_copy.notif_password,
-                            from_address=GLSetting.memory_copy.source_email,
-                            to_address= [ receiver_mail ],
+                            from_address= GLSetting.memory_copy.notif_source_email,
+                            to_address= [receiver_email],
                             message_file=message,
                             smtp_host=GLSetting.memory_copy.notif_server,
                             smtp_port=GLSetting.memory_copy.notif_port,
@@ -167,22 +170,23 @@ class MailflushSchedule(GLJob):
                           notification_counter)
                 break
 
-        # Whishlist: implement ping as an appropriate plugin
-        receiver_synthesis = {}
+        # TODO: implement ping as an appropriate plugin
+        receivers_synthesis = {}
         for qe in queue_events:
 
             if not qe.receiver_info['ping_notification']:
                 continue
 
-            receiver_synthesis.setdefault(qe.receiver_info['ping_mail_address'],
-                                          [0, qe.receiver_info['name']])
-            receiver_synthesis[qe.receiver_info['ping_mail_address']][0] += 1
+            if qe.receiver_info['id'] not in receivers_synthesis:
+                receivers_synthesis[qe.receiver_info['id']] = [qe.receiver_info, 1]
+            else:
+                receivers_synthesis[qe.receiver_info['id']][1] += 1
 
-        if len(receiver_synthesis.keys()):
+        if len(receivers_synthesis.keys()):
             # I'm taking the element [0] of the list but every element has the same
             # notification setting. is passed to ping_mail_flush because of the Templating()
             yield self.ping_mail_flush(queue_events[0].notification_settings,
-                                       receiver_synthesis)
+                                       receivers_synthesis)
 
         # Whishlist: implement digest as an appropriate plugin
 
