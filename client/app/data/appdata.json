@@ -32,7 +32,7 @@
         {
           "label": { "en": "Short title" },
           "type": "inputbox",
-          "preview": false,
+          "preview": true,
           "description": {"en": "Describe your submission with a few words"},
           "hint": {"en": ""},
           "multi_entry": false,
