@@ -689,7 +689,6 @@ def db_create_receiver(store, request, language):
 
     receiver_user = models.User(receiver_user_dict)
     receiver_user.last_login = datetime_null()
-    receiver_user.password_change_needed = request['password_change_needed']
     receiver_user.password_change_date = datetime_null()
     store.add(receiver_user)
 
@@ -769,6 +768,7 @@ def update_receiver(store, receiver_id, request, language):
     # at the moment Admin cannot -- because UI do not support that.
 
     receiver.user.state = request['state']
+    receiver.user.password_change_needed = request['password_change_needed']
 
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
