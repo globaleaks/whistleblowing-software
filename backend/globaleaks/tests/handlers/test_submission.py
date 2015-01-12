@@ -16,7 +16,7 @@ from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import authentication, submission, wbtip
-from globaleaks.handlers.admin import update_context, get_receiver_list
+from globaleaks.handlers.admin import update_context, get_receiver_list, create_receiver
 from globaleaks.rest import requests, errors
 from globaleaks.models import InternalTip
 
@@ -35,12 +35,51 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     encryption_scenario = 'ALL_PLAINTEXT'
 
     @inlineCallbacks
-    def test_create_submission(self):
+    def test_create_submission_valid_submission_finalized(self):
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+
+        self.submission_desc = yield submission.create_submission(self.submission_desc, False, 'en')
+
+    @inlineCallbacks
+    def test_create_submission_valid_submission_finalize_by_update(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
 
         self.submission_desc = yield submission.create_submission(self.submission_desc, False, 'en')
 
         self.assertEqual(self.submission_desc['mark'], u'submission')
+
+        self.submission_desc['finalize'] = True
+
+        self.submission_desc = yield submission.update_submission(self.submission_desc['id'],
+                                                                  self.submission_desc,
+                                                                  True, 'en')
+
+        self.assertEqual(self.submission_desc['mark'], u'finalize')
+
+    @inlineCallbacks
+    def test_create_submission_valid_submission(self):
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+
+        self.submission_desc = yield submission.create_submission(self.submission_desc, False, 'en')
+
+        self.assertEqual(self.submission_desc['mark'], u'submission')
+
+        for wb_step in self.submission_desc['wb_steps']:
+            for c in wb_step['children']:
+                c['value'] = unicode("You know nothing John Snow" * 100  * 100)
+
+        self.submission_desc['finalize'] = True
+
+        yield self.assertFailure(submission.create_submission(self.submission_desc, True, 'en'),
+                                 errors.InvalidInputFormat)
+
+    @inlineCallbacks
+    def test_create_submission_with_wrong_receiver(self):
+        disassociated_receiver = yield create_receiver(self.get_dummy_receiver('dumb'), 'en')
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+        self.submission_desc['receivers'].append(disassociated_receiver['id'])
+        yield self.assertFailure(submission.create_submission(self.submission_desc, True, 'en'),
+                                 errors.InvalidInputFormat)
 
     @inlineCallbacks
     def test_create_submission_attach_files_finalize_and_access_wbtip(self):
