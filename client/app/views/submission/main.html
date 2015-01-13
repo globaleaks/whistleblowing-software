@@ -50,24 +50,24 @@
               <div class="row receiverCardTitle">
                 <div class="col-md-10">
                   <label>
-                    <span data-ng-if="receiver.configuration == 'default' && !receiver.missing_pgp">
+                    <span data-ng-if="receiver.configuration != 'unselectable' && !receiver.missing_pgp">
                       <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
-                    </span>
-                    <span data-ng-if="receiver.configuration == 'unselectable'">
-                      <i class="glyphicon glyphicon-ban-circle" popover="{{ 'This receiver is still not enabled to receive submissions.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                     </span>
                     <span data-ng-if="receiver.configuration != 'unselectable' && receiver.missing_pgp">
                       <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                     </span>
+                    <span data-ng-if="receiver.configuration == 'unselectable'">
+                      <i class="glyphicon glyphicon-ban-circle" popover="{{ 'This receiver is still not enabled to receive submissions.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    </span>
                     <span>&nbsp;{{receiver.name}}</span>
                   </label>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-1" data-ng-show="!receiver.missing_pgp || submission.allow_unencrypted">
                   <div data-ng-show="submission.receivers_selected[receiver.id]">
                     <div data-ng-show="receiver.configuration == 'default'">
                       <i class="glyphicon glyphicon-check" popover="{{ 'Unselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                     </div>
-                    <div data-ng-show="receiver.configuration != 'default'">
+                    <div data-ng-show="receiver.configuration == 'forcefully_selected'">
                       <i class="glyphicon glyphicon-check" popover="{{ 'This receiver cannot be deselected' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                     </div>
                   </div>
@@ -75,8 +75,8 @@
                     <div data-ng-show="receiver.configuration == 'default'">
                       <i class="glyphicon glyphicon-unchecked" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                     </div>
-                    <div data-ng-show="receiver.configuration != 'default'">
-                      <i class="glyphicon glyphicon-check" popover="{{ 'This receiver cannot be selected' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                    <div data-ng-show="receiver.configuration == 'unselectable'">
+                      <i class="glyphicon glyphicon-unchecked" popover="{{ 'This receiver cannot be selected' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                     </div>
                   </div>
                 </div>
@@ -85,17 +85,17 @@
                 <div class="col-md-5">
                   <img data-ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
                 </div>
-		<div class="col-md-offset-1 col-md-6" data-ng-show="(receiver.configuration == 'default' || receiver.configuration == 'forcefully_selected') && !receiver.missing_pgp">
+		<div class="col-md-offset-1 col-md-6" data-ng-show="receiver.configuration != 'unselectable && !receiver.missing_pgp">
                   <p>{{receiver.description}}</p>
-                </div>
-                <div class="col-md-offset-1 col-md-6" data-ng-show="receiver.configuration == 'unselectable'">
-                  <p data-translate>This receiver is still not enabled to receive submissions.</p>
                 </div>
                 <div class="col-md-offset-1 col-md-6" data-ng-show="receiver.configuration != 'unselectable' && receiver.missing_pgp && !submission.allow_unencrypted">
                   <div data-translate>This receiver is disabled due to missing PGP key.</div>
                 </div>
                 <div class="col-md-offset-1 col-md-6" data-ng-show="receiver.configuration != 'unselectable' && receiver.missing_pgp && submission.allow_unencrypted">
                   <div data-translate>This receiver has not configured the encryption key.</div>
+                </div>
+                <div class="col-md-offset-1 col-md-6" data-ng-show="receiver.configuration == 'unselectable'">
+                  <p data-translate>This receiver is still not enabled to receive submissions.</p>
                 </div>
               </div>
             </div>
@@ -108,28 +108,25 @@
                 <div class="row receiverCardTitle">
                   <div class="col-md-9">
                     <label>
-                      <span data-ng-if="receiver.configuration == 'default' && !receiver.missing_pgp">
+                      <span data-ng-if="receiver.configuration != 'unselectable' && !receiver.missing_pgp">
                         <i class="glyphicon glyphicon-certificate" popover="{{ 'This receiver has configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
-                      </span>
-                      <span data-ng-if="receiver.configuration == 'unselectable'">
-                        <i class="glyphicon glyphicon-ban-circle" popover="{{ 'This receiver is still not enabled to receive submissions.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                       </span>
                       <span data-ng-if="receiver.configuration != 'unselectable' && receiver.missing_pgp">
                         <i class="glyphicon glyphicon-warning-sign" popover="{{ 'This receiver has not configured the encryption key.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                       </span>
+                      <span data-ng-if="receiver.configuration == 'unselectable'">
+                        <i class="glyphicon glyphicon-ban-circle" popover="{{ 'This receiver is still not enabled to receive submissions.' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                      </span>
                       <span>&nbsp;{{receiver.name}}</span>
                     </label>
-                    <div data-ng-show="receiver.status != 'enabled'">
-                      <span data-translate>Disabled</span>
-                    </div>
                   </div>
 
-                  <div class="col-md-1">
+                  <div class="col-md-1" data-ng-show="!receiver.missing_pgp || submission.allow_unencrypted">
                     <div data-ng-show="submission.receivers_selected[receiver.id]">
                       <div data-ng-show="receiver.configuration == 'default'">
                         <i class="glyphicon glyphicon-check" popover="{{ 'Unselect this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                       </div>
-                      <div data-ng-show="receiver.configuration != 'default'">
+                      <div data-ng-show="receiver.configuration == 'forcefully_selected'">
                         <i class="glyphicon glyphicon-check" popover="{{ 'This receiver cannot be deselected' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                       </div>
                     </div>
@@ -137,8 +134,8 @@
                       <div data-ng-show="receiver.configuration == 'default'">
                         <i class="glyphicon glyphicon-unchecked" popover="{{ 'Select this receiver' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                       </div>
-                      <div data-ng-show="receiver.configuration != 'default'">
-                        <i class="glyphicon glyphicon-check" popover="{{ 'This receiver cannot be selected' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
+                      <div data-ng-show="receiver.configuration == 'unselectable'">
+                        <i class="glyphicon glyphicon-unchecked" popover="{{ 'This receiver cannot be selected' | translate }}" popover-placement="right" popover-trigger="mouseenter"></i>
                       </div>
                     </div>
                   </div>

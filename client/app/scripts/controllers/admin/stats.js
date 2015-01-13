@@ -178,7 +178,7 @@ GLClient.controller('AnomaliesCtrl', ['$scope', 'Node', 'AnomaliesHistCollection
   function($scope, Node, AnomaliesHistCollection) {
 
     $scope.showLevel = true;
-    $scope.hanomalies = AnomaliesHistCollection.query();
+    $scope.anomalies = AnomaliesHistCollection.query();
 }]);
 
 GLClient.controller('ActivitiesCtrl', ['$scope', 'Node', 'ActivitiesCollection', 'AnomaliesCollection',
