@@ -37,15 +37,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-ng-repeat="hanomaly in hanomalies">
+              <tr data-ng-repeat="anomaly in anomalies">
                 <td class="col-md-2">
-                  {{hanomaly.when | date:'dd-MM-yyyy HH:mm'}}
+                  {{anomaly.when | date:'dd-MM-yyyy HH:mm'}}
                 </td>
                 <td class="col-md-1">
-                  {{hanomaly.alarm}}
+                  {{anomaly.alarm}}
                 </td>
                 <td class="col-md-2">
-                  <span data-ng-repeat="single_event in hanomaly.events">
+                  <span data-ng-repeat="single_event in anomaly.events">
                     <span class="label label-info">{{single_event.name}}</span> {{single_event.amount}}<br>
                   </span>
                 </td>
