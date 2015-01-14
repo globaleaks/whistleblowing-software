@@ -119,6 +119,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
         GLCache.removeAll();
         init();
+        $route.reload();
 
       }
 
