@@ -85,7 +85,7 @@
                 <div class="col-md-5">
                   <img data-ng-src="/static/{{receiver.id}}.png" class="img-thumbnail">
                 </div>
-		<div class="col-md-offset-1 col-md-6" data-ng-show="receiver.configuration != 'unselectable && !receiver.missing_pgp">
+		<div class="col-md-offset-1 col-md-6" data-ng-show="receiver.configuration != 'unselectable' && !receiver.missing_pgp">
                   <p>{{receiver.description}}</p>
                 </div>
                 <div class="col-md-offset-1 col-md-6" data-ng-show="receiver.configuration != 'unselectable' && receiver.missing_pgp && !submission.allow_unencrypted">
