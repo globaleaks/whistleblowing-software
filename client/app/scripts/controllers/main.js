@@ -117,9 +117,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
           $scope.build_stylesheet = "/styles-rtl.css";
         }
 
-        GLCache.removeAll();
-        init();
-        $route.reload();
+        $rootScope.$broadcast("REFRESH");
 
       }
 
