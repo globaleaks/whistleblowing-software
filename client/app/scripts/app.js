@@ -177,9 +177,9 @@ var GLClient = angular.module('GLClient', [
         header_subtitle: ''
       }).
       when('/', {
-        templateUrl: 'views/submission/main.html',
-        controller: 'SubmissionCtrl',
-        header_title: 'Blow the Whistle',
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl',
+        header_title: '',
         header_subtitle: ''
       }).
       otherwise({
