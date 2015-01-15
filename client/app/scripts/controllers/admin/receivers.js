@@ -25,7 +25,7 @@ function($scope, $modal) {
   };
 
   $scope.perform_delete = function(receiver) {
-    $scope.admin.receiver['$delete']({
+    $scope.admin.receiver['delete']({
       receiver_id: receiver.id
     }, function(){
       var idx = _.indexOf($scope.admin.receivers, receiver);
