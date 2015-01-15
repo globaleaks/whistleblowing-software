@@ -150,7 +150,7 @@ GLClient.controller('AdminFieldsAddCtrl', ['$scope',
 
     $scope.new_field = {};
 
-    $scope.add_field = function(label) {
+    $scope.add_field = function() {
       var field = new $scope.create_field();
 
       field.label = $scope.new_field.label;
@@ -170,6 +170,7 @@ GLClient.controller('AdminFieldsAddCtrl', ['$scope',
         $scope.addField(new_field);
         $scope.new_field = {};
       });
+
     }
   }
 ]);

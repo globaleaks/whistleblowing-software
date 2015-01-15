@@ -10,10 +10,10 @@ GLClient.controller('AdminContextsCtrl',
     });
   };
 
-  $scope.save_context = function (context) {
+  $scope.save_context = function (context, cb) {
     var updated_context = new $scope.admin.context(context);
 
-    return $scope.update(updated_context);
+    return $scope.update(updated_context, cb);
   };
 
   $scope.save_all = function () {

@@ -79,7 +79,6 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
 
         $scope.admin.node.default_language = language_selected;
         $scope.admin.node.languages_enabled = languages_enabled;
-        console.log(languages_enabled);
 
         $scope.languages_enabled_selector = languages_enabled_selector;
 
@@ -100,7 +99,6 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
 
     var cb = function() {
       $rootScope.$broadcast("REFRESH");
-      $route.reload();
     }
 
     $scope.update(node, cb);
