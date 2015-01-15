@@ -2,16 +2,9 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
   function($scope, $rootScope, $http, $route, $routeParams, $location, $translate, Authentication, Node, GLCache) {
     $scope.started = true;
 
+    $scope.default_homepage = '/';
     $scope.custom_stylesheet = '/static/custom_stylesheet.css';
     $scope.logo = '/static/globaleaks_logo.png';
-
-    $scope.update_node = function () {
-      $scope.node = Node.get(function (node) {
-        if (!$scope.node.wizard_done && $route.current.$$route.controller != "WizardCtrl") {
-          $location.path('/wizard');
-        }
-      });
-    };
 
     $scope.update = function (model, cb, errcb) {
       var success = {};
@@ -64,6 +57,13 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       $scope.role = Authentication.role;
 
       $scope.node = Node.get(function (node) {
+
+        if (!node.wizard_done && $route.current.$$route.controller != "WizardCtrl") {
+          $location.path('/wizard');
+        }
+        else if($location.path() == '/' && node.homepage != '/') {
+          $location.path(node.homepage);
+        }
 
         if ($rootScope.language == undefined || $.inArray($rootScope.language, node.languages_enabled) == -1) {
           $rootScope.language = node.default_language;
