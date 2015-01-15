@@ -1,7 +1,7 @@
 GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal',
 function($scope, $modal) {
 
-  $scope.save_receiver = function(receiver) {
+  $scope.save_receiver = function(receiver, cb) {
 
     if (receiver.gpg_key_remove == true) {
       receiver.gpg_key_armor = '';
@@ -14,7 +14,7 @@ function($scope, $modal) {
 
     var updated_receiver = new $scope.admin.receiver(receiver);
 
-    return $scope.update(updated_receiver);
+    return $scope.update(updated_receiver, cb);
 
   }
 

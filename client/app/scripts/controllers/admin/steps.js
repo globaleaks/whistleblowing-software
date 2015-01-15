@@ -1,22 +1,27 @@
-GLClient.controller('AdminStepAddCtrl', ['$scope',
-  function($scope) {
+GLClient.controller('AdminStepAddCtrl', ['$scope', '$rootScope', '$route',
+  function($scope, $rootScope, $route) {
 
     $scope.add_step = function() {
-      context = $scope.context;
-
-      if (context.steps === undefined) {
-        context.steps = [];
+      if ($scope.context.steps === undefined) {
+        $scope.context.steps = [];
       }
 
-      context.steps.push(
+      $scope.context.steps.push(
         {
-          context_id: context.id,
           label: $scope.new_step_label,
           description: '',
           hint: '',
           children: []
         }
       );
+
+      /* due to current API we need this cb in order to fecth the step id */
+      var cb = function() {
+        $rootScope.$broadcast("REFRESH");
+      }
+
+      $scope.save_context($scope.context, cb);
+
     };
   }
 ]);

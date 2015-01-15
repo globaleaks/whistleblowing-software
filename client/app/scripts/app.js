@@ -208,7 +208,6 @@ var GLClient = angular.module('GLClient', [
            ((e.which || e.keyCode) == 82 && (e.ctrlKey || e.metaKey))) {  /* (ctrl or meta) + r */ 
            e.preventDefault();
            $rootScope.$broadcast("REFRESH");
-           $route.reload();
        }
     };
 
