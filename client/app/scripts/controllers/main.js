@@ -46,6 +46,22 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       return $scope.header_subtitle != '';
     }
 
+    $scope.open_intro = function () {
+      if ($scope.intro_opened) {
+        return
+      } else {
+        $scope.intro_opened = true;
+      }
+
+      var modalInstance = $modal.open({
+        templateUrl: 'views/intro.html',
+        controller: 'IntroCtrl',
+        size: 'lg',
+        scope: $scope
+      });
+
+    };
+
     var init = function () {
 
       $scope.custom_stylesheet = '/static/custom_stylesheet.css?' + $scope.randomFluff();
@@ -63,6 +79,10 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         }
         else if($location.path() == '/' && node.homepage != '/') {
           $location.path(node.homepage);
+        }
+
+        if ($location.path() == node.default_homepage) {
+          $scope.open_intro();
         }
 
         if ($rootScope.language == undefined || $.inArray($rootScope.language, node.languages_enabled) == -1) {
@@ -135,16 +155,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
     init();
 
-    $scope.open_intro = function () {
-      var modalInstance = $modal.open({
-        templateUrl: 'views/intro.html',
-        controller: 'IntroCtrl',
-        size: 'lg',
-        scope: $scope
-      });
-    };
-
-    $scope.open_intro();
   }
 
 ]);
