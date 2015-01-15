@@ -67,6 +67,7 @@ def anon_serialize_node(store, language):
 
     ret_dict = {
       'name': node.name,
+      'homepage': GLSetting.defaults.default_homepage, # FIXME connect this to database
       'hidden_service': node.hidden_service,
       'public_site': node.public_site,
       'email': node.email,

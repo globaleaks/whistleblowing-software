@@ -225,22 +225,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('GLCache',['$cacheFactory', function ($cacheFactory) {
     return $cacheFactory('GLCache');
 }]).
-  factory('nodeInterceptor', ['$q', '$route', '$location', function($q, $route, $location) {
-    return {
-      'response': function(response) {
-        if (!response.resource.wizard_done && $route.current.$$route.controller != "WizardCtrl") {
-          $location.path('/wizard');
-        }
-        return response.resource;
-      }
-    };
-}]).
-  factory('Node', ['$resource', 'GLCache', 'nodeInterceptor', function($resource, GLCache, nodeInterceptor) {
+  factory('Node', ['$resource', 'GLCache', function($resource, GLCache) {
     return $resource('/node', {}, {
       get: {
         method: 'GET',
-        cache: GLCache,
-        interceptor: nodeInterceptor
+        cache: GLCache
       }
     })
 }]).
