@@ -91,7 +91,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.create_field = function() {
-      return $scope.admin.new_field_to_step($scope.step.id);
+      return $scope.admin.new_field($scope.step.id);
     };
    
     $scope.deleteStep = function(step) {
