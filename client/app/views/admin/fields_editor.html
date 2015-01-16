@@ -7,8 +7,8 @@
     <div class="configItem fieldCard card"  data-ng-class="{'configItemLast': $last}">
       <div class="row">
         <div class="fieldEditorHeader" data-ng-click="editing=!editing">
-          <div class="fieldIndex" data-ng-show="step">{{$index + 1}}</div>
-          <h2 class="col-md-7 pull-left">{{ field.label }}</span>
+          <span data-ng-show="step" class="fieldIndex">{{$index + 1}}</span>
+          <span class="col-md-7 pull-left fieldLabel">{{field.label}}</span>
         </div>
       </div>
 

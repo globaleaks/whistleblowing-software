@@ -5,8 +5,8 @@
         <div data-ng-switch-default="" class="form-group input">
           <div>
             <label data-ng-if="toplevel">
-              <span data-ng-if="fields.length > 1">{{$index + 1}})</span>
-              <span>{{field.label}}</span>
+              <span data-ng-if="fields.length > 1" class="fieldIndex">{{$index + 1}}</span>
+              <span class="fieldLabel">{{field.label}}</span>
             </label>
             <label data-ng-if="!toplevel">{{field.label}}</label>
             <a href="" data-ng-show="field.hint" data-content="field.hint" popover="{{field.hint}}" popover-placement="right" popover-trigger="mouseenter">
