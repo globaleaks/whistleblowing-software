@@ -667,7 +667,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       self.fields = adminFieldsResource.query();
       
-      self.new_field_to_step = function(step_id) {
+      self.new_field = function(step_id) {
         var field = new adminFieldResource;
         field.label = '';
         field.type = '';
