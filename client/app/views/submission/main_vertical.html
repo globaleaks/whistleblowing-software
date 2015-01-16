@@ -22,7 +22,7 @@
       </div>
 
       <div data-ng-repeat="step in submission.current_context.steps">
-        <div class="row" data-ng-show="submission.current_context.steps.length > 0">
+        <div class="row" data-ng-show="submission.current_context.steps.length > 1">
           <div class="col-md-1">
             <span class="stepIndex">{{$index + 1}}</span>
           </div>
@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-11" data-ng-class="{'col-md-offset-1': submission.current_context.steps.length > 0}" data-ng-form="submissionForm">
+          <div class="col-md-11" data-ng-class="{'col-md-offset-1': submission.current_context.steps.length > 1}" data-ng-form="submissionForm">
             <div data-ng-include="'views/submission/form.html'"></div>
           </div>
         </div>
@@ -60,9 +60,8 @@
 
     </div>
 
-    <div class="col-md-6">
-      <div data-ng-include="'views/partials/fileupload.html'">
-      </div>
+    <div class="col-md-offset-1 col-md-5">
+      <div data-ng-include="'views/partials/fileupload_status.html'"></div>
     </div>
   </div>
 </div>
