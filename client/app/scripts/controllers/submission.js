@@ -111,7 +111,7 @@ GLClient.controller('SubmissionCtrl',
 }]).
 controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
   $scope.queue = [];
-  $scope.$watch('queue', function () {
+  $scope.$watch('queueaaa', function () {
     $scope.$parent.uploading = false;
     if ($scope.queue) {
       $scope.queue.forEach(function (k) {

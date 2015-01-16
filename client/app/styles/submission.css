@@ -45,6 +45,51 @@
   margin-bottom: 20px;
 }
 
+.fileUploadProgress {
+  padding-top: 115px;
+  position: absolute;
+  top: 0;
+  z-index: 900;
+  height: 150px;
+  width: 150px;
+}
+
+.fileUploadProgressOverlay {
+  background-color: black;
+  opacity: 0.3;
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  top: 0;
+}
+
+.fileUploadProgress .progress {
+  width: 130px;
+  margin-left: 10px;
+}
+
+.submissionButton {
+  font-size: 25px;
+  padding: 10px 100px 10px;
+}
+
+.imgPreview {
+  height: 150px;
+  width: 150px;
+}
+
+.fileUploadProgress .progress-bar {
+  transition: none;
+}
+
+.fileUploadProgress .uploadComplete {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  font-size: 50px;
+  color: white;
+}
+
 @media (max-width: 550px) {
   .submission .nav.nav-tabs {
     display: none;

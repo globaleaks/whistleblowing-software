@@ -12,7 +12,7 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', 'Authentication', function($s
   if ($scope.fileupload_mode == 'single') {
       $scope.options['maxNumberOfFiles'] = 1
   };
-}]);
+}]).
 controller('FileUploadEditFileController', ['$scope', 'Authentication', function($scope, Authentication) {
   $scope.empty_d = true;
   $scope.empty_t = true;
