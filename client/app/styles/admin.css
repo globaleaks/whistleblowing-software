@@ -157,18 +157,6 @@
   padding: 20px;
 }
 
-.fieldIndex {
-  width: 50px;
-  float: left;
-  background-color: #616161;
-  text-align: center;
-  height: 30px;
-  padding-top: 5px;
-  border-radius: 100px;
-  margin-right: 10px;
-  color: #fff;
-}
-
 /** Step editing **/
 
 .stepBox {
