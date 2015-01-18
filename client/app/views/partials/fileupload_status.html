@@ -1,0 +1,50 @@
+<div class="uploadingBox" data-ng-show="queue.length">
+  <div class="row">
+    <label data-translate>Uploading files...</label>
+    <hr>
+  </div>
+    <div data-ng-repeat="file in queue" data-ng-class="{'processing': file.$processing()}">
+      <div class="fileUploadBox">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="filePreview">
+              <div class="imgPreview" data-ng-switch data-on="!!file.thumbnailUrl">
+                <div class="preview thumbnailPreview" data-ng-switch-when="true">
+                  <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery>
+                    <img data-ng-src="{{file.thumbnailUrl}}" alt="">
+                  </a>
+                </div>
+                <div class="preview thumbnailPreview"
+                     data-ng-switch-default data-file-upload-preview="file">
+                </div>
+              </div>
+              <div class="fileUploadProgress">
+                <div class="fileUploadProgressOverlay">
+                </div>
+                <div class="uploadComplete" data-ng-show="file.elapsed_time > 0">
+                  <i class="glyphicon glyphicon-ok"></i>
+                </div>
+                <div class="progress progress-striped active fade"
+                     data-ng-class="{pending: 'in'}[file.$state()]"
+                     data-file-upload-progress="file.$progress()">
+                  <div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-offset-1 col-md-7 fileDetails">
+            <label class="fileName">{{file.name}} ({{file.size | formatFileSize}})</label>
+            <br />
+            <div>
+              <div data-ng-repeat="option in file.value.options">
+               <label>{{option['attrs']['name']}}</label>
+               <textarea class="form-control msd-elastic" data-ng-model="option.value"></textarea>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <hr/>
+    </div>
+  </div>
+</div>

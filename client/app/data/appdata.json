@@ -59,7 +59,7 @@
         },
         {
           "label": { "en": "Files description" },
-          "type": "inputbox",
+          "type": "textarea",
           "preview": false,
           "description": {"en": "Describe the attachments of the submission"},
           "hint": {"en": ""},

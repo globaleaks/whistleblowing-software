@@ -2,7 +2,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
   function($scope, $rootScope, $http, $route, $routeParams, $location, $translate, $modal, Authentication, Node, GLCache) {
     $scope.started = true;
 
-    $scope.default_homepage = '/';
     $scope.custom_stylesheet = '/static/custom_stylesheet.css';
     $scope.logo = '/static/globaleaks_logo.png';
 
@@ -48,7 +47,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
     $scope.open_intro = function () {
       if ($scope.intro_opened) {
-        return
+        return;
       } else {
         $scope.intro_opened = true;
       }
@@ -62,6 +61,19 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
     };
 
+    $scope.route_check = function () {
+      if ($scope.node) {
+        if ($scope.node.wizard_done === false) {
+          $location.path('/wizard');
+        } else if($location.path() == '/' && $scope.node.landing != '/') {
+          $location.path($scope.node.landing);
+        }
+
+        /* Feature implemented for amnesty and currently disabled */
+        //$scope.open_intro();
+      }
+    }
+
     var init = function () {
 
       $scope.custom_stylesheet = '/static/custom_stylesheet.css?' + $scope.randomFluff();
@@ -74,16 +86,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
       $scope.node = Node.get(function (node) {
 
-        if (!node.wizard_done && $route.current.$$route.controller != "WizardCtrl") {
-          $location.path('/wizard');
-        }
-        else if($location.path() == '/' && node.homepage != '/') {
-          $location.path(node.homepage);
-        }
-
-        if ($location.path() == node.default_homepage) {
-          $scope.open_intro();
-        }
+        $scope.route_check();
 
         if ($rootScope.language == undefined || $.inArray($rootScope.language, node.languages_enabled) == -1) {
           $rootScope.language = node.default_language;
@@ -110,6 +113,10 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       $translate.use($rootScope.language);
 
     };
+
+    $scope.$on( "$routeChangeStart", function(event, next, current) {
+      $scope.route_check();
+    });
 
     $scope.$on('$routeChangeSuccess', function() {
       if($location.search().lang) {
@@ -195,7 +202,15 @@ angular.module('GLClient.fileuploader', ['blueimp.fileupload'])
 
 GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$modalInstance', function ($scope, $rootScope, $modalInstance) {
 
-  steps = 3;
+  var steps = 3;
+
+  var first_step = 0;
+
+  if ($scope.languages_enabled_length <= 1) {
+     first_step = 1;
+  }
+
+  $scope.step = first_step;
 
   $scope.proceed = function () {
     if ($scope.step < steps) {
@@ -204,7 +219,7 @@ GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$modalInstance', func
   }
 
   $scope.back = function () {
-    if ($scope.step > 0) {
+    if ($scope.step > first_step) {
       $scope.step -= 1;
     }
   }
@@ -223,5 +238,4 @@ GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$modalInstance', func
     }
   });
 
-  $scope.step = 0;
 }]);

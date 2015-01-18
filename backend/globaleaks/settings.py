@@ -208,7 +208,6 @@ class GLSettingsClass(object):
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
         self.defaults.submission_seconds_of_life = (3600 * 24) * 3
 
-        self.defaults.default_homepage = '/submission'
         self.defaults.default_language = u'en'
         self.defaults.default_timezone = 0
         self.defaults.languages_enabled = LANGUAGES_SUPPORTED_CODES

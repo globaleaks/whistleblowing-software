@@ -6,6 +6,10 @@ body {
   background-color: #fff;
 }
 
+div, span, p, label {
+  word-wrap: break-word;
+}
+
 #PageBox {
   width: 100%;
 }

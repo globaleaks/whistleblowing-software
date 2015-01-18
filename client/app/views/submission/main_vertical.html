@@ -1,67 +1,38 @@
-<div id="ContentBox" class="ng-cloak container" data-ng-show="!node.configured">
-  <h2 data-translate>This node is not configured.</h2>
-  <span data-translate>You will not be able to send a submission.</span><br />
+<div class="col-md-7">
+  <div class="row">
+    <div id="ContextIntroductionBox">{{submission.current_context.description}}</div>
+  </div>
+
+  <div id="ContextPickSelector" class="row">
+    <div id="SubmissionStep1Title">
+      <span data-translate>Choose the context and receivers that will be sure to transform your submission into action!</span>
+    </div>
+    <span data-translate>I want this information to go to</span>
+    <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'"></select>
+  </div>
+
+  <div data-ng-repeat="step in submission.current_context.steps" data-ng-controller="SubmissionStepCtrl" class="row">
+    <div class="row">
+      <div class="col-md-12">
+        <p class="stepDescription">{{step.description}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div data-ng-include="'views/submission/form.html'"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pager pull-left" style="margin-left: 20px" data-ng-show="!hasNextStep()">
+    <div class="btn btn-success SubmissionSubmitButton" data-ng-click="submit()" data-ng-disabled="uploading || submissionForm.$invalid || !receiver_selected">
+      <i class="glyphicon glyphicon-ok"></i>
+      <span data-translate>Submit</span>
+    </div>
+  </div>
 </div>
 
-<div data-ng-controller="SubmissionStepsCtrl" id="ContentBox" class="container submission" data-ng-show="node.configured">
-  <form name="submissionForm" data-ng-controller="SubmissionFormController">
-
-    <div class="col-md-6">
-      <div class="row">
-        <div id="ContextIntroductionBox">{{submission.current_context.description}}</div>
-      </div>
-
-      <div id="ContextPickSelector" class="row">
-        <div id="SubmissionStep1Title" class="lead">
-          <span data-translate>Choose the context and receivers that will be sure to transform your submission into action!</span>
-        </div>
-        <span class="lead" data-ng-show="node.configured">
-          <span data-translate>I want this information to go to</span>
-        </span>
-        <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'"></select>
-      </div>
-
-      <div data-ng-repeat="step in submission.current_context.steps">
-        <div class="row" data-ng-show="submission.current_context.steps.length > 1">
-          <div class="col-md-1">
-            <span class="stepIndex">{{$index + 1}}</span>
-          </div>
-          <div class="col-md-11">
-            <span class="stepLabel">{{step.label}}
-            <a data-ng-show="step.hint" class="stepHint"
-                     data-content="step.hint"
-                     popover="{{step.hint}}"
-                     popover-placement="right" popover-trigger="mouseenter">
-              <i class="glyphicon glyphicon-question-sign"></i>
-            </a>
-            </span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-11 col-md-offset-1">
-            <p class="stepDescription">{{step.description}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-11" data-ng-class="{'col-md-offset-1': submission.current_context.steps.length > 1}" data-ng-form="submissionForm">
-            <div data-ng-include="'views/submission/form.html'"></div>
-          </div>
-        </div>
-        <div class="row">
-          <hr>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-md-3 col-md-offset-1">
-          <button class="btn btn-default actionButton submissionButton" data-ng-click="fake_submit()">Send</button>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="col-md-offset-1 col-md-5">
-      <div data-ng-include="'views/partials/fileupload_status.html'"></div>
-    </div>
+<div class="col-md-offset-1 col-md-4">
+  <div data-ng-include="'views/partials/fileupload_status.html'"></div>
   </div>
 </div>
