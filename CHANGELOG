@@ -1,3 +1,8 @@
+Changes in version 2.60.49 - 2014-01-18
+    o Implemented file upload preview
+    o implemented simplified vertical submission template
+    o Various Bugfixing
+
 Changes in version 2.60.48 - 2014-01-13
     o Various Bugfixing
 

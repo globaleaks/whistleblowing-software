@@ -8,7 +8,7 @@ import operator
 __author__ = u'Random GlobaLeaks Developers'
 __copyright__ = u'Hermes Center for Transparency and Digital Human Rights.'
 __email__ = u'info@globaleaks.org'
-__version__ = u'2.60.47'
+__version__ = u'2.60.49'
 
 DATABASE_VERSION = 16
 
@@ -38,6 +38,7 @@ LANGUAGES_SUPPORTED = [
  { "code": "ru", "name": "Russian" },
  { "code": "sk", "name": "Slovak" },
  { "code": "sr_RS", "name": "Serbian (Serbia)" },
+ { "code": "sr_RS@latin", "name": "Serbian (Latin) (Serbia)" },
  { "code": "sv", "name": "Swedish" },
  { "code": "th", "name": "Thai" },
  { "code": "tr", "name": "Turkish" },
