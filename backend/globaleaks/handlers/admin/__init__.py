@@ -45,7 +45,6 @@ def db_admin_serialize_node(store, language):
 
     ret_dict = {
         "name": node.name,
-        "homepage": GLSetting.defaults.default_homepage, # FIXME add a variable to the node model
         "presentation": node.presentation,
         "creation_date": datetime_to_ISO8601(node.creation_date),
         "last_update": datetime_to_ISO8601(node.last_update),

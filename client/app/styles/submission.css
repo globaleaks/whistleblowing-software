@@ -4,6 +4,10 @@
   margin-bottom: 30px;
 }
 
+#ContextPickSelector .form-control {
+  width: auto;
+}
+
 .receiverCards {
   position: relative;
 }
@@ -29,7 +33,8 @@
 }
 
 .submissionFieldInput {
-  padding-left: 15px;
+  padding-left: 10px;
+  margin-bottom: 25px;
 }
 
 .submissionFieldgroup {
@@ -45,20 +50,25 @@
   margin-bottom: 20px;
 }
 
+.fileName {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
 .fileUploadProgress {
   padding-top: 115px;
   position: absolute;
   top: 0;
   z-index: 900;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
 }
 
 .fileUploadProgressOverlay {
   background-color: black;
   opacity: 0.3;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
   position: absolute;
   top: 0;
 }
@@ -74,8 +84,8 @@
 }
 
 .imgPreview {
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
 }
 
 .fileUploadProgress .progress-bar {
@@ -84,9 +94,9 @@
 
 .fileUploadProgress .uploadComplete {
   position: absolute;
-  top: 50px;
-  left: 50px;
-  font-size: 50px;
+  top: 40px;
+  left: 40px;
+  font-size: 40px;
   color: white;
 }
 

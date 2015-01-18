@@ -2,7 +2,7 @@
   <div data-ng-repeat="field in fields | orderBy:'y'" data-ng-controller="SubmissionFieldCtrl" data-ng-form="submissionFieldForm" class="submissionField">
     <div>
       <div data-ng-switch="" on="field.type">
-        <div data-ng-switch-default="" class="form-group input">
+        <div data-ng-switch-default="" class="form-group">
           <div>
             <label data-ng-if="toplevel">
               <span data-ng-if="fields.length > 1" class="fieldIndex">{{$index + 1}}</span>
@@ -13,68 +13,66 @@
               <i class="glyphicon glyphicon-question-sign"></i>
             </a>
           </div> 
-          <div class="submissionFieldInput">
-            <div class="row">
-              <div data-ng-switch="" on="field.type">
+          <div data-ng-switch="" on="field.type" class="col-md-12 submissionFieldInput">
 
-                <div data-ng-switch-when="inputbox" data-ng-class="{'col-md-4': toplevel}">
-                  <input class="form-control" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text" />
-                </div>
+            <div data-ng-switch-when="inputbox" data-ng-class="{'col-md-8': toplevel}">
+              <input class="form-control" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text" />
+            </div>
 
-                <div data-ng-switch-when="textarea" data-ng-class="{'col-md-4': toplevel}">
-                  <textarea class="form-control msd-elastic" data-ng-model="field.value" data-ng-required="field.required" placeholder="{{field.placeholder}}"></textarea>
-                </div>
+            <div data-ng-switch-when="textarea" data-ng-class="{'col-md-8': toplevel}">
+              <textarea class="form-control msd-elastic" data-ng-model="field.value" data-ng-required="field.required" placeholder="{{field.placeholder}}"></textarea>
+            </div>
 
-                <div data-ng-switch-when="selectbox" data-ng-class="{'col-md-4': toplevel}">
-                  <select class="form-control" name="input" data-ng-model="field.value" data-ng-required="field.required">
-                    <option data-ng-repeat="option in field.options" value="{{option.attrs.name}}">{{option.attrs.name}}</option>
-                  </select>
-                </div>
+            <div data-ng-switch-when="selectbox" data-ng-class="{'col-md-8': toplevel}">
+              <select class="form-control" name="input" data-ng-model="field.value" data-ng-required="field.required">
+                <option data-ng-repeat="option in field.options" value="{{option.attrs.name}}">{{option.attrs.name}}</option>
+              </select>
+            </div>
 
-                <div data-ng-switch-when="checkbox" data-ng-class="{'col-md-4': toplevel}">
-                  <div data-ng-repeat="option in field.options"; data-ng-init="field.value[option.id] = {};">
-                    <input type="hidden" data-ng-init="field.value[option.id].order = $index" data-ng-model="field.value[option.id].order">
-                    <input type="hidden" data-ng-init="field.value[option.id].name = option.attrs.name" data-ng-model="field.value[option.id].name">
-                    <input name="{{option.attrs.name}}"
-                        data-ng-model="field.value[option.id].value"
-                        placeholder="{{field.placeholder || 'false'}}"
-                        type="checkbox" />
-                    <label>{{option.attrs.name}}</label>
-                  </div>
+            <div data-ng-switch-when="checkbox" data-ng-class="{'col-md-8': toplevel}">
+              <div data-ng-repeat="option in field.options"; data-ng-init="field.value[option.id] = {};">
+                <input type="hidden" data-ng-init="field.value[option.id].order = $index" data-ng-model="field.value[option.id].order" />
+                <input type="hidden" data-ng-init="field.value[option.id].name = option.attrs.name" data-ng-model="field.value[option.id].name" />
+                <div class="checkbox">
+                  <input name="{{option.attrs.name}}"
+                      data-ng-model="field.value[option.id].value"
+                      placeholder="{{field.placeholder || 'false'}}"
+                      type="checkbox" />
+                  <span>{{option.attrs.name}}</span>
                 </div>
-
-                <div data-ng-switch-when="dialog" data-ng-class="{'col-md-4': toplevel}">
-                  <div class="preformatted">DIALOG FIELD TYPE INTERFACE STILL NEED TO BE IMPLEMENTED</div>
-                </div>
-
-                <div data-ng-switch-when="modal" data-ng-class="{'col-md-4': toplevel}">
-                  <div class="preformatted">MODAL FIELD TYPE INTERFACE STILL NEED TO BE IMPLEMENTED</div>
-                </div>
-
-                <div data-ng-switch-when="tos" data-ng-class="{'col-md-8': toplevel}">
-                  <div class="preformatted">{{field.options[0].attrs.clause}}</div>
-                  <div class="form-group">
-                    <input data-ng-model="field.value" data-ng-required="field.required" name=input value="{{field.value}}" placeholder="{{field.placeholder || 'false'}}" type="checkbox" />
-                    <label>{{field.options[0].attrs.agreement_statement}}</label>
-                  </div>
-                </div>
-
-                <div data-ng-switch-when="fileupload" data-ng-class="{'col-md-8': toplevel}">
-                  <div data-ng-init="fileupload_mode = field.multi_entry ? 'multiple' : 'single'" data-ng-include="'views/partials/fileupload.html'" class="col-md-12"></div>
-                </div>
-              
-                <div data-ng-switch-when="fieldgroup" data-ng-class="{'col-md-12': toplevel}">
-                  <div data-ng-include="'views/submission/form.html'"></div>
-                </div>
-
               </div>
             </div>
+
+            <div data-ng-switch-when="dialog">
+              <div class="preformatted">DIALOG FIELD TYPE INTERFACE STILL NEED TO BE IMPLEMENTED</div>
+            </div>
+
+            <div data-ng-switch-when="modal">
+              <div class="preformatted">MODAL FIELD TYPE INTERFACE STILL NEED TO BE IMPLEMENTED</div>
+            </div>
+
+            <div data-ng-switch-when="tos" data-ng-class="{'col-md-12': toplevel}">
+              <div class="preformatted">{{field.options[0].attrs.clause}}</div>
+              <div class="form-group checkbox">
+                <input data-ng-model="field.value" data-ng-required="field.required" name=input value="{{field.value}}" placeholder="{{field.placeholder || 'false'}}" type="checkbox" />
+                <span>{{field.options[0].attrs.agreement_statement}}</span>
+              </div>
+            </div>
+
+            <div data-ng-switch-when="fileupload" data-ng-class="{'col-md-12': toplevel}">
+              <div data-ng-init="fileupload_mode = field.multi_entry ? 'multiple' : 'single'" data-ng-include="'views/partials/fileupload.html'" class="col-md-12"></div>
+            </div>
+ 
+            <div data-ng-switch-when="fieldgroup" data-ng-class="{'col-md-12': toplevel}">
+              <div data-ng-include="'views/submission/form.html'"></div>
+            </div>
+
 
             <div class="has-error" data-ng-show="submissionFieldForm.$invalid && field.type != 'tos' && field.type != 'fieldgroup'">
               <span data-translate>This field cannot be empty</span>
             </div>
-
           </div>
+
         </div>
       </div>
     </div>

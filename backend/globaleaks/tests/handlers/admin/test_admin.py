@@ -50,8 +50,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
             if response_key in ['password', 'languages_supported',
                                 'creation_date', 'last_update',
                                 'version', 'receipt_example',
-                                'configured', 'wizard_done',
-                                'homepage' ]:
+                                'configured', 'wizard_done']:
                 continue
 
             self.assertEqual(self.responses[0][response_key],

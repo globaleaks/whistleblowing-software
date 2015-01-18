@@ -110,23 +110,43 @@ GLClient.controller('SubmissionCtrl',
 
 }]).
 controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-  $scope.queue = [];
-  $scope.$watch('queueaaa', function () {
+  if ($scope.field.type == 'fileupload') {
+    $scope.field.value = [];
+  }
+
+  var update_uploads_status = function(e, data) {
     $scope.$parent.uploading = false;
+    if ($scope.field.value === "") {
+      $scope.field.value = [];
+    }
     if ($scope.queue) {
+      $scope.files.slice(0, $scope.files.length);
       $scope.queue.forEach(function (k) {
         if (!k.id) {
           $scope.$parent.uploading = true;
         } else {
-          $scope.submission.current_submission.files.push(k.id);
-          if ($scope.submission.current_submission.wb_steps[$scope.field] == undefined) {
-            $scope.submission.current_submission.wb_steps[$scope.field] = {};
+          if ($scope.submission.current_submission.files.indexOf(k.id) === -1) {
+            $scope.submission.current_submission.files.push(k.id);
+
+            $scope.indexed_files_values[k.id] = {
+              'id': k.id,
+              'options': angular.copy($scope.field.options)
+            }
           }
-          $scope.submission.current_submission.wb_steps[$scope.field].value = k.id;
+
+          $scope.field.value.push($scope.indexed_files_values[k.id]);
+          k.value = $scope.indexed_files_values[k.id];
+        }
+
+        if ($scope.files.indexOf(k) === -1) {
+          $scope.files.push(k);
         }
       });
     }
-  }, true);
+  };
+
+  $scope.$on('fileuploadalways', update_uploads_status);
+
 }]).
 controller('SubmissionFormController', ['$scope', '$rootScope', function ($scope, $rootScope) {
   $scope.$watch('submissionForm.$valid', function () {
@@ -181,6 +201,11 @@ controller('SubmissionStepsCtrl', ['$scope', function($scope) {
       $scope.selection = $scope.selection - 1;
     }
   };
+}]).
+controller('SubmissionStepCtrl', ['$scope', function($scope) {
+  $scope.queue = $scope.queue || [];
+  $scope.files  = [];
+  $scope.indexed_files_values = {};
 }]).
 controller('ReceiptController', ['$scope', '$location', 'Authentication', 'WhistleblowerTip',
   function($scope, $location, Authentication, WhistleblowerTip) {
