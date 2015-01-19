@@ -30,9 +30,10 @@
               <textarea class="form-control" data-ng-model="field.description">{{field.description}}</textarea>
             </div>
             <div class="form-group">
-              <div>
+              <div data-ng-switch="" on="typeSwitch(field.type)">
                 <input data-ng-model="field.multi_entry" value="{{field.multi_entry}}" type="checkbox">
-                <label data-translate>Accept multiple answers for the field</label>
+                <label data-ng-switch-when="fileupload" data-translate>Accept multiple file uploads</label>
+                <label data-ng-switch-default data-translate>Accept multiple answers for the field</label>
               </div>
             </div>
             <div class="form-group">
