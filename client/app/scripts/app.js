@@ -183,7 +183,7 @@ var GLClient = angular.module('GLClient', [
         header_subtitle: ''
       }).
       otherwise({
-        redirectTo: '/submission'
+        redirectTo: '/'
       });
 
       $translateProvider.useStaticFilesLoader({
