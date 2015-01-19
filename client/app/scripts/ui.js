@@ -160,18 +160,25 @@ angular.module('submissionUI', []).
       }
     };
 }).
-  directive('ccNumber', function(){
+  directive('creditCard', ['$filter', function($filter){
     return {
       scope: {
-        "ccNumber": "&",
+        "creditCard": "&",
       },
       link: function(scope, elm, attrs) {
         var svgItem = $(elm)[0];
         svgItem.addEventListener("load",function() {
-          var ccnumber = svgItem.contentDocument;
-          ccnumber = ccnumber.getElementById("ccnumber");
+          var creditcard = svgItem.contentDocument.getElementById('credit_card');
+          var yourname = svgItem.contentDocument.getElementById('your_name');
+          var validfrom = svgItem.contentDocument.getElementById('valid_from');
+          var expiresend = svgItem.contentDocument.getElementById('expires_end');
+          var ccnumber = svgItem.contentDocument.getElementById('cc_number');
+          creditcard.innerHTML =  $filter('translate')('CREDIT CARD');
+          yourname.innerHTML =  $filter('translate')('YOUR NAME');
+          validfrom.innerHTML =  $filter('translate')('VALID FROM');
+          expiresend.innerHTML =  $filter('translate')('EXPIRES END');
           ccnumber.innerHTML = scope.ccNumber();
         });
       }
     }
-});
+}]);
