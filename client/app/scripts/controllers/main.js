@@ -65,8 +65,12 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       if ($scope.node) {
         if ($scope.node.wizard_done === false) {
           $location.path('/wizard');
-        } else if($location.path() == '/' && $scope.node.landing != '/') {
-          $location.path($scope.node.landing);
+        }
+
+        if ($location.path() == '/submission' &&
+            $scope.anonymous === false &&
+            $scope.node.tor2web_submission === false) {
+          $location.path("/");
         }
 
         /* Feature implemented for amnesty and currently disabled */

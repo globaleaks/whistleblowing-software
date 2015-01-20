@@ -114,7 +114,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
 
     $scope.perform_delete_step = function(step) {
       $scope.deleteStep(step);
-      $scope.update($scope.context);
+      $scope.save_context($scope.context);
     };
 
     $scope.update_field = function(field) {
