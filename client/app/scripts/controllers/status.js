@@ -45,16 +45,6 @@ GLClient.controller('StatusCtrl',
 
       $scope.queue = [];
 
-      $scope.$watch('queue', function(){
-        $scope.uploading = false;
-        if ($scope.queue) {
-          $scope.queue.forEach(function(k){
-            if (!k.id)
-              $scope.uploading = true;
-          });
-        }
-      }, true);
-
       $scope.tip = new WBTip(function(tip){
 
         Contexts.query(function(contexts){

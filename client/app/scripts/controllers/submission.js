@@ -92,13 +92,13 @@ GLClient.controller('SubmissionCtrl',
       });
       checkReceiverSelected();
      }
-  }, false);
+  });
 
   $scope.$watch('submission.receivers_selected', function () {
     if ($scope.submission) {
       checkReceiverSelected();
     }
-  }, true);
+  });
 
 }]).
 controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
