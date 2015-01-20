@@ -1,5 +1,12 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   background-color: #fff;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
 }
 
 div, span, p, label {
@@ -65,7 +72,12 @@ div, span, p, label {
 }
 
 #FooterBox {
-  padding: 70px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here (see body) */
+  height: 60px;
+  padding-top: 20px;
   border-top: 1px solid #E5E5E5;
   background-color: #F5F5F5;
   color: #777;
