@@ -95,6 +95,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         if ($rootScope.language == undefined || $.inArray($rootScope.language, node.languages_enabled) == -1) {
           $rootScope.language = node.default_language;
           $rootScope.default_language = node.default_language;
+          $translate.use($rootScope.language);
         }
 
         $scope.languages_supported = {};
@@ -113,8 +114,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
         $scope.show_language_selector = ($scope.languages_enabled_length > 1);
       });
-
-      $translate.use($rootScope.language);
 
     };
 
