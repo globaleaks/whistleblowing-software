@@ -13,10 +13,6 @@ div, span, p, label {
   word-wrap: break-word;
 }
 
-#PageBox {
-  width: 100%;
-}
-
 #HeaderBox, #HeaderBoxHomepage {
   overflow: hidden;
   color: #FFF;
@@ -29,9 +25,6 @@ div, span, p, label {
   clear: both;
   content: "";
   display: block;
-}
-
-#HeaderBoxHomeContent {
 }
 
 #HeaderBox p, #HeaderBoxHomepage p {
@@ -59,7 +52,7 @@ div, span, p, label {
 }
 
 #ContentBox {
-  margin: 50px auto;
+  margin: 30px auto;
 }
 
 #messageConsole {
@@ -195,10 +188,6 @@ h3 {
   color: #b94a48;
 }
 
-.modal {
-  display: inline;
-}
-
 table {
   table-layout: fixed;
   word-wrap: break-word;
@@ -310,4 +299,8 @@ table {
 
 .LanguageSelected {
   background-color: #EEE;
+}
+
+input, textarea, select {
+  padding-bottom: 10px;
 }

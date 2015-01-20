@@ -52,7 +52,7 @@
             </div>
 
             <div data-ng-switch-when="tos" data-ng-class="{'col-md-12': toplevel}">
-              <div class="preformatted">{{field.options[0].attrs.clause}}</div>
+              <div class="form-group preformatted">{{field.options[0].attrs.clause}}</div>
               <div class="form-group checkbox">
                 <input data-ng-model="field.value" data-ng-required="field.required" name=input value="{{field.value}}" placeholder="{{field.placeholder || 'false'}}" type="checkbox" />
                 <span>{{field.options[0].attrs.agreement_statement}}</span>
@@ -60,7 +60,7 @@
             </div>
 
             <div data-ng-switch-when="fileupload" data-ng-class="{'col-md-12': toplevel}">
-              <div data-ng-init="fileupload_mode = field.multi_entry ? 'multiple' : 'single'" data-ng-include="'views/partials/fileupload.html'" class="col-md-12"></div>
+              <div data-ng-init="fileupload_mode = field.multi_entry ? 'multiple' : 'single'" data-ng-include="'views/partials/fileupload_button.html'" class="col-md-12"></div>
             </div>
  
             <div data-ng-switch-when="fieldgroup" data-ng-class="{'col-md-12': toplevel}">

@@ -177,7 +177,7 @@ angular.module('submissionUI', []).
           yourname.innerHTML =  $filter('translate')('YOUR NAME');
           validfrom.innerHTML =  $filter('translate')('VALID FROM');
           expiresend.innerHTML =  $filter('translate')('EXPIRES END');
-          ccnumber.innerHTML = scope.ccNumber();
+          ccnumber.innerHTML = scope.creditCard();
         });
       }
     }
