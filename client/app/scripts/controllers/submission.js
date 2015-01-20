@@ -100,14 +100,6 @@ GLClient.controller('SubmissionCtrl',
     }
   }, true);
 
-  $rootScope.$watch('anonymous', function (newVal, oldVal) {
-    if ($scope.node) {
-      if (newVal == false && !$scope.node.tor2web_submission) {
-        $location.path("/");
-      }
-    }
-  });
-
 }]).
 controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
   if ($scope.field.type == 'fileupload') {
