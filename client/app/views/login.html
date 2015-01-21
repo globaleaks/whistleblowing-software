@@ -1,33 +1,31 @@
-<div id="ContentBox" class="container">
-  <div id="LoginBox">
-    <div class="row" data-ng-show="errors[0].code == 29">
-      <div class="col-md-9">
-        <div class="alert alert-danger">
-          <strong><span data-translate>Authentication Failed</span></strong>
-        </div>
+<div id="LoginBox">
+  <div class="row" data-ng-show="errors[0].code == 29">
+    <div class="col-md-9">
+      <div class="alert alert-danger">
+        <strong><span data-translate>Authentication Failed</span></strong>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4">
-        <form name="loginForm" novalidate>
-          <div class="form-group">
-            <label data-translate>Please select your account:</label>
-            <select class="form-control" data-ng-model="loginUsername" data-ng-options="item.id as item.name for item in receivers | filter:filterReceivers | orderBy:'name'" required></select>
-          </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <form name="loginForm" novalidate>
+        <div class="form-group">
+          <label data-translate>Please select your account:</label>
+          <select class="form-control" data-ng-model="loginUsername" data-ng-options="item.id as item.name for item in receivers | filter:filterReceivers | orderBy:'name'" required></select>
+        </div>
 
-          <div class="form-group" data-ng-show="loginUsername">
-            <label data-translate>Now type your password, then click 'Login':</label>
-            <input class="form-control" name="password" data-ng-model="loginPassword" type="password" required />
-          </div>
+        <div class="form-group" data-ng-show="loginUsername">
+          <label data-translate>Now type your password, then click 'Login':</label>
+          <input class="form-control" name="password" data-ng-model="loginPassword" type="password" required />
+        </div>
 
-          <div class="form-group" data-ng-show="loginUsername">
-            <button class="btn btn-success" data-ng-disabled="loginForm.$invalid" data-ng-click="login(loginUsername, loginPassword, loginRole)">
-              <i class="glyphicon glyphicon-log-in"></i>
-              <span data-translate>Login</span>
-            </button>
-          </div>
-        </form>
-      </div>
+        <div class="form-group" data-ng-show="loginUsername">
+          <button class="btn btn-success" data-ng-disabled="loginForm.$invalid" data-ng-click="login(loginUsername, loginPassword, loginRole)">
+            <i class="glyphicon glyphicon-log-in"></i>
+            <span data-translate>Login</span>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

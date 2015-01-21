@@ -1,84 +1,82 @@
-<div id="ContentBox" class="container">
-  <div class="row">
-    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/receiver/sidebar.html'" data-ng-controller="ReceiverSidebarCtrl"></div>
-    <div class="col-md-9">
-      <div id="TipsList" class="row">
-        <div data-translate>New Tips</div>
-        <div class="table table-responsive">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th class="col-md-2">
-                  <span>Tip</span>
-                </th>
-                <th class="col-md-2">
-                  <span data-translate>When</span>
-                </th>
-                <th>
-                  <span data-translate>Mail Notification Status</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody id="activitiesEventList" data-ng-controller="ReceiverNotificationCtrl">
-              <tr data-ng-repeat="x in activities.tips">
-                <td class="col-md-2">
-                  <a href="/#/status/{{x.tip_id}}">
-                    <span class="glyphicon glyphicon-tint"></span>
-                  </a>
-                </td>
-                <td class="col-md-2">
-                  <span>{{x.creation_date | date:'dd-MM-yyyy HH:mm' }}</span>
-                </td>
-                <td>
-                  <span data-ng-if="x.mail_sent" class="glyphicon glyphicon-envelope"></span>
-                  <span data-ng-if="!x.mail_sent" class="glyphicon glyphicon-time"></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+<div class="row">
+  <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/receiver/sidebar.html'" data-ng-controller="ReceiverSidebarCtrl"></div>
+  <div class="col-md-9">
+    <div id="TipsList" class="row">
+      <div data-translate>New Tips</div>
+      <div class="table table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="col-md-2">
+                <span>Tip</span>
+              </th>
+              <th class="col-md-2">
+                <span data-translate>When</span>
+              </th>
+              <th>
+                <span data-translate>Mail Notification Status</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="activitiesEventList" data-ng-controller="ReceiverNotificationCtrl">
+            <tr data-ng-repeat="x in activities.tips">
+              <td class="col-md-2">
+                <a href="/#/status/{{x.tip_id}}">
+                  <span class="glyphicon glyphicon-tint"></span>
+                </a>
+              </td>
+              <td class="col-md-2">
+                <span>{{x.creation_date | date:'dd-MM-yyyy HH:mm'}}</span>
+              </td>
+              <td>
+                <span data-ng-if="x.mail_sent" class="glyphicon glyphicon-envelope"></span>
+                <span data-ng-if="!x.mail_sent" class="glyphicon glyphicon-time"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div id="ActivitiesLists" class="row">
-        <div data-translate>New activities on Tips</div>
-        <div class="table table-responsive">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th class="col-md-2">
-                  <span>Tip</span>
-                </th>
-                <th class="col-md-2">
-                  <span data-translate>When</span>
-                </th>
-                <th class="col-md-2">
-                  <span data-translate>What</span>
-                </th>
-                <th>
-                  <span data-translate>Mail Notification Status</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody id="activitiesEventList" data-ng-controller="ReceiverNotificationCtrl">
-              <tr data-ng-repeat="x in activities.activities">
-                <td class="col-md-2">
-                  <a href="/#/status/{{x.tip_id}}">
-                    <span class="glyphicon glyphicon-tint"></span>
-                  </a>
-                </td>
-                <td class="col-md-2">
-                  <span>{{x.creation_date | date:'dd-MM-yyyy HH:mm' }}</span>
-                </td>
-                <td class="col-md-4">
-                  <span>{{x.title | translate}}</span>
-                </td>
-                <td>
-                  <span data-ng-if="x.mail_sent" class="glyphicon glyphicon-envelope"></span>
-                  <span data-ng-if="!x.mail_sent" class="glyphicon glyphicon-time"></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    </div>
+    <div id="ActivitiesLists" class="row">
+      <div data-translate>New activities on Tips</div>
+      <div class="table table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="col-md-2">
+                <span>Tip</span>
+              </th>
+              <th class="col-md-2">
+                <span data-translate>When</span>
+              </th>
+              <th class="col-md-2">
+                <span data-translate>What</span>
+              </th>
+              <th>
+                <span data-translate>Mail Notification Status</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="activitiesEventList" data-ng-controller="ReceiverNotificationCtrl">
+            <tr data-ng-repeat="x in activities.activities">
+              <td class="col-md-2">
+                <a href="/#/status/{{x.tip_id}}">
+                  <span class="glyphicon glyphicon-tint"></span>
+                </a>
+              </td>
+              <td class="col-md-2">
+                <span>{{x.creation_date | date:'dd-MM-yyyy HH:mm'}}</span>
+              </td>
+            <td class="col-md-4">
+                <span>{{x.title | translate}}</span>
+              </td>
+              <td>
+                <span data-ng-if="x.mail_sent" class="glyphicon glyphicon-envelope"></span>
+                <span data-ng-if="!x.mail_sent" class="glyphicon glyphicon-time"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

@@ -53,7 +53,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       }
 
       var modalInstance = $modal.open({
-        templateUrl: 'views/intro.html',
+        templateUrl: 'views/partials/intro.html',
         controller: 'IntroCtrl',
         size: 'lg',
         scope: $scope
