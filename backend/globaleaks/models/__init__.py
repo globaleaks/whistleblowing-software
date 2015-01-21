@@ -762,6 +762,7 @@ class FieldOption(Model):
         obj_copy.attrs = copy.deepcopy(self.attrs)
         return obj_copy
 
+
 class Step(Model):
     context_id = Unicode()
     label = JSON()
@@ -774,6 +775,18 @@ class Step(Model):
     localized_strings = ['label', 'description', 'hint']
 
 
+class Stats(Model):
+    start = DateTime()
+    summary = JSON()
+    freemb = Int()
+
+
+class Anomalies(Model):
+    stored_when = Unicode() # is a Datetime but string
+    alarm = Int()
+    events = JSON()
+
+
 class ApplicationData(Model):
     """
     Exists only one instance of this class, because the ApplicationData
@@ -782,6 +795,30 @@ class ApplicationData(Model):
     version = Int()
     fields = JSON()
 
+class FieldField(BaseModel):
+    """
+    Class used to implement references between Fields and Fields!
+    parent - child relation used to implement fieldgroups
+    """
+    __storm_table__ = 'field_field'
+    __storm_primary__ = 'parent_id', 'child_id'
+
+    parent_id = Unicode()
+    child_id = Unicode()
+
+    unicode_keys = ['parent_id', 'child_id']
+
+class StepField(BaseModel):
+    """
+    Class used to implement references between Steps and Fields!
+    """
+    __storm_table__ = 'step_field'
+    __storm_primary__ = 'step_id', 'field_id'
+
+    step_id = Unicode()
+    field_id = Unicode()
+
+    unicode_keys = ['step_id', 'field_id']
 
 # Follow classes used for Many to Many references
 class ReceiverContext(BaseModel):
@@ -803,45 +840,6 @@ class ReceiverInternalTip(BaseModel):
 
     receiver_id = Unicode()
     internaltip_id = Unicode()
-
-
-class FieldField(BaseModel):
-    """
-    Class used to implement references between Fields and Fields!
-    parent - child relation used to implement fieldgroups
-    """
-    __storm_table__ = 'field_field'
-    __storm_primary__ = 'parent_id', 'child_id'
-
-    parent_id = Unicode()
-    child_id = Unicode()
-
-    unicode_keys = ['parent_id', 'child_id']
-
-
-class Stats(Model):
-    start = DateTime()
-    summary = JSON()
-    freemb = Int()
-
-
-class Anomalies(Model):
-    stored_when = Unicode() # is a Datetime but string
-    alarm = Int()
-    events = JSON()
-
-
-class StepField(BaseModel):
-    """
-    Class used to implement references between Steps and Fields!
-    """
-    __storm_table__ = 'step_field'
-    __storm_primary__ = 'step_id', 'field_id'
-
-    step_id = Unicode()
-    field_id = Unicode()
-
-    unicode_keys = ['step_id', 'field_id']
 
 
 Field.options = ReferenceSet(Field.id,
@@ -933,7 +931,8 @@ Receiver.contexts = ReferenceSet(
     ReceiverContext.context_id,
     Context.id)
 
-models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment,
-          InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile,
-          Notification, Message, Field, FieldField, Step,
-          Stats, Anomalies, ApplicationData, EventLogs ]
+models = [Node, User, Context, Receiver, ReceiverContext,
+          Field, FieldOption, FieldField, Step, StepField,
+          InternalTip, ReceiverTip, WhistleblowerTip, Comment, Message,
+          InternalFile, ReceiverFile, Notification,
+          Stats, Anomalies, ApplicationData, EventLogs]
