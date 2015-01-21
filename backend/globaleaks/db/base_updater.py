@@ -378,6 +378,7 @@ class TableReplacer(object):
         new_appdata.fields = appdata['fields']
         new_appdata.version = appdata['version']
         self.store_new.add(new_appdata)
+        self.store_new.commit()
 
     def migrate_Field(self):
         """
