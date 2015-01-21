@@ -434,6 +434,8 @@ module.exports = function(grunt) {
       }
     };
 
+    extractPotFromHTMLFile('app/globaleaks.html');
+
     /* Extract strings view file used to anticipate strings on transifex */
     extractPotFromHTMLFile('app/translations.html');
 
@@ -446,8 +448,6 @@ module.exports = function(grunt) {
       var filepath = path.join('app/data/txt', subdir || '', filename || '');
       extractPotFromTXTFile(filepath);
     });
-
-    extractPotFromHTMLFile('app/index.html');
 
     extractPotFromJSONFile('app/data/appdata.json')
 
