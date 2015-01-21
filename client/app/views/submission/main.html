@@ -1,21 +1,13 @@
-<div id="ContentBox" class="ng-cloak container" data-ng-show="!node.configured">
-  <h2 data-translate>This node is not configured.</h2>
-  <span data-translate>You will not be able to send a submission.</span><br />
+<div id="ContextPickSelector" data-ng-show="submission.contexts.length > 1" class="form-inline">
+  <label data-translate>I want to report on</label>
+  <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'"></select>
 </div>
 
-<div data-ng-controller="SubmissionStepsCtrl" id="ContentBox" class="container submission" data-ng-show="node.configured">
-
-  <div id="ContextPickSelector" data-ng-show="submission.contexts.length > 1" class="form-inline">
-    <label data-translate>I want to report on</label>
-    <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'"></select>
-  </div>
-
-  <div class="row">
-    <div id="ContextIntroductionBox">{{submission.current_context.description}}</div>
-  </div>
-
-  <form name="submissionForm" data-ng-controller="SubmissionFormController">
-    <div data-ng-show="!(submission.current_context.steps.length > 1) && !(submission.current_context.show_receivers)" data-ng-include="'views/submission/main_vertical.html'"></div>
-    <div data-ng-show="submission.current_context.steps.length > 1 || submission.current_context.show_receivers" data-ng-include="'views/submission/main_horizontal.html'"></div>
-  </form>
+<div class="row">
+  <div id="ContextIntroductionBox">{{submission.current_context.description}}</div>
 </div>
+
+<form name="submissionForm">
+  <div data-ng-show="!(submission.current_context.steps.length > 1) && !(submission.current_context.show_receivers)" data-ng-include="'views/submission/main_vertical.html'"></div>
+  <div data-ng-show="submission.current_context.steps.length > 1 || submission.current_context.show_receivers" data-ng-include="'views/submission/main_horizontal.html'"></div>
+</form>

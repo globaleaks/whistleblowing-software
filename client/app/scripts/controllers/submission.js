@@ -82,71 +82,6 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
-  $scope.uploading = false;
-
-  // Watch for changes in certain variables
-  $scope.$watch('submission.current_context', function () {
-    if ($scope.current_context) {
-      $scope.submission.create(function () {
-        $scope.fileupload_url = '/submission/' + $scope.submission.current_submission.id + '/file';
-      });
-      checkReceiverSelected();
-     }
-  });
-
-  $scope.$watch('submission.receivers_selected', function () {
-    if ($scope.submission) {
-      checkReceiverSelected();
-    }
-  });
-
-}]).
-controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-  if ($scope.field.type == 'fileupload') {
-    $scope.field.value = [];
-  }
-
-  var update_uploads_status = function(e, data) {
-    $scope.$parent.uploading = false;
-    if ($scope.field.value === "") {
-      $scope.field.value = [];
-    }
-    if ($scope.queue) {
-      $scope.files.slice(0, $scope.files.length);
-      $scope.queue.forEach(function (k) {
-        if (!k.id) {
-          $scope.$parent.uploading = true;
-        } else {
-          if ($scope.submission.current_submission.files.indexOf(k.id) === -1) {
-            $scope.submission.current_submission.files.push(k.id);
-
-            $scope.indexed_files_values[k.id] = {
-              'id': k.id,
-              'options': angular.copy($scope.field.options)
-            }
-          }
-
-          $scope.field.value.push($scope.indexed_files_values[k.id]);
-          k.value = $scope.indexed_files_values[k.id];
-        }
-
-        if ($scope.files.indexOf(k) === -1) {
-          $scope.files.push(k);
-        }
-      });
-    }
-  };
-
-  $scope.$on('fileuploadalways', update_uploads_status);
-
-}]).
-controller('SubmissionFormController', ['$scope', '$rootScope', function ($scope, $rootScope) {
-  $scope.$watch('submissionForm.$valid', function () {
-    $rootScope.invalidForm = $scope.submissionForm.$invalid;
-  }, true);
-}]).
-controller('SubmissionStepsCtrl', ['$scope', function($scope) {
-
   $scope.getCurrentStepIndex = function(){
     return $scope.selection;
   };
@@ -193,11 +128,73 @@ controller('SubmissionStepsCtrl', ['$scope', function($scope) {
       $scope.selection = $scope.selection - 1;
     }
   };
+
+  $scope.uploading = false;
+
+  // Watch for changes in certain variables
+  $scope.$watch('submission.current_context', function () {
+    if ($scope.current_context) {
+      $scope.submission.create(function () {
+        $scope.fileupload_url = '/submission/' + $scope.submission.current_submission.id + '/file';
+      });
+      checkReceiverSelected();
+     }
+  });
+
+  $scope.$watch('submission.receivers_selected', function () {
+    if ($scope.submission) {
+      checkReceiverSelected();
+    }
+  });
+
+  $scope.$watch('submissionForm.$valid', function () {
+    $rootScope.invalidForm = $scope.submissionForm.$invalid;
+  });
+
 }]).
 controller('SubmissionStepCtrl', ['$scope', function($scope) {
   $scope.queue = $scope.queue || [];
   $scope.files  = [];
   $scope.indexed_files_values = {};
+}]).
+controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+  if ($scope.field.type == 'fileupload') {
+    $scope.field.value = [];
+  }
+
+  var update_uploads_status = function(e, data) {
+    $scope.$parent.uploading = false;
+    if ($scope.field.value === "") {
+      $scope.field.value = [];
+    }
+    if ($scope.queue) {
+      $scope.files.slice(0, $scope.files.length);
+      $scope.queue.forEach(function (k) {
+        if (!k.id) {
+          $scope.$parent.uploading = true;
+        } else {
+          if ($scope.submission.current_submission.files.indexOf(k.id) === -1) {
+            $scope.submission.current_submission.files.push(k.id);
+
+            $scope.indexed_files_values[k.id] = {
+              'id': k.id,
+              'options': angular.copy($scope.field.options)
+            }
+          }
+
+          $scope.field.value.push($scope.indexed_files_values[k.id]);
+          k.value = $scope.indexed_files_values[k.id];
+        }
+
+        if ($scope.files.indexOf(k) === -1) {
+          $scope.files.push(k);
+        }
+      });
+    }
+  };
+
+  $scope.$on('fileuploadalways', update_uploads_status);
+
 }]).
 controller('ReceiptController', ['$scope', '$location', 'Authentication', 'WhistleblowerTip',
   function($scope, $location, Authentication, WhistleblowerTip) {
