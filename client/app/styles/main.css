@@ -52,7 +52,8 @@ div, span, p, label {
 }
 
 #ContentBox {
-  margin: 30px auto;
+  margin-top: 30px;
+  margin-bottom: 100px;
 }
 
 #messageConsole {
