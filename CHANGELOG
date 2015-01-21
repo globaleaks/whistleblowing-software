@@ -1,6 +1,10 @@
+Changes in version 2.60.50 - 2014-01-21
+    o Enabled GZIP compression
+    o Minor UI fixes
+
 Changes in version 2.60.49 - 2014-01-18
     o Implemented file upload preview
-    o implemented simplified vertical submission template
+    o Implemented simplified vertical submission template
     o Various Bugfixing
 
 Changes in version 2.60.48 - 2014-01-13
