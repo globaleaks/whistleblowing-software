@@ -186,6 +186,7 @@ class Context(Model):
     show_receivers = Bool()
     maximum_selectable_receivers = Int()
     select_all_receivers = Bool()
+    enable_private_messages = Bool()
 
     tip_max_access = Int()
     file_max_download = Int()
@@ -206,10 +207,6 @@ class Context(Model):
 
     postpone_superpower = Bool()
     can_delete_submission = Bool()
-
-    show_small_cards = Bool()
-    show_receivers = Bool()
-    enable_private_messages = Bool()
 
     presentation_order = Int()
 
