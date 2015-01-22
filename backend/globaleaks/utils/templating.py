@@ -127,7 +127,6 @@ class TipKeyword(_KeyWord):
 
         self.keyword_list += TipKeyword.tip_keywords
         self.tip = tip_desc
-        assert isinstance(self.tip, dict)
 
     def TipTorURL(self):
         if len(self.node['hidden_service']):
