@@ -63,7 +63,7 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
     }
 
     $scope.create_field = function() {
-      return $scope.admin.new_template_field('');
+      return $scope.admin.new_field_template('');
     };
   }
 ]);

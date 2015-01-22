@@ -402,8 +402,8 @@ internalTipDesc = {
 }
 
 FieldDesc = {
-    'template_id': uuid_regexp_or_empty,
     'step_id': uuid_regexp_or_empty,
+    'fieldgroup_id': uuid_regexp_or_empty,
     'label': unicode,
     'description': unicode,
     'hint': unicode,
@@ -425,6 +425,38 @@ FieldDesc = {
              'fieldgroup)$'),
     'options': list,
     'children': list,
+    'is_template': bool,
+}
+
+FieldTemplateDesc = {
+    'fieldgroup_id': uuid_regexp_or_empty,
+    'label': unicode,
+    'description': unicode,
+    'hint': unicode,
+    'multi_entry': bool,
+    'x': int,
+    'y': int,
+    'required': bool,
+    'preview': bool,
+    'stats_enabled': bool,
+    'type': (r'^('
+             'inputbox|'
+             'textarea|'
+             'selectbox|'
+             'checkbox|'
+             'modal|'
+             'dialog|'
+             'tos|'
+             'fileupload|'
+             'fieldgroup)$'),
+    'options': list,
+    'children': list,
+    'is_template': bool,
+}
+
+FieldFromTemplateDesc = {
+    'step_id': uuid_regexp,
+    'template_id': uuid_regexp
 }
 
 wizardStepDesc = {

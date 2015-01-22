@@ -955,8 +955,10 @@ class ContextInstance(BaseHandler):
         GLApiCache.invalidate('contexts')
         GLApiCache.set('contexts', self.request.language, public_contexts_list)
 
-        # contexts update causes also receivers update
+        # contexts update causes also receivers update and
+        # node update due to 'configured' based on context-receiver association
         GLApiCache.invalidate('receivers')
+        GLApiCache.invalidate('node')
 
         self.set_status(202) # Updated
         self.finish(response)
@@ -979,8 +981,10 @@ class ContextInstance(BaseHandler):
         GLApiCache.invalidate('contexts')
         GLApiCache.set('contexts', self.request.language, public_contexts_list)
 
-        # contexts update causes also receivers update
+        # contexts update causes also receivers update and
+        # node update due to 'configured' based on context-receiver association
         GLApiCache.invalidate('receivers')
+        GLApiCache.invalidate('node')
 
         self.set_status(200) # Ok and return no content
         self.finish()
@@ -1026,8 +1030,10 @@ class ReceiverCreate(BaseHandler):
         GLApiCache.invalidate('receivers')
         GLApiCache.set('receivers', self.request.language, public_receivers_list)
 
-        # receivers update causes also contexts update
+        # receivers update causes also contexts update and
+        # node update due to 'configured' based on context-receiver association
         GLApiCache.invalidate('contexts')
+        GLApiCache.invalidate('node')
 
         self.set_status(201) # Created
         self.finish(response)
@@ -1071,8 +1077,10 @@ class ReceiverInstance(BaseHandler):
         GLApiCache.invalidate('receivers')
         GLApiCache.set('receivers', self.request.language, public_receivers_list)
 
-        # receivers update causes also contexts update
+        # receivers update causes also contexts update and
+        # node update due to 'configured' based on context-receiver association
         GLApiCache.invalidate('contexts')
+        GLApiCache.invalidate('node')
 
         self.set_status(201)
         self.finish(response)
