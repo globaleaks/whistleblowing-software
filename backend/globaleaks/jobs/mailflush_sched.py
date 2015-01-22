@@ -61,11 +61,7 @@ def load_complete_events(store):
     the loop continue, one mail per time.
     """
 
-    notification_settings = admin_serialize_notification(
-        store.find(Notification).one(), 'en'
-    )
-
-    node_desc = db_admin_serialize_node(store, 'en')
+    node_desc = db_admin_serialize_node(store, GLSetting.defaults.default_language)
 
     event_list = []
     storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)
@@ -75,7 +71,10 @@ def load_complete_events(store):
         eventcomplete = OD()
 
         # node level information are not stored in the node, but fetch now
-        eventcomplete.notification_settings = notification_settings
+        eventcomplete.notification_settings = admin_serialize_notification(
+            store.find(Notification).one(), stev.description['receiver_info']['language']
+        )
+
         eventcomplete.node_info = node_desc
 
         # event level information are decoded form DB in the old 'Event'|nametuple format:
