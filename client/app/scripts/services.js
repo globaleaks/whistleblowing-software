@@ -684,11 +684,17 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         field.children = [];
         field.fieldgroup_id = '';
         field.step_id = step_id;
-        field.template_id = '';
         return field;
       };
 
-      self.new_template_field = function () {
+      self.new_field_from_template = function(template_id, step_id) {
+        var field = new adminFieldResource;
+        field.step_id = step_id;
+        field.template_id = template_id;
+        return field.$save();
+      };
+
+      self.new_field_template = function () {
         var field = new adminFieldTemplateResource;
         field.label = '';
         field.type = '';
@@ -705,15 +711,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         field.children = [];
         field.fieldgroup_id = '';
         field.step_id = '';
-        field.template_id = '';
         return field;
-      };
-
-      self.new_field_from_template = function(template_id, step_id) {
-        var field = new adminFieldResource;
-        field.step_id = step_id;
-        field.template_id = template_id;
-        return field.$save();
       };
 
       self.receiver = adminReceiverResource;

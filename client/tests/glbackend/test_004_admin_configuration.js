@@ -61,7 +61,6 @@ var fields = [
   {
     id: '',
     is_template: false,
-    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Field 1',
@@ -80,7 +79,6 @@ var fields = [
   {
     id: '',
     is_template: false,
-    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Field 2',
@@ -99,7 +97,6 @@ var fields = [
   {
     id: '',
     is_template: false,
-    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Field 2',
@@ -118,7 +115,6 @@ var fields = [
   {
     id: '',
     is_template: false,
-    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Generalities',
@@ -137,7 +133,6 @@ var fields = [
   {
     id: '',
     is_template: false,
-    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Name',
@@ -156,7 +151,6 @@ var fields = [
   {
     id: '',
     is_template: false,
-    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Surname',
@@ -418,7 +412,7 @@ describe('POST /admin/field', function () {
         it('responds 201 on POST /admin/field, valid field', function (done) {
 
             var newObject = JSON.parse(JSON.stringify(fields[j]));
-            newObject.step_id = contexts[i]['steps'][0]['id']
+            newObject.step_id = contexts[i]['steps'][0]['id'];
 
             app
               .post('/admin/field')

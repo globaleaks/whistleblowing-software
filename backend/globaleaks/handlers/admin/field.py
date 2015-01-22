@@ -146,7 +146,7 @@ def field_integrity_check(request):
 
 def db_create_field(store, request, language):
     """
-    Add a new field to the store, then return the new serialized object.
+    Create and add a new field to the store, then return the new serialized object.
 
     :param store: the store on which perform queries.
     :param: request: the field definition dict
@@ -155,16 +155,32 @@ def db_create_field(store, request, language):
     """
     _, step_id, fieldgroup_id = field_integrity_check(request)
 
-    if request['template_id'] == '':
-        fill_localized_keys(request, models.Field.localized_strings, language)
-        field = models.Field.new(store, request)
-        db_update_options(store, field.id, request['options'], language)
-    else:
-        template = store.find(models.Field, models.Field.id == request['template_id']).one()
-        if not template:
-            raise errors.InvalidInputFormat("The specified template id %s does not exist" %
+    fill_localized_keys(request, models.Field.localized_strings, language)
+    field = models.Field.new(store, request)
+    db_update_options(store, field.id, request['options'], language)
+
+    associate_field(store, field, step_id, fieldgroup_id)
+
+    return anon_serialize_field(store, field, language)
+
+
+def db_create_field_from_template(store, request, language):
+    """
+    Create and add a new field to the store starting from a template,
+    then return the new serialized object.
+
+    :param store: the store on which perform queries.
+    :param: request: the field definition dict
+    :param: language: the language of the field definition dict
+    :return: a serialization of the object
+    """
+    _, step_id, fieldgroup_id = field_integrity_check(request)
+
+    template = store.find(models.Field, models.Field.id == request['template_id']).one()
+    if not template:
+        raise errors.InvalidInputFormat("The specified template id %s does not exist" %
                                             request.get('template_id'))
-        field = template.copy(store, is_template)
+    field = template.copy(store, False)
 
     associate_field(store, field, step_id, fieldgroup_id)
 
@@ -177,6 +193,14 @@ def create_field(*args):
     Transaction that perform db_create_field
     """
     return db_create_field(*args)
+
+
+@transact
+def create_field_from_template(*args):
+    """
+    Transaction that perform db_create_field_from_template
+    """
+    return db_create_field_from_template(*args)
 
 
 @transact
@@ -339,7 +363,7 @@ class FieldTemplateCreate(BaseHandler):
 
         """
         request = self.validate_message(self.request.body,
-                                        requests.FieldDesc)
+                                        requests.FieldTemplateDesc)
 
         # enforce difference between /admin/field and /admin/fieldtemplate
         request['is_template'] = True
@@ -359,7 +383,7 @@ class FieldTemplateInstance(BaseHandler):
         Get the field identified by field_id
 
         :param field_id:
-        :rtype: FieldDesc
+        :rtype: FieldTemplateDesc
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
@@ -375,12 +399,12 @@ class FieldTemplateInstance(BaseHandler):
         Update a single field template's attributes.
 
         :param field_id:
-        :rtype: FieldDesc
+        :rtype: FieldTemplateDesc
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
         request = self.validate_message(self.request.body,
-                                        requests.FieldDesc)
+                                        requests.FieldTemplateDesc)
 
         # enforce difference between /admin/field and /admin/fieldtemplate
         request['is_template'] = True
@@ -439,12 +463,26 @@ class FieldCreate(BaseHandler):
         :rtype: FieldDesc
         :raises InvalidInputFormat: if validation fails.
         """
-        request = self.validate_message(self.request.body,
-                                        requests.FieldDesc)
+        try:
+            tmp = json.loads(self.request.body)
+        except ValueError:
+            raise errors.InvalidInputFormat("Invalid JSON format")
 
-        # enforce difference between /admin/field and /admin/fieldtemplate
-        request['is_template'] = False
-        response = yield create_field(request, self.request.language)
+        if isinstance(tmp, dict) and 'template_id' in tmp:
+            request = self.validate_message(self.request.body,
+                                            requests.FieldFromTemplateDesc)
+
+            # enforce difference between /admin/field and /admin/fieldtemplate
+            request['is_template'] = False
+            response = yield create_field_from_template(request, self.request.language)
+
+        else:
+            request = self.validate_message(self.request.body,
+                                            requests.FieldDesc)
+
+            # enforce difference between /admin/field and /admin/fieldtemplate
+            request['is_template'] = False
+            response = yield create_field(request, self.request.language)
 
         # get the updated list of contexts, and update the cache
         public_contexts_list = yield get_public_context_list(self.request.language)

@@ -187,10 +187,8 @@ def anon_serialize_field(store, field, language):
 
     ret_dict = {
         'id': field.id,
-        'is_template': field.is_template,
-        'template_id': '',
-        'step_id': step_id,
         'fieldgroup_id': fieldgroup_id,
+        'is_template': field.is_template,
         'multi_entry': field.multi_entry,
         'required': field.required,
         'preview': field.preview,
@@ -202,6 +200,9 @@ def anon_serialize_field(store, field, language):
         'children': fields,
         'value': ''
     }
+
+    if step_id:
+        ret_dict['step_id'] = step_id
 
     return get_localized_values(ret_dict, field, field.localized_strings, language)
 
