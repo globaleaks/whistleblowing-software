@@ -48,7 +48,7 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
         });
       }
 
-    });
+    }, true);
 
     $scope.$watch('languages_enabled_edit', function() {
       if ($scope.languages_enabled) {
@@ -83,7 +83,7 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
         $scope.languages_enabled_selector = languages_enabled_selector;
 
       }
-    });
+    }, true);
   });
 
   // We need to have a special function for updating the node since we need to add old_password and password attribute
