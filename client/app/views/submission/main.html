@@ -3,9 +3,7 @@
   <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'"></select>
 </div>
 
-<div class="row">
-  <div id="ContextIntroductionBox">{{submission.current_context.description}}</div>
-</div>
+<div id="ContextIntroductionBox">{{submission.current_context.description}}</div>
 
 <form name="submissionForm">
   <div data-ng-show="!(submission.current_context.steps.length > 1) && !(submission.current_context.show_receivers)" data-ng-include="'views/submission/main_vertical.html'"></div>
