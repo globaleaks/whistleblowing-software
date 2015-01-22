@@ -12,7 +12,8 @@
             <a href="" data-ng-show="field.hint" data-content="field.hint" popover="{{field.hint}}" popover-placement="right" popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-question-sign"></i>
             </a>
-          </div> 
+          </div>
+          <div>{{field.description}}</div>
           <div data-ng-switch="" on="field.type" class="col-md-12 submissionFieldInput">
 
             <div data-ng-switch-when="inputbox" data-ng-class="{'col-md-8': toplevel}">

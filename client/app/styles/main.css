@@ -18,7 +18,7 @@ div, span, p, label {
   color: #FFF;
   background: #428bca;
   border-bottom: 1px solid #357ebd;
-  padding: 40px;
+  padding: 15px;
 }
 
 #HeaderBox:after, #HeaderBox:after, #HeaderBoxHompage:after, #HeaderBoxHomepage:after {
@@ -52,8 +52,8 @@ div, span, p, label {
 }
 
 #ContentBox {
-  margin-top: 30px;
-  margin-bottom: 100px;
+  margin-top: 20px;
+  margin-bottom: 80px;
 }
 
 #messageConsole {
@@ -264,11 +264,6 @@ table {
   text-align: center;
 }
 
-/** Fields submission/tip page **/
-.nested {
-  padding-left: 15px;
-}
-
 .IntroBoxBody {
   width: 80%;
   margin: 0 auto;
@@ -304,4 +299,9 @@ table {
 
 input, textarea, select {
   padding-bottom: 10px;
+}
+
+/** Fields submission/tip page **/
+.nested {
+  padding-left: 15px;
 }
