@@ -1,3 +1,7 @@
+Changes in version 2.60.51 - 2014-01-22
+    o Various migration fixes
+    o Minor UI fixes
+
 Changes in version 2.60.50 - 2014-01-21
     o Enabled GZIP compression
     o Minor UI fixes
