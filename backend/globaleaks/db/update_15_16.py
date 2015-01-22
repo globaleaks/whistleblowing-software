@@ -4,55 +4,23 @@
   Changes
 
     Receiver table:
-      - introduced ping_mail_address, ping_
+      - introduced ping_mail_address, ping_notification
 
     Notification table:
-      - introduced two boolean TODO - write what they are 
+      - introduced two booleans:
+        disable_admin_notification_emails
+        disable_receivers_notification_emails
       - introduced ping templates
 
-    Node table:
-      - introduced default_language and default_timezone
+    Field table:
+      - minor fix related to is_template flag not rightly migrated
 
-    User table:
-      - introduced language and timezone
-
-    Context table:
-      - fields refactored entirely adding Field and Step table;
-      - all data is migrated.
-
-    InternalTip table:
-      - changed from wb_fields to wb_steps; all data is migrated.
 """
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, ReferenceSet
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model, Field, Step
 from globaleaks.utils.utility import every_language
-
-class Context_version_15(Model):
-    __storm_table__ = 'context'
-    selectable_receiver = Bool()
-    show_small_cards = Bool()
-    show_receivers = Bool()
-    maximum_selectable_receivers = Int()
-    select_all_receivers = Bool()
-    tip_max_access = Int()
-    file_max_download = Int()
-    tip_timetolive = Int()
-    submission_timetolive = Int()
-    last_update = DateTime()
-    name = JSON()
-    description = JSON()
-    receiver_introduction = JSON()
-    postpone_superpower = Bool()
-    can_delete_submission = Bool()
-    enable_private_messages = Bool()
-    presentation_order = Int()
-
-# this has never been performed during old migration script and will need
-# to be done in situations like the one generated in this particular migration
-Context_version_15.steps = ReferenceSet(Context_version_15.id,
-                                        Step.context_id)
 
 
 class Receiver_version_15(Model):
@@ -109,22 +77,6 @@ class Notification_version_15(Model):
 
 
 class Replacer1516(TableReplacer):
-
-    def migrate_Context(self):
-        print "%s Context migration assistant" % self.std_fancy
-
-        old_contexts = self.store_old.find(self.get_right_model("Context", 15))
-
-        for old_context in old_contexts:
-
-            new_context = self.get_right_model("Context", 16)()
-
-            for _, v in new_context._storm_columns.iteritems():
-                setattr(new_context, v.name, getattr(old_context, v.name))
-
-            self.store_new.add(new_context)
-
-        self.store_new.commit()
 
     def migrate_Receiver(self):
         print "%s Receiver migration assistant" % self.std_fancy
