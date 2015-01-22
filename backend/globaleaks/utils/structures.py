@@ -45,7 +45,7 @@ class Rosetta(object):
         default_language = GLSetting.memory_copy.default_language
 
         if attr not in self._localized_strings:
-            return "!! Missing value for '%s'" % attr
+            return ""
 
         translated_dict = self._localized_strings[attr]
 
