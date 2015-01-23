@@ -8,7 +8,7 @@
   </div>
   <div class="row">
     <div class="col-md-4">
-      <form name="loginForm" novalidate>
+      <div data-ng-form="loginForm">
         <div class="form-group">
           <label data-translate>Please select your account:</label>
           <select class="form-control" data-ng-model="loginUsername" data-ng-options="item.id as item.name for item in receivers | filter:filterReceivers | orderBy:'name'" required></select>
@@ -25,7 +25,7 @@
             <span data-translate>Login</span>
           </button>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

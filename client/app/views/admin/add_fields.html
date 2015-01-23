@@ -1,10 +1,13 @@
 <div data-ng-controller="AdminFieldsAddCtrl" class="addField">
-  <div data-ng-form="" name="newField">
+  <div data-ng-form="newField">
     <h4><span data-translate>Add new field</span></h4>
     <div class="row">
       <div class="form-group col-md-12">
         <label data-translate>Label</label>
-        <input class="form-control" data-ng-model="new_field.label" type="text" required>
+        <input name="label" class="form-control" data-ng-model="new_field.label" data-ng-maxlength="{{node.maximum_namesize}}" type="text" required>
+        <div class="has-error" data-ng-show="newField.label.$error.required">
+          <span data-translate>This field is mandatory</span>
+        </div>
       </div>
     </div>
     <div class="row inline-block-row">

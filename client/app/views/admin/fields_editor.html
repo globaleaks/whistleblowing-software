@@ -2,7 +2,7 @@
   data-ng-class="{'col-md-6': !editing, 'col-md-12': editing}"
   data-ng-init="editing=false" data-ng-controller="AdminFieldsEditorCtrl">
 
-  <form name="fieldForm" novalidate>
+  <div data-ng-form="editField">
 
     <div class="configItem fieldCard card"  data-ng-class="{'configItemLast': $last}">
       <div class="row">
@@ -17,17 +17,18 @@
           <div class="col-md-6">
             <div class="form-group">
               <label data-translate>Name</label>
-              <input class="form-control" data-ng-maxlength="40" data-ng-model="field.label" value="{{field.label}}" type="text">
-            </div>
-            <div class="form-group">
-              <label data-translate>Hint</label>
-              <div>
-                <textarea class="form-control" data-ng-model="field.hint">{{field.hint}}</textarea>
+              <input name="label" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.label" value="{{field.label}}" type="text" required>
+              <div class="has-error" data-ng-show="editField.label.$error.required">
+                <span data-translate>This field is mandatory</span>
               </div>
             </div>
             <div class="form-group">
+              <label data-translate>Hint</label>
+              <input name="hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.hint" value="{{field.hint}}" type="text">
+            </div>
+            <div class="form-group">
               <label data-translate>Description</label>
-              <textarea class="form-control" data-ng-model="field.description">{{field.description}}</textarea>
+              <textarea name="description" class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.description">{{field.description}}</textarea>
             </div>
             <div class="form-group">
               <div data-ng-switch="" on="typeSwitch(field.type)">
@@ -50,11 +51,11 @@
             </div>
             <div class="form-group" data-ng-show="!field.is_template">
               <label data-translate>Vertical order (Y)</label>
-              <input class="form-control" data-ng-maxlength="2" data-ng-model="field.y" value="{{field.y}}" type="number" min="0" max="99">
+              <input class="form-control" data-ng-model="field.y" value="{{field.y}}" type="number" min="0" max="99">
             </div>
             <div class="form-group" data-ng-show="!field.is_template">
               <label data-translate>Horizontal order (X)</label>
-              <input class="form-control" data-ng-maxlength="2" data-ng-model="field.x" value="{{field.x}}" type="number" min="0" max="99">
+              <input class="form-control" data-ng-model="field.x" value="{{field.x}}" type="number" min="0" max="99">
             </div>
           </div>
           <div class="col-md-6">
@@ -193,6 +194,6 @@
         </button>
       </div>
     </div>
-  </form>
+  </div>
 </div>
 <div class="clearfix" data-ng-if="$index % 2 == 1 || $last"></div>
