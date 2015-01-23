@@ -20,12 +20,12 @@
 
     <div class="form-group">
       <label data-translate>Source Name</label>
-      <input class="form-control" data-ng-model="admin.notification.source_name" type="text">
+      <input class="form-control" data-ng-model="admin.notification.source_name" maxlength="{{node.maximum_namesize}}" type="text" />
     </div>
 
     <div class="form-group">
       <label data-translate>Source Email</label>
-      <input class="form-control" name="source_email" data-ng-model="admin.notification.source_email" type="text" data-ng-pattern="email_regexp">
+      <input class="form-control" name="source_email" data-ng-model="admin.notification.source_email" data-ng-pattern="email_regexp" maxlength="{{node.maximum_namesize}}" type="text" />
     </div>
     <p class="has-error" data-ng-show="notificationForm.source_email.$error.pattern">
       <span data-translate>Invalid email address</span>
@@ -33,27 +33,27 @@
 
     <div class="form-group">
       <label data-translate>Username</label>
-      <input class="form-control" data-ng-model="admin.notification.username" type="text">
+      <input class="form-control" data-ng-model="admin.notification.username" maxlength="{{node.maximum_namesize}}" type="text" />
     </div>
 
     <div class="form-group">
       <label data-translate>Password</label>
-      <input class="form-control" data-ng-model="admin.notification.password" type="password">
+      <input class="form-control" data-ng-model="admin.notification.password" type="password" />
     </div>
 
     <div class="form-group">
       <label data-translate>SMTP server address</label>
-      <input class="form-control" data-ng-model="admin.notification.server" type="text">
+      <input class="form-control" data-ng-model="admin.notification.server" maxlength="{{node.maximum_namesize}}" type="text" />
     </div>
 
     <div class="form-group">
       <label data-translate>SMTP server port</label>
-      <input class="form-control" data-ng-model="admin.notification.port" type="text">
+      <input class="form-control" data-ng-model="admin.notification.port" maxlength="{{node.maximum_namesize}}" type="text" />
     </div>
 
     <div class="form-group">
       <label data-translate>Transport Security</label>
-      <select class="form-control" data-ng-model="admin.notification.security" required="">
+      <select class="form-control" data-ng-model="admin.notification.security">
         <option value="SSL">SMTPS</option>
         <option value="TLS">SMTP/TLS</option>
       </select>
@@ -62,21 +62,21 @@
     <div class="form-group">
       <label data-translate>Zip Description Template</label>
       <div>
-        <textarea data-ng-model="admin.notification.zip_description" class="form-control"></textarea>
+        <textarea data-ng-model="admin.notification.zip_description" maxlength="{{node.maximum_textsize}}" class="form-control"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <label data-translate>Ping Mail Title</label>
       <div>
-        <input data-ng-model="admin.notification.ping_mail_title" class="form-control" type="text">
+        <input data-ng-model="admin.notification.ping_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
       </div>
     </div>
 
     <div class="form-group">
       <label data-translate>Ping Mail Template</label>
       <div>
-        <textarea data-ng-model="admin.notification.ping_mail_template" class="form-control"></textarea>
+        <textarea data-ng-model="admin.notification.ping_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control"></textarea>
       </div>
     </div>
 

@@ -4,26 +4,29 @@
 
     <div data-ng-controller="AdminReceiverAddCtrl">
       <div class="row">
-        <form name="newReceiver">
+        <div data-ng-form="newReceiver">
           <div class="addReceiver col-md-6">
             <h4><span data-translate>Add new receiver</span></h4>
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
                   <label data-translate>Name</label>
-                  <input class="form-control" name="name" data-ng-maxlength="40" data-ng-model="new_receiver.name" type="text" required>
-                  <p class="has-error" data-ng-show="newReceiver.name.$error.maxlength">
-                    <span data-translate>Receiver name too long</span>
-                  </p>
+                  <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_receiver.name" type="text" required>
+                  <div class="has-error" data-ng-show="newReceiver.name.$error.required">
+                    <span data-translate>This field is mandatory</span>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>
                     <span data-translate>Email Address</span>
                   </label>
-                  <input class="form-control" name="email" data-ng-model="new_receiver.email" data-ng-pattern="email_regexp" type="text" required>
-                  <p class="has-error" data-ng-show="newReceiver.email.$error.pattern">
+                  <input class="form-control" name="email" data-ng-model="new_receiver.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
+                  <div class="has-error" data-ng-show="newReceiver.email.$error.pattern">
                     <span data-translate>Invalid email address</span>
-                  </p>
+                  </div>
+                  <div class="has-error" data-ng-show="newReceiver.email.$error.required">
+                    <span data-translate>This field is mandatory</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -50,7 +53,7 @@
               </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
 
@@ -73,30 +76,34 @@
 
         <div class="row receiverList" data-ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'">
 
-          <form name="receiverForm" data-ng-controller="AdminReceiversEditorCtrl" novalidate>
+          <div data-ng-form="editReceiver" data-ng-controller="AdminReceiversEditorCtrl">
             <div class="configItem receiverItem" data-ng-class="{'configItemLast': $last}">
               <div class="row" data-ng-click="toggleEditing()">
                 <div class="editorHeader receiverEditorHeader">
                   <div data-ng-show="!editing">
-                    <span class="col-md-7 pull-left editorHeaderTitle">{{receiver.name}}</span>
-                    <span class="col-md-1 pull-right editorHeaderButtons" popover="{{'Click to edit, Drag to order' | translate}}" popover-placement="left" popover-trigger="mouseenter">
-                      <i class="glyphicon glyphicon-th"></i>
-                    </span>
+                    <div class="col-md-6 pull-left editorHeaderTitle">{{receiver.name}}</div>
+                    <div class="col-md-offset-1 col-md-5 editorHeaderButtons">
+                      <div class="pull-right" popover="{{'Click to edit, Drag to order' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                        <i class="glyphicon glyphicon-th"></i>
+                      </div>
+                    </div>
                   </div>
 
                   <div data-ng-show="editing">
-                    <span class="col-md-7 pull-left editorHeaderTitle">{{receiver.name}}</span>
-                    <span class="col-md-3 pull-right editorHeaderButtons">
-                      <button class="btn btn-success saveReceiver" data-ng-disabled="receiverForm.$invalid || unsafe_password" data-ng-click="save_receiver(receiver)" type="submit" >
-                        <i class="glyphicon glyphicon-ok"></i>
-                        <span data-translate>Save</span>
-                      </button>
+                    <div class="col-md-6 editorHeaderTitle">{{receiver.name}}</div>
+                    <div class="col-md-offset-1 col-md-5 editorHeaderButtons">
+                      <div class="pull-right">
+                        <button class="btn btn-success saveReceiver" data-ng-disabled="editReceiver.$pristine || editReceiver.$invalid || unsafe_password" data-ng-click="save_receiver(receiver)" type="submit" >
+                          <i class="glyphicon glyphicon-ok"></i>
+                          <span data-translate>Save</span>
+                        </button>
 
-                      <a class="btn btn-danger deleteReceiver" data-ng-click="receiverDeleteDialog(receiver)">
-                        <i class="glyphicon glyphicon-remove"></i>
-                        <span data-translate>Delete</span>
-                      </a>
-                    </span>
+                        <a class="btn btn-danger deleteReceiver" data-ng-click="receiverDeleteDialog(receiver)">
+                          <i class="glyphicon glyphicon-remove"></i>
+                          <span data-translate>Delete</span>
+                        </a>
+                      </div>
+                    </div>
 
                   </div>
 
@@ -129,25 +136,28 @@
 
                     <div class="form-group">
                       <label data-translate>Name</label>
-                      <input class="form-control" name="name" data-ng-maxlength="40" data-ng-model="receiver.name" type="text" required>
-                      <p class="has-error" data-ng-show="receiverForm.name.$error.maxlength">
-                        <span data-translate>Receiver name too long</span>
-                      </p>
+                      <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="receiver.name" type="text" required>
+                      <div class="has-error" data-ng-show="editReceiver.name.$error.required">
+                        <span data-translate>This field is mandatory</span>
+                      </div>
                     </div>
 
                     <div class="form-group">
                       <label data-translate>Email Address</label>
-                      <input class="form-control" name="email" data-ng-model="receiver.mail_address" type="text" data-ng-pattern="email_regexp" required>
-                      <p class="has-error" data-ng-show="receiverForm.email.$error.pattern">
+                      <input class="form-control" name="email" data-ng-model="receiver.mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" required>
+                      <div class="has-error" data-ng-show="editReceiver.email.$error.required">
+                        <span data-translate>This field is mandatory</span>
+                      </div>
+                      <div class="has-error" data-ng-show="editReceiver.email.$error.pattern">
                         <span data-translate>Invalid email address</span>
-                      </p>
+                      </div>
                     </div>
 
                     <div class="form-group">
                       <label>
                         <span data-translate>Password</span>
                       </label>
-                      <input class="form-control" data-ng-model="receiver.password" type="password">
+                      <input name="password" class="form-control" data-ng-model="receiver.password" maxlength="{{node.maximum_namesize}}" type="password">
                       <p class="has-error" data-ng-show="unsafe_password">
                         <span data-translate>The choosen password is unsafe, it should have</span>:
                       </p>
@@ -178,7 +188,7 @@
                     <div class="form-group">
                       <label data-translate>Description</label>
                       <div>
-                        <textarea class="form-control" data-ng-model="receiver.description">{{receiver.description}}</textarea>
+                        <textarea name="description" class="form-control" data-ng-model="receiver.description" maxlength="{{node.maximum_textsize}}">{{receiver.description}}</textarea>
                       </div>
                     </div>
 
@@ -216,13 +226,13 @@
 
                     <div class="form-group" data-ng-show="receiver.ping_notification">
                       <label data-translate>Ping Email Address</label>
-                      <input class="form-control" name="ping_email" data-ng-model="receiver.ping_mail_address" type="text" data-ng-pattern="email_regexp">
+                      <input class="form-control" name="ping_email" data-ng-model="receiver.ping_mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp">
                       <div>
                         <span data-translate>This email will be used for ping notifications.</span>
                       </div>
-                      <p class="has-error" data-ng-show="receiverForm.ping_email.$error.pattern">
+                      <div class="has-error" data-ng-show="editReceiver.ping_email.$error.pattern">
                         <span data-translate>Invalid email address</span>
-                      </p>
+                      </div>
                     </div>
 
                   </div>
@@ -321,7 +331,7 @@
                       <div data-ng-show="send_key">
                         <br />
                         <label data-translate>Paste the PGP Key here:</label>
-                        <textarea class="form-control" data-ng-model="receiver.gpg_key_armor"></textarea>
+                        <textarea class="form-control" data-ng-model="receiver.gpg_key_armor" maxlength="{{node.maximum_textsize}}"></textarea>
                       </div>
                     </div>
                   </div>
@@ -329,7 +339,7 @@
               </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

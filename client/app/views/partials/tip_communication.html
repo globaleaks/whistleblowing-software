@@ -3,7 +3,7 @@
       <h3>
         <span data-translate>Additional Information</span>
       </h3>
-      <textarea data-ng-model="tip.newCommentContent" class="form-control"></textarea>
+      <textarea data-ng-model="tip.newCommentContent" maxlength="{{node.maximum_textsize}}" class="form-control msd-elastic"></textarea>
       <br />
       <button class="btn btn-success" data-ng-click="newComment()" data-ng-disabled="!tip.newCommentContent || tip.newCommentContent == ''">
         <i class="glyphicon glyphicon-comment"></i>
@@ -21,9 +21,7 @@
                 </strong>
               </div>
               <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}
-                </strong>
+                <strong>{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</strong>
               </div>
             </div>
             <div class="preformatted">{{comment.content}}</div>
@@ -37,9 +35,7 @@
                 </strong>
               </div>
               <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}
-                </strong>
+                <strong>{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</strong>
               </div>
             </div>
             <div class="preformatted">{{comment.content}}</div>
@@ -53,9 +49,7 @@
                 </strong>
               </div>
               <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}
-                </strong>
+                <strong>{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</strong>
               </div>
             </div>
 
@@ -97,7 +91,7 @@
           </div>
         </div>
       </div>
-      <textarea data-ng-model="tip.newMessageContent" class="form-control"></textarea>
+      <textarea data-ng-model="tip.newMessageContent" maxlength="{{node.maximum_textsize}}" class="form-control msd-elastic"></textarea>
       <br />
       <button class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (role == 'wb' && !tip.msg_receiver_selected)">
         <i class="glyphicon glyphicon-envelope"></i>
@@ -115,9 +109,7 @@
                 </strong>
               </div>
               <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{message.creation_date | date:'dd-MM-yyyy HH:mm'}}
-                </strong>
+                <strong>{{message.creation_date | date:'dd-MM-yyyy HH:mm'}}</strong>
               </div>
             </div>
             <div class="preformatted">{{message.content}}</div>
@@ -126,14 +118,10 @@
           <div data-ng-switch-when="receiver" class="alert alert-success">
             <div class="row">
               <div class="col-md-6">
-                <strong>
-		  {{message.author}}
-                </strong>
+                <strong>{{message.author}}</strong>
               </div>
               <div class="pull-right" style="margin-right:20px">
-                <strong>
-                  {{message.creation_date | date:'dd-MM-yyyy HH:mm'}}
-                </strong>
+                <strong>{{message.creation_date | date:'dd-MM-yyyy HH:mm'}}</strong>
               </div>
             </div>
             <div class="preformatted">{{message.content}}</div>

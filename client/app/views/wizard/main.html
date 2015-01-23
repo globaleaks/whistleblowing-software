@@ -1,4 +1,4 @@
-<form name="wizard" data-ng-init="step = 1">
+<div data-ng-form="wizardForm" data-ng-init="step = 1">
 
   <div id="WizardStep1" data-ng-show="step == 1">
     <h2>
@@ -35,7 +35,10 @@
             <span data-translate>Initiative name</span>
           </label>
           <div class="col-md-8">
-            <input type="text" class="form-control" data-ng-model="admin.node.name" placeholder="" required>
+            <input name="node_name" class="form-control" data-ng-model="admin.node.name" maxlength="{{node.maximum_namesize}}" type="text" required>
+            <div class="has-error" data-ng-show="wizardForm.node_name.$error.required">
+              <span data-translate>This field is mandatory</span>
+            </div>
             <span class="help-block">
               <span data-translate>Enter the name for your whistleblowing initiative</span>
             </span>
@@ -47,7 +50,10 @@
             <span data-translate>Initiative description</span>
           </label>
           <div class="col-md-8">
-            <textarea type="text" class="form-control msd-elastic" data-ng-model="admin.node.description" required></textarea>
+            <textarea name="node_description" class="form-control msd-elastic" data-ng-model="admin.node.description"  maxlength="{{node.maximum_textsize}}" required></textarea>
+            <div class="has-error" data-ng-show="wizardForm.node_description.$error.required">
+              <span data-translate>This field is mandatory</span>
+            </div>
             <span class="help-block">
               <span data-translate>Give a concise description of your project</span>
             </span>
@@ -71,13 +77,16 @@
             <span data-translate>Email</span>
           </label>
           <div class="col-md-8">
-            <input name="admin_email" type="text" class="form-control" placeholder="" data-ng-model="admin.node.email" data-ng-pattern="email_regexp" required>
+            <input name="admin_email" class="form-control" data-ng-model="admin.node.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
+            <div class="has-error" data-ng-show="wizardForm.admin_email.$error.required">
+              <span data-translate>This field is mandatory</span>
+            </div>
+            <div class="has-error" data-ng-show="wizardForm.admin_email.$error.pattern">
+              <span data-translate>Invalid email address</span>
+            </div>
             <span class="help-block">
               <span data-translate>Enter your email address</span>
             </span>
-            <p class="has-error" data-ng-show="wizard.admin_email.$error.pattern">
-              <span data-translate>Invalid email address</span>
-            </p>
           </div>
         </div>
          <div class="form-group col-md-12">
@@ -85,13 +94,13 @@
             <span data-translate>Password</span>
           </label>
           <div class="col-md-8">
-            <input type="password" class="form-control" placeholder="" data-ng-model="admin.node.password" required>
-            <span class="help-block">
-              <span data-translate>Enter a new GlobaLeaks node password</span>
-            </span>
-            <p class="has-error" data-ng-show="unsafe_password">
+            <input name="password" class="form-control" data-ng-model="admin.node.password" type="password" required>
+            <div class="has-error" data-ng-show="wizardForm.password.$error.required">
+              <span data-translate>This field is mandatory</span>
+            </div>
+            <div class="has-error" data-ng-show="unsafe_password">
               <span data-translate>The choosen password is unsafe, it should have</span>:
-            </p>
+            </div>
             <ul>
               <li class="has-error" data-ng-hide="pwdHasLetter">
                 <span data-translate>At least one letter</span>
@@ -103,6 +112,9 @@
                 <span data-translate>At least 8 characters</span>
               </li>
             </ul>
+            <span class="help-block">
+              <span data-translate>Enter a new GlobaLeaks node password</span>
+            </span>
           </div>
         </div>
         <div class="form-group col-md-12">
@@ -110,13 +122,13 @@
             <span data-translate>Confirm password</span>
           </label>
           <div class="col-md-8">
-            <input type="password" class="form-control" placeholder="" data-ng-model="admin.node.check_password" required>
+            <input class="form-control" data-ng-model="admin.node.check_password" type="password" required>
+            <div class="has-error" data-ng-show="mismatch_password">
+              <span data-translate>The two passwords do not match</span>
+            </div>
             <span class="help-block">
               <span data-translate>Please confirm it</span>
             </span>
-            <p class="has-error" data-ng-show="mismatch_password">
-              <span data-translate>The two passwords do not match</span>
-            </p>
           </div>
         </div>
       </div>
@@ -138,7 +150,10 @@
             <span data-translate>Name</span>
           </label>
           <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="" data-ng-model="receiver.name" required>
+            <input name="receiver_name" class="form-control" data-ng-model="receiver.name" maxlength="{{node.maximum_namesize}}" type="text" required>
+            <div class="has-error" data-ng-show="wizardForm.receiver_name.$error.required">
+              <span data-translate>This field is mandatory</span>
+            </div>
             <span class="help-block">
               <span data-translate>Enter the name of the receiver</span>
             </span>
@@ -148,13 +163,16 @@
         <div class="form-group col-md-12">
           <label class="col-md-4">Email</label>
           <div class="col-md-8">
-            <input name="receiver_email" type="text" class="form-control" placeholder="" data-ng-model="receiver.mail_address" data-ng-pattern="email_regexp" required>
+            <input name="receiver_email" class="form-control" placeholder="" data-ng-model="receiver.mail_address"  maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
+            <div class="has-error" data-ng-show="wizardForm.receiver_email.$error.required">
+              <span data-translate>This field is mandatory</span>
+            </div>
+            <div class="has-error" data-ng-show="wizardForm.receiver_email.$error.pattern">
+              <span data-translate>Invalid email address</span>
+            </div>
             <span class="help-block">
               <span data-translate>Enter the email address through which the receiver will be notified</span>
             </span>
-            <p class="has-error" data-ng-show="wizard.receiver_email.$error.pattern">
-              <span data-translate>Invalid email address</span>
-            </p>
           </div>
         </div>
 
@@ -171,7 +189,7 @@
         <div class="form-group col-md-12">
           <label class="col-md-4">PGP Key</label>
           <div class="col-md-8">
-            <textarea type="text" class="form-control" data-ng-model="receiver.gpg_key_armor"></textarea>
+            <textarea class="form-control" data-ng-model="receiver.gpg_key_armor" maxlength="{{node.maximum_textsize}}"></textarea>
             <span class="help-block">
               <label data-translate>Copy and paste the PGP public key here</label>
             </span>
@@ -219,7 +237,10 @@
             <span data-translate>Name</span>
           </label>
           <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="" data-ng-model="context.name" required>
+            <input name="context_name" class="form-control" data-ng-model="context.name" type="text" required>
+            <div class="has-error" data-ng-show="wizardForm.context_name.$error.required">
+              <span data-translate>This field is mandatory</span>
+            </div>
             <span class="help-block">
               <span data-translate>What is the topic of your whistleblowing initiative?</span>
             </span>
@@ -265,4 +286,4 @@
 
   </div>
 
-</form>
+</div>

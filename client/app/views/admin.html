@@ -7,7 +7,7 @@
 </div>
 <div class="row">
   <div class="col-md-4">
-    <form class=form-inline" name="loginForm" novalidate="">
+    <div data-ng-form="loginForm">
       <div class="form-group">
         <label data-translate>Username:</label>
         <input class="form-control" name="username" data-ng-model="loginUsername" type="text">
@@ -22,6 +22,6 @@
         <i class="glyphicon glyphicon-log-in"></i>
         <span data-translate>Login</span>
       </button>
-    </form>
+    </div>
   </div>
 </div>

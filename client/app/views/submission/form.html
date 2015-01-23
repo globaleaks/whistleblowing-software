@@ -1,5 +1,5 @@
 <fieldset data-ng-init="toplevel = (field === undefined) ? true : false; step = $index; fields = (field === undefined) ? submission.current_submission.wb_steps[step].children : field.children;">
-  <div data-ng-repeat="field in fields | orderBy:'y'" data-ng-controller="SubmissionFieldCtrl" data-ng-form="submissionFieldForm" class="submissionField">
+  <div data-ng-repeat="field in fields | orderBy:'y'" data-ng-controller="SubmissionFieldCtrl" data-ng-form="submissionField" class="submissionField">
     <div>
       <div data-ng-switch="" on="field.type">
         <div data-ng-switch-default="" class="form-group">
@@ -17,15 +17,15 @@
           <div data-ng-switch="" on="field.type" class="col-md-12 submissionFieldInput">
 
             <div data-ng-switch-when="inputbox" data-ng-class="{'col-md-8': toplevel}">
-              <input class="form-control" data-ng-model="field.value" data-ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text" />
+              <input class="form-control" data-ng-model="field.value" maxlength="{{node.maximum_namesize}}" data-ng-required="field.required" placeholder="{{field.placeholder}}" type="text" />
             </div>
 
             <div data-ng-switch-when="textarea" data-ng-class="{'col-md-8': toplevel}">
-              <textarea class="form-control msd-elastic" data-ng-model="field.value" data-ng-required="field.required" placeholder="{{field.placeholder}}"></textarea>
+              <textarea class="form-control msd-elastic" data-ng-model="field.value" maxlength="{{node.maximum_textsize}}" data-ng-required="field.required" placeholder="{{field.placeholder}}"></textarea>
             </div>
 
             <div data-ng-switch-when="selectbox" data-ng-class="{'col-md-8': toplevel}">
-              <select class="form-control" name="input" data-ng-model="field.value" data-ng-required="field.required">
+              <select class="form-control" data-ng-model="field.value" data-ng-required="field.required">
                 <option data-ng-repeat="option in field.options" value="{{option.attrs.name}}">{{option.attrs.name}}</option>
               </select>
             </div>
@@ -35,8 +35,7 @@
                 <input type="hidden" data-ng-init="field.value[option.id].order = $index" data-ng-model="field.value[option.id].order" />
                 <input type="hidden" data-ng-init="field.value[option.id].name = option.attrs.name" data-ng-model="field.value[option.id].name" />
                 <div class="checkbox">
-                  <input name="{{option.attrs.name}}"
-                      data-ng-model="field.value[option.id].value"
+                  <input data-ng-model="field.value[option.id].value"
                       placeholder="{{field.placeholder || 'false'}}"
                       type="checkbox" />
                   <span>{{option.attrs.name}}</span>
@@ -55,7 +54,7 @@
             <div data-ng-switch-when="tos" data-ng-class="{'col-md-12': toplevel}">
               <div class="form-group preformatted">{{field.options[0].attrs.clause}}</div>
               <div class="form-group checkbox">
-                <input data-ng-model="field.value" data-ng-required="field.required" name=input value="{{field.value}}" placeholder="{{field.placeholder || 'false'}}" type="checkbox" />
+                <input data-ng-model="field.value" data-ng-required="field.required" value="{{field.value}}" placeholder="{{field.placeholder || 'false'}}" type="checkbox" />
                 <span>{{field.options[0].attrs.agreement_statement}}</span>
               </div>
             </div>
@@ -68,8 +67,10 @@
               <div data-ng-include="'views/submission/form.html'"></div>
             </div>
 
-            <div class="col-md-12 has-error" data-ng-show="submissionFieldForm.$invalid && field.type != 'tos' && field.type != 'fieldgroup'">
-              <span data-translate>This field cannot be empty</span>
+            <div class="col-md-12" data-ng-if="field.type != 'tos' && field.type != 'fieldgroup'">
+              <div class="has-error" data-ng-show="submissionField.$error.required">
+                <span data-translate>This field cannot be empty</span>
+              </div>
             </div>
           </div>
 

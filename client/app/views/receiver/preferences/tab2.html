@@ -66,7 +66,7 @@
 
   <div class="form-group" data-ng-show="preferences.ping_notification">
     <label data-translate>Ping Email Address</label>
-    <input class="form-control" name="ping_email" data-ng-model="preferences.ping_mail_address" type="text" data-ng-pattern="email_regexp">
+    <input class="form-control" name="ping_email" data-ng-model="preferences.ping_mail_address" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text">
     <p class="has-error" data-ng-show="receiverPreferencesForm.ping_email.$error.pattern">
       <span data-translate>Invalid email address</span>
     </p>
