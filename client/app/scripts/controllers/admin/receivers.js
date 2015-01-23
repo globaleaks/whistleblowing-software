@@ -102,6 +102,8 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher', 'C
       } else {
         $scope.receiver.contexts.splice(idx, 1);
       }
+      $scope.editReceiver.$dirty = true;
+      $scope.editReceiver.$pristine = false;
     };
 
 }]);
