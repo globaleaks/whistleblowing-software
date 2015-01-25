@@ -14,9 +14,9 @@
       </div>
     </div>
   </div>
-  <div class="btn btn-success SubmissionSubmitButton" data-ng-click="submit()" data-ng-disabled="uploading || submissionForm.$invalid || !receiver_selected">
+  <button class="btn btn-success SubmissionSubmitButton" data-ng-submit="submit()" data-ng-disabled="uploading || submissionForm.$invalid || !receiver_selected" type="submit">
     <i class="glyphicon glyphicon-ok"></i>
     <span data-translate>Submit</span>
-  </div>
+  </button>
   </div>
 </div>

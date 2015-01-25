@@ -7,7 +7,7 @@
 </div>
 <div class="row">
   <div class="col-md-4">
-    <div data-ng-form="loginForm">
+    <form name="loginForm">
       <div class="form-group">
         <label data-translate>Username:</label>
         <input class="form-control" name="username" data-ng-model="loginUsername" type="text">
@@ -18,10 +18,10 @@
         <input class="form-control" name="password" data-ng-model="loginPassword" type="password">
       </div>
 
-      <button class="btn btn-success" data-ng-disable="loginForm.$invalid" data-ng-click="login(loginUsername, loginPassword, loginRole)">
+      <button class="btn btn-success" data-ng-disable="loginForm.$invalid" data-ng-click="login(loginUsername, loginPassword, loginRole)" type="submit">
         <i class="glyphicon glyphicon-log-in"></i>
         <span data-translate>Login</span>
       </button>
-    </div>
+    </form>
   </div>
 </div>

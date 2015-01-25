@@ -1,12 +1,14 @@
-<br />
-<div data-ng-controller="AdminStepAddCtrl">
+<div id="StepAddBox" data-ng-controller="AdminStepAddCtrl" class="col-md-6">
   <h4><span data-translate>Add new step</span></h4>
   <div data-ng-form="" name="newStep">
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
           <label data-translate>Label</label>
-          <input class="form-control" data-ng-model="new_step_label" type="text" required>
+          <input name="label" class="form-control" data-ng-model="new_step_label" type="text" required>
+          <div class="has-error" data-ng-show="newStep.label.$error.required">
+            <span data-translate>This field is mandatory</span>
+          </div>
         </div>
       </div>
     </div>
@@ -22,7 +24,7 @@
     </div>
   </div>
 </div>
-<div id="StepsConfigCard" data-ng-if="context.steps.length">
+<div id="StepsEditBox" data-ng-if="context.steps.length" class="col-md-12">
   <h4><span data-translate>Configured steps:</span></h4>
   <div>
     <div data-ng-model="context.steps">
@@ -60,10 +62,10 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6" data-ng-include="'views/admin/add_fields.html'"></div>
-                <div class="col-md-6" data-ng-include="'views/admin/add_fields_template.html'"></div>
+                <div class="col-md-6" data-ng-include="'views/admin/add_field.html'"></div>
+                <div class="col-md-6" data-ng-include="'views/admin/add_field_from_template.html'"></div>
               </div>
-              <div id="FieldsConfigCard" class="form-group" data-ng-if="step.children">
+              <div id="FieldsEditBox" class="form-group" data-ng-if="step.children">
                 <label data-translate>Configured fields:</label>
                   <div ui-sortable="sortableFieldsOptions" data-ng-model="step.children"
                        class="configuredFields"
@@ -83,8 +85,7 @@
               </button>
               <button class="btn btn-success cardActionButton"
                       data-ng-show="editing"
-                      data-ng-click="save_context(context);editing=!editing"
-                      type="submit">
+                      data-ng-click="save_context(context);editing=!editing">
                 <span data-translate>Save</span>
               </button>
               <button 

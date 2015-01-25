@@ -9,7 +9,7 @@
   margin-bottom: 5px;
 }
 
-#StepsConfigCard, #FieldsConfigCard {
+#StepAddBox, #StepsEditBox,#FieldsEditBox {
   margin-top: 30px;
 }
 

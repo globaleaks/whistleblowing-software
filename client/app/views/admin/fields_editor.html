@@ -61,7 +61,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label data-translate>Type</label>
-              <select id="editFieldType" class="form-control" data-ng-model="field.type" required>
+              <select class="type" class="form-control" data-ng-model="field.type" required>
                 <option value="inputbox" data-translate>Text</option>
                 <option value="textarea" data-translate>Textarea</option>
                 <option value="selectbox" data-translate>Selectbox</option>
@@ -72,6 +72,9 @@
                 <option value="tos" data-translate>Terms of Service</option>
                 <option value="fieldgroup" data-translate>Field Group</option>
               </select>
+              <div class="has-error" data-ng-show="editField.type.$error.required">
+                <span data-translate>This field is mandatory</span>
+              </div>
             </div>
             <div class="form-group" data-ng-show="field.type == 'fieldgroup' && composable_fields">
               <label data-translate>Fields Composition</label>
@@ -174,8 +177,7 @@
         <button 
           class="btn btn-success cardActionButton"
           data-ng-show="editing" 
-          data-ng-click="save_field(field, false);editing=!editing"
-          type="submit">
+          data-ng-click="save_field(field, false);editing=!editing">
           <span data-translate>Save</span>
         </button>
         <button 
