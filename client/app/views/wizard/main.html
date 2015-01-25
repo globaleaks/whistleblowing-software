@@ -1,4 +1,4 @@
-<div data-ng-form="wizardForm" data-ng-init="step = 1">
+<form name="wizardForm" data-ng-init="step = 1">
 
   <div id="WizardStep1" data-ng-show="step == 1">
     <h2>
@@ -278,12 +278,12 @@
       </div>
 
       <div class="pager pull-right">
-        <a class="btn btn-success btn-large" data-ng-click="finish()" data-ng-disabled="wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.gpg_key_armor)">
+        <button class="btn btn-success btn-large" data-ng-click="finish()" data-ng-disabled="wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.gpg_key_armor)" type="submit">
           <span data-translate>Go to admin interface</span>
-        </a>
+        </button>
       </div>
     </div>
 
   </div>
 
-</div>
+</form>

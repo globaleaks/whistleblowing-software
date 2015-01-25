@@ -1,5 +1,5 @@
 <fieldset data-ng-init="toplevel = (field === undefined) ? true : false; step = $index; fields = (field === undefined) ? submission.current_submission.wb_steps[step].children : field.children;">
-  <div data-ng-repeat="field in fields | orderBy:'y'" data-ng-controller="SubmissionFieldCtrl" data-ng-form="submissionField" class="submissionField">
+  <div data-ng-form="submissionField" data-ng-repeat="field in fields | orderBy:'y'" data-ng-controller="SubmissionFieldCtrl" class="submissionField">
     <div>
       <div data-ng-switch="" on="field.type">
         <div data-ng-switch-default="" class="form-group">

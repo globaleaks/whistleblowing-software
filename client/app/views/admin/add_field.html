@@ -13,7 +13,7 @@
     <div class="row inline-block-row">
       <div class="col-md-6 col-xs-6">
         <label data-translate>Type</label>
-        <select id="editFieldType" class="form-control" data-ng-model="new_field.type" required>
+        <select name="type" class="form-control" data-ng-model="new_field.type" required>
           <option value="inputbox" data-translate>Text</option>
           <option value="textarea" data-translate>Textarea</option>
           <option value="selectbox" data-translate>Selectbox</option>
@@ -27,6 +27,9 @@
             <option value="dialog" data-translate>Dialog Window</option>
           -->
         </select>
+        <div class="has-error" data-ng-show="editField.type.$error.required">
+          <span data-translate>This field is mandatory</span>
+        </div>
       </div>
       <div class="col-md-4 col-xs-6 addFieldButton">
         <button class="pull-left btn btn-success" data-ng-disabled="newField.$invalid" data-ng-click="add_field()">

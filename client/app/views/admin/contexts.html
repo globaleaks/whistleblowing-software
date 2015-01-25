@@ -3,8 +3,8 @@
   <div class="col-md-9">
 
     <div data-ng-controller="AdminContextsCtrl">
-      <div data-ng-form="newContext" class="col-md-12">
-        <div class="addContext col-md-6">
+      <div class="col-md-12">
+        <form name="newContext" class="addContext col-md-6">
           <h4><span data-translate>Add new context</span></h4>
           <div class="row">
             <div class="col-md-12">
@@ -27,16 +27,18 @@
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
 
-      <div data-ng-show="admin.contexts.length != 0">
+      <br /><br />
+
+      <div data-ng-show="admin.contexts.length != 0" class="col-md-12">
         <div class="text-right">
           <button class="btn btn-success" data-ng-click="reorder_contexts_alphabetically()">
             <i class="glyphicon glyphicon-sort-by-alphabet"></i>
             <span data-translate>Reorder Contexts alphabetically</span>
           </button>
-          <button class="btn btn-success" data-ng-click="save_all()" type="submit" >
+          <button class="btn btn-success" data-ng-click="save_all()">
             <i class="glyphicon glyphicon-ok"></i>
             <span data-translate>Save All</span>
           </button>
@@ -45,7 +47,7 @@
         <div ui-sortable="sortableOptions" data-ng-model="admin.contexts">
 
           <div data-ng-repeat="context in admin.contexts | orderBy:'presentation_order'">
-            <div data-ng-form="editContext" data-ng-controller="AdminContextsEditorCtrl">
+            <form name="editContext" data-ng-controller="AdminContextsEditorCtrl">
               <div class="configItem contextItem"  data-ng-class="{'configItemLast': $last}">
 
                 <div class="row" data-ng-click="toggleEditing()">
@@ -184,7 +186,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

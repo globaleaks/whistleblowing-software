@@ -2,7 +2,7 @@
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
 
-    <div data-ng-controller="AdminReceiverAddCtrl">
+    <div data-ng-controller="AdminReceiverAddCtrl" class="col-md-12">
       <div class="row">
         <div data-ng-form="newReceiver">
           <div class="addReceiver col-md-6">
@@ -59,14 +59,14 @@
 
     <br /><br />
 
-    <div data-ng-controller="AdminReceiversCtrl" data-ng-show="admin.receivers.length != 0">
+    <div data-ng-controller="AdminReceiversCtrl" data-ng-show="admin.receivers.length != 0" class="col-md-12">
 
       <div class="row text-right">
         <button class="btn btn-success" data-ng-click="reorder_receivers_alphabetically()">
           <i class="glyphicon glyphicon-sort-by-alphabet"></i>
           <span data-translate>Reorder Receivers alphabetically</span>
         </button>
-        <button class="btn btn-success" data-ng-click="save_all()" type="submit">
+        <button class="btn btn-success" data-ng-click="save_all()">
           <i class="glyphicon glyphicon-ok"></i>
           <span data-translate>Save All</span>
         </button>
@@ -76,7 +76,7 @@
 
         <div class="row receiverList" data-ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'">
 
-          <div data-ng-form="editReceiver" data-ng-controller="AdminReceiversEditorCtrl">
+          <form name="editReceiver" data-ng-controller="AdminReceiversEditorCtrl">
             <div class="configItem receiverItem" data-ng-class="{'configItemLast': $last}">
               <div class="row" data-ng-click="toggleEditing()">
                 <div class="editorHeader receiverEditorHeader">
@@ -93,7 +93,9 @@
                     <div class="col-md-6 editorHeaderTitle">{{receiver.name}}</div>
                     <div class="col-md-offset-1 col-md-5 editorHeaderButtons">
                       <div class="pull-right">
-                        <button class="btn btn-success saveReceiver" data-ng-disabled="editReceiver.$pristine || editReceiver.$invalid || unsafe_password" data-ng-click="save_receiver(receiver)" type="submit" >
+                        <button class="btn btn-success saveReceiver"
+                                data-ng-disabled="editReceiver.$pristine || editReceiver.$invalid || unsafe_password"
+                                data-ng-click="save_receiver(receiver)" type="submit" >
                           <i class="glyphicon glyphicon-ok"></i>
                           <span data-translate>Save</span>
                         </button>
