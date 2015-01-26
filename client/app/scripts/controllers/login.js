@@ -1,8 +1,7 @@
 'use strict';
 
-GLClient.controller('LoginCtrl', ['$scope', '$location',
-                    '$routeParams', 'Authentication', 'Receivers',
-  function($scope, $location, $routeParams, Authentication) {
+GLClient.controller('LoginCtrl', ['$scope', '$location', '$routeParams',
+  function($scope, $location, $routeParams) {
     var src = $routeParams['src'];
 
     $scope.loginUsername = "";
