@@ -72,7 +72,6 @@ from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
 ServerOptions = ServerOptions
 
 def globaleaks_start():
-
     GLSetting.fix_file_permissions()
     GLSetting.drop_privileges()
     GLSetting.check_directories()

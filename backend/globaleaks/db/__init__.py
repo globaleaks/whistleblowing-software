@@ -16,7 +16,7 @@ from globaleaks.db import updater_manager, base_updater
 
 base_updater.TableReplacer.testing = True
 
-from globaleaks.db.datainit import initialize_node, opportunistic_appdata_init
+from globaleaks.db.datainit import load_appdata, init_appdata, init_db
 
 def init_models():
     for model in models.models:
@@ -47,20 +47,28 @@ def create_tables_transaction(store):
     # the called has to .commit and .close, operations commonly performed by decorator
 
 def create_tables(create_node=True):
-    """
-    Override transactor for testing.
-    """
+    appdata_dict = load_appdata()
+
+    db_exists = False
     if GLSetting.db_type == 'sqlite':
         db_path = GLSetting.db_uri.replace('sqlite:', '').split('?', 1)[0]
         if os.path.exists(db_path):
-            return succeed(None)
+            db_exists = True
+
+    if db_exists:
+        ret = succeed(None)
+        ret.addCallback(init_appdata, appdata_dict)
+        return ret
+
 
     deferred = create_tables_transaction()
+    deferred.addCallback(init_appdata, appdata_dict)
+
     if create_node:
 
         log.debug("Node initialization with defaults values")
 
-        only_node = {
+        node_dict = {
             'name':  u"",
             'description': dict({ GLSetting.memory_copy.default_language: u"" }),
             'presentation': dict({ GLSetting.memory_copy.default_language: u"" }),
@@ -101,10 +109,8 @@ def create_tables(create_node=True):
             'custom_privacy_badge_none': dict({ GLSetting.memory_copy.default_language: u"" }),
         }
 
-        appdata_dict = opportunistic_appdata_init()
-
-        # Initialize the node + notification table
-        deferred.addCallback(initialize_node, only_node, appdata_dict)
+        # Initialize the node and notification tables
+        deferred.addCallback(init_db, node_dict, appdata_dict)
 
     return deferred
 

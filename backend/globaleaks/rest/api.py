@@ -38,7 +38,7 @@ spec = [
     (r'/receivers' , node.ReceiversCollection),
 
     # Fake file hosting the Ahmia.fi descriptor
-    (r'/(description.json)', node.AhmiaDescriptionHandler),
+    (r'/description.json', node.AhmiaDescriptionHandler),
 
     ## Submission Handlers ##
     (r'/submission', submission.SubmissionCreate),
@@ -86,7 +86,6 @@ spec = [
     (r'/admin/activities/(\w+)', statistics.RecentEventsCollection),
     (r'/admin/history', statistics.AnomalyHistoryCollection),
     (r'/admin/wizard', wizard.FirstSetup),
-    (r'/admin/appdata', wizard.AppdataCollection),
     (r'/admin/staticfiles', admstaticfiles.StaticFileList),
     (r'/admin/staticfiles/(.*)', admstaticfiles.StaticFileInstance,
             {'path': GLSetting.static_path}),

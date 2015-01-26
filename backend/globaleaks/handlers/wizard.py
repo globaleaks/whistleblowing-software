@@ -17,67 +17,6 @@ from globaleaks.utils.utility import log
 
 from twisted.internet.defer import inlineCallbacks
 
-
-@transact_ro
-def admin_serialize_appdata(store):
-
-    appdata = store.find(ApplicationData).one()
-
-    # this condition happens only in the UnitTest
-    if not appdata:
-        version = 0
-        fields = []
-    else:
-        version = appdata.version
-        fields = appdata.fields
-
-    return {
-        'version': version,
-        'fields': list(fields)
-    }
-
-@transact
-def admin_update_appdata(store, loaded_appdata):
-
-    appdata = store.find(ApplicationData).one()
-    node = store.find(Node).one()
-
-    if not appdata:
-        appdata = ApplicationData()
-        has_been_updated = True
-        old_version = 0
-        store.add(appdata)
-    elif appdata.version > loaded_appdata['version']:
-        has_been_updated = False
-        old_version = appdata.version
-    else: # appdata not None and new_v >= old_v
-        has_been_updated = True
-        old_version = appdata.version
-
-    if has_been_updated:
-
-        log.debug("Updating Application Data Fields %d => %d" %
-                  (old_version, loaded_appdata['version']))
-
-        appdata.version = loaded_appdata['version']
-
-        for key in  ['presentation', 'footer', 'subtitle',
-                     'security_awareness_title', 'security_awareness_text',
-                     'whistleblowing_question', 'whistleblowing_button']:
-
-            if key in loaded_appdata['node']:
-                setattr(node, key, loaded_appdata['node'][key])
-
-    else:
-        log.err("NOT updating the Application Data Fields current %d proposed %d" %
-                (appdata.version, loaded_appdata['version']))
-
-    # in both cases, update or not, return the running version
-    return {
-        'version': appdata.version,
-        'fields': appdata.fields,
-    }
-
 @transact
 def wizard(store, request, language):
 
@@ -113,37 +52,6 @@ def wizard(store, request, language):
 # ---------------------------------
 # Below starts the Cyclone handlers
 # ---------------------------------
-
-class AppdataCollection(BaseHandler):
-    """
-    Get the node main settings, update the node main settings, it works in a single static
-    table, in models/admin.py
-
-    /admin/wizard/fields
-    """
-    @transport_security_check('admin')
-    @authenticated('admin')
-    @inlineCallbacks
-    def get(self):
-
-        app_fields_dump = yield admin_serialize_appdata()
-
-        self.set_status(200)
-        self.finish(app_fields_dump)
-
-    @transport_security_check('admin')
-    @authenticated('admin')
-    @inlineCallbacks
-    def post(self):
-
-        request = self.validate_message(self.request.body,
-                requests.wizardAppdataDesc)
-
-        app_fields_dump = yield admin_update_appdata(request)
-
-        self.set_status(202) # Updated
-        self.finish(app_fields_dump)
-
 
 class FirstSetup(BaseHandler):
     """
