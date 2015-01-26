@@ -19,8 +19,6 @@
 
     <div data-ng-show="selection == 0" id="SubmissionStepReceiver" class="receiverCards">
 
-      <div id="ReceiverIntroductionBox">{{submission.current_context.receiver_introduction}}</div>
-
       <div data-ng-show="submission.current_context.maximum_selectable_receivers != 0 && !submission.current_context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
         <div><span data-translate>Maximum number of selectable Receivers:</span> {{submission.current_context.maximum_selectable_receivers}}</div>
         <div><span data-translate>Receivers selected:</span> {{selected_receivers_count()}}</div>
