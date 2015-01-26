@@ -5,7 +5,7 @@
 
 <div id="ContextIntroductionBox">{{submission.current_context.description}}</div>
 
-<form name="submissionForm">
+<form name="submissionForm" novalidate>
   <div data-ng-if="!(submission.current_context.steps.length > 1) && !(submission.current_context.show_receivers)" data-ng-include="'views/submission/main_vertical.html'"></div>
   <div data-ng-if="submission.current_context.steps.length > 1 || submission.current_context.show_receivers" data-ng-include="'views/submission/main_horizontal.html'"></div>
 </form>

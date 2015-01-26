@@ -2,7 +2,7 @@
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/receiver/sidebar.html'" data-ng-controller="ReceiverSidebarCtrl"></div>
   <div class="col-md-9">
 
-    <form class="row tab-content" name="receiverPreferencesForm">
+    <form class="row tab-content" name="receiverPreferencesForm" novalidate>
       <tabset>
         <tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}" active="tab.active" disabled="tab.disabled">
         <div data-ng-include="tab.template" data-ng-controller="tab.ctrl"></div>

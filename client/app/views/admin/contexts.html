@@ -4,7 +4,7 @@
 
     <div data-ng-controller="AdminContextsCtrl">
       <div class="col-md-12">
-        <form name="newContext" class="addContext col-md-6">
+        <form name="newContext" class="addContext col-md-6" novalidate>
           <h4><span data-translate>Add new context</span></h4>
           <div class="row">
             <div class="col-md-12">
@@ -47,7 +47,7 @@
         <div ui-sortable="sortableOptions" data-ng-model="admin.contexts">
 
           <div data-ng-repeat="context in admin.contexts | orderBy:'presentation_order'">
-            <form name="editContext" data-ng-controller="AdminContextsEditorCtrl">
+            <form name="editContext" data-ng-controller="AdminContextsEditorCtrl" novalidate>
               <div class="configItem contextItem"  data-ng-class="{'configItemLast': $last}">
 
                 <div class="row" data-ng-click="toggleEditing()">

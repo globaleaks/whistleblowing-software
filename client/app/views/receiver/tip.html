@@ -108,7 +108,7 @@
   </h3>
   <div class="well" data-ng-show="tip.files">
     <div data-ng-if="tip.collection">
-      <form id="fileCollectionDownload" method="POST" action="{{tip.collection}}" data-ng-cloak>
+      <form id="fileCollectionDownload" method="POST" action="{{tip.collection}}" novalidate>
         <input type="hidden" name="x-session" value="{{session}}">
         <input type="hidden" name="xsrf-token" value="{{xsrf_token}}">
         <button data-ng-show="download_all_enabled()"
@@ -154,7 +154,7 @@
                 <span>{{file.name}}</span>
               </td>
               <td data-ng-show="file.status != 'unavailable'">
-                <form id="fileDownload" method="POST" action="{{file.href}}">
+                <form id="fileDownload" method="POST" action="{{file.href}}" novalidate>
                   <input type="hidden" name="x-session" value="{{session}}">
                   <input type="hidden" name="xsrf-token" value="{{xsrf_token}}">
                   <button data-ng-class="{'disabled': file.downloads >= tip.download_limit}"
