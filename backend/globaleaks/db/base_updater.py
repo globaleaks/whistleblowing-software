@@ -10,7 +10,7 @@ from storm.variables import EnumVariable, IntVariable, RawStrVariable, PickleVar
 from storm.variables import UnicodeVariable, JSONVariable
 
 from globaleaks import DATABASE_VERSION, models
-from globaleaks.db.datainit import opportunistic_appdata_init
+from globaleaks.db.datainit import load_appdata
 from globaleaks.settings import GLSetting
 
 
@@ -366,19 +366,11 @@ class TableReplacer(object):
 
     def migrate_ApplicationData(self):
         """
-        Update of default Application Data
-        There is no need to migrate it, we always simply need
-        to load the updated version from the filesystem.
+        There is no need to migrate it the application data.
+        Default application data is loaded by the application
+        and stored onto the db at each new start.
         """
-        if self.start_ver < (DATABASE_VERSION - 1):
-            return
-
-        appdata = opportunistic_appdata_init()
-        new_appdata = models.ApplicationData()
-        new_appdata.fields = appdata['fields']
-        new_appdata.version = appdata['version']
-        self.store_new.add(new_appdata)
-        self.store_new.commit()
+        return
 
     def migrate_Field(self):
         """

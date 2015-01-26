@@ -22,7 +22,7 @@ from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.db.datainit import opportunistic_appdata_init
+from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model, Field, FieldOption, Step, db_forge_obj
 from globaleaks.utils.utility import datetime_null, uuid4, every_language
 
@@ -183,7 +183,7 @@ class Replacer1415(TableReplacer):
         print "%s Node migration assistant: added default_language and default_timezone" \
               "whistleblowing_question, whistleblowing_button" % self.std_fancy
 
-        appdata = opportunistic_appdata_init()
+        appdata = load_appdata()
 
         old_node = self.store_old.find(self.get_right_model("Node", 14)).one()
         new_node = self.get_right_model("Node", 15)()
@@ -262,7 +262,7 @@ class Replacer1415(TableReplacer):
 
         old_contexts = self.store_old.find(self.get_right_model("Context", 14))
 
-        steps = opportunistic_appdata_init()['fields']
+        steps = load_appdata()['fields']
         tos_dict = copy.deepcopy(steps[1]['children'][0])
         tos_opt_dict = copy.deepcopy(tos_dict['options'][0])
         tos_opt_dict['number'] = 1
@@ -374,7 +374,7 @@ class Replacer1415(TableReplacer):
         print "%s InternalTip migration assistant" % self.std_fancy
         steps = []
 
-        steps.append(opportunistic_appdata_init()['fields'][0])
+        steps.append(load_appdata()['fields'][0])
 
         i = 1
         for step in steps:

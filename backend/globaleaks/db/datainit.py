@@ -15,7 +15,7 @@ from globaleaks.utils.utility import datetime_now, datetime_null, log
 from globaleaks.third_party import rstr
 from globaleaks.models import Node, ApplicationData
 
-def opportunistic_appdata_init():
+def load_appdata():
     """
     Setup application data evaluating the presence of the following paths:
         - production data path: /usr/share/globaleaks/glclient/data/
@@ -47,30 +47,34 @@ def opportunistic_appdata_init():
         print "No client (appdata_l10n.json) file found in fixed paths!"
         return dict({'version': 1, 'fields': []}) # empty!
 
-    print appdata_dict
-
     return appdata_dict
 
 
 @transact
-def initialize_node(store, result, only_node, appdata):
+def init_appdata(store, result, appdata_dict):
+    # Drop old appdata
+    store.find(models.ApplicationData).remove()
+
+    # Initialize the default data table evry time with
+    # fresh data and fresh translations
+    appdata = models.ApplicationData()
+    appdata.fields = appdata_dict['fields']
+    appdata.version = appdata_dict['version']
+    store.add(appdata)
+
+
+@transact
+def init_db(store, result, node_dict, appdata_dict):
     """
     TODO refactor with languages the email_template, develop a dedicated
     function outside the node, and inquire fucking YHWH about the
     callbacks existence/usage
     """
 
-    node = models.Node(only_node)
+    node = models.Node(node_dict)
 
-    log.debug("Inizializing ApplicationData")
-
-    new_appdata = ApplicationData()
-    new_appdata.fields = appdata['fields']
-    new_appdata.version = appdata['version']
-    store.add(new_appdata)
-
-    for k in appdata['node']:
-        setattr(node, k, appdata['node'][k])
+    for k in appdata_dict['node']:
+        setattr(node, k, appdata_dict['node'][k])
 
     node.languages_enabled = GLSetting.defaults.languages_enabled
 
@@ -119,12 +123,12 @@ def initialize_node(store, result, only_node, appdata):
     # Those fields are sets as default in order to show to the Admin the various
     # 'variables' used in the template.
 
-    for k in appdata['templates']:
+    for k in appdata_dict['templates']:
 
         # Todo handle pgp_expiration_alert and pgp_expiration_notice already included in client/app/data/txt
         # and internationalized with right support on backend db.
-        if k in appdata['templates']:
-            setattr(notification, k, appdata['templates'][k])
+        if k in appdata_dict['templates']:
+            setattr(notification, k, appdata_dict['templates'][k])
 
     store.add(notification)
 

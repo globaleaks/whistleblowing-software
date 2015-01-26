@@ -16,7 +16,7 @@ from twisted.trial import unittest
 from twisted.test import proto_helpers
 
 from globaleaks import db, models, security, anomaly
-from globaleaks.db.datainit import opportunistic_appdata_init, import_memory_variables
+from globaleaks.db.datainit import load_appdata, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLApiCache, GLHTTPConnection
 from globaleaks.handlers.admin import create_context, get_context, update_context, create_receiver, db_get_context_steps
@@ -851,7 +851,7 @@ def do_appdata_init(store):
 
     except Exception as xxx:
         appdata = models.ApplicationData()
-        source = opportunistic_appdata_init()
+        source = load_appdata()
         appdata.version = source['version']
         appdata.fields = source['fields']
         store.add(appdata)

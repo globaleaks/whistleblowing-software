@@ -15,7 +15,7 @@ from storm.locals import Int, Bool, Pickle, Unicode, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
-from globaleaks.db.datainit import opportunistic_appdata_init
+from globaleaks.db.datainit import load_appdata
 
 class Node_version_13(Model):
     __storm_table__ = 'node'
@@ -85,7 +85,7 @@ class Replacer1314(TableReplacer):
                                             "disable_security_awareness_questions, security_awareness_title," \
                                             "security_awareness_text" % self.std_fancy
 
-        appdata = opportunistic_appdata_init()
+        appdata = load_appdata()
 
         old_node = self.store_old.find(self.get_right_model("Node", 13)).one()
         new_node = self.get_right_model("Node", 14)()
