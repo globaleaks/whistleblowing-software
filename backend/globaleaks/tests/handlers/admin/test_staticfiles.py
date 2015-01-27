@@ -139,7 +139,7 @@ class TestStaticFileInstance(helpers.TestHandler):
         self.assertRaises(errors.StaticFileNotFound, handler.delete, filename='validblabla')
 
 
-class TestStaticFileList(helpers.TestHandlerWithPopulatedDB):
+class TestStaticFileList(helpers.TestHandler):
     """
     """
     _handler = staticfiles.StaticFileList
@@ -195,4 +195,3 @@ class TestStaticFileList(helpers.TestHandlerWithPopulatedDB):
                 self.assertEqual(self.fakeFile['body_len'], f['size'])
 
         self.assertTrue(found)
-
