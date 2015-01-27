@@ -73,16 +73,13 @@ class LanguageFileHandler(BaseStaticFileHandler):
         path = self.custom_langfile_path(lang)
         directory_traversal_check(GLSetting.static_path_l10n, path)
 
-        if os.path.exists(path):
-            StaticFileHandler.get(self, path, True)
-        else:
+        if not os.path.exists(path):
             path = self.langfile_path(lang)
             directory_traversal_check(GLSetting.glclient_path, path)
-
             # to reuse use the StaticFile handler we need to change the root path
             self.root = os.path.abspath(os.path.join(GLSetting.glclient_path, 'l10n'))
 
-            StaticFileHandler.get(self, path, True)
+        StaticFileHandler.get(self, path, True)
 
     @transport_security_check('admin')
     @authenticated('admin')
