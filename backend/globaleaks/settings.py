@@ -281,6 +281,9 @@ class GLSettingsClass(object):
         # Number of log files to conserve.
         self.maximum_rotated_log_files = 100
 
+        # size used while streaming files
+        self.file_chunk_size = 8192
+
         # Disk file encryption in realtime
         # if the key is fine or is not.
         # this key permit Globaleaks to resist on application restart

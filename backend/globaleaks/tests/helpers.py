@@ -785,8 +785,6 @@ class MockDict():
             'postpone_superpower': False,
             'can_delete_submission': False,
             'exception_email': GLSetting.defaults.exception_email,
-            'reset_css': False,
-            'reset_homepage': False,
             'ahmia': False,
             'allow_unencrypted': True,
             'configured': False,

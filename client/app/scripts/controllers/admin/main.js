@@ -172,11 +172,22 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', 'Defa
     });
   };
 
+  $scope.staticfiles = [];
+
   $scope.update_static_files = function () {
     var updated_staticfiles = StaticFiles.query(function () {
       $scope.staticfiles = updated_staticfiles;
     });
   };
+
+  $scope.fileExists = function (filename) {
+    for (var i=0; i<$scope.staticfiles.length; i++) {
+      if ($scope.staticfiles[i].filename == filename) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   $scope.uploadfinished = function () {
     $scope.update_static_files();

@@ -123,8 +123,6 @@ adminNodeDesc = {
     'postpone_superpower': bool,
     'can_delete_submission': bool,
     'exception_email': email_regexp,
-    'reset_css': bool,
-    'reset_homepage': bool,
     'ahmia': bool,
     'allow_unencrypted': bool,
     'wizard_done': bool,

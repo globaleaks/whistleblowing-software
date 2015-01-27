@@ -2,7 +2,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
   function($scope, $rootScope, $http, $route, $routeParams, $location, $translate, $modal, Authentication, Node, GLCache) {
     $scope.started = true;
 
-    $scope.custom_stylesheet = '/static/custom_stylesheet.css';
     $scope.logo = '/static/globaleaks_logo.png';
 
     $scope.update = function (model, cb, errcb) {
@@ -80,7 +79,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
     var init = function () {
 
-      $scope.custom_stylesheet = '/static/custom_stylesheet.css?' + $scope.randomFluff();
       $scope.logo = '/static/globaleaks_logo.png?' + $scope.randomFluff();
 
       $scope.session_id = Authentication.id;

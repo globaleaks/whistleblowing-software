@@ -71,8 +71,6 @@ def db_admin_serialize_node(store, language):
         'postpone_superpower': node.postpone_superpower,
         'can_delete_submission': node.can_delete_submission,
         'ahmia': node.ahmia,
-        'reset_css': False,
-        'reset_homepage': False,
         'allow_unencrypted': node.allow_unencrypted,
         'wizard_done': node.wizard_done,
         'configured': True if associated else False,
@@ -298,34 +296,6 @@ def db_update_node(store, request, wizard_done, language):
     if password and old_password and len(password) and len(old_password):
         admin.password = security.change_password(admin.password,
                                     old_password, password, admin.salt)
-
-    # check the 'reset_css' boolean option: remove an existent custom CSS
-    if request['reset_css']:
-        custom_css_path = os.path.join(GLSetting.static_path, "%s.css" % GLSetting.reserved_names.css)
-
-        if os.path.isfile(custom_css_path):
-            try:
-                os.remove(custom_css_path)
-                log.debug("Reset on custom CSS done.")
-            except Exception as excep:
-                log.err("Unable to remove custom CSS: %s: %s" % (custom_css_path, excep))
-                raise errors.InternalServerError(excep)
-        else:
-            log.err("Requested CSS Reset, but custom CSS does not exist")
-
-    # check the 'reset_homepage' boolean option: remove an existent custom Homepage
-    if request['reset_homepage']:
-        custom_homepage_path = os.path.join(GLSetting.static_path, "%s.html" % GLSetting.reserved_names.html)
-
-        if os.path.isfile(custom_homepage_path):
-            try:
-                os.remove(custom_homepage_path)
-                log.debug("Reset on custom Homepage done.")
-            except Exception as excep:
-                log.err("Unable to remove custom Homepage: %s: %s" % (custom_homepage_path, excep))
-                raise errors.InternalServerError(excep)
-        else:
-            log.err("Requested Homepage Reset, but custom Homepage does not exist")
 
     # verify that the languages enabled are valid 'code' in the languages supported
     node.languages_enabled = []

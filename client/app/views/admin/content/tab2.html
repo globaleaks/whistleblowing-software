@@ -36,19 +36,16 @@
             <input type="file" name="files[]" multiple data-ng-disabled="disabled">
           </span>
         </span>
-        <span class="uploadProgress hide">
-          <span class="progress progress-striped">
-            <span class="progress-bar" style="width: 0%;"></span>
-          </span>
+        <span data-ng-show="fileExists('custom_stylesheet.css')">
+          <a class="btn btn-primary" data-ng-href="{{'/static/custom_stylesheet.css'}}" download="custom_stylesheet.css">
+            <span class="glyphicon glyphicon-download"></span>
+            <span data-translate>Download</span>
+          </a>
+          <button class="btn btn-danger" data-ng-click="perform_delete('/admin/staticfiles/custom_stylesheet.css')">
+            <span class="glyphicon glyphicon-trash"></span>
+            <span data-translate>Delete</span>
+          </button>
         </span>
-        <a class="btn btn-primary" data-ng-href="{{'/static/custom_stylesheet.css'}}" download="custom_stylesheet.css">
-          <span class="glyphicon glyphicon-download"></span>
-          <span data-translate>Download</span>
-        </a>
-        <div>
-          <input data-ng-model="admin.node.reset_css" type="checkbox">
-          <label data-translate>Reset custom CSS</label>
-        </div>
       </div>
       <label>
         <span data-translate>Graphic Customization</span>
@@ -62,19 +59,16 @@
             <input type="file" name="files[]" multiple data-ng-disabled="disabled">
           </span>
         </span>
-        <span class="uploadProgress hide">
-          <span class="progress progress-striped">
-            <span class="progress-bar" style="width: 0%;"></span>
-          </span>
+        <span data-ng-show="fileExists('custom_homepage.html')">
+          <a class="btn btn-primary" data-ng-href="{{'/static/custom_homepage.html'}}" download="homepage.html">
+            <span class="glyphicon glyphicon-download"></span>
+            <span data-translate>Download</span>
+          </a>
+          <button class="btn btn-danger" data-ng-click="perform_delete('/admin/staticfiles/custom_homepage.html')">
+            <span class="glyphicon glyphicon-trash"></span>
+            <span data-translate>Delete</span>
+          </button>
         </span>
-        <a class="btn btn-primary" data-ng-href="{{'/static/homepage.html'}}" download="homepage.html">
-          <span class="glyphicon glyphicon-download"></span>
-          <span data-translate>Download</span>
-        </a>
-        <div>
-          <input data-ng-model="admin.node.reset_homepage" type="checkbox">
-          <label data-translate>Reset custom Home Page</label>
-        </div>
       </div>
       <label data-translate>Load Custom File</label>
       <br />
@@ -85,11 +79,6 @@
             <span class="glyphicon glyphicon-plus"></span>
             <span data-translate>Load</span>
             <input type="file" name="files[]" multiple data-ng-disabled="disabled">
-          </span>
-        </span>
-        <span class="uploadProgress hide">
-          <span class="progress progress-striped">
-            <span class="progress-bar" style="width: 0%;"></span>
           </span>
         </span>
       </div>
