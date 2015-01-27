@@ -5,7 +5,7 @@ import json
 
 from globaleaks.rest import requests
 from globaleaks.tests import helpers
-from globaleaks.handlers import overview
+from globaleaks.handlers.admin import overview
 
 class TestUsersOverview(helpers.TestHandlerWithPopulatedDB):
     _handler = overview.Users

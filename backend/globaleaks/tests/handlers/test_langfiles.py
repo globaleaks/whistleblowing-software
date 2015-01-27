@@ -5,12 +5,12 @@ import json
 
 from globaleaks.rest import requests, errors
 from globaleaks.tests import helpers
-from globaleaks.handlers import admlangfiles
+from globaleaks.handlers import langfiles
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile
 
 class TestLanguageFileHandler(helpers.TestHandler):
-    _handler = admlangfiles.LanguageFileHandler
+    _handler = langfiles.LanguageFileHandler
 
     @inlineCallbacks
     def test_get(self):
@@ -66,7 +66,6 @@ class TestLanguageFileHandler(helpers.TestHandler):
 
     @inlineCallbacks
     def test_delete_existent_custom_lang(self):
-
         # we load a custom translation for en
         yield self.test_post()
 

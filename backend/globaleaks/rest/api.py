@@ -7,9 +7,8 @@
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
 from globaleaks.handlers import node, submission, rtip, wbtip, receiver, \
-                                files, authentication, admstaticfiles, statistics,\
-                                admlangfiles, overview, collection, wizard
-from globaleaks.handlers import admin
+                                files, authentication, admin, \
+                                collection, langfiles, wizard
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
@@ -81,26 +80,25 @@ spec = [
     (r'/admin/fieldtemplates', admin.field.FieldTemplatesCollection),
     (r'/admin/fieldtemplate', admin.field.FieldTemplateCreate),
     (r'/admin/fieldtemplate/' + field_regexp, admin.field.FieldTemplateInstance),
-    (r'/admin/anomalies', statistics.AnomaliesCollection),
-    (r'/admin/stats/(\d+)', statistics.StatsCollection),
-    (r'/admin/activities/(\w+)', statistics.RecentEventsCollection),
-    (r'/admin/history', statistics.AnomalyHistoryCollection),
+    (r'/admin/anomalies', admin.statistics.AnomaliesCollection),
+    (r'/admin/stats/(\d+)', admin.statistics.StatsCollection),
+    (r'/admin/activities/(\w+)', admin.statistics.RecentEventsCollection),
+    (r'/admin/history', admin.statistics.AnomalyHistoryCollection),
+    (r'/admin/staticfiles', admin.staticfiles.StaticFileList),
+    (r'/admin/staticfiles/(.*)', admin.staticfiles.StaticFileInstance),
+    (r'/admin/overview/tips', admin.overview.Tips),
+    (r'/admin/overview/users', admin.overview.Users),
+    (r'/admin/overview/files', admin.overview.Files),
     (r'/admin/wizard', wizard.FirstSetup),
-    (r'/admin/staticfiles', admstaticfiles.StaticFileList),
-    (r'/admin/staticfiles/(.*)', admstaticfiles.StaticFileInstance,
-            {'path': GLSetting.static_path}),
-    (r'/admin/overview/tips', overview.Tips),
-    (r'/admin/overview/users', overview.Users),
-    (r'/admin/overview/files', overview.Files),
 
     ## Special Files Handlers##
     (r'/(favicon.ico)', BaseStaticFileHandler, {'path': GLSetting.static_path}),
     (r'/(robots.txt)', BaseStaticFileHandler, {'path': GLSetting.static_path}),
     (r'/static/(.*)', BaseStaticFileHandler, {'path': GLSetting.static_path}),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
-            admlangfiles.LanguageFileHandler, {'path': GLSetting.static_path}),
-    (r'/(.*)', BaseStaticFileHandler,
-            {'path': GLSetting.glclient_path, 'default_filename': "index.html"}),
+            langfiles.LanguageFileHandler, {'path': GLSetting.glclient_path}),
+    (r'/(.*)', BaseStaticFileHandler, {'path': GLSetting.glclient_path,
+                                       'default_filename': 'index.html'}),
 
     ## Some Useful Redirects ##
     (r'/login', BaseRedirectHandler, {'url': '/#/login'}),
