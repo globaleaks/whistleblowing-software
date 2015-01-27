@@ -7,8 +7,11 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.internet import task
 from globaleaks.tests import helpers
 from globaleaks import anomaly
-from globaleaks.handlers.statistics import get_stats, get_anomaly_history, delete_anomaly_history, delete_weekstats_history, AnomaliesCollection
-from globaleaks.jobs.statistics_sched import StatisticsSchedule, AnomaliesSchedule, ResourceChecker, save_anomalies, save_statistics
+from globaleaks.handlers.admin.statistics import get_stats, \
+    get_anomaly_history,  delete_anomaly_history, delete_weekstats_history, \
+    AnomaliesCollection
+from globaleaks.jobs.statistics_sched import StatisticsSchedule, \
+    AnomaliesSchedule, ResourceChecker, save_anomalies, save_statistics
 
 anomaly.reactor = task.Clock()
 

@@ -184,7 +184,7 @@ class EventTrack(TempObj):
         This is a callback append to the expireCallbacks, and
         just make a synthesis of the Event in the Recent
         """
-        from globaleaks.handlers.statistics import RecentEventsCollection
+        from globaleaks.handlers.admin.statistics import RecentEventsCollection
         RecentEventsCollection.update_RecentEventQ(self)
 
     def __repr__(self):
@@ -289,7 +289,7 @@ class Alarm(object):
         this is why the content are copied for the statistic
         acquiring later.
         """
-        from globaleaks.handlers.statistics import AnomaliesCollection
+        from globaleaks.handlers.admin.statistics import AnomaliesCollection
 
         debug_reason = ""
         Alarm.number_of_anomalies = 0

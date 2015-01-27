@@ -2,15 +2,49 @@
 from twisted.internet.defer import inlineCallbacks
 
 import json
+from io import BytesIO as StringIO
+import os
 
 from globaleaks.rest import requests, errors
 from globaleaks.tests import helpers
-from globaleaks.handlers import admstaticfiles
+from globaleaks.handlers.admin import staticfiles
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile
 
 class TestStaticFileInstance(helpers.TestHandler):
-    _handler = admstaticfiles.StaticFileInstance
+    _handler = staticfiles.StaticFileInstance
+
+    crappyjunk =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
+    fakeFile = dict()
+    fakeFile['body'] = StringIO()
+    fakeFile['body'].write(crappyjunk)
+    fakeFile['body_len'] = len(crappyjunk)
+    fakeFile['content_type'] = 'image/jpeg'
+    fakeFile['filename'] = 'imag0005.jpg'
+
+    @inlineCallbacks
+    def test_file_download(self):
+        realpath = os.path.join(GLSetting.static_path, self.fakeFile['filename'])
+        dumped_file = yield staticfiles.dump_static_file(self.fakeFile, realpath)
+        self.assertTrue('filelocation' in dumped_file)
+
+        self.responses = []
+
+        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
+        yield handler.get(self.fakeFile['filename'])
+        self.assertEqual(self.responses[0], self.crappyjunk)
+
+    @inlineCallbacks
+    def test_file_delete_it(self):
+        realpath = os.path.join(GLSetting.static_path, self.fakeFile['filename'])
+        dumped_file = yield staticfiles.dump_static_file(self.fakeFile, realpath)
+        self.assertTrue('filelocation' in dumped_file)
+
+        self.responses = []
+
+        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
+        yield handler.delete(self.fakeFile['filename'])
 
     @inlineCallbacks
     def test_post_globaleaks_logo(self):
@@ -106,14 +140,59 @@ class TestStaticFileInstance(helpers.TestHandler):
 
 
 class TestStaticFileList(helpers.TestHandlerWithPopulatedDB):
-    _handler = admstaticfiles.StaticFileList
+    """
+    """
+    _handler = staticfiles.StaticFileList
+
+    crappyjunk =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
+    # default files not filtered from get(/) handler
+    default_files = [ 'globaleaks_logo.png',
+                      'favicon.ico',
+                      'robots.txt',
+                      'default-profile-picture.png',
+                      'custom_stylesheet.css']
+
+    fakeFile = dict()
+    fakeFile['body'] = StringIO()
+    fakeFile['body'].write(crappyjunk)
+    fakeFile['body_len'] = len(crappyjunk)
+    fakeFile['content_type'] = 'image/jpeg'
+    fakeFile['filename'] = 'imag0005.jpg'
 
     @inlineCallbacks
-    def test_get(self):
-        handler = self.request({}, role='admin')
+    def test_get_default_staticfile_list(self):
+        handler = self.request(role='admin')
         yield handler.get()
+        self.assertTrue( isinstance(self.responses[0], list) )
 
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
-        self.assertEqual(len(self.responses[0]), 5)
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.staticFileCollection)
+        # this check verifies that only not filtered default files are shown
+        # other files shall be present and are ignored in this test
+        files_dict = {}
+
+        for f in self.responses[0]:
+            files_dict[f['filename']] = f['size']
+
+        for system_names in self.default_files:
+            self.assertTrue(system_names in files_dict.keys())
+
+
+    @inlineCallbacks
+    def test_get_list_with_one_custom_file(self):
+        realpath = os.path.join(GLSetting.static_path, self.fakeFile['filename'])
+        dumped_file = yield staticfiles.dump_static_file(self.fakeFile, realpath)
+        self.assertTrue('filelocation' in dumped_file)
+
+        handler = self.request(role='admin')
+        yield handler.get()
+        self.assertTrue( isinstance(self.responses[0], list) )
+
+        found = False
+
+        for f in self.responses[0]:
+            if f['filename'] == self.fakeFile['filename']:
+                found = True
+                self.assertEqual(self.fakeFile['body_len'], f['size'])
+
+        self.assertTrue(found)
+

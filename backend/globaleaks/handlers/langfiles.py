@@ -17,7 +17,7 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import StaticFileHandler
 
 from globaleaks.settings import GLSetting
-from globaleaks.handlers.admstaticfiles import dump_static_file
+from globaleaks.handlers.admin.staticfiles import dump_static_file
 from globaleaks.handlers.base import BaseStaticFileHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils.utility import log

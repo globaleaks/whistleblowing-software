@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 #
-#  admstaticfiles
+#  admin.staticfiles
 #  **************
 #
 # Backend supports for jQuery File Uploader, and implementation of the
 # file statically uploaded by the Admin, and exposed after in http://NODE/static path
 
 #`This code differs from handlers/file.py because files here are not tracked in the DB
-
 from __future__ import with_statement
 import time
 import re
@@ -16,13 +15,13 @@ from twisted.internet import threads
 from cyclone.web import os
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import models
 from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils.utility import log
 from globaleaks.rest import errors
 from globaleaks.rest.requests import receiver_img_regexp
-from globaleaks import models
 
 from globaleaks.security import directory_traversal_check
 
@@ -222,6 +221,7 @@ class StaticFileInstance(BaseStaticFileHandler):
 
         self.set_status(200)
         self.finish()
+
 
 class StaticFileList(BaseHandler):
     @transport_security_check('admin')
