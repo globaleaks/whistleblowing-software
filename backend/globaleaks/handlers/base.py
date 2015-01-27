@@ -8,6 +8,8 @@ import collections
 import httplib
 import json
 import logging
+import mimetypes
+import os
 import re
 import sys
 import types
@@ -23,7 +25,7 @@ from twisted.python.failure import Failure
 from cyclone import escape, httputil
 from cyclone.escape import native_str, parse_qs_bytes
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
-from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
+from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
 
 from globaleaks.anomaly import outcome_event_monitored, EventTrack
 from globaleaks.rest import errors
@@ -448,6 +450,20 @@ class BaseHandler(RequestHandler):
                 log.debug("Reached I/O logging limit of %d requests: disabling" % GLSetting.http_log)
                 GLSetting.http_log = -1
 
+    def write_file(self, filepath):
+        if not (os.path.exists(filepath) or os.path.isfile(filepath)):
+            return
+
+        try:
+            with open(filepath, "rb") as f:
+                while True:
+                    chunk = f.read(GLSetting.file_chunk_size)
+                    if len(chunk) == 0:
+                        break
+                    self.write(chunk)
+        except IOError as srcerr:
+            log.err("Unable to open %s: %s " % (filepath, srcerr.strerror))
+
 
     def flush(self, include_footers=False):
         """
@@ -636,17 +652,34 @@ class BaseHandler(RequestHandler):
         return uploaded_file
 
 
-class BaseStaticFileHandler(BaseHandler, StaticFileHandler):
-    def prepare(self):
-        """
-        This method is called by cyclone,and perform 'Host:' header
-        validation using the same 'validate_host' function used by
-        BaseHandler. but BaseHandler manage the REST API,..
-        BaseStaticFileHandler manage all the statically served files.
-        """
-        if not validate_host(self.request.host):
-            raise errors.InvalidHostSpecified
+class BaseStaticFileHandler(BaseHandler):
 
+    def initialize(self, path=None):
+        if path is None:
+            path = GLSetting.static_path
+
+        self.root = "%s%s" % (os.path.abspath(path), os.path.sep)
+
+    def get(self, path):
+        if path == '':
+            path = 'index.html'
+
+        path = self.parse_url_path(path)
+        abspath = os.path.abspath(os.path.join(self.root, path))
+
+        if not os.path.exists(abspath) or not os.path.isfile(abspath):
+            raise HTTPError(404)
+
+        mime_type, encoding = mimetypes.guess_type(abspath)
+        if mime_type:
+            self.set_header("Content-Type", mime_type)
+
+        self.write_file(abspath)
+
+    def parse_url_path(self, url_path):
+        if os.path.sep != "/":
+            url_path = url_path.replace("/", os.path.sep)
+        return url_path
 
 class BaseRedirectHandler(BaseHandler, RedirectHandler):
     def prepare(self):
@@ -655,6 +688,7 @@ class BaseRedirectHandler(BaseHandler, RedirectHandler):
         """
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
+
 
 class GLApiCache(object):
 

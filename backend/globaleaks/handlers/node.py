@@ -63,8 +63,6 @@ def anon_serialize_node(store, language):
     # Contexts and Receivers relationship
     associated = store.find(models.ReceiverContext).count()
 
-    custom_homepage = os.path.isfile(os.path.join(GLSetting.static_path, "custom_homepage.html"))
-
     ret_dict = {
       'name': node.name,
       'hidden_service': node.hidden_service,
@@ -93,7 +91,6 @@ def anon_serialize_node(store, language):
       'configured': True if associated else False,
       'password': u"",
       'old_password': u"",
-      'custom_homepage': custom_homepage,
       'disable_privacy_badge': node.disable_privacy_badge,
       'disable_security_awareness_badge': node.disable_security_awareness_badge,
       'disable_security_awareness_questions': node.disable_security_awareness_questions,
@@ -295,6 +292,10 @@ class NodeInstance(BaseHandler):
         """
         ret = yield GLApiCache.get('node', self.request.language,
                                    anon_serialize_node, self.request.language)
+
+        ret['custom_homepage'] = os.path.isfile(os.path.join(GLSetting.static_path,
+                                                "custom_homepage.html"))
+
         self.finish(ret)
 
 

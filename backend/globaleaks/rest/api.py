@@ -8,7 +8,7 @@ from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
 from globaleaks.handlers import node, submission, rtip, wbtip, receiver, \
                                 files, authentication, admin, \
-                                collection, langfiles, wizard
+                                collection, langfiles, css, wizard
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
@@ -93,13 +93,14 @@ spec = [
     (r'/admin/wizard', wizard.FirstSetup),
 
     ## Special Files Handlers##
-    (r'/(favicon.ico)', BaseStaticFileHandler, {'path': GLSetting.static_path}),
-    (r'/(robots.txt)', BaseStaticFileHandler, {'path': GLSetting.static_path}),
-    (r'/static/(.*)', BaseStaticFileHandler, {'path': GLSetting.static_path}),
+    (r'/(favicon.ico)', BaseStaticFileHandler),
+    (r'/(robots.txt)', BaseStaticFileHandler),
+    (r'/static/(.*)', BaseStaticFileHandler),
+    (r'/styles.css', css.LTRCSSFileHandler),
+    (r'/styles-rtl.css', css.RTLCSSFileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
             langfiles.LanguageFileHandler, {'path': GLSetting.glclient_path}),
-    (r'/(.*)', BaseStaticFileHandler, {'path': GLSetting.glclient_path,
-                                       'default_filename': 'index.html'}),
+    (r'/(.*)', BaseStaticFileHandler, {'path': GLSetting.glclient_path}),
 
     ## Some Useful Redirects ##
     (r'/login', BaseRedirectHandler, {'url': '/#/login'}),
