@@ -145,7 +145,7 @@ GLClient.controller('SubmissionCtrl',
     if ($scope.submission) {
       checkReceiverSelected();
     }
-  });
+  }, true);
 
   $scope.$watch('submissionForm.$valid', function () {
     $rootScope.invalidForm = $scope.submissionForm.$invalid;
