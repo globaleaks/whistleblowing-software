@@ -170,13 +170,9 @@ angular.module('submissionUI', []).
         svgItem.addEventListener("load",function() {
           var creditcard = svgItem.contentDocument.getElementById('credit_card');
           var yourname = svgItem.contentDocument.getElementById('your_name');
-          var validfrom = svgItem.contentDocument.getElementById('valid_from');
-          var expiresend = svgItem.contentDocument.getElementById('expires_end');
           var ccnumber = svgItem.contentDocument.getElementById('cc_number');
           creditcard.innerHTML =  $filter('translate')('CREDIT CARD');
           yourname.innerHTML =  $filter('translate')('YOUR NAME');
-          validfrom.innerHTML =  $filter('translate')('VALID FROM');
-          expiresend.innerHTML =  $filter('translate')('EXPIRES END');
           ccnumber.innerHTML = scope.creditCard();
         });
       }
