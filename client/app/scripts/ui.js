@@ -48,7 +48,6 @@ angular.module('submissionUI', []).
       }
     }
 }]).
-
   directive('pragmaticFileUpload', [ '$route', 'Authentication', function($route, Authentication){
 
     return {
