@@ -6,17 +6,13 @@
 # Notification implementation, documented along the others asynchronous
 # operations, in Architecture and in jobs/README.md
 
-import sys
-
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
 from globaleaks.jobs.base import GLJob
 from globaleaks.handlers import admin, rtip
-from globaleaks.handlers.admin.notification import admin_serialize_notification
 from globaleaks.plugins.base import Event
-from globaleaks.rest import errors
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, GLSetting
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.models import EventLogs
 
@@ -349,6 +345,10 @@ class NotificationSchedule(GLJob):
     def operation(self):
         # TODO: remove notification_status from Model different of EventLogs
 
+        if not GLSetting.memory_copy.receiver_notif_enable:
+            log.debug("Notification: Receiver mail disable: skipping event loader")
+            returnValue(None)
+
         tips_events = TipEventLogger()
         yield tips_events.load_tips()
         yield save_event_db(tips_events.events)
@@ -364,3 +364,8 @@ class NotificationSchedule(GLJob):
         files_events = FileEventLogger()
         yield files_events.load_files()
         yield save_event_db(files_events.events)
+
+        if any([len(files_events), len(messages_events),
+                len(comments_events), len(tips_events)]):
+            log.debug("Notification: generated Events: %d tips, %d comments, %d messages, %d files" % (
+                len(tips_events), len(comments_events), len(messages_events), len(files_events) ) )

@@ -151,6 +151,14 @@ class MailflushSchedule(GLJob):
 
         queue_events = yield load_complete_events()
 
+        if not GLSetting.memory_copy.receiver_notif_enable:
+            events_in_queue = len(queue_events)
+            if events_in_queue:
+                log.debug("MailFlush: Receiver notification disable: skipping %d events in queue" % events_in_queue)
+            else:
+                log.debug("MailFlush: Receiver notification disable, no events in queue")
+            return
+
         plugin = getattr(notification, GLSetting.notification_plugins[0])()
         notifcb = NotificationMail(plugin)
 
