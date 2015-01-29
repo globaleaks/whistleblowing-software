@@ -2,9 +2,28 @@
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
     <div class="row">
+      <!--
+      <input name="week_number" class="form-control" data-ng-model="week_number" type="text" required>
+      -->
+
+      <label>Weeks in the past, decrement to go back</label>
+      <input class="form-control" ng-change="new_week()" data-ng-model="week_number" value="{{week_number}}" type="number">
+      <!-- <button ng-click="new_week()">Go in the past</button> -->
+
+      <span>
+        <p>Stats applied to the week: {{when | date:'dd-MM-yyyy HH:mm' }}, The {{week}}-th of the year {{year}}.</p>
+        <!--
+        <span>
+          {{complete}}
+        </span>
+        -->
+      </span>
+
       <div class="col-md-12">
+        <div id="details"></div>
         <div id="chart"></div>
       </div>
+
     </div>
   </div>
 </div>
