@@ -31,6 +31,7 @@
     "node-gettext": "0.2.14",
     "should": "4.4.1",
     "superagent": "0.21.0",
-    "supertest": "0.15.0"
+    "supertest": "0.15.0",
+    "hashcash-token": "1.0.0"
   }
 }
