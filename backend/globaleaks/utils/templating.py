@@ -31,8 +31,8 @@ class Templating(object):
                                   u'plaintext_message' : MessageKeyword,
                                   u'zip_collection' : ZipFileKeyword,
                                   u'ping_mail' : PingMailKeyword,
-                                  u'admin_pgp_alert': AdminPGPAlertKeyword,
-                                  u'pgp_alert': PGPAlertKeyword
+                                  u'admin_pgp_expiration_alert': AdminPGPAlertKeyword,
+                                  u'pgp_expiration_alert': PGPAlertKeyword
                                 }
 
         if event_dicts.type not in supported_event_types.keys():
