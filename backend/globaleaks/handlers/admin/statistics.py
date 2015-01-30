@@ -12,7 +12,7 @@ from storm.expr import Desc
 
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact_ro, transact
-from globaleaks.handlers.base import BaseHandler, GLApiCache
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, \
     authenticated
 from globaleaks.jobs.statistics_sched import StatisticsSchedule
@@ -64,19 +64,13 @@ def get_stats(store, delta_week):
     current_week = datetime_now().isocalendar()[1]
 
     # TODO improve models with year+week
-    hourlyentry = store.find(Stats)
+    hourlyentry = store.find(Stats, Stats.week == looked_week, Stats.year == looked_year)
 
     week_entries = 0
     week_map= [ [ dict() for i in xrange(24) ] for j in xrange(7) ]
 
     # Loop over the DB stats to fill the appropriate heatmap
     for hourdata in hourlyentry:
-
-        # This need to be optimized at store.find level
-        if int(hourdata.start.isocalendar()[1]) != looked_week:
-            continue
-        if int(hourdata.start.isocalendar()[0]) != looked_year:
-            continue
 
         # .weekday() return be 0..6
         stats_day = int(hourdata.start.weekday())
@@ -287,9 +281,8 @@ class StatsCollection(BaseHandler):
             answer.update(stats_block)
         else:
             log.debug("Asking statistics for this week")
-            ret = yield GLApiCache.get('stats', self.request.language, get_stats, 0)
-            # stats_block = yield get_stats(0)
-            answer.update(ret)
+            stats_block = yield get_stats(0)
+            answer.update(stats_block)
 
         self.finish(answer)
 
@@ -299,7 +292,6 @@ class StatsCollection(BaseHandler):
     def get(self):
 
         stats_block = yield get_stats(0)
-
         answer = {'week_delta': 0 }
         answer.update(stats_block)
         self.finish(answer)
