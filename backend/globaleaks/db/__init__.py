@@ -187,69 +187,6 @@ def check_db_files():
         except StandardError:
             continue
 
-def check_schema_version():
-    """
-    @return: True of che version is the same, False if the
-        sqlite.sql describe a different schema of the one found
-        in the DB.
-
-    ok ok, this is a dirty check. I'm counting the number of
-    *comma* (,) inside the SQL just to check if a new column
-    has been added. This would help if an incorrect DB version
-    is used. For sure there are other better checks, but not
-    today.
-    """
-
-    db_file = GLSetting.db_uri
-
-    if GLSetting.db_type == 'sqlite':
-        db_file = GLSetting.db_uri.replace('sqlite:', '')
-
-        if not os.path.exists(db_file):
-            return True
-
-    if not os.access(GLSetting.db_schema_file, os.R_OK):
-        log.err("Unable to access %s" % GLSetting.db_schema_file)
-        return False
-    else:
-        ret = True
-
-        with open(GLSetting.db_schema_file) as f:
-            sqlfile = f.readlines()
-            comma_number = "".join(sqlfile).count(',')
-
-        zstorm = ZStorm()
-        db_uri = GLSetting.db_uri.replace("?foreign_keys=O", "")
-        zstorm.set_default_uri(GLSetting.store_name, db_uri)
-        store = zstorm.get(GLSetting.store_name)
-
-        q = """
-            SELECT name, type, sql
-            FROM sqlite_master
-            WHERE sql NOT NULL AND type == 'table'
-            """
-
-        res = store.execute(q)
-
-        comma_compare = 0
-        for table in res:
-            if len(table) == 3:
-                comma_compare += table[2].count(',')
-
-        if not comma_compare:
-            log.err("Found an empty database (%s)" % db_file)
-            ret = False
-
-        elif comma_compare != comma_number:
-            log.err("Detected an invalid DB version (%s)" %  db_file)
-            log.err("You have to specify a different workingdir (-w) or to upgrade the DB")
-            ret = False
-
-        store.close()
-
-    return ret
-
-
 @transact_ro
 def get_tracked_files(store):
     """
