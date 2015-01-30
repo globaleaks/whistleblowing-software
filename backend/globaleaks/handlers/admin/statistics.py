@@ -12,7 +12,7 @@ from storm.expr import Desc
 
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact_ro, transact
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import transport_security_check, \
     authenticated
 from globaleaks.jobs.statistics_sched import StatisticsSchedule
@@ -91,12 +91,12 @@ def get_stats(store, delta_week):
         }
 
         if week_map[stats_day][stats_hour]:
-            log.err("Stats conflict ? hour duplicated %s vs %s on %d %d" % (
-                week_map[stats_day][stats_hour],
-                hourly_dict,
-                stats_day,
-                stats_hour)
-            )
+            # log.err("Stats conflict ? hour duplicated %s vs %s on %d %d" % (
+            #    week_map[stats_day][stats_hour],
+            #    hourly_dict,
+            #    stats_day,
+            #     stats_hour)
+            #)
             continue
 
         week_map[stats_day][stats_hour] = hourly_dict
@@ -274,6 +274,7 @@ class StatsCollection(BaseHandler):
         request = self.validate_message(self.request.body,
             requests.adminStats)
 
+
         proper_delta = int(request['week_delta']) * -1
         # log.debug("XXX %s" % request['report_link'])
 
@@ -286,8 +287,9 @@ class StatsCollection(BaseHandler):
             answer.update(stats_block)
         else:
             log.debug("Asking statistics for this week")
-            stats_block = yield get_stats(0)
-            answer.update(stats_block)
+            ret = yield GLApiCache.get('stats', self.request.language, get_stats, 0)
+            # stats_block = yield get_stats(0)
+            answer.update(ret)
 
         self.finish(answer)
 

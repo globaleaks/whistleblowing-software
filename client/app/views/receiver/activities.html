@@ -2,13 +2,15 @@
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/receiver/sidebar.html'" data-ng-controller="ReceiverSidebarCtrl"></div>
   <div class="col-md-9">
     <div id="TipsList" class="row">
-      <div data-translate>New Tips</div>
+      <div data-translate>
+        New Tips <a ng-click="clear_tip()">#.</a>
+      </div>
       <div class="table table-responsive">
         <table class="table table-bordered">
           <thead>
             <tr>
               <th class="col-md-2">
-                <span>Tip</span> <a ng-click="clear_tip()">#.</a>
+                <span>Tip</span>
               </th>
               <th class="col-md-2">
                 <span data-translate>When</span>
@@ -39,7 +41,7 @@
     </div>
     <div id="ActivitiesLists" class="row">
       <div data-translate>
-        New activities on Tips <a ng-click="clear_activities()">#.</a>
+        New activities on Tips <a ng-click="clear_tip()">#.</a>
       </div>
       <div class="table table-responsive">
         <table class="table table-bordered">

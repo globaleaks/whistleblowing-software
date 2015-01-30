@@ -15,7 +15,7 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
     /* 2014-11-09T13:38:22.707125Z  with [:-8] */
     var parseISODate = d3.time.format("%Y-%m-%dT%H:%M:%S").parse;
 
-    var show_data = function(data) {
+    var show_data = function(data, $scope) {
 
       /*
       {
@@ -110,6 +110,36 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
           .attr("height", gridSize)
           .style("fill", function(d) {
               return colors[0]
+          }).on("mouseenter", function(d) {
+              $scope.blob = {
+                  'value' : d.value,
+                  'logins_failed' : d.logins_failed,
+                  'logins_successful' : d.logins_successful,
+                  'submissions_started' : d.submissions_started,
+                  'submissions_completed' : d.submissions_completed
+              };
+                /*
+              $filter('translate')('Completed submissions') + ' : ' + d.submissions_completed + '\n' +
+              $filter('translate')('Uploaded files') + ' : ' + d.uploaded_files + '\n' +
+              $filter('translate')('Appended files') + ' : ' + d.appended_files + '\n' +
+              $filter('translate')('Whistleblower Comments') + ': ' + d.wb_comments + '\n' +
+              $filter('translate')('Whistleblower Message') + ': ' + d.wb_messages + '\n' +
+              $filter('translate')('Receiver comments') + ': ' + d.receiver_comments + '\n' +
+              $filter('translate')('Receiver messages') + ': ' + d.receiver_messages + '\n' +
+              $filter('translate')('Free megabytes') + ': ' + d.freemegabytes + '\n'
+              */
+
+          }).on("click", function(d, i) {
+            console.log("append-text");
+            console.log(i);
+            console.log(d);
+            $scope.blob.logins_failed = 66;
+            $scope.blob = {
+                  'value' : d.value,
+                  'logins_failed' : d.logins_failed,
+                  'logins_successful' : d.logins_successful,
+                  'submissions_started' : d.submissions_started
+            };
           });
 
       heatMap.transition().duration(1000)
@@ -153,34 +183,19 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
               return colors[i];
           });
 
-
-        /*
-        $filter('translate')('Failed logins') + ': ' + d.logins_failed + '\n' +
-        $filter('translate')('Successful logins') + ': ' + d.logins_successful + '\n' +
-        $filter('translate')('Started submissions') + ' : ' + d.submissions_started + '\n' +
-        $filter('translate')('Completed submissions') + ' : ' + d.submissions_completed + '\n' +
-        $filter('translate')('Uploaded files') + ' : ' + d.uploaded_files + '\n' +
-        $filter('translate')('Appended files') + ' : ' + d.appended_files + '\n' +
-        $filter('translate')('Whistleblower Comments') + ': ' + d.wb_comments + '\n' +
-        $filter('translate')('Whistleblower Message') + ': ' + d.wb_messages + '\n' +
-        $filter('translate')('Receiver comments') + ': ' + d.receiver_comments + '\n' +
-        $filter('translate')('Receiver messages') + ': ' + d.receiver_messages + '\n' +
-        $filter('translate')('Free megabytes') + ': ' + d.freemegabytes + '\n'
-        */
-
       legend.append("text")
          .attr("class", "mono")
          .text(function(d) { return "≥ " + Math.round(d); })
          .attr("x", function(d, i) { return legendElementWidth * i; })
          .attr("y", height + gridSize);
+
     };
 
     $scope.stats = StatsCollection.get(function(stats) {
-      console.log(stats);
-      show_data(stats.heatmap);
+      show_data(stats.heatmap, $scope);
       $scope.when = stats.associated_date;
       $scope.complete = stats.complete;
-      $scope.week_delta = stats.week_delta;
+      $scope.week_number = stats.week_delta;
       $scope.week = stats.week;
       $scope.year = stats.year;
     });
@@ -198,11 +213,10 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
             'week_delta': $scope.week_number,
             'stats': []
         }, function(stats) {
-            console.log(stats.heatmap);
-            show_data(stats.heatmap);
+            show_data(stats.heatmap, $scope);
             $scope.when = stats.associated_date;
             $scope.complete = stats.complete;
-            $scope.week_delta = stats.week_delta;
+            $scope.week_number = stats.week_delta;
             $scope.week = stats.week;
             $scope.year = stats.year;
         });
