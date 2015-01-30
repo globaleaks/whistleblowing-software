@@ -143,36 +143,37 @@ class TableReplacer(object):
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
         self.table_history = {
-            'Node': [Node_version_5, Node_version_6, Node_version_7, Node_version_9, None, Node_version_11, None, Node_version_12, Node_version_13, Node_version_14, models.Node, None],
-            'User': [User_version_5, User_version_9, None, None, None, User_version_14, None, None, None, None, models.User, None],
-            'Context': [Context_version_6, None, Context_version_7, Context_version_8, Context_version_11, None, None, Context_version_12, Context_version_13, Context_version_14, models.Context, None],
-            'Receiver': [Receiver_version_7, None, None, Receiver_version_8, Receiver_version_9, Receiver_version_14, None, None, None, None, Receiver_version_15, models.Receiver],
-            'ReceiverFile': [models.ReceiverFile, None, None, None, None, None, None, None, None, None, None, None],
-            'Notification': [Notification_version_7, None, None, Notification_version_8, Notification_version_14, None, None, None, None, None, Notification_version_15, models.Notification],
-            'Comment': [Comment_version_5, Comment_version_14, None, None, None, None, None, None, None, None, models.Comment, None],
-            'InternalTip': [InternalTip_version_10, None, None, None, None, None, InternalTip_version_14, None, None, None, models.InternalTip, None],
-            'InternalFile': [InternalFile_version_7, None, None, InternalFile_version_10, None, None, models.InternalFile, None, None, None, None, None],
-            'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None, None, None, None],
-            'ReceiverTip': [models.ReceiverTip, None, None, None, None, None, None , None, None, None, None, None],
-            'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None, None, None],
-            'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None, None, None],
-            'Message': [models.Message, None, None, None, None, None, None, None, None, None, None, None],
-            'Stats': [Stats_version_14, None, None, None, None, None, None, None, None, None, models.Stats, None],
-            'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None, None],
-            'Field': [models.Field, None, None, None, None, None, None, None, None, None, None, None],
-            'FieldOption': [models.FieldOption, None, None, None, None, None, None, None, None, None, None, None],
-            'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None, None, None],
-            'Step': [models.Step, None, None, None, None, None, None, None, None, None, None, None],
-            'StepField': [models.StepField, None, None, None, None, None, None, None, None, None, None, None],
-            'Anomalies': [models.Anomalies, None, None, None, None, None, None, None, None, None, None, None],
-            'EventLogs': [models.EventLogs, None, None, None, None, None, None, None, None, None, None, None],
+            'Node': [Node_version_9, None, Node_version_11, None, Node_version_12, Node_version_13, Node_version_14, models.Node, None],
+            'User': [User_version_9, None, User_version_14, None, None, None, None, models.User, None],
+            'Context': [Context_version_8, Context_version_11, None, None, Context_version_12, Context_version_13, Context_version_14, models.Context, None],
+            'Receiver': [Receiver_version_8, Receiver_version_9, Receiver_version_14, None, None, None, None, Receiver_version_15, models.Receiver],
+            'ReceiverFile': [models.ReceiverFile, None, None, None, None, None, None, None, None],
+            'Notification': [Notification_version_8, Notification_version_14, None, None, None, None, None, Notification_version_15, models.Notification],
+            'Comment': [Comment_version_14, None, None, None, None, None, None, models.Comment, None],
+            'InternalTip': [InternalTip_version_10, None, None, InternalTip_version_14, None, None, None, models.InternalTip, None],
+            'InternalFile': [InternalFile_version_10, None, None, models.InternalFile, None, None, None, None, None],
+            'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None],
+            'ReceiverTip': [models.ReceiverTip, None, None, None , None, None, None, None, None],
+            'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None],
+            'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None],
+            'Message': [models.Message, None, None, None, None, None, None, None, None],
+            'Stats': [Stats_version_14, None, None, None, None, None, None, models.Stats, None],
+            'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None],
+            'Field': [models.Field, None, None, None, None, None, None, None, None],
+            'FieldOption': [models.FieldOption, None, None, None, None, None, None, None, None],
+            'FieldField': [models.FieldField, None, None, None, None, None, None, None, None],
+            'Step': [models.Step, None, None, None, None, None, None, None, None],
+            'StepField': [models.StepField, None, None, None, None, None, None, None, None],
+            'Anomalies': [models.Anomalies, None, None, None, None, None, None, None, None],
+            'EventLogs': [models.EventLogs, None, None, None, None, None, None, None, None],
         }
 
         for k, v in self.table_history.iteritems():
             # +1 because count start from 0,
-            # -5 because the relase 0,1,2,3,4 are not supported anymore
-            if len(v) != (DATABASE_VERSION + 1 - 5):
-                msg = 'Expecting a table with {} statuses ({})'.format(DATABASE_VERSION, k)
+            # -8 because the relase befor the 8th are not supported anymore
+            length = DATABASE_VERSION + 1 - 8
+            if len(v) != length):
+                msg = 'Expecting a table with {} statuses ({})'.format(length, k)
                 raise TypeError(msg)
 
 
@@ -230,7 +231,7 @@ class TableReplacer(object):
 
     def get_right_model(self, table_name, version):
 
-        table_index = (version - 5)
+        table_index = (version - 8)
 
         if table_name not in self.table_history:
             msg = 'Not implemented usage of get_right_model {} ({} {})'.format(
