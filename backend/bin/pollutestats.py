@@ -85,7 +85,7 @@ def do_statspollute(dbfile):
         newstat.year = when.isocalendar()[0]
         newstat.week = when.isocalendar()[1]
 
-        level = round( (randint(0, 1000) / 200.0), 1)
+        level = round( (randint(0, 1000) / 240.0), 1) - 2
         activity_fake = {
             'logins_successful' : int(randint(0,11) + (5 * level)),
             'logins_failed': int(randint(0, 11) + (5 * level)),
@@ -98,6 +98,10 @@ def do_statspollute(dbfile):
             'receiver_comments': int(randint(0,11) + (5 * level)),
             'receiver_messages': int(randint(0,11) + (5 * level))
         }
+
+        for k, v in activity_fake.iteritems():
+            if v < 0:
+                activity_fake[k] = 0
 
         newstat.start = when
         newstat.summary = activity_fake
