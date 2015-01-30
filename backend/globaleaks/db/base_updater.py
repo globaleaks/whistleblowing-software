@@ -10,7 +10,6 @@ from storm.variables import EnumVariable, IntVariable, RawStrVariable, PickleVar
 from storm.variables import UnicodeVariable, JSONVariable
 
 from globaleaks import DATABASE_VERSION, models
-from globaleaks.db.datainit import load_appdata
 from globaleaks.settings import GLSetting
 
 
@@ -121,10 +120,6 @@ class TableReplacer(object):
 
     def __init__(self, old_db_file, new_db_file, start_ver):
 
-        from globaleaks.db.update_5_6 import User_version_5, Comment_version_5, Node_version_5
-        from globaleaks.db.update_6_7 import Node_version_6, Context_version_6
-        from globaleaks.db.update_7_8 import Node_version_7, Notification_version_7, Context_version_7, \
-            Receiver_version_7, InternalFile_version_7
         from globaleaks.db.update_8_9 import Context_version_8, Receiver_version_8, Notification_version_8
         from globaleaks.db.update_9_10 import Node_version_9, Receiver_version_9, User_version_9
         from globaleaks.db.update_10_11 import InternalTip_version_10, InternalFile_version_10
@@ -143,36 +138,37 @@ class TableReplacer(object):
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
         self.table_history = {
-            'Node': [Node_version_9, None, Node_version_11, None, Node_version_12, Node_version_13, Node_version_14, models.Node, None],
-            'User': [User_version_9, None, User_version_14, None, None, None, None, models.User, None],
-            'Context': [Context_version_8, Context_version_11, None, None, Context_version_12, Context_version_13, Context_version_14, models.Context, None],
-            'Receiver': [Receiver_version_8, Receiver_version_9, Receiver_version_14, None, None, None, None, Receiver_version_15, models.Receiver],
-            'ReceiverFile': [models.ReceiverFile, None, None, None, None, None, None, None, None],
-            'Notification': [Notification_version_8, Notification_version_14, None, None, None, None, None, Notification_version_15, models.Notification],
-            'Comment': [Comment_version_14, None, None, None, None, None, None, models.Comment, None],
-            'InternalTip': [InternalTip_version_10, None, None, InternalTip_version_14, None, None, None, models.InternalTip, None],
-            'InternalFile': [InternalFile_version_10, None, None, models.InternalFile, None, None, None, None, None],
-            'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None],
-            'ReceiverTip': [models.ReceiverTip, None, None, None , None, None, None, None, None],
-            'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None],
-            'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None],
-            'Message': [models.Message, None, None, None, None, None, None, None, None],
-            'Stats': [Stats_version_14, None, None, None, None, None, None, models.Stats, None],
-            'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None],
-            'Field': [models.Field, None, None, None, None, None, None, None, None],
-            'FieldOption': [models.FieldOption, None, None, None, None, None, None, None, None],
-            'FieldField': [models.FieldField, None, None, None, None, None, None, None, None],
-            'Step': [models.Step, None, None, None, None, None, None, None, None],
-            'StepField': [models.StepField, None, None, None, None, None, None, None, None],
-            'Anomalies': [models.Anomalies, None, None, None, None, None, None, None, None],
-            'EventLogs': [models.EventLogs, None, None, None, None, None, None, None, None],
+            'Node': [Node_version_9, None, Node_version_11, None, Node_version_12, Node_version_13, Node_version_14, models.Node, None, None],
+            'User': [User_version_9, None, User_version_14, None, None, None, None, models.User, None, None],
+            'Context': [Context_version_8, Context_version_11, None, None, Context_version_12, Context_version_13, Context_version_14, models.Context, None, None],
+            'Receiver': [Receiver_version_8, Receiver_version_9, Receiver_version_14, None, None, None, None, Receiver_version_15, models.Receiver, None],
+            'ReceiverFile': [models.ReceiverFile, None, None, None, None, None, None, None, None, None],
+            'Notification': [Notification_version_8, Notification_version_14, None, None, None, None, None, Notification_version_15, models.Notification, None],
+            'Comment': [Comment_version_14, None, None, None, None, None, None, models.Comment, None, None],
+            'InternalTip': [InternalTip_version_10, None, None, InternalTip_version_14, None, None, None, models.InternalTip, None, None],
+            'InternalFile': [InternalFile_version_10, None, None, models.InternalFile, None, None, None, None, None, None],
+            'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None, None],
+            'ReceiverTip': [models.ReceiverTip, None, None, None , None, None, None, None, None, None],
+            'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None],
+            'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None],
+            'Message': [models.Message, None, None, None, None, None, None, None, None, None],
+            'Stats': [Stats_version_14, None, None, None, None, None, None, models.Stats, None, None],
+            'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None],
+            'Field': [models.Field, None, None, None, None, None, None, None, None, None],
+            'FieldOption': [models.FieldOption, None, None, None, None, None, None, None, None, None],
+            'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None],
+            'Step': [models.Step, None, None, None, None, None, None, None, None, None],
+            'StepField': [models.StepField, None, None, None, None, None, None, None, None, None],
+            'Anomalies': [models.Anomalies, None, None, None, None, None, None, None, None, None],
+            'EventLogs': [models.EventLogs, None, None, None, None, None, None, None, None, None],
         }
 
         for k, v in self.table_history.iteritems():
             # +1 because count start from 0,
             # -8 because the relase befor the 8th are not supported anymore
+            print k
             length = DATABASE_VERSION + 1 - 8
-            if len(v) != length):
+            if len(v) != length:
                 msg = 'Expecting a table with {} statuses ({})'.format(length, k)
                 raise TypeError(msg)
 
@@ -198,7 +194,7 @@ class TableReplacer(object):
                 for create_query in create_queries:
                     try:
                         self.store_new.execute(create_query+';')
-                    except OperationalError as e:
+                    except OperationalError:
                         log.msg('OperationalError in "{}"'.format(create_query))
             self.store_new.commit()
             return
