@@ -8,7 +8,7 @@
           <thead>
             <tr>
               <th class="col-md-2">
-                <span>Tip</span>
+                <span>Tip</span> <a ng-click="clear_tip()">#.</a>
               </th>
               <th class="col-md-2">
                 <span data-translate>When</span>
@@ -38,7 +38,9 @@
       </div>
     </div>
     <div id="ActivitiesLists" class="row">
-      <div data-translate>New activities on Tips</div>
+      <div data-translate>
+        New activities on Tips <a ng-click="clear_activities()">#.</a>
+      </div>
       <div class="table table-responsive">
         <table class="table table-bordered">
           <thead>
