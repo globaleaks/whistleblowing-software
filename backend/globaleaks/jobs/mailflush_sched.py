@@ -7,6 +7,7 @@
 # database table.
 
 from cyclone.util import ObjectDict as OD
+from storm.expr import Desc
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
@@ -51,22 +52,39 @@ class NotificationMail:
 
 
 @transact_ro
-def load_complete_events(store):
+def load_complete_events(store, event_number=GLSetting.notification_limit):
     """
     _complete_ is explicit because do not serialize, but make an OD() of the description.
 
-    Note: there are a bug in this logic: is are loaded, let say, 3k mail, only 50 are flush
-    in the time window between each mailflush_sched. The next time, 2950 are put in this
-    list, and so on. is better that in this loop only the first email is taken, and then
-    the loop continue, one mail per time.
+    event_number represent the amount of event that can be returned by the function,
+    event to be notified are taken in account later.
     """
 
     node_desc = db_admin_serialize_node(store, GLSetting.defaults.default_language)
 
     event_list = []
     storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)
+    storedevnts.order_by(Desc(EventLogs.creation_date))
 
-    for stev in storedevnts:
+    for i, stev in enumerate(storedevnts):
+
+        if len(event_list) == event_number:
+            log.debug("Maximum number of notification event reach (Mailflush) %d, after %d" %
+                      ( event_number, i ) )
+            break
+
+        if not stev.description['receiver_info']['file_notification'] and \
+                        stev.event_reference['kind'] == 'File':
+            continue
+        if not stev.description['receiver_info']['message_notification'] and \
+                        stev.event_reference['kind'] == 'Message':
+            continue
+        if not stev.description['receiver_info']['comment_notification'] and \
+                        stev.event_reference['kind'] == 'Comment':
+            continue
+        if not stev.description['receiver_info']['tip_notification'] and \
+                        stev.event_reference['kind'] == 'Tip':
+            continue
 
         eventcomplete = OD()
 
@@ -98,7 +116,7 @@ class MailflushSchedule(GLJob):
 
     def ping_mail_flush(self, notification_settings, receivers_syntesis):
         """
-        TODO This function should be implemented as a clean and testable pligin in the
+        TODO This function should be implemented as a clean and testable plugin in the
         way defined in plugin/base.py and plugin/notification.py, and/or is the opportunity
         to review these classes, at the moment is a simplified version that just create a
         ping email and send it via sendmail.
@@ -149,33 +167,26 @@ class MailflushSchedule(GLJob):
     @inlineCallbacks
     def operation(self):
 
+        if not GLSetting.memory_copy.receiver_notif_enable:
+            log.debug("MailFlush: Receiver notification disable")
+            return
+
         queue_events = yield load_complete_events()
 
-        if not GLSetting.memory_copy.receiver_notif_enable:
-            events_in_queue = len(queue_events)
-            if events_in_queue:
-                log.debug("MailFlush: Receiver notification disable: skipping %d events in queue" % events_in_queue)
-            else:
-                log.debug("MailFlush: Receiver notification disable, no events in queue")
+        if not len(queue_events):
             return
 
         plugin = getattr(notification, GLSetting.notification_plugins[0])()
         notifcb = NotificationMail(plugin)
 
-        notification_counter = 0
-
         for qe in queue_events:
 
             notifcb.do_every_notification(qe)
             yield deferred_sleep(3)
-
             # note, this settings has to be multiply for 3 (seconds in this iteration)
-            # and the results (30 * 3) need to be shorter than the periodic running time
+            # and the results (notification_limit * 3) need to be shorter than the periodic running time
             # specified in runner.py, that's why is set at FIVE minutes.
-            if notification_counter >= GLSetting.notification_limit:
-                log.debug("Notification counter has reached the suggested limit: %d (tip)" %
-                          notification_counter)
-                break
+            # the number of 'qe' is capped at GLSetting.notification_limit
 
         # TODO: implement ping as an appropriate plugin
         receivers_synthesis = {}

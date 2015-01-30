@@ -315,6 +315,8 @@ CREATE TABLE anomalies (
 CREATE TABLE stats (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
+    week INTEGER NOT NULL,
+    year INTEGER NOT NULL,
     start VARCHAR NOT NULL,
     freemb INTEGER,
     summary BLOB,
