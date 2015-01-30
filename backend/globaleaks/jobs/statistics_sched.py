@@ -88,9 +88,12 @@ def save_statistics(store, start, end, activity_collection):
 
     newstat = Stats()
 
+    newstat.week = datetime_now().isocalendar()[1]
+    newstat.year = datetime_now().isocalendar()[0]
+
     if activity_collection:
-        log.debug("save_statistics: since %s to %s I've collected: %s" %
-                  (start, end, activity_collection) )
+        log.debug("save_statistics: since %s to %s I've collected: %s [week %d year %d]" %
+                  (start, end, activity_collection, newstat.week, newstat.year) )
 
     newstat.start = start
     newstat.summary = dict(activity_collection)

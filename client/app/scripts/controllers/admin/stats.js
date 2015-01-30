@@ -129,26 +129,25 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
               $filter('translate')('Free megabytes') + ': ' + d.freemegabytes + '\n'
               */
 
-          }).on("click", function(d, i) {
-            console.log("append-text");
+          }).on("click", function(i, d) {
             console.log(i);
             console.log(d);
-            $scope.blob.logins_failed = 66;
             $scope.blob = {
                   'value' : d.value,
                   'logins_failed' : d.logins_failed,
                   'logins_successful' : d.logins_successful,
                   'submissions_started' : d.submissions_started
             };
+            console.log($scope.blob);
           });
 
-      heatMap.transition().duration(1000)
+      heatMap.transition().duration(600)
           .style("fill", function(d) {
               if (d.valid == -1) {
                   return 'white';
               }
               if (d.valid == -2) {
-                  return 'black';
+                  return 'yellow';
               }
               if (d.valid == -3) {
                   return 'red';
@@ -158,9 +157,9 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
 
       heatMap.append("title").text(function(d) {
           // if strings are updated here remember to update client/translation.html to push them on transifex
-          if (d.valid == -1) {
+          if (d.valid == -2) {
               return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('in this hour the node was off.');
-          } else if (d.valid == -2) {
+          } else if (d.valid == -1) {
               return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('no stats available for the future.');
           } else if (d.valid == -3) {
               return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('no stats available for current hour; check activities page.');

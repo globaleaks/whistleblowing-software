@@ -6,7 +6,7 @@
 # Notification implementation, documented along the others asynchronous
 # operations, in Architecture and in jobs/README.md
 
-from twisted.internet.defer import inlineCallbacks, returnValue
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.jobs.base import GLJob
@@ -70,7 +70,11 @@ class EventLogger(object):
         self.context_desc = {}
         self.steps_info_desc = {}
         self.trigger = None
+
+        # this field, do_mail, has to be used as marker, but in fact at the moment
+        # is not used in mailflush.
         self.do_mail = None
+
 
     def import_receiver(self, receiver):
 
@@ -79,30 +83,18 @@ class EventLogger(object):
         if self.trigger == 'Message':
             self.template_type = u'encrypted_message' if \
                 receiver.gpg_key_status == u'Enabled' else u'plaintext_message'
-            if not receiver.message_notification:
-                log.debug("Receiver %s has %s notification disabled" %
-                          (receiver.user.username, self.trigger))
             return receiver.message_notification
         elif self.trigger == 'Tip':
             self.template_type = u'encrypted_tip' if \
                 receiver.gpg_key_status == u'Enabled' else u'plaintext_tip'
-            if not receiver.tip_notification:
-                log.debug("Receiver %s has %s notification disabled" %
-                          (receiver.user.username, self.trigger))
             return receiver.tip_notification
         elif self.trigger == 'Comment':
             self.template_type = u'encrypted_comment' if \
                 receiver.gpg_key_status == u'Enabled' else u'plaintext_comment'
-            if not receiver.comment_notification:
-                log.debug("Receiver %s has %s notification disabled" %
-                          (receiver.user.username, self.trigger))
             return receiver.comment_notification
         elif self.trigger == 'File':
             self.template_type = u'encrypted_file' if \
                 receiver.gpg_key_status == u'Enabled' else u'plaintext_file'
-            if not receiver.file_notification:
-                log.debug("Receiver %s has %s notification disabled" %
-                          (receiver.user.username, self.trigger))
             return receiver.file_notification
         else:
             raise Exception("self.trigger of unexpected kind ? %s" % self.trigger)
@@ -345,10 +337,6 @@ class NotificationSchedule(GLJob):
     def operation(self):
         # TODO: remove notification_status from Model different of EventLogs
 
-        if not GLSetting.memory_copy.receiver_notif_enable:
-            log.debug("Notification: Receiver mail disable: skipping event loader")
-            returnValue(None)
-
         tips_events = TipEventLogger()
         yield tips_events.load_tips()
         yield save_event_db(tips_events.events)
@@ -365,7 +353,8 @@ class NotificationSchedule(GLJob):
         yield files_events.load_files()
         yield save_event_db(files_events.events)
 
-        if any([len(files_events), len(messages_events),
-                len(comments_events), len(tips_events)]):
+        if any([len(files_events.events), len(messages_events.events),
+                len(comments_events.events), len(tips_events.events)]):
             log.debug("Notification: generated Events: %d tips, %d comments, %d messages, %d files" % (
-                len(tips_events), len(comments_events), len(messages_events), len(files_events) ) )
+                len(tips_events.events), len(comments_events.events),
+                len(messages_events.events), len(files_events.events) ) )
