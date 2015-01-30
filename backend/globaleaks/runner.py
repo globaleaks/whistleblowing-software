@@ -10,7 +10,7 @@ from twisted.python.util import untilConcludes
 from twisted.internet import reactor
 
 from globaleaks.utils.utility import log, datetime_now
-from globaleaks.db import create_tables, check_schema_version, clean_untracked_files
+from globaleaks.db import create_tables, clean_untracked_files
 from globaleaks.db.datainit import import_memory_variables, apply_cli_options
 from globaleaks.settings import GLSetting
 
@@ -78,9 +78,6 @@ def globaleaks_start():
 
     if not GLSetting.accepted_hosts:
         log.err("Missing a list of hosts usable to contact GLBackend, abort")
-        return False
-
-    if not check_schema_version():
         return False
 
     d = create_tables()
