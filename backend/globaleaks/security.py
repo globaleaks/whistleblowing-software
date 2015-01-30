@@ -22,7 +22,7 @@ from gnupg import GPG
 from tempfile import _TemporaryFileWrapper
 
 from globaleaks.rest import errors
-from globaleaks.utils.utility import log, acquire_bool, datetime_null, ISO8601_to_day_str
+from globaleaks.utils.utility import log, acquire_bool, datetime_null, datetime_to_day_str
 from globaleaks.settings import GLSetting
 from globaleaks.models import ReceiverTip, Receiver
 from globaleaks.third_party.rstr import xeger
@@ -376,7 +376,7 @@ class GLBGPG(object):
 
                 if key['expires']:
                     expiration = datetime.utcfromtimestamp(int(key['expires']))
-                    exp_date = ISO8601_to_day_str(expiration)
+                    exp_date = datetime_to_day_str(expiration)
                 else:
                     exp_date = u'Never'
 
