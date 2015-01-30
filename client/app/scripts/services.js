@@ -572,7 +572,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     return $resource('/receiver/tips', {}, {'update': {method: 'PUT'}});
 }]).
   factory('ReceiverNotification', ['$resource', function($resource) {
-    return $resource('/receiver/notifications');
+    return $resource('/receiver/notifications', {}, {'update': {method: 'PUT'}});
 }]).
   factory('ReceiverOverview', ['$resource', function($resource) {
     return $resource('/admin/overview/users');

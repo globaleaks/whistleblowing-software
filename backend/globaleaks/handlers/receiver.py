@@ -303,7 +303,7 @@ def delete_receiver_notif(store, receiver_id):
 
 class NotificationCollection(BaseHandler):
     """
-    This interface retern a list of the notification for the receiver,
+    This interface return a list of the notification for the receiver,
     is used in the landing page, and want be a list of the recent
     activities for the journalist/rcvr.
     """
@@ -318,7 +318,7 @@ class NotificationCollection(BaseHandler):
         self.finish(display_event)
 
     @inlineCallbacks
-    def delete(self):
+    def put(self):
         # support DELETE /receiver/notification/(activities|tips) for mass-selective delete ?
 
         yield delete_receiver_notif(self.current_user.user_id)
