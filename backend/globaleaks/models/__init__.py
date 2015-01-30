@@ -774,6 +774,11 @@ class Step(Model):
 
 class Stats(Model):
     start = DateTime()
+
+    # useful to make a more performing query via Storm.
+    # week = Int()
+    # year = Int()
+
     summary = JSON()
     freemb = Int()
 
