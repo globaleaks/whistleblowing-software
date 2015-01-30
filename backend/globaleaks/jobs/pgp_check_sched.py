@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+
 #
 #   pgp_check_sched
 #   ***************
@@ -9,12 +9,22 @@
 #     if keys configured by receiver are going
 #     to expire in short time, if so, send a warning email to the recipient.
 #
+from cyclone.util import ObjectDict as OD
 from twisted.internet.defer import inlineCallbacks
 
+from datetime import datetime, timedelta
+
+from globaleaks.handlers.node import anon_serialize_node
+from globaleaks.handlers.admin import admin_serialize_user, admin_serialize_receiver
+from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import Receiver
-from globaleaks.settings import transact
+from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.security import GLBGPG
+from globaleaks.utils.mailutils import MIME_mail_build, sendmail
+from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.templating import Templating
+
 
 __all__ = ['PGPCheckSchedule']
 
@@ -22,136 +32,102 @@ class PGPCheckSchedule(GLJob):
 
     @transact
     def pgp_validation_check(self, store):
+        expired_or_expiring = []
 
         rcvrs = store.find(Receiver)
 
         for rcvr in rcvrs:
 
-            fake_receiver_dict = {'username': rcvr.user.username}
+            if rcvr.gpg_key_armor:
+               if rcvr.gpg_key_expiration < datetime_now():
+                   expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSetting.memory_copy.default_language))
+                   rcvr.gpg_key_status = u'Disabled'
+               elif rcvr.gpg_key_expiration < datetime_now() - timedelta(days=15):
+                   expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSetting.memory_copy.default_language))
 
-            gnob = GLBGPG(fake_receiver_dict)
+        return expired_or_expiring
 
-            if rcvr.gpg_key_armor and gnob.validate_key(rcvr.gpg_key_armor):
-                rcvr.gpg_key_info = gnob.keyinfo
-                rcvr.gpg_key_fingerprint = gnob.fingerprint
-                rcvr.gpg_key_status = u'Enabled'
-                rcvr.gpg_enable_notification = True
-            else:
-                rcvr.gpg_key_info = None
-                rcvr.gpg_key_fingerprint = None
-                rcvr.gpg_key_status = u'Disabled'
-                rcvr.gpg_key_armor = None
-                rcvr.gpg_enable_notification = False
+    @inlineCallbacks
+    def send_admin_pgp_alerts(self, node_desc, admin_desc, notification_settings, expired_or_expiring):
+        fakeevent = OD()
+        fakeevent.type = u'admin_pgp_alert'
+        fakeevent.node_info = node_desc
+        fakeevent.context_info = None
+        fakeevent.steps_info = None
+        fakeevent.receiver_info = None
+        fakeevent.tip_info = None
+        fakeevent.subevent_info = {'expired_or_expiring': expired_or_expiring}
 
-            gnob.destroy_environment()
+        body = Templating().format_template(
+            notification_settings['admin_pgp_alert_mail_template'], fakeevent)
+        title = Templating().format_template(
+            notification_settings['admin_pgp_alert_mail_title'], fakeevent)
 
+        to_address = node_desc['email']
+        message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
+                                  GLSetting.memory_copy.notif_source_email,
+                                  to_address,
+                                  to_address,
+                                  title,
+                                  body)
+
+        yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
+                       authentication_password=GLSetting.memory_copy.notif_password,
+                       from_address=GLSetting.memory_copy.notif_source_email,
+                       to_address=to_address,
+                       message_file=message,
+                       smtp_host=GLSetting.memory_copy.notif_server,
+                       smtp_port=GLSetting.memory_copy.notif_port,
+                       security=GLSetting.memory_copy.notif_security,
+                       event=None)
+
+    @inlineCallbacks
+    def send_pgp_alerts(self, node_desc, receiver_desc, notification_settings):
+        fakeevent = OD()
+        fakeevent.type = u'pgp_alert'
+        fakeevent.node_info = node_desc
+        fakeevent.context_info = None
+        fakeevent.steps_info = None
+        fakeevent.receiver_info = receiver_desc
+        fakeevent.tip_info = None
+        fakeevent.subevent_info = None
+
+        body = Templating().format_template(
+            notification_settings['pgp_alert_mail_template'], fakeevent)
+        title = Templating().format_template(
+            notification_settings['pgp_alert_mail_title'], fakeevent)
+
+        to_address = receiver_desc['mail_address']
+        message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
+                                  GLSetting.memory_copy.notif_source_email,
+                                  to_address,
+                                  to_address,
+                                  title,
+                                  body)
+
+        yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
+                       authentication_password=GLSetting.memory_copy.notif_password,
+                       from_address=GLSetting.memory_copy.notif_source_email,
+                       to_address=to_address,
+                       message_file=message,
+                       smtp_host=GLSetting.memory_copy.notif_server,
+                       smtp_port=GLSetting.memory_copy.notif_port,
+                       security=GLSetting.memory_copy.notif_security,
+                       event=None)
 
     @inlineCallbacks
     def operation(self):
-        yield self.pgp_validation_check()
+        expired_or_expiring = yield self.pgp_validation_check()
 
+        admin_user = yield admin_serialize_user('admin')
 
-"""
-     @transact
-     def check_expiration_date(self, store):
+        node_desc = yield anon_serialize_node(admin_user['language'])
 
-         all_rcvs = store.find(Receiver)
+        notification_settings = yield get_notification(admin_user['language'])
 
-         keylist = []
-         keytrack = {}
+        if expired_or_expiring:
+            yield self.send_admin_pgp_alerts(node_desc, admin_user, notification_settings, expired_or_expiring)
 
-         for sr in all_rcvs:
-             if sr.gpg_key_status == Receiver._gpg_types[1]: # Enabled
-                 keylist.append(sr.gpg_key_armor)
-
-                 if 'gpg_key_fingerprint' in keytrack:
-                     log.err("[!?] Duplicated key fingerprint between %s and %s" %
-                             (sr.user.username, keytrack[sr.gpg_key_fingerprint]))
-
-                 keytrack.update({sr.gpg_key_fingerprint : sr.user.username })
-
-         if not keytrack:
-             log.debug("PGP/GPG key expiration check: no keys configured in this node")
-             return dict({}), dict({}), dict({})
-
-         dates = get_expirations(keylist)
-
-         today_dt = datetime.date.today()
-         lowurgency = datetime.timedelta(weeks=2)
-         highurgency = datetime.timedelta(days=3)
-
-         # the return values
-         expiring_keys_3d = {}
-         expiring_keys_2w = {}
-         expired_keys = {}
-
-         for keyid, sincepoch in dates.iteritems():
-
-             expiration_dt = datetime.datetime.utcfromtimestamp(int(sincepoch)).date()
-
-             # simply, all the keys here are expired
-             if expiration_dt < today_dt:
-                 continue
-
-             key_timetolife = (expiration_dt - today_dt)
-
-             if key_timetolife < highurgency:
-
-                 expiring_keys_3d.update({ keytrack[keyid]: sincepoch})
-             elif key_timetolife < lowurgency:
-                 expiring_keys_2w.update({ keytrack[keyid]: sincepoch})
-             else:
-                 expired_keys.update({ keytrack[keyid]: sincepoch })
-
-         return expiring_keys_2w, expiring_keys_3d, expired_keys
-
-    @inlineCallbacks
-    def pgp_expire_check(self):
-
-        try:
-            (two_weeks, three_days, gone) = yield self.check_expiration_date()
-
-            messages = dict({})
-
-            for username, sincepoch in two_weeks.iteritems():
-                messages.update({ username : untranslated_template % "expire in two weeks" })
-
-            for username, sincepoch in three_days.iteritems():
-                messages.update({ username : untranslated_template % "expire in three days" })
-
-            for username, sincepoch in gone.iteritems():
-                messages.update({ username : untranslated_template % "it's already expired" })
-
-            for recipient, message in messages.iteritems():
-
-                mail_building = ["Date: %s" % rfc822_date(),
-                                 "From: \"%s\" <%s>" %
-                                 ( GLSetting.memory_copy.notif_source_name,
-                                   GLSetting.memory_copy.notif_source_email ),
-                                 "To: %s" % recipient,
-                                 "Subject: Your PGP key expiration date is coming",
-                                 "Content-Type: text/plain; charset=ISO-8859-1",
-                                 "Content-Transfer-Encoding: 8bit", None,
-                                 message]
-
-                mail_content = collapse_mail_content(mail_building)
-
-                if not mail_content:
-                    log.err("Unable to format (and then notify!) PGP key incoming expiration for %s" % recipient)
-                    log.debug(mail_building)
-                    return
-
-                sendmail(GLSetting.memory_copy.notif_username,
-                         GLSetting.memory_copy.notif_password,
-                         GLSetting.memory_copy.notif_username,
-                         [ recipient ],
-                         mail_content,
-                         GLSetting.memory_copy.notif_server,
-                         GLSetting.memory_copy.notif_port,
-                         GLSetting.memory_copy.notif_security)
-
-        except Exception as excep:
-            log.err("Error in PGP key expiration check: %s (failure ignored)" % excep)
-            return
-"""
+            for receiver_desc in expired_or_expiring:
+                yield self.send_pgp_alerts(node_desc, receiver_desc, notification_settings)
 

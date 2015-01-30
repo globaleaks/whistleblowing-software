@@ -380,17 +380,23 @@
       "encrypted_comment_template": {
         "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that %CommentSource%\nhas added a comment to a previously notified Tip (%TipTorURL%) in %EventTime%.\n\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
       },
-      "pgp_expiration_alert": {
-        "en": "Dear %ReceiverName%,\n\nThis is an e-mail to inform you that your PGP key will expire on %PGPExpirationDate%\n\nWithout a valid PGP key, the system will not be able to send you encrypted notifications.\n\nYou should extend its validity and update the key present on the GlobaLeaks nodes you are subscribed to or upload a new key.\n\nKind regards,\n%NodeSignature%\n"
-      },
-      "pgp_expiration_notice": {
-        "en": "Dear %ReceiverName%,\n\nThis is an e-mail to inform you that your PGP key expired on %PGPExpirationDate%.\n\nWithout a valid PGP key, the system will not be able to send you encrypted notifications.\n\nYou should extend its validity and update the key present on the GlobaLeaks nodes you are subscribed to or upload a new key.\n\nKind regards,\n%NodeSignature%\n"
-      },
       "ping_mail_template": {
         "en": "Dear %ReceiverName%,\n\nThere are %EventCount% good reason to connect exactly where you know!\n"
       },
       "ping_mail_title": {
         "en": "There are %EventCount% good reason to..."
+      },
+      "admin_pgp_alert_mail_template": {
+        "en": "Dear Globaleaks Node Administrator,\n\nThis is an e-mail to inform you that the PGP key of the following users is going to expire or is already expired:\n\n%PGPKeyInfoList%\n\nWithout a valid PGP key, the system will not be able to send them encrypted notifications.\n\nKind regards,\n%NodeSignature%\n', u'ca': u'Dear Globaleaks Node Administrator,\n\nThis is an e-mail to inform you that the PGP key of the following users is going to expire or is already expired:\n\n%PGPKeyInfoList%\n\nWithout a valid PGP key, the system will not be able to send them encrypted notifications.\n\nKind regards,\n%NodeSignature%\n"
+      },
+      "admin_pgp_alert_mail_title": {
+        "en": "PGP Key Expiration Alert\n"
+      },
+      "pgp_alert_mail_template": {
+        "en": "Dear %ReceiverName%,\n\nThis is an e-mail to inform you that your PGP key is expiring or already expired.\n\n%PGPKeyInfo%\n\nWithout a valid PGP key, the system will not be able to send you encrypted notifications.\n\nYou should extend its validity and update the key present on the GlobaLeaks nodes you are subscribed to or upload a new key.\n\nKind regards,\n%NodeSignature%\n"
+      },
+      "pgp_alert_mail_title": {
+        "en": "PGP Key Expiration Alert\n"
       },
       "security": "TLS",
       "encrypted_file_mail_title": {

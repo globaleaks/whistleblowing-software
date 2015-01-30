@@ -15,6 +15,8 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 
+from gnupg import GPG
+
 from globaleaks import db, models, security, anomaly
 from globaleaks.db.datainit import load_appdata, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
@@ -27,10 +29,10 @@ from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched
 from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.plugins import notification
 from globaleaks.settings import GLSetting, transact, transact_ro
+from globaleaks.security import GLSecureTemporaryFile
+from globaleaks.third_party import rstr
 from globaleaks.utils import mailutils
 from globaleaks.utils.utility import datetime_null, uuid4, log
-from globaleaks.third_party import rstr
-from globaleaks.security import GLSecureTemporaryFile
 
 from . import TEST_DIR
 
@@ -45,9 +47,14 @@ INVALID_PASSWORD = u'antani'
 
 FIXTURES_PATH = os.path.join(TEST_DIR, 'fixtures')
 
+with open(os.path.join(TEST_DIR, 'keys/valid_pgp_key1.txt')) as pgp_file:
+    VALID_PGP_KEY1 = pgp_file.read()
 
-with open(os.path.join(TEST_DIR, 'valid_pgp_key.txt')) as pgp_file:
-    VALID_PGP_KEY = pgp_file.read()
+with open(os.path.join(TEST_DIR, 'keys/valid_pgp_key2.txt')) as pgp_file:
+    VALID_PGP_KEY2 = pgp_file.read()
+
+with open(os.path.join(TEST_DIR, 'keys/expired_pgp_key.txt')) as pgp_file:
+    EXPIRED_PGP_KEY = pgp_file.read()
 
 transact.tp = FakeThreadPool()
 authentication.reactor = task.Clock()
@@ -67,7 +74,6 @@ class UTlog:
 log.err = UTlog.err
 log.debug = UTlog.debug
 
-
 def export_fixture(*models):
     """
     Return a valid json object holding all informations handled by the fields.
@@ -80,6 +86,7 @@ def export_fixture(*models):
         'fields': model.dict(),
         'class': model.__class__.__name__,
     } for model in models], default=str, indent=2)
+
 
 @transact
 def import_fixture(store, fixture):
@@ -153,10 +160,10 @@ class TestGL(unittest.TestCase):
 
         if self.encryption_scenario == 'MIXED':
             self.dummyReceiver_1['gpg_key_armor'] = None
-            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY
+            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY1
         elif self.encryption_scenario == 'ALL_ENCRYPTED':
-            self.dummyReceiver_1['gpg_key_armor'] = VALID_PGP_KEY
-            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY
+            self.dummyReceiver_1['gpg_key_armor'] = VALID_PGP_KEY1
+            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY2
         elif self.encryption_scenario == 'ALL_PLAINTEXT':
             self.dummyReceiver_1['gpg_key_armor'] = None
             self.dummyReceiver_2['gpg_key_armor'] = None
@@ -606,14 +613,17 @@ class MockDict():
             'gpg_key_info': u'',
             'gpg_key_fingerprint' : u'',
             'gpg_key_status': models.Receiver._gpg_types[0], # disabled
-            'gpg_key_armor' : u'',
-            'gpg_enable_notification': False,
+            'gpg_key_armor': u'',
+            'gpg_key_expiration': u'',
             'gpg_key_remove': False,
             'presentation_order': 0,
             'timezone': 0,
             'language': u'en',
             'configuration': 'default'
         }
+
+        self.dummyReceiverGPG = copy.deepcopy(self.dummyReceiver)
+        self.dummyReceiverGPG['gpg_key_armor'] = VALID_PGP_KEY1
 
         self.dummyFieldTemplates = [
         {

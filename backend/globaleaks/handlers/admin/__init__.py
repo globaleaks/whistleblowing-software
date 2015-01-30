@@ -96,6 +96,37 @@ def admin_serialize_node(*args):
     return db_admin_serialize_node(*args)
 
 
+def db_admin_serialize_user(store, username):
+    """
+    Serialize user description
+
+    :param store: the store on which perform queries.
+    :param username: the username of the user to be serialized
+    :param language: the language in which to localize data
+    :return: a serialization of the object
+    """
+    user = store.find(models.User, models.User.username == unicode(username)).one()
+
+    ret_dict = {
+        'username': user.username,
+        'password': user.password,
+        'salt': user.salt,
+        'role': user.role,
+        'state': user.state,
+        'last_login': datetime_to_ISO8601(user.last_login),
+        'language': user.language,
+        'timezone': user.timezone,
+        'password_change_needed': user.password_change_needed,
+        'password_change_date': user.password_change_date
+    }
+
+    return ret_dict
+
+@transact_ro
+def admin_serialize_user(*args):
+    return db_admin_serialize_user(*args)
+
+
 def db_create_step(store, context_id, steps, language):
     """
     Add the specified steps
@@ -258,8 +289,8 @@ def admin_serialize_receiver(receiver, language):
         "gpg_key_armor": receiver.gpg_key_armor,
         "gpg_key_remove": False,
         "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
+        "gpg_key_expiration": datetime_to_ISO8601(receiver.gpg_key_expiration),
         "gpg_key_status": receiver.gpg_key_status,
-        "gpg_enable_notification": receiver.gpg_enable_notification,
         "comment_notification": receiver.comment_notification,
         "tip_notification": receiver.tip_notification,
         "file_notification": receiver.file_notification,

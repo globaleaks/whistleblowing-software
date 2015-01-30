@@ -1,6 +1,8 @@
 Dear %ReceiverName%,
 
-This is an e-mail to inform you that your PGP key will expire on %PGPExpirationDate%
+This is an e-mail to inform you that your PGP key is expiring or already expired.
+
+%PGPKeyInfo%
 
 Without a valid PGP key, the system will not be able to send you encrypted notifications.
 

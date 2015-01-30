@@ -367,9 +367,25 @@ def ISO8601_to_pretty_str(isodate):
                     day=int(isodate[8:10]),
                     hour=int(isodate[11:13]),
                     minute=int(isodate[14:16]),
-                    second=int(isodate[17:19]) )
+                    second=int(isodate[17:19]))
 
     return datetime_to_pretty_str(date)
+
+def ISO8601_to_day_str(isodate):
+    """
+    convert a ISO8601 in DD/MM/YYYY formatted str
+    """
+    if isodate is None:
+        isodate = datetime_null().isoformat()
+
+    date = datetime(year=int(isodate[0:4]),
+                    month=int(isodate[5:7]),
+                    day=int(isodate[8:10]),
+                    hour=int(isodate[11:13]),
+                    minute=int(isodate[14:16]),
+                    second=int(isodate[17:19]))
+
+    return date.strftime("%d/%m/%Y")
 
 def datetime_to_pretty_str_tz(date):
     """

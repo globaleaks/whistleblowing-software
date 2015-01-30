@@ -129,6 +129,7 @@ class TableReplacer(object):
         from globaleaks.db.update_14_15 import Node_version_14, User_version_14, Context_version_14, Receiver_version_14, \
             InternalTip_version_14, Notification_version_14, Stats_version_14, Comment_version_14
         from globaleaks.db.update_15_16 import Receiver_version_15, Notification_version_15
+        from globaleaks.db.update_16_17 import Receiver_version_16, Notification_version_16
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -141,9 +142,9 @@ class TableReplacer(object):
             'Node': [Node_version_9, None, Node_version_11, None, Node_version_12, Node_version_13, Node_version_14, models.Node, None, None],
             'User': [User_version_9, None, User_version_14, None, None, None, None, models.User, None, None],
             'Context': [Context_version_8, Context_version_11, None, None, Context_version_12, Context_version_13, Context_version_14, models.Context, None, None],
-            'Receiver': [Receiver_version_8, Receiver_version_9, Receiver_version_14, None, None, None, None, Receiver_version_15, models.Receiver, None],
+            'Receiver': [Receiver_version_8, Receiver_version_9, Receiver_version_14, None, None, None, None, Receiver_version_15, Receiver_version_16, models.Receiver],
             'ReceiverFile': [models.ReceiverFile, None, None, None, None, None, None, None, None, None],
-            'Notification': [Notification_version_8, Notification_version_14, None, None, None, None, None, Notification_version_15, models.Notification, None],
+            'Notification': [Notification_version_8, Notification_version_14, None, None, None, None, None, Notification_version_15, Notification_version_16, models.Notification],
             'Comment': [Comment_version_14, None, None, None, None, None, None, models.Comment, None, None],
             'InternalTip': [InternalTip_version_10, None, None, InternalTip_version_14, None, None, None, models.InternalTip, None, None],
             'InternalFile': [InternalFile_version_10, None, None, models.InternalFile, None, None, None, None, None, None],
@@ -166,7 +167,6 @@ class TableReplacer(object):
         for k, v in self.table_history.iteritems():
             # +1 because count start from 0,
             # -8 because the relase befor the 8th are not supported anymore
-            print k
             length = DATABASE_VERSION + 1 - 8
             if len(v) != length:
                 msg = 'Expecting a table with {} statuses ({})'.format(length, k)

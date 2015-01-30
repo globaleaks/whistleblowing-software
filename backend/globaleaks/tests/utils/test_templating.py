@@ -54,6 +54,15 @@ ping_keyword_list = [
     "%EventCount%"
 ]
 
+admin_pgp_alert_keywords = [
+    "%PGPKeyInfoList%"
+]
+
+pgp_alert_keywords = [
+    "%PGPKeyInfo%"
+]
+
+
 templates_desc = {
     "admin_anomaly_template":
         [generic_keyword_list, alarm_keyword_list],
@@ -85,12 +94,6 @@ templates_desc = {
     "encrypted_tip_template":
         [generic_keyword_list, tip_keyword_list, protected_keyword_list],
 
-    "pgp_expiration_alert":
-        [generic_keyword_list],
-
-    "pgp_expiration_notice":
-        [generic_keyword_list],
-
     "plaintext_comment_mail_title":
         [generic_keyword_list, tip_keyword_list, comment_keyword_list],
 
@@ -119,10 +122,22 @@ templates_desc = {
         [generic_keyword_list, tip_keyword_list],
 
     "ping_mail_template":
-        [ping_keyword_list],
+        [generic_keyword_list, ping_keyword_list],
 
     "ping_mail_title":
-        [ping_keyword_list]
+        [generic_keyword_list, ping_keyword_list],
+
+    "admin_pgp_expiration_alert_mail_template":
+        [generic_keyword_list, admin_pgp_alert_keywords],
+
+    "admin_pgp_expiration_alert_mail_title":
+        [generic_keyword_list, admin_pgp_alert_keywords],
+
+    "pgp_expiration_alert_mail_template":
+        [generic_keyword_list, pgp_alert_keywords],
+
+    "pgp_expiration_alert_mail_title":
+        [generic_keyword_list, pgp_alert_keywords],
 }
 
 # Templating 'supported_event_type' is a method variable with a different pattern
@@ -136,17 +151,11 @@ supported_event_types = { u'encrypted_tip': 'Tip',
                           u'encrypted_message': 'Message',
                           u'plaintext_message': 'Message',
                           u'zip_collection': 'Collection',
-                          u'ping_mail': 'Tip'
-                          }
+                          u'ping_mail': 'Tip',
+                          u'admin_pgp_alert': '',
+                          u'pgp_alert': ''}
 
 class notifTemplateTest(helpers.TestGL):
-    """
-    Not yet implemented, but present in templating.py
-
-    u'encrypted_expiring_tip' : 'Tip',
-    u'plaintext_expiring_tip' : 'Tip',
-    """
-
     @inlineCallbacks
     def _fill_event_dict(self, event_type, event_trigger):
         """
@@ -163,14 +172,16 @@ class notifTemplateTest(helpers.TestGL):
         self.subevent = {}
 
         # this is requested in the file cases
-        if event_type != 'ping_mail':
-          self.subevent['name'] = ' foo '
-          self.subevent['size'] = ' 123 '
-          self.subevent['content_type'] = ' application/javascript '
-          self.subevent['creation_date'] = context_dict['creation_date']
-          self.subevent['type'] = ' sorry maker '
+        if event_type == 'ping_mail':
+            self.subevent = {'counter': 42}
+        elif event_type == 'admin_pgp_alert':
+            self.subevent = {'expired_or_expiring': [receiver_dict]}
         else:
-          self.subevent = {'counter': 42}
+            self.subevent['name'] = ' foo '
+            self.subevent['size'] = ' 123 '
+            self.subevent['content_type'] = ' application/javascript '
+            self.subevent['creation_date'] = context_dict['creation_date']
+            self.subevent['type'] = ' sorry maker '
 
         self.event = Event(type=event_type,
                            trigger=event_trigger,
@@ -195,7 +206,7 @@ class notifTemplateTest(helpers.TestGL):
 
         ### INITIALIZE DATABASE
         self.mockContext = helpers.MockDict().dummyContext
-        self.mockReceiver = helpers.MockDict().dummyReceiver
+        self.mockReceiver = helpers.MockDict().dummyReceiverGPG
         self.mockNode = helpers.MockDict().dummyNode
 
         self.createdContext = yield admin.create_context(self.mockContext, 'en')

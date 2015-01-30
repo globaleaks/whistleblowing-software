@@ -96,14 +96,16 @@ class MailNotification(Notification):
            event.receiver_info['gpg_enable_notification']:
 
             try:
-                gpob = GLBGPG(event.receiver_info)
+                gpob = GLBGPG()
 
-                if not gpob.validate_key(event.receiver_info['gpg_key_armor']):
+                try:
+                    gpob.load_key(event.receiver_info['gpg_key_armor'])
+                except:
                     log.err("unable to validated GPG key for receiver %s" %
                             event.receiver_info['username'])
                     return None
 
-                body = gpob.encrypt_message(body)
+                body = gpob.encrypt_message(event.receiver_info['gpg_key_fingerprint'], body)
                 gpob.destroy_environment()
 
             except Exception as excep:

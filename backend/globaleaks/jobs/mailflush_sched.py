@@ -9,13 +9,13 @@
 from cyclone.util import ObjectDict as OD
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.models import EventLogs, Notification
 from globaleaks.handlers.admin import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import admin_serialize_notification
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.plugins import notification
+from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import deferred_sleep, log
 from globaleaks.utils.templating import Templating
 
@@ -113,7 +113,6 @@ class MailflushSchedule(GLJob):
 
             fakeevent = OD()
             fakeevent.type = u'ping_mail'
-            # we've to accomplish the same amount of Attrs looked in templating.py TemplatClass
             fakeevent.node_info = None
             fakeevent.context_info = None
             fakeevent.steps_info = None

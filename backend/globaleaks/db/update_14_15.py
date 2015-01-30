@@ -494,7 +494,7 @@ class Replacer1415(TableReplacer):
                 continue
 
             if v.name == 'pgp_expiration_notice':
-                new_notification.pgp_expiration_notice = every_language("")
+                new_notification.pgp_alert_notice = every_language("")
                 continue
 
             setattr(new_notification, v.name, getattr(old_notification, v.name) )
