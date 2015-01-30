@@ -355,13 +355,22 @@ def datetime_to_pretty_str(date):
 
     return date.strftime("%A %d %B %Y %H:%M (UTC)")
 
+def datetime_to_day_str(date):
+    """
+    print a datetime in DD/MM/YYYY formatted str
+    """
+    if date is None:
+        date = datetime_null()
+
+    return date.strftime("%d/%m/%Y")
+
 def ISO8601_to_pretty_str(isodate):
     """
     convert a ISO8601 in pretty formatted str format
     """
     if isodate is None:
         isodate = datetime_null().isoformat()
- 
+
     date = datetime(year=int(isodate[0:4]),
                     month=int(isodate[5:7]),
                     day=int(isodate[8:10]),
@@ -373,7 +382,7 @@ def ISO8601_to_pretty_str(isodate):
 
 def ISO8601_to_day_str(isodate):
     """
-    convert a ISO8601 in DD/MM/YYYY formatted str
+    print a ISO8601 in DD/MM/YYYY formatted str
     """
     if isodate is None:
         isodate = datetime_null().isoformat()
