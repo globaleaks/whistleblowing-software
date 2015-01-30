@@ -152,8 +152,8 @@ supported_event_types = { u'encrypted_tip': 'Tip',
                           u'plaintext_message': 'Message',
                           u'zip_collection': 'Collection',
                           u'ping_mail': 'Tip',
-                          u'admin_pgp_alert': '',
-                          u'pgp_alert': ''}
+                          u'admin_pgp_expiration_alert': '',
+                          u'pgp_expiration_alert': ''}
 
 class notifTemplateTest(helpers.TestGL):
     @inlineCallbacks
@@ -174,7 +174,7 @@ class notifTemplateTest(helpers.TestGL):
         # this is requested in the file cases
         if event_type == 'ping_mail':
             self.subevent = {'counter': 42}
-        elif event_type == 'admin_pgp_alert':
+        elif event_type == 'admin_pgp_expiration_alert':
             self.subevent = {'expired_or_expiring': [receiver_dict]}
         else:
             self.subevent['name'] = ' foo '

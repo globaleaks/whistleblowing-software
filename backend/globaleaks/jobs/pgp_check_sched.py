@@ -50,7 +50,7 @@ class PGPCheckSchedule(GLJob):
     @inlineCallbacks
     def send_admin_pgp_alerts(self, node_desc, admin_desc, notification_settings, expired_or_expiring):
         fakeevent = OD()
-        fakeevent.type = u'admin_pgp_alert'
+        fakeevent.type = u'admin_pgp_expiration_alert'
         fakeevent.node_info = node_desc
         fakeevent.context_info = None
         fakeevent.steps_info = None
@@ -84,7 +84,7 @@ class PGPCheckSchedule(GLJob):
     @inlineCallbacks
     def send_pgp_alerts(self, node_desc, receiver_desc, notification_settings):
         fakeevent = OD()
-        fakeevent.type = u'pgp_alert'
+        fakeevent.type = u'pgp_expiration_alert'
         fakeevent.node_info = node_desc
         fakeevent.context_info = None
         fakeevent.steps_info = None
