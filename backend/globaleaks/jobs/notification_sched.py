@@ -133,8 +133,6 @@ class TipEventLogger(EventLogger):
 
     @transact
     def load_tips(self, store):
-        # XXX call this shit: from_tips_to_events
-
         not_notified_tips = store.find(models.ReceiverTip,
                                        models.ReceiverTip.mark == models.ReceiverTip._marker[0]
         )

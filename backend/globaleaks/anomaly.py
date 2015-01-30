@@ -432,11 +432,11 @@ class Alarm(object):
 
         to_address = yield _get_admin_email()
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
-                                    GLSetting.memory_copy.notif_source_email,
-                                    "Tester",
-                                    to_address,
-                                    "ALERT: Anomaly detection",
-                                    message)
+                                  GLSetting.memory_copy.notif_source_email,
+                                  "Admin",
+                                  to_address,
+                                  "ALERT: Anomaly detection",
+                                  message)
 
         log.debug('Alarm Email for admin: connecting to [%s:%d]' %
                     (GLSetting.memory_copy.notif_server,

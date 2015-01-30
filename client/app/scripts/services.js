@@ -735,6 +735,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.gpg_key_fingerprint = '';
         receiver.gpg_key_remove = false;
         receiver.gpg_key_armor = '';
+        receiver.gpg_key_expiration = '';
         receiver.gpg_key_status = 'ignored';
         receiver.gpg_enable_notification = false;
         receiver.presentation_order = 0;

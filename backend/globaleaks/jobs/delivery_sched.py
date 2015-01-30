@@ -185,16 +185,15 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
     required keys are checked on top
 
     """
-    gpoj = GLBGPG(recipient_gpg)
+    gpoj = GLBGPG()
 
-    if not gpoj.validate_key(recipient_gpg['gpg_key_armor']):
-        raise Exception("Unable to validate key")
+    gpoj.load_key(recipient_gpg['gpg_key_armor'])
 
     filepath = os.path.join(GLSetting.submission_path, fpath)
 
     with GLSecureFile(filepath) as f:
         encrypted_file_path, encrypted_file_size = \
-            gpoj.encrypt_file(filepath, f, GLSetting.submission_path)
+            gpoj.encrypt_file(recipient_gpg['gpg_key_fingerprint'], filepath, f, GLSetting.submission_path)
 
     gpoj.destroy_environment()
 

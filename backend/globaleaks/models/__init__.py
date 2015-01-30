@@ -517,8 +517,10 @@ class Notification(Model):
     plaintext_message_template = JSON(validator=longlocal_v)
     plaintext_message_mail_title = JSON(validator=longlocal_v)
 
-    pgp_expiration_alert = JSON(validator=longlocal_v)
-    pgp_expiration_notice = JSON(validator=longlocal_v)
+    admin_pgp_alert_mail_title = JSON(validator=longlocal_v)
+    admin_pgp_alert_mail_template = JSON(validator=longlocal_v)
+    pgp_alert_mail_title = JSON(validator=longlocal_v)
+    pgp_alert_mail_template = JSON(validator=longlocal_v)
 
     zip_description = JSON(validator=longlocal_v)
 
@@ -536,8 +538,10 @@ class Notification(Model):
         'source_email']
     localized_strings = [
         'admin_anomaly_template',
-        'pgp_expiration_alert',
-        'pgp_expiration_notice',
+        'admin_pgp_alert_mail_title',
+        'admin_pgp_alert_mail_template',
+        'pgp_alert_mail_title',
+        'pgp_alert_mail_template',
         'encrypted_tip_template',
         'encrypted_tip_mail_title',
         'plaintext_tip_template',
@@ -583,7 +587,7 @@ class Receiver(Model):
     gpg_key_fingerprint = Unicode()
     gpg_key_status = Unicode()
     gpg_key_armor = Unicode()
-    gpg_enable_notification = Bool()
+    gpg_key_expiration = DateTime()
 
     # Can be changed only by admin (but also differ from username!)
     mail_address = Unicode()
