@@ -27,6 +27,24 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.get(rtip_desc['rtip_id'])
 
     @inlineCallbacks
+    def test_put(self):
+        rtips_desc = yield self.get_rtips()
+        for rtip_desc in rtips_desc:
+            self.responses = []
+
+            handler = self.request(role='receiver')
+            handler.current_user.user_id = rtip_desc['receiver_id']
+            yield handler.get(rtip_desc['rtip_id'])
+            self.assertEqual(handler.get_status(), 200)
+
+            self.responses[0]['extend'] = True
+
+            handler = self.request(self.responses[0], role='receiver')
+            handler.current_user.user_id = rtip_desc['receiver_id']
+            yield handler.put(rtip_desc['rtip_id'])
+            self.assertEqual(handler.get_status(), 202)
+
+    @inlineCallbacks
     def test_delete_global_delete_true(self):
         rtips_desc = yield self.get_rtips()
         self.assertEqual(len(rtips_desc), 2)
