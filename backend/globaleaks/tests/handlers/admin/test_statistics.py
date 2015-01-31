@@ -8,7 +8,7 @@ from globaleaks.jobs.statistics_sched import AnomaliesSchedule, StatisticsSchedu
 from globaleaks.models import Stats
 from globaleaks.settings import transact_ro
 from globaleaks.tests import helpers
-from globaleaks.test.test_anomaly import pollute_events_for_testing
+from globaleaks.tests.test_anomaly import pollute_events_for_testing
 from globaleaks.utils.utility import datetime_now
 
 anomaly.reactor = task.Clock()
