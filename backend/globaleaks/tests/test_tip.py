@@ -213,16 +213,12 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def wb_retrive_tip_data(self):
-        if not self.wb_tip_id:
-            self.wb_auth_with_receipt()
-
         self.wb_data = yield wbtip.get_tip(self.wb_tip_id, 'en')
 
         self.assertEqual(self.wb_data['wb_steps'], self.submission_desc['wb_steps'])
 
     @inlineCallbacks
     def create_receivers_tip(self):
-
         receiver_tips = yield delivery_sched.tip_creation()
 
         self.rtip1_id = receiver_tips[0]
@@ -234,30 +230,22 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def access_receivers_tip(self):
-
         auth1, _, _ = yield authentication.login_receiver(self.receiver1_desc['id'], STATIC_PASSWORD)
         self.assertEqual(auth1, self.receiver1_desc['id'])
 
         auth2, _, _ = yield authentication.login_receiver(self.receiver2_desc['id'], STATIC_PASSWORD)
         self.assertEqual(auth2, self.receiver2_desc['id'])
 
-        # we does not know the association auth# sefl.rtip#_id
-        # so we need a double try catch for each check and we need to store the proper association
-        tmp1 = self.rtip1_id
-        tmp2 = self.rtip2_id
-        try:
-            self.receiver1_data = yield rtip.get_tip(auth1, tmp1, 'en')
-        except:
-            self.rtip1_id = tmp2
-            self.rtip2_id = tmp1
-
-            self.receiver1_data = yield rtip.get_tip(auth1, tmp2, 'en')
-
-            self.assertEqual(self.receiver1_data['wb_steps'], self.submission_desc['wb_steps'])
-            self.assertEqual(self.receiver1_data['access_counter'], 1)
+        tips_receiver_1 = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'], 'en')
+        tips_receiver_2 = yield receiver.get_receiver_tip_list(self.receiver2_desc['id'], 'en')
 
         for i in range(1, 2):
-            self.receiver2_data = yield rtip.get_tip(auth2, self.rtip2_id, 'en')
+            self.receiver1_data = yield rtip.get_tip(auth1, tips_receiver_1[0]['id'], 'en')
+            self.assertEqual(self.receiver1_data['wb_steps'], self.submission_desc['wb_steps'])
+            self.assertEqual(self.receiver1_data['access_counter'], i)
+
+        for i in range(1, 2):
+            self.receiver2_data = yield rtip.get_tip(auth2, tips_receiver_2[0]['id'], 'en')
             self.assertEqual(self.receiver2_data['wb_steps'], self.submission_desc['wb_steps'])
             self.assertEqual(self.receiver2_data['access_counter'], i)
 
@@ -587,7 +575,6 @@ class TestTipInstance(TTip):
                 self.assertEqual(recv['unread_messages'], 0)
             else:
                 self.assertEqual(recv['unread_messages'], 1)
-
 
     @inlineCallbacks
     def test_full_receiver_wb_workflow(self):
