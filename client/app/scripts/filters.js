@@ -29,6 +29,15 @@ angular.module('GLClientFilters', [])
         return value + (tail || ' …');
     };
 }).
+  filter('prettyBytes', function() {
+    return function (bytes) {
+        if      (bytes>=1000000000) {ret='' + Math.floor(bytes/1000000000) + 'GB';}
+        else if (bytes>=1000000)    {ret='' + Math.floor(bytes/1000000) + 'MB';}
+        else                        {ret='' + Math.floor(bytes/1000) + 'KB';}
+
+        return ret;
+    }
+}).
   filter('weekNumber', function() {
     return function (value) {
       var date = new Date(value);

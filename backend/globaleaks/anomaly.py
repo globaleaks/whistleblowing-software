@@ -16,7 +16,8 @@ from twisted.internet import defer
 from globaleaks import models
 from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
-from globaleaks.utils.utility import log, datetime_now, is_expired, datetime_to_ISO8601
+from globaleaks.utils.utility import log, datetime_now, is_expired, \
+    datetime_to_ISO8601, bytes_to_pretty_str
 from globaleaks.utils.tempobj import TempObj
 
 # needed in order to allow UT override
@@ -408,7 +409,7 @@ class Alarm(object):
             return "%s" % Alarm.stress_levels['disk_space']
 
         def _dd():
-            return "%s Megabytes" % Alarm.latest_measured_freespace
+            return "%s" % bytes_to_pretty_str(Alarm.latest_measured_freespace)
 
         message_required = False
         if Alarm.stress_levels['activity'] >= 1:
@@ -492,7 +493,7 @@ class Alarm(object):
 
         return self.difficulty_dict
 
-    def report_disk_usage(self, free_mega_bytes):
+    def report_disk_usage(self, free_bytes):
         """
         Here in Alarm is written the threshold to say if we're in disk alarm
         or not. Therefore the function "report" the amount of free space and
@@ -503,13 +504,17 @@ class Alarm(object):
         mat = Alarm._MEDIUM_DISK_ALARM * GLSetting.memory_copy.maximum_filesize
         hat = Alarm._HIGH_DISK_ALARM * GLSetting.memory_copy.maximum_filesize
 
-        Alarm.latest_measured_freespace = free_mega_bytes
+        Alarm.latest_measured_freespace = free_bytes
 
-        if free_mega_bytes < hat:
-            log.err("Warning: free space HIGH ALARM: only %d Mb" % free_mega_bytes)
+        free_megabytes = free_bytes / (1000 * 1000)
+
+        free_memory_str = bytes_to_pretty_str(free_bytes)
+
+        if free_megabytes < hat:
+            log.err("Warning: free space alarm (HIGH): only %s" % free_memory_str)
             Alarm.stress_levels['disk_space'] = 2
-        elif free_mega_bytes < mat:
-            log.info("Warning: free space medium alarm: %d Mb" % free_mega_bytes)
+        elif free_megabytes < mat:
+            log.info("Warning: free space alarm (MEDIUM): %d" % free_memory_str)
             Alarm.stress_levels['disk_space'] = 1
         else:
             Alarm.stress_levels['disk_space'] = 0

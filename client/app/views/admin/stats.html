@@ -13,7 +13,7 @@
 
       <div id="chart"></div>
 
-      <div class="col-md-12 infoTable" data-ng-showa="blob">
+      <div class="col-md-12 infoTable" data-ng-if="blob">
         <span class="col-md-3">
           <label data-translate>Started submissions</label>
           {{blob.summary.started_submissions}}
@@ -34,7 +34,7 @@
         </span>
         <span class="col-md-3">
           <label data-translate>Free Disk Space:</label>
-          {{blob.free_disk_space}}
+          {{blob.free_disk_space | prettyBytes}}
         </span>
       </div>
 

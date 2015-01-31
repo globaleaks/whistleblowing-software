@@ -150,11 +150,11 @@ class ResourceChecker(GLJob):
     @classmethod
     def get_free_space(cls):
         statvfs = os.statvfs(GLSetting.working_path)
-        free_mega_bytes = statvfs.f_frsize * statvfs.f_bavail / (1024 * 1024)
-        return free_mega_bytes
+        free_bytes = statvfs.f_frsize * statvfs.f_bavail
+        return free_bytes
 
     def operation(self):
-        free_mega_bytes = ResourceChecker.get_free_space()
+        free_bytes = ResourceChecker.get_free_space()
 
         alarm = Alarm()
-        alarm.report_disk_usage(free_mega_bytes)
+        alarm.report_disk_usage(free_bytes)
