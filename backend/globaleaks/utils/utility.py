@@ -280,8 +280,10 @@ def utc_past_date(seconds=0, minutes=0, hours=0):
     when the stats are requested.
     """
     now = datetime.utcnow()
+
     if GLSetting.debug_option_in_the_future:
         now += timedelta(seconds=GLSetting.debug_option_in_the_future)
+
     return utc_dynamic_date(now) - \
            timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
 

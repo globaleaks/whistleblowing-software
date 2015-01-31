@@ -89,6 +89,15 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(c, d)
         self.assertEqual(d, e)
 
+    def test_utc_past_date(self):
+        a = utility.datetime_now()
+        b = utility.utc_past_date(seconds=99)
+        c = utility.utc_past_date(minutes=99)
+        d = utility.utc_past_date(hours=99)
+        self.assertTrue(a>b)
+        self.assertTrue(b>c)
+        self.assertTrue(c>d)
+
     def test_utc_future_date(self):
         a = utility.datetime_now()
         b = utility.utc_future_date(seconds=99)
