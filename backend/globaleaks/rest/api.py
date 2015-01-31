@@ -82,7 +82,7 @@ spec = [
     (r'/admin/fieldtemplate/' + field_regexp, admin.field.FieldTemplateInstance),
     (r'/admin/anomalies', admin.statistics.AnomaliesCollection),
     (r'/admin/stats/(\d+)', admin.statistics.StatsCollection),
-    (r'/admin/activities/(\w+)', admin.statistics.RecentEventsCollection),
+    (r'/admin/activities/(summary|details)', admin.statistics.RecentEventsCollection),
     (r'/admin/history', admin.statistics.AnomalyHistoryCollection),
     (r'/admin/staticfiles', admin.staticfiles.StaticFileList),
     (r'/admin/staticfiles/(.*)', admin.staticfiles.StaticFileInstance,
