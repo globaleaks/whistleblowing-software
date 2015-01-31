@@ -12,13 +12,11 @@ from globaleaks.settings import GLSetting
 from globaleaks.utils.utility import ISO8601_to_pretty_str_tz, ISO8601_to_day_str
 
 def dump_submission_steps(wb_steps):
-
     dumptext = u"FIELD_MAIL_DUMP_STILL_NEED_TO_BE_IMPLEMENTED"
 
     return dumptext
 
 def dump_file_list(filelist, files_n):
-
     info = "%s%s%s\n" % ("Filename",
                              " "*(40-len("Filename")),
                              "Size (Bytes)")
@@ -27,6 +25,8 @@ def dump_file_list(filelist, files_n):
         info += "%s%s%i\n" % (filelist[i]['name'],
                                 " "*(40 - len(filelist[i]['name'])),
                                 filelist[i]['size'])
+
+    return info
 
 class Templating(object):
 
