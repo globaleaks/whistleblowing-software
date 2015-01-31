@@ -47,6 +47,7 @@ class Notification_version_16(Model):
     disable_admin_notification_emails = Bool()
     disable_receivers_notification_emails = Bool()
 
+
 class Receiver_version_16(Model):
     __storm_table__ = 'receiver'
     user_id = Unicode()
@@ -69,6 +70,12 @@ class Receiver_version_16(Model):
     message_notification = Bool()
     ping_notification = Bool()
     presentation_order = Int()
+
+class Stats_version_16(Model):
+    __storm_table__ = 'stats'
+    start = DateTime()
+    summary = JSON()
+    freemb = Int()
 
 class Replacer1617(TableReplacer):
 
