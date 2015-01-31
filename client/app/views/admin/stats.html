@@ -3,8 +3,41 @@
   <div class="col-md-9">
     <div class="row">
       <div class="col-md-12">
-        <div id="chart"></div>
+        <span data-translate>Stats for the week:</span>
+        <a data-ng-click="decrement_week()"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <span>{{when | weekNumber}} {{when | date: 'yyyy'}}</span>
+        <a data-ng-click="increment_week()"><span class="glyphicon glyphicon-chevron-right"></span></a>
       </div>
+
+      <br /><br />
+
+      <div id="chart"></div>
+
+      <div class="col-md-12 infoTable" data-ng-showa="blob">
+        <span class="col-md-3">
+          <label data-translate>Started submissions</label>
+          {{blob.summary.started_submissions}}
+          <label data-translate>Completed submission</label>
+          {{blob.summary.completed_submissions}}
+        </span>
+        <span class="col-md-3">
+          <label data-translate>Failed logins</label>
+          {{blob.summary.failed_logins}}
+          <label data-translate>Success logins</label>
+          {{blob.summary.successful_logins}}
+        </span>
+        <span class="col-md-3">
+          <label data-translate>Uploaded files</label>
+          {{blob.summary.uploaded_files}}
+          <label data-translate>Appended files</label>
+          {{blob.summary.appended_files}}
+        </span>
+        <span class="col-md-3">
+          <label data-translate>Free Disk Space:</label>
+          {{blob.free_disk_space}}
+        </span>
+      </div>
+
     </div>
   </div>
 </div>

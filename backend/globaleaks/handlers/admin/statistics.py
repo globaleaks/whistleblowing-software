@@ -10,99 +10,134 @@ import operator
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.rest import errors
+from globaleaks.rest import errors, requests
 from globaleaks.settings import transact_ro, transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, \
     authenticated
 from globaleaks.jobs.statistics_sched import StatisticsSchedule
 from globaleaks.models import Stats, Anomalies
-from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, log
+from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
+    log, utc_past_date
 from globaleaks.anomaly import EventTrackQueue, outcome_event_monitored
 
+def weekmap_to_heatmap(week_map):
+    """
+    convert a list of list with dict inside, in a flat list
+    """
+    retlist = []
+    for weekday_n, weekday in enumerate(week_map):
+        assert (weekday_n >= 0 and weekday_n <= 6), weekday_n
+        for hour_n, hourinfo in enumerate(weekday):
+            assert (hour_n >= 0 and hour_n <= 23), hour_n
+            assert isinstance(hourinfo, dict), "Is not a dict in %d %d" % \
+                                               (weekday_n, hour_n)
+            retlist.append(hourinfo)
+
+    return retlist
 
 @transact_ro
-def get_stats(store, delta_week):
+def get_stats(store, week_delta):
     """
-    :param delta_week: commonly is 0, mean that you're taking this
+    :param week_delta: commonly is 0, mean that you're taking this
         week. -1 is the previous week.
     At the moment do not support negative number and change of the year.
     """
 
-    target_week = int(datetime_now().isocalendar()[1]) - delta_week
-    # we loop 1 to 7, this return 0 to 6, therefore: +1
-    current_wday = (datetime_now().weekday() + 1)
-    current_hour = datetime_now().hour
+    now = datetime_now()
 
-    hourlyentry = store.find(Stats)
+    if week_delta < 0:
+        # delta week in the future ? resetting it to 0
+        week_delta = 0
+        target_week = datetime_now()
+    elif week_delta > 0:
+        # delta week in the past
+        target_week = utc_past_date(hours=(week_delta * 24 * 7))
+    else:
+        # taking current time!
+        target_week = datetime_now()
 
-    week_stats = []
-    last_stats_dict = {}
+    looked_week = target_week.isocalendar()[1]
+    looked_year = target_week.isocalendar()[0]
 
+    current_wday = now.weekday()
+    current_hour = now.hour
+    current_week = now.isocalendar()[1]
+
+    # TODO improve models with year+week
+    hourlyentry = store.find(Stats, Stats.week == looked_week, Stats.year == looked_year)
+
+    week_entries = 0
+    week_map= [[dict() for i in xrange(24)] for j in xrange(7)]
+
+    # Loop over the DB stats to fill the appropriate heatmap
     for hourdata in hourlyentry:
 
-        # This need to be optimized at store.find level
-        if int(hourdata.start.isocalendar()[1]) != target_week:
-            continue
+        # .weekday() return be 0..6
+        stats_day = int(hourdata.start.weekday())
+        stats_hour = int(hourdata.start.isoformat()[11:13])
 
-        last_stats_dict = {
-            'hour': int(hourdata.start.isoformat()[11:13]),
-            'day': int(hourdata.start.isocalendar()[2]),
-            'week':  int(hourdata.start.isocalendar()[1]),
-            'year': int(hourdata.start.isocalendar()[0]),
+        hourly_dict = {
+            'hour': stats_hour,
+            'day': stats_day,
             'summary': hourdata.summary,
-            'freemegabytes': hourdata.freemb,
+            'free_disk_space': hourdata.free_disk_space,
             'valid': 0  # 0 means valid data
         }
-        week_stats.append(last_stats_dict)
+
+        if week_map[stats_day][stats_hour]:
+            continue
+
+        week_map[stats_day][stats_hour] = hourly_dict
+        week_entries += 1
 
     # if all the hourly element are avail
-    if len(week_stats) == (7 * 24):
-        return list(week_stats)
-
-    # if none of the hourly element are avail
-    if not len(week_stats):
-        last_stats_dict['year'] = datetime_now().year
+    if week_entries == (7 * 24):
+        return {
+            'complete': True,
+            'associated_date': datetime_to_ISO8601(target_week),
+            'heatmap': weekmap_to_heatmap(week_map)
+        }
 
     # else, supply default for the missing hour.
     # an hour can miss for two reason: the node was down (alarm)
     # or the hour is in the future (just don't display nothing)
-    for day in xrange(1, 8):
-        for hour in xrange(1, 25):
+    # -- this can be moved in the initialization phases ?
+    for day in xrange(7):
+        for hour in xrange(24):
 
-            missing_hour = True
-            for hs in week_stats:
-                if hs['day'] == day and hs['hour'] == hour:
-                    missing_hour = False
-
-            if not missing_hour:
+            if week_map[day][hour]:
                 continue
 
             # valid is used as status variable.
             # in the case the stats for the hour are missing it
             # assumes the following values:
-            # the hour is lacking from the results: -1
-            # the hour is in the future:  -2
-            # the hour is the current hour (in the current day): -3
-            if current_wday > day:
+            #  the hour is lacking from the results: -1
+            #  the hour is in the future: -2
+            #  the hour is the current hour (in the current day): -3
+            if current_week != looked_week:
+                marker = -1
+            elif day > current_wday or \
+                (day == current_wday and hour > current_hour):
                 marker = -2
-            elif current_wday == day and current_hour > hour:
-                marker = -2
-            elif current_wday == day and current_hour == hour:
+            elif current_wday == day and hour == current_hour:
                 marker = -3
             else:
                 marker = -1
-            week_stats.append({
-                'year': last_stats_dict['year'],
-                'week': target_week,
+
+            week_map[day][hour] = {
                 'hour': hour,
                 'day': day,
                 'summary': {},
-                'freemegabytes': 0,
+                'free_disk_space': 0,
                 'valid': marker
-            })
+            }
 
-    return list(week_stats)
+    return {
+        'complete': False,
+        'associated_date': datetime_to_ISO8601(target_week),
+        'heatmap': weekmap_to_heatmap(week_map)
+    }
 
 
 @transact
@@ -216,15 +251,16 @@ class StatsCollection(BaseHandler):
     @transport_security_check("admin")
     @authenticated("admin")
     @inlineCallbacks
-    def get(self, weeks_in_the_past):
-        proper_delta = (int(weeks_in_the_past) * -1)
-        if proper_delta:
-            log.debug("Asking statistics for %d weeks ago" % proper_delta)
+    def get(self, week_delta):
+        week_delta = int(week_delta)
+        if week_delta:
+            log.debug("Asking statistics for %d weeks ago" % week_delta)
+            ret = yield get_stats(week_delta)
         else:
             log.debug("Asking statistics for this week")
+            ret = yield GLApiCache.get('stats', self.request.language, get_stats, 0)
 
-        stats_block = yield get_stats(proper_delta)
-        self.finish(stats_block)
+        self.finish(ret)
 
     @transport_security_check("admin")
     @authenticated("admin")

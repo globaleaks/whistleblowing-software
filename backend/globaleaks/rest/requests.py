@@ -259,7 +259,11 @@ anonNodeDesc = {
     'custom_privacy_badge_tbb': unicode,
     'custom_privacy_badge_tor': unicode,
     'custom_privacy_badge_none': unicode,
+}
 
+adminStats = {
+    'week_delta': int,
+    # 'report_link': unicode,
 }
 
 TipOverview = {

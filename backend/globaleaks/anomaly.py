@@ -28,6 +28,9 @@ notification = True
 def file_upload_check(uri):
     return uri.endswith('file')
 
+def file_append_check(uri):
+    return uri == '/wbtip/upload'
+
 def submission_check(uri):
     return uri.startswith('/submission/')
 
@@ -75,28 +78,28 @@ incoming_event_monitored = [
 
 outcome_event_monitored = [
     {
-        'name': 'logins_failed',
+        'name': 'failed_logins',
         'method': 'POST',
         'handler_check': login_check,
         'status_checker': failure_status_check,
         'anomaly_management': None,
     },
     {
-        'name': 'logins_successful',
+        'name': 'successful_logins',
         'method': 'POST',
         'handler_check': login_check,
         'status_checker': ok_status_check,
         'anomaly_management': None,
     },
     {
-        'name': 'submissions_started',
+        'name': 'started_submissions',
         'method': 'POST',
         'handler_check': submission_check,
         'status_checker': created_status_check,
         'anomaly_management': None,
     },
     {
-        'name': 'submissions_completed',
+        'name': 'completed_submissions',
         'method': 'PUT',
         'handler_check': submission_check,
         'status_checker': update_status_check,
@@ -119,6 +122,13 @@ outcome_event_monitored = [
     {
         'name': 'uploaded_files',
         'handler_check': file_upload_check,
+        'status_checker': created_status_check,
+        'anomaly_management': None,
+        'method': 'POST'
+    },
+    {
+        'name': 'appended_files',
+        'handler_check': file_append_check,
         'status_checker': created_status_check,
         'anomaly_management': None,
         'method': 'POST'
@@ -255,6 +265,7 @@ class Alarm(object):
         'wb_comments': 4,
         'wb_messages': 4,
         'uploaded_files': 11,
+        'appended_files': 4,
         'receiver_comments': 3,
         'receiver_messages': 3,
     }

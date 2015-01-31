@@ -40,6 +40,8 @@ var validate_mandatory_headers = function(headers) {
 }
 
 var valid_login = function(i) {
+  console.log("XXXXXXXXXX");
+  console.log(i);
   return {
     "username": "",
     "password": wb_keycodes[i],
@@ -165,7 +167,7 @@ describe('POST /submission', function(){
             } else {
 
               validate_mandatory_headers(res.headers);
-
+              console.log(res.body);
               submissions.push(res.body);
 
               done();

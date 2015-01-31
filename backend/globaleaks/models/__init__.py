@@ -779,7 +779,7 @@ class Step(Model):
 class Stats(Model):
     start = DateTime()
     summary = JSON()
-    freemb = Int()
+    free_disk_space = Int()
 
 
 class Anomalies(Model):

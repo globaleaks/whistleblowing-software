@@ -114,6 +114,14 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope', 'ReceiverTips',
   $scope.tips = ReceiverTips.query();
 }]);
 
-GLClient.controller('ReceiverNotificationCtrl', ['$scope', 'ReceiverNotification', function($scope, ReceiverNotification) {
+GLClient.controller('ReceiverNotificationCtrl', ['$scope', '$rootScope', 'ReceiverNotification',
+  function($scope, $rootScope, ReceiverNotification) {
   $scope.activities = ReceiverNotification.get();
+
+  $scope.clear_notifications = function() {
+    ReceiverNotification['delete']({}, function(){
+      $rootScope.$broadcast("REFRESH");
+    });
+  }
+
 }]);
