@@ -12,7 +12,7 @@ from storm.expr import Desc
 
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact_ro, transact
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import transport_security_check, \
     authenticated
 from globaleaks.jobs.statistics_sched import StatisticsSchedule
