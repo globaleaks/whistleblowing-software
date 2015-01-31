@@ -39,6 +39,18 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
 
       data.forEach(function(d) {
           if (d.valid == 0) {
+            d.summary.failed_logins = + d.summary.failed_logins ? d.summary.failed_logins : 0;
+            d.summary.successful_logins = +d.summary.successful_logins ? d.summary.successful_logins : 0;
+            d.summary.started_submissions = +d.summary.started_submissions ? d.summary.started_submissions : 0;
+            d.summary.completed_submissions = +d.summary.completed_submissions ? d.summary.completed_submissions : 0;
+            d.summary.uploaded_files =  +d.summary.uploaded_files ?  d.summary.uploaded_files : 0;
+            d.summary.appended_files = +d.summary.appended_files ? d.summary.appended_files : 0;
+            d.summary.wb_comments = +d.summary.wb_comments ? d.summary.wb_comments : 0;
+            d.summary.wb_messages = +d.summary.wb_messages ? d.summary.wb_messages : 0;
+            d.summary.receiver_comments = +d.summary.receiver_comments ? d.summary.receiver_comments : 0;
+            d.summary.receiver_messages = +d.summary.receiver_messages ? d.summary.receiver_messages : 0;
+
+            d.value = 0
             d.value += d.summary.failed_logins;
             d.value += d.summary.successful_logins;
             d.value += d.summary.started_submissions;
