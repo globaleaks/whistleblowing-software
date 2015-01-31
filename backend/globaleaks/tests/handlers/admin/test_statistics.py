@@ -49,11 +49,12 @@ class TestStatsCollection(helpers.TestHandler):
 
         yield AnomaliesSchedule().operation()
 
-        handler = self.request({}, role='admin')
-        yield handler.get(0)
+        for i in range(0, 1):
+            handler = self.request({}, role='admin')
+            yield handler.get(i)
 
-        self.assertEqual(len(self.responses[1]), 3)
-        self.assertEqual(len(self.responses[1]['heatmap']), 7 * 24)
+            self.assertEqual(len(self.responses[1 + i]), 3)
+            self.assertEqual(len(self.responses[1 + i]['heatmap']), 7 * 24)
 
     @inlineCallbacks
     def test_delete(self):
@@ -114,3 +115,31 @@ class TestAnomHistCollection(helpers.TestHandler):
         yield handler.get()
         self.assertEqual(len(self.responses), 0)
         self.assertTrue(isinstance(self.responses, list))
+
+
+class TestRecentEventsCollection(helpers.TestHandler):
+    _handler = statistics.RecentEventsCollection
+
+    @inlineCallbacks
+    def test_get(self):
+        pollute_events_for_testing(3)
+        yield StatisticsSchedule().operation()
+
+        handler = self.request({}, role='admin')
+
+        yield handler.get('details')
+        yield handler.get('summary')
+
+        self.assertTrue(isinstance(self.responses[0], list))
+        self.assertTrue(isinstance(self.responses[1], dict))
+
+        for k in ['id', 'duration', 'event', 'creation_date']:
+            for elem in self.responses[0]:
+                self.assertTrue(k in elem)
+
+        for k in ['wb_messages', 'wb_comments',
+                  'receiver_messages', 'receiver_comments',
+                  'started_submissions', 'completed_submissions',
+                  'successful_logins', 'failed_logins',
+                  'uploaded_files', 'appended_files']:
+            self.assertTrue(k in self.responses[1])

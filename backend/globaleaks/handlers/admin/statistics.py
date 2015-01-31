@@ -45,12 +45,9 @@ def get_stats(store, week_delta):
     """
 
     now = datetime_now()
+    week_delta = abs(week_delta)
 
-    if week_delta < 0:
-        # delta week in the future ? resetting it to 0
-        week_delta = 0
-        target_week = datetime_now()
-    elif week_delta > 0:
+    if week_delta > 0:
         # delta week in the past
         target_week = utc_past_date(hours=(week_delta * 24 * 7))
     else:
