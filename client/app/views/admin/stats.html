@@ -15,26 +15,40 @@
 
       <div class="col-md-12 infoTable" data-ng-if="blob">
         <span class="col-md-3">
-          <label data-translate>Started submissions</label>
-          {{blob.summary.started_submissions}}
-          <label data-translate>Completed submission</label>
-          {{blob.summary.completed_submissions}}
+          <div>
+            <label data-translate>Started submissions</label>
+            {{blob.summary.started_submissions}}
+          </div>
+          <div>
+            <label data-translate>Completed submission</label>
+            {{blob.summary.completed_submissions}}
+          </div>
         </span>
         <span class="col-md-3">
-          <label data-translate>Failed logins</label>
-          {{blob.summary.failed_logins}}
-          <label data-translate>Success logins</label>
-          {{blob.summary.successful_logins}}
+          <div>
+            <label data-translate>Failed logins</label>
+            {{blob.summary.failed_logins}}
+          </div>
+          <div>
+            <label data-translate>Successful logins</label>
+            {{blob.summary.successful_logins}}
+          </div>
         </span>
         <span class="col-md-3">
-          <label data-translate>Uploaded files</label>
-          {{blob.summary.uploaded_files}}
-          <label data-translate>Appended files</label>
-          {{blob.summary.appended_files}}
+          <div>
+            <label data-translate>Uploaded files</label>
+            {{blob.summary.uploaded_files}}
+          </div>
+          <div>
+            <label data-translate>Appended files</label>
+            {{blob.summary.appended_files}}
+          </div>
         </span>
         <span class="col-md-3">
-          <label data-translate>Free Disk Space:</label>
-          {{blob.free_disk_space | prettyBytes}}
+          <div>
+            <label data-translate>Free Disk Space:</label>
+            {{blob.free_disk_space | prettyBytes}}
+          </div>
         </span>
       </div>
 

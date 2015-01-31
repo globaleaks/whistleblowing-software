@@ -72,10 +72,6 @@ def get_statistics():
     statsummary = {}
 
     for descblob in StatisticsSchedule.RecentEventQ:
-        # descblob format:
-        #  {  'id' : expired_event.event_id
-        #     'when' : datetime_to_ISO8601(expired_event.creation_date)[:-8],
-        #     'event' : expired_event.event_type, 'duration' :   }
         if 'event' not in descblob:
             continue
         statsummary.setdefault(descblob['event'], 0)
