@@ -308,7 +308,7 @@
 }
 
 #AnomaliesThresholdsSummary, #AnomaliesHistoryTable {
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .hour {
@@ -334,3 +334,6 @@ text.axis-worktime {
   fill: #000;
 }
 
+.infoTable {
+  font-size: 12px;
+}

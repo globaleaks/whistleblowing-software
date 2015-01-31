@@ -56,7 +56,6 @@ def start_asynchronous():
     reactor.callLater(0, resource_check.start, GLSetting.anomaly_seconds_delta)
     reactor.callLater(30, anomaly.start, GLSetting.anomaly_seconds_delta)
 
-
     # This operation, 'stats' has to be delayed (and executed in the minutes
     # of a 'clean hour', so, 01:00, 02:00, and then is repeated every 60
     # minutes.

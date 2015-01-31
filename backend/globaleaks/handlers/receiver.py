@@ -300,10 +300,11 @@ def delete_receiver_notif(store, receiver_id):
         te.count(),
         receiver_id
     ))
+    te.remove()
 
 class NotificationCollection(BaseHandler):
     """
-    This interface retern a list of the notification for the receiver,
+    This interface return a list of the notification for the receiver,
     is used in the landing page, and want be a list of the recent
     activities for the journalist/rcvr.
     """

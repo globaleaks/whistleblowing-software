@@ -17,7 +17,7 @@ from globaleaks.anomaly import Alarm
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSetting, transact
 from globaleaks.models import Stats, Anomalies
-from globaleaks.utils.utility import log, datetime_now
+from globaleaks.utils.utility import log, datetime_now, utc_past_date
 
 @transact
 def save_anomalies(store, anomalies_list):
@@ -36,24 +36,8 @@ def save_anomalies(store, anomalies_list):
         store.add(newanom)
 
     if anomalies_counter:
-        log.debug("Saved %d anomalies collected during the last hour" % anomalies_counter)
-
-
-@transact
-def save_statistics(store, start, end, activity_collection):
-
-    newstat = Stats()
-
-    if activity_collection:
-        log.debug("since %s to %s I've collected: %s" %
-                  (start, end, activity_collection) )
-
-    newstat.start = start
-    newstat.summary = dict(activity_collection)
-    newstat.freemb = ResourceChecker.get_free_space()
-
-    store.add(newstat)
-
+        log.debug("save_anomalies: Saved %d anomalies collected during the last hour" %
+                  anomalies_counter)
 
 class AnomaliesSchedule(GLJob):
     """
@@ -99,6 +83,19 @@ def get_statistics():
 
     return statsummary
 
+@transact
+def save_statistics(store, start, end, activity_collection):
+    newstat = Stats()
+
+    if activity_collection:
+        log.debug("save_statistics: Saved statistics %s collected from %s to %s" %
+                  (activity_collection, start, end))
+
+    newstat.start = start
+    newstat.summary = dict(activity_collection)
+    newstat.free_disk_space = ResourceChecker.get_free_space()
+
+    store.add(newstat)
 
 
 class StatisticsSchedule(GLJob):
@@ -111,8 +108,8 @@ class StatisticsSchedule(GLJob):
     RecentEventQ = []
     RecentAnomaliesQ = {}
 
-    @staticmethod
-    def reset():
+    @classmethod
+    def reset(cls):
         StatisticsSchedule.RecentEventQ = []
         StatisticsSchedule.RecentAnomaliesQ = {}
 

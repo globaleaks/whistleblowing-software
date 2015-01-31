@@ -767,7 +767,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     return $resource('/admin/overview/files');
 }]).
   factory('StatsCollection', ['$resource', function($resource) {
-    return $resource('/admin/stats/0');
+    return $resource('/admin/stats/:week_delta', {week_delta: '@week_delta'}, {});
 }]).
   factory('AnomaliesCollection', ['$resource', function($resource) {
     return $resource('/admin/anomalies');

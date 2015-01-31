@@ -228,6 +228,8 @@ class GLSettingsClass(object):
         self.memory_copy.exception_email = self.defaults.exception_email
         self.memory_copy.default_language = self.defaults.default_language
         self.memory_copy.default_timezone = self.defaults.default_timezone
+        self.memory_copy.receiver_notif_enable = True
+        self.memory_copy.admin_notif_enable = True
         self.memory_copy.notif_server = None
         self.memory_copy.notif_port = None
         self.memory_copy.notif_username = None

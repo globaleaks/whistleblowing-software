@@ -271,6 +271,17 @@ def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0):
     """
     return start_date + timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
 
+def utc_past_date(seconds=0, minutes=0, hours=0):
+    """
+    get the past date in order to overflow the new year
+    when the stats are requested.
+    """
+    now = datetime.utcnow()
+    if GLSetting.debug_option_in_the_future:
+        now += timedelta(seconds=GLSetting.debug_option_in_the_future)
+    return utc_dynamic_date(now) - \
+           timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
+
 def utc_future_date(seconds=0, minutes=0, hours=0):
     """
     @param seconds: get a datetime obj with now+hours
