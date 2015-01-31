@@ -2,60 +2,40 @@
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
     <div class="row">
-      <!--
-      <input name="week_number" class="form-control" data-ng-model="week_number" type="text" required>
-      -->
-
-      <label>Weeks in the past, decrement to go back</label>
-      <input class="form-control" ng-change="new_week()" data-ng-model="week_number" value="{{week_number}}" type="number">
-      <!-- <button ng-click="new_week()">Go in the past</button> -->
-
-      <span>
-        <p>Stats applied to the week: {{when | date:'dd-MM-yyyy HH:mm' }}, The {{week}}-th of the year {{year}}.</p>
-        <span>
-          {{complete}}
-        </span>
-      </span>
-
       <div class="col-md-12">
-        <div id="details">
-          <span class="col-md-3">
-            <label data-translate>Started submission</label>
-            {{blob.started_submissions}}
-            <label data-translate>Completed submission</label>
-            {{blob.completed_submissions}}
-          </span>
-          <span class="col-md-3">
-            <label data-translate>Failed logins</label>
-            {{blob.logins_failed}}
-            <label data-translate>Success logins</label>
-            {{blob.logins_successful}}
-          </span>
-          <span class="col-md-3">
-            <label data-translate>Uploaded files</label>
-            {{blob.uploaded_files}}
-            <label data-translate>Appended files</label>
-            {{blob.appended_files}}
-          </span>
-          <span class="col-md-3">
-            <label data-translate>Value</label>
-            {{blob.value}}
-          </span>
-          <!--
-        $filter('translate')('Failed logins') + ': ' + d.logins_failed + '\n' +
-        $filter('translate')('Successful logins') + ': ' + d.logins_successful + '\n' +
-        $filter('translate')('Started submissions') + ' : ' + d.submissions_started + '\n' +
-        $filter('translate')('Completed submissions') + ' : ' + d.submissions_completed + '\n' +
-        $filter('translate')('Uploaded files') + ' : ' + d.uploaded_files + '\n' +
-        $filter('translate')('Appended files') + ' : ' + d.appended_files + '\n' +
-        $filter('translate')('Whistleblower Comments') + ': ' + d.wb_comments + '\n' +
-        $filter('translate')('Whistleblower Message') + ': ' + d.wb_messages + '\n' +
-        $filter('translate')('Receiver comments') + ': ' + d.receiver_comments + '\n' +
-        $filter('translate')('Receiver messages') + ': ' + d.receiver_messages + '\n' +
-        $filter('translate')('Free megabytes') + ': ' + d.freemegabytes + '\n'
-          -->
-        </div>
-        <div id="chart"></div>
+        <span data-translate>Stats for the week:</span>
+        <a data-ng-click="decrement_week()"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <span>{{when | weekNumber}} {{when | date: 'yyyy'}}</span>
+        <a data-ng-click="increment_week()"><span class="glyphicon glyphicon-chevron-right"></span></a>
+      </div>
+
+      <br /><br />
+
+      <div id="chart"></div>
+
+      <div class="col-md-12 infoTable" data-ng-showa="blob">
+        <span class="col-md-3">
+          <label data-translate>Started submissions</label>
+          {{blob.summary.started_submissions}}
+          <label data-translate>Completed submission</label>
+          {{blob.summary.completed_submissions}}
+        </span>
+        <span class="col-md-3">
+          <label data-translate>Failed logins</label>
+          {{blob.summary.failed_logins}}
+          <label data-translate>Success logins</label>
+          {{blob.summary.successful_logins}}
+        </span>
+        <span class="col-md-3">
+          <label data-translate>Uploaded files</label>
+          {{blob.summary.uploaded_files}}
+          <label data-translate>Appended files</label>
+          {{blob.summary.appended_files}}
+        </span>
+        <span class="col-md-3">
+          <label data-translate>Free Disk Space:</label>
+          {{blob.free_disk_space}}
+        </span>
       </div>
 
     </div>

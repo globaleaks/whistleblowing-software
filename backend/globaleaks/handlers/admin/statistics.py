@@ -21,7 +21,6 @@ from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
     log, utc_past_date
 from globaleaks.anomaly import EventTrackQueue, outcome_event_monitored
 
-
 def weekmap_to_heatmap(week_map):
     """
     convert a list of list with dict inside, in a flat list
@@ -38,36 +37,38 @@ def weekmap_to_heatmap(week_map):
     return retlist
 
 @transact_ro
-def get_stats(store, delta_week):
+def get_stats(store, week_delta):
     """
-    :param delta_week: commonly is 0, mean that you're taking this
+    :param week_delta: commonly is 0, mean that you're taking this
         week. -1 is the previous week.
     At the moment do not support negative number and change of the year.
     """
 
-    if delta_week < 0:
-        print "delta week in the future ? reset to 0:", delta_week
-        delta_week = 0
+    now = datetime_now()
+
+    if week_delta < 0:
+        # delta week in the future ? resetting it to 0
+        week_delta = 0
         target_week = datetime_now()
-    elif delta_week > 0:
-        print "delta week in the past:", delta_week
-        target_week = utc_past_date(hours=(delta_week * 24 * 7))
+    elif week_delta > 0:
+        # delta week in the past
+        target_week = utc_past_date(hours=(week_delta * 24 * 7))
     else:
-        print "taking current time!"
+        # taking current time!
         target_week = datetime_now()
 
     looked_week = target_week.isocalendar()[1]
     looked_year = target_week.isocalendar()[0]
 
-    current_wday = datetime_now().weekday()
-    current_hour = datetime_now().hour
-    current_week = datetime_now().isocalendar()[1]
+    current_wday = now.weekday()
+    current_hour = now.hour
+    current_week = now.isocalendar()[1]
 
     # TODO improve models with year+week
     hourlyentry = store.find(Stats, Stats.week == looked_week, Stats.year == looked_year)
 
     week_entries = 0
-    week_map= [ [ dict() for i in xrange(24) ] for j in xrange(7) ]
+    week_map= [[dict() for i in xrange(24)] for j in xrange(7)]
 
     # Loop over the DB stats to fill the appropriate heatmap
     for hourdata in hourlyentry:
@@ -80,17 +81,11 @@ def get_stats(store, delta_week):
             'hour': stats_hour,
             'day': stats_day,
             'summary': hourdata.summary,
-            'freemegabytes': hourdata.freemb,
+            'free_disk_space': hourdata.free_disk_space,
             'valid': 0  # 0 means valid data
         }
 
         if week_map[stats_day][stats_hour]:
-            # log.err("Stats conflict ? hour duplicated %s vs %s on %d %d" % (
-            #    week_map[stats_day][stats_hour],
-            #    hourly_dict,
-            #    stats_day,
-            #     stats_hour)
-            #)
             continue
 
         week_map[stats_day][stats_hour] = hourly_dict
@@ -98,13 +93,10 @@ def get_stats(store, delta_week):
 
     # if all the hourly element are avail
     if week_entries == (7 * 24):
-        print "For", looked_week, "we've the stats complete!"
         return {
-            "complete": True,
-            "associated_date": datetime_to_ISO8601(target_week),
-            "heatmap": weekmap_to_heatmap(week_map),
-            'week': looked_week,
-            'year': looked_year,
+            'complete': True,
+            'associated_date': datetime_to_ISO8601(target_week),
+            'heatmap': weekmap_to_heatmap(week_map)
         }
 
     # else, supply default for the missing hour.
@@ -120,17 +112,15 @@ def get_stats(store, delta_week):
             # valid is used as status variable.
             # in the case the stats for the hour are missing it
             # assumes the following values:
-            # the hour is lacking from the results: -1 (or is a past week)
-            # the hour is in the future:  -2
-            # the hour is the current hour (in the current day): -3
-
+            #  the hour is lacking from the results: -1
+            #  the hour is in the future: -2
+            #  the hour is the current hour (in the current day): -3
             if current_week != looked_week:
                 marker = -1
-            elif current_wday > day:
+            elif day > current_wday or \
+                (day == current_wday and hour > current_hour):
                 marker = -2
-            elif current_wday == day and current_hour > hour:
-                marker = -2
-            elif current_wday == day and current_hour == hour:
+            elif current_wday == day and hour == current_hour:
                 marker = -3
             else:
                 marker = -1
@@ -139,16 +129,14 @@ def get_stats(store, delta_week):
                 'hour': hour,
                 'day': day,
                 'summary': {},
-                'freemegabytes': 0,
+                'free_disk_space': 0,
                 'valid': marker
             }
 
     return {
-        'year': looked_year,
-        'week': looked_week,
-        "complete": False,
-        "associated_date": datetime_to_ISO8601(target_week),
-        "heatmap": weekmap_to_heatmap(week_map)
+        'complete': False,
+        'associated_date': datetime_to_ISO8601(target_week),
+        'heatmap': weekmap_to_heatmap(week_map)
     }
 
 
@@ -263,38 +251,16 @@ class StatsCollection(BaseHandler):
     @transport_security_check("admin")
     @authenticated("admin")
     @inlineCallbacks
-    def put(self):
-
-        request = self.validate_message(self.request.body,
-            requests.adminStats)
-
-
-        proper_delta = int(request['week_delta']) * -1
-        # log.debug("XXX %s" % request['report_link'])
-
-        answer = {'week_delta': 0}
-
-        if proper_delta:
-            log.debug("Asking statistics for %d weeks ago" % proper_delta)
-            stats_block = yield get_stats(proper_delta)
-            answer['week_delta'] = -(proper_delta)
-            answer.update(stats_block)
+    def get(self, week_delta):
+        week_delta = int(week_delta)
+        if week_delta:
+            log.debug("Asking statistics for %d weeks ago" % week_delta)
+            ret = yield get_stats(week_delta)
         else:
             log.debug("Asking statistics for this week")
-            stats_block = yield get_stats(0)
-            answer.update(stats_block)
+            ret = yield GLApiCache.get('stats', self.request.language, get_stats, 0)
 
-        self.finish(answer)
-
-    @transport_security_check("admin")
-    @authenticated("admin")
-    @inlineCallbacks
-    def get(self):
-
-        stats_block = yield get_stats(0)
-        answer = {'week_delta': 0 }
-        answer.update(stats_block)
-        self.finish(answer)
+        self.finish(ret)
 
     @transport_security_check("admin")
     @authenticated("admin")

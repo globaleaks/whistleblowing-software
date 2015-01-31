@@ -572,7 +572,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     return $resource('/receiver/tips', {}, {'update': {method: 'PUT'}});
 }]).
   factory('ReceiverNotification', ['$resource', function($resource) {
-    return $resource('/receiver/notifications', {}, {'update': {method: 'PUT'}});
+    return $resource('/receiver/notifications');
 }]).
   factory('ReceiverOverview', ['$resource', function($resource) {
     return $resource('/admin/overview/users');
@@ -766,7 +766,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     return $resource('/admin/overview/files');
 }]).
   factory('StatsCollection', ['$resource', function($resource) {
-    return $resource('/admin/stats', {}, {'update': {method: 'PUT'}});
+    return $resource('/admin/stats/:week_delta', {week_delta: '@week_delta'}, {});
 }]).
   factory('AnomaliesCollection', ['$resource', function($resource) {
     return $resource('/admin/anomalies');

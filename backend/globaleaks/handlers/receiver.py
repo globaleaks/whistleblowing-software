@@ -300,6 +300,7 @@ def delete_receiver_notif(store, receiver_id):
         te.count(),
         receiver_id
     ))
+    te.remove()
 
 class NotificationCollection(BaseHandler):
     """
@@ -318,7 +319,7 @@ class NotificationCollection(BaseHandler):
         self.finish(display_event)
 
     @inlineCallbacks
-    def put(self):
+    def delete(self):
         # support DELETE /receiver/notification/(activities|tips) for mass-selective delete ?
 
         yield delete_receiver_notif(self.current_user.user_id)
