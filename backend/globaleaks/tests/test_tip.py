@@ -221,12 +221,14 @@ class TestTipInstance(TTip):
     def create_receivers_tip(self):
         receiver_tips = yield delivery_sched.tip_creation()
 
-        self.rtip1_id = receiver_tips[0]
-        self.rtip2_id = receiver_tips[1]
-
         self.assertEqual(len(receiver_tips), 2)
         self.assertTrue(re.match(requests.uuid_regexp, receiver_tips[0]))
         self.assertTrue(re.match(requests.uuid_regexp, receiver_tips[1]))
+
+        tips_receiver_1 = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'], 'en')
+        tips_receiver_2 = yield receiver.get_receiver_tip_list(self.receiver2_desc['id'], 'en')
+        self.rtip1_id = tips_receiver_1[0]['id']
+        self.rtip2_id = tips_receiver_2[0]['id']
 
     @inlineCallbacks
     def access_receivers_tip(self):
@@ -236,16 +238,13 @@ class TestTipInstance(TTip):
         auth2, _, _ = yield authentication.login_receiver(self.receiver2_desc['id'], STATIC_PASSWORD)
         self.assertEqual(auth2, self.receiver2_desc['id'])
 
-        tips_receiver_1 = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'], 'en')
-        tips_receiver_2 = yield receiver.get_receiver_tip_list(self.receiver2_desc['id'], 'en')
-
         for i in range(1, 2):
-            self.receiver1_data = yield rtip.get_tip(auth1, tips_receiver_1[0]['id'], 'en')
+            self.receiver1_data = yield rtip.get_tip(auth1, self.rtip1_id, 'en')
             self.assertEqual(self.receiver1_data['wb_steps'], self.submission_desc['wb_steps'])
             self.assertEqual(self.receiver1_data['access_counter'], i)
 
         for i in range(1, 2):
-            self.receiver2_data = yield rtip.get_tip(auth2, tips_receiver_2[0]['id'], 'en')
+            self.receiver2_data = yield rtip.get_tip(auth2, self.rtip2_id, 'en')
             self.assertEqual(self.receiver2_data['wb_steps'], self.submission_desc['wb_steps'])
             self.assertEqual(self.receiver2_data['access_counter'], i)
 
