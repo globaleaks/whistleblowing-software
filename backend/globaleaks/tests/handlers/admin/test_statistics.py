@@ -48,11 +48,11 @@ class TestStatsCollection(helpers.TestHandler):
         pollute_events_for_testing(3)
 
         yield AnomaliesSchedule().operation()
+        yield StatisticsSchedule().operation()
 
-        for i in range(0, 1):
+        for i in range(0, 2):
             handler = self.request({}, role='admin')
             yield handler.get(i)
-
             self.assertEqual(len(self.responses[1 + i]), 3)
             self.assertEqual(len(self.responses[1 + i]['heatmap']), 7 * 24)
 

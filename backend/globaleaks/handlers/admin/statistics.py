@@ -308,9 +308,6 @@ class RecentEventsCollection(BaseHandler):
     @transport_security_check("admin")
     @authenticated("admin")
     def get(self, kind):
-        if kind not in ['details', 'summary']:
-            raise errors.InvalidInputFormat(kind)
-
         templist = []
 
         # the current 30 seconds
