@@ -129,7 +129,7 @@ class TableReplacer(object):
         from globaleaks.db.update_14_15 import Node_version_14, User_version_14, Context_version_14, Receiver_version_14, \
             InternalTip_version_14, Notification_version_14, Stats_version_14, Comment_version_14
         from globaleaks.db.update_15_16 import Receiver_version_15, Notification_version_15
-        from globaleaks.db.update_16_17 import Receiver_version_16, Notification_version_16
+        from globaleaks.db.update_16_17 import Receiver_version_16, Notification_version_16, Stats_version_16
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -153,7 +153,7 @@ class TableReplacer(object):
             'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None],
             'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None],
             'Message': [models.Message, None, None, None, None, None, None, None, None, None],
-            'Stats': [Stats_version_14, None, None, None, None, None, None, models.Stats, None, None],
+            'Stats': [Stats_version_14, None, None, None, None, None, None, Stats_version_16, None, models.Stats],
             'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None],
             'Field': [models.Field, None, None, None, None, None, None, None, None, None],
             'FieldOption': [models.FieldOption, None, None, None, None, None, None, None, None, None],
@@ -354,9 +354,10 @@ class TableReplacer(object):
 
     def migrate_Stats(self):
         """
-        has been created between 14 and 15!
+        has been created between 14 and 15
+        and is not migrated since 17
         """
-        if self.start_ver < 15:
+        if self.start_ver < 17:
             return
 
         self._perform_copy_list("Stats")
