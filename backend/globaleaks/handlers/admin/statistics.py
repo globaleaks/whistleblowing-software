@@ -19,7 +19,7 @@ from globaleaks.jobs.statistics_sched import StatisticsSchedule
 from globaleaks.models import Stats, Anomalies
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
     utc_past_date, iso_to_gregorian, log
-from globaleaks.anomaly import EventTrackQueue, outcome_event_monitored
+from globaleaks.anomaly import EventTrackQueue, outcoming_event_monitored
 
 def weekmap_to_heatmap(week_map):
     """
@@ -300,7 +300,7 @@ class RecentEventsCollection(BaseHandler):
 
     def get_summary(self, templist):
         eventmap = dict()
-        for event in outcome_event_monitored:
+        for event in outcoming_event_monitored:
             eventmap.setdefault(event['name'], 0)
 
         for e in templist:

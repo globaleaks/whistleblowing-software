@@ -5,14 +5,20 @@
 
 import os
 
+from twisted.scripts._twistd_unix import UnixApplicationRunner
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.util import untilConcludes
 from twisted.internet import reactor
 
-from globaleaks.utils.utility import log, datetime_now
 from globaleaks.db import create_tables, clean_untracked_files
 from globaleaks.db.datainit import import_memory_variables, apply_cli_options
+
+from globaleaks.jobs import session_management_sched, statistics_sched, \
+                            notification_sched, delivery_sched, cleaning_sched, \
+                            pgp_check_sched, mailflush_sched
+
 from globaleaks.settings import GLSetting
+from globaleaks.utils.utility import log, datetime_now
 
 def start_asynchronous():
     """
@@ -23,10 +29,6 @@ def start_asynchronous():
     not executed by globaleaks.run_app, then is called by the
     OS-depenedent runner below
     """
-    from globaleaks.jobs import session_management_sched, statistics_sched, \
-                                notification_sched, delivery_sched, cleaning_sched, \
-                                pgp_check_sched, mailflush_sched
-
     # Here we prepare the scheduled,
     # schedules will be started by reactor after reactor.run()
     session_management = session_management_sched.SessionManagementSchedule()
@@ -59,16 +61,11 @@ def start_asynchronous():
     # This operation, 'stats' has to be delayed (and executed in the minutes
     # of a 'clean hour', so, 01:00, 02:00, and then is repeated every 60
     # minutes.
-
     current_time = datetime_now()
     delay = (60 * 60) - (current_time.minute * 60) - current_time.second
     reactor.callLater(delay, stats.start, 60 * 60)
     statistics_sched.StatisticsSchedule.collection_start_datetime = current_time
 
-
-
-from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
-ServerOptions = ServerOptions
 
 def globaleaks_start():
     GLSetting.fix_file_permissions()
@@ -108,7 +105,7 @@ def globaleaks_start():
 
     return True
 
-class GLBaseRunnerUnix(UnixApplicationRunner):
+class GLBaseRunner(UnixApplicationRunner):
     """
     This runner is specific to Unix systems.
     """
@@ -141,5 +138,3 @@ class GLBaseRunnerUnix(UnixApplicationRunner):
             quit(-1)
 
         self.removePID(self.config['pidfile'])
-
-GLBaseRunner = GLBaseRunnerUnix

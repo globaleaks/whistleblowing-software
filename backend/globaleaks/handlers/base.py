@@ -27,7 +27,7 @@ from cyclone.escape import native_str, parse_qs_bytes
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
 
-from globaleaks.anomaly import outcome_event_monitored, EventTrack
+from globaleaks.anomaly import outcoming_event_monitored, EventTrack
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile
@@ -482,7 +482,7 @@ class BaseHandler(RequestHandler):
             if GLSetting.devel_mode:
                 import pdb; pdb.set_trace()
 
-        for event in outcome_event_monitored:
+        for event in outcoming_event_monitored:
             if event['handler_check'](self.request.uri) and \
                     event['method'] == self.request.method and \
                     event['status_checker'](self._status_code):

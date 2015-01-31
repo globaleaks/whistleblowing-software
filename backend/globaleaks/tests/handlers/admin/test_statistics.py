@@ -8,6 +8,7 @@ from globaleaks.jobs.statistics_sched import AnomaliesSchedule, StatisticsSchedu
 from globaleaks.models import Stats
 from globaleaks.settings import transact_ro
 from globaleaks.tests import helpers
+from globaleaks.test.test_anomaly import pollute_events_for_testing
 from globaleaks.utils.utility import datetime_now
 
 anomaly.reactor = task.Clock()
@@ -18,7 +19,7 @@ class TestAnomaliesCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        anomaly.pollute_Event_for_testing(3)
+        pollute_events_for_testing(3)
         yield AnomaliesSchedule().operation()
 
         handler = self.request({}, role='admin')
@@ -44,7 +45,7 @@ class TestStatsCollection(helpers.TestHandler):
         self.assertEqual(len(self.responses[0]), 3)
         self.assertEqual(len(self.responses[0]['heatmap']), 7 * 24)
 
-        anomaly.pollute_Event_for_testing(3)
+        pollute_events_for_testing(3)
 
         yield AnomaliesSchedule().operation()
 
@@ -56,7 +57,7 @@ class TestStatsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_delete(self):
-        anomaly.pollute_Event_for_testing(3)
+        pollute_events_for_testing(3)
         yield AnomaliesSchedule().operation()
         yield StatisticsSchedule().operation()
 
@@ -78,7 +79,7 @@ class TestAnomHistCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        anomaly.pollute_Event_for_testing(3)
+        pollute_events_for_testing(3)
         yield AnomaliesSchedule().operation()
         yield StatisticsSchedule().operation()
 
@@ -90,7 +91,7 @@ class TestAnomHistCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_delete(self):
-        anomaly.pollute_Event_for_testing(3)
+        pollute_events_for_testing(3)
         yield AnomaliesSchedule().operation()
         yield StatisticsSchedule().operation()
 
