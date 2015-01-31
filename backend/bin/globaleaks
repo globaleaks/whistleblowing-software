@@ -92,6 +92,7 @@ else:
     pip_version_check('/usr/share/globaleaks/glbackend/requirements.txt')
 
 from twisted.python import usage
+from twisted.scripts._twistd_unix import ServerOptions
 
 from globaleaks import runner, DATABASE_VERSION
 from globaleaks.db import check_db_files
@@ -259,7 +260,7 @@ def run_glbackend():
 
     sys.excepthook = mail_exception
 
-    config = runner.ServerOptions()
+    config = ServerOptions()
     try:
         config.parseOptions()
     except usage.error, ue:

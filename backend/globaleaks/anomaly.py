@@ -77,7 +77,7 @@ incoming_event_monitored = [
     #    }
 ]
 
-outcome_event_monitored = [
+outcoming_event_monitored = [
     {
         'name': 'failed_logins',
         'method': 'POST',
@@ -466,33 +466,6 @@ class Alarm(object):
                        security=GLSetting.memory_copy.notif_security,
                        event=None)
 
-    def get_token_difficulty(self):
-        """
-        THIS FUNCTION IS NOT YET CALL
-
-        This function return the difficulty that will be enforced in the
-        token, whenever is File or Submission, here is evaluated with a dict.
-        """
-        self.difficulty_dict = {
-            'human_captcha': False,
-            'graph_captcha': False,
-            'proof_of_work': False,
-        }
-
-        if Alarm.stress_levels['activity'] >= 1:
-            self.difficulty_dict['graph_captcha'] = True
-
-        if Alarm.stress_levels['disk_space'] >= 1:
-            self.difficulty_dict['human_captcha'] = True
-
-        log.debug("get_token_difficulty in %s is: HC:%s, GC:%s, PoW:%s" % (
-                  self.current_time,
-                  "Y" if self.difficulty_dict['human_captcha'] else "N",
-                  "Y" if self.difficulty_dict['graph_captcha'] else "N",
-                  "Y" if self.difficulty_dict['proof_of_work'] else "N" ) )
-
-        return self.difficulty_dict
-
     def report_disk_usage(self, free_bytes):
         """
         Here in Alarm is written the threshold to say if we're in disk alarm
@@ -518,21 +491,3 @@ class Alarm(object):
             Alarm.stress_levels['disk_space'] = 1
         else:
             Alarm.stress_levels['disk_space'] = 0
-
-
-    @staticmethod
-    def get_description_status():
-        """
-        This function is useful to get some debug log
-        """
-        return "Alarm CPU %d, Disk %d" % (
-            Alarm.stress_levels['activity'],
-            Alarm.stress_levels['disk_space'] )
-
-
-def pollute_Event_for_testing(number_of_times=1):
-    for _ in xrange(number_of_times):
-        for event_obj in outcome_event_monitored:
-
-            for x in xrange(2):
-                EventTrack(event_obj, 1.0 * x)

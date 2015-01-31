@@ -5,8 +5,10 @@ import random
 
 from twisted.internet.defer import inlineCallbacks
 from twisted.internet import task
-from globaleaks.tests import helpers
+
 from globaleaks import anomaly
+from globaleaks.tests import helpers
+from globaleaks.test.test_anomaly import pollute_events_for_testing
 from globaleaks.handlers.admin.statistics import get_stats, \
     get_anomaly_history,  delete_anomaly_history, delete_weekstats_history, \
     AnomaliesCollection
@@ -29,7 +31,7 @@ class TestStatistics(helpers.TestGL):
 
         # start test
         ANOMALIES_AMOUNT = 10
-        anomaly.pollute_Event_for_testing(ANOMALIES_AMOUNT)
+        pollute_events_for_testing(ANOMALIES_AMOUNT)
 
         anomaly.Alarm.compute_activity_level()
 
