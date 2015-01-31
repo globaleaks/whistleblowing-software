@@ -453,6 +453,17 @@ def seconds_convert(value, conversion_factor, minv=0, maxv=0):
 
     return seconds
 
+def iso_year_start(iso_year):
+    "The gregorian calendar date of the first day of the given ISO year"
+    fourth_jan = datetime.strptime('{0}-01-04'.format(iso_year), '%Y-%m-%d')
+    delta = timedelta(fourth_jan.isoweekday() - 1)
+    return fourth_jan - delta
+
+def iso_to_gregorian(iso_year, iso_week, iso_day):
+    "Gregorian calendar date for the given ISO year, week and day"
+    year_start = iso_year_start(iso_year)
+    return year_start + timedelta(days=iso_day - 1, weeks=iso_week - 1)
+
 def acquire_bool(boolvalue):
     if boolvalue == 'true' or boolvalue == u'true' or boolvalue == True:
         return True

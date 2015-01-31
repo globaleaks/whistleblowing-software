@@ -8,7 +8,7 @@
 
 import operator
 from twisted.internet.defer import inlineCallbacks
-from storm.expr import Desc
+from storm.expr import Desc, And
 
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact_ro, transact
@@ -18,7 +18,7 @@ from globaleaks.handlers.authentication import transport_security_check, \
 from globaleaks.jobs.statistics_sched import StatisticsSchedule
 from globaleaks.models import Stats, Anomalies
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
-    log, utc_past_date
+    utc_past_date, iso_to_gregorian, log
 from globaleaks.anomaly import EventTrackQueue, outcome_event_monitored
 
 def weekmap_to_heatmap(week_map):
@@ -64,8 +64,10 @@ def get_stats(store, week_delta):
     current_hour = now.hour
     current_week = now.isocalendar()[1]
 
-    # TODO improve models with year+week
-    hourlyentry = store.find(Stats, Stats.week == looked_week, Stats.year == looked_year)
+    lower_bound = iso_to_gregorian(looked_year, looked_week, 1)
+    upper_bound = iso_to_gregorian(looked_year, looked_week, 7)
+
+    hourlyentry = store.find(Stats, And(Stats.start >= lower_bound, Stats.start <= upper_bound))
 
     week_entries = 0
     week_map= [[dict() for i in xrange(24)] for j in xrange(7)]
