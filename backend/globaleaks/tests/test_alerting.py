@@ -8,7 +8,7 @@ from twisted.internet import task
 
 from globaleaks import anomaly
 from globaleaks.tests import helpers
-from globaleaks.test.test_anomaly import pollute_events_for_testing
+from globaleaks.tests.test_anomaly import pollute_events_for_testing
 from globaleaks.handlers.admin.statistics import get_stats, \
     get_anomaly_history,  delete_anomaly_history, delete_weekstats_history, \
     AnomaliesCollection
