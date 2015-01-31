@@ -81,7 +81,7 @@ spec = [
     (r'/admin/fieldtemplate', admin.field.FieldTemplateCreate),
     (r'/admin/fieldtemplate/' + field_regexp, admin.field.FieldTemplateInstance),
     (r'/admin/anomalies', admin.statistics.AnomaliesCollection),
-    (r'/admin/stats', admin.statistics.StatsCollection),
+    (r'/admin/stats/(\d+)', admin.statistics.StatsCollection),
     (r'/admin/activities/(\w+)', admin.statistics.RecentEventsCollection),
     (r'/admin/history', admin.statistics.AnomalyHistoryCollection),
     (r'/admin/staticfiles', admin.staticfiles.StaticFileList),

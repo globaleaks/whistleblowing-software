@@ -78,28 +78,28 @@ incoming_event_monitored = [
 
 outcome_event_monitored = [
     {
-        'name': 'logins_failed',
+        'name': 'failed_logins',
         'method': 'POST',
         'handler_check': login_check,
         'status_checker': failure_status_check,
         'anomaly_management': None,
     },
     {
-        'name': 'logins_successful',
+        'name': 'successful_logins',
         'method': 'POST',
         'handler_check': login_check,
         'status_checker': ok_status_check,
         'anomaly_management': None,
     },
     {
-        'name': 'submissions_started',
+        'name': 'started_submissions',
         'method': 'POST',
         'handler_check': submission_check,
         'status_checker': created_status_check,
         'anomaly_management': None,
     },
     {
-        'name': 'submissions_completed',
+        'name': 'completed_submissions',
         'method': 'PUT',
         'handler_check': submission_check,
         'status_checker': update_status_check,

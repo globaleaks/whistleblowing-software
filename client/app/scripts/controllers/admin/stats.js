@@ -1,6 +1,9 @@
 GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollection',
   function($scope, $filter, Node, StatsCollection) {
 
+    $scope.week_delta = 0;
+    $scope.blob = {};
+
     var margin = { top: 50, right: 0, bottom: 100, left: 30 },
       width = 960 - margin.left - margin.right,
       height = 430 - margin.top - margin.bottom,
@@ -15,18 +18,16 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
     /* 2014-11-09T13:38:22.707125Z  with [:-8] */
     var parseISODate = d3.time.format("%Y-%m-%dT%H:%M:%S").parse;
 
-    var show_data = function(data, $scope) {
+    var show_data = function(data) {
 
       /*
       {
           "hour": 19,
           "day": 6,
-          "week": 46,
-          "year": 2014
           "summary": {
               "login_failure": 28
           },
-          "freemegabytes": 5627
+          "free_disk_space": 5627
           "valid": 0
       },
       valid is a status flag:
@@ -37,33 +38,18 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
       */
 
       data.forEach(function(d) {
-
-          d.week =+d.week;
-          d.year =+d.year;
-          d.day =+ d.day;
-          d.hour =+ d.hour;
-
-          if(d.summary['logins_failed']) { d.logins_failed = +d.summary['logins_failure']; } else {d.logins_failed = 0 }
-          d.value += d.logins_failed;
-          if(d.summary['logins_successful']) { d.logins_successful = +d.summary['logins_successful']; } else { d.logins_successful = 0 }
-          d.value += d.logins_successful;
-          if(d.summary['submissions_started']) { d.submissions_started = +d.summary['submissions_started']; } else { d.submissions_started = 0 }
-          d.value = d.submissions_started;
-          if(d.summary['submissions_completed']) { d.submissions_completed = +d.summary['submissions_completed']; } else { d.submissions_completed = 0 }
-          d.value += d.submissions_completed;
-          if(d.summary['uploaded_files']) { d.uploaded_files = +d.summary['uploaded_files']; } else { d.uploaded_files = 0 }
-          d.value += d.uploaded_files;
-          if(d.summary['appended_files']) { d.appended_files = +d.summary['appended_files']; } else { d.appended_files = 0 }
-          d.value += d.appended_files;
-          if(d.summary['wb_comments']) { d.wb_comments = +d.summary['wb_comments']; } else { d.wb_comments = 0 }
-          d.value += d.wb_comments;
-          if(d.summary['wb_messages']) { d.wb_messages = +d.summary['wb_messages']; } else { d.wb_messages = 0 }
-          d.value += d.wb_messages;
-          if(d.summary['receiver_comments']) { d.receiver_comments = +d.summary['receiver_comments']; } else { d.receiver_comments = 0 }
-          d.value += d.receiver_comments;
-          if(d.summary['receiver_messages']) { d.receiver_messages = +d.summary['receiver_messages']; } else { d.receiver_messages = 0 }
-          d.value += d.receiver_messages;
-
+          if (d.valid == 0) {
+            d.value += d.summary.failed_logins;
+            d.value += d.summary.successful_logins;
+            d.value += d.summary.started_submissions;
+            d.value += d.summary.completed_submissions;
+            d.value += d.summary.uploaded_files;
+            d.value += d.summary.appended_files;
+            d.value += d.summary.wb_comments;
+            d.value += d.summary.wb_messages;
+            d.value += d.summary.receiver_comments;
+            d.value += d.summary.receiver_messages;
+          }
       });
 
       var colorScale = d3.scale.quantile()
@@ -111,34 +97,13 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
           .style("fill", function(d) {
               return colors[0]
           }).on("mouseenter", function(d) {
-              $scope.blob = {
-                  'value' : d.value,
-                  'logins_failed' : d.logins_failed,
-                  'logins_successful' : d.logins_successful,
-                  'submissions_started' : d.submissions_started,
-                  'submissions_completed' : d.submissions_completed
-              };
-                /*
-              $filter('translate')('Completed submissions') + ' : ' + d.submissions_completed + '\n' +
-              $filter('translate')('Uploaded files') + ' : ' + d.uploaded_files + '\n' +
-              $filter('translate')('Appended files') + ' : ' + d.appended_files + '\n' +
-              $filter('translate')('Whistleblower Comments') + ': ' + d.wb_comments + '\n' +
-              $filter('translate')('Whistleblower Message') + ': ' + d.wb_messages + '\n' +
-              $filter('translate')('Receiver comments') + ': ' + d.receiver_comments + '\n' +
-              $filter('translate')('Receiver messages') + ': ' + d.receiver_messages + '\n' +
-              $filter('translate')('Free megabytes') + ': ' + d.freemegabytes + '\n'
-              */
-
-          }).on("click", function(i, d) {
-            console.log(i);
-            console.log(d);
-            $scope.blob = {
-                  'value' : d.value,
-                  'logins_failed' : d.logins_failed,
-                  'logins_successful' : d.logins_successful,
-                  'submissions_started' : d.submissions_started
-            };
-            console.log($scope.blob);
+              if (d.valid == 0) {
+                $scope.blob = d;
+                $scope.$apply();
+              }
+          }).on("mouseleave", function(d) {
+              $scope.blob = undefined;
+              $scope.$apply();
           });
 
       heatMap.transition().duration(600)
@@ -157,9 +122,9 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
 
       heatMap.append("title").text(function(d) {
           // if strings are updated here remember to update client/translation.html to push them on transifex
-          if (d.valid == -2) {
+          if (d.valid == -1) {
               return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('in this hour the node was off.');
-          } else if (d.valid == -1) {
+          } else if (d.valid == -2) {
               return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('no stats available for the future.');
           } else if (d.valid == -3) {
               return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('no stats available for current hour; check activities page.');
@@ -190,67 +155,37 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
 
     };
 
-    $scope.stats = StatsCollection.get(function(stats) {
-      show_data(stats.heatmap, $scope);
+    $scope.show_stats = function(stats) {
+      show_data(stats.heatmap);
       $scope.when = stats.associated_date;
       $scope.complete = stats.complete;
-      $scope.week_number = stats.week_delta;
-      $scope.week = stats.week;
-      $scope.year = stats.year;
-    });
+    }
 
-    $scope.week_number = 0;
-
-    $scope.new_week = function () {
-
-        if ($scope.week_number == undefined) {
-            console.log("Week number fail, reset to default");
-            $scope.week_number = 0;
+    $scope.update_week = function () {
+        if ($scope.week_delta == undefined || $scope.week_delta > 0) {
+            $scope.week_delta = 0;
         }
 
-        StatsCollection.update({
-            'week_delta': $scope.week_number,
-            'stats': []
-        }, function(stats) {
-            show_data(stats.heatmap, $scope);
-            $scope.when = stats.associated_date;
-            $scope.complete = stats.complete;
-            $scope.week_number = stats.week_delta;
-            $scope.week = stats.week;
-            $scope.year = stats.year;
-        });
-    };
+        var delta = Math.abs($scope.week_delta);
 
+        $scope.stats = StatsCollection.get({week_delta: delta}, $scope.show_stats);
+    }
+
+    $scope.increment_week = function() {
+      if ($scope.week_delta < 0) {
+        $scope.week_delta += 1;
+        $scope.update_week();
+      }
+    }
+
+    $scope.decrement_week = function() {
+      $scope.week_delta -= 1;
+      $scope.update_week();
+    }
+
+    $scope.update_week();
 
 }]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 GLClient.controller('AnomaliesCtrl', ['$scope', 'Node', 'AnomaliesHistCollection',
   function($scope, Node, AnomaliesHistCollection) {

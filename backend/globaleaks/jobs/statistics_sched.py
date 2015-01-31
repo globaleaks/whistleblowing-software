@@ -36,7 +36,7 @@ def save_anomalies(store, anomalies_list):
         store.add(newanom)
 
     if anomalies_counter:
-        log.debug("save_anomalies: Saved %d collected during the last hour" %
+        log.debug("save_anomalies: Saved %d anomalies collected during the last hour" %
                   anomalies_counter)
 
 class AnomaliesSchedule(GLJob):
@@ -85,19 +85,15 @@ def get_statistics():
 
 @transact
 def save_statistics(store, start, end, activity_collection):
-
     newstat = Stats()
 
-    newstat.week = datetime_now().isocalendar()[1]
-    newstat.year = datetime_now().isocalendar()[0]
-
     if activity_collection:
-        log.debug("save_statistics: since %s to %s I've collected: %s [week %d year %d]" %
-                  (start, end, activity_collection, newstat.week, newstat.year) )
+        log.debug("save_statistics: Saved statistics %s collected from %s to %s" %
+                  (activity_collection, start, end))
 
     newstat.start = start
     newstat.summary = dict(activity_collection)
-    newstat.freemb = ResourceChecker.get_free_space()
+    newstat.free_disk_space = ResourceChecker.get_free_space()
 
     store.add(newstat)
 

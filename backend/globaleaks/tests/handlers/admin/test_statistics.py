@@ -41,8 +41,8 @@ class TestStatsCollection(helpers.TestHandler):
         yield handler.get(0)
 
         self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
-        self.assertEqual(len(self.responses[0]), 7 * 24)
+        self.assertEqual(len(self.responses[0]), 3)
+        self.assertEqual(len(self.responses[0]['heatmap']), 7 * 24)
 
         anomaly.pollute_Event_for_testing(3)
 
@@ -51,8 +51,8 @@ class TestStatsCollection(helpers.TestHandler):
         handler = self.request({}, role='admin')
         yield handler.get(0)
 
-        self.assertEqual(len(self.responses), 2)
-        self.assertEqual(len(self.responses[1]), 7 * 24)
+        self.assertEqual(len(self.responses[1]), 3)
+        self.assertEqual(len(self.responses[1]['heatmap']), 7 * 24)
 
     @inlineCallbacks
     def test_delete(self):

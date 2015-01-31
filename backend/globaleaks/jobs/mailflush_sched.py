@@ -166,9 +166,8 @@ class MailflushSchedule(GLJob):
 
     @inlineCallbacks
     def operation(self):
-
         if not GLSetting.memory_copy.receiver_notif_enable:
-            log.debug("MailFlush: Receiver notification disable")
+            log.debug("MailFlush: Receiver notification disabled")
             return
 
         queue_events = yield load_complete_events()
@@ -207,6 +206,3 @@ class MailflushSchedule(GLJob):
                                        receivers_synthesis)
 
         # Whishlist: implement digest as an appropriate plugin
-
-
-
