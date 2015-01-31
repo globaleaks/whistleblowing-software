@@ -251,6 +251,7 @@ def datetime_null():
     """
     return datetime.utcfromtimestamp(0)
 
+
 def datetime_now():
     """
     @return: a utc datetime object of now and eventually incremented
@@ -263,6 +264,7 @@ def datetime_now():
 
     return now
 
+
 def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0):
     """
     @param start_date: a date stored in a db
@@ -270,6 +272,7 @@ def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0):
     @return: a datetime object, as base of the sum
     """
     return start_date + timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
+
 
 def utc_past_date(seconds=0, minutes=0, hours=0):
     """
@@ -281,6 +284,7 @@ def utc_past_date(seconds=0, minutes=0, hours=0):
         now += timedelta(seconds=GLSetting.debug_option_in_the_future)
     return utc_dynamic_date(now) - \
            timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
+
 
 def utc_future_date(seconds=0, minutes=0, hours=0):
     """
@@ -298,6 +302,7 @@ def utc_future_date(seconds=0, minutes=0, hours=0):
 
     return utc_dynamic_date(now, seconds, minutes, hours)
 
+
 def get_future_epoch(seconds=0):
     """
     @param seconds: optional, the second in
@@ -312,6 +317,7 @@ def get_future_epoch(seconds=0):
         basic_future += GLSetting.debug_option_in_the_future
 
     return basic_future
+
 
 def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
     """
@@ -337,6 +343,7 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
 
     return now > check
 
+
 def datetime_to_ISO8601(date):
     """
     conver a datetime in ISO8601 format and UTC timezone
@@ -345,6 +352,7 @@ def datetime_to_ISO8601(date):
         date = datetime_null()
 
     return date.isoformat() + "Z" # Z means that the date is in UTC
+
 
 def ISO8601_to_datetime(isodate):
 
@@ -357,6 +365,7 @@ def ISO8601_to_datetime(isodate):
         ret.replace(microsecond=0)
     return ret
 
+
 def datetime_to_pretty_str(date):
     """
     print a datetime in pretty formatted str format
@@ -366,6 +375,7 @@ def datetime_to_pretty_str(date):
 
     return date.strftime("%A %d %B %Y %H:%M (UTC)")
 
+
 def datetime_to_day_str(date):
     """
     print a datetime in DD/MM/YYYY formatted str
@@ -374,6 +384,7 @@ def datetime_to_day_str(date):
         date = datetime_null()
 
     return date.strftime("%d/%m/%Y")
+
 
 def ISO8601_to_pretty_str(isodate):
     """
@@ -391,6 +402,7 @@ def ISO8601_to_pretty_str(isodate):
 
     return datetime_to_pretty_str(date)
 
+
 def ISO8601_to_day_str(isodate):
     """
     print a ISO8601 in DD/MM/YYYY formatted str
@@ -407,14 +419,6 @@ def ISO8601_to_day_str(isodate):
 
     return date.strftime("%d/%m/%Y")
 
-def datetime_to_pretty_str_tz(date):
-    """
-    print a datetime in pretty formatted str format
-    """
-    if date is None:
-        date = datetime_null()
-
-    return date.strftime("%A %d %B %Y %H:%M")
 
 def ISO8601_to_pretty_str_tz(isodate, tz):
     """
@@ -435,7 +439,8 @@ def ISO8601_to_pretty_str_tz(isodate, tz):
 
     date += timedelta(hours=tz_i, minutes=tz_d)
 
-    return datetime_to_pretty_str_tz(date)
+    return date.strftime("%A %d %B %Y %H:%M")
+
 
 def seconds_convert(value, conversion_factor, minv=0, maxv=0):
     """
@@ -453,22 +458,39 @@ def seconds_convert(value, conversion_factor, minv=0, maxv=0):
 
     return seconds
 
+
 def iso_year_start(iso_year):
-    "The gregorian calendar date of the first day of the given ISO year"
+    "Returns the gregorian calendar date of the first day of the given ISO year"
     fourth_jan = datetime.strptime('{0}-01-04'.format(iso_year), '%Y-%m-%d')
     delta = timedelta(fourth_jan.isoweekday() - 1)
     return fourth_jan - delta
 
+
 def iso_to_gregorian(iso_year, iso_week, iso_day):
-    "Gregorian calendar date for the given ISO year, week and day"
+    "Returns gregorian calendar date for the given ISO year, week and day"
     year_start = iso_year_start(iso_year)
     return year_start + timedelta(days=iso_day - 1, weeks=iso_week - 1)
+
+
+def bytes_to_pretty_str(b):
+    if isinstance(b, str):
+        b = int(b)
+
+    if (b >= 1000000000):
+        return "%dGB" % int(b / 1000000000)
+
+    if (b >= 1000000):
+        return "%dMB" % int(b / 1000000)
+
+    return "%dKB" % int(b / 1000)
+
 
 def acquire_bool(boolvalue):
     if boolvalue == 'true' or boolvalue == u'true' or boolvalue == True:
         return True
 
     return False
+
 
 def caller_name(skip=2):
     """Get a name of a caller in the format module.class.method
