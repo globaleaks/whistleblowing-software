@@ -603,7 +603,7 @@ class MockDict():
             'mail_address': self.dummyReceiverUser['username'],
             'ping_mail_address': '',
             'can_delete_submission': True,
-            'postpone_superpower': False,
+            'postpone_superpower': True,
             'contexts' : [],
             'tip_notification': True,
             'file_notification': True,
