@@ -37,6 +37,10 @@ def start_asynchronous():
     clean = cleaning_sched.CleaningSchedule()
     pgp_check = pgp_check_sched.PGPCheckSchedule()
     mailflush = mailflush_sched.MailflushSchedule()
+    resource_check = statistics_sched.ResourceChecker()
+    anomaly = statistics_sched.AnomaliesSchedule()
+    stats = statistics_sched.StatisticsSchedule()
+
 
     # here we prepare the schedule:
     #  - first argument is the first run delay in seconds
@@ -46,24 +50,20 @@ def start_asynchronous():
     reactor.callLater(10, delivery.start, GLSetting.delivery_seconds_delta)
     reactor.callLater(20, notification.start, GLSetting.notification_minutes_delta * 60)
     reactor.callLater(30, clean.start, GLSetting.cleaning_hours_delta * 3600)
-    reactor.callLater(60, pgp_check.start, GLSetting.pgp_check_hours_delta * 3600)
-    reactor.callLater(120, mailflush.start, GLSetting.mailflush_minutes_delta * 60)
+    reactor.callLater(40, mailflush.start, GLSetting.mailflush_minutes_delta * 60)
+    reactor.callLater(50, resource_check.start, GLSetting.anomaly_seconds_delta)
+    reactor.callLater(60, anomaly.start, GLSetting.anomaly_seconds_delta)
 
-    # anti flood protection, anomaly collection, stats
-    resource_check = statistics_sched.ResourceChecker()
-    anomaly = statistics_sched.AnomaliesSchedule()
-    stats = statistics_sched.StatisticsSchedule()
-
-    reactor.callLater(0, resource_check.start, GLSetting.anomaly_seconds_delta)
-    reactor.callLater(30, anomaly.start, GLSetting.anomaly_seconds_delta)
-
-    # This operation, 'stats' has to be delayed (and executed in the minutes
-    # of a 'clean hour', so, 01:00, 02:00, and then is repeated every 60
-    # minutes.
+    # The Stats scheduler need to be executed every hour on the hour.
     current_time = datetime_now()
     delay = (60 * 60) - (current_time.minute * 60) - current_time.second
     reactor.callLater(delay, stats.start, 60 * 60)
     statistics_sched.StatisticsSchedule.collection_start_datetime = current_time
+
+    # The PGP check scheduler need to be executed every day at midnight
+    current_time = datetime_now()
+    delay = (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
+    reactor.callLater(delay, pgp_check.start, 3600 * 24)
 
 
 def globaleaks_start():
