@@ -17,6 +17,13 @@ from twisted.test import proto_helpers
 
 from gnupg import GPG
 
+# Monkeypathing for unit testing  in order to
+# prevent mail activities
+from globaleaks.utils import mailutils
+def sendmail_mock(**args):
+    return defer.succeed(None)
+mailutils.sendmail = sendmail_mock
+
 from globaleaks import db, models, security, anomaly
 from globaleaks.db.datainit import load_appdata, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
@@ -35,11 +42,6 @@ from globaleaks.utils import mailutils
 from globaleaks.utils.utility import datetime_null, uuid4, log
 
 from . import TEST_DIR
-
-def sendmail_mock(**args):
-    return defer.succeed(None)
-
-mailutils.sendmail = sendmail_mock
 
 ## constants
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
@@ -214,6 +216,7 @@ class TestGL(unittest.TestCase):
             'y': 1,
             'x': 1,
         }
+
         return dummy_f
 
     @defer.inlineCallbacks

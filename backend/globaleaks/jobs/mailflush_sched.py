@@ -20,7 +20,6 @@ from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import deferred_sleep, log
 from globaleaks.utils.templating import Templating
 
-
 class NotificationMail:
 
     def __init__(self, plugin_used):
@@ -114,6 +113,8 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
 
 class MailflushSchedule(GLJob):
 
+    skip_sleep = False
+
     def ping_mail_flush(self, notification_settings, receivers_syntesis):
         """
         TODO This function should be implemented as a clean and testable plugin in the
@@ -180,7 +181,9 @@ class MailflushSchedule(GLJob):
         for qe in queue_events:
 
             notifcb.do_every_notification(qe)
-            yield deferred_sleep(3)
+
+            if not self.skip_sleep:
+                yield deferred_sleep(3)
             # note, this settings has to be multiply for 3 (seconds in this iteration)
             # and the results (notification_limit * 3) need to be shorter than the periodic running time
             # specified in runner.py, that's why is set at FIVE minutes.

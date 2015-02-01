@@ -1,16 +1,12 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
+
 from globaleaks.handlers import submission
 from globaleaks.jobs import delivery_sched
+from globaleaks.jobs.mailflush_sched import MailflushSchedule
 from globaleaks.jobs.notification_sched import NotificationSchedule
-
-# override GLsetting
 from globaleaks.settings import GLSetting
-GLSetting.notification_plugins = ['MailNotification']
-GLSetting.memory_copy.notif_source_name = "name fake"
-GLSetting.memory_copy.notif_source_email = "mail@fake.xxx"
-
 
 class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
 
@@ -21,9 +17,11 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_notification_schedule(self):
-        aps = NotificationSchedule()
+        yield NotificationSchedule().operation()
 
-        yield aps.operation()
+        mail_schedule = MailflushSchedule()
+        mail_schedule.skip_sleep = True
+        yield mail_schedule.operation()
 
         # TODO to be completed with real tests.
         #      now we simply perform operations to raise code coverage
