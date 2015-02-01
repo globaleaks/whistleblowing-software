@@ -36,6 +36,11 @@ from globaleaks.utils.utility import datetime_null, uuid4, log
 
 from . import TEST_DIR
 
+def sendmail_mock(**args):
+    return defer.succeed(None)
+
+mailutils.sendmail = sendmail_mock
+
 ## constants
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
@@ -129,11 +134,6 @@ class TestGL(unittest.TestCase):
         GLSetting.create_directories()
 
         self.setUp_dummy()
-
-        def sendmail_mock(*args):
-            return defer.succeed(None)
-
-        mailutils.sendmail = sendmail_mock
 
         yield db.create_tables(self.create_node)
 
