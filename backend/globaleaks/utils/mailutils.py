@@ -204,15 +204,7 @@ def MIME_mail_build(source_name, source_mail, receiver_name, receiver_mail, titl
     textpart = MIMEText(txt_body.encode('utf-8'), 'plain', 'UTF-8')
     multipart.attach(textpart)
 
-    # And here we have to instantiate a Generator object to convert the multipart
-    # object to a string (can't use multipart.as_string, because that escapes
-    # "From" lines).
-    try:
-        io = StringIO.StringIO(multipart.as_string())
-        return io
-    except Exception as excep:
-        log.err("Unable to encode and email: %s" % excep)
-        return None
+    return StringIO.StringIO(multipart.as_string())
 
 
 def collapse_mail_content(mixed_list):
@@ -254,7 +246,7 @@ def collapse_mail_content(mixed_list):
         )
         return message_file
     except Exception as excep:
-        log.err("Unable to encode and email: %s" % excep)
+        log.err("Unable to encode an email: %s" % excep)
         return None
 
 def mail_exception(etype, value, tback):

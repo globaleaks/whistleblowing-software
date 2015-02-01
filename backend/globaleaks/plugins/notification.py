@@ -28,12 +28,11 @@ class MailNotification(Notification):
     # But at the first presence of a different notification plugin, need to be resumed and
     # integrated in the validation messages.
 
-    def validate_admin_opt(self, pushed_af):
+    def validate_admin_opt(self, pushed_ao):
         fields = ['server', 'port', 'username', 'password']
-        if all(field in pushed_af for field in fields):
+        if all(field in pushed_ao for field in fields):
             return True
         else:
-            log.info('invalid mail settings for admin')
             return False
 
     def validate_receiver_opt(self, admin_fields, receiver_fields):
@@ -41,9 +40,8 @@ class MailNotification(Notification):
         return True
 
     def do_notify(self, event):
-        # check if exists the conf
         if not self.validate_admin_opt(event.notification_settings):
-            log.info('invalid configuration for admin email!')
+            log.info('invalid mail settings for admin')
             return None
 
         # At the moment the language used is a system language, not
@@ -121,11 +119,6 @@ class MailNotification(Notification):
                                   receiver_mail,
                                   title,
                                   body)
-
-        if not message:
-            log.err("Unable to format (and then notify!) email for %s" % receiver_mail)
-            log.debug(body)
-            return None
 
         return self.mail_flush(event.notification_settings['source_email'],
                                [receiver_mail], message, event)
