@@ -169,7 +169,7 @@ def sendmail(authentication_username, authentication_password, from_address,
     return result_deferred
 
 
-def MIME_mail_build(source_name, source_mail, receiver_name, receiver_mail, title, txt_body):
+def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
 
     # Override python's weird assumption that utf-8 text should be encoded with
     # base64, and instead use quoted-printable (for both subject and body).  I
@@ -188,11 +188,11 @@ def MIME_mail_build(source_name, source_mail, receiver_name, receiver_mail, titl
     multipart['Subject'] = Header(title.encode('utf-8'), 'UTF-8').encode()
     multipart['Date'] = rfc822_date()
 
-    multipart['To'] = Header(receiver_name.encode('utf-8'), 'UTF-8').encode() + \
-                        " <" + receiver_mail + ">"
+    multipart['To'] = Header(dest_name.encode('utf-8'), 'UTF-8').encode() + \
+                        " <" + dest_mail + ">"
 
-    multipart['From'] = Header(source_name.encode('utf-8'), 'UTF-8').encode() + \
-                        " <" + source_mail + ">"
+    multipart['From'] = Header(src_name.encode('utf-8'), 'UTF-8').encode() + \
+                        " <" + src_mail + ">"
 
     multipart['X-Mailer'] = "fnord"
 
@@ -201,53 +201,11 @@ def MIME_mail_build(source_name, source_mail, receiver_name, receiver_mail, titl
     # htmlpart = MIMEText(html.encode('utf-8'), 'html', 'UTF-8')
     # multipart.attach(htmlpart)
 
-    textpart = MIMEText(txt_body.encode('utf-8'), 'plain', 'UTF-8')
+    textpart = MIMEText(mail_body.encode('utf-8'), 'plain', 'UTF-8')
     multipart.attach(textpart)
 
     return StringIO.StringIO(multipart.as_string())
 
-
-def collapse_mail_content(mixed_list):
-    """
-    @param mixed_list: The email are composed using [].append, here the list arrive
-    @return: a StringIO
-
-    The function sanitize, escape and handle mixed string/unicode and return an utf-8
-    StringIO variable, required by twisted.
-
-    This function use the "\n" after the encoding has been done, this avoid wrong conversion
-    or needed control chars
-    """
-    carriage_return = "_somethingunique12345"
-
-    safe_line = unicode()
-    for line in mixed_list:
-
-        if isinstance(line, unicode):
-            if line.find("\n"):
-                line = line.replace("\n", carriage_return)
-            safe_line += u"%s%s" % (line.encode('unicode_escape'), carriage_return)
-        elif isinstance(line, str):
-            if line.find("\n"):
-                line = line.replace("\n", carriage_return)
-            safe_line += u"%s%s" % (line.encode('string_escape'), carriage_return)
-        elif line is None:
-            safe_line += u"%s%s" % (carriage_return, carriage_return)
-        else:
-            raise TypeError("Unable to escape/encode the message file")
-
-    # XXX this will make unicode chars not display properly in emails. A long
-    # term fix for this should be thought of.
-    # This is a bug inside of twisted tls that does not take as arguments unicode.
-    # https://github.com/powdahound/twisted/blob/master/twisted/protocols/tls.py
-    try:
-        message_file = StringIO.StringIO(
-            safe_line.encode('unicode_escape').replace(carriage_return, "\n")
-        )
-        return message_file
-    except Exception as excep:
-        log.err("Unable to encode an email: %s" % excep)
-        return None
 
 def mail_exception(etype, value, tback):
     """
@@ -287,6 +245,10 @@ def mail_exception(etype, value, tback):
     error_message = "%s %s" % (exc_type.strip(), etype.__doc__)
     traceinfo = '\n'.join(traceback.format_exception(etype, value, tback))
 
+    if GLSetting.loglevel == logging.DEBUG:
+        log.err(error_message)
+        log.err(traceinfo)
+
     # this function can be called and used only when GLBackend is running,
     # if an exception is raise before GLSetting has been instanced and setup
     # everything will go badly. Therefore there are checked the integrity of GLSettings
@@ -304,41 +266,31 @@ def mail_exception(etype, value, tback):
 
         log.err("Exception mail! [%d]" % mail_exception.mail_counter)
 
-        tmp = ["Date: %s" % rfc822_date(),
-               "From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
-                                      GLSetting.memory_copy.notif_source_email),
-               "To: %s" % GLSetting.memory_copy.exception_email,
-               "Subject: GL Exception %s %s [%d]" % (
-                   " ".join(os.uname()),
-                   __version__,
-                   mail_exception.mail_counter),
-               "Content-Type: text/plain; charset=ISO-8859-1",
-               "Content-Transfer-Encoding: 8bit",
-               None,
-               "Version: %s" % __version__]
+        mail_body = error_message + "\n\n" + traceinfo
 
-        tmp.append(error_message)
-        tmp.append(traceinfo)
-
-        mail_content = collapse_mail_content(tmp)
-
-        if not mail_content or GLSetting.loglevel == logging.DEBUG:
-            log.err(error_message)
-            log.err(traceinfo)
+        message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
+                                  GLSetting.memory_copy.notif_source_email,
+                                  "Admin",
+                                  GLSetting.memory_copy.exception_email,
+                                  "Subject: GL Exception %s %s [%d]" % (
+                                      " ".join(os.uname()),
+                                      __version__,
+                                      mail_exception.mail_counter
+                                  ),
+                                  mail_body)
 
         sendmail(authentication_username=GLSetting.memory_copy.notif_username,
                  authentication_password=GLSetting.memory_copy.notif_password,
                  from_address=GLSetting.memory_copy.notif_username,
                  to_address=GLSetting.memory_copy.exception_email,
-                 message_file=mail_content,
+                 message_file=message,
                  smtp_host=GLSetting.memory_copy.notif_server,
                  smtp_port=GLSetting.memory_copy.notif_port,
                  security=GLSetting.memory_copy.notif_security)
                  
     except Exception as excep:
         # we strongly need to avoid raising exception inside email logic to avoid chained errors
-        log.err("Unexpected exception in mail_exception: %s" % str(excep))
-        return fail()
+        log.err("Unexpected exception in mail_exception: %s" % excep)
 
 mail_exception.mail_counter = 0
 
