@@ -5,10 +5,9 @@ import os
 import sys
 
 from storm.locals import create_database, Store
-from copy import copy
 
 from globaleaks import models
-from globaleaks.utils.utility import randint, datetime_now, utc_past_date
+from globaleaks.utils.utility import randint, utc_past_date
 
 DEFAULT_OUTPUT_DBNAME = "/tmp/cleaned_glbackend.db"
 DUMMY_UNICODE_TEXT = u"¹²³ HelLlo! I'm the Batman"
@@ -53,7 +52,7 @@ def _change_tracking_uuid(sourceuuid):
 def do_storm_copy(source_store_obj):
     thecopy = source_store_obj.__class__()
 
-    for k, v in source_store_obj._storm_columns.iteritems():
+    for _, v in source_store_obj._storm_columns.iteritems():
         setattr(thecopy, v.name, getattr(source_store_obj, v.name) )
 
     return thecopy
@@ -91,7 +90,7 @@ def do_statspollute(dbfile):
             return int(randint(0,11) + (5 * level))
 
         activity_fake = {
-            'successfull_logins': random,
+            'successfull_logins': random_pollution(),
             'failed_logins': random_pollution(),
             'started_submissions': random_pollution(),
             'completed_submissions': random_pollution(),
