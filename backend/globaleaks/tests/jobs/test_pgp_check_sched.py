@@ -10,7 +10,7 @@ from globaleaks.jobs import pgp_check_sched
 class TestPGPCheckSchedule(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
-    def test_php_check_schedule(self):
+    def test_pgp_check_schedule(self):
         # FIXME: complete this unit test by performing checks
         #        on the actions performed by the scheduler.
         yield pgp_check_sched.PGPCheckSchedule().operation()

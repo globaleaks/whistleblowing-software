@@ -92,8 +92,7 @@ class MailNotification(Notification):
             raise NotImplementedError("At the moment, only Tip expected")
 
         # If the receiver has encryption enabled (for notification), encrypt the mail body
-        if event.receiver_info['gpg_key_status'] == Receiver._gpg_types[1] and \
-           event.receiver_info['gpg_enable_notification']:
+        if event.receiver_info['gpg_key_status'] == u'Enabled':
 
             try:
                 gpob = GLBGPG()
@@ -128,10 +127,9 @@ class MailNotification(Notification):
             log.debug(body)
             return None
 
-        self.finished = self.mail_flush(event.notification_settings['source_email'],
-                                        [receiver_mail], message, event)
+        return self.mail_flush(event.notification_settings['source_email'],
+                               [receiver_mail], message, event)
 
-        return self.finished
 
     @staticmethod
     def mail_flush(from_address, to_address, message_file, event):
