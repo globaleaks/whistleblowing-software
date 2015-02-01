@@ -3,7 +3,6 @@ import unittest
 
 from globaleaks.third_party.rstr.rstr_base import Rstr
 
-
 class TestXeger(unittest.TestCase):
     def setUp(self):
         self.rs = Rstr()
