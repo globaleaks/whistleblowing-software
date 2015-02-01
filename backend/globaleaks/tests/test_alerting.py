@@ -21,7 +21,7 @@ class TestStatistics(helpers.TestGL):
     """
     This test mostly the function in anomaly.py Alarm object
     """
-    supported_event = anomaly.Alarm.OUTCOME_ANOMALY_MAP.keys()
+    supported_event = anomaly.Alarm.OUTCOMING_ANOMALY_MAP.keys()
 
     @inlineCallbacks
     def test_save_anomalies(self):

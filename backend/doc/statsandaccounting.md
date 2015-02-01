@@ -38,7 +38,7 @@ Is evaluated when in the 30 second window between the first and the last, has a 
 
 At the moment the anomalies threshold are (defined in anomaly.py Alarm class)
 
-    OUTCOME_ANOMALY_MAP = {
+    OUTCOMING_ANOMALY_MAP = {
         'failed_logins': 5,
         'successful_logins': 3,
         'started_submissions': 5,
@@ -51,9 +51,9 @@ At the moment the anomalies threshold are (defined in anomaly.py Alarm class)
         'receiver_messages': 3,
     }
 
-There are two separated dictionary, because the OUTCOME and the INCOMING
+There are two separated dictionary, because the OUTCOMING and the INCOMING
 are two separate hooks where the event accounting is recorded. At the
-moment only the OUTCOME_ANOMALY is used, because is important associate
+moment only the OUTCOMING_ANOMALY is used, because is important associate
 the time elapsed and the status error code in the Event collection.
 INCOMING hook is present, not yet used.
 
