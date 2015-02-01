@@ -19,7 +19,6 @@ def get_step_id(store, context_id):
 
 class TestFieldCreate(helpers.TestHandler):
         _handler = admin.field.FieldCreate
-        fixtures = ['fields.json']
 
         @inlineCallbacks
         def test_post(self):
@@ -28,8 +27,34 @@ class TestFieldCreate(helpers.TestHandler):
             """
             attrs = self.get_dummy_field()
             attrs['is_template'] = False
-            self.dummyContext = yield create_context(self.dummyContext, 'en')
-            attrs['step_id'] = yield get_step_id(self.dummyContext['id'])
+            context = yield create_context(self.dummyContext, 'en')
+            attrs['step_id'] = yield get_step_id(context['id'])
+            handler = self.request(attrs, role='admin')
+            yield handler.post()
+            self.assertEqual(len(self.responses), 1)
+
+            resp, = self.responses
+            self.assertIn('id', resp)
+            self.assertNotEqual(resp.get('options'), None)
+
+        @inlineCallbacks
+        def test_post_create_from_template(self):
+            """
+            Attempt to create a new field from template via post request
+            """
+            attrs = self.get_dummy_field()
+            attrs['is_template'] = True
+            field_template = yield create_field(attrs, 'en')
+
+            context = yield create_context(self.dummyContext, 'en')
+            step_id = yield get_step_id(context['id'])
+
+            attrs = {
+                'template_id': field_template['id'],
+                'context_id': '',
+                'step_id': step_id
+            }
+
             handler = self.request(attrs, role='admin')
             yield handler.post()
             self.assertEqual(len(self.responses), 1)
@@ -41,7 +66,6 @@ class TestFieldCreate(helpers.TestHandler):
 
 class TestFieldInstance(helpers.TestHandler):
         _handler = admin.field.FieldInstance
-        fixtures = ['fields.json']
 
         @transact_ro
         def _get_children(self, store, field_id):
@@ -148,9 +172,8 @@ class TestFieldsCollection(helpers.TestHandlerWithPopulatedDB):
                 for child in field['children']:
                     self.assertNotIn(child, ids)
 
-class TestFieldTemplateCreate(helpers.TestHandlerWithPopulatedDB):
+class TestFieldTemplateCreate(helpers.TestHandler):
         _handler = admin.field.FieldTemplateCreate
-        fixtures = ['fields.json']
 
         @inlineCallbacks
         def test_post(self):
