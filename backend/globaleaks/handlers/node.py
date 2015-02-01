@@ -67,7 +67,7 @@ def anon_serialize_node(store, language):
       'name': node.name,
       'hidden_service': node.hidden_service,
       'public_site': node.public_site,
-      'email': node.email,
+      'email': u"",
       'languages_enabled': node.languages_enabled,
       'languages_supported': LANGUAGES_SUPPORTED,
       'default_language' : node.default_language,

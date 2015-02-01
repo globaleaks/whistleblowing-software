@@ -22,7 +22,6 @@ from globaleaks.utils.tempobj import TempObj
 
 # needed in order to allow UT override
 reactor = None
-notification = True
 
 # follow the checker, they are executed from handlers/base.py
 # prepare() or flush()
@@ -258,15 +257,15 @@ class Alarm(object):
     INCOMING_ANOMALY_MAP = {
     }
 
-    OUTCOME_ANOMALY_MAP = {
-        'logins_failed': 5,
-        'logins_successful': 3,
-        'submissions_started': 5,
-        'submissions_completed': 4,
-        'wb_comments': 4,
-        'wb_messages': 4,
+    OUTCOMING_ANOMALY_MAP = {
+        'failed_logins': 5,
+        'successful_logins': 3,
+        'started_submissions': 5,
+        'completed_submissions': 4,
         'uploaded_files': 11,
         'appended_files': 4,
+        'wb_comments': 4,
+        'wb_messages': 4,
         'receiver_comments': 3,
         'receiver_messages': 3,
     }
@@ -317,11 +316,11 @@ class Alarm(object):
             requests_timing.append(event_obj.request_time)
 
         if len(requests_timing) > 2:
-            log.info("worst RTt %f, best %f" %
+            log.info("worst RTT %f, best %f" %
                      (round(max(requests_timing), 2), round(min(requests_timing), 2) )
             )
 
-        for event_name, threshold in Alarm.OUTCOME_ANOMALY_MAP.iteritems():
+        for event_name, threshold in Alarm.OUTCOMING_ANOMALY_MAP.iteritems():
             if event_name in current_event_matrix:
                 if current_event_matrix[event_name] > threshold:
                     Alarm.number_of_anomalies += 1
@@ -363,8 +362,7 @@ class Alarm(object):
                  debug_reason) )
 
         # Alarm notification get the copy of the latest activities
-        if notification:
-            yield Alarm.admin_alarm_notification(current_event_matrix)
+        yield Alarm.admin_alarm_notification(current_event_matrix)
 
         defer.returnValue(Alarm.stress_levels['activity'] - previous_activity_sl)
 
@@ -379,9 +377,17 @@ class Alarm(object):
         """
 
         @transact_ro
+        def _get_node_name(store):
+            node = store.find(models.Node).one()
+            return node.email
+
+        @transact_ro
         def _get_admin_email(store):
             node = store.find(models.Node).one()
             return node.email
+
+        node_name = yield _get_node_name()
+        admin_email = yield _get_admin_email()
 
         @transact_ro
         def _get_message_template(store):
@@ -399,7 +405,6 @@ class Alarm(object):
             return "%s" % Alarm.stress_levels['activity']
 
         def _ad():
-
             retstr = ""
             for event, amount in event_matrix.iteritems():
                 retstr = "%s: %d\n%s" % (event, amount, retstr)
@@ -410,6 +415,9 @@ class Alarm(object):
 
         def _dd():
             return "%s" % bytes_to_pretty_str(Alarm.latest_measured_freespace)
+
+        def _nn():
+            return "%s" % node_name
 
         message_required = False
         if Alarm.stress_levels['activity'] >= 1:
@@ -422,10 +430,11 @@ class Alarm(object):
             return
 
         KeyWordTemplate = {
-            "%ActivityAlarmLevel%" : _aal,
-            "%ActivityDump%" : _ad,
-            "%DiskAlarmLevel%" : _dal,
-            "%DiskDump%" : _dd,
+            "%ActivityAlarmLevel%": _aal,
+            "%ActivityDump%": _ad,
+            "%DiskAlarmLevel%": _dal,
+            "%DiskDump%": _dd,
+            "%NodeSignature%": _nn
         }
 
         message = yield _get_message_template()
@@ -442,11 +451,10 @@ class Alarm(object):
                     datetime_to_ISO8601(Alarm.last_alarm_email))
                 return
 
-        to_address = yield _get_admin_email()
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
                                   GLSetting.memory_copy.notif_source_email,
                                   "Admin",
-                                  to_address,
+                                  admin_email,
                                   "ALERT: Anomaly detection",
                                   message)
 
@@ -459,7 +467,7 @@ class Alarm(object):
         yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
                        authentication_password=GLSetting.memory_copy.notif_password,
                        from_address=GLSetting.memory_copy.notif_source_email,
-                       to_address=to_address,
+                       to_address=admin_email,
                        message_file=message,
                        smtp_host=GLSetting.memory_copy.notif_server,
                        smtp_port=GLSetting.memory_copy.notif_port,

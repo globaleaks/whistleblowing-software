@@ -85,18 +85,22 @@ def do_statspollute(dbfile):
         newstat.year = when.isocalendar()[0]
         newstat.week = when.isocalendar()[1]
 
-        level = round( (randint(0, 1000) / 240.0), 1) - 2
+        level = round((randint(0, 1000) / 240.0), 1) - 2
+
+        def random_pollution():
+            return int(randint(0,11) + (5 * level))
+
         activity_fake = {
-            'logins_successful' : int(randint(0,11) + (5 * level)),
-            'logins_failed': int(randint(0, 11) + (5 * level)),
-            'wb_comments': int(randint(0,11) + (5 * level)),
-            'wb_messages': int(randint(0,11) + (5 * level)),
+            'successfull_logins': random,
+            'failed_logins': random_pollution(),
+            'started_submissions': random_pollution(),
+            'completed_submissions': random_pollution(),
             'uploaded_files': int(randint(0,11) + (5  * level)),
-            'appended_files': int(randint(0,11) + (5 * level)),
-            'submissions_started': int(randint(0,11) + (5 * level)),
-            'submissions_completed': int(randint(0,11) + (5 * level)),
-            'receiver_comments': int(randint(0,11) + (5 * level)),
-            'receiver_messages': int(randint(0,11) + (5 * level))
+            'appended_files': random_pollution(),
+            'wb_comments': random_pollution(),
+            'wb_messages': random_pollution(),
+            'receiver_comments': random_pollution(),
+            'receiver_messages': random_pollution()
         }
 
         for k, v in activity_fake.iteritems():
@@ -125,13 +129,12 @@ def check_file(isafile):
 
 if len(sys.argv) == 1:
     print "python pollutestats.py workingdir/db/glbackend-1?.db"
-    print "←shall the spirit of the holy fucking cow protect you→"
+    print "← shall the spirit of the holy fucking cow protect you →"
     quit(0)
 
 print "←shall the spirit of the holy fucking cow protect you→"
-print "                       ←Start!→"
+print "                       ← Start! →"
 print ""
 check_file(sys.argv[1])
 # if 'print' is present, or something else, just dump to stdout
 do_statspollute(sys.argv[1])
-

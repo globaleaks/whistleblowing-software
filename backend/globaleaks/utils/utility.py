@@ -475,6 +475,9 @@ def iso_to_gregorian(iso_year, iso_week, iso_day):
 
 
 def bytes_to_pretty_str(b):
+    if b is None:
+        b = 0
+
     if isinstance(b, str):
         b = int(b)
 

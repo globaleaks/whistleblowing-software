@@ -66,7 +66,6 @@ with open(os.path.join(TEST_DIR, 'keys/expired_pgp_key.txt')) as pgp_file:
 transact.tp = FakeThreadPool()
 authentication.reactor = task.Clock()
 anomaly.reactor = task.Clock()
-anomaly.notification = False
 
 class UTlog:
 
