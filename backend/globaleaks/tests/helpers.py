@@ -717,6 +717,34 @@ class MockDict():
                 'options': [],
                 'y': 0,
                 'x': 0
+        },
+        {
+            'id': u'7e1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
+            'is_template': True,
+            'step_id': '',
+            'fieldgroup_id': '',
+            'label': u'Gender',
+            'type': u'selectbox',
+            'preview': False,
+            'description': u"field description",
+                'hint': u'field hint',
+                'multi_entry': False,
+                'stats_enabled': False,
+                'required': False,
+                'children': {},
+                'options': [
+                  {
+                    "id": "2ebf6df8-289a-4f17-aa59-329fe11d232e",
+                    "value": "", "attrs": {"name": "Male"}
+                  },
+                  {
+                    "id": "9c7f343b-ed46-4c9e-9121-a54b6e310123",
+                    "value": "",
+                    "attrs": {"name": "Female"}
+                  }
+                ],
+                'y': 0,
+                'x': 0
         }]
 
         self.dummyFields = copy.deepcopy(self.dummyFieldTemplates)

@@ -197,7 +197,7 @@ adminContextDesc = {
 }
 
 adminContextFieldTemplateCopy = {
-    'field_template_id': uuid_regexp,
+    'template_id': uuid_regexp,
     'context_id': uuid_regexp,
     'step_id': uuid_regexp,
 }
