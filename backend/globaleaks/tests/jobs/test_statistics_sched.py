@@ -6,10 +6,10 @@ from globaleaks.tests import helpers
 
 from globaleaks.jobs import statistics_sched
 
-# E non e' la distanza ad abitare l'assenza.
+# E non è la distanza ad abitare l'assenza.
 # https://www.youtube.com/watch?v=UBdlNlDZDZA
 
-# FIXME currenyly
+# FIXME
 # currently the following unit tests does not really perform complete
 # unit tests and check but simply trigger the schedulers in order to
 # raise the code coverage

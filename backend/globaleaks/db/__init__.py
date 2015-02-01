@@ -80,7 +80,7 @@ def create_tables(create_node=True):
             'whistleblowing_button': dict({ GLSetting.memory_copy.default_language: u"" }),
             'hidden_service': u"",
             'public_site': u"",
-            'email': u"evilaliv3@gmail.com",
+            'email': u"",
             'receipt_regexp': u"[0-9]{16}",
             'stats_update_time': 2, # hours,
             # advanced settings
