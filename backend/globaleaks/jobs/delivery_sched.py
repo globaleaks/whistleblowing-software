@@ -187,15 +187,22 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
     """
     gpoj = GLBGPG()
 
-    gpoj.load_key(recipient_gpg['gpg_key_armor'])
+    try:
+        gpoj.load_key(recipient_gpg['gpg_key_armor'])
 
-    filepath = os.path.join(GLSetting.submission_path, fpath)
+        filepath = os.path.join(GLSetting.submission_path, fpath)
 
-    with GLSecureFile(filepath) as f:
-        encrypted_file_path, encrypted_file_size = \
-            gpoj.encrypt_file(recipient_gpg['gpg_key_fingerprint'], filepath, f, GLSetting.submission_path)
+        with GLSecureFile(filepath) as f:
+            encrypted_file_path, encrypted_file_size = \
+                gpoj.encrypt_file(recipient_gpg['gpg_key_fingerprint'], filepath, f, GLSetting.submission_path)
 
-    gpoj.destroy_environment()
+    except:
+        raise
+
+    finally:
+        # the finally statement is always called also if
+        # except contains a return or a raise
+        gpoj.destroy_environment()
 
     return encrypted_file_path, encrypted_file_size
 
