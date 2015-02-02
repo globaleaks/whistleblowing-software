@@ -92,23 +92,22 @@ class MailNotification(Notification):
         # If the receiver has encryption enabled (for notification), encrypt the mail body
         if event.receiver_info['gpg_key_status'] == u'Enabled':
 
+            gpob = GLBGPG()
             try:
-                gpob = GLBGPG()
-
-                try:
-                    gpob.load_key(event.receiver_info['gpg_key_armor'])
-                except:
-                    log.err("unable to validated GPG key for receiver %s" %
-                            event.receiver_info['username'])
-                    return None
-
+                gpob.load_key(event.receiver_info['gpg_key_armor'])
                 body = gpob.encrypt_message(event.receiver_info['gpg_key_fingerprint'], body)
-                gpob.destroy_environment()
-
             except Exception as excep:
                 log.err("Error in GPG interface object (for %s: %s)! (notification+encryption)" %
                         (event.receiver_info['username'], str(excep) ))
-                return None
+                return None # We return None and the mail will be delayed
+                            # If GPG is enabled and the key is invalid this
+                            # is the only possiibly thing to do.
+                            # The PGP check schedule will disable the key
+                            # and alert the user and the admin
+            finally:
+                # the finally statement is always called also if
+                # except contains a return or a raise
+                gpob.destroy_environment()
 
         receiver_mail = event.receiver_info['mail_address']
 

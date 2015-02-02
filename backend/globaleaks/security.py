@@ -510,19 +510,26 @@ def gpg_options_parse(receiver, request):
 
     if new_gpg_key:
 
-        gnob = GLBGPG()
+        try:
+            gnob = GLBGPG()
 
-        result = gnob.load_key(new_gpg_key)
+            result = gnob.load_key(new_gpg_key)
 
-        log.debug("GPG Key imported: %s" % result['fingerprint'])
+            log.debug("GPG Key imported: %s" % result['fingerprint'])
 
-        receiver.gpg_key_status = u'Enabled'
-        receiver.gpg_key_info = result['info']
-        receiver.gpg_key_armor = new_gpg_key
-        receiver.gpg_key_fingerprint = result['fingerprint']
-        receiver.gpg_key_expiration = result['expiration']
+            receiver.gpg_key_status = u'Enabled'
+            receiver.gpg_key_info = result['info']
+            receiver.gpg_key_armor = new_gpg_key
+            receiver.gpg_key_fingerprint = result['fingerprint']
+            receiver.gpg_key_expiration = result['expiration']
 
-        gnob.destroy_environment()
+        except:
+            raise
+
+        finally:
+            # the finally statement is always called also if
+            # except contains a return or a raise
+            gnob.destroy_environment()
 
 
 def access_tip(store, user_id, tip_id):

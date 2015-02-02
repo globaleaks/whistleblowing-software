@@ -8,7 +8,7 @@
 
 from cyclone.util import ObjectDict as OD
 from storm.expr import Desc
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, Deferred
 
 from globaleaks.models import EventLogs, Notification
 from globaleaks.handlers.admin import db_admin_serialize_node
@@ -30,21 +30,21 @@ class NotificationMail:
 
         notify = self.plugin_used.do_notify(eventOD)
 
-        if notify:
+        if isinstance(notify, Deferred):
             notify.addCallback(self.every_notification_succeeded, eventOD.storm_id)
             notify.addErrback(self.every_notification_failed, eventOD.storm_id)
             yield notify
+        else:
+            yield self.every_notification_failed(None, eventOD.storm_id)
 
     @transact
     def every_notification_succeeded(self, store, result, event_id):
-
         log.debug("Mail delivered correctly for event %s, [%s]" % (event_id, result))
         evnt = store.find(EventLogs, EventLogs.id == event_id).one()
         evnt.mail_sent = True
 
     @transact
     def every_notification_failed(self, store, failure, event_id):
-
         log.err("Mail delivery failure for event %s (%s)" % (event_id, failure))
         evnt = store.find(EventLogs, EventLogs.id == event_id).one()
         evnt.mail_sent = True
@@ -180,7 +180,7 @@ class MailflushSchedule(GLJob):
 
         for qe in queue_events:
 
-            notifcb.do_every_notification(qe)
+            yield notifcb.do_every_notification(qe)
 
             if not self.skip_sleep:
                 yield deferred_sleep(3)
