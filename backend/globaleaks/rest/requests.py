@@ -16,6 +16,7 @@ hidden_service_regexp             = r'^http://[0-9a-z]{16}\.onion$'
 hidden_service_regexp_or_empty    = r'^http://[0-9a-z]{16}\.onion$$|^$'
 https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
+landing_page_regexp               = r'^homepage$|^submissionpage$'
 
 dateType = r'(.*)'
 
@@ -101,7 +102,6 @@ adminNodeDesc = {
     'name': unicode,
     'description' : unicode,
     'presentation' : unicode,
-    'subtitle': unicode,
     'footer': unicode,
     'security_awareness_title': unicode,
     'security_awareness_text': unicode,
@@ -139,6 +139,9 @@ adminNodeDesc = {
     'custom_privacy_badge_tbb': unicode,
     'custom_privacy_badge_tor': unicode,
     'custom_privacy_badge_none': unicode,
+    'header_title_homepage': unicode,
+    'header_title_submissionpage': unicode,
+    'landing_page': landing_page_regexp
 }
 
 adminNotificationDesc = {
@@ -227,7 +230,6 @@ adminReceiverDesc = {
 
 anonNodeDesc = {
     'name': unicode,
-    'subtitle': unicode,
     'description': unicode,
     'presentation': unicode,
     'footer': unicode,
@@ -476,7 +478,6 @@ wizardStepDesc = {
 wizardNodeDesc = {
     'presentation': dict,
     'footer': dict,
-    'subtitle': dict,
 }
 
 wizardAppdataDesc = {

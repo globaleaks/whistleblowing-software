@@ -27,6 +27,9 @@ def wizard(store, request, language):
     node['default_language'] = language
     node['languages_enabled'] = [ language ]
 
+    # Header title of the homepage is initially set with the node title
+    node['header_title_homepage'] = node['name']
+
     try:
         db_update_node(store, node, True, language)
 

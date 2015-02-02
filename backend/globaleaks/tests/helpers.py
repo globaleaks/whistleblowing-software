@@ -614,7 +614,7 @@ class MockDict():
             'ping_notification': False,
             'gpg_key_info': u'',
             'gpg_key_fingerprint' : u'',
-            'gpg_key_status': models.Receiver._gpg_types[0], # disabled
+            'gpg_key_status': u'Disabled',
             'gpg_key_armor': u'',
             'gpg_key_expiration': u'',
             'gpg_key_remove': False,
@@ -799,7 +799,6 @@ class MockDict():
             'description': u"Pleæs€, set m€: d€scription",
             'presentation': u'This is whæt æpp€ærs on top',
             'footer': u'check it out https://www.youtube.com/franksentus ;)',
-            'subtitle': u'https://twitter.com/TheHackersNews/status/410457372042092544/photo/1',
             'security_awareness_title': u'',
             'security_awareness_text': u'',
             'whistleblowing_question': u'',
@@ -841,6 +840,9 @@ class MockDict():
             'custom_privacy_badge_tbb': u'',
             'custom_privacy_badge_tor': u'',
             'custom_privacy_badge_none': u'',
+            'header_title_homepage': u'',
+            'header_title_submissionpage': u'',
+            'landing_page': u'homepage'
         }
 
 

@@ -118,7 +118,6 @@ CREATE TABLE node (
     creation_date VARCHAR NOT NULL,
     description BLOB NOT NULL,
     presentation BLOB NOT NULL,
-    subtitle BLOB NOT NULL,
     footer BLOB NOT NULL,
     security_awareness_title BLOB NOT NULL,
     security_awareness_text BLOB NOT NULL,
@@ -155,6 +154,9 @@ CREATE TABLE node (
     custom_privacy_badge_tbb BLOB NOT NULL,
     custom_privacy_badge_tor BLOB NOT NULL,
     custom_privacy_badge_none BLOB NOT NULL,
+    header_title_homepage BLOB NOT NULL,
+    header_title_submissionpage BLOB NOT NULL,
+    landing_page VARCHAR NOT NULL CHECK (landing_page IN ('homepage', 'submissionpage')),
     PRIMARY KEY (id)
 );
 

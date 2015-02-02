@@ -2,13 +2,13 @@
   <div class="col-md-6">
 
     <div class="form-group">
-      <label data-translate>Node name</label>
+      <label data-translate>Initiative name</label>
       <input class="form-control" data-ng-model="admin.node.name" value="{{admin.node.name}}" type="text">
     </div>
 
     <div class="form-group">
-      <label data-translate>Node Subtitle</label>
-      <input class="form-control" data-ng-model="admin.node.subtitle" value="{{admin.node.subtitle}}" type="text">
+      <label data-translate>Homepage Title</label>
+      <input class="form-control" data-ng-model="admin.node.header_title_homepage" value="{{admin.node.header_title_homepage}}" type="text">
     </div>
 
     <div class="form-group">
@@ -33,6 +33,11 @@
     </div>
 
     <div class="form-group">
+      <label data-translate>Submission Page Title</label>
+      <input class="form-control" data-ng-model="admin.node.header_title_submissionpage" value="{{admin.node.header_title_submissionpage}}" type="text">
+    </div>
+
+    <div class="form-group">
       <label data-translate>Whistleblowing Question</label>
       <div>
         <textarea class="form-control" data-ng-model="admin.node.whistleblowing_question">{{admin.node.whistleblowing_question}}</textarea>
@@ -45,29 +50,6 @@
         <textarea class="form-control" data-ng-model="admin.node.whistleblowing_button">{{admin.node.whistleblowing_button}}</textarea>
       </div>
     </div>
-
-    <span data-ng-show="!admin.node.disable_security_awareness_badge">
-      <div class="form-group">
-        <label data-translate>Security Awareness Badge Title</label>
-        <div>
-          <input class="form-control" data-ng-model="admin.node.security_awareness_title" type="text" />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label data-translate>Security Awareness Badge Text</label>
-        <div>
-          <textarea class="form-control" data-ng-model="admin.node.security_awareness_text"></textarea>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>
-          <input data-ng-model="admin.node.disable_security_awareness_questions" type="checkbox">
-          <span data-translate>Disable the security awareness badge questions</span>
-        </label>
-      </div>
-    </span>
 
     <div class="form-group">
       <label data-translate>Admin Email</label>

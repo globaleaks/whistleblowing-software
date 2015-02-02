@@ -13,6 +13,49 @@ from globaleaks.models import Model, Field, Step
 from globaleaks.utils.utility import datetime_null, every_language
 from globaleaks.security import GLBGPG
 
+class Node_version_16(Model):
+    __storm_table__ = 'node'
+    name = Unicode()
+    public_site = Unicode()
+    hidden_service = Unicode()
+    email = Unicode()
+    receipt_salt = Unicode()
+    last_update = DateTime()
+    receipt_regexp = Unicode()
+    languages_enabled = JSON()
+    default_language = Unicode()
+    default_timezone = Int()
+    description = JSON()
+    presentation = JSON()
+    footer = JSON()
+    subtitle = JSON()
+    security_awareness_title = JSON()
+    security_awareness_text = JSON()
+    stats_update_time = Int()
+    maximum_namesize = Int()
+    maximum_textsize = Int()
+    maximum_filesize = Int()
+    tor2web_admin = Bool()
+    tor2web_submission = Bool()
+    tor2web_receiver = Bool()
+    tor2web_unauth = Bool()
+    allow_unencrypted = Bool()
+    postpone_superpower = Bool()
+    can_delete_submission = Bool()
+    ahmia = Bool()
+    wizard_done = Bool()
+    disable_privacy_badge = Bool()
+    disable_security_awareness_badge = Bool()
+    disable_security_awareness_questions = Bool()
+    whistleblowing_question = JSON()
+    whistleblowing_button = JSON()
+    enable_custom_privacy_badge = Bool()
+    custom_privacy_badge_tbb = JSON()
+    custom_privacy_badge_tor = JSON()
+    custom_privacy_badge_none = JSON()
+    exception_email = Unicode()
+
+
 class Notification_version_16(Model):
     __storm_table__ = 'notification'
     server = Unicode()
@@ -78,6 +121,39 @@ class Stats_version_16(Model):
     freemb = Int()
 
 class Replacer1617(TableReplacer):
+
+    def migrate_Node(self):
+        print "%s Node migration assistant: added default_language and default_timezone" \
+              "whistleblowing_question, whistleblowing_button" % self.std_fancy
+
+        appdata_dict = load_appdata()
+
+        old_node = self.store_old.find(self.get_right_model("Node", 16)).one()
+        new_node = self.get_right_model("Node", 17)()
+
+        for _, v in new_node._storm_columns.iteritems():
+
+            if v.name == 'header_title_homepage':
+                new_node.header_title_homepage = {old_node.default_language: old_node.name}
+                continue
+
+            if v.name == 'header_title_submissionpage':
+                # check needed to preserve funtionality if appdata will be altered in the future
+                if v.name in appdata_dict['node']:
+                    new_node.header_title_submissionpage = appdata_dict['node']['header_title_submissionpage']
+                else:
+                    new_node.header_title_submissionpage = every_language("")
+                continue
+
+            if v.name == 'landing_page':
+                new_node.landing_page = u'homepage'
+                continue
+
+            setattr(new_node, v.name, getattr(old_node, v.name))
+
+        self.store_new.add(new_node)
+        self.store_new.commit()
+
 
     def migrate_Notification(self):
         print "%s Notification migration assistant: (pgp_expiration_alert teplates)" % self.std_fancy
@@ -152,3 +228,5 @@ class Replacer1617(TableReplacer):
             self.store_new.add(new_receiver)
 
         self.store_new.commit()
+
+        gpgobj.destroy_environment()
