@@ -14,8 +14,8 @@ from twisted.internet.defer import inlineCallbacks
 
 from datetime import timedelta
 
-from globaleaks.handlers.node import anon_serialize_node
-from globaleaks.handlers.admin import admin_serialize_user, admin_serialize_receiver
+from globaleaks.handlers.admin import admin_serialize_user, \
+    admin_serialize_receiver, admin_serialize_node, db_admin_serialize_node
 from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import Receiver
@@ -31,6 +31,8 @@ class PGPCheckSchedule(GLJob):
 
     @transact
     def pgp_validation_check(self, store):
+        node_desc = db_admin_serialize_node(store, 'en')
+
         expired_or_expiring = []
 
         rcvrs = store.find(Receiver)
@@ -40,7 +42,12 @@ class PGPCheckSchedule(GLJob):
             if rcvr.gpg_key_armor:
                if rcvr.gpg_key_expiration < datetime_now():
                    expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSetting.memory_copy.default_language))
-                   rcvr.gpg_key_status = u'Disabled'
+                   if node_desc['allow_unencrypted']:
+                       # The PGP key status should be downgraded only if the node
+                       # accept non PGP mails/files to be sent/stored.
+                       # If the node wont accept this the pgp key status
+                       # will remain enabled and mail won't be sent by regular flow.
+                       rcvr.gpg_key_status = u'Disabled'
                elif rcvr.gpg_key_expiration < datetime_now() - timedelta(days=15):
                    expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSetting.memory_copy.default_language))
 
@@ -120,7 +127,7 @@ class PGPCheckSchedule(GLJob):
 
         admin_user = yield admin_serialize_user('admin')
 
-        node_desc = yield anon_serialize_node(admin_user['language'])
+        node_desc = yield admin_serialize_node(admin_user['language'])
 
         notification_settings = yield get_notification(admin_user['language'])
 
