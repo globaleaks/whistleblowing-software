@@ -12,7 +12,7 @@ from storm.expr import Desc, And
 
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact_ro, transact
-from globaleaks.handlers.base import BaseHandler, GLApiCache
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, \
     authenticated
 from globaleaks.jobs.statistics_sched import StatisticsSchedule
@@ -67,7 +67,7 @@ def get_stats(store, week_delta):
     hourlyentry = store.find(Stats, And(Stats.start >= lower_bound, Stats.start <= upper_bound))
 
     week_entries = 0
-    week_map= [[dict() for i in xrange(24)] for j in xrange(7)]
+    week_map = [[dict() for i in xrange(24)] for j in xrange(7)]
 
     # Loop over the DB stats to fill the appropriate heatmap
     for hourdata in hourlyentry:
@@ -252,12 +252,13 @@ class StatsCollection(BaseHandler):
     @inlineCallbacks
     def get(self, week_delta):
         week_delta = int(week_delta)
+
         if week_delta:
             log.debug("Asking statistics for %d weeks ago" % week_delta)
-            ret = yield get_stats(week_delta)
         else:
-            log.debug("Asking statistics for this week")
-            ret = yield GLApiCache.get('stats', self.request.language, get_stats, 0)
+            log.debug("Asking statistics for current week")
+
+        ret = yield get_stats(week_delta)
 
         self.finish(ret)
 
