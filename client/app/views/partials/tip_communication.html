@@ -1,5 +1,5 @@
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-5" data-ng-if="(tip.enable_private_messages && tip.receivers.length > 1) || !tip.enable_private_messages">
       <h3>
         <span data-translate>Additional Information</span>
       </h3>
@@ -67,7 +67,7 @@
       </div>
     </div>
 
-    <div class="col-md-2" data-ng-if="tip.enable_private_messages"></div>
+    <div class="col-md-2" data-ng-if="tip.enable_private_messages && tip.receivers.length > 1"></div>
 
     <div class="col-md-5" data-ng-if="tip.enable_private_messages">
       <div data-ng-switch="" on="role">

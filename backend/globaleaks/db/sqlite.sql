@@ -107,7 +107,7 @@ CREATE TABLE internaltip (
     expiration_date VARCHAR NOT NULL,
     wb_steps BLOB,
     last_activity VARCHAR,
-    mark VARCHAR NOT NULL CHECK (mark IN ('submission', 'finalize', 'first')),
+    mark VARCHAR NOT NULL CHECK (mark IN ('submission', 'finalize', 'first', 'second')),
     context_id VARCHAR NOT NULL,
     FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
