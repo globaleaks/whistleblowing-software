@@ -5,19 +5,14 @@
     </span>
     <span id="TitleBoxHomepage" class="pull-left">
       <div id="titleboxdefault">
-        <div>
-          <div id="PageTitleHomepage">{{node.name}}</div>
-          <div id="PageSubtitleHomepage">{{node.subtitle}}</div>
-        </div>
+        <div id="PageTitleHomepage">{{ht}}</div>
       </div>
       <div id="titleboxwithtagline">
         <a href="/#/">
           <div id="logo"></div>
         </a>
         <div id="tagline">
-          <span id="PageTitleHomepage">
-            {{node.subtitle}}
-          </span>
+          <div id="PageTitleHomepage">{{ht}}</div>
         </div>
       </div>
     </span>
@@ -34,7 +29,7 @@
     <span id="TitleBox" class="pull-left">
       <div id="titleboxdefault">
         <div>
-          <div id="PageTitle">{{header_title | translate}}</div>
+          <div id="PageTitle">{{ht}}</div>
           <div id="PageSubtitle" data-ng-if="hasSubtitle()">{{header_subtitle | translate}}</div>
         </div>
       </div>
@@ -43,10 +38,8 @@
           <div id="logo"></div>
         </a>
         <div id="tagline">
-          <span id="PageTitle">{{header_title | translate}}</span>
-          <span id="PageSubtitle" data-ng-if="hasSubtitle()">
-             - <span>{{header_subtitle | translate}}</span>
-          </span>
+          <span id="PageTitle">{{ht}}</span>
+          <span id="PageSubtitle" data-ng-if="hasSubtitle()">- <span>{{header_subtitle | translate}}</span></span>
         </div>
       </div>
     </span>

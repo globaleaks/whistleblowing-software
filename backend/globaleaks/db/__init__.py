@@ -73,7 +73,6 @@ def create_tables(create_node=True):
             'description': dict({ GLSetting.memory_copy.default_language: u"" }),
             'presentation': dict({ GLSetting.memory_copy.default_language: u"" }),
             'footer': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'subtitle': dict({ GLSetting.memory_copy.default_language: u"" }),
             'security_awareness_title': dict({ GLSetting.memory_copy.default_language: u"" }),
             'security_awareness_text': dict({ GLSetting.memory_copy.default_language: u"" }),
             'whistleblowing_question': dict({ GLSetting.memory_copy.default_language: u"" }),
@@ -107,6 +106,9 @@ def create_tables(create_node=True):
             'custom_privacy_badge_tbb': dict({ GLSetting.memory_copy.default_language: u"" }),
             'custom_privacy_badge_tor': dict({ GLSetting.memory_copy.default_language: u"" }),
             'custom_privacy_badge_none': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'header_title_homepage': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'header_title_submissionpage': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'landing_page': u"homepage"
         }
 
         # Initialize the node and notification tables

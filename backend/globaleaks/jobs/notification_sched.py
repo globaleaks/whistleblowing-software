@@ -151,9 +151,6 @@ class TipEventLogger(EventLogger):
                               subevent_info=None)
 
 
-# TODO remind that when do_mail is False:
-# receiver_tip.mark = models.ReceiverTip._marker[3] # 'disabled'
-
 class MessageEventLogger(EventLogger):
 
     def __init__(self):
@@ -319,18 +316,6 @@ def save_event_db(store, event_dict):
 
 
 class NotificationSchedule(GLJob):
-    """
-    REMINDER:
-            # by ticket https://github.com/globaleaks/GlobaLeaks/issues/444
-            # send notification of file only if notification of tip is already on send status
-            if rfile.receiver_tip.mark == models.ReceiverTip._marker[0]: # 'not notified'
-                rfile.mark = models.ReceiverFile._marker[4] # 'skipped'
-                log.debug("Skipped notification of %s (for %s) because Tip not yet notified" %
-                          (rfile.internalfile.name, rfile.receiver.name))
-                store.commit()
-                continue
-    """
-
     @inlineCallbacks
     def operation(self):
         # TODO: remove notification_status from Model different of EventLogs

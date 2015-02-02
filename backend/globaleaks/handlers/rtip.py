@@ -228,7 +228,7 @@ def postpone_expiration_date(store, user_id, tip_id):
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'System' # The printed line
     comment.type = Comment._types[2] # System
-    comment.mark = Comment._marker[4] # skipped
+    comment.mark = Comment._marker[3] # skipped
 
     rtip.internaltip.comments.add(comment)
 

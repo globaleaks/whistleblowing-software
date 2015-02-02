@@ -268,8 +268,7 @@ class ReceiverTip(Model):
     notification_date = DateTime()
     mark = Unicode()
 
-    _marker = [u'not notified', u'notified', u'unable to notify', u'disabled',
-               u'skipped']
+    _marker = [u'not notified', u'notified', u'unable to notify', u'skipped']
     # N.B. *_keys = It's created without initializing dict
 
 
@@ -306,8 +305,7 @@ class ReceiverFile(Model):
     last_access = DateTime()
 
     mark = Unicode()
-    _marker = [u'not notified', u'notified', u'unable to notify', u'disabled',
-               u'skipped']
+    _marker = [u'not notified', u'notified', u'unable to notify', u'skipped']
 
     status = Unicode()
     _status_list = [u'reference', u'encrypted', u'unavailable', u'nokey']
@@ -366,7 +364,6 @@ class Comment(Model):
         u'not notified',
         u'notified',
         u'unable to notify',
-        u'disabled',
         u'skipped']
 
     # N.B. *_keys = It's created without initializing dict
@@ -389,7 +386,6 @@ class Message(Model):
         u'not notified',
         u'notified',
         u'unable to notify',
-        u'disabled',
         u'skipped']
 
 
@@ -419,7 +415,6 @@ class Node(Model):
     description = JSON(validator=longlocal_v)
     presentation = JSON(validator=longlocal_v)
     footer = JSON(validator=longlocal_v)
-    subtitle = JSON(validator=longlocal_v)
     security_awareness_title = JSON(validator=longlocal_v)
     security_awareness_text = JSON(validator=longlocal_v)
 
@@ -456,10 +451,15 @@ class Node(Model):
     custom_privacy_badge_tor = JSON()
     custom_privacy_badge_none = JSON()
 
+    header_title_homepage = JSON(validator=shortlocal_v)
+    header_title_submissionpage = JSON(validator=shortlocal_v)
+    landing_page = Unicode()
+
     exception_email = Unicode()
 
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
-                    'exception_email', 'default_language', 'receipt_regexp']
+                    'exception_email', 'default_language', 'receipt_regexp',
+                    'landing_page']
     int_keys = ['stats_update_time', 'maximum_namesize',
                 'maximum_textsize', 'maximum_filesize', 'default_timezone']
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
@@ -470,11 +470,12 @@ class Node(Model):
 
     # wizard_done is not checked because it's set by the backend
 
-    localized_strings = ['description', 'presentation', 'footer', 'subtitle',
-                         'security_awareness_title',
-                         'security_awareness_text', 'whistleblowing_question',
+    localized_strings = ['description', 'presentation', 'footer',
+                         'security_awareness_title', 'security_awareness_text',
+                         'whistleblowing_question',
                          'whistleblowing_button', 'custom_privacy_badge_tbb',
-                         'custom_privacy_badge_tor', 'custom_privacy_badge_none']
+                         'custom_privacy_badge_tor', 'custom_privacy_badge_none',
+                         'header_title_homepage', 'header_title_submissionpage']
 
 
 class Notification(Model):

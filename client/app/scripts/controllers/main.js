@@ -1,5 +1,5 @@
-GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$translate', '$modal', 'Authentication', 'Node', 'GLCache',
-  function($scope, $rootScope, $http, $route, $routeParams, $location, $translate, $modal, Authentication, Node, GLCache) {
+GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$modal', 'Authentication', 'Node', 'GLCache',
+  function($scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $modal, Authentication, Node, GLCache) {
     $scope.started = true;
 
     $scope.logo = '/static/globaleaks_logo.png';
@@ -60,10 +60,24 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
     };
 
+    $scope.set_title = function () {
+      if ($location.path() == '/') {
+        $scope.ht = $scope.node.header_title_homepage;
+      } else if ($location.path() == '/submission') {
+        $scope.ht = $scope.node.header_title_submissionpage;
+      } else {
+        $scope.ht = $filter('translate')($scope.header_title);
+      }
+    }
+
     $scope.route_check = function () {
       if ($scope.node) {
         if ($scope.node.wizard_done === false) {
           $location.path('/wizard');
+        }
+
+        if (($location.path() == '/') && ($scope.node.landing_page == 'submissionpage')) {
+          $location.path('/submission');
         }
 
         if ($location.path() == '/submission' &&
@@ -111,6 +125,8 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         $scope.languages_enabled_length = Object.keys(node.languages_enabled).length;
 
         $scope.show_language_selector = ($scope.languages_enabled_length > 1);
+
+        $scope.set_title();
       });
 
     };
@@ -123,6 +139,9 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       if($location.search().lang) {
         $rootScope.language = $scope.language = $location.search().lang;
       }
+
+      $scope.set_title();
+
     });
 
     $scope.$on("REFRESH", function() {
