@@ -50,7 +50,7 @@ class TestModels(helpers.TestGL):
 
         receiver = models.Receiver(r)
         receiver.user = receiver_user
-        receiver.gpg_key_status = models.Receiver._gpg_types[0]
+        receiver.gpg_key_status = u'disabled'
         receiver.mail_address = self.dummyReceiver_1['mail_address']
 
         store.add(receiver)
@@ -106,8 +106,8 @@ class TestModels(helpers.TestGL):
 
         receiver1.user = receiver_user1
         receiver2.user = receiver_user2
-        receiver1.gpg_key_status = models.Receiver._gpg_types[0]
-        receiver2.gpg_key_status = models.Receiver._gpg_types[0]
+        receiver1.gpg_key_status = u'disabled'
+        receiver2.gpg_key_status = u'disabled'
         receiver1.mail_address = 'x@x.it'
         receiver2.mail_address = 'x@x.it'
 
@@ -132,8 +132,8 @@ class TestModels(helpers.TestGL):
 
         receiver = models.Receiver(r)
         receiver.user = receiver_user
-        receiver.gpg_key_status = models.Receiver._gpg_types[0]
-        receiver.mail_address = unicode('y@y.it')
+        receiver.gpg_key_status = u'disabled'
+        receiver.mail_address = u'y@y.it'
 
         context1 = models.Context(c)
 

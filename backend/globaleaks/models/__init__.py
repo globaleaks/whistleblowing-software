@@ -247,9 +247,7 @@ class InternalTip(Model):
     download_limit = Int()
 
     mark = Unicode()
-
-    _marker = [u'submission', u'finalize', u'first', u'second']
-    # N.B. *_keys = It's created without initializing dict
+    # markers = [u'submission', u'finalize', u'first']
 
 
 class ReceiverTip(Model):
@@ -266,10 +264,9 @@ class ReceiverTip(Model):
     last_access = DateTime(default_factory=datetime_now)
     access_counter = Int()
     notification_date = DateTime()
-    mark = Unicode()
 
-    _marker = [u'not notified', u'notified', u'unable to notify', u'skipped']
-    # N.B. *_keys = It's created without initializing dict
+    mark = Unicode()
+    # markers = [u'not notified', u'notified', u'unable to notify', u'skipped']
 
 
 class WhistleblowerTip(Model):
@@ -305,7 +302,7 @@ class ReceiverFile(Model):
     last_access = DateTime()
 
     mark = Unicode()
-    _marker = [u'not notified', u'notified', u'unable to notify', u'skipped']
+    # markers = [u'not notified', u'notified', u'unable to notify', u'skipped']
 
     status = Unicode()
     _status_list = [u'reference', u'encrypted', u'unavailable', u'nokey']
@@ -334,7 +331,7 @@ class InternalFile(Model):
     size = Int()
 
     mark = Unicode()
-    _marker = [u'not processed', u'locked', u'ready', u'delivered']
+    # markers = [u'not processed', u'locked', u'ready', u'delivered']
     # 'not processed' = submission time
     # 'ready' = processed in ReceiverTip, available for usage
     # 'delivered' = the file need to stay on DB, but from the
@@ -358,15 +355,15 @@ class Comment(Model):
     system_content = JSON()
 
     type = Unicode()
-    _types = [u'receiver', u'whistleblower', u'system']
-    mark = Unicode()
-    _marker = [
-        u'not notified',
-        u'notified',
-        u'unable to notify',
-        u'skipped']
+    # types = [u'receiver', u'whistleblower', u'system']
 
-    # N.B. *_keys = It's created without initializing dict
+    mark = Unicode()
+    # markers = [
+    #   u'not notified',
+    #   u'notified',
+    #   u'unable to notify',
+    #   u'skipped'
+    # ]
 
 
 class Message(Model):
@@ -380,13 +377,15 @@ class Message(Model):
     visualized = Bool()
 
     type = Unicode()
-    _types = [u'receiver', u'whistleblower']
+    # types = [u'receiver', u'whistleblower']
+
     mark = Unicode()
-    _marker = [
-        u'not notified',
-        u'notified',
-        u'unable to notify',
-        u'skipped']
+    # markers = [
+    #    u'not notified',
+    #    u'notified',
+    #    u'unable to notify',
+    #    u'skipped'
+    # ]
 
 
 class Node(Model):
@@ -494,7 +493,7 @@ class Notification(Model):
     source_email = Unicode(validator=shorttext_v)
 
     security = Unicode()
-    _security_types = [u'TLS', u'SSL']
+    # security_types = [u'TLS', u'SSL']
 
     admin_anomaly_template = JSON(validator=longlocal_v)
 
@@ -582,13 +581,16 @@ class Receiver(Model):
     description = JSON(validator=longlocal_v)
 
     configuration = Unicode()
+    # configurations = [u'default', u'forcefully_selected', u'unselectable']
 
     # of GPG key fields
     gpg_key_info = Unicode()
     gpg_key_fingerprint = Unicode()
-    gpg_key_status = Unicode()
     gpg_key_armor = Unicode()
     gpg_key_expiration = DateTime()
+
+    gpg_key_status = Unicode()
+    # gpg_statuses = [u'disabled', u'enabled']
 
     # Can be changed only by admin (but also differ from username!)
     mail_address = Unicode()
@@ -614,9 +616,6 @@ class Receiver(Model):
     #                         "Receiver.id")
 
     presentation_order = Int()
-
-    _configuration = [u'default', u'forcefully_selected', u'unselectable']
-    _gpg_types = [u'Disabled', u'Enabled']
 
     unicode_keys = ['name', 'mail_address',
                     'ping_mail_address', 'configuration']

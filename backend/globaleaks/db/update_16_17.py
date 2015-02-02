@@ -216,6 +216,13 @@ class Replacer1617(TableReplacer):
 
             for _, v in new_receiver._storm_columns.iteritems():
 
+                if v.name == 'gpg_key_status':
+                    if old_receiver.gpg_key_status == u'Enabled':
+                        new_receiver.gpg_key_status = u'enabled'
+                    else:
+                        new_receiver.gpg_key_status = u'disabled'
+                    continue
+
                 if v.name == 'gpg_key_expiration':
                     if old_receiver.gpg_key_armor:
                         new_receiver.gpg_key_expiration = gpgobj.load_key(old_receiver.gpg_key_armor)['expiration']

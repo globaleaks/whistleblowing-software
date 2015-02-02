@@ -82,19 +82,19 @@ class EventLogger(object):
 
         if self.trigger == 'Message':
             self.template_type = u'encrypted_message' if \
-                receiver.gpg_key_status == u'Enabled' else u'plaintext_message'
+                receiver.gpg_key_status == u'enabled' else u'plaintext_message'
             return receiver.message_notification
         elif self.trigger == 'Tip':
             self.template_type = u'encrypted_tip' if \
-                receiver.gpg_key_status == u'Enabled' else u'plaintext_tip'
+                receiver.gpg_key_status == u'enabled' else u'plaintext_tip'
             return receiver.tip_notification
         elif self.trigger == 'Comment':
             self.template_type = u'encrypted_comment' if \
-                receiver.gpg_key_status == u'Enabled' else u'plaintext_comment'
+                receiver.gpg_key_status == u'enabled' else u'plaintext_comment'
             return receiver.comment_notification
         elif self.trigger == 'File':
             self.template_type = u'encrypted_file' if \
-                receiver.gpg_key_status == u'Enabled' else u'plaintext_file'
+                receiver.gpg_key_status == u'enabled' else u'plaintext_file'
             return receiver.file_notification
         else:
             raise Exception("self.trigger of unexpected kind ? %s" % self.trigger)
@@ -122,8 +122,7 @@ class TipEventLogger(EventLogger):
     @transact
     def load_tips(self, store):
         not_notified_tips = store.find(models.ReceiverTip,
-                                       models.ReceiverTip.mark == models.ReceiverTip._marker[0]
-        )
+                                       models.ReceiverTip.mark == u'not notified')
 
         if not_notified_tips.count():
             log.debug("Receiver Tips found to be notified: %d" % not_notified_tips.count())
@@ -133,7 +132,7 @@ class TipEventLogger(EventLogger):
             self.do_mail = self.import_receiver(receiver_tip.receiver)
 
             tip_desc = serialize_receivertip(receiver_tip)
-            receiver_tip.mark = models.ReceiverTip._marker[1] # notified
+            receiver_tip.mark = u'notified'
 
             # this check is to avoid ask continuously the same context:
             if not self.context_desc.has_key('id') or \
@@ -161,8 +160,7 @@ class MessageEventLogger(EventLogger):
     def load_messages(self, store):
 
         not_notified_messages = store.find(models.Message,
-                                           models.Message.mark == models.Message._marker[0]
-        )
+                                           models.Message.mark == u'not notified')
 
         if not_notified_messages.count():
             log.debug("Messages found to be notified: %d" % not_notified_messages.count())
@@ -170,7 +168,7 @@ class MessageEventLogger(EventLogger):
         for message in not_notified_messages:
 
             message_desc = rtip.receiver_serialize_message(message)
-            message.mark = models.Message._marker[1] # notified
+            message.mark = u'notified'
 
             # message.type can be 'receiver' or 'wb' at the moment, we care of the 2nd
             if message.type == u"receiver":
@@ -204,7 +202,7 @@ class CommentEventLogger(EventLogger):
     def load_comments(self, store):
 
         not_notified_comments = store.find(models.Comment,
-            models.Comment.mark == models.Comment._marker[0]
+            models.Comment.mark == u'not notified'
         )
 
         if not_notified_comments.count():
@@ -224,7 +222,7 @@ class CommentEventLogger(EventLogger):
                                                                   self.language)
 
             comment_desc = rtip.receiver_serialize_comment(comment)
-            comment.mark = models.Comment._marker[1] # 'notified'
+            comment.mark = u'notified'
 
             # for every comment, iterate on the associated receiver(s)
             log.debug("Comments from %s - Receiver(s) %d" % \
@@ -234,7 +232,7 @@ class CommentEventLogger(EventLogger):
 
                 self.do_mail = self.import_receiver(receiver)
 
-                if comment.type == models.Comment._types[0] and comment.author == receiver.name:
+                if comment.type == u'receiver' and comment.author == receiver.name:
                     log.debug("Receiver is the Author (%s): skipped" % receiver.user.username)
                     continue
 
@@ -258,8 +256,7 @@ class FileEventLogger(EventLogger):
     def load_files(self, store):
 
         not_notified_rfiles = store.find(models.ReceiverFile,
-            models.ReceiverFile.mark == models.ReceiverFile._marker[0]
-        )
+            models.ReceiverFile.mark == u'not notified')
 
         if not_notified_rfiles.count():
             log.debug("new [Files✖Receiver] found to be notified: %d" % not_notified_rfiles.count())
@@ -278,7 +275,7 @@ class FileEventLogger(EventLogger):
 
             file_desc = serialize_internalfile(rfile.internalfile, rfile.id)
             tip_desc = serialize_receivertip(rfile.receiver_tip)
-            rfile.mark = models.ReceiverFile._marker[1] # notified
+            rfile.mark = u'notified'
 
             self.do_mail = self.import_receiver(rfile.receiver)
 

@@ -333,7 +333,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           Receivers.query(function(receivers){
             self.receivers = [];
             forEach(receivers, function(receiver){
-              if (receiver.gpg_key_status !== 'Enabled') {
+              if (receiver.gpg_key_status !== 'enabled') {
                 receiver.missing_pgp = true;
               }
               self.receivers.push(receiver);

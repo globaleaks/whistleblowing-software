@@ -87,7 +87,7 @@ GLClient.controller('StatusCtrl',
 
           $scope.tip_unencrypted = false;
           angular.forEach(tip.receivers, function(receiver){
-            if (receiver.gpg_key_status == 'Disabled' && receiver.receiver_id !== tip.receiver_id) {
+            if (receiver.gpg_key_status == 'disabled' && receiver.receiver_id !== tip.receiver_id) {
               $scope.tip_unencrypted = true;
             };
           });

@@ -216,7 +216,7 @@ CREATE TABLE receiver (
     ping_notification INTEGER NOT NULL,
     mail_address VARCHAR NOT NULL,
     ping_mail_address VARCHAR NOT NULL,
-    gpg_key_status VARCHAR NOT NULL CHECK (gpg_key_status IN ('Disabled', 'Enabled')),
+    gpg_key_status VARCHAR NOT NULL CHECK (gpg_key_status IN ('disabled', 'enabled')),
     gpg_key_info VARCHAR,
     gpg_key_fingerprint VARCHAR,
     gpg_key_armor VARCHAR,

@@ -157,9 +157,9 @@ def create_comment_wb(store, wb_tip_id, request):
     comment = Comment()
     comment.content = request['content']
     comment.internaltip_id = wbtip.internaltip.id
-    comment.author = u'whistleblower' # The printed line
-    comment.type = Comment._types[1] # WB
-    comment.mark = Comment._marker[0] # Not notified
+    comment.author = u'whistleblower'
+    comment.type = u'whistleblower'
+    comment.mark = u'not notified'
 
     wbtip.internaltip.comments.add(comment)
 
@@ -379,7 +379,7 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
     msg = Message()
     msg.content = request['content']
     msg.receivertip_id = rtip.id
-    msg.author = u'Whistleblower'
+    msg.author = u'whistleblower'
     msg.visualized = False
 
     msg.type = u'whistleblower'

@@ -25,30 +25,6 @@ GPGROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
 class TestGPG(TestHandlerWithPopulatedDB):
     _handler = receiver.ReceiverInstance
 
-    receiver_only_update = {
-        'gpg_key_armor': None,
-        'gpg_key_remove': False,
-        'gpg_key_info': None,
-        'gpg_key_fingerprint': None,
-        'gpg_key_status': 'Disabled',
-        'gpg_key_expiration': '',
-        'name': 'irrelevant',
-        'password': '',
-        'old_password': '',
-        'username' : 'irrelevant',
-        'mail_address': 'am_i_ignored_or_not@email.xxx',
-        'ping_mail_address': '',
-        'description' : 'A new description',
-        'comment_notification': True,
-        'file_notification': True,
-        'tip_notification': False,
-        'message_notification': False,
-        'ping_notification': False,
-        'ping_mail_address': 'am_i_ignored_or_not@email.xxx',
-        'language': u'en',
-        'timezone': 0
-    }
-
     @inlineCallbacks
     def test_get(self):
         handler = self.request(self.dummyReceiver_1, role='receiver', user_id=self.dummyReceiver_1['id'])
@@ -68,7 +44,7 @@ class TestGPG(TestHandlerWithPopulatedDB):
         yield handler.put()
         self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
                          u'CF4A22020873A76D1DCB68D32B25551568E49345')
-        self.assertEqual(self.responses[0]['gpg_key_status'], Receiver._gpg_types[1])
+        self.assertEqual(self.responses[0]['gpg_key_status'], u'enabled')
 
         self.receiver_only_update['gpg_key_armor'] = unicode(VALID_PGP_KEY2)
 
@@ -85,7 +61,7 @@ class TestGPG(TestHandlerWithPopulatedDB):
         yield handler.put()
         self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
             u'CF4A22020873A76D1DCB68D32B25551568E49345')
-        self.assertEqual(self.responses[0]['gpg_key_status'], Receiver._gpg_types[1])
+        self.assertEqual(self.responses[0]['gpg_key_status'], u'enabled')
 
         self.receiver_only_update['gpg_key_armor'] = unicode(VALID_PGP_KEY2)
         self.receiver_only_update['gpg_key_remove'] = False
@@ -97,6 +73,8 @@ class TestGPG(TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_load_malformed_key(self):
+        self.receiver_only_update = dict(MockDict().dummyReceiver)
+
         self.receiver_only_update['password'] = self.dummyReceiver_1['password']
         self.receiver_only_update['old_password'] = self.dummyReceiver_1['password']
         self.receiver_only_update['gpg_key_armor'] = unicode(VALID_PGP_KEY1).replace('A', 'B')
@@ -133,15 +111,17 @@ class TestGPG(TestHandlerWithPopulatedDB):
         fake_receiver_desc = {
             'gpg_key_armor': unicode(VALID_PGP_KEY1),
             'gpg_key_fingerprint': u"CF4A22020873A76D1DCB68D32B25551568E49345",
-            'gpg_key_status': Receiver._gpg_types[1],
+            'gpg_key_status': u'enabled',
             'username': u'fake@username.net',
         }
 
-        gpob = GLBGPG()
-        gpob.load_key(VALID_PGP_KEY1)
+        gpgobj = GLBGPG()
+        gpgobj.load_key(VALID_PGP_KEY1)
 
-        encrypted_body = gpob.encrypt_message(fake_receiver_desc['gpg_key_fingerprint'], mail_content)
+        encrypted_body = gpgobj.encrypt_message(fake_receiver_desc['gpg_key_fingerprint'], mail_content)
         self.assertSubstring('-----BEGIN PGP MESSAGE-----', encrypted_body)
+
+        gpgobj.destroy_environment()
 
     def test_encrypt_file(self):
 
@@ -156,17 +136,17 @@ class TestGPG(TestHandlerWithPopulatedDB):
 
             fake_receiver_desc = {
                 'gpg_key_armor': unicode(VALID_PGP_KEY1),
-                'gpg_key_status': Receiver._gpg_types[1],
+                'gpg_key_status': u'enabled',
                 'gpg_key_fingerprint': u"CF4A22020873A76D1DCB68D32B25551568E49345",
                 'username': u'fake@username.net',
                 }
 
             # these are the same lines used in delivery_sched.py
-            gpoj = GLBGPG()
-            gpoj.load_key(VALID_PGP_KEY1)
-            encrypted_file_path, encrypted_file_size = gpoj.encrypt_file(fake_receiver_desc['gpg_key_fingerprint'],
-                                                                         tempsource, f1, "/tmp")
-            gpoj.destroy_environment()
+            gpgobj = GLBGPG()
+            gpgobj.load_key(VALID_PGP_KEY1)
+            encrypted_file_path, encrypted_file_size = gpgobj.encrypt_file(fake_receiver_desc['gpg_key_fingerprint'],
+                                                                           tempsource, f1, "/tmp")
+            gpgobj.destroy_environment()
 
             with file(encrypted_file_path, "r") as f2:
                 first_line = f2.readline()
@@ -256,3 +236,5 @@ class TestGPG(TestHandlerWithPopulatedDB):
 
         self.assertEqual(gpgobj.load_key(EXPIRED_PGP_KEY)['expiration'],
                          datetime.utcfromtimestamp(1391012793))
+
+        gpgobj.destroy_environment()
