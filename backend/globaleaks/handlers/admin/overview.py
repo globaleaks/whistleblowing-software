@@ -42,7 +42,7 @@ def collect_tip_overview(store, language):
 
         # strip uncompleted submission, until GLClient open new submission
         # also if no data has been supply
-        if itip.mark == models.InternalTip._marker[0]:
+        if itip.mark == u'submission':
             continue
 
         for rtip in itip.receivertips:

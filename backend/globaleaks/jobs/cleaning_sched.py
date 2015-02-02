@@ -20,8 +20,6 @@ __all__ = ['CleaningSchedule']
 
 @transact_ro
 def get_tiptime_by_marker(store, marker):
-    assert marker in InternalTip._marker
-
     itip_list = store.find(InternalTip, InternalTip.mark == marker)
 
     tipinfo_list = []
@@ -127,7 +125,7 @@ class CleaningSchedule(GLJob):
         """
         try:
             # First Goal
-            submissions = yield get_tiptime_by_marker(InternalTip._marker[0]) # Submission
+            submissions = yield get_tiptime_by_marker(u'submission')
             log.debug("(Cleaning routines) %d unfinished Submission are check if expired" % len(submissions))
             for submission in submissions:
                 if is_expired(ISO8601_to_datetime(submission['creation_date']), GLSetting.defaults.submission_seconds_of_life):
@@ -136,7 +134,7 @@ class CleaningSchedule(GLJob):
                     yield itip_cleaning(submission['id'])
 
             # Second Goal
-            tips = yield get_tiptime_by_marker(InternalTip._marker[2]) # First
+            tips = yield get_tiptime_by_marker(u'first')
             log.debug("(Cleaning routines) %d Tips stored are check if expired" % len(tips))
             for tip in tips:
                 if is_expired(ISO8601_to_datetime(tip['expiration_date'])):

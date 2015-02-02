@@ -96,7 +96,7 @@ def import_receivers(store, submission, receiver_id_list, required=False):
 
         try:
             if not GLSetting.memory_copy.allow_unencrypted and \
-                    receiver.gpg_key_status != u'Enabled':
+                    receiver.gpg_key_status != u'enabled':
                 log.err("Encrypted only submissions are supported. Cannot select [%s]" % receiver_id)
                 continue
             submission.receivers.add(receiver)

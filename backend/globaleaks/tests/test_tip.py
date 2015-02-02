@@ -85,7 +85,7 @@ class TTip(helpers.TestGL):
         'ping_notification': False,
         'ping_mail_address': u'first@winstonsmith.org',
         'postpone_superpower': False,
-        'gpg_key_status': u'Disabled',
+        'gpg_key_status': u'disabled',
         'gpg_key_info': None,
         'gpg_key_fingerprint': None,
         'gpg_key_remove': False,
@@ -112,7 +112,7 @@ class TTip(helpers.TestGL):
         'tip_notification': False,
         'ping_notification': False,
         'ping_mail_address': u'second@winstonsmith.org',
-        'gpg_key_status': u'Disabled',
+        'gpg_key_status': u'disabled',
         'gpg_key_info': None,
         'gpg_key_fingerprint': None,
         'gpg_key_remove': False,
@@ -178,7 +178,7 @@ class TestTipInstance(TTip):
         self.submission_desc = yield submission.create_submission(dummySubmissionDict, True, 'en')
 
         self.assertEqual(self.submission_desc['wb_steps'], dummySubmissionDict['wb_steps'])
-        self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[1])
+        self.assertEqual(self.submission_desc['mark'], u'finalized')
         # Ok, now the submission has been finalized, the tests can start.
 
     @inlineCallbacks
@@ -394,7 +394,7 @@ class TestTipInstance(TTip):
         cl = yield rtip.get_comment_list_receiver(self.receiver1_desc['id'],
                                                  self.rtip1_id)
 
-        self.assertEqual(cl[3]['type'], models.Comment._types[2]) # System (date extension)
+        self.assertEqual(cl[3]['type'], u'system')
 
         sys_comm = cl[3]
 
@@ -422,14 +422,14 @@ class TestTipInstance(TTip):
                                         self.rtip1_id)
 
         self.assertEqual(len(cl), 5)
-        self.assertEqual(cl[0]['type'], models.Comment._types[0]) # Receiver (Rcvr1)
-        self.assertEqual(cl[1]['type'], models.Comment._types[0]) # Receiver (Rcvr2)
-        self.assertEqual(cl[2]['type'], models.Comment._types[1]) # Wb
+        self.assertEqual(cl[0]['type'], u'receiver')
+        self.assertEqual(cl[1]['type'], u'receiver')
+        self.assertEqual(cl[2]['type'], u'whistleblower')
 
-        self.assertEqual(cl[3]['type'], models.Comment._types[2]) # System (date extension)
+        self.assertEqual(cl[3]['type'], u'system')
         self.assertEqual(cl[3]['system_content']['receiver_name'], self.receiver2_desc['name'])
 
-        self.assertEqual(cl[4]['type'], models.Comment._types[2]) # System
+        self.assertEqual(cl[4]['type'],u'system')
 
 
     @inlineCallbacks
@@ -478,7 +478,7 @@ class TestTipInstance(TTip):
         x = yield wbtip.create_message_wb(self.wb_tip_id,
                                           self.receiver1_desc['id'], msgrequest)
 
-        self.assertEqual(x['author'], u'Whistleblower')
+        self.assertEqual(x['author'], u'whistleblower')
 
         after = yield wbtip.get_receiver_list_wb(self.wb_tip_id, 'en')
 

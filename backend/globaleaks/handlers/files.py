@@ -64,7 +64,7 @@ def register_file_db(store, uploaded_file, filepath, internaltip_id):
     new_file.name = uploaded_file['filename']
     new_file.description = ""
     new_file.content_type = uploaded_file['content_type']
-    new_file.mark = InternalFile._marker[0] # 'not processed'
+    new_file.mark = u'not processed'
     new_file.size = uploaded_file['body_len']
     new_file.internaltip_id = internaltip_id
     new_file.file_path = filepath
@@ -106,7 +106,7 @@ def validate_itip_id(store, itip_id):
     if not itip:
         raise errors.SubmissionIdNotFound
 
-    if itip.mark != InternalTip._marker[0]:
+    if itip.mark != u'submission':
         log.err("Denied access on a concluded submission")
         raise errors.SubmissionConcluded
 

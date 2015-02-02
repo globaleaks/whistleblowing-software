@@ -495,14 +495,14 @@ def gpg_options_parse(receiver, request):
     remove_key = request.get('gpg_key_remove', False)
 
     # the default
-    receiver.gpg_key_status = u'Disabled'
+    receiver.gpg_key_status = u'disabled'
 
     if remove_key:
         log.debug("User %s %s request to remove GPG key (%s)" %
                   (receiver.name, receiver.user.username, receiver.gpg_key_fingerprint))
 
         # In all the cases below, the key is marked disabled as request
-        receiver.gpg_key_status = u'Disabled'
+        receiver.gpg_key_status = u'disabled'
         receiver.gpg_key_info = None
         receiver.gpg_key_armor = None
         receiver.gpg_key_fingerprint = None
@@ -517,7 +517,7 @@ def gpg_options_parse(receiver, request):
 
             log.debug("GPG Key imported: %s" % result['fingerprint'])
 
-            receiver.gpg_key_status = u'Enabled'
+            receiver.gpg_key_status = u'enabled'
             receiver.gpg_key_info = result['info']
             receiver.gpg_key_armor = new_gpg_key
             receiver.gpg_key_fingerprint = result['fingerprint']

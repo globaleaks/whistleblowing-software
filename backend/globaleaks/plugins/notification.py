@@ -90,7 +90,7 @@ class MailNotification(Notification):
             raise NotImplementedError("At the moment, only Tip expected")
 
         # If the receiver has encryption enabled (for notification), encrypt the mail body
-        if event.receiver_info['gpg_key_status'] == u'Enabled':
+        if event.receiver_info['gpg_key_status'] == u'enabled':
 
             gpob = GLBGPG()
             try:

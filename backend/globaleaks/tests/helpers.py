@@ -614,7 +614,7 @@ class MockDict():
             'ping_notification': False,
             'gpg_key_info': u'',
             'gpg_key_fingerprint' : u'',
-            'gpg_key_status': u'Disabled',
+            'gpg_key_status': u'disabled',
             'gpg_key_armor': u'',
             'gpg_key_expiration': u'',
             'gpg_key_remove': False,

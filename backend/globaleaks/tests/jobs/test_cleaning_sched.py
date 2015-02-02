@@ -129,7 +129,7 @@ class TestCleaning(helpers.TestGL):
         self.submission_desc = yield submission.create_submission(dummySubmission, False, 'en')
 
         self.assertEqual(self.submission_desc['wb_steps'], dummySubmission['wb_steps'])
-        self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[0])
+        self.assertEqual(self.submission_desc['mark'], u'submission')
 
     @inlineCallbacks
     def do_finalize_submission(self):
@@ -141,7 +141,7 @@ class TestCleaning(helpers.TestGL):
             True,
             'en')
 
-        self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[1])
+        self.assertEqual(self.submission_desc['mark'], u'finalize')
 
         submission.create_whistleblower_tip(self.submission_desc)
 
@@ -157,7 +157,7 @@ class TipCleaning(TestCleaning):
         self.assertEqual(len(recv_desc), 2)
         rtip_desc = yield receiver.get_receiver_tip_list(recv_desc[0]['id'], 'en')
         self.assertEqual(len(rtip_desc), 1)
-        tip_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[2])
+        tip_list = yield cleaning_sched.get_tiptime_by_marker(u'first')
         self.assertEqual(len(tip_list), 1)
         rtip.postpone_expiration_date(recv_desc[0]['id'], rtip_desc[0]['id'])
 

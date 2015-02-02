@@ -158,9 +158,9 @@ def delete_receiver_tip(store, user_id, tip_id):
                                     "receiver_name" : rtip.receiver.name})
 
     comment.internaltip_id = rtip.internaltip.id
-    comment.author = u'System' # The printed line
-    comment.type = u'system' # Comment._types[2]
-    comment.mark = u'not notified' # Comment._marker[0]
+    comment.author = u'system' # The printed line
+    comment.type = u'system'
+    comment.mark = u'not notified'
 
     rtip.internaltip.comments.add(comment)
 
@@ -226,9 +226,9 @@ def postpone_expiration_date(store, user_id, tip_id):
                    datetime_to_pretty_str(rtip.internaltip.expiration_date))
 
     comment.internaltip_id = rtip.internaltip.id
-    comment.author = u'System' # The printed line
-    comment.type = Comment._types[2] # System
-    comment.mark = Comment._marker[3] # skipped
+    comment.author = u'System'
+    comment.type = u'system'
+    comment.mark = u'skipped'
 
     rtip.internaltip.comments.add(comment)
 
@@ -342,8 +342,8 @@ def create_comment_receiver(store, user_id, tip_id, request):
     comment.content = request['content']
     comment.internaltip_id = rtip.internaltip.id
     comment.author = rtip.receiver.name # The printed line
-    comment.type = Comment._types[0] # Receiver
-    comment.mark = Comment._marker[0] # Not notified
+    comment.type = u'receiver'
+    comment.mark = u'not notified'
 
     rtip.internaltip.comments.add(comment)
 

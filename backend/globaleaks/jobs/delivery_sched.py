@@ -332,7 +332,7 @@ def encrypt_where_available(receivermap):
 
     for rcounter, rfileinfo in enumerate(receivermap):
 
-        if rfileinfo['receiver']['gpg_key_status'] == u'Enabled':
+        if rfileinfo['receiver']['gpg_key_status'] == u'enabled':
 
             try:
                 new_path, new_size = fsops_gpg_encrypt(rfileinfo['path'], rfileinfo['receiver'])
