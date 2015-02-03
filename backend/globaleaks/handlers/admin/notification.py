@@ -47,12 +47,7 @@ def update_notification(store, request, language):
 
     fill_localized_keys(request, Notification.localized_strings, language)
 
-    if request['security'] in Notification._security_types:
-        notif.security = request['security']
-    else:
-        log.err("Invalid request: Security option not recognized")
-        log.debug("Invalid Security value: %s" % request['security'])
-        raise errors.InvalidInputFormat("Security selection not recognized")
+    notif.security = request['security']
 
     try:
         notif.update(request)
