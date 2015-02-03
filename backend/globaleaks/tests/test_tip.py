@@ -178,7 +178,7 @@ class TestTipInstance(TTip):
         self.submission_desc = yield submission.create_submission(dummySubmissionDict, True, 'en')
 
         self.assertEqual(self.submission_desc['wb_steps'], dummySubmissionDict['wb_steps'])
-        self.assertEqual(self.submission_desc['mark'], u'finalized')
+        self.assertEqual(self.submission_desc['mark'], u'finalize')
         # Ok, now the submission has been finalized, the tests can start.
 
     @inlineCallbacks

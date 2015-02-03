@@ -535,7 +535,9 @@ class Notification(Model):
         'username',
         'password',
         'source_name',
-        'source_email']
+        'source_email',
+        'security'
+    ]
     localized_strings = [
         'admin_anomaly_template',
         'admin_pgp_alert_mail_title',
@@ -560,11 +562,13 @@ class Notification(Model):
         'plaintext_message_mail_title',
         'zip_description',
         'ping_mail_template',
-        'ping_mail_title']
+        'ping_mail_title'
+    ]
     int_keys = [
         'port',
         'disable_admin_notification_emails',
-        'disable_receivers_notification_emails']
+        'disable_receivers_notification_emails'
+    ]
 
 
 class Receiver(Model):
