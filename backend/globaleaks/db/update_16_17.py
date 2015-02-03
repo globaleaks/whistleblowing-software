@@ -2,7 +2,10 @@
 
 """
   Changes
-
+    - node: added header_templates and landing page configuration
+    - receiver: added PGP key expiration
+    - stats: renamed various variables
+    - notification: added pgp expiration templates
 
 """
 
@@ -114,17 +117,18 @@ class Receiver_version_16(Model):
     ping_notification = Bool()
     presentation_order = Int()
 
+
 class Stats_version_16(Model):
     __storm_table__ = 'stats'
     start = DateTime()
     summary = JSON()
     freemb = Int()
 
+
 class Replacer1617(TableReplacer):
 
     def migrate_Node(self):
-        print "%s Node migration assistant: added default_language and default_timezone" \
-              "whistleblowing_question, whistleblowing_button" % self.std_fancy
+        print "%s Node migration assistant: header_titles and landing_page configuration" % self.std_fancy
 
         appdata_dict = load_appdata()
 
@@ -156,8 +160,7 @@ class Replacer1617(TableReplacer):
 
 
     def migrate_Notification(self):
-        print "%s Notification migration assistant: (pgp_expiration_alert teplates)" % self.std_fancy
-
+        print "%s Notification migration assistant: (pgp_expiration_alert templates)" % self.std_fancy
 
         appdata_dict = load_appdata()
 
@@ -214,6 +217,13 @@ class Replacer1617(TableReplacer):
 
             new_receiver = self.get_right_model("Receiver", 17)()
 
+            gpg_key_expiration = datetime_null()
+            if old_receiver.gpg_key_armor:
+                try:
+                    gpg_key_expiration = gpgobj.load_key(old_receiver.gpg_key_armor)['expiration']
+                except:
+                    pass
+
             for _, v in new_receiver._storm_columns.iteritems():
 
                 if v.name == 'gpg_key_status':
@@ -224,10 +234,7 @@ class Replacer1617(TableReplacer):
                     continue
 
                 if v.name == 'gpg_key_expiration':
-                    if old_receiver.gpg_key_armor:
-                        new_receiver.gpg_key_expiration = gpgobj.load_key(old_receiver.gpg_key_armor)['expiration']
-                    else:
-                        new_receiver.gpg_key_expiration = datetime_null()
+                    new_receiver.gpg_key_expiration = gpg_key_expiration
                     continue
 
                 setattr(new_receiver, v.name, getattr(old_receiver, v.name))
