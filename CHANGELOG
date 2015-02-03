@@ -1,3 +1,6 @@
+Changes in version 2.60.57 - 2015-02-03
+    o Migration script fixes
+
 Changes in version 2.60.56 - 2015-02-03
     o Added PGP expiration checks
 
