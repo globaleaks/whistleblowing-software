@@ -1,32 +1,35 @@
-Changes in version 2.60.55 - 2014-01-29
+Changes in version 2.60.56 - 2015-02-03
+    o Added PGP expiration checks
+
+Changes in version 2.60.55 - 2015-01-29
     o Minor UI fixes
 
-Changes in version 2.60.54 - 2014-01-28
+Changes in version 2.60.54 - 2015-01-28
     o Fixed custom CSS flickering
 
-Changes in version 2.60.53 - 2014-01-26
+Changes in version 2.60.53 - 2015-01-26
     o Minor UI fixes
 
-Changes in version 2.60.52 - 2014-01-23
+Changes in version 2.60.52 - 2015-01-23
     o Minor UI fixes
 
-Changes in version 2.60.51 - 2014-01-22
+Changes in version 2.60.51 - 2015-01-22
     o Various migration fixes
     o Minor UI fixes
 
-Changes in version 2.60.50 - 2014-01-21
+Changes in version 2.60.50 - 2015-01-21
     o Enabled GZIP compression
     o Minor UI fixes
 
-Changes in version 2.60.49 - 2014-01-18
+Changes in version 2.60.49 - 2015-01-18
     o Implemented file upload preview
     o Implemented simplified vertical submission template
     o Various Bugfixing
 
-Changes in version 2.60.48 - 2014-01-13
+Changes in version 2.60.48 - 2015-01-13
     o Various Bugfixing
 
-Changes in version 2.60.47 - 2014-01-12
+Changes in version 2.60.47 - 2015-01-12
     o Addressed Clientside Performance Issues
     o Added Finnish (75)
 
