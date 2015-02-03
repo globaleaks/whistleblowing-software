@@ -23,11 +23,6 @@ from globaleaks.utils.utility import log, datetime_now
 def start_asynchronous():
     """
     Initialize the asynchronous operation, scheduled in the system
-    https://github.com/globaleaks/GLBackend/wiki/Asynchronous-and-synchronous-operation
-
-    This method would be likely put in GLBaseRunner.postApplication, but is
-    not executed by globaleaks.run_app, then is called by the
-    OS-depenedent runner below
     """
     # Here we prepare the scheduled,
     # schedules will be started by reactor after reactor.run()
@@ -40,7 +35,6 @@ def start_asynchronous():
     resource_check = statistics_sched.ResourceChecker()
     anomaly = statistics_sched.AnomaliesSchedule()
     stats = statistics_sched.StatisticsSchedule()
-
 
     # here we prepare the schedule:
     #  - first argument is the first run delay in seconds
