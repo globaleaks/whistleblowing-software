@@ -64,13 +64,13 @@ def get_stats(store, week_delta):
     lower_bound = iso_to_gregorian(looked_year, looked_week, 1)
     upper_bound = iso_to_gregorian(looked_year, looked_week, 7)
 
-    hourlyentry = store.find(Stats, And(Stats.start >= lower_bound, Stats.start <= upper_bound))
+    hourlyentries = store.find(Stats, And(Stats.start >= lower_bound, Stats.start <= upper_bound))
 
     week_entries = 0
     week_map = [[dict() for i in xrange(24)] for j in xrange(7)]
 
     # Loop over the DB stats to fill the appropriate heatmap
-    for hourdata in hourlyentry:
+    for hourdata in hourlyentries:
 
         # .weekday() return be 0..6
         stats_day = int(hourdata.start.weekday())
