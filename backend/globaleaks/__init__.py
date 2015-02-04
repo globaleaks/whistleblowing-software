@@ -38,6 +38,7 @@ LANGUAGES_SUPPORTED = [
  { "code": "ru", "name": "Russian" },
  { "code": "sk", "name": "Slovak" },
  { "code": "sr_RS", "name": "Serbian (Serbia)" },
+ { "code": "sr_RS@latin", "name": "Serbian (Latin) (Serbia)" },
  { "code": "sv", "name": "Swedish" },
  { "code": "th", "name": "Thai" },
  { "code": "tr", "name": "Turkish" },
