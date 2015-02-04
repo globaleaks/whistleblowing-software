@@ -159,7 +159,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
         $translate.use($rootScope.language);
 
-        if (newVal != "ar" && newVal != "he") {
+        if (_.indexOf(["ar", "he", "ur"], newVal) !== -1) {
           $scope.build_stylesheet = "/styles.css";
         } else {
           $scope.build_stylesheet = "/styles-rtl.css";
