@@ -1,3 +1,8 @@
+Changes in version 2.60.58 - 2015-02-04
+    o Fix validation of keys with no expiration set
+    o Fix alignment of Urdu as RTL language
+    o Improve resiliency of installation script
+
 Changes in version 2.60.57 - 2015-02-03
     o Migration script fixes
 
