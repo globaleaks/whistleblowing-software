@@ -393,7 +393,7 @@ class GLBGPG(object):
                 break
 
         if not len(info):
-            log.err("Key apparently imported but unable to be extracted info")
+            log.err("Key apparently imported but unable to reload it")
             raise errors.GPGKeyInvalid
 
         ret = {
