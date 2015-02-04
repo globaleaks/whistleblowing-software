@@ -21,7 +21,7 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.models import Receiver
 from globaleaks.settings import transact, GLSetting
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
-from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.utility import datetime_now, datetime_null
 from globaleaks.utils.templating import Templating
 
 
@@ -39,7 +39,7 @@ class PGPCheckSchedule(GLJob):
 
         for rcvr in rcvrs:
 
-            if rcvr.gpg_key_armor:
+            if rcvr.gpg_key_armor and rcvr.gpg_key_expiration != datetime_null():
                if rcvr.gpg_key_expiration < datetime_now():
                    expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSetting.memory_copy.default_language))
                    if node_desc['allow_unencrypted']:
