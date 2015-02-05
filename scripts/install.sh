@@ -162,14 +162,8 @@ echo "$PGP_KEY" > $TMPFILE
 DO "apt-key add $TMPFILE" "0"
 DO "rm -f $TMPFILE" "0"
 
-if [ -d /etc/apt/sources.list.d ]; then
-  if [ ! -f /etc/apt/sources.list.d/globaleaks ]; then
-    echo "deb http://deb.globaleaks.org $DISTRO_VERSION/" > /etc/apt/sources.list.d/globaleaks.list
-  fi
-else
-  if ! $(grep -q -i globaleaks /etc/apt/sources.list); then
-    echo "deb http://deb.globaleaks.org $DISTRO_VERSION/" >> /etc/apt/sources.list
-  fi
+if [ ! -f /etc/apt/sources.list.d/globaleaks ]; then
+  echo "deb http://deb.globaleaks.org $DISTRO_VERSION/" > /etc/apt/sources.list.d/globaleaks.list
 fi
 
 DO "apt-get update -y" "0"
