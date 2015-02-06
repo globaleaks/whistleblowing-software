@@ -19,14 +19,12 @@ GLClient.controller('SubmissionCtrl',
 
   if (context_selectable == "false" && context_id) {
     $scope.context_selectable = false;
-    console.log("aaa");
   } else {
     $scope.context_selectable = true;
   }
 
   new Submission(function (submission) {
     $scope.submission = submission;
-    $scope.current_context = submission.current_context;
     $scope.fields = submission.fields;
     $scope.indexed_fields = submission.indexed_fields;
     $scope.submit = $scope.submission.submit;
@@ -79,7 +77,7 @@ GLClient.controller('SubmissionCtrl',
 
   // Go to a defined step index
   $scope.goToStep = function(index) {
-    if ( $scope.uploading ) {
+    if ($scope.uploading) {
       return;
     }
 
@@ -87,36 +85,34 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.hasNextStep = function(){
-    if ( $scope.current_context == undefined )
+    if ($scope.submission.current_context == undefined)
       return false;
 
-    return $scope.selection < $scope.current_context.steps.length;
+    return $scope.selection < $scope.submission.current_context.steps.length;
   };
 
   $scope.hasPreviousStep = function(){
-    if ( $scope.current_context == undefined )
+    if ($scope.submission.current_context == undefined)
       return false;
 
     return $scope.selection > 0;
   };
 
   $scope.incrementStep = function() {
-    if ( $scope.uploading )
+    if ($scope.uploading)
       return;
 
-    if ( $scope.hasNextStep() )
-    {
-      $scope.selection = $scope.selection + 1;
+    if ($scope.hasNextStep()) {
+      $scope.selection++;
     }
   };
 
   $scope.decrementStep = function() {
-    if ( $scope.uploading )
+    if ($scope.uploading)
       return;
 
-    if ( $scope.hasPreviousStep() )
-    {
-      $scope.selection = $scope.selection - 1;
+    if ($scope.hasPreviousStep()) {
+      $scope.selection--;
     }
   };
 
@@ -124,7 +120,7 @@ GLClient.controller('SubmissionCtrl',
 
   // Watch for changes in certain variables
   $scope.$watch('submission.current_context', function () {
-    if ($scope.current_context) {
+    if ($scope.submission && $scope.submission.current_context) {
       $scope.submission.create(function () {
 
         if (!$scope.submission.current_context.show_receivers) {
