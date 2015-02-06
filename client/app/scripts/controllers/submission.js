@@ -28,7 +28,7 @@ GLClient.controller('SubmissionCtrl',
 
     $scope.submission = submission;
 
-    if ($scope.submission.contexts.length == 1 && !$scope.submission.current_context.show_receivers) {
+    if (!$scope.submission.current_context.show_receivers) {
       $scope.skip_first_step = true;
       $scope.selection = 1;
     } else {
