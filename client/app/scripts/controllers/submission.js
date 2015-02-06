@@ -18,27 +18,10 @@ GLClient.controller('SubmissionCtrl',
 
   new Submission(function (submission) {
     $scope.submission = submission;
-
-    $scope.maximumFilesize = submission.maximum_filesize;
-      
     $scope.current_context = submission.current_context;
-
     $scope.fields = submission.fields;
     $scope.indexed_fields = submission.indexed_fields;
-
-    $scope.submission = submission;
-
-    if (!$scope.submission.current_context.show_receivers) {
-      $scope.skip_first_step = true;
-      $scope.selection = 1;
-    } else {
-      $scope.skip_first_step = false;
-      $scope.selection = 0;
-    }
-
     $scope.submit = $scope.submission.submit;
-
-    checkReceiverSelected();
   }, context_id, receivers_ids);
 
   var checkReceiverSelected = function () {
@@ -135,6 +118,15 @@ GLClient.controller('SubmissionCtrl',
   $scope.$watch('submission.current_context', function () {
     if ($scope.current_context) {
       $scope.submission.create(function () {
+
+        if (!$scope.submission.current_context.show_receivers) {
+          $scope.skip_first_step = true;
+          $scope.selection = 1;
+        } else {
+          $scope.skip_first_step = false;
+          $scope.selection = 0;
+        }
+
         $scope.fileupload_url = '/submission/' + $scope.submission.current_submission.id + '/file';
       });
       checkReceiverSelected();
