@@ -15,11 +15,11 @@
     </div>
   </div>
 
-  <div data-ng-include="'views/partials/privacybadge.html'"></div>
+  <div data-ng-show="!embedded" data-ng-include="'views/partials/privacybadge.html'"></div>
+
+  <div data-ng-show="!embedded" data-ng-include="'views/partials/header.html'"></div>
 
   <div data-ng-include="'views/partials/messageconsole.html'"></div>
-
-  <div data-ng-include="'views/partials/header.html'"></div>
 
   <!-- In here is the main GLClient application content -->
 
@@ -38,7 +38,7 @@
 
   <div id="ContentBox" data-ng-view="" data-ng-show="cookiesEnabled" class="container ng-cloak"></div>
 
-  <div data-ng-include="'views/partials/footer.html'"></div>
+  <div data-ng-show="!embedded" data-ng-include="'views/partials/footer.html'"></div>
 </div>
 
 <div id="BodyCustom" data-ng-if="isHomepage() && node.custom_homepage" data-ng-include="'/static/custom_homepage.html'"></div>

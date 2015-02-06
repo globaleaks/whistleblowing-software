@@ -6,6 +6,7 @@ GLClient.controller('SubmissionCtrl',
 
   var context_id = $location.search().context;
   var receivers_ids = $location.search().receivers;
+  var context_selectable = $location.search().context_selectable;
 
   if (receivers_ids) {
     try {
@@ -14,6 +15,13 @@ GLClient.controller('SubmissionCtrl',
     catch(err) {
       receivers_ids = undefined;
     }
+  }
+
+  if (context_selectable == "false" && context_id) {
+    $scope.context_selectable = false;
+    console.log("aaa");
+  } else {
+    $scope.context_selectable = true;
   }
 
   new Submission(function (submission) {
@@ -138,10 +146,6 @@ GLClient.controller('SubmissionCtrl',
       checkReceiverSelected();
     }
   }, true);
-
-  $scope.$watch('submissionForm.$valid', function () {
-    $rootScope.invalidForm = $scope.submissionForm.$invalid;
-  });
 
 }]).
 controller('SubmissionStepCtrl', ['$scope', function($scope) {
