@@ -136,8 +136,9 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     });
 
     $scope.$on('$routeChangeSuccess', function() {
-      if($location.search().lang) {
-        $rootScope.language = $scope.language = $location.search().lang;
+      var lang = $location.search().lang;
+      if(lang && $.inArray(lang, $scope.node.languages_enabled) !== -1) {
+        $rootScope.language = lang;
       }
 
       $scope.set_title();
