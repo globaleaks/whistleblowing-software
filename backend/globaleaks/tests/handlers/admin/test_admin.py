@@ -254,22 +254,6 @@ class TestReceiverCreate(helpers.TestHandlerWithPopulatedDB):
 
         yield self.assertFailure(handler.post(), InvalidInputFormat)
 
-    @inlineCallbacks
-    def test_post_duplicated_username(self):
-        self.dummyReceiver_1['name'] = 'beppe'
-        self.dummyReceiver_1['mail_address'] = "evilamaker.py@vecllais.naif"
-        self.dummyReceiver_1['password'] = helpers.VALID_PASSWORD1
-
-        for attrname in Receiver.localized_strings:
-            self.dummyReceiver_1[attrname] = stuff
-
-        handler = self.request(self.dummyReceiver_1, role='admin')
-
-        yield handler.post()
-
-        # duplicated username raises errors.ExpectedUniqueField
-        yield self.assertFailure(handler.post(), errors.ExpectedUniqueField)
-
 
 class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.ReceiverInstance
@@ -338,4 +322,4 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
             raise excep
 
         yield self.assertFailure(handler.get(self.dummyReceiver_1['id']),
-                     errors.ReceiverIdNotFound)
+                                 errors.ReceiverIdNotFound)
