@@ -4,7 +4,7 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', 'Authentication', function($s
     multipart: false,
     headers: Authentication.headers(),
     autoUpload: true,
-    maxFileSize: $scope.node.maximum_filesize * 1024 * 1024,
+    maxFileSize: $scope.node.maximum_filesize * 1000 * 1000,
     disableImageResize: false,
     previewMaxWidth: 120,
     previewMaxHeight: 120,

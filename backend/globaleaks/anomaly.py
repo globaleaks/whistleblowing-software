@@ -495,7 +495,7 @@ class Alarm(object):
             log.err("Warning: free space alarm (HIGH): only %s" % free_memory_str)
             Alarm.stress_levels['disk_space'] = 2
         elif free_megabytes < mat:
-            log.info("Warning: free space alarm (MEDIUM): %d" % free_memory_str)
+            log.info("Warning: free space alarm (MEDIUM): %s" % free_memory_str)
             Alarm.stress_levels['disk_space'] = 1
         else:
             Alarm.stress_levels['disk_space'] = 0
