@@ -16,7 +16,7 @@
 
   <div class="tab-content">
 
-    <div data-ng-show="submission.current_context.show_receivers && selection == 0" data-ng-include="'views/submission/receiver_selection.html'"></div>
+    <div data-ng-show="receivers_selectable && submission.current_context.show_receivers && selection == 0" data-ng-include="'views/submission/receiver_selection.html'"></div>
 
     <!-- Configured Context Steps -->
     <div data-ng-repeat="step in submission.current_context.steps" data-ng-controller="SubmissionStepCtrl">
