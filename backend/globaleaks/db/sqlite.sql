@@ -223,6 +223,7 @@ CREATE TABLE receiver (
     gpg_key_expiration INTEGER,
     presentation_order INTEGER,
     PRIMARY KEY (id),
+    UNIQUE (name),
     FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 

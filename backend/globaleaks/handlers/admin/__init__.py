@@ -22,7 +22,7 @@ from globaleaks.security import gpg_options_parse
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.third_party import rstr
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import log, datetime_now, datetime_null, seconds_convert, datetime_to_ISO8601
+from globaleaks.utils.utility import log, datetime_now, datetime_null, seconds_convert, datetime_to_ISO8601, uuid4
 
 
 def db_admin_serialize_node(store, language):
@@ -659,14 +659,6 @@ def db_create_receiver(store, request, language):
 
     fill_localized_keys(request, models.Receiver.localized_strings, language)
 
-    mail_address = request['mail_address']
-
-    # Pretend that username is unique:
-    homonymous = store.find(models.User, models.User.username == mail_address).count()
-    if homonymous:
-        log.err("Creation error: already present receiver with the requested username: %s" % mail_address)
-        raise errors.ExpectedUniqueField('mail_address', mail_address)
-
     password = request['password']
     if len(password) and password != GLSetting.default_password:
         security.check_password_format(password)
@@ -677,7 +669,7 @@ def db_create_receiver(store, request, language):
     receiver_password = security.hash_password(password, receiver_salt)
 
     receiver_user_dict = {
-        'username': mail_address,
+        'username': uuid4(),
         'password': receiver_password,
         'salt': receiver_salt,
         'role': u'receiver',
@@ -693,7 +685,7 @@ def db_create_receiver(store, request, language):
     store.add(receiver_user)
 
     # ping_mail_address is duplicated at creation time from mail_address
-    request.update({'ping_mail_address': mail_address})
+    request.update({'ping_mail_address': request['mail_address']})
 
     receiver = models.Receiver(request)
     receiver.user = receiver_user
@@ -752,20 +744,6 @@ def update_receiver(store, receiver_id, request, language):
         raise errors.ReceiverIdNotFound
 
     fill_localized_keys(request, models.Receiver.localized_strings, language)
-
-    mail_address = request['mail_address']
-
-    homonymous = store.find(models.User, models.User.username == mail_address).one()
-    if homonymous and homonymous.id != receiver.user_id:
-        log.err("Update error: already present receiver with the requested username: %s" % mail_address)
-        raise errors.ExpectedUniqueField('mail_address', mail_address)
-
-    # This is when the Admin update the 'receiver.mail_address',
-    receiver.mail_address = mail_address
-    # the email address it's also the username, stored in User
-    receiver.user.username = mail_address
-    # but the admin has to update the 'ping_mail_address explicitly, and
-    # at the moment Admin cannot -- because UI do not support that.
 
     receiver.user.state = request['state']
     receiver.user.password_change_needed = request['password_change_needed']
