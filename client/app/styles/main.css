@@ -162,7 +162,7 @@ h3 {
 .pending-requests {
   position: fixed;
   top: 100px;
-  z-index: 10;
+  z-index: 100;
   width: 400px;
   margin-left: -200px;
   left: 50%;
