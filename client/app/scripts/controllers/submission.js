@@ -6,7 +6,8 @@ GLClient.controller('SubmissionCtrl',
 
   var context_id = $location.search().context;
   var receivers_ids = $location.search().receivers;
-  var context_selectable = $location.search().context_selectable;
+  var contexts_selectable = $location.search().contexts_selectable;
+  var receivers_selectable = $location.search().receivers_selectable;
 
   if (receivers_ids) {
     try {
@@ -17,10 +18,16 @@ GLClient.controller('SubmissionCtrl',
     }
   }
 
-  if (context_selectable == "false" && context_id) {
-    $scope.context_selectable = false;
+  if (contexts_selectable == "false" && context_id) {
+    $scope.contexts_selectable = false;
   } else {
-    $scope.context_selectable = true;
+    $scope.contexts_selectable = true;
+  }
+
+  if (receivers_selectable == "false" && receivers_ids) {
+    $scope.receivers_selectable = false;
+  } else {
+    $scope.receivers_selectable = true;
   }
 
   new Submission(function (submission) {
@@ -123,7 +130,7 @@ GLClient.controller('SubmissionCtrl',
     if ($scope.submission && $scope.submission.current_context) {
       $scope.submission.create(function () {
 
-        if (!$scope.submission.current_context.show_receivers) {
+        if ((!receveivers_selectable && !$scope.submission.current_context.show_receivers)) {
           $scope.skip_first_step = true;
           $scope.selection = 1;
         } else {
