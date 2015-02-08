@@ -72,6 +72,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
     $scope.route_check = function () {
       if ($scope.node) {
+
         if ($scope.node.wizard_done === false) {
           $location.path('/wizard');
         }
@@ -100,7 +101,28 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       $scope.auth_landing_page = Authentication.auth_landing_page;
       $scope.role = Authentication.role;
 
-      $scope.node = Node.get(function (node) {
+      $scope.node = Node.get(function(node, getResponseHeaders) {
+
+        // Tor detection and enforcing of usage of HS if users are using Tor
+        if (window.location.hostname.match(/^[a-z0-9]{16}\.onion$/)) {
+          // A better check on this situation would be
+          // to fetch https://check.torproject.org/api/ip
+          $rootScope.anonymous = true;
+        } else {
+          if (window.location.protocol === 'https:') {
+             headers = getResponseHeaders();
+             if (headers['x-check-tor'] !== undefined && headers['x-check-tor'] === 'true') {
+               $rootScope.anonymous = true;
+               if ($scope.node.hidden_service) {
+                 window.location.href = $scope.node.hidden_service + $location.url();
+               }
+             } else {
+               $rootScope.anonymous = false;
+             }
+          } else {
+            $rootScope.anonymous = false;
+          }
+        }
 
         $scope.route_check();
 
