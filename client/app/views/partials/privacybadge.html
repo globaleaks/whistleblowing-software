@@ -1,29 +1,7 @@
 <div id="PrivacyBadgeBox" data-ng-controller="PrivacyBadgeBoxCtrl" data-ng-show="!node.disable_privacy_badge">
   <div id="PrivacyBadge" data-ng-mouseenter="showBox()" data-ng-if="!node.enable_custom_privacy_badge">
-    <div data-ng-switch="" on="privacy" id="PrivacyBadgeTextBox" class="pull-left">
-      <div data-ng-switch-when="high">
-        <div data-ng-show="!displayBox">
-          <span class="label label-success">
-            <i class="glyphicon glyphicon-ok-circle"></i>
-            <span data-translate>Congratulations!</span>
-          </span>
-        </div>
-        <div data-ng-show="displayBox">
-          <span class="label label-success">
-            <i class="glyphicon glyphicon-ok-circle"></i>
-            <span data-translate>Congratulations!</span>
-          </span>
-          <div>
-            <div data-translate>Good job! You are using the Tor Browser that gives you extra privacy and security when browsing the internet.</div>
-            <div data-translate>Keep in mind that using the Tor Browser does not replace good security practices and it cannot protect you in the event of your computer being hacked.</div>
-            <div data-translate>To learn more you should read the security in a box manual for practical security best practices:</div>
-            <a href="https://securityinabox.org/" target="_blank" rel="noreferrer">
-              [ <span data-translate>Visit the security in a box website</span> ]
-            </a>
-          </div>
-        </div>
-      </div>
-      <div data-ng-switch-when="medium">
+    <div data-ng-switch="" on="anonymous" id="PrivacyBadgeTextBox" class="pull-left">
+      <div data-ng-switch-when="true">
         <div data-ng-show="!displayBox">
           <span class="label label-success">
             <i class="glyphicon glyphicon-ok-circle"></i>
@@ -45,7 +23,7 @@
           </div>
         </div>
       </div>
-      <div data-ng-switch-when="low">
+      <div data-ng-switch-when="false">
         <div data-ng-show="!displayBox">
           <span class="label label-danger">
             <i class="glyphicon glyphicon-warning-sign"></i>

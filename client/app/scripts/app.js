@@ -242,8 +242,6 @@ var GLClient = angular.module('GLClient', [
       $.removeCookie('cookiesenabled');
     }
 
-    /* initialization of privacy detection variables */
-    $rootScope.privacy = 'unknown';
     $rootScope.anonymous = false;
     $rootScope.embedded = false;
 }]);
