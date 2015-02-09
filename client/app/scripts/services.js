@@ -382,12 +382,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
        * whistleblower.
        */
       self.submit = function() {
-        console.log("a");
         if (!self.receivers_selected) {
           return;
         }
 
-        console.log("b");
         if (!self.current_submission) {
           return;
         }
@@ -403,7 +401,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         });
 
         self.current_submission.finalize = true;
-        console.log("c");
 
         self.current_submission.$submit(function(result){
           if (result) {
