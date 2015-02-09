@@ -12,6 +12,7 @@ from globaleaks.handlers import node, submission, rtip, wbtip, receiver, \
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+full_random_str = r'([a-zA-Z0-9]{42})'
 field_regexp = uuid_regexp
 token_string = r'([a-zA-Z0-9]{42})'
 
@@ -41,9 +42,15 @@ spec = [
     (r'/description.json', node.AhmiaDescriptionHandler),
 
     ## Submission Handlers ##
+<<<<<<< HEAD
     (r'/submission/' + uuid_regexp, submission.SubmissionCreate),
     (r'/submission/' + uuid_regexp + '/' + token_string, submission.SubmissionInstance),
     (r'/submission/' + token_string + '/file', files.FileInstance),
+=======
+    (r'/submission', submission.SubmissionCreate),
+    (r'/submission/' + full_random_str, submission.SubmissionInstance),
+    (r'/submission/' + uuid_regexp + '/file', files.FileInstance),
+>>>>>>> performed sumibssion with token_id
 
     ## Receiver Tip Handlers ##
     (r'/rtip/' + uuid_regexp, rtip.RTipInstance),
