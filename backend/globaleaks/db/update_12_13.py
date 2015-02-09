@@ -16,7 +16,7 @@ from storm.locals import Int, Bool, Pickle, Unicode, DateTime
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
 
-class Node_version_12(Model):
+class Node_v_12(Model):
     __storm_table__ = 'node'
     name = Unicode()
     public_site = Unicode()
@@ -47,7 +47,7 @@ class Node_version_12(Model):
     anomaly_checks = Bool()
     exception_email = Unicode()
 
-class Context_version_12(Model):
+class Context_v_12(Model):
     __storm_table__ = 'context'
     unique_fields = Pickle()
     localized_fields = Pickle()

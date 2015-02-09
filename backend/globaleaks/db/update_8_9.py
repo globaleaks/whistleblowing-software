@@ -6,7 +6,7 @@ from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
 
 
-class Context_version_8(Model):
+class Context_v_8(Model):
     """
     This model keeps track of specific contexts settings
     """
@@ -40,7 +40,7 @@ class Context_version_8(Model):
     # presentation_order = Int()
 
 
-class Receiver_version_8(Model):
+class Receiver_v_8(Model):
     __storm_table__ = 'receiver'
 
     user_id = Unicode()
@@ -66,7 +66,7 @@ class Receiver_version_8(Model):
     # + is added
     # presentation_order = Int()
 
-class Notification_version_8(Model):
+class Notification_v_8(Model):
     __storm_table__ = 'notification'
     server = Unicode()
     port = Int()

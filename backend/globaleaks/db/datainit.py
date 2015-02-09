@@ -146,9 +146,10 @@ def db_import_memory_variables(store):
         GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
 
         GLSetting.memory_copy.allow_unencrypted = node.allow_unencrypted
+        GLSetting.memory_copy.allow_iframes_inclusion = node.allow_iframes_inclusion
 
         GLSetting.memory_copy.exception_email = node.exception_email
-        GLSetting.memory_copy.default_language = node.default_language
+        GLSetting.memory_copy.language = node.default_language
         GLSetting.memory_copy.default_timezone = node.default_timezone
 
         # Email settings are copyed because they are used when an exception raises

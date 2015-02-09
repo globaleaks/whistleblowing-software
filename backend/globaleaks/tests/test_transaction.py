@@ -8,7 +8,7 @@ from globaleaks.settings import transact, transact_ro
 from globaleaks.models import *
 from globaleaks.utils.utility import datetime_null
 
-class TestTransaction(helpers.TestGLWithPopulatedDB):
+class TestTransaction(helpers.TestGL):
 
     @transact
     def _transaction_with_exception(self, store):

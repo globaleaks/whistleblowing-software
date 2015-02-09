@@ -75,21 +75,16 @@ class TestModels(helpers.TestGL):
     @transact
     def create_context_with_receivers(self, store):
         c = self.localization_set(self.dummyContext, models.Context, 'en')
-        r = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
+        r1 = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
+        r2 = self.localization_set(self.dummyReceiver_2, models.Receiver, 'en')
 
         receiver_user1 = models.User(self.dummyReceiverUser_1)
         receiver_user1.last_login = self.dummyReceiverUser_1['last_login']
         receiver_user1.password_change_date = self.dummyReceiverUser_1['password_change_date']
 
-
-        receiver_user2 = models.User(self.dummyReceiverUser_1)
-        receiver_user2.last_login = self.dummyReceiverUser_1['last_login']
-        receiver_user2.password_change_date = self.dummyReceiverUser_1['password_change_date']
-
-
-        # Avoid receivers with the same username!
-        receiver_user1.username = 'xxx'
-        receiver_user2.username = 'yyy'
+        receiver_user2 = models.User(self.dummyReceiverUser_2)
+        receiver_user2.last_login = self.dummyReceiverUser_2['last_login']
+        receiver_user2.password_change_date = self.dummyReceiverUser_2['password_change_date']
 
         store.add(receiver_user1)
         store.add(receiver_user2)
@@ -101,8 +96,8 @@ class TestModels(helpers.TestGL):
             context.submission_disclaimer = \
             context.submission_introduction = {'en': 'Localized76w'}
 
-        receiver1 = models.Receiver(r)
-        receiver2 = models.Receiver(r)
+        receiver1 = models.Receiver(r1)
+        receiver2 = models.Receiver(r2)
 
         receiver1.user = receiver_user1
         receiver2.user = receiver_user2

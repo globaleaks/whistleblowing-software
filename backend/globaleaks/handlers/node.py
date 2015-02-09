@@ -88,6 +88,7 @@ def anon_serialize_node(store, language):
       'can_delete_submission': node.can_delete_submission,
       'wizard_done': node.wizard_done,
       'allow_unencrypted': node.allow_unencrypted,
+      'allow_iframes_inclusion': node.allow_iframes_inclusion,
       'configured': True if associated else False,
       'password': u"",
       'old_password': u"",

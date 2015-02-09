@@ -396,8 +396,8 @@ class Alarm(object):
             template = notif.admin_anomaly_template
             if admin_user.language in template:
                 return template[admin_user.language]
-            elif GLSetting.memory_copy.default_language in template:
-                return template[GLSetting.memory_copy.default_language]
+            elif GLSetting.memory_copy.language in template:
+                return template[GLSetting.memory_copy.language]
             else:
                 raise Exception("Cannot find any language for admin notification")
 

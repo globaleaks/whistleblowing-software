@@ -64,7 +64,7 @@ class EventLogger(object):
 
     def __init__(self):
         self.events = []
-        self.language = GLSetting.defaults.default_language
+        self.language = GLSetting.defaults.language
 
         # Assigned by the subclass
         self.context_desc = {}

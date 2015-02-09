@@ -88,7 +88,7 @@ def generateCreateQuery(model):
     """
     This takes as input a Storm model and outputs the creation query for it.
     """
-    prehistory = model.__storm_table__.find("_version_")
+    prehistory = model.__storm_table__.find("_v_")
     if prehistory != -1:
         table_name = model.__storm_table__[:prehistory]
     else:
@@ -119,17 +119,17 @@ class TableReplacer(object):
     """
 
     def __init__(self, old_db_file, new_db_file, start_ver):
-
-        from globaleaks.db.update_8_9 import Context_version_8, Receiver_version_8, Notification_version_8
-        from globaleaks.db.update_9_10 import Node_version_9, Receiver_version_9, User_version_9
-        from globaleaks.db.update_10_11 import InternalTip_version_10, InternalFile_version_10
-        from globaleaks.db.update_11_12 import Node_version_11, Context_version_11
-        from globaleaks.db.update_12_13 import Node_version_12, Context_version_12
-        from globaleaks.db.update_13_14 import Node_version_13, Context_version_13
-        from globaleaks.db.update_14_15 import Node_version_14, User_version_14, Context_version_14, Receiver_version_14, \
-            InternalTip_version_14, Notification_version_14, Stats_version_14, Comment_version_14
-        from globaleaks.db.update_15_16 import Receiver_version_15, Notification_version_15
-        from globaleaks.db.update_16_17 import Node_version_16, Receiver_version_16, Notification_version_16, Stats_version_16
+        from globaleaks.db.update_8_9 import Context_v_8, Receiver_v_8, Notification_v_8
+        from globaleaks.db.update_9_10 import Node_v_9, Receiver_v_9, User_v_9
+        from globaleaks.db.update_10_11 import InternalTip_v_10, InternalFile_v_10
+        from globaleaks.db.update_11_12 import Node_v_11, Context_v_11
+        from globaleaks.db.update_12_13 import Node_v_12, Context_v_12
+        from globaleaks.db.update_13_14 import Node_v_13, Context_v_13
+        from globaleaks.db.update_14_15 import Node_v_14, User_v_14, Context_v_14, Receiver_v_14, \
+            InternalTip_v_14, Notification_v_14, Stats_v_14, Comment_v_14
+        from globaleaks.db.update_15_16 import Receiver_v_15, Notification_v_15
+        from globaleaks.db.update_16_17 import Node_v_16, Receiver_v_16, Notification_v_16, Stats_v_16
+        from globaleaks.db.update_17_18 import Node_v_17
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -139,29 +139,29 @@ class TableReplacer(object):
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
         self.table_history = {
-            'Node': [Node_version_9, None, Node_version_11, None, Node_version_12, Node_version_13, Node_version_14, Node_version_16, None, models.Node],
-            'User': [User_version_9, None, User_version_14, None, None, None, None, models.User, None, None],
-            'Context': [Context_version_8, Context_version_11, None, None, Context_version_12, Context_version_13, Context_version_14, models.Context, None, None],
-            'Receiver': [Receiver_version_8, Receiver_version_9, Receiver_version_14, None, None, None, None, Receiver_version_15, Receiver_version_16, models.Receiver],
-            'ReceiverFile': [models.ReceiverFile, None, None, None, None, None, None, None, None, None],
-            'Notification': [Notification_version_8, Notification_version_14, None, None, None, None, None, Notification_version_15, Notification_version_16, models.Notification],
-            'Comment': [Comment_version_14, None, None, None, None, None, None, models.Comment, None, None],
-            'InternalTip': [InternalTip_version_10, None, None, InternalTip_version_14, None, None, None, models.InternalTip, None, None],
-            'InternalFile': [InternalFile_version_10, None, None, models.InternalFile, None, None, None, None, None, None],
-            'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None, None],
-            'ReceiverTip': [models.ReceiverTip, None, None, None , None, None, None, None, None, None],
-            'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None],
-            'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None],
-            'Message': [models.Message, None, None, None, None, None, None, None, None, None],
-            'Stats': [Stats_version_14, None, None, None, None, None, None, Stats_version_16, None, models.Stats],
-            'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None],
-            'Field': [models.Field, None, None, None, None, None, None, None, None, None],
-            'FieldOption': [models.FieldOption, None, None, None, None, None, None, None, None, None],
-            'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None],
-            'Step': [models.Step, None, None, None, None, None, None, None, None, None],
-            'StepField': [models.StepField, None, None, None, None, None, None, None, None, None],
-            'Anomalies': [models.Anomalies, None, None, None, None, None, None, None, None, None],
-            'EventLogs': [models.EventLogs, None, None, None, None, None, None, None, None, None],
+            'Node': [Node_v_9, None, Node_v_11, None, Node_v_12, Node_v_13, Node_v_14, Node_v_16, None, Node_v_17, models.Node],
+            'User': [User_v_9, None, User_v_14, None, None, None, None, models.User, None, None, None],
+            'Context': [Context_v_8, Context_v_11, None, None, Context_v_12, Context_v_13, Context_v_14, models.Context, None, None, None],
+            'Receiver': [Receiver_v_8, Receiver_v_9, Receiver_v_14, None, None, None, None, Receiver_v_15, Receiver_v_16, models.Receiver, None],
+            'ReceiverFile': [models.ReceiverFile, None, None, None, None, None, None, None, None, None, None],
+            'Notification': [Notification_v_8, Notification_v_14, None, None, None, None, None, Notification_v_15, Notification_v_16, models.Notification, None],
+            'Comment': [Comment_v_14, None, None, None, None, None, None, models.Comment, None, None, None],
+            'InternalTip': [InternalTip_v_10, None, None, InternalTip_v_14, None, None, None, models.InternalTip, None, None, None],
+            'InternalFile': [InternalFile_v_10, None, None, models.InternalFile, None, None, None, None, None, None, None],
+            'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None, None, None],
+            'ReceiverTip': [models.ReceiverTip, None, None, None , None, None, None, None, None, None, None],
+            'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None, None],
+            'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None, None],
+            'Message': [models.Message, None, None, None, None, None, None, None, None, None, None],
+            'Stats': [Stats_v_14, None, None, None, None, None, None, Stats_v_16, None, models.Stats, None],
+            'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None],
+            'Field': [models.Field, None, None, None, None, None, None, None, None, None, None],
+            'FieldOption': [models.FieldOption, None, None, None, None, None, None, None, None, None, None],
+            'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None, None],
+            'Step': [models.Step, None, None, None, None, None, None, None, None, None, None],
+            'StepField': [models.StepField, None, None, None, None, None, None, None, None, None, None],
+            'Anomalies': [models.Anomalies, None, None, None, None, None, None, None, None, None, None],
+            'EventLogs': [models.EventLogs, None, None, None, None, None, None, None, None, None, None],
         }
 
         for k, v in self.table_history.iteritems():
@@ -202,7 +202,7 @@ class TableReplacer(object):
 
         for k, v in self.table_history.iteritems():
 
-            create_query = self.get_right_sql_version(k, self.start_ver +1)
+            create_query = self.get_right_sql_version(k, self.start_ver + 1)
             if not create_query:
                 # table not present in the version
                 continue
@@ -239,15 +239,9 @@ class TableReplacer(object):
                 DATABASE_VERSION))
 
         if self.table_history[table_name][table_index]:
-            # print "Immediate return %s = %s at version %d" % \
-            #       ( table_name, self.table_history[table_name][table_index], version )
             return self.table_history[table_name][table_index]
 
         # else, it's none, and we've to take the previous valid version
-        #
-        # print "Requested version %d of %s need to be collected in the past" %\
-        #       (version, table_name)
-
         while version >= 0:
             if self.table_history[table_name][table_index]:
                 return self.table_history[table_name][table_index]

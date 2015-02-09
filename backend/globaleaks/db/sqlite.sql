@@ -147,6 +147,7 @@ CREATE TABLE node (
     wizard_done INTEGER NOT NULL,
     exception_email VARCHAR NOT NULL,
     allow_unencrypted INTEGER NOT NULL,
+    allow_iframes_inclusion INTEGER NOT NULL,
     disable_privacy_badge INTEGER NOT NULL,
     disable_security_awareness_badge INTEGER NOT NULL,
     disable_security_awareness_questions INTEGER NOT NULL,
