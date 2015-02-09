@@ -67,6 +67,7 @@ def db_admin_serialize_node(store, language):
         'can_delete_submission': node.can_delete_submission,
         'ahmia': node.ahmia,
         'allow_unencrypted': node.allow_unencrypted,
+        'allow_iframes_inclusion': node.allow_iframes_inclusion,
         'wizard_done': node.wizard_done,
         'configured': True if associated else False,
         'password': u"",
@@ -314,7 +315,7 @@ def db_update_node(store, request, wizard_done, language):
 
     admin = store.find(models.User, (models.User.username == unicode('admin'))).one()
 
-    admin.language = request.get('admin_language', GLSetting.memory_copy.default_language)
+    admin.language = request.get('admin_language', GLSetting.memory_copy.language)
     admin.timezone = request.get('admin_timezone', GLSetting.memory_copy.default_timezone)
 
     password = request.get('password', None)
@@ -751,7 +752,7 @@ def update_receiver(store, receiver_id, request, language):
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
 
-    receiver.user.language = request.get('language', GLSetting.memory_copy.default_language)
+    receiver.user.language = request.get('language', GLSetting.memory_copy.language)
     receiver.user.timezone = request.get('timezone', GLSetting.memory_copy.default_timezone)
 
     password = request['password']

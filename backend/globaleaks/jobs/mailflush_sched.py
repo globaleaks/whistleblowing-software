@@ -59,7 +59,7 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
     event to be notified are taken in account later.
     """
 
-    node_desc = db_admin_serialize_node(store, GLSetting.defaults.default_language)
+    node_desc = db_admin_serialize_node(store, GLSetting.defaults.language)
 
     event_list = []
     storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)

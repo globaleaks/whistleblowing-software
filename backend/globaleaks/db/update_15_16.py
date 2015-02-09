@@ -23,7 +23,7 @@ from globaleaks.models import Model, Field, Step
 from globaleaks.utils.utility import every_language
 
 
-class Receiver_version_15(Model):
+class Receiver_v_15(Model):
     __storm_table__ = 'receiver'
     user_id = Unicode()
     name = Unicode()
@@ -45,7 +45,7 @@ class Receiver_version_15(Model):
     presentation_order = Int()
 
 
-class Notification_version_15(Model):
+class Notification_v_15(Model):
     __storm_table__ = 'notification'
     server = Unicode()
     port = Int()

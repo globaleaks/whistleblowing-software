@@ -16,7 +16,7 @@ from globaleaks.models import Model, Field, Step
 from globaleaks.utils.utility import datetime_null, every_language
 from globaleaks.security import GLBGPG
 
-class Node_version_16(Model):
+class Node_v_16(Model):
     __storm_table__ = 'node'
     name = Unicode()
     public_site = Unicode()
@@ -59,7 +59,7 @@ class Node_version_16(Model):
     exception_email = Unicode()
 
 
-class Notification_version_16(Model):
+class Notification_v_16(Model):
     __storm_table__ = 'notification'
     server = Unicode()
     port = Int()
@@ -94,7 +94,7 @@ class Notification_version_16(Model):
     disable_receivers_notification_emails = Bool()
 
 
-class Receiver_version_16(Model):
+class Receiver_v_16(Model):
     __storm_table__ = 'receiver'
     user_id = Unicode()
     name = Unicode()
@@ -118,7 +118,7 @@ class Receiver_version_16(Model):
     presentation_order = Int()
 
 
-class Stats_version_16(Model):
+class Stats_v_16(Model):
     __storm_table__ = 'stats'
     start = DateTime()
     summary = JSON()

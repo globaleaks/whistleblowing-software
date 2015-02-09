@@ -119,7 +119,6 @@ class TestGL(unittest.TestCase):
         GLSetting.set_devel_mode()
         GLSetting.logging = None
         GLSetting.scheduler_threadpool = FakeThreadPool()
-        GLSetting.memory_copy.allow_unencrypted = True
         GLSetting.sessions = {}
         GLSetting.failed_login_attempts = 0
 
@@ -142,6 +141,9 @@ class TestGL(unittest.TestCase):
             yield import_fixture(fixture)
 
         yield import_memory_variables()
+
+        # overrid of imported memory variables
+        GLSetting.memory_copy.allow_unencrypted = True
 
         anomaly.Alarm.reset()
         anomaly.EventTrackQueue.reset()
@@ -826,6 +828,7 @@ class MockDict():
             'exception_email': GLSetting.defaults.exception_email,
             'ahmia': False,
             'allow_unencrypted': True,
+            'allow_iframes_inclusion': False,
             'configured': False,
             'wizard_done': False,
             'custom_homepage': False,

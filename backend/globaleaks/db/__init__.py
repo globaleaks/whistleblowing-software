@@ -70,45 +70,46 @@ def create_tables(create_node=True):
 
         node_dict = {
             'name':  u"",
-            'description': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'presentation': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'footer': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'security_awareness_title': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'security_awareness_text': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'whistleblowing_question': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'whistleblowing_button': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'description': dict({ GLSetting.defaults.language: u"" }),
+            'presentation': dict({ GLSetting.defaults.language: u"" }),
+            'footer': dict({ GLSetting.defaults.language: u"" }),
+            'security_awareness_title': dict({ GLSetting.defaults.language: u"" }),
+            'security_awareness_text': dict({ GLSetting.defaults.language: u"" }),
+            'whistleblowing_question': dict({ GLSetting.defaults.language: u"" }),
+            'whistleblowing_button': dict({ GLSetting.defaults.language: u"" }),
             'hidden_service': u"",
             'public_site': u"",
             'email': u"",
             'receipt_regexp': u"[0-9]{16}",
             'stats_update_time': 2, # hours,
             # advanced settings
-            'maximum_filesize' : GLSetting.defaults.maximum_filesize,
-            'maximum_namesize' : GLSetting.defaults.maximum_namesize,
-            'maximum_textsize' : GLSetting.defaults.maximum_textsize,
-            'tor2web_admin' : GLSetting.defaults.tor2web_admin,
-            'tor2web_submission' : GLSetting.defaults.tor2web_submission,
-            'tor2web_receiver' : GLSetting.defaults.tor2web_receiver,
-            'tor2web_unauth' : GLSetting.defaults.tor2web_unauth,
-            'postpone_superpower' : False, # disabled by default
-            'can_delete_submission' : False, # disabled too
-            'ahmia' : False, # disabled too
-            'allow_unencrypted': GLSetting.memory_copy.allow_unencrypted,
+            'maximum_filesize': GLSetting.defaults.maximum_filesize,
+            'maximum_namesize': GLSetting.defaults.maximum_namesize,
+            'maximum_textsize': GLSetting.defaults.maximum_textsize,
+            'tor2web_admin': GLSetting.defaults.tor2web_admin,
+            'tor2web_submission': GLSetting.defaults.tor2web_submission,
+            'tor2web_receiver': GLSetting.defaults.tor2web_receiver,
+            'tor2web_unauth': GLSetting.defaults.tor2web_unauth,
+            'postpone_superpower': False, # disabled by default
+            'can_delete_submission': False, # disabled too
+            'ahmia': False, # disabled too
+            'allow_unencrypted': GLSetting.defaults.allow_unencrypted,
+            'allow_iframes_inclusion': GLSetting.defaults.allow_iframes_inclusion,
             'exception_email' : GLSetting.defaults.exception_email,
-            'default_language' : GLSetting.memory_copy.default_language,
-            'default_timezone' : 0,
-            'admin_language' : GLSetting.memory_copy.default_language,
-            'admin_timezone' : 0,
+            'default_language': GLSetting.defaults.language,
+            'default_timezone' : GLSetting.defaults.timezone,
+            'admin_language' : GLSetting.defaults.language,
+            'admin_timezone' : GLSetting.defaults.timezone,
             'disable_privacy_badge': False,
             'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
             'enable_custom_privacy_badge': False,
-            'custom_privacy_badge_tbb': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'custom_privacy_badge_tor': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'custom_privacy_badge_none': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'header_title_homepage': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'header_title_submissionpage': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'landing_page': u"homepage"
+            'custom_privacy_badge_tbb': dict({ GLSetting.defaults.language: u"" }),
+            'custom_privacy_badge_tor': dict({ GLSetting.defaults.language: u"" }),
+            'custom_privacy_badge_none': dict({ GLSetting.defaults.language: u"" }),
+            'header_title_homepage': dict({ GLSetting.defaults.language: u"" }),
+            'header_title_submissionpage': dict({ GLSetting.defaults.language: u"" }),
+            'landing_page': GLSetting.defaults.landing_page
         }
 
         # Initialize the node and notification tables

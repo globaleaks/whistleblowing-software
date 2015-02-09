@@ -228,16 +228,17 @@ class BaseHandler(RequestHandler):
         # to avoid Robots spidering, indexing, caching
         self.set_header("X-Robots-Tag", "noindex")
 
-        # to mitigate clickjaking attacks on iframes allwing only same origin
+        # to mitigate clickjaking attacks on iframes allowing only same origin
         # same origin is needed in order to include svg and other html <object>
-        self.set_header("X-Frame-Options", "sameorigin")
+        if not GLSetting.memory_copy.allow_iframes_inclusion:
+            self.set_header("X-Frame-Options", "sameorigin")
 
         lang = self.request.headers.get('GL-Language', None)
 
         if not lang:
             # before was used the Client language. but shall be unsupported
             # lang = self.request.headers.get('Accepted-Language', None)
-            lang = GLSetting.memory_copy.default_language
+            lang = GLSetting.memory_copy.language
 
         self.request.language = lang
 

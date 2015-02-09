@@ -16,7 +16,7 @@ from globaleaks.models import Model
 #   {field1_id: {value: field1_value, answer_order: 0}, field2_id: {value: field2_value, answer_order: 1} }
 #
 
-class InternalTip_version_10(Model): # no change at all!
+class InternalTip_v_10(Model): # no change at all!
     __storm_table__ = 'internaltip'
     context_id = Unicode()
     wb_fields = Pickle()
@@ -28,7 +28,7 @@ class InternalTip_version_10(Model): # no change at all!
     download_limit = Int()
     mark = Unicode()
 
-class InternalFile_version_10(Model):
+class InternalFile_v_10(Model):
     __storm_table__ = 'internalfile'
     internaltip_id = Unicode()
     name = Unicode()

@@ -597,8 +597,8 @@ class TestTipInstance(TTip):
         yield self.receiver1_get_tip_list()
         yield self.receiver_RW_comments()
         yield self.wb_RW_comments()
-        yield self.wb_get_receiver_list(GLSetting.memory_copy.default_language)
-        yield self.receiver_get_receiver_list(GLSetting.memory_copy.default_language)
+        yield self.wb_get_receiver_list(GLSetting.memory_copy.language)
+        yield self.receiver_get_receiver_list(GLSetting.memory_copy.language)
         # test expiration date
         yield self.fail_postpone_expiration_date()
         yield self.verify_default_expiration_date()

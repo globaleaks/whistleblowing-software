@@ -197,6 +197,7 @@ class GLSettingsClass(object):
         self.defaults.tor2web_receiver = False
         self.defaults.tor2web_unauth = True
         self.defaults.allow_unencrypted = False
+        self.defaults.allow_iframes_inclusion = False
         self.defaults.maximum_namesize = 128
         self.defaults.maximum_textsize = 4096
         self.defaults.maximum_filesize = 30 # expressed in megabytes
@@ -206,37 +207,18 @@ class GLSettingsClass(object):
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
         self.defaults.submission_seconds_of_life = (3600 * 24) * 3
 
-        self.defaults.default_language = u'en'
-        self.defaults.default_timezone = 0
+        self.defaults.language = u'en'
         self.defaults.languages_enabled = LANGUAGES_SUPPORTED_CODES
 
-        self.memory_copy = OD()
-        # Some operation, like check for maximum file, can't access
-        # to the DB every time. So when some Node values are updated
-        # here are copied, in order to permit a faster comparison
-        # updated by globaleaks/db/__init__.import_memory_variables
-        self.memory_copy.maximum_filesize = self.defaults.maximum_filesize
-        self.memory_copy.maximum_textsize = self.defaults.maximum_textsize
-        self.memory_copy.maximum_namesize = self.defaults.maximum_namesize
-        self.memory_copy.allow_unencrypted = self.defaults.allow_unencrypted
-        self.memory_copy.tor2web_admin = self.defaults.tor2web_admin
-        self.memory_copy.tor2web_submission = self.defaults.tor2web_submission
-        self.memory_copy.tor2web_receiver = self.defaults.tor2web_receiver
-        self.memory_copy.tor2web_unauth = self.defaults.tor2web_unauth
-        self.memory_copy.exception_email = self.defaults.exception_email
-        self.memory_copy.default_language = self.defaults.default_language
-        self.memory_copy.default_timezone = self.defaults.default_timezone
-        self.memory_copy.receiver_notif_enable = True
-        self.memory_copy.admin_notif_enable = True
-        self.memory_copy.notif_server = None
-        self.memory_copy.notif_port = None
-        self.memory_copy.notif_username = None
-        self.memory_copy.notif_security = None
-        # import_memory_variables is called after create_tables and node+notif updating
-
-
-        # Default delay threshold
-        self.delay_threshold = 0.800
+        self.defaults.timezone = 0
+        self.defaults.landing_page = 'homepage'
+ 
+        self.defaults.receiver_notif_enable = True
+        self.defaults.admin_notif_enable = True
+        self.defaults.notif_server = None
+        self.defaults.notif_port = None
+        self.defaults.notif_username = None
+        self.defaults.notif_security = None
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
@@ -246,6 +228,18 @@ class GLSettingsClass(object):
             'receiver': (60 * 60),
             'wb': (60 * 60)
         }
+
+        # A lot of operations performed massively by globaleaks
+        # should avoid to fetch continously variables from the DB so that
+        # it is importatn to keep this variables in memory
+        #
+        # To this aim a variable memory_copy is instantiated as a copy of
+        # self.defaults and then initialized and updated after
+        # create_tables() and for every node+notif update
+        self.memory_copy = OD(self.defaults)
+
+        # Default delay threshold
+        self.delay_threshold = 0.800
 
         # unchecked_tor_input contains information that cannot be validated now
         # due to complex inclusions or requirements. Data is used in
@@ -825,7 +819,7 @@ class transact(object):
         except (exceptions.IntegrityError, exceptions.DisconnectionError):
             transaction.abort()
             # we print the exception here because we do not propagate it
-            traceback.print_exc()
+            GLSetting.log_debug(traceback.format_exc())
             result = None
         except HTTPError as excep:
             transaction.abort()

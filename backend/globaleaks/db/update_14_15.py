@@ -26,7 +26,7 @@ from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model, Field, FieldOption, Step, db_forge_obj
 from globaleaks.utils.utility import datetime_null, uuid4, every_language
 
-class Node_version_14(Model):
+class Node_v_14(Model):
     __storm_table__ = 'node'
     name = Unicode()
     public_site = Unicode()
@@ -65,7 +65,7 @@ class Node_version_14(Model):
     disable_security_awareness_badge = Bool()
     disable_security_awareness_questions = Bool()
 
-class User_version_14(Model):
+class User_v_14(Model):
     __storm_table__ = 'user'
     username = Unicode()
     password = Unicode()
@@ -74,7 +74,7 @@ class User_version_14(Model):
     state = Unicode()
     last_login = DateTime()
 
-class InternalTip_version_14(Model):
+class InternalTip_v_14(Model):
     __storm_table__ = 'internaltip'
     context_id = Unicode()
     wb_fields = Pickle()
@@ -86,7 +86,7 @@ class InternalTip_version_14(Model):
     download_limit = Int()
     mark = Unicode()
 
-class Context_version_14(Model):
+class Context_v_14(Model):
     __storm_table__ = 'context'
     unique_fields = Pickle()
     localized_fields = Pickle()
@@ -115,7 +115,7 @@ class Context_version_14(Model):
     enable_private_messages = Bool()
     presentation_order = Int()
 
-class Receiver_version_14(Model):
+class Receiver_v_14(Model):
     __storm_table__ = 'receiver'
     user_id = Unicode()
     name = Unicode()
@@ -137,7 +137,7 @@ class Receiver_version_14(Model):
     message_notification = Bool()
     presentation_order = Int()
 
-class Notification_version_14(Model):
+class Notification_v_14(Model):
     __storm_table__ = 'notification'
     server = Unicode()
     port = Int()
@@ -164,11 +164,11 @@ class Notification_version_14(Model):
     plaintext_message_mail_title = Pickle()
     zip_description = Pickle()
 
-class Stats_version_14(Model):
+class Stats_v_14(Model):
     __storm_table__ = 'stats'
     content = Pickle()
 
-class Comment_version_14(Model):
+class Comment_v_14(Model):
     __storm_table__ = 'comment'
     internaltip_id = Unicode()
     author = Unicode()

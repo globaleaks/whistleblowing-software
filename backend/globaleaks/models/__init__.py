@@ -430,6 +430,7 @@ class Node(Model):
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
     allow_unencrypted = Bool()
+    allow_iframes_inclusion = Bool()
 
     # privileges configurable in node/context/receiver
     postpone_superpower = Bool()
@@ -464,6 +465,7 @@ class Node(Model):
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                  'tor2web_unauth', 'postpone_superpower',
                  'can_delete_submission', 'ahmia', 'allow_unencrypted',
+                 'allow_iframes_inclusion',
                  'disable_privacy_badge', 'disable_security_awareness_badge',
                  'disable_security_awareness_questions', 'enable_custom_privacy_badge']
 

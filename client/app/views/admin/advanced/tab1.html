@@ -31,6 +31,17 @@
 
     <div class="form-group">
       <label>
+        <input data-ng-model="admin.node.allow_iframes_inclusion" type="checkbox" />
+        <span data-translate>Allow other websites to include the platform inside iframes</span>
+      </label>
+      <div data-ng-show="admin.node.allow_iframes_inclusion">
+        <span class="label label-danger" data-translate>Danger</span>
+        <span data-translate>By enabling this option, you are permitting other websites to include the platform inside iframes.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
         <input data-ng-model="admin.node.enable_custom_privacy_badge" type="checkbox" />
         <span data-translate>Enable custom privacy badge</span>
       </label>

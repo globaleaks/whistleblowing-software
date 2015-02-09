@@ -42,7 +42,7 @@ class Rosetta(object):
         return ret
 
     def dump_localized_attr(self, attr, language):
-        default_language = GLSetting.memory_copy.default_language
+        default_language = GLSetting.memory_copy.language
 
         if attr not in self._localized_strings:
             return ""

@@ -149,7 +149,7 @@ def receiverfile_planning(store):
                 if filex.file_path not in ifilesmap:
                     ifilesmap[filex.file_path] = list()
 
-                receiver_desc = admin_serialize_receiver(receiver, GLSetting.memory_copy.default_language)
+                receiver_desc = admin_serialize_receiver(receiver, GLSetting.memory_copy.language)
 
                 map_info = {
                     'receiver' : receiver_desc,

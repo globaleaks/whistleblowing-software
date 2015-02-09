@@ -90,7 +90,7 @@ def update_receiver_settings(store, receiver_id, request, language):
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    receiver.user.language = request.get('language', GLSetting.memory_copy.default_language)
+    receiver.user.language = request.get('language', GLSetting.memory_copy.language)
     receiver.user.timezone = request.get('timezone', GLSetting.memory_copy.default_timezone)
 
     new_password = request['password']
