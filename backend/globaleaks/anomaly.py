@@ -289,6 +289,32 @@ class Alarm(object):
             'activity' : 0,
         }
 
+    def get_token_difficulty(self):
+        """
+        This function return the difficulty that will be enforced in the
+        token, whenever is File or Submission, here is evaluated with a dict.
+        """
+        self.difficulty_dict = {
+            'human_captcha': False,
+            'graph_captcha': False,
+            'proof_of_work': False,
+        }
+
+        # TODO make a proper assessment between pissed off users and defeated DoS
+        if Alarm.stress_levels['activity'] >= 1:
+            self.difficulty_dict['graph_captcha'] = True
+
+        if Alarm.stress_levels['disk_space'] >= 1:
+            self.difficulty_dict['human_captcha'] = True
+
+        log.debug("get_token_difficulty in %s is: HC:%s, GC:%s, PoW:%s" % (
+                  self.current_time,
+                  "Y" if self.difficulty_dict['human_captcha'] else "N",
+                  "Y" if self.difficulty_dict['graph_captcha'] else "N",
+                  "Y" if self.difficulty_dict['proof_of_work'] else "N" ) )
+
+        return self.difficulty_dict
+
     @staticmethod
     @defer.inlineCallbacks
     def compute_activity_level():
