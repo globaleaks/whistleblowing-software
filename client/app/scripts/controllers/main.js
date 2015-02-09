@@ -4,6 +4,14 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
     $scope.logo = '/static/globaleaks_logo.png';
 
+    var iframeCheck = function() {
+      try {
+        return window.self !== window.top;
+      } catch (e) {
+        return true;
+      }
+    }
+
     $scope.update = function (model, cb, errcb) {
       var success = {};
       success.message = "Updated " + model;
@@ -113,7 +121,10 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
              headers = getResponseHeaders();
              if (headers['x-check-tor'] !== undefined && headers['x-check-tor'] === 'true') {
                $rootScope.anonymous = true;
-               if ($scope.node.hidden_service) {
+               if ($scope.node.hidden_service && !isIframe()) {
+                 // the check on the iframe is in order to avoid redirects
+                 // when the application is included inside iframes in order to not
+                 // mix HTTPS resources with HTTP resources.
                  window.location.href = $scope.node.hidden_service + $location.url();
                }
              } else {
