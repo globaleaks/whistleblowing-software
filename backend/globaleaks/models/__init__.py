@@ -451,8 +451,8 @@ class Node(Model):
     custom_privacy_badge_tor = JSON()
     custom_privacy_badge_none = JSON()
 
-    header_title_homepage = JSON(validator=validator=longlocal_v)
-    header_title_submissionpage = JSON(validator=validator=longlocal_v)
+    header_title_homepage = JSON(validator=longlocal_v)
+    header_title_submissionpage = JSON(validator=longlocal_v)
     landing_page = Unicode()
 
     exception_email = Unicode()

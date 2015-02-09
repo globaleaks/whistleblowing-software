@@ -198,19 +198,32 @@ controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $ro
 controller('ReceiptController', ['$scope', '$location', 'Authentication', 'WhistleblowerTip',
   function($scope, $location, Authentication, WhistleblowerTip) {
 
-  format_keycode = function(keycode) {
+    function reverse_receipt(r){
+      return r.split("").reverse().join("");
+    }
+
+  format_keycode = function(keycode, rtl) {
     if (keycode && keycode.length == 16) {
-      return keycode.substr(0, 4) + ' ' +
+      ret =  keycode.substr(0, 4) + ' ' +
              keycode.substr(4, 4) + ' ' +
              keycode.substr(8, 4) + ' ' +
              keycode.substr(12, 4);
     } else {
-      return keycode;
+      ret = keycode;
     }
+
+    if (rtl) {
+      ret = reverse_receipt(ret);
+    }
+
+    return ret;
+
   }
 
-  $scope.keycode = Authentication.keycode;
-  $scope.formatted_keycode = format_keycode($scope.keycode);
+  $scope.keycode = format_keycode(Authentication.keycode);
+  $scope.formatted_keycode = format_keycode($scope.keycode, $scope.rtl);
+  $scope.formatted_keycode_ltr = format_keycode($scope.keycode, false);
+
   $scope.view_tip = function (keycode) {
     keycode = keycode.replace(/\D/g,'');
     WhistleblowerTip(keycode, function () {

@@ -1,8 +1,9 @@
 GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$modal', 'Authentication', 'Node', 'GLCache',
   function($scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $modal, Authentication, Node, GLCache) {
-    $scope.started = true;
-
+    $scope.started = false;
+    $scope.rtl = false;
     $scope.logo = '/static/globaleaks_logo.png';
+    $scope.build_stylesheet = "/styles.css";
 
     var iframeCheck = function() {
       try {
@@ -160,6 +161,9 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         $scope.show_language_selector = ($scope.languages_enabled_length > 1);
 
         $scope.set_title();
+
+        $scope.started = true;
+
       });
 
     };
@@ -194,9 +198,11 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         $translate.use($rootScope.language);
 
         if (_.indexOf(["ar", "he", "ur"], newVal) !== -1) {
-          $scope.build_stylesheet = "/styles.css";
-        } else {
+          $scope.rtl = true;
           $scope.build_stylesheet = "/styles-rtl.css";
+        } else {
+          $scope.rtl = false;
+          $scope.build_stylesheet = "/styles.css";
         }
 
         $rootScope.$broadcast("REFRESH");

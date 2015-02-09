@@ -173,6 +173,7 @@
   font-weight: bold;
   background-color: #FFF;
   border-radius: 15px;
+  direction: ltr;
 }
 
 #keycodeKey {
