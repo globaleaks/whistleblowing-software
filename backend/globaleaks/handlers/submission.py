@@ -266,14 +266,10 @@ class SubmissionCreate(BaseHandler):
         This create a Token, require to complete the submission later
         """
 
-        print "Context_id declared", context_id
-
-        # TODO put context_id in token in some way, like, in the constructor and keep track
         token = Token('submission', context_id, debug=True)
         token.set_difficulty(Alarm().get_token_difficulty())
         token_answer = token.serialize_token()
 
-        import pprint
         self.set_status(201) # Created
 
         # {'hashcash': False,
@@ -312,6 +308,28 @@ class SubmissionInstance(BaseHandler):
     @inlineCallbacks
     def put(self, context_id, token_id):
         """
+<<<<<<< HEAD
+=======
+        Parameters: submission_id
+        Response: wbSubmissionDesc
+        Errors: SubmissionIdNotFound, InvalidInputFormat
+
+        Get the status of the current submission.
+        """
+        print "did this thing exists ? "
+        import pdb; pdb.set_trace()
+
+        submission = yield get_submission(submission_id)
+
+        self.set_status(200)
+        self.finish(submission)
+
+    @transport_security_check('wb')
+    @unauthenticated
+    @inlineCallbacks
+    def put(self, token_id):
+        """
+>>>>>>> performed sumibssion with token_id
         Parameter: token_id
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
@@ -323,6 +341,10 @@ class SubmissionInstance(BaseHandler):
         def put_transact(store, token_id, request, language):
             print "sid is", token_id, "lang", language
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> performed sumibssion with token_id
             status = db_finalize_submission(store, token_id, request, self.request.language)
 
             receipt = db_create_whistleblower_tip(store, status)
@@ -333,6 +355,7 @@ class SubmissionInstance(BaseHandler):
         print "the context received via PARM is", context_id
 
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
+<<<<<<< HEAD
         import pprint
         pprint.pprint(request.keys())
 
@@ -343,10 +366,21 @@ class SubmissionInstance(BaseHandler):
         log.debug("Token received: %s" % token)
         # raise an error if the usage is too early for the token
         token.timedelta_check()
+=======
+        token_request = TokenList.get(token_id)
+        print "retrieve", token_request
+        assert request['finalize'], "Wrong GLClient logic"
+
+        status = yield put_transact(token_id, request, self.request.language)
+
+        self.set_status(202) # Updated --> created
+        self.finish(status)
+>>>>>>> performed sumibssion with token_id
 
         if not token.context_associated == context_id:
             raise errors.InvalidInputFormat("Token context unaligned with REST url")
 
+<<<<<<< HEAD
         assert request['finalize'], "Wrong GLClient logic"
 
         # todo check if token has been properly solved
@@ -363,3 +397,5 @@ class SubmissionInstance(BaseHandler):
         self.finish(status)
 
 
+=======
+>>>>>>> performed sumibssion with token_id
