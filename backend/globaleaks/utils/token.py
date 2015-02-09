@@ -9,18 +9,14 @@
 from random import randint
 from datetime import datetime, timedelta
 
-from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 from globaleaks.utils.tempobj import TempObj
-from globaleaks.anomaly import Alarm
 
-from Captcha.Visual.Tests import PseudoGimpy
+# from Captcha.Visual.Tests import PseudoGimpy
 from StringIO import StringIO
 import base64
-
 
 
 class TokenList:
@@ -182,7 +178,7 @@ class Token(TempObj):
 
         self.graph_captcha = None
         if problems_dict['graph_captcha']:
-
+            """
             g = PseudoGimpy()
             i = g.render()
             tmpf = StringIO()
@@ -195,6 +191,8 @@ class Token(TempObj):
                 'question' : request,
                 'answer' : g.solutions,
             }
+            """
+            print "suca ATM"
 
         if problems_dict['graph_captcha'] and self.kind == 'upload':
             self.usages /= 2
@@ -277,55 +275,6 @@ class Token(TempObj):
         # if the code flow reach here, the token is validated
         log.debug("Token validated properly")
 
-
-
-class TokenInstance(BaseHandler):
-    """
-    This class implement the /token API,
-    perform operation in memory only, this is the reason
-    why the method here are not decorated with @inlineCallbacks
-    """
-
-    @transport_security_check('wb')
-    @unauthenticated
-    def get(self, kind, *uriargs):
-        """
-        Request:
-        Response: tokenDict
-        Errors: None, never.
-        """
-        if kind not in Token.existing_kind:
-            raise errors.TokenRequestError("Invalid Token kind")
-
-        # TODO: implement here a non blocking sleep function, if the
-        # token request need to be delayed
-
-        token = Token(kind, debug=True)
-        token.set_difficulty(Alarm().get_token_difficulty())
-        token_answer = token.serialize_token()
-
-        self.set_status(201) # Created
-        self.finish(token_answer)
-
-
-
-class TokenUsageTest(BaseHandler):
-    """
-    This is a class test, instead of modify Submission or FileUpload
-    to test the status of the Token.
-    """
-
-    def get(self, token_kind, unclean_token):
-
-        token_info = TokenList.validate_token_id(unclean_token)
-
-        token_info['token_object'].validate(token_info)
-
-        # if the flow has reach this point, the token is valid.
-        # print "Validated token of", token_kind, "X", token_info['token'].token_id
-
-        self.set_status(201)
-        self.finish({'OK': True})
 
 
 
