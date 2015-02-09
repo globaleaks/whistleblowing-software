@@ -33,18 +33,6 @@ div, span, p, label {
   display: none;
 }
 
-#PageTitle {
-  font-size: 30px;
-}
-
-#PageSubtitle {
-  font-size: 22px;
-}
-
-#PageTitleHomepage {
-  font-size: 40px;
-}
-
 #ContentBox {
   margin-top: 20px;
   margin-bottom: 80px;
@@ -82,6 +70,15 @@ div, span, p, label {
 
 #LogoBox, #LogoBoxHomepage {
   text-align: center;
+}
+
+#PageTitle, #PageTitleHomepage {
+  font-size: 36px;
+  white-space: pre-wrap;
+}
+
+#PageSubtitle {
+  font-size: 24px;
 }
 
 #LanguagePickerBox {
