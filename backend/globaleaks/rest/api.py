@@ -12,9 +12,10 @@ from globaleaks.handlers import node, submission, rtip, wbtip, receiver, \
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+full_random_str = r'([a-zA-Z0-9]{42})'
 field_regexp = uuid_regexp
 
-# Here is created the mapping betweehn urls and the associated handler.
+# Here is created the mapping between urls and the associated handler.
 #
 # Most of th handlers conform to the following rules:
 #
@@ -41,7 +42,7 @@ spec = [
 
     ## Submission Handlers ##
     (r'/submission', submission.SubmissionCreate),
-    (r'/submission/' + uuid_regexp, submission.SubmissionInstance),
+    (r'/submission/' + full_random_str, submission.SubmissionInstance),
     (r'/submission/' + uuid_regexp + '/file', files.FileInstance),
 
     ## Receiver Tip Handlers ##
