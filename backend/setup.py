@@ -6,7 +6,7 @@ from importlib import import_module
 import os
 import sys
 
-from pip.req import parse_requirements
+import pip
 from setuptools import find_packages, setup
 from setuptools.command.test import test as _TestCommand
 
@@ -21,7 +21,8 @@ if not sys.version_info[:2] == (2, 7):
     raise AssertionError
 
 
-install_requires = [str(r.req) for r in parse_requirements('requirements.txt')]
+install_requires = [str(r.req) for r in pip.req.parse_requirements('requirements.txt',
+                                                                   session=pip.download.PipSession())]
 
 def list_files(path):
     """
