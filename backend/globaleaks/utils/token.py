@@ -13,6 +13,7 @@ from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 from globaleaks.utils.tempobj import TempObj
+from globaleaks.settings import GLSetting
 
 # from Captcha.Visual.Tests import PseudoGimpy
 from StringIO import StringIO
@@ -82,12 +83,12 @@ reactor = None
 class Token(TempObj):
 
     existing_kind = ['upload', 'submission']
-    SUBMISSION_MINIMUM_DELAY = 60
-    UPLOAD_MINIMUM_DELAY = 5
-    MAXIMUM_AVAILABILITY = 4 * 60
+    SUBMISSION_MINIMUM_SECONDS = 15
+    UPLOAD_MINIMUM_SECONDS = 5
+    MAXIMUM_AVAILABILITY = 4 * SUBMISSION_MINIMUM_SECONDS # ?? talk in an issue TODO
     MAXIMUM_USAGES_FILEUPLOAD = 10
 
-    def __init__(self, token_kind, debug=False):
+    def __init__(self, token_kind, context_id, debug=False):
         """
         token_kind is 'file' or 'submission' right now, will be
             enhanced in typology later. is used an Assertion below.
@@ -98,17 +99,24 @@ class Token(TempObj):
 
         self.debug = debug
         # both 'validity' need to be expressed in seconds
-        self.end_validity = Token.MAXIMUM_AVAILABILITY
+        self.end_validity_secs = Token.MAXIMUM_AVAILABILITY
 
         if self.kind == 'submission':
-            self.start_validity = Token.SUBMISSION_MINIMUM_DELAY
+            self.start_validity_secs = Token.SUBMISSION_MINIMUM_SECONDS
             self.usages = 1
         else:
-            self.start_validity = Token.UPLOAD_MINIMUM_DELAY
+            self.start_validity_secs = Token.UPLOAD_MINIMUM_SECONDS
             self.usages = Token.MAXIMUM_USAGES_FILEUPLOAD
+
+        # TODO uncomment at the end of the tests and save dev life
+        # if GLSetting.devel_mode:
+        #    self.start_validity_secs = 0
 
         # creation_date of the borning
         self.creation_date = datetime.utcnow()
+
+        # in the future, difficulty can be trimmed on context basis too
+        self.context_associated = context_id
 
         self.token_id = rstr.xeger(r'[A-Za-z0-9]{42}')
 
@@ -117,7 +125,7 @@ class Token(TempObj):
                          # token ID:
                          self.token_id,
                          # seconds of validity:
-                         self.start_validity + self.end_validity,
+                         self.start_validity_secs + self.end_validity_secs,
                          reactor)
 
     def touch(self):
@@ -145,10 +153,10 @@ class Token(TempObj):
         return {
             'token_id' : self.token_id,
             'creation_date' : datetime_to_ISO8601(self.creation_date),
-            'start_validity': datetime_to_ISO8601(self.creation_date +
-                                                  timedelta(seconds=self.start_validity) ),
-            'end_validity': datetime_to_ISO8601(self.creation_date +
-                                                timedelta(seconds=self.end_validity) ),
+            'start_validity_secs': datetime_to_ISO8601(self.creation_date +
+                                                  timedelta(seconds=self.start_validity_secs) ),
+            'end_validity_secs': datetime_to_ISO8601(self.creation_date +
+                                                timedelta(seconds=self.end_validity_secs) ),
             'usages': self.usages,
             'type': self.kind,
             'g_captcha': self.graph_captcha['question'] if self.graph_captcha else False,
@@ -206,15 +214,19 @@ class Token(TempObj):
 
         """
         now = datetime_now()
-        start = (self.creation_date + timedelta(seconds=self.start_validity) )
+        start = (self.creation_date + timedelta(seconds=self.start_validity_secs) )
         if not start < now:
+            log.debug("creation + validity (%d) = %s < now %s, still to early" %(
+                self.start_validity_secs, start, now))
             raise errors.TokenRequestError("Too early to use this token")
 
 
         # This will never raises when I've integrated the self expising
         # object.
-        end = (self.creation_date + timedelta(self.end_validity) )
+        end = (self.creation_date + timedelta(self.end_validity_secs) )
         if now > end:
+            log.debug("creation + end_validity (%d) = %s > now %s, too late" %(
+                self.end_validity_secs, start, now))
             raise errors.TokenRequestError("Too late to use this token")
 
         # If the code reach here, the time delta is good.
