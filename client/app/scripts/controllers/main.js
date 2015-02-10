@@ -1,6 +1,6 @@
 GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$modal', 'Authentication', 'Node', 'GLCache',
   function($scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $modal, Authentication, Node, GLCache) {
-    $scope.started = false;
+    $scope.started = true;
     $scope.rtl = false;
     $scope.logo = '/static/globaleaks_logo.png';
     $scope.build_stylesheet = "/styles.css";
@@ -122,7 +122,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
              headers = getResponseHeaders();
              if (headers['x-check-tor'] !== undefined && headers['x-check-tor'] === 'true') {
                $rootScope.anonymous = true;
-               if ($scope.node.hidden_service && !isIframe()) {
+               if ($scope.node.hidden_service && !iframeCheck()) {
                  // the check on the iframe is in order to avoid redirects
                  // when the application is included inside iframes in order to not
                  // mix HTTPS resources with HTTP resources.
@@ -161,8 +161,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         $scope.show_language_selector = ($scope.languages_enabled_length > 1);
 
         $scope.set_title();
-
-        $scope.started = true;
 
       });
 
