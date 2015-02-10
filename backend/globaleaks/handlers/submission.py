@@ -266,6 +266,12 @@ class SubmissionCreate(BaseHandler):
         This create a Token, require to complete the submission later
         """
 
+<<<<<<< HEAD
+=======
+        print "Context_id declared", context_id
+
+        # TODO put context_id in token in some way, like, in the constructor and keep track
+>>>>>>> now context_id is part of the /submission REST
         token = Token('submission', context_id, debug=True)
         token.set_difficulty(Alarm().get_token_difficulty())
         token_answer = token.serialize_token()
@@ -307,6 +313,7 @@ class SubmissionInstance(BaseHandler):
     @unauthenticated
     @inlineCallbacks
     def put(self, context_id, token_id):
+<<<<<<< HEAD
         """
 <<<<<<< HEAD
 =======
@@ -328,6 +335,8 @@ class SubmissionInstance(BaseHandler):
     @unauthenticated
     @inlineCallbacks
     def put(self, token_id):
+=======
+>>>>>>> now context_id is part of the /submission REST
         """
 >>>>>>> performed sumibssion with token_id
         Parameter: token_id
@@ -342,9 +351,12 @@ class SubmissionInstance(BaseHandler):
             print "sid is", token_id, "lang", language
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> performed sumibssion with token_id
+=======
+>>>>>>> now context_id is part of the /submission REST
             status = db_finalize_submission(store, token_id, request, self.request.language)
 
             receipt = db_create_whistleblower_tip(store, status)
@@ -356,6 +368,9 @@ class SubmissionInstance(BaseHandler):
 
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> now context_id is part of the /submission REST
         import pprint
         pprint.pprint(request.keys())
 
@@ -366,10 +381,25 @@ class SubmissionInstance(BaseHandler):
         log.debug("Token received: %s" % token)
         # raise an error if the usage is too early for the token
         token.timedelta_check()
+<<<<<<< HEAD
 =======
         token_request = TokenList.get(token_id)
         print "retrieve", token_request
+=======
+
+        if not token.context_associated == context_id:
+            raise errors.InvalidInputFormat("Token context unaligned with REST url")
+
+>>>>>>> now context_id is part of the /submission REST
         assert request['finalize'], "Wrong GLClient logic"
+
+        # todo check if token has been properly solved
+        if token.graph_captcha is not False:
+            print "GC!", token.graph_captcha
+        if token.proof_of_work is not False:
+            print "PoW!", token.proof_of_work
+        if token.human_captcha is not False:
+            print "HC!", token.human_captcha
 
         status = yield put_transact(token_id, request, self.request.language)
 
