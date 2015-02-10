@@ -155,15 +155,16 @@ h3 {
   padding-bottom: 20px;
 }
 
-/* Display the pending requests */
 .pending-requests {
-  position: fixed;
-  top: 100px;
-  z-index: 100;
-  width: 400px;
-  margin-left: -200px;
-  left: 50%;
+  position: absolute;
+  width: 512px;
+  left:50%;
+  margin-left: -256px;
+  margin-top: 200px;
   border-radius: 10px;
+  border: #CCC 1px solid;
+  background-color: #FFF;
+  z-index: 666;
 }
 
 .pending-requests .message {
