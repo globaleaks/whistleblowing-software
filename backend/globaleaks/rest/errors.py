@@ -316,7 +316,16 @@ class GPGKeyInvalid(GLException):
     error_code = 40
     status_code = 406
 
-# UNUSED ERROR CODE 41 HERE!
+class TokenRequestError(GLException):
+    """
+    Some kind of reason to reject a submission Token
+    """
+    error_code = 41
+    status_code = 401
+
+    def __init__(self, reason):
+        print "Unacceptable condition to use Token: %s" % reason
+        self.reason = ("Unacceptable condition to use Token: %s" % reason)
 
 class GPGKeyIDNotUnique(GLException):
     """
@@ -325,7 +334,8 @@ class GPGKeyIDNotUnique(GLException):
     """
     reason = "The GPG Key ID it's already used by another receiver"
     error_code = 42
-    status_code =  406
+    status_code = 401
+
 
 # UNUSED ERROR CODE 43 44 45 HERE!
 
