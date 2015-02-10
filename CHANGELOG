@@ -1,3 +1,6 @@
+Changes in version 2.60.60 - 2015-02-10
+    o Minor UI fixes
+
 Changes in version 2.60.59 - 2015-02-10
     o Implement initial support for embeddably interfaces
     o Apply fixes for RTL internationalization
