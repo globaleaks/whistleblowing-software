@@ -20,7 +20,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <button class="pull-left btn btn-success" data-ng-disabled="newContext.$invalid" data-ng-click="add_context(new_context_name)">
+                <button class="pull-left btn btn-success" data-ng-disabled="newContext.$invalid" data-ng-click="add_context(new_context_name)" type="submit">
                   <i class="glyphicon glyphicon-ok"></i>
                   <span data-translate>Add</span>
                 </button>
@@ -34,14 +34,14 @@
 
       <div data-ng-show="admin.contexts.length != 0" class="col-md-12">
         <div class="text-right">
-          <button class="btn btn-success" data-ng-click="reorder_contexts_alphabetically()">
+          <a class="btn btn-success" data-ng-click="reorder_contexts_alphabetically()">
             <i class="glyphicon glyphicon-sort-by-alphabet"></i>
             <span data-translate>Reorder Contexts alphabetically</span>
-          </button>
-          <button class="btn btn-success" data-ng-click="save_all()">
+          </a>
+          <a class="btn btn-success" data-ng-click="save_all()">
             <i class="glyphicon glyphicon-ok"></i>
             <span data-translate>Save All</span>
-          </button>
+          </a>
         </div>
 
         <div ui-sortable="sortableOptions" data-ng-model="admin.contexts">
@@ -119,10 +119,10 @@
                     </div>
                     <div class="col-md-12">
 
-                      <button class="btn btn-info" data-ng-click="advanced_edit = !advanced_edit" data-ng-init="advanced_edit=false">
+                      <a class="btn btn-info" data-ng-click="advanced_edit = !advanced_edit" data-ng-init="advanced_edit=false">
                         <i class="glyphicon glyphicon-plus"></i>
                         <span data-translate>Advanced settings</span>
-                      </button>
+                      </a>
 
                       <div class="row" data-ng-show="advanced_edit">
                         <div class="col-md-6">
