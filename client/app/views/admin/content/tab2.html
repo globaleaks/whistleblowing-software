@@ -36,15 +36,15 @@
             <input type="file" name="files[]" multiple data-ng-disabled="disabled">
           </span>
         </span>
-        <span data-ng-show="fileExists('custom_stylesheet.css')">
+        <span data-ng-if="fileExists('custom_stylesheet.css')">
           <a class="btn btn-primary" data-ng-href="{{'/static/custom_stylesheet.css'}}" download="custom_stylesheet.css">
             <span class="glyphicon glyphicon-download"></span>
             <span data-translate>Download</span>
           </a>
-          <button class="btn btn-danger" data-ng-click="perform_delete('/admin/staticfiles/custom_stylesheet.css')">
+          <a class="btn btn-danger" data-ng-click="perform_delete('/admin/staticfiles/custom_stylesheet.css')">
             <span class="glyphicon glyphicon-trash"></span>
             <span data-translate>Delete</span>
-          </button>
+          </a>
         </span>
       </div>
       <label>
@@ -64,10 +64,10 @@
             <span class="glyphicon glyphicon-download"></span>
             <span data-translate>Download</span>
           </a>
-          <button class="btn btn-danger" data-ng-click="perform_delete('/admin/staticfiles/custom_homepage.html')">
+          <a class="btn btn-danger" data-ng-click="perform_delete('/admin/staticfiles/custom_homepage.html')">
             <span class="glyphicon glyphicon-trash"></span>
             <span data-translate>Delete</span>
-          </button>
+          </a>
         </span>
       </div>
       <label data-translate>Load Custom File</label>
@@ -104,10 +104,10 @@
                   <span class="glyphicon glyphicon-download"></span>
                   <span data-translate>Download</span>
                 </a>
-                <button class="btn btn-danger" data-ng-click="perform_delete('/admin/staticfiles/' + file.filename)">
+                <a class="btn btn-danger" data-ng-click="perform_delete('/admin/staticfiles/' + file.filename)">
                   <span class="glyphicon glyphicon-trash"></span>
                   <span data-translate>Delete</span>
-                </button>
+                </a>
               </td>
             </tr>
           </tbody>
