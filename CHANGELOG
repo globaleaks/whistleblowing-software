@@ -1,3 +1,8 @@
+Changes in version 2.60.59 - 2015-02-10
+    o Implement initial support for embeddably interfaces
+    o Apply fixes for RTL internationalization
+    o Minor UI fixes
+
 Changes in version 2.60.58 - 2015-02-04
     o Fix validation of keys with no expiration set
     o Fix alignment of Urdu as RTL language
