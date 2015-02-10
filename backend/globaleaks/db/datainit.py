@@ -187,7 +187,8 @@ def apply_cli_options(store):
     accepted = {}
     if 'hostname_tor_content' in GLSetting.unchecked_tor_input:
         composed_hs_url = 'http://%s' % GLSetting.unchecked_tor_input['hostname_tor_content']
-        composed_t2w_url = 'https://%s.tor2web.org' % GLSetting.unchecked_tor_input['hostname_tor_content']
+        hs = GLSetting.unchecked_tor_input['hostname_tor_content'].split('.onion')[0]
+        composed_t2w_url = 'https://%s.tor2web.org' % hs
 
         if not (re.match(requests.hidden_service_regexp, composed_hs_url) or \
                 re.match(requests.https_url_regexp, composed_t2w_url)):
