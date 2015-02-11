@@ -52,15 +52,7 @@
 
     <div class="form-group" data-ng-show="admin.node.enable_custom_privacy_badge">
       <label data-translate>Custom Privacy Badge</label>
-      <label data-translate>(TBB condition)</label>
-      <div>
-        <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_tbb" type="text" />
-      </div>
-    </div>
-
-    <div class="form-group" data-ng-show="admin.node.enable_custom_privacy_badge">
-      <label data-translate>Custom Privacy Badge</label>
-      <label data-translate>(Tor condition)</label>
+      <label>(<span data-translate>Text shown when the whistleblower is using Tor</span>)</label>
       <div>
         <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_tor" type="text" />
       </div>
@@ -68,7 +60,7 @@
 
     <div class="form-group" data-ng-show="admin.node.enable_custom_privacy_badge">
       <label data-translate>Custom Privacy Badge</label>
-      <label data-translate>(Traditional Browser)</label>
+      <label>(<span data-translate>Text shown when the whistleblower is not using Tor</span>)</label>
       <div>
         <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_none" type="text" />
       </div>
