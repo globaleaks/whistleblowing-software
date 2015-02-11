@@ -136,7 +136,6 @@ adminNodeDesc = {
     'admin_language': unicode,
     'admin_timezone': int,
     'enable_custom_privacy_badge': bool,
-    'custom_privacy_badge_tbb': unicode,
     'custom_privacy_badge_tor': unicode,
     'custom_privacy_badge_none': unicode,
     'header_title_homepage': unicode,
@@ -258,7 +257,6 @@ anonNodeDesc = {
     'disable_security_awareness_badge': bool,
     'disable_security_awareness_questions': bool,
     'enable_custom_privacy_badge': bool,
-    'custom_privacy_badge_tbb': unicode,
     'custom_privacy_badge_tor': unicode,
     'custom_privacy_badge_none': unicode,
 }

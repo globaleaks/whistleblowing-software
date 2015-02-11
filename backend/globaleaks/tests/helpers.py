@@ -840,7 +840,6 @@ class MockDict():
             'admin_timezone': 0,
             'admin_language': u'en',
             'enable_custom_privacy_badge': False,
-            'custom_privacy_badge_tbb': u'',
             'custom_privacy_badge_tor': u'',
             'custom_privacy_badge_none': u'',
             'header_title_homepage': u'',

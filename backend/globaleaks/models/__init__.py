@@ -447,7 +447,6 @@ class Node(Model):
     whistleblowing_button = JSON()
 
     enable_custom_privacy_badge = Bool()
-    custom_privacy_badge_tbb = JSON()
     custom_privacy_badge_tor = JSON()
     custom_privacy_badge_none = JSON()
 
@@ -474,7 +473,7 @@ class Node(Model):
     localized_strings = ['description', 'presentation', 'footer',
                          'security_awareness_title', 'security_awareness_text',
                          'whistleblowing_question',
-                         'whistleblowing_button', 'custom_privacy_badge_tbb',
+                         'whistleblowing_button',
                          'custom_privacy_badge_tor', 'custom_privacy_badge_none',
                          'header_title_homepage', 'header_title_submissionpage']
 

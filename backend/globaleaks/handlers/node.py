@@ -96,7 +96,6 @@ def anon_serialize_node(store, language):
       'disable_security_awareness_badge': node.disable_security_awareness_badge,
       'disable_security_awareness_questions': node.disable_security_awareness_questions,
       'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-      'custom_privacy_badge_tbb': node.custom_privacy_badge_tbb,
       'custom_privacy_badge_tor': node.custom_privacy_badge_tor,
       'custom_privacy_badge_none': node.custom_privacy_badge_none,
       'landing_page': node.landing_page

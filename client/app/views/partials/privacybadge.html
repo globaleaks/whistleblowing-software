@@ -14,9 +14,8 @@
             <span data-translate>Congratulations!</span>
           </span>
           <div>
-            <div data-translate>It appears that you are anonymously browsing this site using Tor, but you are not using the recommended safest internet browser.</div>
+            <div data-translate>It appears that you are using Tor. To better protect your identity, be sure that you are using the Tor Browser.</div>
             <div data-translate>The Tor Browser includes various privacy and security enhancements not present in other browsers.</div>
-            <div data-translate>You are strongly suggested to use the Tor Browser, unless you know what you are doing.</div>
             <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer">
               [ <span data-translate>Download the Tor Browser</span> ]
             </a>
@@ -30,7 +29,7 @@
             <span data-translate>Danger!</span>
           </span>
         </div>
-        <div data-ng-show="displayBox" class="privacyBox-ext">
+        <div data-ng-show="displayBox">
           <span class="label label-danger">
             <i class="glyphicon glyphicon-warning-sign"></i>
             <span data-translate>Danger!</span>
@@ -57,16 +56,12 @@
     <div class="clearfix"></div>
   </div>
   <div id="PrivacyBadgeCustom" data-ng-if="node.enable_custom_privacy_badge">
-    <div data-ng-switch="" on="privacy" id="PrivacyBoxTextBox">
-      <div data-ng-switch-when="high">
-        <span id="PrivacyBadgeCustomIconTBB"></span>
-        <span id="PrivacyBadgeCustomTextTBB">{{node.custom_privacy_badge_tbb}}</span>
-      </div>
-      <div data-ng-switch-when="medium">
+    <div data-ng-switch="" on="anonymous" id="PrivacyBoxTextBox">
+      <div data-ng-switch-when="true">
         <span id="PrivacyBadgeCustomIconTor"></span>
         <span id="PrivacyBadgeCustomTextTor">{{node.custom_privacy_badge_tor}}</span>
       </div>
-      <div data-ng-switch-when="low">
+      <div data-ng-switch-when="false">
         <span id="PrivacyBadgeCustomIconNone"></span>
         <span id="PrivacyBadgeCustomTextNone">{{node.custom_privacy_badge_none}}</span>
       </div>
