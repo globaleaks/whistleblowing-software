@@ -108,6 +108,7 @@ def create_tables(create_node=True):
             'custom_privacy_badge_none': dict({ GLSetting.defaults.language: u"" }),
             'header_title_homepage': dict({ GLSetting.defaults.language: u"" }),
             'header_title_submissionpage': dict({ GLSetting.defaults.language: u"" }),
+            'header_title_receiptpage': dict({ GLSetting.defaults.language: u"" }),
             'landing_page': GLSetting.defaults.landing_page
         }
 

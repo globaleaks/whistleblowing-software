@@ -140,6 +140,7 @@ adminNodeDesc = {
     'custom_privacy_badge_none': unicode,
     'header_title_homepage': unicode,
     'header_title_submissionpage': unicode,
+    'header_title_receiptpage': unicode,
     'landing_page': landing_page_regexp
 }
 
