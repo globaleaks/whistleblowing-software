@@ -322,7 +322,7 @@
 
 text.mono {
   font-size: 9pt;
-  font-family: Consolas, courier;
+  font-family: Consolas, courier, monospace;
   fill: #aaa;
 }
 
