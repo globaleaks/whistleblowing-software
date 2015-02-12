@@ -844,6 +844,7 @@ class MockDict():
             'custom_privacy_badge_none': u'',
             'header_title_homepage': u'',
             'header_title_submissionpage': u'',
+            'header_title_receiptpage': u'',
             'landing_page': u'homepage'
         }
 

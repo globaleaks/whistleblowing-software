@@ -293,6 +293,7 @@
       "custom_privacy_badge_none": {"en": ""},
       "header_title_homepage": {"en": ""},
       "header_title_submissionpage": {"en": ""},
+      "header_title_receiptpage": {"en": ""},
       "landing_page": "homepage"
     },
     "class": "Node"
