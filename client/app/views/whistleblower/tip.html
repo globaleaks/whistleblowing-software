@@ -40,10 +40,10 @@
           <tr data-ng-repeat="receiver in tip.receivers | filter:filterReceivers | orderBy:'name'">
             <td>
               <span data-ng-switch="" on="receiver.gpg_key_status">
-                <span data-ng-switch-when="Enabled">
+                <span data-ng-switch-when="enabled">
                   <i class="glyphicon glyphicon-certificate" popover="{{'This receiver has configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
                 </span>
-                <span data-ng-switch-when="Disabled">
+                <span data-ng-switch-when="disabled">
                   <i class="glyphicon glyphicon-warning-sign" popover="{{'This receiver has not configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
                 </span>
               </span>
