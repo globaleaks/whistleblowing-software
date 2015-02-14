@@ -85,7 +85,8 @@ class Token(TempObj):
     existing_kind = ['upload', 'submission']
     SUBMISSION_MINIMUM_SECONDS = 15
     UPLOAD_MINIMUM_SECONDS = 5
-    MAXIMUM_AVAILABILITY = 4 * SUBMISSION_MINIMUM_SECONDS # ?? talk in an issue TODO
+    MAXIMUM_AVAILABILITY = 4 * SUBMISSION_MINIMUM_SECONDS
+            # TODO talk in an issue
     MAXIMUM_USAGES_FILEUPLOAD = 10
 
     def __init__(self, token_kind, context_id, debug=False):
@@ -109,8 +110,8 @@ class Token(TempObj):
             self.usages = Token.MAXIMUM_USAGES_FILEUPLOAD
 
         # TODO uncomment at the end of the tests and save dev life
-        # if GLSetting.devel_mode:
-        #    self.start_validity_secs = 0
+        if GLSetting.devel_mode:
+            self.start_validity_secs = 0
 
         # creation_date of the borning
         self.creation_date = datetime.utcnow()
@@ -171,20 +172,26 @@ class Token(TempObj):
             FileToken or SubmissionToken and here the shared element.
         """
 
-        self.human_captcha = None
+        print problems_dict
+
         if problems_dict['human_captcha']:
             random_a = randint(1, 10)
             random_b = randint(1, 10)
 
-            self.human_captcha = {
+            self.human_captcha = dict({
                 'question': u"%d + %d" % (random_a, random_b),
                 'answer' : u"%d" % (random_a + random_b)
-            }
+            })
+        else:
+            self.human_captcha = None
 
-        self.proof_of_work = None
+        if problems_dict['proof_of_work']:
+            log.debug("proof of work not yet implemented!")
+            self.proof_of_work = None
+        else:
+            self.proof_of_work = None
         # TODO
 
-        self.graph_captcha = None
         if problems_dict['graph_captcha']:
             """
             g = PseudoGimpy()
@@ -200,8 +207,12 @@ class Token(TempObj):
                 'answer' : g.solutions,
             }
             """
-            print "suca ATM"
+            log.debug("graphical captcha requested but not implemente now!")
+            self.graph_captcha = None
+        else:
+            self.graph_captcha = None
 
+        # not used now
         if problems_dict['graph_captcha'] and self.kind == 'upload':
             self.usages /= 2
 
@@ -239,7 +250,7 @@ class Token(TempObj):
         if not self.human_captcha:
             return
 
-        if self.human_captcha['answer'] != resolved_human_captcha:
+        if int(self.human_captcha['answer']) != int(resolved_human_captcha):
             log.debug("Failed Human captcha: expected %s got %s" % (
                 self.human_captcha['answer'], resolved_human_captcha
             ))
