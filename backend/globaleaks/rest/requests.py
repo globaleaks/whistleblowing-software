@@ -51,7 +51,8 @@ authDict = {
 
 wbSubmissionDesc = {
     'wb_steps' : list,
-    'context_id' : uuid_regexp,
+    'human_solution' : int,
+    # TODO, the others captcha stuff
     'receivers' : [ uuid_regexp ],
     'files' : [ uuid_regexp ],
     'finalize' : bool,

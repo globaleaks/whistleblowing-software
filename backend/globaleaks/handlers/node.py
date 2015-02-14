@@ -98,7 +98,8 @@ def anon_serialize_node(store, language):
       'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
       'custom_privacy_badge_tor': node.custom_privacy_badge_tor,
       'custom_privacy_badge_none': node.custom_privacy_badge_none,
-      'landing_page': node.landing_page
+      'landing_page': node.landing_page,
+      'disk_availability': GLSetting.memory_copy.disk_availability,
     }
 
     return get_localized_values(ret_dict, node, node.localized_strings, language)

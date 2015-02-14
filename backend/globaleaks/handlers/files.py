@@ -51,8 +51,13 @@ def serialize_receiver_file(receiverfile):
 
     return file_desc
 
+# the point is: we've to change file register logic
+# file append can be associated directly to the internaltip
+# file upload, instead, has not yet an internaltip, but just a token
+# associated with an upcoming submission (that maybe will never be completed)
 @transact
 def register_file_db(store, uploaded_file, filepath, internaltip_id):
+
     internaltip = store.find(InternalTip,
                              InternalTip.id == internaltip_id).one()
 
@@ -66,7 +71,7 @@ def register_file_db(store, uploaded_file, filepath, internaltip_id):
     new_file.content_type = uploaded_file['content_type']
     new_file.mark = u'not processed'
     new_file.size = uploaded_file['body_len']
-    new_file.internaltip_id = internaltip_id
+    # new_file.internaltip_id = internaltip_id
     new_file.file_path = filepath
 
     store.add(new_file)
@@ -100,6 +105,9 @@ def dump_file_fs(uploaded_file):
 @transact_ro
 def validate_itip_id(store, itip_id):
 
+    print "something that has to be removed!"
+    return True
+
     itip = store.find(InternalTip,
                       InternalTip.id == itip_id).one()
 
@@ -129,11 +137,14 @@ class FileHandler(BaseHandler):
     @inlineCallbacks
     def handle_file_upload(self, itip_id):
         result_list = []
+        # TODO remind self: why is a list with just one element, and not a dict ?
 
         # measure the operation of all the files (via browser can be selected
         # more than 1), because all files are delivered in the same time.
         start_time = time.time()
 
+        import pprint
+        pprint.pprint(self.request.body.keys())
         uploaded_file = self.request.body
 
         uploaded_file['body'].avoid_delete()
@@ -147,6 +158,7 @@ class FileHandler(BaseHandler):
             log.err("Unable to save a file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
         try:
+            pass
             # Second: register the file in the database
             registered_file = yield register_file_db(uploaded_file, filepath, itip_id)
         except Exception as excep:
@@ -188,17 +200,19 @@ class FileInstance(FileHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def post(self, submission_id, *args):
+    def post(self, token_id, *args):
         """
         Parameter: internaltip_id
         Request: Unknown
         Response: Unknown
         Errors: SubmissionIdNotFound, SubmissionConcluded
         """
-        yield validate_itip_id(submission_id)
+        print token_id
+        # yield validate_itip_id(submission_id)
+
 
         # Call the master class method
-        yield self.handle_file_upload(submission_id)
+        yield self.handle_file_upload(token_id)
 
 
 @transact
