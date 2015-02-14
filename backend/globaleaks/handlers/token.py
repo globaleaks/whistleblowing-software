@@ -9,15 +9,18 @@
 from random import randint
 from datetime import datetime, timedelta
 
+from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 from globaleaks.utils.tempobj import TempObj
-from globaleaks.settings import GLSetting
+from globaleaks.anomaly import Alarm
 
-# from Captcha.Visual.Tests import PseudoGimpy
+from Captcha.Visual.Tests import PseudoGimpy
 from StringIO import StringIO
 import base64
+
 
 
 class TokenList:
@@ -83,13 +86,12 @@ reactor = None
 class Token(TempObj):
 
     existing_kind = ['upload', 'submission']
-    SUBMISSION_MINIMUM_SECONDS = 15
-    UPLOAD_MINIMUM_SECONDS = 5
-    MAXIMUM_AVAILABILITY = 4 * SUBMISSION_MINIMUM_SECONDS
-            # TODO talk in an issue
+    SUBMISSION_MINIMUM_DELAY = 60
+    UPLOAD_MINIMUM_DELAY = 5
+    MAXIMUM_AVAILABILITY = 4 * 60
     MAXIMUM_USAGES_FILEUPLOAD = 10
 
-    def __init__(self, token_kind, context_id, debug=False):
+    def __init__(self, token_kind, debug=False):
         """
         token_kind is 'file' or 'submission' right now, will be
             enhanced in typology later. is used an Assertion below.
@@ -100,24 +102,17 @@ class Token(TempObj):
 
         self.debug = debug
         # both 'validity' need to be expressed in seconds
-        self.end_validity_secs = Token.MAXIMUM_AVAILABILITY
+        self.end_validity = Token.MAXIMUM_AVAILABILITY
 
         if self.kind == 'submission':
-            self.start_validity_secs = Token.SUBMISSION_MINIMUM_SECONDS
+            self.start_validity = Token.SUBMISSION_MINIMUM_DELAY
             self.usages = 1
         else:
-            self.start_validity_secs = Token.UPLOAD_MINIMUM_SECONDS
+            self.start_validity = Token.UPLOAD_MINIMUM_DELAY
             self.usages = Token.MAXIMUM_USAGES_FILEUPLOAD
-
-        # TODO uncomment at the end of the tests and save dev life
-        if GLSetting.devel_mode:
-            self.start_validity_secs = 0
 
         # creation_date of the borning
         self.creation_date = datetime.utcnow()
-
-        # in the future, difficulty can be trimmed on context basis too
-        self.context_associated = context_id
 
         self.token_id = rstr.xeger(r'[A-Za-z0-9]{42}')
 
@@ -126,7 +121,7 @@ class Token(TempObj):
                          # token ID:
                          self.token_id,
                          # seconds of validity:
-                         self.start_validity_secs + self.end_validity_secs,
+                         self.start_validity + self.end_validity,
                          reactor)
 
     def touch(self):
@@ -154,10 +149,10 @@ class Token(TempObj):
         return {
             'token_id' : self.token_id,
             'creation_date' : datetime_to_ISO8601(self.creation_date),
-            'start_validity_secs': datetime_to_ISO8601(self.creation_date +
-                                                  timedelta(seconds=self.start_validity_secs) ),
-            'end_validity_secs': datetime_to_ISO8601(self.creation_date +
-                                                timedelta(seconds=self.end_validity_secs) ),
+            'start_validity': datetime_to_ISO8601(self.creation_date +
+                                                  timedelta(seconds=self.start_validity) ),
+            'end_validity': datetime_to_ISO8601(self.creation_date +
+                                                timedelta(seconds=self.end_validity) ),
             'usages': self.usages,
             'type': self.kind,
             'g_captcha': self.graph_captcha['question'] if self.graph_captcha else False,
@@ -172,6 +167,7 @@ class Token(TempObj):
             FileToken or SubmissionToken and here the shared element.
         """
 
+        self.human_captcha = None
         if problems_dict['human_captcha']:
             random_a = randint(1, 10)
             random_b = randint(1, 10)
@@ -180,18 +176,13 @@ class Token(TempObj):
                 'question': u"%d + %d" % (random_a, random_b),
                 'answer' : u"%d" % (random_a + random_b)
             }
-        else:
-            self.human_captcha = None
 
-        if problems_dict['proof_of_work']:
-            log.debug("proof of work not yet implemented!")
-            self.proof_of_work = None
-        else:
-            self.proof_of_work = None
+        self.proof_of_work = None
+        # TODO
 
-
+        self.graph_captcha = None
         if problems_dict['graph_captcha']:
-            """
+
             g = PseudoGimpy()
             i = g.render()
             tmpf = StringIO()
@@ -204,13 +195,7 @@ class Token(TempObj):
                 'question' : request,
                 'answer' : g.solutions,
             }
-            """
-            log.debug("graphical captcha requested but not implemente now!")
-            self.graph_captcha = None
-        else:
-            self.graph_captcha = None
 
-        # TODO review, file upload is changed
         if problems_dict['graph_captcha'] and self.kind == 'upload':
             self.usages /= 2
 
@@ -223,19 +208,15 @@ class Token(TempObj):
 
         """
         now = datetime_now()
-        start = (self.creation_date + timedelta(seconds=self.start_validity_secs) )
+        start = (self.creation_date + timedelta(seconds=self.start_validity) )
         if not start < now:
-            log.debug("creation + validity (%d) = %s < now %s, still to early" %(
-                self.start_validity_secs, start, now))
             raise errors.TokenRequestError("Too early to use this token")
 
 
         # This will never raises when I've integrated the self expising
         # object.
-        end = (self.creation_date + timedelta(self.end_validity_secs) )
+        end = (self.creation_date + timedelta(self.end_validity) )
         if now > end:
-            log.debug("creation + end_validity (%d) = %s > now %s, too late" %(
-                self.end_validity_secs, start, now))
             raise errors.TokenRequestError("Too late to use this token")
 
         # If the code reach here, the time delta is good.
@@ -248,7 +229,7 @@ class Token(TempObj):
         if not self.human_captcha:
             return
 
-        if int(self.human_captcha['answer']) != int(resolved_human_captcha):
+        if self.human_captcha['answer'] != resolved_human_captcha:
             log.debug("Failed Human captcha: expected %s got %s" % (
                 self.human_captcha['answer'], resolved_human_captcha
             ))
@@ -296,6 +277,55 @@ class Token(TempObj):
         # if the code flow reach here, the token is validated
         log.debug("Token validated properly")
 
+
+
+class TokenInstance(BaseHandler):
+    """
+    This class implement the /token API,
+    perform operation in memory only, this is the reason
+    why the method here are not decorated with @inlineCallbacks
+    """
+
+    @transport_security_check('wb')
+    @unauthenticated
+    def get(self, kind, *uriargs):
+        """
+        Request:
+        Response: tokenDict
+        Errors: None, never.
+        """
+        if kind not in Token.existing_kind:
+            raise errors.TokenRequestError("Invalid Token kind")
+
+        # TODO: implement here a non blocking sleep function, if the
+        # token request need to be delayed
+
+        token = Token(kind, debug=True)
+        token.set_difficulty(Alarm().get_token_difficulty())
+        token_answer = token.serialize_token()
+
+        self.set_status(201) # Created
+        self.finish(token_answer)
+
+
+
+class TokenUsageTest(BaseHandler):
+    """
+    This is a class test, instead of modify Submission or FileUpload
+    to test the status of the Token.
+    """
+
+    def get(self, token_kind, unclean_token):
+
+        token_info = TokenList.validate_token_id(unclean_token)
+
+        token_info['token_object'].validate(token_info)
+
+        # if the flow has reach this point, the token is valid.
+        # print "Validated token of", token_kind, "X", token_info['token'].token_id
+
+        self.set_status(201)
+        self.finish({'OK': True})
 
 
 
