@@ -303,7 +303,9 @@ class Alarm(object):
         # TODO make a proper assessment between pissed off users and defeated DoS
         if Alarm.stress_levels['activity'] >= 1:
             self.difficulty_dict['graph_captcha'] = True
+            self.difficulty_dict['human_captcha'] = True
 
+        # TODO is not meaningful manage differently these stuff
         if Alarm.stress_levels['disk_space'] >= 1:
             self.difficulty_dict['human_captcha'] = True
 
@@ -313,6 +315,7 @@ class Alarm(object):
                   "Y" if self.difficulty_dict['graph_captcha'] else "N",
                   "Y" if self.difficulty_dict['proof_of_work'] else "N" ) )
 
+        print self.difficulty_dict
         return self.difficulty_dict
 
     @staticmethod
@@ -342,8 +345,10 @@ class Alarm(object):
             requests_timing.append(event_obj.request_time)
 
         if len(requests_timing) > 2:
-            log.info("worst RTT %f, best %f" %
-                     (round(max(requests_timing), 2), round(min(requests_timing), 2) )
+            log.info("In latest %d seconds: worst RTT %f, best %f" %
+                     ( GLSetting.anomaly_seconds_delta,
+                       round(max(requests_timing), 2), 
+                       round(min(requests_timing), 2) )
             )
 
         for event_name, threshold in Alarm.OUTCOMING_ANOMALY_MAP.iteritems():
@@ -353,6 +358,11 @@ class Alarm(object):
                     debug_reason = "%s[Incoming %s: %d>%d] " % \
                                    (debug_reason, event_name,
                                     current_event_matrix[event_name], threshold)
+                else:
+                    log.debug("%s %d < %d: it's OK" % (
+                        event_name,
+                        current_event_matrix[event_name], 
+                        threshold) )
 
 
         previous_activity_sl = Alarm.stress_levels['activity']
@@ -507,21 +517,44 @@ class Alarm(object):
         the evaluation + alarm shift is performed here.
         """
 
-        # Mediam alarm threshold
+        # Medium and High danger threshold trigger two different alarm
         mat = Alarm._MEDIUM_DISK_ALARM * GLSetting.memory_copy.maximum_filesize
         hat = Alarm._HIGH_DISK_ALARM * GLSetting.memory_copy.maximum_filesize
 
         Alarm.latest_measured_freespace = free_bytes
-
-        free_megabytes = free_bytes / (1000 * 1000)
-
+        free_megabytes = free_bytes / (1024 * 1024)
         free_memory_str = bytes_to_pretty_str(free_bytes)
 
-        if free_megabytes < hat:
-            log.err("Warning: free space alarm (HIGH): only %s" % free_memory_str)
+        past_condition = GLSetting.memory_copy.disk_availability
+
+        if free_megabytes <= 15:
+            # "unusable node" threshold: happen when the space is really shitty.
+            # anyway, can happen that
+            # Read issue https://github.com/globaleaks/GlobaLeaks/issues/297
+            log.info("Danger threshold reached, *SUBMISSION DISABLED*, free space: %s" %
+                     free_memory_str)
+            GLSetting.memory_copy.disk_availability = False
+        elif free_megabytes < hat:
+            log.info("Warning: free space alarm (HIGH): only %s" % free_memory_str)
             Alarm.stress_levels['disk_space'] = 2
+            GLSetting.memory_copy.disk_availability = True
         elif free_megabytes < mat:
             log.info("Warning: free space alarm (MEDIUM): %s" % free_memory_str)
             Alarm.stress_levels['disk_space'] = 1
+            GLSetting.memory_copy.disk_availability = True
         else:
             Alarm.stress_levels['disk_space'] = 0
+            GLSetting.memory_copy.disk_availability = True
+
+        if past_condition != GLSetting.memory_copy.disk_availability:
+            # import here to avoid circular import error
+            from globaleaks.handlers.base import GLApiCache
+
+            log.debug("Switching disk space availability from: %s to %s" % (
+                "True" if past_condition else "False",
+                "False" if past_condition else "True"))
+
+            # is an hack of the GLApiCache, but I can't manage a DB access here
+            GLApiCache.memory_cache_dict['node']['disk_availability'] =\
+                GLSetting.memory_copy.disk_availability
+
