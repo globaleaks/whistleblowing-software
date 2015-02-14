@@ -305,7 +305,6 @@ class Alarm(object):
             self.difficulty_dict['graph_captcha'] = True
             self.difficulty_dict['human_captcha'] = True
 
-        # TODO is not meaningful manage differently these stuff
         if Alarm.stress_levels['disk_space'] >= 1:
             self.difficulty_dict['human_captcha'] = True
 
@@ -315,7 +314,6 @@ class Alarm(object):
                   "Y" if self.difficulty_dict['graph_captcha'] else "N",
                   "Y" if self.difficulty_dict['proof_of_work'] else "N" ) )
 
-        print self.difficulty_dict
         return self.difficulty_dict
 
     @staticmethod

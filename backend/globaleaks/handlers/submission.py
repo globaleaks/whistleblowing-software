@@ -266,14 +266,10 @@ class SubmissionCreate(BaseHandler):
         This create a Token, require to complete the submission later
         """
 
-        print "Context_id declared", context_id
-
-        # TODO put context_id in token in some way, like, in the constructor and keep track
         token = Token('submission', context_id, debug=True)
         token.set_difficulty(Alarm().get_token_difficulty())
         token_answer = token.serialize_token()
 
-        self.set_status(201) # Created
 
         # {'hashcash': False,
         #  'usages': 1,
@@ -296,7 +292,26 @@ class SubmissionCreate(BaseHandler):
         token_answer.update({'human_solution': 0})
 
         import pprint
-        pprint.pprint(token_answer)
+
+        # {'hashcash': False,
+        #  'usages': 1,
+        #  'start_validity': '2015-02-09T13:23:44.325796Z',
+        #  'end_validity': '2015-02-09T13:26:44.325796Z',
+        #  'token_id': u'sl0nEmLtxaogJ1er4B2TWHUdv9RAmD6TusKgL8d97u',
+        #  'type': 'submission', 'g_captcha': False,
+        #  'h_captcha': False,
+        #  'creation_date': '2015-02-09T13:22:44.325796Z'}
+
+        # change, put the post_transact + finalize in PUT and removed from here
+        # request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
+        print token_answer['token_id']
+
+        token_answer.update({'submission_id': token_answer['token_id'] })
+        token_answer.update({'id': token_answer['token_id'] })
+        token_answer.update({'files': [] })
+        # tmp hackish, I can copy the context receive via get, in order to make
+        # SubmissionRequest context dependent in the URL (finally, holy fuck)
+        token_answer.update({'context_id': context_id})
 
         self.set_status(201) # Created
         self.finish(token_answer)
@@ -329,7 +344,6 @@ class SubmissionInstance(BaseHandler):
             status.update({'receipt': receipt})
 
             return status
-
 
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
         import pprint
