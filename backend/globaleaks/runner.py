@@ -41,12 +41,13 @@ def start_asynchronous():
     #  - second argument is the function that starts the schedule
     #  - third argument is the schedule period in seconds
     reactor.callLater(0, session_management.start, GLSetting.session_management_minutes_delta * 60)
+    reactor.callLater(0, anomaly.start, GLSetting.anomaly_seconds_delta)
+    reactor.callLater(0, resource_check.start, GLSetting.anomaly_seconds_delta)
+
     reactor.callLater(10, delivery.start, GLSetting.delivery_seconds_delta)
     reactor.callLater(20, notification.start, GLSetting.notification_minutes_delta * 60)
     reactor.callLater(30, clean.start, GLSetting.cleaning_hours_delta * 3600)
     reactor.callLater(40, mailflush.start, GLSetting.mailflush_minutes_delta * 60)
-    reactor.callLater(50, resource_check.start, GLSetting.anomaly_seconds_delta)
-    reactor.callLater(60, anomaly.start, GLSetting.anomaly_seconds_delta)
 
     # The Stats scheduler need to be executed every hour on the hour.
     current_time = datetime_now()
@@ -55,7 +56,6 @@ def start_asynchronous():
     statistics_sched.StatisticsSchedule.collection_start_datetime = current_time
 
     # The PGP check scheduler need to be executed every day at midnight
-    current_time = datetime_now()
     delay = (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
     reactor.callLater(delay, pgp_check.start, 3600 * 24)
 
