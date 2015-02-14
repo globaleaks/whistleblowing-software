@@ -289,14 +289,16 @@ class SubmissionCreate(BaseHandler):
 
         # change, put the post_transact + finalize in PUT and removed from here
         # request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
-        print token_answer['token_id']
 
         token_answer.update({'submission_id': token_answer['token_id'] })
         token_answer.update({'id': token_answer['token_id'] })
         token_answer.update({'files': [] })
-        # tmp hackish, I can copy the context receive via get, in order to make
-        # SubmissionRequest context dependent in the URL (finally, holy fuck)
         token_answer.update({'context_id': context_id})
+
+        # preset the answers from the captcha stuff, to success input validation
+        token_answer.update({'human_solution': 0})
+
+        import pprint
         pprint.pprint(token_answer)
 
         self.set_status(201) # Created
@@ -348,7 +350,6 @@ class SubmissionInstance(BaseHandler):
         """
         @transact
         def put_transact(store, token_id, request, language):
-            print "sid is", token_id, "lang", language
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -364,7 +365,6 @@ class SubmissionInstance(BaseHandler):
 
             return status
 
-        print "the context received via PARM is", context_id
 
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 <<<<<<< HEAD
@@ -413,13 +413,14 @@ class SubmissionInstance(BaseHandler):
 <<<<<<< HEAD
         assert request['finalize'], "Wrong GLClient logic"
 
-        # todo check if token has been properly solved
+        # check if token has been properly solved
         if token.graph_captcha is not False:
-            print "GC!", token.graph_captcha
+            print "GC!, NYI", token.graph_captcha
         if token.proof_of_work is not False:
-            print "PoW!", token.proof_of_work
+            print "PoW!, NYI", token.proof_of_work
         if token.human_captcha is not False:
-            print "HC!", token.human_captcha
+            print "checking HC:", token.human_captcha
+            token.human_captcha_check(request['human_solution'])
 
         status = yield put_transact(token_id, request, self.request.language)
 
