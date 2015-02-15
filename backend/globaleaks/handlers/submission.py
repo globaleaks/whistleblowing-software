@@ -123,7 +123,10 @@ def import_files(store, submission, files):
         Look if the context *require* almost a file, raise
             an error if missed
     """
+    # TODO is missing the context file enforcing check
     for file_id in files:
+        print "XXXXXXXXXXXXXXX", file_id
+        continue
         try:
             ifile = store.find(InternalFile, InternalFile.id == unicode(file_id)).one()
         except Exception as excep:
@@ -131,7 +134,10 @@ def import_files(store, submission, files):
                     (file_id, excep))
             raise errors.FileIdNotFound
 
-        ifile.internaltip_id = submission.id
+    return
+
+        # can be forced at "NOT NULL" now
+        # ifile.internaltip_id = submission.id
 
 def verify_fields_recursively(fields, wb_fields):
     for f in fields:
@@ -174,13 +180,16 @@ def verify_steps(steps, wb_steps):
     return verify_fields_recursively(indexed_fields, indexed_wb_fields)
 
 
-def db_finalize_submission(store, context_id, request, language):
+def db_finalize_submission(store, token, request, language):
+    # TODO In order to be more efficent, we have not query on Context,
+    # but get the GLApiCache
 
-    print "XXX", context_id
-
-    context = store.find(Context, Context.id == unicode(request['context_id'])).one()
+    context = store.find(Context, Context.id == token.context_associated).one()
     if not context:
-        log.err("Context requested: [%s] not found!" % request['context_id'])
+        # this can happen only if the context is removed
+        # between submission POST and PUT.. :) that's why is better just
+        # ignore this check, take che cached and wait the reference below fault
+        log.err("Context requested: [%s] not found!" % token.context_associated)
         raise errors.ContextIdNotFound
 
     submission = InternalTip()
@@ -190,7 +199,7 @@ def db_finalize_submission(store, context_id, request, language):
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
     submission.context_id = context.id
     submission.creation_date = datetime_now()
-    submission.mark = u'finalize'  # Finalized
+    submission.mark = u'finalize' # Finalized
 
     try:
         store.add(submission)
@@ -199,9 +208,24 @@ def db_finalize_submission(store, context_id, request, language):
         raise errors.InternalServerError("Unable to commit on DB")
 
     try:
-        import_files(store, submission, request['files'])
+        for filedesc in token.files_uploaded:
+
+            associated_f = InternalFile()
+            associated_f.name = filedesc['filename']
+            # aio, when we are going to implement file.description ?
+            associated_f.description = ""
+            associated_f.content_type = filedesc['content_type']
+            associated_f.mark = u'not processed'
+            associated_f.size = filedesc['body_len']
+            associated_f.internaltip_id = submission.id
+            associated_f.file_path = filedesc['encrypted_path']
+
+            log.debug("=> file associated %s|%s (%d bytes)" % (
+                associated_f.name, associated_f.content_type, associated_f.size))
+            store.add(associated_f)
+
     except Exception as excep:
-        log.err("Submission create: files import fail: %s" % excep)
+        log.err("Unable to create a DB entry for file! %s" % excep)
         raise excep
 
     try:
@@ -336,9 +360,9 @@ class SubmissionInstance(BaseHandler):
         PUT update the submission and finalize if requested.
         """
         @transact
-        def put_transact(store, token_id, request, language):
+        def put_transact(store, token, request):
 
-            status = db_finalize_submission(store, token_id, request, self.request.language)
+            status = db_finalize_submission(store, token, request, self.request.language)
 
             receipt = db_create_whistleblower_tip(store, status)
             status.update({'receipt': receipt})
@@ -346,8 +370,6 @@ class SubmissionInstance(BaseHandler):
             return status
 
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
-        import pprint
-        pprint.pprint(request.keys())
 
         # the .get method raise an exception if the token is invalid
         TokenList.get(token_id)
@@ -361,10 +383,10 @@ class SubmissionInstance(BaseHandler):
 
         token.validate(request)
 
-        # temporary check
-        assert request['finalize'], "Wrong GLClient logic"
+        # TODO remove from the GLClient/REST logic submission ['files']
+        request.pop('files')
 
-        status = yield put_transact(token_id, request, self.request.language)
+        status = yield put_transact(token, request)
 
         self.set_status(202) # Updated, also if submission if effectively created (201)
         self.finish(status)
