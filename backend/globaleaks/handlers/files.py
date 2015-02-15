@@ -18,10 +18,15 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
-from globaleaks.utils.utility import log, datetime_to_ISO8601
+from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
+<<<<<<< HEAD
 from globaleaks.security import access_tip, directory_traversal_check
+=======
+from globaleaks.security import access_tip
+from globaleaks.utils.token import TokenList
+>>>>>>> re-engineered file association at sumibssion time, based on token
 
 def serialize_file(internalfile):
 
@@ -51,18 +56,47 @@ def serialize_receiver_file(receiverfile):
 
     return file_desc
 
-# the point is: we've to change file register logic
-# file append can be associated directly to the internaltip
-# file upload, instead, has not yet an internaltip, but just a token
-# associated with an upcoming submission (that maybe will never be completed)
+
+def memory_file_serialize(uploaded_file):
+    """
+    This is the memory version of the function register_file_db below,
+    return the file serialization used by JQueryFileUploader to display
+    information about our file.
+    """
+    return {
+        'content_type' : unicode(uploaded_file['content_type']),
+        'creation_date': datetime_to_ISO8601(uploaded_file['creation_date']),
+        'id': u'00000000-0000-0000-0000-000000000000',
+            # 'id' is ignored, TODO align API/requsts.py
+        'mark': u'not processed',
+        'name' : unicode(uploaded_file['filename']),
+        'size': uploaded_file['body_len'],
+    }
+
+
 @transact
-def register_file_db(store, uploaded_file, filepath, internaltip_id):
+def register_file_db(store, uploaded_file, internaltip_id):
+    """
+    Remind: this is used only with fileApp - Tip append a new file,
+    for the submission section, we relay on Token to keep track of the
+    associated file, and in handlers/submission.py InternalFile(s) are
+    created.
+
+    :param uploaded_file: contain this struct of data:
+        {
+          'body': <closed file u'/home/qq/Dev/GlobaLeaks/backend/workingdir/files/encrypted_upload/lryZO8IlldGg3BS3.aes', mode 'w+b' at 0xb5b68498>,
+          'body_len': 667237,
+          'content_type': 'image/png',
+          'encrypted_path': u'/home/XYZ/Dev/GlobaLeaks/backend/workingdir/files/submission/lryZO8IlldGg3BS3.aes',
+          'filename': 'SteganographyIsImportant.png'
+        }
+    """
 
     internaltip = store.find(InternalTip,
                              InternalTip.id == internaltip_id).one()
 
     if not internaltip:
-        log.err("File submission register in a submission that's no more")
+        log.err("File associated to a non existent Internaltip!")
         raise errors.TipIdNotFound
 
     new_file = InternalFile()
@@ -71,8 +105,8 @@ def register_file_db(store, uploaded_file, filepath, internaltip_id):
     new_file.content_type = uploaded_file['content_type']
     new_file.mark = u'not processed'
     new_file.size = uploaded_file['body_len']
-    # new_file.internaltip_id = internaltip_id
-    new_file.file_path = filepath
+    new_file.internaltip_id = internaltip_id
+    new_file.file_path = uploaded_file['encrypted_path']
 
     store.add(new_file)
 
@@ -83,11 +117,10 @@ def register_file_db(store, uploaded_file, filepath, internaltip_id):
 
 def dump_file_fs(uploaded_file):
     """
-    @param files: a file
-    @return: a filepath linking the filename with the random
-             filename saved in the disk
+    @param files: the JQFU dict with file infos
+    @return: the uploaded_file dict, removed the old path (is moved) and updated
+            with the key 'encrypted_path', pointing to the AES encrypted file
     """
-
     encrypted_destination = os.path.join(GLSetting.submission_path,
                                          os.path.basename(uploaded_file['body_filepath']))
 
@@ -99,26 +132,14 @@ def dump_file_fs(uploaded_file):
     )
 
     shutil.move(uploaded_file['body_filepath'], encrypted_destination)
-    return encrypted_destination
 
+    # body_filepath is the tmp file path, is removed to avoid mistakes
+    uploaded_file.pop('body_filepath')
 
-@transact_ro
-def validate_itip_id(store, itip_id):
+    # update the uploaded_file dictionary to keep track of the info
+    uploaded_file['encrypted_path'] = encrypted_destination
+    return uploaded_file
 
-    print "something that has to be removed!"
-    return True
-
-    itip = store.find(InternalTip,
-                      InternalTip.id == itip_id).one()
-
-    if not itip:
-        raise errors.SubmissionIdNotFound
-
-    if itip.mark != u'submission':
-        log.err("Denied access on a concluded submission")
-        raise errors.SubmissionConcluded
-
-    return True
 
 @transact_ro
 def get_itip_id_by_wbtip_id(store, wb_tip_id):
@@ -132,51 +153,46 @@ def get_itip_id_by_wbtip_id(store, wb_tip_id):
     return wb_tip.internaltip.id
 
 
-class FileHandler(BaseHandler):
+
+
+# This is different from FileInstance, just because there are a different authentication requirements
+class FileAdd(BaseHandler):
+    """
+    WhistleBlower interface for upload a new file in an already completed submission
+    """
 
     @inlineCallbacks
-    def handle_file_upload(self, itip_id):
+    def handle_file_append(self, itip_id):
         result_list = []
         # TODO remind self: why is a list with just one element, and not a dict ?
 
-        # measure the operation of all the files (via browser can be selected
-        # more than 1), because all files are delivered in the same time.
         start_time = time.time()
 
-        import pprint
-        pprint.pprint(self.request.body.keys())
         uploaded_file = self.request.body
-
         uploaded_file['body'].avoid_delete()
         uploaded_file['body'].close()
 
         try:
             # First: dump the file in the filesystem,
             # and exception raised here would prevent the InternalFile recordings
-            filepath = yield threads.deferToThread(dump_file_fs, uploaded_file)
+            uploaded_file = yield threads.deferToThread(dump_file_fs, uploaded_file)
         except Exception as excep:
             log.err("Unable to save a file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
         try:
-            pass
             # Second: register the file in the database
-            registered_file = yield register_file_db(uploaded_file, filepath, itip_id)
+            registered_file = yield register_file_db(uploaded_file, itip_id)
         except Exception as excep:
-            log.err("Unable to register file in DB: %s" % excep)
+            log.err("Unable to register (append) file in DB: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
 
         registered_file['elapsed_time'] = time.time() - start_time
         result_list.append(registered_file)
 
+        assert len(result_list) == 1, "My assumption are wrong, remove the comment above"
+
         self.set_status(201) # Created
-        self.write({'files': result_list})
-
-
-# This is different from FileInstance, just because there are a different authentication requirements
-class FileAdd(FileHandler):
-    """
-    WhistleBlower interface for upload a new file in an already completed submission
-    """
+        self.finish({'files': result_list})
 
     @transport_security_check('wb')
     @authenticated('wb')
@@ -186,33 +202,90 @@ class FileAdd(FileHandler):
         Request: Unknown
         Response: Unknown
         Errors: TipIdNotFound
+
+        This is not manage by token, is unchanged by the D8 update,
+        because is an operation tip-established, and they can be
+        rate-limited in a different way.
         """
         itip_id = yield get_itip_id_by_wbtip_id(self.current_user.user_id)
 
-        # Call the master class method
-        yield self.handle_file_upload(itip_id)
+        yield self.handle_file_append(itip_id)
 
-class FileInstance(FileHandler):
+
+class FileInstance(BaseHandler):
     """
     WhistleBlower interface for upload a new file in a not yet completed submission
     """
 
+    @inlineCallbacks
+    def handle_file_upload(self, token):
+        result_list = []
+        # TODO remind self: why is a list with just one element, and not a dict ?
+
+        start_time = time.time()
+
+        uploaded_file = self.request.body
+        uploaded_file['body'].avoid_delete()
+        uploaded_file['body'].close()
+
+        try:
+            # dump_file_fs return the new filepath inside the dictionary
+            uploaded_file = yield threads.deferToThread(dump_file_fs, uploaded_file)
+
+            # update time related field and associate to the Token the file
+            uploaded_file['elapsed_time'] = time.time() - start_time
+            uploaded_file['creation_date'] = datetime_now()
+            token.associate_file(uploaded_file)
+
+            registered_file = memory_file_serialize(uploaded_file)
+        except Exception as excep:
+            log.err("Unable to save file in filesystem: %s" % excep)
+            raise errors.InternalServerError("Unable to accept files")
+
+        result_list.append(registered_file)
+
+        assert len(result_list) == 1, "My assumption are wrong, remove the comment above"
+
+        self.set_status(201) # Created
+        self.finish({'files': result_list})
+
+
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def post(self, token_id, *args):
+    def post(self, token_id):
         """
         Parameter: internaltip_id
         Request: Unknown
         Response: Unknown
         Errors: SubmissionIdNotFound, SubmissionConcluded
+
+        XXX:
+        The idea is to implement a GET on the file upload, in order
+        to GET a token for the file, and only if the captcha is
+        present, pressing "upload file" cause the 'modal' for the
+        captcha. At the moment, the only captcha verification is
+        applied to the submission
         """
-        print token_id
-        # yield validate_itip_id(submission_id)
 
+        TokenList.get(token_id)
+        token = TokenList.token_dict[token_id]
 
-        # Call the master class method
-        yield self.handle_file_upload(token_id)
+        log.debug("file upload with Token associated : %s" % token)
+        # token.timedelta_check() -- not done here, just in submission
+
+        # may raise an exception if the number of files uploaded has reach
+        # the limit number, TODO, the can report the size, and limit the
+        # TOTAL amount of byte bring from a single token, instead of having
+        # a maximum file size.
+
+        token.file_upload_usage()
+
+        # if useful... we can check something associated to:
+        # token.context_associated
+
+        # This upload depend from the token_id, not from InternalTip.id
+        yield self.handle_file_upload(token)
 
 
 @transact
