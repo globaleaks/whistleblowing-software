@@ -123,6 +123,9 @@ class Token(TempObj):
         # in the future, difficulty can be trimmed on context basis too
         self.context_associated = context_id
 
+        # to keep track of the file uploaded associated
+        self.files_uploaded = []
+
         self.token_id = rstr.xeger(r'[A-Za-z0-9]{42}')
 
         TempObj.__init__(self,
@@ -147,6 +150,9 @@ class Token(TempObj):
         log.debug("From a maximum of %d files, this token has %d slots" % (
             Token.MAXIMUM_FILE_PER_TOKEN, self.max_number_of_upload_files))
 
+    def associate_file(self, fileinfo):
+
+        self.files_uploaded.append(fileinfo)
 
     def touch(self):
         assert False, "touch() is disabled for Token, their validity cannot be postponed"
@@ -164,7 +170,6 @@ class Token(TempObj):
                                              test_desc if len(test_desc) else "No test")
 
         return token_string
-
 
     def serialize_token(self):
 
@@ -232,6 +237,7 @@ class Token(TempObj):
             self.graph_captcha = None
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         # not used now
         if problems_dict['graph_captcha'] and self.kind == 'upload':
             self.usages /= 2
@@ -240,6 +246,8 @@ class Token(TempObj):
 >>>>>>> implemented maximum number of token usage
 
 
+=======
+>>>>>>> re-engineered file association at sumibssion time, based on token
     def timedelta_check(self):
         """
         This timedelta check verify that the current time fit between
@@ -321,10 +329,10 @@ class Token(TempObj):
                 self.human_captcha_check(request['human_solution'])
 
             if self.proof_of_work is not False:
-                print "PoW!, NYI", self.proof_of_work
+                print "PoW!, NotYetImplemented", self.proof_of_work
 
             if self.graph_captcha is not False:
-                print "GC!, NYI", self.graph_captcha
+                print "GC!, NotYetImplemented", self.graph_captcha
 
         except errors.GLException as gle:
             log.debug("Error triggered in Token validation, usages %d => %d" % (
