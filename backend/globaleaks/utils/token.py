@@ -82,17 +82,21 @@ reactor = None
 
 class Token(TempObj):
 
-    existing_kind = ['upload', 'submission']
+    existing_kind = [ 'submission' ]
     SUBMISSION_MINIMUM_SECONDS = 15
-    UPLOAD_MINIMUM_SECONDS = 5
     MAXIMUM_AVAILABILITY = 4 * SUBMISSION_MINIMUM_SECONDS
             # TODO talk in an issue
     MAXIMUM_USAGES_FILEUPLOAD = 10
+    MAXIMUM_FILE_PER_TOKEN = 20
 
     def __init__(self, token_kind, context_id, debug=False):
         """
         token_kind is 'file' or 'submission' right now, will be
             enhanced in typology later. is used an Assertion below.
+
+        REMIND: at the moment only 'submission' kind exist, because
+            file is never requested before start the actual upload.
+
         debug = I totally love verbose debugging when we can used it :P
         """
         assert token_kind in Token.existing_kind, "unsupported kind: %s" % token_kind
@@ -102,14 +106,14 @@ class Token(TempObj):
         # both 'validity' need to be expressed in seconds
         self.end_validity_secs = Token.MAXIMUM_AVAILABILITY
 
-        if self.kind == 'submission':
-            self.start_validity_secs = Token.SUBMISSION_MINIMUM_SECONDS
-            self.usages = 1
-        else:
-            self.start_validity_secs = Token.UPLOAD_MINIMUM_SECONDS
-            self.usages = Token.MAXIMUM_USAGES_FILEUPLOAD
+        self.start_validity_secs = Token.SUBMISSION_MINIMUM_SECONDS
+        # This mean, the user can fail three time before the token get invalid
+        self.usages = 3
+        self.max_number_of_upload_files = Token.MAXIMUM_FILE_PER_TOKEN
 
-        # TODO uncomment at the end of the tests and save dev life
+        # Remind: this is just for developer, because if a clean house
+        # is a sign of a waste life, a Token object without shortcut
+        # is a sign of a psyco life.
         if GLSetting.devel_mode:
             self.start_validity_secs = 0
 
@@ -128,6 +132,21 @@ class Token(TempObj):
                          # seconds of validity:
                          self.start_validity_secs + self.end_validity_secs,
                          reactor)
+
+    def file_upload_usage(self):
+        """
+        Every time a file is uploaded, is called this function and
+        decremented a counter, if the maximum amount is reached, the
+        upload is forbidden.
+
+        :return: None or raise an error
+        """
+        if not self.max_number_of_upload_files:
+            raise errors.TokenRequestError("Too much files uploaded with this token")
+        self.max_number_of_upload_files -=1
+        log.debug("From a maximum of %d files, this token has %d slots" % (
+            Token.MAXIMUM_FILE_PER_TOKEN, self.max_number_of_upload_files))
+
 
     def touch(self):
         assert False, "touch() is disabled for Token, their validity cannot be postponed"
@@ -210,10 +229,6 @@ class Token(TempObj):
         else:
             self.graph_captcha = None
 
-        # TODO review, file upload is changed
-        if problems_dict['graph_captcha'] and self.kind == 'upload':
-            self.usages /= 2
-
 
 
     def timedelta_check(self):
@@ -276,26 +291,41 @@ class Token(TempObj):
         pass
 
 
-    def validate(self, submitted_entities):
+    def validate(self, request):
         """
-        @submitted_entities is a dict, this is the default values: {
-            'token_object' : None,
-            'g_captcha' : None,
-            'h_captcha' : None,
-            'hashcash' : None
-        }
+        @request is the submission, it contains the
+        *_solution field, if missing, is because is not
+        yet implemented.
+        """
 
-        """
+        if not self.usages:
+            TokenList.del_Token(self.id)
+            raise errors.TokenRequestError("Too many tries: Token deleted")
+        else:
+            log.debug("Token has %d available tries" % self.usages)
+
         # any of these can raise an exception if check fail
+        try:
+            self.timedelta_check()
 
-        self.timedelta_check()
-        self.human_captcha_check(submitted_entities['h_captcha'])
-        self.graph_captcha_check(submitted_entities['g_captcha'])
-        self.hashcash_check(submitted_entities['hashcash'])
+            if self.human_captcha is not False:
+                self.human_captcha_check(request['human_solution'])
+
+            if self.proof_of_work is not False:
+                print "PoW!, NYI", self.proof_of_work
+
+            if self.graph_captcha is not False:
+                print "GC!, NYI", self.graph_captcha
+
+        except errors.GLException as gle:
+            log.debug("Error triggered in Token validation, usages %d => %d" % (
+                self.usages, self.usages -1))
+            self.usages -= 1
+            raise gle
+        except KeyError as kerr:
+            print "!!!", kerr
+            import pdb; pdb.set_trace()
+            raise kerr
 
         # if the code flow reach here, the token is validated
         log.debug("Token validated properly")
-
-
-
-

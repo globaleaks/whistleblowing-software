@@ -355,25 +355,18 @@ class SubmissionInstance(BaseHandler):
 
         log.debug("Token received: %s" % token)
         # raise an error if the usage is too early for the token
-        token.timedelta_check()
 
         if not token.context_associated == context_id:
             raise errors.InvalidInputFormat("Token context unaligned with REST url")
 
-        assert request['finalize'], "Wrong GLClient logic"
+        token.validate(request)
 
-        # check if token has been properly solved
-        if token.graph_captcha is not False:
-            print "GC!, NYI", token.graph_captcha
-        if token.proof_of_work is not False:
-            print "PoW!, NYI", token.proof_of_work
-        if token.human_captcha is not False:
-            print "checking HC:", token.human_captcha
-            token.human_captcha_check(request['human_solution'])
+        # temporary check
+        assert request['finalize'], "Wrong GLClient logic"
 
         status = yield put_transact(token_id, request, self.request.language)
 
-        self.set_status(202) # Updated --> created
+        self.set_status(202) # Updated, also if submission if effectively created (201)
         self.finish(status)
 
 
