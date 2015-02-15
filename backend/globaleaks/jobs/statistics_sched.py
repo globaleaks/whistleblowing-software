@@ -149,8 +149,21 @@ class ResourceChecker(GLJob):
         free_bytes = statvfs.f_frsize * statvfs.f_bavail
         return free_bytes
 
+    @classmethod
+    def get_free_shm(cls):
+        statvfs = os.statvfs(GLSetting.ramdisk_path)
+        free_bytes = statvfs.f_frsize * statvfs.f_bavail
+        return free_bytes
+
     def operation(self):
         free_bytes = ResourceChecker.get_free_space()
 
         alarm = Alarm()
         alarm.report_disk_usage(free_bytes)
+
+        ramdisk_space = ResourceChecker.get_free_shm()
+        log.debug("Disk free byte %d, Ramdisk free bytes: %d" %
+              (free_bytes, ramdisk_space)
+        )
+        # TODO also the lacking of space in the ramdisk/shm can be deadly for the node
+
