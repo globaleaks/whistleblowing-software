@@ -8,7 +8,7 @@ from globaleaks.settings import transact, transact_ro
 from globaleaks.models import *
 from globaleaks.utils.utility import datetime_null
 
-class TestTransaction(helpers.TestGLWithPopulatedDB):
+class TestTransaction(helpers.TestGL):
 
     @transact
     def _transaction_with_exception(self, store):
@@ -69,7 +69,7 @@ class TestTransaction(helpers.TestGLWithPopulatedDB):
  
         receiver = Receiver(r)
         receiver.user_id = receiver_user.id
-        receiver.gpg_key_status = Receiver._gpg_types[0] # this is a required field!
+        receiver.gpg_key_status = u'disabled'
         receiver.mail_address = self.dummyReceiver_1['mail_address']
         store.add(receiver)
 
@@ -86,7 +86,7 @@ class TestTransaction(helpers.TestGLWithPopulatedDB):
 
         receiver = Receiver(r)
         receiver.user_id = receiver_user.id
-        receiver.gpg_key_status = Receiver._gpg_types[0] # this is a required field!
+        receiver.gpg_key_status = u'disabled'
         receiver.mail_address = self.dummyReceiver_1['mail_address']
         store.add(receiver)
 

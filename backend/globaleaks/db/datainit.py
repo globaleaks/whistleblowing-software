@@ -15,19 +15,19 @@ from globaleaks.utils.utility import datetime_now, datetime_null, log
 from globaleaks.third_party import rstr
 from globaleaks.models import Node, ApplicationData
 
-def opportunistic_appdata_init():
+def load_appdata():
     """
     Setup application data evaluating the presence of the following paths:
         - production data path: /usr/share/globaleaks/glclient/data/
-        - development data paths: ../client/app/data/
-                                  ../../client/app/data/
+        - development data paths: ../client/build/data/
+                                  ../client/app/data/
     """
 
     # Fields and applicative data initialization
 
     fields_l10n = [ "/usr/share/globaleaks/glclient/data/appdata_l10n.json",
-                    "../../../client/app/data/appdata_l10n.json",
-                    "../../../client/build/data/appdata_l10n.json"]
+                    "../../../client/build/data/appdata_l10n.json",
+                    "../../../client/app/data/appdata_l10n.json"]
 
     appdata_dict = None
 
@@ -51,24 +51,30 @@ def opportunistic_appdata_init():
 
 
 @transact
-def initialize_node(store, results, only_node, appdata):
+def init_appdata(store, result, appdata_dict):
+    # Drop old appdata
+    store.find(models.ApplicationData).remove()
+
+    # Initialize the default data table evry time with
+    # fresh data and fresh translations
+    appdata = models.ApplicationData()
+    appdata.fields = appdata_dict['fields']
+    appdata.version = appdata_dict['version']
+    store.add(appdata)
+
+
+@transact
+def init_db(store, result, node_dict, appdata_dict):
     """
     TODO refactor with languages the email_template, develop a dedicated
     function outside the node, and inquire fucking YHWH about the
     callbacks existence/usage
     """
 
-    node = models.Node(only_node)
+    node = models.Node(node_dict)
 
-    log.debug("Inizializing ApplicationData")
-
-    new_appdata = ApplicationData()
-    new_appdata.fields = appdata['fields']
-    new_appdata.version = appdata['version']
-    store.add(new_appdata)
-
-    for k in appdata['node']:
-        setattr(node, k, appdata['node'][k])
+    for k in appdata_dict['node']:
+        setattr(node, k, appdata_dict['node'][k])
 
     node.languages_enabled = GLSetting.defaults.languages_enabled
 
@@ -117,20 +123,12 @@ def initialize_node(store, results, only_node, appdata):
     # Those fields are sets as default in order to show to the Admin the various
     # 'variables' used in the template.
 
-    for k in appdata['templates']:
-
-        # Todo handle pgp_expiration_alert and pgp_expiration_notice already included in client/app/data/txt
-        # and internationalized with right support on backend db.
-        if k in appdata['templates']:
-            setattr(notification, k, appdata['templates'][k])
-
-    # Todo handle pgp_expiration_alert and pgp_expiration_notice already included in client/app/data/txt
-    # and internationalized with right support on backend db.
+    for k in appdata_dict['templates']:
+        setattr(notification, k, appdata_dict['templates'][k])
 
     store.add(notification)
 
-@transact_ro
-def import_memory_variables(store):
+def db_import_memory_variables(store):
     """
     to get fast checks, import (same) of the Node variable in GLSetting,
     this function is called every time that Node is updated.
@@ -148,9 +146,10 @@ def import_memory_variables(store):
         GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
 
         GLSetting.memory_copy.allow_unencrypted = node.allow_unencrypted
+        GLSetting.memory_copy.allow_iframes_inclusion = node.allow_iframes_inclusion
 
         GLSetting.memory_copy.exception_email = node.exception_email
-        GLSetting.memory_copy.default_language = node.default_language
+        GLSetting.memory_copy.language = node.default_language
         GLSetting.memory_copy.default_timezone = node.default_timezone
 
         # Email settings are copyed because they are used when an exception raises
@@ -164,9 +163,16 @@ def import_memory_variables(store):
         GLSetting.memory_copy.notif_security = notif.security
         GLSetting.memory_copy.notif_source_name = notif.source_name
         GLSetting.memory_copy.notif_source_email = notif.source_email
+        GLSetting.memory_copy.receiver_notif_enable = not notif.disable_receivers_notification_emails
+        GLSetting.memory_copy.admin_notif_enable = not notif.disable_admin_notification_emails
+
 
     except Exception as e:
         raise errors.InvalidInputFormat("Cannot import memory variables: %s" % e)
+
+@transact_ro
+def import_memory_variables(*args):
+    return db_import_memory_variables(*args)
 
 @transact
 def apply_cli_options(store):
@@ -179,9 +185,10 @@ def apply_cli_options(store):
 
     verb = "Hardwriting"
     accepted = {}
-    if GLSetting.unchecked_tor_input.has_key('hostname_tor_content'):
+    if 'hostname_tor_content' in GLSetting.unchecked_tor_input:
         composed_hs_url = 'http://%s' % GLSetting.unchecked_tor_input['hostname_tor_content']
-        composed_t2w_url = 'https://%s.tor2web.org' % GLSetting.unchecked_tor_input['hostname_tor_content']
+        hs = GLSetting.unchecked_tor_input['hostname_tor_content'].split('.onion')[0]
+        composed_t2w_url = 'https://%s.tor2web.org' % hs
 
         if not (re.match(requests.hidden_service_regexp, composed_hs_url) or \
                 re.match(requests.https_url_regexp, composed_t2w_url)):
@@ -198,7 +205,7 @@ def apply_cli_options(store):
                 accepted.update({ 'public_site' : unicode(composed_t2w_url) })
                 print "[+] %s public site in the DB: %s" % (verb, composed_t2w_url)
 
-            verb = "Overwritting"
+            verb = "Overwriting"
 
     if GLSetting.cmdline_options.public_website:
         if not re.match(requests.https_url_regexp, GLSetting.cmdline_options.public_website):

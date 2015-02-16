@@ -5,10 +5,15 @@ import random
 
 from twisted.internet.defer import inlineCallbacks
 from twisted.internet import task
-from globaleaks.tests import helpers
+
 from globaleaks import anomaly
-from globaleaks.handlers.statistics import get_stats, get_anomaly_history, delete_anomaly_history, delete_weekstats_history, AnomaliesCollection
-from globaleaks.jobs.statistics_sched import StatisticsSchedule, AnomaliesSchedule, ResourceChecker, save_anomalies, save_statistics
+from globaleaks.tests import helpers
+from globaleaks.tests.test_anomaly import pollute_events_for_testing
+from globaleaks.handlers.admin.statistics import get_stats, \
+    get_anomaly_history,  delete_anomaly_history, delete_weekstats_history, \
+    AnomaliesCollection
+from globaleaks.jobs.statistics_sched import StatisticsSchedule, \
+    AnomaliesSchedule, ResourceChecker, save_anomalies, save_statistics
 
 anomaly.reactor = task.Clock()
 
@@ -16,7 +21,7 @@ class TestStatistics(helpers.TestGL):
     """
     This test mostly the function in anomaly.py Alarm object
     """
-    supported_event = anomaly.Alarm.OUTCOME_ANOMALY_MAP.keys()
+    supported_event = anomaly.Alarm.OUTCOMING_ANOMALY_MAP.keys()
 
     @inlineCallbacks
     def test_save_anomalies(self):
@@ -26,7 +31,7 @@ class TestStatistics(helpers.TestGL):
 
         # start test
         ANOMALIES_AMOUNT = 10
-        anomaly.pollute_Event_for_testing(ANOMALIES_AMOUNT)
+        pollute_events_for_testing(ANOMALIES_AMOUNT)
 
         anomaly.Alarm.compute_activity_level()
 

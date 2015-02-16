@@ -21,6 +21,9 @@
     },
     "whistleblowing_button": {
       "en": "Blow the whistle"
+    },
+    "header_title_submissionpage": {
+      "en": "Blow the whistle"
     }
   },
   "fields" : [
@@ -32,9 +35,9 @@
         {
           "label": { "en": "Short title" },
           "type": "inputbox",
-          "preview": false,
-          "description": {"en": "Describe your submission with a few words"},
-          "hint": {"en": ""},
+          "preview": true,
+          "hint": {"en": "Describe your submission with a few words"},
+          "description": {"en": ""},
           "multi_entry": false,
           "stats_enabled": false,
           "required": false,
@@ -44,11 +47,11 @@
           "x": 0
         },
         {
-          "label": { "en": "Short title" },
-          "type": "inputbox",
+          "label": { "en": "Full description" },
+          "type": "textarea",
           "preview": false,
-          "description": {"en": "Describe the details of the submission"},
-          "hint": {"en": ""},
+          "hint": {"en": "Describe the details of the submission"},
+          "description": {"en": ""},
           "multi_entry": false,
           "stats_enabled": false,
           "required": false,
@@ -59,10 +62,10 @@
         },
         {
           "label": { "en": "Files description" },
-          "type": "inputbox",
+          "type": "textarea",
           "preview": false,
-          "description": {"en": "Describe the attachments of the submission"},
-          "hint": {"en": ""},
+          "hint": {"en": "Describe the attachments of the submission"},
+          "description": {"en": ""},
           "multi_entry": false,
           "stats_enabled": false,
           "required": false,
@@ -75,8 +78,8 @@
           "label": { "en": "Files" },
           "type": "fileupload",
           "preview": false,
-          "description": {"en": "Attach files relevant to the submission"},
-          "hint": {"en": ""},
+          "hint": {"en": "Attach files relevant to the submission"},
+          "description": {"en": ""},
           "multi_entry": true,
           "stats_enabled": false,
           "required": false,
@@ -98,7 +101,7 @@
           "preview": false,
           "description": {"en": ""},
           "hint": {"en": ""},
-          "multi_entry": true,
+          "multi_entry": false,
           "stats_enabled": false,
           "required": true,
           "children": [],

@@ -9,13 +9,15 @@ var GLClient = angular.module('GLClient', [
     'ui.bootstrap',
     'ui.sortable',
     'ang-drag-drop',
+    'monospaced.elastic',
     'resourceServices',
     'submissionUI',
-    'GLClientFilters',
     'blueimp.fileupload',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'GLClientFilters'
   ]).
-  config(['$routeProvider', '$translateProvider', '$tooltipProvider', function($routeProvider, $translateProvider, $tooltipProvider) {
+  config(['$routeProvider', '$translateProvider', '$tooltipProvider',
+    function($routeProvider, $translateProvider, $tooltipProvider) {
 
     $routeProvider.
       when('/wizard', {
@@ -27,7 +29,7 @@ var GLClient = angular.module('GLClient', [
       when('/submission', {
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
-        header_title: 'Blow the Whistle',
+        header_title: '',
         header_subtitle: ''
       }).
       when('/receipt', {
@@ -65,6 +67,12 @@ var GLClient = angular.module('GLClient', [
         controller: 'ReceiverTipsCtrl',
         header_title: 'Receiver Interface',
         header_subtitle: 'Your Tips'
+      }).
+      when('/receiver/activities', {
+        templateUrl: 'views/receiver/activities.html',
+        controller: 'ReceiverNotificationCtrl',
+        header_title: 'Receiver Interface',
+        header_subtitle: 'Recent Activities'
       }).
       when('/admin/landing', {
         templateUrl: 'views/admin/landing.html',
@@ -132,7 +140,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration Interface',
         header_subtitle: 'Files Overview'
       }).
-      when('/admin/anomalies/', {
+      when('/admin/anomalies', {
         templateUrl: 'views/admin/anomalies.html',
         controller: 'AnomaliesCtrl',
         header_title: 'Administration Interface',
@@ -144,11 +152,29 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration Interface',
         header_subtitle: 'System Stats'
       }).
-      when('/admin/activities/', {
+      when('/admin/activities', {
         templateUrl: 'views/admin/activities.html',
         controller: 'ActivitiesCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Recent Activities'
+      }).
+      when('/admin', {
+        templateUrl: 'views/admin.html',
+        controller: 'LoginCtrl',
+        header_title: 'Login',
+        header_subtitle: ''
+      }).
+      when('/embedded/submission', {
+        templateUrl: 'views/embedded/submission.html',
+        controller: 'EmbeddedSubmissionCtrl',
+        header_title: '',
+        header_subtitle: ''
+      }).
+      when('/embedded/receipt', {
+        templateUrl: 'views/embedded/receipt.html',
+        controller: 'EmbeddedReceiptCtrl',
+        header_title: '',
+        header_subtitle: ''
       }).
       when('/login', {
         templateUrl: 'views/login.html',
@@ -195,7 +221,6 @@ var GLClient = angular.module('GLClient', [
            ((e.which || e.keyCode) == 82 && (e.ctrlKey || e.metaKey))) {  /* (ctrl or meta) + r */ 
            e.preventDefault();
            $rootScope.$broadcast("REFRESH");
-           $route.reload();
        }
     };
 
@@ -217,8 +242,6 @@ var GLClient = angular.module('GLClient', [
       $.removeCookie('cookiesenabled');
     }
 
-    /* initialization of privacy detection variables */
-    $rootScope.privacy = 'unknown';
     $rootScope.anonymous = false;
-
+    $rootScope.embedded = false;
 }]);

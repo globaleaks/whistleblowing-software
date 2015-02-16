@@ -8,10 +8,9 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.handlers.admin import db_get_context_fields
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import Receiver, Context, ReceiverTip, ReceiverFile, Message, Node
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node, EventLogs
 from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, gpg_options_parse
 from globaleaks.settings import transact, transact_ro, GLSetting
@@ -19,7 +18,7 @@ from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, acquire_bool, datetime_to_ISO8601, datetime_now
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
-def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
+def receiver_serialize_receiver(receiver, language):
     ret_dict = {
         "id": receiver.id,
         "name": receiver.name,
@@ -31,18 +30,20 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
         "gpg_key_remove": False,
         "gpg_key_armor": receiver.gpg_key_armor,
+        "gpg_key_expiration": datetime_to_ISO8601(receiver.gpg_key_expiration),
         "gpg_key_status": receiver.gpg_key_status,
-        "gpg_enable_notification": receiver.gpg_enable_notification,
         "tip_notification" : receiver.tip_notification,
         "file_notification" : receiver.file_notification,
         "comment_notification" : receiver.comment_notification,
         "message_notification" : receiver.message_notification,
+        "ping_notification": receiver.ping_notification,
         "mail_address": receiver.mail_address,
+        "ping_mail_address": receiver.ping_mail_address,
         "contexts": [c.id for c in receiver.contexts],
-        "password": u'',
-        "old_password": u'',
-        'language': receiver.user.language,
-        'timezone': receiver.user.timezone
+        "password": u"",
+        "old_password": u"",
+        "language": receiver.user.language,
+        "timezone": receiver.user.timezone
     }
 
     for context in receiver.contexts:
@@ -50,9 +51,27 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
 
+def serialize_event(evnt):
+    """
+    At the moment is not important to extract relevant information from the event_description but
+    in the future it would be a nice improvement to get for example the beginning of the comment,
+    or the filename/filetype, etc)
+    """
+
+    ret_dict = {
+        'id': evnt.id,
+        "creation_date": datetime_to_ISO8601(evnt.creation_date),
+        'title': evnt.title,
+        'mail_sent': evnt.mail_sent,
+        'tip_id': evnt.receivertip_id
+    }
+    return ret_dict
+
+
+
 @transact_ro
-def get_receiver_settings(store, receiver_id, language=GLSetting.memory_copy.default_language):
-    receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+def get_receiver_settings(store, receiver_id, language):
+    receiver = store.find(Receiver, Receiver.id == receiver_id).one()
 
     if not receiver:
         raise errors.ReceiverIdNotFound
@@ -60,14 +79,18 @@ def get_receiver_settings(store, receiver_id, language=GLSetting.memory_copy.def
     return receiver_serialize_receiver(receiver, language)
 
 @transact
-def update_receiver_settings(store, receiver_id, request, language=GLSetting.memory_copy.default_language):
-    receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+def update_receiver_settings(store, receiver_id, request, language):
+    """
+    TODO: remind that 'description' is imported, but is not permitted
+        by UI to be modified right now.
+    """
+    receiver = store.find(Receiver, Receiver.id == receiver_id).one()
     receiver.description[language] = request['description']
 
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    receiver.user.language = request.get('language', GLSetting.memory_copy.default_language)
+    receiver.user.language = request.get('language', GLSetting.memory_copy.language)
     receiver.user.timezone = request.get('timezone', GLSetting.memory_copy.default_timezone)
 
     new_password = request['password']
@@ -85,15 +108,22 @@ def update_receiver_settings(store, receiver_id, request, language=GLSetting.mem
         receiver.user.password_change_date = datetime_now()
 
     mail_address = request['mail_address']
+    ping_mail_address = request['ping_mail_address']
 
     if mail_address != receiver.mail_address:
-        log.info("Email change %s => %s" % (receiver.mail_address, mail_address))
-        receiver.mail_address = mail_address
+        log.err("Email cannot be change by receiver, only by admin " \
+                "%s rejected. Kept %s" % (receiver.mail_address, mail_address))
+
+    if ping_mail_address != receiver.ping_mail_address:
+        log.info("Ping email going to be update, %s => %s" % (
+            receiver.ping_mail_address, ping_mail_address))
+        receiver.ping_mail_address = ping_mail_address
 
     receiver.tip_notification = acquire_bool(request['tip_notification'])
     receiver.message_notification = acquire_bool(request['message_notification'])
     receiver.comment_notification = acquire_bool(request['comment_notification'])
     receiver.file_notification = acquire_bool(request['file_notification'])
+    receiver.ping_notification = acquire_bool(request['ping_notification'])
 
     gpg_options_parse(receiver, request)
 
@@ -147,7 +177,7 @@ class ReceiverInstance(BaseHandler):
 
 
 @transact_ro
-def get_receiver_tip_list(store, receiver_id, language=GLSetting.memory_copy.default_language):
+def get_receiver_tip_list(store, receiver_id, language):
 
     rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
     rtiplist.order_by(Desc(ReceiverTip.creation_date))
@@ -232,7 +262,65 @@ class TipsCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        answer = yield get_receiver_tip_list(self.current_user.user_id, self.request.language)
+        answer = yield get_receiver_tip_list(self.current_user.user_id,
+            self.request.language)
 
         self.set_status(200)
         self.finish(answer)
+
+@transact
+def get_receiver_notif(store, receiver_id, language):
+    """
+    The returned struct contains two lists, recent activities
+    (latest files, comments, "activities" in general), and
+    recent tips.
+    """
+    eventlst = store.find(EventLogs, EventLogs.receiver_id == receiver_id)
+    eventlst.order_by(Desc(EventLogs.creation_date))
+
+    ret = {
+        'activities': [],
+        'tips': []
+    }
+
+    for evnt in eventlst:
+
+        if evnt.event_reference['kind'] != u'Tip':
+            ret['activities'].append(serialize_event(evnt))
+        else:
+            ret['tips'].append(serialize_event(evnt))
+
+    return ret
+
+@transact
+def delete_receiver_notif(store, receiver_id):
+
+    te = store.find(EventLogs, EventLogs.receiver_id == receiver_id)
+    log.debug("Removing %d for receiver %s" % (
+        te.count(),
+        receiver_id
+    ))
+    te.remove()
+
+class NotificationCollection(BaseHandler):
+    """
+    This interface return a list of the notification for the receiver,
+    is used in the landing page, and want be a list of the recent
+    activities for the journalist/rcvr.
+    """
+
+    @transport_security_check('receiver')
+    @authenticated('receiver')
+    @inlineCallbacks
+    def get(self):
+
+        display_event = yield get_receiver_notif(self.current_user.user_id, self.request.language)
+        self.set_status(200) # Success
+        self.finish(display_event)
+
+    @inlineCallbacks
+    def delete(self):
+        # support DELETE /receiver/notification/(activities|tips) for mass-selective delete ?
+
+        yield delete_receiver_notif(self.current_user.user_id)
+        self.set_status(202) # Updated

@@ -15,26 +15,35 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 
+from gnupg import GPG
+
+# Monkeypathing for unit testing  in order to
+# prevent mail activities
+from globaleaks.utils import mailutils
+def sendmail_mock(**args):
+    return defer.succeed(None)
+mailutils.sendmail = sendmail_mock
+
 from globaleaks import db, models, security, anomaly
-from globaleaks.db.datainit import opportunistic_appdata_init, import_memory_variables
+from globaleaks.db.datainit import load_appdata, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
-from globaleaks.handlers.base import GLApiCache
-from globaleaks.handlers.admin import create_context, update_context, create_receiver, db_get_context_steps
+from globaleaks.handlers.base import GLApiCache, GLHTTPConnection
+from globaleaks.handlers.admin import create_context, get_context, update_context, create_receiver, db_get_context_steps
 from globaleaks.handlers.admin.field import create_field
+from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
-from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched
+from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched, mailflush_sched
 from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.plugins import notification
 from globaleaks.settings import GLSetting, transact, transact_ro
+from globaleaks.security import GLSecureTemporaryFile
+from globaleaks.third_party import rstr
 from globaleaks.utils import mailutils
 from globaleaks.utils.utility import datetime_null, uuid4, log
-from globaleaks.third_party import rstr
-from globaleaks.security import GLSecureTemporaryFile
 
 from . import TEST_DIR
 
 ## constants
-
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
 VALID_SALT1 = security.get_salt(rstr.xeger(r'[A-Za-z0-9]{56}'))
@@ -45,14 +54,18 @@ INVALID_PASSWORD = u'antani'
 
 FIXTURES_PATH = os.path.join(TEST_DIR, 'fixtures')
 
+with open(os.path.join(TEST_DIR, 'keys/valid_pgp_key1.txt')) as pgp_file:
+    VALID_PGP_KEY1 = pgp_file.read()
 
-with open(os.path.join(TEST_DIR, 'valid_pgp_key.txt')) as pgp_file:
-    VALID_PGP_KEY = pgp_file.read()
+with open(os.path.join(TEST_DIR, 'keys/valid_pgp_key2.txt')) as pgp_file:
+    VALID_PGP_KEY2 = pgp_file.read()
+
+with open(os.path.join(TEST_DIR, 'keys/expired_pgp_key.txt')) as pgp_file:
+    EXPIRED_PGP_KEY = pgp_file.read()
 
 transact.tp = FakeThreadPool()
 authentication.reactor = task.Clock()
 anomaly.reactor = task.Clock()
-anomaly.notification = False
 
 class UTlog:
 
@@ -67,7 +80,6 @@ class UTlog:
 log.err = UTlog.err
 log.debug = UTlog.debug
 
-
 def export_fixture(*models):
     """
     Return a valid json object holding all informations handled by the fields.
@@ -80,6 +92,7 @@ def export_fixture(*models):
         'fields': model.dict(),
         'class': model.__class__.__name__,
     } for model in models], default=str, indent=2)
+
 
 @transact
 def import_fixture(store, fixture):
@@ -106,7 +119,6 @@ class TestGL(unittest.TestCase):
         GLSetting.set_devel_mode()
         GLSetting.logging = None
         GLSetting.scheduler_threadpool = FakeThreadPool()
-        GLSetting.memory_copy.allow_unencrypted = True
         GLSetting.sessions = {}
         GLSetting.failed_login_attempts = 0
 
@@ -123,20 +135,15 @@ class TestGL(unittest.TestCase):
 
         self.setUp_dummy()
 
-        # This mocks out the MailNotification plugin so it does not actually
-        # require to perform a connection to send an email.
-        # XXX we probably want to create a proper mock of the ESMTPSenderFactory
-        def mail_flush_mock(self, from_address, to_address, message_file, event):
-            return defer.succeed(None)
-
-        notification.MailNotification.mail_flush = mail_flush_mock
-
         yield db.create_tables(self.create_node)
 
         for fixture in getattr(self, 'fixtures', []):
             yield import_fixture(fixture)
 
-        import_memory_variables()
+        yield import_memory_variables()
+
+        # overrid of imported memory variables
+        GLSetting.memory_copy.allow_unencrypted = True
 
         anomaly.Alarm.reset()
         anomaly.EventTrackQueue.reset()
@@ -149,7 +156,6 @@ class TestGL(unittest.TestCase):
         self.dummyFieldTemplates = dummyStuff.dummyFieldTemplates
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
-        self.dummyNotification = dummyStuff.dummyNotification
         self.dummyReceiverUser_1 = self.get_dummy_receiver_user('receiver1')
         self.dummyReceiverUser_2 = self.get_dummy_receiver_user('receiver2')
         self.dummyReceiver_1 = self.get_dummy_receiver('receiver1') # the one without PGP
@@ -157,10 +163,10 @@ class TestGL(unittest.TestCase):
 
         if self.encryption_scenario == 'MIXED':
             self.dummyReceiver_1['gpg_key_armor'] = None
-            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY
+            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY1
         elif self.encryption_scenario == 'ALL_ENCRYPTED':
-            self.dummyReceiver_1['gpg_key_armor'] = VALID_PGP_KEY
-            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY
+            self.dummyReceiver_1['gpg_key_armor'] = VALID_PGP_KEY1
+            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY2
         elif self.encryption_scenario == 'ALL_PLAINTEXT':
             self.dummyReceiver_1['gpg_key_armor'] = None
             self.dummyReceiver_2['gpg_key_armor'] = None
@@ -193,6 +199,27 @@ class TestGL(unittest.TestCase):
         new_r['description'] =  'am I ignored ? %s' % descpattern
         return new_r
 
+    def get_dummy_field(self):
+        dummy_f = {
+            'is_template': True,
+            'step_id': '',
+            'fieldgroup_id': '',
+            'label': u'antani',
+            'type': u'inputbox',
+            'preview': False,
+            'description': u"field description",
+            'hint': u'field hint',
+            'multi_entry': False,
+            'stats_enabled': False,
+            'required': False,
+            'options': [],
+            'children': [],
+            'y': 1,
+            'x': 1,
+        }
+
+        return dummy_f
+
     @defer.inlineCallbacks
     def get_dummy_submission(self, context_id):
         """
@@ -205,9 +232,9 @@ class TestGL(unittest.TestCase):
         dummySubmissionDict = {}
         dummySubmissionDict['context_id'] = context_id
         dummySubmissionDict['wb_steps'] = yield fill_random_fields(context_id)
-        dummySubmissionDict['receivers'] = []
+        dummySubmissionDict['receivers'] = (yield get_context(context_id, 'en'))['receivers']
         dummySubmissionDict['files'] = []
-        dummySubmissionDict['finalize'] = True
+        dummySubmissionDict['finalize'] = False
 
         defer.returnValue(dummySubmissionDict)
 
@@ -351,14 +378,14 @@ class TestGLWithPopulatedDB(TestGL):
         receivers_ids = []
 
         # fill_data/create_receiver
-        self.dummyReceiver_1 = yield create_receiver(self.dummyReceiver_1)
+        self.dummyReceiver_1 = yield create_receiver(self.dummyReceiver_1, 'en')
         receivers_ids.append(self.dummyReceiver_1['id'])
-        self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2)
+        self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2, 'en')
         receivers_ids.append(self.dummyReceiver_2['id'])
 
         # fill_data/create_context
         self.dummyContext['receivers'] = receivers_ids
-        self.dummyContext = yield create_context(self.dummyContext)
+        self.dummyContext = yield create_context(self.dummyContext, 'en')
 
         # fill_data: create cield templates
         for idx, field in enumerate(self.dummyFieldTemplates):
@@ -385,25 +412,19 @@ class TestGLWithPopulatedDB(TestGL):
             self.dummyFields[2]  # Generalities
         ]
 
-        yield update_context(self.dummyContext['id'], self.dummyContext)
+        yield update_context(self.dummyContext['id'], self.dummyContext, 'en')
 
-        # fill_data/create_submission
+    @inlineCallbacks
+    def perform_submission(self):
+
         self.dummySubmission['context_id'] = self.dummyContext['id']
-        self.dummySubmission['receivers'] = receivers_ids
+        self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['wb_steps'] = yield fill_random_fields(self.dummyContext['id'])
-        self.dummySubmissionNotFinalized = yield create_submission(self.dummySubmission, finalize=False)
-        self.dummySubmission = yield create_submission(self.dummySubmission, finalize=False)
+        self.dummySubmission = yield create_submission(self.dummySubmission, False, 'en')
 
         yield self.emulate_file_upload(self.dummySubmission['id'])
-        # fill_data/update_submssion
-        submission = yield update_submission(self.dummySubmission['id'], self.dummySubmission, finalize=True)
-        # fill_data/create_whistleblower
+        submission = yield update_submission(self.dummySubmission['id'], self.dummySubmission, True, 'en')
         self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
-
-        assert self.dummyReceiver_1.has_key('id')
-        assert self.dummyReceiver_2.has_key('id')
-        assert self.dummyContext.has_key('id')
-        assert self.dummySubmission.has_key('id')
 
         yield delivery_sched.DeliverySchedule().operation()
         yield notification_sched.NotificationSchedule().operation()
@@ -427,7 +448,6 @@ class TestGLWithPopulatedDB(TestGL):
                                                rtip_desc['rtip_id'],
                                                messageCreation)
 
-
         wbtips_desc = yield self.get_wbtips()
 
         for wbtip_desc in wbtips_desc:
@@ -439,7 +459,6 @@ class TestGLWithPopulatedDB(TestGL):
 
         yield delivery_sched.DeliverySchedule().operation()
         yield notification_sched.NotificationSchedule().operation()
-
 
 
 class TestHandler(TestGLWithPopulatedDB):
@@ -526,7 +545,7 @@ class TestHandler(TestGLWithPopulatedDB):
         application = Application([])
 
         tr = proto_helpers.StringTransport()
-        connection = httpserver.HTTPConnection()
+        connection = GLHTTPConnection()
         connection.factory = application
         connection.makeConnection(tr)
 
@@ -586,24 +605,29 @@ class MockDict():
             # Email can be different from the user, but at the creation time is used
             # the same address, therefore we keep the same of dummyReceiver.username
             'mail_address': self.dummyReceiverUser['username'],
+            'ping_mail_address': '',
             'can_delete_submission': True,
-            'postpone_superpower': False,
+            'postpone_superpower': True,
             'contexts' : [],
             'tip_notification': True,
             'file_notification': True,
             'comment_notification': True,
             'message_notification': True,
+            'ping_notification': False,
             'gpg_key_info': u'',
             'gpg_key_fingerprint' : u'',
-            'gpg_key_status': models.Receiver._gpg_types[0], # disabled
-            'gpg_key_armor' : u'',
-            'gpg_enable_notification': False,
+            'gpg_key_status': u'disabled',
+            'gpg_key_armor': u'',
+            'gpg_key_expiration': u'',
             'gpg_key_remove': False,
             'presentation_order': 0,
             'timezone': 0,
             'language': u'en',
             'configuration': 'default'
         }
+
+        self.dummyReceiverGPG = copy.deepcopy(self.dummyReceiver)
+        self.dummyReceiverGPG['gpg_key_armor'] = VALID_PGP_KEY1
 
         self.dummyFieldTemplates = [
         {
@@ -695,6 +719,34 @@ class MockDict():
                 'options': [],
                 'y': 0,
                 'x': 0
+        },
+        {
+            'id': u'7e1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
+            'is_template': True,
+            'step_id': '',
+            'fieldgroup_id': '',
+            'label': u'Gender',
+            'type': u'selectbox',
+            'preview': False,
+            'description': u"field description",
+                'hint': u'field hint',
+                'multi_entry': False,
+                'stats_enabled': False,
+                'required': False,
+                'children': {},
+                'options': [
+                  {
+                    "id": "2ebf6df8-289a-4f17-aa59-329fe11d232e",
+                    "value": "", "attrs": {"name": "Male"}
+                  },
+                  {
+                    "id": "9c7f343b-ed46-4c9e-9121-a54b6e310123",
+                    "value": "",
+                    "attrs": {"name": "Female"}
+                  }
+                ],
+                'y': 0,
+                'x': 0
         }]
 
         self.dummyFields = copy.deepcopy(self.dummyFieldTemplates)
@@ -718,7 +770,6 @@ class MockDict():
             'name': u'Already localized name',
             'description': u'Already localized desc',
             'steps': self.dummySteps,
-            'selectable_receiver': False,
             'select_all_receivers': True,
             'tip_max_access': 10,
             # tip_timetolive is expressed in days
@@ -750,7 +801,6 @@ class MockDict():
             'description': u"Pleæs€, set m€: d€scription",
             'presentation': u'This is whæt æpp€ærs on top',
             'footer': u'check it out https://www.youtube.com/franksentus ;)',
-            'subtitle': u'https://twitter.com/TheHackersNews/status/410457372042092544/photo/1',
             'security_awareness_title': u'',
             'security_awareness_text': u'',
             'whistleblowing_question': u'',
@@ -776,10 +826,9 @@ class MockDict():
             'postpone_superpower': False,
             'can_delete_submission': False,
             'exception_email': GLSetting.defaults.exception_email,
-            'reset_css': False,
-            'reset_homepage': False,
             'ahmia': False,
             'allow_unencrypted': True,
+            'allow_iframes_inclusion': False,
             'configured': False,
             'wizard_done': False,
             'custom_homepage': False,
@@ -791,54 +840,11 @@ class MockDict():
             'admin_timezone': 0,
             'admin_language': u'en',
             'enable_custom_privacy_badge': False,
-            'custom_privacy_badge_tbb': u'',
             'custom_privacy_badge_tor': u'',
             'custom_privacy_badge_none': u'',
-        }
-
-        self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',
-                                           '%PublicSite%', '%ReceiverName%',
-                                           '%ContextName%' ]
-        self.tip_template_keywords = [ '%TipTorURL%', '%TipT2WURL%', '%EventTime%' ]
-        self.comment_template_keywords = [ '%CommentSource%', '%EventTime%' ]
-        self.file_template_keywords = [ '%FileName%', '%EventTime%',
-                                        '%FileSize%', '%FileType%' ]
-
-        self.dummyNotification = {
-            'server': u'mail.foobar.xxx',
-            'port': 12345,
-            'username': u'xxxx@xxx.y',
-            'password': u'antani',
-            'security': u'SSL',
-            'source_name': u'UnitTest Helper Name',
-            'source_email': u'unit@test.help',
-            'encrypted_tip_template': template_keys(self.tip_template_keywords,
-                                          self.generic_template_keywords, "Tip"),
-            'plaintext_tip_template': template_keys(self.tip_template_keywords,
-                                                    self.generic_template_keywords, "Tip"),
-            'encrypted_tip_mail_title': u'xXx',
-            'plaintext_tip_mail_title': u'XxX',
-            'encrypted_file_template':template_keys(self.file_template_keywords,
-                                          self.generic_template_keywords, "File"),
-            'plaintext_file_template':template_keys(self.file_template_keywords,
-                                          self.generic_template_keywords, "File"),
-            'encrypted_file_mail_title': u'kkk',
-            'plaintext_file_mail_title': u'kkk',
-            'encrypted_comment_template': template_keys(self.comment_template_keywords,
-                                              self.generic_template_keywords, "Comment"),
-            'plaintext_comment_template': template_keys(self.comment_template_keywords,
-                                              self.generic_template_keywords, "Comment"),
-            'encrypted_comment_mail_title': u'yyy',
-            'plaintext_comment_mail_title': u'yyy',
-            'encrypted_message_template': u'%B EventTime% %TipUN%',
-            'plaintext_message_template': u'%B EventTime% %TipUN%',
-            'encrypted_message_mail_title': u'T %EventTime %TipUN',
-            'plaintext_message_mail_title': u'T %EventTime %TipUN',
-            'admin_anomaly_template': u'TODO',
-            'pgp_expiration_alert': u'TODO',
-            'pgp_expiration_notice': u'TODO',
-            'zip_description': u'TODO',
-            'disable': False,
+            'header_title_homepage': u'',
+            'header_title_submissionpage': u'',
+            'landing_page': u'homepage'
         }
 
 
@@ -869,7 +875,7 @@ def fill_random_fields(store, context_id, value=None):
     """
     return randomly populated contexts associated to specified context
     """
-    steps = db_get_context_steps(store, context_id)
+    steps = db_get_context_steps(store, context_id, 'en')
 
     for step in steps:
         for field in step['children']:
@@ -887,7 +893,7 @@ def do_appdata_init(store):
 
     except Exception as xxx:
         appdata = models.ApplicationData()
-        source = opportunistic_appdata_init()
+        source = load_appdata()
         appdata.version = source['version']
         appdata.fields = source['fields']
         store.add(appdata)

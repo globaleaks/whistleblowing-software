@@ -59,6 +59,7 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
     $scope.navType = 'pills';
 
     $scope.timezones = CONSTANTS.timezones;
+    $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.preferences = ReceiverPreferences.get();
 
@@ -111,4 +112,16 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
 GLClient.controller('ReceiverTipsCtrl', ['$scope', 'ReceiverTips',
   function($scope, ReceiverTips) {
   $scope.tips = ReceiverTips.query();
+}]);
+
+GLClient.controller('ReceiverNotificationCtrl', ['$scope', '$rootScope', 'ReceiverNotification',
+  function($scope, $rootScope, ReceiverNotification) {
+  $scope.activities = ReceiverNotification.get();
+
+  $scope.clear_notifications = function() {
+    ReceiverNotification['delete']({}, function(){
+      $rootScope.$broadcast("REFRESH");
+    });
+  }
+
 }]);

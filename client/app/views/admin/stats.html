@@ -1,12 +1,57 @@
-<div id="ContentBox" class="container" data-ng-controller="StatisticsCtrl">
-  <div class="row">
-    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
-    <div class="col-md-9">
-      <div class="row">
-        <div class="col-md-12">
-          <div id="chart"></div>
-        </div>
+<div class="row">
+  <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+  <div class="col-md-9">
+    <div class="row">
+      <div class="col-md-12">
+        <span data-translate>Stats of the week:</span>
+        <a data-ng-click="decrement_week()"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <span>{{when | weekNumber}} {{when | date: 'yyyy'}}</span>
+        <a data-ng-click="increment_week()"><span class="glyphicon glyphicon-chevron-right"></span></a>
       </div>
+
+      <br /><br />
+
+      <div id="chart"></div>
+
+      <div class="col-md-12 infoTable" data-ng-if="blob">
+        <span class="col-md-3">
+          <div>
+            <label data-translate>Started submissions</label>
+            {{blob.summary.started_submissions}}
+          </div>
+          <div>
+            <label data-translate>Completed submissions</label>
+            {{blob.summary.completed_submissions}}
+          </div>
+        </span>
+        <span class="col-md-3">
+          <div>
+            <label data-translate>Failed logins</label>
+            {{blob.summary.failed_logins}}
+          </div>
+          <div>
+            <label data-translate>Successful logins</label>
+            {{blob.summary.successful_logins}}
+          </div>
+        </span>
+        <span class="col-md-3">
+          <div>
+            <label data-translate>Uploaded files</label>
+            {{blob.summary.uploaded_files}}
+          </div>
+          <div>
+            <label data-translate>Appended files</label>
+            {{blob.summary.appended_files}}
+          </div>
+        </span>
+        <span class="col-md-3">
+          <div>
+            <label data-translate>Free disk space</label>
+            {{blob.free_disk_space | prettyBytes}}
+          </div>
+        </span>
+      </div>
+
     </div>
   </div>
 </div>

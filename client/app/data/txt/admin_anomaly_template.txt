@@ -16,3 +16,5 @@ Alarm level: %DiskAlarmLevel%
 
 For more info, login in your Administration panel and navigate to the Stats and Anomalies section.
 
+Kind regards,
+%NodeSignature%

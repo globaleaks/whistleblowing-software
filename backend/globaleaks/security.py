@@ -16,13 +16,15 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 
+from datetime import datetime
+
 from gnupg import GPG
 from tempfile import _TemporaryFileWrapper
 
 from globaleaks.rest import errors
-from globaleaks.utils.utility import log, acquire_bool
+from globaleaks.utils.utility import log, acquire_bool, datetime_null, datetime_to_day_str
 from globaleaks.settings import GLSetting
-from globaleaks.models import *
+from globaleaks.models import ReceiverTip, Receiver
 from globaleaks.third_party.rstr import xeger
 
 
@@ -87,7 +89,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         log.debug("Key initialization at %s" % self.keypath)
 
         with open(self.keypath, 'w') as kf:
-           pickle.dump(saved_struct, kf)
+            pickle.dump(saved_struct, kf)
 
         if not os.path.isfile(self.keypath):
             log.err("Unable to write keyfile %s" % self.keypath)
@@ -275,42 +277,34 @@ def change_password(base64_stored, old_password, new_password, salt_input):
     return hash_password(new_password, salt_input)
 
 
-class GLBGPG:
+class GLBGPG(object):
     """
     GPG has not a dedicated class, because one of the function is called inside a transact, and
     I'm not quite confident on creating an object that operates on the filesystem knowing
     that would be run also on the Storm cycle.
     """
 
-    def __init__(self, receiver_desc):
+    def __init__(self):
         """
         every time is needed, a new keyring is created here.
         """
-        if receiver_desc.has_key('gpg_key_status') and \
-                        receiver_desc['gpg_key_status'] != Receiver._gpg_types[1]: # Enabled
-            log.err("Requested GPG initialization for a receiver without GPG configured! %s" %
-                    receiver_desc['username'])
-            raise Exception("Requested GPG init for user without GPG [%s]" % receiver_desc['username'])
-
         try:
             temp_gpgroot = os.path.join(GLSetting.gpgroot, "%s" % xeger(r'[A-Za-z0-9]{8}'))
             os.makedirs(temp_gpgroot, mode=0700)
             self.gpgh = GPG(gnupghome=temp_gpgroot, options=['--trust-model', 'always'])
+            self.gpgh.encoding = "UTF-8"
         except Exception as excep:
             log.err("Unable to instance GPG object: %s" % excep)
             raise excep
 
-        self.receiver_desc = receiver_desc
-        log.debug("GPG object initialized for receiver %s" % receiver_desc['username'])
-
-    def sanitize_gpg_string(self, received_gpgasc):
+    def sanitize_gpg_string(self, key):
         """
-        @param received_gpgasc: A gpg armored key
+        @param key: A pgp armored key
         @return: Sanitized string or raise InvalidInputFormat
 
         This function validate the integrity of a GPG key
         """
-        lines = received_gpgasc.split("\n")
+        lines = key.split("\n")
         sanitized = ""
 
         start = 0
@@ -325,7 +319,7 @@ class GLBGPG:
         i = 0
         while i < len(lines):
 
-            # the C language as left some archetypes in my code
+            # the C language has left some archetypes in my code
             # [ITA] https://www.youtube.com/watch?v=7jI4DnRJP3k
             i += 1
 
@@ -351,91 +345,82 @@ class GLBGPG:
 
         raise errors.InvalidInputFormat("Malformed PGP key block")
 
-    def validate_key(self, armored_key):
+    def load_key(self, key):
         """
-        @param armored_key:
+        @param key:
         @return: True or False, True only if a key is effectively importable and listed.
         """
-
-        # or raise InvalidInputFormat
-        sanitized_gpgasc = self.sanitize_gpg_string(armored_key)
-
         try:
-            key = self.gpgh.import_keys(sanitized_gpgasc)
+            sanitized_key = self.sanitize_gpg_string(key)
+            import_result = self.gpgh.import_keys(sanitized_key)
         except Exception as excep:
             log.err("Error in GPG import_keys: %s" % excep)
-            return False
+            raise errors.GPGKeyInvalid
 
-        # Error reported in stderr may just be warning, this is because is not raise an exception here
-        # if self.ke.stderr:
-        #     log.err("Receiver %s in uploaded GPG key has raise and alarm:\n< %s >" %
-        #             (self.receiver_desc['username'], (self.ke.stderr.replace("\n", "\n  "))[:-3]))
+        if len(import_result.fingerprints) != 1:
+            raise errors.GPGKeyInvalid
 
-        if not (hasattr(key, 'results') and
-                len(key.results) >= 1 and
-                key.results[0].has_key('fingerprint')):
-            log.err("User error: unable to import GPG key in the keyring")
-            return False
-
-        # else, the key has been loaded and we extract info about that:
-        self.fingerprint = key.results[0]['fingerprint']
+        fingerprint = import_result.fingerprints[0]
 
         # looking if the key is effectively reachable
         try:
             all_keys = self.gpgh.list_keys()
         except Exception as excep:
             log.err("Error in GPG list_keys: %s" % excep)
-            return False
+            raise errors.GPGKeyInvalid
 
-        self.keyinfo = u""
+        info = u""
+        expiration = datetime.utcfromtimestamp(0)
         for key in all_keys:
-            if key['fingerprint'] == self.fingerprint:
+            if key['fingerprint'] == fingerprint:
 
-                self.keyinfo += "Key length %s" % key['length']
+                if key['expires']:
+                    expiration = datetime.utcfromtimestamp(int(key['expires']))
+                    exp_date = datetime_to_day_str(expiration)
+                else:
+                    exp_date = u'Never'
+
+                info += "Key length: %s\n" % key['length']
+                info += "Key expiration: %s\n" % exp_date
+
                 try:
                     for uid in key['uids']:
-                        self.keyinfo += "\n\t%s" % uid
+                        info += "\t%s\n" % uid
                 except Exception as excep:
                     log.err("Error in GPG key format/properties: %s" % excep)
-                    return False
+                    raise errors.GPGKeyInvalid
 
-        if not len(self.keyinfo):
-            log.err("Key apparently imported but unable to be extracted info")
-            return False
+                break
 
-        return True
+        if not len(info):
+            log.err("Key apparently imported but unable to reload it")
+            raise errors.GPGKeyInvalid
 
+        ret = {
+            'fingerprint': fingerprint,
+            'expiration': expiration,
+            'info': info
+        }
 
-    def encrypt_file(self, plainpath, filestream, output_path):
+        return ret
+
+    def encrypt_file(self, key_fingerprint, plainpath, filestream, output_path):
         """
         @param gpg_key_armor:
         @param plainpath:
         @return:
         """
-        if not self.validate_key(self.receiver_desc['gpg_key_armor']):
-            raise errors.GPGKeyInvalid
-
-        encrypt_obj = self.gpgh.encrypt_file(filestream, str(self.receiver_desc['gpg_key_fingerprint']))
+        encrypt_obj = self.gpgh.encrypt_file(filestream, str(key_fingerprint))
 
         if not encrypt_obj.ok:
-            # continue here if is not ok
-            log.err("Falure in encrypting file %s %s (%s)" % ( plainpath,
-                                                               self.receiver_desc['username'],
-                                                               self.receiver_desc['gpg_key_fingerprint']))
-            log.err(encrypt_obj.stderr)
             raise errors.GPGKeyInvalid
 
-        log.debug("Encrypting for %s (%s) file %s (%d bytes)" %
-                  (self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint'],
+        log.debug("Encrypting for key %s file %s (%d bytes)" %
+                  (key_fingerprint,
                    plainpath, len(str(encrypt_obj))))
 
         encrypted_path = os.path.join(os.path.abspath(output_path),
                                       "gpg_encrypted-%s" % xeger(r'[A-Za-z0-9]{8}'))
-
-        if os.path.isfile(encrypted_path):
-            log.err("Unexpected unpredictable unbelievable error! %s" % encrypted_path)
-            raise errors.InternalServerError("File conflict in GPG encrypted output")
-
         try:
             with open(encrypted_path, "w+") as f:
                 f.write(str(encrypt_obj))
@@ -447,8 +432,7 @@ class GLBGPG:
                     (excep.message, encrypted_path, len(str(encrypt_obj)) ))
             raise errors.InternalServerError("Error in writing [%s]" % excep.message)
 
-
-    def encrypt_message(self, plaintext):
+    def encrypt_message(self, key_fingerprint, plaintext):
         """
         @param plaindata:
             An arbitrary long text that would be encrypted
@@ -463,26 +447,17 @@ class GLBGPG:
             The unicode of the encrypted output (armored)
 
         """
-        if not self.validate_key(self.receiver_desc['gpg_key_armor']):
-            raise errors.GPGKeyInvalid
-
         # This second argument may be a list of fingerprint, not just one
-        encrypt_obj = self.gpgh.encrypt(plaintext, str(self.receiver_desc['gpg_key_fingerprint']))
+        encrypt_obj = self.gpgh.encrypt(plaintext, str(key_fingerprint))
 
         if not encrypt_obj.ok:
-            # else, is not .ok
-            log.err("Falure in encrypting %d bytes for %s (%s)" % (len(plaintext),
-                                                                   self.receiver_desc['username'],
-                                                                   self.receiver_desc['gpg_key_fingerprint']))
-            log.err(encrypt_obj.stderr)
             raise errors.GPGKeyInvalid
 
-        log.debug("Encrypting for %s (%s) %d byte of plain data (%d cipher output)" %
-                  (self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint'],
+        log.debug("Encrypting for key %s %d byte of plain data (%d cipher output)" %
+                  (key_fingerprint,
                    len(plaintext), len(str(encrypt_obj))))
 
         return str(encrypt_obj)
-
 
     def destroy_environment(self):
         try:
@@ -519,78 +494,42 @@ def gpg_options_parse(receiver, request):
     new_gpg_key = request.get('gpg_key_armor', None)
     remove_key = request.get('gpg_key_remove', False)
 
-    encrypt_notification = acquire_bool(request.get('gpg_enable_notification', False))
-
-    # set a default status
-    receiver.gpg_key_status = Receiver._gpg_types[0]
+    # the default
+    receiver.gpg_key_status = u'disabled'
 
     if remove_key:
         log.debug("User %s %s request to remove GPG key (%s)" %
                   (receiver.name, receiver.user.username, receiver.gpg_key_fingerprint))
 
         # In all the cases below, the key is marked disabled as request
-        receiver.gpg_key_status = Receiver._gpg_types[0] # Disabled
+        receiver.gpg_key_status = u'disabled'
         receiver.gpg_key_info = None
         receiver.gpg_key_armor = None
         receiver.gpg_key_fingerprint = None
-        receiver.gpg_enable_notification = False
-
-    if receiver.gpg_key_status == Receiver._gpg_types[1]:
-        receiver.gpg_enable_notification = encrypt_notification
-        log.debug("Receiver %s sets GPG usage: notification %s" %
-                  (receiver.user.username,
-                   "YES" if encrypt_notification else "NO"))
+        receiver.gpg_key_expiration = datetime_null()
 
     if new_gpg_key:
 
-        fake_receiver_dict = {'username': receiver.user.username}
-        gnob = GLBGPG(fake_receiver_dict)
-        if not gnob.validate_key(new_gpg_key):
-            raise errors.GPGKeyInvalid
+        try:
+            gnob = GLBGPG()
 
-        log.debug("GPG Key imported and enabled in file and notification: %s" % gnob.keyinfo)
+            result = gnob.load_key(new_gpg_key)
 
-        receiver.gpg_key_info = gnob.keyinfo
-        receiver.gpg_key_fingerprint = gnob.fingerprint
-        receiver.gpg_key_status = Receiver._gpg_types[1] # Enabled
-        receiver.gpg_key_armor = new_gpg_key
-        # default enabled https://github.com/globaleaks/GlobaLeaks/issues/620
-        receiver.gpg_enable_notification = True
+            log.debug("GPG Key imported: %s" % result['fingerprint'])
 
-        gnob.destroy_environment()
+            receiver.gpg_key_status = u'enabled'
+            receiver.gpg_key_info = result['info']
+            receiver.gpg_key_armor = new_gpg_key
+            receiver.gpg_key_fingerprint = result['fingerprint']
+            receiver.gpg_key_expiration = result['expiration']
 
+        except:
+            raise
 
-def get_expirations(keylist):
-    """
-    This function is not implemented in GPG object class because need to operate
-    on the whole keys
-    """
-    try:
-        temp_gpgroot = os.path.join(GLSetting.gpgroot, "-expiration_check-%s" % xeger(r'[A-Za-z0-9]{8}'))
-        os.makedirs(temp_gpgroot, mode=0700)
-        gpexpire = GPG(gnupghome=temp_gpgroot, options=['--trust-model', 'always'])
-    except Exception as excep:
-        log.err("Unable to setup expiration check environment: %s" % excep)
-        raise excep
-
-    try:
-        for key in keylist:
-            gpexpire.import_keys(key)
-    except Exception as excep:
-        log.err("Error in GPG import_keys: %s" % excep)
-        raise excep
-
-    try:
-        all_keys = gpexpire.list_keys()
-    except Exception as excep:
-        log.err("Error in GPG list_keys: %s" % excep)
-        raise excep
-
-    expirations = {}
-    for ak in all_keys:
-        expirations.update({ak['fingerprint']: ak['date']})
-
-    return expirations
+        finally:
+            # the finally statement is always called also if
+            # except contains a return or a raise
+            gnob.destroy_environment()
 
 
 def access_tip(store, user_id, tip_id):

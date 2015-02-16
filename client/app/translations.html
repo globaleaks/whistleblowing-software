@@ -2,7 +2,7 @@
 
 This file is not used as template by the application and discarded using build.
 The only aim of the file is:
- 1) to push strings that can't be puished in an other ways
+ 1) to push strings that can't be puished in an other way
  2) to anticipate translations on transifex in case translations need to be pushed
  3) to prevent losing translations in case some strings are under removal
 
@@ -11,6 +11,7 @@ The only aim of the file is:
 <span data-translate>Login page</span>
 
 /views/login.html:
+/views/admin.html
 <span data-translate>Login</span>
 
 /views/admin/advanced.html:
@@ -30,7 +31,7 @@ The only aim of the file is:
 <span data-translate>Click to edit, Drag to order</span>
 
 removed from context since fields refactor:
-<label data-translate>Require at least one file to be uploaded</label
+<label data-translate>Require at least one file to be uploaded</label>
 
 /views/admin/fields.html:
 <span data-translate>Fields Configuration</span>
@@ -61,22 +62,17 @@ removed from context since fields refactor:
 <span data-translate>Administration Interface</span>
 <span data-translate>Presentation Order</span>
 <span data-translate>Click to edit, Drag to order</span>
+<span data-translate>Username</span>
 
 /views/admin/stats.html:
 <span data-translate>System Stats</span>
 <span data-translate>Administration Interface</span>
-<span data-translate>Missing data');
-<span data-translate>no stats available for the future.');
-<span data-translate>during this hour the node was off.');
-<span data-translate>no stats available for current hour; check activities page.');
-<span data-translate>Free megabytes<span>
-<span data-translate>Failed logins</span>
-<span data-translate>Successful logins</span>
-<span data-translate>Started submissions</span>
-<span data-translate>Completed submissions</span>
+<span data-translate>Missing data</span>
+<span data-translate>no stats available for the future.</span>
+<span data-translate>during this hour the node was off.</span>
+<span data-translate>no stats available for current hour; check activities page.</span>
 <span data-translate>Whistleblower comments</span>
 <span data-translate>Whistleblower messages</span>
-<span data-translate>Uploaded files</span>
 <span data-translate>Receiver comments</span>
 <span data-translate>Receiver messages</span>
 
@@ -106,6 +102,14 @@ removed from context since fields refactor:
 <span data-translate>Notification Settings</span>
 <span data-translate>Encryption Settings</span>
 
+/views/receiver/activities.html
+<span data-translate>Receiver Interface</span>
+<span data-translate>Recent Activities</span>
+<span data-translate>File</span>
+<span data-translate>Comment</span>
+<span data-translate>Message</span>
+<span data-translate>Tip</span>
+
 /views/receiver/tip.html:
 <span data-translate>Loading Tip page...</span>
 <span data-translate>Tip Status Page</span>
@@ -124,14 +128,20 @@ removed from context since fields refactor:
 <span data-translate>Comments</span>
 
 /views/submission/main.html:
-<span data-translate>Blow the Whistle</span>
 <span data-translate>This receiver has configured the encryption key.</span>
 <span data-translate>This receiver has not configured the encryption key.</span>
 <span data-translate>Select this receiver.</span>
 <span data-translate>Unselect this receiver.</span>
+<span data-translate>This receiver cannot be selected.</span>
+<span data-translate>This receiver cannot be deselected.</span>
 <span data-translate>Details</span>
 
+/views/submission/receipt.html:
+<span data-translate>Submission successfully completed!</span>
+<span data-translate>Write down your keycode</span>
+
 /views/whistleblower/tip.html:
+<span data-translate>Whistleblower Interface</span>
 <span data-translate>Loading Tip page...</span>
 <span data-translate>Tip Status Page</span>
 <span data-translate>This receiver has configured the encryption key.</span>
@@ -141,27 +151,16 @@ removed from context since fields refactor:
 <span data-translate>GlobaLeaks Wizard</span>
 <span data-translate>Step-by-step setup</span>
 
-old strings used in the privacy badge and not used since time:
-<span data-translate>Warning!</span>
-<span data-translate>We were not able to determine if you are anonymous or not, please proceed with care</span>
+Credit card svg:
+<span data-translate>CREDIT CARD</span>
+<span data-translate>YOUR NAME</span>
 
 Anticipation of Amnesty UX rework thanks to JoyLab consultancy:
-<span data-translate>Setup</span>
 <span data-translate>Select Language</span>
 <span data-translate>Please select which language you wish to use.</span>
 <span data-translate>Get Started</span>
-<span data-translate>Find</span>
-<span data-translate>Select Files</span>
-<span data-translate>Send</span>
-<span data-translate>Add your Message</span>
-<span data-translate>Uploading files...</span>
 <span data-translate>Delete</span>
-<span data-translate>Add more files</span>
-<span data-translate>Your submission was successful.</span>
 <span data-translate>Created</span>
 <span data-translate>Expires</span>
-<span data-translate>Files</span>
-<span data-translate>back</span>
-<span data-translate>continue</span>
 
 -->

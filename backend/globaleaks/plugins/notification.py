@@ -28,12 +28,11 @@ class MailNotification(Notification):
     # But at the first presence of a different notification plugin, need to be resumed and
     # integrated in the validation messages.
 
-    def validate_admin_opt(self, pushed_af):
+    def validate_admin_opt(self, pushed_ao):
         fields = ['server', 'port', 'username', 'password']
-        if all(field in pushed_af for field in fields):
+        if all(field in pushed_ao for field in fields):
             return True
         else:
-            log.info('invalid mail settings for admin')
             return False
 
     def validate_receiver_opt(self, admin_fields, receiver_fields):
@@ -41,10 +40,8 @@ class MailNotification(Notification):
         return True
 
     def do_notify(self, event):
-
-        # check if exists the conf
         if not self.validate_admin_opt(event.notification_settings):
-            log.info('invalid configuration for admin email!')
+            log.info('invalid mail settings for admin')
             return None
 
         # At the moment the language used is a system language, not
@@ -93,24 +90,24 @@ class MailNotification(Notification):
             raise NotImplementedError("At the moment, only Tip expected")
 
         # If the receiver has encryption enabled (for notification), encrypt the mail body
-        if event.receiver_info['gpg_key_status'] == Receiver._gpg_types[1] and \
-           event.receiver_info['gpg_enable_notification']:
+        if event.receiver_info['gpg_key_status'] == u'enabled':
 
+            gpob = GLBGPG()
             try:
-                gpob = GLBGPG(event.receiver_info)
-
-                if not gpob.validate_key(event.receiver_info['gpg_key_armor']):
-                    log.err("unable to validated GPG key for receiver %s" %
-                            event.receiver_info['username'])
-                    return None
-
-                body = gpob.encrypt_message(body)
-                gpob.destroy_environment()
-
+                gpob.load_key(event.receiver_info['gpg_key_armor'])
+                body = gpob.encrypt_message(event.receiver_info['gpg_key_fingerprint'], body)
             except Exception as excep:
                 log.err("Error in GPG interface object (for %s: %s)! (notification+encryption)" %
                         (event.receiver_info['username'], str(excep) ))
-                return None
+                return None # We return None and the mail will be delayed
+                            # If GPG is enabled and the key is invalid this
+                            # is the only possiibly thing to do.
+                            # The PGP check schedule will disable the key
+                            # and alert the user and the admin
+            finally:
+                # the finally statement is always called also if
+                # except contains a return or a raise
+                gpob.destroy_environment()
 
         receiver_mail = event.receiver_info['mail_address']
 
@@ -122,15 +119,9 @@ class MailNotification(Notification):
                                   title,
                                   body)
 
-        if not message:
-            log.err("Unable to format (and then notify!) email for %s" % receiver_mail)
-            log.debug(body)
-            return None
+        return self.mail_flush(event.notification_settings['source_email'],
+                               [receiver_mail], message, event)
 
-        self.finished = self.mail_flush(event.notification_settings['source_email'],
-                                        [ receiver_mail ], message, event)
-
-        return self.finished
 
     @staticmethod
     def mail_flush(from_address, to_address, message_file, event):

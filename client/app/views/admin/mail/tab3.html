@@ -8,49 +8,49 @@
 
     <div class="form-group">
       <label data-translate>Tip Email Subject</label>
-      <input data-ng-model="admin.notification.encrypted_tip_mail_title" class="input-xlarge form-control" type="text">
+      <input data-ng-model="admin.notification.encrypted_tip_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
     </div>
 
     <div class="form-group">
       <label data-translate>Tip Email Template</label>
       <div>
-        <textarea data-ng-model="admin.notification.encrypted_tip_template" class="form-control"></textarea>
+        <textarea data-ng-model="admin.notification.encrypted_tip_template" maxlength="{{node.maximum_textsize}}" class="form-control"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <label data-translate>Comment Email Subject</label>
-      <input data-ng-model="admin.notification.encrypted_comment_mail_title" class="input-xlarge form-control" type="text">
+      <input data-ng-model="admin.notification.encrypted_comment_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
     </div>
 
     <div class="form-group">
       <label data-translate>Comment Email Template</label>
       <div>
-        <textarea data-ng-model="admin.notification.encrypted_comment_template" class="form-control"></textarea>
+        <textarea data-ng-model="admin.notification.encrypted_comment_template" maxlength="{{node.maximum_textsize}}" class="form-control"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <label data-translate>File Email Subject</label>
-      <input data-ng-model="admin.notification.encrypted_file_mail_title" class="input-xlarge form-control" type="text">
+      <input data-ng-model="admin.notification.encrypted_file_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
     </div>
 
     <div class="form-group">
       <label data-translate>File Email Template</label>
       <div>
-        <textarea data-ng-model="admin.notification.encrypted_file_template" class="form-control"></textarea>
+        <textarea data-ng-model="admin.notification.encrypted_file_template" maxlength="{{node.maximum_textsize}}" class="form-control"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <label data-translate>Message Email Subject</label>
-      <input data-ng-model="admin.notification.encrypted_message_mail_title" class="input-xlarge form-control" type="text">
+      <input data-ng-model="admin.notification.encrypted_message_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
     </div>
 
     <div class="form-group">
       <label data-translate>Message Email Template</label>
       <div>
-        <textarea data-ng-model="admin.notification.encrypted_message_template" class="form-control"></textarea>
+        <textarea data-ng-model="admin.notification.encrypted_message_template" maxlength="{{node.maximum_textsize}}" class="form-control"></textarea>
       </div>
     </div>
 

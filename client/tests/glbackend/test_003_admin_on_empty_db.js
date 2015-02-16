@@ -44,15 +44,57 @@ var admin_resources = [
     'status_DELETE': 405,
   },
   {
-    'url': '/admin/context',
+    'url': '/admin/contexts',
     'status_GET': 200,
+    'status_POST': 405,
+    'status_PUT': 405,
+    'status_DELETE': 405,
+  },
+  {
+    'url': '/admin/context',
+    'status_GET': 405,
     'status_POST': 406,
     'status_PUT': 405,
     'status_DELETE': 405,
   },
   {
-    'url': '/admin/receiver',
+    'url': '/admin/fields',
     'status_GET': 200,
+    'status_POST': 405,
+    'status_PUT': 405,
+    'status_DELETE': 405,
+  },
+  {
+    'url': '/admin/field',
+    'status_GET': 405,
+    'status_POST': 406,
+    'status_PUT': 405,
+    'status_DELETE': 405,
+  },
+  {
+    'url': '/admin/fieldtemplates',
+    'status_GET': 200,
+    'status_POST': 405,
+    'status_PUT': 405,
+    'status_DELETE': 405,
+  },
+  {
+    'url': '/admin/fieldtemplate',
+    'status_GET': 405,
+    'status_POST': 406,
+    'status_PUT': 405,
+    'status_DELETE': 405,
+  },
+  {
+    'url': '/admin/receivers',
+    'status_GET': 200,
+    'status_POST': 405,
+    'status_PUT': 405,
+    'status_DELETE': 405,
+  },
+  {
+    'url': '/admin/receiver',
+    'status_GET': 405,
     'status_POST': 406,
     'status_PUT': 405,
     'status_DELETE': 405,
@@ -138,13 +180,13 @@ describe('POST /authentication', function () {
 
 admin_resources.forEach(function (req) {
   describe('GET ' + req['url'], function () {
-    it('responds 200 on GET ' + req['url'] + ' (authenticated)', function (done) {
+    it('responds ' + req['status_GET'] + ' on GET ' + req['url'] + ' (authenticated, no id)', function (done) {
       app
         .get(req['url'])
         .set('X-XSRF-TOKEN', 'antani')
         .set('cookie', 'XSRF-TOKEN=antani')
         .set('X-Session', authentication['session_id'])
-        .expect(200)
+        .expect(req['status_GET'])
         .end(function (err, res) {
 
           if (err) {
@@ -207,7 +249,7 @@ admin_resources.forEach(function (req) {
 
 admin_resources.forEach(function (req) {
   describe('DELETE ' + req['url'], function () {
-    it('responds ' + req['status_DELETE'] + ' on DELETE ' + req['url'] + ' (authenticated)', function (done) {
+    it('responds ' + req['status_DELETE'] + ' on DELETE ' + req['url'] + ' (authenticated, no id)', function (done) {
       app
         .del(req['url'])
         .set('X-XSRF-TOKEN', 'antani')

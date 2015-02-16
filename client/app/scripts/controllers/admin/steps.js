@@ -1,22 +1,27 @@
-GLClient.controller('AdminStepAddCtrl', ['$scope',
-  function($scope) {
+GLClient.controller('AdminStepAddCtrl', ['$scope', '$rootScope', '$route',
+  function($scope, $rootScope, $route) {
 
     $scope.add_step = function() {
-      context = $scope.context;
-
-      if (context.steps === undefined) {
-        context.steps = [];
+      if ($scope.context.steps === undefined) {
+        $scope.context.steps = [];
       }
 
-      context.steps.push(
+      $scope.context.steps.push(
         {
-          context_id: context.id,
           label: $scope.new_step_label,
           description: '',
           hint: '',
           children: []
         }
       );
+
+      /* due to current API we need this cb in order to fecth the step id */
+      var cb = function() {
+        $rootScope.$broadcast("REFRESH");
+      }
+
+      $scope.save_context($scope.context, cb);
+
     };
   }
 ]);
@@ -86,7 +91,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.create_field = function() {
-      return $scope.admin.new_field_to_step($scope.step.id);
+      return $scope.admin.new_field($scope.step.id);
     };
    
     $scope.deleteStep = function(step) {
@@ -100,7 +105,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.perform_delete = function(field) {
-      $scope.admin.field.delete({
+      $scope.admin.field['delete']({
         field_id: field.id
       }, function(){
         $scope.deleteField(field);
@@ -109,7 +114,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
 
     $scope.perform_delete_step = function(step) {
       $scope.deleteStep(step);
-      $scope.update($scope.context);
+      $scope.save_context($scope.context);
     };
 
     $scope.update_field = function(field) {

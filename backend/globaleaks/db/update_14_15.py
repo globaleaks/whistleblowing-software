@@ -18,24 +18,15 @@
 """
 
 import copy
-from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
+from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.db.datainit import opportunistic_appdata_init
-from globaleaks.models import Model, Field, FieldOption, Step, Context, db_forge_obj
-from globaleaks.db.datainit import opportunistic_appdata_init
-from globaleaks.utils.utility import datetime_null, uuid4
+from globaleaks.db.datainit import load_appdata
+from globaleaks.models import Model, Field, FieldOption, Step, db_forge_obj
+from globaleaks.utils.utility import datetime_null, uuid4, every_language
 
-def every_language(default_text):
-    return_dict = {}
-
-    for code in LANGUAGES_SUPPORTED_CODES:
-        return_dict.update({code : default_text})
-
-    return return_dict
-
-class Node_version_14(Model):
+class Node_v_14(Model):
     __storm_table__ = 'node'
     name = Unicode()
     public_site = Unicode()
@@ -74,7 +65,7 @@ class Node_version_14(Model):
     disable_security_awareness_badge = Bool()
     disable_security_awareness_questions = Bool()
 
-class User_version_14(Model):
+class User_v_14(Model):
     __storm_table__ = 'user'
     username = Unicode()
     password = Unicode()
@@ -83,7 +74,7 @@ class User_version_14(Model):
     state = Unicode()
     last_login = DateTime()
 
-class InternalTip_version_14(Model):
+class InternalTip_v_14(Model):
     __storm_table__ = 'internaltip'
     context_id = Unicode()
     wb_fields = Pickle()
@@ -95,7 +86,7 @@ class InternalTip_version_14(Model):
     download_limit = Int()
     mark = Unicode()
 
-class Context_version_14(Model):
+class Context_v_14(Model):
     __storm_table__ = 'context'
     unique_fields = Pickle()
     localized_fields = Pickle()
@@ -124,7 +115,7 @@ class Context_version_14(Model):
     enable_private_messages = Bool()
     presentation_order = Int()
 
-class Receiver_version_14(Model):
+class Receiver_v_14(Model):
     __storm_table__ = 'receiver'
     user_id = Unicode()
     name = Unicode()
@@ -146,7 +137,7 @@ class Receiver_version_14(Model):
     message_notification = Bool()
     presentation_order = Int()
 
-class Notification_version_14(Model):
+class Notification_v_14(Model):
     __storm_table__ = 'notification'
     server = Unicode()
     port = Int()
@@ -173,16 +164,11 @@ class Notification_version_14(Model):
     plaintext_message_mail_title = Pickle()
     zip_description = Pickle()
 
-class Stats_version_14(Model):
+class Stats_v_14(Model):
     __storm_table__ = 'stats'
     content = Pickle()
 
-class ApplicationData_version_14(Model):
-    __storm_table__ = 'applicationdata'
-    version = Int()
-    fields = Pickle()
-
-class Comment_version_14(Model):
+class Comment_v_14(Model):
     __storm_table__ = 'comment'
     internaltip_id = Unicode()
     author = Unicode()
@@ -197,12 +183,12 @@ class Replacer1415(TableReplacer):
         print "%s Node migration assistant: added default_language and default_timezone" \
               "whistleblowing_question, whistleblowing_button" % self.std_fancy
 
-        appdata = opportunistic_appdata_init()
+        appdata = load_appdata()
 
         old_node = self.store_old.find(self.get_right_model("Node", 14)).one()
         new_node = self.get_right_model("Node", 15)()
 
-        for k, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.iteritems():
 
             if v.name == 'default_timezone':
                 new_node.default_timezone= 0;
@@ -247,7 +233,7 @@ class Replacer1415(TableReplacer):
 
             new_user = self.get_right_model("User", 15)()
 
-            for k, v in new_user._storm_columns.iteritems():
+            for _, v in new_user._storm_columns.iteritems():
 
                 if v.name == 'language':
                     new_user.language = u'en'
@@ -276,11 +262,10 @@ class Replacer1415(TableReplacer):
 
         old_contexts = self.store_old.find(self.get_right_model("Context", 14))
 
-        steps = opportunistic_appdata_init()['fields']
+        steps = load_appdata()['fields']
         tos_dict = copy.deepcopy(steps[1]['children'][0])
         tos_opt_dict = copy.deepcopy(tos_dict['options'][0])
         tos_opt_dict['number'] = 1
-        print tos_opt_dict
         del tos_dict['children']
         del tos_dict['options']
         i = 1
@@ -291,7 +276,6 @@ class Replacer1415(TableReplacer):
             i += 1
 
         for old_context in old_contexts:
-
             new_context = self.get_right_model("Context", 15)()
 
             step1 = db_forge_obj(self.store_new, Step, steps[0])
@@ -299,7 +283,7 @@ class Replacer1415(TableReplacer):
             step2 = db_forge_obj(self.store_new, Step, steps[1])
             new_context.steps.add(step2)
 
-            for k, v in new_context._storm_columns.iteritems():
+            for _, v in new_context._storm_columns.iteritems():
                 if v.name == 'steps':
                     continue
 
@@ -355,7 +339,7 @@ class Replacer1415(TableReplacer):
 
                     step1.children.add(field)
 
-                except:
+                except Exception:
                     continue
 
             tos_opt = db_forge_obj(self.store_new, FieldOption, tos_opt_dict)
@@ -375,7 +359,7 @@ class Replacer1415(TableReplacer):
         for old_receiver in old_receivers:
             new_receiver = self.get_right_model("Receiver", 15)()
 
-            for k, v in new_receiver._storm_columns.iteritems():
+            for _, v in new_receiver._storm_columns.iteritems():
 
                 if v.name == 'configuration':
                     new_receiver.configuration = 'default'
@@ -384,13 +368,13 @@ class Replacer1415(TableReplacer):
                 setattr(new_receiver, v.name, getattr(old_receiver, v.name) )
 
             self.store_new.add(new_receiver)
-            self.store_new.commit()
+        self.store_new.commit()
 
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy
         steps = []
 
-        steps.append(opportunistic_appdata_init()['fields'][0])
+        steps.append(load_appdata()['fields'][0])
 
         i = 1
         for step in steps:
@@ -479,13 +463,14 @@ class Replacer1415(TableReplacer):
                 for f in wb_fields_copy:
                     wb_steps[0]['children'].append(wb_fields_copy[f])
 
-                for k, v in new_itip._storm_columns.iteritems():
+                for _, v in new_itip._storm_columns.iteritems():
                     if v.name == 'wb_steps':
                         new_itip.wb_steps = wb_steps;
                         continue
 
                     setattr(new_itip, v.name, getattr(old_itip, v.name))
-            except Exception as e:
+
+            except Exception:
                 continue
 
             self.store_new.add(new_itip)
@@ -498,7 +483,7 @@ class Replacer1415(TableReplacer):
         old_notification = self.store_old.find(self.get_right_model("Notification", 14)).one()
         new_notification = self.get_right_model("Notification", 15)()
 
-        for k, v in new_notification._storm_columns.iteritems():
+        for _, v in new_notification._storm_columns.iteritems():
 
             if v.name == 'admin_anomaly_template':
                 new_notification.admin_anomaly_template = every_language("")
@@ -509,7 +494,7 @@ class Replacer1415(TableReplacer):
                 continue
 
             if v.name == 'pgp_expiration_notice':
-                new_notification.pgp_expiration_notice = every_language("")
+                new_notification.pgp_alert_notice = every_language("")
                 continue
 
             setattr(new_notification, v.name, getattr(old_notification, v.name) )

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
+from storm.locals import Int, Pickle, Unicode, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
@@ -16,7 +16,7 @@ from globaleaks.models import Model
 #   {field1_id: {value: field1_value, answer_order: 0}, field2_id: {value: field2_value, answer_order: 1} }
 #
 
-class InternalTip_version_10(Model): # no change at all!
+class InternalTip_v_10(Model): # no change at all!
     __storm_table__ = 'internaltip'
     context_id = Unicode()
     wb_fields = Pickle()
@@ -28,7 +28,7 @@ class InternalTip_version_10(Model): # no change at all!
     download_limit = Int()
     mark = Unicode()
 
-class InternalFile_version_10(Model):
+class InternalFile_v_10(Model):
     __storm_table__ = 'internalfile'
     internaltip_id = Unicode()
     name = Unicode()
@@ -49,7 +49,7 @@ class Replacer1011(TableReplacer):
 
             new_itip = self.get_right_model("InternalTip", 11)()
 
-            for k, v in new_itip._storm_columns.iteritems():
+            for _, v in new_itip._storm_columns.iteritems():
 
                 if v.name == 'wb_fields':
                     new_itip.wb_fields = {}
@@ -77,7 +77,7 @@ class Replacer1011(TableReplacer):
 
             new_ifile = self.get_right_model("InternalFile", 11)()
 
-            for k, v in new_ifile._storm_columns.iteritems():
+            for _, v in new_ifile._storm_columns.iteritems():
 
                 # fix against issue https://github.com/globaleaks/GlobaLeaks/issues/850
                 # and related to the addiction of some validation in latest releases

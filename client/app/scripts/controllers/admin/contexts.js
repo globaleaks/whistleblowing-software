@@ -10,20 +10,23 @@ GLClient.controller('AdminContextsCtrl',
     });
   };
 
-  $scope.save_context = function (context) {
-    $scope.update(context);
+  $scope.save_context = function (context, cb) {
+    var updated_context = new $scope.admin.context(context);
+
+    return $scope.update(updated_context, cb);
   };
 
   $scope.save_all = function () {
     angular.forEach($scope.admin.contexts, function (context, key) {
-      $scope.update(context);
+      $scope.save_context(context);
     });
   };
 
   $scope.perform_delete = function(context) {
-    var idx = _.indexOf($scope.admin.contexts, context);
-
-    context['$delete'](function(){
+    $scope.admin.context['delete']({
+      context_id: context.id
+    }, function(){
+      var idx = _.indexOf($scope.admin.contexts, context);
       $scope.admin.contexts.splice(idx, 1);
     });
   };
@@ -112,13 +115,13 @@ GLClient.controller('AdminContextsEditorCtrl', ['$scope',
 
     $scope.toggle = function(receiver) {
       var idx = $scope.context.receivers.indexOf(receiver.id);
-      $scope.contextForm.$dirty = true;
-      $scope.contextForm.$pristine = false;
       if (idx === -1) {
         $scope.context.receivers.push(receiver.id);
       } else {
         $scope.context.receivers.splice(idx, 1);
       }
+      $scope.editContext.$dirty = true;
+      $scope.editContext.$pristine = false;
     }
 
 }]);

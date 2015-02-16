@@ -5,28 +5,25 @@
 
 import os
 
+from twisted.scripts._twistd_unix import UnixApplicationRunner
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.util import untilConcludes
 from twisted.internet import reactor
 
-from globaleaks.utils.utility import log, datetime_now
-from globaleaks.db import create_tables, check_schema_version, clean_untracked_files
+from globaleaks.db import create_tables, clean_untracked_files
 from globaleaks.db.datainit import import_memory_variables, apply_cli_options
+
+from globaleaks.jobs import session_management_sched, statistics_sched, \
+                            notification_sched, delivery_sched, cleaning_sched, \
+                            pgp_check_sched, mailflush_sched
+
 from globaleaks.settings import GLSetting
+from globaleaks.utils.utility import log, datetime_now
 
 def start_asynchronous():
     """
     Initialize the asynchronous operation, scheduled in the system
-    https://github.com/globaleaks/GLBackend/wiki/Asynchronous-and-synchronous-operation
-
-    This method would be likely put in GLBaseRunner.postApplication, but is
-    not executed by globaleaks.run_app, then is called by the
-    OS-depenedent runner below
     """
-    from globaleaks.jobs import session_management_sched, statistics_sched, \
-                                notification_sched, delivery_sched, cleaning_sched, \
-                                pgp_check_sched
-
     # Here we prepare the scheduled,
     # schedules will be started by reactor after reactor.run()
     session_management = session_management_sched.SessionManagementSchedule()
@@ -34,6 +31,10 @@ def start_asynchronous():
     notification = notification_sched.NotificationSchedule()
     clean = cleaning_sched.CleaningSchedule()
     pgp_check = pgp_check_sched.PGPCheckSchedule()
+    mailflush = mailflush_sched.MailflushSchedule()
+    resource_check = statistics_sched.ResourceChecker()
+    anomaly = statistics_sched.AnomaliesSchedule()
+    stats = statistics_sched.StatisticsSchedule()
 
     # here we prepare the schedule:
     #  - first argument is the first run delay in seconds
@@ -43,46 +44,29 @@ def start_asynchronous():
     reactor.callLater(10, delivery.start, GLSetting.delivery_seconds_delta)
     reactor.callLater(20, notification.start, GLSetting.notification_minutes_delta * 60)
     reactor.callLater(30, clean.start, GLSetting.cleaning_hours_delta * 3600)
-    reactor.callLater(60, pgp_check.start, GLSetting.pgp_check_hours_delta * 3600)
+    reactor.callLater(40, mailflush.start, GLSetting.mailflush_minutes_delta * 60)
+    reactor.callLater(50, resource_check.start, GLSetting.anomaly_seconds_delta)
+    reactor.callLater(60, anomaly.start, GLSetting.anomaly_seconds_delta)
 
-
-    # anti flood protection, anomaly collection, stats
-    resource_check = statistics_sched.ResourceChecker()
-    anomaly = statistics_sched.AnomaliesSchedule()
-    stats = statistics_sched.StatisticsSchedule()
-
-    reactor.callLater(0, resource_check.start, GLSetting.anomaly_seconds_delta)
-    reactor.callLater(30, anomaly.start, GLSetting.anomaly_seconds_delta)
-
-
-    # This operation, 'stats' has to be delayed (and executed in the minutes
-    # of a 'clean hour', so, 01:00, 02:00, and then is repeated every 60
-    # minutes.
-
+    # The Stats scheduler need to be executed every hour on the hour.
     current_time = datetime_now()
     delay = (60 * 60) - (current_time.minute * 60) - current_time.second
-    reactor.callLater( # GLSetting.stats_minutes_delta * 60,
-                      # stats.start, GLSetting.stats_minutes_delta * 60)
-                # more verbose approach to stats
-                delay, stats.start, 60 * 60)
+    reactor.callLater(delay, stats.start, 60 * 60)
     statistics_sched.StatisticsSchedule.collection_start_datetime = current_time
 
+    # The PGP check scheduler need to be executed every day at midnight
+    current_time = datetime_now()
+    delay = (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
+    reactor.callLater(delay, pgp_check.start, 3600 * 24)
 
-
-from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
-ServerOptions = ServerOptions
 
 def globaleaks_start():
-
     GLSetting.fix_file_permissions()
     GLSetting.drop_privileges()
     GLSetting.check_directories()
 
     if not GLSetting.accepted_hosts:
         log.err("Missing a list of hosts usable to contact GLBackend, abort")
-        return False
-
-    if not check_schema_version():
         return False
 
     d = create_tables()
@@ -114,7 +98,7 @@ def globaleaks_start():
 
     return True
 
-class GLBaseRunnerUnix(UnixApplicationRunner):
+class GLBaseRunner(UnixApplicationRunner):
     """
     This runner is specific to Unix systems.
     """
@@ -147,5 +131,3 @@ class GLBaseRunnerUnix(UnixApplicationRunner):
             quit(-1)
 
         self.removePID(self.config['pidfile'])
-
-GLBaseRunner = GLBaseRunnerUnix

@@ -5,7 +5,7 @@
       <div data-ng-repeat="language in admin.node.languages_supported | orderBy:'name'">
         <div>
           <input data-ng-model="languages_enabled_edit[language.code]" type="checkbox">
-          <label>{{ language.name }} [{{ language.code }}]</label>
+          <label>{{language.name}} [{{language.code}}]</label>
           <a data-ng-init="isCollapsed = true" data-ng-click="isCollapsed = !isCollapsed">
             <i class="glyphicon glyphicon-plus-sign" data-ng-show="isCollapsed"></i>
             <i class="glyphicon glyphicon-minus-sign" data-ng-show="!isCollapsed"></i>
@@ -13,7 +13,7 @@
         </div>
         <div data-ng-show="!isCollapsed">
           <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
-            <span pragmatic-file-upload="" data-ng-src="{{'/l10n/' + language.code + '.json' }}">
+            <span pragmatic-file-upload="" data-ng-src="{{'/l10n/' + language.code + '.json'}}">
               <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
                 <span class="glyphicon glyphicon-plus"></span>
                 <span data-translate>Load</span>

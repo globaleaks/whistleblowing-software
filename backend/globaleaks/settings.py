@@ -17,7 +17,6 @@ import socket
 import pwd
 import grp
 import getpass
-import tempfile
 import transaction
 
 from optparse import OptionParser
@@ -89,7 +88,7 @@ external_counted_events = {
     'file_uploaded': 0,
 }
 
-class GLSettingsClass:
+class GLSettingsClass(object):
 
     initialized = False
 
@@ -150,8 +149,10 @@ class GLSettingsClass:
 
         # session tracking, in the singleton classes
         self.sessions = dict()
-        self.failed_login_attempts = 0 # statisticals, referred to latest_period
-                                       # and resetted by session_management sched
+
+        # statistical, referred to latest period
+        # and resetted by session_management sched
+        self.failed_login_attempts = 0
 
         # download tocken trackin
         self.download_tokens = dict()
@@ -173,8 +174,7 @@ class GLSettingsClass:
         self.notification_minutes_delta = 2       # runner.py function expects minutes
         self.delivery_seconds_delta = 20          # runner.py function expects seconds
         self.anomaly_seconds_delta = 30           # runner.py function expects seconds
-        self.stats_minutes_delta = 10             # runner.py function expects minutes
-        self.pgp_check_hours_delta = 24           # runner.py function expects hours
+        self.mailflush_minutes_delta = 5          # before change check mailflush logic and delay
 
         self.www_form_urlencoded_maximum_size = 1024
 
@@ -197,6 +197,7 @@ class GLSettingsClass:
         self.defaults.tor2web_receiver = False
         self.defaults.tor2web_unauth = True
         self.defaults.allow_unencrypted = False
+        self.defaults.allow_iframes_inclusion = False
         self.defaults.maximum_namesize = 128
         self.defaults.maximum_textsize = 4096
         self.defaults.maximum_filesize = 30 # expressed in megabytes
@@ -206,35 +207,18 @@ class GLSettingsClass:
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
         self.defaults.submission_seconds_of_life = (3600 * 24) * 3
 
-        self.defaults.default_language = u'en'
-        self.defaults.default_timezone = 0
+        self.defaults.language = u'en'
         self.defaults.languages_enabled = LANGUAGES_SUPPORTED_CODES
 
-        self.memory_copy = OD()
-        # Some operation, like check for maximum file, can't access
-        # to the DB every time. So when some Node values are updated
-        # here are copied, in order to permit a faster comparison
-        # updated by globaleaks/db/__init__.import_memory_variables
-        self.memory_copy.maximum_filesize = self.defaults.maximum_filesize
-        self.memory_copy.maximum_textsize = self.defaults.maximum_textsize
-        self.memory_copy.maximum_namesize = self.defaults.maximum_namesize
-        self.memory_copy.allow_unencrypted = self.defaults.allow_unencrypted
-        self.memory_copy.tor2web_admin = self.defaults.tor2web_admin
-        self.memory_copy.tor2web_submission = self.defaults.tor2web_submission
-        self.memory_copy.tor2web_receiver = self.defaults.tor2web_receiver
-        self.memory_copy.tor2web_unauth = self.defaults.tor2web_unauth
-        self.memory_copy.exception_email = self.defaults.exception_email
-        self.memory_copy.default_language = self.defaults.default_language
-        self.memory_copy.default_timezone = self.defaults.default_timezone
-        self.memory_copy.notif_server = None
-        self.memory_copy.notif_port = None
-        self.memory_copy.notif_username = None
-        self.memory_copy.notif_security = None
-        # import_memory_variables is called after create_tables and node+notif updating
-
-
-        # Default delay threshold
-        self.delay_threshold = 0.800
+        self.defaults.timezone = 0
+        self.defaults.landing_page = 'homepage'
+ 
+        self.defaults.receiver_notif_enable = True
+        self.defaults.admin_notif_enable = True
+        self.defaults.notif_server = None
+        self.defaults.notif_port = None
+        self.defaults.notif_username = None
+        self.defaults.notif_security = None
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
@@ -244,6 +228,18 @@ class GLSettingsClass:
             'receiver': (60 * 60),
             'wb': (60 * 60)
         }
+
+        # A lot of operations performed massively by globaleaks
+        # should avoid to fetch continously variables from the DB so that
+        # it is importatn to keep this variables in memory
+        #
+        # To this aim a variable memory_copy is instantiated as a copy of
+        # self.defaults and then initialized and updated after
+        # create_tables() and for every node+notif update
+        self.memory_copy = OD(self.defaults)
+
+        # Default delay threshold
+        self.delay_threshold = 0.800
 
         # unchecked_tor_input contains information that cannot be validated now
         # due to complex inclusions or requirements. Data is used in
@@ -255,11 +251,6 @@ class GLSettingsClass:
         self.socks_port = 9050
         self.tor_socks_enable = True
 
-        # https://github.com/globaleaks/GlobaLeaks/issues/647
-        # we've struck a notification settings in a server, due to an
-        # error looping thru email. A temporary way to disable mail
-        # is put here. A globaleaks restart cause the email to restart.
-        self.notification_temporary_disable = False
         self.notification_limit = 30
 
         self.user = getpass.getuser()
@@ -283,6 +274,9 @@ class GLSettingsClass:
         self.log_file_size = 1000000
         # Number of log files to conserve.
         self.maximum_rotated_log_files = 100
+
+        # size used while streaming files
+        self.file_chunk_size = 8192
 
         # Disk file encryption in realtime
         # if the key is fine or is not.
@@ -417,8 +411,6 @@ class GLSettingsClass:
                                        self.cmdline_options.host_list.replace(" ", "").split(",")))
 
         self.tor_socks_enable = not self.cmdline_options.disable_tor_socks
-
-        self.notification_temporary_disable = self.cmdline_options.notification_temporary_disable
 
         self.socks_host = self.cmdline_options.socks_host
 
@@ -636,7 +628,7 @@ class GLSettingsClass:
 
         if new_environment:
             almost_one_file = 0
-            for path, subpath, files in os.walk(self.static_source):
+            for _, _, files in os.walk(self.static_source):
                 almost_one_file += 1
                 # REMIND: at the moment are not supported subpaths
                 for single_file in files:
@@ -827,7 +819,7 @@ class transact(object):
         except (exceptions.IntegrityError, exceptions.DisconnectionError):
             transaction.abort()
             # we print the exception here because we do not propagate it
-            traceback.print_exc()
+            GLSetting.log_debug(traceback.format_exc())
             result = None
         except HTTPError as excep:
             transaction.abort()

@@ -16,7 +16,7 @@ from globaleaks.db import updater_manager, base_updater
 
 base_updater.TableReplacer.testing = True
 
-from globaleaks.db.datainit import initialize_node, opportunistic_appdata_init
+from globaleaks.db.datainit import load_appdata, init_appdata, init_db
 
 def init_models():
     for model in models.models:
@@ -47,64 +47,72 @@ def create_tables_transaction(store):
     # the called has to .commit and .close, operations commonly performed by decorator
 
 def create_tables(create_node=True):
-    """
-    Override transactor for testing.
-    """
+    appdata_dict = load_appdata()
+
+    db_exists = False
     if GLSetting.db_type == 'sqlite':
         db_path = GLSetting.db_uri.replace('sqlite:', '').split('?', 1)[0]
         if os.path.exists(db_path):
-            return succeed(None)
+            db_exists = True
+
+    if db_exists:
+        ret = succeed(None)
+        ret.addCallback(init_appdata, appdata_dict)
+        return ret
+
 
     deferred = create_tables_transaction()
+    deferred.addCallback(init_appdata, appdata_dict)
+
     if create_node:
 
         log.debug("Node initialization with defaults values")
 
-        only_node = {
+        node_dict = {
             'name':  u"",
-            'description': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'presentation': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'footer': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'subtitle': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'security_awareness_title': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'security_awareness_text': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'whistleblowing_question': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'whistleblowing_button': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'description': dict({ GLSetting.defaults.language: u"" }),
+            'presentation': dict({ GLSetting.defaults.language: u"" }),
+            'footer': dict({ GLSetting.defaults.language: u"" }),
+            'security_awareness_title': dict({ GLSetting.defaults.language: u"" }),
+            'security_awareness_text': dict({ GLSetting.defaults.language: u"" }),
+            'whistleblowing_question': dict({ GLSetting.defaults.language: u"" }),
+            'whistleblowing_button': dict({ GLSetting.defaults.language: u"" }),
             'hidden_service': u"",
             'public_site': u"",
             'email': u"",
             'receipt_regexp': u"[0-9]{16}",
             'stats_update_time': 2, # hours,
             # advanced settings
-            'maximum_filesize' : GLSetting.defaults.maximum_filesize,
-            'maximum_namesize' : GLSetting.defaults.maximum_namesize,
-            'maximum_textsize' : GLSetting.defaults.maximum_textsize,
-            'tor2web_admin' : GLSetting.defaults.tor2web_admin,
-            'tor2web_submission' : GLSetting.defaults.tor2web_submission,
-            'tor2web_receiver' : GLSetting.defaults.tor2web_receiver,
-            'tor2web_unauth' : GLSetting.defaults.tor2web_unauth,
-            'postpone_superpower' : False, # disabled by default
-            'can_delete_submission' : False, # disabled too
-            'ahmia' : False, # disabled too
-            'allow_unencrypted': GLSetting.memory_copy.allow_unencrypted,
+            'maximum_filesize': GLSetting.defaults.maximum_filesize,
+            'maximum_namesize': GLSetting.defaults.maximum_namesize,
+            'maximum_textsize': GLSetting.defaults.maximum_textsize,
+            'tor2web_admin': GLSetting.defaults.tor2web_admin,
+            'tor2web_submission': GLSetting.defaults.tor2web_submission,
+            'tor2web_receiver': GLSetting.defaults.tor2web_receiver,
+            'tor2web_unauth': GLSetting.defaults.tor2web_unauth,
+            'postpone_superpower': False, # disabled by default
+            'can_delete_submission': False, # disabled too
+            'ahmia': False, # disabled too
+            'allow_unencrypted': GLSetting.defaults.allow_unencrypted,
+            'allow_iframes_inclusion': GLSetting.defaults.allow_iframes_inclusion,
             'exception_email' : GLSetting.defaults.exception_email,
-            'default_language' : GLSetting.memory_copy.default_language,
-            'default_timezone' : 0,
-            'admin_language' : GLSetting.memory_copy.default_language,
-            'admin_timezone' : 0,
+            'default_language': GLSetting.defaults.language,
+            'default_timezone' : GLSetting.defaults.timezone,
+            'admin_language' : GLSetting.defaults.language,
+            'admin_timezone' : GLSetting.defaults.timezone,
             'disable_privacy_badge': False,
             'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
             'enable_custom_privacy_badge': False,
-            'custom_privacy_badge_tbb': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'custom_privacy_badge_tor': dict({ GLSetting.memory_copy.default_language: u"" }),
-            'custom_privacy_badge_none': dict({ GLSetting.memory_copy.default_language: u"" }),
+            'custom_privacy_badge_tor': dict({ GLSetting.defaults.language: u"" }),
+            'custom_privacy_badge_none': dict({ GLSetting.defaults.language: u"" }),
+            'header_title_homepage': dict({ GLSetting.defaults.language: u"" }),
+            'header_title_submissionpage': dict({ GLSetting.defaults.language: u"" }),
+            'landing_page': GLSetting.defaults.landing_page
         }
 
-        appdata_dict = opportunistic_appdata_init()
-
-        # Initialize the node + notification table
-        deferred.addCallback(initialize_node, only_node, appdata_dict)
+        # Initialize the node and notification tables
+        deferred.addCallback(init_db, node_dict, appdata_dict)
 
     return deferred
 
@@ -155,7 +163,7 @@ def check_db_files():
     """
     This function checks the DB version and executes eventually the DB update scripts
     """
-    for (path, dirs, files) in os.walk(GLSetting.gldb_path):
+    for (path, _, files) in os.walk(GLSetting.gldb_path):
 
         try:
             starting_ver, abspath = find_current_db_version(path, files)
@@ -166,10 +174,10 @@ def check_db_files():
                 try:
                     updater_manager.perform_version_update(starting_ver, GLSetting.db_version, abspath)
                     print "GlobaLeaks database version %d: update complete!" % GLSetting.db_version
-                except Exception as excep:
+                except Exception:
                     print "GlobaLeaks database version %d: update failure :(" % GLSetting.db_version
                     print "Verbose exception traceback:"
-                    exc_type, exc_value, exc_traceback = sys.exc_info()
+                    _, _, exc_traceback = sys.exc_info()
                     traceback.print_tb(exc_traceback)
                     quit(-1)
 
@@ -180,69 +188,6 @@ def check_db_files():
             quit(-1)
         except StandardError:
             continue
-
-def check_schema_version():
-    """
-    @return: True of che version is the same, False if the
-        sqlite.sql describe a different schema of the one found
-        in the DB.
-
-    ok ok, this is a dirty check. I'm counting the number of
-    *comma* (,) inside the SQL just to check if a new column
-    has been added. This would help if an incorrect DB version
-    is used. For sure there are other better checks, but not
-    today.
-    """
-
-    db_file = GLSetting.db_uri
-
-    if GLSetting.db_type == 'sqlite':
-        db_file = GLSetting.db_uri.replace('sqlite:', '')
-
-        if not os.path.exists(db_file):
-            return True
-
-    if not os.access(GLSetting.db_schema_file, os.R_OK):
-        log.err("Unable to access %s" % GLSetting.db_schema_file)
-        return False
-    else:
-        ret = True
-
-        with open(GLSetting.db_schema_file) as f:
-            sqlfile = f.readlines()
-            comma_number = "".join(sqlfile).count(',')
-
-        zstorm = ZStorm()
-        db_uri = GLSetting.db_uri.replace("?foreign_keys=O", "")
-        zstorm.set_default_uri(GLSetting.store_name, db_uri)
-        store = zstorm.get(GLSetting.store_name)
-
-        q = """
-            SELECT name, type, sql
-            FROM sqlite_master
-            WHERE sql NOT NULL AND type == 'table'
-            """
-
-        res = store.execute(q)
-
-        comma_compare = 0
-        for table in res:
-            if len(table) == 3:
-                comma_compare += table[2].count(',')
-
-        if not comma_compare:
-            log.err("Found an empty database (%s)" % db_file)
-            ret = False
-
-        elif comma_compare != comma_number:
-            log.err("Detected an invalid DB version (%s)" %  db_file)
-            log.err("You have to specify a different workingdir (-w) or to upgrade the DB")
-            ret = False
-
-        store.close()
-
-    return ret
-
 
 @transact_ro
 def get_tracked_files(store):
@@ -270,5 +215,5 @@ def clean_untracked_files(res):
             file_to_remove = os.path.join(GLSetting.submission_path, filesystem_file)
             try:
                 os.remove(file_to_remove)
-            except OSError as e:
+            except OSError:
                 log.err("Failed to remove untracked file" % file_to_remove)

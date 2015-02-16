@@ -9,12 +9,14 @@ development of the GlobaLeaks platform as a whole.
 To learn how to setup your own GlobaLeaks platform, look at [Globaleaks Wiki
 documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
-Join our [Development Mailing List](http://lists.globaleaks.org/listinfo/dev);
+Join our [Development Mailing List](http://lists.globaleaks.org/mailman/listinfo/globaleaks-dev);
 
-| Branch | Build Status | Code Coverage
-| ------------- |:-------------:|:-------------:|
-| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png?branch=master)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master)
-| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png?branch=devel)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel)
+If you're considering setting up a Whistleblowing initiatives by using GlobaLeaks, please [let us know](mailto:support@logioshermes.org), we'd love to help you out!
+
+| Branch | Build Status | Code Coverage | Code Quality
+| ------------- |:-------------:|:-------------:|:-------------:|
+| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png?branch=master)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master) | [![Code Health](https://landscape.io/github/globaleaks/GlobaLeaks/master/landscape.svg)](https://landscape.io/github/globaleaks/GlobaLeaks/master)
+| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png?branch=devel)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel) | [![Code Health](https://landscape.io/github/globaleaks/GlobaLeaks/devel/landscape.svg)](https://landscape.io/github/globaleaks/GlobaLeaks/devel)
 
 ## Donations
 
@@ -35,7 +37,7 @@ and [Bootstrap](http://getbootstrap.com/).
 * [GlobaLeaks wiki](https://github.com/globaleaks/GlobaLeaks/wiki/Home)
 
 ## License
-Copyright (C) 2011-2014 Hermes No Profit Association - GlobaLeaks Project
+Copyright (C) 2011-2015 Hermes No Profit Association - GlobaLeaks Project
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU Affero General Public License as published by the Free

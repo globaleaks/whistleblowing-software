@@ -197,34 +197,6 @@
   },
   {
     "fields": {
-      "subtitle": {
-        "el": "\u0391\u03c5\u03c4\u03ae \u03b5\u03af\u03bd\u03b1\u03b9 \u03b7 \u03bb\u03b5\u03b6\u03ac\u03bd\u03c4\u03b1 \u03c4\u03b7\u03c2 \u03c0\u03c1\u03c9\u03c4\u03bf\u03b2\u03bf\u03c5\u03bb\u03af\u03b1\u03c2: \u03b3\u03c1\u03ac\u03c8\u03b5 \u03b5\u03b4\u03ce \u03c4\u03bf \u03c3\u03bb\u03cc\u03b3\u03ba\u03b1\u03bd \u03c3\u03bf\u03c5!",
-        "en": "This is the initiative subtitle: write your slogan here!",
-        "vi": "This is the initiative subtitle: write your slogan here!",
-        "ca": "Aquest \u00e9s el subt\u00edtitol de la iniciativa: escriu el teu esl\u00f2gan aqu\u00ed!",
-        "it": "Questo \u00e8 il sottotitolo dell'iniziativa: scrivi il qui il tuo slogan!",
-        "sr_RS": "This is the initiative subtitle: write your slogan here!",
-        "ar": "\u0647\u0630\u0627 \u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0641\u0631\u0639\u064a \u0644\u0644\u0645\u0628\u0627\u062f\u0631\u0629: \u0636\u0639 \u0634\u0639\u0627\u0631\u0643 \u0647\u0646\u0627!",
-        "cs": "This is the initiative subtitle: write your slogan here!",
-        "es": "Este es el subt\u00edtulo de la iniciativa: \u00a1Escriba su eslogan aqu\u00ed!",
-        "ru": "This is the initiative subtitle: write your slogan here!",
-        "nl": "Dit is de subtitel van het initiatief: schrijf je slogan hier!",
-        "tr": "Bu bir giri\u015fim alt ba\u015fl\u0131\u011f\u0131d\u0131r: slogan\u0131n\u0131z\u0131 buraya yaz\u0131n!",
-        "sr_RS@latin": "This is the initiative subtitle: write your slogan here!",
-        "hu_HU": "Ez a kezdem\u00e9nyez\u00e9s alc\u00edm\u00e9nek helye: \u00edrja ide a szlogenj\u00e9t!",
-        "hr_HR": "Ovo je titl inicijative: napi\u0161ite svoj slogan ovdje!",
-        "pt_PT": "This is the initiative subtitle: write your slogan here!",
-        "pl": "To jest podtytu\u0142 inicjatywy: napisz tu sw\u00f3j slogan!",
-        "fr": "Ceci est le sous-titre de l'initiative : \u00e9crivez votre slogan ici !",
-        "bg": "This is the initiative subtitle: write your slogan here!",
-        "th": "\u0e01\u0e23\u0e38\u0e13\u0e32\u0e40\u0e02\u0e35\u0e22\u0e19\u0e2a\u0e42\u0e25\u0e41\u0e01\u0e19\u0e41\u0e25\u0e30\u0e1a\u0e23\u0e23\u0e22\u0e32\u0e22\u0e42\u0e04\u0e23\u0e07\u0e01\u0e32\u0e23\u0e02\u0e2d\u0e07\u0e17\u0e48\u0e32\u0e19\u0e17\u0e35\u0e48\u0e19\u0e35\u0e48",
-        "pt_BR": "Este \u00e9 o subt\u00edtulo da iniciativa de den\u00fancia: escreva o seu slogan aqui!",
-        "de": "Dies ist der Untertitel Ihrer Initiative: Schreiben Sie hier Ihr Motto!",
-        "sv": "Det h\u00e4r \u00e4r en initiativ undertext: skriv din slogan h\u00e4r!",
-        "sk": "Toto je podtitulok iniciat\u00edvy: nap\u00ed\u0161te v\u00e1\u0161 slogan sem!",
-        "lv": "\u0160is ir iniciat\u012bvas apak\u0161virsraksts: pievienojiet \u0161eit savu saukli!",
-        "nb_NO": "Dette er initiativets undertekst: skriv ditt slagord her!"
-      },
       "default_language": "en",
       "postpone_superpower": false,
       "creation_date": "2014-09-13 09:01:53.174403",
@@ -276,6 +248,7 @@
       "tor2web_receiver": false,
       "wizard_done": false,
       "allow_unencrypted": true,
+      "allow_iframes_inclusion": false,
       "name": "",
       "footer": {
         "el": "\u03a4\u03c1\u03bf\u03c6\u03bf\u03b4\u03bf\u03c4\u03b5\u03af\u03c4\u03b1\u03b9 \u03bc\u03b5 \u03c0\u03b5\u03c1\u03b7\u03c6\u03ac\u03bd\u03b9\u03b1 \u03b1\u03c0\u03cc \u03c4\u03bf GlobaLeaks, \u03c4\u03b1 \u03c0\u03bd\u03b5\u03c5\u03bc\u03b1\u03c4\u03b9\u03ba\u03ac \u03b4\u03b9\u03ba\u03b1\u03b9\u03ce\u03bc\u03b1\u03c4\u03b1 \u03b1\u03bd\u03ae\u03ba\u03bf\u03c5\u03bd \u03c3\u03c4\u03bf Hermes Center for Transparency and Digital Human Rights",
@@ -316,9 +289,11 @@
       "whistleblowing_question": {"en": ""},
       "whistleblowing_button": {"en": ""},
       "enable_custom_privacy_badge": false,
-      "custom_privacy_badge_tbb": {"en": ""},
       "custom_privacy_badge_tor": {"en": ""},
-      "custom_privacy_badge_none": {"en": ""}
+      "custom_privacy_badge_none": {"en": ""},
+      "header_title_homepage": {"en": ""},
+      "header_title_submissionpage": {"en": ""},
+      "landing_page": "homepage"
     },
     "class": "Node"
   },
@@ -380,11 +355,23 @@
       "encrypted_comment_template": {
         "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that %CommentSource%\nhas added a comment to a previously notified Tip (%TipTorURL%) in %EventTime%.\n\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
       },
-      "pgp_expiration_alert": {
-        "en": ""
+      "ping_mail_template": {
+        "en": "Dear %ReceiverName%,\n\nThere are %EventCount% good reason to connect exactly where you know!\n"
       },
-      "pgp_expiration_notice": {
-        "en": ""
+      "ping_mail_title": {
+        "en": "There are %EventCount% good reason to..."
+      },
+      "admin_pgp_alert_mail_template": {
+        "en": "Dear Globaleaks Node Administrator,\n\nThis is an e-mail to inform you that the PGP key of the following users is going to expire or is already expired:\n\n%PGPKeyInfoList%\n\nWithout a valid PGP key, the system will not be able to send them encrypted notifications.\n\nKind regards,\n%NodeSignature%\n', u'ca': u'Dear Globaleaks Node Administrator,\n\nThis is an e-mail to inform you that the PGP key of the following users is going to expire or is already expired:\n\n%PGPKeyInfoList%\n\nWithout a valid PGP key, the system will not be able to send them encrypted notifications.\n\nKind regards,\n%NodeSignature%\n"
+      },
+      "admin_pgp_alert_mail_title": {
+        "en": "PGP Key Expiration Alert\n"
+      },
+      "pgp_alert_mail_template": {
+        "en": "Dear %ReceiverName%,\n\nThis is an e-mail to inform you that your PGP key is expiring or already expired.\n\n%PGPKeyInfo%\n\nWithout a valid PGP key, the system will not be able to send you encrypted notifications.\n\nYou should extend its validity and update the key present on the GlobaLeaks nodes you are subscribed to or upload a new key.\n\nKind regards,\n%NodeSignature%\n"
+      },
+      "pgp_alert_mail_title": {
+        "en": "PGP Key Expiration Alert\n"
       },
       "security": "TLS",
       "encrypted_file_mail_title": {
@@ -480,7 +467,6 @@
       "description": {
         "en": "Already localized desc"
       },
-      "selectable_receiver": false,
       "name": {
         "en": "Already localized name"
       },

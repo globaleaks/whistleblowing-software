@@ -165,7 +165,6 @@ describe('POST /submission', function(){
             } else {
 
               validate_mandatory_headers(res.headers);
-
               submissions.push(res.body);
 
               done();

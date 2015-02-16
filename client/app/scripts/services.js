@@ -19,36 +19,6 @@ angular.module('resourceServices.authentication', [])
           if(window.location.protocol === 'https:') {
             $.cookie(name, value, {secure: true});
           }
-        },
-
-        setExpiration = function(expirationDate) {
-          var current_date = new Date();
-
-          $rootScope.session_expiration = expirationDate;
-          $timeout(checkExpiration, expirationDate - current_date);
-        },
-
-        checkExpiration = function() {
-          var current_date = new Date();
-          var expiration_date = $rootScope.session_expiration;
-
-          if (expiration_date >= current_date) {
-            var error = {
-              'message': 'Session expired!',
-                 'code': 401,
-                  'url': $location.path()
-            };
-
-            $rootScope.errors.push(error);
-
-            $timeout(function() {
-              $location.path('/login');
-              $location.search('src='+source_path);
-            }, 3000);
-
-          } else {
-            setExpiration(expiration_date);
-          }
         };
 
         $rootScope.login = function(username, password, role, cb) {
@@ -59,30 +29,29 @@ angular.module('resourceServices.authentication', [])
               self.id = response.session_id;
               self.user_id = response.user_id;
               self.username = username;
-              self.role = role;
+              self.role = response.role;
               self.session = response.session;
               self.state = response.state;
               self.password_change_needed = response.password_change_needed;
 
-              var auth_landing_page = "";
+              self.homepage = '';
+              self.auth_landing_page = '';
 
-              setExpiration(response.session_expiration);
-
-              if (role == 'admin') {
-                  auth_landing_page = "/admin/landing";
+              if (self.role == 'admin') {
+                  self.homepage = '/#/admin/landing';
+                  self.auth_landing_page = '/admin/landing';
               }
-              if (role == 'receiver') {
+              if (self.role == 'receiver') {
+                self.homepage = '/#/receiver/activities';
                 if (self.password_change_needed) {
-                    auth_landing_page = "/receiver/firstlogin";
+                    self.auth_landing_page = '/receiver/firstlogin';
                 } else {
-                    auth_landing_page = "/receiver/tips";
+                    self.auth_landing_page = '/receiver/activities';
                 }
               }
-              if (role == 'wb') {
-                auth_landing_page = "/status";
+              if (self.role == 'wb') {
+                self.auth_landing_page = '/status';
               }
-
-              self.auth_landing_page = "/#" + auth_landing_page;
 
               if (cb){
                 return cb(response);
@@ -92,7 +61,7 @@ angular.module('resourceServices.authentication', [])
                 $location.path($routeParams['src']);
 
               } else {
-                $location.path(auth_landing_page);
+                $location.path(self.auth_landing_page);
               }
 
               $location.search('');
@@ -108,11 +77,16 @@ angular.module('resourceServices.authentication', [])
           self.username = null;
           self.role = null;
           self.session = null;
+          self.homepage = null;
+          self.auth_langing_page = null;
 
-          if (role === 'wb')
+          if (role === 'wb') {
             $location.path('/');
-          else
+          } else if (role === 'admin') {
+            $location.path('/admin');
+          } else {
             $location.path('/login');
+          }
         };
 
         self.keycode = '';
@@ -150,7 +124,7 @@ angular.module('resourceServices.authentication', [])
 }]);
 
 angular.module('resourceServices', ['ngResource', 'resourceServices.authentication', 'ui.bootstrap']).
-  factory('globaleaksInterceptor', ['$q', '$injector', '$rootScope', '$location', 
+  factory('globalInterceptor', ['$q', '$injector', '$rootScope', '$location',
   function($q, $injector, $rootScope, $location) {
     var requestTimeout = 30000,
       $http = null, $modal = null;
@@ -219,9 +193,20 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           if (error.code == 24) {
               $rootScope.logout();
           } else {
-            // Only redirect if we are not on the login page
-            if ($location.path().indexOf('/login') === -1) {
-              $location.path('/login');
+            var redirect_path = '/login';
+
+            // If we are wb on the status page, redirect to homepage
+            if (source_path === '/status') {
+                redirect_path = '/';
+            }
+            // If we are admin on the /admin(/*) pages, redirect to /admin
+            else if (source_path.indexOf('/admin') === 0) {
+                redirect_path = '/admin';
+            }
+
+            // Only redirect if we are not alread on the login page
+            if ($location.path() !== redirect_path) {
+              $location.path(redirect_path);
               $location.search('src='+source_path);
             };
           }
@@ -237,8 +222,32 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       });
     }
 }]).
-  factory('Node', ['$resource', function($resource) {
-    return $resource('/node');
+  factory('GLCache',['$cacheFactory', function ($cacheFactory) {
+    return $cacheFactory('GLCache');
+}]).
+  factory('Node', ['$resource', 'GLCache', function($resource, GLCache) {
+    return $resource('/node', {}, {
+      get: {
+        method: 'GET',
+        cache: GLCache
+      }
+    })
+}]).
+  factory('Contexts', ['$resource', 'GLCache', function($resource, GLCache) {
+    return $resource('/contexts', {}, {
+      get: {
+        method: 'GET',
+        cache: GLCache
+      }
+    })
+}]).
+  factory('Receivers', ['$resource', 'GLCache', function($resource, GLCache) {
+    return $resource('/receivers', {}, {
+      get: {
+        method: 'GET',
+        cache: GLCache
+      }
+    })
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
@@ -300,8 +309,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
 
             if (receiver.configuration == 'default') {
-              //self.receivers_selected[receiver.id] = self.current_context.select_all_receivers != false;
-            } else if (receiver.configuration == 'hidden') {
+              self.receivers_selected[receiver.id] = self.current_context.select_all_receivers != false;
+            } else if (receiver.configuration == 'forcefully_selected') {
               self.receivers_selected[receiver.id] = true;
             }
           }
@@ -324,7 +333,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           Receivers.query(function(receivers){
             self.receivers = [];
             forEach(receivers, function(receiver){
-              if (receiver.gpg_key_status !== 'Enabled') {
+              if (receiver.gpg_key_status !== 'enabled') {
                 receiver.missing_pgp = true;
               }
               self.receivers.push(receiver);
@@ -546,8 +555,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     };
 }]).
-  factory('WhistleblowerTip', ['$rootScope', '$resource', 'WBTip', 'Authentication',
-    function($rootScope, $resource, WBTip, Authentication){
+  factory('WhistleblowerTip', ['$rootScope',
+    function($rootScope){
     return function(keycode, fn) {
       var self = this;
       $rootScope.login('', keycode, 'wb')
@@ -556,29 +565,200 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       });
     };
 }]).
-  factory('DefaultAppdata', ['$resource', function($resource) {
-    return $resource('/data/appdata_l10n.json', {});
-}]).
-  factory('Contexts', ['$resource', function($resource) {
-    return $resource('/contexts');
-}]).
-  factory('Receivers', ['$resource', function($resource) {
-    return $resource('/receivers');
-}]).
   factory('ReceiverPreferences', ['$resource', function($resource) {
     return $resource('/receiver/preferences', {}, {'update': {method: 'PUT'}});
 }]).
   factory('ReceiverTips', ['$resource', function($resource) {
     return $resource('/receiver/tips', {}, {'update': {method: 'PUT'}});
 }]).
-  factory('AdminNode', ['$resource', function($resource) {
-    return $resource('/admin/node', {},
-      {update:
-          {method: 'PUT'}
-      });
+  factory('ReceiverNotification', ['$resource', function($resource) {
+    return $resource('/receiver/notifications');
 }]).
   factory('ReceiverOverview', ['$resource', function($resource) {
     return $resource('/admin/overview/users');
+}]).
+  factory('Admin', ['$resource', function($resource) {
+    var self = this,
+      forEach = angular.forEach;
+
+    function Admin() {
+      var self = this,
+        adminContextsResource = $resource('/admin/contexts'),
+        adminContextResource = $resource('/admin/context/:context_id',
+          {context_id: '@id'},
+          {
+            update: {
+              method: 'PUT'
+            }
+          }
+        ),
+        adminFieldsResource = $resource('/admin/fields'),
+        adminFieldResource = $resource('/admin/field/:field_id', 
+          {field_id: '@id'},
+          {
+            update: {
+              method: 'PUT' 
+            }
+          }
+        ),
+        adminFieldTemplatesResource = $resource('/admin/fieldtemplates'),
+        adminFieldTemplateResource = $resource('/admin/fieldtemplate/:template_id',
+          {template_id: '@id'},
+          {
+            update: {
+              method: 'PUT' 
+            }
+          }
+        ),
+        adminReceiversResource = $resource('/admin/receivers'),
+        adminReceiverResource = $resource('/admin/receiver/:receiver_id',
+          {receiver_id: '@id'},
+          {
+            update: {
+              method: 'PUT'
+            }
+          }
+        ),
+        adminNodeResource = $resource('/admin/node', {}, {update: {method: 'PUT'}}),
+        adminNotificationResource = $resource('/admin/notification', {}, {update: {method: 'PUT'}});
+
+      adminNodeResource.prototype.toString = function() { return "Admin Node"; };
+      adminContextsResource.prototype.toString = function() { return "Admin Contexts"; };
+      adminContextResource.prototype.toString = function() { return "Admin Context"; };
+      adminFieldResource.prototype.toString = function() { return "Admin Field"; };
+      adminFieldsResource.prototype.toString = function() { return "Admin Fields"; };
+      adminFieldTemplateResource.prototype.toString = function() { return "Admin Field Template"; };
+      adminFieldTemplatesResource.prototype.toString = function() { return "Admin Field Templates"; };
+      adminReceiversResource.prototype.toString = function() { return "Admin Receivers"; };
+      adminReceiverResource.prototype.toString = function() { return "Admin Receiver"; };
+      adminNotificationResource.prototype.toString = function() { return "Admin Notification"; };
+
+      self.context = adminContextResource;
+      self.contexts = adminContextsResource.query();
+
+      self.new_context = function() {
+        var context = new adminContextResource;
+        context.name = "";
+        context.description = "";
+        context.steps = [];
+        context.receivers = [];
+        context.file_max_download = 3;
+        context.tip_max_access = 500;
+        context.select_all_receivers = false;
+        context.tip_timetolive = 15;
+        context.submission_timetolive = 48;
+        context.receiver_introduction = "";
+        context.postpone_superpower = false;
+        context.can_delete_submission = false;
+        context.maximum_selectable_receivers = 0;
+        context.show_small_cards = false;
+        context.show_receivers = true;
+        context.enable_private_messages = true;
+        context.presentation_order = 0;
+        return context;
+      };
+
+      self.template_fields = {};
+      self.field_templates = adminFieldTemplatesResource.query(function(){
+        angular.forEach(self.field_templates, function(field){
+          self.template_fields[field.id] = field;
+        });
+      });
+
+      self.fields = adminFieldsResource.query();
+      
+      self.new_field = function(step_id) {
+        var field = new adminFieldResource;
+        field.label = '';
+        field.type = '';
+        field.description = '';
+        field.is_template = false;
+        field.hint = '';
+        field.multi_entry = false;
+        field.options = [];
+        field.required = false;
+        field.preview = false;
+        field.stats_enabled = false;
+        field.x = 0;
+        field.y = 0;
+        field.children = [];
+        field.fieldgroup_id = '';
+        field.step_id = step_id;
+        return field;
+      };
+
+      self.new_field_from_template = function(template_id, step_id) {
+        var field = new adminFieldResource;
+        field.step_id = step_id;
+        field.template_id = template_id;
+        return field.$save();
+      };
+
+      self.new_field_template = function () {
+        var field = new adminFieldTemplateResource;
+        field.label = '';
+        field.type = '';
+        field.description = '';
+        field.is_template = true;
+        field.hint = '';
+        field.multi_entry = false;
+        field.options = [];
+        field.required = false;
+        field.preview = false;
+        field.stats_enabled = false;
+        field.x = 0;
+        field.y = 0;
+        field.children = [];
+        field.fieldgroup_id = '';
+        field.step_id = '';
+        return field;
+      };
+
+      self.receiver = adminReceiverResource;
+      self.receivers = adminReceiversResource.query();
+
+      self.new_receiver = function () {
+        var receiver = new adminReceiverResource;
+        receiver.password = '';
+        receiver.contexts = [];
+        receiver.description = '';
+        receiver.mail_address = '';
+        receiver.ping_mail_address = '';
+        receiver.can_delete_submission = false;
+        receiver.postpone_superpower = false;
+        receiver.tip_notification = true;
+        receiver.file_notification = true;
+        receiver.comment_notification = true;
+        receiver.message_notification = true;
+        receiver.ping_notification = false;
+        receiver.gpg_key_info = '';
+        receiver.gpg_key_fingerprint = '';
+        receiver.gpg_key_remove = false;
+        receiver.gpg_key_armor = '';
+        receiver.gpg_key_expiration = '';
+        receiver.gpg_key_status = 'ignored';
+        receiver.gpg_enable_notification = false;
+        receiver.presentation_order = 0;
+        receiver.state = 'enable';
+        receiver.configuration = 'default';
+        receiver.password_change_needed = true;
+        receiver.language = 'en';
+        receiver.timezone = '0';
+        return receiver;
+      };
+
+      self.node = adminNodeResource.get(function(){
+        self.node.password = '';
+        self.node.old_password = '';
+      });
+
+      self.field_template = adminFieldTemplateResource;
+      self.field = adminFieldResource;
+
+      self.notification = adminNotificationResource.get();
+    }
+    return Admin;
+
 }]).
   factory('TipOverview', ['$resource', function($resource) {
     return $resource('/admin/overview/tips');
@@ -587,7 +767,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     return $resource('/admin/overview/files');
 }]).
   factory('StatsCollection', ['$resource', function($resource) {
-    return $resource('/admin/stats/0');
+    return $resource('/admin/stats/:week_delta', {week_delta: '@week_delta'}, {});
 }]).
   factory('AnomaliesCollection', ['$resource', function($resource) {
     return $resource('/admin/anomalies');
@@ -600,6 +780,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   factory('StaticFiles', ['$resource', function($resource) {
     return $resource('/admin/staticfiles');
+}]).
+  factory('DefaultAppdata', ['$resource', function($resource) {
+    return $resource('/data/appdata_l10n.json', {});
 }]).
   factory('cookiesEnabled', function(){
 
@@ -618,7 +801,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }).
   factory('passwordWatcher', ['$parse', function($parse) {
     return function(scope, password) {
-      /** This is used to watch the new password and check that is 
+      /** This is used to watch the new password and check that is
        *  effectively the same. Sets a local variable mismatch_password.
        *
        *  @param {obj} scope the scope under which we should register watchers
@@ -659,7 +842,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   factory('changePasswordWatcher', ['$parse', function($parse) {
     return function(scope, old_password, password, check_password) {
-      /** This is used to watch the new password and check that is 
+      /** This is used to watch the new password and check that is
        *  effectively the same. Sets a local variable mismatch_password.
        *
        *  @param {obj} scope the scope under which we should register watchers
@@ -732,188 +915,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     }
 }]).
-  factory('changeParamsWatcher', ['$parse', function($parse) {
-    return function(scope) {
-        /* To be implemented */
-    }
-}]).
-  factory('Admin', ['$rootScope','$resource', '$q', function($rootScope,
-                                                             $resource, $q) {
-    var self = this,
-      forEach = angular.forEach;
-
-    function Admin() {
-      var self = this,
-        adminContextsResource = $resource('/admin/context/:context_id',
-          {context_id: '@id'},
-          {
-            update: {
-              method: 'PUT'
-            }
-          }
-        ),
-        adminFieldsResource = $resource('/admin/fields'),
-        adminFieldResource = $resource('/admin/field/:field_id', 
-          {field_id: '@id'},
-          {
-            update: {
-              method: 'PUT' 
-            }
-          }
-        ),
-        adminFieldTemplatesResource = $resource('/admin/fieldtemplates'),
-        adminFieldTemplateResource = $resource('/admin/fieldtemplate/:template_id',
-          {template_id: '@id'},
-          {
-            update: {
-              method: 'PUT' 
-            }
-          }
-        ),
-        adminReceiversResource = $resource('/admin/receiver/:receiver_id',
-          {receiver_id: '@id'},
-          {
-            update: {
-              method: 'PUT'
-            }
-          }
-        ),
-        adminNodeResource = $resource('/admin/node', {}, {update: {method: 'PUT'}}),
-        adminNotificationResource = $resource('/admin/notification', {}, {update: {method: 'PUT'}});
-
-      adminContextsResource.prototype.toString = function() { return "Admin Context"; };
-      adminContextsResource.prototype.toString = function() { return "Admin Field"; };
-      adminReceiversResource.prototype.toString = function() { return "Admin Receiver"; };
-      adminNodeResource.prototype.toString = function() { return "Admin Node"; };
-      adminNotificationResource.prototype.toString = function() { return "Admin Notification"; };
-      adminFieldResource.prototype.toString = function() { return "Admin Field"; };
-      adminFieldsResource.prototype.toString = function() { return "Admin Fields"; };
-      adminFieldTemplatesResource.prototype.toString = function() { return "Admin Field Templates"; };
-
-      self.context = adminContextsResource;
-      self.contexts = adminContextsResource.query();
-
-      self.new_context = function() {
-        var context = new adminContextsResource;
-        context.name = "";
-        context.description = "";
-        context.steps = [];
-        context.receivers = [];
-        context.file_max_download = 3;
-        context.tip_max_access = 500;
-        context.selectable_receiver = true;
-        context.select_all_receivers = true;
-        context.tip_timetolive = 15;
-        context.submission_timetolive = 48;
-        context.receiver_introduction = "";
-        context.postpone_superpower = false;
-        context.can_delete_submission = false;
-        context.maximum_selectable_receivers = 0;
-        context.show_small_cards = false;
-        context.show_receivers = true;
-        context.enable_private_messages = true;
-        context.presentation_order = 0;
-        return context;
-      };
-
-      self.template_fields = {};
-      self.field_templates = adminFieldTemplatesResource.query(function(){
-        angular.forEach(self.field_templates, function(field){
-          self.template_fields[field.id] = field;
-        });
-      });
-      self.field_template = adminFieldTemplateResource;
-
-      self.field = adminFieldResource;
-      self.fields = adminFieldsResource.query();
-      
-      self.new_field_to_step = function(step_id) {
-        var field = new adminFieldResource;
-        field.label = '';
-        field.type = '';
-        field.description = '';
-
-        field.is_template = false;
-        field.hint = '';
-        field.multi_entry = false;
-        field.options = [];
-        field.required = false;
-        field.preview = false;
-        field.stats_enabled = false;
-        field.x = 0;
-        field.y = 0;
-        field.children = [];
-
-        field.step_id = step_id;
-        return field;
-      };
-
-      self.new_template_field = function () {
-        var field = new adminFieldTemplateResource;
-        field.label = '';
-        field.type = '';
-        field.description = '';
-
-        field.is_template = true;
-        field.hint = '';
-        field.multi_entry = false;
-        field.options = [];
-        field.required = false;
-        field.preview = false;
-        field.stats_enabled = false;
-        field.x = 0;
-        field.y = 0;
-        field.children = [];
-        return field;
-      };
-
-      self.new_field_from_template = function(template_id, step_id) {
-        var field = new adminFieldResource;
-        field.step_id = step_id;
-        field.template_id = template_id;
-        return field.$save();
-      }
-
-      self.receiver = adminReceiversResource;
-      self.receivers = adminReceiversResource.query();
-
-      self.new_receiver = function () {
-        var receiver = new adminReceiversResource;
-        receiver.password = '';
-        receiver.contexts = [];
-        receiver.description = '';
-        receiver.mail_address = '';
-        receiver.can_delete_submission = false;
-        receiver.postpone_superpower = false;
-        receiver.tip_notification = true;
-        receiver.file_notification = true;
-        receiver.comment_notification = true;
-        receiver.message_notification = true;
-        receiver.gpg_key_info = '';
-        receiver.gpg_key_fingerprint = '';
-        receiver.gpg_key_remove = false;
-        receiver.gpg_key_armor = '';
-        receiver.gpg_key_status = 'ignored';
-        receiver.gpg_enable_notification = false;
-        receiver.presentation_order = 0;
-        receiver.state = 'enable';
-        receiver.configuration = 'default';
-        receiver.password_change_needed = true;
-        receiver.language = 'en'
-        receiver.timezone = '0'
-        return receiver;
-      };
-
-      self.node = adminNodeResource.get(function(){
-        self.node.password = '';
-        self.node.old_password = '';
-      });
-
-      self.notification = adminNotificationResource.get();
-    }
-    return Admin;
-
-}]).
   constant('CONSTANTS', {
      /* email regexp is an edited version of angular.js input.js in order to avoid domains with not tld */ 
      "email_regexp": /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
@@ -954,5 +955,5 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
      ]
 }).
   config(['$httpProvider', function($httpProvider) {
-    $httpProvider.responseInterceptors.push('globaleaksInterceptor');
+    $httpProvider.responseInterceptors.push('globalInterceptor');
 }]);

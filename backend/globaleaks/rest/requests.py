@@ -2,19 +2,21 @@
 #   Requests
 #   ********
 #
-# This file contain the specification of all the requests that can be made by a
+# This file contains the specification of all the requests that can be made by a
 # GLClient to a GLBackend.
-# These specifications may be used with rest.validateMessage() inside of the
-# handler to verify if the request is correct.
+# These specifications may be used with rest.validateMessage() inside each of the API
+# handler in order to verify if the request is correct.
 
 uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
+uuid_regexp_or_empty              = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'
 receiver_img_regexp               = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png$'
-email_regexp                      = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
-email_regexp_or_empty             = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$|^$'
+email_regexp                      = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,9}$|^$'
+email_regexp_or_empty             = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,9}$|^$'
 hidden_service_regexp             = r'^http://[0-9a-z]{16}\.onion$'
 hidden_service_regexp_or_empty    = r'^http://[0-9a-z]{16}\.onion$$|^$'
 https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
+landing_page_regexp               = r'^homepage$|^submissionpage$'
 
 dateType = r'(.*)'
 
@@ -61,14 +63,21 @@ receiverReceiverDesc = {
     'old_password': unicode,
     # 'username' : unicode, XXX at creation time is the same of mail_address
     'mail_address' : email_regexp,
+    # mail_address contain the 'admin' inserted mail
+    "ping_mail_address": email_regexp,
+    # ping_mail_address is a copy of 'mail_address' if unset.
     'description' : unicode,
-    'gpg_key_armor': unicode,
     'gpg_key_remove': bool,
-    "gpg_enable_notification": bool,
+    'gpg_key_fingerprint': unicode,
+    'gpg_key_expiration': unicode,
+    'gpg_key_info': unicode,
+    'gpg_key_armor': unicode,
+    'gpg_key_status': unicode,
     "comment_notification": bool,
     "file_notification": bool,
     "tip_notification": bool,
     "message_notification": bool,
+    "ping_notification": bool,
     "language": unicode,
     "timezone": int,
 }
@@ -93,7 +102,6 @@ adminNodeDesc = {
     'name': unicode,
     'description' : unicode,
     'presentation' : unicode,
-    'subtitle': unicode,
     'footer': unicode,
     'security_awareness_title': unicode,
     'security_awareness_text': unicode,
@@ -118,8 +126,6 @@ adminNodeDesc = {
     'postpone_superpower': bool,
     'can_delete_submission': bool,
     'exception_email': email_regexp,
-    'reset_css': bool,
-    'reset_homepage': bool,
     'ahmia': bool,
     'allow_unencrypted': bool,
     'wizard_done': bool,
@@ -130,9 +136,11 @@ adminNodeDesc = {
     'admin_language': unicode,
     'admin_timezone': int,
     'enable_custom_privacy_badge': bool,
-    'custom_privacy_badge_tbb': unicode,
     'custom_privacy_badge_tor': unicode,
     'custom_privacy_badge_none': unicode,
+    'header_title_homepage': unicode,
+    'header_title_submissionpage': unicode,
+    'landing_page': landing_page_regexp
 }
 
 adminNotificationDesc = {
@@ -160,10 +168,15 @@ adminNotificationDesc = {
     'encrypted_message_mail_title': unicode,
     'plaintext_message_template': unicode,
     'plaintext_message_mail_title': unicode,
-    'pgp_expiration_alert': unicode,
-    'pgp_expiration_notice': unicode,
+    'admin_pgp_alert_mail_template': unicode,
+    'admin_pgp_alert_mail_title': unicode,
+    'pgp_alert_mail_template': unicode,
+    'pgp_alert_mail_title': unicode,
     'zip_description': unicode,
-    'disable': bool,
+    'ping_mail_template': unicode,
+    'ping_mail_title': unicode,
+    'disable_admin_notification_emails': bool,
+    'disable_receivers_notification_emails': bool
 }
 
 adminContextDesc = {
@@ -173,22 +186,20 @@ adminContextDesc = {
     'postpone_superpower': bool,
     'can_delete_submission': bool,
     'maximum_selectable_receivers': int,
-    'selectable_receiver': bool,
     'tip_max_access' : int,
     'tip_timetolive' : int,
     'file_max_download' : int,
     'receivers' : [ uuid_regexp ],
-    'steps': [ adminStepDesc ],
+    'steps': list,
     'select_all_receivers': bool,
     'show_small_cards': bool,
     'show_receivers': bool,
     'enable_private_messages': bool,
     'presentation_order': int,
-    'steps': list
 }
 
 adminContextFieldTemplateCopy = {
-    'field_template_id': uuid_regexp,
+    'template_id': uuid_regexp,
     'context_id': uuid_regexp,
     'step_id': uuid_regexp,
 }
@@ -207,10 +218,10 @@ adminReceiverDesc = {
     'message_notification': bool,
     'gpg_key_remove': bool,
     'gpg_key_fingerprint': unicode,
+    'gpg_key_expiration': unicode,
     'gpg_key_info': unicode,
     'gpg_key_armor': unicode,
     'gpg_key_status': unicode,
-    'gpg_enable_notification': bool,
     'presentation_order': int,
     "language": unicode,
     "timezone": int,
@@ -218,7 +229,6 @@ adminReceiverDesc = {
 
 anonNodeDesc = {
     'name': unicode,
-    'subtitle': unicode,
     'description': unicode,
     'presentation': unicode,
     'footer': unicode,
@@ -247,10 +257,13 @@ anonNodeDesc = {
     'disable_security_awareness_badge': bool,
     'disable_security_awareness_questions': bool,
     'enable_custom_privacy_badge': bool,
-    'custom_privacy_badge_tbb': unicode,
     'custom_privacy_badge_tor': unicode,
     'custom_privacy_badge_none': unicode,
+}
 
+adminStats = {
+    'week_delta': int,
+    # 'report_link': unicode,
 }
 
 TipOverview = {
@@ -342,7 +355,6 @@ nodeContext = {
     'name': unicode,
     'presentation_order': int,
     'description': unicode,
-    'selectable_receiver': bool,
     'tip_timetolive': int,
     'submission_introduction': unicode,
     'maximum_selectable_receivers': int,
@@ -396,15 +408,9 @@ internalTipDesc = {
     'download_limit': int,
 }
 
-# TODO if the admin has visibility to different variables compared to the WB
-# if its so, rename to FieldDesc (generic)
-
-FieldDescFromTemplate = {
-    'template_id': uuid_regexp,
-    'step_id': uuid_regexp
-}
-
 FieldDesc = {
+    'step_id': uuid_regexp_or_empty,
+    'fieldgroup_id': uuid_regexp_or_empty,
     'label': unicode,
     'description': unicode,
     'hint': unicode,
@@ -426,6 +432,38 @@ FieldDesc = {
              'fieldgroup)$'),
     'options': list,
     'children': list,
+    'is_template': bool,
+}
+
+FieldTemplateDesc = {
+    'fieldgroup_id': uuid_regexp_or_empty,
+    'label': unicode,
+    'description': unicode,
+    'hint': unicode,
+    'multi_entry': bool,
+    'x': int,
+    'y': int,
+    'required': bool,
+    'preview': bool,
+    'stats_enabled': bool,
+    'type': (r'^('
+             'inputbox|'
+             'textarea|'
+             'selectbox|'
+             'checkbox|'
+             'modal|'
+             'dialog|'
+             'tos|'
+             'fileupload|'
+             'fieldgroup)$'),
+    'options': list,
+    'children': list,
+    'is_template': bool,
+}
+
+FieldFromTemplateDesc = {
+    'step_id': uuid_regexp,
+    'template_id': uuid_regexp
 }
 
 wizardStepDesc = {
@@ -438,7 +476,6 @@ wizardStepDesc = {
 wizardNodeDesc = {
     'presentation': dict,
     'footer': dict,
-    'subtitle': dict,
 }
 
 wizardAppdataDesc = {
@@ -451,5 +488,4 @@ wizardFirstSetup = {
     'receiver' : adminReceiverDesc,
     'context' : adminContextDesc,
     'node' : adminNodeDesc,
-    'appdata' : wizardAppdataDesc,
 }

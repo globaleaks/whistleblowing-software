@@ -126,15 +126,16 @@ class ZipInfo (object):
         self.comment = ""                # Comment for each file
         self.extra = ""                  # ZIP extra data
 
-        self.create_system = 0           # System which created ZIP archive
-                                         # 
-                                         # evilaliv3 :
-                                         #   To avoid a particular leak on the real OS
-                                         #   we declare always Windows.
-                                         #
-                                         #   And probably this zip file would be
-                                         #   also more compatible for some fucking
-                                         #   Windows archive!
+        # System which created ZIP archive
+        #
+        # evilaliv3:
+        #   To avoid a particular leak on the real OS
+        #   we declare always Windows.
+        #
+        # And probably this zip file would be
+        #   also more compatible for some fucking
+        #   Windows archive!
+        self.create_system = 0
 
         self.create_version = 20         # Version which created ZIP archive
         self.extract_version = 20        # Version needed to extract archive
@@ -198,7 +199,7 @@ class ZipInfo (object):
         return header + self.filename + extra
 
 
-class ZipStream:
+class ZipStream(object):
     """
     """
 
@@ -277,7 +278,7 @@ class ZipStream:
             while 1:
                 buf = fp.read(1024 * 8)
                 if not buf:
-                   break
+                    break
                 zinfo.file_size += len(buf)
                 zinfo.CRC = binascii.crc32(buf, zinfo.CRC)
                 if cmpr:
@@ -418,8 +419,6 @@ class ZipStream:
                                       stringEndArchive64Locator, 0, pos2, 1)
             data.append( self.update_data_ptr(zip64locrec))
 
-            # XXX Why is `pos3` computed next?  It's never referenced.
-            pos3 = self.data_ptr
             endrec = struct.pack(structEndArchive, stringEndArchive,
                                  0, 0, count, count, pos2 - pos1, -1, 0)
             data.append( self.update_data_ptr(endrec))

@@ -5,7 +5,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.rest import requests, errors
 from globaleaks.tests import helpers
-from globaleaks.handlers import files
+from globaleaks.handlers import files, submission
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile
 
@@ -14,10 +14,15 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post_file_on_not_finalized_submission(self):
-        handler = self.request(body=self.get_dummy_file())
-        yield handler.post(self.dummySubmissionNotFinalized['id'])
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+        self.submission_desc = yield submission.create_submission(self.submission_desc, False, 'en')
 
+        handler = self.request(body=self.get_dummy_file())
+        yield handler.post(self.submission_desc['id'])
+
+    @inlineCallbacks
     def test_post_file_finalized_submission(self):
+        yield self.perform_submission()
         handler = self.request(body=self.get_dummy_file())
         self.assertFailure(handler.post(self.dummySubmission['id']), errors.SubmissionConcluded)
 
@@ -30,6 +35,8 @@ class TestFileAdd(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
+        yield self.perform_submission()
+
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='wb', body=self.get_dummy_file())
@@ -41,6 +48,8 @@ class TestDownload(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
+        yield self.perform_submission()
+
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             rfiles_desc = yield self.get_rfiles(rtip_desc['rtip_id'])

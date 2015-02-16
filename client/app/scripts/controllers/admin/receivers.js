@@ -1,15 +1,34 @@
 GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal',
 function($scope, $modal) {
+
+  $scope.save_receiver = function(receiver, cb) {
+
+    if (receiver.gpg_key_remove == true) {
+      receiver.gpg_key_armor = '';
+    }
+
+    if (receiver.gpg_key_armor !== undefined &&
+        receiver.gpg_key_armor != '') {
+      receiver.gpg_key_remove = false;
+    }
+
+    var updated_receiver = new $scope.admin.receiver(receiver);
+
+    return $scope.update(updated_receiver, cb);
+
+  }
+
   $scope.save_all = function () {
     angular.forEach($scope.admin.receivers, function (receiver, key) {
-      $scope.update(receiver);
+      $scope.save_receiver(receiver);
     });
   };
 
   $scope.perform_delete = function(receiver) {
-    var idx = _.indexOf($scope.admin.receivers, receiver);
-
-    receiver['$delete'](function(){
+    $scope.admin.receiver['delete']({
+      receiver_id: receiver.id
+    }, function(){
+      var idx = _.indexOf($scope.admin.receivers, receiver);
       $scope.admin.receivers.splice(idx, 1);
     });
 
@@ -83,21 +102,9 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher', 'C
       } else {
         $scope.receiver.contexts.splice(idx, 1);
       }
+      $scope.editReceiver.$dirty = true;
+      $scope.editReceiver.$pristine = false;
     };
-
-    $scope.save_receiver = function() {
-      if ($scope.receiver.gpg_key_remove == true) {
-        $scope.receiver.gpg_key_armor = '';
-      }
-
-      if ($scope.receiver.gpg_key_armor !== undefined &&
-          $scope.receiver.gpg_key_armor != '') {
-        $scope.receiver.gpg_key_remove = false;
-      }
-
-      $scope.update($scope.receiver);
-
-    }
 
 }]);
 
