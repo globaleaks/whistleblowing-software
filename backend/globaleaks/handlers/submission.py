@@ -113,31 +113,6 @@ def import_receivers(store, submission, receiver_id_list):
         log.err("Receivers required to be selected, not empty")
         raise errors.SubmissionFailFields("Needed at least one Receiver selected [2]")
 
-# Remind: it's a store without @transaction because called by a @ŧransact
-def import_files(store, submission, files):
-    """
-    @param submission: the Storm obj
-    @param files: the list of InternalFiles UUIDs
-    @return:
-        Look if all the files specified in the list exist,
-        Look if the context *require* almost a file, raise
-            an error if missed
-    """
-    # TODO is missing the context file enforcing check
-    for file_id in files:
-        print "XXXXXXXXXXXXXXX", file_id
-        continue
-        try:
-            ifile = store.find(InternalFile, InternalFile.id == unicode(file_id)).one()
-        except Exception as excep:
-            log.err("Storm error, not found %s file in import_files (%s)" %
-                    (file_id, excep))
-            raise errors.FileIdNotFound
-
-    return
-
-        # can be forced at "NOT NULL" now
-        # ifile.internaltip_id = submission.id
 
 def verify_fields_recursively(fields, wb_fields):
     for f in fields:
