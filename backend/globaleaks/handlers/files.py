@@ -219,8 +219,8 @@ class FileInstance(BaseHandler):
 
     @inlineCallbacks
     def handle_file_upload(self, token):
+        # remind self: why is a list with just one element, and not a dict ?
         result_list = []
-        # TODO remind self: why is a list with just one element, and not a dict ?
 
         start_time = time.time()
 
@@ -243,8 +243,6 @@ class FileInstance(BaseHandler):
             raise errors.InternalServerError("Unable to accept files")
 
         result_list.append(registered_file)
-
-        assert len(result_list) == 1, "My assumption are wrong, remove the comment above"
 
         self.set_status(201) # Created
         self.finish({'files': result_list})
