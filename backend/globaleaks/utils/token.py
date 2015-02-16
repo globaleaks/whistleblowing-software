@@ -51,8 +51,10 @@ class Token(TempObj):
 
     existing_kind = [ 'submission' ]
     SUBMISSION_MINIMUM_SECONDS = 15
-    MAXIMUM_AVAILABILITY = 4 * SUBMISSION_MINIMUM_SECONDS
-            # TODO talk in an issue
+    MAXIMUM_AVAILABILITY = 3600 * 4
+            # four hours,
+            # I want make estimation of memory exhaustion.
+            # what if 4 hours someone allocate tokens at infinitum ?
     MAXIMUM_FILE_PER_TOKEN = 20
 
     def __init__(self, token_kind, context_id, debug=False):
@@ -171,12 +173,12 @@ class Token(TempObj):
                 'answer' : u"%d" % (random_a + random_b)
             }
         else:
-            self.human_captcha = None
+            self.human_captcha = False
 
         if problems_dict['proof_of_work']:
-            self.proof_of_work = None
+            self.proof_of_work = False
         else:
-            self.proof_of_work = None
+            self.proof_of_work = False
 
 
         if problems_dict['graph_captcha']:
@@ -194,9 +196,9 @@ class Token(TempObj):
                 'answer' : g.solutions,
             }
             """
-            self.graph_captcha = None
+            self.graph_captcha = False
         else:
-            self.graph_captcha = None
+            self.graph_captcha = False
 
     def timedelta_check(self):
         """

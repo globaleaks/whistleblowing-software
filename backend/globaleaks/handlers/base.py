@@ -479,9 +479,11 @@ class BaseHandler(RequestHandler):
         # This is the event tracker, used to keep track of the
         # outcome of the events.
         if not hasattr(self, '_status_code'):
-            log.debug("Developer, check this out")
             if GLSetting.devel_mode:
+                log.debug("Developer, check this out")
                 import pdb; pdb.set_trace()
+            else:
+                raise Exception("Missing _status_code in some place!")
 
         for event in outcoming_event_monitored:
             if event['handler_check'](self.request.uri) and \

@@ -5,11 +5,12 @@ from twisted.trial import unittest
 from twisted.internet import task
 from globaleaks import anomaly
 from globaleaks.utils.token import Token, TokenList
-from globaleaks.utils.token import reactor as token_reactor
 from twisted.trial.util import DirtyReactorAggregateError
 
 
-token_reactor = task.Clock()
+from twisted.internet import task
+import globaleaks.utils.token.reactor
+globaleaks.utils.token.reactor = task.Clock()
 
 class TestToken(unittest.TestCase):
     """

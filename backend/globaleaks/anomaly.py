@@ -26,13 +26,15 @@ reactor = None
 # follow the checker, they are executed from handlers/base.py
 # prepare() or flush()
 def file_upload_check(uri):
-    return uri.endswith('file')
+    # /submission/ + token_id + /file/  = 59 bytes
+    return len(uri) == 59 and uri.endswith('file')
 
 def file_append_check(uri):
     return uri == '/wbtip/upload'
 
 def submission_check(uri):
-    return uri.startswith('/submission/')
+    # /submission/ + context UUIDv4 = 48 byte
+    return len(uri) == 48 and uri.startswith('/submission/')
 
 def login_check(uri):
     return uri == '/authentication'
@@ -480,7 +482,7 @@ class Alarm(object):
                 message[where + len(keyword):])
 
         if Alarm.last_alarm_email:
-            if not is_expired(Alarm.last_alarm_email, minutes=10):
+            if not is_expired(Alarm.last_alarm_email, minutes=60):
                 log.debug("Alert email want be send, but the threshold of 10 minutes is not yet reached since %s" %
                     datetime_to_ISO8601(Alarm.last_alarm_email))
                 return
