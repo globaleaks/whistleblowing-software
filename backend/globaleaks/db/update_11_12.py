@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 
-from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
+from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
 
-class Node_version_11(Model):
+class Node_v_11(Model):
     __storm_table__ = 'node'
     name = Unicode()
     public_site = Unicode()
@@ -37,7 +37,7 @@ class Node_version_11(Model):
     # allow_unencrypted and receipt_regexp 
     # moved from Context
 
-class Context_version_11(Model):
+class Context_v_11(Model):
     __storm_table__ = 'context'
     unique_fields = Pickle()
     localized_fields = Pickle()
@@ -64,12 +64,6 @@ class Context_version_11(Model):
     show_small_cards = Bool()
     presentation_order = Int()
 
-class ApplicationData_version_11(Model):
-    __storm_table__ = 'applicationdata'
-    fields_version = Int()
-    fields = Pickle()
-
-
 class Replacer1112(TableReplacer):
 
     def migrate_Node(self):
@@ -78,7 +72,7 @@ class Replacer1112(TableReplacer):
         old_node = self.store_old.find(self.get_right_model("Node", 11)).one()
         new_node = self.get_right_model("Node", 12)()
 
-        for k, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.iteritems():
 
             if v.name == 'receipt_regexp':
                 new_node.receipt_regexp = u'[0-9]{16}'
@@ -93,23 +87,6 @@ class Replacer1112(TableReplacer):
             setattr(new_node, v.name, getattr(old_node, v.name) )
 
         self.store_new.add(new_node)
-        self.store_new.commit()
-
-    def migrate_ApplicationData(self):
-        print "%s ApplicationData migration assistant: (fields_version rename)" % self.std_fancy
-
-        old_ad = self.store_old.find(self.get_right_model("ApplicationData", 11)).one()
-        new_ad = self.get_right_model("ApplicationData", 12)()
-
-        for k, v in new_ad._storm_columns.iteritems():
-
-            if v.name == 'version' :
-                new_ad.version = old_ad.fields_version
-                continue
-
-            setattr(new_ad, v.name, getattr(old_ad, v.name))
-
-        self.store_new.add(new_ad)
         self.store_new.commit()
 
     # Context migration: is removed the receipt by the default bahavior

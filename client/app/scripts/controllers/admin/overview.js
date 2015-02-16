@@ -10,14 +10,3 @@ GLClient.controller('OverviewCtrl', ['$scope', '$location', 'ReceiverOverview', 
       $scope.active = {};
       $scope.active[current_menu] = "active";
 }]);
-
-GLClient.controller('StatisticsCtrl', ['$scope', 'StatsCollection', 'AnomaliesCollection',
-    function($scope, Node, StatsCollection, AnomaliesCollection) {
-
-        $scope.anomalies = AnomaliesCollection.query();
-
-        $scope.stats = StatsCollection.query();
-        $scope.active = {
-          stats_overview: "active"
-        };
-}]);

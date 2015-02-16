@@ -6,18 +6,14 @@
 # in order to checks integrity between exclusive options, provide defaults,
 # supports extensions (without changing DB format)
 
-from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.models import Model
-from globaleaks.utils.utility import log
 from globaleaks.settings import GLSetting
 
-from globaleaks.rest.errors import InvalidInputFormat, SubmissionFailFields
-
-from globaleaks.utils.utility import uuid4
+from globaleaks.rest.errors import SubmissionFailFields
 
 # Localized strings utility management
 
-class Rosetta:
+class Rosetta(object):
     """
     This Class can manage all the localized strings inside
     one Storm object. AKA: manage three language on a single
@@ -29,31 +25,36 @@ class Rosetta:
         self._localized_attrs = attrs
 
     def acquire_storm_object(self, obj):
-        for attr in self._localized_attrs:
-            self._localized_strings[attr] = getattr(obj, attr)
+        self._localized_strings = {
+            attr: getattr(obj, attr) for attr in self._localized_attrs
+        }
 
     def acquire_multilang_dict(self, obj):
-        for attr in self._localized_attrs:
-            self._localized_strings[attr] = obj[attr]
+        self._localized_strings = {
+            attr: obj[attr] for attr in self._localized_attrs
+        }
 
     def singlelang_to_multilang_dict(self, obj, language):
-        ret = {}
-        for attr in self._localized_attrs:
-            ret[attr] = {}
-            ret[attr][language] = obj[attr]
+        ret = {
+            attr: {language: obj[attr]} for attr in self._localized_attrs
+        }
+
         return ret
 
     def dump_localized_attr(self, attr, language):
-        default_language = GLSetting.memory_copy.default_language
+        default_language = GLSetting.memory_copy.language
 
         if attr not in self._localized_strings:
-            return "!! Missing value for '%s'" % attr
+            return ""
 
         translated_dict = self._localized_strings[attr]
 
-        if translated_dict.has_key(language):
+        if not isinstance(translated_dict, dict):
+            return ""
+
+        if language in translated_dict:
             return translated_dict[language]
-        elif translated_dict.has_key(default_language):
+        elif default_language in translated_dict:
             return translated_dict[default_language]
         else:
             return ""

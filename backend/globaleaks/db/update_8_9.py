@@ -6,7 +6,7 @@ from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
 
 
-class Context_version_8(Model):
+class Context_v_8(Model):
     """
     This model keeps track of specific contexts settings
     """
@@ -40,7 +40,7 @@ class Context_version_8(Model):
     # presentation_order = Int()
 
 
-class Receiver_version_8(Model):
+class Receiver_v_8(Model):
     __storm_table__ = 'receiver'
 
     user_id = Unicode()
@@ -66,7 +66,7 @@ class Receiver_version_8(Model):
     # + is added
     # presentation_order = Int()
 
-class Notification_version_8(Model):
+class Notification_v_8(Model):
     __storm_table__ = 'notification'
     server = Unicode()
     port = Int()
@@ -117,7 +117,7 @@ class Replacer89(TableReplacer):
 
             new_obj = self.get_right_model("Context", 9)()
 
-            for k, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.iteritems():
 
                 if v.name == 'presentation_order':
                     new_obj.presentation_order = 0
@@ -139,7 +139,7 @@ class Replacer89(TableReplacer):
 
             new_obj = self.get_right_model("Receiver", 9)()
 
-            for k, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.iteritems():
 
                 if v.name == 'presentation_order':
                     new_obj.presentation_order = 0
@@ -175,7 +175,7 @@ class Replacer89(TableReplacer):
 
             new_obj = self.get_right_model("InternalFile", 9)()
 
-            for k, v in new_obj._storm_columns.iteritems():
+            for _, v in new_obj._storm_columns.iteritems():
 
                 if v.name == 'description':
                     if not old_obj.description or not len(old_obj.description):
@@ -194,7 +194,7 @@ class Replacer89(TableReplacer):
         old_notification = self.store_old.find(self.get_right_model("Notification", 8)).one()
         new_notification = self.get_right_model("Notification", 9)()
 
-        for k, v in new_notification._storm_columns.iteritems():
+        for _, v in new_notification._storm_columns.iteritems():
 
             if v.name == 'encrypted_file_template':
                 new_notification.encrypted_file_template = old_notification.file_template

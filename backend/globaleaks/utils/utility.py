@@ -22,6 +22,7 @@ from twisted.python import logfile as twlogfile
 from twisted.python import util
 from twisted.python.failure import Failure
 
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
 
 def uuid4():
@@ -49,6 +50,13 @@ def uuid4():
     else:
         return unicode(UUID(bytes=os.urandom(16), version=4))
 
+def every_language(default_text):
+    return_dict = {}
+
+    for code in LANGUAGES_SUPPORTED_CODES:
+        return_dict.update({code : default_text})
+
+    return return_dict
 
 def randint(start, end=None):
     if not end:
@@ -243,6 +251,7 @@ def datetime_null():
     """
     return datetime.utcfromtimestamp(0)
 
+
 def datetime_now():
     """
     @return: a utc datetime object of now and eventually incremented
@@ -255,6 +264,7 @@ def datetime_now():
 
     return now
 
+
 def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0):
     """
     @param start_date: a date stored in a db
@@ -262,6 +272,21 @@ def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0):
     @return: a datetime object, as base of the sum
     """
     return start_date + timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
+
+
+def utc_past_date(seconds=0, minutes=0, hours=0):
+    """
+    get the past date in order to overflow the new year
+    when the stats are requested.
+    """
+    now = datetime.utcnow()
+
+    if GLSetting.debug_option_in_the_future:
+        now += timedelta(seconds=GLSetting.debug_option_in_the_future)
+
+    return utc_dynamic_date(now) - \
+           timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
+
 
 def utc_future_date(seconds=0, minutes=0, hours=0):
     """
@@ -279,6 +304,7 @@ def utc_future_date(seconds=0, minutes=0, hours=0):
 
     return utc_dynamic_date(now, seconds, minutes, hours)
 
+
 def get_future_epoch(seconds=0):
     """
     @param seconds: optional, the second in
@@ -293,6 +319,7 @@ def get_future_epoch(seconds=0):
         basic_future += GLSetting.debug_option_in_the_future
 
     return basic_future
+
 
 def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
     """
@@ -318,6 +345,7 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
 
     return now > check
 
+
 def datetime_to_ISO8601(date):
     """
     conver a datetime in ISO8601 format and UTC timezone
@@ -326,6 +354,7 @@ def datetime_to_ISO8601(date):
         date = datetime_null()
 
     return date.isoformat() + "Z" # Z means that the date is in UTC
+
 
 def ISO8601_to_datetime(isodate):
 
@@ -338,6 +367,7 @@ def ISO8601_to_datetime(isodate):
         ret.replace(microsecond=0)
     return ret
 
+
 def datetime_to_pretty_str(date):
     """
     print a datetime in pretty formatted str format
@@ -347,30 +377,50 @@ def datetime_to_pretty_str(date):
 
     return date.strftime("%A %d %B %Y %H:%M (UTC)")
 
+
+def datetime_to_day_str(date):
+    """
+    print a datetime in DD/MM/YYYY formatted str
+    """
+    if date is None:
+        date = datetime_null()
+
+    return date.strftime("%d/%m/%Y")
+
+
 def ISO8601_to_pretty_str(isodate):
     """
     convert a ISO8601 in pretty formatted str format
     """
     if isodate is None:
         isodate = datetime_null().isoformat()
- 
+
     date = datetime(year=int(isodate[0:4]),
                     month=int(isodate[5:7]),
                     day=int(isodate[8:10]),
                     hour=int(isodate[11:13]),
                     minute=int(isodate[14:16]),
-                    second=int(isodate[17:19]) )
+                    second=int(isodate[17:19]))
 
     return datetime_to_pretty_str(date)
 
-def datetime_to_pretty_str_tz(date):
-    """
-    print a datetime in pretty formatted str format
-    """
-    if date is None:
-        date = datetime_null()
 
-    return date.strftime("%A %d %B %Y %H:%M")
+def ISO8601_to_day_str(isodate):
+    """
+    print a ISO8601 in DD/MM/YYYY formatted str
+    """
+    if isodate is None:
+        isodate = datetime_null().isoformat()
+
+    date = datetime(year=int(isodate[0:4]),
+                    month=int(isodate[5:7]),
+                    day=int(isodate[8:10]),
+                    hour=int(isodate[11:13]),
+                    minute=int(isodate[14:16]),
+                    second=int(isodate[17:19]))
+
+    return date.strftime("%d/%m/%Y")
+
 
 def ISO8601_to_pretty_str_tz(isodate, tz):
     """
@@ -391,7 +441,8 @@ def ISO8601_to_pretty_str_tz(isodate, tz):
 
     date += timedelta(hours=tz_i, minutes=tz_d)
 
-    return datetime_to_pretty_str_tz(date)
+    return date.strftime("%A %d %B %Y %H:%M")
+
 
 def seconds_convert(value, conversion_factor, minv=0, maxv=0):
     """
@@ -409,11 +460,42 @@ def seconds_convert(value, conversion_factor, minv=0, maxv=0):
 
     return seconds
 
+
+def iso_year_start(iso_year):
+    "Returns the gregorian calendar date of the first day of the given ISO year"
+    fourth_jan = datetime.strptime('{0}-01-04'.format(iso_year), '%Y-%m-%d')
+    delta = timedelta(fourth_jan.isoweekday() - 1)
+    return fourth_jan - delta
+
+
+def iso_to_gregorian(iso_year, iso_week, iso_day):
+    "Returns gregorian calendar date for the given ISO year, week and day"
+    year_start = iso_year_start(iso_year)
+    return year_start + timedelta(days=iso_day - 1, weeks=iso_week - 1)
+
+
+def bytes_to_pretty_str(b):
+    if b is None:
+        b = 0
+
+    if isinstance(b, str):
+        b = int(b)
+
+    if (b >= 1000000000):
+        return "%dGB" % int(b / 1000000000)
+
+    if (b >= 1000000):
+        return "%dMB" % int(b / 1000000)
+
+    return "%dKB" % int(b / 1000)
+
+
 def acquire_bool(boolvalue):
     if boolvalue == 'true' or boolvalue == u'true' or boolvalue == True:
         return True
 
     return False
+
 
 def caller_name(skip=2):
     """Get a name of a caller in the format module.class.method
@@ -446,24 +528,3 @@ def caller_name(skip=2):
         name.append( codename ) # function or a method
     del parentframe
     return ".".join(name)
-
-# Dumping utility
-
-def dump_submission_steps(wb_steps):
-
-    dumptext = u"FIELD_MAIL_DUMP_STILL_NEED_TO_BE_IMPLEMENTED"
-
-    return dumptext
-
-def dump_file_list(filelist, files_n):
-
-    info = "%s%s%s\n" % ("Filename",
-                             " "*(40-len("Filename")),
-                             "Size (Bytes)")
-
-    for i in xrange(files_n):
-        info += "%s%s%i\n" % (filelist[i]['name'],
-                                " "*(40 - len(filelist[i]['name'])),
-                                filelist[i]['size'])
-
-    return info

@@ -92,6 +92,7 @@ else:
     pip_version_check('/usr/share/globaleaks/glbackend/requirements.txt')
 
 from twisted.python import usage
+from twisted.scripts._twistd_unix import ServerOptions
 
 from globaleaks import runner, DATABASE_VERSION
 from globaleaks.db import check_db_files
@@ -181,10 +182,6 @@ GLSetting.parser.add_option("-z", "--devel-mode", action='store_true',
     help="hack some configs and enable some additional features useful during development' [default: %default]",
     dest="devel_mode", default=GLSetting.devel_mode)
 
-GLSetting.parser.add_option("--disable-mail", action='store_true',
-    help="disable Notifications [default: Enabled]",
-    dest="notification_temporary_disable", default=(GLSetting.notification_temporary_disable))
-
 GLSetting.parser.add_option("-x", "--skip-wizard", action='store_true',
     help="skip globaleaks installation wizard' [default: False]",
     dest="skip_wizard")
@@ -263,7 +260,7 @@ def run_glbackend():
 
     sys.excepthook = mail_exception
 
-    config = runner.ServerOptions()
+    config = ServerOptions()
     try:
         config.parseOptions()
     except usage.error, ue:

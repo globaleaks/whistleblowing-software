@@ -16,17 +16,20 @@ from twisted.internet import defer
 from globaleaks import models
 from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
-from globaleaks.utils.utility import log, datetime_now, is_expired, datetime_to_ISO8601
+from globaleaks.utils.utility import log, datetime_now, is_expired, \
+    datetime_to_ISO8601, bytes_to_pretty_str
 from globaleaks.utils.tempobj import TempObj
 
 # needed in order to allow UT override
 reactor = None
-notification = True
 
 # follow the checker, they are executed from handlers/base.py
 # prepare() or flush()
 def file_upload_check(uri):
     return uri.endswith('file')
+
+def file_append_check(uri):
+    return uri == '/wbtip/upload'
 
 def submission_check(uri):
     return uri.startswith('/submission/')
@@ -73,30 +76,30 @@ incoming_event_monitored = [
     #    }
 ]
 
-outcome_event_monitored = [
+outcoming_event_monitored = [
     {
-        'name': 'logins_failed',
+        'name': 'failed_logins',
         'method': 'POST',
         'handler_check': login_check,
         'status_checker': failure_status_check,
         'anomaly_management': None,
     },
     {
-        'name': 'logins_successful',
+        'name': 'successful_logins',
         'method': 'POST',
         'handler_check': login_check,
         'status_checker': ok_status_check,
         'anomaly_management': None,
     },
     {
-        'name': 'submissions_started',
+        'name': 'started_submissions',
         'method': 'POST',
         'handler_check': submission_check,
         'status_checker': created_status_check,
         'anomaly_management': None,
     },
     {
-        'name': 'submissions_completed',
+        'name': 'completed_submissions',
         'method': 'PUT',
         'handler_check': submission_check,
         'status_checker': update_status_check,
@@ -119,6 +122,13 @@ outcome_event_monitored = [
     {
         'name': 'uploaded_files',
         'handler_check': file_upload_check,
+        'status_checker': created_status_check,
+        'anomaly_management': None,
+        'method': 'POST'
+    },
+    {
+        'name': 'appended_files',
+        'handler_check': file_append_check,
         'status_checker': created_status_check,
         'anomaly_management': None,
         'method': 'POST'
@@ -161,7 +171,6 @@ class EventTrack(TempObj):
         }
 
     def __init__(self, event_obj, request_time, debug=False):
-
         self.debug = debug
         self.creation_date = datetime_now()
         self.event_id = EventTrackQueue.event_number()
@@ -185,14 +194,14 @@ class EventTrack(TempObj):
         This is a callback append to the expireCallbacks, and
         just make a synthesis of the Event in the Recent
         """
-        from globaleaks.handlers.statistics import RecentEventsCollection
+        from globaleaks.handlers.admin.statistics import RecentEventsCollection
         RecentEventsCollection.update_RecentEventQ(self)
 
     def __repr__(self):
         return "%s" % self.serialize_event()
 
 
-class EventTrackQueue:
+class EventTrackQueue(object):
     """
     This class has only a class variable, used to stock the queue of the
     event happened on the latest minutes.
@@ -212,7 +221,7 @@ class EventTrackQueue:
         """
         serialized_ret = []
 
-        for event_id, event_obj in EventTrackQueue.queue.iteritems():
+        for _, event_obj in EventTrackQueue.queue.iteritems():
             serialized_ret.append(event_obj.serialize_event())
 
         return serialized_ret
@@ -223,7 +232,7 @@ class EventTrackQueue:
         EventTrackQueue.event_absolute_counter = 0
 
 
-class Alarm:
+class Alarm(object):
     """
     This class implement some classmethod used to report general
     usage of the system and the class itself return and operate
@@ -248,14 +257,15 @@ class Alarm:
     INCOMING_ANOMALY_MAP = {
     }
 
-    OUTCOME_ANOMALY_MAP = {
-        'logins_failed': 5,
-        'logins_successful': 3,
-        'submissions_started': 5,
-        'submissions_completed': 4,
+    OUTCOMING_ANOMALY_MAP = {
+        'failed_logins': 5,
+        'successful_logins': 3,
+        'started_submissions': 5,
+        'completed_submissions': 4,
+        'uploaded_files': 11,
+        'appended_files': 4,
         'wb_comments': 4,
         'wb_messages': 4,
-        'uploaded_files': 11,
         'receiver_comments': 3,
         'receiver_messages': 3,
     }
@@ -290,7 +300,7 @@ class Alarm:
         this is why the content are copied for the statistic
         acquiring later.
         """
-        from globaleaks.handlers.statistics import AnomaliesCollection
+        from globaleaks.handlers.admin.statistics import AnomaliesCollection
 
         debug_reason = ""
         Alarm.number_of_anomalies = 0
@@ -299,19 +309,19 @@ class Alarm:
 
         requests_timing = []
 
-        for event_id, event_obj in EventTrackQueue.queue.iteritems():
+        for _, event_obj in EventTrackQueue.queue.iteritems():
 
             current_event_matrix.setdefault(event_obj.event_type, 0)
             current_event_matrix[event_obj.event_type] += 1
             requests_timing.append(event_obj.request_time)
 
         if len(requests_timing) > 2:
-            log.info("worst RTt %f, best %f" %
+            log.info("worst RTT %f, best %f" %
                      (round(max(requests_timing), 2), round(min(requests_timing), 2) )
             )
 
-        for event_name, threshold in Alarm.OUTCOME_ANOMALY_MAP.iteritems():
-            if current_event_matrix.has_key(event_name):
+        for event_name, threshold in Alarm.OUTCOMING_ANOMALY_MAP.iteritems():
+            if event_name in current_event_matrix:
                 if current_event_matrix[event_name] > threshold:
                     Alarm.number_of_anomalies += 1
                     debug_reason = "%s[Incoming %s: %d>%d] " % \
@@ -352,8 +362,7 @@ class Alarm:
                  debug_reason) )
 
         # Alarm notification get the copy of the latest activities
-        if notification:
-            yield Alarm.admin_alarm_notification(current_event_matrix)
+        yield Alarm.admin_alarm_notification(current_event_matrix)
 
         defer.returnValue(Alarm.stress_levels['activity'] - previous_activity_sl)
 
@@ -368,9 +377,17 @@ class Alarm:
         """
 
         @transact_ro
+        def _get_node_name(store):
+            node = store.find(models.Node).one()
+            return node.email
+
+        @transact_ro
         def _get_admin_email(store):
             node = store.find(models.Node).one()
             return node.email
+
+        node_name = yield _get_node_name()
+        admin_email = yield _get_admin_email()
 
         @transact_ro
         def _get_message_template(store):
@@ -379,8 +396,8 @@ class Alarm:
             template = notif.admin_anomaly_template
             if admin_user.language in template:
                 return template[admin_user.language]
-            elif GLSetting.memory_copy.default_language in template:
-                return template[GLSetting.memory_copy.default_language]
+            elif GLSetting.memory_copy.language in template:
+                return template[GLSetting.memory_copy.language]
             else:
                 raise Exception("Cannot find any language for admin notification")
 
@@ -388,7 +405,6 @@ class Alarm:
             return "%s" % Alarm.stress_levels['activity']
 
         def _ad():
-
             retstr = ""
             for event, amount in event_matrix.iteritems():
                 retstr = "%s: %d\n%s" % (event, amount, retstr)
@@ -398,7 +414,10 @@ class Alarm:
             return "%s" % Alarm.stress_levels['disk_space']
 
         def _dd():
-            return "%s Megabytes" % Alarm.latest_measured_freespace
+            return "%s" % bytes_to_pretty_str(Alarm.latest_measured_freespace)
+
+        def _nn():
+            return "%s" % node_name
 
         message_required = False
         if Alarm.stress_levels['activity'] >= 1:
@@ -411,10 +430,11 @@ class Alarm:
             return
 
         KeyWordTemplate = {
-            "%ActivityAlarmLevel%" : _aal,
-            "%ActivityDump%" : _ad,
-            "%DiskAlarmLevel%" : _dal,
-            "%DiskDump%" : _dd,
+            "%ActivityAlarmLevel%": _aal,
+            "%ActivityDump%": _ad,
+            "%DiskAlarmLevel%": _dal,
+            "%DiskDump%": _dd,
+            "%NodeSignature%": _nn
         }
 
         message = yield _get_message_template()
@@ -431,13 +451,12 @@ class Alarm:
                     datetime_to_ISO8601(Alarm.last_alarm_email))
                 return
 
-        to_address = yield _get_admin_email()
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
-                                    GLSetting.memory_copy.notif_source_email,
-                                    "Tester",
-                                    to_address,
-                                    "ALERT: Anomaly detection",
-                                    message)
+                                  GLSetting.memory_copy.notif_source_email,
+                                  "Admin",
+                                  admin_email,
+                                  "ALERT: Anomaly detection",
+                                  message)
 
         log.debug('Alarm Email for admin: connecting to [%s:%d]' %
                     (GLSetting.memory_copy.notif_server,
@@ -448,41 +467,14 @@ class Alarm:
         yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
                        authentication_password=GLSetting.memory_copy.notif_password,
                        from_address=GLSetting.memory_copy.notif_source_email,
-                       to_address=to_address,
+                       to_address=admin_email,
                        message_file=message,
                        smtp_host=GLSetting.memory_copy.notif_server,
                        smtp_port=GLSetting.memory_copy.notif_port,
                        security=GLSetting.memory_copy.notif_security,
                        event=None)
 
-    def get_token_difficulty(self):
-        """
-        THIS FUNCTION IS NOT YET CALL
-
-        This function return the difficulty that will be enforced in the
-        token, whenever is File or Submission, here is evaluated with a dict.
-        """
-        self.difficulty_dict = {
-            'human_captcha': False,
-            'graph_captcha': False,
-            'proof_of_work': False,
-        }
-
-        if Alarm.stress_levels['activity'] >= 1:
-            self.difficulty_dict['graph_captcha'] = True
-
-        if Alarm.stress_levels['disk_space'] >= 1:
-            self.difficulty_dict['human_captcha'] = True
-
-        log.debug("get_token_difficulty in %s is: HC:%s, GC:%s, PoW:%s" % (
-                  self.current_time,
-                  "Y" if self.difficulty_dict['human_captcha'] else "N",
-                  "Y" if self.difficulty_dict['graph_captcha'] else "N",
-                  "Y" if self.difficulty_dict['proof_of_work'] else "N" ) )
-
-        return self.difficulty_dict
-
-    def report_disk_usage(self, free_mega_bytes):
+    def report_disk_usage(self, free_bytes):
         """
         Here in Alarm is written the threshold to say if we're in disk alarm
         or not. Therefore the function "report" the amount of free space and
@@ -493,33 +485,17 @@ class Alarm:
         mat = Alarm._MEDIUM_DISK_ALARM * GLSetting.memory_copy.maximum_filesize
         hat = Alarm._HIGH_DISK_ALARM * GLSetting.memory_copy.maximum_filesize
 
-        Alarm.latest_measured_freespace = free_mega_bytes
+        Alarm.latest_measured_freespace = free_bytes
 
-        if free_mega_bytes < hat:
-            log.err("Warning: free space HIGH ALARM: only %d Mb" % free_mega_bytes)
+        free_megabytes = free_bytes / (1000 * 1000)
+
+        free_memory_str = bytes_to_pretty_str(free_bytes)
+
+        if free_megabytes < hat:
+            log.err("Warning: free space alarm (HIGH): only %s" % free_memory_str)
             Alarm.stress_levels['disk_space'] = 2
-        elif free_mega_bytes < mat:
-            log.info("Warning: free space medium alarm: %d Mb" % free_mega_bytes)
+        elif free_megabytes < mat:
+            log.info("Warning: free space alarm (MEDIUM): %s" % free_memory_str)
             Alarm.stress_levels['disk_space'] = 1
         else:
             Alarm.stress_levels['disk_space'] = 0
-
-
-    @staticmethod
-    def get_description_status():
-        """
-        This function is useful to get some debug log
-        """
-        return "Alarm CPU %d, Disk %d" % (
-            Alarm.stress_levels['activity'],
-            Alarm.stress_levels['disk_space'] )
-
-
-
-def pollute_Event_for_testing(number_of_times=1):
-
-    for _ in xrange(number_of_times):
-        for event_obj in outcome_event_monitored:
-
-            for x in xrange(2):
-                EventTrack(event_obj, 1.0 * x)

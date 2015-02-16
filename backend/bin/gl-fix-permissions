@@ -1,12 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 1>&2
-   exit 1
-fi
-
-if ! id -u globaleaks >/dev/null 2>&1; then
-  useradd globaleaks -u 1337 -b /var/globaleaks/ -s /bin/false
+# user permission check
+if [ ! $(id -u) = 0 ]; then
+    echo "Error: gl-fix-permissions script must be runned by root"
+    exit 1
 fi
 
 [ -d /var/globaleaks ] ||  mkdir -p /var/globaleaks

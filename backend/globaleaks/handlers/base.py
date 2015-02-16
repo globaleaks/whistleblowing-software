@@ -8,6 +8,8 @@ import collections
 import httplib
 import json
 import logging
+import mimetypes
+import os
 import re
 import sys
 import types
@@ -23,9 +25,9 @@ from twisted.python.failure import Failure
 from cyclone import escape, httputil
 from cyclone.escape import native_str, parse_qs_bytes
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
-from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
+from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
 
-from globaleaks.anomaly import incoming_event_monitored, outcome_event_monitored, EventTrack
+from globaleaks.anomaly import outcoming_event_monitored, EventTrack
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile
@@ -38,16 +40,16 @@ def validate_host(host_key):
     and if matched, return True, else return False
     Is used by all the Web handlers inherit from Cyclone
     """
-    # hidden service has not a :port
-    if len(host_key) == 22 and host_key.endswith('.onion'):
-        return True
-
     # strip eventually port
     hostchunk = str(host_key).split(":")
     if len(hostchunk) == 2:
         host_key = hostchunk[0]
 
-    if host_key in GLSetting.accepted_hosts:
+    # hidden service has not a :port
+    if re.match(r'^[0-9a-z]{16}\.onion$', host_key):
+        return True
+
+    if host_key != '' and host_key in GLSetting.accepted_hosts:
         return True
 
     log.debug("Error in host requested: %s not accepted between: %s " %
@@ -56,7 +58,7 @@ def validate_host(host_key):
     return False
 
 
-class GLHTTPServer(HTTPConnection):
+class GLHTTPConnection(HTTPConnection):
     file_upload = False
 
     def __init__(self):
@@ -220,19 +222,23 @@ class BaseHandler(RequestHandler):
         self.set_header("Pragma", "no-cache")
         self.set_header("Expires", "-1")
 
+        # to avoid information leakage via referrer
+        self.set_header("Content-Security-Policy", "referrer no-referrer")
+
         # to avoid Robots spidering, indexing, caching
         self.set_header("X-Robots-Tag", "noindex")
 
-        # to mitigate clickjaking attacks on iframes allwing only same origin
+        # to mitigate clickjaking attacks on iframes allowing only same origin
         # same origin is needed in order to include svg and other html <object>
-        self.set_header("X-Frame-Options", "sameorigin")
+        if not GLSetting.memory_copy.allow_iframes_inclusion:
+            self.set_header("X-Frame-Options", "sameorigin")
 
         lang = self.request.headers.get('GL-Language', None)
 
         if not lang:
             # before was used the Client language. but shall be unsupported
             # lang = self.request.headers.get('Accepted-Language', None)
-            lang = GLSetting.memory_copy.default_language
+            lang = GLSetting.memory_copy.language
 
         self.request.language = lang
 
@@ -445,6 +451,20 @@ class BaseHandler(RequestHandler):
                 log.debug("Reached I/O logging limit of %d requests: disabling" % GLSetting.http_log)
                 GLSetting.http_log = -1
 
+    def write_file(self, filepath):
+        if not (os.path.exists(filepath) or os.path.isfile(filepath)):
+            return
+
+        try:
+            with open(filepath, "rb") as f:
+                while True:
+                    chunk = f.read(GLSetting.file_chunk_size)
+                    if len(chunk) == 0:
+                        break
+                    self.write(chunk)
+        except IOError as srcerr:
+            log.err("Unable to open %s: %s " % (filepath, srcerr.strerror))
+
 
     def flush(self, include_footers=False):
         """
@@ -463,7 +483,7 @@ class BaseHandler(RequestHandler):
             if GLSetting.devel_mode:
                 import pdb; pdb.set_trace()
 
-        for event in outcome_event_monitored:
+        for event in outcoming_event_monitored:
             if event['handler_check'](self.request.uri) and \
                     event['method'] == self.request.method and \
                     event['status_checker'](self._status_code):
@@ -575,14 +595,14 @@ class BaseHandler(RequestHandler):
 
     @property
     def is_whistleblower(self):
-        if not self.current_user or not self.current_user.has_key('role'):
+        if not self.current_user or 'role' not in self.current_user:
             raise errors.NotAuthenticated
 
         return self.current_user['role'] == 'wb'
 
     @property
     def is_receiver(self):
-        if not self.current_user or not self.current_user.has_key('role'):
+        if not self.current_user or 'role' not in self.current_user:
             raise errors.NotAuthenticated
 
         return self.current_user['role'] == 'receiver'
@@ -633,17 +653,34 @@ class BaseHandler(RequestHandler):
         return uploaded_file
 
 
-class BaseStaticFileHandler(BaseHandler, StaticFileHandler):
-    def prepare(self):
-        """
-        This method is called by cyclone,and perform 'Host:' header
-        validation using the same 'validate_host' function used by
-        BaseHandler. but BaseHandler manage the REST API,..
-        BaseStaticFileHandler manage all the statically served files.
-        """
-        if not validate_host(self.request.host):
-            raise errors.InvalidHostSpecified
+class BaseStaticFileHandler(BaseHandler):
 
+    def initialize(self, path=None):
+        if path is None:
+            path = GLSetting.static_path
+
+        self.root = "%s%s" % (os.path.abspath(path), os.path.sep)
+
+    def get(self, path):
+        if path == '':
+            path = 'index.html'
+
+        path = self.parse_url_path(path)
+        abspath = os.path.abspath(os.path.join(self.root, path))
+
+        if not os.path.exists(abspath) or not os.path.isfile(abspath):
+            raise HTTPError(404)
+
+        mime_type, encoding = mimetypes.guess_type(abspath)
+        if mime_type:
+            self.set_header("Content-Type", mime_type)
+
+        self.write_file(abspath)
+
+    def parse_url_path(self, url_path):
+        if os.path.sep != "/":
+            url_path = url_path.replace("/", os.path.sep)
+        return url_path
 
 class BaseRedirectHandler(BaseHandler, RedirectHandler):
     def prepare(self):
@@ -653,7 +690,8 @@ class BaseRedirectHandler(BaseHandler, RedirectHandler):
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
-class GLApiCache:
+
+class GLApiCache(object):
 
     memory_cache_dict = {}
 
@@ -667,7 +705,7 @@ class GLApiCache:
 
             value = yield function(*args, **kwargs)
             if resource_name not in cls.memory_cache_dict:
-               cls.memory_cache_dict[resource_name] = {}
+                cls.memory_cache_dict[resource_name] = {}
             cls.memory_cache_dict[resource_name][language] = value
             returnValue(value)
         except KeyError:

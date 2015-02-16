@@ -16,7 +16,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
-                              ReceiverFile, Receiver
+                              ReceiverFile
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.utility import log 
 from globaleaks.security import GLBGPG, GLSecureFile
@@ -146,10 +146,10 @@ def receiverfile_planning(store):
 
             for receiver in filex.internaltip.receivers:
 
-                if not ifilesmap.has_key(filex.file_path):
+                if filex.file_path not in ifilesmap:
                     ifilesmap[filex.file_path] = list()
 
-                receiver_desc = admin_serialize_receiver(receiver, GLSetting.memory_copy.default_language)
+                receiver_desc = admin_serialize_receiver(receiver, GLSetting.memory_copy.language)
 
                 map_info = {
                     'receiver' : receiver_desc,
@@ -185,36 +185,29 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
     required keys are checked on top
 
     """
-    assert isinstance(recipient_gpg, dict), "invalid recipient"
-    assert recipient_gpg.has_key('gpg_key_armor'), "missing key"
-    assert recipient_gpg.has_key('gpg_key_status'), "missing status"
-    assert recipient_gpg['gpg_key_status'] == u'Enabled', "GPG not enabled"
-    assert recipient_gpg.has_key('name'), "missing recipient Name"
+    gpoj = GLBGPG()
 
-    gpoj = GLBGPG(recipient_gpg)
+    try:
+        gpoj.load_key(recipient_gpg['gpg_key_armor'])
 
-    if not gpoj.validate_key(recipient_gpg['gpg_key_armor']):
-        raise Exception("Unable to validate key")
+        filepath = os.path.join(GLSetting.submission_path, fpath)
 
-    filepath = os.path.join(GLSetting.submission_path, fpath)
+        with GLSecureFile(filepath) as f:
+            encrypted_file_path, encrypted_file_size = \
+                gpoj.encrypt_file(recipient_gpg['gpg_key_fingerprint'], filepath, f, GLSetting.submission_path)
 
-    with GLSecureFile(filepath) as f:
-        encrypted_file_path, encrypted_file_size = \
-            gpoj.encrypt_file(filepath, f, GLSetting.submission_path)
+    except:
+        raise
 
-    gpoj.destroy_environment()
-
-    assert (encrypted_file_size > 1), "File generated is empty or size is 0"
-    assert os.path.isfile(encrypted_file_path), "Output generated is not a file!"
+    finally:
+        # the finally statement is always called also if
+        # except contains a return or a raise
+        gpoj.destroy_environment()
 
     return encrypted_file_path, encrypted_file_size
 
 @transact
 def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_desc):
-
-    assert type(1) == type(recv_size)
-    assert isinstance(receiver_desc, dict)
-    assert os.path.isfile(os.path.join(GLSetting.submission_path, if_path))
 
     try:
         ifile = store.find(InternalFile, InternalFile.file_path == unicode(if_path)).one()
@@ -339,7 +332,7 @@ def encrypt_where_available(receivermap):
 
     for rcounter, rfileinfo in enumerate(receivermap):
 
-        if rfileinfo['receiver']['gpg_key_status'] == u'Enabled':
+        if rfileinfo['receiver']['gpg_key_status'] == u'enabled':
 
             try:
                 new_path, new_size = fsops_gpg_encrypt(rfileinfo['path'], rfileinfo['receiver'])

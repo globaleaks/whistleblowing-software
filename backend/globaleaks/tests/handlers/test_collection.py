@@ -14,6 +14,11 @@ from globaleaks.models import ReceiverTip
 class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
     _handler = collection.CollectionDownload
 
+    @inlineCallbacks
+    def setUp(self):
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+        yield self.perform_submission()
+
     @transact_ro
     def get_rtips(self, store):
         rtips_desc = []

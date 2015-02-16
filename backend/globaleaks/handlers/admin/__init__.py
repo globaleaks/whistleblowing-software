@@ -5,30 +5,34 @@
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
 import copy
-import os
 import shutil
 
-from storm.exceptions import DatabaseError
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import security, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
-from globaleaks.db.datainit import import_memory_variables
-from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.base import BaseHandler, GLApiCache
+from globaleaks.handlers.base import GLApiCache
 from globaleaks.handlers.admin.field import disassociate_field, get_field_association
+from globaleaks.handlers.admin.staticfiles import *
+from globaleaks.handlers.admin.overview import *
+from globaleaks.handlers.admin.statistics import *
+from globaleaks.handlers.admin.notification import *
 from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list, \
-    anon_serialize_node, anon_serialize_step, anon_serialize_field
+    anon_serialize_node, anon_serialize_step
 from globaleaks import models
 from globaleaks.rest import errors, requests
 from globaleaks.security import gpg_options_parse
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.third_party import rstr
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import log, datetime_now, datetime_null, seconds_convert, datetime_to_ISO8601
+from globaleaks.utils.utility import log, datetime_now, datetime_null, seconds_convert, datetime_to_ISO8601, uuid4
 
 
-def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_language):
+def db_admin_serialize_node(store, language):
+    """
+    Serialize node infos.
 
+    :param store: the store on which perform queries.
+    :param language: the language in which to localize data.
+    :return: a dictionary including the node configuration.
+    """
     node = store.find(models.Node).one()
 
     admin = store.find(models.User, (models.User.username == unicode('admin'))).one()
@@ -62,9 +66,8 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         'postpone_superpower': node.postpone_superpower,
         'can_delete_submission': node.can_delete_submission,
         'ahmia': node.ahmia,
-        'reset_css': False,
-        'reset_homepage': False,
         'allow_unencrypted': node.allow_unencrypted,
+        'allow_iframes_inclusion': node.allow_iframes_inclusion,
         'wizard_done': node.wizard_done,
         'configured': True if associated else False,
         'password': u"",
@@ -76,20 +79,58 @@ def db_admin_serialize_node(store, language=GLSetting.memory_copy.default_langua
         'admin_language': admin.language,
         'admin_timezone': admin.timezone,
         'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-        'custom_privacy_badge_tbb': node.custom_privacy_badge_tbb,
         'custom_privacy_badge_tor': node.custom_privacy_badge_tor,
         'custom_privacy_badge_none': node.custom_privacy_badge_none,
+        'landing_page': node.landing_page
     }
 
     return get_localized_values(ret_dict, node, node.localized_strings, language)
 
+
 @transact_ro
-def admin_serialize_node(store, language=GLSetting.memory_copy.default_language):
-    return db_admin_serialize_node(store, language)
+def admin_serialize_node(*args):
+    return db_admin_serialize_node(*args)
+
+
+def db_admin_serialize_user(store, username):
+    """
+    Serialize user description
+
+    :param store: the store on which perform queries.
+    :param username: the username of the user to be serialized
+    :param language: the language in which to localize data
+    :return: a serialization of the object
+    """
+    user = store.find(models.User, models.User.username == unicode(username)).one()
+
+    ret_dict = {
+        'username': user.username,
+        'password': user.password,
+        'salt': user.salt,
+        'role': user.role,
+        'state': user.state,
+        'last_login': datetime_to_ISO8601(user.last_login),
+        'language': user.language,
+        'timezone': user.timezone,
+        'password_change_needed': user.password_change_needed,
+        'password_change_date': user.password_change_date
+    }
+
+    return ret_dict
+
+@transact_ro
+def admin_serialize_user(*args):
+    return db_admin_serialize_user(*args)
+
 
 def db_create_step(store, context_id, steps, language):
     """
-    Add a new step to the store, then return the new serialized object.
+    Add the specified steps
+
+    :param store: the store on which perform queries.
+    :param context_id: the id of the context on which register specified steps.
+    :param steps: a dictionary containing the new steps.
+    :param language: the language of the specified steps.
     """
     context = models.Context.get(store, context_id)
     if context is None:
@@ -110,7 +151,7 @@ def db_create_step(store, context_id, steps, language):
                 raise errors.FieldIdNotFound
 
             # remove current step/field fieldgroup/field association
-            a_s, a_f = get_field_association(store, field.id)
+            a_s, _ = get_field_association(store, field.id)
             if a_s != s.id:
                 disassociate_field(store, field.id)
                 s.children.add(field)
@@ -119,7 +160,12 @@ def db_create_step(store, context_id, steps, language):
 
 def db_update_steps(store, context_id, steps, language):
     """
-    Update steps removing old field associated and recreating new.
+    Update steps
+
+    :param store: the store on which perform queries.
+    :param context_id: the id of the context on which register specified steps.
+    :param steps: a dictionary containing the steps to be updated.
+    :param language: the language of the specified steps.
     """
     context = models.Context.get(store, context_id)
     if context is None:
@@ -141,16 +187,16 @@ def db_update_steps(store, context_id, steps, language):
 
         # check for reuse (needed to keep translations)
         if 'id' in step and step['id'] in indexed_old_steps:
-           s = indexed_old_steps[step['id']]
-           for field in s.children:
-               s.children.remove(field)
+            s = indexed_old_steps[step['id']]
+            for field in s.children:
+                s.children.remove(field)
 
-           s.update(step)
+            s.update(step)
 
-           new_steps.append(indexed_old_steps[step['id']])
-           del indexed_old_steps[step['id']]
+            new_steps.append(indexed_old_steps[step['id']])
+            del indexed_old_steps[step['id']]
         else:
-           new_steps.append(models.Step(step))
+            new_steps.append(models.Step(step))
 
         i = 1
         for f in step['children']:
@@ -162,8 +208,8 @@ def db_update_steps(store, context_id, steps, language):
                 raise errors.FieldIdNotFound
 
             # remove current step/field fieldgroup/field association
-            a_s, a_f = get_field_association(store, field.id)
-            if a_s == None:
+            a_s, _ = get_field_association(store, field.id)
+            if a_s is None:
                 s.children.add(field)
             elif a_s != s.id:
                 disassociate_field(store, field.id)
@@ -173,22 +219,27 @@ def db_update_steps(store, context_id, steps, language):
 
         n += 1
 
-    for o in indexed_old_steps:
-        store.remove(indexed_old_steps[o.id])
+    for o_id in indexed_old_steps:
+        store.remove(indexed_old_steps[o_id])
 
     for n in new_steps:
         store.add(n)
 
-def admin_serialize_context(store, context, language=GLSetting.memory_copy.default_language):
+def admin_serialize_context(store, context, language):
+    """
+    Serialize the specified context
 
-    steps = [ anon_serialize_step(store, s, language)
-              for s in context.steps.order_by(models.Step.number) ]
+    :param store: the store on which perform queries.
+    :param language: the language in which to localize data.
+    :return: a dictionary representing the serialization of the context.
+    """
+    steps = [anon_serialize_step(store, s, language)
+           for s in context.steps.order_by(models.Step.number)]
 
     ret_dict = {
         "id": context.id,
         "creation_date": datetime_to_ISO8601(context.creation_date),
         "last_update": datetime_to_ISO8601(context.last_update),
-        "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
         "file_max_download": context.file_max_download,
         "receivers": [r.id for r in context.receivers],
@@ -208,8 +259,14 @@ def admin_serialize_context(store, context, language=GLSetting.memory_copy.defau
 
     return get_localized_values(ret_dict, context, context.localized_strings, language)
 
-def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
+def admin_serialize_receiver(receiver, language):
+    """
+    Serialize the specified receiver
 
+    :param store: the store on which perform queries.
+    :param language: the language in which to localize data
+    :return: a dictionary representing the serialization of the receiver
+    """
     ret_dict = {
         "id": receiver.id,
         "name": receiver.name,
@@ -218,8 +275,8 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "can_delete_submission": receiver.can_delete_submission,
         "postpone_superpower": receiver.postpone_superpower,
         "username": receiver.user.username,
-        "user_id": receiver.user.id,
         'mail_address': receiver.mail_address,
+        'ping_mail_address': receiver.ping_mail_address,
         "password": u"",
         "state": receiver.user.state,
         "configuration": receiver.configuration,
@@ -228,12 +285,13 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "gpg_key_armor": receiver.gpg_key_armor,
         "gpg_key_remove": False,
         "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
+        "gpg_key_expiration": datetime_to_ISO8601(receiver.gpg_key_expiration),
         "gpg_key_status": receiver.gpg_key_status,
-        "gpg_enable_notification": True if receiver.gpg_enable_notification else False,
-        "comment_notification": True if receiver.comment_notification else False,
-        "tip_notification": True if receiver.tip_notification else False,
-        "file_notification": True if receiver.file_notification else False,
-        "message_notification": True if receiver.message_notification else False,
+        "comment_notification": receiver.comment_notification,
+        "tip_notification": receiver.tip_notification,
+        "file_notification": receiver.file_notification,
+        "message_notification": receiver.message_notification,
+        "ping_notification": receiver.ping_notification,
         "presentation_order": receiver.presentation_order,
         "language": receiver.user.language,
         "timezone": receiver.user.timezone,
@@ -242,19 +300,13 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
 
-def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_copy.default_language):
+def db_update_node(store, request, wizard_done, language):
     """
-    Update the node, setting the last update time on it.
+    Update and serialize the node infos
 
-    Password:
-        If old_password and password are present, password update is performed
-
-    URLs:
-        If one url is present, is properly validated
-
-    Returns:
-        the last update time of the node as a :class:`datetime.datetime`
-        instance
+    :param store: the store on which perform queries.
+    :param language: the language in which to localize data
+    :return: a dictionary representing the serialization of the node
     """
     node = store.find(models.Node).one()
 
@@ -262,7 +314,7 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
 
     admin = store.find(models.User, (models.User.username == unicode('admin'))).one()
 
-    admin.language = request.get('admin_language', GLSetting.memory_copy.default_language)
+    admin.language = request.get('admin_language', GLSetting.memory_copy.language)
     admin.timezone = request.get('admin_timezone', GLSetting.memory_copy.default_timezone)
 
     password = request.get('password', None)
@@ -271,34 +323,6 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
     if password and old_password and len(password) and len(old_password):
         admin.password = security.change_password(admin.password,
                                     old_password, password, admin.salt)
-
-    # check the 'reset_css' boolean option: remove an existent custom CSS
-    if request['reset_css']:
-        custom_css_path = os.path.join(GLSetting.static_path, "%s.css" % GLSetting.reserved_names.css)
-
-        if os.path.isfile(custom_css_path):
-            try:
-                os.remove(custom_css_path)
-                log.debug("Reset on custom CSS done.")
-            except Exception as excep:
-                log.err("Unable to remove custom CSS: %s: %s" % (custom_css_path, excep))
-                raise errors.InternalServerError(excep)
-        else:
-            log.err("Requested CSS Reset, but custom CSS does not exist")
-
-    # check the 'reset_homepage' boolean option: remove an existent custom Homepage
-    if request['reset_homepage']:
-        custom_homepage_path = os.path.join(GLSetting.static_path, "%s.html" % GLSetting.reserved_names.html)
-
-        if os.path.isfile(custom_homepage_path):
-            try:
-                os.remove(custom_homepage_path)
-                log.debug("Reset on custom Homepage done.")
-            except Exception as excep:
-                log.err("Unable to remove custom Homepage: %s: %s" % (custom_homepage_path, excep))
-                raise errors.InternalServerError(excep)
-        else:
-            log.err("Requested Homepage Reset, but custom Homepage does not exist")
 
     # verify that the languages enabled are valid 'code' in the languages supported
     node.languages_enabled = []
@@ -326,13 +350,8 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
         node.default_language = node.languages_enabled[0]
         log.err("Default language not set!? fallback on %s" % node.default_language)
 
-    # default False in creation, default False in the option.
     if wizard_done:
-        if node.wizard_done:
-            log.err("wizard completed more than one time!?")
-        else:
-            log.debug("wizard completed: Node initialized")
-            node.wizard_done = True
+        node.wizard_done = True
 
     # since change of regexp format to XXXX-XXXX-XXXX-XXXX
     # we removed the possibility to customize the receipt from the GLCllient
@@ -345,18 +364,23 @@ def db_update_node(store, request, wizard_done=True, language=GLSetting.memory_c
         raise errors.InvalidInputFormat(dberror)
 
     node.last_update = datetime_now()
+
+    db_import_memory_variables(store)
+
     return db_admin_serialize_node(store, language)
 
-
 @transact
-def update_node(store, request, wizard_done=False, language=GLSetting.memory_copy.default_language):
-    return db_update_node(store, request, wizard_done, language)
+def update_node(*args):
+    return db_update_node(*args)
 
 @transact_ro
-def get_context_list(store, language=GLSetting.memory_copy.default_language):
+def get_context_list(store, language):
     """
-    Returns:
-        (dict) the current context list serialized.
+    Returns the context list.
+
+    :param store: the store on which perform queries.
+    :param language: the language in which to localize data.
+    :return: a dictionary representing the serialization of the contexts.
     """
     contexts = store.find(models.Context)
     context_list = []
@@ -397,7 +421,7 @@ def field_is_present(store, field):
     return result.count() > 0
 
 
-def db_create_context(store, request, language=GLSetting.memory_copy.default_language):
+def db_create_context(store, request, language):
     """
     Creates a new context from the request of a client.
 
@@ -469,11 +493,11 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
                 f = models.db_forge_obj(store, models.Field, f_child)
                 n_o = 1
                 for o_child in o_children:
-                     o = models.db_forge_obj(store, models.FieldOption, o_child)
-                     o.field_id = f.id
-                     o.number = n_o
-                     f.options.add(o)
-                     n_o += 1
+                    o = models.db_forge_obj(store, models.FieldOption, o_child)
+                    o.field_id = f.id
+                    o.number = n_o
+                    f.options.add(o)
+                    n_o += 1
                 f.step_id = s.id
                 s.children.add(f)
             s.context_id = context.id
@@ -486,11 +510,11 @@ def db_create_context(store, request, language=GLSetting.memory_copy.default_lan
     return admin_serialize_context(store, context, language)
 
 @transact
-def create_context(store, request, language=GLSetting.memory_copy.default_language):
-    return db_create_context(store, request, language=language)
+def create_context(*args):
+    return db_create_context(*args)
 
 @transact_ro
-def get_context(store, context_id, language=GLSetting.memory_copy.default_language):
+def get_context(store, context_id, language):
     """
     Returns:
         (dict) the context with the specified id.
@@ -503,44 +527,7 @@ def get_context(store, context_id, language=GLSetting.memory_copy.default_langua
 
     return admin_serialize_context(store, context, language)
 
-def db_get_fields_recursively(store, field, language):
-    ret = []
-    for children in field.children:
-        s = anon_serialize_field(store, children, language)
-        ret.append(s)
-        ret += db_get_fields_recursively(store, children, language)
-
-    a = [ field['label'] for field in ret]
-    return ret
-
-def db_get_context_fields(store, context_id, language=GLSetting.memory_copy.default_language):
-    """
-    Returns:
-        (dict) the fields associated with the context with the specified id.
-    """
-
-    context = store.find(models.Context, models.Context.id == context_id).one()
-
-    if not context:
-        log.err("Requested invalid context")
-        raise errors.ContextIdNotFound
-
-    steps_list = context.steps
-
-    fields = []
-
-    for ss in steps_list:
-        for children in ss.children:
-            f = anon_serialize_field(store, children, 'en')
-            fields.append(f)
-
-    return fields
-
-@transact_ro
-def get_context_fields(store, context_id, language=GLSetting.memory_copy.default_language):
-    return db_get_context_fields(store, context_id, language)
-
-def db_get_context_steps(store, context_id, language=GLSetting.memory_copy.default_language):
+def db_get_context_steps(store, context_id, language):
     """
     Returns:
         (dict) the steps associated with the context with the specified id.
@@ -552,14 +539,14 @@ def db_get_context_steps(store, context_id, language=GLSetting.memory_copy.defau
         log.err("Requested invalid context")
         raise errors.ContextIdNotFound
 
-    return [ anon_serialize_step(store, s, language) for s in context.steps ]
+    return [anon_serialize_step(store, s, language) for s in context.steps]
 
 @transact_ro
-def get_context_steps(store, context_id, language=GLSetting.memory_copy.default_language):
-    return db_get_context_steps(store, context_id, language)
+def get_context_steps(*args):
+    return db_get_context_steps(*args)
 
 @transact
-def update_context(store, context_id, request, language=GLSetting.memory_copy.default_language):
+def update_context(store, context_id, request, language):
     """
     Updates the specified context. If the key receivers is specified we remove
     the current receivers of the Context and reset set it to the new specified
@@ -578,7 +565,7 @@ def update_context(store, context_id, request, language=GLSetting.memory_copy.de
     context = store.find(models.Context, models.Context.id == context_id).one()
 
     if not context:
-         raise errors.ContextIdNotFound
+        raise errors.ContextIdNotFound
 
     receivers = request.get('receivers', [])
     steps = request.get('steps', [])
@@ -635,7 +622,7 @@ def delete_context(store, context_id):
 
 
 @transact_ro
-def get_receiver_list(store, language=GLSetting.memory_copy.default_language):
+def get_receiver_list(store, language):
     """
     Returns:
         (list) the list of receivers
@@ -663,7 +650,7 @@ def create_random_receiver_portrait(receiver_uuid):
         raise excep
 
 
-def db_create_receiver(store, request, language=GLSetting.memory_copy.default_language):
+def db_create_receiver(store, request, language):
     """
     Creates a new receiver.
     Returns:
@@ -671,14 +658,6 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
     """
 
     fill_localized_keys(request, models.Receiver.localized_strings, language)
-
-    mail_address = request['mail_address']
-
-    # Pretend that username is unique:
-    homonymous = store.find(models.User, models.User.username == mail_address).count()
-    if homonymous:
-        log.err("Creation error: already present receiver with the requested username: %s" % mail_address)
-        raise errors.ExpectedUniqueField('mail_address', mail_address)
 
     password = request['password']
     if len(password) and password != GLSetting.default_password:
@@ -690,7 +669,7 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
     receiver_password = security.hash_password(password, receiver_salt)
 
     receiver_user_dict = {
-        'username': mail_address,
+        'username': uuid4(),
         'password': receiver_password,
         'salt': receiver_salt,
         'role': u'receiver',
@@ -702,14 +681,14 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
 
     receiver_user = models.User(receiver_user_dict)
     receiver_user.last_login = datetime_null()
-    receiver_user.password_change_needed = request['password_change_needed']
     receiver_user.password_change_date = datetime_null()
     store.add(receiver_user)
 
+    # ping_mail_address is duplicated at creation time from mail_address
+    request.update({'ping_mail_address': request['mail_address']})
+
     receiver = models.Receiver(request)
     receiver.user = receiver_user
-
-    receiver.mail_address = mail_address
 
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
@@ -731,11 +710,11 @@ def db_create_receiver(store, request, language=GLSetting.memory_copy.default_la
     return admin_serialize_receiver(receiver, language)
 
 @transact
-def create_receiver(store, request, language=GLSetting.memory_copy.default_language):
-    return db_create_receiver(store, request, language)
+def create_receiver(*args):
+    return db_create_receiver(*args)
 
 @transact_ro
-def get_receiver(store, receiver_id, language=GLSetting.memory_copy.default_language):
+def get_receiver(store, receiver_id, language):
     """
     raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
     not exist.
@@ -753,7 +732,7 @@ def get_receiver(store, receiver_id, language=GLSetting.memory_copy.default_lang
 
 
 @transact
-def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.default_language):
+def update_receiver(store, receiver_id, request, language):
     """
     Updates the specified receiver with the details.
     raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
@@ -766,24 +745,13 @@ def update_receiver(store, receiver_id, request, language=GLSetting.memory_copy.
 
     fill_localized_keys(request, models.Receiver.localized_strings, language)
 
-    mail_address = request['mail_address']
-
-    homonymous = store.find(models.User, models.User.username == mail_address).one()
-    if homonymous and homonymous.id != receiver.user_id:
-        log.err("Update error: already present receiver with the requested username: %s" % mail_address)
-        raise errors.ExpectedUniqueField('mail_address', mail_address)
-
-    receiver.mail_address = mail_address
-
-    # the email address it's also the username, stored in User
-    receiver.user.username = mail_address
-
     receiver.user.state = request['state']
+    receiver.user.password_change_needed = request['password_change_needed']
 
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
 
-    receiver.user.language = request.get('language', GLSetting.memory_copy.default_language)
+    receiver.user.language = request.get('language', GLSetting.memory_copy.language)
     receiver.user.timezone = request.get('timezone', GLSetting.memory_copy.default_timezone)
 
     password = request['password']
@@ -836,17 +804,13 @@ def delete_receiver(store, receiver_id):
 
 
 class NodeInstance(BaseHandler):
-    """
-    Get the node main settings, update the node main settings, it works in a single static
-    table, in models/admin.py
-
-    /node
-    """
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
+        Get the node infos.
+
         Parameters: None
         Response: adminNodeDesc
         Errors: NodeNotFound
@@ -858,23 +822,18 @@ class NodeInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, *uriargs):
+    def put(self):
         """
+        Update the node infos.
+
         Request: adminNodeDesc
         Response: adminNodeDesc
         Errors: InvalidInputFormat
-
-        Changes the node public node configuration settings.
         """
         request = self.validate_message(self.request.body,
-                requests.adminNodeDesc)
+                                        requests.adminNodeDesc)
 
-        yield update_node(request, language=self.request.language)
-
-        # align the memory variables with the new updated data
-        yield import_memory_variables()
-
-        node_description = yield admin_serialize_node(self.request.language)
+        node_description = yield update_node(request, True, self.request.language)
 
         # update 'node' cache calling the 'public' side of /node
         public_node_desc = yield anon_serialize_node(self.request.language)
@@ -884,17 +843,15 @@ class NodeInstance(BaseHandler):
         self.set_status(202) # Updated
         self.finish(node_description)
 
-class ContextsCollection(BaseHandler):
-    """
-    Return a list of all the available contexts, in elements.
 
-    /admin/context
-    """
+class ContextsCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
+        Return all the contexts.
+
         Parameters: None
         Response: adminContextList
         Errors: None
@@ -904,16 +861,21 @@ class ContextsCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
+
+class ContextCreate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def post(self, *uriargs):
+    def post(self):
         """
+        Create a new context.
+
         Request: adminContextDesc
         Response: adminContextDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
-        request = self.validate_message(self.request.body, requests.adminContextDesc)
+        request = self.validate_message(self.request.body,
+                                        requests.adminContextDesc)
 
         response = yield create_context(request, self.request.language)
 
@@ -928,16 +890,15 @@ class ContextsCollection(BaseHandler):
         self.set_status(201) # Created
         self.finish(response)
 
-class ContextInstance(BaseHandler):
-    """
-    classic CRUD in the single Context resource.
-    """
 
+class ContextInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, context_id, *uriargs):
+    def get(self, context_id):
         """
+        Get the specified context.
+
         Parameters: context_id
         Response: adminContextDesc
         Errors: ContextIdNotFound, InvalidInputFormat
@@ -950,11 +911,16 @@ class ContextInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, context_id, *uriargs):
+    def put(self, context_id):
         """
+        Update the specified context.
+
+        Parameters: context_id
         Request: adminContextDesc
         Response: adminContextDesc
         Errors: InvalidInputFormat, ContextIdNotFound, ReceiverIdNotFound
+
+        Updates the specified context.
         """
 
         request = self.validate_message(self.request.body,
@@ -967,8 +933,10 @@ class ContextInstance(BaseHandler):
         GLApiCache.invalidate('contexts')
         GLApiCache.set('contexts', self.request.language, public_contexts_list)
 
-        # contexts update causes also receivers update
+        # contexts update causes also receivers update and
+        # node update due to 'configured' based on context-receiver association
         GLApiCache.invalidate('receivers')
+        GLApiCache.invalidate('node')
 
         self.set_status(202) # Updated
         self.finish(response)
@@ -976,8 +944,10 @@ class ContextInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def delete(self, context_id, *uriargs):
+    def delete(self, context_id):
         """
+        Delete the specified context.
+
         Request: adminContextDesc
         Response: None
         Errors: InvalidInputFormat, ContextIdNotFound
@@ -989,46 +959,47 @@ class ContextInstance(BaseHandler):
         GLApiCache.invalidate('contexts')
         GLApiCache.set('contexts', self.request.language, public_contexts_list)
 
-        # contexts update causes also receivers update
+        # contexts update causes also receivers update and
+        # node update due to 'configured' based on context-receiver association
         GLApiCache.invalidate('receivers')
+        GLApiCache.invalidate('node')
 
         self.set_status(200) # Ok and return no content
         self.finish()
 
-class ReceiversCollection(BaseHandler):
-    """
-    List all available receivers present in the node.
-    """
 
+class ReceiversCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
+        Return all the receivers.
+
         Parameters: None
         Response: adminReceiverList
         Errors: None
-
-        Admin operation: return all the receiver present in the Node
         """
         response = yield get_receiver_list(self.request.language)
 
         self.set_status(200)
         self.finish(response)
 
+
+class ReceiverCreate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def post(self, *uriargs):
+    def post(self):
         """
+        Get the specified receiver.
+
         Request: adminReceiverDesc
         Response: adminReceiverDesc
         Errors: InvalidInputFormat, ContextIdNotFound
-
-        Create a new receiver
         """
         request = self.validate_message(self.request.body,
-                requests.adminReceiverDesc)
+                                        requests.adminReceiverDesc)
 
         response = yield create_receiver(request, self.request.language)
 
@@ -1037,32 +1008,26 @@ class ReceiversCollection(BaseHandler):
         GLApiCache.invalidate('receivers')
         GLApiCache.set('receivers', self.request.language, public_receivers_list)
 
-        # receivers update causes also contexts update
+        # receivers update causes also contexts update and
+        # node update due to 'configured' based on context-receiver association
         GLApiCache.invalidate('contexts')
+        GLApiCache.invalidate('node')
 
         self.set_status(201) # Created
         self.finish(response)
 
-class ReceiverInstance(BaseHandler):
-    """
-    AdminReceivers: classic CRUD in a 'receiver' resource
-    A receiver can stay in more than one context, then is expected in POST/PUT
-    operations a list of tarGET contexts is passed. Operation here, mostly are
-    handled by models/receiver.py, and act on the administrative side of the
-    receiver. a receiver performing operation in their profile, has an API
-    implemented in handlers.receiver
-    """
 
+class ReceiverInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, receiver_id, *uriargs):
+    def get(self, receiver_id):
         """
+        Get the specified receiver.
+
         Parameters: receiver_id
         Response: adminReceiverDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
-
-        Get an existent Receiver instance.
         """
         response = yield get_receiver(receiver_id, self.request.language)
 
@@ -1072,13 +1037,14 @@ class ReceiverInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, receiver_id, *uriargs):
+    def put(self, receiver_id):
         """
+        Update the specified receiver.
+
+        Parameters: receiver_id
         Request: adminReceiverDesc
         Response: adminReceiverDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound, ContextId
-
-        Update information about a Receiver, return the instance updated.
         """
         request = self.validate_message(self.request.body, requests.adminReceiverDesc)
 
@@ -1089,8 +1055,10 @@ class ReceiverInstance(BaseHandler):
         GLApiCache.invalidate('receivers')
         GLApiCache.set('receivers', self.request.language, public_receivers_list)
 
-        # receivers update causes also contexts update
+        # receivers update causes also contexts update and
+        # node update due to 'configured' based on context-receiver association
         GLApiCache.invalidate('contexts')
+        GLApiCache.invalidate('node')
 
         self.set_status(201)
         self.finish(response)
@@ -1098,9 +1066,11 @@ class ReceiverInstance(BaseHandler):
     @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
-    def delete(self, receiver_id, *uriargs):
+    def delete(self, receiver_id):
         """
-        Parameter: receiver_id
+        Delete the specified receiver.
+
+        Parameters: receiver_id
         Request: None
         Response: None
         Errors: InvalidInputFormat, ReceiverIdNotFound

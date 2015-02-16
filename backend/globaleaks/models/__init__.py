@@ -6,12 +6,12 @@ from __future__ import absolute_import
 
 import copy
 
-from storm.locals import Bool, DateTime, Int, Reference, ReferenceSet, Unicode, Storm, JSON
+from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
 
 from globaleaks.settings import transact
 from globaleaks.utils.utility import datetime_now, uuid4
-from globaleaks.utils.validator import shorttext_v, longtext_v, shortlocal_v
-from globaleaks.utils.validator import longlocal_v, dict_v
+from globaleaks.utils.validator import shorttext_v, longtext_v, \
+    shortlocal_v, longlocal_v
 
 from .properties import MetaModel, DateTime
 
@@ -182,31 +182,11 @@ class Context(Model):
     """
     This model keeps track of specific contexts settings.
     """
-    # steps = [
-    #     {
-    #         'name': local_dict,
-    #         'type': 'fields',
-    #         'fields': [field_group_id1,
-    #                    field_group_id2]
-    #     },
-    #     {
-    #         'name': local_dict,
-    #         'type': 'receiver',
-    #         'options': {
-    #             'show_small_receiver': True,
-    #             'selectable_receiver': True,
-    #             'show_small_cards': False,
-    #             'maximum_selectable_receivers': 10,
-    #             'select_all_receivers': True
-    #         }
-    #     }
-    # ]
-
-    selectable_receiver = Bool()
     show_small_cards = Bool()
     show_receivers = Bool()
     maximum_selectable_receivers = Int()
     select_all_receivers = Bool()
+    enable_private_messages = Bool()
 
     tip_max_access = Int()
     file_max_download = Int()
@@ -214,10 +194,10 @@ class Context(Model):
     submission_timetolive = Int()
     last_update = DateTime()
 
-    # localized stuff
-    name = JSON()
-    description = JSON()
-    receiver_introduction = JSON()
+    # localized strings
+    name = JSON(validator=shortlocal_v)
+    description = JSON(validator=longlocal_v)
+    receiver_introduction = JSON(validator=longlocal_v)
 
     # receivers = ReferenceSet(
     #                         Context.id,
@@ -228,10 +208,6 @@ class Context(Model):
     postpone_superpower = Bool()
     can_delete_submission = Bool()
 
-    show_small_cards = Bool()
-    show_receivers = Bool()
-    enable_private_messages = Bool()
-
     presentation_order = Int()
 
     unicode_keys = []
@@ -239,7 +215,7 @@ class Context(Model):
     int_keys = [ 'tip_max_access', 'file_max_download',
                  'maximum_selectable_receivers',
                  'presentation_order' ]
-    bool_keys = [ 'selectable_receiver', 'select_all_receivers',
+    bool_keys = [ 'select_all_receivers',
                   'postpone_superpower', 'can_delete_submission',
                   'show_small_cards', 'show_receivers', "enable_private_messages" ]
 
@@ -271,9 +247,7 @@ class InternalTip(Model):
     download_limit = Int()
 
     mark = Unicode()
-
-    _marker = [u'submission', u'finalize', u'first', u'second']
-    # N.B. *_keys = It's created without initializing dict
+    # markers = [u'submission', u'finalize', u'first']
 
 
 class ReceiverTip(Model):
@@ -290,11 +264,9 @@ class ReceiverTip(Model):
     last_access = DateTime(default_factory=datetime_now)
     access_counter = Int()
     notification_date = DateTime()
-    mark = Unicode()
 
-    _marker = [u'not notified', u'notified', u'unable to notify', u'disabled',
-               u'skipped']
-    # N.B. *_keys = It's created without initializing dict
+    mark = Unicode()
+    # markers = [u'not notified', u'notified', u'unable to notify', u'skipped']
 
 
 class WhistleblowerTip(Model):
@@ -330,8 +302,7 @@ class ReceiverFile(Model):
     last_access = DateTime()
 
     mark = Unicode()
-    _marker = [u'not notified', u'notified', u'unable to notify', u'disabled',
-               u'skipped']
+    # markers = [u'not notified', u'notified', u'unable to notify', u'skipped']
 
     status = Unicode()
     _status_list = [u'reference', u'encrypted', u'unavailable', u'nokey']
@@ -360,7 +331,7 @@ class InternalFile(Model):
     size = Int()
 
     mark = Unicode()
-    _marker = [u'not processed', u'locked', u'ready', u'delivered']
+    # markers = [u'not processed', u'locked', u'ready', u'delivered']
     # 'not processed' = submission time
     # 'ready' = processed in ReceiverTip, available for usage
     # 'delivered' = the file need to stay on DB, but from the
@@ -384,16 +355,15 @@ class Comment(Model):
     system_content = JSON()
 
     type = Unicode()
-    _types = [u'receiver', u'whistleblower', u'system']
-    mark = Unicode()
-    _marker = [
-        u'not notified',
-        u'notified',
-        u'unable to notify',
-        u'disabled',
-        u'skipped']
+    # types = [u'receiver', u'whistleblower', u'system']
 
-    # N.B. *_keys = It's created without initializing dict
+    mark = Unicode()
+    # markers = [
+    #   u'not notified',
+    #   u'notified',
+    #   u'unable to notify',
+    #   u'skipped'
+    # ]
 
 
 class Message(Model):
@@ -407,14 +377,15 @@ class Message(Model):
     visualized = Bool()
 
     type = Unicode()
-    _types = [u'receiver', u'whistleblower']
+    # types = [u'receiver', u'whistleblower']
+
     mark = Unicode()
-    _marker = [
-        u'not notified',
-        u'notified',
-        u'unable to notify',
-        u'disabled',
-        u'skipped']
+    # markers = [
+    #    u'not notified',
+    #    u'notified',
+    #    u'unable to notify',
+    #    u'skipped'
+    # ]
 
 
 class Node(Model):
@@ -439,13 +410,12 @@ class Node(Model):
     default_language = Unicode()
     default_timezone = Int()
 
-    # localized string
-    description = JSON()
-    presentation = JSON()
-    footer = JSON()
-    subtitle = JSON()
-    security_awareness_title = JSON()
-    security_awareness_text = JSON()
+    # localized strings
+    description = JSON(validator=longlocal_v)
+    presentation = JSON(validator=longlocal_v)
+    footer = JSON(validator=longlocal_v)
+    security_awareness_title = JSON(validator=longlocal_v)
+    security_awareness_text = JSON(validator=longlocal_v)
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -460,6 +430,7 @@ class Node(Model):
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
     allow_unencrypted = Bool()
+    allow_iframes_inclusion = Bool()
 
     # privileges configurable in node/context/receiver
     postpone_superpower = Bool()
@@ -476,27 +447,35 @@ class Node(Model):
     whistleblowing_button = JSON()
 
     enable_custom_privacy_badge = Bool()
-    custom_privacy_badge_tbb = JSON()
     custom_privacy_badge_tor = JSON()
     custom_privacy_badge_none = JSON()
+
+    header_title_homepage = JSON(validator=longlocal_v)
+    header_title_submissionpage = JSON(validator=longlocal_v)
+    landing_page = Unicode()
 
     exception_email = Unicode()
 
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
-                    'exception_email', 'default_language', 'receipt_regexp']
-    int_keys = [ 'stats_update_time', 'maximum_namesize',
-                 'maximum_textsize', 'maximum_filesize', 'default_timezone' ]
-    bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
-                  'tor2web_unauth', 'postpone_superpower',
-                  'can_delete_submission', 'ahmia', 'allow_unencrypted',
-                  'disable_privacy_badge', 'disable_security_awareness_badge',
-                  'disable_security_awareness_questions', 'enable_custom_privacy_badge' ]
-                # wizard_done is not checked because it's set by the backend
-    localized_strings = [ 'description', 'presentation', 'footer', 'subtitle',
-                          'security_awareness_title',
-                          'security_awareness_text', 'whistleblowing_question',
-                          'whistleblowing_button', 'custom_privacy_badge_tbb',
-                          'custom_privacy_badge_tor', 'custom_privacy_badge_none' ]
+                    'exception_email', 'default_language', 'receipt_regexp',
+                    'landing_page']
+    int_keys = ['stats_update_time', 'maximum_namesize',
+                'maximum_textsize', 'maximum_filesize', 'default_timezone']
+    bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
+                 'tor2web_unauth', 'postpone_superpower',
+                 'can_delete_submission', 'ahmia', 'allow_unencrypted',
+                 'allow_iframes_inclusion',
+                 'disable_privacy_badge', 'disable_security_awareness_badge',
+                 'disable_security_awareness_questions', 'enable_custom_privacy_badge']
+
+    # wizard_done is not checked because it's set by the backend
+
+    localized_strings = ['description', 'presentation', 'footer',
+                         'security_awareness_title', 'security_awareness_text',
+                         'whistleblowing_question',
+                         'whistleblowing_button',
+                         'custom_privacy_badge_tor', 'custom_privacy_badge_none',
+                         'header_title_homepage', 'header_title_submissionpage']
 
 
 class Notification(Model):
@@ -515,45 +494,57 @@ class Notification(Model):
     source_email = Unicode(validator=shorttext_v)
 
     security = Unicode()
-    _security_types = [u'TLS', u'SSL']
+    # security_types = [u'TLS', u'SSL']
 
-    admin_anomaly_template = JSON()
+    admin_anomaly_template = JSON(validator=longlocal_v)
 
-    encrypted_tip_template = JSON()
-    encrypted_tip_mail_title = JSON()
-    plaintext_tip_template = JSON()
-    plaintext_tip_mail_title = JSON()
+    encrypted_tip_template = JSON(validator=longlocal_v)
+    encrypted_tip_mail_title = JSON(validator=longlocal_v)
+    plaintext_tip_template = JSON(validator=longlocal_v)
+    plaintext_tip_mail_title = JSON(validator=longlocal_v)
 
-    encrypted_file_template = JSON()
-    encrypted_file_mail_title = JSON()
-    plaintext_file_template = JSON()
-    plaintext_file_mail_title = JSON()
+    encrypted_file_template = JSON(validator=longlocal_v)
+    encrypted_file_mail_title = JSON(validator=longlocal_v)
+    plaintext_file_template = JSON(validator=longlocal_v)
+    plaintext_file_mail_title = JSON(validator=longlocal_v)
 
-    encrypted_comment_template = JSON()
-    encrypted_comment_mail_title = JSON()
-    plaintext_comment_template = JSON()
-    plaintext_comment_mail_title = JSON()
+    encrypted_comment_template = JSON(validator=longlocal_v)
+    encrypted_comment_mail_title = JSON(validator=longlocal_v)
+    plaintext_comment_template = JSON(validator=longlocal_v)
+    plaintext_comment_mail_title = JSON(validator=longlocal_v)
 
-    encrypted_message_template = JSON()
-    encrypted_message_mail_title = JSON()
-    plaintext_message_template = JSON()
-    plaintext_message_mail_title = JSON()
+    encrypted_message_template = JSON(validator=longlocal_v)
+    encrypted_message_mail_title = JSON(validator=longlocal_v)
+    plaintext_message_template = JSON(validator=longlocal_v)
+    plaintext_message_mail_title = JSON(validator=longlocal_v)
 
-    pgp_expiration_alert = JSON()
-    pgp_expiration_notice = JSON()
+    admin_pgp_alert_mail_title = JSON(validator=longlocal_v)
+    admin_pgp_alert_mail_template = JSON(validator=longlocal_v)
+    pgp_alert_mail_title = JSON(validator=longlocal_v)
+    pgp_alert_mail_template = JSON(validator=longlocal_v)
 
-    zip_description = JSON()
+    zip_description = JSON(validator=longlocal_v)
+
+    ping_mail_template = JSON(validator=longlocal_v)
+    ping_mail_title = JSON(validator=longlocal_v)
+
+    disable_admin_notification_emails = Bool(default=False)
+    disable_receivers_notification_emails = Bool(default=False)
 
     unicode_keys = [
         'server',
         'username',
         'password',
         'source_name',
-        'source_email']
+        'source_email',
+        'security'
+    ]
     localized_strings = [
         'admin_anomaly_template',
-        'pgp_expiration_alert',
-        'pgp_expiration_notice',
+        'admin_pgp_alert_mail_title',
+        'admin_pgp_alert_mail_template',
+        'pgp_alert_mail_title',
+        'pgp_alert_mail_template',
         'encrypted_tip_template',
         'encrypted_tip_mail_title',
         'plaintext_tip_template',
@@ -570,8 +561,15 @@ class Notification(Model):
         'encrypted_message_mail_title',
         'plaintext_message_template',
         'plaintext_message_mail_title',
-        'zip_description']
-    int_keys = ['port']
+        'zip_description',
+        'ping_mail_template',
+        'ping_mail_title'
+    ]
+    int_keys = [
+        'port',
+        'disable_admin_notification_emails',
+        'disable_receivers_notification_emails'
+    ]
 
 
 class Receiver(Model):
@@ -584,20 +582,25 @@ class Receiver(Model):
 
     name = Unicode(validator=shorttext_v)
 
-    # localization string
-    description = JSON()
+    # localization strings
+    description = JSON(validator=longlocal_v)
 
     configuration = Unicode()
+    # configurations = [u'default', u'forcefully_selected', u'unselectable']
 
     # of GPG key fields
     gpg_key_info = Unicode()
     gpg_key_fingerprint = Unicode()
-    gpg_key_status = Unicode()
     gpg_key_armor = Unicode()
-    gpg_enable_notification = Bool()
+    gpg_key_expiration = DateTime()
 
-    # Can be changed and can be different from username!
+    gpg_key_status = Unicode()
+    # gpg_statuses = [u'disabled', u'enabled']
+
+    # Can be changed only by admin (but also differ from username!)
     mail_address = Unicode()
+    # Can be changed by the user itself
+    ping_mail_address = Unicode()
 
     # Admin chosen options
     can_delete_submission = Bool()
@@ -605,11 +608,12 @@ class Receiver(Model):
 
     last_update = DateTime()
 
-    # personal advanced settings
     tip_notification = Bool()
     comment_notification = Bool()
     file_notification = Bool()
     message_notification = Bool()
+
+    ping_notification = Bool(default=False)
 
     # contexts = ReferenceSet("Context.id",
     #                         "ReceiverContext.context_id",
@@ -618,21 +622,37 @@ class Receiver(Model):
 
     presentation_order = Int()
 
-    _configuration = [u'default', u'hidden', u'unselectable']
-    _gpg_types = [u'Disabled', u'Enabled']
-
-    unicode_keys = ['name', 'mail_address', 'configuration']
+    unicode_keys = ['name', 'mail_address',
+                    'ping_mail_address', 'configuration']
     localized_strings = ['description']
     int_keys = ['presentation_order']
     bool_keys = ['can_delete_submission', 'tip_notification',
                  'comment_notification', 'file_notification',
-                 'message_notification', 'postpone_superpower']
+                 'message_notification', 'postpone_superpower',
+                 'ping_notification']
+
+
+class EventLogs(Model):
+    """
+    Class used to keep track of the notification to be display to the receiver
+    """
+
+    description = JSON()
+    title = Unicode()
+    receiver_id = Unicode()
+    receivertip_id = Unicode()
+    event_reference = JSON()
+
+    # XXX This can be used to keep track mail reliability ??
+    mail_sent = Bool()
+
+
 
 
 class Field(Model):
-    label = JSON()
-    description = JSON()
-    hint = JSON()
+    label = JSON(validator=shortlocal_v)
+    description = JSON(validator=longlocal_v)
+    hint = JSON(validator=shortlocal_v)
 
     multi_entry = Bool()
     required = Bool()
@@ -718,27 +738,28 @@ class FieldOption(Model):
     int_keys = ['number']
     json_keys = ['attrs']
 
-    def __init__(self, attrs=None, localized_keys=[]):
+    def __init__(self, attrs=None, localized_keys=None):
         self.attrs = dict()
         self.update(attrs, localized_keys)
 
     @classmethod
-    def new(cls, store, attrs=None, localized_keys=[]):
+    def new(cls, store, attrs=None, localized_keys=None):
         obj = cls(attrs, localized_keys)
         store.add(obj)
         return obj
 
-    def update(self, attrs=None, localized_keys=[]):
+    def update(self, attrs=None, localized_keys=None):
         BaseModel.update(self, attrs)
 
-        for k in localized_keys:
-            value = attrs['attrs'][k]
-            previous = self.attrs.get(k, None)
-            if previous and isinstance(previous, dict):
-                previous.update(value)
-                self.attrs[k] = previous
-            else:
-                self.attrs[k] = value
+        if localized_keys:
+            for k in localized_keys:
+                value = attrs['attrs'][k]
+                previous = self.attrs.get(k, None)
+                if previous and isinstance(previous, dict):
+                    previous.update(value)
+                    self.attrs[k] = previous
+                else:
+                    self.attrs[k] = value
 
     def copy(self, store):
         obj_copy = self.__class__()
@@ -746,6 +767,7 @@ class FieldOption(Model):
         obj_copy.number = self.number
         obj_copy.attrs = copy.deepcopy(self.attrs)
         return obj_copy
+
 
 class Step(Model):
     context_id = Unicode()
@@ -759,6 +781,18 @@ class Step(Model):
     localized_strings = ['label', 'description', 'hint']
 
 
+class Stats(Model):
+    start = DateTime()
+    summary = JSON()
+    free_disk_space = Int()
+
+
+class Anomalies(Model):
+    stored_when = Unicode() # is a Datetime but string
+    alarm = Int()
+    events = JSON()
+
+
 class ApplicationData(Model):
     """
     Exists only one instance of this class, because the ApplicationData
@@ -767,6 +801,30 @@ class ApplicationData(Model):
     version = Int()
     fields = JSON()
 
+class FieldField(BaseModel):
+    """
+    Class used to implement references between Fields and Fields!
+    parent - child relation used to implement fieldgroups
+    """
+    __storm_table__ = 'field_field'
+    __storm_primary__ = 'parent_id', 'child_id'
+
+    parent_id = Unicode()
+    child_id = Unicode()
+
+    unicode_keys = ['parent_id', 'child_id']
+
+class StepField(BaseModel):
+    """
+    Class used to implement references between Steps and Fields!
+    """
+    __storm_table__ = 'step_field'
+    __storm_primary__ = 'step_id', 'field_id'
+
+    step_id = Unicode()
+    field_id = Unicode()
+
+    unicode_keys = ['step_id', 'field_id']
 
 # Follow classes used for Many to Many references
 class ReceiverContext(BaseModel):
@@ -788,45 +846,6 @@ class ReceiverInternalTip(BaseModel):
 
     receiver_id = Unicode()
     internaltip_id = Unicode()
-
-
-class FieldField(BaseModel):
-    """
-    Class used to implement references between Fields and Fields!
-    parent - child relation used to implement fieldgroups
-    """
-    __storm_table__ = 'field_field'
-    __storm_primary__ = 'parent_id', 'child_id'
-
-    parent_id = Unicode()
-    child_id = Unicode()
-
-    unicode_keys = ['parent_id', 'child_id']
-
-
-class Stats(Model):
-    start = DateTime()
-    summary = JSON()
-    freemb = Int()
-
-
-class Anomalies(Model):
-    stored_when = Unicode() # is a Datetime but string
-    alarm = Int()
-    events = JSON()
-
-
-class StepField(BaseModel):
-    """
-    Class used to implement references between Steps and Fields!
-    """
-    __storm_table__ = 'step_field'
-    __storm_primary__ = 'step_id', 'field_id'
-
-    step_id = Unicode()
-    field_id = Unicode()
-
-    unicode_keys = ['step_id', 'field_id']
 
 
 Field.options = ReferenceSet(Field.id,
@@ -891,6 +910,9 @@ Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
 
 Message.receivertip = Reference(Message.receivertip_id, ReceiverTip.id)
 
+EventLogs.receiver = Reference(EventLogs.receiver_id, Receiver.id)
+EventLogs.rtip = Reference(EventLogs.receivertip_id, ReceiverTip.id)
+
 Field.children = ReferenceSet(
     Field.id,
     FieldField.parent_id,
@@ -915,7 +937,8 @@ Receiver.contexts = ReferenceSet(
     ReceiverContext.context_id,
     Context.id)
 
-models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment,
-          InternalTip, Receiver, ReceiverContext, InternalFile, ReceiverFile,
-          Notification, Message, Field, FieldField, Step,
-          Stats, Anomalies, ApplicationData]
+models = [Node, User, Context, Receiver, ReceiverContext,
+          Field, FieldOption, FieldField, Step, StepField,
+          InternalTip, ReceiverTip, WhistleblowerTip, Comment, Message,
+          InternalFile, ReceiverFile, Notification,
+          Stats, Anomalies, ApplicationData, EventLogs]

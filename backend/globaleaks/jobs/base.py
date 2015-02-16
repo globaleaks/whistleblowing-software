@@ -4,6 +4,7 @@
 #
 # Base class for implement the scheduled tasks
 
+import sys
 from twisted.internet import task
 from twisted.python.failure import Failure
 
@@ -36,8 +37,7 @@ class GLJob(task.LoopingCall):
 
                 mail_exception(exc_type, exc_value, exc_tb)
 
-            except:
-
+            except Exception:
                 pass
 
     def operation(self):

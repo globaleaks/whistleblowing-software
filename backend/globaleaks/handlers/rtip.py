@@ -7,7 +7,7 @@
 #   receiver side. These classes are executed in the /rtip/* URI PATH 
 
 from twisted.internet.defer import inlineCallbacks
-from storm.expr import Desc
+from storm.expr import Desc, And
 
 from globaleaks.handlers.base import BaseHandler 
 from globaleaks.handlers.authentication import transport_security_check, authenticated
@@ -17,12 +17,12 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
                                      datetime_to_ISO8601, datetime_to_pretty_str
 
 from globaleaks.utils.structures import Rosetta
-from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.models import Node, Comment, ReceiverFile, Message, InternalTip
+from globaleaks.settings import transact, transact_ro
+from globaleaks.models import Node, Comment, ReceiverFile, Message, EventLogs
 from globaleaks.rest import errors
 from globaleaks.security import access_tip
 
-def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.default_language):
+def receiver_serialize_internal_tip(internaltip, language):
 
     ret_dict = {
         'context_id': internaltip.context.id,
@@ -36,7 +36,7 @@ def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.
         # this field "inform" the receiver of the new expiration date that can
         # be set, only if PUT with extend = True is updated
         'potential_expiration_date' : \
-            datetime_to_ISO8601(utc_future_date(seconds=internaltip.context.tip_timetolive)),
+                datetime_to_ISO8601(utc_future_date(seconds=internaltip.context.tip_timetolive)),
         'extend' : False,
         'enable_private_messages': internaltip.context.enable_private_messages,
     }
@@ -89,8 +89,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     return ret_dict
 
 
-@transact_ro
-def get_files_receiver(store, user_id, tip_id):
+def db_get_files_receiver(store, user_id, tip_id):
     rtip = access_tip(store, user_id, tip_id)
 
     receiver_files = store.find(ReceiverFile,
@@ -104,11 +103,14 @@ def get_files_receiver(store, user_id, tip_id):
     return files_list
 
 
-@transact_ro
-def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_copy.default_language):
+def db_get_tip_receiver(store, user_id, tip_id, language):
     rtip = access_tip(store, user_id, tip_id)
 
-    tip_desc = receiver_serialize_internal_tip(rtip.internaltip)
+    # Events related to this tip and for which the email have been sent can be removed
+    eventlst = store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
+                                         EventLogs.mail_sent == True)).remove()
+
+    tip_desc = receiver_serialize_internal_tip(rtip.internaltip, language)
 
     # are added here because part of ReceiverTip, not InternalTip
     tip_desc['access_counter'] = rtip.access_counter
@@ -127,8 +129,7 @@ def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_c
 
     return tip_desc
 
-@transact
-def increment_receiver_access_count(store, user_id, tip_id):
+def db_increment_receiver_access_count(store, user_id, tip_id):
     rtip = access_tip(store, user_id, tip_id)
 
     rtip.access_counter += 1
@@ -137,10 +138,8 @@ def increment_receiver_access_count(store, user_id, tip_id):
     if rtip.access_counter > rtip.internaltip.access_limit:
         raise errors.AccessLimitExceeded
 
-    log.debug(
-        "Tip %s access garanted to user %s access_counter %d on limit %d" %
-       (rtip.id, rtip.receiver.name, rtip.access_counter, rtip.internaltip.access_limit)
-    )
+    log.debug("Tip %s access garanted to user %s access_counter %d on limit %d" %
+              (rtip.id, rtip.receiver.name, rtip.access_counter, rtip.internaltip.access_limit))
 
     return rtip.access_counter
 
@@ -159,9 +158,9 @@ def delete_receiver_tip(store, user_id, tip_id):
                                     "receiver_name" : rtip.receiver.name})
 
     comment.internaltip_id = rtip.internaltip.id
-    comment.author = u'System' # The printed line
-    comment.type = u'system' # Comment._types[2]
-    comment.mark = u'not notified' # Comment._marker[0]
+    comment.author = u'system' # The printed line
+    comment.type = u'system'
+    comment.mark = u'not notified'
 
     rtip.internaltip.comments.add(comment)
 
@@ -227,11 +226,21 @@ def postpone_expiration_date(store, user_id, tip_id):
                    datetime_to_pretty_str(rtip.internaltip.expiration_date))
 
     comment.internaltip_id = rtip.internaltip.id
-    comment.author = u'System' # The printed line
-    comment.type = Comment._types[2] # System
-    comment.mark = Comment._marker[4] # skipped
+    comment.author = u'System'
+    comment.type = u'system'
+    comment.mark = u'skipped'
 
     rtip.internaltip.comments.add(comment)
+
+
+@transact
+def get_tip(store, user_id, tip_id, language):
+    db_increment_receiver_access_count(store, user_id, tip_id)
+    answer = db_get_tip_receiver(store, user_id, tip_id, language)
+    answer['collection'] = '/rtip/' + tip_id + '/collection'
+    answer['files'] = db_get_files_receiver(store, user_id, tip_id)
+
+    return answer
 
 
 class RTipInstance(BaseHandler):
@@ -242,7 +251,7 @@ class RTipInstance(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def get(self, tip_id, *uriargs):
+    def get(self, tip_id):
         """
         Parameters: None
         Response: actorsTipDesc
@@ -256,10 +265,7 @@ class RTipInstance(BaseHandler):
         the various cases are managed differently.
         """
 
-        yield increment_receiver_access_count(self.current_user.user_id, tip_id)
-        answer = yield get_internaltip_receiver(self.current_user.user_id, tip_id, self.request.language)
-        answer['collection'] = '/rtip/' + tip_id + '/collection'
-        answer['files'] = yield get_files_receiver(self.current_user.user_id, tip_id)
+        answer = yield get_tip(self.current_user.user_id, tip_id, 'en')
 
         self.set_status(200)
         self.finish(answer)
@@ -267,7 +273,7 @@ class RTipInstance(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def put(self, tip_id, *uriargs):
+    def put(self, tip_id):
         """
         Some special operation over the Tip are handled here
         """
@@ -283,7 +289,7 @@ class RTipInstance(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def delete(self, tip_id, *uriargs):
+    def delete(self, tip_id):
         """
         Request: actorsTipOpsDesc
         Response: None
@@ -336,8 +342,8 @@ def create_comment_receiver(store, user_id, tip_id, request):
     comment.content = request['content']
     comment.internaltip_id = rtip.internaltip.id
     comment.author = rtip.receiver.name # The printed line
-    comment.type = Comment._types[0] # Receiver
-    comment.mark = Comment._marker[0] # Not notified
+    comment.type = u'receiver'
+    comment.mark = u'not notified'
 
     rtip.internaltip.comments.add(comment)
 
@@ -355,7 +361,7 @@ class RTipCommentCollection(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def get(self, tip_id, *uriargs):
+    def get(self, tip_id):
         """
         Parameters: None
         Response: actorsCommentList
@@ -370,7 +376,7 @@ class RTipCommentCollection(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def post(self, tip_id, *uriargs):
+    def post(self, tip_id):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc
@@ -386,15 +392,12 @@ class RTipCommentCollection(BaseHandler):
 
 
 @transact_ro
-def get_receiver_list_receiver(store, user_id, tip_id, language=GLSetting.memory_copy.default_language):
+def get_receiver_list_receiver(store, user_id, tip_id, language):
 
     rtip = access_tip(store, user_id, tip_id)
 
     receiver_list = []
     for rtip in rtip.internaltip.receivertips:
-
-        if rtip.receiver.configuration == 'hidden':
-            continue
 
         receiver_desc = {
             "gpg_key_status": rtip.receiver.gpg_key_status,
@@ -475,8 +478,6 @@ def create_message_receiver(store, user_id, tip_id, request):
     msg.author = rtip.receiver.name
     msg.visualized = False
 
-    # remind: is safest use this convention, and probably we've to
-    # change in the whole code the usage of Model._type[ndx]
     msg.type = u'receiver'
     msg.mark = u'skipped'
 

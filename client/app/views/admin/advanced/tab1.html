@@ -10,32 +10,33 @@
     </p>
 
     <div class="form-group">
-      <label data-translate>Exception mail address</label>
-      <input class="form-control" data-ng-model="admin.node.exception_email" name="email" type="text" data-ng-pattern="email_regexp" />
-      <p class="has-error" data-ng-show="advancedForm.email.$error.pattern">
-        <span data-translate>Invalid email address</span>
-      </p>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>File size limit (in Megabytes)</label>
-      <input class="form-control" data-ng-model="admin.node.maximum_filesize" type="text" />
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Text size limit (in bytes)</label>
-      <input class="form-control" data-ng-model="admin.node.maximum_textsize" type="text" />
+      <label data-translate>Landing Page</label>
+      <select name="type" class="form-control" data-ng-model="admin.node.landing_page" required>
+        <option value="homepage" data-translate>Home Page</option>
+        <option value="submissionpage" data-translate>Submission Page</option>
+      </select>
     </div>
 
     <div class="form-group">
       <label>
-        <input data-ng-model="admin.node.allow_unencrypted" ng-click="open_modal_allow_unencrypted()" type="checkbox" />
-        <span data-translate>Enable insecure configuration without PGP encryption.</span>
+        <input data-ng-model="admin.node.allow_unencrypted" data-ng-click="open_modal_allow_unencrypted()" type="checkbox" />
+       <span data-translate>Enable insecure configuration without PGP encryption</span>
       </label>
       <div data-ng-show="admin.node.allow_unencrypted">
         <span class="label label-danger" data-translate>Danger</span>
         <span data-translate>By enabling this option, the system will be storing the submitted files unecrypted on your node.</span>
         <span data-translate>This happens whenever encryption is unavailable.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.allow_iframes_inclusion" type="checkbox" />
+        <span data-translate>Allow other websites to include the platform inside iframes</span>
+      </label>
+      <div data-ng-show="admin.node.allow_iframes_inclusion">
+        <span class="label label-danger" data-translate>Danger</span>
+        <span data-translate>By enabling this option, you are permitting other websites to include the platform inside iframes; this can be eventually be used in order to abuse of the platform or intercept users and their communications</span>
       </div>
     </div>
 
@@ -49,27 +50,19 @@
       </div>
     </div>
 
-    <div class="form-group" ng-show="admin.node.enable_custom_privacy_badge">
+    <div class="form-group" data-ng-show="admin.node.enable_custom_privacy_badge">
       <label data-translate>Custom Privacy Badge</label>
-      <label data-translate>(TBB condition)</label>
-      <div>
-        <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_tbb" type="text" />
-      </div>
-    </div>
-
-    <div class="form-group" ng-show="admin.node.enable_custom_privacy_badge">
-      <label data-translate>Custom Privacy Badge</label>
-      <label data-translate>(Tor condition)</label>
+      <label>(<span data-translate>Text shown when the whistleblower is using Tor</span>)</label>
       <div>
         <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_tor" type="text" />
       </div>
     </div>
 
-    <div class="form-group" ng-show="admin.node.enable_custom_privacy_badge">
+    <div class="form-group" data-ng-show="admin.node.enable_custom_privacy_badge">
       <label data-translate>Custom Privacy Badge</label>
-      <label data-translate>(Traditional Browser)</label>
+      <label>(<span data-translate>Text shown when the whistleblower is not using Tor</span>)</label>
       <div>
-        <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_none" type=text" />
+        <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_none" type="text" />
       </div>
     </div>
 
@@ -131,11 +124,55 @@
       </label>
     </div>
 
+    <div class="form-group" data-ng-show="!admin.node.disable_security_awareness_badge">
+      <label data-translate>Security Awareness Badge Title</label>
+      <div>
+        <input class="form-control" data-ng-model="admin.node.security_awareness_title" type="text" />
+      </div>
+    </div>
+
+    <div class="form-group" data-ng-show="!admin.node.disable_security_awareness_badge">
+      <label data-translate>Security Awareness Badge Text</label>
+      <div>
+        <textarea class="form-control" data-ng-model="admin.node.security_awareness_text"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group" data-ng-show="!admin.node.disable_security_awareness_badge">
+      <label>
+        <input data-ng-model="admin.node.disable_security_awareness_questions" type="checkbox">
+        <span data-translate>Disable the security awareness badge questions</span>
+      </label>
+    </div>
+
     <div class="form-group">
       <label>
         <input data-ng-model="admin.node.disable_security_awareness_badge" type="checkbox" />
         <span data-translate>Disable the security awareness badge</span>
       </label>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Exception mail address</label>
+      <input class="form-control" data-ng-model="admin.node.exception_email" name="email" type="text" data-ng-pattern="email_regexp" />
+      <p class="has-error" data-ng-show="advancedForm.email.$error.pattern">
+        <span data-translate>Invalid email address</span>
+      </p>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Titles size limit (in bytes)</label>
+      <input class="form-control" data-ng-model="admin.node.maximum_namesize" type="number" />
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Text size limit (in bytes)</label>
+      <input class="form-control" data-ng-model="admin.node.maximum_textsize" type="number" />
+    </div>
+
+    <div class="form-group">
+      <label data-translate>File size limit (in Megabytes)</label>
+      <input class="form-control" data-ng-model="admin.node.maximum_filesize" type="number" />
     </div>
 
     <div class="form-group">
@@ -146,9 +183,3 @@
 
   </div>
 </div>
-
-
-
-
-
-

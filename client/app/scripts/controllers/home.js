@@ -1,9 +1,9 @@
 'use strict';
 
 GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
-                    'Node', 'Authentication',
+                    'Authentication',
                     'WhistleblowerTip', 'Contexts', 'Receivers',
-  function ($scope, $location, $modal, Node, Authentication, WhistleblowerTip, Contexts, Receivers) {
+  function ($scope, $location, $modal, Authentication, WhistleblowerTip, Contexts, Receivers) {
     $scope.keycode = '';
     $scope.configured = false;
     $scope.step = 1;

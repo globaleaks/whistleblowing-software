@@ -2,11 +2,15 @@
 # This is the post installation script for globaleaks
 set -e
 
-if [ ! -f /etc/apparmor.d/usr.sbin.tor ]; then
+if ! id -u globaleaks >/dev/null 2>&1; then
+  useradd globaleaks -b /var/globaleaks/ -s /bin/false
+fi
+
+if [ ! -h /etc/apparmor.d/usr.sbin.tor ]; then
   ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
 fi
 
-if [ ! "`grep "globaleaks" /etc/apparmor.d/local/system_tor`" ]; then
+if ! $(grep -q -i globaleaks /etc/apparmor.d/local/system_tor); then
   echo "/var/globaleaks/torhs/ w," >> /etc/apparmor.d/local/system_tor
   echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
 fi
@@ -14,7 +18,7 @@ fi
 
 # XXX. This should be handled directly inside GlobaLeaks, in order to have a
 # fair control over errors, conflicting preferences, etc.
-if ! $(grep -q GlobaLeaks /etc/tor/torrc); then
+if ! $(grep -q -i globaleaks /etc/tor/torrc); then
     cat <<EOF >> /etc/tor/torrc
 # BEGIN GlobaLeaks Configuration - DO NOT EDIT!
 VirtualAddrNetwork 10.23.47.0/10

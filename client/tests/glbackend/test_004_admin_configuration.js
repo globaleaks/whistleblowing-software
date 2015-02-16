@@ -36,20 +36,22 @@ var receiver = {
   language: "en",
   description: "",
   file_notification: false,
-  gpg_enable_files: false,
-  gpg_enable_notification: false,
   gpg_key_armor: "",
+  gpg_key_expiration: "",
   gpg_key_fingerprint: "",
   gpg_key_info: "",
   gpg_key_remove: false,
   gpg_key_status: "ignored",
   mail_address: "receiver1@antani.gov", // used 'Receiver N' for population
+  ping_mail_address: "",
+  unsecure_mail_address: "unsecure@live.com",
   message_notification: false,
   name: "receiver1@antani.gov", // used 'receiverN@antani.gov' for population
-  password: "receiver1@antani.gov", // used 'receiverN@antani.gov' for population
+  password: "ringobongos3cur1ty",
   postpone_superpower: true,
   presentation_order: 0,
   tip_notification: false,
+  ping_notification: false,
   configuration: "default",
   password_change_needed: false,
 }
@@ -114,24 +116,6 @@ var fields = [
     is_template: false,
     step_id: '',
     fieldgroup_id: '',
-    label: 'Generalities',
-    type: 'fieldgroup',
-    preview: false,
-    description: 'field description',
-    hint: 'field hint',
-    multi_entry: false,
-    stats_enabled: false,
-    required: false,
-    children: [],
-    options: [],
-    y: 4,
-    x: 0
-  },
-  {
-    id: '',
-    is_template: false,
-    step_id: '',
-    fieldgroup_id: '',
     label: 'Name',
     type: 'inputbox',
     preview: false,
@@ -178,7 +162,6 @@ var context = {
   "file_max_download":3,
   "select_all_receivers":true,
   "description":"XXXXX ħ ÐÐ",
-  "selectable_receiver":false,
   "name":"Context 1",
   "steps":[
      {
@@ -298,7 +281,6 @@ for (var i=0; i<population_order / 2; i++) {
       newObject.name = 'Context ' + i;
       newObject.presentation_order = i;
       newObject.name = 'Context ' + i + ' (selectable receivers: TRUE)';
-      newObject.selectable_receiver = true;
 
       app
         .post('/admin/context')
@@ -334,7 +316,6 @@ describe('POST /admin/receiver', function () {
 
         var newObject = JSON.parse(JSON.stringify(receiver));
         newObject.mail_address = 'receiver' + i + '@antani.gov';
-        newObject.password = newObject.mail_address;
         newObject.name = 'Receiver ' + i;
         newObject.contexts = contexts_ids;
         newObject.presentation_order = i;
@@ -376,7 +357,6 @@ describe('POST /admin/context', function () {
         newObject.presentation_order = i;
         newObject.name = 'Context ' + i + ' (selectable receivers: TRUE)';
         newObject.receivers = receivers_ids;
-        newObject.selectable_receiver = true;
 
         app
           .post('/admin/context')
@@ -413,7 +393,7 @@ describe('POST /admin/field', function () {
         it('responds 201 on POST /admin/field, valid field', function (done) {
 
             var newObject = JSON.parse(JSON.stringify(fields[j]));
-            newObject.step_id = contexts[i]['steps'][0]['id']
+            newObject.step_id = contexts[i]['steps'][0]['id'];
 
             app
               .post('/admin/field')

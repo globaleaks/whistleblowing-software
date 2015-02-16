@@ -64,7 +64,7 @@ def register_file_db(store, uploaded_file, filepath, internaltip_id):
     new_file.name = uploaded_file['filename']
     new_file.description = ""
     new_file.content_type = uploaded_file['content_type']
-    new_file.mark = InternalFile._marker[0] # 'not processed'
+    new_file.mark = u'not processed'
     new_file.size = uploaded_file['body_len']
     new_file.internaltip_id = internaltip_id
     new_file.file_path = filepath
@@ -106,7 +106,7 @@ def validate_itip_id(store, itip_id):
     if not itip:
         raise errors.SubmissionIdNotFound
 
-    if itip.mark != InternalTip._marker[0]:
+    if itip.mark != u'submission':
         log.err("Denied access on a concluded submission")
         raise errors.SubmissionConcluded
 
@@ -207,7 +207,7 @@ def download_file(store, user_id, tip_id, file_id):
     Auth temporary disabled, just Tip_id and File_id required
     """
 
-    rtip = access_tip(store, user_id, tip_id)
+    access_tip(store, user_id, tip_id)
 
     rfile = store.find(ReceiverFile,
                        ReceiverFile.id == unicode(file_id)).one()
@@ -230,7 +230,7 @@ def download_file(store, user_id, tip_id, file_id):
 @transact
 def download_all_files(store, user_id, tip_id):
 
-    rtip = access_tip(store, user_id, tip_id)
+    access_tip(store, user_id, tip_id)
 
     rfiles = store.find(ReceiverFile,
                         ReceiverFile.receiver_tip_id == unicode(tip_id))
@@ -255,7 +255,7 @@ class Download(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def post(self, tip_id, rfile_id, *uriargs):
+    def post(self, tip_id, rfile_id):
 
         rfile = yield download_file(self.current_user.user_id, tip_id, rfile_id)
 
@@ -270,18 +270,6 @@ class Download(BaseHandler):
 
         filelocation = os.path.join(GLSetting.submission_path, rfile['path'])
 
-        try:
-
-            with open(filelocation, "rb") as requestf:
-                chunk_size = 8192
-                while True:
-                    chunk = requestf.read(chunk_size)
-                    if len(chunk) == 0:
-                        break
-                    self.write(chunk)
-
-        except IOError as srcerr:
-            log.err("Unable to open %s: %s " % (filelocation, srcerr.strerror))
-            self.set_status(404)
+        self.write_file(filelocation)
 
         self.finish()

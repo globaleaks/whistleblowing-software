@@ -11,7 +11,8 @@ import copy
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.models import *
+from globaleaks.models import Context, InternalTip, Receiver, ReceiverInternalTip, \
+    WhistleblowerTip, Node, InternalFile
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin import db_get_context_steps
@@ -38,14 +39,11 @@ def wb_serialize_internaltip(internaltip):
 
     return response
 
-@transact
-def create_whistleblower_tip(store, submission_desc):
+def db_create_whistleblower_tip(store, submission_desc):
     """
     The plaintext receipt is returned only now, and then is
     stored hashed in the WBtip table
     """
-    assert submission_desc is not None and submission_desc.has_key('id')
-
     wbtip = WhistleblowerTip()
 
     node = store.find(Node).one()
@@ -59,33 +57,12 @@ def create_whistleblower_tip(store, submission_desc):
 
     return return_value_receipt
 
+@transact
+def create_whistleblower_tip(*args):
+    return db_create_whistleblower_tip(*args)
 
-# Remind: has a store between argumentos because called by a @ŧransact
 def import_receivers(store, submission, receiver_id_list, required=False):
     context = submission.context
-
-    # As first we check if Context has some policies
-    if not context.selectable_receiver:
-        for receiver in context.receivers:
-            # Skip adding receivers that don't have PGP enabled if encrypted only.
-            if not GLSetting.memory_copy.allow_unencrypted and \
-                    receiver.gpg_key_status != u'Enabled':
-                continue
-            # Add only the receiver not yet associated in Many-to-Many
-            check = store.find(ReceiverInternalTip,
-                ( ReceiverInternalTip.receiver_id == receiver.id,
-                  ReceiverInternalTip.internaltip_id == submission.id) ).one()
-            if not check:
-                submission.receivers.add(receiver)
-
-        reloaded_submission = store.find(InternalTip, InternalTip.id == submission.id).one()
-        log.debug("Context [%s] has a fixed receivers corpus #%d SID = %s" %
-                (reloaded_submission.context.name[GLSetting.memory_copy.default_language],
-                 reloaded_submission.receivers.count(), submission.id) )
-        return
-
-    # Before has been handled the 'fixed receiver corpus',
-    # Below we handle receiver personal selection
 
     # Clean the previous list of selected Receiver
     for prevrec in submission.receivers:
@@ -100,7 +77,7 @@ def import_receivers(store, submission, receiver_id_list, required=False):
 
     if required and (not len(receiver_id_list)):
         log.err("Receivers required to be selected, not empty")
-        raise errors.SubmissionFailFields("Needed almost one Receiver selected [1]")
+        raise errors.SubmissionFailFields("Needed almost one Receiver selected")
 
     if context.maximum_selectable_receivers and \
                     len(receiver_id_list) > context.maximum_selectable_receivers:
@@ -114,12 +91,12 @@ def import_receivers(store, submission, receiver_id_list, required=False):
                     (receiver_id, excep))
             raise errors.ReceiverIdNotFound
 
-        if not context in receiver.contexts:
+        if context not in receiver.contexts:
             raise errors.InvalidInputFormat("Forged receiver selection, you fuzzer! <:")
 
         try:
             if not GLSetting.memory_copy.allow_unencrypted and \
-                    receiver.gpg_key_status != u'Enabled':
+                    receiver.gpg_key_status != u'enabled':
                 log.err("Encrypted only submissions are supported. Cannot select [%s]" % receiver_id)
                 continue
             submission.receivers.add(receiver)
@@ -129,14 +106,13 @@ def import_receivers(store, submission, receiver_id_list, required=False):
 
         log.debug("+receiver [%s] In tip (%s) #%d" %\
                 (receiver.name, submission.id, submission.receivers.count() ) )
-    
+   
     if required and submission.receivers.count() == 0:
         log.err("Receivers required to be selected, not empty")
         raise errors.SubmissionFailFields("Needed at least one Receiver selected [2]")
 
-
 # Remind: it's a store without @transaction because called by a @ŧransact
-def import_files(store, submission, files, finalize):
+def import_files(store, submission, files):
     """
     @param submission: the Storm obj
     @param files: the list of InternalFiles UUIDs
@@ -156,31 +132,31 @@ def import_files(store, submission, files, finalize):
         ifile.internaltip_id = submission.id
 
 def verify_fields_recursively(fields, wb_fields):
-   for f in fields:
-       if f not in wb_fields:
-           raise errors.SubmissionFailFields("missing field (no structure present): %s" % f)
+    for f in fields:
+        if f not in wb_fields:
+            raise errors.SubmissionFailFields("missing field (no structure present): %s" % f)
 
-       if fields[f]['required'] and ('value' not in wb_fields[f] or
-                                     wb_fields[f]['value'] == ''):
-           raise errors.SubmissionFailFields("missing required field (no value provided): %s" % f)
+        if fields[f]['required'] and ('value' not in wb_fields[f] or
+                                      wb_fields[f]['value'] == ''):
+            raise errors.SubmissionFailFields("missing required field (no value provided): %s" % f)
 
-       if isinstance(wb_fields[f]['value'], unicode):
-           if len(wb_fields[f]['value']) > GLSetting.memory_copy.maximum_textsize:
-               raise errors.InvalidInputFormat("field value overcomes size limitation")
+        if isinstance(wb_fields[f]['value'], unicode):
+            if len(wb_fields[f]['value']) > GLSetting.memory_copy.maximum_textsize:
+                raise errors.InvalidInputFormat("field value overcomes size limitation")
 
-       indexed_fields  = {}
-       for f_c in fields[f]['children']:
-           indexed_fields[f_c['id']] = copy.deepcopy(f_c)
+        indexed_fields  = {}
+        for f_c in fields[f]['children']:
+            indexed_fields[f_c['id']] = copy.deepcopy(f_c)
 
-       indexed_wb_fields = {}
-       for f_c in wb_fields[f]['children']:
-           indexed_wb_fields[f_c['id']] = copy.deepcopy(f_c)
+        indexed_wb_fields = {}
+        for f_c in wb_fields[f]['children']:
+            indexed_wb_fields[f_c['id']] = copy.deepcopy(f_c)
 
-       verify_fields_recursively(indexed_fields, indexed_wb_fields)
+        verify_fields_recursively(indexed_fields, indexed_wb_fields)
 
-   for wbf in wb_fields:
-       if wbf not in fields:
-           raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
+    for wbf in wb_fields:
+        if wbf not in fields:
+            raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
 
 def verify_steps(steps, wb_steps):
     indexed_fields  = {}
@@ -195,8 +171,7 @@ def verify_steps(steps, wb_steps):
 
     return verify_fields_recursively(indexed_fields, indexed_wb_fields)
 
-@transact
-def create_submission(store, request, finalize, language=GLSetting.memory_copy.default_language):
+def db_create_submission(store, request, finalize, language):
     context = store.find(Context, Context.id == unicode(request['context_id'])).one()
     if not context:
         log.err("Context requested: [%s] not found!" % request['context_id'])
@@ -222,7 +197,7 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
         raise errors.InternalServerError("Unable to commit on DB")
 
     try:
-        import_files(store, submission, request['files'], finalize)
+        import_files(store, submission, request['files'])
     except Exception as excep:
         log.err("Submission create: files import fail: %s" % excep)
         raise excep
@@ -249,8 +224,10 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
     return submission_dict
 
 @transact
-def update_submission(store, submission_id, request, finalize, language=GLSetting.memory_copy.default_language):
+def create_submission(*args):
+    return db_create_submission(*args)
 
+def db_update_submission(store, submission_id, request, finalize, language):
     context = store.find(Context, Context.id == unicode(request['context_id'])).one()
     if not context:
         log.err("Context requested: [%s] not found!" % request['context_id'])
@@ -264,14 +241,14 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
     # this may happen if a submission try to update a context
     if submission.context_id != context.id:
         log.err("Can't be changed context in a submission update")
-        raise errors.ContextIdNotFound("Context are immutable")
+        raise errors.ContextIdNotFound()
 
     if submission.mark != u'submission':
         log.err("Submission %s do not permit update (status %s)" % (submission_id, submission.mark))
         raise errors.SubmissionConcluded
 
     try:
-        import_files(store, submission, request['files'], finalize)
+        import_files(store, submission, request['files'])
     except Exception as excep:
         log.err("Submission update: files import fail: %s" % excep)
         log.exception(excep)
@@ -304,6 +281,9 @@ def update_submission(store, submission_id, request, finalize, language=GLSettin
     submission_dict = wb_serialize_internaltip(submission)
     return submission_dict
 
+@transact
+def update_submission(*args):
+    return db_update_submission(*args)
 
 @transact_ro
 def get_submission(store, submission_id):
@@ -339,7 +319,7 @@ class SubmissionCreate(BaseHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def post(self, *uriargs):
+    def post(self):
         """
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
@@ -351,20 +331,21 @@ class SubmissionCreate(BaseHandler):
         header session_id is used as authentication secret for the next interaction.
         expire after the time set by Admin (Context dependent setting)
         """
+        @transact
+        def post_transact(store, request, language):
+            status = db_create_submission(store, request, request['finalize'], language)
+
+            if request['finalize']:
+                receipt = db_create_whistleblower_tip(store, status)
+                status.update({'receipt': receipt})
+            else:
+                status.update({'receipt' : ''})
+
+            return status
+
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
-        if request['finalize']:
-            finalize = True
-        else:
-            finalize = False
-
-        status = yield create_submission(request, finalize)
-
-        if finalize:
-            receipt = yield create_whistleblower_tip(status)
-            status.update({'receipt': receipt})
-        else:
-            status.update({'receipt' : ''})
+        status = yield post_transact(request, self.request.language)
 
         self.set_status(201) # Created
         self.finish(status)
@@ -379,7 +360,7 @@ class SubmissionInstance(BaseHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def get(self, submission_id, *uriargs):
+    def get(self, submission_id):
         """
         Parameters: submission_id
         Response: wbSubmissionDesc
@@ -395,7 +376,7 @@ class SubmissionInstance(BaseHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def put(self, submission_id, *uriargs):
+    def put(self, submission_id):
         """
         Parameter: submission_id
         Request: wbSubmissionDesc
@@ -404,20 +385,22 @@ class SubmissionInstance(BaseHandler):
 
         PUT update the submission and finalize if requested.
         """
+        @transact
+        def put_transact(store, submission_id, finalize, language):
+            status = db_update_submission(store, submission_id, request,
+                                          request['finalize'], self.request.language)
+
+            if request['finalize']:
+                receipt = db_create_whistleblower_tip(store, status)
+                status.update({'receipt': receipt})
+            else:
+                status.update({'receipt' : ''})
+
+            return status
+
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
-        if request['finalize']:
-            finalize = True
-        else:
-            finalize = False
-
-        status = yield update_submission(submission_id, request, finalize, self.request.language)
-
-        if finalize:
-            receipt = yield create_whistleblower_tip(status)
-            status.update({'receipt': receipt})
-        else:
-            status.update({'receipt' : ''})
+        status = yield put_transact(submission_id, request, self.request.language)
 
         self.set_status(202) # Updated
         self.finish(status)
@@ -426,7 +409,7 @@ class SubmissionInstance(BaseHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def delete(self, submission_id, *uriargs):
+    def delete(self, submission_id):
         """
         Parameter: submission_id
         Request:

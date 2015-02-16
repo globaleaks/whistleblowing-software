@@ -4,10 +4,11 @@ from datetime import datetime
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSetting, transact
 from globaleaks.tests import helpers
 from globaleaks.rest import errors, requests
 from globaleaks.handlers import base, admin, submission, authentication, receiver, rtip, wbtip
+from globaleaks.handlers.admin.field import create_field
 from globaleaks.jobs import delivery_sched
 from globaleaks import models
 STATIC_PASSWORD = u'bungabunga ;( 12345'
@@ -53,10 +54,9 @@ class TTip(helpers.TestGL):
     tipContext = {
         'name': u'CtxName',
         'description': u'dummy context with default fields',
-        'tip_max_access': 2, 
+        'tip_max_access': 30,
         'tip_timetolive': 200,
         'file_max_download': 2,
-        'selectable_receiver': False,
         'receivers': [],
         'submission_timetolive': 100,
         'select_all_receivers': True,
@@ -73,6 +73,7 @@ class TTip(helpers.TestGL):
 
     tipReceiver1 = {
         'mail_address': u'first@winstonsmith.org',
+        'ping_mail_address': u'',
         'name': u'first',
         'description': u"I'm tha 1st",
         'can_delete_submission': True,
@@ -80,12 +81,16 @@ class TTip(helpers.TestGL):
         'file_notification': False,
         'comment_notification': True,
         'tip_notification': False,
-        'gpg_key_status': u'Disabled',
         'message_notification': True,
+        'ping_notification': False,
+        'ping_mail_address': u'first@winstonsmith.org',
         'postpone_superpower': False,
-        'gpg_key_info': None, 'gpg_key_fingerprint': None,
-        'gpg_key_remove': False, 'gpg_key_armor': None,
-        'gpg_enable_notification': False,
+        'gpg_key_status': u'disabled',
+        'gpg_key_info': None,
+        'gpg_key_fingerprint': None,
+        'gpg_key_remove': False,
+        'gpg_key_armor': None,
+        'gpg_key_expiration': u'',
         'presentation_order': 0,
         'timezone': 0,
         'language': u'en',
@@ -95,6 +100,7 @@ class TTip(helpers.TestGL):
 
     tipReceiver2 = {
         'mail_address': u'second@winstonsmith.org',
+        'ping_mail_address': u'',
         'name': u'second',
         'description': u"I'm tha 2nd",
         'can_delete_submission': False,
@@ -104,12 +110,14 @@ class TTip(helpers.TestGL):
         'postpone_superpower': True,
         'comment_notification': True,
         'tip_notification': False,
-        'gpg_key_status': u'Disabled',
+        'ping_notification': False,
+        'ping_mail_address': u'second@winstonsmith.org',
+        'gpg_key_status': u'disabled',
         'gpg_key_info': None,
         'gpg_key_fingerprint': None,
         'gpg_key_remove': False,
         'gpg_key_armor': None,
-        'gpg_enable_notification': False,
+        'gpg_key_expiration': u'',
         'presentation_order': 0,
         'timezone': 0,
         'language': u'en',
@@ -138,8 +146,6 @@ class TestTipInstance(TTip):
 
         basehandler.validate_jmessage(self.tipContext, requests.adminContextDesc)
 
-        # the test context need fields to be present
-        from globaleaks.handlers.admin.field import create_field
         for idx, field in enumerate(self.dummyFields):
             f = yield create_field(field, 'en')
             self.dummyFields[idx]['id'] = f['id']
@@ -150,7 +156,7 @@ class TestTipInstance(TTip):
             self.dummyFields[4]  # Generalities
         ]
 
-        self.context_desc = yield admin.create_context(self.tipContext)
+        self.context_desc = yield admin.create_context(self.tipContext, 'en')
 
         self.tipReceiver1['contexts'] = self.tipReceiver2['contexts'] = [ self.context_desc['id'] ]
 
@@ -161,18 +167,18 @@ class TestTipInstance(TTip):
         basehandler.validate_jmessage( self.tipReceiver1, requests.adminReceiverDesc )
         basehandler.validate_jmessage( self.tipReceiver2, requests.adminReceiverDesc )
 
-        self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1)
-        self.receiver2_desc = yield admin.create_receiver(self.tipReceiver2)
+        self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1, 'en')
+        self.receiver2_desc = yield admin.create_receiver(self.tipReceiver2, 'en')
 
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['id']])
 
         dummySubmissionDict = yield self.get_dummy_submission(self.context_desc['id'])
         basehandler.validate_jmessage(dummySubmissionDict, requests.wbSubmissionDesc)
 
-        self.submission_desc = yield submission.create_submission(dummySubmissionDict, finalize=True)
+        self.submission_desc = yield submission.create_submission(dummySubmissionDict, True, 'en')
 
         self.assertEqual(self.submission_desc['wb_steps'], dummySubmissionDict['wb_steps'])
-        self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[1])
+        self.assertEqual(self.submission_desc['mark'], u'finalize')
         # Ok, now the submission has been finalized, the tests can start.
 
     @inlineCallbacks
@@ -207,52 +213,40 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def wb_retrive_tip_data(self):
-        if not self.wb_tip_id:
-            self.wb_auth_with_receipt()
-
-        self.wb_data = yield wbtip.get_internaltip_wb(self.wb_tip_id)
+        self.wb_data = yield wbtip.get_tip(self.wb_tip_id, 'en')
 
         self.assertEqual(self.wb_data['wb_steps'], self.submission_desc['wb_steps'])
 
     @inlineCallbacks
     def create_receivers_tip(self):
-
         receiver_tips = yield delivery_sched.tip_creation()
-
-        self.rtip1_id = receiver_tips[0]
-        self.rtip2_id = receiver_tips[1]
 
         self.assertEqual(len(receiver_tips), 2)
         self.assertTrue(re.match(requests.uuid_regexp, receiver_tips[0]))
         self.assertTrue(re.match(requests.uuid_regexp, receiver_tips[1]))
 
+        tips_receiver_1 = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'], 'en')
+        tips_receiver_2 = yield receiver.get_receiver_tip_list(self.receiver2_desc['id'], 'en')
+        self.rtip1_id = tips_receiver_1[0]['id']
+        self.rtip2_id = tips_receiver_2[0]['id']
+
     @inlineCallbacks
     def access_receivers_tip(self):
-
-        auth1, _, _ = yield authentication.login_receiver(self.receiver1_desc['username'], STATIC_PASSWORD)
+        auth1, _, _ = yield authentication.login_receiver(self.receiver1_desc['id'], STATIC_PASSWORD)
         self.assertEqual(auth1, self.receiver1_desc['id'])
 
-        auth2, _, _ = yield authentication.login_receiver(self.receiver2_desc['username'], STATIC_PASSWORD)
+        auth2, _, _ = yield authentication.login_receiver(self.receiver2_desc['id'], STATIC_PASSWORD)
         self.assertEqual(auth2, self.receiver2_desc['id'])
 
-        # we does not know the association auth# sefl.rtip#_id
-        # so we need a double try catch for each check and we need to store the proper association
-        tmp1 = self.rtip1_id
-        tmp2 = self.rtip2_id
-        try:
-            self.receiver1_data = yield rtip.get_internaltip_receiver(auth1, tmp1)
-        except:
-            self.rtip1_id = tmp2
-            self.rtip2_id = tmp1
-
-            self.receiver1_data = yield rtip.get_internaltip_receiver(auth1, tmp2)
-
+        for i in range(1, 2):
+            self.receiver1_data = yield rtip.get_tip(auth1, self.rtip1_id, 'en')
             self.assertEqual(self.receiver1_data['wb_steps'], self.submission_desc['wb_steps'])
-            self.assertEqual(self.receiver1_data['access_counter'], 0)
+            self.assertEqual(self.receiver1_data['access_counter'], i)
 
-        self.receiver2_data = yield rtip.get_internaltip_receiver(auth2, self.rtip2_id)
-        self.assertEqual(self.receiver2_data['wb_steps'], self.submission_desc['wb_steps'])
-        self.assertEqual(self.receiver2_data['access_counter'], 0)
+        for i in range(1, 2):
+            self.receiver2_data = yield rtip.get_tip(auth2, self.rtip2_id, 'en')
+            self.assertEqual(self.receiver2_data['wb_steps'], self.submission_desc['wb_steps'])
+            self.assertEqual(self.receiver2_data['access_counter'], i)
 
     @inlineCallbacks
     def strong_receiver_auth(self):
@@ -263,48 +257,18 @@ class TestTipInstance(TTip):
         # Instead of yield authentication.login_receiver(username/pasword), is used:
         auth_receiver_1 = self.receiver1_desc['id']
 
-        yield self.assertFailure(rtip.get_internaltip_receiver(auth_receiver_1, self.rtip2_id),
+        yield self.assertFailure(rtip.get_tip(auth_receiver_1, self.rtip2_id, 'en'),
                                  errors.TipIdNotFound)
 
     @inlineCallbacks
-    def increment_access_counter(self):
-        """
-        Receiver two access two time, and one access one time
-        """
-        counter = yield rtip.increment_receiver_access_count(
-                            self.receiver2_desc['id'], self.rtip2_id)
-        self.assertEqual(counter, 1)
-
-        counter = yield rtip.increment_receiver_access_count(
-                            self.receiver2_desc['id'], self.rtip2_id)
-        self.assertEqual(counter, 2)
-
-        counter = yield rtip.increment_receiver_access_count(
-                            self.receiver1_desc['id'], self.rtip1_id)
-        self.assertEqual(counter, 1)
-
-    @inlineCallbacks
     def receiver1_get_tip_list(self):
-        tiplist = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'])
+        tiplist = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'], 'en')
 
         # this test has been added to test issue/515
         self.assertTrue(isinstance(tiplist, list))
         self.assertTrue(isinstance(tiplist[0], dict))
         self.assertTrue(isinstance(tiplist[0]['preview'], list))
         # then the content here depends on the fields
-
-    @inlineCallbacks
-    def receiver_2_get_banned_for_too_much_access(self):
-        try:
-            counter = yield rtip.increment_receiver_access_count(
-                self.receiver2_desc['id'], self.rtip2_id)
-            self.assertTrue(False)
-        except errors.AccessLimitExceeded:
-            self.assertTrue(True)
-        except Exception, e:
-            self.assertTrue(False)
-            raise e
-
 
     @inlineCallbacks
     def receiver_RW_comments(self):
@@ -339,33 +303,33 @@ class TestTipInstance(TTip):
         self.assertEqual(len(cl), 3)
 
     @inlineCallbacks
-    def wb_get_receiver_list(self, default_lang):
-        receiver_list = yield wbtip.get_receiver_list_wb(self.wb_tip_id, default_lang)
+    def wb_get_receiver_list(self, language):
+        receiver_list = yield wbtip.get_receiver_list_wb(self.wb_tip_id, language)
         self.assertEqual(len(receiver_list), 2)
-        self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 3)
+        self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 2)
 
     @inlineCallbacks
-    def receiver_get_receiver_list(self, default_lang):
-        receiver_list = yield rtip.get_receiver_list_receiver(self.receiver1_desc['id'], self.rtip1_id, default_lang)
+    def receiver_get_receiver_list(self, language):
+        receiver_list = yield rtip.get_receiver_list_receiver(self.receiver1_desc['id'], self.rtip1_id, language)
         self.assertEqual(len(receiver_list), 2)
-        self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 3)
+        self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 2)
 
-        receiver_list = yield rtip.get_receiver_list_receiver(self.receiver2_desc['id'], self.rtip2_id, default_lang)
+        receiver_list = yield rtip.get_receiver_list_receiver(self.receiver2_desc['id'], self.rtip2_id, language)
         self.assertEqual(len(receiver_list), 2)
-        self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 3)
+        self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 2)
 
     @inlineCallbacks
     def fail_postpone_expiration_date(self):
-        tip_expiring = yield rtip.get_internaltip_receiver(
-            self.receiver1_desc['id'], self.rtip1_id)
+        tip_expiring = yield rtip.get_tip(
+            self.receiver1_desc['id'], self.rtip1_id, 'en')
 
         yield self.assertFailure(rtip.postpone_expiration_date(
                                      self.receiver1_desc['id'],
                                      self.rtip1_id),
                                  errors.ExtendTipLifeNotEnabled)
 
-        tip_not_extended = yield rtip.get_internaltip_receiver(
-            self.receiver1_desc['id'], self.rtip1_id)
+        tip_not_extended = yield rtip.get_tip(
+            self.receiver1_desc['id'], self.rtip1_id, 'en')
 
         self.assertEqual(tip_expiring['expiration_date'], tip_not_extended['expiration_date'])
 
@@ -378,19 +342,19 @@ class TestTipInstance(TTip):
         potential_expiration_date : 2014-05-19 21:22:16.677997
         expiration_date : 2014-05-19T21:22:14.481711
         """
-        context_list = yield admin.get_context_list()
+        context_list = yield admin.get_context_list('en')
         self.assertTrue(isinstance(context_list, list))
         self.assertEqual(len(context_list), 1)
         tip_ttl = context_list[0]['tip_timetolive']
 
-        tip_expiring = yield rtip.get_internaltip_receiver(
-            self.receiver1_desc['id'], self.rtip1_id)
+        tip_expiring = yield rtip.get_tip(
+            self.receiver1_desc['id'], self.rtip1_id, 'en')
 
         # TODO implement a more complete test
 
     @inlineCallbacks
     def update_node_properties(self):
-        node_desc = yield admin.admin_serialize_node()
+        node_desc = yield admin.admin_serialize_node('en')
         self.assertEqual(node_desc['postpone_superpower'], False)
         node_desc['postpone_superpower'] = True
 
@@ -398,7 +362,7 @@ class TestTipInstance(TTip):
         for attrname in models.Node.localized_strings:
             node_desc[attrname] = stuff
 
-        node_desc = yield admin.update_node(node_desc)
+        node_desc = yield admin.update_node(node_desc, True, 'en')
         self.assertEqual(node_desc['postpone_superpower'], True)
 
     @inlineCallbacks
@@ -407,15 +371,15 @@ class TestTipInstance(TTip):
         Tests with receiver1 and update with receiver2 is equal
         to use the the same receiver
         """
-        tip_expiring = yield rtip.get_internaltip_receiver(
-            self.receiver1_desc['id'], self.rtip1_id)
+        tip_expiring = yield rtip.get_tip(
+            self.receiver1_desc['id'], self.rtip1_id, 'en')
 
         yield rtip.postpone_expiration_date(
                     self.receiver2_desc['id'],
                     self.rtip2_id)
 
-        tip_extended = yield rtip.get_internaltip_receiver(
-            self.receiver1_desc['id'], self.rtip1_id)
+        tip_extended = yield rtip.get_tip(
+            self.receiver1_desc['id'], self.rtip1_id, 'en')
 
         self.assertNotEqual(tip_expiring['expiration_date'], tip_extended['expiration_date'])
 
@@ -430,12 +394,11 @@ class TestTipInstance(TTip):
         cl = yield rtip.get_comment_list_receiver(self.receiver1_desc['id'],
                                                  self.rtip1_id)
 
-        self.assertEqual(cl[3]['type'], models.Comment._types[2]) # System (date extension)
+        self.assertEqual(cl[3]['type'], u'system')
 
         sys_comm = cl[3]
 
         self.assertEqual(sys_comm['system_content']['receiver_name'], self.receiver2_desc['name'])
-        # self.assertTrue(sys_comm['system_content'].has_key('now'))
         self.assertEqual(sys_comm['system_content']['type'], u"1")
         new_expire = sys_comm['system_content']['expire_on']
 
@@ -459,15 +422,14 @@ class TestTipInstance(TTip):
                                         self.rtip1_id)
 
         self.assertEqual(len(cl), 5)
-        self.assertEqual(cl[0]['type'], models.Comment._types[0]) # Receiver (Rcvr1)
-        self.assertEqual(cl[1]['type'], models.Comment._types[0]) # Receiver (Rcvr2)
-        self.assertEqual(cl[2]['type'], models.Comment._types[1]) # Wb
+        self.assertEqual(cl[0]['type'], u'receiver')
+        self.assertEqual(cl[1]['type'], u'receiver')
+        self.assertEqual(cl[2]['type'], u'whistleblower')
 
-        self.assertEqual(cl[3]['type'], models.Comment._types[2]) # System (date extension)
+        self.assertEqual(cl[3]['type'], u'system')
         self.assertEqual(cl[3]['system_content']['receiver_name'], self.receiver2_desc['name'])
-        # self.assertTrue(cl[3]['system_content'].has_key('now'))
 
-        self.assertEqual(cl[4]['type'], models.Comment._types[2]) # System
+        self.assertEqual(cl[4]['type'],u'system')
 
 
     @inlineCallbacks
@@ -476,17 +438,8 @@ class TestTipInstance(TTip):
         yield rtip.delete_internal_tip(self.receiver1_desc['id'],
             self.rtip1_id)
 
-        try:
-            # just one operation that fail if iTip is invalid
-            yield rtip.get_internaltip_receiver(
-                        self.receiver1_desc['id'], self.rtip1_id)
-            self.assertTrue(False)
-        except errors.TipIdNotFound:
-            self.assertTrue(True)
-        except Exception, e:
-            self.assertTrue(False)
-            raise e
-
+        self.assertFailure(rtip.get_tip(self.receiver1_desc['id'], self.rtip1_id, 'en'),
+                           errors.TipIdNotFound)
 
     @inlineCallbacks
     def check_wb_messages_expected(self, expected_msgs):
@@ -513,7 +466,7 @@ class TestTipInstance(TTip):
     @inlineCallbacks
     def do_wb_messages(self):
 
-        before = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
+        before = yield wbtip.get_receiver_list_wb(self.wb_tip_id, 'en')
 
 
         # the direct message has been sent to the receiver 1, and receiver 1
@@ -525,9 +478,9 @@ class TestTipInstance(TTip):
         x = yield wbtip.create_message_wb(self.wb_tip_id,
                                           self.receiver1_desc['id'], msgrequest)
 
-        self.assertEqual(x['author'], u'Whistleblower')
+        self.assertEqual(x['author'], u'whistleblower')
 
-        after = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
+        after = yield wbtip.get_receiver_list_wb(self.wb_tip_id, 'en')
 
         for receivers_message in after:
             if receivers_message['id'] == self.receiver1_desc['id']:
@@ -543,7 +496,7 @@ class TestTipInstance(TTip):
         yield wbtip.create_message_wb(self.wb_tip_id,
                                           self.receiver2_desc['id'], msgrequest)
 
-        end = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
+        end = yield wbtip.get_receiver_list_wb(self.wb_tip_id, 'en')
 
         for receivers_message in end:
             if receivers_message['id'] == self.receiver2_desc['id']:
@@ -555,7 +508,7 @@ class TestTipInstance(TTip):
     def do_receivers_messages_and_unread_verification(self):
 
         # Receiver1 check the presence of the whistleblower message (only 1)
-        x = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'])
+        x = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'], 'en')
         self.assertEqual(x[0]['unread_messages'], 1)
 
         # Receiver1 send one message
@@ -566,7 +519,7 @@ class TestTipInstance(TTip):
         self.assertEqual(k['content'], msgrequest['content'])
 
         # Whistleblower check the presence of receiver1 unread message
-        receiver_info_list = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
+        receiver_info_list = yield wbtip.get_receiver_list_wb(self.wb_tip_id, 'en')
 
         for r in receiver_info_list:
             if r['id'] == self.receiver1_desc['id']:
@@ -579,7 +532,7 @@ class TestTipInstance(TTip):
                 self.assertEqual(r['your_messages'], 2)
 
         # Receiver2 check the presence of the whistleblower message (2 expected)
-        a = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'])
+        a = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'], 'en')
         self.assertEqual(len(a), 1)
         self.assertEqual(a[0]['your_messages'], 1)
         self.assertEqual(a[0]['unread_messages'], 1)
@@ -613,7 +566,7 @@ class TestTipInstance(TTip):
         self.assertTrue(wreaded[3]['visualized'])
 
         # Whistleblower check 0 unread messages from Receiver2, and still 1 from R1
-        end = yield wbtip.get_receiver_list_wb(self.wb_tip_id)
+        end = yield wbtip.get_receiver_list_wb(self.wb_tip_id, 'en')
         
 
         for recv in end:
@@ -621,7 +574,6 @@ class TestTipInstance(TTip):
                 self.assertEqual(recv['unread_messages'], 0)
             else:
                 self.assertEqual(recv['unread_messages'], 1)
-
 
     @inlineCallbacks
     def test_full_receiver_wb_workflow(self):
@@ -641,14 +593,12 @@ class TestTipInstance(TTip):
         yield self.do_receivers_messages_and_unread_verification()
         # end direct messages block
 
-        yield self.increment_access_counter()
         # this is the only test on receiver handler and not in tip handler:
         yield self.receiver1_get_tip_list()
-        yield self.receiver_2_get_banned_for_too_much_access()
         yield self.receiver_RW_comments()
         yield self.wb_RW_comments()
-        yield self.wb_get_receiver_list(GLSetting.memory_copy.default_language)
-        yield self.receiver_get_receiver_list(GLSetting.memory_copy.default_language)
+        yield self.wb_get_receiver_list(GLSetting.memory_copy.language)
+        yield self.receiver_get_receiver_list(GLSetting.memory_copy.language)
         # test expiration date
         yield self.fail_postpone_expiration_date()
         yield self.verify_default_expiration_date()

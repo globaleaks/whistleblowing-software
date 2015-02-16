@@ -40,9 +40,8 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
     }
 
     $scope.save_all = function () {
-      // XXX this is highly inefficient, could be refactored/improved.
       angular.forEach($scope.admin.field_templates, function (field, key) {
-        $scope.update_field(field);
+        $scope.save_field(field, true);
       });
     };
     
@@ -55,17 +54,8 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
       $scope.fields.splice(idx, 1);
     };
 
-    $scope.update_field = function(field) {
-      var updated_field = new $scope.admin.field_template(field);
-      if ($scope.field_group_toggled) {
-        $scope.field_group_toggled = false;
-        $scope.save_all();
-      }
-      return updated_field.$update();
-    }
-
     $scope.perform_delete = function(field) {
-      $scope.admin.field_template.delete({
+      $scope.admin.field_template['delete']({
         template_id: field.id
       }, function(){
         $scope.deleteField(field);
@@ -73,7 +63,7 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
     }
 
     $scope.create_field = function() {
-      return $scope.admin.new_template_field();
+      return $scope.admin.new_field_template('');
     };
   }
 ]);
@@ -81,10 +71,6 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
 GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
   function($scope, $modal) {
     $scope.field_group_toggled = false;
-
-    $scope.save_field = function() {
-      $scope.update($scope.field);
-    };
 
     $scope.fieldDeleteDialog = function(field){
       var modalInstance = $modal.open({
@@ -137,6 +123,18 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
       field.options.splice(index, 1);
    }
 
+    $scope.save_field = function(field, called_from_save_all) {
+      updated_field =  new $scope.admin.field(field);
+      if ($scope.field_group_toggled) {
+        $scope.field_group_toggled = false;
+        if (!called_from_save_all) {
+          $scope.save_all();
+        }
+      } else {
+        $scope.update(updated_field);
+      }
+    };
+
     $scope.$watch('field.type', function (newVal, oldVal) {
 
       if (newVal && newVal !== oldVal) {
@@ -153,7 +151,7 @@ GLClient.controller('AdminFieldsAddCtrl', ['$scope',
 
     $scope.new_field = {};
 
-    $scope.add_field = function(label) {
+    $scope.add_field = function() {
       var field = new $scope.create_field();
 
       field.label = $scope.new_field.label;
@@ -173,6 +171,7 @@ GLClient.controller('AdminFieldsAddCtrl', ['$scope',
         $scope.addField(new_field);
         $scope.new_field = {};
       });
+
     }
   }
 ]);

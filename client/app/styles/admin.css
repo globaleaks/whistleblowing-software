@@ -9,7 +9,7 @@
   margin-bottom: 5px;
 }
 
-#StepsConfigCard, #FieldsConfigCard {
+#StepAddBox, #StepsEditBox,#FieldsEditBox {
   margin-top: 30px;
 }
 
@@ -99,7 +99,6 @@
 }
 
 .fileDetails {
-  list-style: none;
   margin: 0 0 10px 20px;
 }
 
@@ -155,18 +154,6 @@
 .fieldEditorBody {
   background-color: rgb(250, 250, 250);
   padding: 20px;
-}
-
-.fieldIndex {
-  width: 50px;
-  float: left;
-  background-color: #616161;
-  text-align: center;
-  height: 30px;
-  padding-top: 5px;
-  border-radius: 100px;
-  margin-right: 10px;
-  color: #fff;
 }
 
 /** Step editing **/
@@ -257,7 +244,7 @@
   position: relative;
   opacity: 0;
   height: 100%;
-  z-index: 99;
+  z-index: 100;
 }
 
 .uploadProgress {
@@ -321,7 +308,7 @@
 }
 
 #AnomaliesThresholdsSummary, #AnomaliesHistoryTable {
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .hour {
@@ -347,3 +334,6 @@ text.axis-worktime {
   fill: #000;
 }
 
+.infoTable {
+  font-size: 12px;
+}

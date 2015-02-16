@@ -14,12 +14,12 @@ from globaleaks.handlers.authentication import transport_security_check, authent
 from globaleaks.rest import requests
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601, datetime_to_pretty_str
 from globaleaks.utils.structures import Rosetta
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, transact_ro
 from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
 from globaleaks.rest import errors
 
 
-def wb_serialize_tip(internaltip, language=GLSetting.memory_copy.default_language):
+def wb_serialize_tip(internaltip, language):
     ret_dict = {
         'context_id': internaltip.context.id,
         'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
@@ -54,8 +54,7 @@ def wb_serialize_file(internalfile):
     return wb_file_desc
 
 
-@transact_ro
-def get_files_wb(store, wb_tip_id):
+def db_get_files_wb(store, wb_tip_id):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wb_tip_id)).one()
 
     file_list = []
@@ -67,8 +66,7 @@ def get_files_wb(store, wb_tip_id):
     return file_list
 
 
-@transact
-def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_language):
+def db_get_internaltip_wb(store, tip_id, language):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
 
     if not wbtip:
@@ -85,6 +83,12 @@ def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_lan
 
     return tip_desc
 
+@transact
+def get_tip(store, tip_id, language):
+    answer = db_get_internaltip_wb(store, tip_id, language)
+    answer['files'] = db_get_files_wb(store, tip_id)
+
+    return answer
 
 class WBTipInstance(BaseHandler):
     """
@@ -108,8 +112,7 @@ class WBTipInstance(BaseHandler):
         contain the internaltip)
         """
 
-        answer = yield get_internaltip_wb(self.current_user.user_id, self.request.language)
-        answer['files'] = yield get_files_wb(self.current_user.user_id)
+        answer = yield get_tip(self.current_user.user_id, 'en')
 
         self.set_status(200)
         self.finish(answer)
@@ -154,9 +157,9 @@ def create_comment_wb(store, wb_tip_id, request):
     comment = Comment()
     comment.content = request['content']
     comment.internaltip_id = wbtip.internaltip.id
-    comment.author = u'whistleblower' # The printed line
-    comment.type = Comment._types[1] # WB
-    comment.mark = Comment._marker[0] # Not notified
+    comment.author = u'whistleblower'
+    comment.type = u'whistleblower'
+    comment.mark = u'not notified'
 
     wbtip.internaltip.comments.add(comment)
 
@@ -174,7 +177,7 @@ class WBTipCommentCollection(BaseHandler):
     @transport_security_check('wb')
     @authenticated('wb')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Parameters: None
         Response: actorsCommentList
@@ -188,7 +191,7 @@ class WBTipCommentCollection(BaseHandler):
     @transport_security_check('wb')
     @authenticated('wb')
     @inlineCallbacks
-    def post(self, *uriargs):
+    def post(self):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc
@@ -203,7 +206,7 @@ class WBTipCommentCollection(BaseHandler):
 
 
 @transact_ro
-def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.default_language):
+def get_receiver_list_wb(store, wb_tip_id, language):
     """
     @return:
         This function contain the serialization of the receiver, this function is
@@ -376,7 +379,7 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
     msg = Message()
     msg.content = request['content']
     msg.receivertip_id = rtip.id
-    msg.author = u'Whistleblower'
+    msg.author = u'whistleblower'
     msg.visualized = False
 
     msg.type = u'whistleblower'

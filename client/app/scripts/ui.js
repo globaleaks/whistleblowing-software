@@ -48,7 +48,6 @@ angular.module('submissionUI', []).
       }
     }
 }]).
-
   directive('pragmaticFileUpload', [ '$route', 'Authentication', function($route, Authentication){
 
     return {
@@ -160,18 +159,21 @@ angular.module('submissionUI', []).
       }
     };
 }).
-  directive('ccNumber', function(){
+  directive('creditCard', ['$filter', function($filter){
     return {
       scope: {
-        "ccNumber": "&",
+        "creditCard": "&",
       },
       link: function(scope, elm, attrs) {
         var svgItem = $(elm)[0];
         svgItem.addEventListener("load",function() {
-          var ccnumber = svgItem.contentDocument;
-          ccnumber = ccnumber.getElementById("ccnumber");
-          ccnumber.innerHTML = scope.ccNumber();
+          var creditcard = svgItem.contentDocument.getElementById('credit_card');
+          var yourname = svgItem.contentDocument.getElementById('your_name');
+          var ccnumber = svgItem.contentDocument.getElementById('cc_number');
+          creditcard.innerHTML =  $filter('translate')('CREDIT CARD');
+          yourname.innerHTML =  $filter('translate')('YOUR NAME');
+          ccnumber.innerHTML = scope.creditCard();
         });
       }
     }
-});
+}]);

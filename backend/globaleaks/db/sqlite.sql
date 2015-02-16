@@ -51,7 +51,6 @@ CREATE TABLE context (
     file_max_download INTEGER NOT NULL,
     last_update VARCHAR,
     name BLOB NOT NULL,
-    selectable_receiver INTEGER NOT NULL,
     tip_max_access INTEGER NOT NULL,
     tip_timetolive INTEGER NOT NULL,
     submission_timetolive INTEGER NOT NULL,
@@ -63,7 +62,7 @@ CREATE TABLE context (
     show_small_cards INTEGER NOT NULL,
     show_receivers INTEGER NOT NULL,
     enable_private_messages INTEGER NOT NULL,
-    presentation_order INTEGER NOT NULL,
+    presentation_order INTEGER,
     PRIMARY KEY (id)
 );
 
@@ -108,7 +107,7 @@ CREATE TABLE internaltip (
     expiration_date VARCHAR NOT NULL,
     wb_steps BLOB,
     last_activity VARCHAR,
-    mark VARCHAR NOT NULL CHECK (mark IN ('submission', 'finalize', 'first', 'second')),
+    mark VARCHAR NOT NULL CHECK (mark IN ('submission', 'finalize', 'first')),
     context_id VARCHAR NOT NULL,
     FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
@@ -119,7 +118,6 @@ CREATE TABLE node (
     creation_date VARCHAR NOT NULL,
     description BLOB NOT NULL,
     presentation BLOB NOT NULL,
-    subtitle BLOB NOT NULL,
     footer BLOB NOT NULL,
     security_awareness_title BLOB NOT NULL,
     security_awareness_text BLOB NOT NULL,
@@ -149,13 +147,16 @@ CREATE TABLE node (
     wizard_done INTEGER NOT NULL,
     exception_email VARCHAR NOT NULL,
     allow_unencrypted INTEGER NOT NULL,
+    allow_iframes_inclusion INTEGER NOT NULL,
     disable_privacy_badge INTEGER NOT NULL,
     disable_security_awareness_badge INTEGER NOT NULL,
     disable_security_awareness_questions INTEGER NOT NULL,
     enable_custom_privacy_badge INTEGER NOT NULL DEFAULT 0,
-    custom_privacy_badge_tbb BLOB NOT NULL,
     custom_privacy_badge_tor BLOB NOT NULL,
     custom_privacy_badge_none BLOB NOT NULL,
+    header_title_homepage BLOB NOT NULL,
+    header_title_submissionpage BLOB NOT NULL,
+    landing_page VARCHAR NOT NULL CHECK (landing_page IN ('homepage', 'submissionpage')),
     PRIMARY KEY (id)
 );
 
@@ -186,16 +187,22 @@ CREATE TABLE notification (
     plaintext_comment_template BLOB,
     plaintext_comment_mail_title BLOB,
     admin_anomaly_template BLOB,
-    pgp_expiration_alert BLOB,
-    pgp_expiration_notice BLOB,
+    admin_pgp_alert_mail_template BLOB,
+    admin_pgp_alert_mail_title BLOB,
+    pgp_alert_mail_template BLOB,
+    pgp_alert_mail_title BLOB,
     zip_description BLOB,
+    ping_mail_template BLOB,
+    ping_mail_title BLOB,
+    disable_admin_notification_emails INTEGER NOT NULL,
+    disable_receivers_notification_emails INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE receiver (
     id VARCHAR NOT NULL,
     user_id VARCHAR NOT NULL,
-    configuration VARCHAR NOT NULL CHECK (configuration IN ('default', 'hidden', 'unselectable')),
+    configuration VARCHAR NOT NULL CHECK (configuration IN ('default', 'forcefully_selected', 'unselectable')),
     creation_date VARCHAR NOT NULL,
     can_delete_submission INTEGER NOT NULL,
     postpone_superpower INTEGER NOT NULL,
@@ -206,15 +213,32 @@ CREATE TABLE receiver (
     file_notification INTEGER NOT NULL,
     tip_notification INTEGER NOT NULL,
     message_notification INTEGER NOT NULL,
+    ping_notification INTEGER NOT NULL,
     mail_address VARCHAR NOT NULL,
-    gpg_key_status VARCHAR NOT NULL CHECK (gpg_key_status IN ('Disabled', 'Enabled')),
+    ping_mail_address VARCHAR NOT NULL,
+    gpg_key_status VARCHAR NOT NULL CHECK (gpg_key_status IN ('disabled', 'enabled')),
     gpg_key_info VARCHAR,
     gpg_key_fingerprint VARCHAR,
     gpg_key_armor VARCHAR,
-    gpg_enable_notification INTEGER,
-    presentation_order INTEGER NOT NULL,
+    gpg_key_expiration INTEGER,
+    presentation_order INTEGER,
     PRIMARY KEY (id),
+    UNIQUE (name),
     FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE
+);
+
+CREATE TABLE eventlogs (
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    event_reference VARCHAR NOT NULL,
+    description VARCHAR NOT NULL,
+    title VARCHAR NOT NULL,
+    receiver_id VARCHAR NOT NULL,
+    receivertip_id VARCHAR,
+    mail_sent INTEGER,
+    PRIMARY KEY (id),
+    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
+    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE
 );
 
 CREATE TABLE receiver_context (
@@ -297,7 +321,7 @@ CREATE TABLE stats (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
     start VARCHAR NOT NULL,
-    freemb INTEGER,
+    free_disk_space INTEGER,
     summary BLOB,
     PRIMARY KEY (id)
 );

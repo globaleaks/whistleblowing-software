@@ -50,7 +50,7 @@ class TestModels(helpers.TestGL):
 
         receiver = models.Receiver(r)
         receiver.user = receiver_user
-        receiver.gpg_key_status = models.Receiver._gpg_types[0]
+        receiver.gpg_key_status = u'disabled'
         receiver.mail_address = self.dummyReceiver_1['mail_address']
 
         store.add(receiver)
@@ -75,21 +75,16 @@ class TestModels(helpers.TestGL):
     @transact
     def create_context_with_receivers(self, store):
         c = self.localization_set(self.dummyContext, models.Context, 'en')
-        r = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
+        r1 = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
+        r2 = self.localization_set(self.dummyReceiver_2, models.Receiver, 'en')
 
         receiver_user1 = models.User(self.dummyReceiverUser_1)
         receiver_user1.last_login = self.dummyReceiverUser_1['last_login']
         receiver_user1.password_change_date = self.dummyReceiverUser_1['password_change_date']
 
-
-        receiver_user2 = models.User(self.dummyReceiverUser_1)
-        receiver_user2.last_login = self.dummyReceiverUser_1['last_login']
-        receiver_user2.password_change_date = self.dummyReceiverUser_1['password_change_date']
-
-
-        # Avoid receivers with the same username!
-        receiver_user1.username = 'xxx'
-        receiver_user2.username = 'yyy'
+        receiver_user2 = models.User(self.dummyReceiverUser_2)
+        receiver_user2.last_login = self.dummyReceiverUser_2['last_login']
+        receiver_user2.password_change_date = self.dummyReceiverUser_2['password_change_date']
 
         store.add(receiver_user1)
         store.add(receiver_user2)
@@ -101,13 +96,13 @@ class TestModels(helpers.TestGL):
             context.submission_disclaimer = \
             context.submission_introduction = {'en': 'Localized76w'}
 
-        receiver1 = models.Receiver(r)
-        receiver2 = models.Receiver(r)
+        receiver1 = models.Receiver(r1)
+        receiver2 = models.Receiver(r2)
 
         receiver1.user = receiver_user1
         receiver2.user = receiver_user2
-        receiver1.gpg_key_status = models.Receiver._gpg_types[0]
-        receiver2.gpg_key_status = models.Receiver._gpg_types[0]
+        receiver1.gpg_key_status = u'disabled'
+        receiver2.gpg_key_status = u'disabled'
         receiver1.mail_address = 'x@x.it'
         receiver2.mail_address = 'x@x.it'
 
@@ -132,8 +127,8 @@ class TestModels(helpers.TestGL):
 
         receiver = models.Receiver(r)
         receiver.user = receiver_user
-        receiver.gpg_key_status = models.Receiver._gpg_types[0]
-        receiver.mail_address = unicode('y@y.it')
+        receiver.gpg_key_status = u'disabled'
+        receiver.mail_address = u'y@y.it'
 
         context1 = models.Context(c)
 
@@ -252,15 +247,15 @@ class TestField(helpers.TestGL):
     @inlineCallbacks
     def test_add_field_group(self):
         field1_id = yield helpers.create_dummy_field(
-            label='{"en": "the first testable field"}',
+            label={"en": "the first testable field"},
             type='checkbox'
         )
         field2_id = yield helpers.create_dummy_field(
-            label='{"en": "the second testable field"}',
+            label= {"en": "the second testable field"},
             type='inputbox'
         )
         fieldgroup_id = yield helpers.create_dummy_field(
-            label='{"en": "a testable group of fields."}',
+            label={"en": "a testable group of fields."},
             type='fieldgroup',
             x=1, y=2,
         )
@@ -305,9 +300,9 @@ class TestStep(helpers.TestGL):
         step = {
           'context_id': context_id,
           'number': self.step_number,
-          'label': "",
-          'description': "",
-          'hint': ""
+          'label': {},
+          'description': {},
+          'hint': {}
         }
 
         self.step_number += 1

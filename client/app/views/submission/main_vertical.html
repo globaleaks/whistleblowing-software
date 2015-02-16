@@ -1,0 +1,33 @@
+<div data-ng-if="receivers_selectable && submission.current_context.show_receivers">
+  <div class="row">
+    <div class="col-md-12">
+      <label data-translate>Receiver selection</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" data-ng-include="'views/submission/receiver_selection.html'"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div data-ng-repeat="step in submission.current_context.steps" data-ng-controller="SubmissionStepCtrl" class="row">
+      <div>
+        <div class="col-md-12">
+          <p class="stepDescription">{{step.description}}</p>
+        </div>
+      </div>
+      <div>
+        <div class="col-md-7">
+          <div data-ng-include="'views/submission/form.html'"></div>
+        </div>
+        <div class="col-md-offset-1 col-md-4">
+          <div data-ng-include="'views/partials/fileupload_status.html'"></div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-success SubmissionSubmitButton" data-ng-click="submit()" data-ng-disabled="uploading || submissionForm.$invalid || !receiver_selected" type="submit">
+      <i class="glyphicon glyphicon-ok"></i>
+      <span data-translate>Submit</span>
+    </button>
+  </div>
+</div>

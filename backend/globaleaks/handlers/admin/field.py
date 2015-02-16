@@ -5,21 +5,26 @@ Implementation of the code executed when an HTTP client reach /admin/fields URI.
 from __future__ import unicode_literals
 
 import json
-from storm.exceptions import DatabaseError
 from storm.expr import And
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.node import anon_serialize_field, anon_serialize_option, \
+from globaleaks.handlers.node import anon_serialize_field, \
     get_field_option_localized_keys, get_public_context_list
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro
-from globaleaks.utils.structures import fill_localized_keys, get_localized_values
+from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log
 
 def get_field_association(store, field_id):
+    """
+    Return a boolean tuple representing the field association (step, fieldgroup) [true, false]
+
+    :param store: the store on which perform queries.
+    """
+
     ret1 = None
     ret2 = None
 
@@ -33,7 +38,13 @@ def get_field_association(store, field_id):
 
     return ret1, ret2
 
+
 def associate_field(store, field, step_id=None, fieldgroup_id=None):
+    """
+    Associate a field to a specified step or fieldgroup
+
+    :param store: the store on which perform queries.
+    """
     if step_id:
         if field.is_template:
             raise errors.InvalidInputFormat("Cannot associate a field template to a step")
@@ -49,7 +60,13 @@ def associate_field(store, field, step_id=None, fieldgroup_id=None):
 
         fieldgroup.children.add(field)
 
+
 def disassociate_field(store, field_id):
+    """
+    Disassociate a field from the eventually associated step or fieldgroup
+
+    :param store: the store on which perform queries.
+    """
     sf = store.find(models.StepField, models.StepField.field_id == field_id).one()
     if sf:
         store.remove(sf)
@@ -60,6 +77,8 @@ def disassociate_field(store, field_id):
 def db_update_options(store, field_id, options, language):
     """
     Update options
+
+    :param store: the store on which perform queries.
     """
     field = models.Field.get(store, field_id)
     if field is None:
@@ -85,78 +104,113 @@ def db_update_options(store, field_id, options, language):
 
         # check for reuse (needed to keep translations)
         if 'id' in option and option['id'] in indexed_old_options:
-           o = indexed_old_options[option['id']]
-           o.update(opt_dict, keys)
+            o = indexed_old_options[option['id']]
+            o.update(opt_dict, keys)
 
-           new_options.append(indexed_old_options[option['id']])
-           del indexed_old_options[option['id']]
+            new_options.append(indexed_old_options[option['id']])
+            del indexed_old_options[option['id']]
         else:
-           new_options.append(models.FieldOption(opt_dict))
+            new_options.append(models.FieldOption(opt_dict))
 
         n += 1
 
     # remove all the not reused old options
-    for o in indexed_old_options:
-        store.remove(indexed_old_options[o])
+    for o_id in indexed_old_options:
+        store.remove(indexed_old_options[o_id])
 
     for n in new_options:
         store.add(n)
 
 def field_integrity_check(request):
+    """
+    Verify the validity of the parameters passed in a request
+
+    :param request: the request dict to be validated
+    """
     is_template = request['is_template']
     step_id = request.get('step_id')
     fieldgroup_id = request.get('fieldgroup_id')
 
-    if is_template == False and \
-       (step_id == '' or step_id == None) and \
-       (fieldgroup_id == '' or fieldgroup_id == None):
+    if not is_template and \
+       (step_id == '' or step_id is None) and \
+       (fieldgroup_id == '' or fieldgroup_id is None):
         raise errors.InvalidInputFormat("Each field should be a template or be associated to a step/fieldgroup")
 
     if not is_template:
-        if (step_id == '' or step_id == None) and \
-            (fieldgroup_id == '' or fieldgroup_id == None):
+        if (step_id == '' or step_id is None) and \
+            (fieldgroup_id == '' or fieldgroup_id is None):
             raise errors.InvalidInputFormat("Cannot associate a field to both a step and a fieldgroup")
 
     return is_template, step_id, fieldgroup_id
 
+
 def db_create_field(store, request, language):
     """
-    Add a new field to the store, then return the new serialized object.
-    :param: store: the store reference
+    Create and add a new field to the store, then return the new serialized object.
+
+    :param store: the store on which perform queries.
     :param: request: the field definition dict
     :param: language: the language of the field definition dict
     :return: a serialization of the object
     """
-    is_template, step_id, fieldgroup_id = field_integrity_check(request)
+    _, step_id, fieldgroup_id = field_integrity_check(request)
 
-    # XXX you probably want to split this if else statement into two functions
-    # that are called create_field_from_template and create_field
-    if not 'template_id' in request:
-        fill_localized_keys(request, models.Field.localized_strings, language)
-        field = models.Field.new(store, request)
-        db_update_options(store, field.id, request['options'], language)
-    else:
-        template = store.find(models.Field, models.Field.id == request['template_id']).one()
-        if not template:
-            raise errors.InvalidInputFormat("The specified template id %s does not exist" %
-                                            request.get('template_id'))
-        field = template.copy(store, is_template)
+    fill_localized_keys(request, models.Field.localized_strings, language)
+    field = models.Field.new(store, request)
+    db_update_options(store, field.id, request['options'], language)
 
     associate_field(store, field, step_id, fieldgroup_id)
 
     return anon_serialize_field(store, field, language)
 
+
+def db_create_field_from_template(store, request, language):
+    """
+    Create and add a new field to the store starting from a template,
+    then return the new serialized object.
+
+    :param store: the store on which perform queries.
+    :param: request: the field definition dict
+    :param: language: the language of the field definition dict
+    :return: a serialization of the object
+    """
+    _, step_id, fieldgroup_id = field_integrity_check(request)
+
+    template = store.find(models.Field, models.Field.id == request['template_id']).one()
+    if not template:
+        raise errors.InvalidInputFormat("The specified template id %s does not exist" %
+                                            request.get('template_id'))
+    field = template.copy(store, False)
+
+    associate_field(store, field, step_id, fieldgroup_id)
+
+    return anon_serialize_field(store, field, language)
+
+
 @transact
-def create_field(store, request, language):
-    return db_create_field(store, request, language)
+def create_field(*args):
+    """
+    Transaction that perform db_create_field
+    """
+    return db_create_field(*args)
+
+
+@transact
+def create_field_from_template(*args):
+    """
+    Transaction that perform db_create_field_from_template
+    """
+    return db_create_field_from_template(*args)
+
 
 @transact
 def update_field(store, field_id, request, language):
     """
-    Updates the specified field with the details.
+    Update the specified field with the details.
     raises :class:`globaleaks.errors.FieldIdNotFound` if the field does
     not exist.
-    :param: store: the store reference
+
+    :param store: the store on which perform queries.
     :param: field_id: the field_id of the field to update
     :param: request: the field definition dict
     :param: language: the language of the field definition dict
@@ -209,12 +263,15 @@ def update_field(store, field_id, request, language):
 
     return anon_serialize_field(store, field, language)
 
+
 @transact_ro
 def get_field(store, field_id, is_template, language):
     """
-    Serialize a speficied field, localizing its content depending on the language.
+    Serialize a specified field
 
+    :param store: the store on which perform queries.
     :param field_id: the id corresponding to the field.
+    :param is_template: a boolean specifying if the requested field needs to be a template
     :param language: the language in which to localize data
     :return: the currently configured field.
     :rtype: dict
@@ -225,43 +282,31 @@ def get_field(store, field_id, is_template, language):
         raise errors.FieldIdNotFound
     return anon_serialize_field(store, field, language)
 
+
 @transact
 def delete_field(store, field_id, is_template):
     """
-    Remove the field object corresponding to field_id from the store.
+    Delete the field object corresponding to field_id
 
     If the field has children, remove them as well.
     If the field is immediately attached to a step object, remove it as well.
 
+    :param store: the store on which perform queries.
     :param field_id: the id corresponding to the field.
-    :raise: FieldIdNotFound: if no such field is found.
+    :param is_template: a boolean specifying if the requested field needs to be a template
+    :raises FieldIdNotFound: if no such field is found.
     """
     field = store.find(models.Field, And(models.Field.id == field_id, models.Field.is_template == is_template)).one()
     if not field:
         raise errors.FieldIdNotFound
     field.delete(store)
 
-@transact
-def get_context_fieldtree(store, context_id):
-    """
-    Return the serialized field tree belonging to a specific context.
-
-    :param context_id: the id corresponding to the context.
-    :return dict: a nested dictionary represending the tree.
-    """
-    #  context = Context.get(store, context_id)
-    steps = store.find(models.Step, models.Step.context_id == context_id).order_by(models.Step.number)
-    ret = []
-    for step in steps:
-        field = models.FieldGroup.get(store, step.field_id)
-        ret.append(models.FieldGroup.serialize(store, field.id))
-    return ret
 
 def fieldtree_ancestors(store, field_id):
     """
     Given a field_id, recursively extract its parents.
 
-    :param store: appendix to access to the database.
+    :param store: the store on which perform queries.
     :param field_id: the parent id.
     :return: a generator of Field.id
     """
@@ -270,8 +315,7 @@ def fieldtree_ancestors(store, field_id):
         if parent.parent_id != field_id:
             yield parent.parent_id
             for grandpa in fieldtree_ancestors(store, parent.parent_id): yield grandpa
-    else:
-        return
+
 
 @transact_ro
 def get_field_list(store, is_template, language):
@@ -279,8 +323,9 @@ def get_field_list(store, is_template, language):
     Serialize all the root fields (templates or not templates)
     localizing their content depending on the language.
 
-    :return: the current field list serialized.
+    :param store: the store on which perform queries.
     :param language: the language of the field definition dict
+    :return: the current field list serialized.
     :rtype: list of dict
     """
     ret = []
@@ -291,40 +336,34 @@ def get_field_list(store, is_template, language):
 
     return ret
 
+
 class FieldTemplatesCollection(BaseHandler):
-    """
-    /admin/fieldtemplates
-    """
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Return a list of all the fields templates available.
 
-        Parameters: None
-        Response: FieldList
-        Errors: None
+        :return: the list of field templates registered on the node.
+        :rtype: list
         """
         response = yield get_field_list(True, self.request.language)
         self.set_status(200)
         self.finish(response)
 
+
 class FieldTemplateCreate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def post(self, *uriargs):
+    def post(self):
         """
         Create a new field template.
 
-        Request: FieldDesc
-        Response: FieldDesc
-        Errors: InvalidInputFormat, FieldIdNotFound
         """
-
         request = self.validate_message(self.request.body,
-                                        requests.FieldDesc)
+                                        requests.FieldTemplateDesc)
 
         # enforce difference between /admin/field and /admin/fieldtemplate
         request['is_template'] = True
@@ -334,21 +373,17 @@ class FieldTemplateCreate(BaseHandler):
         self.set_status(201)
         self.finish(response)
 
-class FieldTemplateUpdate(BaseHandler):
-    """
-    Operation to iterate over a specific requested Field template
 
-    /admin/fieldtemplate/field_id
-    """
+class FieldTemplateInstance(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, field_id, *uriargs):
+    def get(self, field_id):
         """
         Get the field identified by field_id
 
         :param field_id:
-        :rtype: FieldDesc
+        :rtype: FieldTemplateDesc
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
@@ -359,16 +394,17 @@ class FieldTemplateUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, field_id, *uriargs):
+    def put(self, field_id):
         """
         Update a single field template's attributes.
 
-        Request: FieldDesc
-        Response: FieldDesc
-        Errors: InvalidInputFormat, FieldIdNotFound
+        :param field_id:
+        :rtype: FieldTemplateDesc
+        :raises FieldIdNotFound: if there is no field with such id.
+        :raises InvalidInputFormat: if validation fails.
         """
         request = self.validate_message(self.request.body,
-                                        requests.FieldDesc)
+                                        requests.FieldTemplateDesc)
 
         # enforce difference between /admin/field and /admin/fieldtemplate
         request['is_template'] = True
@@ -380,16 +416,16 @@ class FieldTemplateUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def delete(self, field_id, *uriargs):
+    def delete(self, field_id):
         """
         Delete a single field template.
 
-        Request: None
-        Response: None
-        Errors: InvalidInputFormat, FieldIdNotFound
+        :param field_id:
+        :raises FieldIdNotFound: if there is no field with such id.
         """
         yield delete_field(field_id, True)
         self.set_status(200)
+
 
 class FieldsCollection(BaseHandler):
     """
@@ -398,17 +434,17 @@ class FieldsCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Return a list of all the fields available in a node.
 
-        Parameters: None
-        Response: adminFieldList
-        Errors: None
+        :return: the list of fields registered on the node.
+        :rtype: list
         """
         response = yield get_field_list(False, self.request.language)
         self.set_status(200)
         self.finish(response)
+
 
 class FieldCreate(BaseHandler):
     """
@@ -419,25 +455,34 @@ class FieldCreate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def post(self, *uriargs):
+    def post(self):
         """
         Create a new field.
 
-        Request: FieldDesc
-        Response: FieldDesc
-        Errors: InvalidInputFormat, FieldIdNotFound
+        :return: the serialized field
+        :rtype: FieldDesc
+        :raises InvalidInputFormat: if validation fails.
         """
-        tmp = json.loads(self.request.body)
-        if 'template_id' in tmp and tmp['template_id'] != '':
+        try:
+            tmp = json.loads(self.request.body)
+        except ValueError:
+            raise errors.InvalidInputFormat("Invalid JSON format")
+
+        if isinstance(tmp, dict) and 'template_id' in tmp:
             request = self.validate_message(self.request.body,
-                                            requests.FieldDescFromTemplate)
+                                            requests.FieldFromTemplateDesc)
+
+            # enforce difference between /admin/field and /admin/fieldtemplate
+            request['is_template'] = False
+            response = yield create_field_from_template(request, self.request.language)
+
         else:
             request = self.validate_message(self.request.body,
                                             requests.FieldDesc)
 
-        # enforce difference between /admin/field and /admin/fieldtemplate
-        request['is_template'] = False
-        response = yield create_field(request, self.request.language)
+            # enforce difference between /admin/field and /admin/fieldtemplate
+            request['is_template'] = False
+            response = yield create_field(request, self.request.language)
 
         # get the updated list of contexts, and update the cache
         public_contexts_list = yield get_public_context_list(self.request.language)
@@ -447,7 +492,8 @@ class FieldCreate(BaseHandler):
         self.set_status(201)
         self.finish(response)
 
-class FieldUpdate(BaseHandler):
+
+class FieldInstance(BaseHandler):
     """
     Operation to iterate over a specific requested Field
 
@@ -456,11 +502,12 @@ class FieldUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def get(self, field_id, *uriargs):
+    def get(self, field_id):
         """
         Get the field identified by field_id
 
         :param field_id:
+        :return: the serialized field
         :rtype: FieldDesc
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
@@ -478,13 +525,15 @@ class FieldUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def put(self, field_id, *uriargs):
+    def put(self, field_id):
         """
         Update a single field's attributes.
 
-        Request: FieldDesc
-        Response: FieldDesc
-        Errors: InvalidInputFormat, FieldIdNotFound
+        :param field_id:
+        :return: the serialized field
+        :rtype: FieldDesc
+        :raises FieldIdNotFound: if there is no field with such id.
+        :raises InvalidInputFormat: if validation fails.
         """
         request = self.validate_message(self.request.body,
                                         requests.FieldDesc)
@@ -505,13 +554,13 @@ class FieldUpdate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def delete(self, field_id, *uriargs):
+    def delete(self, field_id):
         """
         Delete a single field.
 
-        Request: None
-        Response: None
-        Errors: InvalidInputFormat, FieldIdNotFound
+        :param field_id:
+        :raises FieldIdNotFound: if there is no field with such id.
+        :raises InvalidInputFormat: if validation fails.
         """
         yield delete_field(field_id, False)
 

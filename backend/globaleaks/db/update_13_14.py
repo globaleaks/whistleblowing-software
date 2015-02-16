@@ -11,13 +11,13 @@
 
 """
 
-from storm.locals import Pickle, Int, Bool, Pickle, Unicode, DateTime
+from storm.locals import Int, Bool, Pickle, Unicode, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
-from globaleaks.db.datainit import opportunistic_appdata_init
+from globaleaks.db.datainit import load_appdata
 
-class Node_version_13(Model):
+class Node_v_13(Model):
     __storm_table__ = 'node'
     name = Unicode()
     public_site = Unicode()
@@ -49,7 +49,7 @@ class Node_version_13(Model):
     anomaly_checks = Bool()
     exception_email = Unicode()
 
-class Context_version_13(Model):
+class Context_v_13(Model):
     __storm_table__ = 'context'
     unique_fields = Pickle()
     localized_fields = Pickle()
@@ -85,12 +85,12 @@ class Replacer1314(TableReplacer):
                                             "disable_security_awareness_questions, security_awareness_title," \
                                             "security_awareness_text" % self.std_fancy
 
-        appdata = opportunistic_appdata_init()
+        appdata = load_appdata()
 
         old_node = self.store_old.find(self.get_right_model("Node", 13)).one()
         new_node = self.get_right_model("Node", 14)()
 
-        for k, v in new_node._storm_columns.iteritems():
+        for _, v in new_node._storm_columns.iteritems():
 
             if v.name == 'x_frame_options_mode':
                 new_node.x_frame_options_mode = 'deny';

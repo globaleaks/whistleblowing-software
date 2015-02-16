@@ -1,0 +1,12 @@
+<div data-ng-form="" id="fileupload" action="" method="POST" enctype="multipart/form-data" data-ng-app="GLClient.fileuploader" data-ng-controller="WBFileUploadCtrl" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
+  <div class="row fileupload-buttonbar">
+    <div class="col-md-7">
+      <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled || (fileupload_mode == 'single' && queue.length)}">
+        <i class="glyphicon glyphicon-paperclip"></i>
+        <span data-translate>Add file</span>
+        <input data-ng-show="fileupload_mode == 'single'" type="file" name="files[]" data-ng-disabled="disabled" />
+        <input data-ng-show="fileupload_mode == 'multiple'" type="file" name="files[]" data-ng-disabled="disabled" multiple />
+      </span>
+    </div>
+  </div>
+</div>
