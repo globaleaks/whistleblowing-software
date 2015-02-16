@@ -34,17 +34,6 @@ GLClient.controller('AdminFieldsTemplateAdderCtrl', ['$scope',
 
 GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
   function($scope, $modal) {
-    $scope.composable_fields = {};
-    $scope.template_field_keys = Object.keys($scope.admin.template_fields);
-    $scope.template_fields = $scope.admin.template_fields;
-    angular.forEach($scope.step.children, function(field, index) {
-      $scope.composable_fields[field.id] = field;
-      if (field.type == 'fieldgroup') {
-        angular.forEach(field.children, function(field_c, index_c) {
-          $scope.composable_fields[field_c.id] = field_c;
-       });
-      }
-    });
 
     $scope.deleteFromList = function(list, elem) {
       var idx = _.indexOf(list, elem);
@@ -90,10 +79,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       $scope.step.children.push(field);
     };
 
-    $scope.create_field = function() {
-      return $scope.admin.new_field($scope.step.id);
-    };
-   
     $scope.deleteStep = function(step) {
       var idx = _.indexOf($scope.context.steps, step);
       $scope.context.steps.splice(idx, 1);
@@ -116,6 +101,14 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       $scope.deleteStep(step);
       $scope.save_context($scope.context);
     };
+
+    $scope.create_field = function(new_field) {
+      var field = $scope.admin.new_field('');
+      field.label = new_field.label;
+      field.type = new_field.type;
+      $scope.admin.fill_default_field_options(field);
+      return field;
+    }
 
     $scope.update_field = function(field) {
       var updated_field = new $scope.admin.field(field);
@@ -143,6 +136,31 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
          function(result) { }
       );
     };
+
+    $scope.new_field = {};
+
+    $scope.add_field = function() {
+      var field = new $scope.create_field($scope.new_field);
+      field.step_id = $scope.step.id;
+
+      field.$save(function(new_field){
+        $scope.addField(new_field);
+        $scope.new_field = {};
+      });
+
+    }
+
+    $scope.composable_fields = {};
+    $scope.template_field_keys = Object.keys($scope.admin.template_fields);
+    $scope.template_fields = $scope.admin.template_fields;
+    angular.forEach($scope.step.children, function(field, index) {
+      $scope.composable_fields[field.id] = field;
+      if (field.type == 'fieldgroup') {
+        angular.forEach(field.children, function(field_c, index_c) {
+          $scope.composable_fields[field_c.id] = field_c;
+       });
+      }
+    });
 
   }
 ]);

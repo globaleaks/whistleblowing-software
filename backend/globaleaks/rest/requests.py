@@ -202,7 +202,7 @@ adminContextDesc = {
 adminContextFieldTemplateCopy = {
     'template_id': uuid_regexp,
     'context_id': uuid_regexp,
-    'step_id': uuid_regexp,
+    'step_id': uuid_regexp_or_empty,
 }
 
 adminReceiverDesc = {
@@ -463,7 +463,7 @@ FieldTemplateDesc = {
 }
 
 FieldFromTemplateDesc = {
-    'step_id': uuid_regexp,
+    'step_id': uuid_regexp_or_empty,
     'template_id': uuid_regexp
 }
 
