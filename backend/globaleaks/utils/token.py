@@ -31,51 +31,18 @@ class TokenList:
         :param t_id:
         :return:
         """
-        if not TokenList.token_dict.has_key(t_id):
+        if t_id not in TokenList.token_dict:
             raise errors.TokenRequestError("Not found")
 
         del TokenList.token_dict[t_id]
 
     @staticmethod
     def get(t_id):
-        if not TokenList.token_dict.has_key(t_id):
+        if t_id not in TokenList.token_dict:
             raise errors.TokenRequestError("Not found")
 
         return TokenList.token_dict[t_id]
 
-    @staticmethod
-    def validate_token_id(unclean_token_id):
-        """
-        Format:
-        token_id+humancaptchaanswer+graphcaptchanaser+hashcash
-        is used split over the symbol "+"
-        the token can be in two shape:
-            only the token
-            only the token+[optional]+[optional]+[optional]
-        """
-        plus_number = unclean_token_id.count('-')
-        if plus_number != 0 and plus_number != 3:
-            raise errors.TokenRequestError("Format error: #N of +'s: 0 or 3")
-
-        retdict = {
-            'token_object' : None,
-            'g_captcha' : None,
-            'h_captcha' : None,
-            'hashcash' : None
-        }
-
-        if plus_number == 3:
-            answers = unclean_token_id.split('-')
-            retdict['token_object'] = TokenList.get(answers[0])
-            retdict['g_captcha'] = answers[1]
-            retdict['h_captcha'] = answers[2]
-            retdict['hashcash'] = answers[3]
-        else:
-            retdict['token_object'] = TokenList.get(unclean_token_id)
-            # the other fields remain None, and if they are needed, the selective
-            # validation simply fail
-
-        return retdict
 
 # needed in order to allow UT override
 reactor = None
@@ -86,7 +53,6 @@ class Token(TempObj):
     SUBMISSION_MINIMUM_SECONDS = 15
     MAXIMUM_AVAILABILITY = 4 * SUBMISSION_MINIMUM_SECONDS
             # TODO talk in an issue
-    MAXIMUM_USAGES_FILEUPLOAD = 10
     MAXIMUM_FILE_PER_TOKEN = 20
 
     def __init__(self, token_kind, context_id, debug=False):
@@ -210,7 +176,6 @@ class Token(TempObj):
             self.human_captcha = None
 
         if problems_dict['proof_of_work']:
-            log.debug("proof of work not yet implemented!")
             self.proof_of_work = None
         else:
             self.proof_of_work = None
@@ -231,7 +196,6 @@ class Token(TempObj):
                 'answer' : g.solutions,
             }
             """
-            log.debug("graphical captcha requested but not implemente now!")
             self.graph_captcha = None
         else:
             self.graph_captcha = None
@@ -328,21 +292,18 @@ class Token(TempObj):
             if self.human_captcha is not False:
                 self.human_captcha_check(request['human_solution'])
 
+            # Raise an exception if, by mistake, we ask for something not yet supported
             if self.proof_of_work is not False:
-                print "PoW!, NotYetImplemented", self.proof_of_work
+                assert False, "Proof of Work! NotYetImplemented"
 
             if self.graph_captcha is not False:
-                print "GC!, NotYetImplemented", self.graph_captcha
+                assert False, "Graphical Captcha! NotYetImplemented"
 
         except errors.GLException as gle:
             log.debug("Error triggered in Token validation, usages %d => %d" % (
                 self.usages, self.usages -1))
             self.usages -= 1
             raise gle
-        except KeyError as kerr:
-            print "!!!", kerr
-            import pdb; pdb.set_trace()
-            raise kerr
 
         # if the code flow reach here, the token is validated
         log.debug("Token validated properly")

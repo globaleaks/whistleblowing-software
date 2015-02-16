@@ -1,18 +1,14 @@
 # -*- encoding: utf-8 -*-
-import os
 
 from twisted.internet.defer import inlineCallbacks
-from storm.expr import Desc
 
 from globaleaks.tests import helpers
-from globaleaks.handlers import admin, submission
-from globaleaks.handlers.admin.field import create_field
+from globaleaks.handlers import admin
+from globaleaks.handlers.submission import db_finalize_submission
 from globaleaks.jobs import delivery_sched
 from globaleaks.plugins.base import Event
-from globaleaks.settings import transact_ro
-from globaleaks.models import Node, Notification, InternalTip, ReceiverTip
-from globaleaks.jobs.notification_sched import serialize_receivertip
 from globaleaks.utils.templating import Templating
+from globaleaks.utils.token import Token
 
 generic_keyword_list = [
     '%NodeName%',
@@ -227,7 +223,12 @@ class notifTemplateTest(helpers.TestGL):
         self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
         self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
         self.mockSubmission['wb_fields'] = helpers.fill_random_fields(self.createdContext)
-        self.createdSubmission = yield submission.create_submission(self.mockSubmission, True, 'en')
+        self.templatingToken = Token(token_kind='submission',
+                                     context_id=self.mockContext['context_id'],
+                                     debug=False)
+        self.createdSubmission = yield db_finalize_submission(self.templatingToken,
+                                                                         self.mockSubmission,
+                                                                         'en')
 
         created_rtip = yield delivery_sched.tip_creation()
         self.assertEqual(len(created_rtip), 1)
