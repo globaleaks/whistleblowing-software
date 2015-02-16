@@ -1,5 +1,6 @@
-GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
+GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
                     function($scope, $filter) {
+
     $scope.composable_fields = {};
     $scope.admin.field_templates.$promise
       .then(function(fields) {
@@ -26,7 +27,7 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
       $scope.field_group_toggled = true;
       if (field_group.children && (_.indexOf(field_group.children, field) !== -1)) {
         // Remove it from the fieldgroup 
-        field.fieldgroup_id = "";
+        field.fieldgroup_id = '';
         $scope.admin.field_templates.push(field);
         $scope.deleteFromList(field_group.children, field);
       } else {
@@ -44,6 +45,14 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
         $scope.save_field(field, true);
       });
     };
+
+    $scope.create_field_template = function(new_field) {
+      var field = $scope.admin.new_field_template(new_field);
+      field.label = new_field.label;
+      field.type = new_field.type;
+      $scope.admin.fill_default_field_options(field);
+      return field;
+    }
     
     $scope.addField = function(new_field) {
       $scope.fields.push(new_field);
@@ -55,16 +64,13 @@ GLClient.controller('AdminFieldsCtrl', ['$scope', '$filter',
     };
 
     $scope.perform_delete = function(field) {
-      $scope.admin.field_template['delete']({
+      $scope.admin.fieldtemplate['delete']({
         template_id: field.id
       }, function(){
         $scope.deleteField(field);
       });
     }
 
-    $scope.create_field = function() {
-      return $scope.admin.new_field_template('');
-    };
   }
 ]);
 
@@ -121,15 +127,21 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
     $scope.delOption = function(field, option) {
       var index = field.options.indexOf(option);
       field.options.splice(index, 1);
-   }
+    }
+
 
     $scope.save_field = function(field, called_from_save_all) {
-      updated_field =  new $scope.admin.field(field);
+      if (field.is_template) {
+        updated_field =  new $scope.admin.fieldtemplate(field);
+      } else {
+        updated_field =  new $scope.admin.field(field);
+      }
+
       if ($scope.field_group_toggled) {
-        $scope.field_group_toggled = false;
-        if (!called_from_save_all) {
-          $scope.save_all();
-        }
+         $scope.field_group_toggled = false;
+         if (!called_from_save_all) {
+           $scope.save_all();
+         }
       } else {
         $scope.update(updated_field);
       }
@@ -146,26 +158,13 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
   }
 ]);
 
-GLClient.controller('AdminFieldsAddCtrl', ['$scope',
+GLClient.controller('AdminFieldTemplatesAddCtrl', ['$scope',
   function($scope) {
 
     $scope.new_field = {};
 
     $scope.add_field = function() {
-      var field = new $scope.create_field();
-
-      field.label = $scope.new_field.label;
-      field.description = $scope.new_field.label;
-      field.type = $scope.new_field.type;
-
-      if (field.type == 'tos') {
-        field.options.push({'attrs':
-          {
-            'clause': '',
-            'agreement_statement': ''
-          }
-        });
-      }
+      var field = new $scope.create_field_template($scope.new_field);
 
       field.$save(function(new_field){
         $scope.addField(new_field);
