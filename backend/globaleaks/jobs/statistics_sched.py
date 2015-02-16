@@ -162,8 +162,10 @@ class ResourceChecker(GLJob):
         alarm.report_disk_usage(free_bytes)
 
         ramdisk_space = ResourceChecker.get_free_shm()
-        log.debug("Disk free byte %d, Ramdisk free bytes: %d" %
-              (free_bytes, ramdisk_space)
-        )
+
+        # I've commented this thing because happen every 10 seconds...
+        #log.debug("Disk free byte %d, Ramdisk free bytes: %d" %
+        #      (free_bytes, ramdisk_space)
+        #)
         # TODO also the lacking of space in the ramdisk/shm can be deadly for the node
 

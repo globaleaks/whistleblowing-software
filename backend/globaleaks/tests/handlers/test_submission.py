@@ -4,7 +4,6 @@ import json
 import re
 
 from twisted.internet.defer import inlineCallbacks, returnValue
-from twisted.internet import task
 
 # override GLSetting
 from globaleaks.settings import GLSetting, transact_ro
@@ -15,14 +14,15 @@ from globaleaks.handlers.admin import create_receiver
 from globaleaks.rest import requests, errors
 from globaleaks.models import InternalTip
 from globaleaks.utils.token import Token
-from globaleaks.utils.token import reactor as token_reactor
 from globaleaks.handlers.submission import create_whistleblower_tip, SubmissionCreate, SubmissionInstance
 
 # and here, our protagonist character:
 from globaleaks.handlers.submission import db_finalize_submission
 
-# necessary because Token is a TempObj
-token_reactor = task.Clock()
+# necessary because Token is a TempObj -- but I've not understand exactly the logic
+import globaleaks.utils.token.reactor
+from twisted.internet import task
+globaleaks.utils.token.reactor = task.Clock()
 
 @transact_ro
 def collect_ifile_as_wb_without_wbtip(store, internaltip_id):
