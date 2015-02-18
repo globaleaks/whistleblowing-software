@@ -140,6 +140,7 @@ adminNodeDesc = {
     'custom_privacy_badge_none': unicode,
     'header_title_homepage': unicode,
     'header_title_submissionpage': unicode,
+    'header_title_receiptpage': unicode,
     'landing_page': landing_page_regexp
 }
 
@@ -201,7 +202,7 @@ adminContextDesc = {
 adminContextFieldTemplateCopy = {
     'template_id': uuid_regexp,
     'context_id': uuid_regexp,
-    'step_id': uuid_regexp,
+    'step_id': uuid_regexp_or_empty,
 }
 
 adminReceiverDesc = {
@@ -462,7 +463,7 @@ FieldTemplateDesc = {
 }
 
 FieldFromTemplateDesc = {
-    'step_id': uuid_regexp,
+    'step_id': uuid_regexp_or_empty,
     'template_id': uuid_regexp
 }
 

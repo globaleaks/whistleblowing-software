@@ -71,6 +71,7 @@ class LanguageFileHandler(BaseStaticFileHandler):
 
         path = self.custom_langfile_path(lang)
         directory_traversal_check(GLSetting.static_path_l10n, path)
+        self.root = GLSetting.static_path_l10n
 
         if not os.path.exists(path):
             path = self.langfile_path(lang)

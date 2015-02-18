@@ -156,6 +156,7 @@ CREATE TABLE node (
     custom_privacy_badge_none BLOB NOT NULL,
     header_title_homepage BLOB NOT NULL,
     header_title_submissionpage BLOB NOT NULL,
+    header_title_receiptpage BLOB NOT NULL,
     landing_page VARCHAR NOT NULL CHECK (landing_page IN ('homepage', 'submissionpage')),
     PRIMARY KEY (id)
 );

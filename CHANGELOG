@@ -1,3 +1,7 @@
+Changes in version 2.60.62 - 2015-02-16
+    o Fix a directory traversal issue introduced in 2.60.54
+    o Minor UI fixes
+
 Changes in version 2.60.61 - 2015-02-12
     o Minor UI fixes
 

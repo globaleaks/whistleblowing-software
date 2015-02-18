@@ -272,11 +272,8 @@ def mail_exception(etype, value, tback):
                                   GLSetting.memory_copy.notif_source_email,
                                   "Admin",
                                   GLSetting.memory_copy.exception_email,
-                                  "Subject: GL Exception %s %s [%d]" % (
-                                      " ".join(os.uname()),
-                                      __version__,
-                                      mail_exception.mail_counter
-                                  ),
+                                  "Subject: GLBackend Exception %s [%d]" % \
+                                    (__version__, mail_exception.mail_counter),
                                   mail_body)
 
         sendmail(authentication_username=GLSetting.memory_copy.notif_username,
