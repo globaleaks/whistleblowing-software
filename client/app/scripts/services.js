@@ -96,7 +96,7 @@ angular.module('resourceServices.authentication', [])
           // the magical IE7/IE8 that do not allow delete as identifier
           // https://github.com/globaleaks/GlobaLeaks/issues/943
           $http['delete']('/authentication').then(self.logout_performed,
-                                               self.logout_performed);
+                                                  self.logout_performed);
 
         };
 
@@ -714,6 +714,17 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         return field;
       };
 
+      self.fill_default_field_options = function(field) {
+        if (field.type == 'tos') {
+          field.options.push({'attrs':
+            {
+              'clause': '',
+              'agreement_statement': ''
+            }
+          });
+        }
+      }
+
       self.receiver = adminReceiverResource;
       self.receivers = adminReceiversResource.query();
 
@@ -752,7 +763,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.node.old_password = '';
       });
 
-      self.field_template = adminFieldTemplateResource;
+      self.fieldtemplate = adminFieldTemplateResource;
       self.field = adminFieldResource;
 
       self.notification = adminNotificationResource.get();

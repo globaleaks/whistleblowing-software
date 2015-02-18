@@ -1,10 +1,10 @@
-<div id="ContentBox" class="container" data-ng-controller="AdminFieldsCtrl">
+<div id="ContentBox" class="container" data-ng-controller="AdminFieldTemplatesCtrl">
   <div class="row">
     <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
 
       <div class="col-md-6">
-        <div data-ng-include="'views/admin/add_fields.html'"></div>
+        <div data-ng-controller="AdminFieldTemplatesAddCtrl" data-ng-include="'views/admin/add_field.html'"></div>
       </div>
       <div class="clearfix"></div>
 

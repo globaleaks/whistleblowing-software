@@ -256,13 +256,21 @@ do_start()
         network_sandboxing_start
     fi
 
+
     if [ "${APPARMOR_SANDBOXING}" -eq "1" ]; then
+        APPARMOR_STARTED=0
         test -x /usr/sbin/aa-status \
             && test -x /usr/sbin/aa-exec \
             && test -e /etc/apparmor.d/usr.bin.globaleaks \
             && /usr/sbin/aa-status --enabled \
             && STARTCMD="/usr/sbin/aa-exec --profile=usr.bin.globaleaks -- $STARTCMD" \
-            && echo "Enabling GlobaLeaks Apparmor Sandboxing"
+            && echo "Enabling GlobaLeaks Apparmor Sandboxing" \
+            && APPARMOR_STARTED=1
+
+        if [ "${APPARMOR_STARTED}" -eq "0" ]; then
+          log_action_end_msg 1 "Unable to initialized apparmor."
+          exit 1
+        fi
     fi
 
     # This is a little hack to avoid python doing os.chdir('.') and getting mad.

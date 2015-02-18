@@ -74,6 +74,8 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         $scope.ht = $scope.node.header_title_homepage;
       } else if ($location.path() == '/submission') {
         $scope.ht = $scope.node.header_title_submissionpage;
+      } else if ($location.path() == '/receipt') {
+        $scope.ht = $scope.node.header_title_receiptpage;
       } else {
         $scope.ht = $filter('translate')($scope.header_title);
       }

@@ -30,7 +30,7 @@ from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, R
 from globaleaks.anomaly import outcoming_event_monitored, EventTrack
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
-from globaleaks.security import GLSecureTemporaryFile
+from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
 from globaleaks.utils.mailutils import mail_exception
 
@@ -654,7 +654,6 @@ class BaseHandler(RequestHandler):
 
 
 class BaseStaticFileHandler(BaseHandler):
-
     def initialize(self, path=None):
         if path is None:
             path = GLSetting.static_path
@@ -667,6 +666,8 @@ class BaseStaticFileHandler(BaseHandler):
 
         path = self.parse_url_path(path)
         abspath = os.path.abspath(os.path.join(self.root, path))
+
+        directory_traversal_check(self.root, abspath)
 
         if not os.path.exists(abspath) or not os.path.isfile(abspath):
             raise HTTPError(404)

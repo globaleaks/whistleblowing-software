@@ -256,6 +256,7 @@ module.exports = function(grunt) {
     agent.get(url)
       .auth(login.username, login.password)
       .end(function(err, res){
+        console.log(res);
         if (res.ok) {
           var content = JSON.parse(res.text)['content'];
           fs.writeFileSync(sourceFile, content);
@@ -277,10 +278,14 @@ module.exports = function(grunt) {
       .set('Content-Type', 'application/json')
       .send({'content': content})
       .end(function(err, res){
-        if (res.ok) {
-          cb();
+        if (res) {
+          if (res.ok) {
+            cb();
+          } else {
+           console.log('Error: ' + res.text);
+          }
         } else {
-          console.log('Error: ' + res.text);
+          console.log('Error: failed to fetch resource ' + url);
         }
     });
   }
@@ -292,12 +297,17 @@ module.exports = function(grunt) {
     agent.get(url)
       .auth(login.username, login.password)
       .end(function(err, res){
-        if (res.ok) {
-          var result = JSON.parse(res.text);
-          cb(result);
+        if (res) {
+          if (res.ok) {
+            var result = JSON.parse(res.text);
+            cb(result);
+          } else {
+            console.log('Error: ' + res.text);
+          }
         } else {
-          console.log('Error: ' + res.text);
+          console.log('Error: failed to fetch resource ' + url);
         }
+
     });
 
   }
@@ -306,28 +316,39 @@ module.exports = function(grunt) {
     var resourceUrl = baseurl + '/resource/master/',
       login = readTransifexrc();
 
-    agent.get(resourceUrl + 'stats/' + langCode + '/')
+    var url = resourceUrl + 'stats/' + langCode + '/';
+
+    agent.get(url)
       .auth(login.username, login.password)
       .end(function(err, res){
-        if (res.ok) {
-          var content = JSON.parse(res.text);
+        if (res) {
+          if (res.ok) {
+            var content = JSON.parse(res.text);
 
-          if (content.translated_entities > content.untranslated_entities) {
-            agent.get(resourceUrl + 'translation/' + langCode + '/')
-              .auth(login.username, login.password)
-              .end(function(err, res){
-                if (res.ok) {
-                  var content = JSON.parse(res.text)['content'];
-                  cb(content);
-                } else {
-                  console.log('Error: ' + res.text);
-                }
-            });
+            if (content.translated_entities > content.untranslated_entities) {
+              var url = resourceUrl + 'translation/' + langCode + '/';
+              agent.get(url)
+                .auth(login.username, login.password)
+                .end(function(err, res){
+                  if (res) {
+                    if (res.ok) {
+                      var content = JSON.parse(res.text)['content'];
+                      cb(content);
+                    } else {
+                      console.log('Error: ' + res.text);
+                    }
+                  } else {
+                    console.log('Error: failed to fetch resource ' + url);
+                  }
+              });
+            } else {
+              cb();
+            }
           } else {
-            cb();
+            console.log('Error: ' + res.text);
           }
         } else {
-          console.log('Error: ' + res.text);
+          console.log('Error: failed to fetch resource ' + url);
         }
       })
   }
