@@ -268,7 +268,7 @@ do_start()
             && APPARMOR_STARTED=1
 
         if [ "${APPARMOR_STARTED}" -eq "0" ]; then
-          log_action_end_msg 1 "Unable to initialized apparmor."
+          log_action_end_msg 1 "Unable to initialized AppArmor! Please enabled it following instruction on https://wiki.debian.org/AppArmor/HowToUse"
           exit 1
         fi
     fi
