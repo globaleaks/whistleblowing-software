@@ -51,7 +51,7 @@ def longtext_v(_self, attr, value):
 
     if len(value) > GLSetting.memory_copy.maximum_textsize:
         raise errors.InvalidInputFormat("Text unicode in %s " \
-					"overcome length " \
+                                        "overcomes length " \
                                         "limit %d" % (attr, GLSetting.memory_copy.maximum_textsize))
 
     return value
