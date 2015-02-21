@@ -17,22 +17,21 @@
 
   <div data-ng-include="'views/partials/messageconsole.html'"></div>
 
-  <!-- In here is the main GLClient application content -->
-
-  <div id="ContentBox" data-ng-hide="cookiesEnabled" class="container ng-cloak">
-    <div class="row">
-      <div class="col-md-9">
-        <h2 data-translate>Cookies are not enabled!</h2>
-        <p>
-          <span data-translate>To use GlobaLeaks Cookies must be enabled.</span>
-          <br />
-          <span data-translate>The application makes use of Cookies only for security purposes and without tracking any data.</span>
-        </p>
+  <div id="ContentBox">
+    <div data-ng-hide="cookiesEnabled" class="container ng-cloak">
+      <div class="row">
+        <div class="col-md-9">
+          <h2 data-translate>Cookies are not enabled!</h2>
+          <p>
+            <span data-translate>To use GlobaLeaks Cookies must be enabled.</span>
+            <br />
+            <span data-translate>The application makes use of Cookies only for security purposes and without tracking any data.</span>
+          </p>
+        </div>
       </div>
     </div>
+    <div data-ng-show="cookiesEnabled" class="container ng-cloak" data-ng-view=""></div>
   </div>
-
-  <div id="ContentBox" data-ng-view="" data-ng-show="cookiesEnabled" class="container ng-cloak"></div>
 
   <div data-ng-show="!embedded" data-ng-include="'views/partials/footer.html'"></div>
 </div>
