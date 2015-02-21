@@ -10,7 +10,7 @@ from twisted.internet.defer import succeed, inlineCallbacks
 from storm.exceptions import OperationalError
 
 from globaleaks.utils.utility import log
-from globaleaks.settings import transact, transact_ro, ZStorm, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks import models
 from globaleaks.db import updater_manager, base_updater
 
