@@ -22,6 +22,6 @@ script:
   - $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z
   - node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*
   - cd $TRAVIS_BUILD_DIR/  # to run static analysis
-  - curl https://deb.globaleaks.org/install-globaleaks.sh | bash
+  - curl https://deb.globaleaks.org/install-globaleaks.sh | sudo bash
   - sleep 10
   - curl 127.0.0.1:8082 | grep "GlobaLeaks"
