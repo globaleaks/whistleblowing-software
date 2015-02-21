@@ -168,6 +168,7 @@ controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $ro
     }
     if ($scope.queue) {
       $scope.files.slice(0, $scope.files.length);
+      return;
       $scope.queue.forEach(function (k) {
         if (!k.id) {
           $scope.$parent.uploading = true;
