@@ -1,20 +1,30 @@
 GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
                     function($scope, $filter) {
 
-    $scope.composable_fields = {};
+    $scope.composable_fields = [];
     $scope.admin.field_templates.$promise
       .then(function(fields) {
         $scope.fields = fields;
         angular.forEach(fields, function(field, index) {
-          $scope.composable_fields[field.id] = field;
+          $scope.composable_fields.push(field);
           if (field.type == 'fieldgroup') {
             angular.forEach(field.children, function(field_c, index_c) {
-              $scope.composable_fields[field_c.id] = field_c;
+              $scope.composable_fields.push(field_c);
             });
           }
         });
 
       });
+
+    $scope.moveFieldUp = function(field) {
+      field.y -= 1;
+      $scope.save_field(field, false);
+    }
+
+    $scope.moveFieldDown = function(field) {
+      field.y += 1;
+      $scope.save_field(field, false);
+    }
 
     $scope.deleteFromList = function(list, elem) {
       var idx = _.indexOf(list, elem);
@@ -128,7 +138,6 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
       var index = field.options.indexOf(option);
       field.options.splice(index, 1);
     }
-
 
     $scope.save_field = function(field, called_from_save_all) {
       if (field.is_template) {

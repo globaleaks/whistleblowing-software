@@ -44,7 +44,7 @@
               <div class="row">
                 <div class="form-group col-md-6">
                   <label data-translate>Label</label>
-                  <input class="form-control" data-ng-model="step.label" type="text" />
+                  <input class="form-control" data-ng-model="step.label" type="text" required />
                 </div>
               </div>
               <div class="row">
@@ -78,23 +78,23 @@
             </div>
             <hr>
             <div class="stepActions">
-              <button class="btn btn-default cardActionButton"
+              <button class="btn btn-default"
                       data-ng-show="!editing"
                       data-ng-click="editing=!editing">
                 <span data-translate>Edit</span>
               </button>
-              <button class="btn btn-success cardActionButton"
+              <button class="btn btn-success"
                       data-ng-show="editing"
                       data-ng-click="save_context(context);editing=!editing">
                 <span data-translate>Save</span>
               </button>
               <button 
-                class="btn btn-default cardActionButton"
+                class="btn btn-default"
                 data-ng-show="editing"
                 data-ng-click="editing=!editing">
                 <span data-translate>Cancel</span>
               </button>
-              <button class="btn btn-danger cardActionButton"
+              <button class="btn btn-danger"
                       data-ng-click="stepDeleteDialog(step)"
                       popover="{{Delete | translate}}"
                       popover-placement="right"

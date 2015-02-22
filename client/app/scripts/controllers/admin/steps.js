@@ -45,7 +45,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     $scope.save_all = function () {
       // XXX this is highly inefficient, could be refactored/improved.
       angular.forEach($scope.step.children, function (field, key) {
-        $scope.update_field(field);
+        $scope.save_field(field);
       });
     };
  
@@ -110,7 +110,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       return field;
     }
 
-    $scope.update_field = function(field) {
+    $scope.save_field = function(field) {
       var updated_field = new $scope.admin.field(field);
       if ($scope.field_group_toggled) {
         $scope.field_group_toggled = false;
@@ -150,17 +150,27 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
 
     }
 
-    $scope.composable_fields = {};
+    $scope.composable_fields = [];
     $scope.template_field_keys = Object.keys($scope.admin.template_fields);
     $scope.template_fields = $scope.admin.template_fields;
     angular.forEach($scope.step.children, function(field, index) {
-      $scope.composable_fields[field.id] = field;
+      $scope.composable_fields.push(field);
       if (field.type == 'fieldgroup') {
         angular.forEach(field.children, function(field_c, index_c) {
-          $scope.composable_fields[field_c.id] = field_c;
+          $scope.composable_fields.push(field_c);
        });
       }
     });
+
+    $scope.moveFieldUp = function(field) {
+      field.y -= 1;
+      $scope.save_field(field);
+    }
+
+    $scope.moveFieldDown = function(field) {
+      field.y += 1;
+      $scope.save_field(field);
+    }
 
   }
 ]);
