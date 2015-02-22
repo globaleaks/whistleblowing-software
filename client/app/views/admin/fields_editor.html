@@ -86,9 +86,9 @@
             <div class="form-group" data-ng-show="field.type == 'fieldgroup' && composable_fields">
               <label data-translate>Fields Composition</label>
               <div class="selectionList">
-                <div data-ng-repeat="f in composable_fields">
-                  <div class="row" data-ng-click="toggle_field(f, field)" data-ng-show="f.id != field.id">
-                    <span class="col-md-1">
+                <div data-ng-repeat="f in composable_fields | orderBy:'y'">
+                  <div class="row" data-ng-show="f.id != field.id && (!f.fieldgroup_id || f.fieldgroup_id == field.id)">
+                    <span class="col-md-1" data-ng-click="toggle_field(f, field)">
                       <span data-ng-show="isSelected(f)">
                         <i class="glyphicon glyphicon-check"></i>
                       </span>
@@ -96,7 +96,11 @@
                         <i class="glyphicon glyphicon-unchecked"></i>
                       </span>
                     </span>
-                    <span class="col-md-10">{{f.label}}</span>
+                    <span class="col-md-7">{{f.label}}</span>
+                    <span class="col-md-3" data-ng-show="f.fieldgroup_id == field.id">
+                      <a data-ng-click="moveFieldUp(f)"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                      <a data-ng-click="moveFieldDown(f)"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -129,11 +133,14 @@
                     <div data-ng-repeat="option in field.options">
                       <div class="form-inline">
                         <div class="form-group">
-                          <label data-translate>Name</label>
-                          <input class="form-control" data-ng-model="option.attrs.name"  value="{{option.attrs.name}}" type="text" />
-                          <button class="btn btn-danger cardActionButton" data-ng-click="delOption(field, option)">
-                            <i class="glyphicon glyphicon-remove"></i>
-                          </button>
+                          <div class="input-group">
+                            <input class="form-control" data-ng-model="option.attrs.name" placeholder="{{'Name' | translate }}" value="{{option.attrs.name}}" type="text" required />
+                            <span class="input-group-btn">
+                              <a class="btn" data-ng-click="delOption(field, option)">
+                                <i class="glyphicon glyphicon-remove"></i>
+                              </a>
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -142,11 +149,14 @@
                     <div data-ng-repeat="option in field.options">
                       <div class="form-inline">
                         <div class="form-group">
-                          <label data-translate>Name</label>
-                          <input class="form-control" data-ng-model="option.attrs.name"  value="{{option.attrs.name}}" type="text" />
-                          <button class="btn btn-danger cardActionButton" data-ng-click="delOption(field, option)">
-                            <i class="glyphicon glyphicon-remove"></i>
-                          </button>
+                          <div class="input-group">
+                            <input class="form-control" data-ng-model="option.attrs.name" placeholder="{{'Name' | translate}}" value="{{option.attrs.name}}" type="text" />
+                            <span class="input-group-btn">
+                              <button class="btn btn-danger" data-ng-click="delOption(field, option)">
+                                <i class="glyphicon glyphicon-remove"></i>
+                              </button>
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -176,25 +186,26 @@
       <hr />
       <div class="stepActions">
         <button 
-          class="btn btn-default cardActionButton"
+          class="btn btn-default"
           data-ng-show="!editing"
           data-ng-click="editing=!editing">
           <span data-translate>Edit</span>
         </button>
         <button 
-          class="btn btn-success cardActionButton"
+          class="btn btn-success"
           data-ng-show="editing" 
-          data-ng-click="save_field(field, false);editing=!editing">
+          data-ng-click="save_field(field, false);editing=!editing"
+          data-ng-disabled="editField.$invalid">
           <span data-translate>Save</span>
         </button>
         <button 
-          class="btn btn-default cardActionButton"
+          class="btn btn-default"
           data-ng-show="editing"
           data-ng-click="editing=!editing">
           <span data-translate>Cancel</span>
         </button>
         <button 
-          class="btn btn-danger cardActionButton"
+          class="btn btn-danger"
           data-ng-click="fieldDeleteDialog(field)" 
           popover="" 
           popover-placement="right" 

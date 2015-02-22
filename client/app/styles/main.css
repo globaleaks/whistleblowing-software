@@ -7,7 +7,7 @@ body {
   background-color: #FFF;
 }
 
-div, span, p, label {
+* {
   word-wrap: break-word;
 }
 

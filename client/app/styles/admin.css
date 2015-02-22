@@ -131,18 +131,6 @@
   font-size: 24px;
 }
 
-.cardActionButton {
-  text-transform: uppercase;
-  background: none;
-  border: none;
-  color: #000;
-}
-
-.cardActionButton button:hover {
-  border: none;
-  box-shadow: 2px 1px 5px #888888;
-}
-
 .fieldEditorHeader {
   padding: 20px;
 }
