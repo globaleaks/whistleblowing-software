@@ -161,6 +161,14 @@ controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $ro
     $scope.field.value = [];
   }
 
+  $scope.getClass = function(stepIndex, fieldIndex, toplevel) {
+    if (toplevel) {
+      return "submission-step" + stepIndex + "-field" + fieldIndex;
+    } else {
+      return "";
+    }
+  }
+
   var update_uploads_status = function(e, data) {
     $scope.$parent.uploading = false;
     if ($scope.field.value === "") {
