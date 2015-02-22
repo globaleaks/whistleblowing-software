@@ -25,9 +25,11 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-success SubmissionSubmitButton" data-ng-click="submit()" data-ng-disabled="uploading || submissionForm.$invalid || !receiver_selected" type="submit">
-      <i class="glyphicon glyphicon-ok"></i>
-      <span data-translate>Submit</span>
-    </button>
+    <div id="SubmitBox">
+      <button class="btn btn-success SubmitButton" data-ng-click="submit()" data-ng-disabled="uploading || submissionForm.$invalid || !receiver_selected" type="submit">
+        <i class="glyphicon glyphicon-ok"></i>
+        <span data-translate>Submit</span>
+      </button>
+    </div>
   </div>
 </div>

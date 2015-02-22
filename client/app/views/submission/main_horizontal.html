@@ -40,20 +40,22 @@
 
   <div class="clearfix"></div>
 
-  <ul class="pager pull-left">
-    <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton previous" data-ng-hide="!hasPreviousStep()">
-      <a data-ng-click="decrementStep()">
-        <span data-translate>Previous Step</span>
-      </a>
-    </li>
-    <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton next" data-ng-hide="!hasNextStep()">
-      <a data-ng-click="incrementStep()">
-        <span data-translate>Next Step</span>
-      </a>
-    </li>
-  </ul>
-  <div class="pager pull-left" style="margin-left: 20px" data-ng-show="!hasNextStep()">
-    <button class="btn btn-success SubmissionSubmitButton" data-ng-click="submit()" data-ng-disabled="uploading || submissionForm.$invalid || !receiver_selected" type="submit">
+  <div id="StepsNavBar" class="pull-left">
+    <ul class="pager">
+      <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton previous" data-ng-hide="!hasPreviousStep()">
+        <a data-ng-click="decrementStep()">
+          <span data-translate>Previous Step</span>
+        </a>
+      </li>
+      <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton next" data-ng-hide="!hasNextStep()">
+        <a data-ng-click="incrementStep()">
+          <span data-translate>Next Step</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div id="SubmitBox" class="pager pull-left" style="margin-left: 20px" data-ng-show="!hasNextStep()">
+    <button class="btn btn-success SubmitButton" data-ng-click="submit()" data-ng-disabled="uploading || submissionForm.$invalid || !receiver_selected" type="submit">
       <i class="glyphicon glyphicon-ok"></i>
       <span data-translate>Submit</span>
     </button>
