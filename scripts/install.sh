@@ -168,3 +168,11 @@ fi
 
 DO "apt-get update -y" "0"
 DO "apt-get install globaleaks -y" "0"
+
+if [ -r /var/globaleaks/torhs/hostname ]; then
+	TORHS=`cat /var/globaleaks/torhs/hostname`
+	echo "To access your GlobaLeaks use the following Tor HS URL: $TORHS"
+	echo "Use Tor Browser to access it, download it from https://antani.tor2web.org/gettor"
+	echo "If you need to access it directly on your public IP address, you must edit /etc/default/globaleaks and restart globaleaks"
+fi
+
