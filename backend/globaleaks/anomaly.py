@@ -26,8 +26,8 @@ reactor = None
 # follow the checker, they are executed from handlers/base.py
 # prepare() or flush()
 def file_upload_check(uri):
-    # /submission/ + token_id + /file/  = 59 bytes
-    return len(uri) == 59 and uri.endswith('file')
+    # /submission/ + token_id + /file  = 59 bytes
+    return len(uri) == 59 and uri.endswith('/file')
 
 def file_append_check(uri):
     return uri == '/wbtip/upload'
@@ -50,6 +50,9 @@ def rcvr_message_check(uri):
 
 def rcvr_comment_check(uri):
     return uri.startswith('/rtip/comments')
+
+def homepage_access_check(uri):
+    return uri == '/views/home.html'
 
 # evaluate if support regexp matching - look in Cyclone function used by Api
 
@@ -148,10 +151,17 @@ outcoming_event_monitored = [
         'status_checker': created_status_check,
         'anomaly_management': None,
         'method': 'POST'
+    },
+    {
+        'name': 'homepage_access',
+        'handler_check': homepage_access_check,
+        'status_checker': ok_status_check,
+        'anomaly_management': None,
+        'method': 'GET'
     }
+
 ]
 
-ANOMALY_WINDOW_SECONDS = 30
 
 class EventTrack(TempObj):
     """
@@ -186,7 +196,7 @@ class EventTrack(TempObj):
                          EventTrackQueue.queue,
                          self.event_id,
                          # seconds of validity:
-                         ANOMALY_WINDOW_SECONDS,
+                         GLSetting.anomaly_seconds_delta,
                          reactor)
 
         self.expireCallbacks.append(self.synthesis)
@@ -270,6 +280,7 @@ class Alarm(object):
         'wb_messages': 4,
         'receiver_comments': 3,
         'receiver_messages': 3,
+        'homepage_access': 60,
     }
 
     # the level of the alarm in 30 seconds
@@ -361,10 +372,11 @@ class Alarm(object):
                                    (debug_reason, event_name,
                                     current_event_matrix[event_name], threshold)
                 else:
-                    log.debug("%s %d < %d: it's OK" % (
-                        event_name,
-                        current_event_matrix[event_name], 
-                        threshold) )
+                    pass
+                    log.debug("[compute_activity_level] %s %d < %d: it's OK (Anomalies recorded so far %d)" % (
+                         event_name,
+                         current_event_matrix[event_name], 
+                         threshold, Alarm.number_of_anomalies) )
 
 
         previous_activity_sl = Alarm.stress_levels['activity']
