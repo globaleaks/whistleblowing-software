@@ -297,8 +297,29 @@ class SubmissionCreate(BaseHandler):
         # preset the answers from the captcha stuff, to success input validation
         token_answer.update({'human_solution': 0})
 
+<<<<<<< HEAD
         import pprint
         pprint.pprint(token_answer)
+=======
+        # {'hashcash': False,
+        #  'usages': 1,
+        #  'start_validity': '2015-02-09T13:23:44.325796Z',
+        #  'end_validity': '2015-02-09T13:26:44.325796Z',
+        #  'token_id': u'sl0nEmLtxaogJ1er4B2TWHUdv9RAmD6TusKgL8d97u',
+        #  'type': 'submission', 'g_captcha': False,
+        #  'h_captcha': False,
+        #  'creation_date': '2015-02-09T13:22:44.325796Z'}
+
+        # change, put the post_transact + finalize in PUT and removed from here
+        # request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
+
+        token_answer.update({'submission_id': token_answer['token_id'] })
+        token_answer.update({'id': token_answer['token_id'] })
+        token_answer.update({'files': [] })
+        # tmp hackish, I can copy the context receive via get, in order to make
+        # SubmissionRequest context dependent in the URL (finally, holy fuck)
+        token_answer.update({'context_id': context_id})
+>>>>>>> added homepage access to the counter (not in activities count)
 
         self.set_status(201) # Created
         self.finish(token_answer)
