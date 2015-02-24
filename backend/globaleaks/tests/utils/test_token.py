@@ -7,10 +7,7 @@ from globaleaks import anomaly
 from globaleaks.utils.token import Token, TokenList
 from twisted.trial.util import DirtyReactorAggregateError
 
-
 from twisted.internet import task
-import globaleaks.utils.token.reactor
-globaleaks.utils.token.reactor = task.Clock()
 
 class TestToken(unittest.TestCase):
     """
@@ -23,6 +20,8 @@ class TestToken(unittest.TestCase):
     stress_indicator = [ 'graph_captcha', 'human_captcha', 'proof_of_work' ]
 
     def test_token_obj_zero_stress(self):
+
+        c = task.Clock() # deterministic clock
 
         # This is at the beginning
         anomaly.EventTrackQueue.reset()
@@ -46,6 +45,7 @@ class TestToken(unittest.TestCase):
 
     def test_token_obj_level1_stress(self):
 
+        c = task.Clock() # deterministic clock
         mock_high_difficulty = {
             'human_captcha': True,
             'graph_captcha': True,
@@ -79,6 +79,7 @@ class TestToken(unittest.TestCase):
 
     def test_token_create_and_get(self):
 
+        c = task.Clock() # deterministic clock
         # This is at the beginning
         anomaly.EventTrackQueue.reset()
 

@@ -290,8 +290,6 @@ class SubmissionCreate(BaseHandler):
         # preset the answers from the captcha stuff, to success input validation
         token_answer.update({'human_solution': 0})
 
-        import pprint
-
         # {'hashcash': False,
         #  'usages': 1,
         #  'start_validity': '2015-02-09T13:23:44.325796Z',
@@ -303,7 +301,6 @@ class SubmissionCreate(BaseHandler):
 
         # change, put the post_transact + finalize in PUT and removed from here
         # request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
-        print token_answer['token_id']
 
         token_answer.update({'submission_id': token_answer['token_id'] })
         token_answer.update({'id': token_answer['token_id'] })
