@@ -37,4 +37,11 @@ fi
 gl-fix-permissions
 service tor restart
 
+torhs=`cat /var/globaleaks/torhs/hostname`
+echo "Your address is: http://$torhs connect to it using Tor Browser Bundle"
+echo "You can download it from the official Tor Project page: https://torproject.org/download"
+echo "Save the address $torhs, is the address you have to promote for let persons access to your node"
+echo "If you require support or have trouble, fell free to contact supports@logioshermes.org"
+echo "(or, for a more secure communication, with Tor Browser connect to https://demo.globaleaks.org and contact us)"
+
 #DEBHELPER#
