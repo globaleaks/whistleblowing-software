@@ -285,8 +285,11 @@ def mail_exception(etype, value, tback):
                                   GLSetting.memory_copy.notif_source_email,
                                   "Admin",
                                   GLSetting.memory_copy.exception_email,
-                                  "Subject: GLBackend Exception %s [%d]" % \
-                                    (__version__, mail_exception.mail_counter),
+                                  "Subject:%s %s [%d]" % \
+                                    (" %s's development Exception" %
+                                        GLSetting.developer_name if GLSetting.devel_mode else " GlobaLeaks Exception",
+                                     __version__,
+                                     mail_exception.mail_counter),
                                   mail_body)
 
         sendmail(authentication_username=GLSetting.memory_copy.notif_username,
