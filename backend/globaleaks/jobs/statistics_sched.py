@@ -144,28 +144,29 @@ class ResourceChecker(GLJob):
     """
 
     @classmethod
-    def get_free_space(cls):
+    def get_workingdir_space(cls):
         statvfs = os.statvfs(GLSetting.working_path)
         free_bytes = statvfs.f_frsize * statvfs.f_bavail
-        return free_bytes
+        total_bytes = statvfs.f_frsize * statvfs.f_blocks
+        return free_bytes, total_bytes
 
     @classmethod
-    def get_free_shm(cls):
+    def get_ramdisk_space(cls):
         statvfs = os.statvfs(GLSetting.ramdisk_path)
         free_bytes = statvfs.f_frsize * statvfs.f_bavail
-        return free_bytes
+        total_bytes = statvfs.f_frsize * statvfs.f_blocks
+        return free_bytes, total_bytes
 
     def operation(self):
-        free_bytes = ResourceChecker.get_free_space()
+        free_disk_bytes, total_disk_bytes = ResourceChecker.get_workingdir_space()
+        free_ramdisk_bytes, total_ramdisk_bytes = ResourceChecker.get_ramdisk_space()
 
         alarm = Alarm()
-        alarm.report_disk_usage(free_bytes)
+        alarm.report_disk_usage(free_disk_bytes, total_disk_bytes, free_ramdisk_bytes)
 
-        ramdisk_space = ResourceChecker.get_free_shm()
 
         # I've commented this thing because happen every 10 seconds...
         #log.debug("Disk free byte %d, Ramdisk free bytes: %d" %
         #      (free_bytes, ramdisk_space)
         #)
-        # TODO also the lacking of space in the ramdisk/shm can be deadly for the node
 
