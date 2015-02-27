@@ -257,6 +257,7 @@ class Alarm(object):
 
     stress_levels = {
         'disk_space' : 0,
+        'disk_message' : None,
         'activity' : 0,
     }
 
@@ -299,6 +300,7 @@ class Alarm(object):
     def reset():
         Alarm.stress_levels = {
             'disk_space' : 0,
+            'disk_message' : None,
             'activity' : 0,
         }
 
@@ -449,40 +451,47 @@ class Alarm(object):
             else:
                 raise Exception("Cannot find any language for admin notification")
 
-        def _aal():
+        def _activity_alarm_level():
             return "%s" % Alarm.stress_levels['activity']
 
-        def _ad():
+        def _activity_dump():
             retstr = ""
             for event, amount in event_matrix.iteritems():
                 retstr = "%s: %d\n%s" % (event, amount, retstr)
             return retstr
 
-        def _dal():
+        def _disk_alarm_level():
             return "%s" % Alarm.stress_levels['disk_space']
 
-        def _dd():
+        def _disk_dump():
             return "%s" % bytes_to_pretty_str(Alarm.latest_measured_freespace)
 
-        def _nn():
+        def _node_name():
             return "%s" % node_name
+
+        def _disk_status_message():
+            if Alarm.stress_levels['disk_message']:
+                return unicode(Alarm.stress_levels['disk_message'])
+            else:
+                return "Disk space OK"
 
         message_required = False
         if Alarm.stress_levels['activity'] >= 1:
             message_required = True
-        if Alarm.stress_levels['disk_space'] >= 1:
+        if Alarm.stress_levels['disk_space'] != 0:
             message_required = True
 
         if not message_required:
-            # luckly, no mail needed
+            # lucky, no mail needed
             return
 
         KeyWordTemplate = {
-            "%ActivityAlarmLevel%": _aal,
-            "%ActivityDump%": _ad,
-            "%DiskAlarmLevel%": _dal,
-            "%DiskDump%": _dd,
-            "%NodeSignature%": _nn
+            "%ActivityAlarmLevel%": _activity_alarm_level,
+            "%ActivityDump%": _activity_dump,
+            "%DiskAlarmLevel%": _disk_alarm_level,
+            "%DiskDump%": _disk_dump,
+            "%DiskErrorMessage%": _disk_status_message,
+            "%NodeSignature%": _node_name
         }
 
         message = yield _get_message_template()
@@ -522,47 +531,129 @@ class Alarm(object):
                        security=GLSetting.memory_copy.notif_security,
                        event=None)
 
-    def report_disk_usage(self, free_bytes):
+    def report_disk_usage(self, free_workdir_bytes, workdir_space_bytes, free_ramdisk_bytes):
         """
         Here in Alarm is written the threshold to say if we're in disk alarm
         or not. Therefore the function "report" the amount of free space and
         the evaluation + alarm shift is performed here.
+
+        workingdir: is performed a percentage check (at least 1% and an absolute comparison)
+        ramdisk: a 2kbytes is expected at least to store temporary encryption keys
+
+        "unusable node" threshold: happen when the space is really shitty.
+        https://github.com/globaleaks/GlobaLeaks/issues/297
+        https://github.com/globaleaks/GlobaLeaks/issues/872
         """
 
-        # Medium and High danger threshold trigger two different alarm
-        mat = Alarm._MEDIUM_DISK_ALARM * GLSetting.memory_copy.maximum_filesize
-        hat = Alarm._HIGH_DISK_ALARM * GLSetting.memory_copy.maximum_filesize
+        Alarm.latest_measured_freespace = free_workdir_bytes
 
-        Alarm.latest_measured_freespace = free_bytes
-        free_megabytes = free_bytes / (1024 * 1024)
-        free_memory_str = bytes_to_pretty_str(free_bytes)
+        free_disk_megabs = free_workdir_bytes / (1024 * 1024)
+        free_workdir_string = bytes_to_pretty_str(free_workdir_bytes)
+        free_ramdisk_string = bytes_to_pretty_str(free_ramdisk_bytes)
+        avail_percentage = free_workdir_bytes / (workdir_space_bytes / 100)
+        max_workdir_string = bytes_to_pretty_str(workdir_space_bytes)
 
+        # is kept a copy because we report a change in this status (in worst or in better)
         past_condition = GLSetting.memory_copy.disk_availability
 
-        if free_megabytes <= 15:
-            # "unusable node" threshold: happen when the space is really shitty.
-            # anyway, can happen that
-            # Read issue https://github.com/globaleaks/GlobaLeaks/issues/297
-            log.info("Danger threshold reached, *SUBMISSION DISABLED*, free space: %s" %
-                     free_memory_str)
-            GLSetting.memory_copy.disk_availability = False
-        elif free_megabytes < hat:
-            log.info("Warning: free space alarm (HIGH): only %s" % free_memory_str)
-            Alarm.stress_levels['disk_space'] = 2
-            GLSetting.memory_copy.disk_availability = True
-        elif free_megabytes < mat:
-            log.info("Warning: free space alarm (MEDIUM): %s" % free_memory_str)
-            Alarm.stress_levels['disk_space'] = 1
-            GLSetting.memory_copy.disk_availability = True
-        else:
-            Alarm.stress_levels['disk_space'] = 0
-            GLSetting.memory_copy.disk_availability = True
+        # Note: is not an if/elif/elif/else or we've to care about ordering,
+        # so we start setting the default condition:
+        Alarm.stress_levels['disk_space'] = 0
+        GLSetting.memory_copy.disk_availability = True
+
+        def space_condition_check(condition, info_msg, stress_level, accept_submissions):
+
+            if condition:
+
+                if stress_level == 3:
+                    info_msg = "Fatal - Submission disabled | %s" % info_msg
+                elif stress_level == 2:
+                    info_msg = "Critical - Submission can be disabled soon | %s" % info_msg
+                else: # == 1
+                    info_msg = "Warning | %s" % info_msg
+
+                log.info(info_msg)
+                Alarm.stress_levels['disk_space'] = stress_level
+                Alarm.stress_levels['disk_message'] = info_msg
+                GLSetting.memory_copy.disk_availability = accept_submissions
+
+            return condition
+
+        # is used a list starting from the worst case scenarios, when is meet
+        # a condition, the others are skipped.
+        conditions = [
+            {
+                # If percentage is <= 1%: disable the submission
+                'condition': avail_percentage <= 1,
+                'info_msg': "Disk space < 1%%: %s on %s" %
+                            (max_workdir_string, free_workdir_string),
+                'stress_level': 3,
+                'accept_submissions': False,
+            },
+            {
+                # If disk has less than the hardcoded minimum amount (1Gb)
+                'condition': free_disk_megabs <= GLSetting.defaults.minimum_megabytes_required,
+                'info_msg': "Minimum space available of %d Mb reached: (%s on %s)" %
+                            (GLSetting.defaults.minimum_megabytes_required,
+                             max_workdir_string,
+                             free_workdir_string),
+                'stress_level': 3,
+                'accept_submissions': False,
+            },
+            {
+                # If ramdisk has less than 2kbytes
+                'condition': free_ramdisk_bytes <= 2048,
+                'info_msg': "Ramdisk space not enough space (%s): required 2K" %
+                            free_ramdisk_string,
+                'stress_level': 3,
+                'accept_submissions': False,
+            },
+            {
+                # If percentage is 2% start to alert the admin on the upcoming critical situation
+                'condition': avail_percentage == 2,
+                'info_msg': "Disk space ~ 2%% (Critical when reach 1%%): %s on %s" %
+                            (max_workdir_string, free_workdir_string),
+                'stress_level': 2,
+                'accept_submissions': True,
+            },
+            {
+                # Again to avoid bad surprise, we alert the admin at (minimum disk required * 2)
+                'condition': free_disk_megabs <= (GLSetting.defaults.minimum_megabytes_required * 2),
+                'info_msg': "Minimum space available of %d Mb is near: (%s on %s)" %
+                            (GLSetting.defaults.minimum_megabytes_required,
+                             max_workdir_string,
+                             free_workdir_string),
+                'stress_level': 2,
+                'accept_submissions': True,
+            },
+            {
+                # if 5 times maximum file can be accepted
+                'condition': free_disk_megabs <= (Alarm._HIGH_DISK_ALARM * GLSetting.memory_copy.maximum_filesize),
+                'info_msg': "Disk space permit maximum of %d uploads (%s on %s)" %
+                            (Alarm._HIGH_DISK_ALARM, max_workdir_string, free_workdir_string),
+                'stress_level': 2,
+                'accept_submissions': True,
+            },
+            {
+                # if 15 times maximum file size can be accepted
+                'condition': free_disk_megabs <= (Alarm._MEDIUM_DISK_ALARM * GLSetting.memory_copy.maximum_filesize),
+                'info_msg': "Disk space permit maximum of %d uploads (%s on %s)" %
+                            (Alarm._MEDIUM_DISK_ALARM, max_workdir_string, free_workdir_string),
+                'stress_level': 1,
+                'accept_submissions': True,
+            },
+        ]
+
+        for c in conditions:
+            if space_condition_check(c['condition'], c['info_msg'],
+                                     c['stress_level'], c['accept_submissions']):
+                break
 
         if past_condition != GLSetting.memory_copy.disk_availability:
             # import here to avoid circular import error
             from globaleaks.handlers.base import GLApiCache
 
-            log.debug("Switching disk space availability from: %s to %s" % (
+            log.info("Switching disk space availability from: %s to %s" % (
                 "True" if past_condition else "False",
                 "False" if past_condition else "True"))
 
