@@ -222,6 +222,7 @@ class GLSettingsClass(object):
 
         # this became false when, few MBs cause node to disable submissions
         self.defaults.disk_availability = True
+        self.defaults.minimum_megabytes_required = 1000 # 1 GB, or the node is disable
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
