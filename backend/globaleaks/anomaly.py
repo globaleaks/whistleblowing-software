@@ -51,10 +51,10 @@ def rcvr_message_check(uri):
 def rcvr_comment_check(uri):
     return uri.startswith('/rtip/comments')
 
-def homepage_access_check(uri):
-    return uri == '/views/home.html'
-
-# evaluate if support regexp matching - look in Cyclone function used by Api
+# This kind of check can be use for informative statistics, (not
+# security analysis) to count the user accessing to the homepage
+#def homepage_access_check(uri):
+#    return uri == '/'
 
 def failure_status_check(HTTP_code):
     # if code is missing is a failure because an Exception is raise before set
@@ -152,13 +152,13 @@ outcoming_event_monitored = [
         'anomaly_management': None,
         'method': 'POST'
     },
-    {
-        'name': 'homepage_access',
-        'handler_check': homepage_access_check,
-        'status_checker': ok_status_check,
-        'anomaly_management': None,
-        'method': 'GET'
-    }
+#    {
+#        'name': 'homepage_access',
+#        'handler_check': homepage_access_check,
+#        'status_checker': ok_status_check,
+#        'anomaly_management': None,
+#        'method': 'GET'
+#    }
 
 ]
 
@@ -280,7 +280,7 @@ class Alarm(object):
         'wb_messages': 4,
         'receiver_comments': 3,
         'receiver_messages': 3,
-        'homepage_access': 60,
+#        'homepage_access': 60,
     }
 
     # the level of the alarm in 30 seconds
