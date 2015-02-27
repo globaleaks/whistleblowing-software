@@ -503,9 +503,9 @@ class Alarm(object):
                 message[where + len(keyword):])
 
         if Alarm.last_alarm_email:
-            if not is_expired(Alarm.last_alarm_email, minutes=60):
-                log.debug("Alert email want be send, but the threshold of 10 minutes is not yet reached since %s" %
-                    datetime_to_ISO8601(Alarm.last_alarm_email))
+            if not is_expired(Alarm.last_alarm_email, minutes=5):
+                #log.debug("Alert email want be send, but the threshold of 10 minutes is not yet reached since %s" %
+                #    datetime_to_ISO8601(Alarm.last_alarm_email))
                 return
 
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
