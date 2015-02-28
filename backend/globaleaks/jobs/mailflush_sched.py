@@ -82,7 +82,8 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
                         stev.event_reference['kind'] == 'Comment':
             continue
         if not stev.description['receiver_info']['tip_notification'] and \
-                        stev.event_reference['kind'] == 'Tip':
+                ( stev.event_reference['kind'] == 'Tip' or
+                          stev.event_reference['kind'] == 'UpcomingExpireTip'):
             continue
 
         eventcomplete = OD()

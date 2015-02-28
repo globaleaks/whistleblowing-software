@@ -46,7 +46,8 @@ def start_asynchronous():
 
     reactor.callLater(10, delivery.start, GLSetting.delivery_seconds_delta)
     reactor.callLater(20, notification.start, GLSetting.notification_minutes_delta * 60)
-    reactor.callLater(30, clean.start, GLSetting.cleaning_hours_delta * 3600)
+    reactor.callLater(1, clean.start, 4)
+    # reactor.callLater(30, clean.start, GLSetting.cleaning_hours_delta * 3600)
     reactor.callLater(40, mailflush.start, GLSetting.mailflush_minutes_delta * 60)
 
     # The Stats scheduler need to be executed every hour on the hour.
