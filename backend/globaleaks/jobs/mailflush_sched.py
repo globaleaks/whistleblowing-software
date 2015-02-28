@@ -145,7 +145,10 @@ class MailflushSchedule(GLJob):
             title = Templating().format_template(
                 notification_settings['ping_mail_title'], fakeevent)
 
-            message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
+            # so comfortable for a developer!! :)
+            source_mail_name = GLSetting.developer_name if GLSetting.devel_mode \
+                else GLSetting.memory_copy.notif_source_name
+            message = MIME_mail_build(source_mail_name,
                                       GLSetting.memory_copy.notif_source_email,
                                       receiver_name,
                                       receiver_email,
