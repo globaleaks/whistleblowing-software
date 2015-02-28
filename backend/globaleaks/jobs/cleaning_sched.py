@@ -36,7 +36,6 @@ class UpcomingExpireEvent(EventLogger):
         """
 
         tit = store.find(InternalTip, InternalTip.id == tip_id).one()
-        print tit.mark
         # This is the 'hackish' usage of the marker, read comment above
         tit.mark = u'submission'
 
@@ -121,7 +120,8 @@ def itip_cleaning(store, tip_id):
 
         rfiles = store.find(ReceiverFile, ReceiverFile.internalfile_id == ifile.id)
         for rfile in rfiles:
-            # The following code must be bypassed if rfile.file_path == ifile.filepath
+            # The following code must be bypassed if rfile.file_path == ifile.filepath,
+            # this mean that is referenced the plaintext file instead having E2E.
             if rfile.file_path == ifile.file_path:
                 continue
 
@@ -142,7 +142,8 @@ def itip_cleaning(store, tip_id):
                             (abspath, tip_id, ifname, ifile.size))
 
     if tit.mark != u'submission':
-        log.err("Unexpected status cases, check https://github.com/globaleaks/GlobaLeaks/issues/921")
+        log.err("Developer ---> unexpected marker found: "
+                "check https://github.com/globaleaks/GlobaLeaks/issues/921")
 
     store.remove(tit)
 

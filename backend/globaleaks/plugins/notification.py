@@ -110,7 +110,7 @@ class MailNotification(Notification):
                         (event.receiver_info['username'], str(excep) ))
                 return None # We return None and the mail will be delayed
                             # If GPG is enabled and the key is invalid this
-                            # is the only possiibly thing to do.
+                            # is the only possible thing to do.
                             # The PGP check schedule will disable the key
                             # and alert the user and the admin
             finally:
@@ -120,8 +120,10 @@ class MailNotification(Notification):
 
         receiver_mail = event.receiver_info['mail_address']
 
-        # XXX here can be catch the subject (may change if encrypted or whatever)
-        message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
+        sender_display_name = "%s's dev Node" % GLSetting.developer_name if GLSetting.devel_mode else \
+            GLSetting.memory_copy.notif_source_name
+
+        message = MIME_mail_build(sender_display_name,
                                   GLSetting.memory_copy.notif_source_email,
                                   event.receiver_info['name'],
                                   receiver_mail,

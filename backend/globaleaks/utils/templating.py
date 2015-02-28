@@ -47,7 +47,10 @@ class Templating(object):
                                   u'zip_collection' : ZipFileKeyword,
                                   u'ping_mail' : PingMailKeyword,
                                   u'admin_pgp_expiration_alert': AdminPGPAlertKeyword,
-                                  u'pgp_expiration_alert': PGPAlertKeyword
+                                  u'pgp_expiration_alert': PGPAlertKeyword,
+                                  # Upcoming expire use the same templates of Tip
+                                  u'encrypted_upcoming_expire': EncryptedTipKeyword,
+                                  u'plaintext_upcoming_expire': TipKeyword,
                                 }
 
         if event_dicts.type not in supported_event_types.keys():
