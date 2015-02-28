@@ -89,7 +89,7 @@ def save_statistics(store, start, end, activity_collection):
 
     newstat.start = start
     newstat.summary = dict(activity_collection)
-    newstat.free_disk_space = ResourceChecker.get_free_space()
+    newstat.free_disk_space, _ = ResourceChecker.get_workingdir_space()
 
     store.add(newstat)
 
