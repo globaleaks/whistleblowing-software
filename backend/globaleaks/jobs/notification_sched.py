@@ -96,6 +96,9 @@ class EventLogger(object):
             self.template_type = u'encrypted_file' if \
                 receiver.gpg_key_status == u'enabled' else u'plaintext_file'
             return receiver.file_notification
+        elif self.trigger == 'UpcomingExpireTip':
+            self.template_type = u'encrypted_upcoming_expire' if \
+                receiver.gpg_key_status == u'enabled' else u'plaintext_upcoming_expire'
         else:
             raise Exception("self.trigger of unexpected kind ? %s" % self.trigger)
 
@@ -111,7 +114,7 @@ class EventLogger(object):
                       context_info=self.context_desc,
                       do_mail=self.do_mail)
 
-        self.events.append(event )
+        self.events.append(event)
 
 class TipEventLogger(EventLogger):
 
@@ -316,6 +319,8 @@ class NotificationSchedule(GLJob):
     @inlineCallbacks
     def operation(self):
         # TODO: remove notification_status from Model different of EventLogs
+        # because now only that keep track of the notification status.
+        # the others step, if exists, has to be keep track with mark
 
         tips_events = TipEventLogger()
         yield tips_events.load_tips()
