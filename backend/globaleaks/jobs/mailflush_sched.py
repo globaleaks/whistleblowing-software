@@ -65,12 +65,16 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
     storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)
     storedevnts.order_by(Desc(EventLogs.creation_date))
 
+    debug_event_counter = {}
     for i, stev in enumerate(storedevnts):
 
         if len(event_list) == event_number:
             log.debug("Maximum number of notification event reach (Mailflush) %d, after %d" %
                       ( event_number, i ) )
             break
+
+        debug_event_counter.setdefault(stev.event_reference['kind'], 0)
+        debug_event_counter[stev.event_reference['kind']] += 1
 
         if not stev.description['receiver_info']['file_notification'] and \
                         stev.event_reference['kind'] == 'File':
@@ -109,11 +113,15 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
 
         event_list.append(eventcomplete)
 
+    if debug_event_counter:
+        log.debug("load_complete_events: %s" % debug_event_counter)
+
     return event_list
 
 
 class MailflushSchedule(GLJob):
 
+    # sorry for the double negation, we are sleeping two seconds below.
     skip_sleep = False
 
     def ping_mail_flush(self, notification_settings, receivers_syntesis):
@@ -171,7 +179,7 @@ class MailflushSchedule(GLJob):
     @inlineCallbacks
     def operation(self):
         if not GLSetting.memory_copy.receiver_notif_enable:
-            log.debug("MailFlush: Receiver notification disabled")
+            log.debug("MailFlush: Receiver(s) Notification disabled by Admin")
             return
 
         queue_events = yield load_complete_events()
@@ -182,18 +190,16 @@ class MailflushSchedule(GLJob):
         plugin = getattr(notification, GLSetting.notification_plugins[0])()
         notifcb = NotificationMail(plugin)
 
+        # this is the notification of the standard event
         for qe in queue_events:
 
             yield notifcb.do_every_notification(qe)
 
             if not self.skip_sleep:
-                yield deferred_sleep(3)
-            # note, this settings has to be multiply for 3 (seconds in this iteration)
-            # and the results (notification_limit * 3) need to be shorter than the periodic running time
-            # specified in runner.py, that's why is set at FIVE minutes.
-            # the number of 'qe' is capped at GLSetting.notification_limit
+                yield deferred_sleep(2)
 
-        # TODO: implement ping as an appropriate plugin
+
+        # This is the notification of the ping, if configured
         receivers_synthesis = {}
         for qe in queue_events:
 

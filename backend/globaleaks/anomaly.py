@@ -10,7 +10,6 @@
 # If you want know more:
 # https://docs.google.com/a/apps.globaleaks.org/document/d/1P-uHM5K3Hhe_KD6YvARbRTuqjVOVj0VkI7qPO9aWFQw/edit
 #
-
 from twisted.internet import defer
 
 from globaleaks import models
@@ -421,24 +420,12 @@ class Alarm(object):
     def admin_alarm_notification(event_matrix):
         """
         This function put a mail in queue for the Admin, if the
-        configured threshold has been reached for Alarm notification.
-        TODO put a GLSetting + Admin configuration variable,
-        now is hardcoded to notice at >= 1
+        Admin notification is disable or if another Anomaly has been
+        raised in the last 15 minutes, email is not send.
         """
+        do_not_stress_admin_with_more_than_an_email_after_minutes = 15
 
-        @transact_ro
-        def _get_node_name(store):
-            node = store.find(models.Node).one()
-            return node.email
-
-        @transact_ro
-        def _get_admin_email(store):
-            node = store.find(models.Node).one()
-            return node.email
-
-        node_name = yield _get_node_name()
-        admin_email = yield _get_admin_email()
-
+        # ------------------------------------------------------------------
         @transact_ro
         def _get_message_template(store):
             admin_user = store.find(models.User, models.User.username == u'admin').one()
@@ -466,24 +453,16 @@ class Alarm(object):
         def _disk_dump():
             return "%s" % bytes_to_pretty_str(Alarm.latest_measured_freespace)
 
-        def _node_name():
-            return "%s" % node_name
-
         def _disk_status_message():
             if Alarm.stress_levels['disk_message']:
                 return unicode(Alarm.stress_levels['disk_message'])
             else:
                 return "Disk space OK"
 
-        message_required = False
-        if Alarm.stress_levels['activity'] >= 1:
-            message_required = True
-        if Alarm.stress_levels['disk_space'] != 0:
-            message_required = True
-
-        if not message_required:
-            # lucky, no mail needed
-            return
+        @transact_ro
+        def _node_name(store):
+            node = store.find(models.Node).one()
+            return unicode(node.name)
 
         KeyWordTemplate = {
             "%ActivityAlarmLevel%": _activity_alarm_level,
@@ -491,33 +470,68 @@ class Alarm(object):
             "%DiskAlarmLevel%": _disk_alarm_level,
             "%DiskDump%": _disk_dump,
             "%DiskErrorMessage%": _disk_status_message,
-            "%NodeSignature%": _node_name
+            "%NodeName%": _node_name,
         }
+        # ------------------------------------------------------------------
 
-        message = yield _get_message_template()
-        for keyword, function in KeyWordTemplate.iteritems():
-            where = message.find(keyword)
-            message = "%s%s%s" % (
-                message[:where],
-                function(),
-                message[where + len(keyword):])
+        # Here start the Anomaly Notification code, before checking if we have to send email
+        if not (Alarm.stress_levels['activity'] or Alarm.stress_levels['disk_space']):
+            # lucky, no stress activities recorded: no mail needed
+            defer.returnValue(None)
+
+        if not GLSetting.memory_copy.admin_notif_enable:
+            # event_matrix is {} if we are here only for disk
+            log.debug("Anomaly to be reported%s, but Admin has Notification disabled" %
+                      "[%s]" % event_matrix if event_matrix else "")
+            defer.returnValue(None)
 
         if Alarm.last_alarm_email:
-            if not is_expired(Alarm.last_alarm_email, minutes=5):
-                #log.debug("Alert email want be send, but the threshold of 10 minutes is not yet reached since %s" %
-                #    datetime_to_ISO8601(Alarm.last_alarm_email))
-                return
+            if not is_expired(Alarm.last_alarm_email, minutes=do_not_stress_admin_with_more_than_an_email_after_minutes):
+                log.debug("Alert email want be send, but the threshold of %d minutes is not yet reached since %s" % (
+                    do_not_stress_admin_with_more_than_an_email_after_minutes, datetime_to_ISO8601(Alarm.last_alarm_email)))
+                defer.returnValue(None)
 
-        message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
+        # and now, processing the template
+        message = yield _get_message_template()
+        for keyword, templ_funct in KeyWordTemplate.iteritems():
+
+            where = message.find(keyword)
+
+            if where == -1:
+                continue
+
+            # based on the type of templ_funct, we've to use 'yield' or not
+            # some are 'function', some: <class 'globaleaks.settings.transact_ro'>
+            if isinstance(templ_funct, type(sendmail) ):
+                content = templ_funct()
+            else:
+                content = yield templ_funct()
+
+            message = "%s%s%s" % (
+                message[:where],
+                content,
+                message[where + len(keyword):])
+
+        print "\n\n", message, "\n\n"
+
+        admin_email = yield get_node_admin_email()
+
+        sender_display_name = "%s's-dev Anomaly" % GLSetting.developer_name if GLSetting.devel_mode else \
+            GLSetting.memory_copy.notif_source_name
+
+        message = MIME_mail_build(sender_display_name,
                                   GLSetting.memory_copy.notif_source_email,
                                   "Admin",
                                   admin_email,
                                   "ALERT: Anomaly detection",
                                   message)
 
-        log.debug('Alarm Email for admin: connecting to [%s:%d]' %
-                    (GLSetting.memory_copy.notif_server,
-                     GLSetting.memory_copy.notif_port) )
+        log.debug('Alarm Email for admin (%s): connecting to [%s:%d],'
+                  ' the next mail should be in %d minutes' %
+                    (event_matrix,
+                     GLSetting.memory_copy.notif_server,
+                     GLSetting.memory_copy.notif_port,
+                     do_not_stress_admin_with_more_than_an_email_after_minutes) )
 
         Alarm.last_alarm_email = datetime_now()
 
@@ -661,3 +675,8 @@ class Alarm(object):
             GLApiCache.memory_cache_dict['node']['disk_availability'] =\
                 GLSetting.memory_copy.disk_availability
 
+# a simple utility required when something has to send an email to the Admin
+@transact_ro
+def get_node_admin_email(store):
+    node = store.find(models.Node).one()
+    return unicode(node.email)

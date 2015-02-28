@@ -234,8 +234,8 @@ class GLSettingsClass(object):
         }
 
         # A lot of operations performed massively by globaleaks
-        # should avoid to fetch continously variables from the DB so that
-        # it is importatn to keep this variables in memory
+        # should avoid to fetch continuously variables from the DB so that
+        # it is important to keep this variables in memory
         #
         # To this aim a variable memory_copy is instantiated as a copy of
         # self.defaults and then initialized and updated after
