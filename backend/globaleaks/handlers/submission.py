@@ -265,17 +265,10 @@ class SubmissionCreate(BaseHandler):
         This create a Token, require to complete the submission later
         """
 
-<<<<<<< HEAD
-=======
-        print "Context_id declared", context_id
-
-        # TODO put context_id in token in some way, like, in the constructor and keep track
->>>>>>> now context_id is part of the /submission REST
         token = Token('submission', context_id, debug=True)
         token.set_difficulty(Alarm().get_token_difficulty())
         token_answer = token.serialize_token()
 
-        self.set_status(201) # Created
 
         # {'hashcash': False,
         #  'usages': 1,
@@ -297,10 +290,6 @@ class SubmissionCreate(BaseHandler):
         # preset the answers from the captcha stuff, to success input validation
         token_answer.update({'human_solution': 0})
 
-<<<<<<< HEAD
-        import pprint
-        pprint.pprint(token_answer)
-=======
         # {'hashcash': False,
         #  'usages': 1,
         #  'start_validity': '2015-02-09T13:23:44.325796Z',
@@ -319,7 +308,6 @@ class SubmissionCreate(BaseHandler):
         # tmp hackish, I can copy the context receive via get, in order to make
         # SubmissionRequest context dependent in the URL (finally, holy fuck)
         token_answer.update({'context_id': context_id})
->>>>>>> added homepage access to the counter (not in activities count)
 
         self.set_status(201) # Created
         self.finish(token_answer)
@@ -335,32 +323,7 @@ class SubmissionInstance(BaseHandler):
     @unauthenticated
     @inlineCallbacks
     def put(self, context_id, token_id):
-<<<<<<< HEAD
         """
-<<<<<<< HEAD
-=======
-        Parameters: submission_id
-        Response: wbSubmissionDesc
-        Errors: SubmissionIdNotFound, InvalidInputFormat
-
-        Get the status of the current submission.
-        """
-        print "did this thing exists ? "
-        import pdb; pdb.set_trace()
-
-        submission = yield get_submission(submission_id)
-
-        self.set_status(200)
-        self.finish(submission)
-
-    @transport_security_check('wb')
-    @unauthenticated
-    @inlineCallbacks
-    def put(self, token_id):
-=======
->>>>>>> now context_id is part of the /submission REST
-        """
->>>>>>> performed sumibssion with token_id
         Parameter: token_id
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
@@ -371,35 +334,14 @@ class SubmissionInstance(BaseHandler):
         @transact
         def put_transact(store, token, request):
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> performed sumibssion with token_id
-=======
->>>>>>> now context_id is part of the /submission REST
-            status = db_finalize_submission(store, token_id, request, self.request.language)
-=======
             status = db_finalize_submission(store, token, request, self.request.language)
->>>>>>> re-engineered file association at sumibssion time, based on token
 
             receipt = db_create_whistleblower_tip(store, status)
             status.update({'receipt': receipt})
 
             return status
 
-
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> now context_id is part of the /submission REST
-        import pprint
-        pprint.pprint(request.keys())
-=======
->>>>>>> re-engineered file association at sumibssion time, based on token
 
         # the .get method raise an exception if the token is invalid
         TokenList.get(token_id)
@@ -407,45 +349,11 @@ class SubmissionInstance(BaseHandler):
 
         log.debug("Token received: %s" % token)
         # raise an error if the usage is too early for the token
-<<<<<<< HEAD
-        token.timedelta_check()
-<<<<<<< HEAD
-=======
-        token_request = TokenList.get(token_id)
-        print "retrieve", token_request
-=======
 
         if not token.context_associated == context_id:
             raise errors.InvalidInputFormat("Token context unaligned with REST url")
 
->>>>>>> now context_id is part of the /submission REST
-        assert request['finalize'], "Wrong GLClient logic"
-
-        # todo check if token has been properly solved
-        if token.graph_captcha is not False:
-            print "GC!", token.graph_captcha
-        if token.proof_of_work is not False:
-            print "PoW!", token.proof_of_work
-        if token.human_captcha is not False:
-            print "HC!", token.human_captcha
-
-        status = yield put_transact(token_id, request, self.request.language)
-
-        self.set_status(202) # Updated --> created
-        self.finish(status)
->>>>>>> performed sumibssion with token_id
-=======
->>>>>>> implemented maximum number of token usage
-
-        if not token.context_associated == context_id:
-            raise errors.InvalidInputFormat("Token context unaligned with REST url")
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-        assert request['finalize'], "Wrong GLClient logic"
-=======
         token.validate(request)
->>>>>>> implemented maximum number of token usage
 
         # TODO remove from the GLClient/REST logic submission ['files']
         request.pop('files')
@@ -456,5 +364,3 @@ class SubmissionInstance(BaseHandler):
         self.finish(status)
 
 
-=======
->>>>>>> performed sumibssion with token_id
