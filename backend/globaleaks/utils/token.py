@@ -164,29 +164,22 @@ class Token(TempObj):
             FileToken or SubmissionToken and here the shared element.
         """
 
-        print problems_dict
-
         if problems_dict['human_captcha']:
             random_a = randint(1, 10)
             random_b = randint(1, 10)
 
-            self.human_captcha = dict({
+            self.human_captcha = {
                 'question': u"%d + %d" % (random_a, random_b),
                 'answer' : u"%d" % (random_a + random_b)
-            })
+            }
         else:
             self.human_captcha = False
 
         if problems_dict['proof_of_work']:
             self.proof_of_work = False
         else:
-<<<<<<< HEAD
-            self.proof_of_work = None
-        # TODO
-=======
             self.proof_of_work = False
 
->>>>>>> fixed a couple of bug and fine tuned variables
 
         if problems_dict['graph_captcha']:
             """
@@ -207,18 +200,6 @@ class Token(TempObj):
         else:
             self.graph_captcha = False
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        # not used now
-        if problems_dict['graph_captcha'] and self.kind == 'upload':
-            self.usages /= 2
-
-=======
->>>>>>> implemented maximum number of token usage
-
-
-=======
->>>>>>> re-engineered file association at sumibssion time, based on token
     def timedelta_check(self):
         """
         This timedelta check verify that the current time fit between
