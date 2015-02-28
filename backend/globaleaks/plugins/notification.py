@@ -13,7 +13,6 @@ from globaleaks.utils.mailutils import sendmail, MIME_mail_build
 from globaleaks.utils.templating import Templating
 from globaleaks.plugins.base import Notification
 from globaleaks.security import GLBGPG
-from globaleaks.models import Receiver
 from globaleaks.settings import GLSetting
 
 class MailNotification(Notification):
@@ -86,8 +85,18 @@ class MailNotification(Notification):
                 event.notification_settings['plaintext_message_template'], event)
             title = Templating().format_template(
                 event.notification_settings['plaintext_message_mail_title'], event)
+        elif event.type == u'plaintext_upcoming_expire':
+            body = Templating().format_template(
+                event.notification_settings['plaintext_upcoming_template'], event)
+            title = Templating().format_template(
+                event.notification_settings['plaintext_upcoming_mail_title'], event)
+        elif event.type == u'encrypted_upcoming_expire':
+            body = Templating().format_template(
+                event.notification_settings['encrypted_upcoming_template'], event)
+            title = Templating().format_template(
+                event.notification_settings['encrypted_upcoming_mail_title'], event)
         else:
-            raise NotImplementedError("At the moment, only Tip expected")
+            raise NotImplementedError("This event_type (%s) is not supported" % event.type)
 
         # If the receiver has encryption enabled (for notification), encrypt the mail body
         if event.receiver_info['gpg_key_status'] == u'enabled':

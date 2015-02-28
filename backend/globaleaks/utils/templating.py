@@ -133,7 +133,9 @@ class TipKeyword(_KeyWord):
         '%TipTorURL%',
         '%TipT2WURL%',
         '%TipNum%',
-        '%EventTime%'
+        '%EventTime%',
+        # '%ExpirationWatch%', # TODO in the db
+        # '%ExpirationDate%'   # TODO here
     ]
 
     def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, *x):
