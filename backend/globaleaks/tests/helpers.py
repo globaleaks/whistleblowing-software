@@ -277,7 +277,6 @@ class TestGL(unittest.TestCase):
             dummyFile['creation_date'] = datetime_null()
             registered_file = files.memory_file_serialize(dummyFile)
 
-            print "CHECK", set(registered_file.keys())
             self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
 
     def emulate_file_append(self, associated_submission_id):
@@ -351,6 +350,12 @@ class TestGL(unittest.TestCase):
 
         return wbtips_desc
 
+
+
+@transact
+def db_wrapper_finalize(store, dToken, dSubmission):
+    x = db_finalize_submission(store, dToken, dSubmission, 'en')
+    return x
 
 class TestGLWithPopulatedDB(TestGL):
 
@@ -433,15 +438,15 @@ class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def perform_submission(self):
 
+        c = task.Clock()
         self.dummyToken = Token(token_kind='submission',
                                 context_id=self.dummyContext['id'],
                                 debug=False)
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['wb_steps'] = yield fill_random_fields(self.dummyContext['id'])
-        self.dummySubmission = yield db_finalize_submission(self.dummyToken,
-                                                            self.dummySubmission,
-                                                            'en')
+        self.dummySubmission = yield db_wrapper_finalize(
+            self.dummyToken, self.dummySubmission)
 
         yield self.emulate_file_upload(self.dummyToken)
         self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)

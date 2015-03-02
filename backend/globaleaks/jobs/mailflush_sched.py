@@ -8,7 +8,7 @@
 
 from cyclone.util import ObjectDict as OD
 from storm.expr import Desc
-from twisted.internet.defer import inlineCallbacks, Deferred
+from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
 
 from globaleaks.models import EventLogs, Notification
 from globaleaks.handlers.admin import db_admin_serialize_node
@@ -19,6 +19,7 @@ from globaleaks.plugins import notification
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import deferred_sleep, log
 from globaleaks.utils.templating import Templating
+from globaleaks.plugins.base import Event
 
 class NotificationMail:
 
@@ -39,15 +40,27 @@ class NotificationMail:
 
     @transact
     def every_notification_succeeded(self, store, result, event_id):
-        log.debug("Mail delivered correctly for event %s, [%s]" % (event_id, result))
-        evnt = store.find(EventLogs, EventLogs.id == event_id).one()
-        evnt.mail_sent = True
+        if event_id:
+            log.debug("Mail delivered correctly for event %s, [%s]" % (event_id, result))
+            evnt = store.find(EventLogs, EventLogs.id == event_id).one()
+            evnt.mail_sent = True
+        else:
+            log.debug("Mail DIGEST correctly sent!")
 
     @transact
     def every_notification_failed(self, store, failure, event_id):
-        log.err("Mail delivery failure for event %s (%s)" % (event_id, failure))
-        evnt = store.find(EventLogs, EventLogs.id == event_id).one()
-        evnt.mail_sent = True
+        if event_id:
+            log.err("Mail delivery failure for event %s (%s)" % (event_id, failure))
+            evnt = store.find(EventLogs, EventLogs.id == event_id).one()
+            evnt.mail_sent = True
+        else:
+            log.err("Mail DIGEST error :(")
+
+@transact
+def mark_event_as_notified_in_digest(store, evnt):
+
+    evnt = store.find(EventLogs, EventLogs.id == evnt.storm_id).one()
+    evnt.mail_sent = True
 
 
 @transact_ro
@@ -119,6 +132,33 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
     return event_list
 
 
+def look_for_digest_opportunities(queue_events):
+    """
+    Generate
+    {
+        UUIDv4 : {
+                'events' : [0, 4, 5, ... ],
+                'kinds': {
+                        'Tip' : 1,
+                        ...
+                    }
+    }
+    so we can operate directly on the list and removing the list element we use
+    """
+
+    digest_dict = {}
+    for pos, qe in enumerate(queue_events):
+        digest_dict.setdefault(qe.receiver_info['username'], {
+            'events': [],
+            'kinds': {}
+        })
+        digest_dict[qe.receiver_info['username']]['events'].append(pos)
+        digest_dict[qe.receiver_info['username']]['kinds'].setdefault(qe.type, 0)
+        digest_dict[qe.receiver_info['username']]['kinds'][qe.type] += 1
+
+
+    return digest_dict
+
 class MailflushSchedule(GLJob):
 
     # sorry for the double negation, we are sleeping two seconds below.
@@ -185,13 +225,92 @@ class MailflushSchedule(GLJob):
         queue_events = yield load_complete_events()
 
         if not len(queue_events):
-            return
+            returnValue(None)
 
         plugin = getattr(notification, GLSetting.notification_plugins[0])()
+        # This wrap calls plugin/notification.MailNotification
         notifcb = NotificationMail(plugin)
 
-        # this is the notification of the standard event
-        for qe in queue_events:
+        # figure out if some notification are part of the same receiver,
+        # so they can be in bulk mode, sending only one email
+        receiver_bulks = look_for_digest_opportunities(queue_events)
+
+        digest_used_event = [] # contain a list of integer, position of queue_events
+        digest_produced_event = [] # contain a list of Event object
+
+        digest_separator = '%s' % ("=" * 50)
+
+        for receiver_id, digest_obj in receiver_bulks.iteritems():
+
+            # Copy from the event of the receiver infos
+            event_copy = None
+
+            if len(digest_obj['events']) > 1:
+
+                digest_body = ""
+                for qe_index in digest_obj['events']:
+                    body, title = plugin.get_body_title(queue_events[qe_index])
+                    digest_body = "%s%s\n%s\n%s\n\n%s\n\n" % (
+                        digest_body,
+                        title,
+                        "%s" % ("+" * (len(title) -1) ),
+                        body,
+                        digest_separator
+                    )
+                    digest_used_event.append(qe_index)
+
+                    if not event_copy:
+                        event_copy = queue_events[qe_index]
+
+
+                # create the new events based on the digest
+                new_title = ""
+                for name, amount in digest_obj['kinds'].iteritems():
+                    new_title = "%s%s%s (%d)" % (
+                        new_title,
+                        ", " if len(new_title) else "",
+                        name,
+                        amount
+                    )
+
+                # create new digest event based on the new content
+                nde = OD()
+
+                nde.node_info = event_copy.node_info
+                nde.notification_settings = event_copy.notification_settings
+                nde.receiver_info = event_copy.receiver_info
+                nde.tip_info={
+                                 'body': digest_body,
+                                'title': new_title
+                             }
+                nde.subevent_info = None
+                nde.context_info = event_copy.context_info
+                nde.steps_info = event_copy.steps_info
+                nde.type = 'digest'
+                nde.trigger = event_copy.trigger # what matter is
+                                                 # plaintext_ or encrypted_
+
+                nde.storm_id = None
+
+                digest_produced_event.append(nde)
+
+
+        for digest_event in digest_produced_event:
+
+            yield notifcb.do_every_notification(digest_event)
+
+            if not self.skip_sleep:
+                yield deferred_sleep(2)
+
+
+        # this is the notification of the standard event, it ignores
+        # all the event already managed by the digest
+        for qe_pos, qe in enumerate(queue_events):
+
+            if qe_pos in digest_used_event:
+                yield mark_event_as_notified_in_digest(queue_events[qe_pos])
+                log.debug("Marked event %s as sent because of digest" % queue_events[qe_pos])
+                continue
 
             yield notifcb.do_every_notification(qe)
 
