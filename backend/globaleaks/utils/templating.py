@@ -137,8 +137,11 @@ class TipKeyword(_KeyWord):
         '%TipT2WURL%',
         '%TipNum%',
         '%EventTime%',
-        # '%ExpirationWatch%', # TODO in the db
-        # '%ExpirationDate%'   # TODO here
+        '%ExpirationWatch%',
+                    # ExpirationWatch
+                    # TODO DB, like "notify 48 hours before"
+                    # can be used in template to say "will expire in 48 hours"
+        '%ExpirationDate%',
     ]
 
     def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, *x):
@@ -191,8 +194,16 @@ class TipKeyword(_KeyWord):
         return unicode(retval)
 
     def EventTime(self):
+        # XXX - This is not EventTime properly, or it is only at Tip Creation
         return ISO8601_to_pretty_str_tz(self.tip['creation_date'], float(self.receiver['timezone']))
 
+    def ExpirationDate(self):
+        # is not time zone dependent, is UTC for everyone
+        return ISO8601_to_day_str(self.tip['expiration_date'])
+
+    def ExpirationWatch(self):
+        # Express in hours, but has to be retrieved from the Receiver not from Tip.
+        return unicode(48)
 
 class EncryptedTipKeyword(TipKeyword):
 

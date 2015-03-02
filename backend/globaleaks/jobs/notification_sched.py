@@ -25,6 +25,7 @@ def serialize_receivertip(receiver_tip):
         'access_counter': receiver_tip.access_counter,
         'wb_steps': receiver_tip.internaltip.wb_steps,
         'context_id': receiver_tip.internaltip.context.id,
+        'expiration_date': datetime_to_ISO8601(receiver_tip.internaltip.expiration_date),
     }
     return rtip_dict
 
@@ -262,7 +263,7 @@ class FileEventLogger(EventLogger):
             models.ReceiverFile.mark == u'not notified')
 
         if not_notified_rfiles.count():
-            log.debug("new [Files✖Receiver] found to be notified: %d" % not_notified_rfiles.count())
+            log.debug("new [Files+Receiver] found to be notified: %d" % not_notified_rfiles.count())
 
         for rfile in not_notified_rfiles:
 

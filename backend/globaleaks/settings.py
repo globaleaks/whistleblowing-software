@@ -350,7 +350,13 @@ class GLSettingsClass(object):
 
     def set_devel_mode(self):
         self.devel_mode = True
-        self.developer_name = unicode(self.cmdline_options.developer_name)
+
+        # is forced by -z, but unitTest has not:
+        if not self.cmdline_options:
+            self.developer_name = u"Random GlobaLeaks Developer"
+        else:
+            self.developer_name = unicode(self.cmdline_options.developer_name)
+
         self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')
         self.static_source = os.path.join(self.root_path, 'staticdata')

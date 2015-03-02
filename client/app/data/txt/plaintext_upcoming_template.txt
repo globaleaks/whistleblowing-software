@@ -1,6 +1,6 @@
 Dear %ReceiverName%,
 
-The submission [%TipNum%], in %ContextName% Is going to expire in %ExpirationHours%, you can login to check it out before is too late.
+The submission [%TipNum%], in %ContextName% Is going to expire in %ExpirationWatch%, you can login to check it out before is too late.
 
 The submission can be accessed:
 via Tor at: %TipTorURL%

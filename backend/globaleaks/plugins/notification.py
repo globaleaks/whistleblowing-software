@@ -38,13 +38,10 @@ class MailNotification(Notification):
         log.debug("[%s] receiver_fields %s (with admin %s)" % ( self.__class__.__name__, receiver_fields, admin_fields))
         return True
 
-    def do_notify(self, event):
-        if not self.validate_admin_opt(event.notification_settings):
-            log.info('invalid mail settings for admin')
-            return None
 
-        # At the moment the language used is a system language, not
-        # Receiver preferences language ?
+    def get_body_title(self, event):
+        # This function, that probably can be optimized with some kind of pattern
+        # return body and title computed for the event + template + keywords compute
         if event.type == u'encrypted_tip':
             body = Templating().format_template(
                 event.notification_settings['encrypted_tip_template'], event)
@@ -86,17 +83,44 @@ class MailNotification(Notification):
             title = Templating().format_template(
                 event.notification_settings['plaintext_message_mail_title'], event)
         elif event.type == u'plaintext_upcoming_expire':
+            # evilaliv3 I've not understand how's now the logic for the default template...
+            with file('../client/app/data/txt/plaintext_upcoming_template.txt') as fp:
+                event.notification_settings['plaintext_upcoming_template'] = fp.read()
+            with file('../client/app/data/txt/plaintext_upcoming_mail_title.txt') as fp:
+                event.notification_settings['plaintext_upcoming_mail_title'] = fp.read()
+
             body = Templating().format_template(
                 event.notification_settings['plaintext_upcoming_template'], event)
             title = Templating().format_template(
                 event.notification_settings['plaintext_upcoming_mail_title'], event)
         elif event.type == u'encrypted_upcoming_expire':
+            # evilaliv3 I've not understand how's now the logic for the default template...
+            with file('../client/app/data/txt/encrypted_upcoming_template.txt') as fp:
+                event.notification_settings['encrypted_upcoming_template'] = fp.read()
+            with file('../client/app/data/txt/encrypted_upcoming_mail_title.txt') as fp:
+                event.notification_settings['encrypted_upcoming_mail_title'] = fp.read()
+
             body = Templating().format_template(
                 event.notification_settings['encrypted_upcoming_template'], event)
             title = Templating().format_template(
                 event.notification_settings['encrypted_upcoming_mail_title'], event)
         else:
             raise NotImplementedError("This event_type (%s) is not supported" % event.type)
+
+        return body, title
+
+
+    def do_notify(self, event):
+
+        if event.type == 'digest':
+            body = event.tip_info['body']
+            title = event.tip_info['title']
+        else:
+            body, title = self.get_body_title(event)
+
+        if not self.validate_admin_opt(event.notification_settings):
+            log.err('Invalid Mail Settings, no mail can be deliver')
+            return None
 
         # If the receiver has encryption enabled (for notification), encrypt the mail body
         if event.receiver_info['gpg_key_status'] == u'enabled':
