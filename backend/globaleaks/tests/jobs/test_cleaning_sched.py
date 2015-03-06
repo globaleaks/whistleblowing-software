@@ -27,8 +27,10 @@ class MockHandler(base.BaseHandler):
         pass
 
 class TestCleaning(helpers.TestGL):
+
+    @inlineCallbacks
     def setUp(self):
-        helpers.TestGL.setUp(self)
+        yield helpers.TestGL.setUp(self)
 
         # filled in setup
         self.context_desc = None
