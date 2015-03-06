@@ -259,7 +259,7 @@ class GLSettingsClass(object):
         self.gid = os.getgid()
         self.start_clean = False
         self.devel_mode = False
-        self.developer_name = None
+        self.developer_name = ''
         self.skip_wizard = False
         self.glc_path = None
 
@@ -346,7 +346,7 @@ class GLSettingsClass(object):
 
     def set_devel_mode(self):
         self.devel_mode = True
-        self.developer_name = unicode(self.cmdline_options.developer_name)
+        self.developer_name = unicode(self.developer_name)
         self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')
         self.static_source = os.path.join(self.root_path, 'staticdata')
@@ -488,6 +488,7 @@ class GLSettingsClass(object):
         if self.cmdline_options.developer_name:
             print "Enabling Development Mode for %s" %\
                     self.cmdline_options.developer_name
+            self.developer_name = unicode(self.cmdline_options.developer_name)
             self.set_devel_mode()
 
         if self.cmdline_options.skip_wizard:
