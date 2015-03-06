@@ -24,7 +24,7 @@
       </label>
       <div data-ng-show="admin.node.allow_unencrypted">
         <span class="label label-danger" data-translate>Danger</span>
-        <span data-translate>By enabling this option, the system will be storing the submitted files unecrypted on your node.</span>
+        <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your node.</span>
         <span data-translate>This happens whenever encryption is unavailable.</span>
       </div>
     </div>
@@ -32,18 +32,18 @@
     <div class="form-group">
       <label>
         <input data-ng-model="admin.node.allow_iframes_inclusion" type="checkbox" />
-        <span data-translate>Allow other websites to include the platform inside iframes</span>
+        <span data-translate>Allow other websites to include the GlobaLeaks-platform inside iframes</span>
       </label>
       <div data-ng-show="admin.node.allow_iframes_inclusion">
         <span class="label label-danger" data-translate>Danger</span>
-        <span data-translate>By enabling this option, you are permitting other websites to include the platform inside iframes; this can be eventually be used in order to abuse of the platform or intercept users and their communications</span>
+        <span data-translate>By enabling this option, you are allowing other websites to include the GlobaLeaks-platform inside iframes; this could potentially be used to endanger the platform or intercept users' communications</span>
       </div>
     </div>
 
     <div class="form-group">
       <label>
         <input data-ng-model="admin.node.enable_custom_privacy_badge" type="checkbox" />
-        <span data-translate>Enable custom privacy badge</span>
+        <span data-translate>Enable custom privacy panel</span>
       </label>
       <div data-ng-show="admin.node.enable_custom_privacy_badge">
         <span class="label label-info" data-translate>Enabled</span>
@@ -51,7 +51,7 @@
     </div>
 
     <div class="form-group" data-ng-show="admin.node.enable_custom_privacy_badge">
-      <label data-translate>Custom Privacy Badge</label>
+      <label data-translate>Custom Privacy Panel</label>
       <label>(<span data-translate>Text shown when the whistleblower is using Tor</span>)</label>
       <div>
         <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_tor" type="text" />
@@ -59,7 +59,7 @@
     </div>
 
     <div class="form-group" data-ng-show="admin.node.enable_custom_privacy_badge">
-      <label data-translate>Custom Privacy Badge</label>
+      <label data-translate>Custom Privacy Panel</label>
       <label>(<span data-translate>Text shown when the whistleblower is not using Tor</span>)</label>
       <div>
         <input class="form-control" data-ng-model="admin.node.custom_privacy_badge_none" type="text" />
@@ -69,7 +69,7 @@
     <div class="form-group">
       <label>
         <input data-ng-model="admin.node.postpone_superpower" type="checkbox" />
-        <span data-translate>Permit Receivers to postpone expiration date of the Tips</span>
+        <span data-translate>Allow Receivers to postpone expiration date of the Tips</span>
       </label>
       <div data-ng-show="admin.node.postpone_superpower">
         <span class="label label-info" data-translate>Enabled</span>
@@ -80,7 +80,7 @@
     <div class="form-group">
       <label>
         <input data-ng-model="admin.node.can_delete_submission" type="checkbox" />
-        <span data-translate>Permit Receivers to delete Tips</span>
+        <span data-translate>Allow Receivers to delete Tips</span>
       </label>
       <div data-ng-show="admin.node.can_delete_submission">
         <span class="label label-info" data-translate>Enabled</span>
@@ -100,7 +100,7 @@
       </label>
       <div data-ng-show="admin.node.">
         <span class="label label-info" data-translate>Enabled</span>
-        <span data-translate>Search engine spiders will be allowed to spider the application.</span>
+        <span data-translate>Search engine spiders will be allowed to index the application.</span>
       </div>
     </div>
 
@@ -120,19 +120,19 @@
     <div class="form-group">
       <label>
         <input data-ng-model="admin.node.disable_privacy_badge" type="checkbox" />
-        <span data-translate>Disable the privacy badge</span>
+        <span data-translate>Disable the privacy panel</span>
       </label>
     </div>
 
     <div class="form-group" data-ng-show="!admin.node.disable_security_awareness_badge">
-      <label data-translate>Security Awareness Badge Title</label>
+      <label data-translate>Security Awareness Panel Title</label>
       <div>
         <input class="form-control" data-ng-model="admin.node.security_awareness_title" type="text" />
       </div>
     </div>
 
     <div class="form-group" data-ng-show="!admin.node.disable_security_awareness_badge">
-      <label data-translate>Security Awareness Badge Text</label>
+      <label data-translate>Security Awareness Panel Text</label>
       <div>
         <textarea class="form-control" data-ng-model="admin.node.security_awareness_text"></textarea>
       </div>
@@ -153,7 +153,7 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>Exception mail address</label>
+      <label data-translate>Exception email address</label>
       <input class="form-control" data-ng-model="admin.node.exception_email" name="email" type="text" data-ng-pattern="email_regexp" />
       <p class="has-error" data-ng-show="advancedForm.email.$error.pattern">
         <span data-translate>Invalid email address</span>
@@ -171,7 +171,7 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>File size limit (in Megabytes)</label>
+      <label data-translate>File size limit (in megabytes)</label>
       <input class="form-control" data-ng-model="admin.node.maximum_filesize" type="number" />
     </div>
 
