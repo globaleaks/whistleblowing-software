@@ -74,7 +74,8 @@ module.exports = function(grunt) {
                                   'tmp/styles/main.css',
                                   'tmp/styles/admin.css',
                                   'tmp/styles/home.css',
-                                  'tmp/styles/submission.css']
+                                  'tmp/styles/submission.css',
+                                  'tmp/styles/rtl.css']
         }
       }
     },
