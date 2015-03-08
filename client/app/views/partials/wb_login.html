@@ -1,10 +1,10 @@
 <form name="wbLoginForm" class="form-inline" novalidate>
   <div class="form-group">
     <div class="input-group">
-      <input class="form-control keyinput" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19" data-ng-model="formatted_key code" name="key code" key codevalidator>
+      <input class="form-control keyinput" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19" data-ng-model="formatted_keycode" name="keycode" keycodevalidator>
       <span class="input-group-btn keybutton">
-        <button data-ng-click="view_tip(formatted_key code)" class="btn btn-primary"
-                data-ng-disabled="wbLoginForm.key code.$error.key codevalidator" type="submit">
+        <button data-ng-click="view_tip(formatted_keycode)" class="btn btn-primary"
+                data-ng-disabled="wbLoginForm.keycode.$error.keycodevalidator" type="submit">
           <span data-translate>Login</span>
         </button>
       </span>
