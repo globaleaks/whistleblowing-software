@@ -268,15 +268,10 @@ def run_glbackend():
     else:
         print "Starting GlobaLeaks"
         try:
-
             runner.GLBaseRunner(config).run()
 
             # this is a blocking operation, until app exit
             print "Exiting GlobaLeaks"
-            from globaleaks.jobs.statistics_sched import get_statistics
-            lost = get_statistics()
-            if lost:
-                print "Losing from stats the following activities: %s" % lost
         except OSError as ose:
             print "Unable to start globaleaks: %s: %s" % (ose.strerror, ose.filename)
             quit(ose.errno)
