@@ -28,11 +28,9 @@ def save_anomalies(store, anomalies_list):
         when_anomaly, anomaly_desc, alarm_raised = anomaly
 
         newanom = Anomalies()
-
         newanom.alarm = alarm_raised
         newanom.stored_when = when_anomaly
         newanom.events = anomaly_desc
-
         store.add(newanom)
 
     if anomalies_counter:
@@ -61,7 +59,7 @@ def get_anomalies():
     anomalies = []
     for when, anomaly_blob in dict(StatisticsSchedule.RecentAnomaliesQ).iteritems():
         anomalies.append(
-            [ when, anomaly_blob[0], anomaly_blob[1] ]
+            [when, anomaly_blob[0], anomaly_blob[1]]
         )
     return anomalies
 
@@ -74,6 +72,7 @@ def get_statistics():
     for descblob in StatisticsSchedule.RecentEventQ:
         if 'event' not in descblob:
             continue
+
         statsummary.setdefault(descblob['event'], 0)
         statsummary[descblob['event']] += 1
 
@@ -82,17 +81,14 @@ def get_statistics():
 @transact
 def save_statistics(store, start, end, activity_collection):
     newstat = Stats()
+    newstat.start = start
+    newstat.summary = dict(activity_collection)
+    newstat.free_disk_space = ResourceChecker.get_free_space()
+    store.add(newstat)
 
     if activity_collection:
         log.debug("save_statistics: Saved statistics %s collected from %s to %s" %
                   (activity_collection, start, end))
-
-    newstat.start = start
-    newstat.summary = dict(activity_collection)
-    newstat.free_disk_space = ResourceChecker.get_free_space()
-
-    store.add(newstat)
-
 
 class StatisticsSchedule(GLJob):
     """
@@ -163,10 +159,3 @@ class ResourceChecker(GLJob):
 
         alarm = Alarm()
         alarm.report_disk_usage(free_disk_bytes, total_disk_bytes, free_ramdisk_bytes)
-
-
-        # I've commented this thing because happen every 10 seconds...
-        #log.debug("Disk free byte %d, Ramdisk free bytes: %d" %
-        #      (free_bytes, ramdisk_space)
-        #)
-
