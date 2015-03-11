@@ -315,7 +315,6 @@ class Alarm(object):
             'proof_of_work': False,
         }
 
-        print Alarm.stress_levels['activity']
         # TODO make a proper assessment between pissed off users and defeated DoS
         if Alarm.stress_levels['activity'] >= 1:
             self.difficulty_dict['human_captcha'] = True
