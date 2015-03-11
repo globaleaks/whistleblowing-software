@@ -10,7 +10,7 @@
             <div class="filePreview">
               <div class="imgPreview" data-ng-switch data-on="!!file.thumbnailUrl">
                 <div class="preview thumbnailPreview" data-ng-switch-when="true">
-                  <a data-ng-href="{{file.(URL)}}" title="{{file.name}}" download="{{file.name}}" data-gallery>
+                  <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery>
                     <img data-ng-src="{{file.thumbnailUrl}}" alt="">
                   </a>
                 </div>
