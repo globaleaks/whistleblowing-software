@@ -49,6 +49,8 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
             d.summary.wb_messages = +d.summary.wb_messages ? d.summary.wb_messages : 0;
             d.summary.receiver_comments = +d.summary.receiver_comments ? d.summary.receiver_comments : 0;
             d.summary.receiver_messages = +d.summary.receiver_messages ? d.summary.receiver_messages : 0;
+            /* d.summary.homepage_access = +d.summary.homepage_access ? d.summary.homepage_access : 0; 
+             * -- remind: disabled, not recorded in the d.value below */
 
             d.value = 0
             d.value += d.summary.failed_logins;
