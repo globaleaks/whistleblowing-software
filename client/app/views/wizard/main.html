@@ -32,7 +32,7 @@
 
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            <span data-translate>Initiative name</span>
+            <span data-translate>Project name</span>
           </label>
           <div class="col-md-8">
             <input name="node_name" class="form-control" data-ng-model="admin.node.name" maxlength="{{node.maximum_namesize}}" type="text" required>
@@ -47,7 +47,7 @@
 
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            <span data-translate>Initiative description</span>
+            <span data-translate>Project description</span>
           </label>
           <div class="col-md-8">
             <textarea name="node_description" class="form-control msd-elastic" data-ng-model="admin.node.description"  maxlength="{{node.maximum_textsize}}" required></textarea>
@@ -74,7 +74,7 @@
        <div class="col-md-6">
          <div class="form-group col-md-12">
           <label class="col-md-4">
-            <span data-translate>Email</span>
+            <span data-translate>Email Address</span>
           </label>
           <div class="col-md-8">
             <input name="admin_email" class="form-control" data-ng-model="admin.node.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
@@ -113,7 +113,7 @@
               </li>
             </ul>
             <span class="help-block">
-              <span data-translate>Enter a new GlobaLeaks node password</span>
+              <span data-translate>Enter a new GlobaLeaks server password</span>
             </span>
           </div>
         </div>
@@ -134,7 +134,7 @@
       </div>
       <div class="col-md-6">
         <p class="wizard-help-hint">
-          <span data-translate>There are three types of users inside of GlobaLeaks: the administrator, the receivers and the whistleblower. Your username for accessing the node as the administrator will be 'admin'.</span>
+          <span data-translate>There are three types of users inside of GlobaLeaks: the administrator, the receivers and the whistleblower. Your username for accessing the server as the administrator will be 'admin'.</span>
         </p>
       </div>
 
@@ -161,7 +161,7 @@
         </div>
 
         <div class="form-group col-md-12">
-          <label class="col-md-4">Email</label>
+          <label class="col-md-4">Email Adress</label>
           <div class="col-md-8">
             <input name="receiver_email" class="form-control" placeholder="" data-ng-model="receiver.mail_address"  maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
             <div class="has-error" data-ng-show="wizardForm.receiver_email.$error.required">
@@ -205,7 +205,7 @@
             <span data-translate>Enable insecure configuration without PGP encryption.</span>
             <div data-ng-show="admin.node.allow_unencrypted">
               <span class="label label-danger" data-translate>Danger</span>
-              <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your node.</span>
+              <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your server.</span>
               <span data-translate>This happens whenever encryption is unavailable.</span>
             </div>
           </label>

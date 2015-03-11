@@ -15,7 +15,7 @@
       </div>
       <div class="row" data-ng-show="!node.tor2web_submission && !anonymous">
         <p class="has-error">
-          <span data-translate>You are connecting to the node without anonymity and this node supports only anonymous submissions</span>
+          <span data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</span>
         </p>
       </div>
       <div class="row" data-ng-show="node.tor2web_submission || anonymous">
@@ -48,7 +48,7 @@
       </div>
     </div>
     <div data-ng-hide="node.configured">
-      <h2 data-translate>This node is not configured.</h2>
+      <h2 data-translate>This server is not configured.</h2>
       <span data-translate>You will not be able to send a submission.</span><br />
     </div>
   </div>
