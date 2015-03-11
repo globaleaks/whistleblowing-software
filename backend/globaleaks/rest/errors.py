@@ -42,7 +42,15 @@ class InvalidInputFormat(GLException):
         self.arguments.append(wrong_source)
 
 
-# UNUSED ERROR CODE 11 HERE!
+class TokenRequestError(GLException):
+    """
+    Some kind of reason to reject a submission Token
+    """
+    error_code = 11
+    status_code = 401
+
+    def __init__(self, reason):
+        self.reason = ("Unacceptable condition for usage of Token: %s" % reason)
 
 
 class ContextIdNotFound(GLException):

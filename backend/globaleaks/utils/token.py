@@ -4,8 +4,10 @@
 #   *****
 #
 #   Implements a GlobaLeaks security token, to prevent resources exhaustion
-#   operation by anonymous user in a serial approach.
+#   operation by anonymous user.
 
+import base64
+from StringIO import StringIO
 from random import randint
 from datetime import datetime, timedelta
 
@@ -15,17 +17,12 @@ from globaleaks.rest import errors
 from globaleaks.utils.tempobj import TempObj
 from globaleaks.settings import GLSetting
 
-# from Captcha.Visual.Tests import PseudoGimpy
-from StringIO import StringIO
-import base64
-
-
 class TokenList:
 
     token_dict = dict()
 
     @staticmethod
-    def del_Token(t_id):
+    def delete(t_id):
         """
         Token can be used only once, so need to be remove after the first usage.
         :param t_id:
@@ -49,43 +46,34 @@ reactor = None
 
 class Token(TempObj):
 
-    existing_kind = [ 'submission' ]
-    SUBMISSION_MINIMUM_SECONDS = 15
-    MAXIMUM_AVAILABILITY = 3600 * 4
-            # four hours,
-            # I want make estimation of memory exhaustion.
-            # what if 4 hours someone allocate tokens at infinitum ?
-    MAXIMUM_FILE_PER_TOKEN = 20
+    SUBMISSION_MINIMUM_DURATION = 0
+    SUBMISSION_MAXIMUM_DURATION = 3600 * 4
+    MAXIMUM_ATTEMPTS_PER_TOKEN = 3
+    MAXIMUM_UPLOADS_PER_TOKEN = 20
 
-    def __init__(self, token_kind, context_id, debug=False):
+    def __init__(self, token_kind, context_id):
         """
-        token_kind is 'file' or 'submission' right now, will be
-            enhanced in typology later. is used an Assertion below.
+        token_kind assumes currently only value 'submission.
 
-        REMIND: at the moment only 'submission' kind exist, because
-            file is never requested before start the actual upload.
+        we plan to add other kinds like 'file'.
 
-        debug = I totally love verbose debugging when we can used it :P
         """
-        assert token_kind in Token.existing_kind, "unsupported kind: %s" % token_kind
-        self.kind = token_kind
-
-        self.debug = debug
-        # both 'validity' need to be expressed in seconds
-        self.end_validity_secs = Token.MAXIMUM_AVAILABILITY
-
-        self.start_validity_secs = Token.SUBMISSION_MINIMUM_SECONDS
-        # This mean, the user can fail three time before the token get invalid
-        self.usages = 3
-        self.max_number_of_upload_files = Token.MAXIMUM_FILE_PER_TOKEN
-
-        # Remind: this is just for developer, because if a clean house
+        # Remind: this is just for developers, because if a clean house
         # is a sign of a waste life, a Token object without shortcut
-        # is a sign of a psyco life.
+        # is a sign of a psyco life. (vecnish!)
         if GLSetting.devel_mode:
             self.start_validity_secs = 0
 
-        # creation_date of the borning
+        self.kind = token_kind
+
+        # both 'validity' variables need to be expressed in seconds
+        self.start_validity_secs = Token.SUBMISSION_MINIMUM_DURATION
+        self.end_validity_secs = Token.SUBMISSION_MAXIMUM_DURATION
+
+        self.remaining_allowed_attempts = Token.MAXIMUM_ATTEMPTS_PER_TOKEN
+        self.remaining_allowed_uploads = Token.MAXIMUM_UPLOADS_PER_TOKEN
+
+        # creation_date of token assignment
         self.creation_date = datetime.utcnow()
 
         # in the future, difficulty can be trimmed on context basis too
@@ -95,6 +83,11 @@ class Token(TempObj):
         self.files_uploaded = []
 
         self.token_id = rstr.xeger(r'[A-Za-z0-9]{42}')
+
+        # initialization
+        self.human_captcha = False
+        self.proof_of_work = False
+        self.graph_captcha = False
 
         TempObj.__init__(self,
                          TokenList.token_dict,
@@ -106,27 +99,28 @@ class Token(TempObj):
 
     def file_upload_usage(self):
         """
-        Every time a file is uploaded, is called this function and
-        decremented a counter, if the maximum amount is reached, the
-        upload is forbidden.
+        This function is called every time a file is uploaded and causes
+        a decrement on a counter.
+        When the counter reaches 0, no further uploads are allowed.
 
         :return: None or raise an error
         """
-        if not self.max_number_of_upload_files:
-            raise errors.TokenRequestError("Too much files uploaded with this token")
-        self.max_number_of_upload_files -=1
+        if not self.remaining_allowed_uploads:
+            raise errors.TokenRequestError("Too much files uploaded")
+
+        self.remaining_allowed_uploads -= 1
+
         log.debug("From a maximum of %d files, this token has %d slots" % (
-            Token.MAXIMUM_FILE_PER_TOKEN, self.max_number_of_upload_files))
+            Token.MAXIMUM_UPLOADS_PER_TOKEN, self.remaining_allowed_uploads))
 
     def associate_file(self, fileinfo):
-
         self.files_uploaded.append(fileinfo)
 
     def touch(self):
-        assert False, "touch() is disabled for Token, their validity cannot be postponed"
+        # On token objects validity postponing is denied
+        return
 
     def __repr__(self):
-
         test_desc = ""
         dump_attr = ['graph_captcha', 'human_captcha', 'proof_of_work']
 
@@ -141,20 +135,19 @@ class Token(TempObj):
 
     def serialize_token(self):
 
-        # .set_difficulty is needed to take a Token
-        assert hasattr(self, 'graph_captcha' ), "call .set_difficulty()"
         return {
-            'token_id' : self.token_id,
-            'creation_date' : datetime_to_ISO8601(self.creation_date),
+            'token_id': self.token_id,
+            'creation_date': datetime_to_ISO8601(self.creation_date),
             'start_validity_secs': datetime_to_ISO8601(self.creation_date +
                                                   timedelta(seconds=self.start_validity_secs) ),
             'end_validity_secs': datetime_to_ISO8601(self.creation_date +
                                                 timedelta(seconds=self.end_validity_secs) ),
-            'usages': self.usages,
+            'remaining_allowed_attempts': self.remaining_allowed_attempts,
+            'remaining_allowed_uploades': self.remaining_allowed_uploads,
             'type': self.kind,
             'g_captcha': self.graph_captcha['question'] if self.graph_captcha else False,
             'h_captcha': self.human_captcha['question'] if self.human_captcha else False,
-            'hashcash': self.proof_of_work['question'] if self.proof_of_work else False,
+            'proof_of_work': self.proof_of_work['question'] if self.proof_of_work else False,
         }
 
     def set_difficulty(self, problems_dict):
@@ -170,35 +163,16 @@ class Token(TempObj):
 
             self.human_captcha = {
                 'question': u"%d + %d" % (random_a, random_b),
-                'answer' : u"%d" % (random_a + random_b)
+                'answer': u"%d" % (random_a + random_b)
             }
-        else:
-            self.human_captcha = False
 
         if problems_dict['proof_of_work']:
-            self.proof_of_work = False
-        else:
-            self.proof_of_work = False
-
+            # still not implemented
+            pass
 
         if problems_dict['graph_captcha']:
-            """
-            g = PseudoGimpy()
-            i = g.render()
-            tmpf = StringIO()
-
-            i.save(tmpf, 'png')
-            tmpf.seek(0)
-            request = unicode( "datauri://%s" % base64.b64encode(tmpf.read()))
-
-            self.graph_captcha = {
-                'question' : request,
-                'answer' : g.solutions,
-            }
-            """
-            self.graph_captcha = False
-        else:
-            self.graph_captcha = False
+            # still not implemented
+            pass
 
     def timedelta_check(self):
         """
@@ -207,34 +181,29 @@ class Token(TempObj):
 
         """
         now = datetime_now()
-        start = (self.creation_date + timedelta(seconds=self.start_validity_secs) )
+        start = (self.creation_date + timedelta(seconds=self.start_validity_secs))
         if not start < now:
-            log.debug("creation + validity (%d) = %s < now %s, still to early" %(
-                self.start_validity_secs, start, now))
+            log.debug("creation + validity (%d) = %s < now %s, still to early" %
+                      (self.start_validity_secs, start, now))
             raise errors.TokenRequestError("Too early to use this token")
 
 
-        # This will never raises when I've integrated the self expising
-        # object.
+        # This will never happen after integration of self expiring objects.
         end = (self.creation_date + timedelta(self.end_validity_secs) )
         if now > end:
-            log.debug("creation + end_validity (%d) = %s > now %s, too late" %(
-                self.end_validity_secs, start, now))
+            log.debug("creation + end_validity (%d) = %s > now %s, too late" %
+                      (self.end_validity_secs, start, now))
             raise errors.TokenRequestError("Too late to use this token")
 
         # If the code reach here, the time delta is good.
 
-
     def human_captcha_check(self, resolved_human_captcha):
-        """
-        Check the human captcha with the pseudo-mockup we're right now
-        """
         if not self.human_captcha:
             return
 
         if int(self.human_captcha['answer']) != int(resolved_human_captcha):
-            log.debug("Failed Human captcha: expected %s got %s" % (
-                self.human_captcha['answer'], resolved_human_captcha
+            log.debug("Failed human captcha: expected %s got %s" % (
+                (self.human_captcha['answer'], resolved_human_captcha)
             ))
             raise errors.TokenRequestError("Failed Human captcha")
         else:
@@ -247,31 +216,31 @@ class Token(TempObj):
             return
 
         if self.graph_captcha['answer'] != resolved_graph_captcha:
-            log.debug("Failed Graph captcha: expected %s got %s" % (
-                self.graph_captcha['answer'], resolved_graph_captcha
+            log.debug("Failed graph captcha: expected %s got %s" % (
+                (self.graph_captcha['answer'], resolved_graph_captcha)
             ))
             raise errors.TokenRequestError("Failed Graphical captcha")
         else:
-            log.debug("Successfil Graphical captcha resolution: %s" %
+            log.debug("Successful Graphical captcha resolution: %s" %
                       resolved_graph_captcha)
 
-
-    def hashcash_check(self, resolved_hashcash):
+    def proof_of_work_check(self, resolved_proof_of_work):
         pass
 
 
     def validate(self, request):
         """
-        @request is the submission, it contains the
-        *_solution field, if missing, is because is not
-        yet implemented.
+        @request is the submission;
+          it contains the *_solution fields.
+          if some fields are currently missing, it's because they are
+          not yet implemented.
         """
 
-        if not self.usages:
-            TokenList.del_Token(self.id)
-            raise errors.TokenRequestError("Too many tries: Token deleted")
+        if not self.remaining_allowed_attempts:
+            TokenList.delete(self.id)
+            raise errors.TokenRequestError("Too many attepts")
         else:
-            log.debug("Token has %d available tries" % self.usages)
+            log.debug("Token has %d available tries" % self.remaining_allowed_attempts)
 
         # any of these can raise an exception if check fail
         try:
@@ -280,18 +249,18 @@ class Token(TempObj):
             if self.human_captcha is not False:
                 self.human_captcha_check(request['human_solution'])
 
-            # Raise an exception if, by mistake, we ask for something not yet supported
-            if self.proof_of_work is not False:
-                assert False, "Proof of Work! NotYetImplemented"
-
             if self.graph_captcha is not False:
                 assert False, "Graphical Captcha! NotYetImplemented"
 
+            # Raise an exception if, by mistake, we ask for something not yet supported
+            if self.proof_of_work is not False:
+                assert False, "Proof of Wor<M-F12>k! NotYetImplemented"
+
         except errors.GLException as gle:
-            log.debug("Error triggered in Token validation, usages %d => %d" % (
-                self.usages, self.usages -1))
-            self.usages -= 1
-            raise gle
+            log.debug("Error triggered in Token validation, remaining attempts %d => %d" % (
+                self.remaining_allowed_attempts, self.remaining_allowed_attempts - 1))
+            self.remaining_allowed_attempts -= 1
+            raise
 
         # if the code flow reach here, the token is validated
         log.debug("Token validated properly")

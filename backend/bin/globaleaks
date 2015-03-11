@@ -276,7 +276,7 @@ def run_glbackend():
             from globaleaks.jobs.statistics_sched import get_statistics
             lost = get_statistics()
             if lost:
-                print "Losing from stats these activities: %s" % lost
+                print "Losing from stats the following activities: %s" % lost
         except OSError as ose:
             print "Unable to start globaleaks: %s: %s" % (ose.strerror, ose.filename)
             quit(ose.errno)

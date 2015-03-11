@@ -160,7 +160,6 @@ class FileAdd(BaseHandler):
     @inlineCallbacks
     def handle_file_append(self, itip_id):
         result_list = []
-        # TODO remind self: why is a list with just one element, and not a dict ?
 
         start_time = time.time()
 

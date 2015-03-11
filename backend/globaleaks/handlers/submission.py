@@ -156,9 +156,6 @@ def verify_steps(steps, wb_steps):
 
 
 def db_finalize_submission(store, token, request, language):
-    # TODO In order to be more efficent, we have not query on Context,
-    # but get the GLApiCache
-
     context = store.find(Context, Context.id == token.context_associated).one()
     if not context:
         # this can happen only if the context is removed
@@ -237,10 +234,9 @@ def get_submission(store, submission_id):
 
 class SubmissionCreate(BaseHandler):
     """
-    This class Request a token to create a submission. is kept the naming with "Create"
-    suffix for internal globaleaks convention, but this handler do not interact with
-    Database, InternalTip, submissions.
-    return a submission_id, keep track of the request time, in order to , usable in update operation
+    This class Request a token to create a submission.
+    We keep the naming with "Create" suffix for internal globaleaks convention,
+    but this handler do not interact with Database, InternalTip, Submissions, etc.
     """
 
     @transport_security_check('wb')
@@ -265,12 +261,11 @@ class SubmissionCreate(BaseHandler):
         This create a Token, require to complete the submission later
         """
 
-        token = Token('submission', context_id, debug=True)
+        token = Token('submission', context_id)
         token.set_difficulty(Alarm().get_token_difficulty())
         token_answer = token.serialize_token()
 
-
-        # {'hashcash': False,
+        # {'proof_of_work': False,
         #  'usages': 1,
         #  'start_validity': '2015-02-09T13:23:44.325796Z',
         #  'end_validity': '2015-02-09T13:26:44.325796Z',
@@ -290,7 +285,7 @@ class SubmissionCreate(BaseHandler):
         # preset the answers from the captcha stuff, to success input validation
         token_answer.update({'human_solution': 0})
 
-        # {'hashcash': False,
+        # {'proof_of_work': False,
         #  'usages': 1,
         #  'start_validity': '2015-02-09T13:23:44.325796Z',
         #  'end_validity': '2015-02-09T13:26:44.325796Z',
@@ -327,25 +322,20 @@ class SubmissionInstance(BaseHandler):
         Parameter: token_id
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
-        Errors: ContextIdNotFound, InvalidInputFormat, SubmissionFailFields, SubmissionIdNotFound, SubmissionConcluded
 
-        PUT update the submission and finalize if requested.
+        PUT finalize the submission
         """
         @transact
         def put_transact(store, token, request):
-
             status = db_finalize_submission(store, token, request, self.request.language)
-
             receipt = db_create_whistleblower_tip(store, status)
             status.update({'receipt': receipt})
-
             return status
 
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
         # the .get method raise an exception if the token is invalid
-        TokenList.get(token_id)
-        token = TokenList.token_dict[token_id]
+        token = TokenList.get(token_id)
 
         log.debug("Token received: %s" % token)
         # raise an error if the usage is too early for the token
@@ -355,12 +345,7 @@ class SubmissionInstance(BaseHandler):
 
         token.validate(request)
 
-        # TODO remove from the GLClient/REST logic submission ['files']
-        request.pop('files')
-
         status = yield put_transact(token, request)
 
         self.set_status(202) # Updated, also if submission if effectively created (201)
         self.finish(status)
-
-
