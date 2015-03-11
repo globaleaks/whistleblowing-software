@@ -1,0 +1,24 @@
+<div id="HumanCaptcha" ng-show="submission.current_submission.human_captcha" >
+  <div class="alert alert-warning">
+    <div>
+      <h3 data-translate>Are you human ?</h3>
+      <div data-translate>We do not argue on your race, sex, gender, but we discriminate against computers :)</div>
+      <div data-translate>At the moment, it seems that the node is experiencing more operation than common, this automatic check is intended to avoid spammers.</div>
+      <br />
+      <div>
+        <span data-translate>Just to prove you are human, please answer the following math challenge:</span>
+        <span>{{submission.current_submission.human_captcha}}</span>
+      </div>
+      <div>
+        <input id="human_captcha_answer" ng-model="submission.current_submission.human_captcha_answer"type="text" />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <!-- the value human_captcha_answer will be sent back to the server -->
+    <button class="btn btn-success" data-ng-click="submission.current_submission.human_captcha = false">
+      <i class="glyphicon glyphicon-ok"></i>
+      <span data-translate>I've solved the math challenge, hide this thing now!</span>
+    </button>
+  </div>
+</div>
