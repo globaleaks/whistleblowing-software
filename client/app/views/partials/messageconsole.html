@@ -8,7 +8,7 @@
     -->
     <div class="alert alert-error errorMessage alert-warning alert-dismissable" fadeout="">
       <button type="button" class="close" data-dismiss="alert">×</button>
-      <p><strong>{{error.url}}</strong></p>
+      <p><strong>{{error.(URL)}}</strong></p>
       <div data-ng-switch="" on="error.code" >
 
         <div data-ng-switch-when="18">
@@ -21,10 +21,6 @@
 
         <div data-ng-switch-when="12">
           <span data-translate>No Context was found with the specified ID</span>
-        </div>
-
-        <div data-ng-switch-when="17">
-          <span data-translate>Some parameters provided in the context creation can't work together</span>
         </div>
 
         <div data-ng-switch-when="33">
@@ -79,14 +75,6 @@
           <span data-translate>Authentication in Tip failed</span>
         </div>
 
-        <div data-ng-switch-when="32">
-          <span data-translate>No email was specified</span>
-        </div>
-
-        <div data-ng-switch-when="16">
-          <span data-translate>Node not found</span>
-        </div>
-
         <div data-ng-switch-when="30">
           <span data-translate>Not Authenticated</span>
         </div>
@@ -97,10 +85,6 @@
 
         <div data-ng-switch-when="38">
           <span data-translate>The file uploaded has a reserved name</span>
-        </div>
-
-        <div data-ng-switch-when="11">
-          <span data-translate>Statistics Disabled</span>
         </div>
 
         <div data-ng-switch-when="28">
@@ -115,16 +99,8 @@
           <span data-translate>No Submission was found with the specified ID</span>
         </div>
 
-        <div data-ng-switch-when="42">
-          <span data-translate>Invalid time range supplied for</span> {{error.arguments[0]}}:{{error.arguments[1]}}
-        </div>
-
         <div data-ng-switch-when="13">
           <span data-translate>No Tip was found with the specified ID</span>
-        </div>
-
-        <div data-ng-switch-when="15">
-          <span data-translate>Pertinence evaluation has been already expressed</span>
         </div>
 
         <div data-ng-switch-when="14">

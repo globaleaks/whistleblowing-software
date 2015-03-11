@@ -813,7 +813,6 @@ class NodeInstance(BaseHandler):
 
         Parameters: None
         Response: adminNodeDesc
-        Errors: NodeNotFound
         """
         node_description = yield admin_serialize_node(self.request.language)
         self.set_status(200)

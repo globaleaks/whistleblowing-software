@@ -42,14 +42,8 @@ class InvalidInputFormat(GLException):
         self.arguments.append(wrong_source)
 
 
-class StatsNotCollectedError(GLException):
-    """
-    Statistics can be disabled by administrator, both for
-    public and admin statistics.
-    """
-    reason = "Statistics Disabled"
-    error_code = 11
-    status_code = 500 # Internal Server Error
+# UNUSED ERROR CODE 11 HERE!
+
 
 class ContextIdNotFound(GLException):
     """
@@ -68,6 +62,7 @@ class TipIdNotFound(GLException):
     error_code = 13
     status_code = 404 # Not Found
 
+
 class TipReceiptNotFound(GLException):
     """
     The WhisleBlower receipt is not related to any of the whistleblower tips
@@ -76,32 +71,9 @@ class TipReceiptNotFound(GLException):
     error_code = 14
     status_code = 404 # Not Found
 
-class TipPertinenceExpressed(GLException):
-    """
-    Pertinence in the Tip has been already expressed by the receiver, and only one
-    vote per receiver is possible
-    """
-    reason = "Pertinence evaluation has been already expressed"
-    error_code = 15
-    status_code = 409 # Conflict
 
-class NodeNotFound(GLException):
-    """
-    This may happen only if, via database, the node entry is removed,
-    because it's created by default and do not exists a function able to
-    remove the Node at all.
-    """
-    reason = "Node not found"
-    error_code = 16
-    http_code = 506 # Variant also negotiated
+# UNUSED ERROR CODE 15 16 17 HERE!
 
-class ContextParameterConflict(GLException):
-    """
-    Some parameters explicit in the context creation can't works together
-    """
-    reason = "Some parameters explicit in the context creation can't works together"
-    error_code = 17
-    status_code = 409 # Conflict
 
 class AccessLimitExceeded(GLException):
     """
@@ -110,6 +82,7 @@ class AccessLimitExceeded(GLException):
     reason = "The receiver has reached the maximum amount of access for this Tip"
     error_code = 18
     status_code = 503 # Servie Unavailable
+
 
 class ExpectedUniqueField(GLException):
     """
@@ -133,6 +106,7 @@ class ReceiverIdNotFound(GLException):
     error_code = 20
     status_code = 404 # Not Found
 
+
 class SubmissionIdNotFound(GLException):
     """
     The Submission ID requested do not exists in the database.
@@ -140,6 +114,7 @@ class SubmissionIdNotFound(GLException):
     reason = "Not found a Submission with the specified ID"
     error_code = 21
     status_code = 404 # Not Found
+
 
 class SubmissionFailFields(GLException):
     """
@@ -165,6 +140,7 @@ class InvalidTipAuthToken(GLException):
     error_code = 23
     status_code = 401 # Unauthorized
 
+
 class InvalidScopeAuth(GLException):
     """
     A good login password combo is provided, but in the wrong scope (happen
@@ -187,6 +163,7 @@ class ForbiddenOperation(GLException):
     error_code = 25
     status_code = 401 # Unauthorized
 
+
 class FileIdNotFound(GLException):
     """
     The requested file Id do not exist in the database
@@ -194,6 +171,7 @@ class FileIdNotFound(GLException):
     reason = "Not found a File with the specified ID "
     error_code = 26
     status_code = 404 # Not Found
+
 
 class SubmissionConcluded(GLException):
     """
@@ -203,6 +181,7 @@ class SubmissionConcluded(GLException):
     error_code = 28
     status_code = 409 # Conflict
 
+
 class InvalidAuthRequest(GLException):
     """
     An invalid request was presented
@@ -210,6 +189,7 @@ class InvalidAuthRequest(GLException):
     reason = "Authentication Failed"
     error_code = 29
     status_code = 401 # Unauthorized
+
 
 class NotAuthenticated(GLException):
     """
@@ -220,6 +200,7 @@ class NotAuthenticated(GLException):
     error_code = 30
     status_code = 412 # Precondition Failed
     reason = "Not Authenticated"
+
 
 class InternalServerError(GLException):
     """
@@ -234,14 +215,8 @@ class InternalServerError(GLException):
         self.arguments.append(details)
 
 
-class NoEmailSpecified(GLException):
-    """
-    Receiver has email address as requirement (username is the email address) and
-    is validated by a regular expression, if do not match, this error is triggered
-    """
-    reason = "No email was specified"
-    error_code = 32
-    status_code = 406
+# UNUSED ERROR CODE 32 HERE!
+
 
 class DownloadLimitExceeded(GLException):
     """
@@ -250,6 +225,7 @@ class DownloadLimitExceeded(GLException):
     reason = "You've reached the maximum amount of download for this file"
     error_code = 33
     status_code = 503 # Service Unavailable
+
 
 class InvalidOldPassword(GLException):
     """
@@ -260,6 +236,7 @@ class InvalidOldPassword(GLException):
     error_code = 34
     status_code = 406
 
+
 class CommentNotFound(GLException):
     """
     A Comment UUID expected has not been found
@@ -267,6 +244,7 @@ class CommentNotFound(GLException):
     reason = "The specified comment was not found"
     error_code = 35
     status_code = 404
+
 
 class InvalidHostSpecified(GLException):
     """
@@ -277,6 +255,7 @@ class InvalidHostSpecified(GLException):
     error_code = 36
     status_code = 417 # Expectation Fail
 
+
 class TorNetworkRequired(GLException):
     """
     A connection receiver not via Tor network is required to
@@ -286,6 +265,7 @@ class TorNetworkRequired(GLException):
     error_code = 37
     status_code = 417 # Expectation Fail
 
+
 class ReservedFileName(GLException):
     """
     The files uploaded in the static file directory, are also used for Receivers portrait
@@ -294,6 +274,7 @@ class ReservedFileName(GLException):
     reason = "The file uploaded has a reserved name"
     error_code = 38
     status_code = 403 # Forbidden
+
 
 class HTTPRawLimitReach(GLException):
     """
@@ -308,6 +289,7 @@ class HTTPRawLimitReach(GLException):
         self.arguments = []
         self.arguments = [ GLSetting.memory_copy.maximum_filesize ]
 
+
 class GPGKeyInvalid(GLException):
     """
     The provided GPG key has an invalid format and can't be imported
@@ -316,18 +298,9 @@ class GPGKeyInvalid(GLException):
     error_code = 40
     status_code = 406
 
-# UNUSED ERROR CODE 41 HERE!
 
-class GPGKeyIDNotUnique(GLException):
-    """
-    A GPG key id need to be unique in the node
-    Remind: not yet used
-    """
-    reason = "The GPG Key ID it's already used by another receiver"
-    error_code = 42
-    status_code =  406
+# UNUSED ERROR CODE 41 42 43 44 45 HERE!
 
-# UNUSED ERROR CODE 43 44 45 HERE!
 
 class InvalidTipTimeToLive(GLException):
     """
@@ -338,6 +311,7 @@ class InvalidTipTimeToLive(GLException):
     error_code =  46
     status_code = 406
 
+
 class InvalidSubmTimeToLive(GLException):
     """
     tip_timetolive and submission_timetolive maybe proposed of weird values,
@@ -347,6 +321,7 @@ class InvalidSubmTimeToLive(GLException):
     error_code =  47
     status_code = 406
 
+
 class InvalidTipSubmCombo(GLException):
     """
     tip_timetolive and submission_timetolive can be proposed with weird values.
@@ -354,6 +329,7 @@ class InvalidTipSubmCombo(GLException):
     reason = "Submission time to life can't be more than Tip"
     error_code =  48
     status_code = 406
+
 
 class FileRequiredMissing(GLException):
     """
@@ -364,6 +340,7 @@ class FileRequiredMissing(GLException):
     error_code =  49
     status_code = 406
 
+
 class ExtendTipLifeNotEnabled(GLException):
     """
     Ability to postpone expiration date is not enabled in the node
@@ -371,6 +348,7 @@ class ExtendTipLifeNotEnabled(GLException):
     reason = "This node do not permit expiration date extensions"
     error_code =  50
     status_code = 403
+
 
 class StaticFileNotFound(GLException):
     """
@@ -380,6 +358,7 @@ class StaticFileNotFound(GLException):
     error_code = 51
     status_code = 404
 
+
 class LangFileNotFound(GLException):
     """
     It has been requested an operation on a non existent language file
@@ -387,6 +366,7 @@ class LangFileNotFound(GLException):
     reason = "Requested an operation on a non existent language file"
     error_code = 52
     status_code = 404
+
 
 class DirectoryTraversalError(GLException):
     """
@@ -396,13 +376,9 @@ class DirectoryTraversalError(GLException):
     error_code = 53
     status_code = 403
 
-class UnexistentDownloadToken(GLException):
-    """
-    The requested download token does not exists or is expired.
-    """
-    reason = "The requested download token does not exists or is expired"
-    error_code = 54
-    status_code = 404
+
+# UNUSED ERROR CODE 52 HERE!
+
 
 class FloodException(GLException):
     error_code = 55
@@ -413,6 +389,7 @@ class FloodException(GLException):
         self.arguments = []
         self.arguments.append(seconds)
 
+
 class SubmissionFlood(FloodException):
     error_code = 56
     status_code = 403
@@ -421,6 +398,7 @@ class SubmissionFlood(FloodException):
         self.reason = "Too many submissions in %d seconds" % seconds
         self.arguments = []
         self.arguments.append(seconds)
+
 
 class FileUploadFlood(FloodException):
     error_code = 57
@@ -431,10 +409,12 @@ class FileUploadFlood(FloodException):
         self.arguments = []
         self.arguments.append(seconds)
 
+
 class FieldIdNotFound(GLException):
     error_code = 58
     status_code = 404
     reason = "Not found a Field with the specified ID"
+
 
 class ModelNotFound(GLException):
     """
@@ -448,6 +428,7 @@ class ModelNotFound(GLException):
             self.reason = "Model not found"
         else:
             self.reason = "Model of type {} has not been found".format(model)
+
 
 class TipMessagesNotFound(GLException):
     error_code = 60

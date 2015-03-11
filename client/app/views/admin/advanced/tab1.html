@@ -4,11 +4,6 @@
       <b><span data-translate>You're running GlobaLeaks version</span> {{admin.node.version}}</b>
     </p>
 
-    <p>
-      <span data-translate>This section contains settings that may break your installation. Please refer to the</span>
-      <a href="https://github.com/globaleaks/GlobaLeaks/wiki/Advanced-configuration" target="_blank" rel="noreferrer" data-translate>Advanced configuration</a>.
-    </p>
-
     <div class="form-group">
       <label data-translate>Landing Page</label>
       <select name="type" class="form-control" data-ng-model="admin.node.landing_page" required>
@@ -24,7 +19,7 @@
       </label>
       <div data-ng-show="admin.node.allow_unencrypted">
         <span class="label label-danger" data-translate>Danger</span>
-        <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your node.</span>
+        <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your server.</span>
         <span data-translate>This happens whenever encryption is unavailable.</span>
       </div>
     </div>
@@ -113,7 +108,7 @@
       </label>
       <div data-ng-show="admin.node.ahmia">
         <span class="label label-info" data-translate>Enabled</span>
-        <span data-translate>Node metadata will be now published using Ahmia JSON format.</span>
+        <span data-translate>Server metadata will be now published using Ahmia JSON format.</span>
       </div>
     </div>
 
