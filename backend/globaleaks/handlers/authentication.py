@@ -20,7 +20,7 @@ from globaleaks.utils.utility import log
 from globaleaks.third_party import rstr
 
 # needed in order to allow UT override
-reactor = None
+reactor_override = None
 
 class GLSession(tempobj.TempObj):
 
@@ -33,7 +33,7 @@ class GLSession(tempobj.TempObj):
                                  GLSetting.sessions,
                                  rstr.xeger(r'[A-Za-z0-9]{42}'),
                                  GLSetting.defaults.lifetimes[user_role],
-                                 reactor)
+                                 reactor_override)
 
     def __repr__(self):
         session_string = "%s %s expire in %s" % \

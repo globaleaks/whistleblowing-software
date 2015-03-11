@@ -27,25 +27,20 @@ class TestToken(unittest.TestCase):
         anomaly.EventTrackQueue.reset()
 
         # Token submission
-        st = Token('submission', context_id="ignored", debug=True)
+        st = Token('submission', context_id="ignored", reactor=c)
         st.set_difficulty(TestToken.shared_alarm_obj.get_token_difficulty())
 
         for indicator in TestToken.stress_indicator:
-            self.assertFalse( getattr(st, indicator), indicator )
+            self.assertFalse(getattr(st, indicator), indicator)
 
         st_dict = st.serialize_token()
-        self.assertEqual(st_dict['usages'], 1)
-
-        try:
-            st.expire()
-        except DirtyReactorAggregateError:
-            pass
-
+        self.assertEqual(st_dict['remaining_allowed_attempts'], Token.MAXIMUM_ATTEMPTS_PER_TOKEN)
 
 
     def test_token_obj_level1_stress(self):
 
         c = task.Clock() # deterministic clock
+
         mock_high_difficulty = {
             'human_captcha': True,
             'graph_captcha': True,
@@ -53,66 +48,53 @@ class TestToken(unittest.TestCase):
         }
 
         # Token submission
-        st = Token('submission', context_id='ignored', debug=True)
+        st = Token('submission', context_id='ignored', reactor=c)
         st.set_difficulty(mock_high_difficulty)
 
-        self.assertTrue( st.graph_captcha.has_key('answer') )
-        self.assertTrue( st.human_captcha.has_key('answer') )
-
-        # TODO make a proper evaluation of captcha creation
         st_dict = st.serialize_token()
 
-        # self.assertTrue( isinstance(st.graph_captcha['question'], unicode) )
-        self.assertTrue( isinstance(st.graph_captcha['answer'], list ) )
+        if st.graph_captcha:
+            self.assertTrue(st.graph_captcha.has_key('answer'))
+            self.assertTrue(isinstance(st.graph_captcha['answer'], list ))
 
-        self.assertTrue( isinstance(st.human_captcha['question'], unicode) )
-        self.assertTrue( isinstance(st.human_captcha['answer'], unicode) )
+        if st.human_captcha:
+            self.assertTrue(st.human_captcha.has_key('answer'))
+            self.assertTrue(isinstance(st.human_captcha['answer'], unicode))
 
-        st_dict = st.serialize_token()
-        self.assertEqual(st_dict['usages'], 1)
-
-        try:
-            st.expire()
-        except DirtyReactorAggregateError:
-            pass
-
+        self.assertEqual(st_dict['remaining_allowed_attempts'], Token.MAXIMUM_ATTEMPTS_PER_TOKEN)
 
     def test_token_create_and_get(self):
 
         c = task.Clock() # deterministic clock
+
         # This is at the beginning
         anomaly.EventTrackQueue.reset()
 
         token_collection = []
         for i in xrange(20):
 
-            st = Token('submission', context_id='ignored')
+            st = Token('submission', context_id='ignored', reactor=c)
             st.set_difficulty(TestToken.shared_alarm_obj.get_token_difficulty())
 
-            token_collection.append( st )
+            token_collection.append(st)
 
         # Here we're testing the 'Too early usage'
-        from globaleaks.rest.errors import TokenRequestError
+        from globaleaks.rest.errors import TokenFailure
 
         for t in token_collection:
-            retrieve_token = TokenList.validate_token_id(t.id)
+            token = TokenList.get(t.id)
+
+            difficulty = {
+                'human_captcha': True,
+                'graph_captcha': False,
+                'proof_of_work': False,
+            }
+
+            token.set_difficulty(difficulty)
 
             self.assertRaises(
-                TokenRequestError,
-                retrieve_token['token_object'].validate, retrieve_token
+                TokenFailure,
+                token.validate, {'human_captcha_answer': 0}
             )
-
-            # and check exactly the reason:
-            try:
-                retrieve_token['token_object'].validate(retrieve_token)
-            except TokenRequestError as TRE:
-                self.assertEqual(TRE.reason,
-                                 "Token Error: Too early to use this token ")
-
-            try:
-                retrieve_token['token_object'].expire()
-            except DirtyReactorAggregateError:
-                pass
-
 
 

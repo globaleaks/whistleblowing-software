@@ -4,7 +4,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 from globaleaks.handlers import admin
-from globaleaks.handlers.submission import db_finalize_submission
 from globaleaks.jobs import delivery_sched
 from globaleaks.plugins.base import Event
 from globaleaks.utils.templating import Templating
@@ -151,46 +150,47 @@ supported_event_types = { u'encrypted_tip': 'Tip',
                           u'admin_pgp_expiration_alert': '',
                           u'pgp_expiration_alert': ''}
 
-class notifTemplateTest(helpers.TestGL):
-    @inlineCallbacks
+class notifTemplateTest(helpers.TestGLWithPopulatedDB):
     def _fill_event_dict(self, event_type, event_trigger):
         """
         A notification is based on the Node, Context and Receiver values,
         that has to be taken from the database.
         """
-        receiver_dict = yield admin.get_receiver(self.createdReceiver['id'], 'en')
-        context_dict = yield admin.get_context(self.createdContext['id'], 'en')
-        steps_dict = yield admin.get_context_steps(self.createdContext['id'], 'en')
-        notif_dict = yield admin.notification.get_notification('en')
-
-        node_dict = yield admin.admin_serialize_node('en')
-
         self.subevent = {}
 
         # this is requested in the file cases
         if event_type == 'ping_mail':
             self.subevent = {'counter': 42}
         elif event_type == 'admin_pgp_expiration_alert':
-            self.subevent = {'expired_or_expiring': [receiver_dict]}
+            self.subevent = {'expired_or_expiring': [self.receiver_dict]}
         else:
             self.subevent['name'] = ' foo '
             self.subevent['size'] = ' 123 '
             self.subevent['content_type'] = ' application/javascript '
-            self.subevent['creation_date'] = context_dict['creation_date']
+            self.subevent['creation_date'] = self.context_dict['creation_date']
             self.subevent['type'] = ' sorry maker '
 
         self.event = Event(type=event_type,
                            trigger=event_trigger,
-                           node_info=node_dict,
-                           receiver_info=receiver_dict,
-                           context_info=context_dict,
-                           steps_info=steps_dict,
-                           tip_info=self.tip,
+                           node_info=self.node_dict,
+                           receiver_info=self.receiver_dict,
+                           context_info=self.context_dict,
+                           steps_info=self.steps_dict,
+                           tip_info=self.rtip_dict,
                            subevent_info=self.subevent,
                            do_mail=False)
 
     @inlineCallbacks
     def test_keywords_conversion(self):
+        yield self.perform_submission()
+
+        self.receiver_dict = yield admin.get_receiver(self.dummyReceiver_1['id'], 'en')
+        self.context_dict = yield admin.get_context(self.dummyContext['id'], 'en')
+        self.steps_dict = yield admin.get_context_steps(self.dummyContext['id'], 'en')
+        self.notif_dict = yield admin.notification.get_notification('en')
+        self.node_dict = yield admin.admin_serialize_node('en')
+        self.rtip_dict = self.dummyRTips[0]['itip']
+
         self.templates = {}
         for t, keywords_list in templates_desc.iteritems():
 
@@ -199,43 +199,6 @@ class notifTemplateTest(helpers.TestGL):
             for kwl in keywords_list:
                 for keyword in kwl:
                     self.templates[t] += " " + keyword + " / "
-
-        ### INITIALIZE DATABASE
-        self.mockContext = helpers.MockDict().dummyContext
-        self.mockReceiver = helpers.MockDict().dummyReceiverGPG
-        self.mockNode = helpers.MockDict().dummyNode
-
-        self.createdContext = yield admin.create_context(self.mockContext, 'en')
-        self.assertTrue('id' in self.createdContext)
-
-        self.mockReceiver['contexts'] = [ self.createdContext['id'] ]
-
-        self.createdReceiver = yield admin.create_receiver(self.mockReceiver, 'en')
-        self.assertTrue('id' in self.createdReceiver)
-
-        self.createdNode = yield admin.update_node(self.mockNode, True, 'en')
-        self.assertTrue('version' in self.createdNode)
-        ### END OF THE INITIALIZE BLOCK
-
-        # THE REAL CONVERSION TEST START HERE:
-        self.mockSubmission = helpers.MockDict().dummySubmission
-        self.mockSubmission['finalize'] = True
-        self.mockSubmission['context_id'] = self.createdReceiver['contexts'][0]
-        self.mockSubmission['receivers'] = [ self.createdReceiver['id'] ]
-        self.mockSubmission['wb_fields'] = helpers.fill_random_fields(self.createdContext)
-        self.templatingToken = Token(token_kind='submission',
-                                     context_id=self.mockContext['context_id'],
-                                     debug=False)
-        self.createdSubmission = yield db_finalize_submission(self.templatingToken,
-                                                                         self.mockSubmission,
-                                                                         'en')
-
-        created_rtip = yield delivery_sched.tip_creation()
-        self.assertEqual(len(created_rtip), 1)
-
-        # some doubt in the next two lines: is just to have a mock tip
-        self.tip = dict(self.mockSubmission)
-        self.tip['id'] = created_rtip[0]
 
         for template_name, template in self.templates.iteritems():
             # look for appropriate event_type, event_trigger
@@ -251,12 +214,12 @@ class notifTemplateTest(helpers.TestGL):
                 # we've nothing to do not!
                 continue
 
-            yield self._fill_event_dict(event_type, event_trigger)
+            self._fill_event_dict(event_type, event_trigger)
 
             # with the event, we can finally call the template filler
             gentext = Templating().format_template(template, self.event)
 
             if template_name != 'ping_mail_template' and template_name != 'ping_mail_title':
-                self.assertSubstring(self.createdContext['name'], gentext)
-                self.assertSubstring(self.createdNode['public_site'], gentext)
-                self.assertSubstring(self.createdNode['hidden_service'], gentext)
+                self.assertSubstring(self.context_dict['name'], gentext)
+                self.assertSubstring(self.node_dict['public_site'], gentext)
+                self.assertSubstring(self.node_dict['hidden_service'], gentext)

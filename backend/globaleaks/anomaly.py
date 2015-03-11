@@ -21,7 +21,7 @@ from globaleaks.utils.utility import log, datetime_now, is_expired, \
 from globaleaks.utils.tempobj import TempObj
 
 # needed in order to allow UT override
-reactor = None
+reactor_override = None
 
 # follow the checker, they are executed from handlers/base.py
 # prepare() or flush()
@@ -197,7 +197,7 @@ class EventTrack(TempObj):
                          self.event_id,
                          # seconds of validity:
                          GLSetting.anomaly_seconds_delta,
-                         reactor)
+                         reactor_override)
 
         self.expireCallbacks.append(self.synthesis)
 
@@ -281,7 +281,7 @@ class Alarm(object):
         'wb_messages': 4,
         'receiver_comments': 3,
         'receiver_messages': 3,
-#        'homepage_access': 60,
+        #'homepage_access': 60,
     }
 
     # the level of the alarm in 30 seconds
@@ -315,9 +315,9 @@ class Alarm(object):
             'proof_of_work': False,
         }
 
+        print Alarm.stress_levels['activity']
         # TODO make a proper assessment between pissed off users and defeated DoS
         if Alarm.stress_levels['activity'] >= 1:
-            self.difficulty_dict['graph_captcha'] = True
             self.difficulty_dict['human_captcha'] = True
 
         if Alarm.stress_levels['disk_space'] >= 1:

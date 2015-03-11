@@ -41,8 +41,8 @@ spec = [
     (r'/description.json', node.AhmiaDescriptionHandler),
 
     ## Submission Handlers ##
-    (r'/submission/' + uuid_regexp, submission.SubmissionCreate),
-    (r'/submission/' + uuid_regexp + '/' + token_string, submission.SubmissionInstance),
+    (r'/submission', submission.SubmissionCreate),
+    (r'/submission/' + token_string, submission.SubmissionInstance),
     (r'/submission/' + token_string + '/file', files.FileInstance),
 
     ## Receiver Tip Handlers ##

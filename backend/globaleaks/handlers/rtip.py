@@ -22,9 +22,10 @@ from globaleaks.models import Node, Comment, ReceiverFile, Message, EventLogs
 from globaleaks.rest import errors
 from globaleaks.security import access_tip
 
-def receiver_serialize_internal_tip(internaltip, language):
+def receiver_serialize_tip(internaltip, language):
 
     ret_dict = {
+        'id': internaltip.id,
         'context_id': internaltip.context.id,
         'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
@@ -110,7 +111,7 @@ def db_get_tip_receiver(store, user_id, tip_id, language):
     eventlst = store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
                                          EventLogs.mail_sent == True)).remove()
 
-    tip_desc = receiver_serialize_internal_tip(rtip.internaltip, language)
+    tip_desc = receiver_serialize_tip(rtip.internaltip, language)
 
     # are added here because part of ReceiverTip, not InternalTip
     tip_desc['access_counter'] = rtip.access_counter

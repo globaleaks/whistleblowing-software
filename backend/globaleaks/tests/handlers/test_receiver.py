@@ -103,7 +103,7 @@ class TestNotificationCollection(helpers.TestHandlerWithPopulatedDB):
 
         self.assertEqual(len(self.responses), 1)
         self.assertEqual(len(self.responses[0]['tips']), 1)
-        self.assertEqual(len(self.responses[0]['activities']), 5)
+        self.assertEqual(len(self.responses[0]['activities']), 12)
 
     @inlineCallbacks
     def test_delete(self):

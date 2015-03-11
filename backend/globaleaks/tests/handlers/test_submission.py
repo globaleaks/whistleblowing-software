@@ -17,12 +17,7 @@ from globaleaks.utils.token import Token
 from globaleaks.handlers.submission import create_whistleblower_tip, SubmissionCreate, SubmissionInstance
 
 # and here, our protagonist character:
-from globaleaks.handlers.submission import db_finalize_submission
-
-# necessary because Token is a TempObj -- but I've not understand exactly the logic
-import globaleaks.utils.token.reactor
-from twisted.internet import task
-globaleaks.utils.token.reactor = task.Clock()
+from globaleaks.handlers.submission import create_submission
 
 @transact_ro
 def collect_ifile_as_wb_without_wbtip(store, internaltip_id):
@@ -38,33 +33,29 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     encryption_scenario = 'ALL_PLAINTEXT'
 
     @inlineCallbacks
-    def create_submisstest(self, request):
+    def create_submission(self, request):
+        token = Token('submission', request['context_id'])
+        output = yield create_submission(token, request, 'en')
+        returnValue(output)
 
-        token = Token('submission', request['context_id'], debug=False)
-        output = yield db_finalize_submission(token, request, 'en')
+    @inlineCallbacks
+    def create_submission_with_files(self, request):
+        token = Token('submission', request['context_id'])
+        yield self.emulate_file_upload(token)
+        output = yield create_submission(token, request, 'en')
         returnValue(output)
 
     @inlineCallbacks
     def test_create_submission_valid_submission_finalized(self):
-
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        self.submission_desc = self.create_submisstest(self.submission_desc)
-        print self.submission_desc
-
-    @inlineCallbacks
-    def test_create_submission_valid_submission_finalize_by_update(self):
-        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        self.submission_desc = yield self.create_submisstest(self.submission_desc)
-
-        self.assertEqual(self.submission_desc['mark'], u'finalize')
+        self.submission_desc = yield self.create_submission(self.submission_desc)
 
     @inlineCallbacks
     def test_create_submission_valid_submission(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+        self.submission_desc = yield self.create_submission(self.submission_desc)
 
-        self.submission_desc = yield self.create_submisstest(self.submission_desc)
-
-        self.assertEqual(self.submission_desc['mark'], u'submission')
+        self.assertEqual(self.submission_desc['mark'], u'finalize')
 
         for wb_step in self.submission_desc['wb_steps']:
             for c in wb_step['children']:
@@ -72,27 +63,21 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         self.submission_desc['finalize'] = True
 
-        yield self.assertFailure(self.create_submisstest(self.submission_desc),
-                                 errors.InvalidInputFormat )
+        yield self.assertFailure(self.create_submission(self.submission_desc),
+                                 errors.InvalidInputFormat)
 
     @inlineCallbacks
     def test_create_submission_with_wrong_receiver(self):
         disassociated_receiver = yield create_receiver(self.get_dummy_receiver('dumb'), 'en')
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc['receivers'].append(disassociated_receiver['id'])
-        yield self.assertFailure(self.create_submisstest(self.submission_desc),
+        yield self.assertFailure(self.create_submission(self.submission_desc),
                                  errors.InvalidInputFormat)
 
     @inlineCallbacks
     def test_create_submission_attach_files_finalize_and_access_wbtip(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        self.submission_desc['finalize'] = True
-
-        token = Token('submission', self.submission_desc['context_id'])
-        self.submission_desc = yield self.create_submisstest(self.submission_desc)
-
-        x = yield self.emulate_file_upload(token)
-        print "check ABC", x
+        self.submission_desc = yield self.create_submission_with_files(self.submission_desc)
 
         receipt = yield create_whistleblower_tip(self.submission_desc)
 
@@ -107,7 +92,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_create_receiverfiles_allow_unencrypted_true_no_keys_loaded(self):
-
         yield self.test_create_submission_attach_files_finalize_and_access_wbtip()
 
         # create receivertip its NEEDED to create receiverfile
@@ -128,13 +112,13 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         self.fil = yield delivery_sched.get_files_by_itip(self.submission_desc['id'])
         self.assertTrue(isinstance(self.fil, list))
-        self.assertEqual(len(self.fil), 2)
+        self.assertEqual(len(self.fil), 9)
 
         self.rfi = yield delivery_sched.get_receiverfile_by_itip(self.submission_desc['id'])
         self.assertTrue(isinstance(self.rfi, list))
-        self.assertEqual(len(self.rfi), 4)
+        self.assertEqual(len(self.rfi), 18)
 
-        for i in range(0, 4):
+        for i in range(0, 18):
             self.assertTrue(self.rfi[i]['mark'] in [u'not notified', u'skipped'])
             self.assertTrue(self.rfi[i]['status'] in [u'reference', u'encrypted'])
 
@@ -142,15 +126,12 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         #  wfv = yield tip.get_files_wb()
         # because is not generated a WhistleblowerTip in this test
         self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.submission_desc['id'])
-        self.assertEqual(len(self.wbfls), 2)
+        self.assertEqual(len(self.wbfls), 9)
 
     @inlineCallbacks
     def test_submission_with_receiver_selection_allow_unencrypted_true_no_keys_loaded(self):
-
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        self.submission_desc['finalize'] = True
-
-        self.submission_desc = yield self.create_submisstest(self.submission_desc)
+        self.submission_desc = yield self.create_submission(self.submission_desc)
 
         receiver_tips = yield delivery_sched.tip_creation()
         self.assertEqual(len(receiver_tips), len(self.submission_desc['receivers']))
@@ -158,13 +139,12 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_submission_with_receiver_selection_allow_unencrypted_false_no_keys_loaded(self):
-
         GLSetting.memory_copy.allow_unencrypted = False
 
         # Create a new request with selected three of the four receivers
         submission_request = yield self.get_dummy_submission(self.dummyContext['id'])
 
-        yield self.assertFailure(self.create_submisstest(submission_request),
+        yield self.assertFailure(self.create_submission(submission_request),
                                  errors.SubmissionFailFields)
 
     @inlineCallbacks
@@ -172,7 +152,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
 
         self.submission_desc['wb_steps'] = yield helpers.fill_random_fields(self.dummyContext['id'])
-        self.submission_desc = yield self.create_submisstest(self.submission_desc)
+        self.submission_desc = yield self.create_submission(self.submission_desc)
 
         receipt = yield create_whistleblower_tip(self.submission_desc)
         wb_access_id = yield authentication.login_wb(receipt)
@@ -198,7 +178,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         self.assertTrue(found_at_least_a_field)
 
-        yield self.assertFailure(self.create_submisstest(self.submission_desc),
+        yield self.assertFailure(self.create_submission(self.submission_desc),
                                  errors.SubmissionFailFields)
 
     @inlineCallbacks
@@ -220,7 +200,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
                 break
             i += 1
 
-        yield self.assertFailure(self.create_submisstest(sbmt),
+        yield self.assertFailure(self.create_submission(sbmt),
                                  errors.SubmissionFailFields)
 
 class Test_SubmissionCreate(helpers.TestHandlerWithPopulatedDB):
@@ -228,49 +208,13 @@ class Test_SubmissionCreate(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
-        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-
-        handler = self.request(self.submission_desc, {})
-        yield handler.post()
-
-        self.submission_desc = self.responses[0]
-
-        self.responses = []
-        token = Token('submission', self.submission_desc['context_id'])
-
-        yield self.emulate_file_upload(token)
-
-        self.submission_desc['finalize'] = True
-
-        handler = self.request(self.submission_desc, {'context_id': 123})
-        yield handler.post()
-
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.internalTipDesc)
+        handler = self.request()
+        yield handler.post(self.dummyContext['id'])
 
 
 class Test_SubmissionInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = SubmissionInstance
 
-    def test_get_unexistent_submission(self):
-        handler = self.request({})
-        self.assertFailure(handler.get("unextistent"), errors.SubmissionIdNotFound)
-
-    @inlineCallbacks
-    def test_get_existent_submission(self):
-        submissions_ids = yield self.get_finalized_submissions_ids()
-
-        for submission_id in submissions_ids:
-            handler = self.request({})
-            yield handler.get(submission_id)
-            self.assertTrue(isinstance(self.responses, list))
-            self._handler.validate_message(json.dumps(self.responses[0]), requests.internalTipDesc)
-
-    @inlineCallbacks
-    def test_delete_existent_but_finalized_submission(self):
-        submissions_ids = yield self.get_finalized_submissions_ids()
-
-        for submission_id in submissions_ids:
-            handler = self.request({})
-            self.assertFailure(handler.delete(submission_id), errors.SubmissionConcluded)
+    def test_put(self):
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+        token = Token('submission', self.dummyContext['id'])

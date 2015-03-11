@@ -8,27 +8,28 @@ from globaleaks.tests import helpers
 from globaleaks.handlers import files, submission
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile
+from globaleaks.utils.token import Token
 
 class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = files.FileInstance
 
     @inlineCallbacks
     def test_post_file_on_not_finalized_submission(self):
-        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        self.submission_desc = yield submission.create_submission(self.submission_desc, False, 'en')
+        self.dummyToken = Token(token_kind='submission',
+                                context_id=self.dummyContext['id'])
 
         handler = self.request(body=self.get_dummy_file())
-        yield handler.post(self.submission_desc['id'])
+        yield handler.post(self.dummyToken.token_id)
 
     @inlineCallbacks
     def test_post_file_finalized_submission(self):
         yield self.perform_submission()
         handler = self.request(body=self.get_dummy_file())
-        self.assertFailure(handler.post(self.dummySubmission['id']), errors.SubmissionConcluded)
+        self.assertFailure(handler.post(self.dummySubmission['id']), errors.TokenFailure)
 
     def test_post_file_on_unexistent_submission(self):
         handler = self.request(body=self.get_dummy_file())
-        self.assertFailure(handler.post(u'unexistent_submission'), errors.SubmissionIdNotFound)
+        self.assertFailure(handler.post(u'unexistent_submission'), errors.TokenFailure)
 
 class TestFileAdd(helpers.TestHandlerWithPopulatedDB):
     _handler = files.FileAdd

@@ -254,8 +254,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('Submission', ['$resource', '$filter', '$location', 'Authentication', 'Node', 'Contexts', 'Receivers',
   function($resource, $filter, $location, Authentication, Node, Contexts, Receivers) {
 
-    var submissionResource = $resource('/submission/:context_id/:token_id/',
-        {token_id: '@token_id', context_id: '@context_id'},
+    var submissionResource = $resource('/submission/:token_id/',
+        {token_id: '@token_id'},
         {submit:
           {method: 'PUT'}
     });
@@ -354,8 +354,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.current_submission = new submissionResource({
           context_id: self.current_context.id,
           wb_steps: _.clone(self.current_context.steps),
-          files: [],
-          receivers: []
+          receivers: [],
+          human_captcha_answer: 0
         });
 
         setCurrentContextReceivers();

@@ -3,6 +3,9 @@
 from twisted.internet import reactor
 from twisted.python import components
 
+# needed in order to allow UT override
+reactor_override = None
+
 class TempObj(components.Componentized):
     """
     A temporary object.
@@ -25,6 +28,9 @@ class TempObj(components.Componentized):
 
         if reactor is not None:
             self._reactor = reactor
+
+        if reactor_override:
+            self._reactor = reactor_override
 
         self.parent = parent
         self.id = id

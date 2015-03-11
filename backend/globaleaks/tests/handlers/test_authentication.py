@@ -27,7 +27,7 @@ class TestSessionUpdateOnUnauthRequests(helpers.TestHandlerWithPopulatedDB):
     def test_successful_session_update_on_unauth_request(self):
         session = authentication.GLSession('admin', 'admin', 'enabled')
         date1 = session.getTime()
-        authentication.reactor.advance(FUTURE)
+        authentication.reactor_override.advance(FUTURE)
         handler = self.request({}, headers={'X-Session': session.id})
         yield handler.get()
         date2 = GLSetting.sessions[session.id].getTime()
@@ -40,7 +40,7 @@ class TestSessionUpdateOnAuthRequests(helpers.TestHandlerWithPopulatedDB):
     def test_successful_session_update_on_auth_request(self):
         session = authentication.GLSession('admin', 'admin', 'enabled')
         date1 = session.getTime()
-        authentication.reactor.advance(FUTURE)
+        authentication.reactor_override.advance(FUTURE)
         handler = self.request({}, headers={'X-Session': session.id})
         yield handler.get()
         date2 = GLSetting.sessions[session.id].getTime()

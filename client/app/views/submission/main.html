@@ -1,32 +1,11 @@
+<div data-ng-include="'views/partials/captchas.html'"></div>
+
 <div id="ContextPickSelector" data-ng-show="contexts_selectable && submission.contexts.length > 1" class="form-inline">
   <label data-translate>I want to report on</label>
   <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'"></select>
 </div>
 
 <div id="ContextIntroductionBox">{{submission.current_context.description}}</div>
-
-
-<div id="HumanCaptcha" ng-show="submission.current_submission.h_captcha" >
-  <div class="alert alert-warning">
-    <div>
-      <h3 data-translate>Are you human ?</h3>
-      <div data-translate>We do not argue on your race, sex, gender, but we discriminate against computers :) At the moment, seem the node is experiencing more operation than common, this automatic check is intended to avoid spammers.</div>
-      <br />
-      <div><b>Please solve: {{submission.current_submission.h_captcha}}</b></div>
-      <div>
-        <input type="number" id="human_solution" ng-model="submission.current_submission.human_solution" class="col-md-4" />
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <!-- the value human_solution will be sent back to the server -->
-    <button class="btn btn-success" data-ng-click="submission.current_submission.h_captcha = false">
-      <i class="glyphicon glyphicon-ok"></i>
-      <span data-translate>I've solved the math, hide this thing now</span>
-    </button>
-  </div>
-</div>
-
 
 <form name="submissionForm" novalidate>
   <div data-ng-if="!(submission.current_context.steps.length > 1)" data-ng-include="'views/submission/main_vertical.html'"></div>

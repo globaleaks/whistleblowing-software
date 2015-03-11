@@ -4,13 +4,15 @@ from datetime import datetime
 
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import models
 from globaleaks.settings import GLSetting, transact
 from globaleaks.tests import helpers
 from globaleaks.rest import errors, requests
 from globaleaks.handlers import base, admin, submission, authentication, receiver, rtip, wbtip
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.jobs import delivery_sched
-from globaleaks import models
+from globaleaks.utils.token import Token
+
 STATIC_PASSWORD = u'bungabunga ;( 12345'
 
 class MockHandler(base.BaseHandler):
@@ -173,9 +175,11 @@ class TestTipInstance(TTip):
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['id']])
 
         dummySubmissionDict = yield self.get_dummy_submission(self.context_desc['id'])
-        basehandler.validate_jmessage(dummySubmissionDict, requests.wbSubmissionDesc)
 
-        self.submission_desc = yield submission.create_submission(dummySubmissionDict, True, 'en')
+        token = Token(token_kind='submission',
+                      context_id=self.context_desc['id'])
+
+        self.submission_desc = yield submission.create_submission(token, dummySubmissionDict, 'en')
 
         self.assertEqual(self.submission_desc['wb_steps'], dummySubmissionDict['wb_steps'])
         self.assertEqual(self.submission_desc['mark'], u'finalize')
