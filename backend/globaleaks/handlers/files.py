@@ -251,7 +251,7 @@ class FileInstance(BaseHandler):
         Parameter: internaltip_id
         Request: Unknown
         Response: Unknown
-        Errors: SubmissionIdNotFound, SubmissionConcluded
+        Errors: TokenFailure, TokenFailure
 
         XXX:
         The idea is to implement a GET on the file upload, in order
@@ -317,7 +317,6 @@ def download_all_files(store, user_id, tip_id):
 
     files_list = []
     for sf in rfiles:
-
         if sf.downloads == sf.internalfile.internaltip.download_limit:
             log.debug("massive file download for %s: skipped %s (limit %d reached)" % (
                 sf.receiver.name, sf.internalfile.name, sf.downloads

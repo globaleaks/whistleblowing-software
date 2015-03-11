@@ -17,6 +17,9 @@ from globaleaks.rest import errors
 from globaleaks.utils.tempobj import TempObj
 from globaleaks.settings import GLSetting
 
+# needed in order to allow UT override
+reactor_override = None
+
 class TokenList:
 
     token_dict = dict()
@@ -29,20 +32,17 @@ class TokenList:
         :return:
         """
         if t_id not in TokenList.token_dict:
-            raise errors.TokenRequestError("Not found")
+            raise errors.TokenFailure("Not found")
 
         del TokenList.token_dict[t_id]
 
     @staticmethod
     def get(t_id):
         if t_id not in TokenList.token_dict:
-            raise errors.TokenRequestError("Not found")
+            raise errors.TokenFailure("Not found")
 
         return TokenList.token_dict[t_id]
 
-
-# needed in order to allow UT override
-reactor = None
 
 class Token(TempObj):
 
@@ -51,7 +51,7 @@ class Token(TempObj):
     MAXIMUM_ATTEMPTS_PER_TOKEN = 3
     MAXIMUM_UPLOADS_PER_TOKEN = 20
 
-    def __init__(self, token_kind, context_id):
+    def __init__(self, token_kind, context_id, reactor=None):
         """
         token_kind assumes currently only value 'submission.
 
@@ -63,6 +63,9 @@ class Token(TempObj):
         # is a sign of a psyco life. (vecnish!)
         if GLSetting.devel_mode:
             self.start_validity_secs = 0
+
+        if reactor_override:
+            reactor = reactor_override
 
         self.kind = token_kind
 
@@ -106,7 +109,7 @@ class Token(TempObj):
         :return: None or raise an error
         """
         if not self.remaining_allowed_uploads:
-            raise errors.TokenRequestError("Too much files uploaded")
+            raise errors.TokenFailure("Too much files uploaded")
 
         self.remaining_allowed_uploads -= 1
 
@@ -129,7 +132,7 @@ class Token(TempObj):
                 test_desc = "%s[H:%s]" % (test_desc,  getattr(self, a)['question'])
 
         token_string = "Token %s with %s" % (self.kind,
-                                             test_desc if len(test_desc) else "No test")
+                                             test_desc if len(test_desc) else "no test description")
 
         return token_string
 
@@ -143,21 +146,21 @@ class Token(TempObj):
             'end_validity_secs': datetime_to_ISO8601(self.creation_date +
                                                 timedelta(seconds=self.end_validity_secs) ),
             'remaining_allowed_attempts': self.remaining_allowed_attempts,
-            'remaining_allowed_uploades': self.remaining_allowed_uploads,
+            'remaining_allowed_uploads': self.remaining_allowed_uploads,
             'type': self.kind,
-            'g_captcha': self.graph_captcha['question'] if self.graph_captcha else False,
-            'h_captcha': self.human_captcha['question'] if self.human_captcha else False,
+            'graph_captcha': self.graph_captcha['question'] if self.graph_captcha else False,
+            'human_captcha': self.human_captcha['question'] if self.human_captcha else False,
             'proof_of_work': self.proof_of_work['question'] if self.proof_of_work else False,
         }
 
-    def set_difficulty(self, problems_dict):
+    def set_difficulty(self, challenges_dict):
         """
-        @problems_dict: arrive directly from anomaly.Alarm.get_token_difficulty
+        @challenges_dict: arrive directly from anomaly.Alarm.get_token_difficulty
             and in a future enhancement we can implement set_difficult in
             FileToken or SubmissionToken and here the shared element.
         """
 
-        if problems_dict['human_captcha']:
+        if challenges_dict['human_captcha']:
             random_a = randint(1, 10)
             random_b = randint(1, 10)
 
@@ -166,18 +169,18 @@ class Token(TempObj):
                 'answer': u"%d" % (random_a + random_b)
             }
 
-        if problems_dict['proof_of_work']:
+        if challenges_dict['proof_of_work']:
             # still not implemented
             pass
 
-        if problems_dict['graph_captcha']:
+        if challenges_dict['graph_captcha']:
             # still not implemented
             pass
 
     def timedelta_check(self):
         """
-        This timedelta check verify that the current time fit between
-        the starting_
+        This timedelta check verify that the current time fits between
+        the start validity time and the end vality time.
 
         """
         now = datetime_now()
@@ -185,7 +188,7 @@ class Token(TempObj):
         if not start < now:
             log.debug("creation + validity (%d) = %s < now %s, still to early" %
                       (self.start_validity_secs, start, now))
-            raise errors.TokenRequestError("Too early to use this token")
+            raise errors.TokenFailure("Too early to use this token")
 
 
         # This will never happen after integration of self expiring objects.
@@ -193,7 +196,7 @@ class Token(TempObj):
         if now > end:
             log.debug("creation + end_validity (%d) = %s > now %s, too late" %
                       (self.end_validity_secs, start, now))
-            raise errors.TokenRequestError("Too late to use this token")
+            raise errors.TokenFailure("Too late to use this token")
 
         # If the code reach here, the time delta is good.
 
@@ -205,13 +208,12 @@ class Token(TempObj):
             log.debug("Failed human captcha: expected %s got %s" % (
                 (self.human_captcha['answer'], resolved_human_captcha)
             ))
-            raise errors.TokenRequestError("Failed Human captcha")
+            raise errors.TokenFailure("Failed human captcha")
         else:
-            log.debug("Successful Human captcha resolution: %s" %
+            log.debug("Successful human captcha resolution: %s" %
                       resolved_human_captcha)
 
     def graph_captcha_check(self, resolved_graph_captcha):
-
         if not self.graph_captcha:
             return
 
@@ -219,9 +221,9 @@ class Token(TempObj):
             log.debug("Failed graph captcha: expected %s got %s" % (
                 (self.graph_captcha['answer'], resolved_graph_captcha)
             ))
-            raise errors.TokenRequestError("Failed Graphical captcha")
+            raise errors.TokenFailure("Failed graphical captcha")
         else:
-            log.debug("Successful Graphical captcha resolution: %s" %
+            log.debug("Successful graphical captcha resolution: %s" %
                       resolved_graph_captcha)
 
     def proof_of_work_check(self, resolved_proof_of_work):
@@ -238,16 +240,16 @@ class Token(TempObj):
 
         if not self.remaining_allowed_attempts:
             TokenList.delete(self.id)
-            raise errors.TokenRequestError("Too many attepts")
+            raise errors.TokenFailure("Too many attepts")
         else:
-            log.debug("Token has %d available tries" % self.remaining_allowed_attempts)
+            log.debug("Token allow other %d attempts" % self.remaining_allowed_attempts)
 
         # any of these can raise an exception if check fail
         try:
             self.timedelta_check()
 
             if self.human_captcha is not False:
-                self.human_captcha_check(request['human_solution'])
+                self.human_captcha_check(request['human_captcha_answer'])
 
             if self.graph_captcha is not False:
                 assert False, "Graphical Captcha! NotYetImplemented"
@@ -256,7 +258,7 @@ class Token(TempObj):
             if self.proof_of_work is not False:
                 assert False, "Proof of Wor<M-F12>k! NotYetImplemented"
 
-        except errors.GLException as gle:
+        except Exception:
             log.debug("Error triggered in Token validation, remaining attempts %d => %d" % (
                 self.remaining_allowed_attempts, self.remaining_allowed_attempts - 1))
             self.remaining_allowed_attempts -= 1

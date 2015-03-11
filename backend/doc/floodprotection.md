@@ -52,8 +52,8 @@ To accomplish a CPU/Disk Intensive Operation (CDIO) a token is needed, and a tok
     end_validity: the last second which the token can be used (datetime format)
     type: comment/submission/upload, specify which kind of operation is permitted with the token
     usages: an integer, specify how many times the token can be used. for comment and submission is always 1, but our client support multiple file upload, therefore the usage for this reason can be higher (10)
-    h_captcha: human captcha, contain a question like "2+2" and is expected that answer in the token usage
-    g_captcha: a base64 image that contain a string, need to be resolved 
+    human_captcha: human captcha, contain a question like "2+2" and is expected that answer in the token usage
+    graph_captcha: a base64 image that contain a string, need to be resolved 
     proof_of_work: time consuming problem
 
 

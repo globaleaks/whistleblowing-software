@@ -50,7 +50,7 @@ def db_create_whistleblower_tip(store, submission_desc):
 
     node = store.find(Node).one()
 
-    return_value_receipt = unicode( rstr.xeger(node.receipt_regexp) )
+    return_value_receipt = unicode(rstr.xeger(node.receipt_regexp))
     wbtip.receipt_hash = security.hash_password(return_value_receipt, node.receipt_salt)
 
     wbtip.access_counter = 0
@@ -155,7 +155,7 @@ def verify_steps(steps, wb_steps):
     return verify_fields_recursively(indexed_fields, indexed_wb_fields)
 
 
-def db_finalize_submission(store, token, request, language):
+def db_create_submission(store, token, request, language):
     context = store.find(Context, Context.id == token.context_associated).one()
     if not context:
         # this can happen only if the context is removed
@@ -221,15 +221,9 @@ def db_finalize_submission(store, token, request, language):
     return submission_dict
 
 
-@transact_ro
-def get_submission(store, submission_id):
-    submission = store.find(InternalTip, InternalTip.id == unicode(submission_id)).one()
-
-    if not submission:
-        log.err("Invalid Submission requested %s in GET" % submission_id)
-        raise errors.SubmissionIdNotFound
-
-    return wb_serialize_internaltip(submission)
+@transact
+def create_submission(store, token, request, language):
+    return db_create_submission(store, token, request, language)
 
 
 class SubmissionCreate(BaseHandler):
@@ -241,7 +235,7 @@ class SubmissionCreate(BaseHandler):
 
     @transport_security_check('wb')
     @unauthenticated
-    def post(self, context_id):
+    def post(self):
         """
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
@@ -260,49 +254,16 @@ class SubmissionCreate(BaseHandler):
 
         This create a Token, require to complete the submission later
         """
+        request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
-        token = Token('submission', context_id)
+        token = Token('submission', request['context_id'])
         token.set_difficulty(Alarm().get_token_difficulty())
         token_answer = token.serialize_token()
 
-        # {'proof_of_work': False,
-        #  'usages': 1,
-        #  'start_validity': '2015-02-09T13:23:44.325796Z',
-        #  'end_validity': '2015-02-09T13:26:44.325796Z',
-        #  'token_id': u'sl0nEmLtxaogJ1er4B2TWHUdv9RAmD6TusKgL8d97u',
-        #  'type': 'submission', 'g_captcha': False,
-        #  'h_captcha': False,
-        #  'creation_date': '2015-02-09T13:22:44.325796Z'}
-
-        # change, put the post_transact + finalize in PUT and removed from here
-        # request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
-
         token_answer.update({'submission_id': token_answer['token_id'] })
         token_answer.update({'id': token_answer['token_id'] })
-        token_answer.update({'files': [] })
-        token_answer.update({'context_id': context_id})
-
-        # preset the answers from the captcha stuff, to success input validation
-        token_answer.update({'human_solution': 0})
-
-        # {'proof_of_work': False,
-        #  'usages': 1,
-        #  'start_validity': '2015-02-09T13:23:44.325796Z',
-        #  'end_validity': '2015-02-09T13:26:44.325796Z',
-        #  'token_id': u'sl0nEmLtxaogJ1er4B2TWHUdv9RAmD6TusKgL8d97u',
-        #  'type': 'submission', 'g_captcha': False,
-        #  'h_captcha': False,
-        #  'creation_date': '2015-02-09T13:22:44.325796Z'}
-
-        # change, put the post_transact + finalize in PUT and removed from here
-        # request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
-
-        token_answer.update({'submission_id': token_answer['token_id'] })
-        token_answer.update({'id': token_answer['token_id'] })
-        token_answer.update({'files': [] })
-        # tmp hackish, I can copy the context receive via get, in order to make
-        # SubmissionRequest context dependent in the URL (finally, holy fuck)
-        token_answer.update({'context_id': context_id})
+        token_answer.update({'context_id': request['context_id']})
+        token_answer.update({'human_captcha_answer': 0})
 
         self.set_status(201) # Created
         self.finish(token_answer)
@@ -317,7 +278,7 @@ class SubmissionInstance(BaseHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def put(self, context_id, token_id):
+    def put(self, token_id):
         """
         Parameter: token_id
         Request: wbSubmissionDesc
@@ -327,7 +288,7 @@ class SubmissionInstance(BaseHandler):
         """
         @transact
         def put_transact(store, token, request):
-            status = db_finalize_submission(store, token, request, self.request.language)
+            status = db_create_submission(store, token, request, self.request.language)
             receipt = db_create_whistleblower_tip(store, status)
             status.update({'receipt': receipt})
             return status
@@ -340,7 +301,7 @@ class SubmissionInstance(BaseHandler):
         log.debug("Token received: %s" % token)
         # raise an error if the usage is too early for the token
 
-        if not token.context_associated == context_id:
+        if not token.context_associated == request['context_id']:
             raise errors.InvalidInputFormat("Token context unaligned with REST url")
 
         token.validate(request)

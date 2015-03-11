@@ -9,13 +9,13 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.rest import errors
 from globaleaks.security import GLBGPG
-from globaleaks.handlers import receiver, files
+from globaleaks.handlers import receiver, files, submission
 from globaleaks.handlers.admin import create_receiver, create_context, get_context_list
-from globaleaks.handlers.submission import create_submission, update_submission
 from globaleaks.settings import GLSetting
 from globaleaks.models import Receiver
 from globaleaks.jobs.delivery_sched import DeliverySchedule, get_files_by_itip, get_receiverfile_by_itip
 from globaleaks.plugins.base import Event
+from globaleaks.utils.token import Token
 from globaleaks.utils.templating import Templating
 
 from globaleaks.tests.helpers import MockDict, fill_random_fields, TestHandlerWithPopulatedDB, VALID_PGP_KEY1, VALID_PGP_KEY2, EXPIRED_PGP_KEY
@@ -195,16 +195,11 @@ class TestGPG(TestHandlerWithPopulatedDB):
         new_subm['receivers'] = [ asdr_output['id'],
                                   yanr_output['id'] ]
         new_subm['wb_steps'] = yield fill_random_fields(new_context_output['id'])
-        new_subm_output = yield create_submission(new_subm, False, 'en')
-        # self.submission_assertion(new_subm, new_subm_output)
 
-        self.emulate_file_upload(new_subm_output['id'])
+        token = Token('submission', new_context_output['id'])
+        yield self.emulate_file_upload(token)
 
-        new_file = self.get_dummy_file()
-
-        new_subm['id'] = new_subm_output['id']
-        new_subm['finalize'] = True
-        new_subm_output = yield update_submission(new_subm['id'], new_subm, True, 'en')
+        new_subm_output = yield submission.create_submission(token, new_subm, 'en')
 
         yield DeliverySchedule().operation()
 
@@ -212,15 +207,15 @@ class TestGPG(TestHandlerWithPopulatedDB):
         ifilist = yield get_files_by_itip(new_subm_output['id'])
 
         self.assertTrue(isinstance(ifilist, list))
-        self.assertEqual(len(ifilist), 2)
+        self.assertEqual(len(ifilist), 9)
         self.assertEqual(ifilist[0]['mark'], u'delivered')
 
         rfilist = yield get_receiverfile_by_itip(new_subm_output['id'])
 
         self.assertTrue(isinstance(ifilist, list))
-        self.assertEqual(len(rfilist), 2)
+        self.assertEqual(len(rfilist), 18)
 
-        for i in range(0, 2):
+        for i in range(0, 9):
             self.assertLess(ifilist[0]['size'], rfilist[i]['size'])
 
         self.assertEqual(rfilist[0]['status'], u"encrypted" )

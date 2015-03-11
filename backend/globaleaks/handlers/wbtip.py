@@ -21,6 +21,7 @@ from globaleaks.rest import errors
 
 def wb_serialize_tip(internaltip, language):
     ret_dict = {
+        'id': internaltip.id,
         'context_id': internaltip.context.id,
         'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
         'last_activity' : datetime_to_ISO8601(internaltip.creation_date),

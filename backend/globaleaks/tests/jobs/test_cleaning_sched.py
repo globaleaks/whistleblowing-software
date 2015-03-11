@@ -12,6 +12,7 @@ from globaleaks import models
 from globaleaks.rest import requests
 from globaleaks.handlers import base, admin, submission, files, rtip, receiver
 from globaleaks.jobs import delivery_sched, cleaning_sched
+from globaleaks.utils.token import Token
 from globaleaks.utils.utility import is_expired, datetime_null
 from globaleaks.settings import transact, GLSetting
 from globaleaks.tests.test_tip import TTip
@@ -78,14 +79,12 @@ class TestCleaning(helpers.TestGL):
         tips = store.find(models.InternalTip)
         for tip in tips:
             tip.creation_date = datetime_null()
-            self.assertTrue(is_expired(tip.creation_date))
 
     @transact
     def force_tip_expire(self, store):
         tips = store.find(models.InternalTip)
         for tip in tips:
             tip.expiration_date = datetime_null()
-            self.assertTrue(is_expired(tip.expiration_date))
 
     @inlineCallbacks
     def do_setup_tip_environment(self):
@@ -126,22 +125,13 @@ class TestCleaning(helpers.TestGL):
         self.assertEqual(self.receiver2_desc['contexts'], [ self.context_desc['id']])
 
         dummySubmission = yield self.get_dummy_submission(self.context_desc['id'])
-        basehandler.validate_jmessage(dummySubmission, requests.wbSubmissionDesc)
-
-        self.submission_desc = yield submission.create_submission(dummySubmission, False, 'en')
-
-        self.assertEqual(self.submission_desc['wb_steps'], dummySubmission['wb_steps'])
-        self.assertEqual(self.submission_desc['mark'], u'submission')
 
     @inlineCallbacks
-    def do_finalize_submission(self):
-        self.submission_desc['finalize'] = True
-        self.submission_desc['wb_steps'] = yield helpers.fill_random_fields(self.context_desc['id'])
-        self.submission_desc = yield submission.update_submission(
-            self.submission_desc['id'],
-            self.submission_desc,
-            True,
-            'en')
+    def do_create_submission(self):
+        token = Token('submission', self.context_desc['id'])
+        yield self.emulate_file_upload(token)
+        self.submission_desc = yield self.get_dummy_submission(self.context_desc['id'])
+        self.submission_desc = yield submission.create_submission(token, self.submission_desc, 'en')
 
         self.assertEqual(self.submission_desc['mark'], u'finalize')
 
@@ -170,13 +160,15 @@ class TipCleaning(TestCleaning):
         yield self.do_setup_tip_environment()
         yield self.check_tip_not_expired()
         yield self.force_submission_expire()
+
         yield cleaning_sched.CleaningSchedule().operation()
+
         yield self.test_cleaning()
 
     @inlineCallbacks
     def test_tip_life_and_expire(self):
         yield self.do_setup_tip_environment()
-        yield self.do_finalize_submission()
+        yield self.do_create_submission()
 
         yield delivery_sched.DeliverySchedule().operation()
 
@@ -187,10 +179,11 @@ class TipCleaning(TestCleaning):
 
         yield self.test_cleaning()
 
+
     @inlineCallbacks
     def test_tip_life_postpone(self):
         yield self.do_setup_tip_environment()
-        yield self.do_finalize_submission()
+        yield self.do_create_submission()
 
         yield delivery_sched.DeliverySchedule().operation()
 
@@ -206,9 +199,7 @@ class TipCleaning(TestCleaning):
     def test_tip_life_and_expire_with_files(self):
         yield self.do_setup_tip_environment()
 
-        yield self.emulate_file_upload(self.submission_desc['id'])
-
-        yield self.do_finalize_submission()
+        yield self.do_create_submission()
 
         yield delivery_sched.DeliverySchedule().operation()
 

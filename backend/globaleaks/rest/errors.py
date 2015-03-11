@@ -42,7 +42,7 @@ class InvalidInputFormat(GLException):
         self.arguments.append(wrong_source)
 
 
-class TokenRequestError(GLException):
+class TokenFailure(GLException):
     """
     Some kind of reason to reject a submission Token
     """
@@ -115,13 +115,7 @@ class ReceiverIdNotFound(GLException):
     status_code = 404 # Not Found
 
 
-class SubmissionIdNotFound(GLException):
-    """
-    The Submission ID requested do not exists in the database.
-    """
-    reason = "Not found a Submission with the specified ID"
-    error_code = 21
-    status_code = 404 # Not Found
+# UNUSED ERROR CODE 21 HERE!
 
 
 class SubmissionFailFields(GLException):
@@ -181,13 +175,7 @@ class FileIdNotFound(GLException):
     status_code = 404 # Not Found
 
 
-class SubmissionConcluded(GLException):
-    """
-    The submission accessed haa been already completed
-    """
-    reason = "The submission tried to be update has been already finalized"
-    error_code = 28
-    status_code = 409 # Conflict
+# UNUSED ERROR CODE 28 HERE!
 
 
 class InvalidAuthRequest(GLException):
