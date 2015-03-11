@@ -46,6 +46,11 @@ GLClient.controller('SubmissionCtrl',
 
   };
 
+  var RecordCaptcha = function() {
+    console.log("succede davvero");
+    console.log($scope.human_solution);
+  };
+
   $scope.selected_receivers_count = function () {
     var count = 0;
 

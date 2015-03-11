@@ -173,7 +173,7 @@ class GLSettingsClass(object):
         self.cleaning_hours_delta = 6             # runner.py function expects hours
         self.notification_minutes_delta = 2       # runner.py function expects minutes
         self.delivery_seconds_delta = 20          # runner.py function expects seconds
-        self.anomaly_seconds_delta = 30           # runner.py function expects seconds
+        self.anomaly_seconds_delta = 10           # runner.py function expects seconds
         self.mailflush_minutes_delta = 5          # before change check mailflush logic and delay
 
         self.www_form_urlencoded_maximum_size = 1024
@@ -219,6 +219,10 @@ class GLSettingsClass(object):
         self.defaults.notif_port = None
         self.defaults.notif_username = None
         self.defaults.notif_security = None
+
+        # this became false when, few MBs cause node to disable submissions
+        self.defaults.disk_availability = True
+        self.defaults.minimum_megabytes_required = 1000 # 1 GB, or the node is disable
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.

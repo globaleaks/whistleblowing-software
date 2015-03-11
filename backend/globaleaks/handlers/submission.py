@@ -11,16 +11,18 @@ import copy
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.models import Context, InternalTip, Receiver, ReceiverInternalTip, \
-    WhistleblowerTip, Node, InternalFile
+from globaleaks.models import Context, InternalTip, Receiver, WhistleblowerTip, \
+    Node, InternalFile
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin import db_get_context_steps
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
+from globaleaks.utils.token import Token, TokenList
 from globaleaks.rest import requests
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
 from globaleaks.third_party import rstr
 from globaleaks.rest import errors
+from globaleaks.anomaly import Alarm
 
 def wb_serialize_internaltip(internaltip):
 
@@ -61,7 +63,7 @@ def db_create_whistleblower_tip(store, submission_desc):
 def create_whistleblower_tip(*args):
     return db_create_whistleblower_tip(*args)
 
-def import_receivers(store, submission, receiver_id_list, required=False):
+def import_receivers(store, submission, receiver_id_list):
     context = submission.context
 
     # Clean the previous list of selected Receiver
@@ -75,7 +77,7 @@ def import_receivers(store, submission, receiver_id_list, required=False):
     # and now clean the received list and import the new Receiver set.
     receiver_id_list = set(receiver_id_list)
 
-    if required and (not len(receiver_id_list)):
+    if not len(receiver_id_list):
         log.err("Receivers required to be selected, not empty")
         raise errors.SubmissionFailFields("Needed almost one Receiver selected")
 
@@ -107,29 +109,10 @@ def import_receivers(store, submission, receiver_id_list, required=False):
         log.debug("+receiver [%s] In tip (%s) #%d" %\
                 (receiver.name, submission.id, submission.receivers.count() ) )
    
-    if required and submission.receivers.count() == 0:
+    if submission.receivers.count() == 0:
         log.err("Receivers required to be selected, not empty")
         raise errors.SubmissionFailFields("Needed at least one Receiver selected [2]")
 
-# Remind: it's a store without @transaction because called by a @ŧransact
-def import_files(store, submission, files):
-    """
-    @param submission: the Storm obj
-    @param files: the list of InternalFiles UUIDs
-    @return:
-        Look if all the files specified in the list exist,
-        Look if the context *require* almost a file, raise
-            an error if missed
-    """
-    for file_id in files:
-        try:
-            ifile = store.find(InternalFile, InternalFile.id == unicode(file_id)).one()
-        except Exception as excep:
-            log.err("Storm error, not found %s file in import_files (%s)" %
-                    (file_id, excep))
-            raise errors.FileIdNotFound
-
-        ifile.internaltip_id = submission.id
 
 def verify_fields_recursively(fields, wb_fields):
     for f in fields:
@@ -171,10 +154,17 @@ def verify_steps(steps, wb_steps):
 
     return verify_fields_recursively(indexed_fields, indexed_wb_fields)
 
-def db_create_submission(store, request, finalize, language):
-    context = store.find(Context, Context.id == unicode(request['context_id'])).one()
+
+def db_finalize_submission(store, token, request, language):
+    # TODO In order to be more efficent, we have not query on Context,
+    # but get the GLApiCache
+
+    context = store.find(Context, Context.id == token.context_associated).one()
     if not context:
-        log.err("Context requested: [%s] not found!" % request['context_id'])
+        # this can happen only if the context is removed
+        # between submission POST and PUT.. :) that's why is better just
+        # ignore this check, take che cached and wait the reference below fault
+        log.err("Context requested: [%s] not found!" % token.context_associated)
         raise errors.ContextIdNotFound
 
     submission = InternalTip()
@@ -184,11 +174,7 @@ def db_create_submission(store, request, finalize, language):
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
     submission.context_id = context.id
     submission.creation_date = datetime_now()
-
-    if finalize:
-        submission.mark = u'finalize'  # Finalized
-    else:
-        submission.mark = u'submission' # Submission
+    submission.mark = u'finalize' # Finalized
 
     try:
         store.add(submission)
@@ -197,17 +183,31 @@ def db_create_submission(store, request, finalize, language):
         raise errors.InternalServerError("Unable to commit on DB")
 
     try:
-        import_files(store, submission, request['files'])
+        for filedesc in token.files_uploaded:
+
+            associated_f = InternalFile()
+            associated_f.name = filedesc['filename']
+            # aio, when we are going to implement file.description ?
+            associated_f.description = ""
+            associated_f.content_type = filedesc['content_type']
+            associated_f.mark = u'not processed'
+            associated_f.size = filedesc['body_len']
+            associated_f.internaltip_id = submission.id
+            associated_f.file_path = filedesc['encrypted_path']
+
+            log.debug("=> file associated %s|%s (%d bytes)" % (
+                associated_f.name, associated_f.content_type, associated_f.size))
+            store.add(associated_f)
+
     except Exception as excep:
-        log.err("Submission create: files import fail: %s" % excep)
+        log.err("Unable to create a DB entry for file! %s" % excep)
         raise excep
 
     try:
         wb_steps = request['wb_steps']
 
-        if finalize:
-            steps = db_get_context_steps(store, context.id, language)
-            verify_steps(steps, wb_steps)
+        steps = db_get_context_steps(store, context.id, language)
+        verify_steps(steps, wb_steps)
 
         submission.wb_steps = wb_steps
     except Exception as excep:
@@ -215,7 +215,7 @@ def db_create_submission(store, request, finalize, language):
         raise excep
 
     try:
-        import_receivers(store, submission, request['receivers'], required=finalize)
+        import_receivers(store, submission, request['receivers'])
     except Exception as excep:
         log.err("Submission create: receivers import fail: %s" % excep)
         raise excep
@@ -223,67 +223,6 @@ def db_create_submission(store, request, finalize, language):
     submission_dict = wb_serialize_internaltip(submission)
     return submission_dict
 
-@transact
-def create_submission(*args):
-    return db_create_submission(*args)
-
-def db_update_submission(store, submission_id, request, finalize, language):
-    context = store.find(Context, Context.id == unicode(request['context_id'])).one()
-    if not context:
-        log.err("Context requested: [%s] not found!" % request['context_id'])
-        raise errors.ContextIdNotFound
-
-    submission = store.find(InternalTip, InternalTip.id == unicode(submission_id)).one()
-    if not submission:
-        log.err("Invalid Submission requested %s in PUT" % submission_id)
-        raise errors.SubmissionIdNotFound
-
-    # this may happen if a submission try to update a context
-    if submission.context_id != context.id:
-        log.err("Can't be changed context in a submission update")
-        raise errors.ContextIdNotFound()
-
-    if submission.mark != u'submission':
-        log.err("Submission %s do not permit update (status %s)" % (submission_id, submission.mark))
-        raise errors.SubmissionConcluded
-
-    try:
-        import_files(store, submission, request['files'])
-    except Exception as excep:
-        log.err("Submission update: files import fail: %s" % excep)
-        log.exception(excep)
-        raise excep
-
-    try:
-        wb_steps = request['wb_steps']
-        if finalize:
-            steps = db_get_context_steps(store, context.id, language)
-            verify_steps(steps, wb_steps)
-
-        submission.wb_steps = wb_steps
-    except Exception as excep:
-        log.err("Submission update: fields validation fail: %s" % excep)
-        log.exception(excep)
-        raise excep
-
-    try:
-        import_receivers(store, submission, request['receivers'], required=finalize)
-    except Exception as excep:
-        log.err("Submission update: receiver import fail: %s" % excep)
-        log.exception(excep)
-        raise excep
-
-    if finalize:
-        submission.mark = u'finalize'  # Finalized
-    else:
-        submission.mark = u'submission' # Submission
-
-    submission_dict = wb_serialize_internaltip(submission)
-    return submission_dict
-
-@transact
-def update_submission(*args):
-    return db_update_submission(*args)
 
 @transact_ro
 def get_submission(store, submission_id):
@@ -295,31 +234,18 @@ def get_submission(store, submission_id):
 
     return wb_serialize_internaltip(submission)
 
-@transact
-def delete_submission(store, submission_id):
-    submission = store.find(InternalTip, InternalTip.id == unicode(submission_id)).one()
-
-    if not submission:
-        log.err("Invalid Submission requested %s in DELETE" % submission_id)
-        raise errors.SubmissionIdNotFound
-
-    if submission.mark != u'submission':
-        log.err("Submission %s already concluded (status: %s)" % (submission_id, submission.mark))
-        raise errors.SubmissionConcluded
-
-    store.remove(submission)
-
 
 class SubmissionCreate(BaseHandler):
     """
-    This class create the submission, receiving a partial wbSubmissionDesc, and
-    returning a submission_id, usable in update operation.
+    This class Request a token to create a submission. is kept the naming with "Create"
+    suffix for internal globaleaks convention, but this handler do not interact with
+    Database, InternalTip, submissions.
+    return a submission_id, keep track of the request time, in order to , usable in update operation
     """
 
     @transport_security_check('wb')
     @unauthenticated
-    @inlineCallbacks
-    def post(self):
+    def post(self, context_id):
         """
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
@@ -330,25 +256,61 @@ class SubmissionCreate(BaseHandler):
         This is the unique token used during the submission procedure.
         header session_id is used as authentication secret for the next interaction.
         expire after the time set by Admin (Context dependent setting)
+
+        --- has to became:
+        Request: empty
+        Response: wbSubmissionDesc + Token
+        Errors: None
+
+        This create a Token, require to complete the submission later
         """
-        @transact
-        def post_transact(store, request, language):
-            status = db_create_submission(store, request, request['finalize'], language)
 
-            if request['finalize']:
-                receipt = db_create_whistleblower_tip(store, status)
-                status.update({'receipt': receipt})
-            else:
-                status.update({'receipt' : ''})
+        token = Token('submission', context_id, debug=True)
+        token.set_difficulty(Alarm().get_token_difficulty())
+        token_answer = token.serialize_token()
 
-            return status
 
-        request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
+        # {'hashcash': False,
+        #  'usages': 1,
+        #  'start_validity': '2015-02-09T13:23:44.325796Z',
+        #  'end_validity': '2015-02-09T13:26:44.325796Z',
+        #  'token_id': u'sl0nEmLtxaogJ1er4B2TWHUdv9RAmD6TusKgL8d97u',
+        #  'type': 'submission', 'g_captcha': False,
+        #  'h_captcha': False,
+        #  'creation_date': '2015-02-09T13:22:44.325796Z'}
 
-        status = yield post_transact(request, self.request.language)
+        # change, put the post_transact + finalize in PUT and removed from here
+        # request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
+
+        token_answer.update({'submission_id': token_answer['token_id'] })
+        token_answer.update({'id': token_answer['token_id'] })
+        token_answer.update({'files': [] })
+        token_answer.update({'context_id': context_id})
+
+        # preset the answers from the captcha stuff, to success input validation
+        token_answer.update({'human_solution': 0})
+
+        # {'hashcash': False,
+        #  'usages': 1,
+        #  'start_validity': '2015-02-09T13:23:44.325796Z',
+        #  'end_validity': '2015-02-09T13:26:44.325796Z',
+        #  'token_id': u'sl0nEmLtxaogJ1er4B2TWHUdv9RAmD6TusKgL8d97u',
+        #  'type': 'submission', 'g_captcha': False,
+        #  'h_captcha': False,
+        #  'creation_date': '2015-02-09T13:22:44.325796Z'}
+
+        # change, put the post_transact + finalize in PUT and removed from here
+        # request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
+
+        token_answer.update({'submission_id': token_answer['token_id'] })
+        token_answer.update({'id': token_answer['token_id'] })
+        token_answer.update({'files': [] })
+        # tmp hackish, I can copy the context receive via get, in order to make
+        # SubmissionRequest context dependent in the URL (finally, holy fuck)
+        token_answer.update({'context_id': context_id})
 
         self.set_status(201) # Created
-        self.finish(status)
+        self.finish(token_answer)
 
 
 class SubmissionInstance(BaseHandler):
@@ -360,25 +322,9 @@ class SubmissionInstance(BaseHandler):
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def get(self, submission_id):
+    def put(self, context_id, token_id):
         """
-        Parameters: submission_id
-        Response: wbSubmissionDesc
-        Errors: SubmissionIdNotFound, InvalidInputFormat
-
-        Get the status of the current submission.
-        """
-        submission = yield get_submission(submission_id)
-
-        self.set_status(200)
-        self.finish(submission)
-
-    @transport_security_check('wb')
-    @unauthenticated
-    @inlineCallbacks
-    def put(self, submission_id):
-        """
-        Parameter: submission_id
+        Parameter: token_id
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
         Errors: ContextIdNotFound, InvalidInputFormat, SubmissionFailFields, SubmissionIdNotFound, SubmissionConcluded
@@ -386,44 +332,35 @@ class SubmissionInstance(BaseHandler):
         PUT update the submission and finalize if requested.
         """
         @transact
-        def put_transact(store, submission_id, finalize, language):
-            status = db_update_submission(store, submission_id, request,
-                                          request['finalize'], self.request.language)
+        def put_transact(store, token, request):
 
-            if request['finalize']:
-                receipt = db_create_whistleblower_tip(store, status)
-                status.update({'receipt': receipt})
-            else:
-                status.update({'receipt' : ''})
+            status = db_finalize_submission(store, token, request, self.request.language)
+
+            receipt = db_create_whistleblower_tip(store, status)
+            status.update({'receipt': receipt})
 
             return status
 
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
-        status = yield put_transact(submission_id, request, self.request.language)
+        # the .get method raise an exception if the token is invalid
+        TokenList.get(token_id)
+        token = TokenList.token_dict[token_id]
 
-        self.set_status(202) # Updated
+        log.debug("Token received: %s" % token)
+        # raise an error if the usage is too early for the token
+
+        if not token.context_associated == context_id:
+            raise errors.InvalidInputFormat("Token context unaligned with REST url")
+
+        token.validate(request)
+
+        # TODO remove from the GLClient/REST logic submission ['files']
+        request.pop('files')
+
+        status = yield put_transact(token, request)
+
+        self.set_status(202) # Updated, also if submission if effectively created (201)
         self.finish(status)
 
-
-    @transport_security_check('wb')
-    @unauthenticated
-    @inlineCallbacks
-    def delete(self, submission_id):
-        """
-        Parameter: submission_id
-        Request:
-        Response: None
-        Errors: SubmissionIdNotFound, SubmissionConcluded
-
-        A whistleblower is deleting a Submission because has understand that won't really 
-        be an hero. :P
-
-        This operation is available and tested but not implemented in the GLClient
-        """
-
-        yield delete_submission(submission_id)
-
-        self.set_status(200) # Accepted
-        self.finish()
 

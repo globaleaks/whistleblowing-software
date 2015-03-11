@@ -30,16 +30,15 @@ from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLApiCache, GLHTTPConnection
 from globaleaks.handlers.admin import create_context, get_context, update_context, create_receiver, db_get_context_steps
 from globaleaks.handlers.admin.field import create_field
-from globaleaks.handlers.admin.notification import get_notification
-from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
-from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched, mailflush_sched
+from globaleaks.handlers.submission import db_finalize_submission, create_whistleblower_tip
+from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched
 from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
-from globaleaks.plugins import notification
 from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.third_party import rstr
 from globaleaks.utils import mailutils
-from globaleaks.utils.utility import datetime_null, uuid4, log
+from globaleaks.utils.token import Token
+from globaleaks.utils.utility import datetime_null, log
 
 from . import TEST_DIR
 
@@ -247,7 +246,7 @@ class TestGL(unittest.TestCase):
             content_type = 'application/octet'
 
         if content is None:
-            content = 'ANTANI'
+            content = 'LA VEDI LA SUPERCAZZOLA ? PREMATURA ? unicode €'
 
         temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
 
@@ -265,18 +264,35 @@ class TestGL(unittest.TestCase):
         return dummy_file
 
     @inlineCallbacks
-    def emulate_file_upload(self, associated_submission_id):
+    def emulate_file_upload(self, associated_token):
+        """
+        This emulate the file upload of a incomplete submission
+        """
+
+        for i in range(0,9): # we emulate a constant upload of 9 files
+
+            dummyFile = self.get_dummy_file()
+
+            dummyFile = yield threads.deferToThread(files.dump_file_fs, dummyFile)
+            dummyFile['creation_date'] = datetime_null()
+            registered_file = files.memory_file_serialize(dummyFile)
+
+            print "CHECK", set(registered_file.keys())
+            self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
+
+    def emulate_file_append(self, associated_submission_id):
 
         for i in range(0,2): # we emulate a constant upload of 2 files
 
             dummyFile = self.get_dummy_file()
 
-            relationship = yield threads.deferToThread(files.dump_file_fs, dummyFile)
+            dummyFile = yield threads.deferToThread(files.dump_file_fs, dummyFile)
             registered_file = yield files.register_file_db(
-                dummyFile, relationship, associated_submission_id,
+                dummyFile, associated_submission_id,
             )
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
+
 
     @transact_ro
     def _exists(self, store, model, *id_args, **id_kwargs):
@@ -417,13 +433,17 @@ class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def perform_submission(self):
 
+        self.dummyToken = Token(token_kind='submission',
+                                context_id=self.dummyContext['id'],
+                                debug=False)
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['wb_steps'] = yield fill_random_fields(self.dummyContext['id'])
-        self.dummySubmission = yield create_submission(self.dummySubmission, False, 'en')
+        self.dummySubmission = yield db_finalize_submission(self.dummyToken,
+                                                            self.dummySubmission,
+                                                            'en')
 
-        yield self.emulate_file_upload(self.dummySubmission['id'])
-        submission = yield update_submission(self.dummySubmission['id'], self.dummySubmission, True, 'en')
+        yield self.emulate_file_upload(self.dummyToken)
         self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
 
         yield delivery_sched.DeliverySchedule().operation()
