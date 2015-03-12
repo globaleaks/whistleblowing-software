@@ -46,18 +46,21 @@ def start_asynchronous():
 
     reactor.callLater(10, delivery.start, GLSetting.delivery_seconds_delta)
     reactor.callLater(20, notification.start, GLSetting.notification_minutes_delta * 60)
-    reactor.callLater(30, clean.start, GLSetting.cleaning_hours_delta * 3600)
     reactor.callLater(40, mailflush.start, GLSetting.mailflush_minutes_delta * 60)
+
+    # The Tip cleaning scheduler need to be executed every day at midnight
+    delay = (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
+    reactor.callLater(delay, clean.start, 3600 * 24)
+
+    # The PGP check scheduler need to be executed every day at midnight
+    delay = (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
+    reactor.callLater(delay, pgp_check.start, 3600 * 24)
 
     # The Stats scheduler need to be executed every hour on the hour.
     current_time = datetime_now()
     delay = (60 * 60) - (current_time.minute * 60) - current_time.second
     reactor.callLater(delay, stats.start, 60 * 60)
     statistics_sched.StatisticsSchedule.collection_start_datetime = current_time
-
-    # The PGP check scheduler need to be executed every day at midnight
-    delay = (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
-    reactor.callLater(delay, pgp_check.start, 3600 * 24)
 
 
 def globaleaks_start():

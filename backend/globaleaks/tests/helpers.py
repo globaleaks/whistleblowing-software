@@ -318,9 +318,9 @@ class TestGL(unittest.TestCase):
         self.assertFalse(existing, msg)
 
     @transact_ro
-    def get_finalized_submissions_ids(self, store):
+    def get_submissions_ids(self, store):
         ids = []
-        submissions = store.find(InternalTip, InternalTip.mark != u'submission')
+        submissions = store.find(InternalTip)
         for s in submissions:
             ids.append(s.id)
 

@@ -27,21 +27,10 @@ class UpcomingExpireEvent(EventLogger):
         self.trigger = 'UpcomingExpireTip'
 
     @transact
-    def switch_tip_marker_and_notify(self, store, tip_id):
-        """
-        In order to notify only once the ongoing expiration email,
-        we have to switch marker.
-        https://github.com/globaleaks/GlobaLeaks/issues/921
-        """
-
+    def notify(self, store, tip_id):
         tit = store.find(InternalTip, InternalTip.id == tip_id).one()
-        # This is the 'hackish' usage of the marker, read comment above
-        tit.mark = u'submission'
-
         expiring_rtips = store.find(ReceiverTip, ReceiverTip.internaltip_id == tip_id)
-
         self.context_desc = admin_serialize_context(store, tit.context, self.language)
-
         self.steps_info_desc = db_get_context_steps(store, self.context_desc['id'], self.language)
 
         for ertip in expiring_rtips:
@@ -58,7 +47,6 @@ def get_tip_timings(store, marker):
 
     tipinfo_list = []
     for itip in itip_list:
-
         comment_cnt = store.find(Comment, Comment.internaltip_id == itip.id).count()
         files_cnt = store.find(InternalFile, InternalFile.internaltip_id == itip.id).count()
 
@@ -77,6 +65,7 @@ def get_tip_timings(store, marker):
             'comments': comment_cnt,
             'mark': itip.mark,
         }
+
         tipinfo_list.append(serialized_tipinfo)
 
     return tipinfo_list
@@ -136,7 +125,7 @@ def itip_cleaning(store, tip_id):
                     log.err("Unable to remove non existent receiverfile %s (itip %s, internalfile %s(%d))" %
                             (abspath, tip_id, ifname, ifile.size))
 
-    if tit.mark != u'submission':
+    if tit.mark != u'finalized':
         log.err("Developer ---> unexpected marker found: "
                 "check https://github.com/globaleaks/GlobaLeaks/issues/921")
 
@@ -151,38 +140,39 @@ class CleaningSchedule(GLJob):
         this function, checks all the InternalTips and their expiration date.
         if expired InternalTips are found, it removes that along with
         all the related DB entries comment and tip related.
-
-        this function checks also if two days are missing to the expiration
-        date, in that case, sends an email of notice to the involved
-        receivers. This is specify in issues #921 and #748, and need
-        to be expanded with a database variable in the Receiver preference
-        (can be done at the next database update)
         """
 
-        tips = yield get_tip_timings(u'first')
-        log.debug("[Tip timings routines / finalized  / upcoming expire ] #%d Tips" % len(tips))
-
-        for tip in tips:
-
-            if is_expired(ISO8601_to_datetime(tip['upcoming_expiration_date'])) and tip['mark'] == u'first':
-
-                log.debug("Spot a tip matching the upcoming expiration date, "
-                          "switching marker in 'submission', and triggering notification")
-
-                expiring_tips_events = UpcomingExpireEvent()
-                yield expiring_tips_events.switch_tip_marker_and_notify(tip['id'])
-                yield save_event_db(expiring_tips_events.events)
-
-        tips = yield get_tip_timings(u'submission')
-        log.debug("[Tip timings routines / submission / expiration ] #%d Tips" % len(tips))
-
-        for tip in tips:
-
+        # Check1: check for expired InternalTips with status finalized
+        finalized_tips = yield get_tip_timings(u'finalized')
+        log.debug("[Tip timings routines / finalized / expiration ] #%d Tips" % len(finalized_tips))
+        for tip in finalized_tips:
             if is_expired(ISO8601_to_datetime(tip['expiration_date'])):
                 log.info("Deleting an expired Tip (creation date: %s, expiration %s) files %d comments %d" %
-                         (tip['creation_date'], tip['expiration_date'], tip['files'], tip['comments']) )
+                         (tip['creation_date'], tip['expiration_date'], tip['files'], tip['comments']))
+
                 yield itip_cleaning(tip['id'])
 
+        # Check2: check for expired InternalTips with status notified
+        notified_tips = yield get_tip_timings(u'notified')
+        log.debug("[Tip timings routines / notified  / upcoming expire ] #%d Tips" % len(notified_tips))
+        for tip in notified_tips:
+
+            # Check2.1: check if the tip is expired
+            if is_expired(ISO8601_to_datetime(tip['expiration_date'])):
+                log.info("Deleting an expired Tip (creation date: %s, expiration %s) files %d comments %d" %
+                         (tip['creation_date'], tip['expiration_date'], tip['files'], tip['comments']))
+
+                yield itip_cleaning(tip['id'])
+
+            # Check2.2: check if the tip is expiring
+            elif is_expired(ISO8601_to_datetime(tip['upcoming_expiration_date'])):
+                log.debug("Spotted a Tip matching the upcoming expiration date and "
+                          "triggering email notifications")
+
+                expiring_tips_events = UpcomingExpireEvent()
+                yield expiring_tips_events.notify(tip['id'])
+                yield save_event_db(expiring_tips_events.events)
+                yield itip_cleaning(submission['id'])
 
         # This operation, executed once every hour, clean the exception queue.
         # This is important because we've a limit on the amount of exception to

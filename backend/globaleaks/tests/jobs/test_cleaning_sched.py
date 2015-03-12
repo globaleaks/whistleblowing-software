@@ -133,7 +133,7 @@ class TestCleaning(helpers.TestGL):
         self.submission_desc = yield self.get_dummy_submission(self.context_desc['id'])
         self.submission_desc = yield submission.create_submission(token, self.submission_desc, 'en')
 
-        self.assertEqual(self.submission_desc['mark'], u'finalize')
+        self.assertEqual(self.submission_desc['mark'], u'finalized')
 
         submission.create_whistleblower_tip(self.submission_desc)
 
@@ -149,7 +149,7 @@ class TipCleaning(TestCleaning):
         self.assertEqual(len(recv_desc), 2)
         rtip_desc = yield receiver.get_receiver_tip_list(recv_desc[0]['id'], 'en')
         self.assertEqual(len(rtip_desc), 1)
-        tip_list = yield cleaning_sched.get_tip_timings(u'first')
+        tip_list = yield cleaning_sched.get_tip_timings(u'notified')
         self.assertEqual(len(tip_list), 1)
         rtip.postpone_expiration_date(recv_desc[0]['id'], rtip_desc[0]['id'])
 

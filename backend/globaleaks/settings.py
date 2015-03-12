@@ -170,7 +170,6 @@ class GLSettingsClass(object):
 
         # default timings for scheduled jobs
         self.session_management_minutes_delta = 1 # runner.py function expects minutes
-        self.cleaning_hours_delta = 6             # runner.py function expects hours
         self.notification_minutes_delta = 2       # runner.py function expects minutes
         self.delivery_seconds_delta = 20          # runner.py function expects seconds
         self.anomaly_seconds_delta = 10           # runner.py function expects seconds
