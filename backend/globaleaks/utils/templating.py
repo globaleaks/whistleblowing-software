@@ -47,7 +47,10 @@ class Templating(object):
                                   u'zip_collection' : ZipFileKeyword,
                                   u'ping_mail' : PingMailKeyword,
                                   u'admin_pgp_expiration_alert': AdminPGPAlertKeyword,
-                                  u'pgp_expiration_alert': PGPAlertKeyword
+                                  u'pgp_expiration_alert': PGPAlertKeyword,
+                                  # Upcoming expire use the same templates of Tip
+                                  u'encrypted_upcoming_expire': EncryptedTipKeyword,
+                                  u'plaintext_upcoming_expire': TipKeyword,
                                 }
 
         if event_dicts.type not in supported_event_types.keys():
@@ -133,7 +136,12 @@ class TipKeyword(_KeyWord):
         '%TipTorURL%',
         '%TipT2WURL%',
         '%TipNum%',
-        '%EventTime%'
+        '%EventTime%',
+        '%ExpirationWatch%',
+                    # ExpirationWatch
+                    # TODO DB, like "notify 48 hours before"
+                    # can be used in template to say "will expire in 48 hours"
+        '%ExpirationDate%',
     ]
 
     def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, *x):
@@ -186,8 +194,16 @@ class TipKeyword(_KeyWord):
         return unicode(retval)
 
     def EventTime(self):
+        # XXX - This is not EventTime properly, or it is only at Tip Creation
         return ISO8601_to_pretty_str_tz(self.tip['creation_date'], float(self.receiver['timezone']))
 
+    def ExpirationDate(self):
+        # is not time zone dependent, is UTC for everyone
+        return ISO8601_to_day_str(self.tip['expiration_date'])
+
+    def ExpirationWatch(self):
+        # Express in hours, but has to be retrieved from the Receiver not from Tip.
+        return unicode(48)
 
 class EncryptedTipKeyword(TipKeyword):
 

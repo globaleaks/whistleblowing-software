@@ -222,7 +222,7 @@ class GLSettingsClass(object):
 
         # this became false when, few MBs cause node to disable submissions
         self.defaults.disk_availability = True
-        self.defaults.minimum_megabytes_required = 1000 # 1 GB, or the node is disable
+        self.defaults.minimum_megabytes_required = 1024 # 1 GB, or the node is disable
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
@@ -234,8 +234,8 @@ class GLSettingsClass(object):
         }
 
         # A lot of operations performed massively by globaleaks
-        # should avoid to fetch continously variables from the DB so that
-        # it is importatn to keep this variables in memory
+        # should avoid to fetch continuously variables from the DB so that
+        # it is important to keep this variables in memory
         #
         # To this aim a variable memory_copy is instantiated as a copy of
         # self.defaults and then initialized and updated after
@@ -350,7 +350,13 @@ class GLSettingsClass(object):
 
     def set_devel_mode(self):
         self.devel_mode = True
-        self.developer_name = unicode(self.developer_name)
+
+        # is forced by -z, but unitTest has not:
+        if not self.cmdline_options:
+            self.developer_name = u"Random GlobaLeaks Developer"
+        else:
+            self.developer_name = unicode(self.cmdline_options.developer_name)
+
         self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')
         self.static_source = os.path.join(self.root_path, 'staticdata')
