@@ -34,7 +34,6 @@ def wb_serialize_internaltip(internaltip):
         'wb_steps' : internaltip.wb_steps,
         'download_limit' : internaltip.download_limit,
         'access_limit' : internaltip.access_limit,
-        'mark' : internaltip.mark,
         'files' : [f.id for f in internaltip.internalfiles],
         'receivers' : [r.id for r in internaltip.receivers]
     }
@@ -171,7 +170,7 @@ def db_create_submission(store, token, request, language):
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
     submission.context_id = context.id
     submission.creation_date = datetime_now()
-    submission.mark = u'finalized'
+    submission.new = True
 
     try:
         store.add(submission)

@@ -182,7 +182,6 @@ class TestTipInstance(TTip):
         self.submission_desc = yield submission.create_submission(token, dummySubmissionDict, 'en')
 
         self.assertEqual(self.submission_desc['wb_steps'], dummySubmissionDict['wb_steps'])
-        self.assertEqual(self.submission_desc['mark'], u'finalized')
 
     @inlineCallbacks
     def get_wb_receipt_on_finalized(self):
