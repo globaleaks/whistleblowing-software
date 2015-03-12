@@ -41,9 +41,9 @@ class UpcomingExpireEvent(EventLogger):
 
 
 @transact_ro
-def get_tip_timings(store, marker):
+def get_tip_timings(store, new):
 
-    itip_list = store.find(InternalTip, InternalTip.mark == marker)
+    itip_list = store.find(InternalTip, InternalTip.new == new)
 
     tipinfo_list = []
     for itip in itip_list:
@@ -125,10 +125,6 @@ def itip_cleaning(store, tip_id):
                     log.err("Unable to remove non existent receiverfile %s (itip %s, internalfile %s(%d))" %
                             (abspath, tip_id, ifname, ifile.size))
 
-    if tit.mark != u'finalized':
-        log.err("Developer ---> unexpected marker found: "
-                "check https://github.com/globaleaks/GlobaLeaks/issues/921")
-
     store.remove(tit)
 
 
@@ -142,20 +138,20 @@ class CleaningSchedule(GLJob):
         all the related DB entries comment and tip related.
         """
 
-        # Check1: check for expired InternalTips with status finalized
-        finalized_tips = yield get_tip_timings(u'finalized')
-        log.debug("[Tip timings routines / finalized / expiration ] #%d Tips" % len(finalized_tips))
-        for tip in finalized_tips:
+        # Check1: check for expired InternalTips (new tips)
+        finalized_tips = yield get_tip_timings(True)
+        log.debug("[Tip timings routines / new / expiration ] #%d Tips" % len(new_tips))
+        for tip in new_tips:
             if is_expired(ISO8601_to_datetime(tip['expiration_date'])):
                 log.info("Deleting an expired Tip (creation date: %s, expiration %s) files %d comments %d" %
                          (tip['creation_date'], tip['expiration_date'], tip['files'], tip['comments']))
 
                 yield itip_cleaning(tip['id'])
 
-        # Check2: check for expired InternalTips with status notified
-        notified_tips = yield get_tip_timings(u'notified')
-        log.debug("[Tip timings routines / notified  / upcoming expire ] #%d Tips" % len(notified_tips))
-        for tip in notified_tips:
+        # Check2: check for expired InternalTips (old tips)
+        notified_tips = yield get_tip_timings(False)
+        log.debug("[Tip timings routines / old / expiration upcoming / expire ] #%d Tips" % len(old_tips))
+        for tip in old_tips:
 
             # Check2.1: check if the tip is expired
             if is_expired(ISO8601_to_datetime(tip['expiration_date'])):

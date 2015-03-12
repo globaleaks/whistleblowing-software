@@ -102,6 +102,8 @@ def receiverfile_planning(store):
 
     for filex in files:
 
+        filex.mark = u'locked'
+
         if not filex.internaltip:
             log.err("Integrity failure: the file %s"\
                     "has not an InternalTip assigned (path: %s)" %
@@ -125,14 +127,6 @@ def receiverfile_planning(store):
             # removed to avoid infinite loop
             store.remove(filex)
 
-            continue
-
-        # here we select the file which deserve to be processed.
-        if (filex.internaltip.mark == u'notified' or \
-            filex.internaltip.mark == u'finalized') and \
-            (filex.mark == u'not processed'):
-            filex.mark = u'locked'
-        else:
             continue
 
         try:
@@ -262,25 +256,24 @@ def create_receivertip(store, receiver, internaltip):
 @transact
 def tip_creation(store):
     """
-    look for all the finalized InternalTip and create ReceiverTips
+    look for all the new InternalTips and create ReceiverTips
     """
-    created_rtip = []
+    created_rtips = []
 
-    finalized = store.find(InternalTip, InternalTip.mark == u'finalized')
+    new_itips = store.find(InternalTip, InternalTip.new == True)
 
-    for internaltip in finalized:
+    for internaltip in new_itips:
 
         for receiver in internaltip.receivers:
             rtip_id = create_receivertip(store, receiver, internaltip)
+            created_rtips.append(rtip_id)
 
-            created_rtip.append(rtip_id)
+        internaltip.new = False
 
-        internaltip.mark = u'notified'
+    if len(created_rtips):
+        log.debug("The finalized submissions had created %d ReceiverTip(s)" % len(created_rtips))
 
-    if len(created_rtip):
-        log.debug("The finalized submissions had created %d ReceiverTip(s)" % len(created_rtip))
-
-    return created_rtip
+    return created_rtips
 
 @transact
 def do_final_internalfile_update(store, file_path, new_marker, new_path=None):

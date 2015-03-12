@@ -133,8 +133,6 @@ class TestCleaning(helpers.TestGL):
         self.submission_desc = yield self.get_dummy_submission(self.context_desc['id'])
         self.submission_desc = yield submission.create_submission(token, self.submission_desc, 'en')
 
-        self.assertEqual(self.submission_desc['mark'], u'finalized')
-
         submission.create_whistleblower_tip(self.submission_desc)
 
     # -------------------------------------------

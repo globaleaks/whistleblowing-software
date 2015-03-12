@@ -28,7 +28,6 @@ def wb_serialize_tip(internaltip, language):
         'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
         'download_limit' : internaltip.download_limit,
         'access_limit' : internaltip.access_limit,
-        'mark' : internaltip.mark,
         'wb_steps' : internaltip.wb_steps,
         'enable_private_messages' : internaltip.context.enable_private_messages,
         'show_receivers': internaltip.context.show_receivers, 
