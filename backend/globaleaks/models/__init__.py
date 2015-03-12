@@ -247,7 +247,7 @@ class InternalTip(Model):
     download_limit = Int()
 
     mark = Unicode()
-    # markers = [u'submission', u'finalize', u'first']
+    # markers = [u'finalized', u'notified']
 
 
 class ReceiverTip(Model):

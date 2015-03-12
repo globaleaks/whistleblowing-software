@@ -128,15 +128,8 @@ def receiverfile_planning(store):
             continue
 
         # here we select the file which deserve to be processed.
-        # They need to be:
-        #   From a Tip in (Tip = 'finalize' or 'first' )
-        #   From an InternalFile (File = 'ready')
-        # Tips may have two statuses both valid.
-        # if these conditions are met the InternalFile(s) is/are marked as 'locked',
-        # Whenever a delivery scheduler run, do not touch 'locked' file, and if 'locked' file
-        # appears in the Admin interface of file overview, this mean that something is broken.
-        if (filex.internaltip.mark == u'finalize' or \
-            filex.internaltip.mark == u'first') and \
+        if (filex.internaltip.mark == u'notified' or \
+            filex.internaltip.mark == u'finalized') and \
             (filex.mark == u'not processed'):
             filex.mark = u'locked'
         else:
@@ -269,12 +262,11 @@ def create_receivertip(store, receiver, internaltip):
 @transact
 def tip_creation(store):
     """
-    look for all the finalized InternalTip, create ReceiverTip for the
-    first tier of Receiver, and shift the marker in 'first' aka di,ostron.zo
+    look for all the finalized InternalTip and create ReceiverTips
     """
     created_rtip = []
 
-    finalized = store.find(InternalTip, InternalTip.mark == u'finalize')
+    finalized = store.find(InternalTip, InternalTip.mark == u'finalized')
 
     for internaltip in finalized:
 
@@ -283,7 +275,7 @@ def tip_creation(store):
 
             created_rtip.append(rtip_id)
 
-        internaltip.mark = u'first'
+        internaltip.mark = u'notified'
 
     if len(created_rtip):
         log.debug("The finalized submissions had created %d ReceiverTip(s)" % len(created_rtip))

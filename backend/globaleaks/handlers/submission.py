@@ -171,7 +171,7 @@ def db_create_submission(store, token, request, language):
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
     submission.context_id = context.id
     submission.creation_date = datetime_now()
-    submission.mark = u'finalize' # Finalized
+    submission.mark = u'finalized'
 
     try:
         store.add(submission)
@@ -181,7 +181,6 @@ def db_create_submission(store, token, request, language):
 
     try:
         for filedesc in token.files_uploaded:
-
             associated_f = InternalFile()
             associated_f.name = filedesc['filename']
             # aio, when we are going to implement file.description ?
@@ -191,10 +190,10 @@ def db_create_submission(store, token, request, language):
             associated_f.size = filedesc['body_len']
             associated_f.internaltip_id = submission.id
             associated_f.file_path = filedesc['encrypted_path']
+            store.add(associated_f)
 
             log.debug("=> file associated %s|%s (%d bytes)" % (
                 associated_f.name, associated_f.content_type, associated_f.size))
-            store.add(associated_f)
 
     except Exception as excep:
         log.err("Unable to create a DB entry for file! %s" % excep)
@@ -202,10 +201,8 @@ def db_create_submission(store, token, request, language):
 
     try:
         wb_steps = request['wb_steps']
-
         steps = db_get_context_steps(store, context.id, language)
         verify_steps(steps, wb_steps)
-
         submission.wb_steps = wb_steps
     except Exception as excep:
         log.err("Submission create: fields validation fail: %s" % excep)

@@ -40,11 +40,6 @@ def collect_tip_overview(store, language):
         mo.acquire_storm_object(itip.context)
         tip_description['context_name'] = mo.dump_localized_attr('name', language)
 
-        # strip uncompleted submission, until GLClient open new submission
-        # also if no data has been supply
-        if itip.mark == u'submission':
-            continue
-
         for rtip in itip.receivertips:
             tip_description['receivertips'].append({
                 'access_counter': rtip.access_counter,

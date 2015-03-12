@@ -46,22 +46,17 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         returnValue(output)
 
     @inlineCallbacks
-    def test_create_submission_valid_submission_finalized(self):
-        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        self.submission_desc = yield self.create_submission(self.submission_desc)
-
-    @inlineCallbacks
     def test_create_submission_valid_submission(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
-        self.assertEqual(self.submission_desc['mark'], u'finalize')
+    @inlineCallbacks
+    def test_create_submission_invalid_submission(self):
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
 
         for wb_step in self.submission_desc['wb_steps']:
             for c in wb_step['children']:
                 c['value'] = unicode("You know nothing John Snow" * 100  * 100)
-
-        self.submission_desc['finalize'] = True
 
         yield self.assertFailure(self.create_submission(self.submission_desc),
                                  errors.InvalidInputFormat)

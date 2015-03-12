@@ -182,8 +182,7 @@ class TestTipInstance(TTip):
         self.submission_desc = yield submission.create_submission(token, dummySubmissionDict, 'en')
 
         self.assertEqual(self.submission_desc['wb_steps'], dummySubmissionDict['wb_steps'])
-        self.assertEqual(self.submission_desc['mark'], u'finalize')
-        # Ok, now the submission has been finalized, the tests can start.
+        self.assertEqual(self.submission_desc['mark'], u'finalized')
 
     @inlineCallbacks
     def get_wb_receipt_on_finalized(self):
@@ -198,7 +197,6 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def wb_auth_with_receipt(self):
-
         if not self.wb_tip_id:
             self.get_wb_receipt_on_finalized()
 
@@ -209,7 +207,6 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def wb_auth_with_bad_receipt(self):
-
         fakereceipt = u"1234567890AA"
 
         retval = yield authentication.login_wb(fakereceipt)
