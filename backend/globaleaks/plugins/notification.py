@@ -39,7 +39,7 @@ class MailNotification(Notification):
         return True
 
 
-    def get_body_title(self, event):
+    def get_mail_body_and_title(self, event):
         # This function, that probably can be optimized with some kind of pattern
         # return body and title computed for the event + template + keywords compute
         if event.type == u'encrypted_tip':
@@ -99,7 +99,7 @@ class MailNotification(Notification):
             body = event.tip_info['body']
             title = event.tip_info['title']
         else:
-            body, title = self.get_body_title(event)
+            body, title = self.get_mail_body_and_title(event)
 
         if not self.validate_admin_opt(event.notification_settings):
             log.err('Invalid Mail Settings, no mail can be deliver')
@@ -128,7 +128,7 @@ class MailNotification(Notification):
 
         receiver_mail = event.receiver_info['mail_address']
 
-        sender_display_name = "%s's dev Node" % GLSetting.developer_name if GLSetting.devel_mode else \
+        sender_display_name = "%s's Development GlobaLeaks Instance" % GLSetting.developer_name if GLSetting.devel_mode else \
             GLSetting.memory_copy.notif_source_name
 
         message = MIME_mail_build(sender_display_name,

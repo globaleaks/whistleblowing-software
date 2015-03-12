@@ -302,6 +302,9 @@
     "fields": {
       "source_name": "Default GlobaLeaks sender",
       "creation_date": "2014-09-13 09:01:53.297589",
+      "notification_digest_mail_title": {
+        "en": "Notification Digest"
+      },
       "zip_description": {
         "en": "The following files may contain sensitive information, for the Whistleblower\nand for the involved person and organization.\n\nPlease, do never disclose these files until an appropriate analysis and \nredaction.\n\nFiles number: %FilesNumber%\nTotal uncompressed size: %TotalSize%\n\nFile details and integrity checksum:\n\n%FileList%\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n\n\n"
       },

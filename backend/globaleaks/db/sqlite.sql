@@ -194,6 +194,7 @@ CREATE TABLE notification (
     admin_pgp_alert_mail_title BLOB,
     pgp_alert_mail_template BLOB,
     pgp_alert_mail_title BLOB,
+    notification_digest_mail_title BLOB,
     zip_description BLOB,
     ping_mail_template BLOB,
     ping_mail_title BLOB,

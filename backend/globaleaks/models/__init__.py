@@ -528,6 +528,8 @@ class Notification(Model):
     pgp_alert_mail_title = JSON(validator=longlocal_v)
     pgp_alert_mail_template = JSON(validator=longlocal_v)
 
+    notification_digest_mail_title = JSON(validator=longlocal_v)
+
     zip_description = JSON(validator=longlocal_v)
 
     ping_mail_template = JSON(validator=longlocal_v)
@@ -568,6 +570,7 @@ class Notification(Model):
         'plaintext_message_mail_title',
         'upcoming_tip_expiration_template',
         'upcoming_tip_expiration_mail_title',
+        'notification_digest_mail_title',
         'zip_description',
         'ping_mail_template',
         'ping_mail_title'

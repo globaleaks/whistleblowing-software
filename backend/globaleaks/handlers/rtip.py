@@ -31,7 +31,6 @@ def receiver_serialize_tip(internaltip, language):
         'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
         'download_limit' : internaltip.download_limit,
         'access_limit' : internaltip.access_limit,
-        'mark' : internaltip.mark,
         'wb_steps' : internaltip.wb_steps,
         'global_delete' : False,
         # this field "inform" the receiver of the new expiration date that can
