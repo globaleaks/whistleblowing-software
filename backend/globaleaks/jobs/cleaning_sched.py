@@ -167,7 +167,7 @@ class CleaningSchedule(GLJob):
                 expiring_tips_events = UpcomingExpireEvent()
                 yield expiring_tips_events.notify(tip['id'])
                 yield save_event_db(expiring_tips_events.events)
-                yield itip_cleaning(submission['id'])
+                yield itip_cleaning(tip['id'])
 
         # This operation, executed once every hour, clean the exception queue.
         # This is important because we've a limit on the amount of exception to

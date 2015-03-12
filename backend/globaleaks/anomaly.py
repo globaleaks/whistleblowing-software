@@ -13,6 +13,7 @@
 from twisted.internet import defer
 
 from globaleaks import models
+from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import log, datetime_now, is_expired, \
