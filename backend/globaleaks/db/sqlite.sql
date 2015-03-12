@@ -190,6 +190,7 @@ CREATE TABLE notification (
     upcoming_tip_expiration_template BLOB,
     upcoming_tip_expiration_mail_title BLOB,
     admin_anomaly_template BLOB,
+    admin_anomaly_mail_title BLOB,
     admin_pgp_alert_mail_template BLOB,
     admin_pgp_alert_mail_title BLOB,
     pgp_alert_mail_template BLOB,

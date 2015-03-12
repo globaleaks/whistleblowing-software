@@ -128,7 +128,7 @@ def init_db(store, result, node_dict, appdata_dict):
 
     store.add(notification)
 
-def db_import_memory_variables(store):
+def db_update_memory_variables(store):
     """
     to get fast checks, import (same) of the Node variable in GLSetting,
     this function is called every time that Node is updated.
@@ -161,6 +161,12 @@ def db_import_memory_variables(store):
         GLSetting.memory_copy.notif_password = notif.password
         GLSetting.memory_copy.notif_username = notif.username
         GLSetting.memory_copy.notif_security = notif.security
+
+        if GLSetting.developer_name:
+            GLSetting.memory_copy.notif_source_name = GLSetting.developer_name
+        else:
+            GLSetting.memory_copy.notif_source_name = notif.source_name
+
         GLSetting.memory_copy.notif_source_name = notif.source_name
         GLSetting.memory_copy.notif_source_email = notif.source_email
         GLSetting.memory_copy.receiver_notif_enable = not notif.disable_receivers_notification_emails
@@ -172,7 +178,7 @@ def db_import_memory_variables(store):
 
 @transact_ro
 def import_memory_variables(*args):
-    return db_import_memory_variables(*args)
+    return db_update_memory_variables(*args)
 
 @transact
 def apply_cli_options(store):

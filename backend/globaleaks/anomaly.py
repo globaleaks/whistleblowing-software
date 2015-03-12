@@ -499,8 +499,8 @@ class Alarm(object):
                 continue
 
             # based on the type of templ_funct, we've to use 'yield' or not
-            # some are 'function', some: <class 'globaleaks.settings.transact_ro'>
-            if isinstance(templ_funct, type(sendmail) ):
+            # cause some returns a deferred.
+            if isinstance(templ_funct, type(sendmail)):
                 content = templ_funct()
             else:
                 content = yield templ_funct()
@@ -512,18 +512,17 @@ class Alarm(object):
 
         admin_email = yield get_node_admin_email()
 
-        sender_display_name = "%s's-dev Anomaly" % GLSetting.developer_name if GLSetting.devel_mode else \
-            GLSetting.memory_copy.notif_source_name
+        notification_settings = yield get_notification(admin_user['language'])
 
-        message = MIME_mail_build(sender_display_name,
+        message = MIME_mail_build(GLSetting.memory_copy.notif_source_email,
                                   GLSetting.memory_copy.notif_source_email,
-                                  "Admin",
                                   admin_email,
-                                  "ALERT: Anomaly detection",
+                                  admin_email,
+                                  notification_settings['admin_anomaly_notification_mail_title'],
                                   message)
 
-        log.debug('Alarm Email for admin (%s): connecting to [%s:%d],'
-                  ' the next mail should be in %d minutes' %
+        log.debug('Alarm Email for admin (%s): connecting to [%s:%d], '
+                  'the next mail should be in %d minutes' %
                     (event_matrix,
                      GLSetting.memory_copy.notif_server,
                      GLSetting.memory_copy.notif_port,

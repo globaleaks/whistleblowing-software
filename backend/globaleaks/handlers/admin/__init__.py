@@ -365,7 +365,7 @@ def db_update_node(store, request, wizard_done, language):
 
     node.last_update = datetime_now()
 
-    db_import_memory_variables(store)
+    db_update_memory_variables(store)
 
     return db_admin_serialize_node(store, language)
 
