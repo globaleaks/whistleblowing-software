@@ -1,6 +1,6 @@
-Dear Globaleaks Node Administrator,
+Dear Globaleaks Server Administrator,
 
-This is an e-mail to inform you that the PGP key of the following users is going to expire or is already expired:
+This is an email to inform you that the PGP key of the following users is going to expire or has already expired:
 
 %PGPKeyInfoList%
 

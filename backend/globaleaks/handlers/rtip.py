@@ -255,7 +255,7 @@ class RTipInstance(BaseHandler):
         """
         Parameters: None
         Response: actorsTipDesc
-        Errors: InvalidTipAuthToken
+        Errors: InvalidAuthentication
 
         tip_id can be a valid tip_id (Receiver case) or a random one (because is
         ignored, only authenticated user with whistleblower token can access to
@@ -365,7 +365,7 @@ class RTipCommentCollection(BaseHandler):
         """
         Parameters: None
         Response: actorsCommentList
-        Errors: InvalidTipAuthToken
+        Errors: InvalidAuthentication
         """
 
         comment_list = yield get_comment_list_receiver(self.current_user.user_id, tip_id)
@@ -380,7 +380,7 @@ class RTipCommentCollection(BaseHandler):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc
-        Errors: InvalidTipAuthToken, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
+        Errors: InvalidAuthentication, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
@@ -429,7 +429,7 @@ class RTipReceiversCollection(BaseHandler):
         """
         Parameters: None
         Response: actorsReceiverList
-        Errors: InvalidTipAuthToken
+        Errors: InvalidAuthentication
         """
         answer = yield get_receiver_list_receiver(self.current_user.user_id, tip_id, self.request.language)
 
@@ -508,7 +508,7 @@ class ReceiverMsgCollection(BaseHandler):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc
-        Errors: InvalidTipAuthToken, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
+        Errors: InvalidAuthentication, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)

@@ -250,7 +250,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
            'role': 'admin'
         })
         d = handler.post()
-        self.assertFailure(d, errors.InvalidAuthRequest)
+        self.assertFailure(d, errors.InvalidAuthentication)
         return d
 
     def test_invalid_receiver_login_wrong_password(self):
@@ -260,7 +260,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
            'role': 'receiver'
         })
         d = handler.post()
-        self.assertFailure(d, errors.InvalidAuthRequest)
+        self.assertFailure(d, errors.InvalidAuthentication)
         return d
 
     def test_invalid_whistleblower_login_wrong_receipt(self):
@@ -270,7 +270,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
            'role': 'wb'
         })
         d = handler.post()
-        self.assertFailure(d, errors.InvalidAuthRequest)
+        self.assertFailure(d, errors.InvalidAuthentication)
         return d
 
     def test_invalid_input_format_missing_role(self):
@@ -289,7 +289,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
            'role': 'pope'
         })
         d = handler.post()
-        self.assertFailure(d, errors.InvalidInputFormat)
+        self.assertFailure(d, errors.InvalidAuthentication)
         return d
 
     @inlineCallbacks
@@ -304,7 +304,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         for i in xrange(0, failed_login):
             try:
                 failure = yield handler.post()
-            except errors.InvalidAuthRequest:
+            except errors.InvalidAuthentication:
                 continue
             except Exception as excep:
                 print excep, "Has been raised wrongly"
@@ -333,7 +333,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         for i in xrange(0, failed_login):
             try:
                 failure = yield handler.post()
-            except errors.InvalidAuthRequest:
+            except errors.InvalidAuthentication:
                 continue
             except Exception as excep:
                 print excep, "Has been raised wrongly"

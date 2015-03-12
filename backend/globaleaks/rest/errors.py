@@ -110,7 +110,7 @@ class ReceiverIdNotFound(GLException):
     """
     The Receiver ID requested do not exists in the database.
     """
-    reason = "Not found a Receiver with the specified ID"
+    reason = "No Receiver was found for the specified ID"
     error_code = 20
     status_code = 404 # Not Found
 
@@ -133,28 +133,7 @@ class SubmissionFailFields(GLException):
         self.arguments.append(wrong_field)
 
 
-class InvalidTipAuthToken(GLException):
-    """
-    Authentication is failed, for Receiver or Whistleblower, because do not rely
-    only in the secret Token (Tip Id knowledge or receipt).
-    """
-    reason = "Authentication in Tip failed"
-    error_code = 23
-    status_code = 401 # Unauthorized
-
-
-class InvalidScopeAuth(GLException):
-    """
-    A good login password combo is provided, but in the wrong scope (happen
-    sometime when developers works with multiple accounts)
-    """
-    error_code = 24
-    status_code = 403 # Forbidden
-
-    def __init__(self, details):
-        self.reason = ("Invalid Authentication in scope: %s" % details)
-        self.arguments = []
-        self.arguments.append(details)
+# UNUSED ERROR CODE 23 24 HERE!
 
 
 class ForbiddenOperation(GLException):
@@ -178,7 +157,7 @@ class FileIdNotFound(GLException):
 # UNUSED ERROR CODE 28 HERE!
 
 
-class InvalidAuthRequest(GLException):
+class InvalidAuthentication(GLException):
     """
     An invalid request was presented
     """

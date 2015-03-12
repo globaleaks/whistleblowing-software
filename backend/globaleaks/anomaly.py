@@ -13,7 +13,6 @@
 from twisted.internet import defer
 
 from globaleaks import models
-from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import log, datetime_now, is_expired, \
@@ -422,9 +421,16 @@ class Alarm(object):
         Admin notification is disable or if another Anomaly has been
         raised in the last 15 minutes, email is not send.
         """
+        from globaleaks.handlers.admin.notification import get_notification
+
         do_not_stress_admin_with_more_than_an_email_after_minutes = 15
 
         # ------------------------------------------------------------------
+        @transact_ro
+        def _get_admin_user_language(store):
+            admin_user = store.find(models.User, models.User.username == u'admin').one()
+            return admin_user.language
+
         @transact_ro
         def _get_message_template(store):
             admin_user = store.find(models.User, models.User.username == u'admin').one()
@@ -513,13 +519,15 @@ class Alarm(object):
 
         admin_email = yield get_node_admin_email()
 
-        notification_settings = yield get_notification(admin_user['language'])
+        admin_language = yield _get_admin_user_language()
+
+        notification_settings = yield get_notification(admin_language)
 
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_email,
                                   GLSetting.memory_copy.notif_source_email,
                                   admin_email,
                                   admin_email,
-                                  notification_settings['admin_anomaly_notification_mail_title'],
+                                  notification_settings['admin_anomaly_mail_title'],
                                   message)
 
         log.debug('Alarm Email for admin (%s): connecting to [%s:%d], '
