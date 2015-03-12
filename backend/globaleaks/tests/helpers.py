@@ -420,12 +420,15 @@ class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def perform_submission(self):
 
+        c = task.Clock()
         self.dummyToken = Token(token_kind='submission',
                                 context_id=self.dummyContext['id'])
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['wb_steps'] = yield fill_random_fields(self.dummyContext['id'])
+        
         yield self.emulate_file_upload(self.dummyToken)
+
         self.dummySubmission = yield create_submission(self.dummyToken,
                                                          self.dummySubmission,
                                                          'en')

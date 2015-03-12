@@ -349,8 +349,6 @@ class Download(BaseHandler):
 
         filelocation = os.path.join(GLSetting.submission_path, rfile['path'])
 
-        directory_traversal_check(GLSetting.submission_path, filelocation)
-
         self.write_file(filelocation)
 
         self.finish()

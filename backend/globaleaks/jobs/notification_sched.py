@@ -25,6 +25,7 @@ def serialize_receivertip(receiver_tip):
         'access_counter': receiver_tip.access_counter,
         'wb_steps': receiver_tip.internaltip.wb_steps,
         'context_id': receiver_tip.internaltip.context.id,
+        'expiration_date': datetime_to_ISO8601(receiver_tip.internaltip.expiration_date),
     }
     return rtip_dict
 
@@ -96,6 +97,9 @@ class EventLogger(object):
             self.template_type = u'encrypted_file' if \
                 receiver.gpg_key_status == u'enabled' else u'plaintext_file'
             return receiver.file_notification
+        elif self.trigger == 'UpcomingExpireTip':
+            self.template_type = u'encrypted_upcoming_expire' if \
+                receiver.gpg_key_status == u'enabled' else u'plaintext_upcoming_expire'
         else:
             raise Exception("self.trigger of unexpected kind ? %s" % self.trigger)
 
@@ -111,7 +115,7 @@ class EventLogger(object):
                       context_info=self.context_desc,
                       do_mail=self.do_mail)
 
-        self.events.append(event )
+        self.events.append(event)
 
 class TipEventLogger(EventLogger):
 
@@ -259,7 +263,7 @@ class FileEventLogger(EventLogger):
             models.ReceiverFile.mark == u'not notified')
 
         if not_notified_rfiles.count():
-            log.debug("new [Files✖Receiver] found to be notified: %d" % not_notified_rfiles.count())
+            log.debug("new [Files+Receiver] found to be notified: %d" % not_notified_rfiles.count())
 
         for rfile in not_notified_rfiles:
 
@@ -316,6 +320,8 @@ class NotificationSchedule(GLJob):
     @inlineCallbacks
     def operation(self):
         # TODO: remove notification_status from Model different of EventLogs
+        # because now only that keep track of the notification status.
+        # the others step, if exists, has to be keep track with mark
 
         tips_events = TipEventLogger()
         yield tips_events.load_tips()
