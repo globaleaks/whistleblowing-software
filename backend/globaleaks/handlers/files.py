@@ -144,11 +144,9 @@ def get_itip_id_by_wbtip_id(store, wb_tip_id):
                         WhistleblowerTip.id == wb_tip_id).one()
 
     if not wb_tip:
-        raise errors.InvalidTipAuthToken
+        raise errors.InvalidAuthentication
 
     return wb_tip.internaltip.id
-
-
 
 
 # This is different from FileInstance, just because there are a different authentication requirements

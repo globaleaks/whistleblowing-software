@@ -106,7 +106,6 @@ class WBTipInstance(BaseHandler):
         """
         Parameters: None
         Response: actorsTipDesc
-        Errors: InvalidTipAuthToken
 
         Check the user id (in the whistleblower case, is authenticated and
         contain the internaltip)
@@ -181,7 +180,6 @@ class WBTipCommentCollection(BaseHandler):
         """
         Parameters: None
         Response: actorsCommentList
-        Errors: InvalidTipAuthToken
         """
         wb_comment_list = yield get_comment_list_wb(self.current_user.user_id)
 
@@ -195,7 +193,7 @@ class WBTipCommentCollection(BaseHandler):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc
-        Errors: InvalidTipAuthToken, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
+        Errors: InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
@@ -307,7 +305,6 @@ class WBTipReceiversCollection(BaseHandler):
         """
         Parameters: None
         Response: actorsReceiverList
-        Errors: InvalidTipAuthToken
         """
         answer = yield get_receiver_list_wb(self.current_user.user_id, self.request.language)
 

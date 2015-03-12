@@ -1,6 +1,6 @@
 Dear %ReceiverName%,
 
-This is an e-mail notification to notify you that %CommentSource% has commented on a previous submission.
+This is an email notification to notify you that %CommentSource% has commented on a previous submission.
 
 This has happened on context %ContextName% at %EventTime%.
 

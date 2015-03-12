@@ -147,7 +147,7 @@ class ReceiverInstance(BaseHandler):
         """
         Parameters: None
         Response: receiverReceiverDesc
-        Errors: TipIdNotFound, InvalidInputFormat, InvalidTipAuthToken
+        Errors: TipIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
 
         receiver_status = yield get_receiver_settings(self.current_user.user_id,
@@ -165,7 +165,7 @@ class ReceiverInstance(BaseHandler):
         Parameters: None
         Request: receiverReceiverDesc
         Response: receiverReceiverDesc
-        Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidTipAuthToken, TipIdNotFound
+        Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidAuthentication, TipIdNotFound
         """
         request = self.validate_message(self.request.body, requests.receiverReceiverDesc)
 
@@ -259,7 +259,7 @@ class TipsCollection(BaseHandler):
         """
         Parameters: tip_auth_token
         Response: receiverTipList
-        Errors: InvalidTipAuthToken
+        Errors: InvalidAuthentication
         """
 
         answer = yield get_receiver_tip_list(self.current_user.user_id,
