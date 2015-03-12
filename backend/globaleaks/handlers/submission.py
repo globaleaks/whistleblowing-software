@@ -260,7 +260,6 @@ class SubmissionCreate(BaseHandler):
         token.set_difficulty(Alarm().get_token_difficulty())
         token_answer = token.serialize_token()
 
-        token_answer.update({'submission_id': token_answer['token_id'] })
         token_answer.update({'id': token_answer['token_id'] })
         token_answer.update({'context_id': request['context_id']})
         token_answer.update({'human_captcha_answer': 0})

@@ -33,8 +33,7 @@ def file_append_check(uri):
     return uri == '/wbtip/upload'
 
 def submission_check(uri):
-    # /submission/ + context UUIDv4 = 48 byte
-    return len(uri) == 48 and uri.startswith('/submission/')
+    return uri == '/submission'
 
 def login_check(uri):
     return uri == '/authentication'
