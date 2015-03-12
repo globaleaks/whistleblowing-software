@@ -208,8 +208,14 @@ class Test_SubmissionCreate(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
-        handler = self.request()
-        yield handler.post(self.dummyContext['id'])
+        handler = self.request(
+            {
+              'context_id': self.dummyContext['id'],
+              'human_captcha_answer': 0,
+              'receivers': [],
+            }
+        )
+        yield handler.post()
 
 
 class Test_SubmissionInstance(helpers.TestHandlerWithPopulatedDB):
