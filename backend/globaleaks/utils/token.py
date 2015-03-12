@@ -242,7 +242,7 @@ class Token(TempObj):
             TokenList.delete(self.id)
             raise errors.TokenFailure("Too many attepts")
         else:
-            log.debug("Token allow other %d attempts" % self.remaining_allowed_attempts)
+            log.debug("Token allows other %d attempts" % self.remaining_allowed_attempts)
 
         # any of these can raise an exception if check fail
         try:
