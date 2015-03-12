@@ -295,10 +295,10 @@ class GLBGPG(object):
             self.gpgh.encoding = "UTF-8"
         except OSError as ose:
             log.err("Critical, OS error in operating with GnuPG home on ramdisk: %s" % ose)
-            raise excep
+            raise
         except Exception as excep:
             log.err("Unable to instance GPG object: %s" % excep)
-            raise excep
+            raise
 
     def sanitize_gpg_string(self, key):
         """
