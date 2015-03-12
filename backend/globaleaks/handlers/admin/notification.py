@@ -1,7 +1,7 @@
 from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.db.datainit import db_import_memory_variables
+from globaleaks.db.datainit import db_update_memory_variables
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.models import Notification
@@ -55,7 +55,7 @@ def update_notification(store, request, language):
         log.err("Unable to update Notification: %s" % dberror)
         raise errors.InvalidInputFormat(dberror)
 
-    db_import_memory_variables(store)
+    db_update_memory_variables(store)
 
     return admin_serialize_notification(notif, language)
 

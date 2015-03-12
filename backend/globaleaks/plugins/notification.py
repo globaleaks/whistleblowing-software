@@ -128,10 +128,7 @@ class MailNotification(Notification):
 
         receiver_mail = event.receiver_info['mail_address']
 
-        sender_display_name = "%s's Development GlobaLeaks Instance" % GLSetting.developer_name if GLSetting.devel_mode else \
-            GLSetting.memory_copy.notif_source_name
-
-        message = MIME_mail_build(sender_display_name,
+        message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
                                   GLSetting.memory_copy.notif_source_email,
                                   event.receiver_info['name'],
                                   receiver_mail,

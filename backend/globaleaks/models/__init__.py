@@ -499,6 +499,7 @@ class Notification(Model):
     # security_types = [u'TLS', u'SSL']
 
     admin_anomaly_template = JSON(validator=longlocal_v)
+    admin_anomaly_mail_title = JSON(validator=longlocal_v)
 
     encrypted_tip_template = JSON(validator=longlocal_v)
     encrypted_tip_mail_title = JSON(validator=longlocal_v)
@@ -546,7 +547,9 @@ class Notification(Model):
         'source_email',
         'security'
     ]
+
     localized_strings = [
+        'admin_anomaly_mail_title',
         'admin_anomaly_template',
         'admin_pgp_alert_mail_title',
         'admin_pgp_alert_mail_template',
@@ -575,6 +578,7 @@ class Notification(Model):
         'ping_mail_template',
         'ping_mail_title'
     ]
+
     int_keys = [
         'port',
         'disable_admin_notification_emails',
