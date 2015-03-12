@@ -44,7 +44,7 @@ class NotificationMail:
             evnt = store.find(EventLogs, EventLogs.id == event_id).one()
             evnt.mail_sent = True
         else:
-            log.debug("Mail digest correctly sent.")
+            log.debug("Mail digest correctly sent")
 
     @transact
     def every_notification_failed(self, store, failure, event_id):
@@ -53,11 +53,10 @@ class NotificationMail:
             evnt = store.find(EventLogs, EventLogs.id == event_id).one()
             evnt.mail_sent = True
         else:
-            log.err("Mail error error.")
+            log.err("Mail error error")
 
 @transact
 def mark_event_as_notified_in_digest(store, evnt):
-
     evnt = store.find(EventLogs, EventLogs.id == evnt.storm_id).one()
     evnt.mail_sent = True
 
@@ -248,7 +247,7 @@ class MailflushSchedule(GLJob):
 
                 digest_body = ""
                 for qe_index in digest_obj['events']:
-                    body, title = plugin.get_body_title(queue_events[qe_index])
+                    body, title = plugin.get_mail_body_and_title(queue_events[qe_index])
                     digest_body = "%s%s\n%s\n%s\n\n%s\n\n" % (
                         digest_body,
                         title,
@@ -262,16 +261,6 @@ class MailflushSchedule(GLJob):
                         event_copy = queue_events[qe_index]
 
 
-                # create the new events based on the digest
-                new_title = ""
-                for name, amount in digest_obj['kinds'].iteritems():
-                    new_title = "%s%s%s (%d)" % (
-                        new_title,
-                        ", " if len(new_title) else "",
-                        name,
-                        amount
-                    )
-
                 # create new digest event based on the new content
                 nde = OD()
 
@@ -280,7 +269,7 @@ class MailflushSchedule(GLJob):
                 nde.receiver_info = event_copy.receiver_info
                 nde.tip_info={
                                  'body': digest_body,
-                                 'title': new_title
+                                 'title': nde.notification_settings['notification_digest_mail_title']
                              }
                 nde.subevent_info = None
                 nde.context_info = event_copy.context_info
@@ -304,7 +293,6 @@ class MailflushSchedule(GLJob):
         # this is the notification of the standard event, it ignores
         # all the event already managed by the digest
         for qe_pos, qe in enumerate(queue_events):
-
             if qe_pos in digest_used_event:
                 yield mark_event_as_notified_in_digest(queue_events[qe_pos])
                 log.debug("Marked event %s as sent because of digest" % queue_events[qe_pos])

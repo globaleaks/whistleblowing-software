@@ -27,6 +27,7 @@ def serialize_receivertip(receiver_tip):
         'context_id': receiver_tip.internaltip.context.id,
         'expiration_date': datetime_to_ISO8601(receiver_tip.internaltip.expiration_date),
     }
+
     return rtip_dict
 
 def serialize_internalfile(ifile, rfile_id):
@@ -42,6 +43,7 @@ def serialize_internalfile(ifile, rfile_id):
         'size': ifile.size,
         'creation_date' : datetime_to_ISO8601(ifile.creation_date),
     }
+
     return rfile_dict
 
 # Note: is used tip.serialize_comment until more information are not
