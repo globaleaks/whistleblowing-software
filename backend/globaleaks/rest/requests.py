@@ -266,7 +266,6 @@ adminStats = {
 }
 
 TipOverview = {
-    'status': unicode,
     'context_id': uuid_regexp,
     'creation_lifetime': dateType,
     'receivertips': list,
@@ -400,7 +399,7 @@ internalTipDesc = {
     'context_id': uuid_regexp,
     'access_limit': int,
     'creation_date': dateType,
-    'mark': unicode,
+    'new': bool,
     'id': uuid_regexp,
     'files': [ uuid_regexp ],
     'expiration_date': dateType,

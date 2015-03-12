@@ -63,7 +63,6 @@ def get_tip_timings(store, new):
             'submission_life_seconds':  submission_timetolive,
             'files': files_cnt,
             'comments': comment_cnt,
-            'mark': itip.mark,
         }
 
         tipinfo_list.append(serialized_tipinfo)
@@ -139,7 +138,7 @@ class CleaningSchedule(GLJob):
         """
 
         # Check1: check for expired InternalTips (new tips)
-        finalized_tips = yield get_tip_timings(True)
+        new_tips = yield get_tip_timings(True)
         log.debug("[Tip timings routines / new / expiration ] #%d Tips" % len(new_tips))
         for tip in new_tips:
             if is_expired(ISO8601_to_datetime(tip['expiration_date'])):
@@ -149,7 +148,7 @@ class CleaningSchedule(GLJob):
                 yield itip_cleaning(tip['id'])
 
         # Check2: check for expired InternalTips (old tips)
-        notified_tips = yield get_tip_timings(False)
+        old_tips = yield get_tip_timings(False)
         log.debug("[Tip timings routines / old / expiration upcoming / expire ] #%d Tips" % len(old_tips))
         for tip in old_tips:
 
