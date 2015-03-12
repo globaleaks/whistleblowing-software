@@ -285,7 +285,7 @@ class TestGL(unittest.TestCase):
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
 
-    def emulate_file_append(self, associated_submission_id):
+    def emulate_file_append(self, tip_id):
 
         for i in range(0,2): # we emulate a constant upload of 2 files
 
@@ -293,7 +293,7 @@ class TestGL(unittest.TestCase):
 
             dummyFile = yield threads.deferToThread(files.dump_file_fs, dummyFile)
             registered_file = yield files.register_file_db(
-                dummyFile, associated_submission_id,
+                dummyFile, tip_id,
             )
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
