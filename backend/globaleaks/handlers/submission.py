@@ -297,9 +297,6 @@ class SubmissionInstance(BaseHandler):
         # the .get method raise an exception if the token is invalid
         token = TokenList.get(token_id)
 
-        log.debug("Token received: %s" % token)
-        # raise an error if the usage is too early for the token
-
         if not token.context_associated == request['context_id']:
             raise errors.InvalidInputFormat("Token context unaligned with REST url")
 

@@ -211,8 +211,9 @@ class Test_SubmissionCreate(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(
             {
               'context_id': self.dummyContext['id'],
-              'human_captcha_answer': 0,
               'receivers': [],
+              'wb_steps': [],
+              'human_captcha_answer': 0
             }
         )
         yield handler.post()

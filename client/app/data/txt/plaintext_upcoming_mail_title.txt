@@ -1,1 +1,0 @@
-Tip [%TipNum%] Is going to expire in %ExpirationWatch% Hours

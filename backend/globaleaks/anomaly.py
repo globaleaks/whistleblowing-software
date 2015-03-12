@@ -510,8 +510,6 @@ class Alarm(object):
                 content,
                 message[where + len(keyword):])
 
-        print "\n\n", message, "\n\n"
-
         admin_email = yield get_node_admin_email()
 
         sender_display_name = "%s's-dev Anomaly" % GLSetting.developer_name if GLSetting.devel_mode else \
