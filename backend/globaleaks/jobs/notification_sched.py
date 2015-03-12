@@ -263,7 +263,7 @@ class FileEventLogger(EventLogger):
             models.ReceiverFile.mark == u'not notified')
 
         if not_notified_rfiles.count():
-            log.debug("new [Files+Receiver] found to be notified: %d" % not_notified_rfiles.count())
+            log.debug("new Files found to be notified: %d" % not_notified_rfiles.count())
 
         for rfile in not_notified_rfiles:
 

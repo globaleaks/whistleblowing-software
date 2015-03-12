@@ -82,28 +82,11 @@ class MailNotification(Notification):
                 event.notification_settings['plaintext_message_template'], event)
             title = Templating().format_template(
                 event.notification_settings['plaintext_message_mail_title'], event)
-        elif event.type == u'plaintext_upcoming_expire':
-            # evilaliv3 I've not understand how's now the logic for the default template...
-            with file('../client/app/data/txt/plaintext_upcoming_template.txt') as fp:
-                event.notification_settings['plaintext_upcoming_template'] = fp.read()
-            with file('../client/app/data/txt/plaintext_upcoming_mail_title.txt') as fp:
-                event.notification_settings['plaintext_upcoming_mail_title'] = fp.read()
-
+        elif event.type == u'upcoming_tip_expiration':
             body = Templating().format_template(
-                event.notification_settings['plaintext_upcoming_template'], event)
+                event.notification_settings['tip_expiration_template'], event)
             title = Templating().format_template(
-                event.notification_settings['plaintext_upcoming_mail_title'], event)
-        elif event.type == u'encrypted_upcoming_expire':
-            # evilaliv3 I've not understand how's now the logic for the default template...
-            with file('../client/app/data/txt/encrypted_upcoming_template.txt') as fp:
-                event.notification_settings['encrypted_upcoming_template'] = fp.read()
-            with file('../client/app/data/txt/encrypted_upcoming_mail_title.txt') as fp:
-                event.notification_settings['encrypted_upcoming_mail_title'] = fp.read()
-
-            body = Templating().format_template(
-                event.notification_settings['encrypted_upcoming_template'], event)
-            title = Templating().format_template(
-                event.notification_settings['encrypted_upcoming_mail_title'], event)
+                event.notification_settings['tip_expiration_mail_title'], event)
         else:
             raise NotImplementedError("This event_type (%s) is not supported" % event.type)
 
@@ -131,12 +114,13 @@ class MailNotification(Notification):
                 body = gpob.encrypt_message(event.receiver_info['gpg_key_fingerprint'], body)
             except Exception as excep:
                 log.err("Error in GPG interface object (for %s: %s)! (notification+encryption)" %
-                        (event.receiver_info['username'], str(excep) ))
-                return None # We return None and the mail will be delayed
-                            # If GPG is enabled and the key is invalid this
-                            # is the only possible thing to do.
-                            # The PGP check schedule will disable the key
-                            # and alert the user and the admin
+                        (event.receiver_info['username'], str(excep)))
+
+                # On this condition (GPG enabled but key invalid) the only
+                # thing to do is to return None;
+                # It will be duty of the PGP check schedule will disable the key
+                # and advise the user and the admin about that action.
+                return None
             finally:
                 # the finally statement is always called also if
                 # except contains a return or a raise

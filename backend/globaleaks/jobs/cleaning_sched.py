@@ -30,8 +30,7 @@ class UpcomingExpireEvent(EventLogger):
     def switch_tip_marker_and_notify(self, store, tip_id):
         """
         In order to notify only once the ongoing expiration email,
-        we have to switch marker. due to the current DB constrain,
-        I explained here why is switched to 'submission':
+        we have to switch marker.
         https://github.com/globaleaks/GlobaLeaks/issues/921
         """
 
@@ -41,25 +40,21 @@ class UpcomingExpireEvent(EventLogger):
 
         expiring_rtips = store.find(ReceiverTip, ReceiverTip.internaltip_id == tip_id)
 
-        if not expiring_rtips.count():
-            log.err("Absurd ? A tip is going to expire without receivers ? tip_id %s" % tip_id)
-
         self.context_desc = admin_serialize_context(store, tit.context, self.language)
 
         self.steps_info_desc = db_get_context_steps(store, self.context_desc['id'], self.language)
-        for ertip in expiring_rtips:
 
+        for ertip in expiring_rtips:
             self.do_mail = self.import_receiver(ertip.receiver)
             expiring_tip_desc = serialize_receivertip(ertip)
-            # append the event (use the self.* and the iteration serialization):
             self.append_event(tip_info=expiring_tip_desc, subevent_info=None)
 
 
 
 @transact_ro
-def get_tip_timings(store, mark):
+def get_tip_timings(store, marker):
 
-    itip_list = store.find(InternalTip, InternalTip.mark == mark)
+    itip_list = store.find(InternalTip, InternalTip.mark == marker)
 
     tipinfo_list = []
     for itip in itip_list:
@@ -75,7 +70,7 @@ def get_tip_timings(store, mark):
             'creation_date': datetime_to_ISO8601(itip.creation_date),
             'expiration_date': datetime_to_ISO8601(itip.expiration_date),
             'upcoming_expiration_date':
-                datetime_to_ISO8601(utc_dynamic_date(itip.expiration_date, hours=-48) ),
+                datetime_to_ISO8601(utc_dynamic_date(itip.expiration_date, hours=-48)),
             'tip_life_seconds':  tip_timetolive,
             'submission_life_seconds':  submission_timetolive,
             'files': files_cnt,
@@ -153,17 +148,16 @@ class CleaningSchedule(GLJob):
     @inlineCallbacks
     def operation(self):
         """
-        this function, checks all the InternalTip(s)
-        and their expiration date, if match, remove that, all the DB entries,
-        comment and tip related.
+        this function, checks all the InternalTips and their expiration date.
+        if expired InternalTips are found, it removes that along with
+        all the related DB entries comment and tip related.
 
         this function checks also if two days are missing to the expiration
-        date, in that case, send an email of notice to the involved
+        date, in that case, sends an email of notice to the involved
         receivers. This is specify in issues #921 and #748, and need
         to be expanded with a database variable in the Receiver preference
         (can be done at the next database update)
         """
-
 
         tips = yield get_tip_timings(u'first')
         log.debug("[Tip timings routines / finalized  / upcoming expire ] #%d Tips" % len(tips))

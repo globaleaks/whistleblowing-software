@@ -19,7 +19,6 @@ from globaleaks.plugins import notification
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import deferred_sleep, log
 from globaleaks.utils.templating import Templating
-from globaleaks.plugins.base import Event
 
 class NotificationMail:
 
@@ -45,7 +44,7 @@ class NotificationMail:
             evnt = store.find(EventLogs, EventLogs.id == event_id).one()
             evnt.mail_sent = True
         else:
-            log.debug("Mail DIGEST correctly sent!")
+            log.debug("Mail digest correctly sent.")
 
     @transact
     def every_notification_failed(self, store, failure, event_id):
@@ -54,7 +53,7 @@ class NotificationMail:
             evnt = store.find(EventLogs, EventLogs.id == event_id).one()
             evnt.mail_sent = True
         else:
-            log.err("Mail DIGEST error :(")
+            log.err("Mail error error.")
 
 @transact
 def mark_event_as_notified_in_digest(store, evnt):
@@ -83,7 +82,7 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
 
         if len(event_list) == event_number:
             log.debug("Maximum number of notification event reach (Mailflush) %d, after %d" %
-                      ( event_number, i ) )
+                      (event_number, i ))
             break
 
         debug_event_counter.setdefault(stev.event_reference['kind'], 0)
@@ -99,7 +98,7 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
                         stev.event_reference['kind'] == 'Comment':
             continue
         if not stev.description['receiver_info']['tip_notification'] and \
-                ( stev.event_reference['kind'] == 'Tip' or
+                (stev.event_reference['kind'] == 'Tip' or
                           stev.event_reference['kind'] == 'UpcomingExpireTip'):
             continue
 
@@ -172,7 +171,7 @@ class MailflushSchedule(GLJob):
         ping email and send it via sendmail.
         """
 
-        for receiver_id, data in receivers_syntesis.iteritems():
+        for _, data in receivers_syntesis.iteritems():
 
             receiver_dict, winks = data
 
@@ -240,7 +239,7 @@ class MailflushSchedule(GLJob):
 
         digest_separator = '%s' % ("=" * 50)
 
-        for receiver_id, digest_obj in receiver_bulks.iteritems():
+        for _, digest_obj in receiver_bulks.iteritems():
 
             # Copy from the event of the receiver infos
             event_copy = None
@@ -281,14 +280,13 @@ class MailflushSchedule(GLJob):
                 nde.receiver_info = event_copy.receiver_info
                 nde.tip_info={
                                  'body': digest_body,
-                                'title': new_title
+                                 'title': new_title
                              }
                 nde.subevent_info = None
                 nde.context_info = event_copy.context_info
                 nde.steps_info = event_copy.steps_info
                 nde.type = 'digest'
-                nde.trigger = event_copy.trigger # what matter is
-                                                 # plaintext_ or encrypted_
+                nde.trigger = event_copy.trigger
 
                 nde.storm_id = None
 
