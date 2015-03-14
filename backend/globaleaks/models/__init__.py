@@ -498,6 +498,8 @@ class Notification(Model):
     security = Unicode()
     # security_types = [u'TLS', u'SSL']
 
+    torify = Int()
+
     admin_anomaly_template = JSON(validator=longlocal_v)
     admin_anomaly_mail_title = JSON(validator=longlocal_v)
 

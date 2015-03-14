@@ -95,6 +95,10 @@ class Replacer1920(TableReplacer):
 
         for _, v in new_notification._storm_columns.iteritems():
 
+            if v.name == 'torify':
+                new_notification.torify = True
+                continue
+
             if v.name == 'admin_anomaly_mail_title':
                 # check needed to preserve funtionality if templates will be altered in the future
                 if v.name in appdata_dict['templates']:
