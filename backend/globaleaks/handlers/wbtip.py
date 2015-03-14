@@ -212,6 +212,7 @@ def get_receiver_list_wb(store, wb_tip_id, language):
 
         The returned struct contain information on read/unread messages
     """
+    receiver_list = []
 
     wb_tip = store.find(WhistleblowerTip,
                         WhistleblowerTip.id == unicode(wb_tip_id)).one()
@@ -219,17 +220,15 @@ def get_receiver_list_wb(store, wb_tip_id, language):
     if not wb_tip:
         raise errors.TipReceiptNotFound
 
-    # This part of code is used only in the short time between the first
-    # WB access and the delivery schedule. In this moment
-    # wb_tip.internaltips.receivertips is EMPTY, therefore we force
-    # the Receivers values below
+    def localize_and_append_receiver(receiver, receiver_desc):
+        mo = Rosetta(receiver.localized_strings)
+        mo.acquire_storm_object(receiver)
+        receiver_desc["description"] = mo.dump_localized_attr("description", language)
+        receiver_list.append(receiver_desc)
+
     if not wb_tip.internaltip.receivertips.count():
-        receiver_list = []
 
-        log.debug("Early access from the WB to the Tip (creation_date: %s UTC),"\
-                  " Receiver not yet present: fallback on receiver list" %
-                  datetime_to_pretty_str(wb_tip.creation_date))
-
+        # This part of code is used when receiver tips have still not been created
         for receiver in wb_tip.internaltip.receivers:
 
             # This is the reduced version of Receiver serialization
@@ -237,25 +236,18 @@ def get_receiver_list_wb(store, wb_tip_id, language):
                 "name": receiver.name,
                 "id": receiver.id,
                 "gpg_key_status": receiver.gpg_key_status,
-                "access_counter" : 0,
-                "unread_messages" : 0,
-                "read_messages" : 0,
-                "your_messages" : 0,
-                "creation_date" : datetime_to_ISO8601(datetime_now()),
-                # XXX ReceiverTip last activity ?
+                "access_counter": 0,
+                "unread_messages": 0,
+                "read_messages": 0,
+                "your_messages": 0,
+                "creation_date": datetime_to_ISO8601(datetime_now()),
             }
 
-            mo = Rosetta(receiver.localized_strings)
-            mo.acquire_storm_object(receiver)
-            receiver_desc["description"] = mo.dump_localized_attr("description", language)
+            localize_and_append_receiver(receiver, receiver_desc)
 
-            receiver_list.append(receiver_desc)
-
-        return receiver_list
     else:
-        receiver_list = []
-        for rtip in wb_tip.internaltip.receivertips:
 
+        for rtip in wb_tip.internaltip.receivertips:
 
             your_messages = store.find(Message,
                                        Message.receivertip_id == rtip.id,
@@ -271,25 +263,20 @@ def get_receiver_list_wb(store, wb_tip_id, language):
                                        Message.type == u'receiver',
                                        Message.visualized == True).count()
 
-            # if you change something here, check also 20 lines before!
             receiver_desc = {
                 "name": rtip.receiver.name,
                 "id": rtip.receiver.id,
-                "access_counter" : rtip.access_counter,
-                "unread_messages" : unread_messages,
-                "read_messages" : read_messages,
-                "your_messages" : your_messages,
-                "creation_date" : datetime_to_ISO8601(datetime_now()),
-                # XXX ReceiverTip last activity ?
+                "gpg_key_status": rtip.receiver.gpg_key_status,
+                "access_counter": rtip.access_counter,
+                "unread_messages": unread_messages,
+                "read_messages": read_messages,
+                "your_messages": your_messages,
+                "creation_date": datetime_to_ISO8601(datetime_now()),
             }
 
-            mo = Rosetta(rtip.receiver.localized_strings)
-            mo.acquire_storm_object(rtip.receiver)
-            receiver_desc["description"] = mo.dump_localized_attr("description", language)
+            localize_and_append_receiver(rtip.receiver, receiver_desc)
 
-            receiver_list.append(receiver_desc)
-
-        return receiver_list
+    return receiver_list
 
 
 class WBTipReceiversCollection(BaseHandler):

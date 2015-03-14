@@ -233,10 +233,10 @@ class TestGL(unittest.TestCase):
         """
         dummySubmissionDict = {}
         dummySubmissionDict['context_id'] = context_id
-        dummySubmissionDict['wb_steps'] = yield fill_random_fields(context_id)
         dummySubmissionDict['receivers'] = (yield get_context(context_id, 'en'))['receivers']
         dummySubmissionDict['files'] = []
-        dummySubmissionDict['finalize'] = False
+        dummySubmissionDict['human_captcha_answer'] = 0
+        dummySubmissionDict['wb_steps'] = yield fill_random_fields(context_id)
 
         defer.returnValue(dummySubmissionDict)
 

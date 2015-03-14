@@ -217,6 +217,10 @@ class Test_SubmissionCreate(helpers.TestHandlerWithPopulatedDB):
 class Test_SubmissionInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = SubmissionInstance
 
+    @inlineCallbacks
     def test_put(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         token = Token('submission', self.dummyContext['id'])
+
+        handler = self.request(self.submission_desc)
+        yield handler.put(token.token_id)
