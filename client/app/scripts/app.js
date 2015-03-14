@@ -108,7 +108,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/mail.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
-        header_subtitle: 'Mail Configuration'
+        header_subtitle: 'Email Configuration'
       }).
       when('/admin/advanced_settings', {
         templateUrl: 'views/admin/advanced.html',

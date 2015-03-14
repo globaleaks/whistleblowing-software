@@ -1,6 +1,6 @@
-Dear Globaleaks Server Administrator,
+Dear GlobaLeaks Server Administrator,
 The anomaly detection system of your GlobaLeaks server has identified some unexpected activity.
-This could be the sign of an attack or just a spike in usage due to the increased visibility of your initiative.
+This could be the sign of an attack or just a spike in usage due to the increased visibility of your project.
 
 You are receiving this email because you should look into this to determine if the cause is malicious or not.
 
@@ -14,7 +14,7 @@ Disk space:
 Alarm level: %DiskAlarmLevel%
 %DiskDump%
 
-For more info, login in your Administration panel and navigate to the Stats and Anomalies section.
+For more info, login in your Administration panel and navigate to the System Stats and Anomalies sections.
 
 Kind regards,
 %NodeSignature%

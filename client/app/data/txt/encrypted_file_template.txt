@@ -2,7 +2,7 @@ Dear %ReceiverName%,
 
 This is an email notification to notify you that a whistleblower has updated a submission with new material.
 
-This has happened on context %ContextName% at %EventTime%.
+This happened in context %ContextName% at %EventTime%.
 
 You can read it at: %TipTorURL%
 
