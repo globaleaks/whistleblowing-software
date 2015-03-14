@@ -65,15 +65,6 @@ def create_whistleblower_tip(*args):
 def import_receivers(store, submission, receiver_id_list):
     context = submission.context
 
-    # Clean the previous list of selected Receiver
-    for prevrec in submission.receivers:
-        try:
-            submission.receivers.remove(prevrec)
-        except Exception as excep:
-            log.err("Unable to remove receiver from Tip, before new reassignment")
-            raise excep
-
-    # and now clean the received list and import the new Receiver set.
     receiver_id_list = set(receiver_id_list)
 
     if not len(receiver_id_list):
