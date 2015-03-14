@@ -235,6 +235,10 @@ do_start()
         GLBACKEND_ARGS+=" --storm-debug"
     fi
 
+    if [ "${DISABLE_MAIL_TORIFICATION}}" -eq "1" ]; then
+        GLBACKEND_ARGS+=" --disable-mail-torification"
+    fi
+
     STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
 
     read_pid
@@ -246,10 +250,10 @@ do_start()
 
     # Check to see if the GLBackend daemon is already running.
     if [ "${GLBACKEND_PID}" -ne "0" ]; then
-      if kill -0 ${GLBACKEND_PID} >/dev/null 2<&-; then
-        log_end_msg 0 "GlobaLeaks already running at pid ${GLBACKEND_PID}"
-        exit 0
-      fi
+        if kill -0 ${GLBACKEND_PID} >/dev/null 2<&-; then
+            log_end_msg 0 "GlobaLeaks already running at pid ${GLBACKEND_PID}"
+            exit 0
+        fi
     fi
 
     if [ "${NETWORK_SANDBOXING}" -eq "1" ]; then
@@ -268,8 +272,8 @@ do_start()
             && APPARMOR_STARTED=1
 
         if [ "${APPARMOR_STARTED}" -eq "0" ]; then
-          log_action_end_msg 1 "Unable to initialized AppArmor! AppArmor is probably disabled, please enable it by following instructions at https://wiki.debian.org/AppArmor/HowToUse"
-          exit 1
+            log_action_end_msg 1 "Unable to initialized AppArmor! AppArmor is probably disabled, please enable it by following instructions at https://wiki.debian.org/AppArmor/HowToUse"
+            exit 1
         fi
     fi
 

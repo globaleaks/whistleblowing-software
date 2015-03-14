@@ -218,6 +218,7 @@ class GLSettingsClass(object):
         self.defaults.notif_port = None
         self.defaults.notif_username = None
         self.defaults.notif_security = None
+        self.defaults.notif_uses_tor = None
 
         # this became false when, few MBs cause node to disable submissions
         self.defaults.disk_availability = True
@@ -252,7 +253,6 @@ class GLSettingsClass(object):
         # SOCKS default
         self.socks_host = "127.0.0.1"
         self.socks_port = 9050
-        self.tor_socks_enable = True
 
         self.notification_limit = 30
 
@@ -421,7 +421,7 @@ class GLSettingsClass(object):
         self.accepted_hosts = list(set(self.bind_addresses + \
                                        self.cmdline_options.host_list.replace(" ", "").split(",")))
 
-        self.tor_socks_enable = not self.cmdline_options.disable_tor_socks
+        self.disable_email_torification = self.cmdline_options.disable_email_torification
 
         self.socks_host = self.cmdline_options.socks_host
 
@@ -465,10 +465,6 @@ class GLSettingsClass(object):
         if self.cmdline_options.public_website:
             GLSetting.unchecked_tor_input['public_website'] = self.cmdline_options.public_website
         # These three option would be used in globaleaks.db.datainit.apply_cli_options()
-
-        if self.tor_socks_enable:
-            # convert socks addr in IP and perform a test connection
-            self.validate_socks()
 
         if self.cmdline_options.user and self.cmdline_options.group:
             self.user = self.cmdline_options.user
@@ -565,34 +561,6 @@ class GLSettingsClass(object):
         if libc.mlockall(2):
             print "Unable to libc.mlockall"
             quit(-1)
-
-    def validate_socks(self):
-        """
-        Convert eventually hostname to IPv4 address format and then perform
-        a test connection at them. Need to simply perform a validation of the
-        socks and their reachability
-        """
-        try:
-            ip_safe_socks_host = socket.gethostbyname(self.socks_host)
-            self.socks_host = ip_safe_socks_host
-        except Exception as excep:
-            print "Invalid host %s: %s" % (self.socks_host, excep.strerror)
-            quit(-1)
-
-        testconn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        testconn.setblocking(0)
-        testconn.settimeout(1.5) # 1.5 seconds to reach your socks
-        try:
-            testconn.connect((self.socks_host, self.socks_port))
-        except Exception as excep:
-            if hasattr(excep, 'strerror') and len(excep.strerror) > 1:
-                err_info = excep.strerror
-            else:
-                err_info = excep.message
-            print "Unable to connect to Tor socks at %s:%d (%s), disable with -d" %\
-                  (self.socks_host, self.socks_port, err_info)
-            quit(-1)
-
 
     def create_directories(self):
         """

@@ -111,11 +111,11 @@ def init_db(store, result, node_dict, appdata_dict):
 
     # our defaults for free, because we're like Gandhi of the mail accounts.
     notification.server = "mail.headstrong.de"
-    notification.port = 587
-    # port 587/SMTP-TLS or 465/SMTPS
+    notification.port = 587 # port 587/SMTP-TLS or 465/SMTPS
     notification.username = "sendaccount@lists.globaleaks.org"
     notification.password = "sendaccount99"
     notification.security = "TLS"
+    notification.torify = True
 
     notification.source_name = "Default GlobaLeaks sender"
     notification.source_email = notification.username
@@ -169,6 +169,8 @@ def db_update_memory_variables(store):
 
         GLSetting.memory_copy.notif_source_name = notif.source_name
         GLSetting.memory_copy.notif_source_email = notif.source_email
+        GLSetting.memory_copy.notif_uses_tor = notif.torify
+
         GLSetting.memory_copy.receiver_notif_enable = not notif.disable_receivers_notification_emails
         GLSetting.memory_copy.admin_notif_enable = not notif.disable_admin_notification_emails
 

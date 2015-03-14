@@ -48,6 +48,9 @@ ALLOWED_SRC_IP=( 127.0.0.1 )
 #   permits to configure a list of ip address used for inbound connections
 ALLOWED_DST_IP=( 127.0.0.1 )
 
+# DISABLE_MAIL_TORIFICATION = [0/1]
+DISABLE_MAIL_TORIFICATION = 0
+
 # LISTENING_PORT = [port_number]
 #   permits to configure a port at which globaleaks process will bind to
 LISTENING_PORT=8082

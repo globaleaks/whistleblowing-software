@@ -171,6 +171,7 @@ CREATE TABLE notification (
     source_name VARCHAR NOT NULL,
     source_email VARCHAR NOT NULL,
     security VARCHAR NOT NULL CHECK (security IN ('TLS', 'SSL')),
+    torify INTEGER,
     encrypted_tip_template BLOB,
     encrypted_tip_mail_title BLOB,
     plaintext_tip_template BLOB,
