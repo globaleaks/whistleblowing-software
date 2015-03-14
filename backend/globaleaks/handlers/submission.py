@@ -291,5 +291,7 @@ class SubmissionInstance(BaseHandler):
 
         status = yield put_transact(token, request)
 
+        TokenList.delete(token_id)
+
         self.set_status(202) # Updated, also if submission if effectively created (201)
         self.finish(status)

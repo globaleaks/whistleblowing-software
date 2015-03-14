@@ -51,7 +51,7 @@ class Token(TempObj):
     MAXIMUM_ATTEMPTS_PER_TOKEN = 3
     MAXIMUM_UPLOADS_PER_TOKEN = 20
 
-    def __init__(self, token_kind, context_id, reactor=None):
+    def __init__(self, token_kind, context_id):
         """
         token_kind assumes currently only value 'submission.
 
@@ -66,6 +66,8 @@ class Token(TempObj):
 
         if reactor_override:
             reactor = reactor_override
+        else:
+            reactor = None
 
         self.kind = token_kind
 
@@ -244,6 +246,8 @@ class Token(TempObj):
         else:
             log.debug("Token allows other %d attempts" % self.remaining_allowed_attempts)
 
+        self.remaining_allowed_attempts -= 1
+
         # any of these can raise an exception if check fail
         try:
             self.timedelta_check()
@@ -256,13 +260,12 @@ class Token(TempObj):
 
             # Raise an exception if, by mistake, we ask for something not yet supported
             if self.proof_of_work is not False:
-                assert False, "Proof of Wor<M-F12>k! NotYetImplemented"
+                assert False, "Proof of Work! NotYetImplemented"
 
         except Exception:
             log.debug("Error triggered in Token validation, remaining attempts %d => %d" % (
                 self.remaining_allowed_attempts, self.remaining_allowed_attempts - 1))
-            self.remaining_allowed_attempts -= 1
-            raise
+            raise errors.TokenFailure("Failed to validate token")
 
         # if the code flow reach here, the token is validated
         log.debug("Token validated properly")
