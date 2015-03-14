@@ -171,7 +171,7 @@ angular.module('submissionUI', []).
           var yourname = svgItem.contentDocument.getElementById('your_name');
           var ccnumber = svgItem.contentDocument.getElementById('cc_number');
           creditcard.innerHTML =  $filter('translate')('CREDIT CARD');
-          yourname.innerHTML =  $filter('translate')('YOUR NAME');
+         yourname.innerHTML =  $filter('translate')('YOUR NAME');
           ccnumber.innerHTML = scope.creditCard();
         });
       }

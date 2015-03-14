@@ -1,1 +1,1 @@
-[Tip %TipNum%] New submission on context %ContextName%
+[Tip %TipNum%] New submission in context %ContextName%

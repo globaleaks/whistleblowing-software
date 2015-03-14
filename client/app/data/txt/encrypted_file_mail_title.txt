@@ -1,1 +1,1 @@
-[Tip %TipNum%] New attachment on context %ContextName%
+[Tip %TipNum%] New attachment in context %ContextName%
