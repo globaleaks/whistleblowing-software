@@ -9,7 +9,8 @@ from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, GLApiCache
+from globaleaks.handlers.node import get_public_receiver_list
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node, EventLogs
 from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, gpg_options_parse
@@ -171,6 +172,11 @@ class ReceiverInstance(BaseHandler):
 
         receiver_status = yield update_receiver_settings(self.current_user.user_id,
             request, self.request.language)
+
+        # get the updated list of receivers, and update the cache
+        public_receivers_list = yield get_public_receiver_list(self.request.language)
+        GLApiCache.invalidate('receivers')
+        GLApiCache.set('receivers', self.request.language, public_receivers_list)
 
         self.set_status(200)
         self.finish(receiver_status)
