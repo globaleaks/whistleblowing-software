@@ -294,7 +294,7 @@ class GLBGPG(object):
             self.gpgh = GPG(gnupghome=temp_gpgroot, options=['--trust-model', 'always'])
             self.gpgh.encoding = "UTF-8"
         except OSError as ose:
-            log.err("Critical, OS error in operating with GnuPG home on ramdisk: %s" % ose)
+            log.err("Critical, OS error in operating with GnuPG home: %s" % ose)
             raise
         except Exception as excep:
             log.err("Unable to instance GPG object: %s" % excep)
