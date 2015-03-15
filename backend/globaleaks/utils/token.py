@@ -7,6 +7,7 @@
 #   operation by anonymous user.
 
 import base64
+import os
 from StringIO import StringIO
 from random import randint
 from datetime import datetime, timedelta
@@ -85,7 +86,7 @@ class Token(TempObj):
         self.context_associated = context_id
 
         # to keep track of the file uploaded associated
-        self.files_uploaded = []
+        self.uploaded_files = []
 
         self.token_id = rstr.xeger(r'[A-Za-z0-9]{42}')
 
@@ -101,6 +102,14 @@ class Token(TempObj):
                          # seconds of validity:
                          self.start_validity_secs + self.end_validity_secs,
                          reactor)
+
+    def expire(self):
+        TempObj.expire(self)
+        for f in self.uploaded_files:
+            try:
+                os.remove(f['encrypted_path'])
+            except:
+                pass
 
     def file_upload_usage(self):
         """
@@ -119,7 +128,7 @@ class Token(TempObj):
             Token.MAXIMUM_UPLOADS_PER_TOKEN, self.remaining_allowed_uploads))
 
     def associate_file(self, fileinfo):
-        self.files_uploaded.append(fileinfo)
+        self.uploaded_files.append(fileinfo)
 
     def touch(self):
         # On token objects validity postponing is denied

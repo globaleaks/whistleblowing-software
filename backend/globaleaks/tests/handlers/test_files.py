@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import os
 
 from twisted.internet.defer import inlineCallbacks
 
@@ -8,22 +9,39 @@ from globaleaks.tests import helpers
 from globaleaks.handlers import files, submission
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile
-from globaleaks.utils.token import Token
+from globaleaks.utils import token
 
 class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = files.FileInstance
 
     @inlineCallbacks
     def test_post_file_on_not_finalized_submission(self):
-        self.dummyToken = Token(token_kind='submission',
-                                context_id=self.dummyContext['id'])
+        self.dummyToken = token.Token(token_kind='submission',
+                                      context_id=self.dummyContext['id'])
 
         handler = self.request(body=self.get_dummy_file())
         yield handler.post(self.dummyToken.token_id)
 
     @inlineCallbacks
+    def test_post_file_and_verify_deletion_after_token_expiration(self):
+        self.dummyToken = token.Token(token_kind='submission',
+                                      context_id=self.dummyContext['id'])
+
+        for i in range(0, 3):
+            handler = self.request(body=self.get_dummy_file())
+            yield handler.post(self.dummyToken.token_id)
+
+        for f in self.dummyToken.uploaded_files:
+            self.assertTrue(os.path.exists(f['encrypted_path']))
+
+        token.reactor_override.advance(360000) # advance clock of 100 hours
+
+        for f in self.dummyToken.uploaded_files:
+            self.assertFalse(os.path.exists(f['encrypted_path']))
+
+    @inlineCallbacks
     def test_post_file_finalized_submission(self):
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
         handler = self.request(body=self.get_dummy_file())
         self.assertFailure(handler.post(self.dummySubmission['id']), errors.TokenFailure)
 
@@ -36,7 +54,7 @@ class TestFileAdd(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
@@ -49,7 +67,7 @@ class TestDownload(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:

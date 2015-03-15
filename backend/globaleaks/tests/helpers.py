@@ -56,13 +56,13 @@ INVALID_PASSWORD = u'antani'
 FIXTURES_PATH = os.path.join(TEST_DIR, 'fixtures')
 
 with open(os.path.join(TEST_DIR, 'keys/valid_pgp_key1.txt')) as pgp_file:
-    VALID_PGP_KEY1 = pgp_file.read()
+    VALID_PGP_KEY1 = unicode(pgp_file.read())
 
 with open(os.path.join(TEST_DIR, 'keys/valid_pgp_key2.txt')) as pgp_file:
-    VALID_PGP_KEY2 = pgp_file.read()
+    VALID_PGP_KEY2 = unicode(pgp_file.read())
 
 with open(os.path.join(TEST_DIR, 'keys/expired_pgp_key.txt')) as pgp_file:
-    EXPIRED_PGP_KEY = pgp_file.read()
+    EXPIRED_PGP_KEY = unicode(pgp_file.read())
 
 transact.tp = FakeThreadPool()
 authentication.reactor_override = task.Clock()
@@ -222,6 +222,28 @@ class TestGL(unittest.TestCase):
 
         return dummy_f
 
+    def fill_random_field_recursively(self, field, value=None):
+        if value is None:
+             field['value'] = unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))
+        else:
+            field['value'] = unicode(value)
+
+        for c in field['children']:
+            self.fill_random_field_recursively(c)
+
+    @transact
+    def fill_random_fields(self, store, context_id, value=None):
+        """
+        return randomly populated contexts associated to specified context
+        """
+        steps = db_get_context_steps(store, context_id, 'en')
+
+        for step in steps:
+            for field in step['children']:
+                self.fill_random_field_recursively(field)
+
+        return steps
+
     @defer.inlineCallbacks
     def get_dummy_submission(self, context_id):
         """
@@ -236,7 +258,7 @@ class TestGL(unittest.TestCase):
         dummySubmissionDict['receivers'] = (yield get_context(context_id, 'en'))['receivers']
         dummySubmissionDict['files'] = []
         dummySubmissionDict['human_captcha_answer'] = 0
-        dummySubmissionDict['wb_steps'] = yield fill_random_fields(context_id)
+        dummySubmissionDict['wb_steps'] = yield self.fill_random_fields(context_id)
 
         defer.returnValue(dummySubmissionDict)
 
@@ -267,27 +289,25 @@ class TestGL(unittest.TestCase):
         return dummy_file
 
     @inlineCallbacks
-    def emulate_file_upload(self, token):
+    def emulate_file_upload(self, token, n):
         """
         This emulate the file upload of a incomplete submission
         """
-
-        for i in range(0,9): # we emulate a constant upload of 9 files
-
+        for i in range(0, n):
             dummyFile = self.get_dummy_file()
 
             dummyFile = yield threads.deferToThread(files.dump_file_fs, dummyFile)
             dummyFile['creation_date'] = datetime_null()
 
+            f = files.memory_file_serialize(dummyFile)
+
             token.associate_file(dummyFile)
 
-            registered_file = files.memory_file_serialize(dummyFile)
+            self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(f.keys()))
 
-            self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
-
-    def emulate_file_append(self, tip_id):
-
-        for i in range(0,2): # we emulate a constant upload of 2 files
+    @inlineCallbacks
+    def emulate_file_append(self, tip_id, n):
+        for i in range(0, n):
 
             dummyFile = self.get_dummy_file()
 
@@ -297,7 +317,6 @@ class TestGL(unittest.TestCase):
             )
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
-
 
     @transact_ro
     def _exists(self, store, model, *id_args, **id_kwargs):
@@ -417,17 +436,19 @@ class TestGLWithPopulatedDB(TestGL):
 
         yield update_context(self.dummyContext['id'], self.dummyContext, 'en')
 
-    @inlineCallbacks
-    def perform_submission(self):
-
-        c = task.Clock()
+    def perform_submission_start(self):
         self.dummyToken = Token(token_kind='submission',
                                 context_id=self.dummyContext['id'])
+
+    @inlineCallbacks
+    def perform_submission_uploads(self):
+        yield self.emulate_file_upload(self.dummyToken, 10)
+
+    @inlineCallbacks
+    def perform_submission_actions(self):
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
-        self.dummySubmission['wb_steps'] = yield fill_random_fields(self.dummyContext['id'])
-        
-        yield self.emulate_file_upload(self.dummyToken)
+        self.dummySubmission['wb_steps'] = yield self.fill_random_fields(self.dummyContext['id'])
 
         self.dummySubmission = yield create_submission(self.dummyToken,
                                                          self.dummySubmission,
@@ -435,9 +456,13 @@ class TestGLWithPopulatedDB(TestGL):
 
         self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
 
+    @inlineCallbacks
+    def run_delivery_and_notification_scheds(self):
         yield delivery_sched.DeliverySchedule().operation()
         yield notification_sched.NotificationSchedule().operation()
 
+    @inlineCallbacks
+    def perform_post_submission_actions(self):
         commentCreation = {
             'content': 'comment!',
         }
@@ -466,8 +491,14 @@ class TestGLWithPopulatedDB(TestGL):
             for receiver_id in wbtip_desc['wbtip_receivers']:
                 yield wbtip.create_message_wb(wbtip_desc['wbtip_id'], receiver_id, messageCreation)
 
-        yield delivery_sched.DeliverySchedule().operation()
-        yield notification_sched.NotificationSchedule().operation()
+    @inlineCallbacks
+    def perform_full_submission_actions(self):
+        self.perform_submission_start()
+        yield self.perform_submission_uploads()
+        yield self.perform_submission_actions()
+        yield self.run_delivery_and_notification_scheds()
+        yield self.perform_post_submission_actions()
+        yield self.run_delivery_and_notification_scheds()
 
 
 class TestHandler(TestGLWithPopulatedDB):
@@ -870,28 +901,6 @@ def template_keys(first_a, second_a, name):
         ret_string += ' {}'.format(x)
 
     return ret_string
-
-def fill_random_field_recursively(field, value=None):
-    if value is None:
-        field['value'] = unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))
-    else:
-        field['value'] = unicode(value)
-
-    for c in field['children']:
-        fill_random_field_recursively(c)
-
-@transact
-def fill_random_fields(store, context_id, value=None):
-    """
-    return randomly populated contexts associated to specified context
-    """
-    steps = db_get_context_steps(store, context_id, 'en')
-
-    for step in steps:
-        for field in step['children']:
-            fill_random_field_recursively(field)
-
-    return steps
 
 @transact
 def do_appdata_init(store):

@@ -182,7 +182,7 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_keywords_conversion(self):
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
         self.receiver_dict = yield admin.get_receiver(self.dummyReceiver_1['id'], 'en')
         self.context_dict = yield admin.get_context(self.dummyContext['id'], 'en')

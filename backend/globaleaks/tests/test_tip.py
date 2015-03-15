@@ -13,13 +13,6 @@ from globaleaks.handlers.admin.field import create_field
 from globaleaks.jobs import delivery_sched
 from globaleaks.utils.token import Token
 
-STATIC_PASSWORD = u'bungabunga ;( 12345'
-
-class MockHandler(base.BaseHandler):
-
-    def __init__(self):
-        pass
-
 class TTip(helpers.TestGL):
 
     # filled in setup
@@ -32,105 +25,6 @@ class TTip(helpers.TestGL):
     itip_id = wb_tip_id = rtip1_id = rtip2_id = None
     wb_data = receiver1_data = receiver2_data = None
 
-    # These dummy variables follow
-    # indeed in a different style
-    # are used in the tip hollow
-    # and is not a pattern defile
-
-    dummySteps = [{
-        'label': u'Presegnalazione',
-        'description': u'',
-        'hint': u'',
-        'children': [u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
-                     u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
-                     u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f']
-        },
-        {
-          'label': u'Segnalazione',
-          'description': u'',
-          'hint': u'',
-          'children': []
-        }
-    ]
-
-    tipContext = {
-        'name': u'CtxName',
-        'description': u'dummy context with default fields',
-        'tip_max_access': 30,
-        'tip_timetolive': 200,
-        'file_max_download': 2,
-        'receivers': [],
-        'submission_timetolive': 100,
-        'select_all_receivers': True,
-        'receiver_introduction': u"¡⅜⅛⅝⅞⅝⅛⅛¡⅛⅛⅛",
-        'postpone_superpower': False,
-        'can_delete_submission': False,
-        'maximum_selectable_receivers': 0,
-        'show_small_cards': False,
-        'show_receivers': True,
-        'enable_private_messages': True,
-        'presentation_order': 0,
-        'steps': dummySteps
-    }
-
-    tipReceiver1 = {
-        'mail_address': u'first@winstonsmith.org',
-        'ping_mail_address': u'',
-        'name': u'first',
-        'description': u"I'm tha 1st",
-        'can_delete_submission': True,
-        'password': STATIC_PASSWORD,
-        'file_notification': False,
-        'comment_notification': True,
-        'tip_notification': False,
-        'message_notification': True,
-        'ping_notification': False,
-        'ping_mail_address': u'first@winstonsmith.org',
-        'postpone_superpower': False,
-        'gpg_key_status': u'disabled',
-        'gpg_key_info': None,
-        'gpg_key_fingerprint': None,
-        'gpg_key_remove': False,
-        'gpg_key_armor': None,
-        'gpg_key_expiration': u'',
-        'presentation_order': 0,
-        'timezone': 0,
-        'language': u'en',
-        'password_change_needed': True,
-        'configuration': 'default'
-    }
-
-    tipReceiver2 = {
-        'mail_address': u'second@winstonsmith.org',
-        'ping_mail_address': u'',
-        'name': u'second',
-        'description': u"I'm tha 2nd",
-        'can_delete_submission': False,
-        'password': STATIC_PASSWORD,
-        'file_notification': False,
-        'message_notification': True,
-        'postpone_superpower': True,
-        'comment_notification': True,
-        'tip_notification': False,
-        'ping_notification': False,
-        'ping_mail_address': u'second@winstonsmith.org',
-        'gpg_key_status': u'disabled',
-        'gpg_key_info': None,
-        'gpg_key_fingerprint': None,
-        'gpg_key_remove': False,
-        'gpg_key_armor': None,
-        'gpg_key_expiration': u'',
-        'presentation_order': 0,
-        'timezone': 0,
-        'language': u'en',
-        'password_change_needed': True,
-        'configuration': 'default'
-    }
-
-    tipOptions = {
-        'global_delete': False,
-    }
-
     commentCreation = {
         'content': '',
     }
@@ -140,39 +34,19 @@ class TestTipInstance(TTip):
     @inlineCallbacks
     def setup_tip_environment(self):
 
-        basehandler = MockHandler()
+        self.context_desc = yield admin.create_context(self.dummyContext, 'en')
 
-        stuff = u'⅛⅛⅛£"$"$¼³²¼²³¼²³“““““ð'
-        for attrname in models.Context.localized_strings:
-            self.tipContext[attrname] = stuff
+        self.dummyReceiver_1['contexts'] = self.dummyReceiver_2['contexts'] = [self.context_desc['id']]
+        self.dummyReceiver_1['postpone_superpower'] = False
+        self.dummyReceiver_2['postpone_superpower'] = True
+        self.dummyReceiver_1['can_delete_submission'] = True
+        self.dummyReceiver_2['can_delete_submission'] = False
 
-        basehandler.validate_jmessage(self.tipContext, requests.adminContextDesc)
-
-        for idx, field in enumerate(self.dummyFields):
-            f = yield create_field(field, 'en')
-            self.dummyFields[idx]['id'] = f['id']
-
-        self.tipContext['steps'][0]['children'] = [
-            self.dummyFields[0], # Field 1
-            self.dummyFields[1], # Field 2
-            self.dummyFields[4]  # Generalities
-        ]
-
-        self.context_desc = yield admin.create_context(self.tipContext, 'en')
-
-        self.tipReceiver1['contexts'] = self.tipReceiver2['contexts'] = [ self.context_desc['id'] ]
-
-        for attrname in models.Receiver.localized_strings:
-            self.tipReceiver1[attrname] = stuff
-            self.tipReceiver2[attrname] = stuff
-
-        basehandler.validate_jmessage( self.tipReceiver1, requests.adminReceiverDesc )
-        basehandler.validate_jmessage( self.tipReceiver2, requests.adminReceiverDesc )
-
-        self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1, 'en')
-        self.receiver2_desc = yield admin.create_receiver(self.tipReceiver2, 'en')
+        self.receiver1_desc = yield admin.create_receiver(self.dummyReceiver_1, 'en')
+        self.receiver2_desc = yield admin.create_receiver(self.dummyReceiver_2, 'en')
 
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['id']])
+        self.assertEqual(self.receiver2_desc['contexts'], [ self.context_desc['id']])
 
         dummySubmissionDict = yield self.get_dummy_submission(self.context_desc['id'])
 
@@ -206,9 +80,7 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def wb_auth_with_bad_receipt(self):
-        fakereceipt = u"1234567890AA"
-
-        retval = yield authentication.login_wb(fakereceipt)
+        retval = yield authentication.login_wb(u"fakereceipt123")
         self.assertFalse(retval)
 
     @inlineCallbacks
@@ -232,10 +104,10 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def access_receivers_tip(self):
-        auth1, _, _ = yield authentication.login_receiver(self.receiver1_desc['id'], STATIC_PASSWORD)
+        auth1, _, _ = yield authentication.login_receiver(self.receiver1_desc['id'], helpers.VALID_PASSWORD1)
         self.assertEqual(auth1, self.receiver1_desc['id'])
 
-        auth2, _, _ = yield authentication.login_receiver(self.receiver2_desc['id'], STATIC_PASSWORD)
+        auth2, _, _ = yield authentication.login_receiver(self.receiver2_desc['id'], helpers.VALID_PASSWORD1)
         self.assertEqual(auth2, self.receiver2_desc['id'])
 
         for i in range(1, 2):

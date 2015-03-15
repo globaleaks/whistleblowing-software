@@ -13,7 +13,7 @@ class TestUsersOverview(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
     @inlineCallbacks
     def test_get(self):
@@ -32,7 +32,7 @@ class TestTipsOverview(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
     @inlineCallbacks
     def test_get(self):
@@ -51,7 +51,7 @@ class TestFilesOverview(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
     @inlineCallbacks
     def test_get(self):

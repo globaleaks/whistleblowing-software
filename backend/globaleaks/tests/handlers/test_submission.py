@@ -29,7 +29,6 @@ def collect_ifile_as_wb_without_wbtip(store, internaltip_id):
     return file_list
 
 class TestSubmission(helpers.TestGLWithPopulatedDB):
-
     encryption_scenario = 'ALL_PLAINTEXT'
 
     @inlineCallbacks
@@ -41,7 +40,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def create_submission_with_files(self, request):
         token = Token('submission', request['context_id'])
-        yield self.emulate_file_upload(token)
+        yield self.emulate_file_upload(token, 3)
         output = yield create_submission(token, request, 'en')
         returnValue(output)
 
@@ -107,11 +106,11 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         self.fil = yield delivery_sched.get_files_by_itip(self.submission_desc['id'])
         self.assertTrue(isinstance(self.fil, list))
-        self.assertEqual(len(self.fil), 9)
+        self.assertEqual(len(self.fil), 3)
 
         self.rfi = yield delivery_sched.get_receiverfile_by_itip(self.submission_desc['id'])
         self.assertTrue(isinstance(self.rfi, list))
-        self.assertEqual(len(self.rfi), 18)
+        self.assertEqual(len(self.rfi), 6)
 
         for i in range(0, 18):
             self.assertTrue(self.rfi[i]['mark'] in [u'not notified', u'skipped'])
@@ -121,7 +120,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         #  wfv = yield tip.get_files_wb()
         # because is not generated a WhistleblowerTip in this test
         self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.submission_desc['id'])
-        self.assertEqual(len(self.wbfls), 9)
+        self.assertEqual(len(self.wbfls), 3)
 
     @inlineCallbacks
     def test_submission_with_receiver_selection_allow_unencrypted_true_no_keys_loaded(self):
@@ -146,7 +145,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     def test_update_submission(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
 
-        self.submission_desc['wb_steps'] = yield helpers.fill_random_fields(self.dummyContext['id'])
+        self.submission_desc['wb_steps'] = yield self.fill_random_fields(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
         receipt = yield create_whistleblower_tip(self.submission_desc)

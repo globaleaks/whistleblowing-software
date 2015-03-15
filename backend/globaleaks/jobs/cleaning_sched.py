@@ -151,7 +151,6 @@ class CleaningSchedule(GLJob):
         old_tips = yield get_tip_timings(False)
         log.debug("[Tip timings routines / old / expiration upcoming / expire ] #%d Tips" % len(old_tips))
         for tip in old_tips:
-
             # Check2.1: check if the tip is expired
             if is_expired(ISO8601_to_datetime(tip['expiration_date'])):
                 log.info("Deleting an expired Tip (creation date: %s, expiration %s) files %d comments %d" %

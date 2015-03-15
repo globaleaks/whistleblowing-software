@@ -15,7 +15,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
     @inlineCallbacks
     def test_get(self):
@@ -130,7 +130,7 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
     @inlineCallbacks
     def test_get(self):
@@ -160,7 +160,7 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
     @inlineCallbacks
     def test_get(self):
@@ -190,7 +190,7 @@ class TestRTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
     @inlineCallbacks
     def test_get(self):
