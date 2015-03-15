@@ -103,31 +103,6 @@ def receiverfile_planning(store):
     for filex in files:
         filex.mark = u'locked'
 
-        if not filex.internaltip:
-            log.err("Integrity failure: the file %s"\
-                    "has not an InternalTip assigned (path: %s)" %
-                    (filex.name, filex.file_path) )
-
-            try:
-                os.remove(os.path.join(GLSetting.submission_path, filex.file_path))
-            except OSError as excep:
-                log.err("Unable to remove %s in integrity fixing routine: %s" %
-                    (filex.file_path, excep.strerror) )
-
-            key_id = os.path.basename(filex.file_path).split('.')[0]
-            keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, key_id)))
-
-            try:
-                os.remove(keypath)
-            except OSError as excep:
-                log.err("Unable to delete keyfile %s: %s" % (keypath, excep.strerror))
-
-            # if the file is not associated to any tip it should be
-            # removed to avoid infinite loop
-            store.remove(filex)
-
-            continue
-
         try:
 
             for receiver in filex.internaltip.receivers:
