@@ -42,12 +42,6 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
             self.assertFalse(is_expired(tip.expiration_date))
 
     @transact
-    def force_submission_expire(self, store):
-        tips = store.find(models.InternalTip)
-        for tip in tips:
-            tip.creation_date = datetime_null()
-
-    @transact
     def force_tip_expire(self, store):
         tips = store.find(models.InternalTip)
         for tip in tips:

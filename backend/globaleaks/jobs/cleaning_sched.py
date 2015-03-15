@@ -7,15 +7,13 @@
 # delete expired tips, etc)
 
 import os
-
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.jobs.base import GLJob
+from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, save_event_db
+from globaleaks.models import InternalTip, ReceiverFile, InternalFile, Comment, ReceiverTip
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.utility import log, is_expired, datetime_to_ISO8601, ISO8601_to_datetime, utc_dynamic_date
-from globaleaks.jobs.base import GLJob
-from globaleaks.models import InternalTip, ReceiverFile, InternalFile, Comment, ReceiverTip
-from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, save_event_db
-from globaleaks.handlers.admin import admin_serialize_context, db_get_context_steps
 
 __all__ = ['CleaningSchedule']
 
@@ -28,17 +26,13 @@ class UpcomingExpireEvent(EventLogger):
 
     @transact
     def notify(self, store, tip_id):
-        tit = store.find(InternalTip, InternalTip.id == tip_id).one()
+        tip= store.find(InternalTip, InternalTip.id == tip_id).one()
         expiring_rtips = store.find(ReceiverTip, ReceiverTip.internaltip_id == tip_id)
-        self.context_desc = admin_serialize_context(store, tit.context, self.language)
-        self.steps_info_desc = db_get_context_steps(store, self.context_desc['id'], self.language)
 
-        for ertip in expiring_rtips:
+        for ertips in expiring_rtips:
             self.do_mail = self.import_receiver(ertip.receiver)
             expiring_tip_desc = serialize_receivertip(ertip)
             self.append_event(tip_info=expiring_tip_desc, subevent_info=None)
-
-
 
 @transact_ro
 def get_tip_timings(store, new):
@@ -46,6 +40,7 @@ def get_tip_timings(store, new):
     itip_list = store.find(InternalTip, InternalTip.new == new)
 
     tipinfo_list = []
+
     for itip in itip_list:
         comment_cnt = store.find(Comment, Comment.internaltip_id == itip.id).count()
         files_cnt = store.find(InternalFile, InternalFile.internaltip_id == itip.id).count()
@@ -96,10 +91,6 @@ def itip_cleaning(store, tip_id):
                 os.remove(abspath)
             except OSError as excep:
                 log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
-        else:
-            if ifile.mark != u'delivered': # Removed
-                log.err("Unable to remove non existent internalfile %s (itip %s, internalfile %s(%d))" %
-                        (abspath, tip_id, ifname, ifile.size))
 
         rfiles = store.find(ReceiverFile, ReceiverFile.internalfile_id == ifile.id)
         for rfile in rfiles:
@@ -116,13 +107,6 @@ def itip_cleaning(store, tip_id):
                     os.remove(abspath)
                 except OSError as excep:
                     log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
-            else:
-                if rfile.status == 'encrypted': # encrypted is the only status where the file need to be deleted.
-                                                # other cases are:
-                                                # - reference: the ifile removal is handled above
-                                                # - nokey and unavailable are the error cases where the file does not exist
-                    log.err("Unable to remove non existent receiverfile %s (itip %s, internalfile %s(%d))" %
-                            (abspath, tip_id, ifname, ifile.size))
 
     store.remove(tit)
 
@@ -132,10 +116,13 @@ class CleaningSchedule(GLJob):
     @inlineCallbacks
     def operation(self):
         """
-        this function, checks all the InternalTips and their expiration date.
+        This function, checks all the InternalTips and their expiration date.
         if expired InternalTips are found, it removes that along with
         all the related DB entries comment and tip related.
         """
+
+        # Reset the exception trackiging variable of GLSetting
+        GLSetting.exceptions = {}
 
         # Check1: check for expired InternalTips (new tips)
         new_tips = yield get_tip_timings(True)
@@ -167,8 +154,3 @@ class CleaningSchedule(GLJob):
                 yield expiring_tips_events.notify(tip['id'])
                 yield save_event_db(expiring_tips_events.events)
                 yield itip_cleaning(tip['id'])
-
-        # This operation, executed once every hour, clean the exception queue.
-        # This is important because we've a limit on the amount of exception to
-        # be sent, in order to do not flood our error service.
-        GLSetting.exceptions = {}
