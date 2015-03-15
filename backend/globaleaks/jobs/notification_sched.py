@@ -292,9 +292,7 @@ class FileEventLogger(EventLogger):
 
 @transact
 def save_event_db(store, event_dict):
-
     for evnt in event_dict:
-
         e = EventLogs()
 
         e.description = {

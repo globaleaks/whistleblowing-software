@@ -101,7 +101,6 @@ def receiverfile_planning(store):
     ifilesmap = {}
 
     for filex in files:
-
         filex.mark = u'locked'
 
         if not filex.internaltip:
@@ -385,7 +384,6 @@ class DeliverySchedule(GLJob):
         log.debug("Delivery task: Iterate over %d ReceiverFile(s)" % len(filemap.keys()) )
 
         for ifile_path, receivermap in filemap.iteritems():
-
             plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z0-9]{16}') )
 
             create_plaintextfile = encrypt_where_available(receivermap)

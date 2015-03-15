@@ -170,7 +170,7 @@ def db_create_submission(store, token, request, language):
         raise errors.InternalServerError("Unable to commit on DB")
 
     try:
-        for filedesc in token.files_uploaded:
+        for filedesc in token.uploaded_files:
             associated_f = InternalFile()
             associated_f.name = filedesc['filename']
             # aio, when we are going to implement file.description ?
