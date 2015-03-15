@@ -112,7 +112,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertTrue(isinstance(self.rfi, list))
         self.assertEqual(len(self.rfi), 6)
 
-        for i in range(0, 18):
+        for i in range(0, 6):
             self.assertTrue(self.rfi[i]['mark'] in [u'not notified', u'skipped'])
             self.assertTrue(self.rfi[i]['status'] in [u'reference', u'encrypted'])
 
