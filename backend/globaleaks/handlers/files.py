@@ -249,33 +249,13 @@ class FileInstance(BaseHandler):
         Parameter: internaltip_id
         Request: Unknown
         Response: Unknown
-        Errors: TokenFailure, TokenFailure
-
-        XXX:
-        The idea is to implement a GET on the file upload, in order
-        to GET a token for the file, and only if the captcha is
-        present, pressing "upload file" cause the 'modal' for the
-        captcha. At the moment, the only captcha verification is
-        applied to the submission
+        Errors: TokenFailure
         """
 
-        TokenList.get(token_id)
-        token = TokenList.token_dict[token_id]
+        token = TokenList.get(token_id)
 
         log.debug("file upload with Token associated : %s" % token)
-        # token.timedelta_check() -- not done here, just in submission
 
-        # may raise an exception if the number of files uploaded has reach
-        # the limit number, TODO, the can report the size, and limit the
-        # TOTAL amount of byte bring from a single token, instead of having
-        # a maximum file size.
-
-        token.file_upload_usage()
-
-        # if useful... we can check something associated to:
-        # token.context_associated
-
-        # This upload depend from the token_id, not from InternalTip.id
         yield self.handle_file_upload(token)
 
 

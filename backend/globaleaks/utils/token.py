@@ -50,7 +50,6 @@ class Token(TempObj):
     SUBMISSION_MINIMUM_DURATION = 0
     SUBMISSION_MAXIMUM_DURATION = 3600 * 4
     MAXIMUM_ATTEMPTS_PER_TOKEN = 3
-    MAXIMUM_UPLOADS_PER_TOKEN = 20
 
     def __init__(self, token_kind, context_id):
         """
@@ -77,7 +76,6 @@ class Token(TempObj):
         self.end_validity_secs = Token.SUBMISSION_MAXIMUM_DURATION
 
         self.remaining_allowed_attempts = Token.MAXIMUM_ATTEMPTS_PER_TOKEN
-        self.remaining_allowed_uploads = Token.MAXIMUM_UPLOADS_PER_TOKEN
 
         # creation_date of token assignment
         self.creation_date = datetime.utcnow()
@@ -92,8 +90,8 @@ class Token(TempObj):
 
         # initialization
         self.human_captcha = False
-        self.proof_of_work = False
         self.graph_captcha = False
+        self.proof_of_work = False
 
         TempObj.__init__(self,
                          TokenList.token_dict,
@@ -110,22 +108,6 @@ class Token(TempObj):
                 os.remove(f['encrypted_path'])
             except:
                 pass
-
-    def file_upload_usage(self):
-        """
-        This function is called every time a file is uploaded and causes
-        a decrement on a counter.
-        When the counter reaches 0, no further uploads are allowed.
-
-        :return: None or raise an error
-        """
-        if not self.remaining_allowed_uploads:
-            raise errors.TokenFailure("Too much files uploaded")
-
-        self.remaining_allowed_uploads -= 1
-
-        log.debug("From a maximum of %d files, this token has %d slots" % (
-            Token.MAXIMUM_UPLOADS_PER_TOKEN, self.remaining_allowed_uploads))
 
     def associate_file(self, fileinfo):
         self.uploaded_files.append(fileinfo)
@@ -157,7 +139,6 @@ class Token(TempObj):
             'end_validity_secs': datetime_to_ISO8601(self.creation_date +
                                                 timedelta(seconds=self.end_validity_secs) ),
             'remaining_allowed_attempts': self.remaining_allowed_attempts,
-            'remaining_allowed_uploads': self.remaining_allowed_uploads,
             'type': self.kind,
             'graph_captcha': self.graph_captcha['question'] if self.graph_captcha else False,
             'human_captcha': self.human_captcha['question'] if self.human_captcha else False,
