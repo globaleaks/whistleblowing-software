@@ -29,6 +29,11 @@ token_string = r'([a-zA-Z0-9]{42})'
 #    manages the get of a collection of resources
 
 spec = [
+
+    ## Some Useful Redirects ##
+    (r'/login', BaseRedirectHandler, {'url': '/#/login'}),
+    (r'/admin', BaseRedirectHandler, {'url': '/#/admin'}),
+
     ## Authentication Handler ##
     (r'/authentication', authentication.AuthenticationHandler),
 
@@ -101,9 +106,7 @@ spec = [
     (r'/styles-rtl.css', css.RTLCSSFileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
             langfiles.LanguageFileHandler, {'path': GLSetting.glclient_path}),
-    (r'/(.*)', BaseStaticFileHandler, {'path': GLSetting.glclient_path}),
 
-    ## Some Useful Redirects ##
-    (r'/login', BaseRedirectHandler, {'url': '/#/login'}),
-    (r'/admin', BaseRedirectHandler, {'url': '/#/admin'})
+    ## This Handler should remain the last one as it works like a last resort catch 'em all
+    (r'/(.*)', BaseStaticFileHandler, {'path': GLSetting.glclient_path})
 ]
