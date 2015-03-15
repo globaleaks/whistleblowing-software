@@ -645,7 +645,7 @@ class MockDict():
             # Email can be different from the user, but at the creation time is used
             # the same address, therefore we keep the same of dummyReceiver.username
             'mail_address': self.dummyReceiverUser['username'],
-            'ping_mail_address': '',
+            'ping_mail_address': 'giovanni.pellerano@evilaliv3.org',
             'can_delete_submission': True,
             'postpone_superpower': True,
             'contexts' : [],
@@ -653,7 +653,7 @@ class MockDict():
             'file_notification': True,
             'comment_notification': True,
             'message_notification': True,
-            'ping_notification': False,
+            'ping_notification': True,
             'gpg_key_info': u'',
             'gpg_key_fingerprint' : u'',
             'gpg_key_status': u'disabled',
