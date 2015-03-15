@@ -295,7 +295,6 @@ class MailflushSchedule(GLJob):
         for qe_pos, qe in enumerate(queue_events):
             if qe_pos in digest_used_event:
                 yield mark_event_as_notified_in_digest(queue_events[qe_pos])
-                log.debug("Marked event %s as sent because of digest" % queue_events[qe_pos])
                 continue
 
             yield notifcb.do_every_notification(qe)

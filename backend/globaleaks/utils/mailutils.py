@@ -72,18 +72,13 @@ def sendmail(authentication_username, authentication_password, from_address,
     notif_retries = 2
     notif_timeout = 10
 
-    def printError(reason, event):
-
-        # XXX is catch a wrong TCP port, but not wrong SSL protocol, here
+    def printError(method, reason, event):
         if event:
             log.err("** failed notification within event %s" % event.type)
-        # TODO Enhance with retry
-        # TODO specify a ticket - make event an Obj instead of a namedtuple
-        # TODO It's defined in plugin/base.py
 
         if isinstance(reason, Failure):
-            log.err("Failed to contact %s:%d (Sock Error %s)" %
-                    (smtp_host, smtp_port, reason.type))
+            log.err("Failed to connect to %s:%d (Sock Error: %s) (Method: %s)" %
+                    (smtp_host, smtp_port, reason.value, method))
             log.debug(reason)
 
     def esmtp_errback(reason, *args, **kwargs):
