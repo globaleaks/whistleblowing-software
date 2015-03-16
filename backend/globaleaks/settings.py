@@ -805,7 +805,7 @@ class transact(object):
         except HTTPError as excep:
             transaction.abort()
             raise excep
-        except Exception:
+        except:
             transaction.abort()
             self.store.close()
             # propagate the exception

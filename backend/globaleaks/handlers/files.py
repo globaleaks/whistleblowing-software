@@ -31,8 +31,7 @@ def serialize_file(internalfile):
         'content_type' : internalfile.content_type,
         'name' : internalfile.name,
         'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-        'id' : internalfile.id,
-        'mark' : internalfile.mark,
+        'id' : internalfile.id
     }
 
     return file_desc
@@ -53,7 +52,7 @@ def serialize_receiver_file(receiverfile):
     return file_desc
 
 
-def memory_file_serialize(uploaded_file):
+def serialize_memory_file(uploaded_file):
     """
     This is the memory version of the function register_file_db below,
     return the file serialization used by JQueryFileUploader to display
@@ -64,7 +63,6 @@ def memory_file_serialize(uploaded_file):
         'creation_date': datetime_to_ISO8601(uploaded_file['creation_date']),
         'id': u'00000000-0000-0000-0000-000000000000',
             # 'id' is ignored, TODO align API/requsts.py
-        'mark': u'not processed',
         'name' : unicode(uploaded_file['filename']),
         'size': uploaded_file['body_len'],
     }
@@ -96,10 +94,10 @@ def register_file_db(store, uploaded_file, internaltip_id):
         raise errors.TipIdNotFound
 
     new_file = InternalFile()
+    new_file.new = True
     new_file.name = uploaded_file['filename']
     new_file.description = ""
     new_file.content_type = uploaded_file['content_type']
-    new_file.mark = u'not processed'
     new_file.size = uploaded_file['body_len']
     new_file.internaltip_id = internaltip_id
     new_file.file_path = uploaded_file['encrypted_path']
@@ -230,7 +228,7 @@ class FileInstance(BaseHandler):
             uploaded_file['creation_date'] = datetime_now()
             token.associate_file(uploaded_file)
 
-            registered_file = memory_file_serialize(uploaded_file)
+            registered_file = serialize_memory_file(uploaded_file)
         except Exception as excep:
             log.err("Unable to save file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept files")

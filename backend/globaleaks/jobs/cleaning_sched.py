@@ -10,7 +10,7 @@ import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
-from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, save_event_db
+from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, save_events_on_db
 from globaleaks.models import InternalTip, ReceiverFile, InternalFile, Comment, ReceiverTip
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.utility import log, is_expired, datetime_to_ISO8601, ISO8601_to_datetime, utc_dynamic_date
@@ -29,8 +29,8 @@ class UpcomingExpireEvent(EventLogger):
         tip= store.find(InternalTip, InternalTip.id == tip_id).one()
         expiring_rtips = store.find(ReceiverTip, ReceiverTip.internaltip_id == tip_id)
 
-        for ertips in expiring_rtips:
-            self.do_mail = self.import_receiver(ertip.receiver)
+        for ertip in expiring_rtips:
+            self.do_mail, _ = self.import_receiver(ertip.receiver)
             expiring_tip_desc = serialize_receivertip(ertip)
             self.append_event(tip_info=expiring_tip_desc, subevent_info=None)
 
@@ -79,7 +79,7 @@ def itip_cleaning(store, tip_id):
 
     comments = store.find(Comment, Comment.internaltip_id == tip_id)
     log.debug("[-] Removing [%d comments] [%d files] [%d rtips] from an InternalTip" %
-        (comments.count(), tit.internalfiles.count(), tit.receivertips.count() ))
+        (comments.count(), tit.internalfiles.count(), tit.receivertips.count()))
 
     for ifile in tit.internalfiles:
         abspath = os.path.join(GLSetting.submission_path, ifile.file_path)
@@ -152,5 +152,5 @@ class CleaningSchedule(GLJob):
 
                 expiring_tips_events = UpcomingExpireEvent()
                 yield expiring_tips_events.notify(tip['id'])
-                yield save_event_db(expiring_tips_events.events)
+                yield save_events_on_db(expiring_tips_events.events)
                 yield itip_cleaning(tip['id'])

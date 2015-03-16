@@ -264,8 +264,7 @@ class ReceiverTip(Model):
     access_counter = Int()
     notification_date = DateTime()
 
-    mark = Unicode()
-    # markers = [u'not notified', u'notified', u'unable to notify', u'skipped']
+    new = Int()
 
 
 class WhistleblowerTip(Model):
@@ -300,8 +299,7 @@ class ReceiverFile(Model):
     downloads = Int()
     last_access = DateTime()
 
-    mark = Unicode()
-    # markers = [u'not notified', u'notified', u'unable to notify', u'skipped']
+    new = Int()
 
     status = Unicode()
     _status_list = [u'reference', u'encrypted', u'unavailable', u'nokey']
@@ -329,16 +327,7 @@ class InternalFile(Model):
     description = Unicode(validator=longtext_v)
     size = Int()
 
-    mark = Unicode()
-    # markers = [u'not processed', u'locked', u'ready', u'delivered']
-    # 'not processed' = submission time
-    # 'ready' = processed in ReceiverTip, available for usage
-    # 'delivered' = the file need to stay on DB, but from the
-    #               disk has been deleted
-    #  it happens when GPG encryption is present in the whole Receiver group.
-    # 'locked' = the file is under process by delivery scheduler
-
-    # N.B. *_keys = It's created without initializing dict
+    new = Int()
 
 
 class Comment(Model):
@@ -356,13 +345,7 @@ class Comment(Model):
     type = Unicode()
     # types = [u'receiver', u'whistleblower', u'system']
 
-    mark = Unicode()
-    # markers = [
-    #   u'not notified',
-    #   u'notified',
-    #   u'unable to notify',
-    #   u'skipped'
-    # ]
+    new = Int()
 
 
 class Message(Model):
@@ -378,13 +361,7 @@ class Message(Model):
     type = Unicode()
     # types = [u'receiver', u'whistleblower']
 
-    mark = Unicode()
-    # markers = [
-    #    u'not notified',
-    #    u'notified',
-    #    u'unable to notify',
-    #    u'skipped'
-    # ]
+    new = Int()
 
 
 class Node(Model):
@@ -659,10 +636,7 @@ class EventLogs(Model):
     receivertip_id = Unicode()
     event_reference = JSON()
 
-    # XXX This can be used to keep track mail reliability ??
     mail_sent = Bool()
-
-
 
 
 class Field(Model):
@@ -817,6 +791,7 @@ class ApplicationData(Model):
     version = Int()
     fields = JSON()
 
+
 class FieldField(BaseModel):
     """
     Class used to implement references between Fields and Fields!
@@ -830,6 +805,7 @@ class FieldField(BaseModel):
 
     unicode_keys = ['parent_id', 'child_id']
 
+
 class StepField(BaseModel):
     """
     Class used to implement references between Steps and Fields!
@@ -841,6 +817,7 @@ class StepField(BaseModel):
     field_id = Unicode()
 
     unicode_keys = ['step_id', 'field_id']
+
 
 # Follow classes used for Many to Many references
 class ReceiverContext(BaseModel):

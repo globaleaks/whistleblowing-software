@@ -49,14 +49,15 @@ def db_create_whistleblower_tip(store, submission_desc):
 
     node = store.find(Node).one()
 
-    return_value_receipt = unicode(rstr.xeger(node.receipt_regexp))
-    wbtip.receipt_hash = security.hash_password(return_value_receipt, node.receipt_salt)
+    receipt = unicode(rstr.xeger(node.receipt_regexp))
 
+    wbtip.receipt_hash = security.hash_password(receipt, node.receipt_salt)
     wbtip.access_counter = 0
     wbtip.internaltip_id = submission_desc['id']
+
     store.add(wbtip)
 
-    return return_value_receipt
+    return receipt
 
 @transact
 def create_whistleblower_tip(*args):
@@ -172,11 +173,11 @@ def db_create_submission(store, token, request, language):
     try:
         for filedesc in token.uploaded_files:
             associated_f = InternalFile()
+            associated_f.new = True
             associated_f.name = filedesc['filename']
             # aio, when we are going to implement file.description ?
             associated_f.description = ""
             associated_f.content_type = filedesc['content_type']
-            associated_f.mark = u'not processed'
             associated_f.size = filedesc['body_len']
             associated_f.internaltip_id = submission.id
             associated_f.file_path = filedesc['encrypted_path']

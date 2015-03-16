@@ -208,7 +208,6 @@ class TestGPG(TestHandlerWithPopulatedDB):
 
         self.assertTrue(isinstance(ifilist, list))
         self.assertEqual(len(ifilist), 3)
-        self.assertEqual(ifilist[0]['mark'], u'delivered')
 
         rfilist = yield get_receiverfile_by_itip(new_subm_output['id'])
 

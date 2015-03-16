@@ -99,10 +99,11 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         for ifile_path, receivermap in self.rfilesdict.iteritems():
             yield delivery_sched.encrypt_where_available(receivermap)
             for elem in receivermap:
-                rfdesc = yield delivery_sched.receiverfile_create(ifile_path,
-                                    elem['path'], elem['status'], elem['size'], elem['receiver'])
-                self.assertEqual(rfdesc['mark'], u'not notified')
-                self.assertEqual(rfdesc['receiver_id'], elem['receiver']['id'])
+                yield delivery_sched.receiverfile_create(ifile_path,
+                                                         elem['path'],
+                                                         elem['status'],
+                                                         elem['size'],
+                                                         elem['receiver'])
 
         self.fil = yield delivery_sched.get_files_by_itip(self.submission_desc['id'])
         self.assertTrue(isinstance(self.fil, list))
@@ -113,7 +114,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertEqual(len(self.rfi), 6)
 
         for i in range(0, 6):
-            self.assertTrue(self.rfi[i]['mark'] in [u'not notified', u'skipped'])
             self.assertTrue(self.rfi[i]['status'] in [u'reference', u'encrypted'])
 
         # verify the checksum returned by whistleblower POV, I'm not using
@@ -158,7 +158,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_fields_fail_unexpected_presence(self):
-
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
 
         found_at_least_a_field = False
@@ -177,7 +176,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_fields_fail_missing_required(self):
-
         required_key = unicode(self.dummyFields[0]['id']) # first of the dummy field is
                                                           # marked as required!
 

@@ -44,7 +44,6 @@ def collect_tip_overview(store, language):
                 'access_counter': rtip.access_counter,
                 'notification_date': datetime_to_ISO8601(rtip.notification_date),
                 # 'creation_date': datetime_to_ISO8601(rtip.creation_date),
-                'status': rtip.mark,
                 'receiver_id': rtip.receiver.id,
                 'receiver_username': rtip.receiver.user.username,
                 'receiver_name': rtip.receiver.name,
@@ -55,7 +54,6 @@ def collect_tip_overview(store, language):
             tip_description['internalfiles'].append({
                 'name': ifile.name,
                 'size': ifile.size,
-                'status': ifile.mark,
                 'content_type': ifile.content_type
             })
 
@@ -112,14 +110,12 @@ def collect_users_overview(store):
                 'file_name': rfile.internalfile.name,
                 'downloads': rfile.downloads,
                 'last_access': datetime_to_ISO8601(rfile.last_access),
-                'status': rfile.mark,
             })
 
         rcvr_tips = store.find(models.ReceiverTip, models.ReceiverTip.receiver_id == receiver.id )
         for rtip in rcvr_tips:
             user_description['receivertips'].append({
                 'internaltip_id': rtip.id,
-                'status': rtip.mark,
                 'last_access': datetime_to_ISO8601(rtip.last_access),
                 'notification_date': datetime_to_ISO8601(rtip.notification_date),
                 'access_counter': rtip.access_counter
@@ -143,7 +139,6 @@ def collect_files_overview(store):
 
     # ifile evaluation
     for ifile in stored_ifiles:
-
         file_desc = {
             'id': ifile.id,
             'name': ifile.name,
@@ -152,15 +147,14 @@ def collect_files_overview(store):
             'itip': ifile.internaltip_id,
             'creation_date': datetime_to_ISO8601(ifile.creation_date),
             'rfiles': 0,
-            'stored': None,
+            'stored': False,
             'path': '',
         }
 
         file_desc['rfiles'] = store.find(models.ReceiverFile,
                                          models.ReceiverFile.internalfile_id == ifile.id).count()
 
-        if os.path.isfile(ifile.file_path):
-
+        if ifile.file_path != '' and os.path.isfile(ifile.file_path):
             file_desc['stored'] = True
             file_desc['path'] = ifile.file_path
 
@@ -172,18 +166,10 @@ def collect_files_overview(store):
             if filename in disk_files:
                 disk_files.remove(filename)
 
-        else:
-            if ifile.mark == 'ready': # is the status userd by plaintext files
-                log.err("InternalFile %s references a not existent file: %s" %
-                        (file_desc['id'], ifile.file_path) )
-
-            file_desc['stored'] = False
-
         file_description_list.append(file_desc)
 
     # remaining files are checked for rfile presence
     for rfile in stored_rfiles:
-
         file_desc = {
             'id': rfile.internalfile.id,
             'name': rfile.internalfile.name,
@@ -192,12 +178,11 @@ def collect_files_overview(store):
             'itip': rfile.internaltip_id,
             'creation_date': datetime_to_ISO8601(rfile.internalfile.creation_date),
             'rfiles': 1,
-            'stored': None,
+            'stored': False,
             'path': '',
         }
 
         if os.path.isfile(rfile.file_path):
-
             file_desc['stored'] = True
             file_desc['path'] = rfile.file_path
 
@@ -208,12 +193,6 @@ def collect_files_overview(store):
 
             if filename in disk_files:
                 disk_files.remove(filename)
-
-        else:
-            if rfile.internalfile.mark == 'encrypted' or rfile.internalfile.mark == 'reference':
-                log.err("ReceiverFile %s references a not existent file: %s" %
-                        (file_desc['id'], rfile.file_path) )
-            file_desc['stored'] = False
 
         file_description_list.append(file_desc)
 

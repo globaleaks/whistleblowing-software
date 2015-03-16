@@ -131,7 +131,8 @@ class TableReplacer(object):
         from globaleaks.db.update_16_17 import Node_v_16, Receiver_v_16, Notification_v_16, Stats_v_16
         from globaleaks.db.update_17_18 import Node_v_17
         from globaleaks.db.update_18_19 import Node_v_18
-        from globaleaks.db.update_19_20 import InternalTip_v_19, Notification_v_19
+        from globaleaks.db.update_19_20 import Notification_v_19, Comment_v_19, Message_v_19, \
+            InternalTip_v_19, ReceiverTip_v_19, InternalFile_v_19, ReceiverFile_v_19
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -145,16 +146,16 @@ class TableReplacer(object):
             'User': [User_v_9, None, User_v_14, None, None, None, None, models.User, None, None, None, None, None],
             'Context': [Context_v_8, Context_v_11, None, None, Context_v_12, Context_v_13, Context_v_14, models.Context, None, None, None, None, None],
             'Receiver': [Receiver_v_8, Receiver_v_9, Receiver_v_14, None, None, None, None, Receiver_v_15, Receiver_v_16, models.Receiver, None, None, None],
-            'ReceiverFile': [models.ReceiverFile, None, None, None, None, None, None, None, None, None, None, None, None],
+            'ReceiverFile': [ReceiverFile_v_19, None, None, None, None, None, None, None, None, None, None, None, models.ReceiverFile],
             'Notification': [Notification_v_8, Notification_v_14, None, None, None, None, None, Notification_v_15, Notification_v_16, Notification_v_19, None, None, models.Notification],
-            'Comment': [Comment_v_14, None, None, None, None, None, None, models.Comment, None, None, None, None, None],
+            'Comment': [Comment_v_14, None, None, None, None, None, None, Comment_v_19, None, None, None, None, models.Comment],
             'InternalTip': [InternalTip_v_10, None, None, InternalTip_v_14, None, None, None, InternalTip_v_19, None, None, None, None, models.InternalTip],
-            'InternalFile': [InternalFile_v_10, None, None, models.InternalFile, None, None, None, None, None, None, None, None, None],
+            'InternalFile': [InternalFile_v_10, None, None, InternalFile_v_19, None, None, None, None, None, None, None, None, models.InternalFile],
             'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None, None, None, None, None],
-            'ReceiverTip': [models.ReceiverTip, None, None, None , None, None, None, None, None, None, None, None, None],
+            'ReceiverTip': [ReceiverTip_v_19, None, None, None , None, None, None, None, None, None, None, None, models.ReceiverTip],
             'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None, None, None, None],
             'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None, None, None, None],
-            'Message': [models.Message, None, None, None, None, None, None, None, None, None, None, None, None],
+            'Message': [Message_v_19, None, None, None, None, None, None, None, None, None, None, None, models.Message],
             'Stats': [Stats_v_14, None, None, None, None, None, None, Stats_v_16, None, models.Stats, None, None, None],
             'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None, None, None],
             'Field': [models.Field, None, None, None, None, None, None, None, None, None, None, None, None],

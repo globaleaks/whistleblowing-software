@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- encoding: utf-8 -*-
 #
 #   delivery_sched
 #   **************
@@ -34,8 +34,8 @@ def serialize_internalfile(ifile):
         'file_path' : ifile.file_path,
         'content_type' : ifile.content_type,
         'size' : ifile.size,
-        'mark' : ifile.mark,
     }
+
     return ifile_dict
 
 @transact_ro
@@ -64,9 +64,9 @@ def serialize_receiverfile(rfile):
         'size' : rfile.size,
         'downloads' : rfile.downloads,
         'last_access' : rfile.last_access,
-        'mark' : rfile.mark,
         'status' : rfile.status,
     }
+
     return rfile_dict
 
 @transact_ro
@@ -91,44 +91,30 @@ def receiverfile_planning(store):
     receivers associated, one entry for each combination. representing the
     ReceiverFile that need to be created.
     """
-
-    try:
-        files = store.find(InternalFile, InternalFile.mark == u'not processed')
-    except Exception as excep:
-        log.err("Unable to find InternalFile in scheduler! %s" % str(excep))
-        return []
-
     ifilesmap = {}
 
+    files = store.find(InternalFile, InternalFile.new == True)
     for filex in files:
-        filex.mark = u'locked'
+        for receiver in filex.internaltip.receivers:
+            if filex.file_path not in ifilesmap:
+                ifilesmap[filex.file_path] = list()
 
-        try:
+            receiver_desc = admin_serialize_receiver(receiver, GLSetting.memory_copy.language)
 
-            for receiver in filex.internaltip.receivers:
+            map_info = {
+                'receiver' : receiver_desc,
+                'path' : filex.file_path,
+                'size' : filex.size,
+                'status' : u'reference'
+            }
 
-                if filex.file_path not in ifilesmap:
-                    ifilesmap[filex.file_path] = list()
+            # AS KEY, file path is used to keep track of the original
+            # path, because shall be renamed in .plaintext (in the unlucky case
+            # of receivers without PGP)
+            # AS FIELD, it can be replaced with a dedicated PGP encrypted path
+            ifilesmap[filex.file_path].append(map_info)
 
-                receiver_desc = admin_serialize_receiver(receiver, GLSetting.memory_copy.language)
-
-                map_info = {
-                    'receiver' : receiver_desc,
-                    'path' : filex.file_path,
-                    'size' : filex.size,
-                    'status' : u'reference'
-                }
-
-                # this may seem apparently redounded, but is not!
-                # AS KEY, file path is used to keep track of the original
-                # path, because shall be renamed in .plaintext (in the unlucky case
-                # of receivers without PGP)
-                # AS FIELD, it can be replaced with a dedicated PGP encrypted path
-                ifilesmap[filex.file_path].append(map_info)
-
-        except Exception as excep:
-            log.debug("Invalid Storm operation in checking for PGP cap: %s" % excep)
-            continue
+        filex.new = False
 
     return ifilesmap
 
@@ -169,7 +155,6 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
 
 @transact
 def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_desc):
-
     try:
         ifile = store.find(InternalFile, InternalFile.file_path == unicode(if_path)).one()
 
@@ -197,16 +182,13 @@ def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_d
         receiverfile.size = recv_size
         receiverfile.status = unicode(status)
 
-        receiverfile.mark = u'not notified'
+        receiverfile.new = True
 
         store.add(receiverfile)
 
-        return serialize_receiverfile(receiverfile)
-
     except Exception as excep:
-        log.err("Error when saving ReceiverFile %s for '%s': %s" % (
-                if_path, receiver_desc['name'], excep.message))
-        return []
+        log.err("Error when saving ReceiverFile %s for '%s': %s" %
+                (if_path, receiver_desc['name'], excep.message))
 
 
 # called in a transact!
@@ -220,7 +202,7 @@ def create_receivertip(store, receiver, internaltip):
     receivertip.internaltip_id = internaltip.id
     receivertip.access_counter = 0
     receivertip.receiver_id = receiver.id
-    receivertip.mark = u'not notified'
+    receivertip.new = True
 
     store.add(receivertip)
 
@@ -250,13 +232,12 @@ def tip_creation(store):
     return created_rtips
 
 @transact
-def do_final_internalfile_update(store, file_path, new_marker, new_path=None):
-
+def do_final_internalfile_update(store, file_path, new_path):
     try:
         ifile = store.find(InternalFile,
                            InternalFile.file_path == unicode(file_path)).one()
-    except Exception as stormer:
-        log.err("Error in find %s: %s" % (file_path, stormer.message))
+    except Exception as err:
+        log.err("Error in find %s: %s" % (file_path, err.message))
         return
 
     if not ifile:
@@ -264,16 +245,8 @@ def do_final_internalfile_update(store, file_path, new_marker, new_path=None):
         return
 
     try:
-        old_marker = ifile.mark
-        ifile.mark = new_marker
-
-        if new_path:
-            ifile.file_path = new_path
-
-        log.debug("Switched status set for InternalFile %s (%s => %s)" %(
-            ifile.name, old_marker, new_marker
-        ))
-
+        ifile.new = False
+        ifile.file_path = new_path
     except Exception as excep:
         log.err("Unable to switch mode in InternalFile %s: %s" % (ifile.name, excep) )
         if new_path:
@@ -337,26 +310,13 @@ class DeliverySchedule(GLJob):
             log.err("Exception in asyncronous delivery job: %s" % excep )
             sys.excepthook(*sys.exc_info())
 
-        # ==> Files && Files update,
-        #     InternalFile is set as 'locked' status
-        #     and would be unlocked at the end.
-        # TODO xxx limit of file number per operation
         filemap = yield receiverfile_planning()
-        # the function returns a dict of lists with dicts:
-        # {
-        #     'ifile_path' : [
-        #       { 'receiver' : receiver_desc, 'path': file_path,
-        #                           'size' : file_size, 'status': XXX },
-        #       { 'receiver' : receiver_desc, 'path': file_path,
-        #                           'size' : file_size, 'status': YYY }, ... ]
-        # },  { }, ...
-        #
 
         if not filemap:
             return
 
         # Here the files received are encrypted (if the receiver has PGP key)
-        log.debug("Delivery task: Iterate over %d ReceiverFile(s)" % len(filemap.keys()) )
+        log.debug("Delivery task: Iterate over %d ReceiverFile(s)" % len(filemap.keys()))
 
         for ifile_path, receivermap in filemap.iteritems():
             plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z0-9]{16}') )
@@ -364,13 +324,13 @@ class DeliverySchedule(GLJob):
             create_plaintextfile = encrypt_where_available(receivermap)
 
             for rfileinfo in receivermap:
-
                 if not create_plaintextfile and rfileinfo['status'] == u'reference':
                     rfileinfo['path'] = plain_path
 
                 try:
                     yield receiverfile_create(ifile_path, rfileinfo['path'], rfileinfo['status'],
                                               rfileinfo['size'], rfileinfo['receiver'])
+
                 except Exception as excep:
                     log.err("Unable to create ReceiverFile from %s for %s: %s" %
                             (ifile_path, rfileinfo['receiver']['name'], excep))
@@ -392,14 +352,14 @@ class DeliverySchedule(GLJob):
                                 break
                             plain_f_is_sad_f.write(chunk)
 
-                    yield do_final_internalfile_update(ifile_path, u'ready', plain_path)
+                    yield do_final_internalfile_update(ifile_path, plain_path)
 
                 except Exception as excep:
                     log.err("Unable to create plaintext file %s: %s" % (plain_path, excep))
 
             else: # create_plaintextfile
                 log.debug("All Receivers support PGP or the system denys plaintext version of files: marking internalfile as removed")
-                yield do_final_internalfile_update(ifile_path, u'delivered') # Removed
+                yield do_final_internalfile_update(ifile_path, "")
 
             # the original AES file need always to be deleted
             log.debug("Deleting the submission AES encrypted file: %s" % ifile_path)

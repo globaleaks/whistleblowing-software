@@ -24,9 +24,9 @@ CREATE TABLE message (
     creation_date VARCHAR NOT NULL,
     author VARCHAR NOT NULL,
     receivertip_id VARCHAR NOT NULL,
-    type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower' )),
-    mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled', 'skipped')),
+    type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
     content VARCHAR NOT NULL,
+    new INTEGER NOT NULL,
     FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -37,9 +37,9 @@ CREATE TABLE comment (
     author VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower', 'system')),
-    mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled', 'skipped')),
     content VARCHAR NOT NULL,
     system_content BLOB,
+    new INTEGER NOT NULL,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -71,10 +71,10 @@ CREATE TABLE internalfile (
     creation_date VARCHAR NOT NULL,
     content_type VARCHAR NOT NULL,
     file_path VARCHAR,
-    mark VARCHAR NOT NULL CHECK (mark IN ('not processed', 'locked', 'ready', 'delivered')),
     name VARCHAR NOT NULL,
     description VARCHAR,
     size INTEGER NOT NULL,
+    new INTEGER NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
@@ -91,8 +91,8 @@ CREATE TABLE receiverfile (
     receiver_id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     receiver_tip_id VARCHAR NOT NULL,
-    mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled', 'skipped')),
     status VARCHAR NOT NULL CHECK (status IN ('reference', 'encrypted', 'unavailable', 'nokey')),
+    new INTEGER  NOT NULL,
     FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,
     FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
@@ -287,8 +287,8 @@ CREATE TABLE receivertip (
     internaltip_id VARCHAR NOT NULL,
     last_access VARCHAR,
     notification_date VARCHAR,
-    mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled', 'skipped')),
     receiver_id VARCHAR NOT NULL,
+    new INTEGER NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
