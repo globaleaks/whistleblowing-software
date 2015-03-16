@@ -20,9 +20,8 @@ from globaleaks.utils.structures import Rosetta
 @transact_ro
 def collect_tip_overview(store, language):
     tip_description_list = []
-    all_itips = store.find(models.InternalTip)
-    all_itips.order_by(Desc(models.InternalTip.creation_date))
 
+    all_itips = store.find(models.InternalTip)
     for itip in all_itips:
         tip_description = {
             "id": itip.id,
@@ -33,6 +32,8 @@ def collect_tip_overview(store, language):
             "receivertips": [],
             "internalfiles": [],
             "comments": [],
+            'wb_access_counter': 0,
+            'wb_last_access': u'Never'
         }
 
         mo = Rosetta(itip.context.localized_strings)
@@ -72,10 +73,6 @@ def collect_tip_overview(store, language):
                 'wb_access_counter': wbtip.access_counter,
                 'wb_last_access': datetime_to_ISO8601(wbtip.last_access)
             })
-        else:
-            tip_description.update({
-                'wb_access_counter': u'Deleted', 'wb_last_access': u'Never'
-            })
 
         tip_description_list.append(tip_description)
 
@@ -87,7 +84,6 @@ def collect_users_overview(store):
     users_description_list = []
 
     all_receivers = store.find(models.Receiver)
-
     for receiver in all_receivers:
         # all public of private infos are stripped, because know between the Admin resources
         user_description = {
