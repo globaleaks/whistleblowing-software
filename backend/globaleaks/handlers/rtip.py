@@ -160,7 +160,7 @@ def delete_receiver_tip(store, user_id, tip_id):
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'system' # The printed line
     comment.type = u'system'
-    comment.mark = u'not notified'
+    comment.new = True
 
     rtip.internaltip.comments.add(comment)
 
@@ -228,7 +228,7 @@ def postpone_expiration_date(store, user_id, tip_id):
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'System'
     comment.type = u'system'
-    comment.mark = u'skipped'
+    comment.new = True
 
     rtip.internaltip.comments.add(comment)
 
@@ -343,7 +343,7 @@ def create_comment_receiver(store, user_id, tip_id, request):
     comment.internaltip_id = rtip.internaltip.id
     comment.author = rtip.receiver.name # The printed line
     comment.type = u'receiver'
-    comment.mark = u'not notified'
+    comment.new = True
 
     rtip.internaltip.comments.add(comment)
 
@@ -445,8 +445,7 @@ def receiver_serialize_message(msg):
         'content' : msg.content,
         'visualized' : msg.visualized,
         'type' : msg.type,
-        'author' : msg.author,
-        'mark' : msg.mark
+        'author' : msg.author
     }
 
 @transact
@@ -477,9 +476,8 @@ def create_message_receiver(store, user_id, tip_id, request):
     msg.receivertip_id = rtip.id
     msg.author = rtip.receiver.name
     msg.visualized = False
-
     msg.type = u'receiver'
-    msg.mark = u'skipped'
+    msg.new = True
 
     store.add(msg)
 

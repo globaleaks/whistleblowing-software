@@ -69,7 +69,6 @@ def serialize_event(evnt):
     return ret_dict
 
 
-
 @transact_ro
 def get_receiver_settings(store, receiver_id, language):
     receiver = store.find(Receiver, Receiver.id == receiver_id).one()
@@ -267,14 +266,13 @@ class TipsCollection(BaseHandler):
         Response: receiverTipList
         Errors: InvalidAuthentication
         """
-
         answer = yield get_receiver_tip_list(self.current_user.user_id,
             self.request.language)
 
         self.set_status(200)
         self.finish(answer)
 
-@transact
+@transact_ro
 def get_receiver_notif(store, receiver_id, language):
     """
     The returned struct contains two lists, recent activities
@@ -290,7 +288,6 @@ def get_receiver_notif(store, receiver_id, language):
     }
 
     for evnt in eventlst:
-
         if evnt.event_reference['kind'] != u'Tip':
             ret['activities'].append(serialize_event(evnt))
         else:
@@ -300,7 +297,6 @@ def get_receiver_notif(store, receiver_id, language):
 
 @transact
 def delete_receiver_notif(store, receiver_id):
-
     te = store.find(EventLogs, EventLogs.receiver_id == receiver_id)
     log.debug("Removing %d for receiver %s" % (
         te.count(),
@@ -319,14 +315,11 @@ class NotificationCollection(BaseHandler):
     @authenticated('receiver')
     @inlineCallbacks
     def get(self):
-
         display_event = yield get_receiver_notif(self.current_user.user_id, self.request.language)
         self.set_status(200) # Success
         self.finish(display_event)
 
     @inlineCallbacks
     def delete(self):
-        # support DELETE /receiver/notification/(activities|tips) for mass-selective delete ?
-
         yield delete_receiver_notif(self.current_user.user_id)
         self.set_status(202) # Updated

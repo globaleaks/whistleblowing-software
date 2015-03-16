@@ -299,7 +299,7 @@ class TestGL(unittest.TestCase):
             dummyFile = yield threads.deferToThread(files.dump_file_fs, dummyFile)
             dummyFile['creation_date'] = datetime_null()
 
-            f = files.memory_file_serialize(dummyFile)
+            f = files.serialize_memory_file(dummyFile)
 
             token.associate_file(dummyFile)
 

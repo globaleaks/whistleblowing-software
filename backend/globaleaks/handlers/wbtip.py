@@ -158,10 +158,11 @@ def create_comment_wb(store, wb_tip_id, request):
     comment.internaltip_id = wbtip.internaltip.id
     comment.author = u'whistleblower'
     comment.type = u'whistleblower'
-    comment.mark = u'not notified'
+    comment.new = True
 
     wbtip.internaltip.comments.add(comment)
 
+    store.commit()
     return wb_serialize_comment(comment)
 
 
@@ -306,8 +307,7 @@ def wb_serialize_message(msg):
         'content' : msg.content,
         'visualized' : msg.visualized,
         'type' : msg.type,
-        'author' : msg.author,
-        'mark' : msg.mark
+        'author' : msg.author
     }
 
 @transact
@@ -338,7 +338,6 @@ def get_messages_content(store, wb_tip_id, receiver_id):
             log.debug("Marking as readed message [%s] from %s" % (msg.content, msg.author))
             msg.visualized = True
 
-    store.commit()
     return messages_list
 
 
@@ -367,7 +366,7 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
     msg.visualized = False
 
     msg.type = u'whistleblower'
-    msg.mark = u'not notified'
+    msg.new = True
 
     try:
         store.add(msg)

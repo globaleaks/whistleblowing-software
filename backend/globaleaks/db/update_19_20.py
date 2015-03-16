@@ -2,8 +2,8 @@
 
 """
   Changes
-    - internaltip: markers simplified to a simple boolean
     - notification: various templates added
+    - *Tip, *File, Comment, Message : markers simplified to a simple boolean
 
 """
 
@@ -12,16 +12,6 @@ from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model
 from globaleaks.utils.utility import every_language
-
-class InternalTip_v_19(Model):
-    __storm_table__ = 'internaltip'
-    context_id = Unicode()
-    wb_steps = JSON()
-    expiration_date = DateTime()
-    last_activity = DateTime()
-    access_limit = Int()
-    download_limit = Int()
-    mark = Unicode()
 
 
 class Notification_v_19(Model):
@@ -61,29 +51,72 @@ class Notification_v_19(Model):
     disable_receivers_notification_emails = Bool()
 
 
+class Message_v_19(Model):
+    __storm_table__ = 'message'
+    receivertip_id = Unicode()
+    author = Unicode()
+    content = Unicode()
+    visualized = Bool()
+    type = Unicode()
+    mark = Unicode()
+
+
+class Comment_v_19(Model):
+    __storm_table__ = 'comment'
+    internaltip_id = Unicode()
+    author = Unicode()
+    content = Unicode()
+    system_content = JSON()
+    type = Unicode()
+    mark = Unicode()
+
+class InternalTip_v_19(Model):
+    __storm_table__ = 'internaltip'
+    context_id = Unicode()
+    wb_steps = JSON()
+    expiration_date = DateTime()
+    last_activity = DateTime()
+    access_limit = Int()
+    download_limit = Int()
+    mark = Unicode()
+
+
+class ReceiverTip_v_19(Model):
+    __storm_table__ = 'receivertip'
+    internaltip_id = Unicode()
+    receiver_id = Unicode()
+    last_access = DateTime()
+    access_counter = Int()
+    notification_date = DateTime()
+    mark = Unicode()
+
+
+class InternalFile_v_19(Model):
+    __storm_table__ = 'internalfile'
+    internaltip_id = Unicode()
+    name = Unicode()
+    file_path = Unicode()
+    content_type = Unicode()
+    description = Unicode()
+    size = Int()
+    mark = Unicode()
+
+
+class ReceiverFile_v_19(Model):
+    __storm_table__ = 'receiverfile'
+    internaltip_id = Unicode()
+    internalfile_id = Unicode()
+    receiver_id = Unicode()
+    receiver_tip_id = Unicode()
+    file_path = Unicode()
+    size = Int()
+    downloads = Int()
+    last_access = DateTime()
+    mark = Unicode()
+    status = Unicode()
+
+
 class Replacer1920(TableReplacer):
-
-    def migrate_InternalTip(self):
-        print "%s InternalTip migration assistant: mark->new" % self.std_fancy
-
-        old_itips = self.store_old.find(self.get_right_model("InternalTip", 19))
-
-        for old_itip in old_itips:
-
-            new_itip = self.get_right_model("InternalTip", 20)()
-
-            for _, v in new_itip._storm_columns.iteritems():
-
-                if v.name == 'new':
-                    new_itip.new = False
-                    continue
-
-                setattr(new_itip, v.name, getattr(old_itip, v.name))
-
-            self.store_new.add(new_itip)
-
-        self.store_new.commit()
-
 
     def migrate_Notification(self):
         print "%s Notification migration assistant: various templates addeed" % self.std_fancy
@@ -134,4 +167,130 @@ class Replacer1920(TableReplacer):
             setattr(new_notification, v.name, getattr(old_notification, v.name) )
 
         self.store_new.add(new_notification)
+        self.store_new.commit()
+
+    def migrate_Message(self):
+        print "%s Message migration assistant: mark->new" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("Message", 19))
+
+        for old_obj in old_objs:
+
+            new_obj = self.get_right_model("Message", 20)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'new':
+                    new_obj.new = False
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_Comment(self):
+        print "%s Comment migration assistant: mark->new" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("Comment", 19))
+
+        for old_obj in old_objs:
+
+            new_obj = self.get_right_model("Comment", 20)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'new':
+                    new_obj.new = False
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_InternalTip(self):
+        print "%s InternalTip migration assistant: mark->new" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("InternalTip", 19))
+
+        for old_obj in old_objs:
+
+            new_obj = self.get_right_model("InternalTip", 20)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'new':
+                    new_obj.new = False
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_ReceiverTip(self):
+        print "%s ReceiverTip migration assistant: mark->new" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("ReceiverTip", 19))
+
+        for old_obj in old_objs:
+
+            new_obj = self.get_right_model("ReceiverTip", 20)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'new':
+                    new_obj.new = False
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_InternalFile(self):
+        print "%s InternalFile migration assistant: mark->new" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("InternalFile", 19))
+
+        for old_obj in old_objs:
+
+            new_obj = self.get_right_model("InternalFile", 20)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'new':
+                    new_obj.new = False
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_ReceiverFile(self):
+        print "%s ReceiverFile migration assistant: mark->new" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("ReceiverFile", 19))
+
+        for old_obj in old_objs:
+
+            new_obj = self.get_right_model("ReceiverFile", 20)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'new':
+                    new_obj.new = False
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
         self.store_new.commit()

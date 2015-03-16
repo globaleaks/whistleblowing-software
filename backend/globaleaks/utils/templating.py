@@ -35,22 +35,23 @@ class Templating(object):
         TODO research on integration of http://docs.python.org/2/library/email
         """
 
-        supported_event_types = { u'encrypted_tip' : EncryptedTipKeyword,
-                                  u'plaintext_tip' : TipKeyword,
-                                  # different events, some classes
-                                  u'encrypted_file' : EncryptedFileKeyword,
-                                  u'plaintext_file' : FileKeyword,
-                                  u'encrypted_comment' : EncryptedCommentKeyword,
-                                  u'plaintext_comment' : CommentKeyword,
-                                  u'encrypted_message' : EncryptedMessageKeyword,
-                                  u'plaintext_message' : MessageKeyword,
-                                  u'zip_collection' : ZipFileKeyword,
-                                  u'ping_mail' : PingMailKeyword,
+        supported_event_types = {
+                                  u'encrypted_tip': EncryptedTipKeyword,
+                                  u'plaintext_tip': TipKeyword,
+                                  u'encrypted_file': EncryptedFileKeyword,
+                                  u'plaintext_file': FileKeyword,
+                                  u'encrypted_comment': EncryptedCommentKeyword,
+                                  u'plaintext_comment': CommentKeyword,
+                                  u'encrypted_message': EncryptedMessageKeyword,
+                                  u'plaintext_message': MessageKeyword,
+                                  u'zip_collection': ZipFileKeyword,
+                                  u'ping_mail': PingMailKeyword,
                                   u'admin_pgp_expiration_alert': AdminPGPAlertKeyword,
                                   u'pgp_expiration_alert': PGPAlertKeyword,
                                   # Upcoming expire use the same templates of Tip
-                                  u'encrypted_upcoming_expire': EncryptedTipKeyword,
-                                  u'plaintext_upcoming_expire': TipKeyword,
+                                  # and currently only one template is defined
+                                  # considering exportable only not non sensitive info
+                                  u'upcoming_expire': TipKeyword,
                                 }
 
         if event_dicts.type not in supported_event_types.keys():
