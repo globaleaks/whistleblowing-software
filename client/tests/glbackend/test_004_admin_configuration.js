@@ -158,7 +158,6 @@ var context = {
   "show_small_cards":false,
   "show_receivers":true,
   "enable_private_messages":true,
-  "submission_timetolive":1,
   "file_max_download":3,
   "select_all_receivers":true,
   "description":"XXXXX ħ ÐÐ",

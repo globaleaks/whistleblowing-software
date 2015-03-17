@@ -46,7 +46,6 @@ def get_tip_timings(store, new):
         files_cnt = store.find(InternalFile, InternalFile.internaltip_id == itip.id).count()
 
         tip_timetolive = itip.context.tip_timetolive
-        submission_timetolive = itip.context.submission_timetolive
 
         serialized_tipinfo = {
             'id': itip.id,
@@ -55,7 +54,6 @@ def get_tip_timings(store, new):
             'upcoming_expiration_date':
                 datetime_to_ISO8601(utc_dynamic_date(itip.expiration_date, hours=-48)),
             'tip_life_seconds':  tip_timetolive,
-            'submission_life_seconds':  submission_timetolive,
             'files': files_cnt,
             'comments': comment_cnt,
         }
@@ -86,8 +84,8 @@ def itip_cleaning(store, tip_id):
         ifname = unicode(ifile.name)
 
         if os.path.isfile(abspath):
+            log.debug("Removing internalfile %s" % abspath)
             try:
-                log.debug("Removing internalfile %s" % abspath)
                 os.remove(abspath)
             except OSError as excep:
                 log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
@@ -102,8 +100,8 @@ def itip_cleaning(store, tip_id):
             abspath = os.path.join(GLSetting.submission_path, rfile.file_path)
 
             if os.path.isfile(abspath):
+                log.debug("Removing receiverfile %s" % abspath)
                 try:
-                    log.debug("Removing receiverfile %s" % abspath)
                     os.remove(abspath)
                 except OSError as excep:
                     log.err("Unable to remove %s: %s" % (abspath, excep.strerror))

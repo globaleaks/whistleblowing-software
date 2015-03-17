@@ -97,7 +97,7 @@ class TestTransaction(helpers.TestGL):
         c = self.localization_set(self.dummyContext, Context, 'en')
         context = Context(c)
 
-        context.submission_timetolive = context.tip_timetolive = 1000
+        context.tip_timetolive = 1000
         context.description = context.name = \
             context.submission_disclaimer = \
             context.submission_introduction = { "en" : u'Localized723' }
