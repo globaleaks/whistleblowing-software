@@ -30,7 +30,6 @@ def serialize_internalfile(ifile):
         'id': ifile.id,
         'internaltip_id' : ifile.internaltip_id,
         'name' : ifile.name,
-        'description' : ifile.description,
         'file_path' : ifile.file_path,
         'content_type' : ifile.content_type,
         'size' : ifile.size,
@@ -165,24 +164,17 @@ def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_d
         log.debug("ReceiverFile creation for user %s, '%s' bytes %d = %s)"
                 % (receiver_desc['name'], ifile.name, recv_size, status ) )
 
-        receiverfile = ReceiverFile()
-
-        receiverfile.downloads = 0
-        receiverfile.receiver_id = receiver_desc['id']
-        receiverfile.internalfile_id = ifile.id
-        receiverfile.internaltip_id = ifile.internaltip_id
-
-        # Receiver Tip reference
         rtrf = store.find(ReceiverTip, ReceiverTip.internaltip_id == ifile.internaltip_id,
                           ReceiverTip.receiver_id == receiver_desc['id']).one()
-        receiverfile.receiver_tip_id = rtrf.id
 
-        # inherited by previous operation and checks
+        receiverfile = ReceiverFile()
+        receiverfile.receiver_id = receiver_desc['id']
+        receiverfile.internaltip_id = ifile.internaltip_id
+        receiverfile.internalfile_id = ifile.id
+        receiverfile.receiver_tip_id = rtrf.id
         receiverfile.file_path = unicode(recv_path)
         receiverfile.size = recv_size
         receiverfile.status = unicode(status)
-
-        receiverfile.new = True
 
         store.add(receiverfile)
 
@@ -200,9 +192,7 @@ def create_receivertip(store, receiver, internaltip):
 
     receivertip = ReceiverTip()
     receivertip.internaltip_id = internaltip.id
-    receivertip.access_counter = 0
     receivertip.receiver_id = receiver.id
-    receivertip.new = True
 
     store.add(receivertip)
 
@@ -217,9 +207,7 @@ def tip_creation(store):
     created_rtips = []
 
     new_itips = store.find(InternalTip, InternalTip.new == True)
-
     for internaltip in new_itips:
-
         for receiver in internaltip.receivers:
             rtip_id = create_receivertip(store, receiver, internaltip)
             created_rtips.append(rtip_id)
@@ -263,7 +251,6 @@ def encrypt_where_available(receivermap):
     retcode = True
 
     for rcounter, rfileinfo in enumerate(receivermap):
-
         if rfileinfo['receiver']['pgp_key_status'] == u'enabled':
 
             try:

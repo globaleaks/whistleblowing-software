@@ -48,7 +48,6 @@ def db_admin_serialize_node(store, language):
         "last_update": datetime_to_ISO8601(node.last_update),
         "hidden_service": node.hidden_service,
         "public_site": node.public_site,
-        "stats_update_time": node.stats_update_time,
         "email": node.email,
         "version": GLSetting.version_string,
         "languages_supported": LANGUAGES_SUPPORTED,
@@ -234,7 +233,7 @@ def admin_serialize_context(store, context, language):
     :return: a dictionary representing the serialization of the context.
     """
     steps = [anon_serialize_step(store, s, language)
-           for s in context.steps.order_by(models.Step.number)]
+                for s in context.steps.order_by(models.Step.number)]
 
     ret_dict = {
         "id": context.id,
@@ -389,7 +388,6 @@ def get_context_list(store, language):
 
 
 def acquire_context_timetolive(request):
-
     try:
         tip_ttl = seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), minv=1)
     except Exception as excep:
@@ -520,7 +518,6 @@ def db_get_context_steps(store, context_id, language):
     Returns:
         (dict) the steps associated with the context with the specified id.
     """
-
     context = store.find(models.Context, models.Context.id == context_id).one()
 
     if not context:
@@ -644,7 +641,6 @@ def db_create_receiver(store, request, language):
     Returns:
         (dict) the configured receiver
     """
-
     fill_localized_keys(request, models.Receiver.localized_strings, language)
 
     password = request['password']
@@ -668,8 +664,6 @@ def db_create_receiver(store, request, language):
     }
 
     receiver_user = models.User(receiver_user_dict)
-    receiver_user.last_login = datetime_null()
-    receiver_user.password_change_date = datetime_null()
     store.add(receiver_user)
 
     # ping_mail_address is duplicated at creation time from mail_address
@@ -771,7 +765,6 @@ def update_receiver(store, receiver_id, request, language):
 
 @transact
 def delete_receiver(store, receiver_id):
-
     receiver = models.Receiver.get(store, receiver_id)
 
     if not receiver:
@@ -909,7 +902,6 @@ class ContextInstance(BaseHandler):
 
         Updates the specified context.
         """
-
         request = self.validate_message(self.request.body,
                                         requests.adminContextDesc)
 

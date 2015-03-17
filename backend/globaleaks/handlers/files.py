@@ -94,9 +94,7 @@ def register_file_db(store, uploaded_file, internaltip_id):
         raise errors.TipIdNotFound
 
     new_file = InternalFile()
-    new_file.new = True
     new_file.name = uploaded_file['filename']
-    new_file.description = ""
     new_file.content_type = uploaded_file['content_type']
     new_file.size = uploaded_file['body_len']
     new_file.internaltip_id = internaltip_id
