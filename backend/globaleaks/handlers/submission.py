@@ -32,8 +32,6 @@ def wb_serialize_internaltip(internaltip):
         'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
         'wb_steps' : internaltip.wb_steps,
-        'download_limit' : internaltip.download_limit,
-        'access_limit' : internaltip.access_limit,
         'files' : [f.id for f in internaltip.internalfiles],
         'receivers' : [r.id for r in internaltip.receivers]
     }
@@ -157,8 +155,6 @@ def db_create_submission(store, token, request, language):
 
     submission = InternalTip()
 
-    submission.access_limit = context.tip_max_access
-    submission.download_limit = context.file_max_download
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
     submission.context_id = context.id
     submission.creation_date = datetime_now()

@@ -168,7 +168,7 @@ class TestGPG(TestHandlerWithPopulatedDB):
 
         new_context['name'] = "this uniqueness is no more checked due to the lang"
         new_context_output = yield create_context(new_context, 'en')
-        self.context_assertion(new_context, new_context_output)
+        self.context_assertions(new_context, new_context_output)
 
         doubletest = yield get_context_list('en')
         self.assertEqual(len(doubletest), 2)
@@ -178,14 +178,14 @@ class TestGPG(TestHandlerWithPopulatedDB):
         yanr['gpg_key_armor'] = unicode(VALID_PGP_KEY1)
         yanr['contexts'] = [ new_context_output['id']]
         yanr_output = yield create_receiver(yanr, 'en')
-        self.receiver_assertion(yanr, yanr_output)
+        self.receiver_assertions(yanr, yanr_output)
 
         asdr = dict(MockDict().dummyReceiver)
         asdr['name'] = asdr['mail_address'] = u"nocibo@rocco.tnc"
         asdr['gpg_key_armor'] = unicode(VALID_PGP_KEY1)
         asdr['contexts'] = [ new_context_output['id']]
         asdr_output = yield create_receiver(asdr, 'en')
-        self.receiver_assertion(asdr, asdr_output)
+        self.receiver_assertions(asdr, asdr_output)
 
         new_subm = dict(MockDict().dummySubmission)
 

@@ -188,8 +188,6 @@ class Context(Model):
     select_all_receivers = Bool()
     enable_private_messages = Bool()
 
-    tip_max_access = Int()
-    file_max_download = Int()
     tip_timetolive = Int()
     last_update = DateTime()
 
@@ -211,8 +209,7 @@ class Context(Model):
 
     unicode_keys = []
     localized_strings = ['name', 'description', 'receiver_introduction']
-    int_keys = [ 'tip_max_access', 'file_max_download',
-                 'maximum_selectable_receivers',
+    int_keys = [ 'maximum_selectable_receivers',
                  'presentation_order' ]
     bool_keys = [ 'select_all_receivers',
                   'postpone_superpower', 'can_delete_submission',
@@ -239,11 +236,6 @@ class InternalTip(Model):
     wb_steps = JSON()
     expiration_date = DateTime()
     last_activity = DateTime()
-
-    # the LIMITS are stored in InternalTip because and admin may
-    # need change them. These values are copied by Context
-    access_limit = Int()
-    download_limit = Int()
 
     new = Int()
 

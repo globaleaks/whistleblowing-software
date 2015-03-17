@@ -464,7 +464,6 @@
       "tip_timetolive": 1728000,
       "can_delete_submission": false,
       "show_small_cards": false,
-      "file_max_download": 1,
       "show_receivers": false,
       "select_all_receivers": true,
       "description": {
@@ -490,7 +489,6 @@
         }
       },
       "maximum_selectable_receivers": 0,
-      "tip_max_access": 10,
       "enable_private_messages": true
     },
     "class": "Context"

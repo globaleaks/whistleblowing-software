@@ -158,7 +158,6 @@ var context = {
   "show_small_cards":false,
   "show_receivers":true,
   "enable_private_messages":true,
-  "file_max_download":3,
   "select_all_receivers":true,
   "description":"XXXXX ħ ÐÐ",
   "name":"Context 1",
@@ -178,7 +177,6 @@ var context = {
   ],
   "file_required":false,
   "maximum_selectable_receivers":0,
-  "tip_max_access":500,
   "receivers": []
 }
 

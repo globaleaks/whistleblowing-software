@@ -122,8 +122,6 @@ def anon_serialize_context(store, context, language):
 
     ret_dict = {
         "id": context.id,
-        "file_max_download": context.file_max_download,
-        "tip_max_access": context.tip_max_access,
         "tip_timetolive": context.tip_timetolive,
         "submission_introduction": u'NYI', # unicode(context.submission_introduction), # optlang
         "submission_disclaimer": u'NYI', # unicode(context.submission_disclaimer), # optlang
