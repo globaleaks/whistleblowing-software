@@ -572,14 +572,14 @@ class Receiver(Model):
     configuration = Unicode()
     # configurations = [u'default', u'forcefully_selected', u'unselectable']
 
-    # of GPG key fields
-    gpg_key_info = Unicode()
-    gpg_key_fingerprint = Unicode()
-    gpg_key_armor = Unicode()
-    gpg_key_expiration = DateTime()
+    # of PGP key fields
+    pgp_key_info = Unicode()
+    pgp_key_fingerprint = Unicode()
+    pgp_key_public = Unicode()
+    pgp_key_expiration = DateTime()
 
-    gpg_key_status = Unicode()
-    # gpg_statuses = [u'disabled', u'enabled']
+    pgp_key_status = Unicode()
+    # pgp_statuses = [u'disabled', u'enabled']
 
     # Can be changed only by admin (but also differ from username!)
     mail_address = Unicode()

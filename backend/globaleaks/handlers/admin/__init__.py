@@ -18,7 +18,7 @@ from globaleaks.handlers.node import get_public_context_list, get_public_receive
     anon_serialize_node, anon_serialize_step
 from globaleaks import models
 from globaleaks.rest import errors, requests
-from globaleaks.security import gpg_options_parse
+from globaleaks.security import pgp_options_parse
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.third_party import rstr
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
@@ -278,12 +278,12 @@ def admin_serialize_receiver(receiver, language):
         "state": receiver.user.state,
         "configuration": receiver.configuration,
         "contexts": [c.id for c in receiver.contexts],
-        "gpg_key_info": receiver.gpg_key_info,
-        "gpg_key_armor": receiver.gpg_key_armor,
-        "gpg_key_remove": False,
-        "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
-        "gpg_key_expiration": datetime_to_ISO8601(receiver.gpg_key_expiration),
-        "gpg_key_status": receiver.gpg_key_status,
+        "pgp_key_info": receiver.pgp_key_info,
+        "pgp_key_public": receiver.pgp_key_public,
+        "pgp_key_remove": False,
+        "pgp_key_fingerprint": receiver.pgp_key_fingerprint,
+        "pgp_key_expiration": datetime_to_ISO8601(receiver.pgp_key_expiration),
+        "pgp_key_status": receiver.pgp_key_status,
         "comment_notification": receiver.comment_notification,
         "tip_notification": receiver.tip_notification,
         "file_notification": receiver.file_notification,
@@ -678,8 +678,8 @@ def db_create_receiver(store, request, language):
     receiver = models.Receiver(request)
     receiver.user = receiver_user
 
-    # The various options related in manage GPG keys are used here.
-    gpg_options_parse(receiver, request)
+    # The various options related in manage PGP keys are used here.
+    pgp_options_parse(receiver, request)
 
     log.debug("Creating receiver %s" % receiver.user.username)
 
@@ -736,8 +736,8 @@ def update_receiver(store, receiver_id, request, language):
     receiver.user.state = request['state']
     receiver.user.password_change_needed = request['password_change_needed']
 
-    # The various options related in manage GPG keys are used here.
-    gpg_options_parse(receiver, request)
+    # The various options related in manage PGP keys are used here.
+    pgp_options_parse(receiver, request)
 
     receiver.user.language = request.get('language', GLSetting.memory_copy.language)
     receiver.user.timezone = request.get('timezone', GLSetting.memory_copy.default_timezone)

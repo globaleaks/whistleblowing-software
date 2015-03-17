@@ -19,7 +19,7 @@ from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
                               ReceiverFile
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.utility import log 
-from globaleaks.security import GLBGPG, GLSecureFile
+from globaleaks.security import GLBPGP, GLSecureFile
 from globaleaks.handlers.admin import admin_serialize_receiver
 from globaleaks.third_party.rstr import xeger
 
@@ -119,7 +119,7 @@ def receiverfile_planning(store):
     return ifilesmap
 
 
-def fsops_gpg_encrypt(fpath, recipient_gpg):
+def fsops_pgp_encrypt(fpath, recipient_pgp):
     """
     return
         path of encrypted file,
@@ -132,16 +132,16 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
     required keys are checked on top
 
     """
-    gpoj = GLBGPG()
+    gpoj = GLBPGP()
 
     try:
-        gpoj.load_key(recipient_gpg['gpg_key_armor'])
+        gpoj.load_key(recipient_pgp['pgp_key_public'])
 
         filepath = os.path.join(GLSetting.submission_path, fpath)
 
         with GLSecureFile(filepath) as f:
             encrypted_file_path, encrypted_file_size = \
-                gpoj.encrypt_file(recipient_gpg['gpg_key_fingerprint'], filepath, f, GLSetting.submission_path)
+                gpoj.encrypt_file(recipient_pgp['pgp_key_fingerprint'], filepath, f, GLSetting.submission_path)
 
     except:
         raise
@@ -264,10 +264,10 @@ def encrypt_where_available(receivermap):
 
     for rcounter, rfileinfo in enumerate(receivermap):
 
-        if rfileinfo['receiver']['gpg_key_status'] == u'enabled':
+        if rfileinfo['receiver']['pgp_key_status'] == u'enabled':
 
             try:
-                new_path, new_size = fsops_gpg_encrypt(rfileinfo['path'], rfileinfo['receiver'])
+                new_path, new_size = fsops_pgp_encrypt(rfileinfo['path'], rfileinfo['receiver'])
 
                 log.debug("%d# Switch on Receiver File for %s path %s => %s size %d => %d" % (
                     rcounter,  rfileinfo['receiver']['name'],
@@ -281,7 +281,7 @@ def encrypt_where_available(receivermap):
                 rfileinfo['status'] = u'encrypted'
 
             except Exception as excep:
-                log.err("%d# Unable to complete GPG encrypt for %s on %s: %s. marking the file as unavailable." % (
+                log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable." % (
                         rcounter, rfileinfo['receiver']['name'], rfileinfo['path'], excep)
                 )
                 rfileinfo['status'] = u'unavailable'

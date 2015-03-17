@@ -50,7 +50,7 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
 
             yield handler.get()
 
-            self.responses[0]['gpg_key_remove'] = True
+            self.responses[0]['pgp_key_remove'] = True
 
             handler = self.request(self.responses[0], role='receiver')
             handler.current_user.user_id = rcvr['id']

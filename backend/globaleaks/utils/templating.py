@@ -424,14 +424,14 @@ class AdminPGPAlertKeyword(_KeyWord):
     def PGPKeyInfoList(self):
         ret = ""
         for r in self.alert['expired_or_expiring']:
-            if r['gpg_key_fingerprint']:
-                key = r['gpg_key_fingerprint'][:7]
+            if r['pgp_key_fingerprint']:
+                key = r['pgp_key_fingerprint'][:7]
             else:
                 key = ""
 
             ret += "\t%s, %s (%s)\n" % (r['name'],
                                     key,
-                                    ISO8601_to_day_str(r['gpg_key_expiration']))
+                                    ISO8601_to_day_str(r['pgp_key_expiration']))
         return ret
 
 
@@ -448,9 +448,9 @@ class PGPAlertKeyword(_KeyWord):
         self.keyword_list += PGPAlertKeyword.pgp_alert_keywords
 
     def PGPKeyInfo(self):
-        if self.receiver['gpg_key_fingerprint']:
-            key = self.receiver['gpg_key_fingerprint'][:7]
+        if self.receiver['pgp_key_fingerprint']:
+            key = self.receiver['pgp_key_fingerprint'][:7]
         else:
             key = ""
 
-        return "\t0x%s (%s)" % (key, ISO8601_to_day_str(self.receiver['gpg_key_expiration']))
+        return "\t0x%s (%s)" % (key, ISO8601_to_day_str(self.receiver['pgp_key_expiration']))

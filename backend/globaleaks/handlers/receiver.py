@@ -13,7 +13,7 @@ from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.node import get_public_receiver_list
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node, EventLogs
 from globaleaks.rest import requests, errors
-from globaleaks.security import change_password, gpg_options_parse
+from globaleaks.security import change_password, pgp_options_parse
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, acquire_bool, datetime_to_ISO8601, datetime_now
@@ -27,12 +27,12 @@ def receiver_serialize_receiver(receiver, language):
         "creation_date": datetime_to_ISO8601(receiver.creation_date),
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.user.username,
-        "gpg_key_info": receiver.gpg_key_info,
-        "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
-        "gpg_key_remove": False,
-        "gpg_key_armor": receiver.gpg_key_armor,
-        "gpg_key_expiration": datetime_to_ISO8601(receiver.gpg_key_expiration),
-        "gpg_key_status": receiver.gpg_key_status,
+        "pgp_key_info": receiver.pgp_key_info,
+        "pgp_key_fingerprint": receiver.pgp_key_fingerprint,
+        "pgp_key_remove": False,
+        "pgp_key_public": receiver.pgp_key_public,
+        "pgp_key_expiration": datetime_to_ISO8601(receiver.pgp_key_expiration),
+        "pgp_key_status": receiver.pgp_key_status,
         "tip_notification" : receiver.tip_notification,
         "file_notification" : receiver.file_notification,
         "comment_notification" : receiver.comment_notification,
@@ -125,7 +125,7 @@ def update_receiver_settings(store, receiver_id, request, language):
     receiver.file_notification = acquire_bool(request['file_notification'])
     receiver.ping_notification = acquire_bool(request['ping_notification'])
 
-    gpg_options_parse(receiver, request)
+    pgp_options_parse(receiver, request)
 
     return receiver_serialize_receiver(receiver, language)
 

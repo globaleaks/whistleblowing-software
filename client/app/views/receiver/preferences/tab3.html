@@ -1,5 +1,5 @@
 <div class="col-md-8">
-  <div data-ng-show="preferences.gpg_key_info">
+  <div data-ng-show="preferences.pgp_key_info">
     <div class="alert alert-success">
       <span data-translate>Encryption is enabled!</span>
       <span data-translate>Notifications and Files will be encrypted.</span>
@@ -9,21 +9,21 @@
       <span data-translate>PGP Key details</span>
       <br />
       <span data-translate>The fingerprint is:</span>
-      <b>{{preferences.gpg_key_fingerprint}}</b>
+      <b>{{preferences.pgp_key_fingerprint}}</b>
     </p>
 
     <div>
-      <pre>{{preferences.gpg_key_info}}</pre>
+      <pre>{{preferences.pgp_key_info}}</pre>
     </div>
 
-    <div class="form-group table-bordered" data-ng-show="preferences.gpg_key_fingerprint">
-      <input data-ng-model="preferences.gpg_key_remove" type="checkbox">
+    <div class="form-group table-bordered" data-ng-show="preferences.pgp_key_fingerprint">
+      <input data-ng-model="preferences.pgp_key_remove" type="checkbox">
       <label data-translate>Remove the PGP key</label>
     </div>
   </div>
 
   <div class="form-group">
-    <div class="alert alert-danger" data-ng-hide="preferences.gpg_key_fingerprint" data-ng-click="gpg_marketing = ! gpg_marketing" data-ng-init="gpg_marketing=false">
+    <div class="alert alert-danger" data-ng-hide="preferences.pgp_key_fingerprint" data-ng-click="pgp_marketing = ! pgp_marketing" data-ng-init="pgp_marketing=false">
       <b><span data-translate>Encryption has not been enabled!</span></b>
       <br /><br />
       <div>
@@ -33,7 +33,7 @@
      </div>
   </div>
 
-  <div class="form-group" data-ng-hide="preferences.gpg_key_fingerprint">
+  <div class="form-group" data-ng-hide="preferences.pgp_key_fingerprint">
     <button class="btn btn-success" data-ng-init="send_key=false" data-ng-click="send_key = !send_key">
       <i class="glyphicon glyphicon-plus" data-ng-hide="send_key"></i>
       <i class="glyphicon glyphicon-minus" data-ng-show="send_key"></i>
@@ -42,7 +42,7 @@
 
     <div data-ng-show="send_key">
       <label data-translate>Paste the PGP Key here:</label>
-      <textarea class="form-control" data-ng-model="preferences.gpg_key_armor"></textarea>
+      <textarea class="form-control" data-ng-model="preferences.pgp_key_public"></textarea>
     </div>
   </div>
 

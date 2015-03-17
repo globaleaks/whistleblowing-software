@@ -326,8 +326,8 @@ class GLSettingsClass(object):
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.httplogfile =  os.path.abspath(os.path.join(self.log_path, "http.log"))
 
-        # gnupg path is used by GPG as temporary directory with keyring and files encryption.
-        self.gpgroot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
+        # gnupg path is used by PGP as temporary directory with keyring and files encryption.
+        self.pgproot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
 
         if self.db_type == 'sqlite':
             self.db_uri = 'sqlite:' + \

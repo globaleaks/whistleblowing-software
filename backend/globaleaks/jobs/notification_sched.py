@@ -89,19 +89,19 @@ class EventLogger(object):
 
         if self.trigger == 'Message':
             self.template_type = u'encrypted_message' if \
-                receiver.gpg_key_status == u'enabled' else u'plaintext_message'
+                receiver.pgp_key_status == u'enabled' else u'plaintext_message'
             do_mail = receiver.message_notification
         elif self.trigger == 'Tip':
             self.template_type = u'encrypted_tip' if \
-                receiver.gpg_key_status == u'enabled' else u'plaintext_tip'
+                receiver.pgp_key_status == u'enabled' else u'plaintext_tip'
             do_mail = receiver.tip_notification
         elif self.trigger == 'Comment':
             self.template_type = u'encrypted_comment' if \
-                receiver.gpg_key_status == u'enabled' else u'plaintext_comment'
+                receiver.pgp_key_status == u'enabled' else u'plaintext_comment'
             do_mail = receiver.comment_notification
         elif self.trigger == 'File':
             self.template_type = u'encrypted_file' if \
-                receiver.gpg_key_status == u'enabled' else u'plaintext_file'
+                receiver.pgp_key_status == u'enabled' else u'plaintext_file'
             do_mail = receiver.file_notification
         elif self.trigger == 'UpcomingExpireTip':
             self.template_type = u'upcoming_expire'

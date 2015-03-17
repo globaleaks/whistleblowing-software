@@ -333,7 +333,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           Receivers.query(function(receivers){
             self.receivers = [];
             forEach(receivers, function(receiver){
-              if (receiver.gpg_key_status !== 'enabled') {
+              if (receiver.pgp_key_status !== 'enabled') {
                 receiver.missing_pgp = true;
               }
               self.receivers.push(receiver);
@@ -740,13 +740,13 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.comment_notification = true;
         receiver.message_notification = true;
         receiver.ping_notification = false;
-        receiver.gpg_key_info = '';
-        receiver.gpg_key_fingerprint = '';
-        receiver.gpg_key_remove = false;
-        receiver.gpg_key_armor = '';
-        receiver.gpg_key_expiration = '';
-        receiver.gpg_key_status = 'ignored';
-        receiver.gpg_enable_notification = false;
+        receiver.pgp_key_info = '';
+        receiver.pgp_key_fingerprint = '';
+        receiver.pgp_key_remove = false;
+        receiver.pgp_key_public = '';
+        receiver.pgp_key_expiration = '';
+        receiver.pgp_key_status = 'ignored';
+        receiver.pgp_enable_notification = false;
         receiver.presentation_order = 0;
         receiver.state = 'enable';
         receiver.configuration = 'default';

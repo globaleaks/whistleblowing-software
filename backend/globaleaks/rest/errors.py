@@ -247,11 +247,11 @@ class HTTPRawLimitReach(GLException):
         self.arguments = [ GLSetting.memory_copy.maximum_filesize ]
 
 
-class GPGKeyInvalid(GLException):
+class PGPKeyInvalid(GLException):
     """
-    The provided GPG key has an invalid format and can't be imported
+    The provided PGP key has an invalid format and can't be imported
     """
-    reason = "The proposed GPG key can't be imported"
+    reason = "The proposed PGP key can't be imported"
     error_code = 40
     status_code = 406
 

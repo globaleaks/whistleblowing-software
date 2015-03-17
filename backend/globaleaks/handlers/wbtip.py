@@ -234,7 +234,7 @@ def get_receiver_list_wb(store, wb_tip_id, language):
             receiver_desc = {
                 "name": receiver.name,
                 "id": receiver.id,
-                "gpg_key_status": receiver.gpg_key_status,
+                "pgp_key_status": receiver.pgp_key_status,
                 "access_counter": 0,
                 "unread_messages": 0,
                 "read_messages": 0,
@@ -265,7 +265,7 @@ def get_receiver_list_wb(store, wb_tip_id, language):
             receiver_desc = {
                 "name": rtip.receiver.name,
                 "id": rtip.receiver.id,
-                "gpg_key_status": rtip.receiver.gpg_key_status,
+                "pgp_key_status": rtip.receiver.pgp_key_status,
                 "access_counter": rtip.access_counter,
                 "unread_messages": unread_messages,
                 "read_messages": read_messages,
