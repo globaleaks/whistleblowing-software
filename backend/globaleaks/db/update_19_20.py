@@ -2,8 +2,10 @@
 
 """
   Changes
-    - notification: various templates added
+    - Notification: various templates added
     - *Tip, *File, Comment, Message : markers simplified to a simple boolean
+    - ReceiverTip added label
+    - Receiver renamed variables from gpg_* to pgp_*
 
 """
 
@@ -266,6 +268,10 @@ class Replacer1920(TableReplacer):
             new_obj = self.get_right_model("ReceiverTip", 20)()
 
             for _, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'label':
+                    new_obj.label = u''
+                    continue
 
                 if v.name == 'new':
                     new_obj.new = False
