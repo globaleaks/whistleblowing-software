@@ -255,7 +255,11 @@ class ReceiverTip(Model):
     access_counter = Int()
     notification_date = DateTime()
 
+    label = Unicode(validator=shortlocal_v)
+
     new = Int()
+
+    unicode_keys = ['label']
 
 
 class WhistleblowerTip(Model):

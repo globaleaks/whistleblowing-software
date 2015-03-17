@@ -114,6 +114,7 @@ def db_get_tip_receiver(store, user_id, tip_id, language):
     tip_desc['access_counter'] = rtip.access_counter
     tip_desc['id'] = rtip.id
     tip_desc['receiver_id'] = user_id
+    tip_desc['label'] = rtip.label
 
     node = store.find(Node).one()
 

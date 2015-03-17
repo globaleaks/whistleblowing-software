@@ -283,6 +283,7 @@ CREATE TABLE receivertip (
     last_access VARCHAR,
     notification_date VARCHAR,
     receiver_id VARCHAR NOT NULL,
+    label VARCHAR NOT NULL,
     new INTEGER NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
