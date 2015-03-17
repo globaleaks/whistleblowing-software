@@ -257,7 +257,6 @@ module.exports = function(grunt) {
     agent.get(url)
       .auth(login.username, login.password)
       .end(function(err, res){
-        console.log(res);
         if (res.ok) {
           var content = JSON.parse(res.text)['content'];
           fs.writeFileSync(sourceFile, content);
