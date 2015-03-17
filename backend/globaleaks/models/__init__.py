@@ -170,8 +170,8 @@ class User(Model):
     password_change_needed = Bool()
     password_change_date = DateTime()
 
-    _roles = [ u'admin', u'receiver' ]
-    _states = [ u'disabled', u'enabled']
+    # roles: 'admin', u'receiver'
+    # states: 'disabled', 'enabled'
 
     unicode_keys = [ 'username', 'password', 'salt', 'role',
                      'state', 'language' ]
@@ -293,14 +293,12 @@ class ReceiverFile(Model):
     new = Int()
 
     status = Unicode()
-    _status_list = [u'reference', u'encrypted', u'unavailable', u'nokey']
+    # statuses: 'reference', 'encrypted', 'unavailable', 'nokey'
     # reference = receiverfile.file_path reference internalfile.file_path
     # encrypted = receiverfile.file_path is an encrypted file for
     #                                    the specific receiver
     # unavailable = the file was supposed to be available but something goes
     # wrong and now is lost
-
-    # N.B. *_keys = It's created without initializing dict
 
 
 class InternalFile(Model):
@@ -330,11 +328,10 @@ class Comment(Model):
     author = Unicode()
     content = Unicode(validator=longtext_v)
 
-    # In case of system_content usage, content has repr() equiv
     system_content = JSON()
 
     type = Unicode()
-    # types = [u'receiver', u'whistleblower', u'system']
+    # types: 'receiver', 'whistleblower', 'system'
 
     new = Int()
 
@@ -350,7 +347,7 @@ class Message(Model):
     visualized = Bool()
 
     type = Unicode()
-    # types = [u'receiver', u'whistleblower']
+    # types: 'receiver', whistleblower'
 
     new = Int()
 
@@ -464,7 +461,7 @@ class Notification(Model):
     source_email = Unicode(validator=shorttext_v)
 
     security = Unicode()
-    # security_types = [u'TLS', u'SSL']
+    # security_types: 'TLS', 'SSL'
 
     torify = Int()
 
@@ -570,7 +567,7 @@ class Receiver(Model):
     description = JSON(validator=longlocal_v)
 
     configuration = Unicode()
-    # configurations = [u'default', u'forcefully_selected', u'unselectable']
+    # configurations: 'default', 'forcefully_selected', 'unselectable'
 
     # of PGP key fields
     pgp_key_info = Unicode()
@@ -579,7 +576,7 @@ class Receiver(Model):
     pgp_key_expiration = DateTime()
 
     pgp_key_status = Unicode()
-    # pgp_statuses = [u'disabled', u'enabled']
+    # pgp_statuses: 'disabled', 'enabled'
 
     # Can be changed only by admin (but also differ from username!)
     mail_address = Unicode()
@@ -682,8 +679,6 @@ class Field(Model):
     localized_strings = ['label', 'description', 'hint']
     bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled', 'is_template']
 
-    # XXX the instance already knows about the store, are we sure there's no way
-    # to obtain it?
     def delete(self, store):
         for child in self.children:
             child.delete(store)
