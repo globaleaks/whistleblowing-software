@@ -156,7 +156,6 @@ def create_comment_wb(store, wb_tip_id, request):
     comment.internaltip_id = wbtip.internaltip.id
     comment.author = u'whistleblower'
     comment.type = u'whistleblower'
-    comment.new = True
 
     wbtip.internaltip.comments.add(comment)
 
@@ -364,7 +363,6 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
     msg.visualized = False
 
     msg.type = u'whistleblower'
-    msg.new = True
 
     try:
         store.add(msg)

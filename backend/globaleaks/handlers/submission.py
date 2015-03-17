@@ -29,11 +29,11 @@ def wb_serialize_internaltip(internaltip):
     response = {
         'id' : internaltip.id,
         'context_id': internaltip.context_id,
-        'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
-        'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
-        'wb_steps' : internaltip.wb_steps,
-        'files' : [f.id for f in internaltip.internalfiles],
-        'receivers' : [r.id for r in internaltip.receivers]
+        'creation_date': datetime_to_ISO8601(internaltip.creation_date),
+        'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
+        'wb_steps': internaltip.wb_steps,
+        'files': [f.id for f in internaltip.internalfiles],
+        'receivers': [r.id for r in internaltip.receivers]
     }
 
     return response
@@ -158,7 +158,6 @@ def db_create_submission(store, token, request, language):
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
     submission.context_id = context.id
     submission.creation_date = datetime_now()
-    submission.new = True
 
     try:
         store.add(submission)
@@ -169,7 +168,6 @@ def db_create_submission(store, token, request, language):
     try:
         for filedesc in token.uploaded_files:
             associated_f = InternalFile()
-            associated_f.new = True
             associated_f.name = filedesc['filename']
             # aio, when we are going to implement file.description ?
             associated_f.description = ""

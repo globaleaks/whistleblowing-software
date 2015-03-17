@@ -107,7 +107,6 @@ adminNodeDesc = {
     'whistleblowing_button': unicode,
     'hidden_service' : hidden_service_regexp_or_empty,
     'public_site' : https_url_regexp_or_empty,
-    'stats_update_time' : int,
     'email' : email_regexp_or_empty, # FIXME old versions of globaleaks have an empty value
     'password' : unicode,            # and in addition the email is not set before wizard.
     'old_password' : unicode,

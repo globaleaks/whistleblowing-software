@@ -127,7 +127,6 @@ CREATE TABLE node (
     name VARCHAR NOT NULL,
     receipt_salt VARCHAR NOT NULL,
     public_site VARCHAR NOT NULL,
-    stats_update_time INTEGER NOT NULL,
     last_update VARCHAR,
     maximum_namesize INTEGER NOT NULL,
     maximum_textsize INTEGER NOT NULL,

@@ -81,7 +81,6 @@ def create_tables(create_node=True):
             'public_site': u"",
             'email': u"",
             'receipt_regexp': u"[0-9]{16}",
-            'stats_update_time': 2, # hours,
             # advanced settings
             'maximum_filesize': GLSetting.defaults.maximum_filesize,
             'maximum_namesize': GLSetting.defaults.maximum_namesize,

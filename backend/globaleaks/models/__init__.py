@@ -9,7 +9,7 @@ import copy
 from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
 
 from globaleaks.settings import transact
-from globaleaks.utils.utility import datetime_now, uuid4
+from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v
 
@@ -143,8 +143,6 @@ class Model(BaseModel):
     __storm_table__ = None
     id = Unicode(primary=True, default_factory=uuid4)
     creation_date = DateTime(default_factory=datetime_now)
-    # Note on creation last_update and last_access may be out of sync by some
-    # seconds.
 
     @classmethod
     def get(cls, store, obj_id):
@@ -164,11 +162,11 @@ class User(Model):
     salt = Unicode()
     role = Unicode()
     state = Unicode()
-    last_login = DateTime()
+    last_login = DateTime(default_factory=datetime_null)
     language = Unicode()
     timezone = Int()
-    password_change_needed = Bool()
-    password_change_date = DateTime()
+    password_change_needed = Bool(default=True)
+    password_change_date = DateTime(default_factory=datetime_null)
 
     # roles: 'admin', u'receiver'
     # states: 'disabled', 'enabled'
@@ -182,14 +180,14 @@ class Context(Model):
     """
     This model keeps track of specific contexts settings.
     """
-    show_small_cards = Bool()
-    show_receivers = Bool()
-    maximum_selectable_receivers = Int()
-    select_all_receivers = Bool()
-    enable_private_messages = Bool()
+    show_small_cards = Bool(default=False)
+    show_receivers = Bool(default=True)
+    maximum_selectable_receivers = Int(default=0)
+    select_all_receivers = Bool(default=False)
+    enable_private_messages = Bool(default=True)
 
     tip_timetolive = Int()
-    last_update = DateTime()
+    last_update = DateTime(default_factory=datetime_null)
 
     # localized strings
     name = JSON(validator=shortlocal_v)
@@ -202,10 +200,10 @@ class Context(Model):
     #                         ReceiverContext.receiver_id,
     #                         Receiver.id)
 
-    postpone_superpower = Bool()
-    can_delete_submission = Bool()
+    postpone_superpower = Bool(default=False)
+    can_delete_submission = Bool(default=False)
 
-    presentation_order = Int()
+    presentation_order = Int(default=9)
 
     unicode_keys = []
     localized_strings = ['name', 'description', 'receiver_introduction']
@@ -235,9 +233,9 @@ class InternalTip(Model):
 
     wb_steps = JSON()
     expiration_date = DateTime()
-    last_activity = DateTime()
+    last_activity = DateTime(default_factory=datetime_null)
 
-    new = Int()
+    new = Int(default=True)
 
 
 class ReceiverTip(Model):
@@ -251,13 +249,13 @@ class ReceiverTip(Model):
     # internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
     # receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 
-    last_access = DateTime(default_factory=datetime_now)
-    access_counter = Int()
+    last_access = DateTime(default_factory=datetime_null)
+    access_counter = Int(default=0)
     notification_date = DateTime()
 
-    label = Unicode(validator=shortlocal_v)
+    label = Unicode(validator=shortlocal_v, default=u"")
 
-    new = Int()
+    new = Int(default=True)
 
     unicode_keys = ['label']
 
@@ -272,8 +270,8 @@ class WhistleblowerTip(Model):
     internaltip_id = Unicode()
     # internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
     receipt_hash = Unicode()
-    last_access = DateTime()
-    access_counter = Int()
+    last_access = DateTime(default_factory=datetime_null)
+    access_counter = Int(default=0)
 
 
 class ReceiverFile(Model):
@@ -291,10 +289,10 @@ class ReceiverFile(Model):
 
     file_path = Unicode()
     size = Int()
-    downloads = Int()
-    last_access = DateTime()
+    downloads = Int(default=0)
+    last_access = DateTime(default_factory=datetime_null)
 
-    new = Int()
+    new = Int(default=True)
 
     status = Unicode()
     # statuses: 'reference', 'encrypted', 'unavailable', 'nokey'
@@ -317,10 +315,9 @@ class InternalFile(Model):
     file_path = Unicode()
 
     content_type = Unicode()
-    description = Unicode(validator=longtext_v)
     size = Int()
 
-    new = Int()
+    new = Int(default=True)
 
 
 class Comment(Model):
@@ -337,7 +334,7 @@ class Comment(Model):
     type = Unicode()
     # types: 'receiver', 'whistleblower', 'system'
 
-    new = Int()
+    new = Int(default=True)
 
 
 class Message(Model):
@@ -348,12 +345,12 @@ class Message(Model):
     receivertip_id = Unicode()
     author = Unicode()
     content = Unicode(validator=longtext_v)
-    visualized = Bool()
+    visualized = Bool(default=False)
 
     type = Unicode()
     # types: 'receiver', whistleblower'
 
-    new = Int()
+    new = Int(default=True)
 
 
 class Node(Model):
@@ -370,7 +367,7 @@ class Node(Model):
     hidden_service = Unicode()
     email = Unicode()
     receipt_salt = Unicode()
-    last_update = DateTime()
+    last_update = DateTime(default_factory=datetime_null)
     # this has a dedicated validator in update_node()
     receipt_regexp = Unicode()
 
@@ -384,10 +381,6 @@ class Node(Model):
     footer = JSON(validator=longlocal_v)
     security_awareness_title = JSON(validator=longlocal_v)
     security_awareness_text = JSON(validator=longlocal_v)
-
-    # Here is set the time frame for the stats publicly exported by the node.
-    # Expressed in hours
-    stats_update_time = Int()
 
     # Advanced settings
     maximum_namesize = Int()
@@ -429,8 +422,8 @@ class Node(Model):
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
                     'exception_email', 'default_language', 'receipt_regexp',
                     'landing_page']
-    int_keys = ['stats_update_time', 'maximum_namesize',
-                'maximum_textsize', 'maximum_filesize', 'default_timezone']
+    int_keys = ['maximum_namesize', 'maximum_textsize',
+                'maximum_filesize', 'default_timezone']
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                  'tor2web_unauth', 'postpone_superpower',
                  'can_delete_submission', 'ahmia', 'allow_unencrypted',
@@ -456,18 +449,19 @@ class Notification(Model):
     information for the node templates are imported in the handler, but
     settings are expected all at once.
     """
-    server = Unicode()
-    port = Int()
-    username = Unicode()
-    password = Unicode()
+    server = Unicode(validator=shorttext_v, default=u"mail.headstrong.de")
+    port = Int(default=587)
 
-    source_name = Unicode(validator=shorttext_v)
-    source_email = Unicode(validator=shorttext_v)
+    username = Unicode(validator=shorttext_v, default=u"sendaccount@lists.globaleaks.org")
+    password = Unicode(validator=shorttext_v, default=u"sendaccount99")
 
-    security = Unicode()
+    source_name = Unicode(validator=shorttext_v, default=u"Default GlobaLeaks sender")
+    source_email = Unicode(validator=shorttext_v, default=u"sendaccount@lists.globaleaks.org")
+
+    security = Unicode(validator=shorttext_v, default=u"TLS")
     # security_types: 'TLS', 'SSL'
 
-    torify = Int()
+    torify = Int(default=True)
 
     admin_anomaly_template = JSON(validator=longlocal_v)
     admin_anomaly_mail_title = JSON(validator=longlocal_v)
@@ -591,7 +585,7 @@ class Receiver(Model):
     can_delete_submission = Bool()
     postpone_superpower = Bool()
 
-    last_update = DateTime()
+    last_update = DateTime(default_factory=datetime_null)
 
     tip_notification = Bool()
     comment_notification = Bool()
@@ -605,7 +599,7 @@ class Receiver(Model):
     #                         "ReceiverContext.receiver_id",
     #                         "Receiver.id")
 
-    presentation_order = Int()
+    presentation_order = Int(default=9)
 
     unicode_keys = ['name', 'mail_address',
                     'ping_mail_address', 'configuration']
@@ -621,14 +615,12 @@ class EventLogs(Model):
     """
     Class used to keep track of the notification to be display to the receiver
     """
-
     description = JSON()
     title = Unicode()
     receiver_id = Unicode()
     receivertip_id = Unicode()
     event_reference = JSON()
-
-    mail_sent = Bool()
+    mail_sent = Bool(default=False)
 
 
 class Field(Model):
@@ -661,22 +653,6 @@ class Field(Model):
     # * dialog
     # * tos
     # * fieldgroup
-
-    # When only 1 option
-    # {
-    #     "trigger": field_id
-    # }
-
-    # When multiple options
-    # [
-    #     {
-    #         "name": lang_dict,
-    #         "x": int,
-    #         "y": int,
-    #         "description": lang_dict,
-    #         "trigger": field_id
-    #     }, ...
-    # ]
 
     unicode_keys = ['type']
     int_keys = ['x', 'y']
