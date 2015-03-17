@@ -647,7 +647,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.tip_max_access = 500;
         context.select_all_receivers = false;
         context.tip_timetolive = 15;
-        context.submission_timetolive = 48;
         context.receiver_introduction = "";
         context.postpone_superpower = false;
         context.can_delete_submission = false;

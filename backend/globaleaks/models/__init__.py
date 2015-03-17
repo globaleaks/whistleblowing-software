@@ -191,7 +191,6 @@ class Context(Model):
     tip_max_access = Int()
     file_max_download = Int()
     tip_timetolive = Int()
-    submission_timetolive = Int()
     last_update = DateTime()
 
     # localized strings

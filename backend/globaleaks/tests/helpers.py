@@ -814,8 +814,6 @@ class MockDict():
             'tip_max_access': 10,
             # tip_timetolive is expressed in days
             'tip_timetolive': 20,
-            # submission_timetolive is expressed in hours
-            'submission_timetolive': 48,
             'file_max_download' :1,
             'receivers' : [],
             'receiver_introduction': u'These are our receivers',

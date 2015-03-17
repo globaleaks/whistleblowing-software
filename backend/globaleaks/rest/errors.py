@@ -279,32 +279,13 @@ class GPGKeyInvalid(GLException):
 
 class InvalidTipTimeToLive(GLException):
     """
-    tip_timetolive and submission_timetolive maybe proposed of weird values,
-    here is catch
+    The provided tip_timetolive contains weird values
     """
     reason = "Invalid timerange provided for Tip time to live"
     error_code =  46
     status_code = 406
 
-
-class InvalidSubmTimeToLive(GLException):
-    """
-    tip_timetolive and submission_timetolive maybe proposed of weird values,
-    here is catch
-    """
-    reason = "Invalid timerange provided for Submission time to live"
-    error_code =  47
-    status_code = 406
-
-
-class InvalidTipSubmCombo(GLException):
-    """
-    tip_timetolive and submission_timetolive can be proposed with weird values.
-    """
-    reason = "Submission time to life can't be more than Tip"
-    error_code =  48
-    status_code = 406
-
+# UNUSED ERROR CODE 47 48 HERE!
 
 class FileRequiredMissing(GLException):
     """

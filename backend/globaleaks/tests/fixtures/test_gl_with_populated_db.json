@@ -464,7 +464,6 @@
       "tip_timetolive": 1728000,
       "can_delete_submission": false,
       "show_small_cards": false,
-      "submission_timetolive": 172800,
       "file_max_download": 1,
       "show_receivers": false,
       "select_all_receivers": true,

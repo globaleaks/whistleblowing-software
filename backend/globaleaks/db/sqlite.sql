@@ -53,7 +53,6 @@ CREATE TABLE context (
     name BLOB NOT NULL,
     tip_max_access INTEGER NOT NULL,
     tip_timetolive INTEGER NOT NULL,
-    submission_timetolive INTEGER NOT NULL,
     receiver_introduction BLOB NOT NULL,
     select_all_receivers INTEGER NOT NULL,
     postpone_superpower INTEGER NOT NULL,

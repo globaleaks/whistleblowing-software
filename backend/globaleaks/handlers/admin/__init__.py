@@ -245,7 +245,6 @@ def admin_serialize_context(store, context, language):
         "receivers": [r.id for r in context.receivers],
         # tip expressed in day, submission in hours
         "tip_timetolive": context.tip_timetolive / (60 * 60 * 24),
-        "submission_timetolive": context.submission_timetolive / (60 * 60),
         "select_all_receivers": context.select_all_receivers,
         "postpone_superpower": context.postpone_superpower,
         "can_delete_submission": context.can_delete_submission,
@@ -394,21 +393,12 @@ def get_context_list(store, language):
 def acquire_context_timetolive(request):
 
     try:
-        submission_ttl = seconds_convert(int(request['submission_timetolive']), (60 * 60), minv=1)
-    except Exception as excep:
-        log.err("Invalid timing configured for Submission: %s" % excep.message)
-        raise errors.InvalidTipTimeToLive()
-
-    try:
         tip_ttl = seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), minv=1)
     except Exception as excep:
         log.err("Invalid timing configured for Tip: %s" % excep.message)
-        raise errors.InvalidSubmTimeToLive()
+        raise errors.InvalidTipTimeToLive()
 
-    if submission_ttl > tip_ttl:
-        raise errors.InvalidTipSubmCombo()
-
-    return submission_ttl, tip_ttl
+    return tip_ttl
 
 def field_is_present(store, field):
     result = store.find(models.Field,
@@ -458,8 +448,8 @@ def db_create_context(store, request, language):
                       request['maximum_selectable_receivers'])
         request['maximum_selectable_receivers'] = 0
 
-    # tip_timetolive and submission_timetolive need to be converted in seconds since hours and days
-    (context.submission_timetolive, context.tip_timetolive) = acquire_context_timetolive(request)
+    # tip_timetolive to be converted in seconds since hours and days
+    context.tip_timetolive = acquire_context_timetolive(request)
 
     c = store.add(context)
 
@@ -582,8 +572,8 @@ def update_context(store, context_id, request, language):
             raise errors.ReceiverIdNotFound
         context.receivers.add(receiver)
 
-    # tip_timetolive and submission_timetolive need to be converted in seconds since hours and days
-    (context.submission_timetolive, context.tip_timetolive) = acquire_context_timetolive(request)
+    # tip_timetolive need to be converted in seconds since hours and days
+    context.tip_timetolive = acquire_context_timetolive(request)
 
     if request['select_all_receivers']:
         if request['maximum_selectable_receivers']:
