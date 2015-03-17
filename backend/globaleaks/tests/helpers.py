@@ -386,12 +386,12 @@ class TestGLWithPopulatedDB(TestGL):
         yield TestGL.setUp(self)
         yield self.fill_data()
 
-    def receiver_assertion(self, source_r, created_r):
+    def receiver_assertions(self, source_r, created_r):
         self.assertEqual(source_r['name'], created_r['name'], 'name')
         self.assertEqual(source_r['can_delete_submission'], created_r['can_delete_submission'], 'delete')
 
-    def context_assertion(self, source_c, created_c):
-        self.assertEqual(source_c['tip_max_access'], created_c['tip_max_access'])
+    def context_assertions(self, source_c, created_c):
+        self.assertEqual(source_c['show_small_cards'], created_c['show_small_cards'])
 
     @inlineCallbacks
     def fill_data(self):
@@ -811,10 +811,8 @@ class MockDict():
             'description': u'Already localized desc',
             'steps': self.dummySteps,
             'select_all_receivers': True,
-            'tip_max_access': 10,
             # tip_timetolive is expressed in days
             'tip_timetolive': 20,
-            'file_max_download' :1,
             'receivers' : [],
             'receiver_introduction': u'These are our receivers',
             'postpone_superpower': False,

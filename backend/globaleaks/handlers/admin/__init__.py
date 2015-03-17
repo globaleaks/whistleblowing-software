@@ -240,8 +240,6 @@ def admin_serialize_context(store, context, language):
         "id": context.id,
         "creation_date": datetime_to_ISO8601(context.creation_date),
         "last_update": datetime_to_ISO8601(context.last_update),
-        "tip_max_access": context.tip_max_access,
-        "file_max_download": context.file_max_download,
         "receivers": [r.id for r in context.receivers],
         # tip expressed in day, submission in hours
         "tip_timetolive": context.tip_timetolive / (60 * 60 * 24),

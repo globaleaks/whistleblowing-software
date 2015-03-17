@@ -80,16 +80,7 @@ class TipReceiptNotFound(GLException):
     status_code = 404 # Not Found
 
 
-# UNUSED ERROR CODE 15 16 17 HERE!
-
-
-class AccessLimitExceeded(GLException):
-    """
-    The access counter for a Tip has reached the limit
-    """
-    reason = "The receiver has reached the maximum amount of access for this Tip"
-    error_code = 18
-    status_code = 503 # Servie Unavailable
+# UNUSED ERROR CODE 15 16 17 18 HERE!
 
 
 class ExpectedUniqueField(GLException):
@@ -190,16 +181,7 @@ class InternalServerError(GLException):
         self.arguments.append(details)
 
 
-# UNUSED ERROR CODE 32 HERE!
-
-
-class DownloadLimitExceeded(GLException):
-    """
-    Receiver has reached the limit download counter configured in the Context
-    """
-    reason = "You've reached the maximum amount of download for this file"
-    error_code = 33
-    status_code = 503 # Service Unavailable
+# UNUSED ERROR CODE 32 33 HERE!
 
 
 class InvalidOldPassword(GLException):

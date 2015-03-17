@@ -185,9 +185,7 @@ adminContextDesc = {
     'postpone_superpower': bool,
     'can_delete_submission': bool,
     'maximum_selectable_receivers': int,
-    'tip_max_access' : int,
     'tip_timetolive' : int,
-    'file_max_download' : int,
     'receivers' : [ uuid_regexp ],
     'steps': list,
     'select_all_receivers': bool,
@@ -359,8 +357,6 @@ nodeContext = {
     'show_small_cards': bool,
     'show_receivers': bool,
     'enable_private_messages': bool,
-    'file_max_download': int,
-    'tip_max_access': int,
     'id': uuid_regexp,
     'receivers': [ uuid_regexp ],
     'submission_disclaimer': unicode,
@@ -397,13 +393,11 @@ internalTipDesc = {
     'wb_steps': list,
     'receivers': [ uuid_regexp ],
     'context_id': uuid_regexp,
-    'access_limit': int,
     'creation_date': dateType,
     'new': bool,
     'id': uuid_regexp,
     'files': [ uuid_regexp ],
     'expiration_date': dateType,
-    'download_limit': int,
 }
 
 FieldDesc = {

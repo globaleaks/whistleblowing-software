@@ -29,8 +29,6 @@ def receiver_serialize_tip(internaltip, language):
         'context_id': internaltip.context.id,
         'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
-        'download_limit' : internaltip.download_limit,
-        'access_limit' : internaltip.access_limit,
         'wb_steps' : internaltip.wb_steps,
         'global_delete' : False,
         # this field "inform" the receiver of the new expiration date that can
@@ -135,11 +133,8 @@ def db_increment_receiver_access_count(store, user_id, tip_id):
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
 
-    if rtip.access_counter > rtip.internaltip.access_limit:
-        raise errors.AccessLimitExceeded
-
-    log.debug("Tip %s access garanted to user %s access_counter %d on limit %d" %
-              (rtip.id, rtip.receiver.name, rtip.access_counter, rtip.internaltip.access_limit))
+    log.debug("Tip %s access garanted to user %s (%d)" %
+              (rtip.id, rtip.receiver.name, rtip.access_counter))
 
     return rtip.access_counter
 

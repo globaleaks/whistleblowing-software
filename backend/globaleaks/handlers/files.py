@@ -271,12 +271,8 @@ def download_file(store, user_id, tip_id, file_id):
     if not rfile or rfile.receiver_id != user_id:
         raise errors.FileIdNotFound
 
-    log.debug("Download of %s: %d of %d for %s" %
-              (rfile.internalfile.name, rfile.downloads,
-               rfile.internalfile.internaltip.download_limit, rfile.receiver.name))
-
-    if rfile.downloads == rfile.internalfile.internaltip.download_limit:
-        raise errors.DownloadLimitExceeded
+    log.debug("Download of file %s by receiver %s (%d)" %
+              (rfile.internalfile.id, rfile.receiver.id, rfile.downloads))
 
     rfile.downloads += 1
 
@@ -293,12 +289,6 @@ def download_all_files(store, user_id, tip_id):
 
     files_list = []
     for sf in rfiles:
-        if sf.downloads == sf.internalfile.internaltip.download_limit:
-            log.debug("massive file download for %s: skipped %s (limit %d reached)" % (
-                sf.receiver.name, sf.internalfile.name, sf.downloads
-            ))
-            continue
-
         sf.downloads += 1
         files_list.append(serialize_receiver_file(sf))
 

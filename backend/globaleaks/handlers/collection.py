@@ -120,9 +120,6 @@ class CollectionDownload(BaseHandler):
 
         files_dict = yield download_all_files(self.current_user.user_id, rtip_id)
 
-        if not files_dict:
-            raise errors.DownloadLimitExceeded
-
         if compression is None:
             compression = 'zipstored'
 

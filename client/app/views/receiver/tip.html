@@ -111,9 +111,7 @@
       <form id="fileCollectionDownload" method="POST" action="{{tip.collection}}" novalidate>
         <input type="hidden" name="x-session" value="{{session}}">
         <input type="hidden" name="xsrf-token" value="{{xsrf_token}}">
-        <button data-ng-show="download_all_enabled()"
-                data-ng-click="increaseDownloadCounts()"
-                class="btn btn-xs btn-default data-ng-cloak">
+        <button class="btn btn-xs btn-default data-ng-cloak">
           <i class="glyphicon glyphicon-download"></i>
           <span data-translate>download all files</span>
         </button>
@@ -157,12 +155,9 @@
                 <form id="fileDownload" method="POST" action="{{file.href}}" novalidate>
                   <input type="hidden" name="x-session" value="{{session}}">
                   <input type="hidden" name="xsrf-token" value="{{xsrf_token}}">
-                  <button data-ng-class="{'disabled': file.downloads >= tip.download_limit}"
-                          data-ng-click="increaseDownloadCount(file)"
-                          class="btn btn-xs btn-default data-ng-cloak">
+                  <button class="btn btn-xs btn-default data-ng-cloak">
                     <i class="glyphicon glyphicon-download"></i>
                     <span data-translate>download</span>
-                    <span>({{file.downloads}}/{{tip.download_limit}})</span>
                   </button>
                 </form>
               </td>

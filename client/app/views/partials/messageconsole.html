@@ -11,20 +11,12 @@
       <p><strong>{{error.url}}</strong></p>
       <div data-ng-switch="" on="error.code" >
 
-        <div data-ng-switch-when="18">
-          <span data-translate>Your user has reached the maximum number of accesses to this Tip</span>
-        </div>
-
         <div data-ng-switch-when="35">
           <span data-translate>The specified comment was not found</span>
         </div>
 
         <div data-ng-switch-when="12">
           <span data-translate>No Context was found for the specified ID</span>
-        </div>
-
-        <div data-ng-switch-when="33">
-          <span data-translate>You've reached the maximum number of downloads for this file</span>
         </div>
 
         <div data-ng-switch-when="19">

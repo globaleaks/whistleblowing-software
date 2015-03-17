@@ -643,8 +643,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.description = "";
         context.steps = [];
         context.receivers = [];
-        context.file_max_download = 3;
-        context.tip_max_access = 500;
         context.select_all_receivers = false;
         context.tip_timetolive = 15;
         context.receiver_introduction = "";
