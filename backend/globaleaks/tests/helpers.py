@@ -15,8 +15,6 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 
-from gnupg import GPG
-
 # Monkeypathing for unit testing  in order to
 # prevent mail activities
 from globaleaks.utils import mailutils
@@ -164,14 +162,14 @@ class TestGL(unittest.TestCase):
         self.dummyReceiver_2 = self.get_dummy_receiver('receiver2') # the one with PGP
 
         if self.encryption_scenario == 'MIXED':
-            self.dummyReceiver_1['gpg_key_armor'] = None
-            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY1
+            self.dummyReceiver_1['pgp_key_public'] = None
+            self.dummyReceiver_2['pgp_key_public'] = VALID_PGP_KEY1
         elif self.encryption_scenario == 'ALL_ENCRYPTED':
-            self.dummyReceiver_1['gpg_key_armor'] = VALID_PGP_KEY1
-            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY2
+            self.dummyReceiver_1['pgp_key_public'] = VALID_PGP_KEY1
+            self.dummyReceiver_2['pgp_key_public'] = VALID_PGP_KEY2
         elif self.encryption_scenario == 'ALL_PLAINTEXT':
-            self.dummyReceiver_1['gpg_key_armor'] = None
-            self.dummyReceiver_2['gpg_key_armor'] = None
+            self.dummyReceiver_1['pgp_key_public'] = None
+            self.dummyReceiver_2['pgp_key_public'] = None
 
         self.dummyNode = dummyStuff.dummyNode
 
@@ -654,20 +652,20 @@ class MockDict():
             'comment_notification': True,
             'message_notification': True,
             'ping_notification': True,
-            'gpg_key_info': u'',
-            'gpg_key_fingerprint' : u'',
-            'gpg_key_status': u'disabled',
-            'gpg_key_armor': u'',
-            'gpg_key_expiration': u'',
-            'gpg_key_remove': False,
+            'pgp_key_info': u'',
+            'pgp_key_fingerprint' : u'',
+            'pgp_key_status': u'disabled',
+            'pgp_key_public': u'',
+            'pgp_key_expiration': u'',
+            'pgp_key_remove': False,
             'presentation_order': 0,
             'timezone': 0,
             'language': u'en',
             'configuration': 'default'
         }
 
-        self.dummyReceiverGPG = copy.deepcopy(self.dummyReceiver)
-        self.dummyReceiverGPG['gpg_key_armor'] = VALID_PGP_KEY1
+        self.dummyReceiverPGP = copy.deepcopy(self.dummyReceiver)
+        self.dummyReceiverPGP['pgp_key_public'] = VALID_PGP_KEY1
 
         self.dummyFieldTemplates = [
         {

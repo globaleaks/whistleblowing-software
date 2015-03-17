@@ -17,8 +17,8 @@ GLClient.controller('ReceiverFirstLoginCtrl', ['$scope', '$rootScope', '$locatio
     $scope.pass_save = function () {
 
       // avoid changing any GPG setting
-      $scope.preferences.gpg_key_remove = false;
-      $scope.preferences.gpg_key_armor = '';
+      $scope.preferences.pgp_key_remove = false;
+      $scope.preferences.pgp_key_public = '';
 
       $scope.preferences.$update(function () {
 
@@ -68,11 +68,11 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
 
     $scope.pass_save = function () {
 
-      if ($scope.preferences.gpg_key_remove == undefined) {
-        $scope.preferences.gpg_key_remove = false;
+      if ($scope.preferences.pgp_key_remove == undefined) {
+        $scope.preferences.pgp_key_remove = false;
       }
-      if ($scope.preferences.gpg_key_armor == undefined) {
-        $scope.preferences.gpg_key_armor = '';
+      if ($scope.preferences.pgp_key_public == undefined) {
+        $scope.preferences.pgp_key_public = '';
       }
 
       $scope.preferences.$update(function () {
@@ -89,13 +89,13 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
       $scope.preferences.password = '';
       $scope.preferences.old_password = '';
 
-      if ($scope.preferences.gpg_key_remove == true) {
-        $scope.preferences.gpg_key_armor = '';
+      if ($scope.preferences.pgp_key_remove == true) {
+        $scope.preferences.pgp_key_public = '';
       }
 
-      if ($scope.preferences.gpg_key_armor !== undefined &&
-          $scope.preferences.gpg_key_armor != '') {
-        $scope.preferences.gpg_key_remove = false;
+      if ($scope.preferences.pgp_key_public !== undefined &&
+          $scope.preferences.pgp_key_public != '') {
+        $scope.preferences.pgp_key_remove = false;
       }
 
       $scope.preferences.$update(function(){

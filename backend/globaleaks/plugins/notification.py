@@ -12,7 +12,7 @@ from globaleaks.utils.utility import log
 from globaleaks.utils.mailutils import sendmail, MIME_mail_build
 from globaleaks.utils.templating import Templating
 from globaleaks.plugins.base import Notification
-from globaleaks.security import GLBGPG
+from globaleaks.security import GLBPGP
 from globaleaks.settings import GLSetting
 
 class MailNotification(Notification):
@@ -106,17 +106,17 @@ class MailNotification(Notification):
             return None
 
         # If the receiver has encryption enabled (for notification), encrypt the mail body
-        if event.receiver_info['gpg_key_status'] == u'enabled':
+        if event.receiver_info['pgp_key_status'] == u'enabled':
 
-            gpob = GLBGPG()
+            gpob = GLBPGP()
             try:
-                gpob.load_key(event.receiver_info['gpg_key_armor'])
-                body = gpob.encrypt_message(event.receiver_info['gpg_key_fingerprint'], body)
+                gpob.load_key(event.receiver_info['pgp_key_public'])
+                body = gpob.encrypt_message(event.receiver_info['pgp_key_fingerprint'], body)
             except Exception as excep:
-                log.err("Error in GPG interface object (for %s: %s)! (notification+encryption)" %
+                log.err("Error in PGP interface object (for %s: %s)! (notification+encryption)" %
                         (event.receiver_info['username'], str(excep)))
 
-                # On this condition (GPG enabled but key invalid) the only
+                # On this condition (PGP enabled but key invalid) the only
                 # thing to do is to return None;
                 # It will be duty of the PGP check schedule will disable the key
                 # and advise the user and the admin about that action.

@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 #
 #   security 
@@ -277,9 +278,9 @@ def change_password(base64_stored, old_password, new_password, salt_input):
     return hash_password(new_password, salt_input)
 
 
-class GLBGPG(object):
+class GLBPGP(object):
     """
-    GPG has not a dedicated class, because one of the function is called inside a transact, and
+    PGP has not a dedicated class, because one of the function is called inside a transact, and
     I'm not quite confident on creating an object that operates on the filesystem knowing
     that would be run also on the Storm cycle.
     """
@@ -289,23 +290,23 @@ class GLBGPG(object):
         every time is needed, a new keyring is created here.
         """
         try:
-            temp_gpgroot = os.path.join(GLSetting.gpgroot, "%s" % xeger(r'[A-Za-z0-9]{8}'))
-            os.makedirs(temp_gpgroot, mode=0700)
-            self.gpgh = GPG(gnupghome=temp_gpgroot, options=['--trust-model', 'always'])
-            self.gpgh.encoding = "UTF-8"
+            temp_pgproot = os.path.join(GLSetting.pgproot, "%s" % xeger(r'[A-Za-z0-9]{8}'))
+            os.makedirs(temp_pgproot, mode=0700)
+            self.pgph = GPG(gnupghome=temp_pgproot, options=['--trust-model', 'always'])
+            self.pgph.encoding = "UTF-8"
         except OSError as ose:
             log.err("Critical, OS error in operating with GnuPG home: %s" % ose)
             raise
         except Exception as excep:
-            log.err("Unable to instance GPG object: %s" % excep)
+            log.err("Unable to instance PGP object: %s" % excep)
             raise
 
-    def sanitize_gpg_string(self, key):
+    def sanitize_pgp_string(self, key):
         """
         @param key: A pgp armored key
         @return: Sanitized string or raise InvalidInputFormat
 
-        This function validate the integrity of a GPG key
+        This function validate the integrity of a PGP key
         """
         lines = key.split("\n")
         sanitized = ""
@@ -315,7 +316,7 @@ class GLBGPG(object):
             start += 1
 
         if lines[start] != '-----BEGIN PGP PUBLIC KEY BLOCK-----':
-            raise errors.InvalidInputFormat("GPG invalid format")
+            raise errors.InvalidInputFormat("PGP invalid format")
         else:
             sanitized += lines[start] + "\n"
 
@@ -338,7 +339,7 @@ class GLBGPG(object):
             if len(base64only) == 1:
                 sanitized += str(base64only[0]) + "\n"
 
-            # this GPG/PGP format it's different from the common base64 ? dunno
+            # this PGP/PGP format it's different from the common base64 ? dunno
             if len(lines[i]) == 5 and lines[i][0] == '=':
                 sanitized += str(lines[i]) + "\n"
 
@@ -354,23 +355,23 @@ class GLBGPG(object):
         @return: True or False, True only if a key is effectively importable and listed.
         """
         try:
-            sanitized_key = self.sanitize_gpg_string(key)
-            import_result = self.gpgh.import_keys(sanitized_key)
+            sanitized_key = self.sanitize_pgp_string(key)
+            import_result = self.pgph.import_keys(sanitized_key)
         except Exception as excep:
-            log.err("Error in GPG import_keys: %s" % excep)
-            raise errors.GPGKeyInvalid
+            log.err("Error in PGP import_keys: %s" % excep)
+            raise errors.PGPKeyInvalid
 
         if len(import_result.fingerprints) != 1:
-            raise errors.GPGKeyInvalid
+            raise errors.PGPKeyInvalid
 
         fingerprint = import_result.fingerprints[0]
 
         # looking if the key is effectively reachable
         try:
-            all_keys = self.gpgh.list_keys()
+            all_keys = self.pgph.list_keys()
         except Exception as excep:
-            log.err("Error in GPG list_keys: %s" % excep)
-            raise errors.GPGKeyInvalid
+            log.err("Error in PGP list_keys: %s" % excep)
+            raise errors.PGPKeyInvalid
 
         info = u""
         expiration = datetime.utcfromtimestamp(0)
@@ -390,14 +391,14 @@ class GLBGPG(object):
                     for uid in key['uids']:
                         info += "\t%s\n" % uid
                 except Exception as excep:
-                    log.err("Error in GPG key format/properties: %s" % excep)
-                    raise errors.GPGKeyInvalid
+                    log.err("Error in PGP key format/properties: %s" % excep)
+                    raise errors.PGPKeyInvalid
 
                 break
 
         if not len(info):
             log.err("Key apparently imported but unable to reload it")
-            raise errors.GPGKeyInvalid
+            raise errors.PGPKeyInvalid
 
         ret = {
             'fingerprint': fingerprint,
@@ -409,21 +410,21 @@ class GLBGPG(object):
 
     def encrypt_file(self, key_fingerprint, plainpath, filestream, output_path):
         """
-        @param gpg_key_armor:
+        @param pgp_key_public:
         @param plainpath:
         @return:
         """
-        encrypt_obj = self.gpgh.encrypt_file(filestream, str(key_fingerprint))
+        encrypt_obj = self.pgph.encrypt_file(filestream, str(key_fingerprint))
 
         if not encrypt_obj.ok:
-            raise errors.GPGKeyInvalid
+            raise errors.PGPKeyInvalid
 
         log.debug("Encrypting for key %s file %s (%d bytes)" %
                   (key_fingerprint,
                    plainpath, len(str(encrypt_obj))))
 
         encrypted_path = os.path.join(os.path.abspath(output_path),
-                                      "gpg_encrypted-%s" % xeger(r'[A-Za-z0-9]{8}'))
+                                      "pgp_encrypted-%s" % xeger(r'[A-Za-z0-9]{8}'))
         try:
             with open(encrypted_path, "w+") as f:
                 f.write(str(encrypt_obj))
@@ -431,7 +432,7 @@ class GLBGPG(object):
             return encrypted_path, len(str(encrypt_obj))
 
         except Exception as excep:
-            log.err("Error in writing GPG file output: %s (%s) bytes %d" %
+            log.err("Error in writing PGP file output: %s (%s) bytes %d" %
                     (excep.message, encrypted_path, len(str(encrypt_obj)) ))
             raise errors.InternalServerError("Error in writing [%s]" % excep.message)
 
@@ -451,10 +452,10 @@ class GLBGPG(object):
 
         """
         # This second argument may be a list of fingerprint, not just one
-        encrypt_obj = self.gpgh.encrypt(plaintext, str(key_fingerprint))
+        encrypt_obj = self.pgph.encrypt(plaintext, str(key_fingerprint))
 
         if not encrypt_obj.ok:
-            raise errors.GPGKeyInvalid
+            raise errors.PGPKeyInvalid
 
         log.debug("Encrypting for key %s %d byte of plain data (%d cipher output)" %
                   (key_fingerprint,
@@ -464,12 +465,12 @@ class GLBGPG(object):
 
     def destroy_environment(self):
         try:
-            shutil.rmtree(self.gpgh.gnupghome)
+            shutil.rmtree(self.pgph.gnupghome)
         except Exception as excep:
-            log.err("Unable to clean temporary GPG environment: %s: %s" % (self.gpgh.gnupghome, excep))
+            log.err("Unable to clean temporary PGP environment: %s: %s" % (self.pgph.gnupghome, excep))
 
 
-def gpg_options_parse(receiver, request):
+def pgp_options_parse(receiver, request):
     """
     This is called in a @transact, when receiver update prefs and
     when admin configure a new key (at the moment, Admin GUI do not
@@ -481,50 +482,50 @@ def gpg_options_parse(receiver, request):
     @return: None
 
     This function is called in create_recever and update_receiver
-    and is used to manage the GPG options forced by the administrator
+    and is used to manage the PGP options forced by the administrator
 
     This is needed also because no one of these fields are
     *enforced* by unicode_keys or bool_keys in models.Receiver
 
-    GPG management, here are check'd these actions:
-    1) Proposed a new GPG key, is imported to check validity, and
+    PGP management, here are check'd these actions:
+    1) Proposed a new PGP key, is imported to check validity, and
        stored in Storm DB if not error raise
     2) Removal of the present key
 
     Further improvement: update the keys using keyserver
     """
 
-    new_gpg_key = request.get('gpg_key_armor', None)
-    remove_key = request.get('gpg_key_remove', False)
+    new_pgp_key = request.get('pgp_key_public', None)
+    remove_key = request.get('pgp_key_remove', False)
 
     # the default
-    receiver.gpg_key_status = u'disabled'
+    receiver.pgp_key_status = u'disabled'
 
     if remove_key:
-        log.debug("User %s %s request to remove GPG key (%s)" %
-                  (receiver.name, receiver.user.username, receiver.gpg_key_fingerprint))
+        log.debug("User %s %s request to remove PGP key (%s)" %
+                  (receiver.name, receiver.user.username, receiver.pgp_key_fingerprint))
 
         # In all the cases below, the key is marked disabled as request
-        receiver.gpg_key_status = u'disabled'
-        receiver.gpg_key_info = None
-        receiver.gpg_key_armor = None
-        receiver.gpg_key_fingerprint = None
-        receiver.gpg_key_expiration = datetime_null()
+        receiver.pgp_key_status = u'disabled'
+        receiver.pgp_key_info = None
+        receiver.pgp_key_public = None
+        receiver.pgp_key_fingerprint = None
+        receiver.pgp_key_expiration = datetime_null()
 
-    if new_gpg_key:
+    if new_pgp_key:
+
+        gnob = GLBPGP()
 
         try:
-            gnob = GLBGPG()
+            result = gnob.load_key(new_pgp_key)
 
-            result = gnob.load_key(new_gpg_key)
+            log.debug("PGP Key imported: %s" % result['fingerprint'])
 
-            log.debug("GPG Key imported: %s" % result['fingerprint'])
-
-            receiver.gpg_key_status = u'enabled'
-            receiver.gpg_key_info = result['info']
-            receiver.gpg_key_armor = new_gpg_key
-            receiver.gpg_key_fingerprint = result['fingerprint']
-            receiver.gpg_key_expiration = result['expiration']
+            receiver.pgp_key_status = u'enabled'
+            receiver.pgp_key_info = result['info']
+            receiver.pgp_key_public = new_pgp_key
+            receiver.pgp_key_fingerprint = result['fingerprint']
+            receiver.pgp_key_expiration = result['expiration']
 
         except:
             raise

@@ -1,4 +1,4 @@
-<div class="row" data-ng-show="preferences.gpg_key_status != 'enabled'">
+<div class="row" data-ng-show="preferences.pgp_key_status != 'enabled'">
   <div class="col-md-12">
     <div class="alert alert-warning">
       <i class="glyphicon glyphicon-warning-sign"></i>
@@ -79,7 +79,7 @@
         <tbody id="receiverListBody">
           <tr data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
             <td>
-              <span data-ng-switch="" on="receiver.gpg_key_status">
+              <span data-ng-switch="" on="receiver.pgp_key_status">
                 <span data-ng-switch-when="enabled">
                   <i class="glyphicon glyphicon-certificate" popover="{{'This receiver has configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
                 </span>

@@ -116,6 +116,30 @@ class ReceiverFile_v_19(Model):
     status = Unicode()
 
 
+class Receiver_v_19(Model):
+    __storm_table__ = 'receiver'
+    user_id = Unicode()
+    name = Unicode()
+    description = JSON()
+    configuration = Unicode()
+    gpg_key_info = Unicode()
+    gpg_key_fingerprint = Unicode()
+    gpg_key_armor = Unicode()
+    gpg_key_expiration = DateTime()
+    gpg_key_status = Unicode()
+    mail_address = Unicode()
+    ping_mail_address = Unicode()
+    can_delete_submission = Bool()
+    postpone_superpower = Bool()
+    last_update = DateTime()
+    tip_notification = Bool()
+    comment_notification = Bool()
+    file_notification = Bool()
+    message_notification = Bool()
+    ping_notification = Bool()
+    presentation_order = Int()
+
+
 class Replacer1920(TableReplacer):
 
     def migrate_Notification(self):
@@ -170,7 +194,7 @@ class Replacer1920(TableReplacer):
         self.store_new.commit()
 
     def migrate_Message(self):
-        print "%s Message migration assistant: mark->new" % self.std_fancy
+        print "%s Message migration assistant: mark -> new" % self.std_fancy
 
         old_objs = self.store_old.find(self.get_right_model("Message", 19))
 
@@ -191,7 +215,7 @@ class Replacer1920(TableReplacer):
         self.store_new.commit()
 
     def migrate_Comment(self):
-        print "%s Comment migration assistant: mark->new" % self.std_fancy
+        print "%s Comment migration assistant: mark -> new" % self.std_fancy
 
         old_objs = self.store_old.find(self.get_right_model("Comment", 19))
 
@@ -212,7 +236,7 @@ class Replacer1920(TableReplacer):
         self.store_new.commit()
 
     def migrate_InternalTip(self):
-        print "%s InternalTip migration assistant: mark->new" % self.std_fancy
+        print "%s InternalTip migration assistant: mark -> new" % self.std_fancy
 
         old_objs = self.store_old.find(self.get_right_model("InternalTip", 19))
 
@@ -233,7 +257,7 @@ class Replacer1920(TableReplacer):
         self.store_new.commit()
 
     def migrate_ReceiverTip(self):
-        print "%s ReceiverTip migration assistant: mark->new" % self.std_fancy
+        print "%s ReceiverTip migration assistant: mark -> new" % self.std_fancy
 
         old_objs = self.store_old.find(self.get_right_model("ReceiverTip", 19))
 
@@ -254,7 +278,7 @@ class Replacer1920(TableReplacer):
         self.store_new.commit()
 
     def migrate_InternalFile(self):
-        print "%s InternalFile migration assistant: mark->new" % self.std_fancy
+        print "%s InternalFile migration assistant: mark -> new" % self.std_fancy
 
         old_objs = self.store_old.find(self.get_right_model("InternalFile", 19))
 
@@ -275,7 +299,7 @@ class Replacer1920(TableReplacer):
         self.store_new.commit()
 
     def migrate_ReceiverFile(self):
-        print "%s ReceiverFile migration assistant: mark->new" % self.std_fancy
+        print "%s ReceiverFile migration assistant: mark -> new" % self.std_fancy
 
         old_objs = self.store_old.find(self.get_right_model("ReceiverFile", 19))
 
@@ -287,6 +311,33 @@ class Replacer1920(TableReplacer):
 
                 if v.name == 'new':
                     new_obj.new = False
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_Receiver(self):
+        print "%s Receiver migration assistant: gpg_ -> pgp_" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("Receiver", 19))
+
+        for old_obj in old_objs:
+
+            new_obj = self.get_right_model("Receiver", 20)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'pgp_key_public':
+                    old_attr = 'gpg_key_armor'
+                    setattr(new_obj, v.name, getattr(old_obj, old_attr))
+                    continue
+
+                if v.name.startswith('pgp_'):
+                    old_attr = v.name.replace('pgp_', 'gpg_', 1)
+                    setattr(new_obj, v.name, getattr(old_obj, old_attr))
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
