@@ -14,7 +14,7 @@ Disk space:
 Alarm level: %DiskAlarmLevel%
 %DiskDump%
 
-For more info, login in your Administration panel and navigate to the System Stats and Anomalies sections.
+For more info, log in your Administration interface and navigate to the System Stats and Anomalies sections.
 
 Kind regards,
 %NodeSignature%
