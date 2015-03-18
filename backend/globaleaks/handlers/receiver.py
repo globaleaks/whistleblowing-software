@@ -205,19 +205,8 @@ def get_receiver_tip_list(store, receiver_id, language):
             (ReceiverFile.internaltip_id == rtip.internaltip.id,
              ReceiverFile.receiver_id == receiver_id)).count()
 
-        your_messages = store.find(Message,
-                                   Message.receivertip_id == rtip.id,
-                                   Message.type == u'receiver').count()
-
-        unread_messages = store.find(Message,
-                                     Message.receivertip_id == rtip.id,
-                                     Message.type == u'whistleblower',
-                                     Message.visualized == False).count()
-
-        read_messages = store.find(Message,
-                                   Message.receivertip_id == rtip.id,
-                                   Message.type == u'whistleblower',
-                                   Message.visualized == True).count()
+        message_counter = store.find(Message,
+                                     Message.receivertip_id == rtip.id).count()
 
         single_tip_sum = dict({
             'id' : rtip.id,
@@ -225,11 +214,9 @@ def get_receiver_tip_list(store, receiver_id, language):
             'last_access' : datetime_to_ISO8601(rtip.last_access),
             'expiration_date' : datetime_to_ISO8601(rtip.internaltip.expiration_date),
             'access_counter': rtip.access_counter,
-            'files_number': rfiles_n,
-            'comments_number': rtip.internaltip.comments.count(),
-            'unread_messages' : unread_messages,
-            'read_messages' : read_messages,
-            'your_messages' : your_messages,
+            'file_counter': rfiles_n,
+            'comment_counter': rtip.internaltip.comments.count(),
+            'message_counter' : message_counter,
             'postpone_superpower': postpone_superpower,
             'can_delete_submission': can_delete_submission,
         })

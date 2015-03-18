@@ -235,9 +235,7 @@ def get_receiver_list_wb(store, wb_tip_id, language):
                 "id": receiver.id,
                 "pgp_key_status": receiver.pgp_key_status,
                 "access_counter": 0,
-                "unread_messages": 0,
-                "read_messages": 0,
-                "your_messages": 0,
+                "message_counter": 0,
                 "creation_date": datetime_to_ISO8601(datetime_now()),
             }
 
@@ -247,28 +245,15 @@ def get_receiver_list_wb(store, wb_tip_id, language):
 
         for rtip in wb_tip.internaltip.receivertips:
 
-            your_messages = store.find(Message,
-                                       Message.receivertip_id == rtip.id,
-                                       Message.type == u'whistleblower').count()
-
-            unread_messages = store.find(Message,
-                                         Message.receivertip_id == rtip.id,
-                                         Message.type == u'receiver',
-                                         Message.visualized == False).count()
-
-            read_messages = store.find(Message,
-                                       Message.receivertip_id == rtip.id,
-                                       Message.type == u'receiver',
-                                       Message.visualized == True).count()
+            message_counter = store.find(Message,
+                                         Message.receivertip_id == rtip.id).count()
 
             receiver_desc = {
                 "name": rtip.receiver.name,
                 "id": rtip.receiver.id,
                 "pgp_key_status": rtip.receiver.pgp_key_status,
                 "access_counter": rtip.access_counter,
-                "unread_messages": unread_messages,
-                "read_messages": read_messages,
-                "your_messages": your_messages,
+                "message_counter": message_counter,
                 "creation_date": datetime_to_ISO8601(datetime_now()),
             }
 

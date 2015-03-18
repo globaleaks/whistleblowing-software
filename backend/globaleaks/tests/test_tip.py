@@ -344,7 +344,7 @@ class TestTipInstance(TTip):
         # the direct message has been sent to the receiver 1, and receiver 1
         # is on the element [0] of the list.
         self.assertEqual(len(before), 2)
-        self.assertEqual(before[0]['your_messages'], 0)
+        self.assertEqual(before[0]['message_counter'], 0)
 
         msgrequest = { 'content': u'a msg from wb to receiver1' }
         x = yield wbtip.create_message_wb(self.wb_tip_id,
@@ -356,9 +356,9 @@ class TestTipInstance(TTip):
 
         for receivers_message in after:
             if receivers_message['id'] == self.receiver1_desc['id']:
-                self.assertEqual(receivers_message['your_messages'], 1)
+                self.assertEqual(receivers_message['message_counter'], 1)
             else:
-                self.assertEqual(receivers_message['your_messages'], 0)
+                self.assertEqual(receivers_message['message_counter'], 0)
 
         # and now, two messages for the second receiver
         msgrequest = { 'content': u'#1/2 msg from wb to receiver2' }
@@ -372,16 +372,15 @@ class TestTipInstance(TTip):
 
         for receivers_message in end:
             if receivers_message['id'] == self.receiver2_desc['id']:
-                self.assertEqual(receivers_message['your_messages'], 2)
+                self.assertEqual(receivers_message['message_counter'], 2)
             else: # the messages from Receiver1 are not changed, right ?
-                self.assertEqual(receivers_message['your_messages'], 1)
+                self.assertEqual(receivers_message['message_counter'], 1)
 
     @inlineCallbacks
     def do_receivers_messages_and_unread_verification(self):
-
         # Receiver1 check the presence of the whistleblower message (only 1)
         x = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'], 'en')
-        self.assertEqual(x[0]['unread_messages'], 1)
+        self.assertEqual(x[0]['message_counter'], 1)
 
         # Receiver1 send one message
         msgrequest = { 'content': u'Receiver1 send a message to WB' }
@@ -396,19 +395,15 @@ class TestTipInstance(TTip):
         for r in receiver_info_list:
             if r['id'] == self.receiver1_desc['id']:
                 self.assertEqual(r['name'], self.receiver1_desc['name'])
-                self.assertEqual(r['unread_messages'], 1)
-                self.assertEqual(r['your_messages'], 1)
+                self.assertEqual(r['message_counter'], 2)
             else:
                 self.assertEqual(r['name'], self.receiver2_desc['name'])
-                self.assertEqual(r['unread_messages'], 0)
-                self.assertEqual(r['your_messages'], 2)
+                self.assertEqual(r['message_counter'], 2)
 
         # Receiver2 check the presence of the whistleblower message (2 expected)
         a = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'], 'en')
         self.assertEqual(len(a), 1)
-        self.assertEqual(a[0]['your_messages'], 1)
-        self.assertEqual(a[0]['unread_messages'], 1)
-        self.assertEqual(a[0]['read_messages'], 0)
+        self.assertEqual(a[0]['message_counter'], 2)
 
         # Receiver2 READ the messages from the whistleblower
         unread = yield rtip.get_messages_list(self.receiver2_desc['id'], self.rtip2_id)
@@ -443,9 +438,9 @@ class TestTipInstance(TTip):
 
         for recv in end:
             if recv['id'] == self.receiver2_desc['id']:
-                self.assertEqual(recv['unread_messages'], 0)
+                self.assertEqual(recv['message_counter'], 4)
             else:
-                self.assertEqual(recv['unread_messages'], 1)
+                self.assertEqual(recv['message_counter'], 2)
 
     @inlineCallbacks
     def test_full_receiver_wb_workflow(self):

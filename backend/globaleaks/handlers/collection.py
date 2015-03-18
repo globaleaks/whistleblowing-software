@@ -80,12 +80,12 @@ def get_collection_info(store, rtip_id):
 
     collection_dict = {}
     collection_dict['files'] = []
-    collection_dict['files_number'] = 0
+    collection_dict['file_counter'] = 0
     collection_dict['total_size'] = 0
 
     rfiles = store.find(ReceiverFile, ReceiverFile.receiver_tip_id == rtip_id)
     for rf in rfiles:
-        collection_dict['files_number'] += 1
+        collection_dict['file_counter'] += 1
         collection_dict['total_size'] += rf.size
         collection_dict['files'].append(serialize_receiver_file(rf))
 

@@ -371,10 +371,10 @@ class ZipFileKeyword(TipKeyword):
         self.zip = zip_desc
 
     def FileList(self):
-        return dump_file_list(self.zip['files'], self.zip['files_number'])
+        return dump_file_list(self.zip['files'], self.zip['file_counter'])
 
     def FilesNumber(self):
-        return str(self.zip['files_number'])
+        return str(self.zip['file_counter'])
 
     def TotalSize(self):
         return str(self.zip['total_size'])
