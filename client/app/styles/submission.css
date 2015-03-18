@@ -126,7 +126,7 @@
   padding: 10px;
 }
 
-#KeyCodeToolTip {
+#KeyCodeHintBox {
   position: relative;
   padding: 10px;
   background: #FFF;
@@ -138,7 +138,7 @@
   -webkit-border-radius: 10px;
 }
 
-#KeyCodeToolTip:after {
+#KeyCodeHintBox:after {
   content: '';
   position: absolute;
   border-style: solid;
