@@ -2,6 +2,7 @@
 
 """
   Changes
+    - Node: add possibility to disable Key Code Hint
     - Notification: various templates added
     - *Tip, *File, Comment, Message : markers simplified to a simple boolean
     - ReceiverTip added label
@@ -14,6 +15,51 @@ from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model
 from globaleaks.utils.utility import every_language
+
+
+class Node_v_19(Model):
+    __storm_table__ = 'node'
+    name = Unicode()
+    public_site = Unicode()
+    hidden_service = Unicode()
+    email = Unicode()
+    receipt_salt = Unicode()
+    last_update = DateTime()
+    receipt_regexp = Unicode()
+    languages_enabled = JSON()
+    default_language = Unicode()
+    default_timezone = Int()
+    description = JSON()
+    presentation = JSON()
+    footer = JSON()
+    security_awareness_title = JSON()
+    security_awareness_text = JSON()
+    maximum_namesize = Int()
+    maximum_textsize = Int()
+    maximum_filesize = Int()
+    tor2web_admin = Bool()
+    tor2web_submission = Bool()
+    tor2web_receiver = Bool()
+    tor2web_unauth = Bool()
+    allow_unencrypted = Bool()
+    allow_iframes_inclusion = Bool()
+    postpone_superpower = Bool()
+    can_delete_submission = Bool()
+    ahmia = Bool()
+    wizard_done = Bool()
+    disable_privacy_badge = Bool()
+    disable_security_awareness_badge = Bool()
+    disable_security_awareness_questions = Bool()
+    whistleblowing_question = JSON()
+    whistleblowing_button = JSON()
+    enable_custom_privacy_badge = Bool()
+    custom_privacy_badge_tor = JSON()
+    custom_privacy_badge_none = JSON()
+    header_title_homepage = JSON()
+    header_title_submissionpage = JSON()
+    header_title_receiptpage = JSON()
+    landing_page = Unicode()
+    exception_email = Unicode()
 
 
 class Notification_v_19(Model):
@@ -143,6 +189,23 @@ class Receiver_v_19(Model):
 
 
 class Replacer1920(TableReplacer):
+
+    def migrate_Node(self):
+        print "%s Node migration assistant: disable_key_code_hint" % self.std_fancy
+
+        old_node = self.store_old.find(self.get_right_model("Node", 19)).one()
+        new_node = self.get_right_model("Node", 20)()
+
+        for _, v in new_node._storm_columns.iteritems():
+
+            if v.name == 'disable_key_code_hint':
+                new_node.disable_key_code_hint = False
+                continue
+
+            setattr(new_node, v.name, getattr(old_node, v.name))
+
+        self.store_new.add(new_node)
+        self.store_new.commit()
 
     def migrate_Notification(self):
         print "%s Notification migration assistant: various templates addeed" % self.std_fancy
