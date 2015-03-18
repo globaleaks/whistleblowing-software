@@ -103,6 +103,7 @@ def create_tables(create_node=True):
             'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
             'enable_custom_privacy_badge': False,
+            'disable_key_code_hint': False,
             'custom_privacy_badge_tor': dict({ GLSetting.defaults.language: u"" }),
             'custom_privacy_badge_none': dict({ GLSetting.defaults.language: u"" }),
             'header_title_homepage': dict({ GLSetting.defaults.language: u"" }),

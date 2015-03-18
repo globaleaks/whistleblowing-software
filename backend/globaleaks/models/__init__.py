@@ -373,7 +373,7 @@ class Node(Model):
 
     languages_enabled = JSON()
     default_language = Unicode()
-    default_timezone = Int()
+    default_timezone = Int(default=0)
 
     # localized strings
     description = JSON(validator=longlocal_v)
@@ -403,11 +403,12 @@ class Node(Model):
     disable_privacy_badge = Bool(default=False)
     disable_security_awareness_badge = Bool(default=False)
     disable_security_awareness_questions = Bool(default=False)
+    disable_key_code_hint = Bool(default=False)
 
     whistleblowing_question = JSON()
     whistleblowing_button = JSON()
 
-    enable_custom_privacy_badge = Bool()
+    enable_custom_privacy_badge = Bool(default=False)
     custom_privacy_badge_tor = JSON()
     custom_privacy_badge_none = JSON()
 
@@ -429,7 +430,8 @@ class Node(Model):
                  'can_delete_submission', 'ahmia', 'allow_unencrypted',
                  'allow_iframes_inclusion',
                  'disable_privacy_badge', 'disable_security_awareness_badge',
-                 'disable_security_awareness_questions', 'enable_custom_privacy_badge']
+                 'disable_security_awareness_questions', 'enable_custom_privacy_badge',
+                 'disable_key_code_hint']
 
     # wizard_done is not checked because it's set by the backend
 

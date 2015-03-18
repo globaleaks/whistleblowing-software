@@ -868,6 +868,7 @@ class MockDict():
             'disable_privacy_badge': False,
             'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
+            'disable_key_code_hint': False,
             'default_timezone': 0,
             'default_language': u'en',
             'admin_timezone': 0,
