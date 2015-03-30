@@ -281,32 +281,3 @@ def get_receiver_notif(store, receiver_id, language):
             ret['tips'].append(serialize_event(evnt))
 
     return ret
-
-@transact
-def delete_receiver_notif(store, receiver_id):
-    te = store.find(EventLogs, EventLogs.receiver_id == receiver_id)
-    log.debug("Removing %d for receiver %s" % (
-        te.count(),
-        receiver_id
-    ))
-    te.remove()
-
-class NotificationCollection(BaseHandler):
-    """
-    This interface return a list of the notification for the receiver,
-    is used in the landing page, and want be a list of the recent
-    activities for the journalist/rcvr.
-    """
-
-    @transport_security_check('receiver')
-    @authenticated('receiver')
-    @inlineCallbacks
-    def get(self):
-        display_event = yield get_receiver_notif(self.current_user.user_id, self.request.language)
-        self.set_status(200) # Success
-        self.finish(display_event)
-
-    @inlineCallbacks
-    def delete(self):
-        yield delete_receiver_notif(self.current_user.user_id)
-        self.set_status(202) # Updated
