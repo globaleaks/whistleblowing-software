@@ -34,9 +34,6 @@ def receiver_serialize_receiver(receiver, language):
         "pgp_key_expiration": datetime_to_ISO8601(receiver.pgp_key_expiration),
         "pgp_key_status": receiver.pgp_key_status,
         "tip_notification": receiver.tip_notification,
-        "file_notification": receiver.file_notification,
-        "comment_notification": receiver.comment_notification,
-        "message_notification": receiver.message_notification,
         "ping_notification": receiver.ping_notification,
         "mail_address": receiver.mail_address,
         "ping_mail_address": receiver.ping_mail_address,
@@ -120,10 +117,6 @@ def update_receiver_settings(store, receiver_id, request, language):
         receiver.ping_mail_address = ping_mail_address
 
     receiver.tip_notification = acquire_bool(request['tip_notification'])
-    receiver.message_notification = acquire_bool(request['message_notification'])
-    receiver.comment_notification = acquire_bool(request['comment_notification'])
-    receiver.file_notification = acquire_bool(request['file_notification'])
-    receiver.ping_notification = acquire_bool(request['ping_notification'])
 
     pgp_options_parse(receiver, request)
 

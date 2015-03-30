@@ -87,18 +87,7 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
         debug_event_counter.setdefault(stev.event_reference['kind'], 0)
         debug_event_counter[stev.event_reference['kind']] += 1
 
-        if not stev.description['receiver_info']['file_notification'] and \
-                        stev.event_reference['kind'] == 'File':
-            continue
-        if not stev.description['receiver_info']['message_notification'] and \
-                        stev.event_reference['kind'] == 'Message':
-            continue
-        if not stev.description['receiver_info']['comment_notification'] and \
-                        stev.event_reference['kind'] == 'Comment':
-            continue
-        if not stev.description['receiver_info']['tip_notification'] and \
-                (stev.event_reference['kind'] == 'Tip' or
-                          stev.event_reference['kind'] == 'UpcomingExpireTip'):
+        if not stev.description['receiver_info']['tip_notification']:
             continue
 
         eventcomplete = OD()

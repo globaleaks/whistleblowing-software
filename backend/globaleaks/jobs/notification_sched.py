@@ -90,28 +90,23 @@ class EventLogger(object):
         if self.trigger == 'Message':
             self.template_type = u'encrypted_message' if \
                 receiver.pgp_key_status == u'enabled' else u'plaintext_message'
-            do_mail = receiver.message_notification
         elif self.trigger == 'Tip':
             self.template_type = u'encrypted_tip' if \
                 receiver.pgp_key_status == u'enabled' else u'plaintext_tip'
-            do_mail = receiver.tip_notification
         elif self.trigger == 'Comment':
             self.template_type = u'encrypted_comment' if \
                 receiver.pgp_key_status == u'enabled' else u'plaintext_comment'
-            do_mail = receiver.comment_notification
         elif self.trigger == 'File':
             self.template_type = u'encrypted_file' if \
                 receiver.pgp_key_status == u'enabled' else u'plaintext_file'
-            do_mail = receiver.file_notification
         elif self.trigger == 'UpcomingExpireTip':
             self.template_type = u'upcoming_expire'
-            do_mail = receiver.tip_notification
         else:
             raise Exception("self.trigger of unexpected kind ? %s" % self.trigger)
 
         receiver_desc = admin.admin_serialize_receiver(receiver, self.language)
 
-        return (do_mail, receiver_desc)
+        return (receiver.tip_notification, receiver_desc)
 
     @transact
     def process_events(self, store):
