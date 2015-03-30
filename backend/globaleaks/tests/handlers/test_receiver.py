@@ -86,29 +86,3 @@ class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(role='receiver')
         handler.current_user.user_id = self.dummyReceiver_1['id']
         yield handler.get()
-
-class TestNotificationCollection(helpers.TestHandlerWithPopulatedDB):
-    _handler = receiver.NotificationCollection
-
-    @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_full_submission_actions()
- 
-    @inlineCallbacks
-    def test_get(self):
-        handler = self.request(role='receiver')
-        handler.current_user.user_id = self.dummyReceiver_1['id']
-        yield handler.get()
-
-        self.assertEqual(len(self.responses), 1)
-        self.assertEqual(len(self.responses[0]['tips']), 1)
-        self.assertEqual(len(self.responses[0]['activities']), 13)
-
-    @inlineCallbacks
-    def test_delete(self):
-        handler = self.request(role='receiver')
-        handler.current_user.user_id = self.dummyReceiver_1['id']
-        yield handler.delete()
-
-        self.assertEqual(len(self.responses), 0)
