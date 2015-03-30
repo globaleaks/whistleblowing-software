@@ -383,7 +383,11 @@
       "security": "TLS",
       "encrypted_file_mail_title": {
         "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File attached (Encrypted)"
-      }
+      },
+      "disable_admin_notification_emails": false,
+      "disable_receivers_notification_emails": false,
+      "send_email_for_every_event": false
+
     },
     "class": "Notification"
   },

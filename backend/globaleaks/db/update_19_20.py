@@ -3,6 +3,7 @@
 """
   Changes
     - Node: add possibility to disable Key Code Hint
+    - Nootification: add possibility to force mail notification for every event
     - Notification: various templates added
     - *Tip, *File, Comment, Message : markers simplified to a simple boolean
     - ReceiverTip added label
@@ -216,6 +217,10 @@ class Replacer1920(TableReplacer):
         new_notification = self.get_right_model("Notification", 20)()
 
         for _, v in new_notification._storm_columns.iteritems():
+
+            if v.name == 'send_email_for_every_event':
+                new_notification.send_email_for_every_event = False
+                continue
 
             if v.name == 'torify':
                 new_notification.torify = True

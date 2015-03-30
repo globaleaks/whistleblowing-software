@@ -100,7 +100,7 @@ class TestTransaction(helpers.TestGL):
         context.tip_timetolive = 1000
         context.description = context.name = \
             context.submission_disclaimer = \
-            context.submission_introduction = { "en" : u'Localized723' }
+            context.submission_introduction = { "en": u'Localized723' }
         store.add(context)
         return context.id
 

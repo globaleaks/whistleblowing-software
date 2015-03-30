@@ -197,6 +197,7 @@ CREATE TABLE notification (
     ping_mail_title BLOB,
     disable_admin_notification_emails INTEGER NOT NULL,
     disable_receivers_notification_emails INTEGER NOT NULL,
+    send_email_for_every_event INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 
