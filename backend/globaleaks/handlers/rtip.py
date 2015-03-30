@@ -18,7 +18,7 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
 
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro
-from globaleaks.models import Node, Comment, ReceiverFile, Message, EventLogs
+from globaleaks.models import Node, Notification, Comment, ReceiverFile, Message, EventLogs
 from globaleaks.rest import errors
 from globaleaks.security import access_tip
 
@@ -104,9 +104,11 @@ def db_get_files_receiver(store, user_id, tip_id):
 def db_get_tip_receiver(store, user_id, tip_id, language):
     rtip = access_tip(store, user_id, tip_id)
 
-    # Events related to this tip and for which the email have been sent can be removed
-    eventlst = store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
-                                         EventLogs.mail_sent == True)).remove()
+    notif = store.find(Notification).one()
+    if not notif.send_email_for_every_event:
+        # Events related to this tip and for which the email have been sent can be removed
+        eventlst = store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
+                                             EventLogs.mail_sent == True)).remove()
 
     tip_desc = receiver_serialize_tip(rtip.internaltip, language)
 
@@ -150,8 +152,8 @@ def delete_receiver_tip(store, user_id, tip_id):
 
     comment = Comment()
     comment.content = "%s personally remove from this Tip" % rtip.receiver.name
-    comment.system_content = dict({ "type" : 2,
-                                    "receiver_name" : rtip.receiver.name})
+    comment.system_content = dict({ "type": 2,
+                                    "receiver_name": rtip.receiver.name})
 
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'system' # The printed line

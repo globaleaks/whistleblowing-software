@@ -28,9 +28,9 @@ def perform_version_update(starting_ver, ending_ver, start_path):
     from globaleaks.db.update_19_20 import Replacer1920
 
     releases_supported = {
-        "89" : Replacer89,
-        "910" : Replacer910,
-        "1011" : Replacer1011, 
+        "89": Replacer89,
+        "910": Replacer910,
+        "1011": Replacer1011,
         "1112": Replacer1112,
         "1213": Replacer1213,
         "1314": Replacer1314,

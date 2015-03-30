@@ -505,6 +505,7 @@ class Notification(Model):
 
     disable_admin_notification_emails = Bool(default=False)
     disable_receivers_notification_emails = Bool(default=False)
+    send_email_for_every_event = Bool(default=False)
 
     unicode_keys = [
         'server',
@@ -548,8 +549,12 @@ class Notification(Model):
 
     int_keys = [
         'port',
+    ]
+
+    bool_keys = [
         'disable_admin_notification_emails',
-        'disable_receivers_notification_emails'
+        'disable_receivers_notification_emails',
+        'send_email_for_every_event'
     ]
 
 

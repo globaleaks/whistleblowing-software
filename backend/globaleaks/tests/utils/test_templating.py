@@ -77,7 +77,7 @@ templates_desc = {
     "encrypted_message_mail_title":
         [generic_keyword_list, tip_keyword_list],
 
-    "encrypted_message_template" :
+    "encrypted_message_template":
         [generic_keyword_list, tip_keyword_list],
 
     "encrypted_tip_mail_template":

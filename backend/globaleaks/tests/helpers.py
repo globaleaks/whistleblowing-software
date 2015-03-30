@@ -142,7 +142,7 @@ class TestGL(unittest.TestCase):
 
         yield import_memory_variables()
 
-        # overrid of imported memory variables
+        # override of imported memory variables
         GLSetting.memory_copy.allow_unencrypted = True
 
         anomaly.Alarm.reset()
@@ -862,6 +862,7 @@ class MockDict():
             'ahmia': False,
             'allow_unencrypted': True,
             'allow_iframes_inclusion': False,
+            'send_email_for_every_event': False,
             'configured': False,
             'wizard_done': False,
             'custom_homepage': False,
@@ -882,19 +883,6 @@ class MockDict():
             'landing_page': u'homepage'
         }
 
-
-def template_keys(first_a, second_a, name):
-
-    ret_string = '[{}]'.format(name)
-    for x in first_a:
-        ret_string += ' {}'.format(x)
-
-    ret_string += ' == '
-
-    for x in second_a:
-        ret_string += ' {}'.format(x)
-
-    return ret_string
 
 @transact
 def do_appdata_init(store):
