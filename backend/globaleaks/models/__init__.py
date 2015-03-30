@@ -594,11 +594,7 @@ class Receiver(Model):
 
     last_update = DateTime(default_factory=datetime_null)
 
-    tip_notification = Bool()
-    comment_notification = Bool()
-    file_notification = Bool()
-    message_notification = Bool()
-
+    tip_notification = Bool(default=True)
     ping_notification = Bool(default=False)
 
     # contexts = ReferenceSet("Context.id",
@@ -613,8 +609,7 @@ class Receiver(Model):
     localized_strings = ['description']
     int_keys = ['presentation_order']
     bool_keys = ['can_delete_submission', 'tip_notification',
-                 'comment_notification', 'file_notification',
-                 'message_notification', 'postpone_superpower',
+                 'postpone_superpower',
                  'ping_notification']
 
 
