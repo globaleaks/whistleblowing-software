@@ -46,7 +46,7 @@ angular.module('resourceServices.authentication', [])
                 if (self.password_change_needed) {
                     self.auth_landing_page = '/receiver/firstlogin';
                 } else {
-                    self.auth_landing_page = '/receiver/activities';
+                    self.auth_landing_page = '/receiver/tips';
                 }
               }
               if (self.role == 'wb') {
