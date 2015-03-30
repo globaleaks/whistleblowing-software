@@ -116,6 +116,15 @@ fi
 
 echo "Performing GlobaLeaks installation on $DISTRO - $DISTRO_VERSION"
 
+if [ $SUPPORTED_PLATFORM -eq 0 ]; then
+  # In case of unsupported platforms we fallback on trusty
+  echo "Given that the platform is not supported the install script will use trusty repository."
+  echo "In case of failure refer to the wiki for manual setup possibilities."
+  echo "GlobaLeaks Wiki Address: https://github.com/globaleaks/GlobaLeaks/wiki"
+  DISTRO="ubuntu"
+  DISTRO_VERSION="trusty"
+fi
+
 DO () {
   if [ -z "$2" ]; then
     RET=0
