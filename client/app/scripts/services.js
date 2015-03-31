@@ -1,9 +1,9 @@
 "use strict";
 
-angular.module('resourceServices.authentication', [])
+angular.module('resourceServices.authentication', ['e2e'])
   .factory('Authentication', ['$http', '$location', '$routeParams',
-                              '$rootScope', '$timeout',
-    function($http, $location, $routeParams, $rootScope, $timeout) {
+                              '$rootScope', '$timeout', 'pkdf',
+    function($http, $location, $routeParams, $rootScope, $timeout, pkdf) {
       function Session(){
         var self = this;
 
@@ -24,8 +24,8 @@ angular.module('resourceServices.authentication', [])
         $rootScope.login = function(username, password, role, cb) {
 
           if (role == 'receiver' && password != 'globaleaks') {
-            var pwd = gl_password(password);
-            var passphrase = gl_passphrase(password);
+            var pwd = pkdf.gl_password(password);
+            var passphrase = pkdf.gl_passphrase(password);
             $rootScope.receiver_key_passphrase = passphrase;
             password = pwd;
           }

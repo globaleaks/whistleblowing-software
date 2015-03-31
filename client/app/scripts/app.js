@@ -10,12 +10,12 @@ var GLClient = angular.module('GLClient', [
     'ui.sortable',
     'ang-drag-drop',
     'monospaced.elastic',
+    'e2e',
     'resourceServices',
     'submissionUI',
     'blueimp.fileupload',
     'pascalprecht.translate',
-    'GLClientFilters',
-    'e2e'
+    'GLClientFilters'
   ]).
   config(['$routeProvider', '$translateProvider', '$tooltipProvider',
     function($routeProvider, $translateProvider, $tooltipProvider) {
