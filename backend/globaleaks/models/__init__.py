@@ -273,7 +273,6 @@ class WhistleblowerTip(Model):
     """
     internaltip_id = Unicode()
     # internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
-    receipt_hash = Unicode()
     last_access = DateTime(default_factory=datetime_null)
     access_counter = Int(default=0)
 
