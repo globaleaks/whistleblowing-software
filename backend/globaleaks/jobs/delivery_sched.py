@@ -134,7 +134,7 @@ def fsops_pgp_encrypt(fpath, recipient_pgp):
     gpoj = GLBPGP()
 
     try:
-        pub_key = recipient_gpg['gpg_key_armor']
+        pub_key = recipient_pgp['gpg_key_armor']
         gpoj.load_key(pub_key)
 
         filepath = os.path.join(GLSetting.submission_path, fpath)
@@ -252,7 +252,9 @@ def encrypt_where_available(receivermap):
     retcode = True
 
     for rcounter, rfileinfo in enumerate(receivermap):
+
         if rfileinfo['receiver']['pgp_key_status'] == u'enabled':
+
 
             try:
                 new_path, new_size = fsops_pgp_encrypt(rfileinfo['path'], rfileinfo['receiver'])
