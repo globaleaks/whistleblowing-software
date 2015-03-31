@@ -7,10 +7,10 @@ var GLClient = angular.module('GLClient', [
     'ang-drag-drop',
     'flow',
     'monospaced.elastic',
-    'e2e',
     'resourceServices',
     'submissionUI',
     'pascalprecht.translate',
+    'e2e',
     'GLClientFilters'
   ]).
   config(['$routeProvider', '$translateProvider', '$tooltipProvider',

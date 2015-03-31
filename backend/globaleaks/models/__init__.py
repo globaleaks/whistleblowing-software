@@ -236,15 +236,10 @@ class InternalTip(Model):
     wb_steps = JSON()
     expiration_date = DateTime()
     last_activity = DateTime(default_factory=datetime_null)
-
-    # RSA key
-    pgp_glkey_pub = Unicode()
-    pgp_glkey_priv = Unicode()
+    pgp_e2e_public = Unicode()
+    pgp_e2e_private = Unicode()
 
     new = Int(default=True)
-
-    pgp_glkey_pub = Unicode()
-    pgp_glkey_priv = Unicode()
 
 
 class ReceiverTip(Model):
@@ -593,26 +588,13 @@ class Receiver(Model):
     pgp_key_info = Unicode()
     pgp_key_fingerprint = Unicode()
 
-    #EEE
-    gpg_key_armor = Unicode()
-    gpg_key_armor_priv = Unicode()
-    pgp_key_armor = Unicode()
-    pgp_key_armor_priv = Unicode()
-
-    pgp_key_public = Unicode()
+    pgp_key_armor_public = Unicode()
     pgp_key_expiration = DateTime()
     pgp_key_status = Unicode()
-    # pgp_statuses: 'disabled', 'enabled'
+    # pgp_key_statuses: 'disabled', 'enabled'
 
-<<<<<<< HEAD
-    pgp_glkey_pub = Unicode()
-=======
-
-    # RSA key
-    pgp_key_armor_priv = Unicode()
-    pgp_glkey_pub  = Unicode()
->>>>>>> implemented DB migration for e2e
-    pgp_glkey_priv = Unicode()
+    pgp_e2e_public  = Unicode()
+    pgp_e2e_private = Unicode()
 
     # Can be changed only by admin (but also differ from username!)
     mail_address = Unicode()

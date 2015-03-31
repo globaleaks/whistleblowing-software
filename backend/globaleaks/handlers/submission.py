@@ -33,8 +33,8 @@ def wb_serialize_internaltip(internaltip):
         'wb_steps': internaltip.wb_steps,
         'files': [f.id for f in internaltip.internalfiles],
         'receivers': [r.id for r in internaltip.receivers],
-        'pgp_glkey_pub': internaltip.pgp_glkey_pub,
-        'pgp_glkey_priv': internaltip.pgp_glkey_priv
+        'pgp_e2e_public': internaltip.pgp_e2e_public,
+        'pgp_e2e_private': internaltip.pgp_e2e_private
     }
 
     return response
@@ -163,8 +163,11 @@ def db_create_submission(store, token, request, language):
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
     submission.context_id = context.id
     submission.creation_date = datetime_now()
-    submission.pgp_glkey_pub = request['pgp_glkey_pub']
-    submission.pgp_glkey_priv = request['pgp_glkey_priv']
+    submission.pgp_e2e_public = request['pgp_e2e_public']
+    submission.pgp_e2e_private = request['pgp_e2e_private']
+
+    submission.pgp_e2e_private = request['pgp_e2e_private']
+    submission.pgp_e2e_public = request['pgp_e2e_public']
 
     try:
         store.add(submission)
