@@ -20,7 +20,6 @@ from globaleaks.handlers.authentication import transport_security_check, unauthe
 from globaleaks.utils.token import Token, TokenList
 from globaleaks.rest import requests
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
-from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 from globaleaks.anomaly import Alarm
 
@@ -40,28 +39,18 @@ def wb_serialize_internaltip(internaltip):
 
     return response
 
+
 def db_create_whistleblower_tip(store, submission_desc):
-    """
-    The plaintext receipt is returned only now, and then is
-    stored hashed in the WBtip table
-    """
     wbtip = WhistleblowerTip()
-
-    node = store.find(Node).one()
-
-    receipt = unicode(rstr.xeger(node.receipt_regexp))
-
-    wbtip.receipt_hash = security.hash_password(receipt, node.receipt_salt)
     wbtip.access_counter = 0
     wbtip.internaltip_id = submission_desc['id']
-
     store.add(wbtip)
 
-    return receipt
 
 @transact
 def create_whistleblower_tip(*args):
     return db_create_whistleblower_tip(*args)
+
 
 def import_receivers(store, submission, receiver_id_list):
     context = submission.context
@@ -101,47 +90,6 @@ def import_receivers(store, submission, receiver_id_list):
                 (receiver.name, submission.id, submission.receivers.count() ) )
 
 
-def verify_fields_recursively(fields, wb_fields):
-    for f in fields:
-        if f not in wb_fields:
-            raise errors.SubmissionFailFields("missing field (no structure present): %s" % f)
-
-        if fields[f]['required'] and ('value' not in wb_fields[f] or
-                                      wb_fields[f]['value'] == ''):
-            raise errors.SubmissionFailFields("missing required field (no value provided): %s" % f)
-
-        if isinstance(wb_fields[f]['value'], unicode):
-            if len(wb_fields[f]['value']) > GLSetting.memory_copy.maximum_textsize:
-                raise errors.InvalidInputFormat("field value overcomes size limitation")
-
-        indexed_fields  = {}
-        for f_c in fields[f]['children']:
-            indexed_fields[f_c['id']] = copy.deepcopy(f_c)
-
-        indexed_wb_fields = {}
-        for f_c in wb_fields[f]['children']:
-            indexed_wb_fields[f_c['id']] = copy.deepcopy(f_c)
-
-        verify_fields_recursively(indexed_fields, indexed_wb_fields)
-
-    for wbf in wb_fields:
-        if wbf not in fields:
-            raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
-
-def verify_steps(steps, wb_steps):
-    indexed_fields  = {}
-    for step in steps:
-        for f in step['children']:
-            indexed_fields[f['id']] = copy.deepcopy(f)
-
-    indexed_wb_fields = {}
-    for step in wb_steps:
-        for f in step['children']:
-            indexed_wb_fields[f['id']] = copy.deepcopy(f)
-
-    return verify_fields_recursively(indexed_fields, indexed_wb_fields)
-
-
 def db_create_submission(store, token, request, language):
     context = store.find(Context, Context.id == token.context_associated).one()
     if not context:
@@ -158,11 +106,6 @@ def db_create_submission(store, token, request, language):
     submission.creation_date = datetime_now()
     submission.pgp_e2e_public = request['pgp_e2e_public']
     submission.pgp_e2e_private = request['pgp_e2e_private']
-
-    # import EEE temporary both the key,
-    # has to be changed with PUB + PUBsigned (usable as auth)
-    submission.pgp_e2e_private = request['pgp_e2e_private']
-    submission.pgp_e2e_public = request['pgp_e2e_public']
 
     try:
         store.add(submission)
@@ -191,10 +134,7 @@ def db_create_submission(store, token, request, language):
 
     try:
         wb_steps = request['wb_steps']
-        #TODO: e2e - move verify_steps in the receiver frontend js code 
         steps = db_get_context_steps(store, context.id, language)
-        log.err("EEE ---- IMPLEMENT E2E CLIENT SIDE VALIDATION OF FIELDS!")
-        #verify_steps(steps, wb_steps)
         submission.wb_steps = wb_steps
     except Exception as excep:
         log.err("Submission create: fields validation fail: %s" % excep)
@@ -277,9 +217,7 @@ class SubmissionInstance(BaseHandler):
         @transact
         def put_transact(store, token, request):
             status = db_create_submission(store, token, request, self.request.language)
-            # EEE has to be removed
-            receipt = db_create_whistleblower_tip(store, status)
-            status.update({'receipt': receipt})
+            db_create_whistleblower_tip(store, status)
             return status
 
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)

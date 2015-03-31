@@ -271,7 +271,6 @@ class WhistleblowerTip(Model):
     """
     internaltip_id = Unicode()
     # internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
-    receipt_hash = Unicode()
     last_access = DateTime(default_factory=datetime_null)
     access_counter = Int(default=0)
 
@@ -368,7 +367,6 @@ class Node(Model):
     public_site = Unicode()
     hidden_service = Unicode()
     email = Unicode()
-    receipt_salt = Unicode()
     last_update = DateTime(default_factory=datetime_null)
     # this has a dedicated validator in update_node()
     receipt_regexp = Unicode()
