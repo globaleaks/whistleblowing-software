@@ -33,6 +33,10 @@ def receiver_serialize_receiver(receiver, language):
         "pgp_key_public": receiver.pgp_key_public,
         "pgp_key_expiration": datetime_to_ISO8601(receiver.pgp_key_expiration),
         "pgp_key_status": receiver.pgp_key_status,
+        "pgp_key_armor": receiver.pgp_key_armor,
+        "pgp_key_armor_priv": receiver.pgp_key_armor_priv,
+        "pgp_glkey_pub": receiver.pgp_glkey_pub,
+        "pgp_glkey_priv": receiver.pgp_glkey_priv,
         "tip_notification": receiver.tip_notification,
         "ping_notification": receiver.ping_notification,
         "mail_address": receiver.mail_address,
@@ -119,6 +123,18 @@ def update_receiver_settings(store, receiver_id, request, language):
     receiver.tip_notification = acquire_bool(request['tip_notification'])
 
     pgp_options_parse(receiver, request)
+
+    #TODO: validate armored pgp keys
+
+    if not 'pgp_glkey_pub' in request:
+        import pdb; pdb.set_trace()
+    if not 'pgp_glkey_priv' in request:
+        import pdb; pdb.set_trace()
+
+    print request['pgp_glkey_pub']
+    receiver.pgp_glkey_pub = request['pgp_glkey_pub']
+    print request['pgp_glkey_priv']
+    receiver.pgp_glkey_priv = request['pgp_glkey_priv']
 
     return receiver_serialize_receiver(receiver, language)
 
@@ -220,10 +236,13 @@ def get_receiver_tip_list(store, receiver_id, language):
 
         preview_data = []
 
-        for s in rtip.internaltip.wb_steps:
-            for f in s['children']:
-                if f['preview']:
-                    preview_data.append(f)
+        try:
+            for s in rtip.internaltip.wb_steps:
+                for f in s['children']:
+                    if f['preview']:
+                        preview_data.append(f)
+        except:
+            preview_data = ['wb_steps_is_encrypted']
 
         single_tip_sum.update({ 'preview' : preview_data })
         rtip_summary_list.append(single_tip_sum)

@@ -95,6 +95,7 @@ def anon_serialize_node(store, language):
       'disable_privacy_badge': node.disable_privacy_badge,
       'disable_security_awareness_badge': node.disable_security_awareness_badge,
       'disable_security_awareness_questions': node.disable_security_awareness_questions,
+      'crypto_backward': node.crypto_backward,
       'disable_key_code_hint': node.disable_key_code_hint,
       'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
       'custom_privacy_badge_tor': node.custom_privacy_badge_tor,
@@ -244,6 +245,7 @@ def anon_serialize_receiver(receiver, language):
         "configuration": receiver.configuration, 
         "presentation_order": receiver.presentation_order,
         "pgp_key_status": receiver.pgp_key_status,
+        "pgp_glkey_pub": receiver.pgp_glkey_pub,
         "contexts": contexts
     }
 
