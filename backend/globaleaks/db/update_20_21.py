@@ -19,8 +19,8 @@ from globaleaks.utils.utility import every_language
 class InternalTip_v_20(Model):
     """
     add below remove from comment here:
-+    pgp_glkey_pub VARCHAR,
-+    pgp_glkey_priv VARCHAR,
++    pgp_e2e_public VARCHAR,
++    pgp_e2e_private VARCHAR,
     """
     pass
 
@@ -28,9 +28,9 @@ class InternalTip_v_20(Model):
 class Receiver_v_20(Model):
     """
     add below remove from comment here:
-+    pgp_key_armor_priv VARCHAR,
-+    pgp_glkey_pub VARCHAR,
-+    pgp_glkey_priv VARCHAR,
++    pgp_key_private VARCHAR,
++    pgp_e2e_public VARCHAR,
++    pgp_e2e_private VARCHAR,
 
     """
     pass

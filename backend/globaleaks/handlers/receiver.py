@@ -30,13 +30,11 @@ def receiver_serialize_receiver(receiver, language):
         "pgp_key_info": receiver.pgp_key_info,
         "pgp_key_fingerprint": receiver.pgp_key_fingerprint,
         "pgp_key_remove": False,
-        "pgp_key_public": receiver.pgp_key_public,
         "pgp_key_expiration": datetime_to_ISO8601(receiver.pgp_key_expiration),
         "pgp_key_status": receiver.pgp_key_status,
-        "pgp_key_armor": receiver.pgp_key_armor,
-        "pgp_key_armor_priv": receiver.pgp_key_armor_priv,
-        "pgp_glkey_pub": receiver.pgp_glkey_pub,
-        "pgp_glkey_priv": receiver.pgp_glkey_priv,
+        "pgp_key_public": receiver.pgp_key_public,
+        "pgp_e2e_public": receiver.pgp_e2e_public,
+        "pgp_e2e_private": receiver.pgp_e2e_private,
         "tip_notification": receiver.tip_notification,
         "ping_notification": receiver.ping_notification,
         "mail_address": receiver.mail_address,
@@ -126,15 +124,8 @@ def update_receiver_settings(store, receiver_id, request, language):
 
     #TODO: validate armored pgp keys
 
-    if not 'pgp_glkey_pub' in request:
-        import pdb; pdb.set_trace()
-    if not 'pgp_glkey_priv' in request:
-        import pdb; pdb.set_trace()
-
-    print request['pgp_glkey_pub']
-    receiver.pgp_glkey_pub = request['pgp_glkey_pub']
-    print request['pgp_glkey_priv']
-    receiver.pgp_glkey_priv = request['pgp_glkey_priv']
+    receiver.pgp_e2e_public = request['pgp_e2e_public']
+    receiver.pgp_e2e_private = request['pgp_e2e_private']
 
     return receiver_serialize_receiver(receiver, language)
 

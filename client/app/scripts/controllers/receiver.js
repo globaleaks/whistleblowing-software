@@ -1,5 +1,3 @@
-/* global window */
-
 GLClient.controller('ReceiverSidebarCtrl', ['$scope', '$location', function($scope, $location){
   var current_menu = $location.path().split('/').slice(-1);
   $scope.active = {};
@@ -41,8 +39,8 @@ GLClient.controller('ReceiverFirstLoginCtrl', ['$scope', '$rootScope', '$locatio
                                         userId: k_user_id,
                                         passphrase: k_passphrase }).then(function(keyPair) {
 
-            $scope.preferences.pgp_glkey_pub = keyPair.publicKeyArmored;
-            $scope.preferences.pgp_glkey_priv = keyPair.privateKeyArmored;
+            $scope.preferences.pgp_e2e_public = keyPair.publicKeyArmored;
+            $scope.preferences.pgp_e2e_private = keyPair.privateKeyArmored;
 
             $scope.preferences.$update(function () {
                 if (!$rootScope.successes) {
@@ -104,7 +102,7 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
       console.log('old login password ', $scope.preferences.old_password, ' ', old_password);
       console.log('update passphrase ', new_passphrase);
 
-      if (! $scope.preferences.pgp_glkey_pub ) {
+      if (!$scope.preferences.pgp_e2e_public) {
 
             //TODO: receiver email if present
             var k_user_id = $scope.preferences.email;
@@ -119,8 +117,8 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
                                             userId: k_user_id,
                                             passphrase: k_passphrase }).then(function(keyPair) {
 
-                $scope.preferences.pgp_glkey_pub = keyPair.publicKeyArmored;
-                $scope.preferences.pgp_glkey_priv = keyPair.privateKeyArmored;
+                $scope.preferences.pgp_e2e_public = keyPair.publicKeyArmored;
+                $scope.preferences.pgp_e2e_private = keyPair.privateKeyArmored;
                 $scope.preferences.old_password = old_password;
                 $scope.preferences.password = new_password;
                 $scope.preferences.check_password = new_password;
@@ -139,7 +137,7 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
             console.log('update old passphrase ', $scope.preferences.old_password, ' ', old_passphrase);
 
             try {
-                privKey = openpgp.key.readArmored( $scope.preferences.pgp_glkey_priv ).keys[0];
+                privKey = openpgp.key.readArmored( $scope.preferences.pgp_e2e_private ).keys[0];
             } catch (e) {
                 throw new Error('Importing key failed. Parsing error!');
             }
@@ -158,7 +156,7 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
             if (!privKey.decrypt( new_passphrase )) {
                 throw new Error('Decrypting key with new passphrase failed!');
             }
-            $scope.preferences.pgp_glkey_priv = newKeyArmored;
+            $scope.preferences.pgp_e2e_private = newKeyArmored;
             $scope.preferences.old_password = old_password;
             $scope.preferences.password = new_password;
             $scope.preferences.check_password = new_password;

@@ -53,8 +53,8 @@ wbSubmissionDesc = {
     'wb_steps': list,
     'human_captcha_answer': int,
     'receivers': [uuid_regexp],
-    'pgp_glkey_pub': unicode,
-    'pgp_glkey_priv': unicode
+    'pgp_e2e_public': unicode,
+    'pgp_e2e_private': unicode
 }
 
 receiverReceiverDesc = {
@@ -73,13 +73,8 @@ receiverReceiverDesc = {
     'pgp_key_info': unicode,
     'pgp_key_public': unicode,
     'pgp_key_status': unicode,
-
-    #EEE
-    #'gpg_key_armor': unicode,
-    #'pgp_key_armor_priv': unicode,
-
-    'pgp_glkey_pub': unicode,
-    'pgp_glkey_priv': unicode,
+    'pgp_e2e_public': unicode,
+    'pgp_e2e_private': unicode,
     "tip_notification": bool,
     "ping_notification": bool,
     #EEE
@@ -226,10 +221,9 @@ adminReceiverDesc = {
     'pgp_key_info': unicode,
     'pgp_key_public': unicode,
     'pgp_key_status': unicode,
-    'gpg_key_armor': unicode,
-    'pgp_key_armor_priv': unicode,
-    'pgp_glkey_pub': unicode,
-    'pgp_glkey_priv': unicode,
+    'pgp_key_public': unicode,
+    'pgp_e2e_public': unicode,
+    'pgp_e2e_private': unicode,
     'presentation_order': int,
     "language": unicode,
     "timezone": int,

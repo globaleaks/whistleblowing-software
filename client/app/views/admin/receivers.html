@@ -319,7 +319,7 @@
 
                     </div>
 
-                    <div class="form-group" data-ng-hide="receiver.gpg_key_fingerprint" data-ng-controller="PGPConfigCtrl">
+                    <div class="form-group" data-ng-hide="receiver.pgp_key_fingerprint" data-ng-controller="PGPConfigCtrl">
                       <div class="alert alert-danger">
                         <span data-translate>Encryption is not enabled!</span>
                         <span data-translate>Notifications and Files won't be encrypted.</span>
@@ -339,8 +339,8 @@
 
                         <br />
                         <label data-translate>PGP Keys:</label>
-                        <textarea readonly class="form-control" data-ng-model="receiver.gpg_key_armor"></textarea>
-                        <textarea readonly class="form-control" data-ng-model="receiver.pgp_key_armor_priv"></textarea>
+                        <textarea readonly class="form-control" data-ng-model="receiver.pgp_key_public"></textarea>
+                        <textarea readonly class="form-control" data-ng-model="receiver.pgp_key_private"></textarea>
                       </div>
 
                     </div>
