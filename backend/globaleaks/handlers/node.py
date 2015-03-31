@@ -234,6 +234,7 @@ def anon_serialize_receiver(receiver, language):
         'configuration': receiver.configuration, 
         'presentation_order': receiver.presentation_order,
         'pgp_key_status': receiver.pgp_key_status,
+        'pgp_glkey_pub': receiver.pgp_glkey_pub,
         'contexts': contexts
     }
 

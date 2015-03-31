@@ -285,6 +285,8 @@ def admin_serialize_receiver(receiver, language):
         'pgp_key_fingerprint': receiver.pgp_key_fingerprint,
         'pgp_key_expiration': datetime_to_ISO8601(receiver.pgp_key_expiration),
         'pgp_key_status': receiver.pgp_key_status,
+        "pgp_glkey_pub": receiver.pgp_glkey_pub,
+        "pgp_glkey_priv": receiver.pgp_glkey_priv,
         'tip_notification': receiver.tip_notification,
         'ping_notification': receiver.ping_notification,
         'presentation_order': receiver.presentation_order,

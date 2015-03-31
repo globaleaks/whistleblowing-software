@@ -32,7 +32,9 @@ def wb_serialize_internaltip(internaltip):
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
         'wb_steps': internaltip.wb_steps,
         'files': [f.id for f in internaltip.internalfiles],
-        'receivers': [r.id for r in internaltip.receivers]
+        'receivers': [r.id for r in internaltip.receivers],
+        'pgp_glkey_pub': internaltip.pgp_glkey_pub,
+        'pgp_glkey_priv': internaltip.pgp_glkey_priv
     }
 
     return response
@@ -189,8 +191,9 @@ def db_create_submission(store, token, request, language):
 
     try:
         wb_steps = request['wb_steps']
+        #TODO: e2e - move verify_steps in the receiver frontend js code 
         steps = db_get_context_steps(store, context.id, language)
-        verify_steps(steps, wb_steps)
+        #verify_steps(steps, wb_steps)
         submission.wb_steps = wb_steps
     except Exception as excep:
         log.err("Submission create: fields validation fail: %s" % excep)

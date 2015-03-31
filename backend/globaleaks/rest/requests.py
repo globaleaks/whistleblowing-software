@@ -43,7 +43,9 @@ AuthDesc = {
 SubmissionDesc = {
     'wb_steps': list,
     'human_captcha_answer': int,
-    'receivers': [uuid_regexp]
+    'receivers': [uuid_regexp],
+    'pgp_glkey_pub': unicode,
+    'pgp_glkey_priv': unicode
 }
 
 ReceiverReceiverDesc = {
@@ -59,6 +61,8 @@ ReceiverReceiverDesc = {
     'pgp_key_info': unicode,
     'pgp_key_public': unicode,
     'pgp_key_status': unicode,
+    'pgp_glkey_pub': unicode,
+    'pgp_glkey_priv': unicode,
     "tip_notification": bool,
     "ping_notification": bool,
     "language": unicode,
@@ -204,6 +208,10 @@ AdminReceiverDesc = {
     'pgp_key_info': unicode,
     'pgp_key_public': unicode,
     'pgp_key_status': unicode,
+    'gpg_key_armor': unicode,
+    'pgp_key_armor_priv': unicode,
+    'pgp_glkey_pub': unicode,
+    'pgp_glkey_priv': unicode,
     'presentation_order': int,
     "language": unicode,
     "timezone": int

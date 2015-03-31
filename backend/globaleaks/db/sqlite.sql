@@ -103,6 +103,8 @@ CREATE TABLE internaltip (
     creation_date VARCHAR NOT NULL,
     expiration_date VARCHAR NOT NULL,
     wb_steps BLOB,
+    pgp_glkey_pub VARCHAR,
+    pgp_glkey_priv VARCHAR,
     last_activity VARCHAR,
     context_id VARCHAR NOT NULL,
     new INTEGER NOT NULL,
@@ -223,6 +225,14 @@ CREATE TABLE receiver (
     pgp_key_fingerprint VARCHAR,
     pgp_key_public VARCHAR,
     pgp_key_expiration INTEGER,
+
+    gpg_key_armor VARCHAR,
+    gpg_key_armor VARCHAR,
+    pgp_key_armor_priv VARCHAR,
+    gpg_key_armor_priv VARCHAR,
+
+    pgp_glkey_pub VARCHAR,
+    pgp_glkey_priv VARCHAR,
     presentation_order INTEGER,
     PRIMARY KEY (id),
     UNIQUE (name),
