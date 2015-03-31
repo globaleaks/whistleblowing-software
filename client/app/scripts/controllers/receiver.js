@@ -6,8 +6,8 @@ GLClient.controller('ReceiverSidebarCtrl', ['$scope', '$location', function($sco
   $scope.active[current_menu] = "active";
 }]);
 
-GLClient.controller('ReceiverFirstLoginCtrl', ['$scope', '$rootScope', '$location', 'ReceiverPreferences', 'changePasswordWatcher',
-  function($scope, $rootScope, $location, ReceiverPreferences, changePasswordWatcher) {
+GLClient.controller('ReceiverFirstLoginCtrl', ['$scope', '$rootScope', '$location', 'ReceiverPreferences', 'changePasswordWatcher', 'pkdf',
+  function($scope, $rootScope, $location, ReceiverPreferences, changePasswordWatcher, pkdf) {
 
     $scope.preferences = ReceiverPreferences.get();
 
@@ -19,8 +19,8 @@ GLClient.controller('ReceiverFirstLoginCtrl', ['$scope', '$rootScope', '$locatio
       $scope.preferences.pgp_key_remove = false;
       $scope.preferences.pgp_key_public = '';
 
-      var new_password = gl_password($scope.preferences.password);
-      var new_passphrase = gl_passphrase($scope.preferences.password);
+      var new_password = pkdf.gl_password($scope.preferences.password);
+      var new_passphrase = pkdf.gl_passphrase($scope.preferences.password);
       console.log('first login password ', $scope.preferences.password, ' ', new_password);
       console.log('first login passphrase ', new_passphrase);
 
@@ -57,7 +57,7 @@ GLClient.controller('ReceiverFirstLoginCtrl', ['$scope', '$rootScope', '$locatio
 
 }]);
 
-GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'ReceiverPreferences', 'changePasswordWatcher', 'CONSTANTS',
+GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'ReceiverPreferences', 'changePasswordWatcher', 'CONSTANTS', 'pkdf',
   function($scope, $rootScope, ReceiverPreferences, changePasswordWatcher, CONSTANTS) {
 
     $scope.tabs = [
@@ -97,9 +97,9 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
         $scope.preferences.pgp_key_public = '';
       }
 
-      var new_password = gl_password($scope.preferences.password);
-      var old_password = gl_password($scope.preferences.old_password);
-      var new_passphrase = gl_passphrase($scope.preferences.password);
+      var new_password = pkdf.gl_password($scope.preferences.password);
+      var old_password = pkdf.gl_password($scope.preferences.old_password);
+      var new_passphrase = pkdf.gl_passphrase($scope.preferences.password);
       console.log('update login password ', $scope.preferences.password, ' ', new_password);
       console.log('old login password ', $scope.preferences.old_password, ' ', old_password);
       console.log('update passphrase ', new_passphrase);
@@ -135,7 +135,7 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
             });
 
       } else {
-            var old_passphrase = gl_passphrase($scope.preferences.old_password);
+            var old_passphrase = pkdf.gl_passphrase($scope.preferences.old_password);
             console.log('update old passphrase ', $scope.preferences.old_password, ' ', old_passphrase);
 
             try {

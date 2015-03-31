@@ -14,7 +14,8 @@ var GLClient = angular.module('GLClient', [
     'submissionUI',
     'blueimp.fileupload',
     'pascalprecht.translate',
-    'GLClientFilters'
+    'GLClientFilters',
+    'pgp'
   ]).
   config(['$routeProvider', '$translateProvider', '$tooltipProvider',
     function($routeProvider, $translateProvider, $tooltipProvider) {
