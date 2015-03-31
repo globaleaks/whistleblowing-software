@@ -132,7 +132,9 @@
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/user.js"></script>
     <script src="scripts/controllers/embedded.js"></script>
+    <script src="scripts/e2e/pkdf.js"></script>
     <script src="scripts/controllers/pgp.js"></script>
+
     <script src="scripts/templates.js"></script>
     <!-- endbuild -->
 
@@ -145,9 +147,23 @@
          document.getElementsByTagName("head")[0].appendChild(fileref)
        }
       }
-        
+
+      function not_supported() {
+        // Check that web crypto is even available
+        if (!window.crypto || !window.crypto.subtle) {
+          alert("Your browser does not support the Web Cryptography API! This page will not work.");
+          return true;
+        }
+        // Check that encoding API is also available
+        if (!window.TextEncoder || !window.TextDecoder) {
+          alert("Your browser does not support the Encoding API! This page will not work.");
+          return true;
+        }
+        return false;
+      } 
+
       function start_globaleaks() {
-        if (bowser.msie && bowser.version <= 8) {
+        if (bowser.msie && bowser.version <= 8 || not_supported()) {
           var error = document.getElementById("error_unsupported_browser");
           error.setAttribute("style", "block");
         } else {
