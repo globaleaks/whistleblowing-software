@@ -245,6 +245,7 @@ class SubmissionCreate(BaseHandler):
         token_answer.update({'id': token_answer['token_id'] })
         token_answer.update({'context_id': request['context_id']})
         token_answer.update({'human_captcha_answer': 0})
+        token_answer.update({'files': []})
 
         self.set_status(201) # Created
         self.finish(token_answer)

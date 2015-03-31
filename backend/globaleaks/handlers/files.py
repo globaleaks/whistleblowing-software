@@ -176,9 +176,8 @@ class FileAdd(BaseHandler):
             raise errors.InternalServerError("Unable to accept new files")
 
         registered_file['elapsed_time'] = time.time() - start_time
-        result_list.append(registered_file)
 
-        assert len(result_list) == 1, "My assumption are wrong, remove the comment above"
+        result_list.append(registered_file)
 
         self.set_status(201) # Created
         self.finish({'files': result_list})
@@ -220,16 +219,16 @@ class FileInstance(BaseHandler):
         try:
             # dump_file_fs return the new filepath inside the dictionary
             uploaded_file = yield threads.deferToThread(dump_file_fs, uploaded_file)
-
-            # update time related field and associate to the Token the file
-            uploaded_file['elapsed_time'] = time.time() - start_time
             uploaded_file['creation_date'] = datetime_now()
+
             token.associate_file(uploaded_file)
 
             registered_file = serialize_memory_file(uploaded_file)
         except Exception as excep:
             log.err("Unable to save file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept files")
+
+        registered_file['elapsed_time'] = time.time() - start_time
 
         result_list.append(registered_file)
 
