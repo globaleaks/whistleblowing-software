@@ -279,6 +279,7 @@ class SubmissionInstance(BaseHandler):
         @transact
         def put_transact(store, token, request):
             status = db_create_submission(store, token, request, self.request.language)
+            # EEE has to be removed
             receipt = db_create_whistleblower_tip(store, status)
             status.update({'receipt': receipt})
             return status
