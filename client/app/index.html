@@ -107,127 +107,10 @@
     <script src="components/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
     <script src="components/jquery-file-upload/js/jquery.fileupload-angular.js"></script>
     <script src="components/d3/d3.js"></script>
-
     <script src="components/FileSaver/FileSaver.js"></script>
     <script src="components/jszip/dist/jszip.js"></script>
     <script src="components/openpgpjs/index.js"></script>
     <script src="components/scrypt/index.js"></script>   
-    <script>
-        // Password Based Key Derivation with Web Cryptography API
-        //
-        // Copyright (c) 2015 Info Tech, Inc.
-        // Provided under the MIT license.
-        // See LICENSE file for details.
-        document.addEventListener("DOMContentLoaded", function() {
-            "use strict";
-
-            // Check that web crypto is even available
-            if (!window.crypto || !window.crypto.subtle) {
-                alert("Your browser does not support the Web Cryptography API! This page will not work.");
-                return;
-            }
-
-            // Check that encoding API is also available
-            if (!window.TextEncoder || !window.TextDecoder) {
-                alert("Your browser does not support the Encoding API! This page will not work.");
-                return;
-            }
-        });
-
-        //https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/deriveKey
-        //Chrome: 42
-        function pbkdf2_deriveAKey(password, iterations) {
-            var salt = "Pick anything you want. This isn't secret.";
-            //var iterations = 1000;
-            var hash = "SHA-256";
-
-            // First, create a PBKDF2 "key" containing the password
-            window.crypto.subtle.importKey(
-                    "raw",
-                    pbkdf2_stringToArrayBuffer(password),
-                    {"name": "PBKDF2"},
-                    false,
-                    ["deriveKey"]).
-                // Derive a key from the password
-                then(function(baseKey){
-                    return window.crypto.subtle.deriveKey(
-                    {
-                        "name": "PBKDF2",
-                        "salt": pbkdf2_stringToArrayBuffer(salt),
-                        "iterations": iterations,
-                        "hash": hash
-                    },
-                    baseKey,
-                    {"name": "AES-CBC", "length": 128}, // Key we want
-                    true,                               // Extrable
-                    ["encrypt", "decrypt"]              // For new key
-                    );
-                }).
-                // Export it so we can display it
-                then(function(aesKey) {
-                    return window.crypto.subtle.exportKey("raw", aesKey);
-                }).
-                // Return it in hex format
-                then(function(keyBytes) {
-                    var hexKey = pbkdf2_arrayBufferToHexString(keyBytes);
-                    return hexKey;
-                }).
-                catch(function(err) {
-                    alert("Key derivation failed: " + err.message);
-            });
-        }
-
-
-        // Utility functions
-        function pbkdf2_stringToArrayBuffer(string) {
-                var encoder = new TextEncoder("utf-8");
-                return encoder.encode(string);
-        }
-
-        function pbkdf2_arrayBufferToHexString(arrayBuffer) {
-                var byteArray = new Uint8Array(arrayBuffer);
-                var hexString = "";
-                var nextHexByte;
-
-                for (var i=0; i<byteArray.byteLength; i++) {
-                    nextHexByte = byteArray[i].toString(16);  // Integer to base 16
-                    if (nextHexByte.length < 2) {
-                        nextHexByte = "0" + nextHexByte;     // Otherwise 10 becomes just a instead of 0a
-                    }
-                    hexString += nextHexByte;
-                }
-                return hexString;
-        }
-
-        //var scrypt = scrypt_module_factory(33554432*2);
-        // rounds must be power of 2
-        function scrypt_hash(password, rounds, scrypt) {
-            var utf8_pwd = scrypt.encode_utf8(password);
-            var salt = "This is the salt.";
-
-            var bytearray_pwd = scrypt.crypto_scrypt(utf8_pwd, salt, rounds, 8, 1, 16);
-            return scrypt.to_hex(bytearray_pwd);
-        }
-
-        function gl_password(password) {
-            //return password;
-
-            var scrypt = scrypt_module_factory(33554432);
-            var key = scrypt_hash(password, 4096, scrypt);
-            console.log('gl_password for ', password, ' is ', key);
-            return key;
-        }
-        function gl_passphrase(passphrase) {
-            //return passphrase;
-            //16384 is minimum suggested for interactive logins
-
-            var scrypt = scrypt_module_factory(33554432);
-            var key = scrypt_hash(passphrase, 8192, scrypt);
-            console.log('gl_passphrase for ', passphrase, ' is ', key);
-            return key;
-        }
-    </script>
- 
     <script src="components/underscore/underscore.js"></script>
     <script src="scripts/vendor/spin.js"></script>
     <script src="scripts/utils.js"></script>
@@ -255,7 +138,9 @@
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/user.js"></script>
     <script src="scripts/controllers/embedded.js"></script>
+    <script src="scripts/e2e/pkdf.js"></script>
     <script src="scripts/controllers/pgp.js"></script>
+
     <script src="scripts/templates.js"></script>
     <!-- endbuild -->
 
@@ -268,9 +153,23 @@
          document.getElementsByTagName("head")[0].appendChild(fileref)
        }
       }
-        
+
+      function not_supported() {
+        // Check that web crypto is even available
+        if (!window.crypto || !window.crypto.subtle) {
+          alert("Your browser does not support the Web Cryptography API! This page will not work.");
+          return true;
+        }
+        // Check that encoding API is also available
+        if (!window.TextEncoder || !window.TextDecoder) {
+          alert("Your browser does not support the Encoding API! This page will not work.");
+          return true;
+        }
+        return false;
+      } 
+
       function start_globaleaks() {
-        if (bowser.msie && bowser.version <= 8) {
+        if (bowser.msie && bowser.version <= 8 || not_supported()) {
           var error = document.getElementById("error_unsupported_browser");
           error.setAttribute("style", "block");
         } else {
