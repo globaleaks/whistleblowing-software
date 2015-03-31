@@ -34,7 +34,11 @@
     "jquery.cookie": "1.4.1",
     "jquery-file-upload": "9.9.3",
     "jquery-ui": "1.11.3",
-    "underscore": "1.8.2"
+    "underscore": "1.8.2",
+    "jszip": "2.4.0",
+    "openpgpjs": "https://github.com/openpgpjs/openpgpjs/releases/download/v0.10.0/openpgp.js",
+    "scrypt": "https://raw.githubusercontent.com/tonyg/js-scrypt/master/browser/scrypt.js",
+    "FileSaver": "git://github.com/eligrey/FileSaver.js.git#24b303f492"
   },
   "resolutions": {
     "bootstrap": "3.3.4"

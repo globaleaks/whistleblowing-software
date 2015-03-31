@@ -237,6 +237,9 @@ class InternalTip(Model):
 
     new = Int(default=True)
 
+    pgp_glkey_pub = Unicode()
+    pgp_glkey_priv = Unicode()
+
 
 class ReceiverTip(Model):
     """
@@ -577,11 +580,21 @@ class Receiver(Model):
     # of PGP key fields
     pgp_key_info = Unicode()
     pgp_key_fingerprint = Unicode()
+
+    #EEE
+    gpg_key_armor = Unicode()
+    gpg_key_armor_priv = Unicode()
+    pgp_key_armor = Unicode()
+    pgp_key_armor_priv = Unicode()
+
     pgp_key_public = Unicode()
     pgp_key_expiration = DateTime()
 
     pgp_key_status = Unicode()
     # pgp_statuses: 'disabled', 'enabled'
+
+    pgp_glkey_pub = Unicode()
+    pgp_glkey_priv = Unicode()
 
     # Can be changed only by admin (but also differ from username!)
     mail_address = Unicode()
