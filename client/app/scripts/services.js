@@ -356,7 +356,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           context_id: self.current_context.id,
           wb_steps: _.clone(self.current_context.steps),
           receivers: [],
-          files: [],
           human_captcha_answer: 0
         });
 

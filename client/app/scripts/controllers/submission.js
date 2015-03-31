@@ -141,12 +141,10 @@ GLClient.controller('SubmissionCtrl',
 }]).
 controller('SubmissionStepCtrl', ['$scope', function($scope) {
   $scope.queue = $scope.queue || [];
-  $scope.files  = [];
-  $scope.indexed_files_values = {};
 }]).
 controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
   if ($scope.field.type == 'fileupload') {
-    $scope.field.value = [];
+    $scope.field.value = {};
   }
 
   $scope.getClass = function(stepIndex, fieldIndex, toplevel) {
@@ -160,29 +158,18 @@ controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $ro
   var update_uploads_status = function(e, data) {
     $scope.submission.uploading = false;
     if ($scope.field.value === "") {
-      $scope.field.value = [];
+      $scope.field.value = {};
     }
     if ($scope.queue) {
-      $scope.files.slice(0, $scope.files.length);
       $scope.queue.forEach(function (k) {
         if (!k.id) {
           $scope.submission.uploading = true;
         } else {
-          if ($scope.submission.current_submission.files.indexOf(k.id) === -1) {
-            $scope.submission.current_submission.files.push(k.id);
-
-            $scope.indexed_files_values[k.id] = {
-              'id': k.id,
-              'options': angular.copy($scope.field.options)
-            }
+          if (!(k.id in $scope.field.value)) {
+            $scope.field.value[k.id] = angular.copy($scope.field.options)
           }
 
-          $scope.field.value.push($scope.indexed_files_values[k.id]);
-          k.value = $scope.indexed_files_values[k.id];
-        }
-
-        if ($scope.files.indexOf(k) === -1) {
-          $scope.files.push(k);
+          k.value = $scope.field.value[k.id];
         }
       });
     }
