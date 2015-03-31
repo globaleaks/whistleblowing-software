@@ -224,9 +224,9 @@ CREATE TABLE receiver (
     pgp_key_expiration INTEGER,
 
     gpg_key_armor VARCHAR,
-    gpg_key_armor VARCHAR,
-    pgp_key_armor_priv VARCHAR,
     gpg_key_armor_priv VARCHAR,
+    pgp_key_armor VARCHAR,
+    pgp_key_armor_priv VARCHAR,
 
     pgp_glkey_pub VARCHAR,
     pgp_glkey_priv VARCHAR,

@@ -244,6 +244,23 @@ def get_receiver_list_wb(store, wb_tip_id, language):
 
             localize_and_append_receiver(receiver, receiver_desc)
 
+        for rtip in wb_tip.internaltip.receivertips:
+
+            message_counter = store.find(Message,
+                                         Message.receivertip_id == rtip.id).count()
+
+            receiver_desc = {
+                "name": rtip.receiver.name,
+                "id": rtip.receiver.id,
+                "pgp_key_status": rtip.receiver.pgp_key_status,
+                "access_counter": rtip.access_counter,
+                "message_counter": message_counter,
+                "creation_date": datetime_to_ISO8601(datetime_now()),
+                "pgp_glkey_pub": rtip.receiver.pgp_glkey_pub,
+            }
+
+            localize_and_append_receiver(rtip.receiver, receiver_desc)
+
     return receiver_list
 
 

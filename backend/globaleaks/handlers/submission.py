@@ -160,6 +160,8 @@ def db_create_submission(store, token, request, language):
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
     submission.context_id = context.id
     submission.creation_date = datetime_now()
+    submission.pgp_glkey_pub = request['pgp_glkey_pub']
+    submission.pgp_glkey_priv = request['pgp_glkey_priv']
 
     try:
         store.add(submission)
