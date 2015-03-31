@@ -235,6 +235,10 @@ class InternalTip(Model):
     expiration_date = DateTime()
     last_activity = DateTime(default_factory=datetime_null)
 
+    # RSA key
+    pgp_glkey_pub = Unicode()
+    pgp_glkey_priv = Unicode()
+
     new = Int(default=True)
 
 
@@ -397,6 +401,7 @@ class Node(Model):
     postpone_superpower = Bool()
     can_delete_submission = Bool()
 
+    crypto_backward = Bool()
     ahmia = Bool()
     wizard_done = Bool(default=False)
 
@@ -431,7 +436,7 @@ class Node(Model):
                  'allow_iframes_inclusion',
                  'disable_privacy_badge', 'disable_security_awareness_badge',
                  'disable_security_awareness_questions', 'enable_custom_privacy_badge',
-                 'disable_key_code_hint']
+                 'disable_key_code_hint', 'crypto_backward']
 
     # wizard_done is not checked because it's set by the backend
 
@@ -579,9 +584,14 @@ class Receiver(Model):
     pgp_key_fingerprint = Unicode()
     pgp_key_public = Unicode()
     pgp_key_expiration = DateTime()
-
     pgp_key_status = Unicode()
     # pgp_statuses: 'disabled', 'enabled'
+
+
+    # RSA key
+    pgp_key_armor_priv = Unicode()
+    pgp_glkey_pub  = Unicode()
+    pgp_glkey_priv = Unicode()
 
     # Can be changed only by admin (but also differ from username!)
     mail_address = Unicode()
