@@ -163,6 +163,11 @@ def db_create_submission(store, token, request, language):
     submission.pgp_glkey_pub = request['pgp_glkey_pub']
     submission.pgp_glkey_priv = request['pgp_glkey_priv']
 
+    # import EEE temporary both the key,
+    # has to be changed with PUB + PUBsigned (usable as auth)
+    submission.pgp_glkey_priv = request['pgp_glkey_priv']
+    submission.pgp_glkey_pub = request['pgp_glkey_pub']
+
     try:
         store.add(submission)
     except Exception as excep:
@@ -192,6 +197,7 @@ def db_create_submission(store, token, request, language):
         wb_steps = request['wb_steps']
         #TODO: e2e - move verify_steps in the receiver frontend js code 
         steps = db_get_context_steps(store, context.id, language)
+        log.err("EEE ---- IMPLEMENT E2E CLIENT SIDE VALIDATION OF FIELDS!")
         #verify_steps(steps, wb_steps)
         submission.wb_steps = wb_steps
     except Exception as excep:

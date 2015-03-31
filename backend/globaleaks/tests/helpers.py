@@ -867,6 +867,8 @@ class MockDict():
             'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
             'disable_key_code_hint': False,
+            'crypto_backward': True,
+            # EEE remind: test with 'False' has to trigger different behav
             'default_timezone': 0,
             'default_language': u'en',
             'admin_timezone': 0,

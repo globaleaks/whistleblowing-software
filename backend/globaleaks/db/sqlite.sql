@@ -140,6 +140,7 @@ CREATE TABLE node (
     postpone_superpower INTEGER NOT NULL,
     can_delete_submission INTEGER NOT NULL,
     ahmia INTEGER NOT NULL,
+    crypto_backward INTEGER NOT NULL,
     wizard_done INTEGER NOT NULL,
     exception_email VARCHAR NOT NULL,
     allow_unencrypted INTEGER NOT NULL,
@@ -222,12 +223,8 @@ CREATE TABLE receiver (
     pgp_key_fingerprint VARCHAR,
     pgp_key_public VARCHAR,
     pgp_key_expiration INTEGER,
-
     gpg_key_armor VARCHAR,
     gpg_key_armor_priv VARCHAR,
-    pgp_key_armor VARCHAR,
-    pgp_key_armor_priv VARCHAR,
-
     pgp_glkey_pub VARCHAR,
     pgp_glkey_priv VARCHAR,
     presentation_order INTEGER,

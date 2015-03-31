@@ -141,6 +141,7 @@ class TableReplacer(object):
         self.std_fancy = " ł "
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
+        # TODO update 20 21 -- not yet touched below
         self.table_history = {
             'Node': [Node_v_9, None, Node_v_11, None, Node_v_12, Node_v_13, Node_v_14, Node_v_16, None, Node_v_17, Node_v_18, Node_v_19, models.Node],
             'User': [User_v_9, None, User_v_14, None, None, None, None, models.User, None, None, None, None, None],

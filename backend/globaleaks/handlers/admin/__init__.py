@@ -75,6 +75,7 @@ def db_admin_serialize_node(store, language):
         'disable_privacy_badge': node.disable_privacy_badge,
         'disable_security_awareness_badge': node.disable_security_awareness_badge,
         'disable_security_awareness_questions': node.disable_security_awareness_questions,
+        'crypto_backward': node.crypto_backward,
         'disable_key_code_hint': node.disable_key_code_hint,
         'admin_language': admin.language,
         'admin_timezone': admin.timezone,

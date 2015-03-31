@@ -137,6 +137,7 @@ adminNodeDesc = {
     'disable_security_awareness_badge': bool,
     'disable_security_awareness_questions': bool,
     'disable_key_code_hint': bool,
+    'crypto_backward': bool,
     'configured': bool,
     'admin_language': unicode,
     'admin_timezone': int,

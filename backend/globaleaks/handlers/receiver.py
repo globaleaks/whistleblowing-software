@@ -123,8 +123,17 @@ def update_receiver_settings(store, receiver_id, request, language):
     receiver.tip_notification = acquire_bool(request['tip_notification'])
 
     pgp_options_parse(receiver, request)
+
     #TODO: validate armored pgp keys
+
+    if not 'pgp_glkey_pub' in request:
+        import pdb; pdb.set_trace()
+    if not 'pgp_glkey_priv' in request:
+        import pdb; pdb.set_trace()
+
+    print request['pgp_glkey_pub']
     receiver.pgp_glkey_pub = request['pgp_glkey_pub']
+    print request['pgp_glkey_priv']
     receiver.pgp_glkey_priv = request['pgp_glkey_priv']
 
     return receiver_serialize_receiver(receiver, language)

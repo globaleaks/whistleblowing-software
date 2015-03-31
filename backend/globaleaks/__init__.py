@@ -8,9 +8,9 @@ import operator
 __author__ = u'Random GlobaLeaks Developers'
 __copyright__ = u'Hermes Center for Transparency and Digital Human Rights.'
 __email__ = u'info@globaleaks.org'
-__version__ = u'2.60.63'
+__version__ = u'2.60.64-e2e'
 
-DATABASE_VERSION = 20
+DATABASE_VERSION = 20 # EEE cambia in 21
 
 # Add here by hand the languages supported!
 # copy paste format from 'grunt updateTranslations'

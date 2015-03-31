@@ -92,6 +92,7 @@ def create_tables(create_node=True):
             'postpone_superpower': False, # disabled by default
             'can_delete_submission': False, # disabled too
             'ahmia': False, # disabled too
+            'crypto_backward': False, # if is initialized, there is not backward
             'allow_unencrypted': GLSetting.defaults.allow_unencrypted,
             'allow_iframes_inclusion': GLSetting.defaults.allow_iframes_inclusion,
             'exception_email' : GLSetting.defaults.exception_email,
