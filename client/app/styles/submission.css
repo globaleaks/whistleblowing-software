@@ -83,11 +83,7 @@
   width: 120px;
 }
 
-.fileUploadProgress .progress-bar {
-  transition: none;
-}
-
-.fileUploadProgress .uploadComplete {
+.fileUploadIcon {
   position: absolute;
   top: 40px;
   left: 40px;
