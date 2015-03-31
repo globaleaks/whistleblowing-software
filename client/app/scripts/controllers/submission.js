@@ -84,10 +84,6 @@ GLClient.controller('SubmissionCtrl',
 
   // Go to a defined step index
   $scope.goToStep = function(index) {
-    if ($scope.uploading) {
-      return;
-    }
-
     $scope.selection = index;
   };
 
@@ -106,24 +102,16 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.incrementStep = function() {
-    if ($scope.uploading)
-      return;
-
     if ($scope.hasNextStep()) {
       $scope.selection++;
     }
   };
 
   $scope.decrementStep = function() {
-    if ($scope.uploading)
-      return;
-
     if ($scope.hasPreviousStep()) {
       $scope.selection--;
     }
   };
-
-  $scope.uploading = false;
 
   // Watch for changes in certain variables
   $scope.$watch('submission.current_context', function () {
@@ -170,16 +158,15 @@ controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $ro
   }
 
   var update_uploads_status = function(e, data) {
-    $scope.$parent.uploading = false;
+    $scope.submission.uploading = false;
     if ($scope.field.value === "") {
       $scope.field.value = [];
     }
     if ($scope.queue) {
       $scope.files.slice(0, $scope.files.length);
-      return;
       $scope.queue.forEach(function (k) {
         if (!k.id) {
-          $scope.$parent.uploading = true;
+          $scope.submission.uploading = true;
         } else {
           if ($scope.submission.current_submission.files.indexOf(k.id) === -1) {
             $scope.submission.current_submission.files.push(k.id);
@@ -201,6 +188,7 @@ controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $ro
     }
   };
 
+  $scope.$on('fileuploadprocessstart', update_uploads_status);
   $scope.$on('fileuploadalways', update_uploads_status);
 
 }]).

@@ -19,6 +19,7 @@
     <div data-ng-show="receivers_selectable && submission.current_context.show_receivers && selection == 0" data-ng-include="'views/submission/receiver_selection.html'"></div>
 
     <!-- Configured Context Steps -->
+    {{ uploading }}
     <div data-ng-repeat="step in submission.current_context.steps" data-ng-controller="SubmissionStepCtrl">
       <div class="SubmissionStep" data-ng-show="selection == $index + 1">
         <div class="preformatted" data-ng-show="step.description">{{step.description}}</div>
@@ -55,7 +56,7 @@
     </ul>
   </div>
   <div id="SubmitBox" class="pager pull-left" style="margin-left: 20px" data-ng-show="!hasNextStep()">
-    <button class="btn btn-success SubmitButton" data-ng-click="submit()" data-ng-disabled="uploading || submissionForm.$invalid || !receiver_selected" type="submit">
+    <button class="btn btn-success SubmitButton" data-ng-click="submit()" data-ng-disabled="submission.uploading || submissionForm.$invalid || !receiver_selected" type="submit">
       <i class="glyphicon glyphicon-ok"></i>
       <span data-translate>Submit</span>
     </button>
