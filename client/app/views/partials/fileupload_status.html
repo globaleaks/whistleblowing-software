@@ -19,15 +19,12 @@
                 </div>
               </div>
               <div class="fileUploadProgress">
-                <div class="fileUploadProgressOverlay">
+-                <div class="fileUploadProgressOverlay"></div>
+                <div class="fileUploadIcon" data-ng-hide="file.elapsed_time > 0">
+                  <i class="glyphicon glyphicon-time"></i>
                 </div>
-                <div class="uploadComplete" data-ng-show="file.elapsed_time > 0">
+                <div class="fileUploadIcon" data-ng-show="file.elapsed_time > 0">
                   <i class="glyphicon glyphicon-ok"></i>
-                </div>
-                <div class="progress progress-striped active"
-                     data-ng-class="{pending: 'in'}[file.$state()]"
-                     data-file-upload-progress="file.$progress()">
-                  <div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div>
                 </div>
               </div>
             </div>
