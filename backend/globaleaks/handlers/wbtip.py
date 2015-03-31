@@ -246,9 +246,14 @@ def get_receiver_list_wb(store, wb_tip_id, language):
             localize_and_append_receiver(receiver, receiver_desc)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     else:
 
         for rtip in wb_tip.internaltip.receivertips:
+=======
+        for rtip in wb_tip.internaltip.receivertips:
+
+>>>>>>> e2e fix submission key save
             message_counter = store.find(Message,
                                          Message.receivertip_id == rtip.id).count()
 
@@ -259,12 +264,11 @@ def get_receiver_list_wb(store, wb_tip_id, language):
                 "access_counter": rtip.access_counter,
                 "message_counter": message_counter,
                 "creation_date": datetime_to_ISO8601(datetime_now()),
+                "pgp_glkey_pub": rtip.receiver.pgp_glkey_pub,
             }
 
             localize_and_append_receiver(rtip.receiver, receiver_desc)
 
-=======
->>>>>>> integrated e2e patch and fixes
     return receiver_list
 
 
