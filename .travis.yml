@@ -19,6 +19,6 @@ script:
   - coveralls || true
   - cd $TRAVIS_BUILD_DIR/client  # to test backend handlers
   - bower install && grunt build --resource master
-  - $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z
+  - $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis
   - node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*
   - cd $TRAVIS_BUILD_DIR/  # to run static analysis

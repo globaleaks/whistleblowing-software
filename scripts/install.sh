@@ -78,7 +78,7 @@ EYnJ858kK0cjt3aj11AcJnq81u//+5jl4FJOy/3lZ+VB
 -----END PGP PUBLIC KEY BLOCK-----"
 
 
-if [ -r /lib/lsb/init-functions ]; then
+if which lsb_release >/dev/null; then
   if [ "$( lsb_release -is )" = "Debian" ]; then
     DISTRO="debian"
     DISTRO_VERSION="$( lsb_release -cs )"
@@ -98,22 +98,32 @@ elif [ "$DISTRO" = "ubuntu" ]; then
   fi
 fi
 
+SUPPORTED_PLATFORM=0
 if [ $SUPPORTED_PLATFORM -eq 0 ]; then
   echo "!!!!!!!!!!!! WARNING !!!!!!!!!!!!"
   echo "You are attempting to install GlobaLeaks on an unsupported platform."
-  echo "Supported platform are Debian (wheezy, jessie) and Ubuntu (precise, trusty)\n"
-  echo "Do you wish to continue at your own risk [Y|N]? "
-  read ans
-  if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]
-  then
-    echo "Ok, you wanted it!\n"
-  else
-    echo "Installation aborted. Still friends, right?"
-    exit
-  fi
+  echo "Supported platform are Debian (wheezy, jessie) and Ubuntu (precise, trusty)"
+
+  while true; do
+    read -p "Do you wish to continue anyhow? [y|n]?" yn
+    case $yn in
+      [Yy]*) break;;
+      [Nn]*) echo "Installation aborted."; exit;;
+      *) echo $yn; echo "Please answer y/n."; continue;;
+    esac
+  done
 fi
 
 echo "Performing GlobaLeaks installation on $DISTRO - $DISTRO_VERSION"
+
+if [ $SUPPORTED_PLATFORM -eq 0 ]; then
+  # In case of unsupported platforms we fallback on trusty
+  echo "Given that the platform is not supported the install script will use trusty repository."
+  echo "In case of failure refer to the wiki for manual setup possibilities."
+  echo "GlobaLeaks Wiki Address: https://github.com/globaleaks/GlobaLeaks/wiki"
+  DISTRO="ubuntu"
+  DISTRO_VERSION="trusty"
+fi
 
 DO () {
   if [ -z "$2" ]; then
@@ -168,3 +178,11 @@ fi
 
 DO "apt-get update -y" "0"
 DO "apt-get install globaleaks -y" "0"
+
+if [ -r /var/globaleaks/torhs/hostname ]; then
+  TORHS=`cat /var/globaleaks/torhs/hostname`
+  echo "To access your GlobaLeaks use the following Tor HS URL: $TORHS"
+  echo "Use Tor Browser to access it, download it from https://antani.tor2web.org/gettor"
+  echo "If you need to access it directly on your public IP address, you must edit /etc/default/globaleaks and restart globaleaks"
+fi
+

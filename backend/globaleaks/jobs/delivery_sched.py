@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- encoding: utf-8 -*-
 #
 #   delivery_sched
 #   **************
@@ -19,7 +19,7 @@ from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
                               ReceiverFile
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.utility import log 
-from globaleaks.security import GLBGPG, GLSecureFile
+from globaleaks.security import GLBPGP, GLSecureFile
 from globaleaks.handlers.admin import admin_serialize_receiver
 from globaleaks.third_party.rstr import xeger
 
@@ -30,12 +30,11 @@ def serialize_internalfile(ifile):
         'id': ifile.id,
         'internaltip_id' : ifile.internaltip_id,
         'name' : ifile.name,
-        'description' : ifile.description,
         'file_path' : ifile.file_path,
         'content_type' : ifile.content_type,
         'size' : ifile.size,
-        'mark' : ifile.mark,
     }
+
     return ifile_dict
 
 @transact_ro
@@ -64,9 +63,9 @@ def serialize_receiverfile(rfile):
         'size' : rfile.size,
         'downloads' : rfile.downloads,
         'last_access' : rfile.last_access,
-        'mark' : rfile.mark,
         'status' : rfile.status,
     }
+
     return rfile_dict
 
 @transact_ro
@@ -91,88 +90,35 @@ def receiverfile_planning(store):
     receivers associated, one entry for each combination. representing the
     ReceiverFile that need to be created.
     """
-
-    try:
-        files = store.find(InternalFile, InternalFile.mark == u'not processed')
-    except Exception as excep:
-        log.err("Unable to find InternalFile in scheduler! %s" % str(excep))
-        return []
-
     ifilesmap = {}
 
+    files = store.find(InternalFile, InternalFile.new == True)
     for filex in files:
+        for receiver in filex.internaltip.receivers:
+            if filex.file_path not in ifilesmap:
+                ifilesmap[filex.file_path] = list()
 
-        if not filex.internaltip:
-            log.err("Integrity failure: the file %s"\
-                    "has not an InternalTip assigned (path: %s)" %
-                    (filex.name, filex.file_path) )
+            receiver_desc = admin_serialize_receiver(receiver, GLSetting.memory_copy.language)
 
-            try:
-                os.remove(os.path.join(GLSetting.submission_path, filex.file_path))
-            except OSError as excep:
-                log.err("Unable to remove %s in integrity fixing routine: %s" %
-                    (filex.file_path, excep.strerror) )
+            map_info = {
+                'receiver' : receiver_desc,
+                'path' : filex.file_path,
+                'size' : filex.size,
+                'status' : u'reference'
+            }
 
-            key_id = os.path.basename(filex.file_path).split('.')[0]
-            keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, key_id)))
+            # AS KEY, file path is used to keep track of the original
+            # path, because shall be renamed in .plaintext (in the unlucky case
+            # of receivers without PGP)
+            # AS FIELD, it can be replaced with a dedicated PGP encrypted path
+            ifilesmap[filex.file_path].append(map_info)
 
-            try:
-                os.remove(keypath)
-            except OSError as excep:
-                log.err("Unable to delete keyfile %s: %s" % (keypath, excep.strerror))
-
-            # if the file is not associated to any tip it should be
-            # removed to avoid infinite loop
-            store.remove(filex)
-
-            continue
-
-        # here we select the file which deserve to be processed.
-        # They need to be:
-        #   From a Tip in (Tip = 'finalize' or 'first' )
-        #   From an InternalFile (File = 'ready')
-        # Tips may have two statuses both valid.
-        # if these conditions are met the InternalFile(s) is/are marked as 'locked',
-        # Whenever a delivery scheduler run, do not touch 'locked' file, and if 'locked' file
-        # appears in the Admin interface of file overview, this mean that something is broken.
-        if (filex.internaltip.mark == u'finalize' or \
-            filex.internaltip.mark == u'first') and \
-            (filex.mark == u'not processed'):
-            filex.mark = u'locked'
-        else:
-            continue
-
-        try:
-
-            for receiver in filex.internaltip.receivers:
-
-                if filex.file_path not in ifilesmap:
-                    ifilesmap[filex.file_path] = list()
-
-                receiver_desc = admin_serialize_receiver(receiver, GLSetting.memory_copy.language)
-
-                map_info = {
-                    'receiver' : receiver_desc,
-                    'path' : filex.file_path,
-                    'size' : filex.size,
-                    'status' : u'reference'
-                }
-
-                # this may seem apparently redounded, but is not!
-                # AS KEY, file path is used to keep track of the original
-                # path, because shall be renamed in .plaintext (in the unlucky case
-                # of receivers without PGP)
-                # AS FIELD, it can be replaced with a dedicated PGP encrypted path
-                ifilesmap[filex.file_path].append(map_info)
-
-        except Exception as excep:
-            log.debug("Invalid Storm operation in checking for PGP cap: %s" % excep)
-            continue
+        filex.new = False
 
     return ifilesmap
 
 
-def fsops_gpg_encrypt(fpath, recipient_gpg):
+def fsops_pgp_encrypt(fpath, recipient_pgp):
     """
     return
         path of encrypted file,
@@ -185,16 +131,17 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
     required keys are checked on top
 
     """
-    gpoj = GLBGPG()
+    gpoj = GLBPGP()
 
     try:
-        gpoj.load_key(recipient_gpg['gpg_key_armor'])
+        pub_key = recipient_gpg['gpg_key_armor']
+        gpoj.load_key(pub_key)
 
         filepath = os.path.join(GLSetting.submission_path, fpath)
 
         with GLSecureFile(filepath) as f:
             encrypted_file_path, encrypted_file_size = \
-                gpoj.encrypt_file(recipient_gpg['gpg_key_fingerprint'], filepath, f, GLSetting.submission_path)
+                gpoj.encrypt_file(recipient_pgp['pgp_key_fingerprint'], filepath, f, GLSetting.submission_path)
 
     except:
         raise
@@ -208,7 +155,6 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
 
 @transact
 def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_desc):
-
     try:
         ifile = store.find(InternalFile, InternalFile.file_path == unicode(if_path)).one()
 
@@ -219,33 +165,23 @@ def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_d
         log.debug("ReceiverFile creation for user %s, '%s' bytes %d = %s)"
                 % (receiver_desc['name'], ifile.name, recv_size, status ) )
 
-        receiverfile = ReceiverFile()
-
-        receiverfile.downloads = 0
-        receiverfile.receiver_id = receiver_desc['id']
-        receiverfile.internalfile_id = ifile.id
-        receiverfile.internaltip_id = ifile.internaltip_id
-
-        # Receiver Tip reference
         rtrf = store.find(ReceiverTip, ReceiverTip.internaltip_id == ifile.internaltip_id,
                           ReceiverTip.receiver_id == receiver_desc['id']).one()
-        receiverfile.receiver_tip_id = rtrf.id
 
-        # inherited by previous operation and checks
+        receiverfile = ReceiverFile()
+        receiverfile.receiver_id = receiver_desc['id']
+        receiverfile.internaltip_id = ifile.internaltip_id
+        receiverfile.internalfile_id = ifile.id
+        receiverfile.receiver_tip_id = rtrf.id
         receiverfile.file_path = unicode(recv_path)
         receiverfile.size = recv_size
         receiverfile.status = unicode(status)
 
-        receiverfile.mark = u'not notified'
-
         store.add(receiverfile)
 
-        return serialize_receiverfile(receiverfile)
-
     except Exception as excep:
-        log.err("Error when saving ReceiverFile %s for '%s': %s" % (
-                if_path, receiver_desc['name'], excep.message))
-        return []
+        log.err("Error when saving ReceiverFile %s for '%s': %s" %
+                (if_path, receiver_desc['name'], excep.message))
 
 
 # called in a transact!
@@ -257,9 +193,7 @@ def create_receivertip(store, receiver, internaltip):
 
     receivertip = ReceiverTip()
     receivertip.internaltip_id = internaltip.id
-    receivertip.access_counter = 0
     receivertip.receiver_id = receiver.id
-    receivertip.mark = u'not notified'
 
     store.add(receivertip)
 
@@ -269,35 +203,30 @@ def create_receivertip(store, receiver, internaltip):
 @transact
 def tip_creation(store):
     """
-    look for all the finalized InternalTip, create ReceiverTip for the
-    first tier of Receiver, and shift the marker in 'first' aka di,ostron.zo
+    look for all the new InternalTips and create ReceiverTips
     """
-    created_rtip = []
+    created_rtips = []
 
-    finalized = store.find(InternalTip, InternalTip.mark == u'finalize')
-
-    for internaltip in finalized:
-
+    new_itips = store.find(InternalTip, InternalTip.new == True)
+    for internaltip in new_itips:
         for receiver in internaltip.receivers:
             rtip_id = create_receivertip(store, receiver, internaltip)
+            created_rtips.append(rtip_id)
 
-            created_rtip.append(rtip_id)
+        internaltip.new = False
 
-        internaltip.mark = u'first'
+    if len(created_rtips):
+        log.debug("The finalized submissions had created %d ReceiverTip(s)" % len(created_rtips))
 
-    if len(created_rtip):
-        log.debug("The finalized submissions had created %d ReceiverTip(s)" % len(created_rtip))
-
-    return created_rtip
+    return created_rtips
 
 @transact
-def do_final_internalfile_update(store, file_path, new_marker, new_path=None):
-
+def do_final_internalfile_update(store, file_path, new_path):
     try:
         ifile = store.find(InternalFile,
                            InternalFile.file_path == unicode(file_path)).one()
-    except Exception as stormer:
-        log.err("Error in find %s: %s" % (file_path, stormer.message))
+    except Exception as err:
+        log.err("Error in find %s: %s" % (file_path, err.message))
         return
 
     if not ifile:
@@ -305,16 +234,8 @@ def do_final_internalfile_update(store, file_path, new_marker, new_path=None):
         return
 
     try:
-        old_marker = ifile.mark
-        ifile.mark = new_marker
-
-        if new_path:
-            ifile.file_path = new_path
-
-        log.debug("Switched status set for InternalFile %s (%s => %s)" %(
-            ifile.name, old_marker, new_marker
-        ))
-
+        ifile.new = False
+        ifile.file_path = new_path
     except Exception as excep:
         log.err("Unable to switch mode in InternalFile %s: %s" % (ifile.name, excep) )
         if new_path:
@@ -331,11 +252,10 @@ def encrypt_where_available(receivermap):
     retcode = True
 
     for rcounter, rfileinfo in enumerate(receivermap):
-
-        if rfileinfo['receiver']['gpg_key_status'] == u'enabled':
+        if rfileinfo['receiver']['pgp_key_status'] == u'enabled':
 
             try:
-                new_path, new_size = fsops_gpg_encrypt(rfileinfo['path'], rfileinfo['receiver'])
+                new_path, new_size = fsops_pgp_encrypt(rfileinfo['path'], rfileinfo['receiver'])
 
                 log.debug("%d# Switch on Receiver File for %s path %s => %s size %d => %d" % (
                     rcounter,  rfileinfo['receiver']['name'],
@@ -349,7 +269,7 @@ def encrypt_where_available(receivermap):
                 rfileinfo['status'] = u'encrypted'
 
             except Exception as excep:
-                log.err("%d# Unable to complete GPG encrypt for %s on %s: %s. marking the file as unavailable." % (
+                log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable." % (
                         rcounter, rfileinfo['receiver']['name'], rfileinfo['path'], excep)
                 )
                 rfileinfo['status'] = u'unavailable'
@@ -378,41 +298,27 @@ class DeliverySchedule(GLJob):
             log.err("Exception in asyncronous delivery job: %s" % excep )
             sys.excepthook(*sys.exc_info())
 
-        # ==> Files && Files update,
-        #     InternalFile is set as 'locked' status
-        #     and would be unlocked at the end.
-        # TODO xxx limit of file number per operation
         filemap = yield receiverfile_planning()
-        # the function returns a dict of lists with dicts:
-        # {
-        #     'ifile_path' : [
-        #       { 'receiver' : receiver_desc, 'path': file_path,
-        #                           'size' : file_size, 'status': XXX },
-        #       { 'receiver' : receiver_desc, 'path': file_path,
-        #                           'size' : file_size, 'status': YYY }, ... ]
-        # },  { }, ...
-        #
 
         if not filemap:
             return
 
         # Here the files received are encrypted (if the receiver has PGP key)
-        log.debug("Delivery task: Iterate over %d ReceiverFile(s)" % len(filemap.keys()) )
+        log.debug("Delivery task: Iterate over %d ReceiverFile(s)" % len(filemap.keys()))
 
         for ifile_path, receivermap in filemap.iteritems():
-
             plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z0-9]{16}') )
 
             create_plaintextfile = encrypt_where_available(receivermap)
 
             for rfileinfo in receivermap:
-
                 if not create_plaintextfile and rfileinfo['status'] == u'reference':
                     rfileinfo['path'] = plain_path
 
                 try:
                     yield receiverfile_create(ifile_path, rfileinfo['path'], rfileinfo['status'],
                                               rfileinfo['size'], rfileinfo['receiver'])
+
                 except Exception as excep:
                     log.err("Unable to create ReceiverFile from %s for %s: %s" %
                             (ifile_path, rfileinfo['receiver']['name'], excep))
@@ -434,14 +340,14 @@ class DeliverySchedule(GLJob):
                                 break
                             plain_f_is_sad_f.write(chunk)
 
-                    yield do_final_internalfile_update(ifile_path, u'ready', plain_path)
+                    yield do_final_internalfile_update(ifile_path, plain_path)
 
                 except Exception as excep:
                     log.err("Unable to create plaintext file %s: %s" % (plain_path, excep))
 
             else: # create_plaintextfile
                 log.debug("All Receivers support PGP or the system denys plaintext version of files: marking internalfile as removed")
-                yield do_final_internalfile_update(ifile_path, u'delivered') # Removed
+                yield do_final_internalfile_update(ifile_path, "")
 
             # the original AES file need always to be deleted
             log.debug("Deleting the submission AES encrypted file: %s" % ifile_path)

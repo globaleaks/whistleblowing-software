@@ -2,10 +2,11 @@ from twisted.trial import unittest
 from twisted.internet import interfaces, task
 
 from globaleaks.settings import GLSetting
+from globaleaks.tests import helpers
 from globaleaks.utils.tempobj import TempObj
 from globaleaks.utils.utility import uuid4
 
-class TestTempObj(unittest.TestCase):
+class TestTempObj(helpers.TestGL):
 
     def test_object_creation_and_expiry(self):
         """

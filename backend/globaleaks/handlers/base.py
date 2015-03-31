@@ -27,7 +27,6 @@ from cyclone.escape import native_str, parse_qs_bytes
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
 
-from globaleaks.anomaly import outcoming_event_monitored, EventTrack
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
@@ -475,13 +474,17 @@ class BaseHandler(RequestHandler):
         It's here implemented to supports the I/O logging if requested
         with the command line options --io $number_of_request_recorded
         """
+        from globaleaks.anomaly import outcoming_event_monitored, EventTrack
+
 
         # This is the event tracker, used to keep track of the
         # outcome of the events.
         if not hasattr(self, '_status_code'):
-            log.debug("Developer, check this out")
             if GLSetting.devel_mode:
+                log.debug("Developer, check this out")
                 import pdb; pdb.set_trace()
+            else:
+                raise Exception("Missing _status_code in some place!")
 
         for event in outcoming_event_monitored:
             if event['handler_check'](self.request.uri) and \

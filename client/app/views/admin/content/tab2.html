@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <div class="form-group">
-      <label data-translate>Current initiative logo</label>
+      <label data-translate>Current project logo</label>
       <div class="imageUpload" data-ng-controller="AdminFileUploadCtrl">
         <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
           <div data-ng-show="uploadfile" class="uploadfile">
@@ -25,14 +25,14 @@
     </div>
     <div class="form-group">
       <label>
-        <span data-translate>Graphic Customization</span>
+        <span data-translate>Graphics Customization</span>
         (<span data-translate>CSS</span>)
       </label>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
         <span generic-file-upload="" data-ng-src="/admin/staticfiles/custom_stylesheet">
           <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
             <span class="glyphicon glyphicon-plus"></span>
-            <span data-translate>Load</span>
+            <span data-translate>Upload</span>
             <input type="file" name="files[]" multiple data-ng-disabled="disabled">
           </span>
         </span>
@@ -48,14 +48,14 @@
         </span>
       </div>
       <label>
-        <span data-translate>Graphic Customization</span>
+        <span data-translate>Graphics Customization</span>
         (<span data-translate>Home Page</span>)
       </label>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
         <span generic-file-upload="" data-ng-src="/admin/staticfiles/custom_homepage">
           <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
             <span class="glyphicon glyphicon-plus"></span>
-            <span data-translate>Load</span>
+            <span data-translate>Upload</span>
             <input type="file" name="files[]" multiple data-ng-disabled="disabled">
           </span>
         </span>
@@ -70,14 +70,14 @@
           </a>
         </span>
       </div>
-      <label data-translate>Load Custom File</label>
+      <label data-translate>Upload Custom File</label>
       <br />
-      <span data-translate>The file will be available at the url: /static/$filename</span>
+      <span data-translate>The file will be available at the URL: /static/$filename</span>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
         <span generic-file-upload="" data-ng-src="/admin/staticfiles/customization">
           <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
             <span class="glyphicon glyphicon-plus"></span>
-            <span data-translate>Load</span>
+            <span data-translate>Upload</span>
             <input type="file" name="files[]" multiple data-ng-disabled="disabled">
           </span>
         </span>

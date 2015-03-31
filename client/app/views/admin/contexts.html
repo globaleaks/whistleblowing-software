@@ -55,7 +55,7 @@
                     <div data-ng-show="!editing">
                       <div class="col-md-6 editorHeaderTitle">{{context.name}}</div>
                       <div class="col-md-offset-1 col-md-5 editorHeaderButtons">
-                        <div class="pull-right" popover="{{'Click to edit, Drag to order' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                        <div class="pull-right" popover="{{'Click to edit, drag to order' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                           <i class="glyphicon glyphicon-th"></i>
                         </div>
                       </div>
@@ -127,14 +127,6 @@
                       <div class="row" data-ng-show="advanced_edit">
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label data-translate>Incomplete submissions expiry time (hours)</label>
-                            <input class="form-control" data-ng-model="context.submission_timetolive" value="{{context.submission_timetolive}}" type="number">
-                          </div>
-                          <div class="form-group">
-                            <label data-translate>Maximum file downloads</label>
-                            <input class="form-control" data-ng-model="context.file_max_download" value="{{context.file_max_download}}" type="number">
-                          </div>
-                          <div class="form-group">
                             <label data-translate>Submitted Tip expiry time (days)</label>
                             <input class="form-control" data-ng-model="context.tip_timetolive" value="{{context.tip_timetolive}}" type="number">
                           </div>
@@ -160,20 +152,20 @@
                           </div>
                           <div class="form-group table-bordered">
                             <input data-ng-model="context.postpone_superpower" value="{{context.postpone_superpower}}" type="checkbox">
-                            <label data-translate>Permit Receivers to postpone expiration date of the Tips</label>
+                            <label data-translate>Allow Receivers to postpone expiration date of the Tips</label>
                             <div data-ng-show="context.postpone_superpower">
                             <span class="label label-info">
-                              <span data-translate>now Enabled:</span>
+                              <span data-translate>Now enabled:</span>
                             </span>
                               <span data-translate>Receivers of this Context will be able to postpone expiration date of the Tips.</span>
                             </div>
                           </div>
                           <div class="form-group table-bordered">
                             <input data-ng-model="context.can_delete_submission" value="{{context.can_delete_submission}}" type="checkbox">
-                            <label data-translate>Permit Receivers to delete Tips</label>
+                            <label data-translate>Allow Receivers to delete Tips</label>
                             <div data-ng-show="context.can_delete_submission">
                               <span class="label label-info">
-                                <span data-translate>now Enabled:</span>
+                                <span data-translate>Now enabled:</span>
                               </span>
                               <span data-translate>Receivers of this Context will be able to delete Tips and their content.</span>
                             </div>

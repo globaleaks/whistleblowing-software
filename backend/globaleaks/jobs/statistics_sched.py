@@ -28,11 +28,9 @@ def save_anomalies(store, anomalies_list):
         when_anomaly, anomaly_desc, alarm_raised = anomaly
 
         newanom = Anomalies()
-
         newanom.alarm = alarm_raised
         newanom.stored_when = when_anomaly
         newanom.events = anomaly_desc
-
         store.add(newanom)
 
     if anomalies_counter:
@@ -61,7 +59,7 @@ def get_anomalies():
     anomalies = []
     for when, anomaly_blob in dict(StatisticsSchedule.RecentAnomaliesQ).iteritems():
         anomalies.append(
-            [ when, anomaly_blob[0], anomaly_blob[1] ]
+            [when, anomaly_blob[0], anomaly_blob[1]]
         )
     return anomalies
 
@@ -74,6 +72,7 @@ def get_statistics():
     for descblob in StatisticsSchedule.RecentEventQ:
         if 'event' not in descblob:
             continue
+
         statsummary.setdefault(descblob['event'], 0)
         statsummary[descblob['event']] += 1
 
@@ -82,17 +81,14 @@ def get_statistics():
 @transact
 def save_statistics(store, start, end, activity_collection):
     newstat = Stats()
+    newstat.start = start
+    newstat.summary = dict(activity_collection)
+    newstat.free_disk_space = ResourceChecker.get_workingdir_space()[0]
+    store.add(newstat)
 
     if activity_collection:
         log.debug("save_statistics: Saved statistics %s collected from %s to %s" %
                   (activity_collection, start, end))
-
-    newstat.start = start
-    newstat.summary = dict(activity_collection)
-    newstat.free_disk_space = ResourceChecker.get_free_space()
-
-    store.add(newstat)
-
 
 class StatisticsSchedule(GLJob):
     """
@@ -144,13 +140,22 @@ class ResourceChecker(GLJob):
     """
 
     @classmethod
-    def get_free_space(cls):
+    def get_workingdir_space(cls):
         statvfs = os.statvfs(GLSetting.working_path)
         free_bytes = statvfs.f_frsize * statvfs.f_bavail
-        return free_bytes
+        total_bytes = statvfs.f_frsize * statvfs.f_blocks
+        return free_bytes, total_bytes
+
+    @classmethod
+    def get_ramdisk_space(cls):
+        statvfs = os.statvfs(GLSetting.ramdisk_path)
+        free_bytes = statvfs.f_frsize * statvfs.f_bavail
+        total_bytes = statvfs.f_frsize * statvfs.f_blocks
+        return free_bytes, total_bytes
 
     def operation(self):
-        free_bytes = ResourceChecker.get_free_space()
+        free_disk_bytes, total_disk_bytes = ResourceChecker.get_workingdir_space()
+        free_ramdisk_bytes, total_ramdisk_bytes = ResourceChecker.get_ramdisk_space()
 
         alarm = Alarm()
-        alarm.report_disk_usage(free_bytes)
+        alarm.report_disk_usage(free_disk_bytes, total_disk_bytes, free_ramdisk_bytes)

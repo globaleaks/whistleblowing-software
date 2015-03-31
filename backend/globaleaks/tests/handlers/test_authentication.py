@@ -27,7 +27,7 @@ class TestSessionUpdateOnUnauthRequests(helpers.TestHandlerWithPopulatedDB):
     def test_successful_session_update_on_unauth_request(self):
         session = authentication.GLSession('admin', 'admin', 'enabled')
         date1 = session.getTime()
-        authentication.reactor.advance(FUTURE)
+        authentication.reactor_override.advance(FUTURE)
         handler = self.request({}, headers={'X-Session': session.id})
         yield handler.get()
         date2 = GLSetting.sessions[session.id].getTime()
@@ -40,7 +40,7 @@ class TestSessionUpdateOnAuthRequests(helpers.TestHandlerWithPopulatedDB):
     def test_successful_session_update_on_auth_request(self):
         session = authentication.GLSession('admin', 'admin', 'enabled')
         date1 = session.getTime()
-        authentication.reactor.advance(FUTURE)
+        authentication.reactor_override.advance(FUTURE)
         handler = self.request({}, headers={'X-Session': session.id})
         yield handler.get()
         date2 = GLSetting.sessions[session.id].getTime()
@@ -116,7 +116,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_successful_whistleblower_login(self):
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
         handler = self.request({
            'username': '',
            'password': self.dummyWBTip,
@@ -128,7 +128,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_accept_whistleblower_login_in_tor2web(self):
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
         handler = self.request({
            'username': '',
            'password': self.dummyWBTip,
@@ -140,7 +140,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
     def test_deny_whistleblower_login_in_tor2web(self):
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
         handler = self.request({
            'username': '',
            'password': self.dummyWBTip,
@@ -214,7 +214,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_successful_whistleblower_logout(self):
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
         handler = self.request({
             'username': '',
             'password': self.dummyWBTip,
@@ -250,7 +250,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
            'role': 'admin'
         })
         d = handler.post()
-        self.assertFailure(d, errors.InvalidAuthRequest)
+        self.assertFailure(d, errors.InvalidAuthentication)
         return d
 
     def test_invalid_receiver_login_wrong_password(self):
@@ -260,7 +260,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
            'role': 'receiver'
         })
         d = handler.post()
-        self.assertFailure(d, errors.InvalidAuthRequest)
+        self.assertFailure(d, errors.InvalidAuthentication)
         return d
 
     def test_invalid_whistleblower_login_wrong_receipt(self):
@@ -270,7 +270,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
            'role': 'wb'
         })
         d = handler.post()
-        self.assertFailure(d, errors.InvalidAuthRequest)
+        self.assertFailure(d, errors.InvalidAuthentication)
         return d
 
     def test_invalid_input_format_missing_role(self):
@@ -289,7 +289,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
            'role': 'pope'
         })
         d = handler.post()
-        self.assertFailure(d, errors.InvalidInputFormat)
+        self.assertFailure(d, errors.InvalidAuthentication)
         return d
 
     @inlineCallbacks
@@ -304,7 +304,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         for i in xrange(0, failed_login):
             try:
                 failure = yield handler.post()
-            except errors.InvalidAuthRequest:
+            except errors.InvalidAuthentication:
                 continue
             except Exception as excep:
                 print excep, "Has been raised wrongly"
@@ -333,7 +333,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         for i in xrange(0, failed_login):
             try:
                 failure = yield handler.post()
-            except errors.InvalidAuthRequest:
+            except errors.InvalidAuthentication:
                 continue
             except Exception as excep:
                 print excep, "Has been raised wrongly"

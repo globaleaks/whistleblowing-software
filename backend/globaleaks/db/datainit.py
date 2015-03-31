@@ -72,17 +72,11 @@ def init_db(store, result, node_dict, appdata_dict):
     """
 
     node = models.Node(node_dict)
-
+    node.languages_enabled = GLSetting.defaults.languages_enabled
+    node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
+    node.wizard_done = GLSetting.skip_wizard
     for k in appdata_dict['node']:
         setattr(node, k, appdata_dict['node'][k])
-
-    node.languages_enabled = GLSetting.defaults.languages_enabled
-
-    node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
-
-    node.wizard_done = GLSetting.skip_wizard
-
-    node.creation_date = datetime_now()
 
     store.add(node)
 
@@ -101,34 +95,15 @@ def init_db(store, result, node_dict, appdata_dict):
     }
 
     admin = models.User(admin_dict)
-
-    admin.last_login = datetime_null()
-    admin.password_change_date = datetime_null()
-
     store.add(admin)
 
     notification = models.Notification()
-
-    # our defaults for free, because we're like Gandhi of the mail accounts.
-    notification.server = "mail.headstrong.de"
-    notification.port = 587
-    # port 587/SMTP-TLS or 465/SMTPS
-    notification.username = "sendaccount@lists.globaleaks.org"
-    notification.password = "sendaccount99"
-    notification.security = "TLS"
-
-    notification.source_name = "Default GlobaLeaks sender"
-    notification.source_email = notification.username
-
-    # Those fields are sets as default in order to show to the Admin the various
-    # 'variables' used in the template.
-
     for k in appdata_dict['templates']:
         setattr(notification, k, appdata_dict['templates'][k])
 
     store.add(notification)
 
-def db_import_memory_variables(store):
+def db_update_memory_variables(store):
     """
     to get fast checks, import (same) of the Node variable in GLSetting,
     this function is called every time that Node is updated.
@@ -161,8 +136,16 @@ def db_import_memory_variables(store):
         GLSetting.memory_copy.notif_password = notif.password
         GLSetting.memory_copy.notif_username = notif.username
         GLSetting.memory_copy.notif_security = notif.security
+
+        if GLSetting.developer_name:
+            GLSetting.memory_copy.notif_source_name = GLSetting.developer_name
+        else:
+            GLSetting.memory_copy.notif_source_name = notif.source_name
+
         GLSetting.memory_copy.notif_source_name = notif.source_name
         GLSetting.memory_copy.notif_source_email = notif.source_email
+        GLSetting.memory_copy.notif_uses_tor = notif.torify
+
         GLSetting.memory_copy.receiver_notif_enable = not notif.disable_receivers_notification_emails
         GLSetting.memory_copy.admin_notif_enable = not notif.disable_admin_notification_emails
 
@@ -172,7 +155,7 @@ def db_import_memory_variables(store):
 
 @transact_ro
 def import_memory_variables(*args):
-    return db_import_memory_variables(*args)
+    return db_update_memory_variables(*args)
 
 @transact
 def apply_cli_options(store):

@@ -244,9 +244,12 @@
       "description": {
         "en": ""
       },
-      "stats_update_time": 2,
       "tor2web_receiver": false,
       "wizard_done": false,
+      "disable_privacy_badge": false,
+      "disable_security_awareness_badge": false,
+      "disable_security_awareness_questions": false,
+      "disable_key_code_hint": false,
       "allow_unencrypted": true,
       "allow_iframes_inclusion": false,
       "name": "",
@@ -302,6 +305,9 @@
     "fields": {
       "source_name": "Default GlobaLeaks sender",
       "creation_date": "2014-09-13 09:01:53.297589",
+      "notification_digest_mail_title": {
+        "en": "Notification Digest"
+      },
       "zip_description": {
         "en": "The following files may contain sensitive information, for the Whistleblower\nand for the involved person and organization.\n\nPlease, do never disclose these files until an appropriate analysis and \nredaction.\n\nFiles number: %FilesNumber%\nTotal uncompressed size: %TotalSize%\n\nFile details and integrity checksum:\n\n%FileList%\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n\n\n"
       },
@@ -377,7 +383,11 @@
       "security": "TLS",
       "encrypted_file_mail_title": {
         "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File attached (Encrypted)"
-      }
+      },
+      "disable_admin_notification_emails": false,
+      "disable_receivers_notification_emails": false,
+      "send_email_for_every_event": false
+
     },
     "class": "Notification"
   },
@@ -461,8 +471,6 @@
       "tip_timetolive": 1728000,
       "can_delete_submission": false,
       "show_small_cards": false,
-      "submission_timetolive": 172800,
-      "file_max_download": 1,
       "show_receivers": false,
       "select_all_receivers": true,
       "description": {
@@ -488,7 +496,6 @@
         }
       },
       "maximum_selectable_receivers": 0,
-      "tip_max_access": 10,
       "enable_private_messages": true
     },
     "class": "Context"

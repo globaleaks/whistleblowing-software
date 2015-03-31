@@ -3,13 +3,13 @@ function($scope, $modal) {
 
   $scope.save_receiver = function(receiver, cb) {
 
-    if (receiver.gpg_key_remove == true) {
-      receiver.gpg_key_armor = '';
+    if (receiver.pgp_key_remove == true) {
+      receiver.pgp_key_public = '';
     }
 
-    if (receiver.gpg_key_armor !== undefined &&
-        receiver.gpg_key_armor != '') {
-      receiver.gpg_key_remove = false;
+    if (receiver.pgp_key_public !== undefined &&
+        receiver.pgp_key_public != '') {
+      receiver.pgp_key_remove = false;
     }
 
     var updated_receiver = new $scope.admin.receiver(receiver);

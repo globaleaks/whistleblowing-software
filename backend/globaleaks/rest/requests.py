@@ -44,50 +44,55 @@ formFieldsDict = {
 }
 
 authDict = {
-    'username' : unicode,
-    'password' : unicode,
-    'role' : unicode
+    'username': unicode,
+    'password': unicode,
+    'role': unicode
 }
 
 wbSubmissionDesc = {
-    'wb_steps' : list,
-    'context_id' : uuid_regexp,
-    'receivers' : [ uuid_regexp ],
-    'files' : [ uuid_regexp ],
-    'finalize' : bool,
+    'wb_steps': list,
+    'human_captcha_answer': int,
+    'receivers': [uuid_regexp],
+    'pgp_glkey_pub': unicode,
+    'pgp_glkey_priv': unicode
 }
 
 receiverReceiverDesc = {
-    'name' : unicode,
-    'password' : unicode,
+    'name': unicode,
+    'password': unicode,
     'old_password': unicode,
-    # 'username' : unicode, XXX at creation time is the same of mail_address
-    'mail_address' : email_regexp,
+    # 'username': unicode, XXX at creation time is the same of mail_address
+    'mail_address': email_regexp,
     # mail_address contain the 'admin' inserted mail
-    "ping_mail_address": email_regexp,
+    'ping_mail_address': email_regexp,
     # ping_mail_address is a copy of 'mail_address' if unset.
-    'description' : unicode,
-    'gpg_key_remove': bool,
-    'gpg_key_fingerprint': unicode,
-    'gpg_key_expiration': unicode,
-    'gpg_key_info': unicode,
-    'gpg_key_armor': unicode,
-    'gpg_key_status': unicode,
-    "comment_notification": bool,
-    "file_notification": bool,
+    'description': unicode,
+    'pgp_key_remove': bool,
+    'pgp_key_fingerprint': unicode,
+    'pgp_key_expiration': unicode,
+    'pgp_key_info': unicode,
+    'pgp_key_public': unicode,
+    'pgp_key_status': unicode,
+
+    #EEE
+    #'gpg_key_armor': unicode,
+    #'pgp_key_armor_priv': unicode,
+
+    'pgp_glkey_pub': unicode,
+    'pgp_glkey_priv': unicode,
     "tip_notification": bool,
-    "message_notification": bool,
     "ping_notification": bool,
-    "language": unicode,
+    #EEE
+    #"language": unicode,
     "timezone": int,
 }
 
 actorsCommentDesc = {
-    'content' : unicode,
+    'content': unicode,
 }
 
 actorsTipOpsDesc = {
-    'global_delete' : bool,
+    'global_delete': bool,
     'extend': bool,
 }
 
@@ -100,22 +105,21 @@ adminStepDesc = {
 
 adminNodeDesc = {
     'name': unicode,
-    'description' : unicode,
-    'presentation' : unicode,
+    'description': unicode,
+    'presentation': unicode,
     'footer': unicode,
     'security_awareness_title': unicode,
     'security_awareness_text': unicode,
     'whistleblowing_question': unicode,
     'whistleblowing_button': unicode,
-    'hidden_service' : hidden_service_regexp_or_empty,
-    'public_site' : https_url_regexp_or_empty,
-    'stats_update_time' : int,
-    'email' : email_regexp_or_empty, # FIXME old versions of globaleaks have an empty value
-    'password' : unicode,            # and in addition the email is not set before wizard.
-    'old_password' : unicode,
-    'languages_enabled': [ unicode ],
+    'hidden_service': hidden_service_regexp_or_empty,
+    'public_site': https_url_regexp_or_empty,
+    'email': email_regexp_or_empty, # FIXME old versions of globaleaks have an empty value
+    'password': unicode,            # and in addition the email is not set before wizard.
+    'old_password': unicode,
+    'languages_enabled': [unicode],
     'languages_supported': list,
-    'default_language' : unicode,
+    'default_language': unicode,
     'maximum_namesize': int,
     'maximum_textsize': int,
     'maximum_filesize': int,
@@ -132,6 +136,7 @@ adminNodeDesc = {
     'disable_privacy_badge': bool,
     'disable_security_awareness_badge': bool,
     'disable_security_awareness_questions': bool,
+    'disable_key_code_hint': bool,
     'configured': bool,
     'admin_language': unicode,
     'admin_timezone': int,
@@ -150,8 +155,8 @@ adminNotificationDesc = {
     'security': unicode, # 'TLS' or 'SSL' only
     'username': unicode,
     'password': unicode,
-    'source_name' : unicode,
-    'source_email' : email_regexp,
+    'source_name': unicode,
+    'source_email': email_regexp,
     'admin_anomaly_template': unicode,
     'encrypted_tip_template': unicode,
     'encrypted_tip_mail_title': unicode,
@@ -177,7 +182,8 @@ adminNotificationDesc = {
     'ping_mail_template': unicode,
     'ping_mail_title': unicode,
     'disable_admin_notification_emails': bool,
-    'disable_receivers_notification_emails': bool
+    'disable_receivers_notification_emails': bool,
+    'send_email_for_every_event': bool
 }
 
 adminContextDesc = {
@@ -187,10 +193,8 @@ adminContextDesc = {
     'postpone_superpower': bool,
     'can_delete_submission': bool,
     'maximum_selectable_receivers': int,
-    'tip_max_access' : int,
-    'tip_timetolive' : int,
-    'file_max_download' : int,
-    'receivers' : [ uuid_regexp ],
+    'tip_timetolive': int,
+    'receivers': [uuid_regexp],
     'steps': list,
     'select_all_receivers': bool,
     'show_small_cards': bool,
@@ -210,19 +214,21 @@ adminReceiverDesc = {
     'mail_address': email_regexp,
     'name': unicode,
     'description': unicode,
-    'contexts': [ uuid_regexp ],
+    'contexts': [uuid_regexp],
     'can_delete_submission': bool,
     'postpone_superpower': bool,
     'tip_notification': bool,
-    'file_notification': bool,
-    'comment_notification': bool,
-    'message_notification': bool,
-    'gpg_key_remove': bool,
-    'gpg_key_fingerprint': unicode,
-    'gpg_key_expiration': unicode,
-    'gpg_key_info': unicode,
+    'ping_notification': bool,
+    'pgp_key_remove': bool,
+    'pgp_key_fingerprint': unicode,
+    'pgp_key_expiration': unicode,
+    'pgp_key_info': unicode,
+    'pgp_key_public': unicode,
+    'pgp_key_status': unicode,
     'gpg_key_armor': unicode,
-    'gpg_key_status': unicode,
+    'pgp_key_armor_priv': unicode,
+    'pgp_glkey_pub': unicode,
+    'pgp_glkey_priv': unicode,
     'presentation_order': int,
     "language": unicode,
     "timezone": int,
@@ -235,12 +241,12 @@ anonNodeDesc = {
     'footer': unicode,
     'security_awareness_title': unicode,
     'security_awareness_text': unicode,
-    'hidden_service' : hidden_service_regexp_or_empty,
-    'public_site' : https_url_regexp_or_empty,
-    'email' : email_regexp,
-    'languages_enabled': [ unicode ],
+    'hidden_service': hidden_service_regexp_or_empty,
+    'public_site': https_url_regexp_or_empty,
+    'email': email_regexp,
+    'languages_enabled': [unicode],
     'languages_supported': list,
-    'default_language' : unicode,
+    'default_language': unicode,
     'maximum_namesize': int,
     'maximum_textsize': int,
     'maximum_filesize': int,
@@ -257,6 +263,7 @@ anonNodeDesc = {
     'disable_privacy_badge': bool,
     'disable_security_awareness_badge': bool,
     'disable_security_awareness_questions': bool,
+    'disable_key_code_hint': bool,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_tor': unicode,
     'custom_privacy_badge_none': unicode,
@@ -268,7 +275,6 @@ adminStats = {
 }
 
 TipOverview = {
-    'status': unicode,
     'context_id': uuid_regexp,
     'creation_lifetime': dateType,
     'receivertips': list,
@@ -282,17 +288,17 @@ TipOverview = {
     'expiration_date': dateType,
 }
 
-TipsOverview = [ TipOverview ]
+TipsOverview = [TipOverview]
 
 UserOverview = {
     'receivertips': list,
     'receiverfiles': list,
-    'gpg_key_status': unicode,
+    'pgp_key_status': unicode,
     'id': uuid_regexp,
     'name': unicode,
 }
 
-UsersOverview = [ UserOverview ]
+UsersOverview = [UserOverview]
 
 FileOverview = {
     'rfiles': int,
@@ -306,7 +312,7 @@ FileOverview = {
     'size': int,
 }
 
-FilesOverview = [ FileOverview ]
+FilesOverview = [FileOverview]
 
 StatsLine = {
      'file_uploaded': int,
@@ -316,27 +322,27 @@ StatsLine = {
      'creation_date': dateType,
 }
 
-StatsCollection = [ StatsLine ]
+StatsCollection = [StatsLine]
 
 AnomalyLine = {
      'message': unicode,
      'creation_date': dateType,
 }
 
-AnomaliesCollection = [ AnomalyLine ]
+AnomaliesCollection = [AnomalyLine]
 
 nodeReceiver = {
      'update_date': unicode,
      'name': unicode,
-     'contexts': [ uuid_regexp ],
+     'contexts': [uuid_regexp],
      'description': unicode,
      'presentation_order': int,
-     'gpg_key_status': unicode,
+     'pgp_key_status': unicode,
      'id': uuid_regexp,
      'creation_date': dateType,
 }
 
-nodeReceiverCollection = [ nodeReceiver ]
+nodeReceiverCollection = [nodeReceiver]
 
 # TODO - TO be removed when migration is complete
 field = {
@@ -362,14 +368,12 @@ nodeContext = {
     'show_small_cards': bool,
     'show_receivers': bool,
     'enable_private_messages': bool,
-    'file_max_download': int,
-    'tip_max_access': int,
     'id': uuid_regexp,
-    'receivers': [ uuid_regexp ],
+    'receivers': [uuid_regexp],
     'submission_disclaimer': unicode,
 }
 
-nodeContextCollection = [ nodeContext ]
+nodeContextCollection = [nodeContext]
 
 ahmiaDesc = {
     'description': unicode,
@@ -394,19 +398,17 @@ staticFileCollectionElem = {
     'filename': unicode,
 }
 
-staticFileCollection = [ staticFileCollectionElem ]
+staticFileCollection = [staticFileCollectionElem]
 
 internalTipDesc = {
     'wb_steps': list,
-    'receivers': [ uuid_regexp ],
+    'receivers': [uuid_regexp],
     'context_id': uuid_regexp,
-    'access_limit': int,
     'creation_date': dateType,
-    'mark': unicode,
+    'new': bool,
     'id': uuid_regexp,
-    'files': [ uuid_regexp ],
+    'files': [uuid_regexp],
     'expiration_date': dateType,
-    'download_limit': int,
 }
 
 FieldDesc = {
@@ -481,12 +483,12 @@ wizardNodeDesc = {
 
 wizardAppdataDesc = {
     'version': int,
-    'fields': [ wizardStepDesc ],
+    'fields': [wizardStepDesc],
     'node': wizardNodeDesc,
 }
 
 wizardFirstSetup = {
-    'receiver' : adminReceiverDesc,
-    'context' : adminContextDesc,
-    'node' : adminNodeDesc,
+    'receiver': adminReceiverDesc,
+    'context': adminContextDesc,
+    'node': adminNodeDesc,
 }

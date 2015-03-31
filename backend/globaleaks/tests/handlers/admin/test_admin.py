@@ -175,7 +175,6 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_update_context_timetolive(self):
-        self.dummyContext['submission_timetolive'] = 23 # hours
         self.dummyContext['tip_timetolive'] = 100 # days
 
         for attrname in Context.localized_strings:
@@ -184,13 +183,11 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(self.dummyContext, role='admin')
         yield handler.put(self.dummyContext['id'])
 
-        self.assertEqual(self.responses[0]['submission_timetolive'], self.dummyContext['submission_timetolive'])
         self.assertEqual(self.responses[0]['tip_timetolive'], self.dummyContext['tip_timetolive'])
 
     @inlineCallbacks
     def test_update_context_invalid_timetolive(self):
-        self.dummyContext['submission_timetolive'] = 1000 # hours
-        self.dummyContext['tip_timetolive'] = 3 # days
+        self.dummyContext['tip_timetolive'] = -3 # days
 
         for attrname in Context.localized_strings:
             self.dummyContext[attrname] = stuff
@@ -198,7 +195,7 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
         # 1000 hours are more than three days, and a Tip can't live less than a submission
         handler = self.request(self.dummyContext, role='admin')
 
-        yield self.assertFailure(handler.put(self.dummyContext['id']), errors.InvalidTipSubmCombo)
+        yield self.assertFailure(handler.put(self.dummyContext['id']), errors.InvalidTipTimeToLive)
 
     @inlineCallbacks
     def test_delete(self):

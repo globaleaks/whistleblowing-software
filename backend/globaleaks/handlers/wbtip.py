@@ -21,16 +21,16 @@ from globaleaks.rest import errors
 
 def wb_serialize_tip(internaltip, language):
     ret_dict = {
+        'id': internaltip.id,
         'context_id': internaltip.context.id,
         'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
         'last_activity' : datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
-        'download_limit' : internaltip.download_limit,
-        'access_limit' : internaltip.access_limit,
-        'mark' : internaltip.mark,
         'wb_steps' : internaltip.wb_steps,
         'enable_private_messages' : internaltip.context.enable_private_messages,
         'show_receivers': internaltip.context.show_receivers, 
+        'pgp_glkey_pub': internaltip.pgp_glkey_pub,
+        'pgp_glkey_priv': internaltip.pgp_glkey_priv,
     }
 
     # context_name and context_description are localized fields
@@ -106,7 +106,6 @@ class WBTipInstance(BaseHandler):
         """
         Parameters: None
         Response: actorsTipDesc
-        Errors: InvalidTipAuthToken
 
         Check the user id (in the whistleblower case, is authenticated and
         contain the internaltip)
@@ -159,10 +158,10 @@ def create_comment_wb(store, wb_tip_id, request):
     comment.internaltip_id = wbtip.internaltip.id
     comment.author = u'whistleblower'
     comment.type = u'whistleblower'
-    comment.mark = u'not notified'
 
     wbtip.internaltip.comments.add(comment)
 
+    store.commit()
     return wb_serialize_comment(comment)
 
 
@@ -181,7 +180,6 @@ class WBTipCommentCollection(BaseHandler):
         """
         Parameters: None
         Response: actorsCommentList
-        Errors: InvalidTipAuthToken
         """
         wb_comment_list = yield get_comment_list_wb(self.current_user.user_id)
 
@@ -195,7 +193,7 @@ class WBTipCommentCollection(BaseHandler):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc
-        Errors: InvalidTipAuthToken, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
+        Errors: InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
@@ -214,6 +212,7 @@ def get_receiver_list_wb(store, wb_tip_id, language):
 
         The returned struct contain information on read/unread messages
     """
+    receiver_list = []
 
     wb_tip = store.find(WhistleblowerTip,
                         WhistleblowerTip.id == unicode(wb_tip_id)).one()
@@ -221,77 +220,31 @@ def get_receiver_list_wb(store, wb_tip_id, language):
     if not wb_tip:
         raise errors.TipReceiptNotFound
 
-    # This part of code is used only in the short time between the first
-    # WB access and the delivery schedule. In this moment
-    # wb_tip.internaltips.receivertips is EMPTY, therefore we force
-    # the Receivers values below
+    def localize_and_append_receiver(receiver, receiver_desc):
+        mo = Rosetta(receiver.localized_strings)
+        mo.acquire_storm_object(receiver)
+        receiver_desc["description"] = mo.dump_localized_attr("description", language)
+        receiver_list.append(receiver_desc)
+
     if not wb_tip.internaltip.receivertips.count():
-        receiver_list = []
 
-        log.debug("Early access from the WB to the Tip (creation_date: %s UTC),"\
-                  " Receiver not yet present: fallback on receiver list" %
-                  datetime_to_pretty_str(wb_tip.creation_date))
-
+        # This part of code is used when receiver tips have still not been created
         for receiver in wb_tip.internaltip.receivers:
 
             # This is the reduced version of Receiver serialization
             receiver_desc = {
                 "name": receiver.name,
                 "id": receiver.id,
-                "gpg_key_status": receiver.gpg_key_status,
-                "access_counter" : 0,
-                "unread_messages" : 0,
-                "read_messages" : 0,
-                "your_messages" : 0,
-                "creation_date" : datetime_to_ISO8601(datetime_now()),
-                # XXX ReceiverTip last activity ?
+                "pgp_key_status": receiver.pgp_key_status,
+                "access_counter": 0,
+                "message_counter": 0,
+                "creation_date": datetime_to_ISO8601(datetime_now()),
+                "pgp_glkey_pub": receiver.pgp_glkey_pub,
             }
 
-            mo = Rosetta(receiver.localized_strings)
-            mo.acquire_storm_object(receiver)
-            receiver_desc["description"] = mo.dump_localized_attr("description", language)
+            localize_and_append_receiver(receiver, receiver_desc)
 
-            receiver_list.append(receiver_desc)
-
-        return receiver_list
-    else:
-        receiver_list = []
-        for rtip in wb_tip.internaltip.receivertips:
-
-
-            your_messages = store.find(Message,
-                                       Message.receivertip_id == rtip.id,
-                                       Message.type == u'whistleblower').count()
-
-            unread_messages = store.find(Message,
-                                         Message.receivertip_id == rtip.id,
-                                         Message.type == u'receiver',
-                                         Message.visualized == False).count()
-
-            read_messages = store.find(Message,
-                                       Message.receivertip_id == rtip.id,
-                                       Message.type == u'receiver',
-                                       Message.visualized == True).count()
-
-            # if you change something here, check also 20 lines before!
-            receiver_desc = {
-                "name": rtip.receiver.name,
-                "id": rtip.receiver.id,
-                "access_counter" : rtip.access_counter,
-                "unread_messages" : unread_messages,
-                "read_messages" : read_messages,
-                "your_messages" : your_messages,
-                "creation_date" : datetime_to_ISO8601(datetime_now()),
-                # XXX ReceiverTip last activity ?
-            }
-
-            mo = Rosetta(rtip.receiver.localized_strings)
-            mo.acquire_storm_object(rtip.receiver)
-            receiver_desc["description"] = mo.dump_localized_attr("description", language)
-
-            receiver_list.append(receiver_desc)
-
-        return receiver_list
+    return receiver_list
 
 
 class WBTipReceiversCollection(BaseHandler):
@@ -307,7 +260,6 @@ class WBTipReceiversCollection(BaseHandler):
         """
         Parameters: None
         Response: actorsReceiverList
-        Errors: InvalidTipAuthToken
         """
         answer = yield get_receiver_list_wb(self.current_user.user_id, self.request.language)
 
@@ -322,8 +274,7 @@ def wb_serialize_message(msg):
         'content' : msg.content,
         'visualized' : msg.visualized,
         'type' : msg.type,
-        'author' : msg.author,
-        'mark' : msg.mark
+        'author' : msg.author
     }
 
 @transact
@@ -354,7 +305,6 @@ def get_messages_content(store, wb_tip_id, receiver_id):
             log.debug("Marking as readed message [%s] from %s" % (msg.content, msg.author))
             msg.visualized = True
 
-    store.commit()
     return messages_list
 
 
@@ -383,7 +333,6 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
     msg.visualized = False
 
     msg.type = u'whistleblower'
-    msg.mark = u'not notified'
 
     try:
         store.add(msg)

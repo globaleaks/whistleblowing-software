@@ -9,10 +9,11 @@ from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, GLApiCache
+from globaleaks.handlers.node import get_public_receiver_list
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node, EventLogs
 from globaleaks.rest import requests, errors
-from globaleaks.security import change_password, gpg_options_parse
+from globaleaks.security import change_password, pgp_options_parse
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, acquire_bool, datetime_to_ISO8601, datetime_now
@@ -26,16 +27,17 @@ def receiver_serialize_receiver(receiver, language):
         "creation_date": datetime_to_ISO8601(receiver.creation_date),
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.user.username,
-        "gpg_key_info": receiver.gpg_key_info,
-        "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
-        "gpg_key_remove": False,
-        "gpg_key_armor": receiver.gpg_key_armor,
-        "gpg_key_expiration": datetime_to_ISO8601(receiver.gpg_key_expiration),
-        "gpg_key_status": receiver.gpg_key_status,
-        "tip_notification" : receiver.tip_notification,
-        "file_notification" : receiver.file_notification,
-        "comment_notification" : receiver.comment_notification,
-        "message_notification" : receiver.message_notification,
+        "pgp_key_info": receiver.pgp_key_info,
+        "pgp_key_fingerprint": receiver.pgp_key_fingerprint,
+        "pgp_key_remove": False,
+        "pgp_key_public": receiver.pgp_key_public,
+        "pgp_key_expiration": datetime_to_ISO8601(receiver.pgp_key_expiration),
+        "pgp_key_status": receiver.pgp_key_status,
+        "pgp_key_armor": receiver.pgp_key_armor,
+        "pgp_key_armor_priv": receiver.pgp_key_armor_priv,
+        "pgp_glkey_pub": receiver.pgp_glkey_pub,
+        "pgp_glkey_priv": receiver.pgp_glkey_priv,
+        "tip_notification": receiver.tip_notification,
         "ping_notification": receiver.ping_notification,
         "mail_address": receiver.mail_address,
         "ping_mail_address": receiver.ping_mail_address,
@@ -66,7 +68,6 @@ def serialize_event(evnt):
         'tip_id': evnt.receivertip_id
     }
     return ret_dict
-
 
 
 @transact_ro
@@ -120,12 +121,11 @@ def update_receiver_settings(store, receiver_id, request, language):
         receiver.ping_mail_address = ping_mail_address
 
     receiver.tip_notification = acquire_bool(request['tip_notification'])
-    receiver.message_notification = acquire_bool(request['message_notification'])
-    receiver.comment_notification = acquire_bool(request['comment_notification'])
-    receiver.file_notification = acquire_bool(request['file_notification'])
-    receiver.ping_notification = acquire_bool(request['ping_notification'])
 
-    gpg_options_parse(receiver, request)
+    pgp_options_parse(receiver, request)
+    #TODO: validate armored pgp keys
+    receiver.pgp_glkey_pub = request['pgp_glkey_pub']
+    receiver.pgp_glkey_priv = request['pgp_glkey_priv']
 
     return receiver_serialize_receiver(receiver, language)
 
@@ -147,7 +147,7 @@ class ReceiverInstance(BaseHandler):
         """
         Parameters: None
         Response: receiverReceiverDesc
-        Errors: TipIdNotFound, InvalidInputFormat, InvalidTipAuthToken
+        Errors: TipIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
 
         receiver_status = yield get_receiver_settings(self.current_user.user_id,
@@ -165,12 +165,17 @@ class ReceiverInstance(BaseHandler):
         Parameters: None
         Request: receiverReceiverDesc
         Response: receiverReceiverDesc
-        Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidTipAuthToken, TipIdNotFound
+        Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidAuthentication, TipIdNotFound
         """
         request = self.validate_message(self.request.body, requests.receiverReceiverDesc)
 
         receiver_status = yield update_receiver_settings(self.current_user.user_id,
             request, self.request.language)
+
+        # get the updated list of receivers, and update the cache
+        public_receivers_list = yield get_public_receiver_list(self.request.language)
+        GLApiCache.invalidate('receivers')
+        GLApiCache.set('receivers', self.request.language, public_receivers_list)
 
         self.set_status(200)
         self.finish(receiver_status)
@@ -200,19 +205,8 @@ def get_receiver_tip_list(store, receiver_id, language):
             (ReceiverFile.internaltip_id == rtip.internaltip.id,
              ReceiverFile.receiver_id == receiver_id)).count()
 
-        your_messages = store.find(Message,
-                                   Message.receivertip_id == rtip.id,
-                                   Message.type == u'receiver').count()
-
-        unread_messages = store.find(Message,
-                                     Message.receivertip_id == rtip.id,
-                                     Message.type == u'whistleblower',
-                                     Message.visualized == False).count()
-
-        read_messages = store.find(Message,
-                                   Message.receivertip_id == rtip.id,
-                                   Message.type == u'whistleblower',
-                                   Message.visualized == True).count()
+        message_counter = store.find(Message,
+                                     Message.receivertip_id == rtip.id).count()
 
         single_tip_sum = dict({
             'id' : rtip.id,
@@ -220,11 +214,9 @@ def get_receiver_tip_list(store, receiver_id, language):
             'last_access' : datetime_to_ISO8601(rtip.last_access),
             'expiration_date' : datetime_to_ISO8601(rtip.internaltip.expiration_date),
             'access_counter': rtip.access_counter,
-            'files_number': rfiles_n,
-            'comments_number': rtip.internaltip.comments.count(),
-            'unread_messages' : unread_messages,
-            'read_messages' : read_messages,
-            'your_messages' : your_messages,
+            'file_counter': rfiles_n,
+            'comment_counter': rtip.internaltip.comments.count(),
+            'message_counter' : message_counter,
             'postpone_superpower': postpone_superpower,
             'can_delete_submission': can_delete_submission,
         })
@@ -235,10 +227,13 @@ def get_receiver_tip_list(store, receiver_id, language):
 
         preview_data = []
 
-        for s in rtip.internaltip.wb_steps:
-            for f in s['children']:
-                if f['preview']:
-                    preview_data.append(f)
+        try:
+            for s in rtip.internaltip.wb_steps:
+                for f in s['children']:
+                    if f['preview']:
+                        preview_data.append(f)
+        except:
+            preview_data = ['wb_steps_is_encrypted']
 
         single_tip_sum.update({ 'preview' : preview_data })
         rtip_summary_list.append(single_tip_sum)
@@ -259,16 +254,15 @@ class TipsCollection(BaseHandler):
         """
         Parameters: tip_auth_token
         Response: receiverTipList
-        Errors: InvalidTipAuthToken
+        Errors: InvalidAuthentication
         """
-
         answer = yield get_receiver_tip_list(self.current_user.user_id,
             self.request.language)
 
         self.set_status(200)
         self.finish(answer)
 
-@transact
+@transact_ro
 def get_receiver_notif(store, receiver_id, language):
     """
     The returned struct contains two lists, recent activities
@@ -284,43 +278,9 @@ def get_receiver_notif(store, receiver_id, language):
     }
 
     for evnt in eventlst:
-
         if evnt.event_reference['kind'] != u'Tip':
             ret['activities'].append(serialize_event(evnt))
         else:
             ret['tips'].append(serialize_event(evnt))
 
     return ret
-
-@transact
-def delete_receiver_notif(store, receiver_id):
-
-    te = store.find(EventLogs, EventLogs.receiver_id == receiver_id)
-    log.debug("Removing %d for receiver %s" % (
-        te.count(),
-        receiver_id
-    ))
-    te.remove()
-
-class NotificationCollection(BaseHandler):
-    """
-    This interface return a list of the notification for the receiver,
-    is used in the landing page, and want be a list of the recent
-    activities for the journalist/rcvr.
-    """
-
-    @transport_security_check('receiver')
-    @authenticated('receiver')
-    @inlineCallbacks
-    def get(self):
-
-        display_event = yield get_receiver_notif(self.current_user.user_id, self.request.language)
-        self.set_status(200) # Success
-        self.finish(display_event)
-
-    @inlineCallbacks
-    def delete(self):
-        # support DELETE /receiver/notification/(activities|tips) for mass-selective delete ?
-
-        yield delete_receiver_notif(self.current_user.user_id)
-        self.set_status(202) # Updated

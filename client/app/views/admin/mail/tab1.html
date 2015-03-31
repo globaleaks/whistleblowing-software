@@ -19,12 +19,21 @@
     </div>
 
     <div class="form-group">
+      <input data-ng-model="admin.notification.send_email_for_every_event" type="checkbox">
+      <label data-translate>Send an email notification for every event</label>
+      <div data-ng-show="admin.notification.send_email_for_every_event">
+        <span class="label label-success" data-translate>Enabled</span>
+        <span data-translate>An email notification will also always be sent in case the user viewed the related info through the platform.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
       <label data-translate>Source Name</label>
       <input class="form-control" data-ng-model="admin.notification.source_name" maxlength="{{node.maximum_namesize}}" type="text" />
     </div>
 
     <div class="form-group">
-      <label data-translate>Source Email</label>
+      <label data-translate>Source Email Address</label>
       <input class="form-control" name="source_email" data-ng-model="admin.notification.source_email" data-ng-pattern="email_regexp" maxlength="{{node.maximum_namesize}}" type="text" />
     </div>
     <p class="has-error" data-ng-show="notificationForm.source_email.$error.pattern">
@@ -67,14 +76,14 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>Ping Mail Title</label>
+      <label data-translate>Ping Email Title</label>
       <div>
         <input data-ng-model="admin.notification.ping_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
       </div>
     </div>
 
     <div class="form-group">
-      <label data-translate>Ping Mail Template</label>
+      <label data-translate>Ping Email Template</label>
       <div>
         <textarea data-ng-model="admin.notification.ping_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control"></textarea>
       </div>

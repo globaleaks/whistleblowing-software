@@ -15,10 +15,15 @@
       </div>
       <div class="row" data-ng-show="!node.tor2web_submission && !anonymous">
         <p class="has-error">
-          <span data-translate>You are connecting to the node without anonymity and this node supports only anonymous submissions</span>
+          <span data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</span>
         </p>
       </div>
-      <div class="row" data-ng-show="node.tor2web_submission || anonymous">
+      <div class="row" data-ng-show="!node.disk_availability">
+        <p class="has-error">
+          <span data-translate>Server temporarly unusable due to resource exhaustion; advise the Admin if you can.</span>
+        </p>
+      </div>
+      <div class="row" data-ng-show="(node.tor2web_submission || anonymous) && node.disk_availability">
         <div id="WhistleblowerSubmitBox">
           <div id="WhistleblowerSubmitBoxHeader">
             <span>{{node.whistleblowing_question}}</span>
@@ -37,7 +42,7 @@
             <div class="col-md-12">
               <div class="alert alert-danger">
                 <div>
-                  <span data-translate>Cannot Login</span>:
+                  <span data-translate>Cannot log in</span>:
                   <span data-translate>The key code is either invalid or the submission has expired.</span>
                 </div>
                 <div data-translate>Please check your key code and try again or make a new submission.</div>
@@ -48,7 +53,7 @@
       </div>
     </div>
     <div data-ng-hide="node.configured">
-      <h2 data-translate>This node is not configured.</h2>
+      <h2 data-translate>This server is not configured.</h2>
       <span data-translate>You will not be able to send a submission.</span><br />
     </div>
   </div>

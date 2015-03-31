@@ -18,7 +18,7 @@ from globaleaks.handlers.node import get_public_context_list, get_public_receive
     anon_serialize_node, anon_serialize_step
 from globaleaks import models
 from globaleaks.rest import errors, requests
-from globaleaks.security import gpg_options_parse
+from globaleaks.security import pgp_options_parse
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.third_party import rstr
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
@@ -48,7 +48,6 @@ def db_admin_serialize_node(store, language):
         "last_update": datetime_to_ISO8601(node.last_update),
         "hidden_service": node.hidden_service,
         "public_site": node.public_site,
-        "stats_update_time": node.stats_update_time,
         "email": node.email,
         "version": GLSetting.version_string,
         "languages_supported": LANGUAGES_SUPPORTED,
@@ -76,6 +75,7 @@ def db_admin_serialize_node(store, language):
         'disable_privacy_badge': node.disable_privacy_badge,
         'disable_security_awareness_badge': node.disable_security_awareness_badge,
         'disable_security_awareness_questions': node.disable_security_awareness_questions,
+        'disable_key_code_hint': node.disable_key_code_hint,
         'admin_language': admin.language,
         'admin_timezone': admin.timezone,
         'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
@@ -234,18 +234,15 @@ def admin_serialize_context(store, context, language):
     :return: a dictionary representing the serialization of the context.
     """
     steps = [anon_serialize_step(store, s, language)
-           for s in context.steps.order_by(models.Step.number)]
+                for s in context.steps.order_by(models.Step.number)]
 
     ret_dict = {
         "id": context.id,
         "creation_date": datetime_to_ISO8601(context.creation_date),
         "last_update": datetime_to_ISO8601(context.last_update),
-        "tip_max_access": context.tip_max_access,
-        "file_max_download": context.file_max_download,
         "receivers": [r.id for r in context.receivers],
         # tip expressed in day, submission in hours
         "tip_timetolive": context.tip_timetolive / (60 * 60 * 24),
-        "submission_timetolive": context.submission_timetolive / (60 * 60),
         "select_all_receivers": context.select_all_receivers,
         "postpone_superpower": context.postpone_superpower,
         "can_delete_submission": context.can_delete_submission,
@@ -281,16 +278,15 @@ def admin_serialize_receiver(receiver, language):
         "state": receiver.user.state,
         "configuration": receiver.configuration,
         "contexts": [c.id for c in receiver.contexts],
-        "gpg_key_info": receiver.gpg_key_info,
-        "gpg_key_armor": receiver.gpg_key_armor,
-        "gpg_key_remove": False,
-        "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
-        "gpg_key_expiration": datetime_to_ISO8601(receiver.gpg_key_expiration),
-        "gpg_key_status": receiver.gpg_key_status,
-        "comment_notification": receiver.comment_notification,
+        "pgp_key_info": receiver.pgp_key_info,
+        "pgp_key_public": receiver.pgp_key_public,
+        "pgp_key_remove": False,
+        "pgp_key_fingerprint": receiver.pgp_key_fingerprint,
+        "pgp_key_expiration": datetime_to_ISO8601(receiver.pgp_key_expiration),
+        "pgp_key_status": receiver.pgp_key_status,
+        "pgp_glkey_pub": receiver.pgp_glkey_pub,
+        "pgp_glkey_priv": receiver.pgp_glkey_priv,
         "tip_notification": receiver.tip_notification,
-        "file_notification": receiver.file_notification,
-        "message_notification": receiver.message_notification,
         "ping_notification": receiver.ping_notification,
         "presentation_order": receiver.presentation_order,
         "language": receiver.user.language,
@@ -365,7 +361,7 @@ def db_update_node(store, request, wizard_done, language):
 
     node.last_update = datetime_now()
 
-    db_import_memory_variables(store)
+    db_update_memory_variables(store)
 
     return db_admin_serialize_node(store, language)
 
@@ -392,23 +388,13 @@ def get_context_list(store, language):
 
 
 def acquire_context_timetolive(request):
-
-    try:
-        submission_ttl = seconds_convert(int(request['submission_timetolive']), (60 * 60), minv=1)
-    except Exception as excep:
-        log.err("Invalid timing configured for Submission: %s" % excep.message)
-        raise errors.InvalidTipTimeToLive()
-
     try:
         tip_ttl = seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), minv=1)
     except Exception as excep:
         log.err("Invalid timing configured for Tip: %s" % excep.message)
-        raise errors.InvalidSubmTimeToLive()
+        raise errors.InvalidTipTimeToLive()
 
-    if submission_ttl > tip_ttl:
-        raise errors.InvalidTipSubmCombo()
-
-    return submission_ttl, tip_ttl
+    return tip_ttl
 
 def field_is_present(store, field):
     result = store.find(models.Field,
@@ -458,8 +444,8 @@ def db_create_context(store, request, language):
                       request['maximum_selectable_receivers'])
         request['maximum_selectable_receivers'] = 0
 
-    # tip_timetolive and submission_timetolive need to be converted in seconds since hours and days
-    (context.submission_timetolive, context.tip_timetolive) = acquire_context_timetolive(request)
+    # tip_timetolive to be converted in seconds since hours and days
+    context.tip_timetolive = acquire_context_timetolive(request)
 
     c = store.add(context)
 
@@ -532,7 +518,6 @@ def db_get_context_steps(store, context_id, language):
     Returns:
         (dict) the steps associated with the context with the specified id.
     """
-
     context = store.find(models.Context, models.Context.id == context_id).one()
 
     if not context:
@@ -582,8 +567,8 @@ def update_context(store, context_id, request, language):
             raise errors.ReceiverIdNotFound
         context.receivers.add(receiver)
 
-    # tip_timetolive and submission_timetolive need to be converted in seconds since hours and days
-    (context.submission_timetolive, context.tip_timetolive) = acquire_context_timetolive(request)
+    # tip_timetolive need to be converted in seconds since hours and days
+    context.tip_timetolive = acquire_context_timetolive(request)
 
     if request['select_all_receivers']:
         if request['maximum_selectable_receivers']:
@@ -656,7 +641,6 @@ def db_create_receiver(store, request, language):
     Returns:
         (dict) the configured receiver
     """
-
     fill_localized_keys(request, models.Receiver.localized_strings, language)
 
     password = request['password']
@@ -680,8 +664,6 @@ def db_create_receiver(store, request, language):
     }
 
     receiver_user = models.User(receiver_user_dict)
-    receiver_user.last_login = datetime_null()
-    receiver_user.password_change_date = datetime_null()
     store.add(receiver_user)
 
     # ping_mail_address is duplicated at creation time from mail_address
@@ -690,8 +672,8 @@ def db_create_receiver(store, request, language):
     receiver = models.Receiver(request)
     receiver.user = receiver_user
 
-    # The various options related in manage GPG keys are used here.
-    gpg_options_parse(receiver, request)
+    # The various options related in manage PGP keys are used here.
+    pgp_options_parse(receiver, request)
 
     log.debug("Creating receiver %s" % receiver.user.username)
 
@@ -748,8 +730,8 @@ def update_receiver(store, receiver_id, request, language):
     receiver.user.state = request['state']
     receiver.user.password_change_needed = request['password_change_needed']
 
-    # The various options related in manage GPG keys are used here.
-    gpg_options_parse(receiver, request)
+    # The various options related in manage PGP keys are used here.
+    pgp_options_parse(receiver, request)
 
     receiver.user.language = request.get('language', GLSetting.memory_copy.language)
     receiver.user.timezone = request.get('timezone', GLSetting.memory_copy.default_timezone)
@@ -783,7 +765,6 @@ def update_receiver(store, receiver_id, request, language):
 
 @transact
 def delete_receiver(store, receiver_id):
-
     receiver = models.Receiver.get(store, receiver_id)
 
     if not receiver:
@@ -813,7 +794,6 @@ class NodeInstance(BaseHandler):
 
         Parameters: None
         Response: adminNodeDesc
-        Errors: NodeNotFound
         """
         node_description = yield admin_serialize_node(self.request.language)
         self.set_status(200)
@@ -922,7 +902,6 @@ class ContextInstance(BaseHandler):
 
         Updates the specified context.
         """
-
         request = self.validate_message(self.request.body,
                                         requests.adminContextDesc)
 

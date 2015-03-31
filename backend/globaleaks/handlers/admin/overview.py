@@ -20,9 +20,8 @@ from globaleaks.utils.structures import Rosetta
 @transact_ro
 def collect_tip_overview(store, language):
     tip_description_list = []
-    all_itips = store.find(models.InternalTip)
-    all_itips.order_by(Desc(models.InternalTip.creation_date))
 
+    all_itips = store.find(models.InternalTip)
     for itip in all_itips:
         tip_description = {
             "id": itip.id,
@@ -30,27 +29,22 @@ def collect_tip_overview(store, language):
             "creation_lifetime": datetime_to_ISO8601(itip.creation_date),
             "expiration_date": datetime_to_ISO8601(itip.expiration_date),
             "context_id": itip.context_id,
-            "status": itip.mark,
             "receivertips": [],
             "internalfiles": [],
             "comments": [],
+            'wb_access_counter': 0,
+            'wb_last_access': u'Never'
         }
 
         mo = Rosetta(itip.context.localized_strings)
         mo.acquire_storm_object(itip.context)
         tip_description['context_name'] = mo.dump_localized_attr('name', language)
 
-        # strip uncompleted submission, until GLClient open new submission
-        # also if no data has been supply
-        if itip.mark == u'submission':
-            continue
-
         for rtip in itip.receivertips:
             tip_description['receivertips'].append({
                 'access_counter': rtip.access_counter,
                 'notification_date': datetime_to_ISO8601(rtip.notification_date),
                 # 'creation_date': datetime_to_ISO8601(rtip.creation_date),
-                'status': rtip.mark,
                 'receiver_id': rtip.receiver.id,
                 'receiver_username': rtip.receiver.user.username,
                 'receiver_name': rtip.receiver.name,
@@ -61,7 +55,6 @@ def collect_tip_overview(store, language):
             tip_description['internalfiles'].append({
                 'name': ifile.name,
                 'size': ifile.size,
-                'status': ifile.mark,
                 'content_type': ifile.content_type
             })
 
@@ -80,10 +73,6 @@ def collect_tip_overview(store, language):
                 'wb_access_counter': wbtip.access_counter,
                 'wb_last_access': datetime_to_ISO8601(wbtip.last_access)
             })
-        else:
-            tip_description.update({
-                'wb_access_counter': u'Deleted', 'wb_last_access': u'Never'
-            })
 
         tip_description_list.append(tip_description)
 
@@ -95,7 +84,6 @@ def collect_users_overview(store):
     users_description_list = []
 
     all_receivers = store.find(models.Receiver)
-
     for receiver in all_receivers:
         # all public of private infos are stripped, because know between the Admin resources
         user_description = {
@@ -103,7 +91,7 @@ def collect_users_overview(store):
             'name': receiver.name,
             'receiverfiles': [],
             'receivertips': [],
-            'gpg_key_status': receiver.gpg_key_status,
+            'pgp_key_status': receiver.pgp_key_status,
         }
 
         rcvr_files = store.find(models.ReceiverFile, models.ReceiverFile.receiver_id == receiver.id )
@@ -118,14 +106,12 @@ def collect_users_overview(store):
                 'file_name': rfile.internalfile.name,
                 'downloads': rfile.downloads,
                 'last_access': datetime_to_ISO8601(rfile.last_access),
-                'status': rfile.mark,
             })
 
         rcvr_tips = store.find(models.ReceiverTip, models.ReceiverTip.receiver_id == receiver.id )
         for rtip in rcvr_tips:
             user_description['receivertips'].append({
                 'internaltip_id': rtip.id,
-                'status': rtip.mark,
                 'last_access': datetime_to_ISO8601(rtip.last_access),
                 'notification_date': datetime_to_ISO8601(rtip.notification_date),
                 'access_counter': rtip.access_counter
@@ -149,7 +135,6 @@ def collect_files_overview(store):
 
     # ifile evaluation
     for ifile in stored_ifiles:
-
         file_desc = {
             'id': ifile.id,
             'name': ifile.name,
@@ -158,15 +143,14 @@ def collect_files_overview(store):
             'itip': ifile.internaltip_id,
             'creation_date': datetime_to_ISO8601(ifile.creation_date),
             'rfiles': 0,
-            'stored': None,
+            'stored': False,
             'path': '',
         }
 
         file_desc['rfiles'] = store.find(models.ReceiverFile,
                                          models.ReceiverFile.internalfile_id == ifile.id).count()
 
-        if os.path.isfile(ifile.file_path):
-
+        if ifile.file_path != '' and os.path.isfile(ifile.file_path):
             file_desc['stored'] = True
             file_desc['path'] = ifile.file_path
 
@@ -178,18 +162,10 @@ def collect_files_overview(store):
             if filename in disk_files:
                 disk_files.remove(filename)
 
-        else:
-            if ifile.mark == 'ready': # is the status userd by plaintext files
-                log.err("InternalFile %s references a not existent file: %s" %
-                        (file_desc['id'], ifile.file_path) )
-
-            file_desc['stored'] = False
-
         file_description_list.append(file_desc)
 
     # remaining files are checked for rfile presence
     for rfile in stored_rfiles:
-
         file_desc = {
             'id': rfile.internalfile.id,
             'name': rfile.internalfile.name,
@@ -198,12 +174,11 @@ def collect_files_overview(store):
             'itip': rfile.internaltip_id,
             'creation_date': datetime_to_ISO8601(rfile.internalfile.creation_date),
             'rfiles': 1,
-            'stored': None,
+            'stored': False,
             'path': '',
         }
 
         if os.path.isfile(rfile.file_path):
-
             file_desc['stored'] = True
             file_desc['path'] = rfile.file_path
 
@@ -214,12 +189,6 @@ def collect_files_overview(store):
 
             if filename in disk_files:
                 disk_files.remove(filename)
-
-        else:
-            if rfile.internalfile.mark == 'encrypted' or rfile.internalfile.mark == 'reference':
-                log.err("ReceiverFile %s references a not existent file: %s" %
-                        (file_desc['id'], rfile.file_path) )
-            file_desc['stored'] = False
 
         file_description_list.append(file_desc)
 

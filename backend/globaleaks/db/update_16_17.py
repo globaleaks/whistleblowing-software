@@ -14,7 +14,7 @@ from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model, Field, Step
 from globaleaks.utils.utility import datetime_null, every_language
-from globaleaks.security import GLBGPG
+from globaleaks.security import GLBPGP
 
 class Node_v_16(Model):
     __storm_table__ = 'node'
@@ -209,7 +209,7 @@ class Replacer1617(TableReplacer):
     def migrate_Receiver(self):
         print "%s Receiver migration assistant" % self.std_fancy
 
-        gpgobj = GLBGPG()
+        gpgobj = GLBPGP()
 
         old_receivers = self.store_old.find(self.get_right_model("Receiver", 16))
 

@@ -35,19 +35,23 @@ class Templating(object):
         TODO research on integration of http://docs.python.org/2/library/email
         """
 
-        supported_event_types = { u'encrypted_tip' : EncryptedTipKeyword,
-                                  u'plaintext_tip' : TipKeyword,
-                                  # different events, some classes
-                                  u'encrypted_file' : EncryptedFileKeyword,
-                                  u'plaintext_file' : FileKeyword,
-                                  u'encrypted_comment' : EncryptedCommentKeyword,
-                                  u'plaintext_comment' : CommentKeyword,
-                                  u'encrypted_message' : EncryptedMessageKeyword,
-                                  u'plaintext_message' : MessageKeyword,
-                                  u'zip_collection' : ZipFileKeyword,
-                                  u'ping_mail' : PingMailKeyword,
+        supported_event_types = {
+                                  u'encrypted_tip': EncryptedTipKeyword,
+                                  u'plaintext_tip': TipKeyword,
+                                  u'encrypted_file': EncryptedFileKeyword,
+                                  u'plaintext_file': FileKeyword,
+                                  u'encrypted_comment': EncryptedCommentKeyword,
+                                  u'plaintext_comment': CommentKeyword,
+                                  u'encrypted_message': EncryptedMessageKeyword,
+                                  u'plaintext_message': MessageKeyword,
+                                  u'zip_collection': ZipFileKeyword,
+                                  u'ping_mail': PingMailKeyword,
                                   u'admin_pgp_expiration_alert': AdminPGPAlertKeyword,
-                                  u'pgp_expiration_alert': PGPAlertKeyword
+                                  u'pgp_expiration_alert': PGPAlertKeyword,
+                                  # Upcoming expire use the same templates of Tip
+                                  # and currently only one template is defined
+                                  # considering exportable only not non sensitive info
+                                  u'upcoming_expire': TipKeyword,
                                 }
 
         if event_dicts.type not in supported_event_types.keys():
@@ -133,7 +137,12 @@ class TipKeyword(_KeyWord):
         '%TipTorURL%',
         '%TipT2WURL%',
         '%TipNum%',
-        '%EventTime%'
+        '%EventTime%',
+        '%ExpirationWatch%',
+                    # ExpirationWatch
+                    # TODO DB, like "notify 48 hours before"
+                    # can be used in template to say "will expire in 48 hours"
+        '%ExpirationDate%',
     ]
 
     def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, *x):
@@ -186,8 +195,16 @@ class TipKeyword(_KeyWord):
         return unicode(retval)
 
     def EventTime(self):
+        # XXX - This is not EventTime properly, or it is only at Tip Creation
         return ISO8601_to_pretty_str_tz(self.tip['creation_date'], float(self.receiver['timezone']))
 
+    def ExpirationDate(self):
+        # is not time zone dependent, is UTC for everyone
+        return ISO8601_to_day_str(self.tip['expiration_date'])
+
+    def ExpirationWatch(self):
+        # Express in hours, but has to be retrieved from the Receiver not from Tip.
+        return unicode(48)
 
 class EncryptedTipKeyword(TipKeyword):
 
@@ -354,10 +371,10 @@ class ZipFileKeyword(TipKeyword):
         self.zip = zip_desc
 
     def FileList(self):
-        return dump_file_list(self.zip['files'], self.zip['files_number'])
+        return dump_file_list(self.zip['files'], self.zip['file_counter'])
 
     def FilesNumber(self):
-        return str(self.zip['files_number'])
+        return str(self.zip['file_counter'])
 
     def TotalSize(self):
         return str(self.zip['total_size'])
@@ -407,9 +424,14 @@ class AdminPGPAlertKeyword(_KeyWord):
     def PGPKeyInfoList(self):
         ret = ""
         for r in self.alert['expired_or_expiring']:
+            if r['pgp_key_fingerprint']:
+                key = r['pgp_key_fingerprint'][:7]
+            else:
+                key = ""
+
             ret += "\t%s, %s (%s)\n" % (r['name'],
-                                    r['gpg_key_fingerprint'],
-                                    ISO8601_to_day_str(r['gpg_key_expiration']))
+                                    key,
+                                    ISO8601_to_day_str(r['pgp_key_expiration']))
         return ret
 
 
@@ -426,5 +448,9 @@ class PGPAlertKeyword(_KeyWord):
         self.keyword_list += PGPAlertKeyword.pgp_alert_keywords
 
     def PGPKeyInfo(self):
-        return "\t0x%s (%s)" % (self.receiver['gpg_key_fingerprint'][:7],
-                                ISO8601_to_day_str(self.receiver['gpg_key_expiration']))
+        if self.receiver['pgp_key_fingerprint']:
+            key = self.receiver['pgp_key_fingerprint'][:7]
+        else:
+            key = ""
+
+        return "\t0x%s (%s)" % (key, ISO8601_to_day_str(self.receiver['pgp_key_expiration']))

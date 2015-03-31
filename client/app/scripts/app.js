@@ -68,12 +68,6 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Receiver Interface',
         header_subtitle: 'Your Tips'
       }).
-      when('/receiver/activities', {
-        templateUrl: 'views/receiver/activities.html',
-        controller: 'ReceiverNotificationCtrl',
-        header_title: 'Receiver Interface',
-        header_subtitle: 'Recent Activities'
-      }).
       when('/admin/landing', {
         templateUrl: 'views/admin/landing.html',
         controller: 'AdminCtrl',
@@ -108,7 +102,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/mail.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
-        header_subtitle: 'Mail Configuration'
+        header_subtitle: 'Email Configuration'
       }).
       when('/admin/advanced_settings', {
         templateUrl: 'views/admin/advanced.html',

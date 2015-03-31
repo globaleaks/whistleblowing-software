@@ -12,8 +12,7 @@ from globaleaks.utils.utility import log
 from globaleaks.utils.mailutils import sendmail, MIME_mail_build
 from globaleaks.utils.templating import Templating
 from globaleaks.plugins.base import Notification
-from globaleaks.security import GLBGPG
-from globaleaks.models import Receiver
+from globaleaks.security import GLBPGP
 from globaleaks.settings import GLSetting
 
 class MailNotification(Notification):
@@ -39,13 +38,10 @@ class MailNotification(Notification):
         log.debug("[%s] receiver_fields %s (with admin %s)" % ( self.__class__.__name__, receiver_fields, admin_fields))
         return True
 
-    def do_notify(self, event):
-        if not self.validate_admin_opt(event.notification_settings):
-            log.info('invalid mail settings for admin')
-            return None
 
-        # At the moment the language used is a system language, not
-        # Receiver preferences language ?
+    def get_mail_body_and_title(self, event):
+        # This function, that probably can be optimized with some kind of pattern
+        # return body and title computed for the event + template + keywords compute
         if event.type == u'encrypted_tip':
             body = Templating().format_template(
                 event.notification_settings['encrypted_tip_template'], event)
@@ -86,24 +82,45 @@ class MailNotification(Notification):
                 event.notification_settings['plaintext_message_template'], event)
             title = Templating().format_template(
                 event.notification_settings['plaintext_message_mail_title'], event)
+        elif event.type == u'upcoming_tip_expiration':
+            body = Templating().format_template(
+                event.notification_settings['tip_expiration_template'], event)
+            title = Templating().format_template(
+                event.notification_settings['tip_expiration_mail_title'], event)
         else:
-            raise NotImplementedError("At the moment, only Tip expected")
+            raise NotImplementedError("This event_type (%s) is not supported" % event.type)
+
+        return body, title
+
+
+    def do_notify(self, event):
+
+        if event.type == 'digest':
+            body = event.tip_info['body']
+            title = event.tip_info['title']
+        else:
+            body, title = self.get_mail_body_and_title(event)
+
+        if not self.validate_admin_opt(event.notification_settings):
+            log.err('Invalid Mail Settings, no mail can be deliver')
+            return None
 
         # If the receiver has encryption enabled (for notification), encrypt the mail body
-        if event.receiver_info['gpg_key_status'] == u'enabled':
+        if event.receiver_info['pgp_key_status'] == u'enabled':
 
-            gpob = GLBGPG()
+            gpob = GLBPGP()
             try:
-                gpob.load_key(event.receiver_info['gpg_key_armor'])
-                body = gpob.encrypt_message(event.receiver_info['gpg_key_fingerprint'], body)
+                gpob.load_key(event.receiver_info['pgp_key_public'])
+                body = gpob.encrypt_message(event.receiver_info['pgp_key_fingerprint'], body)
             except Exception as excep:
-                log.err("Error in GPG interface object (for %s: %s)! (notification+encryption)" %
-                        (event.receiver_info['username'], str(excep) ))
-                return None # We return None and the mail will be delayed
-                            # If GPG is enabled and the key is invalid this
-                            # is the only possiibly thing to do.
-                            # The PGP check schedule will disable the key
-                            # and alert the user and the admin
+                log.err("Error in PGP interface object (for %s: %s)! (notification+encryption)" %
+                        (event.receiver_info['username'], str(excep)))
+
+                # On this condition (PGP enabled but key invalid) the only
+                # thing to do is to return None;
+                # It will be duty of the PGP check schedule will disable the key
+                # and advise the user and the admin about that action.
+                return None
             finally:
                 # the finally statement is always called also if
                 # except contains a return or a raise
@@ -111,7 +128,6 @@ class MailNotification(Notification):
 
         receiver_mail = event.receiver_info['mail_address']
 
-        # XXX here can be catch the subject (may change if encrypted or whatever)
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
                                   GLSetting.memory_copy.notif_source_email,
                                   event.receiver_info['name'],

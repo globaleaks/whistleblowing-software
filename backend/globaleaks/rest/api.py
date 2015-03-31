@@ -13,8 +13,9 @@ from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 field_regexp = uuid_regexp
+token_string = r'([a-zA-Z0-9]{42})'
 
-# Here is created the mapping betweehn urls and the associated handler.
+# Here is created the mapping between urls and the associated handler.
 #
 # Most of th handlers conform to the following rules:
 #
@@ -28,6 +29,11 @@ field_regexp = uuid_regexp
 #    manages the get of a collection of resources
 
 spec = [
+
+    ## Some Useful Redirects ##
+    (r'/login', BaseRedirectHandler, {'url': '/#/login'}),
+    (r'/admin', BaseRedirectHandler, {'url': '/#/admin'}),
+
     ## Authentication Handler ##
     (r'/authentication', authentication.AuthenticationHandler),
 
@@ -41,8 +47,8 @@ spec = [
 
     ## Submission Handlers ##
     (r'/submission', submission.SubmissionCreate),
-    (r'/submission/' + uuid_regexp, submission.SubmissionInstance),
-    (r'/submission/' + uuid_regexp + '/file', files.FileInstance),
+    (r'/submission/' + token_string, submission.SubmissionInstance),
+    (r'/submission/' + token_string + '/file', files.FileInstance),
 
     ## Receiver Tip Handlers ##
     (r'/rtip/' + uuid_regexp, rtip.RTipInstance),
@@ -63,7 +69,6 @@ spec = [
     ## Receiver Handlers ##
     (r'/receiver/preferences', receiver.ReceiverInstance),
     (r'/receiver/tips', receiver.TipsCollection),
-    (r'/receiver/notifications', receiver.NotificationCollection),
 
     ## Admin Handlers ##
     (r'/admin/node', admin.NodeInstance),
@@ -100,9 +105,7 @@ spec = [
     (r'/styles-rtl.css', css.RTLCSSFileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
             langfiles.LanguageFileHandler, {'path': GLSetting.glclient_path}),
-    (r'/(.*)', BaseStaticFileHandler, {'path': GLSetting.glclient_path}),
 
-    ## Some Useful Redirects ##
-    (r'/login', BaseRedirectHandler, {'url': '/#/login'}),
-    (r'/admin', BaseRedirectHandler, {'url': '/#/admin'})
+    ## This Handler should remain the last one as it works like a last resort catch 'em all
+    (r'/(.*)', BaseStaticFileHandler, {'path': GLSetting.glclient_path})
 ]

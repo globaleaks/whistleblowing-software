@@ -16,7 +16,7 @@ class TestModels(helpers.TestGL):
         c = self.localization_set(self.dummyContext, models.Context, 'en')
         context = models.Context(c)
 
-        context.submission_timetolive = context.tip_timetolive = 1000
+        context.tip_timetolive = 1000
         context.description = context.name = \
             context.submission_disclaimer = \
             context.submission_introduction = {'en': 'Localized723'}
@@ -50,7 +50,7 @@ class TestModels(helpers.TestGL):
 
         receiver = models.Receiver(r)
         receiver.user = receiver_user
-        receiver.gpg_key_status = u'disabled'
+        receiver.pgp_key_status = u'disabled'
         receiver.mail_address = self.dummyReceiver_1['mail_address']
 
         store.add(receiver)
@@ -91,7 +91,7 @@ class TestModels(helpers.TestGL):
 
         context = models.Context(c)
 
-        context.submission_timetolive = context.tip_timetolive = 1000
+        context.tip_timetolive = 1000
         context.description = context.name = \
             context.submission_disclaimer = \
             context.submission_introduction = {'en': 'Localized76w'}
@@ -101,8 +101,8 @@ class TestModels(helpers.TestGL):
 
         receiver1.user = receiver_user1
         receiver2.user = receiver_user2
-        receiver1.gpg_key_status = u'disabled'
-        receiver2.gpg_key_status = u'disabled'
+        receiver1.pgp_key_status = u'disabled'
+        receiver2.pgp_key_status = u'disabled'
         receiver1.mail_address = 'x@x.it'
         receiver2.mail_address = 'x@x.it'
 
@@ -127,19 +127,19 @@ class TestModels(helpers.TestGL):
 
         receiver = models.Receiver(r)
         receiver.user = receiver_user
-        receiver.gpg_key_status = u'disabled'
+        receiver.pgp_key_status = u'disabled'
         receiver.mail_address = u'y@y.it'
 
         context1 = models.Context(c)
 
-        context1.submission_timetolive = context1.tip_timetolive = 1000
+        context1.tip_timetolive = 1000
         context1.description = context1.name = \
             context1.submission_disclaimer = \
             context1.submission_introduction = {'en': 'Valar Morghulis'}
 
         context2 = models.Context(c)
 
-        context2.submission_timetolive = context2.tip_timetolive = 1000
+        context2.tip_timetolive = 1000
         context2.description = context2.name =\
             context2.submission_disclaimer = \
             context2.submission_introduction = {'en': 'Valar Dohaeris'}

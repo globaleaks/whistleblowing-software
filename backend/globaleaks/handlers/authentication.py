@@ -20,7 +20,7 @@ from globaleaks.utils.utility import log
 from globaleaks.third_party import rstr
 
 # needed in order to allow UT override
-reactor = None
+reactor_override = None
 
 class GLSession(tempobj.TempObj):
 
@@ -33,7 +33,7 @@ class GLSession(tempobj.TempObj):
                                  GLSetting.sessions,
                                  rstr.xeger(r'[A-Za-z0-9]{42}'),
                                  GLSetting.defaults.lifetimes[user_role],
-                                 reactor)
+                                 reactor_override)
 
     def __repr__(self):
         session_string = "%s %s expire in %s" % \
@@ -111,12 +111,7 @@ def authenticated(role):
                 log.debug("Authentication OK (%s)" % cls.current_user.user_role )
                 return method_handler(cls, *args, **kwargs)
 
-            error = "Good login in wrong scope: you %s, expected %s" % \
-                    (cls.current_user.user_role, role)
-
-            log.err(error)
-
-            raise errors.InvalidScopeAuth(error)
+            raise errors.InvalidAuthentication
 
         return call_handler
     return wrapper
@@ -306,7 +301,7 @@ class AuthenticationHandler(BaseHandler):
             yield utility.deferred_sleep(delay)
 
         if role not in ['admin', 'wb', 'receiver']:
-            raise errors.InvalidInputFormat("Denied login request: invalid role requested")
+            raise errors.InvalidAuthentication
 
         if get_tor2web_header(self.request.headers):
             if not accept_tor2web(role):
@@ -328,7 +323,7 @@ class AuthenticationHandler(BaseHandler):
 
         if user_id is False:
             GLSetting.failed_login_attempts += 1
-            raise errors.InvalidAuthRequest
+            raise errors.InvalidAuthentication
 
         session = self.generate_session(user_id, role, status)
 

@@ -15,7 +15,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
     @inlineCallbacks
     def test_get(self):
@@ -112,17 +112,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
             self.assertFailure(handler.delete("unexistent_tip"), errors.TipIdNotFound)
 
-    @inlineCallbacks
-    def test_get_banned_for_too_much_accesses(self):
-        rtips_desc = yield self.get_rtips()
-
-        for rtip_desc in rtips_desc:
-            for x in range(0, 10):
-               handler = self.request(role='receiver')
-               handler.current_user.user_id = rtip_desc['receiver_id']
-               handler.get(rtip_desc['rtip_id'])
-
-            self.assertFailure(handler.get(rtip_desc['rtip_id']), errors.AccessLimitExceeded)
 
 class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = rtip.RTipCommentCollection
@@ -130,7 +119,7 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
     @inlineCallbacks
     def test_get(self):
@@ -160,7 +149,7 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
     @inlineCallbacks
     def test_get(self):
@@ -190,7 +179,7 @@ class TestRTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_submission()
+        yield self.perform_full_submission_actions()
 
     @inlineCallbacks
     def test_get(self):

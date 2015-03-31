@@ -170,10 +170,9 @@ class GLSettingsClass(object):
 
         # default timings for scheduled jobs
         self.session_management_minutes_delta = 1 # runner.py function expects minutes
-        self.cleaning_hours_delta = 6             # runner.py function expects hours
         self.notification_minutes_delta = 2       # runner.py function expects minutes
         self.delivery_seconds_delta = 20          # runner.py function expects seconds
-        self.anomaly_seconds_delta = 30           # runner.py function expects seconds
+        self.anomaly_seconds_delta = 10           # runner.py function expects seconds
         self.mailflush_minutes_delta = 5          # before change check mailflush logic and delay
 
         self.www_form_urlencoded_maximum_size = 1024
@@ -219,6 +218,11 @@ class GLSettingsClass(object):
         self.defaults.notif_port = None
         self.defaults.notif_username = None
         self.defaults.notif_security = None
+        self.defaults.notif_uses_tor = None
+
+        # this became false when, few MBs cause node to disable submissions
+        self.defaults.disk_availability = True
+        self.defaults.minimum_megabytes_required = 1024 # 1 GB, or the node is disabled
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
@@ -230,8 +234,8 @@ class GLSettingsClass(object):
         }
 
         # A lot of operations performed massively by globaleaks
-        # should avoid to fetch continously variables from the DB so that
-        # it is importatn to keep this variables in memory
+        # should avoid to fetch continuously variables from the DB so that
+        # it is important to keep this variables in memory
         #
         # To this aim a variable memory_copy is instantiated as a copy of
         # self.defaults and then initialized and updated after
@@ -249,7 +253,6 @@ class GLSettingsClass(object):
         # SOCKS default
         self.socks_host = "127.0.0.1"
         self.socks_port = 9050
-        self.tor_socks_enable = True
 
         self.notification_limit = 30
 
@@ -259,6 +262,7 @@ class GLSettingsClass(object):
         self.gid = os.getgid()
         self.start_clean = False
         self.devel_mode = False
+        self.developer_name = ''
         self.skip_wizard = False
         self.glc_path = None
 
@@ -322,8 +326,8 @@ class GLSettingsClass(object):
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.httplogfile =  os.path.abspath(os.path.join(self.log_path, "http.log"))
 
-        # gnupg path is used by GPG as temporary directory with keyring and files encryption.
-        self.gpgroot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
+        # gnupg path is used by PGP as temporary directory with keyring and files encryption.
+        self.pgproot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
 
         if self.db_type == 'sqlite':
             self.db_uri = 'sqlite:' + \
@@ -345,6 +349,13 @@ class GLSettingsClass(object):
 
     def set_devel_mode(self):
         self.devel_mode = True
+
+        # is forced by -z, but unitTest has not:
+        if not self.cmdline_options:
+            self.developer_name = u"Random GlobaLeaks Developer"
+        else:
+            self.developer_name = unicode(self.cmdline_options.developer_name)
+
         self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')
         self.static_source = os.path.join(self.root_path, 'staticdata')
@@ -410,7 +421,7 @@ class GLSettingsClass(object):
         self.accepted_hosts = list(set(self.bind_addresses + \
                                        self.cmdline_options.host_list.replace(" ", "").split(",")))
 
-        self.tor_socks_enable = not self.cmdline_options.disable_tor_socks
+        self.disable_email_torification = self.cmdline_options.disable_email_torification
 
         self.socks_host = self.cmdline_options.socks_host
 
@@ -455,10 +466,6 @@ class GLSettingsClass(object):
             GLSetting.unchecked_tor_input['public_website'] = self.cmdline_options.public_website
         # These three option would be used in globaleaks.db.datainit.apply_cli_options()
 
-        if self.tor_socks_enable:
-            # convert socks addr in IP and perform a test connection
-            self.validate_socks()
-
         if self.cmdline_options.user and self.cmdline_options.group:
             self.user = self.cmdline_options.user
             self.group = self.cmdline_options.group
@@ -483,8 +490,10 @@ class GLSettingsClass(object):
 
         self.working_path = self.cmdline_options.working_path
 
-        if self.cmdline_options.devel_mode:
-            print "Enabling Development Mode"
+        if self.cmdline_options.developer_name:
+            print "Enabling Development Mode for %s" %\
+                    self.cmdline_options.developer_name
+            self.developer_name = unicode(self.cmdline_options.developer_name)
             self.set_devel_mode()
 
         if self.cmdline_options.skip_wizard:
@@ -552,34 +561,6 @@ class GLSettingsClass(object):
         if libc.mlockall(2):
             print "Unable to libc.mlockall"
             quit(-1)
-
-    def validate_socks(self):
-        """
-        Convert eventually hostname to IPv4 address format and then perform
-        a test connection at them. Need to simply perform a validation of the
-        socks and their reachability
-        """
-        try:
-            ip_safe_socks_host = socket.gethostbyname(self.socks_host)
-            self.socks_host = ip_safe_socks_host
-        except Exception as excep:
-            print "Invalid host %s: %s" % (self.socks_host, excep.strerror)
-            quit(-1)
-
-        testconn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        testconn.setblocking(0)
-        testconn.settimeout(1.5) # 1.5 seconds to reach your socks
-        try:
-            testconn.connect((self.socks_host, self.socks_port))
-        except Exception as excep:
-            if hasattr(excep, 'strerror') and len(excep.strerror) > 1:
-                err_info = excep.strerror
-            else:
-                err_info = excep.message
-            print "Unable to connect to Tor socks at %s:%d (%s), disable with -d" %\
-                  (self.socks_host, self.socks_port, err_info)
-            quit(-1)
-
 
     def create_directories(self):
         """
@@ -824,7 +805,7 @@ class transact(object):
         except HTTPError as excep:
             transaction.abort()
             raise excep
-        except Exception:
+        except:
             transaction.abort()
             self.store.close()
             # propagate the exception

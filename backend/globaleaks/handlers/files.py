@@ -18,10 +18,11 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
-from globaleaks.utils.utility import log, datetime_to_ISO8601
+from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.security import access_tip, directory_traversal_check
+from globaleaks.utils.token import TokenList
 
 def serialize_file(internalfile):
 
@@ -30,8 +31,7 @@ def serialize_file(internalfile):
         'content_type' : internalfile.content_type,
         'name' : internalfile.name,
         'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-        'id' : internalfile.id,
-        'mark' : internalfile.mark,
+        'id' : internalfile.id
     }
 
     return file_desc
@@ -51,23 +51,54 @@ def serialize_receiver_file(receiverfile):
 
     return file_desc
 
+
+def serialize_memory_file(uploaded_file):
+    """
+    This is the memory version of the function register_file_db below,
+    return the file serialization used by JQueryFileUploader to display
+    information about our file.
+    """
+    return {
+        'content_type' : unicode(uploaded_file['content_type']),
+        'creation_date': datetime_to_ISO8601(uploaded_file['creation_date']),
+        'id': u'00000000-0000-0000-0000-000000000000',
+            # 'id' is ignored, TODO align API/requsts.py
+        'name' : unicode(uploaded_file['filename']),
+        'size': uploaded_file['body_len'],
+    }
+
+
 @transact
-def register_file_db(store, uploaded_file, filepath, internaltip_id):
+def register_file_db(store, uploaded_file, internaltip_id):
+    """
+    Remind: this is used only with fileApp - Tip append a new file,
+    for the submission section, we relay on Token to keep track of the
+    associated file, and in handlers/submission.py InternalFile(s) are
+    created.
+
+    :param uploaded_file: contain this struct of data:
+        {
+          'body': <closed file u'/home/qq/Dev/GlobaLeaks/backend/workingdir/files/encrypted_upload/lryZO8IlldGg3BS3.aes', mode 'w+b' at 0xb5b68498>,
+          'body_len': 667237,
+          'content_type': 'image/png',
+          'encrypted_path': u'/home/XYZ/Dev/GlobaLeaks/backend/workingdir/files/submission/lryZO8IlldGg3BS3.aes',
+          'filename': 'SteganographyIsImportant.png'
+        }
+    """
+
     internaltip = store.find(InternalTip,
                              InternalTip.id == internaltip_id).one()
 
     if not internaltip:
-        log.err("File submission register in a submission that's no more")
+        log.err("File associated to a non existent Internaltip!")
         raise errors.TipIdNotFound
 
     new_file = InternalFile()
     new_file.name = uploaded_file['filename']
-    new_file.description = ""
     new_file.content_type = uploaded_file['content_type']
-    new_file.mark = u'not processed'
     new_file.size = uploaded_file['body_len']
     new_file.internaltip_id = internaltip_id
-    new_file.file_path = filepath
+    new_file.file_path = uploaded_file['encrypted_path']
 
     store.add(new_file)
 
@@ -78,11 +109,10 @@ def register_file_db(store, uploaded_file, filepath, internaltip_id):
 
 def dump_file_fs(uploaded_file):
     """
-    @param files: a file
-    @return: a filepath linking the filename with the random
-             filename saved in the disk
+    @param files: the JQFU dict with file infos
+    @return: the uploaded_file dict, removed the old path (is moved) and updated
+            with the key 'encrypted_path', pointing to the AES encrypted file
     """
-
     encrypted_destination = os.path.join(GLSetting.submission_path,
                                          os.path.basename(uploaded_file['body_filepath']))
 
@@ -94,23 +124,14 @@ def dump_file_fs(uploaded_file):
     )
 
     shutil.move(uploaded_file['body_filepath'], encrypted_destination)
-    return encrypted_destination
 
+    # body_filepath is the tmp file path, is removed to avoid mistakes
+    uploaded_file.pop('body_filepath')
 
-@transact_ro
-def validate_itip_id(store, itip_id):
+    # update the uploaded_file dictionary to keep track of the info
+    uploaded_file['encrypted_path'] = encrypted_destination
+    return uploaded_file
 
-    itip = store.find(InternalTip,
-                      InternalTip.id == itip_id).one()
-
-    if not itip:
-        raise errors.SubmissionIdNotFound
-
-    if itip.mark != u'submission':
-        log.err("Denied access on a concluded submission")
-        raise errors.SubmissionConcluded
-
-    return True
 
 @transact_ro
 def get_itip_id_by_wbtip_id(store, wb_tip_id):
@@ -119,52 +140,47 @@ def get_itip_id_by_wbtip_id(store, wb_tip_id):
                         WhistleblowerTip.id == wb_tip_id).one()
 
     if not wb_tip:
-        raise errors.InvalidTipAuthToken
+        raise errors.InvalidAuthentication
 
     return wb_tip.internaltip.id
 
 
-class FileHandler(BaseHandler):
+# This is different from FileInstance, just because there are a different authentication requirements
+class FileAdd(BaseHandler):
+    """
+    WhistleBlower interface for upload a new file in an already completed submission
+    """
 
     @inlineCallbacks
-    def handle_file_upload(self, itip_id):
+    def handle_file_append(self, itip_id):
         result_list = []
 
-        # measure the operation of all the files (via browser can be selected
-        # more than 1), because all files are delivered in the same time.
         start_time = time.time()
 
         uploaded_file = self.request.body
-
         uploaded_file['body'].avoid_delete()
         uploaded_file['body'].close()
 
         try:
             # First: dump the file in the filesystem,
             # and exception raised here would prevent the InternalFile recordings
-            filepath = yield threads.deferToThread(dump_file_fs, uploaded_file)
+            uploaded_file = yield threads.deferToThread(dump_file_fs, uploaded_file)
         except Exception as excep:
             log.err("Unable to save a file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
         try:
             # Second: register the file in the database
-            registered_file = yield register_file_db(uploaded_file, filepath, itip_id)
+            registered_file = yield register_file_db(uploaded_file, itip_id)
         except Exception as excep:
-            log.err("Unable to register file in DB: %s" % excep)
+            log.err("Unable to register (append) file in DB: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
 
         registered_file['elapsed_time'] = time.time() - start_time
+
         result_list.append(registered_file)
 
         self.set_status(201) # Created
-        self.write({'files': result_list})
-
-
-# This is different from FileInstance, just because there are a different authentication requirements
-class FileAdd(FileHandler):
-    """
-    WhistleBlower interface for upload a new file in an already completed submission
-    """
+        self.finish({'files': result_list})
 
     @transport_security_check('wb')
     @authenticated('wb')
@@ -174,31 +190,68 @@ class FileAdd(FileHandler):
         Request: Unknown
         Response: Unknown
         Errors: TipIdNotFound
+
+        This is not manage by token, is unchanged by the D8 update,
+        because is an operation tip-established, and they can be
+        rate-limited in a different way.
         """
         itip_id = yield get_itip_id_by_wbtip_id(self.current_user.user_id)
 
-        # Call the master class method
-        yield self.handle_file_upload(itip_id)
+        yield self.handle_file_append(itip_id)
 
-class FileInstance(FileHandler):
+
+class FileInstance(BaseHandler):
     """
     WhistleBlower interface for upload a new file in a not yet completed submission
     """
 
+    @inlineCallbacks
+    def handle_file_upload(self, token):
+        # remind self: why is a list with just one element, and not a dict ?
+        result_list = []
+
+        start_time = time.time()
+
+        uploaded_file = self.request.body
+        uploaded_file['body'].avoid_delete()
+        uploaded_file['body'].close()
+
+        try:
+            # dump_file_fs return the new filepath inside the dictionary
+            uploaded_file = yield threads.deferToThread(dump_file_fs, uploaded_file)
+            uploaded_file['creation_date'] = datetime_now()
+
+            token.associate_file(uploaded_file)
+
+            registered_file = serialize_memory_file(uploaded_file)
+        except Exception as excep:
+            log.err("Unable to save file in filesystem: %s" % excep)
+            raise errors.InternalServerError("Unable to accept files")
+
+        registered_file['elapsed_time'] = time.time() - start_time
+
+        result_list.append(registered_file)
+
+        self.set_status(201) # Created
+        self.finish({'files': result_list})
+
+
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
-    def post(self, submission_id, *args):
+    def post(self, token_id):
         """
         Parameter: internaltip_id
         Request: Unknown
         Response: Unknown
-        Errors: SubmissionIdNotFound, SubmissionConcluded
+        Errors: TokenFailure
         """
-        yield validate_itip_id(submission_id)
 
-        # Call the master class method
-        yield self.handle_file_upload(submission_id)
+        token = TokenList.get(token_id)
+
+        log.debug("file upload with Token associated : %s" % token)
+
+        yield self.handle_file_upload(token)
 
 
 @transact
@@ -215,12 +268,8 @@ def download_file(store, user_id, tip_id, file_id):
     if not rfile or rfile.receiver_id != user_id:
         raise errors.FileIdNotFound
 
-    log.debug("Download of %s: %d of %d for %s" %
-              (rfile.internalfile.name, rfile.downloads,
-               rfile.internalfile.internaltip.download_limit, rfile.receiver.name))
-
-    if rfile.downloads == rfile.internalfile.internaltip.download_limit:
-        raise errors.DownloadLimitExceeded
+    log.debug("Download of file %s by receiver %s (%d)" %
+              (rfile.internalfile.id, rfile.receiver.id, rfile.downloads))
 
     rfile.downloads += 1
 
@@ -237,13 +286,6 @@ def download_all_files(store, user_id, tip_id):
 
     files_list = []
     for sf in rfiles:
-
-        if sf.downloads == sf.internalfile.internaltip.download_limit:
-            log.debug("massive file download for %s: skipped %s (limit %d reached)" % (
-                sf.receiver.name, sf.internalfile.name, sf.downloads
-            ))
-            continue
-
         sf.downloads += 1
         files_list.append(serialize_receiver_file(sf))
 
@@ -269,8 +311,6 @@ class Download(BaseHandler):
         self.set_header('Content-Disposition','attachment; filename=\"%s\"' % rfile['name'])
 
         filelocation = os.path.join(GLSetting.submission_path, rfile['path'])
-
-        directory_traversal_check(GLSetting.submission_path, filelocation)
 
         self.write_file(filelocation)
 

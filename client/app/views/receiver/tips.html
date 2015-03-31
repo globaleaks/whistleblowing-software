@@ -10,12 +10,9 @@
             </label>
             <div class="col-md-6">
             <select data-ng-model="orderProp" class="form-control">
-              <option value="creation_date" data-translate>Creation</option>
-              <option value="expiration_date" data-translate>Expiration</option>
+              <option value="creation_date" data-translate>Creation Date</option>
+              <option value="expiration_date" data-translate>Expiration Date</option>
               <option value="last_access" data-translate>Last Access</option>
-              <option value="access_counter" data-translate>Access Number</option>
-              <option value="files_number" data-translate>Files Number</option>
-              <option value="comments_number" data-translate>Comments Number</option>
               <option value="context_name" data-translate>Context Name</option>
             </select>
             </div>
@@ -38,21 +35,20 @@
       <table class="table table-bordered" id="tipList">
         <thead>
           <tr>
-            <th class="col-md-2">
+            <th class="col-md-3">
               <span data-translate>Tip</span>
             </th>
             <th class="col-md-4">
               <span data-translate>Date</span>
             </th>
-            <th class="col-md-2">
-              <span data-translate>Info</span>
+            <th class="col-md-4">
+              <span data-translate>Preview</span>
             </th>
-            <th><span data-translate>Preview</span></th>
           </tr>
         </thead>
         <tbody id="tipListTableBody" data-ng-controller="TipCtrl">
           <tr data-ng-repeat="tip in tips | orderBy:orderProp:reverse" class="{{tip.parity}}">
-            <td class="col-md-2">
+            <td class="col-md-3">
               <a data-ng-switch="tip.access_counter" href="/#/status/{{tip.id}}">
                 <span data-ng-switch-when="0" class="btn btn-success col-md-12" style="text-align: left">
                   <span class="glyphicon glyphicon-tint"></span>&nbsp;
@@ -73,11 +69,11 @@
                  popover="{{'Delete Tip (Globablly)' | translate}}" popover-placement="top" popover-trigger="mouseenter">
                 <span class="glyphicon glyphicon-trash"></span>
               </a>
-              <br /><br />
+              <br />
               <div>
                <b><span data-translate>Accesses</span>:</b>
                <span>{{tip.access_counter}}</span>
-              <div>
+              </div>
             </td>
             <td class="col-md-4">
               <div class="row">
@@ -88,7 +84,7 @@
               </div>
               <div class="row">
                 <span class="col-md-6">
-                  <b><span data-translate>Expiration</span>:</b>
+                  <b><span data-translate>Expiration Date</span>:</b>
                 </span>
                 <span class="col-md-6">{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
               </div>
@@ -99,23 +95,25 @@
                 <span class="col-md-6">{{tip.last_access | date:'dd-MM-yyyy HH:mm'}}</span>
               </div>
             </td>
-            <td class="col-md-2">
-              <div>
-                <b><span data-translate>Files</span>:</b>
-                <span>{{tip.files_number}}</span>
-              </div>
-              <div>
-                <b><span data-translate>Comments</span>:</b>
-                <span>{{tip.comments_number}}</span>
-              </div>
-            </td>
-            <td>
+            <td class="col-md-4">
               <div>
                 <b><span data-translate>Context Name</span>:</b>
                 <span>{{tip.context_name}}</span>
-              <div>
+              </div>
               <div data-ng-repeat="entry in tip.preview">
                 <b>{{entry.label}}:</b> {{entry.value}}
+              </div>
+              <div data-ng-if="tip.file_counter">
+                <b><span data-translate>Files</span>:</b>
+                <span>{{tip.file_counter}}</span>
+              </div>
+              <div data-ng-if="tip.comment_counter">
+                <b><span data-translate>Comments</span>:</b>
+                <span>{{tip.comment_counter}}</span>
+              </div>
+              <div data-ng-if="tip.message_counter">
+                <b><span data-translate>Private Messages</span>:</b>
+                <span>{{tip.message_counter}}</span>
               </div>
             </td>
           </tr>

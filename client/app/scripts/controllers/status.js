@@ -87,7 +87,7 @@ GLClient.controller('StatusCtrl',
 
           $scope.tip_unencrypted = false;
           angular.forEach(tip.receivers, function(receiver){
-            if (receiver.gpg_key_status == 'disabled' && receiver.receiver_id !== tip.receiver_id) {
+            if (receiver.pgp_key_status == 'disabled' && receiver.receiver_id !== tip.receiver_id) {
               $scope.tip_unencrypted = true;
             };
           });
@@ -99,31 +99,6 @@ GLClient.controller('StatusCtrl',
             }
           });
 
-          $scope.increaseDownloadCount = function(file) {
-            if (file.downloads < $scope.tip.download_limit) {
-              file.downloads = parseInt(file.downloads) + 1;
-            }
-          };
-
-          $scope.increaseDownloadCounts = function () {
-            for (file in $scope.tip.files) {
-              if ($scope.tip.files[file].downloads < $scope.tip.download_limit) {
-                $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
-              }
-            }
-          };
-          
-          $scope.download_all_enabled = function() {
-            download_all = false;
-      
-            for (file in $scope.tip.files) {
-              if ($scope.tip.files[file].downloads < $scope.tip.download_limit) {
-                download_all = true;
-              } 
-            }
-
-            return download_all;
-          }
         });
       });
     } else {

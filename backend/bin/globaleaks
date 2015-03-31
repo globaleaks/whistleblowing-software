@@ -142,9 +142,9 @@ GLSetting.parser.add_option("-t", "--delay", type="int",
     help="security delay threshold to prevent side channels analysis (ms) [default: 800]",
     dest="delay", default=800)
 
-GLSetting.parser.add_option("-d", "--disable-tor-socks", action='store_true',
-    help="disable Tor Socks for notifications [default: Tor enabled]",
-    dest="disable_tor_socks", default=(not GLSetting.tor_socks_enable))
+GLSetting.parser.add_option("-d", "--disable_email_torification", action='store_true',
+    help="disable email torification [default: False]",
+    dest="disable_email_torification", default=False)
 
 GLSetting.parser.add_option("-D", "--tor-dir", type="string",
     help="Tor directory, acquire hidden service and set onion.to proxy [default: None]",
@@ -178,9 +178,9 @@ GLSetting.parser.add_option("-k", "--kill", type="int",
     help="signal to send to the current globaleaks process (if exists) [default: don't kill]",
     dest="kill", default=0)
 
-GLSetting.parser.add_option("-z", "--devel-mode", action='store_true',
-    help="hack some configs and enable some additional features useful during development' [default: %default]",
-    dest="devel_mode", default=GLSetting.devel_mode)
+GLSetting.parser.add_option("-z", "--devel-mode", type='string',
+        help="hack some configs, specify your name to receive personalized exceptions' [default: %default]",
+    dest="developer_name")
 
 GLSetting.parser.add_option("-x", "--skip-wizard", action='store_true',
     help="skip globaleaks installation wizard' [default: False]",
@@ -268,7 +268,6 @@ def run_glbackend():
     else:
         print "Starting GlobaLeaks"
         try:
-
             runner.GLBaseRunner(config).run()
 
             # this is a blocking operation, until app exit

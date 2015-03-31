@@ -18,19 +18,17 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
 
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro
-from globaleaks.models import Node, Comment, ReceiverFile, Message, EventLogs
+from globaleaks.models import Node, Notification, Comment, ReceiverFile, Message, EventLogs
 from globaleaks.rest import errors
 from globaleaks.security import access_tip
 
-def receiver_serialize_internal_tip(internaltip, language):
+def receiver_serialize_tip(internaltip, language):
 
     ret_dict = {
+        'id': internaltip.id,
         'context_id': internaltip.context.id,
         'creation_date' : datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date' : datetime_to_ISO8601(internaltip.expiration_date),
-        'download_limit' : internaltip.download_limit,
-        'access_limit' : internaltip.access_limit,
-        'mark' : internaltip.mark,
         'wb_steps' : internaltip.wb_steps,
         'global_delete' : False,
         # this field "inform" the receiver of the new expiration date that can
@@ -39,6 +37,8 @@ def receiver_serialize_internal_tip(internaltip, language):
                 datetime_to_ISO8601(utc_future_date(seconds=internaltip.context.tip_timetolive)),
         'extend' : False,
         'enable_private_messages': internaltip.context.enable_private_messages,
+        'pgp_glkey_pub': internaltip.pgp_glkey_pub,
+        'pgp_glkey_priv': internaltip.pgp_glkey_priv,
     }
 
     # context_name and context_description are localized fields
@@ -106,16 +106,19 @@ def db_get_files_receiver(store, user_id, tip_id):
 def db_get_tip_receiver(store, user_id, tip_id, language):
     rtip = access_tip(store, user_id, tip_id)
 
-    # Events related to this tip and for which the email have been sent can be removed
-    eventlst = store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
-                                         EventLogs.mail_sent == True)).remove()
+    notif = store.find(Notification).one()
+    if not notif.send_email_for_every_event:
+        # Events related to this tip and for which the email have been sent can be removed
+        eventlst = store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
+                                             EventLogs.mail_sent == True)).remove()
 
-    tip_desc = receiver_serialize_internal_tip(rtip.internaltip, language)
+    tip_desc = receiver_serialize_tip(rtip.internaltip, language)
 
     # are added here because part of ReceiverTip, not InternalTip
     tip_desc['access_counter'] = rtip.access_counter
     tip_desc['id'] = rtip.id
     tip_desc['receiver_id'] = user_id
+    tip_desc['label'] = rtip.label
 
     node = store.find(Node).one()
 
@@ -135,11 +138,8 @@ def db_increment_receiver_access_count(store, user_id, tip_id):
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
 
-    if rtip.access_counter > rtip.internaltip.access_limit:
-        raise errors.AccessLimitExceeded
-
-    log.debug("Tip %s access garanted to user %s access_counter %d on limit %d" %
-              (rtip.id, rtip.receiver.name, rtip.access_counter, rtip.internaltip.access_limit))
+    log.debug("Tip %s access garanted to user %s (%d)" %
+              (rtip.id, rtip.receiver.name, rtip.access_counter))
 
     return rtip.access_counter
 
@@ -154,13 +154,12 @@ def delete_receiver_tip(store, user_id, tip_id):
 
     comment = Comment()
     comment.content = "%s personally remove from this Tip" % rtip.receiver.name
-    comment.system_content = dict({ "type" : 2,
-                                    "receiver_name" : rtip.receiver.name})
+    comment.system_content = dict({ "type": 2,
+                                    "receiver_name": rtip.receiver.name})
 
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'system' # The printed line
     comment.type = u'system'
-    comment.mark = u'not notified'
 
     rtip.internaltip.comments.add(comment)
 
@@ -228,7 +227,6 @@ def postpone_expiration_date(store, user_id, tip_id):
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'System'
     comment.type = u'system'
-    comment.mark = u'skipped'
 
     rtip.internaltip.comments.add(comment)
 
@@ -255,7 +253,7 @@ class RTipInstance(BaseHandler):
         """
         Parameters: None
         Response: actorsTipDesc
-        Errors: InvalidTipAuthToken
+        Errors: InvalidAuthentication
 
         tip_id can be a valid tip_id (Receiver case) or a random one (because is
         ignored, only authenticated user with whistleblower token can access to
@@ -343,7 +341,6 @@ def create_comment_receiver(store, user_id, tip_id, request):
     comment.internaltip_id = rtip.internaltip.id
     comment.author = rtip.receiver.name # The printed line
     comment.type = u'receiver'
-    comment.mark = u'not notified'
 
     rtip.internaltip.comments.add(comment)
 
@@ -365,7 +362,7 @@ class RTipCommentCollection(BaseHandler):
         """
         Parameters: None
         Response: actorsCommentList
-        Errors: InvalidTipAuthToken
+        Errors: InvalidAuthentication
         """
 
         comment_list = yield get_comment_list_receiver(self.current_user.user_id, tip_id)
@@ -380,7 +377,7 @@ class RTipCommentCollection(BaseHandler):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc
-        Errors: InvalidTipAuthToken, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
+        Errors: InvalidAuthentication, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
@@ -400,11 +397,12 @@ def get_receiver_list_receiver(store, user_id, tip_id, language):
     for rtip in rtip.internaltip.receivertips:
 
         receiver_desc = {
-            "gpg_key_status": rtip.receiver.gpg_key_status,
+            "pgp_key_status": rtip.receiver.pgp_key_status,
             "can_delete_submission": rtip.receiver.can_delete_submission,
             "name": unicode(rtip.receiver.name),
             "receiver_id": unicode(rtip.receiver.id),
             "access_counter": rtip.access_counter,
+            "pgp_glkey_pub": rtip.receiver.pgp_glkey_pub,
         }
 
         mo = Rosetta(rtip.receiver.localized_strings)
@@ -429,7 +427,7 @@ class RTipReceiversCollection(BaseHandler):
         """
         Parameters: None
         Response: actorsReceiverList
-        Errors: InvalidTipAuthToken
+        Errors: InvalidAuthentication
         """
         answer = yield get_receiver_list_receiver(self.current_user.user_id, tip_id, self.request.language)
 
@@ -445,8 +443,7 @@ def receiver_serialize_message(msg):
         'content' : msg.content,
         'visualized' : msg.visualized,
         'type' : msg.type,
-        'author' : msg.author,
-        'mark' : msg.mark
+        'author' : msg.author
     }
 
 @transact
@@ -477,9 +474,7 @@ def create_message_receiver(store, user_id, tip_id, request):
     msg.receivertip_id = rtip.id
     msg.author = rtip.receiver.name
     msg.visualized = False
-
     msg.type = u'receiver'
-    msg.mark = u'skipped'
 
     store.add(msg)
 
@@ -508,7 +503,7 @@ class ReceiverMsgCollection(BaseHandler):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc
-        Errors: InvalidTipAuthToken, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
+        Errors: InvalidAuthentication, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)

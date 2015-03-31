@@ -149,8 +149,7 @@ describe('POST /submission', function(){
         new_submission.context_id = contexts_ids[i];
         new_submission.receivers = receivers_ids;
         new_submission.wb_steps = fill_steps(contexts[i].steps);
-        new_submission.files = [];
-        new_submission.finalize = false;
+        new_submission.human_captcha_answer = 0,
 
         app
           .post('/submission')
@@ -209,42 +208,7 @@ describe('POST /submission/submission_id/file', function(){
   }
 })
 
-// finalize with missing receiver and empty fields must result in 412
-describe('POST /submission', function(){
-  for (var i=0; i<submission_population_order; i++) {
-    (function (i) {
-      it('responds with ', function(done){
-        submissions[i].receivers = [];
-        submissions[i].wb_steps = [];
-
-        submissions[i].finalize = 'true';
-
-        app
-          .post('/submission')
-          .send(submissions[i])
-          .set('X-XSRF-TOKEN', 'antani')
-          .set('cookie', 'XSRF-TOKEN=antani')
-          .expect('Content-Type', 'application/json')
-          .expect(412)
-          .end(function(err, res) {
-            if (err) {
-              return done(err);
-            } else {
-
-              validate_mandatory_headers(res.headers);
-
-              submissions.push(res.body);
-
-              done();
-            }
-          });
-
-      })
-    })(i);
-  }
-})
-
-describe('POST /submission', function(){
+describe('POST /submission/submission_id', function(){
   for (var i=0; i<submission_population_order; i++) {
     (function (i) {
 
@@ -252,15 +216,14 @@ describe('POST /submission', function(){
 
         submissions[i].receivers = receivers_ids;
         submissions[i].wb_steps = fill_steps(contexts[i].steps);
-        submissions[i].finalize = 'true';
 
         app
-          .post('/submission')
+          .put('/submission/' + submissions[i].id)
           .send(submissions[i])
           .set('X-XSRF-TOKEN', 'antani')
           .set('cookie', 'XSRF-TOKEN=antani')
           .expect('Content-Type', 'application/json')
-          .expect(201)
+          .expect(202)
           .end(function(err, res) {
             if (err) {
               return done(err);

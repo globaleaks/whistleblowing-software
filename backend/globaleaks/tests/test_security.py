@@ -98,8 +98,8 @@ class TestPasswordManagement(unittest.TestCase):
         self.assertRaises(errors.InvalidInputFormat, check_password_format, "12345678") #onlynumbers
         check_password_format("abcde12345")
 
-class TestFilesystemAccess(helpers.TestGL):
 
+class TestFilesystemAccess(helpers.TestGL):
     def test_directory_traversal_failure_on_relative_trusted_path_must_fail(self):
         self.assertRaises(Exception, directory_traversal_check, 'invalid/relative/trusted/path', "valid.txt")
 
@@ -111,7 +111,6 @@ class TestFilesystemAccess(helpers.TestGL):
         directory_traversal_check(GLSetting.static_path, valid_access)
 
 class TestGLSecureFiles(helpers.TestGL):
-
     def test_temporary_file(self):
         a = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
         antani = "0123456789" * 10000

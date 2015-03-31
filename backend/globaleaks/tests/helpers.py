@@ -15,8 +15,6 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 
-from gnupg import GPG
-
 # Monkeypathing for unit testing  in order to
 # prevent mail activities
 from globaleaks.utils import mailutils
@@ -30,16 +28,17 @@ from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLApiCache, GLHTTPConnection
 from globaleaks.handlers.admin import create_context, get_context, update_context, create_receiver, db_get_context_steps
 from globaleaks.handlers.admin.field import create_field
-from globaleaks.handlers.admin.notification import get_notification
-from globaleaks.handlers.submission import create_submission, update_submission, create_whistleblower_tip
-from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched, mailflush_sched
+from globaleaks.handlers.rtip import receiver_serialize_tip
+from globaleaks.handlers.wbtip import wb_serialize_tip
+from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
+from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched
 from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
-from globaleaks.plugins import notification
 from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.third_party import rstr
-from globaleaks.utils import mailutils
-from globaleaks.utils.utility import datetime_null, uuid4, log
+from globaleaks.utils import tempobj, token
+from globaleaks.utils.token import Token
+from globaleaks.utils.utility import datetime_null, log
 
 from . import TEST_DIR
 
@@ -55,17 +54,18 @@ INVALID_PASSWORD = u'antani'
 FIXTURES_PATH = os.path.join(TEST_DIR, 'fixtures')
 
 with open(os.path.join(TEST_DIR, 'keys/valid_pgp_key1.txt')) as pgp_file:
-    VALID_PGP_KEY1 = pgp_file.read()
+    VALID_PGP_KEY1 = unicode(pgp_file.read())
 
 with open(os.path.join(TEST_DIR, 'keys/valid_pgp_key2.txt')) as pgp_file:
-    VALID_PGP_KEY2 = pgp_file.read()
+    VALID_PGP_KEY2 = unicode(pgp_file.read())
 
 with open(os.path.join(TEST_DIR, 'keys/expired_pgp_key.txt')) as pgp_file:
-    EXPIRED_PGP_KEY = pgp_file.read()
+    EXPIRED_PGP_KEY = unicode(pgp_file.read())
 
 transact.tp = FakeThreadPool()
-authentication.reactor = task.Clock()
-anomaly.reactor = task.Clock()
+authentication.reactor_override = task.Clock()
+anomaly.reactor_override = task.Clock()
+token.reactor_override= task.Clock()
 
 class UTlog:
 
@@ -142,7 +142,7 @@ class TestGL(unittest.TestCase):
 
         yield import_memory_variables()
 
-        # overrid of imported memory variables
+        # override of imported memory variables
         GLSetting.memory_copy.allow_unencrypted = True
 
         anomaly.Alarm.reset()
@@ -162,14 +162,14 @@ class TestGL(unittest.TestCase):
         self.dummyReceiver_2 = self.get_dummy_receiver('receiver2') # the one with PGP
 
         if self.encryption_scenario == 'MIXED':
-            self.dummyReceiver_1['gpg_key_armor'] = None
-            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY1
+            self.dummyReceiver_1['pgp_key_public'] = None
+            self.dummyReceiver_2['pgp_key_public'] = VALID_PGP_KEY1
         elif self.encryption_scenario == 'ALL_ENCRYPTED':
-            self.dummyReceiver_1['gpg_key_armor'] = VALID_PGP_KEY1
-            self.dummyReceiver_2['gpg_key_armor'] = VALID_PGP_KEY2
+            self.dummyReceiver_1['pgp_key_public'] = VALID_PGP_KEY1
+            self.dummyReceiver_2['pgp_key_public'] = VALID_PGP_KEY2
         elif self.encryption_scenario == 'ALL_PLAINTEXT':
-            self.dummyReceiver_1['gpg_key_armor'] = None
-            self.dummyReceiver_2['gpg_key_armor'] = None
+            self.dummyReceiver_1['pgp_key_public'] = None
+            self.dummyReceiver_2['pgp_key_public'] = None
 
         self.dummyNode = dummyStuff.dummyNode
 
@@ -220,6 +220,28 @@ class TestGL(unittest.TestCase):
 
         return dummy_f
 
+    def fill_random_field_recursively(self, field, value=None):
+        if value is None:
+             field['value'] = unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))
+        else:
+            field['value'] = unicode(value)
+
+        for c in field['children']:
+            self.fill_random_field_recursively(c)
+
+    @transact
+    def fill_random_fields(self, store, context_id, value=None):
+        """
+        return randomly populated contexts associated to specified context
+        """
+        steps = db_get_context_steps(store, context_id, 'en')
+
+        for step in steps:
+            for field in step['children']:
+                self.fill_random_field_recursively(field)
+
+        return steps
+
     @defer.inlineCallbacks
     def get_dummy_submission(self, context_id):
         """
@@ -231,10 +253,10 @@ class TestGL(unittest.TestCase):
         """
         dummySubmissionDict = {}
         dummySubmissionDict['context_id'] = context_id
-        dummySubmissionDict['wb_steps'] = yield fill_random_fields(context_id)
         dummySubmissionDict['receivers'] = (yield get_context(context_id, 'en'))['receivers']
         dummySubmissionDict['files'] = []
-        dummySubmissionDict['finalize'] = False
+        dummySubmissionDict['human_captcha_answer'] = 0
+        dummySubmissionDict['wb_steps'] = yield self.fill_random_fields(context_id)
 
         defer.returnValue(dummySubmissionDict)
 
@@ -247,7 +269,7 @@ class TestGL(unittest.TestCase):
             content_type = 'application/octet'
 
         if content is None:
-            content = 'ANTANI'
+            content = 'LA VEDI LA SUPERCAZZOLA ? PREMATURA ? unicode €'
 
         temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
 
@@ -265,15 +287,31 @@ class TestGL(unittest.TestCase):
         return dummy_file
 
     @inlineCallbacks
-    def emulate_file_upload(self, associated_submission_id):
+    def emulate_file_upload(self, token, n):
+        """
+        This emulate the file upload of a incomplete submission
+        """
+        for i in range(0, n):
+            dummyFile = self.get_dummy_file()
 
-        for i in range(0,2): # we emulate a constant upload of 2 files
+            dummyFile = yield threads.deferToThread(files.dump_file_fs, dummyFile)
+            dummyFile['creation_date'] = datetime_null()
+
+            f = files.serialize_memory_file(dummyFile)
+
+            token.associate_file(dummyFile)
+
+            self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(f.keys()))
+
+    @inlineCallbacks
+    def emulate_file_append(self, tip_id, n):
+        for i in range(0, n):
 
             dummyFile = self.get_dummy_file()
 
-            relationship = yield threads.deferToThread(files.dump_file_fs, dummyFile)
+            dummyFile = yield threads.deferToThread(files.dump_file_fs, dummyFile)
             registered_file = yield files.register_file_db(
-                dummyFile, relationship, associated_submission_id,
+                dummyFile, tip_id,
             )
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
@@ -297,9 +335,9 @@ class TestGL(unittest.TestCase):
         self.assertFalse(existing, msg)
 
     @transact_ro
-    def get_finalized_submissions_ids(self, store):
+    def get_submissions_ids(self, store):
         ids = []
-        submissions = store.find(InternalTip, InternalTip.mark != u'submission')
+        submissions = store.find(InternalTip)
         for s in submissions:
             ids.append(s.id)
 
@@ -310,10 +348,11 @@ class TestGL(unittest.TestCase):
         rtips_desc = []
         rtips = store.find(ReceiverTip)
         for rtip in rtips:
-            rtips_desc.append({'rtip_id': rtip.id, 'receiver_id': rtip.receiver_id})
-
+            itip = receiver_serialize_tip(rtip.internaltip, 'en')
+            rtips_desc.append({'rtip_id': rtip.id, 'receiver_id': rtip.receiver_id, 'itip': itip})
+ 
         return rtips_desc
-
+ 
     @transact_ro
     def get_rfiles(self, store, rtip_id):
         rfiles_desc = []
@@ -331,7 +370,9 @@ class TestGL(unittest.TestCase):
             rcvrs_ids = []
             for rcvr in wbtip.internaltip.receivers:
                 rcvrs_ids.append(rcvr.id)
-            wbtips_desc.append({'wbtip_id': wbtip.id, 'wbtip_receivers': rcvrs_ids})
+
+            itip = wb_serialize_tip(wbtip.internaltip, 'en')
+            wbtips_desc.append({'wbtip_id': wbtip.id, 'wbtip_receivers': rcvrs_ids, 'itip': itip})
 
         return wbtips_desc
 
@@ -343,33 +384,12 @@ class TestGLWithPopulatedDB(TestGL):
         yield TestGL.setUp(self)
         yield self.fill_data()
 
-    def receiver_assertion(self, source_r, created_r):
+    def receiver_assertions(self, source_r, created_r):
         self.assertEqual(source_r['name'], created_r['name'], 'name')
         self.assertEqual(source_r['can_delete_submission'], created_r['can_delete_submission'], 'delete')
 
-    def context_assertion(self, source_c, created_c):
-        self.assertEqual(source_c['tip_max_access'], created_c['tip_max_access'])
-
-    @transact_ro
-    def get_rtips(self, store):
-        rtips_desc = []
-        rtips = store.find(ReceiverTip)
-        for rtip in rtips:
-            rtips_desc.append({'rtip_id': rtip.id, 'receiver_id': rtip.receiver_id})
-
-        return rtips_desc
-
-    @transact_ro
-    def get_wbtips(self, store):
-        wbtips_desc = []
-        wbtips = store.find(WhistleblowerTip)
-        for wbtip in wbtips:
-            rcvrs_ids = []
-            for rcvr in wbtip.internaltip.receivers:
-                rcvrs_ids.append(rcvr.id)
-            wbtips_desc.append({'wbtip_id': wbtip.id, 'wbtip_receivers': rcvrs_ids})
-
-        return wbtips_desc
+    def context_assertions(self, source_c, created_c):
+        self.assertEqual(source_c['show_small_cards'], created_c['show_small_cards'])
 
     @inlineCallbacks
     def fill_data(self):
@@ -414,21 +434,33 @@ class TestGLWithPopulatedDB(TestGL):
 
         yield update_context(self.dummyContext['id'], self.dummyContext, 'en')
 
-    @inlineCallbacks
-    def perform_submission(self):
+    def perform_submission_start(self):
+        self.dummyToken = Token(token_kind='submission',
+                                context_id=self.dummyContext['id'])
 
+    @inlineCallbacks
+    def perform_submission_uploads(self):
+        yield self.emulate_file_upload(self.dummyToken, 10)
+
+    @inlineCallbacks
+    def perform_submission_actions(self):
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
-        self.dummySubmission['wb_steps'] = yield fill_random_fields(self.dummyContext['id'])
-        self.dummySubmission = yield create_submission(self.dummySubmission, False, 'en')
+        self.dummySubmission['wb_steps'] = yield self.fill_random_fields(self.dummyContext['id'])
 
-        yield self.emulate_file_upload(self.dummySubmission['id'])
-        submission = yield update_submission(self.dummySubmission['id'], self.dummySubmission, True, 'en')
+        self.dummySubmission = yield create_submission(self.dummyToken,
+                                                         self.dummySubmission,
+                                                         'en')
+
         self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
 
+    @inlineCallbacks
+    def run_delivery_and_notification_scheds(self):
         yield delivery_sched.DeliverySchedule().operation()
         yield notification_sched.NotificationSchedule().operation()
 
+    @inlineCallbacks
+    def perform_post_submission_actions(self):
         commentCreation = {
             'content': 'comment!',
         }
@@ -437,9 +469,9 @@ class TestGLWithPopulatedDB(TestGL):
             'content': 'message!',
         }
 
-        rtips_desc = yield self.get_rtips()
+        self.dummyRTips = yield self.get_rtips()
 
-        for rtip_desc in rtips_desc:
+        for rtip_desc in self.dummyRTips:
             yield rtip.create_comment_receiver(rtip_desc['receiver_id'],
                                                rtip_desc['rtip_id'],
                                                commentCreation)
@@ -448,17 +480,23 @@ class TestGLWithPopulatedDB(TestGL):
                                                rtip_desc['rtip_id'],
                                                messageCreation)
 
-        wbtips_desc = yield self.get_wbtips()
+        self.dummyWBTips = yield self.get_wbtips()
 
-        for wbtip_desc in wbtips_desc:
+        for wbtip_desc in self.dummyWBTips:
             yield wbtip.create_comment_wb(wbtip_desc['wbtip_id'],
                                           commentCreation)
 
             for receiver_id in wbtip_desc['wbtip_receivers']:
                 yield wbtip.create_message_wb(wbtip_desc['wbtip_id'], receiver_id, messageCreation)
 
-        yield delivery_sched.DeliverySchedule().operation()
-        yield notification_sched.NotificationSchedule().operation()
+    @inlineCallbacks
+    def perform_full_submission_actions(self):
+        self.perform_submission_start()
+        yield self.perform_submission_uploads()
+        yield self.perform_submission_actions()
+        yield self.run_delivery_and_notification_scheds()
+        yield self.perform_post_submission_actions()
+        yield self.run_delivery_and_notification_scheds()
 
 
 class TestHandler(TestGLWithPopulatedDB):
@@ -605,29 +643,26 @@ class MockDict():
             # Email can be different from the user, but at the creation time is used
             # the same address, therefore we keep the same of dummyReceiver.username
             'mail_address': self.dummyReceiverUser['username'],
-            'ping_mail_address': '',
+            'ping_mail_address': 'giovanni.pellerano@evilaliv3.org',
             'can_delete_submission': True,
             'postpone_superpower': True,
             'contexts' : [],
             'tip_notification': True,
-            'file_notification': True,
-            'comment_notification': True,
-            'message_notification': True,
-            'ping_notification': False,
-            'gpg_key_info': u'',
-            'gpg_key_fingerprint' : u'',
-            'gpg_key_status': u'disabled',
-            'gpg_key_armor': u'',
-            'gpg_key_expiration': u'',
-            'gpg_key_remove': False,
+            'ping_notification': True,
+            'pgp_key_info': u'',
+            'pgp_key_fingerprint' : u'',
+            'pgp_key_status': u'disabled',
+            'pgp_key_public': u'',
+            'pgp_key_expiration': u'',
+            'pgp_key_remove': False,
             'presentation_order': 0,
             'timezone': 0,
             'language': u'en',
             'configuration': 'default'
         }
 
-        self.dummyReceiverGPG = copy.deepcopy(self.dummyReceiver)
-        self.dummyReceiverGPG['gpg_key_armor'] = VALID_PGP_KEY1
+        self.dummyReceiverPGP = copy.deepcopy(self.dummyReceiver)
+        self.dummyReceiverPGP['pgp_key_public'] = VALID_PGP_KEY1
 
         self.dummyFieldTemplates = [
         {
@@ -771,12 +806,8 @@ class MockDict():
             'description': u'Already localized desc',
             'steps': self.dummySteps,
             'select_all_receivers': True,
-            'tip_max_access': 10,
             # tip_timetolive is expressed in days
             'tip_timetolive': 20,
-            # submission_timetolive is expressed in hours
-            'submission_timetolive': 48,
-            'file_max_download' :1,
             'receivers' : [],
             'receiver_introduction': u'These are our receivers',
             'postpone_superpower': False,
@@ -808,7 +839,6 @@ class MockDict():
             'hidden_service':  u"http://1234567890123456.onion",
             'public_site':  u"https://globaleaks.org",
             'email':  u"email@dummy.net",
-            'stats_update_time':  2, # hours,
             'languages_supported': [], # ignored
             'languages_enabled':  [ "it" , "en" ],
             'default_language': 'en',
@@ -829,12 +859,14 @@ class MockDict():
             'ahmia': False,
             'allow_unencrypted': True,
             'allow_iframes_inclusion': False,
+            'send_email_for_every_event': False,
             'configured': False,
             'wizard_done': False,
             'custom_homepage': False,
             'disable_privacy_badge': False,
             'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
+            'disable_key_code_hint': False,
             'default_timezone': 0,
             'default_language': u'en',
             'admin_timezone': 0,
@@ -848,41 +880,6 @@ class MockDict():
             'landing_page': u'homepage'
         }
 
-
-def template_keys(first_a, second_a, name):
-
-    ret_string = '[{}]'.format(name)
-    for x in first_a:
-        ret_string += ' {}'.format(x)
-
-    ret_string += ' == '
-
-    for x in second_a:
-        ret_string += ' {}'.format(x)
-
-    return ret_string
-
-def fill_random_field_recursively(field, value=None):
-    if value is None:
-        field['value'] = unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))
-    else:
-        field['value'] = unicode(value)
-
-    for c in field['children']:
-        fill_random_field_recursively(c)
-
-@transact
-def fill_random_fields(store, context_id, value=None):
-    """
-    return randomly populated contexts associated to specified context
-    """
-    steps = db_get_context_steps(store, context_id, 'en')
-
-    for step in steps:
-        for field in step['children']:
-            fill_random_field_recursively(field)
-
-    return steps
 
 @transact
 def do_appdata_init(store):

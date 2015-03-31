@@ -36,12 +36,12 @@ var receiver = {
   language: "en",
   description: "",
   file_notification: false,
-  gpg_key_armor: "",
-  gpg_key_expiration: "",
-  gpg_key_fingerprint: "",
-  gpg_key_info: "",
-  gpg_key_remove: false,
-  gpg_key_status: "ignored",
+  pgp_key_public: "",
+  pgp_key_expiration: "",
+  pgp_key_fingerprint: "",
+  pgp_key_info: "",
+  pgp_key_remove: false,
+  pgp_key_status: "ignored",
   mail_address: "receiver1@antani.gov", // used 'Receiver N' for population
   ping_mail_address: "",
   unsecure_mail_address: "unsecure@live.com",
@@ -158,8 +158,6 @@ var context = {
   "show_small_cards":false,
   "show_receivers":true,
   "enable_private_messages":true,
-  "submission_timetolive":1,
-  "file_max_download":3,
   "select_all_receivers":true,
   "description":"XXXXX ħ ÐÐ",
   "name":"Context 1",
@@ -179,7 +177,6 @@ var context = {
   ],
   "file_required":false,
   "maximum_selectable_receivers":0,
-  "tip_max_access":500,
   "receivers": []
 }
 

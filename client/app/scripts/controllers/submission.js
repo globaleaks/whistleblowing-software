@@ -84,10 +84,6 @@ GLClient.controller('SubmissionCtrl',
 
   // Go to a defined step index
   $scope.goToStep = function(index) {
-    if ($scope.uploading) {
-      return;
-    }
-
     $scope.selection = index;
   };
 
@@ -106,24 +102,16 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.incrementStep = function() {
-    if ($scope.uploading)
-      return;
-
     if ($scope.hasNextStep()) {
       $scope.selection++;
     }
   };
 
   $scope.decrementStep = function() {
-    if ($scope.uploading)
-      return;
-
     if ($scope.hasPreviousStep()) {
       $scope.selection--;
     }
   };
-
-  $scope.uploading = false;
 
   // Watch for changes in certain variables
   $scope.$watch('submission.current_context', function () {
@@ -153,12 +141,10 @@ GLClient.controller('SubmissionCtrl',
 }]).
 controller('SubmissionStepCtrl', ['$scope', function($scope) {
   $scope.queue = $scope.queue || [];
-  $scope.files  = [];
-  $scope.indexed_files_values = {};
 }]).
 controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
   if ($scope.field.type == 'fileupload') {
-    $scope.field.value = [];
+    $scope.field.value = {};
   }
 
   $scope.getClass = function(stepIndex, fieldIndex, toplevel) {
@@ -170,73 +156,54 @@ controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $ro
   }
 
   var update_uploads_status = function(e, data) {
-    $scope.$parent.uploading = false;
+    $scope.submission.uploading = false;
     if ($scope.field.value === "") {
-      $scope.field.value = [];
+      $scope.field.value = {};
     }
     if ($scope.queue) {
-      $scope.files.slice(0, $scope.files.length);
-      return;
       $scope.queue.forEach(function (k) {
         if (!k.id) {
-          $scope.$parent.uploading = true;
+          $scope.submission.uploading = true;
         } else {
-          if ($scope.submission.current_submission.files.indexOf(k.id) === -1) {
-            $scope.submission.current_submission.files.push(k.id);
-
-            $scope.indexed_files_values[k.id] = {
-              'id': k.id,
-              'options': angular.copy($scope.field.options)
-            }
+          if (!(k.id in $scope.field.value)) {
+            $scope.field.value[k.id] = angular.copy($scope.field.options)
           }
 
-          $scope.field.value.push($scope.indexed_files_values[k.id]);
-          k.value = $scope.indexed_files_values[k.id];
-        }
-
-        if ($scope.files.indexOf(k) === -1) {
-          $scope.files.push(k);
+          k.value = $scope.field.value[k.id];
         }
       });
     }
   };
 
+  $scope.$on('fileuploadprocessstart', update_uploads_status);
   $scope.$on('fileuploadalways', update_uploads_status);
 
 }]).
 controller('ReceiptController', ['$scope', '$location', 'Authentication', 'WhistleblowerTip',
   function($scope, $location, Authentication, WhistleblowerTip) {
 
-    function reverse_receipt(r){
-      return r.split("").reverse().join("");
+    format_keycode = function(keycode) {
+      if (keycode && keycode.length == 16) {
+        ret =  keycode.substr(0, 4) + ' ' +
+               keycode.substr(4, 4) + ' ' +
+               keycode.substr(8, 4) + ' ' +
+               keycode.substr(12, 4);
+      } else {
+        ret = keycode;
+      }
+
+      return ret;
+
     }
 
-  format_keycode = function(keycode, rtl) {
-    if (keycode && keycode.length == 16) {
-      ret =  keycode.substr(0, 4) + ' ' +
-             keycode.substr(4, 4) + ' ' +
-             keycode.substr(8, 4) + ' ' +
-             keycode.substr(12, 4);
-    } else {
-      ret = keycode;
-    }
+    $scope.keycode = format_keycode(Authentication.keycode);
+    $scope.formatted_keycode = format_keycode($scope.keycode);
 
-    if (rtl) {
-      ret = reverse_receipt(ret);
-    }
+    $scope.view_tip = function (keycode) {
+      keycode = keycode.replace(/\D/g,'');
+      WhistleblowerTip(keycode, function () {
+        $location.path('/status/');
+      });
+    };
 
-    return ret;
-
-  }
-
-  $scope.keycode = format_keycode(Authentication.keycode);
-  $scope.formatted_keycode = format_keycode($scope.keycode, $scope.rtl);
-  $scope.formatted_keycode_ltr = format_keycode($scope.keycode, false);
-
-  $scope.view_tip = function (keycode) {
-    keycode = keycode.replace(/\D/g,'');
-    WhistleblowerTip(keycode, function () {
-      $location.path('/status/');
-    });
-  };
 }]);

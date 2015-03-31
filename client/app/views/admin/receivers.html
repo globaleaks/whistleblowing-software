@@ -83,7 +83,7 @@
                   <div data-ng-show="!editing">
                     <div class="col-md-6 pull-left editorHeaderTitle">{{receiver.name}}</div>
                     <div class="col-md-offset-1 col-md-5 editorHeaderButtons">
-                      <div class="pull-right" popover="{{'Click to edit, Drag to order' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                      <div class="pull-right" popover="{{'Click to edit, drag to order' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                         <i class="glyphicon glyphicon-th"></i>
                       </div>
                     </div>
@@ -181,7 +181,7 @@
                       <label data-translate>Force Password Change</label>
                       <div data-ng-show="receiver.password_change_needed">
                         <span class="label label-info">
-                          <span data-translate>now Enabled:</span>
+                          <span data-translate>Now enabled:</span>
                         </span>
                         <span data-translate>The Receiver will be forced to change its password on next login.</span>
                       </div>
@@ -263,39 +263,39 @@
                   <div class="col-md-12">
                     <div class="form-group table-bordered">
                       <input data-ng-model="receiver.postpone_superpower" type="checkbox" data-ng-disabled="node.postpone_superpower">
-                      <label data-translate>Permit the Receiver to postpone expiration date of the Tips</label>
+                      <label data-translate>Allow the Receiver to postpone expiration date of the Tips</label>
                       <div data-ng-show="receiver.postpone_superpower && !node.postpone_superpower">
                         <span class="label label-info">
-                          <span data-translate>now Enabled:</span>
+                          <span data-translate>Now enabled:</span>
                         </span>
                         <span data-translate>The Receiver will be able to postpone Tip expiration.</span>
                       </div>
                       <div data-ng-show="node.postpone_superpower">
                         <span class="label label-info">
-                           <span data-translate>now Enabled:</span>
+                           <span data-translate>Now enabled:</span>
                          </span>
-                        <span data-translate>The setting is enabled at global level.</span>
+                        <span data-translate>The setting is enabled at a global level.</span>
                       </div>
                     </div>
 
                     <div class="form-group table-bordered">
                       <input data-ng-model="receiver.can_delete_submission" type="checkbox" data-ng-disabled="node.can_delete_submission">
-                      <label data-translate>Permit the Receiver to delete Tips</label>
+                      <label data-translate>Allow the Receiver to delete Tips</label>
                       <div data-ng-show="receiver.can_delete_submission && !node.can_delete_submission">
                         <span class="label label-info">
-                          <span data-translate>now Enabled:</span>
+                          <span data-translate>Now enabled:</span>
                         </span>
                         <span data-translate>The Receiver will be able to delete Tips and their content.</span>
                       </div>
                       <div data-ng-show="node.can_delete_submission">
                         <span class="label label-info">
-                          <span data-translate>now Enabled:</span>
+                          <span data-translate>Now enabled:</span>
                         </span>
-                        <span data-translate>The setting is enabled at global level.</span>
+                        <span data-translate>The setting is enabled at a global level.</span>
                       </div>
                     </div>
 
-                    <div class="form-group" data-ng-show="receiver.gpg_key_info">
+                    <div class="form-group" data-ng-show="receiver.pgp_key_info">
                       <div class="alert alert-success">
                         <span data-translate>Encryption is enabled!</span>
                         <span data-translate>Notifications and Files will be encrypted.</span>
@@ -305,21 +305,21 @@
                         <span data-translate>PGP Key details</span>
                         <br />
                         <span data-translate>The fingerprint is:</span>
-                        <b>{{receiver.gpg_key_fingerprint}}</b>
+                        <b>{{receiver.pgp_key_fingerprint}}</b>
                       </p>
 
                       <div>
-                        <pre>{{receiver.gpg_key_info}}</pre>
+                        <pre>{{receiver.pgp_key_info}}</pre>
                       </div>
 
                       <div class="form-group table-bordered">
-                        <input data-ng-model="receiver.gpg_key_remove" type="checkbox">
+                        <input data-ng-model="receiver.pgp_key_remove" type="checkbox">
                         <label data-translate>Remove the PGP key</label>
                       </div>
 
                     </div>
 
-                    <div class="form-group" data-ng-hide="receiver.gpg_key_fingerprint">
+                    <div class="form-group" data-ng-hide="receiver.gpg_key_fingerprint" data-ng-controller="PGPConfigCtrl">
                       <div class="alert alert-danger">
                         <span data-translate>Encryption is not enabled!</span>
                         <span data-translate>Notifications and Files won't be encrypted.</span>
@@ -333,10 +333,18 @@
 
                       <div data-ng-show="send_key">
                         <br />
-                        <label data-translate>Paste the PGP Key here:</label>
-                        <textarea class="form-control" data-ng-model="receiver.gpg_key_armor"></textarea>
+                        <button class="btn btn-success" data-ng-click="generate_key()">
+                        <span data-translate>Generate PGP Keys</span>
+                        </button>
+
+                        <br />
+                        <label data-translate>PGP Keys:</label>
+                        <textarea readonly class="form-control" data-ng-model="receiver.gpg_key_armor"></textarea>
+                        <textarea readonly class="form-control" data-ng-model="receiver.pgp_key_armor_priv"></textarea>
                       </div>
+
                     </div>
+
                   </div>
                 </div>
               </div>

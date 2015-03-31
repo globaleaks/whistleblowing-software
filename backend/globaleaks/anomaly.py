@@ -10,7 +10,6 @@
 # If you want know more:
 # https://docs.google.com/a/apps.globaleaks.org/document/d/1P-uHM5K3Hhe_KD6YvARbRTuqjVOVj0VkI7qPO9aWFQw/edit
 #
-
 from twisted.internet import defer
 
 from globaleaks import models
@@ -21,18 +20,19 @@ from globaleaks.utils.utility import log, datetime_now, is_expired, \
 from globaleaks.utils.tempobj import TempObj
 
 # needed in order to allow UT override
-reactor = None
+reactor_override = None
 
 # follow the checker, they are executed from handlers/base.py
 # prepare() or flush()
 def file_upload_check(uri):
-    return uri.endswith('file')
+    # /submission/ + token_id + /file  = 59 bytes
+    return len(uri) == 59 and uri.endswith('/file')
 
 def file_append_check(uri):
     return uri == '/wbtip/upload'
 
 def submission_check(uri):
-    return uri.startswith('/submission/')
+    return uri == '/submission'
 
 def login_check(uri):
     return uri == '/authentication'
@@ -49,7 +49,10 @@ def rcvr_message_check(uri):
 def rcvr_comment_check(uri):
     return uri.startswith('/rtip/comments')
 
-# evaluate if support regexp matching - look in Cyclone function used by Api
+# This kind of check can be use for informative statistics, (not
+# security analysis) to count the user accessing to the homepage
+#def homepage_access_check(uri):
+#    return uri == '/'
 
 def failure_status_check(HTTP_code):
     # if code is missing is a failure because an Exception is raise before set
@@ -146,10 +149,17 @@ outcoming_event_monitored = [
         'status_checker': created_status_check,
         'anomaly_management': None,
         'method': 'POST'
-    }
+    },
+#    {
+#        'name': 'homepage_access',
+#        'handler_check': homepage_access_check,
+#        'status_checker': ok_status_check,
+#        'anomaly_management': None,
+#        'method': 'GET'
+#    }
+
 ]
 
-ANOMALY_WINDOW_SECONDS = 30
 
 class EventTrack(TempObj):
     """
@@ -184,8 +194,8 @@ class EventTrack(TempObj):
                          EventTrackQueue.queue,
                          self.event_id,
                          # seconds of validity:
-                         ANOMALY_WINDOW_SECONDS,
-                         reactor)
+                         GLSetting.anomaly_seconds_delta,
+                         reactor_override)
 
         self.expireCallbacks.append(self.synthesis)
 
@@ -245,6 +255,7 @@ class Alarm(object):
 
     stress_levels = {
         'disk_space' : 0,
+        'disk_message' : None,
         'activity' : 0,
     }
 
@@ -268,6 +279,7 @@ class Alarm(object):
         'wb_messages': 4,
         'receiver_comments': 3,
         'receiver_messages': 3,
+        #'homepage_access': 60,
     }
 
     # the level of the alarm in 30 seconds
@@ -286,8 +298,35 @@ class Alarm(object):
     def reset():
         Alarm.stress_levels = {
             'disk_space' : 0,
+            'disk_message' : None,
             'activity' : 0,
         }
+
+    def get_token_difficulty(self):
+        """
+        This function return the difficulty that will be enforced in the
+        token, whenever is File or Submission, here is evaluated with a dict.
+        """
+        self.difficulty_dict = {
+            'human_captcha': False,
+            'graph_captcha': False,
+            'proof_of_work': False,
+        }
+
+        # TODO make a proper assessment between pissed off users and defeated DoS
+        if Alarm.stress_levels['activity'] >= 1:
+            self.difficulty_dict['human_captcha'] = True
+
+        if Alarm.stress_levels['disk_space'] >= 1:
+            self.difficulty_dict['human_captcha'] = True
+
+        log.debug("get_token_difficulty in %s is: HC:%s, GC:%s, PoW:%s" % (
+                  self.current_time,
+                  "Y" if self.difficulty_dict['human_captcha'] else "N",
+                  "Y" if self.difficulty_dict['graph_captcha'] else "N",
+                  "Y" if self.difficulty_dict['proof_of_work'] else "N" ) )
+
+        return self.difficulty_dict
 
     @staticmethod
     @defer.inlineCallbacks
@@ -316,8 +355,10 @@ class Alarm(object):
             requests_timing.append(event_obj.request_time)
 
         if len(requests_timing) > 2:
-            log.info("worst RTT %f, best %f" %
-                     (round(max(requests_timing), 2), round(min(requests_timing), 2) )
+            log.info("In latest %d seconds: worst RTT %f, best %f" %
+                     ( GLSetting.anomaly_seconds_delta,
+                       round(max(requests_timing), 2), 
+                       round(min(requests_timing), 2) )
             )
 
         for event_name, threshold in Alarm.OUTCOMING_ANOMALY_MAP.iteritems():
@@ -327,6 +368,12 @@ class Alarm(object):
                     debug_reason = "%s[Incoming %s: %d>%d] " % \
                                    (debug_reason, event_name,
                                     current_event_matrix[event_name], threshold)
+                else:
+                    pass
+                    log.debug("[compute_activity_level] %s %d < %d: it's OK (Anomalies recorded so far %d)" % (
+                         event_name,
+                         current_event_matrix[event_name], 
+                         threshold, Alarm.number_of_anomalies) )
 
 
         previous_activity_sl = Alarm.stress_levels['activity']
@@ -371,23 +418,18 @@ class Alarm(object):
     def admin_alarm_notification(event_matrix):
         """
         This function put a mail in queue for the Admin, if the
-        configured threshold has been reached for Alarm notification.
-        TODO put a GLSetting + Admin configuration variable,
-        now is hardcoded to notice at >= 1
+        Admin notification is disable or if another Anomaly has been
+        raised in the last 15 minutes, email is not send.
         """
+        from globaleaks.handlers.admin.notification import get_notification
 
+        do_not_stress_admin_with_more_than_an_email_after_minutes = 15
+
+        # ------------------------------------------------------------------
         @transact_ro
-        def _get_node_name(store):
-            node = store.find(models.Node).one()
-            return node.email
-
-        @transact_ro
-        def _get_admin_email(store):
-            node = store.find(models.Node).one()
-            return node.email
-
-        node_name = yield _get_node_name()
-        admin_email = yield _get_admin_email()
+        def _get_admin_user_language(store):
+            admin_user = store.find(models.User, models.User.username == u'admin').one()
+            return admin_user.language
 
         @transact_ro
         def _get_message_template(store):
@@ -401,66 +443,99 @@ class Alarm(object):
             else:
                 raise Exception("Cannot find any language for admin notification")
 
-        def _aal():
+        def _activity_alarm_level():
             return "%s" % Alarm.stress_levels['activity']
 
-        def _ad():
+        def _activity_dump():
             retstr = ""
             for event, amount in event_matrix.iteritems():
                 retstr = "%s: %d\n%s" % (event, amount, retstr)
             return retstr
 
-        def _dal():
+        def _disk_alarm_level():
             return "%s" % Alarm.stress_levels['disk_space']
 
-        def _dd():
+        def _disk_dump():
             return "%s" % bytes_to_pretty_str(Alarm.latest_measured_freespace)
 
-        def _nn():
-            return "%s" % node_name
+        def _disk_status_message():
+            if Alarm.stress_levels['disk_message']:
+                return unicode(Alarm.stress_levels['disk_message'])
+            else:
+                return "Disk space OK"
 
-        message_required = False
-        if Alarm.stress_levels['activity'] >= 1:
-            message_required = True
-        if Alarm.stress_levels['disk_space'] >= 1:
-            message_required = True
-
-        if not message_required:
-            # luckly, no mail needed
-            return
+        @transact_ro
+        def _node_name(store):
+            node = store.find(models.Node).one()
+            return unicode(node.name)
 
         KeyWordTemplate = {
-            "%ActivityAlarmLevel%": _aal,
-            "%ActivityDump%": _ad,
-            "%DiskAlarmLevel%": _dal,
-            "%DiskDump%": _dd,
-            "%NodeSignature%": _nn
+            "%ActivityAlarmLevel%": _activity_alarm_level,
+            "%ActivityDump%": _activity_dump,
+            "%DiskAlarmLevel%": _disk_alarm_level,
+            "%DiskDump%": _disk_dump,
+            "%DiskErrorMessage%": _disk_status_message,
+            "%NodeName%": _node_name,
         }
+        # ------------------------------------------------------------------
 
-        message = yield _get_message_template()
-        for keyword, function in KeyWordTemplate.iteritems():
-            where = message.find(keyword)
-            message = "%s%s%s" % (
-                message[:where],
-                function(),
-                message[where + len(keyword):])
+        # Here start the Anomaly Notification code, before checking if we have to send email
+        if not (Alarm.stress_levels['activity'] or Alarm.stress_levels['disk_space']):
+            # lucky, no stress activities recorded: no mail needed
+            defer.returnValue(None)
+
+        if not GLSetting.memory_copy.admin_notif_enable:
+            # event_matrix is {} if we are here only for disk
+            log.debug("Anomaly to be reported%s, but Admin has Notification disabled" %
+                      "[%s]" % event_matrix if event_matrix else "")
+            defer.returnValue(None)
 
         if Alarm.last_alarm_email:
-            if not is_expired(Alarm.last_alarm_email, minutes=10):
-                log.debug("Alert email want be send, but the threshold of 10 minutes is not yet reached since %s" %
-                    datetime_to_ISO8601(Alarm.last_alarm_email))
-                return
+            if not is_expired(Alarm.last_alarm_email, minutes=do_not_stress_admin_with_more_than_an_email_after_minutes):
+                log.debug("Alert email want be send, but the threshold of %d minutes is not yet reached since %s" % (
+                    do_not_stress_admin_with_more_than_an_email_after_minutes, datetime_to_ISO8601(Alarm.last_alarm_email)))
+                defer.returnValue(None)
 
-        message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
+        # and now, processing the template
+        message = yield _get_message_template()
+        for keyword, templ_funct in KeyWordTemplate.iteritems():
+
+            where = message.find(keyword)
+
+            if where == -1:
+                continue
+
+            # based on the type of templ_funct, we've to use 'yield' or not
+            # cause some returns a deferred.
+            if isinstance(templ_funct, type(sendmail)):
+                content = templ_funct()
+            else:
+                content = yield templ_funct()
+
+            message = "%s%s%s" % (
+                message[:where],
+                content,
+                message[where + len(keyword):])
+
+        admin_email = yield get_node_admin_email()
+
+        admin_language = yield _get_admin_user_language()
+
+        notification_settings = yield get_notification(admin_language)
+
+        message = MIME_mail_build(GLSetting.memory_copy.notif_source_email,
                                   GLSetting.memory_copy.notif_source_email,
-                                  "Admin",
                                   admin_email,
-                                  "ALERT: Anomaly detection",
+                                  admin_email,
+                                  notification_settings['admin_anomaly_mail_title'],
                                   message)
 
-        log.debug('Alarm Email for admin: connecting to [%s:%d]' %
-                    (GLSetting.memory_copy.notif_server,
-                     GLSetting.memory_copy.notif_port) )
+        log.debug('Alarm Email for admin (%s): connecting to [%s:%d], '
+                  'the next mail should be in %d minutes' %
+                    (event_matrix,
+                     GLSetting.memory_copy.notif_server,
+                     GLSetting.memory_copy.notif_port,
+                     do_not_stress_admin_with_more_than_an_email_after_minutes) )
 
         Alarm.last_alarm_email = datetime_now()
 
@@ -474,28 +549,138 @@ class Alarm(object):
                        security=GLSetting.memory_copy.notif_security,
                        event=None)
 
-    def report_disk_usage(self, free_bytes):
+    def report_disk_usage(self, free_workdir_bytes, workdir_space_bytes, free_ramdisk_bytes):
         """
         Here in Alarm is written the threshold to say if we're in disk alarm
         or not. Therefore the function "report" the amount of free space and
         the evaluation + alarm shift is performed here.
+
+        workingdir: is performed a percentage check (at least 1% and an absolute comparison)
+        ramdisk: a 2kbytes is expected at least to store temporary encryption keys
+
+        "unusable node" threshold: happen when the space is really shitty.
+        https://github.com/globaleaks/GlobaLeaks/issues/297
+        https://github.com/globaleaks/GlobaLeaks/issues/872
         """
 
-        # Mediam alarm threshold
-        mat = Alarm._MEDIUM_DISK_ALARM * GLSetting.memory_copy.maximum_filesize
-        hat = Alarm._HIGH_DISK_ALARM * GLSetting.memory_copy.maximum_filesize
+        Alarm.latest_measured_freespace = free_workdir_bytes
 
-        Alarm.latest_measured_freespace = free_bytes
+        free_disk_megabs = free_workdir_bytes / (1024 * 1024)
+        free_workdir_string = bytes_to_pretty_str(free_workdir_bytes)
+        free_ramdisk_string = bytes_to_pretty_str(free_ramdisk_bytes)
+        avail_percentage = free_workdir_bytes / (workdir_space_bytes / 100)
+        max_workdir_string = bytes_to_pretty_str(workdir_space_bytes)
 
-        free_megabytes = free_bytes / (1000 * 1000)
+        # is kept a copy because we report a change in this status (in worst or in better)
+        past_condition = GLSetting.memory_copy.disk_availability
 
-        free_memory_str = bytes_to_pretty_str(free_bytes)
+        # Note: is not an if/elif/elif/else or we've to care about ordering,
+        # so we start setting the default condition:
+        Alarm.stress_levels['disk_space'] = 0
+        GLSetting.memory_copy.disk_availability = True
 
-        if free_megabytes < hat:
-            log.err("Warning: free space alarm (HIGH): only %s" % free_memory_str)
-            Alarm.stress_levels['disk_space'] = 2
-        elif free_megabytes < mat:
-            log.info("Warning: free space alarm (MEDIUM): %s" % free_memory_str)
-            Alarm.stress_levels['disk_space'] = 1
-        else:
-            Alarm.stress_levels['disk_space'] = 0
+        def space_condition_check(condition, info_msg, stress_level, accept_submissions):
+
+            if condition:
+
+                if stress_level == 3:
+                    info_msg = "Fatal - Submission disabled | %s" % info_msg
+                elif stress_level == 2:
+                    info_msg = "Critical - Submission can be disabled soon | %s" % info_msg
+                else: # == 1
+                    info_msg = "Warning | %s" % info_msg
+
+                log.info(info_msg)
+                Alarm.stress_levels['disk_space'] = stress_level
+                Alarm.stress_levels['disk_message'] = info_msg
+                GLSetting.memory_copy.disk_availability = accept_submissions
+
+            return condition
+
+        # is used a list starting from the worst case scenarios, when is meet
+        # a condition, the others are skipped.
+        conditions = [
+            {
+                # If percentage is <= 1%: disable the submission
+                'condition': avail_percentage <= 1,
+                'info_msg': "Disk space < 1%%: %s on %s" %
+                            (max_workdir_string, free_workdir_string),
+                'stress_level': 3,
+                'accept_submissions': False,
+            },
+            {
+                # If disk has less than the hardcoded minimum amount (1Gb)
+                'condition': free_disk_megabs <= GLSetting.defaults.minimum_megabytes_required,
+                'info_msg': "Minimum space available of %d Mb reached: (%s on %s)" %
+                            (GLSetting.defaults.minimum_megabytes_required,
+                             max_workdir_string,
+                             free_workdir_string),
+                'stress_level': 3,
+                'accept_submissions': False,
+            },
+            {
+                # If ramdisk has less than 2kbytes
+                'condition': free_ramdisk_bytes <= 2048,
+                'info_msg': "Ramdisk space not enough space (%s): required 2K" %
+                            free_ramdisk_string,
+                'stress_level': 3,
+                'accept_submissions': False,
+            },
+            {
+                # If percentage is 2% start to alert the admin on the upcoming critical situation
+                'condition': avail_percentage == 2,
+                'info_msg': "Disk space ~ 2%% (Critical when reach 1%%): %s on %s" %
+                            (max_workdir_string, free_workdir_string),
+                'stress_level': 2,
+                'accept_submissions': True,
+            },
+            {
+                # Again to avoid bad surprise, we alert the admin at (minimum disk required * 2)
+                'condition': free_disk_megabs <= (GLSetting.defaults.minimum_megabytes_required * 2),
+                'info_msg': "Minimum space available of %d Mb is near: (%s on %s)" %
+                            (GLSetting.defaults.minimum_megabytes_required,
+                             max_workdir_string,
+                             free_workdir_string),
+                'stress_level': 2,
+                'accept_submissions': True,
+            },
+            {
+                # if 5 times maximum file can be accepted
+                'condition': free_disk_megabs <= (Alarm._HIGH_DISK_ALARM * GLSetting.memory_copy.maximum_filesize),
+                'info_msg': "Disk space permit maximum of %d uploads (%s on %s)" %
+                            (Alarm._HIGH_DISK_ALARM, max_workdir_string, free_workdir_string),
+                'stress_level': 2,
+                'accept_submissions': True,
+            },
+            {
+                # if 15 times maximum file size can be accepted
+                'condition': free_disk_megabs <= (Alarm._MEDIUM_DISK_ALARM * GLSetting.memory_copy.maximum_filesize),
+                'info_msg': "Disk space permit maximum of %d uploads (%s on %s)" %
+                            (Alarm._MEDIUM_DISK_ALARM, max_workdir_string, free_workdir_string),
+                'stress_level': 1,
+                'accept_submissions': True,
+            },
+        ]
+
+        for c in conditions:
+            if space_condition_check(c['condition'], c['info_msg'],
+                                     c['stress_level'], c['accept_submissions']):
+                break
+
+        if past_condition != GLSetting.memory_copy.disk_availability:
+            # import here to avoid circular import error
+            from globaleaks.handlers.base import GLApiCache
+
+            log.info("Switching disk space availability from: %s to %s" % (
+                "True" if past_condition else "False",
+                "False" if past_condition else "True"))
+
+            # is an hack of the GLApiCache, but I can't manage a DB access here
+            GLApiCache.memory_cache_dict['node']['disk_availability'] =\
+                GLSetting.memory_copy.disk_availability
+
+# a simple utility required when something has to send an email to the Admin
+@transact_ro
+def get_node_admin_email(store):
+    node = store.find(models.Node).one()
+    return unicode(node.email)

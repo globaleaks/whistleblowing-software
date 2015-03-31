@@ -39,16 +39,16 @@ class PGPCheckSchedule(GLJob):
 
         for rcvr in rcvrs:
 
-            if rcvr.gpg_key_armor and rcvr.gpg_key_expiration != datetime_null():
-               if rcvr.gpg_key_expiration < datetime_now():
+            if rcvr.pgp_key_public and rcvr.pgp_key_expiration != datetime_null():
+               if rcvr.pgp_key_expiration < datetime_now():
                    expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSetting.memory_copy.language))
                    if node_desc['allow_unencrypted']:
                        # The PGP key status should be downgraded only if the node
                        # accept non PGP mails/files to be sent/stored.
                        # If the node wont accept this the pgp key status
                        # will remain enabled and mail won't be sent by regular flow.
-                       rcvr.gpg_key_status = u'disabled'
-               elif rcvr.gpg_key_expiration < datetime_now() - timedelta(days=15):
+                       rcvr.pgp_key_status = u'disabled'
+               elif rcvr.pgp_key_expiration < datetime_now() - timedelta(days=15):
                    expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSetting.memory_copy.language))
 
         return expired_or_expiring

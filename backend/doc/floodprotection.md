@@ -18,7 +18,7 @@ The basic measure to keep accounting, in order to avoid a node exhausted in reso
   * Every user is pissed off if has to complete captchas, wait, etc. Every anti flood technology can be fooled in some way. We've defined 8 different enhancements along all the chain, that helps admin in deal with applicative DoS. They are: anomaly detection, alerting, slow down the requests. They will be triggered depending on the amount of stress present in the box. The limit of the anonymous network, is that you cannot recognize an IP address that is performing many connections and throttling it only.
   * The solution identified  consists in reducing as much as possible the CPU/Disk operation by an interaction with an anonymous user (don't apply to receiver activities, they are considered trusted).
   * Once reduced, via statistics and anomaly detection (they will be the next merged branch) is estimated a threshold on the alert. This replace the old anomaly detection system.
-  * In the meantime, the hashcash, graphical captcha and human captcha are implemented. I'm thinking to try also a combination of two, having ['1', '+','2'] that can be image or text, supporting different numeric systems. 
+  * In the meantime, the graphical captcha and human captcha and the proof_of_work are implemented.
   * The submission and file upload handlers are updated using the captcha, and submission became an atomic operation.
   * The **stress indicator** are two:
     * Number of activities happened in the latest minute (or other time unit, checked periodically)
@@ -36,7 +36,7 @@ To accomplish a CPU/Disk Intensive Operation (CDIO) a token is needed, and a tok
 
   * in order to come back is needed a certain amount of time, the node will remain in "stress protection" for a certain amount of time (10 time the anomaly schedule, 300 seconds right now)
   * the admin is noticed about.
-  * every Token requested include an enhancement on the authentication operation (captchas, hashcash, authenticate that the person is an human)
+  * every Token requested include an enhancement on the authentication operation in order to verify humans (captchas, proof_of_work)
 
 ### Additional issue implications
 
@@ -52,19 +52,19 @@ To accomplish a CPU/Disk Intensive Operation (CDIO) a token is needed, and a tok
     end_validity: the last second which the token can be used (datetime format)
     type: comment/submission/upload, specify which kind of operation is permitted with the token
     usages: an integer, specify how many times the token can be used. for comment and submission is always 1, but our client support multiple file upload, therefore the usage for this reason can be higher (10)
-    h_captcha: human captcha, contain a question like "2+2" and is expected that answer in the token usage
-    hashcash: a time consuming problem 
-    g_captcha: a base64 image that contain a string, need to be resolved 
+    human_captcha: human captcha, contain a question like "2+2" and is expected that answer in the token usage
+    graph_captcha: a base64 image that contain a string, need to be resolved 
+    proof_of_work: time consuming problem
 
 
-The token is always used as part of the URL requested. the problem resolution (captcha, hashcash) are part of the URL too. there is not a separated validation of the token. *atomicity, root of all goods*.
+The token is always used as part of the URL requested. the problem resolution (captcha, proof_of_work) are part of the URL too. there is not a separated validation of the token. *atomicity, root of all goods*.
 
 # Current status
 
   * captcha research in progress about language, localisation.
   * unitTested the token base system (unittest and handlers)
   * captcha validation using human captcha
-  * still missing anything about hashcash
+  * still missing anything about proof_of_work
   * completed backend support for statistics, anomalies and activities (unitTest, handlers, TODO brainstorming on database)
   * research in progress for client timeline visualization, between timeline.js and d3.js
   * admin notification mail implemented, missing client side settings and mail templates.

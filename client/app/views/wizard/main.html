@@ -32,7 +32,7 @@
 
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            <span data-translate>Initiative name</span>
+            <span data-translate>Project name</span>
           </label>
           <div class="col-md-8">
             <input name="node_name" class="form-control" data-ng-model="admin.node.name" maxlength="{{node.maximum_namesize}}" type="text" required>
@@ -40,14 +40,14 @@
               <span data-translate>This field is mandatory</span>
             </div>
             <span class="help-block">
-              <span data-translate>Enter the name for your whistleblowing initiative</span>
+              <span data-translate>Enter the name for your whistleblowing project</span>
             </span>
           </div>
         </div>
 
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            <span data-translate>Initiative description</span>
+            <span data-translate>Project description</span>
           </label>
           <div class="col-md-8">
             <textarea name="node_description" class="form-control msd-elastic" data-ng-model="admin.node.description"  maxlength="{{node.maximum_textsize}}" required></textarea>
@@ -63,7 +63,7 @@
       </div>
       <div class="col-md-6">
         <p class="wizard-help-hint">
-          <span data-translate>Give your whistleblowing initiative a good name and description to invite whistleblowers to submit. Be sure to make the goals of your project clear.</span>
+          <span data-translate>Give your whistleblowing project a good name and description to invite whistleblowers to submit. Be sure to make the goals of your project clear.</span>
         </p>
       </div>
 
@@ -74,7 +74,7 @@
        <div class="col-md-6">
          <div class="form-group col-md-12">
           <label class="col-md-4">
-            <span data-translate>Email</span>
+            <span data-translate>Email Address</span>
           </label>
           <div class="col-md-8">
             <input name="admin_email" class="form-control" data-ng-model="admin.node.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
@@ -113,7 +113,7 @@
               </li>
             </ul>
             <span class="help-block">
-              <span data-translate>Enter a new GlobaLeaks node password</span>
+              <span data-translate>Enter a new GlobaLeaks server password</span>
             </span>
           </div>
         </div>
@@ -134,7 +134,7 @@
       </div>
       <div class="col-md-6">
         <p class="wizard-help-hint">
-          <span data-translate>There are three types of users inside of GlobaLeaks: the administrator, the receivers and the whistleblower. Your username for accessing the node as the administrator will be 'admin'.</span>
+          <span data-translate>There are three types of users in GlobaLeaks: the administrator, the receiver and the whistleblower. Your username for accessing the server as the administrator will be 'admin'.</span>
         </p>
       </div>
 
@@ -161,7 +161,7 @@
         </div>
 
         <div class="form-group col-md-12">
-          <label class="col-md-4">Email</label>
+          <label class="col-md-4">Email Adress</label>
           <div class="col-md-8">
             <input name="receiver_email" class="form-control" placeholder="" data-ng-model="receiver.mail_address"  maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
             <div class="has-error" data-ng-show="wizardForm.receiver_email.$error.required">
@@ -171,7 +171,7 @@
               <span data-translate>Invalid email address</span>
             </div>
             <span class="help-block">
-              <span data-translate>Enter the email address through which the receiver will be notified</span>
+              <span data-translate>Enter the email address used to notify the receiver</span>
             </span>
           </div>
         </div>
@@ -189,7 +189,7 @@
         <div class="form-group col-md-12">
           <label class="col-md-4">PGP Key</label>
           <div class="col-md-8">
-            <textarea class="form-control" data-ng-model="receiver.gpg_key_armor"></textarea>
+            <textarea class="form-control" data-ng-model="receiver.pgp_key_public"></textarea>
             <span class="help-block">
               <label data-translate>Copy and paste the PGP public key here</label>
             </span>
@@ -205,7 +205,7 @@
             <span data-translate>Enable insecure configuration without PGP encryption.</span>
             <div data-ng-show="admin.node.allow_unencrypted">
               <span class="label label-danger" data-translate>Danger</span>
-              <span data-translate>By enabling this option, the system will be storing the submitted files unecrypted on your node.</span>
+              <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your server.</span>
               <span data-translate>This happens whenever encryption is unavailable.</span>
             </div>
           </label>
@@ -215,7 +215,7 @@
 
       <div class="col-md-6">
         <p class="wizard-help-hint">
-          <span data-translate>Receivers are very important for a GlobaLeaks based initiative. They are the people responsible for receiving the whistleblowers' submissions, verifying their authenticity and taking action upon them. Choose them wisely.</span>
+          <span data-translate>Receivers are very important for a GlobaLeaks based project. They are the people responsible for receiving the whistleblowers' submissions, verifying their authenticity and for taking action too. Choose them wisely.</span>
         </p>
       </div>
 
@@ -242,7 +242,7 @@
               <span data-translate>This field is mandatory</span>
             </div>
             <span class="help-block">
-              <span data-translate>What is the topic of your whistleblowing initiative?</span>
+              <span data-translate>What is the topic of your whistleblowing project?</span>
             </span>
           </div>
         </div>
@@ -250,7 +250,7 @@
       </div>
       <div class="col-md-6">
         <p class="wizard-help-hint">
-          <span data-translate>Contexts are the categories to be selected by whistleblowers, when they perform their submission. Make sure to make them pertinent to your initiative.</span>
+          <span data-translate>Contexts are the categories to be selected by whistleblowers, when they perform their submission. Make sure to make them pertinent to your project.</span>
         </p>
       </div>
     </div>
@@ -258,7 +258,7 @@
       <a class="btn btn-success btn-large" data-ng-click="step=step-1">
         <span data-translate>Previous Step</span>
       </a>
-      <a class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.gpg_key_armor)">
+      <a class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public)">
         <span data-translate>Next Step</span>
       </a>
     </div>
@@ -269,16 +269,16 @@
     <div class="row">
 
       <div class="col-md-10">
-        <div class="congratulations" data-ng-show="!(wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.gpg_key_armor))">
+        <div class="congratulations" data-ng-show="!(wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public))">
           <h2 data-translate>Congratulations!</h2>
           <div>
-            <span data-translate>You have finished configuring your GlobaLeaks site. You are now ready to future tweak it inside of the admin interface.</span>
+            <span data-translate>You have finished configuring your GlobaLeaks site. You are now ready to further tweak it with the admin interface.</span>
           </div>
         </div>
       </div>
 
       <div class="pager pull-right">
-        <button class="btn btn-success btn-large" data-ng-click="finish()" data-ng-disabled="wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.gpg_key_armor)" type="submit">
+        <button class="btn btn-success btn-large" data-ng-click="finish()" data-ng-disabled="wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public)" type="submit">
           <span data-translate>Go to admin interface</span>
         </button>
       </div>

@@ -109,16 +109,16 @@
   margin-bottom: 30px;
 }
 
-#keycodeThanks1 {
+#KeyCodeThanks1 {
   font-size: 30px;
   font-weight: bold;
 }
 
-#keycodeThanks2 {
+#KeyCodeThanks2 {
   font-size: 24px;
 }
 
-#keycodeConfirmBox {
+#KeyCodeBox {
   background-color: #F5F5F5;
   border: 1px solid #222;
   margin-top: 10px;
@@ -126,7 +126,7 @@
   padding: 10px;
 }
 
-#keycodeToolTip {
+#KeyCodeHintBox {
   position: relative;
   padding: 10px;
   background: #FFF;
@@ -138,7 +138,7 @@
   -webkit-border-radius: 10px;
 }
 
-#keycodeToolTip:after {
+#KeyCodeHintBox:after {
   content: '';
   position: absolute;
   border-style: solid;
@@ -151,19 +151,19 @@
   z-index: 1;
 }
 
-.submissionReceipt {
+.SubmissionReceipt {
   padding-bottom: 20px;
 }
 
-.submissionReceipt h3 {
+.SubmissionReceipt h3 {
   font-size: 36px;
 }
 
-.submissionReceipt h4 {
+.SubmissionReceipt h4 {
   font-weight: 200;
 }
 
-#keycodeBox {
+#KeyCode {
   margin: 20px auto;
   padding: 20px;
   width: 80%;
@@ -176,6 +176,6 @@
   direction: ltr;
 }
 
-#keycodeKey {
+#KeyCodeKey {
   font-size: 60px;
 }

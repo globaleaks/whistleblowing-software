@@ -69,7 +69,7 @@ class TestTransaction(helpers.TestGL):
  
         receiver = Receiver(r)
         receiver.user_id = receiver_user.id
-        receiver.gpg_key_status = u'disabled'
+        receiver.pgp_key_status = u'disabled'
         receiver.mail_address = self.dummyReceiver_1['mail_address']
         store.add(receiver)
 
@@ -86,7 +86,7 @@ class TestTransaction(helpers.TestGL):
 
         receiver = Receiver(r)
         receiver.user_id = receiver_user.id
-        receiver.gpg_key_status = u'disabled'
+        receiver.pgp_key_status = u'disabled'
         receiver.mail_address = self.dummyReceiver_1['mail_address']
         store.add(receiver)
 
@@ -97,10 +97,10 @@ class TestTransaction(helpers.TestGL):
         c = self.localization_set(self.dummyContext, Context, 'en')
         context = Context(c)
 
-        context.submission_timetolive = context.tip_timetolive = 1000
+        context.tip_timetolive = 1000
         context.description = context.name = \
             context.submission_disclaimer = \
-            context.submission_introduction = { "en" : u'Localized723' }
+            context.submission_introduction = { "en": u'Localized723' }
         store.add(context)
         return context.id
 

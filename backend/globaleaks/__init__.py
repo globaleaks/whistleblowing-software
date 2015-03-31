@@ -10,7 +10,7 @@ __copyright__ = u'Hermes Center for Transparency and Digital Human Rights.'
 __email__ = u'info@globaleaks.org'
 __version__ = u'2.60.63'
 
-DATABASE_VERSION = 19
+DATABASE_VERSION = 20
 
 # Add here by hand the languages supported!
 # copy paste format from 'grunt updateTranslations'
@@ -22,6 +22,7 @@ LANGUAGES_SUPPORTED = [
  { "code": "el", "name": "Greek" },
  { "code": "en", "name": "English" },
  { "code": "es", "name": "Spanish" },
+ { "code": "fa", "name": "Persian" },
  { "code": "fi", "name": "Finnish" },
  { "code": "fr", "name": "French" },
  { "code": "he", "name": "Hebrew" },
@@ -37,8 +38,8 @@ LANGUAGES_SUPPORTED = [
  { "code": "pt_PT", "name": "Portuguese (Portugal)" },
  { "code": "ru", "name": "Russian" },
  { "code": "sk", "name": "Slovak" },
+ { "code": "sl_SI", "name": "Slovenian (Slovenia)" },
  { "code": "sr_RS", "name": "Serbian (Serbia)" },
- { "code": "sr_RS@latin", "name": "Serbian (Latin) (Serbia)" },
  { "code": "sv", "name": "Swedish" },
  { "code": "th", "name": "Thai" },
  { "code": "tr", "name": "Turkish" },

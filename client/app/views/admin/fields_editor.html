@@ -44,13 +44,13 @@
             <div class="form-group">
               <div>
                 <input data-ng-model="field.preview" value="{{field.preview}}" type="checkbox">
-                <label data-translate>Show in preview</label>
+                <label data-translate>Preview</label>
               </div>
             </div>
             <div class="form-group">
               <div>
                 <input data-ng-model="field.stats_enabled" value="{{field.stats_enabled}}" type="checkbox">
-                <label data-translate>Enable statistics on the field</label>
+                <label data-translate>Enable statistics for this field</label>
               </div>
             </div>
             <div class="form-group" data-ng-show="!field.is_template">
@@ -67,9 +67,9 @@
               <label data-translate>Type</label>
               <select name="type" class="form-control" data-ng-model="field.type" required>
                 <option value="inputbox" data-translate>Text</option>
-                <option value="textarea" data-translate>Textarea</option>
-                <option value="selectbox" data-translate>Selectbox</option>
-                <option value="checkbox" data-translate>Checkbox</option>
+                <option value="textarea" data-translate>Text area</option>
+                <option value="selectbox" data-translate>Select box</option>
+                <option value="checkbox" data-translate>Check box</option>
                 <option value="fileupload" data-translate>File Upload</option>
                 <option value="tos" data-translate>Terms of Service</option>
                 <option value="fieldgroup" data-translate>Field Group</option>
