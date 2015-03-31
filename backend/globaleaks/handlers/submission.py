@@ -99,10 +99,6 @@ def import_receivers(store, submission, receiver_id_list):
 
         log.debug("+receiver [%s] In tip (%s) #%d" %\
                 (receiver.name, submission.id, submission.receivers.count() ) )
-   
-    if submission.receivers.count() == 0:
-        log.err("Receivers required to be selected, not empty")
-        raise errors.SubmissionFailFields("Needed at least one Receiver selected [2]")
 
 
 def verify_fields_recursively(fields, wb_fields):
