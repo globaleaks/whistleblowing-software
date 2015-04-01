@@ -199,6 +199,14 @@ class Replacer1920(TableReplacer):
 
         for _, v in new_node._storm_columns.iteritems():
 
+            if v.name == 'context_selector_label':
+                # check needed to preserve funtionality if appdata will be altered in the future
+                if v.name in appdata_dict['node']:
+                    new_node.context_selector_label = appdata_dict['node']['context_selector_label']
+                else:
+                    new_node.context_selector_label = every_language("")
+                continue
+
             if v.name == 'disable_key_code_hint':
                 new_node.disable_key_code_hint = False
                 continue
