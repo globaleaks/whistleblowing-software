@@ -197,16 +197,17 @@ angular.module('e2e', []).
           this.nextBytes = nextBytes;
         }
         var wb_name = wb_names[Math.floor(Math.random() * wb_names.length)];
-        var keyPair = openpgp.generateKeyPair({
+        openpgp.generateKeyPair({
           numBits: 2048,
           userId:  wb_name + " <wb@antani.gov>",
           unlocked: true,
           created: new Date(42),
           prng: new Seed(stretched_receipt)
+        }).then(function(keyPair){
+          console.log("Generated key pair for " + wb_name);
+          console.log(keyPair.key.primaryKey.fingerprint);
+          cb(keyPair);
         });
-        console.log("Generated key pair for " + wb_name);
-        console.log(keyPair.key.primaryKey.fingerprint);
-        cb(keyPair);
       }
     }
   }).
