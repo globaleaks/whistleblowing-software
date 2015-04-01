@@ -120,7 +120,6 @@ CREATE TABLE node (
     whistleblowing_button BLOB NOT NULL,
     email VARCHAR NOT NULL,
     hidden_service VARCHAR NOT NULL,
-    receipt_regexp VARCHAR NOT NULL,
     languages_enabled BLOB NOT NULL,
     default_language VARCHAR NOT NULL,
     default_timezone INTEGER,

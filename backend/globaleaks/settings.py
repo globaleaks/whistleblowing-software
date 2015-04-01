@@ -168,6 +168,8 @@ class GLSettingsClass(object):
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
 
+        self.receipt_regexp = u'[0-9]{16}'
+
         # default timings for scheduled jobs
         self.session_management_minutes_delta = 1 # runner.py function expects minutes
         self.notification_minutes_delta = 2       # runner.py function expects minutes
@@ -202,7 +204,6 @@ class GLSettingsClass(object):
         self.defaults.maximum_filesize = 30 # expressed in megabytes
         self.defaults.exception_email = u"globaleaks-stackexception@lists.globaleaks.org"
         # Context dependent values:
-        self.defaults.receipt_regexp = u'[0-9]{16}'
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
         self.defaults.submission_seconds_of_life = (3600 * 24) * 3
 

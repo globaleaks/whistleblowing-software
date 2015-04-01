@@ -47,7 +47,7 @@ def db_create_whistleblower_tip(store, submission_desc):
 
     node = store.find(Node).one()
 
-    receipt = unicode(rstr.xeger(node.receipt_regexp))
+    receipt = unicode(rstr.xeger(GLSetting.receipt_regexp))
 
     wbtip.receipt_hash = security.hash_password(receipt, node.receipt_salt)
     wbtip.access_counter = 0

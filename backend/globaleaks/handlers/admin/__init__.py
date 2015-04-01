@@ -347,10 +347,6 @@ def db_update_node(store, request, wizard_done, language):
     if wizard_done:
         node.wizard_done = True
 
-    # since change of regexp format to XXXX-XXXX-XXXX-XXXX
-    # we removed the possibility to customize the receipt from the GLCllient
-    request['receipt_regexp'] = GLSetting.defaults.receipt_regexp
-
     try:
         node.update(request)
     except DatabaseError as dberror:

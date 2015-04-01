@@ -66,7 +66,6 @@ class TestTipInstance(TTip):
             self.receipt = yield submission.create_whistleblower_tip(self.submission_desc)
 
         self.assertGreater(len(self.receipt), 5)
-        self.assertTrue(re.match(GLSetting.defaults.receipt_regexp, self.receipt) )
 
     @inlineCallbacks
     def wb_auth_with_receipt(self):
