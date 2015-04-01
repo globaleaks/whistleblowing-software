@@ -44,8 +44,8 @@ SubmissionDesc = {
     'wb_steps': list,
     'human_captcha_answer': int,
     'receivers': [uuid_regexp],
-    'pgp_e2e_public': unicode,
-    'pgp_e2e_private': unicode
+    'wb_e2e_public': unicode,
+    'wb_e2e_private': unicode
 }
 
 ReceiverReceiverDesc = {
