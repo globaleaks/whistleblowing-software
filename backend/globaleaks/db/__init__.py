@@ -92,7 +92,6 @@ def create_tables(create_node=True):
             'postpone_superpower': False, # disabled by default
             'can_delete_submission': False, # disabled too
             'ahmia': False, # disabled too
-            'crypto_backward': False, # if is initialized, there is not backward
             'allow_unencrypted': GLSetting.defaults.allow_unencrypted,
             'allow_iframes_inclusion': GLSetting.defaults.allow_iframes_inclusion,
             'exception_email' : GLSetting.defaults.exception_email,
@@ -110,7 +109,9 @@ def create_tables(create_node=True):
             'header_title_homepage': dict({ GLSetting.defaults.language: u"" }),
             'header_title_submissionpage': dict({ GLSetting.defaults.language: u"" }),
             'header_title_receiptpage': dict({ GLSetting.defaults.language: u"" }),
-            'landing_page': GLSetting.defaults.landing_page
+            'landing_page': GLSetting.defaults.landing_page,
+            'file_encryption_e2e': True,
+            'submission_data_e2e': True,
         }
 
         # Initialize the node and notification tables

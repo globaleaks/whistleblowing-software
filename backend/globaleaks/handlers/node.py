@@ -64,44 +64,47 @@ def anon_serialize_node(store, language):
     associated = store.find(models.ReceiverContext).count()
 
     ret_dict = {
-      'name': node.name,
-      'hidden_service': node.hidden_service,
-      'public_site': node.public_site,
-      'email': u"",
-      'languages_enabled': node.languages_enabled,
-      'languages_supported': LANGUAGES_SUPPORTED,
-      'default_language' : node.default_language,
-      'default_timezone' : node.default_timezone,
-      # extended settings info:
-      'maximum_namesize': node.maximum_namesize,
-      'maximum_textsize': node.maximum_textsize,
-      'maximum_filesize': node.maximum_filesize,
-      # public serialization use GLSetting memory var, and
-      # not the real one, because needs to bypass
-      # Tor2Web unsafe deny default settings
-      'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
-      'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
-      'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
-      'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
-      'ahmia': node.ahmia,
-      'postpone_superpower': node.postpone_superpower,
-      'can_delete_submission': node.can_delete_submission,
-      'wizard_done': node.wizard_done,
-      'allow_unencrypted': node.allow_unencrypted,
-      'allow_iframes_inclusion': node.allow_iframes_inclusion,
-      'configured': True if associated else False,
-      'password': u"",
-      'old_password': u"",
-      'disable_privacy_badge': node.disable_privacy_badge,
-      'disable_security_awareness_badge': node.disable_security_awareness_badge,
-      'disable_security_awareness_questions': node.disable_security_awareness_questions,
-      'crypto_backward': node.crypto_backward,
-      'disable_key_code_hint': node.disable_key_code_hint,
-      'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-      'custom_privacy_badge_tor': node.custom_privacy_badge_tor,
-      'custom_privacy_badge_none': node.custom_privacy_badge_none,
-      'landing_page': node.landing_page,
-      'disk_availability': GLSetting.memory_copy.disk_availability,
+        'name': node.name,
+        'hidden_service': node.hidden_service,
+        'public_site': node.public_site,
+        'email': u"",
+        'languages_enabled': node.languages_enabled,
+        'languages_supported': LANGUAGES_SUPPORTED,
+        'default_language' : node.default_language,
+        'default_timezone' : node.default_timezone,
+        # extended settings info:
+        'maximum_namesize': node.maximum_namesize,
+        'maximum_textsize': node.maximum_textsize,
+        'maximum_filesize': node.maximum_filesize,
+        # public serialization use GLSetting memory var, and
+        # not the real one, because needs to bypass
+        # Tor2Web unsafe deny default settings
+        'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
+        'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
+        'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
+        'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
+        'ahmia': node.ahmia,
+        'postpone_superpower': node.postpone_superpower,
+        'can_delete_submission': node.can_delete_submission,
+        'wizard_done': node.wizard_done,
+        'allow_unencrypted': node.allow_unencrypted,
+        'allow_iframes_inclusion': node.allow_iframes_inclusion,
+        'configured': True if associated else False,
+        'password': u"",
+        'old_password': u"",
+        'disable_privacy_badge': node.disable_privacy_badge,
+        'disable_security_awareness_badge': node.disable_security_awareness_badge,
+        'disable_security_awareness_questions': node.disable_security_awareness_questions,
+        'disable_key_code_hint': node.disable_key_code_hint,
+        'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
+        'custom_privacy_badge_tor': node.custom_privacy_badge_tor,
+        'custom_privacy_badge_none': node.custom_privacy_badge_none,
+        'landing_page': node.landing_page,
+        'disk_availability': GLSetting.memory_copy.disk_availability,
+        # These changes value when all the Receiver has PGP key:
+        'file_encryption_e2e' : node.file_encryption_e2e,
+        'submission_data_e2e' : node.submission_data_e2e,
+        # TO BE REVIEW -- EEE
     }
 
     return get_localized_values(ret_dict, node, node.localized_strings, language)

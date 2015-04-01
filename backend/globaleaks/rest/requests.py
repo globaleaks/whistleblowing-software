@@ -131,7 +131,6 @@ adminNodeDesc = {
     'disable_security_awareness_badge': bool,
     'disable_security_awareness_questions': bool,
     'disable_key_code_hint': bool,
-    'crypto_backward': bool,
     'configured': bool,
     'admin_language': unicode,
     'admin_timezone': int,
@@ -141,7 +140,9 @@ adminNodeDesc = {
     'header_title_homepage': unicode,
     'header_title_submissionpage': unicode,
     'header_title_receiptpage': unicode,
-    'landing_page': landing_page_regexp
+    'landing_page': landing_page_regexp,
+    'file_encryption_e2e': bool,
+    'submission_data_e2e': bool,
 }
 
 adminNotificationDesc = {

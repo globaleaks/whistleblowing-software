@@ -123,7 +123,8 @@ def db_update_memory_variables(store):
         GLSetting.memory_copy.allow_unencrypted = node.allow_unencrypted
         GLSetting.memory_copy.allow_iframes_inclusion = node.allow_iframes_inclusion
 
-        GLSetting.memory_copy.crypto_backward = node.crypto_backward
+        GLSetting.memory_copy.file_encryption_e2e = node.file_encryption_e2e
+        GLSetting.memory_copy.submission_data_e2e = node.submission_data_e2e
 
         GLSetting.memory_copy.exception_email = node.exception_email
         GLSetting.memory_copy.language = node.default_language

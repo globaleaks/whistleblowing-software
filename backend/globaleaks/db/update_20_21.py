@@ -13,6 +13,8 @@
         wb public key
         wb private key
         is_e2e_encrypted (information applied to the submission data)
+    - InternalFile
+        is_e2e_encrypted
     - Receiver: keep public and private key (RSA kind)
         Two new fields empty by default
     - WhistleblowerTip
@@ -64,6 +66,16 @@ class WhistleblowerTip_v_20(Model):
     receipt_hash = Unicode()
     access_counter = Int()
 
+class InternalFile_v_20(Model):
+    """
+    Added below is_e2e_encrypted = Bool()
+    """
+    internaltip_id = Unicode()
+    name = Unicode()
+    file_path = Unicode()
+    content_type = Unicode()
+    size = Int()
+    new = Int(default=True)
 
 class Node_v_20(Model):
     """
@@ -169,6 +181,27 @@ class Replacer2021(TableReplacer):
                 if v.name == 'wb_e2e_private':
                     new_obj.wb_e2e_private = None
                     continue
+
+                if v.name == 'is_e2e_encrypted':
+                    new_obj.is_e2e_encrypted = False
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_InternalFile(self):
+        print "%s InternalTip migration assistant: Support E2E" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("InternalFile", 20))
+
+        for old_obj in old_objs:
+
+            new_obj = self.get_right_model("InternalFile", 21)()
+
+            for _, v in new_obj._storm_columns.iteritems():
 
                 if v.name == 'is_e2e_encrypted':
                     new_obj.is_e2e_encrypted = False
