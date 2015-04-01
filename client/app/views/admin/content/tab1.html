@@ -3,7 +3,7 @@
 
     <div class="form-group">
       <label data-translate>Project name</label>
-      <input class="form-control" data-ng-model="admin.node.name" value="{{admin.node.name}}" type="text">
+      <input class="form-control" data-ng-model="admin.node.name" value="{{admin.node.name}}" type="text" />
     </div>
 
     <div class="form-group">
@@ -35,6 +35,20 @@
     </div>
 
     <div class="form-group">
+      <label data-translate>Question to solicit possible whistleblowers</label>
+      <div>
+        <textarea class="form-control" data-ng-model="admin.node.whistleblowing_question">{{admin.node.whistleblowing_question}}</textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Whistleblowing Button</label>
+      <div>
+        <textarea class="form-control" data-ng-model="admin.node.whistleblowing_button">{{admin.node.whistleblowing_button}}</textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
       <label data-translate>Submission Page Title</label>
       <div>
         <textarea class="form-control" data-ng-model="admin.node.header_title_submissionpage">{{admin.node.header_title_submissionpage}}</textarea>
@@ -49,17 +63,8 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>Question to solicit possible whistleblowers</label>
-      <div>
-        <textarea class="form-control" data-ng-model="admin.node.whistleblowing_question">{{admin.node.whistleblowing_question}}</textarea>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Whistleblowing Button</label>
-      <div>
-        <textarea class="form-control" data-ng-model="admin.node.whistleblowing_button">{{admin.node.whistleblowing_button}}</textarea>
-      </div>
+      <label data-translate>Text shown in front of the context selector</label>
+      <input class="form-control" data-ng-model="admin.node.context_selector_label" type="text" />
     </div>
 
     <div class="form-group">

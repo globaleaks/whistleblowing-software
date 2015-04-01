@@ -61,7 +61,7 @@ def anon_serialize_node(store, language):
     node = store.find(models.Node).one()
 
     # Contexts and Receivers relationship
-    associated = store.find(models.ReceiverContext).count()
+    configured = store.find(models.ReceiverContext).count() > 0
 
     ret_dict = {
       'name': node.name,
@@ -72,13 +72,9 @@ def anon_serialize_node(store, language):
       'languages_supported': LANGUAGES_SUPPORTED,
       'default_language' : node.default_language,
       'default_timezone' : node.default_timezone,
-      # extended settings info:
       'maximum_namesize': node.maximum_namesize,
       'maximum_textsize': node.maximum_textsize,
       'maximum_filesize': node.maximum_filesize,
-      # public serialization use GLSetting memory var, and
-      # not the real one, because needs to bypass
-      # Tor2Web unsafe deny default settings
       'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
       'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
       'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
@@ -89,7 +85,7 @@ def anon_serialize_node(store, language):
       'wizard_done': node.wizard_done,
       'allow_unencrypted': node.allow_unencrypted,
       'allow_iframes_inclusion': node.allow_iframes_inclusion,
-      'configured': True if associated else False,
+      'configured': configured,
       'password': u"",
       'old_password': u"",
       'disable_privacy_badge': node.disable_privacy_badge,
@@ -97,8 +93,6 @@ def anon_serialize_node(store, language):
       'disable_security_awareness_questions': node.disable_security_awareness_questions,
       'disable_key_code_hint': node.disable_key_code_hint,
       'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-      'custom_privacy_badge_tor': node.custom_privacy_badge_tor,
-      'custom_privacy_badge_none': node.custom_privacy_badge_none,
       'landing_page': node.landing_page,
       'disk_availability': GLSetting.memory_copy.disk_availability,
     }

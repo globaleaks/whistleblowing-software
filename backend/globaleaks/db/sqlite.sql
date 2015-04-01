@@ -116,6 +116,7 @@ CREATE TABLE node (
     footer BLOB NOT NULL,
     security_awareness_title BLOB NOT NULL,
     security_awareness_text BLOB NOT NULL,
+    context_selector_label BLOB NOT NULL,
     whistleblowing_question BLOB NOT NULL,
     whistleblowing_button BLOB NOT NULL,
     email VARCHAR NOT NULL,

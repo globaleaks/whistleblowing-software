@@ -7,8 +7,8 @@
     "footer": {
       "en": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights"
     },
-    "subtitle": {
-      "en": "This is the initiative subtitle: write your slogan here!"
+    "context_selector_label": {
+      "en": "I want to report on"
     },
     "security_awareness_title": {
       "en": "Warning! You are not Anonymous."

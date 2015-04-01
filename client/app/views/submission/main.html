@@ -1,7 +1,7 @@
 <div data-ng-include="'views/partials/captchas.html'"></div>
 
 <div id="ContextPickSelector" data-ng-show="contexts_selectable && submission.contexts.length > 1" class="form-inline">
-  <label data-translate>I want to report on</label>
+  <label data-translate>{{node.context_selector_label}}</label>
   <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:'presentation_order'"></select>
 </div>
 
