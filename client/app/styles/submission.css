@@ -147,16 +147,12 @@
   z-index: 1;
 }
 
-.SubmissionReceipt {
+#SubmissionReceipt {
   padding-bottom: 20px;
 }
 
-.SubmissionReceipt h3 {
-  font-size: 36px;
-}
-
-.SubmissionReceipt h4 {
-  font-weight: 200;
+#SubmissionReceiptLink {
+  font-size: 22px;
 }
 
 #KeyCode {

@@ -116,9 +116,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         for i in range(0, 6):
             self.assertTrue(self.rfi[i]['status'] in [u'reference', u'encrypted'])
 
-        # verify the checksum returned by whistleblower POV, I'm not using
-        #  wfv = yield tip.get_files_wb()
-        # because is not generated a WhistleblowerTip in this test
         self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.submission_desc['id'])
         self.assertEqual(len(self.wbfls), 3)
 
