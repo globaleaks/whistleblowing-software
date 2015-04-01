@@ -80,8 +80,12 @@ def db_admin_serialize_node(store, language):
         'admin_language': admin.language,
         'admin_timezone': admin.timezone,
         'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-        'landing_page': node.landing_page,
         'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order
+        'custom_privacy_badge_tor': node.custom_privacy_badge_tor,
+        'custom_privacy_badge_none': node.custom_privacy_badge_none,
+        'landing_page': node.landing_page,
+        'file_encryption_e2e' : node.file_encryption_e2e,
+        'submission_data_e2e' : node.submission_data_e2e
     }
 
     return get_localized_values(ret_dict, node, node.localized_strings, language)

@@ -74,6 +74,7 @@ CREATE TABLE internalfile (
     size INTEGER NOT NULL,
     new INTEGER NOT NULL,
     internaltip_id VARCHAR NOT NULL,
+    is_e2e_encrypted INTEGER NOT NULL,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -103,8 +104,9 @@ CREATE TABLE internaltip (
     creation_date VARCHAR NOT NULL,
     expiration_date VARCHAR NOT NULL,
     wb_steps BLOB,
-    pgp_e2e_public VARCHAR,
-    pgp_e2e_private VARCHAR,
+    wb_e2e_public VARCHAR,
+    wb_e2e_private VARCHAR,
+    is_e2e_encrypted INTEGER NOT NULL,
     last_activity VARCHAR,
     context_id VARCHAR NOT NULL,
     new INTEGER NOT NULL,
@@ -156,6 +158,8 @@ CREATE TABLE node (
     header_title_homepage BLOB NOT NULL,
     header_title_submissionpage BLOB NOT NULL,
     header_title_receiptpage BLOB NOT NULL,
+    file_encryption_e2e INTEGER NOT NULL,
+    submission_data_e2e INTEGER NOT NULL,
     landing_page VARCHAR NOT NULL CHECK (landing_page IN ('homepage', 'submissionpage')),
     show_contexts_in_alphabetical_order INTEGER NOT NULL,
     PRIMARY KEY (id)

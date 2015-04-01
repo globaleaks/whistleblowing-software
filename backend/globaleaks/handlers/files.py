@@ -95,6 +95,7 @@ def register_file_db(store, uploaded_file, internaltip_id):
     new_file.size = uploaded_file['body_len']
     new_file.internaltip_id = internaltip_id
     new_file.file_path = uploaded_file['encrypted_path']
+    new_file.is_e2e_encrypted = internaltip.context.node.file_encryption_e2e
 
     store.add(new_file)
 

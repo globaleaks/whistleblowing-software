@@ -319,11 +319,11 @@ class InternalFile(Model):
 
     name = Unicode(validator=longtext_v)
     file_path = Unicode()
-
     content_type = Unicode()
     size = Int()
-
     new = Int(default=True)
+
+    is_e2e_encrypted = Bool()
 
 
 class Comment(Model):
@@ -445,7 +445,7 @@ class Node(Model):
                  'allow_iframes_inclusion',
                  'disable_privacy_badge', 'disable_security_awareness_badge',
                  'disable_security_awareness_questions', 'enable_custom_privacy_badge',
-                 'disable_key_code_hint', 'crypto_backward']
+                 'disable_key_code_hint' ]
 
     # wizard_done is not checked because it's set by the backend
 

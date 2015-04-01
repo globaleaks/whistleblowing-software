@@ -112,7 +112,9 @@ def create_tables(create_node=True):
             'header_title_submissionpage': dict({GLSetting.defaults.language: u""}),
             'header_title_receiptpage': dict({GLSetting.defaults.language: u""}),
             'landing_page': GLSetting.defaults.landing_page,
-            'show_contexts_in_alphabetical_order': False
+            'show_contexts_in_alphabetical_order': False,
+            'file_encryption_e2e': True,
+            'submission_data_e2e': True
         }
 
         # Initialize the node and notification tables

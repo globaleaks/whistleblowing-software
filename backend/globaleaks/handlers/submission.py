@@ -112,9 +112,18 @@ def db_create_submission(store, token, request, language):
     submission.creation_date = datetime_now()
 
     # FIXMEE2E validate this datain relation to node configuration / user data
-    submission.pgp_e2e_private = request['pgp_e2e_private']
-    submission.pgp_e2e_public = request['pgp_e2e_public']
+    submission.wb_e2e_public = request['wb_e2e_public']
+    submission.wb_e2e_private = request['wb_e2e_private']
+
+    # This value is the copy of the node level setting, that can change in the time.
     submission.is_e2e_encrypted = context.node.submission_data_e2e
+
+    if context.node.submission_data_e2e:
+        log.debug("End2End enabled node level, wb_fields len #%d (has to be 1) first 20bytes: %s" %(
+            len(request['wb_fields']),
+            request['wb_fields'][0][:20]))
+    else:
+        log.debug("End2End DIS-abled node level, wb_fields len #%d" % (len(request['wb_fields'])))
 
     try:
         store.add(submission)
