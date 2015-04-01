@@ -222,7 +222,11 @@ controller('ReceiptController', ['$scope', '$location', 'Authentication', 'Whist
     $scope.formatted_keycode = format_keycode($scope.keycode);
 
     $scope.view_tip = function (keycode) {
-      keycode = keycode.replace(/\D/g,'');
+      console.log("eh: " + keycode);
+      // keycode = keycode.replace(/\D/g,'');
+      keycode = receiver.pgp_e2e_public;
+      console.log("eh: " + keycode);
+      console.log(keycode);
       WhistleblowerTip(keycode, function () {
         $location.path('/status/');
       });

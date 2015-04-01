@@ -42,6 +42,9 @@ def wb_serialize_internaltip(internaltip):
 def db_create_whistleblower_tip(store, submission_desc):
     wbtip = WhistleblowerTip()
     wbtip.access_counter = 0
+    wbtip.wb_signature = submission_desc['pgp_e2e_private']
+    print submission_desc
+    wbtip.wb_signature = submission_desc['pgp_e2e_public']
     wbtip.internaltip_id = submission_desc['id']
     store.add(wbtip)
 
