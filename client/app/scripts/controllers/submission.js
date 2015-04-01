@@ -199,7 +199,11 @@ controller('ReceiptController', ['$scope', '$location', 'Authentication', 'Whist
 
       return ret;
 
-    }
+    };
+
+    $scope.do_generate_receipt = function() {
+      $scope.generated_receipt = "aaaa";
+    };
 
     $scope.keycode = format_keycode(Authentication.keycode);
     $scope.formatted_keycode = format_keycode($scope.keycode);

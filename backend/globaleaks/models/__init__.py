@@ -234,10 +234,11 @@ class InternalTip(Model):
     wb_steps = JSON()
     expiration_date = DateTime()
     last_activity = DateTime(default_factory=datetime_null)
-    pgp_e2e_public = Unicode()
-    pgp_e2e_private = Unicode()
-
     new = Int(default=True)
+
+    wb_e2e_public = Unicode()
+    wb_e2e_private = Unicode()
+    is_e2e_encrypted = Bool()
 
 
 class ReceiverTip(Model):
@@ -256,7 +257,6 @@ class ReceiverTip(Model):
     notification_date = DateTime()
 
     label = Unicode(validator=shortlocal_v, default=u"")
-
     new = Int(default=True)
 
     unicode_keys = ['label']
@@ -272,8 +272,10 @@ class WhistleblowerTip(Model):
     internaltip_id = Unicode()
     # internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
     last_access = DateTime(default_factory=datetime_null)
-    wb_signature = Unicode()
     access_counter = Int(default=0)
+    # Version 21 is an hybrid phases, wb_signature will replace receipt_hash
+    wb_signature = Unicode()
+    receipt_hash = Unicode()
 
 
 class ReceiverFile(Model):
@@ -399,7 +401,8 @@ class Node(Model):
     postpone_superpower = Bool()
     can_delete_submission = Bool()
 
-    crypto_backward = Bool()
+    file_encryption_e2e = Bool(default=True)
+    submission_data_e2e = Bool(default=True)
     ahmia = Bool()
     wizard_done = Bool(default=False)
 

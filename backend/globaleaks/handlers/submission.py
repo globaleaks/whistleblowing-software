@@ -109,6 +109,8 @@ def db_create_submission(store, token, request, language):
     submission.creation_date = datetime_now()
     submission.pgp_e2e_public = request['pgp_e2e_public']
     submission.pgp_e2e_private = request['pgp_e2e_private']
+    # This value is the copy of the node level setting, that can change in the time.
+    submission.is_e2e_encrypted = context.node.submission_data_e2e
 
     try:
         store.add(submission)
