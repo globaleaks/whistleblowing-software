@@ -38,7 +38,8 @@ def db_admin_serialize_node(store, language):
     admin = store.find(models.User, (models.User.username == unicode('admin'))).one()
 
     # Contexts and Receivers relationship
-    associated = store.find(models.ReceiverContext).count()
+    configured  = store.find(models.ReceiverContext).count() > 0
+
     custom_homepage = os.path.isfile(os.path.join(GLSetting.static_path, "custom_homepage.html"))
 
     ret_dict = {
@@ -68,7 +69,7 @@ def db_admin_serialize_node(store, language):
         'allow_unencrypted': node.allow_unencrypted,
         'allow_iframes_inclusion': node.allow_iframes_inclusion,
         'wizard_done': node.wizard_done,
-        'configured': True if associated else False,
+        'configured': configured,
         'password': u"",
         'old_password': u"",
         'custom_homepage': custom_homepage,
@@ -79,8 +80,6 @@ def db_admin_serialize_node(store, language):
         'admin_language': admin.language,
         'admin_timezone': admin.timezone,
         'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-        'custom_privacy_badge_tor': node.custom_privacy_badge_tor,
-        'custom_privacy_badge_none': node.custom_privacy_badge_none,
         'landing_page': node.landing_page
     }
 

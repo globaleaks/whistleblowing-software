@@ -363,14 +363,14 @@ class Node(Model):
     This table represent the System-wide settings
     """
     name = Unicode(validator=shorttext_v)
-    public_site = Unicode()
-    hidden_service = Unicode()
-    email = Unicode()
-    receipt_salt = Unicode()
+    public_site = Unicode(validator=shorttext_v)
+    hidden_service = Unicode(validator=shorttext_v)
+    email = Unicode(validator=shorttext_v)
+    receipt_salt = Unicode(validator=shorttext_v)
     last_update = DateTime(default_factory=datetime_null)
 
     languages_enabled = JSON()
-    default_language = Unicode()
+    default_language = Unicode(validator=shorttext_v)
     default_timezone = Int(default=0)
 
     # localized strings
@@ -379,6 +379,7 @@ class Node(Model):
     footer = JSON(validator=longlocal_v)
     security_awareness_title = JSON(validator=longlocal_v)
     security_awareness_text = JSON(validator=longlocal_v)
+    context_selector_label = JSON(validator=longlocal_v)
 
     # Advanced settings
     maximum_namesize = Int()
@@ -392,10 +393,10 @@ class Node(Model):
     allow_iframes_inclusion = Bool()
 
     # privileges configurable in node/context/receiver
-    postpone_superpower = Bool()
-    can_delete_submission = Bool()
+    postpone_superpower = Bool(default=False)
+    can_delete_submission = Bool(default=False)
 
-    ahmia = Bool()
+    ahmia = Bool(default=False)
     wizard_done = Bool(default=False)
 
     disable_privacy_badge = Bool(default=False)
@@ -403,12 +404,12 @@ class Node(Model):
     disable_security_awareness_questions = Bool(default=False)
     disable_key_code_hint = Bool(default=False)
 
-    whistleblowing_question = JSON()
-    whistleblowing_button = JSON()
+    whistleblowing_question = JSON(validator=longlocal_v)
+    whistleblowing_button = JSON(validator=longlocal_v)
 
     enable_custom_privacy_badge = Bool(default=False)
-    custom_privacy_badge_tor = JSON()
-    custom_privacy_badge_none = JSON()
+    custom_privacy_badge_tor = JSON(validator=longlocal_v)
+    custom_privacy_badge_none = JSON(validator=longlocal_v)
 
     header_title_homepage = JSON(validator=longlocal_v)
     header_title_submissionpage = JSON(validator=longlocal_v)
@@ -421,8 +422,10 @@ class Node(Model):
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
                     'exception_email', 'default_language',
                     'landing_page']
+
     int_keys = ['maximum_namesize', 'maximum_textsize',
                 'maximum_filesize', 'default_timezone']
+
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                  'tor2web_unauth', 'postpone_superpower',
                  'can_delete_submission', 'ahmia', 'allow_unencrypted',
@@ -439,7 +442,7 @@ class Node(Model):
                          'whistleblowing_button',
                          'custom_privacy_badge_tor', 'custom_privacy_badge_none',
                          'header_title_homepage', 'header_title_submissionpage',
-                         'header_title_receiptpage']
+                         'header_title_receiptpage', 'context_selector_label']
 
 
 class Notification(Model):
