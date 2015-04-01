@@ -194,6 +194,8 @@ class Replacer1920(TableReplacer):
     def migrate_Node(self):
         print "%s Node migration assistant: disable_key_code_hint" % self.std_fancy
 
+        appdata_dict = load_appdata()
+
         old_node = self.store_old.find(self.get_right_model("Node", 19)).one()
         new_node = self.get_right_model("Node", 20)()
 
