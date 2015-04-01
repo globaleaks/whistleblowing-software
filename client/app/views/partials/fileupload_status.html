@@ -19,11 +19,14 @@
                 </div>
               </div>
               <div class="fileUploadProgress">
--                <div class="fileUploadProgressOverlay"></div>
-                <div class="fileUploadIcon" data-ng-hide="file.elapsed_time > 0">
+                <div class="fileUploadProgressOverlay"></div>
+                <div class="fileUploadIcon" data-ng-show="file.error">
+                  <i class="glyphicon glyphicon-ban-circle"></i>
+                </div>
+                <div class="fileUploadIcon" data-ng-show="!file.error && !(file.elapsed_time > 0)">
                   <i class="glyphicon glyphicon-time"></i>
                 </div>
-                <div class="fileUploadIcon" data-ng-show="file.elapsed_time > 0">
+                <div class="fileUploadIcon" data-ng-show="!file.error && file.elapsed_time > 0">
                   <i class="glyphicon glyphicon-ok"></i>
                 </div>
               </div>
@@ -32,7 +35,8 @@
           <div class="col-md-offset-1 col-md-7 fileDetails">
             <label class="fileName">{{file.name}} ({{file.size | formatFileSize}})</label>
             <br />
-            <div>
+            <div data-ng-show="file.error" class="error text-danger">{{file.error}}</div>
+            <div data-ng-hide="file.error">
               <div data-ng-repeat="option in file.value">
                <textarea class="form-control msd-elastic" data-ng-model="option.value" placeholder="{{option['attrs']['name']}}"></textarea>
               </div>

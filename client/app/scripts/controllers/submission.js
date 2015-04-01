@@ -156,14 +156,18 @@ controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $ro
   }
 
   var update_uploads_status = function(e, data) {
-    $scope.submission.uploading = false;
+    var uploading = false;
+
     if ($scope.field.value === "") {
       $scope.field.value = {};
     }
+
     if ($scope.queue) {
       $scope.queue.forEach(function (k) {
         if (!k.id) {
-          $scope.submission.uploading = true;
+          if (!file.error) {
+            uploading = true;
+          }
         } else {
           if (!(k.id in $scope.field.value)) {
             $scope.field.value[k.id] = angular.copy($scope.field.options)
@@ -173,6 +177,8 @@ controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $ro
         }
       });
     }
+
+    $scope.submission.uploading = uploading;
   };
 
   $scope.$on('fileuploadprocessstart', update_uploads_status);
