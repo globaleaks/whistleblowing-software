@@ -301,62 +301,13 @@ class GLBPGP(object):
             log.err("Unable to instance PGP object: %s" % excep)
             raise
 
-    def sanitize_pgp_string(self, key):
-        """
-        @param key: A pgp armored key
-        @return: Sanitized string or raise InvalidInputFormat
-
-        This function validate the integrity of a PGP key
-        """
-        lines = key.split("\n")
-        sanitized = ""
-
-        start = 0
-        if not len(lines[start]):
-            start += 1
-
-        if lines[start] != '-----BEGIN PGP PUBLIC KEY BLOCK-----':
-            raise errors.InvalidInputFormat("PGP invalid format")
-        else:
-            sanitized += lines[start] + "\n"
-
-        i = 0
-        while i < len(lines):
-
-            # the C language has left some archetypes in my code
-            # [ITA] https://www.youtube.com/watch?v=7jI4DnRJP3k
-            i += 1
-
-            try:
-                if len(lines[i]) < 2:
-                    continue
-            except IndexError:
-                continue
-
-            main_content = re.compile(r"^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$", re.UNICODE)
-            base64only = main_content.findall(lines[i])
-
-            if len(base64only) == 1:
-                sanitized += str(base64only[0]) + "\n"
-
-            # this PGP/PGP format it's different from the common base64 ? dunno
-            if len(lines[i]) == 5 and lines[i][0] == '=':
-                sanitized += str(lines[i]) + "\n"
-
-            if lines[i] == '-----END PGP PUBLIC KEY BLOCK-----':
-                sanitized += lines[i] + "\n"
-                return sanitized
-
-        raise errors.InvalidInputFormat("Malformed PGP key block")
-
     def load_key(self, key):
         """
         @param key:
         @return: True or False, True only if a key is effectively importable and listed.
         """
         try:
-            sanitized_key = self.sanitize_pgp_string(key)
-            import_result = self.pgph.import_keys(sanitized_key)
+            import_result = self.pgph.import_keys(key)
         except Exception as excep:
             log.err("Error in PGP import_keys: %s" % excep)
             raise errors.PGPKeyInvalid
