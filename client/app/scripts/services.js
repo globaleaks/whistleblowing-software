@@ -476,7 +476,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
 }]).
   factory('Tip', ['$resource', '$rootScope', 'Receivers', 'ReceiverPreferences',
-          function($resource, $rootScope, Receivers, ReceiverPreferences) {
+  function($resource, $rootScope, Receivers, ReceiverPreferences) {
 
     var tipResource = $resource('/rtip/:tip_id', {tip_id: '@id'}, {update: {method: 'PUT'}});
     var receiversResource = $resource('/rtip/:tip_id/receivers', {tip_id: '@tip_id'}, {});
@@ -485,102 +485,97 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     return function(tipID, fn) {
       var self = this,
-      forEach = angular.forEach;
+        forEach = angular.forEach;
       self.tip = {};
-      
+      openpgp.config.show_comment = false;
+      openpgp.config.show_version = false;
+
       ReceiverPreferences.get(function(preferences){
-
-      tipResource.get(tipID, function(result){
-
-        var privateKey = openpgp.key.readArmored( preferences.pgp_e2e_private ).keys[0];
         // decrypt receiver priv key
-        var ret = privateKey.decrypt( $rootScope.receiver_key_passphrase );
+        self.privateKey = openpgp.key.readArmored(preferences.pgp_e2e_private).keys[0];
+        var ret = self.privateKey.decrypt($rootScope.receiver_key_passphrase);
         console.log('decrypted receiver privateKey ', ret);
 
-        openpgp.config.show_comment = false;
-        openpgp.config.show_version = false;
-
-        var pgpMessage = openpgp.message.readArmored( result.wb_steps[0] );
-        openpgp.decryptMessage(privateKey, pgpMessage).then(function(decr_wb_steps) {
-
-        receiversResource.query(tipID, function(receiversCollection){
-
+        tipResource.get(tipID, function(result){
           self.tip = result;
-          var json_wb_steps = JSON.parse(decr_wb_steps);
-          self.tip.wb_steps = json_wb_steps;
-
+          //var json_wb_steps = JSON.parse(decr_wb_steps);
+          //self.tip.wb_steps = json_wb_steps;
           self.tip.comments = [];
           self.tip.messages = [];
-          self.tip.receivers = receiversCollection;
-          self.receivers_and_wb_keys = [];
 
-          // build receivers and wb pub keys list
-          _.each(receiversCollection, function(receiver) {
+          if (typeof(result.wb_steps[0]) == 'string'
+              && result.wb_steps[0].indexOf("-----BEGIN PGP MESSAGE-----") == 0) {
+						var pgpMessage = openpgp.message.readArmored(result.wb_steps[0]);
+						openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_wb_steps) {
+            	var json_wb_steps = JSON.parse(decr_wb_steps);
+            	self.tip.wb_steps = json_wb_steps;
+            });
+          } else {
+                self.tip.wb_steps = result.wb_steps;
+          }
+
+          receiversResource.query(tipID, function(receiversCollection){
+	          self.tip.receivers = receiversCollection;
+	          self.receivers_and_wb_keys = [];
+
+            // build receivers and wb pub keys list
+            _.each(receiversCollection, function(receiver) {
                 var r_key_pub = openpgp.key.readArmored(receiver.pgp_e2e_public).keys[0];
                 self.receivers_and_wb_keys.push( r_key_pub );
-          });
-          var wb_key_pub = openpgp.key.readArmored( self.tip.pgp_e2e_public ).keys[0];
-          self.receivers_and_wb_keys.push( wb_key_pub );
-
-          self.tip.newComment = function(content) {
-            var c = new commentsResource(tipID);
-            c.content = content;
-            c.$save(function(newComment) {
-              self.tip.comments.unshift(newComment);
             });
-          };
+            var wb_key_pub = openpgp.key.readArmored( self.tip.pgp_e2e_public ).keys[0];
+            self.receivers_and_wb_keys.push( wb_key_pub );
 
-          self.tip.newMessage = function(content) {
-            openpgp.encryptMessage(self.receivers_and_wb_keys, content).then( function(pgp_content) {
-
-              var m = new messageResource(tipID);
-              m.content = pgp_content;
-              m.$save(function(newMessage) {
-                self.tip.messages.unshift(newMessage);
+            self.tip.newComment = function(content) {
+              var c = new commentsResource(tipID);
+              c.content = content;
+              c.$save(function(newComment) {
+                self.tip.comments.unshift(newComment);
               });
+            };
 
-            });
-          };
-
-          messageResource.query(tipID, function(messageCollection){
-            _.each(messageCollection, function(message) {
-
-              if ( message.content.indexOf("-----BEGIN PGP MESSAGE-----") > -1 ) {
-                var pgpMessage = openpgp.message.readArmored( message.content );
-                openpgp.decryptMessage(privateKey, pgpMessage).then(function(decr_content) {
-                  message.content = decr_content;
-                }, function(error) {
-                  console.log('decryptMessage error: ', error);
+            self.tip.newMessage = function(content) {
+              openpgp.encryptMessage(self.receivers_and_wb_keys, content).then( function(pgp_content) {
+                var m = new messageResource(tipID);
+                m.content = pgp_content;
+                m.$save(function(newMessage) {
+                  self.tip.messages.unshift(newMessage);
                 });
-              }
+              });
+            };
 
+            messageResource.query(tipID, function(messageCollection){
+              _.each(messageCollection, function(message) {
+                if (typeof(message.content) == 'string'
+                    && message.content.indexOf("-----BEGIN PGP MESSAGE-----") == 0) {
+                  var pgpMessage = openpgp.message.readArmored(message.content);
+                  openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_content) {
+                    message.content = decr_content;
+                  }, function(error) {
+                    console.log('decryptMessage error: ', error);
+                  });
+                }
+              });
+              self.tip.messages = messageCollection;
+              // XXX perhaps make this return a lazyly instanced item.
+              // look at $resource code for inspiration.
+              fn(self.tip);
             });
 
-            self.tip.messages = messageCollection;
+            commentsResource.query(tipID, function(commentsCollection){
+              self.tip.comments = commentsCollection;
+              fn(self.tip);
+            });
 
-            // XXX perhaps make this return a lazyly instanced item.
-            // look at $resource code for inspiration.
-            fn(self.tip);
-          });
+          }); // receiverResource
 
-          commentsResource.query(tipID, function(commentsCollection){
-            self.tip.comments = commentsCollection;
-
-            // XXX perhaps make this return a lazyly instanced item.
-            // look at $resource code for inspiration.
-            fn(self.tip);
-          });
-
-        });
-
-        }); // openpgp decrypt
+        }); // tipResource
 
       }); // ReceiverPreferences
 
-      });
-
     };
-}]).
+
+	}]).
   factory('WBTip', ['$resource', 'Receivers',
           function($resource, Receivers) {
 
@@ -598,13 +593,13 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       tipResource.get(function(result) {
 
-        privateKey = openpgp.key.readArmored( result.pgp_e2e_private ).keys[0];
+        self.privateKey = openpgp.key.readArmored( result.pgp_e2e_private ).keys[0];
         //TODO: decrypt key with receipt, now it is in unencrypted
         var pgpMessage = openpgp.message.readArmored( result.wb_steps[0] );
 
         openpgp.config.show_comment = false;
         openpgp.config.show_version = false;
-        openpgp.decryptMessage(privateKey, pgpMessage).then(function(decr_wb_steps) {
+        openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_wb_steps) {
 
         receiversResource.query(function(receiversCollection) {
 
@@ -655,7 +650,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
                   if ( message.content.indexOf("-----BEGIN PGP MESSAGE-----") > -1 ) {
                     var pgpMessage = openpgp.message.readArmored( message.content );
-                    openpgp.decryptMessage(privateKey, pgpMessage).then(function(decr_content) {
+                    openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_content) {
                       message.content = decr_content;
                     });
                   }
