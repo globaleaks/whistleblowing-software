@@ -272,6 +272,7 @@ class WhistleblowerTip(Model):
     internaltip_id = Unicode()
     # internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
     last_access = DateTime(default_factory=datetime_null)
+    wb_signature = Unicode()
     access_counter = Int(default=0)
 
 
