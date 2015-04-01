@@ -100,7 +100,6 @@ angular.module('e2e', []).
         var k_user_id = email;
         var k_passphrase = password;
         var k_bits = 4096;
-        var k_bits = 2048;
 
         openpgp.config.show_comment = false;
         openpgp.config.show_version = false;
@@ -110,9 +109,7 @@ angular.module('e2e', []).
           //passphrase: k_passphrase
         }).then(function(keyPair) {
           var zip = new JSZip();
-          var user_id = k_user_id.replace("@", "_at_");
-          var user_id = user_id.replace(".", "_dot_");
-          var folder_name = "globaleaks-keys-" + user_id
+          var folder_name = "globaleaks-keys"
           var file_name = folder_name + '.zip'
 
           var keys = zip.folder(folder_name);
