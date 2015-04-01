@@ -285,7 +285,6 @@
       "maximum_filesize": 30,
       "tor2web_submission": false,
       "public_site": "",
-      "receipt_regexp": "[0-9]{16}",
       "hidden_service": "",
       "security_awareness_title": {"en": ""},
       "security_awareness_text": {"en": ""},

@@ -75,8 +75,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         receipt = yield create_whistleblower_tip(self.submission_desc)
 
-        self.assertTrue(re.match(GLSetting.defaults.receipt_regexp, receipt))
-
         wb_access_id = yield authentication.login_wb(receipt)
 
         # remind: return a tuple (serzialized_itip, wb_itip)

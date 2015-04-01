@@ -368,8 +368,6 @@ class Node(Model):
     email = Unicode()
     receipt_salt = Unicode()
     last_update = DateTime(default_factory=datetime_null)
-    # this has a dedicated validator in update_node()
-    receipt_regexp = Unicode()
 
     languages_enabled = JSON()
     default_language = Unicode()
@@ -421,7 +419,7 @@ class Node(Model):
     exception_email = Unicode()
 
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
-                    'exception_email', 'default_language', 'receipt_regexp',
+                    'exception_email', 'default_language',
                     'landing_page']
     int_keys = ['maximum_namesize', 'maximum_textsize',
                 'maximum_filesize', 'default_timezone']
