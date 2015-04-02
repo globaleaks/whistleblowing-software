@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 
+import os
 
+from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 from twisted.trial.util import DirtyReactorAggregateError
 
@@ -59,9 +61,12 @@ class TestToken(helpers.TestGL):
 
         self.assertEqual(st_dict['remaining_allowed_attempts'], Token.MAXIMUM_ATTEMPTS_PER_TOKEN)
 
-    def test_token_create_and_get_delete(self):
+    @inlineCallbacks
+    def test_token_create_and_get_upload_expire(self):
         # This is at the beginning
         anomaly.EventTrackQueue.reset()
+
+        file_list = []
 
         token_collection = []
         for i in xrange(20):
@@ -86,12 +91,22 @@ class TestToken(helpers.TestGL):
                 token.validate, {'human_captcha_answer': 0}
             )
 
-            TokenList.delete(t.id)
+
+            yield self.emulate_file_upload(token, 3)
+
+            for f in token.uploaded_files:
+                self.assertTrue(os.path.exists(f['encrypted_path']))
+                file_list.append(f['encrypted_path'])
+
+            token.expire()
 
             self.assertRaises(
                 errors.TokenFailure,
                 TokenList.get, t.id
             )
+
+            for f in file_list:
+                self.assertFalse(os.path.exists(f))
 
     def test_token_validate(self):
         # This is at the beginning
