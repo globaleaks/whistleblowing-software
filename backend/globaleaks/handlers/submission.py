@@ -7,6 +7,7 @@
 #   by an HTTP client in /submission URI
 
 import copy
+from globaleaks.third_party.rstr import rstr
 
 from twisted.internet.defer import inlineCallbacks
 
@@ -34,22 +35,25 @@ def wb_serialize_internaltip(internaltip):
         'files': [f.id for f in internaltip.internalfiles],
         'receivers': [r.id for r in internaltip.receivers],
         'wb_e2e_public': internaltip.wb_e2e_public,
-        'wb_e2e_private': internaltip.wb_e2e_private
     }
 
     return response
 
 
-def db_create_whistleblower_tip(store, submission_desc):
+def db_create_whistleblower_tip(store, wb_signature, internaltip_id):
     wbtip = WhistleblowerTip()
     wbtip.access_counter = 0
-    wbtip.wb_signature = submission_desc['wb_e2e_private']
-    print submission_desc
-    print "TODO receive WB_E2E_SIGNATURE"
-    wbtip.wb_signature = submission_desc['wb_e2e_public']
-    wbtip.internaltip_id = submission_desc['id']
+    wbtip.wb_signature = wb_signature
+    wbtip.internaltip_id = internaltip_id
     store.add(wbtip)
 
+def hybrid_get_receipt_hash(store):
+    """
+    """
+    node = store.find(Node).one()
+    return_value_receipt = unicode( rstr.xeger(node.receipt_regexp) )
+    receipt_hash = security.hash_password(return_value_receipt, node.receipt_salt)
+    return receipt_hash, return_value_receipt
 
 @transact
 def create_whistleblower_tip(*args):
@@ -109,8 +113,9 @@ def db_create_submission(store, token, request, language):
     submission.context_id = context.id
     submission.creation_date = datetime_now()
 
+    # the fingerprint / signature is associated to WhistleboerTip 
     submission.wb_e2e_public = request['wb_e2e_public']
-    submission.wb_e2e_private = request['wb_e2e_private']
+
     # This value is the copy of the node level setting, that can change in the time.
     submission.is_e2e_encrypted = GLSetting.memory_copy.submission_data_e2e
 
@@ -231,7 +236,17 @@ class SubmissionInstance(BaseHandler):
         @transact
         def put_transact(store, token, request):
             status = db_create_submission(store, token, request, self.request.language)
-            db_create_whistleblower_tip(store, status)
+
+            if len(request['wb_signature']):
+                log.debug("End2End encryption submission: handshake fingerprint (TODO sign)")
+            else:
+                log.debug("End2End disabled: receipt is going to be generated")
+                hash, display = hybrid_get_receipt_hash(store)
+                print "DEBUG **", hash, display
+                status['receipt'] = display
+                request['wb_signature'] = hash
+
+            db_create_whistleblower_tip(store, request['wb_signature'], status['id'])
             return status
 
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)

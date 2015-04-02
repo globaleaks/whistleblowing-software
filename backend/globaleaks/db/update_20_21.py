@@ -129,7 +129,6 @@ class InternalTip_v_20(Model):
     """
     add below remove from comment here:
 +    wb_e2e_public
-+    wb_e2e_private
 +    is_e2e_encrypted
     """
     __storm_table__ = 'internaltip'
@@ -176,10 +175,6 @@ class Replacer2021(TableReplacer):
 
                 if v.name == 'wb_e2e_public':
                     new_obj.wb_e2e_public = None
-                    continue
-
-                if v.name == 'wb_e2e_private':
-                    new_obj.wb_e2e_private = None
                     continue
 
                 if v.name == 'is_e2e_encrypted':

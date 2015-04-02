@@ -374,8 +374,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           wb_steps: _.clone(self.current_context.steps),
           receivers: [],
           human_captcha_answer: 0,
-          wb_e2e_public: "", 
-          wb_e2e_private: ""
+          wb_e2e_public: "",
+          /* at the moment is just a fingerprint of the pubkey */
+          wb_signature: ""
         });
 
         setCurrentContextReceivers();
@@ -441,9 +442,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             self.whistleblower_key = wb_key;
             self.current_submission.finalize = true;
             self.current_submission.wb_e2e_public = wb_key.publicKeyArmored;
-            //console.log("WB KEY");
-            //console.log(wb_key.publicKeyArmored);
-            self.current_submission.wb_e2e_private = "";
+            console.log("cdscsdcjosdncidncio");
+            console.log(wb_key.key.primaryKey.fingerprint);
+            self.current_submission.wb_signature = wb_key.key.primaryKey.fingerprint;
+            console.log("WB KEY");
+            console.log(wb_key.publicKeyArmored);
             self.current_submission.is_e2e_encrypted = true;
 
             //wb_key.privateKeyArmored;
