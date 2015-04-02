@@ -9,6 +9,7 @@ var GLClient = angular.module('GLClient', [
     'ui.bootstrap',
     'ui.sortable',
     'ang-drag-drop',
+    'flow',
     'monospaced.elastic',
     'resourceServices',
     'submissionUI',
@@ -197,7 +198,10 @@ var GLClient = angular.module('GLClient', [
         suffix: '.json'
       });
 
-      $tooltipProvider.options( {appendToBody: true} );
+      $tooltipProvider.options({appendToBody: true});
+}]).
+  config(['flowFactoryProvider', function (flowFactoryProvider) {
+    flowFactoryProvider.defaults = {};
 }]).
   run(['$http', '$rootScope', '$route', 'Authentication', function ($http, $rootScope, $route, Authentication) {
 

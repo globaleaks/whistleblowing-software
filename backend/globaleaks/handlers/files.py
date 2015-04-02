@@ -238,6 +238,23 @@ class FileInstance(BaseHandler):
 
     @transport_security_check('wb')
     @unauthenticated
+    def get(self, token_id):
+        """
+        Parameter: internaltip_id
+        Request: Unknown
+        Response: Unknown
+        Errors: TokenFailure
+        """
+
+        token = TokenList.get(token_id)
+
+        log.debug("file upload with Token associated : %s" % token)
+
+        self.set_status(204) # We currently do not implement file resume
+        self.finish()
+
+    @transport_security_check('wb')
+    @unauthenticated
     @inlineCallbacks
     def post(self, token_id):
         """
@@ -294,7 +311,6 @@ def download_all_files(store, user_id, tip_id):
 
 
 class Download(BaseHandler):
-
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
