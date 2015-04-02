@@ -179,10 +179,10 @@ class GLHTTPConnection(HTTPConnection):
                         if values:
                             self._request.arguments.setdefault(name,
                                                                []).extend(values)
-                elif content_type.startswith("application/x-www-form-urlencoded"):
-                    raise errors.InvalidInputFormat("content type application/x-www-form-urlencoded not supported")
                 elif content_type.startswith("multipart/form-data"):
                     raise errors.InvalidInputFormat("content type multipart/form-data not supported")
+                else:
+                    raise errors.InvalidInputFormat("invalid request")
             self.request_callback(self._request)
         except Exception as exception:
             log.msg("Malformed HTTP request from %s: %s" % (self._remote_ip, exception))
