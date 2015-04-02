@@ -22,6 +22,7 @@ angular.module('e2e', []).
         var utf8_pwd = scrypt.encode_utf8(receipt);
         var salt = "This is the salt.";
         stretched = scrypt.crypto_scrypt(utf8_pwd, salt, 4096, 8, 1, 128);
+        console.log('gl_receipt ', receipt);
         return {
           value: receipt,
           stretched: stretched
