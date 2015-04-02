@@ -204,6 +204,7 @@ angular.module('e2e', []).
     return {
       names: wb_names,
       generate_key_from_receipt: function(receipt, cb) {
+        console.log('generate_key_from_receipt ', receipt, ' ', typeof(receipt));
         function Seed() {
           var self = this,
             scrypt = scrypt_module_factory(33554432),
@@ -223,11 +224,12 @@ angular.module('e2e', []).
         var wb_name = wb_names[Math.floor(Math.random() * wb_names.length)];
         openpgp.generateKeyPair({
           numBits: 2048,
-          userId: wb_name + " <wb@antani.gov>",
+          userId: "wb@antani.gov",
           unlocked: true,
-          created: new Date(42),
           prng: new Seed()
         }).then(function(keyPair){
+          keyPair.key.primaryKey.created = new Date(42);
+          keyPair.key.subKeys[0].subKey.created = new Date(42);
           console.log("Generated key pair for " + wb_name);
           console.log(keyPair.key.primaryKey.fingerprint);
           cb(keyPair);
