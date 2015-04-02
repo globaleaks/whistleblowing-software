@@ -104,7 +104,8 @@ def receiverfile_planning(store):
                 'receiver' : receiver_desc,
                 'path' : filex.file_path,
                 'size' : filex.size,
-                'status' : u'reference'
+                'status' : u'reference',
+                'is_e2e_encrypted': filex.is_e2e_encrypted,
             }
 
             # AS KEY, file path is used to keep track of the original
@@ -247,13 +248,15 @@ def encrypt_where_available(receivermap):
         [ { 'receiver' : receiver_desc, 'path' : file_path, 'size' : file_size }, .. ]
     @return: return True if plaintex version of file must be created.
     """
-
     retcode = True
 
     for rcounter, rfileinfo in enumerate(receivermap):
 
-        if rfileinfo['receiver']['pgp_key_status'] == u'enabled':
-
+        if rfileinfo['is_e2e_encrypted']:
+            log.debug("End2End encryption: disable PGP End2Site encryption")
+            rfileinfo['status'] = u'reference'
+            retcode = False
+        elif rfileinfo['receiver']['pgp_key_status'] == u'enabled':
 
             try:
                 new_path, new_size = fsops_pgp_encrypt(rfileinfo['path'], rfileinfo['receiver'])

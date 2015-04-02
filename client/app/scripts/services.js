@@ -430,18 +430,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             self.whistleblower_key = wb_key;
             self.current_submission.finalize = true;
             self.current_submission.wb_e2e_public = wb_key.publicKeyArmored;
-<<<<<<< HEAD
-            self.current_submission.wb_e2e_private = "";
-=======
-            console.log("cdscsdcjosdncidncio");
-            console.log(wb_key.key.primaryKey.fingerprint);
             self.current_submission.wb_signature = wb_key.key.primaryKey.fingerprint;
-            console.log("WB KEY");
-            console.log(wb_key.publicKeyArmored);
->>>>>>> authentication based on fingerprint + backward compatibility on receipt
             self.current_submission.is_e2e_encrypted = true;
 
-            console.log('receivers_selected_keys ', self.receivers_selected_keys);
+            console.log('receivers_selected_keys', self.receivers_selected_keys);
             var receivers_and_wb_keys = [];
             _.each(self.receivers_selected_keys, function(key) {
                 var r_key_pub = openpgp.key.readArmored(key).keys[0];
