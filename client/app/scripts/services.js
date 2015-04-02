@@ -97,7 +97,7 @@ angular.module('resourceServices.authentication', [])
           }
         };
 
-        self.keycode = '';
+        self.receipt = {};
 
         $rootScope.logout = function() {
           // we use $http['delete'] in place of $http.delete due to
@@ -435,16 +435,14 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
         openpgp.config.show_comment = false;
         openpgp.config.show_version = false;
-        whistleblower.generate_key_from_receipt(self.receipt.value, function(wb_key){
+        whistleblower.generate_key_from_receipt(self.receipt.value,
+                                                function(wb_key){
+            self.receipt.key = wb_key;
             self.whistleblower_key = wb_key;
             self.current_submission.finalize = true;
             self.current_submission.wb_e2e_public = wb_key.publicKeyArmored;
-            console.log("WB KEY");
-            console.log(wb_key.publicKeyArmored);
             self.current_submission.wb_e2e_private = "";
             self.current_submission.is_e2e_encrypted = true;
-
-            //wb_key.privateKeyArmored;
 
             console.log('receivers_selected_keys ', self.receivers_selected_keys);
             var receivers_and_wb_keys = [];
@@ -454,11 +452,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             });
             var wb_key_pub = openpgp.key.readArmored(wb_key.publicKeyArmored).keys[0];
             receivers_and_wb_keys.push(wb_key_pub);
-            console.log('Submission receivers_and_wb_keys ', receivers_and_wb_keys);
+            console.log('Submission receivers_and_wb_keys ',
+                        receivers_and_wb_keys);
 
             var wb_steps = JSON.stringify(self.current_submission.wb_steps);
-            //console.log(wb_steps);
-
             openpgp.encryptMessage(receivers_and_wb_keys, wb_steps).then( function(pgp_wb_steps) {
                 var list_wb_steps = [];
                 list_wb_steps.push(pgp_wb_steps);
@@ -466,7 +463,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
                 self.current_submission.$submit(function(result) {
                     if (result) {
-                        Authentication.keycode = self.current_submission.receipt;
+                        Authentication.receipt = self.receipt;
                         $location.url("/receipt");
                     }
                 });
