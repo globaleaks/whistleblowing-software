@@ -22,7 +22,6 @@ angular.module('e2e', []).
         var utf8_pwd = scrypt.encode_utf8(receipt);
         var salt = "This is the salt.";
         stretched = scrypt.crypto_scrypt(utf8_pwd, salt, 4096, 8, 1, 128);
-        console.log('gl_receipt ', receipt);
         return {
           value: receipt,
           stretched: stretched
@@ -32,14 +31,12 @@ angular.module('e2e', []).
       gl_password: function(password) {
         var scrypt = scrypt_module_factory(33554432);
         var key = this.scrypt_hash(password, 4096, scrypt);
-        console.log('gl_password for ', password, ' is ', key);
         return key;
       },
 
       gl_passphrase: function(passphrase) {
         var scrypt = scrypt_module_factory(33554432);
         var key = this.scrypt_hash(passphrase, 8192, scrypt);
-        console.log('gl_passphrase for ', passphrase, ' is ', key);
         return key;
       }
     }
@@ -204,7 +201,6 @@ angular.module('e2e', []).
     return {
       names: wb_names,
       generate_key_from_receipt: function(receipt, cb) {
-        console.log('generate_key_from_receipt ', receipt, ' ', typeof(receipt));
         function Seed() {
           var self = this,
             scrypt = scrypt_module_factory(33554432),
@@ -226,12 +222,11 @@ angular.module('e2e', []).
           numBits: 2048,
           userId: "wb@antani.gov",
           unlocked: true,
+          created: new Date(42),
           prng: new Seed()
         }).then(function(keyPair){
           keyPair.key.primaryKey.created = new Date(42);
           keyPair.key.subKeys[0].subKey.created = new Date(42);
-          console.log("Generated key pair for " + wb_name);
-          console.log(keyPair.key.primaryKey.fingerprint);
           cb(keyPair);
         });
       }
