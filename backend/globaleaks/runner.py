@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.python.util import untilConcludes
 from twisted.internet import reactor
 
-from globaleaks.db import create_tables, clean_untracked_files
+from globaleaks.db import create_tables, clean_untracked_files, check_schema_version
 from globaleaks.db.datainit import import_memory_variables, apply_cli_options
 
 from globaleaks.jobs import session_management_sched, statistics_sched, \
@@ -73,6 +73,10 @@ def globaleaks_start():
     if not GLSetting.accepted_hosts:
         log.err("Missing a list of hosts usable to contact GLBackend, abort")
         return False
+
+    # return False do not make globaleaks abort, this is an issue
+    #if not check_schema_version():
+    #    return False
 
     d = create_tables()
 
