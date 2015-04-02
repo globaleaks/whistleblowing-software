@@ -13,7 +13,7 @@ import time
 import shutil
 
 from twisted.internet import threads
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
@@ -179,8 +179,7 @@ class FileAdd(BaseHandler):
 
         result_list.append(registered_file)
 
-        self.set_status(201) # Created
-        self.finish({'files': result_list})
+        returnValue(result_list)
 
     @transport_security_check('wb')
     @authenticated('wb')
@@ -197,7 +196,10 @@ class FileAdd(BaseHandler):
         """
         itip_id = yield get_itip_id_by_wbtip_id(self.current_user.user_id)
 
-        yield self.handle_file_append(itip_id)
+        result_list = yield self.handle_file_append(itip_id)
+
+        self.set_status(201) # Created
+        self.finish({'files': result_list})
 
 
 class FileInstance(BaseHandler):
@@ -232,9 +234,7 @@ class FileInstance(BaseHandler):
 
         result_list.append(registered_file)
 
-        self.set_status(201) # Created
-        self.finish({'files': result_list})
-
+        returnValue(result_list)
 
     @transport_security_check('wb')
     @unauthenticated
@@ -246,12 +246,14 @@ class FileInstance(BaseHandler):
         Response: Unknown
         Errors: TokenFailure
         """
-
         token = TokenList.get(token_id)
 
         log.debug("file upload with Token associated : %s" % token)
 
-        yield self.handle_file_upload(token)
+        result_list = yield self.handle_file_upload(token)
+
+        self.set_status(201) # Created
+        self.finish({'files': result_list})
 
 
 @transact
@@ -278,7 +280,6 @@ def download_file(store, user_id, tip_id, file_id):
 
 @transact
 def download_all_files(store, user_id, tip_id):
-
     access_tip(store, user_id, tip_id)
 
     rfiles = store.find(ReceiverFile,
@@ -298,7 +299,6 @@ class Download(BaseHandler):
     @authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id, rfile_id):
-
         rfile = yield download_file(self.current_user.user_id, tip_id, rfile_id)
 
         # keys:  'file_path'  'size' : 'content_type' 'file_name'
