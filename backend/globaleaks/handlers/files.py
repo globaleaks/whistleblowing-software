@@ -21,7 +21,7 @@ from globaleaks.handlers.authentication import transport_security_check, authent
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
-from globaleaks.security import access_tip, directory_traversal_check
+from globaleaks.security import access_tip
 from globaleaks.utils.token import TokenList
 
 def serialize_file(internalfile):
