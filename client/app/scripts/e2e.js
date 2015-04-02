@@ -9,6 +9,24 @@ angular.module('e2e', []).
         var bytearray_pwd = scrypt.crypto_scrypt(utf8_pwd, salt, rounds, 8, 1, 16);
         return scrypt.to_hex(bytearray_pwd);
       },
+      
+      gl_receipt: function() {
+        var receipt = "",
+          random = openpgp.crypto.random,
+          scrypt = scrypt_module_factory(33554432),
+          stretched;
+
+        for (var i=0; i<16; i++) {
+          receipt += random.getSecureRandom(0, 9);
+        }
+        var utf8_pwd = scrypt.encode_utf8(receipt);
+        var salt = "This is the salt.";
+        stretched = scrypt.crypto_scrypt(utf8_pwd, salt, 4096, 8, 1, 128);
+        return {
+          value: receipt,
+          stretched: stretched
+        }
+      },
 
       gl_password: function(password) {
         var scrypt = scrypt_module_factory(33554432);
@@ -184,14 +202,19 @@ angular.module('e2e', []).
     ];
     return {
       names: wb_names,
-      generate_key_from_receipt: function(stretched_receipt, cb) {
-        function Seed(seed) {
-          this.seed = seed;
+      generate_key_from_receipt: function(receipt, cb) {
+        function Seed() {
+          var self = this,
+            scrypt = scrypt_module_factory(33554432),
+            utf8_pwd = scrypt.encode_utf8(receipt),
+            salt = "This is the salt.";
+          self.offset = 0;
+          self.seed = scrypt.crypto_scrypt(utf8_pwd, salt, 4096,
+                                           8, 1, 128 * 2);
           function nextBytes(byteArray) {
             for (var n = 0; n < byteArray.length; n++) {
-              var buf = new Uint8Array(1);
-              buf = this.seed.charCodeAt(n % this.seed.length);
-              byteArray[n] = buf;
+              byteArray[n] = self.seed[self.offset % self.seed.length];
+              self.offset += 1;
             }
           }
           this.nextBytes = nextBytes;
@@ -199,10 +222,10 @@ angular.module('e2e', []).
         var wb_name = wb_names[Math.floor(Math.random() * wb_names.length)];
         openpgp.generateKeyPair({
           numBits: 2048,
-          userId:  wb_name + " <wb@antani.gov>",
+          userId: wb_name + " <wb@antani.gov>",
           unlocked: true,
           created: new Date(42),
-          prng: new Seed(stretched_receipt)
+          prng: new Seed()
         }).then(function(keyPair){
           console.log("Generated key pair for " + wb_name);
           console.log(keyPair.key.primaryKey.fingerprint);
