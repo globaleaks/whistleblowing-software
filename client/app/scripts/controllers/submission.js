@@ -210,6 +210,7 @@ controller('ReceiptController', ['$scope', '$location', 'Authentication', 'Whist
 
     $scope.view_tip = function (keycode) {
       console.log("eh: " + keycode);
+      console.log($scope);
       // keycode = keycode.replace(/\D/g,'');
       keycode = receiver.pgp_e2e_public;
       console.log("eh: " + keycode);

@@ -371,7 +371,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           wb_steps: _.clone(self.current_context.steps),
           receivers: [],
           human_captcha_answer: 0,
-          pgp_e2e_public: "", pgp_e2e_private: ""
+          wb_e2e_public: "", 
+          wb_e2e_private: ""
         });
 
         setCurrentContextReceivers();
@@ -438,8 +439,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             userId: "somebody@somewhere.com" }).then( function(tkp) {
 
             self.current_submission.finalize = true;
-            self.current_submission.pgp_e2e_public = tkp.publicKeyArmored;
-            self.current_submission.pgp_e2e_private = tkp.privateKeyArmored;
+            self.current_submission.wb_e2e_public = tkp.publicKeyArmored;
+            self.current_submission.wb_e2e_private = tkp.privateKeyArmored;
 
             console.log('receivers_selected_keys ', self.receivers_selected_keys);
             var receivers_and_wb_keys = [];
@@ -523,7 +524,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
                 var r_key_pub = openpgp.key.readArmored(receiver.pgp_e2e_public).keys[0];
                 self.receivers_and_wb_keys.push( r_key_pub );
             });
-            var wb_key_pub = openpgp.key.readArmored( self.tip.pgp_e2e_public ).keys[0];
+            var wb_key_pub = openpgp.key.readArmored( self.tip.wb_e2e_public ).keys[0];
             self.receivers_and_wb_keys.push( wb_key_pub );
 
             self.tip.newComment = function(content) {
@@ -593,7 +594,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       tipResource.get(function(result) {
 
-        self.privateKey = openpgp.key.readArmored( result.pgp_e2e_private ).keys[0];
+        self.privateKey = openpgp.key.readArmored( result.wb_e2e_private ).keys[0];
         //TODO: decrypt key with receipt, now it is in unencrypted
         var pgpMessage = openpgp.message.readArmored( result.wb_steps[0] );
 
@@ -620,7 +621,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
                 var r_key_pub = openpgp.key.readArmored(receiver.pgp_e2e_public).keys[0];
                 self.receivers_and_wb_keys.push( r_key_pub );
           });
-          var wb_key_pub = openpgp.key.readArmored( self.tip.pgp_e2e_public ).keys[0];
+          var wb_key_pub = openpgp.key.readArmored( self.tip.wb_e2e_public ).keys[0];
           self.receivers_and_wb_keys.push( wb_key_pub );
 
           self.tip.newComment = function(content) {
