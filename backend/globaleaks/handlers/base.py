@@ -172,7 +172,9 @@ class GLHTTPConnection(HTTPConnection):
             self._request.body = data
             content_type = self._request.headers.get("Content-Type", "")
             if self._request.method in ("POST", "PATCH", "PUT"):
-                if content_type.startswith("application/x-www-form-urlencoded") and self.content_length < GLSetting.www_form_urlencoded_maximum_size:
+                if content_type.startswith("application/x-www-form-urlencoded"):
+                    if self.content_length > GLSetting.www_form_urlencoded_maximum_size:
+                        raise errors.InvalidInputFormat("Error: size limit exceeded of application/x-www-form-urlencoded")
                     arguments = parse_qs_bytes(native_str(self._request.body))
                     for name, values in arguments.iteritems():
                         values = [v for v in values if v]
@@ -181,8 +183,6 @@ class GLHTTPConnection(HTTPConnection):
                                                                []).extend(values)
                 elif content_type.startswith("multipart/form-data"):
                     raise errors.InvalidInputFormat("content type multipart/form-data not supported")
-                else:
-                    raise errors.InvalidInputFormat("invalid request")
             self.request_callback(self._request)
         except Exception as exception:
             log.msg("Malformed HTTP request from %s: %s" % (self._remote_ip, exception))
