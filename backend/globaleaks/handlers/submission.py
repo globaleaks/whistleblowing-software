@@ -33,8 +33,8 @@ def wb_serialize_internaltip(internaltip):
         'wb_steps': internaltip.wb_steps,
         'files': [f.id for f in internaltip.internalfiles],
         'receivers': [r.id for r in internaltip.receivers],
-        'pgp_e2e_public': internaltip.pgp_e2e_public,
-        'pgp_e2e_private': internaltip.pgp_e2e_private
+        'wb_e2e_public': internaltip.wb_e2e_public,
+        'wb_e2e_private': internaltip.wb_e2e_private
     }
 
     return response
@@ -43,9 +43,10 @@ def wb_serialize_internaltip(internaltip):
 def db_create_whistleblower_tip(store, submission_desc):
     wbtip = WhistleblowerTip()
     wbtip.access_counter = 0
-    wbtip.wb_signature = submission_desc['pgp_e2e_private']
+    wbtip.wb_signature = submission_desc['wb_e2e_private']
     print submission_desc
-    wbtip.wb_signature = submission_desc['pgp_e2e_public']
+    print "TODO receive WB_E2E_SIGNATURE"
+    wbtip.wb_signature = submission_desc['wb_e2e_public']
     wbtip.internaltip_id = submission_desc['id']
     store.add(wbtip)
 
@@ -111,14 +112,14 @@ def db_create_submission(store, token, request, language):
     submission.wb_e2e_public = request['wb_e2e_public']
     submission.wb_e2e_private = request['wb_e2e_private']
     # This value is the copy of the node level setting, that can change in the time.
-    submission.is_e2e_encrypted = context.node.submission_data_e2e
+    submission.is_e2e_encrypted = GLSetting.memory_copy.submission_data_e2e
 
-    if context.node.submission_data_e2e:
-        log.debug("End2End enabled node level, wb_fields len #%d (has to be 1) first 20bytes: %s" %(
-            len(request['wb_fields']),
-            request['wb_fields'][0][:20]))
+    if GLSetting.memory_copy.submission_data_e2e:
+        log.debug("End2End enabled node level, wb_steps len #%d (has to be 1) first 20bytes: %s" %(
+            len(request['wb_steps']),
+            request['wb_steps'][0][:20]))
     else:
-        log.debug("End2End DIS-abled node level, wb_fields len #%d" % (len(request['wb_fields'])))
+        log.debug("End2End DIS-abled node level, wb_steps len #%d" % (len(request['wb_steps'])))
 
     try:
         store.add(submission)

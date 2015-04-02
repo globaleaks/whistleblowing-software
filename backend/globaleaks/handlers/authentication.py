@@ -192,7 +192,6 @@ def login_wb(store, authentication_sign):
     """
     node = store.find(Node).one()
     # hashed_receipt = security.hash_password(receipt, node.receipt_salt)
-    print "abbiamo", node
     wb_tip = store.find(WhistleblowerTip,
                         WhistleblowerTip.wb_signature == unicode(authentication_sign)).one()
 
