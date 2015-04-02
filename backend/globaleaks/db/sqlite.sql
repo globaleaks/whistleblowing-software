@@ -303,7 +303,8 @@ CREATE TABLE whistleblowertip (
     access_counter INTEGER NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     last_access VARCHAR,
-    wb_signature VARCHAR NOT NULL,
+    wb_signature VARCHAR,
+    receipt_hash VARCHAR,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
