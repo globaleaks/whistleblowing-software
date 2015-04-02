@@ -2,8 +2,8 @@
 
 GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
                     'Authentication',
-                    'WhistleblowerTip', 'Contexts', 'Receivers',
-  function ($scope, $location, $modal, Authentication, WhistleblowerTip, Contexts, Receivers) {
+                    'WBReceipt', 'Contexts', 'Receivers',
+  function ($scope, $location, $modal, Authentication, WBReceipt, Contexts, Receivers) {
     $scope.keycode = '';
     $scope.configured = false;
     $scope.step = 1;
@@ -14,7 +14,7 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
 
     $scope.view_tip = function(keycode) {
       keycode = keycode.replace(/\D/g,'');
-      WhistleblowerTip(keycode, function() {
+      WBReceipt(keycode, function() {
         $location.path('/status');
       });
     };
