@@ -429,7 +429,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             self.current_submission.wb_e2e_public = wb_key.publicKeyArmored;
             console.log("WB KEY");
             console.log(wb_key.publicKeyArmored);
-            //self.current_submission.wb_e2e_private = wb_key.privateKeyArmored;
+            self.current_submission.wb_e2e_private = "";
+            self.current_submission.is_e2e_encrypted = true;
+
+            //wb_key.privateKeyArmored;
 
             console.log('receivers_selected_keys ', self.receivers_selected_keys);
             var receivers_and_wb_keys = [];
