@@ -201,12 +201,22 @@ def login_wb(store, authentication_sign):
     Login wb return the WhistleblowerTip.id
     """
     node = store.find(Node).one()
-    # hashed_receipt = security.hash_password(receipt, node.receipt_salt)
-    wb_tip = store.find(WhistleblowerTip,
-                        WhistleblowerTip.wb_signature == unicode(authentication_sign)).one()
+
+    if len(authentication_sign) == 16:
+
+        print "old style receiver authentication!", authentication_sign
+        hashed_receipt = security.hash_password(authentication_sign, node.receipt_salt)
+        wb_tip = store.find(WhistleblowerTip,
+                            WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
+    else:
+
+        print "Expected a public key signed by the WB, has to be done cryptovalidation AND/OR challenge response"
+        wb_tip = store.find(WhistleblowerTip,
+                            WhistleblowerTip.wb_signature == unicode(authentication_sign)).one()
+
 
     if not wb_tip:
-        log.debug("Whistleblower login: Invalid receipt")
+        log.debug("Whistleblower login: Invalid Auth")
         return False
 
     log.debug("Whistleblower login: Valid receipt")
