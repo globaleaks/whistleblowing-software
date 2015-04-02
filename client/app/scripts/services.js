@@ -247,8 +247,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$resource', '$filter', '$location', 'Authentication', 'Node', 'Contexts', 'Receivers',
-  function($resource, $filter, $location, Authentication, Node, Contexts, Receivers) {
+  factory('Submission', ['$resource', '$filter', '$location', 'Authentication', 'Node', 'Contexts', 'Receivers', 'pkdf', 'whistleblower',
+  function($resource, $filter, $location, Authentication, Node, Contexts, Receivers, pkdf, whistleblower) {
 
     var submissionResource = $resource('/submission/:token_id/',
         {token_id: '@token_id'},
@@ -285,13 +285,16 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.receivers_selected = {};
       self.uploading = false;
       self.receivers_selected_keys = [];
+      
+      self.whistleblower_key = null;
+      self.receipt = pkdf.gl_receipt();
 
       var setCurrentContextReceivers = function() {
         self.receivers_selected = {};
         self.receivers_selected_keys = [];
         self.current_context_receivers = [];
 
-        forEach(self.receivers, function(receiver){
+        forEach(self.receivers, function(receiver) {
           // enumerate only the receivers of the current context and with pgp keys
           if (self.current_context.receivers.indexOf(receiver.id) !== -1 && receiver.pgp_e2e_public) {
             self.current_context_receivers.push(receiver);
@@ -359,7 +362,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           wb_steps: self.current_context.steps,
           receivers: [],
           human_captcha_answer: 0,
-          wb_e2e_public: "", 
+          wb_e2e_public: "",
           wb_e2e_private: ""
         });
 
@@ -418,26 +421,24 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           }
         });
 
-        //TODO: generate receipt and passphrase
         openpgp.config.show_comment = false;
         openpgp.config.show_version = false;
-        openpgp.generateKeyPair({
-            numBits: 2048,
-            //passphrase: "",
-            userId: "somebody@somewhere.com" }).then( function(tkp) {
-
+        whistleblower.generate_key_from_receipt(self.receipt.value, function(wb_key){
+            self.whistleblower_key = wb_key;
             self.current_submission.finalize = true;
-            self.current_submission.wb_e2e_public = tkp.publicKeyArmored;
-            self.current_submission.wb_e2e_private = tkp.privateKeyArmored;
+            self.current_submission.wb_e2e_public = wb_key.publicKeyArmored;
+            console.log("WB KEY");
+            console.log(wb_key.publicKeyArmored);
+            //self.current_submission.wb_e2e_private = wb_key.privateKeyArmored;
 
             console.log('receivers_selected_keys ', self.receivers_selected_keys);
             var receivers_and_wb_keys = [];
             _.each(self.receivers_selected_keys, function(key) {
                 var r_key_pub = openpgp.key.readArmored(key).keys[0];
-                receivers_and_wb_keys.push( r_key_pub );
+                receivers_and_wb_keys.push(r_key_pub);
             });
-            var wb_key_pub = openpgp.key.readArmored( tkp.publicKeyArmored ).keys[0];
-            receivers_and_wb_keys.push( wb_key_pub );
+            var wb_key_pub = openpgp.key.readArmored(wb_key.publicKeyArmored).keys[0];
+            receivers_and_wb_keys.push(wb_key_pub);
             console.log('Submission receivers_and_wb_keys ', receivers_and_wb_keys);
 
             var wb_steps = JSON.stringify(self.current_submission.wb_steps);
@@ -670,14 +671,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
           });
 
-<<<<<<< HEAD
-          commentsResource.query({}, function(commentsCollection){
-            self.tip.comments = commentsCollection;
-
-          });
-
-=======
->>>>>>> integrated e2e patch and fixes
           fn(self.tip);
 
         });

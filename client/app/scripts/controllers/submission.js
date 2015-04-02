@@ -1,13 +1,8 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$rootScope', '$location', '$modal', 'Authentication', 'Submission', 'whistleblower',
-      function ($scope, $rootScope, $location, $modal, Authentication, Submission, whistleblower) {
+    ['$scope', '$rootScope', '$location', '$modal', 'Authentication', 'Submission',
+      function ($scope, $rootScope, $location, $modal, Authentication, Submission) {
 
   $rootScope.invalidForm = true;
-  var stretched_receipt = "01234567898787878";
-
-  whistleblower.generate_key_from_receipt(stretched_receipt, function(key){
-    console.log(key);
-  });
 
   var context_id = $location.search().context;
   var receivers_ids = $location.search().receivers;
