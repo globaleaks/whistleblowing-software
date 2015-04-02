@@ -7,20 +7,6 @@ angular.module('resourceServices.authentication', [])
       function Session(){
         var self = this;
 
-        var setCookie = function(name, value) {
-          /**
-           * We set the cookie to be HTTPS only if we are accessing the
-           * globaleaks node over HTTPS.
-           * If we are not that means that we are accessing it via it's Tor
-           * Hidden Service and we don't need to set the cookie HTTPS only as
-           * all requests will always be encrypted end to end.
-           * */
-          $.cookie(name, value);
-          if(window.location.protocol === 'https:') {
-            $.cookie(name, value, {secure: true});
-          }
-        };
-
         $rootScope.login = function(username, password, role, cb) {
           return $http.post('/authentication', {'username': username,
                                                 'password': password,
@@ -797,7 +783,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('cookiesEnabled', function(){
 
   return function() {
-
     var enabled = false;
     document.cookie = 'cookiesenabled=true;';
     if (document.cookie == "") {
