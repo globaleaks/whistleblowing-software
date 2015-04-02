@@ -425,7 +425,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         openpgp.config.show_version = false;
         whistleblower.generate_key_from_receipt(self.receipt.value,
                                                 function(wb_key){
-            self.receipt.key = wb_key;
+            self.receipt.pgp = wb_key;
             self.whistleblower_key = wb_key;
             self.current_submission.finalize = true;
             self.current_submission.wb_e2e_public = wb_key.publicKeyArmored;
@@ -566,8 +566,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     };
 
 	}]).
-  factory('WBTip', ['$resource', 'Receivers',
-          function($resource, Receivers) {
+  factory('WBTip', ['$resource', 'Receivers', 'Authentication',
+          function($resource, Receivers, Authentication) {
 
     var forEach = angular.forEach;
 
@@ -578,14 +578,13 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     return function(fn) {
       var self = this;
+      self.receipt = Authentication.receipt;
       self.tip = {};
-      var privateKey = null;
+      var keyPair = self.receipt.pgp;
 
       tipResource.get(function(result) {
-
-        self.privateKey = openpgp.key.readArmored( result.wb_e2e_private ).keys[0];
-        //TODO: decrypt key with receipt, now it is in unencrypted
-        var pgpMessage = openpgp.message.readArmored( result.wb_steps[0] );
+        var pgpMessage = openpgp.message.readArmored(result.wb_steps[0]);
+        self.privateKey = openpgp.key.readArmored(keyPair.privateKeyArmored).keys[0];
 
         openpgp.config.show_comment = false;
         openpgp.config.show_version = false;
@@ -681,14 +680,27 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     };
 }]).
-  factory('WhistleblowerTip', ['$rootScope',
-    function($rootScope){
+  factory('WBReceipt', ['$rootScope', 'Authentication', 'whistleblower',
+    function($rootScope, Authentication, whistleblower){
     return function(keycode, fn) {
+      function login() {
+        console.log(Authentication.receipt);
+        var fp = Authentication.receipt.pgp.key.primaryKey.fingerprint;
+        $rootScope.login('', fp, 'wb',
+                         function() {
+          fn();
+        });
+      }
       var self = this;
-      $rootScope.login('', keycode, 'wb')
-      .then(function() {
-        fn();
-      });
+      if (Authentication.receipt.pgp) {
+        login();
+      } else {
+        whistleblower.generate_key_from_receipt(keycode,
+                                                function(key){
+          Authentication.receipt.pgp = key;
+          login();
+        });
+      }
     };
 }]).
   factory('ReceiverPreferences', ['$resource', function($resource) {

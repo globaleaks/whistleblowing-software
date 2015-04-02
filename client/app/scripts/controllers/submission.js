@@ -203,10 +203,10 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
   $scope.$on('fileuploadalways', update_uploads_status);
 
 }]).
-controller('ReceiptController', ['$scope', '$location', 'Authentication', 'WhistleblowerTip',
-  function($scope, $location, Authentication, WhistleblowerTip) {
-    var format_keycode = function(keycode) {
-      var ret = keycode;
+controller('ReceiptController', ['$scope', '$location', 'Authentication', 'WBReceipt',
+  function($scope, $location, Authentication, WBReceipt) {
+
+    format_keycode = function(keycode) {
       if (keycode && keycode.length == 16) {
         ret =  keycode.substr(0, 4) + ' ' +
                keycode.substr(4, 4) + ' ' +
@@ -221,13 +221,7 @@ controller('ReceiptController', ['$scope', '$location', 'Authentication', 'Whist
     $scope.formatted_keycode = format_keycode($scope.keycode);
 
     $scope.view_tip = function (keycode) {
-      console.log("eh: " + keycode);
-      console.log($scope);
-      // keycode = keycode.replace(/\D/g,'');
-      keycode = receiver.pgp_e2e_public;
-      console.log("eh: " + keycode);
-      console.log(keycode);
-      WhistleblowerTip(keycode, function () {
+      WBReceipt(Authentication.receipt.value, function () {
         $location.path('/status/');
       });
     };
