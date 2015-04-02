@@ -202,6 +202,10 @@ def login_wb(store, authentication_sign):
     """
     node = store.find(Node).one()
 
+    alls = store.find(WhistleblowerTip)
+    for a in alls:
+        print "XX", a.wb_signature, "vs", authentication_sign
+
     if len(authentication_sign) == 16:
 
         print "old style receiver authentication!", authentication_sign

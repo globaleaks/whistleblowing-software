@@ -239,7 +239,6 @@ class InternalTip(Model):
     new = Int(default=True)
 
     wb_e2e_public = Unicode()
-    wb_e2e_private = Unicode()
     is_e2e_encrypted = Bool()
 
 

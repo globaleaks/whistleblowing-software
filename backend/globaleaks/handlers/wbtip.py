@@ -29,8 +29,7 @@ def wb_serialize_tip(internaltip, language):
         'wb_steps' : internaltip.wb_steps,
         'enable_private_messages' : internaltip.context.enable_private_messages,
         'show_receivers': internaltip.context.show_receivers, 
-        'pgp_e2e_public': internaltip.pgp_e2e_public,
-        'pgp_e2e_private': internaltip.pgp_e2e_private,
+        'wb_e2e_public': internaltip.wb_e2e_public,
     }
 
     # context_name and context_description are localized fields

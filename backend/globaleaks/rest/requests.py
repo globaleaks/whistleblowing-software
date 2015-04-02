@@ -45,7 +45,7 @@ SubmissionDesc = {
     'human_captcha_answer': int,
     'receivers': [uuid_regexp],
     'wb_e2e_public': unicode,
-    'wb_e2e_private': unicode
+    'wb_signature': unicode,
 }
 
 ReceiverReceiverDesc = {

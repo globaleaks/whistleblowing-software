@@ -105,7 +105,6 @@ CREATE TABLE internaltip (
     expiration_date VARCHAR NOT NULL,
     wb_steps BLOB,
     wb_e2e_public VARCHAR,
-    wb_e2e_private VARCHAR,
     is_e2e_encrypted INTEGER NOT NULL,
     last_activity VARCHAR,
     context_id VARCHAR NOT NULL,
