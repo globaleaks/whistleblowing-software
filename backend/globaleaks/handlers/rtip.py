@@ -35,8 +35,7 @@ def receiver_serialize_tip(internaltip, language):
         'potential_expiration_date': \
             datetime_to_ISO8601(utc_future_date(seconds=internaltip.context.tip_timetolive)),
         'enable_private_messages': internaltip.context.enable_private_messages,
-        'pgp_e2e_public': internaltip.pgp_e2e_public,
-        'pgp_e2e_private': internaltip.pgp_e2e_private,
+        'wb_e2e_public': internaltip.wb_e2e_public,
     }
 
     # context_name and context_description are localized fields
