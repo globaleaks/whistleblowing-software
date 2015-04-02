@@ -286,6 +286,7 @@
       "tor2web_submission": false,
       "public_site": "",
       "hidden_service": "",
+      "context_selector_label": {"en": ""},
       "security_awareness_title": {"en": ""},
       "security_awareness_text": {"en": ""},
       "whistleblowing_question": {"en": ""},
