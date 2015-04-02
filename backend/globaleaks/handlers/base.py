@@ -23,7 +23,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.python.failure import Failure
 
 from cyclone import escape, httputil
-from cyclone.escape import native_str, parse_qs_bytes
+from cyclone.escape import utf8, native_str, parse_qs_bytes
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
 
@@ -182,7 +182,17 @@ class GLHTTPConnection(HTTPConnection):
                             self._request.arguments.setdefault(name,
                                                                []).extend(values)
                 elif content_type.startswith("multipart/form-data"):
-                    raise errors.InvalidInputFormat("content type multipart/form-data not supported")
+                    fields = content_type.split(";")
+                    for field in fields:
+                        k, sep, v, = field.strip().partition("=")
+                        if k == "boundary" and v:
+                            httputil.parse_multipart_form_data(
+                                utf8(v), data,
+                                self._request.arguments,
+                                self._request.files)
+                            break
+                    else:
+                        log.msg("Invalid multipart/form-data")
             self.request_callback(self._request)
         except Exception as exception:
             log.msg("Malformed HTTP request from %s: %s" % (self._remote_ip, exception))
