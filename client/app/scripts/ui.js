@@ -72,6 +72,23 @@ angular.module('submissionUI', []).
       }
     };
 }).
+  directive('pgpkeyvalidator', function($q, $timeout) {
+    return {
+      require: 'ngModel',
+      link: function(scope, elm, attrs, ngModel) {
+        ngModel.$setValidity('pgpkeyvalidator', false);
+        ngModel.$parsers.unshift(function(viewValue) {
+          var result = '';
+          ngModel.$setValidity('pgpkeyvalidator', false);
+          key = openpgp.key.readArmored(viewValue).keys[0];
+          if (key) {
+            ngModel.$setValidity('pgpkeyvalidator', true);
+          }
+          return viewValue;
+        });
+      }
+    };
+}).
   directive('creditCard', ['$filter', function($filter){
     return {
       scope: {
@@ -84,7 +101,7 @@ angular.module('submissionUI', []).
           var yourname = svgItem.contentDocument.getElementById('your_name');
           var ccnumber = svgItem.contentDocument.getElementById('cc_number');
           creditcard.innerHTML =  $filter('translate')('CREDIT CARD');
-         yourname.innerHTML =  $filter('translate')('YOUR NAME');
+          yourname.innerHTML =  $filter('translate')('YOUR NAME');
           ccnumber.innerHTML = scope.creditCard();
         });
       }
