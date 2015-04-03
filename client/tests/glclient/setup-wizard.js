@@ -18,7 +18,9 @@ describe('globaLeaks setup wizard', function() {
       element(by.model('receiver.mail_address')).sendKeys('info@globaleaks.org');
       
       // Disable encryption for receiver
+      browser.sleep(200);
       element(by.model('admin.node.allow_unencrypted')).click();
+      browser.sleep(200);
       element(by.css('[data-ng-click="ok()"]')).click();
       
       element(by.model('context.name')).sendKeys('My Context');
