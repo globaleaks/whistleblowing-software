@@ -17,7 +17,7 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
                               ReceiverFile
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.utils.utility import log
+from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.security import GLBPGP, GLSecureFile
 from globaleaks.handlers.admin import admin_serialize_receiver
 from globaleaks.third_party.rstr import xeger
@@ -184,12 +184,14 @@ def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_d
                 (if_path, receiver_desc['name'], excep.message))
 
 
-# called in a transact!
-def create_receivertip(store, receiver, internaltip):
+def db_create_receivertip(store, receiver, internaltip):
     """
     Create ReceiverTip for the required tier of Receiver.
     """
-    log.debug('Creating ReceiverTip for: %s' % receiver.name)
+    log.debug('Creating ReceiverTip for: %s (Tip of %s) E2E: %s' %
+              (receiver.name,
+               datetime_to_ISO8601(internaltip.creation_date),
+               "YES" if internaltip.is_e2e_encrypted else "NO" ))
 
     receivertip = ReceiverTip()
     receivertip.internaltip_id = internaltip.id
@@ -210,7 +212,7 @@ def tip_creation(store):
     new_itips = store.find(InternalTip, InternalTip.new == True)
     for internaltip in new_itips:
         for receiver in internaltip.receivers:
-            rtip_id = create_receivertip(store, receiver, internaltip)
+            rtip_id = db_create_receivertip(store, receiver, internaltip)
             created_rtips.append(rtip_id)
 
         internaltip.new = False

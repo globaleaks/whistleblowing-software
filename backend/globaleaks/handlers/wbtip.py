@@ -268,6 +268,7 @@ def get_receiver_list_wb(store, wb_tip_id, language):
 
             localize_and_append_receiver(rtip.receiver, receiver_desc)
 
+    print "XXX", receiver_list
     return receiver_list
 
 

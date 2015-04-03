@@ -10,7 +10,7 @@ var host = 'http://127.0.0.1:8082';
 
 var app = request(host);
 
-var population_order = 4;
+var population_order = 15;
 
 var receivers = new Array();
 var receivers_ids = new Array();
@@ -23,161 +23,56 @@ var authentication;
 var node;
 
 var valid_admin_login = {
-  'username': 'admin',
-  'password': 'globaleaks',
-  'role': 'admin'
+  "username": "admin",
+  /* default password cdscds */
+  "password": "Antani1234",
+  "role": "admin"
 }
 
 var receiver = {
-  can_delete_submission: false,
-  comment_notification: false,
-  contexts: [],
-  timezone: 0,
-  language: 'en',
-  description: '',
-  file_notification: false,
-  pgp_key_public: '',
-  pgp_key_expiration: '',
-  pgp_key_fingerprint: '',
-  pgp_key_info: '',
-  pgp_key_remove: false,
-  pgp_key_status: 'ignored',
-  mail_address: 'receiver1@antani.gov', // used 'Receiver N' for population
-  ping_mail_address: '',
-  unsecure_mail_address: 'unsecure@live.com',
-  message_notification: false,
-  name: 'receiver1@antani.gov', // used 'receiverN@antani.gov' for population
-  password: 'ringobongos3cur1ty',
-  can_postpone_expiration: true,
-  presentation_order: 0,
-  tip_notification: false,
-  ping_notification: false,
-  configuration: 'default',
-  password_change_needed: false,
+  "password":"Antani1234",
+  "contexts":[],
+  "description":"",
+  "mail_address":"ciao@ciao.it",
+  "ping_mail_address":"",
+  "can_delete_submission":false,
+  "postpone_superpower":false,
+  "tip_notification":true,
+  "ping_notification":false,
+  "pgp_key_info":"",
+  "pgp_key_fingerprint":"",
+  "pgp_key_remove":false,
+  "pgp_key_public":"",
+  "pgp_key_expiration":"",
+  "pgp_key_status":"ignored",
+  "pgp_enable_notification":false,
+  "pgp_e2e_public":"",
+  "pgp_e2e_private":"",
+  "presentation_order":0,
+  "state":"enable",
+  "configuration":"default",
+  "password_change_needed":true,
+  "language":"en",
+  "timezone":"0",
+  "name":"FOCA"
 }
 
-var fields = [
-  {
-    id: '',
-    is_template: false,
-    step_id: '',
-    fieldgroup_id: '',
-    label: 'Field 1',
-    type: 'inputbox',
-    preview: false,
-    description: 'field description',
-    hint: 'field hint',
-    multi_entry: false,
-    stats_enabled: false,
-    required: true,
-    children: [],
-    options: [],
-    y: 2,
-    x: 0
-  },
-  {
-    id: '',
-    is_template: false,
-    step_id: '',
-    fieldgroup_id: '',
-    label: 'Field 2',
-    type: 'inputbox',
-    preview: false,
-    description: 'description',
-    hint: 'field hint',
-    multi_entry: false,
-    stats_enabled: false,
-    required: false,
-    children: [],
-    options: [],
-    y: 3,
-    x: 0
-  },
-  {
-    id: '',
-    is_template: false,
-    step_id: '',
-    fieldgroup_id: '',
-    label: 'Field 2',
-    type: 'inputbox',
-    preview: false,
-    description: 'description',
-    hint: 'field hint',
-    multi_entry: false,
-    stats_enabled: false,
-    required: false,
-    children: [],
-    options: [],
-    y: 3,
-    x: 0
-  },
-  {
-    id: '',
-    is_template: false,
-    step_id: '',
-    fieldgroup_id: '',
-    label: 'Name',
-    type: 'inputbox',
-    preview: false,
-    description: 'field description',
-    hint: 'field hint',
-    multi_entry: false,
-    stats_enabled: false,
-    required: false,
-    children: [],
-    options: [],
-    y: 0,
-    x: 0
-  },
-  {
-    id: '',
-    is_template: false,
-    step_id: '',
-    fieldgroup_id: '',
-    label: 'Surname',
-    type: 'inputbox',
-    preview: false,
-    description: 'field description',
-    hint: 'field hint',
-    multi_entry: false,
-    stats_enabled: false,
-    required: false,
-    children: [],
-    options: [],
-    y: 0,
-    x: 0
-  }
-]
-
-var context = {
-  receiver_introduction: 'foca',
-  presentation_order: 0,
-  tip_timetolive: 15,
-  can_postpone_expiration: false,
-  can_delete_submission: true,
-  show_small_cards: false,
-  show_receivers: true,
-  enable_private_messages: true,
-  select_all_receivers: true,
-  show_receivers_in_alphabetical_order: false,
-  description: 'XXXXX ħ ÐÐ',
-  name: 'Context 1',
-  steps: [
-     {
-       label: 'Step 1',
-       description: 'Step Description',
-       hint: 'Step Hint',
-       children: {}
-     },
-     {
-       label: 'Step 2',
-       description: 'Step Description',
-       hint: 'Step Hint',
-       children: {}
-    }
-  ],
-  maximum_selectable_receivers:0,
-  receivers: []
+context = {
+  "name":"AAAAAAAA",
+  "description":"",
+  "steps":[],
+  "receivers":[],
+  "select_all_receivers":false,
+  "tip_timetolive":15,
+  "receiver_introduction":"",
+  "postpone_superpower":false,
+  "can_delete_submission":false,
+  "maximum_selectable_receivers":0,
+  "show_small_cards":false,
+  "show_receivers":true,
+  "enable_private_messages":true,
+  "presentation_order":0
+>>>>>>> bug hunting + restored mocha
 }
 
 var validate_mandatory_headers = function(headers) {
@@ -335,44 +230,6 @@ describe('POST /admin/receiver', function () {
             receivers.push(res.body);
 
             receivers_ids.push(res.body.id);
-
-            done();
-
-        });
-      })
-    })(i);
-  }
-})
-
-// we popolate population_order/2 contexts
-describe('POST /admin/context', function () {
-  for (var i=population_order/2; i<population_order; i++) {
-    (function (i) {
-      it('responds 201 on POST /admin/context ' + i + ' (authenticated, valid context)', function (done) {
-        var newObject = JSON.parse(JSON.stringify(context));
-        newObject.name = 'Context ' + i ;
-        newObject.presentation_order = i;
-        newObject.name = 'Context ' + i + ' (selectable receivers: TRUE)';
-        newObject.receivers = receivers_ids;
-
-        app
-          .post('/admin/context')
-          .send(newObject)
-          .set('X-XSRF-TOKEN', 'antani')
-          .set('cookie', 'XSRF-TOKEN=antani')
-          .set('X-Session', authentication['session_id'])
-          .expect(201)
-          .end(function (err, res) {
-
-            if (err) {
-              return done(err);
-            }
-
-            validate_mandatory_headers(res.headers);
-
-            contexts.push(res.body);
-
-            contexts_ids.push(res.body.id);
 
             done();
 

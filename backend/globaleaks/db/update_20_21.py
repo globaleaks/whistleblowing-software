@@ -21,13 +21,9 @@
         is kept 'receipt_hash' for hybrid behavior
         is add 'wb_signature' to support new
 """
-
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model
-from globaleaks.utils.utility import every_language
-
 
 
 class Receiver_v_20(Model):
@@ -137,7 +133,6 @@ class InternalTip_v_20(Model):
     expiration_date = DateTime()
     last_activity = DateTime()
     new = Int()
-
 
 class Replacer2021(TableReplacer):
 
