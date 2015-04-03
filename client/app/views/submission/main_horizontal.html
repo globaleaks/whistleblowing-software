@@ -19,7 +19,6 @@
     <div data-ng-show="receivers_selectable && submission.current_context.show_receivers && selection == 0" data-ng-include="'views/submission/receiver_selection.html'"></div>
 
     <!-- Configured Context Steps -->
-    {{ uploading }}
     <div data-ng-repeat="step in submission.current_context.steps" data-ng-controller="SubmissionStepCtrl">
       <div class="SubmissionStep" data-ng-show="selection == $index + 1">
         <div class="preformatted" data-ng-show="step.description">{{step.description}}</div>

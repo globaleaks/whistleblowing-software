@@ -126,7 +126,9 @@ GLClient.controller('SubmissionCtrl',
           $scope.selection = 0;
         }
 
-        $scope.fileupload_url = '/submission/' + $scope.submission.current_submission.id + '/file';
+        $scope.get_fileupload_url = function() {
+          return '/submission/' + $scope.submission.current_submission.id + '/file';
+        }
       });
       checkReceiverSelected();
      }
@@ -140,7 +142,7 @@ GLClient.controller('SubmissionCtrl',
 
 }]).
 controller('SubmissionStepCtrl', ['$scope', function($scope) {
-  $scope.queue = $scope.queue || [];
+  $scope.uploads = [];
 }]).
 controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
   if ($scope.field.type == 'fileupload') {

@@ -21,11 +21,10 @@ from globaleaks.handlers.authentication import transport_security_check, authent
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
-from globaleaks.security import access_tip, directory_traversal_check
+from globaleaks.security import access_tip, GLSecureTemporaryFile
 from globaleaks.utils.token import TokenList
 
 def serialize_file(internalfile):
-
     file_desc = {
         'size' : internalfile.size,
         'content_type' : internalfile.content_type,
@@ -36,8 +35,8 @@ def serialize_file(internalfile):
 
     return file_desc
 
-def serialize_receiver_file(receiverfile):
 
+def serialize_receiver_file(receiverfile):
     internalfile = receiverfile.internalfile
 
     file_desc = {
@@ -85,7 +84,6 @@ def register_file_db(store, uploaded_file, internaltip_id):
           'filename': 'SteganographyIsImportant.png'
         }
     """
-
     internaltip = store.find(InternalTip,
                              InternalTip.id == internaltip_id).one()
 
@@ -153,11 +151,10 @@ class FileAdd(BaseHandler):
 
     @inlineCallbacks
     def handle_file_append(self, itip_id):
-        result_list = []
+        uploaded_file = self.get_file_upload()
+        if uploaded_file is None:
+            return
 
-        start_time = time.time()
-
-        uploaded_file = self.request.body
         uploaded_file['body'].avoid_delete()
         uploaded_file['body'].close()
 
@@ -175,11 +172,19 @@ class FileAdd(BaseHandler):
             log.err("Unable to register (append) file in DB: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
 
-        registered_file['elapsed_time'] = time.time() - start_time
+    @transport_security_check('wb')
+    @unauthenticated
+    def get(self, *args):
+        """
+        Parameter: internaltip_id
+        Request: Unknown
+        Response: Unknown
+        Errors: TokenFailure
+        """
+        token = TokenList.get(self.current_user.user_id)
 
-        result_list.append(registered_file)
-
-        returnValue(result_list)
+        self.set_status(204) # We currently do not implement file resume
+        self.finish()
 
     @transport_security_check('wb')
     @authenticated('wb')
@@ -196,25 +201,22 @@ class FileAdd(BaseHandler):
         """
         itip_id = yield get_itip_id_by_wbtip_id(self.current_user.user_id)
 
-        result_list = yield self.handle_file_append(itip_id)
+        yield self.handle_file_append(itip_id)
 
         self.set_status(201) # Created
-        self.finish({'files': result_list})
+        self.finish()
 
 
 class FileInstance(BaseHandler):
     """
     WhistleBlower interface for upload a new file in a not yet completed submission
     """
-
     @inlineCallbacks
     def handle_file_upload(self, token):
-        # remind self: why is a list with just one element, and not a dict ?
-        result_list = []
+        uploaded_file = self.get_file_upload()
+        if uploaded_file is None:
+            return
 
-        start_time = time.time()
-
-        uploaded_file = self.request.body
         uploaded_file['body'].avoid_delete()
         uploaded_file['body'].close()
 
@@ -230,12 +232,6 @@ class FileInstance(BaseHandler):
             log.err("Unable to save file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept files")
 
-        registered_file['elapsed_time'] = time.time() - start_time
-
-        result_list.append(registered_file)
-
-        returnValue(result_list)
-
     @transport_security_check('wb')
     @unauthenticated
     def get(self, token_id):
@@ -245,10 +241,7 @@ class FileInstance(BaseHandler):
         Response: Unknown
         Errors: TokenFailure
         """
-
         token = TokenList.get(token_id)
-
-        log.debug("file upload with Token associated : %s" % token)
 
         self.set_status(204) # We currently do not implement file resume
         self.finish()
@@ -267,10 +260,10 @@ class FileInstance(BaseHandler):
 
         log.debug("file upload with Token associated : %s" % token)
 
-        result_list = yield self.handle_file_upload(token)
+        yield self.handle_file_upload(token)
 
         self.set_status(201) # Created
-        self.finish({'files': result_list})
+        self.finish()
 
 
 @transact
@@ -278,7 +271,6 @@ def download_file(store, user_id, tip_id, file_id):
     """
     Auth temporary disabled, just Tip_id and File_id required
     """
-
     access_tip(store, user_id, tip_id)
 
     rfile = store.find(ReceiverFile,

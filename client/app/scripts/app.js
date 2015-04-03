@@ -13,7 +13,6 @@ var GLClient = angular.module('GLClient', [
     'monospaced.elastic',
     'resourceServices',
     'submissionUI',
-    'blueimp.fileupload',
     'pascalprecht.translate',
     'GLClientFilters'
   ]).
@@ -203,11 +202,11 @@ var GLClient = angular.module('GLClient', [
   config(['flowFactoryProvider', function (flowFactoryProvider) {
     flowFactoryProvider.defaults = {};
 }]).
-  run(['$http', '$rootScope', '$route', 'Authentication', function ($http, $rootScope, $route, Authentication) {
+  run(['$http', '$rootScope', '$route', function ($http, $rootScope, $route) {
 
      var globaleaksRequestInterceptor = function(data, headers) {
 
-        headers = angular.extend(headers(), Authentication.headers());
+        headers = angular.extend(headers(), $rootScope.get_auth_headers());
 
         return data;
     };
