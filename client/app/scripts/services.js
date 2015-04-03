@@ -523,10 +523,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               openpgp.encryptMessage(self.receivers_and_wb_keys, content).then( function(pgp_content) {
                 var c = new commentsResource(tipID);
                 c.content = pgp_content;
-                //self.cleartext_comment = c;
-                //self.cleartext_comment.content = content;
+                self.clearc = content;
                 c.$save(function(newComment) {
+                  newComment.content = self.clearc;
                   self.tip.comments.unshift(newComment);
+                  self.clearc = '';
                 });
               });
             };
@@ -535,8 +536,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               openpgp.encryptMessage(self.receivers_and_wb_keys, content).then( function(pgp_content) {
                 var m = new messageResource(tipID);
                 m.content = pgp_content;
+                self.clearm = content; 
                 m.$save(function(newMessage) {
                   self.tip.messages.unshift(newMessage);
+                  self.clearm = '';
                 });
               });
             };
@@ -554,8 +557,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
                 }
               });
               self.tip.messages = messageCollection;
-              // XXX perhaps make this return a lazyly instanced item.
-              // look at $resource code for inspiration.
               fn(self.tip);
             });
 
@@ -572,8 +573,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
                 }
               });
               self.tip.comments = commentsCollection;
-              // XXX perhaps make this return a lazyly instanced item.
-              // look at $resource code for inspiration.
               fn(self.tip);
             });
 
@@ -610,89 +609,100 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         openpgp.config.show_version = false;
         openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_wb_steps) {
 
-        receiversResource.query(function(receiversCollection) {
+          receiversResource.query(function(receiversCollection) {
 
-          self.tip = result;
-          var json_wb_steps = JSON.parse(decr_wb_steps);
-          self.tip.wb_steps = json_wb_steps;
+            self.tip = result;
+            var json_wb_steps = JSON.parse(decr_wb_steps);
+            self.tip.wb_steps = json_wb_steps;
 
-          self.tip.comments = [];
-          self.tip.messages = [];
-          self.tip.receivers = [];
-          self.tip.msg_receivers_selector = [];
-          self.tip.msg_receiver_selected = null;
-          self.tip.receivers = receiversCollection;
-          self.receivers_and_wb_keys = [];
+            self.tip.comments = [];
+            self.tip.messages = [];
+            self.tip.receivers = [];
+            self.tip.msg_receivers_selector = [];
+            self.tip.msg_receiver_selected = null;
+            self.tip.receivers = receiversCollection;
+            self.receivers_and_wb_keys = [];
 
-          // build receivers and wb pub keys list
-          _.each(receiversCollection, function(receiver) {
+            // build receivers and wb pub keys list
+            _.each(receiversCollection, function(receiver) {
                 var r_key_pub = openpgp.key.readArmored(receiver.pgp_e2e_public).keys[0];
                 self.receivers_and_wb_keys.push( r_key_pub );
-          });
-          var wb_key_pub = openpgp.key.readArmored( self.tip.wb_e2e_public ).keys[0];
-          self.receivers_and_wb_keys.push( wb_key_pub );
-
-          self.tip.newComment = function(content) {
-            var c = new commentsResource();
-            c.content = content;
-            c.$save(function(newComment) {
-              self.tip.comments.unshift(newComment);
             });
-          };
+            var wb_key_pub = openpgp.key.readArmored( self.tip.wb_e2e_public ).keys[0];
+            self.receivers_and_wb_keys.push( wb_key_pub );
 
-          self.tip.newMessage = function(content) {
-            openpgp.encryptMessage(self.receivers_and_wb_keys, content).then( function(pgp_content) {
-
-              var m = new messageResource({id: self.tip.msg_receiver_selected});
-              m.content = pgp_content;
-              m.$save(function(newMessage) {
-                self.tip.messages.unshift(newMessage);
-              });
-
-            });
-          };
-
-          self.tip.updateMessages = function () {
-            if (self.tip.msg_receiver_selected) {
-              messageResource.query({id: self.tip.msg_receiver_selected}, function (messageCollection) {
-                _.each(messageCollection, function(message) {
-
-                  if ( message.content.indexOf("-----BEGIN PGP MESSAGE-----") > -1 ) {
-                    var pgpMessage = openpgp.message.readArmored( message.content );
-                    openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_content) {
-                      message.content = decr_content;
-                    });
-                  }
-
+            self.tip.newComment = function(content) {
+              openpgp.encryptMessage(self.receivers_and_wb_keys, content).then( function(pgp_content) {
+                var c = new commentsResource();
+                c.content = pgp_content;
+                self.clearc = content;
+                c.$save(function(newComment) {
+                  newComment.content = self.clearc;
+                  self.tip.comments.unshift(newComment);
+                  self.clearc = '';
                 });
-
-                self.tip.messages = messageCollection;
               });
             };
-          };
 
-          commentsResource.query({}, function(commentsCollection){
-            self.tip.comments = commentsCollection;
-          })
+            self.tip.newMessage = function(content) {
+              openpgp.encryptMessage(self.receivers_and_wb_keys, content).then( function(pgp_content) {
+                var m = new messageResource({id: self.tip.msg_receiver_selected});
+                m.content = pgp_content;
+                self.clearm = content;
+                m.$save(function(newMessage) {
+                  self.tip.messages.unshift(newMessage);
+                  self.clearm = '';
+                });
+              });
+            };
 
-          Receivers.query(function(receivers) {
+            self.tip.updateMessages = function () {
+              if (self.tip.msg_receiver_selected) {
+                messageResource.query({id: self.tip.msg_receiver_selected}, function (messageCollection) {
+                  _.each(messageCollection, function(message) {
+                    if ( message.content.indexOf("-----BEGIN PGP MESSAGE-----") > -1 ) {
+                      var pgpMessage = openpgp.message.readArmored(message.content);
+                      openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_content) {
+                        message.content = decr_content;
+                      });
+                    }
+                  });
+                  self.tip.messages = messageCollection;
+                });
+              };
+            };
 
-            forEach(self.tip.receivers, function(r1) {
-              forEach(receivers, function(r2) {
-                if (r2.id == r1.id) {
-                  self.tip.msg_receivers_selector.push({
-                    key: r2.id,
-                    value: r2.name
+            commentsResource.query({}, function(commentsCollection){
+              _.each(commentsCollection, function(comment) {
+                if (typeof(comment.content) == 'string'
+                    && comment.content.indexOf("-----BEGIN PGP MESSAGE-----") == 0) {
+                  var pgpMessage = openpgp.message.readArmored(comment.content);
+                  openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_content) {
+                    comment.content = decr_content;
+                  }, function(error) {
+                    comment.content = 'decryptMessage error: ', error;
                   });
                 }
               });
+              self.tip.comments = commentsCollection;
+              fn(self.tip);
             });
 
+            Receivers.query(function(receivers) {
+              forEach(self.tip.receivers, function(r1) {
+                forEach(receivers, function(r2) {
+                  if (r2.id == r1.id) {
+                    self.tip.msg_receivers_selector.push({
+                      key: r2.id,
+                      value: r2.name
+                    });
+                  }
+                });
+              });
+            });
+
+            fn(self.tip);
           });
-
-          fn(self.tip);
-
-        });
 
         }); //openpgp decrypt
 
