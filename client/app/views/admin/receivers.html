@@ -117,22 +117,18 @@
                   <div class="col-md-6">
                     <div class="imageUpload" data-ng-controller="AdminFileUploadCtrl">
                       <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
-                        <div data-ng-show="uploadfile" class="uploadfile">
-                          <span class="col-md-12 changePicture">
-                            <span data-translate>Change picture</span>
-                          </span>
-                          <div pragmatic-file-upload data-ng-src="{{receiverImgUrl()}}">
-                            <div class="fileselector">
-                              <input type="file" style="z-index: 2147483647">
-                            </div>
-                          </div>
-                          <div class="uploadProgress hide">
-                            <div class="progress progress-striped">
-                              <div class="progress-bar" style="width: 0%;"></div>
-                            </div>
+                        <div flow-init="{target: '/admin/staticfiles/1310f8e7-7ac5-4741-be70-96c3bf6bd68b', headers: get_auth_headers()}"
+                            flow-files-submitted="$flow.upload()"
+                            flow-file-success="updateReceiverImgReloadUrl()"
+                            flow-name="flowObj"
+                            class="uploadfile">
+                          <div flow-btn>
+                            <span class="col-md-12 changePicture">
+                              <span data-translate>Change picture</span>
+                            </span>
+                            <img data-ng-src="{{receiverImgReloadUrl}}" class="img-thumbnail baseimage" style="z-index: 0">
                           </div>
                         </div>
-                        <img data-ng-src="{{receiverImgReloadUrl()}}" class="img-thumbnail baseimage" style="z-index: 0">
                       </div>
                     </div>
 

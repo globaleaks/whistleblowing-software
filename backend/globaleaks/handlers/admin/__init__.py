@@ -10,6 +10,7 @@ import shutil
 from globaleaks import security, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.handlers.base import GLApiCache
 from globaleaks.handlers.admin.field import disassociate_field, get_field_association
+from globaleaks.handlers.admin.langfiles import *
 from globaleaks.handlers.admin.staticfiles import *
 from globaleaks.handlers.admin.overview import *
 from globaleaks.handlers.admin.statistics import *

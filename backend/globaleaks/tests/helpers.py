@@ -25,7 +25,7 @@ mailutils.sendmail = sendmail_mock
 from globaleaks import db, models, security, anomaly
 from globaleaks.db.datainit import load_appdata, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
-from globaleaks.handlers.base import GLApiCache, GLHTTPConnection
+from globaleaks.handlers.base import GLApiCache, GLHTTPConnection, BaseHandler
 from globaleaks.handlers.admin import create_context, get_context, update_context, create_receiver, db_get_context_steps
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.rtip import receiver_serialize_tip
@@ -107,6 +107,11 @@ def import_fixture(store, fixture):
             mock_class = getattr(models, mock['class'])
             db_forge_obj(store, mock_class, mock['fields'])
 
+
+def get_file_upload(self):
+    return self.request.body
+
+BaseHandler.get_file_upload = get_file_upload
 
 class TestGL(unittest.TestCase):
 
@@ -877,7 +882,8 @@ class MockDict():
             'header_title_homepage': u'',
             'header_title_submissionpage': u'',
             'header_title_receiptpage': u'',
-            'landing_page': u'homepage'
+            'landing_page': u'homepage',
+            'context_selector_label': u''
         }
 
 

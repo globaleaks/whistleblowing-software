@@ -103,6 +103,17 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       }
     }
 
+    $scope.show_file_preview = function(content_type) {
+      var content_types = [
+        'image/gif',
+        'image/jpeg',
+        'image/png',
+        'image/bmp'
+      ];
+
+      return content_types.indexOf(content_type) > -1;
+    }
+
     var init = function () {
 
       $scope.logo = '/static/globaleaks_logo.png?' + $scope.randomFluff();
@@ -249,16 +260,6 @@ GLClient.controller('DisableEncryptionCtrl', ['$scope', '$modalInstance', functi
     };
 
 }]);
-
-angular.module('GLClient.fileuploader', ['blueimp.fileupload'])
-  .config(['$httpProvider', 'fileUploadProvider',
-    function ($httpProvider, fileUploadProvider) {
-      delete $httpProvider.defaults.headers.common['X-Requested-With'];
-      angular.extend(fileUploadProvider.defaults, {
-        multipart: false,
-      });
-    }
-]);
 
 GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$modalInstance', function ($scope, $rootScope, $modalInstance) {
 

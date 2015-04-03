@@ -2,11 +2,12 @@ GLClient.controller('StatusCtrl',
   ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', 'Authentication', 'Tip', 'WBTip', 'Contexts', 'ReceiverPreferences',
   function($scope, $rootScope, $location, $route, $routeParams, $http, Authentication, Tip, WBTip, Contexts, ReceiverPreferences) {
 
-
     $scope.tip_id = $routeParams.tip_id;
     $scope.session = Authentication.id;
     $scope.xsrf_token = $.cookie('XSRF-TOKEN');
     $scope.target_file = '#';
+
+    $scope.uploads = [];
 
     $scope.getFields = function(field) {
       ret = [];
@@ -41,15 +42,15 @@ GLClient.controller('StatusCtrl',
 
     if (Authentication.role === 'wb') {
 
-      $scope.fileupload_url = '/wbtip/upload';
+      $scope.get_fileupload_url = function() {
+        return '/wbtip/upload';
+      }
 
-      $scope.queue = [];
+      $scope.tip = new WBTip(function(tip) {
 
-      $scope.tip = new WBTip(function(tip){
+        $scope.tip = tip;
 
         Contexts.query(function(contexts){
-
-          $scope.tip = tip;
 
           angular.forEach(contexts, function(context, k){
             if (context.id == tip.context_id) {
@@ -59,17 +60,17 @@ GLClient.controller('StatusCtrl',
 
           $scope.$watch('tip.msg_receiver_selected', function (newVal, oldVal) {
             if (newVal && newVal !== oldVal) {
-              if ($scope.tip) {
-                $scope.tip.updateMessages();
+              if (tip) {
+                tip.updateMessages();
               }
             }
           }, false);
 
-          if ($scope.tip.receivers.length == 1 && $scope.tip.msg_receiver_selected == null) {
-            $scope.tip.msg_receiver_selected = $scope.tip.msg_receivers_selector[0]['key'];
+          if (tip.receivers.length == 1 && tip.msg_receiver_selected == null) {
+            tip.msg_receiver_selected = tip.msg_receivers_selector[0]['key'];
           }
 
-          $scope.tip.updateMessages();
+          tip.updateMessages();
 
         });
       });
@@ -79,11 +80,11 @@ GLClient.controller('StatusCtrl',
       $scope.preferences = ReceiverPreferences.get();
     
       var TipID = {tip_id: $scope.tip_id};
-      $scope.tip = new Tip(TipID, function(tip){
+      $scope.tip = new Tip(TipID, function(tip) {
+
+        $scope.tip = tip;
 
         Contexts.query(function(contexts){
-
-          $scope.tip = tip;
 
           $scope.tip_unencrypted = false;
           angular.forEach(tip.receivers, function(receiver){

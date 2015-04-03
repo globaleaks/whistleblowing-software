@@ -55,24 +55,6 @@
   word-wrap: break-word;
 }
 
-.fileUploadProgress {
-  padding-top: 100px;
-  position: absolute;
-  top: 0;
-  z-index: 100;
-  height: 120px;
-  width: 120px;
-}
-
-.fileUploadProgressOverlay {
-  background-color: black;
-  opacity: 0.3;
-  height: 120px;
-  width: 120px;
-  position: absolute;
-  top: 0;
-}
-
 .submissionButton {
   font-size: 25px;
   padding: 10px 100px 10px;
@@ -81,6 +63,11 @@
 .imgPreview {
   height: 120px;
   width: 120px;
+}
+
+.imgPreview img {
+  height: 100%;
+  width: 100%;
 }
 
 .fileUploadIcon {

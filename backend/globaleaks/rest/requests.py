@@ -372,7 +372,6 @@ ahmiaDesc = {
 }
 
 staticFile = {
-    'elapsed_time': float,
     'size': int,
     'filelocation': unicode,
     'content_type': unicode,
