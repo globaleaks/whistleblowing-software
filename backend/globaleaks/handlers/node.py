@@ -230,8 +230,8 @@ def anon_serialize_receiver(receiver, language):
     """
 
     contexts = [c.id for c in receiver.contexts]
-    if not len(contexts):
-        return None
+    # if not len(contexts):
+    #    return None
 
     ret_dict = {
         'creation_date': datetime_to_ISO8601(receiver.creation_date),
