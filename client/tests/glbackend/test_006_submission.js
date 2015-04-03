@@ -176,38 +176,6 @@ describe('POST /submission', function(){
   }
 })
 
-describe('POST /submission/submission_id/file', function(){
-  for (var i=0; i<submission_population_order; i++) {
-    (function (i) {
-      it('responds with ', function(done){
-        app
-          .post('/submission/' + submissions[i].id + '/file')
-          .send('ANTANIFILECONTENT')
-          .set('X-XSRF-TOKEN', 'antani')
-          .set('cookie', 'XSRF-TOKEN=antani')
-          .set('Content-Type', 'text/plain')
-          .set('Content-Disposition', 'attachment; filename="ANTANI.txt"')
-          .expect('Content-Type', 'application/json')
-          .expect(201)
-          .end(function(err, res) {
-            if (err) {
-              return done(err);
-            } else {
-
-              validate_mandatory_headers(res.headers);
-
-              submissions.push(res.body);
-
-              done();
-            }
-          });
-
-      })
-    })(i);
-
-  }
-})
-
 describe('POST /submission/submission_id', function(){
   for (var i=0; i<submission_population_order; i++) {
     (function (i) {
