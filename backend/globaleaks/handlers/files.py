@@ -181,8 +181,6 @@ class FileAdd(BaseHandler):
         Response: Unknown
         Errors: TokenFailure
         """
-        token = TokenList.get(self.current_user.user_id)
-
         self.set_status(204) # We currently do not implement file resume
         self.finish()
 
