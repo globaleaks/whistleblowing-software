@@ -28,7 +28,7 @@ function($scope, $modal) {
     $scope.admin.receiver['delete']({
       receiver_id: receiver.id
     }, function(){
-      var idx = _.indexOf($scope.admin.receivers, receiver);
+      var idx = angular.indexOf($scope.admin.receivers, receiver);
       $scope.admin.receivers.splice(idx, 1);
     });
 
