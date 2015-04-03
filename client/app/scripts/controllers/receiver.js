@@ -14,19 +14,20 @@ GLClient.controller('ReceiverFirstLoginCtrl', ['$scope', '$rootScope', '$locatio
 
     $scope.pass_save = function () {
       $scope.preferences.pgp_key_remove = false;
+      $scope.computing = true;
 
       var new_password = pkdf.gl_password($scope.preferences.password);
       var new_passphrase = pkdf.gl_passphrase($scope.preferences.password);
-      console.log('first login password ', $scope.preferences.password, ' ', new_password);
-      console.log('first login passphrase ', new_passphrase);
+      console.log('First login password ', $scope.preferences.password, ' ', new_password);
+      console.log('First login passphrase ', new_passphrase);
 
-      //$scope.preferences.old_password = old_pwd;
       $scope.preferences.password = new_password;
       $scope.preferences.check_password = new_password;
 
-      //TODO: add e-mail
+      /* XXX BUG: email has to be valid here, but is empty */
       var k_user_id = $scope.preferences.email;
       var k_user_id = 'fake@email.com';
+      console.log($scope.preferences);
       var k_passphrase = new_passphrase;
       var k_bits = 2048;
 
@@ -44,7 +45,7 @@ GLClient.controller('ReceiverFirstLoginCtrl', ['$scope', '$rootScope', '$locatio
                 if (!$rootScope.successes) {
                     $rootScope.successes = [];
                 }
-                $rootScope.successes.push({message: 'Updated your password!'});
+                $rootScope.successes.push({message: 'Key generated!'});
                 $location.path("/receiver/tips");
             });
       });

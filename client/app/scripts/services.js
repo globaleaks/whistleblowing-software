@@ -1029,6 +1029,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
        **/
 
       scope.invalid = true;
+      /* this is set true, when 'save' is pressed */
+      scope.computing = false;
 
       scope.mismatch_password = false;
       scope.missing_old_password = false;

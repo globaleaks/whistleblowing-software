@@ -36,9 +36,10 @@
     </p>
   </div>
 
-  <button type="submit" class="btn btn-success" data-ng-disabled="invalid" data-ng-click="pass_save()">
+  <button id="CreateKeyButton" type="submit" class="btn btn-success" data-ng-disabled="invalid || computing" data-ng-click="pass_save()">
     <i class="glyphicon glyphicon-ok"></i>
-    <span data-translate>Save</span>
+    <span data-ng-show="!computing" data-translate>Save</span>
+    <span data-ng-show="computing" data-translate>Computing...</span>
   </button>
 
 </div>

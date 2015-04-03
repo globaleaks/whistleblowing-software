@@ -10,7 +10,7 @@ var host = 'http://127.0.0.1:8082';
 
 var app = request(host);
 
-var population_order = 15;
+var population_order = 6;
 
 var receivers = new Array();
 var receivers_ids = new Array();
@@ -30,7 +30,7 @@ var valid_admin_login = {
 }
 
 var receiver = {
-  "password":"Antani1234",
+  "password":"globaleaks",
   "contexts":[],
   "description":"",
   "mail_address":"ciao@ciao.it",
@@ -38,7 +38,7 @@ var receiver = {
   "can_delete_submission":false,
   "postpone_superpower":false,
   "tip_notification":true,
-  "ping_notification":false,
+  "ping_notification":true,
   "pgp_key_info":"",
   "pgp_key_fingerprint":"",
   "pgp_key_remove":false,
@@ -54,21 +54,21 @@ var receiver = {
   "password_change_needed":true,
   "language":"en",
   "timezone":"0",
-  "name":"FOCA"
+  "name":"",
 }
 
 context = {
-  "name":"AAAAAAAA",
-  "description":"",
+  "name":"",
+  "description":"AAAAAAAAA-BBBBBBBBBB-CCCCCCCCCCC-DDDDDDDDDDD",
   "steps":[],
   "receivers":[],
-  "select_all_receivers":false,
+  "select_all_receivers":true,
   "tip_timetolive":15,
   "receiver_introduction":"",
-  "postpone_superpower":false,
-  "can_delete_submission":false,
+  "postpone_superpower":true,
+  "can_delete_submission":true,
   "maximum_selectable_receivers":0,
-  "show_small_cards":false,
+  "show_small_cards":true,
   "show_receivers":true,
   "enable_private_messages":true,
   "presentation_order":0
@@ -164,15 +164,17 @@ describe('PUT /admin/node', function () {
   })
 })
 
-// we popolate population_order/2 contexts
-for (var i=0; i<population_order / 2; i++) {
-  describe('POST /admin/context', function () {
-    it('responds 201 on POST /admin/context ' + i + ' (authenticated, valid context)', function (done) {
+// we popolate population_order receivers
+describe('POST /admin/context', function () {
+  for (var i=0; i<population_order; i++) {
+    (function (i) {
+      it('responds 201 on POST /admin/context ' + i + ' (authenticated, valid context)', function (done) {
 
       var newObject = JSON.parse(JSON.stringify(context));
-      newObject.name = 'Context ' + i;
+      newObject.name = 'CNTX#' + i;
+      newObject.description = context.description + " = " + i;
       newObject.presentation_order = i;
-      newObject.name = 'Context ' + i + ' (selectable receivers: TRUE)';
+      console.log(newObject.name);
 
       app
         .post('/admin/context')
@@ -188,17 +190,14 @@ for (var i=0; i<population_order / 2; i++) {
           }
 
           validate_mandatory_headers(res.headers);
-
           contexts.push(res.body);
-
           contexts_ids.push(res.body.id);
-
           done();
-
         });
-    })
-  })
-}
+      })
+    })(i);
+  }
+})
 
 // we popolate population_order receivers
 describe('POST /admin/receiver', function () {
@@ -208,7 +207,7 @@ describe('POST /admin/receiver', function () {
 
         var newObject = JSON.parse(JSON.stringify(receiver));
         newObject.mail_address = 'receiver' + i + '@antani.gov';
-        newObject.name = 'Receiver ' + i;
+        newObject.name = 'Receiver' + i;
         newObject.contexts = contexts_ids;
         newObject.presentation_order = i;
 
