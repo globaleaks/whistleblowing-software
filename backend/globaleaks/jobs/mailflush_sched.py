@@ -119,33 +119,6 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
     return event_list
 
 
-def look_for_digest_opportunities(queue_events):
-    """
-    Generate
-    {
-        UUIDv4 : {
-                'events' : [0, 4, 5, ... ],
-                'kinds': {
-                        'Tip' : 1,
-                        ...
-                    }
-    }
-    so we can operate directly on the list and removing the list element we use
-    """
-
-    digest_dict = {}
-    for pos, qe in enumerate(queue_events):
-        digest_dict.setdefault(qe.receiver_info['username'], {
-            'events': [],
-            'kinds': {}
-        })
-        digest_dict[qe.receiver_info['username']]['events'].append(pos)
-        digest_dict[qe.receiver_info['username']]['kinds'].setdefault(qe.type, 0)
-        digest_dict[qe.receiver_info['username']]['kinds'][qe.type] += 1
-
-
-    return digest_dict
-
 class MailflushSchedule(GLJob):
 
     # sorry for the double negation, we are sleeping two seconds below.
@@ -218,79 +191,11 @@ class MailflushSchedule(GLJob):
         # This wrap calls plugin/notification.MailNotification
         notifcb = NotificationMail(plugin)
 
-        # figure out if some notification are part of the same receiver,
-        # so they can be in bulk mode, sending only one email
-        receiver_bulks = look_for_digest_opportunities(queue_events)
-
-        digest_used_event = [] # contain a list of integer, position of queue_events
-        digest_produced_event = [] # contain a list of Event object
-
-        digest_separator = '%s' % ("=" * 50)
-
-        for _, digest_obj in receiver_bulks.iteritems():
-
-            # Copy from the event of the receiver infos
-            event_copy = None
-
-            if len(digest_obj['events']) > 1:
-
-                digest_body = ""
-                for qe_index in digest_obj['events']:
-                    body, title = plugin.get_mail_body_and_title(queue_events[qe_index])
-                    digest_body = "%s%s\n%s\n%s\n\n%s\n\n" % (
-                        digest_body,
-                        title,
-                        "%s" % ("+" * (len(title) -1) ),
-                        body,
-                        digest_separator
-                    )
-                    digest_used_event.append(qe_index)
-
-                    if not event_copy:
-                        event_copy = queue_events[qe_index]
-
-
-                # create new digest event based on the new content
-                nde = OD()
-
-                nde.node_info = event_copy.node_info
-                nde.notification_settings = event_copy.notification_settings
-                nde.receiver_info = event_copy.receiver_info
-                nde.tip_info={
-                                 'body': digest_body,
-                                 'title': nde.notification_settings['notification_digest_mail_title']
-                             }
-                nde.subevent_info = None
-                nde.context_info = event_copy.context_info
-                nde.steps_info = event_copy.steps_info
-                nde.type = 'digest'
-                nde.trigger = event_copy.trigger
-
-                nde.storm_id = None
-
-                digest_produced_event.append(nde)
-
-
-        for digest_event in digest_produced_event:
-
-            yield notifcb.do_every_notification(digest_event)
-
-            if not self.skip_sleep:
-                yield deferred_sleep(2)
-
-
-        # this is the notification of the standard event, it ignores
-        # all the event already managed by the digest
         for qe_pos, qe in enumerate(queue_events):
-            if qe_pos in digest_used_event:
-                yield mark_event_as_notified_in_digest(queue_events[qe_pos])
-                continue
-
             yield notifcb.do_every_notification(qe)
 
             if not self.skip_sleep:
                 yield deferred_sleep(2)
-
 
         # This is the notification of the ping, if configured
         receivers_synthesis = {}
