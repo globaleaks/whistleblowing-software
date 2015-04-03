@@ -45,10 +45,12 @@
         <button class="btn btn-success" data-ng-click="generate_key()">
         <span data-translate>Generate PGP Key</span>
         </button>
-
+        <span>or paste or drag&drop here:</span>
+        <br />
+        <br />
         <br />
         <label data-translate>PGP Public Key:</label>
-        <textarea class="form-control" data-ng-model="preferences.pgp_key_public"></textarea>
+        <textarea file-dropzone max-file-size="1" rows="10" class="form-control" data-ng-model="preferences.pgp_key_public"></textarea>
     </div>
 
   </div>
