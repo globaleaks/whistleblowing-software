@@ -41,10 +41,7 @@ GLClient.controller('StatusCtrl',
     }
 
     if (Authentication.role === 'wb') {
-
-      $scope.get_fileupload_url = function() {
-        return '/wbtip/upload';
-      }
+      $scope.fileupload_url = '/wbtip/upload';
 
       $scope.tip = new WBTip(function(tip) {
 

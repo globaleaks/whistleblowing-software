@@ -113,6 +113,12 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
+  $scope.fileupload_url = function() {
+    if (!$scope.submission) {
+      return;
+    }
+    return '/submission/' + $scope.submission.current_submission.id + '/file';
+  }
   // Watch for changes in certain variables
   $scope.$watch('submission.current_context', function () {
     if ($scope.submission && $scope.submission.current_context) {
@@ -126,9 +132,8 @@ GLClient.controller('SubmissionCtrl',
           $scope.selection = 0;
         }
 
-        $scope.get_fileupload_url = function() {
-          return '/submission/' + $scope.submission.current_submission.id + '/file';
-        }
+        $scope.fileupload_url = '/submission/' + $scope.submission.current_submission.id + '/file';
+
       });
       checkReceiverSelected();
      }
