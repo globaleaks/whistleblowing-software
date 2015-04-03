@@ -342,7 +342,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.create = function(cb) {
         self.current_submission = new submissionResource({
           context_id: self.current_context.id,
-          wb_steps: _.clone(self.current_context.steps),
+          wb_steps: self.current_context.steps,
           receivers: [],
           human_captcha_answer: 0
         });
@@ -350,17 +350,17 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         setCurrentContextReceivers();
 
         self.current_submission.$save(function(submissionID){
-          _.each(self.current_context.fields, function(field, k) {
+          angular.forEach(self.current_context.fields, function(field, k) {
             if (field.type === "checkboxes") {
               self.current_context.fields[k].value = {};
             }
           });
-          self.current_submission.wb_steps = _.clone(self.current_context.steps);
+
+          self.current_submission.wb_steps = self.current_context.steps;
 
           if (cb)
             cb();
         });
-
       };
 
       /**
@@ -384,7 +384,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.receivers = [];
         // remind this clean the collected list of receiver_id
         self.current_submission.receivers = [];
-        _.each(self.receivers_selected, function(selected, id){
+        angular.forEach(self.receivers_selected, function(selected, id){
           if (selected) {
             self.current_submission.receivers.push(id);
           }

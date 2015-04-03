@@ -27,7 +27,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
     }
 
     $scope.deleteFromList = function(list, elem) {
-      var idx = _.indexOf(list, elem);
+      var idx = angular.indexOf(list, elem);
       if (idx != -1) {
         list.splice(idx, 1);
       }
@@ -35,7 +35,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
 
     $scope.toggle_field = function(field, field_group) {
       $scope.field_group_toggled = true;
-      if (field_group.children && (_.indexOf(field_group.children, field) !== -1)) {
+      if (field_group.children && (angular.indexOf(field_group.children, field) !== -1)) {
         // Remove it from the fieldgroup 
         field.fieldgroup_id = '';
         $scope.admin.field_templates.push(field);
@@ -69,7 +69,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
     };
 
     $scope.deleteField = function(field) {
-      var idx = _.indexOf($scope.fields, field);
+      var idx = angular.indexOf($scope.fields, field);
       $scope.fields.splice(idx, 1);
     };
 
@@ -125,7 +125,7 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
     }
 
     $scope.typeSwitch = function (type) {
-      if (_.indexOf(['checkbox', 'selectbox'], type) !== -1)
+      if (angular.indexOf(['checkbox', 'selectbox'], type) !== -1)
         return 'checkbox_or_selectbox';
       return type;
     };

@@ -26,7 +26,7 @@ GLClient.controller('AdminContextsCtrl',
     $scope.admin.context['delete']({
       context_id: context.id
     }, function(){
-      var idx = _.indexOf($scope.admin.contexts, context);
+      var idx = angular.indexOf($scope.admin.contexts, context);
       $scope.admin.contexts.splice(idx, 1);
     });
   };

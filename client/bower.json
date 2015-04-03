@@ -31,8 +31,7 @@
     "bootstrap-rtl": "3.3.2-rc1",
     "d3": "3.5.5",
     "jquery.cookie": "1.4.1",
-    "ng-flow": "2.4.1",
-    "underscore": "1.8.2"
+    "ng-flow": "2.4.1"
   },
   "resolutions": {
     "bootstrap": "3.3.4"
