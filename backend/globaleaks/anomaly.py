@@ -486,7 +486,7 @@ class Alarm(object):
 
         if not GLSetting.memory_copy.admin_notif_enable:
             # event_matrix is {} if we are here only for disk
-            log.debug("Anomaly to be reported%s, but Admin has Notification disabled" %
+            log.debug("Anomaly to be reported %s, but Admin has Notification disabled" %
                       "[%s]" % event_matrix if event_matrix else "")
             defer.returnValue(None)
 
@@ -539,15 +539,18 @@ class Alarm(object):
 
         Alarm.last_alarm_email = datetime_now()
 
-        yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
-                       authentication_password=GLSetting.memory_copy.notif_password,
-                       from_address=GLSetting.memory_copy.notif_source_email,
-                       to_address=admin_email,
-                       message_file=message,
-                       smtp_host=GLSetting.memory_copy.notif_server,
-                       smtp_port=GLSetting.memory_copy.notif_port,
-                       security=GLSetting.memory_copy.notif_security,
-                       event=None)
+        # Currently the anomaly emails are disabled due to the fact that a
+        # good and useful mail templates are still missing.
+        #
+        # yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
+        #                authentication_password=GLSetting.memory_copy.notif_password,
+        #                from_address=GLSetting.memory_copy.notif_source_email,
+        #                to_address=admin_email,
+        #                message_file=message,
+        #                smtp_host=GLSetting.memory_copy.notif_server,
+        #                smtp_port=GLSetting.memory_copy.notif_port,
+        #                security=GLSetting.memory_copy.notif_security,
+        #                event=None)
 
     def report_disk_usage(self, free_workdir_bytes, workdir_space_bytes, free_ramdisk_bytes):
         """

@@ -29,7 +29,6 @@ def dump_file_list(filelist, files_n):
     return info
 
 class Templating(object):
-
     def format_template(self, raw_template, event_dicts):
         """
         TODO research on integration of http://docs.python.org/2/library/email
@@ -132,7 +131,6 @@ class _KeyWord(object):
         return self.node['name']
 
 class TipKeyword(_KeyWord):
-
     tip_keywords = [
         '%TipTorURL%',
         '%TipT2WURL%',
@@ -195,7 +193,6 @@ class TipKeyword(_KeyWord):
         return unicode(retval)
 
     def EventTime(self):
-        # XXX - This is not EventTime properly, or it is only at Tip Creation
         return ISO8601_to_pretty_str_tz(self.tip['creation_date'], float(self.receiver['timezone']))
 
     def ExpirationDate(self):
@@ -207,13 +204,11 @@ class TipKeyword(_KeyWord):
         return unicode(48)
 
 class EncryptedTipKeyword(TipKeyword):
-
     encrypted_tip_keywords = [
         '%TipFields%'
     ]
 
     def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, *x):
-
         super(EncryptedTipKeyword, self).__init__(node_desc, context_desc, fields_desc,
                                                   receiver_desc, tip_desc, None)
         self.keyword_list += EncryptedTipKeyword.encrypted_tip_keywords
@@ -223,14 +218,12 @@ class EncryptedTipKeyword(TipKeyword):
 
 
 class CommentKeyword(TipKeyword):
-
     comment_keywords = [
         '%CommentSource%',
         '%EventTime%'
     ]
 
     def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, comment_desc):
-
         super(CommentKeyword, self).__init__(node_desc, context_desc, fields_desc, receiver_desc, tip_desc)
 
         self.keyword_list += CommentKeyword.comment_keywords
@@ -244,13 +237,11 @@ class CommentKeyword(TipKeyword):
 
 
 class EncryptedCommentKeyword(CommentKeyword):
-
     encrypted_comment_keywords = [
         '%CommentContent%',
     ]
 
     def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, comment_desc):
-
         super(EncryptedCommentKeyword, self).__init__(node_desc, context_desc, fields_desc,
                                                       receiver_desc, tip_desc, comment_desc)
         self.keyword_list += EncryptedCommentKeyword.encrypted_comment_keywords
@@ -264,14 +255,12 @@ class EncryptedCommentKeyword(CommentKeyword):
 
 
 class MessageKeyword(TipKeyword):
-
     message_keywords = [
         '%MessageSource%',
         '%EventTime%'
     ]
 
     def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, message_desc):
-
         super(MessageKeyword, self).__init__(node_desc, context_desc,
                                              fields_desc, receiver_desc,
                                              tip_desc)
@@ -286,13 +275,11 @@ class MessageKeyword(TipKeyword):
         return ISO8601_to_pretty_str_tz(self.message['creation_date'], float(self.receiver['timezone']))
 
 class EncryptedMessageKeyword(MessageKeyword):
-
     encrypted_message_keywords = [
         '%MessageContent%',
     ]
 
     def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, message_desc):
-
         super(EncryptedMessageKeyword, self).__init__(node_desc, context_desc,
                                                       fields_desc, receiver_desc,
                                                       tip_desc, message_desc)
@@ -303,7 +290,6 @@ class EncryptedMessageKeyword(MessageKeyword):
 
 
 class FileKeyword(TipKeyword):
-
     file_keywords = [
         '%FileName%',
         '%EventTime%',
@@ -312,7 +298,6 @@ class FileKeyword(TipKeyword):
     ]
 
     def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, file_desc):
-
         super(FileKeyword, self).__init__(node_desc, context_desc,
                                           fields_desc, receiver_desc,
                                           tip_desc)
@@ -337,13 +322,11 @@ class EncryptedFileKeyword(FileKeyword):
     """
     FileDescription not yet implemented in UI, but here has to go
     """
-
     encrypted_file_keywords = [
         '%FileDescription%'
     ]
 
     def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, file_desc):
-
         super(EncryptedFileKeyword, self).__init__(node_desc, context_desc,
                                                    fields_desc, receiver_desc,
                                                    tip_desc, file_desc)
@@ -354,7 +337,6 @@ class EncryptedFileKeyword(FileKeyword):
 
 
 class ZipFileKeyword(TipKeyword):
-
     zip_file_keywords = [
         '%FileList%',
         '%FilesNumber%',
@@ -362,7 +344,6 @@ class ZipFileKeyword(TipKeyword):
     ]
 
     def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, zip_desc):
-
         super(ZipFileKeyword, self).__init__(node_desc, context_desc,
                                              fields_desc, receiver_desc,
                                              tip_desc)
@@ -381,7 +362,6 @@ class ZipFileKeyword(TipKeyword):
 
 
 class PingMailKeyword(_KeyWord):
-
     ping_mail_keywords = [
         '%ReceiverName%',
         '%EventCount%'
@@ -408,7 +388,6 @@ class PingMailKeyword(_KeyWord):
 
 
 class AdminPGPAlertKeyword(_KeyWord):
-
     admin_pgp_alert_keywords = [
         "%PGPKeyInfoList%"
     ]
@@ -436,7 +415,6 @@ class AdminPGPAlertKeyword(_KeyWord):
 
 
 class PGPAlertKeyword(_KeyWord):
-
     pgp_alert_keywords = [
         "%PGPKeyInfo%"
     ]
