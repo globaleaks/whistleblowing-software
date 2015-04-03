@@ -104,6 +104,12 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
     $scope.update(node, cb);
   }
 
+  $scope.updateNodeImgReloadUrl = function() {
+    $scope.nodeImgReloadUrl = "/static/globaleaks_logo.png?" + Math.round(Math.random() * 1000000);
+  }
+
+  $scope.updateNodeImgReloadUrl();
+
 }]);
 
 GLClient.controller('AdminPasswordCtrl', ['$scope', 'changePasswordWatcher',
@@ -113,8 +119,6 @@ GLClient.controller('AdminPasswordCtrl', ['$scope', 'changePasswordWatcher',
 }]);
 
 GLClient.controller('AdminFileUploadCtrl', ['$scope', '$http', function($scope, $http){
-
-    $scope.random = Math.round(Math.random()*1000000);
 
     $scope.uploadfile = false;
 
@@ -130,14 +134,6 @@ GLClient.controller('AdminFileUploadCtrl', ['$scope', '$http', function($scope, 
     $scope.closeUploader = function () {
       $scope.uploadfile = $scope.fileSelected = false;
     };
-
-    $scope.receiverImgUrl = function () {
-      return "/admin/staticfiles/" + $scope.receiver.id;
-    };
-
-    $scope.receiverImgReloadUrl = function() {
-      return "/static/" + $scope.receiver.id + ".png?" + $scope.random;
-    }
 
 }]);
 

@@ -13,23 +13,22 @@
         </div>
         <div data-ng-show="!isCollapsed">
           <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
-            <span pragmatic-file-upload="" data-ng-src="{{'/l10n/' + language.code + '.json'}}">
-              <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled}">
-                <span class="glyphicon glyphicon-plus"></span>
-                <span data-translate>Upload</span>
-                <input type="file" name="files[]" multiple data-ng-disabled="disabled">
-              </span>
-            </span>
-            <span class="uploadProgress hide">
-              <span class="progress progress-striped">
-                <span class="progress-bar" style="width: 0%"></span>
-              </span>
+            <span flow-init="{target: '/admin/l10n/' + language.code + '.json', headers: get_auth_headers()}"
+                flow-files-submitted="$flow.upload()"
+                flow-file-success="updateReceiverImgReloadUrl()"
+                flow-name="flowObj">
+              <div class="btn btn-success fileinput-button">
+                <span class="uploadfile" flow-btn>
+                  <span class="glyphicon glyphicon-plus"></span>
+                  <span data-translate>Change picture</span>
+                </span>
+              </div>
             </span>
             <a class="btn btn-primary" data-ng-class="{disabled: disabled}" data-ng-href="{{'/l10n/' + language.code + '.json'}}" download="{{language.code + '.json'}}">
               <span class="glyphicon glyphicon-download"></span>
               <span data-translate>Download</span>
             </a>
-            <a class="btn btn-danger" data-ng-class="{disabled: disabled}" data-ng-click="perform_delete('/l10n/' + language.code + '.json')">
+            <a class="btn btn-danger" data-ng-class="{disabled: disabled}" data-ng-click="perform_delete('/admin/l10n/' + language.code + '.json')">
               <span class="glyphicon glyphicon-trash"></span>
               <span data-translate>Reset</span>
             </a>

@@ -296,3 +296,30 @@ input, textarea, select {
 .nested {
   padding-left: 15px;
 }
+
+.preview {
+  width: 100%;
+  height: 100%;
+}
+
+.fileUploadBox {
+  margin-bottom: 10px;
+}
+
+.fileUploadProgress {
+  padding-top: 100px;
+  position: absolute;
+  top: 0;
+  z-index: 100;
+  height: 120px;
+  width: 120px;
+}
+
+.fileUploadProgressOverlay {
+  background-color: black;
+  opacity: 0.3;
+  height: 120px;
+  width: 120px;
+  position: absolute;
+  top: 0;
+}

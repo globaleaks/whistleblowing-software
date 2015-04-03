@@ -100,7 +100,7 @@ angular.module('resourceServices.authentication', [])
 
         };
 
-        self.headers = function() {
+        self.get_auth_headers = function() {
           var h = {};
 
           if (self.id) {
@@ -117,6 +117,8 @@ angular.module('resourceServices.authentication', [])
 
           return h;
         };
+
+        $rootScope.get_auth_headers = self.get_auth_headers;
 
       };
 
