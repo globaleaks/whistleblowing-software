@@ -1,50 +1,40 @@
-<div class="uploadingBox" data-ng-show="queue.length">
-  <div class="row">
-    <label data-translate>Uploading files...</label>
-    <hr>
-  </div>
-    <div data-ng-repeat="file in queue" data-ng-class="{'processing': file.$processing()}">
-      <div class="fileUploadBox">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="filePreview">
-              <div class="imgPreview" data-ng-switch data-on="!!file.thumbnailUrl">
-                <div class="preview thumbnailPreview" data-ng-switch-when="true">
-                  <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery>
-                    <img data-ng-src="{{file.thumbnailUrl}}" alt="">
-                  </a>
-                </div>
-                <div class="preview thumbnailPreview"
-                     data-ng-switch-default data-file-upload-preview="file">
-                </div>
-              </div>
-              <div class="fileUploadProgress">
-                <div class="fileUploadProgressOverlay"></div>
-                <div class="fileUploadIcon" data-ng-show="file.error">
-                  <i class="glyphicon glyphicon-ban-circle"></i>
-                </div>
-                <div class="fileUploadIcon" data-ng-show="!file.error && !(file.elapsed_time > 0)">
-                  <i class="glyphicon glyphicon-time"></i>
-                </div>
-                <div class="fileUploadIcon" data-ng-show="!file.error && file.elapsed_time > 0">
-                  <i class="glyphicon glyphicon-ok"></i>
-                </div>
-              </div>
+<div class="uploadingBox" data-ng-show="uploads.length" flow-init>
+  <h3>
+    <span data-translate>Uploading files...</span>
+  </h3>
+  <div data-ng-repeat="file in uploads">
+    <div class="fileUploadBox">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="filePreview">
+            <div class="imgPreview">
+              <img flow-img="file" data-ng-if="show_file_preview(file.file.type)"/>
             </div>
-          </div>
-          <div class="col-md-offset-1 col-md-7 fileDetails">
-            <label class="fileName">{{file.name}} ({{file.size | formatFileSize}})</label>
-            <br />
-            <div data-ng-show="file.error" class="error text-danger">{{file.error}}</div>
-            <div data-ng-hide="file.error">
-              <div data-ng-repeat="option in file.value">
-               <textarea class="form-control msd-elastic" data-ng-model="option.value" placeholder="{{option['attrs']['name']}}"></textarea>
+            <div class="fileUploadProgress">
+              <div class="fileUploadProgressOverlay"></div>
+              <div class="fileUploadIcon" data-ng-show="file.error">
+                <i class="glyphicon glyphicon-ban-circle"></i>
               </div>
+              <div class="fileUploadIcon" data-ng-show="!file.error && !file.done">
+                <i class="glyphicon glyphicon-time"></i>
+              </div>
+              <div class="fileUploadIcon" data-ng-show="!file.error && file.done">
+                <i class="glyphicon glyphicon-ok"></i>
               </div>
             </div>
           </div>
         </div>
-      <hr/>
+        <div class="col-md-offset-1 col-md-7 fileDetails">
+          <label class="fileName">{{file.name}} ({{file.size | prettyBytes }})</label>
+          <br />
+          <div data-ng-hide="file.error">
+            <div data-ng-repeat="option in file.value">
+             <textarea class="form-control msd-elastic" data-ng-model="option.value" placeholder="{{option['attrs']['name']}}"></textarea>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -9,10 +9,10 @@ var GLClient = angular.module('GLClient', [
     'ui.bootstrap',
     'ui.sortable',
     'ang-drag-drop',
+    'flow',
     'monospaced.elastic',
     'resourceServices',
     'submissionUI',
-    'blueimp.fileupload',
     'pascalprecht.translate',
     'GLClientFilters'
   ]).
@@ -197,13 +197,16 @@ var GLClient = angular.module('GLClient', [
         suffix: '.json'
       });
 
-      $tooltipProvider.options( {appendToBody: true} );
+      $tooltipProvider.options({appendToBody: true});
 }]).
-  run(['$http', '$rootScope', '$route', 'Authentication', function ($http, $rootScope, $route, Authentication) {
+  config(['flowFactoryProvider', function (flowFactoryProvider) {
+    flowFactoryProvider.defaults = {};
+}]).
+  run(['$http', '$rootScope', '$route', function ($http, $rootScope, $route) {
 
      var globaleaksRequestInterceptor = function(data, headers) {
 
-        headers = angular.extend(headers(), Authentication.headers());
+        headers = angular.extend(headers(), $rootScope.get_auth_headers());
 
         return data;
     };

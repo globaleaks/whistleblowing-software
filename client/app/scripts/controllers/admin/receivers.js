@@ -106,6 +106,17 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher', 'C
       $scope.editReceiver.$pristine = false;
     };
 
+    $scope.updateReceiverImgUrl = function () {
+      $scope.receiverImgUrl = "/admin/staticfiles/" + $scope.receiver.id;
+    };
+
+    $scope.updateReceiverImgReloadUrl = function() {
+      $scope.receiverImgReloadUrl = "/static/" + $scope.receiver.id + ".png?" + Math.round(Math.random() * 1000000);
+    }
+
+    $scope.updateReceiverImgUrl();
+    $scope.updateReceiverImgReloadUrl();
+
 }]);
 
 GLClient.controller('AdminReceiverAddCtrl', ['$scope', 'passwordWatcher',

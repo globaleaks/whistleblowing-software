@@ -17,7 +17,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.settings import GLSetting, transact_ro
-from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils.utility import log
 from globaleaks.rest import errors
@@ -110,10 +110,15 @@ def receiver_pic_path(store, receiver_uuid):
     return os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
 
 
-class StaticFileInstance(BaseStaticFileHandler):
+class StaticFileInstance(BaseHandler):
     """
     Complete CRUD implementation using the filename instead of UUIDs
     """
+    @transport_security_check('admin')
+    @authenticated('admin')
+    def get(self, filename):
+        self.set_status(204)
+        self.finish()
 
     @transport_security_check('admin')
     @authenticated('admin')
@@ -122,9 +127,11 @@ class StaticFileInstance(BaseStaticFileHandler):
         """
         Upload a new file
         """
-        start_time = time.time()
-
-        uploaded_file = self.get_uploaded_file()
+        uploaded_file = self.get_file_upload()
+        if uploaded_file is None:
+            self.set_status(201)
+            self.finish()
+            return
 
         # This handler allow to upload files inside globaleaks static directory
         #
@@ -134,12 +141,6 @@ class StaticFileInstance(BaseStaticFileHandler):
         #   2) the destination is == GLSetting.reserved_names.cc
         #   3) the "destination+".png" does not match receiver_img_regexp
         #   4) the provided filename is a receiver uuid
-
-        #if not reserved_name_check(filename, uploaded_file['filename']):
-        #    raise errors.InvalidInputFormat("Unexpected name")
-
-        # the 'filename' key present in the uploaded_file dict is ignored
-
         if filename == GLSetting.reserved_names.logo:
             try:
                 path = os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_names.logo)
@@ -194,12 +195,10 @@ class StaticFileInstance(BaseStaticFileHandler):
             log.err("Unexpected exception: %s" % excpd.message)
             raise errors.InternalServerError(excpd.message)
 
-        dumped_file['elapsed_time'] = time.time() - start_time
-
         log.debug("Admin uploaded new static file: %s" % dumped_file['filename'])
 
         self.set_status(201) # Created
-        self.finish(dumped_file)
+        self.finish()
 
 
     @transport_security_check('admin')
@@ -215,8 +214,6 @@ class StaticFileInstance(BaseStaticFileHandler):
         if not os.path.exists(path):
             raise errors.StaticFileNotFound
 
-        # XXX if a reserved filename is requested, need to be handled in
-        # a safe way: eg, if is a receiver, restore the default image.
         os.remove(path)
 
         self.set_status(200)

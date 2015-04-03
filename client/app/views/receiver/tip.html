@@ -106,7 +106,7 @@
   <h3>
     <span data-translate>Files</span>
   </h3>
-  <div class="well" data-ng-show="tip.files">
+  <div class="well" data-ng-show="tip.files.length">
     <div data-ng-if="tip.collection">
       <form id="fileCollectionDownload" method="POST" action="{{tip.collection}}" novalidate>
         <input type="hidden" name="x-session" value="{{session}}">
@@ -174,9 +174,7 @@
                 <span>{{file.content_type}}</span>
               </td>
               <td>
-                <span>{{file.size}}</span>
-                <span>Bytes</span>
-                <!-- To be fixed properly managing translation and unit change bytes/mbytes/etc -->
+                <span>{{file.size | prettyBytes}}</span>
               </td>
             </tr>
           </tbody>
@@ -185,10 +183,8 @@
     </div>
   </div>
 
-  <div class="col-md-12" data-ng-hide="tip.files">
-    <p>
-      <span data-translate>No files have been uploaded!</span>
-    </p>
+  <div class="col-md-12" data-ng-hide="tip.files.length">
+    <span data-translate>No files have been uploaded!</span>
   </div>
 
 </div>

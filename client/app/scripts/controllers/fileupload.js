@@ -1,18 +1,15 @@
-GLClient.controller('WBFileUploadCtrl', ['$scope', 'Authentication', function($scope, Authentication) {
-  $scope.options = {
-    url: '',
-    multipart: false,
-    headers: Authentication.headers(),
-    autoUpload: true,
-    maxFileSize: $scope.node.maximum_filesize * 1000 * 1000,
-    disableImageResize: false,
-    previewMaxWidth: 120,
-    previewMaxHeight: 120,
-    submit: function (e, data) {
-      $(this).fileupload('option', 'url', $scope.fileupload_url);
+GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
+  $scope.$on('flow::fileAdded', function (event, $flow, flowFile) {
+    flowFile.done = false;
+    $scope.uploads.push(flowFile);
+  });
+
+  $scope.$on('flow::fileSuccess', function (event, $flow, flowFile) {
+    var arrayLength = $scope.uploads.length;
+    for (var i = 0; i < arrayLength; i++) {
+      if ($scope.uploads[i].uniqueIdentifier == flowFile.uniqueIdentifier) {
+        $scope.uploads[i].done = true;
+      }
     }
-  }
-  if ($scope.fileupload_mode == 'single') {
-      $scope.options['maxNumberOfFiles'] = 1
-  };
+  });
 }]);

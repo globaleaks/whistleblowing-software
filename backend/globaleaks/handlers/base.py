@@ -23,7 +23,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.python.failure import Failure
 
 from cyclone import escape, httputil
-from cyclone.escape import native_str, parse_qs_bytes
+from cyclone.escape import utf8, native_str, parse_qs_bytes
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
 
@@ -32,6 +32,8 @@ from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
 from globaleaks.utils.mailutils import mail_exception
+
+GLUploads = {}
 
 def validate_host(host_key):
     """
@@ -58,30 +60,8 @@ def validate_host(host_key):
 
 
 class GLHTTPConnection(HTTPConnection):
-    file_upload = False
-
     def __init__(self):
         self.uploaded_file = {}
-
-    def rawDataReceived(self, data):
-        if self.content_length is not None:
-            data, rest = data[:self.content_length], data[self.content_length:]
-            self.content_length -= len(data)
-        else:
-            rest = ''
-
-        self._contentbuffer.write(data)
-        if self.content_length == 0 and self._contentbuffer is not None:
-            tmpbuf = self._contentbuffer
-            self.content_length = self._contentbuffer = None
-            self.setLineMode(rest)
-            tmpbuf.seek(0, 0)
-            if self.file_upload:
-                self._on_request_body(self.uploaded_file)
-                self.file_upload = False
-                self.uploaded_file = {}
-            else:
-                self._on_request_body(tmpbuf.read())
 
     def _on_headers(self, data):
         try:
@@ -95,102 +75,33 @@ class GLHTTPConnection(HTTPConnection):
             if not version.startswith("HTTP/"):
                 raise _BadRequestException(
                     "Malformed HTTP version in HTTP Request-Line")
-            headers = httputil.HTTPHeaders.parse(data[eol:])
+            try:
+                headers = httputil.HTTPHeaders.parse(data[eol:])
+                content_length = int(headers.get("Content-Length", 0))
+            except ValueError:
+                raise _BadRequestException(
+                    "Malformed Content-Length header")
             self._request = HTTPRequest(
                 connection=self, method=method, uri=uri, version=version,
                 headers=headers, remote_ip=self._remote_ip)
 
-            try:
-                self.content_length = int(headers.get("Content-Length", 0))
-            except ValueError:
-                raise _BadRequestException("Malformed Content-Length header")
+            if content_length:
+                if headers.get("Expect") == "100-continue":
+                    self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
 
-            # we always use secure temporary files in case of large json or file uploads
-            if self.content_length < 100000 and self._request.headers.get("Content-Disposition") is None:
-                self._contentbuffer = StringIO('')
-            else:
-                self._contentbuffer = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+                if content_length < 100000:
+                    self._contentbuffer = StringIO()
+                else:
+                    self._contentbuffer = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
 
-            if headers.get("Expect") == "100-continue":
-                self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
-
-            c_d_header = self._request.headers.get("Content-Disposition")
-            if c_d_header is not None:
-                key, pdict = parse_header(c_d_header)
-                if key != 'attachment' or 'filename' not in pdict:
-                    raise _BadRequestException("Malformed Content-Disposition header")
-
-                self.file_upload = True
-                self.uploaded_file['filename'] = pdict['filename']
-                self.uploaded_file['content_type'] = self._request.headers.get("Content-Type",
-                                                                               'application/octet-stream')
-
-                self.uploaded_file['body'] = self._contentbuffer
-                self.uploaded_file['body_len'] = int(self.content_length)
-                self.uploaded_file['body_filepath'] = self._contentbuffer.filepath
-
-            megabytes = int(self.content_length) / (1024 * 1024)
-
-            if self.file_upload:
-                limit_type = "upload"
-                limit = GLSetting.memory_copy.maximum_filesize
-            else:
-                limit_type = "json"
-                limit = 1000000 # 1MB fixme: add GLSetting.memory_copy.maximum_jsonsize
-                # is 1MB probably too high. probably this variable must be in kB
-
-            # less than 1 megabytes is always accepted
-            if megabytes > limit:
-                log.err("Tried %s request larger than expected (%dMb > %dMb)" %
-                        (limit_type,
-                         megabytes,
-                         limit))
-
-                # In HTTP Protocol errors need to be managed differently than handlers
-                raise errors.HTTPRawLimitReach
-
-            if self.content_length > 0:
+                self.content_length = content_length
                 self.setRawMode()
                 return
-            elif self.file_upload:
-                self._on_request_body(self.uploaded_file)
-                self.file_upload = False
-                self.uploaded_file = {}
-                return
 
             self.request_callback(self._request)
-        except Exception as exception:
-            log.msg("Malformed HTTP request from %s: %s" % (self._remote_ip, exception))
-            log.exception(exception)
-            if self._request:
-                self._request.finish()
-            if self.transport:
-                self.transport.loseConnection()
-
-    def _on_request_body(self, data):
-        try:
-            self._request.body = data
-            content_type = self._request.headers.get("Content-Type", "")
-            if self._request.method in ("POST", "PATCH", "PUT"):
-                if content_type.startswith("application/x-www-form-urlencoded"):
-                    if self.content_length > GLSetting.www_form_urlencoded_maximum_size:
-                        raise errors.InvalidInputFormat("Error: size limit exceeded of application/x-www-form-urlencoded")
-                    arguments = parse_qs_bytes(native_str(self._request.body))
-                    for name, values in arguments.iteritems():
-                        values = [v for v in values if v]
-                        if values:
-                            self._request.arguments.setdefault(name,
-                                                               []).extend(values)
-                elif content_type.startswith("multipart/form-data"):
-                    raise errors.InvalidInputFormat("content type multipart/form-data not supported")
-            self.request_callback(self._request)
-        except Exception as exception:
-            log.msg("Malformed HTTP request from %s: %s" % (self._remote_ip, exception))
-            log.exception(exception)
-            if self._request:
-                self._request.finish()
-            if self.transport:
-                self.transport.loseConnection()
+        except _BadRequestException, e:
+            log.msg("Malformed HTTP request from %s: %s", self._remote_ip, e)
+            self.transport.loseConnection()
 
 
 class BaseHandler(RequestHandler):
@@ -610,6 +521,32 @@ class BaseHandler(RequestHandler):
 
         return self.current_user['role'] == 'receiver'
 
+    def get_file_upload(self):
+        try:
+            if self.request.arguments['flowIdentifier'][0] not in GLUploads:
+                f = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+                GLUploads[self.request.arguments['flowIdentifier'][0]] = f
+            else:
+                f = GLUploads[self.request.arguments['flowIdentifier'][0]]
+
+            f.write(self.request.files['file'][0]['body'])
+
+            if self.request.arguments['flowChunkNumber'][0] != self.request.arguments['flowTotalChunks'][0]:
+                return None
+
+        except Exception as exc:
+            log.err("Error while handling file upload %s" % exc)
+            return None
+
+        uploaded_file = {}
+        uploaded_file['filename'] = self.request.files['file'][0]['filename']
+        uploaded_file['content_type'] = self.request.files['file'][0]['content_type']
+        uploaded_file['body_len'] = int(self.request.arguments['flowTotalSize'][0])
+        uploaded_file['body_filepath'] = f.filepath
+        uploaded_file['body'] = f
+
+        return uploaded_file
+
     def _handle_request_exception(self, e):
         # sys.exc_info() does not always work at this stage
         if isinstance(e, Failure):
@@ -637,23 +574,6 @@ class BaseHandler(RequestHandler):
                 log.msg(e)
             mail_exception(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
-
-    def get_uploaded_file(self):
-        uploaded_file = self.request.body
-
-        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 5:
-            raise errors.InvalidInputFormat("Expected a dict of five keys in uploaded file")
-
-        for filekey in uploaded_file.keys():
-            if filekey not in [u'body',
-                               u'body_len',
-                               u'content_type',
-                               u'filename',
-                               u'body_filepath']:
-                raise errors.InvalidInputFormat(
-                    "Invalid JSON key in uploaded file (%s)" % filekey)
-
-        return uploaded_file
 
 
 class BaseStaticFileHandler(BaseHandler):
@@ -685,6 +605,7 @@ class BaseStaticFileHandler(BaseHandler):
         if os.path.sep != "/":
             url_path = url_path.replace("/", os.path.sep)
         return url_path
+
 
 class BaseRedirectHandler(BaseHandler, RedirectHandler):
     def prepare(self):
