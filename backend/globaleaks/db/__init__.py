@@ -78,7 +78,6 @@ def create_tables(create_node=True):
             'security_awareness_text': dict({ GLSetting.defaults.language: u"" }),
             'whistleblowing_question': dict({ GLSetting.defaults.language: u"" }),
             'whistleblowing_button': dict({ GLSetting.defaults.language: u"" }),
-            'security_awareness_title': dict({ GLSetting.defaults.language: u"" }),
             'hidden_service': u"",
             'public_site': u"",
             'email': u"",
