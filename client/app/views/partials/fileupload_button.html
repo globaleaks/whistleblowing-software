@@ -1,4 +1,4 @@
-<div flow-init="{target: get_fileupload_url(), headers: get_auth_headers()}"
+<div flow-init="{target: fileupload_url, headers: get_auth_headers()}"
     flow-files-submitted="$flow.upload()">
   <div id="fileupload" data-ng-controller="WBFileUploadCtrl">
     <span class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled || (fileupload_mode == 'single' && uploads.length)}" flow-btn>
