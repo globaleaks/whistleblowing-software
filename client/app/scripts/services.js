@@ -520,10 +520,12 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           }
 
           receiversResource.query(tipID, function(receiversCollection){
-	          self.tip.receivers = receiversCollection;
-	          self.receivers_and_wb_keys = [];
+	        self.tip.receivers = receiversCollection;
+            self.cleartext_message = '';
+            self.cleartext_comment = '';
 
             // build receivers and wb pub keys list
+	        self.receivers_and_wb_keys = [];
             _.each(receiversCollection, function(receiver) {
                 var r_key_pub = openpgp.key.readArmored(receiver.pgp_e2e_public).keys[0];
                 self.receivers_and_wb_keys.push( r_key_pub );
@@ -532,10 +534,14 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             self.receivers_and_wb_keys.push( wb_key_pub );
 
             self.tip.newComment = function(content) {
-              var c = new commentsResource(tipID);
-              c.content = content;
-              c.$save(function(newComment) {
-                self.tip.comments.unshift(newComment);
+              openpgp.encryptMessage(self.receivers_and_wb_keys, content).then( function(pgp_content) {
+                var c = new commentsResource(tipID);
+                c.content = pgp_content;
+                //self.cleartext_comment = c;
+                //self.cleartext_comment.content = content;
+                c.$save(function(newComment) {
+                  self.tip.comments.unshift(newComment);
+                });
               });
             };
 
@@ -557,7 +563,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
                   openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_content) {
                     message.content = decr_content;
                   }, function(error) {
-                    console.log('decryptMessage error: ', error);
+                    message.content = 'decryptMessage error: ', error;
                   });
                 }
               });
@@ -568,7 +574,20 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             });
 
             commentsResource.query(tipID, function(commentsCollection){
+              _.each(commentsCollection, function(comment) {
+                if (typeof(comment.content) == 'string'
+                    && comment.content.indexOf("-----BEGIN PGP MESSAGE-----") == 0) {
+                  var pgpMessage = openpgp.message.readArmored(comment.content);
+                  openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_content) {
+                    comment.content = decr_content;
+                  }, function(error) {
+                    comment.content = 'decryptMessage error: ', error;
+                  });
+                }
+              });
               self.tip.comments = commentsCollection;
+              // XXX perhaps make this return a lazyly instanced item.
+              // look at $resource code for inspiration.
               fn(self.tip);
             });
 
