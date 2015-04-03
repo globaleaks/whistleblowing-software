@@ -18,7 +18,7 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
                               ReceiverFile
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.utils.utility import log 
+from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.security import GLBPGP, GLSecureFile
 from globaleaks.handlers.admin import admin_serialize_receiver
 from globaleaks.third_party.rstr import xeger
@@ -189,7 +189,10 @@ def create_receivertip(store, receiver, internaltip):
     """
     Create ReceiverTip for the required tier of Receiver.
     """
-    log.debug('Creating ReceiverTip for: %s' % receiver.name)
+    log.debug('Creating ReceiverTip for: %s (Tip of %s) E2E: %s' %
+              (receiver.name,
+               datetime_to_ISO8601(internaltip.creation_date),
+               "YES" if internaltip.is_e2e_encrypted else "NO" ))
 
     receivertip = ReceiverTip()
     receivertip.internaltip_id = internaltip.id
