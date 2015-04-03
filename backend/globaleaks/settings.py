@@ -166,15 +166,12 @@ class GLSettingsClass(object):
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
 
-        self.receipt_regexp = u'[0-9]{16}'
-
         # default timings for scheduled jobs
         self.session_management_minutes_delta = 1  # runner.py function expects minutes
         self.notification_minutes_delta = 2  # runner.py function expects minutes
         self.delivery_seconds_delta = 20  # runner.py function expects seconds
         self.anomaly_seconds_delta = 10  # runner.py function expects seconds
         self.mailflush_minutes_delta = 5  # before change check mailflush logic and delay
-
 
         # Default values, used to initialize DB at the first start,
         # or whenever the value is not supply by client.

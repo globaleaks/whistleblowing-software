@@ -221,54 +221,28 @@ def get_receiver_list_wb(store, wb_tip_id, language):
     if not wb_tip:
         raise errors.TipReceiptNotFound
 
-    def localize_and_append_receiver(receiver, receiver_desc):
-        mo = Rosetta(receiver.localized_strings)
-        mo.acquire_storm_object(receiver)
+    # Note: delivery is set every FIVE seconds, therefore, considering
+    # the time required for the WB to write the receipt (and to receive the Tor answer),
+    # is enough. (GLSetting.delivery_delta_seconds)
+    for rtip in wb_tip.internaltip.receivertips:
+
+        message_counter = store.find(Message,
+                                     Message.receivertip_id == rtip.id).count()
+        receiver_desc = {
+            "name": rtip.receiver.name,
+            "id": rtip.receiver.id,
+            "pgp_key_status": rtip.receiver.pgp_key_status,
+            "access_counter": rtip.access_counter,
+            "message_counter": message_counter,
+            "creation_date": datetime_to_ISO8601(datetime_now()),
+            "pgp_e2e_public": rtip.receiver.pgp_e2e_public,
+        }
+
+        mo = Rosetta(rtip.receiver.localized_strings)
+        mo.acquire_storm_object(rtip.receiver)
         receiver_desc["description"] = mo.dump_localized_attr("description", language)
         receiver_list.append(receiver_desc)
 
-    if not wb_tip.internaltip.receivertips.count():
-
-        # This part of code is used when receiver tips have still not been created
-        for receiver in wb_tip.internaltip.receivers:
-            # This is the reduced version of Receiver serialization
-            receiver_desc = {
-                "name": receiver.name,
-                "id": receiver.id,
-                "pgp_key_status": receiver.pgp_key_status,
-                "access_counter": 0,
-                "message_counter": 0,
-                "creation_date": datetime_to_ISO8601(datetime_now()),
-                "pgp_e2e_public": receiver.pgp_e2e_public,
-            }
-
-            localize_and_append_receiver(receiver, receiver_desc)
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-    else:
-
-        for rtip in wb_tip.internaltip.receivertips:
-=======
-        for rtip in wb_tip.internaltip.receivertips:
-
->>>>>>> e2e fix submission key save
-            message_counter = store.find(Message,
-                                         Message.receivertip_id == rtip.id).count()
-
-            receiver_desc = {
-                "name": rtip.receiver.name,
-                "id": rtip.receiver.id,
-                "pgp_key_status": rtip.receiver.pgp_key_status,
-                "access_counter": rtip.access_counter,
-                "message_counter": message_counter,
-                "creation_date": datetime_to_ISO8601(datetime_now()),
-                "pgp_e2e_public": rtip.receiver.pgp_e2e_public,
-            }
-
-            localize_and_append_receiver(rtip.receiver, receiver_desc)
-
-    print "XXX", receiver_list
     return receiver_list
 
 

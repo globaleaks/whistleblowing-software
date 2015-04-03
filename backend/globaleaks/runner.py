@@ -44,9 +44,7 @@ def start_asynchronous():
     reactor.callLater(0, anomaly.start, GLSetting.anomaly_seconds_delta)
     reactor.callLater(0, resource_check.start, GLSetting.anomaly_seconds_delta)
 
-    # reactor.callLater(10, delivery.start, GLSetting.delivery_seconds_delta)
-    reactor.callLater(1, delivery.start, 2)
-    # Test, End2End, fast delivery.
+    reactor.callLater(10, delivery.start, GLSetting.delivery_seconds_delta)
 
     reactor.callLater(20, notification.start, GLSetting.notification_minutes_delta * 60)
     reactor.callLater(40, mailflush.start, GLSetting.mailflush_minutes_delta * 60)
