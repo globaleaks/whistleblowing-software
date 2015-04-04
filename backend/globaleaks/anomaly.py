@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-#   anomaly
-#   *******
+# anomaly
+# *******
 #
 # GlobaLeaks cannot perform ratelimit and DoS protection based on source IP address
 # because is designed to run in the Darknet. Therefore we've to implement a strict
@@ -28,55 +28,61 @@ def file_upload_check(uri):
     # /submission/ + token_id + /file  = 59 bytes
     return len(uri) == 59 and uri.endswith('/file')
 
+
 def file_append_check(uri):
     return uri == '/wbtip/upload'
+
 
 def submission_check(uri):
     return uri == '/submission'
 
+
 def login_check(uri):
     return uri == '/authentication'
+
 
 def wb_message_check(uri):
     return uri.startswith('/wbtip/messages/')
 
+
 def wb_comment_check(uri):
     return uri == '/wbtip/comments'
+
 
 def rcvr_message_check(uri):
     return uri.startswith('/rtip/messages/')
 
+
 def rcvr_comment_check(uri):
     return uri.startswith('/rtip/comments')
 
-# This kind of check can be use for informative statistics, (not
-# security analysis) to count the user accessing to the homepage
-#def homepage_access_check(uri):
-#    return uri == '/'
 
-def failure_status_check(HTTP_code):
+def failure_status_check(http_code):
     # if code is missing is a failure because an Exception is raise before set
     # the status.
-    return HTTP_code >= 400
+    return http_code >= 400
 
-def created_status_check(HTTP_code):
+
+def created_status_check(http_code):
     # if missing, is a failure => False
-    return HTTP_code == 201
+    return http_code == 201
+
 
 def ok_status_check(HTTP_code):
     return HTTP_code == 200
 
-def update_status_check(HTTP_code):
-    return HTTP_code == 202
+
+def update_status_check(http_code):
+    return http_code == 202
 
 
 incoming_event_monitored = [
-    #    {
-    #        'name' : 'submission',
-    #        'handler_check': submission_check,
-    #        'anomaly_management': None,
-    #        'method': 'POST'
-    #    }
+    # {
+    # 'name' : 'submission',
+    # 'handler_check': submission_check,
+    # 'anomaly_management': None,
+    # 'method': 'POST'
+    # }
 ]
 
 outcoming_event_monitored = [
@@ -110,7 +116,7 @@ outcoming_event_monitored = [
     },
     {
         'name': 'wb_comments',
-        'handler_check' : wb_comment_check,
+        'handler_check': wb_comment_check,
         'status_checker': created_status_check,
         'anomaly_management': None,
         'method': 'POST'
@@ -149,14 +155,7 @@ outcoming_event_monitored = [
         'status_checker': created_status_check,
         'anomaly_management': None,
         'method': 'POST'
-    },
-#    {
-#        'name': 'homepage_access',
-#        'handler_check': homepage_access_check,
-#        'status_checker': ok_status_check,
-#        'anomaly_management': None,
-#        'method': 'GET'
-#    }
+    }
 
 ]
 
@@ -174,10 +173,10 @@ class EventTrack(TempObj):
     def serialize_event(self):
         return {
             # if the [:-8] I'll strip "." + $millisecond "Z"
-            'creation_date' : datetime_to_ISO8601(self.creation_date)[:-8],
-            'event' : self.event_type,
-            'id' : self.event_id,
-            'duration' : round(self.request_time, 1),
+            'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
+            'event': self.event_type,
+            'id': self.event_id,
+            'duration': round(self.request_time, 1),
         }
 
     def __init__(self, event_obj, request_time, debug=False):
@@ -188,7 +187,7 @@ class EventTrack(TempObj):
         self.request_time = request_time
 
         if self.debug:
-            log.debug("Creation of Event %s" % self.serialize_event() )
+            log.debug("Creation of Event %s" % self.serialize_event())
 
         TempObj.__init__(self,
                          EventTrackQueue.queue,
@@ -205,6 +204,7 @@ class EventTrack(TempObj):
         just make a synthesis of the Event in the Recent
         """
         from globaleaks.handlers.admin.statistics import RecentEventsCollection
+
         RecentEventsCollection.update_RecentEventQ(self)
 
     def __repr__(self):
@@ -254,9 +254,9 @@ class Alarm(object):
     """
 
     stress_levels = {
-        'disk_space' : 0,
-        'disk_message' : None,
-        'activity' : 0,
+        'disk_space': 0,
+        'disk_message': None,
+        'activity': 0,
     }
 
     # _DISK_ALARM express the number of files upload (at maximum size) that can be stored
@@ -279,7 +279,7 @@ class Alarm(object):
         'wb_messages': 4,
         'receiver_comments': 3,
         'receiver_messages': 3,
-        #'homepage_access': 60,
+        # 'homepage_access': 60,
     }
 
     # the level of the alarm in 30 seconds
@@ -294,12 +294,19 @@ class Alarm(object):
     def __init__(self):
         self.current_time = datetime_now()
 
+        self.difficulty_dict = {
+            'human_captcha': False,
+            'graph_captcha': False,
+            'proof_of_work': False,
+        }
+
+
     @staticmethod
     def reset():
         Alarm.stress_levels = {
-            'disk_space' : 0,
-            'disk_message' : None,
-            'activity' : 0,
+            'disk_space': 0,
+            'disk_message': None,
+            'activity': 0,
         }
 
     def get_token_difficulty(self):
@@ -307,12 +314,6 @@ class Alarm(object):
         This function return the difficulty that will be enforced in the
         token, whenever is File or Submission, here is evaluated with a dict.
         """
-        self.difficulty_dict = {
-            'human_captcha': False,
-            'graph_captcha': False,
-            'proof_of_work': False,
-        }
-
         # TODO make a proper assessment between pissed off users and defeated DoS
         if Alarm.stress_levels['activity'] >= 1:
             self.difficulty_dict['human_captcha'] = True
@@ -321,10 +322,10 @@ class Alarm(object):
             self.difficulty_dict['human_captcha'] = True
 
         log.debug("get_token_difficulty in %s is: HC:%s, GC:%s, PoW:%s" % (
-                  self.current_time,
-                  "Y" if self.difficulty_dict['human_captcha'] else "N",
-                  "Y" if self.difficulty_dict['graph_captcha'] else "N",
-                  "Y" if self.difficulty_dict['proof_of_work'] else "N" ) )
+            self.current_time,
+            "Y" if self.difficulty_dict['human_captcha'] else "N",
+            "Y" if self.difficulty_dict['graph_captcha'] else "N",
+            "Y" if self.difficulty_dict['proof_of_work'] else "N" ))
 
         return self.difficulty_dict
 
@@ -349,7 +350,6 @@ class Alarm(object):
         requests_timing = []
 
         for _, event_obj in EventTrackQueue.queue.iteritems():
-
             current_event_matrix.setdefault(event_obj.event_type, 0)
             current_event_matrix[event_obj.event_type] += 1
             requests_timing.append(event_obj.request_time)
@@ -357,9 +357,9 @@ class Alarm(object):
         if len(requests_timing) > 2:
             log.info("In latest %d seconds: worst RTT %f, best %f" %
                      ( GLSetting.anomaly_seconds_delta,
-                       round(max(requests_timing), 2), 
+                       round(max(requests_timing), 2),
                        round(min(requests_timing), 2) )
-            )
+                     )
 
         for event_name, threshold in Alarm.OUTCOMING_ANOMALY_MAP.iteritems():
             if event_name in current_event_matrix:
@@ -371,10 +371,9 @@ class Alarm(object):
                 else:
                     pass
                     log.debug("[compute_activity_level] %s %d < %d: it's OK (Anomalies recorded so far %d)" % (
-                         event_name,
-                         current_event_matrix[event_name], 
-                         threshold, Alarm.number_of_anomalies) )
-
+                        event_name,
+                        current_event_matrix[event_name],
+                        threshold, Alarm.number_of_anomalies))
 
         previous_activity_sl = Alarm.stress_levels['activity']
 
@@ -406,7 +405,7 @@ class Alarm(object):
                 "in Activity stress level switch from %d => %d [%s]" %
                 (previous_activity_sl,
                  Alarm.stress_levels['activity'],
-                 debug_reason) )
+                 debug_reason))
 
         # Alarm notification get the copy of the latest activities
         yield Alarm.admin_alarm_notification(current_event_matrix)
@@ -491,9 +490,11 @@ class Alarm(object):
             defer.returnValue(None)
 
         if Alarm.last_alarm_email:
-            if not is_expired(Alarm.last_alarm_email, minutes=do_not_stress_admin_with_more_than_an_email_after_minutes):
+            if not is_expired(Alarm.last_alarm_email,
+                              minutes=do_not_stress_admin_with_more_than_an_email_after_minutes):
                 log.debug("Alert email want be send, but the threshold of %d minutes is not yet reached since %s" % (
-                    do_not_stress_admin_with_more_than_an_email_after_minutes, datetime_to_ISO8601(Alarm.last_alarm_email)))
+                    do_not_stress_admin_with_more_than_an_email_after_minutes,
+                    datetime_to_ISO8601(Alarm.last_alarm_email)))
                 defer.returnValue(None)
 
         # and now, processing the template
@@ -532,10 +533,10 @@ class Alarm(object):
 
         log.debug('Alarm Email for admin (%s): connecting to [%s:%d], '
                   'the next mail should be in %d minutes' %
-                    (event_matrix,
-                     GLSetting.memory_copy.notif_server,
-                     GLSetting.memory_copy.notif_port,
-                     do_not_stress_admin_with_more_than_an_email_after_minutes) )
+                  (event_matrix,
+                   GLSetting.memory_copy.notif_server,
+                   GLSetting.memory_copy.notif_port,
+                   do_not_stress_admin_with_more_than_an_email_after_minutes))
 
         Alarm.last_alarm_email = datetime_now()
 
@@ -543,14 +544,14 @@ class Alarm(object):
         # good and useful mail templates are still missing.
         #
         # yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
-        #                authentication_password=GLSetting.memory_copy.notif_password,
-        #                from_address=GLSetting.memory_copy.notif_source_email,
-        #                to_address=admin_email,
-        #                message_file=message,
-        #                smtp_host=GLSetting.memory_copy.notif_server,
-        #                smtp_port=GLSetting.memory_copy.notif_port,
-        #                security=GLSetting.memory_copy.notif_security,
-        #                event=None)
+        # authentication_password=GLSetting.memory_copy.notif_password,
+        # from_address=GLSetting.memory_copy.notif_source_email,
+        # to_address=admin_email,
+        # message_file=message,
+        # smtp_host=GLSetting.memory_copy.notif_server,
+        # smtp_port=GLSetting.memory_copy.notif_port,
+        # security=GLSetting.memory_copy.notif_security,
+        # event=None)
 
     def report_disk_usage(self, free_workdir_bytes, workdir_space_bytes, free_ramdisk_bytes):
         """
@@ -590,7 +591,7 @@ class Alarm(object):
                     info_msg = "Fatal - Submission disabled | %s" % info_msg
                 elif stress_level == 2:
                     info_msg = "Critical - Submission can be disabled soon | %s" % info_msg
-                else: # == 1
+                else:  # == 1
                     info_msg = "Warning | %s" % info_msg
 
                 log.info(info_msg)
@@ -679,8 +680,9 @@ class Alarm(object):
                 "False" if past_condition else "True"))
 
             # is an hack of the GLApiCache, but I can't manage a DB access here
-            GLApiCache.memory_cache_dict['node']['disk_availability'] =\
+            GLApiCache.memory_cache_dict['node']['disk_availability'] = \
                 GLSetting.memory_copy.disk_availability
+
 
 # a simple utility required when something has to send an email to the Admin
 @transact_ro

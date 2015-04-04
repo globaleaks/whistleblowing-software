@@ -1,37 +1,34 @@
-
 # -*- coding: utf-8 -*-
 #
-#   security 
-#   ********
+# security
+# ********
 #
 # GlobaLeaks security functions
 
 import binascii
+import shutil
+import pickle
+from datetime import datetime
+from tempfile import _TemporaryFileWrapper
+
 import re
 import os
-import shutil
 import scrypt
-import pickle
-
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
-
-from datetime import datetime
-
 from gnupg import GPG
-from tempfile import _TemporaryFileWrapper
-
 from globaleaks.rest import errors
-from globaleaks.utils.utility import log, acquire_bool, datetime_null, datetime_to_day_str
+from globaleaks.utils.utility import log, datetime_null, datetime_to_day_str
 from globaleaks.settings import GLSetting
-from globaleaks.models import ReceiverTip, Receiver
+from globaleaks.models import ReceiverTip
 from globaleaks.third_party.rstr import xeger
 
 
-SALT_LENGTH = (128 / 8) # 128 bits of unique salt
+SALT_LENGTH = (128 / 8)  # 128 bits of unique salt
 
 crypto_backend = default_backend()
+
 
 class GLSecureTemporaryFile(_TemporaryFileWrapper):
     """
@@ -77,14 +74,14 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         while os.path.isfile(self.keypath):
             self.key_id = xeger(GLSetting.AES_key_id_regexp)
             self.keypath = os.path.join(GLSetting.ramdisk_path, "%s%s" %
-                                    (GLSetting.AES_keyfile_prefix, self.key_id))
+                                        (GLSetting.AES_keyfile_prefix, self.key_id))
 
         self.key_counter_nonce = os.urandom(GLSetting.AES_counter_nonce)
         self.initialize_cipher()
 
         saved_struct = {
-            'key' : self.key,
-            'key_counter_nonce' : self.key_counter_nonce
+            'key': self.key,
+            'key_counter_nonce': self.key_counter_nonce
         }
 
         log.debug("Key initialization at %s" % self.keypath)
@@ -107,7 +104,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
 
         assert (self.last_action != 'read'), "you can write after read!"
-        
+
         self.last_action = 'write'
         try:
             if isinstance(data, unicode):
@@ -128,7 +125,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         The first time 'read' is called after a write, is automatically seek(0)
         """
         if self.last_action == 'write':
-            self.seek(0, 0) # this is a trick just to misc write and read
+            self.seek(0, 0)  # this is a trick just to misc write and read
             self.initialize_cipher()
             log.debug("First seek on %s" % self.filepath)
             self.last_action = 'read'
@@ -140,14 +137,13 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
 
 class GLSecureFile(GLSecureTemporaryFile):
-
     def __init__(self, filepath):
 
         self.filepath = filepath
 
         self.key_id = os.path.basename(self.filepath).split('.')[0]
 
-        log.debug("Opening secure file %s with %s" % (self.filepath, self.key_id) )
+        log.debug("Opening secure file %s with %s" % (self.filepath, self.key_id))
 
         self.file = open(self.filepath, 'r+b')
 

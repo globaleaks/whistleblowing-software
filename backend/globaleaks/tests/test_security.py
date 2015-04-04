@@ -2,14 +2,11 @@ import binascii
 
 import os
 import scrypt
-
 from cryptography.hazmat.primitives import hashes
 from twisted.trial import unittest
-
 from globaleaks.tests import helpers
 from globaleaks.security import get_salt, hash_password, check_password, change_password, check_password_format, SALT_LENGTH, \
                                 directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, crypto_backend
-
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 

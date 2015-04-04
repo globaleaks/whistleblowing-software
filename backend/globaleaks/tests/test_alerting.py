@@ -1,19 +1,13 @@
 # -*- encoding: utf-8 -*-
 
-import time
-import random
-
 from twisted.internet.defer import inlineCallbacks
 from twisted.internet import task
 
 from globaleaks import anomaly
 from globaleaks.tests import helpers
 from globaleaks.tests.test_anomaly import pollute_events_for_testing
-from globaleaks.handlers.admin.statistics import get_stats, \
-    get_anomaly_history,  delete_anomaly_history, delete_weekstats_history, \
-    AnomaliesCollection
-from globaleaks.jobs.statistics_sched import StatisticsSchedule, \
-    AnomaliesSchedule, ResourceChecker, save_anomalies, save_statistics
+from globaleaks.handlers.admin.statistics import get_anomaly_history
+from globaleaks.jobs.statistics_sched import StatisticsSchedule
 
 anomaly.reactor = task.Clock()
 

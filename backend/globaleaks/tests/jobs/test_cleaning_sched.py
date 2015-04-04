@@ -1,22 +1,15 @@
 # -*- encoding: utf-8 -*-
 import os
 
-import copy
-
-from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 
 from globaleaks import models
-from globaleaks.rest import requests
-from globaleaks.handlers import base, admin, submission, files, rtip, receiver
-from globaleaks.jobs import delivery_sched, cleaning_sched
-from globaleaks.utils.token import Token
+from globaleaks.handlers import admin, rtip, receiver
+from globaleaks.jobs import cleaning_sched
 from globaleaks.utils.utility import is_expired, datetime_null
 from globaleaks.settings import transact, GLSetting
-
-from globaleaks.security import GLSecureTemporaryFile
 
 
 class TestCleaning(helpers.TestGLWithPopulatedDB):

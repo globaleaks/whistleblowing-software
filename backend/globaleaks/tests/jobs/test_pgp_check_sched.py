@@ -2,8 +2,6 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
-from globaleaks.settings import GLSetting, transact, transact_ro
-from globaleaks.models import Receiver
 
 from globaleaks.jobs import pgp_check_sched
 

@@ -143,22 +143,35 @@ class TableReplacer(object):
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
         self.table_history = {
-            'Node': [Node_v_9, None, Node_v_11, None, Node_v_12, Node_v_13, Node_v_14, Node_v_16, None, Node_v_17, Node_v_18, Node_v_19, models.Node],
+            'Node': [Node_v_9, None, Node_v_11, None, Node_v_12, Node_v_13, Node_v_14, Node_v_16, None, Node_v_17,
+                     Node_v_18, Node_v_19, models.Node],
             'User': [User_v_9, None, User_v_14, None, None, None, None, models.User, None, None, None, None, None],
-            'Context': [Context_v_8, Context_v_11, None, None, Context_v_12, Context_v_13, Context_v_14, Context_v_19, None, None, None, None, models.Context],
-            'Receiver': [Receiver_v_8, Receiver_v_9, Receiver_v_14, None, None, None, None, Receiver_v_15, Receiver_v_16, Receiver_v_19, None, None, models.Receiver],
-            'ReceiverFile': [ReceiverFile_v_19, None, None, None, None, None, None, None, None, None, None, None, models.ReceiverFile],
-            'Notification': [Notification_v_8, Notification_v_14, None, None, None, None, None, Notification_v_15, Notification_v_16, Notification_v_19, None, None, models.Notification],
-            'Comment': [Comment_v_14, None, None, None, None, None, None, Comment_v_19, None, None, None, None, models.Comment],
-            'InternalTip': [InternalTip_v_10, None, None, InternalTip_v_14, None, None, None, InternalTip_v_19, None, None, None, None, models.InternalTip],
-            'InternalFile': [InternalFile_v_10, None, None, InternalFile_v_19, None, None, None, None, None, None, None, None, models.InternalFile],
-            'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None, None, None, None, None],
-            'ReceiverTip': [ReceiverTip_v_19, None, None, None , None, None, None, None, None, None, None, None, models.ReceiverTip],
-            'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None, None, None, None],
-            'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None, None, None, None],
+            'Context': [Context_v_8, Context_v_11, None, None, Context_v_12, Context_v_13, Context_v_14, Context_v_19,
+                        None, None, None, None, models.Context],
+            'Receiver': [Receiver_v_8, Receiver_v_9, Receiver_v_14, None, None, None, None, Receiver_v_15,
+                         Receiver_v_16, Receiver_v_19, None, None, models.Receiver],
+            'ReceiverFile': [ReceiverFile_v_19, None, None, None, None, None, None, None, None, None, None, None,
+                             models.ReceiverFile],
+            'Notification': [Notification_v_8, Notification_v_14, None, None, None, None, None, Notification_v_15,
+                             Notification_v_16, Notification_v_19, None, None, models.Notification],
+            'Comment': [Comment_v_14, None, None, None, None, None, None, Comment_v_19, None, None, None, None,
+                        models.Comment],
+            'InternalTip': [InternalTip_v_10, None, None, InternalTip_v_14, None, None, None, InternalTip_v_19, None,
+                            None, None, None, models.InternalTip],
+            'InternalFile': [InternalFile_v_10, None, None, InternalFile_v_19, None, None, None, None, None, None, None,
+                             None, models.InternalFile],
+            'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None, None, None,
+                                 None, None],
+            'ReceiverTip': [ReceiverTip_v_19, None, None, None, None, None, None, None, None, None, None, None,
+                            models.ReceiverTip],
+            'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None,
+                                    None, None, None],
+            'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None, None,
+                                None, None],
             'Message': [Message_v_19, None, None, None, None, None, None, None, None, None, None, None, models.Message],
             'Stats': [Stats_v_14, None, None, None, None, None, None, Stats_v_16, None, models.Stats, None, None, None],
-            'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None, None, None],
+            'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None,
+                                None, None],
             'Field': [models.Field, None, None, None, None, None, None, None, None, None, None, None, None],
             'FieldOption': [models.FieldOption, None, None, None, None, None, None, None, None, None, None, None, None],
             'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None, None, None, None],
@@ -176,14 +189,13 @@ class TableReplacer(object):
                 msg = 'Expecting a table with {} statuses ({})'.format(length, k)
                 raise TypeError(msg)
 
-
         log.msg('{} Opening old DB: {}'.format(self.debug_info, old_db_file))
-        old_database = create_database('sqlite:'+self.old_db_file)
+        old_database = create_database('sqlite:' + self.old_db_file)
         self.store_old = Store(old_database)
 
         GLSetting.db_file = new_db_file
 
-        new_database = create_database('sqlite:'+new_db_file)
+        new_database = create_database('sqlite:' + new_db_file)
         self.store_new = Store(new_database)
 
         if self.start_ver + 1 == DATABASE_VERSION:
@@ -197,7 +209,7 @@ class TableReplacer(object):
                 create_queries = ''.join(f).split(';')
                 for create_query in create_queries:
                     try:
-                        self.store_new.execute(create_query+';')
+                        self.store_new.execute(create_query + ';')
                     except OperationalError:
                         log.msg('OperationalError in "{}"'.format(create_query))
             self.store_new.commit()
@@ -212,7 +224,7 @@ class TableReplacer(object):
                 continue
 
             try:
-                self.store_new.execute(create_query+';')
+                self.store_new.execute(create_query + ';')
             except OperationalError as excep:
                 log.msg('{} OperationalError in [{}]'.format(self.debug_info, create_query))
                 raise excep
@@ -238,7 +250,7 @@ class TableReplacer(object):
                 __file__, table_name, self.start_ver)
             raise NotImplementedError(msg)
 
-        if version >  DATABASE_VERSION:
+        if version > DATABASE_VERSION:
             raise ValueError('Version supplied must be less or equal to {}'.format(
                 DATABASE_VERSION))
 
@@ -283,7 +295,7 @@ class TableReplacer(object):
 
             # Storm internals simply reversed
             for _, v in new_obj._storm_columns.iteritems():
-                setattr(new_obj, v.name, getattr(old_obj, v.name) )
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
 
@@ -297,7 +309,7 @@ class TableReplacer(object):
 
         # Storm internals simply reversed
         for _, v in new_obj._storm_columns.iteritems():
-            setattr(new_obj, v.name, getattr(old_obj, v.name) )
+            setattr(new_obj, v.name, getattr(old_obj, v.name))
 
         self.store_new.add(new_obj)
         self.store_new.commit()

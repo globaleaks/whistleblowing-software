@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
-import json
 import os
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.rest import requests, errors
+from globaleaks.rest import errors
 from globaleaks.tests import helpers
-from globaleaks.handlers import files, submission
-from globaleaks.settings import GLSetting
-from globaleaks.security import GLSecureTemporaryFile
+from globaleaks.handlers import files
 from globaleaks.utils import token
 
 class TestFileInstance(helpers.TestHandlerWithPopulatedDB):

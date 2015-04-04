@@ -8,7 +8,7 @@ from globaleaks.handlers.node import anon_serialize_field
 from globaleaks.handlers.admin import create_context
 from globaleaks.handlers.admin.field import create_field
 from globaleaks import models
-from globaleaks.rest import requests, errors
+from globaleaks.rest import errors
 from globaleaks.settings import transact, transact_ro
 from globaleaks.tests import helpers
 

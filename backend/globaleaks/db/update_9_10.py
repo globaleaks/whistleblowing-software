@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
 
-from storm.locals import  Int, Bool, Pickle, Unicode, DateTime
+from storm.locals import Int, Bool, Pickle, Unicode, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
+
 
 class Node_v_9(Model):
     __storm_table__ = 'node'
@@ -62,6 +63,7 @@ class Receiver_v_9(Model):
     # this gpg_enable_files is removed since 9 to 10
     gpg_enable_files = Bool()
 
+
 class User_v_9(Model):
     __storm_table__ = 'user'
     username = Unicode()
@@ -75,8 +77,6 @@ class User_v_9(Model):
 
 
 class Replacer910(TableReplacer):
-
-
     def migrate_Node(self):
         print "%s Node migration assistant: (privileges, subtitle)" % self.std_fancy
 
@@ -90,10 +90,10 @@ class Replacer910(TableReplacer):
                 continue
 
             if v.name == 'anomaly_checks':
-                anomaly_checks = True
+                new_nodee.anomaly_checks = True
                 continue
 
-            setattr(new_node, v.name, getattr(old_node, v.name) )
+            setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
         self.store_new.commit()

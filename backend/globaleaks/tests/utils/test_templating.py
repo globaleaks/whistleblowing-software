@@ -4,10 +4,8 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 from globaleaks.handlers import admin
-from globaleaks.jobs import delivery_sched
 from globaleaks.plugins.base import Event
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.token import Token
 
 generic_keyword_list = [
     '%NodeName%',

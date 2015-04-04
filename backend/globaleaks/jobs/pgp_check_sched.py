@@ -9,11 +9,10 @@
 #     if keys configured by receiver are going
 #     to expire in short time, if so, send a warning email to the recipient.
 #
-from cyclone.util import ObjectDict as OD
-from twisted.internet.defer import inlineCallbacks
-
 from datetime import timedelta
 
+from cyclone.util import ObjectDict as OD
+from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.admin import admin_serialize_user, \
     admin_serialize_receiver, admin_serialize_node, db_admin_serialize_node
 from globaleaks.handlers.admin.notification import get_notification

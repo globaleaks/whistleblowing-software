@@ -6,7 +6,7 @@
 
 """
 
-from storm.locals import Int, Bool, Unicode, DateTime, JSON, ReferenceSet
+from storm.locals import Int, Bool, Unicode, DateTime, JSON
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model

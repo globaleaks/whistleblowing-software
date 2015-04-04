@@ -15,8 +15,8 @@ from globaleaks.plugins.base import Notification
 from globaleaks.security import GLBPGP
 from globaleaks.settings import GLSetting
 
-class MailNotification(Notification):
 
+class MailNotification(Notification):
     plugin_name = u'Mail'
     plugin_type = u'notification'
     plugin_description = u"Mail notification, with encryption supports"
@@ -151,8 +151,8 @@ class MailNotification(Notification):
 
         return sendmail(authentication_username=GLSetting.memory_copy.notif_username,
                         authentication_password=GLSetting.memory_copy.notif_password,
-                        from_address= from_address,
-                        to_address= to_address,
+                        from_address=from_address,
+                        to_address=to_address,
                         message_file=message_file,
                         smtp_host=GLSetting.memory_copy.notif_server,
                         smtp_port=GLSetting.memory_copy.notif_port,

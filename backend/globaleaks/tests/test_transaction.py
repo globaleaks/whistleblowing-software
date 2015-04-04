@@ -4,7 +4,7 @@ from storm import exceptions
 
 from globaleaks.tests import helpers
 
-from globaleaks.settings import transact, transact_ro
+from globaleaks.settings import transact_ro
 from globaleaks.models import *
 from globaleaks.utils.utility import datetime_null
 

@@ -18,13 +18,14 @@
 """
 
 import copy
-from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 
+from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model, Field, FieldOption, Step, db_forge_obj
 from globaleaks.utils.utility import datetime_null, uuid4, every_language
+
 
 class Node_v_14(Model):
     __storm_table__ = 'node'
@@ -191,7 +192,7 @@ class Replacer1415(TableReplacer):
         for _, v in new_node._storm_columns.iteritems():
 
             if v.name == 'default_timezone':
-                new_node.default_timezone= 0;
+                new_node.default_timezone= 0
                 continue
 
             if v.name == 'whistleblowing_question':
@@ -465,7 +466,7 @@ class Replacer1415(TableReplacer):
 
                 for _, v in new_itip._storm_columns.iteritems():
                     if v.name == 'wb_steps':
-                        new_itip.wb_steps = wb_steps;
+                        new_itip.wb_steps = wb_steps
                         continue
 
                     setattr(new_itip, v.name, getattr(old_itip, v.name))

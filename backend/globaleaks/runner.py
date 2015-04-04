@@ -14,11 +14,12 @@ from globaleaks.db import create_tables, clean_untracked_files
 from globaleaks.db.datainit import import_memory_variables, apply_cli_options
 
 from globaleaks.jobs import session_management_sched, statistics_sched, \
-                            notification_sched, delivery_sched, cleaning_sched, \
-                            pgp_check_sched, mailflush_sched
+    notification_sched, delivery_sched, cleaning_sched, \
+    pgp_check_sched, mailflush_sched
 
 from globaleaks.settings import GLSetting
 from globaleaks.utils.utility import log, datetime_now
+
 
 def start_asynchronous():
     """
@@ -37,7 +38,7 @@ def start_asynchronous():
     stats = statistics_sched.StatisticsSchedule()
 
     # here we prepare the schedule:
-    #  - first argument is the first run delay in seconds
+    # - first argument is the first run delay in seconds
     #  - second argument is the function that starts the schedule
     #  - third argument is the schedule period in seconds
     reactor.callLater(0, session_management.start, GLSetting.session_management_minutes_delta * 60)
@@ -103,10 +104,12 @@ def globaleaks_start():
 
     return True
 
+
 class GLBaseRunner(UnixApplicationRunner):
     """
     This runner is specific to Unix systems.
     """
+
     def postApplication(self):
         """
         Run the application.
@@ -115,19 +118,19 @@ class GLBaseRunner(UnixApplicationRunner):
         try:
             self.startApplication(self.application)
         except Exception as ex:
-            statusPipe = self.config.get("statusPipe", None)
-            if statusPipe is not None:
+            statuspipe = self.config.get("statuspipe", None)
+            if statuspipe is not None:
                 # Limit the total length to the passed string to 100
-                strippedError = str(ex)[:98]
-                untilConcludes(os.write, statusPipe, "1 %s" % (strippedError,))
-                untilConcludes(os.close, statusPipe)
+                strippederror = str(ex)[:98]
+                untilConcludes(os.write, statuspipe, "1 %s" % (strippederror,))
+                untilConcludes(os.close, statuspipe)
             self.removePID(self.config['pidfile'])
             raise
         else:
-            statusPipe = self.config.get("statusPipe", None)
-            if statusPipe is not None:
-                untilConcludes(os.write, statusPipe, "0")
-                untilConcludes(os.close, statusPipe)
+            statuspipe = self.config.get("statuspipe", None)
+            if statuspipe is not None:
+                untilConcludes(os.write, statuspipe, "0")
+                untilConcludes(os.close, statuspipe)
 
         if globaleaks_start():
             self.startReactor(None, self.oldstdout, self.oldstderr)

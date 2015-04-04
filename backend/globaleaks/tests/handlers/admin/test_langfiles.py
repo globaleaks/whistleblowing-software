@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks
-
 import json
 
+from twisted.internet.defer import inlineCallbacks
 from globaleaks.rest import requests, errors
 from globaleaks.tests import helpers
 from globaleaks.handlers.admin import langfiles
-from globaleaks.settings import GLSetting
-from globaleaks.security import GLSecureTemporaryFile
+
 
 class TestLanguageFileHandler(helpers.TestHandler):
     _handler = langfiles.AdminLanguageFileHandler

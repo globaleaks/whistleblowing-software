@@ -8,13 +8,13 @@ for each version one an empty and a populated db must be stored in directories:
 """
 from __future__ import with_statement
 
-from cStringIO import StringIO
-import os
 import shutil
 
+import os
 from globaleaks.tests import helpers
-from globaleaks.db import base_updater, check_db_files
+from globaleaks.db import check_db_files
 from globaleaks.settings import GLSetting
+
 
 def test_dbs_migration(directory):
     GLSetting.gldb_path = 'db_test'    # path where check_db_files looks in

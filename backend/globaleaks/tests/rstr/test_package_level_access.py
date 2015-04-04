@@ -1,6 +1,6 @@
 import unittest
-import re
 
+import re
 from globaleaks.third_party import rstr
 
 

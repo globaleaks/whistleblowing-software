@@ -108,6 +108,9 @@ class EventLogger(object):
 
         return (receiver.tip_notification, receiver_desc)
 
+    def db_load(self, store)
+        pass
+
     @transact
     def process_events(self, store):
         self.db_load(store)

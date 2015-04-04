@@ -4,10 +4,9 @@ Testandi ipsos testes.
 from __future__ import unicode_literals
 
 import json
+
 import os
-
 from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.tests import helpers
 

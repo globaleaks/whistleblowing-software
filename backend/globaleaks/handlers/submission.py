@@ -1,16 +1,15 @@
 # -*- coding: UTF-8
 #
-#   submission
-#   **********
+# submission
+# **********
 #
-#   Implements a GlobaLeaks submission, then the operations performed
+# Implements a GlobaLeaks submission, then the operations performed
 #   by an HTTP client in /submission URI
 
 import copy
 
 from twisted.internet.defer import inlineCallbacks
-
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, GLSetting
 from globaleaks.models import Context, InternalTip, Receiver, WhistleblowerTip, \
     Node, InternalFile
 from globaleaks import security
@@ -24,10 +23,10 @@ from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 from globaleaks.anomaly import Alarm
 
-def wb_serialize_internaltip(internaltip):
 
+def wb_serialize_internaltip(internaltip):
     response = {
-        'id' : internaltip.id,
+        'id': internaltip.id,
         'context_id': internaltip.context_id,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
@@ -37,6 +36,7 @@ def wb_serialize_internaltip(internaltip):
     }
 
     return response
+
 
 def db_create_whistleblower_tip(store, submission_desc):
     """
@@ -57,9 +57,11 @@ def db_create_whistleblower_tip(store, submission_desc):
 
     return receipt
 
+
 @transact
 def create_whistleblower_tip(*args):
     return db_create_whistleblower_tip(*args)
+
 
 def import_receivers(store, submission, receiver_id_list):
     context = submission.context
@@ -87,17 +89,17 @@ def import_receivers(store, submission, receiver_id_list):
 
         try:
             if not GLSetting.memory_copy.allow_unencrypted and \
-                    receiver.pgp_key_status != u'enabled':
+                            receiver.pgp_key_status != u'enabled':
                 log.err("Encrypted only submissions are supported. Cannot select [%s]" % receiver_id)
                 continue
             submission.receivers.add(receiver)
         except Exception as excep:
-            log.err("Receiver %s can't be assigned to the tip [%s]" % (receiver_id, excep) )
+            log.err("Receiver %s can't be assigned to the tip [%s]" % (receiver_id, excep))
             continue
 
-        log.debug("+receiver [%s] In tip (%s) #%d" %\
-                (receiver.name, submission.id, submission.receivers.count() ) )
-   
+        log.debug("+receiver [%s] In tip (%s) #%d" % \
+                  (receiver.name, submission.id, submission.receivers.count() ))
+
     if submission.receivers.count() == 0:
         log.err("Receivers required to be selected, not empty")
         raise errors.SubmissionFailFields("Needed at least one Receiver selected [2]")
@@ -109,14 +111,14 @@ def verify_fields_recursively(fields, wb_fields):
             raise errors.SubmissionFailFields("missing field (no structure present): %s" % f)
 
         if fields[f]['required'] and ('value' not in wb_fields[f] or
-                                      wb_fields[f]['value'] == ''):
+                                              wb_fields[f]['value'] == ''):
             raise errors.SubmissionFailFields("missing required field (no value provided): %s" % f)
 
         if isinstance(wb_fields[f]['value'], unicode):
             if len(wb_fields[f]['value']) > GLSetting.memory_copy.maximum_textsize:
                 raise errors.InvalidInputFormat("field value overcomes size limitation")
 
-        indexed_fields  = {}
+        indexed_fields = {}
         for f_c in fields[f]['children']:
             indexed_fields[f_c['id']] = copy.deepcopy(f_c)
 
@@ -130,8 +132,9 @@ def verify_fields_recursively(fields, wb_fields):
         if wbf not in fields:
             raise errors.SubmissionFailFields("provided unexpected field %s" % wbf)
 
+
 def verify_steps(steps, wb_steps):
-    indexed_fields  = {}
+    indexed_fields = {}
     for step in steps:
         for f in step['children']:
             indexed_fields[f['id']] = copy.deepcopy(f)
@@ -242,11 +245,11 @@ class SubmissionCreate(BaseHandler):
         token.set_difficulty(Alarm().get_token_difficulty())
         token_answer = token.serialize_token()
 
-        token_answer.update({'id': token_answer['token_id'] })
+        token_answer.update({'id': token_answer['token_id']})
         token_answer.update({'context_id': request['context_id']})
         token_answer.update({'human_captcha_answer': 0})
 
-        self.set_status(201) # Created
+        self.set_status(201)  # Created
         self.finish(token_answer)
 
 
@@ -267,6 +270,7 @@ class SubmissionInstance(BaseHandler):
 
         PUT finalize the submission
         """
+
         @transact
         def put_transact(store, token, request):
             status = db_create_submission(store, token, request, self.request.language)
@@ -288,5 +292,5 @@ class SubmissionInstance(BaseHandler):
 
         TokenList.delete(token_id)
 
-        self.set_status(202) # Updated, also if submission if effectively created (201)
+        self.set_status(202)  # Updated, also if submission if effectively created (201)
         self.finish(status)

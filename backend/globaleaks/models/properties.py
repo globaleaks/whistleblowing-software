@@ -44,7 +44,7 @@ class MetaModel(PropertyPublisherMeta):
         # populate class attributes with the inferred new informations.
         cls._public_attrs = public_attrs
 
-        return super(MetaModel, cls).__init__(name, bases, attrs)
+        super(MetaModel, cls).__init__(name, bases, attrs)
 
 class DateTimeVariable(_DateTimeVariable):
     """

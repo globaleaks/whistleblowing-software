@@ -2,11 +2,9 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 
-from globaleaks.handlers import submission
-from globaleaks.jobs import delivery_sched
 from globaleaks.jobs.mailflush_sched import MailflushSchedule
 from globaleaks.jobs.notification_sched import NotificationSchedule
-from globaleaks.settings import GLSetting
+
 
 class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
 

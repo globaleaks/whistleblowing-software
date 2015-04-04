@@ -1,24 +1,20 @@
 # -*- coding: utf-8 -*-
 import random
-import os
-
 import json
 
 from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.rest.errors import InvalidInputFormat
 from globaleaks.tests import helpers
 from globaleaks.rest import requests, errors
 from globaleaks.handlers import admin
-from globaleaks.settings import GLSetting
 from globaleaks import __version__
 from globaleaks.models import Node, Context, Receiver
 from globaleaks.utils.utility import uuid4
 
 # special guest:
-from io import BytesIO as StringIO
 
 stuff = u"³²¼½¬¼³²"
+
 
 class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.NodeInstance
@@ -87,19 +83,19 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
-         handler = self.request(role='admin')
-         yield handler.get()
-         self.assertEqual(self.responses[0]['server'], 'mail.headstrong.de')
+        handler = self.request(role='admin')
+        yield handler.get()
+        self.assertEqual(self.responses[0]['server'], 'mail.headstrong.de')
 
     @inlineCallbacks
     def test_put(self):
-         handler = self.request(role='admin')
-         yield handler.get()
+        handler = self.request(role='admin')
+        yield handler.get()
 
-         self.responses[0]['server'] = 'stuff'
-         handler = self.request(self.responses[0], role='admin')
-         yield handler.put()
-         self.assertEqual(self.responses[1]['server'], 'stuff')
+        self.responses[0]['server'] = 'stuff'
+        handler = self.request(self.responses[0], role='admin')
+        yield handler.put()
+        self.assertEqual(self.responses[1]['server'], 'stuff')
 
 
 class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
@@ -115,7 +111,6 @@ class TestContextsCreate(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
-
         for attrname in Context.localized_strings:
             self.dummyContext[attrname] = stuff
 
@@ -124,7 +119,7 @@ class TestContextsCreate(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(self.dummyContext, role='admin')
         yield handler.post()
 
-        self.dummyContext['id'] =  self.responses[0]['id']
+        self.dummyContext['id'] = self.responses[0]['id']
         self.dummyContext['creation_date'] = self.responses[0]['creation_date']
         self.assertEqual(self.responses[0]['description'], stuff)
 
@@ -175,7 +170,7 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_update_context_timetolive(self):
-        self.dummyContext['tip_timetolive'] = 100 # days
+        self.dummyContext['tip_timetolive'] = 100  # days
 
         for attrname in Context.localized_strings:
             self.dummyContext[attrname] = stuff
@@ -187,7 +182,7 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_update_context_invalid_timetolive(self):
-        self.dummyContext['tip_timetolive'] = -3 # days
+        self.dummyContext['tip_timetolive'] = -3  # days
 
         for attrname in Context.localized_strings:
             self.dummyContext[attrname] = stuff
@@ -208,7 +203,8 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
             raise excep
 
         yield self.assertFailure(handler.get(self.dummyContext['id']),
-                     errors.ContextIdNotFound)
+                                 errors.ContextIdNotFound)
+
 
 class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.ReceiversCollection
@@ -294,8 +290,7 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_put_invalid_context_id(self):
         self.dummyReceiver_1['name'] = u'justalazyupdate'
-            # keep the context ID wrong but matching eventually regexp
-        self.dummyReceiver_1['contexts'] = [ unicode(uuid4()) ]
+        self.dummyReceiver_1['contexts'] = [unicode(uuid4())]
         self.dummyReceiver_1['name'] = u'another unique name %d' % random.randint(1, 10000)
         self.dummyReceiver_1['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
         self.dummyReceiver_1['password'] = u'12345678andaletter'
@@ -306,7 +301,7 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(self.dummyReceiver_1, role='admin')
 
         yield self.assertFailure(handler.put(self.dummyReceiver_1['id']),
-                     errors.ContextIdNotFound)
+                                 errors.ContextIdNotFound)
 
     @inlineCallbacks
     def test_delete(self):

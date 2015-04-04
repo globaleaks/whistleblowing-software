@@ -10,11 +10,12 @@
 # Initially derived from zipfile.py
 
 import struct
-import os
 import time
 import binascii
 
+import os
 from globaleaks.utils.utility import log
+
 
 try:
     import zlib # We may need its compression method

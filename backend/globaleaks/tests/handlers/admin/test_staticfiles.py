@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks
-
-import json
 from io import BytesIO as StringIO
-import os
 
-from globaleaks.rest import requests, errors
+from twisted.internet.defer import inlineCallbacks
+import os
+from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.handlers.admin import staticfiles
 from globaleaks.settings import GLSetting
-from globaleaks.security import GLSecureTemporaryFile
+
 
 class TestStaticFileInstance(helpers.TestHandler):
     _handler = staticfiles.StaticFileInstance

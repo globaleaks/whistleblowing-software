@@ -1,15 +1,13 @@
 # -*- encoding: utf-8 -*-
 import re
-from datetime import datetime
 
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.settings import GLSetting, transact
+from globaleaks.settings import GLSetting
 from globaleaks.tests import helpers
 from globaleaks.rest import errors, requests
-from globaleaks.handlers import base, admin, submission, authentication, receiver, rtip, wbtip
-from globaleaks.handlers.admin.field import create_field
+from globaleaks.handlers import admin, submission, authentication, receiver, rtip, wbtip
 from globaleaks.jobs import delivery_sched
 from globaleaks.utils.token import Token
 

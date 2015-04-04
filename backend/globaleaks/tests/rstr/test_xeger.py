@@ -1,7 +1,8 @@
-import re
 import unittest
 
+import re
 from globaleaks.third_party.rstr.rstr_base import Rstr
+
 
 class TestXeger(unittest.TestCase):
     def setUp(self):

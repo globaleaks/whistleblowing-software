@@ -7,14 +7,17 @@
 
 import binascii
 import logging
-import re
-import os
 import traceback
 import StringIO
 from datetime import datetime
 from calendar import timegm
 from email import utils as mailutils
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.header import Header
+from email import Charset
 
+import re
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.internet import reactor, protocol, error
 from twisted.internet.defer import Deferred, AlreadyCalledError, fail
@@ -24,19 +27,12 @@ from twisted.protocols import tls
 from twisted.python.failure import Failure
 from OpenSSL import SSL
 from txsocksx.client import SOCKS5ClientEndpoint
-
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from email.header import Header
-
 from cryptography.hazmat.primitives import hashes
-
-from email import Charset
-
 from globaleaks import __version__
 from globaleaks.utils.utility import log
 from globaleaks.settings import GLSetting
 from globaleaks.security import crypto_backend
+
 
 # Relevant errors from http://tools.ietf.org/html/rfc4954
 smtp_errors = {
