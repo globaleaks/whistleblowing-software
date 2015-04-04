@@ -425,8 +425,9 @@ class TableReplacer(object):
     def migrate_EventLogs(self):
         """
         has been created between 15 and 16!
+        should be dropped befor 20
         """
-        if self.start_ver < 16:
+        if self.start_ver < 20:
             return
 
         self._perform_copy_list("EventLogs")
