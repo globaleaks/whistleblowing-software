@@ -90,7 +90,7 @@ def create_tables(create_node=True):
             'tor2web_submission': GLSetting.defaults.tor2web_submission,
             'tor2web_receiver': GLSetting.defaults.tor2web_receiver,
             'tor2web_unauth': GLSetting.defaults.tor2web_unauth,
-            'postpone_superpower': False, # disabled by default
+            'can_postpone_expiration': False, # disabled by default
             'can_delete_submission': False, # disabled too
             'ahmia': False, # disabled too
             'allow_unencrypted': GLSetting.defaults.allow_unencrypted,

@@ -258,15 +258,15 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group table-bordered">
-                      <input data-ng-model="receiver.postpone_superpower" type="checkbox" data-ng-disabled="node.postpone_superpower">
+                      <input data-ng-model="receiver.can_postpone_expiration" type="checkbox" data-ng-disabled="node.can_postpone_expiration">
                       <label data-translate>Allow the Receiver to postpone expiration date of the Tips</label>
-                      <div data-ng-show="receiver.postpone_superpower && !node.postpone_superpower">
+                      <div data-ng-show="receiver.can_postpone_expiration && !node.can_postpone_expiration">
                         <span class="label label-info">
                           <span data-translate>Now enabled:</span>
                         </span>
                         <span data-translate>The Receiver will be able to postpone Tip expiration.</span>
                       </div>
-                      <div data-ng-show="node.postpone_superpower">
+                      <div data-ng-show="node.can_postpone_expiration">
                         <span class="label label-info">
                            <span data-translate>Now enabled:</span>
                          </span>

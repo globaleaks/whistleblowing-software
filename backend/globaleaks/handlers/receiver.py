@@ -186,9 +186,9 @@ def get_receiver_tip_list(store, receiver_id, language):
 
     for rtip in rtiplist:
 
-        postpone_superpower = (node.postpone_superpower or
-                               rtip.internaltip.context.postpone_superpower or
-                               rtip.receiver.postpone_superpower)
+        can_postpone_expiration = (node.can_postpone_expiration or
+                               rtip.internaltip.context.can_postpone_expiration or
+                               rtip.receiver.can_postpone_expiration)
 
         can_delete_submission = (node.can_delete_submission or
                                  rtip.internaltip.context.can_delete_submission or
@@ -210,7 +210,7 @@ def get_receiver_tip_list(store, receiver_id, language):
             'file_counter': rfiles_n,
             'comment_counter': rtip.internaltip.comments.count(),
             'message_counter' : message_counter,
-            'postpone_superpower': postpone_superpower,
+            'can_postpone_expiration': can_postpone_expiration,
             'can_delete_submission': can_delete_submission,
         })
 

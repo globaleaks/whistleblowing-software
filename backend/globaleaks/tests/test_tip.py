@@ -37,8 +37,8 @@ class TestTipInstance(TTip):
         self.context_desc = yield admin.create_context(self.dummyContext, 'en')
 
         self.dummyReceiver_1['contexts'] = self.dummyReceiver_2['contexts'] = [self.context_desc['id']]
-        self.dummyReceiver_1['postpone_superpower'] = False
-        self.dummyReceiver_2['postpone_superpower'] = True
+        self.dummyReceiver_1['can_postpone_expiration'] = False
+        self.dummyReceiver_2['can_postpone_expiration'] = True
         self.dummyReceiver_1['can_delete_submission'] = True
         self.dummyReceiver_2['can_delete_submission'] = False
 
@@ -226,15 +226,15 @@ class TestTipInstance(TTip):
     @inlineCallbacks
     def update_node_properties(self):
         node_desc = yield admin.admin_serialize_node('en')
-        self.assertEqual(node_desc['postpone_superpower'], False)
-        node_desc['postpone_superpower'] = True
+        self.assertEqual(node_desc['can_postpone_expiration'], False)
+        node_desc['can_postpone_expiration'] = True
 
         stuff = u"³²¼½¬¼³²"
         for attrname in models.Node.localized_strings:
             node_desc[attrname] = stuff
 
         node_desc = yield admin.update_node(node_desc, True, 'en')
-        self.assertEqual(node_desc['postpone_superpower'], True)
+        self.assertEqual(node_desc['can_postpone_expiration'], True)
 
     @inlineCallbacks
     def success_postpone_expiration_date(self):

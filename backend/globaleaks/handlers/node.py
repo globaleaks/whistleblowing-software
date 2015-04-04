@@ -80,7 +80,7 @@ def anon_serialize_node(store, language):
       'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
       'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
       'ahmia': node.ahmia,
-      'postpone_superpower': node.postpone_superpower,
+      'can_postpone_expiration': node.can_postpone_expiration,
       'can_delete_submission': node.can_delete_submission,
       'wizard_done': node.wizard_done,
       'allow_unencrypted': node.allow_unencrypted,

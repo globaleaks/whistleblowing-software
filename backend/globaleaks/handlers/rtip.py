@@ -120,9 +120,9 @@ def db_get_tip_receiver(store, user_id, tip_id, language):
 
     node = store.find(Node).one()
 
-    tip_desc['postpone_superpower'] = (node.postpone_superpower or
-                                       rtip.internaltip.context.postpone_superpower or
-                                       rtip.receiver.postpone_superpower)
+    tip_desc['can_postpone_expiration'] = (node.can_postpone_expiration or
+                                       rtip.internaltip.context.can_postpone_expiration or
+                                       rtip.receiver.can_postpone_expiration)
 
     tip_desc['can_delete_submission'] = (node.can_delete_submission or
                                          rtip.internaltip.context.can_delete_submission or
@@ -188,16 +188,16 @@ def postpone_expiration_date(store, user_id, tip_id):
 
     node = store.find(Node).one()
 
-    if not (node.postpone_superpower or
-            rtip.internaltip.context.postpone_superpower or
-            rtip.receiver.postpone_superpower):
+    if not (node.can_postpone_expiration or
+            rtip.internaltip.context.can_postpone_expiration or
+            rtip.receiver.can_postpone_expiration):
 
         raise errors.ExtendTipLifeNotEnabled()
     else:
         log.debug("Postpone check: Node %s, Context %s, Receiver %s" %(
-            "True" if node.postpone_superpower else "False",
-            "True" if rtip.internaltip.context.postpone_superpower else "False",
-            "True" if rtip.receiver.postpone_superpower else "False"
+            "True" if node.can_postpone_expiration else "False",
+            "True" if rtip.internaltip.context.can_postpone_expiration else "False",
+            "True" if rtip.receiver.can_postpone_expiration else "False"
         ))
 
     rtip.internaltip.expiration_date = \
