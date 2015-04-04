@@ -9,8 +9,6 @@
 from globaleaks.models import Model
 from globaleaks.settings import GLSetting
 
-from globaleaks.rest.errors import SubmissionFailFields
-
 # Localized strings utility management
 
 class Rosetta(object):

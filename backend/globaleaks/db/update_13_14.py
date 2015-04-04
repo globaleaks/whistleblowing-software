@@ -93,11 +93,11 @@ class Replacer1314(TableReplacer):
         for _, v in new_node._storm_columns.iteritems():
 
             if v.name == 'x_frame_options_mode':
-                new_node.x_frame_options_mode = 'deny';
+                new_node.x_frame_options_mode = 'deny'
                 continue
 
             if v.name == 'x_frame_options_allow_from':
-                new_node.x_frame_options_allow_from = '';
+                new_node.x_frame_options_allow_from = ''
                 continue
 
             if v.name == 'disable_privacy_badge':

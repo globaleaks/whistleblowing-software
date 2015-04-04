@@ -6,17 +6,16 @@
 #   Implements a GlobaLeaks security token, to prevent resources exhaustion
 #   operation by anonymous user.
 
-import base64
-import os
-from StringIO import StringIO
 from random import randint
 from datetime import datetime, timedelta
 
+import os
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 from globaleaks.utils.tempobj import TempObj
 from globaleaks.settings import GLSetting
+
 
 # needed in order to allow UT override
 reactor_override = None

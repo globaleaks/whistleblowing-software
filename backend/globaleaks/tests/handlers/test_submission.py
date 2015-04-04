@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
-import json
-import re
 
 from twisted.internet.defer import inlineCallbacks, returnValue
 
@@ -11,7 +9,7 @@ from globaleaks.tests import helpers
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import authentication, wbtip
 from globaleaks.handlers.admin import create_receiver
-from globaleaks.rest import requests, errors
+from globaleaks.rest import errors
 from globaleaks.models import InternalTip
 from globaleaks.utils.token import Token
 from globaleaks.handlers.submission import create_whistleblower_tip, SubmissionCreate, SubmissionInstance

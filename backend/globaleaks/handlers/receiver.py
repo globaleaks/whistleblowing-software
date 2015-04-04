@@ -1,6 +1,6 @@
 # -*- coding: UTF-8
-#   receiver
-#   ********
+# receiver
+# ********
 #
 # Implement the classes handling the requests performed to /receiver/* URI PATH
 # Used by receivers to update personal preferences and access to personal data
@@ -49,6 +49,7 @@ def receiver_serialize_receiver(receiver, language):
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
 
+
 def serialize_event(evnt):
     """
     At the moment is not important to extract relevant information from the event_description but
@@ -74,6 +75,7 @@ def get_receiver_settings(store, receiver_id, language):
         raise errors.ReceiverIdNotFound
 
     return receiver_serialize_receiver(receiver, language)
+
 
 @transact
 def update_receiver_settings(store, receiver_id, request, language):
@@ -144,7 +146,7 @@ class ReceiverInstance(BaseHandler):
         """
 
         receiver_status = yield get_receiver_settings(self.current_user.user_id,
-            self.request.language)
+                                                      self.request.language)
 
         self.set_status(200)
         self.finish(receiver_status)
@@ -163,7 +165,7 @@ class ReceiverInstance(BaseHandler):
         request = self.validate_message(self.request.body, requests.receiverReceiverDesc)
 
         receiver_status = yield update_receiver_settings(self.current_user.user_id,
-            request, self.request.language)
+                                                         request, self.request.language)
 
         # get the updated list of receivers, and update the cache
         public_receivers_list = yield get_public_receiver_list(self.request.language)
@@ -176,7 +178,6 @@ class ReceiverInstance(BaseHandler):
 
 @transact_ro
 def get_receiver_tip_list(store, receiver_id, language):
-
     rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
     rtiplist.order_by(Desc(ReceiverTip.creation_date))
 
@@ -187,29 +188,29 @@ def get_receiver_tip_list(store, receiver_id, language):
     for rtip in rtiplist:
 
         can_postpone_expiration = (node.can_postpone_expiration or
-                               rtip.internaltip.context.can_postpone_expiration or
-                               rtip.receiver.can_postpone_expiration)
+                                   rtip.internaltip.context.can_postpone_expiration or
+                                   rtip.receiver.can_postpone_expiration)
 
         can_delete_submission = (node.can_delete_submission or
                                  rtip.internaltip.context.can_delete_submission or
                                  rtip.receiver.can_delete_submission)
 
         rfiles_n = store.find(ReceiverFile,
-            (ReceiverFile.internaltip_id == rtip.internaltip.id,
-             ReceiverFile.receiver_id == receiver_id)).count()
+                              (ReceiverFile.internaltip_id == rtip.internaltip.id,
+                               ReceiverFile.receiver_id == receiver_id)).count()
 
         message_counter = store.find(Message,
                                      Message.receivertip_id == rtip.id).count()
 
         single_tip_sum = dict({
-            'id' : rtip.id,
-            'creation_date' : datetime_to_ISO8601(rtip.creation_date),
-            'last_access' : datetime_to_ISO8601(rtip.last_access),
-            'expiration_date' : datetime_to_ISO8601(rtip.internaltip.expiration_date),
+            'id': rtip.id,
+            'creation_date': datetime_to_ISO8601(rtip.creation_date),
+            'last_access': datetime_to_ISO8601(rtip.last_access),
+            'expiration_date': datetime_to_ISO8601(rtip.internaltip.expiration_date),
             'access_counter': rtip.access_counter,
             'file_counter': rfiles_n,
             'comment_counter': rtip.internaltip.comments.count(),
-            'message_counter' : message_counter,
+            'message_counter': message_counter,
             'can_postpone_expiration': can_postpone_expiration,
             'can_delete_submission': can_delete_submission,
         })
@@ -225,7 +226,7 @@ def get_receiver_tip_list(store, receiver_id, language):
                 if f['preview']:
                     preview_data.append(f)
 
-        single_tip_sum.update({ 'preview' : preview_data })
+        single_tip_sum.update({'preview': preview_data})
         rtip_summary_list.append(single_tip_sum)
 
     return rtip_summary_list
@@ -247,10 +248,11 @@ class TipsCollection(BaseHandler):
         Errors: InvalidAuthentication
         """
         answer = yield get_receiver_tip_list(self.current_user.user_id,
-            self.request.language)
+                                             self.request.language)
 
         self.set_status(200)
         self.finish(answer)
+
 
 @transact_ro
 def get_receiver_notif(store, receiver_id, language):

@@ -7,12 +7,10 @@ from __future__ import absolute_import
 import copy
 
 from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
-
 from globaleaks.settings import transact
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v
-
 from .properties import MetaModel, DateTime
 
 def db_forge_obj(store, mock_class, mock_fields):
@@ -149,8 +147,9 @@ class Model(BaseModel):
         return store.find(cls, cls.id == obj_id).one()
 
     @classmethod
-    def delete(self, store):
-        store.remove(self)
+    @classmethod
+    def delete(cls, store):
+        store.remove(cls)
 
 
 class User(Model):
@@ -700,6 +699,7 @@ class FieldOption(Model):
     def __init__(self, attrs=None, localized_keys=None):
         self.attrs = dict()
         self.update(attrs, localized_keys)
+        super(FieldOption, self).__init__()
 
     @classmethod
     def new(cls, store, attrs=None, localized_keys=None):

@@ -9,19 +9,19 @@
 #
 # Call also the FileProcess working point, in order to verify which
 # kind of file has been submitted.
-import os
 import sys
 
+import os
 from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
                               ReceiverFile
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.utils.utility import log 
+from globaleaks.utils.utility import log
 from globaleaks.security import GLBPGP, GLSecureFile
 from globaleaks.handlers.admin import admin_serialize_receiver
 from globaleaks.third_party.rstr import xeger
+
 
 __all__ = ['DeliverySchedule']
 

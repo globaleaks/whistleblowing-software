@@ -10,7 +10,6 @@
 
 from __future__ import with_statement
 import os
-import time
 
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
@@ -18,7 +17,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.settings import GLSetting
 from globaleaks.handlers.admin.staticfiles import dump_static_file
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
+from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils.utility import log
 from globaleaks.rest import errors
 from globaleaks.security import directory_traversal_check

@@ -1,8 +1,9 @@
-import re
 import unittest
 import sys
 
+import re
 from globaleaks.third_party.rstr.rstr_base import Rstr
+
 
 if sys.version_info[0] >= 3:
     unichr = chr

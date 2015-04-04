@@ -1,23 +1,18 @@
 # -*- encoding: utf-8 -*-
 
-import os
-
 from datetime import datetime
 
-from twisted.internet import threads
+import os
 from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.rest import errors
 from globaleaks.security import GLBPGP
-from globaleaks.handlers import receiver, files, submission
+from globaleaks.handlers import receiver, submission
 from globaleaks.handlers.admin import create_receiver, create_context, get_context_list
 from globaleaks.settings import GLSetting
-from globaleaks.models import Receiver
 from globaleaks.jobs.delivery_sched import DeliverySchedule, get_files_by_itip, get_receiverfile_by_itip
 from globaleaks.plugins.base import Event
 from globaleaks.utils.token import Token
 from globaleaks.utils.templating import Templating
-
 from globaleaks.tests.helpers import MockDict, TestHandlerWithPopulatedDB, VALID_PGP_KEY1, VALID_PGP_KEY2, EXPIRED_PGP_KEY
 
 PGPROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")

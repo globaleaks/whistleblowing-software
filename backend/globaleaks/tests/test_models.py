@@ -4,7 +4,6 @@ from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.rest import errors
 from globaleaks.settings import transact, transact_ro
 from globaleaks.tests import helpers
 
@@ -316,12 +315,12 @@ class TestStep(helpers.TestGL):
     def copy_field_template(self, store, field_id, context_id, step_id):
         field = models.Field.get(store, field_id)
         step = models.Step.get(store, step_id)
-        max = 0
+        max_value = 0
         for child in step.children:
-            if child.y > max:
-                max = child.y
+            if child.y > max_value:
+                max_value = child.y
         new_field = field.copy(store, False)
-        new_field.y = max + 1
+        new_field.y = max_value + 1
         step.children.add(new_field)
 
     @inlineCallbacks

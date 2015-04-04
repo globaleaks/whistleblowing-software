@@ -6,14 +6,16 @@ from __future__ import with_statement
 
 import copy
 import json
+
 import os
 from cyclone import httpserver
 from cyclone.web import Application
 from storm.twisted.testing import FakeThreadPool
 from twisted.internet import threads, defer, task
-from twisted.internet.defer import inlineCallbacks, returnValue
+from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 from twisted.test import proto_helpers
+
 
 # Monkeypathing for unit testing  in order to
 # prevent mail activities
@@ -36,7 +38,7 @@ from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, Whistlebl
 from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.third_party import rstr
-from globaleaks.utils import tempobj, token
+from globaleaks.utils import token
 from globaleaks.utils.token import Token
 from globaleaks.utils.utility import datetime_null, log
 
@@ -846,7 +848,6 @@ class MockDict():
             'email':  u"email@dummy.net",
             'languages_supported': [], # ignored
             'languages_enabled':  [ "it" , "en" ],
-            'default_language': 'en',
             'password': '',
             'old_password': '',
             'salt': 'OMG!, the Rains of Castamere ;( ;(',

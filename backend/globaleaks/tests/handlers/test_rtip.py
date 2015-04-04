@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks
-
 import json
 
-from globaleaks.rest import requests, errors
+from twisted.internet.defer import inlineCallbacks
+from globaleaks.rest import errors
 from globaleaks.tests import helpers
-from globaleaks.handlers import admin, rtip
-from globaleaks.settings import GLSetting, transact_ro
-from globaleaks.models import ReceiverTip
+from globaleaks.handlers import rtip
+
 
 class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = rtip.RTipInstance
@@ -50,7 +48,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(rtips_desc), 2)
 
         body = {
-            'global_delete' : True,
+            'global_delete': True,
             'extend': False
         }
 
@@ -69,7 +67,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(rtips_desc), 2)
 
         body = {
-            'global_delete' : False,
+            'global_delete': False,
             'extend': False
         }
 
@@ -85,7 +83,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_delete_unexistent_tip_by_existent_and_logged_receiver(self):
         body = {
-            'global_delete' : True,
+            'global_delete': True,
             'extend': False
         }
 
@@ -100,7 +98,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_delete_existent_tip_by_existent_and_logged_but_wrong_receiver(self):
         body = {
-            'global_delete' : True,
+            'global_delete': True,
             'extend': False
         }
 
@@ -133,7 +131,7 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_post(self):
         body = {
-            'content' : "can you provide an evidence of what you are telling?",
+            'content': "can you provide an evidence of what you are telling?",
         }
 
         rtips_desc = yield self.get_rtips()
@@ -142,6 +140,7 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
             handler.current_user.user_id = rtip_desc['receiver_id']
 
             yield handler.post(rtip_desc['rtip_id'])
+
 
 class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = rtip.ReceiverMsgCollection
@@ -163,7 +162,7 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_post(self):
         body = {
-            'content' : "can you provide an evidence of what you are telling?",
+            'content': "can you provide an evidence of what you are telling?",
         }
 
         rtips_desc = yield self.get_rtips()
@@ -172,6 +171,7 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
             handler.current_user.user_id = rtip_desc['receiver_id']
 
             yield handler.post(rtip_desc['rtip_id'])
+
 
 class TestRTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = rtip.RTipReceiversCollection

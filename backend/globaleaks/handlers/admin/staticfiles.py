@@ -8,7 +8,6 @@
 
 #`This code differs from handlers/file.py because files here are not tracked in the DB
 from __future__ import with_statement
-import time
 import re
 
 from twisted.internet import threads

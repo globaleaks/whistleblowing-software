@@ -1,27 +1,25 @@
 # -*- coding: UTF-8
-#   config
-#   ******
+# config
+# ******
 #
 # Configuration file do not contain GlobaLeaks Node information, like in the 0.1
 # because all those infos are stored in the databased.
 # Config contains some system variables usable for debug,
 
-import re
-import os
 import sys
 import glob
 import shutil
 import traceback
 import logging
-import socket
 import pwd
 import grp
 import getpass
-import transaction
-
 from optparse import OptionParser
 from ctypes import CDLL
 
+import re
+import os
+import transaction
 from twisted.python.threadpool import ThreadPool
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
@@ -30,15 +28,15 @@ from storm.zope.zstorm import ZStorm
 from storm.databases.sqlite import sqlite
 from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
-
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
+
 
 
 # XXX. MONKEYPATCH TO SUPPORT STORM 0.19
 import storm.databases.sqlite
 
-class SQLite(storm.databases.sqlite.Database):
 
+class SQLite(storm.databases.sqlite.Database):
     connection_factory = storm.databases.sqlite.SQLiteConnection
 
     def __init__(self, uri):
@@ -75,21 +73,21 @@ storm.databases.sqlite.create_from_uri = SQLite
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
-    'INFO' : logging.INFO,
+    'INFO': logging.INFO,
     'WARNING': logging.WARNING,
     'ERROR': logging.ERROR,
     'CRITICAL': logging.CRITICAL
 }
 
 external_counted_events = {
-    'new_submission' : 0,
+    'new_submission': 0,
     'finalized_submission': 0,
     'anon_requests': 0,
     'file_uploaded': 0,
 }
 
-class GLSettingsClass(object):
 
+class GLSettingsClass(object):
     initialized = False
 
     def __init__(self):
@@ -171,11 +169,11 @@ class GLSettingsClass(object):
         self.receipt_regexp = u'[0-9]{16}'
 
         # default timings for scheduled jobs
-        self.session_management_minutes_delta = 1 # runner.py function expects minutes
-        self.notification_minutes_delta = 2       # runner.py function expects minutes
-        self.delivery_seconds_delta = 20          # runner.py function expects seconds
-        self.anomaly_seconds_delta = 10           # runner.py function expects seconds
-        self.mailflush_minutes_delta = 5          # before change check mailflush logic and delay
+        self.session_management_minutes_delta = 1  # runner.py function expects minutes
+        self.notification_minutes_delta = 2  # runner.py function expects minutes
+        self.delivery_seconds_delta = 20  # runner.py function expects seconds
+        self.anomaly_seconds_delta = 10  # runner.py function expects seconds
+        self.mailflush_minutes_delta = 5  # before change check mailflush logic and delay
 
         self.www_form_urlencoded_maximum_size = 1024
 
@@ -190,8 +188,8 @@ class GLSettingsClass(object):
         # default tor2web_admin setting is set to True;
         # the setting is then switched based on automatic user detection during wizard:
         #
-        #   - if the admin performs the wizard via tor2web the permission is kept True
-        #   - if the admin performs the wizard via Tor the permission is set to False
+        # - if the admin performs the wizard via tor2web the permission is kept True
+        # - if the admin performs the wizard via Tor the permission is set to False
         self.defaults.tor2web_admin = True
 
         self.defaults.tor2web_submission = False
@@ -201,7 +199,7 @@ class GLSettingsClass(object):
         self.defaults.allow_iframes_inclusion = False
         self.defaults.maximum_namesize = 128
         self.defaults.maximum_textsize = 4096
-        self.defaults.maximum_filesize = 30 # expressed in megabytes
+        self.defaults.maximum_filesize = 30  # expressed in megabytes
         self.defaults.exception_email = u"globaleaks-stackexception@lists.globaleaks.org"
         # Context dependent values:
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
@@ -212,7 +210,7 @@ class GLSettingsClass(object):
 
         self.defaults.timezone = 0
         self.defaults.landing_page = 'homepage'
- 
+
         self.defaults.receiver_notif_enable = True
         self.defaults.admin_notif_enable = True
         self.defaults.notif_server = None
@@ -223,7 +221,7 @@ class GLSettingsClass(object):
 
         # this became false when, few MBs cause node to disable submissions
         self.defaults.disk_availability = True
-        self.defaults.minimum_megabytes_required = 1024 # 1 GB, or the node is disabled
+        self.defaults.minimum_megabytes_required = 1024  # 1 GB, or the node is disabled
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
@@ -295,7 +293,7 @@ class GLSettingsClass(object):
         self.AES_key_size = 32
         # This key_id is just to identify the keys, and is generated with
         self.AES_key_id_regexp = u'[A-Za-z0-9]{16}'
-        self.AES_counter_nonce = 128/8
+        self.AES_counter_nonce = 128 / 8
         self.AES_file_regexp = r'(.*)\.aes'
         self.AES_file_regexp_comp = re.compile(self.AES_file_regexp)
         self.AES_keyfile_prefix = "aeskey-"
@@ -325,15 +323,15 @@ class GLSettingsClass(object):
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
         self.db_schema_file = os.path.join(self.static_db_source, self.db_type + '.sql')
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
-        self.httplogfile =  os.path.abspath(os.path.join(self.log_path, "http.log"))
+        self.httplogfile = os.path.abspath(os.path.join(self.log_path, "http.log"))
 
         # gnupg path is used by PGP as temporary directory with keyring and files encryption.
         self.pgproot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
 
         if self.db_type == 'sqlite':
             self.db_uri = 'sqlite:' + \
-                                 os.path.abspath(os.path.join(self.gldb_path,
-                                     'glbackend-%d.db?foreign_keys=ON' % DATABASE_VERSION))
+                          os.path.abspath(os.path.join(self.gldb_path,
+                                                       'glbackend-%d.db?foreign_keys=ON' % DATABASE_VERSION))
 
         # If we see that there is a custom build of GLClient, use that one.
         custom_glclient_path = '/var/globaleaks/custom-glclient'
@@ -374,8 +372,10 @@ class GLSettingsClass(object):
 
     def enable_debug_mode(self):
         import signal
+
         def start_pdb(signal, trace):
             import pdb
+
             pdb.set_trace()
 
         signal.signal(signal.SIGQUIT, start_pdb)
@@ -440,7 +440,6 @@ class GLSettingsClass(object):
             print "Invalid delay inserted, a number of milliseconds is required"
             quit(-1)
 
-
         if self.cmdline_options.ramdisk:
             self.ramdisk_path = self.cmdline_options.ramdisk
 
@@ -456,7 +455,7 @@ class GLSettingsClass(object):
                 quit(-1)
 
             with file(hostname_tor_file, 'r') as htf:
-                hostname_tor_content = htf.read(22) # hostname + .onion
+                hostname_tor_content = htf.read(22)  # hostname + .onion
                 GLSetting.unchecked_tor_input['hostname_tor_content'] = hostname_tor_content
         # URL validation and DB import continue in apply_cli_options
 
@@ -492,8 +491,8 @@ class GLSettingsClass(object):
         self.working_path = self.cmdline_options.working_path
 
         if self.cmdline_options.developer_name:
-            print "Enabling Development Mode for %s" %\
-                    self.cmdline_options.developer_name
+            print "Enabling Development Mode for %s" % \
+                  self.cmdline_options.developer_name
             self.developer_name = unicode(self.cmdline_options.developer_name)
             self.set_devel_mode()
 
@@ -632,12 +631,12 @@ class GLSettingsClass(object):
         # Directory with Write + Read access
         for rdwr in (self.working_path,
                      self.glfiles_path, self.static_path, self.submission_path, self.log_path):
-            if not os.access(rdwr, os.W_OK|os.X_OK):
+            if not os.access(rdwr, os.W_OK | os.X_OK):
                 raise Exception("write capability missing in: %s" % rdwr)
 
         # Directory in Read access
         for rdonly in (self.root_path, self.glclient_path):
-            if not os.access(rdonly, os.R_OK|os.X_OK):
+            if not os.access(rdonly, os.R_OK | os.X_OK):
                 raise Exception("read capability missing in: %s" % rdonly)
 
     def fix_file_permissions(self, path=None):
@@ -654,8 +653,8 @@ class GLSettingsClass(object):
 
         try:
             if path != self.working_path:
-                os.chown(path,self.uid,self.gid)
-                os.chmod(path,0700)
+                os.chown(path, self.uid, self.gid)
+                os.chmod(path, 0700)
         except Exception as excep:
             print "Unable to update permissions on %s: %s" % (path, excep)
             quit(-1)
@@ -728,11 +727,11 @@ class GLSettingsClass(object):
         keypath = os.path.join(self.ramdisk_path, GLSetting.AES_keyfile_prefix)
 
         for f in os.listdir(GLSetting.submission_path):
+            path = os.path.join(GLSetting.submission_path, f)
             try:
-                path = os.path.join(GLSetting.submission_path, f)
                 result = GLSetting.AES_file_regexp_comp.match(f)
                 if result is not None:
-                    if not os.path.isfile("%s%s" % (keypath, result.group(1)) ):
+                    if not os.path.isfile("%s%s" % (keypath, result.group(1))):
                         print "Removing old encrypted file (lost key): %s" % path
                         os.remove(path)
             except Exception as excep:
@@ -741,6 +740,7 @@ class GLSettingsClass(object):
 
 # GLSetting is a singleton class exported once
 GLSetting = GLSettingsClass()
+
 
 class transact(object):
     """
@@ -764,7 +764,7 @@ class transact(object):
         self.instance = instance
         return self
 
-    def __call__(self,  *args, **kwargs):
+    def __call__(self, *args, **kwargs):
         return self.run(self._wrap, self.method, *args, **kwargs)
 
     @staticmethod
@@ -822,8 +822,10 @@ class transact(object):
 
         return result
 
+
 class transact_ro(transact):
     readonly = True
+
 
 transact.tp.start()
 reactor.addSystemEventTrigger('after', 'shutdown', transact.tp.stop)

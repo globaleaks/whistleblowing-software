@@ -5,8 +5,6 @@ from twisted.internet import task, defer
 from globaleaks.tests import helpers
 
 from globaleaks import anomaly
-from globaleaks.jobs import statistics_sched
-from globaleaks.settings import GLSetting
 
 anomaly.reactor = task.Clock()
 

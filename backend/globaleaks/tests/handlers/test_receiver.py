@@ -1,14 +1,9 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 
-import json
-
-from globaleaks.rest import requests
 from globaleaks.tests import helpers
-from globaleaks.handlers import receiver, admin, submission
-from globaleaks.settings import GLSetting
-from globaleaks.jobs import delivery_sched
-from globaleaks.jobs.notification_sched import NotificationSchedule
+from globaleaks.handlers import receiver, admin
+
 
 class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = receiver.ReceiverInstance

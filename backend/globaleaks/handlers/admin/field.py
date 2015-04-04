@@ -5,9 +5,9 @@ Implementation of the code executed when an HTTP client reach /admin/fields URI.
 from __future__ import unicode_literals
 
 import json
+
 from storm.expr import And
 from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import authenticated, transport_security_check
@@ -17,6 +17,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log
+
 
 def get_field_association(store, field_id):
     """
@@ -94,9 +95,7 @@ def db_update_options(store, field_id, options, language):
     new_options = []
     n = 1
     for option in options:
-        opt_dict = {}
-        opt_dict['field_id'] = field_id
-        opt_dict['number'] = n
+        opt_dict = {'field_id': field_id, 'number': n}
 
         keys = get_field_option_localized_keys(field.type)
         fill_localized_keys(option['attrs'], keys, language)

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import anomaly
 from globaleaks.tests import helpers
 
 from globaleaks.jobs import statistics_sched

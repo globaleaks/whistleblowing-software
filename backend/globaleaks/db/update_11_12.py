@@ -5,6 +5,7 @@ from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
 
+
 class Node_v_11(Model):
     __storm_table__ = 'node'
     name = Unicode()
@@ -37,6 +38,7 @@ class Node_v_11(Model):
     # allow_unencrypted and receipt_regexp 
     # moved from Context
 
+
 class Context_v_11(Model):
     __storm_table__ = 'context'
     unique_fields = Pickle()
@@ -64,8 +66,8 @@ class Context_v_11(Model):
     show_small_cards = Bool()
     presentation_order = Int()
 
-class Replacer1112(TableReplacer):
 
+class Replacer1112(TableReplacer):
     def migrate_Node(self):
         print "%s Node migration assistant: (receipt, encryption only)" % self.std_fancy
 
@@ -84,10 +86,10 @@ class Replacer1112(TableReplacer):
                 new_node.allow_unencrypted = True
                 continue
 
-            setattr(new_node, v.name, getattr(old_node, v.name) )
+            setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
         self.store_new.commit()
 
-    # Context migration: is removed the receipt by the default bahavior
+        # Context migration: is removed the receipt by the default bahavior
 

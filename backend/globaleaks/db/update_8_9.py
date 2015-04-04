@@ -35,7 +35,7 @@ class Context_v_8(Model):
     delete_consensus_percentage = Int()
     require_pgp = Bool()
     show_small_cards = Bool()
-    
+
     # + is added
     # presentation_order = Int()
 
@@ -65,6 +65,7 @@ class Receiver_v_8(Model):
 
     # + is added
     # presentation_order = Int()
+
 
 class Notification_v_8(Model):
     __storm_table__ = 'notification'
@@ -104,9 +105,7 @@ class Notification_v_8(Model):
     # plaintext_message_mail_title = Pickle()
 
 
-
 class Replacer89(TableReplacer):
-
     def migrate_Context(self):
         print "%s Context migration assistant: (presentation_order) #%d" % (
             self.std_fancy, self.store_old.find(self.get_right_model("Context", 8)).count() )
@@ -200,41 +199,40 @@ class Replacer89(TableReplacer):
                 new_notification.encrypted_file_template = old_notification.file_template
                 continue
             if v.name == 'encrypted_file_mail_title':
-                new_notification.encrypted_file_mail_title  = old_notification.file_mail_title
+                new_notification.encrypted_file_mail_title = old_notification.file_mail_title
                 continue
             if v.name == 'plaintext_file_template':
-                new_notification.plaintext_file_template  = old_notification.file_template
+                new_notification.plaintext_file_template = old_notification.file_template
                 continue
             if v.name == 'plaintext_file_mail_title':
-                new_notification.plaintext_file_mail_title  = old_notification.file_mail_title
+                new_notification.plaintext_file_mail_title = old_notification.file_mail_title
                 continue
 
             if v.name == 'encrypted_comment_template':
                 new_notification.encrypted_comment_template = old_notification.comment_template
                 continue
             if v.name == 'encrypted_comment_mail_title':
-                new_notification.encrypted_comment_mail_title  = old_notification.comment_mail_title
+                new_notification.encrypted_comment_mail_title = old_notification.comment_mail_title
                 continue
             if v.name == 'plaintext_comment_template':
-                new_notification.plaintext_comment_template  = old_notification.comment_template
+                new_notification.plaintext_comment_template = old_notification.comment_template
                 continue
             if v.name == 'plaintext_comment_mail_title':
-                new_notification.plaintext_comment_mail_title  = old_notification.comment_mail_title
+                new_notification.plaintext_comment_mail_title = old_notification.comment_mail_title
                 continue
 
             if v.name == 'encrypted_message_template':
                 new_notification.encrypted_message_template = old_notification.message_template
                 continue
             if v.name == 'encrypted_message_mail_title':
-                new_notification.encrypted_message_mail_title  = old_notification.message_mail_title
+                new_notification.encrypted_message_mail_title = old_notification.message_mail_title
                 continue
             if v.name == 'plaintext_message_template':
-                new_notification.plaintext_message_template  = old_notification.message_template
+                new_notification.plaintext_message_template = old_notification.message_template
                 continue
             if v.name == 'plaintext_message_mail_title':
-                new_notification.plaintext_message_mail_title  = old_notification.message_mail_title
+                new_notification.plaintext_message_mail_title = old_notification.message_mail_title
                 continue
-
 
             setattr(new_notification, v.name, getattr(old_notification, v.name))
 

@@ -3,8 +3,6 @@
 import os
 
 from twisted.internet.defer import inlineCallbacks
-from twisted.trial import unittest
-from twisted.trial.util import DirtyReactorAggregateError
 
 from globaleaks import anomaly
 from globaleaks.rest import errors

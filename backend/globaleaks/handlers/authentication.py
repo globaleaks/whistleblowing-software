@@ -1,12 +1,11 @@
 # -*- coding: UTF-8
 #
-#   authentication
-#   **************
+# authentication
+# **************
 #
 # Files collection handlers and utils
 
 from twisted.internet.defer import inlineCallbacks
-from storm.exceptions import NotOneError
 from storm.expr import And
 
 from globaleaks import security
@@ -22,8 +21,8 @@ from globaleaks.third_party import rstr
 # needed in order to allow UT override
 reactor_override = None
 
-class GLSession(tempobj.TempObj):
 
+class GLSession(tempobj.TempObj):
     def __init__(self, user_id, user_role, user_status):
         self.user_role = user_role
         self.user_id = user_id
@@ -39,6 +38,7 @@ class GLSession(tempobj.TempObj):
         session_string = "%s %s expire in %s" % \
                          (self.user_role, self.user_id, self._expireCall)
         return session_string
+
 
 def random_login_delay():
     """
@@ -71,6 +71,7 @@ def random_login_delay():
 
     return 0
 
+
 def update_session(session):
     """
     Returns
@@ -94,6 +95,7 @@ def authenticated(role):
     a http 412 error.
     Otherwise, update the current session and then fire :param:`method`.
     """
+
     def wrapper(method_handler):
         def call_handler(cls, *args, **kwargs):
             """
@@ -108,19 +110,22 @@ def authenticated(role):
             update_session(cls.current_user)
 
             if role == '*' or role == cls.current_user.user_role:
-                log.debug("Authentication OK (%s)" % cls.current_user.user_role )
+                log.debug("Authentication OK (%s)" % cls.current_user.user_role)
                 return method_handler(cls, *args, **kwargs)
 
             raise errors.InvalidAuthentication
 
         return call_handler
+
     return wrapper
+
 
 def unauthenticated(method_handler):
     """
     Decorator for unauthenticated requests.
     If the user is logged in an authenticated sessions it does refresh the session.
     """
+
     def call_handler(cls, *args, **kwargs):
         if cls.current_user:
             update_session(cls.current_user)
@@ -128,6 +133,7 @@ def unauthenticated(method_handler):
         return method_handler(cls, *args, **kwargs)
 
     return call_handler
+
 
 def get_tor2web_header(request_headers):
     """
@@ -137,6 +143,7 @@ def get_tor2web_header(request_headers):
     """
     key_content = request_headers.get('X-Tor2Web', None)
     return True if key_content else False
+
 
 def accept_tor2web(role):
     if role == 'wb':
@@ -151,12 +158,14 @@ def accept_tor2web(role):
     else:
         return GLSetting.memory_copy.tor2web_unauth
 
+
 def transport_security_check(wrapped_handler_role):
     """
     Decorator for enforce a minimum security on the transport mode.
     Tor and Tor2web has two different protection level, and some operation
     maybe forbidden if in Tor2web, return 417 (Expectation Fail)
     """
+
     def wrapper(method_handler):
         def call_handler(cls, *args, **kwargs):
             """
@@ -172,20 +181,21 @@ def transport_security_check(wrapped_handler_role):
 
             if are_we_tor2web and not accept_tor2web(wrapped_handler_role):
                 log.err("Denied request on Tor2web for role %s and resource '%s'" %
-                    (wrapped_handler_role, cls.request.uri) )
+                        (wrapped_handler_role, cls.request.uri))
                 raise errors.TorNetworkRequired
 
             if are_we_tor2web:
                 log.debug("Accepted request on Tor2web for role '%s' and resource '%s'" %
-                    (wrapped_handler_role, cls.request.uri) )
+                          (wrapped_handler_role, cls.request.uri))
 
             return method_handler(cls, *args, **kwargs)
 
         return call_handler
+
     return wrapper
 
 
-@transact_ro # read only transact; manual commit on success needed
+@transact_ro  # read only transact; manual commit on success needed
 def login_wb(store, receipt):
     """
     Login wb return the WhistleblowerTip.id
@@ -201,8 +211,9 @@ def login_wb(store, receipt):
 
     log.debug("Whistleblower login: Valid receipt")
     wb_tip.last_access = utility.datetime_now()
-    store.commit() # the transact was read only! on success we apply the commit()
+    store.commit()  # the transact was read only! on success we apply the commit()
     return wb_tip.id
+
 
 @transact_ro  # read only transact; manual commit on success needed
 def login_receiver(store, receiver_id, password):
@@ -215,8 +226,8 @@ def login_receiver(store, receiver_id, password):
     receiver = store.find(Receiver, (Receiver.id == receiver_id)).one()
 
     if not receiver or \
-            receiver.user.role != u'receiver' or \
-            receiver.user.state == u'disabled' or \
+                    receiver.user.role != u'receiver' or \
+                    receiver.user.state == u'disabled' or \
             not security.check_password(password,
                                         receiver.user.password,
                                         receiver.user.salt):
@@ -225,8 +236,9 @@ def login_receiver(store, receiver_id, password):
 
     log.debug("Receiver login: Authorized receiver")
     receiver.user.last_login = utility.datetime_now()
-    store.commit() # the transact was read only! on success we apply the commit()
+    store.commit()  # the transact was read only! on success we apply the commit()
     return receiver.id, receiver.user.state, receiver.user.password_change_needed
+
 
 @transact_ro  # read only transact; manual commit on success needed
 def login_admin(store, username, password):
@@ -245,8 +257,9 @@ def login_admin(store, username, password):
 
     log.debug("Admin login: Authorized admin")
     user.last_login = utility.datetime_now()
-    store.commit() # the transact was read only! on success we apply the commit()
+    store.commit()  # the transact was read only! on success we apply the commit()
     return user.id, user.state, user.password_change_needed
+
 
 class AuthenticationHandler(BaseHandler):
     """
@@ -270,7 +283,7 @@ class AuthenticationHandler(BaseHandler):
     @authenticated('*')
     def get(self):
         if self.current_user and \
-                self.current_user.id not in GLSetting.sessions:
+                        self.current_user.id not in GLSetting.sessions:
             raise errors.NotAuthenticated
 
         auth_answer = {

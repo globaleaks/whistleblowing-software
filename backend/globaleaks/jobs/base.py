@@ -5,11 +5,12 @@
 # Base class for implement the scheduled tasks
 
 import sys
+
 from twisted.internet import task
 from twisted.python.failure import Failure
-
 from globaleaks.utils.utility import log
 from globaleaks.utils.mailutils import mail_exception
+
 
 class GLJob(task.LoopingCall):
 

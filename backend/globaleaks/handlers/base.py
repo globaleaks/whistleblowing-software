@@ -9,29 +9,26 @@ import httplib
 import json
 import logging
 import mimetypes
-import os
-import re
 import sys
-import types
-
-from cgi import parse_header
-from cryptography.hazmat.primitives.constant_time import bytes_eq
 from StringIO import StringIO
 
+import os
+import re
+import types
+from cryptography.hazmat.primitives.constant_time import bytes_eq
 from twisted.internet import fdesc
 from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.python.failure import Failure
-
 from cyclone import escape, httputil
-from cyclone.escape import utf8, native_str, parse_qs_bytes
+from cyclone.escape import native_str
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
-
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
 from globaleaks.utils.mailutils import mail_exception
+
 
 GLUploads = {}
 

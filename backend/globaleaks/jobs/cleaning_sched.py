@@ -19,24 +19,20 @@ __all__ = ['CleaningSchedule']
 
 
 class UpcomingExpireEvent(EventLogger):
-
     def __init__(self):
         EventLogger.__init__(self)
         self.trigger = 'UpcomingExpireTip'
 
     @transact
     def notify(self, store, tip_id):
-        tip= store.find(InternalTip, InternalTip.id == tip_id).one()
         expiring_rtips = store.find(ReceiverTip, ReceiverTip.internaltip_id == tip_id)
 
         for ertip in expiring_rtips:
             self.do_mail, _ = self.import_receiver(ertip.receiver)
             expiring_tip_desc = serialize_receivertip(ertip)
-            self.append_event(tip_info=expiring_tip_desc, subevent_info=None)
 
 @transact_ro
 def get_tip_timings(store, new):
-
     itip_list = store.find(InternalTip, InternalTip.new == new)
 
     tipinfo_list = []
@@ -81,7 +77,6 @@ def itip_cleaning(store, tip_id):
 
     for ifile in tit.internalfiles:
         abspath = os.path.join(GLSetting.submission_path, ifile.file_path)
-        ifname = unicode(ifile.name)
 
         if os.path.isfile(abspath):
             log.debug("Removing internalfile %s" % abspath)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#  langfiles
+# langfiles
 #  **************
 #
 
@@ -12,11 +12,13 @@ from globaleaks.handlers.base import BaseStaticFileHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.security import directory_traversal_check
 
+
 class LanguageFileHandler(BaseStaticFileHandler):
     """
     This class is used to return the custom translation files;
     if the file are not present, default translations are returned
     """
+
     def langfile_path(self, lang):
         return os.path.abspath(os.path.join(GLSetting.glclient_path, 'l10n', '%s.json' % lang))
 

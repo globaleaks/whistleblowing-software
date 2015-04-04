@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks
-
 import json
 
-from globaleaks.rest import requests, errors
+from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
-from globaleaks.handlers import admin, wbtip
-from globaleaks.settings import GLSetting, transact_ro
-from globaleaks.models import ReceiverTip
+from globaleaks.handlers import wbtip
+
 
 class TestWBTipInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = wbtip.WBTipInstance

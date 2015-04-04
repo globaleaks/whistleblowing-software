@@ -10,13 +10,13 @@ from globaleaks.models import Model
 # format inside a Pickle
 #
 # the fields format changes from:
-#   {field1_id: field1_value, field2_id: field2_value }
+# {field1_id: field1_value, field2_id: field2_value }
 #
 # to:
-#   {field1_id: {value: field1_value, answer_order: 0}, field2_id: {value: field2_value, answer_order: 1} }
+# {field1_id: {value: field1_value, answer_order: 0}, field2_id: {value: field2_value, answer_order: 1} }
 #
 
-class InternalTip_v_10(Model): # no change at all!
+class InternalTip_v_10(Model):  # no change at all!
     __storm_table__ = 'internaltip'
     context_id = Unicode()
     wb_fields = Pickle()
@@ -28,6 +28,7 @@ class InternalTip_v_10(Model): # no change at all!
     download_limit = Int()
     mark = Unicode()
 
+
 class InternalFile_v_10(Model):
     __storm_table__ = 'internalfile'
     internaltip_id = Unicode()
@@ -38,8 +39,8 @@ class InternalFile_v_10(Model):
     size = Int()
     mark = Unicode()
 
-class Replacer1011(TableReplacer):
 
+class Replacer1011(TableReplacer):
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant: (presentation order added, format refactored)" % self.std_fancy
 

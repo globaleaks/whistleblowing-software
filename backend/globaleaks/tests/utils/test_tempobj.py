@@ -1,7 +1,5 @@
-from twisted.trial import unittest
 from twisted.internet import interfaces, task
 
-from globaleaks.settings import GLSetting
 from globaleaks.tests import helpers
 from globaleaks.utils.tempobj import TempObj
 from globaleaks.utils.utility import uuid4

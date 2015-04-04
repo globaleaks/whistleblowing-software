@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 
-from cyclone.util import ObjectDict as OD
-from twisted.internet import task
-
 from globaleaks.tests import helpers
 from globaleaks.settings import GLSetting
-from globaleaks.utils.tempobj import TempObj
-from globaleaks.utils.utility import datetime_null
 
 from globaleaks.handlers import authentication
 from globaleaks.jobs import session_management_sched

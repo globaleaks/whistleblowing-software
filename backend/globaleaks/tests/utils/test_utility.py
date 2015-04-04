@@ -1,13 +1,12 @@
-import re
 import time
 
+import re
 from twisted.trial import unittest
-
 from globaleaks.utils import utility
 from globaleaks.settings import GLSetting
 
-class TestUtility(unittest.TestCase):
 
+class TestUtility(unittest.TestCase):
     def test_log_encode_html_str(self):
         self.assertEqual(utility.log_encode_html("<"), '&lt;')
         self.assertEqual(utility.log_encode_html(">"), '&gt;')
@@ -37,7 +36,7 @@ class TestUtility(unittest.TestCase):
 
     def test_uuid4(self):
         self.assertIsNotNone(re.match(r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})',
-                             utility.uuid4()))
+                                      utility.uuid4()))
 
     def test_uuid4_debug(self):
         GLSetting.debug_option_UUID_human = "antani"
@@ -53,7 +52,7 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(utility.randint(9, 9), 9)
 
         number = self.assertTrue(utility.randint(1, 2))
-        self.assertTrue(number>0 and number<3)
+        self.assertTrue(0 < number < 3)
 
     def test_randbits(self):
         self.assertEqual(len(utility.randbits(4)), 0)
@@ -75,7 +74,7 @@ class TestUtility(unittest.TestCase):
     def test_utc_dynamic_date(self):
         a = utility.utc_dynamic_date(utility.datetime_null())
         b = utility.utc_dynamic_date(utility.datetime_null(), seconds=0, minutes=0, hours=0)
-        self.assertTrue(a==b)
+        self.assertTrue(a == b)
 
         c = utility.utc_dynamic_date(utility.datetime_null(), seconds=121, minutes=120, hours=0)
         d = utility.utc_dynamic_date(utility.datetime_null(), seconds=61, minutes=61, hours=1)
@@ -94,27 +93,27 @@ class TestUtility(unittest.TestCase):
         b = utility.utc_past_date(seconds=99)
         c = utility.utc_past_date(minutes=99)
         d = utility.utc_past_date(hours=99)
-        self.assertTrue(a>b)
-        self.assertTrue(b>c)
-        self.assertTrue(c>d)
+        self.assertTrue(a > b)
+        self.assertTrue(b > c)
+        self.assertTrue(c > d)
 
     def test_utc_future_date(self):
         a = utility.datetime_now()
         b = utility.utc_future_date(seconds=99)
         c = utility.utc_future_date(minutes=99)
         d = utility.utc_future_date(hours=99)
-        self.assertTrue(a<b)
-        self.assertTrue(b<c)
-        self.assertTrue(c<d)
+        self.assertTrue(a < b)
+        self.assertTrue(b < c)
+        self.assertTrue(c < d)
 
     def test_get_future_epoch(self):
         a = time.time()
         b = utility.get_future_epoch(seconds=1)
         c = utility.get_future_epoch(seconds=2)
         d = utility.get_future_epoch(seconds=3)
-        self.assertTrue(a<b)
-        self.assertTrue(b<c)
-        self.assertTrue(c<d)
+        self.assertTrue(a < b)
+        self.assertTrue(b < c)
+        self.assertTrue(c < d)
 
     def test_is_expired(self):
         self.assertFalse(utility.is_expired(None))
@@ -132,7 +131,8 @@ class TestUtility(unittest.TestCase):
 
     def test_datetime_to_pretty_str(self):
         self.assertEqual(utility.datetime_to_pretty_str(None), 'Thursday 01 January 1970 00:00 (UTC)')
-        self.assertEqual(utility.datetime_to_pretty_str(utility.datetime_null()), 'Thursday 01 January 1970 00:00 (UTC)')
+        self.assertEqual(utility.datetime_to_pretty_str(utility.datetime_null()),
+            'Thursday 01 January 1970 00:00 (UTC)')
 
     def test_ISO8601_to_pretty_str(self):
         self.assertEqual(utility.ISO8601_to_pretty_str(None), 'Thursday 01 January 1970 00:00 (UTC)')
