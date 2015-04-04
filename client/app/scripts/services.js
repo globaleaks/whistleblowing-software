@@ -635,8 +635,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.select_all_receivers = false;
         context.tip_timetolive = 15;
         context.receiver_introduction = "";
-        context.postpone_superpower = false;
-        context.can_delete_submission = false;
+        context.can_postpone_expiration = true;
+        context.can_delete_submission = true;
         context.maximum_selectable_receivers = 0;
         context.show_small_cards = false;
         context.show_receivers = true;
@@ -723,11 +723,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.mail_address = '';
         receiver.ping_mail_address = '';
         receiver.can_delete_submission = false;
-        receiver.postpone_superpower = false;
+        receiver.can_postpone_expiration = false;
         receiver.tip_notification = true;
-        receiver.file_notification = true;
-        receiver.comment_notification = true;
-        receiver.message_notification = true;
         receiver.ping_notification = false;
         receiver.pgp_key_info = '';
         receiver.pgp_key_fingerprint = '';

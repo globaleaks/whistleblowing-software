@@ -200,7 +200,7 @@ class Context(Model):
     #                         ReceiverContext.receiver_id,
     #                         Receiver.id)
 
-    postpone_superpower = Bool(default=False)
+    can_postpone_expiration = Bool(default=False)
     can_delete_submission = Bool(default=False)
 
     presentation_order = Int(default=9)
@@ -210,7 +210,7 @@ class Context(Model):
     int_keys = [ 'maximum_selectable_receivers',
                  'presentation_order' ]
     bool_keys = [ 'select_all_receivers',
-                  'postpone_superpower', 'can_delete_submission',
+                  'can_postpone_expiration', 'can_delete_submission',
                   'show_small_cards', 'show_receivers', "enable_private_messages" ]
 
 
@@ -393,7 +393,7 @@ class Node(Model):
     allow_iframes_inclusion = Bool()
 
     # privileges configurable in node/context/receiver
-    postpone_superpower = Bool(default=False)
+    can_postpone_expiration = Bool(default=False)
     can_delete_submission = Bool(default=False)
 
     ahmia = Bool(default=False)
@@ -427,7 +427,7 @@ class Node(Model):
                 'maximum_filesize', 'default_timezone']
 
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
-                 'tor2web_unauth', 'postpone_superpower',
+                 'tor2web_unauth', 'can_postpone_expiration',
                  'can_delete_submission', 'ahmia', 'allow_unencrypted',
                  'allow_iframes_inclusion',
                  'disable_privacy_badge', 'disable_security_awareness_badge',
@@ -590,8 +590,8 @@ class Receiver(Model):
     ping_mail_address = Unicode()
 
     # Admin chosen options
-    can_delete_submission = Bool()
-    postpone_superpower = Bool()
+    can_delete_submission = Bool(default=False)
+    can_postpone_expiration = Bool(default=False)
 
     last_update = DateTime(default_factory=datetime_null)
 
@@ -610,7 +610,7 @@ class Receiver(Model):
     localized_strings = ['description']
     int_keys = ['presentation_order']
     bool_keys = ['can_delete_submission', 'tip_notification',
-                 'postpone_superpower',
+                 'can_postpone_expiration',
                  'ping_notification']
 
 

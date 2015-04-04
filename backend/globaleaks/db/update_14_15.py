@@ -279,9 +279,9 @@ class Replacer1415(TableReplacer):
             new_context = self.get_right_model("Context", 15)()
 
             step1 = db_forge_obj(self.store_new, Step, steps[0])
-            new_context.steps.add(step1)
+            step1.context_id = new_context.id
             step2 = db_forge_obj(self.store_new, Step, steps[1])
-            new_context.steps.add(step2)
+            step2.context_id = new_context.id
 
             for _, v in new_context._storm_columns.iteritems():
                 if v.name == 'steps':

@@ -198,7 +198,7 @@
   {
     "fields": {
       "default_language": "en",
-      "postpone_superpower": false,
+      "can_postpone_expiration": false,
       "creation_date": "2014-09-13 09:01:53.174403",
       "id": "afc28e70-0117-4ed8-b294-ed3ccc87625a",
       "maximum_textsize": 4096,
@@ -429,7 +429,7 @@
         "en": "These are our receivers"
       },
       "presentation_order": 0,
-      "postpone_superpower": false,
+      "can_postpone_expiration": false,
       "creation_date": "2014-09-13 09:01:53.682297",
       "unique_fields": {
         "55a36c31-4851-40de-b56f-2f8ba190492f": {
