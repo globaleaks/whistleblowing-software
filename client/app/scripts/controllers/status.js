@@ -10,7 +10,7 @@ GLClient.controller('StatusCtrl',
     $scope.uploads = [];
 
     $scope.getFields = function(field) {
-      ret = [];
+      var ret = [];
       if (field === undefined) {
         fields = $scope.tip.fields;
       } else {
@@ -22,23 +22,15 @@ GLClient.controller('StatusCtrl',
       });
 
       return ret;
-    }
+    };
 
     $scope.filterFields = function(field) {
-      if(field.type != 'fileupload') {
-        return true;
-      } else {
-        return false;
-      }
-    }
+      return field.type != 'fileupload';
+    };
 
     $scope.filterReceivers = function(receiver) {
-      if(receiver.configuration != 'hidden') {
-        return true;
-      } else {
-        return false;
-      }
-    }
+      return receiver.configuration != 'hidden';
+    };
 
     if (Authentication.role === 'wb') {
       $scope.fileupload_url = '/wbtip/upload';
@@ -87,7 +79,7 @@ GLClient.controller('StatusCtrl',
           angular.forEach(tip.receivers, function(receiver){
             if (receiver.pgp_key_status == 'disabled' && receiver.receiver_id !== tip.receiver_id) {
               $scope.tip_unencrypted = true;
-            };
+            }
           });
 
 

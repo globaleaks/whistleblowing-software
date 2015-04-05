@@ -75,7 +75,7 @@ angular.module('submissionUI', []).
   directive('creditCard', ['$filter', function($filter){
     return {
       scope: {
-        "creditCard": "&",
+        "creditCard": "&"
       },
       link: function(scope, elm, attrs) {
         var svgItem = $(elm)[0];

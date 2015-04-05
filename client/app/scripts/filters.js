@@ -31,6 +31,7 @@ angular.module('GLClientFilters', [])
 }).
   filter('prettyBytes', function() {
     return function (bytes) {
+        var ret;
         if      (bytes>=1000000000) {ret='' + Math.floor(bytes/1000000000) + 'GB';}
         else if (bytes>=1000000)    {ret='' + Math.floor(bytes/1000000) + 'MB';}
         else                        {ret='' + Math.floor(bytes/1000) + 'KB';}

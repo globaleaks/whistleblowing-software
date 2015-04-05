@@ -19,8 +19,8 @@ GLClient.controller('EmbeddedReceiptCtrl',
 
 }]).
 controller('EmbeddedSubmissionCtrl',
-  ['$scope', '$rootScope', '$location', 'WhistleblowerTip',
-  function($scope, $rootScope, $location, WhistleblowerTip) {
+  ['$scope', '$rootScope',
+  function($scope, $rootScope) {
 
   $rootScope.embedded = true;
 

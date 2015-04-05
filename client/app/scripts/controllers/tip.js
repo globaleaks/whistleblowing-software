@@ -1,5 +1,5 @@
-GLClient.controller('TipCtrl', ['$scope', '$http', '$route', '$location', '$modal', 'Tip', 'ReceiverTips',
-  function($scope, $http, $route, $location, $modal, Tip, ReceiverTips) {
+GLClient.controller('TipCtrl', ['$scope', '$http', '$route', '$location', '$modal',
+  function($scope, $http, $route, $location, $modal) {
 
   $scope.tip_delete = function (id, global_delete) {
     $scope.tip_id = id;

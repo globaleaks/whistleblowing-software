@@ -37,11 +37,6 @@
   margin-bottom: 25px;
 }
 
-.submissionFieldgroup {
-  padding: 20px;
-  border: 1px solid #eee;
-}
-
 #ReceiverSelectionBoxBig .receiverCardTitle {
   font-size: 20px;
 }
@@ -53,11 +48,6 @@
 .fileName {
   word-break: break-all;
   word-wrap: break-word;
-}
-
-.submissionButton {
-  font-size: 25px;
-  padding: 10px 100px 10px;
 }
 
 .imgPreview {
@@ -76,16 +66,6 @@
   left: 40px;
   font-size: 40px;
   color: white;
-}
-
-@media (max-width: 550px) {
-  .submission .nav.nav-tabs {
-    display: none;
-  }
-  
-  .receiverCard {
-    max-width: 95%;
-  }
 }
 
 #MaxSelectableReceiverBox {
@@ -153,8 +133,4 @@
   background-color: #FFF;
   border-radius: 15px;
   direction: ltr;
-}
-
-#KeyCodeKey {
-  font-size: 60px;
 }

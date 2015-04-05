@@ -38,11 +38,7 @@ GLClient.controller('FormBuilderCtrl',
   };
 
   $scope.deleteField = function(field) {
-    $rootScope.fieldsToEdit.pop(field);
-  };
-
-  $scope.splice = function(field, fields) {
-    fields.splice(fields.indexOf(field), 1);
+    $rootScope.fieldsToEdit.splice($rootScope.fieldsToEdit.indexOf(field), 1);
   };
 
   $scope.addOption = function() {

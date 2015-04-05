@@ -2,8 +2,8 @@
 
 GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
                     'Authentication',
-                    'WhistleblowerTip', 'Contexts', 'Receivers',
-  function ($scope, $location, $modal, Authentication, WhistleblowerTip, Contexts, Receivers) {
+                    'WhistleblowerTip',
+  function ($scope, $location, $modal, Authentication, WhistleblowerTip) {
     $scope.keycode = '';
     $scope.configured = false;
     $scope.step = 1;
@@ -52,7 +52,7 @@ GLClient.controller('QuizCtrl', ['$scope', '$modalInstance', '$location',
       $modalInstance.close();
       $location.path("/submission");
     }
-  }
+  };
 
   $scope.cancel = function () {
     $modalInstance.close();

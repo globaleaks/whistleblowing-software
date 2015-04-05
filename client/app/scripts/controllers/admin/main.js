@@ -23,10 +23,6 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
   $scope.languages_enabled_edit = {};
   $scope.languages_enabled_selector = {};
 
-  function CollapseLanguages($scope) {
-    $scope.isCollapsed = false;
-  }
-
   Node.get(function(node) {
     $scope.languages_supported = {};
     $scope.languages_enabled = [];
@@ -99,10 +95,10 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
 
     var cb = function() {
       $rootScope.$broadcast("REFRESH");
-    }
+    };
 
     $scope.update(node, cb);
-  }
+  };
 
   $scope.updateNodeImgReloadUrl = function() {
     $scope.nodeImgReloadUrl = "/static/globaleaks_logo.png?" + Math.round(Math.random() * 1000000);
@@ -183,7 +179,7 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', 'Defa
       }
     }
     return false;
-  }
+  };
 
   $scope.uploadfinished = function () {
     $scope.update_static_files();
@@ -199,7 +195,7 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', 'Defa
 
 }]);
 
-GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http){
+GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
   $scope.tabs = [
     {
       title:"Main Configuration",
@@ -238,7 +234,7 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$modal',
       return;
     var modalInstance = $modal.open({
       templateUrl: 'views/partials/disable_encryption.html',
-      controller: 'DisableEncryptionCtrl',
+      controller: 'DisableEncryptionCtrl'
     });
 
     modalInstance.result.then(function(result){

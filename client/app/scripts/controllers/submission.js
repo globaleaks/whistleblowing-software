@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$rootScope', '$location', '$modal', 'Authentication', 'Submission', 'Receivers', 'WhistleblowerTip',
-      function ($scope, $rootScope, $location, $modal, Authentication, Submission, Receivers, WhistleblowerTip) {
+    ['$scope', '$rootScope', '$location', '$modal', 'Authentication', 'Submission',
+      function ($scope, $rootScope, $location, $modal, Authentication, Submission) {
 
   $rootScope.invalidForm = true;
 
@@ -118,7 +118,7 @@ GLClient.controller('SubmissionCtrl',
       return;
     }
     return '/submission/' + $scope.submission.current_submission.id + '/file';
-  }
+  };
   // Watch for changes in certain variables
   $scope.$watch('submission.current_context', function () {
     if ($scope.submission && $scope.submission.current_context) {
@@ -149,7 +149,7 @@ GLClient.controller('SubmissionCtrl',
 controller('SubmissionStepCtrl', ['$scope', function($scope) {
   $scope.uploads = [];
 }]).
-controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
   if ($scope.field.type == 'fileupload') {
     $scope.field.value = {};
   }
@@ -160,7 +160,7 @@ controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $ro
     } else {
       return "";
     }
-  }
+  };
 
   var update_uploads_status = function(e, data) {
     var uploading = false;
@@ -194,20 +194,18 @@ controller('SubmissionFieldCtrl', ['$scope', '$rootScope', function ($scope, $ro
 }]).
 controller('ReceiptController', ['$scope', '$location', 'Authentication', 'WhistleblowerTip',
   function($scope, $location, Authentication, WhistleblowerTip) {
-
-    format_keycode = function(keycode) {
+    var format_keycode = function(keycode) {
+      var ret = keycode;
       if (keycode && keycode.length == 16) {
         ret =  keycode.substr(0, 4) + ' ' +
                keycode.substr(4, 4) + ' ' +
                keycode.substr(8, 4) + ' ' +
                keycode.substr(12, 4);
-      } else {
-        ret = keycode;
       }
 
       return ret;
 
-    }
+    };
 
     $scope.keycode = format_keycode(Authentication.keycode);
     $scope.formatted_keycode = format_keycode($scope.keycode);

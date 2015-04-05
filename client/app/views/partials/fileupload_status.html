@@ -8,7 +8,7 @@
         <div class="col-md-4">
           <div class="filePreview">
             <div class="imgPreview">
-              <img flow-img="file" data-ng-if="show_file_preview(file.file.type)"/>
+              <img flow-img="file" data-ng-if="show_file_preview(file.file.type)" />
             </div>
             <div class="fileUploadProgress">
               <div class="fileUploadProgressOverlay"></div>
@@ -30,7 +30,6 @@
           <div data-ng-hide="file.error">
             <div data-ng-repeat="option in file.value">
              <textarea class="form-control msd-elastic" data-ng-model="option.value" placeholder="{{option['attrs']['name']}}"></textarea>
-            </div>
             </div>
           </div>
         </div>
