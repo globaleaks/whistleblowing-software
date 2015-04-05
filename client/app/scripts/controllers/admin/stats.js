@@ -15,9 +15,6 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
       times = ["1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12am",
                "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm", "12pm"];
 
-    /* 2014-11-09T13:38:22.707125Z  with [:-8] */
-    var parseISODate = d3.time.format("%Y-%m-%dT%H:%M:%S").parse;
-
     var show_data = function(data) {
 
       /*
@@ -52,7 +49,7 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
             /* d.summary.homepage_access = +d.summary.homepage_access ? d.summary.homepage_access : 0; 
              * -- remind: disabled, not recorded in the d.value below */
 
-            d.value = 0
+            d.value = 0;
             d.value += d.summary.failed_logins;
             d.value += d.summary.successful_logins;
             d.value += d.summary.started_submissions;
@@ -173,7 +170,7 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
       show_data(stats.heatmap);
       $scope.when = stats.associated_date;
       $scope.complete = stats.complete;
-    }
+    };
 
     $scope.update_week = function () {
         if ($scope.week_delta == undefined || $scope.week_delta > 0) {
@@ -190,12 +187,12 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
         $scope.week_delta += 1;
         $scope.update_week();
       }
-    }
+    };
 
     $scope.decrement_week = function() {
       $scope.week_delta -= 1;
       $scope.update_week();
-    }
+    };
 
     $scope.update_week();
 

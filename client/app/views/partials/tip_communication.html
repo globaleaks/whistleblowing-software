@@ -80,14 +80,12 @@
         </div>
         <div data-ng-switch-when="wb">
           <div class="row">
-            <h3>
-              <div class="col-md-6">
-                <span data-translate>Private Messages</span>
-              </div>
-              <div class="col-md-6" data-ng-if="tip.receivers.length > 1">
-                <select data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
-              </div>
-            </h3>
+            <div class="col-md-6">
+              <span data-translate>Private Messages</span>
+            </div>
+            <div class="col-md-6" data-ng-if="tip.receivers.length > 1">
+              <select data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
+            </div>
           </div>
         </div>
       </div>

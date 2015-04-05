@@ -1,9 +1,5 @@
 'use strict';
 
-var translations = {
- GLOBALEAKS: "{{NodeName}} makes use of GlobaLeaks software specifically designed to protect the identity of the submitter and of the receiver in the exchange of leaked materials."
-};
-
 var GLClient = angular.module('GLClient', [
     'ngRoute',
     'ui.bootstrap',
@@ -202,7 +198,7 @@ var GLClient = angular.module('GLClient', [
   config(['flowFactoryProvider', function (flowFactoryProvider) {
     flowFactoryProvider.defaults = {};
 }]).
-  run(['$http', '$rootScope', '$route', function ($http, $rootScope, $route) {
+  run(['$http', '$rootScope', function ($http, $rootScope) {
 
      var globaleaksRequestInterceptor = function(data, headers) {
 
@@ -219,9 +215,8 @@ var GLClient = angular.module('GLClient', [
            e.preventDefault();
            $rootScope.$broadcast("REFRESH");
        }
-    };
-
-    $(document).bind("keydown", overrideReload);
+    }
+      $(document).bind("keydown", overrideReload);
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         if (current.$$route) {

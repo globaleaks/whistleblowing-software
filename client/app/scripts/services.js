@@ -536,7 +536,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           commentsResource.query({}, function(commentsCollection){
             self.tip.comments = commentsCollection;
 
-          })
+          });
 
           fn(self.tip);
 
@@ -710,7 +710,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
           });
         }
-      }
+      };
 
       self.receiver = adminReceiverResource;
       self.receivers = adminReceiversResource.query();

@@ -1,6 +1,6 @@
 GLClient.controller('AdminContextsCtrl',
-  ['$scope', '$modal', 'Admin',
-  function($scope, $modal, Admin) {
+  ['$scope', '$modal',
+  function($scope, $modal) {
 
   $scope.add_context = function (name) {
     context = $scope.admin.new_context();

@@ -16,7 +16,7 @@ function($scope, $modal) {
 
     return $scope.update(updated_receiver, cb);
 
-  }
+  };
 
   $scope.save_all = function () {
     angular.forEach($scope.admin.receivers, function (receiver, key) {
@@ -119,8 +119,8 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher', 'C
 
 }]);
 
-GLClient.controller('AdminReceiverAddCtrl', ['$scope', 'passwordWatcher',
-  function($scope, passwordWatcher) {
+GLClient.controller('AdminReceiverAddCtrl', ['$scope',
+  function($scope) {
 
     $scope.new_receiver = {};
 

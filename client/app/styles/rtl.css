@@ -1,13 +1,13 @@
 
 /* Overrides of submission.css */
 
-#keycodeToolTip {
-  margin-left: 0px;
+#KeyCodeHintBox {
+  margin-left: 0;
   margin-right: 30px;
   box-shadow: -2px 1px 5px #888888;
 }
 
-#keycodeToolTip:after {
+#KeyCodeHintBox:after {
   border-width: 15px 0 15px 15px;
   left: none;
   right: -15px;

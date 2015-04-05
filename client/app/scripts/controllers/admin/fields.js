@@ -19,12 +19,12 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
     $scope.moveFieldUp = function(field) {
       field.y -= 1;
       $scope.save_field(field, false);
-    }
+    };
 
     $scope.moveFieldDown = function(field) {
       field.y += 1;
       $scope.save_field(field, false);
-    }
+    };
 
     $scope.deleteFromList = function(list, elem) {
       var idx = angular.indexOf(list, elem);
@@ -48,7 +48,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
         $scope.admin.field_templates = $filter('filter')($scope.admin.field_templates, 
                                                          {id: '!'+field.id}, true);
       }
-    }
+    };
 
     $scope.save_all = function () {
       angular.forEach($scope.admin.field_templates, function (field, key) {
@@ -62,7 +62,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
       field.type = new_field.type;
       $scope.admin.fill_default_field_options(field);
       return field;
-    }
+    };
     
     $scope.addField = function(new_field) {
       $scope.fields.push(new_field);
@@ -137,9 +137,10 @@ GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
     $scope.delOption = function(field, option) {
       var index = field.options.indexOf(option);
       field.options.splice(index, 1);
-    }
+    };
 
     $scope.save_field = function(field, called_from_save_all) {
+      var updated_field;
       if (field.is_template) {
         updated_field =  new $scope.admin.fieldtemplate(field);
       } else {

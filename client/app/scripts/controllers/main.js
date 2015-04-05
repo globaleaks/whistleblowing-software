@@ -11,7 +11,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       } catch (e) {
         return true;
       }
-    }
+    };
 
     $scope.update = function (model, cb, errcb) {
       var success = {};
@@ -47,11 +47,11 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     $scope.showLoginForm = function () {
       return (!$scope.isHomepage() &&
               !$scope.isLoginPage());
-    }
+    };
 
     $scope.hasSubtitle = function () {
       return $scope.header_subtitle != '';
-    }
+    };
 
     $scope.open_intro = function () {
       if ($scope.intro_opened) {
@@ -112,7 +112,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       ];
 
       return content_types.indexOf(content_type) > -1;
-    }
+    };
 
     var init = function () {
 
@@ -132,7 +132,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
           $rootScope.anonymous = true;
         } else {
           if (window.location.protocol === 'https:') {
-             headers = getResponseHeaders();
+             var headers = getResponseHeaders();
              if (headers['x-check-tor'] !== undefined && headers['x-check-tor'] === 'true') {
                $rootScope.anonymous = true;
                if ($scope.node.hidden_service && !iframeCheck()) {
@@ -200,7 +200,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     });
 
     $rootScope.$watch('language', function (newVal, oldVal) {
-
       if (newVal && newVal !== oldVal) {
 
         if(oldVal === undefined && newVal === $scope.node.default_language)
@@ -220,15 +219,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
       }
 
-    });
-
-    $scope.$watch(function (scope) {
-      return Authentication.id;
-    }, function (newVal, oldVal) {
-      $scope.session_id = Authentication.id;
-      $scope.homepage = Authentication.homepage;
-      $scope.auth_landing_page = Authentication.auth_landing_page;
-      $scope.role = Authentication.role;
     });
 
     init();
@@ -277,21 +267,21 @@ GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$modalInstance', func
     if ($scope.step < steps) {
       $scope.step += 1;
     }
-  }
+  };
 
   $scope.back = function () {
     if ($scope.step > first_step) {
       $scope.step -= 1;
     }
-  }
+  };
 
   $scope.cancel = function () {
     $modalInstance.close();
-  }
+  };
 
   $scope.data = {
     'language': $scope.language
-  }
+  };
 
   $scope.$watch("data.language", function (newVal, oldVal) {
     if (newVal && newVal !== oldVal) {

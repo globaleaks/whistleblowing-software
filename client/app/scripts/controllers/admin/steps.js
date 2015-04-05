@@ -1,5 +1,5 @@
-GLClient.controller('AdminStepAddCtrl', ['$scope', '$rootScope', '$route',
-  function($scope, $rootScope, $route) {
+GLClient.controller('AdminStepAddCtrl', ['$scope', '$rootScope',
+  function($scope, $rootScope) {
 
     $scope.add_step = function() {
       if ($scope.context.steps === undefined) {
@@ -18,7 +18,7 @@ GLClient.controller('AdminStepAddCtrl', ['$scope', '$rootScope', '$route',
       /* due to current API we need this cb in order to fecth the step id */
       var cb = function() {
         $rootScope.$broadcast("REFRESH");
-      }
+      };
 
       $scope.save_context($scope.context, cb);
 
@@ -66,7 +66,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
         field_group.children.push(field);
         $scope.deleteFromList($scope.step.children, field);
       }
-    }
+    };
 
     $scope.add_field_from_template = function(field_id, step) {
       $scope.admin.new_field_from_template(field_id, step.id).then(function(field){
@@ -108,7 +108,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       field.type = new_field.type;
       $scope.admin.fill_default_field_options(field);
       return field;
-    }
+    };
 
     $scope.save_field = function(field) {
       var updated_field = new $scope.admin.field(field);
@@ -148,7 +148,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
         $scope.new_field = {};
       });
 
-    }
+    };
 
     $scope.composable_fields = [];
     $scope.template_field_keys = Object.keys($scope.admin.template_fields);
@@ -165,7 +165,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     $scope.moveFieldUp = function(field) {
       field.y -= 1;
       $scope.save_field(field);
-    }
+    };
 
     $scope.moveFieldDown = function(field) {
       field.y += 1;
