@@ -83,6 +83,11 @@ class GLHTTPConnection(HTTPConnection):
                 headers=headers, remote_ip=self._remote_ip)
 
             if content_length:
+                megabytes = int(content_length) / (1024 * 1024)
+                if megabytes > GLSetting.defaults.maximum_request_size:
+                     raise _BadRequestException(
+                         "Request exceeded size limit %d" % GLSetting.defaults.maximum_request_size)
+
                 if headers.get("Expect") == "100-continue":
                     self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
 
@@ -614,7 +619,6 @@ class BaseRedirectHandler(BaseHandler, RedirectHandler):
 
 
 class GLApiCache(object):
-
     memory_cache_dict = {}
 
     @classmethod
