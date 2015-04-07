@@ -252,27 +252,3 @@ class TipsCollection(BaseHandler):
 
         self.set_status(200)
         self.finish(answer)
-
-
-@transact_ro
-def get_receiver_notif(store, receiver_id, language):
-    """
-    The returned struct contains two lists, recent activities
-    (latest files, comments, "activities" in general), and
-    recent tips.
-    """
-    eventlst = store.find(EventLogs, EventLogs.receiver_id == receiver_id)
-    eventlst.order_by(Desc(EventLogs.creation_date))
-
-    ret = {
-        'activities': [],
-        'tips': []
-    }
-
-    for evnt in eventlst:
-        if evnt.event_reference['kind'] != u'Tip':
-            ret['activities'].append(serialize_event(evnt))
-        else:
-            ret['tips'].append(serialize_event(evnt))
-
-    return ret
