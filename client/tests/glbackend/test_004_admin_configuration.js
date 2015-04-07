@@ -48,7 +48,7 @@ var receiver = {
   message_notification: false,
   name: "receiver1@antani.gov", // used 'receiverN@antani.gov' for population
   password: "ringobongos3cur1ty",
-  postpone_superpower: true,
+  can_postpone_expiration: true,
   presentation_order: 0,
   tip_notification: false,
   ping_notification: false,
@@ -152,8 +152,8 @@ var fields = [
 var context = {
   "receiver_introduction":"foca",
   "presentation_order":0,
-  "postpone_superpower":false,
   "tip_timetolive":15,
+  "can_postpone_expiration":false,
   "can_delete_submission":true,
   "show_small_cards":false,
   "show_receivers":true,
