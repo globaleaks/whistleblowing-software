@@ -90,7 +90,7 @@ class Replacer910(TableReplacer):
                 continue
 
             if v.name == 'anomaly_checks':
-                new_nodee.anomaly_checks = True
+                new_node.anomaly_checks = True
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name))
