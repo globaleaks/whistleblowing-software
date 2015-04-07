@@ -7,7 +7,7 @@
 # database table.
 
 from cyclone.util import ObjectDict as OD
-from storm.expr import Desc
+from storm.expr import Asc
 from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
 
 from globaleaks.models import EventLogs, Notification
@@ -74,7 +74,7 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
 
     event_list = []
     storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)
-    storedevnts.order_by(Desc(EventLogs.creation_date))
+    storedevnts.order_by(Asc(EventLogs.creation_date))
 
     debug_event_counter = {}
     for i, stev in enumerate(storedevnts):
