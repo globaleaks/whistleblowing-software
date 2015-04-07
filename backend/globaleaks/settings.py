@@ -175,8 +175,6 @@ class GLSettingsClass(object):
         self.anomaly_seconds_delta = 10  # runner.py function expects seconds
         self.mailflush_minutes_delta = 5  # before change check mailflush logic and delay
 
-        self.www_form_urlencoded_maximum_size = 1024
-
 
         # Default values, used to initialize DB at the first start,
         # or whenever the value is not supply by client.
@@ -200,6 +198,7 @@ class GLSettingsClass(object):
         self.defaults.maximum_namesize = 128
         self.defaults.maximum_textsize = 4096
         self.defaults.maximum_filesize = 30  # expressed in megabytes
+        self.defaults.maximum_request_size = 4  # expressed in megabytes
         self.defaults.exception_email = u"globaleaks-stackexception@lists.globaleaks.org"
         # Context dependent values:
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
