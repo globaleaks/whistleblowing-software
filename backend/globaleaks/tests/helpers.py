@@ -174,6 +174,9 @@ class TestGL(unittest.TestCase):
         elif self.encryption_scenario == 'ALL_ENCRYPTED':
             self.dummyReceiver_1['pgp_key_public'] = VALID_PGP_KEY1
             self.dummyReceiver_2['pgp_key_public'] = VALID_PGP_KEY2
+        elif self.encryption_scenario == 'ONE_VALID_ONE_EXPIRED':
+            self.dummyReceiver_1['pgp_key_public'] = VALID_PGP_KEY1
+            self.dummyReceiver_2['pgp_key_public'] = EXPIRED_PGP_KEY
         elif self.encryption_scenario == 'ALL_PLAINTEXT':
             self.dummyReceiver_1['pgp_key_public'] = None
             self.dummyReceiver_2['pgp_key_public'] = None
