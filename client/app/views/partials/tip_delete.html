@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
   <div class="alert alert-danger">
-    <div data-ng-show="global_delete">
+    <div>
       <span data-translate>Are you sure that you want to delete the tip?</span>
       <br />
       <span data-translate>Please make sure that all related data is properly deleted so that the receivers won't be able to further access to it.</span>
@@ -17,7 +17,7 @@
     <i class="glyphicon glyphicon-remove"></i>
     <span data-translate>Cancel</span>
   </button>
-  <button class="btn btn-danger" data-ng-click="ok()">
+  <button class="btn btn-danger" data-ng-click="ok('delete')">
     <i class="glyphicon glyphicon-ok"></i>
     <span data-translate>Confirm Deletion</span>
   </button>

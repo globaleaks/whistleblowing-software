@@ -447,17 +447,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
           commentsResource.query(tipID, function(commentsCollection){
             self.tip.comments = commentsCollection;
-
-            // XXX perhaps make this return a lazyly instanced item.
-            // look at $resource code for inspiration.
             fn(self.tip);
           });
 
           messageResource.query(tipID, function(messageCollection){
             self.tip.messages = messageCollection;
-
-            // XXX perhaps make this return a lazyly instanced item.
-            // look at $resource code for inspiration.
             fn(self.tip);
           });
 

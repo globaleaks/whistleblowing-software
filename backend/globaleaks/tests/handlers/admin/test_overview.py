@@ -6,7 +6,7 @@ from globaleaks.rest import requests
 from globaleaks.tests import helpers
 from globaleaks.handlers.admin import overview
 
-class TestUsersOverview(helpers.TestHandlerWithPopulatedDB):
+class TestUsersOverviewDesc(helpers.TestHandlerWithPopulatedDB):
     _handler = overview.Users
 
     @inlineCallbacks
@@ -22,10 +22,10 @@ class TestUsersOverview(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
         self.assertEqual(len(self.responses[0]), 2)
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.UsersOverview)
+        self._handler.validate_message(json.dumps(self.responses[0]), requests.UsersOverviewDesc)
 
 
-class TestTipsOverview(helpers.TestHandlerWithPopulatedDB):
+class TestTipsOverviewDesc(helpers.TestHandlerWithPopulatedDB):
     _handler = overview.Tips
 
     @inlineCallbacks
@@ -41,10 +41,10 @@ class TestTipsOverview(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
         self.assertEqual(len(self.responses[0]), 1)
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.TipsOverview)
+        self._handler.validate_message(json.dumps(self.responses[0]), requests.TipsOverviewDesc)
 
 
-class TestFilesOverview(helpers.TestHandlerWithPopulatedDB):
+class TestFilesOverviewDesc(helpers.TestHandlerWithPopulatedDB):
     _handler = overview.Files
 
     @inlineCallbacks
@@ -59,4 +59,4 @@ class TestFilesOverview(helpers.TestHandlerWithPopulatedDB):
 
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.FilesOverview)
+        self._handler.validate_message(json.dumps(self.responses[0]), requests.FilesOverviewDesc)

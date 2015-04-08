@@ -1,14 +1,12 @@
 <div class="row">
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
-    <p>
     <span data-translate>This interface shows user activity on your server. It may be helpful in detecting anomalies and providing support to the receivers using your server.</span>
-    </p>
     <div data-ng-if="users.length">
       <div class="row">
         <div class="col-md-12">
           <div class="form-horizontal">
-            < class="form-group col-md-12" data-ng-init="search.id = users.length ? users[0].id : ''">
+            <span class="form-group col-md-12" data-ng-init="search.id = users.length ? users[0].id : ''">
               <label class="control-label col-md-4">
                 <span data-translate>Receiver</span>:
               </label>

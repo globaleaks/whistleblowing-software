@@ -226,7 +226,7 @@ def anon_serialize_receiver(receiver, language):
         return None
 
     ret_dict = {
-        'reation_date': datetime_to_ISO8601(receiver.creation_date),
+        'creation_date': datetime_to_ISO8601(receiver.creation_date),
         'update_date': datetime_to_ISO8601(receiver.last_update),
         'name': receiver.name,
         'id': receiver.id,

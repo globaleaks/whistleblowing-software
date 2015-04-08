@@ -72,7 +72,7 @@ class NotificationInstance(BaseHandler):
     def get(self):
         """
         Parameters: None
-        Response: adminNotificationDesc
+        Response: AdminNotificationDesc
         Errors: None (return empty configuration, at worst)
         """
         notification_desc = yield get_notification(self.request.language)
@@ -84,15 +84,15 @@ class NotificationInstance(BaseHandler):
     @inlineCallbacks
     def put(self):
         """
-        Request: adminNotificationDesc
-        Response: adminNotificationDesc
+        Request: AdminNotificationDesc
+        Response: AdminNotificationDesc
         Errors: InvalidInputFormat
 
         Changes the node notification settings.
         """
 
         request = self.validate_message(self.request.body,
-            requests.adminNotificationDesc)
+            requests.AdminNotificationDesc)
 
         response = yield update_notification(request, self.request.language)
 

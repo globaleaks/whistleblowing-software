@@ -225,7 +225,7 @@ class Tips(BaseHandler):
     def get(self):
         """
         Parameters: None
-        Response: TipsOverviewList
+        Response: TipsOverviewDescList
         Errors: None
         """
         tips_complete_list = yield collect_tip_overview(self.request.language)
@@ -246,7 +246,7 @@ class Users(BaseHandler):
     def get(self):
         """
         Parameters: None
-        Response: UsersOverviewList
+        Response: UsersOverviewDescList
         Errors: None
         """
         users_complete_list = yield collect_users_overview()
@@ -269,7 +269,7 @@ class Files(BaseHandler):
     def get(self):
         """
         Parameters: None
-        Response: FilesOverviewList
+        Response: FilesOverviewDescList
         Errors: None
         """
 

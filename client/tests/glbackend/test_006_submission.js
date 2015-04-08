@@ -23,35 +23,35 @@ var wb_keycodes  = new Array();
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
-    "X-XSS-Protection": "1; mode=block",
-    "X-Robots-Tag": "noindex",
-    "X-Content-Type-Options": "nosniff",
-    "Expires": "-1",
-    "Server": "globaleaks",
-    "Pragma":  "no-cache",
-    "Cache-control": "no-cache, no-store, must-revalidate"
+    'X-XSS-Protection': '1; mode=block',
+    'X-Robots-Tag': 'noindex',
+    'X-Content-Type-Options': 'nosniff',
+    'Expires': '-1',
+    'Server': 'globaleaks',
+    'Pragma':  'no-cache',
+    'Cache-control': 'no-cache, no-store, must-revalidate'
   }
 
   for (var key in mandatory_headers) {
     if (headers[key.toLowerCase()] != mandatory_headers[key]) {
-      throw key + " != " + mandatory_headers[key];
+      throw key + ' != ' + mandatory_headers[key];
     }
   }
 }
 
 var valid_login = function(i) {
   return {
-    "username": "",
-    "password": wb_keycodes[i],
-    "role": "wb"
+    'username': '',
+    'password': wb_keycodes[i],
+    'role': 'wb'
   }
 }
 
 var invalid_login = function(i) {
   return {
-    "username": "",
-    "password": "antani",
-    "role": "wb"
+    'username': '',
+    'password': 'antani',
+    'role': 'wb'
   }
 }
 
@@ -86,7 +86,7 @@ describe('GET /contexts', function(){
           validate_mandatory_headers(res.headers);
 
           if (res.body.length != population_order) {
-            throw "/contexts didn't return " + population_order + " contexts";
+            throw '/contexts didn\'t return ' + population_order + ' contexts';
           }
 
           contexts = res.body;
@@ -96,7 +96,7 @@ describe('GET /contexts', function(){
             contexts_ids.push(contexts[i].id);
 
             if(contexts[i].receivers.length != population_order) {
-              throw "/contexts didn't return " + population_order + " receivers associated to each context";
+              throw '/contexts didn\'t return ' + population_order + ' receivers associated to each context';
             }
           }
 
@@ -120,7 +120,7 @@ describe('GET /receivers', function(){
           validate_mandatory_headers(res.headers);
 
           if (res.body.length != population_order) {
-            throw "/receivers didn't return " + population_order + " receivers";
+            throw '/receivers didn\'t return ' + population_order + ' receivers';
           }
 
           receivers = res.body;
@@ -130,7 +130,7 @@ describe('GET /receivers', function(){
             receivers_ids.push(receivers[i].id);
 
             if(receivers[i].contexts.length != population_order) {
-              throw "/receivers didn't return " + population_order + " receivers associated to each receiver";
+              throw '/receivers didn\'t return ' + population_order + ' receivers associated to each receiver';
             }
           }
 

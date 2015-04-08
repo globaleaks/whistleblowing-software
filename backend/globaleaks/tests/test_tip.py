@@ -197,10 +197,10 @@ class TestTipInstance(TTip):
                                      self.rtip1_id),
                                  errors.ExtendTipLifeNotEnabled)
 
-        tip_not_extended = yield rtip.get_tip(
+        tip_not_postponeed = yield rtip.get_tip(
             self.receiver1_desc['id'], self.rtip1_id, 'en')
 
-        self.assertEqual(tip_expiring['expiration_date'], tip_not_extended['expiration_date'])
+        self.assertEqual(tip_expiring['expiration_date'], tip_not_postponeed['expiration_date'])
 
     @inlineCallbacks
     def verify_default_expiration_date(self):
@@ -247,10 +247,10 @@ class TestTipInstance(TTip):
                     self.receiver2_desc['id'],
                     self.rtip2_id)
 
-        tip_extended = yield rtip.get_tip(
+        tip_postponeed = yield rtip.get_tip(
             self.receiver1_desc['id'], self.rtip1_id, 'en')
 
-        self.assertNotEqual(tip_expiring['expiration_date'], tip_extended['expiration_date'])
+        self.assertNotEqual(tip_expiring['expiration_date'], tip_postponeed['expiration_date'])
 
     @inlineCallbacks
     def postpone_comment_content_check(self):
@@ -281,11 +281,6 @@ class TestTipInstance(TTip):
                                  errors.ForbiddenOperation)
 
     @inlineCallbacks
-    def receiver2_personal_delete(self):
-        yield rtip.delete_receiver_tip(self.receiver2_desc['id'], self.rtip2_id)
-
-
-    @inlineCallbacks
     def receiver1_see_system_comments(self):
         cl = yield rtip.get_comment_list_receiver(self.receiver1_desc['id'],
                                         self.rtip1_id)
@@ -302,7 +297,7 @@ class TestTipInstance(TTip):
 
 
     @inlineCallbacks
-    def receiver1_global_delete_tip(self):
+    def receiver1_delete_tip(self):
 
         yield rtip.delete_internal_tip(self.receiver1_desc['id'],
             self.rtip1_id)
@@ -471,6 +466,4 @@ class TestTipInstance(TTip):
         yield self.postpone_comment_content_check()
         # end of test
         yield self.receiver2_fail_in_delete_internal_tip()
-        yield self.receiver2_personal_delete()
-        yield self.receiver1_see_system_comments()
-        yield self.receiver1_global_delete_tip()
+        yield self.receiver1_delete_tip()

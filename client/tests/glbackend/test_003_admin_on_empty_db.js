@@ -13,15 +13,15 @@ var app = request(host);
 var authentication;
 
 var invalid_admin_login = {
-  "username": "admin",
-  "password": "antani",
-  "role": "admin"
+  'username': 'admin',
+  'password': 'antani',
+  'role': 'admin'
 }
 
 var valid_admin_login = {
-  "username": "admin",
-  "password": "globaleaks",
-  "role": "admin"
+  'username': 'admin',
+  'password': 'globaleaks',
+  'role': 'admin'
 }
 
 /*
@@ -138,18 +138,18 @@ var admin_resources = [
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
-    "X-XSS-Protection": "1; mode=block",
-    "X-Robots-Tag": "noindex",
-    "X-Content-Type-Options": "nosniff",
-    "Expires": "-1",
-    "Server": "globaleaks",
-    "Pragma":  "no-cache",
-    "Cache-control": "no-cache, no-store, must-revalidate"
+    'X-XSS-Protection': '1; mode=block',
+    'X-Robots-Tag': 'noindex',
+    'X-Content-Type-Options': 'nosniff',
+    'Expires': '-1',
+    'Server': 'globaleaks',
+    'Pragma':  'no-cache',
+    'Cache-control': 'no-cache, no-store, must-revalidate'
   }
 
   for (var key in mandatory_headers) {
     if (headers[key.toLowerCase()] != mandatory_headers[key]) {
-      throw key + " != " + mandatory_headers[key];
+      throw key + ' != ' + mandatory_headers[key];
     }
   }
 }

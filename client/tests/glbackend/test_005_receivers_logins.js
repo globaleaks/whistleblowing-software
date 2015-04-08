@@ -13,27 +13,27 @@ var app = request(host);
 var authentication;
 var valid_login;
 var invalid_login = {
-  "username": "invalid",
-  "password": "login",
-  "role": "receiver"
+  'username': 'invalid',
+  'password': 'login',
+  'role': 'receiver'
 }
 
 var population_order = 3;
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
-    "X-XSS-Protection": "1; mode=block",
-    "X-Robots-Tag": "noindex",
-    "X-Content-Type-Options": "nosniff",
-    "Expires": "-1",
-    "Server": "globaleaks",
-    "Pragma":  "no-cache",
-    "Cache-control": "no-cache, no-store, must-revalidate"
+    'X-XSS-Protection': '1; mode=block',
+    'X-Robots-Tag': 'noindex',
+    'X-Content-Type-Options': 'nosniff',
+    'Expires': '-1',
+    'Server': 'globaleaks',
+    'Pragma':  'no-cache',
+    'Cache-control': 'no-cache, no-store, must-revalidate'
   }
 
   for (var key in mandatory_headers) {
     if (headers[key.toLowerCase()] != mandatory_headers[key]) {
-      throw key + " != " + mandatory_headers[key];
+      throw key + ' != ' + mandatory_headers[key];
     }
   }
 }
@@ -56,9 +56,9 @@ describe('GET /receivers', function () {
         receiver_id = JSON.parse(JSON.stringify(res.body))[0]['id'];
 
         valid_login = {
-          "username": receiver_id,
-          "password": "ringobongos3cur1ty",
-          "role": "receiver"
+          'username': receiver_id,
+          'password': 'ringobongos3cur1ty',
+          'role': 'receiver'
         }
 
         done();

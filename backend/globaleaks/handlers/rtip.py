@@ -30,12 +30,10 @@ def receiver_serialize_tip(internaltip, language):
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
         'wb_steps': internaltip.wb_steps,
-        'global_delete': False,
         # this field "inform" the receiver of the new expiration date that can
-        # be set, only if PUT with extend = True is updated
+        # be set, only if PUT with postpone = True is updated
         'potential_expiration_date': \
             datetime_to_ISO8601(utc_future_date(seconds=internaltip.context.tip_timetolive)),
-        'extend': False,
         'enable_private_messages': internaltip.context.enable_private_messages,
     }
 
@@ -146,28 +144,6 @@ def db_increment_receiver_access_count(store, user_id, tip_id):
 
 
 @transact
-def delete_receiver_tip(store, user_id, tip_id):
-    """
-    This operation is permitted to every receiver, and trigger
-    a System comment on the Tip history.
-    """
-    rtip = access_tip(store, user_id, tip_id)
-
-    comment = Comment()
-    comment.content = "%s personally remove from this Tip" % rtip.receiver.name
-    comment.system_content = dict({"type": 2,
-                                   "receiver_name": rtip.receiver.name})
-
-    comment.internaltip_id = rtip.internaltip.id
-    comment.author = u'system'  # The printed line
-    comment.type = u'system'
-
-    rtip.internaltip.comments.add(comment)
-
-    store.remove(rtip)
-
-
-@transact
 def delete_internal_tip(store, user_id, tip_id):
     """
     Delete internalTip is possible only to Receiver with
@@ -206,7 +182,7 @@ def postpone_expiration_date(store, user_id, tip_id):
     rtip.internaltip.expiration_date = \
         utc_future_date(seconds=rtip.internaltip.context.tip_timetolive)
 
-    log.debug(" [%s] in %s has extended expiration time to %s" % (
+    log.debug(" [%s] in %s has postponeed expiration time to %s" % (
         rtip.receiver.name,
         datetime_to_pretty_str(datetime_now()),
         datetime_to_pretty_str(rtip.internaltip.expiration_date)))
@@ -277,10 +253,11 @@ class RTipInstance(BaseHandler):
         Some special operation over the Tip are handled here
         """
 
-        request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
+        request = self.validate_message(self.request.body, requests.TipOpsDesc)
 
-        if request['extend']:
-            yield postpone_expiration_date(self.current_user.user_id, tip_id)
+        if request['operation']:
+            if request['operation'] == 'postpone':
+                yield postpone_expiration_date(self.current_user.user_id, tip_id)
 
         self.set_status(202)  # Updated
         self.finish()
@@ -290,20 +267,12 @@ class RTipInstance(BaseHandler):
     @inlineCallbacks
     def delete(self, tip_id):
         """
-        Request: actorsTipOpsDesc
         Response: None
         Errors: ForbiddenOperation, TipIdNotFound
 
-        global delete: is removed InternalTip and all the things derived
-        personal delete: is removed the ReceiverTip and ReceiverFiles
+        delete: remove the Internaltip and all the associated data
         """
-
-        request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
-
-        if request['global_delete']:
-            yield delete_internal_tip(self.current_user.user_id, tip_id)
-        else:
-            yield delete_receiver_tip(self.current_user.user_id, tip_id)
+        yield delete_internal_tip(self.current_user.user_id, tip_id)
 
         self.set_status(200)  # Success
         self.finish()
@@ -340,7 +309,7 @@ def create_comment_receiver(store, user_id, tip_id, request):
     comment = Comment()
     comment.content = request['content']
     comment.internaltip_id = rtip.internaltip.id
-    comment.author = rtip.receiver.name  # The printed line
+    comment.author = rtip.receiver.name
     comment.type = u'receiver'
 
     rtip.internaltip.comments.add(comment)
@@ -376,12 +345,12 @@ class RTipCommentCollection(BaseHandler):
     @inlineCallbacks
     def post(self, tip_id):
         """
-        Request: actorsCommentDesc
-        Response: actorsCommentDesc
+        Request: CommentDesc
+        Response: CommentDesc
         Errors: InvalidAuthentication, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
 
-        request = self.validate_message(self.request.body, requests.actorsCommentDesc)
+        request = self.validate_message(self.request.body, requests.CommentDesc)
 
         answer = yield create_comment_receiver(self.current_user.user_id, tip_id, request)
 
@@ -497,12 +466,12 @@ class ReceiverMsgCollection(BaseHandler):
     @inlineCallbacks
     def post(self, tip_id):
         """
-        Request: actorsCommentDesc
-        Response: actorsCommentDesc
+        Request: CommentDesc
+        Response: CommentDesc
         Errors: InvalidAuthentication, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
 
-        request = self.validate_message(self.request.body, requests.actorsCommentDesc)
+        request = self.validate_message(self.request.body, requests.CommentDesc)
 
         message = yield create_message_receiver(self.current_user.user_id, tip_id, request)
 

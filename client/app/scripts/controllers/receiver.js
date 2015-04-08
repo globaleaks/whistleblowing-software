@@ -16,7 +16,7 @@ GLClient.controller('ReceiverFirstLoginCtrl', ['$scope', '$rootScope', '$locatio
 
     $scope.pass_save = function () {
 
-      // avoid changing any GPG setting
+      // avoid changing any PGP setting
       $scope.preferences.pgp_key_remove = false;
       $scope.preferences.pgp_key_public = '';
 

@@ -222,8 +222,8 @@ class SubmissionCreate(BaseHandler):
     @unauthenticated
     def post(self):
         """
-        Request: wbSubmissionDesc
-        Response: wbSubmissionDesc
+        Request: SubmissionDesc
+        Response: SubmissionDesc
         Errors: ContextIdNotFound, InvalidInputFormat, SubmissionFailFields
 
         This creates an empty submission for the requested context,
@@ -234,12 +234,12 @@ class SubmissionCreate(BaseHandler):
 
         --- has to became:
         Request: empty
-        Response: wbSubmissionDesc + Token
+        Response: SubmissionDesc + Token
         Errors: None
 
         This create a Token, require to complete the submission later
         """
-        request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
+        request = self.validate_message(self.request.body, requests.SubmissionDesc)
 
         token = Token('submission', request['context_id'])
         token.set_difficulty(Alarm().get_token_difficulty())
@@ -265,8 +265,8 @@ class SubmissionInstance(BaseHandler):
     def put(self, token_id):
         """
         Parameter: token_id
-        Request: wbSubmissionDesc
-        Response: wbSubmissionDesc
+        Request: SubmissionDesc
+        Response: SubmissionDesc
 
         PUT finalize the submission
         """
@@ -278,7 +278,7 @@ class SubmissionInstance(BaseHandler):
             status.update({'receipt': receipt})
             return status
 
-        request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
+        request = self.validate_message(self.request.body, requests.SubmissionDesc)
 
         # the .get method raise an exception if the token is invalid
         token = TokenList.get(token_id)

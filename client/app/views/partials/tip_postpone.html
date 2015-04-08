@@ -10,7 +10,7 @@
       <span data-translate>Are you sure that you want to postpone the tip expiration date?</span>
       <br />
       <span data-translate>By confirming, you will postpone the Tip expiration date to:</span>
-      {{tip.potential_expiration_date | date:'dd-MM-yyyy HH:mm'}}
+      <span>{{tip.potential_expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
     </div>
 </div>
 <div class="modal-footer">
@@ -18,7 +18,7 @@
     <i class="glyphicon glyphicon-remove"></i>
     <span data-translate>Cancel</span>
   </button>
-  <button class="btn btn-danger" data-ng-click="ok()" data-ng-disabled="!tip">
+  <button class="btn btn-danger" data-ng-click="ok('postpone')" data-ng-disabled="!tip">
     <i class="glyphicon glyphicon-ok"></i>
     <span data-translate>Confirm Extension</span>
   </button>
