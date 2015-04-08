@@ -36,19 +36,13 @@ def anon_serialize_ahmia(store, language):
     mo.acquire_storm_object(node)
 
     ret_dict = {
-        "title": node.name,
-        "description": mo.dump_localized_attr('description', language),
-
-        # TODO support tags/keyword in Node.
-        "keywords": "%s (GlobaLeaks instance)" % node.name,
-        "relation": node.public_site,
-
-        # TODO ask Ahmia to support a list of languages
-        "language": node.default_language,
-
-        # TODO say to the admin that its email will be public
-        "contactInformation": u'',
-        "type": "GlobaLeaks"
+        'title': node.name,
+        'description': mo.dump_localized_attr('description', language),
+        'keywords': '%s (GlobaLeaks instance)' % node.name,
+        'relation': node.public_site,
+        'language': node.default_language,
+        'contactInformation': u'',
+        'type': 'GlobaLeaks'
     }
 
     return ret_dict
@@ -67,7 +61,7 @@ def anon_serialize_node(store, language):
       'name': node.name,
       'hidden_service': node.hidden_service,
       'public_site': node.public_site,
-      'email': u"",
+      'email': u'',
       'languages_enabled': node.languages_enabled,
       'languages_supported': LANGUAGES_SUPPORTED,
       'default_language' : node.default_language,
@@ -86,8 +80,8 @@ def anon_serialize_node(store, language):
       'allow_unencrypted': node.allow_unencrypted,
       'allow_iframes_inclusion': node.allow_iframes_inclusion,
       'configured': configured,
-      'password': u"",
-      'old_password': u"",
+      'password': u'',
+      'old_password': u'',
       'disable_privacy_badge': node.disable_privacy_badge,
       'disable_security_awareness_badge': node.disable_security_awareness_badge,
       'disable_security_awareness_questions': node.disable_security_awareness_questions,
@@ -117,19 +111,19 @@ def anon_serialize_context(store, context, language):
               for s in context.steps.order_by(models.Step.number) ]
 
     ret_dict = {
-        "id": context.id,
-        "tip_timetolive": context.tip_timetolive,
-        "submission_introduction": u'NYI', # unicode(context.submission_introduction), # optlang
-        "submission_disclaimer": u'NYI', # unicode(context.submission_disclaimer), # optlang
-        "select_all_receivers": context.select_all_receivers,
-        "maximum_selectable_receivers": context.maximum_selectable_receivers,
-        "show_small_cards": context.show_small_cards,
-        "show_receivers": context.show_receivers,
-        "enable_private_messages": context.enable_private_messages,
-        "presentation_order": context.presentation_order,
-        "show_receivers_in_alphabetical_order": context.show_receivers_in_alphabetical_order,
-        "receivers": receivers,
-        "steps": steps
+        'id': context.id,
+        'tip_timetolive': context.tip_timetolive,
+        'submission_introduction': u'NYI', # unicode(context.submission_introduction), # optlang
+        'submission_disclaimer': u'NYI', # unicode(context.submission_disclaimer), # optlang
+        'select_all_receivers': context.select_all_receivers,
+        'maximum_selectable_receivers': context.maximum_selectable_receivers,
+        'show_small_cards': context.show_small_cards,
+        'show_receivers': context.show_receivers,
+        'enable_private_messages': context.enable_private_messages,
+        'presentation_order': context.presentation_order,
+        'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
+        'receivers': receivers,
+        'steps': steps
     }
 
     return get_localized_values(ret_dict, context, context.localized_strings, language)
@@ -232,15 +226,15 @@ def anon_serialize_receiver(receiver, language):
         return None
 
     ret_dict = {
-        "creation_date": datetime_to_ISO8601(receiver.creation_date),
-        "update_date": datetime_to_ISO8601(receiver.last_update),
-        "name": receiver.name,
-        "id": receiver.id,
-        "state": receiver.user.state,
-        "configuration": receiver.configuration, 
-        "presentation_order": receiver.presentation_order,
-        "pgp_key_status": receiver.pgp_key_status,
-        "contexts": contexts
+        'reation_date': datetime_to_ISO8601(receiver.creation_date),
+        'update_date': datetime_to_ISO8601(receiver.last_update),
+        'name': receiver.name,
+        'id': receiver.id,
+        'state': receiver.user.state,
+        'configuration': receiver.configuration, 
+        'presentation_order': receiver.presentation_order,
+        'pgp_key_status': receiver.pgp_key_status,
+        'contexts': contexts
     }
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
