@@ -30,6 +30,12 @@ GLClient.controller('SubmissionCtrl',
     $scope.receivers_selectable = true;
   }
 
+  if ($scope.node.show_contexts_in_alphabetical_order) {
+    $scope.contextsOrderPredicate = 'name';
+  } else {
+    $scope.contextsOrderPredicate = 'presentation_order';
+  }
+
   new Submission(function (submission) {
     $scope.submission = submission;
     $scope.fields = submission.fields;
@@ -61,7 +67,6 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.selectable = function () {
-
     if ($scope.submission.current_context.maximum_selectable_receivers == 0) {
       return true;
     }
@@ -123,6 +128,12 @@ GLClient.controller('SubmissionCtrl',
   $scope.$watch('submission.current_context', function () {
     if ($scope.submission && $scope.submission.current_context) {
       $scope.submission.create(function () {
+
+        if ($scope.submission.current_context.show_receivers_in_alphabetical_order) {
+          $scope.receiversOrderPredicate = 'name';
+        } else {
+          $scope.receiversOrderPredicate = 'presentation_order';
+        }
 
         if ((!receivers_selectable && !$scope.submission.current_context.show_receivers)) {
           $scope.skip_first_step = true;

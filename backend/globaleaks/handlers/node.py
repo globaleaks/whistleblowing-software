@@ -56,7 +56,7 @@ def anon_serialize_ahmia(store, language):
 @transact_ro
 def anon_serialize_node(store, language):
     """
-    Serialize node infor.
+    Serialize node infos.
     """
     node = store.find(models.Node).one()
 
@@ -94,6 +94,7 @@ def anon_serialize_node(store, language):
       'disable_key_code_hint': node.disable_key_code_hint,
       'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
       'landing_page': node.landing_page,
+      'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
       'disk_availability': GLSetting.memory_copy.disk_availability,
     }
 
@@ -126,6 +127,7 @@ def anon_serialize_context(store, context, language):
         "show_receivers": context.show_receivers,
         "enable_private_messages": context.enable_private_messages,
         "presentation_order": context.presentation_order,
+        "show_receivers_in_alphabetical_order": context.show_receivers_in_alphabetical_order,
         "receivers": receivers,
         "steps": steps
     }

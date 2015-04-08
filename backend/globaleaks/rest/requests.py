@@ -30,7 +30,7 @@ fileDict = {
     'description': unicode,
     'size': int,
     'content_type': contentType,
-    'date': dateType,
+    'date': dateType
     }
 
 formFieldsDict = {
@@ -40,7 +40,7 @@ formFieldsDict = {
     'required': bool,
     'preview': bool,
     'hint': unicode,
-    'type': unicode,
+    'type': unicode
 }
 
 authDict = {
@@ -52,7 +52,7 @@ authDict = {
 wbSubmissionDesc = {
     'wb_steps': list,
     'human_captcha_answer': int,
-    'receivers': [uuid_regexp],
+    'receivers': [uuid_regexp]
 }
 
 receiverReceiverDesc = {
@@ -74,16 +74,16 @@ receiverReceiverDesc = {
     "tip_notification": bool,
     "ping_notification": bool,
     "language": unicode,
-    "timezone": int,
+    "timezone": int
 }
 
 actorsCommentDesc = {
-    'content': unicode,
+    'content': unicode
 }
 
 actorsTipOpsDesc = {
     'global_delete': bool,
-    'extend': bool,
+    'extend': bool
 }
 
 adminStepDesc = {
@@ -136,7 +136,8 @@ adminNodeDesc = {
     'header_title_homepage': unicode,
     'header_title_submissionpage': unicode,
     'header_title_receiptpage': unicode,
-    'landing_page': landing_page_regexp
+    'landing_page': landing_page_regexp,
+    'show_contexts_in_alphabetical_order': bool
 }
 
 adminNotificationDesc = {
@@ -191,12 +192,13 @@ adminContextDesc = {
     'show_receivers': bool,
     'enable_private_messages': bool,
     'presentation_order': int,
+    'show_receivers_in_alphabetical_order': bool
 }
 
 adminContextFieldTemplateCopy = {
     'template_id': uuid_regexp,
     'context_id': uuid_regexp,
-    'step_id': uuid_regexp_or_empty,
+    'step_id': uuid_regexp_or_empty
 }
 
 adminReceiverDesc = {
@@ -217,7 +219,7 @@ adminReceiverDesc = {
     'pgp_key_status': unicode,
     'presentation_order': int,
     "language": unicode,
-    "timezone": int,
+    "timezone": int
 }
 
 anonNodeDesc = {
@@ -252,12 +254,11 @@ anonNodeDesc = {
     'disable_key_code_hint': bool,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_tor': unicode,
-    'custom_privacy_badge_none': unicode,
+    'custom_privacy_badge_none': unicode
 }
 
 adminStats = {
-    'week_delta': int,
-    # 'report_link': unicode,
+    'week_delta': int
 }
 
 TipOverview = {
@@ -271,7 +272,7 @@ TipOverview = {
     'internalfiles': list,
     'comments': list,
     'wb_last_access': unicode,
-    'expiration_date': dateType,
+    'expiration_date': dateType
 }
 
 TipsOverview = [TipOverview]
@@ -281,7 +282,7 @@ UserOverview = {
     'receiverfiles': list,
     'pgp_key_status': unicode,
     'id': uuid_regexp,
-    'name': unicode,
+    'name': unicode
 }
 
 UsersOverview = [UserOverview]
@@ -295,7 +296,7 @@ FileOverview = {
     'path': unicode,
     'creation_date': dateType,
     'id': uuid_regexp,
-    'size': int,
+    'size': int
 }
 
 FilesOverview = [FileOverview]
@@ -305,14 +306,14 @@ StatsLine = {
      'new_submission': int,
      'finalized_submission': int,
      'anon_requests': int,
-     'creation_date': dateType,
+     'creation_date': dateType
 }
 
 StatsCollection = [StatsLine]
 
 AnomalyLine = {
      'message': unicode,
-     'creation_date': dateType,
+     'creation_date': dateType
 }
 
 AnomaliesCollection = [AnomalyLine]
@@ -325,7 +326,7 @@ nodeReceiver = {
      'presentation_order': int,
      'pgp_key_status': unicode,
      'id': uuid_regexp,
-     'creation_date': dateType,
+     'creation_date': dateType
 }
 
 nodeReceiverCollection = [nodeReceiver]
@@ -340,7 +341,7 @@ field = {
     'trigger': list,
     'key': uuid_regexp,
     'preview': bool,
-    'type': unicode,
+    'type': unicode
 }
 
 nodeContext = {
@@ -357,6 +358,7 @@ nodeContext = {
     'id': uuid_regexp,
     'receivers': [uuid_regexp],
     'submission_disclaimer': unicode,
+    'show_receivers_in_alphabetical_order': bool
 }
 
 nodeContextCollection = [nodeContext]
@@ -368,19 +370,19 @@ ahmiaDesc = {
     'contactInformation': unicode,
     'relation': unicode,
     'keywords': unicode,
-    'type': unicode,
+    'type': unicode
 }
 
 staticFile = {
     'size': int,
     'filelocation': unicode,
     'content_type': unicode,
-    'filename': unicode,
+    'filename': unicode
 }
 
 staticFileCollectionElem = {
     'size': int,
-    'filename': unicode,
+    'filename': unicode
 }
 
 staticFileCollection = [staticFileCollectionElem]
@@ -393,7 +395,7 @@ internalTipDesc = {
     'new': bool,
     'id': uuid_regexp,
     'files': [uuid_regexp],
-    'expiration_date': dateType,
+    'expiration_date': dateType
 }
 
 FieldDesc = {
@@ -420,7 +422,7 @@ FieldDesc = {
              'fieldgroup)$'),
     'options': list,
     'children': list,
-    'is_template': bool,
+    'is_template': bool
 }
 
 FieldTemplateDesc = {
@@ -446,7 +448,7 @@ FieldTemplateDesc = {
              'fieldgroup)$'),
     'options': list,
     'children': list,
-    'is_template': bool,
+    'is_template': bool
 }
 
 FieldFromTemplateDesc = {
@@ -458,22 +460,22 @@ wizardStepDesc = {
     'label': dict,
     'hint': dict,
     'description': dict,
-    'children': list,
+    'children': list
 }
 
 wizardNodeDesc = {
     'presentation': dict,
-    'footer': dict,
+    'footer': dict
 }
 
 wizardAppdataDesc = {
     'version': int,
     'fields': [wizardStepDesc],
-    'node': wizardNodeDesc,
+    'node': wizardNodeDesc
 }
 
 wizardFirstSetup = {
     'receiver': adminReceiverDesc,
     'context': adminContextDesc,
-    'node': adminNodeDesc,
+    'node': adminNodeDesc
 }

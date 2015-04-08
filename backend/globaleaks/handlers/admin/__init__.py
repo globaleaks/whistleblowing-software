@@ -80,7 +80,8 @@ def db_admin_serialize_node(store, language):
         'admin_language': admin.language,
         'admin_timezone': admin.timezone,
         'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-        'landing_page': node.landing_page
+        'landing_page': node.landing_page,
+        'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order
     }
 
     return get_localized_values(ret_dict, node, node.localized_strings, language)
@@ -250,6 +251,7 @@ def admin_serialize_context(store, context, language):
         "show_receivers": context.show_receivers,
         "enable_private_messages": context.enable_private_messages,
         "presentation_order": context.presentation_order,
+        "show_receivers_in_alphabetical_order": context.show_receivers_in_alphabetical_order,
         "steps": steps
     }
 

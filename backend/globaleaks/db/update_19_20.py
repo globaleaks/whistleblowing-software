@@ -235,6 +235,10 @@ class Replacer1920(TableReplacer):
                 new_node.disable_key_code_hint = False
                 continue
 
+            if v.name == 'show_contexts_in_alphabetical_order':
+                new_node.show_contexts_in_alphabetical_order = False
+                continue
+
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
@@ -439,6 +443,10 @@ class Replacer1920(TableReplacer):
                 if v.name == 'can_postpone_expiration':
                     old_attr = 'postpone_superpower'
                     setattr(new_obj, v.name, getattr(old_obj, old_attr))
+                    continue
+
+                if v.name == 'show_receivers_in_alphabetical_order':
+                    new_obj.show_receivers_in_alphabetical_order = False
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
