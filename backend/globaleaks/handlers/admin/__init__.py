@@ -43,17 +43,17 @@ def db_admin_serialize_node(store, language):
     custom_homepage = os.path.isfile(os.path.join(GLSetting.static_path, "custom_homepage.html"))
 
     ret_dict = {
-        "name": node.name,
-        "presentation": node.presentation,
-        "creation_date": datetime_to_ISO8601(node.creation_date),
-        "last_update": datetime_to_ISO8601(node.last_update),
-        "hidden_service": node.hidden_service,
-        "public_site": node.public_site,
-        "email": node.email,
-        "version": GLSetting.version_string,
-        "languages_supported": LANGUAGES_SUPPORTED,
-        "languages_enabled": node.languages_enabled,
-        "default_language" : node.default_language,
+        'name': node.name,
+        'presentation': node.presentation,
+        'creation_date': datetime_to_ISO8601(node.creation_date),
+        'last_update': datetime_to_ISO8601(node.last_update),
+        'hidden_service': node.hidden_service,
+        'public_site': node.public_site,
+        'email': node.email,
+        'version': GLSetting.version_string,
+        'languages_supported': LANGUAGES_SUPPORTED,
+        'languages_enabled': node.languages_enabled,
+        'default_language' : node.default_language,
         'default_timezone' : node.default_timezone,
         'maximum_filesize': node.maximum_filesize,
         'maximum_namesize': node.maximum_namesize,
@@ -70,8 +70,8 @@ def db_admin_serialize_node(store, language):
         'allow_iframes_inclusion': node.allow_iframes_inclusion,
         'wizard_done': node.wizard_done,
         'configured': configured,
-        'password': u"",
-        'old_password': u"",
+        'password': u'',
+        'old_password': u'',
         'custom_homepage': custom_homepage,
         'disable_privacy_badge': node.disable_privacy_badge,
         'disable_security_awareness_badge': node.disable_security_awareness_badge,
@@ -237,22 +237,22 @@ def admin_serialize_context(store, context, language):
                 for s in context.steps.order_by(models.Step.number)]
 
     ret_dict = {
-        "id": context.id,
-        "creation_date": datetime_to_ISO8601(context.creation_date),
-        "last_update": datetime_to_ISO8601(context.last_update),
-        "receivers": [r.id for r in context.receivers],
+        'id': context.id,
+        'creation_date': datetime_to_ISO8601(context.creation_date),
+        'last_update': datetime_to_ISO8601(context.last_update),
+        'receivers': [r.id for r in context.receivers],
         # tip expressed in day, submission in hours
-        "tip_timetolive": context.tip_timetolive / (60 * 60 * 24),
-        "select_all_receivers": context.select_all_receivers,
-        "can_postpone_expiration": context.can_postpone_expiration,
-        "can_delete_submission": context.can_delete_submission,
-        "maximum_selectable_receivers": context.maximum_selectable_receivers,
-        "show_small_cards": context.show_small_cards,
-        "show_receivers": context.show_receivers,
-        "enable_private_messages": context.enable_private_messages,
-        "presentation_order": context.presentation_order,
-        "show_receivers_in_alphabetical_order": context.show_receivers_in_alphabetical_order,
-        "steps": steps
+        'tip_timetolive': context.tip_timetolive / (60 * 60 * 24),
+        'select_all_receivers': context.select_all_receivers,
+        'can_postpone_expiration': context.can_postpone_expiration,
+        'can_delete_submission': context.can_delete_submission,
+        'maximum_selectable_receivers': context.maximum_selectable_receivers,
+        'show_small_cards': context.show_small_cards,
+        'show_receivers': context.show_receivers,
+        'enable_private_messages': context.enable_private_messages,
+        'presentation_order': context.presentation_order,
+        'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
+        'steps': steps
     }
 
     return get_localized_values(ret_dict, context, context.localized_strings, language)
@@ -266,31 +266,31 @@ def admin_serialize_receiver(receiver, language):
     :return: a dictionary representing the serialization of the receiver
     """
     ret_dict = {
-        "id": receiver.id,
-        "name": receiver.name,
-        "creation_date": datetime_to_ISO8601(receiver.creation_date),
-        "last_update": datetime_to_ISO8601(receiver.last_update),
-        "can_delete_submission": receiver.can_delete_submission,
-        "can_postpone_expiration": receiver.can_postpone_expiration,
-        "username": receiver.user.username,
+        'id': receiver.id,
+        'name': receiver.name,
+        'creation_date': datetime_to_ISO8601(receiver.creation_date),
+        'last_update': datetime_to_ISO8601(receiver.last_update),
+        'can_delete_submission': receiver.can_delete_submission,
+        'can_postpone_expiration': receiver.can_postpone_expiration,
+        'username': receiver.user.username,
         'mail_address': receiver.mail_address,
         'ping_mail_address': receiver.ping_mail_address,
-        "password": u"",
-        "state": receiver.user.state,
-        "configuration": receiver.configuration,
-        "contexts": [c.id for c in receiver.contexts],
-        "pgp_key_info": receiver.pgp_key_info,
-        "pgp_key_public": receiver.pgp_key_public,
-        "pgp_key_remove": False,
-        "pgp_key_fingerprint": receiver.pgp_key_fingerprint,
-        "pgp_key_expiration": datetime_to_ISO8601(receiver.pgp_key_expiration),
-        "pgp_key_status": receiver.pgp_key_status,
-        "tip_notification": receiver.tip_notification,
-        "ping_notification": receiver.ping_notification,
-        "presentation_order": receiver.presentation_order,
-        "language": receiver.user.language,
-        "timezone": receiver.user.timezone,
-        "password_change_needed": receiver.user.password_change_needed
+        'password': u'',
+        'state': receiver.user.state,
+        'configuration': receiver.configuration,
+        'contexts': [c.id for c in receiver.contexts],
+        'pgp_key_info': receiver.pgp_key_info,
+        'pgp_key_public': receiver.pgp_key_public,
+        'pgp_key_remove': False,
+        'pgp_key_fingerprint': receiver.pgp_key_fingerprint,
+        'pgp_key_expiration': datetime_to_ISO8601(receiver.pgp_key_expiration),
+        'pgp_key_status': receiver.pgp_key_status,
+        'tip_notification': receiver.tip_notification,
+        'ping_notification': receiver.ping_notification,
+        'presentation_order': receiver.presentation_order,
+        'language': receiver.user.language,
+        'timezone': receiver.user.timezone,
+        'password_change_needed': receiver.user.password_change_needed
     }
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
@@ -391,6 +391,7 @@ def acquire_context_timetolive(request):
 
     return tip_ttl
 
+
 def field_is_present(store, field):
     result = store.find(models.Field,
                         models.Field.label == field['label'],
@@ -399,6 +400,7 @@ def field_is_present(store, field):
                         models.Field.multi_entry == field['multi_entry'],
                         models.Field.type == field['type'],
                         models.Field.preview == field['preview'])
+
     return result.count() > 0
 
 
@@ -653,7 +655,7 @@ def db_create_receiver(store, request, language):
         'salt': receiver_salt,
         'role': u'receiver',
         'state': u'enabled',
-        'language': u"en",
+        'language': u'en',
         'timezone': 0,
         'password_change_needed': True,
     }

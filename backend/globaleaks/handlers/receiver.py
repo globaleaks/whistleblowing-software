@@ -21,27 +21,27 @@ from globaleaks.utils.utility import log, acquire_bool, datetime_to_ISO8601, dat
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver, language):
     ret_dict = {
-        "id": receiver.id,
-        "name": receiver.name,
-        "update_date": datetime_to_ISO8601(receiver.last_update),
-        "creation_date": datetime_to_ISO8601(receiver.creation_date),
-        "can_delete_submission": receiver.can_delete_submission,
-        "username": receiver.user.username,
-        "pgp_key_info": receiver.pgp_key_info,
-        "pgp_key_fingerprint": receiver.pgp_key_fingerprint,
-        "pgp_key_remove": False,
-        "pgp_key_public": receiver.pgp_key_public,
-        "pgp_key_expiration": datetime_to_ISO8601(receiver.pgp_key_expiration),
-        "pgp_key_status": receiver.pgp_key_status,
-        "tip_notification": receiver.tip_notification,
-        "ping_notification": receiver.ping_notification,
-        "mail_address": receiver.mail_address,
-        "ping_mail_address": receiver.ping_mail_address,
-        "contexts": [c.id for c in receiver.contexts],
-        "password": u"",
-        "old_password": u"",
-        "language": receiver.user.language,
-        "timezone": receiver.user.timezone
+        'id': receiver.id,
+        'name': receiver.name,
+        'update_date': datetime_to_ISO8601(receiver.last_update),
+        'creation_date': datetime_to_ISO8601(receiver.creation_date),
+        'can_delete_submission': receiver.can_delete_submission,
+        'username': receiver.user.username,
+        'pgp_key_info': receiver.pgp_key_info,
+        'pgp_key_fingerprint': receiver.pgp_key_fingerprint,
+        'pgp_key_remove': False,
+        'pgp_key_public': receiver.pgp_key_public,
+        'pgp_key_expiration': datetime_to_ISO8601(receiver.pgp_key_expiration),
+        'pgp_key_status': receiver.pgp_key_status,
+        'tip_notification': receiver.tip_notification,
+        'ping_notification': receiver.ping_notification,
+        'mail_address': receiver.mail_address,
+        'ping_mail_address': receiver.ping_mail_address,
+        'contexts': [c.id for c in receiver.contexts],
+        'password': u'',
+        'old_password': u'',
+        'language': receiver.user.language,
+        'timezone': receiver.user.timezone
     }
 
     for context in receiver.contexts:
@@ -59,11 +59,12 @@ def serialize_event(evnt):
 
     ret_dict = {
         'id': evnt.id,
-        "creation_date": datetime_to_ISO8601(evnt.creation_date),
+        'creation_date': datetime_to_ISO8601(evnt.creation_date),
         'title': evnt.title,
         'mail_sent': evnt.mail_sent,
         'tip_id': evnt.receivertip_id
     }
+
     return ret_dict
 
 

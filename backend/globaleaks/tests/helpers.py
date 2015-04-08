@@ -824,6 +824,7 @@ class MockDict():
             'show_receivers': False,
             'enable_private_messages': True,
             'presentation_order': 0,
+            'show_receivers_in_alphabetical_order': False
         }
 
         self.dummySubmission = {
@@ -884,7 +885,8 @@ class MockDict():
             'header_title_submissionpage': u'',
             'header_title_receiptpage': u'',
             'landing_page': u'homepage',
-            'context_selector_label': u''
+            'context_selector_label': u'',
+            'show_contexts_in_alphabetical_order': False
         }
 
 
