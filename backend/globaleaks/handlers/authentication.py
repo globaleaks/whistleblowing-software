@@ -303,7 +303,7 @@ class AuthenticationHandler(BaseHandler):
         """
         This is the /login handler expecting login/password/role,
         """
-        request = self.validate_message(self.request.body, requests.authDict)
+        request = self.validate_message(self.request.body, requests.AuthDesc)
 
         username = request['username']
         password = request['password']

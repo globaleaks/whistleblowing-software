@@ -142,7 +142,7 @@ class ReceiverInstance(BaseHandler):
     def get(self):
         """
         Parameters: None
-        Response: receiverReceiverDesc
+        Response: ReceiverReceiverDesc
         Errors: TipIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
 
@@ -159,11 +159,11 @@ class ReceiverInstance(BaseHandler):
     def put(self):
         """
         Parameters: None
-        Request: receiverReceiverDesc
-        Response: receiverReceiverDesc
+        Request: ReceiverReceiverDesc
+        Response: ReceiverReceiverDesc
         Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidAuthentication, TipIdNotFound
         """
-        request = self.validate_message(self.request.body, requests.receiverReceiverDesc)
+        request = self.validate_message(self.request.body, requests.ReceiverReceiverDesc)
 
         receiver_status = yield update_receiver_settings(self.current_user.user_id,
                                                          request, self.request.language)

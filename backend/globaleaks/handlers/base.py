@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 """
-Implementation of BaseHandler, the Cyclone class RequestHandler extended with
+Implementation of BaseHandler, the Cyclone class RequestHandler postponeed with
 our needs.
 """
 

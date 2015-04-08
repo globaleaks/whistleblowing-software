@@ -23,9 +23,9 @@ var authentication;
 var node;
 
 var valid_admin_login = {
-  "username": "admin",
-  "password": "globaleaks",
-  "role": "admin"
+  'username': 'admin',
+  'password': 'globaleaks',
+  'role': 'admin'
 }
 
 var receiver = {
@@ -33,26 +33,26 @@ var receiver = {
   comment_notification: false,
   contexts: [],
   timezone: 0,
-  language: "en",
-  description: "",
+  language: 'en',
+  description: '',
   file_notification: false,
-  pgp_key_public: "",
-  pgp_key_expiration: "",
-  pgp_key_fingerprint: "",
-  pgp_key_info: "",
+  pgp_key_public: '',
+  pgp_key_expiration: '',
+  pgp_key_fingerprint: '',
+  pgp_key_info: '',
   pgp_key_remove: false,
-  pgp_key_status: "ignored",
-  mail_address: "receiver1@antani.gov", // used 'Receiver N' for population
-  ping_mail_address: "",
-  unsecure_mail_address: "unsecure@live.com",
+  pgp_key_status: 'ignored',
+  mail_address: 'receiver1@antani.gov', // used 'Receiver N' for population
+  ping_mail_address: '',
+  unsecure_mail_address: 'unsecure@live.com',
   message_notification: false,
-  name: "receiver1@antani.gov", // used 'receiverN@antani.gov' for population
-  password: "ringobongos3cur1ty",
+  name: 'receiver1@antani.gov', // used 'receiverN@antani.gov' for population
+  password: 'ringobongos3cur1ty',
   can_postpone_expiration: true,
   presentation_order: 0,
   tip_notification: false,
   ping_notification: false,
-  configuration: "default",
+  configuration: 'default',
   password_change_needed: false,
 }
 
@@ -150,50 +150,50 @@ var fields = [
 ]
 
 var context = {
-  "receiver_introduction":"foca",
-  "presentation_order":0,
-  "tip_timetolive":15,
-  "can_postpone_expiration":false,
-  "can_delete_submission":true,
-  "show_small_cards":false,
-  "show_receivers":true,
-  "enable_private_messages":true,
-  "select_all_receivers":true,
-  "description":"XXXXX ħ ÐÐ",
-  "name":"Context 1",
-  "steps":[
+  receiver_introduction: 'foca',
+  presentation_order: 0,
+  tip_timetolive: 15,
+  can_postpone_expiration: false,
+  can_delete_submission: true,
+  show_small_cards: false,
+  show_receivers: true,
+  enable_private_messages: true,
+  select_all_receivers: true,
+  show_receivers_in_alphabetical_order: false,
+  description: 'XXXXX ħ ÐÐ',
+  name: 'Context 1',
+  steps: [
      {
-       'label': 'Step 1',
-       'description': 'Step Description',
-       'hint': 'Step Hint',
-       'children': {}
+       label: 'Step 1',
+       description: 'Step Description',
+       hint: 'Step Hint',
+       children: {}
      },
      {
-       'label': 'Step 2',
-       'description': 'Step Description',
-       'hint': 'Step Hint',
-       'children': {}
+       label: 'Step 2',
+       description: 'Step Description',
+       hint: 'Step Hint',
+       children: {}
     }
   ],
-  "file_required":false,
-  "maximum_selectable_receivers":0,
-  "receivers": []
+  maximum_selectable_receivers:0,
+  receivers: []
 }
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
-    "X-XSS-Protection": "1; mode=block",
-    "X-Robots-Tag": "noindex",
-    "X-Content-Type-Options": "nosniff",
-    "Expires": "-1",
-    "Server": "globaleaks",
-    "Pragma":  "no-cache",
-    "Cache-control": "no-cache, no-store, must-revalidate"
+    'X-XSS-Protection': '1; mode=block',
+    'X-Robots-Tag': 'noindex',
+    'X-Content-Type-Options': 'nosniff',
+    'Expires': '-1',
+    'Server': 'globaleaks',
+    'Pragma':  'no-cache',
+    'Cache-control': 'no-cache, no-store, must-revalidate'
   }
 
   for (var key in mandatory_headers) {
     if (headers[key.toLowerCase()] != mandatory_headers[key]) {
-      throw key + " != " + mandatory_headers[key];
+      throw key + ' != ' + mandatory_headers[key];
     }
   }
 }

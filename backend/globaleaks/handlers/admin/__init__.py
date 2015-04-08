@@ -790,7 +790,7 @@ class NodeInstance(BaseHandler):
         Get the node infos.
 
         Parameters: None
-        Response: adminNodeDesc
+        Response: AdminNodeDesc
         """
         node_description = yield admin_serialize_node(self.request.language)
         self.set_status(200)
@@ -803,12 +803,12 @@ class NodeInstance(BaseHandler):
         """
         Update the node infos.
 
-        Request: adminNodeDesc
-        Response: adminNodeDesc
+        Request: AdminNodeDesc
+        Response: AdminNodeDesc
         Errors: InvalidInputFormat
         """
         request = self.validate_message(self.request.body,
-                                        requests.adminNodeDesc)
+                                        requests.AdminNodeDesc)
 
         node_description = yield update_node(request, True, self.request.language)
         GLApiCache.invalidate()
@@ -843,12 +843,12 @@ class ContextCreate(BaseHandler):
         """
         Create a new context.
 
-        Request: adminContextDesc
-        Response: adminContextDesc
+        Request: AdminContextDesc
+        Response: AdminContextDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
         request = self.validate_message(self.request.body,
-                                        requests.adminContextDesc)
+                                        requests.AdminContextDesc)
 
         response = yield create_context(request, self.request.language)
         GLApiCache.invalidate()
@@ -866,7 +866,7 @@ class ContextInstance(BaseHandler):
         Get the specified context.
 
         Parameters: context_id
-        Response: adminContextDesc
+        Response: AdminContextDesc
         Errors: ContextIdNotFound, InvalidInputFormat
         """
         response = yield get_context(context_id, self.request.language)
@@ -882,14 +882,14 @@ class ContextInstance(BaseHandler):
         Update the specified context.
 
         Parameters: context_id
-        Request: adminContextDesc
-        Response: adminContextDesc
+        Request: AdminContextDesc
+        Response: AdminContextDesc
         Errors: InvalidInputFormat, ContextIdNotFound, ReceiverIdNotFound
 
         Updates the specified context.
         """
         request = self.validate_message(self.request.body,
-                                        requests.adminContextDesc)
+                                        requests.AdminContextDesc)
 
         response = yield update_context(context_id, request, self.request.language)
         GLApiCache.invalidate()
@@ -904,7 +904,7 @@ class ContextInstance(BaseHandler):
         """
         Delete the specified context.
 
-        Request: adminContextDesc
+        Request: AdminContextDesc
         Response: None
         Errors: InvalidInputFormat, ContextIdNotFound
         """
@@ -941,12 +941,12 @@ class ReceiverCreate(BaseHandler):
         """
         Get the specified receiver.
 
-        Request: adminReceiverDesc
-        Response: adminReceiverDesc
+        Request: AdminReceiverDesc
+        Response: AdminReceiverDesc
         Errors: InvalidInputFormat, ContextIdNotFound
         """
         request = self.validate_message(self.request.body,
-                                        requests.adminReceiverDesc)
+                                        requests.AdminReceiverDesc)
 
         response = yield create_receiver(request, self.request.language)
         GLApiCache.invalidate()
@@ -964,7 +964,7 @@ class ReceiverInstance(BaseHandler):
         Get the specified receiver.
 
         Parameters: receiver_id
-        Response: adminReceiverDesc
+        Response: AdminReceiverDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
         response = yield get_receiver(receiver_id, self.request.language)
@@ -980,11 +980,11 @@ class ReceiverInstance(BaseHandler):
         Update the specified receiver.
 
         Parameters: receiver_id
-        Request: adminReceiverDesc
-        Response: adminReceiverDesc
+        Request: AdminReceiverDesc
+        Response: AdminReceiverDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound, ContextId
         """
-        request = self.validate_message(self.request.body, requests.adminReceiverDesc)
+        request = self.validate_message(self.request.body, requests.AdminReceiverDesc)
 
         response = yield update_receiver(receiver_id, request, self.request.language)
         GLApiCache.invalidate()

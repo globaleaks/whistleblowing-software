@@ -340,7 +340,7 @@ class Alarm(object):
         this is why the content are copied for the statistic
         acquiring later.
         """
-        from globaleaks.handlers.admin.statistics import AnomaliesCollection
+        from globaleaks.handlers.admin.statistics import AnomaliesCollectionDesc
 
         debug_reason = ""
         Alarm.number_of_anomalies = 0
@@ -397,7 +397,7 @@ class Alarm(object):
 
         # if there are some anomaly or we're nearby, record it.
         if Alarm.number_of_anomalies >= 1 or Alarm.stress_levels['activity'] >= 1:
-            AnomaliesCollection.update_AnomalyQ(current_event_matrix,
+            AnomaliesCollectionDesc.update_AnomalyQ(current_event_matrix,
                                                 Alarm.stress_levels['activity'])
 
         if previous_activity_sl or Alarm.stress_levels['activity']:

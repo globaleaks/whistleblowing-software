@@ -69,7 +69,7 @@ class FirstSetup(BaseHandler):
         """
 
         request = self.validate_message(self.request.body,
-                                        requests.wizardFirstSetup)
+                                        requests.WizardFirstSetupDesc)
 
         yield wizard(request, self.request.language)
 

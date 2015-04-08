@@ -50,13 +50,13 @@
     <div class="col-md-12">
       <h3>{{"Options"}}</h3>
       <span data-ng-show="tip.can_postpone_expiration">
-        <button data-ng-click="tip_extend(tip.id)" class="btn btn-sm btn-warning">
+        <button data-ng-click="tip_postpone(tip.id)" class="btn btn-sm btn-warning">
           <i class="glyphicon glyphicon-time"></i>
           <span data-translate>Postpone Tip expiration date</span>
         </button>
       </span>
       <span data-ng-show="tip.can_delete_submission">
-        <button data-ng-click="tip_delete(tip.id, true)" class="btn btn-sm btn-danger">
+        <button data-ng-click="tip_delete(tip.id)" class="btn btn-sm btn-danger">
           <i class="glyphicon glyphicon-trash"></i>
           <span data-translate>Delete Tip</span>
         </button>

@@ -194,7 +194,7 @@ def delete_anomaly_history(store):
     log.info("Anomalies collection removal completed.")
 
 
-class AnomaliesCollection(BaseHandler):
+class AnomaliesCollectionDesc(BaseHandler):
     """
     This Handler returns the list of the triggered anomalies based on
     activity monitored in a timedelta (is considered anomalous if they
@@ -237,7 +237,7 @@ class AnomalyHistoryCollection(BaseHandler):
         self.finish([])
 
 
-class StatsCollection(BaseHandler):
+class StatsCollectionDesc(BaseHandler):
     """
     This Handler returns the list of the stats, stats is the aggregated
     amount of activities recorded in the delta defined in GLSettings

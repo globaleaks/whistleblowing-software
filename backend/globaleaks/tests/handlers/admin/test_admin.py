@@ -131,7 +131,7 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         handler = self.request(role='admin')
         yield handler.get(self.dummyContext['id'])
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.adminContextDesc)
+        self._handler.validate_message(json.dumps(self.responses[0]), requests.AdminContextDesc)
 
     @inlineCallbacks
     def test_put(self):

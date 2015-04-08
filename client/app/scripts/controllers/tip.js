@@ -1,29 +1,26 @@
 GLClient.controller('TipCtrl', ['$scope', '$http', '$route', '$location', '$modal',
   function($scope, $http, $route, $location, $modal) {
 
-  $scope.tip_delete = function (id, global_delete) {
+  $scope.tip_delete = function (id) {
     $scope.tip_id = id;
-    $scope.global_delete = global_delete;
+
     var modalInstance = $modal.open({
       templateUrl: 'views/partials/tip_delete.html',
-      controller: ModalDeleteTipCtrl,
+      controller: TipOperationsCtrl,
       resolve: {
         tip_id: function () {
           return $scope.tip_id;
-        },
-        global_delete: function () {
-          return $scope.global_delete;
         }
       }
     });
   };
 
-  $scope.tip_extend = function (id) {
+  $scope.tip_postpone = function (id) {
     $scope.tip_id = id;
 
     var modalInstance = $modal.open({
-      templateUrl: 'views/partials/tip_extend.html',
-      controller: ModalPostponeTipCtrl,
+      templateUrl: 'views/partials/tip_postpone.html',
+      controller: TipOperationsCtrl,
       resolve: {
         tip_id: function () {
           return $scope.tip_id;
@@ -46,8 +43,6 @@ GLClient.controller('TipCtrl', ['$scope', '$http', '$route', '$location', '$moda
           });
         };
 
-        // XXX perhaps make this return a lazyly instanced item.
-        // look at $resource code for inspiration.
         fn($scope.tip);
       });
     }
@@ -55,29 +50,8 @@ GLClient.controller('TipCtrl', ['$scope', '$http', '$route', '$location', '$moda
 
 }]);
 
-ModalDeleteTipCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance', 'tip_id', 'global_delete',
-                     function ($scope, $http, $route, $location, $modalInstance, tip_id, global_delete) {
-
-  $scope.tip_id = tip_id;
-  $scope.global_delete = global_delete;
-
-  $scope.cancel = function () {
-    $modalInstance.close();
-  };
-
-  $scope.ok = function () {
-      $modalInstance.close();
-      return $http({method: 'DELETE', url: '/rtip/' + tip_id, data:{global_delete: global_delete, extend:false}}).
-                 success(function(data, status, headers, config){ 
-                                                                  $location.url('/receiver/tips');
-                                                                  $route.reload();
-                                                                });
-  };
-}];
-
-ModalPostponeTipCtrl = ['$scope', '$http', '$route', '$location', 'Tip', '$modalInstance', 'tip_id',
-                        function ($scope, $http, $route, $location, Tip, $modalInstance, tip_id) {
-
+TipOperationsCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance', 'Tip', 'tip_id',
+                        function ($scope, $http, $route, $location, $modalInstance, Tip, tip_id) {
 
   $scope.tip_id = tip_id;
 
@@ -90,13 +64,22 @@ ModalPostponeTipCtrl = ['$scope', '$http', '$route', '$location', 'Tip', '$modal
     $modalInstance.close();
   };
 
-  $scope.ok = function () {
+  $scope.ok = function (operation) {
      $modalInstance.close();
 
-     $scope.tip.extend = true;
+     if (operation == 'postpone') {
+       $scope.tip.operation = operation;
+       $scope.tip.$update(function() {
+         $route.reload();
+       });
+     } else if (operation == 'delete') {
+       return $http({method: 'DELETE', url: '/rtip/' + tip_id, data:{}}).
+             success(function(data, status, headers, config){ 
+               $location.url('/receiver/tips');
+               $route.reload();
+             });
+     }
 
-     $scope.tip.$update();
-     $route.reload();
   };
 
 }];

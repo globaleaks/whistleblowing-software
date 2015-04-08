@@ -14,8 +14,8 @@ from globaleaks.utils.utility import datetime_now
 anomaly.reactor = task.Clock()
 StatisticsSchedule.collection_start_datetime = datetime_now()
 
-class TestAnomaliesCollection(helpers.TestHandler):
-    _handler = statistics.AnomaliesCollection
+class TestAnomaliesCollectionDesc(helpers.TestHandler):
+    _handler = statistics.AnomaliesCollectionDesc
 
     @inlineCallbacks
     def test_get(self):
@@ -29,8 +29,8 @@ class TestAnomaliesCollection(helpers.TestHandler):
         self.assertEqual(len(self.responses), 1)
         self.assertTrue(isinstance(self.responses[0], dict))
 
-class TestStatsCollection(helpers.TestHandler):
-    _handler = statistics.StatsCollection
+class TestStatsCollectionDesc(helpers.TestHandler):
+    _handler = statistics.StatsCollectionDesc
 
     @transact_ro
     def get_stats_count(self, store):

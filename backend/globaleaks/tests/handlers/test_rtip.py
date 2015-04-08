@@ -35,7 +35,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.get(rtip_desc['rtip_id'])
             self.assertEqual(handler.get_status(), 200)
 
-            self.responses[0]['extend'] = True
+            self.responses[0]['operation'] = 'postpone'
 
             handler = self.request(self.responses[0], role='receiver')
             handler.current_user.user_id = rtip_desc['receiver_id']
@@ -43,17 +43,12 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertEqual(handler.get_status(), 202)
 
     @inlineCallbacks
-    def test_delete_global_delete_true(self):
+    def test_delete_delete(self):
         rtips_desc = yield self.get_rtips()
         self.assertEqual(len(rtips_desc), 2)
 
-        body = {
-            'global_delete': True,
-            'extend': False
-        }
-
         # we deleete the first and then we verify that the second does not exist anymore
-        handler = self.request(role='receiver', body=json.dumps(body))
+        handler = self.request(role='receiver')
         handler.current_user.user_id = rtips_desc[0]['receiver_id']
         yield handler.delete(rtips_desc[0]['rtip_id'])
 
@@ -62,50 +57,21 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(rtips_desc), 0)
 
     @inlineCallbacks
-    def test_delete_global_delete_false(self):
-        rtips_desc = yield self.get_rtips()
-        self.assertEqual(len(rtips_desc), 2)
-
-        body = {
-            'global_delete': False,
-            'extend': False
-        }
-
-        # we delete the first than we verify that the second still exists
-        handler = self.request(role='receiver', body=json.dumps(body))
-        handler.current_user.user_id = rtips_desc[0]['receiver_id']
-        yield handler.delete(rtips_desc[0]['rtip_id'])
-
-        rtips_desc = yield self.get_rtips()
-
-        self.assertEqual(len(rtips_desc), 1)
-
-    @inlineCallbacks
     def test_delete_unexistent_tip_by_existent_and_logged_receiver(self):
-        body = {
-            'global_delete': True,
-            'extend': False
-        }
-
         rtips_desc = yield self.get_rtips()
 
         for rtip_desc in rtips_desc:
-            handler = self.request(role='receiver', body=json.dumps(body))
+            handler = self.request(role='receiver')
             handler.current_user.user_id = rtip_desc['receiver_id']
 
             self.assertFailure(handler.delete("unexistent_tip"), errors.TipIdNotFound)
 
     @inlineCallbacks
     def test_delete_existent_tip_by_existent_and_logged_but_wrong_receiver(self):
-        body = {
-            'global_delete': True,
-            'extend': False
-        }
-
         rtips_desc = yield self.get_rtips()
 
         for rtip_desc in rtips_desc:
-            handler = self.request(role='receiver', body=json.dumps(body))
+            handler = self.request(role='receiver')
             handler.current_user.user_id = rtip_desc['receiver_id']
 
             self.assertFailure(handler.delete("unexistent_tip"), errors.TipIdNotFound)

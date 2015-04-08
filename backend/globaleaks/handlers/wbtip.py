@@ -191,12 +191,12 @@ class WBTipCommentCollection(BaseHandler):
     @inlineCallbacks
     def post(self):
         """
-        Request: actorsCommentDesc
-        Response: actorsCommentDesc
+        Request: CommentDesc
+        Response: CommentDesc
         Errors: InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
 
-        request = self.validate_message(self.request.body, requests.actorsCommentDesc)
+        request = self.validate_message(self.request.body, requests.CommentDesc)
         answer = yield create_comment_wb(self.current_user.user_id, request)
 
         self.set_status(201)  # Created
@@ -379,7 +379,7 @@ class WBTipMessageCollection(BaseHandler):
     @authenticated('wb')
     @inlineCallbacks
     def post(self, receiver_id):
-        request = self.validate_message(self.request.body, requests.actorsCommentDesc)
+        request = self.validate_message(self.request.body, requests.CommentDesc)
 
         message = yield create_message_wb(self.current_user.user_id, receiver_id, request)
 
