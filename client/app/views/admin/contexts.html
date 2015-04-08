@@ -1,7 +1,6 @@
 <div class="row">
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
-
     <div data-ng-controller="AdminContextsCtrl">
       <div class="col-md-12">
         <form name="newContext" class="addContext col-md-6" novalidate>
@@ -29,27 +28,18 @@
           </div>
         </form>
       </div>
-
       <br /><br />
-
       <div data-ng-show="admin.contexts.length != 0" class="col-md-12">
         <div class="text-right">
-          <a class="btn btn-success" data-ng-click="reorder_contexts_alphabetically()">
-            <i class="glyphicon glyphicon-sort-by-alphabet"></i>
-            <span data-translate>Reorder Contexts alphabetically</span>
-          </a>
           <a class="btn btn-success" data-ng-click="save_all()">
             <i class="glyphicon glyphicon-ok"></i>
             <span data-translate>Save All</span>
           </a>
         </div>
-
         <div ui-sortable="sortableOptions" data-ng-model="admin.contexts">
-
           <div data-ng-repeat="context in admin.contexts | orderBy:'presentation_order'">
             <form name="editContext" data-ng-controller="AdminContextsEditorCtrl" novalidate>
               <div class="configItem contextItem"  data-ng-class="{'configItemLast': $last}">
-
                 <div class="row" data-ng-click="toggleEditing()">
                   <div class="editorHeader contextEditorHeader handle">
                     <div data-ng-show="!editing">
@@ -60,7 +50,6 @@
                         </div>
                       </div>
                     </div>
-
                     <div data-ng-show="editing">
                       <div class="col-md-6 editorHeaderTitle">{{context.name}}</div>
                       <div class="col-md-offset-1 col-md-5 editorHeaderButtons">
@@ -77,10 +66,8 @@
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
-
                 <div class="editor contextEditor" data-ng-if="editing">
                   <div class="row">
                     <div class="col-md-6">
@@ -118,55 +105,55 @@
                       <div>UUID: {{context.id}}</div>
                     </div>
                     <div class="col-md-12">
-
                       <a class="btn btn-info" data-ng-click="advanced_edit = !advanced_edit" data-ng-init="advanced_edit=false">
                         <i class="glyphicon glyphicon-plus"></i>
                         <span data-translate>Advanced settings</span>
                       </a>
-
                       <div class="row" data-ng-show="advanced_edit">
                         <div class="col-md-6">
+                          <div class="form-group">
+                            <label>
+                              <input data-ng-model="context.show_receivers_in_alphabetical_order" type="checkbox" />
+                              <span data-translate>Show receivers in alphabetical order</span>
+                            </label>
+                          </div>
                           <div class="form-group">
                             <label data-translate>Submitted Tip expiry time (days)</label>
                             <input class="form-control" data-ng-model="context.tip_timetolive" value="{{context.tip_timetolive}}" type="number">
                           </div>
-                          <div class="form-group table-bordered">
+                          <div class="form-group">
                             <input data-ng-model="context.select_all_receivers" value="{{context.select_all_receivers}}" type="checkbox">
                             <label data-translate>Select all receivers by default</label>
                           </div>
                           <div class="form-group" data-ng-show="!context.select_all_receivers">
-                            <div><p data-translate>Maximum number of selectable Receivers:</p> <p data-translate>(0 = unlimited)</p></div>
+                            <label data-translate>Maximum number of selectable Receivers:</label><label data-translate>(0 = unlimited)</label>
                             <input class="form-control" data-ng-model="context.maximum_selectable_receivers" value="{{context.maximum_selectable_receivers}}" type="number">
                           </div>
-                          <div class="form-group table-bordered">
+                          <div class="form-group">
                             <input data-ng-model="context.show_receivers" value="{{context.show_receivers}}" type="checkbox">
                             <label data-translate>Show receivers</label>
                           </div>
-                          <div class="form-group table-bordered">
+                          <div class="form-group">
                             <input data-ng-model="context.show_small_cards" value="{{context.show_small_cards}}" type="checkbox">
                             <label data-translate>Show small receiver cards on submission interface</label>
                           </div>
-                          <div class="form-group table-bordered">
+                          <div class="form-group">
                             <input data-ng-model="context.enable_private_messages" value="{{context.enable_private_messages}}" type="checkbox">
                             <label data-translate>Enable private messages</label>
                           </div>
-                          <div class="form-group table-bordered">
+                          <div class="form-group">
                             <input data-ng-model="context.can_postpone_expiration" value="{{context.can_postpone_expiration}}" type="checkbox">
                             <label data-translate>Allow Receivers to postpone expiration date of the Tips</label>
                             <div data-ng-show="context.can_postpone_expiration">
-                            <span class="label label-info">
-                              <span data-translate>Now enabled:</span>
-                            </span>
+                              <span class="label label-info" data-translate>Now enabled:</span>
                               <span data-translate>Receivers of this Context will be able to postpone expiration date of the Tips.</span>
                             </div>
                           </div>
-                          <div class="form-group table-bordered">
+                          <div class="form-group">
                             <input data-ng-model="context.can_delete_submission" value="{{context.can_delete_submission}}" type="checkbox">
                             <label data-translate>Allow Receivers to delete Tips</label>
                             <div data-ng-show="context.can_delete_submission">
-                              <span class="label label-info">
-                                <span data-translate>Now enabled:</span>
-                              </span>
+                              <span class="label label-info" data-translate>Now enabled:</span>
                               <span data-translate>Receivers of this Context will be able to delete Tips and their content.</span>
                             </div>
                           </div>

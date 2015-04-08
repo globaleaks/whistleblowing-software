@@ -52,30 +52,6 @@ function($scope, $modal) {
     );
   };
 
-  $scope.sortableOptions = {
-    stop: function(e, ui) {
-      $scope.update_receivers_order();
-    }
-  };
-
-  $scope.reorder_receivers_alphabetically = function () {
-    $scope.admin.receivers = _($scope.admin.receivers).sortBy(function (receiver) {
-      return receiver.name;
-    });
-
-    $scope.update_receivers_order();
-
-    $scope.save_all();
-  };
-
-  $scope.update_receivers_order = function() {
-    var i = 0;
-    angular.forEach($scope.admin.receivers, function(receiver, key) {
-        receiver.presentation_order = i + 1;
-        i += 1;
-    });
-  }
-
 }]);
 
 GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher', 'CONSTANTS',

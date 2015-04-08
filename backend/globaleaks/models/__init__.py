@@ -202,11 +202,14 @@ class Context(Model):
     can_postpone_expiration = Bool(default=False)
     can_delete_submission = Bool(default=False)
 
+    show_receivers_in_alphabetical_order = Bool(default=False)
+
     presentation_order = Int(default=9)
 
     unicode_keys = []
     localized_strings = ['name', 'description', 'receiver_introduction']
     int_keys = [ 'maximum_selectable_receivers',
+                 'show_receivers_in_alphabetical_order',
                  'presentation_order' ]
     bool_keys = [ 'select_all_receivers',
                   'can_postpone_expiration', 'can_delete_submission',
@@ -416,6 +419,8 @@ class Node(Model):
 
     landing_page = Unicode()
 
+    show_contexts_in_alphabetical_order = Bool(default=False)
+
     exception_email = Unicode()
 
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
@@ -423,7 +428,8 @@ class Node(Model):
                     'landing_page']
 
     int_keys = ['maximum_namesize', 'maximum_textsize',
-                'maximum_filesize', 'default_timezone']
+                'maximum_filesize', 'default_timezone',
+                'show_contexts_in_alphabetical_order']
 
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                  'tor2web_unauth', 'can_postpone_expiration',

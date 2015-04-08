@@ -60,6 +60,7 @@ CREATE TABLE context (
     show_receivers INTEGER NOT NULL,
     enable_private_messages INTEGER NOT NULL,
     presentation_order INTEGER,
+    show_receivers_in_alphabetical_order INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -153,6 +154,7 @@ CREATE TABLE node (
     header_title_submissionpage BLOB NOT NULL,
     header_title_receiptpage BLOB NOT NULL,
     landing_page VARCHAR NOT NULL CHECK (landing_page IN ('homepage', 'submissionpage')),
+    show_contexts_in_alphabetical_order INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 
