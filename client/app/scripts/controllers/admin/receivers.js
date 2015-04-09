@@ -28,7 +28,7 @@ function($scope, $modal) {
     $scope.admin.receiver['delete']({
       receiver_id: receiver.id
     }, function(){
-      var idx = angular.indexOf($scope.admin.receivers, receiver);
+      var idx = $scope.admin.receivers.indexOf(receiver);
       $scope.admin.receivers.splice(idx, 1);
     });
 
@@ -82,16 +82,11 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher', 'C
       $scope.editReceiver.$pristine = false;
     };
 
-    $scope.updateReceiverImgUrl = function () {
-      $scope.receiverImgUrl = "/admin/staticfiles/" + $scope.receiver.id;
-    };
-
-    $scope.updateReceiverImgReloadUrl = function() {
-      $scope.receiverImgReloadUrl = "/static/" + $scope.receiver.id + ".png?" + Math.round(Math.random() * 1000000);
+    $scope.updateReceiverImgUrl = function() {
+      $scope.receiverImgUrl = "/static/" + $scope.receiver.id + ".png?" + $scope.randomFluff();
     }
 
     $scope.updateReceiverImgUrl();
-    $scope.updateReceiverImgReloadUrl();
 
 }]);
 

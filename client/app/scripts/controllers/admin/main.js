@@ -100,12 +100,6 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
     $scope.update(node, cb);
   };
 
-  $scope.updateNodeImgReloadUrl = function() {
-    $scope.nodeImgReloadUrl = "/static/globaleaks_logo.png?" + Math.round(Math.random() * 1000000);
-  }
-
-  $scope.updateNodeImgReloadUrl();
-
 }]);
 
 GLClient.controller('AdminPasswordCtrl', ['$scope', 'changePasswordWatcher',

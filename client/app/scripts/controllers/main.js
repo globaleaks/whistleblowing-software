@@ -3,7 +3,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     $scope.started = true;
     $scope.rtl = false;
     $scope.logo = '/static/globaleaks_logo.png';
-    $scope.build_stylesheet = "/styles.css";
+    $scope.build_stylesheet = '/styles.css';
 
     var iframeCheck = function() {
       try {
@@ -28,7 +28,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     };
 
     $scope.randomFluff = function () {
-      return Math.round(Math.random() * 1000000);
+      return Math.random() * 1000000 + 1000000;
     };
 
     $scope.isWizard = function () {
@@ -117,11 +117,12 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     var init = function () {
 
       $scope.logo = '/static/globaleaks_logo.png?' + $scope.randomFluff();
+      $scope.build_stylesheet = "/styles.css?" + $scope.randomFluff();
 
       $scope.session_id = Authentication.id;
       $scope.homepage = Authentication.homepage;
       $scope.auth_landing_page = Authentication.auth_landing_page;
-      $scope.role = Authentication.role;
+      $rootScope.role = Authentication.role;
 
       $scope.node = Node.get(function(node, getResponseHeaders) {
 
@@ -179,6 +180,12 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
     };
 
+    $scope.reload = function() {
+      GLCache.removeAll();
+      init();
+      $route.reload();
+    }
+
     $scope.$on( "$routeChangeStart", function(event, next, current) {
       $scope.route_check();
     });
@@ -194,9 +201,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     });
 
     $scope.$on("REFRESH", function() {
-      GLCache.removeAll();
-      init();
-      $route.reload();
+      $scope.reload();
     });
 
     $rootScope.$watch('language', function (newVal, oldVal) {
@@ -207,7 +212,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
         $translate.use($rootScope.language);
 
-        if (angular.indexOf(["ar", "he", "ur"], newVal) !== -1) {
+        if (["ar", "he", "ur"].indexOf(newVal) !== -1) {
           $scope.rtl = true;
           $scope.build_stylesheet = "/styles-rtl.css";
         } else {
@@ -219,6 +224,14 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
       }
 
+    });
+
+    $scope.$watch(function (scope) {
+      return Authentication.id;
+    }, function (newVal, oldVal) {
+      $scope.session_id = Authentication.id;
+      $scope.auth_landing_page = Authentication.auth_landing_page;
+      $scope.role = Authentication.role;
     });
 
     init();

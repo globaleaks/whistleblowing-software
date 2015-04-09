@@ -35,10 +35,12 @@
                 <input type="hidden" data-ng-init="field.value[option.id].order = $index" data-ng-model="field.value[option.id].order" />
                 <input type="hidden" data-ng-init="field.value[option.id].name = option.attrs.name" data-ng-model="field.value[option.id].name" />
                 <div class="checkbox">
-                  <input data-ng-model="field.value[option.id].value"
-                      placeholder="{{field.placeholder || 'false'}}"
-                      type="checkbox" />
-                  <span>{{option.attrs.name}}</span>
+                  <label>
+                    <input data-ng-model="field.value[option.id].value"
+                        placeholder="{{field.placeholder || 'false'}}"
+                        type="checkbox" />
+                    {{option.attrs.name}}
+                  </label>
                 </div>
               </div>
             </div>
@@ -53,9 +55,11 @@
 
             <div data-ng-switch-when="tos" data-ng-class="{'col-md-12': toplevel}">
               <div class="form-group preformatted">{{field.options[0].attrs.clause}}</div>
-              <div class="form-group checkbox">
-                <input data-ng-model="field.value" data-ng-required="field.required" value="{{field.value}}" placeholder="{{field.placeholder || 'false'}}" type="checkbox" />
-                <span>{{field.options[0].attrs.agreement_statement}}</span>
+              <div class="checkbox">
+                <label>
+                  <input data-ng-model="field.value" data-ng-required="field.required" value="{{field.value}}" placeholder="{{field.placeholder || 'false'}}" type="checkbox" />
+                  {{field.options[0].attrs.agreement_statement}}
+                </label>
               </div>
             </div>
 

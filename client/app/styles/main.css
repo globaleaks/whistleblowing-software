@@ -16,7 +16,7 @@ body {
   color: #FFF;
   background: #428bca;
   border-bottom: 1px solid #357ebd;
-  padding: 15px;
+  padding: 30px 15px 30px 15px;
 }
 
 #HeaderBox:after, #HeaderBox:after, #HeaderBoxHompage:after, #HeaderBoxHomepage:after {
@@ -180,6 +180,9 @@ table {
 .img-thumbnail {
   position: relative;
   width: 160px;
+  min-width: 160px;
+  min-height: 160px;
+  z-index: 0;
 }
 
 #titleboxdefault {
