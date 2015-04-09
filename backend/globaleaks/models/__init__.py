@@ -283,11 +283,11 @@ class ReceiverFile(Model):
     internaltip_id = Unicode()
     internalfile_id = Unicode()
     receiver_id = Unicode()
-    receiver_tip_id = Unicode()
+    receivertip_id = Unicode()
     # internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
     # receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
     # internaltip = Reference(ReceiverFile.internaltip_id, InternalTip.id)
-    # receiver_tip = Reference(ReceiverFile.receiver_tip_id, ReceiverTip.id)
+    # receivertip = Reference(ReceiverFile.receivertip_id, ReceiverTip.id)
 
     file_path = Unicode()
     size = Int()
@@ -859,8 +859,8 @@ ReceiverFile.receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
 ReceiverFile.internaltip = Reference(ReceiverFile.internaltip_id,
                                      InternalTip.id)
 
-ReceiverFile.receiver_tip = Reference(ReceiverFile.receiver_tip_id,
-                                      ReceiverTip.id)
+ReceiverFile.receivertip = Reference(ReceiverFile.receivertip_id,
+                                     ReceiverTip.id)
 
 WhistleblowerTip.internaltip = Reference(WhistleblowerTip.internaltip_id,
                                          InternalTip.id)

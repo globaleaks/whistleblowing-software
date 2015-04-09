@@ -88,14 +88,14 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def create_receivers_tip(self):
-        receiver_tips = yield delivery_sched.tip_creation()
+        receivertips = yield delivery_sched.tip_creation()
 
-        self.assertEqual(len(receiver_tips), 2)
-        self.assertTrue(re.match(requests.uuid_regexp, receiver_tips[0]))
-        self.assertTrue(re.match(requests.uuid_regexp, receiver_tips[1]))
+        self.assertEqual(len(receivertips), 2)
+        self.assertTrue(re.match(requests.uuid_regexp, receivertips[0]))
+        self.assertTrue(re.match(requests.uuid_regexp, receivertips[1]))
 
-        tips_receiver_1 = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'], 'en')
-        tips_receiver_2 = yield receiver.get_receiver_tip_list(self.receiver2_desc['id'], 'en')
+        tips_receiver_1 = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
+        tips_receiver_2 = yield receiver.get_receivertip_list(self.receiver2_desc['id'], 'en')
         self.rtip1_id = tips_receiver_1[0]['id']
         self.rtip2_id = tips_receiver_2[0]['id']
 
@@ -131,7 +131,7 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def receiver1_get_tip_list(self):
-        tiplist = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'], 'en')
+        tiplist = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
 
         # this test has been added to test issue/515
         self.assertTrue(isinstance(tiplist, list))
@@ -371,7 +371,7 @@ class TestTipInstance(TTip):
     @inlineCallbacks
     def do_receivers_messages_and_unread_verification(self):
         # Receiver1 check the presence of the whistleblower message (only 1)
-        x = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'], 'en')
+        x = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
         self.assertEqual(x[0]['message_counter'], 1)
 
         # Receiver1 send one message
@@ -393,7 +393,7 @@ class TestTipInstance(TTip):
                 self.assertEqual(r['message_counter'], 2)
 
         # Receiver2 check the presence of the whistleblower message (2 expected)
-        a = yield receiver.get_receiver_tip_list(self.receiver1_desc['id'], 'en')
+        a = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
         self.assertEqual(len(a), 1)
         self.assertEqual(a[0]['message_counter'], 2)
 

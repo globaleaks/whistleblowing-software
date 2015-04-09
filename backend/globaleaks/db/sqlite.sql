@@ -88,12 +88,13 @@ CREATE TABLE receiverfile (
     internalfile_id VARCHAR NOT NULL,
     receiver_id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
-    receiver_tip_id VARCHAR NOT NULL,
+    receivertip_id VARCHAR NOT NULL,
     status VARCHAR NOT NULL CHECK (status IN ('reference', 'encrypted', 'unavailable', 'nokey')),
     new INTEGER  NOT NULL,
     FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,
     FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 

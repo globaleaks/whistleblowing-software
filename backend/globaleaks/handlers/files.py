@@ -288,7 +288,7 @@ def download_all_files(store, user_id, tip_id):
     access_tip(store, user_id, tip_id)
 
     rfiles = store.find(ReceiverFile,
-                        ReceiverFile.receiver_tip_id == unicode(tip_id))
+                        ReceiverFile.receivertip_id == unicode(tip_id))
 
     files_list = []
     for sf in rfiles:

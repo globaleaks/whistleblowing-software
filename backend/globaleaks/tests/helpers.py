@@ -366,7 +366,7 @@ class TestGL(unittest.TestCase):
     @transact_ro
     def get_rfiles(self, store, rtip_id):
         rfiles_desc = []
-        rfiles = store.find(ReceiverFile, ReceiverFile.receiver_tip_id == rtip_id)
+        rfiles = store.find(ReceiverFile, ReceiverFile.receivertip_id == rtip_id)
         for rfile in rfiles:
             rfiles_desc.append({'rfile_id': rfile.id})
 
