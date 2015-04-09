@@ -17,15 +17,15 @@ from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.models import EventLogs
 
 
-def serialize_receivertip(receiver_tip):
+def serialize_receivertip(receivertip):
     rtip_dict = {
-        'id': receiver_tip.id,
-        'creation_date': datetime_to_ISO8601(receiver_tip.creation_date),
-        'last_access': datetime_to_ISO8601(receiver_tip.last_access),
-        'access_counter': receiver_tip.access_counter,
-        'wb_steps': receiver_tip.internaltip.wb_steps,
-        'context_id': receiver_tip.internaltip.context.id,
-        'expiration_date': datetime_to_ISO8601(receiver_tip.internaltip.expiration_date),
+        'id': receivertip.id,
+        'creation_date': datetime_to_ISO8601(receivertip.creation_date),
+        'last_access': datetime_to_ISO8601(receivertip.last_access),
+        'access_counter': receivertip.access_counter,
+        'wb_steps': receivertip.internaltip.wb_steps,
+        'context_id': receivertip.internaltip.context.id,
+        'expiration_date': datetime_to_ISO8601(receivertip.internaltip.expiration_date),
     }
 
     return rtip_dict
@@ -270,7 +270,7 @@ class FileEventLogger(EventLogger):
                                                     context_desc['id'],
                                                     self.language)
 
-            tip_desc = serialize_receivertip(rfile.receiver_tip)
+            tip_desc = serialize_receivertip(rfile.receivertip)
             file_desc = serialize_internalfile(rfile.internalfile, rfile.id)
             do_mail, receiver_desc = self.import_receiver(rfile.receiver)
 

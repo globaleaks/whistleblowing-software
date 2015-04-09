@@ -423,6 +423,11 @@ class Replacer1920(TableReplacer):
                     new_obj.new = False
                     continue
 
+                if v.name == 'receivertip_id':
+                    old_attr = 'receiver_tip_id'
+                    setattr(new_obj, v.name, getattr(old_obj, old_attr))
+                    continue
+
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)

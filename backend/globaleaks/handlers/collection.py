@@ -81,7 +81,7 @@ def get_collection_info(store, rtip_id):
 
     collection_dict = {'files': [], 'file_counter': 0, 'total_size': 0}
 
-    rfiles = store.find(ReceiverFile, ReceiverFile.receiver_tip_id == rtip_id)
+    rfiles = store.find(ReceiverFile, ReceiverFile.receivertip_id == rtip_id)
     for rf in rfiles:
         collection_dict['file_counter'] += 1
         collection_dict['total_size'] += rf.size

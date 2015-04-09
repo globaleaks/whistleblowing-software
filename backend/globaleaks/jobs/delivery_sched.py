@@ -58,7 +58,7 @@ def serialize_receiverfile(rfile):
         'internaltip_id' : rfile.internaltip_id,
         'internalfile_id' : rfile.internalfile_id,
         'receiver_id' : rfile.receiver_id,
-        'receiver_tip_id' : rfile.receiver_tip_id,
+        'receivertip_id' : rfile.receivertip_id,
         'file_path' : rfile.file_path,
         'size' : rfile.size,
         'downloads' : rfile.downloads,
@@ -171,7 +171,7 @@ def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_d
         receiverfile.receiver_id = receiver_desc['id']
         receiverfile.internaltip_id = ifile.internaltip_id
         receiverfile.internalfile_id = ifile.id
-        receiverfile.receiver_tip_id = rtrf.id
+        receiverfile.receivertip_id = rtrf.id
         receiverfile.file_path = unicode(recv_path)
         receiverfile.size = recv_size
         receiverfile.status = unicode(status)

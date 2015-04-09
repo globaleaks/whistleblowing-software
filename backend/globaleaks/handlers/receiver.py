@@ -178,7 +178,7 @@ class ReceiverInstance(BaseHandler):
 
 
 @transact_ro
-def get_receiver_tip_list(store, receiver_id, language):
+def get_receivertip_list(store, receiver_id, language):
     rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
     rtiplist.order_by(Desc(ReceiverTip.creation_date))
 
@@ -248,7 +248,7 @@ class TipsCollection(BaseHandler):
         Response: receiverTipList
         Errors: InvalidAuthentication
         """
-        answer = yield get_receiver_tip_list(self.current_user.user_id,
+        answer = yield get_receivertip_list(self.current_user.user_id,
                                              self.request.language)
 
         self.set_status(200)

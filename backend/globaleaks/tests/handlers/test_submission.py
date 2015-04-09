@@ -120,8 +120,8 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
-        receiver_tips = yield delivery_sched.tip_creation()
-        self.assertEqual(len(receiver_tips), len(self.submission_desc['receivers']))
+        receivertips = yield delivery_sched.tip_creation()
+        self.assertEqual(len(receivertips), len(self.submission_desc['receivers']))
 
 
     @inlineCallbacks
