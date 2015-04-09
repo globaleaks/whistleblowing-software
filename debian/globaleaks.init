@@ -120,6 +120,12 @@ check_iptables()
         log_action_end_msg 1 "missing iptables filter support"
         exit 1
     fi
+
+    iptables -m owner -h >/dev/null 2>&1
+    if [ "$?" -ne "0" ]; then
+        log_action_end_msg 1 "missing iptables owner support"
+        exit 1
+    fi
 }
 
 network_sandboxing_start()
@@ -235,7 +241,7 @@ do_start()
         GLBACKEND_ARGS+=" --storm-debug"
     fi
 
-    if [ "${DISABLE_MAIL_TORIFICATION}}" -eq "1" ]; then
+    if [ "${DISABLE_MAIL_TORIFICATION}" -eq "1" ]; then
         GLBACKEND_ARGS+=" --disable-mail-torification"
     fi
 
