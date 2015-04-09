@@ -255,7 +255,7 @@ class Replacer1920(TableReplacer):
         for _, v in new_notification._storm_columns.iteritems():
 
             if v.name == 'send_email_for_every_event':
-                new_notification.send_email_for_every_event = False
+                new_notification.send_email_for_every_event = True
                 continue
 
             if v.name == 'torify':
