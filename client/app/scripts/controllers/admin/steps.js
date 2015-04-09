@@ -36,7 +36,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
   function($scope, $modal) {
 
     $scope.deleteFromList = function(list, elem) {
-      var idx = angular.indexOf(list, elem);
+      var idx = list.indexOf(elem);
       if (idx != -1) {
         list.splice(idx, 1);
       }
@@ -51,7 +51,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
  
     $scope.toggle_field = function(field, field_group) {
       $scope.field_group_toggled = true;
-      if (field_group.children && (angular.indexOf(field_group.children, field) !== -1)) {
+      if (field_group.children && field_group.children.indexOf(field) !== -1) {
         // Remove it from the fieldgroup 
         field.fieldgroup_id = '';
         field.step_id = $scope.step.id;
@@ -80,12 +80,12 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.deleteStep = function(step) {
-      var idx = angular.indexOf($scope.context.steps, step);
+      var idx = $scope.context.steps.indexOf(step);
       $scope.context.steps.splice(idx, 1);
     };
 
     $scope.deleteField = function(field) {
-      var idx = angular.indexOf($scope.step.children, field);
+      var idx = $scope.step.children.indexOf(field);
       $scope.step.children.splice(idx, 1);
     };
 

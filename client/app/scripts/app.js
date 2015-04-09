@@ -199,7 +199,10 @@ var GLClient = angular.module('GLClient', [
     flowFactoryProvider.defaults = {
         chunkSize: 1 * 1024 * 1024,
         forceChunkSize: true,
-    };
+        generateUniqueIdentifier: function (file) {
+          return Math.random() * 1000000 + 1000000;
+        }
+    }
 }]).
   run(['$http', '$rootScope', function ($http, $rootScope) {
 

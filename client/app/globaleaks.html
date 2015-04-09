@@ -17,8 +17,8 @@
 
   <div data-ng-include="'views/partials/messageconsole.html'"></div>
 
-  <div id="ContentBox">
-    <div data-ng-hide="cookiesEnabled" class="container ng-cloak">
+  <div id="ContentBox" class="container">
+    <div data-ng-hide="cookiesEnabled" class="ng-cloak">
       <div class="row">
         <div class="col-md-9">
           <h2 data-translate>Cookies are not enabled!</h2>
@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div data-ng-show="cookiesEnabled" class="container ng-cloak" data-ng-view=""></div>
+    <div data-ng-show="cookiesEnabled" class="ng-cloak" data-ng-view=""></div>
   </div>
 
   <div data-ng-show="!embedded" data-ng-include="'views/partials/footer.html'"></div>

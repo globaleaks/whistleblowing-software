@@ -632,9 +632,9 @@ class EventLogs(Model):
 
 
 class Field(Model):
-    label = JSON(validator=shortlocal_v)
+    label = JSON(validator=longlocal_v)
     description = JSON(validator=longlocal_v)
-    hint = JSON(validator=shortlocal_v)
+    hint = JSON(validator=longlocal_v)
 
     multi_entry = Bool()
     required = Bool()

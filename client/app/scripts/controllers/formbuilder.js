@@ -49,8 +49,9 @@ GLClient.controller('FormBuilderCtrl',
   };
 
   $scope.typeSwitch = function (type) {
-    if (angular.indexOf(['checkbox', 'selectbox'], type) !== -1)
+    if (['checkbox', 'selectbox'].indexOf(type) !== -1) {
       return 'checkbox_or_selectbox';
+    }
     return type;
   };
 

@@ -98,16 +98,16 @@
                 <div class="col-md-6">
                   <div class="imageUpload" data-ng-controller="AdminFileUploadCtrl">
                     <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
-                      <div flow-init="{target: '/admin/staticfiles/1310f8e7-7ac5-4741-be70-96c3bf6bd68b', headers: get_auth_headers()}"
+                      <div flow-init="{target: '/admin/staticfiles/' + receiver.id, headers: get_auth_headers()}"
                           flow-files-submitted="$flow.upload()"
-                          flow-file-success="updateReceiverImgReloadUrl()"
+                          flow-file-success="updateReceiverImgUrl()"
                           flow-name="flowObj"
                           class="uploadfile">
                         <div flow-btn>
                           <span class="col-md-12 changePicture">
                             <span data-translate>Change picture</span>
                           </span>
-                          <img data-ng-src="{{receiverImgReloadUrl}}" class="img-thumbnail baseimage" style="z-index: 0">
+                          <img data-ng-src="{{receiverImgUrl}}" class="img-thumbnail baseimage">
                         </div>
                       </div>
                     </div>

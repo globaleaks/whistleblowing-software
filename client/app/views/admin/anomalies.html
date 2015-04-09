@@ -31,6 +31,7 @@
 
           <br />
           <br />
+
           <div id="AnomaliesHistoryTable">
             <table class="table table-bordered">
               <thead>
@@ -48,12 +49,8 @@
               </thead>
               <tbody>
                 <tr data-ng-repeat="anomaly in anomalies">
-                  <td class="col-md-2">
-                    {{anomaly.when | date:'dd-MM-yyyy HH:mm'}}
-                  </td>
-                  <td class="col-md-1">
-                    {{anomaly.alarm}}
-                  </td>
+                  <td class="col-md-2">{{anomaly.when | date:'dd-MM-yyyy HH:mm'}}</td>
+                  <td class="col-md-1">{{anomaly.alarm}}</td>
                   <td class="col-md-2">
                     <span data-ng-repeat="single_event in anomaly.events">
                       <span class="label label-info">{{single_event.name}}</span> {{single_event.amount}}<br />

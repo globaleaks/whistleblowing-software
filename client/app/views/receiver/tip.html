@@ -47,8 +47,7 @@
   </div>
 
   <div class="col-md-6">
-    <div class="col-md-12">
-      <h3>{{"Options"}}</h3>
+    <div class="col-md-12" data-ng-if="tip.can_postpone_expiration || tip.can_delete_submission">
       <span data-ng-show="tip.can_postpone_expiration">
         <button data-ng-click="tip_postpone(tip.id)" class="btn btn-sm btn-warning">
           <i class="glyphicon glyphicon-time"></i>
