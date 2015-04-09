@@ -1,4 +1,40 @@
-Changes in version 2.60.62 - 2015-02-20
+Changes in version 2.60.64 - 2014-04-09
+    o Revision of the entire application texts
+    o Completion of included translations
+    o Add translations for Albanian, Bulgarian, Bosnian,
+      Welsh, Persian, Kurdish, Slovenian, Russian
+    o Improved File Uploader by means of Flow.js
+    o Implement Submission flood protection based on human Captchas
+    o Improve anomaly detection and admin notification
+    o Implement Tips expiration notification for Receivers
+      Disable SSL in favor of TLS on SMTP notifications
+    o Minor UI Fixes
+    o Apply bulk code and API cleanup
+
+    The following is the comprehensive list of closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1182
+    - https://github.com/globaleaks/GlobaLeaks/issues/921
+    - https://github.com/globaleaks/GlobaLeaks/issues/1193
+    - https://github.com/globaleaks/GlobaLeaks/issues/1187
+    - https://github.com/globaleaks/GlobaLeaks/issues/1207
+    - https://github.com/globaleaks/GlobaLeaks/issues/1208
+    - https://github.com/globaleaks/GlobaLeaks/issues/1209
+    - https://github.com/globaleaks/GlobaLeaks/issues/1212
+    - https://github.com/globaleaks/GlobaLeaks/issues/1210
+    - https://github.com/globaleaks/GlobaLeaks/issues/1164
+    - https://github.com/globaleaks/GlobaLeaks/issues/1193
+    - https://github.com/globaleaks/GlobaLeaks/issues/1187
+    - https://github.com/globaleaks/GlobaLeaks/issues/1106
+    - https://github.com/globaleaks/GlobaLeaks/issues/932
+    - https://github.com/globaleaks/GlobaLeaks/issues/1216
+    - https://github.com/globaleaks/GlobaLeaks/issues/1096
+    - https://github.com/globaleaks/GlobaLeaks/issues/1174
+    - https://github.com/globaleaks/GlobaLeaks/issues/1204
+    - https://github.com/globaleaks/GlobaLeaks/issues/547
+    - https://github.com/globaleaks/GlobaLeaks/issues/1197
+    - https://github.com/globaleaks/GlobaLeaks/issues/1095
+
+Changes in version 2.60.63 - 2015-02-20
     o Add Catalan (100%)
     o Minor UI fixes
 
