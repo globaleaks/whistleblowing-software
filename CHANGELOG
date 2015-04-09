@@ -1,4 +1,4 @@
-Changes in version 2.60.64 - 2014-04-09
+Changes in version 2.60.64 - 2015-04-09
     o Revision of the entire application texts
     o Completion of included translations
     o Add translations for Albanian, Bulgarian, Bosnian,
@@ -7,7 +7,7 @@ Changes in version 2.60.64 - 2014-04-09
     o Implement Submission flood protection based on human Captchas
     o Improve anomaly detection and admin notification
     o Implement Tips expiration notification for Receivers
-      Disable SSL in favor of TLS on SMTP notifications
+    o Disable SSL in favor of TLS on SMTP notifications
     o Minor UI Fixes
     o Apply bulk code and API cleanup
 
