@@ -511,7 +511,7 @@ class Notification(Model):
 
     disable_admin_notification_emails = Bool(default=False)
     disable_receivers_notification_emails = Bool(default=False)
-    send_email_for_every_event = Bool(default=False)
+    send_email_for_every_event = Bool(default=True)
 
     unicode_keys = [
         'server',
