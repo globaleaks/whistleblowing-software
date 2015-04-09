@@ -9,27 +9,47 @@
 import os
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.handlers import admin
 from globaleaks.jobs.base import GLJob
 from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, save_events_on_db
 from globaleaks.models import InternalTip, ReceiverFile, InternalFile, Comment, ReceiverTip
+from globaleaks.plugins.base import Event
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.utility import log, is_expired, datetime_to_ISO8601, ISO8601_to_datetime, utc_dynamic_date
 
 __all__ = ['CleaningSchedule']
 
 
-class UpcomingExpireEvent(EventLogger):
+class ExpiringTipEvent(EventLogger):
     def __init__(self):
         EventLogger.__init__(self)
-        self.trigger = 'UpcomingExpireTip'
+        self.trigger = 'ExpiringTip'
 
     @transact
     def notify(self, store, tip_id):
         expiring_rtips = store.find(ReceiverTip, ReceiverTip.internaltip_id == tip_id)
 
         for ertip in expiring_rtips:
-            self.do_mail, _ = self.import_receiver(ertip.receiver)
+            do_mail, receiver_desc = self.import_receiver(ertip.receiver)
+
+            context_desc = admin.admin_serialize_context(store,
+                                                         ertip.internaltip.context,
+                                                         self.language)
+            steps_desc = admin.db_get_context_steps(store,
+                                                    context_desc['id'],
+                                                    self.language)
+
             expiring_tip_desc = serialize_receivertip(ertip)
+
+            self.events.append(Event(type=self.template_type,
+                                     trigger=self.trigger,
+                                     node_info={},
+                                     receiver_info=receiver_desc,
+                                     context_info=context_desc,
+                                     steps_info=steps_desc,
+                                     tip_info=expiring_tip_desc,
+                                     subevent_info=None,
+                                     do_mail=do_mail))
 
 @transact_ro
 def get_tip_timings(store, new):
@@ -48,7 +68,7 @@ def get_tip_timings(store, new):
             'creation_date': datetime_to_ISO8601(itip.creation_date),
             'expiration_date': datetime_to_ISO8601(itip.expiration_date),
             'upcoming_expiration_date':
-                datetime_to_ISO8601(utc_dynamic_date(itip.expiration_date, hours=-48)),
+                datetime_to_ISO8601(utc_dynamic_date(itip.expiration_date, hours=72)),
             'tip_life_seconds':  tip_timetolive,
             'files': files_cnt,
             'comments': comment_cnt,
@@ -143,7 +163,6 @@ class CleaningSchedule(GLJob):
                 log.debug("Spotted a Tip matching the upcoming expiration date and "
                           "triggering email notifications")
 
-                expiring_tips_events = UpcomingExpireEvent()
+                expiring_tips_events = ExpiringTipEvent()
                 yield expiring_tips_events.notify(tip['id'])
                 yield save_events_on_db(expiring_tips_events.events)
-                yield itip_cleaning(tip['id'])

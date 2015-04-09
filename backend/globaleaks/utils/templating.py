@@ -50,7 +50,7 @@ class Templating(object):
                                   # Upcoming expire use the same templates of Tip
                                   # and currently only one template is defined
                                   # considering exportable only not non sensitive info
-                                  u'upcoming_expire': TipKeyword,
+                                  u'upcoming_tip_expiration': TipKeyword,
                                 }
 
         if event_dicts.type not in supported_event_types.keys():
