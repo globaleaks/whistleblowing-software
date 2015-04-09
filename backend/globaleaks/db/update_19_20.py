@@ -278,20 +278,20 @@ class Replacer1920(TableReplacer):
                     new_notification.notification_digest_mail_title = every_language("")
                 continue
 
-            if v.name == 'upcoming_tip_expiration_mail_title':
+            if v.name == 'tip_expiration_mail_title':
                 # check needed to preserve funtionality if templates will be altered in the future
                 if v.name in appdata_dict['templates']:
-                    new_notification.upcoming_tip_expiration_mail_title = appdata_dict['templates'][v.name]
+                    new_notification.tip_expiration_mail_title = appdata_dict['templates'][v.name]
                 else:
-                    new_notification.upcoming_tip_expiration_mail_title = every_language("")
+                    new_notification.tip_expiration_mail_title = every_language("")
                 continue
 
-            if v.name == 'upcoming_tip_expiration_template':
+            if v.name == 'tip_expiration_template':
                 # check needed to preserve funtionality if templates will be altered in the future
                 if v.name in appdata_dict['templates']:
-                    new_notification.upcoming_tip_expiration_template = appdata_dict['templates'][v.name]
+                    new_notification.tip_expiration_template = appdata_dict['templates'][v.name]
                 else:
-                    new_notification.upcoming_tip_expiration_template = every_language("")
+                    new_notification.tip_expiration_template = every_language("")
                 continue
 
             setattr(new_notification, v.name, getattr(old_notification, v.name) )

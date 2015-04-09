@@ -494,8 +494,8 @@ class Notification(Model):
     plaintext_message_template = JSON(validator=longlocal_v)
     plaintext_message_mail_title = JSON(validator=longlocal_v)
 
-    upcoming_tip_expiration_template = JSON(validator=longlocal_v)
-    upcoming_tip_expiration_mail_title = JSON(validator=longlocal_v)
+    tip_expiration_template = JSON(validator=longlocal_v)
+    tip_expiration_mail_title = JSON(validator=longlocal_v)
 
     admin_pgp_alert_mail_title = JSON(validator=longlocal_v)
     admin_pgp_alert_mail_template = JSON(validator=longlocal_v)
@@ -545,8 +545,8 @@ class Notification(Model):
         'encrypted_message_mail_title',
         'plaintext_message_template',
         'plaintext_message_mail_title',
-        'upcoming_tip_expiration_template',
-        'upcoming_tip_expiration_mail_title',
+        'tip_expiration_template',
+        'tip_expiration_mail_title',
         'notification_digest_mail_title',
         'zip_description',
         'ping_mail_template',

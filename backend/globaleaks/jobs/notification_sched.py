@@ -99,8 +99,8 @@ class EventLogger(object):
         elif self.trigger == 'File':
             self.template_type = u'encrypted_file' if \
                 receiver.pgp_key_status == u'enabled' else u'plaintext_file'
-        elif self.trigger == 'UpcomingExpireTip':
-            self.template_type = u'upcoming_expire'
+        elif self.trigger == 'ExpiringTip':
+            self.template_type = u'upcoming_tip_expiration'
         else:
             raise Exception("self.trigger of unexpected kind ? %s" % self.trigger)
 

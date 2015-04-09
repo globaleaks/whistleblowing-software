@@ -78,10 +78,9 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
 
     debug_event_counter = {}
     for i, stev in enumerate(storedevnts):
-
         if len(event_list) == event_number:
             log.debug("Maximum number of notification event reach (Mailflush) %d, after %d" %
-                      (event_number, i ))
+                      (event_number, i))
             break
 
         debug_event_counter.setdefault(stev.event_reference['kind'], 0)
