@@ -122,6 +122,7 @@ GLClient.controller('SubmissionCtrl',
     if (!$scope.submission) {
       return;
     }
+
     return '/submission/' + $scope.submission.current_submission.id + '/file';
   };
   // Watch for changes in certain variables
@@ -142,8 +143,6 @@ GLClient.controller('SubmissionCtrl',
           $scope.skip_first_step = false;
           $scope.selection = 0;
         }
-
-        $scope.fileupload_url = '/submission/' + $scope.submission.current_submission.id + '/file';
 
       });
       checkReceiverSelected();
