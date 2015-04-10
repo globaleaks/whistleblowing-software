@@ -123,8 +123,7 @@ class Token(TempObj):
             if getattr(self, a):
                 test_desc = "%s[H:%s]" % (test_desc,  getattr(self, a)['question'])
 
-        token_string = "Token %s with %s" % (self.kind,
-                                             test_desc if len(test_desc) else "no test description")
+        token_string = "Token %s for %s [%s]" % (self.token_id, self.kind, test_desc)
 
         return token_string
 

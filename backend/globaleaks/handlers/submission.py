@@ -129,11 +129,7 @@ def db_create_submission(store, token, request, language):
     else:
         log.debug("End2End DIS-abled node level, wb_steps len #%d" % (len(request['wb_steps'])))
 
-    try:
-        store.add(submission)
-    except Exception as excep:
-        log.err("Storm/SQL Error: %s (create_submission)" % excep)
-        raise errors.InternalServerError("Unable to commit on DB")
+    store.add(submission)
 
     try:
         for filedesc in token.uploaded_files:
