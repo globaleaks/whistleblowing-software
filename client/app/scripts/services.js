@@ -556,24 +556,22 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
                   });
                 }
               });
-              self.tip.messages = messageCollection;
-              fn(self.tip);
-            });
 
-            commentsResource.query(tipID, function(commentsCollection){
-              _.each(commentsCollection, function(comment) {
-                if (typeof(comment.content) == 'string'
-                    && comment.content.indexOf("-----BEGIN PGP MESSAGE-----") == 0) {
-                  var pgpMessage = openpgp.message.readArmored(comment.content);
-                  openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_content) {
-                    comment.content = decr_content;
-                  }, function(error) {
-                    comment.content = 'decryptMessage error: ', error;
-                  });
-                }
+              commentsResource.query(tipID, function(commentsCollection){
+                _.each(commentsCollection, function(comment) {
+                  if (typeof(comment.content) == 'string'
+                      && comment.content.indexOf("-----BEGIN PGP MESSAGE-----") == 0) {
+                    var pgpMessage = openpgp.message.readArmored(comment.content);
+                    openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_content) {
+                      comment.content = decr_content;
+                    }, function(error) {
+                      comment.content = 'decryptMessage error: ', error;
+                    });
+                  }
+                });
+                self.tip.comments = commentsCollection;
+                fn(self.tip);
               });
-              self.tip.comments = commentsCollection;
-              fn(self.tip);
             });
 
           }); // receiverResource
@@ -584,7 +582,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     };
 
-	}]).
+}]).
   factory('WBTip', ['$resource', 'Receivers', 'Authentication',
           function($resource, Receivers, Authentication) {
 
@@ -672,22 +670,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               };
             };
 
-            commentsResource.query({}, function(commentsCollection){
-              _.each(commentsCollection, function(comment) {
-                if (typeof(comment.content) == 'string'
-                    && comment.content.indexOf("-----BEGIN PGP MESSAGE-----") == 0) {
-                  var pgpMessage = openpgp.message.readArmored(comment.content);
-                  openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_content) {
-                    comment.content = decr_content;
-                  }, function(error) {
-                    comment.content = 'decryptMessage error: ', error;
-                  });
-                }
-              });
-              self.tip.comments = commentsCollection;
-              fn(self.tip);
-            });
-
             Receivers.query(function(receivers) {
               forEach(self.tip.receivers, function(r1) {
                 forEach(receivers, function(r2) {
@@ -699,15 +681,30 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
                   }
                 });
               });
+
+              commentsResource.query({}, function(commentsCollection) {
+                _.each(commentsCollection, function(comment) {
+                  if (typeof(comment.content) == 'string'
+                      && comment.content.indexOf("-----BEGIN PGP MESSAGE-----") == 0) {
+                    var pgpMessage = openpgp.message.readArmored(comment.content);
+                    openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_content) {
+                      comment.content = decr_content;
+                    }, function(error) {
+                      comment.content = 'decryptMessage error: ', error;
+                    });
+                  }
+                });
+                self.tip.comments = commentsCollection;
+                fn(self.tip);
+              });
+
             });
 
-            fn(self.tip);
           });
 
         }); //openpgp decrypt
 
       });
-
     };
 }]).
   factory('WBReceipt', ['$rootScope', 'Authentication', 'whistleblower',
