@@ -162,11 +162,7 @@ def db_create_submission(store, token, request, language):
     submission.context_id = context.id
     submission.creation_date = datetime_now()
 
-    try:
-        store.add(submission)
-    except Exception as excep:
-        log.err("Storm/SQL Error: %s (create_submission)" % excep)
-        raise errors.InternalServerError("Unable to commit on DB")
+    store.add(submission)
 
     try:
         for filedesc in token.uploaded_files:

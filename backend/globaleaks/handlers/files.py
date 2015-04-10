@@ -254,7 +254,7 @@ class FileInstance(BaseHandler):
         """
         token = TokenList.get(token_id)
 
-        log.debug("file upload with Token associated : %s" % token)
+        log.debug("file upload with token associated: %s" % token)
 
         yield self.handle_file_upload(token)
 
