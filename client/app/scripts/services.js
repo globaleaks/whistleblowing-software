@@ -525,14 +525,14 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               });
             });
 
+            commentsResource.query({}, function(commentsCollection){
+              self.tip.comments = commentsCollection;
+
+              fn(self.tip);
+
+            });
+
           });
-
-          commentsResource.query({}, function(commentsCollection){
-            self.tip.comments = commentsCollection;
-
-          });
-
-          fn(self.tip);
 
         });
       });

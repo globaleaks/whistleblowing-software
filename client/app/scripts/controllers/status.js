@@ -39,7 +39,7 @@ GLClient.controller('StatusCtrl',
 
         $scope.tip = tip;
 
-        Contexts.query(function(contexts){
+        Contexts.query(function(contexts) {
 
           angular.forEach(contexts, function(context, k){
             if (context.id == tip.context_id) {
@@ -47,19 +47,19 @@ GLClient.controller('StatusCtrl',
             }
           });
 
-          $scope.$watch('tip.msg_receiver_selected', function (newVal, oldVal) {
-            if (newVal && newVal !== oldVal) {
-              if (tip) {
-                tip.updateMessages();
-              }
-            }
-          }, false);
-
           if (tip.receivers.length == 1 && tip.msg_receiver_selected == null) {
             tip.msg_receiver_selected = tip.msg_receivers_selector[0]['key'];
           }
 
           tip.updateMessages();
+
+          $scope.$watch('tip.msg_receiver_selected', function (newVal, oldVal) {
+            if (newVal && newVal !== oldVal) {
+              if ($scope.tip) {
+                $scope.tip.updateMessages();
+              }
+            }
+          }, false);
 
         });
       });
