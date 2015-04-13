@@ -12,10 +12,9 @@
           (<a href="{{homepage}}" data-translate>{{role}}</a>)
         </label>
       </span>
+      <span>|</span>
       <span id="LogoutBox">
-        <button type="submit" id="LogoutButton" class="btn btn-failure" data-ng-click="logout()">
-          <span data-translate>Logout</span>
-        </button>
+        <a href="" data-ng-click="logout()" data-translate>Logout</a>
       </span>
     </div>
     <div data-ng-show="showLoginForm() && !session_id" class="pull-right">

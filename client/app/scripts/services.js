@@ -402,9 +402,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
         // Set the currently selected pgp pub keys
         self.receivers_selected_keys = [];
-        _.each(self.receivers_selected, function(selected, id){
+        angular.forEach(self.receivers_selected, function(selected, id){
           if (selected) {
-            _.each(self.receivers, function(receiver){
+            angular.forEach(self.receivers, function(receiver){
               if (id == receiver.id) {
                 self.receivers_selected_keys.push(receiver.pgp_e2e_public);
               }
@@ -435,7 +435,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
             console.log('receivers_selected_keys', self.receivers_selected_keys);
             var receivers_and_wb_keys = [];
-            _.each(self.receivers_selected_keys, function(key) {
+            angular.forEach(self.receivers_selected_keys, function(key) {
                 var r_key_pub = openpgp.key.readArmored(key).keys[0];
                 receivers_and_wb_keys.push(r_key_pub);
             });
@@ -512,7 +512,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
             // build receivers and wb pub keys list
 	        self.receivers_and_wb_keys = [];
-            _.each(receiversCollection, function(receiver) {
+            angular.forEach(receiversCollection, function(receiver) {
                 var r_key_pub = openpgp.key.readArmored(receiver.pgp_e2e_public).keys[0];
                 self.receivers_and_wb_keys.push( r_key_pub );
             });
@@ -545,7 +545,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             };
 
             messageResource.query(tipID, function(messageCollection){
-              _.each(messageCollection, function(message) {
+              angular.forEach(messageCollection, function(message) {
                 if (typeof(message.content) == 'string'
                     && message.content.indexOf("-----BEGIN PGP MESSAGE-----") == 0) {
                   var pgpMessage = openpgp.message.readArmored(message.content);
@@ -558,7 +558,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               });
 
               commentsResource.query(tipID, function(commentsCollection){
-                _.each(commentsCollection, function(comment) {
+                angular.forEach(commentsCollection, function(comment) {
                   if (typeof(comment.content) == 'string'
                       && comment.content.indexOf("-----BEGIN PGP MESSAGE-----") == 0) {
                     var pgpMessage = openpgp.message.readArmored(comment.content);
@@ -622,7 +622,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             self.receivers_and_wb_keys = [];
 
             // build receivers and wb pub keys list
-            _.each(receiversCollection, function(receiver) {
+            angular.forEach(receiversCollection, function(receiver) {
                 var r_key_pub = openpgp.key.readArmored(receiver.pgp_e2e_public).keys[0];
                 self.receivers_and_wb_keys.push( r_key_pub );
             });
@@ -657,7 +657,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             self.tip.updateMessages = function () {
               if (self.tip.msg_receiver_selected) {
                 messageResource.query({id: self.tip.msg_receiver_selected}, function (messageCollection) {
-                  _.each(messageCollection, function(message) {
+                  angular.forEach(messageCollection, function(message) {
                     if ( message.content.indexOf("-----BEGIN PGP MESSAGE-----") > -1 ) {
                       var pgpMessage = openpgp.message.readArmored(message.content);
                       openpgp.decryptMessage(self.privateKey, pgpMessage).then(function(decr_content) {
@@ -683,7 +683,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               });
 
               commentsResource.query({}, function(commentsCollection) {
-                _.each(commentsCollection, function(comment) {
+                angular.forEach(commentsCollection, function(comment) {
                   if (typeof(comment.content) == 'string'
                       && comment.content.indexOf("-----BEGIN PGP MESSAGE-----") == 0) {
                     var pgpMessage = openpgp.message.readArmored(comment.content);

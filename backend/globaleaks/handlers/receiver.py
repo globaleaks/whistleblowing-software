@@ -31,7 +31,6 @@ def receiver_serialize_receiver(receiver, language):
         'pgp_key_fingerprint': receiver.pgp_key_fingerprint,
         'pgp_key_remove': False,
         'pgp_key_public': receiver.pgp_key_public,
-        'pgp_key_private': receiver.pgp_key_private,
         'pgp_key_expiration': datetime_to_ISO8601(receiver.pgp_key_expiration),
         'pgp_key_status': receiver.pgp_key_status,
         'pgp_e2e_public': receiver.pgp_e2e_public,
@@ -131,6 +130,7 @@ def update_receiver_settings(store, receiver_id, request, language):
         GLApiCache.invalidate()
 
     receiver.pgp_e2e_public = request['pgp_e2e_public']
+    receiver.pgp_e2e_private = request['pgp_e2e_private']
 
     return receiver_serialize_receiver(receiver, language)
 

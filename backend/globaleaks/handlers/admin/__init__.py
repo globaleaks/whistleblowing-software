@@ -80,7 +80,7 @@ def db_admin_serialize_node(store, language):
         'admin_language': admin.language,
         'admin_timezone': admin.timezone,
         'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-        'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order
+        'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
         'custom_privacy_badge_tor': node.custom_privacy_badge_tor,
         'custom_privacy_badge_none': node.custom_privacy_badge_none,
         'landing_page': node.landing_page,

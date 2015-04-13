@@ -92,14 +92,14 @@ def anon_serialize_node(store, language):
         'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
         'ahmia': node.ahmia,
-        'postpone_superpower': node.postpone_superpower,
+        'can_postpone_expiration': node.can_postpone_expiration,
         'can_delete_submission': node.can_delete_submission,
         'wizard_done': node.wizard_done,
         'allow_unencrypted': node.allow_unencrypted,
         'allow_iframes_inclusion': node.allow_iframes_inclusion,
-        'configured': True if associated else False,
-        'password': u"",
-        'old_password': u"",
+        'configured': configured,
+        'password': u'',
+        'old_password': u'',
         'disable_privacy_badge': node.disable_privacy_badge,
         'disable_security_awareness_badge': node.disable_security_awareness_badge,
         'disable_security_awareness_questions': node.disable_security_awareness_questions,
@@ -110,8 +110,7 @@ def anon_serialize_node(store, language):
         'landing_page': node.landing_page,
         'disk_availability': GLSetting.memory_copy.disk_availability,
         'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
-        'file_encryption_e2e' : node.file_encryption_e2e,
-        'submission_data_e2e' : node.submission_data_e2e
+        'file_encryption_e2e': node.file_encryption_e2e,
         'submission_data_e2e' : node.submission_data_e2e,
         'e2e_configured': at_least_one_e2e
     }

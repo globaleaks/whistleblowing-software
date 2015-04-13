@@ -591,7 +591,7 @@ class Receiver(Model):
     pgp_key_info = Unicode()
     pgp_key_fingerprint = Unicode()
 
-    pgp_key_armor_public = Unicode()
+    pgp_key_public = Unicode()
     pgp_key_expiration = DateTime()
     pgp_key_status = Unicode()
     # pgp_key_statuses: 'disabled', 'enabled'

@@ -128,7 +128,7 @@ AdminNodeDesc = {
     'header_title_submissionpage': unicode,
     'header_title_receiptpage': unicode,
     'landing_page': landing_page_regexp,
-    'show_contexts_in_alphabetical_order': bool
+    'show_contexts_in_alphabetical_order': bool,
     'file_encryption_e2e': bool,
     'submission_data_e2e': bool
 }
