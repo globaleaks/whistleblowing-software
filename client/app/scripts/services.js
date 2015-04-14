@@ -28,7 +28,7 @@ angular.module('resourceServices.authentication', [])
                   self.auth_landing_page = '/admin/landing';
               }
               if (self.role == 'receiver') {
-                self.homepage = '/#/receiver/activities';
+                self.homepage = '/#/receiver/tips';
                 if (self.password_change_needed) {
                     self.auth_landing_page = '/receiver/firstlogin';
                 } else {
