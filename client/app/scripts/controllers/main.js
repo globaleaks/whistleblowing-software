@@ -140,7 +140,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
                  // the check on the iframe is in order to avoid redirects
                  // when the application is included inside iframes in order to not
                  // mix HTTPS resources with HTTP resources.
-                 window.location.href = $scope.node.hidden_service + $location.url();
+                 window.location.href = $scope.node.hidden_service + '/#' + $location.url();
                }
              } else {
                $rootScope.anonymous = false;
