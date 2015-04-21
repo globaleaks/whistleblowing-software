@@ -119,11 +119,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       $scope.logo = '/static/globaleaks_logo.png?' + $scope.randomFluff();
       $scope.build_stylesheet = "/styles.css?" + $scope.randomFluff();
 
-      $scope.session_id = Authentication.id;
-      $scope.homepage = Authentication.homepage;
-      $scope.auth_landing_page = Authentication.auth_landing_page;
-      $rootScope.role = Authentication.role;
-
       $scope.node = Node.get(function(node, getResponseHeaders) {
 
         // Tor detection and enforcing of usage of HS if users are using Tor
@@ -229,9 +224,12 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     $scope.$watch(function (scope) {
       return Authentication.id;
     }, function (newVal, oldVal) {
-      $scope.session_id = Authentication.id;
-      $scope.auth_landing_page = Authentication.auth_landing_page;
-      $scope.role = Authentication.role;
+      if (newVal != undefined) {
+        $scope.session_id = Authentication.id;
+        $scope.role = Authentication.role;
+        $scope.auth_landing_page = Authentication.auth_landing_page;
+        $scope.homepage = Authentication.homepage;
+      }
     });
 
     init();
