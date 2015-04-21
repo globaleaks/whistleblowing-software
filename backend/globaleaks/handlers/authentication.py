@@ -195,18 +195,36 @@ def transport_security_check(wrapped_handler_role):
     return wrapper
 
 
-@transact_ro  # read only transact; manual commit on success needed
-def login_wb(store, receipt):
+@transact_ro # read only transact; manual commit on success needed
+def login_wb(store, authentication_sign):
     """
     Login wb return the WhistleblowerTip.id
     """
-    node = store.find(Node).one()
-    hashed_receipt = security.hash_password(receipt, node.receipt_salt)
-    wb_tip = store.find(WhistleblowerTip,
-                        WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
+
+    wb_tip = None
+    if len(authentication_sign) == 16:
+
+        log.debug("Old style Receiver authentication %s" % authentication_sign)
+        node = store.find(Node).one()
+        hashed_receipt = security.hash_password(authentication_sign, node.receipt_salt)
+        try:
+            wb_tip = store.find(WhistleblowerTip,
+                            WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
+        except NotOneError:
+            import pdb; pdb.set_trace()
+
+    else:
+        log.debug("Expected a public key signed by the WB, has to be done "
+                  "Crypto-Validation AND/OR challenge response")
+        try:
+            wb_tip = store.find(WhistleblowerTip,
+                            WhistleblowerTip.wb_signature == unicode(authentication_sign)).one()
+        except NotOneError:
+            import pdb; pdb.set_trace()
+
 
     if not wb_tip:
-        log.debug("Whistleblower login: Invalid receipt")
+        log.err("Whistleblower login: Authentication failure, WBtip not found")
         return False
 
     log.debug("Whistleblower login: Valid receipt")

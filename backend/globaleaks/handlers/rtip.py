@@ -35,6 +35,7 @@ def receiver_serialize_tip(internaltip, language):
         'potential_expiration_date': \
             datetime_to_ISO8601(utc_future_date(seconds=internaltip.context.tip_timetolive)),
         'enable_private_messages': internaltip.context.enable_private_messages,
+        'wb_e2e_public': internaltip.wb_e2e_public,
     }
 
     # context_name and context_description are localized fields
@@ -370,6 +371,7 @@ def get_receiver_list_receiver(store, user_id, tip_id, language):
             "name": unicode(rtip.receiver.name),
             "receiver_id": unicode(rtip.receiver.id),
             "access_counter": rtip.access_counter,
+            "pgp_e2e_public": rtip.receiver.pgp_e2e_public,
         }
 
         mo = Rosetta(rtip.receiver.localized_strings)

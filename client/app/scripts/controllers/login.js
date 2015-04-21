@@ -12,7 +12,7 @@ GLClient.controller('LoginCtrl', ['$scope', '$location', '$routeParams', 'Receiv
       $scope.receivers = receivers;
     });
 
-    if (src && src.indexOf("/admin") != -1) {
+    if (location && location.hash && location.hash.indexOf("#/admin") != -1) {
       $scope.loginUsername = "admin";
       $scope.loginRole = "admin";
     }

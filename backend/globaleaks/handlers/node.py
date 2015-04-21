@@ -9,7 +9,7 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.utils.utility import datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_to_ISO8601, log
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler, GLApiCache
@@ -57,39 +57,62 @@ def anon_serialize_node(store, language):
     # Contexts and Receivers relationship
     configured = store.find(models.ReceiverContext).count() > 0
 
+    # due to E2E is required checks if at least one context and receivers exists
+    # if not, is due to the lacking of at least one configured receiver.
+
+    contexts = store.find(models.Context)
+    at_least_one_e2e = False
+
+    if GLSetting.memory_copy.submission_data_e2e:
+        # receivers without keys has not to be considered
+        for c in contexts:
+            for r in c.receivers:
+                if r.pgp_e2e_public:
+                    at_least_one_e2e = True
+                    break
+
     ret_dict = {
-      'name': node.name,
-      'hidden_service': node.hidden_service,
-      'public_site': node.public_site,
-      'email': u'',
-      'languages_enabled': node.languages_enabled,
-      'languages_supported': LANGUAGES_SUPPORTED,
-      'default_language' : node.default_language,
-      'default_timezone' : node.default_timezone,
-      'maximum_namesize': node.maximum_namesize,
-      'maximum_textsize': node.maximum_textsize,
-      'maximum_filesize': node.maximum_filesize,
-      'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
-      'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
-      'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
-      'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
-      'ahmia': node.ahmia,
-      'can_postpone_expiration': node.can_postpone_expiration,
-      'can_delete_submission': node.can_delete_submission,
-      'wizard_done': node.wizard_done,
-      'allow_unencrypted': node.allow_unencrypted,
-      'allow_iframes_inclusion': node.allow_iframes_inclusion,
-      'configured': configured,
-      'password': u'',
-      'old_password': u'',
-      'disable_privacy_badge': node.disable_privacy_badge,
-      'disable_security_awareness_badge': node.disable_security_awareness_badge,
-      'disable_security_awareness_questions': node.disable_security_awareness_questions,
-      'disable_key_code_hint': node.disable_key_code_hint,
-      'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-      'landing_page': node.landing_page,
-      'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
-      'disk_availability': GLSetting.memory_copy.disk_availability,
+        'name': node.name,
+        'hidden_service': node.hidden_service,
+        'public_site': node.public_site,
+        'email': u"",
+        'languages_enabled': node.languages_enabled,
+        'languages_supported': LANGUAGES_SUPPORTED,
+        'default_language' : node.default_language,
+        'default_timezone' : node.default_timezone,
+        # extended settings info:
+        'maximum_namesize': node.maximum_namesize,
+        'maximum_textsize': node.maximum_textsize,
+        'maximum_filesize': node.maximum_filesize,
+        # public serialization use GLSetting memory var, and
+        # not the real one, because needs to bypass
+        # Tor2Web unsafe deny default settings
+        'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
+        'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
+        'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
+        'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
+        'ahmia': node.ahmia,
+        'can_postpone_expiration': node.can_postpone_expiration,
+        'can_delete_submission': node.can_delete_submission,
+        'wizard_done': node.wizard_done,
+        'allow_unencrypted': node.allow_unencrypted,
+        'allow_iframes_inclusion': node.allow_iframes_inclusion,
+        'configured': configured,
+        'password': u'',
+        'old_password': u'',
+        'disable_privacy_badge': node.disable_privacy_badge,
+        'disable_security_awareness_badge': node.disable_security_awareness_badge,
+        'disable_security_awareness_questions': node.disable_security_awareness_questions,
+        'disable_key_code_hint': node.disable_key_code_hint,
+        'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
+        'custom_privacy_badge_tor': node.custom_privacy_badge_tor,
+        'custom_privacy_badge_none': node.custom_privacy_badge_none,
+        'landing_page': node.landing_page,
+        'disk_availability': GLSetting.memory_copy.disk_availability,
+        'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
+        'file_encryption_e2e': node.file_encryption_e2e,
+        'submission_data_e2e' : node.submission_data_e2e,
+        'e2e_configured': at_least_one_e2e
     }
 
     return get_localized_values(ret_dict, node, node.localized_strings, language)
@@ -103,8 +126,20 @@ def anon_serialize_context(store, context, language):
         (e.g. checks if almost one receiver is associated)
     """
 
-    receivers = [r.id for r in context.receivers]
+    if GLSetting.memory_copy.submission_data_e2e:
+        # receivers without keys has not to be considered
+        receivers = []
+        for r in context.receivers:
+            if r.pgp_e2e_public:
+                receivers.append(r.id)
+    else:
+        receivers = [r.id for r in context.receivers]
+
     if not len(receivers):
+        log.debug("Invalid Context %s because lacks on Receiver%s" % (
+            context.name,
+            " [or Receivers with key, 'cos yov've E2E]" if
+            GLSetting.memory_copy.submission_data_e2e else "" ) )
         return None
 
     steps = [ anon_serialize_step(store, s, language)
@@ -218,12 +253,9 @@ def anon_serialize_receiver(receiver, language):
 
     :param receiver: the receiver to be serialized
     :param language: the language in which to localize data
-    :return: a serializtion of the object
+    :return: a serialization of the object
     """
-
     contexts = [c.id for c in receiver.contexts]
-    if not len(contexts):
-        return None
 
     ret_dict = {
         'creation_date': datetime_to_ISO8601(receiver.creation_date),
@@ -234,6 +266,7 @@ def anon_serialize_receiver(receiver, language):
         'configuration': receiver.configuration, 
         'presentation_order': receiver.presentation_order,
         'pgp_key_status': receiver.pgp_key_status,
+        'pgp_e2e_public': receiver.pgp_e2e_public,
         'contexts': contexts
     }
 
@@ -246,6 +279,19 @@ def get_public_context_list(store, language):
     contexts = store.find(models.Context)
 
     for context in contexts:
+
+        at_least_one_receiver_e2e = False
+        if GLSetting.memory_copy.submission_data_e2e:
+            # contexts with 0 Receiver with key has not to be considered
+            for r in context.receivers:
+                if r.pgp_e2e_public:
+                    at_least_one_receiver_e2e = True
+
+        if not at_least_one_receiver_e2e:
+            log.debug("Context %s has zero Receiver with key, so is not reported" %
+                      context.name)
+            continue
+
         context_desc = anon_serialize_context(store, context, language)
         # context not yet ready for submission return None
         if context_desc:
@@ -256,6 +302,11 @@ def get_public_context_list(store, language):
 
 @transact_ro
 def get_public_receiver_list(store, language):
+    """
+    This list is required to be used in Login!
+    therefore has never to be filtered, beside "disable", the
+    Admin control that permit to cut off a receiver from access.
+    """
     receiver_list = []
     receivers = store.find(models.Receiver)
 

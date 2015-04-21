@@ -33,6 +33,8 @@ def receiver_serialize_receiver(receiver, language):
         'pgp_key_public': receiver.pgp_key_public,
         'pgp_key_expiration': datetime_to_ISO8601(receiver.pgp_key_expiration),
         'pgp_key_status': receiver.pgp_key_status,
+        'pgp_e2e_public': receiver.pgp_e2e_public,
+        'pgp_e2e_private': receiver.pgp_e2e_private,
         'tip_notification': receiver.tip_notification,
         'ping_notification': receiver.ping_notification,
         'mail_address': receiver.mail_address,
@@ -122,6 +124,13 @@ def update_receiver_settings(store, receiver_id, request, language):
     receiver.tip_notification = acquire_bool(request['tip_notification'])
 
     pgp_options_parse(receiver, request)
+
+    # if a PGP E2E key is available, then the noode configuration may change
+    if not receiver.pgp_e2e_public and request['pgp_e2e_public']:
+        GLApiCache.invalidate()
+
+    receiver.pgp_e2e_public = request['pgp_e2e_public']
+    receiver.pgp_e2e_private = request['pgp_e2e_private']
 
     return receiver_serialize_receiver(receiver, language)
 
@@ -222,10 +231,13 @@ def get_receivertip_list(store, receiver_id, language):
 
         preview_data = []
 
-        for s in rtip.internaltip.wb_steps:
-            for f in s['children']:
-                if f['preview']:
-                    preview_data.append(f)
+        try:
+            for s in rtip.internaltip.wb_steps:
+                for f in s['children']:
+                    if f['preview']:
+                        preview_data.append(f)
+        except:
+            preview_data = ['wb_steps_is_encrypted']
 
         single_tip_sum.update({'preview': preview_data})
         rtip_summary_list.append(single_tip_sum)

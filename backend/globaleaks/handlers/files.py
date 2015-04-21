@@ -91,6 +91,12 @@ def register_file_db(store, uploaded_file, internaltip_id):
     new_file.size = uploaded_file['body_len']
     new_file.internaltip_id = internaltip_id
     new_file.file_path = uploaded_file['encrypted_path']
+    new_file.is_e2e_encrypted = GLSetting.memory_copy.file_encryption_e2e
+
+    if GLSetting.memory_copy.file_encryption_e2e:
+        log.debug("End2End enabled node level - File")
+    else:
+        log.debug("End2End DIS-abled node level - File")
 
     store.add(new_file)
 

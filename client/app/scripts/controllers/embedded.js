@@ -1,6 +1,6 @@
 GLClient.controller('EmbeddedReceiptCtrl',
-  ['$scope', '$rootScope', '$location', 'WhistleblowerTip',
-  function($scope, $rootScope, $location, WhistleblowerTip) {
+  ['$scope', '$rootScope', '$location', 'WBReceipt',
+  function($scope, $rootScope, $location, WBReceipt) {
 
   $rootScope.embedded = true;
 
@@ -12,15 +12,15 @@ GLClient.controller('EmbeddedReceiptCtrl',
 
   $scope.view_tip = function(keycode) {
     keycode = keycode.replace(/\D/g,'');
-    WhistleblowerTip(keycode, function() {
+    WBReceipt(keycode, function() {
       $location.path('/status');
     });
   };
 
 }]).
 controller('EmbeddedSubmissionCtrl',
-  ['$scope', '$rootScope',
-  function($scope, $rootScope) {
+  ['$scope', '$rootScope', '$location',
+  function($scope, $rootScope, $location) {
 
   $rootScope.embedded = true;
 

@@ -26,11 +26,13 @@ public_resources = [
     'type': 'text/css',
     'status': 200
   },
+  /*
   {
     'url': '/scripts.js',
     'type': 'application/javascript',
     'status': 200
   },
+  */ /* note: scripts is useful to be checked only with 'build/' */
   {
     'url': '/static/custom_stylesheet.css',
     'type': 'text/css',
@@ -43,7 +45,7 @@ public_resources = [
   },
   {
     'url': '/fonts/glyphicons-halflings-regular.woff',
-    'type': 'text/html; charset=UTF-8',
+    'type': 'application/x-font-woff',
     'status': 200
   },
   {

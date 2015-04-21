@@ -194,10 +194,10 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
   };
 
 }]).
-controller('ReceiptController', ['$scope', '$location', 'Authentication', 'WhistleblowerTip',
-  function($scope, $location, Authentication, WhistleblowerTip) {
-    var format_keycode = function(keycode) {
-      var ret = keycode;
+controller('ReceiptController', ['$scope', '$location', 'Authentication', 'WBReceipt',
+  function($scope, $location, Authentication, WBReceipt) {
+
+    format_keycode = function(keycode) {
       if (keycode && keycode.length == 16) {
         ret =  keycode.substr(0, 4) + ' ' +
                keycode.substr(4, 4) + ' ' +
@@ -206,15 +206,13 @@ controller('ReceiptController', ['$scope', '$location', 'Authentication', 'Whist
       }
 
       return ret;
-
     };
 
-    $scope.keycode = format_keycode(Authentication.keycode);
+    $scope.keycode = Authentication.receipt.value;
     $scope.formatted_keycode = format_keycode($scope.keycode);
 
     $scope.view_tip = function (keycode) {
-      keycode = keycode.replace(/\D/g,'');
-      WhistleblowerTip(keycode, function () {
+      WBReceipt(Authentication.receipt.value, function () {
         $location.path('/status/');
       });
     };

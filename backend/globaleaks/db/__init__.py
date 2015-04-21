@@ -112,7 +112,9 @@ def create_tables(create_node=True):
             'header_title_submissionpage': dict({GLSetting.defaults.language: u""}),
             'header_title_receiptpage': dict({GLSetting.defaults.language: u""}),
             'landing_page': GLSetting.defaults.landing_page,
-            'show_contexts_in_alphabetical_order': False
+            'show_contexts_in_alphabetical_order': False,
+            'file_encryption_e2e': True,
+            'submission_data_e2e': True
         }
 
         # Initialize the node and notification tables
@@ -223,3 +225,51 @@ def clean_untracked_files(res):
                 os.remove(file_to_remove)
             except OSError:
                 log.err("Failed to remove untracked file" % file_to_remove)
+
+
+def check_schema_version():
+    """
+    @return: True of che version is the same, False if the
+        sqlite.sql describe a different schema of the one found
+        in the DB.
+    ok ok, this is a dirty check. I'm counting the number of
+    *comma* (,) inside the SQL just to check if a new column
+    has been added. This would help if an incorrect DB version
+    is used. For sure there are other better checks, but not
+    today.
+    """
+    @transact
+    def do_transact_schema_version(store, db_file, comma_number):
+        success = True
+        q = """
+            SELECT name, type, sql
+            FROM sqlite_master
+            WHERE sql NOT NULL AND type == 'table'
+            """
+        res = store.execute(q)
+        comma_compare = 0
+        for table in res:
+            if len(table) == 3:
+                comma_compare += table[2].count(',')
+
+        if not comma_compare:
+            log.err("Found an empty database (%s)" % db_file)
+            success = False
+        elif comma_compare != comma_number:
+            log.err("Detected an invalid DB version (%s)" %  db_file)
+            log.err("You have to specify a different workingdir (-w) or to upgrade the DB")
+            success = False
+
+        return success
+
+    db_file = GLSetting.gldb_path.replace('sqlite:', '')
+    if not os.path.exists(db_file):
+        return True
+    if not os.access(GLSetting.db_schema_file, os.R_OK):
+        log.err("Unable to access %s" % GLSetting.db_schema_file)
+        return False
+    else:
+        with open(GLSetting.db_schema_file) as f:
+            sqlfile = f.readlines()
+            comma_number = "".join(sqlfile).count(',')
+            return do_transact_schema_version(db_file, comma_number)

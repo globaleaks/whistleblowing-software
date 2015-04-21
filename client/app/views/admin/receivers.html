@@ -279,7 +279,26 @@
                       <br />
                       <label data-translate>Paste the PGP Key here:</label>
                       <textarea class="form-control" data-ng-model="receiver.pgp_key_public"></textarea>
+
+                    <div class="form-group" data-ng-hide="receiver.pgp_key_fingerprint" data-ng-controller="PGPConfigCtrl">
+                      <div class="alert alert-danger">
+                        <span data-translate>Encryption is not enabled!</span>
+                        <span data-translate>Notifications and Files won't be encrypted.</span>
+                      </div>
+
+                      <a class="btn btn-info" data-ng-init="send_key=false" data-ng-click="send_key = !send_key">
+                        <i class="glyphicon glyphicon-plus" data-ng-hide="send_key"></i>
+                        <i class="glyphicon glyphicon-minus" data-ng-show="send_key"></i>
+                        <span data-translate>Configure a PGP key</span>
+                      </a>
+
+                      <div data-ng-show="send_key">
+                        <label data-translate>PGP Public Key:</label>
+                        <textarea class="form-control" data-ng-model="receiver.pgp_key_public"></textarea>
+                      </div>
+
                     </div>
+
                   </div>
                 </div>
               </div>

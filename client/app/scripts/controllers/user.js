@@ -1,6 +1,6 @@
 GLClient.controller('UserCtrl',
-  ['$scope', '$rootScope', '$location', 'WhistleblowerTip',
-  function($scope, $rootScope, $location, WhistleblowerTip) {
+  ['$scope', '$rootScope', '$location', 'WBReceipt',
+  function($scope, $rootScope, $location, WBReceipt) {
 
   $scope.$watch("language", function (newVal, oldVal) {
     if (newVal && newVal !== oldVal) {
@@ -10,7 +10,7 @@ GLClient.controller('UserCtrl',
 
   $scope.view_tip = function(keycode) {
     keycode = keycode.replace(/\D/g,'');
-    WhistleblowerTip(keycode, function() {
+    WBReceipt(keycode, function() {
       $location.path('/status');
     });
   };

@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.python.util import untilConcludes
 from twisted.internet import reactor
 
-from globaleaks.db import create_tables, clean_untracked_files
+from globaleaks.db import create_tables, clean_untracked_files, check_schema_version
 from globaleaks.db.datainit import import_memory_variables, apply_cli_options
 
 from globaleaks.jobs import session_management_sched, statistics_sched, \
@@ -45,6 +45,7 @@ def start_asynchronous():
     reactor.callLater(0, resource_check.start, GLSetting.anomaly_seconds_delta)
 
     reactor.callLater(10, delivery.start, GLSetting.delivery_seconds_delta)
+
     reactor.callLater(20, notification.start, GLSetting.notification_minutes_delta * 60)
     reactor.callLater(40, mailflush.start, GLSetting.mailflush_minutes_delta * 60)
 
@@ -73,6 +74,10 @@ def globaleaks_start():
     if not GLSetting.accepted_hosts:
         log.err("Missing a list of hosts usable to contact GLBackend, abort")
         return False
+
+    # return False do not make globaleaks abort, this is an issue
+    #if not check_schema_version():
+    #    return False
 
     d = create_tables()
 

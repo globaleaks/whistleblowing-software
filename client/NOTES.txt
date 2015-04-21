@@ -38,3 +38,20 @@ In GLClient run the mocha tests:
 
     node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*
 
+### Run protractor tests
+
+Install protactor with npm:
+
+  npm install -g protractor
+ 
+Then install the webdriver:
+
+  webdriver-manager update
+
+To start the tests, first start the web driver:
+
+  webdriver-manager start
+
+Then run the tests with:
+
+  protractor tests/glclient/setup-wizard-config.js
