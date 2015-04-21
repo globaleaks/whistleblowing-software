@@ -9,14 +9,12 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
       flowFile.error = true;
       flowFile.error_msg = "This file exceeds the maximum upload size for this server.";
       flowFile.done = true;
-      return false;
+      event.preventDefault();
     }
 
     angular.forEach($scope.upload_callbacks, function (callback) {
       callback();
     });
-
-    return true;
   });
 
   $scope.$on('flow::fileSuccess', function (event, $flow, flowFile) {
