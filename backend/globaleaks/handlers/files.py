@@ -37,16 +37,14 @@ def serialize_file(internalfile):
 def serialize_receiver_file(receiverfile):
     internalfile = receiverfile.internalfile
 
-    file_desc = {
-        'size': receiverfile.size,
+    return {
+        'creation_date': datetime_to_ISO8601(internalfile.creation_date),
         'content_type': internalfile.content_type,
         'name': ("%s.pgp" % internalfile.name) if receiverfile.status == u'encrypted' else internalfile.name,
-        'creation_date': datetime_to_ISO8601(internalfile.creation_date),
+        'size': receiverfile.size,
         'downloads': receiverfile.downloads,
         'path': receiverfile.file_path,
     }
-
-    return file_desc
 
 
 def serialize_memory_file(uploaded_file):
@@ -58,8 +56,6 @@ def serialize_memory_file(uploaded_file):
     return {
         'content_type': unicode(uploaded_file['content_type']),
         'creation_date': datetime_to_ISO8601(uploaded_file['creation_date']),
-        'id': u'00000000-0000-0000-0000-000000000000',
-        # 'id' is ignored, TODO align API/requsts.py
         'name': unicode(uploaded_file['filename']),
         'size': uploaded_file['body_len'],
     }

@@ -125,6 +125,8 @@ GLClient.controller('SubmissionCtrl',
 
     return '/submission/' + $scope.submission.current_submission.id + '/file';
   };
+
+
   // Watch for changes in certain variables
   $scope.$watch('submission.current_context', function () {
     if ($scope.submission && $scope.submission.current_context) {
@@ -162,6 +164,25 @@ controller('SubmissionStepCtrl', ['$scope', function($scope) {
 controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
   if ($scope.field.type == 'fileupload') {
     $scope.field.value = {};
+    $scope.upload_callbacks = [];
+
+    var upload_callback = function(e, data) {
+      var uploading = false;
+
+      $scope.uploads.forEach(function (u) {
+        if (!u.done) {
+          uploading = true;
+        }
+
+        // TODO: https://github.com/globaleaks/GlobaLeaks/issues/1239
+
+      });
+
+      $scope.submission.uploading = uploading;
+
+    }
+
+    $scope.upload_callbacks.push(upload_callback);
   }
 
   $scope.getClass = function(stepIndex, fieldIndex, toplevel) {
@@ -171,35 +192,6 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
       return "";
     }
   };
-
-  var update_uploads_status = function(e, data) {
-    var uploading = false;
-
-    if ($scope.field.value === "") {
-      $scope.field.value = {};
-    }
-
-    if ($scope.queue) {
-      $scope.queue.forEach(function (k) {
-        if (!k.id) {
-          if (!file.error) {
-            uploading = true;
-          }
-        } else {
-          if (!(k.id in $scope.field.value)) {
-            $scope.field.value[k.id] = angular.copy($scope.field.options)
-          }
-
-          k.value = $scope.field.value[k.id];
-        }
-      });
-    }
-
-    $scope.submission.uploading = uploading;
-  };
-
-  $scope.$on('fileuploadprocessstart', update_uploads_status);
-  $scope.$on('fileuploadalways', update_uploads_status);
 
 }]).
 controller('ReceiptController', ['$scope', '$location', 'Authentication', 'WhistleblowerTip',

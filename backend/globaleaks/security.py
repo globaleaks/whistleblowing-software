@@ -196,7 +196,6 @@ def get_salt(salt_input):
         A string
 
     is performed a SHA512 hash of the salt_input string, and are returned 128bits
-    of uniq data, converted in
     """
     sha = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
     sha.update(salt_input.encode('utf-8'))
