@@ -311,7 +311,7 @@ class TestGL(unittest.TestCase):
 
             token.associate_file(dummyFile)
 
-            self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(f.keys()))
+            self.assertFalse({'size', 'content_type', 'name', 'creation_date'} - set(f.keys()))
 
     @inlineCallbacks
     def emulate_file_append(self, tip_id, n):
@@ -324,7 +324,7 @@ class TestGL(unittest.TestCase):
                 dummyFile, tip_id,
             )
 
-            self.assertFalse({'size', 'content_type', 'name', 'creation_date', 'id'} - set(registered_file.keys()))
+            self.assertFalse({'size', 'content_type', 'name', 'creation_date'} - set(registered_file.keys()))
 
     @transact_ro
     def _exists(self, store, model, *id_args, **id_kwargs):

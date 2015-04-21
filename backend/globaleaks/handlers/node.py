@@ -102,11 +102,6 @@ def anon_serialize_context(store, context, language):
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """
-
-    receivers = [r.id for r in context.receivers]
-    if not len(receivers):
-        return None
-
     steps = [ anon_serialize_step(store, s, language)
               for s in context.steps.order_by(models.Step.number) ]
 
@@ -122,7 +117,7 @@ def anon_serialize_context(store, context, language):
         'enable_private_messages': context.enable_private_messages,
         'presentation_order': context.presentation_order,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
-        'receivers': receivers,
+        'receivers': [r.id for r in context.receivers],
         'steps': steps
     }
 
@@ -220,11 +215,6 @@ def anon_serialize_receiver(receiver, language):
     :param language: the language in which to localize data
     :return: a serializtion of the object
     """
-
-    contexts = [c.id for c in receiver.contexts]
-    if not len(contexts):
-        return None
-
     ret_dict = {
         'creation_date': datetime_to_ISO8601(receiver.creation_date),
         'update_date': datetime_to_ISO8601(receiver.last_update),
@@ -234,7 +224,7 @@ def anon_serialize_receiver(receiver, language):
         'configuration': receiver.configuration, 
         'presentation_order': receiver.presentation_order,
         'pgp_key_status': receiver.pgp_key_status,
-        'contexts': contexts
+        'contexts': [c.id for c in receiver.contexts]
     }
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
