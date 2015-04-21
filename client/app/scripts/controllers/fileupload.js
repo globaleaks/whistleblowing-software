@@ -1,4 +1,5 @@
 GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
+
   $scope.$on('flow::fileAdded', function (event, $flow, flowFile) {
 
     flowFile.done = false;
@@ -11,6 +12,10 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
       return false;
     }
 
+    angular.forEach($scope.upload_callbacks, function (callback) {
+      callback();
+    });
+
     return true;
   });
 
@@ -21,5 +26,10 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
         $scope.uploads[i].done = true;
       }
     }
+
+    angular.forEach($scope.upload_callbacks, function (callback) {
+      callback();
+    });
+
   });
 }]);
