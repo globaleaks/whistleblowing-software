@@ -102,6 +102,10 @@ def anon_serialize_context(store, context, language):
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """
+    receivers = [r.id for r in context.receivers]
+    if not len(receivers):
+        return None
+
     steps = [ anon_serialize_step(store, s, language)
               for s in context.steps.order_by(models.Step.number) ]
 
@@ -117,7 +121,7 @@ def anon_serialize_context(store, context, language):
         'enable_private_messages': context.enable_private_messages,
         'presentation_order': context.presentation_order,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
-        'receivers': [r.id for r in context.receivers],
+        'receivers': receivers,
         'steps': steps
     }
 
