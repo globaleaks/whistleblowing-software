@@ -54,7 +54,7 @@
                       <div class="col-md-6 editorHeaderTitle">{{context.name}}</div>
                       <div class="col-md-offset-1 col-md-5 editorHeaderButtons">
                         <div class="pull-right">
-                          <button class="btn btn-success saveContext" data-ng-disabled="editContext.$pristine" data-ng-click="save_context(context)" type="submit">
+                          <button class="btn btn-success saveContext" data-ng-disabled="editContext.$pristine" data-ng-click="save_single(context)" type="submit">
                             <i class="glyphicon glyphicon-ok"></i>
                             <span data-translate>Save</span>
                           </button>
@@ -111,6 +111,12 @@
                       </a>
                       <div class="row" data-ng-show="advanced_edit">
                         <div class="col-md-6">
+                          <div class="form-group">
+                            <label>
+                              <input data-ng-model="context.reset_steps_to_default" type="checkbox" />
+                              <span data-translate>Reset steps and fields to default</span>
+                            </label>
+                          </div>
                           <div class="form-group">
                             <label>
                               <input data-ng-model="context.show_receivers_in_alphabetical_order" type="checkbox" />

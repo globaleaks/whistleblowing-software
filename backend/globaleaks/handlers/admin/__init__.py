@@ -123,22 +123,18 @@ def admin_serialize_user(*args):
     return db_admin_serialize_user(*args)
 
 
-def db_create_step(store, context_id, steps, language):
+def db_create_step(store, context, steps, language):
     """
     Add the specified steps
 
     :param store: the store on which perform queries.
-    :param context_id: the id of the context on which register specified steps.
+    :param context: the context on which register specified steps.
     :param steps: a dictionary containing the new steps.
     :param language: the language of the specified steps.
     """
-    context = models.Context.get(store, context_id)
-    if context is None:
-        raise errors.ContextIdNotFound
-
     n = 1
     for step in steps:
-        step['context_id'] = context_id
+        step['context_id'] = context.id
         step['number'] = n
 
         fill_localized_keys(step, models.Step.localized_strings, language)
@@ -158,20 +154,16 @@ def db_create_step(store, context_id, steps, language):
 
         n += 1
 
-def db_update_steps(store, context_id, steps, language):
+def db_update_steps(store, context, steps, language):
     """
     Update steps
 
     :param store: the store on which perform queries.
-    :param context_id: the id of the context on which register specified steps.
+    :param context: the context on which register specified steps.
     :param steps: a dictionary containing the steps to be updated.
     :param language: the language of the specified steps.
     """
-    context = models.Context.get(store, context_id)
-    if context is None:
-        raise errors.ContextIdNotFound
-
-    old_steps = store.find(models.Step, models.Step.context_id == context_id)
+    old_steps = store.find(models.Step, models.Step.context_id == context.id)
 
     indexed_old_steps = {}
     for o in old_steps:
@@ -180,7 +172,7 @@ def db_update_steps(store, context_id, steps, language):
     new_steps = []
     n = 1
     for step in steps:
-        step['context_id'] = context_id
+        step['context_id'] = context.id
         step['number'] = n
 
         fill_localized_keys(step, models.Step.localized_strings, language)
@@ -196,24 +188,26 @@ def db_update_steps(store, context_id, steps, language):
             new_steps.append(indexed_old_steps[step['id']])
             del indexed_old_steps[step['id']]
         else:
-            new_steps.append(models.Step(step))
+            s = models.Step(step)
+            new_steps.append(s)
 
         i = 1
-        for f in step['children']:
-            field = models.Field.get(store, f['id'])
-            i += 1
-            field.y = i
-            if not field:
+        for children in step['children']:
+            f = models.Field.get(store, children['id'])
+            if not f:
                 log.err("Creation error: unexistent field can't be associated")
                 raise errors.FieldIdNotFound
 
+            i += 1
+            f.y = i
+
             # remove current step/field fieldgroup/field association
-            a_s, _ = get_field_association(store, field.id)
+            a_s, _ = get_field_association(store, f.id)
             if a_s is None:
-                s.children.add(field)
+                s.children.add(f)
             elif a_s != s.id:
-                disassociate_field(store, field.id)
-                s.children.add(field)
+                disassociate_field(store, f.id)
+                s.children.add(f)
             else: # the else condition means a_s == s.id; already associated!
                 pass
 
@@ -224,6 +218,7 @@ def db_update_steps(store, context_id, steps, language):
 
     for n in new_steps:
         store.add(n)
+
 
 def admin_serialize_context(store, context, language):
     """
@@ -252,10 +247,12 @@ def admin_serialize_context(store, context, language):
         'enable_private_messages': context.enable_private_messages,
         'presentation_order': context.presentation_order,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
+        'reset_steps_to_default': False,
         'steps': steps
     }
 
     return get_localized_values(ret_dict, context, context.localized_strings, language)
+
 
 def admin_serialize_receiver(receiver, language):
     """
@@ -294,6 +291,7 @@ def admin_serialize_receiver(receiver, language):
     }
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
+
 
 def db_update_node(store, request, wizard_done, language):
     """
@@ -360,9 +358,11 @@ def db_update_node(store, request, wizard_done, language):
 
     return db_admin_serialize_node(store, language)
 
+
 @transact
 def update_node(*args):
     return db_update_node(*args)
+
 
 @transact_ro
 def get_context_list(store, language):
@@ -402,6 +402,40 @@ def field_is_present(store, field):
                         models.Field.preview == field['preview'])
 
     return result.count() > 0
+
+
+def db_setup_default_steps(store, context):
+    appdata = store.find(models.ApplicationData).one()
+    steps = copy.deepcopy(appdata.fields)
+    n_s = 1
+    for step in steps:
+        for f_child in step['children']:
+            if not field_is_present(store, f_child):
+                f_child['is_template'] = False
+    for step in steps:
+        f_children = copy.deepcopy(step['children'])
+        del step['children']
+        s = models.db_forge_obj(store, models.Step, step)
+        for f_child in f_children:
+            o_children = copy.deepcopy(f_child['options'])
+            del f_child['options']
+            # FIXME currently default updata do not handle fieldgroups
+            # all this block must be redesigned in order to be called recursively
+            del f_child['children']
+            f = models.db_forge_obj(store, models.Field, f_child)
+            n_o = 1
+            for o_child in o_children:
+                o = models.db_forge_obj(store, models.FieldOption, o_child)
+                o.field_id = f.id
+                o.number = n_o
+                f.options.add(o)
+                n_o += 1
+            f.step_id = s.id
+            s.children.add(f)
+        s.context_id = context.id
+        s.number = n_s
+        context.steps.add(s)
+        n_s += 1
 
 
 def db_create_context(store, request, language):
@@ -454,47 +488,19 @@ def db_create_context(store, request, language):
         c.receivers.add(receiver)
 
     if steps:
-        db_create_step(store, context.id, steps, language)
+        db_create_step(store, context, steps, language)
     else:
-        appdata = store.find(models.ApplicationData).one()
-        steps = copy.deepcopy(appdata.fields)
-        n_s = 1
-        for step in steps:
-            for f_child in step['children']:
-                if not field_is_present(store, f_child):
-                    f_child['is_template'] = False
-        for step in steps:
-            f_children = copy.deepcopy(step['children'])
-            del step['children']
-            s = models.db_forge_obj(store, models.Step, step)
-            for f_child in f_children:
-                o_children = copy.deepcopy(f_child['options'])
-                del f_child['options']
-                # FIXME currently default updata do not handle fieldgroups
-                # all this block must be redesigned in order to be called recursively
-                del f_child['children']
-                f = models.db_forge_obj(store, models.Field, f_child)
-                n_o = 1
-                for o_child in o_children:
-                    o = models.db_forge_obj(store, models.FieldOption, o_child)
-                    o.field_id = f.id
-                    o.number = n_o
-                    f.options.add(o)
-                    n_o += 1
-                f.step_id = s.id
-                s.children.add(f)
-            s.context_id = context.id
-            s.number = n_s
-            context.steps.add(s)
-            n_s += 1
+        db_setup_default_steps(store, context)
 
     log.debug("Created context %s (using %s)" % (context_name, language) )
 
     return admin_serialize_context(store, context, language)
 
+
 @transact
 def create_context(*args):
     return db_create_context(*args)
+
 
 @transact_ro
 def get_context(store, context_id, language):
@@ -510,6 +516,7 @@ def get_context(store, context_id, language):
 
     return admin_serialize_context(store, context, language)
 
+
 def db_get_context_steps(store, context_id, language):
     """
     Returns:
@@ -523,9 +530,11 @@ def db_get_context_steps(store, context_id, language):
 
     return [anon_serialize_step(store, s, language) for s in context.steps]
 
+
 @transact_ro
 def get_context_steps(*args):
     return db_get_context_steps(*args)
+
 
 @transact
 def update_context(store, context_id, request, language):
@@ -581,9 +590,14 @@ def update_context(store, context_id, request, language):
         log.err("Unable to update context %s: %s" % (context.name, dberror))
         raise errors.InvalidInputFormat(dberror)
 
-    db_update_steps(store, context.id, steps, language)
+    if request['reset_steps_to_default']:
+        db_update_steps(store, context, [], language)
+        db_setup_default_steps(store, context)
+    else:
+        db_update_steps(store, context, steps, language)
 
     return admin_serialize_context(store, context, language)
+
 
 @transact
 def delete_context(store, context_id):
@@ -688,9 +702,11 @@ def db_create_receiver(store, request, language):
 
     return admin_serialize_receiver(receiver, language)
 
+
 @transact
 def create_receiver(*args):
     return db_create_receiver(*args)
+
 
 @transact_ro
 def get_receiver(store, receiver_id, language):
@@ -759,6 +775,7 @@ def update_receiver(store, receiver_id, request, language):
         raise errors.InvalidInputFormat(dberror)
 
     return admin_serialize_receiver(receiver, language)
+
 
 @transact
 def delete_receiver(store, receiver_id):
