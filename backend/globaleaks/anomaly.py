@@ -269,17 +269,16 @@ class Alarm(object):
     }
 
     OUTCOMING_ANOMALY_MAP = {
-        'failed_logins': 5,
-        'successful_logins': 3,
-        'started_submissions': 5,
-        'completed_submissions': 4,
-        'uploaded_files': 11,
-        'appended_files': 4,
-        'wb_comments': 4,
-        'wb_messages': 4,
-        'receiver_comments': 3,
-        'receiver_messages': 3,
-        # 'homepage_access': 60,
+        'failed_logins': 50,
+        'successful_logins': 70,
+        'started_submissions': 100,
+        'completed_submissions': 50,
+        'uploaded_files': 100,
+        'appended_files': 100,
+        'wb_comments': 20,
+        'wb_messages': 20,
+        'receiver_comments': 30,
+        'receiver_messages': 30
     }
 
     # the level of the alarm in 30 seconds
@@ -297,7 +296,7 @@ class Alarm(object):
         self.difficulty_dict = {
             'human_captcha': False,
             'graph_captcha': False,
-            'proof_of_work': False,
+            'proof_of_work': False
         }
 
 
