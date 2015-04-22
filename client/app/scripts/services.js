@@ -768,20 +768,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('DefaultAppdata', ['$resource', function($resource) {
     return $resource('/data/appdata_l10n.json', {});
 }]).
-  factory('cookiesEnabled', function(){
-
-  return function() {
-    var enabled = false;
-    document.cookie = 'cookiesenabled=true;';
-    if (document.cookie == "") {
-      enabled = false;
-    } else {
-      enabled = true;
-      $.removeCookie('cookiesenabled');
-    }
-    return enabled;
-  }
-}).
   factory('passwordWatcher', ['$parse', function($parse) {
     return function(scope, password) {
       /** This is used to watch the new password and check that is
