@@ -19,7 +19,7 @@ class TestAnomaliesCollectionDesc(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        pollute_events_for_testing(3)
+        pollute_events_for_testing(50)
         yield AnomaliesSchedule().operation()
 
         handler = self.request({}, role='admin')
@@ -45,7 +45,7 @@ class TestStatsCollectionDesc(helpers.TestHandler):
         self.assertEqual(len(self.responses[0]), 3)
         self.assertEqual(len(self.responses[0]['heatmap']), 7 * 24)
 
-        pollute_events_for_testing(3)
+        pollute_events_for_testing(50)
 
         yield AnomaliesSchedule().operation()
         yield StatisticsSchedule().operation()
@@ -58,7 +58,7 @@ class TestStatsCollectionDesc(helpers.TestHandler):
 
     @inlineCallbacks
     def test_delete(self):
-        pollute_events_for_testing(3)
+        pollute_events_for_testing(50)
         yield AnomaliesSchedule().operation()
         yield StatisticsSchedule().operation()
 
@@ -80,7 +80,7 @@ class TestAnomHistCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        pollute_events_for_testing(3)
+        pollute_events_for_testing(50)
         yield AnomaliesSchedule().operation()
         yield StatisticsSchedule().operation()
 
@@ -92,7 +92,7 @@ class TestAnomHistCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_delete(self):
-        pollute_events_for_testing(3)
+        pollute_events_for_testing(50)
         yield AnomaliesSchedule().operation()
         yield StatisticsSchedule().operation()
 

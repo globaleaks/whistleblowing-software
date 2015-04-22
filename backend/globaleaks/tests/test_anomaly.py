@@ -8,7 +8,7 @@ from globaleaks import anomaly
 
 anomaly.reactor = task.Clock()
 
-def pollute_events_for_testing(number_of_times=1):
+def pollute_events_for_testing(number_of_times=10):
     for _ in xrange(number_of_times):
         for event_obj in anomaly.outcoming_event_monitored:
 
