@@ -160,6 +160,7 @@ var context = {
   enable_private_messages: true,
   select_all_receivers: true,
   show_receivers_in_alphabetical_order: false,
+  reset_steps_to_default: false,
   description: 'XXXXX ħ ÐÐ',
   name: 'Context 1',
   steps: [
