@@ -16,6 +16,10 @@ GLClient.controller('AdminContextsCtrl',
     return $scope.update(updated_context, cb);
   };
 
+  $scope.save_single = function (context) {
+    $scope.save_context(context, $scope.reload);
+  }
+
   $scope.save_all = function () {
     angular.forEach($scope.admin.contexts, function (context, key) {
       $scope.save_context(context);

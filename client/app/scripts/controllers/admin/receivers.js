@@ -18,6 +18,10 @@ function($scope, $modal) {
 
   };
 
+  $scope.save_single = function(receiver) {
+    $scope.save_receiver(receiver, $scope.reload);
+  }
+
   $scope.save_all = function () {
     angular.forEach($scope.admin.receivers, function (receiver, key) {
       $scope.save_receiver(receiver);
