@@ -827,7 +827,8 @@ class MockDict():
             'show_receivers': False,
             'enable_private_messages': True,
             'presentation_order': 0,
-            'show_receivers_in_alphabetical_order': False
+            'show_receivers_in_alphabetical_order': False,
+            'reset_steps_to_default': False
         }
 
         self.dummySubmission = {
@@ -835,7 +836,7 @@ class MockDict():
             'wb_steps': [],
             'finalize': False,
             'receivers': [],
-            'files': [],
+            'files': []
         }
 
         self.dummyNode = {

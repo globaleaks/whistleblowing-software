@@ -24,7 +24,7 @@ class TestStatistics(helpers.TestGL):
         """
 
         # start test
-        ANOMALIES_AMOUNT = 10
+        ANOMALIES_AMOUNT = 50
         pollute_events_for_testing(ANOMALIES_AMOUNT)
 
         anomaly.Alarm.compute_activity_level()
