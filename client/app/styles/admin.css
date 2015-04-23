@@ -249,3 +249,7 @@ text.axis-workweek {
 text.axis-worktime {
   fill: #000;
 }
+
+.sortableHandle {
+  cursor: move;
+}
