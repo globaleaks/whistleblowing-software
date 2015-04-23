@@ -72,7 +72,7 @@ GLClient.controller('AdminContextsCtrl',
   };
 
   $scope.sortableOptions = {
-    handle: ".handle",
+    handle: ".sortableHandle",
     stop: function(e, ui) {
       $scope.update_contexts_order();
     }

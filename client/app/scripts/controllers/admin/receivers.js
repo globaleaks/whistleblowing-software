@@ -65,7 +65,7 @@ function($scope, $modal) {
   };
 
   $scope.sortableOptions = {
-    handle: ".handle",
+    handle: ".sortableHandle",
     stop: function(e, ui) {
       $scope.update_receivers_order();
     }

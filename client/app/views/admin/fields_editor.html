@@ -5,10 +5,13 @@
   <div data-ng-form="editField">
 
     <div class="configItem fieldCard card"  data-ng-class="{'configItemLast': $last}">
-      <div class="row">
-        <div class="fieldEditorHeader" data-ng-click="editing=!editing">
+      <div class="fieldEditorHeader sortableHandle" data-ng-click="editing=!editing">
+        <div class="row">
           <span class="fieldIndex">{{$index + 1}}</span>
           <span class="fieldLabel">{{field.label}}</span>
+          <span class="pull-right" popover="{{'Click to edit, drag to order' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+            <i class="glyphicon glyphicon-th"></i>
+          </span>
         </div>
       </div>
 
