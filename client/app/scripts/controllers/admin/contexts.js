@@ -63,6 +63,21 @@ GLClient.controller('AdminContextsCtrl',
     );
   };
 
+  $scope.update_contexts_order = function () {
+    var i = 0;
+    angular.forEach($scope.admin.contexts, function (context, key) {
+      context.presentation_order = i + 1;
+      i += 1;
+    });
+  };
+
+  $scope.sortableOptions = {
+    handle: ".handle",
+    stop: function(e, ui) {
+      $scope.update_contexts_order();
+    }
+  };
+
 }]);
 
 GLClient.controller('AdminContextsEditorCtrl', ['$scope',
