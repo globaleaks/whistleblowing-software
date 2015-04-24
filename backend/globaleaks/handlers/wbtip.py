@@ -161,7 +161,6 @@ def create_comment_wb(store, wb_tip_id, request):
 
     wbtip.internaltip.comments.add(comment)
 
-    store.commit()
     return wb_serialize_comment(comment)
 
 
