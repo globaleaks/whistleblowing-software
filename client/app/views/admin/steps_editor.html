@@ -67,10 +67,10 @@
               </div>
               <div id="FieldsEditBox" class="form-group" data-ng-if="step.children">
                 <label data-translate>Configured fields:</label>
-                  <div ui-sortable="sortableOptions" data-ng-model="step.children"
+                  <div data-as-sortable="sortableOptions" data-ng-model="step.children"
                        class="configuredFields"
                        data-ui-on-drop="add_field_from_template($data, step)">
-                    <div data-ng-repeat="field in step.children | orderBy:'y'">
+                    <div data-ng-repeat="field in step.children | orderBy:'y'" data-as-sortable-item>
                       <div data-ng-include="'views/admin/fields_editor.html'"></div>
                     </div>
                   </div>

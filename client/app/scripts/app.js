@@ -2,9 +2,10 @@
 
 var GLClient = angular.module('GLClient', [
     'ngRoute',
+    'ngCookies',
     'ui.bootstrap',
-    'ui.sortable',
     'ang-drag-drop',
+    'ui.sortable',
     'flow',
     'monospaced.elastic',
     'resourceServices',
@@ -222,7 +223,8 @@ var GLClient = angular.module('GLClient', [
            $rootScope.$broadcast("REFRESH");
        }
     }
-      $(document).bind("keydown", overrideReload);
+
+    $(document).bind("keydown", overrideReload);
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         if (current.$$route) {
@@ -237,7 +239,7 @@ var GLClient = angular.module('GLClient', [
       $rootScope.cookiesEnabled = false;
     } else {
       $rootScope.cookiesEnabled = true;
-      $.removeCookie('cookiesenabled');
+      document.cookie = 'cookiesenabled=true; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
 
     $rootScope.anonymous = false;

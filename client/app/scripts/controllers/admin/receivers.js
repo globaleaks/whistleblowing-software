@@ -56,21 +56,19 @@ function($scope, $modal) {
     );
   };
 
-  $scope.update_receivers_order = function () {
-    var i = 0;
-    angular.forEach($scope.admin.receivers, function (receiver, key) {
-      receiver.presentation_order = i + 1;
-      i += 1;
-    });
-  };
-
   $scope.sortableOptions = {
-    handle: ".sortableHandle",
-    stop: function(e, ui) {
-      $scope.update_receivers_order();
+    orderChanged: function(e) {
+      var receivers = angular.copy($scope.admin.receivers);
+
+      var i = 0;
+      angular.forEach(receivers, function (receiver, key) {
+        receiver.presentation_order = i + 1;
+        i += 1;
+      });
+
+      $scope.admin.receivers = receivers;
     }
   };
-
 
 }]);
 

@@ -39,20 +39,18 @@
       <table class="table table-bordered" id="tipList">
         <thead>
           <tr>
-            <th class="col-md-1">
-              <span data-translate>Status</span>
-            </th>
-            <th class="col-md-5">
+            <th class="col-md-6">
               <span data-translate>Date</span>
             </th>
-            <th><span data-translate>Info</span></th>
+            <th class="col-md-6">
+              <span data-translate>Info</span>
+            </th>
           </tr>
         </thead>
 
         <tbody id="tipListBody">
           <tr data-ng-repeat="tip in tips | orderBy:orderProp:reverse">
-            <td class="col-md-1">{{tip.status}}</td>
-            <td class="col-md-5">
+            <td class="col-md-6">
               <div class="row">
                 <span class="col-md-6">
                   <b><span data-translate>Creation Date</span></b>

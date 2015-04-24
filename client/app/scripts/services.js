@@ -2,8 +2,8 @@
 
 angular.module('resourceServices.authentication', [])
   .factory('Authentication', ['$http', '$location', '$routeParams',
-                              '$rootScope', '$timeout',
-    function($http, $location, $routeParams, $rootScope, $timeout) {
+                              '$rootScope', '$timeout', '$cookies',
+    function($http, $location, $routeParams, $rootScope, $timeout, $cookies) {
       function Session(){
         var self = this;
 
@@ -93,8 +93,8 @@ angular.module('resourceServices.authentication', [])
             h['X-Session'] = self.id;
           }
 
-          if ($.cookie('XSRF-TOKEN')) {
-            h['X-XSRF-TOKEN'] = $.cookie('XSRF-TOKEN');
+          if ($cookies['XSRF-TOKEN']) {
+            h['X-XSRF-TOKEN'] = $cookies['XSRF-TOKEN'];
           }
 
           if ($rootScope.language) {
