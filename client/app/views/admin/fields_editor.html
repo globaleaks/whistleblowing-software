@@ -5,7 +5,7 @@
   <div data-ng-form="editField">
 
     <div class="configItem fieldCard card"  data-ng-class="{'configItemLast': $last}">
-      <div class="fieldEditorHeader sortableHandle" data-ng-click="editing=!editing">
+      <div class="fieldEditorHeader sortableHandle" data-ng-click="editing=!editing" data-as-sortable-item-handle>
         <div class="row">
           <span class="fieldIndex">{{$index + 1}}</span>
           <span class="fieldLabel">{{field.label}}</span>

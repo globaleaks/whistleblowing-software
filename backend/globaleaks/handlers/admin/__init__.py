@@ -373,7 +373,7 @@ def get_context_list(store, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the contexts.
     """
-    contexts = store.find(models.Context)
+    contexts = store.find(models.Context).order_by(models.Context.presentation_order)
     context_list = []
 
     for context in contexts:
@@ -625,7 +625,8 @@ def get_receiver_list(store, language):
     """
     receiver_list = []
 
-    receivers = store.find(models.Receiver)
+    receivers = store.find(models.Receiver).order_by(models.Receiver.presentation_order)
+
     for receiver in receivers:
         receiver_list.append(admin_serialize_receiver(receiver, language))
 
@@ -720,7 +721,6 @@ def get_receiver(store, receiver_id, language):
     receiver = models.Receiver.get(store, receiver_id)
 
     if not receiver:
-        log.err("Requested in receiver")
         raise errors.ReceiverIdNotFound
 
     return admin_serialize_receiver(receiver, language)
@@ -763,8 +763,8 @@ def update_receiver(store, receiver_id, request, language):
     for context_id in contexts:
         context = models.Context.get(store, context_id)
         if not context:
-            log.err("Update error: unexistent context can't be associated")
             raise errors.ContextIdNotFound
+
         receiver.contexts.add(context)
 
     receiver.last_update = datetime_now()
@@ -782,7 +782,6 @@ def delete_receiver(store, receiver_id):
     receiver = models.Receiver.get(store, receiver_id)
 
     if not receiver:
-        log.err("Invalid receiver requested in removal")
         raise errors.ReceiverIdNotFound
 
     portrait = os.path.join(GLSetting.static_path, "%s.png" % receiver_id)

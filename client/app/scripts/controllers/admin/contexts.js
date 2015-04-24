@@ -72,9 +72,16 @@ GLClient.controller('AdminContextsCtrl',
   };
 
   $scope.sortableOptions = {
-    handle: ".sortableHandle",
-    stop: function(e, ui) {
-      $scope.update_contexts_order();
+    orderChanged: function(e) {
+      var contexts = angular.copy($scope.admin.contexts);
+
+      var i = 0;
+      angular.forEach(contexts, function (context, key) {
+        context.presentation_order = i + 1;
+        i += 1;
+      });
+
+      $scope.admin.contexts = contexts;
     }
   };
 
@@ -85,16 +92,6 @@ GLClient.controller('AdminContextsEditorCtrl', ['$scope',
 
     $scope.editing = $scope.context.description === undefined;
 
-    $scope.sortableOptions = {
-      placeholder: "placeholder",
-      handle: ".handle",
-      axis: 'x',
-      stop: function(e, ui) {
-        $scope.contextForm.$dirty = true;
-        $scope.contextForm.$pristine = false;
-      }
-    };
-   
     $scope.toggleEditing = function () {
       $scope.editing = $scope.editing ^ 1;
     };

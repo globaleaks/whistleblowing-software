@@ -27,20 +27,21 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
     $scope.languages_supported = {};
     $scope.languages_enabled = [];
     $scope.languages_enabled_selector = [];
-    $.each(node.languages_supported, function(idx) {
-      var code = node.languages_supported[idx]['code'];
-      $scope.languages_supported[code] = node.languages_supported[idx]['name'];
-      if ($.inArray(code, node.languages_enabled) != -1) {
-        $scope.languages_enabled[code] = node.languages_supported[idx]['name'];
-        $scope.languages_enabled_selector.push({"name": node.languages_supported[idx]['name'],"code": code});
+    angular.forEach(node.languages_supported, function(lang) {
+      var code = lang['code'];
+      var name = lang['name'];
+      $scope.languages_supported[code] = name;
+      if (node.languages_enabled.indexOf(code) != -1) {
+        $scope.languages_enabled[code] = name;
+        $scope.languages_enabled_selector.push({"name": name,"code": code});
       }
     });
 
     $scope.$watch('languages_enabled', function(){
       if ($scope.languages_enabled) {
         $scope.languages_enabled_edit = {};
-        $.each($scope.languages_supported, function(lang){
-          $scope.languages_enabled_edit[lang] = lang in $scope.languages_enabled;
+        angular.forEach($scope.languages_supported, function(lang, code){
+          $scope.languages_enabled_edit[code] = code in $scope.languages_enabled;
         });
       }
 
@@ -55,9 +56,9 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
           change_default = true;
         }
 
-        $.each($scope.languages_supported, function(lang) {
-          if ($scope.languages_enabled_edit[lang]) {
-            languages_enabled_selector.push({'name': $scope.languages_supported[lang], 'code': lang});
+        angular.forEach($scope.languages_supported, function(lang, code) {
+          if ($scope.languages_enabled_edit[code]) {
+            languages_enabled_selector.push({'name': lang, 'code': code});
 
             if (change_default === true) {
               language_selected = lang;
@@ -67,9 +68,9 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
         });
 
         var languages_enabled = [];
-        $.each($scope.languages_enabled_edit, function(lang, enabled) {
+        angular.forEach($scope.languages_enabled_edit, function(enabled, code) {
           if (enabled) {
-            languages_enabled.push(lang);
+            languages_enabled.push(code);
           }
         });
 
@@ -146,17 +147,6 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', 'Defa
       ctrl: TabCtrl
     }
   ];
-
-  $scope.install_default_fields = function () {
-
-    DefaultAppdata.get(function (res) {
-
-      $http.post('/admin/appdata', res).success(function (response) {
-
-      });
-
-    });
-  };
 
   $scope.staticfiles = [];
 

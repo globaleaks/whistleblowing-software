@@ -147,7 +147,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
         $scope.route_check();
 
-        if ($rootScope.language == undefined || $.inArray($rootScope.language, node.languages_enabled) == -1) {
+        if ($rootScope.language == undefined || node.languages_enabled.indexOf($rootScope.language) == -1) {
           $rootScope.language = node.default_language;
           $rootScope.default_language = node.default_language;
           $translate.use($rootScope.language);
@@ -156,12 +156,13 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         $scope.languages_supported = {};
         $scope.languages_enabled = {};
         $scope.languages_enabled_selector = [];
-        $.each(node.languages_supported, function (idx) {
-          var code = node.languages_supported[idx]['code'];
-          $scope.languages_supported[code] = node.languages_supported[idx]['name'];
-          if ($.inArray(code, node.languages_enabled) != -1) {
-            $scope.languages_enabled[code] = node.languages_supported[idx]['name'];
-            $scope.languages_enabled_selector.push({"name": node.languages_supported[idx]['name'], "code": code});
+        angular.forEach(node.languages_supported, function (lang) {
+          var code = lang['code'];
+          var name = lang['name'];
+          $scope.languages_supported[code] = name;
+          if (node.languages_enabled.indexOf(code) != -1) {
+            $scope.languages_enabled[code] = name;
+            $scope.languages_enabled_selector.push({"name": name, "code": code});
           }
         });
 
@@ -187,7 +188,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
     $scope.$on('$routeChangeSuccess', function() {
       var lang = $location.search().lang;
-      if(lang && $.inArray(lang, $scope.node.languages_enabled) !== -1) {
+      if(lang && $scope.node.languages_enabled.indexOf(lang) !== -1) {
         $rootScope.language = lang;
       }
 

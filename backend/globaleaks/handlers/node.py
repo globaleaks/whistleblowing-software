@@ -237,7 +237,7 @@ def anon_serialize_receiver(receiver, language):
 @transact_ro
 def get_public_context_list(store, language):
     context_list = []
-    contexts = store.find(models.Context)
+    contexts = store.find(models.Context).order_by(models.Context.presentation_order)
 
     for context in contexts:
         context_desc = anon_serialize_context(store, context, language)
@@ -251,7 +251,7 @@ def get_public_context_list(store, language):
 @transact_ro
 def get_public_receiver_list(store, language):
     receiver_list = []
-    receivers = store.find(models.Receiver)
+    receivers = store.find(models.Receiver).order_by(models.Receiver.presentation_order)
 
     for receiver in receivers:
         if receiver.user.state == u'disabled':
