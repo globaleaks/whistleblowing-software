@@ -91,10 +91,6 @@ def itip_cleaning(store, tip_id):
         log.err("Requested invalid InternalTip id in itip_cleaning! %s" % tip_id)
         return
 
-    comments = store.find(Comment, Comment.internaltip_id == tip_id)
-    log.debug("[-] Removing [%d comments] [%d files] [%d rtips] from an InternalTip" %
-        (comments.count(), tit.internalfiles.count(), tit.receivertips.count()))
-
     for ifile in tit.internalfiles:
         abspath = os.path.join(GLSetting.submission_path, ifile.file_path)
 
