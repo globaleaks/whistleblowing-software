@@ -1,10 +1,10 @@
 GLClient.controller('StatusCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', 'Authentication', 'Tip', 'WBTip', 'Contexts', 'ReceiverPreferences',
-  function($scope, $rootScope, $location, $route, $routeParams, $http, Authentication, Tip, WBTip, Contexts, ReceiverPreferences) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', '$cookies', 'Authentication', 'Tip', 'WBTip', 'Contexts', 'ReceiverPreferences',
+  function($scope, $rootScope, $location, $route, $routeParams, $http, $cookies, Authentication, Tip, WBTip, Contexts, ReceiverPreferences) {
 
     $scope.tip_id = $routeParams.tip_id;
     $scope.session = Authentication.id;
-    $scope.xsrf_token = $.cookie('XSRF-TOKEN');
+    $scope.xsrf_token = $cookies['XSRF-TOKEN'];
     $scope.target_file = '#';
 
     $scope.uploads = [];
