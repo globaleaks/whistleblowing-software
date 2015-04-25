@@ -11,6 +11,27 @@ body {
   word-wrap: break-word;
 }
 
+h1 {
+  font-size: 60px;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+input, textarea, select {
+  padding-bottom: 10px;
+}
+
+table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
 #HeaderBox, #HeaderBoxHomepage {
   overflow: hidden;
   color: #FFF;
@@ -31,10 +52,10 @@ body {
 
 #ContentBox {
   margin-top: 20px;
-  margin-bottom: 80px;
+  margin-bottom: 20px;
 }
 
-#messageConsole {
+#MessageConsoleBox {
   width: 200px;
   position: fixed;
   z-index: 10;
@@ -58,10 +79,9 @@ body {
 
 #LogoBox, #TitleBox, #UserBox, #LogoBoxHomepage, #TitleBoxHomepage, #UserBoxHomepage {
   position: relative;
-  height: 200px;
-  z-index: 10;
   margin-left: 20px;
   margin-right: 20px;
+  z-index: 10;
 }
 
 #LogoBox, #LogoBoxHomepage {
@@ -89,25 +109,14 @@ body {
   border-radius: 15px;
 }
 
-h1 {
-  font-size: 60px;
-}
-
-h2 {
-  font-size: 36px;
-}
-
-h3 {
-  font-size: 20px;
-}
-
 #LogoBox, #LogoBoxHomepage {
   width: 300px;
 }
 
 #LogoBox img, #LogoBoxHomepage img {
   margin: 0 auto;
-  height: 200px;
+  width: 200px;
+  height: auto;
 }
 
 #TitleBox, #TitleBoxHomepage {
@@ -170,11 +179,6 @@ h3 {
 
 .has-error {
   color: #b94a48;
-}
-
-table {
-  table-layout: fixed;
-  word-wrap: break-word;
 }
 
 .img-thumbnail {
@@ -275,10 +279,6 @@ table {
 
 .LanguageSelected {
   background-color: #EEE;
-}
-
-input, textarea, select {
-  padding-bottom: 10px;
 }
 
 /** Fields submission/tip page **/
