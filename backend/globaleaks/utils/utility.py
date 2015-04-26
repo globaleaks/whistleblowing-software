@@ -444,23 +444,6 @@ def ISO8601_to_pretty_str_tz(isodate, tz):
     return date.strftime("%A %d %B %Y %H:%M")
 
 
-def seconds_convert(value, conversion_factor, minv=0, maxv=0):
-    """
-    @param value:
-    @param conversion_factor:
-    """
-    seconds = value * conversion_factor
-
-    if (seconds / conversion_factor) != value:
-        raise Exception("Invalid operation triggered")
-    if minv and (seconds < minv * conversion_factor):
-        raise Exception("%d < %d" % (seconds, minv * conversion_factor))
-    if maxv and (seconds > maxv * conversion_factor):
-        raise Exception("%d > %d" % (seconds, maxv * conversion_factor))
-
-    return seconds
-
-
 def iso_year_start(iso_year):
     "Returns the gregorian calendar date of the first day of the given ISO year"
     fourth_jan = datetime.strptime('{0}-01-04'.format(iso_year), '%Y-%m-%d')
