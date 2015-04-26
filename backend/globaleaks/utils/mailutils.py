@@ -95,11 +95,13 @@ def sendmail(authentication_username, authentication_password, from_address,
 
     def esmtp_sendError(self, exc):
         if exc.code and exc.resp:
-            error = re.match(r'^([0-9\.]+) ', exc.resp)
             error_str = ""
-            key = str(exc.code) + " " + error.group(1)
-            if key in smtp_errors:
-                error_str +=  " " + smtp_errors[key]
+
+            error = re.match(r'^([0-9\.]+) ', exc.resp)
+            if error:
+                key = str(exc.code) + " " + error.group(1)
+                if key in smtp_errors:
+                    error_str +=  " " + smtp_errors[key]
 
             verb = '[unknown]'
             if 'authentication' in exc.resp:
