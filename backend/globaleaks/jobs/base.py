@@ -13,7 +13,6 @@ from globaleaks.utils.mailutils import mail_exception
 
 
 class GLJob(task.LoopingCall):
-
     def __init__(self):
         task.LoopingCall.__init__(self, self._operation)
 

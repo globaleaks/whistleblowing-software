@@ -1,19 +1,13 @@
-<div id="PrivacyBadgeBox" data-ng-controller="PrivacyBadgeBoxCtrl" data-ng-show="!node.disable_privacy_badge">
-  <div id="PrivacyBadge" data-ng-mouseenter="showBox()" data-ng-if="!node.enable_custom_privacy_badge">
+<div id="PrivacyBadgeBox" data-ng-show="!node.disable_privacy_badge">
+  <div id="PrivacyBadge" data-ng-init="open = true" data-ng-mouseenter="open = true" data-ng-if="!node.enable_custom_privacy_badge">
     <div data-ng-switch="" on="anonymous" id="PrivacyBadgeTextBox" class="pull-left">
       <div data-ng-switch-when="true">
-        <div data-ng-show="!displayBox">
+        <div>
           <span class="label label-success">
             <i class="glyphicon glyphicon-ok-circle"></i>
             <span data-translate>Congratulations!</span>
           </span>
-        </div>
-        <div data-ng-show="displayBox">
-          <span class="label label-success">
-            <i class="glyphicon glyphicon-ok-circle"></i>
-            <span data-translate>Congratulations!</span>
-          </span>
-          <div>
+          <div data-ng-show="open">
             <div data-translate>It appears that you are using Tor. To better protect your identity, you must use the Tor Browser.</div>
             <div data-translate>The Tor Browser includes various privacy and security enhancements not present in other browsers.</div>
             <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer">
@@ -23,18 +17,12 @@
         </div>
       </div>
       <div data-ng-switch-when="false">
-        <div data-ng-show="!displayBox">
+        <div>
           <span class="label label-danger">
             <i class="glyphicon glyphicon-warning-sign"></i>
             <span data-translate>Danger!</span>
           </span>
-        </div>
-        <div data-ng-show="displayBox">
-          <span class="label label-danger">
-            <i class="glyphicon glyphicon-warning-sign"></i>
-            <span data-translate>Danger!</span>
-          </span>
-          <div>
+          <div data-ng-show="open">
             <div data-translate>It appears that you are browsing this site without any extra privacy and security!</div>
             <div data-translate>You are strongly advised to visit this site using the desktop app called Tor Browser, that protects your identity.</div>
             <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer">
@@ -49,7 +37,7 @@
       </div>
     </div>
     <div id="PrivacyBoxCloseButton" class="pull-right">
-      <a data-ng-show="displayBox" type="button" data-ng-click="hideBox()">
+      <a data-ng-show="open" type="button" data-ng-click="open = false">
         <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
       </a>
     </div>
@@ -65,6 +53,11 @@
         <span id="PrivacyBadgeCustomIconNone"></span>
         <span id="PrivacyBadgeCustomTextNone">{{node.custom_privacy_badge_none}}</span>
       </div>
+    </div>
+    <div id="PrivacyBoxCloseButton" class="pull-right">
+      <a data-ng-show="open" type="button" data-ng-click="open = false">
+        <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+      </a>
     </div>
     <div class="clearfix"></div>
   </div>
