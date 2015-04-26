@@ -111,7 +111,7 @@ angular.module('resourceServices.authentication', [])
       return new Session;
 }]);
 
-angular.module('resourceServices', ['ngResource', 'resourceServices.authentication', 'ui.bootstrap']).
+angular.module('resourceServices', ['ngResource', 'resourceServices.authentication']).
   factory('globalInterceptor', ['$q', '$injector', '$rootScope', '$location',
   function($q, $injector, $rootScope, $location) {
     var requestTimeout = 30000,

@@ -55,8 +55,8 @@ table {
   margin-bottom: 20px;
 }
 
-#MessageConsoleBox {
-  width: 200px;
+#MessagesConsoleBox {
+  width: 15%;
   position: fixed;
   z-index: 10;
   top: 20px;
