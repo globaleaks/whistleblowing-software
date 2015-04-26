@@ -92,7 +92,7 @@ spec = [
     (r'/admin/staticfiles', admin.staticfiles.StaticFileList),
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
             admin.langfiles.AdminLanguageFileHandler),
-    (r'/admin/staticfiles/(.*)', admin.staticfiles.StaticFileInstance),
+    (r'/admin/staticfiles/([a-zA-Z0-9_\-\/\.]*)', admin.staticfiles.StaticFileInstance),
     (r'/admin/overview/tips', admin.overview.Tips),
     (r'/admin/overview/users', admin.overview.Users),
     (r'/admin/overview/files', admin.overview.Files),
@@ -108,5 +108,5 @@ spec = [
             langfiles.LanguageFileHandler, {'path': GLSetting.glclient_path}),
 
     ## This Handler should remain the last one as it works like a last resort catch 'em all
-    (r'/(.*)', BaseStaticFileHandler, {'path': GLSetting.glclient_path})
+    (r'/([a-zA-Z0-9_\-\/\.]*)', BaseStaticFileHandler, {'path': GLSetting.glclient_path})
 ]

@@ -102,7 +102,7 @@ class GLHTTPConnection(HTTPConnection):
 
             self.request_callback(self._request)
         except _BadRequestException, e:
-            log.msg("Malformed HTTP request from %s: %s", self._remote_ip, e)
+            log.msg("Exception while handling HTTP request from %s: %s" % (self._remote_ip, e))
             self.transport.loseConnection()
 
 
