@@ -18,9 +18,9 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
 
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro
-from globaleaks.models import Node, Notification, Comment, ReceiverFile, Message, EventLogs
+from globaleaks.models import Node, Notification, Comment, Message, \
+    ReceiverFile, ReceiverTip, EventLogs
 from globaleaks.rest import errors
-from globaleaks.security import access_tip
 
 
 def receiver_serialize_tip(internaltip, language):
@@ -87,7 +87,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
 
 
 def db_get_files_receiver(store, user_id, tip_id):
-    rtip = access_tip(store, user_id, tip_id)
+    rtip = db_access_tip(store, user_id, tip_id)
 
     receiver_files = store.find(ReceiverFile,
                                 (ReceiverFile.internaltip_id == rtip.internaltip_id,
@@ -102,7 +102,7 @@ def db_get_files_receiver(store, user_id, tip_id):
 
 
 def db_get_tip_receiver(store, user_id, tip_id, language):
-    rtip = access_tip(store, user_id, tip_id)
+    rtip = db_access_tip(store, user_id, tip_id)
 
     notif = store.find(Notification).one()
     if not notif.send_email_for_every_event:
@@ -132,7 +132,7 @@ def db_get_tip_receiver(store, user_id, tip_id, language):
 
 
 def db_increment_receiver_access_count(store, user_id, tip_id):
-    rtip = access_tip(store, user_id, tip_id)
+    rtip = db_access_tip(store, user_id, tip_id)
 
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
@@ -143,13 +143,22 @@ def db_increment_receiver_access_count(store, user_id, tip_id):
     return rtip.access_counter
 
 
+def db_access_tip(store, user_id, tip_id):
+    rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(tip_id),
+                      ReceiverTip.receiver_id == user_id).one()
+
+    if not rtip:
+        raise errors.TipIdNotFound
+
+    return rtip
+
 @transact
 def delete_internal_tip(store, user_id, tip_id):
     """
     Delete internalTip is possible only to Receiver with
     the dedicated property.
     """
-    rtip = access_tip(store, user_id, tip_id)
+    rtip = db_access_tip(store, user_id, tip_id)
 
     node = store.find(Node).one()
 
@@ -163,7 +172,7 @@ def delete_internal_tip(store, user_id, tip_id):
 
 @transact
 def postpone_expiration_date(store, user_id, tip_id):
-    rtip = access_tip(store, user_id, tip_id)
+    rtip = db_access_tip(store, user_id, tip_id)
 
     node = store.find(Node).one()
 
@@ -293,7 +302,7 @@ def receiver_serialize_comment(comment):
 
 @transact_ro
 def get_comment_list_receiver(store, user_id, tip_id):
-    rtip = access_tip(store, user_id, tip_id)
+    rtip = db_access_tip(store, user_id, tip_id)
 
     comment_list = []
     for comment in rtip.internaltip.comments:
@@ -304,7 +313,7 @@ def get_comment_list_receiver(store, user_id, tip_id):
 
 @transact
 def create_comment_receiver(store, user_id, tip_id, request):
-    rtip = access_tip(store, user_id, tip_id)
+    rtip = db_access_tip(store, user_id, tip_id)
 
     comment = Comment()
     comment.content = request['content']
@@ -360,7 +369,7 @@ class RTipCommentCollection(BaseHandler):
 
 @transact_ro
 def get_receiver_list_receiver(store, user_id, tip_id, language):
-    rtip = access_tip(store, user_id, tip_id)
+    rtip = db_access_tip(store, user_id, tip_id)
 
     receiver_list = []
     for rtip in rtip.internaltip.receivertips:
@@ -415,7 +424,7 @@ def receiver_serialize_message(msg):
 
 @transact
 def get_messages_list(store, user_id, tip_id):
-    rtip = access_tip(store, user_id, tip_id)
+    rtip = db_access_tip(store, user_id, tip_id)
 
     msglist = store.find(Message, Message.receivertip_id == rtip.id)
     msglist.order_by(Desc(Message.creation_date))
@@ -433,7 +442,7 @@ def get_messages_list(store, user_id, tip_id):
 
 @transact
 def create_message_receiver(store, user_id, tip_id, request):
-    rtip = access_tip(store, user_id, tip_id)
+    rtip = db_access_tip(store, user_id, tip_id)
 
     msg = Message()
     msg.content = request['content']

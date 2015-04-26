@@ -18,11 +18,11 @@ from globaleaks.handlers.admin.notification import *
 from globaleaks.handlers.node import anon_serialize_step
 from globaleaks import models
 from globaleaks.rest import errors, requests
-from globaleaks.security import pgp_options_parse
+from globaleaks.security import GLBPGP
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.third_party import rstr
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import log, datetime_now, seconds_convert, datetime_to_ISO8601, uuid4
+from globaleaks.utils.utility import log, datetime_now, datetime_null, datetime_to_ISO8601, uuid4
 
 
 def db_admin_serialize_node(store, language):
@@ -382,14 +382,11 @@ def get_context_list(store, language):
     return context_list
 
 
-def acquire_context_timetolive(request):
-    try:
-        tip_ttl = seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), minv=1)
-    except Exception as excep:
-        log.err("Invalid timing configured for Tip: %s" % excep.message)
+def acquire_context_timetolive(timetolive):
+    if timetolive <= 0:
         raise errors.InvalidTipTimeToLive()
 
-    return tip_ttl
+    return timetolive * (24 * 60 * 60)
 
 
 def field_is_present(store, field):
@@ -476,7 +473,7 @@ def db_create_context(store, request, language):
         request['maximum_selectable_receivers'] = 0
 
     # tip_timetolive to be converted in seconds since hours and days
-    context.tip_timetolive = acquire_context_timetolive(request)
+    context.tip_timetolive = acquire_context_timetolive(int(request['tip_timetolive']))
 
     c = store.add(context)
 
@@ -573,8 +570,7 @@ def update_context(store, context_id, request, language):
             raise errors.ReceiverIdNotFound
         context.receivers.add(receiver)
 
-    # tip_timetolive need to be converted in seconds since hours and days
-    context.tip_timetolive = acquire_context_timetolive(request)
+    context.tip_timetolive = acquire_context_timetolive(int(request['tip_timetolive']))
 
     if request['select_all_receivers']:
         if request['maximum_selectable_receivers']:
@@ -790,6 +786,71 @@ def delete_receiver(store, receiver_id):
         os.remove(portrait)
 
     store.remove(receiver.user)
+
+
+def pgp_options_parse(receiver, request):
+    """
+    This is called in a @transact, when receiver update prefs and
+    when admin configure a new key (at the moment, Admin GUI do not
+    permit to sets preferences, but still the same function is
+    used.
+
+    @param receiver: the Storm object
+    @param request: the Dict receiver by the Internets
+    @return: None
+
+    This function is called in create_recever and update_receiver
+    and is used to manage the PGP options forced by the administrator
+
+    This is needed also because no one of these fields are
+    *enforced* by unicode_keys or bool_keys in models.Receiver
+
+    PGP management, here are check'd these actions:
+    1) Proposed a new PGP key, is imported to check validity, and
+       stored in Storm DB if not error raise
+    2) Removal of the present key
+
+    Further improvement: update the keys using keyserver
+    """
+
+    new_pgp_key = request.get('pgp_key_public', None)
+    remove_key = request.get('pgp_key_remove', False)
+
+    # the default
+    receiver.pgp_key_status = u'disabled'
+
+    if remove_key:
+        log.debug("User %s %s request to remove PGP key (%s)" %
+                  (receiver.name, receiver.user.username, receiver.pgp_key_fingerprint))
+
+        # In all the cases below, the key is marked disabled as request
+        receiver.pgp_key_status = u'disabled'
+        receiver.pgp_key_info = None
+        receiver.pgp_key_public = None
+        receiver.pgp_key_fingerprint = None
+        receiver.pgp_key_expiration = datetime_null()
+
+    if new_pgp_key:
+        gnob = GLBPGP()
+
+        try:
+            result = gnob.load_key(new_pgp_key)
+
+            log.debug("PGP Key imported: %s" % result['fingerprint'])
+
+            receiver.pgp_key_status = u'enabled'
+            receiver.pgp_key_info = result['info']
+            receiver.pgp_key_public = new_pgp_key
+            receiver.pgp_key_fingerprint = result['fingerprint']
+            receiver.pgp_key_expiration = result['expiration']
+
+        except:
+            raise
+
+        finally:
+            # the finally statement is always called also if
+            # except contains a return or a raise
+            gnob.destroy_environment()
 
 
 # ---------------------------------

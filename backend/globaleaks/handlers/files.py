@@ -15,10 +15,10 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
+from globaleaks.handlers.rtip import db_access_tip
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
-from globaleaks.security import access_tip
 from globaleaks.utils.token import TokenList
 
 
@@ -263,7 +263,7 @@ def download_file(store, user_id, tip_id, file_id):
     """
     Auth temporary disabled, just Tip_id and File_id required
     """
-    access_tip(store, user_id, tip_id)
+    db_access_tip(store, user_id, tip_id)
 
     rfile = store.find(ReceiverFile,
                        ReceiverFile.id == unicode(file_id)).one()
@@ -281,7 +281,7 @@ def download_file(store, user_id, tip_id, file_id):
 
 @transact
 def download_all_files(store, user_id, tip_id):
-    access_tip(store, user_id, tip_id)
+    db_access_tip(store, user_id, tip_id)
 
     rfiles = store.find(ReceiverFile,
                         ReceiverFile.receivertip_id == unicode(tip_id))

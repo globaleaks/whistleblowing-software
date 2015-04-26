@@ -6,22 +6,22 @@
 # GlobaLeaks security functions
 
 import binascii
-import shutil
-import pickle
-from datetime import datetime
-from tempfile import _TemporaryFileWrapper
-
-import re
 import os
+import re
+import pickle
+import shutil
 import scrypt
+
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
+from datetime import datetime
 from gnupg import GPG
+from tempfile import _TemporaryFileWrapper
+
 from globaleaks.rest import errors
-from globaleaks.utils.utility import log, datetime_null, datetime_to_day_str
+from globaleaks.utils.utility import log, datetime_to_day_str
 from globaleaks.settings import GLSetting
-from globaleaks.models import ReceiverTip
 from globaleaks.third_party.rstr import xeger
 
 
@@ -36,14 +36,12 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
     You can't use this File object like a normal file object,
     check .read and .write!
     """
-
     last_action = 'init'
 
     def __init__(self, filedir):
         """
-        filedir: dir target to keep GL.
+        filedir: directory where to store files
         """
-
         self.create_key()
 
         # XXX remind enhance file name with incremental number
@@ -414,79 +412,3 @@ class GLBPGP(object):
             shutil.rmtree(self.pgph.gnupghome)
         except Exception as excep:
             log.err("Unable to clean temporary PGP environment: %s: %s" % (self.pgph.gnupghome, excep))
-
-
-def pgp_options_parse(receiver, request):
-    """
-    This is called in a @transact, when receiver update prefs and
-    when admin configure a new key (at the moment, Admin GUI do not
-    permit to sets preferences, but still the same function is
-    used.
-
-    @param receiver: the Storm object
-    @param request: the Dict receiver by the Internets
-    @return: None
-
-    This function is called in create_recever and update_receiver
-    and is used to manage the PGP options forced by the administrator
-
-    This is needed also because no one of these fields are
-    *enforced* by unicode_keys or bool_keys in models.Receiver
-
-    PGP management, here are check'd these actions:
-    1) Proposed a new PGP key, is imported to check validity, and
-       stored in Storm DB if not error raise
-    2) Removal of the present key
-
-    Further improvement: update the keys using keyserver
-    """
-
-    new_pgp_key = request.get('pgp_key_public', None)
-    remove_key = request.get('pgp_key_remove', False)
-
-    # the default
-    receiver.pgp_key_status = u'disabled'
-
-    if remove_key:
-        log.debug("User %s %s request to remove PGP key (%s)" %
-                  (receiver.name, receiver.user.username, receiver.pgp_key_fingerprint))
-
-        # In all the cases below, the key is marked disabled as request
-        receiver.pgp_key_status = u'disabled'
-        receiver.pgp_key_info = None
-        receiver.pgp_key_public = None
-        receiver.pgp_key_fingerprint = None
-        receiver.pgp_key_expiration = datetime_null()
-
-    if new_pgp_key:
-
-        gnob = GLBPGP()
-
-        try:
-            result = gnob.load_key(new_pgp_key)
-
-            log.debug("PGP Key imported: %s" % result['fingerprint'])
-
-            receiver.pgp_key_status = u'enabled'
-            receiver.pgp_key_info = result['info']
-            receiver.pgp_key_public = new_pgp_key
-            receiver.pgp_key_fingerprint = result['fingerprint']
-            receiver.pgp_key_expiration = result['expiration']
-
-        except:
-            raise
-
-        finally:
-            # the finally statement is always called also if
-            # except contains a return or a raise
-            gnob.destroy_environment()
-
-
-def access_tip(store, user_id, tip_id):
-    rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(tip_id),
-                      ReceiverTip.receiver_id == user_id).one()
-
-    if not rtip:
-        raise errors.TipIdNotFound
-
-    return rtip

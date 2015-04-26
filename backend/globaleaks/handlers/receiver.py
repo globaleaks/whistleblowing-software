@@ -8,12 +8,13 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
+from globaleaks.handlers.admin import pgp_options_parse
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.node import get_public_receiver_list
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node, EventLogs
 from globaleaks.rest import requests, errors
-from globaleaks.security import change_password, pgp_options_parse
+from globaleaks.security import change_password
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, acquire_bool, datetime_to_ISO8601, datetime_now
