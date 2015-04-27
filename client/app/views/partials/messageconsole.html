@@ -10,99 +10,100 @@
       <button type="button" class="close">
         <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
       </button>
-      <div data-ng-switch="" on="error.code" >
+        <div data-ng-switch="" on="error.code" >
+          <div data-translate>Error!</div>
 
-        <div data-ng-switch-when="35">
-          <span data-translate>The specified comment was not found</span>
-        </div>
+          <div data-ng-switch-when="35">
+            <span data-translate>The specified comment was not found</span>
+          </div>
 
-        <div data-ng-switch-when="12">
-          <span data-translate>No Context was found for the specified ID</span>
-        </div>
+          <div data-ng-switch-when="12">
+            <span data-translate>No Context was found for the specified ID</span>
+          </div>
 
-        <div data-ng-switch-when="19">
-          <span data-translate>A field expected to be unique already has this value</span> ({{error.arguments[0]}}:{{error.arguments[1]}})
-        </div>
+          <div data-ng-switch-when="19">
+            <span data-translate>A field expected to be unique already has this value</span> ({{error.arguments[0]}}:{{error.arguments[1]}})
+          </div>
 
-        <div data-ng-switch-when="26">
-          <span data-translate>No File was found for the specified ID</span>
-        </div>
+          <div data-ng-switch-when="26">
+            <span data-translate>No File was found for the specified ID</span>
+          </div>
 
-        <div data-ng-switch-when="25">
-          <span data-translate>Operation Forbidden</span>
-        </div>
+          <div data-ng-switch-when="25">
+            <span data-translate>Operation Forbidden</span>
+          </div>
 
-        <div data-ng-switch-when="0">
-          <span data-translate>GLTypesError not set</span>
-        </div>
+          <div data-ng-switch-when="0">
+            <span data-translate>GLTypesError not set</span>
+          </div>
 
-        <div data-ng-switch-when="40">
-          <span data-translate>The proposed PGP key can't be imported</span>
-        </div>
+          <div data-ng-switch-when="40">
+            <span data-translate>The proposed PGP key can't be imported</span>
+          </div>
 
-        <div data-ng-switch-when="39">
-          <span data-translate>The upload request exceeds the size limit</span> ({{error.arguments[0]}} MB)
-        </div>
+          <div data-ng-switch-when="39">
+            <span data-translate>The upload request exceeds the size limit</span> ({{error.arguments[0]}} MB)
+          </div>
 
-        <div data-ng-switch-when="31">
-          <span data-translate>Internal Server Error</span> ({{error.arguments[0]}})
-        </div>
+          <div data-ng-switch-when="31">
+            <span data-translate>Internal Server Error</span> ({{error.arguments[0]}})
+          </div>
 
-        <div data-ng-switch-when="36">
-          <span data-translate>The specified host does not match any configured one</span>
-        </div>
+          <div data-ng-switch-when="36">
+            <span data-translate>The specified host does not match any configured one</span>
+          </div>
 
-        <div data-ng-switch-when="10">
-          <span data-translate>Invalid Input Format</span> [{{error.arguments[0]}}]
-        </div>
+          <div data-ng-switch-when="10">
+            <span data-translate>Invalid Input Format</span> [{{error.arguments[0]}}]
+          </div>
 
-        <div data-ng-switch-when="34">
-          <span data-translate>The specified old password is not valid</span>
-        </div>
+          <div data-ng-switch-when="34">
+            <span data-translate>The specified old password is not valid</span>
+          </div>
 
-        <div data-ng-switch-when="30">
-          <span data-translate>Not Authenticated</span>
-        </div>
+          <div data-ng-switch-when="30">
+            <span data-translate>Not Authenticated</span>
+          </div>
 
-        <div data-ng-switch-when="20">
-          <span data-translate>No Receiver was found for the specified ID</span>
-        </div>
+          <div data-ng-switch-when="20">
+            <span data-translate>No Receiver was found for the specified ID</span>
+          </div>
 
-        <div data-ng-switch-when="38">
-          <span data-translate>The uploaded file has a reserved name</span>
-        </div>
+          <div data-ng-switch-when="38">
+            <span data-translate>The uploaded file has a reserved name</span>
+          </div>
 
-        <div data-ng-switch-when="22">
-          <span data-translate>Submission does not pass the field validation</span> [{{error.arguments[0]}}]
-        </div>
+          <div data-ng-switch-when="22">
+            <span data-translate>Submission does not pass the field validation</span> [{{error.arguments[0]}}]
+          </div>
 
-        <div data-ng-switch-when="21">
-          <span data-translate>No Submission was found for the specified ID</span>
-        </div>
+          <div data-ng-switch-when="21">
+            <span data-translate>No Submission was found for the specified ID</span>
+          </div>
 
-        <div data-ng-switch-when="13">
-          <span data-translate>No Tip was found for the specified ID</span>
-        </div>
+          <div data-ng-switch-when="13">
+            <span data-translate>No Tip was found for the specified ID</span>
+          </div>
 
-        <div data-ng-switch-when="14">
-          <span data-translate>No Receiver was found for the specified ID</span>
-        </div>
+          <div data-ng-switch-when="14">
+            <span data-translate>No Receiver was found for the specified ID</span>
+          </div>
 
-        <div data-ng-switch-when="37">
-          <span data-translate>Resource can only be accessed via the Tor network</span>
-        </div>
+          <div data-ng-switch-when="37">
+            <span data-translate>Resource can only be accessed via the Tor network</span>
+          </div>
 
-        <div data-ng-switch-when="49">
-          <span data-translate>A file attachment is required to complete the submission</span>
-        </div>
+          <div data-ng-switch-when="49">
+            <span data-translate>A file attachment is required to complete the submission</span>
+          </div>
 
-        <div data-ng-switch-when="100">
-          <span data-translate>Request timed out</span>
-        </div>
+          <div data-ng-switch-when="100">
+            <span data-translate>Request timed out</span>
+          </div>
 
-        <div data-ng-switch-when="401">
-          <span data-translate>Session expired</span>
-        </div>
+          <div data-ng-switch-when="401">
+            <span data-translate>Session expired</span>
+          </div>
 
       </div>
     </div>
