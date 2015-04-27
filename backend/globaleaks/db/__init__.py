@@ -16,7 +16,7 @@ from globaleaks.db import updater_manager, base_updater
 
 base_updater.TableReplacer.testing = True
 
-from globaleaks.db.datainit import load_appdata, init_appdata, init_db
+from globaleaks.db.datainit import init_appdata, init_db, load_appdata
 
 
 def init_models():

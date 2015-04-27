@@ -631,7 +631,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.enable_private_messages = true;
         context.presentation_order = 0;
         context.show_receivers_in_alphabetical_order = false;
-        context.reset_steps_to_default = false;
+        context.reset_steps = false;
         return context;
       };
 

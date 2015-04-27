@@ -180,7 +180,7 @@ AdminContextDesc = {
     'enable_private_messages': bool,
     'presentation_order': int,
     'show_receivers_in_alphabetical_order': bool,
-    'reset_steps_to_default': bool
+    'reset_steps': bool
 }
 
 AdminContextFieldTemplateCopyDesc = {

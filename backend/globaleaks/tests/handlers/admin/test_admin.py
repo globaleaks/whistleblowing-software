@@ -3,11 +3,13 @@ import random
 import json
 
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks import __version__
+from globaleaks.db.datainit import load_appdata
 from globaleaks.rest.errors import InvalidInputFormat
 from globaleaks.tests import helpers
 from globaleaks.rest import requests, errors
 from globaleaks.handlers import admin
-from globaleaks import __version__
 from globaleaks.models import Node, Context, Receiver
 from globaleaks.utils.utility import uuid4
 
@@ -93,9 +95,24 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.get()
 
         self.responses[0]['server'] = 'stuff'
+
         handler = self.request(self.responses[0], role='admin')
         yield handler.put()
         self.assertEqual(self.responses[1]['server'], 'stuff')
+
+    @inlineCallbacks
+    def test_put_reset_templates(self):
+        handler = self.request(role='admin')
+        yield handler.get()
+
+        self.responses[0]['reset_templates'] = True
+
+        handler = self.request(self.responses[0], role='admin')
+        yield handler.put()
+
+        appdata_dict = load_appdata()
+        for k in appdata_dict['templates']:
+            self.assertEqual(self.responses[1][k], appdata_dict['templates'][k]['en'])
 
 
 class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
