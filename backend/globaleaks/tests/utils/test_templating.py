@@ -60,11 +60,11 @@ templates_desc = {
     "admin_anomaly_template":
         [generic_keyword_list, alarm_keyword_list],
 
-    "encrypted_comment_mail_title":
-        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
+    "encrypted_tip_mail_title":
+        [generic_keyword_list, tip_keyword_list],
 
-    "encrypted_comment_template":
-        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
+    "encrypted_tip_template":
+        [generic_keyword_list, tip_keyword_list, protected_keyword_list],
 
     "encrypted_file_mail_title":
         [generic_keyword_list, tip_keyword_list, file_keyword_list],
@@ -72,26 +72,17 @@ templates_desc = {
     "encrypted_file_template":
         [generic_keyword_list, tip_keyword_list, file_keyword_list],
 
+    "encrypted_comment_mail_title":
+        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
+
+    "encrypted_comment_template":
+        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
+
     "encrypted_message_mail_title":
         [generic_keyword_list, tip_keyword_list],
 
     "encrypted_message_template":
         [generic_keyword_list, tip_keyword_list],
-
-    "encrypted_tip_mail_template":
-        [generic_keyword_list, tip_keyword_list],
-
-    "encrypted_tip_mail_title":
-        [generic_keyword_list, tip_keyword_list],
-
-    "encrypted_tip_template":
-        [generic_keyword_list, tip_keyword_list, protected_keyword_list],
-
-    "plaintext_comment_mail_title":
-        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
-
-    "plaintext_comment_template":
-        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
 
     "plaintext_file_mail_title":
         [generic_keyword_list, tip_keyword_list, file_keyword_list],
@@ -99,16 +90,16 @@ templates_desc = {
     "plaintext_file_template":
         [generic_keyword_list, tip_keyword_list, file_keyword_list],
 
+    "plaintext_comment_mail_title":
+        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
+
+    "plaintext_comment_template":
+        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
+
     "plaintext_message_mail_title":
         [generic_keyword_list, tip_keyword_list],
 
     "plaintext_message_template":
-        [generic_keyword_list, tip_keyword_list],
-
-    "plaintext_tip_mail_title":
-        [generic_keyword_list, tip_keyword_list],
-
-    "plaintext_tip_template":
         [generic_keyword_list, tip_keyword_list],
 
     "zip_description.txt":

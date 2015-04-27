@@ -828,7 +828,7 @@ class MockDict():
             'enable_private_messages': True,
             'presentation_order': 0,
             'show_receivers_in_alphabetical_order': False,
-            'reset_steps_to_default': False
+            'reset_steps': False
         }
 
         self.dummySubmission = {

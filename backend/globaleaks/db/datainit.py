@@ -43,8 +43,8 @@ def load_appdata():
                 return appdata_dict
 
     if not appdata_dict:
-        print "No client (appdata_l10n.json) file found in fixed paths!"
-        return dict({'version': 1, 'fields': []})  # empty!
+        # on this condition appdata is set to empty
+        return dict({'version': 1, 'fields': []})
 
     return appdata_dict
 
@@ -74,6 +74,7 @@ def init_db(store, result, node_dict, appdata_dict):
     node.languages_enabled = GLSetting.defaults.languages_enabled
     node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
     node.wizard_done = GLSetting.skip_wizard
+
     for k in appdata_dict['node']:
         setattr(node, k, appdata_dict['node'][k])
 
