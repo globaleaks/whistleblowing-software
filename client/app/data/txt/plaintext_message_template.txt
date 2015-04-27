@@ -4,7 +4,9 @@ This is an email to notify you about a new message from the whisleblower.
 
 This happened in context %ContextName% at %EventTime%.
 
-You can read it at: %TipTorURL%
+The submission can be accessed:
+via Tor at: %TipTorURL%
+via Tor2web at: %TipT2WURL%
 
 Kind regards,
 %NodeSignature%
