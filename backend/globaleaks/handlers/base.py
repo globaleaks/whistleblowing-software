@@ -525,6 +525,10 @@ class BaseHandler(RequestHandler):
 
     def get_file_upload(self):
         try:
+            if (int(self.request.arguments['flowTotalSize'][0]) / (1024 * 1024)) > GLSetting.defaults.maximum_request_size:
+                log.err("File upload request rejected: file too big")
+                raise errors.FileTooBig
+
             if self.request.arguments['flowIdentifier'][0] not in GLUploads:
                 f = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
                 GLUploads[self.request.arguments['flowIdentifier'][0]] = f
@@ -536,21 +540,23 @@ class BaseHandler(RequestHandler):
             if self.request.arguments['flowChunkNumber'][0] != self.request.arguments['flowTotalChunks'][0]:
                 return None
 
+            uploaded_file = {}
+            uploaded_file['filename'] = self.request.files['file'][0]['filename']
+            uploaded_file['content_type'] = self.request.files['file'][0]['content_type']
+            uploaded_file['body_len'] = int(self.request.arguments['flowTotalSize'][0])
+            uploaded_file['body_filepath'] = f.filepath
+            uploaded_file['body'] = f
+
+            return uploaded_file
+
+        except errors.FileTooBig:
+            raise # propagate the exception
+
         except Exception as exc:
             log.err("Error while handling file upload %s" % exc)
             return None
 
-        uploaded_file = {}
-        uploaded_file['filename'] = self.request.files['file'][0]['filename']
-        uploaded_file['content_type'] = self.request.files['file'][0]['content_type']
-        uploaded_file['body_len'] = int(self.request.arguments['flowTotalSize'][0])
-        uploaded_file['body_filepath'] = f.filepath
-        uploaded_file['body'] = f
-
-        return uploaded_file
-
     def _handle_request_exception(self, e):
-        # sys.exc_info() does not always work at this stage
         if isinstance(e, Failure):
             exc_type = e.type
             exc_value = e.value
