@@ -671,16 +671,14 @@ class Alarm(object):
                 break
 
         if past_condition != GLSetting.memory_copy.disk_availability:
-            # import here to avoid circular import error
-            from globaleaks.handlers.base import GLApiCache
-
             log.info("Switching disk space availability from: %s to %s" % (
                 "True" if past_condition else "False",
                 "False" if past_condition else "True"))
 
-            # is an hack of the GLApiCache, but I can't manage a DB access here
-            GLApiCache.memory_cache_dict['node']['disk_availability'] = \
-                GLSetting.memory_copy.disk_availability
+            # Invalidate the cache of node avoiding accesses to the db from here;
+            # import GLApiCache in order to avoid circular import error
+            from globaleaks.handlers.base import GLApiCache
+            GLApiCache.invalidate('node')
 
 
 # a simple utility required when something has to send an email to the Admin
