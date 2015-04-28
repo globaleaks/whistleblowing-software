@@ -159,6 +159,98 @@ outcoming_event_monitored = [
 
 ]
 
+def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
+    free_disk_megabytes = free_workdir_bytes / (1024 * 1024)
+    free_disk_percentage = free_workdir_bytes / (total_workdir_bytes / 100)
+    free_workdir_string = bytes_to_pretty_str(free_workdir_bytes)
+    free_ramdisk_string = bytes_to_pretty_str(free_ramdisk_bytes)
+    total_workdir_string = bytes_to_pretty_str(total_workdir_bytes)
+
+    def info_msg_0(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
+        return "Disk space < 1%%: %s on %s" % (total_workdir_string, free_workdir_string)
+
+    def info_msg_1(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
+        return "Minimum space available of %d Mb reached: (%s on %s)" % \
+                (GLSetting.defaults.minimum_megabytes_required,
+                total_workdir_string,
+                free_workdir_string)
+
+    def info_msg_2(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
+        return "Ramdisk space not enough space (%s): required 2Kb" % free_ramdisk_string
+
+    def info_msg_3(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
+        return "Disk space ~ 2%% (Critical when reach 1%%): %s on %s" % \
+                (total_workdir_string, free_workdir_string)
+
+    def info_msg_4(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
+        return "Minimum space available of %d Mb is near: (%s on %s)" % \
+                (GLSetting.defaults.minimum_megabytes_required,
+                 total_workdir_string,
+                 free_workdir_string)
+
+    def info_msg_5(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
+        return "Disk space permit maximum of %d uploads (%s on %s)" % \
+                (Alarm._HIGH_DISK_ALARM, total_workdir_string, free_workdir_string)
+
+    def info_msg_6(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
+        return "Disk space permit maximum of %d uploads (%s on %s)" % \
+                (Alarm._MEDIUM_DISK_ALARM, total_workdir_string, free_workdir_string)
+
+    # list of bad conditions ordered starting from the worst case scenario
+    conditions = [
+        {
+            # If percentage is <= 1%: disable the submission
+            'condition': free_disk_percentage <= 1,
+            'info_msg': info_msg_0,
+            'stress_level': 3,
+            'accept_submissions': False,
+        },
+        {
+            # If disk has less than the hardcoded minimum amount (1Gb)
+            'condition': free_disk_megabytes <= GLSetting.defaults.minimum_megabytes_required,
+            'info_msg': info_msg_1,
+            'stress_level': 3,
+            'accept_submissions': False,
+        },
+        {
+            # If ramdisk has less than 2kbytes
+            'condition': free_ramdisk_bytes <= 2048,
+            'info_msg': info_msg_2,
+            'stress_level': 3,
+            'accept_submissions': False,
+        },
+        {
+            # If percentage is 2% start to alert the admin on the upcoming critical situation
+            'condition': free_disk_percentage == 2,
+            'info_msg': info_msg_3,
+            'stress_level': 2,
+            'accept_submissions': True,
+        },
+        {
+            # Again to avoid bad surprise, we alert the admin at (minimum disk required * 2)
+            'condition': free_disk_megabytes <= (GLSetting.defaults.minimum_megabytes_required * 2),
+            'info_msg': info_msg_4,
+            'stress_level': 2,
+            'accept_submissions': True,
+        },
+        {
+            # if 5 times maximum file can be accepted
+            'condition': free_disk_megabytes <= (Alarm._HIGH_DISK_ALARM * GLSetting.memory_copy.maximum_filesize),
+            'info_msg': info_msg_5,
+            'stress_level': 2,
+            'accept_submissions': True,
+        },
+        {
+            # if 15 times maximum file size can be accepted
+            'condition': free_disk_megabytes <= (Alarm._MEDIUM_DISK_ALARM * GLSetting.memory_copy.maximum_filesize),
+            'info_msg': info_msg_6,
+            'stress_level': 1,
+            'accept_submissions': True,
+        }
+    ]
+
+    return conditions
+
 
 class EventTrack(TempObj):
     """
@@ -176,7 +268,7 @@ class EventTrack(TempObj):
             'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
             'event': self.event_type,
             'id': self.event_id,
-            'duration': round(self.request_time, 1),
+            'duration': round(self.request_time, 1)
         }
 
     def __init__(self, event_obj, request_time, debug=False):
@@ -203,6 +295,7 @@ class EventTrack(TempObj):
         This is a callback append to the expireCallbacks, and
         just make a synthesis of the Event in the Recent
         """
+        # import here in order to avoid circular import error
         from globaleaks.handlers.admin.statistics import RecentEventsCollection
 
         RecentEventsCollection.update_RecentEventQ(self)
@@ -305,7 +398,7 @@ class Alarm(object):
         Alarm.stress_levels = {
             'disk_space': 0,
             'disk_message': None,
-            'activity': 0,
+            'activity': 0
         }
 
     def get_token_difficulty(self):
@@ -339,9 +432,9 @@ class Alarm(object):
         this is why the content are copied for the statistic
         acquiring later.
         """
+        # import here in order to avoid circular import error
         from globaleaks.handlers.admin.statistics import AnomaliesCollectionDesc
 
-        debug_reason = ""
         Alarm.number_of_anomalies = 0
 
         current_event_matrix = {}
@@ -364,9 +457,6 @@ class Alarm(object):
             if event_name in current_event_matrix:
                 if current_event_matrix[event_name] > threshold:
                     Alarm.number_of_anomalies += 1
-                    debug_reason = "%s[Incoming %s: %d>%d] " % \
-                                   (debug_reason, event_name,
-                                    current_event_matrix[event_name], threshold)
                 else:
                     pass
                     log.debug("[compute_activity_level] %s %d < %d: it's OK (Anomalies recorded so far %d)" % (
@@ -401,10 +491,9 @@ class Alarm(object):
 
         if previous_activity_sl or Alarm.stress_levels['activity']:
             report_function(
-                "in Activity stress level switch from %d => %d [%s]" %
+                "in Activity stress level switch from %d => %d" %
                 (previous_activity_sl,
-                 Alarm.stress_levels['activity'],
-                 debug_reason))
+                 Alarm.stress_levels['activity']))
 
         # Alarm notification get the copy of the latest activities
         yield Alarm.admin_alarm_notification(current_event_matrix)
@@ -419,11 +508,16 @@ class Alarm(object):
         Admin notification is disable or if another Anomaly has been
         raised in the last 15 minutes, email is not send.
         """
+        # import here in order to avoid circular import error
         from globaleaks.handlers.admin.notification import get_notification
 
         do_not_stress_admin_with_more_than_an_email_after_minutes = 15
 
-        # ------------------------------------------------------------------
+        @transact_ro
+        def _get_node_admin_email(store):
+            node = store.find(models.Node).one()
+            return node.email
+
         @transact_ro
         def _get_admin_user_language(store):
             admin_user = store.find(models.User, models.User.username == u'admin').one()
@@ -473,7 +567,7 @@ class Alarm(object):
             "%DiskAlarmLevel%": _disk_alarm_level,
             "%DiskDump%": _disk_dump,
             "%DiskErrorMessage%": _disk_status_message,
-            "%NodeName%": _node_name,
+            "%NodeName%": _node_name
         }
         # ------------------------------------------------------------------
 
@@ -517,7 +611,7 @@ class Alarm(object):
                 content,
                 message[where + len(keyword):])
 
-        admin_email = yield get_node_admin_email()
+        admin_email = yield _get_node_admin_email()
 
         admin_language = yield _get_admin_user_language()
 
@@ -543,16 +637,16 @@ class Alarm(object):
         # good and useful mail templates are still missing.
         #
         # yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
-        # authentication_password=GLSetting.memory_copy.notif_password,
-        # from_address=GLSetting.memory_copy.notif_source_email,
-        # to_address=admin_email,
-        # message_file=message,
-        # smtp_host=GLSetting.memory_copy.notif_server,
-        # smtp_port=GLSetting.memory_copy.notif_port,
-        # security=GLSetting.memory_copy.notif_security,
-        # event=None)
+        #                authentication_password=GLSetting.memory_copy.notif_password,
+        #                from_address=GLSetting.memory_copy.notif_source_email,
+        #                to_address=admin_email,
+        #                message_file=message,
+        #                smtp_host=GLSetting.memory_copy.notif_server,
+        #                smtp_port=GLSetting.memory_copy.notif_port,
+        #                security=GLSetting.memory_copy.notif_security,
+        #                event=None)
 
-    def report_disk_usage(self, free_workdir_bytes, workdir_space_bytes, free_ramdisk_bytes):
+    def check_disk_anomalies(self, free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
         """
         Here in Alarm is written the threshold to say if we're in disk alarm
         or not. Therefore the function "report" the amount of free space and
@@ -568,121 +662,48 @@ class Alarm(object):
 
         Alarm.latest_measured_freespace = free_workdir_bytes
 
-        free_disk_megabs = free_workdir_bytes / (1024 * 1024)
-        free_workdir_string = bytes_to_pretty_str(free_workdir_bytes)
-        free_ramdisk_string = bytes_to_pretty_str(free_ramdisk_bytes)
-        avail_percentage = free_workdir_bytes / (workdir_space_bytes / 100)
-        max_workdir_string = bytes_to_pretty_str(workdir_space_bytes)
+        disk_space = 0
+        disk_message = ""
+        accept_submissions = True
+        old_accept_submissions = GLSetting.memory_copy.accept_submissions
 
-        # is kept a copy because we report a change in this status (in worst or in better)
-        past_condition = GLSetting.memory_copy.disk_availability
+        for c in get_disk_anomaly_conditions(free_workdir_bytes,
+                                             total_workdir_bytes,
+                                             free_ramdisk_bytes,
+                                             total_ramdisk_bytes):
+            if c['condition']:
+                disk_space = c['stress_level']
 
-        # Note: is not an if/elif/elif/else or we've to care about ordering,
-        # so we start setting the default condition:
-        Alarm.stress_levels['disk_space'] = 0
-        GLSetting.memory_copy.disk_availability = True
+                info_msg = c['info_msg'](free_workdir_bytes,
+                                         total_workdir_bytes,
+                                         free_ramdisk_bytes,
+                                         total_ramdisk_bytes)
 
-        def space_condition_check(condition, info_msg, stress_level, accept_submissions):
-
-            if condition:
-
-                if stress_level == 3:
-                    info_msg = "Fatal - Submission disabled | %s" % info_msg
-                elif stress_level == 2:
-                    info_msg = "Critical - Submission can be disabled soon | %s" % info_msg
+                if disk_space == 3:
+                    disk_message = "Fatal (Submission disabled): %s" % info_msg
+                elif disk_space == 2:
+                    disk_message = "Critical (Submission near to be disabled): %s" % info_msg
                 else:  # == 1
-                    info_msg = "Warning | %s" % info_msg
+                    disk_message = "Warning: %s" % info_msg
 
-                log.info(info_msg)
-                Alarm.stress_levels['disk_space'] = stress_level
-                Alarm.stress_levels['disk_message'] = info_msg
-                GLSetting.memory_copy.disk_availability = accept_submissions
+                accept_submissions = c['accept_submissions']
 
-            return condition
+                log.err(disk_message)
 
-        # is used a list starting from the worst case scenarios, when is meet
-        # a condition, the others are skipped.
-        conditions = [
-            {
-                # If percentage is <= 1%: disable the submission
-                'condition': avail_percentage <= 1,
-                'info_msg': "Disk space < 1%%: %s on %s" %
-                            (max_workdir_string, free_workdir_string),
-                'stress_level': 3,
-                'accept_submissions': False,
-            },
-            {
-                # If disk has less than the hardcoded minimum amount (1Gb)
-                'condition': free_disk_megabs <= GLSetting.defaults.minimum_megabytes_required,
-                'info_msg': "Minimum space available of %d Mb reached: (%s on %s)" %
-                            (GLSetting.defaults.minimum_megabytes_required,
-                             max_workdir_string,
-                             free_workdir_string),
-                'stress_level': 3,
-                'accept_submissions': False,
-            },
-            {
-                # If ramdisk has less than 2kbytes
-                'condition': free_ramdisk_bytes <= 2048,
-                'info_msg': "Ramdisk space not enough space (%s): required 2K" %
-                            free_ramdisk_string,
-                'stress_level': 3,
-                'accept_submissions': False,
-            },
-            {
-                # If percentage is 2% start to alert the admin on the upcoming critical situation
-                'condition': avail_percentage == 2,
-                'info_msg': "Disk space ~ 2%% (Critical when reach 1%%): %s on %s" %
-                            (max_workdir_string, free_workdir_string),
-                'stress_level': 2,
-                'accept_submissions': True,
-            },
-            {
-                # Again to avoid bad surprise, we alert the admin at (minimum disk required * 2)
-                'condition': free_disk_megabs <= (GLSetting.defaults.minimum_megabytes_required * 2),
-                'info_msg': "Minimum space available of %d Mb is near: (%s on %s)" %
-                            (GLSetting.defaults.minimum_megabytes_required,
-                             max_workdir_string,
-                             free_workdir_string),
-                'stress_level': 2,
-                'accept_submissions': True,
-            },
-            {
-                # if 5 times maximum file can be accepted
-                'condition': free_disk_megabs <= (Alarm._HIGH_DISK_ALARM * GLSetting.memory_copy.maximum_filesize),
-                'info_msg': "Disk space permit maximum of %d uploads (%s on %s)" %
-                            (Alarm._HIGH_DISK_ALARM, max_workdir_string, free_workdir_string),
-                'stress_level': 2,
-                'accept_submissions': True,
-            },
-            {
-                # if 15 times maximum file size can be accepted
-                'condition': free_disk_megabs <= (Alarm._MEDIUM_DISK_ALARM * GLSetting.memory_copy.maximum_filesize),
-                'info_msg': "Disk space permit maximum of %d uploads (%s on %s)" %
-                            (Alarm._MEDIUM_DISK_ALARM, max_workdir_string, free_workdir_string),
-                'stress_level': 1,
-                'accept_submissions': True,
-            },
-        ]
-
-        for c in conditions:
-            if space_condition_check(c['condition'], c['info_msg'],
-                                     c['stress_level'], c['accept_submissions']):
                 break
 
-        if past_condition != GLSetting.memory_copy.disk_availability:
+        # the value is setted here with a single assignment in order to
+        # minimize possible race conditions resetting/settings the values
+        Alarm.stress_levels['disk_space'] = disk_space
+        Alarm.stress_levels['disk_message'] = disk_message
+        GLSetting.memory_copy.accept_submissions = accept_submissions
+
+        if old_accept_submissions != GLSetting.memory_copy.accept_submissions:
             log.info("Switching disk space availability from: %s to %s" % (
-                "True" if past_condition else "False",
-                "False" if past_condition else "True"))
+                "True" if old_accept_submissions else "False",
+                "False" if old_accept_submissions else "True"))
 
             # Invalidate the cache of node avoiding accesses to the db from here;
             # import GLApiCache in order to avoid circular import error
             from globaleaks.handlers.base import GLApiCache
             GLApiCache.invalidate('node')
-
-
-# a simple utility required when something has to send an email to the Admin
-@transact_ro
-def get_node_admin_email(store):
-    node = store.find(models.Node).one()
-    return unicode(node.email)

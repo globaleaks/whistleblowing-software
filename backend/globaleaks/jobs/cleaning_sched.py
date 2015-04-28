@@ -51,6 +51,7 @@ class ExpiringTipEvent(EventLogger):
                                      subevent_info=None,
                                      do_mail=do_mail))
 
+
 @transact_ro
 def get_tip_timings(store, new):
     itip_list = store.find(InternalTip, InternalTip.new == new)
@@ -77,7 +78,6 @@ def get_tip_timings(store, new):
         tipinfo_list.append(serialized_tipinfo)
 
     return tipinfo_list
-
 
 
 @transact
@@ -121,7 +121,6 @@ def itip_cleaning(store, tip_id):
 
 
 class CleaningSchedule(GLJob):
-
     @inlineCallbacks
     def operation(self):
         """

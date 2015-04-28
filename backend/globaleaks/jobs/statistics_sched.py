@@ -22,7 +22,6 @@ from globaleaks.utils.utility import log, datetime_now
 
 @transact
 def save_anomalies(store, anomalies_list):
-
     anomalies_counter = 0
     for anomaly in anomalies_list:
         anomalies_counter += 1
@@ -43,7 +42,6 @@ class AnomaliesSchedule(GLJob):
     This class check for Anomalies, using the Alarm() object
     implemented in anomaly.py
     """
-
     @defer.inlineCallbacks
     def operation(self):
         """
@@ -139,7 +137,6 @@ class ResourceChecker(GLJob):
     because the files that might be uploaded depend directly from
     this resource.
     """
-
     @classmethod
     def get_workingdir_space(cls):
         statvfs = os.statvfs(GLSetting.working_path)
@@ -159,4 +156,4 @@ class ResourceChecker(GLJob):
         free_ramdisk_bytes, total_ramdisk_bytes = ResourceChecker.get_ramdisk_space()
 
         alarm = Alarm()
-        alarm.report_disk_usage(free_disk_bytes, total_disk_bytes, free_ramdisk_bytes)
+        alarm.check_disk_anomalies(free_disk_bytes, total_disk_bytes, free_ramdisk_bytes, total_ramdisk_bytes)
