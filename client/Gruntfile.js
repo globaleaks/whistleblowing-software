@@ -8,6 +8,14 @@ module.exports = function(grunt) {
       dest: 'tmp/'
     },
 
+    bower: {
+      install: {
+        options: {
+          copy: false
+        }
+      }
+    },
+
     lint: {
       files: ['Gruntfile.js', 'app/scripts/**/*.js'],
     },
@@ -160,6 +168,7 @@ module.exports = function(grunt) {
   //
   // the reasons is during time strangely the automating loading was causing problems.
   grunt.loadNpmTasks('grunt-angular-templates');
+  grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-confirm');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -633,6 +642,8 @@ module.exports = function(grunt) {
     });
 
   });
+
+  grunt.registerTask('setupDependencies', ['bower:install']);
 
   // Run this task to update translation related files
   grunt.registerTask('updateTranslations', ['confirm', 'updateTranslationsSource', 'makeTranslations', 'makeAppData']);
