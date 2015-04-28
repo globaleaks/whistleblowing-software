@@ -219,7 +219,7 @@ class GLSettingsClass(object):
         self.defaults.notif_uses_tor = None
 
         # this became false when, few MBs cause node to disable submissions
-        self.defaults.disk_availability = True
+        self.defaults.accept_submissions = True
         self.defaults.minimum_megabytes_required = 1024  # 1 GB, or the node is disabled
 
         # a dict to keep track of the lifetime of the session. at the moment
