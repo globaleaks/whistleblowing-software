@@ -201,7 +201,6 @@ module.exports = function(grunt) {
       fs.rmdirSync(dir);
     };
 
-
     grunt.file.mkdir('build/');
 
     var files = ['globaleaks.html', 'index.html', 'loader.js', 'styles.css', 'styles-rtl.css', 'scripts.js']
@@ -211,7 +210,6 @@ module.exports = function(grunt) {
 
     var dirs = ['data', 'fonts', 'img', 'l10n']
     for (var x in dirs) {
-      grunt.file.mkdir(dirs[x]);
       grunt.file.recurse('tmp/' + dirs[x], function(absdir, rootdir, subdir, filename) {
         grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
       });
