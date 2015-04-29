@@ -1,3 +1,16 @@
+Changes in version 2.60.68 - 2015-04-29
+    o Updated translations
+    o Minor UI fixes
+
+    The following is the comprehensive list of closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1241
+    - https://github.com/globaleaks/GlobaLeaks/issues/1235
+    - https://github.com/globaleaks/GlobaLeaks/issues/1250
+    - https://github.com/globaleaks/GlobaLeaks/issues/1248
+    - https://github.com/globaleaks/GlobaLeaks/issues/1251
+    - https://github.com/globaleaks/GlobaLeaks/issues/1252
+    - https://github.com/globaleaks/GlobaLeaks/issues/1253
+
 Changes in version 2.60.67 - 2015-04-21
     o Updated translations
     o Minor UI fixes
