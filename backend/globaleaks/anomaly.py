@@ -458,7 +458,6 @@ class Alarm(object):
                 if current_event_matrix[event_name] > threshold:
                     Alarm.number_of_anomalies += 1
                 else:
-                    pass
                     log.debug("[compute_activity_level] %s %d < %d: it's OK (Anomalies recorded so far %d)" % (
                         event_name,
                         current_event_matrix[event_name],
