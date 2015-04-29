@@ -101,7 +101,7 @@ def register_file_db(store, uploaded_file, internaltip_id):
 
 def dump_file_fs(uploaded_file):
     """
-    @param files: the JQFU dict with file infos
+    @param uploaded_file: the uploaded_file data struct
     @return: the uploaded_file dict, removed the old path (is moved) and updated
             with the key 'encrypted_path', pointing to the AES encrypted file
     """
@@ -160,7 +160,7 @@ class FileAdd(BaseHandler):
             raise errors.InternalServerError("Unable to accept new files")
         try:
             # Second: register the file in the database
-            registered_file = yield register_file_db(uploaded_file, itip_id)
+            yield register_file_db(uploaded_file, itip_id)
         except Exception as excep:
             log.err("Unable to register (append) file in DB: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
@@ -218,7 +218,7 @@ class FileInstance(BaseHandler):
 
             token.associate_file(uploaded_file)
 
-            registered_file = serialize_memory_file(uploaded_file)
+            serialize_memory_file(uploaded_file)
         except Exception as excep:
             log.err("Unable to save file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept files")
@@ -232,7 +232,7 @@ class FileInstance(BaseHandler):
         Response: Unknown
         Errors: TokenFailure
         """
-        token = TokenList.get(token_id)
+        TokenList.get(token_id)
 
         self.set_status(204)  # We currently do not implement file resume
         self.finish()

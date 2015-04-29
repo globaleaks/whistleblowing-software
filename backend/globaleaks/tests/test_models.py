@@ -7,6 +7,7 @@ from globaleaks import models
 from globaleaks.settings import transact, transact_ro
 from globaleaks.tests import helpers
 
+
 class TestModels(helpers.TestGL):
     receiver_inc = 0
 
@@ -139,7 +140,7 @@ class TestModels(helpers.TestGL):
         context2 = models.Context(c)
 
         context2.tip_timetolive = 1000
-        context2.description = context2.name =\
+        context2.description = context2.name = \
             context2.submission_disclaimer = \
             context2.submission_introduction = {'en': 'Valar Dohaeris'}
 
@@ -250,7 +251,7 @@ class TestField(helpers.TestGL):
             type='checkbox'
         )
         field2_id = yield helpers.create_dummy_field(
-            label= {"en": "the second testable field"},
+            label={"en": "the second testable field"},
             type='inputbox'
         )
         fieldgroup_id = yield helpers.create_dummy_field(
@@ -284,7 +285,7 @@ class TestField(helpers.TestGL):
 
 
 class TestStep(helpers.TestGL):
-    #skip = ('"test_gl_with_populated_db.json" must be updated'
+    # skip = ('"test_gl_with_populated_db.json" must be updated'
     #        'in order to run this test.')
     fixtures = ['fields.json', "test_gl_with_populated_db.json"]
     step_number = 1
@@ -297,11 +298,11 @@ class TestStep(helpers.TestGL):
     @transact
     def create_step(self, store, context_id, field_id):
         step = {
-          'context_id': context_id,
-          'number': self.step_number,
-          'label': {},
-          'description': {},
-          'hint': {}
+            'context_id': context_id,
+            'number': self.step_number,
+            'label': {},
+            'description': {},
+            'hint': {}
         }
 
         self.step_number += 1

@@ -1,6 +1,6 @@
 # -*- coding: UTF-8
 #
-#   overview
+# overview
 #   ********
 # Implementation of the code executed when an HTTP client reach /overview/* URI
 
@@ -16,6 +16,7 @@ from globaleaks import models
 
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta
+
 
 @transact_ro
 def collect_tip_overview(store, language):
@@ -66,7 +67,7 @@ def collect_tip_overview(store, language):
 
         # whistleblower tip has not a reference from itip, then:
         wbtip = store.find(models.WhistleblowerTip,
-            models.WhistleblowerTip.internaltip_id == itip.id).one()
+                           models.WhistleblowerTip.internaltip_id == itip.id).one()
 
         if wbtip is not None:
             tip_description.update({
@@ -94,7 +95,7 @@ def collect_users_overview(store):
             'pgp_key_status': receiver.pgp_key_status,
         }
 
-        rcvr_files = store.find(models.ReceiverFile, models.ReceiverFile.receiver_id == receiver.id )
+        rcvr_files = store.find(models.ReceiverFile, models.ReceiverFile.receiver_id == receiver.id)
         for rfile in rcvr_files:
 
             if not rfile.internalfile:
@@ -108,7 +109,7 @@ def collect_users_overview(store):
                 'last_access': datetime_to_ISO8601(rfile.last_access),
             })
 
-        rcvr_tips = store.find(models.ReceiverTip, models.ReceiverTip.receiver_id == receiver.id )
+        rcvr_tips = store.find(models.ReceiverTip, models.ReceiverTip.receiver_id == receiver.id)
         for rtip in rcvr_tips:
             user_description['receivertips'].append({
                 'internaltip_id': rtip.id,
@@ -121,9 +122,9 @@ def collect_users_overview(store):
 
     return users_description_list
 
+
 @transact_ro
 def collect_files_overview(store):
-
     file_description_list = []
 
     submission_dir = os.path.join(GLSetting.working_path, GLSetting.submission_path)

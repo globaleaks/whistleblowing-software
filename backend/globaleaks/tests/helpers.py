@@ -20,8 +20,12 @@ from twisted.test import proto_helpers
 # Monkeypathing for unit testing  in order to
 # prevent mail activities
 from globaleaks.utils import mailutils
+
+
 def sendmail_mock(**args):
     return defer.succeed(None)
+
+
 mailutils.sendmail = sendmail_mock
 
 from globaleaks import db, models, security, anomaly
@@ -67,10 +71,10 @@ with open(os.path.join(TEST_DIR, 'keys/expired_pgp_key.txt')) as pgp_file:
 transact.tp = FakeThreadPool()
 authentication.reactor_override = task.Clock()
 anomaly.reactor_override = task.Clock()
-token.reactor_override= task.Clock()
+token.reactor_override = task.Clock()
+
 
 class UTlog:
-
     @staticmethod
     def err(stuff):
         pass
@@ -79,8 +83,10 @@ class UTlog:
     def debug(stuff):
         pass
 
+
 log.err = UTlog.err
 log.debug = UTlog.debug
+
 
 def export_fixture(*models):
     """
@@ -91,9 +97,9 @@ def export_fixture(*models):
     :return: a valid JSON string exporting the field.
     """
     return json.dumps([{
-        'fields': model.dict(),
-        'class': model.__class__.__name__,
-    } for model in models], default=str, indent=2)
+                           'fields': model.dict(),
+                           'class': model.__class__.__name__,
+                       } for model in models], default=str, indent=2)
 
 
 @transact
@@ -113,11 +119,12 @@ def import_fixture(store, fixture):
 def get_file_upload(self):
     return self.request.body
 
+
 BaseHandler.get_file_upload = get_file_upload
 
-class TestGL(unittest.TestCase):
 
-    encryption_scenario = 'MIXED' # receivers with pgp and receivers without pgp
+class TestGL(unittest.TestCase):
+    encryption_scenario = 'MIXED'  # receivers with pgp and receivers without pgp
 
     create_node = True
 
@@ -130,8 +137,8 @@ class TestGL(unittest.TestCase):
         GLSetting.failed_login_attempts = 0
 
         if os.path.isdir('/dev/shm'):
-          GLSetting.working_path = '/dev/shm/globaleaks'
-          GLSetting.ramdisk_path = '/dev/shm/globaleaks/ramdisk'
+            GLSetting.working_path = '/dev/shm/globaleaks'
+            GLSetting.ramdisk_path = '/dev/shm/globaleaks/ramdisk'
         else:
             GLSetting.working_path = './working_path'
             GLSetting.ramdisk_path = './working_path/ramdisk'
@@ -165,8 +172,8 @@ class TestGL(unittest.TestCase):
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyReceiverUser_1 = self.get_dummy_receiver_user('receiver1')
         self.dummyReceiverUser_2 = self.get_dummy_receiver_user('receiver2')
-        self.dummyReceiver_1 = self.get_dummy_receiver('receiver1') # the one without PGP
-        self.dummyReceiver_2 = self.get_dummy_receiver('receiver2') # the one with PGP
+        self.dummyReceiver_1 = self.get_dummy_receiver('receiver1')  # the one without PGP
+        self.dummyReceiver_2 = self.get_dummy_receiver('receiver2')  # the one with PGP
 
         if self.encryption_scenario == 'MIXED':
             self.dummyReceiver_1['pgp_key_public'] = None
@@ -183,7 +190,7 @@ class TestGL(unittest.TestCase):
 
         self.dummyNode = dummyStuff.dummyNode
 
-        self.assertEqual(os.listdir(GLSetting.submission_path),  [])
+        self.assertEqual(os.listdir(GLSetting.submission_path), [])
         self.assertEqual(os.listdir(GLSetting.tmp_upload_path), [])
 
     def localization_set(self, dict_l, dict_c, language):
@@ -202,11 +209,11 @@ class TestGL(unittest.TestCase):
 
     def get_dummy_receiver(self, descpattern):
         new_r = dict(MockDict().dummyReceiver)
-        new_r['name'] = new_r['username'] =\
-        new_r['mail_address'] = unicode('%s@%s.xxx' % (descpattern, descpattern))
+        new_r['name'] = new_r['username'] = \
+            new_r['mail_address'] = unicode('%s@%s.xxx' % (descpattern, descpattern))
         new_r['password'] = VALID_PASSWORD1
         # localized dict required in desc
-        new_r['description'] =  'am I ignored ? %s' % descpattern
+        new_r['description'] = 'am I ignored ? %s' % descpattern
         return new_r
 
     def get_dummy_field(self):
@@ -232,7 +239,7 @@ class TestGL(unittest.TestCase):
 
     def fill_random_field_recursively(self, field, value=None):
         if value is None:
-             field['value'] = unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))
+            field['value'] = unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))
         else:
             field['value'] = unicode(value)
 
@@ -316,7 +323,6 @@ class TestGL(unittest.TestCase):
     @inlineCallbacks
     def emulate_file_append(self, tip_id, n):
         for i in range(0, n):
-
             dummyFile = self.get_dummy_file()
 
             dummyFile = yield threads.deferToThread(files.dump_file_fs, dummyFile)
@@ -335,13 +341,13 @@ class TestGL(unittest.TestCase):
     @inlineCallbacks
     def assert_model_exists(self, model, *id_args, **id_kwargs):
         existing = yield self._exists(model, *id_args, **id_kwargs)
-        msg =  'The following has *NOT* been found on the store: {} {}'.format(id_args, id_kwargs)
+        msg = 'The following has *NOT* been found on the store: {} {}'.format(id_args, id_kwargs)
         self.assertTrue(existing, msg)
 
     @inlineCallbacks
     def assert_model_not_exists(self, model, *id_args, **id_kwargs):
         existing = yield self._exists(model, *id_args, **id_kwargs)
-        msg =  'The following model has been found on the store: {} {}'.format(id_args, id_kwargs)
+        msg = 'The following model has been found on the store: {} {}'.format(id_args, id_kwargs)
         self.assertFalse(existing, msg)
 
     @transact_ro
@@ -360,9 +366,9 @@ class TestGL(unittest.TestCase):
         for rtip in rtips:
             itip = receiver_serialize_tip(rtip.internaltip, 'en')
             rtips_desc.append({'rtip_id': rtip.id, 'receiver_id': rtip.receiver_id, 'itip': itip})
- 
+
         return rtips_desc
- 
+
     @transact_ro
     def get_rfiles(self, store, rtip_id):
         rfiles_desc = []
@@ -388,7 +394,6 @@ class TestGL(unittest.TestCase):
 
 
 class TestGLWithPopulatedDB(TestGL):
-
     @inlineCallbacks
     def setUp(self):
         yield TestGL.setUp(self)
@@ -432,13 +437,13 @@ class TestGLWithPopulatedDB(TestGL):
                 # Name, Surname, Gender" are associated to field "Generalities"
                 # "Field 1" and "Field 2" are associated to the first step
                 field['fieldgroup_id'] = self.dummyFields[2]['id']
-               
+
             f = yield create_field(field, 'en')
             self.dummyFields[idx]['id'] = f['id']
 
         self.dummyContext['steps'][0]['children'] = [
-            self.dummyFields[0], # Field 1
-            self.dummyFields[1], # Field 2
+            self.dummyFields[0],  # Field 1
+            self.dummyFields[1],  # Field 2
             self.dummyFields[2]  # Generalities
         ]
 
@@ -459,8 +464,8 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['wb_steps'] = yield self.fill_random_fields(self.dummyContext['id'])
 
         self.dummySubmission = yield create_submission(self.dummyToken,
-                                                         self.dummySubmission,
-                                                         'en')
+                                                       self.dummySubmission,
+                                                       'en')
 
         self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
 
@@ -608,6 +613,7 @@ class TestHandler(TestGLWithPopulatedDB):
 
         def mock_pass(cls, *args):
             pass
+
         # so that we don't complain about XSRF
         handler.check_xsrf_cookie = mock_pass
 
@@ -615,6 +621,7 @@ class TestHandler(TestGLWithPopulatedDB):
             session = authentication.GLSession(user_id, role, 'enabled')
             handler.request.headers['X-Session'] = session.id
         return handler
+
 
 class TestHandlerWithPopulatedDB(TestHandler):
     @inlineCallbacks
@@ -625,13 +632,13 @@ class TestHandlerWithPopulatedDB(TestHandler):
         yield TestGLWithPopulatedDB.setUp(self)
         self.initialization()
 
+
 class MockDict():
     """
     This class just create all the shit we need for emulate a GLNode
     """
 
     def __init__(self):
-
         self.dummyReceiverUser = {
             'username': u'maker@iz.cool.yeah',
             'password': VALID_HASH1,
@@ -656,11 +663,11 @@ class MockDict():
             'ping_mail_address': 'giovanni.pellerano@evilaliv3.org',
             'can_delete_submission': True,
             'can_postpone_expiration': True,
-            'contexts' : [],
+            'contexts': [],
             'tip_notification': True,
             'ping_notification': True,
             'pgp_key_info': u'',
-            'pgp_key_fingerprint' : u'',
+            'pgp_key_fingerprint': u'',
             'pgp_key_status': u'disabled',
             'pgp_key_public': u'',
             'pgp_key_expiration': u'',
@@ -675,87 +682,69 @@ class MockDict():
         self.dummyReceiverPGP['pgp_key_public'] = VALID_PGP_KEY1
 
         self.dummyFieldTemplates = [
-        {
-            'id': u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
-            'is_template': True,
-            'step_id': '',
-            'fieldgroup_id': '',
-            'label': u'Field 1',
-            'type': u'inputbox',
-            'preview': False,
-            'description': u"field description",
-            'hint': u'field hint',
-            'multi_entry': False,
-            'stats_enabled': False,
-            'required': True, # <- first field is special,
-            'children': {},   #    it's marked as required!!!
-            'options': [],
-            'y': 2,
-            'x': 0
-        },
-        {
-            'id': u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
-            'is_template': True,
-            'step_id': '',
-            'fieldgroup_id': '',
-            'label': u'Field 2',
-            'type': u'inputbox',
-            'preview': False,
-            'description': "description",
-            'hint': u'field hint',
-            'multi_entry': False,
-            'stats_enabled': False,
-            'required': False,
-            'children': {},
-            'options': [],
-            'y': 3,
-            'x': 0
-        },
-        {
-            'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
-            'is_template': True,
-            'step_id': '',
-            'fieldgroup_id': '',
-            'label': u'Generalities',
-            'type': u'fieldgroup',
-            'preview': False,
-            'description': u"field description",
-            'hint': u'field hint',
-            'multi_entry': False,
-            'stats_enabled': False,
-            'required': False,
-            'children': {},
-            'options': [],
-            'y': 4,
-            'x': 0
-        },
-        {
-            'id': u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
-            'is_template': True,
-            'step_id': '',
-            'fieldgroup_id': '',
-            'label': u'Name',
-            'type': u'inputbox',
-            'preview': False,
-            'description': u"field description",
-            'hint': u'field hint',
-            'multi_entry': False,
-            'stats_enabled': False,
-            'required': False,
-            'children': {},
-            'options': [],
-            'y': 0,
-            'x': 0
-        },
-        {
-            'id': u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
-            'is_template': True,
-            'step_id': '',
-            'fieldgroup_id': '',
-            'label': u'Surname',
-            'type': u'inputbox',
-            'preview': False,
-            'description': u"field description",
+            {
+                'id': u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
+                'is_template': True,
+                'step_id': '',
+                'fieldgroup_id': '',
+                'label': u'Field 1',
+                'type': u'inputbox',
+                'preview': False,
+                'description': u"field description",
+                'hint': u'field hint',
+                'multi_entry': False,
+                'stats_enabled': False,
+                'required': True,  # <- first field is special,
+                'children': {},  # it's marked as required!!!
+                'options': [],
+                'y': 2,
+                'x': 0
+            },
+            {
+                'id': u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
+                'is_template': True,
+                'step_id': '',
+                'fieldgroup_id': '',
+                'label': u'Field 2',
+                'type': u'inputbox',
+                'preview': False,
+                'description': "description",
+                'hint': u'field hint',
+                'multi_entry': False,
+                'stats_enabled': False,
+                'required': False,
+                'children': {},
+                'options': [],
+                'y': 3,
+                'x': 0
+            },
+            {
+                'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
+                'is_template': True,
+                'step_id': '',
+                'fieldgroup_id': '',
+                'label': u'Generalities',
+                'type': u'fieldgroup',
+                'preview': False,
+                'description': u"field description",
+                'hint': u'field hint',
+                'multi_entry': False,
+                'stats_enabled': False,
+                'required': False,
+                'children': {},
+                'options': [],
+                'y': 4,
+                'x': 0
+            },
+            {
+                'id': u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
+                'is_template': True,
+                'step_id': '',
+                'fieldgroup_id': '',
+                'label': u'Name',
+                'type': u'inputbox',
+                'preview': False,
+                'description': u"field description",
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
@@ -764,51 +753,69 @@ class MockDict():
                 'options': [],
                 'y': 0,
                 'x': 0
-        },
-        {
-            'id': u'7e1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
-            'is_template': True,
-            'step_id': '',
-            'fieldgroup_id': '',
-            'label': u'Gender',
-            'type': u'selectbox',
-            'preview': False,
-            'description': u"field description",
+            },
+            {
+                'id': u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
+                'is_template': True,
+                'step_id': '',
+                'fieldgroup_id': '',
+                'label': u'Surname',
+                'type': u'inputbox',
+                'preview': False,
+                'description': u"field description",
+                'hint': u'field hint',
+                'multi_entry': False,
+                'stats_enabled': False,
+                'required': False,
+                'children': {},
+                'options': [],
+                'y': 0,
+                'x': 0
+            },
+            {
+                'id': u'7e1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
+                'is_template': True,
+                'step_id': '',
+                'fieldgroup_id': '',
+                'label': u'Gender',
+                'type': u'selectbox',
+                'preview': False,
+                'description': u"field description",
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
                 'required': False,
                 'children': {},
                 'options': [
-                  {
-                    "id": "2ebf6df8-289a-4f17-aa59-329fe11d232e",
-                    "value": "", "attrs": {"name": "Male"}
-                  },
-                  {
-                    "id": "9c7f343b-ed46-4c9e-9121-a54b6e310123",
-                    "value": "",
-                    "attrs": {"name": "Female"}
-                  }
+                    {
+                        "id": "2ebf6df8-289a-4f17-aa59-329fe11d232e",
+                        "value": "", "attrs": {"name": "Male"}
+                    },
+                    {
+                        "id": "9c7f343b-ed46-4c9e-9121-a54b6e310123",
+                        "value": "",
+                        "attrs": {"name": "Female"}
+                    }
                 ],
                 'y': 0,
                 'x': 0
-        }]
+            }]
 
         self.dummyFields = copy.deepcopy(self.dummyFieldTemplates)
 
         self.dummySteps = [
-        {
-            'label': u'Step 1',
-            'description': u'Step Description',
-            'hint': u'Step Hint',
-            'children': {}
-        },
-        {
-              'label': u'Step 2',
-              'description': u'Step Description',
-              'hint': u'Step Hint',
-              'children': {}
-        }]
+            {
+                'label': u'Step 1',
+                'description': u'Step Description',
+                'hint': u'Step Hint',
+                'children': {}
+            },
+            {
+                'label': u'Step 2',
+                'description': u'Step Description',
+                'hint': u'Step Hint',
+                'children': {}
+            }]
 
         self.dummyContext = {
             # localized stuff
@@ -818,7 +825,7 @@ class MockDict():
             'select_all_receivers': True,
             # tip_timetolive is expressed in days
             'tip_timetolive': 20,
-            'receivers' : [],
+            'receivers': [],
             'receiver_introduction': u'These are our receivers',
             'can_postpone_expiration': False,
             'can_delete_submission': False,
@@ -840,7 +847,7 @@ class MockDict():
         }
 
         self.dummyNode = {
-            'name':  u"Please, set me: name/title",
+            'name': u"Please, set me: name/title",
             'description': u"Pleæs€, set m€: d€scription",
             'presentation': u'This is whæt æpp€ærs on top',
             'footer': u'check it out https://www.youtube.com/franksentus ;)',
@@ -848,11 +855,11 @@ class MockDict():
             'security_awareness_text': u'',
             'whistleblowing_question': u'',
             'whistleblowing_button': u'',
-            'hidden_service':  u"http://1234567890123456.onion",
-            'public_site':  u"https://globaleaks.org",
-            'email':  u"email@dummy.net",
-            'languages_supported': [], # ignored
-            'languages_enabled':  [ "it" , "en" ],
+            'hidden_service': u"http://1234567890123456.onion",
+            'public_site': u"https://globaleaks.org",
+            'email': u"email@dummy.net",
+            'languages_supported': [],  # ignored
+            'languages_enabled': ["it", "en"],
             'password': '',
             'old_password': '',
             'salt': 'OMG!, the Rains of Castamere ;( ;(',
@@ -909,12 +916,13 @@ def do_appdata_init(store):
         appdata.fields = source['fields']
         store.add(appdata)
 
+
 @transact
 def create_dummy_field(store, **custom_attrs):
     attrs = {
-        'label': { "en": "test label" },
-        'description': { "en": "test description" },
-        'hint': { "en": "test hint" },
+        'label': {"en": "test label"},
+        'description': {"en": "test description"},
+        'hint': {"en": "test hint"},
         "is_template": False,
         'multi_entry': False,
         'type': 'fieldgroup',

@@ -445,14 +445,14 @@ def ISO8601_to_pretty_str_tz(isodate, tz):
 
 
 def iso_year_start(iso_year):
-    "Returns the gregorian calendar date of the first day of the given ISO year"
+    """Returns the gregorian calendar date of the first day of the given ISO year"""
     fourth_jan = datetime.strptime('{0}-01-04'.format(iso_year), '%Y-%m-%d')
     delta = timedelta(fourth_jan.isoweekday() - 1)
     return fourth_jan - delta
 
 
 def iso_to_gregorian(iso_year, iso_week, iso_day):
-    "Returns gregorian calendar date for the given ISO year, week and day"
+    """Returns gregorian calendar date for the given ISO year, week and day"""
     year_start = iso_year_start(iso_year)
     return year_start + timedelta(days=iso_day - 1, weeks=iso_week - 1)
 
@@ -464,10 +464,10 @@ def bytes_to_pretty_str(b):
     if isinstance(b, str):
         b = int(b)
 
-    if (b >= 1000000000):
+    if b >= 1000000000:
         return "%dGB" % int(b / 1000000000)
 
-    if (b >= 1000000):
+    if b >= 1000000:
         return "%dMB" % int(b / 1000000)
 
     return "%dKB" % int(b / 1000)

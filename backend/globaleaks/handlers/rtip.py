@@ -107,8 +107,8 @@ def db_get_tip_receiver(store, user_id, tip_id, language):
     notif = store.find(Notification).one()
     if not notif.send_email_for_every_event:
         # Events related to this tip and for which the email have been sent can be removed
-        eventlst = store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
-                                             EventLogs.mail_sent == True)).remove()
+        store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
+                                  EventLogs.mail_sent == True)).remove()
 
     tip_desc = receiver_serialize_tip(rtip.internaltip, language)
 

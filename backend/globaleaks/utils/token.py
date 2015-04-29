@@ -1,6 +1,6 @@
 # -*- coding: UTF-8
 #
-#   token
+# token
 #   *****
 #
 #   Implements a GlobaLeaks security token, to prevent resources exhaustion
@@ -20,8 +20,8 @@ from globaleaks.settings import GLSetting
 # needed in order to allow UT override
 reactor_override = None
 
-class TokenList:
 
+class TokenList:
     token_dict = dict()
 
     @staticmethod
@@ -45,7 +45,6 @@ class TokenList:
 
 
 class Token(TempObj):
-
     SUBMISSION_MINIMUM_DURATION = 0
     SUBMISSION_MAXIMUM_DURATION = 3600 * 4
     MAXIMUM_ATTEMPTS_PER_TOKEN = 3
@@ -121,7 +120,7 @@ class Token(TempObj):
 
         for a in dump_attr:
             if getattr(self, a):
-                test_desc = "%s[H:%s]" % (test_desc,  getattr(self, a)['question'])
+                test_desc = "%s[H:%s]" % (test_desc, getattr(self, a)['question'])
 
         token_string = "Token %s for %s [%s]" % (self.token_id, self.kind, test_desc)
 
@@ -133,9 +132,9 @@ class Token(TempObj):
             'token_id': self.token_id,
             'creation_date': datetime_to_ISO8601(self.creation_date),
             'start_validity_secs': datetime_to_ISO8601(self.creation_date +
-                                                  timedelta(seconds=self.start_validity_secs) ),
+                                                       timedelta(seconds=self.start_validity_secs)),
             'end_validity_secs': datetime_to_ISO8601(self.creation_date +
-                                                timedelta(seconds=self.end_validity_secs) ),
+                                                     timedelta(seconds=self.end_validity_secs)),
             'remaining_allowed_attempts': self.remaining_allowed_attempts,
             'type': self.kind,
             'graph_captcha': self.graph_captcha['question'] if self.graph_captcha else False,
@@ -188,7 +187,7 @@ class Token(TempObj):
                       (self.end_validity_secs, start, now))
             raise errors.TokenFailure("Too late to use this token")
 
-        # If the code reach here, the time delta is good.
+            # If the code reach here, the time delta is good.
 
     def human_captcha_check(self, resolved_human_captcha):
         if not self.human_captcha:

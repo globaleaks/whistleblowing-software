@@ -8,6 +8,7 @@ from globaleaks.tests import helpers
 from globaleaks.handlers import files
 from globaleaks.utils import token
 
+
 class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = files.FileInstance
 
@@ -31,7 +32,7 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
         for f in self.dummyToken.uploaded_files:
             self.assertTrue(os.path.exists(f['encrypted_path']))
 
-        token.reactor_override.advance(360000) # advance clock of 100 hours
+        token.reactor_override.advance(360000)  # advance clock of 100 hours
 
         for f in self.dummyToken.uploaded_files:
             self.assertFalse(os.path.exists(f['encrypted_path']))
@@ -46,6 +47,7 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(body=self.get_dummy_file())
         self.assertFailure(handler.post(u'unexistent_submission'), errors.TokenFailure)
 
+
 class TestFileAdd(helpers.TestHandlerWithPopulatedDB):
     _handler = files.FileAdd
 
@@ -58,6 +60,7 @@ class TestFileAdd(helpers.TestHandlerWithPopulatedDB):
             handler = self.request(role='wb', body=self.get_dummy_file())
             handler.current_user.user_id = wbtip_desc['wbtip_id']
             yield handler.post()
+
 
 class TestDownload(helpers.TestHandlerWithPopulatedDB):
     _handler = files.Download

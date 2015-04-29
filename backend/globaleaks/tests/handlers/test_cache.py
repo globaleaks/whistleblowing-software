@@ -5,11 +5,11 @@ from globaleaks.handlers.base import GLApiCache
 from globaleaks.settings import transact
 from globaleaks.tests import helpers
 
-class TestGLApiCache(helpers.TestGL):
 
+class TestGLApiCache(helpers.TestGL):
     @inlineCallbacks
     def setUp(self):
-        yield helpers.TestGL.setUp(self) 
+        yield helpers.TestGL.setUp(self)
 
         GLApiCache.invalidate()
 

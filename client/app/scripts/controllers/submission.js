@@ -180,7 +180,7 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
 
       $scope.submission.uploading = uploading;
 
-    }
+    };
 
     $scope.upload_callbacks.push(upload_callback);
   }

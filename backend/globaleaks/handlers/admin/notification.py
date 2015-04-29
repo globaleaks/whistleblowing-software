@@ -1,14 +1,12 @@
-from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db.datainit import db_update_memory_variables, load_appdata
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.models import Notification
-from globaleaks.rest import errors, requests
+from globaleaks.rest import requests
 from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import log
 
 
 def admin_serialize_notification(notif, language):

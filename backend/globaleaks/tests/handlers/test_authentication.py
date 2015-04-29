@@ -8,17 +8,20 @@ from globaleaks.utils import utility
 
 FUTURE = 100
 
+
 class ClassToTestUnauthenticatedDecorator(base.BaseHandler):
     @authentication.unauthenticated
     def get(self):
         self.set_status(200)
         self.finish("test")
 
+
 class ClassToTestAuthenticatedDecorator(base.BaseHandler):
     @authentication.authenticated('admin')
     def get(self):
         self.set_status(200)
         self.finish("test")
+
 
 class TestSessionUpdateOnUnauthRequests(helpers.TestHandlerWithPopulatedDB):
     _handler = ClassToTestUnauthenticatedDecorator
@@ -31,7 +34,8 @@ class TestSessionUpdateOnUnauthRequests(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, headers={'X-Session': session.id})
         yield handler.get()
         date2 = GLSetting.sessions[session.id].getTime()
-        self.assertEqual(date1+FUTURE, date2)
+        self.assertEqual(date1 + FUTURE, date2)
+
 
 class TestSessionUpdateOnAuthRequests(helpers.TestHandlerWithPopulatedDB):
     _handler = ClassToTestAuthenticatedDecorator
@@ -44,7 +48,8 @@ class TestSessionUpdateOnAuthRequests(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, headers={'X-Session': session.id})
         yield handler.get()
         date2 = GLSetting.sessions[session.id].getTime()
-        self.assertEqual(date1+FUTURE, date2)
+        self.assertEqual(date1 + FUTURE, date2)
+
 
 class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     _handler = authentication.AuthenticationHandler
@@ -52,9 +57,9 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_successful_admin_login(self):
         handler = self.request({
-           'username': 'admin',
-           'password': 'globaleaks',
-           'role': 'admin'
+            'username': 'admin',
+            'password': 'globaleaks',
+            'role': 'admin'
         })
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
@@ -84,9 +89,9 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_successful_receiver_login(self):
         handler = self.request({
-           'username': self.dummyReceiver_1['id'],
-           'password': helpers.VALID_PASSWORD1,
-           'role': 'receiver'
+            'username': self.dummyReceiver_1['id'],
+            'password': helpers.VALID_PASSWORD1,
+            'role': 'receiver'
         })
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
@@ -95,34 +100,34 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_accept_receiver_login_in_tor2web(self):
         handler = self.request({
-           'username': self.dummyReceiver_1['id'],
-           'password': helpers.VALID_PASSWORD1,
-           'role': 'receiver'
+            'username': self.dummyReceiver_1['id'],
+            'password': helpers.VALID_PASSWORD1,
+            'role': 'receiver'
         }, headers={'X-Tor2Web': 'whatever'})
         GLSetting.memory_copy.tor2web_receiver = True
-        success = yield handler.post()
+        yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
     def test_deny_receiver_login_in_tor2web(self):
         handler = self.request({
-           'username': self.dummyReceiver_1['id'],
-           'password': helpers.VALID_PASSWORD1,
-           'role': 'receiver'
+            'username': self.dummyReceiver_1['id'],
+            'password': helpers.VALID_PASSWORD1,
+            'role': 'receiver'
         }, headers={'X-Tor2Web': 'whatever'})
         GLSetting.memory_copy.tor2web_receiver = False
-        success = yield handler.post()
+        yield handler.post()
         self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
     def test_successful_whistleblower_login(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-           'username': '',
-           'password': self.dummyWBTip,
-           'role': 'wb'
+            'username': '',
+            'password': self.dummyWBTip,
+            'role': 'wb'
         })
-        success = yield handler.post()
+        yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
@@ -130,9 +135,9 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_accept_whistleblower_login_in_tor2web(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-           'username': '',
-           'password': self.dummyWBTip,
-           'role': 'wb'
+            'username': '',
+            'password': self.dummyWBTip,
+            'role': 'wb'
         })
         GLSetting.memory_copy.tor2web_submission = True
         success = yield handler.post()
@@ -142,9 +147,9 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_deny_whistleblower_login_in_tor2web(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-           'username': '',
-           'password': self.dummyWBTip,
-           'role': 'wb'
+            'username': '',
+            'password': self.dummyWBTip,
+            'role': 'wb'
         }, headers={'X-Tor2Web': 'whatever'})
         GLSetting.memory_copy.tor2web_submission = False
         self.assertFailure(handler.post(), errors.TorNetworkRequired)
@@ -157,7 +162,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'password': 'globaleaks',
             'role': 'admin'
         })
-        success = yield handler.post()
+        yield handler.post()
         self.assertTrue(handler.current_user is None)
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
@@ -188,7 +193,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'password': helpers.VALID_PASSWORD1,
             'role': 'receiver'
         })
-        success = yield handler.post()
+        yield handler.post()
         self.assertTrue(handler.current_user is None)
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
@@ -204,7 +209,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, headers={'X-Session': session_id})
 
         try:
-            success = yield handler.delete()
+            yield handler.delete()
         except errors.NotAuthenticated:
             self.assertTrue(True)
 
@@ -220,7 +225,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'password': self.dummyWBTip,
             'role': 'wb'
         })
-        success = yield handler.post()
+        yield handler.post()
         self.assertTrue(handler.current_user is None)
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSetting.sessions.keys()), 1)
@@ -228,7 +233,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         # Logout
         session_id = self.responses[0]['session_id']
         handler = self.request({}, headers={'X-Session': session_id})
-        success = yield handler.delete()
+        yield handler.delete()
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
@@ -245,9 +250,9 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     def test_invalid_admin_login_wrong_password(self):
         handler = self.request({
-           'username': 'admin',
-           'password': 'INVALIDPASSWORD',
-           'role': 'admin'
+            'username': 'admin',
+            'password': 'INVALIDPASSWORD',
+            'role': 'admin'
         })
         d = handler.post()
         self.assertFailure(d, errors.InvalidAuthentication)
@@ -255,9 +260,9 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     def test_invalid_receiver_login_wrong_password(self):
         handler = self.request({
-           'username': 'scemo',
-           'password': 'INVALIDPASSWORD',
-           'role': 'receiver'
+            'username': 'scemo',
+            'password': 'INVALIDPASSWORD',
+            'role': 'receiver'
         })
         d = handler.post()
         self.assertFailure(d, errors.InvalidAuthentication)
@@ -265,9 +270,9 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     def test_invalid_whistleblower_login_wrong_receipt(self):
         handler = self.request({
-           'username': '',
-           'password': 'INVALIDPASSWORD',
-           'role': 'wb'
+            'username': '',
+            'password': 'INVALIDPASSWORD',
+            'role': 'wb'
         })
         d = handler.post()
         self.assertFailure(d, errors.InvalidAuthentication)
@@ -275,8 +280,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     def test_invalid_input_format_missing_role(self):
         handler = self.request({
-           'username': '',
-           'password': '',
+            'username': '',
+            'password': '',
         })
         d = handler.post()
         self.assertFailure(d, errors.InvalidInputFormat)
@@ -284,9 +289,9 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     def test_invalid_input_format_wrong_role(self):
         handler = self.request({
-           'username': 'ratzinger',
-           'password': '',
-           'role': 'pope'
+            'username': 'ratzinger',
+            'password': '',
+            'role': 'pope'
         })
         d = handler.post()
         self.assertFailure(d, errors.InvalidAuthentication)
@@ -303,7 +308,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         failed_login = 5
         for i in xrange(0, failed_login):
             try:
-                failure = yield handler.post()
+                yield handler.post()
             except errors.InvalidAuthentication:
                 continue
             except Exception as excep:
@@ -332,7 +337,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         failed_login = 7
         for i in xrange(0, failed_login):
             try:
-                failure = yield handler.post()
+                yield handler.post()
             except errors.InvalidAuthentication:
                 continue
             except Exception as excep:

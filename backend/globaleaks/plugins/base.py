@@ -20,15 +20,7 @@ class GLPlugin(object):
         """
         raise NotImplementedError("Your plugin misses implementation of 'validate_admin_opt'")
 
-    #def initialize(self, admin_fields):
-    #    raise NotImplementedError("Your plugin misses implementation of 'initialize'")
-
-
 class Notification(GLPlugin):
-
-    #def digest_check(self, settings, stored_data, new_data):
-    #    raise NotImplementedError("Your plugin misses implementation of 'digest_check'")
-
     def validate_receiver_opt(self, admin_fields, receiver_fields):
         """
         @param receiver_fields: the received Receiver fields, before being
@@ -40,14 +32,6 @@ class Notification(GLPlugin):
 
     def do_notify(self, event):
         """
-        @param settings: a dict containing
-            {
-                'admin_settings' : {admin_settings_dict},
-                'receiver_settings' : {receiver_settings_dict}
-            }
-        @param data_type: one of [ 'tip', 'comment' ]
-        @param stored_data: the serialized object
-        @return:
         """
         raise NotImplementedError('Your plugin misses implementation of "do_notify"')
 

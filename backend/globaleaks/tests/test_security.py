@@ -5,19 +5,19 @@ import scrypt
 from cryptography.hazmat.primitives import hashes
 from twisted.trial import unittest
 from globaleaks.tests import helpers
-from globaleaks.security import get_salt, hash_password, check_password, change_password, check_password_format, SALT_LENGTH, \
-                                directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, crypto_backend
+from globaleaks.security import get_salt, hash_password, check_password, change_password, check_password_format, \
+    SALT_LENGTH, \
+    directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, crypto_backend
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 
 
 class TestPasswordManagement(unittest.TestCase):
-
     def test_pass_hash(self):
         dummy_password = "focaccina"
         dummy_salt_input = "vecna@focaccina.net"
 
-        sure_bin = scrypt.hash(dummy_password, get_salt(dummy_salt_input) )
+        sure_bin = scrypt.hash(dummy_password, get_salt(dummy_salt_input))
         sure = binascii.b2a_hex(sure_bin)
         not_sure = hash_password(dummy_password, dummy_salt_input)
         self.assertEqual(sure, not_sure)
@@ -29,8 +29,8 @@ class TestPasswordManagement(unittest.TestCase):
         sha.update(dummy_string)
 
         complete_hex = digest = binascii.b2a_hex(sha.finalize())
-        self.assertEqual( complete_hex[:SALT_LENGTH],
-                          get_salt(dummy_string)[:SALT_LENGTH] )
+        self.assertEqual(complete_hex[:SALT_LENGTH],
+                         get_salt(dummy_string)[:SALT_LENGTH])
 
         new_dummy_string = "xxxxkkkk"
 
@@ -38,8 +38,8 @@ class TestPasswordManagement(unittest.TestCase):
         sha_second.update(new_dummy_string)
 
         complete_hex = binascii.b2a_hex(sha_second.finalize())
-        self.assertEqual( complete_hex[:SALT_LENGTH],
-                          get_salt(new_dummy_string)[:SALT_LENGTH] )
+        self.assertEqual(complete_hex[:SALT_LENGTH],
+                         get_salt(new_dummy_string)[:SALT_LENGTH])
 
     def test_valid_password(self):
         dummy_password = dummy_salt_input = \
@@ -67,14 +67,14 @@ class TestPasswordManagement(unittest.TestCase):
         # verify that second stored pass is the same
         self.assertEqual(
             hashed2,
-            binascii.b2a_hex(scrypt.hash(str(second_pass), dummy_salt) )
+            binascii.b2a_hex(scrypt.hash(str(second_pass), dummy_salt))
         )
 
     def test_pass_hash_with_0_len_pass_must_fail(self):
         dummy_password = ""
         dummy_salt_input = "vecna@focaccina.net"
 
-        sure_bin = scrypt.hash(dummy_password, get_salt(dummy_salt_input) )
+        sure_bin = scrypt.hash(dummy_password, get_salt(dummy_salt_input))
         self.assertRaises(errors.InvalidInputFormat, hash_password, dummy_password, dummy_salt_input)
 
     def test_change_password_fail_with_invalid_old_password(self):
@@ -87,12 +87,13 @@ class TestPasswordManagement(unittest.TestCase):
         hashed1 = binascii.b2a_hex(scrypt.hash(str(first_pass), dummy_salt))
 
         # now emulate the change unsing the globaleaks.security module
-        self.assertRaises(errors.InvalidOldPassword, change_password, hashed1, "invalid_old_pass", second_pass, dummy_salt_input)
+        self.assertRaises(errors.InvalidOldPassword, change_password, hashed1, "invalid_old_pass", second_pass,
+                          dummy_salt_input)
 
     def test_check_password_format(self):
-        self.assertRaises(errors.InvalidInputFormat, check_password_format, "123abc") # less than 8 chars
-        self.assertRaises(errors.InvalidInputFormat, check_password_format, "withnonumbers") # withnonumbers
-        self.assertRaises(errors.InvalidInputFormat, check_password_format, "12345678") #onlynumbers
+        self.assertRaises(errors.InvalidInputFormat, check_password_format, "123abc")  # less than 8 chars
+        self.assertRaises(errors.InvalidInputFormat, check_password_format, "withnonumbers")  # withnonumbers
+        self.assertRaises(errors.InvalidInputFormat, check_password_format, "12345678")  # onlynumbers
         check_password_format("abcde12345")
 
 
@@ -101,11 +102,13 @@ class TestFilesystemAccess(helpers.TestGL):
         self.assertRaises(Exception, directory_traversal_check, 'invalid/relative/trusted/path', "valid.txt")
 
     def test_directory_traversal_check_blocked(self):
-        self.assertRaises(errors.DirectoryTraversalError, directory_traversal_check,GLSetting.static_path, "/etc/passwd")
+        self.assertRaises(errors.DirectoryTraversalError, directory_traversal_check, GLSetting.static_path,
+                          "/etc/passwd")
 
     def test_directory_traversal_check_allowed(self):
         valid_access = os.path.join(GLSetting.static_path, "valid.txt")
         directory_traversal_check(GLSetting.static_path, valid_access)
+
 
 class TestGLSecureFiles(helpers.TestGL):
     def test_temporary_file(self):

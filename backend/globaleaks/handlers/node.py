@@ -1,5 +1,5 @@
 # -*- coding: UTF-8
-#   node
+# node
 #   ****
 #
 # Implementation of classes handling the HTTP request to /node, public
@@ -16,6 +16,7 @@ from globaleaks.handlers.base import BaseHandler, GLApiCache
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks import models, LANGUAGES_SUPPORTED
 
+
 def get_field_option_localized_keys(field_type):
     localized_keys = []
     if field_type in ['checkbox', 'selectbox', 'fileupload']:
@@ -24,6 +25,7 @@ def get_field_option_localized_keys(field_type):
         localized_keys = ['clause', 'agreement_statement']
 
     return localized_keys
+
 
 @transact_ro
 def anon_serialize_ahmia(store, language):
@@ -47,6 +49,7 @@ def anon_serialize_ahmia(store, language):
 
     return ret_dict
 
+
 @transact_ro
 def anon_serialize_node(store, language):
     """
@@ -58,41 +61,42 @@ def anon_serialize_node(store, language):
     configured = store.find(models.ReceiverContext).count() > 0
 
     ret_dict = {
-      'name': node.name,
-      'hidden_service': node.hidden_service,
-      'public_site': node.public_site,
-      'email': u'',
-      'languages_enabled': node.languages_enabled,
-      'languages_supported': LANGUAGES_SUPPORTED,
-      'default_language' : node.default_language,
-      'default_timezone' : node.default_timezone,
-      'maximum_namesize': node.maximum_namesize,
-      'maximum_textsize': node.maximum_textsize,
-      'maximum_filesize': node.maximum_filesize,
-      'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
-      'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
-      'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
-      'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
-      'ahmia': node.ahmia,
-      'can_postpone_expiration': node.can_postpone_expiration,
-      'can_delete_submission': node.can_delete_submission,
-      'wizard_done': node.wizard_done,
-      'allow_unencrypted': node.allow_unencrypted,
-      'allow_iframes_inclusion': node.allow_iframes_inclusion,
-      'configured': configured,
-      'password': u'',
-      'old_password': u'',
-      'disable_privacy_badge': node.disable_privacy_badge,
-      'disable_security_awareness_badge': node.disable_security_awareness_badge,
-      'disable_security_awareness_questions': node.disable_security_awareness_questions,
-      'disable_key_code_hint': node.disable_key_code_hint,
-      'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-      'landing_page': node.landing_page,
-      'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
-      'accept_submissions': GLSetting.memory_copy.accept_submissions,
+        'name': node.name,
+        'hidden_service': node.hidden_service,
+        'public_site': node.public_site,
+        'email': u'',
+        'languages_enabled': node.languages_enabled,
+        'languages_supported': LANGUAGES_SUPPORTED,
+        'default_language': node.default_language,
+        'default_timezone': node.default_timezone,
+        'maximum_namesize': node.maximum_namesize,
+        'maximum_textsize': node.maximum_textsize,
+        'maximum_filesize': node.maximum_filesize,
+        'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
+        'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
+        'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
+        'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
+        'ahmia': node.ahmia,
+        'can_postpone_expiration': node.can_postpone_expiration,
+        'can_delete_submission': node.can_delete_submission,
+        'wizard_done': node.wizard_done,
+        'allow_unencrypted': node.allow_unencrypted,
+        'allow_iframes_inclusion': node.allow_iframes_inclusion,
+        'configured': configured,
+        'password': u'',
+        'old_password': u'',
+        'disable_privacy_badge': node.disable_privacy_badge,
+        'disable_security_awareness_badge': node.disable_security_awareness_badge,
+        'disable_security_awareness_questions': node.disable_security_awareness_questions,
+        'disable_key_code_hint': node.disable_key_code_hint,
+        'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
+        'landing_page': node.landing_page,
+        'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
+        'accept_submissions': GLSetting.memory_copy.accept_submissions,
     }
 
     return get_localized_values(ret_dict, node, node.localized_strings, language)
+
 
 def anon_serialize_context(store, context, language):
     """
@@ -106,14 +110,14 @@ def anon_serialize_context(store, context, language):
     if not len(receivers):
         return None
 
-    steps = [ anon_serialize_step(store, s, language)
-              for s in context.steps.order_by(models.Step.number) ]
+    steps = [anon_serialize_step(store, s, language)
+             for s in context.steps.order_by(models.Step.number)]
 
     ret_dict = {
         'id': context.id,
         'tip_timetolive': context.tip_timetolive,
-        'submission_introduction': u'NYI', # unicode(context.submission_introduction), # optlang
-        'submission_disclaimer': u'NYI', # unicode(context.submission_disclaimer), # optlang
+        'submission_introduction': u'NYI',  # unicode(context.submission_introduction), # optlang
+        'submission_disclaimer': u'NYI',  # unicode(context.submission_disclaimer), # optlang
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'show_small_cards': context.show_small_cards,
@@ -126,6 +130,7 @@ def anon_serialize_context(store, context, language):
     }
 
     return get_localized_values(ret_dict, context, context.localized_strings, language)
+
 
 def anon_serialize_option(option, field_type, language):
     """
@@ -146,6 +151,7 @@ def anon_serialize_option(option, field_type, language):
     get_localized_values(ret_dict['attrs'], option.attrs, keys, language)
 
     return ret_dict
+
 
 def anon_serialize_field(store, field, language):
     """
@@ -191,6 +197,7 @@ def anon_serialize_field(store, field, language):
 
     return get_localized_values(ret_dict, field, field.localized_strings, language)
 
+
 def anon_serialize_step(store, step, language):
     """
     Serialize a step, localizing its content depending on the language.
@@ -211,6 +218,7 @@ def anon_serialize_step(store, step, language):
 
     return get_localized_values(ret_dict, step, step.localized_strings, language)
 
+
 def anon_serialize_receiver(receiver, language):
     """
     Serialize a receiver description
@@ -225,7 +233,7 @@ def anon_serialize_receiver(receiver, language):
         'name': receiver.name,
         'id': receiver.id,
         'state': receiver.user.state,
-        'configuration': receiver.configuration, 
+        'configuration': receiver.configuration,
         'presentation_order': receiver.presentation_order,
         'pgp_key_status': receiver.pgp_key_status,
         'contexts': [c.id for c in receiver.contexts]
@@ -277,7 +285,7 @@ class NodeInstance(BaseHandler):
                                    anon_serialize_node, self.request.language)
 
         ret['custom_homepage'] = os.path.isfile(os.path.join(GLSetting.static_path,
-                                                "custom_homepage.html"))
+                                                             "custom_homepage.html"))
 
         self.finish(ret)
 
@@ -295,10 +303,10 @@ class AhmiaDescriptionHandler(BaseHandler):
 
         if node_info['ahmia']:
             ret = yield GLApiCache.get('ahmia', self.request.language,
-                                   anon_serialize_ahmia, self.request.language)
+                                       anon_serialize_ahmia, self.request.language)
 
             self.finish(ret)
-        else: # in case of disabled option we return 404
+        else:  # in case of disabled option we return 404
             self.set_status(404)
             self.finish()
 

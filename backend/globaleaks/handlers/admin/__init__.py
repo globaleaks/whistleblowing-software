@@ -98,7 +98,6 @@ def db_admin_serialize_user(store, username):
 
     :param store: the store on which perform queries.
     :param username: the username of the user to be serialized
-    :param language: the language in which to localize data
     :return: a serialization of the object
     """
     user = store.find(models.User, models.User.username == unicode(username)).one()
@@ -258,7 +257,6 @@ def admin_serialize_receiver(receiver, language):
     """
     Serialize the specified receiver
 
-    :param store: the store on which perform queries.
     :param language: the language in which to localize data
     :return: a dictionary representing the serialization of the receiver
     """
