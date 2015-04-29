@@ -84,9 +84,9 @@ class GLHTTPConnection(HTTPConnection):
 
             if content_length:
                 megabytes = int(content_length) / (1024 * 1024)
-                if megabytes > GLSetting.defaults.maximum_request_size:
+                if megabytes > GLSetting.defaults.maximum_filesize:
                      raise _BadRequestException(
-                         "Request exceeded size limit %d" % GLSetting.defaults.maximum_request_size)
+                         "Request exceeded size limit %d" % GLSetting.defaults.maximum_filesize)
 
                 if headers.get("Expect") == "100-continue":
                     self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
@@ -525,7 +525,7 @@ class BaseHandler(RequestHandler):
 
     def get_file_upload(self):
         try:
-            if (int(self.request.arguments['flowTotalSize'][0]) / (1024 * 1024)) > GLSetting.defaults.maximum_request_size:
+            if (int(self.request.arguments['flowTotalSize'][0]) / (1024 * 1024)) > GLSetting.defaults.maximum_filesize:
                 log.err("File upload request rejected: file too big")
                 raise errors.FileTooBig
 

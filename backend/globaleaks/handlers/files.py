@@ -202,7 +202,6 @@ class FileInstance(BaseHandler):
     """
     WhistleBlower interface for upload a new file in a not yet completed submission
     """
-
     @inlineCallbacks
     def handle_file_upload(self, token):
         uploaded_file = self.get_file_upload()
