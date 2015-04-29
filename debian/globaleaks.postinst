@@ -19,7 +19,7 @@ if which lsb_release >/dev/null; then
 fi
 
 PIP_NEEDED=1
-if [ "$DISTRO" == "debian" ] && [ "$DISTRO_VERSION" = "jessie" ]; then
+if [ "$DISTRO" = "debian" ] && [ "$DISTRO_VERSION" = "jessie" ]; then
   PIP_NEEDED=0
 fi
 

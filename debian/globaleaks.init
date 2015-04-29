@@ -63,7 +63,7 @@ fi
 
 GLBACKEND_PIDFILE=/var/run/globaleaks/globaleaks-${LISTENING_PORT}.pid
 
-if [ "${TRAVIS}" == "true" ]; then
+if [ "${TRAVIS}" = "true" ]; then
     NETWORK_SANDBOXING=0
 fi
 
