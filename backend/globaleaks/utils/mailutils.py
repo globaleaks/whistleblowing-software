@@ -55,7 +55,7 @@ def sendmail(authentication_username, authentication_password, from_address,
     Sends an email using SMTPS/SMTP+TLS and torify the connection
 
     @param authentication_username: account username
-    @param authentication_secret: account password
+    @param authentication_password: account password
     @param from_address: the from address field of the email
     @param to_address: the to address field of the email
     @param message_file: the message content its a StringIO
@@ -90,7 +90,7 @@ def sendmail(authentication_username, authentication_password, from_address,
         return result_deferred.errback(reason)
 
     def result_errback(reason, *args, **kwargs):
-        "To not report an error as unexpected in the log files"
+        """To not report an error as unexpected in the log files"""
         return True
 
     def esmtp_sendError(self, exc):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#  admlangfiles
+# admlangfiles
 #  **************
 #
 # Backend supports for jQuery File Uploader, and implementation of the
@@ -22,11 +22,13 @@ from globaleaks.utils.utility import log
 from globaleaks.rest import errors
 from globaleaks.security import directory_traversal_check
 
+
 class AdminLanguageFileHandler(BaseHandler):
     """
     This class is used to return the custom translation files;
     if the file are not present, default translations are returned
     """
+
     def custom_langfile_path(self, lang):
         return os.path.abspath(os.path.join(GLSetting.static_path_l10n, '%s.json' % lang))
 
@@ -63,7 +65,7 @@ class AdminLanguageFileHandler(BaseHandler):
 
         log.debug("Admin uploaded new lang file: %s" % dumped_file['filename'])
 
-        self.set_status(201) # Created
+        self.set_status(201)  # Created
         self.finish(dumped_file)
 
     @transport_security_check('admin')

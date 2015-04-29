@@ -214,10 +214,8 @@ class TestTipInstance(TTip):
         context_list = yield admin.get_context_list('en')
         self.assertTrue(isinstance(context_list, list))
         self.assertEqual(len(context_list), 1)
-        tip_ttl = context_list[0]['tip_timetolive']
 
-        tip_expiring = yield rtip.get_tip(
-            self.receiver1_desc['id'], self.rtip1_id, 'en')
+        yield rtip.get_tip(self.receiver1_desc['id'], self.rtip1_id, 'en')
 
         # TODO implement a more complete test
 
@@ -408,11 +406,12 @@ class TestTipInstance(TTip):
 
         # Receiver2 send two message
         msgrequest = { 'content': u'Receiver2 send #1/2 message to WB' }
-        a1 = yield rtip.create_message_receiver(self.receiver2_desc['id'],
-                                                self.rtip2_id, msgrequest)
+        yield rtip.create_message_receiver(self.receiver2_desc['id'],
+                                           self.rtip2_id, msgrequest)
+
         msgrequest = { 'content': u'Receiver2 send #2/2 message to WB' }
-        a2 = yield rtip.create_message_receiver(self.receiver2_desc['id'],
-                                                self.rtip2_id, msgrequest)
+        yield rtip.create_message_receiver(self.receiver2_desc['id'],
+                                           self.rtip2_id, msgrequest)
 
         # Whistleblower read the messages from Receiver2
         wunread = yield wbtip.get_messages_content(self.wb_tip_id, self.receiver2_desc['id'])

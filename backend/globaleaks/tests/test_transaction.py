@@ -14,7 +14,6 @@ class TestTransaction(helpers.TestGL):
     def _transaction_with_exception(self, store):
         raise Exception
 
-    #def transaction_with_exception_while_writing(self):
     @transact
     def _transaction_ok(self, store):
         self.assertTrue(getattr(store, 'find'))

@@ -72,7 +72,7 @@ class TestTempObj(helpers.TestGL):
         obj = TempObj(objs_dict, uuid4(), 2, c)
 
         for x in range(0, 3):
-            obj.notifyOnExpire(lambda: events.append((x)))
+            obj.notifyOnExpire(lambda: events.append(x))
 
         c.advance(1)
 

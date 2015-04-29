@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#  admin.staticfiles
+# admin.staticfiles
 #  **************
 #
 # Backend supports for jQuery File Uploader, and implementation of the
@@ -24,6 +24,7 @@ from globaleaks.rest.requests import receiver_img_regexp
 
 from globaleaks.security import directory_traversal_check
 
+
 def reserved_file_check(filename):
     """
     Return True if filename matchs a reserved filename, False instead.
@@ -38,11 +39,12 @@ def reserved_file_check(filename):
 
     return False
 
+
 def get_description_by_stat(statstruct, name):
-    stored_file_desc =  {
-            'filename': name,
-            'size': statstruct.st_size,
-        }
+    stored_file_desc = {
+        'filename': name,
+        'size': statstruct.st_size,
+    }
     return stored_file_desc
 
 
@@ -77,24 +79,24 @@ def get_file_info(uploaded_file, filelocation):
 
 def dump_static_file(uploaded_file, filelocation):
     """
-    @param uploadedfile: file uploaded
+    @param uploadedfile: uploaded_file
     @return: a relationship dict linking the filename with the random
         filename saved in the disk
     """
 
     if os.path.exists(filelocation):
         log.err("Path %s exists and would be overwritten with %d bytes" %
-            (filelocation, uploaded_file['body_len'] ) )
+                (filelocation, uploaded_file['body_len'] ))
     else:
         log.debug("Creating %s with %d bytes" %
-            (filelocation, uploaded_file['body_len'] ) )
+                  (filelocation, uploaded_file['body_len'] ))
 
     with open(filelocation, 'w+') as fd:
         uploaded_file['body'].seek(0, 0)
-        data = uploaded_file['body'].read(4000) # 4kb
+        data = uploaded_file['body'].read(4000)  # 4kb
         while data != "":
             os.write(fd.fileno(), data)
-            data = uploaded_file['body'].read(4000) # 4kb
+            data = uploaded_file['body'].read(4000)  # 4kb
 
     return get_file_info(uploaded_file, filelocation)
 
@@ -113,6 +115,7 @@ class StaticFileInstance(BaseHandler):
     """
     Complete CRUD implementation using the filename instead of UUIDs
     """
+
     @transport_security_check('admin')
     @authenticated('admin')
     def get(self, filename):
@@ -168,7 +171,7 @@ class StaticFileInstance(BaseHandler):
                 not re.match(receiver_img_regexp, uploaded_file['filename'] + ".png"):
             path = os.path.join(GLSetting.static_path, uploaded_file['filename'])
             log.debug("Received request to save %s in path %s" %
-                          (uploaded_file['filename'], path))
+                      (uploaded_file['filename'], path))
         else:
             try:
                 path = yield receiver_pic_path(filename)
@@ -188,7 +191,7 @@ class StaticFileInstance(BaseHandler):
             # avoid writing non tracked files on the file system in case of exceptions
             dumped_file = yield threads.deferToThread(dump_static_file, uploaded_file, path)
         except OSError as excpd:
-            log.err("OSError while create a new static file [%s]: %s" % (path, excpd) )
+            log.err("OSError while create a new static file [%s]: %s" % (path, excpd))
             raise errors.InternalServerError(excpd.strerror)
         except Exception as excpd:
             log.err("Unexpected exception: %s" % excpd.message)
@@ -196,7 +199,7 @@ class StaticFileInstance(BaseHandler):
 
         log.debug("Admin uploaded new static file: %s" % dumped_file['filename'])
 
-        self.set_status(201) # Created
+        self.set_status(201)  # Created
         self.finish()
 
 

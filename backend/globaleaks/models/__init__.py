@@ -147,7 +147,6 @@ class Model(BaseModel):
         return store.find(cls, cls.id == obj_id).one()
 
     @classmethod
-    @classmethod
     def delete(cls, store):
         store.remove(cls)
 

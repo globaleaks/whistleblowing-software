@@ -1,10 +1,11 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 from twisted.internet import reactor
 from twisted.python import components
 
 # needed in order to allow UT override
 reactor_override = None
+
 
 class TempObj(components.Componentized):
     """

@@ -27,7 +27,6 @@ def weekmap_to_heatmap(week_map):
     """
     retlist = []
     for weekday_n, weekday in enumerate(week_map):
-        assert (weekday_n >= 0 and weekday_n <= 6), weekday_n
         for hour_n, hourinfo in enumerate(weekday):
             retlist.append(hourinfo)
 
