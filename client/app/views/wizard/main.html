@@ -258,7 +258,7 @@
       <a class="btn btn-success btn-large" data-ng-click="step=step-1">
         <span data-translate>Previous Step</span>
       </a>
-      <a class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public)">
+      <a class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardForm.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public)">
         <span data-translate>Next Step</span>
       </a>
     </div>
@@ -269,7 +269,7 @@
     <div class="row">
 
       <div class="col-md-10">
-        <div class="congratulations" data-ng-show="!(wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public))">
+        <div class="congratulations">
           <h2 data-translate>Congratulations!</h2>
           <div>
             <span data-translate>You have finished configuring your GlobaLeaks site. You are now ready to further tweak it with the admin interface.</span>
@@ -278,7 +278,7 @@
       </div>
 
       <div class="pager pull-right">
-        <button class="btn btn-success btn-large" data-ng-click="finish()" data-ng-disabled="wizard.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public)" type="submit">
+        <button class="btn btn-success btn-large" data-ng-click="finish()" type="submit">
           <span data-translate>Go to admin interface</span>
         </button>
       </div>
