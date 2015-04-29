@@ -16,6 +16,7 @@ GLClient.controller('LoginCtrl', ['$scope', '$location', '$routeParams', 'Receiv
       $scope.loginUsername = "admin";
       $scope.loginRole = "admin";
     }
+
     $scope.$watch("loginUsername", function(){
       if ($scope.loginUsername == "admin") {
         $scope.loginRole = "admin";
