@@ -11,8 +11,8 @@
       <br /><br />
 
       <div data-ng-show="fields.length != 0">
-        <div data-ng-model="fields">
-          <div data-ng-repeat="field in admin.field_templates | orderBy:'label'">
+        <div data-as-sortable data-ng-model="fields">
+          <div data-ng-repeat="field in admin.field_templates | orderBy:'label'" data-as-sortable-item>
             <div data-ng-include="'views/admin/fields_editor.html'"></div>
           </div>
 
