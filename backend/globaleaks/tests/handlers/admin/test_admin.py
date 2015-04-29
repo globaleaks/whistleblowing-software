@@ -212,13 +212,7 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_delete(self):
         handler = self.request(self.dummyContext, role='admin')
-        try:
-            yield handler.delete(self.dummyContext['id'])
-            self.assertTrue(True)
-        except Exception as excep:
-            print "Wrong exception: %s" % excep
-            raise excep
-
+        yield handler.delete(self.dummyContext['id'])
         yield self.assertFailure(handler.get(self.dummyContext['id']),
                                  errors.ContextIdNotFound)
 
@@ -323,12 +317,6 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_delete(self):
         handler = self.request(self.dummyReceiver_1, role='admin')
-        try:
-            yield handler.delete(self.dummyReceiver_1['id'])
-            self.assertTrue(True)
-        except Exception as excep:
-            print "Wrong exception: %s" % excep
-            raise excep
-
+        yield handler.delete(self.dummyReceiver_1['id'])
         yield self.assertFailure(handler.get(self.dummyReceiver_1['id']),
                                  errors.ReceiverIdNotFound)

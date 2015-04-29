@@ -170,17 +170,14 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         # Logout
         session_id = self.responses[0]['session_id']
         handler = self.request({}, headers={'X-Session': session_id})
-        success = yield handler.delete()
+        yield handler.delete()
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
         # A second logout must not be accepted (this validate also X-Session reuse)
         handler = self.request({}, headers={'X-Session': session_id})
 
-        try:
-            success = yield handler.delete()
-        except errors.NotAuthenticated:
-            self.assertTrue(True)
+        self.assertRaises(errors.NotAuthenticated, handler.delete)
 
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
@@ -208,10 +205,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         # A second logout must not be accepted (this validate also X-Session reuse)
         handler = self.request({}, headers={'X-Session': session_id})
 
-        try:
-            yield handler.delete()
-        except errors.NotAuthenticated:
-            self.assertTrue(True)
+        self.assertRaises(errors.NotAuthenticated, handler.delete)
 
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
@@ -240,10 +234,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         # A second logout must not be accepted (this validate also X-Session reuse)
         handler = self.request({}, headers={'X-Session': session_id})
 
-        try:
-            success = yield handler.delete()
-        except errors.NotAuthenticated:
-            self.assertTrue(True)
+        self.assertRaises(errors.NotAuthenticated, handler.delete)
 
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
@@ -254,9 +245,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'password': 'INVALIDPASSWORD',
             'role': 'admin'
         })
-        d = handler.post()
-        self.assertFailure(d, errors.InvalidAuthentication)
-        return d
+
+        self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
     def test_invalid_receiver_login_wrong_password(self):
         handler = self.request({
@@ -264,9 +254,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'password': 'INVALIDPASSWORD',
             'role': 'receiver'
         })
-        d = handler.post()
-        self.assertFailure(d, errors.InvalidAuthentication)
-        return d
+
+        self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
     def test_invalid_whistleblower_login_wrong_receipt(self):
         handler = self.request({
@@ -274,18 +263,16 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'password': 'INVALIDPASSWORD',
             'role': 'wb'
         })
-        d = handler.post()
-        self.assertFailure(d, errors.InvalidAuthentication)
-        return d
+
+        self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
     def test_invalid_input_format_missing_role(self):
         handler = self.request({
             'username': '',
             'password': '',
         })
-        d = handler.post()
-        self.assertFailure(d, errors.InvalidInputFormat)
-        return d
+
+        self.assertFailure(handler.post(), errors.InvalidInputFormat)
 
     def test_invalid_input_format_wrong_role(self):
         handler = self.request({
@@ -293,9 +280,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'password': '',
             'role': 'pope'
         })
-        d = handler.post()
-        self.assertFailure(d, errors.InvalidAuthentication)
-        return d
+
+        self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
     @inlineCallbacks
     def test_failed_login_counter(self):
@@ -307,13 +293,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
         failed_login = 5
         for i in xrange(0, failed_login):
-            try:
-                yield handler.post()
-            except errors.InvalidAuthentication:
-                continue
-            except Exception as excep:
-                print excep, "Has been raised wrongly"
-                self.assertTrue(False)
+            self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
         receiver_status = yield admin.get_receiver(self.dummyReceiver_1['id'], 'en')
         self.assertEqual(GLSetting.failed_login_attempts, failed_login)
@@ -336,13 +316,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
         failed_login = 7
         for i in xrange(0, failed_login):
-            try:
-                yield handler.post()
-            except errors.InvalidAuthentication:
-                continue
-            except Exception as excep:
-                print excep, "Has been raised wrongly"
-                self.assertTrue(False)
+            yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
         receiver_status = yield admin.get_receiver(self.dummyReceiver_1['id'], 'en')
 
