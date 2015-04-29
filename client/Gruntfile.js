@@ -45,16 +45,16 @@ module.exports = function(grunt) {
     },
 
     copy: {
-        release: {
-            files: [{
-              dest: 'tmp/', cwd: 'app/', src: ['**'], expand: true
-            }]
-        }
+      release: {
+          files: [{
+            dest: 'tmp/', cwd: 'app/', src: ['**'], expand: true
+          }]
+      }
     },
 
     // usemin handler should point to the file containing
     // the usemin blocks to be parsed
-    'useminPrepare': {
+    useminPrepare: {
       html: ['tmp/index.html',
              'tmp/globaleaks.html',
       ],
@@ -114,7 +114,19 @@ module.exports = function(grunt) {
       },
     },
 
-   'string-replace': {
+    protractor: {
+      options: {
+        configFile: "tests/glclient/protractor.config.js", // Default config file
+        keepAlive: true, // If false, the grunt process stops when the test fails.
+        noColor: false, // If true, protractor will not use colors in its output.
+        args: {
+          browser: 'firefox'
+        }
+      },
+      dummy_target: { /* Grunt requires at least one target */ }
+    },
+
+    'string-replace': {
       inline: {
         files: {
           'tmp/index.html': 'tmp/index.html',
@@ -131,19 +143,6 @@ module.exports = function(grunt) {
             }
           ]
         }
-      }
-    },
-
-    karma: {
-      unit: {
-        configFile: 'karma.conf.js'
-      }
-    },
-
-    coveralls: {
-      options: {
-            debug: true,
-            coverage_dir: 'coverage'
       }
     },
 
@@ -175,13 +174,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-line-remover');
   grunt.loadNpmTasks('grunt-manifest');
+  grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-string-replace');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-usemin');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-karma-coveralls');
 
   var path = require('path'),
     superagent = require('superagent'),
@@ -651,6 +649,6 @@ module.exports = function(grunt) {
     ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'uglify', 'string-replace', 'lineremover', 'manifest', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('unittest',
-    ['build', 'karma', 'coveralls']);
+    ['protractor']);
 
 };
