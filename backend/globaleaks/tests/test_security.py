@@ -70,13 +70,6 @@ class TestPasswordManagement(unittest.TestCase):
             binascii.b2a_hex(scrypt.hash(str(second_pass), dummy_salt))
         )
 
-    def test_pass_hash_with_0_len_pass_must_fail(self):
-        dummy_password = ""
-        dummy_salt_input = "vecna@focaccina.net"
-
-        sure_bin = scrypt.hash(dummy_password, get_salt(dummy_salt_input))
-        self.assertRaises(errors.InvalidInputFormat, hash_password, dummy_password, dummy_salt_input)
-
     def test_change_password_fail_with_invalid_old_password(self):
         dummy_salt_input = "xxxxxxxx"
         first_pass = helpers.VALID_PASSWORD1
