@@ -13,6 +13,13 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       }
     };
 
+    $scope.reset_session = function() {
+      $scope.session_id = undefined;
+      $scope.role = undefined
+      $scope.auth_landing_page = undefined;
+      $scope.homepage = undefined;
+    }
+
     $scope.update = function (model, cb, errcb) {
       var success = {};
       success.message = "Updated " + model;
@@ -230,6 +237,8 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         $scope.role = Authentication.role;
         $scope.auth_landing_page = Authentication.auth_landing_page;
         $scope.homepage = Authentication.homepage;
+      } else {
+        $scope.reset_session();
       }
     });
 
