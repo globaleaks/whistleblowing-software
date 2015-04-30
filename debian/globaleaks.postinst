@@ -8,18 +8,16 @@ from pkg_resources import parse_version as v
 exit(v(pip.__version__) < v('1.3'))
 "
 
+DISTRO="unknown"
+DISTRO_CODENAME="unknown"
 if which lsb_release >/dev/null; then
-  if [ "$( lsb_release -is )" = "Debian" ]; then
-    DISTRO="debian"
-    DISTRO_VERSION="$( lsb_release -cs )"
-  else
-    DISTRO="ubuntu"
-    DISTRO_VERSION="$( lsb_release -cs )"
-  fi
+  DISTRO="$( lsb_release -is )"
+  DISTRO_CODENAME="$( lsb_release -cs )"
 fi
 
 PIP_NEEDED=1
-if [ "$DISTRO" = "debian" ] && [ "$DISTRO_VERSION" = "jessie" ]; then
+if [ "$DISTRO_CODENAME" = "jessie" ]; then
+  # debian jessie is currently the only one with all the dependencies
   PIP_NEEDED=0
 fi
 
@@ -64,9 +62,13 @@ HiddenServicePort 80 127.0.0.1:8082
 EOF
 fi
 
-# Create tor hidden service directories with proper permissions and globaeleaks user.
+# Create globaleaks and tor hidden service directories with proper permissions.
 gl-fix-permissions
+
+# restart apparmor service in order to load tor and globaleaks rules
 service apparmor restart
+
+# Restart tor so that it would use the new configuration and generate the hidden service
 service tor restart
 
 #DEBHELPER#
