@@ -88,6 +88,8 @@ if which lsb_release >/dev/null; then
   fi
 fi
 
+SUPPORTED_PLATFORM=0
+
 if [ "$DISTRO" = "debian" ]; then
   if [ "$DISTRO_VERSION" = "wheezy" ] || [ "$DISTRO_VERSION" = "jessie" ]; then
     SUPPORTED_PLATFORM=1
@@ -98,7 +100,6 @@ elif [ "$DISTRO" = "ubuntu" ]; then
   fi
 fi
 
-SUPPORTED_PLATFORM=0
 if [ $SUPPORTED_PLATFORM -eq 0 ]; then
   echo "!!!!!!!!!!!! WARNING !!!!!!!!!!!!"
   echo "You are attempting to install GlobaLeaks on an unsupported platform."
@@ -172,11 +173,32 @@ echo "$PGP_KEY" > $TMPFILE
 DO "apt-key add $TMPFILE" "0"
 DO "rm -f $TMPFILE" "0"
 
-if [ ! -f /etc/apt/sources.list.d/globaleaks ]; then
+DO "apt-get update -y" "0"
+
+if [ $DISTRO == 'ubuntu' ];then
+  # needed for python-pip both for precise and trusty
+
+  if [ "$DISTRO_VERSION" = "precise" ]; then
+    echo "Installing python-software-properties"
+    DO "apt-get install python-software-properties -y" "0"
+  fi
+
+  if [ "$DISTRO_VERSION" = "trusty" ]; then
+    echo "Installing software-properties-common"
+    DO "apt-get install software-properties-common -y" "0"
+  fi
+
+  echo "Adding Ubuntu Universe repository"
+  DO "apt-add-repository universe" "0"
+fi
+
+if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then
+  # we avoid using apt-add-repository as we prefer using /etc/apt/sources.list.d/globaleaks.list
   echo "deb http://deb.globaleaks.org $DISTRO_VERSION/" > /etc/apt/sources.list.d/globaleaks.list
 fi
 
 DO "apt-get update -y" "0"
+
 DO "apt-get install globaleaks -y" "0"
 
 if [ -r /var/globaleaks/torhs/hostname ]; then
