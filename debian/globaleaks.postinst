@@ -66,6 +66,7 @@ fi
 
 # Create tor hidden service directories with proper permissions and globaeleaks user.
 gl-fix-permissions
+service apparmor restart
 service tor restart
 
 #DEBHELPER#
