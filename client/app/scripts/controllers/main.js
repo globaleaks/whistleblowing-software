@@ -1,9 +1,11 @@
-GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$modal', 'Authentication', 'Node', 'GLCache',
-  function($scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $modal, Authentication, Node, GLCache) {
+GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$modal', 'Authentication', 'Node', 'WhistleblowerTip', 'GLCache',
+  function($scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $modal, Authentication, Node, WhistleblowerTip, GLCache) {
     $scope.started = true;
     $scope.rtl = false;
     $scope.logo = '/static/globaleaks_logo.png';
     $scope.build_stylesheet = '/styles.css';
+
+    $rootScope.language = $location.search().lang;
 
     var iframeCheck = function() {
       try {
@@ -126,8 +128,8 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       $scope.logo = '/static/globaleaks_logo.png?' + $scope.randomFluff();
       $scope.build_stylesheet = "/styles.css?" + $scope.randomFluff();
 
-      $scope.node = Node.get(function(node, getResponseHeaders) {
-
+      Node.get(function(node, getResponseHeaders) {
+        $scope.node = node;
         // Tor detection and enforcing of usage of HS if users are using Tor
         if (window.location.hostname.match(/^[a-z0-9]{16}\.onion$/)) {
           // A better check on this situation would be
@@ -154,12 +156,6 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
         $scope.route_check();
 
-        if ($rootScope.language == undefined || node.languages_enabled.indexOf($rootScope.language) == -1) {
-          $rootScope.language = node.default_language;
-          $rootScope.default_language = node.default_language;
-          $translate.use($rootScope.language);
-        }
-
         $scope.languages_supported = {};
         $scope.languages_enabled = {};
         $scope.languages_enabled_selector = [];
@@ -179,8 +175,43 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
         $scope.set_title();
 
+        var set_language = function(language) {
+          if (language == undefined || $scope.node.languages_enabled.indexOf(language) == -1) {
+            language = node.default_language;
+            $rootScope.default_language = node.default_language;
+          }
+
+          $rootScope.language = language;
+
+          if (["ar", "he", "ur"].indexOf(language) !== -1) {
+            $scope.rtl = true;
+            $scope.build_stylesheet = "/styles-rtl.css";
+          } else {
+            $scope.rtl = false;
+            $scope.build_stylesheet = "/styles.css";
+          }
+
+          $translate.use($rootScope.language);
+
+        }
+
+        set_language($rootScope.language);
+
+        $rootScope.$watch('language', function (newVal, oldVal) {
+          if (newVal && newVal !== oldVal) {
+            set_language(newVal);
+          }
+        });
+
       });
 
+    };
+
+    $scope.view_tip = function(keycode) {
+      keycode = keycode.replace(/\D/g,'');
+      WhistleblowerTip(keycode, function() {
+        $location.path('/status');
+      });
     };
 
     $scope.reload = function() {
@@ -193,40 +224,8 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       $scope.route_check();
     });
 
-    $scope.$on('$routeChangeSuccess', function() {
-      var lang = $location.search().lang;
-      if(lang && $scope.node.languages_enabled.indexOf(lang) !== -1) {
-        $rootScope.language = lang;
-      }
-
-      $scope.set_title();
-
-    });
-
     $scope.$on("REFRESH", function() {
       $scope.reload();
-    });
-
-    $rootScope.$watch('language', function (newVal, oldVal) {
-      if (newVal && newVal !== oldVal) {
-
-        if(oldVal === undefined && newVal === $scope.node.default_language)
-          return;
-
-        $translate.use($rootScope.language);
-
-        if (["ar", "he", "ur"].indexOf(newVal) !== -1) {
-          $scope.rtl = true;
-          $scope.build_stylesheet = "/styles-rtl.css";
-        } else {
-          $scope.rtl = false;
-          $scope.build_stylesheet = "/styles.css";
-        }
-
-        $rootScope.$broadcast("REFRESH");
-
-      }
-
     });
 
     $scope.$watch(function (scope) {
@@ -273,7 +272,6 @@ GLClient.controller('DisableEncryptionCtrl', ['$scope', '$modalInstance', functi
 }]);
 
 GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$modalInstance', function ($scope, $rootScope, $modalInstance) {
-
   var steps = 3;
 
   var first_step = 0;

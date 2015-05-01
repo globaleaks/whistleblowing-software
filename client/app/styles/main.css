@@ -312,3 +312,7 @@ table {
   position: absolute;
   top: 0;
 }
+
+#EmbeddedReceiptBox {
+  text-align: center;
+}
