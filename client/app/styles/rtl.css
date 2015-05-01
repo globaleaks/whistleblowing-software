@@ -1,6 +1,13 @@
+/* Overrides to main.css */
+#PrivacyBadgeTextBox {
+  text-align: right;
+}
 
-/* Overrides of submission.css */
+.LoginErrorBox {
+  text-align: right;
+}
 
+/* Overrides to submission.css */
 #KeyCodeHintBox {
   margin-left: 0;
   margin-right: 30px;
@@ -11,4 +18,13 @@
   border-width: 15px 0 15px 15px;
   left: none;
   right: -15px;
+}
+
+/* Fix to bootstrap-rtl /*/
+.pull-left {
+  float: right !important;
+}
+
+.pull-right {
+  float: left !important;
 }
