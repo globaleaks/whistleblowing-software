@@ -12,13 +12,6 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
     $scope.correctAnswer = false;
     $scope.showQuestions = false;
 
-    $scope.view_tip = function(keycode) {
-      keycode = keycode.replace(/\D/g,'');
-      WhistleblowerTip(keycode, function() {
-        $location.path('/status');
-      });
-    };
-
     var open_quiz = function () {
       var modalInstance = $modal.open({
         templateUrl: 'views/partials/security_awareness_quiz.html',

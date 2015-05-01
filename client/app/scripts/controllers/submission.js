@@ -211,12 +211,4 @@ controller('ReceiptController', ['$scope', '$location', 'Authentication', 'Whist
 
     $scope.keycode = format_keycode(Authentication.keycode);
     $scope.formatted_keycode = format_keycode($scope.keycode);
-
-    $scope.view_tip = function (keycode) {
-      keycode = keycode.replace(/\D/g,'');
-      WhistleblowerTip(keycode, function () {
-        $location.path('/status/');
-      });
-    };
-
 }]);
