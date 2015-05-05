@@ -53,8 +53,8 @@ class ExpiringTipEvent(EventLogger):
 
 
 @transact_ro
-def get_tip_timings(store, new):
-    itip_list = store.find(InternalTip, InternalTip.new == new)
+def get_tip_timings(store):
+    itip_list = store.find(InternalTip)
 
     tipinfo_list = []
 
@@ -74,6 +74,11 @@ def get_tip_timings(store, new):
             'files': files_cnt,
             'comments': comment_cnt,
         }
+
+        # TODO, query ReceiverFile and ReceiverTip and check if the status is 'new'
+        # in CleaningSched, if some of the 'new' is going to be deleted, we are
+        # spotting a serious (sorry for the latinism) 'fancazzismo cronicarum' and the
+        # Admin can be alerted about.
 
         tipinfo_list.append(serialized_tipinfo)
 
@@ -121,6 +126,7 @@ def itip_cleaning(store, tip_id):
 
 
 class CleaningSchedule(GLJob):
+
     @inlineCallbacks
     def operation(self):
         """
@@ -129,32 +135,23 @@ class CleaningSchedule(GLJob):
         all the related DB entries comment and tip related.
         """
 
-        # Reset the exception trackiging variable of GLSetting
+        # Reset the exception tracking variable of GLSetting
         GLSetting.exceptions = {}
 
-        # Check1: check for expired InternalTips (new tips)
-        new_tips = yield get_tip_timings(True)
-        log.debug("[Tip timings routines / new / expiration ] #%d Tips" % len(new_tips))
-        for tip in new_tips:
+        tip_list = yield get_tip_timings()
+        log.debug("Tip(s) subject to the timings check: %d" % len(tip_list))
+
+        for tip in tip_list:
+
             if is_expired(ISO8601_to_datetime(tip['expiration_date'])):
                 log.info("Deleting an expired Tip (creation date: %s, expiration %s) files %d comments %d" %
                          (tip['creation_date'], tip['expiration_date'], tip['files'], tip['comments']))
 
                 yield itip_cleaning(tip['id'])
+                continue
 
-        # Check2: check for expired InternalTips (old tips)
-        old_tips = yield get_tip_timings(False)
-        log.debug("[Tip timings routines / old / expiration upcoming / expire ] #%d Tips" % len(old_tips))
-        for tip in old_tips:
-            # Check2.1: check if the tip is expired
-            if is_expired(ISO8601_to_datetime(tip['expiration_date'])):
-                log.info("Deleting an expired Tip (creation date: %s, expiration %s) files %d comments %d" %
-                         (tip['creation_date'], tip['expiration_date'], tip['files'], tip['comments']))
-
-                yield itip_cleaning(tip['id'])
-
-            # Check2.2: check if the tip is expiring
-            elif is_expired(ISO8601_to_datetime(tip['upcoming_expiration_date'])):
+            # check if the tip is gonna to expire in 48 hours (hard-coded value above)
+            if is_expired(ISO8601_to_datetime(tip['upcoming_expiration_date'])):
                 log.debug("Spotted a Tip matching the upcoming expiration date and "
                           "triggering email notifications")
 
