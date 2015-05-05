@@ -55,9 +55,14 @@ class NotificationMail:
         else:
             log.err("Mail error error")
 
+
 @transact
-def mark_event_as_notified_in_digest(store, evnt):
-    evnt = store.find(EventLogs, EventLogs.id == evnt.storm_id).one()
+def mark_event_as_send(store, event_id):
+    """
+    Maybe for digest, maybe for filtering, this function mark an event as sent,
+    but is not used in the "official notification success"
+    """
+    evnt = store.find(EventLogs, EventLogs.id == event_id).one()
     evnt.mail_sent = True
 
 
@@ -116,6 +121,45 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
         log.debug("load_complete_events: %s" % debug_event_counter)
 
     return event_list
+
+def filter_notification_event(notifque):
+
+    # Here we collect the Storm event of Files having as key the Tip
+    files_event_by_tip = {}
+    # this is the return value:
+    new_filtered_list = []
+    # to be smoked Storm.id
+    to_be_skipped = []
+
+    for ne in notifque:
+        if ne['trigger'] !=  u'Tip':
+            continue
+        files_event_by_tip.update({ ne['tip_info']['id'] : [] })
+
+    log.debug("Filtering function: iterating over %d Tip" % len(files_event_by_tip.keys()))
+    # not files_event_by_tip contains N keys with an empty list,
+    # I'm looping two times because dict has random ordering
+    for ne in notifque:
+
+        if ne['trigger'] != u'File':
+            new_filtered_list.append(ne)
+            continue
+
+        if ne['tip_info']['id'] in files_event_by_tip:
+            to_be_skipped.append(ne['storm_id'])
+        else:
+            new_filtered_list.append(ne)
+
+    if len(to_be_skipped):
+        log.debug("Filtering function: Marked %d files notification to be suppressed" %
+                  len(to_be_skipped))
+
+    log.debug("List of event %d after the filtering process is %d long" %
+              (len(notifque), len(new_filtered_list)))
+
+    # return the new list of event and the list of Storm.id
+    return new_filtered_list, to_be_skipped
+
 
 
 class MailflushSchedule(GLJob):
@@ -186,11 +230,19 @@ class MailflushSchedule(GLJob):
         if not len(queue_events):
             returnValue(None)
 
+        # remove from this list the event that has not to be sent, for example,
+        # the Files uploaded during the first submission, like issue #444 (zombie edition)
+        filtered_events, to_be_suppressed = filter_notification_event(queue_events)
+
+        if len(to_be_suppressed):
+            for storm_id in to_be_suppressed:
+                yield mark_event_as_send(storm_id)
+
         plugin = getattr(notification, GLSetting.notification_plugins[0])()
         # This wrap calls plugin/notification.MailNotification
         notifcb = NotificationMail(plugin)
 
-        for qe_pos, qe in enumerate(queue_events):
+        for qe_pos, qe in enumerate(filtered_events):
             yield notifcb.do_every_notification(qe)
 
             if not self.skip_sleep:
@@ -198,7 +250,7 @@ class MailflushSchedule(GLJob):
 
         # This is the notification of the ping, if configured
         receivers_synthesis = {}
-        for qe in queue_events:
+        for qe in filtered_events:
 
             if not qe.receiver_info['ping_notification']:
                 continue
@@ -211,7 +263,7 @@ class MailflushSchedule(GLJob):
         if len(receivers_synthesis.keys()):
             # I'm taking the element [0] of the list but every element has the same
             # notification setting. is passed to ping_mail_flush because of the Templating()
-            yield self.ping_mail_flush(queue_events[0].notification_settings,
+            yield self.ping_mail_flush(filtered_events[0].notification_settings,
                                        receivers_synthesis)
 
         # Whishlist: implement digest as an appropriate plugin
