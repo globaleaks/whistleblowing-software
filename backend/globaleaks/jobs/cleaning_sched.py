@@ -69,7 +69,7 @@ def get_tip_timings(store, new):
             'creation_date': datetime_to_ISO8601(itip.creation_date),
             'expiration_date': datetime_to_ISO8601(itip.expiration_date),
             'upcoming_expiration_date':
-                datetime_to_ISO8601(utc_dynamic_date(itip.expiration_date, hours=72)),
+                datetime_to_ISO8601(utc_dynamic_date(itip.expiration_date, hours=-72)),
             'tip_life_seconds':  tip_timetolive,
             'files': files_cnt,
             'comments': comment_cnt,
