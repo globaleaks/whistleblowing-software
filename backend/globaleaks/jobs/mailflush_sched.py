@@ -21,13 +21,11 @@ from globaleaks.utils.utility import deferred_sleep, log
 from globaleaks.utils.templating import Templating
 
 class NotificationMail:
-
     def __init__(self, plugin_used):
         self.plugin_used = plugin_used
 
     @inlineCallbacks
     def do_every_notification(self, eventOD):
-
         notify = self.plugin_used.do_notify(eventOD)
 
         if isinstance(notify, Deferred):
@@ -57,13 +55,12 @@ class NotificationMail:
 
 
 @transact
-def mark_event_as_send(store, event_id):
+def mark_event_as_sent(store, event_id):
     """
     Maybe for digest, maybe for filtering, this function mark an event as sent,
     but is not used in the "official notification success"
     """
-    evnt = store.find(EventLogs, EventLogs.id == event_id).one()
-    evnt.mail_sent = True
+    store.find(EventLogs, EventLogs.id == event_id).one().mail_sent = True
 
 
 @transact_ro
@@ -74,7 +71,6 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
     event_number represent the amount of event that can be returned by the function,
     event to be notified are taken in account later.
     """
-
     node_desc = db_admin_serialize_node(store, GLSetting.defaults.language)
 
     event_list = []
@@ -123,7 +119,6 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
     return event_list
 
 def filter_notification_event(notifque):
-
     # Here we collect the Storm event of Files having as key the Tip
     files_event_by_tip = {}
     # this is the return value:
@@ -140,7 +135,6 @@ def filter_notification_event(notifque):
     # not files_event_by_tip contains N keys with an empty list,
     # I'm looping two times because dict has random ordering
     for ne in notifque:
-
         if ne['trigger'] != u'File':
             new_filtered_list.append(ne)
             continue
@@ -163,7 +157,6 @@ def filter_notification_event(notifque):
 
 
 class MailflushSchedule(GLJob):
-
     # sorry for the double negation, we are sleeping two seconds below.
     skip_sleep = False
 
@@ -174,7 +167,6 @@ class MailflushSchedule(GLJob):
         to review these classes, at the moment is a simplified version that just create a
         ping email and send it via sendmail.
         """
-
         for _, data in receivers_syntesis.iteritems():
 
             receiver_dict, winks = data
@@ -235,8 +227,8 @@ class MailflushSchedule(GLJob):
         filtered_events, to_be_suppressed = filter_notification_event(queue_events)
 
         if len(to_be_suppressed):
-            for storm_id in to_be_suppressed:
-                yield mark_event_as_send(storm_id)
+            for eid in to_be_suppressed:
+                yield mark_event_as_sent(eid)
 
         plugin = getattr(notification, GLSetting.notification_plugins[0])()
         # This wrap calls plugin/notification.MailNotification
@@ -251,7 +243,6 @@ class MailflushSchedule(GLJob):
         # This is the notification of the ping, if configured
         receivers_synthesis = {}
         for qe in filtered_events:
-
             if not qe.receiver_info['ping_notification']:
                 continue
 
@@ -262,7 +253,8 @@ class MailflushSchedule(GLJob):
 
         if len(receivers_synthesis.keys()):
             # I'm taking the element [0] of the list but every element has the same
-            # notification setting. is passed to ping_mail_flush because of the Templating()
+            # notification settings; this value is passed to ping_mail_flush at
+            # it is needed by Templating()
             yield self.ping_mail_flush(filtered_events[0].notification_settings,
                                        receivers_synthesis)
 
