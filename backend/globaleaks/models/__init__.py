@@ -904,8 +904,8 @@ Receiver.contexts = ReferenceSet(
     ReceiverContext.context_id,
     Context.id)
 
-models = [Node, User, Context, Receiver, ReceiverContext,
-          Field, FieldOption, FieldField, Step, StepField,
-          InternalTip, ReceiverTip, WhistleblowerTip, Comment, Message,
-          InternalFile, ReceiverFile, Notification,
-          Stats, Anomalies, ApplicationData, EventLogs]
+models_list = [Node, User, Context, Receiver, ReceiverContext,
+               Field, FieldOption, FieldField, Step, StepField,
+               InternalTip, ReceiverTip, WhistleblowerTip, Comment, Message,
+               InternalFile, ReceiverFile, Notification,
+               Stats, Anomalies, ApplicationData, EventLogs]

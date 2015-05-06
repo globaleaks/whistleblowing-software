@@ -8,8 +8,7 @@ import copy
 import shutil
 from storm.exceptions import DatabaseError
 
-from globaleaks import security, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
-from globaleaks.handlers.base import GLApiCache
+from globaleaks import models, security, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.handlers.admin.field import disassociate_field, get_field_association
 from globaleaks.handlers.admin.langfiles import *
 from globaleaks.handlers.admin.staticfiles import *
@@ -17,8 +16,8 @@ from globaleaks.handlers.admin.overview import *
 from globaleaks.handlers.admin.statistics import *
 from globaleaks.handlers.admin.notification import *
 from globaleaks.handlers.node import anon_serialize_step
-from globaleaks import models
 from globaleaks.rest import errors, requests
+from globaleaks.rest.apicache import GLApiCache
 from globaleaks.security import GLBPGP
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.third_party import rstr

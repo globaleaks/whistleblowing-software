@@ -28,10 +28,10 @@ def sendmail_mock(**args):
 
 mailutils.sendmail = sendmail_mock
 
-from globaleaks import db, models, security, anomaly
+from globaleaks import db, models, security, anomaly, event
 from globaleaks.db.datainit import load_appdata, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
-from globaleaks.handlers.base import GLApiCache, GLHTTPConnection, BaseHandler
+from globaleaks.handlers.base import GLHTTPConnection, BaseHandler
 from globaleaks.handlers.admin import create_context, get_context, update_context, create_receiver, db_get_context_steps
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.rtip import receiver_serialize_tip
@@ -39,6 +39,7 @@ from globaleaks.handlers.wbtip import wb_serialize_tip
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched
 from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
+from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.third_party import rstr
@@ -70,7 +71,7 @@ with open(os.path.join(TEST_DIR, 'keys/expired_pgp_key.txt')) as pgp_file:
 
 transact.tp = FakeThreadPool()
 authentication.reactor_override = task.Clock()
-anomaly.reactor_override = task.Clock()
+event.reactor_override = task.Clock()
 token.reactor_override = task.Clock()
 
 
@@ -160,7 +161,7 @@ class TestGL(unittest.TestCase):
         GLSetting.memory_copy.allow_unencrypted = True
 
         anomaly.Alarm.reset()
-        anomaly.EventTrackQueue.reset()
+        event.EventTrackQueue.reset()
         statistics_sched.StatisticsSchedule.reset()
 
     def setUp_dummy(self):

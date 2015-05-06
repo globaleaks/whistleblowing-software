@@ -20,7 +20,7 @@ from globaleaks.db.datainit import init_appdata, init_db, load_appdata
 
 
 def init_models():
-    for model in models.models:
+    for model in models.models_list:
         model()
     return succeed(None)
 
@@ -150,7 +150,6 @@ def find_current_db_version(dirpath, filearray):
         abspath = os.path.join(dirpath, single_file)
 
         if abspath[-3:] == '.db':
-
             nameindex = abspath.rfind('glbackend')
             extensindex = abspath.rfind('.db')
 
@@ -170,13 +169,13 @@ def check_db_files():
     for (path, _, files) in os.walk(GLSetting.gldb_path):
 
         try:
-            starting_ver, abspath = find_current_db_version(path, files)
+            starting_ver, _ = find_current_db_version(path, files)
 
             if starting_ver < GLSetting.db_version:
                 print "Performing update of Database from version %d to version %d" % \
                       (starting_ver, GLSetting.db_version)
                 try:
-                    updater_manager.perform_version_update(starting_ver, GLSetting.db_version, abspath)
+                    updater_manager.perform_version_update(starting_ver, GLSetting.db_version)
                     print "GlobaLeaks database version %d: update complete!" % GLSetting.db_version
                 except Exception:
                     print "GlobaLeaks database version %d: update failure :(" % GLSetting.db_version

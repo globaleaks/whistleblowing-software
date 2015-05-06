@@ -4,10 +4,11 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.internet import task
 
 from globaleaks import anomaly
-from globaleaks.tests import helpers
-from globaleaks.tests.test_anomaly import pollute_events_for_testing
 from globaleaks.handlers.admin.statistics import get_anomaly_history
 from globaleaks.jobs.statistics_sched import StatisticsSchedule
+from globaleaks.settings import GLSetting
+from globaleaks.tests import helpers
+from globaleaks.tests.test_anomaly import pollute_events_for_testing
 
 anomaly.reactor = task.Clock()
 
@@ -27,11 +28,11 @@ class TestStatistics(helpers.TestGL):
         ANOMALIES_AMOUNT = 50
         pollute_events_for_testing(ANOMALIES_AMOUNT)
 
-        anomaly.Alarm.compute_activity_level()
+        anomaly.compute_activity_level()
 
-        anomdet = StatisticsSchedule.RecentAnomaliesQ.values()[0]
-        self.assertEqual(len(StatisticsSchedule.RecentAnomaliesQ.keys()), 1)
-        original_when = StatisticsSchedule.RecentAnomaliesQ.keys()[0]
+        anomdet = GLSetting.RecentAnomaliesQ.values()[0]
+        self.assertEqual(len(GLSetting.RecentAnomaliesQ.keys()), 1)
+        original_when = GLSetting.RecentAnomaliesQ.keys()[0]
 
         self.assertTrue(isinstance(anomdet, list))
         self.assertTrue(len(anomdet), 2)

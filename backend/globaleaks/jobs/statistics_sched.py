@@ -13,7 +13,7 @@
 import os
 from twisted.internet import defer
 
-from globaleaks.anomaly import Alarm
+from globaleaks.anomaly import Alarm, compute_activity_level
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSetting, transact
 from globaleaks.models import Stats, Anomalies
@@ -37,6 +37,7 @@ def save_anomalies(store, anomalies_list):
         log.debug("save_anomalies: Saved %d anomalies collected during the last hour" %
                   anomalies_counter)
 
+
 class AnomaliesSchedule(GLJob):
     """
     This class check for Anomalies, using the Alarm() object
@@ -48,27 +49,25 @@ class AnomaliesSchedule(GLJob):
         Every X seconds is checked if anomalies are happening
         from anonymous interaction (submission/file/comments/whatever flood)
         If the alarm has been raise, logs in the DB the event.
-
-        This copy data inside StatisticsSchedule.RecentAnomaliesQ
         """
-        yield Alarm.compute_activity_level()
+        yield compute_activity_level()
 
 
 def get_anomalies():
     anomalies = []
-    for when, anomaly_blob in dict(StatisticsSchedule.RecentAnomaliesQ).iteritems():
+    for when, anomaly_blob in dict(GLSetting.RecentAnomaliesQ).iteritems():
         anomalies.append(
             [when, anomaly_blob[0], anomaly_blob[1]]
         )
     return anomalies
 
 def clean_anomalies():
-    StatisticsSchedule.RecentAnomaliesQ = dict()
+    GLSetting.RecentAnomaliesQ = {}
 
 def get_statistics():
     statsummary = {}
 
-    for descblob in StatisticsSchedule.RecentEventQ:
+    for descblob in GLSetting.RecentEventQ:
         if 'event' not in descblob:
             continue
 
@@ -94,15 +93,12 @@ class StatisticsSchedule(GLJob):
     Statistics just flush two temporary queue and store them
     in the database.
     """
-
     collection_start_datetime = datetime_now()
-    RecentEventQ = []
-    RecentAnomaliesQ = {}
 
     @classmethod
     def reset(cls):
-        StatisticsSchedule.RecentEventQ = []
-        StatisticsSchedule.RecentAnomaliesQ = {}
+        GLSetting.RecentEventQ = []
+        GLSetting.RecentAnomaliesQ = {}
 
     @defer.inlineCallbacks
     def operation(self):

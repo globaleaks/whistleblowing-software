@@ -145,8 +145,10 @@ class GLSettingsClass(object):
 
         self.default_password = 'globaleaks'
 
-        # session tracking, in the singleton classes
-        self.sessions = dict()
+        # some singleton classes: sessions and some event queues
+        self.sessions = {}
+        self.RecentEventQ = []
+        self.RecentAnomaliesQ = {}
 
         # statistical, referred to latest period
         # and resetted by session_management sched

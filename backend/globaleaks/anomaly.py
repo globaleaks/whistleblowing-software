@@ -12,152 +12,95 @@
 #
 from twisted.internet import defer
 
-from globaleaks import models
+from globaleaks import models, event
+from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import log, datetime_now, is_expired, \
     datetime_to_ISO8601, bytes_to_pretty_str
 from globaleaks.utils.tempobj import TempObj
 
-# needed in order to allow UT override
-reactor_override = None
 
-# follow the checker, they are executed from handlers/base.py
-# prepare() or flush()
-def file_upload_check(uri):
-    # /submission/ + token_id + /file  = 59 bytes
-    return len(uri) == 59 and uri.endswith('/file')
+def update_AnomalyQ(event_matrix, alarm_level):
+    date = datetime_to_ISO8601(datetime_now())[:-8]
 
-
-def file_append_check(uri):
-    return uri == '/wbtip/upload'
+    GLSetting.RecentAnomaliesQ.update({
+        date: [event_matrix, alarm_level]
+    })
 
 
-def submission_check(uri):
-    return uri == '/submission'
+@defer.inlineCallbacks
+def compute_activity_level():
+    """
+    This function is called by the scheduled task, to update the
+    Alarm level.
 
+    At the end of the execution, reset to 0 the counters,
+    this is why the content are copied for the statistic
+    acquiring later.
+    """
+    Alarm.number_of_anomalies = 0
 
-def login_check(uri):
-    return uri == '/authentication'
+    current_event_matrix = {}
 
+    requests_timing = []
 
-def wb_message_check(uri):
-    return uri.startswith('/wbtip/messages/')
+    for _, event_obj in event.EventTrackQueue.queue.iteritems():
+        current_event_matrix.setdefault(event_obj.event_type, 0)
+        current_event_matrix[event_obj.event_type] += 1
+        requests_timing.append(event_obj.request_time)
 
+    if len(requests_timing) > 2:
+        log.info("In latest %d seconds: worst RTT %f, best %f" %
+                 (GLSetting.anomaly_seconds_delta,
+                  round(max(requests_timing), 2),
+                  round(min(requests_timing), 2)))
 
-def wb_comment_check(uri):
-    return uri == '/wbtip/comments'
+    for event_name, threshold in Alarm.OUTCOMING_ANOMALY_MAP.iteritems():
+        if event_name in current_event_matrix:
+            if current_event_matrix[event_name] > threshold:
+                Alarm.number_of_anomalies += 1
+            else:
+                log.debug("[compute_activity_level] %s %d < %d: it's OK (Anomalies recorded so far %d)" %
+                          (event_name,
+                           current_event_matrix[event_name],
+                           threshold, Alarm.number_of_anomalies))
 
+    previous_activity_sl = Alarm.stress_levels['activity']
 
-def rcvr_message_check(uri):
-    return uri.startswith('/rtip/messages/')
+    # Behavior: once the activity has reach a peek, the stress level
+    # is raised at RED (two), and then is decremented at YELLOW (one) in the
+    # next evaluation.
 
+    if Alarm.number_of_anomalies >= 2:
+        report_function = log.msg
+        Alarm.stress_levels['activity'] = 2
+    elif Alarm.number_of_anomalies == 1:
+        report_function = log.info
+        Alarm.stress_levels['activity'] = 1
+    else:
+        report_function = log.debug
+        Alarm.stress_levels['activity'] = 0
 
-def rcvr_comment_check(uri):
-    return uri.startswith('/rtip/comments')
+    # slow downgrade, if something has triggered a two, next step to 1
+    if previous_activity_sl == 2 and not Alarm.stress_levels['activity']:
+        Alarm.stress_levels['activity'] = 1
 
+    # if there are some anomaly or we're nearby, record it.
+    if Alarm.number_of_anomalies >= 1 or Alarm.stress_levels['activity'] >= 1:
+        update_AnomalyQ(current_event_matrix,
+                        Alarm.stress_levels['activity'])
 
-def failure_status_check(http_code):
-    # if code is missing is a failure because an Exception is raise before set
-    # the status.
-    return http_code >= 400
+    if previous_activity_sl or Alarm.stress_levels['activity']:
+        report_function("in Activity stress level switch from %d => %d" %
+                        (previous_activity_sl,
+                         Alarm.stress_levels['activity']))
 
+    # Alarm notification get the copy of the latest activities
+    yield Alarm.admin_alarm_notification(current_event_matrix)
 
-def created_status_check(http_code):
-    # if missing, is a failure => False
-    return http_code == 201
+    defer.returnValue(Alarm.stress_levels['activity'] - previous_activity_sl)
 
-
-def ok_status_check(HTTP_code):
-    return HTTP_code == 200
-
-
-def update_status_check(http_code):
-    return http_code == 202
-
-
-incoming_event_monitored = [
-    # {
-    # 'name' : 'submission',
-    # 'handler_check': submission_check,
-    # 'anomaly_management': None,
-    # 'method': 'POST'
-    # }
-]
-
-outcoming_event_monitored = [
-    {
-        'name': 'failed_logins',
-        'method': 'POST',
-        'handler_check': login_check,
-        'status_checker': failure_status_check,
-        'anomaly_management': None,
-    },
-    {
-        'name': 'successful_logins',
-        'method': 'POST',
-        'handler_check': login_check,
-        'status_checker': ok_status_check,
-        'anomaly_management': None,
-    },
-    {
-        'name': 'started_submissions',
-        'method': 'POST',
-        'handler_check': submission_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
-    },
-    {
-        'name': 'completed_submissions',
-        'method': 'PUT',
-        'handler_check': submission_check,
-        'status_checker': update_status_check,
-        'anomaly_management': None,
-    },
-    {
-        'name': 'wb_comments',
-        'handler_check': wb_comment_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
-        'method': 'POST'
-    },
-    {
-        'name': 'wb_messages',
-        'handler_check': wb_message_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
-        'method': 'POST'
-    },
-    {
-        'name': 'uploaded_files',
-        'handler_check': file_upload_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
-        'method': 'POST'
-    },
-    {
-        'name': 'appended_files',
-        'handler_check': file_append_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
-        'method': 'POST'
-    },
-    {
-        'name': 'receiver_comments',
-        'handler_check': rcvr_comment_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
-        'method': 'POST'
-    },
-    {
-        'name': 'receiver_messages',
-        'handler_check': rcvr_message_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
-        'method': 'POST'
-    }
-
-]
 
 def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
     free_disk_megabytes = free_workdir_bytes / (1024 * 1024)
@@ -252,89 +195,6 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
     return conditions
 
 
-class EventTrack(TempObj):
-    """
-    Every event that is kept in memory, is a temporary object.
-    Once a while, they disappear. The statistics just take
-    account of the expiration of the events collected, once a while.
-
-    - Anomaly check is based on those elements.
-    - Real-time analysis is based on these, too.
-    """
-
-    def serialize_event(self):
-        return {
-            # if the [:-8] I'll strip "." + $millisecond "Z"
-            'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
-            'event': self.event_type,
-            'id': self.event_id,
-            'duration': round(self.request_time, 1)
-        }
-
-    def __init__(self, event_obj, request_time, debug=False):
-        self.debug = debug
-        self.creation_date = datetime_now()
-        self.event_id = EventTrackQueue.event_number()
-        self.event_type = event_obj['name']
-        self.request_time = request_time
-
-        if self.debug:
-            log.debug("Creation of Event %s" % self.serialize_event())
-
-        TempObj.__init__(self,
-                         EventTrackQueue.queue,
-                         self.event_id,
-                         # seconds of validity:
-                         GLSetting.anomaly_seconds_delta,
-                         reactor_override)
-
-        self.expireCallbacks.append(self.synthesis)
-
-    def synthesis(self):
-        """
-        This is a callback append to the expireCallbacks, and
-        just make a synthesis of the Event in the Recent
-        """
-        # import here in order to avoid circular import error
-        from globaleaks.handlers.admin.statistics import RecentEventsCollection
-
-        RecentEventsCollection.update_RecentEventQ(self)
-
-    def __repr__(self):
-        return "%s" % self.serialize_event()
-
-
-class EventTrackQueue(object):
-    """
-    This class has only a class variable, used to stock the queue of the
-    event happened on the latest minutes.
-    """
-    queue = dict()
-    event_absolute_counter = 0
-
-    @staticmethod
-    def event_number():
-        EventTrackQueue.event_absolute_counter += 1
-        return EventTrackQueue.event_absolute_counter
-
-    @staticmethod
-    def take_current_snapshot():
-        """
-        Called only by the handler /admin/activities
-        """
-        serialized_ret = []
-
-        for _, event_obj in EventTrackQueue.queue.iteritems():
-            serialized_ret.append(event_obj.serialize_event())
-
-        return serialized_ret
-
-    @staticmethod
-    def reset():
-        EventTrackQueue.queue = dict()
-        EventTrackQueue.event_absolute_counter = 0
-
-
 class Alarm(object):
     """
     This class implement some classmethod used to report general
@@ -420,84 +280,6 @@ class Alarm(object):
             "Y" if self.difficulty_dict['proof_of_work'] else "N" ))
 
         return self.difficulty_dict
-
-    @staticmethod
-    @defer.inlineCallbacks
-    def compute_activity_level():
-        """
-        This function is called by the scheduled task, to update the
-        Alarm level.
-
-        At the end of the execution, reset to 0 the counters,
-        this is why the content are copied for the statistic
-        acquiring later.
-        """
-        # import here in order to avoid circular import error
-        from globaleaks.handlers.admin.statistics import AnomaliesCollectionDesc
-
-        Alarm.number_of_anomalies = 0
-
-        current_event_matrix = {}
-
-        requests_timing = []
-
-        for _, event_obj in EventTrackQueue.queue.iteritems():
-            current_event_matrix.setdefault(event_obj.event_type, 0)
-            current_event_matrix[event_obj.event_type] += 1
-            requests_timing.append(event_obj.request_time)
-
-        if len(requests_timing) > 2:
-            log.info("In latest %d seconds: worst RTT %f, best %f" %
-                     ( GLSetting.anomaly_seconds_delta,
-                       round(max(requests_timing), 2),
-                       round(min(requests_timing), 2) )
-                     )
-
-        for event_name, threshold in Alarm.OUTCOMING_ANOMALY_MAP.iteritems():
-            if event_name in current_event_matrix:
-                if current_event_matrix[event_name] > threshold:
-                    Alarm.number_of_anomalies += 1
-                else:
-                    log.debug("[compute_activity_level] %s %d < %d: it's OK (Anomalies recorded so far %d)" % (
-                        event_name,
-                        current_event_matrix[event_name],
-                        threshold, Alarm.number_of_anomalies))
-
-        previous_activity_sl = Alarm.stress_levels['activity']
-
-        # Behavior: once the activity has reach a peek, the stress level
-        # is raised at RED (two), and then is decremented at YELLOW (one) in the
-        # next evaluation.
-
-        if Alarm.number_of_anomalies >= 2:
-            report_function = log.msg
-            Alarm.stress_levels['activity'] = 2
-        elif Alarm.number_of_anomalies == 1:
-            report_function = log.info
-            Alarm.stress_levels['activity'] = 1
-        else:
-            report_function = log.debug
-            Alarm.stress_levels['activity'] = 0
-
-        # slow downgrade, if something has triggered a two, next step to 1
-        if previous_activity_sl == 2 and not Alarm.stress_levels['activity']:
-            Alarm.stress_levels['activity'] = 1
-
-        # if there are some anomaly or we're nearby, record it.
-        if Alarm.number_of_anomalies >= 1 or Alarm.stress_levels['activity'] >= 1:
-            AnomaliesCollectionDesc.update_AnomalyQ(current_event_matrix,
-                                                Alarm.stress_levels['activity'])
-
-        if previous_activity_sl or Alarm.stress_levels['activity']:
-            report_function(
-                "in Activity stress level switch from %d => %d" %
-                (previous_activity_sl,
-                 Alarm.stress_levels['activity']))
-
-        # Alarm notification get the copy of the latest activities
-        yield Alarm.admin_alarm_notification(current_event_matrix)
-
-        defer.returnValue(Alarm.stress_levels['activity'] - previous_activity_sl)
 
     @staticmethod
     @defer.inlineCallbacks
@@ -702,7 +484,5 @@ class Alarm(object):
                 "True" if old_accept_submissions else "False",
                 "False" if old_accept_submissions else "True"))
 
-            # Invalidate the cache of node avoiding accesses to the db from here;
-            # import GLApiCache in order to avoid circular import error
-            from globaleaks.handlers.base import GLApiCache
+            # Invalidate the cache of node avoiding accesses to the db from here
             GLApiCache.invalidate('node')

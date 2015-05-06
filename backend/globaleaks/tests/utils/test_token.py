@@ -4,7 +4,7 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import anomaly
+from globaleaks import anomaly, event
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.token import Token, TokenList
@@ -22,7 +22,7 @@ class TestToken(helpers.TestGL):
     def test_token_obj_zero_stress(self):
 
         # This is at the beginning
-        anomaly.EventTrackQueue.reset()
+        event.EventTrackQueue.reset()
 
         # Token submission
         st = Token('submission', context_id="ignored")
@@ -62,7 +62,7 @@ class TestToken(helpers.TestGL):
     @inlineCallbacks
     def test_token_create_and_get_upload_expire(self):
         # This is at the beginning
-        anomaly.EventTrackQueue.reset()
+        event.EventTrackQueue.reset()
 
         file_list = []
 
@@ -108,7 +108,7 @@ class TestToken(helpers.TestGL):
 
     def test_token_validate(self):
         # This is at the beginning
-        anomaly.EventTrackQueue.reset()
+        event.EventTrackQueue.reset()
 
         token = Token('submission', context_id='ignored')
 

@@ -9,12 +9,13 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import models, LANGUAGES_SUPPORTED
+from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.utils.utility import datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.settings import transact_ro, GLSetting
-from globaleaks.handlers.base import BaseHandler, GLApiCache
-from globaleaks.handlers.authentication import transport_security_check, unauthenticated
-from globaleaks import models, LANGUAGES_SUPPORTED
+from globaleaks.rest.apicache import GLApiCache
 
 
 def get_field_option_localized_keys(field_type):
