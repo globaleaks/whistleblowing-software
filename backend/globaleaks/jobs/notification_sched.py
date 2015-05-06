@@ -108,84 +108,124 @@ class EventLogger(object):
 
         return (receiver.tip_notification, receiver_desc)
 
-    def db_load(self, store):
+    def process_event(self, store):
         pass
 
     @transact
     def process_events(self, store):
-        self.db_load(store)
+        elems = store.find(self.model, self.model.new == True)
+
+        log.debug("Notification: found %d %s(s) to be handled" %
+                  (elems.count(), self.trigger))
+
+        for elem in elems:
+            # Mark event as handled as first step;
+            # For resiliency reasons it's better to be sure that the
+            # state machine move forward, than having starving events
+            # due to possible exceptions in handling
+            elem.new = False
+
+            self.process_event(store, elem)
 
         if len(self.events):
             db_save_events_on_db(store, self.events)
 
-            log.debug("Notification: generated %d events of type %s" %
+            log.debug("Notification: generated %d notification events of type %s" %
                       (len(self.events), self.trigger))
-
 
 class TipEventLogger(EventLogger):
     trigger = 'Tip'
+    model = models.ReceiverTip
 
-    def db_load(self, store):
-        not_notified_rtips = store.find(models.ReceiverTip,
-                                        models.ReceiverTip.new == True)
+    def process_event(self, store, rtip):
+        tip_desc = serialize_receivertip(rtip)
 
-        if not_notified_rtips.count():
-            log.debug("Receiver Tips found to be notified: %d" % not_notified_rtips.count())
+        context_desc = admin.admin_serialize_context(store,
+                                                     rtip.internaltip.context,
+                                                     self.language)
 
-        for rtip in not_notified_rtips:
-            tip_desc = serialize_receivertip(rtip)
-
-            context_desc = admin.admin_serialize_context(store,
-                                                         rtip.internaltip.context,
-                                                         self.language)
-
-            steps_desc = admin.db_get_context_steps(store,
-                                                    context_desc['id'],
+        steps_desc = admin.db_get_context_steps(store,
+                                                context_desc['id'],
                                                     self.language)
 
-            do_mail, receiver_desc = self.import_receiver(rtip.receiver)
+        do_mail, receiver_desc = self.import_receiver(rtip.receiver)
 
-            self.events.append(Event(type=self.template_type,
-                                     trigger=self.trigger,
-                                     node_info={},
-                                     receiver_info=receiver_desc,
-                                     context_info=context_desc,
-                                     steps_info=steps_desc,
-                                     tip_info=tip_desc,
-                                     subevent_info={},
-                                     do_mail=do_mail))
-
-            rtip.new = False
+        self.events.append(Event(type=self.template_type,
+                                 trigger=self.trigger,
+                                 node_info={},
+                                 receiver_info=receiver_desc,
+                                 context_info=context_desc,
+                                 steps_info=steps_desc,
+                                 tip_info=tip_desc,
+                                 subevent_info={},
+                                 do_mail=do_mail))
 
 
 class MessageEventLogger(EventLogger):
     trigger = 'Message'
+    model = models.Message
 
-    def db_load(self, store):
-        not_notified_messages = store.find(models.Message,
-                                           models.Message.new == True)
+    def process_event(self, store, message):
+        message_desc = rtip.receiver_serialize_message(message)
 
-        if not_notified_messages.count():
-            log.debug("Messages found to be notified: %d" % not_notified_messages.count())
+        # message.type can be 'receiver' or 'wb' at the moment, we care of the latter
+        if message.type == u"receiver":
+            return
 
-        for message in not_notified_messages:
-            message_desc = rtip.receiver_serialize_message(message)
+        tip_desc = serialize_receivertip(message.receivertip)
 
-            # message.type can be 'receiver' or 'wb' at the moment, we care of the latter
-            if message.type == u"receiver":
-                continue
+        context_desc = admin.admin_serialize_context(store,
+                                                     message.receivertip.internaltip.context,
+                                                     self.language)
 
-            tip_desc = serialize_receivertip(message.receivertip)
+        steps_desc = admin.db_get_context_steps(store,
+                                                context_desc['id'],
+                                                self.language)
 
-            context_desc = admin.admin_serialize_context(store,
-                                                         message.receivertip.internaltip.context,
-                                                         self.language)
+        do_mail, receiver_desc = self.import_receiver(message.receivertip.receiver)
 
-            steps_desc = admin.db_get_context_steps(store,
-                                                    context_desc['id'],
-                                                    self.language)
+        self.events.append(Event(type=self.template_type,
+                                 trigger=self.trigger,
+                                 node_info={},
+                                 receiver_info=receiver_desc,
+                                 context_info=context_desc,
+                                 steps_info=steps_desc,
+                                 tip_info=tip_desc,
+                                 subevent_info=message_desc,
+                                 do_mail=do_mail))
 
-            do_mail, receiver_desc = self.import_receiver(message.receivertip.receiver)
+
+class CommentEventLogger(EventLogger):
+    trigger = 'Comment'
+    model = models.Comment
+
+    def process_event(self, store, comment):
+        comment_desc = rtip.receiver_serialize_comment(comment)
+
+        context_desc = admin.admin_serialize_context(store,
+                                                     comment.internaltip.context,
+                                                     self.language)
+
+        steps_desc = admin.db_get_context_steps(store,
+                                                context_desc['id'],
+                                                self.language)
+
+        # for every comment, iterate on the associated receiver(s)
+        log.debug("Comments from %s - Receiver(s) %d" % \
+                  (comment.author, comment.internaltip.receivers.count()))
+
+        for receiver in comment.internaltip.receivers:
+            if comment.type == u'receiver' and comment.author == receiver.name:
+                log.debug("Receiver is the Author (%s): skipped" % receiver.user.username)
+                return
+
+            receivertip = store.find(models.ReceiverTip,
+                                     (models.ReceiverTip.internaltip_id == comment.internaltip_id,
+                                      models.ReceiverTip.receiver_id == receiver.id)).one()
+
+            tip_desc = serialize_receivertip(receivertip)
+
+            do_mail, receiver_desc = self.import_receiver(receiver)
 
             self.events.append(Event(type=self.template_type,
                                      trigger=self.trigger,
@@ -194,97 +234,36 @@ class MessageEventLogger(EventLogger):
                                      context_info=context_desc,
                                      steps_info=steps_desc,
                                      tip_info=tip_desc,
-                                     subevent_info=message_desc,
+                                     subevent_info=comment_desc,
                                      do_mail=do_mail))
-
-            message.new = False
-
-class CommentEventLogger(EventLogger):
-    trigger = 'Comment'
-
-    def db_load(self, store):
-        not_notified_comments = store.find(models.Comment,
-                                           models.Comment.new == True)
-
-        if not_notified_comments.count():
-            log.debug("Comments found to be notified: %d" %
-                      not_notified_comments.count())
-
-        for comment in not_notified_comments:
-            comment_desc = rtip.receiver_serialize_comment(comment)
-
-            context_desc = admin.admin_serialize_context(store,
-                                                         comment.internaltip.context,
-                                                         self.language)
-
-            steps_desc = admin.db_get_context_steps(store,
-                                                    context_desc['id'],
-                                                    self.language)
-
-            # for every comment, iterate on the associated receiver(s)
-            log.debug("Comments from %s - Receiver(s) %d" % \
-                      (comment.author, comment.internaltip.receivers.count()))
-
-            for receiver in comment.internaltip.receivers:
-                if comment.type == u'receiver' and comment.author == receiver.name:
-                    log.debug("Receiver is the Author (%s): skipped" % receiver.user.username)
-                    continue
-
-                receivertip = store.find(models.ReceiverTip,
-                                         (models.ReceiverTip.internaltip_id == comment.internaltip_id,
-                                         models.ReceiverTip.receiver_id == receiver.id)).one()
-
-                tip_desc = serialize_receivertip(receivertip)
-
-                do_mail, receiver_desc = self.import_receiver(receiver)
-
-                self.events.append(Event(type=self.template_type,
-                                         trigger=self.trigger,
-                                         node_info={},
-                                         receiver_info=receiver_desc,
-                                         context_info=context_desc,
-                                         steps_info=steps_desc,
-                                         tip_info=tip_desc,
-                                         subevent_info=comment_desc,
-                                         do_mail=do_mail))
-
-            comment.new = False
 
 
 class FileEventLogger(EventLogger):
     trigger = 'File'
+    model = models.ReceiverFile
 
-    def db_load(self, store):
-        not_notified_rfiles = store.find(models.ReceiverFile,
-                                         models.ReceiverFile.new == True)
+    def process_event(self, store, rfile):
+        context_desc = admin.admin_serialize_context(store,
+                                                     rfile.internalfile.internaltip.context,
+                                                     self.language)
 
-        if not_notified_rfiles.count():
-            log.debug("new Files found to be notified: %d" % not_notified_rfiles.count())
+        steps_desc = admin.db_get_context_steps(store,
+                                                context_desc['id'],
+                                                self.language)
 
-        for rfile in not_notified_rfiles:
-            context_desc = admin.admin_serialize_context(store,
-                                                         rfile.internalfile.internaltip.context,
-                                                         self.language)
+        tip_desc = serialize_receivertip(rfile.receivertip)
+        file_desc = serialize_internalfile(rfile.internalfile, rfile.id)
+        do_mail, receiver_desc = self.import_receiver(rfile.receiver)
 
-            steps_desc = admin.db_get_context_steps(store,
-                                                    context_desc['id'],
-                                                    self.language)
-
-            tip_desc = serialize_receivertip(rfile.receivertip)
-            file_desc = serialize_internalfile(rfile.internalfile, rfile.id)
-            do_mail, receiver_desc = self.import_receiver(rfile.receiver)
-
-            self.events.append(Event(type=self.template_type,
-                                     trigger=self.trigger,
-                                     node_info={},
-                                     receiver_info=receiver_desc,
-                                     context_info=context_desc,
-                                     steps_info=steps_desc,
-                                     tip_info=tip_desc,
-                                     subevent_info=file_desc,
-                                     do_mail=do_mail))
-
-            rfile.new = False
+        self.events.append(Event(type=self.template_type,
+                                 trigger=self.trigger,
+                                 node_info={},
+                                 receiver_info=receiver_desc,
+                                 context_info=context_desc,
+                                 steps_info=steps_desc,
+                                 tip_info=tip_desc,
+                                 subevent_info=file_desc,
+                                 do_mail=do_mail))
 
 
 class NotificationSchedule(GLJob):
