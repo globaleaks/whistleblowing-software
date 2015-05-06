@@ -9,11 +9,8 @@ from storm.variables import BoolVariable, DateTimeVariable
 from storm.variables import EnumVariable, IntVariable, RawStrVariable, PickleVariable
 from storm.variables import UnicodeVariable, JSONVariable
 
-from globaleaks import DATABASE_VERSION, models
+from globaleaks import DATABASE_VERSION
 from globaleaks.settings import GLSetting
-
-
-# This code is take directly from the GlobaLeaks-pre-model-refactor
 
 def variableToSQL(var, db_type):
     """
@@ -112,29 +109,13 @@ def generateCreateQuery(model):
     query += varsToParametersSQL(variables, primary_keys, GLSetting.db_type)
     return query
 
-
 class TableReplacer(object):
     """
     This is the base class used by every Updater
     """
 
-    def __init__(self, old_db_file, new_db_file, start_ver):
-        from globaleaks.db.update_8_9 import Context_v_8, Receiver_v_8, Notification_v_8
-        from globaleaks.db.update_9_10 import Node_v_9, Receiver_v_9, User_v_9
-        from globaleaks.db.update_10_11 import InternalTip_v_10, InternalFile_v_10
-        from globaleaks.db.update_11_12 import Node_v_11, Context_v_11
-        from globaleaks.db.update_12_13 import Node_v_12, Context_v_12
-        from globaleaks.db.update_13_14 import Node_v_13, Context_v_13
-        from globaleaks.db.update_14_15 import Node_v_14, User_v_14, Context_v_14, Receiver_v_14, \
-            InternalTip_v_14, Notification_v_14, Stats_v_14, Comment_v_14
-        from globaleaks.db.update_15_16 import Receiver_v_15, Notification_v_15
-        from globaleaks.db.update_16_17 import Node_v_16, Receiver_v_16, Notification_v_16, Stats_v_16
-        from globaleaks.db.update_17_18 import Node_v_17
-        from globaleaks.db.update_18_19 import Node_v_18
-        from globaleaks.db.update_19_20 import Node_v_19, Notification_v_19, Comment_v_19, Message_v_19, \
-            InternalTip_v_19, ReceiverTip_v_19, InternalFile_v_19, ReceiverFile_v_19, Receiver_v_19, \
-            Context_v_19
-
+    def __init__(self, table_history, old_db_file, new_db_file, start_ver):
+        self.table_history = table_history
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
         self.start_ver = start_ver
@@ -142,46 +123,7 @@ class TableReplacer(object):
         self.std_fancy = " ł "
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
-        self.table_history = {
-            'Node': [Node_v_9, None, Node_v_11, None, Node_v_12, Node_v_13, Node_v_14, Node_v_16, None, Node_v_17,
-                     Node_v_18, Node_v_19, models.Node],
-            'User': [User_v_9, None, User_v_14, None, None, None, None, models.User, None, None, None, None, None],
-            'Context': [Context_v_8, Context_v_11, None, None, Context_v_12, Context_v_13, Context_v_14, Context_v_19,
-                        None, None, None, None, models.Context],
-            'Receiver': [Receiver_v_8, Receiver_v_9, Receiver_v_14, None, None, None, None, Receiver_v_15,
-                         Receiver_v_16, Receiver_v_19, None, None, models.Receiver],
-            'ReceiverFile': [ReceiverFile_v_19, None, None, None, None, None, None, None, None, None, None, None,
-                             models.ReceiverFile],
-            'Notification': [Notification_v_8, Notification_v_14, None, None, None, None, None, Notification_v_15,
-                             Notification_v_16, Notification_v_19, None, None, models.Notification],
-            'Comment': [Comment_v_14, None, None, None, None, None, None, Comment_v_19, None, None, None, None,
-                        models.Comment],
-            'InternalTip': [InternalTip_v_10, None, None, InternalTip_v_14, None, None, None, InternalTip_v_19, None,
-                            None, None, None, models.InternalTip],
-            'InternalFile': [InternalFile_v_10, None, None, InternalFile_v_19, None, None, None, None, None, None, None,
-                             None, models.InternalFile],
-            'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None, None, None,
-                                 None, None],
-            'ReceiverTip': [ReceiverTip_v_19, None, None, None, None, None, None, None, None, None, None, None,
-                            models.ReceiverTip],
-            'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None,
-                                    None, None, None],
-            'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None, None,
-                                None, None],
-            'Message': [Message_v_19, None, None, None, None, None, None, None, None, None, None, None, models.Message],
-            'Stats': [Stats_v_14, None, None, None, None, None, None, Stats_v_16, None, models.Stats, None, None, None],
-            'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None,
-                                None, None],
-            'Field': [models.Field, None, None, None, None, None, None, None, None, None, None, None, None],
-            'FieldOption': [models.FieldOption, None, None, None, None, None, None, None, None, None, None, None, None],
-            'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None, None, None, None],
-            'Step': [models.Step, None, None, None, None, None, None, None, None, None, None, None, None],
-            'StepField': [models.StepField, None, None, None, None, None, None, None, None, None, None, None, None],
-            'Anomalies': [models.Anomalies, None, None, None, None, None, None, None, None, None, None, None, None],
-            'EventLogs': [models.EventLogs, None, None, None, None, None, None, None, None, None, None, None, None],
-        }
-
-        for k, v in self.table_history.iteritems():
+        for k, v in table_history.iteritems():
             # +1 because count start from 0,
             # -8 because the relase befor the 8th are not supported anymore
             length = DATABASE_VERSION + 1 - 8
@@ -282,11 +224,11 @@ class TableReplacer(object):
         return right_query
 
     def _perform_copy_list(self, table_name):
-        models_count = self.store_old.find(
+        objs_count = self.store_old.find(
             self.get_right_model(table_name, self.start_ver)
         ).count()
         log.msg('{} default {} migration assistant: #{}'.format(
-            self.debug_info, table_name, models_count))
+            self.debug_info, table_name, objs_count))
 
         old_objects = self.store_old.find(self.get_right_model(table_name, self.start_ver))
 

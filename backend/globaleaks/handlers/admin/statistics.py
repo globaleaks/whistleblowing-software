@@ -10,15 +10,14 @@ import operator
 
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc, And
-from globaleaks.settings import transact_ro, transact
+from globaleaks.settings import transact_ro, transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, \
     authenticated
-from globaleaks.jobs.statistics_sched import StatisticsSchedule
 from globaleaks.models import Stats, Anomalies
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
     utc_past_date, iso_to_gregorian, log
-from globaleaks.anomaly import EventTrackQueue, outcoming_event_monitored
+from globaleaks.event import EventTrackQueue, outcoming_event_monitored
 
 
 def weekmap_to_heatmap(week_map):
@@ -199,16 +198,6 @@ class AnomaliesCollectionDesc(BaseHandler):
     activity monitored in a timedelta (is considered anomalous if they
     reach the thresholds defined in GLSettings)
     """
-
-    @classmethod
-    def update_AnomalyQ(cls, event_matrix, alarm_level):
-        # called from statistics_sched
-        date = datetime_to_ISO8601(datetime_now())[:-8]
-
-        StatisticsSchedule.RecentAnomaliesQ.update({
-            date: [event_matrix, alarm_level]
-        })
-
     @transport_security_check("admin")
     @authenticated("admin")
     def get(self):
@@ -216,7 +205,7 @@ class AnomaliesCollectionDesc(BaseHandler):
         Anomalies history is track in Alarm, but is also stored in the
         DB in order to provide a good history.
         """
-        self.finish(StatisticsSchedule.RecentAnomaliesQ)
+        self.finish(GLSetting.RecentAnomaliesQ)
 
 
 class AnomalyHistoryCollection(BaseHandler):
@@ -272,26 +261,6 @@ class RecentEventsCollection(BaseHandler):
     This handler is refreshed constantly by an admin page
     and provide real time update about the GlobaLeaks status
     """
-
-    @classmethod
-    def update_RecentEventQ(cls, expired_event):
-        """
-        Called by synthesis in anomaly.py, when an Event expire.
-        This mean that we have not the event for 59:30 minutes or
-        less, but only the serialisation in memory.
-        This is not show anyway.
-        """
-        date = datetime_to_ISO8601(expired_event.creation_date)[:-8]
-
-        StatisticsSchedule.RecentEventQ.append(
-            dict({
-                'id': expired_event.event_id,
-                'creation_date': date,
-                'event':  expired_event.event_type,
-                'duration': round(expired_event.request_time, 1),
-            })
-        )
-
     def get_summary(self, templist):
         eventmap = dict()
         for event in outcoming_event_monitored:
@@ -310,7 +279,7 @@ class RecentEventsCollection(BaseHandler):
         # the current 30 seconds
         templist += EventTrackQueue.take_current_snapshot()
         # the already stocked by side, until Stats dump them in 1hour
-        templist += StatisticsSchedule.RecentEventQ
+        templist += GLSetting.RecentEventQ
 
         templist.sort(key=operator.itemgetter('id'))
 
