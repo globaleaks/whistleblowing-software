@@ -6,6 +6,7 @@
 #
 import copy
 import shutil
+from storm.exceptions import DatabaseError
 
 from globaleaks import security, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.handlers.base import GLApiCache
@@ -762,6 +763,7 @@ def update_receiver(store, receiver_id, request, language):
         receiver.contexts.add(context)
 
     receiver.last_update = datetime_now()
+
     try:
         receiver.update(request)
     except DatabaseError as dberror:
