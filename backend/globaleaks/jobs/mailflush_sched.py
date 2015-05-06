@@ -155,7 +155,6 @@ def filter_notification_event(notifque):
     return new_filtered_list, to_be_skipped
 
 
-
 class MailflushSchedule(GLJob):
     # sorry for the double negation, we are sleeping two seconds below.
     skip_sleep = False

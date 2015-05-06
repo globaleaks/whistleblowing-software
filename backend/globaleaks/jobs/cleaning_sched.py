@@ -126,7 +126,6 @@ def itip_cleaning(store, tip_id):
 
 
 class CleaningSchedule(GLJob):
-
     @inlineCallbacks
     def operation(self):
         """

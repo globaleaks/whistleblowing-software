@@ -52,7 +52,7 @@ class TipCleaning(TestCleaning):
         self.assertEqual(len(recv_desc), 2)
         rtip_desc = yield receiver.get_receivertip_list(recv_desc[0]['id'], 'en')
         self.assertEqual(len(rtip_desc), 1)
-        tip_list = yield cleaning_sched.get_tip_timings(False)
+        tip_list = yield cleaning_sched.get_tip_timings()
         self.assertEqual(len(tip_list), 1)
         rtip.postpone_expiration_date(recv_desc[0]['id'], rtip_desc[0]['id'])
 
