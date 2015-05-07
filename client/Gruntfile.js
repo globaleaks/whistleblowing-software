@@ -116,14 +116,19 @@ module.exports = function(grunt) {
 
     protractor: {
       options: {
-        configFile: "tests/glclient/protractor.config.js", // Default config file
-        keepAlive: true, // If false, the grunt process stops when the test fails.
-        noColor: false, // If true, protractor will not use colors in its output.
-        args: {
-          browser: 'firefox'
-        }
+        keepAlive: true,
+        noColor: false,
+        singleRun: true
       },
-      dummy_target: { /* Grunt requires at least one target */ }
+      test: {
+        configFile: "tests/glclient/protractor.config.js"
+      },
+      saucelabs: {
+        configFile: "tests/glclient/protractor-sauce.config.js",
+        options: {
+          build: process.env.TRAVIS_JOB_ID
+        }
+      }
     },
 
     'string-replace': {

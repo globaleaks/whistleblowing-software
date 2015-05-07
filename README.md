@@ -1,40 +1,24 @@
 # GlobaLeaks
+GlobaLeaks is a project aimed at creating a free software whistleblowing framework.
 
-GlobaLeaks is a project aimed at creating a whistleblowing platform built on
-FLOSS.
+To learn how to setup your own GlobaLeaks platform, look at [Globaleaks wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
-This is the main repository that serves to keep track of the overall
-development of the GlobaLeaks platform as a whole.
+Join our [Development Mailing List](http://lists.globaleaks.org/mailman/listinfo/globaleaks-dev).
 
-To learn how to setup your own GlobaLeaks platform, look at [Globaleaks Wiki
-documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
+If you're considering running a whistleblowing project by using GlobaLeaks, please [let us know](mailto:support@logioshermes.org), we'd love to help you out!
 
-Join our [Development Mailing List](http://lists.globaleaks.org/mailman/listinfo/globaleaks-dev);
-
-If you're considering setting up a Whistleblowing initiatives by using GlobaLeaks, please [let us know](mailto:support@logioshermes.org), we'd love to help you out!
-
+## Build Status
 | Branch | Build Status | Code Coverage | Code Quality
 | ------------- |:-------------:|:-------------:|:-------------:|
-| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png?branch=master)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master) | [![Code Health](https://landscape.io/github/globaleaks/GlobaLeaks/master/landscape.svg)](https://landscape.io/github/globaleaks/GlobaLeaks/master)
-| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.png?branch=devel)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.png?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel) | [![Code Health](https://landscape.io/github/globaleaks/GlobaLeaks/devel/landscape.svg)](https://landscape.io/github/globaleaks/GlobaLeaks/devel)
+| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=master)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master) | [![Code Health](https://landscape.io/github/globaleaks/GlobaLeaks/master/landscape.svg)](https://landscape.io/github/globaleaks/GlobaLeaks/master)
+| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel) | [![Code Health](https://landscape.io/github/globaleaks/GlobaLeaks/devel/landscape.svg)](https://landscape.io/github/globaleaks/GlobaLeaks/devel)
+
+[![Saucelabs Test Status](https://saucelabs.com/browser-matrix/globaleaks.svg)](https://saucelabs.com/u/globaleaks)
 
 ## Donations
-
 You can support our project, that's funded by volounteering effort, donations and research grants from cool grantors such as [Open Technology Fund](https://www.opentechfund.org/) that has already supported us!.
 
 [Help us](http://logioshermes.org/home/about-mission/support-us/) by sending us a small donation!
-
-## GlobaLeaks main components
-
-The main components of are:
-
- * GLBackend, a Python backend based on [Twisted](https://twistedmatrix.com/);
- * GLClient, a Clientside Web App based on [AngularJS](http://angularjs.org/)
-and [Bootstrap](http://getbootstrap.com/).
-
-## Documentation
-* Official website: [www.globaleaks.org](https://globaleaks.org/)
-* [GlobaLeaks wiki](https://github.com/globaleaks/GlobaLeaks/wiki/Home)
 
 ## License
 Copyright (C) 2011-2015 Hermes No Profit Association - GlobaLeaks Project

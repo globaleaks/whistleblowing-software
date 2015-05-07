@@ -22,6 +22,7 @@
     "grunt-line-remover": "0.0.2",
     "grunt-manifest": "0.4.0",
     "grunt-protractor-coverage": "0.2.14",
+    "grunt-protractor-runner": "2.0.0",
     "grunt-string-replace": "1.0.0",
     "grunt-usemin": "3.0.0",
     "matchdep": "0.3.0",
