@@ -214,10 +214,7 @@ if GLSetting.cmdline_options.version:
 
 GLSetting.load_cmdline_options()
 
-if GLSetting.start_clean:
-    if query_yes_no("Globaleaks --start-clean is going to delete %s\nAre you sure?" % GLSetting.working_path, "no"):
-        GLSetting.remove_directories()
-elif GLSetting.cmdline_options.kill:
+if GLSetting.cmdline_options.kill:
     try:
         with open(GLSetting.pidfile_path, "r") as fd:
             target_pid = int(fd.read())
@@ -226,6 +223,10 @@ elif GLSetting.cmdline_options.kill:
     except Exception as excep:
         print "Unable kill PID found in %s: kill option ignored (%s)" %\
               (GLSetting.pidfile_path, excep)
+
+if GLSetting.start_clean:
+    if query_yes_no("Globaleaks --start-clean is going to delete %s\nAre you sure?" % GLSetting.working_path, "no"):
+        GLSetting.remove_directories()
 
 os.umask(077)
 GLSetting.create_directories()
