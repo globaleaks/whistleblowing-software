@@ -13,6 +13,7 @@
 from twisted.internet import defer
 
 from globaleaks import models, event
+from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
@@ -289,9 +290,6 @@ class Alarm(object):
         Admin notification is disable or if another Anomaly has been
         raised in the last 15 minutes, email is not send.
         """
-        # import here in order to avoid circular import error
-        from globaleaks.handlers.admin.notification import get_notification
-
         do_not_stress_admin_with_more_than_an_email_after_minutes = 15
 
         @transact_ro
