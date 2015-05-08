@@ -282,13 +282,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.current_context_receivers = [];
         forEach(self.receivers, function(receiver){
           // enumerate only the receivers of the current context
-          if (self.current_context.receivers.indexOf(receiver.id) !== -1) {
+          if (self.current_context.receivers.indexOf(receiver.id) != -1) {
             self.current_context_receivers.push(receiver);
-
-            if (!self.current_context.show_receivers) {
-                self.receivers_selected[receiver.id] = true;
-                return;
-            }
 
             if (receivers_ids) {
               if (receivers_ids.indexOf(receiver.id) != -1) {
