@@ -62,8 +62,7 @@ class ReceiverDeniedEmail(TempObj):
         self.debug = debug
         self.creation_date = datetime_now()
         self.receiver_mail = receiver_mail
-        import random
-        # TODO something more appropriate
+        import random # TODO something more appropriate
         self.unique_id = random.randint(0, 0xffff)
 
         if receiver_mail in LastHourMailQueue.receivers_in_threshold:
@@ -90,6 +89,23 @@ class ReceiverDeniedEmail(TempObj):
                     LastHourMailQueue.receivers_in_threshold)
         else:
             LastHourMailQueue.receivers_in_threshold.remove(self.receiver_mail)
+
+    def generate_anomaly_email(self, plausible_event):
+
+        anomalevent = OD()
+        anomalevent.type = u'receiver_threshold_reached'
+        anomalevent.notification_settings = plausible_event.notification_settings
+        anomalevent.node_info = plausible_event.node_info
+        anomalevent.context_info = None
+        anomalevent.steps_info = None
+        anomalevent.receiver_info = plausible_event.receiver_info
+        anomalevent.tip_info = None
+        anomalevent.subevent_info = None
+        anomalevent.storm_id = 0
+
+        return anomalevent
+
+
 
 
 class MailActivities(TempObj):
@@ -155,7 +171,7 @@ class NotificationMail:
             evnt = store.find(EventLogs, EventLogs.id == event_id).one()
             evnt.mail_sent = True
         else:
-            log.debug("Mail digest correctly sent")
+            log.debug("Mail (Digest|Anomaly) correctly sent")
 
     @transact
     def every_notification_failed(self, store, failure, event_id):
@@ -164,7 +180,7 @@ class NotificationMail:
             evnt = store.find(EventLogs, EventLogs.id == event_id).one()
             evnt.mail_sent = True
         else:
-            log.err("Mail error error")
+            log.err("Mail (Digest|Anomaly) error")
 
 
 @transact
@@ -209,6 +225,13 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
         eventcomplete.notification_settings = admin_serialize_notification(
             store.find(Notification).one(), stev.description['receiver_info']['language']
         )
+        # THIS IS AN HACK until the DB do not get update TODO change check models.py!!
+        with file('../client/app/data/txt/receiver_threshold_reached.txt') as fp:
+            tmp_content = fp.read()
+            eventcomplete.notification_settings.update({
+                'receiver_threshold_reached' : tmp_content
+            })
+        # END HACK
 
         eventcomplete.node_info = node_desc
 
@@ -235,8 +258,7 @@ def filter_notification_event(notifque):
     """
     :param notifque: the current notification event queue
     :return: a modified queue in the case some email has not to be sent
-
-    Basically performs two test:
+    Basically performs two filtering; they are defined in:
      1) issue #444
      2) issue #798
     """
@@ -274,10 +296,13 @@ def filter_notification_event(notifque):
     for ne in _tmp_list:
 
         receiver_mail = ne['receiver_info']['mail_address']
-        # It add automatically a mail in to the last hour email queue
+
+        # It add automatically a mail in to the last hour email queue,
+        # events here expires after 1 hour, this mean that if receiver
+        # get one email every 3 minutes, with default threshold (20)
+        # NEVER trigger this alarm, because at the 21 the first is
+        # already expired.
         MailActivities(receiver_mail)
-        for i in xrange(20):
-            MailActivities(receiver_mail)
 
         email_sent_last_60min = LastHourMailQueue.mail_number(receiver_mail)
 
@@ -293,12 +318,16 @@ def filter_notification_event(notifque):
                 GLSetting.memory_copy.notification_threshold_per_hour,
                 receiver_mail)
             )
-            ReceiverDeniedEmail(receiver_mail)
+            rde = ReceiverDeniedEmail(receiver_mail)
+
+            # Append
+            anomaly_event = rde.generate_anomaly_email(ne)
+            return_filtered_list.append(anomaly_event)
+
             storm_id_to_be_skipped.append(ne['storm_id'])
             continue
 
         return_filtered_list.append(ne)
-
 
     log.debug("List of event %d after the filtering process is %d long" %
               (len(notifque), len(return_filtered_list)))
@@ -409,4 +438,3 @@ class MailflushSchedule(GLJob):
             yield self.ping_mail_flush(filtered_events[0].notification_settings,
                                        receivers_synthesis)
 
-        # Whishlist: implement digest as an appropriate plugin
