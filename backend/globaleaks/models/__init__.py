@@ -514,6 +514,8 @@ class Notification(Model):
 
     # TODO notification_threshold_per_hour = 20
     # TODO notification_blackhole_lasting_for = 4
+    # TODO receiver_threshold_reached TEMPLATE here hardcoded
+    # TODO ^^^^^^ (and change mailflush_sched.py:~228) ^^^^^^
     # TODO two integer required to let admin configure levels in
     # https://github.com/globaleaks/GlobaLeaks/issues/798
 
