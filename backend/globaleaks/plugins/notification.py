@@ -91,7 +91,7 @@ class MailNotification(Notification):
             body = Templating().format_template(
                 event.notification_settings['receiver_threshold_reached'], event)
             title = Templating().format_template(
-                event.notification_settings['receiver_threshold_reached'], event)
+                event.notification_settings['receiver_threshold_reached_title'], event)
         else:
             raise NotImplementedError("This event_type (%s) is not supported" % event.type)
 
