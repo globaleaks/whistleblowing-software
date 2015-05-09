@@ -51,6 +51,7 @@ class Templating(object):
                                   # and currently only one template is defined
                                   # considering exportable only not non sensitive info
                                   u'upcoming_tip_expiration': TipKeyword,
+                                  u'receiver_threshold_reached': ReceiverKeyword,
                                 }
 
         if event_dicts.type not in supported_event_types.keys():
@@ -432,3 +433,15 @@ class PGPAlertKeyword(_KeyWord):
             key = ""
 
         return "\t0x%s (%s)" % (key, ISO8601_to_day_str(self.receiver['pgp_key_expiration']))
+
+class ReceiverKeyword(_KeyWord):
+    """
+    At the moment is pretty the same of _Keyword, but require a
+    dedicated __init__ because the params are screw up otherwise,
+    but quite likely, is time to think some notification with more
+    Receiver information: this will be the template.
+    """
+    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, *x):
+        super(ReceiverKeyword, self).__init__(node_desc, context_desc,
+                                              fields_desc, receiver_desc)
+
