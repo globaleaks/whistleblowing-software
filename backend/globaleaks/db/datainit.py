@@ -138,6 +138,11 @@ def db_update_memory_variables(store):
         GLSetting.memory_copy.notif_username = notif.username
         GLSetting.memory_copy.notif_security = notif.security
 
+        # These value are hardcoded now, and there are some TODOs in
+        # Models Notification to put them in the DB
+        GLSetting.memory_copy.notification_threshold_per_hour = 20
+        GLSetting.memory_copy.notification_blackhole_lasting_for = 4 * 3600
+
         if GLSetting.developer_name:
             GLSetting.memory_copy.notif_source_name = GLSetting.developer_name
         else:
