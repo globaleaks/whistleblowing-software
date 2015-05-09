@@ -512,6 +512,11 @@ class Notification(Model):
     disable_receivers_notification_emails = Bool(default=False)
     send_email_for_every_event = Bool(default=True)
 
+    # TODO notification_threshold_per_hour = 20
+    # TODO notification_blackhole_lasting_for = 4
+    # TODO two integer required to let admin configure levels in
+    # https://github.com/globaleaks/GlobaLeaks/issues/798
+
     unicode_keys = [
         'server',
         'username',
