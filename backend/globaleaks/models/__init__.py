@@ -513,9 +513,10 @@ class Notification(Model):
     send_email_for_every_event = Bool(default=True)
 
     # TODO notification_threshold_per_hour = 20
-    # TODO notification_blackhole_lasting_for = 4
+    # TODO notification_blackhole_lasting_for = 4 (hours, we mean)
     # TODO receiver_threshold_reached TEMPLATE here hardcoded
     # TODO ^^^^^^ (and change mailflush_sched.py:~228) ^^^^^^
+    # (and so, the receiver_threshold_reached_title )
     # TODO two integer required to let admin configure levels in
     # https://github.com/globaleaks/GlobaLeaks/issues/798
 
