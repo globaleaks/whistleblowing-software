@@ -1,0 +1,9 @@
+Dear %ReceiverName%
+
+In the last hour, %NodeName% has received a large number of requests.
+To avoid unnecessary overload of the system, the notification has been temporarily disabled.
+Anyhow, as usual, If you login in %NodeName% you'll found all the recent activities from the Tip list.
+
+Kind regards,
+%NodeSignature%
+

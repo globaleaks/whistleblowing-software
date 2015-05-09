@@ -87,6 +87,11 @@ class MailNotification(Notification):
                 event.notification_settings['tip_expiration_template'], event)
             title = Templating().format_template(
                 event.notification_settings['tip_expiration_mail_title'], event)
+        elif event.type == u'receiver_threshold_reached':
+            body = Templating().format_template(
+                event.notification_settings['receiver_threshold_reached'], event)
+            title = Templating().format_template(
+                event.notification_settings['receiver_threshold_reached'], event)
         else:
             raise NotImplementedError("This event_type (%s) is not supported" % event.type)
 
