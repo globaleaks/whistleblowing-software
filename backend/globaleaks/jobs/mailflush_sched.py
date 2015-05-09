@@ -231,6 +231,11 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
             eventcomplete.notification_settings.update({
                 'receiver_threshold_reached' : tmp_content
             })
+        with file('../client/app/data/txt/receiver_threshold_reached_title.txt') as fp:
+            tmp_content = fp.read()
+            eventcomplete.notification_settings.update({
+                'receiver_threshold_reached_title' : tmp_content
+            })
         # END HACK
 
         eventcomplete.node_info = node_desc
