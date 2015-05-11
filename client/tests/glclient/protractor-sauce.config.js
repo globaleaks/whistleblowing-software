@@ -8,7 +8,7 @@ exports.config = {
   sauceKey: process.env.SAUCE_ACCESS_KEY,
   capabilities: browser_capabilities,
 
-  baseUrl: 'http://localhost:8082/',
+  baseUrl: 'http://localhost/',
 
   framework: 'jasmine',
 

@@ -25,7 +25,7 @@ declare -a capabilities=(
 for i in "${capabilities[@]}"
 do
    eval $i
-   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9
+   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --port 8080
    sleep 5
    grunt protractor:saucelabs
 done
