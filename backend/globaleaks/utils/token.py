@@ -131,10 +131,8 @@ class Token(TempObj):
         return {
             'token_id': self.token_id,
             'creation_date': datetime_to_ISO8601(self.creation_date),
-            'start_validity_secs': datetime_to_ISO8601(self.creation_date +
-                                                       timedelta(seconds=self.start_validity_secs)),
-            'end_validity_secs': datetime_to_ISO8601(self.creation_date +
-                                                     timedelta(seconds=self.end_validity_secs)),
+            'start_validity_secs': self.start_validity_secs,
+            'end_validity_secs': self.end_validity_secs,
             'remaining_allowed_attempts': self.remaining_allowed_attempts,
             'type': self.kind,
             'graph_captcha': self.graph_captcha['question'] if self.graph_captcha else False,
