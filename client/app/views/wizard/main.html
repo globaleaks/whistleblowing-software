@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="pager pull-right">
-      <a class="btn btn-success btn-large" data-ng-click="step=step+1">
+      <a id="ButtonNext1" class="btn btn-success btn-large" data-ng-click="step=step+1">
         <span data-translate>Next Step</span>
       </a>
     </div>
@@ -255,10 +255,10 @@
       </div>
     </div>
     <div class="pager pull-right">
-      <a class="btn btn-success btn-large" data-ng-click="step=step-1">
+      <a id="ButtonPrevious1" class="btn btn-success btn-large" data-ng-click="step=step-1">
         <span data-translate>Previous Step</span>
       </a>
-      <a class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardForm.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public)">
+      <a id="ButtonNext2" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardForm.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public)">
         <span data-translate>Next Step</span>
       </a>
     </div>
@@ -278,7 +278,7 @@
       </div>
 
       <div class="pager pull-right">
-        <button class="btn btn-success btn-large" data-ng-click="finish()" type="submit">
+        <button id="ButtonNext3" class="btn btn-success btn-large" data-ng-click="finish()" type="submit">
           <span data-translate>Go to admin interface</span>
         </button>
       </div>
