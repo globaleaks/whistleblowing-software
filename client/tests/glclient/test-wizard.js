@@ -3,7 +3,7 @@ describe('globaLeaks setup wizard', function() {
       browser.get('http://127.0.0.1:8082/');
       
       // Go to step 2
-      element(by.css('[data-ng-click="step=step+1"]')).click();
+      element(by.id('ButtonNext1')).click();
       
       // Fill out the form
       element(by.model('admin.node.name')).sendKeys('E2E Test Instance');
@@ -22,11 +22,11 @@ describe('globaLeaks setup wizard', function() {
       element(by.model('context.name')).sendKeys('Data Gate');
       
       // Complete the form
-      element.all(by.css('[data-ng-click="step=step+1"]')).get(1).click();
+      element.all(by.id('ButtonNext2')).click();
       
       expect(element(by.css('.congratulations')).isPresent()).toBe(true) 
       
       // Go to admin interface
-      element(by.css('[data-ng-click="finish()"]')).click();
+      element(by.id('ButtonNext3')).click();
     });
 });
