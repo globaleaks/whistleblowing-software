@@ -3,12 +3,12 @@ function($scope, $modal) {
 
   $scope.save_receiver = function(receiver, cb) {
 
-    if (receiver.pgp_key_remove == true) {
+    if (receiver.pgp_key_remove === true) {
       receiver.pgp_key_public = '';
     }
 
     if (receiver.pgp_key_public !== undefined &&
-        receiver.pgp_key_public != '') {
+        receiver.pgp_key_public !== '') {
       receiver.pgp_key_remove = false;
     }
 
@@ -20,7 +20,7 @@ function($scope, $modal) {
 
   $scope.save_single = function(receiver) {
     $scope.save_receiver(receiver, $scope.reload);
-  }
+  };
 
   $scope.save_all = function () {
     angular.forEach($scope.admin.receivers, function (receiver, key) {
@@ -102,7 +102,7 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher', 'C
 
     $scope.updateReceiverImgUrl = function() {
       $scope.receiverImgUrl = "/static/" + $scope.receiver.id + ".png?" + $scope.randomFluff();
-    }
+    };
 
     $scope.updateReceiverImgUrl();
 
@@ -114,7 +114,7 @@ GLClient.controller('AdminReceiverAddCtrl', ['$scope',
     $scope.new_receiver = {};
 
     $scope.add_receiver = function() {
-      receiver = new $scope.admin.new_receiver();
+      var receiver = new $scope.admin.new_receiver();
 
       receiver.name = $scope.new_receiver.name;
       receiver.mail_address = $scope.new_receiver.email;
@@ -123,6 +123,6 @@ GLClient.controller('AdminReceiverAddCtrl', ['$scope',
         $scope.admin.receivers.push(new_receiver);
         $scope.new_receiver = {};
       });
-    }
+    };
 
 }]);

@@ -23,11 +23,11 @@ angular.module('resourceServices.authentication', [])
               self.homepage = '';
               self.auth_landing_page = '';
 
-              if (self.role == 'admin') {
+              if (self.role === 'admin') {
                   self.homepage = '/#/admin/landing';
                   self.auth_landing_page = '/admin/landing';
               }
-              if (self.role == 'receiver') {
+              if (self.role === 'receiver') {
                 self.homepage = '/#/receiver/tips';
                 if (self.password_change_needed) {
                     self.auth_landing_page = '/receiver/firstlogin';
@@ -35,7 +35,7 @@ angular.module('resourceServices.authentication', [])
                     self.auth_landing_page = '/receiver/tips';
                 }
               }
-              if (self.role == 'wb') {
+              if (self.role === 'wb') {
                 self.auth_landing_page = '/status';
               }
 
@@ -43,8 +43,8 @@ angular.module('resourceServices.authentication', [])
                 return cb(response);
               }
 
-              if ($routeParams['src']) {
-                $location.path($routeParams['src']);
+              if ($routeParams.src) {
+                $location.path($routeParams.src);
 
               } else {
                 $location.path(self.auth_landing_page);
@@ -106,9 +106,9 @@ angular.module('resourceServices.authentication', [])
 
         $rootScope.get_auth_headers = self.get_auth_headers;
 
-      };
+      }
 
-      return new Session;
+      return new Session();
 }]);
 
 angular.module('resourceServices', ['ngResource', 'resourceServices.authentication']).
@@ -129,8 +129,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             return error;
           }
         }
-      })
-    };
+      });
+    }
 
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
@@ -171,14 +171,14 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         
         // In here you should place the error codes that should trigger a modal
         // view.
-        if ( ['55', '56', '57'].indexOf(error.code) != -1 ) {
+        if ( ['55', '56', '57'].indexOf(error.code) !== -1 ) {
           showModal(error); 
         }
 
         /* 30: Not Authenticated / 24: Wrong Authentication */
-        if (error.code == 30 || error.code == 24) {
+	if (error.code === 30 || error.code === 24) {
 
-          if (error.code == 24) {
+          if (error.code === 24) {
               $rootScope.logout();
           } else {
             var redirect_path = '/login';
@@ -195,10 +195,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             // Only redirect if we are not alread on the login page
             if ($location.path() !== redirect_path) {
               $location.path(redirect_path);
-              $location.search('src='+source_path);
-            };
+              $location.search('src=' + source_path);
+            }
           }
-        };
+        }
 
         if (!$rootScope.errors) {
           $rootScope.errors = [];
@@ -208,7 +208,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
         return $q.reject(response);
       });
-    }
+    };
 }]).
   factory('GLCache',['$cacheFactory', function ($cacheFactory) {
     return $cacheFactory('GLCache');
@@ -219,7 +219,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         method: 'GET',
         cache: GLCache
       }
-    })
+    });
 }]).
   factory('Contexts', ['$resource', 'GLCache', function($resource, GLCache) {
     return $resource('/contexts', {}, {
@@ -227,7 +227,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         method: 'GET',
         cache: GLCache
       }
-    })
+    });
 }]).
   factory('Receivers', ['$resource', 'GLCache', function($resource, GLCache) {
     return $resource('/receivers', {}, {
@@ -235,7 +235,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         method: 'GET',
         cache: GLCache
       }
-    })
+    });
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
@@ -282,18 +282,18 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.current_context_receivers = [];
         forEach(self.receivers, function(receiver){
           // enumerate only the receivers of the current context
-          if (self.current_context.receivers.indexOf(receiver.id) != -1) {
+          if (self.current_context.receivers.indexOf(receiver.id) !== -1) {
             self.current_context_receivers.push(receiver);
 
             if (receivers_ids) {
-              if (receivers_ids.indexOf(receiver.id) != -1) {
+              if (receivers_ids.indexOf(receiver.id) !== -1) {
                 self.receivers_selected[receiver.id] = true;
                 return;
               }
             }
 
             if (receiver.configuration == 'default') {
-              self.receivers_selected[receiver.id] = self.current_context.select_all_receivers != false;
+              self.receivers_selected[receiver.id] = self.current_context.select_all_receivers !== false;
             } else if (receiver.configuration == 'forcefully_selected') {
               self.receivers_selected[receiver.id] = true;
             }
@@ -353,8 +353,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
           self.current_submission.wb_steps = self.current_context.steps;
 
-          if (cb)
+          if (cb) {
             cb();
+          }
         });
       };
 
@@ -610,7 +611,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.contexts = adminContextsResource.query();
 
       self.new_context = function() {
-        var context = new adminContextResource;
+        var context = new adminContextResource();
         context.name = "";
         context.description = "";
         context.steps = [];
@@ -640,7 +641,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.fields = adminFieldsResource.query();
       
       self.new_field = function(step_id) {
-        var field = new adminFieldResource;
+        var field = new adminFieldResource();
         field.label = '';
         field.type = '';
         field.description = '';
@@ -660,14 +661,14 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       };
 
       self.new_field_from_template = function(template_id, step_id) {
-        var field = new adminFieldResource;
+        var field = new adminFieldResource();
         field.step_id = step_id;
         field.template_id = template_id;
         return field.$save();
       };
 
       self.new_field_template = function () {
-        var field = new adminFieldTemplateResource;
+        var field = new adminFieldTemplateResource();
         field.label = '';
         field.type = '';
         field.description = '';
@@ -701,7 +702,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.receivers = adminReceiversResource.query();
 
       self.new_receiver = function () {
-        var receiver = new adminReceiverResource;
+        var receiver = new adminReceiverResource();
         receiver.password = '';
         receiver.contexts = [];
         receiver.description = '';
@@ -782,7 +783,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       scope.pwdHasNumber = true;
 
       var validatePasswordChange = function () {
-        if (scope.$eval(password) !== undefined && scope.$eval(password) != '') {
+        if (scope.$eval(password) !== undefined && scope.$eval(password) !== '') {
           scope.pwdValidLength = ( scope.$eval(password)).length >= 8;
           scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password))) ? true : false;
           scope.pwdHasNumber = ( /\d/.test(scope.$eval(password))) ? true : false;
@@ -829,7 +830,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       var validatePasswordChange = function () {
 
-        if (scope.$eval(password) !== undefined && scope.$eval(password) != '') {
+        if (scope.$eval(password) !== undefined && scope.$eval(password) !== '') {
           scope.pwdValidLength = ( scope.$eval(password)).length >= 8;
           scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password))) ? true : false;
           scope.pwdHasNumber = ( /\d/.test(scope.$eval(password))) ? true : false;
@@ -878,7 +879,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           validatePasswordChange();
       }, true);
 
-    }
+    };
 }]).
   constant('CONSTANTS', {
      /* email regexp is an edited version of angular.js input.js in order to avoid domains with not tld */ 

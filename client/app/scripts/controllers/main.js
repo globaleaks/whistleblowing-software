@@ -17,10 +17,10 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
 
     $scope.reset_session = function() {
       $scope.session_id = undefined;
-      $scope.role = undefined
+      $scope.role = undefined;
       $scope.auth_landing_page = undefined;
       $scope.homepage = undefined;
-    }
+    };
 
     $scope.update = function (model, cb, errcb) {
       var success = {};
@@ -31,8 +31,8 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         }
         $scope.successes.push(success);
       }).then(
-        function() { if (cb != undefined) cb(); },
-        function() { if (errcb != undefined) errcb(); }
+        function() { if (cb !== undefined) cb(); },
+        function() { if (errcb !== undefined) errcb(); }
       );
     };
 
@@ -41,16 +41,16 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     };
 
     $scope.isWizard = function () {
-      return $location.path() == '/wizard';
+      return $location.path() === '/wizard';
     };
 
     $scope.isHomepage = function () {
-      return $location.path() == '/';
+      return $location.path() === '/';
     };
 
     $scope.isLoginPage = function () {
-      return ($location.path() == '/login' ||
-              $location.path() == '/admin');
+      return ($location.path() === '/login' ||
+              $location.path() === '/admin');
     };
 
     $scope.showLoginForm = function () {
@@ -59,7 +59,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     };
 
     $scope.hasSubtitle = function () {
-      return $scope.header_subtitle != '';
+      return $scope.header_subtitle !== '';
     };
 
     $scope.open_intro = function () {
@@ -79,16 +79,16 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     };
 
     $scope.set_title = function () {
-      if ($location.path() == '/') {
+      if ($location.path() === '/') {
         $scope.ht = $scope.node.header_title_homepage;
-      } else if ($location.path() == '/submission') {
+      } else if ($location.path() === '/submission') {
         $scope.ht = $scope.node.header_title_submissionpage;
-      } else if ($location.path() == '/receipt') {
+      } else if ($location.path() === '/receipt') {
         $scope.ht = $scope.node.header_title_receiptpage;
       } else {
         $scope.ht = $filter('translate')($scope.header_title);
       }
-    }
+    };
 
     $scope.route_check = function () {
       if ($scope.node) {
@@ -97,11 +97,11 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
           $location.path('/wizard');
         }
 
-        if (($location.path() == '/') && ($scope.node.landing_page == 'submissionpage')) {
+        if (($location.path() === '/') && ($scope.node.landing_page === 'submissionpage')) {
           $location.path('/submission');
         }
 
-        if ($location.path() == '/submission' &&
+        if ($location.path() === '/submission' &&
             $scope.anonymous === false &&
             $scope.node.tor2web_submission === false) {
           $location.path("/");
@@ -110,7 +110,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         /* Feature implemented for amnesty and currently disabled */
         //$scope.open_intro();
       }
-    }
+    };
 
     $scope.show_file_preview = function(content_type) {
       var content_types = [
@@ -160,10 +160,10 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         $scope.languages_enabled = {};
         $scope.languages_enabled_selector = [];
         angular.forEach(node.languages_supported, function (lang) {
-          var code = lang['code'];
-          var name = lang['name'];
+          var code = lang.code;
+          var name = lang.name;
           $scope.languages_supported[code] = name;
-          if (node.languages_enabled.indexOf(code) != -1) {
+          if (node.languages_enabled.indexOf(code) !== -1) {
             $scope.languages_enabled[code] = name;
             $scope.languages_enabled_selector.push({"name": name, "code": code});
           }
@@ -192,8 +192,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
           }
 
           $translate.use($rootScope.language);
-
-        }
+        };
 
         set_language($rootScope.language);
 
@@ -218,7 +217,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
       GLCache.removeAll();
       init();
       $route.reload();
-    }
+    };
 
     $scope.$on( "$routeChangeStart", function(event, next, current) {
       $scope.route_check();
@@ -231,7 +230,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
     $scope.$watch(function (scope) {
       return Authentication.id;
     }, function (newVal, oldVal) {
-      if (newVal != undefined) {
+      if (newVal !== undefined) {
         $scope.session_id = Authentication.id;
         $scope.role = Authentication.role;
         $scope.auth_landing_page = Authentication.auth_landing_page;

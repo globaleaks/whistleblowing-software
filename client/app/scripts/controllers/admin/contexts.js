@@ -3,7 +3,7 @@ GLClient.controller('AdminContextsCtrl',
   function($scope, $modal) {
 
   $scope.add_context = function (name) {
-    context = $scope.admin.new_context();
+    var context = $scope.admin.new_context();
     context.name = name;
     context.$save(function (new_context) {
       $scope.admin.contexts.push(new_context);
@@ -18,7 +18,7 @@ GLClient.controller('AdminContextsCtrl',
 
   $scope.save_single = function (context) {
     $scope.save_context(context, $scope.reload);
-  }
+  };
 
   $scope.save_all = function () {
     angular.forEach($scope.admin.contexts, function (context, key) {
@@ -109,6 +109,6 @@ GLClient.controller('AdminContextsEditorCtrl', ['$scope',
       }
       $scope.editContext.$dirty = true;
       $scope.editContext.$pristine = false;
-    }
+    };
 
 }]);

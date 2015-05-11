@@ -22,8 +22,9 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
     };
 
     $scope.goToSubmission = function () {
-      if (!$scope.anonymous && !$scope.node.tor2web_submission)
+      if (!$scope.anonymous && !$scope.node.tor2web_submission) {
         return;
+      }
       // Before showing the security awareness panel
       if ($scope.anonymous ||
           $scope.node.disable_security_awareness_badge) {
@@ -41,7 +42,7 @@ GLClient.controller('QuizCtrl', ['$scope', '$modalInstance', '$location',
   $scope.goToSubmission = function() {
     // After showing the security awareness panel
     if ($scope.node.disable_security_awareness_questions ||
-        $scope.answer.value == 'b') {
+        $scope.answer.value === 'b') {
       $modalInstance.close();
       $location.path("/submission");
     }

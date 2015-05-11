@@ -18,13 +18,13 @@ GLClient.controller('SubmissionCtrl',
     }
   }
 
-  if (contexts_selectable == "false" && context_id) {
+  if (contexts_selectable === "false" && context_id) {
     $scope.contexts_selectable = false;
   } else {
     $scope.contexts_selectable = true;
   }
 
-  if (receivers_selectable == "false" && receivers_ids) {
+  if (receivers_selectable === "false" && receivers_ids) {
     $scope.receivers_selectable = false;
   } else {
     $scope.receivers_selectable = true;
@@ -67,7 +67,7 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.selectable = function () {
-    if ($scope.submission.current_context.maximum_selectable_receivers == 0) {
+    if ($scope.submission.current_context.maximum_selectable_receivers === 0) {
       return true;
     }
 
@@ -75,7 +75,7 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.switch_selection = function (receiver) {
-    if (receiver.configuration != 'default' || (!$scope.submission.allow_unencrypted && receiver.missing_pgp)) {
+    if (receiver.configuration !== 'default' || (!$scope.submission.allow_unencrypted && receiver.missing_pgp)) {
       return;
     }
     if ($scope.submission.receivers_selected[receiver.id] || $scope.selectable()) {
@@ -93,15 +93,17 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.hasNextStep = function(){
-    if ($scope.submission.current_context == undefined)
+    if ($scope.submission.current_context === undefined) {
       return false;
+    }
 
     return $scope.selection < $scope.submission.current_context.steps.length;
   };
 
   $scope.hasPreviousStep = function(){
-    if ($scope.submission.current_context == undefined)
+    if ($scope.submission.current_context === undefined) {
       return false;
+    }
 
     return $scope.selection > 0;
   };
@@ -162,7 +164,7 @@ controller('SubmissionStepCtrl', ['$scope', function($scope) {
   $scope.uploads = [];
 }]).
 controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
-  if ($scope.field.type == 'fileupload') {
+  if ($scope.field.type === 'fileupload') {
     $scope.field.value = {};
     $scope.upload_callbacks = [];
 
@@ -198,7 +200,7 @@ controller('ReceiptController', ['$scope', '$location', 'Authentication', 'Whist
   function($scope, $location, Authentication, WhistleblowerTip) {
     var format_keycode = function(keycode) {
       var ret = keycode;
-      if (keycode && keycode.length == 16) {
+      if (keycode && keycode.length === 16) {
         ret =  keycode.substr(0, 4) + ' ' +
                keycode.substr(4, 4) + ' ' +
                keycode.substr(8, 4) + ' ' +
