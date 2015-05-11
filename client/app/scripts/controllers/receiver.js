@@ -1,5 +1,3 @@
-/* global window */
-
 GLClient.controller('ReceiverSidebarCtrl', ['$scope', '$location', function($scope, $location){
   var current_menu = $location.path().split('/').slice(-1);
   $scope.active = {};
@@ -68,10 +66,10 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
 
     $scope.pass_save = function () {
 
-      if ($scope.preferences.pgp_key_remove == undefined) {
+      if ($scope.preferences.pgp_key_remove === undefined) {
         $scope.preferences.pgp_key_remove = false;
       }
-      if ($scope.preferences.pgp_key_public == undefined) {
+      if ($scope.preferences.pgp_key_public =n== undefined) {
         $scope.preferences.pgp_key_public = '';
       }
 
@@ -89,12 +87,12 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
       $scope.preferences.password = '';
       $scope.preferences.old_password = '';
 
-      if ($scope.preferences.pgp_key_remove == true) {
+      if ($scope.preferences.pgp_key_remove === true) {
         $scope.preferences.pgp_key_public = '';
       }
 
       if ($scope.preferences.pgp_key_public !== undefined &&
-          $scope.preferences.pgp_key_public != '') {
+          $scope.preferences.pgp_key_public !== '') {
         $scope.preferences.pgp_key_remove = false;
       }
 
@@ -105,7 +103,7 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
         }
         $rootScope.successes.push({message: 'Updated your preferences!'});
       });
-    }
+    };
 
 }]);
 

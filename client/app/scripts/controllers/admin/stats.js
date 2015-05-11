@@ -35,7 +35,7 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
       */
 
       data.forEach(function(d) {
-          if (d.valid == 0) {
+          if (d.valid === 0) {
             d.summary.failed_logins = + d.summary.failed_logins ? d.summary.failed_logins : 0;
             d.summary.successful_logins = +d.summary.successful_logins ? d.summary.successful_logins : 0;
             d.summary.started_submissions = +d.summary.started_submissions ? d.summary.started_submissions : 0;
@@ -108,7 +108,7 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
           .style("fill", function(d) {
               return colors[0]
           }).on("mouseenter", function(d) {
-              if (d.valid == 0) {
+              if (d.valid === 0) {
                 $scope.blob = d;
                 $scope.$apply();
               }
@@ -119,25 +119,28 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
 
       heatMap.transition().duration(600)
           .style("fill", function(d) {
-              if (d.valid == -1) {
+              if (d.valid === -1) {
                   return 'white';
               }
-              if (d.valid == -2) {
+
+              if (d.valid === -2) {
                   return 'yellow';
               }
-              if (d.valid == -3) {
+
+              if (d.valid === -3) {
                   return 'red';
               }
+
               return colorScale(d.value);
           });
 
       heatMap.append("title").text(function(d) {
           // if strings are updated here remember to update client/translation.html to push them on transifex
-          if (d.valid == -1) {
+          if (d.valid === -1) {
               return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('in this hour the node was off.');
-          } else if (d.valid == -2) {
+          } else if (d.valid === -2) {
               return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('no stats available for the future.');
-          } else if (d.valid == -3) {
+          } else if (d.valid === -3) {
               return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('no stats available for current hour; check activities page.');
           } else {
               return $filter('translate')('Activities') + ': ' + d.value;
@@ -173,14 +176,14 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
     };
 
     $scope.update_week = function () {
-        if ($scope.week_delta == undefined || $scope.week_delta > 0) {
+        if ($scope.week_delta === undefined || $scope.week_delta > 0) {
             $scope.week_delta = 0;
         }
 
         var delta = Math.abs($scope.week_delta);
 
         $scope.stats = StatsCollection.get({week_delta: delta}, $scope.show_stats);
-    }
+    };
 
     $scope.increment_week = function() {
       if ($scope.week_delta < 0) {

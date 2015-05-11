@@ -2,7 +2,7 @@
 
 GLClient.controller('LoginCtrl', ['$scope', '$location', '$routeParams', 'Receivers',
   function($scope, $location, $routeParams, Receivers) {
-    var src = $routeParams['src'];
+    var src = $routeParams.src;
 
     $scope.loginUsername = "";
     $scope.loginPassword = "";
@@ -18,9 +18,9 @@ GLClient.controller('LoginCtrl', ['$scope', '$location', '$routeParams', 'Receiv
     }
 
     $scope.$watch("loginUsername", function(){
-      if ($scope.loginUsername == "admin") {
+      if ($scope.loginUsername === "admin") {
         $scope.loginRole = "admin";
-      } else if ($scope.loginUsername == "wb") {
+      } else if ($scope.loginUsername === "wb") {
         $scope.loginRole = "wb";
       } else {
         $scope.loginRole = "receiver";

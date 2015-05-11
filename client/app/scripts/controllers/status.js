@@ -11,6 +11,7 @@ GLClient.controller('StatusCtrl',
 
     $scope.getFields = function(field) {
       var ret = [];
+      var fields;
       if (field === undefined) {
         fields = $scope.tip.fields;
       } else {
@@ -25,11 +26,11 @@ GLClient.controller('StatusCtrl',
     };
 
     $scope.filterFields = function(field) {
-      return field.type != 'fileupload';
+      return field.type !== 'fileupload';
     };
 
     $scope.filterReceivers = function(receiver) {
-      return receiver.configuration != 'hidden';
+      return receiver.configuration !== 'hidden';
     };
 
     if (Authentication.role === 'wb') {
@@ -42,13 +43,13 @@ GLClient.controller('StatusCtrl',
         Contexts.query(function(contexts) {
 
           angular.forEach(contexts, function(context, k){
-            if (context.id == tip.context_id) {
+            if (context.id === tip.context_id) {
               $scope.current_context = context;
             }
           });
 
-          if (tip.receivers.length == 1 && tip.msg_receiver_selected == null) {
-            tip.msg_receiver_selected = tip.msg_receivers_selector[0]['key'];
+          if (tip.receivers.length === 1 && tip.msg_receiver_selected === null) {
+            tip.msg_receiver_selected = tip.msg_receivers_selector[0].key;
           }
 
           tip.updateMessages();
@@ -77,14 +78,14 @@ GLClient.controller('StatusCtrl',
 
           $scope.tip_unencrypted = false;
           angular.forEach(tip.receivers, function(receiver){
-            if (receiver.pgp_key_status == 'disabled' && receiver.receiver_id !== tip.receiver_id) {
+            if (receiver.pgp_key_status === 'disabled' && receiver.receiver_id !== tip.receiver_id) {
               $scope.tip_unencrypted = true;
             }
           });
 
 
           angular.forEach(contexts, function(context, k){
-            if (context.id == $scope.tip.context_id) {
+            if (context.id === $scope.tip.context_id) {
               $scope.current_context = context;
             }
           });
@@ -129,5 +130,5 @@ GLClient.controller('FileDetailsCtrl', ['$scope', function($scope){
     $scope.securityCheckOptions = {
       backdropFade: true,
       dialogFade: true
-    }
+    };
 }]);

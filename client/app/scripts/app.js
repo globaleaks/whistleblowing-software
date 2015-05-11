@@ -203,7 +203,7 @@ var GLClient = angular.module('GLClient', [
         generateUniqueIdentifier: function (file) {
           return Math.random() * 1000000 + 1000000;
         }
-    }
+    };
 }]).
   run(['$http', '$rootScope', function ($http, $rootScope) {
 
@@ -217,8 +217,8 @@ var GLClient = angular.module('GLClient', [
     $http.defaults.transformRequest.push(globaleaksRequestInterceptor);
 
     function overrideReload(e) {
-       if (((e.which || e.keyCode) == 116) || /* F5 */
-           ((e.which || e.keyCode) == 82 && (e.ctrlKey || e.metaKey))) {  /* (ctrl or meta) + r */ 
+       if (((e.which || e.keyCode) === 116) || /* F5 */
+           ((e.which || e.keyCode) === 82 && (e.ctrlKey || e.metaKey))) {  /* (ctrl or meta) + r */
            e.preventDefault();
            $rootScope.$broadcast("REFRESH");
        }
@@ -235,7 +235,7 @@ var GLClient = angular.module('GLClient', [
     });
 
     document.cookie = 'cookiesenabled=true;';
-    if (document.cookie == "") {
+    if (document.cookie === "") {
       $rootScope.cookiesEnabled = false;
     } else {
       $rootScope.cookiesEnabled = true;

@@ -28,10 +28,10 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
     $scope.languages_enabled = [];
     $scope.languages_enabled_selector = [];
     angular.forEach(node.languages_supported, function(lang) {
-      var code = lang['code'];
-      var name = lang['name'];
+      var code = lang.code;
+      var name = lang.name;
       $scope.languages_supported[code] = name;
-      if (node.languages_enabled.indexOf(code) != -1) {
+      if (node.languages_enabled.indexOf(code) !== -1) {
         $scope.languages_enabled[code] = name;
         $scope.languages_enabled_selector.push({"name": name,"code": code});
       }
@@ -87,12 +87,17 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
   // if they are not present
   $scope.updateNode = function(node) {
 
-    if (node.password === undefined)
+    if (node.password === undefined) {
       node.password = "";
-    if (node.check_password === undefined)
+    }
+
+    if (node.check_password === undefined) {
       node.password = "";
-    if (node.old_password === undefined)
+    }
+
+    if (node.old_password === undefined) {
       node.old_password = "";
+    }
 
     var cb = function() {
       $rootScope.$broadcast("REFRESH");
@@ -158,7 +163,7 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', 'Defa
 
   $scope.fileExists = function (filename) {
     for (var i=0; i<$scope.staticfiles.length; i++) {
-      if ($scope.staticfiles[i].filename == filename) {
+      if ($scope.staticfiles[i].filename === filename) {
         return true;
       }
     }
@@ -214,8 +219,10 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$modal',
     }
   ];
   $scope.open_modal_allow_unencrypted = function() {
-    if ($scope.admin.node.allow_unencrypted)
+    if ($scope.admin.node.allow_unencrypted) {
       return;
+    }
+
     var modalInstance = $modal.open({
       templateUrl: 'views/partials/disable_encryption.html',
       controller: 'DisableEncryptionCtrl'

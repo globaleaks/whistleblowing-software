@@ -37,7 +37,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
 
     $scope.deleteFromList = function(list, elem) {
       var idx = list.indexOf(elem);
-      if (idx != -1) {
+      if (idx !== -1) {
         list.splice(idx, 1);
       }
     };
@@ -155,7 +155,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     $scope.template_fields = $scope.admin.template_fields;
     angular.forEach($scope.step.children, function(field, index) {
       $scope.composable_fields.push(field);
-      if (field.type == 'fieldgroup') {
+      if (field.type === 'fieldgroup') {
         angular.forEach(field.children, function(field_c, index_c) {
           $scope.composable_fields.push(field_c);
        });
@@ -170,7 +170,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     $scope.moveFieldDown = function(field) {
       field.y += 1;
       $scope.save_field(field);
-    }
+    };
 
     $scope.sortableOptions = {
       orderChanged: function(e) {

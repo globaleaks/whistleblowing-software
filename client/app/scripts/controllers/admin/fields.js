@@ -7,7 +7,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
         $scope.fields = fields;
         angular.forEach(fields, function(field, index) {
           $scope.composable_fields.push(field);
-          if (field.type == 'fieldgroup') {
+          if (field.type === 'fieldgroup') {
             angular.forEach(field.children, function(field_c, index_c) {
               $scope.composable_fields.push(field_c);
             });
@@ -28,7 +28,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
 
     $scope.deleteFromList = function(list, elem) {
       var idx = list.indexOf(elem);
-      if (idx != -1) {
+      if (idx !== -1) {
         list.splice(idx, 1);
       }
     };
@@ -79,7 +79,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
       }, function(){
         $scope.deleteField(field);
       });
-    }
+    };
 
   }
 ]);
@@ -181,7 +181,6 @@ GLClient.controller('AdminFieldTemplatesAddCtrl', ['$scope',
         $scope.addField(new_field);
         $scope.new_field = {};
       });
-
-    }
+    };
   }
 ]);

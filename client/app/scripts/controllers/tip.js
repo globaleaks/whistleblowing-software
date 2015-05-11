@@ -42,8 +42,6 @@ GLClient.controller('TipCtrl', ['$scope', '$http', '$route', '$location', '$moda
             $scope.tip.messages.unshift(newMessage);
           });
         };
-
-        fn($scope.tip);
       });
     }
   }, true);
@@ -67,12 +65,12 @@ TipOperationsCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance',
   $scope.ok = function (operation) {
      $modalInstance.close();
 
-     if (operation == 'postpone') {
+     if (operation === 'postpone') {
        $scope.tip.operation = operation;
        $scope.tip.$update(function() {
          $route.reload();
        });
-     } else if (operation == 'delete') {
+     } else if (operation === 'delete') {
        return $http({method: 'DELETE', url: '/rtip/' + tip_id, data:{}}).
              success(function(data, status, headers, config){ 
                $location.url('/receiver/tips');

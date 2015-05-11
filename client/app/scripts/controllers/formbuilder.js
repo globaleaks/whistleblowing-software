@@ -20,7 +20,7 @@ GLClient.controller('FormBuilderCtrl',
   };
 
   $scope.saveField = function() {
-    if ($scope.newField.type == 'checkboxes') {
+    if ($scope.newField.type === 'checkboxes') {
       $scope.newField.value = {};
     }
     if ($scope.editing !== false) {
