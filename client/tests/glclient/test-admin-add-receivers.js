@@ -8,7 +8,6 @@ describe('admin add receivers', function() {
       return element(by.css('[data-ng-click="add_receiver()"]')).click();
     };
 
-      
     add_receiver("Receiver1").then(function() {
       add_receiver("Receiver2").then(function() {
         add_receiver("Receiver3").then(function() {
