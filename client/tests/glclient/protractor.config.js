@@ -5,8 +5,11 @@ exports.config = {
   directConnect: true,
 
   specs: [
-    'test-001-wizard.js',
-    'test-002-grant-tor2web-permissions.js'
+    'test-init.js',
+    'test-admin-perform-wizard.js',
+    'test-admin-login.js',
+    'test-admin-grant-tor2web-permissions.js',
+    'test-admin-add-receivers.js'
   ],
 
   capabilities: {

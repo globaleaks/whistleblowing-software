@@ -8,12 +8,16 @@ exports.config = {
   sauceKey: process.env.SAUCE_ACCESS_KEY,
   capabilities: browser_capabilities,
 
-  baseUrl: 'http://localhost/',
+  baseUrl: 'http://localhost:8080/',
 
   framework: 'jasmine',
 
   specs: [
-    'test-wizard.js',
+    'test-init.js',
+    'test-admin-perform-wizard.js',
+    'test-admin-login.js',
+    'test-admin-grant-tor2web-permissions.js',
+    'test-admin-add-receivers.js'
   ],
 
   jasmineNodeOpts: {
