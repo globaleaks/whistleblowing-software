@@ -1,6 +1,6 @@
 describe('globaLeaks setup wizard', function() {
   it('should allow the user to setup the wizard', function() {
-      browser.get('http://127.0.0.1:8082/');
+      browser.get('/');
       
       // Go to step 2
       element(by.id('ButtonNext1')).click();
