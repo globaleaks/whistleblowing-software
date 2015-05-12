@@ -311,7 +311,7 @@ class GLSettingsClass(object):
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'
 
-        self.pidfile_path = os.path.join(self.pid_path, 'globaleaks-' + str(self.bind_port) + '.pid')
+        self.pidfile_path = os.path.join(self.pid_path, 'globaleaks.pid')
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
