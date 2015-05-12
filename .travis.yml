@@ -25,5 +25,5 @@ script:
   - cd $TRAVIS_BUILD_DIR/client  # to test backend handlers
   - bower install && grunt build --resource master
   - $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9
-  - node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*
+  - node_modules/mocha/bin/mocha -R list tests/glbackend/test_00* --timeout 4000
   - $TRAVIS_BUILD_DIR/scripts/travis_saucelabs.sh
