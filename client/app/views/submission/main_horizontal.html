@@ -1,12 +1,12 @@
 <div class="tabbable tabs-below">
   <ul class="nav nav-tabs">
-    <li data-ng-show="!skip_first_step" data-ng-class="{active: selection==0, disabled: uploading}">
-      <a href="javascript:void(0)" data-ng-click="goToStep(0)" data-ng-disabled="uploading">
+    <li data-ng-if="!skip_first_step" data-ng-class="{active: selection==0, disabled: uploading}">
+      <a id="step-0-link" href="javascript:void(0)" data-ng-click="goToStep(0)" data-ng-disabled="uploading">
         1 - <span data-translate>Receiver selection</span>
       </a>
     </li>
     <li data-ng-repeat="step in submission.current_context.steps" data-ng-class="{active: selection==$index + 1, disabled: uploading}">
-      <a href="javascript:void(0)" data-ng-click="goToStep($index + 1)" data-ng-disabled="uploading">
+      <a id="step-{{$index + (skip_first_step ? 0 : 1)}}-link" href="javascript:void(0)" data-ng-click="goToStep($index + 1)" data-ng-disabled="uploading">
         <span data-ng-if="skip_first_step">{{$index + 1}} - </span>
         <span data-ng-if="!skip_first_step">{{$index + 2}} - </span>
         <span>{{step.label}}</span>
@@ -16,12 +16,12 @@
 
   <div class="tab-content">
 
-    <div data-ng-show="receivers_selectable && submission.current_context.show_receivers && selection == 0" data-ng-include="'views/submission/receiver_selection.html'"></div>
+    <div data-ng-if"receivers_selectable && submission.current_context.show_receivers && selection == 0" data-ng-include="'views/submission/receiver_selection.html'"></div>
 
     <!-- Configured Context Steps -->
     <div data-ng-repeat="step in submission.current_context.steps" data-ng-controller="SubmissionStepCtrl">
-      <div class="SubmissionStep" data-ng-show="selection == $index + 1">
-        <div class="preformatted" data-ng-show="step.description">{{step.description}}</div>
+      <div id="step-{{$index + 1}}" class="SubmissionStep" data-ng-if="selection == $index + 1">
+        <div class="preformatted" data-ng-if="step.description">{{step.description}}</div>
         <div class="row">
           <div class="col-md-7">
             <div data-ng-include="'views/submission/form.html'"></div>
@@ -42,19 +42,19 @@
 
   <div id="StepsNavBar" class="pull-left">
     <ul class="pager">
-      <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton previous" data-ng-hide="!hasPreviousStep()">
-        <a data-ng-click="decrementStep()">
+      <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton previous" data-ng-if="hasPreviousStep()">
+        <a id="PreviousStepLink" data-ng-click="decrementStep()">
           <span data-translate>Previous Step</span>
         </a>
       </li>
-      <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton next" data-ng-hide="!hasNextStep()">
-        <a data-ng-click="incrementStep()">
+      <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton next" data-ng-if="hasNextStep()">
+        <a id="NextStepLink" data-ng-click="incrementStep()">
           <span data-translate>Next Step</span>
         </a>
       </li>
     </ul>
   </div>
-  <div id="SubmitBox" class="pager pull-left" style="margin-left: 20px" data-ng-show="!hasNextStep()">
+  <div id="SubmitBox" class="pager pull-left" style="margin-left: 20px" data-ng-if="!hasNextStep()">
     <button class="btn btn-success SubmitButton" data-ng-click="submit()" data-ng-disabled="submission.uploading || submissionForm.$invalid || !receiver_selected" type="submit">
       <i class="glyphicon glyphicon-ok"></i>
       <span data-translate>Submit</span>
