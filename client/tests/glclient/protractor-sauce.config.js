@@ -8,9 +8,9 @@ exports.config = {
   sauceKey: process.env.SAUCE_ACCESS_KEY,
   capabilities: browser_capabilities,
 
-  baseUrl: 'http://localhost:8080/',
+  framework: 'jasmine2',
 
-  framework: 'jasmine',
+  baseUrl: 'http://localhost:8080/',
 
   specs: [
     'test-init.js',

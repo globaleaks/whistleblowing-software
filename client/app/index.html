@@ -78,7 +78,7 @@
     </div>
 
     <!-- this is resolved by angular-js only at the end of the startup (js loading) -->
-    <div data-ng-show="started" data-ng-include="'globaleaks.html'"></div>
+    <div data-ng-if="started" data-ng-include="'globaleaks.html'"></div>
 
     <!-- build:js loader.js -->
     <script src="components/bowser/bowser.js"></script>

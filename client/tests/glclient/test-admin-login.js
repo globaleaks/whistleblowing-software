@@ -5,7 +5,7 @@ describe('admin login', function() {
     element(by.model('loginUsername')).sendKeys('admin');
     element(by.model('loginPassword')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#');
 
-    element(by.css('button')).click().then(function() {
+    element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
 
     });
   });
