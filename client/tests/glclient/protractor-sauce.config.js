@@ -16,9 +16,10 @@ exports.config = {
     'test-init.js',
     'test-admin-perform-wizard.js',
     'test-admin-login.js',
-    'test-admin-grant-tor2web-permissions.js',
+    'test-admin-configure-node.js',
     'test-admin-add-receivers.js',
-    'test-admin-add-contexts.js'
+    'test-admin-add-contexts.js',
+    'test-receiver-first-login.js'
   ],
 
   jasmineNodeOpts: {
