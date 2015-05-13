@@ -8,12 +8,12 @@ describe('globaLeaks setup wizard', function() {
     // Fill out the form
     element(by.model('admin.node.name')).sendKeys('E2E Test Instance');
     element(by.model('admin.node.description')).sendKeys('This instance is for E2E testing');
-    element(by.model('admin.node.email')).sendKeys('info@globaleaks.org');
+    element(by.model('admin.node.email')).sendKeys('globaleaks-admin@mailinator.com');
     element(by.model('admin.node.password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#');
     element(by.model('admin.node.check_password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#');
 
     element(by.model('receiver.name')).sendKeys('Laura Poitras');
-    element(by.model('receiver.mail_address')).sendKeys('info@globaleaks.org');
+    element(by.model('receiver.mail_address')).sendKeys('laura.poitras@mailinator.com');
       
     // Disable encryption for receiver
     element(by.model('admin.node.allow_unencrypted')).click();
