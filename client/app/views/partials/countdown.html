@@ -16,11 +16,10 @@
   <br>
   M
   <h3>
-    <div data-ng-if="(submission.current_context.steps.length == 1)">
-
+    <div data-ng-if="submission.current_submission._counter">
       <p>LOAD!</p>
         <!-- <timer language={{language}} countdown="10" interval="1000"> -->
-        <timer language={{language}} countdown=submission.ciao interval="1000">
+        <timer language="{{language}}" countdown="submission.current_submission._counter" interval="1000">
           <pre>_____</pre>
           {{interval}}
           ^
