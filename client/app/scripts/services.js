@@ -351,7 +351,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
           });
 
-          self.current_submission.wb_steps = self.current_context.steps;
+        self.current_submission.wb_steps = self.current_context.steps;
+
+        /* test for <timer> */
+        self.static_var_from_scope_test = 2;
+        self.current_submission._counter = self.current_submission.start_validity_secs;
 
           if (cb) {
             cb();

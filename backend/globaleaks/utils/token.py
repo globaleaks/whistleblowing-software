@@ -45,7 +45,7 @@ class TokenList:
 
 
 class Token(TempObj):
-    SUBMISSION_MINIMUM_DURATION = 0
+    SUBMISSION_MINIMUM_DURATION = 30
     SUBMISSION_MAXIMUM_DURATION = 3600 * 4
     MAXIMUM_ATTEMPTS_PER_TOKEN = 3
 
@@ -56,11 +56,6 @@ class Token(TempObj):
         we plan to add other kinds like 'file'.
 
         """
-        # Remind: this is just for developers, because if a clean house
-        # is a sign of a waste life, a Token object without shortcut
-        # is a sign of a psyco life. (vecnish!)
-        if GLSetting.devel_mode:
-            self.start_validity_secs = 0
 
         if reactor_override:
             reactor = reactor_override
@@ -72,6 +67,14 @@ class Token(TempObj):
         # both 'validity' variables need to be expressed in seconds
         self.start_validity_secs = Token.SUBMISSION_MINIMUM_DURATION
         self.end_validity_secs = Token.SUBMISSION_MAXIMUM_DURATION
+
+        # Remind: this is just for developers, because if a clean house
+        # is a sign of a waste life, a Token object without shortcut
+        # is a sign of a psyco life. (vecnish!)
+        if GLSetting.devel_mode:
+            # self.start_validity_secs = 0
+            print "Development shit of today"
+            self.start_validity_secs = 2
 
         self.remaining_allowed_attempts = Token.MAXIMUM_ATTEMPTS_PER_TOKEN
 
