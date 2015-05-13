@@ -1,6 +1,6 @@
-GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$modal', 'Authentication', 'Node', 'WhistleblowerTip', 'GLCache',
-  function($scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $modal, Authentication, Node, WhistleblowerTip, GLCache) {
-    $scope.started = true;
+GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$modal', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'GLCache',
+  function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $modal, Authentication, Node, Contexts, Receivers, WhistleblowerTip, GLCache) {
+    $scope.started = false;
     $scope.rtl = false;
     $scope.logo = '/static/globaleaks_logo.png';
     $scope.build_stylesheet = '/styles.css';
@@ -195,6 +195,18 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', '$ro
         };
 
         set_language($rootScope.language);
+
+        var q1 = Contexts.query(function (contexts) {
+          $scope.contextss = contexts;
+        });
+
+        var q2 = Receivers.query(function (receivers) {
+          $scope.receivers = receivers;
+        });
+
+        $q.all([q1.promise, q2.promise]).then(function() {
+          $scope.started = true;
+        });
 
         $rootScope.$watch('language', function (newVal, oldVal) {
           if (newVal && newVal !== oldVal) {

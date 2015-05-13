@@ -1,5 +1,3 @@
-'use strict';
-
 GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
                     'Authentication',
                     'WhistleblowerTip',

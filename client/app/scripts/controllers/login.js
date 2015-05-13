@@ -1,16 +1,10 @@
-'use strict';
-
-GLClient.controller('LoginCtrl', ['$scope', '$location', '$routeParams', 'Receivers',
-  function($scope, $location, $routeParams, Receivers) {
+GLClient.controller('LoginCtrl', ['$scope', '$routeParams',
+  function($scope, $routeParams) {
     var src = $routeParams.src;
 
     $scope.loginUsername = "";
     $scope.loginPassword = "";
     $scope.loginRole = "receiver";
-
-    Receivers.query(function (receivers) {
-      $scope.receivers = receivers;
-    });
 
     if (src && src.indexOf("/admin") != -1) {
       $scope.loginUsername = "admin";
@@ -25,6 +19,7 @@ GLClient.controller('LoginCtrl', ['$scope', '$location', '$routeParams', 'Receiv
       } else {
         $scope.loginRole = "receiver";
       }
+      $scope.loginPassword = "";
     });
 
 }]);
