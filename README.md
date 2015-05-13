@@ -1,5 +1,7 @@
 # GlobaLeaks
 
+[![Join the chat at https://gitter.im/globaleaks/GlobaLeaks](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/globaleaks/GlobaLeaks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 GlobaLeaks is a project aimed at creating a whistleblowing platform built on
 FLOSS.
 
