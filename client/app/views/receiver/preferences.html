@@ -5,7 +5,7 @@
     <form class="row tab-content" name="receiverPreferencesForm" novalidate>
       <tabset>
         <tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}" active="tab.active" disabled="tab.disabled">
-        <div data-ng-include="tab.template" data-ng-controller="tab.ctrl"></div>
+          <div data-ng-include="tab.template" data-ng-controller="tab.ctrl"></div>
         </tab>
       </tabset>
     </form>

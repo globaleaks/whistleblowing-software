@@ -63,7 +63,7 @@
       </div>
       <div data-as-sortable="sortableOptions" ng-model="admin.receivers">
         <div class="row receiverList" data-ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'" data-as-sortable-item>
-          <form name="editReceiver" data-ng-controller="AdminReceiversEditorCtrl" novalidate>
+          <form id="receiver-{{$index}}" name="editReceiver" data-ng-controller="AdminReceiversEditorCtrl" novalidate>
             <div class="configItem receiverItem" data-ng-class="{'configItemLast': $last}">
               <div class="row" data-ng-click="toggleEditing()" data-as-sortable-item-handle>
                 <div class="editorHeader receiverEditorHeader sortableHandle">

@@ -38,7 +38,7 @@
         </div>
         <div data-as-sortable="sortableOptions" data-ng-model="admin.contexts">
           <div data-ng-repeat="context in admin.contexts | orderBy:'presentation_order'" data-as-sortable-item>
-            <form name="editContext" data-ng-controller="AdminContextsEditorCtrl" novalidate>
+            <form id="context-{{$index}}" name="editContext" data-ng-controller="AdminContextsEditorCtrl" novalidate>
               <div class="configItem contextItem"  data-ng-class="{'configItemLast': $last}">
                 <div class="row" data-ng-click="toggleEditing()">
                   <div class="editorHeader contextEditorHeader sortableHandle" data-as-sortable-item-handle>
