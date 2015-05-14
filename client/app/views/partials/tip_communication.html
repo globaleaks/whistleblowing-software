@@ -11,7 +11,7 @@
       </button>
       <br /><br />
       <div data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
-        <div data-ng-switch="" on="comment.type">
+        <div id="comment-{{index}}" data-ng-switch="" on="comment.type">
 
           <div data-ng-switch-when="whistleblower" class="alert alert-info">
             <div class="row">
@@ -95,7 +95,7 @@
       </button>
       <br /><br />
       <div data-ng-repeat="message in tip.messages | orderBy:'creation_date':true">
-        <div data-ng-switch="" on="message.type">
+        <div id="message-{{$index}}" data-ng-switch="" on="message.type">
 
           <div data-ng-switch-when="whistleblower" class="alert alert-info">
             <div class="row">
