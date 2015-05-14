@@ -52,8 +52,14 @@ GLClient.controller('SubmissionCtrl',
 
   };
 
-  $scope.selected_receivers_count = function () {
-    var count = 0;
+    $scope.$on('timer-tick', function (event, args) {
+      if (args.millis == 0) {
+        $("#CountDown").hide();
+      }
+    });
+
+    $scope.selected_receivers_count = function () {
+      var count = 0;
 
     if ($scope.submission) {
       angular.forEach($scope.submission.receivers_selected, function (selected) {
