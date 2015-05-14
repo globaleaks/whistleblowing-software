@@ -3,7 +3,7 @@ describe('adming configure node', function() {
     browser.setLocation('admin/advanced_settings');
 
     /// simplify the configuration in order to simplfy initial tests
-    element(by.model('admin.node.disable_security_awareness_questions')).click();
+    element(by.model('admin.node.disable_security_awareness_badge')).click();
 
     // configure email used for exceptions testin
     element(by.model('admin.node.exception_email')).clear();

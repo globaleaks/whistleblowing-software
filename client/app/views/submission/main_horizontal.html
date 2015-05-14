@@ -1,6 +1,6 @@
 <div class="tabbable tabs-below">
   <ul class="nav nav-tabs">
-    <li data-ng-if="!skip_first_step" data-ng-class="{active: selection==0, disabled: uploading}">
+    <li data-ng-show="!skip_first_step" data-ng-class="{active: selection==0, disabled: uploading}">
       <a id="step-0-link" href="javascript:void(0)" data-ng-click="goToStep(0)" data-ng-disabled="uploading">
         1 - <span data-translate>Receiver selection</span>
       </a>
@@ -16,11 +16,13 @@
 
   <div class="tab-content">
 
-    <div data-ng-if"receivers_selectable && submission.current_context.show_receivers && selection == 0" data-ng-include="'views/submission/receiver_selection.html'"></div>
+    <div data-ng-if="receivers_selectable && submission.current_context.show_receivers">
+      <div id="step-0" data-ng-show="selection == 0" data-ng-include="'views/submission/receiver_selection.html'"></div>
+    </div>
 
     <!-- Configured Context Steps -->
     <div data-ng-repeat="step in submission.current_context.steps" data-ng-controller="SubmissionStepCtrl">
-      <div id="step-{{$index + 1}}" class="SubmissionStep" data-ng-if="selection == $index + 1">
+      <div id="step-{{$index + 1}}" class="SubmissionStep" data-ng-show="selection == $index + 1">
         <div class="preformatted" data-ng-if="step.description">{{step.description}}</div>
         <div class="row">
           <div class="col-md-7">
@@ -43,19 +45,19 @@
   <div id="StepsNavBar" class="pull-left">
     <ul class="pager">
       <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton previous" data-ng-if="hasPreviousStep()">
-        <a id="PreviousStepLink" data-ng-click="decrementStep()">
+        <a id="PreviousStepButton" data-ng-click="decrementStep()">
           <span data-translate>Previous Step</span>
         </a>
       </li>
       <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton next" data-ng-if="hasNextStep()">
-        <a id="NextStepLink" data-ng-click="incrementStep()">
+        <a id="NextStepButton" data-ng-click="incrementStep()">
           <span data-translate>Next Step</span>
         </a>
       </li>
     </ul>
   </div>
   <div id="SubmitBox" class="pager pull-left" style="margin-left: 20px" data-ng-if="!hasNextStep()">
-    <button class="btn btn-success SubmitButton" data-ng-click="submit()" data-ng-disabled="submission.uploading || submissionForm.$invalid || !receiver_selected" type="submit">
+    <button id="SubmitButton" class="btn btn-success" data-ng-click="submit()" data-ng-disabled="submission.uploading || submissionForm.$invalid || !receiver_selected" type="submit">
       <i class="glyphicon glyphicon-ok"></i>
       <span data-translate>Submit</span>
     </button>

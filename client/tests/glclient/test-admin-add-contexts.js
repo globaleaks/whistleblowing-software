@@ -7,11 +7,8 @@ describe('admin add contexts', function() {
       return element(by.css('[data-ng-click="add_context()"]')).click();
     };
 
-    add_context("Context1").then(function() {
-      add_context("Context2").then(function() {
-        add_context("Context3").then(function() {
-        });
-      });
+    add_context("Context 2").then(function() {
+      add_context("Context 3");
     });
 
   });

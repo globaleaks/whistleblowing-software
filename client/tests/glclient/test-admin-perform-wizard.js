@@ -12,14 +12,14 @@ describe('globaLeaks setup wizard', function() {
     element(by.model('admin.node.password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#');
     element(by.model('admin.node.check_password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#');
 
-    element(by.model('receiver.name')).sendKeys('Laura Poitras');
-    element(by.model('receiver.mail_address')).sendKeys('laura.poitras@mailinator.com');
+    element(by.model('receiver.name')).sendKeys('Receiver 1');
+    element(by.model('receiver.mail_address')).sendKeys('globaleaks-receiver1@mailinator.com');
       
     // Disable encryption for receiver
     element(by.model('admin.node.allow_unencrypted')).click();
     element(by.css('[data-ng-click="ok()"]')).click();
  
-    element(by.model('context.name')).sendKeys('Data Gate');
+    element(by.model('context.name')).sendKeys('Context 1');
       
     // Complete the form
     element.all(by.id('ButtonNext2')).click();

@@ -19,7 +19,8 @@ exports.config = {
     'test-admin-configure-node.js',
     'test-admin-add-receivers.js',
     'test-admin-add-contexts.js',
-    'test-receiver-first-login.js'
+    'test-receiver-first-login.js',
+    'test-whistleblower-perform-submission.js'
   ],
 
   jasmineNodeOpts: {

@@ -1,5 +1,5 @@
 <div data-ng-if="receivers_selectable && submission.current_context.show_receivers">
-  <div class="row">
+  <div id="step-0" class="row">
     <div class="col-md-12">
       <label data-translate>Receiver selection</label>
     </div>
@@ -10,7 +10,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <div data-ng-repeat="step in submission.current_context.steps" data-ng-controller="SubmissionStepCtrl" class="row">
+    <div id="step-1" data-ng-controller="SubmissionStepCtrl" class="row">
       <div>
         <div class="col-md-12">
           <p class="stepDescription">{{step.description}}</p>
