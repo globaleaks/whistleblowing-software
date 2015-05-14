@@ -37,7 +37,7 @@
         <dd>{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</dd>
       </dl>
       <dl data-ng-repeat="step in tip.wb_steps">
-        <dt>
+        <dt id="step-{{$index}}">
           <span data-translate>Step</span>
           <span>{{$index + 1}}: {{step.label}}</span>
         </dt>
@@ -73,8 +73,8 @@
             <th><span data-translate>Access counter</span></th>
           </tr>
         </thead>
-        <tbody id="receiverListBody">
-          <tr data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
+        <tbody id="receiverListBody" data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
+          <tr id="receiver-{{$index}}">
             <td>
               <span data-ng-switch="" on="receiver.pgp_key_status">
                 <span data-ng-switch-when="enabled">
@@ -144,7 +144,7 @@
             </tr>
           </thead>
           <tbody id="fileListBody" data-ng-repeat="file in tip.files">
-            <tr data-ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
+            <tr id="file-{{$index}}" data-ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
               <td>
                 <span>{{file.name}}</span>
               </td>
