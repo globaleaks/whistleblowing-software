@@ -1,33 +1,10 @@
 <div id="CountDown">
-  <h3>Submission can be done in...</h3>
-  <!-- ng-show="submission.current_submission.countdown" -->
-  <!--
-  <pre>{{submission}}</pre>
-  {{submission.current_submission.start_validity_secs}}
-  -->
-
-  A: {{submission.current_submission._counter}}
-  <br>
-  B: {{submission.current_submission._counter + 1}}
-  <br>
-  K: {{submission.static_var_from_scope_test}}
-  <br>
-  Y: {{ciao}}
-  <br>
-  M
-  <h3>
-    <div data-ng-if="submission.current_submission._counter">
-      <p>LOAD!</p>
-        <!-- <timer language={{language}} countdown="10" interval="1000"> -->
+  <h3 data-ng-if="submission.current_submission._counter">You can complete submission in ...
+    <span data-ng-if="submission.current_submission._counter">
         <timer language="{{language}}" countdown="submission.current_submission._counter" interval="1000">
-          <pre>_____</pre>
-          {{interval}}
-          ^
           {{countdown}}
-          ^ 
-          {{submission.ciao}}
         </timer>
-    </div>
+        seconds.
+    </span>
   </h3>
-
 </div>
