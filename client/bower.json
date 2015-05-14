@@ -37,6 +37,7 @@
     "spin.js": "2.0.0"
   },
   "resolutions": {
-    "bootstrap": "3.3.4"
+    "bootstrap": "3.3.4",
+    "angular": "1.2.28"
   }
 }
