@@ -392,6 +392,8 @@ class Node(Model):
     tor2web_unauth = Bool()
     allow_unencrypted = Bool()
     allow_iframes_inclusion = Bool()
+    submission_minimum_delay = Int()
+    submission_maximum_ttl = Int()
 
     # privileges configurable in node/context/receiver
     can_postpone_expiration = Bool(default=False)
@@ -428,7 +430,9 @@ class Node(Model):
 
     int_keys = ['maximum_namesize', 'maximum_textsize',
                 'maximum_filesize', 'default_timezone',
-                'show_contexts_in_alphabetical_order']
+                'show_contexts_in_alphabetical_order',
+                'submission_minimum_delay',
+                'submission_maximum_ttl' ]
 
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                  'tor2web_unauth', 'can_postpone_expiration',

@@ -45,8 +45,6 @@ class TokenList:
 
 
 class Token(TempObj):
-    SUBMISSION_MINIMUM_DURATION = 30
-    SUBMISSION_MAXIMUM_DURATION = 3600 * 4
     MAXIMUM_ATTEMPTS_PER_TOKEN = 3
 
     def __init__(self, token_kind, context_id):
@@ -65,13 +63,13 @@ class Token(TempObj):
         self.kind = token_kind
 
         # both 'validity' variables need to be expressed in seconds
-        self.start_validity_secs = Token.SUBMISSION_MINIMUM_DURATION
-        self.end_validity_secs = Token.SUBMISSION_MAXIMUM_DURATION
+        self.start_validity_secs = GLSetting.memory_copy.submission_minimum_delay
+        self.end_validity_secs = GLSetting.memory_copy.submission_maximum_ttl
 
         # Remind: this is just for developers, because if a clean house
         # is a sign of a waste life, a Token object without shortcut
         # is a sign of a psyco life. (vecnish!)
-        if GLSetting.devel_mode:
+        if False and GLSetting.devel_mode:
             # self.start_validity_secs = 0
             self.start_validity_secs = 4
 

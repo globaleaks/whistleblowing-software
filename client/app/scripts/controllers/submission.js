@@ -60,7 +60,7 @@ GLClient.controller('SubmissionCtrl',
       if (args.millis == 0) {
         $("#SubmitIconOK").show();
         $("#SubmitIconWait").hide();
-        $("#SubmissionButton").addClass('btn-success')
+        $("#SubmissionButton").addClass('btn-success');
         $("#SubmissionButton").removeClass('btn-danger');
         $("#CountDown").fadeOut(1000);
       }

@@ -63,6 +63,8 @@ def db_admin_serialize_node(store, language):
         'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
         'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
+        'submission_minimum_delay' : GLSetting.memory_copy.submission_minimum_delay,
+        'submission_maximum_ttl' : GLSetting.memory_copy.submission_maximum_ttl,
         'can_postpone_expiration': node.can_postpone_expiration,
         'can_delete_submission': node.can_delete_submission,
         'ahmia': node.ahmia,
