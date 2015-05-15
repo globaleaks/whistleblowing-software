@@ -352,7 +352,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           });
 
         self.current_submission.wb_steps = self.current_context.steps;
-        self.current_submission._counter = self.current_submission.start_validity_secs;
+
+          /* is used the sum of the two timeout, so we can use only on <timer>
+           * and manage time windows */
+        self.current_submission._counter = self.current_submission.end_validity_secs +
+                                           self.current_submission.start_validity_secs;
 
           if (cb) {
             cb();
