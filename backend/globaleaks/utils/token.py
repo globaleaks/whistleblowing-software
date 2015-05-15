@@ -73,8 +73,7 @@ class Token(TempObj):
         # is a sign of a psyco life. (vecnish!)
         if GLSetting.devel_mode:
             # self.start_validity_secs = 0
-            print "XXX TODO - REMOVE - Development shit of today", __file__
-            self.start_validity_secs = 6
+            self.start_validity_secs = 4
 
         self.remaining_allowed_attempts = Token.MAXIMUM_ATTEMPTS_PER_TOKEN
 
