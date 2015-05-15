@@ -137,6 +137,8 @@ CREATE TABLE node (
     tor2web_submission INTEGER NOT NULL,
     tor2web_receiver INTEGER NOT NULL,
     tor2web_unauth INTEGER NOT NULL,
+    submission_minimum_delay INTEGER NOT NULL,
+    submission_maximum_ttl INTEGER NOT NULL,
     can_postpone_expiration INTEGER NOT NULL,
     can_delete_submission INTEGER NOT NULL,
     ahmia INTEGER NOT NULL,

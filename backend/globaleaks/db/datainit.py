@@ -121,6 +121,9 @@ def db_update_memory_variables(store):
         GLSetting.memory_copy.tor2web_receiver = node.tor2web_receiver
         GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
 
+        GLSetting.memory_copy.submission_minimum_delay = node.submission_minimum_delay
+        GLSetting.memory_copy.submission_maximum_ttl =  node.submission_maximum_ttl
+
         GLSetting.memory_copy.allow_unencrypted = node.allow_unencrypted
         GLSetting.memory_copy.allow_iframes_inclusion = node.allow_iframes_inclusion
 

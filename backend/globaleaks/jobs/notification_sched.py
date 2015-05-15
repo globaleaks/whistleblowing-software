@@ -113,25 +113,27 @@ class EventLogger(object):
 
     @transact
     def process_events(self, store):
-        elems = store.find(self.model, self.model.new == True)
+        _elems = store.find(self.model, self.model.new == True)
+
+        if not _elems.count():
+            return
 
         log.debug("Notification: found %d %s(s) to be handled" %
-                  (elems.count(), self.trigger))
+                  (_elems.count(), self.trigger))
 
-        for elem in elems:
+        for e in _elems:
             # Mark event as handled as first step;
             # For resiliency reasons it's better to be sure that the
             # state machine move forward, than having starving events
             # due to possible exceptions in handling
-            elem.new = False
-
-            self.process_event(store, elem)
+            e.new = False
+            self.process_event(store, e)
 
         if len(self.events):
             db_save_events_on_db(store, self.events)
-
             log.debug("Notification: generated %d notification events of type %s" %
                       (len(self.events), self.trigger))
+
 
 class TipEventLogger(EventLogger):
     trigger = 'Tip'

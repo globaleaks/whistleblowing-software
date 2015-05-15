@@ -91,6 +91,8 @@ def create_tables(create_node=True):
             'tor2web_submission': GLSetting.defaults.tor2web_submission,
             'tor2web_receiver': GLSetting.defaults.tor2web_receiver,
             'tor2web_unauth': GLSetting.defaults.tor2web_unauth,
+            'submission_minimum_delay' : GLSetting.defaults.submission_minimum_delay,
+            'submission_maximum_ttl' : GLSetting.defaults.submission_maximum_ttl,
             'can_postpone_expiration': False,  # disabled by default
             'can_delete_submission': False,  # disabled too
             'ahmia': False,  # disabled too
