@@ -1,12 +1,11 @@
 describe('receiver first login', function() {
   it('should redirect to /firstlogin upon successful authentication', function() {
     browser.get('/#/login');
-    element(by.model('loginUsername')).click().then(function() {
-      browser.actions().mouseMove(element(by.xpath(".//*[text()='Receiver 1']"))).mouseDown().mouseUp().perform().then(function() {
+    element(by.model('loginUsername')).element(by.xpath(".//*[text()='Receiver 1']")).click().then(function() {
       element(by.model('loginPassword')).sendKeys('globaleaks').then(function() {
         element(by.xpath('//button[contains(., "Log in")]')).click();
         expect(browser.getLocationAbsUrl()).toContain('/#/receiver/firstlogin');
-      });});
+      });
     });
   });
   it('should be able to change password from the default one', function() {
@@ -22,8 +21,7 @@ describe('receiver first login', function() {
   });
   it('should be able to login with the new password', function() {
     browser.get('/#/login');
-    element(by.model('loginUsername')).click().then(function() {
-      browser.actions().mouseMove(element(by.xpath(".//*[text()='Receiver 1']"))).mouseDown().mouseUp().perform();
+    element(by.model('loginUsername')).element(by.xpath(".//*[text()='Receiver 1']")).click().then(function() {
       element(by.model('loginPassword')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#').then(function() {
         element(by.xpath('//button[contains(., "Log in")]')).click();
         expect(browser.getLocationAbsUrl()).toContain('/#/receiver/tips');

@@ -20,7 +20,7 @@ exports.config = {
     'test-admin-add-receivers.js',
     'test-admin-add-contexts.js',
     'test-receiver-first-login.js',
-    'test-whistleblower-perform-submission.js'
+    'test-globaleaks-process.js'
   ],
 
   jasmineNodeOpts: {
