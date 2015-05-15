@@ -71,9 +71,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission_with_files(self.submission_desc)
 
-        receipt = yield create_whistleblower_tip(self.submission_desc)
-
-        wb_access_id = yield authentication.login_wb(receipt)
+        wb_access_id = yield authentication.login_wb(self.submission_desc['receipt'])
 
         # remind: return a tuple (serzialized_itip, wb_itip)
         wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
@@ -83,10 +81,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_create_receiverfiles_allow_unencrypted_true_no_keys_loaded(self):
         yield self.test_create_submission_attach_files_finalize_and_access_wbtip()
-
-        # create receivertip its NEEDED to create receiverfile
-        self.rt = yield delivery_sched.tip_creation()
-        self.assertTrue(isinstance(self.rt, list))
 
         self.rfilesdict = yield delivery_sched.receiverfile_planning()
         # return a list of lists [ "file_id", status, "f_path", len, "receiver_desc" ]
@@ -120,10 +114,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
-        receivertips = yield delivery_sched.tip_creation()
-        self.assertEqual(len(receivertips), len(self.submission_desc['receivers']))
-
-
     @inlineCallbacks
     def test_submission_with_receiver_selection_allow_unencrypted_false_no_keys_loaded(self):
         GLSetting.memory_copy.allow_unencrypted = False
@@ -141,8 +131,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc['wb_steps'] = yield self.fill_random_fields(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
-        receipt = yield create_whistleblower_tip(self.submission_desc)
-        wb_access_id = yield authentication.login_wb(receipt)
+        wb_access_id = yield authentication.login_wb(self.submission_desc['receipt'])
 
         wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
 

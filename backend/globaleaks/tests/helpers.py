@@ -468,8 +468,6 @@ class TestGLWithPopulatedDB(TestGL):
                                                        self.dummySubmission,
                                                        'en')
 
-        self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
-
     @inlineCallbacks
     def run_delivery_and_notification_scheds(self):
         yield delivery_sched.DeliverySchedule().operation()
