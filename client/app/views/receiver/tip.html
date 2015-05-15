@@ -23,6 +23,7 @@
 
 <div class="row" data-ng-controller="TipCtrl">
   <div class="col-md-6">
+    <div class="TipPageSectionTitle" data-translate>Submission</div>
     <div class="col-md-12">
       <dl>
         <dt>
@@ -49,22 +50,22 @@
   <div class="col-md-6">
     <div class="col-md-12" data-ng-if="tip.can_postpone_expiration || tip.can_delete_submission">
       <span data-ng-show="tip.can_postpone_expiration">
-        <button data-ng-click="tip_postpone(tip.id)" class="btn btn-sm btn-warning">
+        <a class="tip-action-postpone btn btn-sm btn-warning" data-ng-click="tip_postpone(tip.id)">
           <i class="glyphicon glyphicon-time"></i>
           <span data-translate>Postpone Tip expiration date</span>
-        </button>
+        </a>
       </span>
       <span data-ng-show="tip.can_delete_submission">
-        <button data-ng-click="tip_delete(tip.id)" class="btn btn-sm btn-danger">
+        <a class="tip-action-delete btn btn-sm btn-danger" data-ng-click="tip_delete(tip.id)">
           <i class="glyphicon glyphicon-trash"></i>
           <span data-translate>Delete Tip</span>
-        </button>
+        </a>
       </span>
     </div>
     <br />
 
     <div class="col-md-12">
-      <h3 data-translate>Receiver List</h3>
+      <div class="TipPageSectionTitle" data-translate>Receiver List</div>
       <table class="table table-striped" id="receiverList">
         <thead>
           <tr>
@@ -100,9 +101,7 @@
   
 <div class="row">
   <div class="col-md-12">
-  <h3>
-    <span data-translate>Files</span>
-  </h3>
+  <div class="TipPageSectionTitle" data-translate>Files</div>
   <div class="well" data-ng-show="tip.files.length">
     <div data-ng-if="tip.collection">
       <form id="fileCollectionDownload" method="POST" action="{{tip.collection}}" novalidate>

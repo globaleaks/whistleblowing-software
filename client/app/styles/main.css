@@ -32,7 +32,7 @@ table {
   word-wrap: break-word;
 }
 
-#HeaderBox, #HeaderBoxHomepage {
+#HeaderBox {
   overflow: hidden;
   color: #FFF;
   background: #428bca;
@@ -40,13 +40,13 @@ table {
   padding: 30px 15px 30px 15px;
 }
 
-#HeaderBox:after, #HeaderBox:after, #HeaderBoxHompage:after, #HeaderBoxHomepage:after {
+#HeaderBox:after, #HeaderBox:after {
   clear: both;
   content: "";
   display: block;
 }
 
-#HeaderBox p, #HeaderBoxHomepage p {
+#HeaderBox p {
   margin-bottom: 20px;
 }
 
@@ -77,24 +77,33 @@ table {
   font-size: 20px;
 }
 
-#LogoBox, #TitleBox, #UserBox, #LogoBoxHomepage, #TitleBoxHomepage, #UserBoxHomepage {
+#LogoBox, #TitleBox, #UserBox {
   position: relative;
   margin-left: 20px;
   margin-right: 20px;
   z-index: 10;
 }
 
-#LogoBox, #LogoBoxHomepage {
+#LogoBox {
   text-align: center;
 }
 
-#PageTitle, #PageTitleHomepage {
-  font-size: 36px;
+#PageTitle {
   white-space: pre-wrap;
 }
 
+#PageTitle {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+#PageTitleWithSubtitle {
+  font-size: 20px;
+}
+
 #PageSubtitle {
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 #LanguagePickerBox {
@@ -109,21 +118,21 @@ table {
   border-radius: 15px;
 }
 
-#LogoBox, #LogoBoxHomepage {
+#LogoBox {
   width: 300px;
 }
 
-#LogoBox img, #LogoBoxHomepage img {
+#LogoBox img {
   margin: 0 auto;
   width: 200px;
   height: auto;
 }
 
-#TitleBox, #TitleBoxHomepage {
+#TitleBox {
   max-width: 60%;
 }
 
-#UserBox, #UserBoxHomepage {
+#UserBox {
   max-width: 25%;
 }
 
@@ -224,7 +233,7 @@ table {
   font-size: 16px;
 }
 
-.LoginErrorBox, .LoginErrorBoxHomepage {
+.LoginErrorBox {
   margin-top: 10px;
 }
 

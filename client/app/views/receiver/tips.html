@@ -49,7 +49,7 @@
         <tbody id="tipListTableBody" data-ng-controller="TipCtrl"  data-ng-repeat="tip in tips | orderBy:orderProp:reverse">
           <tr id="tip-{{$index}}" class="{{tip.parity}}">
             <td class="col-md-3">
-              <a data-ng-switch="tip.access_counter" href="/#/status/{{tip.id}}">
+              <a class="tip-action-open" data-ng-switch="tip.access_counter" href="/#/status/{{tip.id}}">
                 <span data-ng-switch-when="0" class="btn btn-success col-md-12" style="text-align: left">
                   <span class="glyphicon glyphicon-tint"></span>&nbsp;
                   <span data-translate>Open</span>
@@ -61,11 +61,11 @@
                 </span>
               </a>
               <br /><br />
-              <a data-ng-show="tip.can_postpone_expiration" data-ng-click="tip_postpone(tip.id)" class="btn btn-xs btn-warning"
+              <a class="tip-action-postpone btn btn-xs btn-warning" data-ng-show="tip.can_postpone_expiration" data-ng-click="tip_postpone(tip.id)"
                  popover="{{'Postpone Tip expiration date' | translate}}" popover-placement="top" popover-trigger="mouseenter">
                 <i class="glyphicon glyphicon-time"></i>
               </a>
-              <a data-ng-show="tip.can_delete_submission" data-ng-click="tip_delete(tip.id)" class="btn btn-xs btn-danger"
+              <a class="tip-actioN-delete btn btn-xs btn-danger" data-ng-show="tip.can_delete_submission" data-ng-click="tip_delete(tip.id)"
                  popover="{{'Delete Tip' | translate}}" popover-placement="top" popover-trigger="mouseenter">
                 <span class="glyphicon glyphicon-trash"></span>
               </a>

@@ -1,14 +1,12 @@
   <div class="row">
     <div id="TipCommunicationComments" class="col-md-5" data-ng-if="(tip.enable_private_messages && tip.receivers.length > 1) || !tip.enable_private_messages">
-      <h3>
-        <span data-translate>Additional Information</span>
-      </h3>
-      <textarea data-ng-model="tip.newCommentContent" maxlength="{{node.maximum_textsize}}" class="form-control msd-elastic"></textarea>
+      <div class="TipPageSectionTitle" data-translate>Additional Information</div>
+      <textarea id="TipCommunicationCommentsInput" data-ng-model="tip.newCommentContent" maxlength="{{node.maximum_textsize}}" class="form-control msd-elastic"></textarea>
       <br />
-      <button class="btn btn-success" data-ng-click="newComment()" data-ng-disabled="!tip.newCommentContent || tip.newCommentContent == ''">
+      <a id="comment-action-send" class="btn btn-success" data-ng-click="newComment()" data-ng-disabled="!tip.newCommentContent || tip.newCommentContent == ''">
         <i class="glyphicon glyphicon-comment"></i>
         <span data-translate>Add Additional Information</span>
-      </button>
+      </a>
       <br /><br />
       <div data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
         <div id="comment-{{index}}" data-ng-switch="" on="comment.type">
@@ -16,12 +14,10 @@
           <div data-ng-switch-when="whistleblower" class="alert alert-info">
             <div class="row">
               <div class="col-md-6">
-                <strong>
-                  <span data-translate>Whistleblower</span>
-                </strong>
+                <div data-translate>Whistleblower</div>
               </div>
               <div class="pull-right" style="margin-right:20px">
-                <strong>{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</strong>
+                <div>{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
               </div>
             </div>
             <div class="preformatted">{{comment.content}}</div>
@@ -30,10 +26,10 @@
           <div data-ng-switch-when="receiver" class="alert alert-success">
             <div class="row">
               <div class="col-md-6">
-                <strong>{{comment.author}}</strong>
+                <div>{{comment.author}}</div>
               </div>
               <div class="pull-right" style="margin-right:20px">
-                <strong>{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</strong>
+                <div>{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
               </div>
             </div>
             <div class="preformatted">{{comment.content}}</div>
@@ -42,12 +38,10 @@
           <div data-ng-switch-when="system" class="alert alert-warning">
             <div class="row">
               <div class="col-md-6">
-                <strong>
-                  <span data-translate>System</span>
-                </strong>
+                <div data-translate>System</div>
               </div>
               <div class="pull-right" style="margin-right:20px">
-                <strong>{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</strong>
+                <div>{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
               </div>
             </div>
 
@@ -70,16 +64,12 @@
     <div id="TipCommunicationMessages" class="col-md-5" data-ng-if="tip.enable_private_messages">
       <div data-ng-switch="" on="role">
         <div data-ng-switch-when="receiver">
-          <div>
-            <h3>
-              <span data-translate>Private Messages</span>
-            </h3>
-          </div>
+          <div class="TipPageSectionTitle" data-translate>Private Messages</div>
         </div>
         <div data-ng-switch-when="wb">
           <div class="row">
             <div class="col-md-6">
-              <span data-translate>Private Messages</span>
+              <span class="TipPageSectionTitle" data-translate>Private Messages</span>
             </div>
             <div class="col-md-6" data-ng-if="tip.receivers.length > 1">
               <select data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
@@ -87,12 +77,12 @@
           </div>
         </div>
       </div>
-      <textarea data-ng-model="tip.newMessageContent" maxlength="{{node.maximum_textsize}}" class="form-control msd-elastic"></textarea>
+      <textarea id="TipCommunicationMessagesInput" data-ng-model="tip.newMessageContent" maxlength="{{node.maximum_textsize}}" class="form-control msd-elastic"></textarea>
       <br />
-      <button class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (role == 'wb' && !tip.msg_receiver_selected)">
+      <a id="message-action-send" class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (role == 'wb' && !tip.msg_receiver_selected)">
         <i class="glyphicon glyphicon-envelope"></i>
         <span data-translate>Send Private Message</span>
-      </button>
+      </a>
       <br /><br />
       <div data-ng-repeat="message in tip.messages | orderBy:'creation_date':true">
         <div id="message-{{$index}}" data-ng-switch="" on="message.type">
@@ -100,12 +90,10 @@
           <div data-ng-switch-when="whistleblower" class="alert alert-info">
             <div class="row">
               <div class="col-md-6">
-                <strong>
-		  <span data-translate>Whistleblower</span>
-                </strong>
+		<div data-translate>Whistleblower</div>
               </div>
               <div class="pull-right" style="margin-right:20px">
-                <strong>{{message.creation_date | date:'dd-MM-yyyy HH:mm'}}</strong>
+                <div>{{message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
               </div>
             </div>
             <div class="preformatted">{{message.content}}</div>
@@ -114,10 +102,10 @@
           <div data-ng-switch-when="receiver" class="alert alert-success">
             <div class="row">
               <div class="col-md-6">
-                <strong>{{message.author}}</strong>
+                <div>{{message.author}}</div>
               </div>
               <div class="pull-right" style="margin-right:20px">
-                <strong>{{message.creation_date | date:'dd-MM-yyyy HH:mm'}}</strong>
+                <div>{{message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
               </div>
             </div>
             <div class="preformatted">{{message.content}}</div>
