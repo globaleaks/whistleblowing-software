@@ -235,6 +235,10 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       $scope.route_check();
     });
 
+    $scope.$on('$routeChangeSuccess', function() {
+      $scope.set_title();
+    });
+
     $scope.$on("REFRESH", function() {
       $scope.reload();
     });
