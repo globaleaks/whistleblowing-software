@@ -178,6 +178,16 @@
     </div>
 
     <div class="form-group">
+      <label data-translate>Minimum amount of seconds before accept a submission</label>
+      <input class="form-control" data-ng-model="admin.node.submission_minimum_delay" type="number" />
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Maximum amount of seconds which a session can remain open</label>
+      <input class="form-control" data-ng-model="admin.node.submission_maximum_ttl" type="number" />
+    </div>
+
+    <div class="form-group">
       <a href="#/admin/fields">
         <span data-translate>Preconfigure Fields Templates</span>
       </a>
