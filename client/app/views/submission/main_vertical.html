@@ -26,8 +26,9 @@
       </div>
     </div>
     <div id="SubmitBox">
-      <button class="btn btn-success SubmitButton" data-ng-click="submit()" data-ng-disabled="submission.uploading || submissionForm.$invalid || !receiver_selected" type="submit">
-        <i class="glyphicon glyphicon-ok"></i>
+      <button id="SubmissionButton" class="btn SubmitButton" data-ng-click="submit()" data-ng-disabled="submission.uploading || submissionForm.$invalid || !receiver_selected" type="submit">
+        <i id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
+        <i id="SubmitIconOK" style="display: none;" class="glyphicon glyphicon-ok"></i>
         <span data-translate>Submit</span>
       </button>
     </div>
