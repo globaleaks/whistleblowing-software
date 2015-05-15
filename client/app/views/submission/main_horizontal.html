@@ -56,9 +56,10 @@
       </li>
     </ul>
   </div>
-  <div id="SubmitBox" class="pager pull-left" data-ng-if="!hasNextStep()">
-    <button id="SubmitButton" class="btn btn-success" data-ng-click="submission.submit()" data-ng-disabled="submission.uploading || submissionForm.$invalid || !receiver_selected" type="submit">
-      <i class="glyphicon glyphicon-ok"></i>
+  <div id="SubmitBox" class="pager pull-left" style="margin-left: 20px" data-ng-show="!hasNextStep()">
+    <button id="SubmissionButton" class="btn btn-success" data-ng-click="submission.submit()" data-ng-disabled="submission.uploading || submissionForm.$invalid || !receiver_selected" type="submit">
+      <i id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
+      <i id="SubmitIconOK" style="display: none;" class="glyphicon glyphicon-ok"></i>
       <span data-translate>Submit</span>
     </button>
   </div>

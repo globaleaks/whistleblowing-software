@@ -46,8 +46,16 @@ GLClient.controller('SubmissionCtrl',
   };
 
     $scope.$on('timer-tick', function (event, args) {
+
+      $("#SubmissionButton").removeClass('btn-success');
+      $("#SubmissionButton").addClass('btn-danger');
+
       if (args.millis == 0) {
-        $("#CountDown").hide();
+        $("#SubmitIconOK").show();
+        $("#SubmitIconWait").hide();
+        $("#SubmissionButton").addClass('btn-success')
+        $("#SubmissionButton").removeClass('btn-danger');
+        $("#CountDown").fadeOut(1000);
       }
     });
 
