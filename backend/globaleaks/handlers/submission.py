@@ -10,8 +10,9 @@ import copy
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.settings import transact, GLSetting
-from globaleaks.models import Context, InternalTip, Receiver, WhistleblowerTip, \
-    Node, InternalFile
+from globaleaks.models import Node, Context, Receiver, \
+    InternalTip, ReceiverTip, WhistleblowerTip, \
+    InternalFile
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin import db_get_context_steps
@@ -37,8 +38,21 @@ def wb_serialize_internaltip(internaltip):
 
     return response
 
+def db_create_receivertip(store, receiver, internaltip):
+    """
+    Create ReceiverTip for the required tier of Receiver.
+    """
+    log.debug('Creating ReceiverTip for receiver: %s' % receiver.id)
 
-def db_create_whistleblower_tip(store, submission_desc):
+    receivertip = ReceiverTip()
+    receivertip.internaltip_id = internaltip.id
+    receivertip.receiver_id = receiver.id
+
+    store.add(receivertip)
+
+    return receivertip.id
+
+def db_create_whistleblower_tip(store, internaltip):
     """
     The plaintext receipt is returned only now, and then is
     stored hashed in the WBtip table
@@ -51,9 +65,19 @@ def db_create_whistleblower_tip(store, submission_desc):
 
     wbtip.receipt_hash = security.hash_password(receipt, node.receipt_salt)
     wbtip.access_counter = 0
-    wbtip.internaltip_id = submission_desc['id']
+    wbtip.internaltip_id = internaltip.id
 
     store.add(wbtip)
+
+    created_rtips = []
+
+    for receiver in internaltip.receivers:
+        rtip_id = db_create_receivertip(store, receiver, internaltip)
+
+    internaltip.new = False
+
+    if len(created_rtips):
+        log.debug("The finalized submissions had created %d ReceiverTip(s)" % len(created_rtips))
 
     return receipt
 
@@ -198,7 +222,12 @@ def db_create_submission(store, token, request, language):
         log.err("Submission create: receivers import fail: %s" % excep)
         raise excep
 
+    receipt = db_create_whistleblower_tip(store, submission)
+
     submission_dict = wb_serialize_internaltip(submission)
+
+    submission_dict.update({'receipt': receipt})
+
     return submission_dict
 
 
@@ -266,14 +295,6 @@ class SubmissionInstance(BaseHandler):
 
         PUT finalize the submission
         """
-
-        @transact
-        def put_transact(store, token, request):
-            status = db_create_submission(store, token, request, self.request.language)
-            receipt = db_create_whistleblower_tip(store, status)
-            status.update({'receipt': receipt})
-            return status
-
         request = self.validate_message(self.request.body, requests.SubmissionDesc)
 
         # the .get method raise an exception if the token is invalid
@@ -284,7 +305,7 @@ class SubmissionInstance(BaseHandler):
 
         token.validate(request)
 
-        status = yield put_transact(token, request)
+        status = yield create_submission(token, request, self.request.language)
 
         TokenList.delete(token_id)
 

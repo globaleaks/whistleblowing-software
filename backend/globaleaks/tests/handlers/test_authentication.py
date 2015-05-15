@@ -124,7 +124,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_full_submission_actions()
         handler = self.request({
             'username': '',
-            'password': self.dummyWBTip,
+            'password': self.dummySubmission['receipt'],
             'role': 'wb'
         })
         yield handler.post()
@@ -136,7 +136,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_full_submission_actions()
         handler = self.request({
             'username': '',
-            'password': self.dummyWBTip,
+            'password': self.dummySubmission['receipt'],
             'role': 'wb'
         })
         GLSetting.memory_copy.tor2web_submission = True
@@ -148,7 +148,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_full_submission_actions()
         handler = self.request({
             'username': '',
-            'password': self.dummyWBTip,
+            'password': self.dummySubmission['receipt'],
             'role': 'wb'
         }, headers={'X-Tor2Web': 'whatever'})
         GLSetting.memory_copy.tor2web_submission = False
@@ -216,7 +216,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_full_submission_actions()
         handler = self.request({
             'username': '',
-            'password': self.dummyWBTip,
+            'password': self.dummySubmission['receipt'],
             'role': 'wb'
         })
         yield handler.post()
