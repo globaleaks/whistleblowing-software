@@ -2,16 +2,17 @@
 
 set -e
 
+# build the client
+cd $TRAVIS_BUILD_DIR/client  # to test backend handlers
+bower install && grunt build
+
 if [ "$TEST_SUITE" = "units" ]; then
 
   cd $TRAVIS_BUILD_DIR/backend  # to run backend tests
   coverage run setup.py test
   coveralls || true
-  cd $TRAVIS_BUILD_DIR/client  # to test backend handlers
-  bower install && grunt build --resource master
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis
   node_modules/mocha/bin/mocha -R list tests/glbackend/test_00* --timeout 4000
-  $TRAVIS_BUILD_DIR/scripts/travis_saucelabs.sh
 
 elif [ "$TEST_SUITE" = "end2end" ]; then
 
