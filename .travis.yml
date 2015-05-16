@@ -5,8 +5,9 @@ env:
   global:
     - secure: Fd+dALSXhRgP44UaiED0xbJMHLxzON1Vcu6ufxDGgyl9NYepT0cfMGczLocfawc35ig++SyfytfpaPRhy3yG7WhNiBmpq+M1rec5MDKh/tFSKV/JOmLxbUIAxByIgTH39e+bY2El0h+vqiB12JiArahBzraYMYY+Xkty3Ysr+9o=
     - secure: clvOWlojaHQMHGhrN+sG+jOVLAsGJQFpzlUBv+8tKNy+Xbv/XPOQvnzqFTCdRlHSd39wnwIQTwOCWaCYhEECEyqgpaxYlYpSPsUOmk12aSxfjH5YGdwFqZvqhw1rkBpaEyoLh4PT0d1oLeCcJvb0jNuU4YbYOtq7DIRJDih/hPg=
-  - TEST_SUITE=units
-  - TEST_SUITE=end2end
+  matrix:
+    - TEST_SUITE=units
+    - TEST_SUITE=end2end
 addons:
   sauce_connect: true
 install:
