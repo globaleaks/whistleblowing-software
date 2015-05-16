@@ -5,13 +5,11 @@ env:
   global:
     - secure: Fd+dALSXhRgP44UaiED0xbJMHLxzON1Vcu6ufxDGgyl9NYepT0cfMGczLocfawc35ig++SyfytfpaPRhy3yG7WhNiBmpq+M1rec5MDKh/tFSKV/JOmLxbUIAxByIgTH39e+bY2El0h+vqiB12JiArahBzraYMYY+Xkty3Ysr+9o=
     - secure: clvOWlojaHQMHGhrN+sG+jOVLAsGJQFpzlUBv+8tKNy+Xbv/XPOQvnzqFTCdRlHSd39wnwIQTwOCWaCYhEECEyqgpaxYlYpSPsUOmk12aSxfjH5YGdwFqZvqhw1rkBpaEyoLh4PT0d1oLeCcJvb0jNuU4YbYOtq7DIRJDih/hPg=
+  - TEST_SUITE=units
+  - TEST_SUITE=end2end
 addons:
   sauce_connect: true
-before_install:
-  - curl -sL https://deb.nodesource.com/setup | sudo bash -
-  - sudo apt-get update -qq
 install:
-  - sudo apt-get install tor tor-geoipdb nodejs
   - cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
   - pip install -r requirements.txt
   - pip install coverage coveralls
@@ -19,11 +17,4 @@ install:
   - npm install -g grunt grunt-cli bower
   - npm install
 script:
-  - cd $TRAVIS_BUILD_DIR/backend  # to run backend tests
-  - coverage run setup.py test
-  - coveralls || true
-  - cd $TRAVIS_BUILD_DIR/client  # to test backend handlers
-  - bower install && grunt build --resource master
-  - $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9
-  - node_modules/mocha/bin/mocha -R list tests/glbackend/test_00* --timeout 4000
-  - $TRAVIS_BUILD_DIR/scripts/travis_saucelabs.sh
+  - $TRAVIS_BUILD_DIR/scripts/travis.sh
