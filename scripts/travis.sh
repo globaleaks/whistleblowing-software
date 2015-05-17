@@ -12,7 +12,7 @@ if [ "$TEST_SUITE" = "units" ]; then
   coverage run setup.py test
   coveralls || true
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis
-  node_modules/mocha/bin/mocha -R list tests/glbackend/test_00* --timeout 4000
+  $TRAVIS_BUILD_DIR/client/node_modules/mocha/bin/mocha -R list $TRAVIS_BUILD_DIR/client/tests/glbackend/test_00* --timeout 4000
 
 elif [ "$TEST_SUITE" = "end2end" ]; then
 
