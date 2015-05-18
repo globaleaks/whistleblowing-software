@@ -8,8 +8,8 @@ describe('admin add receivers', function() {
       return element(by.css('[data-ng-click="add_receiver()"]')).click();
     };
 
-    add_receiver("Receiver 2", "globaleaks-receiver1@mailinator.com").then(function() {
-      add_receiver("Receiver 3", "globaleaks-receiver2@mailinator.com");
+    add_receiver("Receiver 2", "globaleaks-receiver2@mailinator.com").then(function() {
+      add_receiver("Receiver 3", "globaleaks-receiver3@mailinator.com");
     });
 
   });
