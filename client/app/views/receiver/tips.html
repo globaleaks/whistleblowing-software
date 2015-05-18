@@ -49,7 +49,7 @@
         <tbody id="tipListTableBody" data-ng-controller="TipCtrl"  data-ng-repeat="tip in tips | orderBy:orderProp:reverse">
           <tr id="tip-{{$index}}" class="{{tip.parity}}">
             <td class="col-md-3">
-              <a class="tip-action-open" data-ng-switch="tip.access_counter" href="/#/status/{{tip.id}}">
+              <a class="tip-action-open" data-ng-switch="tip.access_counter" href="#/status/{{tip.id}}">
                 <span data-ng-switch-when="0" class="btn btn-success col-md-12" style="text-align: left">
                   <span class="glyphicon glyphicon-tint"></span>&nbsp;
                   <span data-translate>Open</span>

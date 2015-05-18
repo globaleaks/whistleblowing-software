@@ -8,7 +8,7 @@ angular.module('resourceServices.authentication', [])
         var self = this;
 
         $rootScope.login = function(username, password, role, cb) {
-          return $http.post('/authentication', {'username': username,
+          return $http.post('authentication', {'username': username,
                                                 'password': password,
                                                 'role': role})
             .success(function(response) {
@@ -24,11 +24,11 @@ angular.module('resourceServices.authentication', [])
               self.auth_landing_page = '';
 
               if (self.role === 'admin') {
-                  self.homepage = '/#/admin/landing';
+                  self.homepage = '#/admin/landing';
                   self.auth_landing_page = '/admin/landing';
               }
               if (self.role === 'receiver') {
-                self.homepage = '/#/receiver/tips';
+                self.homepage = '#/receiver/tips';
                 if (self.password_change_needed) {
                     self.auth_landing_page = '/receiver/firstlogin';
                 } else {
@@ -81,8 +81,8 @@ angular.module('resourceServices.authentication', [])
           // we use $http['delete'] in place of $http.delete due to
           // the magical IE7/IE8 that do not allow delete as identifier
           // https://github.com/globaleaks/GlobaLeaks/issues/943
-          $http['delete']('/authentication').then(self.logout_performed,
-                                                  self.logout_performed);
+          $http['delete']('authentication').then(self.logout_performed,
+                                                 self.logout_performed);
 
         };
 
@@ -214,7 +214,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     return $cacheFactory('GLCache');
 }]).
   factory('Node', ['$resource', 'GLCache', function($resource, GLCache) {
-    return $resource('/node', {}, {
+    return $resource('node', {}, {
       get: {
         method: 'GET',
         cache: GLCache
@@ -222,7 +222,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     });
 }]).
   factory('Contexts', ['$resource', 'GLCache', function($resource, GLCache) {
-    return $resource('/contexts', {}, {
+    return $resource('contexts', {}, {
       get: {
         method: 'GET',
         cache: GLCache
@@ -230,7 +230,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     });
 }]).
   factory('Receivers', ['$resource', 'GLCache', function($resource, GLCache) {
-    return $resource('/receivers', {}, {
+    return $resource('receivers', {}, {
       get: {
         method: 'GET',
         cache: GLCache
@@ -242,7 +242,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('Submission', ['$resource', '$filter', '$location', 'Authentication', 'Node', 'Contexts', 'Receivers',
   function($resource, $filter, $location, Authentication, Node, Contexts, Receivers) {
 
-    var submissionResource = $resource('/submission/:token_id/',
+    var submissionResource = $resource('submission/:token_id/',
         {token_id: '@token_id'},
         {submit:
           {method: 'PUT'}
@@ -403,10 +403,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('Tip', ['$resource', 'Receivers',
           function($resource, Receivers) {
 
-    var tipResource = $resource('/rtip/:tip_id', {tip_id: '@id'}, {update: {method: 'PUT'}});
-    var receiversResource = $resource('/rtip/:tip_id/receivers', {tip_id: '@tip_id'}, {});
-    var commentsResource = $resource('/rtip/:tip_id/comments', {tip_id: '@tip_id'}, {});
-    var messageResource = $resource('/rtip/:tip_id/messages', {tip_id: '@tip_id'}, {});
+    var tipResource = $resource('rtip/:tip_id', {tip_id: '@id'}, {update: {method: 'PUT'}});
+    var receiversResource = $resource('rtip/:tip_id/receivers', {tip_id: '@tip_id'}, {});
+    var commentsResource = $resource('rtip/:tip_id/comments', {tip_id: '@tip_id'}, {});
+    var messageResource = $resource('rtip/:tip_id/messages', {tip_id: '@tip_id'}, {});
 
     return function(tipID, fn) {
       var self = this,
@@ -460,10 +460,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     var forEach = angular.forEach;
 
-    var tipResource = $resource('/wbtip', {}, {update: {method: 'PUT'}});
-    var receiversResource = $resource('/wbtip/receivers', {}, {});
-    var commentsResource = $resource('/wbtip/comments', {}, {});
-    var messageResource = $resource('/wbtip/messages/:id', {id: '@id'}, {});
+    var tipResource = $resource('wbtip', {}, {update: {method: 'PUT'}});
+    var receiversResource = $resource('wbtip/receivers', {}, {});
+    var commentsResource = $resource('wbtip/comments', {}, {});
+    var messageResource = $resource('wbtip/messages/:id', {id: '@id'}, {});
 
     return function(fn) {
       var self = this;
@@ -540,16 +540,16 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     };
 }]).
   factory('ReceiverPreferences', ['$resource', function($resource) {
-    return $resource('/receiver/preferences', {}, {'update': {method: 'PUT'}});
+    return $resource('receiver/preferences', {}, {'update': {method: 'PUT'}});
 }]).
   factory('ReceiverTips', ['$resource', function($resource) {
-    return $resource('/receiver/tips', {}, {'update': {method: 'PUT'}});
+    return $resource('receiver/tips', {}, {'update': {method: 'PUT'}});
 }]).
   factory('ReceiverNotification', ['$resource', function($resource) {
-    return $resource('/receiver/notifications');
+    return $resource('receiver/notifications');
 }]).
   factory('ReceiverOverview', ['$resource', function($resource) {
-    return $resource('/admin/overview/users');
+    return $resource('admin/overview/users');
 }]).
   factory('Admin', ['$resource', function($resource) {
     var self = this,
@@ -557,8 +557,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     function Admin() {
       var self = this,
-        adminContextsResource = $resource('/admin/contexts'),
-        adminContextResource = $resource('/admin/context/:context_id',
+        adminContextsResource = $resource('admin/contexts'),
+        adminContextResource = $resource('admin/context/:context_id',
           {context_id: '@id'},
           {
             update: {
@@ -566,8 +566,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
           }
         ),
-        adminFieldsResource = $resource('/admin/fields'),
-        adminFieldResource = $resource('/admin/field/:field_id', 
+        adminFieldsResource = $resource('admin/fields'),
+        adminFieldResource = $resource('admin/field/:field_id', 
           {field_id: '@id'},
           {
             update: {
@@ -575,8 +575,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
           }
         ),
-        adminFieldTemplatesResource = $resource('/admin/fieldtemplates'),
-        adminFieldTemplateResource = $resource('/admin/fieldtemplate/:template_id',
+        adminFieldTemplatesResource = $resource('admin/fieldtemplates'),
+        adminFieldTemplateResource = $resource('admin/fieldtemplate/:template_id',
           {template_id: '@id'},
           {
             update: {
@@ -584,8 +584,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
           }
         ),
-        adminReceiversResource = $resource('/admin/receivers'),
-        adminReceiverResource = $resource('/admin/receiver/:receiver_id',
+        adminReceiversResource = $resource('admin/receivers'),
+        adminReceiverResource = $resource('admin/receiver/:receiver_id',
           {receiver_id: '@id'},
           {
             update: {
@@ -593,8 +593,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
           }
         ),
-        adminNodeResource = $resource('/admin/node', {}, {update: {method: 'PUT'}}),
-        adminNotificationResource = $resource('/admin/notification', {}, {update: {method: 'PUT'}});
+        adminNodeResource = $resource('admin/node', {}, {update: {method: 'PUT'}}),
+        adminNotificationResource = $resource('admin/notification', {}, {update: {method: 'PUT'}});
 
       adminNodeResource.prototype.toString = function() { return "Admin Node"; };
       adminContextsResource.prototype.toString = function() { return "Admin Contexts"; };
@@ -742,28 +742,28 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
 }]).
   factory('TipOverview', ['$resource', function($resource) {
-    return $resource('/admin/overview/tips');
+    return $resource('admin/overview/tips');
 }]).
   factory('FileOverview', ['$resource', function($resource) {
-    return $resource('/admin/overview/files');
+    return $resource('admin/overview/files');
 }]).
   factory('StatsCollection', ['$resource', function($resource) {
-    return $resource('/admin/stats/:week_delta', {week_delta: '@week_delta'}, {});
+    return $resource('admin/stats/:week_delta', {week_delta: '@week_delta'}, {});
 }]).
   factory('AnomaliesCollection', ['$resource', function($resource) {
-    return $resource('/admin/anomalies');
+    return $resource('admin/anomalies');
 }]).
   factory('AnomaliesHistCollection', ['$resource', function($resource) {
-    return $resource('/admin/history');
+    return $resource('admin/history');
 }]).
   factory('ActivitiesCollection', ['$resource', function($resource) {
-    return $resource('/admin/activities/details');
+    return $resource('admin/activities/details');
 }]).
   factory('StaticFiles', ['$resource', function($resource) {
-    return $resource('/admin/staticfiles');
+    return $resource('admin/staticfiles');
 }]).
   factory('DefaultAppdata', ['$resource', function($resource) {
-    return $resource('/data/appdata_l10n.json', {});
+    return $resource('data/appdata_l10n.json', {});
 }]).
   factory('passwordWatcher', ['$parse', function($parse) {
     return function(scope, password) {

@@ -2,8 +2,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
   function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $modal, Authentication, Node, Contexts, Receivers, WhistleblowerTip, GLCache) {
     $scope.started = false;
     $scope.rtl = false;
-    $scope.logo = '/static/globaleaks_logo.png';
-    $scope.build_stylesheet = '/styles.css';
+    $scope.logo = 'static/globaleaks_logo.png';
+    $scope.build_stylesheet = 'styles.css';
 
     $rootScope.language = $location.search().lang;
 
@@ -125,8 +125,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     var init = function () {
 
-      $scope.logo = '/static/globaleaks_logo.png?' + $scope.randomFluff();
-      $scope.build_stylesheet = "/styles.css?" + $scope.randomFluff();
+      $scope.logo = 'static/globaleaks_logo.png?' + $scope.randomFluff();
+      $scope.build_stylesheet = "styles.css?" + $scope.randomFluff();
 
       Node.get(function(node, getResponseHeaders) {
         $scope.node = node;
@@ -185,10 +185,10 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
           if (["ar", "he", "ur"].indexOf(language) !== -1) {
             $scope.rtl = true;
-            $scope.build_stylesheet = "/styles-rtl.css";
+            $scope.build_stylesheet = "styles-rtl.css";
           } else {
             $scope.rtl = false;
-            $scope.build_stylesheet = "/styles.css";
+            $scope.build_stylesheet = "styles.css";
           }
 
           $translate.use($rootScope.language);

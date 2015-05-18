@@ -101,7 +101,7 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher', 'C
     };
 
     $scope.updateReceiverImgUrl = function() {
-      $scope.receiverImgUrl = "/static/" + $scope.receiver.id + ".png?" + $scope.randomFluff();
+      $scope.receiverImgUrl = "static/" + $scope.receiver.id + ".png?" + $scope.randomFluff();
     };
 
     $scope.updateReceiverImgUrl();
