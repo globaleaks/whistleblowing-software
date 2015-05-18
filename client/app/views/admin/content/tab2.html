@@ -4,7 +4,7 @@
       <label data-translate>Current project logo</label>
       <div class="imageUpload" data-ng-controller="AdminFileUploadCtrl">
         <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
-          <div flow-init="{target: '/admin/staticfiles/globaleaks_logo', headers: get_auth_headers()}"
+          <div flow-init="{target: 'admin/staticfiles/globaleaks_logo', headers: get_auth_headers()}"
               flow-files-submitted="$flow.upload()"
               flow-file-success="reload()"
               class="uploadfile">
@@ -24,7 +24,7 @@
         (<span data-translate>CSS</span>)
       </label>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
-        <span flow-init="{target: '/admin/staticfiles/custom_stylesheet', headers: get_auth_headers()}"
+        <span flow-init="{target: 'admin/staticfiles/custom_stylesheet', headers: get_auth_headers()}"
             flow-files-submitted="$flow.upload()"
             flow-file-success="reload()">
           <div class="btn btn-success fileinput-button">
@@ -35,11 +35,11 @@
           </div>
         </span>
         <span data-ng-if="fileExists('custom_stylesheet.css')">
-          <a class="btn btn-primary" data-ng-href="{{'/static/custom_stylesheet.css'}}" download="custom_stylesheet.css">
+          <a class="btn btn-primary" data-ng-href="{{'static/custom_stylesheet.css'}}" download="custom_stylesheet.css">
             <span class="glyphicon glyphicon-download"></span>
             <span data-translate>Download</span>
           </a>
-          <a class="btn btn-danger" data-ng-click="perform_delete('/admin/staticfiles/custom_stylesheet.css')">
+          <a class="btn btn-danger" data-ng-click="perform_delete('admin/staticfiles/custom_stylesheet.css')">
             <span class="glyphicon glyphicon-trash"></span>
             <span data-translate>Delete</span>
           </a>
@@ -50,7 +50,7 @@
         (<span data-translate>Home Page</span>)
       </label>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
-        <span flow-init="{target: '/admin/staticfiles/custom_homepage', headers: get_auth_headers()}"
+        <span flow-init="{target: 'admin/staticfiles/custom_homepage', headers: get_auth_headers()}"
             flow-files-submitted="$flow.upload()">
           <div class="btn btn-success fileinput-button">
             <span class="uploadfile" flow-btn>
@@ -60,11 +60,11 @@
           </div>
         </span>
         <span data-ng-show="fileExists('custom_homepage.html')">
-          <a class="btn btn-primary" data-ng-href="{{'/static/custom_homepage.html'}}" download="homepage.html">
+          <a class="btn btn-primary" data-ng-href="{{'static/custom_homepage.html'}}" download="homepage.html">
             <span class="glyphicon glyphicon-download"></span>
             <span data-translate>Download</span>
           </a>
-          <a class="btn btn-danger" data-ng-click="perform_delete('/admin/staticfiles/custom_homepage.html')">
+          <a class="btn btn-danger" data-ng-click="perform_delete('admin/staticfiles/custom_homepage.html')">
             <span class="glyphicon glyphicon-trash"></span>
             <span data-translate>Delete</span>
           </a>
@@ -74,7 +74,7 @@
       <br />
       <span data-translate>The file will be available at the URL: /static/$filename</span>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
-        <span flow-init="{target: '/admin/staticfiles/customization', headers: get_auth_headers()}"
+        <span flow-init="{target: 'admin/staticfiles/customization', headers: get_auth_headers()}"
             flow-files-submitted="$flow.upload()">
           <div class="btn btn-success fileinput-button">
             <span class="uploadfile" flow-btn>
@@ -100,11 +100,11 @@
             <tr>
               <td>{{file.filename}}</td>
               <td>
-                <a class="btn btn-primary" data-ng-href="{{'/static/' + file.filename}}" download="{{file.filename}}">
+                <a class="btn btn-primary" data-ng-href="{{'static/' + file.filename}}" download="{{file.filename}}">
                   <span class="glyphicon glyphicon-download"></span>
                   <span data-translate>Download</span>
                 </a>
-                <a class="btn btn-danger" data-ng-click="perform_delete('/admin/staticfiles/' + file.filename)">
+                <a class="btn btn-danger" data-ng-click="perform_delete('admin/staticfiles/' + file.filename)">
                   <span class="glyphicon glyphicon-trash"></span>
                   <span data-translate>Delete</span>
                 </a>

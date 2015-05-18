@@ -125,7 +125,7 @@ GLClient.controller('SubmissionCtrl',
       return;
     }
 
-    return '/submission/' + $scope.submission.current_submission.id + '/file';
+    return 'submission/' + $scope.submission.current_submission.id + '/file';
   };
 
 
