@@ -201,8 +201,9 @@ module.exports = function(grunt) {
           ],
           public: "public",
           maxRetries: 3,
-          pollInterval: 4000,
-          statusCheckAttempts: 200,
+          pollInterval: 10000,
+          statusCheckAttempts: 5000,
+          throttled: 3,
           sauceConfig: {'recordVideo': false}
         }
       },
