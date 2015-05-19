@@ -1,5 +1,5 @@
-browser_capabilities = JSON.parse(process.env.TEST_E2E)
-browser_capabilities['name'] = 'GlobaLeaks Travis Test using Protractor'
+browser_capabilities = JSON.parse(process.env.GLTEST)
+browser_capabilities['name'] = 'GlobaLeaks-E2E'
 browser_capabilities['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER
 browser_capabilities['build'] = process.env.TRAVIS_BUILD_NUMBER
 
