@@ -6,21 +6,18 @@ env:
     - secure: Fd+dALSXhRgP44UaiED0xbJMHLxzON1Vcu6ufxDGgyl9NYepT0cfMGczLocfawc35ig++SyfytfpaPRhy3yG7WhNiBmpq+M1rec5MDKh/tFSKV/JOmLxbUIAxByIgTH39e+bY2El0h+vqiB12JiArahBzraYMYY+Xkty3Ysr+9o=
     - secure: clvOWlojaHQMHGhrN+sG+jOVLAsGJQFpzlUBv+8tKNy+Xbv/XPOQvnzqFTCdRlHSd39wnwIQTwOCWaCYhEECEyqgpaxYlYpSPsUOmk12aSxfjH5YGdwFqZvqhw1rkBpaEyoLh4PT0d1oLeCcJvb0jNuU4YbYOtq7DIRJDih/hPg=
   matrix:
-    - TEST_E2E="false"
-    - TEST_E2E='{"browserName":"firefox", "platform":"Linux"}'
-    - TEST_E2E='{"browserName":"firefox", "platform":"OS X 10.10"}'
-    - TEST_E2E='{"browserName":"firefox", "version":"36.0", "platform":"Windows 8.1"}'
-    - TEST_E2E='{"browserName":"firefox", "version":"37.0", "platform":"Windows 8.1"}'
-    - TEST_E2E='{"browserName":"chrome", "platform":"Linux"}'
-    - TEST_E2E='{"browserName":"chrome", "platform":"OS X 10.10"}'
-    - TEST_E2E='{"browserName":"chrome", "version":"37.0", "platform":"Windows 8.1"}'
-    - TEST_E2E='{"browserName":"chrome", "version":"38.0", "platform":"Windows 8.1"}'
-    - TEST_E2E='{"browserName":"chrome", "version":"39.0", "platform":"Windows 8.1"}'
-    - TEST_E2E='{"browserName":"chrome", "version":"40.0", "platform":"Windows 8.1"}'
-    - TEST_E2E='{"browserName":"chrome", "version":"41.0", "platform":"Windows 8.1"}'
-    - TEST_E2E='{"browserName":"chrome", "version":"42.0", "platform":"Windows 8.1"}'
-    - TEST_E2E='{"browserName":"safari", "platform":"OS X 10.10"}'
-    - TEST_E2E='{"browserName":"internet explorer", "version":"11", "platform":"Windows 8.1"}'
+    - GLTEST='false'
+    - GLTEST='loader-only'
+    - GLTEST='{"browserName":"firefox", "version":"36.0", "platform":"Windows 8.1"}'
+    - GLTEST='{"browserName":"firefox", "version":"37.0", "platform":"Windows 8.1"}'
+    - GLTEST='{"browserName":"chrome", "version":"37.0", "platform":"Windows 8.1"}'
+    - GLTEST='{"browserName":"chrome", "version":"38.0", "platform":"Windows 8.1"}'
+    - GLTEST='{"browserName":"chrome", "version":"39.0", "platform":"Windows 8.1"}'
+    - GLTEST='{"browserName":"chrome", "version":"40.0", "platform":"Windows 8.1"}'
+    - GLTEST='{"browserName":"chrome", "version":"41.0", "platform":"Windows 8.1"}'
+    - GLTEST='{"browserName":"chrome", "version":"42.0", "platform":"Windows 8.1"}'
+    - GLTEST='{"browserName":"safari", "platform":"OS X 10.10"}'
+    - GLTEST='{"browserName":"internet explorer", "version":"11", "platform":"Windows 8.1"}'
 addons:
   sauce_connect: true
 install:
