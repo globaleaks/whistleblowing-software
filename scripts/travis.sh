@@ -15,7 +15,7 @@ if [ "$GLTEST" = "false" ]; then
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis
   $TRAVIS_BUILD_DIR/client/node_modules/mocha/bin/mocha -R list $TRAVIS_BUILD_DIR/client/tests/api/test_00* --timeout 4000
 
-else [ "$GLTEST" = "loader-only" ]; then
+elif [ "$GLTEST" = "loader-only" ]; then
 
   echo "Mocha test: $GLTEST"
   grunt test-loader-saucelabs

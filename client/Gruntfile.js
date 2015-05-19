@@ -77,8 +77,9 @@ module.exports = function(grunt) {
     },
 
     useminPrepare: {
-      html: ['tmp/index.html',
-             'tmp/globaleaks.html',
+      html: [
+        'tmp/index.html',
+        'tmp/globaleaks.html',
       ],
       options: {
         dest: 'tmp'
@@ -86,8 +87,9 @@ module.exports = function(grunt) {
     },
 
     usemin: {
-      html: ['tmp/views/**/*.html',
-             'tmp/index.html',
+      html: [
+        'tmp/views/**/*.html',
+        'tmp/index.html',
       ],
       options: {
         dirs: ['tmp']
@@ -97,14 +99,16 @@ module.exports = function(grunt) {
     cssmin: {
       combine: {
         files: {
-          'tmp/styles-rtl.css': [ 'tmp/components/bootstrap-rtl/dist/css/bootstrap-rtl.css',
-                                  'tmp/components/jquery-file-upload/css/jquery.fileupload.css',
-                                  'tmp/components/jquery-file-upload/css/jquery.fileupload-ui.css',
-                                  'tmp/styles/main.css',
-                                  'tmp/styles/admin.css',
-                                  'tmp/styles/home.css',
-                                  'tmp/styles/submission.css',
-                                  'tmp/styles/rtl.css']
+          'tmp/styles-rtl.css': [
+            'tmp/components/bootstrap/dist/css/bootstrap.css',
+            'tmp/components/bootstrap-rtl/dist/css/bootstrap-rtl.css',
+            'tmp/components/ng-sortable/dist/ng-sortable.css',
+            'tmp/styles/main.css',
+            'tmp/styles/admin.css',
+            'tmp/styles/home.css',
+            'tmp/styles/submission.css',
+            'tmp/styles/rtl.css'
+          ]
         }
       }
     },
@@ -208,22 +212,11 @@ module.exports = function(grunt) {
     // Put all angular.js templates into a single file
     ngtemplates:  {
       GLClient: {
-            cwd: 'app',
-            options: {base: 'app/'},
-            src: ['views/**/*.html'],
-            dest: 'tmp/scripts/templates.js'
-          }
-    },
-
-    lineremover: {
-      customExclude: {
-        files: {
-          'tmp/index.html': 'tmp/index.html'
-        },
-        options: {
-          exclusionPattern: /<link rel="stylesheet" href="(styles|styles-rtl)\.css"\/>/g
-        }
-      },
+        cwd: 'app',
+        options: {base: 'app/'},
+        src: ['views/**/*.html'],
+        dest: 'tmp/scripts/templates.js'
+      }
     },
 
     protractor: {
@@ -250,6 +243,10 @@ module.exports = function(grunt) {
         },
         options: {
           replacements: [
+            {
+              pattern: '<link rel="stylesheet" href="styles.css">',
+              replacement: '<link rel="stylesheet" data-ng-href="{{ build_stylesheet }}" href="styles.css">'
+            },
             {
               pattern: '<script src="scripts.js"></script>',
               replacement: ''
@@ -770,7 +767,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'uglify', 'string-replace', 'lineremover', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'uglify', 'string-replace', 'manifest', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('test-browserchecks', ['copy:unittests', 'mocha_phantomjs']);
   grunt.registerTask('test-browserchecks-saucelabs', ['copy:unittests', 'connect', 'saucelabs-mocha']);
