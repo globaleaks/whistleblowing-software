@@ -7,7 +7,7 @@ env:
     - secure: clvOWlojaHQMHGhrN+sG+jOVLAsGJQFpzlUBv+8tKNy+Xbv/XPOQvnzqFTCdRlHSd39wnwIQTwOCWaCYhEECEyqgpaxYlYpSPsUOmk12aSxfjH5YGdwFqZvqhw1rkBpaEyoLh4PT0d1oLeCcJvb0jNuU4YbYOtq7DIRJDih/hPg=
   matrix:
     - GLTEST='false'
-    - GLTEST='loader-only'
+    - GLTEST='browserchecks-only'
     - GLTEST='{"browserName":"firefox", "version":"36.0", "platform":"Windows 8.1"}'
     - GLTEST='{"browserName":"firefox", "version":"37.0", "platform":"Windows 8.1"}'
     - GLTEST='{"browserName":"chrome", "version":"37.0", "platform":"Windows 8.1"}'

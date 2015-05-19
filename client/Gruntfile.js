@@ -44,8 +44,7 @@ module.exports = function(grunt) {
       server: {
         options: {
           port: 9000,
-          base: 'tests/browserchecks',
-          keepalive: true
+          base: 'tests/browserchecks'
         }
       }
     },
