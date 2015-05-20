@@ -191,7 +191,6 @@ module.exports = function(grunt) {
             { browserName: "android", version: "4.2", deviceName: "Android Emulator", platform: "Linux" },
             { browserName: "android", version: "4.3", deviceName: "Android Emulator", platform: "Linux" },
             { browserName: "android", version: "4.4", deviceName: "Android Emulator", platform: "Linux" },
-            { browserName: "android", version: "5.1", deviceName: "Android Emulator", platform: "Linux" },
             { browserName: "internet explorer", version: "7", platform: "Windows XP" },
             { browserName: "internet explorer", version: "8", platform: "Windows 7" },
             { browserName: "internet explorer", version: "9", platform: "Windows 7" },
