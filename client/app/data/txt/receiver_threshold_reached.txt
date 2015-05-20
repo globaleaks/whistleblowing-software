@@ -1,8 +1,10 @@
 Dear %ReceiverName%
 
-In the last hour, %NodeName% has received a large number of requests.
-To avoid unnecessary overload of the system, the notification has been temporarily disabled.
-Anyhow, as usual, If you login in %NodeName% you'll found all the recent activities from the Tip list.
+It appear that %NodeName% is receiving a large number of requests.
+
+To prevent sending you too many e-mails, the system has disabled e-mail notifications until the load won’t return normal. If you login with your username and password, you’ll found all the recent activities in your Tip list.
+
+If you don’t mind and you would prefer receiving anyhow such a large number of e-mail notifications, please contact your technical support to modify this behaviour accordingly.
 
 Kind regards,
 %NodeSignature%
