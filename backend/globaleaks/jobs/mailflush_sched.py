@@ -31,17 +31,17 @@ class LastHourMailQueue(object):
     """
 
     # This event queue is used by the tempObj
-    event_queue = dict()
+    event_queue = {}
 
-    # This list is used specifically for mail tracking
-    per_receiver_lastmails = dict()
+    # This dict is used specifically for mail tracking
+    per_receiver_lastmails = {}
     _counter = 0
 
     # This list is used to keep track of the currently suspended mail
-    receivers_in_threshold = list()
+    receivers_in_threshold = []
 
     # This is the utility dict required by TempObj
-    blocked_in_queue = dict()
+    blocked_in_queue = {}
 
     @staticmethod
     def mail_number(receiver_mail):
@@ -225,18 +225,6 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
         eventcomplete.notification_settings = admin_serialize_notification(
             store.find(Notification).one(), stev.description['receiver_info']['language']
         )
-        # THIS IS AN HACK until the DB do not get update TODO change check models.py!!
-        with file('../client/app/data/txt/receiver_threshold_reached.txt') as fp:
-            tmp_content = fp.read()
-            eventcomplete.notification_settings.update({
-                'receiver_threshold_reached' : tmp_content
-            })
-        with file('../client/app/data/txt/receiver_threshold_reached_title.txt') as fp:
-            tmp_content = fp.read()
-            eventcomplete.notification_settings.update({
-                'receiver_threshold_reached_title' : tmp_content
-            })
-        # END HACK
 
         eventcomplete.node_info = node_desc
 

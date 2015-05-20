@@ -507,6 +507,9 @@ class Notification(Model):
 
     notification_digest_mail_title = JSON(validator=longlocal_v)
 
+    receiver_threshold_reached = JSON(validator=longlocal_v)
+    receiver_threshold_reached_title = JSON(validator=longlocal_v)
+
     zip_description = JSON(validator=longlocal_v)
 
     ping_mail_template = JSON(validator=longlocal_v)
@@ -516,13 +519,8 @@ class Notification(Model):
     disable_receivers_notification_emails = Bool(default=False)
     send_email_for_every_event = Bool(default=True)
 
-    # TODO notification_threshold_per_hour = 20
-    # TODO notification_blackhole_lasting_for = 4 (hours, we mean)
-    # TODO receiver_threshold_reached TEMPLATE here hardcoded
-    # TODO ^^^^^^ (and change mailflush_sched.py:~228) ^^^^^^
-    # (and so, the receiver_threshold_reached_title )
-    # TODO two integer required to let admin configure levels in
-    # https://github.com/globaleaks/GlobaLeaks/issues/798
+    notification_threshold_per_hour = Int(default=20)
+    notification_blackhole_lasting_for= Int(default=(4 * 3600) )
 
     unicode_keys = [
         'server',
@@ -561,11 +559,15 @@ class Notification(Model):
         'notification_digest_mail_title',
         'zip_description',
         'ping_mail_template',
-        'ping_mail_title'
+        'ping_mail_title',
+        'receiver_threshold_reached',
+        'receiver_threshold_reached_title'
     ]
 
     int_keys = [
         'port',
+        'notification_threshold_per_hour',
+        'notification_blackhole_lasting_for'
     ]
 
     bool_keys = [
