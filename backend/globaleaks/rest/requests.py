@@ -173,9 +173,14 @@ AdminNotificationDesc = {
     'zip_description': unicode,
     'ping_mail_template': unicode,
     'ping_mail_title': unicode,
+    'receiver_threshold_reached': unicode,
+    'receiver_threshold_reached_title': unicode,
     'disable_admin_notification_emails': bool,
     'disable_receivers_notification_emails': bool,
-    'send_email_for_every_event': bool
+    'send_email_for_every_event': bool,
+    'notification_threshold_per_hour': int,
+    'notification_blackhole_lasting_for': int,
+    'reset_templates': bool,
 }
 
 AdminContextDesc = {
