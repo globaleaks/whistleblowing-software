@@ -40,8 +40,22 @@ AuthDesc = {
     'role': unicode
 }
 
+TokenDesc = {
+    'context_id': uuid_regexp,
+}
+
+WBStepElem = {
+    'id' : uuid_regexp,
+    'hint': unicode,
+    'description':unicode,
+    'label': unicode,
+    # TODO security: here in childern has to happen the True validation
+    'children': list
+}
+
 SubmissionDesc = {
-    'wb_steps': list,
+    'context_id': uuid_regexp,
+    'wb_steps': [ WBStepElem ],
     'human_captcha_answer': int,
     'receivers': [uuid_regexp]
 }
