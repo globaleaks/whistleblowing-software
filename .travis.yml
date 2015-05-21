@@ -1,6 +1,10 @@
-language: python
+language:
+  - python
+  - node_js
 python:
   - "2.7"
+node_js:
+  - "0.12.2"
 env:
   global:
     - secure: Fd+dALSXhRgP44UaiED0xbJMHLxzON1Vcu6ufxDGgyl9NYepT0cfMGczLocfawc35ig++SyfytfpaPRhy3yG7WhNiBmpq+M1rec5MDKh/tFSKV/JOmLxbUIAxByIgTH39e+bY2El0h+vqiB12JiArahBzraYMYY+Xkty3Ysr+9o=
