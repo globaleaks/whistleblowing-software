@@ -17,7 +17,7 @@ var receivers = new Array();
 var receivers_ids = new Array();
 var contexts = new Array();
 var contexts_ids = new Array();
-var submissions = new Array();
+var tokens = new Array();
 var files = new Array();
 var wb_keycodes  = new Array();
 
@@ -109,7 +109,7 @@ describe('GET /receivers', function(){
 
 
 describe('POST /submission', function(){
-  for (var x = 0; x < 10 ; x++) {
+  for (var x = 0; x < 20 ; x++) {
   for (var i=0; i<submission_population_order; i++) {
     (function (i) {
       it('responds with ', function(done){
@@ -139,7 +139,7 @@ describe('POST /submission', function(){
               console.log(res.headers);
               console.log(res.body);
               /* validate_mandatory_headers(res.headers); */
-              submissions.push(res.body);
+              tokens.push(res.body);
 
               done();
             }
@@ -152,3 +152,7 @@ describe('POST /submission', function(){
   }
 })
 
+describe('PUT /submission', function(){
+
+
+})
