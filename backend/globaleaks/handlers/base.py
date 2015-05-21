@@ -255,37 +255,36 @@ class BaseHandler(RequestHandler):
         if isinstance(message_template, dict):
 
             success_check = 0
-            for key, value in message_template.iteritems():
-                if key not in jmessage.keys():
-                    print key
-                    print jmessage
-                    print message_template
-                    log.err("1 key %s not expected in %s" % (key, jmessage.keys() ))
-                    raise errors.InvalidInputFormat("REST integrity check 1, fail in %s" % key)
-                if not BaseHandler.validate_type(jmessage[key], value):
-                    log.err("2-error %s" % key)
-                    raise errors.InvalidInputFormat("REST integrity check 2, fail in %s" % key)
-                success_check += 1
-
             for key, value in jmessage.iteritems():
 
                 if key not in message_template:
                     log.debug("Key %s, is not in:" % key)
                     log.debug(message_template)
-                    # raise errors.InvalidInputFormat("REST integrity check 3, fail in %s" % key)
-                    # I'm commenting this otherwise compatibility really breaks :P
-                    continue
+                    raise errors.InvalidInputFormat("Key expected not present (%s)" % key)
                 if not BaseHandler.validate_type(value, message_template[key]):
-                    log.err("4-error %s" % key)
+                    log.err("Type invalid  %s" % key)
                     raise errors.InvalidInputFormat("REST integrity check 4, fail in %s" % key)
                 success_check += 1
 
+            for key, value in message_template.iteritems():
+                if key not in jmessage.keys():
+                    log.debug("Key %s received but not expected!" % key)
+                    log.debug("Received schema %s - Expected %s" %
+                              (jmessage.keys(), message_template.keys() ))
+                    # raise errors.InvalidInputFormat("REST integrity check 1, fail in %s" % key)
+                    # commented otherwise compatibility break
+                    continue
+                if not BaseHandler.validate_type(jmessage[key], value):
+                    log.err("2-error %s" % key)
+                    raise errors.InvalidInputFormat("REST integrity check 2, fail in %s" % key)
+                success_check += 1
 
             if success_check == len(message_template.keys()) * 2:
                 return True
             else:
-                log.err("success check number fail: %d" % success_check)
-                raise errors.InvalidInputFormat("success check number mismatch!?")
+                log.err("Success counter double check fail: %d" % success_check)
+                raise errors.InvalidInputFormat("Success counter double check fail %s" %
+                                                message_template.keys())
 
         elif isinstance(message_template, list):
             ret = all(BaseHandler.validate_type(x, message_template[0]) for x in jmessage)
