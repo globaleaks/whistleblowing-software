@@ -45,11 +45,12 @@ TokenDesc = {
 }
 
 WBStepElem = {
+    # Everything will change here with E2E,
+    # because these stuff will be encrypted
     'id' : uuid_regexp,
     'hint': unicode,
     'description':unicode,
     'label': unicode,
-    # TODO security: here in childern has to happen the True validation
     'children': list
 }
 
@@ -123,6 +124,7 @@ AdminNodeDesc = {
     'exception_email': email_regexp,
     'ahmia': bool,
     'allow_unencrypted': bool,
+    'allow_iframes_inclusion': bool,
     'wizard_done': bool,
     'disable_privacy_badge': bool,
     'disable_security_awareness_badge': bool,
@@ -150,20 +152,12 @@ AdminNotificationDesc = {
     'source_name': unicode,
     'source_email': email_regexp,
     'admin_anomaly_template': unicode,
-    'encrypted_tip_template': unicode,
-    'encrypted_tip_mail_title': unicode,
     'plaintext_tip_template': unicode,
     'plaintext_tip_mail_title': unicode,
-    'encrypted_file_template': unicode,
-    'encrypted_file_mail_title': unicode,
     'plaintext_file_template': unicode,
     'plaintext_file_mail_title': unicode,
-    'encrypted_comment_template': unicode,
-    'encrypted_comment_mail_title': unicode,
     'plaintext_comment_template': unicode,
     'plaintext_comment_mail_title': unicode,
-    'encrypted_message_template': unicode,
-    'encrypted_message_mail_title': unicode,
     'plaintext_message_template': unicode,
     'plaintext_message_mail_title': unicode,
     'admin_pgp_alert_mail_template': unicode,
