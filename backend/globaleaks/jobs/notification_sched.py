@@ -88,17 +88,13 @@ class EventLogger(object):
         self.language = receiver.user.language
 
         if self.trigger == 'Message':
-            self.template_type = u'encrypted_message' if \
-                receiver.pgp_key_status == u'enabled' else u'plaintext_message'
+            self.template_type = u'plaintext_message'
         elif self.trigger == 'Tip':
-            self.template_type = u'encrypted_tip' if \
-                receiver.pgp_key_status == u'enabled' else u'plaintext_tip'
+            self.template_type = u'plaintext_tip'
         elif self.trigger == 'Comment':
-            self.template_type = u'encrypted_comment' if \
-                receiver.pgp_key_status == u'enabled' else u'plaintext_comment'
+            self.template_type = u'plaintext_comment'
         elif self.trigger == 'File':
-            self.template_type = u'encrypted_file' if \
-                receiver.pgp_key_status == u'enabled' else u'plaintext_file'
+            self.template_type = u'plaintext_file'
         elif self.trigger == 'ExpiringTip':
             self.template_type = u'upcoming_tip_expiration'
         else:

@@ -192,12 +192,12 @@ GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
       ctrl: TabCtrl
     },
     {
-      title:"Plaintext Notification Templates",
+      title:"Receiver Notification Templates",
       template:"views/admin/mail/tab2.html",
       ctrl: TabCtrl
     },
     {
-      title:"Encrypted Notification Templates",
+      title:"Admin Notification Templates",
       template:"views/admin/mail/tab3.html",
       ctrl: TabCtrl
     }

@@ -42,41 +42,21 @@ class MailNotification(Notification):
     def get_mail_body_and_title(self, event):
         # This function, that probably can be optimized with some kind of pattern
         # return body and title computed for the event + template + keywords compute
-        if event.type == u'encrypted_tip':
-            body = Templating().format_template(
-                event.notification_settings['encrypted_tip_template'], event)
-            title = Templating().format_template(
-                event.notification_settings['encrypted_tip_mail_title'], event)
-        elif event.type == u'plaintext_tip':
+        if event.type == u'plaintext_tip':
             body = Templating().format_template(
                 event.notification_settings['plaintext_tip_template'], event)
             title = Templating().format_template(
                 event.notification_settings['plaintext_tip_mail_title'], event)
-        elif event.type == u'encrypted_file':
-            body = Templating().format_template(
-                event.notification_settings['encrypted_file_template'], event)
-            title = Templating().format_template(
-                event.notification_settings['encrypted_file_mail_title'], event)
         elif event.type == u'plaintext_file':
             body = Templating().format_template(
                 event.notification_settings['plaintext_file_template'], event)
             title = Templating().format_template(
                 event.notification_settings['plaintext_file_mail_title'], event)
-        elif event.type == u'encrypted_comment':
-            body = Templating().format_template(
-                event.notification_settings['encrypted_comment_template'], event)
-            title = Templating().format_template(
-                event.notification_settings['encrypted_comment_mail_title'], event)
         elif event.type == u'plaintext_comment':
             body = Templating().format_template(
                 event.notification_settings['plaintext_comment_template'], event)
             title = Templating().format_template(
                 event.notification_settings['plaintext_comment_mail_title'], event)
-        elif event.type == u'encrypted_message':
-            body = Templating().format_template(
-                event.notification_settings['encrypted_message_template'], event)
-            title = Templating().format_template(
-                event.notification_settings['encrypted_message_mail_title'], event)
         elif event.type == u'plaintext_message':
             body = Templating().format_template(
                 event.notification_settings['plaintext_message_template'], event)
