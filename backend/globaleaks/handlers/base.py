@@ -263,25 +263,27 @@ class BaseHandler(RequestHandler):
             for key, value in jmessage.iteritems():
 
                 if key not in message_template:
-                    log.debug("Key %s, is not in:" % key)
-                    log.debug(message_template)
-                    raise errors.InvalidInputFormat("Key expected not present (%s)" % key)
+                    log.debug("Received key %s, Unexpected in the template:" % key)
+                    log.debug(message_template.keys())
+                    # raise errors.InvalidInputFormat("Key expected not present (%s)" % key)
+                    continue
+
                 if not BaseHandler.validate_type(value, message_template[key]):
-                    log.err("Type invalid  %s" % key)
-                    raise errors.InvalidInputFormat("REST integrity check 4, fail in %s" % key)
+                    log.err("Received key %s: type validation fail " % key)
+                    raise errors.InvalidInputFormat("Expected key (%s) vail type validation" % key)
                 success_check += 1
 
             for key, value in message_template.iteritems():
+
                 if key not in jmessage.keys():
-                    log.debug("Key %s received but not expected!" % key)
+                    log.debug("Key %s expected but missing!" % key)
                     log.debug("Received schema %s - Expected %s" %
                               (jmessage.keys(), message_template.keys() ))
-                    # raise errors.InvalidInputFormat("REST integrity check 1, fail in %s" % key)
-                    # commented otherwise compatibility break
-                    continue
+                    raise errors.InvalidInputFormat("Missing key %s" % key)
+
                 if not BaseHandler.validate_type(jmessage[key], value):
-                    log.err("2-error %s" % key)
-                    raise errors.InvalidInputFormat("REST integrity check 2, fail in %s" % key)
+                    log.err("Expected key: %s type validation fail" % key)
+                    raise errors.InvalidInputFormat("Key (%s) double validation fail" % key)
                 success_check += 1
 
             if success_check == len(message_template.keys()) * 2:

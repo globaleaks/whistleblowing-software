@@ -1,1 +1,0 @@
-[Tip %TipNum%] New comment in context %ContextName%

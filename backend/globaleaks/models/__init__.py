@@ -474,46 +474,33 @@ class Notification(Model):
 
     torify = Int(default=True)
 
+    # Admin Template
     admin_anomaly_template = JSON(validator=longlocal_v)
     admin_anomaly_mail_title = JSON(validator=longlocal_v)
-
-    encrypted_tip_template = JSON(validator=longlocal_v)
-    encrypted_tip_mail_title = JSON(validator=longlocal_v)
-    plaintext_tip_template = JSON(validator=longlocal_v)
-    plaintext_tip_mail_title = JSON(validator=longlocal_v)
-
-    encrypted_file_template = JSON(validator=longlocal_v)
-    encrypted_file_mail_title = JSON(validator=longlocal_v)
-    plaintext_file_template = JSON(validator=longlocal_v)
-    plaintext_file_mail_title = JSON(validator=longlocal_v)
-
-    encrypted_comment_template = JSON(validator=longlocal_v)
-    encrypted_comment_mail_title = JSON(validator=longlocal_v)
-    plaintext_comment_template = JSON(validator=longlocal_v)
-    plaintext_comment_mail_title = JSON(validator=longlocal_v)
-
-    encrypted_message_template = JSON(validator=longlocal_v)
-    encrypted_message_mail_title = JSON(validator=longlocal_v)
-    plaintext_message_template = JSON(validator=longlocal_v)
-    plaintext_message_mail_title = JSON(validator=longlocal_v)
-
-    tip_expiration_template = JSON(validator=longlocal_v)
-    tip_expiration_mail_title = JSON(validator=longlocal_v)
-
     admin_pgp_alert_mail_title = JSON(validator=longlocal_v)
     admin_pgp_alert_mail_template = JSON(validator=longlocal_v)
+
+    # Receiver Template
+    plaintext_tip_template = JSON(validator=longlocal_v)
+    plaintext_tip_mail_title = JSON(validator=longlocal_v)
+    plaintext_file_template = JSON(validator=longlocal_v)
+    plaintext_file_mail_title = JSON(validator=longlocal_v)
+    plaintext_comment_template = JSON(validator=longlocal_v)
+    plaintext_comment_mail_title = JSON(validator=longlocal_v)
+    plaintext_message_template = JSON(validator=longlocal_v)
+    plaintext_message_mail_title = JSON(validator=longlocal_v)
+    tip_expiration_template = JSON(validator=longlocal_v)
+    tip_expiration_mail_title = JSON(validator=longlocal_v)
     pgp_alert_mail_title = JSON(validator=longlocal_v)
     pgp_alert_mail_template = JSON(validator=longlocal_v)
-
-    notification_digest_mail_title = JSON(validator=longlocal_v)
-
     receiver_threshold_reached = JSON(validator=longlocal_v)
     receiver_threshold_reached_title = JSON(validator=longlocal_v)
-
     zip_description = JSON(validator=longlocal_v)
 
+    # Experimental Receiver template
     ping_mail_template = JSON(validator=longlocal_v)
     ping_mail_title = JSON(validator=longlocal_v)
+    notification_digest_mail_title = JSON(validator=longlocal_v)
 
     disable_admin_notification_emails = Bool(default=False)
     disable_receivers_notification_emails = Bool(default=False)
@@ -538,20 +525,12 @@ class Notification(Model):
         'admin_pgp_alert_mail_template',
         'pgp_alert_mail_title',
         'pgp_alert_mail_template',
-        'encrypted_tip_template',
-        'encrypted_tip_mail_title',
         'plaintext_tip_template',
         'plaintext_tip_mail_title',
-        'encrypted_file_template',
-        'encrypted_file_mail_title',
         'plaintext_file_template',
         'plaintext_file_mail_title',
-        'encrypted_comment_template',
-        'encrypted_comment_mail_title',
         'plaintext_comment_template',
         'plaintext_comment_mail_title',
-        'encrypted_message_template',
-        'encrypted_message_mail_title',
         'plaintext_message_template',
         'plaintext_message_mail_title',
         'tip_expiration_template',

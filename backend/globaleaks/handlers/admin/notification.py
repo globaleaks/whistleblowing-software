@@ -26,7 +26,8 @@ def admin_serialize_notification(notif, language):
         'notification_blackhole_lasting_for' : (notif.notification_blackhole_lasting_for / 3600)
     }
 
-    return get_localized_values(ret_dict, notif, notif.localized_strings, language)
+    full_dict = get_localized_values(ret_dict, notif, notif.localized_strings, language)
+    return full_dict
 
 
 @transact_ro
@@ -88,9 +89,9 @@ class NotificationInstance(BaseHandler):
 
         # sloppy code, but at the moment is between serialization and handler
         # that the conversion happen
-        hour_number = request.request.body['notification_blackhole_lasting_for']
+        hour_number = request['notification_blackhole_lasting_for']
         seconds_number = hour_number * 3600
-        request.request.body['notification_blackhole_lasting_for'] = seconds_number
+        request['notification_blackhole_lasting_for'] = seconds_number
 
         response = yield update_notification(request, self.request.language)
 

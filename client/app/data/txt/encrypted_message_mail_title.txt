@@ -1,1 +1,0 @@
-[Tip %TipNum%] New message in context %ContextName%
