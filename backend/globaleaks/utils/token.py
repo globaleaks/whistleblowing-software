@@ -69,7 +69,7 @@ class Token(TempObj):
         # Remind: this is just for developers, because if a clean house
         # is a sign of a waste life, a Token object without shortcut
         # is a sign of a psyco life. (vecnish!)
-        if False and GLSetting.devel_mode:
+        if GLSetting.devel_mode:
             # self.start_validity_secs = 0
             self.start_validity_secs = 4
 
@@ -225,17 +225,15 @@ class Token(TempObj):
           not yet implemented.
         """
 
-        if not self.remaining_allowed_attempts:
-            TokenList.delete(self.id)
-            raise errors.TokenFailure("Too many attepts")
-        else:
-            log.debug("Token allows other %d attempts" % self.remaining_allowed_attempts)
-
         self.remaining_allowed_attempts -= 1
+        log.debug("Token allows other %d attempts" % self.remaining_allowed_attempts)
 
         # any of these can raise an exception if check fail
         try:
             self.timedelta_check()
+
+            if not self.remaining_allowed_attempts or self.remaining_allowed_attempts < 0:
+                assert False, "Exhausted Token usage"
 
             if self.human_captcha is not False:
                 self.human_captcha_check(request['human_captcha_answer'])
