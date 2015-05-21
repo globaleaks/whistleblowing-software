@@ -223,16 +223,16 @@ class Alarm(object):
     }
 
     OUTCOMING_ANOMALY_MAP = {
-        'failed_logins': 50,
-        'successful_logins': 70,
-        'started_submissions': 100,
-        'completed_submissions': 50,
-        'uploaded_files': 100,
-        'appended_files': 100,
-        'wb_comments': 20,
-        'wb_messages': 20,
-        'receiver_comments': 30,
-        'receiver_messages': 30
+        'failed_logins': 8,
+        'successful_logins': 3,
+        'started_submissions': 10,
+        'completed_submissions': 5,
+        'uploaded_files': 10,
+        'appended_files': 10,
+        'wb_comments': 2,
+        'wb_messages': 2,
+        'receiver_comments': 6,
+        'receiver_messages': 6
     }
 
     # the level of the alarm in 30 seconds

@@ -264,7 +264,7 @@ class SubmissionCreate(BaseHandler):
 
         This create a Token, require to complete the submission later
         """
-        request = self.validate_message(self.request.body, requests.SubmissionDesc)
+        request = self.validate_message(self.request.body, requests.TokenDesc)
 
         token = Token('submission', request['context_id'])
         token.set_difficulty(Alarm().get_token_difficulty())
