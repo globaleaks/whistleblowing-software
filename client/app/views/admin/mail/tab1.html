@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-md-8">
+    <hr>
     <div class="form-group">
       <input data-ng-model="admin.notification.disable_admin_notification_emails" type="checkbox">
       <label data-translate>Disable admin notification emails</label>
@@ -31,6 +32,18 @@
       <input data-ng-model="admin.notification.reset_templates" type="checkbox">
       <label data-translate>Reset notification templates to default</label>
     </div>
+
+    <div class="form-group">
+      <label data-translate>Mail per hour before trigger mail suspension</label>
+      <input class="form-control" data-ng-model="admin.notification.notification_threshold_per_hour" maxlength="{{node.maximum_namesize}}" type="number" />
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Hours of mailing suspension</label>
+      <input class="form-control" data-ng-model="admin.notification.notification_blackhole_lasting_for" maxlength="{{node.maximum_namesize}}" type="number" />
+    </div>
+
+    <hr>
 
     <div class="form-group">
       <label data-translate>Source Name</label>
@@ -73,10 +86,26 @@
       </select>
     </div>
 
+    <hr>
+
     <div class="form-group">
       <label data-translate>Zip Description Template</label>
       <div>
         <textarea data-ng-model="admin.notification.zip_description" maxlength="{{node.maximum_textsize}}" class="form-control"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Receiver reach maximum of Notification per hour (Title)</label>
+      <div>
+        <input data-ng-model="admin.notification.receiver_threshold_reached_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Receiver reach maximum of Notification per hour (Template)</label>
+      <div>
+        <textarea data-ng-model="admin.notification.receiver_threshold_reached" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
       </div>
     </div>
 
