@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-8">
     <div>
-      <span data-translate>This interface allows to configure the email templates used for unsecure email notifications.</span>
+      <span data-translate>This interface allows to configure the email templates used for Receiver notifications.</span>
     </div>
 
     <br /><br />
@@ -54,5 +54,46 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <label data-translate>Zip Description Template</label>
+      <div>
+        <textarea data-ng-model="admin.notification.zip_description" maxlength="{{node.maximum_textsize}}" class="form-control"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Receiver reach maximum of Notification per hour (Title)</label>
+      <div>
+        <input data-ng-model="admin.notification.receiver_threshold_reached_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Receiver reach maximum of Notification per hour (Template)</label>
+      <div>
+        <textarea data-ng-model="admin.notification.receiver_threshold_reached" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Ping Email Title</label>
+      <div>
+        <input data-ng-model="admin.notification.ping_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Ping Email Template</label>
+      <div>
+        <textarea data-ng-model="admin.notification.ping_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control"></textarea>
+      </div>
+    </div>
+
   </div>
 </div>
+
+
+
+
+
+

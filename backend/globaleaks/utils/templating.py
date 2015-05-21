@@ -35,13 +35,9 @@ class Templating(object):
         """
 
         supported_event_types = {
-                                  u'encrypted_tip': EncryptedTipKeyword,
                                   u'plaintext_tip': TipKeyword,
-                                  u'encrypted_file': EncryptedFileKeyword,
                                   u'plaintext_file': FileKeyword,
-                                  u'encrypted_comment': EncryptedCommentKeyword,
                                   u'plaintext_comment': CommentKeyword,
-                                  u'encrypted_message': EncryptedMessageKeyword,
                                   u'plaintext_message': MessageKeyword,
                                   u'zip_collection': ZipFileKeyword,
                                   u'ping_mail': PingMailKeyword,
@@ -204,20 +200,6 @@ class TipKeyword(_KeyWord):
         # Express in hours, but has to be retrieved from the Receiver not from Tip.
         return unicode(48)
 
-class EncryptedTipKeyword(TipKeyword):
-    encrypted_tip_keywords = [
-        '%TipFields%'
-    ]
-
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, *x):
-        super(EncryptedTipKeyword, self).__init__(node_desc, context_desc, fields_desc,
-                                                  receiver_desc, tip_desc, None)
-        self.keyword_list += EncryptedTipKeyword.encrypted_tip_keywords
-
-    def TipFields(self):
-        return dump_submission_steps(self.tip['wb_steps'])
-
-
 class CommentKeyword(TipKeyword):
     comment_keywords = [
         '%CommentSource%',
@@ -235,24 +217,6 @@ class CommentKeyword(TipKeyword):
 
     def EventTime(self):
         return ISO8601_to_pretty_str_tz(self.comment['creation_date'], float(self.receiver['timezone']))
-
-
-class EncryptedCommentKeyword(CommentKeyword):
-    encrypted_comment_keywords = [
-        '%CommentContent%',
-    ]
-
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, comment_desc):
-        super(EncryptedCommentKeyword, self).__init__(node_desc, context_desc, fields_desc,
-                                                      receiver_desc, tip_desc, comment_desc)
-        self.keyword_list += EncryptedCommentKeyword.encrypted_comment_keywords
-
-    def CommentContent(self):
-        """
-        Think about Comment.system_content before document and insert this
-        feature in the default templates
-        """
-        return self.comment['content']
 
 
 class MessageKeyword(TipKeyword):
@@ -274,20 +238,6 @@ class MessageKeyword(TipKeyword):
 
     def EventTime(self):
         return ISO8601_to_pretty_str_tz(self.message['creation_date'], float(self.receiver['timezone']))
-
-class EncryptedMessageKeyword(MessageKeyword):
-    encrypted_message_keywords = [
-        '%MessageContent%',
-    ]
-
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, message_desc):
-        super(EncryptedMessageKeyword, self).__init__(node_desc, context_desc,
-                                                      fields_desc, receiver_desc,
-                                                      tip_desc, message_desc)
-        self.keyword_list += EncryptedMessageKeyword.encrypted_message_keywords
-
-    def MessageContent(self):
-        return self.message['content']
 
 
 class FileKeyword(TipKeyword):
