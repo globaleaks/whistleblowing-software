@@ -318,6 +318,17 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           human_captcha_answer: 0
         });
 
+          /* is used the sum of the two timeouts, so we can use only on <timer>
+           * and manage time windows */
+        self.current_submission._counter = self.current_submission.end_validity_secs +
+                                           self.current_submission.start_validity_secs;
+
+        self.current_submission.when_permit_sub = (self.current_submission.end_validity_secs);
+
+        self.current_submission.warning_time = self.current_submission.end_validity_secs  -
+                                               ((self.current_submission.end_validity_secs / 90) * 100) -
+                                               self.current_submission.start_validity_secs;
+
         self._submission.$save(function(submissionID){
           self._submission.wb_steps = self.context.steps;
           if (cb) {

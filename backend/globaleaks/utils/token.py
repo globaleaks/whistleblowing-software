@@ -70,7 +70,6 @@ class Token(TempObj):
         # is a sign of a waste life, a Token object without shortcut
         # is a sign of a psyco life. (vecnish!)
         if GLSetting.devel_mode:
-            # self.start_validity_secs = 0
             self.start_validity_secs = 4
 
         self.remaining_allowed_attempts = Token.MAXIMUM_ATTEMPTS_PER_TOKEN
