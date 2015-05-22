@@ -54,21 +54,37 @@ GLClient.controller('SubmissionCtrl',
 
     $scope.$on('timer-tick', function (event, args) {
 
-      if (args.millis == 40000) {
-        /* init */
-        console.log("init");
+      if (args.millis == ($scope.submission.current_submission._counter * 1000) ) {
+        $("#SubmissionWarning").hide();
+        $("#SubmissionClosed").hide();
+        $("#SubmissionGood").hide();
+
+        $("#SubmissionWait").show();
+
         $("#SubmissionButton").removeClass('btn-success');
         $("#SubmissionButton").addClass('btn-danger');
       }
 
-      /* TODO handle the #SubmissionWait #SubmissionWarning #SubmissionClosed */
+      if (args.millis == $scope.submission.current_submission.when_permit_sub * 1000 )  {
+        $("#SubmissionWait").hide();
+        $("#SubmissionGood").show();
 
-      if (args.millis == 0) {
-        $("#SubmitIconOK").show();
-        $("#SubmitIconWait").hide();
         $("#SubmissionButton").addClass('btn-success');
         $("#SubmissionButton").removeClass('btn-danger');
+      }
+
+      if (args.millis == $scope.submission.current_submission.warning_time * 1000 ) {
+        $("#SubmissionWarning").show();
+      }
+
+      if (args.millis == 0) {
+        $("#SubmissionClosed").show();
+        $("#SubmissionWait").hide();
+        $("#SubmissionWarning").hide();
         $("#StartCountDown").fadeOut(1000);
+
+        $("#SubmissionButton").removeClass('btn-success');
+        $("#SubmissionButton").addClass('btn-danger');
       }
     });
 

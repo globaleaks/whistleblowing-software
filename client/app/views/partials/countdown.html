@@ -1,10 +1,13 @@
 <div id="CountDown">
   <span class="ng-scope" data-ng-if="submission.current_submission._counter">
-      <timer id= language="en" countdown="submission.current_submission._counter" interval="1000">
+    <timer language="{{language}}" countdown="submission.current_submission._counter" interval="1000">
           <h4 class="ng-scope" id="SubmissionWait" data-translate>
-              Before submission can be sent, has to pass: {{countdown}} seconds.
+              Before submission can be sent, had to pass some seconds. Please, fill the following Questionnaire in the meanwhile.
           </h4>
-          <h4 class="ng-scope alert-warning" id="SubmissionWaraning" data-translate>
+          <h4 class="ng-scope alert-ok" id="SubmissionGood" data-translate>
+              Please, fill the Questionnaire
+          </h4>
+          <h4 class="ng-scope alert-warning" id="SubmissionWarning" data-translate>
               Warning: the submission is going to expired in: {{countdown}} seconds.
           </h4>
           <h4 class="ng-scope alert-danger" id="SubmissionClosed" data-translate>
