@@ -354,6 +354,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
            * and manage time windows */
         self.current_submission._counter = self.current_submission.end_validity_secs +
                                            self.current_submission.start_validity_secs;
+        self.current_submission.when_permit_sub = ( self.current_submission.end_validity_secs );
+        self.current_submission.warning_time = self.current_submission.end_validity_secs  -
+                                            (( self.current_submission.end_validity_secs / 90 ) * 100 ) -
+                                               self.current_submission.start_validity_secs;
 
           if (cb) {
             cb();
