@@ -84,14 +84,13 @@ class TipReceiptNotFound(GLException):
 
 class ExpectedUniqueField(GLException):
     """
-    The receiver configuration ID do not exist in the database associated to the Receiver
+    A field marked as unique was getting the same value repeated
     """
     error_code = 19
     status_code = 404 # Not Found
 
-    def __init__(self, key, existent_value):
-        self.reason = "A field expected to be unique is already present (%s:%s)" % (key, existent_value)
-        self.arguments = [key, existent_value]
+    def __init__(self, reason):
+        self.reason = "%s" % (reason)
 
 
 class ReceiverIdNotFound(GLException):
