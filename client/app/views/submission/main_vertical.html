@@ -1,4 +1,4 @@
-<div class="row" data-ng-if="receivers_selectable && submission.current_context.show_receivers">
+<div class="row" data-ng-if="receivers_selectable && submission.context.show_receivers">
   <div id="step-0" class="col-md-12">
     <label data-translate>Receiver selection</label>
     <div class="row">
@@ -7,7 +7,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12" data-ng-controller="SubmissionStepCtrl" data-ng-repeat="step in submission.current_context.steps">
+  <div class="col-md-12" data-ng-controller="SubmissionStepCtrl" data-ng-repeat="step in submission.context.steps">
     <div id="step-{{$index + 1}}">
       <div>
         <div class="col-md-12">
@@ -28,7 +28,7 @@
 <div class="row">
   <div class="col-md-12">
     <div id="SubmitBox">
-      <button class="btn btn-success SubmitButton" data-ng-click="submit()" data-ng-disabled="submission.uploading || submissionForm.$invalid || !receiver_selected" type="submit">
+      <button class="btn btn-success SubmitButton" data-ng-click="submission.submit()" data-ng-disabled="submission.uploading || submissionForm.$invalid || !receiver_selected" type="submit">
         <i class="glyphicon glyphicon-ok"></i>
         <span data-translate>Submit</span>
       </button>

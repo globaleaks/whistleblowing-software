@@ -193,7 +193,7 @@ def anon_serialize_field(store, field, language):
         'y': field.y,
         'options': options,
         'children': fields,
-        'value': ''
+        'value': {} if (field.type == 'checkbox') else ''
     }
 
     return get_localized_values(ret_dict, field, field.localized_strings, language)

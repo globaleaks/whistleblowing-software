@@ -28,3 +28,9 @@
 .pull-right {
   float: left !important;
 }
+
+/* Overrides to submission.css */
+#StepNavBar, .SubmissionNavButton {
+  margin-left: 10px;
+  margin-right: 0px;
+}
