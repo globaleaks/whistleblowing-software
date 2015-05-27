@@ -39,6 +39,7 @@ mkdir GLRelease
 cd GLRelease
 git clone git@github.com:globaleaks/GlobaLeaks.git
 cd GlobaLeaks
+rm debian/control
 ln -s control.$DISTRIBUTION debian/control
 sed -i "s/UNRELEASED/$DISTRIBUTION/g" debian/changelog
 
