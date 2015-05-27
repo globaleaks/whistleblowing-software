@@ -75,7 +75,7 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.switch_selection = function (receiver) {
-    if (receiver.configuration !== 'default' || (!$scope.submission.allow_unencrypted && receiver.missing_pgp)) {
+    if (receiver.configuration !== 'default' || (!$scope.node.allow_unencrypted && receiver.missing_pgp)) {
       return;
     }
     if ($scope.submission.receivers_selected[receiver.id] || $scope.selectable()) {
