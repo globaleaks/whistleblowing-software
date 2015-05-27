@@ -29,6 +29,7 @@ from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
 from globaleaks.utils.mailutils import mail_exception
 
+DISABLE_ANTI_XSRF_PROTECTION = False
 
 GLUploads = {}
 
@@ -120,7 +121,8 @@ class BaseHandler(RequestHandler):
 
         # just reading the property is enough to
         # set the cookie as a side effect.
-        self.xsrf_token
+        if not DISABLE_ANTI_XSRF_PROTECTION:
+            self.xsrf_token
 
         # to avoid version attacks
         self.set_header("Server", "globaleaks")
@@ -158,6 +160,9 @@ class BaseHandler(RequestHandler):
         """
             Override needed to change name of header name
         """
+        if DISABLE_ANTI_XSRF_PROTECTION:
+            return
+
         token = self.request.headers.get("X-XSRF-TOKEN")
         if not token:
             token = self.get_argument('xsrf-token', default=None)
@@ -317,10 +322,10 @@ class BaseHandler(RequestHandler):
         Is used also to log the complete request, if the option is
         command line specified
         """
-
         # just reading the property is enough to
         # set the cookie as a side effect.
-        self.xsrf_token
+        if not DISABLE_ANTI_XSRF_PROTECTION:
+            self.xsrf_token
 
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
