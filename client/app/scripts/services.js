@@ -249,9 +249,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     });
 
     var isReceiverInContext = function(receiver, context) {
-
       return receiver.contexts.indexOf(context.id);
-
     };
 
     return function(fn, context_id, receivers_ids) {
@@ -263,27 +261,28 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
        * This means getting the node information, the list of receivers and the
        * list of contexts.
        */
-      var self = this,
-        forEach = angular.forEach;
+      var self = this;
 
-      self.current_context = undefined;
-      self.current_context_fields = [];
-      self.current_context_receivers = [];
-      self.current_submission = null; 
+      self._submission = null;
+      self.context = undefined;
+      self.receivers = [];
       self.receivers_selected = {};
       self.uploading = false;
 
-      var setCurrentContextReceivers = function() {
+      var setCurrentContextReceivers = function(context_id, receivers_ids) {
+        self.context = $filter('filter')($rootScope.contexts,
+                                         {"id": context_id})[0];
+
         self.receivers_selected = {};
-        self.current_context_receivers = [];
-        forEach($rootScope.receivers, function(receiver) {
+        self.receivers = [];
+        angular.forEach($rootScope.receivers, function(receiver) {
           // enumerate only the receivers of the current context
-          if (self.current_context.receivers.indexOf(receiver.id) !== -1) {
+          if (self.context.receivers.indexOf(receiver.id) !== -1) {
             if (receiver.pgp_key_status !== 'enabled') {
               receiver.missing_pgp = true;
             }
 
-            self.current_context_receivers.push(receiver);
+            self.receivers.push(receiver);
 
             if (receivers_ids) {
               if (receivers_ids.indexOf(receiver.id) !== -1) {
@@ -293,7 +292,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
 
             if (receiver.configuration == 'default') {
-              self.receivers_selected[receiver.id] = self.current_context.select_all_receivers !== false;
+              self.receivers_selected[receiver.id] = self.context.select_all_receivers !== false;
             } else if (receiver.configuration == 'forcefully_selected') {
               self.receivers_selected[receiver.id] = true;
             }
@@ -308,25 +307,19 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
        * Create a new submission based on the currently selected context.
        *
        * */
-      self.create = function(cb) {
-        self.current_submission = new submissionResource({
-          context_id: self.current_context.id,
-          wb_steps: self.current_context.steps,
+      self.create = function(context_id, receivers_ids, cb) {
+
+        setCurrentContextReceivers(context_id, receivers_ids);
+
+        self._submission = new submissionResource({
+          context_id: self.context.id,
+          wb_steps: self.context.steps,
           receivers: [],
           human_captcha_answer: 0
         });
 
-        setCurrentContextReceivers();
-
-        self.current_submission.$save(function(submissionID){
-          angular.forEach(self.current_context.fields, function(field, k) {
-            if (field.type === "checkboxes") {
-              self.current_context.fields[k].value = {};
-            }
-          });
-
-          self.current_submission.wb_steps = self.current_context.steps;
-
+        self._submission.$save(function(submissionID){
+          self._submission.wb_steps = self.context.steps;
           if (cb) {
             cb();
           }
@@ -346,41 +339,30 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           return;
         }
 
-        if (!self.current_submission) {
+        if (!self._submission) {
           return;
         }
 
-        self.current_submission.receivers = [];
+        self._submission.receivers = [];
         angular.forEach(self.receivers_selected, function(selected, id){
           if (selected) {
-            self.current_submission.receivers.push(id);
+            self._submission.receivers.push(id);
           }
         });
 
-        self.current_submission.finalize = true;
+        self._submission.finalize = true;
 
-        self.current_submission.$submit(function(result){
+        self._submission.$submit(function(result){
           if (result) {
-            Authentication.keycode = self.current_submission.receipt;
+            Authentication.keycode = self._submission.receipt;
             $location.url("/receipt");
           }
         });
 
       };
 
-      if (context_id) {
-        self.current_context = $filter('filter')($rootScope.contexts,
-                                                 {"id": context_id})[0];
-      }
-      if (self.current_context === undefined) {
-        self.current_context = $filter('orderBy')($rootScope.contexts, 'presentation_order')[0];
-      }
-
-      setCurrentContextReceivers();
-      fn(self); // Callback!
-
+      fn(self);
     };
-
 }]).
   factory('Tip', ['$resource', '$q',
           function($resource, $q) {
@@ -423,8 +405,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('WBTip', ['$resource', '$q', '$rootScope',
           function($resource, $q, $rootScope) {
 
-    var forEach = angular.forEach;
-
     var tipResource = $resource('wbtip', {}, {update: {method: 'PUT'}});
     var receiversResource = $resource('wbtip/receivers', {}, {});
     var commentsResource = $resource('wbtip/comments', {}, {});
@@ -442,8 +422,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           tip.msg_receiver_selected = null;
           tip.msg_receivers_selector = [];
 
-          forEach(tip.receivers, function(r1) {
-            forEach($rootScope.receivers, function(r2) {
+          angular.forEach(tip.receivers, function(r1) {
+            angular.forEach($rootScope.receivers, function(r2) {
               if (r2.id == r1.id) {
                 tip.msg_receivers_selector.push({
                   key: r2.id,
@@ -503,8 +483,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     return $resource('admin/overview/users');
 }]).
   factory('Admin', ['$resource', function($resource) {
-    var self = this,
-      forEach = angular.forEach;
+    var self = this;
 
     function Admin() {
       var self = this,
