@@ -649,6 +649,12 @@ def db_create_receiver(store, request, language):
     """
     fill_localized_keys(request, models.Receiver.localized_strings, language)
 
+    # Pretend that name is unique:
+    homonymous = store.find(models.Receiver, models.Receiver.name == request['name']).count()
+    if homonymous:
+        log.err("Creation error: already present receiver with the requested name")
+        raise errors.ExpectedUniqueField("Creation error: already present receiver with the requested name")
+
     password = request['password']
     if len(password) and password != GLSetting.default_password:
         security.check_password_format(password)
