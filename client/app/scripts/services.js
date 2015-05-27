@@ -239,8 +239,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$resource', '$filter', '$location', 'Authentication', 'Node', 'Contexts', 'Receivers',
-  function($resource, $filter, $location, Authentication, Node, Contexts, Receivers) {
+  factory('Submission', ['$q', '$resource', '$filter', '$location', '$rootScope', 'Authentication',
+  function($q, $resource, $filter, $location, $rootScope, Authentication) {
 
     var submissionResource = $resource('submission/:token_id/',
         {token_id: '@token_id'},
@@ -266,11 +266,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       var self = this,
         forEach = angular.forEach;
 
-      self.contexts = [];
-      self.receivers = [];
       self.current_context = undefined;
-      self.maximum_filesize = null;
-      self.allow_unencrypted = null;
       self.current_context_fields = [];
       self.current_context_receivers = [];
       self.current_submission = null; 
@@ -280,9 +276,13 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       var setCurrentContextReceivers = function() {
         self.receivers_selected = {};
         self.current_context_receivers = [];
-        forEach(self.receivers, function(receiver){
+        forEach($rootScope.receivers, function(receiver) {
           // enumerate only the receivers of the current context
           if (self.current_context.receivers.indexOf(receiver.id) !== -1) {
+            if (receiver.pgp_key_status !== 'enabled') {
+              receiver.missing_pgp = true;
+            }
+
             self.current_context_receivers.push(receiver);
 
             if (receivers_ids) {
@@ -299,34 +299,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
           }
         });
+
       };
-
-      Node.get(function(node) {
-        self.maximum_filesize = node.maximum_filesize;
-        self.allow_unencrypted = node.allow_unencrypted;
-
-        Contexts.query(function(contexts){
-          self.contexts = contexts;
-          if (context_id) {
-            self.current_context = $filter('filter')(self.contexts, 
-                                                     {"id": context_id})[0];
-          }
-          if (self.current_context === undefined) {
-            self.current_context = $filter('orderBy')(self.contexts, 'presentation_order')[0];
-          }
-          Receivers.query(function(receivers){
-            self.receivers = [];
-            forEach(receivers, function(receiver){
-              if (receiver.pgp_key_status !== 'enabled') {
-                receiver.missing_pgp = true;
-              }
-              self.receivers.push(receiver);
-            });
-            setCurrentContextReceivers();
-            fn(self); // Callback!
-          });
-        });
-      });
 
       /**
        * @name Submission.create
@@ -376,9 +350,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           return;
         }
 
-        // Set the currently selected receivers
-        self.receivers = [];
-        // remind this clean the collected list of receiver_id
         self.current_submission.receivers = [];
         angular.forEach(self.receivers_selected, function(selected, id){
           if (selected) {
@@ -397,11 +368,22 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       };
 
+      if (context_id) {
+        self.current_context = $filter('filter')($rootScope.contexts,
+                                                 {"id": context_id})[0];
+      }
+      if (self.current_context === undefined) {
+        self.current_context = $filter('orderBy')($rootScope.contexts, 'presentation_order')[0];
+      }
+
+      setCurrentContextReceivers();
+      fn(self); // Callback!
+
     };
 
 }]).
-  factory('Tip', ['$resource', 'Receivers',
-          function($resource, Receivers) {
+  factory('Tip', ['$resource', '$q',
+          function($resource, $q) {
 
     var tipResource = $resource('rtip/:tip_id', {tip_id: '@id'}, {update: {method: 'PUT'}});
     var receiversResource = $resource('rtip/:tip_id/receivers', {tip_id: '@tip_id'}, {});
@@ -409,54 +391,37 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     var messageResource = $resource('rtip/:tip_id/messages', {tip_id: '@tip_id'}, {});
 
     return function(tipID, fn) {
-      var self = this,
-        forEach = angular.forEach;
+      var self = this;
 
-      self.tip = {};
+      self.tip = tipResource.get(tipID, function (tip) {
+        tip.receivers = receiversResource.query(tipID);
+        tip.comments = commentsResource.query(tipID);
+        tip.messages = messageResource.query(tipID);
 
-      tipResource.get(tipID, function(result){
-
-        receiversResource.query(tipID, function(receiversCollection){
-
-          self.tip = result;
-
-          self.tip.comments = [];
-          self.tip.messages = [];
-
-          self.tip.newComment = function(content) {
+        $q.all([tip.receivers.$promise, tip.comments.$promise, tip.messages.$promise]).then(function() {
+          tip.newComment = function(content) {
             var c = new commentsResource(tipID);
             c.content = content;
             c.$save(function(newComment) {
-              self.tip.comments.unshift(newComment);
+              tip.comments.unshift(newComment);
             });
           };
 
-          self.tip.newMessage = function(content) {
+          tip.newMessage = function(content) {
             var m = new messageResource(tipID);
             m.content = content;
             m.$save(function(newMessage) {
-              self.tip.messages.unshift(newMessage);
+              tip.messages.unshift(newMessage);
             });
           };
 
-          self.tip.receivers = receiversCollection;
-
-          commentsResource.query(tipID, function(commentsCollection){
-            self.tip.comments = commentsCollection;
-
-            messageResource.query(tipID, function(messageCollection){
-              self.tip.messages = messageCollection;
-              fn(self.tip);
-            });
-
-          });
+          fn(tip);
         });
       });
-
     };
 }]).
-  factory('WBTip', ['$resource', 'Receivers',
-          function($resource, Receivers) {
+  factory('WBTip', ['$resource', '$q', '$rootScope',
+          function($resource, $q, $rootScope) {
 
     var forEach = angular.forEach;
 
@@ -467,64 +432,52 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     return function(fn) {
       var self = this;
-      self.tip = {};
 
-      tipResource.get(function(result) {
+      self.tip = tipResource.get(function (tip) {
+        tip.receivers = receiversResource.query();
+        tip.comments = commentsResource.query();
+        tip.messages = [];
 
-        receiversResource.query(function(receiversCollection) {
+        $q.all([tip.receivers.$promise, tip.comments.$promise]).then(function() {
+          tip.msg_receiver_selected = null;
+          tip.msg_receivers_selector = [];
 
-          self.tip = result;
+          forEach(tip.receivers, function(r1) {
+            forEach($rootScope.receivers, function(r2) {
+              if (r2.id == r1.id) {
+                tip.msg_receivers_selector.push({
+                  key: r2.id,
+                  value: r2.name
+                });
+              }
+            });
+          });
 
-          self.tip.comments = [];
-          self.tip.messages = [];
-          self.tip.receivers = [];
-          self.tip.msg_receivers_selector = [];
-          self.tip.msg_receiver_selected = null;
-
-          self.tip.newComment = function(content) {
+          tip.newComment = function(content) {
             var c = new commentsResource();
             c.content = content;
             c.$save(function(newComment) {
-              self.tip.comments.unshift(newComment);
+              tip.comments.unshift(newComment);
             });
           };
 
-          self.tip.newMessage = function(content) {
-            var m = new messageResource({id: self.tip.msg_receiver_selected});
+          tip.newMessage = function(content) {
+            var m = new messageResource({id: tip.msg_receiver_selected});
             m.content = content;
             m.$save(function(newMessage) {
-              self.tip.messages.unshift(newMessage);
+              tip.messages.unshift(newMessage);
             });
           };
 
-          self.tip.updateMessages = function () {
-            if (self.tip.msg_receiver_selected) {
-              messageResource.query({id: self.tip.msg_receiver_selected}, function (messageCollection) {
-                self.tip.messages = messageCollection;
+          tip.updateMessages = function () {
+            if (tip.msg_receiver_selected) {
+              messageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
+                tip.messages = messageCollection;
               });
             }
           };
 
-          self.tip.receivers = receiversCollection;
-
-          Receivers.query(function(receivers) {
-            forEach(self.tip.receivers, function(r1) {
-              forEach(receivers, function(r2) {
-                if (r2.id == r1.id) {
-                  self.tip.msg_receivers_selector.push({
-                    key: r2.id,
-                    value: r2.name
-                  });
-                }
-              });
-            });
-
-            commentsResource.query({}, function(commentsCollection){
-              self.tip.comments = commentsCollection;
-              fn(self.tip);
-            });
-
-          });
+          fn(tip);
         });
       });
     };
@@ -532,9 +485,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('WhistleblowerTip', ['$rootScope',
     function($rootScope){
     return function(keycode, fn) {
-      var self = this;
-      $rootScope.login('', keycode, 'wb')
-      .then(function() {
+      $rootScope.login('', keycode, 'wb').then(function() {
         fn();
       });
     };
