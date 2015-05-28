@@ -153,7 +153,6 @@ GLClient.controller('SubmissionCtrl',
     var context = null;
 
     if ($scope.context_id) {
-      alert($scope.context_id);
       context = $filter('filter')($rootScope.contexts,
                                   {"id": $scope.context_id})[0];
     } else if ($rootScope.contexts.length == 1) {
