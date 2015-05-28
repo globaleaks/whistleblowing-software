@@ -138,7 +138,7 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
 
     def info_msg_6(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
         return "Disk space permit maximum of %d uploads (%s on %s)" % \
-                (Alarm._MEDIUM_DISK_ALARM, total_workdir_string, free_workdir_string)
+                (Alarm._MEDIUM_DISK_ALARM, free_workdir_string, total_workdir_string)
 
     # list of bad conditions ordered starting from the worst case scenario
     conditions = [
@@ -364,7 +364,7 @@ class Alarm(object):
         if Alarm.last_alarm_email:
             if not is_expired(Alarm.last_alarm_email,
                               minutes=do_not_stress_admin_with_more_than_an_email_after_minutes):
-                log.debug("Alert email want be send, but the threshold of %d minutes is not yet reached since %s" % (
+                log.debug("Alert email want be sent, but the threshold of %d minutes is not yet reached since %s" % (
                     do_not_stress_admin_with_more_than_an_email_after_minutes,
                     datetime_to_ISO8601(Alarm.last_alarm_email)))
                 defer.returnValue(None)
