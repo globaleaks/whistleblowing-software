@@ -247,23 +247,20 @@ class SubmissionCreate(BaseHandler):
     @unauthenticated
     def post(self):
         """
-        Request: SubmissionDesc
-        Response: SubmissionDesc
+        Request: None
+        Response: SubmissionDesc (Token)
         Errors: ContextIdNotFound, InvalidInputFormat, SubmissionFailFields
 
         This creates an empty submission for the requested context,
         and returns submissionStatus with empty fields and a Submission Unique String,
         This is the unique token used during the submission procedure.
-        header session_id is used as authentication secret for the next interaction.
-        expire after the time set by Admin (Context dependent setting)
 
-        --- has to became:
-        Request: empty
-        Response: SubmissionDesc + Token
-        Errors: None
-
-        This create a Token, require to complete the submission later
+        This create a Token, require to complete the submission later.
         """
+
+        if not GLSetting.memory_copy.accept_submissions:
+            raise errors.SubmissionDisabled
+
         request = self.validate_message(self.request.body, requests.TokenDesc)
 
         token = Token('submission', request['context_id'])

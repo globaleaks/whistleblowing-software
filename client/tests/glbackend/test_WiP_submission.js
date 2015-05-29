@@ -32,8 +32,8 @@ var validate_mandatory_headers = function(headers) {
   }
 };
 
-describe('GET /contexts', function(){
-  it(' Getting Context(s)', function(done){
+describe('doing a shitload of submission', function(){
+  it(' really ', function(done){
     app
       .get('/contexts')
       .expect('Content-Type', 'application/json')
