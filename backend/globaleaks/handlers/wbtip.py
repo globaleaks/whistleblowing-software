@@ -219,12 +219,6 @@ def get_receiver_list_wb(store, wb_tip_id, language):
     if not wb_tip:
         raise errors.TipReceiptNotFound
 
-    def localize_and_append_receiver(receiver, receiver_desc):
-        mo = Rosetta(receiver.localized_strings)
-        mo.acquire_storm_object(receiver)
-        receiver_desc["description"] = mo.dump_localized_attr("description", language)
-        receiver_list.append(receiver_desc)
-
     for rtip in wb_tip.internaltip.receivertips:
         message_counter = store.find(Message,
                                      Message.receivertip_id == rtip.id).count()
