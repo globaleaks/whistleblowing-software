@@ -225,38 +225,23 @@ def get_receiver_list_wb(store, wb_tip_id, language):
         receiver_desc["description"] = mo.dump_localized_attr("description", language)
         receiver_list.append(receiver_desc)
 
-    if not wb_tip.internaltip.receivertips.count():
+    for rtip in wb_tip.internaltip.receivertips:
+        message_counter = store.find(Message,
+                                     Message.receivertip_id == rtip.id).count()
 
-        # This part of code is used when receiver tips have still not been created
-        for receiver in wb_tip.internaltip.receivers:
-            # This is the reduced version of Receiver serialization
-            receiver_desc = {
-                "name": receiver.name,
-                "id": receiver.id,
-                "pgp_key_status": receiver.pgp_key_status,
-                "access_counter": 0,
-                "message_counter": 0,
-                "creation_date": datetime_to_ISO8601(datetime_now()),
-            }
+        receiver_desc = {
+            "name": rtip.receiver.name,
+            "id": rtip.receiver.id,
+            "pgp_key_status": rtip.receiver.pgp_key_status,
+            "access_counter": rtip.access_counter,
+            "message_counter": message_counter,
+            "creation_date": datetime_to_ISO8601(datetime_now()),
+        }
 
-            localize_and_append_receiver(receiver, receiver_desc)
-
-    else:
-
-        for rtip in wb_tip.internaltip.receivertips:
-            message_counter = store.find(Message,
-                                         Message.receivertip_id == rtip.id).count()
-
-            receiver_desc = {
-                "name": rtip.receiver.name,
-                "id": rtip.receiver.id,
-                "pgp_key_status": rtip.receiver.pgp_key_status,
-                "access_counter": rtip.access_counter,
-                "message_counter": message_counter,
-                "creation_date": datetime_to_ISO8601(datetime_now()),
-            }
-
-            localize_and_append_receiver(rtip.receiver, receiver_desc)
+        mo = Rosetta(rtip.receiver.localized_strings)
+        mo.acquire_storm_object(rtip.receiver)
+        receiver_desc["description"] = mo.dump_localized_attr("description", language)
+        receiver_list.append(receiver_desc)
 
     return receiver_list
 
