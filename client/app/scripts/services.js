@@ -244,9 +244,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     var submissionResource = $resource('submission/:token_id/',
         {token_id: '@token_id'},
-        {submit:
-          {method: 'PUT'}
-    });
+        {
+          update: {method: 'PUT'}
+        }
+    );
 
     var isReceiverInContext = function(receiver, context) {
       return receiver.contexts.indexOf(context.id);
@@ -270,8 +271,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.uploading = false;
 
       var setCurrentContextReceivers = function(context_id, receivers_ids) {
-        self.context = $filter('filter')($rootScope.contexts,
-                                         {"id": context_id})[0];
+        self.context = $filter('filter')($rootScope.contexts, {"id": context_id})[0];
 
         self.receivers_selected = {};
         self.receivers = [];
@@ -352,7 +352,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
         self._submission.finalize = true;
 
-        self._submission.$submit(function(result){
+        self._submission.$update(function(result){
           if (result) {
             Authentication.keycode = self._submission.receipt;
             $location.url("/receipt");
