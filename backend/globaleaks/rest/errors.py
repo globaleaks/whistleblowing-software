@@ -308,8 +308,12 @@ class DirectoryTraversalError(GLException):
     status_code = 403
 
 
-# UNUSED ERROR CODE 52 HERE!
+class SubmissionDisabled(GLException):
+    reason = "Submissions are not possible right now"
+    error_code = 52
+    status_code = 503 # Service not available
 
+# UNUSED ERROR CODE 53, 54 HERE!
 
 class FloodException(GLException):
     error_code = 55
@@ -320,6 +324,7 @@ class FloodException(GLException):
         self.arguments = [seconds]
 
 
+# Remind: the FloodException are not used at the moment
 class SubmissionFlood(FloodException):
     error_code = 56
     status_code = 403
