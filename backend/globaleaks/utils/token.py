@@ -68,9 +68,9 @@ class Token(TempObj):
 
         # Remind: this is just for developers, because if a clean house
         # is a sign of a waste life, a Token object without shortcut
-        # is a sign of a psyco life. (vecnish!)
+        # is a sign of a psycho life. (vecnish!)
         if GLSetting.devel_mode:
-            self.start_validity_secs = 4
+            self.start_validity_secs = 0
 
         self.remaining_allowed_attempts = Token.MAXIMUM_ATTEMPTS_PER_TOKEN
 
@@ -133,6 +133,7 @@ class Token(TempObj):
             'start_validity_secs': self.start_validity_secs,
             'end_validity_secs': self.end_validity_secs,
             'remaining_allowed_attempts': self.remaining_allowed_attempts,
+            'context_id': self.context_associated,
             'type': self.kind,
             'graph_captcha': self.graph_captcha['question'] if self.graph_captcha else False,
             'human_captcha': self.human_captcha['question'] if self.human_captcha else False,
