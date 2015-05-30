@@ -229,7 +229,6 @@ class StatsCollectionDesc(BaseHandler):
     amount of activities recorded in the delta defined in GLSettings
     /admin/stats
     """
-
     @transport_security_check("admin")
     @authenticated("admin")
     @inlineCallbacks

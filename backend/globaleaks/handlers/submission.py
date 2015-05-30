@@ -298,7 +298,7 @@ class SubmissionInstance(BaseHandler):
         token = TokenList.get(token_id)
 
         if not token.context_associated == request['context_id']:
-            raise errors.InvalidInputFormat("Token context is not the same in the Submission fields")
+            raise errors.InvalidInputFormat("Token context does not match the one specified in submission payload")
 
         token.validate(request)
 
