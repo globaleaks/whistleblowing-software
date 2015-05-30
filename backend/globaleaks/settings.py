@@ -265,6 +265,7 @@ class GLSettingsClass(object):
         self.gid = os.getgid()
         self.start_clean = False
         self.devel_mode = False
+        self.json_timing = False
         self.developer_name = ''
         self.skip_wizard = False
         self.glc_path = None
@@ -547,6 +548,9 @@ class GLSettingsClass(object):
 
             print "\n"
 
+        if self.cmdline_options.json:
+            print "→ \033[1;31mEnabling /JSONdebug Interface, collecting timing stats\033[0m"
+            self.json_timing = True
 
     def validate_port(self, inquiry_port):
         if inquiry_port >= 65535 or inquiry_port < 0:
