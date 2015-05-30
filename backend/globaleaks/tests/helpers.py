@@ -36,7 +36,7 @@ from globaleaks.handlers.admin import create_context, get_context, update_contex
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.rtip import receiver_serialize_tip
 from globaleaks.handlers.wbtip import wb_serialize_tip
-from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
+from globaleaks.handlers.submission import create_submission
 from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched
 from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.rest.apicache import GLApiCache
@@ -896,7 +896,9 @@ class MockDict():
             'header_title_receiptpage': u'',
             'landing_page': u'homepage',
             'context_selector_label': u'',
-            'show_contexts_in_alphabetical_order': False
+            'show_contexts_in_alphabetical_order': False,
+            'submission_minimum_delay': 123,
+            'submission_maximum_ttl': 1111,
         }
 
 
