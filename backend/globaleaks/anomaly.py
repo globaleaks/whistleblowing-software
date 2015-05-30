@@ -115,13 +115,13 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
         return "Disk space < 1%%: %s on %s" % (total_workdir_string, free_workdir_string)
 
     def info_msg_1(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Minimum space available of %d Mb reached: (%s on %s)" % \
+        return "Minimum space available of %d MB reached: (%s on %s)" % \
                 (GLSetting.defaults.minimum_megabytes_required,
                 total_workdir_string,
                 free_workdir_string)
 
     def info_msg_2(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Ramdisk space not enough (%s on %s), required at least 2Kb" % (
+        return "Ramdisk space < 2kB: %s on %s" % (
                     free_ramdisk_string, total_ramdisk_string)
 
     def info_msg_3(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
@@ -129,7 +129,7 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
                 (total_workdir_string, free_workdir_string)
 
     def info_msg_4(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Minimum space available of %d Mb is near: (%s on %s)" % \
+        return "Minimum space available of %d MB is near: (%s on %s)" % \
                 (GLSetting.defaults.minimum_megabytes_required,
                  total_workdir_string,
                  free_workdir_string)
