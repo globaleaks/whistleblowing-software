@@ -298,7 +298,7 @@ class SubmissionInstance(BaseHandler):
         token = TokenList.get(token_id)
 
         if not token.context_associated == request['context_id']:
-            raise errors.InvalidInputFormat("Token context unaligned with REST url")
+            raise errors.InvalidInputFormat("Token context is not the same in the Submission fields")
 
         token.validate(request)
 

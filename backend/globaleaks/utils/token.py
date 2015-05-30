@@ -216,7 +216,6 @@ class Token(TempObj):
     def proof_of_work_check(self, resolved_proof_of_work):
         pass
 
-
     def validate(self, request):
         """
         @request is the submission;
@@ -233,17 +232,17 @@ class Token(TempObj):
             self.timedelta_check()
 
             if not self.remaining_allowed_attempts or self.remaining_allowed_attempts < 0:
-                assert False, "Exhausted Token usage"
+                raise errors.TokenFailure("Exhausted Token usage")
 
             if self.human_captcha is not False:
                 self.human_captcha_check(request['human_captcha_answer'])
 
             if self.graph_captcha is not False:
-                assert False, "Graphical Captcha! NotYetImplemented"
+                raise errors.TokenFailure("Graphical Captcha! NotYetImplemented")
 
             # Raise an exception if, by mistake, we ask for something not yet supported
             if self.proof_of_work is not False:
-                assert False, "Proof of Work! NotYetImplemented"
+                raise errors.TokenFailure("Proof of Work! NotYetImplemented")
 
         except Exception:
             log.debug("Error triggered in Token validation, remaining attempts %d => %d" % (
@@ -251,4 +250,4 @@ class Token(TempObj):
             raise errors.TokenFailure("Failed to validate token")
 
         # if the code flow reach here, the token is validated
-        log.debug("Token validated properly")
+        # log.debug("Token validated properly")
