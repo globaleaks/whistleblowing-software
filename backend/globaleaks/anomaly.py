@@ -19,7 +19,6 @@ from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import log, datetime_now, is_expired, \
     datetime_to_ISO8601, bytes_to_pretty_str
-from globaleaks.utils.tempobj import TempObj
 
 
 def update_AnomalyQ(event_matrix, alarm_level):
@@ -97,6 +96,7 @@ def compute_activity_level():
                         (previous_activity_sl,
                          Alarm.stress_levels['activity']))
 
+
     # Alarm notification get the copy of the latest activities
     yield Alarm.admin_alarm_notification(current_event_matrix)
 
@@ -109,6 +109,7 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
     free_workdir_string = bytes_to_pretty_str(free_workdir_bytes)
     free_ramdisk_string = bytes_to_pretty_str(free_ramdisk_bytes)
     total_workdir_string = bytes_to_pretty_str(total_workdir_bytes)
+    total_ramdisk_string = bytes_to_pretty_str(total_ramdisk_bytes)
 
     def info_msg_0(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
         return "Disk space < 1%%: %s on %s" % (total_workdir_string, free_workdir_string)
@@ -120,7 +121,8 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
                 free_workdir_string)
 
     def info_msg_2(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Ramdisk space not enough space (%s): required 2Kb" % free_ramdisk_string
+        return "Ramdisk space not enough (%s on %s), required at least 2Kb" % (
+                    free_ramdisk_string, total_ramdisk_string)
 
     def info_msg_3(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
         return "Disk space ~ 2%% (Critical when reach 1%%): %s on %s" % \
@@ -192,7 +194,6 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
             'accept_submissions': True,
         }
     ]
-
     return conditions
 
 
@@ -223,10 +224,12 @@ class Alarm(object):
     }
 
     OUTCOMING_ANOMALY_MAP = {
-        'failed_logins': 8,
-        'successful_logins': 3,
+         # Remind: started submission at the moment can be triggered also by a crawler
         'started_submissions': 10,
         'completed_submissions': 5,
+        'rejected_submissions': 5,
+        'failed_logins': 8,
+        'successful_logins': 3,
         'uploaded_files': 10,
         'appended_files': 10,
         'wb_comments': 2,
@@ -267,7 +270,6 @@ class Alarm(object):
         This function return the difficulty that will be enforced in the
         token, whenever is File or Submission, here is evaluated with a dict.
         """
-        # TODO make a proper assessment between pissed off users and defeated DoS
         if Alarm.stress_levels['activity'] >= 1:
             self.difficulty_dict['human_captcha'] = True
 
@@ -350,10 +352,14 @@ class Alarm(object):
         }
         # ------------------------------------------------------------------
 
+        # Independently from the event_matrix, the status of the stress level can
+        # be in non-0 value.
         # Here start the Anomaly Notification code, before checking if we have to send email
         if not (Alarm.stress_levels['activity'] or Alarm.stress_levels['disk_space']):
             # lucky, no stress activities recorded: no mail needed
             defer.returnValue(None)
+
+        print "EM", event_matrix
 
         if not GLSetting.memory_copy.admin_notif_enable:
             # event_matrix is {} if we are here only for disk
@@ -371,6 +377,7 @@ class Alarm(object):
 
         # and now, processing the template
         message = yield _get_message_template()
+        print "T", message
         for keyword, templ_funct in KeyWordTemplate.iteritems():
 
             where = message.find(keyword)
@@ -391,10 +398,10 @@ class Alarm(object):
                 message[where + len(keyword):])
 
         admin_email = yield _get_node_admin_email()
-
         admin_language = yield _get_admin_user_language()
-
         notification_settings = yield get_notification(admin_language)
+
+        print notification_settings['admin_anomaly_mail_title']
 
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_email,
                                   GLSetting.memory_copy.notif_source_email,
@@ -402,6 +409,8 @@ class Alarm(object):
                                   admin_email,
                                   notification_settings['admin_anomaly_mail_title'],
                                   message)
+        print message
+        print event_matrix
 
         log.debug('Alarm Email for admin (%s): connecting to [%s:%d], '
                   'the next mail should be in %d minutes' %
@@ -471,10 +480,18 @@ class Alarm(object):
 
                 break
 
-        # the value is setted here with a single assignment in order to
+        # This check is temporarily, want to be verified that the switch can be
+        # logged as part of the Anomalies via this function
+        old_stress_level = Alarm.stress_levels['disk_space']
+        if old_stress_level != disk_space:
+            log.debug("Switch in Disk space available status, %d => %d" %
+                      (old_stress_level, disk_space))
+
+        # the value is set here with a single assignment in order to
         # minimize possible race conditions resetting/settings the values
         Alarm.stress_levels['disk_space'] = disk_space
         Alarm.stress_levels['disk_message'] = disk_message
+
         GLSetting.memory_copy.accept_submissions = accept_submissions
 
         if old_accept_submissions != GLSetting.memory_copy.accept_submissions:

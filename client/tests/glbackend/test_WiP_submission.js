@@ -32,7 +32,29 @@ var validate_mandatory_headers = function(headers) {
   }
 };
 
+
+var fill_field_recursively = function(field) {
+    field['value'] = 'antani ¹²³ ';
+      for (var i = 0; i < field.children.length; j++) {
+            fill_field_recursively(field.children[i]);
+              };
+}
+
+var fill_steps = function(steps) {
+    for (i in steps) {
+          for (c in steps[i].children) {
+                  fill_field_recursively(steps[i].children[c]);
+                      }
+            };
+
+      return steps
+}
+
+
 describe('doing a shitload of submission', function(){
+
+  this.timeout(10000);
+
   it(' really ', function(done){
     app
       .get('/contexts')
@@ -48,43 +70,38 @@ describe('doing a shitload of submission', function(){
 
           for (var i=0; i < contexts.length; i++) {
 
-            var tokens = [];
+            dummy_steps_filled = fill_steps(contexts[i].steps);
+            context_id_copy = contexts[i].id;
+            receiver_list = contexts[i].receivers;
 
-            for(k = 0; k < 30; k++ ) {
+            for(k = 0; k < 16; k++ ) {
 
-                  var new_submission = {};
-                  new_submission.context_id = contexts[i].id;
-                  var receivers_id = contexts[i].receivers;
-                  // console.log(new_submission);
-                  // console.log(contexts_ids[i]);
+                  subm_req = {};
+                  subm_req.context_id = context_id_copy;
 
                   app
                     .post('/submission')
-                    .send(new_submission)
+                    .send(subm_req)
                     .set('X-XSRF-TOKEN', 'antani')
                     .set('cookie', 'XSRF-TOKEN=antani')
                     .expect('Content-Type', 'application/json')
                     .expect(201)
-                    .end(function(err, res) {
+                    .end(function(err, tokenfull) {
                       if (err) {
                         return done(err);
                       } else {
 
-                        // console.log(res.headers);
-                        // console.log(res.body);
-                        var token = res.body;
-                        /* validate_mandatory_headers(res.headers); */
+                        validate_mandatory_headers(tokenfull.headers); 
 
-                        var sbms = {};
+                        sbms = {};
                         // sbms.graph_captcha = false;
-                        sbms.context_id = new_submission.context_id;
+                        sbms.context_id = context_id_copy;
                         sbms.human_captcha_answer = 0;
-                        sbms.wb_steps = [];
-                        sbms.receivers = receivers_id;
-                        // console.log(receivers_ids);
+                        sbms.wb_steps = dummy_steps_filled;
+                        sbms.receivers = receiver_list;
 
                         app
-                          .put('/submission/' + token.id)
+                          .put('/submission/' + tokenfull.body.id)
                           .send(sbms)
                           .set('X-XSRF-TOKEN', 'antani')
                           .set('cookie', 'XSRF-TOKEN=antani')
@@ -95,6 +112,7 @@ describe('doing a shitload of submission', function(){
                               console.log("unhappy!");
                               return done(err);
                             } else {
+                              validate_mandatory_headers(res.headers); 
                               console.log("happy!");
                               done();
                             }
