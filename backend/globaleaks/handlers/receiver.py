@@ -72,6 +72,7 @@ def serialize_event(evnt):
 
 @transact_ro
 def get_receiver_settings(store, receiver_id, language):
+    print receiver_id
     receiver = store.find(Receiver, Receiver.id == receiver_id).one()
 
     if not receiver:
