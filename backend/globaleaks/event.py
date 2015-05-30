@@ -12,30 +12,24 @@ def file_upload_check(uri):
     # /submission/ + token_id + /file  = 59 bytes
     return len(uri) == 59 and uri.endswith('/file')
 
-
 def file_append_check(uri):
     return uri == '/wbtip/upload'
 
-
 def submission_check(uri):
-    return uri == '/submission'
-
+    # POST /submission + PUT /submission/$token_id
+    return uri.startswith('/submission')
 
 def login_check(uri):
     return uri == '/authentication'
 
-
 def wb_message_check(uri):
     return uri.startswith('/wbtip/messages/')
-
 
 def wb_comment_check(uri):
     return uri == '/wbtip/comments'
 
-
 def rcvr_message_check(uri):
     return uri.startswith('/rtip/messages/')
-
 
 def rcvr_comment_check(uri):
     return uri.startswith('/rtip/comments')
@@ -46,15 +40,12 @@ def failure_status_check(http_code):
     # the status.
     return http_code >= 400
 
-
 def created_status_check(http_code):
     # if missing, is a failure => False
     return http_code == 201
 
-
 def ok_status_check(HTTP_code):
     return HTTP_code == 200
-
 
 def update_status_check(http_code):
     return http_code == 202
@@ -96,6 +87,13 @@ outcoming_event_monitored = [
         'method': 'PUT',
         'handler_check': submission_check,
         'status_checker': update_status_check,
+        'anomaly_management': None,
+    },
+    {
+        'name': 'rejected_submissions',
+        'method': 'PUT',
+        'handler_check': submission_check,
+        'status_checker': failure_status_check,
         'anomaly_management': None,
     },
     {
