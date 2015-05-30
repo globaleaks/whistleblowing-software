@@ -71,7 +71,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission_with_files(self.submission_desc)
 
-        wb_access_id = yield authentication.login_wb(self.submission_desc['receipt'])
+        wb_access_id, _, _ = yield authentication.login_wb(self.submission_desc['receipt'])
 
         # remind: return a tuple (serzialized_itip, wb_itip)
         wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
@@ -131,7 +131,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc['wb_steps'] = yield self.fill_random_fields(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
-        wb_access_id = yield authentication.login_wb(self.submission_desc['receipt'])
+        wb_access_id, _, _ = yield authentication.login_wb(self.submission_desc['receipt'])
 
         wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
 
