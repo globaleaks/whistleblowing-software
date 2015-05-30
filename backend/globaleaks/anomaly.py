@@ -225,7 +225,7 @@ class Alarm(object):
 
     OUTCOMING_ANOMALY_MAP = {
          # Remind: started submission at the moment can be triggered also by a crawler
-        'started_submissions': 10,
+        'started_submissions': 50,
         'completed_submissions': 5,
         'rejected_submissions': 5,
         'failed_logins': 8,
