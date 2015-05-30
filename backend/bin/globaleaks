@@ -198,6 +198,10 @@ GLSetting.parser.add_option("--XXX", type='string',
     help="hardcore debug only options: check NOTES.md file",
     dest="xxx")
 
+GLSetting.parser.add_option("--json", action='store_true',
+    help="research option: collect and dump a JSON to check timings response of GlobaLeaks",
+    dest="json")
+
 GLSetting.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software (spoiler: %s)" % GLSetting.version_string,
     dest="version")
