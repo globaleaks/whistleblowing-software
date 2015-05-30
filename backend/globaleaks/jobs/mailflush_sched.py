@@ -127,13 +127,7 @@ class MailActivities(TempObj):
         self.expireCallbacks.append(self.manage_mail_expiration)
 
     def manage_mail_expiration(self):
-
-        # one hour expired!
-        if self.debug:
-            log.debug("Before the check: %s" % LastHourMailQueue.per_receiver_lastmails)
         LastHourMailQueue.per_receiver_lastmails[self.receiver_id] -= 1
-        if self.debug:
-            log.debug("After the check: %s" % LastHourMailQueue.per_receiver_lastmails)
 
     def __repr__(self):
         return self.receiver_id
