@@ -30,11 +30,8 @@ from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 
-
-
 # XXX. MONKEYPATCH TO SUPPORT STORM 0.19
 import storm.databases.sqlite
-
 
 class SQLite(storm.databases.sqlite.Database):
     connection_factory = storm.databases.sqlite.SQLiteConnection
@@ -265,7 +262,6 @@ class GLSettingsClass(object):
         self.gid = os.getgid()
         self.start_clean = False
         self.devel_mode = False
-        self.json_timing = False
         self.developer_name = ''
         self.skip_wizard = False
         self.glc_path = None
@@ -547,10 +543,6 @@ class GLSettingsClass(object):
                 self.avoid_globaleaks_swap()
 
             print "\n"
-
-        if self.cmdline_options.json:
-            print "→ \033[1;31mEnabling /JSONdebug Interface, collecting timing stats\033[0m"
-            self.json_timing = True
 
     def validate_port(self, inquiry_port):
         if inquiry_port >= 65535 or inquiry_port < 0:
