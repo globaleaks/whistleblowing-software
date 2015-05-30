@@ -181,6 +181,7 @@ def delete_anomaly_history(store):
     Note: all the anomalies has to be in memory before being
         delete. In the long term this shall cause a memory exhaustion
     """
+    raise Exception("This has never been implemented nor tested")
 
     allanom = store.find(Anomalies)
     log.info("Deleting %d entries from Anomalies History table"

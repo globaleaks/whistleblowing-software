@@ -77,7 +77,7 @@ def anon_serialize_node(store, language):
         'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
         'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
-        'submission_minimum_delay' : GLSetting.memory_copy.submission_minimum_delay,
+        'submission_minimum_delay' : 0 if GLSetting.devel_mode else GLSetting.memory_copy.submission_minimum_delay,
         'submission_maximum_ttl' : GLSetting.memory_copy.submission_maximum_ttl,
         'ahmia': node.ahmia,
         'can_postpone_expiration': node.can_postpone_expiration,
@@ -119,8 +119,7 @@ def anon_serialize_context(store, context, language):
     ret_dict = {
         'id': context.id,
         'tip_timetolive': context.tip_timetolive,
-        'submission_introduction': u'NYI',  # unicode(context.submission_introduction), # optlang
-        'submission_disclaimer': u'NYI',  # unicode(context.submission_disclaimer), # optlang
+        'description': context.description,
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'show_small_cards': context.show_small_cards,
