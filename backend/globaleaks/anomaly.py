@@ -359,8 +359,6 @@ class Alarm(object):
             # lucky, no stress activities recorded: no mail needed
             defer.returnValue(None)
 
-        print "EM", event_matrix
-
         if not GLSetting.memory_copy.admin_notif_enable:
             # event_matrix is {} if we are here only for disk
             log.debug("Anomaly to be reported %s, but Admin has Notification disabled" %
@@ -377,7 +375,6 @@ class Alarm(object):
 
         # and now, processing the template
         message = yield _get_message_template()
-        print "T", message
         for keyword, templ_funct in KeyWordTemplate.iteritems():
 
             where = message.find(keyword)
@@ -401,16 +398,12 @@ class Alarm(object):
         admin_language = yield _get_admin_user_language()
         notification_settings = yield get_notification(admin_language)
 
-        print notification_settings['admin_anomaly_mail_title']
-
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_email,
                                   GLSetting.memory_copy.notif_source_email,
                                   admin_email,
                                   admin_email,
                                   notification_settings['admin_anomaly_mail_title'],
                                   message)
-        print message
-        print event_matrix
 
         log.debug('Alarm Email for admin (%s): connecting to [%s:%d], '
                   'the next mail should be in %d minutes' %
