@@ -8,4 +8,4 @@ GlobaLeaks technology has a component that checks the server status and alerts y
 For more information, log in to the Administration interface and look at the “System Stats” and “Anomalies” sections.
 
 Kind regards,
-%NodeSignature%
+%NodeName%

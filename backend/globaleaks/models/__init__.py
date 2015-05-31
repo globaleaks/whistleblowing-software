@@ -475,10 +475,14 @@ class Notification(Model):
     torify = Int(default=True)
 
     # Admin Template
-    admin_anomaly_template = JSON(validator=longlocal_v)
-    admin_anomaly_mail_title = JSON(validator=longlocal_v)
     admin_pgp_alert_mail_title = JSON(validator=longlocal_v)
     admin_pgp_alert_mail_template = JSON(validator=longlocal_v)
+    admin_anomaly_template = JSON(validator=longlocal_v)
+    admin_anomaly_mail_title = JSON(validator=longlocal_v)
+    admin_anomaly_disk_low = JSON(validator=longlocal_v)
+    admin_anomaly_disk_medium = JSON(validator=longlocal_v)
+    admin_anomaly_disk_high = JSON(validator=longlocal_v)
+    admin_anomaly_activities = JSON(validator=longlocal_v)
 
     # Receiver Template
     plaintext_tip_template = JSON(validator=longlocal_v)
@@ -521,6 +525,10 @@ class Notification(Model):
     localized_strings = [
         'admin_anomaly_mail_title',
         'admin_anomaly_template',
+        'admin_anomaly_disk_low',
+        'admin_anomaly_disk_medium',
+        'admin_anomaly_disk_high',
+        'admin_anomaly_activities',
         'admin_pgp_alert_mail_title',
         'admin_pgp_alert_mail_template',
         'pgp_alert_mail_title',
