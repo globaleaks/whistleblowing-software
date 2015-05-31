@@ -115,13 +115,13 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
         return "Disk space < 1%%: %s on %s" % (total_workdir_string, free_workdir_string)
 
     def info_msg_1(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Minimum space available of %d Mb reached: (%s on %s)" % \
+        return "Minimum space available of %d MB reached: (%s on %s)" % \
                 (GLSetting.defaults.minimum_megabytes_required,
                 total_workdir_string,
                 free_workdir_string)
 
     def info_msg_2(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Ramdisk space not enough (%s on %s), required at least 2Kb" % (
+        return "Ramdisk space < 2kB: %s on %s" % (
                     free_ramdisk_string, total_ramdisk_string)
 
     def info_msg_3(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
@@ -129,7 +129,7 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
                 (total_workdir_string, free_workdir_string)
 
     def info_msg_4(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Minimum space available of %d Mb is near: (%s on %s)" % \
+        return "Minimum space available of %d MB is near: (%s on %s)" % \
                 (GLSetting.defaults.minimum_megabytes_required,
                  total_workdir_string,
                  free_workdir_string)
@@ -140,7 +140,7 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
 
     def info_msg_6(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
         return "Disk space permit maximum of %d uploads (%s on %s)" % \
-                (Alarm._MEDIUM_DISK_ALARM, total_workdir_string, free_workdir_string)
+                (Alarm._MEDIUM_DISK_ALARM, free_workdir_string, total_workdir_string)
 
     # list of bad conditions ordered starting from the worst case scenario
     conditions = [
@@ -225,7 +225,7 @@ class Alarm(object):
 
     OUTCOMING_ANOMALY_MAP = {
          # Remind: started submission at the moment can be triggered also by a crawler
-        'started_submissions': 10,
+        'started_submissions': 50,
         'completed_submissions': 5,
         'rejected_submissions': 5,
         'failed_logins': 8,
@@ -370,7 +370,7 @@ class Alarm(object):
         if Alarm.last_alarm_email:
             if not is_expired(Alarm.last_alarm_email,
                               minutes=do_not_stress_admin_with_more_than_an_email_after_minutes):
-                log.debug("Alert email want be send, but the threshold of %d minutes is not yet reached since %s" % (
+                log.debug("Alert email want be sent, but the threshold of %d minutes is not yet reached since %s" % (
                     do_not_stress_admin_with_more_than_an_email_after_minutes,
                     datetime_to_ISO8601(Alarm.last_alarm_email)))
                 defer.returnValue(None)

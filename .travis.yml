@@ -1,13 +1,16 @@
-language: python
+language:
+  - python
+  - node_js
 python:
   - "2.7"
+node_js:
+  - "0.12.2"
 env:
   global:
     - secure: Fd+dALSXhRgP44UaiED0xbJMHLxzON1Vcu6ufxDGgyl9NYepT0cfMGczLocfawc35ig++SyfytfpaPRhy3yG7WhNiBmpq+M1rec5MDKh/tFSKV/JOmLxbUIAxByIgTH39e+bY2El0h+vqiB12JiArahBzraYMYY+Xkty3Ysr+9o=
     - secure: clvOWlojaHQMHGhrN+sG+jOVLAsGJQFpzlUBv+8tKNy+Xbv/XPOQvnzqFTCdRlHSd39wnwIQTwOCWaCYhEECEyqgpaxYlYpSPsUOmk12aSxfjH5YGdwFqZvqhw1rkBpaEyoLh4PT0d1oLeCcJvb0jNuU4YbYOtq7DIRJDih/hPg=
   matrix:
     - GLTEST='unit'
-    - GLTEST='browserchecks'
     - GLTEST='end2end'
 addons:
   sauce_connect: true
@@ -18,5 +21,7 @@ install:
   - cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
   - npm install -g grunt grunt-cli bower
   - npm install
+  - bower install
+  - grunt build
 script:
   - $TRAVIS_BUILD_DIR/scripts/travis.sh

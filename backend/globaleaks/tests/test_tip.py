@@ -63,14 +63,14 @@ class TestTipInstance(TTip):
     @inlineCallbacks
     def wb_auth_with_receipt(self):
         if not self.wb_tip_id:
-            self.wb_tip_id = yield authentication.login_wb(self.submission_desc['receipt'])
+            self.wb_tip_id, _, _ = yield authentication.login_wb(self.submission_desc['receipt'])
             # is the self.current_user.user_id
 
         self.assertTrue(re.match(requests.uuid_regexp, self.wb_tip_id))
 
     @inlineCallbacks
     def wb_auth_with_bad_receipt(self):
-        retval = yield authentication.login_wb(u"fakereceipt123")
+        retval, _, _ = yield authentication.login_wb(u"fakereceipt123")
         self.assertFalse(retval)
 
     @inlineCallbacks
@@ -81,10 +81,10 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def access_receivers_tip(self):
-        auth1, _, _ = yield authentication.login_receiver(self.receiver1_desc['id'], helpers.VALID_PASSWORD1)
+        auth1, _, _ = yield authentication.login(self.receiver1_desc['id'], helpers.VALID_PASSWORD1, u'receiver')
         self.assertEqual(auth1, self.receiver1_desc['id'])
 
-        auth2, _, _ = yield authentication.login_receiver(self.receiver2_desc['id'], helpers.VALID_PASSWORD1)
+        auth2, _, _ = yield authentication.login(self.receiver2_desc['id'], helpers.VALID_PASSWORD1, u'receiver')
         self.assertEqual(auth2, self.receiver2_desc['id'])
 
         for i in range(1, 2):
@@ -102,8 +102,6 @@ class TestTipInstance(TTip):
         """
         Test that an authenticated Receiver1 can't access to the Tip generated for Rcvr2
         """
-
-        # Instead of yield authentication.login_receiver(username/pasword), is used:
         auth_receiver_1 = self.receiver1_desc['id']
 
         yield self.assertFailure(rtip.get_tip(auth_receiver_1, self.rtip2_id, 'en'),

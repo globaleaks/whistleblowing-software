@@ -1,4 +1,4 @@
-<fieldset data-ng-init="toplevel = (field === undefined) ? true : false; step = $index; fields = (field === undefined) ? submission.current_submission.wb_steps[step].children : field.children;">
+<fieldset data-ng-init="toplevel = (field === undefined) ? true : false; step = $index; fields = (field === undefined) ? submission._submission.wb_steps[step].children : field.children;">
   <div data-ng-form="submissionField" data-ng-repeat="field in fields | orderBy:'y'" data-ng-controller="SubmissionFieldCtrl" class="submissionField">
     <div data-ng-init="fieldId  = $parent.fieldId ? $parent.fieldId + '-' + $index : 'field-' + $index" ng-class="getClass($parent.$index, $index, toplevel)">
       <div id="{{fieldId}}" data-ng-switch="" on="field.type">
@@ -25,8 +25,8 @@
             </div>
 
             <div data-ng-switch-when="selectbox" data-ng-class="{'col-md-8': toplevel}">
-              <select id="{{fieldId}}-input" class="form-control" data-ng-model="field.value" data-ng-required="field.required" data-ng-repeat="option in field.options">
-                <option id="{{fieldId}}-input-option-{{$index}}" value="{{option.attrs.name}}">{{option.attrs.name}}</option>
+              <select id="{{fieldId}}-input" class="form-control" data-ng-model="field.value" data-ng-required="field.required">
+                <option data-ng-repeat="option in field.options" id="{{fieldId}}-input-option-{{$index}}" value="{{option.attrs.name}}">{{option.attrs.name}}</option>
               </select>
             </div>
 

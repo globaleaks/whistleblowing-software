@@ -1,14 +1,14 @@
 <div data-ng-include="'views/partials/captchas.html'"></div>
 <div data-ng-include="'views/partials/countdown.html'"></div>
 
-<div id="ContextPickSelector" data-ng-show="contexts_selectable && submission.contexts.length > 1" class="form-inline">
-  <label>{{node.context_selector_label}}</label>
-  <select class="form-control contexts" data-ng-model="submission.current_context" data-ng-options="context as context.name for context in submission.contexts | orderBy:contextsOrderPredicate"></select>
+<div id="ContextSelectorBox" data-ng-show="contexts_selectable && contexts.length > 1" class="form-inline">
+  <label id="ContextSelectorLabel">{{node.context_selector_label}}</label>
+  <select id="ContextSelectorPick" class="form-control contexts" data-ng-model="selected_context" data-ng-options="context as context.name for context in contexts | orderBy:contextsOrderPredicate"></select>
 </div>
 
-<div id="ContextIntroductionBox">{{submission.current_context.description}}</div>
+<div id="ContextIntroductionBox">{{submission.context.description}}</div>
 
-<form name="submissionForm" novalidate>
-  <div data-ng-if="submission.current_context.steps.length == 1" data-ng-include="'views/submission/main_vertical.html'"></div>
-  <div data-ng-if="submission.current_context.steps.length > 1" data-ng-include="'views/submission/main_horizontal.html'"></div>
+<form name="submissionForm" novalidate ng-if="submission.context">
+  <div data-ng-if="submission.context.steps.length == 1" data-ng-include="'views/submission/main_vertical.html'"></div>
+  <div data-ng-if="submission.context.steps.length > 1" data-ng-include="'views/submission/main_horizontal.html'"></div>
 </form>

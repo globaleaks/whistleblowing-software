@@ -181,15 +181,12 @@ def delete_anomaly_history(store):
     Note: all the anomalies has to be in memory before being
         delete. In the long term this shall cause a memory exhaustion
     """
-    raise Exception("This has never been implemented nor tested")
-
     allanom = store.find(Anomalies)
     log.info("Deleting %d entries from Anomalies History table"
              % allanom.count())
 
     allanom.remove()
 
-    # Now you're like a child in the jungle
     log.info("Anomalies collection removal completed.")
 
 
@@ -232,7 +229,6 @@ class StatsCollectionDesc(BaseHandler):
     amount of activities recorded in the delta defined in GLSettings
     /admin/stats
     """
-
     @transport_security_check("admin")
     @authenticated("admin")
     @inlineCallbacks

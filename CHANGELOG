@@ -1,4 +1,30 @@
-Changes in version 2.60.69 - 2015-01-01
+Changes in version 2.60.74 - 2015-05-30
+    o Minor UI fixes
+
+Changes in version 2.60.73 - 2015-05-28
+    o Packageing fixes
+
+Changes in version 2.60.72 - 2015-05-28
+    o Packageing fixes
+
+Changes in version 2.60.71 - 2015-05-27
+    o Minor UI fixes
+
+Changes in version 2.60.70 - 2015-05-25
+    o Packaging fixes
+    o Improved cross-browser compatibility testing by
+      means of Saucelabs integration with Protractor tests
+
+    - https://github.com/globaleaks/GlobaLeaks/issues/1278
+    - https://github.com/globaleaks/GlobaLeaks/issues/1130
+    - https://github.com/globaleaks/GlobaLeaks/issues/1274
+    - https://github.com/globaleaks/GlobaLeaks/issues/1273
+    - https://github.com/globaleaks/GlobaLeaks/issues/1173
+    - https://github.com/globaleaks/GlobaLeaks/issues/1262
+    - https://github.com/globaleaks/GlobaLeaks/issues/444
+    - https://github.com/globaleaks/GlobaLeaks/issues/1258
+
+Changes in version 2.60.69 - 2015-05-02
     o Packaging fixes
     o RTL fixes
 
