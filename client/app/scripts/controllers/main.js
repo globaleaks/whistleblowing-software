@@ -79,14 +79,16 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     };
 
     $scope.set_title = function () {
-      if ($location.path() === '/') {
-        $scope.ht = $scope.node.header_title_homepage;
-      } else if ($location.path() === '/submission') {
-        $scope.ht = $scope.node.header_title_submissionpage;
-      } else if ($location.path() === '/receipt') {
-        $scope.ht = $scope.node.header_title_receiptpage;
-      } else {
-        $scope.ht = $filter('translate')($scope.header_title);
+      if ($scope.node) {
+        if ($location.path() === '/') {
+          $scope.ht = $scope.node.header_title_homepage;
+        } else if ($location.path() === '/submission') {
+          $scope.ht = $scope.node.header_title_submissionpage;
+        } else if ($location.path() === '/receipt') {
+          $scope.ht = $scope.node.header_title_receiptpage;
+        } else {
+          $scope.ht = $filter('translate')($scope.header_title);
+        }
       }
     };
 
@@ -197,14 +199,14 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         set_language($rootScope.language);
 
         var q1 = Contexts.query(function (contexts) {
-          $scope.contextss = contexts;
+          $rootScope.contexts = contexts;
         });
 
         var q2 = Receivers.query(function (receivers) {
-          $scope.receivers = receivers;
+          $rootScope.receivers = receivers;
         });
 
-        $q.all([q1.promise, q2.promise]).then(function() {
+        $q.all([q1.$promise, q2.$promise]).then(function() {
           $scope.started = true;
         });
 

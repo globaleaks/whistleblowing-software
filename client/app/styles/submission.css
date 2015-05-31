@@ -1,9 +1,9 @@
 /** Receiver selection page **/
-#ContextPickSelector, #ContextIntroductionBox {
+#ContextSelectorPick, #ContextIntroductionBox {
   margin-bottom: 10px;
 }
 
-#ContextPickSelector .form-control {
+#ContextSelectorPick .form-control {
   width: auto;
 }
 
@@ -64,7 +64,7 @@
   top: 40px;
   left: 40px;
   font-size: 40px;
-  color: white;
+ color: white;
 }
 
 #MaxSelectableReceiverBox {
@@ -132,4 +132,9 @@
   background-color: #FFF;
   border-radius: 15px;
   direction: ltr;
+}
+
+#StepNavBar, .SubmissionNavButton {
+  margin-left: 0px;
+  margin-right: 10px;
 }

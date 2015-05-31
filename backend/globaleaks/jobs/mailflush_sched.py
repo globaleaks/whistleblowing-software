@@ -44,10 +44,10 @@ class LastHourMailQueue(object):
     blocked_in_queue = {}
 
     @staticmethod
-    def mail_number(receiver_mail):
-        if receiver_mail not in LastHourMailQueue.per_receiver_lastmails:
+    def mail_number(receiver_id):
+        if receiver_id not in LastHourMailQueue.per_receiver_lastmails:
             return 0
-        return LastHourMailQueue.per_receiver_lastmails[receiver_mail]
+        return LastHourMailQueue.per_receiver_lastmails[receiver_id]
 
     @staticmethod
     def get_incremental_number():
@@ -57,17 +57,17 @@ class LastHourMailQueue(object):
 
 class ReceiverDeniedEmail(TempObj):
 
-    def __init__(self, receiver_mail, debug=False):
-
+    def __init__(self, receiver_id, debug=False):
         self.debug = debug
         self.creation_date = datetime_now()
-        self.receiver_mail = receiver_mail
-        import random # TODO something more appropriate
+        self.receiver_id = receiver_id
+
+        # TODO something more appropriate
+        import random
         self.unique_id = random.randint(0, 0xffff)
 
-        if receiver_mail in LastHourMailQueue.receivers_in_threshold:
-            log.err("Implementation error ? Receiver %s already present" %
-                    receiver_mail)
+        if receiver_id in LastHourMailQueue.receivers_in_threshold:
+            log.err("Implementation error ? Receiver %s already present" % receiver_id)
 
         TempObj.__init__(self,
                          LastHourMailQueue.blocked_in_queue,
@@ -76,19 +76,17 @@ class ReceiverDeniedEmail(TempObj):
                          GLSetting.memory_copy.notification_blackhole_lasting_for,
                          reactor_override)
 
-        log.info("Putting %s in the Not-mail-me-again queue for four hours" %
-                 self.receiver_mail)
-        LastHourMailQueue.receivers_in_threshold.append(receiver_mail)
-        self.expireCallbacks.append(self.manage_receiver_is_back)
+        log.info("Temporary disable emails for receiver %s for four hours" % self.receiver_id)
+        LastHourMailQueue.receivers_in_threshold.append(receiver_id)
+        self.expireCallbacks.append(self.reactivate_receiver_mails)
 
-    def manage_receiver_is_back(self):
+    def reactivate_receiver_mails(self):
         # Receiver return to be usable
-        log.info("Expiring email suspension for %s" % self.receiver_mail)
-        if self.receiver_mail not in LastHourMailQueue.receivers_in_threshold:
-            log.err("I'm removing something that is not present in %s" %
-                    LastHourMailQueue.receivers_in_threshold)
+        log.info("Expiring email suspension for %s" % self.receiver_id)
+        if self.receiver_id not in LastHourMailQueue.receivers_in_threshold:
+            log.err("Error while reactivating mails for a receiver")
         else:
-            LastHourMailQueue.receivers_in_threshold.remove(self.receiver_mail)
+            LastHourMailQueue.receivers_in_threshold.remove(self.receiver_id)
 
     def generate_anomaly_email(self, plausible_event):
 
@@ -110,11 +108,11 @@ class ReceiverDeniedEmail(TempObj):
 
 class MailActivities(TempObj):
 
-    def __init__(self, receiver_mail, debug=False):
+    def __init__(self, receiver_id, debug=False):
 
         self.debug = debug
         self.creation_date = datetime_now()
-        self.receiver_mail = receiver_mail
+        self.receiver_id = receiver_id
         self.event_id = LastHourMailQueue.get_incremental_number()
 
         TempObj.__init__(self,
@@ -124,8 +122,8 @@ class MailActivities(TempObj):
                          3600,
                          reactor_override)
 
-        LastHourMailQueue.per_receiver_lastmails.setdefault(receiver_mail, 0)
-        LastHourMailQueue.per_receiver_lastmails[receiver_mail] += 1
+        LastHourMailQueue.per_receiver_lastmails.setdefault(receiver_id, 0)
+        LastHourMailQueue.per_receiver_lastmails[receiver_id] += 1
 
         self.expireCallbacks.append(self.manage_mail_expiration)
 
@@ -134,16 +132,18 @@ class MailActivities(TempObj):
         # one hour expired!
         if self.debug:
             log.debug("Before the check: %s" % LastHourMailQueue.per_receiver_lastmails)
-        LastHourMailQueue.per_receiver_lastmails[self.receiver_mail] -= 1
+
+        LastHourMailQueue.per_receiver_lastmails[self.receiver_id] -= 1
+
         if self.debug:
             log.debug("After the check: %s" % LastHourMailQueue.per_receiver_lastmails)
 
     def __repr__(self):
-        return self.receiver_mail
+        return self.receiver_id
 
     def serialize_object(self):
         return {
-            'receiver_mail' : self.receiver_mail,
+            'receiver_id' : self.receiver_id,
             'id': self.id,
             'creation_date' : datetime_to_ISO8601(self.creation_date)
         }
@@ -287,21 +287,20 @@ def filter_notification_event(notifque):
                   len(storm_id_to_be_skipped))
 
     for ne in _tmp_list:
-
-        receiver_mail = ne['receiver_info']['mail_address']
+        receiver_id = ne['receiver_info']['id']
 
         # It add automatically a mail in to the last hour email queue,
         # events here expires after 1 hour, this mean that if receiver
         # get one email every 3 minutes, with default threshold (20)
         # NEVER trigger this alarm, because at the 21 the first is
         # already expired.
-        MailActivities(receiver_mail)
+        MailActivities(receiver_id)
 
-        email_sent_last_60min = LastHourMailQueue.mail_number(receiver_mail)
+        email_sent_last_60min = LastHourMailQueue.mail_number(receiver_id)
 
-        if receiver_mail in LastHourMailQueue.receivers_in_threshold:
+        if receiver_id in LastHourMailQueue.receivers_in_threshold:
             log.debug("Receiver %s is currently suspended against new mail" %
-                      receiver_mail)
+                      receiver_id)
             storm_id_to_be_skipped.append(ne['storm_id'])
             continue
 
@@ -309,9 +308,9 @@ def filter_notification_event(notifque):
             log.info("Threshold reach of %d email with limit of %d for receiver %s" % (
                 email_sent_last_60min,
                 GLSetting.memory_copy.notification_threshold_per_hour,
-                receiver_mail)
+                receiver_id)
             )
-            rde = ReceiverDeniedEmail(receiver_mail)
+            rde = ReceiverDeniedEmail(receiver_id)
 
             # Append
             anomaly_event = rde.generate_anomaly_email(ne)

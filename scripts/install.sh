@@ -179,7 +179,7 @@ if [ $DISTRO == 'Ubuntu' ];then
   fi
 
   echo "Adding Ubuntu Universe repository"
-  DO "apt-add-repository universe" "0"
+  DO "sudo add-apt-repository 'deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe'" "0"
 fi
 
 if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then

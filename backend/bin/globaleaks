@@ -142,7 +142,7 @@ GLSetting.parser.add_option("-t", "--delay", type="int",
     help="security delay threshold to prevent side channels analysis (ms) [default: 800]",
     dest="delay", default=800)
 
-GLSetting.parser.add_option("-d", "--disable_email_torification", action='store_true',
+GLSetting.parser.add_option("-d", "--disable-email-torification", action='store_true',
     help="disable email torification [default: False]",
     dest="disable_email_torification", default=False)
 

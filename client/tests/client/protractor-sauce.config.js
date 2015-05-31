@@ -10,7 +10,7 @@ exports.config = {
 
   framework: 'jasmine2',
 
-  baseUrl: 'http://localhost:8080/',
+  baseUrl: 'http://localhost:9000/',
 
   specs: [
     'test-init.js',
