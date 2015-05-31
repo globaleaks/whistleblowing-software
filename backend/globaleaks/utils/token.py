@@ -231,7 +231,7 @@ class Token(TempObj):
         try:
             self.timedelta_check()
 
-            if not self.remaining_allowed_attempts or self.remaining_allowed_attempts < 0:
+            if self.remaining_allowed_attempts < -1:
                 raise errors.TokenFailure("Exhausted Token usage")
 
             if self.human_captcha is not False:
@@ -247,7 +247,6 @@ class Token(TempObj):
         except Exception:
             log.debug("Error triggered in Token validation, remaining attempts %d => %d" % (
                 self.remaining_allowed_attempts, self.remaining_allowed_attempts - 1))
-            raise errors.TokenFailure("Failed to validate token")
+            raise
 
         # if the code flow reach here, the token is validated
-        # log.debug("Token validated properly")

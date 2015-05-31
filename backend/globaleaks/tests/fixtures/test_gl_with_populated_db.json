@@ -297,7 +297,9 @@
       "header_title_homepage": {"en": ""},
       "header_title_submissionpage": {"en": ""},
       "header_title_receiptpage": {"en": ""},
-      "landing_page": "homepage"
+      "landing_page": "homepage",
+      "submission_minimum_delay": 0,
+      "submission_maximum_ttl": 0
     },
     "class": "Node"
   },
@@ -312,55 +314,34 @@
         "en": "The following files may contain sensitive information, for the Whistleblower\nand for the involved person and organization.\n\nPlease, do never disclose these files until an appropriate analysis and \nredaction.\n\nFiles number: %FilesNumber%\nTotal uncompressed size: %TotalSize%\n\nFile details and integrity checksum:\n\n%FileList%\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n\n\n"
       },
       "source_email": "sendaccount@lists.globaleaks.org",
-      "encrypted_file_template": {
-        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that a Whistleblower\nhas updated a submission with new material.\n\nThe Tip can be reached via Tor at: %TipTorURL%\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
-      },
       "port": 587,
-      "plaintext_file_mail_title": {
+      "file_mail_title": {
         "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File attached"
       },
-      "plaintext_tip_template": {
+      "tip_template": {
         "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that someone has selected you as a valuable recipient\nof WhistleBlowing material in the form of a Globaleaks tip-off. This message has been created\nby the GlobaLeaks Node %NodeName%, in \"%ContextName%\".\n\nThis tip-off has been sent to you by an anonymous whistleblower. She/He would like you\nto pay special attention to the information and material contained therein. Please consider\nthat whistleblowers often expose themselves to high personal risks in order to protect the\npublic good. Therefore the material that they provide with this tip-off should be considered\nof high importance.\n\nYou can download the material from the following URLs:\n\nvia Tor:\n%TipTorURL%\nor:\n%TipT2WURL%\n\nSubmission date: %EventTime%\n\nPlease do not forward or share this e-mail: each tip-off has a limited number of downloads and\naccess before being destroyed forever, nobody (even the node administrator) can recover and\nexpired or dead tip-off.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
       },
       "id": "833b42a5-c476-48f2-9777-c20622d00bbd",
-      "plaintext_message_mail_title": {
+      "message_mail_title": {
         "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New message"
       },
-      "encrypted_comment_mail_title": {
-        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New comment (Encrypted)"
-      },
-      "encrypted_message_template": {
-        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you about a new Message\nfrom the Whisleblower, in %EventTime%.\n\nThe message is related to the Tip: %TipTorURL% \n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
-      },
       "username": "sendaccount@lists.globaleaks.org",
-      "plaintext_tip_mail_title": {
+      "tip_mail_title": {
         "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: new ClearText"
       },
-      "encrypted_message_mail_title": {
-        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New message (Encrypted)"
-      },
-      "plaintext_comment_template": {
+      "comment_template": {
         "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that %CommentSource%\nhas added a comment to a previously notified Tip (%TipTorURL%) in %EventTime%\n\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
       },
-      "plaintext_comment_mail_title": {
+      "comment_mail_title": {
         "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New comment"
       },
-      "encrypted_tip_template": {
-        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that someone has selected you as a valuable recipient\nof WhistleBlowing material in the form of a Globaleaks tip-off. This message has been created\nby the GlobaLeaks Node %NodeName%, in \"%ContextName%\".\n\nThis tip-off has been sent to you by an anonymous whistleblower. She/He would like you\nto pay special attention to the information and material contained therein. Please consider\nthat whistleblowers often expose themselves to high personal risks in order to protect the\npublic good. Therefore the material that they provide with this tip-off should be considered\nof high importance.\n\nYou can download the material from the following URLs:\n\nvia Tor:\n%TipTorURL%\nor:\n%TipT2WURL%\n\nSubmission date: %EventTime%\n\nPlease do not forward or share this e-mail: each tip-off has a limited number of downloads and\naccess before being destroyed forever, nobody (even the node administrator) can recover and\nexpired or dead tip-off.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
-      },
-      "encrypted_tip_mail_title": {
-        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: new Tip (Encrypted)"
-      },
       "password": "sendaccount99",
-      "plaintext_file_template": {
+      "file_template": {
         "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that a Whistleblower\nhas updated a submission with new material.\n\nThe Tip can be reached via Tor at: %TipTorURL%\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
       },
       "server": "mail.headstrong.de",
-      "plaintext_message_template": {
+      "message_template": {
         "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you about\na new Message from the Whisleblower in %EventTime%.\n\nThe message is related to the Tip: %TipTorURL%\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
-      },
-      "encrypted_comment_template": {
-        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that %CommentSource%\nhas added a comment to a previously notified Tip (%TipTorURL%) in %EventTime%.\n\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
       },
       "ping_mail_template": {
         "en": "Dear %ReceiverName%,\n\nThere are %EventCount% good reason to connect exactly where you know!\n"
@@ -381,9 +362,6 @@
         "en": "PGP Key Expiration Alert\n"
       },
       "security": "TLS",
-      "encrypted_file_mail_title": {
-        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File attached (Encrypted)"
-      },
       "disable_admin_notification_emails": false,
       "disable_receivers_notification_emails": false,
       "send_email_for_every_event": false

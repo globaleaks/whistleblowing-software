@@ -1,8 +1,8 @@
-The activities recently measured appear to be much more than usual.
+The number of activities recently detected appear to be more than the usual.
 
 This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project.
 
-You are receiving this e-mail as a suggestion look into this issue to determine if the origin is legit or malicious.
+You are receiving this e-mail as a suggestion to see to take a look into this issue and determine if the origin is legit or malicious.
 
 The activities with unusual numbers are:
 

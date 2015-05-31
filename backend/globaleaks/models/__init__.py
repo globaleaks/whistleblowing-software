@@ -485,14 +485,14 @@ class Notification(Model):
     admin_anomaly_activities = JSON(validator=longlocal_v)
 
     # Receiver Template
-    plaintext_tip_template = JSON(validator=longlocal_v)
-    plaintext_tip_mail_title = JSON(validator=longlocal_v)
-    plaintext_file_template = JSON(validator=longlocal_v)
-    plaintext_file_mail_title = JSON(validator=longlocal_v)
-    plaintext_comment_template = JSON(validator=longlocal_v)
-    plaintext_comment_mail_title = JSON(validator=longlocal_v)
-    plaintext_message_template = JSON(validator=longlocal_v)
-    plaintext_message_mail_title = JSON(validator=longlocal_v)
+    tip_template = JSON(validator=longlocal_v)
+    tip_mail_title = JSON(validator=longlocal_v)
+    file_template = JSON(validator=longlocal_v)
+    file_mail_title = JSON(validator=longlocal_v)
+    comment_template = JSON(validator=longlocal_v)
+    comment_mail_title = JSON(validator=longlocal_v)
+    message_template = JSON(validator=longlocal_v)
+    message_mail_title = JSON(validator=longlocal_v)
     tip_expiration_template = JSON(validator=longlocal_v)
     tip_expiration_mail_title = JSON(validator=longlocal_v)
     pgp_alert_mail_title = JSON(validator=longlocal_v)
@@ -511,7 +511,7 @@ class Notification(Model):
     send_email_for_every_event = Bool(default=True)
 
     notification_threshold_per_hour = Int(default=20)
-    notification_blackhole_lasting_for= Int(default=(4 * 3600) )
+    notification_suspension_time= Int(default=(4 * 3600) )
 
     unicode_keys = [
         'server',
@@ -533,14 +533,14 @@ class Notification(Model):
         'admin_pgp_alert_mail_template',
         'pgp_alert_mail_title',
         'pgp_alert_mail_template',
-        'plaintext_tip_template',
-        'plaintext_tip_mail_title',
-        'plaintext_file_template',
-        'plaintext_file_mail_title',
-        'plaintext_comment_template',
-        'plaintext_comment_mail_title',
-        'plaintext_message_template',
-        'plaintext_message_mail_title',
+        'tip_template',
+        'tip_mail_title',
+        'file_template',
+        'file_mail_title',
+        'comment_template',
+        'comment_mail_title',
+        'message_template',
+        'message_mail_title',
         'tip_expiration_template',
         'tip_expiration_mail_title',
         'notification_digest_mail_title',
@@ -554,7 +554,7 @@ class Notification(Model):
     int_keys = [
         'port',
         'notification_threshold_per_hour',
-        'notification_blackhole_lasting_for'
+        'notification_suspension_time'
     ]
 
     bool_keys = [

@@ -201,8 +201,8 @@ class GLSettingsClass(object):
         self.defaults.maximum_requestsize = 4  # expressed in megabytes
         self.defaults.exception_email = u"globaleaks-stackexception@lists.globaleaks.org"
 
-        self.defaults.submission_minimum_delay = 60
-        self.defaults.submission_maximum_ttl = 3600
+        self.defaults.submission_minimum_delay = 10
+        self.defaults.submission_maximum_ttl = 10800
 
         # This value get copy in Context(s):
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
