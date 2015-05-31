@@ -84,7 +84,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
                          more info on: https://www.youtube.com/watch?v=C7JZ4F3zJdY \
                          and know that you're not alone!"
 
-        mock_event = Event(type=u'encrypted_tip',
+        mock_event = Event(type=u'tip',
                            trigger='Tip',
                            tip_info = {
                                'creation_date': '2013-05-13T17:49:26.105485', #epoch!

@@ -33,16 +33,16 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>Mail per hour before trigger mail suspension</label>
+      <label data-translate>Max emails per hour before triggering email suspension</label> (<label data-translate>per receiver config</label>)
       <input class="form-control" data-ng-model="admin.notification.notification_threshold_per_hour" maxlength="{{node.maximum_namesize}}" type="number" />
     </div>
 
     <div class="form-group">
-      <label data-translate>Hours of mailing suspension</label>
-      <input class="form-control" data-ng-model="admin.notification.notification_blackhole_lasting_for" maxlength="{{node.maximum_namesize}}" type="number" />
+      <label data-translate>Hours of mail suspension after exceeding hourly limit</label> <label>(<div data-translate>per receiver config</div>)</label>
+      <input class="form-control" data-ng-model="admin.notification.notification_suspension_time" maxlength="{{node.maximum_namesize}}" type="number" />
     </div>
 
-    <hr>
+    <hr />
 
     <div class="form-group">
       <label data-translate>Source Name</label>
@@ -53,9 +53,9 @@
       <label data-translate>Source Email Address</label>
       <input class="form-control" name="source_email" data-ng-model="admin.notification.source_email" data-ng-pattern="email_regexp" maxlength="{{node.maximum_namesize}}" type="text" />
     </div>
-    <p class="has-error" data-ng-show="notificationForm.source_email.$error.pattern">
+    <div class="has-error" data-ng-show="notificationForm.source_email.$error.pattern">
       <span data-translate>Invalid email address</span>
-    </p>
+    </div>
 
     <div class="form-group">
       <label data-translate>Username</label>

@@ -60,46 +60,22 @@ templates_desc = {
     "admin_anomaly_template":
         [generic_keyword_list, alarm_keyword_list],
 
-    "encrypted_tip_mail_title":
-        [generic_keyword_list, tip_keyword_list],
-
-    "encrypted_tip_template":
-        [generic_keyword_list, tip_keyword_list, protected_keyword_list],
-
-    "encrypted_file_mail_title":
+    "file_mail_title":
         [generic_keyword_list, tip_keyword_list, file_keyword_list],
 
-    "encrypted_file_template":
+    "file_template":
         [generic_keyword_list, tip_keyword_list, file_keyword_list],
 
-    "encrypted_comment_mail_title":
+    "comment_mail_title":
         [generic_keyword_list, tip_keyword_list, comment_keyword_list],
 
-    "encrypted_comment_template":
+    "comment_template":
         [generic_keyword_list, tip_keyword_list, comment_keyword_list],
 
-    "encrypted_message_mail_title":
+    "message_mail_title":
         [generic_keyword_list, tip_keyword_list],
 
-    "encrypted_message_template":
-        [generic_keyword_list, tip_keyword_list],
-
-    "plaintext_file_mail_title":
-        [generic_keyword_list, tip_keyword_list, file_keyword_list],
-
-    "plaintext_file_template":
-        [generic_keyword_list, tip_keyword_list, file_keyword_list],
-
-    "plaintext_comment_mail_title":
-        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
-
-    "plaintext_comment_template":
-        [generic_keyword_list, tip_keyword_list, comment_keyword_list],
-
-    "plaintext_message_mail_title":
-        [generic_keyword_list, tip_keyword_list],
-
-    "plaintext_message_template":
+    "message_template":
         [generic_keyword_list, tip_keyword_list],
 
     "zip_description.txt":
@@ -126,18 +102,16 @@ templates_desc = {
 
 # Templating 'supported_event_type' is a method variable with a different pattern
 # the whole test can be re-engineered
-supported_event_types = { u'encrypted_tip': 'Tip',
-                          u'plaintext_tip': 'Tip',
-                          u'encrypted_file': 'File',
-                          u'plaintext_file': 'File',
-                          u'encrypted_comment': 'Comment',
-                          u'plaintext_comment': 'Comment',
-                          u'encrypted_message': 'Message',
-                          u'plaintext_message': 'Message',
-                          u'zip_collection': 'Collection',
-                          u'ping_mail': 'Tip',
-                          u'admin_pgp_expiration_alert': '',
-                          u'pgp_expiration_alert': ''}
+supported_event_types = {
+  u'tip': 'Tip',
+  u'file': 'File',
+  u'comment': 'Comment',
+  u'message': 'Message',
+  u'zip_collection': 'Collection',
+  u'ping_mail': 'Tip',
+  u'admin_pgp_expiration_alert': '',
+  u'pgp_expiration_alert': ''
+}
 
 class notifTemplateTest(helpers.TestGLWithPopulatedDB):
     def _fill_event_dict(self, event_type, event_trigger):

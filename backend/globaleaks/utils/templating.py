@@ -35,10 +35,10 @@ class Templating(object):
         """
 
         supported_event_types = {
-                                  u'plaintext_tip': TipKeyword,
-                                  u'plaintext_file': FileKeyword,
-                                  u'plaintext_comment': CommentKeyword,
-                                  u'plaintext_message': MessageKeyword,
+                                  u'tip': TipKeyword,
+                                  u'file': FileKeyword,
+                                  u'comment': CommentKeyword,
+                                  u'message': MessageKeyword,
                                   u'zip_collection': ZipFileKeyword,
                                   u'ping_mail': PingMailKeyword,
                                   u'admin_pgp_expiration_alert': AdminPGPAlertKeyword,
@@ -267,24 +267,6 @@ class FileKeyword(TipKeyword):
 
     def FileType(self):
         return self.file['content_type']
-
-
-class EncryptedFileKeyword(FileKeyword):
-    """
-    FileDescription not yet implemented in UI, but here has to go
-    """
-    encrypted_file_keywords = [
-        '%FileDescription%'
-    ]
-
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, file_desc):
-        super(EncryptedFileKeyword, self).__init__(node_desc, context_desc,
-                                                   fields_desc, receiver_desc,
-                                                   tip_desc, file_desc)
-        self.keyword_list += EncryptedFileKeyword.encrypted_file_keywords
-
-    def FileDescription(self):
-        pass
 
 
 class ZipFileKeyword(TipKeyword):

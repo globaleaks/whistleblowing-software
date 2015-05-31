@@ -136,13 +136,13 @@ def db_update_memory_variables(store):
         notif = store.find(models.Notification).one()
 
         GLSetting.memory_copy.notif_server = notif.server
-        GLSetting.memory_copy.notif_port = int(notif.port)
+        GLSetting.memory_copy.notif_port = notif.port
         GLSetting.memory_copy.notif_password = notif.password
         GLSetting.memory_copy.notif_username = notif.username
         GLSetting.memory_copy.notif_security = notif.security
 
-        GLSetting.memory_copy.notification_threshold_per_hour = notif.notification_threshold_per_hour # 20
-        GLSetting.memory_copy.notification_blackhole_lasting_for = notif.notification_blackhole_lasting_for # 4 * 3600
+        GLSetting.memory_copy.notification_threshold_per_hour = notif.notification_threshold_per_hour
+        GLSetting.memory_copy.notification_suspension_time = notif.notification_suspension_time
 
         if GLSetting.developer_name:
             GLSetting.memory_copy.notif_source_name = GLSetting.developer_name

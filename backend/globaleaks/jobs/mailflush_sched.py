@@ -73,7 +73,7 @@ class ReceiverDeniedEmail(TempObj):
                          LastHourMailQueue.blocked_in_queue,
                          self.unique_id,
                          # seconds of validity:
-                         GLSetting.memory_copy.notification_blackhole_lasting_for,
+                         GLSetting.memory_copy.notification_suspension_time,
                          reactor_override)
 
         log.info("Temporary disable emails for receiver %s for four hours" % self.receiver_id)
@@ -232,7 +232,7 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
         eventcomplete.steps_info = stev.description['steps_info']
 
         eventcomplete.type = stev.description['type'] # 'Tip', 'Comment'
-        eventcomplete.trigger = stev.event_reference['kind'] # 'plaintext_blah' ...
+        eventcomplete.trigger = stev.event_reference['kind'] # 'blah' ...
 
         eventcomplete.storm_id = stev.id
 
