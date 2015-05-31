@@ -29,6 +29,7 @@ from storm.databases.sqlite import sqlite
 from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
+from globaleaks.rest.errors import DatabaseIntegrityError
 
 # XXX. MONKEYPATCH TO SUPPORT STORM 0.19
 import storm.databases.sqlite
@@ -798,11 +799,14 @@ class transact(object):
             else:
                 result = function(self.store, *args, **kwargs)
 
-        except (exceptions.IntegrityError, exceptions.DisconnectionError):
+        except exceptions.DisconnectionError as e:
             transaction.abort()
             # we print the exception here because we do not propagate it
-            GLSetting.log_debug(traceback.format_exc())
+            GLSetting.log_debug(e)
             result = None
+        except exceptions.IntegrityError as e:
+            transaction.abort()
+            raise DatabaseIntegrityError(str(e))
         except HTTPError as excep:
             transaction.abort()
             raise excep
