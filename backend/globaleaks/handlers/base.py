@@ -545,7 +545,7 @@ class BaseHandler(RequestHandler):
         try:
             if (int(self.request.arguments['flowTotalSize'][0]) / (1024 * 1024)) > GLSetting.defaults.maximum_filesize:
                 log.err("File upload request rejected: file too big")
-                raise errors.FileTooBig
+                raise errors.FileTooBig(GLSetting.memory_copy.maximum_filesize)
 
             if self.request.arguments['flowIdentifier'][0] not in GLUploads:
                 f = GLSecureTemporaryFile(GLSetting.tmp_upload_path)

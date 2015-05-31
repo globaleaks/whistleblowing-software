@@ -561,9 +561,6 @@ class Receiver(Model):
     name, description, password and notification_fields, can be changed
     by Receiver itself
     """
-    user_id = Unicode()
-    # Receiver.user = Reference(Receiver.user_id, User.id)
-
     name = Unicode(validator=shorttext_v)
 
     # localization strings
@@ -819,7 +816,7 @@ Context.steps = ReferenceSet(Context.id,
 Step.context = Reference(Step.context_id, Context.id)
 
 # _*_# References tracking below #_*_#
-Receiver.user = Reference(Receiver.user_id, User.id)
+Receiver.user = Reference(Receiver.id, User.id)
 
 Receiver.internaltips = ReferenceSet(Receiver.id,
                                      ReceiverInternalTip.receiver_id,

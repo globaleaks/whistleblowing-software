@@ -8,7 +8,6 @@
 # class variables expected in the Error handler routine
 
 from cyclone.web import HTTPError
-from globaleaks.settings import GLSetting
 
 class GLException(HTTPError):
     reason = "GLTypesError not set"
@@ -82,16 +81,16 @@ class TipReceiptNotFound(GLException):
 # UNUSED ERROR CODE 15 16 17 18 HERE!
 
 
-class ExpectedUniqueField(GLException):
+class DatabaseIntegrityError(GLException):
     """
-    A field marked as unique was getting the same value repeated
+    A query on the database resulted in an integrity error
     """
+    reasone = "A query on the database resulted in an integrity error"
     error_code = 19
     status_code = 404 # Not Found
 
-    def __init__(self, reason):
-        self.reason = "%s" % (reason)
-
+    def __init__(self, dberror):
+        self.arguments = [dberror]
 
 class ReceiverIdNotFound(GLException):
     """
@@ -234,10 +233,10 @@ class FileTooBig(GLException):
     error_code = 39
     status_code = 400 # Bad Request
 
-    def __init__(self):
+    def __init__(self, size_limit):
         self.reason = ("Provided file upload overcomes size limits (%d Mb)" %
-                      GLSetting.memory_copy.maximum_filesize)
-        self.arguments = [GLSetting.memory_copy.maximum_filesize]
+                       size_limit)
+        self.arguments = [size_limit]
 
 
 class PGPKeyInvalid(GLException):

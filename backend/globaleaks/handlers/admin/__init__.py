@@ -651,12 +651,6 @@ def db_create_receiver(store, request, language):
     """
     fill_localized_keys(request, models.Receiver.localized_strings, language)
 
-    # Pretend that name is unique:
-    homonymous = store.find(models.Receiver, models.Receiver.name == request['name']).count()
-    if homonymous:
-        log.err("Creation error: already present receiver with the requested name")
-        raise errors.ExpectedUniqueField("Creation error: already present receiver with the requested name")
-
     password = request['password']
     if len(password) and password != GLSetting.default_password:
         security.check_password_format(password)
@@ -670,10 +664,6 @@ def db_create_receiver(store, request, language):
     request.update({'ping_mail_address': request['mail_address']})
 
     receiver = models.Receiver(request)
-    store.add(receiver)
-
-    # The various options related in manage PGP keys are used here.
-    pgp_options_parse(receiver, request)
 
     receiver_user_dict = {
         'username': uuid4(),
@@ -686,12 +676,16 @@ def db_create_receiver(store, request, language):
         'password_change_needed': True
     }
 
-    receiver.user = models.User(receiver_user_dict)
-    store.add(receiver.user)
-    store.add(receiver)
+    receiver_user = models.User(receiver_user_dict)
+
+    # The various options related in manage PGP keys are used here.
+    pgp_options_parse(receiver, request)
 
     # Set receiver.id = receiver.user.username = receiver.user.id
-    receiver.id = receiver.user.username = receiver.user.id
+    receiver.id = receiver_user.username = receiver_user.id
+
+    store.add(receiver_user)
+    store.add(receiver)
 
     create_random_receiver_portrait(receiver.id)
 
