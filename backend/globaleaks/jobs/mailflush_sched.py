@@ -108,12 +108,15 @@ class ReceiverDeniedEmail(TempObj):
 
 class MailActivities(TempObj):
 
-    def __init__(self, receiver_id, debug=False):
+    def __init__(self, receiver_id, receiver_name, debug=False):
 
         self.debug = debug
         self.creation_date = datetime_now()
         self.receiver_id = receiver_id
         self.event_id = LastHourMailQueue.get_incremental_number()
+
+        # This variable is just used for debug/log purpose
+        self.receiver_name = receiver_name
 
         TempObj.__init__(self,
                          LastHourMailQueue.event_queue,
@@ -137,7 +140,8 @@ class MailActivities(TempObj):
         return {
             'receiver_id' : self.receiver_id,
             'id': self.id,
-            'creation_date' : datetime_to_ISO8601(self.creation_date)
+            'creation_date' : datetime_to_ISO8601(self.creation_date),
+            'receiver_name': self.receiver_name
         }
 
 
@@ -286,7 +290,8 @@ def filter_notification_event(notifque):
         # get one email every 3 minutes, with default threshold (20)
         # NEVER trigger this alarm, because at the 21 the first is
         # already expired.
-        MailActivities(receiver_id)
+        print ne['receiver_info']
+        MailActivities(receiver_id, ne['receiver_info']['receiver_name'])
 
         email_sent_last_60min = LastHourMailQueue.mail_number(receiver_id)
 

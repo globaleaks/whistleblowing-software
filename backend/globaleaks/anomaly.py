@@ -97,8 +97,12 @@ def compute_activity_level():
                          Alarm.stress_levels['activity']))
 
 
-    # Alarm notification get the copy of the latest activities
-    yield Alarm.admin_alarm_notification(current_event_matrix)
+    mailinfo = yield Alarm.admin_alarm_generate_mail(current_event_matrix)
+    if isinstance(mailinfo, dict):
+        yield Alarm.anomaly_email_send(
+            mailinfo['admin_email'],
+            mailinfo['message']
+        )
 
     defer.returnValue(Alarm.stress_levels['activity'] - previous_activity_sl)
 
@@ -242,7 +246,8 @@ class Alarm(object):
     _alarm_level = {}
     _anomaly_history = {}
 
-    latest_measured_freespace = None
+    latest_measured_freespace = 0
+    latest_measured_totalspace = 0
 
     # keep track of the last sent email
     last_alarm_email = None
@@ -286,7 +291,7 @@ class Alarm(object):
 
     @staticmethod
     @defer.inlineCallbacks
-    def admin_alarm_notification(event_matrix):
+    def admin_alarm_generate_mail(event_matrix):
         """
         This function put a mail in queue for the Admin, if the
         Admin notification is disable or if another Anomaly has been
@@ -304,6 +309,8 @@ class Alarm(object):
             admin_user = store.find(models.User, models.User.username == u'admin').one()
             return admin_user.language
 
+        # THE THREE FUNCTIONS BELOW ARE POORLY UNOPTIMAL,
+        # AND THIS IS BAD: REFACTOR TO BE DONE ON THIS SUBJECT
         @transact_ro
         def _get_message_template(store):
             admin_user = store.find(models.User, models.User.username == u'admin').one()
@@ -318,6 +325,54 @@ class Alarm(object):
             if not localized_template or localized_template == u'':
                 raise Exception("Is empty the anomaly template for Admin notification")
             return localized_template
+
+        @transact_ro
+        def _disk_anomaly_detail(store):
+            # This happen all the time anomalies are present but disk is ok
+            if Alarm.stress_levels['disk_space'] == 0:
+                return u''
+            admin_user = store.find(models.User, models.User.username == u'admin').one()
+            notif = store.find(models.Notification).one()
+            if Alarm.stress_levels['disk_space'] == 1:
+                template = notif.admin_anomaly_disk_low
+            elif Alarm.stress_levels['disk_space'] == 2:
+                template = notif.admin_anomaly_disk_medium
+            elif Alarm.stress_levels['disk_space'] == 3:
+                template = notif.admin_anomaly_disk_high
+            else:
+                raise Exception("Invalid disk stess level %d" %
+                                Alarm.stress_levels['disk_space'])
+            if admin_user.language in template:
+                localized_template = template[admin_user.language]
+            elif GLSetting.memory_copy.language in template:
+                localized_template = template[GLSetting.memory_copy.language]
+            else:
+                raise Exception("Cannot find any language for Admin disk alarm (level %d)" %
+                                Alarm.stress_levels['disk_space'])
+            if not localized_template or localized_template == u'':
+                raise Exception("Is empty the anomaly template for Admin disk alarm (level %d)" %
+                                Alarm.stress_levels['disk_space'])
+            return localized_template
+
+        @transact_ro
+        def _activities_anomaly_detail(store):
+            # This happen all the time there is not anomalous traffic
+            if Alarm.stress_levels['activity'] == 0:
+                return u''
+            admin_user = store.find(models.User, models.User.username == u'admin').one()
+            notif = store.find(models.Notification).one()
+            template = notif.admin_anomaly_activities
+            if admin_user.language in template:
+                localized_template = template[admin_user.language]
+            elif GLSetting.memory_copy.language in template:
+                localized_template = template[GLSetting.memory_copy.language]
+            else:
+                raise Exception("Cannot find any language for admin notification")
+            if not localized_template or localized_template == u'':
+                raise Exception("Is empty the anomaly template for Admin notification")
+            return localized_template
+
+        # END OF THE SUB-OPTIMAL SECTION OF CODE THAT HAS TO BE RESTRUCTURED
 
         def _activity_alarm_level():
             return "%s" % Alarm.stress_levels['activity']
@@ -345,13 +400,23 @@ class Alarm(object):
             node = store.find(models.Node).one()
             return unicode(node.name)
 
+        def _free_disk_space():
+            return Alarm.latest_measured_freespace
+
+        def _total_disk_space():
+            return Alarm.latest_measured_totalspace
+
         KeyWordTemplate = {
             "%ActivityAlarmLevel%": _activity_alarm_level,
             "%ActivityDump%": _activity_dump,
             "%DiskAlarmLevel%": _disk_alarm_level,
             "%DiskDump%": _disk_dump,
             "%DiskErrorMessage%": _disk_status_message,
-            "%NodeName%": _node_name
+            "%NodeName%": _node_name,
+            "%FreeMemory%": _free_disk_space,
+            "%TotalMemory%": _total_disk_space,
+            "%AnomalyDetailDisk%": _disk_anomaly_detail,
+            "%AnomalyDetailActivities%": _activities_anomaly_detail,
         }
         # ------------------------------------------------------------------
 
@@ -378,7 +443,6 @@ class Alarm(object):
 
         # and now, processing the template
         message = yield _get_message_template()
-        print "T", message
         for keyword, templ_funct in KeyWordTemplate.iteritems():
 
             where = message.find(keyword)
@@ -402,38 +466,41 @@ class Alarm(object):
         admin_language = yield _get_admin_user_language()
         notification_settings = yield get_notification(admin_language)
 
-        print notification_settings['admin_anomaly_mail_title']
-
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_email,
                                   GLSetting.memory_copy.notif_source_email,
                                   admin_email,
                                   admin_email,
                                   notification_settings['admin_anomaly_mail_title'],
                                   message)
-        print message
-        print event_matrix
 
-        log.debug('Alarm Email for admin (%s): connecting to [%s:%d], '
+        log.debug('Alarm Email generated for Admin (%s): connecting to [%s:%d], '
                   'the next mail should be in %d minutes' %
                   (event_matrix,
                    GLSetting.memory_copy.notif_server,
                    GLSetting.memory_copy.notif_port,
                    do_not_stress_admin_with_more_than_an_email_after_minutes))
 
-        Alarm.last_alarm_email = datetime_now()
+        defer.returnValue({
+            'admin_email': admin_email,
+            'message': message,
+        })
 
-        # Currently the anomaly emails are disabled due to the fact that a
-        # good and useful mail templates are still missing.
-        #
-        # yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
-        #                authentication_password=GLSetting.memory_copy.notif_password,
-        #                from_address=GLSetting.memory_copy.notif_source_email,
-        #                to_address=admin_email,
-        #                message_file=message,
-        #                smtp_host=GLSetting.memory_copy.notif_server,
-        #                smtp_port=GLSetting.memory_copy.notif_port,
-        #                security=GLSetting.memory_copy.notif_security,
-        #                event=None)
+
+    @staticmethod
+    @defer.inlineCallbacks
+    def anomaly_email_send(admin_email, message):
+
+        Alarm.last_alarm_email = datetime_now()
+        yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
+                       authentication_password=GLSetting.memory_copy.notif_password,
+                       from_address=GLSetting.memory_copy.notif_source_email,
+                       to_address=admin_email,
+                       message_file=message,
+                       smtp_host=GLSetting.memory_copy.notif_server,
+                       smtp_port=GLSetting.memory_copy.notif_port,
+                       security=GLSetting.memory_copy.notif_security,
+                       event=None)
+
 
     def check_disk_anomalies(self, free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
         """
@@ -450,6 +517,7 @@ class Alarm(object):
         """
 
         Alarm.latest_measured_freespace = free_workdir_bytes
+        Alarm.latest_measured_totalspace = total_workdir_bytes
 
         disk_space = 0
         disk_message = ""

@@ -49,3 +49,24 @@ class TestAlarm(helpers.TestGL):
         # Has not slow comeback to 0
         activity_level = yield anomaly.compute_activity_level()
         self.assertEqual(activity_level, 0)
+
+class TestAnomalyNotification(helpers.TestGL):
+
+    @defer.inlineCallbacks
+    def test_admin_alarm_generate_mail(self):
+        a = anomaly.Alarm()
+
+        # Remind, these two has to be done to get an event matrix meaningful
+        pollute_events_for_testing()
+        activity_level = yield anomaly.compute_activity_level()
+
+        x = yield a.admin_alarm_generate_mail(
+            event_matrix= {
+                'wb_comments': 100,
+                'noise': 12345
+            }
+        )
+        print x
+
+
+
