@@ -380,20 +380,12 @@ class Alarm(object):
         def _activity_dump():
             retstr = ""
             for event, amount in event_matrix.iteritems():
-                retstr = "%s: %d\n%s" % (event, amount, retstr)
+                if not amount:
+                    continue
+                retstr = "%s%s%d\n%s" % \
+                         (event, (25 - len(event)) * " ",
+                          amount, retstr)
             return retstr
-
-        def _disk_alarm_level():
-            return "%s" % Alarm.stress_levels['disk_space']
-
-        def _disk_dump():
-            return "%s" % bytes_to_pretty_str(Alarm.latest_measured_freespace)
-
-        def _disk_status_message():
-            if Alarm.stress_levels['disk_message']:
-                return unicode(Alarm.stress_levels['disk_message'])
-            else:
-                return "Disk space OK"
 
         @transact_ro
         def _node_name(store):
@@ -401,22 +393,19 @@ class Alarm(object):
             return unicode(node.name)
 
         def _free_disk_space():
-            return Alarm.latest_measured_freespace
+            return "%s" % bytes_to_pretty_str(Alarm.latest_measured_freespace)
 
         def _total_disk_space():
-            return Alarm.latest_measured_totalspace
+            return "%s" % bytes_to_pretty_str(Alarm.latest_measured_totalspace)
 
         KeyWordTemplate = {
+            "%AnomalyDetailDisk%": _disk_anomaly_detail,
+            "%AnomalyDetailActivities%": _activities_anomaly_detail,
             "%ActivityAlarmLevel%": _activity_alarm_level,
             "%ActivityDump%": _activity_dump,
-            "%DiskAlarmLevel%": _disk_alarm_level,
-            "%DiskDump%": _disk_dump,
-            "%DiskErrorMessage%": _disk_status_message,
             "%NodeName%": _node_name,
             "%FreeMemory%": _free_disk_space,
             "%TotalMemory%": _total_disk_space,
-            "%AnomalyDetailDisk%": _disk_anomaly_detail,
-            "%AnomalyDetailActivities%": _activities_anomaly_detail,
         }
         # ------------------------------------------------------------------
 
@@ -441,30 +430,54 @@ class Alarm(object):
                     datetime_to_ISO8601(Alarm.last_alarm_email)))
                 defer.returnValue(None)
 
+        admin_email = yield _get_node_admin_email()
+        admin_language = yield _get_admin_user_language()
+        notification_settings = yield get_notification(admin_language)
+
         # and now, processing the template
         message = yield _get_message_template()
+        message_title = notification_settings['admin_anomaly_mail_title']
+        recursion_time = 2
+
+        # since the ActivityDetails, we've to manage recursion
+        while recursion_time:
+            recursion_time -= 1
+
+            for keyword, templ_funct in KeyWordTemplate.iteritems():
+
+                where = message.find(keyword)
+                if where == -1:
+                    continue
+
+                # based on the type of templ_funct, we've to use 'yield' or not
+                # cause some returns a deferred.
+                if isinstance(templ_funct, type(sendmail)):
+                    content = templ_funct()
+                else:
+                    content = yield templ_funct()
+
+                message = "%s%s%s" % (
+                    message[:where],
+                    content,
+                    message[where + len(keyword):])
+
+        # message title, we can't put the loop together at the moment
         for keyword, templ_funct in KeyWordTemplate.iteritems():
 
-            where = message.find(keyword)
-
+            where = message_title.find(keyword)
             if where == -1:
                 continue
 
-            # based on the type of templ_funct, we've to use 'yield' or not
-            # cause some returns a deferred.
             if isinstance(templ_funct, type(sendmail)):
                 content = templ_funct()
             else:
                 content = yield templ_funct()
 
-            message = "%s%s%s" % (
-                message[:where],
+            message_title = "%s%s%s" % (
+                message_title[:where],
                 content,
-                message[where + len(keyword):])
+                message_title[where + len(keyword):])
 
-        admin_email = yield _get_node_admin_email()
-        admin_language = yield _get_admin_user_language()
-        notification_settings = yield get_notification(admin_language)
 
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_email,
                                   GLSetting.memory_copy.notif_source_email,
