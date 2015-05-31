@@ -1,0 +1,6 @@
+The disk usage is %FreeMemory% of %TotalMemory%.
+
+The node cannot guarantee that a new submission can be stored, so the submissions has been disabled.
+
+This alarm level is HIGH: Tip submission has been disabled for any potential whistleblower; To re-enable it, add disk space. 
+

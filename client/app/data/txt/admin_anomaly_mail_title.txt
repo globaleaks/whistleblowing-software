@@ -1,1 +1,1 @@
-Notification of anomaly
+Anomaly detected in %NodeName%
