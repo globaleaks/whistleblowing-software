@@ -24,35 +24,6 @@ class TestTransaction(helpers.TestGL):
         store.commit()
         store.close()
 
-    def test_transaction_with_exception(self):
-        yield self.assertFailure(self._transaction_with_exception(), Exception)
-
-    def test_transaction_ok(self):
-        return self._transaction_ok()
-
-    def test_transaction_with_commit_close(self):
-        return self._transaction_with_commit_close()
-
-    @inlineCallbacks
-    def test_transact_with_stuff(self):
-        receiver_id = yield self._transact_with_stuff()
-        # now check data actually written
-        store = transact.get_store()
-        self.assertEqual(store.find(Receiver, Receiver.id == receiver_id).count(), 1)
-
-    @inlineCallbacks
-    def test_transact_with_stuff_failing(self):
-        receiver_id = yield self._transact_with_stuff_failing()
-        store = transact.get_store()
-        self.assertEqual(list(store.find(Receiver, Receiver.id == receiver_id)), [])
-
-    @inlineCallbacks
-    def test_transact_decorate_function(self):
-        @transact
-        def transaction(store):
-            self.assertTrue(getattr(store, 'find'))
-        yield transaction()
-
     @transact
     def _transact_with_stuff(self, store):
         r = self.localization_set(self.dummyReceiver_1, Receiver, 'en')
@@ -65,12 +36,15 @@ class TestTransaction(helpers.TestGL):
         receiver_user.username = unicode("xxx")
 
         store.add(receiver_user)
- 
+
         receiver = Receiver(r)
         receiver.user_id = receiver_user.id
         receiver.pgp_key_status = u'disabled'
         receiver.mail_address = self.dummyReceiver_1['mail_address']
         store.add(receiver)
+
+        # Set receiver.id = receiver.user.username = receiver.user.id
+        receiver.id = receiver_user.username = receiver_user.id
 
         return receiver.id
 
@@ -102,6 +76,39 @@ class TestTransaction(helpers.TestGL):
             context.submission_introduction = { "en": u'Localized723' }
         store.add(context)
         return context.id
+
+    @transact_ro
+    def _transact_ro_context_bla_bla(self, store, context_id):
+        self.assertEqual(store.find(Context, Context.id == context_id).one(), None)
+
+    def test_transaction_with_exception(self):
+        yield self.assertFailure(self._transaction_with_exception(), Exception)
+
+    def test_transaction_ok(self):
+        return self._transaction_ok()
+
+    def test_transaction_with_commit_close(self):
+        return self._transaction_with_commit_close()
+
+    @inlineCallbacks
+    def test_transact_with_stuff(self):
+        receiver_id = yield self._transact_with_stuff()
+        # now check data actually written
+        store = transact.get_store()
+        self.assertEqual(store.find(Receiver, Receiver.id == receiver_id).count(), 1)
+
+    @inlineCallbacks
+    def test_transact_with_stuff_failing(self):
+        receiver_id = yield self._transact_with_stuff_failing()
+        store = transact.get_store()
+        self.assertEqual(list(store.find(Receiver, Receiver.id == receiver_id)), [])
+
+    @inlineCallbacks
+    def test_transact_decorate_function(self):
+        @transact
+        def transaction(store):
+            self.assertTrue(getattr(store, 'find'))
+        yield transaction()
 
     @transact_ro
     def _transact_ro_context_bla_bla(self, store, context_id):
