@@ -1,0 +1,11 @@
+Dear Server Administrator of %NodeName%
+
+GlobaLeaks technology has a component that checks the server status and alerts you in case something requires your attention.
+
+%AnomalyDetailDisk%
+%AnomalyDetailActivities%
+
+For more information, log in to the Administration interface and look at the “System Stats” and “Anomalies” sections.
+
+Kind regards,
+%NodeSignature%

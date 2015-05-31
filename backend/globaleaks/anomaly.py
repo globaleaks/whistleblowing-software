@@ -310,11 +310,14 @@ class Alarm(object):
             notif = store.find(models.Notification).one()
             template = notif.admin_anomaly_template
             if admin_user.language in template:
-                return template[admin_user.language]
+                localized_template = template[admin_user.language]
             elif GLSetting.memory_copy.language in template:
-                return template[GLSetting.memory_copy.language]
+                localized_template = template[GLSetting.memory_copy.language]
             else:
                 raise Exception("Cannot find any language for admin notification")
+            if not localized_template or localized_template == u'':
+                raise Exception("Is empty the anomaly template for Admin notification")
+            return localized_template
 
         def _activity_alarm_level():
             return "%s" % Alarm.stress_levels['activity']
@@ -358,8 +361,6 @@ class Alarm(object):
         if not (Alarm.stress_levels['activity'] or Alarm.stress_levels['disk_space']):
             # lucky, no stress activities recorded: no mail needed
             defer.returnValue(None)
-
-        print "EM", event_matrix
 
         if not GLSetting.memory_copy.admin_notif_enable:
             # event_matrix is {} if we are here only for disk
