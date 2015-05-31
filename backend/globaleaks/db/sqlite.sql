@@ -204,7 +204,6 @@ CREATE TABLE notification (
 
 CREATE TABLE receiver (
     id VARCHAR NOT NULL,
-    user_id VARCHAR NOT NULL,
     configuration VARCHAR NOT NULL CHECK (configuration IN ('default', 'forcefully_selected', 'unselectable')),
     creation_date VARCHAR NOT NULL,
     can_delete_submission INTEGER NOT NULL,
@@ -223,8 +222,9 @@ CREATE TABLE receiver (
     pgp_key_expiration INTEGER,
     presentation_order INTEGER,
     PRIMARY KEY (id),
-    UNIQUE (name),
-    FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE
+    UNIQUE (mail_address),
+    UNIQUE (ping_mail_address),
+    FOREIGN KEY(id) REFERENCES user(id) ON DELETE CASCADE
 );
 
 CREATE TABLE eventlogs (
