@@ -2,7 +2,7 @@ Dear %ReceiverName%
 
 It appear that %NodeName% is receiving a large number of requests.
 
-To prevent sending you too many e-mails, the system has disabled e-mail notifications until the load won’t return normal. If you login with your username and password, you’ll found all the recent activities in your Tip list.
+To prevent sending you too many e-mails, the system has disabled e-mail notifications until the load won’t return normal. In the mean time you can normally log onto the platform and manually check for new submissions.
 
 If you don’t mind and you would prefer receiving anyhow such a large number of e-mail notifications, please contact your technical support to modify this behaviour accordingly.
 
