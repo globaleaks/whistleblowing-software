@@ -396,8 +396,8 @@ class Node(Model):
     tor2web_unauth = Bool()
     allow_unencrypted = Bool()
     allow_iframes_inclusion = Bool()
-    submission_minimum_delay = Int()
-    submission_maximum_ttl = Int()
+    submission_minimum_delay = Int(default=10)
+    submission_maximum_ttl = Int(default=10800)
 
     # privileges configurable in node/context/receiver
     can_postpone_expiration = Bool(default=False)
