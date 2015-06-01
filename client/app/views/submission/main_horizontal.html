@@ -58,8 +58,8 @@
   </div>
   <div id="SubmitBox" class="pager pull-left" style="margin-left: 20px" data-ng-show="!hasNextStep()">
     <button id="SubmissionButton" class="btn btn-success" data-ng-click="submission.submit()" data-ng-disabled="submission.uploading || submissionForm.$invalid || !receiver_selected" type="submit">
-      <i id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
-      <i id="SubmitIconOK" style="display: none;" class="glyphicon glyphicon-ok"></i>
+      <i data-ng-hide="timer_fired" id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
+      <i data-ng-show="timer_fired" id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
       <span data-translate>Submit</span>
     </button>
   </div>
