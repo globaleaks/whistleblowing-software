@@ -26,8 +26,7 @@ def admin_serialize_notification(notif, language):
         'notification_suspension_time' : (notif.notification_suspension_time / 3600)
     }
 
-    full_dict = get_localized_values(ret_dict, notif, notif.localized_strings, language)
-    return full_dict
+    return get_localized_values(ret_dict, notif, notif.localized_strings, language)
 
 
 @transact_ro

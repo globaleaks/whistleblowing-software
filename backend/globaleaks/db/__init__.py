@@ -173,6 +173,8 @@ def check_db_files():
         try:
             starting_ver, _ = find_current_db_version(path, files)
 
+            print "Database version detected: %d" % starting_ver
+
             if starting_ver < GLSetting.db_version:
                 print "Performing update of Database from version %d to version %d" % \
                       (starting_ver, GLSetting.db_version)
@@ -185,8 +187,6 @@ def check_db_files():
                     _, _, exc_traceback = sys.exc_info()
                     traceback.print_tb(exc_traceback)
                     quit(-1)
-
-                print "Database version detected: %d" % GLSetting.db_version
 
         except AssertionError:
             print "Error: More than one database file has been found in %s" % path

@@ -42,6 +42,7 @@ class TestModels(helpers.TestGL):
         receiver_user = models.User(self.dummyReceiverUser_1)
         receiver_user.last_login = self.dummyReceiverUser_1['last_login']
         receiver_user.password_change_date = self.dummyReceiverUser_1['password_change_date']
+        receiver_user.mail_address = self.dummyReceiverUser_1['mail_address']
 
         receiver_user.username = str(
             self.receiver_inc) + self.dummyReceiver_1['mail_address']

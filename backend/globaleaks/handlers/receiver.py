@@ -37,7 +37,7 @@ def receiver_serialize_receiver(receiver, language):
         'pgp_key_status': receiver.pgp_key_status,
         'tip_notification': receiver.tip_notification,
         'ping_notification': receiver.ping_notification,
-        'mail_address': receiver.mail_address,
+        'mail_address': receiver.user.mail_address,
         'ping_mail_address': receiver.ping_mail_address,
         'contexts': [c.id for c in receiver.contexts],
         'password': u'',
@@ -109,15 +109,10 @@ def update_receiver_settings(store, receiver_id, request, language):
 
         receiver.user.password_change_date = datetime_now()
 
-    mail_address = request['mail_address']
     ping_mail_address = request['ping_mail_address']
 
-    if mail_address != receiver.mail_address:
-        log.err("Email cannot be change by receiver, only by admin " \
-                "%s rejected. Kept %s" % (receiver.mail_address, mail_address))
-
     if ping_mail_address != receiver.ping_mail_address:
-        log.info("Ping email going to be update, %s => %s" % (
+        log.info("Ping email going to be updated, %s => %s" % (
             receiver.ping_mail_address, ping_mail_address))
         receiver.ping_mail_address = ping_mail_address
 

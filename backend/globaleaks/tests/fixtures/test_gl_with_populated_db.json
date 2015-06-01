@@ -371,7 +371,8 @@
   },
   {
     "fields": {
-      "username": "receiver1@receiver1.xxx",
+      "username": "receiver1@globaleaks.org",
+      "mail_address": "receiver1@globaleaks.org",
       "creation_date": "2014-09-13 09:01:53.483794",
       "state": "enabled",
       "last_login": "1970-01-01 00:00:00.000000",
@@ -387,7 +388,8 @@
   },
   {
     "fields": {
-      "username": "receiver2@receiver2.xxx",
+      "username": "receiver2@globaleaks.org",
+      "mail_address": "receiver2@globaleaks.org",
       "creation_date": "2014-09-13 09:01:53.626540",
       "state": "enabled",
       "last_login": "1970-01-01 00:00:00.000000",

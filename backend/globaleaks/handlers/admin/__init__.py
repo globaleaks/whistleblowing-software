@@ -270,7 +270,7 @@ def admin_serialize_receiver(receiver, language):
         'can_delete_submission': receiver.can_delete_submission,
         'can_postpone_expiration': receiver.can_postpone_expiration,
         'username': receiver.user.username,
-        'mail_address': receiver.mail_address,
+        'mail_address': receiver.user.mail_address,
         'ping_mail_address': receiver.ping_mail_address,
         'password': u'',
         'state': receiver.user.state,
@@ -307,8 +307,9 @@ def db_update_node(store, request, wizard_done, language):
 
     admin = store.find(models.User, (models.User.username == unicode('admin'))).one()
 
-    admin.language = request.get('admin_language', GLSetting.memory_copy.language)
-    admin.timezone = request.get('admin_timezone', GLSetting.memory_copy.default_timezone)
+    admin.mail_address = request['email']
+    admin.language = request['admin_language']
+    admin.timezone = request['admin_timezone']
 
     password = request.get('password', None)
     old_password = request.get('old_password', None)
@@ -673,7 +674,8 @@ def db_create_receiver(store, request, language):
         'state': u'enabled',
         'language': u'en',
         'timezone': 0,
-        'password_change_needed': True
+        'password_change_needed': True,
+        'mail_address': request['mail_address']
     }
 
     receiver_user = models.User(receiver_user_dict)
@@ -740,6 +742,7 @@ def update_receiver(store, receiver_id, request, language):
 
     receiver.user.state = request['state']
     receiver.user.password_change_needed = request['password_change_needed']
+    receiver.user.mail_address = request['mail_address']
 
     # The various options related in manage PGP keys are used here.
     pgp_options_parse(receiver, request)

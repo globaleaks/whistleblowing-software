@@ -31,6 +31,7 @@ class TestTransaction(helpers.TestGL):
         receiver_user.last_login = self.dummyReceiverUser_1['last_login']
         receiver_user.password_change_needed = self.dummyReceiverUser_1['password_change_needed']
         receiver_user.password_change_date = datetime_null()
+        receiver_user.mail_address = self.dummyReceiverUser_1['mail_address']
 
         # Avoid receivers with the same username!
         receiver_user.username = unicode("xxx")
@@ -40,7 +41,6 @@ class TestTransaction(helpers.TestGL):
         receiver = Receiver(r)
         receiver.user_id = receiver_user.id
         receiver.pgp_key_status = u'disabled'
-        receiver.mail_address = self.dummyReceiver_1['mail_address']
         store.add(receiver)
 
         # Set receiver.id = receiver.user.username = receiver.user.id
@@ -55,12 +55,12 @@ class TestTransaction(helpers.TestGL):
         receiver_user.last_login = self.dummyReceiverUser_1['last_login']
         receiver_user.password_change_needed = self.dummyReceiverUser_1['password_change_needed']
         receiver_user.password_change_date = datetime_null()
+        receiver_user.mail_address = self.dummyReceiverUser_1['mail_address']
         store.add(receiver_user)
 
         receiver = Receiver(r)
         receiver.user_id = receiver_user.id
         receiver.pgp_key_status = u'disabled'
-        receiver.mail_address = self.dummyReceiver_1['mail_address']
         store.add(receiver)
 
         raise exceptions.DisconnectionError

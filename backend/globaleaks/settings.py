@@ -263,7 +263,6 @@ class GLSettingsClass(object):
         self.gid = os.getgid()
         self.start_clean = False
         self.devel_mode = False
-        self.json_timing = False
         self.developer_name = ''
         self.skip_wizard = False
         self.glc_path = None

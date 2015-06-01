@@ -37,7 +37,7 @@ from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.rtip import receiver_serialize_tip
 from globaleaks.handlers.wbtip import wb_serialize_tip
 from globaleaks.handlers.submission import create_submission
-from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched
+from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched, mailflush_sched
 from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSetting, transact, transact_ro
@@ -73,6 +73,7 @@ transact.tp = FakeThreadPool()
 authentication.reactor_override = task.Clock()
 event.reactor_override = task.Clock()
 token.reactor_override = task.Clock()
+mailflush_sched.reactor_override = task.Clock()
 
 
 class UTlog:
@@ -205,7 +206,8 @@ class TestGL(unittest.TestCase):
 
     def get_dummy_receiver_user(self, descpattern):
         new_ru = dict(MockDict().dummyReceiverUser)
-        new_ru['username'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
+        new_ru['username'] = new_ru['mail_address'] = \
+            unicode("%s@%s.xxx" % (descpattern, descpattern))
         return new_ru
 
     def get_dummy_receiver(self, descpattern):

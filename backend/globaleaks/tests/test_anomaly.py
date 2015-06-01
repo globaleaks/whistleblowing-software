@@ -66,7 +66,3 @@ class TestAnomalyNotification(helpers.TestGL):
                 'noise': 12345
             }
         )
-        print x
-
-
-

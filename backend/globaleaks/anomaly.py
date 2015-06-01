@@ -315,15 +315,13 @@ class Alarm(object):
         def _get_message_template(store):
             admin_user = store.find(models.User, models.User.username == u'admin').one()
             notif = store.find(models.Notification).one()
-            template = notif.admin_anomaly_template
+            template = notif.admin_anomaly_mail_template
             if admin_user.language in template:
                 localized_template = template[admin_user.language]
             elif GLSetting.memory_copy.language in template:
                 localized_template = template[GLSetting.memory_copy.language]
             else:
                 raise Exception("Cannot find any language for admin notification")
-            if not localized_template or localized_template == u'':
-                raise Exception("Is empty the anomaly template for Admin notification")
             return localized_template
 
         @transact_ro
@@ -349,9 +347,6 @@ class Alarm(object):
             else:
                 raise Exception("Cannot find any language for Admin disk alarm (level %d)" %
                                 Alarm.stress_levels['disk_space'])
-            if not localized_template or localized_template == u'':
-                raise Exception("Is empty the anomaly template for Admin disk alarm (level %d)" %
-                                Alarm.stress_levels['disk_space'])
             return localized_template
 
         @transact_ro
@@ -368,8 +363,6 @@ class Alarm(object):
                 localized_template = template[GLSetting.memory_copy.language]
             else:
                 raise Exception("Cannot find any language for admin notification")
-            if not localized_template or localized_template == u'':
-                raise Exception("Is empty the anomaly template for Admin notification")
             return localized_template
 
         # END OF THE SUB-OPTIMAL SECTION OF CODE THAT HAS TO BE RESTRUCTURED

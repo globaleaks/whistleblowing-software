@@ -7,5 +7,4 @@ To prevent sending you too many e-mails, the system has disabled e-mail notifica
 If you don’t mind and you would prefer receiving anyhow such a large number of e-mail notifications, please contact your technical support to modify this behaviour accordingly.
 
 Kind regards,
-%NodeSignature%
-
+%NodeName%

@@ -7,4 +7,4 @@ This is an email to inform you that the PGP key of the following users is going 
 Without a valid PGP key, the system will not be able to send them encrypted notifications.
 
 Kind regards,
-%NodeSignature%
+%NodeName%

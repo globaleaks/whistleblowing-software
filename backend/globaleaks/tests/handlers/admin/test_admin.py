@@ -235,8 +235,7 @@ class TestReceiverCreate(helpers.TestHandlerWithPopulatedDB):
     def test_post(self):
         self.dummyReceiver_1['name'] = 'beppe'
 
-        new_email = "guy@globaleaks.xxx"
-        self.dummyReceiver_1['mail_address'] = new_email
+        self.dummyReceiver_1['mail_address'] =  "test@globaleaks.org"
         self.dummyReceiver_1['password'] = helpers.VALID_PASSWORD1
 
         for attrname in Receiver.localized_strings:
@@ -246,9 +245,9 @@ class TestReceiverCreate(helpers.TestHandlerWithPopulatedDB):
         yield handler.post()
 
     @inlineCallbacks
-    def test_post_invalid_mail_addr(self):
+    def test_post_invalid_mail_address(self):
         self.dummyReceiver_1['name'] = 'beppe'
-        self.dummyReceiver_1['mail_address'] = "[antani@xx.it"
+        self.dummyReceiver_1['mail_address'] = "[est@globaleaks.org"
         self.dummyReceiver_1['password'] = helpers.VALID_PASSWORD1
 
         for attrname in Receiver.localized_strings:

@@ -13,6 +13,7 @@ from globaleaks.utils.validator import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v
 from .properties import MetaModel, DateTime
 
+
 def db_forge_obj(store, mock_class, mock_fields):
     obj = mock_class()
     for key, val in mock_fields.iteritems():
@@ -20,9 +21,11 @@ def db_forge_obj(store, mock_class, mock_fields):
     store.add(obj)
     return obj
 
+
 @transact
 def forge_obj(store, mock_class, mock_fields):
     return db_forge_obj(store, mock_class, mock_fields)
+
 
 class BaseModel(Storm):
     """
@@ -161,6 +164,7 @@ class User(Model):
     role = Unicode()
     state = Unicode()
     last_login = DateTime(default_factory=datetime_null)
+    mail_address = Unicode()
     language = Unicode()
     timezone = Int()
     password_change_needed = Bool(default=True)
@@ -170,7 +174,7 @@ class User(Model):
     # states: 'disabled', 'enabled'
 
     unicode_keys = [ 'username', 'password', 'salt', 'role',
-                     'state', 'language' ]
+                     'state', 'language', 'mail_address']
     int_keys = [ 'timezone', 'password_change_needed' ]
 
 
@@ -203,7 +207,7 @@ class Context(Model):
 
     show_receivers_in_alphabetical_order = Bool(default=False)
 
-    presentation_order = Int(default=9)
+    presentation_order = Int(default=0)
 
     unicode_keys = []
     localized_strings = ['name', 'description', 'receiver_introduction']
@@ -477,7 +481,7 @@ class Notification(Model):
     # Admin Template
     admin_pgp_alert_mail_title = JSON(validator=longlocal_v)
     admin_pgp_alert_mail_template = JSON(validator=longlocal_v)
-    admin_anomaly_template = JSON(validator=longlocal_v)
+    admin_anomaly_mail_template = JSON(validator=longlocal_v)
     admin_anomaly_mail_title = JSON(validator=longlocal_v)
     admin_anomaly_disk_low = JSON(validator=longlocal_v)
     admin_anomaly_disk_medium = JSON(validator=longlocal_v)
@@ -485,20 +489,20 @@ class Notification(Model):
     admin_anomaly_activities = JSON(validator=longlocal_v)
 
     # Receiver Template
-    tip_template = JSON(validator=longlocal_v)
+    tip_mail_template = JSON(validator=longlocal_v)
     tip_mail_title = JSON(validator=longlocal_v)
-    file_template = JSON(validator=longlocal_v)
+    file_mail_template = JSON(validator=longlocal_v)
     file_mail_title = JSON(validator=longlocal_v)
-    comment_template = JSON(validator=longlocal_v)
+    comment_mail_template = JSON(validator=longlocal_v)
     comment_mail_title = JSON(validator=longlocal_v)
-    message_template = JSON(validator=longlocal_v)
+    message_mail_template = JSON(validator=longlocal_v)
     message_mail_title = JSON(validator=longlocal_v)
     tip_expiration_template = JSON(validator=longlocal_v)
     tip_expiration_mail_title = JSON(validator=longlocal_v)
     pgp_alert_mail_title = JSON(validator=longlocal_v)
     pgp_alert_mail_template = JSON(validator=longlocal_v)
-    receiver_threshold_reached = JSON(validator=longlocal_v)
-    receiver_threshold_reached_title = JSON(validator=longlocal_v)
+    receiver_threshold_reached_mail_template = JSON(validator=longlocal_v)
+    receiver_threshold_reached_mail_title = JSON(validator=longlocal_v)
     zip_description = JSON(validator=longlocal_v)
 
     # Experimental Receiver template
@@ -511,7 +515,7 @@ class Notification(Model):
     send_email_for_every_event = Bool(default=True)
 
     notification_threshold_per_hour = Int(default=20)
-    notification_suspension_time= Int(default=(4 * 3600) )
+    notification_suspension_time=Int(default=(2 * 3600))
 
     unicode_keys = [
         'server',
@@ -524,7 +528,7 @@ class Notification(Model):
 
     localized_strings = [
         'admin_anomaly_mail_title',
-        'admin_anomaly_template',
+        'admin_anomaly_mail_template',
         'admin_anomaly_disk_low',
         'admin_anomaly_disk_medium',
         'admin_anomaly_disk_high',
@@ -533,13 +537,13 @@ class Notification(Model):
         'admin_pgp_alert_mail_template',
         'pgp_alert_mail_title',
         'pgp_alert_mail_template',
-        'tip_template',
+        'tip_mail_template',
         'tip_mail_title',
-        'file_template',
+        'file_mail_template',
         'file_mail_title',
-        'comment_template',
+        'comment_mail_template',
         'comment_mail_title',
-        'message_template',
+        'message_mail_template',
         'message_mail_title',
         'tip_expiration_template',
         'tip_expiration_mail_title',
@@ -547,8 +551,8 @@ class Notification(Model):
         'zip_description',
         'ping_mail_template',
         'ping_mail_title',
-        'receiver_threshold_reached',
-        'receiver_threshold_reached_title'
+        'receiver_threshold_reached_mail_template',
+        'receiver_threshold_reached_mail_title'
     ]
 
     int_keys = [
@@ -586,8 +590,6 @@ class Receiver(Model):
     pgp_key_status = Unicode()
     # pgp_statuses: 'disabled', 'enabled'
 
-    # Can be changed only by admin (but also differ from username!)
-    mail_address = Unicode()
     # Can be changed by the user itself
     ping_mail_address = Unicode()
 
@@ -605,10 +607,9 @@ class Receiver(Model):
     #                         "ReceiverContext.receiver_id",
     #                         "Receiver.id")
 
-    presentation_order = Int(default=9)
+    presentation_order = Int(default=0)
 
-    unicode_keys = ['name', 'mail_address',
-                    'ping_mail_address', 'configuration']
+    unicode_keys = ['name', 'configuration', 'ping_mail_address']
     localized_strings = ['description']
     int_keys = ['presentation_order']
     bool_keys = ['can_delete_submission', 'tip_notification',
