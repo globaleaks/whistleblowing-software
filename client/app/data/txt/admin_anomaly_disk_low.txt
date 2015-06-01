@@ -2,5 +2,5 @@ The disk usage is %FreeMemory% of %TotalMemory%.
 
 Please consider to ask your technical contact managing the server for more server disk space. 
 This email will be repeated if the situation does not change. 
-This alarm level is LOW: don’t panic, your system is doing well.
+The level of this alarm is LOW: don’t panic, your system is doing well.
 
