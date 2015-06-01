@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$rootScope', '$filter', '$location', '$modal', 'Authentication', 'Submission',
-      function ($scope, $rootScope, $filter, $location, $modal, Authentication, Submission) {
+    ['$scope', '$rootScope', '$filter', '$location', '$timeout', '$modal', 'Authentication', 'Submission',
+      function ($scope, $rootScope, $filter, $location, $timeout, $modal, Authentication, Submission) {
 
   $rootScope.invalidForm = true;
 
@@ -45,54 +45,22 @@ GLClient.controller('SubmissionCtrl',
 
   };
 
-  $scope.$on('timer-tick', function (event, args) {
-    if (args.millis == ($scope.submission._submission._counter * 1000) ) {
-      $("#SubmissionWarning").hide();
-      $("#SubmissionClosed").hide();
-      $("#SubmissionGood").hide();
+  var startCountdown = function() {
+    $scope.submission.wait = true;
 
-      $("#SubmissionWait").show();
+    $scope.submission.countdown = $scope.submission._submission.start_validity_secs;
 
-      $("#SubmissionButton").removeClass('btn-success');
-      $("#SubmissionButton").addClass('btn-danger');
-    }
-
-    if (args.millis == $scope.submission._submission.when_permit_sub * 1000 )  {
-      $("#SubmissionWait").hide();
-      $("#SubmissionGood").show();
-
-      $("#SubmissionButton").addClass('btn-success');
-      $("#SubmissionButton").removeClass('btn-danger');
-    }
-
-    if (args.millis == $scope.submission._submission.warning_time * 1000 ) {
-      $("#SubmissionWarning").show();
-    }
-
-    if (args.millis == 0) {
-      $("#SubmissionClosed").show();
-      $("#SubmissionWait").hide();
-      $("#SubmissionWarning").hide();
-      $("#StartCountDown").fadeOut(1000);
-
-      $("#SubmissionButton").removeClass('btn-success');
-      $("#SubmissionButton").addClass('btn-danger');
+    var countDown = function () {
+      $scope.submission.countdown -= 1;
+      if ($scope.submission.countdown <= 0) {
+        $scope.submission.wait = false;
+      } else {
+        $timeout(countDown, 1000);
       }
-    });
+    };
 
-    $scope.selected_receivers_count = function () {
-      var count = 0;
-
-    if ($scope.submission) {
-      angular.forEach($scope.submission.receivers_selected, function (selected) {
-        if (selected) {
-          count += 1;
-        }
-      });
-    }
-
-    return count;
-  };
+    countDown();
+  }
 
   $scope.selectable = function () {
     if ($scope.submission.context.maximum_selectable_receivers === 0) {
@@ -158,6 +126,8 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.prepareSubmission = function(context, receivers_ids) {
     $scope.submission.create(context.id, receivers_ids, function () {
+      startCountdown();
+
       if ($scope.submission.context.show_receivers_in_alphabetical_order) {
         $scope.receiversOrderPredicate = 'name';
       } else {
