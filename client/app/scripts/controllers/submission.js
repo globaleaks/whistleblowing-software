@@ -45,39 +45,38 @@ GLClient.controller('SubmissionCtrl',
 
   };
 
-    $scope.$on('timer-tick', function (event, args) {
+  $scope.$on('timer-tick', function (event, args) {
+    if (args.millis == ($scope.submission._submission._counter * 1000) ) {
+      $("#SubmissionWarning").hide();
+      $("#SubmissionClosed").hide();
+      $("#SubmissionGood").hide();
 
-      if (args.millis == ($scope.submission.current_submission._counter * 1000) ) {
-        $("#SubmissionWarning").hide();
-        $("#SubmissionClosed").hide();
-        $("#SubmissionGood").hide();
+      $("#SubmissionWait").show();
 
-        $("#SubmissionWait").show();
+      $("#SubmissionButton").removeClass('btn-success');
+      $("#SubmissionButton").addClass('btn-danger');
+    }
 
-        $("#SubmissionButton").removeClass('btn-success');
-        $("#SubmissionButton").addClass('btn-danger');
-      }
+    if (args.millis == $scope.submission._submission.when_permit_sub * 1000 )  {
+      $("#SubmissionWait").hide();
+      $("#SubmissionGood").show();
 
-      if (args.millis == $scope.submission.current_submission.when_permit_sub * 1000 )  {
-        $("#SubmissionWait").hide();
-        $("#SubmissionGood").show();
+      $("#SubmissionButton").addClass('btn-success');
+      $("#SubmissionButton").removeClass('btn-danger');
+    }
 
-        $("#SubmissionButton").addClass('btn-success');
-        $("#SubmissionButton").removeClass('btn-danger');
-      }
+    if (args.millis == $scope.submission._submission.warning_time * 1000 ) {
+      $("#SubmissionWarning").show();
+    }
 
-      if (args.millis == $scope.submission.current_submission.warning_time * 1000 ) {
-        $("#SubmissionWarning").show();
-      }
+    if (args.millis == 0) {
+      $("#SubmissionClosed").show();
+      $("#SubmissionWait").hide();
+      $("#SubmissionWarning").hide();
+      $("#StartCountDown").fadeOut(1000);
 
-      if (args.millis == 0) {
-        $("#SubmissionClosed").show();
-        $("#SubmissionWait").hide();
-        $("#SubmissionWarning").hide();
-        $("#StartCountDown").fadeOut(1000);
-
-        $("#SubmissionButton").removeClass('btn-success');
-        $("#SubmissionButton").addClass('btn-danger');
+      $("#SubmissionButton").removeClass('btn-success');
+      $("#SubmissionButton").addClass('btn-danger');
       }
     });
 
