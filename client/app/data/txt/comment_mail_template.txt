@@ -9,4 +9,4 @@ via Tor at: %TipTorURL%
 via Tor2web at: %TipT2WURL%
 
 Kind regards,
-%NodeSignature%
+%NodeName%

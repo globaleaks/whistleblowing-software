@@ -7,7 +7,6 @@ from globaleaks.jobs.notification_sched import NotificationSchedule
 
 
 class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
-
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestGLWithPopulatedDB.setUp(self)

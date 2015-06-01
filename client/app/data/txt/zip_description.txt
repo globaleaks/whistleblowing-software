@@ -12,4 +12,4 @@ File details:
 %FileList%
 
 Kind regards,
-%NodeSignature%
+%NodeName%

@@ -110,9 +110,3 @@ spec = [
     ## This Handler should remain the last one as it works like a last resort catch 'em all
     (r'/([a-zA-Z0-9_\-\/\.]*)', BaseStaticFileHandler, {'path': GLSetting.glclient_path})
 ]
-
-if GLSetting.json_timing:
-    from globaleaks.handlers.inspector import JDT
-    spec.append(
-        (r'/JSONdebug', JDT)
-    )

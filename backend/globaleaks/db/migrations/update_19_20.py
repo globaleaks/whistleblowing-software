@@ -270,6 +270,14 @@ class Replacer1920(TableReplacer):
                     new_notification.admin_anomaly_mail_title = every_language("")
                 continue
 
+            if v.name == 'admin_anomaly_mail_template':
+                # check needed to preserve funtionality if templates will be altered in the future
+                if v.name in appdata_dict['templates']:
+                    new_notification.admin_anomaly_mail_template = appdata_dict['templates'][v.name]
+                else:
+                    new_notification.admin_anomaly_mail_template = every_language("")
+                continue
+
             if v.name == 'notification_digest_mail_title':
                 # check needed to preserve funtionality if templates will be altered in the future
                 if v.name in appdata_dict['templates']:

@@ -9,4 +9,4 @@ Without a valid PGP key, the system will not be able to send encrypted notificat
 You should extend its validity and update the key present on the GlobaLeaks servers you are subscribed to or upload a new key.
 
 Kind regards,
-%NodeSignature%
+%NodeName%

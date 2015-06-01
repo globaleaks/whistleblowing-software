@@ -57,7 +57,7 @@ pgp_alert_keywords = [
 
 
 templates_desc = {
-    "admin_anomaly_template":
+    "admin_anomaly_mail_template":
         [generic_keyword_list, alarm_keyword_list],
 
     "file_mail_title":

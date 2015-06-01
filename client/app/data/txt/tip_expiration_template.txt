@@ -12,4 +12,4 @@ Submission date: %EventTime%
 Expiration date: %ExpirationDate%
 
 Kind regards,
-%NodeSignature%
+%NodeName%

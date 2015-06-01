@@ -7,4 +7,4 @@ This happened in context %ContextName% at %EventTime%.
 You can read it at: %TipTorURL%
 
 Kind regards,
-%NodeSignature%
+%NodeName%

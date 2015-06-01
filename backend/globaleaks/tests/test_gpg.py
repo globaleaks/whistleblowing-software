@@ -155,7 +155,6 @@ class TestPGP(TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_submission_file_delivery_pgp(self):
-
         new_fields = MockDict().dummyFields
         new_context = MockDict().dummyContext
 
@@ -169,14 +168,14 @@ class TestPGP(TestHandlerWithPopulatedDB):
         self.assertEqual(len(doubletest), 2)
 
         yanr = dict(MockDict().dummyReceiver)
-        yanr['name'] = yanr['mail_address'] = u"quercia@nana.ptg"
+        yanr['name'] = u"Receiver1"
         yanr['pgp_key_public'] = unicode(VALID_PGP_KEY1)
         yanr['contexts'] = [ new_context_output['id']]
         yanr_output = yield create_receiver(yanr, 'en')
         self.receiver_assertions(yanr, yanr_output)
 
         asdr = dict(MockDict().dummyReceiver)
-        asdr['name'] = asdr['mail_address'] = u"nocibo@rocco.tnc"
+        asdr['name'] = u"Receiver2"
         asdr['pgp_key_public'] = unicode(VALID_PGP_KEY1)
         asdr['contexts'] = [ new_context_output['id']]
         asdr_output = yield create_receiver(asdr, 'en')
