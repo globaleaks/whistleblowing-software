@@ -1,7 +1,7 @@
 The disk usage is %FreeMemory% of %TotalMemory%.
 
-Please consider asking as soon as possible for more disk space to your technical support. 
-This email will be repeated in the next hours if the situation does not change.
+Please consider asking your technical support to add more server disk space.
 
-The level of this alarm is HIGH: don’t panic, but deal with it as soon as possible.
+This email will be resent in the next hours if the issue is not resolved.
 
+The level of this alarm is MEDIUM; don’t panic, but deal with it as soon as possible.
