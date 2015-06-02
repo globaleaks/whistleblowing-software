@@ -1,4 +1,4 @@
-Dear GlobaLeaks Server Administrator,
+Dear Administrator of server %NodeName%,
 
 This is an email to inform you that the PGP key of the following users is going to expire or has already expired:
 

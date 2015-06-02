@@ -33,12 +33,12 @@
     </div>
 
     <div class="form-group">
-      <label data-translate>Max emails per hour before triggering email suspension</label> (<label data-translate>per receiver config</label>)
+      <label data-translate>Maximum emails per hour before triggering email suspension</label> (<label data-translate>per receiver config</label>)
       <input class="form-control" data-ng-model="admin.notification.notification_threshold_per_hour" maxlength="{{node.maximum_namesize}}" type="number" />
     </div>
 
     <div class="form-group">
-      <label data-translate>Hours of mail suspension after exceeding hourly limit</label> <label>(<div data-translate>per receiver config</div>)</label>
+      <label data-translate>Email suspension duration after exceeding hourly limit</label> <label>(<div data-translate>per receiver config</div>)</label>
       <input class="form-control" data-ng-model="admin.notification.notification_suspension_time" maxlength="{{node.maximum_namesize}}" type="number" />
     </div>
 

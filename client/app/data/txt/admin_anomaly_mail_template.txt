@@ -1,6 +1,6 @@
-Dear Server Administrator of %NodeName%
+Dear Administrator of server %NodeName%,
 
-GlobaLeaks technology has a component that checks the server status and alerts you in case something requires your attention.
+GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.
 
 %AnomalyDetailDisk%
 %AnomalyDetailActivities%
