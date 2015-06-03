@@ -11,14 +11,7 @@ var GLClient = angular.module('GLClient', [
     'resourceServices',
     'submissionUI',
     'pascalprecht.translate',
-    'GLClientFilters',
-    /* 'ngAnimate', -- TODO solve, error in loading ?
-     *
-     * Uncaught Error: [$injector:unpr] Unknown provider: $$qProvider <- $$q <- $animate <- $compile
-     * http://errors.angularjs.org/1.2.28/$injector/unpr?p0=%24%24qProvider%20%3C-%20%24%24q%20%3C-%20%24animate%20%3C-%20%24compile
-     *
-     * */
-    'timer'
+    'GLClientFilters'
   ]).
   config(['$routeProvider', '$translateProvider', '$tooltipProvider',
     function($routeProvider, $translateProvider, $tooltipProvider) {
