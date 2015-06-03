@@ -129,7 +129,7 @@ DO () {
     CMD=$3
   fi
   echo -n "Running: \"$CMD\"... "
-  $1 &>${INSTALL_LOG}
+  $CMD &>${INSTALL_LOG}
   if [ "$?" -eq "$2" ]; then
     echo "SUCCESS"
   else
@@ -179,7 +179,7 @@ if [ $DISTRO == 'Ubuntu' ];then
   fi
 
   echo "Adding Ubuntu Universe repository"
-  DO "sudo add-apt-repository 'deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe'" "0"
+  add-apt-repository 'deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe'
 fi
 
 if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then
