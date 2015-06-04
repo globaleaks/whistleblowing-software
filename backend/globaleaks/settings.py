@@ -220,6 +220,7 @@ class GLSettingsClass(object):
         self.defaults.notif_username = None
         self.defaults.notif_security = None
         self.defaults.notif_uses_tor = None
+        self.defaults.notif_hours_before_expiration = 72
 
         # this became false when, few MBs cause node to disable submissions
         self.defaults.accept_submissions = True

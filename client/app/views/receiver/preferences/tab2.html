@@ -43,6 +43,11 @@
     <select class="form-control" data-ng-model="preferences.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
   </div>
 
+  <div class="form-group">
+    <label data-translate>Threshold for notification of tip expiration, in hours</label>
+    <input class="form-control" data-ng-model="preferences.tip_expiration_threshold" maxlength="{{node.maximum_namesize}}" type="number" />
+  </div>
+
   <button type="submit" class="btn btn-success" data-ng-click="pref_save()">
     <i class="glyphicon glyphicon-ok"></i>
     <span data-translate>Update notification settings</span>

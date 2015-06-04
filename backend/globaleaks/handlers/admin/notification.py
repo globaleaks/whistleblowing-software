@@ -22,8 +22,9 @@ def admin_serialize_notification(notif, language):
         'disable_receivers_notification_emails': notif.disable_receivers_notification_emails,
         'send_email_for_every_event': notif.send_email_for_every_event,
         'reset_templates': False,
-        'notification_threshold_per_hour' : notif.notification_threshold_per_hour,
-        'notification_suspension_time' : (notif.notification_suspension_time / 3600)
+        'tip_expiration_threshold': notif.tip_expiration_threshold,
+        'notification_threshold_per_hour': notif.notification_threshold_per_hour,
+        'notification_suspension_time': notif.notification_suspension_time
     }
 
     return get_localized_values(ret_dict, notif, notif.localized_strings, language)
@@ -82,15 +83,8 @@ class NotificationInstance(BaseHandler):
 
         Changes the node notification settings.
         """
-
         request = self.validate_message(self.request.body,
             requests.AdminNotificationDesc)
-
-        # sloppy code, but at the moment is between serialization and handler
-        # that the conversion happen
-        hour_number = request['notification_suspension_time']
-        seconds_number = hour_number * 3600
-        request['notification_suspension_time'] = seconds_number
 
         response = yield update_notification(request, self.request.language)
 

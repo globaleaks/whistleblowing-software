@@ -218,6 +218,10 @@ class Replacer2021(TableReplacer):
                setattr(new_notification, v.name, 7200)
                continue
 
+            if v.name == 'tip_expiration_threshold':
+               setattr(new_notification, v.name, 72)
+               continue
+
             setattr(new_notification, v.name, getattr(old_notification, v.name))
 
         self.store_new.add(new_notification)
@@ -273,6 +277,10 @@ class Replacer2021(TableReplacer):
                 setattr(new_user, v.name, getattr(old_receiver.user, v.name))
 
             for _, v in new_receiver._storm_columns.iteritems():
+                if v.name == 'tip_expiration_threshold':
+                   new_receiver.tip_expiration_threshold = 72
+                   continue
+
                 setattr(new_receiver, v.name, getattr(old_receiver, v.name))
 
 
