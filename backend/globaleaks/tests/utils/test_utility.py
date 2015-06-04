@@ -137,12 +137,10 @@ class TestUtility(unittest.TestCase):
     def test_ISO8601_to_pretty_str(self):
         self.assertEqual(utility.ISO8601_to_pretty_str(None), 'Thursday 01 January 1970 00:00 (UTC)')
         self.assertEqual(utility.ISO8601_to_pretty_str('1970-01-01T00:00:00Z'), 'Thursday 01 January 1970 00:00 (UTC)')
-
-    def test_ISO8601_to_pretty_str_tz(self):
-        self.assertEqual(utility.ISO8601_to_pretty_str_tz(None, 1), 'Thursday 01 January 1970 01:00')
-        self.assertEqual(utility.ISO8601_to_pretty_str_tz(None, 2), 'Thursday 01 January 1970 02:00')
-        self.assertEqual(utility.ISO8601_to_pretty_str_tz('1970-01-01T00:00:00Z', 1), 'Thursday 01 January 1970 01:00')
-        self.assertEqual(utility.ISO8601_to_pretty_str_tz('1970-01-01T00:00:00Z', 2), 'Thursday 01 January 1970 02:00')
+        self.assertEqual(utility.ISO8601_to_pretty_str(None, 1), 'Thursday 01 January 1970 01:00')
+        self.assertEqual(utility.ISO8601_to_pretty_str(None, 2), 'Thursday 01 January 1970 02:00')
+        self.assertEqual(utility.ISO8601_to_pretty_str('1970-01-01T00:00:00Z', 1), 'Thursday 01 January 1970 01:00')
+        self.assertEqual(utility.ISO8601_to_pretty_str('1970-01-01T00:00:00Z', 2), 'Thursday 01 January 1970 02:00')
 
     def test_acquire_bool(self):
         self.assertTrue(utility.acquire_bool('true'))

@@ -9,7 +9,7 @@
 # https://github.com/globaleaks/GlobaLeaks/wiki/Customization-guide#customize-notification
 
 from globaleaks.settings import GLSetting
-from globaleaks.utils.utility import ISO8601_to_pretty_str_tz, ISO8601_to_day_str, datetime_now
+from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, datetime_now
 
 def dump_submission_steps(wb_steps):
     dumptext = u"FIELD_MAIL_DUMP_STILL_NEED_TO_BE_IMPLEMENTED"
@@ -187,11 +187,11 @@ class TipKeyword(_KeyWord):
         return unicode(retval)
 
     def EventTime(self):
-        return ISO8601_to_pretty_str_tz(self.tip['creation_date'], float(self.receiver['timezone']))
+        return ISO8601_to_pretty_str(self.tip['creation_date'], float(self.receiver['timezone']))
 
     def ExpirationDate(self):
         # is not time zone dependent, is UTC for everyone
-        return ISO8601_to_day_str(self.tip['expiration_date'])
+        return ISO8601_to_day_str(self.tip['expiration_date'], float(self.receiver['timezone']))
 
     def ExpirationWatch(self):
         missing_time = self.tip['expiration_date'] - datetime_now()
@@ -214,7 +214,7 @@ class CommentKeyword(TipKeyword):
         return self.comment['type']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str_tz(self.comment['creation_date'], float(self.receiver['timezone']))
+        return ISO8601_to_pretty_str(self.comment['creation_date'], float(self.receiver['timezone']))
 
 
 class MessageKeyword(TipKeyword):
@@ -235,7 +235,7 @@ class MessageKeyword(TipKeyword):
         return self.message['author']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str_tz(self.message['creation_date'], float(self.receiver['timezone']))
+        return ISO8601_to_pretty_str(self.message['creation_date'], float(self.receiver['timezone']))
 
 
 class FileKeyword(TipKeyword):
@@ -258,7 +258,7 @@ class FileKeyword(TipKeyword):
         return self.file['name']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str_tz(self.file['creation_date'], float(self.receiver['timezone']))
+        return ISO8601_to_pretty_str(self.file['creation_date'], float(self.receiver['timezone']))
 
     def FileSize(self):
         return self.file['size']
