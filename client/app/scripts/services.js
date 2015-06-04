@@ -656,7 +656,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.password_change_needed = true;
         receiver.language = 'en';
         receiver.timezone = 0;
-        receiver.tip_expiration_threshold = self.notification.tip_expiration_threshold;
+        receiver.tip_expiration_threshold = 72; //self.notification.tip_expiration_threshold;
         return receiver;
       };
 
