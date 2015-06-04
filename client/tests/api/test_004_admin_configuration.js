@@ -44,7 +44,6 @@ var receiver = {
   pgp_key_status: 'ignored',
   mail_address: 'receiver1@antani.gov', // used 'Receiver N' for population
   ping_mail_address: '',
-  unsecure_mail_address: 'unsecure@live.com',
   message_notification: false,
   name: 'receiver1@antani.gov', // used 'receiverN@antani.gov' for population
   password: 'ringobongos3cur1ty',
@@ -52,6 +51,7 @@ var receiver = {
   presentation_order: 0,
   tip_notification: false,
   ping_notification: false,
+  tip_expiration_threshold: 72,
   configuration: 'default',
   password_change_needed: false,
 }
