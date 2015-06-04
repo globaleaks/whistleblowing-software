@@ -39,6 +39,7 @@ def receiver_serialize_receiver(receiver, language):
         'ping_notification': receiver.ping_notification,
         'mail_address': receiver.user.mail_address,
         'ping_mail_address': receiver.ping_mail_address,
+        'tip_expiration_threshold': receiver.tip_expiration_threshold,
         'contexts': [c.id for c in receiver.contexts],
         'password': u'',
         'old_password': u'',

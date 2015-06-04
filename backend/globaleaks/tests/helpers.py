@@ -667,6 +667,7 @@ class MockDict():
             'contexts': [],
             'tip_notification': True,
             'ping_notification': True,
+            'tip_expiration_threshold': 72,
             'pgp_key_info': u'',
             'pgp_key_fingerprint': u'',
             'pgp_key_status': u'disabled',

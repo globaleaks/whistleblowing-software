@@ -514,6 +514,7 @@ class Notification(Model):
     disable_receivers_notification_emails = Bool(default=False)
     send_email_for_every_event = Bool(default=True)
 
+    tip_expiration_threshold = Int(default=72)
     notification_threshold_per_hour = Int(default=20)
     notification_suspension_time=Int(default=(2 * 3600))
 
@@ -557,6 +558,7 @@ class Notification(Model):
 
     int_keys = [
         'port',
+        'tip_expiration_threshold',
         'notification_threshold_per_hour',
         'notification_suspension_time'
     ]
@@ -602,6 +604,8 @@ class Receiver(Model):
     tip_notification = Bool(default=True)
     ping_notification = Bool(default=False)
 
+    tip_expiration_threshold = Int(default=72)
+
     # contexts = ReferenceSet("Context.id",
     #                         "ReceiverContext.context_id",
     #                         "ReceiverContext.receiver_id",
@@ -610,11 +614,17 @@ class Receiver(Model):
     presentation_order = Int(default=0)
 
     unicode_keys = ['name', 'configuration', 'ping_mail_address']
+
     localized_strings = ['description']
-    int_keys = ['presentation_order']
-    bool_keys = ['can_delete_submission', 'tip_notification',
-                 'can_postpone_expiration',
-                 'ping_notification']
+
+    int_keys = ['presentation_order', 'tip_expiration_threshold']
+
+    bool_keys = [
+        'can_delete_submission',
+        'can_postpone_expiration',
+        'tip_notification',
+        'ping_notification'
+    ]
 
 
 class EventLogs(Model):

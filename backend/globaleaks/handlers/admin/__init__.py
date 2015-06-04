@@ -287,7 +287,8 @@ def admin_serialize_receiver(receiver, language):
         'presentation_order': receiver.presentation_order,
         'language': receiver.user.language,
         'timezone': receiver.user.timezone,
-        'password_change_needed': receiver.user.password_change_needed
+        'tip_expiration_threshold': receiver.tip_expiration_threshold,
+        'password_change_needed': receiver.user.password_change_needed,
     }
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)

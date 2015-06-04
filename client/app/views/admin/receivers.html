@@ -10,14 +10,14 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label data-translate>Name</label>
-                  <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_receiver.name" type="text" required>
+                  <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_receiver.name" type="text" required />
                   <div class="has-error" data-ng-show="newReceiver.name.$error.required">
                     <span data-translate>This field is mandatory</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label data-translate>Email Address</label>
-                  <input class="form-control" name="email" data-ng-model="new_receiver.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
+                  <input class="form-control" name="email" data-ng-model="new_receiver.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required />
                   <div class="has-error" data-ng-show="newReceiver.email.$error.pattern">
                     <span data-translate>Invalid email address</span>
                   </div>
@@ -31,7 +31,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label data-translate>Password</label>
-                  <input type="hidden" data-ng-init="new_receiver.password = 'globaleaks'">
+                  <input type="hidden" data-ng-init="new_receiver.password = 'globaleaks'" />
                   <div>
                     <span data-translate>By default receivers password is:</span> <span class="label label-primary">globaleaks</span><br />
                     <span data-translate>The system forces users to change the password at first login.</span>
@@ -115,14 +115,14 @@
                     </div>
                     <div class="form-group">
                       <label data-translate>Name</label>
-                      <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="receiver.name" type="text" required>
+                      <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="receiver.name" type="text" required />
                       <div class="has-error" data-ng-show="editReceiver.name.$error.required">
                         <span data-translate>This field is mandatory</span>
                       </div>
                     </div>
                     <div class="form-group">
                       <label data-translate>Email Address</label>
-                      <input class="form-control" name="email" data-ng-model="receiver.mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" required>
+                      <input class="form-control" name="email" data-ng-model="receiver.mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" required />
                       <div class="has-error" data-ng-show="editReceiver.email.$error.required">
                         <span data-translate>This field is mandatory</span>
                       </div>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="form-group">
                       <label data-translate>Password</label>
-                      <input name="password" class="form-control" data-ng-model="receiver.password" maxlength="{{node.maximum_namesize}}" type="password">
+                      <input name="password" class="form-control" data-ng-model="receiver.password" maxlength="{{node.maximum_namesize}}" type="password" />
                       <p class="has-error" data-ng-show="unsafe_password">
                         <span data-translate>The choosen password is unsafe, it should have</span>:
                       </p>
@@ -149,7 +149,7 @@
                       </ul>
                     </div>
                     <div class="form-group">
-                      <input data-ng-model="receiver.password_change_needed" type="checkbox">
+                      <input data-ng-model="receiver.password_change_needed" type="checkbox" />
                       <label data-translate>Force Password Change</label>
                       <div data-ng-show="receiver.password_change_needed">
                         <span class="label label-info" data-translate>Now enabled:</span>
@@ -186,18 +186,22 @@
                       <select class="form-control" data-ng-model="receiver.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
                     </div>
                     <div class="form-group">
-                      <input data-ng-model="receiver.ping_notification" type="checkbox">
+                      <input data-ng-model="receiver.ping_notification" type="checkbox" />
                       <label data-translate>Enable Ping notification</label>
                     </div>
                     <div class="form-group" data-ng-show="receiver.ping_notification">
                       <label data-translate>Ping Email Address</label>
-                      <input class="form-control" name="ping_email" data-ng-model="receiver.ping_mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp">
+                      <input class="form-control" name="ping_email" data-ng-model="receiver.ping_mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" />
                       <div>
                         <span data-translate>This email will be used for ping notifications.</span>
                       </div>
                       <div class="has-error" data-ng-show="editReceiver.ping_email.$error.pattern">
                         <span data-translate>Invalid email address</span>
                       </div>
+                    </div>
+                    <div class="form-group">
+                      <label data-translate>Threshold for notification of tip expiration, in hours</label>
+                      <input class="form-control" data-ng-model="receiver.tip_expiration_threshold" maxlength="{{node.maximum_namesize}}" type="number" />
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -223,7 +227,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input data-ng-model="receiver.can_postpone_expiration" type="checkbox" data-ng-disabled="node.can_postpone_expiration">
+                      <input data-ng-model="receiver.can_postpone_expiration" type="checkbox" data-ng-disabled="node.can_postpone_expiration" />
                       <label data-translate>Allow the Receiver to postpone expiration date of the Tips</label>
                       <div data-ng-show="receiver.can_postpone_expiration && !node.can_postpone_expiration">
                         <span class="label label-info" data-translate>Now enabled:</span>
@@ -235,7 +239,7 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <input data-ng-model="receiver.can_delete_submission" type="checkbox" data-ng-disabled="node.can_delete_submission">
+                      <input data-ng-model="receiver.can_delete_submission" type="checkbox" data-ng-disabled="node.can_delete_submission" />
                       <label data-translate>Allow the Receiver to delete Tips</label>
                       <div data-ng-show="receiver.can_delete_submission && !node.can_delete_submission">
                         <span class="label label-info" data-translate>Now enabled:</span>
@@ -261,7 +265,7 @@
                         <pre>{{receiver.pgp_key_info}}</pre>
                       </div>
                       <div class="form-group">
-                        <input data-ng-model="receiver.pgp_key_remove" type="checkbox">
+                        <input data-ng-model="receiver.pgp_key_remove" type="checkbox" />
                         <label data-translate>Remove the PGP key</label>
                       </div>
                     </div>

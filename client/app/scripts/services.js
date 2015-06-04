@@ -655,7 +655,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.configuration = 'default';
         receiver.password_change_needed = true;
         receiver.language = 'en';
-        receiver.timezone = '0';
+        receiver.timezone = 0;
+        receiver.tip_expiration_threshold = self.notification.tip_expiration_threshold;
         return receiver;
       };
 
@@ -669,6 +670,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       self.notification = adminNotificationResource.get();
     }
+
     return Admin;
 
 }]).

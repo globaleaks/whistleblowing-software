@@ -7,125 +7,94 @@
 # delete expired tips, etc)
 
 import os
+from datetime import datetime, timedelta
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import admin
 from globaleaks.jobs.base import GLJob
-from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, save_events_on_db
-from globaleaks.models import InternalTip, ReceiverFile, InternalFile, Comment, ReceiverTip
+from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, db_save_events_on_db
+from globaleaks.models import InternalTip, InternalFile, Receiver, ReceiverTip, ReceiverFile
 from globaleaks.plugins.base import Event
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.utils.utility import log, is_expired, datetime_to_ISO8601, ISO8601_to_datetime, utc_dynamic_date
+from globaleaks.utils.utility import log, datetime_to_ISO8601, ISO8601_to_datetime, utc_dynamic_date, datetime_now
+
 
 __all__ = ['CleaningSchedule']
 
 
-class ExpiringTipEvent(EventLogger):
+class ExpiringRTipEvent(EventLogger):
     def __init__(self):
         EventLogger.__init__(self)
         self.trigger = 'ExpiringTip'
 
     @transact
-    def notify(self, store, tip_id):
-        expiring_rtips = store.find(ReceiverTip, ReceiverTip.internaltip_id == tip_id)
+    def process_events(self, store):
+        for receiver in store.find(Receiver):
+            user_threshold = datetime_now() - timedelta(seconds=receiver.tip_expiration_threshold)
+            for rtip in store.find(ReceiverTip, ReceiverTip.receiver_id == receiver.id):
+                #if rtip.internaltip.expiration_date < user_threshold:
+                self.process_event(store, rtip)
 
-        for ertip in expiring_rtips:
-            do_mail, receiver_desc = self.import_receiver(ertip.receiver)
+        db_save_events_on_db(store, self.events)
 
-            context_desc = admin.admin_serialize_context(store,
-                                                         ertip.internaltip.context,
-                                                         self.language)
-            steps_desc = admin.db_get_context_steps(store,
-                                                    context_desc['id'],
-                                                    self.language)
+        log.debug("Notification: generated %d notification events of type %s" %
+                  (len(self.events), self.trigger))
 
-            expiring_tip_desc = serialize_receivertip(ertip)
+    def process_event(self, store, rtip):
+        do_mail, receiver_desc = self.import_receiver(rtip.receiver)
 
-            self.events.append(Event(type=self.template_type,
-                                     trigger=self.trigger,
-                                     node_info={},
-                                     receiver_info=receiver_desc,
-                                     context_info=context_desc,
-                                     steps_info=steps_desc,
-                                     tip_info=expiring_tip_desc,
-                                     subevent_info=None,
-                                     do_mail=do_mail))
+        context_desc = admin.admin_serialize_context(store,
+                                                     rtip.internaltip.context,
+                                                     self.language)
+        steps_desc = admin.db_get_context_steps(store,
+                                                context_desc['id'],
+                                                self.language)
 
+        expiring_tip_desc = serialize_receivertip(rtip)
 
-@transact_ro
-def get_tip_timings(store):
-    itip_list = store.find(InternalTip)
-
-    tipinfo_list = []
-
-    for itip in itip_list:
-        comment_cnt = store.find(Comment, Comment.internaltip_id == itip.id).count()
-        files_cnt = store.find(InternalFile, InternalFile.internaltip_id == itip.id).count()
-
-        tip_timetolive = itip.context.tip_timetolive
-
-        serialized_tipinfo = {
-            'id': itip.id,
-            'creation_date': datetime_to_ISO8601(itip.creation_date),
-            'expiration_date': datetime_to_ISO8601(itip.expiration_date),
-            'upcoming_expiration_date':
-                datetime_to_ISO8601(utc_dynamic_date(itip.expiration_date, hours=-72)),
-            'tip_life_seconds':  tip_timetolive,
-            'files': files_cnt,
-            'comments': comment_cnt,
-        }
-
-        # TODO, query ReceiverFile and ReceiverTip and check if the status is 'new'
-        # in CleaningSched, if some of the 'new' is going to be deleted, we are
-        # spotting a serious (sorry for the latinism) 'fancazzismo cronicarum' and the
-        # Admin can be alerted about.
-
-        tipinfo_list.append(serialized_tipinfo)
-
-    return tipinfo_list
-
-
-@transact
-def itip_cleaning(store, tip_id):
-    """
-    @param tip_id: aim for an InternalTip, and delete them.
-    """
-    tit = store.find(InternalTip, InternalTip.id == tip_id).one()
-
-    if not tit: # gtfo
-        log.err("Requested invalid InternalTip id in itip_cleaning! %s" % tip_id)
-        return
-
-    for ifile in tit.internalfiles:
-        abspath = os.path.join(GLSetting.submission_path, ifile.file_path)
-
-        if os.path.isfile(abspath):
-            log.debug("Removing internalfile %s" % abspath)
-            try:
-                os.remove(abspath)
-            except OSError as excep:
-                log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
-
-        rfiles = store.find(ReceiverFile, ReceiverFile.internalfile_id == ifile.id)
-        for rfile in rfiles:
-            # The following code must be bypassed if rfile.file_path == ifile.filepath,
-            # this mean that is referenced the plaintext file instead having E2E.
-            if rfile.file_path == ifile.file_path:
-                continue
-
-            abspath = os.path.join(GLSetting.submission_path, rfile.file_path)
-
-            if os.path.isfile(abspath):
-                log.debug("Removing receiverfile %s" % abspath)
-                try:
-                    os.remove(abspath)
-                except OSError as excep:
-                    log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
-
-    store.remove(tit)
+        self.events.append(Event(type=self.template_type,
+                                 trigger=self.trigger,
+                                 node_info={},
+                                 receiver_info=receiver_desc,
+                                 context_info=context_desc,
+                                 steps_info=steps_desc,
+                                 tip_info=expiring_tip_desc,
+                                 subevent_info=None,
+                                 do_mail=do_mail))
 
 
 class CleaningSchedule(GLJob):
+    @transact
+    def perform_cleaning(self, store):
+        for itip in store.find(InternalTip, InternalTip.expiration_date < datetime_now()):
+            for ifile in itip.internalfiles:
+                abspath = os.path.join(GLSetting.submission_path, ifile.file_path)
+
+                if os.path.isfile(abspath):
+                    log.debug("Removing internalfile %s" % abspath)
+                    try:
+                        os.remove(abspath)
+                    except OSError as excep:
+                        log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
+
+                rfiles = store.find(ReceiverFile, ReceiverFile.internalfile_id == ifile.id)
+                for rfile in rfiles:
+                    # The following code must be bypassed if rfile.file_path == ifile.filepath,
+                    # this mean that is referenced the plaintext file instead having E2E.
+                    if rfile.file_path == ifile.file_path:
+                        continue
+
+                    abspath = os.path.join(GLSetting.submission_path, rfile.file_path)
+
+                    if os.path.isfile(abspath):
+                        log.debug("Removing receiverfile %s" % abspath)
+                        try:
+                            os.remove(abspath)
+                        except OSError as excep:
+                            log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
+
+            store.remove(itip)
+
     @inlineCallbacks
     def operation(self):
         """
@@ -133,27 +102,8 @@ class CleaningSchedule(GLJob):
         if expired InternalTips are found, it removes that along with
         all the related DB entries comment and tip related.
         """
-
         # Reset the exception tracking variable of GLSetting
         GLSetting.exceptions = {}
 
-        tip_list = yield get_tip_timings()
-        log.debug("Tip(s) subject to the timings check: %d" % len(tip_list))
-
-        for tip in tip_list:
-
-            if is_expired(ISO8601_to_datetime(tip['expiration_date'])):
-                log.info("Deleting an expired Tip (creation date: %s, expiration %s) files %d comments %d" %
-                         (tip['creation_date'], tip['expiration_date'], tip['files'], tip['comments']))
-
-                yield itip_cleaning(tip['id'])
-                continue
-
-            # check if the tip is gonna to expire in 48 hours (hard-coded value above)
-            if is_expired(ISO8601_to_datetime(tip['upcoming_expiration_date'])):
-                log.debug("Spotted a Tip matching the upcoming expiration date and "
-                          "triggering email notifications")
-
-                expiring_tips_events = ExpiringTipEvent()
-                yield expiring_tips_events.notify(tip['id'])
-                yield save_events_on_db(expiring_tips_events.events)
+        yield self.perform_cleaning()
+        yield ExpiringRTipEvent().process_events()
