@@ -9,7 +9,7 @@
 # https://github.com/globaleaks/GlobaLeaks/wiki/Customization-guide#customize-notification
 
 from globaleaks.settings import GLSetting
-from globaleaks.utils.utility import ISO8601_to_pretty_str_tz, ISO8601_to_day_str
+from globaleaks.utils.utility import ISO8601_to_pretty_str_tz, ISO8601_to_day_str, datetime_now
 
 def dump_submission_steps(wb_steps):
     dumptext = u"FIELD_MAIL_DUMP_STILL_NEED_TO_BE_IMPLEMENTED"
@@ -133,11 +133,8 @@ class TipKeyword(_KeyWord):
         '%TipT2WURL%',
         '%TipNum%',
         '%EventTime%',
-        '%ExpirationWatch%',
-                    # ExpirationWatch
-                    # TODO DB, like "notify 48 hours before"
-                    # can be used in template to say "will expire in 48 hours"
         '%ExpirationDate%',
+        '%ExpirationWatch%'
     ]
 
     def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, *x):
@@ -197,8 +194,9 @@ class TipKeyword(_KeyWord):
         return ISO8601_to_day_str(self.tip['expiration_date'])
 
     def ExpirationWatch(self):
-        # Express in hours, but has to be retrieved from the Receiver not from Tip.
-        return unicode(48)
+        missing_time = self.tip['expiration_date'] - datetime_now()
+        missing_hours = int(divmod(missing_time.total_seconds(), 3600)[0])
+        return unicode(missing_hours)
 
 class CommentKeyword(TipKeyword):
     comment_keywords = [
