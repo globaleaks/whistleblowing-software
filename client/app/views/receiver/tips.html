@@ -100,7 +100,7 @@
                 <b><span data-translate>Context Name</span>:</b>
                 <span>{{tip.context_name}}</span>
               </div>
-              <div data-ng-init="fieldsRoot = tip.preview">
+              <div data-ng-init="fieldsRoot = tip.preview; preview=true">
                 <div data-ng-include="'views/partials/tip_fields.html'"></div>
               </div>
               <div data-ng-if="tip.file_counter">
