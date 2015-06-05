@@ -42,7 +42,9 @@
           <span data-translate>Step</span>
           <span>{{$index + 1}}: {{step.label}}</span>
         </dt>
-        <dd data-ng-include="'views/partials/tip_fields.html'"></dd>
+        <dd data-ng-init="fieldsRoot=step.children">
+          <span data-ng-include="'views/partials/tip_fields.html'"></span>
+        <dd>
       </dl>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<div data-ng-init="fields = (field == undefined) ? step.children : field.children; fieldId  = $parent.fieldId ? $parent.fieldId + '-' + $index : 'field-' + $index">
+<div data-ng-init="fields = (field == undefined) ? fieldsRoot : field.children; fieldId  = $parent.fieldId ? $parent.fieldId + '-' + $index : 'field-' + $index">
   <div data-ng-repeat="field in fields | filter:filterFields | orderBy:'y'">
     <dl id="{{fieldId}}" class="nested">
       <dt>
