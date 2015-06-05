@@ -483,11 +483,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('ReceiverOverview', ['$resource', function($resource) {
     return $resource('admin/overview/users');
 }]).
-  factory('Admin', ['$resource', function($resource) {
-    var self = this;
-
-    function Admin() {
+  factory('Admin', ['$resource', '$q', function($resource, $q) {
+    return function(fn) {
       var self = this,
+
         adminContextsResource = $resource('admin/contexts'),
         adminContextResource = $resource('admin/context/:context_id',
           {context_id: '@id'},
@@ -538,140 +537,140 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       adminReceiverResource.prototype.toString = function() { return "Admin Receiver"; };
       adminNotificationResource.prototype.toString = function() { return "Admin Notification"; };
 
+      self.node = adminNodeResource.get();
       self.context = adminContextResource;
       self.contexts = adminContextsResource.query();
-
-      self.new_context = function() {
-        var context = new adminContextResource();
-        context.name = "";
-        context.description = "";
-        context.steps = [];
-        context.receivers = [];
-        context.select_all_receivers = false;
-        context.tip_timetolive = 15;
-        context.receiver_introduction = "";
-        context.can_postpone_expiration = true;
-        context.can_delete_submission = true;
-        context.maximum_selectable_receivers = 0;
-        context.show_small_cards = false;
-        context.show_receivers = true;
-        context.enable_private_messages = true;
-        context.presentation_order = 0;
-        context.show_receivers_in_alphabetical_order = false;
-        context.reset_steps = false;
-        return context;
-      };
-
-      self.template_fields = {};
-      self.field_templates = adminFieldTemplatesResource.query(function(){
-        angular.forEach(self.field_templates, function(field){
-          self.template_fields[field.id] = field;
-        });
-      });
-
+      self.field_templates = adminFieldTemplatesResource.query();
       self.fields = adminFieldsResource.query();
-      
-      self.new_field = function(step_id) {
-        var field = new adminFieldResource();
-        field.label = '';
-        field.type = '';
-        field.description = '';
-        field.is_template = false;
-        field.hint = '';
-        field.multi_entry = false;
-        field.options = [];
-        field.required = false;
-        field.preview = false;
-        field.stats_enabled = false;
-        field.x = 0;
-        field.y = 0;
-        field.children = [];
-        field.fieldgroup_id = '';
-        field.step_id = step_id;
-        return field;
-      };
-
-      self.new_field_from_template = function(template_id, step_id) {
-        var field = new adminFieldResource();
-        field.step_id = step_id;
-        field.template_id = template_id;
-        return field.$save();
-      };
-
-      self.new_field_template = function () {
-        var field = new adminFieldTemplateResource();
-        field.label = '';
-        field.type = '';
-        field.description = '';
-        field.is_template = true;
-        field.hint = '';
-        field.multi_entry = false;
-        field.options = [];
-        field.required = false;
-        field.preview = false;
-        field.stats_enabled = false;
-        field.x = 0;
-        field.y = 0;
-        field.children = [];
-        field.fieldgroup_id = '';
-        field.step_id = '';
-        return field;
-      };
-
-      self.fill_default_field_options = function(field) {
-        if (field.type == 'tos') {
-          field.options.push({'attrs':
-            {
-              'clause': '',
-              'agreement_statement': ''
-            }
-          });
-        }
-      };
-
-      self.receiver = adminReceiverResource;
-      self.receivers = adminReceiversResource.query();
-
-      self.new_receiver = function () {
-        var receiver = new adminReceiverResource();
-        receiver.password = '';
-        receiver.contexts = [];
-        receiver.description = '';
-        receiver.mail_address = '';
-        receiver.ping_mail_address = '';
-        receiver.can_delete_submission = false;
-        receiver.can_postpone_expiration = false;
-        receiver.tip_notification = true;
-        receiver.ping_notification = false;
-        receiver.pgp_key_info = '';
-        receiver.pgp_key_fingerprint = '';
-        receiver.pgp_key_remove = false;
-        receiver.pgp_key_public = '';
-        receiver.pgp_key_expiration = '';
-        receiver.pgp_key_status = 'ignored';
-        receiver.pgp_enable_notification = false;
-        receiver.presentation_order = 0;
-        receiver.state = 'enable';
-        receiver.configuration = 'default';
-        receiver.password_change_needed = true;
-        receiver.language = 'en';
-        receiver.timezone = 0;
-        receiver.tip_expiration_threshold = 72; //self.notification.tip_expiration_threshold;
-        return receiver;
-      };
-
-      self.node = adminNodeResource.get(function(){
-        self.node.password = '';
-        self.node.old_password = '';
-      });
-
       self.fieldtemplate = adminFieldTemplateResource;
       self.field = adminFieldResource;
-
+      self.receiver = adminReceiverResource;
+      self.receivers = adminReceiversResource.query();
       self.notification = adminNotificationResource.get();
-    }
 
-    return Admin;
+      $q.all([self.node.$promise,
+              self.contexts.$promise,
+              self.fields.$promise,
+              self.field_templates.$promise,
+              self.receivers.$promise,
+              self.notification.$promise]).then(function() {
+
+          self.new_context = function() {
+            var context = new adminContextResource();
+            context.name = "";
+            context.description = "";
+            context.steps = [];
+            context.receivers = [];
+            context.select_all_receivers = false;
+            context.tip_timetolive = 15;
+            context.receiver_introduction = "";
+            context.can_postpone_expiration = true;
+            context.can_delete_submission = true;
+            context.maximum_selectable_receivers = 0;
+            context.show_small_cards = false;
+            context.show_receivers = true;
+            context.enable_private_messages = true;
+            context.presentation_order = 0;
+            context.show_receivers_in_alphabetical_order = false;
+            context.reset_steps = false;
+            return context;
+          };
+
+          self.template_fields = {};
+          angular.forEach(self.field_templates, function(field){
+            self.template_fields[field.id] = field;
+          });
+          
+          self.new_field = function(step_id) {
+            var field = new adminFieldResource();
+            field.label = '';
+            field.type = '';
+            field.description = '';
+            field.is_template = false;
+            field.hint = '';
+            field.multi_entry = false;
+            field.options = [];
+            field.required = false;
+            field.preview = false;
+            field.stats_enabled = false;
+            field.x = 0;
+            field.y = 0;
+            field.children = [];
+            field.fieldgroup_id = '';
+            field.step_id = step_id;
+            return field;
+          };
+
+          self.new_field_from_template = function(template_id, step_id) {
+            var field = new adminFieldResource();
+            field.step_id = step_id;
+            field.template_id = template_id;
+            return field.$save();
+          };
+
+          self.new_field_template = function () {
+            var field = new adminFieldTemplateResource();
+            field.label = '';
+            field.type = '';
+            field.description = '';
+            field.is_template = true;
+            field.hint = '';
+            field.multi_entry = false;
+            field.options = [];
+            field.required = false;
+            field.preview = false;
+            field.stats_enabled = false;
+            field.x = 0;
+            field.y = 0;
+            field.children = [];
+            field.fieldgroup_id = '';
+            field.step_id = '';
+            return field;
+          };
+
+          self.fill_default_field_options = function(field) {
+            if (field.type == 'tos') {
+              field.options.push({'attrs':
+                {
+                  'clause': '',
+                  'agreement_statement': ''
+                }
+              });
+            }
+          };
+
+          self.new_receiver = function () {
+            var receiver = new adminReceiverResource();
+            receiver.password = '';
+            receiver.contexts = [];
+            receiver.description = '';
+            receiver.mail_address = '';
+            receiver.ping_mail_address = '';
+            receiver.can_delete_submission = false;
+            receiver.can_postpone_expiration = false;
+            receiver.tip_notification = true;
+            receiver.ping_notification = false;
+            receiver.pgp_key_info = '';
+            receiver.pgp_key_fingerprint = '';
+            receiver.pgp_key_remove = false;
+            receiver.pgp_key_public = '';
+            receiver.pgp_key_expiration = '';
+            receiver.pgp_key_status = 'ignored';
+            receiver.pgp_enable_notification = false;
+            receiver.presentation_order = 0;
+            receiver.state = 'enable';
+            receiver.configuration = 'default';
+            receiver.password_change_needed = true;
+            receiver.language = 'en';
+            receiver.timezone = 0;
+            receiver.tip_expiration_threshold = self.notification.tip_expiration_threshold;
+            return receiver;
+          };
+
+          fn(this);
+
+      });
+    }
 
 }]).
   factory('TipOverview', ['$resource', function($resource) {
