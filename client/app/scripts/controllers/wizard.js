@@ -58,15 +58,18 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
       $location.path('/');
     } else {
       $scope.login('admin', 'globaleaks', 'admin', function(response){
-        $scope.admin = new Admin();
-        $scope.receiver = new $scope.admin.new_receiver();
-        $scope.receiver.password = ''; // this causes the system to set the default password
-                                       // the system will then force the user to change the password
-                                       // at first login
-        $scope.context = $scope.admin.new_context();
-        passwordWatcher($scope, 'admin.node.password');
-        changePasswordWatcher($scope, "admin.node.old_password",
-          "admin.node.password", "admin.node.check_password");
+        $scope.admin = new Admin(function(a) {
+          console.log($scope.admin);
+          console.log(a);
+          $scope.receiver = new $scope.admin.new_receiver();
+          $scope.receiver.password = ''; // this causes the system to set the default password
+                                         // the system will then force the user to change the password
+                                         // at first login
+          $scope.context = $scope.admin.new_context();
+          passwordWatcher($scope, 'admin.node.password');
+          changePasswordWatcher($scope, "admin.node.old_password",
+            "admin.node.password", "admin.node.check_password");
+        });
       });
     }
 
