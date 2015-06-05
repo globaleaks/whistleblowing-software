@@ -3,6 +3,14 @@
   text-align: right;
 }
 
+#HeaderBoxContentLeft {
+  float: right;
+}
+
+#HeaderBoxContentRight {
+  float: left;
+}
+
 .LoginErrorBox {
   text-align: right;
 }

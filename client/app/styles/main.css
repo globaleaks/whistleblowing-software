@@ -46,8 +46,12 @@ table {
   display: block;
 }
 
-#HeaderBox p {
-  margin-bottom: 20px;
+#HeaderBoxContentLeft {
+  float: left;
+}
+
+#HeaderBoxContentRight {
+  float: right;
 }
 
 #ContentBox {
@@ -86,15 +90,17 @@ table {
 
 #LogoBox {
   text-align: center;
+  float: left;
 }
 
-#PageTitle {
-  white-space: pre-wrap;
+#TitleBox {
+  float: left;
 }
 
 #PageTitle {
   font-size: 32px;
   font-weight: bold;
+  white-space: pre-wrap;
 }
 
 #PageTitleWithSubtitle {
@@ -126,14 +132,6 @@ table {
   margin: 0 auto;
   width: 200px;
   height: auto;
-}
-
-#TitleBox {
-  max-width: 60%;
-}
-
-#UserBox {
-  max-width: 25%;
 }
 
 /** Submission details **/
@@ -202,7 +200,7 @@ table {
   display: block;
 }
 
-#titleboxwithtagline {
+#titleboxoneline {
   display: none;
 }
 
