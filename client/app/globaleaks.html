@@ -1,6 +1,5 @@
-<div id="BodyDefault" data-ng-if="!isHomepage() || !node.custom_homepage" class="ng-cloak">
-
-  <div class="pending-requests ng-cloak" data-ng-hide="!showRequestBox" style="z-index: 666">
+<div id="BodyDefault" data-ng-if="!isHomepage() || !node.custom_homepage">
+  <div id="PendingRequestsBox" class="pending-requests ng-cloak" data-ng-hide="!showRequestBox">
     <div class="message">
       <h1><span data-translate>Please wait</span>...</h1>
       <div id="spinnerBox" data-spinner=""></div>
@@ -11,16 +10,16 @@
     </div>
   </div>
 
-  <div data-ng-show="!embedded" data-ng-include="'views/partials/privacybadge.html'"></div>
+  <div id="PrivacyBadgeBox" data-ng-if="!embedded && !node.disable_privacy_badge" data-ng-include="'views/partials/privacybadge.html'"></div>
 
-  <div data-ng-show="!embedded" data-ng-include="'views/partials/header.html'"></div>
+  <div id="HeaderBox" data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
 
-  <div data-ng-include="'views/partials/messageconsole.html'"></div>
+  <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
 
   <div id="ContentBox" class="container">
     <div data-ng-hide="cookiesEnabled" class="ng-cloak">
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
           <h2 data-translate>Cookies are not enabled!</h2>
           <p>
             <span data-translate>To use GlobaLeaks Cookies must be enabled.</span>
@@ -33,7 +32,7 @@
     <div data-ng-show="cookiesEnabled" class="ng-cloak" data-ng-view=""></div>
   </div>
 
-  <div data-ng-show="!embedded" data-ng-include="'views/partials/footer.html'"></div>
+  <div id="FooterBox" data-ng-show="!embedded" data-ng-include="'views/partials/footer.html'"></div>
 </div>
 
 <div id="BodyCustom" data-ng-if="isHomepage() && node.custom_homepage" data-ng-include="'/static/custom_homepage.html'"></div>
