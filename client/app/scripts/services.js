@@ -313,7 +313,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           angular.forEach($rootScope.receivers, function(receiver) {
             if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {
               if (receiver.configuration !== 'unselectable') {
-                console.log("ole");
                 self.receivers_selected[receiver.id] = true;
               }
             }
