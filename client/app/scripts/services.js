@@ -273,16 +273,15 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       var setCurrentContextReceivers = function(context_id, receivers_ids) {
         self.context = $filter('filter')($rootScope.contexts, {"id": context_id})[0];
 
+        var receivers_selected_count = 0;
         self.receivers_selected = {};
         self.receivers = [];
         angular.forEach($rootScope.receivers, function(receiver) {
           // enumerate only the receivers of the current context
           if (self.context.receivers.indexOf(receiver.id) !== -1) {
-            if (receiver.pgp_key_status !== 'enabled') {
-              receiver.missing_pgp = true;
-            }
-
             self.receivers.push(receiver);
+
+            self.receivers_selected[receiver.id] = false;
 
             if (receivers_ids) {
               if (receivers_ids.indexOf(receiver.id) !== -1) {
@@ -291,14 +290,35 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               }
             }
 
-            if (receiver.configuration == 'default') {
-              self.receivers_selected[receiver.id] = self.context.select_all_receivers !== false;
-            } else if (receiver.configuration == 'forcefully_selected') {
-              self.receivers_selected[receiver.id] = true;
+            if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {
+              if (receiver.configuration == 'default') {
+                self.receivers_selected[receiver.id] = self.context.select_all_receivers;
+              } else if (receiver.configuration == 'forcefully_selected') {
+                self.receivers_selected[receiver.id] = true;
+              }
             }
+
+            if (self.receivers_selected[receiver.id]) {
+              receivers_selected_count++;
+            }
+
           }
         });
 
+        // temporary fix for contitions in which select_all_receivers is marked false
+        // but the admin has forgotten to mark at least one receiver to automtically selected
+        // nor the user is coming from a link with explicit receivers selection.
+        // in all this conditions we select all receivers for which submission is allowed.
+        if (receivers_selected_count === 0 && !self.context.select_all_receivers) {
+          angular.forEach($rootScope.receivers, function(receiver) {
+            if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {
+              if (receiver.configuration !== 'unselectable') {
+                console.log("ole");
+                self.receivers_selected[receiver.id] = true;
+              }
+            }
+          });
+        }
       };
 
       /**
