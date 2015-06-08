@@ -31,12 +31,12 @@
             </div>
 
             <div data-ng-switch-when="checkbox" data-ng-class="{'col-md-8': toplevel}">
-              <div data-ng-repeat="option in field.options"; data-ng-init="field.value[option.id] = {};">
+              <div data-ng-repeat="option in field.options"; data-ng-init="field.value[option.id] = {}; field.required_check = !validateRequiredCheckbox(field)">
                 <input type="hidden" data-ng-init="field.value[option.id].order = $index" data-ng-model="field.value[option.id].order" />
                 <input type="hidden" data-ng-init="field.value[option.id].name = option.attrs.name" data-ng-model="field.value[option.id].name" />
                 <div class="checkbox">
                   <label>
-                    <input id="{{fieldId}}-input" data-ng-model="field.value[option.id].value"
+                    <input id="{{fieldId}}-input" data-ng-model="field.value[option.id].value" data-ng-required="field.required_check" data-ng-change="field.required_check = !validateRequiredCheckbox(field)"
                         placeholder="{{field.placeholder || 'false'}}"
                         type="checkbox" />
                     {{option.attrs.name}}
@@ -71,7 +71,7 @@
               <div data-ng-include="'views/submission/form.html'"></div>
             </div>
 
-            <div class="col-md-12" data-ng-if="field.type != 'tos' && field.type != 'fieldgroup'">
+            <div class="col-md-12" data-ng-if="field.type !== 'fieldgroup'">
               <div class="has-error" data-ng-show="submissionField.$error.required">
                 <span data-translate>This field is mandatory</span>
               </div>

@@ -216,6 +216,21 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
     }
   };
 
+  $scope.validateRequiredCheckbox = function(field) {
+    if (!field.required) {
+      return true;
+    }
+
+    var ret = false;
+    angular.forEach(field.value, function (value) {
+      if (value.value && value.value === true) {
+        ret |= true;
+      }
+    });
+
+    return ret;
+  };
+
 }]).
 controller('ReceiptController', ['$scope', '$location', 'Authentication', 'WhistleblowerTip',
   function($scope, $location, Authentication, WhistleblowerTip) {
