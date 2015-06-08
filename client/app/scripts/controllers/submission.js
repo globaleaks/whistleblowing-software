@@ -134,7 +134,7 @@ GLClient.controller('SubmissionCtrl',
         $scope.receiversOrderPredicate = 'presentation_order';
       }
 
-      if ((!$scope.receivers_selectable && !$scope.submission.context.show_receivers)) {
+      if ((!$scope.receivers_selectable || !$scope.submission.context.show_receivers)) {
         $scope.skip_first_step = true;
         $scope.selection = 1;
       } else {
