@@ -229,36 +229,20 @@ class Replacer2021(TableReplacer):
 
     def migrate_User(self):
         # Receivers and Users are migrated all together this time!
+        # The only user to be migrated is the admin
+        user_model = self.get_right_model("User", 20)
+        old_admin = self.store_old.find(user_model, user_model.username == u'admin').one()
+        old_node = self.store_old.find(self.get_right_model("Node", 20)).one()
+
+        new_admin = self.get_right_model("User", 21)()
+        for _, v in new_admin._storm_columns.iteritems():
+           if v.name == 'mail_address':
+               new_admin.mail_address = old_node.email
+               continue
+
+           setattr(new_admin, v.name, getattr(old_admin, v.name))
+        self.store_new.add(new_admin)
         return
-        print "%s User migration assistant"  % self.std_fancy
-
-        old_users = self.store_old.find(self.get_right_model("User", 20))
-
-        old_users = self.store_old.find(self.get_right_model("User", 20))
-
-        receiver_model = self.get_right_model("Receiver", 20)
-
-        for old_user in old_users:
-
-            new_user = self.get_right_model("User", 21)()
-
-            for _, v in new_user._storm_columns.iteritems():
-                if v.name == 'mail_address':
-                    old_receiver = self.store_old.find(receiver_model)
-                    print old_user.id
-                    for a in old_receiver:
-                        #print a.id
-                        print a.user_id
-                        #print a.mail_address
-                    #new_user.mail_address = old_receiver.mail_address
-                    #print new_user.mail_address
-                    continue
-
-                setattr(new_user, v.name, getattr(old_user, v.name))
-
-            self.store_new.add(new_user)
-
-        self.store_new.commit()
 
     def migrate_Receiver(self):
         print "%s Receiver migration assistant" % self.std_fancy
@@ -283,6 +267,8 @@ class Replacer2021(TableReplacer):
 
                 setattr(new_receiver, v.name, getattr(old_receiver, v.name))
 
+            # migrating we use old_receiver.id in order to not loose receiver-context associations
+            new_receiver.id = new_user.username = new_user.id = old_receiver.id
 
             self.store_new.add(new_user)
             self.store_new.add(new_receiver)
