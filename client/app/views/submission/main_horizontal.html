@@ -1,6 +1,6 @@
 <div class="tabbable tabs-below">
   <ul class="nav nav-tabs">
-    <li data-ng-show="!skip_first_step" data-ng-class="{active: selection==0, disabled: uploading}">
+    <li data-ng-if="!skip_first_step" data-ng-class="{active: selection==0, disabled: uploading}">
       <a id="step-0-link" href="javascript:void(0)" data-ng-click="goToStep(0)" data-ng-disabled="uploading">
         1 - <span data-translate>Receiver selection</span>
       </a>
