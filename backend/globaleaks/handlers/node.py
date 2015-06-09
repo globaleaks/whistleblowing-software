@@ -124,6 +124,7 @@ def anon_serialize_context(store, context, language):
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'show_small_cards': context.show_small_cards,
         'show_receivers': context.show_receivers,
+        'enable_comments': context.enable_comments,
         'enable_private_messages': context.enable_private_messages,
         'presentation_order': context.presentation_order,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,

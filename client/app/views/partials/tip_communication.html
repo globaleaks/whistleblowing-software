@@ -1,5 +1,5 @@
   <div class="row">
-    <div id="TipCommunicationComments" class="col-md-5" data-ng-if="(tip.enable_private_messages && tip.receivers.length > 1) || !tip.enable_private_messages">
+    <div id="TipCommunicationComments" class="col-md-5" data-ng-if="tip.enable_comments">
       <div class="TipPageSectionTitle" data-translate>Additional Information</div>
       <textarea id="TipCommunicationCommentsInput" data-ng-model="tip.newCommentContent" maxlength="{{node.maximum_textsize}}" class="form-control msd-elastic"></textarea>
       <br />
@@ -59,7 +59,7 @@
       </div>
     </div>
 
-    <div class="col-md-2" data-ng-if="tip.enable_private_messages && tip.receivers.length > 1"></div>
+    <div class="col-md-2" data-ng-if="tip.enable_comments && tip.enable_private_messages"></div>
 
     <div id="TipCommunicationMessages" class="col-md-5" data-ng-if="tip.enable_private_messages">
       <div data-ng-switch="" on="role">

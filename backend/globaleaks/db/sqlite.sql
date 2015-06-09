@@ -59,6 +59,7 @@ CREATE TABLE context (
     maximum_selectable_receivers INTEGER,
     show_small_cards INTEGER NOT NULL,
     show_receivers INTEGER NOT NULL,
+    enable_comments INTEGER NOT NULL,
     enable_private_messages INTEGER NOT NULL,
     presentation_order INTEGER,
     show_receivers_in_alphabetical_order INTEGER NOT NULL,

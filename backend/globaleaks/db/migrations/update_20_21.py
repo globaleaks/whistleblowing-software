@@ -6,10 +6,10 @@
 
 """
 
-from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
+from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import load_appdata
-from globaleaks.models import Model
+from globaleaks.models import Model, ReceiverContext
 from globaleaks.utils.utility import every_language
 
 templates_list = [
@@ -164,7 +164,33 @@ class Receiver_v_20(Model):
     ping_notification = Bool()
     presentation_order = Int()
 
+
 Receiver_v_20.user = Reference(Receiver_v_20.user_id, User_v_20.id)
+
+
+class Context_v_20(Model):
+    __storm_table__ = 'context'
+    show_small_cards = Bool()
+    show_receivers = Bool()
+    maximum_selectable_receivers = Int()
+    select_all_receivers = Bool()
+    enable_private_messages = Bool()
+    tip_timetolive = Int()
+    last_update = DateTime()
+    name = JSON()
+    description = JSON()
+    receiver_introduction = JSON()
+    can_postpone_expiration = Bool()
+    can_delete_submission = Bool()
+    show_receivers_in_alphabetical_order = Bool()
+    presentation_order = Int()
+
+Context_v_20.receivers = ReferenceSet(
+    Context_v_20.id,
+    ReceiverContext.context_id,
+    ReceiverContext.receiver_id,
+    Receiver_v_20.id
+)
 
 
 class Replacer2021(TableReplacer):
@@ -241,8 +267,10 @@ class Replacer2021(TableReplacer):
                continue
 
            setattr(new_admin, v.name, getattr(old_admin, v.name))
+
         self.store_new.add(new_admin)
-        return
+        self.store_new.commit()
+
 
     def migrate_Receiver(self):
         print "%s Receiver migration assistant" % self.std_fancy
@@ -273,3 +301,29 @@ class Replacer2021(TableReplacer):
             self.store_new.add(new_user)
             self.store_new.add(new_receiver)
         self.store_new.commit()
+
+    def migrate_Context(self):
+        print "%s Context migration assistant" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("Context", 20))
+
+        for old_obj in old_objs:
+
+            new_obj = self.get_right_model("Context", 21)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'enable_comments':
+                    print old_obj.receivers.count()
+                    if (old_obj.enable_private_messages and old_obj.receivers.count() == 1):
+                        new_obj.enable_comments = False
+                    else:
+                        new_obj.enable_comments = True
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
