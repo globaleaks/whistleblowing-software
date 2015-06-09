@@ -186,7 +186,8 @@ class Context(Model):
     show_receivers = Bool(default=True)
     maximum_selectable_receivers = Int(default=0)
     select_all_receivers = Bool(default=False)
-    enable_private_messages = Bool(default=True)
+    enable_comments = Bool(default=True)
+    enable_private_messages = Bool(default=False)
 
     tip_timetolive = Int()
     last_update = DateTime(default_factory=datetime_null)
@@ -824,57 +825,83 @@ class ReceiverInternalTip(BaseModel):
     internaltip_id = Unicode()
 
 
-Field.options = ReferenceSet(Field.id,
-                             FieldOption.field_id)
+Field.options = ReferenceSet(
+    Field.id,
+    FieldOption.field_id
+)
 
 FieldOption.field = Reference(FieldOption.field_id, Field.id)
 
-Context.steps = ReferenceSet(Context.id,
-                             Step.context_id)
+Context.steps = ReferenceSet(Context.id, Step.context_id)
 
 Step.context = Reference(Step.context_id, Context.id)
 
 # _*_# References tracking below #_*_#
 Receiver.user = Reference(Receiver.id, User.id)
 
-Receiver.internaltips = ReferenceSet(Receiver.id,
-                                     ReceiverInternalTip.receiver_id,
-                                     ReceiverInternalTip.internaltip_id,
-                                     InternalTip.id)
+Receiver.internaltips = ReferenceSet(
+    Receiver.id,
+    ReceiverInternalTip.receiver_id,
+    ReceiverInternalTip.internaltip_id,
+    InternalTip.id
+)
 
-InternalTip.receivers = ReferenceSet(InternalTip.id,
-                                     ReceiverInternalTip.internaltip_id,
-                                     ReceiverInternalTip.receiver_id,
-                                     Receiver.id)
+InternalTip.receivers = ReferenceSet(
+    InternalTip.id,
+    ReceiverInternalTip.internaltip_id,
+    ReceiverInternalTip.receiver_id,
+    Receiver.id
+)
 
-InternalTip.context = Reference(InternalTip.context_id,
-                                Context.id)
+InternalTip.context = Reference(
+    InternalTip.context_id,
+    Context.id
+)
 
-InternalTip.comments = ReferenceSet(InternalTip.id,
-                                    Comment.internaltip_id)
+InternalTip.comments = ReferenceSet(
+    InternalTip.id,
+    Comment.internaltip_id
+)
 
-InternalTip.receivertips = ReferenceSet(InternalTip.id,
-                                        ReceiverTip.internaltip_id)
+InternalTip.receivertips = ReferenceSet(
+    InternalTip.id,
+    ReceiverTip.internaltip_id
+)
 
-InternalTip.internalfiles = ReferenceSet(InternalTip.id,
-                                         InternalFile.internaltip_id)
+InternalTip.internalfiles = ReferenceSet(
+    InternalTip.id,
+    InternalFile.internaltip_id
+)
 
-ReceiverFile.internalfile = Reference(ReceiverFile.internalfile_id,
-                                      InternalFile.id)
+ReceiverFile.internalfile = Reference(
+    ReceiverFile.internalfile_id,
+    InternalFile.id
+)
 
-ReceiverFile.receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
+ReceiverFile.receiver = Reference(
+    ReceiverFile.receiver_id,
+    Receiver.id
+)
 
-ReceiverFile.internaltip = Reference(ReceiverFile.internaltip_id,
-                                     InternalTip.id)
+ReceiverFile.internaltip = Reference(
+    ReceiverFile.internaltip_id,
+    InternalTip.id
+)
 
-ReceiverFile.receivertip = Reference(ReceiverFile.receivertip_id,
-                                     ReceiverTip.id)
+ReceiverFile.receivertip = Reference(
+    ReceiverFile.receivertip_id,
+    ReceiverTip.id
+)
 
-WhistleblowerTip.internaltip = Reference(WhistleblowerTip.internaltip_id,
-                                         InternalTip.id)
+WhistleblowerTip.internaltip = Reference(
+    WhistleblowerTip.internaltip_id,
+    InternalTip.id
+)
 
-InternalFile.internaltip = Reference(InternalFile.internaltip_id,
-                                     InternalTip.id)
+InternalFile.internaltip = Reference(
+    InternalFile.internaltip_id,
+    InternalTip.id
+)
 
 ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
 
@@ -893,25 +920,29 @@ Field.children = ReferenceSet(
     Field.id,
     FieldField.parent_id,
     FieldField.child_id,
-    Field.id)
+    Field.id
+)
 
 Step.children = ReferenceSet(
     Step.id,
     StepField.step_id,
     StepField.field_id,
-    Field.id)
+    Field.id
+)
 
 Context.receivers = ReferenceSet(
     Context.id,
     ReceiverContext.context_id,
     ReceiverContext.receiver_id,
-    Receiver.id)
+    Receiver.id
+)
 
 Receiver.contexts = ReferenceSet(
     Receiver.id,
     ReceiverContext.receiver_id,
     ReceiverContext.context_id,
-    Context.id)
+    Context.id
+)
 
 models_list = [Node, User, Context, Receiver, ReceiverContext,
                Field, FieldOption, FieldField, Step, StepField,

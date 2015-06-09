@@ -27,6 +27,7 @@ def wb_serialize_tip(internaltip, language):
         'last_activity': datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
         'wb_steps': internaltip.wb_steps,
+        'enable_comments': internaltip.context.enable_comments,
         'enable_private_messages': internaltip.context.enable_private_messages,
         'show_receivers': internaltip.context.show_receivers,
     }

@@ -34,6 +34,7 @@ def receiver_serialize_tip(internaltip, language):
         # be set, only if PUT with postpone = True is updated
         'potential_expiration_date': \
             datetime_to_ISO8601(utc_future_date(seconds=internaltip.context.tip_timetolive)),
+        'enable_comments': internaltip.context.enable_comments,
         'enable_private_messages': internaltip.context.enable_private_messages,
     }
 
