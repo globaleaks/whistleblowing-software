@@ -1,14 +1,18 @@
 # GlobaLeaks
 
-[![Join the chat at https://gitter.im/globaleaks/GlobaLeaks](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/globaleaks/GlobaLeaks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/globaleaks/GlobaLeaks](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/globaleaks/GlobaLeaks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) or on IRC [irc.oftc.net channel #globaleaks](https://irc.lc/OFTC/globaleaks/GL_github_user) .
 
 GlobaLeaks is a project aimed at creating a free software whistleblowing framework.
 
 To learn how to setup your own GlobaLeaks platform, look at [Globaleaks wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
-Join our [Development Mailing List](http://lists.globaleaks.org/mailman/listinfo/globaleaks-dev).
+Join our [Development Mailing List](https://lists.ghserv.net/mailman/listinfo/globaleaks-dev).
 
-If you're considering running a whistleblowing project by using GlobaLeaks, please [let us know](mailto:support@logioshermes.org), we'd love to help you out!
+If you need help with the software write your inquiry to the GlobaLeaks Mailing List [globaleaks-talk@lists.globaleaks.org](https://lists.ghserv.net/mailman/listinfo/globaleaks-talk), IRC chat on [irc.oftc.net channel #globaleaks](https://irc.lc/OFTC/globaleaks/GL_github_user) .
+
+Follow us on [Twitter](https://twitter.com/globaleaks) [![Twitter](http://i.imgur.com/wWzX9uB.png)](https://twitter.com/globaleaks) and [Facebook](https://www.facebook.com/globaleaks) [![Facebook](http://i.imgur.com/fep1WsG.png)](https://www.facebook.com/globaleaks)
+
+If you need to contact us privately to propose Whistleblowing specific projects, to involve us as Hermes Center, please do [Contact Us Directly](http://logioshermes.org/home/about-mission/contacts/), we'd love to help you out!
 
 ## Build Status
 | Branch | Build Status | Code Coverage | Code Quality
