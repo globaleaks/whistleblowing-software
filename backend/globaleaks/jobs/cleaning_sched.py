@@ -32,8 +32,8 @@ class ExpiringRTipEvent(EventLogger):
         for receiver in store.find(Receiver):
             user_threshold = datetime_now() - timedelta(seconds=receiver.tip_expiration_threshold)
             for rtip in store.find(ReceiverTip, ReceiverTip.receiver_id == receiver.id):
-                #if rtip.internaltip.expiration_date < user_threshold:
-                self.process_event(store, rtip)
+                if rtip.internaltip.expiration_date < user_threshold:
+                    self.process_event(store, rtip)
 
         db_save_events_on_db(store, self.events)
 
