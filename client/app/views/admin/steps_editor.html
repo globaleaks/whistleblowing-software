@@ -30,10 +30,9 @@
     <div data-as-sortable="stepsSortableOptions" data-ng-model="context.steps">
       <div data-ng-repeat="step in context.steps | orderBy:'presentation_order'" data-as-sortable-item>
         <div class="stepBox col-md-12"
-             data-ng-init="editing=false"
              data-ng-controller="AdminStepEditorCtrl">
           <div class="card step">
-            <div class="stepEditorHeader sortableHandle" data-ng-click="editing=!editing">
+            <div class="stepEditorHeader sortableHandle" data-ng-click="toggleEditing()">
               <div class="row" data-as-sortable-item-handle>
                 <span class="badge">{{$index + 1}}</span>
                 <span>{{step.label}}</span>
