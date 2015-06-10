@@ -1,1 +1,1 @@
-Tip Expiry Notice: %ExpiringTipCount% Tip(s) are going to expire in %ExpirationWatch% hours
+Tip [%TipNum%] is going to expire in %ExpirationWatch% hours
