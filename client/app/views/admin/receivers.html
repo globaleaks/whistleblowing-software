@@ -63,10 +63,10 @@
       </div>
       <div data-as-sortable="sortableOptions" ng-model="admin.receivers">
         <div class="row receiverList" data-ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'" data-as-sortable-item>
-          <form id="receiver-{{$index}}" name="editReceiver" data-ng-controller="AdminReceiversEditorCtrl" novalidate>
+          <form id="receiver-{{$index}}" name="editReceiver" data-ng-controller="AdminReceiversEditorCtrl" data-ng-init="editing=false" data-ng-click="editing=!editing" novalidate>
             <div class="configItem receiverItem" data-ng-class="{'configItemLast': $last}">
-              <div class="row" data-ng-click="toggleEditing()" data-as-sortable-item-handle>
-                <div class="editorHeader receiverEditorHeader sortableHandle">
+              <div class="row" data-as-sortable-item-handle>
+                <div class="editorHeader sortableHandle">
                   <div data-ng-show="!editing">
                     <div class="col-md-6 pull-left editorHeaderTitle">{{receiver.name}}</div>
                     <div class="col-md-offset-1 col-md-5 editorHeaderButtons">
@@ -94,7 +94,7 @@
                   </div>
                 </div>
               </div>
-              <div class="editor receiverEditor" data-ng-if="editing">
+              <div class="editor" data-ng-if="editing">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="imageUpload" data-ng-controller="AdminFileUploadCtrl">

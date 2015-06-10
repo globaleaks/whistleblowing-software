@@ -93,8 +93,6 @@
   margin-bottom: 20px;
 }
 
-/** Field editing **/
-
 .card {
   padding: 16px;
   background-color: #fff;
@@ -108,16 +106,9 @@
   font-size: 24px;
 }
 
-.fieldEditorHeader {
+.stepEditorHeader, .fieldEditorHeader {
   padding: 20px;
 }
-
-.fieldEditorHeader h2 {
-  margin-top: 0;
-}
-
-
-/** Step editing **/
 
 .stepBox {
   padding: 0 5px 10px 5px;
