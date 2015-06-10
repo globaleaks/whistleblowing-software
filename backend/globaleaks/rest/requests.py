@@ -170,7 +170,7 @@ AdminNotificationDesc = {
     'receiver_threshold_reached_mail_template': unicode,
     'receiver_threshold_reached_mail_title': unicode,
     'notification_digest_mail_title': unicode,
-    'tip_expiration_template': unicode,
+    'tip_expiration_mail_template': unicode,
     'tip_expiration_mail_title': unicode,
     'admin_anomaly_mail_template': unicode,
     'admin_anomaly_mail_title': unicode,
