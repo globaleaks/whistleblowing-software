@@ -27,15 +27,15 @@
 <div id="StepsEditBox" data-ng-if="context.steps.length" class="col-md-12">
   <h4><span data-translate>Configured steps:</span></h4>
   <div>
-    <div data-ng-model="context.steps">
-      <div data-ng-repeat="step in context.steps">
+    <div data-as-sortable="stepsSortableOptions" data-ng-model="context.steps">
+      <div data-ng-repeat="step in context.steps | orderBy:'presentation_order'" data-as-sortable-item>
         <div 
              class="stepBox"
              data-ng-class="{'col-md-6': !editing, 'col-md-12': editing}"
              data-ng-init="editing=false"
              data-ng-controller="AdminStepEditorCtrl">
           <div class="card step">
-            <div class="configEditorHeader handle" data-ng-click="editing=!editing">
+            <div class="configEditorHeader" data-ng-click="editing=!editing" data-as-sortable-item-handle>
               <span class="badge">{{$index + 1}}</span>
               <span>{{step.label}}</span>
             </div>
@@ -59,6 +59,12 @@
                   <div>
                     <textarea class="form-control" data-ng-model="step.description">{{step.description}}</textarea>
                   </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label data-translate>Presentation Order</label>
+                  <input class="form-control" data-ng-model="step.presentation_order" value="{{step.presentation_order}}" type="number" min="0" max="99">
                 </div>
               </div>
               <div class="row">

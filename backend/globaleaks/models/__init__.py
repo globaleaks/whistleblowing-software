@@ -704,11 +704,11 @@ class Field(Model):
 
 class FieldOption(Model):
     field_id = Unicode()
-    number = Int()
+    presentation_order = Int()
     attrs = JSON()
 
     unicode_keys = ['field_id']
-    int_keys = ['number']
+    int_keys = ['presentation_order']
     json_keys = ['attrs']
 
     def __init__(self, attrs=None, localized_keys=None):
@@ -738,7 +738,7 @@ class FieldOption(Model):
     def copy(self, store):
         obj_copy = self.__class__()
         obj_copy.field_id = self.field_id
-        obj_copy.number = self.number
+        obj_copy.presentation_order = self.presentation_order
         obj_copy.attrs = copy.deepcopy(self.attrs)
         return obj_copy
 
@@ -748,10 +748,10 @@ class Step(Model):
     label = JSON()
     description = JSON()
     hint = JSON()
-    number = Int()
+    presentation_order = Int()
 
     unicode_keys = ['context_id']
-    int_keys = ['number']
+    int_keys = ['presentation_order']
     localized_strings = ['label', 'description', 'hint']
 
 
