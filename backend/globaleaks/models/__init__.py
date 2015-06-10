@@ -498,7 +498,7 @@ class Notification(Model):
     comment_mail_title = JSON(validator=longlocal_v)
     message_mail_template = JSON(validator=longlocal_v)
     message_mail_title = JSON(validator=longlocal_v)
-    tip_expiration_template = JSON(validator=longlocal_v)
+    tip_expiration_mail_template = JSON(validator=longlocal_v)
     tip_expiration_mail_title = JSON(validator=longlocal_v)
     pgp_alert_mail_title = JSON(validator=longlocal_v)
     pgp_alert_mail_template = JSON(validator=longlocal_v)
@@ -547,7 +547,7 @@ class Notification(Model):
         'comment_mail_title',
         'message_mail_template',
         'message_mail_title',
-        'tip_expiration_template',
+        'tip_expiration_mail_template',
         'tip_expiration_mail_title',
         'notification_digest_mail_title',
         'zip_description',

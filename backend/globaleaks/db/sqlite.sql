@@ -182,7 +182,7 @@ CREATE TABLE notification (
     message_mail_title BLOB,
     comment_mail_template BLOB,
     comment_mail_title BLOB,
-    tip_expiration_template BLOB,
+    tip_expiration_mail_template BLOB,
     tip_expiration_mail_title BLOB,
     admin_anomaly_mail_template BLOB,
     admin_anomaly_mail_title BLOB,

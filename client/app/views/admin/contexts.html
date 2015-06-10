@@ -124,7 +124,7 @@
                             </label>
                           </div>
                           <div class="form-group">
-                            <label data-translate>Submitted Tip expiry time (days)</label>
+                            <label data-translate>Submitted tip expiry time (days)</label>
                             <input class="form-control" data-ng-model="context.tip_timetolive" value="{{context.tip_timetolive}}" type="number">
                           </div>
                           <div class="form-group">
@@ -132,12 +132,12 @@
                             <label data-translate>Select all receivers by default</label>
                           </div>
                           <div class="form-group" data-ng-show="!context.select_all_receivers">
-                            <label data-translate>Maximum number of selectable Receivers:</label><label data-translate>(0 = unlimited)</label>
+                            <label data-translate>Maximum number of selectable receivers:</label><label data-translate>(0 = unlimited)</label>
                             <input class="form-control" data-ng-model="context.maximum_selectable_receivers" value="{{context.maximum_selectable_receivers}}" type="number">
                           </div>
                           <div class="form-group">
                             <input data-ng-model="context.show_receivers" value="{{context.show_receivers}}" type="checkbox">
-                            <label data-translate>Show receivers</label>
+                            <label data-translate>Show receiver selection step</label>
                           </div>
                           <div class="form-group">
                             <input data-ng-model="context.show_small_cards" value="{{context.show_small_cards}}" type="checkbox">
@@ -153,18 +153,18 @@
                           </div>
                           <div class="form-group">
                             <input data-ng-model="context.can_postpone_expiration" value="{{context.can_postpone_expiration}}" type="checkbox">
-                            <label data-translate>Allow Receivers to postpone expiration date of the Tips</label>
+                            <label data-translate>Allow receivers to postpone expiration date of the tips</label>
                             <div data-ng-show="context.can_postpone_expiration">
                               <span class="label label-info" data-translate>Now enabled:</span>
-                              <span data-translate>Receivers of this Context will be able to postpone expiration date of the Tips.</span>
+                              <span data-translate>Receivers of this context will be able to postpone expiration date of the tips.</span>
                             </div>
                           </div>
                           <div class="form-group">
                             <input data-ng-model="context.can_delete_submission" value="{{context.can_delete_submission}}" type="checkbox">
-                            <label data-translate>Allow Receivers to delete Tips</label>
+                            <label data-translate>Allow receivers to delete tips</label>
                             <div data-ng-show="context.can_delete_submission">
                               <span class="label label-info" data-translate>Now enabled:</span>
-                              <span data-translate>Receivers of this Context will be able to delete Tips and their content.</span>
+                              <span data-translate>Receivers of this context will be able to delete tips and their content.</span>
                             </div>
                           </div>
                         </div>

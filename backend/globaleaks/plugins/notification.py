@@ -64,7 +64,7 @@ class MailNotification(Notification):
                 event.notification_settings['message_mail_title'], event)
         elif event.type == u'upcoming_tip_expiration':
             body = Templating().format_template(
-                event.notification_settings['tip_expiration_template'], event)
+                event.notification_settings['tip_expiration_mail_template'], event)
             title = Templating().format_template(
                 event.notification_settings['tip_expiration_mail_title'], event)
         elif event.type == u'receiver_threshold_reached_mail_template':
