@@ -96,7 +96,7 @@ def db_update_options(store, field_id, options, language):
     new_options = []
     n = 1
     for option in options:
-        opt_dict = {'field_id': field_id, 'number': n}
+        opt_dict = {'field_id': field_id, 'presentation_order': n}
 
         keys = get_field_option_localized_keys(field.type)
         fill_localized_keys(option['attrs'], keys, language)

@@ -11,6 +11,7 @@ GLClient.controller('AdminStepAddCtrl', ['$scope', '$rootScope',
           label: $scope.new_step_label,
           description: '',
           hint: '',
+          presentation_order: $scope.context.steps.length,
           children: []
         }
       );

@@ -364,7 +364,7 @@ CREATE TABLE fieldoption (
     creation_date VARCHAR NOT NULL,
     field_id VARCHAR NOT NULL,
     attrs TEXT NOT NULL DEFAULT '{}',
-    number INTEGER NOT NULL CHECK(number > 0),
+    presentation_order INTEGER NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE
 );
@@ -376,8 +376,7 @@ CREATE TABLE step (
     description TEXT NOT NULL,
     hint TEXT NOT NULL,
     context_id VARCHAR NOT NULL,
-    number INTEGER NOT NULL CHECK(number > 0),
+    presentation_order INTEGER NOT NULL,
     PRIMARY KEY (id)
-    UNIQUE (context_id, number),
     FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE
 );
