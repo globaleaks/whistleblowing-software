@@ -325,3 +325,7 @@ table {
 #EmbeddedReceiptBox {
   text-align: center;
 }
+
+.opaque {
+  opacity: 50%;
+}

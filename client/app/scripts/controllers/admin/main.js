@@ -234,15 +234,3 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$modal',
   };
 
 }]);
-
-ConfirmableDialogCtrl = ['$scope', '$modalInstance', 'object', function($scope, $modalInstance, object) {
-  $scope.object = object;
-
-  $scope.ok = function () {
-    $modalInstance.close($scope.object);
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-}];

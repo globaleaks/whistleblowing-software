@@ -1,23 +1,29 @@
-<div id="HumanCaptcha" ng-show="submission.current_submission.human_captcha" >
-  <div class="alert alert-warning">
-    <div>
-      <h3 data-translate>Are you human?</h3>
+<div class="modal-header">
+  <h2 data-translate>Are you human?</h2>
+</div>
+<div class="modal-body">
+  <div id="HumanCaptcha" data-ng-if="object._submission.human_captcha" >
+    <div class="alert alert-warning">
       <div data-translate>We do not discriminate based on race and gender, but we do against computers :)</div>
       <br />
       <div>
         <span data-translate>Just to prove you are human, please answer the following math challenge:</span>
-        <span>{{submission.current_submission.human_captcha}}</span>
+        <span>{{object._submission.human_captcha}}</span>
       </div>
-      <div class="form-group">
-        <input id="human_captcha_answer" class="form-control" ng-model="submission.current_submission.human_captcha_answer"type="text" style="width:inherit" />
+      <br />
+      <div class="form-group" style="width: 100%; text-align: center">
+        <div class="col-xs-4">
+          <input id="human_captcha_answer" class="form-control" ng-model="object._submission.human_captcha_answer" type="number" />
+        </div>
       </div>
+      <br />
     </div>
   </div>
-  <div class="modal-footer">
-    <!-- the value human_captcha_answer will be sent back to the server -->
-    <button class="btn btn-success" data-ng-click="submission.current_submission.human_captcha = false">
-      <i class="glyphicon glyphicon-ok"></i>
-      <span data-translate>I've solved the math challenge, hide this thing now!</span>
-    </button>
-  </div>
+</div>
+</div>
+<div class="modal-footer">
+  <a class="modal-action-ok btn btn-success" data-ng-click="ok()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>I've solved the math challenge, hide this thing now!</span>
+  </a>
 </div>

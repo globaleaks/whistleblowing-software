@@ -9,6 +9,33 @@ GLClient.controller('SubmissionCtrl',
   $scope.contexts_selectable = $location.search().contexts_selectable;
   $scope.receivers_selectable = $location.search().receivers_selectable;
 
+  $scope.problemToBeSolved = false;
+
+  $scope.captchaProblemSolved = function() {
+    $scope.submission._submission.human_captcha = false;
+    $scope.problemToBeSolved = false;
+  }
+
+  $scope.openProblemDialog = function(submission){
+    var modalInstance = $modal.open({
+        templateUrl:  'views/partials/captchas.html',
+        controller: 'ConfirmableDialogCtrl',
+        backdrop: 'static',
+        keyboard: false,
+        resolve: {
+          object: function () {
+            return submission;
+          }
+        }
+
+    });
+
+    modalInstance.result.then(
+       function(result) { $scope.captchaProblemSolved($scope.submission); },
+       function(result) { }
+    );
+  };
+
   if ($scope.receivers_ids) {
     try {
       $scope.receivers_ids = JSON.parse($scope.receivers_ids);
@@ -123,6 +150,11 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.prepareSubmission = function(context, receivers_ids) {
     $scope.submission.create(context.id, receivers_ids, function () {
+      $scope.problemToBeSolved = $scope.submission._submission.human_captcha !== false;
+      if ($scope.problemToBeSolved) {
+        $scope.openProblemDialog($scope.submission);
+      }
+
       if ($scope.submission.context.show_receivers_in_alphabetical_order) {
         $scope.receiversOrderPredicate = 'name';
       } else {
