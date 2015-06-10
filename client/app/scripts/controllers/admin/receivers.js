@@ -79,12 +79,6 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher', 'C
 
     passwordWatcher($scope, 'receiver.password');
 
-    $scope.editing = false;
-
-    $scope.toggleEditing = function () {
-      $scope.editing = $scope.editing ^ 1;
-    };
-
     $scope.isSelected = function (context) {
       return $scope.receiver.contexts.indexOf(context.id) !== -1;
     };

@@ -88,12 +88,6 @@ GLClient.controller('AdminContextsCtrl',
 GLClient.controller('AdminContextsEditorCtrl', ['$scope',
   function($scope) {
 
-    $scope.editing = $scope.context.description === undefined;
-
-    $scope.toggleEditing = function () {
-      $scope.editing = $scope.editing ^ 1;
-    };
-
     $scope.isSelected = function (receiver) {
       return $scope.context.receivers.indexOf(receiver.id) !== -1;
     };
@@ -119,6 +113,9 @@ GLClient.controller('AdminContextsEditorCtrl', ['$scope',
         step.presentation_order = i + 1;
         i += 1;
       });
+
+      $scope.editContext.$dirty = true;
+      $scope.editContext.$pristine = false;
     }
   };
 

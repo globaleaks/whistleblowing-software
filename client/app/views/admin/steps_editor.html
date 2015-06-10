@@ -29,22 +29,26 @@
   <div>
     <div data-as-sortable="stepsSortableOptions" data-ng-model="context.steps">
       <div data-ng-repeat="step in context.steps | orderBy:'presentation_order'" data-as-sortable-item>
-        <div 
-             class="stepBox"
-             data-ng-class="{'col-md-6': !editing, 'col-md-12': editing}"
+        <div class="stepBox col-md-12"
              data-ng-init="editing=false"
              data-ng-controller="AdminStepEditorCtrl">
           <div class="card step">
-            <div class="configEditorHeader" data-ng-click="editing=!editing" data-as-sortable-item-handle>
-              <span class="badge">{{$index + 1}}</span>
-              <span>{{step.label}}</span>
+            <div class="stepEditorHeader sortableHandle" data-ng-click="editing=!editing">
+              <div class="row" data-as-sortable-item-handle>
+                <span class="badge">{{$index + 1}}</span>
+                <span>{{step.label}}</span>
+                <span class="pull-right" popover="{{'Click to edit, drag to order' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                  <i class="glyphicon glyphicon-th"></i>
+                </span>
+              </div>
             </div>
             <div data-ng-form="" name="editStep" data-ng-show="editing">
-              <hr/>
               <div class="row">
-                <div class="form-group col-md-6">
-                  <label data-translate>Label</label>
-                  <input class="form-control" data-ng-model="step.label" type="text" required />
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <label data-translate>Label</label>
+                    <input class="form-control" data-ng-model="step.label" type="text" required />
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -82,7 +86,7 @@
                   </div>
               </div>
             </div>
-            <hr>
+            <hr />
             <div class="stepActions">
               <button class="btn btn-default"
                       data-ng-show="!editing"
