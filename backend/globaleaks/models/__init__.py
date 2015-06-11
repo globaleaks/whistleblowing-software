@@ -830,7 +830,21 @@ Field.options = ReferenceSet(
     FieldOption.field_id
 )
 
+Field.children = ReferenceSet(
+    Field.id,
+    FieldField.parent_id,
+    FieldField.child_id,
+    Field.id
+)
+
 FieldOption.field = Reference(FieldOption.field_id, Field.id)
+
+Step.children = ReferenceSet(
+    Step.id,
+    StepField.step_id,
+    StepField.field_id,
+    Field.id
+)
 
 Context.steps = ReferenceSet(Context.id, Step.context_id)
 
@@ -915,20 +929,6 @@ Message.receivertip = Reference(Message.receivertip_id, ReceiverTip.id)
 
 EventLogs.receiver = Reference(EventLogs.receiver_id, Receiver.id)
 EventLogs.rtip = Reference(EventLogs.receivertip_id, ReceiverTip.id)
-
-Field.children = ReferenceSet(
-    Field.id,
-    FieldField.parent_id,
-    FieldField.child_id,
-    Field.id
-)
-
-Step.children = ReferenceSet(
-    Step.id,
-    StepField.step_id,
-    StepField.field_id,
-    Field.id
-)
 
 Context.receivers = ReferenceSet(
     Context.id,

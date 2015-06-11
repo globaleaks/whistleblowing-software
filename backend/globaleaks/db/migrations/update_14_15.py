@@ -23,7 +23,7 @@ from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import load_appdata
-from globaleaks.models import Model, Field, FieldOption, Step, db_forge_obj
+from globaleaks.models import Model, db_forge_obj
 from globaleaks.utils.utility import datetime_null, uuid4, every_language
 
 
@@ -279,9 +279,9 @@ class Replacer1415(TableReplacer):
         for old_context in old_contexts:
             new_context = self.get_right_model("Context", 15)()
 
-            step1 = db_forge_obj(self.store_new, Step, steps[0])
+            step1 = db_forge_obj(self.store_new, self.get_right_model("Step", 15), steps[0])
             step1.context_id = new_context.id
-            step2 = db_forge_obj(self.store_new, Step, steps[1])
+            step2 = db_forge_obj(self.store_new, self.get_right_model("Step", 15), steps[1])
             step2.context_id = new_context.id
 
             for _, v in new_context._storm_columns.iteritems():
@@ -322,7 +322,7 @@ class Replacer1415(TableReplacer):
                             field_dict['label'][l] = old_context.localized_fields[l][f]['name']
                             field_dict['hint'][l] = old_context.localized_fields[l][f]['hint']
 
-                    field = db_forge_obj(self.store_new, Field, field_dict)
+                    field = db_forge_obj(self.store_new, self.get_right_model("Field", 15), field_dict)
 
                     if field_dict['type'] in ['selectbox', 'checkbox'] and 'options' in old_context.unique_fields[f]:
                         j = 1
@@ -334,7 +334,7 @@ class Replacer1415(TableReplacer):
                             opt_dict['attrs']['name'] = {}
                             for lang in LANGUAGES_SUPPORTED_CODES:
                                 opt_dict['attrs']['name'][lang] = o['name']
-                            option = db_forge_obj(self.store_new, FieldOption, opt_dict)
+                            option = db_forge_obj(self.store_new, self.get_right_model("FieldOption", 15), opt_dict)
                             field.options.add(option)
                             j += 1
 
@@ -343,8 +343,8 @@ class Replacer1415(TableReplacer):
                 except Exception:
                     continue
 
-            tos_opt = db_forge_obj(self.store_new, FieldOption, tos_opt_dict)
-            tos = db_forge_obj(self.store_new, Field, tos_dict)
+            tos_opt = db_forge_obj(self.store_new, self.get_right_model("FieldOption", 15), tos_opt_dict)
+            tos = db_forge_obj(self.store_new, self.get_right_model("Field", 15), tos_dict)
             tos.options.add(tos_opt)
             step2.children.add(tos)
 

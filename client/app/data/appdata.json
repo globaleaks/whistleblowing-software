@@ -34,6 +34,7 @@
       "label": { "en": "Fill out your submission" },
       "description": {"en": ""},
       "hint": {"en": ""},
+      "presentation_order": 0,
       "children" : [
         {
           "label": { "en": "Short title" },
@@ -97,6 +98,7 @@
       "label": { "en": "Final Step" },
       "description": { "en": "" },
       "hint": { "en": "Hint" },
+      "presentation_order": 1,
       "children": [
         {
           "label": { "en": "Terms and Conditions" },

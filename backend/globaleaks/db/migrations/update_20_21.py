@@ -3,7 +3,7 @@
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import load_appdata
-from globaleaks.models import Model, ReceiverContext
+from globaleaks.models import BaseModel, Model, ReceiverContext
 from globaleaks.utils.utility import every_language
 
 templates_list = [
@@ -218,6 +218,36 @@ class FieldOption_v_20(Model):
     field_id = Unicode()
     number = Int()
     attrs = JSON()
+
+
+class StepField_v_20(BaseModel):
+    __storm_table__ = 'step_field'
+    __storm_primary__ = 'step_id', 'field_id'
+    step_id = Unicode()
+    field_id = Unicode()
+
+
+Field_v_20.options = ReferenceSet(
+    Field_v_20.id,
+    FieldOption_v_20.field_id
+)
+
+
+FieldOption_v_20.field = Reference(FieldOption_v_20.field_id, Field_v_20.id)
+
+
+Step_v_20.children = ReferenceSet(
+    Step_v_20.id,
+    StepField_v_20.step_id,
+    StepField_v_20.field_id,
+    Field_v_20.id
+)
+
+
+Context_v_20.steps = ReferenceSet(Context_v_20.id, Step_v_20.context_id)
+
+
+Step_v_20.context = Reference(Step_v_20.context_id, Context_v_20.id)
 
 
 class Replacer2021(TableReplacer):

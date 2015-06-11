@@ -820,7 +820,8 @@ class MockDict():
                 'hint': u'Step Hint',
                 'presentation_order': 1,
                 'children': {}
-            }]
+            }
+        ]
 
         self.dummyContext = {
             # localized stuff
