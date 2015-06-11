@@ -238,6 +238,7 @@ class InternalTip(Model):
     # receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
     wb_steps = JSON()
+    preview = JSON()
     expiration_date = DateTime()
     last_activity = DateTime(default_factory=datetime_null)
 

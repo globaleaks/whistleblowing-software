@@ -105,6 +105,7 @@ CREATE TABLE internaltip (
     creation_date VARCHAR NOT NULL,
     expiration_date VARCHAR NOT NULL,
     wb_steps BLOB,
+    preview BLOB,
     last_activity VARCHAR,
     context_id VARCHAR NOT NULL,
     new INTEGER NOT NULL,
