@@ -5,7 +5,7 @@
       <form name="contentForm" data-ng-controller="AdminContentCtrl" novalidate>
 
         <tabset class="tab-content">
-          <tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}" active="tab.active" disabled="tab.disabled">
+          <tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}" active="tab.active" disable="tab.disabled">
           <div data-ng-include="tab.template" data-ng-controller="tab.ctrl"></div>
           </tab>
         </tabset>

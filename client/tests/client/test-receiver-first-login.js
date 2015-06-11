@@ -4,7 +4,7 @@ describe('receiver first login', function() {
     element(by.model('loginUsername')).element(by.xpath(".//*[text()='Receiver 1']")).click().then(function() {
       element(by.model('loginPassword')).sendKeys('globaleaks').then(function() {
         element(by.xpath('//button[contains(., "Log in")]')).click();
-        expect(browser.getLocationAbsUrl()).toContain('/#/receiver/firstlogin');
+        expect(browser.getLocationAbsUrl()).toContain('/receiver/firstlogin');
       });
     });
   });
@@ -14,7 +14,7 @@ describe('receiver first login', function() {
       element(by.model('preferences.password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#').then(function() {
         element(by.model('preferences.check_password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#').then(function() {
           element(by.css('[data-ng-click="pass_save()"]')).click();
-          expect(browser.getLocationAbsUrl()).toContain('/#/receiver/tips');
+          expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
         });
       });
     });
@@ -24,7 +24,7 @@ describe('receiver first login', function() {
     element(by.model('loginUsername')).element(by.xpath(".//*[text()='Receiver 1']")).click().then(function() {
       element(by.model('loginPassword')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#').then(function() {
         element(by.xpath('//button[contains(., "Log in")]')).click();
-        expect(browser.getLocationAbsUrl()).toContain('/#/receiver/tips');
+        expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
       });
     });
   });

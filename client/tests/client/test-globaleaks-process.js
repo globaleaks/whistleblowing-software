@@ -12,7 +12,7 @@ describe('globaLeaks process', function() {
     browser.get('/#/');
     element(by.model('formatted_keycode')).sendKeys(receipt).then(function() {
       element(by.css('[data-ng-click="view_tip(formatted_keycode)"]')).click().then(function() {
-        expect(browser.getLocationAbsUrl()).toContain('/#/status');
+        expect(browser.getLocationAbsUrl()).toContain('/status');
         deferred.fulfill();
       });
     });
@@ -27,7 +27,7 @@ describe('globaLeaks process', function() {
     element(by.model('loginUsername')).element(by.xpath(".//*[text()='" + username + "']")).click().then(function() {
       element(by.model('loginPassword')).sendKeys(password).then(function() {
         element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
-          expect(browser.getLocationAbsUrl()).toContain('/#/receiver/tips');
+          expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
           deferred.fulfill();
         });
       });
@@ -39,22 +39,21 @@ describe('globaLeaks process', function() {
   it('should redirect to /submission by clicking on the blow the whisle button', function() {
     browser.get('/#/');
     element(by.css('[data-ng-click="goToSubmission()"]')).click().then(function () {
-      expect(browser.getLocationAbsUrl()).toContain('/#/submission');
+      expect(browser.getLocationAbsUrl()).toContain('/submission');
     });
   });
 
   it('should be able to submit a tip', function() {
     browser.get('/#/submission');
 
-    element(by.id('step-0')).element(by.id('receiver-0')).click().then(function () {
-      element(by.id('NextStepButton')).click().then(function () {
-        element(by.id('step-1')).element(by.id('field-0-input')).sendKeys(tip_text).then(function () {
-          browser.executeScript('$(\'input[type="file"]\').attr("style", "opacity:0; position:absolute;");');
-          element(by.id('step-1')).element(by.id('field-3-input')).element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
-            element(by.id('NextStepButton')).click().then(function () {
-              element(by.id('step-2')).element(by.id('field-0-input')).click();
+    element(by.id('NextStepButton')).click().then(function () {
+      element(by.id('step-1')).element(by.id('field-0-input')).sendKeys(tip_text).then(function () {
+        browser.executeScript('$(\'input[type="file"]\').attr("style", "opacity:0; position:absolute;");');
+        element(by.id('step-1')).element(by.id('field-3-input')).element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
+          element(by.id('NextStepButton')).click().then(function () {
+            element(by.id('step-2')).element(by.id('field-0-input')).click().then(function () {
               element(by.id('SubmitButton')).click().then(function() {
-                expect(browser.getLocationAbsUrl()).toContain('/#/receipt');
+                expect(browser.getLocationAbsUrl()).toContain('/receipt');
                 element(by.id('KeyCode')).getText().then(function (txt) {
                   receipt = txt;
                 });
@@ -133,7 +132,7 @@ describe('globaLeaks process', function() {
       element(by.id('tip-0')).element(by.css('.tip-action-open')).click().then(function() {
         element(by.css('.tip-action-delete')).click().then(function () {
           element(by.css('.modal-action-ok')).click().then(function() {
-            expect(browser.getLocationAbsUrl()).toContain('/#/receiver/tips');
+            expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
             //TODO: check delete
           });
         });

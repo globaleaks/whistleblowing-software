@@ -327,7 +327,7 @@ GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$modalInstance', func
 
 }]);
 
-ConfirmableDialogCtrl = ['$scope', '$modalInstance', 'object', function($scope, $modalInstance, object) {
+GLClient.controller('ConfirmableDialogCtrl', ['$scope', '$modalInstance', 'object', function($scope, $modalInstance, object) {
   $scope.object = object;
 
   $scope.ok = function () {
@@ -337,4 +337,4 @@ ConfirmableDialogCtrl = ['$scope', '$modalInstance', 'object', function($scope, 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
-}];
+}]);
