@@ -1,11 +1,5 @@
 # -*- encoding: utf-8 -*-
 
-"""
-  Changes
-    - Node: add possibility to disable Key Code Hint
-
-"""
-
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import load_appdata
@@ -36,6 +30,8 @@ templates_list = [
   'ping_mail_template',
   'ping_mail_title',
   'notification_digest_mail_title',
+  'tip_expiration_mail_title',
+  'tip_expiration_mail_template',
   'zip_description'
 ]
 
@@ -193,6 +189,37 @@ Context_v_20.receivers = ReferenceSet(
 )
 
 
+class Step_v_20(Model):
+    __storm_table__ = 'step'
+    context_id = Unicode()
+    label = JSON()
+    description = JSON()
+    hint = JSON()
+    number = Int()
+
+
+class Field_v_20(Model):
+    __storm_table__ = 'field'
+    label = JSON()
+    description = JSON()
+    hint = JSON()
+    multi_entry = Bool()
+    required = Bool()
+    preview = Bool()
+    stats_enabled = Bool()
+    is_template = Bool()
+    x = Int()
+    y = Int()
+    type = Unicode()
+
+
+class FieldOption_v_20(Model):
+    __storm_table__ = 'fieldoption'
+    field_id = Unicode()
+    number = Int()
+    attrs = JSON()
+
+
 class Replacer2021(TableReplacer):
     def migrate_Node(self):
         print "%s Node migration assistant:" % self.std_fancy
@@ -314,7 +341,6 @@ class Replacer2021(TableReplacer):
             for _, v in new_obj._storm_columns.iteritems():
 
                 if v.name == 'enable_comments':
-                    print old_obj.receivers.count()
                     if (old_obj.enable_private_messages and old_obj.receivers.count() == 1):
                         new_obj.enable_comments = False
                     else:
@@ -327,3 +353,74 @@ class Replacer2021(TableReplacer):
 
         self.store_new.commit()
 
+    def migrate_Step(self):
+        print "%s Step migration assistant" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("Step", 20))
+
+        for old_obj in old_objs:
+
+            new_obj = self.get_right_model("Step", 21)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'presentation_order':
+                    if old_obj.number:
+                        new_obj.presentation_order = old_obj.number
+                    else:
+                        new_obj.presentation_order = 0
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_Field(self):
+        print "%s Field migration assistant" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("Field", 20))
+
+        for old_obj in old_objs:
+
+            new_obj = self.get_right_model("Field", 21)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'presentation_order':
+                    if old_obj.number:
+                        new_obj.presentation_order = old_obj.number
+                    else:
+                        new_obj.presentation_order = 0
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_FieldOption(self):
+        print "%s FieldOption migration assistant" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("FieldOption", 20))
+
+        for old_obj in old_objs:
+
+            new_obj = self.get_right_model("FieldOption", 21)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'presentation_order':
+                    if old_obj.number:
+                        new_obj.presentation_order = old_obj.number
+                    else:
+                        new_obj.presentation_order = 0
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
