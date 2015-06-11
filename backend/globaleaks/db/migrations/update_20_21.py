@@ -126,6 +126,15 @@ class Notification_v_20(Model):
     send_email_for_every_event = Bool()
 
 
+class InternalTip_v_20(Model):
+    __storm_table__ = 'internaltip'
+    context_id = Unicode()
+    wb_steps = JSON()
+    expiration_date = DateTime()
+    last_activity = DateTime()
+    new = Int()
+
+
 class User_v_20(Model):
     __storm_table__ = 'user'
     username = Unicode()
@@ -447,6 +456,33 @@ class Replacer2021(TableReplacer):
                         new_obj.presentation_order = old_obj.number
                     else:
                         new_obj.presentation_order = 0
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_InternalTip(self):
+        print "%s InternalTip migration assistant" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("InternalTip", 20))
+
+        for old_obj in old_objs:
+
+            new_obj = self.get_right_model("InternalTip", 21)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+
+                if v.name == 'preview':
+                    preview_data = []
+                    for s in old_obj.wb_steps:
+                        for f in s['children']:
+                            if f['preview']:
+                                preview_data.append(f)
+
+                    new_obj.preview = preview_data
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))

@@ -185,7 +185,6 @@ def get_receivertip_list(store, receiver_id, language):
     rtip_summary_list = []
 
     for rtip in rtiplist:
-
         can_postpone_expiration = (node.can_postpone_expiration or
                                    rtip.internaltip.context.can_postpone_expiration or
                                    rtip.receiver.can_postpone_expiration)
@@ -200,7 +199,6 @@ def get_receivertip_list(store, receiver_id, language):
 
         message_counter = store.find(Message,
                                      Message.receivertip_id == rtip.id).count()
-
         single_tip_sum = dict({
             'id': rtip.id,
             'creation_date': datetime_to_ISO8601(rtip.creation_date),
@@ -212,20 +210,13 @@ def get_receivertip_list(store, receiver_id, language):
             'message_counter': message_counter,
             'can_postpone_expiration': can_postpone_expiration,
             'can_delete_submission': can_delete_submission,
+            'preview': rtip.internaltip.preview
         })
 
         mo = Rosetta(rtip.internaltip.context.localized_strings)
         mo.acquire_storm_object(rtip.internaltip.context)
         single_tip_sum["context_name"] = mo.dump_localized_attr('name', language)
 
-        preview_data = []
-
-        for s in rtip.internaltip.wb_steps:
-            for f in s['children']:
-                if f['preview']:
-                    preview_data.append(f)
-
-        single_tip_sum.update({'preview': preview_data})
         rtip_summary_list.append(single_tip_sum)
 
     return rtip_summary_list
