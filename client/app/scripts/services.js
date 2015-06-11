@@ -134,24 +134,26 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
-    return function(promise) {
+    return {
 
-      $http = $http || $injector.get('$http');
+      response: function(response) {
 
-      $rootScope.pendingRequests = function () {
-        return $http.pendingRequests.length;
-      };
+        $http = $http || $injector.get('$http');
 
-      $rootScope.showRequestBox = true;
+        $rootScope.pendingRequests = function () {
+          return $http.pendingRequests.length;
+        };
 
-      return promise.then(function(response) {
+        $rootScope.showRequestBox = true;
+
 
         if ($http.pendingRequests.length < 1) {
           $rootScope.showRequestBox = false;
         }
 
         return response;
-      }, function(response) {
+      },
+      responseError: function(response) {
         /* 
            When the response has failed write the rootScope
            errors array the error message.
@@ -176,20 +178,20 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         }
 
         /* 30: Not Authenticated / 24: Wrong Authentication */
-	if (error.code === 30 || error.code === 24) {
+        if (error.code === 30 || error.code === 24) {
 
           if (error.code === 24) {
-              $rootScope.logout();
+            $rootScope.logout();
           } else {
             var redirect_path = '/login';
 
             // If we are wb on the status page, redirect to homepage
             if (source_path === '/status') {
-                redirect_path = '/';
+              redirect_path = '/';
             }
             // If we are admin on the /admin(/*) pages, redirect to /admin
             else if (source_path.indexOf('/admin') === 0) {
-                redirect_path = '/admin';
+              redirect_path = '/admin';
             }
 
             // Only redirect if we are not alread on the login page
@@ -207,7 +209,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         $rootScope.errors.push(error);
 
         return $q.reject(response);
-      });
+      }
     };
 }]).
   factory('GLCache',['$cacheFactory', function ($cacheFactory) {
@@ -277,7 +279,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.receivers_selected = {};
         self.receivers = [];
         angular.forEach($rootScope.receivers, function(receiver) {
-          // enumerate only the receivers of the current context
           if (self.context.receivers.indexOf(receiver.id) !== -1) {
             self.receivers.push(receiver);
 
@@ -285,16 +286,18 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
             if (receivers_ids) {
               if (receivers_ids.indexOf(receiver.id) !== -1) {
-                self.receivers_selected[receiver.id] = true;
-                return;
+                if ((receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) ||
+                    receiver.configuration !== 'unselectable') {
+                  self.receivers_selected[receiver.id] = true;
+                }
               }
-            }
-
-            if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {
-              if (receiver.configuration == 'default') {
-                self.receivers_selected[receiver.id] = self.context.select_all_receivers;
-              } else if (receiver.configuration == 'forcefully_selected') {
-                self.receivers_selected[receiver.id] = true;
+            } else {
+              if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {
+                if (receiver.configuration == 'default') {
+                  self.receivers_selected[receiver.id] = self.context.select_all_receivers;
+                } else if (receiver.configuration == 'forcefully_selected') {
+                  self.receivers_selected[receiver.id] = true;
+                }
               }
             }
 
@@ -311,9 +314,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         // in all this conditions we select all receivers for which submission is allowed.
         if (receivers_selected_count === 0 && !self.context.select_all_receivers) {
           angular.forEach($rootScope.receivers, function(receiver) {
-            if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {
-              if (receiver.configuration !== 'unselectable') {
-                self.receivers_selected[receiver.id] = true;
+            if (self.context.receivers.indexOf(receiver.id) !== -1) {
+              if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {
+                if (receiver.configuration !== 'unselectable') {
+                  self.receivers_selected[receiver.id] = true;
+                }
               }
             }
           });
@@ -871,5 +876,5 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
      ]
 }).
   config(['$httpProvider', function($httpProvider) {
-    $httpProvider.responseInterceptors.push('globalInterceptor');
+    $httpProvider.interceptors.push('globalInterceptor');
 }]);

@@ -11,10 +11,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
     var finished = false;
 
     $scope.open_modal_allow_unencrypted = function() {
-      if ($scope.admin.node.allow_unencrypted) {
-        return;
-      }
-
       var modalInstance = $modal.open({
         templateUrl: 'views/partials/disable_encryption.html',
         controller: 'DisableEncryptionCtrl'

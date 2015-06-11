@@ -204,6 +204,7 @@
             <input data-ng-model="admin.node.allow_unencrypted" data-ng-click="open_modal_allow_unencrypted()" type="checkbox">
             <span data-translate>Enable insecure configuration without PGP encryption.</span>
             <div data-ng-show="admin.node.allow_unencrypted">
+              {{admin.node.allow_unencrypted}}
               <span class="label label-danger" data-translate>Danger</span>
               <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your server.</span>
               <span data-translate>This happens whenever encryption is unavailable.</span>
