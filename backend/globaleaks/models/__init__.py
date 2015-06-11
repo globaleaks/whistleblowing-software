@@ -704,7 +704,7 @@ class Field(Model):
 
 class FieldOption(Model):
     field_id = Unicode()
-    presentation_order = Int()
+    presentation_order = Int(default=0)
     attrs = JSON()
 
     unicode_keys = ['field_id']
@@ -748,7 +748,7 @@ class Step(Model):
     label = JSON()
     description = JSON()
     hint = JSON()
-    presentation_order = Int()
+    presentation_order = Int(default=0)
 
     unicode_keys = ['context_id']
     int_keys = ['presentation_order']

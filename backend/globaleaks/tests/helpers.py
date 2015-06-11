@@ -791,7 +791,8 @@ class MockDict():
                 'options': [
                     {
                         "id": "2ebf6df8-289a-4f17-aa59-329fe11d232e",
-                        "value": "", "attrs": {"name": "Male"}
+                        "value": "",
+                        "attrs": {"name": "Male"}
                     },
                     {
                         "id": "9c7f343b-ed46-4c9e-9121-a54b6e310123",
@@ -810,12 +811,14 @@ class MockDict():
                 'label': u'Step 1',
                 'description': u'Step Description',
                 'hint': u'Step Hint',
+                'presentation_order': 0,
                 'children': {}
             },
             {
                 'label': u'Step 2',
                 'description': u'Step Description',
                 'hint': u'Step Hint',
+                'presentation_order': 1,
                 'children': {}
             }]
 
@@ -937,5 +940,6 @@ def create_dummy_field(store, **custom_attrs):
         'x': 0,
         'y': 0
     }
+
     attrs.update(custom_attrs)
     return models.Field.new(store, attrs).id
