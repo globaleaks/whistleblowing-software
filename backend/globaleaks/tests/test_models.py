@@ -300,10 +300,10 @@ class TestStep(helpers.TestGL):
     def create_step(self, store, context_id, field_id):
         step = {
             'context_id': context_id,
-            'number': self.step_number,
+            'presentation_order': self.step_number,
             'label': {},
             'description': {},
-            'hint': {}
+            'hint': {},
         }
 
         self.step_number += 1

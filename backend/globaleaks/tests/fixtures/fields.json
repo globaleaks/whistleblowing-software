@@ -235,7 +235,7 @@
   {
     "fields": {
       "field_id": "18891164-1a0b-5b80-8b8b-93b73b815156",
-      "number": 1,
+      "presentation_order": 1,
       "attrs": {"name": {"en": "Female"}}
     },
     "class": "FieldOption"
@@ -243,7 +243,7 @@
   {
     "fields": {
       "field_id": "18891164-1a0b-5b80-8b8b-93b73b815156",
-      "number": 2,
+      "presentatiion_order": 2,
       "attrs": {"name": {"en": "Male"}}
     },
     "class": "FieldOption"
