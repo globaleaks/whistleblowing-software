@@ -19,7 +19,7 @@ from globaleaks.db.migrations.update_18_19 import Replacer1819, Node_v_18
 from globaleaks.db.migrations.update_19_20 import Replacer1920, Node_v_19, Notification_v_19, Comment_v_19, Message_v_19, \
     InternalTip_v_19, ReceiverTip_v_19, InternalFile_v_19, ReceiverFile_v_19, Receiver_v_19, \
     Context_v_19
-from globaleaks.db.migrations.update_20_21 import Replacer2021, Node_v_20, Notification_v_20, Receiver_v_20, User_v_20, Context_v_20
+from globaleaks.db.migrations.update_20_21 import Replacer2021, Node_v_20, Notification_v_20, Receiver_v_20, User_v_20, Context_v_20, Step_v_20, Field_v_20, FieldOption_v_20
 
 
 table_history = {
@@ -39,10 +39,10 @@ table_history = {
     'Message': [Message_v_19, None, None, None, None, None, None, None, None, None, None, None, models.Message, None],
     'Stats': [Stats_v_14, None, None, None, None, None, None, Stats_v_16, None, models.Stats, None, None, None, None],
     'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Field': [models.Field, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'FieldOption': [models.FieldOption, None, None, None, None, None, None, None, None, None, None, None, None, None],
+    'Field': [Field_v_20, None, None, None, None, None, None, None, None, None, None, None, None, models.Field],
+    'FieldOption': [FieldOption_v_20, None, None, None, None, None, None, None, None, None, None, None, None, models.FieldOption],
     'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Step': [models.Step, None, None, None, None, None, None, None, None, None, None, None, None, None],
+    'Step': [Step_v_20, None, None, None, None, None, None, None, None, None, None, None, None, models.Step],
     'StepField': [models.StepField, None, None, None, None, None, None, None, None, None, None, None, None, None],
     'Anomalies': [models.Anomalies, None, None, None, None, None, None, None, None, None, None, None, None, None],
     'EventLogs': [models.EventLogs, None, None, None, None, None, None, None, None, None, None, None, None, None]

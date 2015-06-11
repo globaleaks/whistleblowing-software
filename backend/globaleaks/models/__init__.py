@@ -645,22 +645,22 @@ class Field(Model):
     description = JSON(validator=longlocal_v)
     hint = JSON(validator=longlocal_v)
 
-    multi_entry = Bool()
-    required = Bool()
-    preview = Bool()
+    multi_entry = Bool(default=False)
+    required = Bool(default=False)
+    preview = Bool(default=False)
 
     # This is set if the field should be duplicated for collecting statistics
     # when encryption is enabled.
-    stats_enabled = Bool()
+    stats_enabled = Bool(default=False)
 
     # This indicates that this field should be used as a template for composing
     # new steps.
-    is_template = Bool()
+    is_template = Bool(default=False)
 
-    x = Int()
-    y = Int()
+    x = Int(default=0)
+    y = Int(default=0)
 
-    type = Unicode()
+    type = Unicode(default=u'inputbox')
     # Supported field types:
     # * inputbox
     # * textarea
