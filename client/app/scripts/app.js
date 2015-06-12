@@ -3,7 +3,6 @@
 var GLClient = angular.module('GLClient', [
     'ngCookies',
     'ngRoute',
-    'ngSanitize',
     'ui.bootstrap',
     'ang-drag-drop',
     'ui.sortable',
