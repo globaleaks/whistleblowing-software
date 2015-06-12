@@ -197,7 +197,7 @@ var GLClient = angular.module('GLClient', [
         suffix: '.json'
       });
 
-      $translateProvider.useSanitizeValueStrategy('sanitize');
+      $translateProvider.useSanitizeValueStrategy('escape');
 
       $tooltipProvider.options({appendToBody: true});
 }]).
