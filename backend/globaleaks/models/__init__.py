@@ -503,8 +503,8 @@ class Notification(Model):
     tip_expiration_mail_title = JSON(validator=longlocal_v)
     pgp_alert_mail_title = JSON(validator=longlocal_v)
     pgp_alert_mail_template = JSON(validator=longlocal_v)
-    receiver_threshold_reached_mail_template = JSON(validator=longlocal_v)
-    receiver_threshold_reached_mail_title = JSON(validator=longlocal_v)
+    receiver_notification_limit_reached_mail_template = JSON(validator=longlocal_v)
+    receiver_notification_limit_reached_mail_title = JSON(validator=longlocal_v)
     zip_description = JSON(validator=longlocal_v)
 
     # Experimental Receiver template
@@ -554,8 +554,8 @@ class Notification(Model):
         'zip_description',
         'ping_mail_template',
         'ping_mail_title',
-        'receiver_threshold_reached_mail_template',
-        'receiver_threshold_reached_mail_title'
+        'receiver_notification_limit_reached_mail_template',
+        'receiver_notification_limit_reached_mail_title'
     ]
 
     int_keys = [

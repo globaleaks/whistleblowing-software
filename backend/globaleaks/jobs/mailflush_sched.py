@@ -90,7 +90,7 @@ class ReceiverDeniedEmail(TempObj):
     def generate_anomaly_email(self, plausible_event):
 
         anomalevent = OD()
-        anomalevent.type = u'receiver_threshold_reached'
+        anomalevent.type = u'receiver_notification_limit_reached'
         anomalevent.notification_settings = plausible_event.notification_settings
         anomalevent.node_info = plausible_event.node_info
         anomalevent.context_info = None
