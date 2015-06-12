@@ -43,7 +43,7 @@ angular.module('submissionUI', []).
       element.fadeOut(fadeout_delay);
     };
 }).
-  directive('keycodevalidator', function($q, $timeout) {
+  directive('keycodevalidator', ['$q', '$timeout', function($q, $timeout) {
     return {
       require: 'ngModel',
       link: function(scope, elm, attrs, ngModel) {
@@ -71,7 +71,7 @@ angular.module('submissionUI', []).
         });
       }
     };
-}).
+}]).
   directive('creditCard', ['$filter', function($filter){
     return {
       scope: {
