@@ -48,7 +48,7 @@ class Templating(object):
                                   # and currently only one template is defined
                                   # considering exportable only not non sensitive info
                                   u'upcoming_tip_expiration': TipKeyword,
-                                  u'receiver_threshold_reached': ReceiverKeyword,
+                                  u'receiver_notification_limit_reached': ReceiverKeyword,
                                 }
 
         if event_dicts.type not in supported_event_types.keys():
