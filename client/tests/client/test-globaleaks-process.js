@@ -1,8 +1,8 @@
 describe('globaLeaks process', function() {
   var tip_text = 'topsecret';
   var receipt = '';
-  var private_message = 'priv8 message';
-  var private_message_reply = 'priv8 message reply';
+  var comment = 'comment';
+  var comment_reply = 'comment reply';
   var receiver_username = "Receiver 1";
   var receiver_password = "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#"
 
@@ -79,27 +79,27 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Receiver should be able to send a private message to the whistleblower', function() {
+  it('Receiver should be able to leave a comment to the whistleblower', function() {
     login_receiver(receiver_username, receiver_password).then(function () {
       element(by.id('tip-0')).element(by.css('.tip-action-open')).click().then(function() {
-        element(by.model('tip.newMessageContent')).sendKeys(private_message);
-        element(by.id('message-action-send')).click().then(function() {
-          element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(message) {
-            expect(message).toContain(private_message);
+        element(by.model('tip.newCommentContent')).sendKeys(comment);
+        element(by.id('comment-action-send')).click().then(function() {
+          element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
+            expect(c).toContain(comment);
           });
         });
       });
     });
   });
 
-  it('Whistleblower should be able to read the private message from the receiver and reply', function() {
+  it('Whistleblower should be able to read the comment from the receiver and reply', function() {
     login_whistleblower(receipt).then(function () {
-      element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(message) {
-        expect(message).toEqual(private_message);
-        element(by.model('tip.newMessageContent')).sendKeys(private_message_reply);
-        element(by.css('[data-ng-click="newMessage()"]')).click().then(function() {
-          element(by.id('message-1')).element(by.css('.preformatted')).getText().then(function(message) {
-            expect(message).toContain(private_message);
+      element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
+        expect(c).toEqual(comment);
+        element(by.model('tip.newCommentContent')).sendKeys(comment_reply);
+        element(by.id('comment-action-send')).click().then(function() {
+          element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
+            expect(c).toContain(comment_reply);
           });
         });
       });
