@@ -212,7 +212,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
         $rootScope.$watch('language', function (newVal, oldVal) {
           if (newVal && newVal !== oldVal) {
-            set_language(newVal);
+            $rootScope.$broadcast("REFRESH");
           }
         });
 
