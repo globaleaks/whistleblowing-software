@@ -92,5 +92,3 @@ class Replacer1011(TableReplacer):
             self.store_new.add(new_ifile)
 
         self.store_new.commit()
-
-        

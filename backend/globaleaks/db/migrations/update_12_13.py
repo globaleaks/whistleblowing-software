@@ -16,6 +16,7 @@ from storm.locals import Int, Bool, Pickle, Unicode, DateTime
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
 
+
 class Node_v_12(Model):
     __storm_table__ = 'node'
     name = Unicode()
@@ -47,6 +48,7 @@ class Node_v_12(Model):
     anomaly_checks = Bool()
     exception_email = Unicode()
 
+
 class Context_v_12(Model):
     __storm_table__ = 'context'
     unique_fields = Pickle()
@@ -74,8 +76,8 @@ class Context_v_12(Model):
     show_small_cards = Bool()
     presentation_order = Int()
 
-class Replacer1213(TableReplacer):
 
+class Replacer1213(TableReplacer):
     def migrate_Node(self):
         print "%s Node migration assistant: (terms_and_conditions)" % self.std_fancy
 

@@ -238,7 +238,7 @@ class TipsCollection(BaseHandler):
         Errors: InvalidAuthentication
         """
         answer = yield get_receivertip_list(self.current_user.user_id,
-                                             self.request.language)
+                                            self.request.language)
 
         self.set_status(200)
         self.finish(answer)

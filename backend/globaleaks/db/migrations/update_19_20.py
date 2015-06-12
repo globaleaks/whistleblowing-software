@@ -119,6 +119,7 @@ class Comment_v_19(Model):
     type = Unicode()
     mark = Unicode()
 
+
 class InternalTip_v_19(Model):
     __storm_table__ = 'internaltip'
     context_id = Unicode()
@@ -207,7 +208,6 @@ class Context_v_19(Model):
 
 
 class Replacer1920(TableReplacer):
-
     def migrate_Node(self):
         print "%s Node migration assistant: disable_key_code_hint" % self.std_fancy
 
@@ -302,7 +302,7 @@ class Replacer1920(TableReplacer):
                     new_notification.tip_expiration_template = every_language("")
                 continue
 
-            setattr(new_notification, v.name, getattr(old_notification, v.name) )
+            setattr(new_notification, v.name, getattr(old_notification, v.name))
 
         self.store_new.add(new_notification)
         self.store_new.commit()

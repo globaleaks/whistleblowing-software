@@ -12,7 +12,7 @@ from globaleaks.settings import GLSetting
 class TestStaticFileInstance(helpers.TestHandler):
     _handler = staticfiles.StaticFileInstance
 
-    crappyjunk =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    crappyjunk = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
     fakeFile = dict()
     fakeFile['body'] = StringIO()
@@ -34,7 +34,6 @@ class TestStaticFileInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post_globaleaks_logo(self):
-
         request_body = self.get_dummy_file(filename='globaleaks_logo.png', content_type='image/png')
 
         handler = self.request({}, role='admin', body=request_body)
@@ -43,7 +42,6 @@ class TestStaticFileInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post_custom_stylesheet(self):
-
         request_body = self.get_dummy_file(filename='antani.css', content_type='text/css')
 
         handler = self.request({}, role='admin', body=request_body)
@@ -52,7 +50,6 @@ class TestStaticFileInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post_custom_homepage(self):
-
         request_body = self.get_dummy_file(filename='antani.html', content_type='text/html')
 
         handler = self.request({}, role='admin', body=request_body)
@@ -94,7 +91,7 @@ class TestStaticFileInstance(helpers.TestHandler):
 
         request_body = self.get_dummy_file(filename='valid.blabla', content_type='text/plain')
 
-        handler = self.request({}, role='admin',  body=request_body)
+        handler = self.request({}, role='admin', body=request_body)
         yield handler.post(filename='customization')
 
     @inlineCallbacks
@@ -116,14 +113,16 @@ class TestStaticFileList(helpers.TestHandler):
     """
     _handler = staticfiles.StaticFileList
 
-    crappyjunk =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    crappyjunk = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
     # default files not filtered from get(/) handler
-    default_files = [ 'globaleaks_logo.png',
-                      'favicon.ico',
-                      'robots.txt',
-                      'default-profile-picture.png',
-                      'custom_stylesheet.css']
+    default_files = [
+        'globaleaks_logo.png',
+        'favicon.ico',
+        'robots.txt',
+        'default-profile-picture.png',
+        'custom_stylesheet.css'
+    ]
 
     fakeFile = dict()
     fakeFile['body'] = StringIO()
@@ -136,7 +135,7 @@ class TestStaticFileList(helpers.TestHandler):
     def test_get_default_staticfile_list(self):
         handler = self.request(role='admin')
         yield handler.get()
-        self.assertTrue( isinstance(self.responses[0], list) )
+        self.assertTrue(isinstance(self.responses[0], list))
 
         # this check verifies that only not filtered default files are shown
         # other files shall be present and are ignored in this test
@@ -157,7 +156,7 @@ class TestStaticFileList(helpers.TestHandler):
 
         handler = self.request(role='admin')
         yield handler.get()
-        self.assertTrue( isinstance(self.responses[0], list) )
+        self.assertTrue(isinstance(self.responses[0], list))
 
         found = False
 
