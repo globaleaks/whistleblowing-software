@@ -1,32 +1,32 @@
 <fieldset data-ng-init="toplevel = (field === undefined) ? true : false; step = $index; fields = (field === undefined) ? submission._submission.wb_steps[step].children : field.children;">
   <div data-ng-form="submissionField" data-ng-repeat="field in fields | orderBy:'y'" data-ng-controller="SubmissionFieldCtrl" class="submissionField">
     <div data-ng-init="fieldId  = $parent.fieldId ? $parent.fieldId + '-' + $index : 'field-' + $index" ng-class="getClass($parent.$index, $index, toplevel)">
-      <div id="{{fieldId}}" data-ng-switch="" on="field.type">
+      <div id="{{::fieldId}}" data-ng-switch="" on="field.type">
         <div data-ng-switch-default="" class="form-group">
           <div>
             <label data-ng-if="toplevel">
               <span data-ng-if="fields.length > 1" class="fieldIndex">{{$index + 1}}</span>
-              <span class="fieldLabel">{{field.label}}</span>
+              <span class="fieldLabel">{{::field.label}}</span>
             </label>
-            <label data-ng-if="!toplevel">{{field.label}}</label>
-            <a href="" data-ng-show="field.hint" data-content="field.hint" popover="{{field.hint}}" popover-placement="right" popover-trigger="mouseenter">
+            <label data-ng-if="!toplevel">{{::field.label}}</label>
+            <a href="" data-ng-show="field.hint" data-content="field.hint" popover="{{::field.hint}}" popover-placement="right" popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-question-sign"></i>
             </a>
           </div>
-          <div>{{field.description}}</div>
+          <div>{{::field.description}}</div>
           <div data-ng-switch="" on="field.type" class="col-md-12 submissionFieldInput">
 
             <div data-ng-switch-when="inputbox" data-ng-class="{'col-md-8': toplevel}">
-              <input id="{{fieldId}}-input" class="form-control" data-ng-model="field.value" maxlength="{{node.maximum_namesize}}" data-ng-required="field.required" placeholder="{{field.placeholder}}" type="text" />
+              <input id="{{::fieldId}}-input" class="form-control" data-ng-model="field.value" maxlength="{{::node.maximum_namesize}}" data-ng-required="field.required" placeholder="{{::field.placeholder}}" type="text" />
             </div>
 
             <div data-ng-switch-when="textarea" data-ng-class="{'col-md-8': toplevel}">
-              <textarea id="{{fieldId}}-input" class="form-control msd-elastic" data-ng-model="field.value" maxlength="{{node.maximum_textsize}}" data-ng-required="field.required" placeholder="{{field.placeholder}}"></textarea>
+              <textarea id="{{::fieldId}}-input" class="form-control msd-elastic" data-ng-model="field.value" maxlength="{{::node.maximum_textsize}}" data-ng-required="field.required" placeholder="{{::field.placeholder}}"></textarea>
             </div>
 
             <div data-ng-switch-when="selectbox" data-ng-class="{'col-md-8': toplevel}">
-              <select id="{{fieldId}}-input" class="form-control" data-ng-model="field.value" data-ng-required="field.required">
-                <option data-ng-repeat="option in field.options" id="{{fieldId}}-input-option-{{$index}}" value="{{option.attrs.name}}">{{option.attrs.name}}</option>
+              <select id="{{::fieldId}}-input" class="form-control" data-ng-model="field.value" data-ng-required="field.required">
+                <option data-ng-repeat="option in field.options" id="{{::fieldId}}-input-option-{{$index}}" value="{{::option.attrs.name}}">{{::option.attrs.name}}</option>
               </select>
             </div>
 
@@ -36,10 +36,10 @@
                 <input type="hidden" data-ng-init="field.value[option.id].name = option.attrs.name" data-ng-model="field.value[option.id].name" />
                 <div class="checkbox">
                   <label>
-                    <input id="{{fieldId}}-input" data-ng-model="field.value[option.id].value" data-ng-required="field.required_check" data-ng-change="field.required_check = !validateRequiredCheckbox(field)"
-                        placeholder="{{field.placeholder || 'false'}}"
+                    <input id="{{::fieldId}}-input" data-ng-model="field.value[option.id].value" data-ng-required="field.required_check" data-ng-change="field.required_check = !validateRequiredCheckbox(field)"
+                        placeholder="{{::field.placeholder || 'false'}}"
                         type="checkbox" />
-                    {{option.attrs.name}}
+                    {{::option.attrs.name}}
                   </label>
                 </div>
               </div>
@@ -54,17 +54,17 @@
             </div>
 
             <div data-ng-switch-when="tos" data-ng-class="{'col-md-12': toplevel}">
-              <div class="form-group preformatted">{{field.options[0].attrs.clause}}</div>
+              <div class="form-group preformatted">{{::field.options[0].attrs.clause}}</div>
               <div class="checkbox">
                 <label>
-                  <input id="{{fieldId}}-input" data-ng-model="field.value" data-ng-required="field.required" value="{{field.value}}" placeholder="{{field.placeholder || 'false'}}" type="checkbox" />
-                  {{field.options[0].attrs.agreement_statement}}
+                  <input id="{{::fieldId}}-input" data-ng-model="field.value" data-ng-required="field.required" value="{{field.value}}" placeholder="{{::field.placeholder || 'false'}}" type="checkbox" />
+                  {{::field.options[0].attrs.agreement_statement}}
                 </label>
               </div>
             </div>
 
             <div data-ng-switch-when="fileupload" data-ng-class="{'col-md-12': toplevel}">
-              <div id="{{fieldId}}-input" data-ng-init="fileupload_mode = field.multi_entry ? 'multiple' : 'single'" data-ng-include="'views/partials/fileupload_button.html'" class="col-md-12"></div>
+              <div id="{{::fieldId}}-input" data-ng-init="fileupload_mode = field.multi_entry ? 'multiple' : 'single'" data-ng-include="'views/partials/fileupload_button.html'" class="col-md-12"></div>
             </div>
  
             <div data-ng-switch-when="fieldgroup" data-ng-class="{'col-md-12': toplevel}">

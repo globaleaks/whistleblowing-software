@@ -4,22 +4,22 @@
     <div class="col-md-12">
       <dl>
         <dt>
-          <span>{{tip.context_name}}</span>
-          <a data-ng-show="tip.context_description" popover="{{tip.context_description}}" popover-placement="right" popover-trigger="mouseenter">
+          <span>{{::tip.context_name}}</span>
+          <a data-ng-show="tip.context_description" popover="{{::tip.context_description}}" popover-placement="right" popover-trigger="mouseenter">
             <span class="glyphicon glyphicon-info-sign"></span>
           </a>
         </dt>
         <br />
         <dt><span data-translate>Submission date</span></dt>
-        <dd>{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</dd>
+        <dd>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</dd>
         <br />
         <dt><span data-translate>Expiration Date</span></dt>
-        <dd>{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</dd>
+        <dd>{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</dd>
       </dl>
       <div data-ng-repeat="step in tip.wb_steps">
         <dt id="step={{$index}}">
           <span data-translate>Step</span>
-          <span>{{$index + 1}}: {{step.label}}</span>
+          <span>{{$index + 1}}: {{::step.label}}</span>
         </dt>
         <dd data-ng-init="fieldsRoot=step.children">
           <span data-ng-include="'views/partials/tip_fields.html'"></span>
@@ -50,10 +50,10 @@
                   <i class="glyphicon glyphicon-warning-sign" popover="{{'This receiver has not configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
                 </span>
               </span>
-              <span>{{receiver.name}}</span>
+              <span>{{::receiver.name}}</span>
             </td>
-            <td>{{receiver.description}}</td>
-            <td>{{receiver.access_counter}}</td>
+            <td>{{::receiver.description}}</td>
+            <td>{{::receiver.access_counter}}</td>
           </tr>
         </tbody>
       </table>
@@ -89,16 +89,16 @@
           <tbody id="fileListBody" data-ng-repeat="file in tip.files">
             <tr id="file-{{$index}}">
               <td>
-                <span>{{file.name}}</span>
+                <span>{{::file.name}}</span>
               </td>
               <td>
-                <span>{{file.creation_date | date:'dd-MM-yyyy'}}</span>
+                <span>{{::file.creation_date | date:'dd-MM-yyyy'}}</span>
               </td>
               <td>
-                <span>{{file.content_type}}</span>
+                <span>{{::file.content_type}}</span>
               </td>
               <td>
-                <span>{{file.size | prettyBytes }}</span>
+                <span>{{::file.size | prettyBytes }}</span>
               </td>
             </tr>
           </tbody>
