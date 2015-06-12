@@ -16,6 +16,7 @@ from globaleaks.models import Model
 from globaleaks.utils.utility import datetime_null, every_language
 from globaleaks.security import GLBPGP
 
+
 class Node_v_16(Model):
     __storm_table__ = 'node'
     name = Unicode()
@@ -126,7 +127,6 @@ class Stats_v_16(Model):
 
 
 class Replacer1617(TableReplacer):
-
     def migrate_Node(self):
         print "%s Node migration assistant: header_titles and landing_page configuration" % self.std_fancy
 
@@ -201,7 +201,7 @@ class Replacer1617(TableReplacer):
                     new_notification.pgp_alert_mail_title = every_language("")
                 continue
 
-            setattr(new_notification, v.name, getattr(old_notification, v.name) )
+            setattr(new_notification, v.name, getattr(old_notification, v.name))
 
         self.store_new.add(new_notification)
         self.store_new.commit()

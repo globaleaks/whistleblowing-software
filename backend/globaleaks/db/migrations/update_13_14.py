@@ -17,6 +17,7 @@ from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
 from globaleaks.db.datainit import load_appdata
 
+
 class Node_v_13(Model):
     __storm_table__ = 'node'
     name = Unicode()
@@ -49,6 +50,7 @@ class Node_v_13(Model):
     anomaly_checks = Bool()
     exception_email = Unicode()
 
+
 class Context_v_13(Model):
     __storm_table__ = 'context'
     unique_fields = Pickle()
@@ -77,13 +79,13 @@ class Context_v_13(Model):
     show_receivers = Bool()
     presentation_order = Int()
 
-class Replacer1314(TableReplacer):
 
+class Replacer1314(TableReplacer):
     def migrate_Node(self):
         print "%s Node migration assistant: (x_frame_options_mode, x_frame_options_allow_from," \
-                                            "disable_privacy_badge, disable_security_awareness_badge," \
-                                            "disable_security_awareness_questions, security_awareness_title," \
-                                            "security_awareness_text" % self.std_fancy
+              "disable_privacy_badge, disable_security_awareness_badge," \
+              "disable_security_awareness_questions, security_awareness_title," \
+              "security_awareness_text" % self.std_fancy
 
         appdata = load_appdata()
 

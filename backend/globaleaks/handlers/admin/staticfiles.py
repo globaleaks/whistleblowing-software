@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 #
 # admin.staticfiles
-#  **************
+# **************
 #
 # Backend supports for jQuery File Uploader, and implementation of the
 # file statically uploaded by the Admin, and exposed after in http://NODE/static path
 
-#`This code differs from handlers/file.py because files here are not tracked in the DB
+# `This code differs from handlers/file.py because files here are not tracked in the DB
 from __future__ import with_statement
 import re
 
@@ -139,7 +139,7 @@ class StaticFileInstance(BaseHandler):
         #
         # There 4 possibilities allowed are:
         #
-        #   1) the destination is == GLSetting.reserved_names.logo
+        # 1) the destination is == GLSetting.reserved_names.logo
         #   2) the destination is == GLSetting.reserved_names.cc
         #   3) the "destination+".png" does not match receiver_img_regexp
         #   4) the provided filename is a receiver uuid

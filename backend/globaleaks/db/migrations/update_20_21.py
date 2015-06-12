@@ -7,32 +7,32 @@ from globaleaks.models import BaseModel, Model, ReceiverContext
 from globaleaks.utils.utility import every_language
 
 templates_list = [
-  'admin_anomaly_activities',
-  'admin_anomaly_disk_high',
-  'admin_anomaly_disk_low',
-  'admin_anomaly_disk_medium',
-  'admin_anomaly_mail_template',
-  'admin_anomaly_mail_title',
-  'admin_pgp_alert_mail_title',
-  'admin_pgp_alert_mail_template',
-  'tip_mail_template',
-  'tip_mail_title',
-  'file_mail_template',
-  'file_mail_title',
-  'comment_mail_template',
-  'comment_mail_title',
-  'message_mail_template',
-  'message_mail_title',
-  'pgp_alert_mail_title',
-  'pgp_alert_mail_template',
-  'receiver_notification_limit_reached_mail_template',
-  'receiver_notification_limit_reached_mail_title',
-  'ping_mail_template',
-  'ping_mail_title',
-  'notification_digest_mail_title',
-  'tip_expiration_mail_title',
-  'tip_expiration_mail_template',
-  'zip_description'
+    'admin_anomaly_activities',
+    'admin_anomaly_disk_high',
+    'admin_anomaly_disk_low',
+    'admin_anomaly_disk_medium',
+    'admin_anomaly_mail_template',
+    'admin_anomaly_mail_title',
+    'admin_pgp_alert_mail_title',
+    'admin_pgp_alert_mail_template',
+    'tip_mail_template',
+    'tip_mail_title',
+    'file_mail_template',
+    'file_mail_title',
+    'comment_mail_template',
+    'comment_mail_title',
+    'message_mail_template',
+    'message_mail_title',
+    'pgp_alert_mail_title',
+    'pgp_alert_mail_template',
+    'receiver_notification_limit_reached_mail_template',
+    'receiver_notification_limit_reached_mail_title',
+    'ping_mail_template',
+    'ping_mail_title',
+    'notification_digest_mail_title',
+    'tip_expiration_mail_title',
+    'tip_expiration_mail_template',
+    'zip_description'
 ]
 
 
@@ -190,6 +190,7 @@ class Context_v_20(Model):
     show_receivers_in_alphabetical_order = Bool()
     presentation_order = Int()
 
+
 Context_v_20.receivers = ReferenceSet(
     Context_v_20.id,
     ReceiverContext.context_id,
@@ -241,9 +242,7 @@ Field_v_20.options = ReferenceSet(
     FieldOption_v_20.field_id
 )
 
-
 FieldOption_v_20.field = Reference(FieldOption_v_20.field_id, Field_v_20.id)
-
 
 Step_v_20.children = ReferenceSet(
     Step_v_20.id,
@@ -252,9 +251,7 @@ Step_v_20.children = ReferenceSet(
     Field_v_20.id
 )
 
-
 Context_v_20.steps = ReferenceSet(Context_v_20.id, Step_v_20.context_id)
-
 
 Step_v_20.context = Reference(Step_v_20.context_id, Context_v_20.id)
 
@@ -303,16 +300,16 @@ class Replacer2021(TableReplacer):
                 continue
 
             if v.name == 'notification_threshold_per_hour':
-               setattr(new_notification, v.name, 20)
-               continue
+                setattr(new_notification, v.name, 20)
+                continue
 
             if v.name == 'notification_suspension_time':
-               setattr(new_notification, v.name, 7200)
-               continue
+                setattr(new_notification, v.name, 7200)
+                continue
 
             if v.name == 'tip_expiration_threshold':
-               setattr(new_notification, v.name, 72)
-               continue
+                setattr(new_notification, v.name, 72)
+                continue
 
             setattr(new_notification, v.name, getattr(old_notification, v.name))
 
@@ -328,11 +325,11 @@ class Replacer2021(TableReplacer):
 
         new_admin = self.get_right_model("User", 21)()
         for _, v in new_admin._storm_columns.iteritems():
-           if v.name == 'mail_address':
-               new_admin.mail_address = old_node.email
-               continue
+            if v.name == 'mail_address':
+                new_admin.mail_address = old_node.email
+                continue
 
-           setattr(new_admin, v.name, getattr(old_admin, v.name))
+            setattr(new_admin, v.name, getattr(old_admin, v.name))
 
         self.store_new.add(new_admin)
         self.store_new.commit()
@@ -356,8 +353,8 @@ class Replacer2021(TableReplacer):
 
             for _, v in new_receiver._storm_columns.iteritems():
                 if v.name == 'tip_expiration_threshold':
-                   new_receiver.tip_expiration_threshold = 72
-                   continue
+                    new_receiver.tip_expiration_threshold = 72
+                    continue
 
                 setattr(new_receiver, v.name, getattr(old_receiver, v.name))
 
@@ -380,7 +377,7 @@ class Replacer2021(TableReplacer):
             for _, v in new_obj._storm_columns.iteritems():
 
                 if v.name == 'enable_comments':
-                    if (old_obj.enable_private_messages and old_obj.receivers.count() == 1):
+                    if old_obj.enable_private_messages and old_obj.receivers.count() == 1:
                         new_obj.enable_comments = False
                     else:
                         new_obj.enable_comments = True

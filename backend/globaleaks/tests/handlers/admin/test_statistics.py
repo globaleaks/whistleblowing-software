@@ -14,6 +14,7 @@ from globaleaks.utils.utility import datetime_now
 anomaly.reactor = task.Clock()
 StatisticsSchedule.collection_start_datetime = datetime_now()
 
+
 class TestAnomaliesCollectionDesc(helpers.TestHandler):
     _handler = statistics.AnomaliesCollectionDesc
 
@@ -28,6 +29,7 @@ class TestAnomaliesCollectionDesc(helpers.TestHandler):
         self.assertTrue(isinstance(self.responses, list))
         self.assertEqual(len(self.responses), 1)
         self.assertTrue(isinstance(self.responses[0], dict))
+
 
 class TestStatsCollectionDesc(helpers.TestHandler):
     _handler = statistics.StatsCollectionDesc

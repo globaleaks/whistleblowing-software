@@ -33,6 +33,7 @@ DISABLE_ANTI_XSRF_PROTECTION = False
 
 GLUploads = {}
 
+
 def validate_host(host_key):
     """
     validate_host checks in the GLSetting list of valid 'Host:' values
@@ -172,8 +173,8 @@ class BaseHandler(RequestHandler):
         # This is a constant time comparison provided by cryptography package
         if not bytes_eq(self.xsrf_token.encode('utf-8'), token.encode('utf-8')):
             raise HTTPError(403, "XSRF cookie does not match POST argument")
-        # utf-8 encoding is used because suggested here:
-        # http://stackoverflow.com/questions/7585307/python-hashlib-problem-typeerror-unicode-objects-must-be-encoded-before-hashin
+            # utf-8 encoding is used because suggested here:
+            # http://stackoverflow.com/questions/7585307/python-hashlib-problem-typeerror-unicode-objects-must-be-encoded-before-hashin
 
 
     @staticmethod
@@ -413,17 +414,19 @@ class BaseHandler(RequestHandler):
         if not hasattr(self, '_status_code'):
             if GLSetting.devel_mode:
                 log.debug("Developer, check this out")
-                import pdb; pdb.set_trace()
+                import pdb;
+
+                pdb.set_trace()
             else:
                 raise Exception("Missing _status_code in some place!")
 
         for event in outcoming_event_monitored:
             if event['handler_check'](self.request.uri) and \
-                    event['method'] == self.request.method and \
+                            event['method'] == self.request.method and \
                     event['status_checker'](self._status_code):
                 EventTrack(event, self.request.request_time())
                 # if event['anomaly_management']:
-                #    event['anomaly_management'](self.request)
+                # event['anomaly_management'](self.request)
 
         if hasattr(self, 'globaleaks_io_debug'):
             try:
@@ -503,7 +506,7 @@ class BaseHandler(RequestHandler):
         if GLSetting.loglevel == logging.DEBUG and GLSetting.devel_mode:
             return
 
-        uniform_delay = GLSetting.delay_threshold # default 0.800
+        uniform_delay = GLSetting.delay_threshold  # default 0.800
         request_time = self.request.request_time()
         needed_diff = uniform_delay - request_time
 
@@ -568,7 +571,7 @@ class BaseHandler(RequestHandler):
             return uploaded_file
 
         except errors.FileTooBig:
-            raise # propagate the exception
+            raise  # propagate the exception
 
         except Exception as exc:
             log.err("Error while handling file upload %s" % exc)

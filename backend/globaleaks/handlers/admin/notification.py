@@ -16,8 +16,8 @@ def admin_serialize_notification(notif, language):
         'username': notif.username if notif.username else u"",
         'password': notif.password if notif.password else u"",
         'security': notif.security if notif.security else u"",
-        'source_name' : notif.source_name,
-        'source_email' : notif.source_email,
+        'source_name': notif.source_name,
+        'source_email': notif.source_email,
         'disable_admin_notification_emails': notif.disable_admin_notification_emails,
         'disable_receivers_notification_emails': notif.disable_receivers_notification_emails,
         'send_email_for_every_event': notif.send_email_for_every_event,
@@ -84,7 +84,7 @@ class NotificationInstance(BaseHandler):
         Changes the node notification settings.
         """
         request = self.validate_message(self.request.body,
-            requests.AdminNotificationDesc)
+                                        requests.AdminNotificationDesc)
 
         response = yield update_notification(request, self.request.language)
 

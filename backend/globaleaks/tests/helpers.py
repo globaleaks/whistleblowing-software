@@ -917,7 +917,7 @@ def do_appdata_init(store):
         if not appdata:
             raise Exception
 
-    except Exception as xxx:
+    except Exception:
         appdata = models.ApplicationData()
         source = load_appdata()
         appdata.version = source['version']

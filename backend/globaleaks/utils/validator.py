@@ -1,21 +1,22 @@
 # -*- coding: UTF-8
 #
-#   validator
-#   *********
+# validator
+# *********
 #
 # Utility to validated data recorded in the ORM, these function are 
 # called automatically by Storm ORM.
 #
 # they are five: short text validator,
-#                long text validator,
-#                short localized text validator,
-#                long localized text validator,
+# long text validator,
+# short localized text validator,
+# long localized text validator,
 #                dictionary validator
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log
+
 
 def shorttext_v(_self, _attr, value):
     """
@@ -34,6 +35,7 @@ def shorttext_v(_self, _attr, value):
 
     return value
 
+
 def longtext_v(_self, attr, value):
     """
     Validator for every generic text element stored in the DB,
@@ -46,8 +48,8 @@ def longtext_v(_self, attr, value):
         value = unicode(value)
 
     if not isinstance(value, unicode):
-        raise errors.InvalidInputFormat("attr %s: Text expected unicode (%s)" % 
-                         ( attr, value ) )
+        raise errors.InvalidInputFormat("attr %s: Text expected unicode (%s)" %
+                                        ( attr, value ))
 
     if len(value) > GLSetting.memory_copy.maximum_textsize:
         raise errors.InvalidInputFormat("Text unicode in %s " \
@@ -55,6 +57,7 @@ def longtext_v(_self, attr, value):
                                         "limit %d" % (attr, GLSetting.memory_copy.maximum_textsize))
 
     return value
+
 
 def dict_v(_self, attr, value):
     """
@@ -75,7 +78,7 @@ def dict_v(_self, attr, value):
             if len(subvalue) > GLSetting.memory_copy.maximum_textsize:
                 raise errors.InvalidInputFormat("In dict %s the key %s" \
                                                 "overcome length limit of %d" % (attr, key,
-                                                GLSetting.memory_copy.maximum_textsize))
+                                                                                 GLSetting.memory_copy.maximum_textsize))
 
         if isinstance(subvalue, dict):
             dict_v(_self, attr, subvalue)
@@ -112,7 +115,6 @@ def shortlocal_v(_self, attr, value):
 
 
 def longlocal_v(_self, attr, value):
-
     dict_v(None, attr, value)
 
     if not value:
