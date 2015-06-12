@@ -1,8 +1,8 @@
 <div id="SubmissionStepReceiver" class="receiverCards">
 
   <div data-ng-if="submission.context.maximum_selectable_receivers !== 0 && !submission.context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
-    <div><span data-translate>Maximum number of selectable Receivers:</span> {{submission.context.maximum_selectable_receivers}}</div>
-    <div><span data-translate>Receivers selected:</span> {{selected_receivers_count()}}</div>
+    <div><span data-translate>Maximum number of selectable Receivers:</span> {{::submission.context.maximum_selectable_receivers}}</div>
+    <div><span data-translate>Receivers selected:</span> {{::selected_receivers_count()}}</div>
   </div>
   <div id="ReceiverSelectionBoxBig" data-ng-repeat="receiver in submission.receivers | filter:filterReceivers | orderBy:receiversOrderPredicate" data-ng-if="!submission.context.show_small_cards">
     <div id="receiver-{{$index}}" class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.configuration === 'unselectable' || (!node.allow_unencrypted && receiver.pgp_key_status === 'disabled')}" data-ng-click="switch_selection(receiver)">
@@ -18,7 +18,7 @@
             <span data-ng-if="receiver.configuration === 'unselectable'">
               <i class="glyphicon glyphicon-ban-circle" popover="{{'This receiver is still not enabled to receive submissions.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
             </span>
-            <span>&nbsp;{{receiver.name}}</span>
+            <span>&nbsp;{{::receiver.name}}</span>
           </label>
         </div>
         <div class="col-md-1" data-ng-if="receiver.pgp_key_status === 'enabled' || node.allow_unencrypted">
@@ -42,10 +42,10 @@
       </div>
       <div class="row">
         <div class="col-md-5">
-          <img data-ng-src="static/{{receiver.id}}.png" class="img-thumbnail">
+          <img data-ng-src="static/{{::receiver.id}}.png" class="img-thumbnail">
         </div>
         <div class="col-md-offset-1 col-md-6">
-          <p>{{receiver.description}}</p>
+          <p>{{::receiver.description}}</p>
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@
               <span data-ng-if="receiver.configuration === 'unselectable'">
                 <i class="glyphicon glyphicon-ban-circle" popover="{{'This receiver is still not enabled to receive submissions.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
               </span>
-              <span>&nbsp;{{receiver.name}}</span>
+              <span>&nbsp;{{::receiver.name}}</span>
             </label>
           </div>
           <div class="col-md-1" data-ng-if="receiver.pgp_key_status === 'enabled' || node.allow_unencrypted">
@@ -90,7 +90,7 @@
             </div>
         <div class="row">
           <div class="col-md-12">
-            <img data-ng-src="static/{{receiver.id}}.png" class="img-thumbnail">
+            <img data-ng-src="static/{{::receiver.id}}.png" class="img-thumbnail">
           </div>
         </div>
       </div>

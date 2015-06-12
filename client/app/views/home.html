@@ -1,8 +1,8 @@
 <div id="HomePageBox">
 
   <div id="HomePageBoxHeader">
-    <div id="HomePageBoxNodePresentation">{{node.presentation}}</div>
-    <div id="HomePageBoxNodeDescription" class="preformatted">{{node.description}}</div>
+    <div id="HomePageBoxNodePresentation">{{::node.presentation}}</div>
+    <div id="HomePageBoxNodeDescription" class="preformatted">{{::node.description}}</div>
   </div>
 
   <div id="WhistleblowerBox" class="row">
@@ -26,12 +26,12 @@
       <div class="row" data-ng-show="(node.tor2web_submission || anonymous) && node.accept_submissions">
         <div id="WhistleblowerSubmitBox">
           <div id="WhistleblowerSubmitBoxHeader">
-            <span>{{node.whistleblowing_question}}</span>
+            <span>{{::node.whistleblowing_question}}</span>
           </div>
           <div id="WhistleblowerSubmitBoxButton">
             <a data-ng-click="goToSubmission()" class="btn btn-primary">
               <i class="glyphicon glyphicon-bullhorn"></i>
-              <span>{{node.whistleblowing_button}}</span>
+              <span>{{::node.whistleblowing_button}}</span>
             </a>
           </div>
         </div>
