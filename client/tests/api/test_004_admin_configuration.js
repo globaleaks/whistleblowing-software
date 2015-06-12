@@ -168,12 +168,14 @@ var context = {
        label: 'Step 1',
        description: 'Step Description',
        hint: 'Step Hint',
+       presentation_order: 0,
        children: {}
      },
      {
        label: 'Step 2',
        description: 'Step Description',
        hint: 'Step Hint',
+       presentation_order: 0,
        children: {}
     }
   ],
