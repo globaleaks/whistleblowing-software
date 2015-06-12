@@ -1,8 +1,9 @@
 'use strict';
 
 var GLClient = angular.module('GLClient', [
-    'ngRoute',
     'ngCookies',
+    'ngRoute',
+    'ngSanitize',
     'ui.bootstrap',
     'ang-drag-drop',
     'ui.sortable',
@@ -193,6 +194,8 @@ var GLClient = angular.module('GLClient', [
         prefix: 'l10n/',
         suffix: '.json'
       });
+
+      $translateProvider.useSanitizeValueStrategy('sanitize');
 
       $tooltipProvider.options({appendToBody: true});
 }]).
