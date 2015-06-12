@@ -14,8 +14,10 @@ var GLClient = angular.module('GLClient', [
     'pascalprecht.translate',
     'GLClientFilters'
   ]).
-  config(['$routeProvider', '$translateProvider', '$tooltipProvider',
-    function($routeProvider, $translateProvider, $tooltipProvider) {
+  config(['$compileProvider', '$routeProvider', '$translateProvider', '$tooltipProvider',
+    function($compileProvider, $routeProvider, $translateProvider, $tooltipProvider) {
+
+    $compileProvider.debugInfoEnabled(false);
 
     $routeProvider.
       when('/wizard', {
