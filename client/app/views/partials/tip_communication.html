@@ -9,7 +9,7 @@
       </a>
       <br /><br />
       <div data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
-        <div id="comment-{{index}}" data-ng-switch="" on="comment.type">
+        <div id="comment-{{$index}}" data-ng-switch="" on="comment.type">
 
           <div data-ng-switch-when="whistleblower" class="alert alert-info">
             <div class="row">
