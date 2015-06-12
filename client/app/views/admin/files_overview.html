@@ -27,14 +27,14 @@
           <tbody id="fileListBody">
             <tr data-ng-repeat="file in files">
               <td class="col-md-6">
-                 {{file.name}}<br /><br />
-                 {{file.creation_date | date:'dd-MM-yyyy HH:mm'}} <br /><br />
-                 {{file.itip}} <br /><br />
-                 {{file.path}}
+                 {{::file.name}}<br /><br />
+                 {{::file.creation_date | date:'dd-MM-yyyy HH:mm'}} <br /><br />
+                 {{::file.itip}} <br /><br />
+                 {{::file.path}}
               </td>
-              <td class="col-md-2">{{file.content_type}}</td>
-              <td class="col-md-2">{{file.size}}</td>
-              <td class="col-md-2">#{{file.rfiles}}</td>
+              <td class="col-md-2">{{::file.content_type}}</td>
+              <td class="col-md-2">{{::file.size}}</td>
+              <td class="col-md-2">#{{::file.rfiles}}</td>
             </tr>
           </tbody>
         </table>

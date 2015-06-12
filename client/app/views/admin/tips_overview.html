@@ -56,7 +56,7 @@
                   <b><span data-translate>Creation Date</span></b>
                 </span>
                 <span class="col-md-6">
-                  {{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}
+                  {{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}
                 </span>
               </div>
               <div class="row">
@@ -64,7 +64,7 @@
                   <b><span data-translate>Expiration Date</span></b>
                 </span>
                 <span class="col-md-6">
-                  {{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}
+                  {{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}
                 </span>
               </div>
               <div class="row">
@@ -72,7 +72,7 @@
                   <b><span data-translate>WB Last Access</span></b>
                 </span>
                 <span class="col-md-6">
-                  {{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}} ({{tip.wb_access_counter}})
+                  {{::tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}} ({{::tip.wb_access_counter}})
                 </span>
               </div>
             </td>
@@ -80,7 +80,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <b><span data-translate>Context</span>:</b>
-                  <a href="/#/admin/contexts">{{tip.context_name}}</a>
+                  <a href="/#/admin/contexts">{{::tip.context_name}}</a>
                 </div>
               </div>
               <br />
@@ -100,9 +100,9 @@
                   <div class="col-sm-offset-1 col-md-11">
                     <div data-ng-repeat="rtip in tip.receivertips">
                       <span class="glyphicon glyphicon-info-sign"></span>
-                      {{rtip.status}} ({{rtip.access_counter}})
-                      <a href="/#/admin/receivers">{{rtip.receiver_name}}</a>
-                      {{rtip.receiver_username}}
+                      {{::rtip.status}} ({{::rtip.access_counter}})
+                      <a href="/#/admin/receivers">{{::rtip.receiver_name}}</a>
+                      {{::rtip.receiver_username}}
                     </div>
                   </div>
                 </div>
@@ -114,7 +114,7 @@
                   <div class="col-sm-offset-1 col-md-11">
                     <div data-ng-repeat="ifile in tip.internalfiles">
                        <span class="glyphicon glyphicon-file"></span>
-                       <span>{{ifile.name}} ({{ifile.size}}) {{ifile.content_type}}</span>
+                       <span>{{::ifile.name}} ({{::ifile.size}}) {{::ifile.content_type}}</span>
                     </div>
                   </div>
                 </div>
@@ -126,7 +126,7 @@
                   <div class="col-sm-offset-1 col-md-11">
                     <div data-ng-repeat="comment in tip.comments">
                       <span class="glyphicon glyphicon-comment"></span>
-                      <span>{{comment.type}} ({{comment.lifetime | date:'dd-MM-yyyy HH:mm'}})</span>
+                      <span>{{::comment.type}} ({{::comment.lifetime | date:'dd-MM-yyyy HH:mm'}})</span>
                     </div>
                   </div>
                 </div>
