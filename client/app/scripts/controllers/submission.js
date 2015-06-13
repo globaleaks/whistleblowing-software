@@ -10,14 +10,20 @@ GLClient.controller('SubmissionCtrl',
   $scope.receivers_selectable = $location.search().receivers_selectable;
 
   $scope.problemToBeSolved = false;
+  $scope.problemModal = undefined;
 
-  $scope.captchaProblemSolved = function() {
+  $scope.problemSolved = function() {
     $scope.submission._submission.human_captcha = false;
     $scope.problemToBeSolved = false;
+    $scope.problemModal = undefined;
   }
 
   $scope.openProblemDialog = function(submission){
-    var modalInstance = $modal.open({
+    if ($scope.problemModal) {
+      $scope.problemModal.dismiss();
+    }
+
+    $scope.problemModal = $modal.open({
         templateUrl:  'views/partials/captchas.html',
         controller: 'ConfirmableDialogCtrl',
         backdrop: 'static',
@@ -30,8 +36,8 @@ GLClient.controller('SubmissionCtrl',
 
     });
 
-    modalInstance.result.then(
-       function(result) { $scope.captchaProblemSolved($scope.submission); },
+    $scope.problemModal.result.then(
+       function(result) { $scope.problemSolved($scope.submission); },
        function(result) { }
     );
   };
