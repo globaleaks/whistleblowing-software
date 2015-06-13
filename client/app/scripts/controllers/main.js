@@ -26,9 +26,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       var success = {};
       success.message = "Updated " + model;
       model.$update(function(result) {
-        if (!$scope.successes) {
-          $scope.successes = [];
-        }
         $scope.successes.push(success);
       }).then(
         function() { if (cb !== undefined) cb(); },
@@ -224,6 +221,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.reload = function() {
       $scope.started = false;
+      $rootScope.successes = [];
+      $rootScope.errors = [];
       GLCache.removeAll();
       init();
       $route.reload();
