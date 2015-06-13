@@ -306,7 +306,7 @@ def filter_notification_event(notifque):
 
         return_filtered_list.append(ne)
 
-    log.debug("List of event %d after the filtering process is %d long" %
+    log.debug("Notification filtering completed passing from #%d to #%d events" %
               (len(notifque), len(return_filtered_list)))
 
     # return the new list of event and the list of Storm.id
