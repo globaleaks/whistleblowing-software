@@ -58,6 +58,7 @@ SubmissionDesc = {
     'context_id': uuid_regexp,
     'wb_steps': [ WBStepElem ],
     'human_captcha_answer': int,
+    'proof_of_work': int,
     'receivers': [uuid_regexp]
 }
 

@@ -16,8 +16,10 @@ def file_append_check(uri):
     return uri == '/wbtip/upload'
 
 def submission_check(uri):
-    # POST /submission + PUT /submission/$token_id
-    return uri.startswith('/submission')
+    # 2015-06-13 02:01:57+0200 [http] 201 POST /submission/0SjnzrUhuKx89hePh5Tw9eR3D18ftFZVQG6MaiK1Dy/file (127.0.0.1) 14.78ms
+    # Has not to be used only uri.startswith because fit also with file uploaded!
+    # 54 is with Token, 11 is without
+    return uri.startswith('/submission') and ( len(uri) == 54 or len(uri) == 11 )
 
 def login_check(uri):
     return uri == '/authentication'
