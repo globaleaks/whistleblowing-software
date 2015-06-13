@@ -202,10 +202,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           }
         }
 
-        if (!$rootScope.errors) {
-          $rootScope.errors = [];
-        }
-
         $rootScope.errors.push(error);
 
         return $q.reject(response);

@@ -211,6 +211,9 @@ var GLClient = angular.module('GLClient', [
 }]).
   run(['$http', '$rootScope', function ($http, $rootScope) {
 
+     $rootScope.successes = [];
+     $rootScope.errors = [];
+
      var globaleaksRequestInterceptor = function(data, headers) {
 
         headers = angular.extend(headers(), $rootScope.get_auth_headers());
@@ -232,9 +235,10 @@ var GLClient = angular.module('GLClient', [
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         if (current.$$route) {
+          $rootScope.successes = [];
+          $rootScope.errors = [];
           $rootScope.header_title = current.$$route.header_title;
           $rootScope.header_subtitle = current.$$route.header_subtitle;
-          $rootScope.errors = [];
         }
     });
 
