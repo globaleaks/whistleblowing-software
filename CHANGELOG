@@ -1,3 +1,22 @@
+Changes in version 2.60.77 - 2015-06-13
+    o Bump of AngulaJS to 1.3.16
+    o Important performance improval of tiplist page
+    o General UI improval thanks to angular one-time-binding
+    o Improve anti-flood protections and implement anomaly notifications
+    o Implement simplified templating system
+
+    The following is the comprehensive list of closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/798
+    - https://github.com/globaleaks/GlobaLeaks/issues/934
+    - https://github.com/globaleaks/GlobaLeaks/issues/796
+    - https://github.com/globaleaks/GlobaLeaks/issues/297
+    - https://github.com/globaleaks/GlobaLeaks/issues/1228
+    - https://github.com/globaleaks/GlobaLeaks/issues/1281
+    - https://github.com/globaleaks/GlobaLeaks/issues/1282
+    - https://github.com/globaleaks/GlobaLeaks/issues/1288
+    - https://github.com/globaleaks/GlobaLeaks/issues/1294
+    - https://github.com/globaleaks/GlobaLeaks/issues/1285
+
 Changes in version 2.60.76 - 2015-06-10
     o Minor UI fixes
 
@@ -21,6 +40,7 @@ Changes in version 2.60.70 - 2015-05-25
     o Improved cross-browser compatibility testing by
       means of Saucelabs integration with Protractor tests
 
+    The following is the comprehensive list of closed tickets:
     - https://github.com/globaleaks/GlobaLeaks/issues/1278
     - https://github.com/globaleaks/GlobaLeaks/issues/1130
     - https://github.com/globaleaks/GlobaLeaks/issues/1274
