@@ -18,7 +18,7 @@ from globaleaks.rest.apicache import GLApiCache
 from globaleaks.security import change_password
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.structures import Rosetta, get_localized_values
-from globaleaks.utils.utility import log, acquire_bool, datetime_to_ISO8601, datetime_now
+from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver, language):
@@ -117,7 +117,8 @@ def update_receiver_settings(store, receiver_id, request, language):
             receiver.ping_mail_address, ping_mail_address))
         receiver.ping_mail_address = ping_mail_address
 
-    receiver.tip_notification = acquire_bool(request['tip_notification'])
+    receiver.tip_notification = request['tip_notification']
+    receiver.ping_notification = request['ping_notification']
 
     pgp_options_parse(receiver, request)
 

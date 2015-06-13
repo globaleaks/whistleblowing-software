@@ -462,13 +462,6 @@ def bytes_to_pretty_str(b):
     return "%dKB" % int(b / 1000)
 
 
-def acquire_bool(boolvalue):
-    if boolvalue == 'true' or boolvalue == u'true' or boolvalue == True:
-        return True
-
-    return False
-
-
 def caller_name(skip=2):
     """Get a name of a caller in the format module.class.method
 
