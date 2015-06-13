@@ -246,14 +246,16 @@ table {
 
 .LoginErrorBox {
   text-align: left;
-}
-
-.LoginErrorBoxHomepage {
-  text-align: center;
+  margin: 5px;
 }
 
 .LoginErrorBox .alert {
   margin: 0;
+}
+
+.LoginErrorBoxHomepage {
+  text-align: center;
+  margin: 5px;
 }
 
 .keyinput {
