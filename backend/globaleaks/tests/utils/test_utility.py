@@ -142,14 +142,6 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(utility.ISO8601_to_pretty_str('1970-01-01T00:00:00Z', 1), 'Thursday 01 January 1970 01:00')
         self.assertEqual(utility.ISO8601_to_pretty_str('1970-01-01T00:00:00Z', 2), 'Thursday 01 January 1970 02:00')
 
-    def test_acquire_bool(self):
-        self.assertTrue(utility.acquire_bool('true'))
-        self.assertTrue(utility.acquire_bool(u'true'))
-        self.assertTrue(utility.acquire_bool(True))
-        self.assertFalse(utility.acquire_bool('false'))
-        self.assertFalse(utility.acquire_bool(None))
-        self.assertFalse(utility.acquire_bool('antani'))
-
     def test_bytes_to_pretty_str(self):
         self.assertEqual(utility.bytes_to_pretty_str("60000000001"), "60GB")
         self.assertEqual(utility.bytes_to_pretty_str("5000000001"), "5GB")
