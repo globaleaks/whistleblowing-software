@@ -1,3 +1,6 @@
+Changes in version 2.60.77 - 2015-06-14
+    o Internationalization fixes
+
 Changes in version 2.60.77 - 2015-06-13
     o Bump of AngulaJS to 1.3.16
     o Important performance improval of tiplist page
