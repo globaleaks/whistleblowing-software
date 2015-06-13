@@ -421,9 +421,9 @@ class BaseHandler(RequestHandler):
                 raise Exception("Missing _status_code in some place!")
 
         for event in outcoming_event_monitored:
-            if event['handler_check'](self.request.uri) and \
-                            event['method'] == self.request.method and \
-                    event['status_checker'](self._status_code):
+            if event['status_checker'](self._status_code) and \
+                   event['method'] == self.request.method and \
+                   event['handler_check'](self.request.uri):
                 EventTrack(event, self.request.request_time())
                 # if event['anomaly_management']:
                 # event['anomaly_management'](self.request)

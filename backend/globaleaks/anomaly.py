@@ -471,12 +471,11 @@ class Alarm(object):
                 content,
                 message_title[where + len(keyword):])
 
-
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_email,
                                   GLSetting.memory_copy.notif_source_email,
                                   admin_email,
                                   admin_email,
-                                  notification_settings['admin_anomaly_mail_title'],
+                                  message_title,
                                   message)
 
         log.debug('Alarm Email generated for Admin (%s): connecting to [%s:%d], '
