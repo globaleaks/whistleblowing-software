@@ -198,6 +198,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
         set_language($rootScope.language);
 
+
         var q1 = Contexts.query(function (contexts) {
           $rootScope.contexts = contexts;
         });
@@ -208,12 +209,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
         $q.all([q1.$promise, q2.$promise]).then(function() {
           $scope.started = true;
-        });
-
-        $rootScope.$watch('language', function (newVal, oldVal) {
-          if (newVal && newVal !== oldVal) {
-            $rootScope.$broadcast("REFRESH");
-          }
         });
 
       });
@@ -228,6 +223,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     };
 
     $scope.reload = function() {
+      $scope.started = false;
       GLCache.removeAll();
       init();
       $route.reload();
@@ -255,6 +251,12 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         $scope.homepage = Authentication.homepage;
       } else {
         $scope.reset_session();
+      }
+    });
+
+    $rootScope.$watch('language', function (newVal, oldVal) {
+      if (newVal && newVal !== oldVal) {
+        $rootScope.$broadcast("REFRESH");
       }
     });
 
