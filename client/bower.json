@@ -31,9 +31,9 @@
     "bootstrap": "3.3.4",
     "bootstrap-rtl": "3.3.4-rc1",
     "d3": "3.5.5",
-    "ng-flow": "2.4.1",
+    "ng-flow": "2.6.1",
     "ng-sortable": "1.2.2",
-    "spin.js": "2.0.0"
+    "spin.js": "2.3.0"
   },
   "resolutions": {
     "bootstrap": "3.3.4"
