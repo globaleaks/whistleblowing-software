@@ -2,24 +2,34 @@
 
 set -e
 
-die() {
-  echo "Please specify a valid distro codename"
-  echo "Available: precise, trusty, wheezy, jessie";
-  echo "e.g.: $0 precise"
-  exit 1;
+usage() {
+  echo "GlobaLeaks Build Script"
+  echo "Valid options:"
+  echo -e " -h"
+  echo -e " -t tagname"
+  echo -e " -d distribution"
+  echo -e "\tAvailable distributions: precise, trusty, wheezy, jessie"
+  echo -e "\te.g.: $0 precise"
 }
 
 DISTRIBUTION="precise"
+TAG="master"
 NOSIGN=0
 
-while getopts "d:n" opt; do
+while getopts "d:n:th" opt; do
   case $opt in
     d) DISTRIBUTION="$OPTARG"
     ;;
+    t) TAG="$OPTARG"
+    ;;
     n) NOSIGN=1
     ;;
-    \?) echo "Invalid option -$OPTARG" >&2
-        die
+    h)
+        usage
+        exit 1
+    ;;
+    \?) usage
+        exit 1
     ;;
   esac
 done
@@ -39,6 +49,7 @@ mkdir GLRelease
 cd GLRelease
 git clone git@github.com:globaleaks/GlobaLeaks.git
 cd GlobaLeaks
+git checkout $TAG
 rm debian/control
 ln -s control.$DISTRIBUTION debian/control
 sed -i "s/stable; urgency=/$DISTRIBUTION; urgency=/g" debian/changelog
