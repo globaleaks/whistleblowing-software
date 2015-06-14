@@ -5,11 +5,10 @@ set -e
 usage() {
   echo "GlobaLeaks Build Script"
   echo "Valid options:"
-  echo -e " -h"
-  echo -e " -t tagname"
-  echo -e " -d distribution"
-  echo -e "\tAvailable distributions: precise, trusty, wheezy, jessie"
-  echo -e "\te.g.: $0 precise"
+  echo " -h"
+  echo -e " -t tagname (build specific release/branch)"
+  echo -e " -d distribution (available: precise, trusty, wheezy, jessie)"
+  echo -e " -n (do not sign)"
 }
 
 DISTRIBUTION="precise"
@@ -38,7 +37,8 @@ if [ "$DISTRIBUTION" != "precise" ] &&
    [ "$DISTRIBUTION" != "trusty" ] &&
    [ "$DISTRIBUTION" != "wheezy" ] &&
    [ "$DISTRIBUTION" != "jessie" ]; then
- die
+ usage
+ exit 1
 fi
 
 echo "Packaging GlobaLeaks for:" $DISTRIBUTION
