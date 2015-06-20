@@ -165,6 +165,9 @@ class TestGL(unittest.TestCase):
         event.EventTrackQueue.reset()
         statistics_sched.StatisticsSchedule.reset()
 
+        self.internationalized_text = load_appdata()['node']['whistleblowing_button']
+
+
     def setUp_dummy(self):
         dummyStuff = MockDict()
 

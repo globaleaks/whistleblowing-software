@@ -42,18 +42,6 @@ class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
         yield self.download('zipdeflated')
 
     @inlineCallbacks
-    def test_post_download_tar(self):
-        yield self.download('tar')
-
-    @inlineCallbacks
-    def test_post_download_targz(self):
-        yield self.download('targz')
-
-    @inlineCallbacks
-    def test_post_download_tarbz2(self):
-        yield self.download('tarbz2')
-
-    @inlineCallbacks
     def test_post_download_zipstored_with_files_removed_due_to_whatever(self):
         shutil.rmtree(GLSetting.submission_path)
         yield self.download('zipstored')
@@ -62,18 +50,3 @@ class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
     def test_post_download_zipdeflated_with_files_removed_due_to_whatever(self):
         shutil.rmtree(GLSetting.submission_path)
         yield self.download('zipdeflated')
-
-    @inlineCallbacks
-    def test_post_download_tar_with_files_removed_due_to_whatever(self):
-        shutil.rmtree(GLSetting.submission_path)
-        yield self.download('tar')
-
-    @inlineCallbacks
-    def test_post_download_targz_with_files_removed_due_to_whatever(self):
-        shutil.rmtree(GLSetting.submission_path)
-        yield self.download('targz')
-
-    @inlineCallbacks
-    def test_post_download_tarbz2_with_files_removed_due_to_whatever(self):
-        shutil.rmtree(GLSetting.submission_path)
-        yield self.download('tarbz2')

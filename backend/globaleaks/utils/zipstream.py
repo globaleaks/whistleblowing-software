@@ -3,26 +3,20 @@
 #  zipstream
 #  *********
 #
-# Utility derived from https://github.com/SpiderOak/ZipStream
-#                 that is initially derived from zipfile.py
-#
-# Changed heavily for our purpose (that's the reason why is not in third party)
-# Initially derived from zipfile.py
+# ZipStream Utility is derived from https://github.com/SpiderOak/ZipStream
+# that is initially derived from zipfile.py and then changed heavily for
+# our purpose (that's the reason why is not in third party)
 
 import struct
 import time
 import binascii
 
 import os
-from globaleaks.utils.utility import log
-
 
 try:
     import zlib # We may need its compression method
-    crc32 = zlib.crc32
 except ImportError:
     zlib = None
-    crc32 = binascii.crc32
 
 __all__ = ["ZIP_STORED", "ZIP_DEFLATED", "ZipStream"]
 
@@ -34,17 +28,17 @@ ZIP_DEFLATED = 8
 # Other ZIP compression methods not supported
 
 # Here are some struct module formats for reading headers
-structEndArchive = "<4s4H2lH"            # 9 items, end of archive, 22 bytes
-stringEndArchive = "PK\005\006"          # magic number for end of archive record
-structCentralDir = "<4s4B4HlLL5HLl"      # 19 items, central directory, 46 bytes
-stringCentralDir = "PK\001\002"          # magic number for central directory
-structFileHeader = "<4s2B4HlLL2H"        # 12 items, file header record, 30 bytes
-stringFileHeader = "PK\003\004"          # magic number for file header
-structEndArchive64Locator = "<4slql"     # 4 items, locate Zip64 header, 20 bytes
+structEndArchive = "<4s4H2lH"     # 9 items, end of archive, 22 bytes
+stringEndArchive = "PK\005\006"   # magic number for end of archive record
+structCentralDir = "<4s4B4HlLL5HLl"# 19 items, central directory, 46 bytes
+stringCentralDir = "PK\001\002"   # magic number for central directory
+structFileHeader = "<4s2B4HlLL2H"  # 12 items, file header record, 30 bytes
+stringFileHeader = "PK\003\004"   # magic number for file header
+structEndArchive64Locator = "<4slql" # 4 items, locate Zip64 header, 20 bytes
 stringEndArchive64Locator = "PK\x06\x07" # magic token for locator header
-structEndArchive64 = "<4sqhhllqqqq"      # 10 items, end of archive (Zip64), 56 bytes
-stringEndArchive64 = "PK\x06\x06"        # magic token for Zip64 header
-stringDataDescriptor = "PK\x07\x08"      # magic number for data descriptor
+structEndArchive64 = "<4sqhhllqqqq" # 10 items, end of archive (Zip64), 56 bytes
+stringEndArchive64 = "PK\x06\x06" # magic token for Zip64 header
+stringDataDescriptor = "PK\x07\x08" # magic number for data descriptor
 
 # indexes of entries in the central directory structure
 _CD_SIGNATURE = 0
@@ -81,7 +75,18 @@ _FH_UNCOMPRESSED_SIZE = 9
 _FH_FILENAME_LENGTH = 10
 _FH_EXTRA_FIELD_LENGTH = 11
 
-class ZipInfo (object):
+
+def get_compression_opts(compression):
+    if compression == 'zipstored':
+        return {'filename': 'collection.zip',
+                'compression_type': ZIP_STORED}
+
+    elif compression == 'zipdeflated':
+        return {'filename': 'collection.zip',
+                'compression_type': ZIP_DEFLATED}
+
+
+class ZipInfo(object):
     """Class with attributes describing each file in the ZIP archive."""
 
     __slots__ = (
@@ -105,7 +110,7 @@ class ZipInfo (object):
             'file_size',
         )
 
-    def __init__(self, filename="NoName", date_time=(1980,1,1,0,0,0), compression=ZIP_STORED):
+    def __init__(self, filename="NoName", date_time=(1980,1,1,0,0,0), compression=ZIP_DEFLATED):
         self.orig_filename = filename   # Original file name in archive
 
         # Terminate the file name at the first null byte.  Null bytes in file
@@ -192,25 +197,24 @@ class ZipInfo (object):
                  compress_size, file_size,
                  len(self.filename), len(extra))
 
-        # This operation causes that filename can't be unicode
-        # It's the first in this file
         if isinstance(self.filename, unicode):
             self.filename = self.filename.encode('utf-8')
 
         return header + self.filename + extra
 
-
 class ZipStream(object):
     """
     """
 
-    def __init__(self, files, compression=ZIP_STORED):
-        """
-        @param path:
-        @param arc_path:
-        @param compression:
-        @return:
-        """
+    def __init__(self, files, compression=ZIP_DEFLATED):
+        if compression == ZIP_STORED:
+            pass
+        elif compression == ZIP_DEFLATED:
+            if not zlib:
+                raise RuntimeError,\
+                      "Compression requires the (missing) zlib module"
+        else:
+            raise RuntimeError, "That compression method is not supported"
 
         self.files = files
         self.compression = compression
@@ -223,15 +227,12 @@ class ZipStream(object):
 
     def __iter__(self):
         for f in self.files:
-
-            log.debug("Compressing (%s)" % f['name'])
-
             if 'path' in f:
                 try:
                     for data in self.zip_file(f['path'], f['name']):
                         yield data
                 except (OSError, IOError) as excpd:
-                    log.err("IOError while adding %s to files collection: %s" % (f['path'], excpd))
+                    pass
 
             elif 'buf' in f:
                 for data in self.zip_buf(f['buf'], f['name']):
@@ -253,9 +254,9 @@ class ZipStream(object):
         return data
 
 
-    def zip_file(self, filename, archive_name):
+    def zip_file(self, filename, arcname):
         """
-        Generates data to add the file 'filename' with name 'archive_name'
+        Generates data to add the file 'filename' with name 'archname'
 
         This function generates the data corresponding to the fields:
 
@@ -266,7 +267,7 @@ class ZipStream(object):
         as described in section V. of the PKZIP Application Note:
         http://www.pkware.com/business_and_developers/developer/appnote/
         """
-        zinfo = ZipInfo(archive_name, self.time, self.compression)
+        zinfo = ZipInfo(arcname, self.time, self.compression)
         zinfo.header_offset = self.data_ptr
         yield self.update_data_ptr(zinfo.FileHeader())
 
@@ -299,9 +300,9 @@ class ZipStream(object):
         self.filelist.append(zinfo)
 
 
-    def zip_buf(self, filebuf, archive_name):
+    def zip_buf(self, filebuf, arcname):
         """
-        Generates data to add the filebuf 'filebuf' as file with name 'archive_name'
+        Generates data to add the filebuf 'filebuf' as file with name 'arcname'
 
         This function generates the data corresponding to the fields:
 
@@ -312,7 +313,7 @@ class ZipStream(object):
         as described in section V. of the PKZIP Application Note:
         http://www.pkware.com/business_and_developers/developer/appnote/
         """
-        zinfo = ZipInfo(archive_name, self.time, self.compression)
+        zinfo = ZipInfo(arcname, self.time, self.compression)
         zinfo.header_offset = self.data_ptr
 
         yield self.update_data_ptr(zinfo.FileHeader())
@@ -325,7 +326,10 @@ class ZipStream(object):
         zinfo.file_size = len(filebuf)
         zinfo.CRC = binascii.crc32(filebuf, zinfo.CRC)
 
-        buf = filebuf
+        if isinstance(filebuf, unicode):
+            buf = filebuf.encode('utf-8')
+        else:
+            buf = filebuf
 
         if cmpr:
             buf = cmpr.compress(buf)
@@ -343,7 +347,6 @@ class ZipStream(object):
         yield self.update_data_ptr(zinfo.DataDescriptor())
 
         self.filelist.append(zinfo)
-
 
     def archive_footer(self):
         """
@@ -429,6 +432,4 @@ class ZipStream(object):
                                  0, 0, count, count, pos2 - pos1, pos1, 0)
             data.append( self.update_data_ptr(endrec))
 
-        # This operation causes that filename can't be unicode
-        # It's the second in this file
         return ''.join(data)
