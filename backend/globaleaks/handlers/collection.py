@@ -5,9 +5,6 @@
 #
 # File Collections handlers and utils
 
-import tarfile
-import StringIO
-
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.files import download_all_files, serialize_receiver_file
@@ -15,39 +12,12 @@ from globaleaks.handlers.authentication import transport_security_check, authent
 from globaleaks.handlers import admin
 from globaleaks.rest import errors
 from globaleaks.settings import transact_ro
-from globaleaks.utils.zipstream import ZipStream, ZIP_STORED, ZIP_DEFLATED
 from globaleaks.plugins.base import Event
 from globaleaks.jobs.notification_sched import serialize_receivertip
 from globaleaks.models import ReceiverTip, ReceiverFile
+from globaleaks.utils.zipstream import ZipStream, get_compression_opts
 from globaleaks.utils.utility import log
 from globaleaks.utils.templating import Templating
-
-
-def get_compression_opts(compression):
-    if compression == 'zipstored':
-        return {'filename': 'collection.zip',
-                'compression_type': ZIP_STORED}
-
-    elif compression == 'zipdeflated':
-        return {'filename': 'collection.zip',
-                'compression_type': ZIP_DEFLATED}
-
-    elif compression == 'tar':
-        return {'filename': 'collection.tar',
-                'compression_type': ''}
-
-    elif compression == 'targz':
-        return {'filename': 'collection.tar.gz',
-                'compression_type': 'gz'}
-
-    elif compression == 'tarbz2':
-        return {'filename': 'collection.tar.bz2',
-                'compression_type': 'bz2'}
-
-    else:
-        # just to be sure; by the way
-        # the regexp of rest/api.py should prevent this.
-        raise errors.InvalidInputFormat("collection compression type not supported")
 
 
 @transact_ro
@@ -115,11 +85,10 @@ class CollectionDownload(BaseHandler):
     @authenticated('receiver')
     @inlineCallbacks
     def post(self, rtip_id, compression):
-
         files_dict = yield download_all_files(self.current_user.user_id, rtip_id)
 
         if compression is None:
-            compression = 'zipstored'
+            compression = 'zipdeflated'
 
         opts = get_compression_opts(compression)
 
@@ -144,11 +113,13 @@ class CollectionDownload(BaseHandler):
         )
 
         formatted_coll = Templating().format_template(notif_dict['zip_description'], mock_event).encode('utf-8')
-        # log.debug("Generating collection content with: %s" % formatted_coll)
+
         files_dict.append(
-            {'buf': formatted_coll,
-             'name': "COLLECTION_INFO.txt"
-             })
+            {
+               'buf': formatted_coll,
+               'name': "COLLECTION_INFO.txt"
+            }
+        )
 
         self.set_status(200)
 
@@ -159,22 +130,5 @@ class CollectionDownload(BaseHandler):
         if compression in ['zipstored', 'zipdeflated']:
             for data in ZipStream(files_dict, opts['compression_type']):
                 self.write(data)
-
-        elif compression in ['tar', 'targz', 'tarbz2']:
-            collectionstreamer = CollectionStreamer(self)
-            tar = tarfile.open("collection." + compression, 'w|' + opts['compression_type'], collectionstreamer)
-            for f in files_dict:
-                if 'path' in f:
-                    try:
-                        tar.add(f['path'], f['name'])
-                    except (OSError, IOError) as excpd:
-                        log.err("OSError while adding %s to files collection: %s" % (f['path'], excpd))
-
-                elif 'buf' in f:
-                    tarinfo = tarfile.TarInfo(f['name'])
-                    tarinfo.size = len(f['buf'])
-                    tar.addfile(tarinfo, StringIO.StringIO(f['buf']))
-
-            tar.close()
 
         self.finish()

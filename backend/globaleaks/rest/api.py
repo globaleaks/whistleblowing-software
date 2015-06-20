@@ -55,7 +55,7 @@ spec = [
     (r'/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
     (r'/rtip/' + uuid_regexp + r'/receivers', rtip.RTipReceiversCollection),
     (r'/rtip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
-    (r'/rtip/' + uuid_regexp + '/collection(?:/(zipstored|zipdeflated|tar|targz|tarbz2))?',
+    (r'/rtip/' + uuid_regexp + '/collection(?:/(zipstored|zipdeflated))?',
             collection.CollectionDownload),
     (r'/rtip/' + uuid_regexp + '/messages', rtip.ReceiverMsgCollection),
 
