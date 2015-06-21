@@ -283,7 +283,7 @@ do_start()
             log_action_end_msg 1 "Unable to initialize AppArmor!"
             echo "Unable to initialize AppArmor!"
             echo "AppArmor is probably disabled; please enable it by following instructions at https://wiki.debian.org/AppArmor/HowToUse"
-            echo "If you understand the risks involved and you know what you are doing, you can disable Apparmor's GlobaLeaks support by editing /etc/default/globaleaks and configuring APPARMOR_SANDBOXING=0"
+            echo "If you understand the risks involved and you know what you are doing, you can disable GlobaLeaks's Apparmor support by editing /etc/default/globaleaks and configuring APPARMOR_SANDBOXING=0"
             exit 1
         fi
     fi
