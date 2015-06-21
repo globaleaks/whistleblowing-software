@@ -267,6 +267,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.receivers = [];
       self.receivers_selected = {};
       self.uploading = false;
+      self.done = false;
 
       var setCurrentContextReceivers = function(context_id, receivers_ids) {
         self.context = $filter('filter')($rootScope.contexts, {"id": context_id})[0];
@@ -356,13 +357,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
        * whistleblower.
        */
       self.submit = function() {
-        if (!self.receivers_selected) {
+        if (!self._submission || !self.receivers_selected) {
           return;
         }
 
-        if (!self._submission) {
-          return;
-        }
+        self.done = true;
 
         self._submission.receivers = [];
         angular.forEach(self.receivers_selected, function(selected, id){
@@ -370,8 +369,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             self._submission.receivers.push(id);
           }
         });
-
-        self._submission.finalize = true;
 
         self._submission.$update(function(result){
           if (result) {
