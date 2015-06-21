@@ -4,7 +4,7 @@
     <div class="row">
       <div class="form-group col-md-12">
         <label data-translate>Label</label>
-        <input name="label" class="form-control" data-ng-model="new_field.label" data-ng-maxlength="{{node.maximum_namesize}}" type="text" required>
+        <input name="label" class="form-control" data-ng-model="new_field.label" maxlength="{{node.maximum_namesize}}" type="text" required>
         <div class="has-error" data-ng-show="newField.label.$error.required">
           <span data-translate>This field is mandatory</span>
         </div>
