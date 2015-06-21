@@ -203,7 +203,11 @@ class FileInstance(BaseHandler):
     WhistleBlower interface for upload a new file in a not yet completed submission
     """
     @inlineCallbacks
-    def handle_file_upload(self, token):
+    def handle_file_upload(self, token_id):
+        token = TokenList.get(token_id)
+
+        log.debug("file upload with token associated: %s" % token)
+
         uploaded_file = self.get_file_upload()
         if uploaded_file is None:
             return
@@ -247,11 +251,7 @@ class FileInstance(BaseHandler):
         Response: Unknown
         Errors: TokenFailure
         """
-        token = TokenList.get(token_id)
-
-        log.debug("file upload with token associated: %s" % token)
-
-        yield self.handle_file_upload(token)
+        yield self.handle_file_upload(token_id)
 
         self.set_status(201)  # Created
         self.finish()

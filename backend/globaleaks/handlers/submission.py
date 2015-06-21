@@ -171,7 +171,17 @@ def verify_steps(steps, wb_steps):
     return verify_fields_recursively(indexed_fields, indexed_wb_fields)
 
 
-def db_create_submission(store, token, request, language):
+def db_create_submission(store, token_id, request, language):
+    # the .get method raise an exception if the token is invalid
+    token = TokenList.get(token_id)
+
+    if not token.context_associated == request['context_id']:
+        raise errors.InvalidInputFormat("Token context does not match the one specified in submission payload")
+
+    token.validate(request)
+
+    TokenList.delete(token_id)
+
     context = store.find(Context, Context.id == token.context_associated).one()
     if not context:
         # this can happen only if the context is removed
@@ -241,8 +251,8 @@ def db_create_submission(store, token, request, language):
 
 
 @transact
-def create_submission(store, token, request, language):
-    return db_create_submission(store, token, request, language)
+def create_submission(store, token_id, request, language):
+    return db_create_submission(store, token_id, request, language)
 
 
 class SubmissionCreate(BaseHandler):
@@ -303,17 +313,7 @@ class SubmissionInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.SubmissionDesc)
 
-        # the .get method raise an exception if the token is invalid
-        token = TokenList.get(token_id)
-
-        if not token.context_associated == request['context_id']:
-            raise errors.InvalidInputFormat("Token context does not match the one specified in submission payload")
-
-        token.validate(request)
-
-        status = yield create_submission(token, request, self.request.language)
-
-        TokenList.delete(token_id)
+        status = yield create_submission(token_id, request, self.request.language)
 
         self.set_status(202)  # Updated, also if submission if effectively created (201)
         self.finish(status)
