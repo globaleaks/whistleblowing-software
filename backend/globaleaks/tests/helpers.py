@@ -1,4 +1,5 @@
 # -*- coding: UTF-8
+
 """
 Utilities and basic TestCases.
 """
@@ -470,7 +471,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['wb_steps'] = yield self.fill_random_fields(self.dummyContext['id'])
 
-        self.dummySubmission = yield create_submission(self.dummyToken,
+        self.dummySubmission = yield create_submission(self.dummyToken.token_id,
                                                        self.dummySubmission,
                                                        'en')
 
