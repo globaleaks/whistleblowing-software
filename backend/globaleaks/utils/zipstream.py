@@ -158,6 +158,15 @@ class ZipInfo(object):
         self.compress_size = 0
         self.file_size = 0
 
+    def _encodeFilenameFlags(self):
+        if isinstance(self.filename, unicode):
+            try:
+                return self.filename.encode('ascii'), self.flag_bits
+            except UnicodeEncodeError:
+                return self.filename.encode('utf-8'), self.flag_bits | 0x800
+        else:
+            return self.filename, self.flag_bits
+
     def DataDescriptor(self):
         if self.compress_size > ZIP64_LIMIT or self.file_size > ZIP64_LIMIT:
             fmt = "<4slQQ"
@@ -191,16 +200,15 @@ class ZipInfo(object):
             self.extract_version = max(45, self.extract_version)
             self.create_version = max(45, self.extract_version)
 
+        filename, flag_bits = self._encodeFilenameFlags()
+
         header = struct.pack(structFileHeader, stringFileHeader,
-                 self.extract_version, self.reserved, self.flag_bits,
+                 self.extract_version, self.reserved, flag_bits,
                  self.compress_type, dostime, dosdate, CRC,
                  compress_size, file_size,
-                 len(self.filename), len(extra))
+                 len(filename), len(extra))
 
-        if isinstance(self.filename, unicode):
-            self.filename = self.filename.encode('utf-8')
-
-        return header + self.filename + extra
+        return header + filename + extra
 
 class ZipStream(object):
     """
@@ -397,17 +405,19 @@ class ZipStream(object):
                 extract_version = zinfo.extract_version
                 create_version = zinfo.create_version
 
+            filename, flag_bits = zinfo._encodeFilenameFlags()
+
             centdir = struct.pack(structCentralDir,
                                   stringCentralDir, create_version,
                                   zinfo.create_system, extract_version, zinfo.reserved,
-                                  zinfo.flag_bits, zinfo.compress_type, dostime, dosdate,
+                                  flag_bits, zinfo.compress_type, dostime, dosdate,
                                   zinfo.CRC, compress_size, file_size,
-                                  len(zinfo.filename), len(extra_data), len(zinfo.comment),
+                                  len(filename), len(extra_data), len(zinfo.comment),
                                   0, zinfo.internal_attr, zinfo.external_attr,
                                   header_offset)
 
             data.append(self.update_data_ptr(centdir))
-            data.append(self.update_data_ptr(zinfo.filename))
+            data.append(self.update_data_ptr(filename))
             data.append(self.update_data_ptr(extra_data))
             data.append(self.update_data_ptr(zinfo.comment))
 
