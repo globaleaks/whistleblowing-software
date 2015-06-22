@@ -546,7 +546,7 @@ class BaseHandler(RequestHandler):
 
     def get_file_upload(self):
         try:
-            if (int(self.request.arguments['flowTotalSize'][0]) / (1024 * 1024)) > GLSetting.defaults.maximum_filesize:
+            if (int(self.request.arguments['flowTotalSize'][0]) / (1024 * 1024)) > GLSetting.memory_copy.maximum_filesize:
                 log.err("File upload request rejected: file too big")
                 raise errors.FileTooBig(GLSetting.memory_copy.maximum_filesize)
 
