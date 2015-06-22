@@ -28,14 +28,14 @@
     "jquery": "2.1.4",
     "angular-native-dragdrop": "1.1.0",
     "bowser": "0.7.3",
-    "bootstrap": "3.3.4",
+    "bootstrap": "3.3.5",
     "bootstrap-rtl": "3.3.4-rc1",
     "d3": "3.5.5",
     "ng-flow": "2.6.1",
     "ng-sortable": "1.2.2",
-    "spin.js": "2.3.0"
+    "spin.js": "2.3.1"
   },
   "resolutions": {
-    "bootstrap": "3.3.4"
+    "bootstrap": "3.3.5"
   }
 }
