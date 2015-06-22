@@ -1,5 +1,62 @@
-GLClient.controller('TipCtrl', ['$scope', '$http', '$route', '$location', '$modal',
-  function($scope, $http, $route, $location, $modal) {
+GLClient.controller('TipCtrl', ['$rootScope', '$scope', '$http', '$route', '$location', '$modal',
+  function($rootScope, $scope, $http, $route, $location, $modal) {
+
+  $scope.tipall = function () {
+
+    $rootScope.selected_tip_list = [];
+    $('.checkboxes').each(function (i, checkbox) {
+
+      /* why otherwise say "undefined not a function" with checkbox.attr ? */
+      checkbox.checked = true;
+      $rootScope.selected_tip_list.push(checkbox.id);
+    });
+
+    /*
+    console.log("done!");
+    console.log($rootScope.selected_tip_list);
+    */
+    $('#checkall').checked = false;
+  };
+
+  $scope.delete_selected = function()
+  {
+    console.log('Delete selected TO BE IMPLEMENTED');
+    console.log($rootScope.selected_tip_list);
+
+     return $http({method: 'PUT', url: '/rtip/operations', data:{
+       'operation': 'delete',
+       'rtips': $rootScope.selected_tip_list
+     }}).
+           success(function(data, status, headers, config){ 
+             $location.url('/receiver/tips');
+             $route.reload();
+     });
+  };
+
+  $scope.postpone_selected = function()
+  {
+    console.log('Postpone selected TO BE IMPLEMENTED');
+    console.log($rootScope.selected_tip_list);
+
+    return $http({method: 'PUT', url: '/rtip/operations', data:{
+      'operation': 'postpone',
+      'rtips': $rootScope.selected_tip_list
+    }}).
+        success(function(data, status, headers, config){
+          $location.url('/receiver/tips');
+          $route.reload();
+        });
+  };
+
+  $scope.tip_switch = function (id)
+  {
+    index_of_tip = $rootScope.selected_tip_list.indexOf(id);
+    if (index_of_tip === -1) {
+      $rootScope.selected_tip_list.push(id);
+    } else {
+      $rootScope.selected_tip_list.pop(index_of_tip);
+    }
+  };
 
   $scope.tip_delete = function (id) {
     $scope.tip_id = id;
