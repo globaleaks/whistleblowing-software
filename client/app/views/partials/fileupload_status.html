@@ -1,7 +1,7 @@
 <div class="uploadingBox" data-ng-show="uploads.length" flow-init>
-  <h3>
+  <div id="FileUploadsHeader">
     <span data-translate>Uploading files...</span>
-  </h3>
+  </div>
   <div data-ng-repeat="file in uploads">
     <div class="fileUploadBox">
       <div class="row">
@@ -15,17 +15,28 @@
               <div class="fileUploadIcon" data-ng-show="file.error">
                 <i class="glyphicon glyphicon-ban-circle"></i>
               </div>
-              <div class="fileUploadIcon" data-ng-show="!file.error && !file.done">
+              <div class="fileUploadIcon" data-ng-show="!file.error && !file.isComplete()">
                 <i class="glyphicon glyphicon-time"></i>
               </div>
-              <div class="fileUploadIcon" data-ng-show="!file.error && file.done">
+              <div class="fileUploadIcon" data-ng-show="!file.error && file.isComplete()">
                 <i class="glyphicon glyphicon-ok"></i>
+              </div>
+              <div class="progress progress-striped fileuploadprogress" data-ng-class="{active: file.isUploading()}" data-ng-show="file.isUploading()">
+                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}"></div>
               </div>
             </div>
           </div>
         </div>
         <div class="col-md-offset-1 col-md-7 fileDetails">
-          <label class="fileName">{{file.name}} ({{file.size | prettyBytes }})</label>
+          <div>
+            <label class="fileName">{{file.name}}</label>
+          </div>
+          <div>
+            <label class="fileSize">
+              <span data-translate>Size</span>:
+              {{file.size | prettyBytes }}
+            </label>
+          </div>
           <br />
           <div data-ng-hide="file.error">
             <div data-ng-repeat="option in file.value">

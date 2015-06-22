@@ -138,3 +138,13 @@
   margin-left: 0px;
   margin-right: 10px;
 }
+
+#FileUploadsHeader {
+  font-size: 20px;
+}
+
+.fileuploadprogress {
+  position: relative;
+  width: 120px;
+  bottom: 0px;
+}
