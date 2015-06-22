@@ -118,6 +118,7 @@ GLClient.controller('AdminReceiverAddCtrl', ['$scope',
 
       receiver.name = $scope.new_receiver.name;
       receiver.mail_address = $scope.new_receiver.email;
+      receiver.presentation_order = $scope.newItemOrder($scope.admin.receivers, 'presentation_order');
 
       receiver.$save(function(new_receiver){
         $scope.admin.receivers.push(new_receiver);

@@ -8,6 +8,7 @@ GLClient.controller('AdminContextsCtrl',
     var context = new $scope.admin.new_context();
 
     context.name = $scope.new_context.name;
+    context.presentation_order = $scope.newItemOrder($scope.admin.contexts, 'presentation_order');
 
     context.$save(function(new_context){
       $scope.admin.contexts.push(new_context);
