@@ -5,7 +5,7 @@
 
 <div id="ContextIntroductionBox">{{::submission.context.description}}</div>
 
-<form name="submissionForm" novalidate ng-if="submission.context">
+<form name="submissionForm" novalidate ng-if="submission.context" flow-init="{target: fileupload_url, headers: get_auth_headers()}" flow-files-submitted="$flow.upload()">
   <div data-ng-if="submission.context.steps.length == 1" data-ng-include="'views/submission/main_vertical.html'"></div>
   <div data-ng-if="submission.context.steps.length > 1" data-ng-include="'views/submission/main_horizontal.html'"></div>
 </form>

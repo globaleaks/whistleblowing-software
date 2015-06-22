@@ -141,7 +141,6 @@ class FileAdd(BaseHandler):
     """
     WhistleBlower interface for upload a new file in an already completed submission
     """
-
     @inlineCallbacks
     def handle_file_append(self, itip_id):
         uploaded_file = self.get_file_upload()

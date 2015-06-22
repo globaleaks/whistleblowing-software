@@ -1,9 +1,6 @@
-<div flow-init="{target: fileupload_url, headers: get_auth_headers()}"
-    flow-files-submitted="$flow.upload()">
-  <div data-ng-controller="WBFileUploadCtrl">
-    <span id="fileupload" class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled || (fileupload_mode == 'single' && uploads.length)}" flow-btn>
-      <i class="glyphicon glyphicon-paperclip"></i>
-      <span data-translate>Add file</span>
-    </span>
-  </div>
+<div data-ng-controller="WBFileUploadCtrl">
+  <span id="fileupload" class="btn btn-success fileinput-button" data-ng-class="{disabled: disabled || (fileupload_mode == 'single' && uploads.length)}" flow-btn>
+    <i class="glyphicon glyphicon-paperclip"></i>
+    <span data-translate>Add file</span>
+  </span>
 </div>

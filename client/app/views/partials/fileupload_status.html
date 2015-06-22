@@ -1,6 +1,17 @@
-<div class="uploadingBox" data-ng-show="uploads.length" flow-init>
+<div class="uploadingBox" data-ng-show="uploads.length">
   <div id="FileUploadsHeader">
-    <span data-translate>Uploading files...</span>
+    <div data-translate>Uploading files...</div>
+  </div>
+  <div id="FileUpoloadsInfo">
+    <div data-ng-show="$flow.isUploading() && $flow.timeRemaining() != 'Infinity'">
+      <span data-translate>Estimated upload time:</span> <span>{{$flow.timeRemaining()}} (</span><span data-translate>seconds</span>)
+    </div>
+    <div data-ng-show="!$flow.isUploading()">
+      <span data-translate>File uploads completed</span>
+    </div>
+    <div class="progress progress-striped" data-ng-class="{active: $flow.isUploading()}">
+      <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: ($flow.progress() * 100) + '%'}"></div>
+    </div>
   </div>
   <div data-ng-repeat="file in uploads">
     <div class="fileUploadBox">
