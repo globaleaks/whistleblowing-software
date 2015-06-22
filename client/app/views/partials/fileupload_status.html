@@ -4,7 +4,7 @@
   </div>
   <div id="FileUpoloadsInfo">
     <div data-ng-show="$flow.isUploading() && $flow.timeRemaining() != 'Infinity'">
-      <span data-translate>Estimated upload time:</span> <span>{{$flow.timeRemaining()}} (</span><span data-translate>seconds</span>)
+      <span data-translate>Estimated upload time:</span> <span>{{$flow.timeRemaining()}} </span><span data-translate>seconds</span>
     </div>
     <div data-ng-show="!$flow.isUploading()">
       <span data-translate>File uploads completed</span>
