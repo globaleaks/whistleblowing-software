@@ -11,7 +11,7 @@ GLClient.controller('AdminStepAddCtrl', ['$scope', '$rootScope',
           label: $scope.new_step_label,
           description: '',
           hint: '',
-          presentation_order: $scope.context.steps.length,
+          presentation_order: $scope.newItemOrder($scope.context.steps, 'presentation_order'),
           children: []
         }
       );
@@ -143,6 +143,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     $scope.add_field = function() {
       var field = new $scope.create_field($scope.new_field);
       field.step_id = $scope.step.id;
+      field.y = $scope.newItemOrder($scope.step.children, 'y');
 
       field.$save(function(new_field){
         $scope.addField(new_field);
