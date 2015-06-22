@@ -233,11 +233,11 @@ class Alarm(object):
         'completed_submissions': 5,
         'rejected_submissions': 5,
         'failed_logins': 8,
-        'successful_logins': 3,
+        'successful_logins': 20,
         'uploaded_files': 10,
         'appended_files': 10,
-        'wb_comments': 2,
-        'wb_messages': 2,
+        'wb_comments': 4,
+        'wb_messages': 4,
         'receiver_comments': 6,
         'receiver_messages': 6
     }
