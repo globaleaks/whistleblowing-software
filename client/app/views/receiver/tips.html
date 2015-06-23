@@ -48,7 +48,7 @@
         </thead>
         <tbody id="tipListTableBody" data-ng-repeat="tip in tips | orderBy:orderProp:reverse">
 
-              <span data-translate><b>Select all</b></span>  <input id="checkall" type="checkbox" ng-click="tipall()" />
+              <span data-translate><b>Select all</b></span>  <input id="checkall" type="checkbox" data-ng-click="tipall()" />
 
               <!-- TODO the string here are not change for translation, but can be "postpone all the tips" ? -->
               <a class="tip-action-postpone btn btn-xs btn-warning" ng-click="postpone_selected()"
