@@ -81,3 +81,38 @@ class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(role='receiver')
         handler.current_user.user_id = self.dummyReceiver_1['id']
         yield handler.get()
+
+
+class TestTipsOperations(helpers.TestGLWithPopulatedDB):
+    _handler = receiver.TipsOperations
+
+    @inlineCallbacks
+    def setUp(self):
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+        yield self.perform_full_submission_actions()
+
+    @inlineCallbacks
+    def test_put_postpone(self):
+        handler = self.request(role='receiver')
+        handler.current_user.user_id = self.dummyReceiver_1['id']
+
+        # hack - take the receiver tip map
+        a, b = yield receiver.get_receivertip_list()
+        print a
+        print b
+        import pdb; pdb.set_trace()
+
+        yield handler.put({
+            'operation': 'postpone',
+            'rtips': []
+        })
+
+    @inlineCallbacks
+    def test_put_delete(self):
+        handler = self.request(role='receiver')
+        handler.current_user.user_id = self.dummyReceiver_1['id']
+        yield handler.put({
+            'operation': 'delete',
+            'rtips': []
+        })
+
