@@ -12,6 +12,7 @@ from globaleaks.handlers.admin import pgp_options_parse
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.node import get_public_receiver_list
+from globaleaks.handlers.rtip import postpone_expiration_date, delete_internal_tip
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
@@ -184,6 +185,7 @@ def get_receivertip_list(store, receiver_id, language):
     node = store.find(Node).one()
 
     rtip_summary_list = []
+    rtip_summary_map = {}
 
     for rtip in rtiplist:
         can_postpone_expiration = (node.can_postpone_expiration or
@@ -219,8 +221,13 @@ def get_receivertip_list(store, receiver_id, language):
         single_tip_sum["context_name"] = mo.dump_localized_attr('name', language)
 
         rtip_summary_list.append(single_tip_sum)
+        rtip_summary_map.update({rtip.id : [
+            can_postpone_expiration,
+            can_delete_submission,
+            rtip.internaltip.id
+        ]})
 
-    return rtip_summary_list
+    return rtip_summary_list, rtip_summary_map
 
 
 class TipsCollection(BaseHandler):
@@ -238,8 +245,68 @@ class TipsCollection(BaseHandler):
         Response: receiverTipList
         Errors: InvalidAuthentication
         """
-        answer = yield get_receivertip_list(self.current_user.user_id,
+        answer, _ = yield get_receivertip_list(self.current_user.user_id,
                                             self.request.language)
 
         self.set_status(200)
         self.finish(answer)
+
+
+class TipsOperations(BaseHandler):
+    """
+    This interface receive some operation (postpone or delete) and a list of
+    tips to apply.
+    """
+
+    @transport_security_check('receiver')
+    @authenticated('receiver')
+    @inlineCallbacks
+    def put(self):
+        """
+        Parameters: ReceiverOperationDesc
+        Response: None
+        Errors: InvalidAuthentication, TipIdNotFound, ForbiddenOperation
+        """
+
+        request = self.validate_message(self.request.body, requests.ReceiverOperationDesc)
+
+        if request['operation'] not in ['postpone', 'delete']:
+            raise errors.ForbiddenOperation("Do not exists the operation requested")
+
+        # Read only operation to perform a --dry-run and check if Capability are respected
+        _, rtip_map = yield get_receivertip_list(self.current_user.user_id, self.request.language)
+
+        # Remind, this is how rtip_map is populated:
+        #  rtip_summary_map.update({rtip.id : [ can_postpone_expiration, can_delete_submission, rtip.internaltip.id ]})
+        internaltip_associated = []
+
+        for selected_rtip in request['rtips']:
+
+            if not selected_rtip in rtip_map:
+                raise errors.TipIdNotFound()
+
+            if request['operation']  == 'postpone' and not rtip_map[selected_rtip][0]:
+                raise errors.ForbiddenOperation("Executed postpone on a tip where you can't")
+
+            if request['operation'] == 'delete' and not rtip_map[selected_rtip][1]:
+                raise errors.ForbiddenOperation("Executed delete on a tip where you can't")
+
+            internaltip_associated.append(rtip_map[selected_rtip][2])
+
+
+        if request['operation'] == 'delete':
+            for rtip in request['rtips']:
+                yield delete_internal_tip(self.current_user.user_id, rtip)
+            log.debug("Multiple delete of %d Tips completed" % len(internaltip_associated))
+        else:
+            for rtip in request['rtips']:
+                yield postpone_expiration_date(self.current_user.user_id, rtip)
+            log.debug("Multiple postpone of %d Tips completed" % len(internaltip_associated))
+
+        self.set_status(200)
+        self.finish()
+
+
+        # remind self, you meet at the airport someone told you to check this new york company: airwatch inbox
+        # and this guy is playing "dude perfect" app on iPhone
+

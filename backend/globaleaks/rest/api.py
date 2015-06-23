@@ -69,6 +69,7 @@ spec = [
     ## Receiver Handlers ##
     (r'/receiver/preferences', receiver.ReceiverInstance),
     (r'/receiver/tips', receiver.TipsCollection),
+    (r'/rtip/operations', receiver.TipsOperations),
 
     ## Admin Handlers ##
     (r'/admin/node', admin.NodeInstance),
