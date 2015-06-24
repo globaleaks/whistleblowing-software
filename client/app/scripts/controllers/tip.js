@@ -19,7 +19,7 @@ GLClient.controller('TipCtrl', ['$rootScope', '$scope', '$http', '$route', '$loc
   $scope.delete_selected = function()
   {
     if ($scope.selected_tips === 0) {
-      alert("nop");
+      $rootScope.errors.push({ 'code': 'clientside1'});
     } else {
 
       return $http({method: 'PUT', url: '/rtip/operations', data:{
@@ -37,7 +37,7 @@ GLClient.controller('TipCtrl', ['$rootScope', '$scope', '$http', '$route', '$loc
   $scope.postpone_selected = function()
   {
     if ($scope.selected_tips === 0) {
-      alert("nop");
+      $rootScope.errors.push({ 'code': 'clientside1'});
     } else {
 
       return $http({method: 'PUT', url: '/rtip/operations', data:{
