@@ -1,8 +1,10 @@
 GLClient.controller('TipCtrl', ['$rootScope', '$scope', '$http', '$route', '$location', '$modal',
   function($rootScope, $scope, $http, $route, $location, $modal) {
 
-  $scope.tipall = function () {
+  $scope.selected_tips = 0;
 
+  $scope.tipall = function ()
+  {
     $rootScope.selected_tip_list = [];
     $('.checkboxes').each(function (i, checkbox) {
       checkbox.checked = true;
@@ -11,11 +13,11 @@ GLClient.controller('TipCtrl', ['$rootScope', '$scope', '$http', '$route', '$loc
 
     /* bug: this set is getting ignored, probably because is bound to ng-click */
     $('#checkall').checked = false;
+    $scope.selected_tips = $rootScope.selected_tip_list.length;
   };
 
   $scope.delete_selected = function()
   {
-
     return $http({method: 'PUT', url: '/rtip/operations', data:{
       'operation': 'delete',
       'rtips': $rootScope.selected_tip_list
@@ -28,7 +30,6 @@ GLClient.controller('TipCtrl', ['$rootScope', '$scope', '$http', '$route', '$loc
 
   $scope.postpone_selected = function()
   {
-
     return $http({method: 'PUT', url: '/rtip/operations', data:{
       'operation': 'postpone',
       'rtips': $rootScope.selected_tip_list
@@ -41,7 +42,6 @@ GLClient.controller('TipCtrl', ['$rootScope', '$scope', '$http', '$route', '$loc
 
   $scope.tip_switch = function (id)
   {
-
     checkbox_element = $("#"+id);
     checkbox_element.checked = !checkbox_element.checked;
 
@@ -51,10 +51,8 @@ GLClient.controller('TipCtrl', ['$rootScope', '$scope', '$http', '$route', '$loc
         $rootScope.selected_tip_list.push(checkbox.id);
       }
     });
-
-    console.log("current list");
-    console.log($rootScope.selected_tip_list);
-
+    $scope.selected_tips = $rootScope.selected_tip_list.length;
+    console.log($scope.selected_tips);
   };
 
   $scope.tip_delete = function (id) {

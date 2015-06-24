@@ -23,6 +23,11 @@
   text-align: right;
 }
 
+#MassOperationContainer {
+  border-color: #0074e7;
+  width: 100%;
+}
+
 /* Overrides to submission.css */
 #KeyCodeHintBox {
   margin-left: 0;
