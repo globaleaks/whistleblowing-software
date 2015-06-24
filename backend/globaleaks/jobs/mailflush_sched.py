@@ -162,7 +162,10 @@ class NotificationMail:
         if event_id:
             log.err("Mail delivery failure for event %s (%s)" % (event_id, failure))
             evnt = store.find(EventLogs, EventLogs.id == event_id).one()
-            evnt.mail_sent = True
+            if not evnt:
+                log.info("Race condition spotted: Event has been deleted during the notification process")
+            else:
+                evnt.mail_sent = True
         else:
             log.err("Mail (Digest|Anomaly) error")
 
@@ -173,7 +176,13 @@ def mark_event_as_sent(store, event_id):
     Maybe for digest, maybe for filtering, this function mark an event as sent,
     but is not used in the "official notification success"
     """
-    store.find(EventLogs, EventLogs.id == event_id).one().mail_sent = True
+    evnt = store.find(EventLogs, EventLogs.id == event_id).one()
+
+    if not evnt:
+        log.info("Race condition spotted: Event has been deleted during the notification process")
+    else:
+        evnt.mail_sent = True
+        log.debug("Marked event [%s] as sent" % evnt.title)
 
 
 @transact_ro

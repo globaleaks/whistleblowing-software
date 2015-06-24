@@ -50,7 +50,7 @@ class TipCleaning(TestCleaning):
     def postpone_tip_expiration(self):
         recv_desc = yield admin.get_receiver_list('en')
         self.assertEqual(len(recv_desc), 2)
-        rtip_desc = yield receiver.get_receivertip_list(recv_desc[0]['id'], 'en')
+        rtip_desc, _ = yield receiver.get_receivertip_list(self.dummyNode, recv_desc[0]['id'], 'en')
         self.assertEqual(len(rtip_desc), 1)
         rtip.postpone_expiration_date(recv_desc[0]['id'], rtip_desc[0]['id'])
 
