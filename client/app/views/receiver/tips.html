@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="table table-responsive">
+    <div class="table table-responsive" data-ng-controller="TipCtrl">
       <table class="table table-bordered" id="tipList">
         <thead>
           <tr>
@@ -46,9 +46,32 @@
             </th>
           </tr>
         </thead>
-        <tbody id="tipListTableBody" data-ng-controller="TipCtrl"  data-ng-repeat="tip in tips | orderBy:orderProp:reverse">
+        <tbody id="tipListTableBody" data-ng-repeat="tip in tips | orderBy:orderProp:reverse">
+
+          <span class="table-bordered" style="padding-top: 5px; padding-bottom: 5px; width: 100%;">
+
+            <span data-translate>Tips</span> {{selected_tips}}/{{tips.length}}
+            <span data-ng-click="tipall()"
+                  popover="{{'Select all the Tips' | translate}}"
+                  popover-placement="top"
+                  popover-trigger="mouseenter"> ☑ </span>
+
+            <a class="mass-action tip-action-postpone btn btn-xs btn-warning" ng-click="postpone_selected()"
+              popover="{{'Postpone Tip expiration date' | translate}}" popover-placement="top" popover-trigger="mouseenter">
+              <i class="glyphicon glyphicon-time"></i>
+            </a>
+
+            <a class="mass-action tip-actioN-delete btn btn-xs btn-danger" ng-click="delete_selected()"
+              popover="{{'Delete Tip' | translate}}" popover-placement="top" popover-trigger="mouseenter">
+              <span class="glyphicon glyphicon-trash"></span>
+            </a>
+
+          </span>
+          <br />
+
           <tr id="tip-{{$index}}">
             <td class="col-md-3">
+              <!-- <pre>{{tip}}</pre> -->
               <a class="tip-action-open" data-ng-switch="tip.access_counter" href="#/status/{{::tip.id}}">
                 <span data-ng-switch-when="0" class="btn btn-success col-md-12" style="text-align: left">
                   <span class="glyphicon glyphicon-tint"></span>&nbsp;
@@ -61,6 +84,7 @@
                 </span>
               </a>
               <br /><br />
+              <input type="checkbox" class="checkboxes" id="{{tip.id}}" data-ng-click="tip_switch(tip.id)" />
               <a class="tip-action-postpone btn btn-xs btn-warning" data-ng-show="tip.can_postpone_expiration" data-ng-click="tip_postpone(tip.id)"
                  popover="{{'Postpone Tip expiration date' | translate}}" popover-placement="top" popover-trigger="mouseenter">
                 <i class="glyphicon glyphicon-time"></i>

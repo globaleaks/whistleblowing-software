@@ -69,7 +69,6 @@ ReceiverReceiverDesc = {
     'old_password': unicode,
     'mail_address': email_regexp,
     'ping_mail_address': email_regexp,
-    'description': unicode,
     'pgp_key_remove': bool,
     'pgp_key_fingerprint': unicode,
     'pgp_key_expiration': unicode,
@@ -80,6 +79,11 @@ ReceiverReceiverDesc = {
     "ping_notification": bool,
     "language": unicode,
     "timezone": int
+}
+
+ReceiverOperationDesc = {
+    'operation': unicode,
+    'rtips': [ uuid_regexp ]
 }
 
 CommentDesc = {

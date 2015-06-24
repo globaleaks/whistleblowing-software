@@ -11,7 +11,8 @@ from storm.expr import Desc
 from globaleaks.handlers.admin import pgp_options_parse
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.node import get_public_receiver_list
+from globaleaks.handlers.node import get_public_receiver_list, anon_serialize_node
+from globaleaks.handlers.rtip import postpone_expiration_date, delete_internal_tip
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
@@ -177,20 +178,19 @@ class ReceiverInstance(BaseHandler):
 
 
 @transact_ro
-def get_receivertip_list(store, receiver_id, language):
+def get_receivertip_list(store, node, receiver_id, language):
     rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
     rtiplist.order_by(Desc(ReceiverTip.creation_date))
 
-    node = store.find(Node).one()
-
     rtip_summary_list = []
+    rtip_summary_map = {}
 
     for rtip in rtiplist:
-        can_postpone_expiration = (node.can_postpone_expiration or
+        can_postpone_expiration = (node['can_postpone_expiration'] or
                                    rtip.internaltip.context.can_postpone_expiration or
                                    rtip.receiver.can_postpone_expiration)
 
-        can_delete_submission = (node.can_delete_submission or
+        can_delete_submission = (node['can_delete_submission'] or
                                  rtip.internaltip.context.can_delete_submission or
                                  rtip.receiver.can_delete_submission)
 
@@ -219,8 +219,13 @@ def get_receivertip_list(store, receiver_id, language):
         single_tip_sum["context_name"] = mo.dump_localized_attr('name', language)
 
         rtip_summary_list.append(single_tip_sum)
+        rtip_summary_map.update({rtip.id : [
+            can_postpone_expiration,
+            can_delete_submission,
+            rtip.internaltip.id
+        ]})
 
-    return rtip_summary_list
+    return rtip_summary_list, rtip_summary_map
 
 
 class TipsCollection(BaseHandler):
@@ -238,8 +243,95 @@ class TipsCollection(BaseHandler):
         Response: receiverTipList
         Errors: InvalidAuthentication
         """
-        answer = yield get_receivertip_list(self.current_user.user_id,
+        node_dict = yield GLApiCache.get('node', self.request.language, anon_serialize_node, self.request.language)
+        answer, _ = yield get_receivertip_list(node_dict,
+                                            self.current_user.user_id,
                                             self.request.language)
 
         self.set_status(200)
         self.finish(answer)
+
+
+class TipsOperations(BaseHandler):
+    """
+    This interface receive some operation (postpone or delete) and a list of
+    tips to apply.
+    """
+
+    @transport_security_check('receiver')
+    @authenticated('receiver')
+    @inlineCallbacks
+    def get(self):
+        """
+        This handler is not really used by GLClient, but is used to make
+        works the unitTest.
+
+        Maybe would be used in the future, return a dict. Key = receivertip,
+        as value, an array containing [ can_be_postponed, can_be_deleted, itip.id ]
+        """
+        node_dict = yield GLApiCache.get('node', self.request.language, anon_serialize_node, self.request.language)
+        _, rtip_map = yield get_receivertip_list(node_dict,
+                                            self.current_user.user_id,
+                                            self.request.language)
+
+        self.set_status(200)
+        self.finish(rtip_map)
+
+
+    @transport_security_check('receiver')
+    @authenticated('receiver')
+    @inlineCallbacks
+    def put(self):
+        """
+        Parameters: ReceiverOperationDesc
+        Response: None
+        Errors: InvalidAuthentication, TipIdNotFound, ForbiddenOperation
+        """
+
+        request = self.validate_message(self.request.body, requests.ReceiverOperationDesc)
+
+        if request['operation'] not in ['postpone', 'delete']:
+            raise errors.ForbiddenOperation("The requested operation does not exist")
+
+        if not len(request['rtips']):
+            raise errors.InvalidInputFormat("Missing ReceiverTip.id list")
+
+        node_dict = yield GLApiCache.get('node', self.request.language, anon_serialize_node, self.request.language)
+        _, rtip_map = yield get_receivertip_list(node_dict,
+                                            self.current_user.user_id,
+                                            self.request.language)
+
+        # Remind, this is how rtip_map is populated:
+        #  rtip_summary_map.update({rtip.id :
+        #       [ can_postpone_expiration,
+        #         can_delete_submission,
+        #         rtip.internaltip.id
+        #       ]})
+        for selected_rtip in request['rtips']:
+
+            if not selected_rtip in rtip_map:
+                import pprint
+                # TODO remove debug line when UT errors are fixed
+                print "Not found Tip", selected_rtip, "from"
+                pprint.pprint(request)
+                pprint.pprint(rtip_map)
+                raise errors.TipIdNotFound()
+
+            if request['operation']  == 'postpone' and not rtip_map[selected_rtip][0]:
+                raise errors.ForbiddenOperation("Executed postpone on a tip where you can't")
+
+            if request['operation'] == 'delete' and not rtip_map[selected_rtip][1]:
+                raise errors.ForbiddenOperation("Executed delete on a tip where you can't")
+
+        if request['operation'] == 'delete':
+            for rtip in request['rtips']:
+                yield delete_internal_tip(self.current_user.user_id, rtip)
+            log.debug("Multiple delete of %d Tips completed" % len(request['rtips']))
+        else:
+            for rtip in request['rtips']:
+                yield postpone_expiration_date(self.current_user.user_id, rtip)
+            log.debug("Multiple postpone of %d Tips completed" % len(request['rtips']))
+
+        self.set_status(200)
+        self.finish()
+
