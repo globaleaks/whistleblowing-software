@@ -48,18 +48,25 @@
         </thead>
         <tbody id="tipListTableBody" data-ng-repeat="tip in tips | orderBy:orderProp:reverse">
 
-              <span data-translate><b>Select all</b></span>  <input id="checkall" type="checkbox" data-ng-click="tipall()" />
+          <div id="MassOperationContainer">
 
-              <!-- TODO the string here are not change for translation, but can be "postpone all the tips" ? -->
-              <a class="tip-action-postpone btn btn-xs btn-warning" ng-click="postpone_selected()"
-                 popover="{{'Postpone Tip expiration date' | translate}}" popover-placement="top" popover-trigger="mouseenter">
-                <i class="glyphicon glyphicon-time"></i>
-              </a>
-              <a class="tip-actioN-delete btn btn-xs btn-danger" ng-click="delete_selected()"
-                 popover="{{'Delete Tip' | translate}}" popover-placement="top" popover-trigger="mouseenter">
-                <span class="glyphicon glyphicon-trash"></span>
-              </a>
+            <span data-translate>Tips</span> {{selected_tips}}/{{tips.length}}
+            <span data-ng-click="tipall()"
+                  popover="{{'Select all the Tips' | translate}}"
+                  popover-placement="top"
+                  popover-trigger="mouseenter"> ☑ </span>
 
+            <a class="tip-action-postpone btn btn-xs btn-warning" ng-click="postpone_selected()"
+              popover="{{'Postpone Tip expiration date' | translate}}" popover-placement="top" popover-trigger="mouseenter">
+              <i class="glyphicon glyphicon-time"></i>
+            </a>
+
+            <a class="tip-actioN-delete btn btn-xs btn-danger" ng-click="delete_selected()"
+              popover="{{'Delete Tip' | translate}}" popover-placement="top" popover-trigger="mouseenter">
+              <span class="glyphicon glyphicon-trash"></span>
+            </a>
+
+          </div>
 
           <tr id="tip-{{$index}}">
             <td class="col-md-3">
