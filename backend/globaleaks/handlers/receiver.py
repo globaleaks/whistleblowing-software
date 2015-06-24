@@ -271,15 +271,17 @@ class TipsOperations(BaseHandler):
         request = self.validate_message(self.request.body, requests.ReceiverOperationDesc)
 
         if request['operation'] not in ['postpone', 'delete']:
-            raise errors.ForbiddenOperation("Do not exists the operation requested")
+            raise errors.ForbiddenOperation("The requested operation does not exist")
 
-        # Read only operation to perform a --dry-run and check if Capability are respected
+        # Read only operation to fetch a simple map of Tip
         _, rtip_map = yield get_receivertip_list(self.current_user.user_id, self.request.language)
 
         # Remind, this is how rtip_map is populated:
-        #  rtip_summary_map.update({rtip.id : [ can_postpone_expiration, can_delete_submission, rtip.internaltip.id ]})
-        internaltip_associated = []
-
+        #  rtip_summary_map.update({rtip.id :
+        #       [ can_postpone_expiration,
+        #         can_delete_submission,
+        #         rtip.internaltip.id
+        #       ]})
         for selected_rtip in request['rtips']:
 
             if not selected_rtip in rtip_map:
@@ -291,22 +293,16 @@ class TipsOperations(BaseHandler):
             if request['operation'] == 'delete' and not rtip_map[selected_rtip][1]:
                 raise errors.ForbiddenOperation("Executed delete on a tip where you can't")
 
-            internaltip_associated.append(rtip_map[selected_rtip][2])
-
 
         if request['operation'] == 'delete':
             for rtip in request['rtips']:
                 yield delete_internal_tip(self.current_user.user_id, rtip)
-            log.debug("Multiple delete of %d Tips completed" % len(internaltip_associated))
+            log.debug("Multiple delete of %d Tips completed" % len(request['rtips']))
         else:
             for rtip in request['rtips']:
                 yield postpone_expiration_date(self.current_user.user_id, rtip)
-            log.debug("Multiple postpone of %d Tips completed" % len(internaltip_associated))
+            log.debug("Multiple postpone of %d Tips completed" % len(request['rtips']))
 
         self.set_status(200)
         self.finish()
-
-
-        # remind self, you meet at the airport someone told you to check this new york company: airwatch inbox
-        # and this guy is playing "dude perfect" app on iPhone
 
