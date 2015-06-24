@@ -18,26 +18,38 @@ GLClient.controller('TipCtrl', ['$rootScope', '$scope', '$http', '$route', '$loc
 
   $scope.delete_selected = function()
   {
-    return $http({method: 'PUT', url: '/rtip/operations', data:{
-      'operation': 'delete',
-      'rtips': $rootScope.selected_tip_list
-    }}).
-        success(function(data, status, headers, config){
-          $location.url('/receiver/tips');
-          $route.reload();
-    });
+    if ($scope.selected_tips === 0) {
+      alert("nop");
+    } else {
+
+      return $http({method: 'PUT', url: '/rtip/operations', data:{
+        'operation': 'delete',
+        'rtips': $rootScope.selected_tip_list
+      }}).
+          success(function(data, status, headers, config){
+            $rootScope.selected_tip_list = [];
+            $location.url('/receiver/tips');
+            $route.reload();
+          });
+    }
   };
 
   $scope.postpone_selected = function()
   {
-    return $http({method: 'PUT', url: '/rtip/operations', data:{
-      'operation': 'postpone',
-      'rtips': $rootScope.selected_tip_list
-    }}).
-        success(function(data, status, headers, config){
-          $location.url('/receiver/tips');
-          $route.reload();
-    });
+    if ($scope.selected_tips === 0) {
+      alert("nop");
+    } else {
+
+      return $http({method: 'PUT', url: '/rtip/operations', data:{
+        'operation': 'postpone',
+        'rtips': $rootScope.selected_tip_list
+      }}).
+         success(function(data, status, headers, config){
+           $rootScope.selected_tip_list = [];
+           $location.url('/receiver/tips');
+           $route.reload();
+         });
+    }
   };
 
   $scope.tip_switch = function (id)
@@ -52,7 +64,6 @@ GLClient.controller('TipCtrl', ['$rootScope', '$scope', '$http', '$route', '$loc
       }
     });
     $scope.selected_tips = $rootScope.selected_tip_list.length;
-    console.log($scope.selected_tips);
   };
 
   $scope.tip_delete = function (id) {
