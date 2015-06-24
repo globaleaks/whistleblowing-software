@@ -54,8 +54,8 @@ class TestTipInstance(TTip):
 
         self.assertEqual(self.submission_desc['wb_steps'], dummySubmissionDict['wb_steps'])
 
-        tips_receiver_1, _ = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
-        tips_receiver_2, _ = yield receiver.get_receivertip_list(self.receiver2_desc['id'], 'en')
+        tips_receiver_1, _ = yield receiver.get_receivertip_list(self.dummyNode, self.receiver1_desc['id'], 'en')
+        tips_receiver_2, _ = yield receiver.get_receivertip_list(self.dummyNode, self.receiver2_desc['id'], 'en')
 
         self.rtip1_id = tips_receiver_1[0]['id']
         self.rtip2_id = tips_receiver_2[0]['id']
@@ -109,7 +109,7 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def receiver1_get_tip_list(self):
-        tiplist, _ = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
+        tiplist, _ = yield receiver.get_receivertip_list(self.dummyNode, self.receiver1_desc['id'], 'en')
 
         # this test has been added to test issue/515
         self.assertTrue(isinstance(tiplist, list))
@@ -347,7 +347,7 @@ class TestTipInstance(TTip):
     @inlineCallbacks
     def do_receivers_messages_and_unread_verification(self):
         # Receiver1 check the presence of the whistleblower message (only 1)
-        x, _ = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
+        x, _ = yield receiver.get_receivertip_list(self.dummyNode, self.receiver1_desc['id'], 'en')
         self.assertEqual(x[0]['message_counter'], 1)
 
         # Receiver1 send one message
@@ -369,7 +369,7 @@ class TestTipInstance(TTip):
                 self.assertEqual(r['message_counter'], 2)
 
         # Receiver2 check the presence of the whistleblower message (2 expected)
-        a, _ = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
+        a, _ = yield receiver.get_receivertip_list(self.dummyNode, self.receiver1_desc['id'], 'en')
         self.assertEqual(len(a), 1)
         self.assertEqual(a[0]['message_counter'], 2)
 
