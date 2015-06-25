@@ -13,7 +13,6 @@ from globaleaks.utils.token import Token
 
 
 class TTip(helpers.TestGL):
-
     # filled in setup
     context_desc = None
     receiver1_desc = receiver2_desc = None
@@ -54,8 +53,8 @@ class TestTipInstance(TTip):
 
         self.assertEqual(self.submission_desc['wb_steps'], dummySubmissionDict['wb_steps'])
 
-        tips_receiver_1, _ = yield receiver.get_receivertip_list(self.dummyNode, self.receiver1_desc['id'], 'en')
-        tips_receiver_2, _ = yield receiver.get_receivertip_list(self.dummyNode, self.receiver2_desc['id'], 'en')
+        tips_receiver_1, _ = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
+        tips_receiver_2, _ = yield receiver.get_receivertip_list(self.receiver2_desc['id'], 'en')
 
         self.rtip1_id = tips_receiver_1[0]['id']
         self.rtip2_id = tips_receiver_2[0]['id']
@@ -109,7 +108,7 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def receiver1_get_tip_list(self):
-        tiplist, _ = yield receiver.get_receivertip_list(self.dummyNode, self.receiver1_desc['id'], 'en')
+        tiplist, _ = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
 
         # this test has been added to test issue/515
         self.assertTrue(isinstance(tiplist, list))
@@ -186,7 +185,6 @@ class TestTipInstance(TTip):
         that's the date status in this test (tip ttl 200 days)
 
         creation_date : 2013-10-31T21:22:14.481809
-        potential_expiration_date : 2014-05-19 21:22:16.677997
         expiration_date : 2014-05-19T21:22:14.481711
         """
         context_list = yield admin.get_context_list('en')

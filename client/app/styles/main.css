@@ -35,6 +35,10 @@ table {
   word-wrap: break-word;
 }
 
+th {
+  color: #428bca;
+}
+
 #HeaderBox {
   overflow: hidden;
   color: #FFF;
@@ -333,4 +337,8 @@ table {
 
 #EmbeddedReceiptBox {
   text-align: center;
+}
+
+.container-fluid {
+  padding: 60px;
 }

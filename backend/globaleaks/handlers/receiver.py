@@ -6,13 +6,13 @@
 # Used by receivers to update personal preferences and access to personal data
 
 from twisted.internet.defer import inlineCallbacks
-from storm.expr import Desc
+from storm.expr import And, In
 
 from globaleaks.handlers.admin import pgp_options_parse
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.node import get_public_receiver_list, anon_serialize_node
-from globaleaks.handlers.rtip import postpone_expiration_date, delete_internal_tip
+from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
@@ -22,13 +22,14 @@ from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
-def receiver_serialize_receiver(receiver, language):
+def receiver_serialize_receiver(receiver, node, language):
     ret_dict = {
         'id': receiver.id,
         'name': receiver.name,
         'update_date': datetime_to_ISO8601(receiver.last_update),
         'creation_date': datetime_to_ISO8601(receiver.creation_date),
-        'can_delete_submission': receiver.can_delete_submission,
+        'can_postpone_expiration': node.can_postpone_expiration or receiver.can_postpone_expiration,
+        'can_delete_submission': node.can_delete_submission or receiver.can_delete_submission,
         'username': receiver.user.username,
         'pgp_key_info': receiver.pgp_key_info,
         'pgp_key_fingerprint': receiver.pgp_key_fingerprint,
@@ -60,7 +61,6 @@ def serialize_event(evnt):
     in the future it would be a nice improvement to get for example the beginning of the comment,
     or the filename/filetype, etc)
     """
-
     ret_dict = {
         'id': evnt.id,
         'creation_date': datetime_to_ISO8601(evnt.creation_date),
@@ -79,7 +79,9 @@ def get_receiver_settings(store, receiver_id, language):
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    return receiver_serialize_receiver(receiver, language)
+    node = store.find(Node).one()
+
+    return receiver_serialize_receiver(receiver, node, language)
 
 
 @transact
@@ -123,7 +125,73 @@ def update_receiver_settings(store, receiver_id, request, language):
 
     pgp_options_parse(receiver, request)
 
-    return receiver_serialize_receiver(receiver, language)
+    node = store.find(Node).one()
+
+    return receiver_serialize_receiver(receiver, node, language)
+
+
+@transact_ro
+def get_receivertip_list(store, receiver_id, language):
+    node = store.find(Node).one()
+
+    rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
+
+    rtip_summary_list = []
+
+    for rtip in rtiplist:
+        rfiles_n = store.find(ReceiverFile,
+                              (ReceiverFile.internaltip_id == rtip.internaltip.id,
+                               ReceiverFile.receiver_id == receiver_id)).count()
+
+        message_counter = store.find(Message,
+                                     Message.receivertip_id == rtip.id).count()
+        single_tip_sum = dict({
+            'id': rtip.id,
+            'creation_date': datetime_to_ISO8601(rtip.creation_date),
+            'last_access': datetime_to_ISO8601(rtip.last_access),
+            'expiration_date': datetime_to_ISO8601(rtip.internaltip.expiration_date),
+            'access_counter': rtip.access_counter,
+            'file_counter': rfiles_n,
+            'comment_counter': rtip.internaltip.comments.count(),
+            'message_counter': message_counter,
+            'preview': rtip.internaltip.preview
+        })
+
+        mo = Rosetta(rtip.internaltip.context.localized_strings)
+        mo.acquire_storm_object(rtip.internaltip.context)
+        single_tip_sum["context_name"] = mo.dump_localized_attr('name', language)
+
+        rtip_summary_list.append(single_tip_sum)
+
+    return rtip_summary_list
+
+
+@transact
+def perform_tips_operation(store, receiver_id, operation, rtips_ids):
+    node = store.find(Node).one()
+
+    receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+
+    rtips = store.find(ReceiverTip, And(ReceiverTip.receiver_id == receiver_id,
+                                        In(ReceiverTip.id, (rtips_ids))))
+
+    if operation == 'postpone':
+        can_postpone_expiration = node.can_postpone_expiration or receiver.can_postpone_expiration
+        if not can_postpone_expiration:
+            raise errors.ForbiddenOperation
+
+        for rtip in rtips:
+            db_postpone_expiration_date(store, rtip)
+
+    elif operation == 'delete':
+        can_delete_submission =  node.can_delete_submission or receiver.can_delete_submission
+        if not can_delete_submission:
+            raise errors.ForbiddenOperation
+
+        for rtip in rtips:
+            db_delete_rtip(store, rtip)
+
+    log.debug("Multiple %s of %d Tips completed" % (operation, len(rtips_ids)))
 
 
 class ReceiverInstance(BaseHandler):
@@ -145,7 +213,6 @@ class ReceiverInstance(BaseHandler):
         Response: ReceiverReceiverDesc
         Errors: TipIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-
         receiver_status = yield get_receiver_settings(self.current_user.user_id,
                                                       self.request.language)
 
@@ -177,57 +244,6 @@ class ReceiverInstance(BaseHandler):
         self.finish(receiver_status)
 
 
-@transact_ro
-def get_receivertip_list(store, node, receiver_id, language):
-    rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
-    rtiplist.order_by(Desc(ReceiverTip.creation_date))
-
-    rtip_summary_list = []
-    rtip_summary_map = {}
-
-    for rtip in rtiplist:
-        can_postpone_expiration = (node['can_postpone_expiration'] or
-                                   rtip.internaltip.context.can_postpone_expiration or
-                                   rtip.receiver.can_postpone_expiration)
-
-        can_delete_submission = (node['can_delete_submission'] or
-                                 rtip.internaltip.context.can_delete_submission or
-                                 rtip.receiver.can_delete_submission)
-
-        rfiles_n = store.find(ReceiverFile,
-                              (ReceiverFile.internaltip_id == rtip.internaltip.id,
-                               ReceiverFile.receiver_id == receiver_id)).count()
-
-        message_counter = store.find(Message,
-                                     Message.receivertip_id == rtip.id).count()
-        single_tip_sum = dict({
-            'id': rtip.id,
-            'creation_date': datetime_to_ISO8601(rtip.creation_date),
-            'last_access': datetime_to_ISO8601(rtip.last_access),
-            'expiration_date': datetime_to_ISO8601(rtip.internaltip.expiration_date),
-            'access_counter': rtip.access_counter,
-            'file_counter': rfiles_n,
-            'comment_counter': rtip.internaltip.comments.count(),
-            'message_counter': message_counter,
-            'can_postpone_expiration': can_postpone_expiration,
-            'can_delete_submission': can_delete_submission,
-            'preview': rtip.internaltip.preview
-        })
-
-        mo = Rosetta(rtip.internaltip.context.localized_strings)
-        mo.acquire_storm_object(rtip.internaltip.context)
-        single_tip_sum["context_name"] = mo.dump_localized_attr('name', language)
-
-        rtip_summary_list.append(single_tip_sum)
-        rtip_summary_map.update({rtip.id : [
-            can_postpone_expiration,
-            can_delete_submission,
-            rtip.internaltip.id
-        ]})
-
-    return rtip_summary_list, rtip_summary_map
-
-
 class TipsCollection(BaseHandler):
     """
     This interface return the summary list of the Tips available for the authenticated Receiver
@@ -243,9 +259,7 @@ class TipsCollection(BaseHandler):
         Response: receiverTipList
         Errors: InvalidAuthentication
         """
-        node_dict = yield GLApiCache.get('node', self.request.language, anon_serialize_node, self.request.language)
-        answer, _ = yield get_receivertip_list(node_dict,
-                                            self.current_user.user_id,
+        answer = yield get_receivertip_list(self.current_user.user_id,
                                             self.request.language)
 
         self.set_status(200)
@@ -257,27 +271,6 @@ class TipsOperations(BaseHandler):
     This interface receive some operation (postpone or delete) and a list of
     tips to apply.
     """
-
-    @transport_security_check('receiver')
-    @authenticated('receiver')
-    @inlineCallbacks
-    def get(self):
-        """
-        This handler is not really used by GLClient, but is used to make
-        works the unitTest.
-
-        Maybe would be used in the future, return a dict. Key = receivertip,
-        as value, an array containing [ can_be_postponed, can_be_deleted, itip.id ]
-        """
-        node_dict = yield GLApiCache.get('node', self.request.language, anon_serialize_node, self.request.language)
-        _, rtip_map = yield get_receivertip_list(node_dict,
-                                            self.current_user.user_id,
-                                            self.request.language)
-
-        self.set_status(200)
-        self.finish(rtip_map)
-
-
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
@@ -287,51 +280,12 @@ class TipsOperations(BaseHandler):
         Response: None
         Errors: InvalidAuthentication, TipIdNotFound, ForbiddenOperation
         """
-
         request = self.validate_message(self.request.body, requests.ReceiverOperationDesc)
 
         if request['operation'] not in ['postpone', 'delete']:
-            raise errors.ForbiddenOperation("The requested operation does not exist")
+            raise errors.ForbiddenOperation
 
-        if not len(request['rtips']):
-            raise errors.InvalidInputFormat("Missing ReceiverTip.id list")
-
-        node_dict = yield GLApiCache.get('node', self.request.language, anon_serialize_node, self.request.language)
-        _, rtip_map = yield get_receivertip_list(node_dict,
-                                            self.current_user.user_id,
-                                            self.request.language)
-
-        # Remind, this is how rtip_map is populated:
-        #  rtip_summary_map.update({rtip.id :
-        #       [ can_postpone_expiration,
-        #         can_delete_submission,
-        #         rtip.internaltip.id
-        #       ]})
-        for selected_rtip in request['rtips']:
-
-            if not selected_rtip in rtip_map:
-                import pprint
-                # TODO remove debug line when UT errors are fixed
-                print "Not found Tip", selected_rtip, "from"
-                pprint.pprint(request)
-                pprint.pprint(rtip_map)
-                raise errors.TipIdNotFound()
-
-            if request['operation']  == 'postpone' and not rtip_map[selected_rtip][0]:
-                raise errors.ForbiddenOperation("Executed postpone on a tip where you can't")
-
-            if request['operation'] == 'delete' and not rtip_map[selected_rtip][1]:
-                raise errors.ForbiddenOperation("Executed delete on a tip where you can't")
-
-        if request['operation'] == 'delete':
-            for rtip in request['rtips']:
-                yield delete_internal_tip(self.current_user.user_id, rtip)
-            log.debug("Multiple delete of %d Tips completed" % len(request['rtips']))
-        else:
-            for rtip in request['rtips']:
-                yield postpone_expiration_date(self.current_user.user_id, rtip)
-            log.debug("Multiple postpone of %d Tips completed" % len(request['rtips']))
+        yield perform_tips_operation(self.current_user.user_id, request['operation'], request['rtips'])
 
         self.set_status(200)
         self.finish()
-

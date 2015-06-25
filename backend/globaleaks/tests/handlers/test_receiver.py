@@ -95,85 +95,51 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_full_submission_actions()
 
     @inlineCallbacks
-    def test_get(self):
-
-        for _ in xrange(random.randint(3,5)):
-            yield self.perform_full_submission_actions()
-
-        handler = self.request(role='receiver')
-        handler.current_user.user_id = self.dummyReceiver_1['id']
-
-        yield handler.get()
-
-        self.assertTrue(isinstance(self.responses[0], dict))
-        self.assertTrue(len(self.responses[0].keys()) > 3)
-
-
-    @inlineCallbacks
-    # @unittest.skip("No idea how check success")
     def test_put_postpone(self):
-
-        for _ in xrange(random.randint(3,5)):
+        for _ in xrange(3):
             yield self.perform_full_submission_actions()
 
-        handler = self.request(role='receiver')
-        handler.current_user.user_id = self.dummyReceiver_1['id']
+        rtips = yield receiver.get_receivertip_list(self.dummyReceiver_1['id'], 'en')
+        rtips_ids = [rtip['id'] for rtip in rtips]
 
-        yield handler.get()
-        self.assertTrue(isinstance(self.responses[0], dict))
-        self.assertTrue(len(self.responses[0].keys()) > 3)
+        postpone_map = {}
+        for rtip in rtips:
+            postpone_map[rtip['id']] = rtip['expiration_date']
 
         data_request = {
             'operation': 'postpone',
-            'rtips': self.responses[0].keys()
+            'rtips': rtips_ids
         }
-        import pprint
-        pprint.pprint(data_request)
 
         handler = self.request(data_request, role='receiver')
+        handler.current_user.user_id = self.dummyReceiver_1['id']
         yield handler.put()
-        # How can be checked that actually works ? 
 
+        rtips = yield receiver.get_receivertip_list(self.dummyReceiver_1['id'], 'en')
 
+        for rtip in rtips:
+            self.assertNotEqual(postpone_map[rtip['id']], rtip['expiration_date'])
 
     @inlineCallbacks
     def test_put_delete(self):
-
-        for _ in xrange(random.randint(3,5)):
+        for _ in xrange(3):
             yield self.perform_full_submission_actions()
 
         handler = self.request(role='receiver')
         handler.current_user.user_id = self.dummyReceiver_1['id']
 
-        yield handler.get()
-
-        import pprint
-        pprint.pprint(self.responses)
-        pprint.pprint(self.responses[0].keys())
-
-        yield handler.get()
-        import pprint
-        pprint.pprint(self.responses)
-        pprint.pprint(self.responses[0].keys())
+        rtips = yield receiver.get_receivertip_list(self.dummyReceiver_1['id'], 'en')
+        rtips_ids = [rtip['id'] for rtip in rtips]
 
         data_request = {
             'operation': 'delete',
-            'rtips': self.responses[0].keys()
+            'rtips': rtips_ids
         }
+
         handler = self.request(data_request, role='receiver')
+        handler.current_user.user_id = self.dummyReceiver_1['id']
         yield handler.put()
 
+        rtips = yield receiver.get_receivertip_list(self.dummyReceiver_1['id'], 'en')
 
-    @inlineCallbacks
-    def test_put_empty_rtips(self):
-        handler = self.request(role='receiver')
-        handler.current_user.user_id = self.dummyReceiver_1['id']
-
-        data_request = {
-            'operation': 'delete',
-            'rtips': []
-        }
-        handler = self.request(data_request, role='receiver')
-        yield self.assertFailure(handler.put(), InvalidInputFormat)
-
-
+        self.assertEqual(len(rtips), 0)

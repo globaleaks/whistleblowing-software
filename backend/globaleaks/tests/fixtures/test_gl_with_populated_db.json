@@ -405,9 +405,6 @@
   },
   {
     "fields": {
-      "receiver_introduction": {
-        "en": "These are our receivers"
-      },
       "presentation_order": 0,
       "can_postpone_expiration": false,
       "creation_date": "2014-09-13 09:01:53.682297",

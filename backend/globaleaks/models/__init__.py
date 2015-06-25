@@ -195,7 +195,6 @@ class Context(Model):
     # localized strings
     name = JSON(validator=shortlocal_v)
     description = JSON(validator=longlocal_v)
-    receiver_introduction = JSON(validator=longlocal_v)
 
     # receivers = ReferenceSet(
     #                         Context.id,
@@ -203,20 +202,16 @@ class Context(Model):
     #                         ReceiverContext.receiver_id,
     #                         Receiver.id)
 
-    can_postpone_expiration = Bool(default=False)
-    can_delete_submission = Bool(default=False)
-
     show_receivers_in_alphabetical_order = Bool(default=False)
 
     presentation_order = Int(default=0)
 
     unicode_keys = []
-    localized_strings = ['name', 'description', 'receiver_introduction']
+    localized_strings = ['name', 'description']
     int_keys = [ 'maximum_selectable_receivers',
                  'show_receivers_in_alphabetical_order',
                  'presentation_order' ]
     bool_keys = [ 'select_all_receivers',
-                  'can_postpone_expiration', 'can_delete_submission',
                   'show_small_cards', 'show_receivers', "enable_private_messages" ]
 
 

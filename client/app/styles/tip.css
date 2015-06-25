@@ -3,3 +3,19 @@
   font-weight: bold;
 }
 
+.newTip {
+  font-weight: bold;
+}
+
+.selectedTip,
+.table-striped > tbody > tr.selectedTip:nth-child(odd) > td {
+  background-color: #FFFFCC;
+}
+
+.tip-action-open {
+  cursor: pointer;
+}
+
+.fieldAnswer {
+  margin-bottom: 10px;
+}

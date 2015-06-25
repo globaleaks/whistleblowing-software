@@ -1,19 +1,19 @@
 <div data-ng-init="fields = (field == undefined) ? fieldsRoot : field.children; fieldId  = $parent.fieldId ? $parent.fieldId + '-' + $index : 'field-' + $index">
   <div data-ng-repeat="field in fields | filter:filterFields | orderBy:'y'">
-    <dl id="{{fieldId}}" class="nested">
-      <dt>
-        <span data-ng-if="!$parent.field && !preview">{{$index + 1}}) {{field.label}}</span>
-        <span data-ng-if="$parent.field || preview">{{field.label}}</span>
-      </dt>
+    <div id="{{fieldId}}" data-ng-class="{'nested': !preview}" class="fieldAnswer">
+      <div>
+        <span data-ng-if="!$parent.field && !preview">{{$index + 1}}) {{field.label}}:</span>
+        <span data-ng-if="$parent.field || preview">{{field.label}}:</span>
+      </div>
 
-      <div data-ng-switch="" on="field.type">
-        <dd data-ng-switch-when="inputbox" class="preformatted">{{field.value}}</dd>
+      <span data-ng-switch="" on="field.type" class="nested">
+        <span data-ng-switch-when="inputbox" class="preformatted">{{field.value}}</span>
 
-        <dd data-ng-switch-when="textarea" class="preformatted">{{field.value}}</dd>
+        <div data-ng-switch-when="textarea" class="preformatted">{{field.value}}</div>
 
-        <dd data-ng-switch-when="selectbox" class="preformatted">{{field.value}}</dd>
+        <div data-ng-switch-when="selectbox" class="preformatted">{{field.value}}</div>
 
-        <dd data-ng-switch-when="checkbox">
+        <div data-ng-switch-when="checkbox">
           <ul>
             <div data-ng-repeat="answer in field.value">
               <span data-ng-hide="answer.value"><i class="glyphicon glyphicon-unchecked"></i></span>
@@ -21,18 +21,18 @@
               <span>{{answer.name}}</span>
             </div>
           </ul>
-        </dd>
+        </div>
 
-        <dd data-ng-switch-when="tos">
+        <div data-ng-switch-when="tos">
           <span data-ng-if="field.value" data-translate>Accepted</span>
           <span data-ng-if="!field.value" data-translate>Not accepted</span>
-        </dd>
+        </div>
 
-        <dd data-ng-switch-when="fieldgroup">
+        <div data-ng-switch-when="fieldgroup">
           <div data-ng-include="'views/partials/tip_fields.html'"></div>
-        </dd>
-      </div>
+        </div>
+      </span>
 
     </div>
-  </dl>
+  </div>
 </div>
