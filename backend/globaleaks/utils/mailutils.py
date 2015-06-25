@@ -313,7 +313,7 @@ def mail_exception(etype, value, tback):
                                   GLSetting.memory_copy.notif_source_email,
                                   "Admin",
                                   GLSetting.memory_copy.exception_email,
-                                  "Subject:%s %s [%d]" % \
+                                  "%s %s [%d]" % \
                                     (" %s's development Exception" %
                                         GLSetting.developer_name if GLSetting.devel_mode else " GlobaLeaks Exception",
                                      __version__,
