@@ -150,7 +150,6 @@ var fields = [
 ]
 
 var context = {
-  receiver_introduction: 'foca',
   presentation_order: 0,
   tip_timetolive: 15,
   can_postpone_expiration: false,

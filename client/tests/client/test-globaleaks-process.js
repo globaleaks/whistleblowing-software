@@ -73,7 +73,7 @@ describe('globaLeaks process', function() {
 
   it('Receiver should be able to access the submission', function() {
     login_receiver(receiver_username, receiver_password).then(function () {
-      element(by.id('tip-0')).element(by.css('.tip-action-open')).click().then(function() {
+      element(by.id('tip-0')).click().then(function() {
         expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
       });
     });
@@ -81,7 +81,7 @@ describe('globaLeaks process', function() {
 
   it('Receiver should be able to leave a comment to the whistleblower', function() {
     login_receiver(receiver_username, receiver_password).then(function () {
-      element(by.id('tip-0')).element(by.css('.tip-action-open')).click().then(function() {
+      element(by.id('tip-0')).click().then(function() {
         element(by.model('tip.newCommentContent')).sendKeys(comment);
         element(by.id('comment-action-send')).click().then(function() {
           element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
@@ -117,7 +117,7 @@ describe('globaLeaks process', function() {
 
   it('Receiver should be able to postpone a tip', function() {
     login_receiver(receiver_username, receiver_password).then(function () {
-      element(by.id('tip-0')).element(by.css('.tip-action-open')).click().then(function() {
+      element(by.id('tip-0')).click().then(function() {
         element(by.css('.tip-action-postpone')).click().then(function () {
           element(by.css('.modal-action-ok')).click().then(function() {
             //TODO: check postpone
@@ -129,7 +129,7 @@ describe('globaLeaks process', function() {
 
   it('Receiver should be able to delete a tip', function() {
     login_receiver(receiver_username, receiver_password).then(function () {
-      element(by.id('tip-0')).element(by.css('.tip-action-open')).click().then(function() {
+      element(by.id('tip-0')).click().then(function() {
         element(by.css('.tip-action-delete')).click().then(function () {
           element(by.css('.modal-action-ok')).click().then(function() {
             expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');

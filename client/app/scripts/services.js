@@ -2,8 +2,8 @@
 
 angular.module('resourceServices.authentication', [])
   .factory('Authentication', ['$http', '$location', '$routeParams',
-                              '$rootScope', '$timeout', '$cookies',
-    function($http, $location, $routeParams, $rootScope, $timeout, $cookies) {
+                              '$rootScope', '$timeout', '$cookies', 'ReceiverPreferences',
+    function($http, $location, $routeParams, $rootScope, $timeout, $cookies, ReceiverPreferences) {
       function Session(){
         var self = this;
 
@@ -34,6 +34,7 @@ angular.module('resourceServices.authentication', [])
                 } else {
                     self.auth_landing_page = '/receiver/tips';
                 }
+                $rootScope.preferences = ReceiverPreferences.get();
               }
               if (self.role === 'wb') {
                 self.auth_landing_page = '/status';
@@ -581,7 +582,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           context.receivers = [];
           context.select_all_receivers = false;
           context.tip_timetolive = 15;
-          context.receiver_introduction = "";
           context.can_postpone_expiration = true;
           context.can_delete_submission = true;
           context.maximum_selectable_receivers = 0;

@@ -6,11 +6,11 @@
 # Implementation of the cleaning operations (delete incomplete submission,
 # delete expired tips, etc)
 
-import os
 from datetime import datetime, timedelta
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import admin
+from globaleaks.handlers.rtip import db_delete_rtip
 from globaleaks.jobs.base import GLJob
 from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, db_save_events_on_db
 from globaleaks.models import InternalTip, InternalFile, Receiver, ReceiverTip, ReceiverFile
@@ -67,33 +67,7 @@ class CleaningSchedule(GLJob):
     @transact
     def perform_cleaning(self, store):
         for itip in store.find(InternalTip, InternalTip.expiration_date < datetime_now()):
-            for ifile in itip.internalfiles:
-                abspath = os.path.join(GLSetting.submission_path, ifile.file_path)
-
-                if os.path.isfile(abspath):
-                    log.debug("Removing internalfile %s" % abspath)
-                    try:
-                        os.remove(abspath)
-                    except OSError as excep:
-                        log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
-
-                rfiles = store.find(ReceiverFile, ReceiverFile.internalfile_id == ifile.id)
-                for rfile in rfiles:
-                    # The following code must be bypassed if rfile.file_path == ifile.filepath,
-                    # this mean that is referenced the plaintext file instead having E2E.
-                    if rfile.file_path == ifile.file_path:
-                        continue
-
-                    abspath = os.path.join(GLSetting.submission_path, rfile.file_path)
-
-                    if os.path.isfile(abspath):
-                        log.debug("Removing receiverfile %s" % abspath)
-                        try:
-                            os.remove(abspath)
-                        except OSError as excep:
-                            log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
-
-            store.remove(itip)
+            db_delete_itip(store, itip)
 
     @inlineCallbacks
     def operation(self):

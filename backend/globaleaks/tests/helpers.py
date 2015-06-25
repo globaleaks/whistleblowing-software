@@ -837,9 +837,6 @@ class MockDict():
             # tip_timetolive is expressed in days
             'tip_timetolive': 20,
             'receivers': [],
-            'receiver_introduction': u'These are our receivers',
-            'can_postpone_expiration': False,
-            'can_delete_submission': False,
             'maximum_selectable_receivers': 0,
             'show_small_cards': False,
             'show_receivers': False,

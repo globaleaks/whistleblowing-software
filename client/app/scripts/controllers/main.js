@@ -33,6 +33,10 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       );
     };
 
+    $scope.go = function (hash) {
+      $location.path(hash);
+    }
+
     $scope.randomFluff = function () {
       return Math.random() * 1000000 + 1000000;
     };

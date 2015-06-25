@@ -232,8 +232,6 @@ def admin_serialize_context(store, context, language):
         # tip expressed in day, submission in hours
         'tip_timetolive': context.tip_timetolive / (60 * 60 * 24),
         'select_all_receivers': context.select_all_receivers,
-        'can_postpone_expiration': context.can_postpone_expiration,
-        'can_delete_submission': context.can_delete_submission,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'show_small_cards': context.show_small_cards,
         'show_receivers': context.show_receivers,
