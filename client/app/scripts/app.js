@@ -204,6 +204,8 @@ var GLClient = angular.module('GLClient', [
     flowFactoryProvider.defaults = {
         chunkSize: 1 * 1024 * 1024,
         forceChunkSize: true,
+        testChunks: false,
+        simultaneousUploads: 1,
         generateUniqueIdentifier: function (file) {
           return Math.random() * 1000000 + 1000000;
         }

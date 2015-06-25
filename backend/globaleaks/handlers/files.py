@@ -228,20 +228,6 @@ class FileInstance(BaseHandler):
 
     @transport_security_check('wb')
     @unauthenticated
-    def get(self, token_id):
-        """
-        Parameter: internaltip_id
-        Request: Unknown
-        Response: Unknown
-        Errors: TokenFailure
-        """
-        TokenList.get(token_id)
-
-        self.set_status(204)  # We currently do not implement file resume
-        self.finish()
-
-    @transport_security_check('wb')
-    @unauthenticated
     @inlineCallbacks
     def post(self, token_id):
         """
