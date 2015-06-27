@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-import unittest
-import random
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 from globaleaks.handlers import receiver, admin
-from globaleaks.rest.errors import InvalidInputFormat
 
 
 class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
@@ -84,96 +81,3 @@ class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(role='receiver')
         handler.current_user.user_id = self.dummyReceiver_1['id']
         yield handler.get()
-
-
-class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
-    _handler = receiver.TipsOperations
-
-    @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_full_submission_actions()
-
-    @inlineCallbacks
-    def test_get(self):
-
-        for _ in xrange(random.randint(3,5)):
-            yield self.perform_full_submission_actions()
-
-        handler = self.request(role='receiver')
-        handler.current_user.user_id = self.dummyReceiver_1['id']
-
-        yield handler.get()
-
-        self.assertTrue(isinstance(self.responses[0], dict))
-        self.assertTrue(len(self.responses[0].keys()) > 3)
-
-
-    @inlineCallbacks
-    # @unittest.skip("No idea how check success")
-    def test_put_postpone(self):
-
-        for _ in xrange(random.randint(3,5)):
-            yield self.perform_full_submission_actions()
-
-        handler = self.request(role='receiver')
-        handler.current_user.user_id = self.dummyReceiver_1['id']
-
-        yield handler.get()
-        self.assertTrue(isinstance(self.responses[0], dict))
-        self.assertTrue(len(self.responses[0].keys()) > 3)
-
-        data_request = {
-            'operation': 'postpone',
-            'rtips': self.responses[0].keys()
-        }
-        import pprint
-        pprint.pprint(data_request)
-
-        handler = self.request(data_request, role='receiver')
-        yield handler.put()
-        # How can be checked that actually works ? 
-
-
-
-    @inlineCallbacks
-    def test_put_delete(self):
-
-        for _ in xrange(random.randint(3,5)):
-            yield self.perform_full_submission_actions()
-
-        handler = self.request(role='receiver')
-        handler.current_user.user_id = self.dummyReceiver_1['id']
-
-        yield handler.get()
-
-        import pprint
-        pprint.pprint(self.responses)
-        pprint.pprint(self.responses[0].keys())
-
-        yield handler.get()
-        import pprint
-        pprint.pprint(self.responses)
-        pprint.pprint(self.responses[0].keys())
-
-        data_request = {
-            'operation': 'delete',
-            'rtips': self.responses[0].keys()
-        }
-        handler = self.request(data_request, role='receiver')
-        yield handler.put()
-
-
-    @inlineCallbacks
-    def test_put_empty_rtips(self):
-        handler = self.request(role='receiver')
-        handler.current_user.user_id = self.dummyReceiver_1['id']
-
-        data_request = {
-            'operation': 'delete',
-            'rtips': []
-        }
-        handler = self.request(data_request, role='receiver')
-        yield self.assertFailure(handler.put(), InvalidInputFormat)
-
-

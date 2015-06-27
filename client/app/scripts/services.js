@@ -491,8 +491,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('ReceiverPreferences', ['$resource', function($resource) {
     return $resource('receiver/preferences', {}, {'update': {method: 'PUT'}});
 }]).
-  factory('ReceiverTips', ['$rootScope', '$resource', function($rootScope, $resource) {
-    $rootScope.selected_tip_list = [];
+  factory('ReceiverTips', ['$resource', function($resource) {
     return $resource('receiver/tips', {}, {'update': {method: 'PUT'}});
 }]).
   factory('ReceiverNotification', ['$resource', function($resource) {
