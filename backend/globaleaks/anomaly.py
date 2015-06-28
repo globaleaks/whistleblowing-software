@@ -116,88 +116,45 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
     total_ramdisk_string = bytes_to_pretty_str(total_ramdisk_bytes)
 
     def info_msg_0(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Disk space < 1%%: %s on %s" % (total_workdir_string, free_workdir_string)
+        return "free_disk_megabytes <= 300 or free_disk_percentage <= 3"
 
     def info_msg_1(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Minimum space available of %d MB reached: (%s on %s)" % \
-                (GLSetting.defaults.minimum_megabytes_required,
-                total_workdir_string,
-                free_workdir_string)
+        return "free_ramdisk_bytes <= 2048"
 
     def info_msg_2(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Ramdisk space < 2kB: %s on %s" % (
-                    free_ramdisk_string, total_ramdisk_string)
+        return "free_disk_megabytes <= 500 or free_disk_percentage <= 5"
 
     def info_msg_3(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Disk space ~ 2%% (Critical when reach 1%%): %s on %s" % \
-                (total_workdir_string, free_workdir_string)
-
-    def info_msg_4(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Minimum space available of %d MB is near: (%s on %s)" % \
-                (GLSetting.defaults.minimum_megabytes_required,
-                 total_workdir_string,
-                 free_workdir_string)
-
-    def info_msg_5(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Disk space permit maximum of %d uploads (%s on %s)" % \
-                (Alarm._HIGH_DISK_ALARM, total_workdir_string, free_workdir_string)
-
-    def info_msg_6(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "Disk space permit maximum of %d uploads (%s on %s)" % \
-                (Alarm._MEDIUM_DISK_ALARM, free_workdir_string, total_workdir_string)
+        return "free_disk_megabytes <= 1000 or free_disk_percentage <= 10"
 
     # list of bad conditions ordered starting from the worst case scenario
     conditions = [
         {
-            # If percentage is <= 1%: disable the submission
-            'condition': free_disk_percentage <= 1,
+            'condition': free_disk_megabytes <= 300 or free_disk_percentage <= 3,
             'info_msg': info_msg_0,
             'stress_level': 3,
-            'accept_submissions': False,
+            'accept_submissions': False
         },
         {
-            # If disk has less than the hardcoded minimum amount (1Gb)
-            'condition': free_disk_megabytes <= GLSetting.defaults.minimum_megabytes_required,
+            'condition': free_ramdisk_bytes <= 2048,
             'info_msg': info_msg_1,
             'stress_level': 3,
-            'accept_submissions': False,
+            'accept_submissions': False
         },
         {
-            # If ramdisk has less than 2kbytes
-            'condition': free_ramdisk_bytes <= 2048,
+            'condition': free_disk_megabytes <= 500 or free_disk_percentage <= 5,
             'info_msg': info_msg_2,
-            'stress_level': 3,
-            'accept_submissions': False,
+            'stress_level': 2,
+            'accept_submissions': True
         },
         {
-            # If percentage is 2% start to alert the admin on the upcoming critical situation
-            'condition': free_disk_percentage == 2,
+            'condition': free_disk_megabytes <= 1000 or free_disk_percentage <= 10,
             'info_msg': info_msg_3,
-            'stress_level': 2,
-            'accept_submissions': True,
-        },
-        {
-            # Again to avoid bad surprise, we alert the admin at (minimum disk required * 2)
-            'condition': free_disk_megabytes <= (GLSetting.defaults.minimum_megabytes_required * 2),
-            'info_msg': info_msg_4,
-            'stress_level': 2,
-            'accept_submissions': True,
-        },
-        {
-            # if 5 times maximum file can be accepted
-            'condition': free_disk_megabytes <= (Alarm._HIGH_DISK_ALARM * GLSetting.memory_copy.maximum_filesize),
-            'info_msg': info_msg_5,
-            'stress_level': 2,
-            'accept_submissions': True,
-        },
-        {
-            # if 15 times maximum file size can be accepted
-            'condition': free_disk_megabytes <= (Alarm._MEDIUM_DISK_ALARM * GLSetting.memory_copy.maximum_filesize),
-            'info_msg': info_msg_6,
             'stress_level': 1,
-            'accept_submissions': True,
+            'accept_submissions': True
         }
     ]
+
     return conditions
 
 
