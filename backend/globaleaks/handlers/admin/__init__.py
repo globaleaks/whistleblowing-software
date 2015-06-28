@@ -221,8 +221,7 @@ def admin_serialize_context(store, context, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the context.
     """
-    steps = [anon_serialize_step(store, s, language)
-                for s in context.steps.order_by(models.Step.presentation_order)]
+    steps = [anon_serialize_step(store, s, language) for s in context.steps]
 
     ret_dict = {
         'id': context.id,
@@ -366,7 +365,7 @@ def get_context_list(store, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the contexts.
     """
-    contexts = store.find(models.Context).order_by(models.Context.presentation_order)
+    contexts = store.find(models.Context)
     context_list = []
 
     for context in contexts:
@@ -614,7 +613,7 @@ def get_receiver_list(store, language):
     """
     receiver_list = []
 
-    receivers = store.find(models.Receiver).order_by(models.Receiver.presentation_order)
+    receivers = store.find(models.Receiver)
 
     for receiver in receivers:
         receiver_list.append(admin_serialize_receiver(receiver, language))
