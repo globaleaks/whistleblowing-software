@@ -113,8 +113,7 @@ def anon_serialize_context(store, context, language):
     if not len(receivers):
         return None
 
-    steps = [anon_serialize_step(store, s, language)
-             for s in context.steps.order_by(models.Step.presentation_order)]
+    steps = [anon_serialize_step(store, s, language) for s in context.steps]
 
     ret_dict = {
         'id': context.id,
@@ -178,7 +177,7 @@ def anon_serialize_field(store, field, language):
     fieldgroup_id = ff.parent_id if ff else ''
 
     fields = []
-    for f in field.children.order_by(models.Field.y):
+    for f in field.children:
         fields.append(anon_serialize_field(store, f, language))
 
     ret_dict = {
@@ -211,7 +210,7 @@ def anon_serialize_step(store, step, language):
     """
 
     fields = []
-    for f in step.children.order_by(models.Field.y):
+    for f in step.children:
         fields.append(anon_serialize_field(store, f, language))
 
     ret_dict = {
@@ -249,7 +248,7 @@ def anon_serialize_receiver(receiver, language):
 @transact_ro
 def get_public_context_list(store, language):
     context_list = []
-    contexts = store.find(models.Context).order_by(models.Context.presentation_order)
+    contexts = store.find(models.Context)
 
     for context in contexts:
         context_desc = anon_serialize_context(store, context, language)
@@ -263,7 +262,7 @@ def get_public_context_list(store, language):
 @transact_ro
 def get_public_receiver_list(store, language):
     receiver_list = []
-    receivers = store.find(models.Receiver).order_by(models.Receiver.presentation_order)
+    receivers = store.find(models.Receiver)
 
     for receiver in receivers:
         if receiver.user.state == u'disabled':

@@ -38,7 +38,6 @@ def get_stats(store, week_delta):
         week. -1 is the previous week.
     At the moment do not support negative number and change of the year.
     """
-
     now = datetime_now()
     week_delta = abs(week_delta)
 
@@ -153,13 +152,10 @@ def delete_weekstats_history(store):
 
 @transact_ro
 def get_anomaly_history(store, limit):
-    anomal = store.find(Anomalies)
-    anomal.order_by(Desc(Anomalies.creation_date))
+    anomal = store.find(Anomalies).order_by(Desc(Anomalies.creation_date))[:limit]
 
     full_anomal = []
-    for i, anom in enumerate(anomal):
-        if limit == i:
-            break
+    for _, anom in enumerate(anomal):
         anomaly_entry = dict({
             'when': anom.stored_when,
             'alarm': anom.alarm,

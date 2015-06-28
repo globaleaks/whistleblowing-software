@@ -8,7 +8,10 @@
 
 import copy
 
+from storm.expr import In
+
 from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.settings import transact, GLSetting
 from globaleaks.models import Node, Context, Receiver, \
     InternalTip, ReceiverTip, WhistleblowerTip, \
@@ -90,8 +93,6 @@ def create_whistleblower_tip(*args):
 def import_receivers(store, submission, receiver_id_list):
     context = submission.context
 
-    receiver_id_list = set(receiver_id_list)
-
     if not len(receiver_id_list):
         log.err("Receivers required to be selected, not empty")
         raise errors.SubmissionFailFields("Needed almost one Receiver selected")
@@ -100,14 +101,7 @@ def import_receivers(store, submission, receiver_id_list):
                     len(receiver_id_list) > context.maximum_selectable_receivers:
         raise errors.InvalidInputFormat("Provided an invalid number of Receivers")
 
-    for receiver_id in receiver_id_list:
-        try:
-            receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
-        except Exception as excep:
-            log.err("Receiver requested (%s) can't be found: %s" %
-                    (receiver_id, excep))
-            raise errors.ReceiverIdNotFound
-
+    for receiver in store.find(Receiver, In(Receiver.id, receiver_id_list)):
         if context not in receiver.contexts:
             raise errors.InvalidInputFormat("Forged receiver selection, you fuzzer! <:")
 
