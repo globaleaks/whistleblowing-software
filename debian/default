@@ -51,6 +51,9 @@ ALLOWED_DST_IP=( 127.0.0.1 )
 # DISABLE_MAIL_TORIFICATION = [0/1]
 DISABLE_MAIL_TORIFICATION=0
 
+# DISABLE_MAIL_NOTIFICATIONS = [0/1]
+DISABLE_MAIL_NOTIFICATIONS=0
+
 # LISTENING_PORT = [port_number]
 #   permits to configure a port at which globaleaks process will bind to
 LISTENING_PORT=8082

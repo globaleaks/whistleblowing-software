@@ -242,7 +242,11 @@ do_start()
     fi
 
     if [ "${DISABLE_MAIL_TORIFICATION}" -eq "1" ]; then
-        GLBACKEND_ARGS+=" --disable-email-torification"
+        GLBACKEND_ARGS+=" --disable-mail-torification"
+    fi
+
+    if [ "${DISABLE_MAIL_NOTIFICATIONS}" -eq "1" ]; then
+        GLBACKEND_ARGS+=" --disable-mail-notifications"
     fi
 
     STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
