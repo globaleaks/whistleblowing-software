@@ -155,8 +155,12 @@ def db_update_memory_variables(store):
         GLSetting.memory_copy.notif_source_email = notif.source_email
         GLSetting.memory_copy.notif_uses_tor = notif.torify
 
-        GLSetting.memory_copy.receiver_notif_enable = not notif.disable_receivers_notification_emails
-        GLSetting.memory_copy.admin_notif_enable = not notif.disable_admin_notification_emails
+        if GLSetting.disable_mail_notifications:
+            GLSetting.memory_copy.disable_receiver_notification_emails = True
+            GLSetting.memory_copy.disable_admin_notification_emails = True
+        else:
+            GLSetting.memory_copy.disable_receiver_notification_emails = notif.disable_receivers_notification_emails
+            GLSetting.memory_copy.disable_admin_notification_emails = notif.disable_admin_notification_emails
 
 
     except Exception as e:

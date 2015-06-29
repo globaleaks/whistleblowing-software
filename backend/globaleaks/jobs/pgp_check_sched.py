@@ -26,8 +26,8 @@ from globaleaks.utils.templating import Templating
 
 __all__ = ['PGPCheckSchedule']
 
-class PGPCheckSchedule(GLJob):
 
+class PGPCheckSchedule(GLJob):
     @transact
     def pgp_validation_check(self, store):
         node_desc = db_admin_serialize_node(store, 'en')
@@ -131,8 +131,10 @@ class PGPCheckSchedule(GLJob):
         notification_settings = yield get_notification(admin_user['language'])
 
         if expired_or_expiring:
-            yield self.send_admin_pgp_alerts(node_desc, admin_user, notification_settings, expired_or_expiring)
+            if not GLSetting.memory_copy.disable_admin_notification_emails:
+                yield self.send_admin_pgp_alerts(node_desc, admin_user, notification_settings, expired_or_expiring)
 
             for receiver_desc in expired_or_expiring:
-                yield self.send_pgp_alerts(node_desc, receiver_desc, notification_settings)
+                if not GLSetting.memory_copy.disable_receiver_notification_emails:
+                    yield self.send_pgp_alerts(node_desc, receiver_desc, notification_settings)
 

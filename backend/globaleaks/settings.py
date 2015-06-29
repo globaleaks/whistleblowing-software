@@ -213,8 +213,7 @@ class GLSettingsClass(object):
         self.defaults.timezone = 0
         self.defaults.landing_page = 'homepage'
 
-        self.defaults.receiver_notif_enable = True
-        self.defaults.admin_notif_enable = True
+        self.defaults.disable_mail_notification = True
         self.defaults.notif_server = None
         self.defaults.notif_port = None
         self.defaults.notif_username = None
@@ -425,7 +424,9 @@ class GLSettingsClass(object):
         self.accepted_hosts = list(set(self.bind_addresses + \
                                        self.cmdline_options.host_list.replace(" ", "").split(",")))
 
-        self.disable_email_torification = self.cmdline_options.disable_email_torification
+        self.disable_mail_torification = self.cmdline_options.disable_mail_torification
+
+        self.disable_mail_notifications = self.cmdline_options.disable_mail_notifications
 
         self.socks_host = self.cmdline_options.socks_host
 
