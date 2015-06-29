@@ -455,7 +455,6 @@ class Node(Model):
 
 
 class Notification(Model):
-
     """
     This table has only one instance, and contain all the notification
     information for the node templates are imported in the handler, but

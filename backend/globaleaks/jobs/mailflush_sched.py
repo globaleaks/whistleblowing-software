@@ -6,6 +6,7 @@
 # Flush the email that has to be sent, is based on EventLog
 # database table.
 
+import random
 from cyclone.util import ObjectDict as OD
 from storm.expr import Asc
 from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
@@ -61,16 +62,12 @@ class ReceiverDeniedEmail(TempObj):
         self.creation_date = datetime_now()
         self.receiver_id = receiver_id
 
-        # TODO something more appropriate
-        import random
-        self.unique_id = random.randint(0, 0xffff)
-
         if receiver_id in LastHourMailQueue.receivers_in_threshold:
             log.err("Implementation error ? Receiver %s already present" % receiver_id)
 
         TempObj.__init__(self,
                          LastHourMailQueue.blocked_in_queue,
-                         self.unique_id,
+                         random.randint(0, 0xffff),
                          # seconds of validity:
                          GLSetting.memory_copy.notification_suspension_time,
                          reactor_override)
@@ -379,7 +376,7 @@ class MailflushSchedule(GLJob):
 
     @inlineCallbacks
     def operation(self):
-        if not GLSetting.memory_copy.receiver_notif_enable:
+        if GLSetting.memory_copy.disable_receiver_notification_emails:
             log.debug("MailFlush: Receiver(s) Notification disabled by Admin")
             return
 

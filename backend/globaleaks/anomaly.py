@@ -366,7 +366,7 @@ class Alarm(object):
             # lucky, no stress activities recorded: no mail needed
             defer.returnValue(None)
 
-        if not GLSetting.memory_copy.admin_notif_enable:
+        if GLSetting.memory_copy.disable_admin_notification_emails:
             # event_matrix is {} if we are here only for disk
             log.debug("Anomaly to be reported %s, but Admin has Notification disabled" %
                       "[%s]" % event_matrix if event_matrix else "")

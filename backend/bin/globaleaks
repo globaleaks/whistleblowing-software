@@ -142,9 +142,13 @@ GLSetting.parser.add_option("-t", "--delay", type="int",
     help="security delay threshold to prevent side channels analysis (ms) [default: 800]",
     dest="delay", default=800)
 
-GLSetting.parser.add_option("-d", "--disable-email-torification", action='store_true',
-    help="disable email torification [default: False]",
-    dest="disable_email_torification", default=False)
+GLSetting.parser.add_option("-d", "--disable-mail-torification", action='store_true',
+    help="disable mail torification [default: False]",
+    dest="disable_mail_torification", default=False)
+
+GLSetting.parser.add_option("-f", "--disable-mail-notification", action='store_true',
+    help="disable mail motification [default: False]",
+    dest="disable_mail_notification", default=False)
 
 GLSetting.parser.add_option("-D", "--tor-dir", type="string",
     help="Tor directory, acquire hidden service and set onion.to proxy [default: None]",
@@ -179,7 +183,7 @@ GLSetting.parser.add_option("-k", "--kill", type="int",
     dest="kill", default=0)
 
 GLSetting.parser.add_option("-z", "--devel-mode", type='string',
-        help="hack some configs, specify your name to receive personalized exceptions' [default: %default]",
+    help="hack some configs, specify your name to receive personalized exceptions' [default: %default]",
     dest="developer_name")
 
 GLSetting.parser.add_option("-x", "--skip-wizard", action='store_true',
