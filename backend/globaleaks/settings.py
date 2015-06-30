@@ -308,6 +308,9 @@ class GLSettingsClass(object):
         self.debug_UUID_human_counter = 0
         self.debug_option_mlockall = False
 
+        self.disable_mail_torification = False
+        self.disable_mail_notifications = False
+
 
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'
