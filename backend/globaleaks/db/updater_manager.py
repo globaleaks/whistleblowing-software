@@ -20,32 +20,33 @@ from globaleaks.db.migrations.update_19_20 import Replacer1920, Node_v_19, Notif
     InternalTip_v_19, ReceiverTip_v_19, InternalFile_v_19, ReceiverFile_v_19, Receiver_v_19, Context_v_19
 from globaleaks.db.migrations.update_20_21 import Replacer2021, Node_v_20, Notification_v_20, Receiver_v_20, User_v_20, \
     Context_v_20, Step_v_20, Field_v_20, FieldOption_v_20, InternalTip_v_20
+from globaleaks.db.migrations.update_21_22 import Replacer2122, Context_v_21
 
 
 table_history = {
-    'Node': [Node_v_9, None, Node_v_11, None, Node_v_12, Node_v_13, Node_v_14, Node_v_16, None, Node_v_17, Node_v_18, Node_v_19, Node_v_20, models.Node],
-    'User': [User_v_9, None, User_v_14, None, None, None, None, User_v_20, None, None, None, None, None, models.User],
-    'Context': [Context_v_8, Context_v_11, None, None, Context_v_12, Context_v_13, Context_v_14, Context_v_19, None, None, None, None, Context_v_20, models.Context],
-    'Receiver': [Receiver_v_8, Receiver_v_9, Receiver_v_14, None, None, None, None, Receiver_v_15, Receiver_v_16, Receiver_v_19, None, None, Receiver_v_20, models.Receiver],
-    'ReceiverFile': [ReceiverFile_v_19, None, None, None, None, None, None, None, None, None, None, None, models.ReceiverFile, None],
-    'Notification': [Notification_v_8, Notification_v_14, None, None, None, None, None, Notification_v_15, Notification_v_16, Notification_v_19, None, None, Notification_v_20, models.Notification],
-    'Comment': [Comment_v_14, None, None, None, None, None, None, Comment_v_19, None, None, None, None, models.Comment, None],
-    'InternalTip': [InternalTip_v_10, None, None, InternalTip_v_14, None, None, None, InternalTip_v_19, None, None, None, None, InternalTip_v_20, models.InternalTip],
-    'InternalFile': [InternalFile_v_10, None, None, InternalFile_v_19, None, None, None, None, None, None, None, None, models.InternalFile, None],
-    'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'ReceiverTip': [ReceiverTip_v_19, None, None, None, None, None, None, None, None, None, None, None, models.ReceiverTip, None],
-    'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Message': [Message_v_19, None, None, None, None, None, None, None, None, None, None, None, models.Message, None],
-    'Stats': [Stats_v_14, None, None, None, None, None, None, Stats_v_16, None, models.Stats, None, None, None, None],
-    'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Field': [Field_v_20, None, None, None, None, None, None, None, None, None, None, None, None, models.Field],
-    'FieldOption': [FieldOption_v_20, None, None, None, None, None, None, None, None, None, None, None, None, models.FieldOption],
-    'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Step': [Step_v_20, None, None, None, None, None, None, None, None, None, None, None, None, models.Step],
-    'StepField': [models.StepField, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Anomalies': [models.Anomalies, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'EventLogs': [models.EventLogs, None, None, None, None, None, None, None, None, None, None, None, None, None]
+    'Node': [Node_v_9, None, Node_v_11, None, Node_v_12, Node_v_13, Node_v_14, Node_v_16, None, Node_v_17, Node_v_18, Node_v_19, Node_v_20, models.Node, None],
+    'User': [User_v_9, None, User_v_14, None, None, None, None, User_v_20, None, None, None, None, None, models.User, None],
+    'Context': [Context_v_8, Context_v_11, None, None, Context_v_12, Context_v_13, Context_v_14, Context_v_19, None, None, None, None, Context_v_20, Context_v_21, models.Context],
+    'Receiver': [Receiver_v_8, Receiver_v_9, Receiver_v_14, None, None, None, None, Receiver_v_15, Receiver_v_16, Receiver_v_19, None, None, Receiver_v_20, models.Receiver, None],
+    'ReceiverFile': [ReceiverFile_v_19, None, None, None, None, None, None, None, None, None, None, None, models.ReceiverFile, None, None],
+    'Notification': [Notification_v_8, Notification_v_14, None, None, None, None, None, Notification_v_15, Notification_v_16, Notification_v_19, None, None, Notification_v_20, models.Notification, None],
+    'Comment': [Comment_v_14, None, None, None, None, None, None, Comment_v_19, None, None, None, None, models.Comment, None, None],
+    'InternalTip': [InternalTip_v_10, None, None, InternalTip_v_14, None, None, None, InternalTip_v_19, None, None, None, None, InternalTip_v_20, models.InternalTip, None],
+    'InternalFile': [InternalFile_v_10, None, None, InternalFile_v_19, None, None, None, None, None, None, None, None, models.InternalFile, None, None],
+    'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None, None, None, None, None, None, None],
+    'ReceiverTip': [ReceiverTip_v_19, None, None, None, None, None, None, None, None, None, None, None, models.ReceiverTip, None, None],
+    'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None, None, None, None, None, None],
+    'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None, None, None, None, None, None],
+    'Message': [Message_v_19, None, None, None, None, None, None, None, None, None, None, None, models.Message, None, None],
+    'Stats': [Stats_v_14, None, None, None, None, None, None, Stats_v_16, None, models.Stats, None, None, None, None, None],
+    'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None, None, None, None, None],
+    'Field': [Field_v_20, None, None, None, None, None, None, None, None, None, None, None, None, models.Field, None],
+    'FieldOption': [FieldOption_v_20, None, None, None, None, None, None, None, None, None, None, None, None, models.FieldOption, None],
+    'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None, None, None, None, None, None],
+    'Step': [Step_v_20, None, None, None, None, None, None, None, None, None, None, None, None, models.Step, None],
+    'StepField': [models.StepField, None, None, None, None, None, None, None, None, None, None, None, None, None, None],
+    'Anomalies': [models.Anomalies, None, None, None, None, None, None, None, None, None, None, None, None, None, None],
+    'EventLogs': [models.EventLogs, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
 }
 
 
@@ -69,6 +70,7 @@ def perform_version_update(starting_ver, ending_ver):
         "1819": Replacer1819,
         "1920": Replacer1920,
         "2021": Replacer2021,
+        "2122": Replacer2122,
     }
     
     to_delete_on_fail = []
@@ -81,7 +83,6 @@ def perform_version_update(starting_ver, ending_ver):
 
     try:
         while starting_ver < ending_ver:
-
             if not starting_ver:
                 old_db_file = os.path.abspath(os.path.join(
                     GLSetting.gldb_path, 'glbackend.db'))
@@ -94,7 +95,7 @@ def perform_version_update(starting_ver, ending_ver):
             to_delete_on_fail.append(new_db_file)
             to_delete_on_success.append(old_db_file)
             
-            print "  Updating DB from version %d to version %d" % (starting_ver, starting_ver + 1)
+            print "Updating DB from version %d to version %d" % (starting_ver, starting_ver + 1)
 
             update_key = "%d%d" % (starting_ver, starting_ver + 1)
             if update_key not in releases_supported:
