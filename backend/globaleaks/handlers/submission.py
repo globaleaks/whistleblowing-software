@@ -108,11 +108,11 @@ def import_receivers(store, submission, receiver_id_list):
         try:
             if not GLSetting.memory_copy.allow_unencrypted and \
                             receiver.pgp_key_status != u'enabled':
-                log.err("Encrypted only submissions are supported. Cannot select [%s]" % receiver_id)
+                log.err("Encrypted only submissions are supported. Cannot select [%s]" % receiver.id)
                 continue
             submission.receivers.add(receiver)
         except Exception as excep:
-            log.err("Receiver %s can't be assigned to the tip [%s]" % (receiver_id, excep))
+            log.err("Receiver %s can't be assigned to the tip [%s]" % (receiver.id, excep))
             continue
 
         log.debug("+receiver [%s] In tip (%s) #%d" % \

@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import admin
-from globaleaks.handlers.rtip import db_delete_rtip
+from globaleaks.handlers.rtip import db_delete_itip
 from globaleaks.jobs.base import GLJob
 from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, db_save_events_on_db
 from globaleaks.models import InternalTip, InternalFile, Receiver, ReceiverTip, ReceiverFile
