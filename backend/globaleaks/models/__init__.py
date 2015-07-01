@@ -234,6 +234,8 @@ class InternalTip(Model):
 
     wb_steps = JSON()
     preview = JSON()
+    progressive = Int(default=0)
+    tor2web = Bool(default=False)
     expiration_date = DateTime()
     last_activity = DateTime(default_factory=datetime_null)
 

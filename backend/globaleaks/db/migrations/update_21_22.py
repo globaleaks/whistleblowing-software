@@ -22,5 +22,36 @@ class Context_v_21(Model):
     show_receivers_in_alphabetical_order = Bool()
     presentation_order = Int()
 
+
+class InternalTip_v_21(Model):
+    __storm_table__ = 'internaltip'
+    context_id = Unicode()
+    wb_steps = JSON()
+    preview = JSON()
+    expiration_date = DateTime()
+    last_activity = DateTime()
+    new = Int()
+
+
 class Replacer2122(TableReplacer):
-    pass
+    def migrate_InternalTip(self):
+        print "%s InternalTip migration assistant" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("InternalTip", 21))
+
+        for old_obj in old_objs:
+            new_obj = self.get_right_model("InternalTip", 22)()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'tor2web':
+                    new_obj.tor2web = False
+                    continue
+
+                if v.name == 'progressive':
+                    new_obj.progressive = 0
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()

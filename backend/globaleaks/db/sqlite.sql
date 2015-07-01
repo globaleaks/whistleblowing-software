@@ -103,6 +103,8 @@ CREATE TABLE internaltip (
     expiration_date VARCHAR NOT NULL,
     wb_steps BLOB,
     preview BLOB,
+    progressive INTEGER NOT NULL,
+    tor2web INTEGER NOT NULL,
     last_activity VARCHAR,
     context_id VARCHAR NOT NULL,
     new INTEGER NOT NULL,
