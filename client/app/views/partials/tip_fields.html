@@ -6,33 +6,32 @@
         <span data-ng-if="$parent.field || preview">{{field.label}}:</span>
       </div>
 
-      <span data-ng-switch="" on="field.type" class="nested">
+      <div data-ng-switch="" on="field.type" class="nested">
         <span data-ng-switch-when="inputbox" class="preformatted">{{field.value}}</span>
 
-        <div data-ng-switch-when="textarea" class="preformatted">{{field.value}}</div>
+        <span data-ng-switch-when="textarea" class="preformatted">{{field.value}}</span>
 
-        <div data-ng-switch-when="selectbox" class="preformatted">{{field.value}}</div>
+        <span data-ng-switch-when="selectbox" class="preformatted">{{field.value}}</span>
 
-        <div data-ng-switch-when="checkbox">
-          <ul>
-            <div data-ng-repeat="answer in field.value">
+        <span data-ng-switch-when="checkbox">
+          <ul data-ng-repeat="answer in field.value">
+            <li>
               <span data-ng-hide="answer.value"><i class="glyphicon glyphicon-unchecked"></i></span>
               <span data-ng-show="answer.value"><i class="glyphicon glyphicon-check"></i></span>
               <span>{{answer.name}}</span>
-            </div>
+            </li>
           </ul>
-        </div>
+        </span>
 
-        <div data-ng-switch-when="tos">
+        <span data-ng-switch-when="tos">
           <span data-ng-if="field.value" data-translate>Accepted</span>
           <span data-ng-if="!field.value" data-translate>Not accepted</span>
-        </div>
+        </span>
 
-        <div data-ng-switch-when="fieldgroup">
+        <span data-ng-switch-when="fieldgroup">
           <div data-ng-include="'views/partials/tip_fields.html'"></div>
-        </div>
-      </span>
-
+        </span>
+      </div>
     </div>
   </div>
 </div>
