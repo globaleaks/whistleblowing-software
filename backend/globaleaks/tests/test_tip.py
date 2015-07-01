@@ -53,8 +53,8 @@ class TestTipInstance(TTip):
 
         self.assertEqual(self.submission_desc['wb_steps'], dummySubmissionDict['wb_steps'])
 
-        tips_receiver_1, _ = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
-        tips_receiver_2, _ = yield receiver.get_receivertip_list(self.receiver2_desc['id'], 'en')
+        tips_receiver_1 = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
+        tips_receiver_2 = yield receiver.get_receivertip_list(self.receiver2_desc['id'], 'en')
 
         self.rtip1_id = tips_receiver_1[0]['id']
         self.rtip2_id = tips_receiver_2[0]['id']
@@ -108,7 +108,7 @@ class TestTipInstance(TTip):
 
     @inlineCallbacks
     def receiver1_get_tip_list(self):
-        tiplist, _ = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
+        tiplist = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
 
         # this test has been added to test issue/515
         self.assertTrue(isinstance(tiplist, list))
@@ -226,55 +226,17 @@ class TestTipInstance(TTip):
 
         self.assertNotEqual(tip_expiring['expiration_date'], tip_postponeed['expiration_date'])
 
-    @inlineCallbacks
-    def postpone_comment_content_check(self):
-        """
-           'type': "1", # the first kind of structured system_comments
-           'receiver_name': rtip.receiver.name,
-           'now' : datetime_now(),
-           'expire_on' : datetime_to_ISO8601(rtip.internaltip.expiration_date)
-        """
-        cl = yield rtip.get_comment_list_receiver(self.receiver1_desc['id'],
-                                                 self.rtip1_id)
-
-        self.assertEqual(cl[3]['type'], u'system')
-
-        sys_comm = cl[3]
-
-        self.assertEqual(sys_comm['system_content']['receiver_name'], self.receiver2_desc['name'])
-        self.assertEqual(sys_comm['system_content']['type'], u"1")
-        new_expire = sys_comm['system_content']['expire_on']
-
-        # TODO implement a more complete test
-
 
     @inlineCallbacks
     def receiver2_fail_in_delete_internal_tip(self):
-        yield self.assertFailure(rtip.delete_internal_tip(self.receiver2_desc['id'],
-                                                          self.rtip2_id),
+        yield self.assertFailure(rtip.delete_rtip(self.receiver2_desc['id'],
+                                 self.rtip2_id),
                                  errors.ForbiddenOperation)
-
-    @inlineCallbacks
-    def receiver1_see_system_comments(self):
-        cl = yield rtip.get_comment_list_receiver(self.receiver1_desc['id'],
-                                        self.rtip1_id)
-
-        self.assertEqual(len(cl), 5)
-        self.assertEqual(cl[0]['type'], u'receiver')
-        self.assertEqual(cl[1]['type'], u'receiver')
-        self.assertEqual(cl[2]['type'], u'whistleblower')
-
-        self.assertEqual(cl[3]['type'], u'system')
-        self.assertEqual(cl[3]['system_content']['receiver_name'], self.receiver2_desc['name'])
-
-        self.assertEqual(cl[4]['type'],u'system')
-
 
     @inlineCallbacks
     def receiver1_delete_tip(self):
 
-        yield rtip.delete_internal_tip(self.receiver1_desc['id'],
-            self.rtip1_id)
+        yield rtip.delete_rtip(self.receiver1_desc['id'], self.rtip1_id)
 
         self.assertFailure(rtip.get_tip(self.receiver1_desc['id'], self.rtip1_id, 'en'),
                            errors.TipIdNotFound)
@@ -345,7 +307,7 @@ class TestTipInstance(TTip):
     @inlineCallbacks
     def do_receivers_messages_and_unread_verification(self):
         # Receiver1 check the presence of the whistleblower message (only 1)
-        x, _ = yield receiver.get_receivertip_list(self.dummyNode, self.receiver1_desc['id'], 'en')
+        x = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
         self.assertEqual(x[0]['message_counter'], 1)
 
         # Receiver1 send one message
@@ -367,7 +329,7 @@ class TestTipInstance(TTip):
                 self.assertEqual(r['message_counter'], 2)
 
         # Receiver2 check the presence of the whistleblower message (2 expected)
-        a, _ = yield receiver.get_receivertip_list(self.dummyNode, self.receiver1_desc['id'], 'en')
+        a = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
         self.assertEqual(len(a), 1)
         self.assertEqual(a[0]['message_counter'], 2)
 
@@ -436,7 +398,6 @@ class TestTipInstance(TTip):
         yield self.verify_default_expiration_date()
         yield self.update_node_properties()
         yield self.success_postpone_expiration_date()
-        yield self.postpone_comment_content_check()
         # end of test
         yield self.receiver2_fail_in_delete_internal_tip()
         yield self.receiver1_delete_tip()
