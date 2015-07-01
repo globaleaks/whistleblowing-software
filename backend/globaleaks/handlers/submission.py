@@ -270,7 +270,6 @@ class SubmissionCreate(BaseHandler):
 
         This create a Token, require to complete the submission later.
         """
-
         if not GLSetting.memory_copy.accept_submissions:
             raise errors.SubmissionDisabled
 

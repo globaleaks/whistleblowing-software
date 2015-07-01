@@ -371,11 +371,9 @@ class Replacer2021(TableReplacer):
         old_objs = self.store_old.find(self.get_right_model("Context", 20))
 
         for old_obj in old_objs:
-
             new_obj = self.get_right_model("Context", 21)()
 
             for _, v in new_obj._storm_columns.iteritems():
-
                 if v.name == 'enable_comments':
                     if old_obj.enable_private_messages and old_obj.receivers.count() == 1:
                         new_obj.enable_comments = False
@@ -395,11 +393,9 @@ class Replacer2021(TableReplacer):
         old_objs = self.store_old.find(self.get_right_model("Step", 20))
 
         for old_obj in old_objs:
-
             new_obj = self.get_right_model("Step", 21)()
 
             for _, v in new_obj._storm_columns.iteritems():
-
                 if v.name == 'presentation_order':
                     if old_obj.number:
                         new_obj.presentation_order = old_obj.number
@@ -419,11 +415,9 @@ class Replacer2021(TableReplacer):
         old_objs = self.store_old.find(self.get_right_model("Field", 20))
 
         for old_obj in old_objs:
-
             new_obj = self.get_right_model("Field", 21)()
 
             for _, v in new_obj._storm_columns.iteritems():
-
                 if v.name == 'presentation_order':
                     if old_obj.number:
                         new_obj.presentation_order = old_obj.number
@@ -443,11 +437,9 @@ class Replacer2021(TableReplacer):
         old_objs = self.store_old.find(self.get_right_model("FieldOption", 20))
 
         for old_obj in old_objs:
-
             new_obj = self.get_right_model("FieldOption", 21)()
 
             for _, v in new_obj._storm_columns.iteritems():
-
                 if v.name == 'presentation_order':
                     if old_obj.number:
                         new_obj.presentation_order = old_obj.number
@@ -467,11 +459,9 @@ class Replacer2021(TableReplacer):
         old_objs = self.store_old.find(self.get_right_model("InternalTip", 20))
 
         for old_obj in old_objs:
-
             new_obj = self.get_right_model("InternalTip", 21)()
 
             for _, v in new_obj._storm_columns.iteritems():
-
                 if v.name == 'preview':
                     preview_data = []
                     for s in old_obj.wb_steps:
