@@ -22,8 +22,7 @@ profile usr.bin.globaleaks {
     /bin/dash ix,
     /usr/bin/gpg ix,
 
-    /usr/share/globaleaks/** r,
-    /usr/share/pyshared/** r,
+    /usr/share/** r,
     /usr/include/python2.7/** r,
     /usr/lib/python2.7/** mr,
     /usr/local/lib/python2.7/** mr,
