@@ -877,6 +877,11 @@ InternalTip.receivertips = ReferenceSet(
     ReceiverTip.internaltip_id
 )
 
+ReceiverTip.messages = ReferenceSet(
+    ReceiverTip.id,
+    Message.receivertip_id
+)
+
 InternalTip.internalfiles = ReferenceSet(
     InternalTip.id,
     InternalFile.internaltip_id
