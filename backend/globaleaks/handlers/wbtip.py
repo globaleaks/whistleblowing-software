@@ -290,10 +290,8 @@ def get_messages_content(store, wb_tip_id, receiver_id):
     if not rtip:
         raise errors.TipMessagesNotFound
 
-    messages = store.find(Message, Message.receivertip_id == rtip.id)
-
     messages_list = []
-    for msg in messages:
+    for msg in rtip.messages:
         messages_list.append(wb_serialize_message(msg))
 
         if not msg.visualized and msg.type == u'receiver':

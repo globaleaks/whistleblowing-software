@@ -276,10 +276,8 @@ def receiver_serialize_message(msg):
 def get_messages_list(store, user_id, tip_id):
     rtip = db_access_tip(store, user_id, tip_id)
 
-    msglist = store.find(Message, Message.receivertip_id == rtip.id)
-
     content_list = []
-    for msg in msglist:
+    for msg in rtip.messages:
         content_list.append(receiver_serialize_message(msg))
 
         if not msg.visualized and msg.type == u'whistleblower':
@@ -340,7 +338,6 @@ class RTipInstance(BaseHandler):
         """
         Some special operation over the Tip are handled here
         """
-
         request = self.validate_message(self.request.body, requests.TipOpsDesc)
 
         if request['operation']:
