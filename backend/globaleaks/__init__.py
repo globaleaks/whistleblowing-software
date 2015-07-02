@@ -17,10 +17,8 @@ DATABASE_VERSION = 22
 LANGUAGES_SUPPORTED = [
  { "code": "ar", "name": "Arabic" },
  { "code": "bg", "name": "Bulgarian" },
- { "code": "bs", "name": "Bosnian" },
  { "code": "ca", "name": "Catalan" },
  { "code": "cs", "name": "Czech" },
- { "code": "cy", "name": "Welsh" },
  { "code": "de", "name": "German" },
  { "code": "el", "name": "Greek" },
  { "code": "en", "name": "English" },
