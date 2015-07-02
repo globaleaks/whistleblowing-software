@@ -9,6 +9,10 @@ describe('adming configure node', function() {
     element(by.model('admin.node.exception_email')).clear();
     element(by.model('admin.node.exception_email')).sendKeys('globaleaks-exceptions@mailinator.com');
 
+    //enable all receivers to postpone and delete tips
+    element(by.model('admin.node.can_postpone_expiration')).click();
+    element(by.model('admin.node.can_delete_submission')).click();
+
     // grant tor2web permissions
     element(by.cssContainingText("a", "Tor2web Settings")).click();
     element(by.model('admin.node.tor2web_receiver')).click();

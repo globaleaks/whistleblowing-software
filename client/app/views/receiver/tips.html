@@ -2,7 +2,8 @@
   <div class="col-md-12">
     <div class="col-md-6 pull-left">
       <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission" class="pull-left">
-        <span data-ng-if="selected_tips.length !== tips.length"
+        <span id="tip-action-select-all"
+              data-ng-if="selected_tips.length !== tips.length"
               data-ng-click="select_all()"
               popover="{{'Select all' | translate}}"
               popover-placement="top"
@@ -11,7 +12,8 @@
           <i class="glyphicon glyphicon glyphicon-unchecked"></i>
         </span>
 
-        <span data-ng-if="selected_tips.length === tips.length"
+        <span id="tip-action-select-all"
+              data-ng-if="selected_tips.length === tips.length"
               data-ng-click="deselect_all()"
               popover="{{'Deselect all' | translate}}"
               popover-placement="top"
@@ -20,8 +22,8 @@
           <i class="glyphicon glyphicon glyphicon-check"></i>
         </span>
 
-        <span data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
-            id="tip-action-postpone-selected"
+        <span id="tip-action-postpone-selected"
+            data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
             data-ng-click="tip_postpone_all()"
             popover="{{'Postpone tips expiration date' | translate}}"
             popover-placement="top"
@@ -30,8 +32,8 @@
           <i class="glyphicon glyphicon-time"></i>
         </span>
 
-        <span data-ng-if="selected_tips.length && preferences.can_delete_submission"
-              id="tip-action-delete-selected"
+        <span id="tip-action-delete-selected"
+              data-ng-if="selected_tips.length && preferences.can_delete_submission"
               data-ng-click="tip_delete_all()"
               popover="{{'Delete tips' | translate}}"
               popover-placement="top"
@@ -40,7 +42,8 @@
           <span class="glyphicon glyphicon-trash"></span>
         </span>
 
-        <span data-ng-click="reload()"
+        <span id="tip-action-reload"
+            data-ng-click="reload()"
             popover="{{'Refresh tip list' | translate}}"
             popover-placement="top"
             popover-trigger="mouseenter"
@@ -50,12 +53,13 @@
       </span>
       <span class="col-md-6 pull-left">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="{{'Search' | translate}}" ng-model="search">
+          <input id="search-filter" type="text" class="form-control" placeholder="{{'Search' | translate}}" ng-model="search">
         </div>
       </span>
     </div>
     <div class="pull-right">
-      <a href="#/receiver/preferences"
+      <a id="receiver-link-preferences"
+         href="#/receiver/preferences"
           popover="{{'Preferences' | translate}}"
           popover-placement="top"
           popover-trigger="mouseenter"
