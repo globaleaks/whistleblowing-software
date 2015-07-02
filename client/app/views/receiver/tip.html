@@ -2,26 +2,27 @@
   <div class="row">
     <div class="col-md-12">
       <div class="pull-left">
-        <a href="#/receiver/tips"
-            popover="{{'Tips' | translate}}"
-            popover-placement="top"
-            popover-trigger="mouseenter"
-            class="btn btn-default">
+        <a id="link-tiplist"
+           href="#/receiver/tips"
+           popover="{{'Tips' | translate}}"
+           popover-placement="top"
+           popover-trigger="mouseenter"
+           class="btn btn-default">
           <span class="glyphicon glyphicon-th-list"></span>
         </a>
 
-        <span data-ng-if="preferences.can_postpone_expiration"
-            id="tip-action-postpone-selected"
-            data-ng-click="tip_postpone()"
-            popover="{{'Postpone tips expiration date' | translate}}"
-            popover-placement="top"
-            popover-trigger="mouseenter"
-            class="btn btn-default">
+        <span id="tip-action-postpone"
+              data-ng-if="preferences.can_postpone_expiration"
+              data-ng-click="tip_postpone()"
+              popover="{{'Postpone tips expiration date' | translate}}"
+              popover-placement="top"
+              popover-trigger="mouseenter"
+              class="btn btn-default">
           <i class="glyphicon glyphicon-time"></i>
         </span>
 
-        <span data-ng-if="preferences.can_delete_submission"
-              id="tip-action-delete-selected"
+        <span id="tip-action-delete"
+              data-ng-if="preferences.can_delete_submission"
               data-ng-click="tip_delete()"
               popover="{{'Delete tips' | translate}}"
               popover-placement="top"
@@ -30,17 +31,19 @@
           <span class="glyphicon glyphicon-trash"></span>
         </span>
 
-        <span data-ng-click="reload()"
-             popover="{{'Refresh tip list' | translate}}"
-             popover-placement="top"
-             popover-trigger="mouseenter"
-             class="btn btn-default">
+        <span id="link-reload"
+              data-ng-click="reload()"
+              popover="{{'Refresh tip list' | translate}}"
+              popover-placement="top"
+              popover-trigger="mouseenter"
+              class="btn btn-default">
           <span class="glyphicon glyphicon-refresh"></span>
         </span> 
       </div>
 
       <div class="pull-right">
-        <a href="#/receiver/preferences"
+        <a id="link-preferences"
+           href="#/receiver/preferences"
            popover="{{'Preferences' | translate}}"
            popover-placement="top"
            popover-trigger="mouseenter"

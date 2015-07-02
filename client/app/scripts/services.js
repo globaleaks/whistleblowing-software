@@ -271,7 +271,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.done = false;
 
       var setCurrentContextReceivers = function(context_id, receivers_ids) {
-        self.context = $filter('filter')($rootScope.contexts, {"id": context_id})[0];
+        self.context = angular.copy($filter('filter')($rootScope.contexts, {"id": context_id})[0]);
 
         var receivers_selected_count = 0;
         self.receivers_selected = {};
@@ -330,7 +330,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
        *
        * */
       self.create = function(context_id, receivers_ids, cb) {
-
         setCurrentContextReceivers(context_id, receivers_ids);
 
         self._submission = new submissionResource({

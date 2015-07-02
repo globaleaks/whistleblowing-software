@@ -1,14 +1,16 @@
 <div class="row">
   <div class="col-md-12">
     <div class="pull-left">
-      <a href="#/receiver/tips"
-          popover="{{'Tips' | translate}}"
-          popover-placement="top"
-          popover-trigger="mouseenter"
-          class="btn btn-default">
+      <a id="link-tiplist"
+         href="#/receiver/tips"
+         popover="{{'Tips' | translate}}"
+         popover-placement="top"
+         popover-trigger="mouseenter"
+         class="btn btn-default">
         <span class="glyphicon glyphicon-th-list"></span>
       </a>
-      <span data-ng-click="reload()"
+      <span id="link-reload"
+            data-ng-click="reload()"
             popover="{{'Refresh tip list' | translate}}"
             popover-placement="top"
             popover-trigger="mouseenter"
