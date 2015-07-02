@@ -58,7 +58,7 @@
       <div class="row text-right">
         <a class="btn btn-success" data-ng-click="save_all()">
           <i class="glyphicon glyphicon-ok"></i>
-          <span data-translate>Save All</span>
+          <span data-translate>Save all</span>
         </a>
       </div>
       <div data-as-sortable="sortableOptions" ng-model="admin.receivers">
@@ -228,10 +228,10 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <input data-ng-model="receiver.can_postpone_expiration" type="checkbox" data-ng-disabled="node.can_postpone_expiration" />
-                      <label data-translate>Allow the Receiver to postpone expiration date of the Tips</label>
+                      <label data-translate>Allow the receiver to postpone expiration date of the tips</label>
                       <div data-ng-show="receiver.can_postpone_expiration && !node.can_postpone_expiration">
                         <span class="label label-info" data-translate>Now enabled:</span>
-                        <span data-translate>The Receiver will be able to postpone Tip expiration.</span>
+                        <span data-translate>The receiver will be able to postpone tip expiration.</span>
                       </div>
                       <div data-ng-show="node.can_postpone_expiration">
                         <span class="label label-info" data-translate>Now enabled:</span>
@@ -240,10 +240,10 @@
                     </div>
                     <div class="form-group">
                       <input data-ng-model="receiver.can_delete_submission" type="checkbox" data-ng-disabled="node.can_delete_submission" />
-                      <label data-translate>Allow the Receiver to delete Tips</label>
+                      <label data-translate>Allow the receiver to delete tips</label>
                       <div data-ng-show="receiver.can_delete_submission && !node.can_delete_submission">
                         <span class="label label-info" data-translate>Now enabled:</span>
-                        <span data-translate>The Receiver will be able to delete Tips and their content.</span>
+                        <span data-translate>The receiver will be able to delete tips and their content.</span>
                       </div>
                       <div data-ng-show="node.can_delete_submission">
                         <span class="label label-info" data-translate>Now enabled:</span>
