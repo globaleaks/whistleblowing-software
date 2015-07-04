@@ -36,6 +36,32 @@ describe('globaLeaks process', function() {
     return deferred;
   }
 
+  var perform_submission = function() {
+    var deferred = protractor.promise.defer();
+
+    browser.get('/#/submission');
+    element(by.id('NextStepButton')).click().then(function () {
+      element(by.id('step-1')).element(by.id('field-0-input')).sendKeys(tip_text).then(function () {
+        browser.executeScript('$(\'input[type="file"]\').attr("style", "opacity:0; position:absolute;");');
+        element(by.id('step-1')).element(by.id('field-3-input')).element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
+          element(by.id('NextStepButton')).click().then(function () {
+            element(by.id('step-2')).element(by.id('field-0-input')).click().then(function () {
+              element(by.id('SubmitButton')).click().then(function() {
+                expect(browser.getLocationAbsUrl()).toContain('/receipt');
+                element(by.id('KeyCode')).getText().then(function (txt) {
+                  receipts.unshift(txt);
+                  deferred.fulfill();
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+
+    return deferred;
+  }
+
   it('should redirect to /submission by clicking on the blow the whistle button', function() {
     browser.get('/#/');
     element(by.css('[data-ng-click="goToSubmission()"]')).click().then(function () {
@@ -43,28 +69,30 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('should be able to submit 3 tips', function() {
-    for (var i=0; i<3; i++) {
-      browser.get('/#/submission');
-      element(by.id('NextStepButton')).click().then(function () {
-        element(by.id('step-1')).element(by.id('field-0-input')).sendKeys(tip_text).then(function () {
-          browser.executeScript('$(\'input[type="file"]\').attr("style", "opacity:0; position:absolute;");');
-          element(by.id('step-1')).element(by.id('field-3-input')).element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
-            element(by.id('NextStepButton')).click().then(function () {
-              element(by.id('step-2')).element(by.id('field-0-input')).click().then(function () {
-                element(by.id('SubmitButton')).click().then(function() {
-                  expect(browser.getLocationAbsUrl()).toContain('/receipt');
-                  element(by.id('KeyCode')).getText().then(function (txt) {
-                    receipts.unshift(txt);
-                  });
-                });
-              });
-            });
-          });
-        });
+  it('should be able to submit a tip (1)', function() {
+    perform_submission().then(function() {
+      element(by.id('SubmissionReceiptButton')).click().then(function() {
+        expect(browser.getLocationAbsUrl()).toContain('/status');
       });
-    }
+    });
   });
+
+  it('should be able to submit a tip (2)', function() {
+    perform_submission().then(function() {
+      element(by.id('SubmissionReceiptButton')).click().then(function() {
+        expect(browser.getLocationAbsUrl()).toContain('/status');
+      });
+    });
+  });
+
+  it('should be able to submit a tip (2)', function() {
+    perform_submission().then(function() {
+      element(by.id('SubmissionReceiptButton')).click().then(function() {
+        expect(browser.getLocationAbsUrl()).toContain('/status');
+      });
+    });
+  });
+
 
   it('Whistleblower should be able to access the first submission', function() {
     login_whistleblower(receipts[0]).then(function() {
