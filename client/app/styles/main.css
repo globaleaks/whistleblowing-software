@@ -342,3 +342,15 @@ th {
 .container-fluid {
   padding: 60px;
 }
+
+.animate-enter,
+.animate-leave.animate-leave-active {
+  -webkit-transition: 1s linear all; /* Safari/Chrome */
+  transition: 1s linear all; /* All other modern browsers and IE10+ */
+  opacity: 0;
+}
+
+.animate-leave,
+.animate-enter.animate-enter-active {
+  opacity: 1;
+}

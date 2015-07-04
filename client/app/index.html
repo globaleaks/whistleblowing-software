@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-ng-app="GLClient" data-ng-controller="MainCtrl" ng-strict-di>
+<html data-ng-app="GLClient" data-ng-controller="MainCtrl" data-ng-keydown="keypress($event)" data-ng-strict-di>
   <head>
     <title ng-bind="node.name">GlobaLeaks</title>
     <meta charset="utf-8">
@@ -96,8 +96,8 @@
     <!-- endbuild -->
 
     <!-- build:js scripts.js -->
-    <script src="components/jquery/dist/jquery.js"></script>
     <script src="components/angular/angular.js"></script>
+    <script src="components/angular-animate/angular-animate.js"></script>
     <script src="components/angular-cookies/angular-cookies.js"></script>
     <script src="components/angular-elastic/elastic.js"></script>
     <script src="components/angular-native-dragdrop/draganddrop.js"></script>

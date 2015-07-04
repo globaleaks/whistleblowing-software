@@ -29,24 +29,10 @@ angular.module('submissionUI', []).
       }, spinner = new Spinner(opts).spin(element[0]);
   };
 }).
-  directive('fadeout', function(){
-    return function(scope, element, attrs) {
-      var fadeout_delay = 3000;
-
-      element.mouseenter(function(){
-        element.stop().animate({opacity:'100'});
-      });
-      element.mouseleave(function(){
-        element.fadeOut(fadeout_delay);
-      });
-
-      element.fadeOut(fadeout_delay);
-    };
-}).
   directive('keycodevalidator', ['$q', '$timeout', function($q, $timeout) {
     return {
       require: 'ngModel',
-      link: function(scope, elm, attrs, ngModel) {
+      link: function(scope, elem, attrs, ngModel) {
         ngModel.$setValidity('keycodevalidator', false);
         ngModel.$parsers.unshift(function(viewValue) {
           var result = '';
@@ -63,7 +49,7 @@ angular.module('submissionUI', []).
               break;
             }
           }
-          $(elm).val(result);
+          angular.element(elem).val(result);
           if (result.length === 19) {
             ngModel.$setValidity('keycodevalidator', true);
           }
@@ -77,8 +63,8 @@ angular.module('submissionUI', []).
       scope: {
         "creditCard": "&"
       },
-      link: function(scope, elm, attrs) {
-        var svgItem = $(elm)[0];
+      link: function(scope, elem, attrs) {
+        var svgItem = angular.element(elem)[0];
         svgItem.addEventListener("load",function() {
           var creditcard = svgItem.contentDocument.getElementById('credit_card');
           var yourname = svgItem.contentDocument.getElementById('your_name');
