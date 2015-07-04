@@ -42,7 +42,7 @@ describe('globaLeaks process', function() {
     browser.get('/#/submission');
     element(by.id('NextStepButton')).click().then(function () {
       element(by.id('step-1')).element(by.id('field-0-input')).sendKeys(tip_text).then(function () {
-        browser.executeScript('$(\'input[type="file"]\').attr("style", "opacity:0; position:absolute;");');
+        browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; position:absolute;");');
         element(by.id('step-1')).element(by.id('field-3-input')).element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
           element(by.id('NextStepButton')).click().then(function () {
             element(by.id('step-2')).element(by.id('field-0-input')).click().then(function () {
@@ -137,7 +137,7 @@ describe('globaLeaks process', function() {
 
   it('Whistleblower should be able to attach a new file to the first submission', function() {
     login_whistleblower(receipts[0]).then(function () {
-      browser.executeScript('$(\'input[type="file"]\').attr("style", "opacity:0; position:absolute;");');
+      browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; position:absolute;");');
       element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
         // TODO: test file addition
       });

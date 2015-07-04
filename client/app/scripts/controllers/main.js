@@ -263,6 +263,14 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       }
     });
 
+    $rootScope.keypress = function(e) {
+       if (((e.which || e.keyCode) === 116) || /* F5 */
+           ((e.which || e.keyCode) === 82 && (e.ctrlKey || e.metaKey))) {  /* (ctrl or meta) + r */
+         e.preventDefault();
+         $rootScope.$broadcast("REFRESH");
+       }
+    }
+
     init();
 
   }
