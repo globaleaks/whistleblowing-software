@@ -1,3 +1,6 @@
+Changes in version 2.60.85 - 2015-07-05
+    o Packaging fixes
+
 Changes in version 2.60.84 - 2015-07-05
     o Fix Apparmor script adding missing allowed paths
     o Improve UX of Tip page and Tip List page
