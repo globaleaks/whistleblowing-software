@@ -309,7 +309,7 @@ class GLSettingsClass(object):
         self.debug_option_mlockall = False
 
         self.disable_mail_torification = False
-        self.disable_mail_notifications = False
+        self.disable_mail_notification = False
 
 
     def eval_paths(self):
@@ -429,7 +429,7 @@ class GLSettingsClass(object):
 
         self.disable_mail_torification = self.cmdline_options.disable_mail_torification
 
-        self.disable_mail_notifications = self.cmdline_options.disable_mail_notifications
+        self.disable_mail_notification = self.cmdline_options.disable_mail_notification
 
         self.socks_host = self.cmdline_options.socks_host
 
