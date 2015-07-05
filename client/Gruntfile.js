@@ -37,7 +37,7 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      build: ['tmp']
+      build: ['tmp', 'build']
     },
 
     connect: {
@@ -324,12 +324,17 @@ module.exports = function(grunt) {
         grunt.file.copy('tmp/' + files[x], 'build/' + files[x])
     }
 
-    var dirs = ['data', 'fonts', 'img', 'l10n']
+    var dirs = ['data', 'img', 'l10n']
     for (var x in dirs) {
       grunt.file.recurse('tmp/' + dirs[x], function(absdir, rootdir, subdir, filename) {
         grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
       });
     }
+
+    grunt.file.mkdir('build/fonts');
+    grunt.file.recurse('tmp/components/bootstrap/fonts', function(absdir, rootdir, subdir, filename) {
+      grunt.file.copy(absdir, path.join('build/fonts', subdir || '', filename || ''));
+    });
 
     rm_rf('tmp');
   });
