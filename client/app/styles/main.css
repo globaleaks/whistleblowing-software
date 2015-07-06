@@ -343,14 +343,20 @@ th {
   padding: 60px;
 }
 
-.animate-enter,
-.animate-leave.animate-leave-active {
-  -webkit-transition: 1s linear all; /* Safari/Chrome */
-  transition: 1s linear all; /* All other modern browsers and IE10+ */
-  opacity: 0;
+.fadeout.ng-enter,
+.fadeout.ng-leave {
+  transition:2s ease-in all;
+  -webkit-transition-timing-function: 2s ease-in all;
+  opacity: 1;
 }
 
-.animate-leave,
-.animate-enter.animate-enter-active {
-  opacity: 1;
+.fadeout.ng-enter-stagger,
+.fadeout.ng-leave-stagger {
+  transition-delay:1s;
+  -webkit-transition-delay:1s;
+}
+
+.fadeout.ng-enter-active,
+.fadeout.ng-leave-active {
+  opacity: 0;
 }
