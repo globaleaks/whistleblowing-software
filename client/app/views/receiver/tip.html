@@ -93,7 +93,7 @@
           <dd>{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</dd>
         </dl>
         <dl data-ng-repeat="step in tip.wb_steps">
-          <dt id="step-{{$index}}">
+          <dt id="step-{{$index}}" class="stepTitle>
             <span data-translate>Step</span>
             <span>{{$index + 1}}: {{::step.label}}</span>
           </dt>

@@ -16,6 +16,10 @@
   cursor: pointer;
 }
 
+.stepTitle, .fieldTitle {
+  font-weight: bold;
+}
+
 .fieldAnswer {
   margin-bottom: 10px;
 }

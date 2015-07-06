@@ -1,7 +1,7 @@
 <div data-ng-init="fields = (field == undefined) ? fieldsRoot : field.children; fieldId  = $parent.fieldId ? $parent.fieldId + '-' + $index : 'field-' + $index">
   <div data-ng-repeat="field in fields | filter:filterFields | orderBy:'y'">
     <div id="{{fieldId}}" data-ng-class="{'nested': !preview}" class="fieldAnswer">
-      <div>
+      <div class="fieldTitle">
         <span data-ng-if="!$parent.field && !preview">{{$index + 1}}) {{field.label}}:</span>
         <span data-ng-if="$parent.field || preview">{{field.label}}:</span>
       </div>
