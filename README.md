@@ -1,6 +1,6 @@
 # GlobaLeaks
 
-[![Join the chat at https://gitter.im/globaleaks/GlobaLeaks](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/globaleaks/GlobaLeaks?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) or on IRC [irc.oftc.net channel #globaleaks](https://irc.lc/OFTC/globaleaks/GL_github_user) .
+Join the chat on IRC [irc.oftc.net channel #globaleaks](https://irc.lc/OFTC/globaleaks/GL_github_user) .
 
 GlobaLeaks is a project aimed at creating a free software whistleblowing framework.
 
