@@ -718,7 +718,6 @@ class GLSettingsClass(object):
 
         # temporary .aes files must be simply deleted
         for f in os.listdir(GLSetting.tmp_upload_path):
-
             path = os.path.join(GLSetting.tmp_upload_path, f)
             print "Removing old temporary file: %s" % path
 

@@ -100,7 +100,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         The last action is kept track because the internal status
         need to track them. read below read()
         """
-
         assert (self.last_action != 'read'), "you can write after read!"
 
         self.last_action = 'write'
@@ -114,8 +113,13 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             raise wer
 
     def close(self):
-        if any(x in self.file.mode for x in 'wa') and not self.close_called:
-            self.file.write(self.encryptor.finalize())
+        if not self.close_called:
+            if any(x in self.file.mode for x in 'wa'):
+                self.file.write(self.encryptor.finalize())
+
+            if self.delete:
+                os.remove(self.keypath)
+
         return _TemporaryFileWrapper.close(self)
 
     def read(self, c=None):
@@ -136,7 +140,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
 class GLSecureFile(GLSecureTemporaryFile):
     def __init__(self, filepath):
-
         self.filepath = filepath
 
         self.key_id = os.path.basename(self.filepath).split('.')[0]
