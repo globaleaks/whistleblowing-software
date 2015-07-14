@@ -476,11 +476,6 @@ class TestGLWithPopulatedDB(TestGL):
                                                        'en')
 
     @inlineCallbacks
-    def run_delivery_and_notification_scheds(self):
-        yield delivery_sched.DeliverySchedule().operation()
-        yield notification_sched.NotificationSchedule().operation()
-
-    @inlineCallbacks
     def perform_post_submission_actions(self):
         commentCreation = {
             'content': 'comment!',
@@ -515,9 +510,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.perform_submission_start()
         yield self.perform_submission_uploads()
         yield self.perform_submission_actions()
-        yield self.run_delivery_and_notification_scheds()
         yield self.perform_post_submission_actions()
-        yield self.run_delivery_and_notification_scheds()
 
 
 class TestHandler(TestGLWithPopulatedDB):
