@@ -226,7 +226,7 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$modal',
     }
   ];
   $scope.open_modal_allow_unencrypted = function() {
-    if ($scope.admin.node.allow_unencrypted) {
+    if (!$scope.admin.node.allow_unencrypted) {
       return;
     }
 
