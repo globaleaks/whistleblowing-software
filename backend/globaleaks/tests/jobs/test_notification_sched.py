@@ -2,6 +2,8 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 
+from globaleaks.jobs.delivery_sched import DeliverySchedule
+
 from globaleaks.jobs.mailflush_sched import MailflushSchedule
 from globaleaks.jobs.notification_sched import NotificationSchedule
 
@@ -14,6 +16,7 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_notification_schedule(self):
+        yield DeliverySchedule().operation()
         yield NotificationSchedule().operation()
 
         mail_schedule = MailflushSchedule()

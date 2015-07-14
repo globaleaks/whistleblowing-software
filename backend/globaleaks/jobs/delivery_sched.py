@@ -211,7 +211,6 @@ def encrypt_where_available(receivermap):
         [ { 'receiver' : receiver_desc, 'path' : file_path, 'size' : file_size }, .. ]
     @return: return True if plaintex version of file must be created.
     """
-
     retcode = True
 
     for rcounter, rfileinfo in enumerate(receivermap):
@@ -244,7 +243,6 @@ def encrypt_where_available(receivermap):
     return retcode
 
 class DeliverySchedule(GLJob):
-
     @inlineCallbacks
     def operation(self):
         """
