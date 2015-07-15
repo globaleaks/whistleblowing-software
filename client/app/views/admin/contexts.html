@@ -151,22 +151,6 @@
                             <input data-ng-model="context.enable_private_messages" value="{{context.enable_private_messages}}" type="checkbox">
                             <label data-translate>Enable private messages</label>
                           </div>
-                          <div class="form-group">
-                            <input data-ng-model="context.can_postpone_expiration" value="{{context.can_postpone_expiration}}" type="checkbox">
-                            <label data-translate>Allow receivers to postpone expiration date of the tips</label>
-                            <div data-ng-show="context.can_postpone_expiration">
-                              <span class="label label-info" data-translate>Now enabled:</span>
-                              <span data-translate>Receivers of this context will be able to postpone expiration date of the tips.</span>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <input data-ng-model="context.can_delete_submission" value="{{context.can_delete_submission}}" type="checkbox">
-                            <label data-translate>Allow receivers to delete tips</label>
-                            <div data-ng-show="context.can_delete_submission">
-                              <span class="label label-info" data-translate>Now enabled:</span>
-                              <span data-translate>Receivers of this context will be able to delete tips and their content.</span>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
