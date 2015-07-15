@@ -34,7 +34,7 @@
     "mocha-phantomjs": "3.5.3",
     "node-gettext": "0.2.14",
     "phantomjs": "1.9.17",
-    "should": "7.0.1",
+    "should": "7.0.2",
     "superagent": "1.2.0",
     "supertest": "1.0.1"
   }
