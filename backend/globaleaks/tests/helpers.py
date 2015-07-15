@@ -29,6 +29,7 @@ def sendmail_mock(**args):
 
 mailutils.sendmail = sendmail_mock
 
+
 from globaleaks import db, models, security, anomaly, event
 from globaleaks.db.datainit import load_appdata, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
@@ -38,7 +39,7 @@ from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.rtip import receiver_serialize_tip
 from globaleaks.handlers.wbtip import wb_serialize_tip
 from globaleaks.handlers.submission import create_submission
-from globaleaks.jobs import delivery_sched, notification_sched, statistics_sched, mailflush_sched
+from globaleaks.jobs import statistics_sched, mailflush_sched
 from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSetting, transact, transact_ro

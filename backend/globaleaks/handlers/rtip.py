@@ -55,7 +55,6 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     and the Receiver-dependent, and for the client sake receivertip_id is
     required to create the download link
     """
-
     if receiverfile.status != 'unavailable':
 
         ret_dict = {

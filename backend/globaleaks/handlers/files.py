@@ -165,18 +165,6 @@ class FileAdd(BaseHandler):
             raise errors.InternalServerError("Unable to accept new files")
 
     @transport_security_check('wb')
-    @unauthenticated
-    def get(self, *args):
-        """
-        Parameter: internaltip_id
-        Request: Unknown
-        Response: Unknown
-        Errors: TokenFailure
-        """
-        self.set_status(204)  # We currently do not implement file resume
-        self.finish()
-
-    @transport_security_check('wb')
     @authenticated('wb')
     @inlineCallbacks
     def post(self, *args):

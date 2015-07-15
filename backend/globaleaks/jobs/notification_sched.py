@@ -72,11 +72,6 @@ def db_save_events_on_db(store, event_list):
         store.add(e)
 
 
-@transact
-def save_events_on_db(store, event_list):
-    return db_save_events_on_db(store, event_list)
-
-
 class EventLogger(object):
     trigger = '[undefined]'
 
@@ -110,9 +105,6 @@ class EventLogger(object):
     @transact
     def process_events(self, store):
         _elems = store.find(self.model, self.model.new == True)
-
-        if not _elems.count():
-            return
 
         log.debug("Notification: found %d %s(s) to be handled" %
                   (_elems.count(), self.trigger))
