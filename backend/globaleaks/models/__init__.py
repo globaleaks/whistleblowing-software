@@ -207,12 +207,16 @@ class Context(Model):
     presentation_order = Int(default=0)
 
     unicode_keys = []
+
     localized_strings = ['name', 'description']
+
     int_keys = [ 'maximum_selectable_receivers',
                  'show_receivers_in_alphabetical_order',
                  'presentation_order' ]
+
     bool_keys = [ 'select_all_receivers',
-                  'show_small_cards', 'show_receivers', "enable_private_messages" ]
+                  'show_small_cards', 'show_receivers',
+                  'enable_comments', 'enable_private_messages' ]
 
 
 class InternalTip(Model):
