@@ -188,8 +188,8 @@ def do_final_internalfile_update(store, file_path, new_path):
     try:
         ifile = store.find(InternalFile,
                            InternalFile.file_path == unicode(file_path)).one()
-    except Exception as err:
-        log.err("Error in find %s: %s" % (file_path, err.message))
+    except Exception as excep:
+        log.err("Error in find %s: %s" % (file_path, excep.message))
         return
 
     if not ifile:
