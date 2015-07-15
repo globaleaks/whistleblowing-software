@@ -82,8 +82,10 @@
                popover-placement=""
                popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-inbox"></i>
-              <span ng-show="sortKey == 'context' && !sortReverse" class="btn btn-xs glyphicon glyphicon-triangle-bottom"></span>
-              <span ng-show="sortKey == 'context' && sortReverse" class="btn btn-xs glyphicon glyphicon-triangle-top"></span>
+              <span class="btn btn-xs" ng-show="sortKey == 'context'">
+                <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+              </span>
             </span>
           </th>
           <th>
@@ -92,8 +94,10 @@
                popover-placement="top"
                popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-time"></i>
-              <span ng-show="sortKey == 'creation_date' && !sortReverse" class="btn btn-xs glyphicon glyphicon-triangle-bottom"></span>
-              <span ng-show="sortKey == 'creation_date' && sortReverse" class="btn btn-xs glyphicon glyphicon-triangle-top"></span>
+              <span class="btn btn-xs" ng-show="sortKey == 'creation_date'">
+                <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+              </span>
             </span>
           </th>
           <th>
@@ -102,8 +106,10 @@
                popover-placement="top"
                popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-hourglass"></i>
-              <span ng-show="sortKey == 'expiration_date' && !sortReverse" class="btn btn-xs glyphicon glyphicon-triangle-bottom"></span>
-              <span ng-show="sortKey == 'expiration_date' && sortReverse" class="btn btn-xs glyphicon glyphicon-triangle-top"></span>
+              <span class="btn btn-xs" ng-show="sortKey == 'expiration_date'">
+                <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+              </span>
             </span>
           </th>
           <th>
@@ -112,8 +118,10 @@
                popover-placement="top"
                popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-file"></i>
-              <span ng-show="sortKey == 'files' && !sortReverse" class="btn btn-xs glyphicon glyphicon-triangle-bottom"></span>
-              <span ng-show="sortKey == 'files' && sortReverse" class="btn btn-xs glyphicon glyphicon-triangle-top"></span>
+              <span class="btn btn-xs" ng-show="sortKey == 'files'">
+                <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+              </span>
             </span>
           </th>
           <th>
@@ -122,8 +130,10 @@
                popover-placement="top"
                   popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-comment"></i>
-              <span ng-show="sortKey == 'comments' && !sortReverse" class="btn btn-xs glyphicon glyphicon-triangle-bottom"></span>
-              <span ng-show="sortKey == 'comments' && sortReverse" class="btn btn-xs glyphicon glyphicon-triangle-top"></span>
+              <span class="btn btn-xs" ng-show="sortKey == 'comments'">
+                <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+              </span>
             </span>
           </th>
           <th>
@@ -132,8 +142,10 @@
                popover-placement="top"
                popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-envelope"></i>
-              <span ng-show="sortKey == 'messages' && !sortReverse" class="btn btn-xs glyphicon glyphicon-triangle-bottom"></span>
-              <span ng-show="sortKey == 'messages' && sortReverse" class="btn btn-xs glyphicon glyphicon-triangle-top"></span>
+              <span class="btn btn-xs" ng-show="sortKey == 'messages'">
+                <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+              </span>
             </span>
           </th>
           <th>
