@@ -107,21 +107,4 @@ GLClient.controller('StatusCtrl',
       $scope.tip.newMessageContent = '';
     };
 
-  }]);
-
-GLClient.controller('FileDetailsCtrl', ['$scope', function($scope){
-    $scope.securityCheckOpen = false;
-
-    $scope.openSecurityCheck = function() {
-      $scope.securityCheckOpen = true;
-    };
-
-    $scope.closeSecurityCheck = function() {
-      $scope.securityCheckOpen = false;
-    };
-
-    $scope.securityCheckOptions = {
-      backdropFade: true,
-      dialogFade: true
-    };
 }]);
