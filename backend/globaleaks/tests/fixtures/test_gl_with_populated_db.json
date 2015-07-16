@@ -473,6 +473,7 @@
         }
       },
       "maximum_selectable_receivers": 0,
+      "enable_comments": true,
       "enable_private_messages": true
     },
     "class": "Context"
