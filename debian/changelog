@@ -1,3 +1,9 @@
+globaleaks (2.60.90) stable; urgency=medium
+
+  * New upstream release
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 17 Jul 2015 20:58:14 +0200
+
 globaleaks (2.60.89) stable; urgency=medium
 
   * New upstream release
