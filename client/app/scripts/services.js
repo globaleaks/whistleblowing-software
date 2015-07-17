@@ -282,7 +282,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
             self.receivers_selected[receiver.id] = false;
 
-            if (receivers_ids) {
+            if (receivers_ids.length) {
               if (receivers_ids.indexOf(receiver.id) !== -1) {
                 if ((receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) ||
                     receiver.configuration !== 'unselectable') {
