@@ -291,7 +291,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               }
             } else {
               if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {
-                if (receiver.configuration == 'default') {
+                if (receiver.configuration === 'default') {
                   self.receivers_selected[receiver.id] = self.context.select_all_receivers;
                 } else if (receiver.configuration == 'forcefully_selected') {
                   self.receivers_selected[receiver.id] = true;
