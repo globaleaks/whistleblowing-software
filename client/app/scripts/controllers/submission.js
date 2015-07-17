@@ -2,7 +2,7 @@ GLClient.controller('SubmissionCtrl',
     ['$scope', '$rootScope', '$filter', '$location', '$timeout', '$modal', 'Authentication', 'Submission',
       function ($scope, $rootScope, $filter, $location, $timeout, $modal, Authentication, Submission) {
 
-  $rootScope.invalidForm = true;
+  $scope.invalidForm = true;
 
   $scope.context_id = $location.search().context;
   $scope.receivers_ids = $location.search().receivers;
