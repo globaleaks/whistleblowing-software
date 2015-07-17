@@ -128,6 +128,10 @@
                             <input class="form-control" data-ng-model="context.tip_timetolive" value="{{context.tip_timetolive}}" type="number">
                           </div>
                           <div class="form-group">
+                            <input data-ng-model="context.show_receivers" value="{{context.show_receivers}}" type="checkbox">
+                            <label data-translate>Show receiver selection step</label>
+                          </div>
+                          <div class="form-group" data-ng-show="context.show_receivers">
                             <input data-ng-model="context.select_all_receivers" value="{{context.select_all_receivers}}" type="checkbox">
                             <label data-translate>Select all receivers by default</label>
                           </div>
@@ -135,11 +139,7 @@
                             <label data-translate>Maximum number of selectable receivers:</label><label data-translate>(0 = unlimited)</label>
                             <input class="form-control" data-ng-model="context.maximum_selectable_receivers" value="{{context.maximum_selectable_receivers}}" type="number">
                           </div>
-                          <div class="form-group">
-                            <input data-ng-model="context.show_receivers" value="{{context.show_receivers}}" type="checkbox">
-                            <label data-translate>Show receiver selection step</label>
-                          </div>
-                          <div class="form-group">
+                          <div class="form-group" data-ng-show="context.show_receivers">
                             <input data-ng-model="context.show_small_cards" value="{{context.show_small_cards}}" type="checkbox">
                             <label data-translate>Show small receiver cards on submission interface</label>
                           </div>

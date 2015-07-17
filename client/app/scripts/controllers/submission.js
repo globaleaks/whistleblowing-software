@@ -4,8 +4,8 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.invalidForm = true;
 
-  $scope.context_id = $location.search().context;
-  $scope.receivers_ids = $location.search().receivers;
+  $scope.context_id = $location.search().context || undefined;
+  $scope.receivers_ids = $location.search().receivers || [];
   $scope.contexts_selectable = $location.search().contexts_selectable;
   $scope.receivers_selectable = $location.search().receivers_selectable;
 
@@ -42,12 +42,13 @@ GLClient.controller('SubmissionCtrl',
     );
   };
 
+  console.log($scope.receivers_ids);
   if ($scope.receivers_ids) {
     try {
       $scope.receivers_ids = JSON.parse($scope.receivers_ids);
     }
     catch(err) {
-      $scope.receivers_ids = undefined;
+      $scope.receivers_ids = [];
     }
   }
 
@@ -73,7 +74,7 @@ GLClient.controller('SubmissionCtrl',
     $scope.receiver_selected = false;
     // Check if there is at least one selected receiver
     angular.forEach($scope.submission.receivers_selected, function (receiver) {
-      $scope.receiver_selected = $scope.receiver_selected | receiver;
+      $scope.receiver_selected = receiver;
     });
 
   };
