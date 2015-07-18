@@ -156,6 +156,7 @@ var context = {
   can_delete_submission: true,
   show_small_cards: false,
   show_receivers: true,
+  enable_comments: true,
   enable_private_messages: true,
   select_all_receivers: true,
   show_receivers_in_alphabetical_order: false,
