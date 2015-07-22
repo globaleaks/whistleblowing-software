@@ -1,10 +1,13 @@
-<div data-ng-repeat="error in errors" data-ng-show="error.code != 29 && error.code != 60" class="fadeout">
+<alert data-ng-repeat="error in errors" data-ng-show="error.code != 29 && error.code != 60" fadeout="" type="danger" close="closeAlert(errors, $index)">
   <!--
     Currently we skip authentication errors (29) and TipMessagesNotFound Error (60):
       The first has a special handling, the latter need to not be shown as it happens
       when a Whistleblower access the Tip page before ReceiverTips are created.
   -->
-  <div class="alert alert-warning">
+  <div data-ng-show="error.code != 29 && error.code != 60">
+    <button type="button" class="close" data-dismiss="alert">
+      <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+    </button>
     <div data-ng-switch="" on="error.code">
       <div data-translate>Error!</div>
 
@@ -101,13 +104,16 @@
         </div>
     </div>
   </div>
-</div>
+</alert>
 
-<div data-ng-repeat="success in successes" class="fadeout">
-  <div class="alert alert-success">
+<alert data-ng-repeat="success in successes" fadeout="" type="success" close="closeAlert(successes, $index)">
+  <div>
+    <button type="button" class="close" data-dismiss="alert">
+      <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+    </button>
     <div>
       <div data-translate>Success!</div>
       <div>{{success.message}}</div>
     </div>
   </div>
-</div>
+</alert>

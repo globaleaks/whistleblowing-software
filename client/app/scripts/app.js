@@ -1,7 +1,6 @@
 'use strict';
 
 var GLClient = angular.module('GLClient', [
-    'ngAnimate',
     'ngCookies',
     'ngRoute',
     'ui.bootstrap',
