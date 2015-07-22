@@ -29,6 +29,20 @@ angular.module('submissionUI', []).
       }, spinner = new Spinner(opts).spin(element[0]);
   };
 }).
+  directive('fadeout', function(){
+    return function(scope, element, attrs) {
+      var fadeout_delay = 3000;
+
+      element.mouseenter(function() {
+        element.stop().animate({opacity:'100'});
+      });
+      element.mouseleave(function() {
+        element.fadeOut(fadeout_delay);
+      });
+
+      element.fadeOut(fadeout_delay);
+    };
+}).
   directive('keycodevalidator', ['$q', '$timeout', function($q, $timeout) {
     return {
       require: 'ngModel',

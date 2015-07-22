@@ -126,6 +126,10 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       return content_types.indexOf(content_type) > -1;
     };
 
+    $scope.closeAlert = function(list, index) {
+      list.splice(index, 1);
+    };
+
     var init = function () {
 
       $scope.logo = 'static/globaleaks_logo.png?' + $scope.randomFluff();
