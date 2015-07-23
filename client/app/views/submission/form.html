@@ -1,4 +1,4 @@
-<fieldset data-ng-init="toplevel = (field === undefined) ? true : false; step = $index; fields = (field === undefined) ? submission._submission.wb_steps[step].children : field.children;">
+<fieldset data-ng-init="toplevel = (field === undefined) ? true : false; step = $index; fields = (field === undefined) ? (submission._submission.wb_steps | orderBy:'presentation_order')[step].children : field.children;">
   <div data-ng-form="submissionField" data-ng-repeat="field in fields | orderBy:'y'" data-ng-controller="SubmissionFieldCtrl" class="submissionField">
     <div data-ng-init="fieldId  = $parent.fieldId ? $parent.fieldId + '-' + $index : 'field-' + $index" ng-class="getClass($parent.$index, $index, toplevel)">
       <div id="{{::fieldId}}" data-ng-switch="" on="field.type">
