@@ -36,12 +36,12 @@
             <span data-translate>Save all</span>
           </a>
         </div>
-        <div data-as-sortable="sortableOptions" data-ng-model="admin.contexts">
-          <div data-ng-repeat="context in admin.contexts | orderBy:'presentation_order'" data-as-sortable-item>
+        <div data-ng-model="admin.contexts">
+          <div data-ng-repeat="context in admin.contexts | orderBy:'presentation_order'">
             <form id="context-{{$index}}" name="editContext" data-ng-controller="AdminContextsEditorCtrl" novalidate>
               <div class="configItem contextItem"  data-ng-class="{'configItemLast': $last}">
                 <div class="row">
-                  <div class="editorHeader sortableHandle" data-ng-click="toggleEditing()" data-as-sortable-item-handle>
+                  <div class="editorHeader" data-ng-click="toggleEditing()">
                     <div data-ng-show="!editing">
                       <div class="col-md-6 editorHeaderTitle">{{context.name}}</div>
                       <div class="col-md-offset-1 col-md-5 editorHeaderButtons">

@@ -67,23 +67,6 @@ GLClient.controller('AdminContextsCtrl',
     });
   };
 
-  $scope.sortableOptions = {
-    accept: function(sourceItemHandleScope, destSortableScope) {
-      return (sourceItemHandleScope.itemScope.sortableScope.$id == destSortableScope.$id);
-    },
-    orderChanged: function(e) {
-      var contexts = angular.copy($scope.admin.contexts);
-
-      var i = 0;
-      angular.forEach(contexts, function (context, key) {
-        context.presentation_order = i + 1;
-        i += 1;
-      });
-
-      $scope.admin.contexts = contexts;
-    }
-  };
-
 }]);
 
 GLClient.controller('AdminContextsEditorCtrl', ['$scope',
@@ -108,22 +91,6 @@ GLClient.controller('AdminContextsEditorCtrl', ['$scope',
     }
     $scope.editContext.$dirty = true;
     $scope.editContext.$pristine = false;
-  };
-
-  $scope.stepsSortableOptions = {
-    accept: function(sourceItemHandleScope, destSortableScope) {
-      return (sourceItemHandleScope.itemScope.sortableScope.$id == destSortableScope.$id);
-    },
-    orderChanged: function(e) {
-      var i = 0;
-      angular.forEach($scope.context.steps, function (step, key) {
-        step.presentation_order = i + 1;
-        i += 1;
-      });
-
-      $scope.editContext.$dirty = true;
-      $scope.editContext.$pristine = false;
-    }
   };
 
 }]);

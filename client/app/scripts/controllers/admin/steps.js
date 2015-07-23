@@ -174,20 +174,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       $scope.save_field(field);
     };
 
-    $scope.sortableOptions = {
-      orderChanged: function(e) {
-        var fields = angular.copy($scope.step.children);
-
-        var i = 0;
-        angular.forEach(fields, function (field, key) {
-          field.y = i + 1;
-          i += 1;
-        });
-
-        $scope.step.children = fields;
-      }
-    };
-
   }
 ]);
 
