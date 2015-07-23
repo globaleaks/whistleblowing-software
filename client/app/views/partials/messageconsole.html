@@ -4,10 +4,7 @@
       The first has a special handling, the latter need to not be shown as it happens
       when a Whistleblower access the Tip page before ReceiverTips are created.
   -->
-  <div data-ng-show="error.code != 29 && error.code != 60">
-    <button type="button" class="close" data-dismiss="alert">
-      <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
-    </button>
+  <div>
     <div data-ng-switch="" on="error.code">
       <div data-translate>Error!</div>
 
@@ -108,9 +105,6 @@
 
 <alert data-ng-repeat="success in successes" fadeout="" type="success" close="closeAlert(successes, $index)">
   <div>
-    <button type="button" class="close" data-dismiss="alert">
-      <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
-    </button>
     <div>
       <div data-translate>Success!</div>
       <div>{{success.message}}</div>
