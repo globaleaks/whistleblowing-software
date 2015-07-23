@@ -4,13 +4,20 @@
 
   <div data-ng-form="editField">
 
-    <div class="configItem fieldCard card"  data-ng-class="{'configItemLast': $last}">
+    <div class="configItem configField"  data-ng-class="{'configItemLast': $last}">
       <div class="fieldEditorHeader" data-ng-click="editing=!editing">
         <div class="row">
-          <span class="fieldIndex">{{$index + 1}}</span>
-          <span class="fieldLabel">{{field.label}}</span>
-          <span class="pull-right" popover="{{'Click to edit, drag to order' | translate}}" popover-placement="left" popover-trigger="mouseenter">
-            <i class="glyphicon glyphicon-th"></i>
+          <span class="pull-left">
+            <span class="fieldIndex">{{$index + 1}}</span>
+            <span class="fieldLabel">{{field.label}}</span>
+          </span>
+          <span class="pull-right" data-ng-if="fields.length > 1 && !field.is_template">
+            <a class="editorHeaderButton" data-ng-click="moveUp($event, field)">
+              <i class="glyphicon glyphicon-menu-up"></i>
+            </a>
+            <a class="editorHeaderButton" data-ng-click="moveDown($event, field)">
+              <i class="glyphicon glyphicon-menu-down"></i>
+            </a>
           </span>
         </div>
       </div>

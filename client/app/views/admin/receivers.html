@@ -5,7 +5,7 @@
       <div class="row">
         <form name="newReceiver" novalidate>
           <div class="addReceiver col-md-6">
-            <h4><span data-translate>Add new receiver</span></h4>
+            <div class="editorTitle" data-translate>Add new receiver</div>
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
@@ -61,40 +61,27 @@
           <span data-translate>Save all</span>
         </a>
       </div>
-      <div ng-model="admin.receivers">
+      <div>
         <div class="row receiverList" data-ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'">
           <form id="receiver-{{$index}}" name="editReceiver" data-ng-controller="AdminReceiversEditorCtrl" novalidate>
             <div class="configItem receiverItem" data-ng-class="{'configItemLast': $last}">
               <div class="row" data-ng-click="toggleEditing()">
                 <div class="editorHeader">
-                  <div data-ng-show="!editing">
+                  <div>
                     <div class="col-md-6 pull-left editorHeaderTitle">{{receiver.name}}</div>
-                    <div class="col-md-offset-1 col-md-5 editorHeaderButtons">
-                      <div class="pull-right" popover="{{'Click to edit, drag to order' | translate}}" popover-placement="left" popover-trigger="mouseenter">
-                        <i class="glyphicon glyphicon-th"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div data-ng-show="editing">
-                    <div class="col-md-6 editorHeaderTitle">{{receiver.name}}</div>
-                    <div class="col-md-offset-1 col-md-5 editorHeaderButtons">
-                      <div class="pull-right">
-                        <button class="btn btn-success saveReceiver"
-                           data-ng-disabled="editReceiver.$pristine || editReceiver.$invalid || unsafe_password"
-                           data-ng-click="save_single(receiver)" type="submit">
-                          <i class="glyphicon glyphicon-ok"></i>
-                          <span data-translate>Save</span>
-                        </button>
-                        <a class="btn btn-danger deleteReceiver" data-ng-click="receiverDeleteDialog(receiver)">
-                          <i class="glyphicon glyphicon-remove"></i>
-                          <span data-translate>Delete</span>
-                        </a>
-                      </div>
+                    <div class="col-md-6 editorHeaderButtons" data-ng-if="receivers.length > 1">
+                      <a class="pull-right editorHeaderButton" data-ng-click="moveUp($event, receiver)">
+                        <i class="glyphicon glyphicon-menu-up"></i>
+                      </a>
+                      <a class="pull-right editorHeaderButton" data-ng-click="moveDown($event, receiver)">
+                        <i class="glyphicon glyphicon-menu-down"></i>
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="editor" data-ng-if="editing">
+                <hr />
                 <div class="row">
                   <div class="col-md-6">
                     <div class="imageUpload" data-ng-controller="AdminFileUploadCtrl">
@@ -178,6 +165,10 @@
                       </select>
                     </div>
                     <div class="form-group">
+                      <label data-translate>Presentation Order</label>
+                      <input class="form-control" data-ng-model="receiver.presentation_order" value="{{receiver.presentation_order}}" type="number" min="0" max="99">
+                    </div>
+                    <div class="form-group">
                       <label data-translate>Language</label>
                       <select class="form-control" data-ng-model="receiver.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
                     </div>
@@ -225,7 +216,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                     <div class="form-group">
                       <input data-ng-model="receiver.can_postpone_expiration" type="checkbox" data-ng-disabled="node.can_postpone_expiration" />
                       <label data-translate>Allow the receiver to postpone tip expiration date</label>
@@ -287,6 +278,36 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <hr />
+              <div class="receiverActions">
+                <button 
+                  class="btn btn-default"
+                  data-ng-show="!editing"
+                  data-ng-click="editing=!editing">
+                  <span data-translate>Edit</span>
+                </button>
+                <button 
+                  class="btn btn-success"
+                  data-ng-show="editing" 
+                  data-ng-click="save_single(receiver);editing=!editing"
+                  data-ng-disabled="editReceiver.$pristine">
+                  <span data-translate>Save</span>
+                </button>
+                <button 
+                  class="btn btn-default"
+                  data-ng-show="editing"
+                  data-ng-click="editing=!editing">
+                  <span data-translate>Cancel</span>
+                </button>
+                <button 
+                  class="btn btn-danger"
+                  data-ng-click="receiverDeleteDialog(receiver)"
+                  popover="" 
+                  popover-placement="right" 
+                  popover-trigger="mouseenter">
+                  <span data-translate>Delete</span>
+                </button>
               </div>
             </div>
           </form>
