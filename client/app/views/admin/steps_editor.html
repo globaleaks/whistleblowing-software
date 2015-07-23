@@ -27,13 +27,13 @@
 <div id="StepsEditBox" data-ng-if="context.steps.length" class="col-md-12">
   <h4><span data-translate>Configured steps:</span></h4>
   <div>
-    <div data-as-sortable="stepsSortableOptions" data-ng-model="context.steps">
-      <div data-ng-repeat="step in context.steps | orderBy:'presentation_order'" data-as-sortable-item>
+    <div data-ng-model="context.steps">
+      <div data-ng-repeat="step in context.steps | orderBy:'presentation_order'">
         <div class="stepBox col-md-12"
              data-ng-controller="AdminStepEditorCtrl">
           <div class="card step">
-            <div class="stepEditorHeader sortableHandle" data-ng-click="toggleEditing()">
-              <div class="row" data-as-sortable-item-handle>
+            <div class="stepEditorHeader" data-ng-click="toggleEditing()">
+              <div class="row">
                 <span class="badge">{{$index + 1}}</span>
                 <span>{{step.label}}</span>
                 <span class="pull-right" popover="{{'Click to edit, drag to order' | translate}}" popover-placement="left" popover-trigger="mouseenter">
@@ -76,10 +76,10 @@
               </div>
               <div id="FieldsEditBox" class="form-group" data-ng-if="step.children">
                 <label data-translate>Configured fields:</label>
-                  <div data-as-sortable="sortableOptions" data-ng-model="step.children"
+                  <div data-ng-model="step.children"
                        class="configuredFields"
                        data-ui-on-drop="add_field_from_template($data, step)">
-                    <div data-ng-repeat="field in step.children | orderBy:'y'" data-as-sortable-item>
+                    <div data-ng-repeat="field in step.children | orderBy:'y'">
                       <div data-ng-include="'views/admin/fields_editor.html'"></div>
                     </div>
                   </div>

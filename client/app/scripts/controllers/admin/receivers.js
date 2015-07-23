@@ -56,20 +56,6 @@ function($scope, $modal) {
     );
   };
 
-  $scope.sortableOptions = {
-    orderChanged: function(e) {
-      var receivers = angular.copy($scope.admin.receivers);
-
-      var i = 0;
-      angular.forEach(receivers, function (receiver, key) {
-        receiver.presentation_order = i + 1;
-        i += 1;
-      });
-
-      $scope.admin.receivers = receivers;
-    }
-  };
-
 }]);
 
 GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher', 'CONSTANTS',
