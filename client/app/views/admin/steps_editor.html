@@ -1,5 +1,5 @@
-<div id="StepAddBox" data-ng-controller="AdminStepAddCtrl" class="col-md-6">
-  <h4><span data-translate>Add new step</span></h4>
+<div id="StepAddBox" data-ng-controller="AdminStepAddCtrl">
+  <div class="editorTitle" data-translate>Add new step</div>
   <div data-ng-form="" name="newStep">
     <div class="row">
       <div class="col-md-12">
@@ -25,19 +25,26 @@
   </div>
 </div>
 <div id="StepsEditBox" data-ng-if="context.steps.length" class="col-md-12">
-  <h4><span data-translate>Configured steps:</span></h4>
+  <div class="editorTitle" data-translate>Configured steps:</div>
   <div>
     <div data-ng-model="context.steps">
       <div data-ng-repeat="step in context.steps | orderBy:'presentation_order'">
         <div class="stepBox col-md-12"
              data-ng-controller="AdminStepEditorCtrl">
-          <div class="card step">
+          <div class="configItem configStep">
             <div class="stepEditorHeader" data-ng-click="toggleEditing()">
               <div class="row">
-                <span class="badge">{{$index + 1}}</span>
-                <span>{{step.label}}</span>
-                <span class="pull-right" popover="{{'Click to edit, drag to order' | translate}}" popover-placement="left" popover-trigger="mouseenter">
-                  <i class="glyphicon glyphicon-th"></i>
+                <span class="pull-left">
+                  <span class="badge">{{$index + 1}}</span>
+                  <span>{{step.label}}</span>
+                </span>
+                <span class="pull-right" data-ng-if="context.steps.length > 1">
+                  <a class="editorHeaderButton" data-ng-click="moveUp($event, step)">
+                    <i class="glyphicon glyphicon-menu-up"></i>
+                  </a>
+                  <a class="editorHeaderButton" data-ng-click="moveDown($event, step)">
+                    <i class="glyphicon glyphicon-menu-down"></i>
+                  </a>
                 </span>
               </div>
             </div>
@@ -76,10 +83,10 @@
               </div>
               <div id="FieldsEditBox" class="form-group" data-ng-if="step.children">
                 <label data-translate>Configured fields:</label>
-                  <div data-ng-model="step.children"
+                  <div data-ng-init="fields = step.children"
                        class="configuredFields"
                        data-ui-on-drop="add_field_from_template($data, step)">
-                    <div data-ng-repeat="field in step.children | orderBy:'y'">
+                    <div data-ng-repeat="field in fields | orderBy:'y'">
                       <div data-ng-include="'views/admin/fields_editor.html'"></div>
                     </div>
                   </div>
@@ -88,13 +95,13 @@
             <hr />
             <div class="stepActions">
               <button class="btn btn-default"
-                      data-ng-show="!editing"
-                      data-ng-click="editing=!editing">
+                data-ng-show="!editing"
+                data-ng-click="editing=!editing">
                 <span data-translate>Edit</span>
               </button>
               <button class="btn btn-success"
-                      data-ng-show="editing"
-                      data-ng-click="save_context(context);editing=!editing">
+                data-ng-show="editing"
+                data-ng-click="save_context(context);editing=!editing">
                 <span data-translate>Save</span>
               </button>
               <button 
@@ -104,11 +111,11 @@
                 <span data-translate>Cancel</span>
               </button>
               <button class="btn btn-danger"
-                      data-ng-click="stepDeleteDialog(step)"
-                      popover="{{Delete | translate}}"
-                      popover-placement="right"
-                      popover-trigger="mouseenter">
-               <span data-translate>Delete</span>
+                data-ng-click="stepDeleteDialog(step)"
+                popover="{{Delete | translate}}"
+                popover-placement="right"
+                popover-trigger="mouseenter">
+                <span data-translate>Delete</span>
               </button>
             </div>
           </div>

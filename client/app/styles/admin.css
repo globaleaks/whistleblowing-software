@@ -1,10 +1,11 @@
 /** Configuration Pages **/
 
 .configItem {
-  line-height: 20px;
-  vertical-align: top;
-  border: 1px solid rgb(204, 204, 204);
-  background-color: rgb(252, 252, 252);
+  background-color: #FFF;
+  box-shadow: 2px 1px 5px #888888;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  padding: 16px;
   margin-top: 20px;
   margin-bottom: 5px;
 }
@@ -59,16 +60,8 @@
   box-shadow: 2px 1px 5px #888888;
   padding: 10px;
   margin-bottom: 10px;
-}
 
-.templateFieldCard h2 {
-  font-size: 20px;
-  margin: 0;
-}
-
-.inline-block-row .col-xs-6 {
-  float:none;
-  display:inline-block;
+  font-weight: bold;
 }
 
 .addField {
@@ -93,33 +86,12 @@
   margin-bottom: 20px;
 }
 
-.card {
-  padding: 16px;
-  background-color: #fff;
-  border-radius: 3px;
-
-  -moz-border-radius: 3px;
-  box-shadow: 2px 1px 5px #888888;
-}
-
-.card h2 {
-  font-size: 24px;
-}
-
 .stepEditorHeader, .fieldEditorHeader {
   padding: 20px;
 }
 
 .stepBox {
   padding: 0 5px 10px 5px;
-}
-
-.step {
-  padding: 16px;
-  background-color: #fff;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  box-shadow: 2px 1px 5px #888888;
 }
 
 /** END **/
@@ -134,16 +106,17 @@
 
 .editorHeaderTitle, .editorHeaderButtons {
   letter-spacing: -1px;
-  font-size: 20px;
   line-height: 1;
-  font-weight: bold;
   display: block;
-  margin: 10px;
 }
 
-.editor {
-  background-color: rgb(240, 240, 240);
-  padding: 20px;
+.editorHeaderTitle {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.editorTitle {
+  font-size: 18px;
 }
 
 .imageUpload .profile {
@@ -239,4 +212,9 @@ text.axis-workweek {
 
 text.axis-worktime {
   fill: #000;
+}
+
+.editorHeaderButton {
+  margin-left: 5px;
+  margin-right: 0px;
 }

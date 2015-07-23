@@ -126,6 +126,16 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       return content_types.indexOf(content_type) > -1;
     };
 
+    $scope.moveUp = function(event, elem) {
+      elem.presentation_order -= 1;
+      event.stopPropagation();
+    }
+
+    $scope.moveDown = function(event, elem) {
+      elem.presentation_order += 1;
+      event.stopPropagation();
+    }
+
     $scope.closeAlert = function(list, index) {
       list.splice(index, 1);
     };
