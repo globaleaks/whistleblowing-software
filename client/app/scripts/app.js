@@ -86,7 +86,7 @@ var GLClient = angular.module('GLClient', [
         header_subtitle: 'Contexts Configuration'
       }).
       when('/admin/fields', {
-        templateUrl: 'views/admin/fields.html',
+        templateUrl: 'views/admin/field_templates.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
         header_subtitle: 'Fields Configuration'

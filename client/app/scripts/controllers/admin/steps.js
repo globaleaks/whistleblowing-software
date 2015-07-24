@@ -32,8 +32,9 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
 
     $scope.editing = false;
 
-    $scope.toggleEditing = function () {
+    $scope.toggleEditing = function (e) {
       $scope.editing = $scope.editing ^ 1;
+      e.stopPropagation();
     };
 
     $scope.deleteFromList = function(list, elem) {
@@ -69,8 +70,8 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       }
     };
 
-    $scope.add_field_from_template = function(field_id, step) {
-      $scope.admin.new_field_from_template(field_id, step.id).then(function(field){
+    $scope.add_field_from_template = function(template_id, step) {
+      $scope.admin.new_field_from_template(template_id, step.id).then(function(field){
         step.children = step.children || [];
         step.children.push(field);
       });
@@ -153,8 +154,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.composable_fields = [];
-    $scope.template_field_keys = Object.keys($scope.admin.template_fields);
-    $scope.template_fields = $scope.admin.template_fields;
     angular.forEach($scope.step.children, function(field, index) {
       $scope.composable_fields.push(field);
       if (field.type === 'fieldgroup') {
@@ -174,11 +173,5 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       $scope.save_field(field);
     };
 
-  }
-]);
-
-GLClient.controller('AdminFieldsTemplateAdderCtrl', ['$scope',
-  function($scope) {
-    $scope.field = $scope.template_fields[$scope.field_key];
   }
 ]);

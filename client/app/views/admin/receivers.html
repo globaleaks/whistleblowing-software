@@ -42,8 +42,8 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <button class="pull-left btn btn-success" data-ng-disabled="newReceiver.$invalid" data-ng-click="add_receiver()" type="submit">
-                    <i class="glyphicon glyphicon-ok"></i>
+                  <button class="pull-left btn btn-primary" data-ng-disabled="newReceiver.$invalid" data-ng-click="add_receiver()" type="submit">
+                    <i class="glyphicon glyphicon-plus-sign"></i>
                     <span data-translate>Add</span>
                   </button>
                 </div>
@@ -63,23 +63,49 @@
       </div>
       <div>
         <div class="row receiverList" data-ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'">
-          <form id="receiver-{{$index}}" name="editReceiver" data-ng-controller="AdminReceiversEditorCtrl" novalidate>
+          <form id="receiver-{{$index}}" name="editReceiver" data-ng-controller="AdminReceiverEditorCtrl" novalidate>
             <div class="configItem receiverItem" data-ng-class="{'configItemLast': $last}">
-              <div class="row" data-ng-click="toggleEditing()">
-                <div class="editorHeader">
-                  <div>
-                    <div class="col-md-6 pull-left editorHeaderTitle">{{receiver.name}}</div>
-                    <div class="col-md-6 editorHeaderButtons" data-ng-if="receivers.length > 1">
-                      <a class="pull-right editorHeaderButton" data-ng-click="moveUp($event, receiver)">
+              <div class="editorHeader" data-ng-click="toggleEditing($event)">
+                <span class="col-md-7 editorHeaderTitle">
+                  <span>{{receiver.name}}</span>
+                </span>
+                <span class="col-md-5">
+                  <span class="pull-right">
+                    <button class="btn btn-xs btn-default"
+                      data-ng-show="!editing"
+                      data-ng-click="toggleEditing($event)">
+                      <span data-translate>Edit</span>
+                    </button>
+                    <button class="btn btn-xs btn-success"
+                      data-ng-show="editing"
+                      data-ng-click="save_single($event, receiver)">
+                      <span data-translate>Save</span>
+                    </button>
+                    <button 
+                      class="btn btn-xs btn-default"
+                      data-ng-show="editing"
+                      data-ng-click="toggleEditing($event)">
+                      <span data-translate>Cancel</span>
+                    </button>
+                    <button class="btn btn-xs btn-danger"
+                      data-ng-click="receiverDeleteDialog($event, receiver)"
+                      popover="{{Delete | translate}}"
+                      popover-placement="right"
+                      popover-trigger="mouseenter">
+                      <span data-translate>Delete</span>
+                    </button>
+                    <span data-ng-if="receivers.length > 1">
+                      <a class="editorHeaderButton" data-ng-click="moveUp($event, receiver)">
                         <i class="glyphicon glyphicon-menu-up"></i>
                       </a>
-                      <a class="pull-right editorHeaderButton" data-ng-click="moveDown($event, receiver)">
+                      <a class="editorHeaderButton" data-ng-click="moveDown($event, receiver)">
                         <i class="glyphicon glyphicon-menu-down"></i>
                       </a>
-                    </div>
-                  </div>
-                </div>
+                    </span>
+                  </span>
+                </span>
               </div>
+              <br />
               <div class="editor" data-ng-if="editing">
                 <hr />
                 <div class="row">
@@ -278,36 +304,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <hr />
-              <div class="receiverActions">
-                <button 
-                  class="btn btn-default"
-                  data-ng-show="!editing"
-                  data-ng-click="editing=!editing">
-                  <span data-translate>Edit</span>
-                </button>
-                <button 
-                  class="btn btn-success"
-                  data-ng-show="editing" 
-                  data-ng-click="save_single(receiver);editing=!editing"
-                  data-ng-disabled="editReceiver.$pristine">
-                  <span data-translate>Save</span>
-                </button>
-                <button 
-                  class="btn btn-default"
-                  data-ng-show="editing"
-                  data-ng-click="editing=!editing">
-                  <span data-translate>Cancel</span>
-                </button>
-                <button 
-                  class="btn btn-danger"
-                  data-ng-click="receiverDeleteDialog(receiver)"
-                  popover="" 
-                  popover-placement="right" 
-                  popover-trigger="mouseenter">
-                  <span data-translate>Delete</span>
-                </button>
               </div>
             </div>
           </form>

@@ -22,8 +22,9 @@ GLClient.controller('AdminContextsCtrl',
     return $scope.update(updated_context, cb);
   };
 
-  $scope.save_single = function (context) {
-    $scope.save_context(context, $scope.reload);
+  $scope.save_single = function (e, context) {
+    $scope.save_context(context);
+    e.stopPropagation();
   };
 
   $scope.save_all = function () {
@@ -50,7 +51,6 @@ GLClient.controller('AdminContextsCtrl',
             return context;
           }
         }
-
     });
 
     modalInstance.result.then(
@@ -74,8 +74,9 @@ GLClient.controller('AdminContextsEditorCtrl', ['$scope',
 
   $scope.editing = false;
 
-  $scope.toggleEditing = function () {
+  $scope.toggleEditing = function (e) {
     $scope.editing = $scope.editing ^ 1;
+    e.stopPropagation();
   };
 
   $scope.isSelected = function (receiver) {

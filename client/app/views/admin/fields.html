@@ -1,23 +1,222 @@
-<div id="ContentBox" class="container" data-ng-controller="AdminFieldTemplatesCtrl">
-  <div class="row">
-    <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
-    <div class="col-md-9">
-
-      <div class="col-md-6">
-        <div data-ng-controller="AdminFieldTemplatesAddCtrl" data-ng-include="'views/admin/add_field.html'"></div>
+<div id="field-{{$index}}" class="fieldBox"
+  data-ng-init="editing=false" data-ng-controller="AdminFieldEditorCtrl">
+  <div data-ng-form="editField">
+    <div class="configItem configField"  data-ng-class="{'configItemLast': $last}">
+      <div class="editorHeader" data-ng-click="toggleEditing()">
+        <div class="row">
+          <span class="col-md-7">
+            <span class="fieldIndex badge">{{$index + 1}}</span>
+            <span class="fieldLabel">{{field.label}}</span>
+          </span>
+          <span class="col-md-5">
+            <span class="pull-right">
+              <button class="btn btn-xs btn-default"
+                data-ng-show="!editing"
+                data-ng-click="toggleEditing($event)">
+                <span data-translate>Edit</span>
+              </button>
+              <button class="btn btn-xs btn-success"
+                data-ng-show="editing"
+                data-ng-click="save_field($event, field)">
+                <span data-translate>Save</span>
+              </button>
+              <button 
+                class="btn btn-xs btn-default"
+                data-ng-show="editing"
+                data-ng-click="toggleEditing($event)">
+                <span data-translate>Cancel</span>
+              </button>
+              <button class="btn btn-xs btn-danger"
+                data-ng-click="fieldDeleteDialog($event, step)"
+                popover="{{Delete | translate}}"
+                popover-placement="right"
+                popover-trigger="mouseenter">
+                <span data-translate>Delete</span>
+              </button>
+              <span data-ng-if="fields.length > 1 && !field.is_template">
+                <a class="editorHeaderButton" data-ng-click="moveUp($event, field)">
+                  <i class="glyphicon glyphicon-menu-up"></i>
+                </a>
+                <a class="editorHeaderButton" data-ng-click="moveDown($event, field)">
+                  <i class="glyphicon glyphicon-menu-down"></i>
+                </a>
+              </span>
+            </span>
+          </span>
+        </div>
       </div>
-      <div class="clearfix"></div>
-
-      <br /><br />
-
-      <div data-ng-show="fields.length != 0">
-        <div data-ng-model="fields">
-          <div data-ng-repeat="field in admin.field_templates | orderBy:'label'">
-            <div data-ng-include="'views/admin/fields_editor.html'"></div>
+      <div class="fieldEditor" data-ng-if="editing">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label data-translate>Name</label>
+              <input name="label" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.label" value="{{field.label}}" type="text" required>
+              <div class="has-error" data-ng-show="editField.label.$error.required">
+                <span data-translate>This field is mandatory</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-translate>Hint</label>
+              <input name="hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.hint" value="{{field.hint}}" type="text">
+            </div>
+            <div class="form-group">
+              <label data-translate>Description</label>
+              <textarea name="description" class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.description">{{field.description}}</textarea>
+            </div>
+            <div class="form-group">
+              <input data-ng-model="field.required" type="checkbox">
+              <label data-translate>Required</label>
+            </div>
+            <div class="form-group" data-ng-if="field.type === 'fileupload'">
+              <div data-ng-switch="" on="typeSwitch(field.type)">
+                <input data-ng-model="field.multi_entry" value="{{field.multi_entry}}" type="checkbox">
+                <label data-ng-switch-when="fileupload" data-translate>Accept multiple file uploads</label>
+                <label data-ng-switch-default data-translate>Accept multiple answers for the field</label>
+              </div>
+            </div>
+            <div class="form-group" data-ng-if="field.type !== 'fieldgroup' && field.type !== 'fileupload'">
+              <div>
+                <input data-ng-model="field.preview" value="{{field.preview}}" type="checkbox">
+                <label data-translate>Preview</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div>
+                <input data-ng-model="field.stats_enabled" value="{{field.stats_enabled}}" type="checkbox">
+                <label data-translate>Enable statistics for this field</label>
+              </div>
+            </div>
+            <div class="form-group" data-ng-show="!field.is_template">
+              <label data-translate>Vertical order (Y)</label>
+              <input class="form-control" data-ng-model="field.y" value="{{field.y}}" type="number" min="0" max="99">
+            </div>
+            <div class="form-group" data-ng-show="!field.is_template">
+              <label data-translate>Horizontal order (X)</label>
+              <input class="form-control" data-ng-model="field.x" value="{{field.x}}" type="number" min="0" max="99">
+            </div>
           </div>
-
+          <div class="col-md-6">
+            <div class="form-group">
+              <label data-translate>Type</label>
+              <select name="type" class="form-control" data-ng-model="field.type" required>
+                <option value="inputbox" data-translate>Text</option>
+                <option value="textarea" data-translate>Text area</option>
+                <option value="selectbox" data-translate>Select box</option>
+                <option value="checkbox" data-translate>Check box</option>
+                <option value="fileupload" data-translate>File Upload</option>
+                <option value="tos" data-translate>Terms of Service</option>
+                <option value="fieldgroup" data-translate>Field Group</option>
+                <!--
+                  Options commented out in stable release as not yet implemented
+                  <option value="modal" data-translate>Modal Window</option>
+                  <option value="dialog" data-translate>Dialog Window</option>
+                -->
+              </select>
+              <div class="has-error" data-ng-show="editField.type.$error.required">
+                <span data-translate>This field is mandatory</span>
+              </div>
+            </div>
+            <div class="form-group" data-ng-show="field.type == 'fieldgroup' && composable_fields">
+              <label data-translate>Fields Composition</label>
+              <div class="selectionList">
+                <div data-ng-repeat="f in composable_fields | orderBy:'y'">
+                  <div class="row" data-ng-show="f.id != field.id && (!f.fieldgroup_id || f.fieldgroup_id == field.id)">
+                    <span class="col-md-1" data-ng-click="toggle_field(f, field)">
+                      <span data-ng-show="isSelected(f)">
+                        <i class="glyphicon glyphicon-check"></i>
+                      </span>
+                      <span data-ng-show="!isSelected(f)">
+                        <i class="glyphicon glyphicon-unchecked"></i>
+                      </span>
+                    </span>
+                    <span class="col-md-7">{{f.label}}</span>
+                    <span class="col-md-3" data-ng-show="f.fieldgroup_id == field.id">
+                      <a data-ng-click="moveFieldUp(f)"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                      <a data-ng-click="moveFieldDown(f)"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group" data-ng-show="field.options.length">
+              <label data-translate>Options</label>
+              <div data-ng-switch="" on="typeSwitch(field.type)" class="row">
+                <div class="col-md-offset-1 col-md-11">
+                  <div data-ng-switch-when="tos">
+                    <div class="row">
+                      <div class="form-inline">
+                        <div class="form-group">
+                          <label data-translate>Clause</label>
+                          <div>
+                            <textarea class="form-control" data-ng-model="field.options[0].attrs.clause">{{field.options[0].attrs.clause}}</textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-inline">
+                        <div class="form-group">
+                          <label data-translate>Agreement Text</label>
+                          <div>
+                            <textarea class="form-control" data-ng-model="field.options[0].attrs.agreement_statement">{{field.options[0].attrs.agreement_statement}}</textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div data-ng-switch-when="checkbox_or_selectbox">
+                    <div data-ng-repeat="option in field.options">
+                      <div class="form-inline">
+                        <div class="form-group">
+                          <div class="input-group">
+                            <input class="form-control" data-ng-model="option.attrs.name" placeholder="{{'Name' | translate }}" value="{{option.attrs.name}}" type="text" required />
+                            <span class="input-group-btn">
+                              <a class="btn" data-ng-click="delOption(field, option)">
+                                <i class="glyphicon glyphicon-remove"></i>
+                              </a>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div data-ng-switch-when="fileupload">
+                    <div data-ng-repeat="option in field.options">
+                      <div class="form-inline">
+                        <div class="form-group">
+                          <div class="input-group">
+                            <input class="form-control" data-ng-model="option.attrs.name" placeholder="{{'Name' | translate}}" value="{{option.attrs.name}}" type="text" />
+                            <span class="input-group-btn">
+                              <button class="btn btn-danger" data-ng-click="delOption(field, option)">
+                                <i class="glyphicon glyphicon-remove"></i>
+                              </button>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div data-ng-switch="" on="typeSwitch(field.type)">
+                <div data-ng-switch-when="checkbox_or_selectbox">
+                  <a data-ng-click="addOption(field)">
+                    <i class="glyphicon glyphicon-plus-sign"></i>
+                    <span data-translate>Add option</span>
+                  </a>
+                </div>
+                <div data-ng-switch-when="fileupload">
+                  <a data-ng-click="addOption(field)">
+                    <i class="glyphicon glyphicon-plus-sign"></i>
+                    <span data-translate>Add description</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<div class="clearfix" data-ng-if="$index % 2 == 1 || $last"></div>

@@ -19,8 +19,8 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <button class="pull-left btn btn-success" data-ng-disabled="newContext.$invalid" data-ng-click="add_context()" type="submit">
-                  <i class="glyphicon glyphicon-ok"></i>
+                <button class="pull-left btn btn-primary" data-ng-disabled="newContext.$invalid" data-ng-click="add_context()" type="submit">
+                  <i class="glyphicon glyphicon-plus-sign"></i>
                   <span data-translate>Add</span>
                 </button>
               </div>
@@ -39,21 +39,47 @@
         <div data-ng-repeat="context in admin.contexts | orderBy:'presentation_order'">
           <form id="context-{{$index}}" name="editContext" data-ng-controller="AdminContextsEditorCtrl" novalidate>
             <div class="configItem contextItem"  data-ng-class="{'configItemLast': $last}">
-              <div class="row">
-                <div class="editorHeader" data-ng-click="toggleEditing()">
-                  <div>
-                    <div class="col-md-6 editorHeaderTitle">{{context.name}}</div>
-                    <div class="col-md-offset-1 col-md-5 editorHeaderButtons" data-ng-if="admin.contexts.length > 1">
-                      <a class="pull-right editorHeaderButton" data-ng-click="moveUp($event, context)">
+              <div class="editorHeader" data-ng-click="toggleEditing($event)">
+                <span class="col-md-7 editorHeaderTitle">
+                  <span>{{context.name}}</span>
+                </span>
+                <span class="col-md-5">
+                  <span class="pull-right">
+                    <button class="btn btn-xs btn-default"
+                      data-ng-show="!editing"
+                      data-ng-click="toggleEditing($event)">
+                      <span data-translate>Edit</span>
+                    </button>
+                    <button class="btn btn-xs btn-success"
+                      data-ng-show="editing"
+                      data-ng-click="save_single($event, context)">
+                      <span data-translate>Save</span>
+                    </button>
+                    <button 
+                      class="btn btn-xs btn-default"
+                      data-ng-show="editing"
+                      data-ng-click="toggleEditing($event)">
+                      <span data-translate>Cancel</span>
+                    </button>
+                    <button class="btn btn-xs btn-danger"
+                      data-ng-click="contextDeleteDialog($event, context)"
+                      popover="{{Delete | translate}}"
+                      popover-placement="right"
+                      popover-trigger="mouseenter">
+                      <span data-translate>Delete</span>
+                    </button>
+                    <span data-ng-if="context.length > 1">
+                      <a class="editorHeaderButton" data-ng-click="moveUp($event, context)">
                         <i class="glyphicon glyphicon-menu-up"></i>
                       </a>
-                      <a class="pull-right editorHeaderButton" data-ng-click="moveDown($event, context)">
+                      <a class="editorHeaderButton" data-ng-click="moveDown($event, context)">
                         <i class="glyphicon glyphicon-menu-down"></i>
                       </a>
-                    </div>
-                  </div>
-                </div>
+                    </span>
+                  </span>
+                </span>
               </div>
+              <br />
               <div data-ng-if="editing">
                 <hr />
                 <div class="row">
@@ -146,39 +172,9 @@
                     </div>
                   </div>
                   <div class="col-md-12">
-                    <div data-ng-include="'views/admin/steps_editor.html'"></div>
+                    <div data-ng-include="'views/admin/steps.html'"></div>
                   </div>
                 </div>
-              </div>
-              <hr />
-              <div class="contextActions">
-                <button
-                  class="btn btn-default"
-                  data-ng-show="!editing"
-                  data-ng-click="editing=!editing">
-                  <span data-translate>Edit</span>
-                </button>
-                <button
-                  class="btn btn-success"
-                  data-ng-show="editing" 
-                  data-ng-click="save_single(context);editing=!editing"
-                  data-ng-disabled="editContext.$pristine">
-                  <span data-translate>Save</span>
-                </button>
-                <button
-                  class="btn btn-default"
-                  data-ng-show="editing"
-                  data-ng-click="editing=!editing">
-                  <span data-translate>Cancel</span>
-                </button>
-                <button
-                  class="btn btn-danger"
-                  data-ng-click="contextDeleteDialog(context)"
-                  popover=""
-                  popover-placement="right"
-                  popover-trigger="mouseenter">
-                  <span data-translate>Delete</span>
-                </button>
               </div>
             </form>
           </div>

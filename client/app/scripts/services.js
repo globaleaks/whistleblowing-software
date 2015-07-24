@@ -594,11 +594,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           return context;
         };
 
-        self.template_fields = {};
-        angular.forEach(self.field_templates, function(field){
-          self.template_fields[field.id] = field;
-        });
-
         self.new_field = function(step_id) {
           var field = new adminFieldResource();
           field.label = '';
