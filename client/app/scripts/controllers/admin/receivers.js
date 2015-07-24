@@ -53,6 +53,8 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', function($scope, 
        function(result) { $scope.perform_delete(result); },
        function(result) { }
     );
+
+    e.stopPropagation();
   };
 
 }]);

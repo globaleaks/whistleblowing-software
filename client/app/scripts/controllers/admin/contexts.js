@@ -42,7 +42,7 @@ GLClient.controller('AdminContextsCtrl',
     });
   };
 
-  $scope.contextDeleteDialog = function(context){
+  $scope.contextDeleteDialog = function(e, context){
     var modalInstance = $modal.open({
         templateUrl:  'views/partials/context_delete.html',
         controller: 'ConfirmableDialogCtrl',
@@ -57,6 +57,8 @@ GLClient.controller('AdminContextsCtrl',
        function(result) { $scope.perform_delete(result); },
        function(result) { }
     );
+
+    e.stopPropagation();
   };
 
   $scope.update_contexts_order = function () {

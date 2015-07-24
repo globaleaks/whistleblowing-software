@@ -87,15 +87,14 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
 GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
   function($scope, $modal) {
     $scope.editing = false;
+    $scope.field_group_toggled = false;
 
     $scope.toggleEditing = function (e) {
       $scope.editing = $scope.editing ^ 1;
       e.stopPropagation();
     };
 
-    $scope.field_group_toggled = false;
-
-    $scope.fieldDeleteDialog = function(field){
+    $scope.fieldDeleteDialog = function(e, field){
       var modalInstance = $modal.open({
           templateUrl:  'views/partials/field_delete.html',
           controller: 'ConfirmableDialogCtrl',
@@ -111,6 +110,8 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
          function(result) { $scope.perform_delete(result); },
          function(result) { }
       );
+
+      e.stopPropagation();
     };
 
 
