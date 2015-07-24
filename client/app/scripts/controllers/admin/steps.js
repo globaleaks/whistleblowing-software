@@ -121,7 +121,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       return updated_field.$update();
     };
 
-    $scope.stepDeleteDialog = function(step){
+    $scope.stepDeleteDialog = function(e, step){
       var modalInstance = $modal.open({
           templateUrl:  'views/partials/step_delete.html',
           controller: 'ConfirmableDialogCtrl',
@@ -137,6 +137,8 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
          function(result) { $scope.perform_delete_step(result); },
          function(result) { }
       );
+
+      e.stopPropagation();
     };
 
     $scope.new_field = {};
