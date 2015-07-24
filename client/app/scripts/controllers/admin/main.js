@@ -111,6 +111,7 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
 
       return max + 1;
     }
+
   });
 
 }]);

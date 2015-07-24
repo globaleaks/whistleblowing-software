@@ -1,6 +1,6 @@
-<div class="addField">
+<div class="addField col-md-12">
   <div data-ng-form="newField">
-    <h4><span data-translate>Add new field</span></h4>
+    <div class="editorTitle" data-translate>Add new field</div>
     <div class="row">
       <div class="form-group col-md-12">
         <label data-translate>Label</label>
@@ -37,8 +37,8 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-          <button class="pull-left btn btn-success" data-ng-disabled="newField.$invalid" data-ng-click="add_field()">
-            <i class="glyphicon glyphicon-ok"></i>
+          <button class="pull-left btn btn-primary" data-ng-disabled="newField.$invalid" data-ng-click="add_field()">
+            <i class="glyphicon glyphicon-plus-sign"></i>
             <span data-translate>Add</span>
           </button>
         </div>

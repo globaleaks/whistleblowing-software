@@ -84,8 +84,15 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
   }
 ]);
 
-GLClient.controller('AdminFieldsEditorCtrl', ['$scope',  '$modal',
+GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
   function($scope, $modal) {
+    $scope.editing = false;
+
+    $scope.toggleEditing = function (e) {
+      $scope.editing = $scope.editing ^ 1;
+      e.stopPropagation();
+    };
+
     $scope.field_group_toggled = false;
 
     $scope.fieldDeleteDialog = function(field){

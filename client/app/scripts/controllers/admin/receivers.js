@@ -1,5 +1,4 @@
-GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal',
-function($scope, $modal) {
+GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', function($scope, $modal) {
 
   $scope.save_receiver = function(receiver, cb) {
 
@@ -18,8 +17,9 @@ function($scope, $modal) {
 
   };
 
-  $scope.save_single = function(receiver) {
-    $scope.save_receiver(receiver, $scope.reload);
+  $scope.save_single = function (e, receiver) {
+    $scope.save_receiver(receiver);
+    e.stopPropagation();
   };
 
   $scope.save_all = function () {
@@ -38,7 +38,7 @@ function($scope, $modal) {
 
   };
 
-  $scope.receiverDeleteDialog = function(receiver){
+  $scope.receiverDeleteDialog = function(e, receiver){
     var modalInstance = $modal.open({
         templateUrl:  'views/partials/receiver_delete.html',
         controller: 'ConfirmableDialogCtrl',
@@ -47,7 +47,6 @@ function($scope, $modal) {
             return receiver;
           }
         }
-
     });
 
     modalInstance.result.then(
@@ -58,13 +57,19 @@ function($scope, $modal) {
 
 }]);
 
-GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher', 'CONSTANTS',
+GLClient.controller('AdminReceiverEditorCtrl', ['$scope', 'passwordWatcher', 'CONSTANTS',
   function($scope, passwordWatcher, CONSTANTS) {
 
     $scope.editing = false;
 
-    $scope.toggleEditing = function () {
+    $scope.toggleEditing = function (e) {
       $scope.editing = $scope.editing ^ 1;
+      e.stopPropagation();
+    };
+
+    $scope.save = function(e) {
+      $scope.save_receiver($scope.receiver, false);
+      e.stopPropagation();
     };
 
     $scope.timezones = CONSTANTS.timezones;

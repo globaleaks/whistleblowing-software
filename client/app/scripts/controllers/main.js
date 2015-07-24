@@ -127,12 +127,20 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     };
 
     $scope.moveUp = function(event, elem) {
-      elem.presentation_order -= 1;
+      key = 'presentation_order';
+      if (elem[key] === undefined)
+          key = 'y';
+      elem[key] -= 1;
+
       event.stopPropagation();
     }
 
     $scope.moveDown = function(event, elem) {
-      elem.presentation_order += 1;
+      key = 'presentation_order';
+      if (elem[key] === undefined)
+          key = 'y';
+      elem[key] += 1;
+
       event.stopPropagation();
     }
 

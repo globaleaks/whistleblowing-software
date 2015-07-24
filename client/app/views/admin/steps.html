@@ -1,0 +1,134 @@
+<div id="StepAddBox" data-ng-controller="AdminStepAddCtrl">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="editorTitle" data-translate>Add new step</div>
+      <div data-ng-form="" name="newStep">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label data-translate>Label</label>
+              <input name="label" class="form-control" data-ng-model="new_step_label" type="text" required>
+              <div class="has-error" data-ng-show="newStep.label.$error.required">
+                <span data-translate>This field is mandatory</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <button class="pull-left btn btn-primary" data-ng-disabled="newStep.$invalid" data-ng-click="add_step()">
+                <i class="glyphicon glyphicon-plus-sign"></i>
+                <span data-translate>Add</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="StepsEditBox" data-ng-if="context.steps.length">
+  <div class="editorTitle" data-translate>Configured steps:</div>
+  <div>
+    <div data-ng-model="context.steps">
+      <div data-ng-repeat="step in context.steps | orderBy:'presentation_order'">
+        <div class="stepBox col-md-12"
+             data-ng-controller="AdminStepEditorCtrl">
+          <div class="configItem configStep">
+            <div class="editorHeader" data-ng-click="toggleEditing($event)">
+              <div class="row">
+                <span class="col-md-7">
+                  <span class="stepIndex badge">{{$index + 1}}</span>
+                  <span class="stepLabel">{{step.label}}</span>
+                </span>
+                <span class="col-md-5">
+                  <span class="pull-right">
+                    <button class="btn btn-xs btn-default"
+                      data-ng-show="!editing"
+                      data-ng-click="toggleEditing($event)">
+                      <span data-translate>Edit</span>
+                    </button>
+                    <button class="btn btn-xs btn-success"
+                      data-ng-show="editing"
+                      data-ng-click="save_context($event, context);">
+                      <span data-translate>Save</span>
+                    </button>
+                    <button 
+                      class="btn btn-xs btn-default"
+                      data-ng-show="editing"
+                      data-ng-click="toggleEditing($event)">
+                      <span data-translate>Cancel</span>
+                    </button>
+                    <button class="btn btn-xs btn-danger"
+                      data-ng-click="stepDeleteDialog($event, step)"
+                      popover="{{Delete | translate}}"
+                      popover-placement="right"
+                      popover-trigger="mouseenter">
+                      <span data-translate>Delete</span>
+                    </button>
+                    <span data-ng-if="context.steps.length > 1">
+                      <a class="editorHeaderButton" data-ng-click="moveUp($event, step)">
+                        <i class="glyphicon glyphicon-menu-up"></i>
+                      </a>
+                      <a class="editorHeaderButton" data-ng-click="moveDown($event, step)">
+                        <i class="glyphicon glyphicon-menu-down"></i>
+                      </a>
+                    </span>
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div data-ng-form="" name="editStep" data-ng-show="editing">
+              <div class="row">
+                <div class="form-group">
+                  <div class="col-md-6">
+                    <label data-translate>Label</label>
+                    <input class="form-control" data-ng-model="step.label" type="text" required />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label data-translate>Hint</label>
+                  <input class="form-control" data-ng-model="step.hint" type="text" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label data-translate>Description</label>
+                  <div>
+                    <textarea class="form-control" data-ng-model="step.description">{{step.description}}</textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label data-translate>Presentation Order</label>
+                  <input class="form-control" data-ng-model="step.presentation_order" value="{{step.presentation_order}}" type="number" min="0" max="99">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12" data-ng-include="'views/admin/add_field.html'"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-12" data-ng-include="'views/admin/add_field_from_template.html'"></div>
+              </div>
+              <div id="FieldsEditBox" class="form-group" data-ng-if="step.children">
+                <label data-translate>Configured fields:</label>
+                  <div data-ng-init="fields = step.children" class="configuredFields">
+                    <div data-ng-repeat="field in fields | orderBy:'y'">
+                      <div data-ng-include="'views/admin/fields.html'"></div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        <!-- Step end -->
+        </div>
+        <div class="clearfix" data-ng-if="$last"></div>
+      <!-- Repeat end -->
+      </div>
+    </div>
+  </div>
+</div>
