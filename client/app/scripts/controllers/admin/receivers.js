@@ -17,9 +17,8 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', function($scope, 
 
   };
 
-  $scope.save_single = function (e, receiver) {
+  $scope.save_single = function (receiver) {
     $scope.save_receiver(receiver);
-    e.stopPropagation();
   };
 
   $scope.save_all = function () {

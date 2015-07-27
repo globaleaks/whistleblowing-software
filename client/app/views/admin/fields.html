@@ -2,7 +2,7 @@
   data-ng-init="editing=false" data-ng-controller="AdminFieldEditorCtrl">
   <div data-ng-form="editField">
     <div class="configItem configField"  data-ng-class="{'configItemLast': $last}">
-      <div class="editorHeader" data-ng-click="toggleEditing()">
+      <div class="editorHeader" data-ng-click="toggleEditing($event)">
         <div class="row">
           <span class="col-md-7">
             <span class="fieldIndex badge">{{$index + 1}}</span>
@@ -17,7 +17,7 @@
               </button>
               <button class="btn btn-xs btn-success"
                 data-ng-show="editing"
-                data-ng-click="save_field($event, field)">
+                data-ng-click="save_field(field)">
                 <span data-translate>Save</span>
               </button>
               <button 

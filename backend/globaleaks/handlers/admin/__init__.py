@@ -393,10 +393,30 @@ def field_is_present(store, field):
     return result.count() > 0
 
 
-def db_setup_default_steps(store, context):
-    appdata = store.find(models.ApplicationData).one()
-    steps = copy.deepcopy(appdata.fields)
-    n_s = 1
+def db_import_fields(store, context, step, fieldgroup, fields):
+    for field in fields:
+        f_options = copy.deepcopy(field['options'])
+        f_children = copy.deepcopy(field['children'])
+        del field['options']
+        del field['children']
+        f = models.db_forge_obj(store, models.Field, field)
+        for f_option in f_options:
+            o = models.db_forge_obj(store, models.FieldOption, f_option)
+            o.field_id = f.id
+            f.options.add(o)
+
+        if (step):
+            f.step_id = step.id
+            step.children.add(f)
+        else:
+            f.fieldgroup_id = fieldgroup_id
+            fieldgroup.children.add(f)
+
+        if f_children:
+            db_import_fields(store, context, None, f, f_children)
+
+
+def db_import_steps(store, context, steps):
     for step in steps:
         for f_child in step['children']:
             if not field_is_present(store, f_child):
@@ -405,26 +425,15 @@ def db_setup_default_steps(store, context):
         f_children = copy.deepcopy(step['children'])
         del step['children']
         s = models.db_forge_obj(store, models.Step, step)
-        for f_child in f_children:
-            o_children = copy.deepcopy(f_child['options'])
-            del f_child['options']
-            # FIXME currently default updata do not handle fieldgroups
-            # all this block must be redesigned in order to be called recursively
-            del f_child['children']
-            f = models.db_forge_obj(store, models.Field, f_child)
-            n_o = 1
-            for o_child in o_children:
-                o = models.db_forge_obj(store, models.FieldOption, o_child)
-                o.field_id = f.id
-                o.presentation_order = n_o
-                f.options.add(o)
-                n_o += 1
-            f.step_id = s.id
-            s.children.add(f)
+        db_import_fields(store, context, s, None, f_children)
         s.context_id = context.id
-        s.presentation_order = n_s
         context.steps.add(s)
-        n_s += 1
+
+def db_setup_default_steps(store, context):
+    appdata = store.find(models.ApplicationData).one()
+    steps = copy.deepcopy(appdata.fields)
+
+    db_import_steps(store, context, steps)
 
 
 def db_create_context(store, request, language):

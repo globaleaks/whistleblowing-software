@@ -22,9 +22,8 @@ GLClient.controller('AdminContextsCtrl',
     return $scope.update(updated_context, cb);
   };
 
-  $scope.save_single = function (e, context) {
+  $scope.save_single = function (context) {
     $scope.save_context(context);
-    e.stopPropagation();
   };
 
   $scope.save_all = function () {
@@ -71,7 +70,7 @@ GLClient.controller('AdminContextsCtrl',
 
 }]);
 
-GLClient.controller('AdminContextsEditorCtrl', ['$scope',
+GLClient.controller('AdminContextEditorCtrl', ['$scope',
   function($scope) {
 
   $scope.editing = false;
