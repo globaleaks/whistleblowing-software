@@ -19,7 +19,7 @@ from globaleaks.models import Node, Context, Receiver, \
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin import db_get_context_steps
-from globaleaks.handlers.authentication import transport_security_check, unauthenticated
+from globaleaks.handlers.authentication import transport_security_check, unauthenticated, get_tor2web_header
 from globaleaks.utils.token import Token, TokenList
 from globaleaks.rest import requests
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
@@ -165,7 +165,7 @@ def verify_steps(steps, wb_steps):
     return verify_fields_recursively(indexed_fields, indexed_wb_fields)
 
 
-def db_create_submission(store, token_id, request, language):
+def db_create_submission(store, token_id, request, t2w, language):
     # the .get method raise an exception if the token is invalid
     token = TokenList.get(token_id)
 
@@ -189,6 +189,10 @@ def db_create_submission(store, token_id, request, language):
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
     submission.context_id = context.id
     submission.creation_date = datetime_now()
+
+    # Tor2Web is spot in the handler and passed here, is done to keep track of the
+    # security level adopted by the whistle-blower
+    submission.tor2web = t2w
 
     store.add(submission)
 
@@ -245,8 +249,8 @@ def db_create_submission(store, token_id, request, language):
 
 
 @transact
-def create_submission(store, token_id, request, language):
-    return db_create_submission(store, token_id, request, language)
+def create_submission(store, token_id, request, t2w, language):
+    return db_create_submission(store, token_id, request, t2w, language)
 
 
 class SubmissionCreate(BaseHandler):
@@ -264,11 +268,9 @@ class SubmissionCreate(BaseHandler):
         Response: SubmissionDesc (Token)
         Errors: ContextIdNotFound, InvalidInputFormat, SubmissionFailFields
 
-        This creates an empty submission for the requested context,
-        and returns submissionStatus with empty fields and a Submission Unique String,
-        This is the unique token used during the submission procedure.
-
-        This create a Token, require to complete the submission later.
+        This API create a Token, a temporary memory only object able to keep track of
+        the submission. If the box is under stress, complete the submission will require
+        some effort (hashcash, captcha) kept track in the Token.
         """
         if not GLSetting.memory_copy.accept_submissions:
             raise errors.SubmissionDisabled
@@ -306,7 +308,9 @@ class SubmissionInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.SubmissionDesc)
 
-        status = yield create_submission(token_id, request, self.request.language)
+        status = yield create_submission(token_id, request,
+                                         get_tor2web_header(self.request.headers),
+                                         self.request.language)
 
         self.set_status(202)  # Updated, also if submission if effectively created (201)
         self.finish(status)

@@ -474,8 +474,8 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['wb_steps'] = yield self.fill_random_fields(self.dummyContext['id'])
 
         self.dummySubmission = yield create_submission(self.dummyToken.token_id,
-                                                       self.dummySubmission,
-                                                       'en')
+                                                       self.dummySubmission, 
+                                                       True, 'en')
 
     @inlineCallbacks
     def perform_post_submission_actions(self):
