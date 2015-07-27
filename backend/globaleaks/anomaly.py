@@ -498,18 +498,22 @@ class Alarm(object):
                                          free_ramdisk_bytes,
                                          total_ramdisk_bytes)
 
-                if disk_space == 3:
-                    disk_message = "Fatal (Submission disabled): %s" % info_msg
-                elif disk_space == 2:
-                    disk_message = "Critical (Submission near to be disabled): %s" % info_msg
-                else:  # == 1
-                    disk_message = "Warning: %s" % info_msg
+                if disk_space <= GLSetting.disabled_disk_alarm:
+                    log.debug("Disk Alarm level %d suppressed by command line switch (%d)" % (
+                        disk_space, GLSetting.disabled_disk_alarm))
+                    # No alarm to be concerned, then
+                    disk_space = 0
+                else:
+                    if disk_space == 3:
+                        disk_message = "Fatal (Submission disabled): %s" % info_msg
+                    elif disk_space == 2:
+                        disk_message = "Critical (Submission near to be disabled): %s" % info_msg
+                    else:  # == 1
+                        disk_message = "Warning: %s" % info_msg
 
-                accept_submissions = c['accept_submissions']
-
-                log.err(disk_message)
-
-                break
+                    accept_submissions = c['accept_submissions']
+                    log.err(disk_message)
+                    break
 
         # This check is temporarily, want to be verified that the switch can be
         # logged as part of the Anomalies via this function
