@@ -37,9 +37,9 @@
           </a>
         </div>
         <div data-ng-repeat="context in admin.contexts | orderBy:'presentation_order'">
-          <form id="context-{{$index}}" name="editContext" data-ng-controller="AdminContextsEditorCtrl" novalidate>
+          <form id="context-{{$index}}" name="editContext" data-ng-controller="AdminContextEditorCtrl" novalidate>
             <div class="configItem contextItem"  data-ng-class="{'configItemLast': $last}">
-              <div class="editorHeader" data-ng-click="toggleEditing($event)">
+              <div class="editorHeader row" data-ng-click="toggleEditing($event)">
                 <span class="col-md-7 editorHeaderTitle">
                   <span>{{context.name}}</span>
                 </span>
@@ -52,7 +52,7 @@
                     </button>
                     <button class="btn btn-xs btn-success"
                       data-ng-show="editing"
-                      data-ng-click="save_single($event, context)">
+                      data-ng-click="save_single(context)">
                       <span data-translate>Save</span>
                     </button>
                     <button 
@@ -79,7 +79,6 @@
                   </span>
                 </span>
               </div>
-              <br />
               <div data-ng-if="editing">
                 <hr />
                 <div class="row">

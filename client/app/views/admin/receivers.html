@@ -65,7 +65,7 @@
         <div class="row receiverList" data-ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'">
           <form id="receiver-{{$index}}" name="editReceiver" data-ng-controller="AdminReceiverEditorCtrl" novalidate>
             <div class="configItem receiverItem" data-ng-class="{'configItemLast': $last}">
-              <div class="editorHeader" data-ng-click="toggleEditing($event)">
+              <div class="editorHeader row" data-ng-click="toggleEditing($event)">
                 <span class="col-md-7 editorHeaderTitle">
                   <span>{{receiver.name}}</span>
                 </span>
@@ -78,7 +78,7 @@
                     </button>
                     <button class="btn btn-xs btn-success"
                       data-ng-show="editing"
-                      data-ng-click="save_single($event, receiver)">
+                      data-ng-click="save_single(receiver)">
                       <span data-translate>Save</span>
                     </button>
                     <button 
@@ -105,7 +105,6 @@
                   </span>
                 </span>
               </div>
-              <br />
               <div class="editor" data-ng-if="editing">
                 <hr />
                 <div class="row">
