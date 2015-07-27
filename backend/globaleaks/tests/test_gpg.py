@@ -193,7 +193,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
         token = Token('submission', new_context_output['id'])
         yield self.emulate_file_upload(token, 3)
 
-        new_subm_output = yield submission.create_submission(token.token_id, new_subm, 'en')
+        new_subm_output = yield submission.create_submission(token.token_id, new_subm, False, 'en')
 
         yield DeliverySchedule().operation()
 
