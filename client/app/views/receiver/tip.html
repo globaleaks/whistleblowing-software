@@ -120,7 +120,13 @@
                 </span>
                 <span>{{::receiver.name}}</span>
               </td>
-              <td>{{::receiver.description}}</td>
+              <td>
+                <small>
+                  <span class="clickable" popover="{{::receiver.description}}">
+                    {{::receiver.description | trimTo:20:true }}
+                  </span>
+                </small>
+              </td>
               <td>{{::receiver.access_counter}}</td>
             </tr>
           </tbody>
