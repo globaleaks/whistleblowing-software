@@ -44,7 +44,8 @@ th {
   color: #FFF;
   background: #428bca;
   border-bottom: 1px solid #357ebd;
-  padding: 30px 15px 30px 15px;
+  padding: 5px 15px 5px 15px;
+  border-radius: 2%;
 }
 
 #HeaderBox:after, #HeaderBox:after {
@@ -132,9 +133,9 @@ th {
 #LoginStatusBox {
   color: #000;
   margin-top: 10px;
-  padding: 20px;
+  padding: 10px;
   background-color: #FFF;
-  border-radius: 15px;
+  border-radius: 7px;
 }
 
 #LogoBox {

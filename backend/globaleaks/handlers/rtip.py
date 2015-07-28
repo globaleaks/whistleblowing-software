@@ -128,7 +128,7 @@ def db_increment_receiver_access_count(store, user_id, tip_id):
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
 
-    log.debug("Tip %s access garanted to user %s (%d)" %
+    log.debug("Tip %s access granted to user %s (%d)" %
               (rtip.id, rtip.receiver.name, rtip.access_counter))
 
     return rtip.access_counter
@@ -218,7 +218,7 @@ def postpone_expiration_date(store, user_id, tip_id):
 
     db_postpone_expiration_date(store, rtip)
 
-    log.debug(" [%s] in %s has postponeed expiration time to %s" % (
+    log.debug(" [%s] in %s has postponed expiration time to %s" % (
         rtip.receiver.name,
         datetime_to_pretty_str(datetime_now()),
         datetime_to_pretty_str(rtip.internaltip.expiration_date)))
@@ -280,7 +280,7 @@ def get_messages_list(store, user_id, tip_id):
         content_list.append(receiver_serialize_message(msg))
 
         if not msg.visualized and msg.type == u'whistleblower':
-            log.debug("Marking as readed message [%s] from %s" % (msg.content, msg.author))
+            log.debug("Marking as read message [%s] from %s" % (msg.content, msg.author))
             msg.visualized = True
 
     return content_list
