@@ -152,3 +152,7 @@
   width: 120px;
   bottom: 0px;
 }
+
+#ContextDescription, .FieldDescription {
+  color: #777;
+}
