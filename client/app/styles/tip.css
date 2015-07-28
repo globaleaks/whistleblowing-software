@@ -40,12 +40,14 @@
   padding: 0.5%;
   width: 30%;
 }
-
 .right {
   text-align: left;
   padding: 0.5%;
   width: 65%;
 
+}
+.clickable {
+  cursor: pointer;
 }
 
 .FileTableInfo {
