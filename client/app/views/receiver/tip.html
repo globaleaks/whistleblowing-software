@@ -82,7 +82,50 @@
     </div>
 
     <div class="col-md-6">
-      <div data-ng-if="tip.show_receivers" data-ng-include="'views/partials/tip_receivers_info.html'"></div>
+      <div class="col-md-12" data-ng-if="tip.can_postpone_expiration || tip.can_delete_submission">
+        <span data-ng-show="tip.can_postpone_expiration">
+          <a class="tip-action-postpone btn btn-sm btn-warning" data-ng-click="tip_postpone(tip.id)">
+            <i class="glyphicon glyphicon-time"></i>
+            <span data-translate>Postpone tip expiration</span>
+          </a>
+        </span>
+        <span data-ng-show="tip.can_delete_submission">
+          <a class="tip-action-delete btn btn-sm btn-danger" data-ng-click="tip_delete(tip.id)">
+            <i class="glyphicon glyphicon-trash"></i>
+            <span data-translate>Delete tip</span>
+          </a>
+        </span>
+      </div>
+
+      <div class="col-md-12">
+        <div class="TipPageSectionTitle" data-translate>Receiver List</div>
+        <table class="table table-striped" id="receiverList">
+          <thead>
+            <tr>
+              <th><span data-translate>Name</span></th>
+              <th><span data-translate>Description</span></th>
+              <th><span data-translate>Access counter</span></th>
+            </tr>
+          </thead>
+          <tbody id="receiverListBody" data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
+            <tr id="receiver-{{$index}}">
+              <td>
+                <span data-ng-switch="" on="receiver.pgp_key_status">
+                  <span data-ng-switch-when="enabled">
+                    <i class="glyphicon glyphicon-certificate" popover="{{'This receiver has configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
+                  </span>
+                  <span data-ng-switch-when="disabled">
+                    <i class="glyphicon glyphicon-warning-sign" popover="{{'This receiver has not configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
+                  </span>
+                </span>
+                <span>{{::receiver.name}}</span>
+              </td>
+              <td>{{::receiver.description}}</td>
+              <td>{{::receiver.access_counter}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -113,19 +156,19 @@
           <table class="table table-striped" id="fileList">
             <thead>
               <tr>
-                <th>
+                <th class="FileTableName">
                   <span data-translate>Filename</span>
                 </th>
-                <th>
+                <th class="FileTableInfo">
                   <span data-translate>Download</span>
                 </th>
-                <th>
+                <th class="FileTableInfo">
                   <span data-translate>Upload Date</span>
                 </th>
-                <th>
+                <th class="FileTableInfo">
                   <span data-translate>Content Type</span>
                 </th>
-                <th>
+                <th class="FileTableInfo">
                   <span data-translate>File Size</span>
                 </th>
               </tr>

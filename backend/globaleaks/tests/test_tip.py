@@ -49,7 +49,7 @@ class TestTipInstance(TTip):
         token = Token(token_kind='submission',
                       context_id=self.context_desc['id'])
 
-        self.submission_desc = yield submission.create_submission(token.token_id, dummySubmissionDict, 'en')
+        self.submission_desc = yield submission.create_submission(token.token_id, dummySubmissionDict, False, 'en')
 
         self.assertEqual(self.submission_desc['wb_steps'], dummySubmissionDict['wb_steps'])
 
