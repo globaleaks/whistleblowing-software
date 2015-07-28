@@ -1,6 +1,7 @@
 .TipPageSectionTitle {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 17px;
+  font-weight: bolder;
+  font-variant: small-caps;
 }
 
 .newTip {
@@ -22,4 +23,35 @@
 
 .fieldAnswer {
   margin-bottom: 10px;
+}
+
+.SubmissionInfoSection {
+  background-color: #eaebe2;
+  border-radius: 2%;
+}
+
+.SubmissionContentSection {
+  background-color: #e5fecd;
+  border-radius: 2%;
+}
+
+.left {
+  text-align: right;
+  padding: 0.5%;
+  width: 30%;
+}
+
+.right {
+  text-align: left;
+  padding: 0.5%;
+  width: 65%;
+
+}
+
+.FileTableInfo {
+  width: 15%;
+}
+/* 15 x 4 = 60%, here is 40% */
+.FileTableName {
+  width: 40%;
 }
