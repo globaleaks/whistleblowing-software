@@ -4,8 +4,6 @@ var GLClient = angular.module('GLClient', [
     'ngCookies',
     'ngRoute',
     'ui.bootstrap',
-    'ang-drag-drop',
-    'ui.sortable',
     'flow',
     'monospaced.elastic',
     'resourceServices',
