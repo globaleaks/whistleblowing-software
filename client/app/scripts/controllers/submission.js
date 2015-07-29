@@ -42,7 +42,6 @@ GLClient.controller('SubmissionCtrl',
     );
   };
 
-  console.log($scope.receivers_ids);
   if ($scope.receivers_ids) {
     try {
       $scope.receivers_ids = JSON.parse($scope.receivers_ids);
@@ -135,7 +134,7 @@ GLClient.controller('SubmissionCtrl',
       return false;
     }
 
-    return $scope.selection > 0;
+    return ($scope.selection > 0 && $scope.selected_context.show_receivers) || $scope.selection > 1 ;
   };
 
   $scope.incrementStep = function() {

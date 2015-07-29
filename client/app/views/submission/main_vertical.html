@@ -7,8 +7,9 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12" data-ng-controller="SubmissionStepCtrl" data-ng-init="step = submission.context.steps[0]">
-    <div id="step-{{$index + 1}}">
+  <div class="col-md-12" data-ng-controller="SubmissionStepCtrl" data-ng-init="step = submission._submission.wb_steps[0]">
+    <label>{{::step.label}}</label>
+    <div id="step-1">
       <div>
         <div class="col-md-12">
           <p class="stepDescription">{{::step.description}}</p>
