@@ -306,22 +306,25 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           }
         });
 
-        // temporary fix for contitions in which select_all_receivers is marked false
-        // but the admin has forgotten to mark at least one receiver to automtically selected
-        // nor the user is coming from a link with explicit receivers selection.
+        // temporary fix for contitions in which receiver selection step is disabled but
+        // select_all_receivers is marked false and the admin has forgotten to mark at least
+        // one receiver to automtically selected nor the user is coming from a link with
+        // explicit receivers selection.
         // in all this conditions we select all receivers for which submission is allowed.
-        if (receivers_selected_count === 0 && !self.context.select_all_receivers) {
-          angular.forEach($rootScope.receivers, function(receiver) {
-            if (self.context.receivers.indexOf(receiver.id) !== -1) {
-              if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {
-                if (receiver.configuration !== 'unselectable') {
-                  self.receivers_selected[receiver.id] = true;
+        if (!self.context.show_receivers) {
+          if (receivers_selected_count === 0 && !self.context.select_all_receivers) {
+            angular.forEach($rootScope.receivers, function(receiver) {
+              if (self.context.receivers.indexOf(receiver.id) !== -1) {
+                if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {
+                  if (receiver.configuration !== 'unselectable') {
+                    self.receivers_selected[receiver.id] = true;
+                  }
                 }
               }
-            }
-          });
+            });
+          }
         }
-      };
+      }
 
       /**
        * @name Submission.create
