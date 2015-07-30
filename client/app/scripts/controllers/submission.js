@@ -69,15 +69,6 @@ GLClient.controller('SubmissionCtrl',
     $scope.contextsOrderPredicate = 'presentation_order';
   }
 
-  var checkReceiverSelected = function () {
-    $scope.receiver_selected = false;
-    // Check if there is at least one selected receiver
-    angular.forEach($scope.submission.receivers_selected, function (receiver) {
-      $scope.receiver_selected = receiver;
-    });
-
-  };
-
   var startCountdown = function() {
     $scope.submission.wait = true;
 
@@ -95,7 +86,7 @@ GLClient.controller('SubmissionCtrl',
     countDown();
   }
 
-  $scope.selected_receivers_count = function () {
+  $scope.count_selected_receivers = function () {
     var count = 0;
 
     if ($scope.submission) {
@@ -109,12 +100,14 @@ GLClient.controller('SubmissionCtrl',
     return count;
   };
 
+  $scope.selected_receivers_count = 0;
+
   $scope.selectable = function () {
     if ($scope.submission.context.maximum_selectable_receivers === 0) {
       return true;
     }
 
-    return $scope.selected_receivers_count() < $scope.submission.context.maximum_selectable_receivers;
+    return $scope.selected_receivers_count < $scope.submission.context.maximum_selectable_receivers;
   };
 
   $scope.switch_selection = function (receiver) {
@@ -123,6 +116,7 @@ GLClient.controller('SubmissionCtrl',
     }
     if ($scope.submission.receivers_selected[receiver.id] || $scope.selectable()) {
       $scope.submission.receivers_selected[receiver.id] = !$scope.submission.receivers_selected[receiver.id];
+      $scope.selected_receivers_count = $scope.count_selected_receivers();
     }
   };
 
@@ -195,15 +189,9 @@ GLClient.controller('SubmissionCtrl',
         $scope.selection = 0;
       }
 
-      checkReceiverSelected();
+      $scope.selected_receivers_count = $scope.count_selected_receivers();
     });
   }
-
-  $scope.$watch('submission.receivers_selected', function () {
-    if ($scope.submission) {
-      checkReceiverSelected();
-    }
-  }, true);
 
   new Submission(function(submission) {
     $scope.submission = submission;

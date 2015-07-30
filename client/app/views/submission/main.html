@@ -1,6 +1,7 @@
-<div id="ContextSelectorBox" data-ng-show="contexts_selectable && contexts.length > 1" class="form-inline">
+
+<div id="ContextSelectorBox" data-ng-show="context_id == undefined && contexts_selectable && contexts.length > 1" class="form-inline">
   <label id="ContextSelectorLabel">{{::node.context_selector_label}}</label>
-  <select id="ContextSelectorPick" class="form-control contexts" data-ng-model="selected_context" data-ng-options="context as context.name for context in contexts | orderBy:contextsOrderPredicate"></select>
+  <select id="ContextSelectorPick" class="form-control" data-ng-options="context as context.name for context in contexts | orderBy:contextsOrderPredicate" data-ng-model="selected_context"></select>
 </div>
 
 <div id="ContextDescription">{{::submission.context.description}}</div>
