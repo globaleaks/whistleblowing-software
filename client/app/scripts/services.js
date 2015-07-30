@@ -270,10 +270,29 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.uploading = false;
       self.done = false;
 
+      self.isDisabled = function() {
+        return (self.uploading ||
+                self.count_selected_receivers() == 0 ||
+                self.wait ||
+                self.done);
+      }
+
+      self.count_selected_receivers = function () {
+        var count = 0;
+
+        angular.forEach(self.receivers_selected, function (selected) {
+          if (selected) {
+            count += 1;
+          }
+        });
+        console.log(count);
+
+        return count;
+      };
+
       var setCurrentContextReceivers = function(context_id, receivers_ids) {
         self.context = angular.copy($filter('filter')($rootScope.contexts, {"id": context_id})[0]);
 
-        var receivers_selected_count = 0;
         self.receivers_selected = {};
         self.receivers = [];
         angular.forEach($rootScope.receivers, function(receiver) {
@@ -298,11 +317,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
                 }
               }
             }
-
-            if (self.receivers_selected[receiver.id]) {
-              receivers_selected_count++;
-            }
-
           }
         });
 
@@ -312,7 +326,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         // explicit receivers selection.
         // in all this conditions we select all receivers for which submission is allowed.
         if (!self.context.show_receivers) {
-          if (receivers_selected_count === 0 && !self.context.select_all_receivers) {
+          if (self.count_selected_receivers() === 0 && !self.context.select_all_receivers) {
             angular.forEach($rootScope.receivers, function(receiver) {
               if (self.context.receivers.indexOf(receiver.id) !== -1) {
                 if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {

@@ -86,28 +86,12 @@ GLClient.controller('SubmissionCtrl',
     countDown();
   }
 
-  $scope.count_selected_receivers = function () {
-    var count = 0;
-
-    if ($scope.submission) {
-      angular.forEach($scope.submission.receivers_selected, function (selected) {
-        if (selected) {
-          count += 1;
-        }
-      });
-    }
-
-    return count;
-  };
-
-  $scope.selected_receivers_count = 0;
-
   $scope.selectable = function () {
     if ($scope.submission.context.maximum_selectable_receivers === 0) {
       return true;
     }
 
-    return $scope.selected_receivers_count < $scope.submission.context.maximum_selectable_receivers;
+    return $scope.submission.count_selected_receivers() < $scope.submission.context.maximum_selectable_receivers;
   };
 
   $scope.switch_selection = function (receiver) {
@@ -116,7 +100,6 @@ GLClient.controller('SubmissionCtrl',
     }
     if ($scope.submission.receivers_selected[receiver.id] || $scope.selectable()) {
       $scope.submission.receivers_selected[receiver.id] = !$scope.submission.receivers_selected[receiver.id];
-      $scope.selected_receivers_count = $scope.count_selected_receivers();
     }
   };
 
@@ -188,8 +171,6 @@ GLClient.controller('SubmissionCtrl',
         $scope.skip_first_step = false;
         $scope.selection = 0;
       }
-
-      $scope.selected_receivers_count = $scope.count_selected_receivers();
     });
   }
 
