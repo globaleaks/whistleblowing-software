@@ -95,12 +95,26 @@ GLClient.controller('SubmissionCtrl',
     countDown();
   }
 
+  $scope.selected_receivers_count = function () {
+    var count = 0;
+
+    if ($scope.submission) {
+      angular.forEach($scope.submission.receivers_selected, function (selected) {
+        if (selected) {
+          count += 1;
+        }
+      });
+    }
+
+    return count;
+  };
+
   $scope.selectable = function () {
     if ($scope.submission.context.maximum_selectable_receivers === 0) {
       return true;
     }
 
-    return $scope.selected_receivers_count() < $scope.submission.maximum_selectable_receivers;
+    return $scope.selected_receivers_count() < $scope.submission.context.maximum_selectable_receivers;
   };
 
   $scope.switch_selection = function (receiver) {
