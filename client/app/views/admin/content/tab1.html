@@ -77,7 +77,7 @@
     <div class="form-group">
       <label data-translate>Admin Email Address</label>
       <input class="form-control" data-ng-model="admin.node.email" value="{{admin.node.email}}" name="email" data-ng-pattern="email_regexp" type="text">
-      <p class="has-error" data-ng-show="contentForm.email.$error.pattern">
+      <p class="text-red" data-ng-show="contentForm.email.$error.pattern">
         <span data-translate>Invalid email address</span>
       </p>
     </div>
@@ -95,7 +95,7 @@
     <div class="form-group">
       <label data-translate>Tor Hidden Service (URL)</label>
       <input class="form-control" name="hidden_service" data-ng-model="admin.node.hidden_service" data-ng-pattern="/^http://[0-9a-z]{16}\.onion$/" type="text">
-      <p class="has-error" data-ng-show="contentForm.hidden_service.$error.pattern">
+      <p class="text-red" data-ng-show="contentForm.hidden_service.$error.pattern">
         <span data-translate>Invalid format for hidden service (similar to http://thirteenchars123.onion)</span>
       </p>
     </div>
@@ -103,7 +103,7 @@
     <div class="form-group">
       <label data-translate>Tor2web Public Site (URL)</label>
       <input class="form-control" name="public_site" data-ng-model="admin.node.public_site" data-ng-pattern="https_regexp" type="url">
-      <p class="has-error" data-ng-show="contentForm.public_site.$error.pattern">
+      <p class="text-red" data-ng-show="contentForm.public_site.$error.pattern">
         <span data-translate>Invalid format for public site (similar to https://thirteenchars123.tor2web.org)</span>
       </p>
     </div>

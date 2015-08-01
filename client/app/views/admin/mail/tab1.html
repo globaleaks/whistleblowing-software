@@ -56,7 +56,7 @@
       <label data-translate>Source Email Address</label>
       <input class="form-control" name="source_email" data-ng-model="admin.notification.source_email" data-ng-pattern="email_regexp" maxlength="{{node.maximum_namesize}}" type="text" />
     </div>
-    <div class="has-error" data-ng-show="notificationForm.source_email.$error.pattern">
+    <div class="text-red" data-ng-show="notificationForm.source_email.$error.pattern">
       <span data-translate>Invalid email address</span>
     </div>
 

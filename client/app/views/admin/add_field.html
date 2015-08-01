@@ -3,7 +3,7 @@
     <div class="form-group">
       <label data-translate>Label</label>
       <input name="label" class="form-control" data-ng-model="new_field.label" maxlength="{{node.maximum_namesize}}" type="text" required>
-      <div class="has-error" data-ng-show="newField.label.$error.required">
+      <div class="text-red" data-ng-show="newField.label.$error.required">
         <span data-translate>This field is mandatory</span>
       </div>
     </div>
@@ -23,7 +23,7 @@
           <option value="dialog" data-translate>Dialog Window</option>
         -->
       </select>
-      <div class="has-error" data-ng-show="newField.type.$error.required">
+      <div class="text-red" data-ng-show="newField.type.$error.required">
         <span data-translate>This field is mandatory</span>
       </div>
     </div>
