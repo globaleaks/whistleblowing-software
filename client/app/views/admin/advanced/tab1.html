@@ -157,7 +157,7 @@
     <div class="form-group">
       <label data-translate>Exception reporting email address</label>
       <input class="form-control" data-ng-model="admin.node.exception_email" name="email" type="text" data-ng-pattern="email_regexp" />
-      <p class="has-error" data-ng-if="advancedForm.email.$error.pattern">
+      <p class="text-red" data-ng-if="advancedForm.email.$error.pattern">
         <span data-translate>Invalid email address</span>
       </p>
     </div>

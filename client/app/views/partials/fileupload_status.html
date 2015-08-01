@@ -44,8 +44,7 @@
           </div>
           <div>
             <label class="fileSize">
-              <span data-translate>Size</span>:
-              {{file.size | prettyBytes }}
+              <span data-translate>Size</span>:<span>{{file.size | prettyBytes }}</span>
             </label>
           </div>
           <br />
@@ -55,7 +54,7 @@
             </div>
           </div>
           <div data-ng-show="file.error && file.error_msg">
-            <span data-translate class="has-error">{{file.error_msg}}</span>
+            <span data-translate class="text-red">{{file.error_msg}}</span>
           </div>
         </div>
       </div>
