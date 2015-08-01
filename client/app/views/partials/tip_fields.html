@@ -14,10 +14,8 @@
         <span data-ng-switch-when="selectbox" class="preformatted">{{field.value}}</span>
 
         <span data-ng-switch-when="checkbox">
-          <ul data-ng-repeat="answer in field.value">
+          <ul data-ng-repeat="answer in field.value" data-ng-if="answer.value">
             <li>
-              <span data-ng-hide="answer.value"><i class="glyphicon glyphicon-unchecked"></i></span>
-              <span data-ng-show="answer.value"><i class="glyphicon glyphicon-check"></i></span>
               <span>{{answer.name}}</span>
             </li>
           </ul>
