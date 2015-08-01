@@ -18,37 +18,18 @@ NAME=$(basename $(readlink -nf $0))
 
 SCRIPTNAME=$0
 
+##################################################################
+# load defaults from /usr/share/globaleaks/default and then from
+# /etc/default/globaleaks so that we assure that new variables are
+# always present regardless of user errors on updates
+if test -e "/usr/share/globaleaks/default" ; then
+   . "/usr/share/globaleaks/default"
+fi
+
 if test -e "/etc/default/globaleaks" ; then
    . "/etc/default/globaleaks"
 fi
-
-if [ -d "/etc/default/globaleaks.d" ]; then
-   for i in "/etc/default/globaleaks.d/"*; do
-       if [ -f "$i" ]; then
-           ## If the last character is a ~, ignore that file, because it was created
-           ## by some editor, which creates backup files.
-           if [ "${i: -1}" = "~" ]; then
-               true "skip $i"
-               continue
-           fi
-           ## Skipping files such as .dpkg-old and .dpkg-dist.
-           if ( echo "$i" | grep -q ".dpkg-" ); then
-               true "skip $i"
-               continue
-           fi
-           bash_n_exit_code="0"
-           bash_n_output="$(bash -n "$i" 2>&1)" || { bash_n_exit_code="$?" ; true; };
-           if [ ! "$bash_n_exit_code" = "0" ]; then
-               echo "Invalid config file: $i
-bash_n_exit_code: $bash_n_exit_code
-bash_n_output:
-$bash_n_output" >&2
-               exit 1
-           fi
-           . "$i"
-       fi
-   done
-fi
+##################################################################
 
 . /lib/init/vars.sh
 
