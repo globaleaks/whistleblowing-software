@@ -598,8 +598,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
               self.receivers.$promise,
               self.notification.$promise]).then(function() {
 
-        console.log(self.contexts);
-
         self.new_context = function() {
           var context = new adminContextResource();
           context.name = "";
