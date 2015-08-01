@@ -42,8 +42,6 @@ describe('GET /receivers', function () {
   it('responds 200 on GET /receivers', function (done) {
     app
       .get('/receivers')
-      .set('X-XSRF-TOKEN', 'antani')
-      .set('cookie', 'XSRF-TOKEN=antani')
       .expect(200)
       .end(function (err, res) {
 
@@ -67,72 +65,9 @@ describe('GET /receivers', function () {
 })
 
 describe('POST /authentication', function () {
-  it('responds 403 on valid login with missing XSRF token (missing header)', function (done) {
+  it('responds 401 on invalid login', function (done) {
     app
       .post('/authentication')
-      .set('cookie', 'XSRF-TOKEN=antani')
-      .send(valid_login)
-      .expect(403)
-      .end(function (err, res) {
-
-        if (err) {
-          return done(err);
-        }
-
-        validate_mandatory_headers(res.headers);
-
-        done();
-      });
-  })
-})
-
-describe('POST /authentication', function () {
-  it('responds 403 on valid login with missing XSRF token (missing cookie)', function (done) {
-    app
-      .post('/authentication')
-      .set('X-XSRF-TOKEN', 'antani')
-      .send(valid_login)
-      .expect(403)
-      .end(function (err, res) {
-
-        if (err) {
-          return done(err);
-        }
-
-        validate_mandatory_headers(res.headers);
-
-        done();
-      });
-  })
-})
-
-describe('POST /authentication', function () {
-  it('responds 403 on valid login with missing XSRF token (header != cookie)', function (done) {
-    app
-      .post('/authentication')
-      .set('X-XSRF-TOKEN', 'antani')
-      .set('cookie', 'XSRF-TOKEN=notantani')
-      .send(valid_login)
-      .expect(403)
-      .end(function (err, res) {
-
-        if (err) {
-          return done(err);
-        }
-
-        validate_mandatory_headers(res.headers);
-
-        done();
-      });
-  })
-})
-
-describe('POST /authentication', function () {
-  it('responds 401 on invalid login (valid XSRF token)', function (done) {
-    app
-      .post('/authentication')
-      .set('X-XSRF-TOKEN', 'antani')
-      .set('cookie', 'XSRF-TOKEN=antani')
       .send(invalid_login)
       .expect(401)
       .end(function (err, res) {
@@ -149,11 +84,9 @@ describe('POST /authentication', function () {
 })
 
 describe('POST /authentication', function () {
-  it('responds 200 on valid login (valid XSRF token)', function (done) {
+  it('responds 200 on valid login', function (done) {
     app
       .post('/authentication')
-      .set('X-XSRF-TOKEN', 'antani')
-      .set('cookie', 'XSRF-TOKEN=antani')
       .send(valid_login)
       .expect(200)
       .end(function (err, res) {
