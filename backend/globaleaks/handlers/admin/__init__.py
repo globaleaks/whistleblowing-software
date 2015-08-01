@@ -9,7 +9,7 @@ import shutil
 from storm.exceptions import DatabaseError
 
 from globaleaks import models, security, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
-from globaleaks.handlers.admin.field import disassociate_field, get_field_association
+from globaleaks.handlers.admin.field import *
 from globaleaks.handlers.admin.langfiles import *
 from globaleaks.handlers.admin.staticfiles import *
 from globaleaks.handlers.admin.overview import *
@@ -119,14 +119,15 @@ def db_admin_serialize_user(store, username):
 
     return ret_dict
 
+
 @transact_ro
 def admin_serialize_user(*args):
     return db_admin_serialize_user(*args)
 
 
-def db_create_step(store, context, steps, language):
+def db_create_steps(store, context_id, steps, language):
     """
-    Add the specified steps
+    Create the specified steps
 
     :param store: the store on which perform queries.
     :param context: the context on which register specified steps.
@@ -134,83 +135,8 @@ def db_create_step(store, context, steps, language):
     :param language: the language of the specified steps.
     """
     for step in steps:
-        step['context_id'] = context.id
-
-        fill_localized_keys(step, models.Step.localized_strings, language)
-
-        s = models.Step.new(store, step)
-        for f in step['children']:
-            field = models.Field.get(store, f['id'])
-            if not field:
-                log.err("Creation error: unexistent field can't be associated")
-                raise errors.FieldIdNotFound
-
-            # remove current step/field fieldgroup/field association
-            a_s, _ = get_field_association(store, field.id)
-            if a_s != s.id:
-                disassociate_field(store, field.id)
-                s.children.add(field)
-
-def db_update_steps(store, context, steps, language):
-    """
-    Update steps
-
-    :param store: the store on which perform queries.
-    :param context: the context on which register specified steps.
-    :param steps: a dictionary containing the steps to be updated.
-    :param language: the language of the specified steps.
-    """
-    old_steps = store.find(models.Step, models.Step.context_id == context.id)
-
-    indexed_old_steps = {}
-    for o in old_steps:
-        indexed_old_steps[o.id] = o
-
-    new_steps = []
-    for step in steps:
-        step['context_id'] = context.id
-
-        fill_localized_keys(step, models.Step.localized_strings, language)
-
-        # check for reuse (needed to keep translations)
-        if 'id' in step and step['id'] in indexed_old_steps:
-            s = indexed_old_steps[step['id']]
-            for field in s.children:
-                s.children.remove(field)
-
-            s.update(step)
-
-            del indexed_old_steps[step['id']]
-        else:
-            s = models.Step(step)
-
-        new_steps.append(s)
-
-        i = 1
-        for children in step['children']:
-            f = models.Field.get(store, children['id'])
-            if not f:
-                log.err("Creation error: unexistent field can't be associated")
-                raise errors.FieldIdNotFound
-
-            i += 1
-            f.y = i
-
-            # remove current step/field fieldgroup/field association
-            a_s, _ = get_field_association(store, f.id)
-            if a_s is None:
-                s.children.add(f)
-            elif a_s != s.id:
-                disassociate_field(store, f.id)
-                s.children.add(f)
-            else: # the else condition means a_s == s.id; already associated!
-                pass
-
-    for o_id in indexed_old_steps:
-        store.remove(indexed_old_steps[o_id])
-
-    for n in new_steps:
-        store.add(n)
+        step['context_id'] = context_id
+        db_create_step(store, step, language)
 
 
 def admin_serialize_context(store, context, language):
@@ -322,10 +248,6 @@ def db_update_node(store, request, wizard_done, language):
 
     # enforcing of default_language usage (need to be set, need to be _enabled)
     if request['default_language']:
-
-        if request['default_language'] not in LANGUAGES_SUPPORTED_CODES:
-            raise errors.InvalidInputFormat("Invalid lang code as default")
-
         if request['default_language'] not in node.languages_enabled:
             raise errors.InvalidInputFormat("Invalid lang code as default")
 
@@ -393,7 +315,7 @@ def field_is_present(store, field):
     return result.count() > 0
 
 
-def db_import_fields(store, context, step, fieldgroup, fields):
+def db_import_fields(store, step, fieldgroup, fields):
     for field in fields:
         f_options = copy.deepcopy(field['options'])
         f_children = copy.deepcopy(field['children'])
@@ -413,10 +335,10 @@ def db_import_fields(store, context, step, fieldgroup, fields):
             fieldgroup.children.add(f)
 
         if f_children:
-            db_import_fields(store, context, None, f, f_children)
+            db_import_fields(store, None, f, f_children)
 
 
-def db_import_steps(store, context, steps):
+def db_import_steps(store, context_id, steps):
     for step in steps:
         for f_child in step['children']:
             if not field_is_present(store, f_child):
@@ -425,15 +347,15 @@ def db_import_steps(store, context, steps):
         f_children = copy.deepcopy(step['children'])
         del step['children']
         s = models.db_forge_obj(store, models.Step, step)
-        db_import_fields(store, context, s, None, f_children)
-        s.context_id = context.id
-        context.steps.add(s)
+        db_import_fields(store, s, None, f_children)
+        s.context_id = context_id
 
-def db_setup_default_steps(store, context):
+
+def db_setup_default_steps(store, context_id):
     appdata = store.find(models.ApplicationData).one()
     steps = copy.deepcopy(appdata.fields)
 
-    db_import_steps(store, context, steps)
+    db_import_steps(store, context_id, steps)
 
 
 def db_create_context(store, request, language):
@@ -486,9 +408,9 @@ def db_create_context(store, request, language):
         c.receivers.add(receiver)
 
     if steps:
-        db_create_step(store, context, steps, language)
+        db_create_steps(store, c.id, steps, language)
     else:
-        db_setup_default_steps(store, context)
+        db_setup_default_steps(store, c.id)
 
     log.debug("Created context %s (using %s)" % (context_name, language) )
 
@@ -532,6 +454,70 @@ def db_get_context_steps(store, context_id, language):
 @transact_ro
 def get_context_steps(*args):
     return db_get_context_steps(*args)
+
+
+def db_update_steps(store, context_id, steps, language):
+    """
+    Update steps
+
+    :param store: the store on which perform queries.
+    :param context: the context on which register specified steps.
+    :param steps: a dictionary containing the steps to be updated.
+    :param language: the language of the specified steps.
+    """
+    old_steps = store.find(models.Step, models.Step.context_id == context_id)
+
+    indexed_old_steps = {}
+    for o in old_steps:
+        indexed_old_steps[o.id] = o
+
+    new_steps = []
+    for step in steps:
+        step['context_id'] = context_id
+
+        fill_localized_keys(step, models.Step.localized_strings, language)
+
+        # check for reuse (needed to keep translations)
+        if 'id' in step and step['id'] in indexed_old_steps:
+            s = indexed_old_steps[step['id']]
+            for field in s.children:
+                s.children.remove(field)
+
+            s.update(step)
+
+            del indexed_old_steps[step['id']]
+        else:
+            s = models.Step(step)
+
+        new_steps.append(s)
+
+        for child in step['children']:
+            f = models.Field.get(store, child['id'])
+            if not f:
+                log.err("Creation error: unexistent field can't be associated")
+                raise errors.FieldIdNotFound
+
+            child['step_id'] = s.id
+            child['fieldgroup_id'] = ''
+
+            db_update_field(store, child['id'], child, language)
+
+            # remove current step/field fieldgroup/field association
+            a_s, _ = get_field_association(store, f.id)
+            if a_s is None:
+                s.children.add(f)
+            elif a_s != s.id:
+                disassociate_field(store, f.id)
+                s.children.add(f)
+            else: # the else condition means a_s == s.id; already associated!
+                pass
+
+    for o_id in indexed_old_steps:
+        store.remove(indexed_old_steps[o_id])
+
+    for n in new_steps:
+        store.add(n)
+
 
 
 @transact
@@ -588,10 +574,10 @@ def update_context(store, context_id, request, language):
         raise errors.InvalidInputFormat(dberror)
 
     if request['reset_steps']:
-        db_update_steps(store, context, [], language)
-        db_setup_default_steps(store, context)
+        db_update_steps(store, context.id, [], language)
+        db_setup_default_steps(store, context.id)
     else:
-        db_update_steps(store, context, steps, language)
+        db_update_steps(store, context.id, steps, language)
 
     return admin_serialize_context(store, context, language)
 

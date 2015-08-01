@@ -303,9 +303,9 @@ th {
   background-color: #EEE;
 }
 
-/** Fields submission/tip page **/
 .nested {
   padding-left: 15px;
+  padding-right: 0px;
 }
 
 .preview {

@@ -288,7 +288,7 @@ def get_messages_content(store, wb_tip_id, receiver_id):
                       ReceiverTip.receiver_id == unicode(receiver_id)).one()
 
     if not rtip:
-        raise errors.TipMessagesNotFound
+        raise errors.TipIdNotFound
 
     messages_list = []
     for msg in rtip.messages:

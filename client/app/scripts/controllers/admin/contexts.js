@@ -2,34 +2,10 @@ GLClient.controller('AdminContextsCtrl',
   ['$scope', '$modal',
   function($scope, $modal) {
 
-  $scope.new_context = {};
-
-  $scope.add_context = function() {
-    var context = new $scope.admin.new_context();
-
-    context.name = $scope.new_context.name;
-    context.presentation_order = $scope.newItemOrder($scope.admin.contexts, 'presentation_order');
-
-    context.$save(function(new_context){
-      $scope.admin.contexts.push(new_context);
-      $scope.new_context = {};
-    });
-  };
-
   $scope.save_context = function (context, cb) {
     var updated_context = new $scope.admin.context(context);
 
     return $scope.update(updated_context, cb);
-  };
-
-  $scope.save_single = function (context) {
-    $scope.save_context(context);
-  };
-
-  $scope.save_all = function () {
-    angular.forEach($scope.admin.contexts, function (context, key) {
-      $scope.save_context(context);
-    });
   };
 
   $scope.perform_delete = function(context) {
@@ -93,6 +69,24 @@ GLClient.controller('AdminContextEditorCtrl', ['$scope',
     }
     $scope.editContext.$dirty = true;
     $scope.editContext.$pristine = false;
+  };
+
+}]);
+
+GLClient.controller('AdminContextAddCtrl', ['$scope', function($scope) {
+
+  $scope.new_context = {};
+
+  $scope.add_context = function() {
+    var context = new $scope.admin.new_context();
+
+    context.name = $scope.new_context.name;
+    context.presentation_order = $scope.newItemOrder($scope.admin.contexts, 'presentation_order');
+
+    context.$save(function(new_context){
+      $scope.admin.contexts.push(new_context);
+      $scope.new_context = {};
+    });
   };
 
 }]);

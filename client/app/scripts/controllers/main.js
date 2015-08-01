@@ -126,22 +126,38 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       return content_types.indexOf(content_type) > -1;
     };
 
-    $scope.moveUp = function(event, elem) {
-      key = 'presentation_order';
+    $scope.getOrderPropery = function(elem) {
+      var key = 'presentation_order';
       if (elem[key] === undefined)
           key = 'y';
+      return key;
+    }
+
+    $scope.moveUp = function(event, elem) {
+      var key = $scope.getOrderPropery();
       elem[key] -= 1;
 
       event.stopPropagation();
     }
 
     $scope.moveDown = function(event, elem) {
-      key = 'presentation_order';
-      if (elem[key] === undefined)
-          key = 'y';
+      var key = $scope.getOrderPropery();
       elem[key] += 1;
 
       event.stopPropagation();
+    }
+
+    $scope.assignUniqueOrderIndex = function(elements) {
+      return;
+      var key = $scope.getOrderProperty(elements[0]);
+      if (elements.length) {
+        var i = 0;
+        var elements = $filter('orderBy')(elements, key);
+        angular.forEach(elements, function (element) {
+          element[key] = i;
+          i += 1;
+        });
+      }
     }
 
     $scope.closeAlert = function(list, index) {

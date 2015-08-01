@@ -58,13 +58,6 @@ var admin_resources = [
     'status_DELETE': 405,
   },
   {
-    'url': '/admin/fields',
-    'status_GET': 200,
-    'status_POST': 405,
-    'status_PUT': 405,
-    'status_DELETE': 405,
-  },
-  {
     'url': '/admin/field',
     'status_GET': 405,
     'status_POST': 406,

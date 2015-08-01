@@ -17,16 +17,6 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', function($scope, 
 
   };
 
-  $scope.save_single = function (receiver) {
-    $scope.save_receiver(receiver);
-  };
-
-  $scope.save_all = function () {
-    angular.forEach($scope.admin.receivers, function (receiver, key) {
-      $scope.save_receiver(receiver);
-    });
-  };
-
   $scope.perform_delete = function(receiver) {
     $scope.admin.receiver['delete']({
       receiver_id: receiver.id

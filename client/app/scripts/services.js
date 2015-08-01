@@ -285,7 +285,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             count += 1;
           }
         });
-        console.log(count);
 
         return count;
       };
@@ -531,7 +530,14 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             }
           }
         ),
-        adminFieldsResource = $resource('admin/fields'),
+        adminStepResource = $resource('admin/step/:step_id',
+          {step_id: '@id'},
+          {
+            update: {
+              method: 'PUT'
+            }
+          }
+        ),
         adminFieldResource = $resource('admin/field/:field_id', 
           {field_id: '@id'},
           {
@@ -564,8 +570,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       adminNodeResource.prototype.toString = function() { return "Admin Node"; };
       adminContextsResource.prototype.toString = function() { return "Admin Contexts"; };
       adminContextResource.prototype.toString = function() { return "Admin Context"; };
+      adminStepResource.prototype.toString = function() { return "Admin Step"; };
       adminFieldResource.prototype.toString = function() { return "Admin Field"; };
-      adminFieldsResource.prototype.toString = function() { return "Admin Fields"; };
       adminFieldTemplateResource.prototype.toString = function() { return "Admin Field Template"; };
       adminFieldTemplatesResource.prototype.toString = function() { return "Admin Field Templates"; };
       adminReceiversResource.prototype.toString = function() { return "Admin Receivers"; };
@@ -575,8 +581,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.node = adminNodeResource.get();
       self.context = adminContextResource;
       self.contexts = adminContextsResource.query();
+      self.step = adminStepResource;
       self.field_templates = adminFieldTemplatesResource.query();
-      self.fields = adminFieldsResource.query();
       self.fieldtemplate = adminFieldTemplateResource;
       self.field = adminFieldResource;
       self.receiver = adminReceiverResource;
@@ -585,10 +591,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       $q.all([self.node.$promise,
               self.contexts.$promise,
-              self.fields.$promise,
               self.field_templates.$promise,
               self.receivers.$promise,
               self.notification.$promise]).then(function() {
+
+        console.log(self.contexts);
 
         self.new_context = function() {
           var context = new adminContextResource();
@@ -610,6 +617,17 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           context.reset_steps = false;
           return context;
         };
+
+        self.new_step = function(context_id) {
+          var step = new adminStepResource();
+          step.label = '';
+          step.description = '';
+          step.hint = '';
+          step.presentation_order = 0;
+          step.children = [];
+          step.context_id = context_id;
+          return step;
+        }
 
         self.new_field = function(step_id) {
           var field = new adminFieldResource();
