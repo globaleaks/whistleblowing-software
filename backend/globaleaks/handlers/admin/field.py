@@ -8,10 +8,10 @@ import json
 
 from storm.expr import And
 from twisted.internet.defer import inlineCallbacks
+
 from globaleaks import models
-from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.node import anon_serialize_field
 from globaleaks.handlers.authentication import authenticated, transport_security_check
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.node import anon_serialize_field, anon_serialize_step, \
     get_field_option_localized_keys, get_public_context_list
 from globaleaks.rest import errors, requests
@@ -172,6 +172,8 @@ def db_create_field(store, field, language):
     db_update_options(store, f.id, field['options'], language)
 
     associate_field(store, f, step, fieldgroup)
+
+    ancestors = set(fieldtree_ancestors(store, f.id))
 
     for child in field['children']:
         if child['id'] == f.id or child['id'] in ancestors:
