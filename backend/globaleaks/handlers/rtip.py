@@ -29,11 +29,10 @@ def receiver_serialize_tip(internaltip, language):
     ret_dict = {
         'id': internaltip.id,
         'context_id': internaltip.context.id,
+        'show_receivers': internaltip.context.show_receivers,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
         'wb_steps': internaltip.wb_steps,
-        # this field "inform" the receiver of the new expiration date that can
-        # be set, only if PUT with postpone = True is updated
         'timetolive': internaltip.context.tip_timetolive,
         'enable_comments': internaltip.context.enable_comments,
         'enable_private_messages': internaltip.context.enable_private_messages,
