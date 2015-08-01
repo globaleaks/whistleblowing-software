@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div id="PrivacyBadgeBox" data-ng-if="!embedded && !node.disable_privacy_badge" data-ng-include="'views/partials/privacybadge.html'"></div>
+  <div id="PrivacyBadgeBox" data-ng-if="showPrivacyBadge()" data-ng-include="'views/partials/privacybadge.html'"></div>
 
   <div id="HeaderBox" data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
 
