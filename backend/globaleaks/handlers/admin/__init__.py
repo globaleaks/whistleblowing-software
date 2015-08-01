@@ -331,7 +331,7 @@ def db_import_fields(store, step, fieldgroup, fields):
             f.step_id = step.id
             step.children.add(f)
         else:
-            f.fieldgroup_id = fieldgroup_id
+            f.fieldgroup_id = fieldgroupid
             fieldgroup.children.add(f)
 
         if f_children:
