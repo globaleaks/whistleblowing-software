@@ -175,6 +175,7 @@ class TestGL(unittest.TestCase):
 
         self.dummyFields = dummyStuff.dummyFields
         self.dummyFieldTemplates = dummyStuff.dummyFieldTemplates
+        self.dummySteps = dummyStuff.dummySteps
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyReceiverUser_1 = self.get_dummy_receiver_user('receiver1')
@@ -429,11 +430,11 @@ class TestGLWithPopulatedDB(TestGL):
 
         # fill_data/create_context
         self.dummyContext['receivers'] = receivers_ids
-        self.dummyContext = yield create_context(self.dummyContext, 'en')
+        self.dummyContext = yield create_context(copy.deepcopy(self.dummyContext), 'en')
 
         # fill_data: create cield templates
         for idx, field in enumerate(self.dummyFieldTemplates):
-            f = yield create_field(field, 'en')
+            f = yield create_field(copy.deepcopy(field), 'en')
             self.dummyFieldTemplates[idx]['id'] = f['id']
 
         # fill_data: create fields and associate them to the context steps
@@ -447,7 +448,7 @@ class TestGLWithPopulatedDB(TestGL):
                 # "Field 1" and "Field 2" are associated to the first step
                 field['fieldgroup_id'] = self.dummyFields[2]['id']
 
-            f = yield create_field(field, 'en')
+            f = yield create_field(copy.deepcopy(field), 'en')
             self.dummyFields[idx]['id'] = f['id']
 
         self.dummyContext['steps'][0]['children'] = [
@@ -456,7 +457,7 @@ class TestGLWithPopulatedDB(TestGL):
             self.dummyFields[2]  # Generalities
         ]
 
-        yield update_context(self.dummyContext['id'], self.dummyContext, 'en')
+        yield update_context(self.dummyContext['id'], copy.deepcopy(self.dummyContext), 'en')
 
     def perform_submission_start(self):
         self.dummyToken = Token(token_kind='submission',
@@ -688,7 +689,7 @@ class MockDict():
                 'is_template': True,
                 'step_id': '',
                 'fieldgroup_id': '',
-                'label': u'Field 1',
+                'label': u'Field 222',
                 'type': u'inputbox',
                 'preview': False,
                 'description': u"field description",
@@ -811,14 +812,14 @@ class MockDict():
                 'description': u'Step Description',
                 'hint': u'Step Hint',
                 'presentation_order': 0,
-                'children': {}
+                'children': []
             },
             {
                 'label': u'Step 2',
                 'description': u'Step Description',
                 'hint': u'Step Hint',
                 'presentation_order': 1,
-                'children': {}
+                'children': []
             }
         ]
 

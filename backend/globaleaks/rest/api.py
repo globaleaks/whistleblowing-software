@@ -29,7 +29,6 @@ token_string = r'([a-zA-Z0-9]{42})'
 #    manages the get of a collection of resources
 
 spec = [
-
     ## Some Useful Redirects ##
     (r'/login', BaseRedirectHandler, {'url': '/#/login'}),
     (r'/admin', BaseRedirectHandler, {'url': '/#/admin'}),
@@ -80,7 +79,8 @@ spec = [
     (r'/admin/receiver', admin.ReceiverCreate),
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
     (r'/admin/notification', admin.notification.NotificationInstance),
-    (r'/admin/fields', admin.field.FieldsCollection),
+    (r'/admin/step', admin.field.StepCreate),
+    (r'/admin/step/' + uuid_regexp, admin.field.StepInstance),
     (r'/admin/field', admin.field.FieldCreate),
     (r'/admin/field/' + uuid_regexp, admin.field.FieldInstance),
     (r'/admin/fieldtemplates', admin.field.FieldTemplatesCollection),

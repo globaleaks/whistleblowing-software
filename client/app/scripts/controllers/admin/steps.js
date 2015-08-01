@@ -1,28 +1,16 @@
-GLClient.controller('AdminStepAddCtrl', ['$scope', '$rootScope',
-  function($scope, $rootScope) {
+GLClient.controller('AdminStepAddCtrl', ['$scope', function($scope) {
+
+    $scope.new_step = {};
 
     $scope.add_step = function() {
-      if ($scope.context.steps === undefined) {
-        $scope.context.steps = [];
-      }
+      var step = new $scope.admin.new_step($scope.context.id);
+      step.label = $scope.new_step.label;
+      step.presentation_order = $scope.newItemOrder($scope.context.steps, 'presentation_order');
 
-      $scope.context.steps.push(
-        {
-          label: $scope.new_step_label,
-          description: '',
-          hint: '',
-          presentation_order: $scope.newItemOrder($scope.context.steps, 'presentation_order'),
-          children: []
-        }
-      );
-
-      /* due to current API we need this cb in order to fecth the step id */
-      var cb = function() {
-        $rootScope.$broadcast("REFRESH");
-      };
-
-      $scope.save_context($scope.context, cb);
-
+      step.$save(function(new_step){
+        $scope.context.steps.push(new_step);
+        $scope.new_step = {};
+      });
     };
   }
 ]);
@@ -45,7 +33,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.save_all = function () {
-      // XXX this is highly inefficient, could be refactored/improved.
+      $scope.assignUniqueOrderIndex($scope.step.children);
       angular.forEach($scope.step.children, function (field, key) {
         $scope.save_field(field);
       });
@@ -91,7 +79,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       $scope.step.children.splice(idx, 1);
     };
 
-    $scope.perform_delete = function(field) {
+    $scope.perform_delete_field = function(field) {
       $scope.admin.field['delete']({
         field_id: field.id
       }, function(){
@@ -100,16 +88,11 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.perform_delete_step = function(step) {
-      $scope.deleteStep(step);
-      $scope.save_context($scope.context);
-    };
-
-    $scope.create_field = function(new_field) {
-      var field = $scope.admin.new_field('');
-      field.label = new_field.label;
-      field.type = new_field.type;
-      $scope.admin.fill_default_field_options(field);
-      return field;
+      $scope.admin.step['delete']({
+        step_id: step.id
+      }, function(){
+        $scope.deleteStep(step);
+      });
     };
 
     $scope.save_field = function(field) {
@@ -119,6 +102,11 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
         $scope.save_all();
       }
       return updated_field.$update();
+    };
+
+    $scope.save_step = function(step) {
+      var updated_step = new $scope.admin.step(step);
+      return updated_step.$update();
     };
 
     $scope.stepDeleteDialog = function(e, step){
@@ -144,9 +132,12 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     $scope.new_field = {};
 
     $scope.add_field = function() {
-      var field = new $scope.create_field($scope.new_field);
-      field.step_id = $scope.step.id;
+      var field = $scope.admin.new_field($scope.step.id);
+      field.label = $scope.new_field.label;
+      field.type = $scope.new_field.type;
       field.y = $scope.newItemOrder($scope.step.children, 'y');
+
+      $scope.admin.fill_default_field_options(field);
 
       field.$save(function(new_field){
         $scope.addField(new_field);

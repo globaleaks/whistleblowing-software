@@ -204,17 +204,17 @@ def anon_serialize_step(store, step, language):
     """
     Serialize a step, localizing its content depending on the language.
 
-    :param step: the setep to be serialized.
+    :param step: the step to be serialized.
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
-
     fields = []
     for f in step.children:
         fields.append(anon_serialize_field(store, f, language))
 
     ret_dict = {
         'id': step.id,
+        'context_id': step.context.id,
         'presentation_order': step.presentation_order,
         'children': fields
     }

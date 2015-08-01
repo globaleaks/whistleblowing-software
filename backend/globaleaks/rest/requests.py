@@ -94,11 +94,12 @@ TipOpsDesc = {
     'operation': tip_operation_regexp,
 }
 
-AdminStepDesc = {
+StepDesc = {
     'label': unicode,
     'hint': unicode,
     'description': unicode,
-    'children': list
+    'children': list,
+    'context_id': uuid_regexp
 }
 
 AdminNodeDesc = {

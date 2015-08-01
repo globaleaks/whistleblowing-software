@@ -755,6 +755,11 @@ class Step(Model):
     int_keys = ['presentation_order']
     localized_strings = ['label', 'description', 'hint']
 
+    def delete(self, store):
+        for child in self.children:
+            child.delete(store)
+        store.remove(self)
+
 
 class Stats(Model):
     start = DateTime()

@@ -10,8 +10,9 @@ from storm.expr import And
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.node import anon_serialize_field
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.node import anon_serialize_field, \
+from globaleaks.handlers.node import anon_serialize_field, anon_serialize_step, \
     get_field_option_localized_keys, get_public_context_list
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
@@ -26,7 +27,6 @@ def get_field_association(store, field_id):
 
     :param store: the store on which perform queries.
     """
-
     ret1 = None
     ret2 = None
 
@@ -41,22 +41,19 @@ def get_field_association(store, field_id):
     return ret1, ret2
 
 
-def associate_field(store, field, step_id=None, fieldgroup_id=None):
+def associate_field(store, field, step=None, fieldgroup=None):
     """
     Associate a field to a specified step or fieldgroup
 
     :param store: the store on which perform queries.
     """
-    if step_id:
+    if step:
         if field.is_template:
             raise errors.InvalidInputFormat("Cannot associate a field template to a step")
 
-        step = store.find(models.Step, models.Step.id == step_id).one()
         step.children.add(field)
 
-    elif fieldgroup_id:
-        fieldgroup = store.find(models.Field, models.Field.id == fieldgroup_id).one()
-
+    if fieldgroup:
         if field.is_template != fieldgroup.is_template:
             raise errors.InvalidInputFormat("Cannot associate field templates with fields")
 
@@ -75,6 +72,7 @@ def disassociate_field(store, field_id):
     ff = store.find(models.FieldField, models.FieldField.child_id == field_id).one()
     if ff:
         store.remove(ff)
+
 
 def db_update_options(store, field_id, options, language):
     """
@@ -121,15 +119,19 @@ def db_update_options(store, field_id, options, language):
     for n in new_options:
         store.add(n)
 
-def field_integrity_check(request):
-    """
-    Verify the validity of the parameters passed in a request
 
-    :param request: the request dict to be validated
+def field_integrity_check(store, field):
     """
-    is_template = request['is_template']
-    step_id = request.get('step_id')
-    fieldgroup_id = request.get('fieldgroup_id')
+    Verify the congruence of step_id, fieldgroup_id and is_template attrs in field dict
+
+    :param field: the field dict to be validated
+    """
+    is_template = field['is_template']
+    step_id = field.get('step_id')
+    fieldgroup_id = field.get('fieldgroup_id')
+
+    step = None
+    fieldgroup = None
 
     if not is_template and \
        (step_id == '' or step_id is None) and \
@@ -141,70 +143,137 @@ def field_integrity_check(request):
             (fieldgroup_id == '' or fieldgroup_id is None):
             raise errors.InvalidInputFormat("Cannot associate a field to both a step and a fieldgroup")
 
-    return is_template, step_id, fieldgroup_id
+    if step_id:
+        step = store.find(models.Step, models.Step.id == step_id).one()
+        if not step:
+            raise errors.StepIdNotFound
+
+    if fieldgroup_id:
+        fieldgroup = store.find(models.Field, models.Field.id == fieldgroup_id).one()
+        if not fieldgroup:
+            raise errors.FieldIdNotFound
+
+    return is_template, step, fieldgroup
 
 
-def db_create_field(store, request, language):
+def db_create_field(store, field, language):
     """
     Create and add a new field to the store, then return the new serialized object.
 
     :param store: the store on which perform queries.
-    :param: request: the field definition dict
+    :param: field the field definition dict
     :param: language: the language of the field definition dict
     :return: a serialization of the object
     """
-    _, step_id, fieldgroup_id = field_integrity_check(request)
+    _, step, fieldgroup = field_integrity_check(store, field)
 
-    fill_localized_keys(request, models.Field.localized_strings, language)
-    field = models.Field.new(store, request)
-    db_update_options(store, field.id, request['options'], language)
+    fill_localized_keys(field, models.Field.localized_strings, language)
+    f = models.Field.new(store, field)
+    db_update_options(store, f.id, field['options'], language)
 
-    associate_field(store, field, step_id, fieldgroup_id)
+    associate_field(store, f, step, fieldgroup)
 
-    return anon_serialize_field(store, field, language)
+    for child in field['children']:
+        if child['id'] == f.id or child['id'] in ancestors:
+            raise errors.InvalidInputFormat
+
+        db_update_field(store, child['id'], child, language)
+
+    return f
 
 
-def db_create_field_from_template(store, request, language):
+def db_create_field_from_template(store, field, language):
     """
     Create and add a new field to the store starting from a template,
     then return the new serialized object.
 
     :param store: the store on which perform queries.
-    :param: request: the field definition dict
+    :param: field: the field definition dict
     :param: language: the language of the field definition dict
     :return: a serialization of the object
     """
-    _, step_id, fieldgroup_id = field_integrity_check(request)
+    _, step, fieldgroup = field_integrity_check(store, field)
 
-    template = store.find(models.Field, models.Field.id == request['template_id']).one()
+    template = store.find(models.Field, models.Field.id == field['template_id']).one()
     if not template:
         raise errors.InvalidInputFormat("The specified template id %s does not exist" %
-                                            request.get('template_id'))
-    field = template.copy(store, False)
+                                        field.get('template_id'))
+    f = template.copy(store, False)
 
-    associate_field(store, field, step_id, fieldgroup_id)
+    associate_field(store, f, step, fieldgroup)
 
-    return anon_serialize_field(store, field, language)
+    return f
 
 
 @transact
-def create_field(*args):
+def create_field(store, field, language):
     """
     Transaction that perform db_create_field
     """
-    return db_create_field(*args)
+    f = db_create_field(store, field, language)
+
+    return anon_serialize_field(store, f, language)
 
 
 @transact
-def create_field_from_template(*args):
+def create_field_from_template(store, field, language):
     """
     Transaction that perform db_create_field_from_template
     """
-    return db_create_field_from_template(*args)
+    f = db_create_field_from_template(store, field, language)
+
+    return anon_serialize_field(store, f, language)
+
+
+def db_update_field(store, field_id, field, language):
+    _, step, fieldgroup = field_integrity_check(store, field)
+
+    fill_localized_keys(field, models.Field.localized_strings, language)
+
+    try:
+        f = models.Field.get(store, field_id)
+        if not f:
+            raise errors.FieldIdNotFound
+
+        f.update(field)
+
+        # children handling:
+        #  - old children are cleared
+        #  - new provided childrens are evaluated and added
+        children = field['children']
+        if len(children) and f.type != 'fieldgroup':
+            raise errors.InvalidInputFormat("children can be associated only to fields of type fieldgroup")
+
+        ancestors = set(fieldtree_ancestors(store, f.id))
+
+        f.children.clear()
+        for child in children:
+            if child['id'] == f.id or child['id'] in ancestors:
+                raise errors.FieldIdNotFound
+
+            c = db_update_field(store, child['id'], child, language)
+
+            # remove current step/field fieldgroup/field association
+            disassociate_field(store, c.id)
+
+            f.children.add(c)
+
+        db_update_options(store, f.id, field['options'], language)
+
+        # remove current step/field fieldgroup/field association
+        disassociate_field(store, field_id)
+
+        associate_field(store, f, step, fieldgroup)
+
+        return f
+
+    except Exception as dberror:
+        log.err('Unable to update field: {e}'.format(e=dberror))
+        raise errors.InvalidInputFormat(dberror)
 
 
 @transact
-def update_field(store, field_id, request, language):
+def update_field(store, field_id, field, language):
     """
     Update the specified field with the details.
     raises :class:`globaleaks.errors.FieldIdNotFound` if the field does
@@ -212,54 +281,11 @@ def update_field(store, field_id, request, language):
 
     :param store: the store on which perform queries.
     :param: field_id: the field_id of the field to update
-    :param: request: the field definition dict
+    :param: field: the field definition dict
     :param: language: the language of the field definition dict
     :return: a serialization of the object
     """
-    errmsg = 'Invalid or not existent field ids in request.'
-
-    is_template, step_id, fieldgroup_id = field_integrity_check(request)
-
-    field = models.Field.get(store, field_id)
-    try:
-        if not field:
-            raise errors.InvalidInputFormat(errmsg)
-
-        fill_localized_keys(request, models.Field.localized_strings, language)
-
-        field.update(request)
-
-        # children handling:
-        #  - old children are cleared
-        #  - new provided childrens are evaluated and added
-        children = request['children']
-        if children and field.type != 'fieldgroup':
-            raise errors.InvalidInputFormat("children can be associated only to fields of type fieldgroup")
-
-        ancestors = set(fieldtree_ancestors(store, field.id))
-
-        field.children.clear()
-        for c in children:
-            child = models.Field.get(store, c['id'])
-            # check child do exists and graph is not recursive
-            if not child or child.id == field.id or child.id in ancestors:
-                raise errors.InvalidInputFormat(errmsg)
-
-            # remove current step/field fieldgroup/field association
-            disassociate_field(store, child.id)
-
-            field.children.add(child)
-
-        db_update_options(store, field.id, request['options'], language)
-
-        # remove current step/field fieldgroup/field association
-        disassociate_field(store, field_id)
-
-        associate_field(store, field, step_id, fieldgroup_id)
-
-    except Exception as dberror:
-        log.err('Unable to update field: {e}'.format(e=dberror))
-        raise errors.InvalidInputFormat(dberror)
+    field = db_update_field(store, field_id, field, language)
 
     return anon_serialize_field(store, field, language)
 
@@ -278,8 +304,8 @@ def get_field(store, field_id, is_template, language):
     """
     field = store.find(models.Field, And(models.Field.id == field_id, models.Field.is_template == is_template)).one()
     if not field:
-        log.err('Invalid field requested')
         raise errors.FieldIdNotFound
+
     return anon_serialize_field(store, field, language)
 
 
@@ -299,6 +325,7 @@ def delete_field(store, field_id, is_template):
     field = store.find(models.Field, And(models.Field.id == field_id, models.Field.is_template == is_template)).one()
     if not field:
         raise errors.FieldIdNotFound
+
     field.delete(store)
 
 
@@ -335,6 +362,102 @@ def get_field_list(store, is_template, language):
             ret.append(anon_serialize_field(store, f, language))
 
     return ret
+
+
+def db_create_step(store, step, language):
+     """
+     Create the specified step
+ 
+     :param store: the store on which perform queries.
+     :param language: the language of the specified steps.
+     """
+     fill_localized_keys(step, models.Step.localized_strings, language)
+
+     s = models.Step.new(store, step)
+     for f in step['children']:
+         field = models.Field.get(store, f['id'])
+         if not field:
+             log.err("Creation error: unexistent field can't be associated")
+             raise errors.FieldIdNotFound
+
+         db_update_field(f['id'], f, language)
+
+     return s
+
+
+@transact
+def create_step(store, step, language):
+    """
+    Transaction that perform db_create_step
+    """
+    s = db_create_step(store, step, language)
+
+    return anon_serialize_step(store, s, language)
+
+
+@transact
+def update_step(store, step_id, request, language):
+    """
+    Update the specified step with the details.
+    raises :class:`globaleaks.errors.StepIdNotFound` if the step does
+    not exist.
+
+    :param store: the store on which perform queries.
+    :param: step_id: the step_id of the step to update
+    :param: request: the step definition dict
+    :param: language: the language of the step definition dict
+    :return: a serialization of the object
+    """
+    step = models.Step.get(store, step_id)
+    try:
+        if not step:
+            raise errors.StepIdNotFound
+
+        fill_localized_keys(request, models.Step.localized_strings, language)
+
+        step.update(request)
+
+    except Exception as dberror:
+        log.err('Unable to update step: {e}'.format(e=dberror))
+        raise errors.InvalidInputFormat(dberror)
+
+    return anon_serialize_step(store, step, language)
+
+
+@transact_ro
+def get_step(store, step_id, language):
+    """
+    Serialize the specified step
+
+    :param store: the store on which perform queries.
+    :param step_id: the id corresponding to the step.
+    :param language: the language in which to localize data
+    :return: the currently configured step.
+    :rtype: dict
+    """
+    step = store.find(models.Step, models.Step.id == step_id).one()
+    if not step:
+        raise errors.StepIdNotFound
+
+    return anon_serialize_step(store, step, language)
+
+
+@transact
+def delete_step(store, step_id):
+    """
+    Delete the step object corresponding to step_id
+
+    If the step has children, remove them as well.
+
+    :param store: the store on which perform queries.
+    :param step_id: the id corresponding to the step.
+    :raises StepIdNotFound: if no such step is found.
+    """
+    step = store.find(models.Step, models.Step.id == step_id).one()
+    if not step:
+        raise errors.StepIdNotFound
+
+    step.delete(store)
 
 
 class FieldTemplatesCollection(BaseHandler):
@@ -427,25 +550,6 @@ class FieldTemplateInstance(BaseHandler):
         self.set_status(200)
 
 
-class FieldsCollection(BaseHandler):
-    """
-    /admin/fields
-    """
-    @transport_security_check('admin')
-    @authenticated('admin')
-    @inlineCallbacks
-    def get(self):
-        """
-        Return a list of all the fields available in a node.
-
-        :return: the list of fields registered on the node.
-        :rtype: list
-        """
-        response = yield get_field_list(False, self.request.language)
-        self.set_status(200)
-        self.finish(response)
-
-
 class FieldCreate(BaseHandler):
     """
     Operation to create a field
@@ -527,7 +631,7 @@ class FieldInstance(BaseHandler):
     @inlineCallbacks
     def put(self, field_id):
         """
-        Update a single field's attributes.
+        Update attributes of the specified step.
 
         :param field_id:
         :return: the serialized field
@@ -568,5 +672,98 @@ class FieldInstance(BaseHandler):
         public_contexts_list = yield get_public_context_list(self.request.language)
         GLApiCache.invalidate('contexts')
         GLApiCache.set('contexts', self.request.language, public_contexts_list)
+
+        self.set_status(200)
+
+
+class StepCreate(BaseHandler):
+    """
+    Operation to create a step
+
+    /admin/step
+    """
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def post(self):
+        """
+        Create a new step.
+
+        :return: the serialized step
+        :rtype: StepDesc
+        :raises InvalidInputFormat: if validation fails.
+        """
+        request = self.validate_message(self.request.body,
+                                        requests.StepDesc)
+
+        response = yield create_step(request, self.request.language)
+
+        GLApiCache.invalidate('contexts')
+
+        self.set_status(201)
+        self.finish(response)
+
+
+class StepInstance(BaseHandler):
+    """
+    Operation to iterate over a specific requested Step
+
+    /admin/step
+    """
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def get(self, step_id):
+        """
+        Get the step identified by step_id
+
+        :param step_id:
+        :return: the serialized step
+        :rtype: StepDesc
+        :raises StepIdNotFound: if there is no step with such id.
+        :raises InvalidInputFormat: if validation fails.
+        """
+        response = yield get_step(step_id, self.request.language)
+
+        self.set_status(200)
+        self.finish(response)
+
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def put(self, step_id):
+        """
+        Update attributes of the specified step
+
+        :param step_id:
+        :return: the serialized step
+        :rtype: StepDesc
+        :raises StepIdNotFound: if there is no step with such id.
+        :raises InvalidInputFormat: if validation fails.
+        """
+        request = self.validate_message(self.request.body,
+                                        requests.StepDesc)
+
+        response = yield update_step(step_id, request, self.request.language)
+
+        GLApiCache.invalidate('contexts')
+
+        self.set_status(202) # Updated
+        self.finish(response)
+
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
+    def delete(self, step_id):
+        """
+        Delete the specified step.
+
+        :param step_id:
+        :raises StepIdNotFound: if there is no step with such id.
+        :raises InvalidInputFormat: if validation fails.
+        """
+        yield delete_step(step_id)
+
+        GLApiCache.invalidate('contexts')
 
         self.set_status(200)

@@ -55,7 +55,7 @@ class ContextIdNotFound(GLException):
     """
     The context_id used do not exist in the database.
     """
-    reason = "Not found a Context with the specified ID"
+    reason = "Not found a Context with the specified id"
     error_code = 12
     status_code = 404 # Not Found
 
@@ -64,7 +64,7 @@ class TipIdNotFound(GLException):
     """
     The Tip Id requested do not exists in the database.
     """
-    reason = "Not found a Tip with the specified ID"
+    reason = "Not found a Tip with the specified id"
     error_code = 13
     status_code = 404 # Not Found
 
@@ -73,12 +73,21 @@ class TipReceiptNotFound(GLException):
     """
     The WhisleBlower receipt is not related to any of the whistleblower tips
     """
-    reason = "Not found a Whistleblower Tip with the specified ID"
+    reason = "Not found a Whistleblower Tip with the specified id"
     error_code = 14
     status_code = 404 # Not Found
 
 
-# UNUSED ERROR CODE 15 16 17 18 HERE!
+class StepIdNotFound(GLException):
+    """
+    The Step Id requested does not exist in the database.
+    """
+    reason = "Not found a Step with the specified id"
+    error_code = 15
+    status_code = 404 # Not Found
+
+
+# UNUSED ERROR CODE 16 17 18 HERE!
 
 
 class DatabaseIntegrityError(GLException):
@@ -94,9 +103,9 @@ class DatabaseIntegrityError(GLException):
 
 class ReceiverIdNotFound(GLException):
     """
-    The Receiver ID requested do not exists in the database.
+    The receiver id requested do not exists in the database.
     """
-    reason = "No Receiver was found for the specified ID"
+    reason = "No Receiver was found for the specified id"
     error_code = 20
     status_code = 404 # Not Found
 
@@ -134,7 +143,7 @@ class FileIdNotFound(GLException):
     """
     The requested file Id do not exist in the database
     """
-    reason = "Not found a File with the specified ID "
+    reason = "Not found a file with the specified id"
     error_code = 26
     status_code = 404 # Not Found
 
@@ -187,13 +196,7 @@ class InvalidOldPassword(GLException):
     status_code = 406
 
 
-class CommentNotFound(GLException):
-    """
-    A Comment UUID expected has not been found
-    """
-    reason = "The specified comment was not found"
-    error_code = 35
-    status_code = 404
+# UNUSED ERROR CODE 35 HERE!
 
 
 class InvalidHostSpecified(GLException):
@@ -345,7 +348,7 @@ class FileUploadFlood(FloodException):
 class FieldIdNotFound(GLException):
     error_code = 58
     status_code = 404
-    reason = "Not found a Field with the specified ID"
+    reason = "Not found a field with the specified id"
 
 
 class ModelNotFound(GLException):
@@ -360,9 +363,3 @@ class ModelNotFound(GLException):
             self.reason = "Model not found"
         else:
             self.reason = "Model of type {} has not been found".format(model)
-
-
-class TipMessagesNotFound(GLException):
-    error_code = 60
-    status_code = 404
-    reason = "Not found Tip Messages for the specified ID"
