@@ -29,8 +29,6 @@ from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
 from globaleaks.utils.mailutils import mail_exception
 
-DISABLE_ANTI_XSRF_PROTECTION = False
-
 GLUploads = {}
 
 
@@ -109,8 +107,6 @@ class GLHTTPConnection(HTTPConnection):
 
 
 class BaseHandler(RequestHandler):
-    xsrf_cookie_name = "XSRF-TOKEN"
-
     def set_default_headers(self):
         """
         In this function are written some security enforcements
@@ -119,11 +115,6 @@ class BaseHandler(RequestHandler):
         This is the first function called when a new request reach GLB
         """
         self.request.start_time = datetime_now()
-
-        # just reading the property is enough to
-        # set the cookie as a side effect.
-        if not DISABLE_ANTI_XSRF_PROTECTION:
-            self.xsrf_token
 
         # to avoid version attacks
         self.set_header("Server", "globaleaks")
@@ -156,25 +147,6 @@ class BaseHandler(RequestHandler):
             lang = GLSetting.memory_copy.language
 
         self.request.language = lang
-
-    def check_xsrf_cookie(self):
-        """
-            Override needed to change name of header name
-        """
-        if DISABLE_ANTI_XSRF_PROTECTION:
-            return
-
-        token = self.request.headers.get("X-XSRF-TOKEN")
-        if not token:
-            token = self.get_argument('xsrf-token', default=None)
-        if not token:
-            raise HTTPError(403, "X-XSRF-TOKEN argument missing from POST")
-
-        # This is a constant time comparison provided by cryptography package
-        if not bytes_eq(self.xsrf_token.encode('utf-8'), token.encode('utf-8')):
-            raise HTTPError(403, "XSRF cookie does not match POST argument")
-            # utf-8 encoding is used because suggested here:
-            # http://stackoverflow.com/questions/7585307/python-hashlib-problem-typeerror-unicode-objects-must-be-encoded-before-hashin
 
 
     @staticmethod
@@ -334,11 +306,6 @@ class BaseHandler(RequestHandler):
         Is used also to log the complete request, if the option is
         command line specified
         """
-        # just reading the property is enough to
-        # set the cookie as a side effect.
-        if not DISABLE_ANTI_XSRF_PROTECTION:
-            self.xsrf_token
-
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
