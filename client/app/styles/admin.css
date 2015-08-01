@@ -104,10 +104,6 @@
   background-color: rgb(252, 252, 252);
 }
 
-.editorHeader:hover {
-  background-color: rgb(252, 252, 248);
-}
-
 .editorHeaderTitle, .editorHeaderButtons {
   letter-spacing: -1px;
   line-height: 1;
