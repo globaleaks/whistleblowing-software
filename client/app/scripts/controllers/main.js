@@ -42,22 +42,42 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     };
 
     $scope.isWizard = function () {
-      return $location.path() === '/wizard';
+      var path = $location.path();
+      return path === '/wizard';
     };
 
     $scope.isHomepage = function () {
-      return $location.path() === '/';
+      var path = $location.path();
+      return path === '/';
     };
 
     $scope.isLoginPage = function () {
-      return ($location.path() === '/login' ||
-              $location.path() === '/admin');
+      var path = $location.path();
+      return (path === '/login' ||
+              path === '/admin');
     };
+
+    $scope.isAWhistleblowerPage = function() {
+      var path = $location.path();
+      return (path === '/' ||
+              path === '/start' ||
+              path === '/submission' ||
+              path === '/receipt' ||
+              path === '/embedded/submission' ||
+              path === '/embedded/receipt' ||
+              path === '/status');
+    }
 
     $scope.showLoginForm = function () {
       return (!$scope.isHomepage() &&
               !$scope.isLoginPage());
     };
+
+    $scope.showPrivacyBadge = function() {
+      return (!$rootScope.embedded &&
+              !$rootScope.node.disable_privacy_badge &&
+              $scope.isAWhistleblowerPage());
+    }
 
     $scope.hasSubtitle = function () {
       return $scope.header_subtitle !== '';
