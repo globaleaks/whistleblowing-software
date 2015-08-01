@@ -95,7 +95,6 @@
         <div data-ng-if="tip.collection">
           <form id="fileCollectionDownload" method="POST" action="{{::tip.collection}}" novalidate>
             <input type="hidden" name="x-session" value="{{session}}">
-            <input type="hidden" name="xsrf-token" value="{{xsrf_token}}">
             <button class="btn btn-xs btn-default">
               <i class="glyphicon glyphicon-download"></i>
               <span data-translate>download all files</span>
@@ -139,7 +138,6 @@
                 <td data-ng-show="file.status != 'unavailable'">
                   <form id="fileDownload" method="POST" action="{{::file.href}}" novalidate>
                     <input type="hidden" name="x-session" value="{{session}}">
-                    <input type="hidden" name="xsrf-token" value="{{xsrf_token}}">
                     <button class="btn btn-xs btn-default">
                       <i class="glyphicon glyphicon-download"></i>
                       <span data-translate>download</span>

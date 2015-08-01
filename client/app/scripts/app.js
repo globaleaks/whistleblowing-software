@@ -2,7 +2,6 @@
 
 var GLClient = angular.module('GLClient', [
     'ngAria',
-    'ngCookies',
     'ngRoute',
     'ui.bootstrap',
     'flow',
@@ -231,14 +230,6 @@ var GLClient = angular.module('GLClient', [
           $rootScope.header_subtitle = current.$$route.header_subtitle;
         }
     });
-
-    document.cookie = 'cookiesenabled=true;';
-    if (document.cookie === "") {
-      $rootScope.cookiesEnabled = false;
-    } else {
-      $rootScope.cookiesEnabled = true;
-      document.cookie = 'cookiesenabled=true; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
 
     $rootScope.anonymous = false;
     $rootScope.embedded = false;
