@@ -202,11 +202,9 @@ var validate_mandatory_headers = function(headers) {
 }
 
 describe('POST /authentication', function () {
-  it('responds 200 on valid admin login (valid XSRF token)', function (done) {
+  it('responds 200 on valid admin login', function (done) {
     app
       .post('/authentication')
-      .set('X-XSRF-TOKEN', 'antani')
-      .set('cookie', 'XSRF-TOKEN=antani')
       .send(valid_admin_login)
       .expect(200)
       .end(function (err, res) {
@@ -228,8 +226,6 @@ describe('GET /admin/node', function () {
   it('responds 200 on GET /admin/node', function (done) {
     app
       .get('/admin/node')
-      .set('X-XSRF-TOKEN', 'antani')
-      .set('cookie', 'XSRF-TOKEN=antani')
       .set('X-Session', authentication['session_id'])
       .expect(200)
       .end(function (err, res) {
@@ -255,8 +251,6 @@ describe('PUT /admin/node', function () {
     app
       .put('/admin/node')
       .send(node)
-      .set('X-XSRF-TOKEN', 'antani')
-      .set('cookie', 'XSRF-TOKEN=antani')
       .set('X-Session', authentication['session_id'])
       .expect(202)
       .end(function (err, res) {
@@ -285,8 +279,6 @@ for (var i=0; i<population_order / 2; i++) {
       app
         .post('/admin/context')
         .send(newObject)
-        .set('X-XSRF-TOKEN', 'antani')
-        .set('cookie', 'XSRF-TOKEN=antani')
         .set('X-Session', authentication['session_id'])
         .expect(201)
         .end(function (err, res) {
@@ -323,8 +315,6 @@ describe('POST /admin/receiver', function () {
         app
           .post('/admin/receiver')
           .send(newObject)
-          .set('X-XSRF-TOKEN', 'antani')
-          .set('cookie', 'XSRF-TOKEN=antani')
           .set('X-Session', authentication['session_id'])
           .expect(201)
           .end(function (err, res) {
@@ -361,8 +351,6 @@ describe('POST /admin/context', function () {
         app
           .post('/admin/context')
           .send(newObject)
-          .set('X-XSRF-TOKEN', 'antani')
-          .set('cookie', 'XSRF-TOKEN=antani')
           .set('X-Session', authentication['session_id'])
           .expect(201)
           .end(function (err, res) {
@@ -398,8 +386,6 @@ describe('POST /admin/field', function () {
             app
               .post('/admin/field')
               .send(newObject)
-              .set('X-XSRF-TOKEN', 'antani')
-              .set('cookie', 'XSRF-TOKEN=antani')
               .set('X-Session', authentication['session_id'])
               .expect(201)
               .end(function (err, res) {

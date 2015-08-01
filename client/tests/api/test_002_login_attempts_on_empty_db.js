@@ -43,72 +43,9 @@ var validate_mandatory_headers = function(headers) {
 }
 
 describe('POST /authentication', function () {
-  it('responds 403 on valid login with missing XSRF token (missing header)', function (done) {
+  it('responds 401 on invalid admin login', function (done) {
     app
       .post('/authentication')
-      .set('cookie', 'XSRF-TOKEN=antani')
-      .send(valid_admin_login)
-      .expect(403)
-      .end(function (err, res) {
-
-        if (err) {
-          return done(err);
-        }
-
-        validate_mandatory_headers(res.headers);
-
-        done();
-      });
-  })
-})
-
-describe('POST /authentication', function () {
-  it('responds 403 on valid login with missing XSRF token (missing cookie)', function (done) {
-    app
-      .post('/authentication')
-      .set('X-XSRF-TOKEN', 'antani')
-      .send(valid_admin_login)
-      .expect(403)
-      .end(function (err, res) {
-
-        if (err) {
-          return done(err);
-        }
-
-        validate_mandatory_headers(res.headers);
-
-        done();
-      });
-  })
-})
-
-describe('POST /authentication', function () {
-  it('responds 403 on valid login with missing XSRF token (header != cookie)', function (done) {
-    app
-      .post('/authentication')
-      .set('X-XSRF-TOKEN', 'antani')
-      .set('cookie', 'XSRF-TOKEN=notantani')
-      .send(valid_admin_login)
-      .expect(403)
-      .end(function (err, res) {
-
-        if (err) {
-          return done(err);
-        }
-
-        validate_mandatory_headers(res.headers);
-
-        done();
-      });
-  })
-})
-
-describe('POST /authentication', function () {
-  it('responds 401 on invalid admin login (valid XSRF token)', function (done) {
-    app
-      .post('/authentication')
-      .set('X-XSRF-TOKEN', 'antani')
-      .set('cookie', 'XSRF-TOKEN=antani')
       .send(invalid_admin_login)
       .expect(401)
       .end(function (err, res) {
@@ -125,11 +62,9 @@ describe('POST /authentication', function () {
 })
 
 describe('POST /authentication', function () {
-  it('responds 200 on valid admin login (valid XSRF token)', function (done) {
+  it('responds 200 on valid admin login', function (done) {
     app
       .post('/authentication')
-      .set('X-XSRF-TOKEN', 'antani')
-      .set('cookie', 'XSRF-TOKEN=antani')
       .send(valid_admin_login)
       .expect(200)
       .end(function (err, res) {
