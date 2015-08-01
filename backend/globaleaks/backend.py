@@ -20,7 +20,6 @@ from globaleaks.handlers.base import GLHTTPConnection
 application = Application('GLBackend')
 
 settings = dict(cookie_secret=randbits(128),
-                xsrf_cookies=True,
                 debug=GLSetting.http_log,
                 gzip=True)
 

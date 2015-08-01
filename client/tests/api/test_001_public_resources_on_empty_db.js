@@ -115,10 +115,10 @@ public_resources.forEach(function(req){
 
 public_resources.forEach(function(req){
   describe('POST ' + req['url'], function(){
-    it('responds with 403', function(done){
+    it('responds with 405', function(done){
       app
       .post(req['url'])
-      .expect(403)
+      .expect(405)
       .end(function(err, res) {
         if (err) {
           return done(err);
@@ -144,7 +144,7 @@ public_resources.forEach(function(req){
     it('responds with ' + req['type'], function(done){
       app
       .del(req['url'])
-      .expect(403)
+      .expect(405)
       .end(function(err, res) {
         if (err) {
           return done(err);

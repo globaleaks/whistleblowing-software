@@ -154,8 +154,6 @@ describe('POST /submission', function(){
         app
           .post('/submission')
           .send(new_submission)
-          .set('X-XSRF-TOKEN', 'antani')
-          .set('cookie', 'XSRF-TOKEN=antani')
           .expect('Content-Type', 'application/json')
           .expect(201)
           .end(function(err, res) {
@@ -188,8 +186,6 @@ describe('POST /submission/submission_id', function(){
         app
           .put('/submission/' + submissions[i].id)
           .send(submissions[i])
-          .set('X-XSRF-TOKEN', 'antani')
-          .set('cookie', 'XSRF-TOKEN=antani')
           .expect('Content-Type', 'application/json')
           .expect(202)
           .end(function(err, res) {
@@ -216,76 +212,10 @@ describe('POST /submission/submission_id', function(){
 for (var i=0; i<1; i++){
   (function (i) {
     describe('POST /authentication', function () {
-      it('responds 403 on valid wb login with missing XSRF token (missing header)', function (done) {
-        var credentials = valid_login(i);
-        app
-          .post('/authentication')
-          .set('cookie', 'XSRF-TOKEN=antani')
-          .send(credentials)
-          .expect(403)
-          .end(function (err, res) {
-
-            if (err) {
-              return done(err);
-            }
-
-            validate_mandatory_headers(res.headers);
-
-            done();
-          });
-      })
-    })
-
-    describe('POST /authentication', function () {
-      it('responds 403 on valid wb login with missing XSRF token (missing cookie)', function (done) {
-        var credentials = valid_login(i);
-        app
-          .post('/authentication')
-          .set('X-XSRF-TOKEN', 'antani')
-          .send(credentials)
-          .expect(403)
-          .end(function (err, res) {
-
-            if (err) {
-              return done(err);
-            }
-
-            validate_mandatory_headers(res.headers);
-
-            done();
-          });
-      })
-    })
-
-    describe('POST /authentication', function () {
-      it('responds 403 on valid wb login with missing XSRF token (header != cookie)', function (done) {
-        var credentials = valid_login(i);
-        app
-          .post('/authentication')
-          .set('X-XSRF-TOKEN', 'antani')
-          .set('cookie', 'XSRF-TOKEN=notantani')
-          .send(credentials)
-          .expect(403)
-          .end(function (err, res) {
-
-            if (err) {
-              return done(err);
-            }
-
-            validate_mandatory_headers(res.headers);
-
-            done();
-          });
-      })
-    })
-
-    describe('POST /authentication', function () {
-      it('responds 401 on invalid wb login (valid XSRF token)', function (done) {
+      it('responds 401 on invalid wb login', function (done) {
         var credentials = invalid_login(i);
         app
           .post('/authentication')
-          .set('X-XSRF-TOKEN', 'antani')
-          .set('cookie', 'XSRF-TOKEN=antani')
           .send(credentials)
           .expect(401)
           .end(function (err, res) {
@@ -302,12 +232,10 @@ for (var i=0; i<1; i++){
     })
 
     describe('POST /authentication', function () {
-      it('responds 200 on valid wb login (valid XSRF token)', function (done) {
+      it('responds 200 on valid wb login', function (done) {
         var credentials = valid_login(i);
         app
           .post('/authentication')
-          .set('X-XSRF-TOKEN', 'antani')
-          .set('cookie', 'XSRF-TOKEN=antani')
           .send(credentials)
           .expect(200)
           .end(function (err, res) {
@@ -329,12 +257,10 @@ for (var i=0; i<1; i++){
 for (var i=1; i<submission_population_order; i++){
   (function (i) {
     describe('POST /authentication', function () {
-      it('responds 200 on valid wb login (valid XSRF token)', function (done) {
+      it('responds 200 on valid wb login', function (done) {
         var credentials = valid_login(i);
         app
           .post('/authentication')
-          .set('X-XSRF-TOKEN', 'antani')
-          .set('cookie', 'XSRF-TOKEN=antani')
           .send(credentials)
           .expect(200)
           .end(function (err, res) {

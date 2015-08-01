@@ -149,11 +149,9 @@ var validate_mandatory_headers = function(headers) {
 
 
 describe('POST /authentication', function () {
-  it('responds 200 on valid admin login (valid XSRF token)', function (done) {
+  it('responds 200 on valid admin login', function (done) {
     app
       .post('/authentication')
-      .set('X-XSRF-TOKEN', 'antani')
-      .set('cookie', 'XSRF-TOKEN=antani')
       .send(valid_admin_login)
       .expect(200)
       .end(function (err, res) {
@@ -176,8 +174,6 @@ admin_resources.forEach(function (req) {
     it('responds ' + req['status_GET'] + ' on GET ' + req['url'] + ' (authenticated, no id)', function (done) {
       app
         .get(req['url'])
-        .set('X-XSRF-TOKEN', 'antani')
-        .set('cookie', 'XSRF-TOKEN=antani')
         .set('X-Session', authentication['session_id'])
         .expect(req['status_GET'])
         .end(function (err, res) {
@@ -199,8 +195,6 @@ admin_resources.forEach(function (req) {
     it('responds ' + req['status_POST'] + ' on POST ' + req['url'] + ' (authenticated, no content)', function (done) {
       app
         .post(req['url'])
-        .set('X-XSRF-TOKEN', 'antani')
-        .set('cookie', 'XSRF-TOKEN=antani')
         .set('X-Session', authentication['session_id'])
         .expect(req['status_POST'])
         .end(function (err, res) {
@@ -222,8 +216,6 @@ admin_resources.forEach(function (req) {
     it('responds ' + req['status_PUT'] + ' on PUT ' + req['url'] + ' (authenticated, no content)', function (done) {
       app
         .put(req['url'])
-        .set('X-XSRF-TOKEN', 'antani')
-        .set('cookie', 'XSRF-TOKEN=antani')
         .set('X-Session', authentication['session_id'])
         .expect(req['status_PUT'])
         .end(function (err, res) {
@@ -245,8 +237,6 @@ admin_resources.forEach(function (req) {
     it('responds ' + req['status_DELETE'] + ' on DELETE ' + req['url'] + ' (authenticated, no id)', function (done) {
       app
         .del(req['url'])
-        .set('X-XSRF-TOKEN', 'antani')
-        .set('cookie', 'XSRF-TOKEN=antani')
         .set('X-Session', authentication['session_id'])
         .expect(req['status_DELETE'])
         .end(function (err, res) {
