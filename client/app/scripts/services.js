@@ -8,10 +8,12 @@ angular.module('resourceServices.authentication', [])
         var self = this;
 
         $rootScope.login = function(username, password, role, cb) {
+          $rootScope.loginInProgress = true;
+
           return $http.post('authentication', {'username': username,
                                                 'password': password,
-                                                'role': role})
-            .success(function(response) {
+                                                'role': role}).
+            success(function(response) {
               self.id = response.session_id;
               self.user_id = response.user_id;
               self.username = username;
@@ -40,6 +42,9 @@ angular.module('resourceServices.authentication', [])
                 self.auth_landing_page = '/status';
               }
 
+              // reset login state before returning
+              $rootScope.loginInProgress = false;
+
               if (cb){
                 return cb(response);
               }
@@ -52,7 +57,9 @@ angular.module('resourceServices.authentication', [])
               }
 
               $location.search('');
-
+          }).
+          error(function(response) {
+            $rootScope.loginInProgress = false;
           });
         };
 

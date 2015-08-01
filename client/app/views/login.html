@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-group" data-ng-show="loginUsername">
-          <button class="btn btn-success" data-ng-disabled="loginForm.$invalid" data-ng-click="login(loginUsername, loginPassword, loginRole)" type="submit">
+          <button class="btn btn-success" data-ng-disabled="loginInProgress || loginForm.$invalid" data-ng-click="login(loginUsername, loginPassword, loginRole)" type="submit">
             <i class="glyphicon glyphicon-log-in"></i>
             <span data-translate>Log in</span>
           </button>

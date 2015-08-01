@@ -214,11 +214,10 @@ var GLClient = angular.module('GLClient', [
 
      $rootScope.successes = [];
      $rootScope.errors = [];
+     $rootScope.loginInProgress = false;
 
      var globaleaksRequestInterceptor = function(data, headers) {
-
         headers = angular.extend(headers(), $rootScope.get_auth_headers());
-
         return data;
     };
 
