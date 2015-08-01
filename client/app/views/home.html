@@ -14,12 +14,12 @@
         </button>
       </div>
       <div class="row" data-ng-show="!node.tor2web_submission && !anonymous">
-        <p class="has-error">
+        <p class="text-red">
           <span data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</span>
         </p>
       </div>
       <div class="row" data-ng-show="!node.accept_submissions">
-        <p class="has-error">
+        <p class="text-red">
           <span data-translate>Server temporarly unusable due to resource exhaustion; advise the Admin if you can.</span>
         </p>
       </div>

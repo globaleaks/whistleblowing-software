@@ -197,10 +197,6 @@ th {
 
 /* minor hacks needed to not modify some code written for angular and bootstrap 2.0.3 */
 
-.has-error {
-  color: #b94a48;
-}
-
 .img-thumbnail {
   position: relative;
   width: 160px;
@@ -341,4 +337,8 @@ th {
 
 .container-fluid {
   padding: 60px;
+}
+
+.text-red {
+  color: #b94a48;
 }

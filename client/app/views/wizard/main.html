@@ -36,7 +36,7 @@
           </label>
           <div class="col-md-8">
             <input name="node_name" class="form-control" data-ng-model="admin.node.name" maxlength="{{node.maximum_namesize}}" type="text" required>
-            <div class="has-error" data-ng-show="wizardForm.node_name.$error.required">
+            <div class="text-red" data-ng-show="wizardForm.node_name.$error.required">
               <span data-translate>This field is mandatory</span>
             </div>
             <span class="help-block">
@@ -51,7 +51,7 @@
           </label>
           <div class="col-md-8">
             <textarea name="node_description" class="form-control msd-elastic" data-ng-model="admin.node.description"  maxlength="{{node.maximum_textsize}}" required></textarea>
-            <div class="has-error" data-ng-show="wizardForm.node_description.$error.required">
+            <div class="text-red" data-ng-show="wizardForm.node_description.$error.required">
               <span data-translate>This field is mandatory</span>
             </div>
             <span class="help-block">
@@ -78,10 +78,10 @@
           </label>
           <div class="col-md-8">
             <input name="admin_email" class="form-control" data-ng-model="admin.node.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
-            <div class="has-error" data-ng-show="wizardForm.admin_email.$error.required">
+            <div class="text-red" data-ng-show="wizardForm.admin_email.$error.required">
               <span data-translate>This field is mandatory</span>
             </div>
-            <div class="has-error" data-ng-show="wizardForm.admin_email.$error.pattern">
+            <div class="text-red" data-ng-show="wizardForm.admin_email.$error.pattern">
               <span data-translate>Invalid email address</span>
             </div>
             <span class="help-block">
@@ -95,20 +95,20 @@
           </label>
           <div class="col-md-8">
             <input name="password" class="form-control" data-ng-model="admin.node.password" type="password" required>
-            <div class="has-error" data-ng-show="wizardForm.password.$error.required">
+            <div class="text-red" data-ng-show="wizardForm.password.$error.required">
               <span data-translate>This field is mandatory</span>
             </div>
-            <div class="has-error" data-ng-show="unsafe_password">
+            <div class="text-red" data-ng-show="unsafe_password">
               <span data-translate>The choosen password is unsafe, it should have</span>:
             </div>
             <ul>
-              <li class="has-error" data-ng-hide="pwdHasLetter">
+              <li class="text-red" data-ng-hide="pwdHasLetter">
                 <span data-translate>At least one letter</span>
               </li>
-              <li class="has-error" data-ng-hide="pwdHasNumber">
+              <li class="text-red" data-ng-hide="pwdHasNumber">
                 <span data-translate>At least one number</span>
               </li>
-              <li class="has-error" data-ng-hide="pwdValidLength">
+              <li class="text-red" data-ng-hide="pwdValidLength">
                 <span data-translate>At least 8 characters</span>
               </li>
             </ul>
@@ -123,7 +123,7 @@
           </label>
           <div class="col-md-8">
             <input class="form-control" data-ng-model="admin.node.check_password" type="password" required>
-            <div class="has-error" data-ng-show="mismatch_password">
+            <div class="text-red" data-ng-show="mismatch_password">
               <span data-translate>The two passwords do not match</span>
             </div>
             <span class="help-block">
@@ -151,7 +151,7 @@
           </label>
           <div class="col-md-8">
             <input name="receiver_name" class="form-control" data-ng-model="receiver.name" maxlength="{{node.maximum_namesize}}" type="text" required>
-            <div class="has-error" data-ng-show="wizardForm.receiver_name.$error.required">
+            <div class="text-red" data-ng-show="wizardForm.receiver_name.$error.required">
               <span data-translate>This field is mandatory</span>
             </div>
             <span class="help-block">
@@ -164,10 +164,10 @@
           <label class="col-md-4">Email Adress</label>
           <div class="col-md-8">
             <input name="receiver_email" class="form-control" placeholder="" data-ng-model="receiver.mail_address"  maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
-            <div class="has-error" data-ng-show="wizardForm.receiver_email.$error.required">
+            <div class="text-red" data-ng-show="wizardForm.receiver_email.$error.required">
               <span data-translate>This field is mandatory</span>
             </div>
-            <div class="has-error" data-ng-show="wizardForm.receiver_email.$error.pattern">
+            <div class="text-red" data-ng-show="wizardForm.receiver_email.$error.pattern">
               <span data-translate>Invalid email address</span>
             </div>
             <span class="help-block">
@@ -238,7 +238,7 @@
           </label>
           <div class="col-md-8">
             <input name="context_name" class="form-control" data-ng-model="context.name" type="text" required>
-            <div class="has-error" data-ng-show="wizardForm.context_name.$error.required">
+            <div class="text-red" data-ng-show="wizardForm.context_name.$error.required">
               <span data-translate>This field is mandatory</span>
             </div>
             <span class="help-block">

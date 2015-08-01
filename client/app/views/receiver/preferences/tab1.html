@@ -2,7 +2,7 @@
   <div class="form-group">
     <label><b><span data-translate>Current Password</span></b></label>
     <input class="form-control" data-ng-model="preferences.old_password" type="password">
-    <p class="has-error" data-ng-show="missing_old_password && preferences.password">
+    <p class="text-red" data-ng-show="missing_old_password && preferences.password">
       <span data-translate>Old password confirmation required</span>
     </p>
   </div>
@@ -12,17 +12,17 @@
       <b><span data-translate>New Password</span></b>
     </label>
     <input class="form-control" data-ng-model="preferences.password" type="password">
-    <p class="has-error" data-ng-show="unsafe_password">
+    <p class="text-red" data-ng-show="unsafe_password">
       <span data-translate>The choosen password is unsafe, it should have</span>:
     </p>
     <ul>
-      <li class="has-error" data-ng-hide="pwdHasLetter">
+      <li class="text-red" data-ng-hide="pwdHasLetter">
         <span data-translate>At least one letter</span>
       </li>
-      <li class="has-error" data-ng-hide="pwdHasNumber">
+      <li class="text-red" data-ng-hide="pwdHasNumber">
         <span data-translate>At least one number</span>
       </li>
-      <li class="has-error" data-ng-hide="pwdValidLength">
+      <li class="text-red" data-ng-hide="pwdValidLength">
         <span data-translate>At least 8 characters</span>
       </li>
     </ul>
@@ -31,7 +31,7 @@
   <div class="form-group">
     <label><b><span data-translate>Type your new password again</span></b></label>
     <input class="form-control" data-ng-model="preferences.check_password" type="password">
-    <p class="has-error" data-ng-show="mismatch_password">
+    <p class="text-red" data-ng-show="mismatch_password">
       <span data-translate>The two passwords do not match</span>
     </p>
   </div>

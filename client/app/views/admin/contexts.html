@@ -10,7 +10,7 @@
           <div class="form-group">
             <label data-translate>Name</label>
             <input name="name" class="form-control" data-ng-model="new_context.name" maxlength="{{node.maximum_namesize}}" type="text" required>
-            <div class="has-error" data-ng-show="newContext.name.$error.required">
+            <div class="text-red" data-ng-show="newContext.name.$error.required">
               <span data-translate>This field is mandatory</span>
             </div>
           </div>
@@ -54,7 +54,7 @@
                   </button>
                   <button class="btn btn-xs btn-danger"
                     data-ng-click="contextDeleteDialog($event, context)"
-                    popover="{{Delete | translate}}"
+                    popover="{{'Delete' | translate}}"
                     popover-placement="right"
                     popover-trigger="mouseenter">
                     <span data-translate>Delete</span>
@@ -77,7 +77,7 @@
                   <div class="form-group">
                     <label data-translate>Name</label>
                     <input name="name" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="context.name" value="{{context.name}}" type="text" required>
-                    <div class="has-error" data-ng-show="editContext.name.$error.required">
+                    <div class="text-red" data-ng-show="editContext.name.$error.required">
                       <span data-translate>This field is mandatory</span>
                     </div>
                   </div>
