@@ -78,62 +78,11 @@
 
   <div class="row">
     <div class="col-md-6">
-      <div class="TipPageSectionTitle" data-translate>Submission</div>
-      <div class="col-md-12">
-        <dl>
-          <dt>
-            <span>{{::tip.context_name}}</span>
-            <a data-ng-show="tip.context_description" popover="{{::tip.context_description}}" popover-placement="right" popover-trigger="mouseenter">
-              <span class="glyphicon glyphicon-info-sign"></span>
-            </a>
-          </dt>
-          <dt><span data-translate>Submission date</span></dt>
-          <dd>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</dd>
-          <dt><span data-translate>Expiration Date</span></dt>
-          <dd>{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</dd>
-        </dl>
-        <dl data-ng-repeat="step in tip.wb_steps">
-          <dt id="step-{{$index}}" class="stepTitle">
-            <span data-translate>Step</span>
-            <span>{{$index + 1}}: {{::step.label}}</span>
-          </dt>
-          <dd data-ng-init="fieldsRoot=step.children">
-            <span data-ng-include="'views/partials/tip_fields.html'"></span>
-          <dd>
-        </dl>
-      </div>
+      <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
     </div>
 
     <div class="col-md-6">
-      <div>
-        <div class="TipPageSectionTitle" data-translate>Receiver List</div>
-        <table class="table table-striped" id="receiverList">
-          <thead>
-            <tr>
-              <th><span data-translate>Name</span></th>
-              <th><span data-translate>Description</span></th>
-              <th><span data-translate>Access counter</span></th>
-            </tr>
-          </thead>
-          <tbody id="receiverListBody" data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
-            <tr id="receiver-{{$index}}">
-              <td>
-                <span data-ng-switch="" on="receiver.pgp_key_status">
-                  <span data-ng-switch-when="enabled">
-                    <i class="glyphicon glyphicon-certificate" popover="{{'This receiver has configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
-                  </span>
-                  <span data-ng-switch-when="disabled">
-                    <i class="glyphicon glyphicon-warning-sign" popover="{{'This receiver has not configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
-                  </span>
-                </span>
-                <span>{{::receiver.name}}</span>
-              </td>
-              <td>{{::receiver.description}}</td>
-              <td>{{::receiver.access_counter}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <div data-ng-if="tip.show_receivers" data-ng-include="'views/partials/tip_receivers_info.html'"></div>
     </div>
   </div>
 
