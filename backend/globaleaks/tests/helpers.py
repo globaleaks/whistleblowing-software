@@ -612,12 +612,6 @@ class TestHandler(TestGLWithPopulatedDB):
 
         handler = self._handler(application, request, **kwargs)
 
-        def mock_pass(cls, *args):
-            pass
-
-        # so that we don't complain about XSRF
-        handler.check_xsrf_cookie = mock_pass
-
         if role:
             session = authentication.GLSession(user_id, role, 'enabled')
             handler.request.headers['X-Session'] = session.id
