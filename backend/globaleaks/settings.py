@@ -274,7 +274,7 @@ class GLSettingsClass(object):
         self.failed_login_block_time = 5
 
         # Alarm to be ignored: can be raise with the -A command line switch
-        self.disabled_disk_alarm = 0
+        self.disk_alarm_threshold = 0
 
         # Size in bytes of every log file. Once this size is reached the
         # logfile is rotated.
@@ -434,9 +434,8 @@ class GLSettingsClass(object):
 
         self.disable_mail_notification = self.cmdline_options.disable_mail_notification
 
-        if self.cmdline_options.disabled_disk_alarm:
-            self.disabled_disk_alarm = self.cmdline_options.disabled_disk_alarm
-            print self.disabled_disk_alarm, type(self.cmdline_options.disabled_disk_alarm)
+        if self.cmdline_options.disk_alarm_threshold:
+            self.disk_alarm_threshold = self.cmdline_options.disk_alarm_threshold
 
         self.socks_host = self.cmdline_options.socks_host
 

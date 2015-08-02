@@ -1,76 +1,39 @@
 <div data-ng-controller="TipCtrl" flow-init="{target: fileupload_url, headers: get_auth_headers()}" flow-files-submitted="$flow.upload()">
+  <div class="row" data-ng-show="tip_unencrypted">
+    <div class="col-md-12">
+      <div class="alert alert-warning">
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        <strong><span data-translate>Warning!</span></strong>
+        <span data-translate>One or more of the receivers of this tip has not configured a PGP key.</span>
+        <span data-translate>This means that the submitted files will be stored in plaintext on the server.</span>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-6">
+      <div data-ng-include="'views/partials/tip_info.html'"></div>
       <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
     </div>
 
     <div class="col-md-6">
-      <div data-ng-if="tip.show_receivers" data-ng-include="'views/partials/tip_receivers_info.html'"></div>
+      <div data-ng-include="'views/partials/tip_receiver_list.html'"></div>
     </div>
-
   </div>
-
-  <hr />
 
   <div class="row">
     <div class="col-md-12">
-      <div class="TipPageSectionTitle" data-translate>Files</div>
-      <div class="well" data-ng-show="tip.files.length">
-        <div class="table-container">
-          <table class="table table-striped" id="fileList">
-            <thead>
-              <tr>
-                <th>
-                  <span data-translate>Filename</span>
-                </th>
-                <th>
-                  <span data-translate>Upload Date</span>
-                </th>
-                <th>
-                  <span data-translate>Content Type</span>
-                </th>
-                <th>
-                  <span data-translate>File Size</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody id="fileListBody" data-ng-repeat="file in tip.files">
-              <tr id="file-{{$index}}">
-                <td>
-                  <span>{{::file.name}}</span>
-                </td>
-                <td>
-                  <span>{{::file.creation_date | date:'dd-MM-yyyy'}}</span>
-                </td>
-                <td>
-                  <span>{{::file.content_type}}</span>
-                </td>
-                <td>
-                  <span>{{::file.size | prettyBytes }}</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-12" data-ng-hide="tip.files.length || uploads.length">
-      <span data-translate>No files have been uploaded!</span>
-    </div>
-    <div class="col-md-12">
-      <div data-ng-init="fileupload_mode = 'multiple'" data-ng-include="'views/partials/fileupload_button.html'"></div>
+      <div data-ng-include="'views/partials/tip_files_whistleblower.html'"></div>
     </div>
   </div>
-
-  <br />
 
   <div class="row">
-    <div class="col-md-4">
-      <div data-ng-include="'views/partials/fileupload_status.html'"></div>
+    <div class="col-md-6" data-ng-if="tip.enable_comments">
+      <div data-ng-include="'views/partials/tip_comments.html'"></div>
+    </div>
+    <div class="col-md-6" data-ng-if="tip.enable_private_messages">
+      <div data-ng-include="'views/partials/tip_messages.html'"></div>
     </div>
   </div>
 
-  <hr />
-
-  <div data-ng-include="'views/partials/tip_communication.html'"></div>
 </div>
