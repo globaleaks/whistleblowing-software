@@ -150,9 +150,9 @@ GLSetting.parser.add_option("-f", "--disable-mail-notification", action='store_t
     help="disable mail motification [default: False]",
     dest="disable_mail_notification", default=False)
 
-GLSetting.parser.add_option("-A", "--disable-disks-alarmlevel", type='int',
-    help="takes 1, 2, 3, disable alarms <= than your option [default: 0]",
-    dest="disabled_disk_alarm", default=False)
+GLSetting.parser.add_option("-A", "--disks-alarm-threshold", type='int',
+    help="takes 1, 2, 3, set disk alarm threshold [default: 0]",
+    dest="disk_alarm_threshold", default=0)
 
 GLSetting.parser.add_option("-D", "--tor-dir", type="string",
     help="Tor directory, acquire hidden service and set onion.to proxy [default: None]",

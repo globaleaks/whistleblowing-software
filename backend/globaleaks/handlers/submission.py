@@ -268,9 +268,10 @@ class SubmissionCreate(BaseHandler):
         Response: SubmissionDesc (Token)
         Errors: ContextIdNotFound, InvalidInputFormat, SubmissionFailFields
 
-        This API create a Token, a temporary memory only object able to keep track of
-        the submission. If the box is under stress, complete the submission will require
-        some effort (hashcash, captcha) kept track in the Token.
+        This API create a Token, a temporary memory only object able to keep
+        track of the submission. If the system is under stress, complete the
+        submission will require some actions to be performed before the
+        submission can be concluded (e.g. hashcash and captchas).
         """
         if not GLSetting.memory_copy.accept_submissions:
             raise errors.SubmissionDisabled
