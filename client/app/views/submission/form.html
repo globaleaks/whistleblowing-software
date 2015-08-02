@@ -12,11 +12,11 @@
             <a href="" data-ng-show="field.hint" data-content="field.hint" popover="{{::field.hint}}" popover-placement="right" popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-question-sign"></i>
             </a>
-            <i class="glyphicon glyphicon-asterisk text-red"
+            <span class="text-red"
                data-ng-if="field.required && f.input.$error.required"
                popover="{{'This field is mandatory' | translate}}"
                popover-placement="right"
-               popover-trigger="mouseenter"></i>
+               popover-trigger="mouseenter">*</span>
           </div>
           <div class="FieldDescription">{{::field.description}}</div>
           <div data-ng-switch="" on="field.type" class="col-md-12 submissionFieldInput" data-ng-class="{'has-error': f.input.$error.required}">
