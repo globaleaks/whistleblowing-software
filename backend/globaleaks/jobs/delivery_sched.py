@@ -28,22 +28,18 @@ __all__ = ['DeliverySchedule']
 def serialize_internalfile(ifile):
     ifile_dict = {
         'id': ifile.id,
-        'internaltip_id' : ifile.internaltip_id,
-        'name' : ifile.name,
-        'file_path' : ifile.file_path,
-        'content_type' : ifile.content_type,
-        'size' : ifile.size,
+        'internaltip_id': ifile.internaltip_id,
+        'name': ifile.name,
+        'file_path': ifile.file_path,
+        'content_type': ifile.content_type,
+        'size': ifile.size,
     }
 
     return ifile_dict
 
 @transact_ro
 def get_files_by_itip(store, itip_id):
-    try:
-        ifiles = store.find(InternalFile, InternalFile.internaltip_id == unicode(itip_id))
-    except Exception as excep:
-        log.err("Unable to retrive InternalFile(s) from InternalTip! %s" % excep)
-        return []
+    ifiles = store.find(InternalFile, InternalFile.internaltip_id == unicode(itip_id))
 
     ifile_list = []
     for ifil in ifiles:
@@ -70,11 +66,7 @@ def serialize_receiverfile(rfile):
 
 @transact_ro
 def get_receiverfile_by_itip(store, itip_id):
-    try:
-        rfiles = store.find(ReceiverFile, ReceiverFile.internaltip_id == unicode(itip_id))
-    except Exception as excep:
-        log.err("Unable to retrive ReceiverFile(s) from InternalTip! %s" % excep)
-        return []
+    rfiles = store.find(ReceiverFile, ReceiverFile.internaltip_id == unicode(itip_id))
 
     rfile_list = []
     for rfile in rfiles:
@@ -93,6 +85,7 @@ def receiverfile_planning(store):
     ifilesmap = {}
 
     files = store.find(InternalFile, InternalFile.new == True)
+
     for filex in files:
         for receiver in filex.internaltip.receivers:
             if filex.file_path not in ifilesmap:
@@ -158,11 +151,10 @@ def receiverfile_create(store, if_path, recv_path, status, recv_size, receiver_d
         ifile = store.find(InternalFile, InternalFile.file_path == unicode(if_path)).one()
 
         if not ifile:
-            log.err("InternalFile with path %s not found !?" % if_path)
-            raise Exception("This is bad!")
+            raise Exception("InternalFile with path %s not found !?" % if_path)
 
-        log.debug("ReceiverFile creation for user %s, '%s' bytes %d = %s)"
-                % (receiver_desc['name'], ifile.name, recv_size, status ) )
+        log.debug("ReceiverFile creation for user %s, '%s' bytes %d = %s)" %
+                  (receiver_desc['name'], ifile.name, recv_size, status ))
 
         rtrf = store.find(ReceiverTip, ReceiverTip.internaltip_id == ifile.internaltip_id,
                           ReceiverTip.receiver_id == receiver_desc['id']).one()
@@ -209,9 +201,9 @@ def encrypt_where_available(receivermap):
     """
     @param receivermap:
         [ { 'receiver' : receiver_desc, 'path' : file_path, 'size' : file_size }, .. ]
-    @return: return True if plaintex version of file must be created.
+    @return: return True if the system would require a plaintext version of file to be created.
     """
-    retcode = True
+    retcode = False
 
     for rcounter, rfileinfo in enumerate(receivermap):
         if rfileinfo['receiver']['pgp_key_status'] == u'enabled':
@@ -236,7 +228,7 @@ def encrypt_where_available(receivermap):
                 rfileinfo['status'] = u'unavailable'
         elif GLSetting.memory_copy.allow_unencrypted:
             rfileinfo['status'] = u'reference'
-            retcode = False
+            retcode = True
         else:
             rfileinfo['status'] = u'nokey'
 
@@ -260,10 +252,10 @@ class DeliverySchedule(GLJob):
         for ifile_path, receivermap in filemap.iteritems():
             plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % xeger(r'[A-Za-z0-9]{16}') )
 
-            create_plaintextfile = encrypt_where_available(receivermap)
+            plaintext_file_needed = encrypt_where_available(receivermap)
 
             for rfileinfo in receivermap:
-                if not create_plaintextfile and rfileinfo['status'] == u'reference':
+                if plaintext_file_needed and rfileinfo['status'] == u'reference':
                     rfileinfo['path'] = plain_path
 
                 try:
@@ -275,7 +267,7 @@ class DeliverySchedule(GLJob):
                             (ifile_path, rfileinfo['receiver']['name'], excep))
                     continue
 
-            if not create_plaintextfile:
+            if plaintext_file_needed:
                 log.debug(":( NOT all receivers support PGP and the system allows plaintext version of files: %s saved in plaintext file %s" %
                           (ifile_path, plain_path)
                 )
@@ -296,7 +288,7 @@ class DeliverySchedule(GLJob):
                 except Exception as excep:
                     log.err("Unable to create plaintext file %s: %s" % (plain_path, excep))
 
-            else: # create_plaintextfile
+            else:
                 log.debug("All Receivers support PGP or the system denys plaintext version of files: marking internalfile as removed")
                 yield do_final_internalfile_update(ifile_path, "")
 
