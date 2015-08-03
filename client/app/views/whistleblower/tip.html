@@ -1,39 +1,36 @@
-<div data-ng-controller="TipCtrl" flow-init="{target: fileupload_url, headers: get_auth_headers()}" flow-files-submitted="$flow.upload()">
-  <div class="row" data-ng-show="tip_unencrypted">
-    <div class="col-md-12">
-      <div class="alert alert-warning">
-        <i class="glyphicon glyphicon-warning-sign"></i>
-        <strong><span data-translate>Warning!</span></strong>
-        <span data-translate>One or more of the receivers of this tip has not configured a PGP key.</span>
-        <span data-translate>This means that the submitted files will be stored in plaintext on the server.</span>
-      </div>
+<div class="row" data-ng-show="tip_unencrypted">
+  <div class="col-md-12">
+    <div class="alert alert-warning">
+      <i class="glyphicon glyphicon-warning-sign"></i>
+      <strong><span data-translate>Warning!</span></strong>
+      <span data-translate>One or more of the receivers of this tip has not configured a PGP key.</span>
+      <span data-translate>This means that the submitted files will be stored in plaintext on the server.</span>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div data-ng-include="'views/partials/tip_info.html'"></div>
-      <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
-    </div>
-
-    <div class="col-md-6">
-      <div data-ng-include="'views/partials/tip_receiver_list.html'"></div>
-    </div>
+<div class="row">
+  <div class="col-md-6">
+    <div data-ng-include="'views/partials/tip_info.html'"></div>
+    <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div data-ng-include="'views/partials/tip_files_whistleblower.html'"></div>
-    </div>
+  <div class="col-md-6">
+    <div data-ng-include="'views/partials/tip_receiver_list.html'"></div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-6" data-ng-if="tip.enable_comments">
-      <div data-ng-include="'views/partials/tip_comments.html'"></div>
-    </div>
-    <div class="col-md-6" data-ng-if="tip.enable_private_messages">
-      <div data-ng-include="'views/partials/tip_messages.html'"></div>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <div data-ng-include="'views/partials/tip_files_whistleblower.html'"></div>
   </div>
+</div>
 
+<div class="row">
+  <div class="col-md-6" data-ng-if="tip.enable_comments">
+    <div data-ng-include="'views/partials/tip_comments.html'"></div>
+  </div>
+  <div class="col-md-6" data-ng-if="tip.enable_private_messages">
+    <div data-ng-include="'views/partials/tip_messages.html'"></div>
+  </div>
 </div>
