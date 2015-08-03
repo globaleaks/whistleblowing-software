@@ -254,7 +254,7 @@ class Alarm(object):
         Admin notification is disable or if another Anomaly has been
         raised in the last 15 minutes, email is not send.
         """
-        do_not_stress_admin_with_more_than_an_email_after_minutes = 15
+        do_not_stress_admin_with_more_than_an_email_every_minutes = 15
 
         @transact_ro
         def _get_node_admin_email(store):
@@ -374,9 +374,9 @@ class Alarm(object):
 
         if Alarm.last_alarm_email:
             if not is_expired(Alarm.last_alarm_email,
-                              minutes=do_not_stress_admin_with_more_than_an_email_after_minutes):
+                              minutes=do_not_stress_admin_with_more_than_an_email_every_minutes):
                 log.debug("Alert email want be sent, but the threshold of %d minutes is not yet reached since %s" % (
-                    do_not_stress_admin_with_more_than_an_email_after_minutes,
+                    do_not_stress_admin_with_more_than_an_email_every_minutes,
                     datetime_to_ISO8601(Alarm.last_alarm_email)))
                 defer.returnValue(None)
 
@@ -440,7 +440,7 @@ class Alarm(object):
                   (event_matrix,
                    GLSetting.memory_copy.notif_server,
                    GLSetting.memory_copy.notif_port,
-                   do_not_stress_admin_with_more_than_an_email_after_minutes))
+                   do_not_stress_admin_with_more_than_an_email_every_minutes))
 
         defer.returnValue({
             'admin_email': admin_email,

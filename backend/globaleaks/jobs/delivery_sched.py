@@ -77,8 +77,8 @@ def get_receiverfile_by_itip(store, itip_id):
         return []
 
     rfile_list = []
-    for rfil in rfiles:
-        rfile_list.append(serialize_receiverfile(rfil))
+    for rfile in rfiles:
+        rfile_list.append(serialize_receiverfile(rfile))
 
     return rfile_list
 
