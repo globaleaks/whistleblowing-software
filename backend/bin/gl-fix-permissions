@@ -15,9 +15,9 @@ chown debian-tor:debian-tor /var/globaleaks/torhs/
 chmod 700 /var/globaleaks/torhs
 
 [ -d /var/run/globaleaks ] || mkdir -p /var/run/globaleaks
-chown globaleaks:globaleaks /var/run/globaleaks
+chown globaleaks:globaleaks /var/run/globaleaks -R
 chmod 750 /var/run/globaleaks
 
 [ -d /dev/shm/globaleaks ] || mkdir -p /dev/shm/globaleaks
-chown globaleaks:globaleaks /dev/shm/globaleaks
+chown globaleaks:globaleaks /dev/shm/globaleaks -R
 chmod 750 /dev/shm/globaleaks
