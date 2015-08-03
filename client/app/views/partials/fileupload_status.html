@@ -1,4 +1,4 @@
-<div class="uploadingBox" data-ng-show="uploads.length">
+<div class="uploadingBox" data-ng-if="uploads.length && !(hideUploadWhenFinished && !$flow.isUploading())">
   <div id="FileUploadsHeader">
     <div data-translate>Uploading files...</div>
   </div>
@@ -13,7 +13,7 @@
       <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: ($flow.progress() * 100) + '%'}"></div>
     </div>
   </div>
-  <div data-ng-repeat="file in uploads">
+  <div data-ng-repeat="file in uploads" data-ng-if="!file.isComplete() || hideUploadWhenFinished === false">
     <div class="fileUploadBox">
       <div class="row">
         <div class="col-md-4">

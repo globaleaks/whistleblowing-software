@@ -1,105 +1,102 @@
-<div data-ng-controller="TipCtrl">
-  <div id="ReceiverToolbar" class="row">
-    <div class="col-md-12">
-      <div class="pull-left">
-        <a id="link-tiplist"
-           href="#/receiver/tips"
-           popover="{{'Tips' | translate}}"
-           popover-placement="top"
-           popover-trigger="mouseenter"
-           class="btn btn-default">
-          <span class="glyphicon glyphicon-th-list"></span>
-        </a>
+<div id="ReceiverToolbar" class="row">
+  <div class="col-md-12">
+    <div class="pull-left">
+      <a id="link-tiplist"
+         href="#/receiver/tips"
+         popover="{{'Tips' | translate}}"
+         popover-placement="top"
+         popover-trigger="mouseenter"
+         class="btn btn-default">
+        <span class="glyphicon glyphicon-th-list"></span>
+      </a>
 
-        <span id="tip-action-postpone"
-              data-ng-if="preferences.can_postpone_expiration"
-              data-ng-click="tip_postpone()"
-              popover="{{'Postpone tip expiration date' | translate}}"
-              popover-placement="top"
-              popover-trigger="mouseenter"
-              class="btn btn-default">
-          <i class="glyphicon glyphicon-time"></i>
-        </span>
+      <span id="tip-action-postpone"
+            data-ng-if="preferences.can_postpone_expiration"
+            data-ng-click="tip_postpone()"
+            popover="{{'Postpone tip expiration date' | translate}}"
+            popover-placement="top"
+            popover-trigger="mouseenter"
+            class="btn btn-default">
+        <i class="glyphicon glyphicon-time"></i>
+      </span>
 
-        <span id="tip-action-delete"
-              data-ng-if="preferences.can_delete_submission"
-              data-ng-click="tip_delete()"
-              popover="{{'Delete tip' | translate}}"
-              popover-placement="top"
-              popover-trigger="mouseenter"
-              class="btn btn-default">
-          <span class="glyphicon glyphicon-trash"></span>
-        </span>
+      <span id="tip-action-delete"
+            data-ng-if="preferences.can_delete_submission"
+            data-ng-click="tip_delete()"
+            popover="{{'Delete tip' | translate}}"
+            popover-placement="top"
+            popover-trigger="mouseenter"
+            class="btn btn-default">
+        <span class="glyphicon glyphicon-trash"></span>
+      </span>
 
-        <span id="link-reload"
-              data-ng-click="reload()"
-              popover="{{'Refresh page' | translate}}"
-              popover-placement="top"
-              popover-trigger="mouseenter"
-              class="btn btn-default">
-          <span class="glyphicon glyphicon-refresh"></span>
-        </span> 
-      </div>
+      <span id="link-reload"
+            data-ng-click="reload()"
+            popover="{{'Refresh page' | translate}}"
+            popover-placement="top"
+            popover-trigger="mouseenter"
+            class="btn btn-default">
+        <span class="glyphicon glyphicon-refresh"></span>
+      </span>
+    </div>
 
-      <div class="pull-right">
-        <a id="link-preferences"
-           href="#/receiver/preferences"
-           popover="{{'Preferences' | translate}}"
-           popover-placement="top"
-           popover-trigger="mouseenter"
-           class="btn btn-default">
-          <span class="glyphicon glyphicon-cog"></span>
-        </a>
-      </div>
+    <div class="pull-right">
+      <a id="link-preferences"
+         href="#/receiver/preferences"
+         popover="{{'Preferences' | translate}}"
+         popover-placement="top"
+         popover-trigger="mouseenter"
+         class="btn btn-default">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
     </div>
   </div>
+</div>
 
-  <div class="row" data-ng-show="preferences.pgp_key_status != 'enabled'">
-    <div class="col-md-12">
-      <div class="alert alert-warning">
-        <i class="glyphicon glyphicon-warning-sign"></i>
-        <strong><span data-translate>Warning!</span></strong>
-        <span data-translate>You have not configured your encryption keys, so the files will be stored on the GlobaLeaks server un-encrypted.</span>
-        <span data-translate>This may lead to unintended access to the files by the server administrator or others in case the server is compromised.</span>
-        <span data-translate>Please configure your PGP keys in the receiver preferences page.</span>
-      </div>
+<div class="row" data-ng-show="preferences.pgp_key_status != 'enabled'">
+  <div class="col-md-12">
+    <div class="alert alert-warning">
+      <i class="glyphicon glyphicon-warning-sign"></i>
+      <strong><span data-translate>Warning!</span></strong>
+      <span data-translate>You have not configured your encryption keys, so the files will be stored on the GlobaLeaks server un-encrypted.</span>
+      <span data-translate>This may lead to unintended access to the files by the server administrator or others in case the server is compromised.</span>
+      <span data-translate>Please configure your PGP keys in the receiver preferences page.</span>
     </div>
   </div>
-  <div class="row" data-ng-show="tip_unencrypted">
-    <div class="col-md-12">
-      <div class="alert alert-warning">
-        <i class="glyphicon glyphicon-warning-sign"></i>
-        <strong><span data-translate>Warning!</span></strong>
-        <span data-translate>One or more of the receivers of this tip has not configured a PGP key.</span>
-        <span data-translate>This means that the submitted files will be stored in plaintext on the server.</span>
-      </div>
+</div>
+<div class="row" data-ng-show="tip_unencrypted">
+  <div class="col-md-12">
+    <div class="alert alert-warning">
+      <i class="glyphicon glyphicon-warning-sign"></i>
+      <strong><span data-translate>Warning!</span></strong>
+      <span data-translate>One or more of the receivers of this tip has not configured a PGP key.</span>
+      <span data-translate>This means that the submitted files will be stored in plaintext on the server.</span>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div data-ng-include="'views/partials/tip_info.html'"></div>
-      <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
-    </div>
-
-    <div class="col-md-6">
-      <div data-ng-include="'views/partials/tip_receiver_list.html'"></div>
-    </div>
+<div class="row">
+  <div class="col-md-6">
+    <div data-ng-include="'views/partials/tip_info.html'"></div>
+    <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div data-ng-include="'views/partials/tip_files_receiver.html'"></div>
-    </div>
+  <div class="col-md-6">
+    <div data-ng-include="'views/partials/tip_receiver_list.html'"></div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-6" data-ng-if="tip.enable_comments">
-      <div data-ng-include="'views/partials/tip_comments.html'"></div>
-    </div>
-    <div class="col-md-6" data-ng-if="tip.enable_private_messages">
-      <div data-ng-include="'views/partials/tip_messages.html'"></div>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <div data-ng-include="'views/partials/tip_files_receiver.html'"></div>
   </div>
+</div>
 
+<div class="row">
+  <div class="col-md-6" data-ng-if="tip.enable_comments">
+    <div data-ng-include="'views/partials/tip_comments.html'"></div>
+  </div>
+  <div class="col-md-6" data-ng-if="tip.enable_private_messages">
+    <div data-ng-include="'views/partials/tip_messages.html'"></div>
+  </div>
 </div>

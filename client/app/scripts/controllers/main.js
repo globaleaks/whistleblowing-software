@@ -22,6 +22,10 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       $scope.homepage = undefined;
     };
 
+    $scope.today = function() {
+      return new Date();
+    }
+
     $scope.update = function (model, cb, errcb) {
       var success = {};
       success.message = "Updated " + model;

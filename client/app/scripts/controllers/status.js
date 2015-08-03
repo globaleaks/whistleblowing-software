@@ -7,6 +7,7 @@ GLClient.controller('StatusCtrl',
     $scope.target_file = '#';
 
     $scope.uploads = [];
+    $scope.hideUploadWhenFinished = true;
 
     $scope.getFields = function(field) {
       var ret = [];
@@ -104,6 +105,36 @@ GLClient.controller('StatusCtrl',
     $scope.newMessage = function() {
       $scope.tip.newMessage($scope.tip.newMessageContent);
       $scope.tip.newMessageContent = '';
+    };
+
+    $scope.tip_delete = function () {
+      var modalInstance = $modal.open({
+        templateUrl: 'views/partials/tip_operation_delete.html',
+        controller: TipOperationsCtrl,
+        resolve: {
+          tip: function () {
+            return $scope.tip;
+          },
+          operation: function () {
+            return 'delete';
+          }
+        }
+      });
+    };
+
+    $scope.tip_postpone = function () {
+      var modalInstance = $modal.open({
+        templateUrl: 'views/partials/tip_operation_postpone.html',
+        controller: TipOperationsCtrl,
+        resolve: {
+          tip: function () {
+            return $scope.tip;
+          },
+          operation: function () {
+            return 'postpone';
+          }
+        }
+      });
     };
 
 }]);

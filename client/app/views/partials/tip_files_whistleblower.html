@@ -1,4 +1,6 @@
-<div id="TipPageFilesInfoBox" class="TipPageSection" data-ng-init="collapsed = false">
+<div id="TipPageFilesInfoBox" class="TipPageSection"
+     flow-init="{target: fileupload_url, headers: get_auth_headers()}" flow-files-submitted="$flow.upload()"
+     data-ng-init="collapsed = false">
   <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed">
     <div>
       <span data-translate>Files</span>
@@ -9,7 +11,7 @@
     </div>
   </div>
   <div class="TipPageSectionContent" data-ng-show="!collapsed">
-    <div data-ng-show="tip.files.length">
+    <div data-ng-show="tip.files.length || uploads">
       <div class="table-container">
         <table class="table table-striped" id="fileList">
           <thead>
@@ -28,8 +30,8 @@
               </th>
             </tr>
           </thead>
-          <tbody id="fileListBody" data-ng-repeat="file in tip.files">
-            <tr id="file-{{$index}}">
+          <tbody id="fileListBody">
+            <tr id="file-{{$index}}" data-ng-repeat="file in tip.files | orderBy:'creation_date'" data-ng-if="!file.isUploading()">
               <td>
                 <span>{{::file.name}}</span>
               </td>
@@ -38,6 +40,20 @@
               </td>
               <td>
                 <span>{{::file.content_type}}</span>
+              </td>
+              <td>
+                <span>{{::file.size | prettyBytes }}</span>
+              </td>
+            </tr>
+            <tr id="file-{{$index}}" data-ng-repeat="file in uploads">
+              <td>
+                <span>{{::file.name}}</span>
+              </td>
+              <td>
+                <span>{{today() | date:'dd-MM-yyyy'}}</span>
+              </td>
+              <td>
+                <span>{{::file.file.type}}</span>
               </td>
               <td>
                 <span>{{::file.size | prettyBytes }}</span>
@@ -52,5 +68,7 @@
     </div>
     <br />
     <div data-ng-init="fileupload_mode = 'multiple'" data-ng-include="'views/partials/fileupload_button.html'"></div>
+    <br />
+    <div data-ng-include="'views/partials/fileupload_status.html'"></div>
   </div>
 </div>

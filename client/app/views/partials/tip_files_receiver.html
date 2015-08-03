@@ -48,8 +48,8 @@
               </th>
             </tr>
           </thead>
-          <tbody id="fileListBody" data-ng-repeat="file in tip.files">
-            <tr id="file-{{$index}}" data-ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
+          <tbody id="fileListBody">
+            <tr id="file-{{$index}}" data-ng-repeat="file in tip.files" data-ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
               <td>
                 <span>{{::file.name}}</span>
               </td>
