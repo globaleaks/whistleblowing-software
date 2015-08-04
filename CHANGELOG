@@ -1,3 +1,6 @@
+Changes in version 2.60.99 - 2015-08-04
+    o Minor backend fixes
+
 Changes in version 2.60.98 - 2015-08-03
     o Minor UI fixes
 
@@ -5,6 +8,16 @@ Changes in version 2.60.97 - 2015-08-03
     o Improved Tip Page UI
     o Improved File Uploader UI
     o Minor UI fixes to submission interface
+
+    The following is the comprehensive list of closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1346
+    - https://github.com/globaleaks/GlobaLeaks/issues/1347
+    - https://github.com/globaleaks/GlobaLeaks/issues/1348
+    - https://github.com/globaleaks/GlobaLeaks/issues/1349
+    - https://github.com/globaleaks/GlobaLeaks/issues/923
+    - https://github.com/globaleaks/GlobaLeaks/issues/1233
+    - https://github.com/globaleaks/GlobaLeaks/issues/1332
+    - https://github.com/globaleaks/GlobaLeaks/issues/1350
 
 Changes in version 2.60.96 - 2015-07-30
     o Minor UI fixes
