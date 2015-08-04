@@ -498,7 +498,7 @@ class Alarm(object):
                                          free_ramdisk_bytes,
                                          total_ramdisk_bytes)
 
-                if disk_space <= GLSetting.disabled_alarm_threshold:
+                if disk_space <= GLSetting.disk_alarm_threshold:
                     log.debug("Disk Alarm level %d suppressed (disk alarm threshold set to %d)" % (
                         disk_space, GLSetting.disk_alarm_threshold))
                     # No alarm to be concerned, then
