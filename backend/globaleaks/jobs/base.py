@@ -17,9 +17,11 @@ class GLJob(task.LoopingCall):
         task.LoopingCall.__init__(self, self._operation)
 
     def _operation(self):
+        ret = None
+
         try:
 
-            self.operation()
+            ret = self.operation()
 
         except Exception as e:
 
@@ -39,6 +41,8 @@ class GLJob(task.LoopingCall):
 
             except Exception:
                 pass
+
+        return ret
 
     def operation(self):
         pass # dummy skel for GLJob objects
