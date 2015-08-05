@@ -72,8 +72,10 @@ CREATE TABLE internalfile (
     description VARCHAR,
     size INTEGER NOT NULL,
     new INTEGER NOT NULL,
+    processing_attempts INTEGER NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    UNIQUE(file_path),
     PRIMARY KEY (id)
 );
 
@@ -88,7 +90,7 @@ CREATE TABLE receiverfile (
     receiver_id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     receivertip_id VARCHAR NOT NULL,
-    status VARCHAR NOT NULL CHECK (status IN ('reference', 'encrypted', 'unavailable', 'nokey')),
+    status VARCHAR NOT NULL CHECK (status IN ('processing', 'reference', 'encrypted', 'unavailable', 'nokey')),
     new INTEGER  NOT NULL,
     FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,
     FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,

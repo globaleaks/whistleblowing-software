@@ -132,10 +132,16 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             log.debug("First seek on %s" % self.filepath)
             self.last_action = 'read'
 
+        data = None
         if c is None:
-            return self.decryptor.update(self.file.read())
+            data = self.file.read()
         else:
-            return self.decryptor.update(self.file.read(c))
+            data = self.file.read(c)
+
+        if len(data):
+            return self.decryptor.update(data)
+        else:
+            return self.decryptor.finalize()
 
 
 class GLSecureFile(GLSecureTemporaryFile):
@@ -371,13 +377,13 @@ class GLBPGP(object):
                    plainpath, len(str(encrypt_obj))))
 
         encrypted_path = os.path.join(os.path.abspath(output_path),
-                                      "pgp_encrypted-%s" % xeger(r'[A-Za-z0-9]{8}'))
+                                      "pgp_encrypted-%s" % xeger(r'[A-Za-z0-9]{16}'))
+
         try:
             with open(encrypted_path, "w+") as f:
                 f.write(str(encrypt_obj))
 
             return encrypted_path, len(str(encrypt_obj))
-
         except Exception as excep:
             log.err("Error in writing PGP file output: %s (%s) bytes %d" %
                     (excep.message, encrypted_path, len(str(encrypt_obj)) ))
