@@ -231,12 +231,11 @@ class BaseHandler(RequestHandler):
         message_type: the GLType class it should match.
         """
         if isinstance(message_template, dict):
-
             success_check = 0
             for key, value in jmessage.iteritems():
                 if key not in message_template:
                     log.debug("Received key %s, Unexpected in the template:" % key)
-                    log.debug(message_template.keys())
+                    # when stabilized this could be switched from a log.debug to a raide exception
                     # raise errors.InvalidInputFormat("Key expected not present (%s)" % key)
                     continue
 
