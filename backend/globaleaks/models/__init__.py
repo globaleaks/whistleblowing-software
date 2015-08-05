@@ -282,6 +282,24 @@ class WhistleblowerTip(Model):
     access_counter = Int(default=0)
 
 
+class InternalFile(Model):
+    """
+    This model keeps track of files before they are packaged
+    for specific receivers
+    """
+    internaltip_id = Unicode()
+    # internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
+
+    name = Unicode(validator=longtext_v)
+    file_path = Unicode()
+
+    content_type = Unicode()
+    size = Int()
+
+    new = Int(default=True)
+    processing_attempts = Int(default=0)
+
+
 class ReceiverFile(Model):
     """
     This model keeps track of files destinated to a specific receiver
@@ -309,23 +327,6 @@ class ReceiverFile(Model):
     #                                    the specific receiver
     # unavailable = the file was supposed to be available but something goes
     # wrong and now is lost
-
-
-class InternalFile(Model):
-    """
-    This model keeps track of files before they are packaged
-    for specific receivers
-    """
-    internaltip_id = Unicode()
-    # internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
-
-    name = Unicode(validator=longtext_v)
-    file_path = Unicode()
-
-    content_type = Unicode()
-    size = Int()
-
-    new = Int(default=True)
 
 
 class Comment(Model):
