@@ -355,7 +355,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           context_id: self.context.id,
           wb_steps: self.context.steps,
           receivers: [],
-          human_captcha_answer: 0
+          human_captcha_answer: 0,
+          graph_captcha_answer: "",
+          proof_of_work: 0,
         });
 
         self._submission.$save(function(submissionID){

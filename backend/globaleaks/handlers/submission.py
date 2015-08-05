@@ -276,7 +276,7 @@ class SubmissionCreate(BaseHandler):
         if not GLSetting.memory_copy.accept_submissions:
             raise errors.SubmissionDisabled
 
-        request = self.validate_message(self.request.body, requests.TokenDesc)
+        request = self.validate_message(self.request.body, requests.SubmissionDesc)
 
         token = Token('submission', request['context_id'])
         token.set_difficulty(Alarm().get_token_difficulty())
@@ -284,7 +284,11 @@ class SubmissionCreate(BaseHandler):
 
         token_answer.update({'id': token_answer['token_id']})
         token_answer.update({'context_id': request['context_id']})
+        token_answer.update({'receivers': 0})
+        token_answer.update({'wb_steps': 0})
         token_answer.update({'human_captcha_answer': 0})
+        token_answer.update({'graph_captcha_answer': ""})
+        token_answer.update({'proof_of_work': 0})
 
         self.set_status(201)  # Created
         self.finish(token_answer)
