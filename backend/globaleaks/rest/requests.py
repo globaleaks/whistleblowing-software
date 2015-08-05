@@ -40,10 +40,6 @@ AuthDesc = {
     'role': unicode
 }
 
-TokenDesc = {
-    'context_id': uuid_regexp,
-}
-
 WBStepElem = {
     # Everything will change here with E2E,
     # because these stuff will be encrypted
@@ -56,10 +52,11 @@ WBStepElem = {
 
 SubmissionDesc = {
     'context_id': uuid_regexp,
-    'wb_steps': [ WBStepElem ],
+    'receivers': [uuid_regexp],
+    'wb_steps': [WBStepElem],
     'human_captcha_answer': int,
-    'proof_of_work': int,
-    'receivers': [uuid_regexp]
+    'graph_captcha_answer': unicode,
+    'proof_of_work': int
 }
 
 ReceiverReceiverDesc = {
@@ -83,7 +80,7 @@ ReceiverReceiverDesc = {
 
 ReceiverOperationDesc = {
     'operation': unicode,
-    'rtips': [ uuid_regexp ]
+    'rtips': [uuid_regexp]
 }
 
 CommentDesc = {
