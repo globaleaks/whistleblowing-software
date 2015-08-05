@@ -82,18 +82,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     def test_create_receiverfiles_allow_unencrypted_true_no_keys_loaded(self):
         yield self.test_create_submission_attach_files_finalize_and_access_wbtip()
 
-        self.rfilesdict = yield delivery_sched.receiverfile_planning()
-        # return a list of lists [ "file_id", status, "f_path", len, "receiver_desc" ]
-        self.assertTrue(isinstance(self.rfilesdict, dict))
-
-        for ifile_path, receivermap in self.rfilesdict.iteritems():
-            yield delivery_sched.encrypt_where_available(receivermap)
-            for elem in receivermap:
-                yield delivery_sched.receiverfile_create(ifile_path,
-                                                         elem['path'],
-                                                         elem['status'],
-                                                         elem['size'],
-                                                         elem['receiver'])
+        yield delivery_sched.DeliverySchedule().operation()
 
         self.fil = yield delivery_sched.get_files_by_itip(self.submission_desc['id'])
         self.assertTrue(isinstance(self.fil, list))
