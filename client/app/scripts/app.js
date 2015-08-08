@@ -209,6 +209,12 @@ var GLClient = angular.module('GLClient', [
         }
     };
 }]).
+  factory("stacktraceService", function() {
+    return({
+      print: printStackTrace
+    });
+}).
+  config(exceptionConfig).
   run(['$http', '$rootScope', function ($http, $rootScope) {
 
      $rootScope.successes = [];
@@ -234,3 +240,31 @@ var GLClient = angular.module('GLClient', [
     $rootScope.anonymous = false;
     $rootScope.embedded = false;
 }]);
+
+exceptionConfig.$inject = ['$provide'];
+
+function exceptionConfig($provide) {
+    $provide.decorator('$exceptionHandler', extendExceptionHandler);
+}
+
+extendExceptionHandler.$inject = ['$delegate', '$injector', '$window', 'stacktraceService'];
+
+function extendExceptionHandler($delegate, $injector, $window, stacktraceService) {
+    return function(exception, cause) {
+        $delegate(exception, cause);
+
+        var errorMessage = exception.toString();
+        var stackTrace = stacktraceService.print({e: exception});
+
+        var errorData = angular.toJson({
+          errorUrl: $window.location.href,
+          errorMessage: errorMessage,
+          stackTrace: stackTrace,
+          agent: navigator.userAgent
+        });
+
+        var $http = $injector.get('$http');
+
+        $http.post('exception', errorData);
+    };
+}

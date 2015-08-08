@@ -17,7 +17,7 @@ from globaleaks.anomaly import Alarm, compute_activity_level
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSetting, transact
 from globaleaks.models import Stats, Anomalies
-from globaleaks.utils.utility import log, datetime_now
+from globaleaks.utils.utility import log, datetime_now, datetime_null
 
 
 def get_workingdir_space():
@@ -109,6 +109,7 @@ class StatisticsSchedule(GLJob):
     in the database.
     """
     name = "Statistics Sched"
+    collection_start_datetime = datetime_null()
 
     def __init__(self):
         self.collection_start_datetime = datetime_now()

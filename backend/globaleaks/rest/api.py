@@ -6,7 +6,8 @@
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
-from globaleaks.handlers import node, submission, rtip, wbtip, receiver, \
+from globaleaks.handlers import exception, \
+                                node, submission, rtip, wbtip, receiver, \
                                 files, authentication, admin, \
                                 collection, langfiles, css, wizard
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
@@ -29,6 +30,8 @@ token_string = r'([a-zA-Z0-9]{42})'
 #    manages the get of a collection of resources
 
 spec = [
+    (r'/exception', exception.ExceptionHandler),
+
     ## Some Useful Redirects ##
     (r'/login', BaseRedirectHandler, {'url': '/#/login'}),
     (r'/admin', BaseRedirectHandler, {'url': '/#/admin'}),
