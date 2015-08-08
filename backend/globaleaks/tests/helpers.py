@@ -282,6 +282,7 @@ class TestGL(unittest.TestCase):
         dummySubmissionDict['receivers'] = (yield get_context(context_id, 'en'))['receivers']
         dummySubmissionDict['files'] = []
         dummySubmissionDict['human_captcha_answer'] = 0
+        dummySubmissionDict['graph_captcha_answer'] = ''
         dummySubmissionDict['proof_of_work'] = 0
         dummySubmissionDict['wb_steps'] = yield self.fill_random_fields(context_id)
 

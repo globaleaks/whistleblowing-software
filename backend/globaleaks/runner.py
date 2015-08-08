@@ -6,9 +6,8 @@
 import os
 
 from twisted.scripts._twistd_unix import UnixApplicationRunner
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet import reactor, defer
 from twisted.python.util import untilConcludes
-from twisted.internet import reactor
 
 from globaleaks.db import create_tables, clean_untracked_files
 from globaleaks.db.datainit import import_memory_variables, apply_cli_options
@@ -20,49 +19,52 @@ from globaleaks.jobs import session_management_sched, statistics_sched, \
 from globaleaks.settings import GLSetting
 from globaleaks.utils.utility import log, datetime_now
 
+
 def start_asynchronous():
     """
     Initialize the asynchronous operation, scheduled in the system
     """
-    # Here we prepare the scheduled,
-    # schedules will be started by reactor after reactor.run()
-    session_management = session_management_sched.SessionManagementSchedule()
-    delivery = delivery_sched.DeliverySchedule()
-    notification = notification_sched.NotificationSchedule()
-    clean = cleaning_sched.CleaningSchedule()
-    pgp_check = pgp_check_sched.PGPCheckSchedule()
-    mailflush = mailflush_sched.MailflushSchedule()
-    resource_check = statistics_sched.ResourceChecker()
-    anomaly = statistics_sched.AnomaliesSchedule()
-    stats = statistics_sched.StatisticsSchedule()
-
-    # here we prepare the schedule:
+    # Scheduled jobs will be started by reactor after reactor.run()
+    #
+    # Arguments to reactor.callLater do the following:
     #  - first argument is the first run delay in seconds
     #  - second argument is the function that starts the schedule
     #  - third argument is the schedule period in seconds
-    reactor.callLater(0, session_management.start, GLSetting.session_management_minutes_delta * 60)
-    reactor.callLater(0, anomaly.start, GLSetting.anomaly_seconds_delta)
-    reactor.callLater(0, resource_check.start, GLSetting.anomaly_seconds_delta)
+    session_management = session_management_sched.SessionManagementSchedule()
+    reactor.callLater(0, session_management.start, GLSetting.session_management_delta)
 
-    reactor.callLater(10, delivery.start, GLSetting.delivery_seconds_delta)
-    reactor.callLater(20, notification.start, GLSetting.notification_minutes_delta * 60)
-    reactor.callLater(40, mailflush.start, GLSetting.mailflush_minutes_delta * 60)
+    anomaly = statistics_sched.AnomaliesSchedule()
+    reactor.callLater(0, anomaly.start, GLSetting.anomaly_delta)
+
+    resources_check = statistics_sched.ResourcesCheckSchedule()
+    reactor.callLater(0, resources_check.start, GLSetting.anomaly_delta)
+
+    delivery = delivery_sched.DeliverySchedule()
+    reactor.callLater(10, delivery.start, GLSetting.delivery_delta)
+
+    notification = notification_sched.NotificationSchedule()
+    reactor.callLater(20, notification.start, GLSetting.notification_delta)
+
+    mailflush = mailflush_sched.MailflushSchedule()
+    reactor.callLater(40, mailflush.start, GLSetting.mailflush_delta)
 
     # The Tip cleaning scheduler need to be executed every day at midnight
     current_time = datetime_now()
     delay = (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
+    clean = cleaning_sched.CleaningSchedule()
     reactor.callLater(delay, clean.start, 3600 * 24)
 
     # The PGP check scheduler need to be executed every day at midnight
     current_time = datetime_now()
     delay = (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
+    pgp_check = pgp_check_sched.PGPCheckSchedule()
     reactor.callLater(delay, pgp_check.start, 3600 * 24)
 
     # The Stats scheduler need to be executed every hour on the hour
     current_time = datetime_now()
     delay = (60 * 60) - (current_time.minute * 60) - current_time.second
+    stats = statistics_sched.StatisticsSchedule()
     reactor.callLater(delay, stats.start, 60 * 60)
-    statistics_sched.StatisticsSchedule.collection_start_datetime = current_time
 
 
 def globaleaks_start():
@@ -79,7 +81,7 @@ def globaleaks_start():
     d.addCallback(clean_untracked_files)
 
     @d.addCallback
-    @inlineCallbacks
+    @defer.inlineCallbacks
     def cb(res):
         start_asynchronous()
         yield import_memory_variables()

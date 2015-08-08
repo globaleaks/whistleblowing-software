@@ -194,7 +194,7 @@ class EventTrack(TempObj):
                          EventTrackQueue.queue,
                          self.event_id,
                          # seconds of validity:
-                         GLSetting.anomaly_seconds_delta,
+                         GLSetting.anomaly_delta,
                          reactor_override)
 
         self.expireCallbacks.append(self.synthesis)

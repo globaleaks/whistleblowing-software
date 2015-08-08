@@ -20,7 +20,7 @@ The event collection and reporting works in this way:
 The following is the detail on the periodic routines and it's executin time (implemented in statistic_sched.py):
 
   * AnomaliesSchedule, 30 seconds
-  * ResourceChecker, 30 seconds
+  * ResourcesCheckSchedule, 30 seconds
   * StatisticSchedule, 10 minutes
 
 

@@ -320,6 +320,8 @@ def filter_notification_event(notifque):
 
 
 class MailflushSchedule(GLJob):
+    name = "Mailflush"
+
     # sorry for the double negation, we are sleeping two seconds below.
     skip_sleep = False
 

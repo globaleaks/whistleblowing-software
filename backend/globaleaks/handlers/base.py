@@ -27,7 +27,7 @@ from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
-from globaleaks.utils.mailutils import mail_exception
+from globaleaks.utils.mailutils import mail_exception_handler
 
 GLUploads = {}
 
@@ -565,7 +565,7 @@ class BaseHandler(RequestHandler):
             log.err("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb))
             if GLSetting.http_log:
                 log.msg(e)
-            mail_exception(exc_type, exc_value, exc_tb)
+            mail_exception_handler(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
 
 
