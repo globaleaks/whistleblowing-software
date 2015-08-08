@@ -7,41 +7,83 @@
 import sys
 import time
 
-from twisted.internet import task, defer
+from twisted.internet import task, defer, reactor
 from twisted.python.failure import Failure
 
 from globaleaks.utils.utility import log, deferred_sleep
-from globaleaks.utils.mailutils import mail_exception_handler
+from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
+
+
+JOB_MONITOR_TIME = 5 * 60 # seconds
+
+
+class GLJobMonitor(task.LoopingCall):
+    run = 0
+
+    def __init__(self, job):
+        self.job = job
+        task.LoopingCall.__init__(self, self.tooMuch)
+        self.start(JOB_MONITOR_TIME, False)
+
+    def tooMuch(self):
+        self.run += 1
+        minutes = int((JOB_MONITOR_TIME * self.run) / 60)
+
+        error = "Warning: job [%s] is taking more than %d minutes to finish" % (self.job.name, minutes)
+
+        log.err(error)
+        send_exception_email(error)
 
 
 class GLJob(task.LoopingCall):
     iterations = 0
     start_time = 0
-    mean_time = 0
+    mean_time = -1
+    low_time = -1
+    high_time = -1
     name = "unnamed"
 
     def __init__(self):
         task.LoopingCall.__init__(self, self._operation)
 
+    def stats_collection_start(self):
+        self.monitor = GLJobMonitor(self)
+
+        self.start_time = time.time()
+
+        if self.mean_time != -1:
+            log.debug("Starting job [%s] expecting an execution time of %.2f [low: %.2f, high: %.2f]" %
+                      (self.name, self.mean_time, self.low_time, self.high_time))
+        else:
+            log.debug("Starting job [%s]" % self.name)
+
+    def stats_collection_end(self):
+        self.monitor.stop()
+
+        current_run_time = time.time() - self.start_time
+
+        # discard empty cicles from stats
+        if current_run_time > 0.00:
+            self.mean_time = ((self.mean_time * self.iterations) + current_run_time) / (self.iterations + 1)
+
+        if self.low_time == -1 or current_run_time < self.low_time:
+            self.low_time = current_run_time
+
+        if self.high_time == -1 or current_run_time > self.high_time:
+            self.high_time = current_run_time
+
+        log.debug("Ended job [%s] with an execution time of %.2f seconds" % (self.name, current_run_time))
+
+        self.iterations += 1
+
     @defer.inlineCallbacks
     def _operation(self):
         try:
-            self.start_time = int(time.time())
-
-            if self.mean_time > 0:
-                log.debug("Starting job [%s] expecting a mean execution time of %d" % (self.name, self.mean_time))
-            else:
-                log.debug("Starting job [%s]" % self.name)
+            self.stats_collection_start()
 
             yield self.operation()
 
-            current_run_time = int(time.time()) - self.start_time
-            if current_run_time > 0:
-                self.mean_time = int(((self.mean_time * self.iterations) + current_run_time) / (self.iterations + 1))
-
-            log.debug("Ended job [%s] with an execution time of %d seconds" % (self.name, current_run_time))
-
-            self.iterations += 1
+            self.stats_collection_end()
         except Exception as e:
             log.err("Exception while performin scheduled operation %s: %s" % \
                     (type(self).__name__, e))
