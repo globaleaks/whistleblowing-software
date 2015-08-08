@@ -69,14 +69,7 @@ class FirstSetup(BaseHandler):
 
         # cache must be updated in particular to set wizard_done = True
         public_node_desc = yield anon_serialize_node(self.request.language)
-        GLApiCache.invalidate('node')
-        GLApiCache.invalidate('contexts')
-        GLApiCache.invalidate('receivers')
-        GLApiCache.set('node', self.request.language, public_node_desc)
-        public_contexts_list = yield get_public_context_list(self.request.language)
-        GLApiCache.set('contexts', self.request.language, public_contexts_list)
-        public_receivers_list = yield get_public_receiver_list(self.request.language)
-        GLApiCache.set('receivers', self.request.language, public_receivers_list)
+        GLApiCache.invalidate()
 
         self.set_status(201)  # Created
         self.finish()
