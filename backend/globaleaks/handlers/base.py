@@ -234,7 +234,7 @@ class BaseHandler(RequestHandler):
             success_check = 0
             for key, value in jmessage.iteritems():
                 if key not in message_template:
-                    log.debug("Received key %s, Unexpected in the template:" % key)
+                    log.debug("Received key %s, Unexpected in the template: %s" % (key, message_template))
                     # when stabilized this could be switched from a log.debug to a raide exception
                     # raise errors.InvalidInputFormat("Key expected not present (%s)" % key)
                     continue
