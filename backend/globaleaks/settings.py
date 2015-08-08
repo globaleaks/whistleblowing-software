@@ -315,6 +315,8 @@ class GLSettingsClass(object):
 
         self.disable_mail_torification = False
         self.disable_mail_notification = False
+        self.disable_backend_exception_notification = False
+        self.disable_client_exception_notification = False
 
 
     def eval_paths(self):
@@ -433,8 +435,9 @@ class GLSettingsClass(object):
                                        self.cmdline_options.host_list.replace(" ", "").split(",")))
 
         self.disable_mail_torification = self.cmdline_options.disable_mail_torification
-
         self.disable_mail_notification = self.cmdline_options.disable_mail_notification
+        self.disable_backend_exception_notification = self.cmdline_options.disable_backend_exception_notification
+        self.disable_client_exception_notification = self.cmdline_options.disable_client_exception_notification
 
         if self.cmdline_options.disk_alarm_threshold:
             self.disk_alarm_threshold = self.cmdline_options.disk_alarm_threshold

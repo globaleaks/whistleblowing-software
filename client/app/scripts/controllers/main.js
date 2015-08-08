@@ -189,7 +189,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     };
 
     var init = function () {
-
       $scope.logo = 'static/globaleaks_logo.png?' + $scope.randomFluff();
       $scope.build_stylesheet = "styles.css?" + $scope.randomFluff();
 

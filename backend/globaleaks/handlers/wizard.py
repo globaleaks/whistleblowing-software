@@ -1,9 +1,6 @@
 # -*- coding: UTF-8
 #
 # wizard
-# ******
-#
-# This interface is used to fill the Node defaults whenever they are updated
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
@@ -53,10 +50,6 @@ def wizard(store, request, language):
         log.err("Failed Receiver Initialization %s" % excep)
         raise excep
 
-
-# ---------------------------------
-# Below starts the Cyclone handlers
-# ---------------------------------
 
 class FirstSetup(BaseHandler):
     """
