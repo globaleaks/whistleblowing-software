@@ -608,8 +608,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           context.receivers = [];
           context.select_all_receivers = false;
           context.tip_timetolive = 15;
-          context.can_postpone_expiration = true;
-          context.can_delete_submission = true;
           context.maximum_selectable_receivers = 0;
           context.show_small_cards = false;
           context.show_receivers = true;

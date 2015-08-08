@@ -149,7 +149,9 @@ describe('POST /submission', function(){
         new_submission.context_id = contexts_ids[i];
         new_submission.receivers = receivers_ids;
         new_submission.wb_steps = fill_steps(contexts[i].steps);
-        new_submission.human_captcha_answer = 0,
+        new_submission.human_captcha_answer = 0;
+        new_submission.graph_captcha_answer = "";
+        new_submission.proof_of_work = 0;
 
         app
           .post('/submission')
