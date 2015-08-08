@@ -257,10 +257,13 @@ def mail_exception_handler(etype, value, tback):
     This would be enabled only in the testing phase and testing release,
     not in production release.
     """
+    if GLSetting.disable_backend_exception_notification:
+        return
+
     if isinstance(value, GeneratorExit) or \
        isinstance(value, AlreadyCalledError) or \
        isinstance(value, SMTPError) or \
-       etype == AssertionError and value.message == "Request closed":
+        etype == AssertionError and value.message == "Request closed":
         # we need to bypass email notification for some exception that:
         # 1) raise frequently or lie in a twisted bug;
         # 2) lack of useful stacktraces;

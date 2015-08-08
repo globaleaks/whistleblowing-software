@@ -147,8 +147,16 @@ GLSetting.parser.add_option("-d", "--disable-mail-torification", action='store_t
     dest="disable_mail_torification", default=False)
 
 GLSetting.parser.add_option("-f", "--disable-mail-notification", action='store_true',
-    help="disable mail motification [default: False]",
+    help="disable mail notification [default: False]",
     dest="disable_mail_notification", default=False)
+
+GLSetting.parser.add_option("-b", "--disable-backend-exception-notification", action='store_true',
+    help="disable backend_exception_notification [default: False]",
+    dest="disable_backend_exception_notification", default=False)
+
+GLSetting.parser.add_option("-e", "--disable-client-exception-notification", action='store_true',
+    help="disable_client_exception_notification [default: False]",
+    dest="disable_client_exception_notification", default=False)
 
 GLSetting.parser.add_option("-A", "--disks-alarm-threshold", type='int',
     help="takes 1, 2, 3, set disk alarm threshold [default: 0]",
@@ -199,7 +207,7 @@ GLSetting.parser.add_option("-C", "--glc-path", type='string',
     dest="glc_path", default=GLSetting.glc_path)
 
 GLSetting.parser.add_option("-R", "--ramdisk", type="string",
-    help="optionally specify a path used by GnuGP operations [default: absent]",
+    help="optionally specify a path used as ramdisk storage [default: absent]",
     dest="ramdisk")
 
 GLSetting.parser.add_option("--XXX", type='string',

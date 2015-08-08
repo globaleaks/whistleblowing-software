@@ -462,3 +462,10 @@ WizardFirstSetupDesc = {
     'context': AdminContextDesc,
     'node': AdminNodeDesc
 }
+
+ExceptionDesc = {
+    'errorUrl': unicode,
+    'errorMessage': unicode,
+    'stackTrace': list,
+    'agent': unicode
+}

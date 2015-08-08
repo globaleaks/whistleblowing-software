@@ -9,7 +9,6 @@ class TestFirstSetup(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post(self):
-
         # FIX currently wizard create contexts only with default fields
         # so only valid requests are the one with steps = []
         self.dummyContext['steps'] = []
