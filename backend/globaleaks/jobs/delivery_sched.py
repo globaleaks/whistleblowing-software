@@ -17,12 +17,16 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
                               ReceiverFile
 from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.utils.mailutils import send_exception_email
 from globaleaks.utils.utility import log
 from globaleaks.security import GLBPGP, GLSecureFile
 from globaleaks.handlers.admin import admin_serialize_receiver
 
 
 __all__ = ['DeliverySchedule']
+
+
+INTERNALFILES_HANDLE_RETRY_MAX = 3
 
 
 def serialize_internalfile(ifile):
@@ -87,15 +91,22 @@ def receiverfile_planning(store):
     ifiles = store.find(InternalFile, InternalFile.new == True)
 
     for ifile in ifiles:
-        if (ifile.processing_attempts >= 3):
-            log.err("")
+        if (ifile.processing_attempts >= INTERNALFILES_HANDLE_RETRY_MAX):
             ifile.new = False
+            error = "Failed to handle receiverfiles creation for ifilee %s (%d retries)" % \
+                    (ifile.id, INTERNALFILES_HANDLE_RETRY_MAX)
+            log.err(error)
+            send_exception_email(error)
             continue
 
-        elif (ifile.processing_attempts > 1):
-            log.debug("")
+        elif (ifile.processing_attempts >= 1):
+            log.err("Failed to handle receiverfiles creation for ifile %s (retry %d/%d)" %
+                    (ifile.id, ifile.processing_attempts, INTERNALFILES_HANDLE_RETRY_MAX))
 
-        ifile.processing_attepts = ifile.processing_attempts + 1
+        ifile.processing_attempts = ifile.processing_attempts + 1
+
+        log.debug("Starting handling receiverfiles creation for ifile %s ()retry %d/%d)" %
+                  (ifile.id, ifile.processing_attempts, INTERNALFILES_HANDLE_RETRY_MAX))
 
         for receiver in ifile.internaltip.receivers:
             rtrf = store.find(ReceiverTip, ReceiverTip.internaltip_id == ifile.internaltip_id,
@@ -279,6 +290,8 @@ def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
 
 
 class DeliverySchedule(GLJob):
+    name = "Delivery"
+
     @inlineCallbacks
     def operation(self):
         """

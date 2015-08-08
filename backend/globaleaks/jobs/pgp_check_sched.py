@@ -28,6 +28,8 @@ __all__ = ['PGPCheckSchedule']
 
 
 class PGPCheckSchedule(GLJob):
+    name = "PGP Check"
+
     @transact
     def pgp_validation_check(self, store):
         node_desc = db_admin_serialize_node(store, 'en')

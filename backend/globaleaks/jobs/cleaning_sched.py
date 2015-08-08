@@ -64,6 +64,8 @@ class ExpiringRTipEvent(EventLogger):
 
 
 class CleaningSchedule(GLJob):
+    name = "Cleaning"
+
     @transact
     def perform_cleaning(self, store):
         for itip in store.find(InternalTip, InternalTip.expiration_date < datetime_now()):
@@ -78,6 +80,7 @@ class CleaningSchedule(GLJob):
         """
         # Reset the exception tracking variable of GLSetting
         GLSetting.exceptions = {}
+        GLSetting.exceptions_email_count = 0
 
         yield self.perform_cleaning()
         yield ExpiringRTipEvent().process_events()

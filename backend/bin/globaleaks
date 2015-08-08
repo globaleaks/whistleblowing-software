@@ -97,7 +97,7 @@ from twisted.scripts._twistd_unix import ServerOptions
 from globaleaks import runner, DATABASE_VERSION
 from globaleaks.db import check_db_files
 from globaleaks.utils.utility import log, query_yes_no
-from globaleaks.utils.mailutils import mail_exception
+from globaleaks.utils.mailutils import mail_exception_handler
 from globaleaks.settings import GLSetting
 
 GLSetting.parser.add_option("-n", "--nodaemon", action='store_true',
@@ -267,7 +267,7 @@ def run_glbackend():
 
     log.start_logging()
 
-    sys.excepthook = mail_exception
+    sys.excepthook = mail_exception_handler
 
     config = ServerOptions()
     try:

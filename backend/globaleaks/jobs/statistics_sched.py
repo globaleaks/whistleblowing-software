@@ -20,6 +20,19 @@ from globaleaks.models import Stats, Anomalies
 from globaleaks.utils.utility import log, datetime_now
 
 
+def get_workingdir_space():
+    statvfs = os.statvfs(GLSetting.working_path)
+    free_bytes = statvfs.f_frsize * statvfs.f_bavail
+    total_bytes = statvfs.f_frsize * statvfs.f_blocks
+    return free_bytes, total_bytes
+
+def get_ramdisk_space():
+    statvfs = os.statvfs(GLSetting.ramdisk_path)
+    free_bytes = statvfs.f_frsize * statvfs.f_bavail
+    total_bytes = statvfs.f_frsize * statvfs.f_blocks
+    return free_bytes, total_bytes
+
+
 @transact
 def save_anomalies(store, anomalies_list):
     anomalies_counter = 0
@@ -43,6 +56,8 @@ class AnomaliesSchedule(GLJob):
     This class check for Anomalies, using the Alarm() object
     implemented in anomaly.py
     """
+    name = "Anomalies"
+
     @defer.inlineCallbacks
     def operation(self):
         """
@@ -81,7 +96,7 @@ def save_statistics(store, start, end, activity_collection):
     newstat = Stats()
     newstat.start = start
     newstat.summary = dict(activity_collection)
-    newstat.free_disk_space = ResourceChecker.get_workingdir_space()[0]
+    newstat.free_disk_space = get_workingdir_space()[0]
     store.add(newstat)
 
     if activity_collection:
@@ -93,7 +108,11 @@ class StatisticsSchedule(GLJob):
     Statistics just flush two temporary queue and store them
     in the database.
     """
-    collection_start_datetime = datetime_now()
+    name = "Statistics Sched"
+
+    def __init__(self):
+        self.collection_start_datetime = datetime_now()
+        GLJob.__init__(self)
 
     @classmethod
     def reset(cls):
@@ -125,31 +144,19 @@ class StatisticsSchedule(GLJob):
                   len(statistic_summary.keys()))
 
 
-class ResourceChecker(GLJob):
+class ResourcesCheckSchedule(GLJob):
     """
-    ResourceChecker is a scheduled job that verify the available
+    Resources Check Scheduleis a job that verify the available
     resources in the GlobaLeaks box.
     At the moment is implemented only a monitor for the disk space,
     because the files that might be uploaded depend directly from
     this resource.
     """
-    @classmethod
-    def get_workingdir_space(cls):
-        statvfs = os.statvfs(GLSetting.working_path)
-        free_bytes = statvfs.f_frsize * statvfs.f_bavail
-        total_bytes = statvfs.f_frsize * statvfs.f_blocks
-        return free_bytes, total_bytes
-
-    @classmethod
-    def get_ramdisk_space(cls):
-        statvfs = os.statvfs(GLSetting.ramdisk_path)
-        free_bytes = statvfs.f_frsize * statvfs.f_bavail
-        total_bytes = statvfs.f_frsize * statvfs.f_blocks
-        return free_bytes, total_bytes
+    name = "Resources Check"
 
     def operation(self):
-        free_disk_bytes, total_disk_bytes = ResourceChecker.get_workingdir_space()
-        free_ramdisk_bytes, total_ramdisk_bytes = ResourceChecker.get_ramdisk_space()
+        free_disk_bytes, total_disk_bytes = get_workingdir_space()
+        free_ramdisk_bytes, total_ramdisk_bytes = get_ramdisk_space()
 
         alarm = Alarm()
         alarm.check_disk_anomalies(free_disk_bytes, total_disk_bytes, free_ramdisk_bytes, total_ramdisk_bytes)

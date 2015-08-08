@@ -257,6 +257,8 @@ class FileEventLogger(EventLogger):
 
 
 class NotificationSchedule(GLJob):
+    name = "Notification"
+
     @inlineCallbacks
     def operation(self):
         yield TipEventLogger().process_events()

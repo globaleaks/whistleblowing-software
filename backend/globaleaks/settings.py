@@ -169,11 +169,11 @@ class GLSettingsClass(object):
         self.receipt_regexp = u'[0-9]{16}'
 
         # default timings for scheduled jobs
-        self.session_management_minutes_delta = 1  # runner.py function expects minutes
-        self.notification_minutes_delta = 2  # runner.py function expects minutes
-        self.delivery_seconds_delta = 20  # runner.py function expects seconds
-        self.anomaly_seconds_delta = 10  # runner.py function expects seconds
-        self.mailflush_minutes_delta = 5  # before change check mailflush logic and delay
+        self.session_management_delta = 60
+        self.notification_delta = 120
+        self.delivery_delta = 20
+        self.anomaly_delta = 10
+        self.mailflush_delta = 300
 
 
         # Default values, used to initialize DB at the first start,
@@ -304,6 +304,8 @@ class GLSettingsClass(object):
         self.AES_keyfile_prefix = "aeskey-"
 
         self.exceptions = {}
+        self.exceptions_email_count = 0
+        self.exceptions_email_hourly_limit = 20
 
         # Extreme debug option triggered by --XXX, that's are the defaults
         self.debug_option_in_the_future = 0

@@ -52,7 +52,7 @@ def compute_activity_level():
 
     if len(requests_timing) > 2:
         log.info("In latest %d seconds: worst RTT %f, best %f" %
-                 (GLSetting.anomaly_seconds_delta,
+                 (GLSetting.anomaly_delta,
                   round(max(requests_timing), 2),
                   round(min(requests_timing), 2)))
 
@@ -99,7 +99,7 @@ def compute_activity_level():
 
     mailinfo = yield Alarm.admin_alarm_generate_mail(current_event_matrix)
     if isinstance(mailinfo, dict):
-        yield Alarm.anomaly_email_send(
+        yield Alarm.send_anomaly_email(
             mailinfo['admin_email'],
             mailinfo['message']
         )
@@ -450,8 +450,7 @@ class Alarm(object):
 
     @staticmethod
     @defer.inlineCallbacks
-    def anomaly_email_send(admin_email, message):
-
+    def send_anomaly_email(admin_email, message):
         Alarm.last_alarm_email = datetime_now()
         yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
                        authentication_password=GLSetting.memory_copy.notif_password,
