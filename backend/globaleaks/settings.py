@@ -124,7 +124,7 @@ class GLSettingsClass(object):
         # debug defaults
         self.storm_debug = False
         self.http_log = -1
-        self.http_log_counter = 0
+        self.http_requests_counter = 0
         self.loglevel = "CRITICAL"
 
         # files and paths
@@ -327,8 +327,7 @@ class GLSettingsClass(object):
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
-        # this temporary directory is not under RamDisk because contain the temporary encrypted files!
-        self.tmp_upload_path = os.path.abspath(os.path.join(self.glfiles_path, 'encrypted_upload'))
+        self.tmp_upload_path = os.path.abspath(os.path.join(self.glfiles_path, 'tmp'))
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
         self.static_path_l10n = os.path.abspath(os.path.join(self.static_path, 'l10n'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
@@ -594,7 +593,7 @@ class GLSettingsClass(object):
             if not os.path.exists(path):
                 try:
                     os.mkdir(path)
-                    self.log_debug("Created directoy %s" % path)
+                    self.log_debug("Created directory %s" % path)
                     return True
                 except OSError as excep:
                     self.log_debug("Error in creating directory: %s (%s)" % (path, excep.strerror))

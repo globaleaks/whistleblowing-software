@@ -23,11 +23,18 @@ from cyclone import escape, httputil
 from cyclone.escape import native_str
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
+
+from twisted.internet import task
+from globaleaks.event import outcoming_event_monitored, EventTrack
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
-from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
 from globaleaks.utils.mailutils import mail_exception_handler
+from globaleaks.utils.monitor import ResourceMonitor
+from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
+
+
+DEFAULT_HANDLER_MONITOR_TIME = 30
 
 GLUploads = {}
 
@@ -107,6 +114,15 @@ class GLHTTPConnection(HTTPConnection):
 
 
 class BaseHandler(RequestHandler):
+    monitor = None
+    monitor_time = DEFAULT_HANDLER_MONITOR_TIME
+
+    def __init__(self, application, request, **kwargs):
+        self.req_id = GLSetting.http_requests_counter
+        GLSetting.http_requests_counter += 1
+
+        super(BaseHandler, self).__init__(application, request, **kwargs)
+
     def set_default_headers(self):
         """
         In this function are written some security enforcements
@@ -299,23 +315,17 @@ class BaseHandler(RequestHandler):
 
     def prepare(self):
         """
-        This method is called by cyclone, and is implemented to
-        handle the POST fallback, in environment where PUT and DELETE
-        method may not be used.
-        Is used also to log the complete request, if the option is
-        command line specified
+        Here is implemented the I/O logging (if enabled)
         """
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
-        # if 0 is infinite logging of the requests
-        if GLSetting.http_log >= 0:
+        self.monitor = ResourceMonitor(("[Handler %s]" % type(self).__name__), self.monitor_time)
 
-            GLSetting.http_log_counter += 1
-
+        if GLSetting.devel_mode and GLSetting.http_log >= 0:
             try:
                 content = (">" * 15)
-                content += (" Request %d " % GLSetting.http_log_counter)
+                content += (" Request %d " % GLSetting.http_requests_counter)
                 content += (">" * 15) + "\n\n"
 
                 content += self.request.method + " " + self.request.full_url() + "\n\n"
@@ -339,12 +349,55 @@ class BaseHandler(RequestHandler):
                 log.err("JSON logging fail (prepare): %s" % excep.message)
                 return
 
-            # save in the request the numeric ID of the request, so the answer can be correlated
-            self.globaleaks_io_debug = GLSetting.http_log_counter
-
-            if 0 < GLSetting.http_log < GLSetting.http_log_counter:
+            if 0 < GLSetting.http_log < GLSetting.http_requests_counter:
                 log.debug("Reached I/O logging limit of %d requests: disabling" % GLSetting.http_log)
                 GLSetting.http_log = -1
+
+    def on_finish(self):
+        """
+        Here is implemented the I/O logging (if enabled)
+        """
+        if self.monitor is not None:
+            self.monitor.stop()
+            self.monitor = None
+
+        for event in outcoming_event_monitored:
+            if event['status_checker'](self._status_code) and \
+                   event['method'] == self.request.method and \
+                   event['handler_check'](self.request.uri):
+                EventTrack(event, self.request.request_time())
+
+        if GLSetting.devel_mode and GLSetting.http_log >= 0:
+            try:
+                content = ("<" * 15)
+                content += (" Response %d " % self.req_id)
+                content += ("<" * 15) + "\n\n"
+                content += "status code: " + str(self._status_code) + "\n\n"
+
+                content += "headers:\n"
+                for k, v in self._headers.iteritems():
+                    content += "%s: %s\n" % (k, v)
+
+                if self._write_buffer is not None:
+                    content += "\nbody: " + str(self._write_buffer) + "\n"
+
+                self.do_verbose_log(content)
+            except Exception as excep:
+                log.err("JSON logging fail (flush): %s" % excep.message)
+
+    def do_verbose_log(self, content):
+        """
+        Record in the verbose log the content as defined by Cyclone wrappers.
+
+        This option is only available in devel mode and intentionally does not filter
+        any input/output; It should be used only for debug purposes.
+        """
+
+        try:
+            with open(GLSetting.httplogfile, 'a+') as fd:
+                fdesc.writeToFD(fd.fileno(), content + "\n")
+        except Exception as excep:
+            log.err("Unable to open %s: %s" % (GLSetting.httplogfile, excep))
 
     def write_file(self, filepath):
         if not (os.path.exists(filepath) or os.path.isfile(filepath)):
@@ -359,73 +412,6 @@ class BaseHandler(RequestHandler):
                     self.write(chunk)
         except IOError as srcerr:
             log.err("Unable to open %s: %s " % (filepath, srcerr.strerror))
-
-
-    def flush(self, include_footers=False):
-        """
-        This method is used internally by Cyclone,
-        Cyclone specify the function on_finish but in that time the request is already flushed,
-        so overwrite flush() was the easiest way to achieve our collection.
-
-        It's here implemented to supports the I/O logging if requested
-        with the command line options --io $number_of_request_recorded
-        """
-        from globaleaks.event import outcoming_event_monitored, EventTrack
-
-
-        # This is the event tracker, used to keep track of the
-        # outcome of the events.
-        if not hasattr(self, '_status_code'):
-            if GLSetting.devel_mode:
-                log.debug("Developer, check this out")
-                import pdb;
-
-                pdb.set_trace()
-            else:
-                raise Exception("Missing _status_code in some place!")
-
-        for event in outcoming_event_monitored:
-            if event['status_checker'](self._status_code) and \
-                   event['method'] == self.request.method and \
-                   event['handler_check'](self.request.uri):
-                EventTrack(event, self.request.request_time())
-                # if event['anomaly_management']:
-                # event['anomaly_management'](self.request)
-
-        if hasattr(self, 'globaleaks_io_debug'):
-            try:
-                content = ("<" * 15)
-                content += (" Response %d " % self.globaleaks_io_debug)
-                content += ("<" * 15) + "\n\n"
-                content += "status code: " + str(self._status_code) + "\n\n"
-
-                content += "headers:\n"
-                for k, v in self._headers.iteritems():
-                    content += "%s: %s\n" % (k, v)
-
-                if self._write_buffer is not None:
-                    content += "\nbody: " + str(self._write_buffer) + "\n"
-
-                self.do_verbose_log(content)
-            except Exception as excep:
-                log.err("JSON logging fail (flush): %s" % excep.message)
-                return
-
-        RequestHandler.flush(self, include_footers)
-
-
-    def do_verbose_log(self, content):
-        """
-        Record in the verbose log the content as defined by Cyclone wrappers.
-        """
-        content = log_remove_escapes(content)
-        content = log_encode_html(content)
-
-        try:
-            with open(GLSetting.httplogfile, 'a+') as fd:
-                fdesc.writeToFD(fd.fileno(), content + "\n")
-        except Exception as excep:
-            log.err("Unable to open %s: %s" % (GLSetting.httplogfile, excep))
 
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')
