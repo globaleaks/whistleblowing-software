@@ -615,6 +615,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           context.enable_private_messages = false;
           context.presentation_order = 0;
           context.show_receivers_in_alphabetical_order = false;
+          context.steps_arrangement = 'horizontal';
           context.reset_steps = false;
           return context;
         };
@@ -642,6 +643,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           field.required = false;
           field.preview = false;
           field.stats_enabled = false;
+          field.min_len = -1;
+          field.max_len = -1;
+          field.regexp = '';
           field.x = 0;
           field.y = 0;
           field.children = [];

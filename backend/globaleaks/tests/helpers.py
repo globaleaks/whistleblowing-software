@@ -237,6 +237,9 @@ class TestGL(unittest.TestCase):
             'hint': u'field hint',
             'multi_entry': False,
             'stats_enabled': False,
+            'regexp': '',
+            'min_len': -1,
+            'max_len': -1,
             'required': False,
             'options': [],
             'children': [],
@@ -289,7 +292,6 @@ class TestGL(unittest.TestCase):
         defer.returnValue(dummySubmissionDict)
 
     def get_dummy_file(self, filename=None, content_type=None, content=None):
-
         if filename is None:
             filename = ''.join(unichr(x) for x in range(0x400, 0x40A))
 
@@ -687,12 +689,15 @@ class MockDict():
                 'label': u'Field 222',
                 'type': u'inputbox',
                 'preview': False,
-                'description': u"field description",
+                'description': u'field description',
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
+                'regexp': u'',
+                'min_len': -1,
+                'max_len': -1,
                 'required': True,  # <- first field is special,
-                'children': {},  # it's marked as required!!!
+                'children': {},    # it's marked as required!!!
                 'options': [],
                 'y': 2,
                 'x': 0
@@ -705,10 +710,13 @@ class MockDict():
                 'label': u'Field 2',
                 'type': u'inputbox',
                 'preview': False,
-                'description': "description",
+                'description': 'description',
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
+                'regexp': u'',
+                'min_len': -1,
+                'max_len': -1,
                 'required': False,
                 'children': {},
                 'options': [],
@@ -723,10 +731,13 @@ class MockDict():
                 'label': u'Generalities',
                 'type': u'fieldgroup',
                 'preview': False,
-                'description': u"field description",
+                'description': u'field description',
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
+                'regexp': u'',
+                'min_len': -1,
+                'max_len': -1,
                 'required': False,
                 'children': {},
                 'options': [],
@@ -741,10 +752,13 @@ class MockDict():
                 'label': u'Name',
                 'type': u'inputbox',
                 'preview': False,
-                'description': u"field description",
+                'description': u'field description',
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
+                'regexp': u'',
+                'min_len': -1,
+                'max_len': -1,
                 'required': False,
                 'children': {},
                 'options': [],
@@ -759,10 +773,13 @@ class MockDict():
                 'label': u'Surname',
                 'type': u'inputbox',
                 'preview': False,
-                'description': u"field description",
+                'description': u'field description',
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
+                'regexp': u'',
+                'min_len': -1,
+                'max_len': -1,
                 'required': False,
                 'children': {},
                 'options': [],
@@ -777,10 +794,13 @@ class MockDict():
                 'label': u'Gender',
                 'type': u'selectbox',
                 'preview': False,
-                'description': u"field description",
+                'description': u'field description',
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
+                'regexp': u'',
+                'min_len': -1,
+                'max_len': -1,
                 'required': False,
                 'children': {},
                 'options': [
@@ -834,6 +854,7 @@ class MockDict():
             'enable_private_messages': True,
             'presentation_order': 0,
             'show_receivers_in_alphabetical_order': False,
+            'steps_arrangement': 'horizontal',
             'reset_steps': False
         }
 
@@ -921,16 +942,19 @@ def do_appdata_init(store):
 @transact
 def create_dummy_field(store, **custom_attrs):
     attrs = {
-        'label': {"en": "test label"},
-        'description': {"en": "test description"},
-        'hint': {"en": "test hint"},
-        "is_template": False,
+        'label': {'en': 'test label'},
+        'description': {'en': 'test description'},
+        'hint': {'en': 'test hint'},
+        'is_template': False,
         'multi_entry': False,
         'type': 'fieldgroup',
         'options': [],
         'required': False,
         'preview': False,
         'stats_enabled': True,
+        'regexp': u'',
+        'min_len': -1,
+        'max_len': -1,
         'x': 0,
         'y': 0
     }

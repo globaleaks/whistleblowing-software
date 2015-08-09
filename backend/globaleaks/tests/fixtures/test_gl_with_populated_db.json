@@ -406,47 +406,10 @@
   {
     "fields": {
       "presentation_order": 0,
-      "can_postpone_expiration": false,
       "creation_date": "2014-09-13 09:01:53.682297",
-      "unique_fields": {
-        "55a36c31-4851-40de-b56f-2f8ba190492f": {
-          "incremental_number": 2,
-          "name": "Describe the attachments of the submission",
-          "hint": "Describe the attachments of the submission",
-          "required": false,
-          "presentation_order": 2,
-          "trigger": [],
-          "key": "55a36c31-4851-40de-b56f-2f8ba190492f",
-          "preview": false,
-          "type": "textarea"
-        },
-        "30a44064-38f1-41f7-934e-1cfaf7d4ea50": {
-          "incremental_number": 1,
-          "name": "Describe the details of the submission",
-          "hint": "Describe the details of the submission",
-          "required": false,
-          "presentation_order": 1,
-          "trigger": [],
-          "key": "30a44064-38f1-41f7-934e-1cfaf7d4ea50",
-          "preview": false,
-          "type": "textarea"
-        },
-        "9a4c7e98-8773-4114-b26f-5c975a762357": {
-          "incremental_number": 0,
-          "name": "Describe your submission with a few words",
-          "hint": "Describe your submission with a few words",
-          "required": true,
-          "presentation_order": 0,
-          "trigger": [],
-          "key": "9a4c7e98-8773-4114-b26f-5c975a762357",
-          "preview": false,
-          "type": "text"
-        }
-      },
       "last_update": null,
       "id": "34948a37-201e-44e0-bede-67212f1b7ee6",
       "tip_timetolive": 1728000,
-      "can_delete_submission": false,
       "show_small_cards": false,
       "show_receivers": false,
       "select_all_receivers": true,

@@ -182,6 +182,7 @@ def anon_serialize_field(store, field, language):
 
     ret_dict = {
         'id': field.id,
+        'type': field.type,
         'is_template': field.is_template,
         'fieldgroup_id': fieldgroup_id,
         'step_id': step_id,
@@ -189,7 +190,9 @@ def anon_serialize_field(store, field, language):
         'required': field.required,
         'preview': field.preview,
         'stats_enabled': field.stats_enabled,
-        'type': field.type,
+        'min_len': field.min_len,
+        'max_len': field.max_len,
+        'regexp': field.regexp,
         'x': field.x,
         'y': field.y,
         'options': options,

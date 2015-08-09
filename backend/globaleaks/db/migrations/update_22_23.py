@@ -2,7 +2,7 @@
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.models import BaseModel, Model
+from globaleaks.models import BaseModel, Model, Step, Receiver, ReceiverContext
 
 
 class Field_v_22(Model):
@@ -119,7 +119,7 @@ class Replacer2223(TableReplacer):
         self.store_new.commit()
 
     def migrate_Context(self):
-        print "%s Context migration assistant" % self.std_fancy
+        print "%s Context migration assistantaaaaaaaaaaaa" % self.std_fancy
 
         old_objs = self.store_old.find(self.get_right_model("Context", 22))
 
@@ -127,12 +127,11 @@ class Replacer2223(TableReplacer):
             new_obj = self.get_right_model("Context", 23)()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'steps_arrangement':
-                    new_obj.steps_arrangement = 'horizontal' if len(old_obj.steps) > 1 else 'vertical'
+                    new_obj.steps_arrangement = 'horizontal'
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
-
 
         self.store_new.commit()
