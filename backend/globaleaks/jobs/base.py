@@ -10,29 +10,12 @@ import time
 from twisted.internet import task, defer, reactor
 from twisted.python.failure import Failure
 
-from globaleaks.utils.utility import log, deferred_sleep
-from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
+from globaleaks.utils.mailutils import mail_exception_handler
+from globaleaks.utils.monitor import ResourceMonitor
+from globaleaks.utils.utility import log
 
 
 JOB_MONITOR_TIME = 5 * 60 # seconds
-
-
-class GLJobMonitor(task.LoopingCall):
-    run = 0
-
-    def __init__(self, job):
-        self.job = job
-        task.LoopingCall.__init__(self, self.tooMuch)
-        self.start(JOB_MONITOR_TIME, False)
-
-    def tooMuch(self):
-        self.run += 1
-        minutes = int((JOB_MONITOR_TIME * self.run) / 60)
-
-        error = "Warning: job [%s] is taking more than %d minutes to finish" % (self.job.name, minutes)
-
-        log.err(error)
-        send_exception_email(error)
 
 
 class GLJob(task.LoopingCall):
@@ -43,11 +26,13 @@ class GLJob(task.LoopingCall):
     high_time = -1
     name = "unnamed"
 
+    monitor = None
+
     def __init__(self):
         task.LoopingCall.__init__(self, self._operation)
 
     def stats_collection_start(self):
-        self.monitor = GLJobMonitor(self)
+        self.monitor = ResourceMonitor(("[Job %s]" % self.name), JOB_MONITOR_TIME)
 
         self.start_time = time.time()
 
@@ -58,7 +43,9 @@ class GLJob(task.LoopingCall):
             log.debug("Starting job [%s]" % self.name)
 
     def stats_collection_end(self):
-        self.monitor.stop()
+        if self.monitor is not None:
+            self.monitor.stop()
+            self.monitor = None
 
         current_run_time = time.time() - self.start_time
 
