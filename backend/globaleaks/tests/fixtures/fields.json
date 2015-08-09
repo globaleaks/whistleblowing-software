@@ -11,6 +11,9 @@
       "required": true,
       "preview": true,
       "stats_enabled": true,
+      "regexp": "",
+      "min_len": -1,
+      "max_len": -1,
       "x": 0,
       "y": 0,
       "type": "inputbox"
@@ -29,6 +32,9 @@
       "required": true,
       "preview": true,
       "stats_enabled": true,
+      "regexp": "",
+      "min_len": -1,
+      "max_len": -1,
       "x": 0,
       "y": 0,
       "type": "inputbox"
@@ -47,6 +53,9 @@
       "required": true,
       "preview": true,
       "stats_enabled": true,
+      "regexp": "",
+      "min_len": -1,
+      "max_len": -1,
       "x": 0,
       "y": 0,
       "type": "selectbox"
@@ -65,6 +74,9 @@
       "required": true,
       "preview": true,
       "stats_enabled": true,
+      "regexp": "",
+      "min_len": -1,
+      "max_len": -1,
       "x": 0,
       "y": 0,
       "type": "inputbox"
@@ -83,6 +95,9 @@
       "required": true,
       "preview": true,
       "stats_enabled": true,
+      "regexp": "",
+      "min_len": -1,
+      "max_len": -1,
       "x": 0,
       "y": 0,
       "type": "fieldgroup"
@@ -137,6 +152,9 @@
       "required": true,
       "preview": true,
       "stats_enabled": true,
+      "regexp": "",
+      "min_len": -1,
+      "max_len": -1,
       "x": 0,
       "y": 0,
       "type": "inputbox"
@@ -154,6 +172,9 @@
       "required": true,
       "preview": true,
       "stats_enabled": true,
+      "regexp": "",
+      "min_len": -1,
+      "max_len": -1,
       "x": 0,
       "y": 0,
       "type": "inputbox"
@@ -171,6 +192,9 @@
       "required": true,
       "preview": true,
       "stats_enabled": true,
+      "regexp": "",
+      "min_len": -1,
+      "max_len": -1,
       "x": 0,
       "y": 0,
       "type": "selectbox"
@@ -188,6 +212,9 @@
       "required": true,
       "preview": true,
       "stats_enabled": true,
+      "regexp": "",
+      "min_len": -1,
+      "max_len": -1,
       "x": 0,
       "y": 0,
       "type": "inputbox"
@@ -205,6 +232,9 @@
       "required": true,
       "preview": true,
       "stats_enabled": true,
+      "regexp": "",
+      "min_len": -1,
+      "max_len": -1,
       "x": 0,
       "y": 0,
       "type": "fieldgroup"
