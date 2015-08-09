@@ -202,11 +202,13 @@ class Context(Model):
     #                         ReceiverContext.receiver_id,
     #                         Receiver.id)
 
+    steps_arrangement = Unicode()
+
     show_receivers_in_alphabetical_order = Bool(default=False)
 
     presentation_order = Int(default=0)
 
-    unicode_keys = []
+    unicode_keys = ['steps_arrangement']
 
     localized_strings = ['name', 'description']
 
@@ -680,7 +682,7 @@ class Field(Model):
     # * fieldgroup
 
     unicode_keys = ['type']
-    int_keys = ['x', 'y']
+    int_keys = ['x', 'y', 'min_len', 'max_len']
     localized_strings = ['label', 'description', 'hint']
     bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled', 'is_template']
 

@@ -164,6 +164,7 @@ def admin_serialize_context(store, context, language):
         'enable_private_messages': context.enable_private_messages,
         'presentation_order': context.presentation_order,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
+        'steps_arrangement': context.steps_arrangement,
         'reset_steps': False,
         'steps': steps
     }

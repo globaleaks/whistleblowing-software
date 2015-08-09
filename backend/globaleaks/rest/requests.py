@@ -199,6 +199,7 @@ AdminContextDesc = {
     'enable_private_messages': bool,
     'presentation_order': int,
     'show_receivers_in_alphabetical_order': bool,
+    'steps_arrangement': unicode,
     'reset_steps': bool
 }
 
@@ -393,6 +394,9 @@ FieldDesc = {
     'required': bool,
     'preview': bool,
     'stats_enabled': bool,
+    'regexp': unicode,
+    'min_len': int,
+    'max_len': int,
     'type': (r'^('
              'inputbox|'
              'textarea|'
@@ -402,6 +406,8 @@ FieldDesc = {
              'dialog|'
              'tos|'
              'fileupload|'
+             'number|'
+             'email|'
              'fieldgroup)$'),
     'options': list,
     'children': list,
