@@ -367,7 +367,6 @@ def receiver_serialize_comment(comment):
         'comment_id': comment.id,
         'type': comment.type,
         'content': comment.content,
-        'system_content': comment.system_content if comment.system_content else {},
         'author': comment.author,
         'creation_date': datetime_to_ISO8601(comment.creation_date)
     }

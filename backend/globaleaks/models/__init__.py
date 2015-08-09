@@ -338,8 +338,6 @@ class Comment(Model):
     author = Unicode()
     content = Unicode(validator=longtext_v)
 
-    system_content = JSON()
-
     type = Unicode()
     # types: 'receiver', 'whistleblower', 'system'
 
@@ -651,6 +649,11 @@ class Field(Model):
     required = Bool(default=False)
     preview = Bool(default=False)
 
+    min_len = Int(default=-1)
+    max_len = Int(default=-1)
+
+    regexp = Unicode(default=u'')
+
     # This is set if the field should be duplicated for collecting statistics
     # when encryption is enabled.
     stats_enabled = Bool(default=False)
@@ -671,6 +674,9 @@ class Field(Model):
     # * modal
     # * dialog
     # * tos
+    # * email
+    # * number
+    # * date
     # * fieldgroup
 
     unicode_keys = ['type']
