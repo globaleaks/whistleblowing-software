@@ -11,6 +11,7 @@ __email__ = u'info@globaleaks.org'
 __version__ = u'2.60.100'
 
 DATABASE_VERSION = 23
+FIRST_DATABASE_VERSION_SUPPORTED = 11
 
 # Add here by hand the languages supported!
 # copy paste format from 'grunt updateTranslations'

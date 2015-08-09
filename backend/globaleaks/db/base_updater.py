@@ -9,7 +9,7 @@ from storm.variables import BoolVariable, DateTimeVariable
 from storm.variables import EnumVariable, IntVariable, RawStrVariable, PickleVariable
 from storm.variables import UnicodeVariable, JSONVariable
 
-from globaleaks import DATABASE_VERSION
+from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.settings import GLSetting
 
 def variableToSQL(var, db_type):
@@ -124,9 +124,7 @@ class TableReplacer(object):
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
         for k, v in table_history.iteritems():
-            # +1 because count start from 0,
-            # -8 because the relase befor the 8th are not supported anymore
-            length = DATABASE_VERSION + 1 - 8
+            length = DATABASE_VERSION + 1 - FIRST_DATABASE_VERSION_SUPPORTED
             if len(v) != length:
                 msg = 'Expecting a table with {} statuses ({})'.format(length, k)
                 raise TypeError(msg)
@@ -184,8 +182,7 @@ class TableReplacer(object):
         pass
 
     def get_right_model(self, table_name, version):
-
-        table_index = (version - 8)
+        table_index = (version - FIRST_DATABASE_VERSION_SUPPORTED)
 
         if table_name not in self.table_history:
             msg = 'Not implemented usage of get_right_model {} ({} {})'.format(
@@ -296,12 +293,6 @@ class TableReplacer(object):
         self._perform_copy_list("ReceiverInternalTip")
 
     def migrate_Message(self):
-        """
-        has been created between 7 and 8!
-        """
-        if self.start_ver < 8:
-            return
-
         self._perform_copy_list("Message")
 
     def migrate_Stats(self):

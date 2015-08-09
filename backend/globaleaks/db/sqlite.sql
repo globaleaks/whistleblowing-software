@@ -37,9 +37,8 @@ CREATE TABLE comment (
     creation_date VARCHAR NOT NULL,
     author VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
-    type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower', 'system')),
+    type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
     content VARCHAR NOT NULL,
-    system_content BLOB,
     new INTEGER NOT NULL,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
@@ -60,6 +59,7 @@ CREATE TABLE context (
     enable_private_messages INTEGER NOT NULL,
     presentation_order INTEGER,
     show_receivers_in_alphabetical_order INTEGER NOT NULL,
+    steps_arrangement VARCHAR NOT NULL CHECK (steps_arrangement IN ('vertical', 'horizontal')) DEFAULT 'horizontal',
     PRIMARY KEY (id)
 );
 
@@ -69,7 +69,6 @@ CREATE TABLE internalfile (
     content_type VARCHAR NOT NULL,
     file_path VARCHAR,
     name VARCHAR NOT NULL,
-    description VARCHAR,
     size INTEGER NOT NULL,
     new INTEGER NOT NULL,
     processing_attempts INTEGER NOT NULL,
@@ -342,6 +341,9 @@ CREATE TABLE field (
     description TEXT NOT NULL DEFAULT '',
     hint TEXT NOT NULL DEFAULT '',
     multi_entry INTEGER NOT NULL DEFAULT 0,
+    min_len INTEGER NOT NULL DEFAULT -1,
+    max_len INTEGER NOT NULL DEFAULT -1,
+    regexp VARCHAR NOT NULL,
     required INTEGER,
     preview INTEGER,
     stats_enabled INTEGER NOT NULL DEFAULT 0,
@@ -356,8 +358,9 @@ CREATE TABLE field (
                                           'dialog',
                                           'tos',
                                           'fileupload',
-                                          'fieldgroup'
-                                          )),
+                                          'number',
+                                          'email',
+                                          'fieldgroup')),
     PRIMARY KEY (id)
 );
 
