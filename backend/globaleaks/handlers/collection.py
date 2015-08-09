@@ -81,6 +81,8 @@ class CollectionStreamer(object):
 
 
 class CollectionDownload(BaseHandler):
+    monitor_time = 3600
+
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks

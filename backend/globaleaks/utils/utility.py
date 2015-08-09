@@ -5,22 +5,23 @@
 # GlobaLeaks Utility Functions
 
 import cgi
+import codecs
 import inspect
 import logging
+import os
 import sys
 import time
 import traceback
 from uuid import UUID
 from datetime import datetime, timedelta
 
-import codecs
-import os
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
 from twisted.python import log as twlog
 from twisted.python import logfile as twlogfile
 from twisted.python import util
 from twisted.python.failure import Failure
+
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
 
@@ -493,5 +494,3 @@ def caller_name(skip=2):
         name.append( codename ) # function or a method
     del parentframe
     return ".".join(name)
-
-
