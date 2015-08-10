@@ -158,14 +158,14 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     }
 
     $scope.moveUp = function(event, elem) {
-      var key = $scope.getOrderPropery();
+      var key = $scope.getOrderPropery(elem);
       elem[key] -= 1;
 
       event.stopPropagation();
     }
 
     $scope.moveDown = function(event, elem) {
-      var key = $scope.getOrderPropery();
+      var key = $scope.getOrderPropery(elem);
       elem[key] += 1;
 
       event.stopPropagation();

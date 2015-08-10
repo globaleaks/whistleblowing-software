@@ -272,7 +272,6 @@ def run_glbackend():
     # this step is made before the twisted start
     check_db_files()
 
-
     log.start_logging()
 
     sys.excepthook = mail_exception_handler

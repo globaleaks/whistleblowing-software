@@ -295,6 +295,12 @@ def send_exception_email(mail_body):
     if isinstance(mail_body, str) or isinstance(mail_body, unicode):
         mail_body = bytes(mail_body)
 
+    if not hasattr(GLSetting.memory_copy, 'notif_source_name') or \
+        not hasattr(GLSetting.memory_copy, 'notif_source_email') or \
+        not hasattr(GLSetting.memory_copy, 'exception_email'):
+        log.err("Error: Cannot send mail exception before complete initialization.")
+        return
+
     h = hashes.Hash(hashes.SHA256(),
                     backend=crypto_backend)
     h.update(mail_body)
@@ -304,7 +310,7 @@ def send_exception_email(mail_body):
         GLSetting.exceptions[sha256] += 1
         if GLSetting.exceptions[sha256] > 5:
             # if the threashold has been exceeded
-            log.err("exception mail suppressed for exception (%s) [reason: threshold exceeded]" % str(etype))
+            log.err("exception mail suppressed for exception (%s) [reason: threshold exceeded]" % sha256)
             return
     else:
         GLSetting.exceptions[sha256] = 1

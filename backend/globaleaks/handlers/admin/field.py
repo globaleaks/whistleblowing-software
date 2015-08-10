@@ -6,14 +6,14 @@ from __future__ import unicode_literals
 
 import json
 
-from storm.expr import And
+from storm.expr import And, Not, In
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.node import anon_serialize_field, anon_serialize_step, \
-    get_field_option_localized_keys, get_public_context_list
+    get_public_context_list
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import transact, transact_ro
@@ -74,7 +74,7 @@ def disassociate_field(store, field_id):
         store.remove(ff)
 
 
-def db_update_options(store, field_id, options, language):
+def db_update_fieldoptions(store, field_id, options, language):
     """
     Update options
 
@@ -92,25 +92,22 @@ def db_update_options(store, field_id, options, language):
         indexed_old_options[o.id] = o
 
     new_options = []
-    n = 1
     for option in options:
-        opt_dict = {'field_id': field_id, 'presentation_order': n}
+        opt_dict = {
+            'field_id': field_id,
+            'presentation_order': option['presentation_order'],
+            'label': option['label']
+        }
 
-        keys = get_field_option_localized_keys(field.type)
-        fill_localized_keys(option['attrs'], keys, language)
-        opt_dict['attrs'] = option['attrs']
+        fill_localized_keys(opt_dict, models.FieldOption.localized_strings, language)
 
         # check for reuse (needed to keep translations)
         if 'id' in option and option['id'] in indexed_old_options:
-            o = indexed_old_options[option['id']]
-            o.update(opt_dict, keys)
-
+            indexed_old_options[option['id']].update(opt_dict)
             new_options.append(indexed_old_options[option['id']])
             del indexed_old_options[option['id']]
         else:
             new_options.append(models.FieldOption(opt_dict))
-
-        n += 1
 
     # remove all the not reused old options
     for o_id in indexed_old_options:
@@ -118,6 +115,34 @@ def db_update_options(store, field_id, options, language):
 
     for n in new_options:
         store.add(n)
+
+
+def db_update_fieldattr(store, field_id, name, type, value):
+    attr = store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, models.FieldAttr.name == name)).one()
+    if not attr:
+        attr = models.FieldAttr()
+
+    attr.field_id = field_id
+    attr.name = name
+    attr.type = type
+    attr.value = value
+
+    store.add(attr)
+
+    return attr.id
+
+
+def db_update_fieldattrs(store, field_id, field_attrs, language):
+    """
+    """
+    attrs_ids = []
+
+    for name, value in field_attrs.iteritems():
+        if value['type'] == u'localized':
+            fill_localized_keys(value, 'value', language)
+        attrs_ids.append(db_update_fieldattr(store, field_id, name, value['type'], value['value']))
+
+    store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, Not(In(models.FieldAttr.id, attrs_ids)))).remove()
 
 
 def field_integrity_check(store, field):
@@ -169,7 +194,8 @@ def db_create_field(store, field, language):
 
     fill_localized_keys(field, models.Field.localized_strings, language)
     f = models.Field.new(store, field)
-    db_update_options(store, f.id, field['options'], language)
+    db_update_fieldoptions(store, f.id, field['options'], language)
+    db_update_fieldattrs(store, f.id, field['attrs'], language)
 
     associate_field(store, f, step, fieldgroup)
 
@@ -260,7 +286,9 @@ def db_update_field(store, field_id, field, language):
 
             f.children.add(c)
 
-        db_update_options(store, f.id, field['options'], language)
+        db_update_fieldattrs(store, f.id, field['attrs'], language)
+
+        db_update_fieldoptions(store, f.id, field['options'], language)
 
         # remove current step/field fieldgroup/field association
         disassociate_field(store, field_id)

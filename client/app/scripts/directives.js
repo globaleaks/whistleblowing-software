@@ -1,12 +1,6 @@
-// In here shall go all UI related modules that contain directives
-// Directives are a way of manipulating the DOM or how the angular developers
-// put it, "it's a way to teach HTML some new tricks".
-//
-// Basically by registering a directive you are then able to set the attribute
-// of a tag to a directive defined here and then you will be able to interact
-// with it.
-// To learn more see: http://docs.angularjs.org/guide/directive
-angular.module('submissionUI', []).
+"use strict";
+
+angular.module('GLDirectives', []).
   directive('spinner', function(){
     return function(scope, element, attrs) {
       var opts = {
