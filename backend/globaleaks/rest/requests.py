@@ -382,6 +382,11 @@ InternalTipDesc = {
     'expiration_date': DateType
 }
 
+FieldOptionDesc = {
+    'label': unicode,
+    'presentation_order': int
+}
+
 FieldDesc = {
     'step_id': uuid_regexp_or_empty,
     'fieldgroup_id': uuid_regexp_or_empty,
@@ -394,9 +399,6 @@ FieldDesc = {
     'required': bool,
     'preview': bool,
     'stats_enabled': bool,
-    'regexp': unicode,
-    'min_len': int,
-    'max_len': int,
     'type': (r'^('
              'inputbox|'
              'textarea|'
@@ -409,7 +411,8 @@ FieldDesc = {
              'number|'
              'email|'
              'fieldgroup)$'),
-    'options': list,
+    'attrs': dict,
+    'options': [FieldOptionDesc],
     'children': list,
     'is_template': bool
 }

@@ -237,10 +237,8 @@ class TestGL(unittest.TestCase):
             'hint': u'field hint',
             'multi_entry': False,
             'stats_enabled': False,
-            'regexp': '',
-            'min_len': -1,
-            'max_len': -1,
             'required': False,
+            'attrs': {},
             'options': [],
             'children': [],
             'y': 1,
@@ -693,11 +691,9 @@ class MockDict():
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
-                'regexp': u'',
-                'min_len': -1,
-                'max_len': -1,
                 'required': True,  # <- first field is special,
                 'children': {},    # it's marked as required!!!
+                'attrs': {},
                 'options': [],
                 'y': 2,
                 'x': 0
@@ -714,11 +710,9 @@ class MockDict():
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
-                'regexp': u'',
-                'min_len': -1,
-                'max_len': -1,
                 'required': False,
                 'children': {},
+                'attrs': {},
                 'options': [],
                 'y': 3,
                 'x': 0
@@ -735,11 +729,9 @@ class MockDict():
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
-                'regexp': u'',
-                'min_len': -1,
-                'max_len': -1,
                 'required': False,
                 'children': {},
+                'attrs': {},
                 'options': [],
                 'y': 4,
                 'x': 0
@@ -756,11 +748,9 @@ class MockDict():
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
-                'regexp': u'',
-                'min_len': -1,
-                'max_len': -1,
                 'required': False,
                 'children': {},
+                'attrs': {},
                 'options': [],
                 'y': 0,
                 'x': 0
@@ -777,11 +767,9 @@ class MockDict():
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
-                'regexp': u'',
-                'min_len': -1,
-                'max_len': -1,
                 'required': False,
                 'children': {},
+                'attrs': {},
                 'options': [],
                 'y': 0,
                 'x': 0
@@ -798,21 +786,21 @@ class MockDict():
                 'hint': u'field hint',
                 'multi_entry': False,
                 'stats_enabled': False,
-                'regexp': u'',
-                'min_len': -1,
-                'max_len': -1,
                 'required': False,
                 'children': {},
+                'attrs': {},
                 'options': [
                     {
-                        "id": "2ebf6df8-289a-4f17-aa59-329fe11d232e",
-                        "value": "",
-                        "attrs": {"name": "Male"}
+                        'id': '2ebf6df8-289a-4f17-aa59-329fe11d232e',
+                        'label': 'Male',
+                        'value': '',
+                        'presentation_order': 0
                     },
                     {
-                        "id": "9c7f343b-ed46-4c9e-9121-a54b6e310123",
-                        "value": "",
-                        "attrs": {"name": "Female"}
+                        'id': '9c7f343b-ed46-4c9e-9121-a54b6e310123',
+                        'label': 'Female',
+                        'value': '',
+                        'presentation_order': 0
                     }
                 ],
                 'y': 0,
@@ -952,9 +940,6 @@ def create_dummy_field(store, **custom_attrs):
         'required': False,
         'preview': False,
         'stats_enabled': True,
-        'regexp': u'',
-        'min_len': -1,
-        'max_len': -1,
         'x': 0,
         'y': 0
     }

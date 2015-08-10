@@ -264,7 +264,7 @@ def db_update_node(store, request, wizard_done, language):
     try:
         node.update(request)
     except DatabaseError as dberror:
-        log.err("Unable to update Node: %s" % dberror)
+        log.err("Unable to update node: %s" % dberror)
         raise errors.InvalidInputFormat(dberror)
 
     node.last_update = datetime_now()
@@ -318,14 +318,22 @@ def field_is_present(store, field):
 
 def db_import_fields(store, step, fieldgroup, fields):
     for field in fields:
+        print field
+        f_attrs = copy.deepcopy(field['attrs'])
         f_options = copy.deepcopy(field['options'])
         f_children = copy.deepcopy(field['children'])
-        del field['options']
-        del field['children']
+
+        del field['attrs'], field['options'], field['children']
+
         f = models.db_forge_obj(store, models.Field, field)
+
+        for key, value in f_attrs.iteritems():
+            value['name'] = key
+            a = models.db_forge_obj(store, models.FieldAttr, value)
+            f.attrs.add(a)
+
         for f_option in f_options:
             o = models.db_forge_obj(store, models.FieldOption, f_option)
-            o.field_id = f.id
             f.options.add(o)
 
         if (step):

@@ -36,7 +36,7 @@ def wb_serialize_tip(internaltip, language):
     mo.acquire_storm_object(internaltip.context)
     for attr in ['name', 'description']:
         key = "context_%s" % attr
-        ret_dict[key] = mo.dump_localized_attr(attr, language)
+        ret_dict[key] = mo.dump_localized_key(attr, language)
 
     return ret_dict
 
@@ -233,7 +233,7 @@ def get_receiver_list_wb(store, wb_tip_id, language):
 
         mo = Rosetta(rtip.receiver.localized_strings)
         mo.acquire_storm_object(rtip.receiver)
-        receiver_desc["description"] = mo.dump_localized_attr("description", language)
+        receiver_desc["description"] = mo.dump_localized_key("description", language)
         receiver_list.append(receiver_desc)
 
     return receiver_list

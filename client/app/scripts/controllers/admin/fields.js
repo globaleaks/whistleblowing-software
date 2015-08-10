@@ -126,14 +126,29 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
     }
 
     $scope.typeSwitch = function (type) {
+      if (['inputbox', 'textarea'].indexOf(type) !== -1) {
+        return 'inputbox_or_textarea';
+      }
+
       if (['checkbox', 'selectbox'].indexOf(type) !== -1) {
         return 'checkbox_or_selectbox';
       }
+
       return type;
     };
 
+    $scope.shouldShowOptions = function(field) {
+      console.log(field.type);
+      var a = field.type in ['inputbox', 'textarea', 'selectbox', 'checkbox', 'tos'];
+      console.log(a);
+      return a;
+    }
+
     $scope.addOption = function (field) {
-      field.options.push({});
+      new_option = {'label': ''};
+      new_option.presentation_order = $scope.newItemOrder(field.options, 'presentation_order');
+      console.log(new_option);
+      field.options.push(new_option);
     };
 
     $scope.delOption = function(field, option) {
@@ -142,11 +157,13 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
     };
 
     $scope.save_field = function(field, called_from_save_all) {
+      $scope.assignUniqueOrderIndex(field.options);
+
       var updated_field;
       if (field.is_template) {
-        updated_field =  new $scope.admin.fieldtemplate(field);
+        updated_field = new $scope.admin.fieldtemplate(field);
       } else {
-        updated_field =  new $scope.admin.field(field);
+        updated_field = new $scope.admin.field(field);
       }
 
       if ($scope.field_group_toggled) {
@@ -160,11 +177,10 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
     };
 
     $scope.$watch('field.type', function (newVal, oldVal) {
-
       if (newVal && newVal !== oldVal) {
         $scope.field.options = [];
+        $scope.field.attrs = $scope.admin.get_field_attrs($scope.field.type);
       }
-
     });
 
   }
@@ -172,15 +188,12 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
 
 GLClient.controller('AdminFieldTemplatesAddCtrl', ['$scope',
   function($scope) {
-
     $scope.new_field = {};
 
     $scope.add_field = function() {
       var field = $scope.admin.new_field_template($scope.new_field);
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
-
-      $scope.admin.fill_default_field_options(field);
 
       field.$save(function(new_field){
         $scope.addField(new_field);

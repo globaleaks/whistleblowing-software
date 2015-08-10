@@ -120,13 +120,11 @@ def log_remove_escapes(s):
             return codecs.encode(unicodelogmsg, 'unicode_escape')
 
 class GLLogObserver(twlog.FileLogObserver):
-
     suppressed = 0
     limit_suppressed = 1
     last_exception_msg = ""
 
     def emit(self, eventDict):
-
         if 'failure' in eventDict:
             vf = eventDict['failure']
             e_t, e_v, e_tb = vf.type, vf.value, vf.getTracebackObject()

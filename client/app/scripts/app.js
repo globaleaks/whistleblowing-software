@@ -6,10 +6,10 @@ var GLClient = angular.module('GLClient', [
     'ui.bootstrap',
     'flow',
     'monospaced.elastic',
-    'resourceServices',
-    'submissionUI',
     'pascalprecht.translate',
-    'GLClientFilters'
+    'GLServices',
+    'GLDirectives',
+    'GLFilters'
   ]).
   config(['$compileProvider', '$routeProvider', '$translateProvider', '$tooltipProvider',
     function($compileProvider, $routeProvider, $translateProvider, $tooltipProvider) {
