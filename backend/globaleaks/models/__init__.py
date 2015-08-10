@@ -6,19 +6,25 @@ from __future__ import absolute_import
 
 import copy
 
+from storm.expr import And
 from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
+
+from .properties import MetaModel, DateTime
+
 from globaleaks.settings import transact
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v
-from .properties import MetaModel, DateTime
 
 
 def db_forge_obj(store, mock_class, mock_fields):
     obj = mock_class()
     for key, val in mock_fields.iteritems():
+        print key, val
         setattr(obj, key, val)
+        print "ok"
     store.add(obj)
+    print "aaa"
     return obj
 
 
@@ -44,11 +50,11 @@ class BaseModel(Storm):
     bool_keys = []
     json_keys = []
 
-    def __init__(self, attrs=None):
-        self.update(attrs)
+    def __init__(self, values=None):
+        self.update(values)
 
     @classmethod
-    def new(cls, store, attrs=None):
+    def new(cls, store, values=None):
         """
         Add a new object to the store, filling its data with the attributes
         given.
@@ -56,16 +62,16 @@ class BaseModel(Storm):
         :param store:
         :param attrs: The dictionary containing initial values for the
         """
-        obj = cls(attrs)
+        obj = cls(values)
         store.add(obj)
         return obj
 
-    def update(self, attrs=None):
+    def update(self, values=None):
         """
         Updated Models attributes from dict.
         """
         # May raise ValueError and AttributeError
-        if attrs is None:
+        if values is None:
             return
 
         # Dev note: these fields describe which key are expected in the
@@ -81,28 +87,28 @@ class BaseModel(Storm):
         cls_localized_keys = getattr(self, "localized_strings")
 
         for k in cls_unicode_keys:
-            value = unicode(attrs[k])
+            value = unicode(values[k])
             setattr(self, k, value)
 
         for k in cls_int_keys:
-            value = int(attrs[k])
+            value = int(values[k])
             setattr(self, k, value)
 
         for k in cls_json_keys:
-            value = attrs[k]
+            value = values[k]
             setattr(self, k, value)
 
         for k in cls_bool_keys:
-            if attrs[k] == u'true':
+            if values[k] == u'true':
                 value = True
-            elif attrs[k] == u'false':
+            elif values[k] == u'false':
                 value = False
             else:
-                value = bool(attrs[k])
+                value = bool(values[k])
             setattr(self, k, value)
 
         for k in cls_localized_keys:
-            value = attrs[k]
+            value = values[k]
             previous = getattr(self, k)
             if previous and isinstance(previous, dict):
                 previous.update(value)
@@ -111,9 +117,8 @@ class BaseModel(Storm):
                 setattr(self, k, value)
 
     def __repr___(self):
-        attrs = ['{}={}'.format(attr, getattr(self, attr))
-                 for attr in self._public_attrs]
-        return '<%s model with values %s>' % (self.__name__, ', '.join(attrs))
+        values = ['{}={}'.format(value, getattr(self, attr)) for attr in self._public_attrs]
+        return '<%s model with values %s>' % (self.__name__, ', '.join(values))
 
     def __setattr__(self, name, value):
         # harder better faster stronger
@@ -651,11 +656,6 @@ class Field(Model):
     required = Bool(default=False)
     preview = Bool(default=False)
 
-    min_len = Int(default=-1)
-    max_len = Int(default=-1)
-
-    regexp = Unicode(default=u'')
-
     # This is set if the field should be duplicated for collecting statistics
     # when encryption is enabled.
     stats_enabled = Bool(default=False)
@@ -682,7 +682,7 @@ class Field(Model):
     # * fieldgroup
 
     unicode_keys = ['type']
-    int_keys = ['x', 'y', 'min_len', 'max_len']
+    int_keys = ['x', 'y']
     localized_strings = ['label', 'description', 'hint']
     bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled', 'is_template']
 
@@ -691,11 +691,12 @@ class Field(Model):
             child.delete(store)
         store.remove(self)
 
+
     def copy(self, store, is_template):
         obj_copy = self.__class__()
         obj_copy.label = copy.deepcopy(self.label)
-        obj_copy.description = copy.deepcopy(self.label)
-        obj_copy.hint = copy.deepcopy(self.label)
+        obj_copy.description = copy.deepcopy(self.description)
+        obj_copy.hint = copy.deepcopy(self.hint)
         obj_copy.multi_entry = self.multi_entry
         obj_copy.required = self.required
         obj_copy.stats_enabled = self.stats_enabled
@@ -712,44 +713,30 @@ class Field(Model):
         store.add(obj_copy)
         return obj_copy
 
+
+class FieldAttr(Model):
+    field_id = Unicode()
+    name = Unicode()
+    type = Unicode()
+    value = JSON()
+
+    unicode_keys = ['field_id', 'name', 'type', 'value']
+
+
 class FieldOption(Model):
     field_id = Unicode()
     presentation_order = Int(default=0)
-    attrs = JSON()
+    label = JSON()
 
     unicode_keys = ['field_id']
     int_keys = ['presentation_order']
-    json_keys = ['attrs']
-
-    def __init__(self, attrs=None, localized_keys=None):
-        self.attrs = dict()
-        self.update(attrs, localized_keys)
-        super(FieldOption, self).__init__()
-
-    @classmethod
-    def new(cls, store, attrs=None, localized_keys=None):
-        obj = cls(attrs, localized_keys)
-        store.add(obj)
-        return obj
-
-    def update(self, attrs=None, localized_keys=None):
-        BaseModel.update(self, attrs)
-
-        if localized_keys:
-            for k in localized_keys:
-                value = attrs['attrs'][k]
-                previous = self.attrs.get(k, None)
-                if previous and isinstance(previous, dict):
-                    previous.update(value)
-                    self.attrs[k] = previous
-                else:
-                    self.attrs[k] = value
+    localized_strings = ['label']
 
     def copy(self, store):
         obj_copy = self.__class__()
         obj_copy.field_id = self.field_id
         obj_copy.presentation_order = self.presentation_order
-        obj_copy.attrs = copy.deepcopy(self.attrs)
+        obj_copy.label = copy.deepcopy(self.label)
         return obj_copy
 
 
@@ -851,6 +838,8 @@ Field.children = ReferenceSet(
     FieldField.child_id,
     Field.id
 )
+
+Field.attrs = ReferenceSet(Field.id, FieldAttr.field_id)
 
 FieldOption.field = Reference(FieldOption.field_id, Field.id)
 

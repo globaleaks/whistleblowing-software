@@ -39,7 +39,7 @@ def collect_tip_overview(store, language):
 
         mo = Rosetta(itip.context.localized_strings)
         mo.acquire_storm_object(itip.context)
-        tip_description['context_name'] = mo.dump_localized_attr('name', language)
+        tip_description['context_name'] = mo.dump_localized_key('name', language)
 
         for rtip in itip.receivertips:
             tip_description['receivertips'].append({

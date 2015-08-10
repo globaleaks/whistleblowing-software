@@ -138,62 +138,79 @@
                 </div>
               </div>
             </div>
-            <div class="form-group" data-ng-show="field.options.length">
+            <div class="form-group" data-ng-if="shouldShowOptions(field)">
               <label data-translate>Options</label>
-              <div data-ng-switch="" on="typeSwitch(field.type)" class="row">
+              <div data-ng-switch="" on="typeSwitch(field.type)">
                 <div class="col-md-offset-1 col-md-11">
-                  <div data-ng-switch-when="tos">
+                  <div data-ng-switch-when="inputbox_or_textarea">
                     <div class="row">
-                      <div class="form-inline">
-                        <div class="form-group">
-                          <label data-translate>Clause</label>
-                          <div>
-                            <textarea class="form-control" data-ng-model="field.options[0].attrs.clause">{{field.options[0].attrs.clause}}</textarea>
-                          </div>
+                      <div class="form-group">
+                        <label data-translate>Minimum number of input characters</label>
+                        <div>
+                          <input ng-model="field.attrs.min_len.value" type="text" value="{{field.attrs.min_len.value}}" class="form-control" />
                         </div>
                       </div>
-                      <div class="form-inline">
-                        <div class="form-group">
-                          <label data-translate>Agreement Text</label>
-                          <div>
-                            <textarea class="form-control" data-ng-model="field.options[0].attrs.agreement_statement">{{field.options[0].attrs.agreement_statement}}</textarea>
-                          </div>
+                      <div class="form-group">
+                        <label>
+                          <span data-translate>Maximum number of input characters</span>
+                          <span>(<span data-translate>-1 = unlimited</span>)</span>
+                        </label>
+                        <div>
+                          <input ng-model="field.attrs.max_len.value" type="text" value="{{field.attrs.max_len.value}}" class="form-control" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label data-translate>Regular expression validator</label>
+                        <div>
+                          <input ng-model="field.attrs.regexp.value" type="text" value="{{field.attrs.regexp.value}}" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div data-ng-switch-when="tos">
+                    <div class="row">
+                      <div class="form-group">
+                        <label data-translate>Agreement Text</label>
+                        <textarea ng-model="field.attrs.agreement_statement.value" maxlength="{{node.maximum_textsize}}" class="form-control">{{field.attrs.agreement_statement.value}}</textarea>
+                      </div>
+                      <div class="form-group">
+                        <label data-translate>Clause</label>
+                        <div>
+                          <input ng-model="field.attrs.clause.value" type="text" value="{{field.attrs.clause.value}}" class="form-control" />
                         </div>
                       </div>
                     </div>
                   </div>
                   <div data-ng-switch-when="checkbox_or_selectbox">
-                    <div data-ng-repeat="option in field.options">
+                    <div data-ng-repeat="option in field.options | orderBy:'presentation_order'">
                       <div class="form-inline">
                         <div class="form-group">
                           <div class="input-group">
-                            <input class="form-control" data-ng-model="option.attrs.name" placeholder="{{'Name' | translate }}" value="{{option.attrs.name}}" type="text" required />
+                            <input class="form-control" data-ng-model="option.label" placeholder="{{'Name' | translate }}" value="{{option.label}}" type="text" required />
                             <span class="input-group-btn">
                               <a class="btn" data-ng-click="delOption(field, option)">
                                 <i class="glyphicon glyphicon-remove"></i>
                               </a>
+                              <span data-ng-if="field.options.length > 1">
+                                <a class="btn" data-ng-click="moveUp($event, option)" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                                  <i class="glyphicon glyphicon-menu-up"></i>
+                                </a>
+                                <a class="btn" data-ng-click="moveDown($event, option)" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                                  <i class="glyphicon glyphicon-menu-down"></i>
+                                </a>
+                              </span>
                             </span>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <div>
+                      <a data-ng-click="addOption(field)">
+                        <i class="glyphicon glyphicon-plus-sign"></i>
+                        <span data-translate>Add option</span>
+                      </a>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div data-ng-switch="" on="typeSwitch(field.type)">
-                <div data-ng-switch-when="checkbox_or_selectbox">
-                  <a data-ng-click="addOption(field)">
-                    <i class="glyphicon glyphicon-plus-sign"></i>
-                    <span data-translate>Add option</span>
-                  </a>
-                </div>
-                <div data-ng-switch-when="fileupload">
-                  <a data-ng-click="addOption(field)">
-                    <i class="glyphicon glyphicon-plus-sign"></i>
-                    <span data-translate>Add description</span>
-                  </a>
                 </div>
               </div>
             </div>

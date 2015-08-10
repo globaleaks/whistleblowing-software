@@ -96,6 +96,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.save_field = function(field) {
+      console.log(field);
       var updated_field = new $scope.admin.field(field);
       if ($scope.field_group_toggled) {
         $scope.field_group_toggled = false;
@@ -135,9 +136,8 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       var field = $scope.admin.new_field($scope.step.id);
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
+      field.attrs = $scope.admin.get_field_attrs(field.type);
       field.y = $scope.newItemOrder($scope.step.children, 'y');
-
-      $scope.admin.fill_default_field_options(field);
 
       field.$save(function(new_field){
         $scope.addField(new_field);

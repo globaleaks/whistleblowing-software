@@ -18,34 +18,34 @@ class Rosetta(object):
     stone. Hell fucking yeah, History!
     """
 
-    def __init__(self, attrs):
+    def __init__(self, keys):
         self._localized_strings = {}
-        self._localized_attrs = attrs
+        self._localized_keys = keys
 
     def acquire_storm_object(self, obj):
         self._localized_strings = {
-            attr: getattr(obj, attr) for attr in self._localized_attrs
+            key: getattr(obj, key) for key in self._localized_keys
         }
 
     def acquire_multilang_dict(self, obj):
         self._localized_strings = {
-            attr: obj[attr] for attr in self._localized_attrs
+            key: obj[key] for key in self._localized_keys
         }
 
     def singlelang_to_multilang_dict(self, obj, language):
         ret = {
-            attr: {language: obj[attr]} for attr in self._localized_attrs
+            key: {language: obj[key]} for key in self._localized_keys
         }
 
         return ret
 
-    def dump_localized_attr(self, attr, language):
+    def dump_localized_key(self, key, language):
         default_language = GLSetting.memory_copy.language
 
-        if attr not in self._localized_strings:
+        if key not in self._localized_strings:
             return ""
 
-        translated_dict = self._localized_strings[attr]
+        translated_dict = self._localized_strings[key]
 
         if not isinstance(translated_dict, dict):
             return ""
@@ -57,26 +57,26 @@ class Rosetta(object):
         else:
             return ""
 
-def fill_localized_keys(dictionary, attrs, language):
-    mo = Rosetta(attrs)
+def fill_localized_keys(dictionary, keys, language):
+    mo = Rosetta(keys)
 
     multilang_dict = mo.singlelang_to_multilang_dict(dictionary, language)
 
-    for attr in attrs:
-        dictionary[attr] = multilang_dict[attr]
+    for key in keys:
+        dictionary[key] = multilang_dict[key]
 
     return dictionary
 
-def get_localized_values(dictionary, obj, attrs, language):
-    mo = Rosetta(attrs)
+def get_localized_values(dictionary, obj, keys, language):
+    mo = Rosetta(keys)
 
     if isinstance(obj, dict):
         mo.acquire_multilang_dict(obj)
     elif isinstance(obj, Model):
         mo.acquire_storm_object(obj)
 
-    for attr in attrs:
-        dictionary[attr] = mo.dump_localized_attr(attr, language)
+    for key in keys:
+        dictionary[key] = mo.dump_localized_key(key, language)
 
     return dictionary
 

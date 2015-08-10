@@ -28,8 +28,8 @@ CREATE TABLE message (
     type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
     content VARCHAR NOT NULL,
     new INTEGER NOT NULL,
-    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE
 );
 
 CREATE TABLE comment (
@@ -40,8 +40,8 @@ CREATE TABLE comment (
     type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
     content VARCHAR NOT NULL,
     new INTEGER NOT NULL,
-    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
 
 CREATE TABLE context (
@@ -73,9 +73,9 @@ CREATE TABLE internalfile (
     new INTEGER NOT NULL,
     processing_attempts INTEGER NOT NULL,
     internaltip_id VARCHAR NOT NULL,
-    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    PRIMARY KEY (id),
     UNIQUE(file_path),
-    PRIMARY KEY (id)
+    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
 
 CREATE TABLE receiverfile (
@@ -91,11 +91,11 @@ CREATE TABLE receiverfile (
     receivertip_id VARCHAR NOT NULL,
     status VARCHAR NOT NULL CHECK (status IN ('processing', 'reference', 'encrypted', 'unavailable', 'nokey')),
     new INTEGER  NOT NULL,
+    PRIMARY KEY (id),
     FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,
     FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
-    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
-    PRIMARY KEY (id)
+    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE
 );
 
 CREATE TABLE internaltip (
@@ -109,8 +109,8 @@ CREATE TABLE internaltip (
     last_activity VARCHAR,
     context_id VARCHAR NOT NULL,
     new INTEGER NOT NULL,
-    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE
 );
 
 CREATE TABLE node (
@@ -341,16 +341,13 @@ CREATE TABLE field (
     description TEXT NOT NULL DEFAULT '',
     hint TEXT NOT NULL DEFAULT '',
     multi_entry INTEGER NOT NULL DEFAULT 0,
-    min_len INTEGER NOT NULL DEFAULT -1,
-    max_len INTEGER NOT NULL DEFAULT -1,
-    regexp VARCHAR NOT NULL,
     required INTEGER,
     preview INTEGER,
     stats_enabled INTEGER NOT NULL DEFAULT 0,
     is_template INTEGER NOT NULL DEFAULT 0,
     x INTEGER NOT NULL DEFAULT 0,
     y INTEGER NOT NULL DEFAULT 0,
-    type VARCHAR NOT NULL CHECK (TYPE IN ('inputbox',
+    type VARCHAR NOT NULL CHECK (type IN ('inputbox',
                                           'textarea',
                                           'selectbox',
                                           'checkbox',
@@ -364,11 +361,26 @@ CREATE TABLE field (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE fieldattr (
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    field_id VARCHAR NOT NULL,
+    name VARCHAR NOT NULL,
+    type VARCHAR NOT NULL CHECK (TYPE IN ('int',
+                                          'bool',
+                                          'unicode',
+                                          'localized')),
+    value TEXT NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE (field_id, name),
+    FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE
+);
+
 CREATE TABLE fieldoption (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
     field_id VARCHAR NOT NULL,
-    attrs TEXT NOT NULL DEFAULT '{}',
+    label TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE

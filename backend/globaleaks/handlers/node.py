@@ -18,16 +18,6 @@ from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.rest.apicache import GLApiCache
 
 
-def get_field_option_localized_keys(field_type):
-    localized_keys = []
-    if field_type in ['checkbox', 'selectbox', 'fileupload']:
-        localized_keys = ['name']
-    elif field_type == 'tos':
-        localized_keys = ['clause', 'agreement_statement']
-
-    return localized_keys
-
-
 @transact_ro
 def anon_serialize_ahmia(store, language):
     """
@@ -40,7 +30,7 @@ def anon_serialize_ahmia(store, language):
 
     ret_dict = {
         'title': node.name,
-        'description': mo.dump_localized_attr('description', language),
+        'description': mo.dump_localized_key('description', language),
         'keywords': '%s (GlobaLeaks instance)' % node.name,
         'relation': node.public_site,
         'language': node.default_language,
@@ -134,7 +124,7 @@ def anon_serialize_context(store, context, language):
     return get_localized_values(ret_dict, context, context.localized_strings, language)
 
 
-def anon_serialize_option(option, field_type, language):
+def anon_serialize_option(option, language):
     """
     Serialize a field option, localizing its content depending on the language.
 
@@ -144,16 +134,10 @@ def anon_serialize_option(option, field_type, language):
     """
     ret_dict = {
         'id': option.id,
-        'attrs': {},
-        'value': ''
+        'presentation_order': option.presentation_order
     }
 
-    keys = get_field_option_localized_keys(field_type)
-
-    get_localized_values(ret_dict['attrs'], option.attrs, keys, language)
-
-    return ret_dict
-
+    return get_localized_values(ret_dict, option, option.localized_strings, language)
 
 def anon_serialize_field(store, field, language):
     """
@@ -168,7 +152,7 @@ def anon_serialize_field(store, field, language):
     # this code is inspired by:
     #  - https://www.youtube.com/watch?v=KtNsUgKgj9g
 
-    options = [anon_serialize_option(o, field.type, language) for o in field.options]
+    options = [anon_serialize_option(o, language) for o in field.options]
 
     sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
     step_id = sf.step_id if sf else ''
@@ -180,6 +164,14 @@ def anon_serialize_field(store, field, language):
     for f in field.children:
         fields.append(anon_serialize_field(store, f, language))
 
+    attrs = {}
+    for attr in store.find(models.FieldAttr, models.FieldAttr.field_id == field.id):
+        attrs[attr.name] = {}
+        attrs[attr.name]['type'] = attr.type
+        attrs[attr.name]['value'] = attr.value
+        if attr.type == u'localized':
+            get_localized_values(attrs[attr.name], attrs[attr.name], ['value'], language)
+
     ret_dict = {
         'id': field.id,
         'type': field.type,
@@ -190,9 +182,7 @@ def anon_serialize_field(store, field, language):
         'required': field.required,
         'preview': field.preview,
         'stats_enabled': field.stats_enabled,
-        'min_len': field.min_len,
-        'max_len': field.max_len,
-        'regexp': field.regexp,
+        'attrs': attrs,
         'x': field.x,
         'y': field.y,
         'options': options,

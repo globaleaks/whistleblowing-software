@@ -1,8 +1,8 @@
 "use strict";
 
-angular.module('resourceServices.authentication', [])
-  .factory('Authentication', ['$http', '$location', '$routeParams',
-                              '$rootScope', '$timeout', 'ReceiverPreferences',
+angular.module('GLServices', ['ngResource']).
+  factory('Authentication', ['$http', '$location', '$routeParams',
+                             '$rootScope', '$timeout', 'ReceiverPreferences',
     function($http, $location, $routeParams, $rootScope, $timeout, ReceiverPreferences) {
       function Session(){
         var self = this;
@@ -113,9 +113,7 @@ angular.module('resourceServices.authentication', [])
       }
 
       return new Session();
-}]);
-
-angular.module('resourceServices', ['ngResource', 'resourceServices.authentication']).
+}]).
   factory('globalInterceptor', ['$q', '$injector', '$rootScope', '$location',
   function($q, $injector, $rootScope, $location) {
     var requestTimeout = 30000,
@@ -631,6 +629,31 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           return step;
         }
 
+        self.field_attrs = {
+          "inputbox": {
+            "min_len": {"type": "int", "value": "-1"},
+            "max_len": {"type": "int", "value": "-1"},
+            "regexp": {"type": "unicode", "value": ""}
+          },
+          "textarea": {
+            "min_len": {"type": "int", "value": "-1"},
+            "max_len": {"type": "int", "value": "-1"},
+            "regexp": {"type": "unicode", "value": ""}
+          },
+          "tos": {
+            "clause": {"type": "unicode", "value": ""},
+            "agreement_statement": {"type": "unicode", "value": ""}
+          }
+        };
+
+        self.get_field_attrs = function(type) {
+          if (type in self.field_attrs) {
+            return self.field_attrs[type];
+          } else {
+            return {};
+          }
+        }
+
         self.new_field = function(step_id) {
           var field = new adminFieldResource();
           field.label = '';
@@ -639,13 +662,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           field.is_template = false;
           field.hint = '';
           field.multi_entry = false;
-          field.options = [];
           field.required = false;
           field.preview = false;
           field.stats_enabled = false;
-          field.min_len = -1;
-          field.max_len = -1;
-          field.regexp = '';
+          field.attrs = {};
+          field.options = [];
           field.x = 0;
           field.y = 0;
           field.children = [];
@@ -673,23 +694,13 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           field.required = false;
           field.preview = false;
           field.stats_enabled = false;
+          field.attrs = {};
           field.x = 0;
           field.y = 0;
           field.children = [];
           field.fieldgroup_id = '';
           field.step_id = '';
           return field;
-        };
-
-        self.fill_default_field_options = function(field) {
-          if (field.type == 'tos') {
-            field.options.push({'attrs':
-              {
-                'clause': '',
-                'agreement_statement': ''
-              }
-            });
-          }
         };
 
         self.new_receiver = function () {

@@ -717,16 +717,6 @@ module.exports = function(grunt) {
         }
       }
 
-      var tos_translate = function(option) {
-        var keys = ['clause', 'agreement_statement']
-        for (var k in keys){
-
-          for (var lang_code in supported_languages) {
-            option['attrs'][keys[k]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(option['attrs'][keys[k]]['en'])));
-          }
-        }
-      }
-
       var field_translate = function(field) {
         var keys = ['label', 'description', 'hint']
         for (var k in keys){
@@ -739,10 +729,6 @@ module.exports = function(grunt) {
 
         for (var c in field['children']){
           field_translate(field['children'][c]);
-        }
-
-        if (field['type'] == 'tos') {
-          tos_translate(field['options'][0]);
         }
       }
 

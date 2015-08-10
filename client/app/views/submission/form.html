@@ -23,7 +23,7 @@
 
             <div data-ng-switch-when="inputbox" data-ng-class="{'col-md-8': toplevel}">
               <input id="{{::fieldId}}-input"
-                     name = 'input'
+                     name="input"
                      class="form-control"
                      data-ng-model="field.value"
                      maxlength="{{::node.maximum_namesize}}"
@@ -44,31 +44,31 @@
 
             <div data-ng-switch-when="selectbox" data-ng-class="{'col-md-8': toplevel}">
               <select id="{{::fieldId}}-input" name="input" class="form-control" data-ng-model="field.value" data-ng-required="field.required">
-                <option data-ng-repeat="option in field.options" id="{{::fieldId}}-input-option-{{$index}}" value="{{::option.attrs.name}}">{{::option.attrs.name}}</option>
+                <option data-ng-repeat="option in field.options" id="{{::fieldId}}-input-option-{{$index}}" value="{{::option.label}}">{{::option.label}}</option>
               </select>
             </div>
 
             <div data-ng-switch-when="checkbox" data-ng-class="{'col-md-8': toplevel}">
               <div data-ng-repeat="option in field.options"; data-ng-init="field.value[option.id] = {}; field.required_check = !validateRequiredCheckbox(field)">
                 <input type="hidden" data-ng-init="field.value[option.id].order = $index" data-ng-model="field.value[option.id].order" />
-                <input type="hidden" data-ng-init="field.value[option.id].name = option.attrs.name" data-ng-model="field.value[option.id].name" />
+                <input type="hidden" data-ng-init="field.value[option.id].name = option.label" data-ng-model="field.value[option.id].name" />
                 <div class="checkbox">
                   <label>
                     <input id="{{::fieldId}}-input"
-                           name = "input"
+                           name="input"
                            data-ng-model="field.value[option.id].value"
                            data-ng-required="field.required_check"
                            data-ng-change="field.required_check = !validateRequiredCheckbox(field)"
                            placeholder="{{::field.placeholder || 'false'}}"
                            type="checkbox" />
-                    <span>{{::option.attrs.name}}</span>
+                    <span>{{::option.label}}</span>
                   </label>
                 </div>
               </div>
             </div>
 
             <div data-ng-switch-when="tos" data-ng-class="{'col-md-12': toplevel}">
-              <div class="form-group preformatted">{{::field.options[0].attrs.clause}}</div>
+              <div class="form-group preformatted">{{::field.attrs.clause}}</div>
               <div class="checkbox">
                 <label>
                   <input id="{{::fieldId}}-input"
@@ -78,7 +78,7 @@
                          value="{{field.value}}"
                          placeholder="{{::field.placeholder || 'false'}}"
                          type="checkbox" />
-                  <span>{{::field.options[0].attrs.agreement_statement}}</span>
+                  <span>{{::field.attrs.agreement_statement}}</span>
                 </label>
               </div>
             </div>

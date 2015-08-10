@@ -7,12 +7,12 @@ import json
 
 import re
 import os
+
+from globaleaks import models
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks import models
 from globaleaks.security import get_salt, hash_password
 from globaleaks.third_party import rstr
-from globaleaks.models import Node
 
 
 def load_appdata():
@@ -22,9 +22,6 @@ def load_appdata():
         - development data paths: ../client/build/data/
                                   ../client/app/data/
     """
-
-    # Fields and applicative data initialization
-
     fields_l10n = ["/usr/share/globaleaks/glclient/data/appdata_l10n.json",
                    "../../../client/build/data/appdata_l10n.json",
                    "../../../client/app/data/appdata_l10n.json"]
@@ -65,11 +62,7 @@ def init_appdata(store, result, appdata_dict):
 @transact
 def init_db(store, result, node_dict, appdata_dict):
     """
-    TODO refactor with languages the email_template, develop a dedicated
-    function outside the node, and inquire fucking YHWH about the
-    callbacks existence/usage
     """
-
     node = models.Node(node_dict)
     node.languages_enabled = GLSetting.defaults.languages_enabled
     node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
@@ -178,7 +171,7 @@ def apply_cli_options(store):
     checked until this function!
     """
 
-    node = store.find(Node).one()
+    node = store.find(models.Node).one()
 
     verb = "Hardwriting"
     accepted = {}
@@ -219,12 +212,12 @@ def apply_cli_options(store):
             accepted.update({'hidden_service': unicode(GLSetting.cmdline_options.hidden_service)})
 
     if accepted:
-        node = store.find(Node).one()
+        node = store.find(models.Node).one()
         for k, v, in accepted.iteritems():
             setattr(node, k, v)
 
     # return configured URL for the log/console output
-    node = store.find(Node).one()
+    node = store.find(models.Node).one()
     if node.hidden_service or node.public_site:
         return [node.hidden_service, node.public_site]
     else:

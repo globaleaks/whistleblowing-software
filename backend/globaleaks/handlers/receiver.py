@@ -159,7 +159,7 @@ def get_receivertip_list(store, receiver_id, language):
 
         mo = Rosetta(rtip.internaltip.context.localized_strings)
         mo.acquire_storm_object(rtip.internaltip.context)
-        single_tip_sum["context_name"] = mo.dump_localized_attr('name', language)
+        single_tip_sum["context_name"] = mo.dump_localized_key('name', language)
 
         rtip_summary_list.append(single_tip_sum)
 
