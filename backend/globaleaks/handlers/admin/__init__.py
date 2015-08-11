@@ -318,7 +318,6 @@ def field_is_present(store, field):
 
 def db_import_fields(store, step, fieldgroup, fields):
     for field in fields:
-        print field
         f_attrs = copy.deepcopy(field['attrs'])
         f_options = copy.deepcopy(field['options'])
         f_children = copy.deepcopy(field['children'])
