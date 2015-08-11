@@ -20,11 +20,8 @@ from globaleaks.utils.validator import shorttext_v, longtext_v, \
 def db_forge_obj(store, mock_class, mock_fields):
     obj = mock_class()
     for key, val in mock_fields.iteritems():
-        print key, val
         setattr(obj, key, val)
-        print "ok"
     store.add(obj)
-    print "aaa"
     return obj
 
 
