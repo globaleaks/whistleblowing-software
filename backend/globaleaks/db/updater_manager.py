@@ -18,7 +18,8 @@ from globaleaks.db.migrations.update_19_20 import Replacer1920, Node_v_19, Notif
 from globaleaks.db.migrations.update_20_21 import Replacer2021, Node_v_20, Notification_v_20, Receiver_v_20, User_v_20, \
     Context_v_20, Step_v_20, Field_v_20, FieldOption_v_20, InternalTip_v_20
 from globaleaks.db.migrations.update_21_22 import Replacer2122, Context_v_21, InternalTip_v_21
-from globaleaks.db.migrations.update_22_23 import Replacer2223, InternalFile_v_22, Comment_v_22, Context_v_22
+from globaleaks.db.migrations.update_22_23 import Replacer2223, InternalFile_v_22, Comment_v_22, Context_v_22, \
+    Field_v_22, FieldOption_v_22
 
 
 table_history = {
@@ -38,8 +39,9 @@ table_history = {
     'Message': [Message_v_19, None, None, None, None, None, None, None, None, models.Message, None, None, None],
     'Stats': [Stats_v_14, None, None, None, Stats_v_16, None, models.Stats, None, None, None, None, None, None],
     'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Field': [Field_v_20, None, None, None, None, None, None, None, None, None, models.Field, None, None],
-    'FieldOption': [FieldOption_v_20, None, None, None, None, None, None, None, None, None, models.FieldOption, None, None],
+    'Field': [Field_v_20, None, None, None, None, None, None, None, None, None, Field_v_22, None, models.Field],
+    'FieldAttr': [models.FieldAttr, None, None, None, None, None, None, None, None, None, None, None, None],
+    'FieldOption': [FieldOption_v_20, None, None, None, None, None, None, None, None, None, FieldOption_v_22, None, models.FieldOption],
     'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None, None, None, None],
     'Step': [Step_v_20, None, None, None, None, None, None, None, None, None, models.Step, None, None],
     'StepField': [models.StepField, None, None, None, None, None, None, None, None, None, None, None, None],

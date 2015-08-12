@@ -271,16 +271,10 @@ class Replacer1415(TableReplacer):
         old_contexts = self.store_old.find(self.get_right_model("Context", 14))
 
         steps = load_appdata()['fields']
-        tos_dict = copy.deepcopy(steps[1]['children'][0])
-        tos_opt_dict = copy.deepcopy(tos_dict['options'][0])
-        tos_opt_dict['number'] = 1
-        del tos_dict['children']
-        del tos_dict['options']
         i = 1
         for step in steps:
             step['number'] = i
             del step['children']
-
             i += 1
 
         for old_context in old_contexts:
@@ -297,6 +291,7 @@ class Replacer1415(TableReplacer):
 
                 setattr(new_context, v.name, getattr(old_context, v.name))
 
+           
             for f in old_context.unique_fields:
                 try:
 
@@ -329,6 +324,7 @@ class Replacer1415(TableReplacer):
                             field_dict['label'][l] = old_context.localized_fields[l][f]['name']
                             field_dict['hint'][l] = old_context.localized_fields[l][f]['hint']
 
+                    continue
                     field = db_forge_obj(self.store_new, self.get_right_model("Field", 15), field_dict)
 
                     if field_dict['type'] in ['selectbox', 'checkbox'] and 'options' in old_context.unique_fields[f]:
@@ -349,11 +345,6 @@ class Replacer1415(TableReplacer):
 
                 except Exception:
                     continue
-
-            tos_opt = db_forge_obj(self.store_new, self.get_right_model("FieldOption", 15), tos_opt_dict)
-            tos = db_forge_obj(self.store_new, self.get_right_model("Field", 15), tos_dict)
-            tos.options.add(tos_opt)
-            step2.children.add(tos)
 
             self.store_new.add(new_context)
 

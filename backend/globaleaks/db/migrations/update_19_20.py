@@ -8,7 +8,6 @@
     - *Tip, *File, Comment, Message : markers simplified to a simple boolean
     - ReceiverTip added label
     - Receiver renamed variables from gpg_* to pgp_*
-
 """
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
