@@ -54,6 +54,7 @@ var receiver = {
   tip_expiration_threshold: 72,
   configuration: 'default',
   password_change_needed: false,
+  state: 'enabled'
 }
 
 var fields = [
