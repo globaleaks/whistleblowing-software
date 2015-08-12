@@ -109,15 +109,12 @@ def db_update_fieldoptions(store, field_id, options, language):
     store.find(models.FieldOption, And(models.FieldOption.field_id == field_id, Not(In(models.FieldOption.id, options_ids)))).remove()
 
 
-def db_update_fieldattr(store, field_id, name, type, value):
-    attr = store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, models.FieldAttr.name == name)).one()
+def db_update_fieldattr(store, field_id, fieldattr):
+    attr = store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, models.FieldAttr.name == fieldattr['name'])).one()
     if not attr:
         attr = models.FieldAttr()
 
-    attr.field_id = field_id
-    attr.name = name
-    attr.type = type
-    attr.value = value
+    attr.update(fieldattr)
 
     store.add(attr)
 
@@ -130,9 +127,11 @@ def db_update_fieldattrs(store, field_id, field_attrs, language):
     attrs_ids = []
 
     for name, value in field_attrs.iteritems():
+        value['field_id'] = field_id
+        value['name'] = name
         if value['type'] == u'localized':
-            fill_localized_keys(value, 'value', language)
-        attrs_ids.append(db_update_fieldattr(store, field_id, name, value['type'], value['value']))
+            fill_localized_keys(value, ['value'], language)
+        attrs_ids.append(db_update_fieldattr(store, field_id, value))
 
     store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, Not(In(models.FieldAttr.id, attrs_ids)))).remove()
 

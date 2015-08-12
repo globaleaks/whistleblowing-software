@@ -72,10 +72,11 @@ ReceiverReceiverDesc = {
     'pgp_key_info': unicode,
     'pgp_key_public': unicode,
     'pgp_key_status': unicode,
-    "tip_notification": bool,
-    "ping_notification": bool,
-    "language": unicode,
-    "timezone": int
+    'tip_notification': bool,
+    'ping_notification': bool,
+    'language': unicode,
+    'timezone': int,
+    'tip_expiration_threshold': int
 }
 
 ReceiverOperationDesc = {
@@ -96,7 +97,8 @@ StepDesc = {
     'hint': unicode,
     'description': unicode,
     'children': list,
-    'context_id': uuid_regexp
+    'context_id': uuid_regexp,
+    'presentation_order': int
 }
 
 AdminNodeDesc = {
@@ -116,6 +118,7 @@ AdminNodeDesc = {
     'languages_enabled': [unicode],
     'languages_supported': list,
     'default_language': unicode,
+    'default_timezone': int,
     'maximum_namesize': int,
     'maximum_textsize': int,
     'maximum_filesize': int,
@@ -144,6 +147,9 @@ AdminNodeDesc = {
     'header_title_submissionpage': unicode,
     'header_title_receiptpage': unicode,
     'landing_page': landing_page_regexp,
+    'context_selector_label': unicode,
+    'submission_minimum_delay': int,
+    'submission_maximum_ttl': int,
     'show_contexts_in_alphabetical_order': bool
 }
 
@@ -177,6 +183,10 @@ AdminNotificationDesc = {
     'tip_expiration_mail_title': unicode,
     'admin_anomaly_mail_template': unicode,
     'admin_anomaly_mail_title': unicode,
+    'admin_anomaly_activities': unicode,
+    'admin_anomaly_disk_high': unicode,
+    'admin_anomaly_disk_medium': unicode,
+    'admin_anomaly_disk_low': unicode,
     'disable_admin_notification_emails': bool,
     'disable_receivers_notification_emails': bool,
     'send_email_for_every_event': bool,
@@ -227,8 +237,12 @@ AdminReceiverDesc = {
     'pgp_key_public': unicode,
     'pgp_key_status': unicode,
     'presentation_order': int,
-    "language": unicode,
-    "timezone": int
+    'language': unicode,
+    'timezone': int,
+    'state': unicode,
+    'configuration': unicode,
+    'password_change_needed': bool,
+    'tip_expiration_threshold': int
 }
 
 NodeDesc = {
@@ -331,7 +345,8 @@ ReceiverDesc = {
      'presentation_order': int,
      'pgp_key_status': unicode,
      'id': uuid_regexp,
-     'creation_date': DateType
+     'creation_date': DateType,
+     'state': unicode
 }
 
 ReceiverCollectionDesc = [ReceiverDesc]
@@ -383,9 +398,10 @@ InternalTipDesc = {
 }
 
 FieldOptionDesc = {
+    'id': uuid_regexp_or_empty,
     'label': unicode,
     'presentation_order': int,
-    'activate_field': uuid_regexp_or_empty
+    'activated_fields': [uuid_regexp_or_empty]
 }
 
 FieldDesc = {
