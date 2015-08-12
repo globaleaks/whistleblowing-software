@@ -74,52 +74,39 @@ def disassociate_field(store, field_id):
         store.remove(ff)
 
 
+def db_update_fieldoption(store, fieldoption_id, option, language):
+    fill_localized_keys(option, models.FieldOption.localized_strings, language)
+
+    if fieldoption_id is not None:
+        o = store.find(models.FieldOption, models.FieldOption.id == fieldoption_id).one()
+    else:
+        o = None
+
+    if o is None:
+        o = models.FieldOption()
+        store.add(o)
+
+    o.update(option)
+
+    for activated_field in option['activated_fields']:
+        o.activated_fields.add(store.find(models.Field, models.Field.id == activated_field))
+
+
 def db_update_fieldoptions(store, field_id, options, language):
     """
     Update options
 
     :param store: the store on which perform queries.
+    :param field_id: the field_id on wich bind the provided options
+    :param language: the language of the option definition dict
     """
-    field = models.Field.get(store, field_id)
-    if field is None:
-        raise errors.FieldIdNotFound
+    options_ids = []
 
-    old_options = store.find(models.FieldOption,
-                             models.FieldOption.field_id == field_id)
-
-    indexed_old_options = {}
-    for o in old_options:
-        indexed_old_options[o.id] = o
-
-    new_options = []
     for option in options:
-        opt_dict = {
-            'field_id': field_id,
-            'presentation_order': option['presentation_order'],
-            'label': option['label']
-        }
+        option['field_id'] = field_id
+        options_ids.append(db_update_fieldoption(store, unicode(option['id']), option, language))
 
-        fill_localized_keys(opt_dict, models.FieldOption.localized_strings, language)
-
-        # check for reuse (needed to keep translations)
-        if 'id' in option and option['id'] in indexed_old_options:
-            indexed_old_options[option['id']].update(opt_dict)
-            ooo = indexed_old_options[option['id']]
-            del indexed_old_options[option['id']]
-        else:
-            ooo = models.FieldOption(opt_dict)
-
-        for activated_field in option['activated_fields']:
-            o.activated_fields.add(store.find(models.Field, models.Field.id == activated_field))
-
-        new_options.append(ooo)
-
-    # remove all the not reused old options
-    for o_id in indexed_old_options:
-        store.remove(indexed_old_options[o_id])
-
-    for n in new_options:
-        store.add(n)
+    store.find(models.FieldOption, And(models.FieldOption.field_id == field_id, Not(In(models.FieldOption.id, options_ids)))).remove()
 
 
 def db_update_fieldattr(store, field_id, name, type, value):
@@ -191,16 +178,16 @@ def db_create_field(store, field, language):
     Create and add a new field to the store, then return the new serialized object.
 
     :param store: the store on which perform queries.
-    :param: field the field definition dict
-    :param: language: the language of the field definition dict
+    :param field: the field definition dict
+    :param language: the language of the field definition dict
     :return: a serialization of the object
     """
     _, step, fieldgroup = field_integrity_check(store, field)
 
     fill_localized_keys(field, models.Field.localized_strings, language)
     f = models.Field.new(store, field)
-    db_update_fieldoptions(store, f.id, field['options'], language)
     db_update_fieldattrs(store, f.id, field['attrs'], language)
+    db_update_fieldoptions(store, f.id, field['options'], language)
 
     associate_field(store, f, step, fieldgroup)
 
@@ -221,8 +208,8 @@ def db_create_field_from_template(store, field, language):
     then return the new serialized object.
 
     :param store: the store on which perform queries.
-    :param: field: the field definition dict
-    :param: language: the language of the field definition dict
+    :param field: the field definition dict
+    :param language: the language of the field definition dict
     :return: a serialization of the object
     """
     _, step, fieldgroup = field_integrity_check(store, field)
@@ -292,7 +279,6 @@ def db_update_field(store, field_id, field, language):
             f.children.add(c)
 
         db_update_fieldattrs(store, f.id, field['attrs'], language)
-
         db_update_fieldoptions(store, f.id, field['options'], language)
 
         # remove current step/field fieldgroup/field association
@@ -315,9 +301,9 @@ def update_field(store, field_id, field, language):
     not exist.
 
     :param store: the store on which perform queries.
-    :param: field_id: the field_id of the field to update
-    :param: field: the field definition dict
-    :param: language: the language of the field definition dict
+    :param field_id: the field_id of the field to update
+    :param field: the field definition dict
+    :param language: the language of the field definition dict
     :return: a serialization of the object
     """
     field = db_update_field(store, field_id, field, language)
@@ -438,9 +424,9 @@ def update_step(store, step_id, request, language):
     not exist.
 
     :param store: the store on which perform queries.
-    :param: step_id: the step_id of the step to update
-    :param: request: the step definition dict
-    :param: language: the language of the step definition dict
+    :param step_id: the step_id of the step to update
+    :param request: the step definition dict
+    :param language: the language of the step definition dict
     :return: a serialization of the object
     """
     step = models.Step.get(store, step_id)
