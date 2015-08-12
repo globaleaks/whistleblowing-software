@@ -51,7 +51,6 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
     };
 
     $scope.save_all = function () {
-      $scope.assignUniqueOrderIndex($scope.admin.field_templates);
       angular.forEach($scope.admin.field_templates, function (field, key) {
         $scope.save_field(field, true);
       });
@@ -138,13 +137,17 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
     };
 
     $scope.shouldShowOptions = function(field) {
-      return field.type in ['inputbox', 'textarea', 'selectbox', 'checkbox', 'tos'];
+      if (['inputbox', 'textarea', 'selectbox', 'checkbox', 'tos'].indexOf(field.type) > -1)
+        return true;
+      else
+        return false;
     }
 
     $scope.addOption = function (field) {
       new_option = {
+        'id': '',
         'label': '',
-        'activate_field': ''
+        'activated_fields': []
       };
 
       new_option.presentation_order = $scope.newItemOrder(field.options, 'presentation_order');
