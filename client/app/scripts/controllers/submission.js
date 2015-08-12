@@ -103,11 +103,37 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
-  $scope.getCurrentStepIndex = function(){
+  $scope.getCurrentStepIndex = function() {
     return $scope.selection;
   };
 
-  // Go to a defined step index
+  $scope.getFieldsRows = function(fields) {
+    if (fields.length <= 0)
+      return [];
+
+    var fields = $filter('orderBy')(fields, 'y');
+
+    var current_row = fields[0].y;
+
+    var rows = [];
+
+    var row = [];
+    rows.push(row);
+
+    angular.forEach(fields, function (field) {
+      if(field.y > current_row) {
+        current_row = field.y;
+        row = [];
+        rows.push(row);
+      }
+      row.push(field);
+    });
+
+    console.log(rows);
+
+    return rows;
+  };
+
   $scope.goToStep = function(index) {
     $scope.selection = index;
   };

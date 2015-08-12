@@ -720,14 +720,13 @@ angular.module('GLServices', ['ngResource']).
           receiver.pgp_key_public = '';
           receiver.pgp_key_expiration = '';
           receiver.pgp_key_status = 'ignored';
-          receiver.pgp_enable_notification = false;
           receiver.presentation_order = 0;
           receiver.state = 'enable';
           receiver.configuration = 'default';
           receiver.password_change_needed = true;
           receiver.language = 'en';
           receiver.timezone = 0;
-          receiver.tip_expiration_threshold = self.notification.tip_expiration_threshold;
+          receiver.tip_expiration_threshold = 72;
           return receiver;
         };
 
