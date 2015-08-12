@@ -104,10 +104,15 @@ def db_update_fieldoptions(store, field_id, options, language):
         # check for reuse (needed to keep translations)
         if 'id' in option and option['id'] in indexed_old_options:
             indexed_old_options[option['id']].update(opt_dict)
-            new_options.append(indexed_old_options[option['id']])
+            ooo = indexed_old_options[option['id']]
             del indexed_old_options[option['id']]
         else:
-            new_options.append(models.FieldOption(opt_dict))
+            ooo = models.FieldOption(opt_dict)
+
+        for activated_field in option['activated_fields']:
+            o.activated_fields.add(store.find(models.Field, models.Field.id == activated_field))
+
+        new_options.append(ooo)
 
     # remove all the not reused old options
     for o_id in indexed_old_options:

@@ -1,5 +1,4 @@
 GLClient.controller('AdminStepAddCtrl', ['$scope', function($scope) {
-
     $scope.new_step = {};
 
     $scope.add_step = function() {
@@ -96,7 +95,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.save_field = function(field) {
-      console.log(field);
       var updated_field = new $scope.admin.field(field);
       if ($scope.field_group_toggled) {
         $scope.field_group_toggled = false;

@@ -134,7 +134,8 @@ def anon_serialize_option(option, language):
     """
     ret_dict = {
         'id': option.id,
-        'presentation_order': option.presentation_order
+        'presentation_order': option.presentation_order,
+        'activated_fields': [field.id for field in option.activated_fields]
     }
 
     return get_localized_values(ret_dict, option, option.localized_strings, language)
@@ -172,6 +173,9 @@ def anon_serialize_field(store, field, language):
         if attr.type == u'localized':
             get_localized_values(attrs[attr.name], attrs[attr.name], ['value'], language)
 
+    activated_by = field.activated_by.one()
+    activated_by = activated_by.id if activated_by else ''
+
     ret_dict = {
         'id': field.id,
         'type': field.type,
@@ -185,7 +189,7 @@ def anon_serialize_field(store, field, language):
         'attrs': attrs,
         'x': field.x,
         'y': field.y,
-        'activated_by': field.activated_by.id if field.activated_by else '',
+        'activated_by': activated_by,
         'options': options,
         'children': fields,
         'value': {} if (field.type == 'checkbox') else ''

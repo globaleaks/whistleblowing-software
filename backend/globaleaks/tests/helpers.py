@@ -794,13 +794,15 @@ class MockDict():
                         'id': '2ebf6df8-289a-4f17-aa59-329fe11d232e',
                         'label': 'Male',
                         'value': '',
-                        'presentation_order': 0
+                        'presentation_order': 0,
+                        'activated_fields': []
                     },
                     {
                         'id': '9c7f343b-ed46-4c9e-9121-a54b6e310123',
                         'label': 'Female',
                         'value': '',
-                        'presentation_order': 0
+                        'presentation_order': 0,
+                        'activated_fields': []
                     }
                 ],
                 'y': 0,
