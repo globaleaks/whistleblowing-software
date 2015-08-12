@@ -254,11 +254,20 @@ class BaseHandler(RequestHandler):
         """
         if isinstance(message_template, dict):
             success_check = 0
+            keys_to_strip = []
             for key, value in jmessage.iteritems():
                 if key not in message_template:
-                    log.debug("Received key %s, Unexpected in the template: %s" % (key, message_template))
-                    # when stabilized this could be switched from a log.debug to a raide exception
-                    # raise errors.InvalidInputFormat("Key expected not present (%s)" % key)
+                    # strip whatever is not validated
+                    #
+                    # reminder: it's not possible to raise an exception for the
+                    # in case more values are presenct because it's normal that the
+                    # client will send automatically more data.
+                    #
+                    # e.g. the client will always send 'creation_date' attributs of
+                    #      objects and attributes like this are present generally only
+                    #      from the second request on.
+                    #
+                    keys_to_strip.append(key)
                     continue
 
                 if not BaseHandler.validate_type(value, message_template[key]):
@@ -266,11 +275,14 @@ class BaseHandler(RequestHandler):
                     raise errors.InvalidInputFormat("Key (%s) type validation failure" % key)
                 success_check += 1
 
+            for key in keys_to_strip:
+                del jmessage[key]
+
             for key, value in message_template.iteritems():
                 if key not in jmessage.keys():
                     log.debug("Key %s expected but missing!" % key)
                     log.debug("Received schema %s - Expected %s" %
-                              (jmessage.keys(), message_template.keys() ))
+                              (jmessage.keys(), message_template.keys()))
                     raise errors.InvalidInputFormat("Missing key %s" % key)
 
                 if not BaseHandler.validate_type(jmessage[key], value):
