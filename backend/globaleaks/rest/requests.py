@@ -384,7 +384,8 @@ InternalTipDesc = {
 
 FieldOptionDesc = {
     'label': unicode,
-    'presentation_order': int
+    'presentation_order': int,
+    'activate_field': uuid_regexp_or_empty
 }
 
 FieldDesc = {
