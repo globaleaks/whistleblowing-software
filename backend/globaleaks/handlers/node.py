@@ -185,6 +185,7 @@ def anon_serialize_field(store, field, language):
         'attrs': attrs,
         'x': field.x,
         'y': field.y,
+        'activated_by': field.activated_by.id if field.activated_by else '',
         'options': options,
         'children': fields,
         'value': {} if (field.type == 'checkbox') else ''

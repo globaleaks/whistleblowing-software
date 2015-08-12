@@ -382,8 +382,11 @@ CREATE TABLE fieldoption (
     field_id VARCHAR NOT NULL,
     label TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
+    activate_field VARCHAR,
     PRIMARY KEY (id),
-    FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE
+    FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE,
+    FOREIGN KEY(activate_field) REFERENCES field(id) ON DELETE SET NULL
+
 );
 
 CREATE TABLE step (
