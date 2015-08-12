@@ -9,32 +9,35 @@ import httplib
 import json
 import logging
 import mimetypes
-import sys
-from StringIO import StringIO
-
 import os
 import re
+import sys
+import time
 import types
+
+from StringIO import StringIO
+
 from cryptography.hazmat.primitives.constant_time import bytes_eq
-from twisted.internet import fdesc
+
+from twisted.internet import fdesc, task
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
+
 from cyclone import escape, httputil
 from cyclone.escape import native_str
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
 
-from twisted.internet import task
 from globaleaks.event import outcoming_event_monitored, EventTrack
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
-from globaleaks.utils.mailutils import mail_exception_handler
+from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.monitor import ResourceMonitor
 from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
 
 
-DEFAULT_HANDLER_MONITOR_TIME = 30
+HANDLER_EXEC_TIME_THRESHOLD = 30
 
 GLUploads = {}
 
@@ -114,10 +117,13 @@ class GLHTTPConnection(HTTPConnection):
 
 
 class BaseHandler(RequestHandler):
-    monitor = None
-    monitor_time = DEFAULT_HANDLER_MONITOR_TIME
+    handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
+
+    start_time = 0
 
     def __init__(self, application, request, **kwargs):
+        self.name = type(self).__name__
+
         self.req_id = GLSetting.http_requests_counter
         GLSetting.http_requests_counter += 1
 
@@ -315,75 +321,30 @@ class BaseHandler(RequestHandler):
 
     def prepare(self):
         """
-        Here is implemented the I/O logging (if enabled)
+        Here is implemented:
+          - The performance analysts
+          - the Request/Response logging
         """
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
-        self.monitor = ResourceMonitor(("[Handler %s]" % type(self).__name__), self.monitor_time)
-
-        if GLSetting.devel_mode and GLSetting.http_log >= 0:
-            try:
-                content = (">" * 15)
-                content += (" Request %d " % GLSetting.http_requests_counter)
-                content += (">" * 15) + "\n\n"
-
-                content += self.request.method + " " + self.request.full_url() + "\n\n"
-
-                content += "headers:\n"
-                for k, v in self.request.headers.get_all():
-                    content += "%s: %s\n" % (k, v)
-
-                if type(self.request.body) == dict and 'body' in self.request.body:
-                    # this is needed due to cyclone hack for file uploads
-                    body = self.request.body['body'].read()
-                else:
-                    body = self.request.body
-
-                if len(body):
-                    content += "\nbody:\n" + body + "\n"
-
-                self.do_verbose_log(content)
-
-            except Exception as excep:
-                log.err("JSON logging fail (prepare): %s" % excep.message)
-                return
-
-            if 0 < GLSetting.http_log < GLSetting.http_requests_counter:
-                log.debug("Reached I/O logging limit of %d requests: disabling" % GLSetting.http_log)
-                GLSetting.http_log = -1
+        self.handler_time_analysis_begin()
+        self.handler_request_logging_begin()
 
     def on_finish(self):
         """
-        Here is implemented the I/O logging (if enabled)
+        Here is implemented:
+          - The performance analysts
+          - the Request/Response logging
         """
-        if self.monitor is not None:
-            self.monitor.stop()
-            self.monitor = None
-
         for event in outcoming_event_monitored:
             if event['status_checker'](self._status_code) and \
                    event['method'] == self.request.method and \
                    event['handler_check'](self.request.uri):
                 EventTrack(event, self.request.request_time())
 
-        if GLSetting.devel_mode and GLSetting.http_log >= 0:
-            try:
-                content = ("<" * 15)
-                content += (" Response %d " % self.req_id)
-                content += ("<" * 15) + "\n\n"
-                content += "status code: " + str(self._status_code) + "\n\n"
-
-                content += "headers:\n"
-                for k, v in self._headers.iteritems():
-                    content += "%s: %s\n" % (k, v)
-
-                if self._write_buffer is not None:
-                    content += "\nbody: " + str(self._write_buffer) + "\n"
-
-                self.do_verbose_log(content)
-            except Exception as excep:
-                log.err("JSON logging fail (flush): %s" % excep.message)
+        self.handler_time_analysis_end()
+        self.handler_request_logging_end()
 
     def do_verbose_log(self, content):
         """
@@ -554,6 +515,68 @@ class BaseHandler(RequestHandler):
             mail_exception_handler(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
 
+    def handler_time_analysis_begin(self):
+        self.start_time = time.time()
+
+    def handler_time_analysis_end(self):
+        current_run_time = time.time() - self.start_time
+
+        if current_run_time > self.handler_exec_time_threshold:
+            error = "Handler [%s] exceeded exec threshold with an execution time of %.2f seconds" % (self.name, current_run_time)
+            log.err(error)
+            send_exception_email(error)
+
+    def handler_request_logging_begin(self):
+        if GLSetting.devel_mode and GLSetting.http_log >= 0:
+            try:
+                content = (">" * 15)
+                content += (" Request %d " % GLSetting.http_requests_counter)
+                content += (">" * 15) + "\n\n"
+
+                content += self.request.method + " " + self.request.full_url() + "\n\n"
+
+                content += "headers:\n"
+                for k, v in self.request.headers.get_all():
+                    content += "%s: %s\n" % (k, v)
+
+                if type(self.request.body) == dict and 'body' in self.request.body:
+                    # this is needed due to cyclone hack for file uploads
+                    body = self.request.body['body'].read()
+                else:
+                    body = self.request.body
+
+                if len(body):
+                    content += "\nbody:\n" + body + "\n"
+
+                self.do_verbose_log(content)
+
+            except Exception as excep:
+                log.err("JSON logging fail (prepare): %s" % excep.message)
+                return
+
+            if 0 < GLSetting.http_log < GLSetting.http_requests_counter:
+                log.debug("Reached I/O logging limit of %d requests: disabling" % GLSetting.http_log)
+                GLSetting.http_log = -1
+
+    def handler_request_logging_end(self):
+        if GLSetting.devel_mode and GLSetting.http_log >= 0:
+            try:
+                content = ("<" * 15)
+                content += (" Response %d " % self.req_id)
+                content += ("<" * 15) + "\n\n"
+                content += "status code: " + str(self._status_code) + "\n\n"
+
+                content += "headers:\n"
+                for k, v in self._headers.iteritems():
+                    content += "%s: %s\n" % (k, v)
+
+                if self._write_buffer is not None:
+                    content += "\nbody: " + str(self._write_buffer) + "\n"
+
+                self.do_verbose_log(content)
+            except Exception as excep:
+                log.err("HTTP Requests/Responses logging fail (end): %s" % excep.message)
+
 
 class BaseStaticFileHandler(BaseHandler):
     def initialize(self, path=None):
@@ -587,10 +610,4 @@ class BaseStaticFileHandler(BaseHandler):
 
 
 class BaseRedirectHandler(BaseHandler, RedirectHandler):
-    def prepare(self):
-        """
-        Same reason of BaseStaticFileHandler
-        """
-        if not validate_host(self.request.host):
-            raise errors.InvalidHostSpecified
-
+    pass

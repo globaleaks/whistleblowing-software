@@ -81,7 +81,7 @@ class CollectionStreamer(object):
 
 
 class CollectionDownload(BaseHandler):
-    monitor_time = 3600
+    handler_exec_time_threshold = 3600
 
     @transport_security_check('receiver')
     @authenticated('receiver')
