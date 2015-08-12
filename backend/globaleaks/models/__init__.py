@@ -107,6 +107,7 @@ class BaseModel(Storm):
         for k in cls_localized_keys:
             value = values[k]
             previous = getattr(self, k)
+
             if previous and isinstance(previous, dict):
                 previous.update(value)
                 setattr(self, k, previous)
@@ -724,9 +725,8 @@ class FieldOption(Model):
     field_id = Unicode()
     presentation_order = Int(default=0)
     label = JSON()
-    activate_field = Unicode()
 
-    unicode_keys = ['field_id', 'activate_field']
+    unicode_keys = ['field_id']
     int_keys = ['presentation_order']
     localized_strings = ['label']
 
@@ -736,6 +736,19 @@ class FieldOption(Model):
         obj_copy.presentation_order = self.presentation_order
         obj_copy.label = copy.deepcopy(self.label)
         return obj_copy
+
+
+class OptionActivateField(BaseModel):
+    """
+    Class used to implement references between Options and the Fields that activates
+    """
+    __storm_table__ = 'optionactivatefield'
+    __storm_primary__ = 'field_option_id', 'field_id'
+
+    field_option_id = Unicode()
+    field_id = Unicode()
+
+    unicode_keys = ['field_option_id', 'field_id']
 
 
 class Step(Model):
@@ -839,9 +852,29 @@ Field.children = ReferenceSet(
 
 Field.attrs = ReferenceSet(Field.id, FieldAttr.field_id)
 
-Field.activated_by = Reference(Field.id, FieldOption.activate_field)
+Field.activated_by = ReferenceSet(
+    Field.id,
+    OptionActivateField.field_id,
+    OptionActivateField.field_option_id,
+    FieldOption.id
+)
 
 FieldOption.field = Reference(FieldOption.field_id, Field.id)
+
+FieldOption.activated_fields = ReferenceSet(
+    FieldOption.id,
+    OptionActivateField.field_option_id,
+    OptionActivateField.field_id,
+    Field.id
+)
+
+Receiver.internaltips = ReferenceSet(
+    Receiver.id,
+    ReceiverInternalTip.receiver_id,
+    ReceiverInternalTip.internaltip_id,
+    InternalTip.id
+)
+
 
 Step.children = ReferenceSet(
     Step.id,

@@ -138,16 +138,17 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
     };
 
     $scope.shouldShowOptions = function(field) {
-      console.log(field.type);
-      var a = field.type in ['inputbox', 'textarea', 'selectbox', 'checkbox', 'tos'];
-      console.log(a);
-      return a;
+      return field.type in ['inputbox', 'textarea', 'selectbox', 'checkbox', 'tos'];
     }
 
     $scope.addOption = function (field) {
-      new_option = {'label': ''};
+      new_option = {
+        'label': '',
+        'activate_field': ''
+      };
+
       new_option.presentation_order = $scope.newItemOrder(field.options, 'presentation_order');
-      console.log(new_option);
+
       field.options.push(new_option);
     };
 
