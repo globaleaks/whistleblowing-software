@@ -724,8 +724,9 @@ class FieldOption(Model):
     field_id = Unicode()
     presentation_order = Int(default=0)
     label = JSON()
+    activate_field = Unicode()
 
-    unicode_keys = ['field_id']
+    unicode_keys = ['field_id', 'activate_field']
     int_keys = ['presentation_order']
     localized_strings = ['label']
 
@@ -837,6 +838,8 @@ Field.children = ReferenceSet(
 )
 
 Field.attrs = ReferenceSet(Field.id, FieldAttr.field_id)
+
+Field.activated_by = Reference(Field.id, FieldOption.activate_field)
 
 FieldOption.field = Reference(FieldOption.field_id, Field.id)
 
