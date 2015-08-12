@@ -32,7 +32,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.save_all = function () {
-      $scope.assignUniqueOrderIndex($scope.step.children);
       angular.forEach($scope.step.children, function (field, key) {
         $scope.save_field(field);
       });
