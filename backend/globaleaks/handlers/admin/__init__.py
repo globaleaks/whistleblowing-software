@@ -6,7 +6,9 @@
 #
 import copy
 import shutil
+
 from storm.exceptions import DatabaseError
+from storm.expr import And, Not, In
 
 from globaleaks import models, security, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.handlers.admin.field import *
@@ -464,6 +466,33 @@ def get_context_steps(*args):
     return db_get_context_steps(*args)
 
 
+def db_update_step(store, step_id, step, language):
+    fill_localized_keys(step, models.Step.localized_strings, language)
+
+    s = store.find(models.Step, models.Step.id == step_id).one()
+
+    s.update(step)
+
+    s.children.clear()
+
+    for child in step['children']:
+        child['step_id'] = s.id
+        child['fieldgroup_id'] = ''
+        db_update_field(store, child['id'], child, language)
+
+        # remove current step/field fieldgroup/field association
+        a_s, _ = get_field_association(store, child['id'])
+        if a_s is None:
+            s.children.add(f)
+        elif a_s != s.id:
+            disassociate_field(store, f.id)
+            s.children.add(f)
+        else: # the else condition means a_s == s.id; already associated!
+            pass
+
+    return s.id
+
+
 def db_update_steps(store, context_id, steps, language):
     """
     Update steps
@@ -473,59 +502,13 @@ def db_update_steps(store, context_id, steps, language):
     :param steps: a dictionary containing the steps to be updated.
     :param language: the language of the specified steps.
     """
-    old_steps = store.find(models.Step, models.Step.context_id == context_id)
+    steps_ids = []
 
-    indexed_old_steps = {}
-    for o in old_steps:
-        indexed_old_steps[o.id] = o
-
-    new_steps = []
     for step in steps:
         step['context_id'] = context_id
+        steps_ids.append(db_update_step(store, step['id'], step, language))
 
-        fill_localized_keys(step, models.Step.localized_strings, language)
-
-        # check for reuse (needed to keep translations)
-        if 'id' in step and step['id'] in indexed_old_steps:
-            s = indexed_old_steps[step['id']]
-            for field in s.children:
-                s.children.remove(field)
-
-            s.update(step)
-
-            del indexed_old_steps[step['id']]
-        else:
-            s = models.Step(step)
-
-        new_steps.append(s)
-
-        for child in step['children']:
-            f = models.Field.get(store, child['id'])
-            if not f:
-                log.err("Creation error: unexistent field can't be associated")
-                raise errors.FieldIdNotFound
-
-            child['step_id'] = s.id
-            child['fieldgroup_id'] = ''
-
-            db_update_field(store, child['id'], child, language)
-
-            # remove current step/field fieldgroup/field association
-            a_s, _ = get_field_association(store, f.id)
-            if a_s is None:
-                s.children.add(f)
-            elif a_s != s.id:
-                disassociate_field(store, f.id)
-                s.children.add(f)
-            else: # the else condition means a_s == s.id; already associated!
-                pass
-
-    for o_id in indexed_old_steps:
-        store.remove(indexed_old_steps[o_id])
-
-    for n in new_steps:
-        store.add(n)
-
+    store.find(models.Step, And(models.Step.context_id == context_id, Not(In(models.Step.id, steps_ids)))).remove()
 
 
 @transact
