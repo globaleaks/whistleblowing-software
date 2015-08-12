@@ -204,7 +204,7 @@ class Context(Model):
     #                         ReceiverContext.receiver_id,
     #                         Receiver.id)
 
-    steps_arrangement = Unicode()
+    steps_arrangement = Unicode(default=u'horizontal')
 
     show_receivers_in_alphabetical_order = Bool(default=False)
 

@@ -297,7 +297,7 @@ class TableReplacer(object):
 
     def migrate_Stats(self):
         """
-        has been created between 14 and 15
+        Stats has been created between 14 and 15
         and is not migrated since 17
         """
         if self.start_ver < 17:
@@ -315,16 +315,25 @@ class TableReplacer(object):
 
     def migrate_Field(self):
         """
-        has been created between 14 and 15!
+        Field has been created between 14 and 15!
         """
         if self.start_ver < 15:
             return
 
         self._perform_copy_list("Field")
 
+    def migrate_FieldAttr(self):
+        """
+        FieldAttr has been created between 22 and 23!
+        """
+        if self.start_ver < 23:
+            return
+
+        self._perform_copy_list("FieldAttr")
+
     def migrate_FieldOption(self):
         """
-        has been created between 14 and 15!
+        FieldOption has been created between 14 and 15!
         """
         if self.start_ver < 15:
             return
@@ -333,7 +342,7 @@ class TableReplacer(object):
 
     def migrate_FieldField(self):
         """
-        has been created between 14 and 15!
+        FieldField has been created between 14 and 15!
         """
         if self.start_ver < 15:
             return
@@ -342,7 +351,7 @@ class TableReplacer(object):
 
     def migrate_Step(self):
         """
-        has been created between 14 and 15!
+        Step has been created between 14 and 15!
         """
         if self.start_ver < 15:
             return
@@ -351,7 +360,7 @@ class TableReplacer(object):
 
     def migrate_StepField(self):
         """
-        has been created between 14 and 15!
+        StepField has been created between 14 and 15!
         """
         if self.start_ver < 15:
             return
@@ -360,7 +369,7 @@ class TableReplacer(object):
 
     def migrate_Anomalies(self):
         """
-        has been created between 14 and 15!
+        Anomalies has been created between 14 and 15!
         """
         if self.start_ver < 15:
             return
@@ -369,8 +378,8 @@ class TableReplacer(object):
 
     def migrate_EventLogs(self):
         """
-        has been created between 15 and 16!
-        should be dropped befor 20
+        EventLogs has been created between 15 and 16!
+        should be dropped before 20
         """
         if self.start_ver < 20:
             return
