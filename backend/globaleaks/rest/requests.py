@@ -414,6 +414,7 @@ FieldOptionDesc = {
     'id': uuid_regexp_or_empty,
     'label': unicode,
     'presentation_order': int,
+    'score_points': int,
     'activated_fields': [uuid_regexp_or_empty]
 }
 
