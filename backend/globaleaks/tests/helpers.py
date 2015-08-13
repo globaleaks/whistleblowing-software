@@ -222,7 +222,8 @@ class TestGL(unittest.TestCase):
             new_r['mail_address'] = unicode('%s@%s.xxx' % (descpattern, descpattern))
         new_r['password'] = VALID_PASSWORD1
         # localized dict required in desc
-        new_r['description'] = 'am I ignored ? %s' % descpattern
+        new_r['description'] = unicode('am I ignored ? %s' % descpattern)
+        new_r['state'] = u'enabled'
         return new_r
 
     def get_dummy_field(self):
@@ -795,6 +796,7 @@ class MockDict():
                         'label': 'Male',
                         'value': '',
                         'presentation_order': 0,
+                        'score_points': 0,
                         'activated_fields': []
                     },
                     {
@@ -802,6 +804,7 @@ class MockDict():
                         'label': 'Female',
                         'value': '',
                         'presentation_order': 0,
+                        'score_points': 0,
                         'activated_fields': []
                     }
                 ],

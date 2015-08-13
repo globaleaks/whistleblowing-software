@@ -381,6 +381,7 @@ CREATE TABLE fieldoption (
     field_id VARCHAR NOT NULL,
     label TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
+    score_points INTEGER NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE
 
