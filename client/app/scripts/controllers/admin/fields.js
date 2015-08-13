@@ -198,6 +198,7 @@ GLClient.controller('AdminFieldTemplatesAddCtrl', ['$scope',
       var field = $scope.admin.new_field_template($scope.new_field);
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
+      field.attrs = $scope.admin.get_field_attrs(field.type);
 
       field.$save(function(new_field){
         $scope.addField(new_field);
