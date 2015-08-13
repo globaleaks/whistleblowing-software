@@ -141,12 +141,10 @@ class BaseModel(Storm):
 
 class Model(BaseModel):
     """
-    Base class for working the database, already integrating an id, and a
-    creation_date.
+    Base class for working the database, already integrating an id.
     """
     __storm_table__ = None
     id = Unicode(primary=True, default_factory=uuid4)
-    creation_date = DateTime(default_factory=datetime_now)
 
     @classmethod
     def get(cls, store, obj_id):
@@ -161,6 +159,7 @@ class User(Model):
     """
     This model keeps track of globaleaks users.
     """
+    creation_date = DateTime(default_factory=datetime_now)
     username = Unicode(validator=shorttext_v)
     password = Unicode()
     salt = Unicode()
@@ -193,7 +192,6 @@ class Context(Model):
     enable_private_messages = Bool(default=False)
 
     tip_timetolive = Int()
-    last_update = DateTime(default_factory=datetime_null)
 
     # localized strings
     name = JSON(validator=shortlocal_v)
@@ -234,6 +232,8 @@ class InternalTip(Model):
     All of those element has a Storm Reference with the InternalTip.id,
     never vice-versa
     """
+    creation_date = DateTime(default_factory=datetime_now)
+
     context_id = Unicode()
     # context = Reference(InternalTip.context_id, Context.id)
     # comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
@@ -292,6 +292,8 @@ class InternalFile(Model):
     This model keeps track of files before they are packaged
     for specific receivers
     """
+    creation_date = DateTime(default_factory=datetime_now)
+
     internaltip_id = Unicode()
     # internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
 
@@ -338,6 +340,8 @@ class Comment(Model):
     """
     This table handle the comment collection, has an InternalTip referenced
     """
+    creation_date = DateTime(default_factory=datetime_now)
+
     internaltip_id = Unicode()
 
     author = Unicode()
@@ -354,6 +358,8 @@ class Message(Model):
     This table handle the direct messages between whistleblower and one
     Receiver.
     """
+    creation_date = DateTime(default_factory=datetime_now)
+
     receivertip_id = Unicode()
     author = Unicode()
     content = Unicode(validator=longtext_v)
@@ -379,7 +385,6 @@ class Node(Model):
     hidden_service = Unicode(validator=shorttext_v)
     email = Unicode(validator=shorttext_v)
     receipt_salt = Unicode(validator=shorttext_v)
-    last_update = DateTime(default_factory=datetime_null)
 
     languages_enabled = JSON()
     default_language = Unicode(validator=shorttext_v)
@@ -603,8 +608,6 @@ class Receiver(Model):
     can_delete_submission = Bool(default=False)
     can_postpone_expiration = Bool(default=False)
 
-    last_update = DateTime(default_factory=datetime_null)
-
     tip_notification = Bool(default=True)
     ping_notification = Bool(default=False)
 
@@ -635,6 +638,7 @@ class EventLogs(Model):
     """
     Class used to keep track of the notification to be display to the receiver
     """
+    creation_date = DateTime(default_factory=datetime_now)
     description = JSON()
     title = Unicode()
     receiver_id = Unicode()
@@ -801,7 +805,7 @@ class Stats(Model):
 
 
 class Anomalies(Model):
-    stored_when = Unicode() # is a Datetime but string
+    date = DateTime()
     alarm = Int()
     events = JSON()
 

@@ -230,8 +230,6 @@ def anon_serialize_receiver(receiver, language):
     :return: a serializtion of the object
     """
     ret_dict = {
-        'creation_date': datetime_to_ISO8601(receiver.creation_date),
-        'update_date': datetime_to_ISO8601(receiver.last_update),
         'name': receiver.name,
         'id': receiver.id,
         'state': receiver.user.state,

@@ -69,6 +69,7 @@ class Node_v_14(Model):
 
 class User_v_14(Model):
     __storm_table__ = 'user'
+    creation_date = DateTime()
     username = Unicode()
     password = Unicode()
     salt = Unicode()
@@ -79,6 +80,7 @@ class User_v_14(Model):
 
 class InternalTip_v_14(Model):
     __storm_table__ = 'internaltip'
+    creation_date = DateTime()
     context_id = Unicode()
     wb_fields = Pickle()
     pertinence_counter = Int()
@@ -178,6 +180,7 @@ class Stats_v_14(Model):
 
 class Comment_v_14(Model):
     __storm_table__ = 'comment'
+    creation_date = DateTime()
     internaltip_id = Unicode()
     author = Unicode()
     content = Unicode()

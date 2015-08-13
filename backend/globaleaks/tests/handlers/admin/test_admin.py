@@ -46,7 +46,6 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
             # some keys are added by GLB, and can't be compared
             if response_key in ['password', 'languages_supported',
-                                'creation_date', 'last_update',
                                 'version', 'receipt_example',
                                 'configured', 'wizard_done']:
                 continue
@@ -137,7 +136,6 @@ class TestContextsCreate(helpers.TestHandlerWithPopulatedDB):
         yield handler.post()
 
         self.dummyContext['id'] = self.responses[0]['id']
-        self.dummyContext['creation_date'] = self.responses[0]['creation_date']
         self.assertEqual(self.responses[0]['description'], stuff)
 
 
@@ -157,8 +155,6 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request(self.dummyContext, role='admin')
         yield handler.put(self.dummyContext['id'])
-        self.dummyContext['creation_date'] = self.responses[0]['creation_date']
-        self.dummyContext['last_update'] = self.responses[0]['last_update']
         self.assertEqual(self.responses[0]['description'], stuff)
 
     @inlineCallbacks

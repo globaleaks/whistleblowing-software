@@ -19,7 +19,7 @@ from globaleaks.db.migrations.update_20_21 import Replacer2021, Node_v_20, Notif
     Context_v_20, Step_v_20, Field_v_20, FieldOption_v_20, InternalTip_v_20
 from globaleaks.db.migrations.update_21_22 import Replacer2122, Context_v_21, InternalTip_v_21
 from globaleaks.db.migrations.update_22_23 import Replacer2223, InternalFile_v_22, Comment_v_22, Context_v_22, \
-    Field_v_22, FieldOption_v_22, Notification_v_22
+    Field_v_22, FieldOption_v_22, Notification_v_22, Anomalies_v_22
 
 
 table_history = {
@@ -45,7 +45,7 @@ table_history = {
     'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None, None, None, None],
     'Step': [Step_v_20, None, None, None, None, None, None, None, None, None, models.Step, None, None],
     'StepField': [models.StepField, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Anomalies': [models.Anomalies, None, None, None, None, None, None, None, None, None, None, None, None],
+    'Anomalies': [Anomalies_v_22, None, None, None, None, None, None, None, None, None, None, None, models.Anomalies],
     'EventLogs': [models.EventLogs, None, None, None, None, None, None, None, None, None, None, None, None]
 }
 

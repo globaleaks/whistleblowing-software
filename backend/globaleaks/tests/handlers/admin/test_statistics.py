@@ -15,8 +15,8 @@ anomaly.reactor = task.Clock()
 StatisticsSchedule.collection_start_datetime = datetime_now()
 
 
-class TestAnomaliesCollectionDesc(helpers.TestHandler):
-    _handler = statistics.AnomaliesCollectionDesc
+class TestAnomaliesCollection(helpers.TestHandler):
+    _handler = statistics.AnomaliesCollection
 
     @inlineCallbacks
     def test_get(self):
@@ -31,8 +31,8 @@ class TestAnomaliesCollectionDesc(helpers.TestHandler):
         self.assertTrue(isinstance(self.responses[0], dict))
 
 
-class TestStatsCollectionDesc(helpers.TestHandler):
-    _handler = statistics.StatsCollectionDesc
+class TestStatsCollection(helpers.TestHandler):
+    _handler = statistics.StatsCollection
 
     @transact_ro
     def get_stats_count(self, store):

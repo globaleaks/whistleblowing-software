@@ -6,6 +6,7 @@ from globaleaks.tests import helpers
 from globaleaks.handlers import admin
 from globaleaks.plugins.base import Event
 from globaleaks.utils.templating import Templating
+from globaleaks.utils.utility import datetime_now
 
 generic_keyword_list = [
     '%NodeName%',
@@ -130,7 +131,7 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
             self.subevent['name'] = ' foo '
             self.subevent['size'] = ' 123 '
             self.subevent['content_type'] = ' application/javascript '
-            self.subevent['creation_date'] = self.context_dict['creation_date']
+            self.subevent['creation_date'] = datetime_now()
             self.subevent['type'] = ' sorry maker '
 
         self.event = Event(type=event_type,

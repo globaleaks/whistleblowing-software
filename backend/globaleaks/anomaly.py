@@ -22,7 +22,7 @@ from globaleaks.utils.utility import log, datetime_now, is_expired, \
 
 
 def update_AnomalyQ(event_matrix, alarm_level):
-    date = datetime_to_ISO8601(datetime_now())[:-8]
+    date = datetime_now()
 
     GLSetting.RecentAnomaliesQ.update({
         date: [event_matrix, alarm_level]
