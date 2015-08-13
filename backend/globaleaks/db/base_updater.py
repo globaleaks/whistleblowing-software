@@ -370,8 +370,9 @@ class TableReplacer(object):
     def migrate_Anomalies(self):
         """
         Anomalies has been created between 14 and 15!
+        should be dropped before 22
         """
-        if self.start_ver < 15:
+        if self.start_ver < 23:
             return
 
         self._perform_copy_list("Anomalies")

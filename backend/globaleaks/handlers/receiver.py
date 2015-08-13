@@ -26,8 +26,6 @@ def receiver_serialize_receiver(receiver, node, language):
     ret_dict = {
         'id': receiver.id,
         'name': receiver.name,
-        'update_date': datetime_to_ISO8601(receiver.last_update),
-        'creation_date': datetime_to_ISO8601(receiver.creation_date),
         'can_postpone_expiration': node.can_postpone_expiration or receiver.can_postpone_expiration,
         'can_delete_submission': node.can_delete_submission or receiver.can_delete_submission,
         'username': receiver.user.username,
@@ -147,7 +145,7 @@ def get_receivertip_list(store, receiver_id, language):
                                      Message.receivertip_id == rtip.id).count()
         single_tip_sum = dict({
             'id': rtip.id,
-            'creation_date': datetime_to_ISO8601(rtip.creation_date),
+            'creation_date': datetime_to_ISO8601(rtip.internaltip.creation_date),
             'last_access': datetime_to_ISO8601(rtip.last_access),
             'expiration_date': datetime_to_ISO8601(rtip.internaltip.expiration_date),
             'access_counter': rtip.access_counter,

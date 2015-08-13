@@ -152,23 +152,23 @@ def delete_weekstats_history(store):
 
 @transact_ro
 def get_anomaly_history(store, limit):
-    anomal = store.find(Anomalies).order_by(Desc(Anomalies.creation_date))[:limit]
+    anomalies = store.find(Anomalies).order_by(Desc(Anomalies.date))[:limit]
 
-    full_anomal = []
-    for _, anom in enumerate(anomal):
+    anomaly_history = []
+    for _, anomaly in enumerate(anomalies):
         anomaly_entry = dict({
-            'when': anom.stored_when,
-            'alarm': anom.alarm,
+            'when': anomaly.date,
+            'alarm': anomaly.alarm,
             'events': [],
         })
-        for event_name, event_amount in anom.events.iteritems():
+        for event_name, event_amount in anomaly.events.iteritems():
             anomaly_entry['events'].append({
                 'name': event_name,
                 'amount': event_amount,
             })
-        full_anomal.append(anomaly_entry)
+        anomaly_history.append(anomaly_entry)
 
-    return list(full_anomal)
+    return list(anomaly_history)
 
 
 @transact
@@ -186,7 +186,7 @@ def delete_anomaly_history(store):
     log.info("Anomalies collection removal completed.")
 
 
-class AnomaliesCollectionDesc(BaseHandler):
+class AnomaliesCollection(BaseHandler):
     """
     This Handler returns the list of the triggered anomalies based on
     activity monitored in a timedelta (is considered anomalous if they
@@ -219,7 +219,7 @@ class AnomalyHistoryCollection(BaseHandler):
         self.finish([])
 
 
-class StatsCollectionDesc(BaseHandler):
+class StatsCollection(BaseHandler):
     """
     This Handler returns the list of the stats, stats is the aggregated
     amount of activities recorded in the delta defined in GLSettings

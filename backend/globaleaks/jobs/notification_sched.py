@@ -20,7 +20,7 @@ from globaleaks.models import EventLogs
 def serialize_receivertip(receivertip):
     rtip_dict = {
         'id': receivertip.id,
-        'creation_date': datetime_to_ISO8601(receivertip.creation_date),
+        'creation_date': datetime_to_ISO8601(receivertip.internaltip.creation_date),
         'last_access': datetime_to_ISO8601(receivertip.last_access),
         'access_counter': receivertip.access_counter,
         'wb_steps': receivertip.internaltip.wb_steps,

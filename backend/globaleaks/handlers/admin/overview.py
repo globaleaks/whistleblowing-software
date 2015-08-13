@@ -45,7 +45,6 @@ def collect_tip_overview(store, language):
             tip_description['receivertips'].append({
                 'access_counter': rtip.access_counter,
                 'notification_date': datetime_to_ISO8601(rtip.notification_date),
-                # 'creation_date': datetime_to_ISO8601(rtip.creation_date),
                 'receiver_id': rtip.receiver.id,
                 'receiver_username': rtip.receiver.user.username,
                 'receiver_name': rtip.receiver.name,
@@ -132,7 +131,6 @@ def collect_files_overview(store):
     stored_ifiles = store.find(models.InternalFile)
     stored_ifiles.order_by(Desc(models.InternalFile.creation_date))
     stored_rfiles = store.find(models.ReceiverFile)
-    stored_rfiles.order_by(Desc(models.ReceiverFile.creation_date))
 
     # ifile evaluation
     for ifile in stored_ifiles:

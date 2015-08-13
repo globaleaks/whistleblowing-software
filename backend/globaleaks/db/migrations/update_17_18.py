@@ -56,7 +56,6 @@ class Node_v_17(Model):
 
 
 class Replacer1718(TableReplacer):
-
     def migrate_Node(self):
         print "%s Node migration assistant: allow_iframes_inclusion" % self.std_fancy
 

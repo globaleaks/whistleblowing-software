@@ -128,6 +128,7 @@ class Notification_v_20(Model):
 
 class InternalTip_v_20(Model):
     __storm_table__ = 'internaltip'
+    creation_date = DateTime()
     context_id = Unicode()
     wb_steps = JSON()
     expiration_date = DateTime()
@@ -137,6 +138,7 @@ class InternalTip_v_20(Model):
 
 class User_v_20(Model):
     __storm_table__ = 'user'
+    creation_date = DateTime()
     username = Unicode()
     password = Unicode()
     salt = Unicode()

@@ -47,8 +47,6 @@ def db_admin_serialize_node(store, language):
     ret_dict = {
         'name': node.name,
         'presentation': node.presentation,
-        'creation_date': datetime_to_ISO8601(node.creation_date),
-        'last_update': datetime_to_ISO8601(node.last_update),
         'hidden_service': node.hidden_service,
         'public_site': node.public_site,
         'email': node.email,
@@ -153,8 +151,6 @@ def admin_serialize_context(store, context, language):
 
     ret_dict = {
         'id': context.id,
-        'creation_date': datetime_to_ISO8601(context.creation_date),
-        'last_update': datetime_to_ISO8601(context.last_update),
         'receivers': [r.id for r in context.receivers],
         # tip expressed in day, submission in hours
         'tip_timetolive': context.tip_timetolive / (60 * 60 * 24),
@@ -184,8 +180,6 @@ def admin_serialize_receiver(receiver, language):
     ret_dict = {
         'id': receiver.id,
         'name': receiver.name,
-        'creation_date': datetime_to_ISO8601(receiver.creation_date),
-        'last_update': datetime_to_ISO8601(receiver.last_update),
         'can_delete_submission': receiver.can_delete_submission,
         'can_postpone_expiration': receiver.can_postpone_expiration,
         'username': receiver.user.username,
@@ -268,8 +262,6 @@ def db_update_node(store, request, wizard_done, language):
     except DatabaseError as dberror:
         log.err("Unable to update node: %s" % dberror)
         raise errors.InvalidInputFormat(dberror)
-
-    node.last_update = datetime_now()
 
     db_update_memory_variables(store)
 
@@ -556,8 +548,6 @@ def update_context(store, context_id, request, language):
                        request['maximum_selectable_receivers'])
         request['maximum_selectable_receivers'] = 0
 
-    context.last_update = datetime_now()
-
     try:
         context.update(request)
     except DatabaseError as dberror:
@@ -744,8 +734,6 @@ def update_receiver(store, receiver_id, request, language):
             raise errors.ContextIdNotFound
 
         receiver.contexts.add(context)
-
-    receiver.last_update = datetime_now()
 
     try:
         receiver.update(request)

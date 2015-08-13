@@ -25,6 +25,7 @@ class Context_v_21(Model):
 
 class InternalTip_v_21(Model):
     __storm_table__ = 'internaltip'
+    creation_date = DateTime()
     context_id = Unicode()
     wb_steps = JSON()
     preview = JSON()
