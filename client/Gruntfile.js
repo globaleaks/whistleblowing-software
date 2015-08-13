@@ -530,7 +530,6 @@ module.exports = function(grunt) {
   }
 
   grunt.registerTask('updateTranslationsSource', function() {
-
     var done = this.async(),
       gt = new Gettext(),
       strings,
@@ -611,7 +610,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('makeTranslations', function() {
-
     var done = this.async(),
       gt = new Gettext(),
       strings,
@@ -643,11 +641,9 @@ module.exports = function(grunt) {
       done();
 
     });
-
   });
 
   grunt.registerTask('makeAppData', function() {
-
     var done = this.async(),
       gt = new Gettext(),
       strings,
@@ -677,9 +673,7 @@ module.exports = function(grunt) {
       });
 
       for (var lang_code in supported_languages) {
-
         for (var template_name in templates_sources) {
-          
           if (!(template_name in templates)) {
             templates[template_name] = {}
           }
@@ -697,9 +691,7 @@ module.exports = function(grunt) {
           }
 
           templates[template_name][lang_code] = tmp;
-
         }
-
       }
 
       output['version'] = version;
@@ -709,7 +701,6 @@ module.exports = function(grunt) {
       output['node'] = {};
 
       for (var k in json['node']){
-
         output['node'][k] = {};
         for (var lang_code in supported_languages) {
           output['node'][k][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(json['node'][k]['en'])));
@@ -717,14 +708,24 @@ module.exports = function(grunt) {
         }
       }
 
+      var fieldattr_translate = function(fieldattr) {
+        if (fieldattr['type'] == 'localized') {
+          for (var lang_code in supported_languages) {
+            fieldattr['value'][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(fieldattr['value']['en'])));
+          }
+        }
+      }
+
       var field_translate = function(field) {
         var keys = ['label', 'description', 'hint']
         for (var k in keys){
-
           for (var lang_code in supported_languages) {
             field[keys[k]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(field[keys[k]]['en'])));
           }
+        }
 
+        for (var a in field['attrs']) {
+          fieldattr_translate(field['attrs'][a]);
         }
 
         for (var c in field['children']){
