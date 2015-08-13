@@ -18,6 +18,19 @@ https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^homepage$|^submissionpage$'
 tip_operation_regexp              = r'^postpone$'
+field_type                        = (r'^('
+                                     'inputbox|'
+                                     'textarea|'
+                                     'selectbox|'
+                                     'checkbox|'
+                                     'modal|'
+                                     'dialog|'
+                                     'tos|'
+                                     'fileupload|'
+                                     'number|'
+                                     'email|'
+                                     'date|'
+                                     'fieldgroup)$')
 
 DateType = r'(.*)'
 
@@ -416,18 +429,7 @@ FieldDesc = {
     'required': bool,
     'preview': bool,
     'stats_enabled': bool,
-    'type': (r'^('
-             'inputbox|'
-             'textarea|'
-             'selectbox|'
-             'checkbox|'
-             'modal|'
-             'dialog|'
-             'tos|'
-             'fileupload|'
-             'number|'
-             'email|'
-             'fieldgroup)$'),
+    'type': field_type,
     'attrs': dict,
     'options': [FieldOptionDesc],
     'children': list,
@@ -445,16 +447,8 @@ FieldTemplateDesc = {
     'required': bool,
     'preview': bool,
     'stats_enabled': bool,
-    'type': (r'^('
-             'inputbox|'
-             'textarea|'
-             'selectbox|'
-             'checkbox|'
-             'modal|'
-             'dialog|'
-             'tos|'
-             'fileupload|'
-             'fieldgroup)$'),
+    'type': field_type,
+    'attrs': dict,
     'options': list,
     'children': list,
     'is_template': bool
