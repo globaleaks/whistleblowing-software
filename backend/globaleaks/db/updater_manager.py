@@ -19,7 +19,7 @@ from globaleaks.db.migrations.update_20_21 import Replacer2021, Node_v_20, Notif
     Context_v_20, Step_v_20, Field_v_20, FieldOption_v_20, InternalTip_v_20
 from globaleaks.db.migrations.update_21_22 import Replacer2122, Context_v_21, InternalTip_v_21
 from globaleaks.db.migrations.update_22_23 import Replacer2223, InternalFile_v_22, Comment_v_22, Context_v_22, \
-    Field_v_22, FieldOption_v_22
+    Field_v_22, FieldOption_v_22, Notification_v_22
 
 
 table_history = {
@@ -28,7 +28,7 @@ table_history = {
     'Context': [Context_v_11, Context_v_12, Context_v_13, Context_v_14, Context_v_19, None, None, None, None, Context_v_20, Context_v_21, Context_v_22, models.Context],
     'Receiver': [Receiver_v_14, None, None, None, Receiver_v_15, Receiver_v_16, Receiver_v_19, None, None, Receiver_v_20, models.Receiver, None, None],
     'ReceiverFile': [ReceiverFile_v_19, None, None, None, None, None, None, None, None, models.ReceiverFile, None, None, None],
-    'Notification': [Notification_v_14, None, None, None, Notification_v_15, Notification_v_16, Notification_v_19, None, None, Notification_v_20, models.Notification, None, None],
+    'Notification': [Notification_v_14, None, None, None, Notification_v_15, Notification_v_16, Notification_v_19, None, None, Notification_v_20, Notification_v_22, None, models.Notification],
     'Comment': [Comment_v_14, None, None, None, Comment_v_19, None, None, None, None, Comment_v_22, None, None, models.Comment],
     'InternalTip': [InternalTip_v_14, None, None, None, InternalTip_v_19, None, None, None, None, InternalTip_v_20, InternalTip_v_21, models.InternalTip, None],
     'InternalFile': [InternalFile_v_19, None, None, None, None, None, None, None, None, InternalFile_v_22, None, None, models.InternalFile],

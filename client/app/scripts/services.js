@@ -690,11 +690,11 @@ angular.module('GLServices', ['ngResource']).
           field.is_template = true;
           field.hint = '';
           field.multi_entry = false;
-          field.options = [];
           field.required = false;
           field.preview = false;
           field.stats_enabled = false;
           field.attrs = {};
+          field.options = [];
           field.x = 0;
           field.y = 0;
           field.children = [];
