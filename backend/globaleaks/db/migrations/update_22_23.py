@@ -9,6 +9,7 @@ from globaleaks.models import BaseModel, Model, Step, Receiver, ReceiverContext
 
 class InternalFile_v_22(Model):
     __storm_table__ = 'internalfile'
+    creation_date = DateTime()
     internaltip_id = Unicode()
     name = Unicode()
     file_path = Unicode()
@@ -19,6 +20,7 @@ class InternalFile_v_22(Model):
 
 class Comment_v_22(Model):
     __storm_table__ = 'comment'
+    creation_date = DateTime()
     internaltip_id = Unicode()
     author = Unicode()
     content = Unicode()
@@ -70,6 +72,7 @@ Field_v_22.options = ReferenceSet(
     FieldOption_v_22.field_id
 )
 
+
 class Notification_v_22(Model):
     __storm_table__ = 'notification'
     server = Unicode()
@@ -112,6 +115,13 @@ class Notification_v_22(Model):
     tip_expiration_threshold = Int()
     notification_threshold_per_hour = Int()
     notification_suspension_time=Int()
+
+
+class Anomalies_v_22(Model):
+    __storm_table__ = 'anomalies'
+    stored_when = Unicode()
+    alarm = Int()
+    events = JSON()
 
 
 class Replacer2223(TableReplacer):

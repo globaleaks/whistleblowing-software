@@ -38,11 +38,11 @@ def save_anomalies(store, anomalies_list):
     anomalies_counter = 0
     for anomaly in anomalies_list:
         anomalies_counter += 1
-        when_anomaly, anomaly_desc, alarm_raised = anomaly
+        anomaly_date, anomaly_desc, alarm_raised = anomaly
 
         newanom = Anomalies()
         newanom.alarm = alarm_raised
-        newanom.stored_when = when_anomaly
+        newanom.date = anomaly_date
         newanom.events = anomaly_desc
         store.add(newanom)
 

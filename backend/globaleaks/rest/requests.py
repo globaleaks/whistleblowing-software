@@ -351,14 +351,12 @@ AnomalyDesc = {
 AnomaliesCollectionDesc = [AnomalyDesc]
 
 ReceiverDesc = {
-     'update_date': unicode,
      'name': unicode,
      'contexts': [uuid_regexp],
      'description': unicode,
      'presentation_order': int,
      'pgp_key_status': unicode,
      'id': uuid_regexp,
-     'creation_date': DateType,
      'state': unicode
 }
 

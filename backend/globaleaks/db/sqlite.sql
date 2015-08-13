@@ -9,7 +9,6 @@ CREATE TABLE user (
     role VARCHAR NOT NULL CHECK (role IN ('admin', 'receiver')),
     state VARCHAR NOT NULL CHECK (state IN ('disabled', 'enabled')),
     last_login VARCHAR NOT NULL,
-    last_update VARCHAR,
     mail_address VARCHAR NOT NULL,
     language VARCHAR NOT NULL,
     timezone INTEGER DEFAULT 0,
@@ -46,9 +45,7 @@ CREATE TABLE comment (
 
 CREATE TABLE context (
     id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
     description BLOB NOT NULL,
-    last_update VARCHAR,
     name BLOB NOT NULL,
     tip_timetolive INTEGER NOT NULL,
     select_all_receivers INTEGER NOT NULL,
@@ -80,7 +77,6 @@ CREATE TABLE internalfile (
 
 CREATE TABLE receiverfile (
     id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
     file_path VARCHAR,
     size INTEGER NOT NULL,
     downloads INTEGER NOT NULL,
@@ -115,7 +111,6 @@ CREATE TABLE internaltip (
 
 CREATE TABLE node (
     id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
     description BLOB NOT NULL,
     presentation BLOB NOT NULL,
     footer BLOB NOT NULL,
@@ -132,7 +127,6 @@ CREATE TABLE node (
     name VARCHAR NOT NULL,
     receipt_salt VARCHAR NOT NULL,
     public_site VARCHAR NOT NULL,
-    last_update VARCHAR,
     maximum_namesize INTEGER NOT NULL,
     maximum_textsize INTEGER NOT NULL,
     maximum_filesize INTEGER NOT NULL,
@@ -166,7 +160,6 @@ CREATE TABLE node (
 
 CREATE TABLE notification (
     id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
     server VARCHAR,
     port INTEGER,
     password VARCHAR,
@@ -212,11 +205,9 @@ CREATE TABLE notification (
 CREATE TABLE receiver (
     id VARCHAR NOT NULL,
     configuration VARCHAR NOT NULL CHECK (configuration IN ('default', 'forcefully_selected', 'unselectable')),
-    creation_date VARCHAR NOT NULL,
     can_delete_submission INTEGER NOT NULL,
     can_postpone_expiration INTEGER NOT NULL,
     description BLOB NOT NULL,
-    last_update VARCHAR,
     name VARCHAR NOT NULL,
     tip_notification INTEGER NOT NULL,
     ping_notification INTEGER NOT NULL,
@@ -282,7 +273,6 @@ CREATE TABLE step_field (
 
 CREATE TABLE receivertip (
     id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
     access_counter INTEGER NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     last_access VARCHAR,
@@ -297,7 +287,6 @@ CREATE TABLE receivertip (
 
 CREATE TABLE whistleblowertip (
     id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
     access_counter INTEGER NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     last_access VARCHAR,
@@ -308,7 +297,6 @@ CREATE TABLE whistleblowertip (
 
 CREATE TABLE applicationdata (
     id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
     version INTEGER NOT NULL,
     fields BLOB,
     PRIMARY KEY (id)
@@ -316,9 +304,8 @@ CREATE TABLE applicationdata (
 
 CREATE TABLE anomalies (
     id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
     content BLOB,
-    stored_when VARCHAR NOT NULL,
+    date VARCHAR NOT NULL,
     alarm INTEGER NOT NULL,
     events BLOB,
     PRIMARY KEY (id)
@@ -326,7 +313,6 @@ CREATE TABLE anomalies (
 
 CREATE TABLE stats (
     id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
     start VARCHAR NOT NULL,
     free_disk_space INTEGER,
     summary BLOB,
@@ -335,7 +321,6 @@ CREATE TABLE stats (
 
 CREATE TABLE field (
     id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
     label TEXT NOT NULL,
     description TEXT NOT NULL DEFAULT '',
     hint TEXT NOT NULL DEFAULT '',
@@ -362,7 +347,6 @@ CREATE TABLE field (
 
 CREATE TABLE fieldattr (
     id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
     field_id VARCHAR NOT NULL,
     name VARCHAR NOT NULL,
     type VARCHAR NOT NULL CHECK (TYPE IN ('int',
@@ -377,7 +361,6 @@ CREATE TABLE fieldattr (
 
 CREATE TABLE fieldoption (
     id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
     field_id VARCHAR NOT NULL,
     label TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
@@ -398,7 +381,6 @@ CREATE TABLE optionactivatefield (
 
 CREATE TABLE step (
     id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
     label TEXT NOT NULL,
     description TEXT NOT NULL,
     hint TEXT NOT NULL,

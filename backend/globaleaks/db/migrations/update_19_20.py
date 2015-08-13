@@ -101,6 +101,7 @@ class Notification_v_19(Model):
 
 class Message_v_19(Model):
     __storm_table__ = 'message'
+    creation_date = DateTime()
     receivertip_id = Unicode()
     author = Unicode()
     content = Unicode()
@@ -111,6 +112,7 @@ class Message_v_19(Model):
 
 class Comment_v_19(Model):
     __storm_table__ = 'comment'
+    creation_date = DateTime()
     internaltip_id = Unicode()
     author = Unicode()
     content = Unicode()
@@ -121,6 +123,7 @@ class Comment_v_19(Model):
 
 class InternalTip_v_19(Model):
     __storm_table__ = 'internaltip'
+    creation_date = DateTime()
     context_id = Unicode()
     wb_steps = JSON()
     expiration_date = DateTime()
@@ -142,6 +145,7 @@ class ReceiverTip_v_19(Model):
 
 class InternalFile_v_19(Model):
     __storm_table__ = 'internalfile'
+    creation_date = DateTime()
     internaltip_id = Unicode()
     name = Unicode()
     file_path = Unicode()
