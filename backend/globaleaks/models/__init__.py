@@ -750,9 +750,10 @@ class FieldOption(Model):
     field_id = Unicode()
     presentation_order = Int(default=0)
     label = JSON()
+    score_points = Int(default=0)
 
     unicode_keys = ['field_id']
-    int_keys = ['presentation_order']
+    int_keys = ['presentation_order', 'score_points']
     localized_strings = ['label']
 
     def copy(self, store):

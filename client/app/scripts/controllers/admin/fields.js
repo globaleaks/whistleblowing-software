@@ -147,6 +147,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       new_option = {
         'id': '',
         'label': '',
+        'score_points': 0,
         'activated_fields': []
       };
 

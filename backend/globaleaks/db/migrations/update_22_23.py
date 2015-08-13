@@ -201,6 +201,10 @@ class Replacer2223(TableReplacer):
             skip_add = False
             new_obj = self.get_right_model("FieldOption", 23)()
             for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'score_points':
+                    new_obj.score_points = 0
+                    continue
+
                 if v.name == 'label':
                     if 'name' in old_obj.attrs:
                         new_obj.label = old_obj.attrs['name']

@@ -135,6 +135,7 @@ def anon_serialize_option(option, language):
     ret_dict = {
         'id': option.id,
         'presentation_order': option.presentation_order,
+        'score_points': option.score_points,
         'activated_fields': [field.id for field in option.activated_fields]
     }
 
