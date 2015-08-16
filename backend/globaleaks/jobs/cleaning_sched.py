@@ -13,7 +13,7 @@ from globaleaks.handlers import admin
 from globaleaks.handlers.rtip import db_delete_itip
 from globaleaks.jobs.base import GLJob
 from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, db_save_events_on_db
-from globaleaks.models import InternalTip, InternalFile, Receiver, ReceiverTip, ReceiverFile
+from globaleaks.models import InternalTip, InternalFile, Receiver, ReceiverTip, ReceiverFile, Stats
 from globaleaks.plugins.base import Event
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.utility import log, datetime_to_ISO8601, ISO8601_to_datetime, utc_dynamic_date, datetime_now
@@ -66,6 +66,9 @@ class CleaningSchedule(GLJob):
     def perform_cleaning(self, store):
         for itip in store.find(InternalTip, InternalTip.expiration_date < datetime_now()):
             db_delete_itip(store, itip)
+
+        # delete stats older than 3 months
+        store.find(Stats, Stats.start < datetime_now() - timedelta(3*(365/12))).remove()
 
     @inlineCallbacks
     def operation(self):
