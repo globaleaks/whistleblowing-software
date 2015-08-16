@@ -157,8 +157,6 @@ class TestPGP(TestHandlerWithPopulatedDB):
         new_fields = MockDict().dummyFields
         new_context = MockDict().dummyContext
 
-        new_context['steps'][0]['children'] = []
-
         new_context['name'] = "this uniqueness is no more checked due to the lang"
         new_context_output = yield create_context(new_context, 'en')
         self.context_assertions(new_context, new_context_output)

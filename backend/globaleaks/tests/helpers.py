@@ -249,15 +249,15 @@ class TestGL(unittest.TestCase):
         return dummy_f
 
     def fill_random_field_recursively(self, answers, field, value=None):
+        # FIXME: currently the function consider:
+        # - only first level of fields
+        # - all fields are considered as inputboxes
         if value is None:
             value = unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))
         else:
             value = unicode(value)
 
-        answers[field['id']] = {'0': { '0': value}}
-
-        for c in field['children']:
-            self.fill_random_field_recursively(c)
+        answers[field['id']] = [{'value': value}]
 
     @transact
     def fill_random_answers(self, store, context_id, value=None):
@@ -438,7 +438,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyContext['receivers'] = receivers_ids
         self.dummyContext = yield create_context(copy.deepcopy(self.dummyContext), 'en')
 
-        # fill_data: create cield templates
+        # fill_data: create field templates
         for idx, field in enumerate(self.dummyFieldTemplates):
             f = yield create_field(copy.deepcopy(field), 'en')
             self.dummyFieldTemplates[idx]['id'] = f['id']
@@ -460,7 +460,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyContext['steps'][0]['children'] = [
             self.dummyFields[0],  # Field 1
             self.dummyFields[1],  # Field 2
-            self.dummyFields[2]  # Generalities
+            self.dummyFields[2]   # Generalities
         ]
 
         yield update_context(self.dummyContext['id'], copy.deepcopy(self.dummyContext), 'en')
@@ -839,7 +839,7 @@ class MockDict():
             # localized stuff
             'name': u'Already localized name',
             'description': u'Already localized desc',
-            'steps': self.dummySteps,
+            'steps': [],
             'select_all_receivers': True,
             # tip_timetolive is expressed in days
             'tip_timetolive': 20,

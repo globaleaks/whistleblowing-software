@@ -29,7 +29,7 @@ def wb_serialize_tip(store, internaltip, language):
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
         'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
-        'answers': db_serialize_questionnaire_answers(store, internaltip.answers),
+        'answers': db_serialize_questionnaire_answers(store, internaltip),
         'enable_comments': internaltip.context.enable_comments,
         'enable_private_messages': internaltip.context.enable_private_messages
     }
