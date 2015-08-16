@@ -137,7 +137,7 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
       heatMap.append("title").text(function(d) {
           // if strings are updated here remember to update client/translation.html to push them on transifex
           if (d.valid === -1) {
-              return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('in this hour the node was off.');
+              return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('no stats available for this hour.');
           } else if (d.valid === -2) {
               return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('no stats available for the future.');
           } else if (d.valid === -3) {
