@@ -1,50 +1,50 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE user (
-    id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
-    username VARCHAR NOT NULL,
-    password VARCHAR NOT NULL,
-    salt VARCHAR NOT NULL,
-    role VARCHAR NOT NULL CHECK (role IN ('admin', 'receiver')),
-    state VARCHAR NOT NULL CHECK (state IN ('disabled', 'enabled')),
-    last_login VARCHAR NOT NULL,
-    mail_address VARCHAR NOT NULL,
-    language VARCHAR NOT NULL,
+    id TEXT NOT NULL,
+    creation_date TEXT NOT NULL,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL,
+    salt TEXT NOT NULL,
+    role TEXT NOT NULL CHECK (role IN ('admin', 'receiver')),
+    state TEXT NOT NULL CHECK (state IN ('disabled', 'enabled')),
+    last_login TEXT NOT NULL,
+    mail_address TEXT NOT NULL,
+    language TEXT NOT NULL,
     timezone INTEGER DEFAULT 0,
     password_change_needed INTEGER NOT NULL,
-    password_change_date VARCHAR NOT NULL,
+    password_change_date TEXT NOT NULL,
     UNIQUE (username),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE message (
-    id VARCHAR NOT NULL,
+    id TEXT NOT NULL,
     visualized INTEGER NOT NULL,
-    creation_date VARCHAR NOT NULL,
-    author VARCHAR NOT NULL,
-    receivertip_id VARCHAR NOT NULL,
-    type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
-    content VARCHAR NOT NULL,
+    creation_date TEXT NOT NULL,
+    author TEXT NOT NULL,
+    receivertip_id TEXT NOT NULL,
+    type TEXT NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
+    content TEXT NOT NULL,
     new INTEGER NOT NULL,
     FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE comment (
-    id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
-    author VARCHAR NOT NULL,
-    internaltip_id VARCHAR NOT NULL,
-    type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
-    content VARCHAR NOT NULL,
+    id TEXT NOT NULL,
+    creation_date TEXT NOT NULL,
+    author TEXT NOT NULL,
+    internaltip_id TEXT NOT NULL,
+    type TEXT NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
+    content TEXT NOT NULL,
     new INTEGER NOT NULL,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE context (
-    id VARCHAR NOT NULL,
+    id TEXT NOT NULL,
     description BLOB NOT NULL,
     name BLOB NOT NULL,
     tip_timetolive INTEGER NOT NULL,
@@ -56,36 +56,36 @@ CREATE TABLE context (
     enable_private_messages INTEGER NOT NULL,
     presentation_order INTEGER,
     show_receivers_in_alphabetical_order INTEGER NOT NULL,
-    steps_arrangement VARCHAR NOT NULL CHECK (steps_arrangement IN ('vertical', 'horizontal')) DEFAULT 'horizontal',
+    steps_arrangement TEXT NOT NULL CHECK (steps_arrangement IN ('vertical', 'horizontal')) DEFAULT 'horizontal',
     PRIMARY KEY (id)
 );
 
 CREATE TABLE internalfile (
-    id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
-    content_type VARCHAR NOT NULL,
-    file_path VARCHAR,
-    name VARCHAR NOT NULL,
+    id TEXT NOT NULL,
+    creation_date TEXT NOT NULL,
+    content_type TEXT NOT NULL,
+    file_path TEXT,
+    name TEXT NOT NULL,
     size INTEGER NOT NULL,
     new INTEGER NOT NULL,
     processing_attempts INTEGER NOT NULL,
-    internaltip_id VARCHAR NOT NULL,
+    internaltip_id TEXT NOT NULL,
     UNIQUE(file_path),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE receiverfile (
-    id VARCHAR NOT NULL,
-    file_path VARCHAR,
+    id TEXT NOT NULL,
+    file_path TEXT,
     size INTEGER NOT NULL,
     downloads INTEGER NOT NULL,
-    last_access VARCHAR,
-    internalfile_id VARCHAR NOT NULL,
-    receiver_id VARCHAR NOT NULL,
-    internaltip_id VARCHAR NOT NULL,
-    receivertip_id VARCHAR NOT NULL,
-    status VARCHAR NOT NULL CHECK (status IN ('processing', 'reference', 'encrypted', 'unavailable', 'nokey')),
+    last_access TEXT,
+    internalfile_id TEXT NOT NULL,
+    receiver_id TEXT NOT NULL,
+    internaltip_id TEXT NOT NULL,
+    receivertip_id TEXT NOT NULL,
+    status TEXT NOT NULL CHECK (status IN ('processing', 'reference', 'encrypted', 'unavailable', 'nokey')),
     new INTEGER  NOT NULL,
     FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,
     FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
@@ -95,22 +95,22 @@ CREATE TABLE receiverfile (
 );
 
 CREATE TABLE internaltip (
-    id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
-    expiration_date VARCHAR NOT NULL,
-    questionnaire_hash VARCHAR NOT NULL,
+    id TEXT NOT NULL,
+    creation_date TEXT NOT NULL,
+    expiration_date TEXT NOT NULL,
+    questionnaire_hash TEXT NOT NULL,
     preview BLOB NOT NULL,
     progressive INTEGER NOT NULL,
     tor2web INTEGER NOT NULL,
-    last_activity VARCHAR,
-    context_id VARCHAR NOT NULL,
+    last_activity TEXT,
+    context_id TEXT NOT NULL,
     new INTEGER NOT NULL,
     FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE node (
-    id VARCHAR NOT NULL,
+    id TEXT NOT NULL,
     description BLOB NOT NULL,
     presentation BLOB NOT NULL,
     footer BLOB NOT NULL,
@@ -119,14 +119,14 @@ CREATE TABLE node (
     context_selector_label BLOB NOT NULL,
     whistleblowing_question BLOB NOT NULL,
     whistleblowing_button BLOB NOT NULL,
-    email VARCHAR NOT NULL,
-    hidden_service VARCHAR NOT NULL,
+    email TEXT NOT NULL,
+    hidden_service TEXT NOT NULL,
     languages_enabled BLOB NOT NULL,
-    default_language VARCHAR NOT NULL,
+    default_language TEXT NOT NULL,
     default_timezone INTEGER,
-    name VARCHAR NOT NULL,
-    receipt_salt VARCHAR NOT NULL,
-    public_site VARCHAR NOT NULL,
+    name TEXT NOT NULL,
+    receipt_salt TEXT NOT NULL,
+    public_site TEXT NOT NULL,
     maximum_namesize INTEGER NOT NULL,
     maximum_textsize INTEGER NOT NULL,
     maximum_filesize INTEGER NOT NULL,
@@ -140,7 +140,7 @@ CREATE TABLE node (
     can_delete_submission INTEGER NOT NULL,
     ahmia INTEGER NOT NULL,
     wizard_done INTEGER NOT NULL,
-    exception_email VARCHAR NOT NULL,
+    exception_email TEXT NOT NULL,
     allow_unencrypted INTEGER NOT NULL,
     allow_iframes_inclusion INTEGER NOT NULL,
     disable_privacy_badge INTEGER NOT NULL,
@@ -153,20 +153,20 @@ CREATE TABLE node (
     header_title_homepage BLOB NOT NULL,
     header_title_submissionpage BLOB NOT NULL,
     header_title_receiptpage BLOB NOT NULL,
-    landing_page VARCHAR NOT NULL CHECK (landing_page IN ('homepage', 'submissionpage')),
+    landing_page TEXT NOT NULL CHECK (landing_page IN ('homepage', 'submissionpage')),
     show_contexts_in_alphabetical_order INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE notification (
-    id VARCHAR NOT NULL,
-    server VARCHAR,
+    id TEXT NOT NULL,
+    server TEXT,
     port INTEGER,
-    password VARCHAR,
-    username VARCHAR,
-    source_name VARCHAR NOT NULL,
-    source_email VARCHAR NOT NULL,
-    security VARCHAR NOT NULL CHECK (security IN ('TLS', 'SSL')),
+    password TEXT,
+    username TEXT,
+    source_name TEXT NOT NULL,
+    source_email TEXT NOT NULL,
+    security TEXT NOT NULL CHECK (security IN ('TLS', 'SSL')),
     torify INTEGER,
     tip_mail_template BLOB,
     tip_mail_title BLOB,
@@ -203,20 +203,20 @@ CREATE TABLE notification (
 );
 
 CREATE TABLE receiver (
-    id VARCHAR NOT NULL,
-    configuration VARCHAR NOT NULL CHECK (configuration IN ('default', 'forcefully_selected', 'unselectable')),
+    id TEXT NOT NULL,
+    configuration TEXT NOT NULL CHECK (configuration IN ('default', 'forcefully_selected', 'unselectable')),
     can_delete_submission INTEGER NOT NULL,
     can_postpone_expiration INTEGER NOT NULL,
     description BLOB NOT NULL,
-    name VARCHAR NOT NULL,
+    name TEXT NOT NULL,
     tip_notification INTEGER NOT NULL,
     ping_notification INTEGER NOT NULL,
-    ping_mail_address VARCHAR NOT NULL,
+    ping_mail_address TEXT NOT NULL,
     tip_expiration_threshold INTEGER NOT NULL,
-    pgp_key_status VARCHAR NOT NULL CHECK (pgp_key_status IN ('disabled', 'enabled')),
-    pgp_key_info VARCHAR,
-    pgp_key_fingerprint VARCHAR,
-    pgp_key_public VARCHAR,
+    pgp_key_status TEXT NOT NULL CHECK (pgp_key_status IN ('disabled', 'enabled')),
+    pgp_key_info TEXT,
+    pgp_key_fingerprint TEXT,
+    pgp_key_public TEXT,
     pgp_key_expiration INTEGER,
     presentation_order INTEGER,
     UNIQUE(name),
@@ -225,13 +225,13 @@ CREATE TABLE receiver (
 );
 
 CREATE TABLE eventlogs (
-    id VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
-    event_reference VARCHAR NOT NULL,
-    description VARCHAR NOT NULL,
-    title VARCHAR NOT NULL,
-    receiver_id VARCHAR NOT NULL,
-    receivertip_id VARCHAR,
+    id TEXT NOT NULL,
+    creation_date TEXT NOT NULL,
+    event_reference TEXT NOT NULL,
+    description TEXT NOT NULL,
+    title TEXT NOT NULL,
+    receiver_id TEXT NOT NULL,
+    receivertip_id TEXT,
     mail_sent INTEGER,
     FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
     FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
@@ -239,32 +239,32 @@ CREATE TABLE eventlogs (
 );
 
 CREATE TABLE receiver_context (
-    context_id VARCHAR NOT NULL,
-    receiver_id VARCHAR NOT NULL,
+    context_id TEXT NOT NULL,
+    receiver_id TEXT NOT NULL,
     FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
     FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
     PRIMARY KEY (context_id, receiver_id)
 );
 
 CREATE TABLE receiver_internaltip (
-    receiver_id VARCHAR NOT NULL,
-    internaltip_id VARCHAR NOT NULL,
+    receiver_id TEXT NOT NULL,
+    internaltip_id TEXT NOT NULL,
     FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
     FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (receiver_id, internaltip_id)
 );
 
 CREATE TABLE field_field (
-    parent_id VARCHAR NOT NULL,
-    child_id VARCHAR NOT NULL,
+    parent_id TEXT NOT NULL,
+    child_id TEXT NOT NULL,
     FOREIGN KEY (parent_id) REFERENCES field(id) ON DELETE CASCADE,
     FOREIGN KEY (child_id) REFERENCES field(id) ON DELETE CASCADE,
     PRIMARY KEY (parent_id, child_id)
 );
 
 CREATE TABLE step_field (
-    step_id VARCHAR NOT NULL,
-    field_id VARCHAR NOT NULL,
+    step_id TEXT NOT NULL,
+    field_id TEXT NOT NULL,
     UNIQUE (field_id),
     FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
     FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
@@ -272,13 +272,13 @@ CREATE TABLE step_field (
 );
 
 CREATE TABLE receivertip (
-    id VARCHAR NOT NULL,
+    id TEXT NOT NULL,
     access_counter INTEGER NOT NULL,
-    internaltip_id VARCHAR NOT NULL,
-    last_access VARCHAR,
-    notification_date VARCHAR,
-    receiver_id VARCHAR NOT NULL,
-    label VARCHAR NOT NULL,
+    internaltip_id TEXT NOT NULL,
+    last_access TEXT,
+    notification_date TEXT,
+    receiver_id TEXT NOT NULL,
+    label TEXT NOT NULL,
     new INTEGER NOT NULL,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
@@ -286,41 +286,41 @@ CREATE TABLE receivertip (
 );
 
 CREATE TABLE whistleblowertip (
-    id VARCHAR NOT NULL,
+    id TEXT NOT NULL,
     access_counter INTEGER NOT NULL,
-    internaltip_id VARCHAR NOT NULL,
-    last_access VARCHAR,
-    receipt_hash VARCHAR NOT NULL,
+    internaltip_id TEXT NOT NULL,
+    last_access TEXT,
+    receipt_hash TEXT NOT NULL,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE applicationdata (
-    id VARCHAR NOT NULL,
+    id TEXT NOT NULL,
     version INTEGER NOT NULL,
     fields BLOB,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE anomalies (
-    id VARCHAR NOT NULL,
+    id TEXT NOT NULL,
     content BLOB,
-    date VARCHAR NOT NULL,
+    date TEXT NOT NULL,
     alarm INTEGER NOT NULL,
     events BLOB,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE stats (
-    id VARCHAR NOT NULL,
-    start VARCHAR NOT NULL,
+    id TEXT NOT NULL,
+    start TEXT NOT NULL,
     free_disk_space INTEGER,
     summary BLOB,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE field (
-    id VARCHAR NOT NULL,
+    id TEXT NOT NULL,
     label TEXT NOT NULL,
     description TEXT NOT NULL DEFAULT '',
     hint TEXT NOT NULL DEFAULT '',
@@ -331,28 +331,29 @@ CREATE TABLE field (
     is_template INTEGER NOT NULL DEFAULT 0,
     x INTEGER NOT NULL DEFAULT 0,
     y INTEGER NOT NULL DEFAULT 0,
-    type VARCHAR NOT NULL CHECK (type IN ('inputbox',
-                                          'textarea',
-                                          'selectbox',
-                                          'checkbox',
-                                          'modal',
-                                          'dialog',
-                                          'tos',
-                                          'fileupload',
-                                          'number',
-                                          'email',
-                                          'fieldgroup')),
+    type TEXT NOT NULL CHECK (type IN ('inputbox',
+                                       'textarea',
+                                       'selectbox',
+                                       'checkbox',
+                                       'modal',
+                                       'dialog',
+                                       'tos',
+                                       'fileupload',
+                                       'number',
+                                       'date',
+                                       'email',
+                                       'fieldgroup')),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE fieldattr (
-    id VARCHAR NOT NULL,
-    field_id VARCHAR NOT NULL,
-    name VARCHAR NOT NULL,
-    type VARCHAR NOT NULL CHECK (TYPE IN ('int',
-                                          'bool',
-                                          'unicode',
-                                          'localized')),
+    id TEXT NOT NULL,
+    field_id TEXT NOT NULL,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL CHECK (TYPE IN ('int',
+                                       'bool',
+                                       'unicode',
+                                       'localized')),
     value TEXT NOT NULL,
     UNIQUE (field_id, name),
     FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE,
@@ -360,8 +361,8 @@ CREATE TABLE fieldattr (
 );
 
 CREATE TABLE fieldoption (
-    id VARCHAR NOT NULL,
-    field_id VARCHAR NOT NULL,
+    id TEXT NOT NULL,
+    field_id TEXT NOT NULL,
     label TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
     score_points INTEGER NOT NULL,
@@ -371,8 +372,8 @@ CREATE TABLE fieldoption (
 );
 
 CREATE TABLE optionactivatefield (
-    field_option_id VARCHAR NOT NULL,
-    field_id VARCHAR NOT NULL,
+    field_option_id TEXT NOT NULL,
+    field_id TEXT NOT NULL,
     UNIQUE (field_id),
     FOREIGN KEY (field_option_id) REFERENCES fieldoption(id) ON DELETE CASCADE,
     FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
@@ -380,34 +381,33 @@ CREATE TABLE optionactivatefield (
 );
 
 CREATE TABLE step (
-    id VARCHAR NOT NULL,
+    id TEXT NOT NULL,
     label TEXT NOT NULL,
     description TEXT NOT NULL,
     hint TEXT NOT NULL,
-    context_id VARCHAR NOT NULL,
+    context_id TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
     FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE fieldanswer (
-    id VARCHAR NOT NULL,
-    internaltip_id VARCHAR NOT NULL,
-    field_id VARCHAR NOT NULL,
+    id TEXT NOT NULL,
+    internaltip_id TEXT NOT NULL,
+    field_id TEXT NOT NULL,
     n INTEGER NOT NULL,
-    key VARCHAR NOT NULL,
+    key TEXT NOT NULL,
     answer BLOB NOT NULL,
     UNIQUE (id, internaltip_id, n, key),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE archivedschema (
-    id VARCHAR NOT NULL,
-    hash VARCHAR NOT NULL,
-    type VARCHAR NOT NULL CHECK (type IN ('context',
-                                          'questionnaire',
-                                          'preview')),
-    language VARCHAR NOT NULL,
+    id TEXT NOT NULL,
+    hash TEXT NOT NULL,
+    type TEXT NOT NULL CHECK (type IN ('questionnaire',
+                                       'preview')),
+    language TEXT NOT NULL,
     schema BLOB NOT NULL,
     UNIQUE (hash, type, language),
     PRIMARY KEY (id)
