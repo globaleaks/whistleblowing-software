@@ -820,7 +820,6 @@ class transact(object):
             result = None
         except exceptions.IntegrityError as e:
             transaction.abort()
-            print e
             raise DatabaseIntegrityError(str(e))
         except HTTPError as excep:
             transaction.abort()

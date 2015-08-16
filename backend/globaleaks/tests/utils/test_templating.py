@@ -139,7 +139,6 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
                            node_info=self.node_dict,
                            receiver_info=self.receiver_dict,
                            context_info=self.context_dict,
-                           steps_info=self.steps_dict,
                            tip_info=self.rtip_dict,
                            subevent_info=self.subevent,
                            do_mail=False)
@@ -150,7 +149,6 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
 
         self.receiver_dict = yield admin.get_receiver(self.dummyReceiver_1['id'], 'en')
         self.context_dict = yield admin.get_context(self.dummyContext['id'], 'en')
-        self.steps_dict = yield admin.get_context_steps(self.dummyContext['id'], 'en')
         self.notif_dict = yield admin.notification.get_notification('en')
         self.node_dict = yield admin.admin_serialize_node('en')
         self.rtip_dict = self.dummyRTips[0]['itip']

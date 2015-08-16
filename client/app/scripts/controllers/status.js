@@ -25,6 +25,14 @@ GLClient.controller('StatusCtrl',
       return ret;
     };
 
+    $scope.hasMultipleEntries = function(field_answer) {
+      if (field_answer !== undefined) {
+        return field_answer.length > 1;
+      }
+
+      return false;
+    }
+
     $scope.filterFields = function(field) {
       return field.type !== 'fileupload';
     };

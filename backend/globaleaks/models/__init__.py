@@ -241,7 +241,7 @@ class InternalTip(Model):
     # internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
     # receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
-    wb_steps = JSON()
+    questionnaire_hash = Unicode()
     preview = JSON()
     progressive = Int(default=0)
     tor2web = Bool(default=False)
@@ -769,9 +769,6 @@ class FieldOption(Model):
 
 
 class OptionActivateField(BaseModel):
-    """
-    Class used to implement references between Options and the Fields that activates
-    """
     __storm_table__ = 'optionactivatefield'
     __storm_primary__ = 'field_option_id', 'field_id'
 
@@ -779,6 +776,26 @@ class OptionActivateField(BaseModel):
     field_id = Unicode()
 
     unicode_keys = ['field_option_id', 'field_id']
+
+
+class FieldAnswer(Model):
+    internaltip_id = Unicode()
+    field_id = Unicode()
+    n = Int(default=0)
+    key = Unicode(default=u'')
+    answer = Unicode(default=u'')
+
+    int_key = ['n']
+    unicode_keys = ['internaltip_id', 'field_id', 'key', 'answer']
+
+
+class ArchivedSchema(Model):
+    hash = Unicode()
+    type = Unicode()
+    language = Unicode()
+    schema = JSON()
+
+    unicode_keys = ['hash', 'language']
 
 
 class Step(Model):
@@ -937,6 +954,11 @@ InternalTip.receivers = ReferenceSet(
 InternalTip.context = Reference(
     InternalTip.context_id,
     Context.id
+)
+
+InternalTip.answers = ReferenceSet(
+    InternalTip.id,
+    FieldAnswer.internaltip_id
 )
 
 InternalTip.comments = ReferenceSet(

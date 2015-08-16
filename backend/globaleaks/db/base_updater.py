@@ -10,6 +10,7 @@ from storm.variables import EnumVariable, IntVariable, RawStrVariable, PickleVar
 from storm.variables import UnicodeVariable, JSONVariable
 
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
+from globaleaks.db.datainit import db_update_memory_variables
 from globaleaks.settings import GLSetting
 
 def variableToSQL(var, db_type):

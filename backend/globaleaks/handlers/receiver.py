@@ -13,6 +13,7 @@ from globaleaks.handlers.authentication import authenticated, transport_security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.node import get_public_receiver_list, anon_serialize_node
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
+from globaleaks.handlers.submission import db_get_archived_preview_schema
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
@@ -94,7 +95,7 @@ def update_receiver_settings(store, receiver_id, request, language):
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    receiver.user.language = request.get('language', GLSetting.memory_copy.language)
+    receiver.user.language = request.get('language', GLSetting.memory_copy.default_language)
     receiver.user.timezone = request.get('timezone', GLSetting.memory_copy.default_timezone)
 
     new_password = request['password']
@@ -152,6 +153,7 @@ def get_receivertip_list(store, receiver_id, language):
             'file_counter': rfiles_n,
             'comment_counter': rtip.internaltip.comments.count(),
             'message_counter': message_counter,
+            'preview_schema': db_get_archived_preview_schema(store, rtip.internaltip.questionnaire_hash, language),
             'preview': rtip.internaltip.preview
         })
 

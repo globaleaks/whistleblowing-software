@@ -14,8 +14,8 @@ CREATE TABLE user (
     timezone INTEGER DEFAULT 0,
     password_change_needed INTEGER NOT NULL,
     password_change_date VARCHAR NOT NULL,
-    PRIMARY KEY (id),
-    UNIQUE (username)
+    UNIQUE (username),
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE message (
@@ -27,8 +27,8 @@ CREATE TABLE message (
     type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
     content VARCHAR NOT NULL,
     new INTEGER NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE
+    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE comment (
@@ -39,8 +39,8 @@ CREATE TABLE comment (
     type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
     content VARCHAR NOT NULL,
     new INTEGER NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
+    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE context (
@@ -70,9 +70,9 @@ CREATE TABLE internalfile (
     new INTEGER NOT NULL,
     processing_attempts INTEGER NOT NULL,
     internaltip_id VARCHAR NOT NULL,
-    PRIMARY KEY (id),
     UNIQUE(file_path),
-    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
+    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE receiverfile (
@@ -87,26 +87,26 @@ CREATE TABLE receiverfile (
     receivertip_id VARCHAR NOT NULL,
     status VARCHAR NOT NULL CHECK (status IN ('processing', 'reference', 'encrypted', 'unavailable', 'nokey')),
     new INTEGER  NOT NULL,
-    PRIMARY KEY (id),
     FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,
     FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
-    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE
+    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE internaltip (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
     expiration_date VARCHAR NOT NULL,
-    wb_steps BLOB,
-    preview BLOB,
+    questionnaire_hash VARCHAR NOT NULL,
+    preview BLOB NOT NULL,
     progressive INTEGER NOT NULL,
     tor2web INTEGER NOT NULL,
     last_activity VARCHAR,
     context_id VARCHAR NOT NULL,
     new INTEGER NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE
+    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE node (
@@ -219,9 +219,9 @@ CREATE TABLE receiver (
     pgp_key_public VARCHAR,
     pgp_key_expiration INTEGER,
     presentation_order INTEGER,
-    PRIMARY KEY (id),
     UNIQUE(name),
-    FOREIGN KEY(id) REFERENCES user(id) ON DELETE CASCADE
+    FOREIGN KEY(id) REFERENCES user(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE eventlogs (
@@ -233,42 +233,42 @@ CREATE TABLE eventlogs (
     receiver_id VARCHAR NOT NULL,
     receivertip_id VARCHAR,
     mail_sent INTEGER,
-    PRIMARY KEY (id),
     FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
-    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE
+    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE receiver_context (
     context_id VARCHAR NOT NULL,
     receiver_id VARCHAR NOT NULL,
-    PRIMARY KEY (context_id, receiver_id),
     FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
-    FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
+    FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
+    PRIMARY KEY (context_id, receiver_id)
 );
 
 CREATE TABLE receiver_internaltip (
     receiver_id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
-    PRIMARY KEY (receiver_id, internaltip_id),
     FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
-    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
+    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    PRIMARY KEY (receiver_id, internaltip_id)
 );
 
 CREATE TABLE field_field (
     parent_id VARCHAR NOT NULL,
     child_id VARCHAR NOT NULL,
-    PRIMARY KEY (parent_id, child_id),
     FOREIGN KEY (parent_id) REFERENCES field(id) ON DELETE CASCADE,
-    FOREIGN KEY (child_id) REFERENCES field(id) ON DELETE CASCADE
+    FOREIGN KEY (child_id) REFERENCES field(id) ON DELETE CASCADE,
+    PRIMARY KEY (parent_id, child_id)
 );
 
 CREATE TABLE step_field (
     step_id VARCHAR NOT NULL,
     field_id VARCHAR NOT NULL,
-    PRIMARY KEY (step_id, field_id),
-    UNIQUE (field_id)
+    UNIQUE (field_id),
     FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
-    FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE
+    FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
+    PRIMARY KEY (step_id, field_id)
 );
 
 CREATE TABLE receivertip (
@@ -280,9 +280,9 @@ CREATE TABLE receivertip (
     receiver_id VARCHAR NOT NULL,
     label VARCHAR NOT NULL,
     new INTEGER NOT NULL,
-    PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
-    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
+    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE whistleblowertip (
@@ -291,8 +291,8 @@ CREATE TABLE whistleblowertip (
     internaltip_id VARCHAR NOT NULL,
     last_access VARCHAR,
     receipt_hash VARCHAR NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
+    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE applicationdata (
@@ -354,9 +354,9 @@ CREATE TABLE fieldattr (
                                           'unicode',
                                           'localized')),
     value TEXT NOT NULL,
-    PRIMARY KEY (id),
     UNIQUE (field_id, name),
-    FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE
+    FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE fieldoption (
@@ -365,18 +365,18 @@ CREATE TABLE fieldoption (
     label TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
     score_points INTEGER NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE
+    FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 
 );
 
 CREATE TABLE optionactivatefield (
     field_option_id VARCHAR NOT NULL,
     field_id VARCHAR NOT NULL,
-    PRIMARY KEY (field_option_id, field_id),
     UNIQUE (field_id),
     FOREIGN KEY (field_option_id) REFERENCES fieldoption(id) ON DELETE CASCADE,
-    FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE
+    FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
+    PRIMARY KEY (field_option_id, field_id)
 );
 
 CREATE TABLE step (
@@ -386,6 +386,29 @@ CREATE TABLE step (
     hint TEXT NOT NULL,
     context_id VARCHAR NOT NULL,
     presentation_order INTEGER NOT NULL,
+    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
-    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE
 );
+
+CREATE TABLE fieldanswer (
+    id VARCHAR NOT NULL,
+    internaltip_id VARCHAR NOT NULL,
+    field_id VARCHAR NOT NULL,
+    n INTEGER NOT NULL,
+    key VARCHAR NOT NULL,
+    answer BLOB NOT NULL,
+    UNIQUE (id, internaltip_id, n, key),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE archivedschema (
+    id VARCHAR NOT NULL,
+    hash VARCHAR NOT NULL,
+    type VARCHAR NOT NULL CHECK (type IN ('context',
+                                          'questionnaire',
+                                          'preview')),
+    language VARCHAR NOT NULL,
+    schema BLOB NOT NULL,
+    UNIQUE (hash, type, language),
+    PRIMARY KEY (id)
+)

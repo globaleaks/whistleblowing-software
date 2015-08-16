@@ -12,7 +12,9 @@ from globaleaks.handlers.admin import create_receiver
 from globaleaks.rest import errors
 from globaleaks.models import InternalTip
 from globaleaks.utils.token import Token
-from globaleaks.handlers.submission import create_whistleblower_tip, SubmissionCreate, SubmissionInstance
+from globaleaks.handlers.admin import get_context_steps
+from globaleaks.handlers.submission import create_whistleblower_tip, \
+    SubmissionCreate, SubmissionInstance
 
 # and here, our protagonist character:
 from globaleaks.handlers.submission import create_submission
@@ -48,17 +50,6 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
     @inlineCallbacks
-    def test_create_submission_invalid_submission(self):
-        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-
-        for wb_step in self.submission_desc['wb_steps']:
-            for c in wb_step['children']:
-                c['value'] = unicode("You know nothing John Snow" * 100  * 100)
-
-        yield self.assertFailure(self.create_submission(self.submission_desc),
-                                 errors.InvalidInputFormat)
-
-    @inlineCallbacks
     def test_create_submission_with_wrong_receiver(self):
         disassociated_receiver = yield create_receiver(self.get_dummy_receiver('dumb'), 'en')
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
@@ -76,7 +67,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         # remind: return a tuple (serzialized_itip, wb_itip)
         wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
 
-        self.assertTrue('wb_steps' in wb_tip)
+        self.assertTrue('answers' in wb_tip)
 
     @inlineCallbacks
     def test_create_receiverfiles_allow_unencrypted_true_no_keys_loaded(self):
@@ -111,60 +102,21 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         submission_request = yield self.get_dummy_submission(self.dummyContext['id'])
 
         yield self.assertFailure(self.create_submission(submission_request),
-                                 errors.SubmissionFailFields)
+                                 errors.SubmissionValidationFailure)
 
     @inlineCallbacks
     def test_update_submission(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
 
-        self.submission_desc['wb_steps'] = yield self.fill_random_fields(self.dummyContext['id'])
+        self.submission_desc['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
         wb_access_id, _, _ = yield authentication.login_wb(self.submission_desc['receipt'])
 
         wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
 
-        self.assertTrue('wb_steps' in wb_tip)
+        self.assertTrue('answers' in wb_tip)
 
-
-    @inlineCallbacks
-    def test_fields_fail_unexpected_presence(self):
-        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-
-        found_at_least_a_field = False
-
-        for s in self.submission_desc['wb_steps']:
-            for f in s['children']:
-                # we assign a random id to the first field
-                f['id'] = 'alien'
-                found_at_least_a_field = True
-                break
-
-        self.assertTrue(found_at_least_a_field)
-
-        yield self.assertFailure(self.create_submission(self.submission_desc),
-                                 errors.SubmissionFailFields)
-
-    @inlineCallbacks
-    def test_fields_fail_missing_required(self):
-        required_key = unicode(self.dummyFields[0]['id']) # first of the dummy field is
-                                                          # marked as required!
-
-        sbmt = yield self.get_dummy_submission(self.dummyContext['id'])
-        i = 0
-        done = False
-        for s in sbmt['wb_steps']:
-            for f in s['children']:
-                if f['id'] == required_key:
-                    s['children'].pop(i)
-                    done = True
-                    break
-            if done:
-                break
-            i += 1
-
-        yield self.assertFailure(self.create_submission(sbmt),
-                                 errors.SubmissionFailFields)
 
 class Test_SubmissionCreate(helpers.TestHandlerWithPopulatedDB):
     _handler = SubmissionCreate
@@ -175,7 +127,7 @@ class Test_SubmissionCreate(helpers.TestHandlerWithPopulatedDB):
             {
               'context_id': self.dummyContext['id'],
               'receivers': [],
-              'wb_steps': [],
+              'answers': {},
               'human_captcha_answer': 0,
               'graph_captcha_answer': '',
               'proof_of_work': 0,

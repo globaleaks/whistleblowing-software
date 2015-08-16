@@ -51,7 +51,7 @@ class TestTipInstance(TTip):
 
         self.submission_desc = yield submission.create_submission(token.token_id, dummySubmissionDict, False, 'en')
 
-        self.assertEqual(self.submission_desc['wb_steps'], dummySubmissionDict['wb_steps'])
+        self.assertEqual(self.submission_desc['answers'], dummySubmissionDict['answers'])
 
         tips_receiver_1 = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
         tips_receiver_2 = yield receiver.get_receivertip_list(self.receiver2_desc['id'], 'en')
@@ -76,7 +76,7 @@ class TestTipInstance(TTip):
     def wb_retrive_tip_data(self):
         self.wb_data = yield wbtip.get_tip(self.wb_tip_id, 'en')
 
-        self.assertEqual(self.wb_data['wb_steps'], self.submission_desc['wb_steps'])
+        self.assertEqual(self.wb_data['answers'], self.submission_desc['answers'])
 
     @inlineCallbacks
     def access_receivers_tip(self):
@@ -88,12 +88,12 @@ class TestTipInstance(TTip):
 
         for i in range(1, 2):
             self.receiver1_data = yield rtip.get_tip(auth1, self.rtip1_id, 'en')
-            self.assertEqual(self.receiver1_data['wb_steps'], self.submission_desc['wb_steps'])
+            self.assertEqual(self.receiver1_data['answers'], self.submission_desc['answers'])
             self.assertEqual(self.receiver1_data['access_counter'], i)
 
         for i in range(1, 2):
             self.receiver2_data = yield rtip.get_tip(auth2, self.rtip2_id, 'en')
-            self.assertEqual(self.receiver2_data['wb_steps'], self.submission_desc['wb_steps'])
+            self.assertEqual(self.receiver2_data['answers'], self.submission_desc['answers'])
             self.assertEqual(self.receiver2_data['access_counter'], i)
 
     @inlineCallbacks
@@ -113,7 +113,7 @@ class TestTipInstance(TTip):
         # this test has been added to test issue/515
         self.assertTrue(isinstance(tiplist, list))
         self.assertTrue(isinstance(tiplist[0], dict))
-        self.assertTrue(isinstance(tiplist[0]['preview'], list))
+        self.assertTrue(isinstance(tiplist[0]['preview'], dict))
         # then the content here depends on the fields
 
     @inlineCallbacks
@@ -391,8 +391,8 @@ class TestTipInstance(TTip):
         yield self.receiver1_get_tip_list()
         yield self.receiver_RW_comments()
         yield self.wb_RW_comments()
-        yield self.wb_get_receiver_list(GLSetting.memory_copy.language)
-        yield self.receiver_get_receiver_list(GLSetting.memory_copy.language)
+        yield self.wb_get_receiver_list(GLSetting.memory_copy.default_language)
+        yield self.receiver_get_receiver_list(GLSetting.memory_copy.default_language)
         # test expiration date
         yield self.fail_postpone_expiration_date()
         yield self.verify_default_expiration_date()

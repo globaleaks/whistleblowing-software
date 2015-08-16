@@ -166,7 +166,7 @@ class BaseHandler(RequestHandler):
         if not lang:
             # before was used the Client language. but shall be unsupported
             # lang = self.request.headers.get('Accepted-Language', None)
-            lang = GLSetting.memory_copy.language
+            lang = GLSetting.memory_copy.default_language
 
         self.request.language = lang
 

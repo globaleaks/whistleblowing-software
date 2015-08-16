@@ -11,21 +11,24 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.jobs.base import GLJob
 from globaleaks.handlers import admin, rtip
+from globaleaks.handlers.submission import db_serialize_questionnaire_answers, \
+    db_get_archived_questionnaire_schema
 from globaleaks.plugins.base import Event
 from globaleaks.settings import transact, GLSetting
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.models import EventLogs
 
 
-def serialize_receivertip(receivertip):
+def serialize_receivertip(store, rtip, language):
     rtip_dict = {
-        'id': receivertip.id,
-        'creation_date': datetime_to_ISO8601(receivertip.internaltip.creation_date),
-        'last_access': datetime_to_ISO8601(receivertip.last_access),
-        'access_counter': receivertip.access_counter,
-        'wb_steps': receivertip.internaltip.wb_steps,
-        'context_id': receivertip.internaltip.context.id,
-        'expiration_date': datetime_to_ISO8601(receivertip.internaltip.expiration_date),
+        'id': rtip.id,
+        'creation_date': datetime_to_ISO8601(rtip.internaltip.creation_date),
+        'last_access': datetime_to_ISO8601(rtip.last_access),
+        'access_counter': rtip.access_counter,
+        'questionnaire': db_get_archived_questionnaire_schema(store, rtip.internaltip.questionnaire_hash, language),
+        'answers': db_serialize_questionnaire_answers(store, rtip.internaltip.answers),
+        'context_id': rtip.internaltip.context.id,
+        'expiration_date': datetime_to_ISO8601(rtip.internaltip.expiration_date)
     }
 
     return rtip_dict
@@ -56,7 +59,6 @@ def db_save_events_on_db(store, event_list):
             'context_info': evnt.context_info,
             'tip_info': evnt.tip_info,
             'subevent_info': evnt.subevent_info,
-            'steps_info': evnt.steps_info,
             'type': evnt.type,
         }
 
@@ -128,15 +130,11 @@ class TipEventLogger(EventLogger):
     model = models.ReceiverTip
 
     def process_event(self, store, rtip):
-        tip_desc = serialize_receivertip(rtip)
+        tip_desc = serialize_receivertip(store, rtip, self.language)
 
         context_desc = admin.admin_serialize_context(store,
                                                      rtip.internaltip.context,
                                                      self.language)
-
-        steps_desc = admin.db_get_context_steps(store,
-                                                context_desc['id'],
-                                                    self.language)
 
         do_mail, receiver_desc = self.import_receiver(rtip.receiver)
 
@@ -145,7 +143,6 @@ class TipEventLogger(EventLogger):
                                  node_info={},
                                  receiver_info=receiver_desc,
                                  context_info=context_desc,
-                                 steps_info=steps_desc,
                                  tip_info=tip_desc,
                                  subevent_info={},
                                  do_mail=do_mail))
@@ -162,15 +159,11 @@ class MessageEventLogger(EventLogger):
         if message.type == u"receiver":
             return
 
-        tip_desc = serialize_receivertip(message.receivertip)
+        tip_desc = serialize_receivertip(store, message.receivertip, self.language)
 
         context_desc = admin.admin_serialize_context(store,
                                                      message.receivertip.internaltip.context,
                                                      self.language)
-
-        steps_desc = admin.db_get_context_steps(store,
-                                                context_desc['id'],
-                                                self.language)
 
         do_mail, receiver_desc = self.import_receiver(message.receivertip.receiver)
 
@@ -179,7 +172,6 @@ class MessageEventLogger(EventLogger):
                                  node_info={},
                                  receiver_info=receiver_desc,
                                  context_info=context_desc,
-                                 steps_info=steps_desc,
                                  tip_info=tip_desc,
                                  subevent_info=message_desc,
                                  do_mail=do_mail))
@@ -196,10 +188,6 @@ class CommentEventLogger(EventLogger):
                                                      comment.internaltip.context,
                                                      self.language)
 
-        steps_desc = admin.db_get_context_steps(store,
-                                                context_desc['id'],
-                                                self.language)
-
         # for every comment, iterate on the associated receiver(s)
         log.debug("Comments from %s - Receiver(s) %d" % \
                   (comment.author, comment.internaltip.receivers.count()))
@@ -213,7 +201,7 @@ class CommentEventLogger(EventLogger):
                                      (models.ReceiverTip.internaltip_id == comment.internaltip_id,
                                       models.ReceiverTip.receiver_id == receiver.id)).one()
 
-            tip_desc = serialize_receivertip(receivertip)
+            tip_desc = serialize_receivertip(store, receivertip, self.language)
 
             do_mail, receiver_desc = self.import_receiver(receiver)
 
@@ -222,7 +210,6 @@ class CommentEventLogger(EventLogger):
                                      node_info={},
                                      receiver_info=receiver_desc,
                                      context_info=context_desc,
-                                     steps_info=steps_desc,
                                      tip_info=tip_desc,
                                      subevent_info=comment_desc,
                                      do_mail=do_mail))
@@ -237,11 +224,7 @@ class FileEventLogger(EventLogger):
                                                      rfile.internalfile.internaltip.context,
                                                      self.language)
 
-        steps_desc = admin.db_get_context_steps(store,
-                                                context_desc['id'],
-                                                self.language)
-
-        tip_desc = serialize_receivertip(rfile.receivertip)
+        tip_desc = serialize_receivertip(store, rfile.receivertip, self.language)
         file_desc = serialize_internalfile(rfile.internalfile, rfile.id)
         do_mail, receiver_desc = self.import_receiver(rfile.receiver)
 
@@ -250,7 +233,6 @@ class FileEventLogger(EventLogger):
                                  node_info={},
                                  receiver_info=receiver_desc,
                                  context_info=context_desc,
-                                 steps_info=steps_desc,
                                  tip_info=tip_desc,
                                  subevent_info=file_desc,
                                  do_mail=do_mail))
