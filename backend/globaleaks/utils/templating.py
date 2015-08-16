@@ -56,17 +56,16 @@ class Templating(object):
                                  (supported_event_types.keys(), event_dicts.type))
 
         # For each Event type, we've to dispatch the right _KeyWord class
-        TemplatClass = supported_event_types[event_dicts.type]
-        keyword_converter = TemplatClass(event_dicts.node_info, event_dicts.context_info,
-                                         event_dicts.steps_info, event_dicts.receiver_info,
-                                         event_dicts.tip_info, event_dicts.subevent_info)
+        TemplateClass = supported_event_types[event_dicts.type]
+        keyword_converter = TemplateClass(event_dicts.node_info, event_dicts.context_info,
+                                          event_dicts.receiver_info, event_dicts.tip_info,
+                                          event_dicts.subevent_info)
 
         # we've now:
         # 1) template => directly from Notification.*_template
         # 2) keyword_converter => object aligned with Event type and data
 
         for kw in keyword_converter.keyword_list:
-
             if raw_template.count(kw):
                 # if %SomeKeyword% matches, call keyword_converter.SomeKeyword function
                 variable_content = getattr(keyword_converter, kw[1:-1])()
@@ -98,13 +97,12 @@ class _KeyWord(object):
         '%NodeSignature%'
     ]
 
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc):
 
         self.keyword_list = _KeyWord.shared_keywords
 
         self.node = node_desc
         self.context = context_desc
-        self.fields = fields_desc
         self.receiver = receiver_desc
 
     def NodeName(self):
@@ -138,10 +136,10 @@ class TipKeyword(_KeyWord):
         '%ExpirationWatch%'
     ]
 
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, *x):
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, *x):
 
         super(TipKeyword, self).__init__(node_desc, context_desc,
-                                         fields_desc, receiver_desc)
+                                         receiver_desc)
 
         self.keyword_list += TipKeyword.tip_keywords
         self.tip = tip_desc
@@ -205,8 +203,8 @@ class CommentKeyword(TipKeyword):
         '%EventTime%'
     ]
 
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, comment_desc):
-        super(CommentKeyword, self).__init__(node_desc, context_desc, fields_desc, receiver_desc, tip_desc)
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, comment_desc):
+        super(CommentKeyword, self).__init__(node_desc, context_desc, receiver_desc, tip_desc)
 
         self.keyword_list += CommentKeyword.comment_keywords
         self.comment = comment_desc
@@ -224,9 +222,9 @@ class MessageKeyword(TipKeyword):
         '%EventTime%'
     ]
 
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, message_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, message_desc):
         super(MessageKeyword, self).__init__(node_desc, context_desc,
-                                             fields_desc, receiver_desc,
+                                             receiver_desc,
                                              tip_desc)
 
         self.keyword_list += MessageKeyword.message_keywords
@@ -247,9 +245,9 @@ class FileKeyword(TipKeyword):
         '%FileType%'
     ]
 
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, file_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, file_desc):
         super(FileKeyword, self).__init__(node_desc, context_desc,
-                                          fields_desc, receiver_desc,
+                                          receiver_desc,
                                           tip_desc)
 
         self.keyword_list += FileKeyword.file_keywords
@@ -275,9 +273,9 @@ class ZipFileKeyword(TipKeyword):
         '%TotalSize%'
     ]
 
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, zip_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, zip_desc):
         super(ZipFileKeyword, self).__init__(node_desc, context_desc,
-                                             fields_desc, receiver_desc,
+                                             receiver_desc,
                                              tip_desc)
 
         self.keyword_list += ZipFileKeyword.zip_file_keywords
@@ -299,13 +297,12 @@ class PingMailKeyword(_KeyWord):
         '%EventCount%'
     ]
 
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, ping_desc):
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, ping_desc):
         """
         This is a reduced version because PingMail are
         thinked to have least information as possible
         """
-        super(PingMailKeyword, self).__init__(node_desc, context_desc,
-                                            fields_desc, receiver_desc)
+        super(PingMailKeyword, self).__init__(node_desc, context_desc, receiver_desc)
 
         self.keyword_list += PingMailKeyword.ping_mail_keywords
 
@@ -324,9 +321,8 @@ class AdminPGPAlertKeyword(_KeyWord):
         "%PGPKeyInfoList%"
     ]
 
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, alert_desc):
-        super(AdminPGPAlertKeyword, self).__init__(node_desc, context_desc,
-                                                   fields_desc, receiver_desc)
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, alert_desc):
+        super(AdminPGPAlertKeyword, self).__init__(node_desc, context_desc, receiver_desc)
 
         self.keyword_list += AdminPGPAlertKeyword.admin_pgp_alert_keywords
 
@@ -351,9 +347,8 @@ class PGPAlertKeyword(_KeyWord):
         "%PGPKeyInfo%"
     ]
 
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, *x):
-        super(PGPAlertKeyword, self).__init__(node_desc, context_desc,
-                                              fields_desc, receiver_desc)
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, *x):
+        super(PGPAlertKeyword, self).__init__(node_desc, context_desc, receiver_desc)
 
         self.keyword_list += PGPAlertKeyword.pgp_alert_keywords
 
@@ -372,7 +367,6 @@ class ReceiverKeyword(_KeyWord):
     but quite likely, is time to think some notification with more
     Receiver information: this will be the template.
     """
-    def __init__(self, node_desc, context_desc, fields_desc, receiver_desc, tip_desc, *x):
-        super(ReceiverKeyword, self).__init__(node_desc, context_desc,
-                                              fields_desc, receiver_desc)
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, *x):
+        super(ReceiverKeyword, self).__init__(node_desc, context_desc, receiver_desc)
 

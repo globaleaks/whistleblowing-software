@@ -248,27 +248,31 @@ class TestGL(unittest.TestCase):
 
         return dummy_f
 
-    def fill_random_field_recursively(self, field, value=None):
+    def fill_random_field_recursively(self, answers, field, value=None):
         if value is None:
-            field['value'] = unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))
+            value = unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))
         else:
-            field['value'] = unicode(value)
+            value = unicode(value)
+
+        answers[field['id']] = {'0': { '0': value}}
 
         for c in field['children']:
             self.fill_random_field_recursively(c)
 
     @transact
-    def fill_random_fields(self, store, context_id, value=None):
+    def fill_random_answers(self, store, context_id, value=None):
         """
         return randomly populated contexts associated to specified context
         """
+        answers = {}
+
         steps = db_get_context_steps(store, context_id, 'en')
 
         for step in steps:
             for field in step['children']:
-                self.fill_random_field_recursively(field)
+                self.fill_random_field_recursively(answers, field)
 
-        return steps
+        return answers
 
     @defer.inlineCallbacks
     def get_dummy_submission(self, context_id):
@@ -286,7 +290,7 @@ class TestGL(unittest.TestCase):
         dummySubmissionDict['human_captcha_answer'] = 0
         dummySubmissionDict['graph_captcha_answer'] = ''
         dummySubmissionDict['proof_of_work'] = 0
-        dummySubmissionDict['wb_steps'] = yield self.fill_random_fields(context_id)
+        dummySubmissionDict['answers'] = yield self.fill_random_answers(context_id)
 
         defer.returnValue(dummySubmissionDict)
 
@@ -376,7 +380,7 @@ class TestGL(unittest.TestCase):
         rtips_desc = []
         rtips = store.find(ReceiverTip)
         for rtip in rtips:
-            itip = receiver_serialize_tip(rtip.internaltip, 'en')
+            itip = receiver_serialize_tip(store, rtip.internaltip, 'en')
             rtips_desc.append({'rtip_id': rtip.id, 'receiver_id': rtip.receiver_id, 'itip': itip})
 
         return rtips_desc
@@ -399,7 +403,7 @@ class TestGL(unittest.TestCase):
             for rcvr in wbtip.internaltip.receivers:
                 rcvrs_ids.append(rcvr.id)
 
-            itip = wb_serialize_tip(wbtip.internaltip, 'en')
+            itip = wb_serialize_tip(store, wbtip.internaltip, 'en')
             wbtips_desc.append({'wbtip_id': wbtip.id, 'wbtip_receivers': rcvrs_ids, 'itip': itip})
 
         return wbtips_desc
@@ -473,7 +477,7 @@ class TestGLWithPopulatedDB(TestGL):
     def perform_submission_actions(self):
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
-        self.dummySubmission['wb_steps'] = yield self.fill_random_fields(self.dummyContext['id'])
+        self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
 
         self.dummySubmission = yield create_submission(self.dummyToken.token_id,
                                                        self.dummySubmission, 
@@ -853,8 +857,7 @@ class MockDict():
 
         self.dummySubmission = {
             'context_id': '',
-            'wb_steps': [],
-            'finalize': False,
+            'answers': {},
             'receivers': [],
             'files': []
         }

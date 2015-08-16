@@ -46,18 +46,14 @@ class ExpiringRTipEvent(EventLogger):
         context_desc = admin.admin_serialize_context(store,
                                                      rtip.internaltip.context,
                                                      self.language)
-        steps_desc = admin.db_get_context_steps(store,
-                                                context_desc['id'],
-                                                self.language)
 
-        expiring_tip_desc = serialize_receivertip(rtip)
+        expiring_tip_desc = serialize_receivertip(rtip, self.language)
 
         self.events.append(Event(type=self.template_type,
                                  trigger=self.trigger,
                                  node_info={},
                                  receiver_info=receiver_desc,
                                  context_info=context_desc,
-                                 steps_info=steps_desc,
                                  tip_info=expiring_tip_desc,
                                  subevent_info=None,
                                  do_mail=do_mail))

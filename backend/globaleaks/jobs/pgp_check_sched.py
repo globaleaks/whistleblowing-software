@@ -42,7 +42,7 @@ class PGPCheckSchedule(GLJob):
 
             if rcvr.pgp_key_public and rcvr.pgp_key_expiration != datetime_null():
                if rcvr.pgp_key_expiration < datetime_now():
-                   expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSetting.memory_copy.language))
+                   expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSetting.memory_copy.default_language))
                    if node_desc['allow_unencrypted']:
                        # The PGP key status should be downgraded only if the node
                        # accept non PGP mails/files to be sent/stored.
@@ -50,7 +50,7 @@ class PGPCheckSchedule(GLJob):
                        # will remain enabled and mail won't be sent by regular flow.
                        rcvr.pgp_key_status = u'disabled'
                elif rcvr.pgp_key_expiration < datetime_now() - timedelta(days=15):
-                   expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSetting.memory_copy.language))
+                   expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSetting.memory_copy.default_language))
 
         return expired_or_expiring
 
@@ -60,7 +60,6 @@ class PGPCheckSchedule(GLJob):
         fakeevent.type = u'admin_pgp_expiration_alert'
         fakeevent.node_info = node_desc
         fakeevent.context_info = None
-        fakeevent.steps_info = None
         fakeevent.receiver_info = None
         fakeevent.tip_info = None
         fakeevent.subevent_info = {'expired_or_expiring': expired_or_expiring}
@@ -94,7 +93,6 @@ class PGPCheckSchedule(GLJob):
         fakeevent.type = u'pgp_expiration_alert'
         fakeevent.node_info = node_desc
         fakeevent.context_info = None
-        fakeevent.steps_info = None
         fakeevent.receiver_info = receiver_desc
         fakeevent.tip_info = None
         fakeevent.subevent_info = None

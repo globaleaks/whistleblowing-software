@@ -91,7 +91,6 @@ class ReceiverDeniedEmail(TempObj):
         anomalevent.notification_settings = plausible_event.notification_settings
         anomalevent.node_info = plausible_event.node_info
         anomalevent.context_info = None
-        anomalevent.steps_info = None
         anomalevent.receiver_info = plausible_event.receiver_info
         anomalevent.tip_info = None
         anomalevent.subevent_info = None
@@ -223,7 +222,6 @@ def load_complete_events(store, event_number=GLSetting.notification_limit):
         eventcomplete.tip_info = stev.description['tip_info']
         eventcomplete.subevent_info = stev.description['subevent_info']
         eventcomplete.context_info = stev.description['context_info']
-        eventcomplete.steps_info = stev.description['steps_info']
 
         eventcomplete.type = stev.description['type'] # 'Tip', 'Comment'
         eventcomplete.trigger = stev.event_reference['kind'] # 'blah' ...
@@ -343,7 +341,6 @@ class MailflushSchedule(GLJob):
             fakeevent.type = u'ping_mail'
             fakeevent.node_info = None
             fakeevent.context_info = None
-            fakeevent.steps_info = None
             fakeevent.receiver_info = receiver_dict
             fakeevent.tip_info = None
             fakeevent.subevent_info = {'counter': winks}

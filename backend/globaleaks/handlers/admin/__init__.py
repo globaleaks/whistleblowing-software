@@ -442,7 +442,7 @@ def get_context(store, context_id, language):
 def db_get_context_steps(store, context_id, language):
     """
     Returns:
-        (dict) the steps associated with the context with the specified id.
+        (dict) the questionnaire associated with the context with the specified id.
     """
     context = store.find(models.Context, models.Context.id == context_id).one()
 
@@ -714,7 +714,7 @@ def update_receiver(store, receiver_id, request, language):
     # The various options related in manage PGP keys are used here.
     pgp_options_parse(receiver, request)
 
-    receiver.user.language = request.get('language', GLSetting.memory_copy.language)
+    receiver.user.language = request.get('language', GLSetting.memory_copy.default_language)
     receiver.user.timezone = request.get('timezone', GLSetting.memory_copy.default_timezone)
 
     password = request['password']

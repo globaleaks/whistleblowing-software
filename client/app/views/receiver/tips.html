@@ -173,7 +173,7 @@
           <td>{{::tip.file_counter}}</td>
           <td>{{::tip.comment_counter}}</td>
           <td>{{::tip.message_counter}}</td>
-          <td data-ng-init="fieldsRoot = tip.preview; preview=true">
+          <td data-ng-init="fieldsRoot = tip.preview_schema; fieldAnswers = tip.preview; preview=true">
             <div data-ng-include="'views/partials/tip_fields.html'"></div>
           </td>
         </tr>

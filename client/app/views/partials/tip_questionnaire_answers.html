@@ -9,12 +9,12 @@
     </div>
   </div>
   <div class="TipPageSectionContent" data-ng-show="!collapsed">
-    <div data-ng-repeat="step in tip.wb_steps">
+    <div data-ng-repeat="step in tip.questionnaire">
       <dt id="step={{$index}}">
         <span data-translate>Step</span>
         <span>{{$index + 1}}: {{::step.label}}</span>
       </dt>
-      <dd data-ng-init="fieldsRoot=step.children">
+      <dd data-ng-init="fieldsRoot=step.children; fieldAnswers=tip.answers">
         <span data-ng-include="'views/partials/tip_fields.html'"></span>
       <dd>
     </div>

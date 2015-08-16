@@ -7,7 +7,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12" data-ng-controller="SubmissionStepCtrl" data-ng-repeat="step in submission._submission.wb_steps">
+  <div class="col-md-12" data-ng-controller="SubmissionStepCtrl" data-ng-repeat="step in submission.context.steps">
     <label>{{::step.label}}</label>
     <div id="step-1">
       <div>

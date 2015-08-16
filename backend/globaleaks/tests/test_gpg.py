@@ -89,12 +89,11 @@ class TestPGP(TestHandlerWithPopulatedDB):
                            tip_info = {
                                'creation_date': '2013-05-13T17:49:26.105485', #epoch!
                                'id': 'useless',
-                               'wb_steps' : self.fill_random_fields(self.dummyContext['id']),
+                               'wb_steps' : self.fill_random_answers(self.dummyContext['id']),
                            },
                            node_info = MockDict().dummyNode,
                            receiver_info = MockDict().dummyReceiver,
                            context_info = MockDict().dummyContext,
-                           steps_info = {},
                            subevent_info = {},
                            do_mail=False)
 
@@ -188,7 +187,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
         new_subm['context_id'] = new_context_output['id']
         new_subm['receivers'] = [ asdr_output['id'],
                                   yanr_output['id'] ]
-        new_subm['wb_steps'] = yield self.fill_random_fields(new_context_output['id'])
+        new_subm['wb_steps'] = yield self.fill_random_answers(new_context_output['id'])
 
         token = Token('submission', new_context_output['id'])
         yield self.emulate_file_upload(token, 3)

@@ -21,7 +21,7 @@ from globaleaks.utils.templating import Templating
 
 
 @transact_ro
-def get_rtip_info(store, rtip_id):
+def get_rtip_info(store, rtip_id, language):
     """
     This function return a receiver tip
     """
@@ -32,7 +32,7 @@ def get_rtip_info(store, rtip_id):
         log.err("Download of a Zip file without ReceiverTip associated!")
         raise errors.TipIdNotFound
 
-    rtip_dict = serialize_receivertip(rtip)
+    rtip_dict = serialize_receivertip(store, rtip, language)
 
     return rtip_dict
 
@@ -96,10 +96,9 @@ class CollectionDownload(BaseHandler):
 
         node_dict = yield admin.admin_serialize_node(self.request.language)
         receiver_dict = yield get_receiver_from_rtip(rtip_id, self.request.language)
-        rtip_dict = yield get_rtip_info(rtip_id)
+        rtip_dict = yield get_rtip_info(rtip_id, self.request.language)
         collection_tip_dict = yield get_collection_info(rtip_id)
         context_dict = yield admin.get_context(rtip_dict['context_id'], 'en')
-        steps_dict = yield admin.get_context_steps(context_dict['id'], 'en')
         notif_dict = yield admin.notification.get_notification(self.request.language)
 
         mock_event = Event(
@@ -108,7 +107,6 @@ class CollectionDownload(BaseHandler):
             node_info=node_dict,
             receiver_info=receiver_dict,
             context_info=context_dict,
-            steps_info=steps_dict,
             tip_info=rtip_dict,
             subevent_info=collection_tip_dict,
             do_mail=False,

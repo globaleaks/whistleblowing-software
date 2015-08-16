@@ -275,8 +275,8 @@ class Alarm(object):
             template = notif.admin_anomaly_mail_template
             if admin_user.language in template:
                 localized_template = template[admin_user.language]
-            elif GLSetting.memory_copy.language in template:
-                localized_template = template[GLSetting.memory_copy.language]
+            elif GLSetting.memory_copy.default_language in template:
+                localized_template = template[GLSetting.memory_copy.default_language]
             else:
                 raise Exception("Cannot find any language for admin notification")
             return localized_template
@@ -299,8 +299,8 @@ class Alarm(object):
                                 Alarm.stress_levels['disk_space'])
             if admin_user.language in template:
                 localized_template = template[admin_user.language]
-            elif GLSetting.memory_copy.language in template:
-                localized_template = template[GLSetting.memory_copy.language]
+            elif GLSetting.memory_copy.default_language in template:
+                localized_template = template[GLSetting.memory_copy.default_language]
             else:
                 raise Exception("Cannot find any language for Admin disk alarm (level %d)" %
                                 Alarm.stress_levels['disk_space'])
@@ -316,8 +316,8 @@ class Alarm(object):
             template = notif.admin_anomaly_activities
             if admin_user.language in template:
                 localized_template = template[admin_user.language]
-            elif GLSetting.memory_copy.language in template:
-                localized_template = template[GLSetting.memory_copy.language]
+            elif GLSetting.memory_copy.default_language in template:
+                localized_template = template[GLSetting.memory_copy.default_language]
             else:
                 raise Exception("Cannot find any language for admin notification")
             return localized_template

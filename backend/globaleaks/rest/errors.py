@@ -113,7 +113,7 @@ class ReceiverIdNotFound(GLException):
 # UNUSED ERROR CODE 21 HERE!
 
 
-class SubmissionFailFields(GLException):
+class SubmissionValidationFailure(GLException):
     """
     If the fields required values and format type do not fit the requirement, this
     error is raised. The Client has to enforce as possible the Input Format, when this
