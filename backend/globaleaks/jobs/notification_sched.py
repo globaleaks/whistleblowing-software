@@ -26,7 +26,7 @@ def serialize_receivertip(store, rtip, language):
         'last_access': datetime_to_ISO8601(rtip.last_access),
         'access_counter': rtip.access_counter,
         'questionnaire': db_get_archived_questionnaire_schema(store, rtip.internaltip.questionnaire_hash, language),
-        'answers': db_serialize_questionnaire_answers(store, rtip.internaltip.answers),
+        'answers': db_serialize_questionnaire_answers(store, rtip.internaltip),
         'context_id': rtip.internaltip.context.id,
         'expiration_date': datetime_to_ISO8601(rtip.internaltip.expiration_date)
     }

@@ -7,7 +7,7 @@
       </div>
 
       <div data-ng-if="!hasMultiplesEntries(fieldAnswers[field.id])">
-        <div data-ng-init="entry = fieldAnswers[field.id]['0']" data-ng-include="'views/partials/tip_field_answer_entry.html'"></div>
+        <div data-ng-init="entry = fieldAnswers[field.id][0]" data-ng-include="'views/partials/tip_field_answer_entry.html'"></div>
       </div>
 
       <div data-ng-if="hasMultipleEntries(fieldAnswers[field.id])">

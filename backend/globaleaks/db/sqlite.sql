@@ -387,19 +387,34 @@ CREATE TABLE step (
     hint TEXT NOT NULL,
     context_id TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
-    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
+    FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE fieldanswer (
     id TEXT NOT NULL,
     internaltip_id TEXT NOT NULL,
-    field_id TEXT NOT NULL,
-    n INTEGER NOT NULL,
     key TEXT NOT NULL,
-    answer BLOB NOT NULL,
-    UNIQUE (id, internaltip_id, n, key),
+    is_leaf INTEGER NOT NULL,
+    value BLOB NOT NULL,
     PRIMARY KEY (id)
+);
+
+CREATE TABLE fieldanswergroup (
+    id TEXT NOT NULL,
+    fieldanswer_id TEXT NOT NULL,
+    number INTEGER NOT NULL,
+    UNIQUE (id, fieldanswer_id, n)
+    FOREIGN KEY (fieldanswer_id) REFERENCES fieldanswer(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE fieldanswergroup_fieldanswer (
+    fieldanswergroup_id TEXT NOT NULL,
+    fieldanswer_id TEXT NOT NULL,
+    FOREIGN KEY (fieldanswergroup_id) REFERENCES fieldanswergroup(id) ON DELETE CASCADE,
+    FOREIGN KEY (fieldanswer_id) REFERENCES fieldanswer(id) ON DELETE CASCADE,
+    PRIMARY KEY (fieldanswergroup_id, fieldanswer_id)
 );
 
 CREATE TABLE archivedschema (

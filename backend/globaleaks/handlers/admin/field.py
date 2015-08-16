@@ -404,7 +404,7 @@ def db_create_step(store, step, language):
              log.err("Creation error: unexistent field can't be associated")
              raise errors.FieldIdNotFound
 
-         db_update_field(f['id'], f, language)
+         db_update_field(store, f['id'], f, language)
 
      return s
 

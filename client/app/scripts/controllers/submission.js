@@ -135,6 +135,14 @@ GLClient.controller('SubmissionCtrl',
     return rows;
   };
 
+  $scope.initAnswers = function(answers, entry, field_id, toplevel) {
+    if (toplevel) {
+      answers[field_id] = [{}];
+    } else {
+      entry[field_id] = [{}];
+    }
+  }
+
   $scope.goToStep = function(index) {
     $scope.selection = index;
   };

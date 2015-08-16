@@ -769,7 +769,6 @@ class FieldOption(Model):
 
 
 class OptionActivateField(BaseModel):
-    __storm_table__ = 'optionactivatefield'
     __storm_primary__ = 'field_option_id', 'field_id'
 
     field_option_id = Unicode()
@@ -780,14 +779,20 @@ class OptionActivateField(BaseModel):
 
 class FieldAnswer(Model):
     internaltip_id = Unicode()
-    field_id = Unicode()
-    n = Int(default=0)
     key = Unicode(default=u'')
-    answer = Unicode(default=u'')
+    is_leaf = Bool(default=True)
+    value = Unicode(default=u'')
 
-    int_key = ['n']
-    unicode_keys = ['internaltip_id', 'field_id', 'key', 'answer']
+    unicode_keys = ['internaltip_id', 'key', 'value']
+    bool_keys = ['is_leaf']
 
+
+class FieldAnswerGroup(Model):
+    number = Int(default=0)
+    fieldanswer_id = Unicode()
+
+    unicode_keys = ['fieldanswer_id']
+    int_keys = ['number']
 
 class ArchivedSchema(Model):
     hash = Unicode()
@@ -885,6 +890,17 @@ class ReceiverInternalTip(BaseModel):
     internaltip_id = Unicode()
 
 
+class FieldAnswerGroupFieldAnswer(BaseModel):
+    """
+    Class used to implement references between FieldAnswerGroup and FieldAnswer
+    """
+    __storm_table__ = 'fieldanswergroup_fieldanswer'
+    __storm_primary__ = 'fieldanswergroup_id', 'fieldanswer_id'
+
+    fieldanswergroup_id = Unicode()
+    fieldanswer_id = Unicode()
+
+
 Field.options = ReferenceSet(
     Field.id,
     FieldOption.field_id
@@ -915,13 +931,21 @@ FieldOption.activated_fields = ReferenceSet(
     Field.id
 )
 
+FieldAnswer.groups = ReferenceSet(FieldAnswer.id, FieldAnswerGroup.fieldanswer_id)
+
+FieldAnswerGroup.fieldanswers = ReferenceSet(
+    FieldAnswerGroup.id,
+    FieldAnswerGroupFieldAnswer.fieldanswergroup_id,
+    FieldAnswerGroupFieldAnswer.fieldanswer_id,
+    FieldAnswer.id
+)
+
 Receiver.internaltips = ReferenceSet(
     Receiver.id,
     ReceiverInternalTip.receiver_id,
     ReceiverInternalTip.internaltip_id,
     InternalTip.id
 )
-
 
 Step.children = ReferenceSet(
     Step.id,
@@ -934,7 +958,6 @@ Context.steps = ReferenceSet(Context.id, Step.context_id)
 
 Step.context = Reference(Step.context_id, Context.id)
 
-# _*_# References tracking below #_*_#
 Receiver.user = Reference(Receiver.id, User.id)
 
 Receiver.internaltips = ReferenceSet(

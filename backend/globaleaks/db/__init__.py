@@ -11,10 +11,6 @@ from storm.exceptions import OperationalError
 from globaleaks.utils.utility import log
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks import models
-from globaleaks.db import updater_manager, base_updater
-
-
-base_updater.TableReplacer.testing = True
 
 from globaleaks.db.datainit import init_appdata, init_db, load_appdata
 
@@ -179,6 +175,7 @@ def check_db_files():
                 print "Performing update of Database from version %d to version %d" % \
                       (starting_ver, GLSetting.db_version)
                 try:
+                    from globaleaks.db import updater_manager
                     updater_manager.perform_version_update(starting_ver, GLSetting.db_version)
                     print "GlobaLeaks database version %d: update complete!" % GLSetting.db_version
                 except Exception:
