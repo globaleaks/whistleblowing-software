@@ -91,6 +91,8 @@ def db_update_fieldoption(store, fieldoption_id, option, language):
     for activated_field in option['activated_fields']:
         o.activated_fields.add(store.find(models.Field, models.Field.id == activated_field))
 
+    return o.id
+
 
 def db_update_fieldoptions(store, field_id, options, language):
     """
@@ -133,7 +135,6 @@ def db_update_fieldattrs(store, field_id, field_attrs, language):
         if value['type'] == u'localized':
             fill_localized_keys(value, ['value'], language)
 
-        print value
         attrs_ids.append(db_update_fieldattr(store, field_id, value))
 
     store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, Not(In(models.FieldAttr.id, attrs_ids)))).remove()

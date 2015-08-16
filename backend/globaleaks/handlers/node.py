@@ -141,6 +141,7 @@ def anon_serialize_option(option, language):
 
     return get_localized_values(ret_dict, option, option.localized_strings, language)
 
+
 def anon_serialize_field(store, field, language):
     """
     Serialize a field, localizing its content depending on the language.

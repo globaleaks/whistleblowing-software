@@ -122,8 +122,9 @@ def db_update_memory_variables(store):
         GLSetting.memory_copy.allow_iframes_inclusion = node.allow_iframes_inclusion
 
         GLSetting.memory_copy.exception_email = node.exception_email
-        GLSetting.memory_copy.language = node.default_language
+        GLSetting.memory_copy.default_language = node.default_language
         GLSetting.memory_copy.default_timezone = node.default_timezone
+        GLSetting.memory_copy.languages_enabled  = node.languages_enabled
 
         # Email settings are copyed because they are used when an exception raises
         # and we can't go to check in the DB, because that's shall be exception source

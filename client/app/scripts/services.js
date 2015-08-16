@@ -351,7 +351,7 @@ angular.module('GLServices', ['ngResource']).
 
         self._submission = new submissionResource({
           context_id: self.context.id,
-          wb_steps: self.context.steps,
+          answers: {},
           receivers: [],
           human_captcha_answer: 0,
           graph_captcha_answer: "",
@@ -359,8 +359,6 @@ angular.module('GLServices', ['ngResource']).
         });
 
         self._submission.$save(function(submissionID){
-          self._submission.wb_steps = self.context.steps;
-
           if (cb) {
             cb();
           }

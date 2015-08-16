@@ -27,8 +27,20 @@ from globaleaks.third_party.rstr import xeger
 
 SALT_LENGTH = (128 / 8)  # 128 bits of unique salt
 
+
 crypto_backend = default_backend()
 
+
+def sha256(data):
+    h = hashes.Hash(hashes.SHA256(), backend=crypto_backend)
+    h.update(data)
+    return binascii.b2a_hex(h.finalize())
+
+
+def sha512(data):
+    h = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
+    h.update(data)
+    return binascii.b2a_hex(h.finalize())
 
 class GLSecureTemporaryFile(_TemporaryFileWrapper):
     """
@@ -204,11 +216,9 @@ def get_salt(salt_input):
 
     is performed a SHA512 hash of the salt_input string, and are returned 128bits
     """
-    sha = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
-    sha.update(salt_input.encode('utf-8'))
+    digest = sha512(salt_input.encode('utf-8'))
+
     # hex require two byte each to describe 1 byte of entropy
-    h = sha.finalize()
-    digest = binascii.b2a_hex(h)
     return digest[:SALT_LENGTH * 2]
 
 

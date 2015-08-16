@@ -18,8 +18,6 @@ from email.mime.text import MIMEText
 from email.header import Header
 from email import Charset
 
-from cryptography.hazmat.primitives import hashes
-
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.internet import reactor, protocol, error
 from twisted.internet.defer import Deferred, AlreadyCalledError, fail
@@ -34,7 +32,7 @@ from txsocksx.client import SOCKS5ClientEndpoint
 from globaleaks import __version__
 from globaleaks.utils.utility import log
 from globaleaks.settings import GLSetting
-from globaleaks.security import crypto_backend
+from globaleaks.security import sha256
 
 
 # Relevant errors from http://tools.ietf.org/html/rfc4954
@@ -301,19 +299,16 @@ def send_exception_email(mail_body):
         log.err("Error: Cannot send mail exception before complete initialization.")
         return
 
-    h = hashes.Hash(hashes.SHA256(),
-                    backend=crypto_backend)
-    h.update(mail_body)
-    sha256 = binascii.b2a_hex(h.finalize())
+    sha256_hash = sha256(mail_body)
 
-    if sha256 in GLSetting.exceptions:
-        GLSetting.exceptions[sha256] += 1
-        if GLSetting.exceptions[sha256] > 5:
+    if sha256_hash in GLSetting.exceptions:
+        GLSetting.exceptions[sha256_hash] += 1
+        if GLSetting.exceptions[sha256_hash] > 5:
             # if the threashold has been exceeded
-            log.err("exception mail suppressed for exception (%s) [reason: threshold exceeded]" % sha256)
+            log.err("exception mail suppressed for exception (%s) [reason: threshold exceeded]" % sha256_hash)
             return
     else:
-        GLSetting.exceptions[sha256] = 1
+        GLSetting.exceptions[sha256_hash] = 1
 
     GLSetting.exceptions_email_count += 1
 

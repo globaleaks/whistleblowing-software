@@ -13,8 +13,9 @@ from storm.expr import Desc, And
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
+from globaleaks.handlers.submission import db_get_archived_questionnaire_schema, \
+    db_serialize_questionnaire_answers
 from globaleaks.rest import requests
-
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
     datetime_to_ISO8601, datetime_to_pretty_str
 
@@ -25,14 +26,15 @@ from globaleaks.models import Node, Notification, Comment, Message, \
 from globaleaks.rest import errors
 
 
-def receiver_serialize_tip(internaltip, language):
+def receiver_serialize_tip(store, internaltip, language):
     ret_dict = {
         'id': internaltip.id,
         'context_id': internaltip.context.id,
         'show_receivers': internaltip.context.show_receivers,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
-        'wb_steps': internaltip.wb_steps,
+        'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
+        'answers': db_serialize_questionnaire_answers(store, internaltip.answers),
         'tor2web': internaltip.tor2web,
         'timetolive': internaltip.context.tip_timetolive,
         'enable_comments': internaltip.context.enable_comments,
@@ -111,7 +113,7 @@ def db_get_tip_receiver(store, user_id, tip_id, language):
         store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
                                   EventLogs.mail_sent == True)).remove()
 
-    tip_desc = receiver_serialize_tip(rtip.internaltip, language)
+    tip_desc = receiver_serialize_tip(store, rtip.internaltip, language)
 
     # are added here because part of ReceiverTip, not InternalTip
     tip_desc['access_counter'] = rtip.access_counter

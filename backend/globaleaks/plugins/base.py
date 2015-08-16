@@ -8,7 +8,7 @@ from collections import namedtuple
 
 Event = namedtuple('Event',
                    ['type', 'trigger', 'tip_info', 'node_info',
-                    'receiver_info', 'context_info', 'steps_info',
+                    'receiver_info', 'context_info',
                     'subevent_info', 'do_mail'])
 
 class GLPlugin(object):

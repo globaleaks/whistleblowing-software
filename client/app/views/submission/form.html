@@ -3,7 +3,7 @@
     <div data-ng-form="submissionField" data-ng-repeat="field in row | orderBy:'x'" data-ng-controller="SubmissionFieldCtrl" class="submissionField pull-left">
       <div data-ng-init="fieldId  = $parent.fieldId ? $parent.fieldId + '-' + $index : 'field-' + $index" ng-class="getClass($parent.$index, $index, toplevel)">
         <div id="{{::fieldId}}" data-ng-form="f" data-ng-switch="" on="field.type">
-          <div data-ng-switch-default="" class="form-group">
+          <div data-ng-switch-default="" class="form-group" data-ng-init="submission._submission.answers[field.id] = {'0': {}};">
             <div>
               <label data-ng-if="toplevel">
                 <span data-ng-if="fields.length > 1" class="fieldIndex">{{$index + 1}}</span>
@@ -25,7 +25,7 @@
                 <input id="{{::fieldId}}-input"
                        name="input"
                        class="form-control"
-                       data-ng-model="field.value"
+                       data-ng-model="submission._submission.answers[field.id]['0']['0']"
                        maxlength="{{::node.maximum_namesize}}"
                        data-ng-required="field.required"
                        placeholder="{{::field.placeholder}}"
@@ -35,25 +35,23 @@
                 <textarea id="{{::fieldId}}-input"
                           name="input"
                           class="form-control msd-elastic"
-                          data-ng-model="field.value"
+                          data-ng-model="submission._submission.answers[field.id]['0']['0']"
                           maxlength="{{::node.maximum_textsize}}"
                           data-ng-required="field.required"
                           placeholder="{{::field.placeholder}}"></textarea>
               </div>
               <div data-ng-switch-when="selectbox" data-ng-class="{'col-md-8': toplevel}">
-                <select id="{{::fieldId}}-input" name="input" class="form-control" data-ng-model="field.value" data-ng-required="field.required">
+                <select id="{{::fieldId}}-input" name="input" class="form-control" data-ng-model="submission._submission.answers[field.id]['0']['0']" data-ng-required="field.required">
                   <option data-ng-repeat="option in field.options" id="{{::fieldId}}-input-option-{{$index}}" value="{{::option.label}}">{{::option.label}}</option>
                 </select>
               </div>
               <div data-ng-switch-when="checkbox" data-ng-class="{'col-md-8': toplevel}">
-                <div data-ng-repeat="option in field.options"; data-ng-init="field.value[option.id] = {}; field.required_check = !validateRequiredCheckbox(field)">
-                  <input type="hidden" data-ng-init="field.value[option.id].order = $index" data-ng-model="field.value[option.id].order" />
-                  <input type="hidden" data-ng-init="field.value[option.id].name = option.label" data-ng-model="field.value[option.id].name" />
+                <div data-ng-repeat="option in field.options"; field.required_check = !validateRequiredCheckbox(field)">
                   <div class="checkbox">
                     <label>
                       <input id="{{::fieldId}}-input"
                              name="input"
-                             data-ng-model="field.value[option.id].value"
+                             data-ng-model="submission._submission.answers[field.id]['0'][option.id]"
                              data-ng-required="field.required_check"
                              data-ng-change="field.required_check = !validateRequiredCheckbox(field)"
                              placeholder="{{::field.placeholder || 'false'}}"
@@ -69,7 +67,7 @@
                   <label>
                     <input id="{{::fieldId}}-input"
                            name="input"
-                           data-ng-model="field.value"
+                           data-ng-model="submission._submission.answers[field.id]['0']['0']"
                            data-ng-required="field.required"
                            value="{{field.value}}"
                            placeholder="{{::field.placeholder || 'false'}}"

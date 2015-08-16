@@ -55,21 +55,22 @@ var invalid_login = function(i) {
   }
 }
 
-var fill_field_recursively = function(field) {
-  field['value'] = 'antani';
+var fill_field_recursively = function(answers, field) {
+  answers[field['id']] = {'0': {'0': ''}}
   for (var i = 0; i < field.children.length; j++) {
     fill_field_recursively(field.children[i]);
   };
 }
 
-var fill_steps = function(steps) {
+var fill_answers= function(steps) {
+  answers = {}
   for (i in steps) {
     for (c in steps[i].children) {
-      fill_field_recursively(steps[i].children[c]);
+      fill_field_recursively(answers, steps[i].children[c]);
     }
   };
 
-  return steps
+  return answers;
 }
 
 describe('GET /contexts', function(){
@@ -148,7 +149,7 @@ describe('POST /submission', function(){
         var new_submission = {};
         new_submission.context_id = contexts_ids[i];
         new_submission.receivers = receivers_ids;
-        new_submission.wb_steps = fill_steps(contexts[i].steps);
+        new_submission.answers = fill_answers(contexts[i].steps);
         new_submission.human_captcha_answer = 0;
         new_submission.graph_captcha_answer = "";
         new_submission.proof_of_work = 0;
@@ -183,7 +184,7 @@ describe('POST /submission/submission_id', function(){
       it('responds with ', function(done){
 
         submissions[i].receivers = receivers_ids;
-        submissions[i].wb_steps = fill_steps(contexts[i].steps);
+        submissions[i].answers = fill_answers(contexts[i].steps);
 
         app
           .put('/submission/' + submissions[i].id)

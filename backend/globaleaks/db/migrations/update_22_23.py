@@ -1,10 +1,17 @@
 # -*- encoding: utf-8 -*-
 
+import copy
+import json
+
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
+
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.handlers.admin.field import db_update_fieldattr
-from globaleaks.models import BaseModel, Model, Step, Receiver, ReceiverContext
-
+from globaleaks.handlers.submission import db_save_questionnaire_answers, \
+    extract_answers_preview
+from globaleaks.models import Model, ArchivedSchema
+from globaleaks.security import sha256
+from globaleaks.settings import GLSetting
 
 
 class InternalFile_v_22(Model):
@@ -73,6 +80,19 @@ Field_v_22.options = ReferenceSet(
 )
 
 
+class InternalTip_v_22(Model):
+    __storm_table__ = 'internaltip'
+    creation_date = DateTime()
+    context_id = Unicode()
+    wb_steps = JSON()
+    preview = JSON()
+    progressive = Int()
+    tor2web = Bool()
+    expiration_date = DateTime()
+    last_activity = DateTime()
+    new = Int()
+
+
 class Notification_v_22(Model):
     __storm_table__ = 'notification'
     server = Unicode()
@@ -125,6 +145,84 @@ class Anomalies_v_22(Model):
 
 
 class Replacer2223(TableReplacer):
+    def migrate_InternalTip(self):
+        print "%s InternalTip migration assistant" % self.std_fancy
+
+        def extract_answers_from_wb_field(wb_field, answers):
+            answers[wb_field['id']] = {'0': {'0': wb_field['value']}}
+
+            del wb_field['value']
+
+            for c in wb_field['children']:
+                extract_answers_from_wb_field(c, answers)
+
+        def extract_answers_from_wb_steps(wb_steps):
+            answers = {}
+
+            for s in wb_steps:
+                for f in s['children']:
+                    answers[f['id']] = {'0': {'0': f['value']}}
+                    del f['value']
+                    for c in f['children']:
+                        extract_answers_from_wb_field(c, answers)
+
+            return wb_steps, answers
+
+        def handle_internaltip_fixes(store, new_obj, old_obj):
+            old_node = self.store_old.find(self.get_right_model("Node", 22)).one()
+
+            questionnaire, answers = extract_answers_from_wb_steps(old_obj.wb_steps)
+
+            new_obj.questionnaire_hash = sha256(json.dumps(questionnaire))
+
+            aqs = store.find(ArchivedSchema,
+                             ArchivedSchema.hash == unicode(new_obj.questionnaire_hash),
+                             ArchivedSchema.type == u'questionnaire',
+                             ArchivedSchema.language == unicode(old_node.default_language)).one()
+
+            if not aqs:
+                for lang in old_node.languages_enabled:
+                    aqs = ArchivedSchema()
+                    aqs.hash = new_obj.questionnaire_hash
+                    aqs.type = u'questionnaire'
+                    aqs.language = lang
+                    aqs.schema = questionnaire
+                    store.add(aqs)
+
+                    preview = []
+                    for s in aqs.schema:
+                        for f in s['children']:
+                            if f['preview']:
+                                preview.append(f)
+
+                    aqsp = ArchivedSchema()
+                    aqsp.hash = new_obj.questionnaire_hash
+                    aqsp.type = u'preview'
+                    aqsp.language = lang
+                    aqsp.schema = preview
+                    store.add(aqsp)
+
+            db_save_questionnaire_answers(store, new_obj, answers)
+
+            new_obj.preview = extract_answers_preview(questionnaire, answers)
+
+        old_objs = self.store_old.find(self.get_right_model("InternalTip", 22))
+
+        for old_obj in old_objs:
+            new_obj = self.get_right_model("InternalTip", 23)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'questionnaire_hash' or v.name == 'preview':
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            handle_internaltip_fixes(self.store_new, new_obj, old_obj)
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
     def migrate_InternalFile(self):
         print "%s InternalFile migration assistant" % self.std_fancy
 

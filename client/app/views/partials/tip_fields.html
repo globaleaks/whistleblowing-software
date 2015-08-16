@@ -6,30 +6,19 @@
         <span data-ng-if="$parent.field || preview">{{field.label}}:</span>
       </div>
 
-      <div data-ng-switch="" on="field.type" class="nested">
-        <span data-ng-switch-when="inputbox" class="preformatted">{{field.value}}</span>
-
-        <span data-ng-switch-when="textarea" class="preformatted">{{field.value}}</span>
-
-        <span data-ng-switch-when="selectbox" class="preformatted">{{field.value}}</span>
-
-        <span data-ng-switch-when="checkbox">
-          <ul data-ng-repeat="answer in field.value" data-ng-if="answer.value">
-            <li>
-              <span>{{answer.name}}</span>
-            </li>
-          </ul>
-        </span>
-
-        <span data-ng-switch-when="tos">
-          <span data-ng-if="field.value" data-translate>Accepted</span>
-          <span data-ng-if="!field.value" data-translate>Not accepted</span>
-        </span>
-
-        <span data-ng-switch-when="fieldgroup">
-          <div data-ng-include="'views/partials/tip_fields.html'"></div>
-        </span>
+      <div data-ng-if="!hasMultiplesEntries(fieldAnswers[field.id])">
+        <div data-ng-init="entry = fieldAnswers[field.id]['0']" data-ng-include="'views/partials/tip_field_answer_entry.html'"></div>
       </div>
+
+      <div data-ng-if="hasMultipleEntries(fieldAnswers[field.id])">
+        <div data-ng-repeat="entry in fieldAnswers[field.id]">
+          <div><span data-translate>Entry</span><span>: {{$index + 1}}</span></div>
+          <div class="nested" data-ng-include="'views/partials/tip_field_answer_entry.html'"></div>
+        </div>
+      </div>
+      
+      </div>
+
     </div>
   </div>
 </div>

@@ -10,23 +10,26 @@ from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.submission import db_get_archived_questionnaire_schema, \
+    db_serialize_questionnaire_answers
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.rest import requests
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro
-from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
+from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip, ArchivedSchema
 from globaleaks.rest import errors
 
 
-def wb_serialize_tip(internaltip, language):
+def wb_serialize_tip(store, internaltip, language):
     ret_dict = {
         'id': internaltip.id,
         'context_id': internaltip.context.id,
         'show_receivers': internaltip.context.show_receivers,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
-        'wb_steps': internaltip.wb_steps,
+        'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
+        'answers': db_serialize_questionnaire_answers(store, internaltip.answers),
         'enable_comments': internaltip.context.enable_comments,
         'enable_private_messages': internaltip.context.enable_private_messages
     }
@@ -73,7 +76,7 @@ def db_get_internaltip_wb(store, tip_id, language):
     # there is not a limit in the WB access counter, but is kept track
     wbtip.access_counter += 1
 
-    tip_desc = wb_serialize_tip(wbtip.internaltip, language)
+    tip_desc = wb_serialize_tip(store, wbtip.internaltip, language)
 
     # two elements from WhistleblowerTip
     tip_desc['access_counter'] = wbtip.access_counter

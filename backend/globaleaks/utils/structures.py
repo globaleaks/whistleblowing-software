@@ -40,7 +40,7 @@ class Rosetta(object):
         return ret
 
     def dump_localized_key(self, key, language):
-        default_language = GLSetting.memory_copy.language
+        default_language = GLSetting.memory_copy.default_language
 
         if key not in self._localized_strings:
             return ""

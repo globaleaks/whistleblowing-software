@@ -53,9 +53,7 @@ AuthDesc = {
     'role': unicode
 }
 
-WBStepElem = {
-    # Everything will change here with E2E,
-    # because these stuff will be encrypted
+WBStepDesc = {
     'id' : uuid_regexp,
     'hint': unicode,
     'description':unicode,
@@ -66,7 +64,7 @@ WBStepElem = {
 SubmissionDesc = {
     'context_id': uuid_regexp,
     'receivers': [uuid_regexp],
-    'wb_steps': [WBStepElem],
+    'answers': dict,
     'human_captcha_answer': int,
     'graph_captcha_answer': unicode,
     'proof_of_work': int
