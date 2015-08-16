@@ -10,13 +10,13 @@ import copy
 
 import json
 
-from storm.expr import In
+from storm.expr import And, In
 
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.models import Node, Context, Receiver, \
     InternalTip, ReceiverTip, WhistleblowerTip, \
-    InternalFile, FieldAnswer, ArchivedSchema
+    InternalFile, FieldAnswer, FieldAnswerGroup, ArchivedSchema
 from globaleaks.anomaly import Alarm
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin import db_get_context_steps
@@ -58,31 +58,65 @@ def db_get_archived_preview_schema(store, hash, language):
     return _db_get_archived_questionnaire_schema(store, hash, u'preview', language)
 
 
-def db_serialize_questionnaire_answers(store, answers):
+def db_serialize_questionnaire_answers_recursively(answers):
     ret = {}
+
     for answer in answers:
-        if answer.field_id not in ret:
-            ret[answer.field_id] = {}
+        if answer.is_leaf:
+            ret[answer.key] = answer.value
+        else:
+            ret[answer.key] = []
+            for group in answer.groups.order_by(FieldAnswerGroup.number):
+                ret[answer.key].append(db_serialize_questionnaire_answers_recursively(group.fieldanswers))
 
-        if answer.n not in ret[answer.field_id]:
-            ret[answer.field_id][answer.n] = {}
+    return ret
 
-        ret[answer.field_id][answer.n][answer.key] = answer.answer
+
+def db_serialize_questionnaire_answers(store, internaltip):
+    questionnaire = db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, GLSetting.memory_copy.default_language)
+
+    answers_ids = []
+    for s in questionnaire:
+        for f in s['children']:
+            answers_ids.append(f['id'])
+
+    answers = store.find(FieldAnswer, And(FieldAnswer.internaltip_id == internaltip.id,
+                                          In(FieldAnswer.key, answers_ids)))
+
+    return db_serialize_questionnaire_answers_recursively(answers)
+
+
+def db_save_questionnaire_answers_recursively(store, internaltip_id, entries):
+    ret = []
+
+    for key, value in entries.iteritems():
+        field_answer = FieldAnswer()
+        field_answer.internaltip_id = internaltip_id
+        field_answer.key = key
+        store.add(field_answer)
+        if isinstance(value, list):
+            field_answer.is_leaf = False
+            field_answer.value = ""
+            n = 0
+            for entries in value:
+                group = FieldAnswerGroup({
+                  'fieldanswer_id': field_answer.id,
+                  'number': n
+                })
+                group_elems = db_save_questionnaire_answers_recursively(store, internaltip_id, entries)
+                for group_elem in group_elems:
+                    group.fieldanswers.add(group_elem)
+                n += 1
+        else:
+            field_answer.is_leaf = True
+            field_answer.value = unicode(value)
+        ret.append(field_answer)
 
     return ret
 
 
 def db_save_questionnaire_answers(store, internaltip, answers):
-    for id, entries in answers.iteritems():
-        field_answer = FieldAnswer()
-        for n, entry_n in entries.iteritems():
-            for key, value in entry_n.iteritems():
-                field_answer.internaltip_id = internaltip.id
-                field_answer.field_id = id
-                field_answer.n = int(n)
-                field_answer.key = key
-                field_answer.answer = unicode(value)
-                store.add(field_answer)
+    return db_save_questionnaire_answers_recursively(store, internaltip.id, answers)
 
 
 def extract_answers_preview(questionnaire, answers):
@@ -90,11 +124,7 @@ def extract_answers_preview(questionnaire, answers):
     for s in questionnaire:
         for f in s['children']:
             if f['preview'] and f['id'] in answers:
-                preview[f['id']] = {}
-                for n, entry_n in answers[f['id']].iteritems():
-                    preview[f['id']][n] = {}
-                    for key, value in entry_n.iteritems():
-                        preview[f['id']][n][key] = value
+                preview[f['id']] = copy.deepcopy(answers[f['id']])
     return preview
 
 
@@ -104,7 +134,7 @@ def wb_serialize_internaltip(store, internaltip):
         'context_id': internaltip.context_id,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
-        'answers': db_serialize_questionnaire_answers(store, internaltip.answers),
+        'answers': db_serialize_questionnaire_answers(store, internaltip),
         'files': [f.id for f in internaltip.internalfiles],
         'receivers': [r.id for r in internaltip.receivers]
     }
@@ -281,7 +311,6 @@ def db_create_submission(store, token_id, request, t2w, language):
         questionnaire = db_get_context_steps(store, context.id, GLSetting.memory_copy.default_language)
         questionnaire_hash = sha256(json.dumps(questionnaire))
 
-
         submission.questionnaire_hash = questionnaire_hash
         submission.preview = extract_answers_preview(questionnaire, answers)
 
@@ -290,7 +319,6 @@ def db_create_submission(store, token_id, request, t2w, language):
         db_archive_questionnaire_schema(store, submission)
 
         db_save_questionnaire_answers(store, submission, answers)
-
     except Exception as excep:
         log.err("Submission create: fields validation fail: %s" % excep)
         raise excep

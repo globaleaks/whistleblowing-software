@@ -1,9 +1,10 @@
+{{submission._submission.answers}}
 <fieldset data-ng-init="toplevel = (field === undefined) ? true : false; rows = (field === undefined) ? getFieldsRows(step.children) : getFieldsRows(field.children)">
   <div data-ng-repeat="row in rows" style="clear:both">
     <div data-ng-form="submissionField" data-ng-repeat="field in row | orderBy:'x'" data-ng-controller="SubmissionFieldCtrl" class="submissionField pull-left">
       <div data-ng-init="fieldId  = $parent.fieldId ? $parent.fieldId + '-' + $index : 'field-' + $index" ng-class="getClass($parent.$index, $index, toplevel)">
-        <div id="{{::fieldId}}" data-ng-form="f" data-ng-switch="" on="field.type">
-          <div data-ng-switch-default="" class="form-group" data-ng-init="submission._submission.answers[field.id] = {'0': {}};">
+        <div id="{{::fieldId}}" data-ng-form="f" data-ng-init="initAnswers(submission._submission.answers, entry, field.id, toplevel)">
+          <div class="form-group">
             <div>
               <label data-ng-if="toplevel">
                 <span data-ng-if="fields.length > 1" class="fieldIndex">{{$index + 1}}</span>
@@ -20,67 +21,14 @@
                  popover-trigger="mouseenter">*</span>
             </div>
             <div class="FieldDescription">{{::field.description}}</div>
-            <div data-ng-switch="" on="field.type" class="col-md-12 submissionFieldInput" data-ng-class="{'has-error': f.input.$error.required}">
-              <div data-ng-switch-when="inputbox" data-ng-class="{'col-md-8': toplevel}">
-                <input id="{{::fieldId}}-input"
-                       name="input"
-                       class="form-control"
-                       data-ng-model="submission._submission.answers[field.id]['0']['0']"
-                       maxlength="{{::node.maximum_namesize}}"
-                       data-ng-required="field.required"
-                       placeholder="{{::field.placeholder}}"
-                       type="text" />
+            <div data-ng-if="toplevel">
+              <div data-ng-repeat="entry in submission._submission.answers[field.id]" class="col-md-12">1
+                <div data-ng-include="'views/submission/form_field_input.html'"></div>
               </div>
-              <div data-ng-switch-when="textarea" data-ng-class="{'col-md-8': toplevel}">
-                <textarea id="{{::fieldId}}-input"
-                          name="input"
-                          class="form-control msd-elastic"
-                          data-ng-model="submission._submission.answers[field.id]['0']['0']"
-                          maxlength="{{::node.maximum_textsize}}"
-                          data-ng-required="field.required"
-                          placeholder="{{::field.placeholder}}"></textarea>
-              </div>
-              <div data-ng-switch-when="selectbox" data-ng-class="{'col-md-8': toplevel}">
-                <select id="{{::fieldId}}-input" name="input" class="form-control" data-ng-model="submission._submission.answers[field.id]['0']['0']" data-ng-required="field.required">
-                  <option data-ng-repeat="option in field.options" id="{{::fieldId}}-input-option-{{$index}}" value="{{::option.label}}">{{::option.label}}</option>
-                </select>
-              </div>
-              <div data-ng-switch-when="checkbox" data-ng-class="{'col-md-8': toplevel}">
-                <div data-ng-repeat="option in field.options"; field.required_check = !validateRequiredCheckbox(field)">
-                  <div class="checkbox">
-                    <label>
-                      <input id="{{::fieldId}}-input"
-                             name="input"
-                             data-ng-model="submission._submission.answers[field.id]['0'][option.id]"
-                             data-ng-required="field.required_check"
-                             data-ng-change="field.required_check = !validateRequiredCheckbox(field)"
-                             placeholder="{{::field.placeholder || 'false'}}"
-                             type="checkbox" />
-                      <span>{{::option.label}}</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div data-ng-switch-when="tos" data-ng-class="{'col-md-12': toplevel}">
-                <div class="form-group preformatted">{{::field.attrs.clause.value}}</div>
-                <div class="checkbox">
-                  <label>
-                    <input id="{{::fieldId}}-input"
-                           name="input"
-                           data-ng-model="submission._submission.answers[field.id]['0']['0']"
-                           data-ng-required="field.required"
-                           value="{{field.value}}"
-                           placeholder="{{::field.placeholder || 'false'}}"
-                           type="checkbox" />
-                    <span>{{::field.attrs.agreement_statement.value}}</span>
-                  </label>
-                </div>
-              </div>
-              <div data-ng-switch-when="fileupload" class="col-md-12">
-                <div id="{{::fieldId}}-input" data-ng-init="fileupload_mode = field.multi_entry ? 'multiple' : 'single'" data-ng-include="'views/partials/fileupload_button.html'" class="col-md-12"></div>
-              </div>
-              <div data-ng-switch-when="fieldgroup" class="col-md-12">
-                <div data-ng-include="'views/submission/form.html'"></div>
+            </div>
+            <div data-ng-if="!toplevel">
+              <div data-ng-repeat="entry in entry[field.id]" class="col-md-12">
+                <div data-ng-include="'views/submission/form_field_input.html'"></div>
               </div>
             </div>
           </div>

@@ -145,66 +145,105 @@ class Anomalies_v_22(Model):
 
 
 class Replacer2223(TableReplacer):
+    def fix_field_answer_id(self, f):
+        if f['id'] == '':
+            xxx = self.store_old.find(self.get_right_model("Field", 22))
+            for x in xxx:
+                try:
+                    if isinstance(x.label, dict):
+                        for k, v in x.label.iteritems():
+                            if unicode(v).find(unicode(f['label'])) != -1:
+                                f['id'] = x.id
+                                break
+                    elif unicode(x.label).find(unicode(f['label'])) != -1:
+                        f['id'] = x.id
+                        break
+                except:
+                   pass
+
+        return f['id']
+
+    def extract_answers_from_wb_field(self, f):
+        answers = {}
+
+        if f['type'] == 'fieldgroup':
+            for c in f['children']:
+                self.fix_field_answer_id(c)
+                if c['id'] != '':
+                    answers[c['id']] = self.extract_answers_from_wb_field(c)
+        elif f['type'] == 'checkbox':
+            if 'value' in f:
+                try:
+                    for oid, ovalue in f['value'].iteritems():
+                        if 'value' in ovalue:
+                            answers[oid] = ovalue['value']
+                        else:
+                            answers[oid] = 'False'
+                except:
+                    pass
+        else:
+            if 'value' in f:
+                answers['value'] = f['value']
+            else:
+                answers['value'] = ''
+
+        if 'value' in f:
+            del f['value']
+
+        return [answers]
+
+    def extract_answers_from_wb_steps(self, wb_steps):
+        answers = {}
+
+        for s in wb_steps:
+            for f in s['children']:
+                self.fix_field_answer_id(f)
+                if f['id'] != '':
+                    answers[f['id']] = self.extract_answers_from_wb_field(f)
+
+        return wb_steps, answers
+
+    def handle_internaltip_fixes(self, new_obj, old_obj):
+        old_node = self.store_old.find(self.get_right_model("Node", 22)).one()
+
+        questionnaire, answers = self.extract_answers_from_wb_steps(old_obj.wb_steps)
+
+        new_obj.questionnaire_hash = sha256(json.dumps(questionnaire))
+
+        aqs = self.store_new.find(ArchivedSchema,
+                                  ArchivedSchema.hash == unicode(new_obj.questionnaire_hash),
+                                  ArchivedSchema.type == u'questionnaire',
+                                  ArchivedSchema.language == unicode(old_node.default_language)).one()
+
+        if not aqs:
+            for lang in old_node.languages_enabled:
+                aqs = ArchivedSchema()
+                aqs.hash = new_obj.questionnaire_hash
+                aqs.type = u'questionnaire'
+                aqs.language = lang
+                aqs.schema = questionnaire
+                self.store_new.add(aqs)
+
+                preview = []
+                for s in aqs.schema:
+                    for f in s['children']:
+                        if f['preview']:
+                            preview.append(f)
+
+                aqsp = ArchivedSchema()
+                aqsp.hash = new_obj.questionnaire_hash
+                aqsp.type = u'preview'
+                aqsp.language = lang
+                aqsp.schema = preview
+                self.store_new.add(aqsp)
+
+        db_save_questionnaire_answers(self.store_new, new_obj, answers)
+
+        new_obj.preview = extract_answers_preview(questionnaire, answers)
+
+
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy
-
-        def extract_answers_from_wb_field(wb_field, answers):
-            answers[wb_field['id']] = {'0': {'0': wb_field['value']}}
-
-            del wb_field['value']
-
-            for c in wb_field['children']:
-                extract_answers_from_wb_field(c, answers)
-
-        def extract_answers_from_wb_steps(wb_steps):
-            answers = {}
-
-            for s in wb_steps:
-                for f in s['children']:
-                    answers[f['id']] = {'0': {'0': f['value']}}
-                    del f['value']
-                    for c in f['children']:
-                        extract_answers_from_wb_field(c, answers)
-
-            return wb_steps, answers
-
-        def handle_internaltip_fixes(store, new_obj, old_obj):
-            old_node = self.store_old.find(self.get_right_model("Node", 22)).one()
-
-            questionnaire, answers = extract_answers_from_wb_steps(old_obj.wb_steps)
-
-            new_obj.questionnaire_hash = sha256(json.dumps(questionnaire))
-
-            aqs = store.find(ArchivedSchema,
-                             ArchivedSchema.hash == unicode(new_obj.questionnaire_hash),
-                             ArchivedSchema.type == u'questionnaire',
-                             ArchivedSchema.language == unicode(old_node.default_language)).one()
-
-            if not aqs:
-                for lang in old_node.languages_enabled:
-                    aqs = ArchivedSchema()
-                    aqs.hash = new_obj.questionnaire_hash
-                    aqs.type = u'questionnaire'
-                    aqs.language = lang
-                    aqs.schema = questionnaire
-                    store.add(aqs)
-
-                    preview = []
-                    for s in aqs.schema:
-                        for f in s['children']:
-                            if f['preview']:
-                                preview.append(f)
-
-                    aqsp = ArchivedSchema()
-                    aqsp.hash = new_obj.questionnaire_hash
-                    aqsp.type = u'preview'
-                    aqsp.language = lang
-                    aqsp.schema = preview
-                    store.add(aqsp)
-
-            db_save_questionnaire_answers(store, new_obj, answers)
-
-            new_obj.preview = extract_answers_preview(questionnaire, answers)
 
         old_objs = self.store_old.find(self.get_right_model("InternalTip", 22))
 
@@ -217,7 +256,7 @@ class Replacer2223(TableReplacer):
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
-            handle_internaltip_fixes(self.store_new, new_obj, old_obj)
+            self.handle_internaltip_fixes(new_obj, old_obj)
 
             self.store_new.add(new_obj)
 
