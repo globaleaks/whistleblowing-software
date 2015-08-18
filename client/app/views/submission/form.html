@@ -21,7 +21,7 @@
             </div>
             <div class="FieldDescription">{{::field.description}}</div>
             <div data-ng-if="toplevel">
-              <div data-ng-repeat="entry in submission._submission.answers[field.id]" class="col-md-12">1
+              <div data-ng-repeat="entry in submission._submission.answers[field.id]" class="col-md-12">
                 <div data-ng-include="'views/submission/form_field_input.html'"></div>
               </div>
             </div>
