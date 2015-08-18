@@ -1,4 +1,3 @@
-{{submission._submission.answers}}
 <fieldset data-ng-init="toplevel = (field === undefined) ? true : false; rows = (field === undefined) ? getFieldsRows(step.children) : getFieldsRows(field.children)">
   <div data-ng-repeat="row in rows" style="clear:both">
     <div data-ng-form="submissionField" data-ng-repeat="field in row | orderBy:'x'" data-ng-controller="SubmissionFieldCtrl" class="submissionField pull-left">
