@@ -14,16 +14,27 @@ body {
   margin-bottom: 60px;
 }
 
-h1 {
+.title1, .title2, .title3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+
+.title1 {
   font-size: 60px;
 }
 
-h2 {
+.title2 {
   font-size: 36px;
 }
 
-h3 {
+.title3 {
   font-size: 20px;
+}
+
+.welcome {
+  font-size: 36px;
+  font-weight: bold;
 }
 
 input, textarea, select {
@@ -215,18 +226,19 @@ th {
 /** Wizard **/
 .wizard-block {
   position: relative;
-  padding: 45px 15px 15px;
+  padding: 15px;
   margin: 0 0 15px;
   border: 1px solid #ddd;
   border-radius: 4px 4px 0 0;
   box-shadow: none;
 }
 
-.wizard-block h2 {
-  position: absolute;
+.wizard-block .title {
+  position: relative;
   top: -10px;
   font-size: 18px;
   color: #aaa;
+  margin-bottom: 20px;
 }
 
 .wizard-help-hint {

@@ -121,19 +121,6 @@ angular.module('GLServices', ['ngResource']).
 
     $rootScope.showRequestBox = false;
     
-    function showModal(error) {
-      $modal = $modal || $injector.get('$modal');
-      var modalInstance = $modal.open({
-        templateUrl: 'views/partials/error_popup.html',
-        controller: 'ModalCtrl',
-        resolve: {
-          error: function() {
-            return error;
-          }
-        }
-      });
-    }
-
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
     return {
@@ -173,15 +160,8 @@ angular.module('GLServices', ['ngResource']).
         error.url = response.config.url;
         error.arguments = response.data.arguments;
         
-        // In here you should place the error codes that should trigger a modal
-        // view.
-        if ( ['55', '56', '57'].indexOf(error.code) !== -1 ) {
-          showModal(error); 
-        }
-
         /* 30: Not Authenticated / 24: Wrong Authentication */
         if (error.code === 30 || error.code === 24) {
-
           if (error.code === 24) {
             $rootScope.logout();
           } else {
