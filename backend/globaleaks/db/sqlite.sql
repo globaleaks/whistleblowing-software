@@ -27,7 +27,7 @@ CREATE TABLE message (
     type TEXT NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
     content TEXT NOT NULL,
     new INTEGER NOT NULL,
-    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
+    FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE comment (
     type TEXT NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
     content TEXT NOT NULL,
     new INTEGER NOT NULL,
-    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -71,7 +71,7 @@ CREATE TABLE internalfile (
     processing_attempts INTEGER NOT NULL,
     internaltip_id TEXT NOT NULL,
     UNIQUE(file_path),
-    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -87,10 +87,10 @@ CREATE TABLE receiverfile (
     receivertip_id TEXT NOT NULL,
     status TEXT NOT NULL CHECK (status IN ('processing', 'reference', 'encrypted', 'unavailable', 'nokey')),
     new INTEGER  NOT NULL,
-    FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,
-    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
-    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
-    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
+    FOREIGN KEY (internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
+    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -105,7 +105,7 @@ CREATE TABLE internaltip (
     last_activity TEXT,
     context_id TEXT NOT NULL,
     new INTEGER NOT NULL,
-    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
+    FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -220,7 +220,7 @@ CREATE TABLE receiver (
     pgp_key_expiration INTEGER,
     presentation_order INTEGER,
     UNIQUE(name),
-    FOREIGN KEY(id) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -233,8 +233,8 @@ CREATE TABLE eventlogs (
     receiver_id TEXT NOT NULL,
     receivertip_id TEXT,
     mail_sent INTEGER,
-    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
-    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
+    FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -280,8 +280,8 @@ CREATE TABLE receivertip (
     receiver_id TEXT NOT NULL,
     label TEXT NOT NULL,
     new INTEGER NOT NULL,
-    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
-    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
+    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -291,7 +291,7 @@ CREATE TABLE whistleblowertip (
     internaltip_id TEXT NOT NULL,
     last_access TEXT,
     receipt_hash TEXT NOT NULL,
-    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -356,7 +356,7 @@ CREATE TABLE fieldattr (
                                        'localized')),
     value TEXT NOT NULL,
     UNIQUE (field_id, name),
-    FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE,
+    FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -366,7 +366,7 @@ CREATE TABLE fieldoption (
     label TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
     score_points INTEGER NOT NULL,
-    FOREIGN KEY(field_id) REFERENCES field(id) ON DELETE CASCADE,
+    FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 
 );
@@ -404,7 +404,7 @@ CREATE TABLE fieldanswergroup (
     id TEXT NOT NULL,
     fieldanswer_id TEXT NOT NULL,
     number INTEGER NOT NULL,
-    UNIQUE (id, fieldanswer_id, n)
+    UNIQUE (id, fieldanswer_id, n),
     FOREIGN KEY (fieldanswer_id) REFERENCES fieldanswer(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
