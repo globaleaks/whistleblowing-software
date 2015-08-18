@@ -404,7 +404,7 @@ CREATE TABLE fieldanswergroup (
     id TEXT NOT NULL,
     fieldanswer_id TEXT NOT NULL,
     number INTEGER NOT NULL,
-    UNIQUE (id, fieldanswer_id, n),
+    UNIQUE (id, fieldanswer_id, number),
     FOREIGN KEY (fieldanswer_id) REFERENCES fieldanswer(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
