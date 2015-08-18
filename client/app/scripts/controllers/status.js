@@ -27,8 +27,6 @@ GLClient.controller('StatusCtrl',
 
     $scope.hasMultipleEntries = function(field_answer) {
       if (field_answer !== undefined) {
-        console.log(field_answer);
-        console.log(field_answer.length);
         return field_answer.length > 1;
       }
 

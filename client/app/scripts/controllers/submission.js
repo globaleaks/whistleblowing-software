@@ -130,8 +130,6 @@ GLClient.controller('SubmissionCtrl',
       row.push(field);
     });
 
-    console.log(rows);
-
     return rows;
   };
 
