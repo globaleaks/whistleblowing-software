@@ -315,34 +315,8 @@ class SubmissionDisabled(GLException):
     error_code = 52
     status_code = 503 # Service not available
 
-# UNUSED ERROR CODE 53, 54 HERE!
 
-class FloodException(GLException):
-    error_code = 55
-    status_code = 403
-
-    def __init__(self, seconds):
-        self.reason = "Chill out for another %s seconds"
-        self.arguments = [seconds]
-
-
-# Remind: the FloodException are not used at the moment
-class SubmissionFlood(FloodException):
-    error_code = 56
-    status_code = 403
-
-    def __init__(self, seconds):
-        self.reason = "Too many submissions in %d seconds" % seconds
-        self.arguments = [seconds]
-
-
-class FileUploadFlood(FloodException):
-    error_code = 57
-    status_code = 403
-
-    def __init__(self, seconds):
-        self.reason = "Too many file uploads in %d seconds" % seconds
-        self.arguments = [seconds]
+# UNUSED ERROR CODE 53, 54, 55, 56, 57 HERE!
 
 
 class FieldIdNotFound(GLException):
