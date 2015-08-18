@@ -159,7 +159,7 @@
         <div class="form-group col-md-12">
           <label class="col-md-4">
             <span data-translate>PGP Key</span>
-            <span class="text-red" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+            <span class="text-red" data-ng-show="!admin.node.allow_unencrypted" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.pgpkey.$error.required}">
             <textarea name="pgpkey" class="form-control" data-ng-model="receiver.pgp_key_public" data-ng-required="!admin.node.allow_unencrypted"></textarea>
