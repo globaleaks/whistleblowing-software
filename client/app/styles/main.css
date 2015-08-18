@@ -15,26 +15,22 @@ body {
 }
 
 .title1, .title2, .title3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   line-height: 1.1;
 }
 
 .title1 {
-  font-size: 60px;
+  font-size: 36px;
+  font-weight: bold;
 }
 
 .title2 {
-  font-size: 36px;
+  font-size: 32px;
 }
 
 .title3 {
   font-size: 20px;
-}
-
-.welcome {
-  font-size: 36px;
-  font-weight: bold;
 }
 
 input, textarea, select {
