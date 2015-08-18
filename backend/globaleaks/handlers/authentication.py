@@ -10,7 +10,7 @@ from storm.expr import And
 
 from globaleaks import security
 from globaleaks.models import Node, User
-from globaleaks.settings import transact_ro, GLSetting
+from globaleaks.settings import transact_ro, GLSettings
 from globaleaks.models import Receiver, WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
@@ -29,9 +29,9 @@ class GLSession(tempobj.TempObj):
         self.user_role = user_role
         self.user_status = user_status
         tempobj.TempObj.__init__(self,
-                                 GLSetting.sessions,
+                                 GLSettings.sessions,
                                  rstr.xeger(r'[A-Za-z0-9]{42}'),
-                                 GLSetting.defaults.lifetimes[user_role],
+                                 GLSettings.defaults.lifetimes[user_role],
                                  reactor_override)
 
     def __repr__(self):
@@ -56,7 +56,7 @@ def random_login_delay():
            | x > 42          | 42             |
             ----------------------------------
         """
-    failed_attempts = GLSetting.failed_login_attempts
+    failed_attempts = GLSettings.failed_login_attempts
 
     if failed_attempts >= 5:
         min_sleep = failed_attempts if failed_attempts < 42 else 42
@@ -79,7 +79,7 @@ def update_session(session):
             True if the session is active and update the session
                 via utils/tempobj.TempObj.touch()
     """
-    session_obj = GLSetting.sessions.get(session.id, None)
+    session_obj = GLSettings.sessions.get(session.id, None)
 
     if not session_obj:
         return False
@@ -147,16 +147,16 @@ def get_tor2web_header(request_headers):
 
 def accept_tor2web(role):
     if role == 'wb':
-        return GLSetting.memory_copy.tor2web_submission
+        return GLSettings.memory_copy.tor2web_submission
 
     elif role == 'receiver':
-        return GLSetting.memory_copy.tor2web_receiver
+        return GLSettings.memory_copy.tor2web_receiver
 
     elif role == 'admin':
-        return GLSetting.memory_copy.tor2web_admin
+        return GLSettings.memory_copy.tor2web_admin
 
     else:
-        return GLSetting.memory_copy.tor2web_unauth
+        return GLSettings.memory_copy.tor2web_unauth
 
 
 def transport_security_check(wrapped_handler_role):
@@ -169,7 +169,7 @@ def transport_security_check(wrapped_handler_role):
     def wrapper(method_handler):
         def call_handler(cls, *args, **kwargs):
             """
-            GLSetting contain the copy of the latest admin configuration, this
+            GLSettings contain the copy of the latest admin configuration, this
             enhance performance instead of searching in te DB at every handler
             connection.
             """
@@ -256,7 +256,7 @@ class AuthenticationHandler(BaseHandler):
     @authenticated('*')
     def get(self):
         if self.current_user and \
-                        self.current_user.id not in GLSetting.sessions:
+                        self.current_user.id not in GLSettings.sessions:
             raise errors.NotAuthenticated
 
         auth_answer = {
@@ -305,7 +305,7 @@ class AuthenticationHandler(BaseHandler):
         yield self.uniform_answers_delay()
 
         if user_id is None:
-            GLSetting.failed_login_attempts += 1
+            GLSettings.failed_login_attempts += 1
             raise errors.InvalidAuthentication
 
         session = self.generate_session(user_id, role, status)
@@ -314,7 +314,7 @@ class AuthenticationHandler(BaseHandler):
             'role': role,
             'session_id': session.id,
             'user_id': session.user_id,
-            'session_expiration': int(GLSetting.sessions[session.id].getTime()),
+            'session_expiration': int(GLSettings.sessions[session.id].getTime()),
             'status': session.user_status,
             'password_change_needed': pcn,
         }
@@ -328,7 +328,7 @@ class AuthenticationHandler(BaseHandler):
         """
         if self.current_user:
             try:
-                del GLSetting.sessions[self.current_user.id]
+                del GLSettings.sessions[self.current_user.id]
             except KeyError:
                 raise errors.NotAuthenticated
 

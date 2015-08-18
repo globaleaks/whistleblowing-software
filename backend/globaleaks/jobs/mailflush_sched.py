@@ -15,7 +15,7 @@ from globaleaks.models import EventLogs, Notification
 from globaleaks.handlers.admin import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import admin_serialize_notification
 from globaleaks.jobs.base import GLJob
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.plugins import notification
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import deferred_sleep, log, datetime_to_ISO8601, datetime_now
@@ -69,7 +69,7 @@ class ReceiverDeniedEmail(TempObj):
                          LastHourMailQueue.blocked_in_queue,
                          random.randint(0, 0xffff),
                          # seconds of validity:
-                         GLSetting.memory_copy.notification_suspension_time,
+                         GLSettings.memory_copy.notification_suspension_time,
                          reactor_override)
 
         log.info("Temporary disable emails for receiver %s for four hours" % self.receiver_id)
@@ -182,14 +182,14 @@ def mark_event_as_sent(store, event_id):
 
 
 @transact_ro
-def load_complete_events(store, event_number=GLSetting.notification_limit):
+def load_complete_events(store, event_number=GLSettings.notification_limit):
     """
     _complete_ is explicit because do not serialize, but make an OD() of the description.
 
     event_number represent the amount of event that can be returned by the function,
     event to be notified are taken in account later.
     """
-    node_desc = db_admin_serialize_node(store, GLSetting.defaults.language)
+    node_desc = db_admin_serialize_node(store, GLSettings.defaults.language)
 
     event_list = []
     storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)
@@ -293,10 +293,10 @@ def filter_notification_event(notifque):
             orm_id_to_be_skipped.append(ne['orm_id'])
             continue
 
-        if email_sent_last_60min >= GLSetting.memory_copy.notification_threshold_per_hour:
+        if email_sent_last_60min >= GLSettings.memory_copy.notification_threshold_per_hour:
             log.info("Threshold reach of %d email with limit of %d for receiver %s" % (
                 email_sent_last_60min,
-                GLSetting.memory_copy.notification_threshold_per_hour,
+                GLSettings.memory_copy.notification_threshold_per_hour,
                 receiver_id)
             )
             rde = ReceiverDeniedEmail(receiver_id)
@@ -351,10 +351,10 @@ class MailflushSchedule(GLJob):
                 notification_settings['ping_mail_title'], fakeevent)
 
             # so comfortable for a developer!! :)
-            source_mail_name = GLSetting.developer_name if GLSetting.devel_mode \
-                else GLSetting.memory_copy.notif_source_name
+            source_mail_name = GLSettings.developer_name if GLSettings.devel_mode \
+                else GLSettings.memory_copy.notif_source_name
             message = MIME_mail_build(source_mail_name,
-                                      GLSetting.memory_copy.notif_source_email,
+                                      GLSettings.memory_copy.notif_source_email,
                                       receiver_name,
                                       receiver_email,
                                       title,
@@ -363,19 +363,19 @@ class MailflushSchedule(GLJob):
             fakeevent2 = OD()
             fakeevent2.type = "Ping mail for %s (%d info)" % (receiver_email, winks)
 
-            return sendmail(authentication_username=GLSetting.memory_copy.notif_username,
-                            authentication_password=GLSetting.memory_copy.notif_password,
-                            from_address= GLSetting.memory_copy.notif_source_email,
+            return sendmail(authentication_username=GLSettings.memory_copy.notif_username,
+                            authentication_password=GLSettings.memory_copy.notif_password,
+                            from_address= GLSettings.memory_copy.notif_source_email,
                             to_address= [receiver_email],
                             message_file=message,
-                            smtp_host=GLSetting.memory_copy.notif_server,
-                            smtp_port=GLSetting.memory_copy.notif_port,
-                            security=GLSetting.memory_copy.notif_security,
+                            smtp_host=GLSettings.memory_copy.notif_server,
+                            smtp_port=GLSettings.memory_copy.notif_port,
+                            security=GLSettings.memory_copy.notif_security,
                             event=fakeevent2)
 
     @inlineCallbacks
     def operation(self):
-        if GLSetting.memory_copy.disable_receiver_notification_emails:
+        if GLSettings.memory_copy.disable_receiver_notification_emails:
             log.debug("MailFlush: Receiver(s) Notification disabled by Admin")
             return
 
@@ -392,7 +392,7 @@ class MailflushSchedule(GLJob):
             for eid in to_be_suppressed:
                 yield mark_event_as_sent(eid)
 
-        plugin = getattr(notification, GLSetting.notification_plugins[0])()
+        plugin = getattr(notification, GLSettings.notification_plugins[0])()
         # This wrap calls plugin/notification.MailNotification
         notifcb = NotificationMail(plugin)
 

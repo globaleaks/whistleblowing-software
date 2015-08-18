@@ -14,7 +14,7 @@ import os
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.handlers.admin.staticfiles import dump_static_file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
@@ -30,7 +30,7 @@ class AdminLanguageFileHandler(BaseHandler):
     """
 
     def custom_langfile_path(self, lang):
-        return os.path.abspath(os.path.join(GLSetting.static_path_l10n, '%s.json' % lang))
+        return os.path.abspath(os.path.join(GLSettings.static_path_l10n, '%s.json' % lang))
 
     @transport_security_check('admin')
     @authenticated('admin')
@@ -52,7 +52,7 @@ class AdminLanguageFileHandler(BaseHandler):
             return
 
         path = self.custom_langfile_path(lang)
-        directory_traversal_check(GLSetting.static_path_l10n, path)
+        directory_traversal_check(GLSettings.static_path_l10n, path)
 
         try:
             dumped_file = yield threads.deferToThread(dump_static_file, uploaded_file, path)
@@ -76,7 +76,7 @@ class AdminLanguageFileHandler(BaseHandler):
         Errors: LangFileNotFound
         """
         path = self.custom_langfile_path(lang)
-        directory_traversal_check(GLSetting.static_path_l10n, path)
+        directory_traversal_check(GLSettings.static_path_l10n, path)
 
         if not os.path.exists(path):
             raise errors.LangFileNotFound

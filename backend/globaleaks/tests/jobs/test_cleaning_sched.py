@@ -9,7 +9,7 @@ from globaleaks import models
 from globaleaks.handlers import admin, rtip, receiver
 from globaleaks.jobs import cleaning_sched
 from globaleaks.utils.utility import is_expired, datetime_null
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, GLSettings
 
 
 class TestCleaning(helpers.TestGLWithPopulatedDB):
@@ -91,27 +91,27 @@ class TipCleaning(TestCleaning):
         yield self.perform_submission_uploads()
         yield self.perform_submission_actions()
 
-        self.assertTrue(os.listdir(GLSetting.submission_path) != [])
+        self.assertTrue(os.listdir(GLSettings.submission_path) != [])
 
         yield self.check_tip_not_expired()
         yield self.force_tip_expire()
 
         yield cleaning_sched.CleaningSchedule().operation()
 
-        self.assertTrue(os.listdir(GLSetting.submission_path) == [])
-        self.assertTrue(os.listdir(GLSetting.tmp_upload_path) == [])
+        self.assertTrue(os.listdir(GLSettings.submission_path) == [])
+        self.assertTrue(os.listdir(GLSettings.tmp_upload_path) == [])
 
     @inlineCallbacks
     def test_rtip_life_and_expire_with_files(self):
         # create itip and rtips
         yield self.perform_full_submission_actions()
 
-        self.assertTrue(os.listdir(GLSetting.submission_path) != [])
+        self.assertTrue(os.listdir(GLSettings.submission_path) != [])
 
         yield self.check_tip_not_expired()
         yield self.force_tip_expire()
 
         yield cleaning_sched.CleaningSchedule().operation()
 
-        self.assertTrue(os.listdir(GLSetting.submission_path) == [])
-        self.assertTrue(os.listdir(GLSetting.tmp_upload_path) == [])
+        self.assertTrue(os.listdir(GLSettings.submission_path) == [])
+        self.assertTrue(os.listdir(GLSettings.tmp_upload_path) == [])

@@ -8,7 +8,7 @@ from globaleaks.rest import errors
 from globaleaks.security import GLBPGP
 from globaleaks.handlers import receiver, submission
 from globaleaks.handlers.admin import create_receiver, create_context, get_context_list
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.jobs.delivery_sched import DeliverySchedule, get_files_by_itip, get_receiverfile_by_itip
 from globaleaks.plugins.base import Event
 from globaleaks.utils.token import Token
@@ -100,7 +100,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
         mail_content = Templating().format_template(dummy_template, mock_event)
 
         # setup the PGP key before
-        GLSetting.pgproot = PGPROOT
+        GLSettings.pgproot = PGPROOT
 
         fake_receiver_desc = {
             'pgp_key_public': unicode(VALID_PGP_KEY1),
@@ -120,7 +120,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
     def test_encrypt_file(self):
 
         # setup the PGP key before
-        GLSetting.pgproot = PGPROOT
+        GLSettings.pgproot = PGPROOT
 
         tempsource = os.path.join(os.getcwd(), "temp_source.txt")
         with file(tempsource, 'w+') as f1:

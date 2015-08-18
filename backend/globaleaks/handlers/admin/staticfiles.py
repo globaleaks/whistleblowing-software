@@ -15,7 +15,7 @@ from cyclone.web import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.settings import GLSetting, transact_ro
+from globaleaks.settings import GLSettings, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils.utility import log
@@ -50,10 +50,10 @@ def get_description_by_stat(statstruct, name):
 
 def get_stored_files():
     stored_list = []
-    storedfiles = os.listdir(GLSetting.static_path)
+    storedfiles = os.listdir(GLSettings.static_path)
 
     for fname in storedfiles:
-        filepath = os.path.join(GLSetting.static_path, fname)
+        filepath = os.path.join(GLSettings.static_path, fname)
 
         if os.path.isfile(filepath) and not reserved_file_check(fname):
             statinfo = os.stat(filepath)
@@ -108,7 +108,7 @@ def receiver_pic_path(store, receiver_uuid):
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    return os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
+    return os.path.join(GLSettings.static_path, "%s.png" % receiver_uuid)
 
 
 class StaticFileInstance(BaseHandler):
@@ -139,29 +139,29 @@ class StaticFileInstance(BaseHandler):
         #
         # There 4 possibilities allowed are:
         #
-        # 1) the destination is == GLSetting.reserved_names.logo
-        #   2) the destination is == GLSetting.reserved_names.cc
+        # 1) the destination is == GLSettings.reserved_names.logo
+        #   2) the destination is == GLSettings.reserved_names.cc
         #   3) the "destination+".png" does not match receiver_img_regexp
         #   4) the provided filename is a receiver uuid
-        if filename == GLSetting.reserved_names.logo:
+        if filename == GLSettings.reserved_names.logo:
             try:
-                path = os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_names.logo)
+                path = os.path.join(GLSettings.static_path, "%s.png" % GLSettings.reserved_names.logo)
                 log.debug("Received request to update Node logo with %s" % uploaded_file['filename'])
             except Exception as excpd:
                 log.err("Exception raise saving Node logo: %s" % excpd)
                 raise errors.InternalServerError(excpd.__repr__())
 
-        elif filename == GLSetting.reserved_names.css:
+        elif filename == GLSettings.reserved_names.css:
             try:
-                path = os.path.join(GLSetting.static_path, "%s.css" % GLSetting.reserved_names.css)
+                path = os.path.join(GLSettings.static_path, "%s.css" % GLSettings.reserved_names.css)
                 log.debug("Received request to update custom CSS with %s" % uploaded_file['filename'])
             except Exception as excpd:
                 log.err("Exception raise saving custom CSS: %s" % excpd)
                 raise errors.InternalServerError(excpd.__repr__())
 
-        elif filename == GLSetting.reserved_names.html:
+        elif filename == GLSettings.reserved_names.html:
             try:
-                path = os.path.join(GLSetting.static_path, "%s.html" % GLSetting.reserved_names.html)
+                path = os.path.join(GLSettings.static_path, "%s.html" % GLSettings.reserved_names.html)
                 log.debug("Received request to update custom Homepage with %s" % uploaded_file['filename'])
             except Exception as excpd:
                 log.err("Exception raise saving custom Homepage: %s" % excpd)
@@ -169,7 +169,7 @@ class StaticFileInstance(BaseHandler):
 
         elif filename == 'customization' and \
                 not re.match(receiver_img_regexp, uploaded_file['filename'] + ".png"):
-            path = os.path.join(GLSetting.static_path, uploaded_file['filename'])
+            path = os.path.join(GLSettings.static_path, uploaded_file['filename'])
             log.debug("Received request to save %s in path %s" %
                       (uploaded_file['filename'], path))
         else:
@@ -184,7 +184,7 @@ class StaticFileInstance(BaseHandler):
                         (filename, excpd))
                 raise errors.InternalServerError(excpd.__repr__())
 
-        directory_traversal_check(GLSetting.static_path, path)
+        directory_traversal_check(GLSettings.static_path, path)
 
         try:
             # the dump of the file is done here in the latest stage to
@@ -210,8 +210,8 @@ class StaticFileInstance(BaseHandler):
         Parameter: filename
         Errors: StaticFileNotFound
         """
-        path = os.path.join(GLSetting.static_path, filename)
-        directory_traversal_check(GLSetting.static_path, path)
+        path = os.path.join(GLSettings.static_path, filename)
+        directory_traversal_check(GLSettings.static_path, path)
 
         if not os.path.exists(path):
             raise errors.StaticFileNotFound

@@ -3,7 +3,7 @@ import time
 import re
 from twisted.trial import unittest
 from globaleaks.utils import utility
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 
 
 class TestUtility(unittest.TestCase):
@@ -39,7 +39,7 @@ class TestUtility(unittest.TestCase):
                                       utility.uuid4()))
 
     def test_uuid4_debug(self):
-        GLSetting.debug_option_UUID_human = "antani"
+        GLSettings.debug_option_UUID_human = "antani"
         self.assertEqual(utility.uuid4(), "antani00-0000-0000-0000-000000000001")
         self.assertEqual(utility.uuid4(), "antani00-0000-0000-0000-000000000002")
         self.assertEqual(utility.uuid4(), "antani00-0000-0000-0000-000000000003")

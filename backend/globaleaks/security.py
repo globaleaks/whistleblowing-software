@@ -21,7 +21,7 @@ from tempfile import _TemporaryFileWrapper
 
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log, datetime_to_day_str
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.third_party.rstr import xeger
 
 
@@ -75,18 +75,18 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
         Create the AES Key to encrypt uploaded file.
         """
-        self.key = os.urandom(GLSetting.AES_key_size)
+        self.key = os.urandom(GLSettings.AES_key_size)
 
-        self.key_id = xeger(GLSetting.AES_key_id_regexp)
-        self.keypath = os.path.join(GLSetting.ramdisk_path, "%s%s" %
-                                    (GLSetting.AES_keyfile_prefix, self.key_id))
+        self.key_id = xeger(GLSettings.AES_key_id_regexp)
+        self.keypath = os.path.join(GLSettings.ramdisk_path, "%s%s" %
+                                    (GLSettings.AES_keyfile_prefix, self.key_id))
 
         while os.path.isfile(self.keypath):
-            self.key_id = xeger(GLSetting.AES_key_id_regexp)
-            self.keypath = os.path.join(GLSetting.ramdisk_path, "%s%s" %
-                                        (GLSetting.AES_keyfile_prefix, self.key_id))
+            self.key_id = xeger(GLSettings.AES_key_id_regexp)
+            self.keypath = os.path.join(GLSettings.ramdisk_path, "%s%s" %
+                                        (GLSettings.AES_keyfile_prefix, self.key_id))
 
-        self.key_counter_nonce = os.urandom(GLSetting.AES_counter_nonce)
+        self.key_counter_nonce = os.urandom(GLSettings.AES_counter_nonce)
         self.initialize_cipher()
 
         saved_struct = {
@@ -175,7 +175,7 @@ class GLSecureFile(GLSecureTemporaryFile):
         """
         Load the AES Key to decrypt uploaded file.
         """
-        self.keypath = os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, self.key_id)))
+        self.keypath = os.path.join(GLSettings.ramdisk_path, ("%s%s" % (GLSettings.AES_keyfile_prefix, self.key_id)))
 
         try:
             with open(self.keypath, 'r') as kf:
@@ -302,7 +302,7 @@ class GLBPGP(object):
         every time is needed, a new keyring is created here.
         """
         try:
-            temp_pgproot = os.path.join(GLSetting.pgproot, "%s" % xeger(r'[A-Za-z0-9]{8}'))
+            temp_pgproot = os.path.join(GLSettings.pgproot, "%s" % xeger(r'[A-Za-z0-9]{8}'))
             os.makedirs(temp_pgproot, mode=0700)
             self.pgph = GPG(gnupghome=temp_pgproot, options=['--trust-model', 'always'])
             self.pgph.encoding = "UTF-8"

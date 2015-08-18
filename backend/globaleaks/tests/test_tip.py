@@ -4,7 +4,7 @@ import re
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 from globaleaks.rest import errors, requests
 from globaleaks.handlers import admin, submission, authentication, receiver, rtip, wbtip
@@ -391,8 +391,8 @@ class TestTipInstance(TTip):
         yield self.receiver1_get_tip_list()
         yield self.receiver_RW_comments()
         yield self.wb_RW_comments()
-        yield self.wb_get_receiver_list(GLSetting.memory_copy.default_language)
-        yield self.receiver_get_receiver_list(GLSetting.memory_copy.default_language)
+        yield self.wb_get_receiver_list(GLSettings.memory_copy.default_language)
+        yield self.receiver_get_receiver_list(GLSettings.memory_copy.default_language)
         # test expiration date
         yield self.fail_postpone_expiration_date()
         yield self.verify_default_expiration_date()

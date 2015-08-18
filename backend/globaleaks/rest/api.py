@@ -5,7 +5,7 @@
 #   This file contains the URI mapping for the GlobaLeaks API.
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.handlers import exception, \
                                 node, submission, rtip, wbtip, receiver, \
                                 files, authentication, admin, \
@@ -109,8 +109,8 @@ spec = [
     (r'/styles.css', css.LTRCSSFileHandler),
     (r'/styles-rtl.css', css.RTLCSSFileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
-            langfiles.LanguageFileHandler, {'path': GLSetting.glclient_path}),
+            langfiles.LanguageFileHandler, {'path': GLSettings.glclient_path}),
 
     ## This Handler should remain the last one as it works like a last resort catch 'em all
-    (r'/([a-zA-Z0-9_\-\/\.]*)', BaseStaticFileHandler, {'path': GLSetting.glclient_path})
+    (r'/([a-zA-Z0-9_\-\/\.]*)', BaseStaticFileHandler, {'path': GLSettings.glclient_path})
 ]

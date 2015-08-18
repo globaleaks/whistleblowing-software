@@ -9,7 +9,7 @@ import os
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.settings import transact_ro, GLSetting
+from globaleaks.settings import transact_ro, GLSettings
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks import models
@@ -126,7 +126,7 @@ def collect_users_overview(store):
 def collect_files_overview(store):
     file_description_list = []
 
-    submission_dir = os.path.join(GLSetting.working_path, GLSetting.submission_path)
+    submission_dir = os.path.join(GLSettings.working_path, GLSettings.submission_path)
     disk_files = os.listdir(submission_dir)
     stored_ifiles = store.find(models.InternalFile)
     stored_ifiles.order_by(Desc(models.InternalFile.creation_date))

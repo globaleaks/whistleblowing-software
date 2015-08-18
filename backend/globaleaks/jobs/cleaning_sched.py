@@ -15,7 +15,7 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, db_save_events_on_db
 from globaleaks.models import InternalTip, InternalFile, Receiver, ReceiverTip, ReceiverFile, Stats
 from globaleaks.plugins.base import Event
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.utils.utility import log, datetime_to_ISO8601, ISO8601_to_datetime, utc_dynamic_date, datetime_now
 
 
@@ -77,9 +77,9 @@ class CleaningSchedule(GLJob):
         if expired InternalTips are found, it removes that along with
         all the related DB entries comment and tip related.
         """
-        # Reset the exception tracking variable of GLSetting
-        GLSetting.exceptions = {}
-        GLSetting.exceptions_email_count = 0
+        # Reset the exception tracking variable of GLSettings
+        GLSettings.exceptions = {}
+        GLSettings.exceptions_email_count = 0
 
         yield self.perform_cleaning()
         yield ExpiringRTipEvent().process_events()

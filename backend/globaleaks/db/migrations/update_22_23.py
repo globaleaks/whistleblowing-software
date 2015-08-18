@@ -11,7 +11,7 @@ from globaleaks.handlers.submission import db_save_questionnaire_answers, \
     extract_answers_preview
 from globaleaks.models import Model, ArchivedSchema
 from globaleaks.security import sha256
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 
 
 class InternalFile_v_22(Model):

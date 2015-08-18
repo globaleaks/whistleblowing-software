@@ -8,7 +8,7 @@
 # supporter KeyWords are here documented:
 # https://github.com/globaleaks/GlobaLeaks/wiki/Customization-guide#customize-notification
 
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
     ISO8601_to_datetime, datetime_now
 
@@ -158,7 +158,7 @@ class TipKeyword(_KeyWord):
         making that if one of these function return None, the entire line is stripped.
         This can avoid the awkward effect of 'Public Url: [Ask to your admin about Tor]'
         """
-        if not GLSetting.memory_copy.tor2web_receiver:
+        if not GLSettings.memory_copy.tor2web_receiver:
             retstr = "[Ask to your admin about Tor]"
         elif len(self.node['public_site']):
             retstr =  '%s/#/status/%s' % ( self.node['public_site'], self.tip['id'] )

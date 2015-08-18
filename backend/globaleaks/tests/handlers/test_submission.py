@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 
 from twisted.internet.defer import inlineCallbacks, returnValue
 
-# override GLSetting
-from globaleaks.settings import GLSetting, transact_ro
+# override GLSettings
+from globaleaks.settings import GLSettings, transact_ro
 from globaleaks.tests import helpers
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import authentication, wbtip
@@ -96,7 +96,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def test_submission_with_receiver_selection_allow_unencrypted_false_no_keys_loaded(self):
-        GLSetting.memory_copy.allow_unencrypted = False
+        GLSettings.memory_copy.allow_unencrypted = False
 
         # Create a new request with selected three of the four receivers
         submission_request = yield self.get_dummy_submission(self.dummyContext['id'])

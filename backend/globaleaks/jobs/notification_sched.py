@@ -14,7 +14,7 @@ from globaleaks.handlers import admin, rtip
 from globaleaks.handlers.submission import db_serialize_questionnaire_answers, \
     db_get_archived_questionnaire_schema
 from globaleaks.plugins.base import Event
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, GLSettings
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.models import EventLogs
 
@@ -79,7 +79,7 @@ class EventLogger(object):
 
     def __init__(self):
         self.events = []
-        self.language = GLSetting.defaults.language
+        self.language = GLSettings.defaults.language
 
     def import_receiver(self, receiver):
         self.language = receiver.user.language
