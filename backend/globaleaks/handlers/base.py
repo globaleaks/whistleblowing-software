@@ -30,7 +30,7 @@ from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, R
 
 from globaleaks.event import outcoming_event_monitored, EventTrack
 from globaleaks.rest import errors
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.monitor import ResourceMonitor
@@ -44,7 +44,7 @@ GLUploads = {}
 
 def validate_host(host_key):
     """
-    validate_host checks in the GLSetting list of valid 'Host:' values
+    validate_host checks in the GLSettings list of valid 'Host:' values
     and if matched, return True, else return False
     Is used by all the Web handlers inherit from Cyclone
     """
@@ -57,11 +57,11 @@ def validate_host(host_key):
     if re.match(r'^[0-9a-z]{16}\.onion$', host_key):
         return True
 
-    if host_key != '' and host_key in GLSetting.accepted_hosts:
+    if host_key != '' and host_key in GLSettings.accepted_hosts:
         return True
 
     log.debug("Error in host requested: %s not accepted between: %s " %
-              (host_key, GLSetting.accepted_hosts))
+              (host_key, GLSettings.accepted_hosts))
 
     return False
 
@@ -94,9 +94,9 @@ class GLHTTPConnection(HTTPConnection):
 
             if content_length:
                 megabytes = int(content_length) / (1024 * 1024)
-                if megabytes > GLSetting.defaults.maximum_filesize:
+                if megabytes > GLSettings.defaults.maximum_filesize:
                     raise _BadRequestException("Request exceeded size limit %d" %
-                                               GLSetting.defaults.maximum_filesize)
+                                               GLSettings.defaults.maximum_filesize)
 
                 if headers.get("Expect") == "100-continue":
                     self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
@@ -104,7 +104,7 @@ class GLHTTPConnection(HTTPConnection):
                 if content_length < 100000:
                     self._contentbuffer = StringIO()
                 else:
-                    self._contentbuffer = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+                    self._contentbuffer = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
 
                 self.content_length = content_length
                 self.setRawMode()
@@ -124,8 +124,8 @@ class BaseHandler(RequestHandler):
     def __init__(self, application, request, **kwargs):
         self.name = type(self).__name__
 
-        self.req_id = GLSetting.http_requests_counter
-        GLSetting.http_requests_counter += 1
+        self.req_id = GLSettings.http_requests_counter
+        GLSettings.http_requests_counter += 1
 
         super(BaseHandler, self).__init__(application, request, **kwargs)
 
@@ -158,7 +158,7 @@ class BaseHandler(RequestHandler):
 
         # to mitigate clickjaking attacks on iframes allowing only same origin
         # same origin is needed in order to include svg and other html <object>
-        if not GLSetting.memory_copy.allow_iframes_inclusion:
+        if not GLSettings.memory_copy.allow_iframes_inclusion:
             self.set_header("X-Frame-Options", "sameorigin")
 
         lang = self.request.headers.get('GL-Language', None)
@@ -166,7 +166,7 @@ class BaseHandler(RequestHandler):
         if not lang:
             # before was used the Client language. but shall be unsupported
             # lang = self.request.headers.get('Accepted-Language', None)
-            lang = GLSetting.memory_copy.default_language
+            lang = GLSettings.memory_copy.default_language
 
         self.request.language = lang
 
@@ -367,10 +367,10 @@ class BaseHandler(RequestHandler):
         """
 
         try:
-            with open(GLSetting.httplogfile, 'a+') as fd:
+            with open(GLSettings.httplogfile, 'a+') as fd:
                 fdesc.writeToFD(fd.fileno(), content + "\n")
         except Exception as excep:
-            log.err("Unable to open %s: %s" % (GLSetting.httplogfile, excep))
+            log.err("Unable to open %s: %s" % (GLSettings.httplogfile, excep))
 
     def write_file(self, filepath):
         if not (os.path.exists(filepath) or os.path.isfile(filepath)):
@@ -379,7 +379,7 @@ class BaseHandler(RequestHandler):
         try:
             with open(filepath, "rb") as f:
                 while True:
-                    chunk = f.read(GLSetting.file_chunk_size)
+                    chunk = f.read(GLSettings.file_chunk_size)
                     if len(chunk) == 0:
                         break
                     self.write(chunk)
@@ -426,10 +426,10 @@ class BaseHandler(RequestHandler):
         (because it mean that globaleaks is runned in development mode)
         """
 
-        if GLSetting.loglevel == logging.DEBUG and GLSetting.devel_mode:
+        if GLSettings.loglevel == logging.DEBUG and GLSettings.devel_mode:
             return
 
-        uniform_delay = GLSetting.delay_threshold  # default 0.800
+        uniform_delay = GLSettings.delay_threshold  # default 0.800
         request_time = self.request.request_time()
         needed_diff = uniform_delay - request_time
 
@@ -448,7 +448,7 @@ class BaseHandler(RequestHandler):
             return None
 
         try:
-            session = GLSetting.sessions[session_id]
+            session = GLSettings.sessions[session_id]
         except KeyError:
             return None
         return session
@@ -469,12 +469,12 @@ class BaseHandler(RequestHandler):
 
     def get_file_upload(self):
         try:
-            if (int(self.request.arguments['flowTotalSize'][0]) / (1024 * 1024)) > GLSetting.memory_copy.maximum_filesize:
+            if (int(self.request.arguments['flowTotalSize'][0]) / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize:
                 log.err("File upload request rejected: file too big")
-                raise errors.FileTooBig(GLSetting.memory_copy.maximum_filesize)
+                raise errors.FileTooBig(GLSettings.memory_copy.maximum_filesize)
 
             if self.request.arguments['flowIdentifier'][0] not in GLUploads:
-                f = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+                f = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
                 GLUploads[self.request.arguments['flowIdentifier'][0]] = f
             else:
                 f = GLUploads[self.request.arguments['flowIdentifier'][0]]
@@ -510,7 +510,7 @@ class BaseHandler(RequestHandler):
             exc_type, exc_value, exc_tb = sys.exc_info()
 
         if isinstance(e, (HTTPError, HTTPAuthenticationRequired)):
-            if GLSetting.http_log and e.log_message:
+            if GLSettings.http_log and e.log_message:
                 string_format = "%d %s: " + e.log_message
                 args = [e.status_code, self._request_summary()] + list(e.args)
                 msg = lambda *args: string_format % args
@@ -522,7 +522,7 @@ class BaseHandler(RequestHandler):
                 return self.send_error(e.status_code, exception=e)
         else:
             log.err("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb))
-            if GLSetting.http_log:
+            if GLSettings.http_log:
                 log.msg(e)
             mail_exception_handler(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
@@ -539,10 +539,10 @@ class BaseHandler(RequestHandler):
             send_exception_email(error)
 
     def handler_request_logging_begin(self):
-        if GLSetting.devel_mode and GLSetting.http_log >= 0:
+        if GLSettings.devel_mode and GLSettings.http_log >= 0:
             try:
                 content = (">" * 15)
-                content += (" Request %d " % GLSetting.http_requests_counter)
+                content += (" Request %d " % GLSettings.http_requests_counter)
                 content += (">" * 15) + "\n\n"
 
                 content += self.request.method + " " + self.request.full_url() + "\n\n"
@@ -566,12 +566,12 @@ class BaseHandler(RequestHandler):
                 log.err("JSON logging fail (prepare): %s" % excep.message)
                 return
 
-            if 0 < GLSetting.http_log < GLSetting.http_requests_counter:
-                log.debug("Reached I/O logging limit of %d requests: disabling" % GLSetting.http_log)
-                GLSetting.http_log = -1
+            if 0 < GLSettings.http_log < GLSettings.http_requests_counter:
+                log.debug("Reached I/O logging limit of %d requests: disabling" % GLSettings.http_log)
+                GLSettings.http_log = -1
 
     def handler_request_logging_end(self):
-        if GLSetting.devel_mode and GLSetting.http_log >= 0:
+        if GLSettings.devel_mode and GLSettings.http_log >= 0:
             try:
                 content = ("<" * 15)
                 content += (" Response %d " % self.req_id)
@@ -593,7 +593,7 @@ class BaseHandler(RequestHandler):
 class BaseStaticFileHandler(BaseHandler):
     def initialize(self, path=None):
         if path is None:
-            path = GLSetting.static_path
+            path = GLSettings.static_path
 
         self.root = "%s%s" % (os.path.abspath(path), os.path.sep)
 

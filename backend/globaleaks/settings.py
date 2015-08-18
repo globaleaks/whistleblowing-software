@@ -85,16 +85,16 @@ external_counted_events = {
 }
 
 
-class GLSettingsClass(object):
+class GLSettingssClass(object):
     initialized = False
 
     def __init__(self):
 
-        if GLSettingsClass.initialized:
-            error_msg = "Singleton GLSettingClass instanced twice!"
+        if GLSettingssClass.initialized:
+            error_msg = "Singleton GLSettingsClass instanced twice!"
             raise Exception(error_msg)
         else:
-            GLSettingsClass.initialized = True
+            GLSettingssClass.initialized = True
 
         # command line parsing utils
         self.parser = OptionParser()
@@ -289,7 +289,7 @@ class GLSettingsClass(object):
         # Disk file encryption in realtime
         # if the key is fine or is not.
         # this key permit Globaleaks to resist on application restart
-        # not to a reboot! (is written in GLSetting.
+        # not to a reboot! (is written in GLSettings.
         # key is initialized and stored in key path.
         # key_id contains an identifier of the key (when system reboots,
         # key changes.
@@ -473,14 +473,14 @@ class GLSettingsClass(object):
 
             with file(hostname_tor_file, 'r') as htf:
                 hostname_tor_content = htf.read(22)  # hostname + .onion
-                GLSetting.unchecked_tor_input['hostname_tor_content'] = hostname_tor_content
+                GLSettings.unchecked_tor_input['hostname_tor_content'] = hostname_tor_content
         # URL validation and DB import continue in apply_cli_options
 
         if self.cmdline_options.hidden_service:
-            GLSetting.unchecked_tor_input['hidden_service'] = self.cmdline_options.hidden_service
+            GLSettings.unchecked_tor_input['hidden_service'] = self.cmdline_options.hidden_service
 
         if self.cmdline_options.public_website:
-            GLSetting.unchecked_tor_input['public_website'] = self.cmdline_options.public_website
+            GLSettings.unchecked_tor_input['public_website'] = self.cmdline_options.public_website
         # These three option would be used in globaleaks.db.datainit.apply_cli_options()
 
         if self.cmdline_options.user and self.cmdline_options.group:
@@ -536,21 +536,21 @@ class GLSettingsClass(object):
             hardcore_opts = self.cmdline_options.xxx.split(',')
             if len(hardcore_opts):
                 try:
-                    GLSetting.debug_option_in_the_future = int(hardcore_opts[0])
+                    GLSettings.debug_option_in_the_future = int(hardcore_opts[0])
                 except ValueError:
                     print "Invalid number of seconds provided:", hardcore_opts[0]
                     quit(-1)
-                print "→ \033[1;31mUsing", GLSetting.debug_option_in_the_future, \
+                print "→ \033[1;31mUsing", GLSettings.debug_option_in_the_future, \
                     "seconds in the future\033[0m"
 
             if len(hardcore_opts) > 1 and len(hardcore_opts[1]) > 1:
                 # at least two byte needed, so you can skip this option
-                GLSetting.debug_option_UUID_human = hardcore_opts[1]
+                GLSettings.debug_option_UUID_human = hardcore_opts[1]
 
-                if len(GLSetting.debug_option_UUID_human) > 8:
-                    GLSetting.debug_option_UUID_human = GLSetting.debug_option_UUID_human[:8]
+                if len(GLSettings.debug_option_UUID_human) > 8:
+                    GLSettings.debug_option_UUID_human = GLSettings.debug_option_UUID_human[:8]
 
-                print "→ \033[1;31mUsing", GLSetting.debug_option_UUID_human, \
+                print "→ \033[1;31mUsing", GLSettings.debug_option_UUID_human, \
                     "to generate human readable UUIDv4\033[0m"
 
             if len(hardcore_opts) > 2 and len(hardcore_opts[2]) > 1:
@@ -617,7 +617,7 @@ class GLSettingsClass(object):
         create_directory(self.torhs_path)
         create_directory(self.ramdisk_path)
 
-        logo_path = os.path.join(self.static_path, "%s.png" % GLSetting.reserved_names.logo)
+        logo_path = os.path.join(self.static_path, "%s.png" % GLSettings.reserved_names.logo)
         # Missing default logo: is supposed we're initializing a new globaleaks directory
         # happen in unitTest and when a new working directory is specify
         if not os.path.isfile(logo_path):
@@ -727,8 +727,8 @@ class GLSettingsClass(object):
         """
 
         # temporary .aes files must be simply deleted
-        for f in os.listdir(GLSetting.tmp_upload_path):
-            path = os.path.join(GLSetting.tmp_upload_path, f)
+        for f in os.listdir(GLSettings.tmp_upload_path):
+            path = os.path.join(GLSettings.tmp_upload_path, f)
             print "Removing old temporary file: %s" % path
 
             try:
@@ -739,12 +739,12 @@ class GLSettingsClass(object):
         # temporary .aes files with lost keys can be deleted
         # while temporary .aes files with valid current key
         # will be automagically handled by delivery sched.
-        keypath = os.path.join(self.ramdisk_path, GLSetting.AES_keyfile_prefix)
+        keypath = os.path.join(self.ramdisk_path, GLSettings.AES_keyfile_prefix)
 
-        for f in os.listdir(GLSetting.submission_path):
-            path = os.path.join(GLSetting.submission_path, f)
+        for f in os.listdir(GLSettings.submission_path):
+            path = os.path.join(GLSettings.submission_path, f)
             try:
-                result = GLSetting.AES_file_regexp_comp.match(f)
+                result = GLSettings.AES_file_regexp_comp.match(f)
                 if result is not None:
                     if not os.path.isfile("%s%s" % (keypath, result.group(1))):
                         print "Removing old encrypted file (lost key): %s" % path
@@ -753,8 +753,8 @@ class GLSettingsClass(object):
                 print "Error while evaluating removal for %s: %s" % (path, excep)
 
 
-# GLSetting is a singleton class exported once
-GLSetting = GLSettingsClass()
+# GLSettings is a singleton class exported once
+GLSettings = GLSettingssClass()
 
 
 class transact(object):
@@ -762,7 +762,7 @@ class transact(object):
     Class decorator for managing transactions.
     Because Storm sucks.
     """
-    tp = ThreadPool(0, GLSetting.db_thread_pool_size)
+    tp = ThreadPool(0, GLSettings.db_thread_pool_size)
 
     readonly = False
 
@@ -770,7 +770,7 @@ class transact(object):
         self.store = None
         self.method = method
         self.instance = None
-        self.debug = GLSetting.storm_debug
+        self.debug = GLSettings.storm_debug
 
         if self.debug:
             tracer.debug(self.debug, sys.stdout)
@@ -796,9 +796,9 @@ class transact(object):
         Returns a reference to Storm Store
         """
         zstorm = ZStorm()
-        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_uri)
+        zstorm.set_default_uri(GLSettings.store_name, GLSettings.db_uri)
 
-        return zstorm.get(GLSetting.store_name)
+        return zstorm.get(GLSettings.store_name)
 
     def _wrap(self, function, *args, **kwargs):
         """
@@ -816,7 +816,7 @@ class transact(object):
         except exceptions.DisconnectionError as e:
             transaction.abort()
             # we print the exception here because we do not propagate it
-            GLSetting.log_debug(e)
+            GLSettings.log_debug(e)
             result = None
         except exceptions.IntegrityError as e:
             transaction.abort()

@@ -13,22 +13,22 @@ from twisted.application import internet
 from cyclone import web
 
 from globaleaks.utils.utility import randbits
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.rest import api
 from globaleaks.handlers.base import GLHTTPConnection
 
 application = Application('GLBackend')
 
 settings = dict(cookie_secret=randbits(128),
-                debug=GLSetting.http_log,
+                debug=GLSettings.http_log,
                 gzip=True)
 
 # Initialize the web API event listener, handling all the synchronous operations
 GLBackendAPIFactory = web.Application(api.spec, **settings)
 GLBackendAPIFactory.protocol = GLHTTPConnection
 
-for ip in GLSetting.bind_addresses:
-    GLBackendAPI = internet.TCPServer(GLSetting.bind_port, GLBackendAPIFactory, interface=ip)
+for ip in GLSettings.bind_addresses:
+    GLBackendAPI = internet.TCPServer(GLSettings.bind_port, GLBackendAPIFactory, interface=ip)
     GLBackendAPI.setServiceParent(application)
 
 # define exit behaviour

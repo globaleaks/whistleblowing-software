@@ -18,7 +18,7 @@ from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.security import change_password
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 
@@ -95,8 +95,8 @@ def update_receiver_settings(store, receiver_id, request, language):
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    receiver.user.language = request.get('language', GLSetting.memory_copy.default_language)
-    receiver.user.timezone = request.get('timezone', GLSetting.memory_copy.default_timezone)
+    receiver.user.language = request.get('language', GLSettings.memory_copy.default_language)
+    receiver.user.timezone = request.get('timezone', GLSettings.memory_copy.default_timezone)
 
     new_password = request['password']
     old_password = request['old_password']

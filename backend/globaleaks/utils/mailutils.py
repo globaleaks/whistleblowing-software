@@ -31,7 +31,7 @@ from txsocksx.client import SOCKS5ClientEndpoint
 
 from globaleaks import __version__
 from globaleaks.utils.utility import log
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.security import sha256
 
 
@@ -196,8 +196,8 @@ def sendmail(authentication_username, authentication_password, from_address,
         return fail()
 
     try:
-        if not GLSetting.disable_mail_torification and GLSetting.memory_copy.notif_uses_tor:
-            socksProxy = TCP4ClientEndpoint(reactor, GLSetting.socks_host, GLSetting.socks_port, timeout=notif_timeout)
+        if not GLSettings.disable_mail_torification and GLSettings.memory_copy.notif_uses_tor:
+            socksProxy = TCP4ClientEndpoint(reactor, GLSettings.socks_host, GLSettings.socks_port, timeout=notif_timeout)
             endpoint = SOCKS5ClientEndpoint(smtp_host.encode('utf-8'), smtp_port, socksProxy)
             d = endpoint.connect(factory)
             d.addErrback(socks_errback, event)
@@ -255,7 +255,7 @@ def mail_exception_handler(etype, value, tback):
     This would be enabled only in the testing phase and testing release,
     not in production release.
     """
-    if GLSetting.disable_backend_exception_notification:
+    if GLSettings.disable_backend_exception_notification:
         return
 
     if isinstance(value, GeneratorExit) or \
@@ -279,7 +279,7 @@ def mail_exception_handler(etype, value, tback):
 
     mail_body = error_message + "\n\n" + traceinfo
 
-    if GLSetting.loglevel >= logging.DEBUG:
+    if GLSettings.loglevel >= logging.DEBUG:
         log.err("Exception raised and handled by globaleaks_exception_handler")
         log.err(mail_body)
 
@@ -287,51 +287,51 @@ def mail_exception_handler(etype, value, tback):
 
 
 def send_exception_email(mail_body):
-    if (GLSetting.exceptions_email_count >= GLSetting.exceptions_email_hourly_limit):
+    if (GLSettings.exceptions_email_count >= GLSettings.exceptions_email_hourly_limit):
        return
 
     if isinstance(mail_body, str) or isinstance(mail_body, unicode):
         mail_body = bytes(mail_body)
 
-    if not hasattr(GLSetting.memory_copy, 'notif_source_name') or \
-        not hasattr(GLSetting.memory_copy, 'notif_source_email') or \
-        not hasattr(GLSetting.memory_copy, 'exception_email'):
+    if not hasattr(GLSettings.memory_copy, 'notif_source_name') or \
+        not hasattr(GLSettings.memory_copy, 'notif_source_email') or \
+        not hasattr(GLSettings.memory_copy, 'exception_email'):
         log.err("Error: Cannot send mail exception before complete initialization.")
         return
 
     sha256_hash = sha256(mail_body)
 
-    if sha256_hash in GLSetting.exceptions:
-        GLSetting.exceptions[sha256_hash] += 1
-        if GLSetting.exceptions[sha256_hash] > 5:
+    if sha256_hash in GLSettings.exceptions:
+        GLSettings.exceptions[sha256_hash] += 1
+        if GLSettings.exceptions[sha256_hash] > 5:
             # if the threashold has been exceeded
             log.err("exception mail suppressed for exception (%s) [reason: threshold exceeded]" % sha256_hash)
             return
     else:
-        GLSetting.exceptions[sha256_hash] = 1
+        GLSettings.exceptions[sha256_hash] = 1
 
-    GLSetting.exceptions_email_count += 1
+    GLSettings.exceptions_email_count += 1
 
     try:
         mail_subject = subject = "Globaleaks Exception %s" % __version__
-        if GLSetting.devel_mode:
-            mail_subject +=  " [%s ]" % GLSetting.developer_name
+        if GLSettings.devel_mode:
+            mail_subject +=  " [%s ]" % GLSettings.developer_name
 
-        message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
-                                  GLSetting.memory_copy.notif_source_email,
+        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
+                                  GLSettings.memory_copy.notif_source_email,
                                   "Admin",
-                                  GLSetting.memory_copy.exception_email,
+                                  GLSettings.memory_copy.exception_email,
                                   mail_subject,
                                   mail_body)
 
-        sendmail(authentication_username=GLSetting.memory_copy.notif_username,
-                 authentication_password=GLSetting.memory_copy.notif_password,
-                 from_address=GLSetting.memory_copy.notif_username,
-                 to_address=GLSetting.memory_copy.exception_email,
+        sendmail(authentication_username=GLSettings.memory_copy.notif_username,
+                 authentication_password=GLSettings.memory_copy.notif_password,
+                 from_address=GLSettings.memory_copy.notif_username,
+                 to_address=GLSettings.memory_copy.exception_email,
                  message_file=message,
-                 smtp_host=GLSetting.memory_copy.notif_server,
-                 smtp_port=GLSetting.memory_copy.notif_port,
-                 security=GLSetting.memory_copy.notif_security)
+                 smtp_host=GLSettings.memory_copy.notif_server,
+                 smtp_port=GLSettings.memory_copy.notif_port,
+                 security=GLSettings.memory_copy.notif_security)
 
     except Exception as excep:
         # we strongly need to avoid raising exception inside email logic to avoid chained errors

@@ -42,7 +42,7 @@ from globaleaks.handlers.submission import create_submission
 from globaleaks.jobs import statistics_sched, mailflush_sched
 from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.settings import GLSetting, transact, transact_ro
+from globaleaks.settings import GLSettings, transact, transact_ro
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.third_party import rstr
 from globaleaks.utils import token
@@ -134,22 +134,22 @@ class TestGL(unittest.TestCase):
 
     @inlineCallbacks
     def setUp(self):
-        GLSetting.set_devel_mode()
-        GLSetting.logging = None
-        GLSetting.scheduler_threadpool = FakeThreadPool()
-        GLSetting.sessions = {}
-        GLSetting.failed_login_attempts = 0
+        GLSettings.set_devel_mode()
+        GLSettings.logging = None
+        GLSettings.scheduler_threadpool = FakeThreadPool()
+        GLSettings.sessions = {}
+        GLSettings.failed_login_attempts = 0
 
         if os.path.isdir('/dev/shm'):
-            GLSetting.working_path = '/dev/shm/globaleaks'
-            GLSetting.ramdisk_path = '/dev/shm/globaleaks/ramdisk'
+            GLSettings.working_path = '/dev/shm/globaleaks'
+            GLSettings.ramdisk_path = '/dev/shm/globaleaks/ramdisk'
         else:
-            GLSetting.working_path = './working_path'
-            GLSetting.ramdisk_path = './working_path/ramdisk'
+            GLSettings.working_path = './working_path'
+            GLSettings.ramdisk_path = './working_path/ramdisk'
 
-        GLSetting.eval_paths()
-        GLSetting.remove_directories()
-        GLSetting.create_directories()
+        GLSettings.eval_paths()
+        GLSettings.remove_directories()
+        GLSettings.create_directories()
 
         self.setUp_dummy()
 
@@ -161,7 +161,7 @@ class TestGL(unittest.TestCase):
         yield import_memory_variables()
 
         # override of imported memory variables
-        GLSetting.memory_copy.allow_unencrypted = True
+        GLSettings.memory_copy.allow_unencrypted = True
 
         anomaly.Alarm.reset()
         event.EventTrackQueue.reset()
@@ -198,8 +198,8 @@ class TestGL(unittest.TestCase):
 
         self.dummyNode = dummyStuff.dummyNode
 
-        self.assertEqual(os.listdir(GLSetting.submission_path), [])
-        self.assertEqual(os.listdir(GLSetting.tmp_upload_path), [])
+        self.assertEqual(os.listdir(GLSettings.submission_path), [])
+        self.assertEqual(os.listdir(GLSettings.tmp_upload_path), [])
 
     def localization_set(self, dict_l, dict_c, language):
         ret = dict(dict_l)
@@ -304,7 +304,7 @@ class TestGL(unittest.TestCase):
         if content is None:
             content = 'LA VEDI LA SUPERCAZZOLA ? PREMATURA ? unicode €'
 
-        temporary_file = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+        temporary_file = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
 
         temporary_file.write(content)
         temporary_file.avoid_delete()
@@ -552,7 +552,7 @@ class TestHandler(TestGLWithPopulatedDB):
         self._handler.finish = mock_write
 
         # we need to reset settings.session to keep each test independent
-        GLSetting.sessions = dict()
+        GLSettings.sessions = dict()
 
         # we need to reset GLApiCache to keep each test independent
         GLApiCache.invalidate()
@@ -880,16 +880,16 @@ class MockDict():
             'old_password': '',
             'salt': 'OMG!, the Rains of Castamere ;( ;(',
             'salt_receipt': '<<the Lannisters send their regards>>',
-            'maximum_filesize': GLSetting.defaults.maximum_filesize,
-            'maximum_namesize': GLSetting.defaults.maximum_namesize,
-            'maximum_textsize': GLSetting.defaults.maximum_textsize,
+            'maximum_filesize': GLSettings.defaults.maximum_filesize,
+            'maximum_namesize': GLSettings.defaults.maximum_namesize,
+            'maximum_textsize': GLSettings.defaults.maximum_textsize,
             'tor2web_admin': True,
             'tor2web_submission': True,
             'tor2web_receiver': True,
             'tor2web_unauth': True,
             'can_postpone_expiration': False,
             'can_delete_submission': False,
-            'exception_email': GLSetting.defaults.exception_email,
+            'exception_email': GLSettings.defaults.exception_email,
             'ahmia': False,
             'allow_unencrypted': True,
             'allow_iframes_inclusion': False,

@@ -11,7 +11,7 @@ from storm.variables import UnicodeVariable, JSONVariable
 
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.db.datainit import db_update_memory_variables
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 
 def variableToSQL(var, db_type):
     """
@@ -101,13 +101,13 @@ def generateCreateQuery(model):
         a = getattr(model, attr)
         if isinstance(a, PropertyColumn):
             var = a.variable_factory()
-            data_mapping = variableToSQL(var, GLSetting.db_type)
+            data_mapping = variableToSQL(var, GLSettings.db_type)
             name = a.name
             variables.append((name, data_mapping))
             if a.primary:
                 primary_keys.append(name)
 
-    query += varsToParametersSQL(variables, primary_keys, GLSetting.db_type)
+    query += varsToParametersSQL(variables, primary_keys, GLSettings.db_type)
     return query
 
 class TableReplacer(object):
@@ -134,19 +134,19 @@ class TableReplacer(object):
         old_database = create_database('sqlite:' + self.old_db_file)
         self.store_old = Store(old_database)
 
-        GLSetting.db_file = new_db_file
+        GLSettings.db_file = new_db_file
 
         new_database = create_database('sqlite:' + new_db_file)
         self.store_new = Store(new_database)
 
         if self.start_ver + 1 == DATABASE_VERSION:
-            log.msg('{} Acquire SQL schema {}'.format(self.debug_info, GLSetting.db_schema_file))
+            log.msg('{} Acquire SQL schema {}'.format(self.debug_info, GLSettings.db_schema_file))
 
-            if not os.access(GLSetting.db_schema_file, os.R_OK):
-                log.msg('Unable to access', GLSetting.db_schema_file)
+            if not os.access(GLSettings.db_schema_file, os.R_OK):
+                log.msg('Unable to access', GLSettings.db_schema_file)
                 raise IOError('Unable to access db schema file')
 
-            with open(GLSetting.db_schema_file) as f:
+            with open(GLSettings.db_schema_file) as f:
                 create_queries = ''.join(f).split(';')
                 for create_query in create_queries:
                     try:

@@ -6,7 +6,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.handlers import collection
 from globaleaks.models import ReceiverTip
-from globaleaks.settings import GLSetting, transact_ro
+from globaleaks.settings import GLSettings, transact_ro
 from globaleaks.tests import helpers
 
 class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
@@ -46,10 +46,10 @@ class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post_download_zipstored_with_files_removed_due_to_whatever(self):
-        shutil.rmtree(GLSetting.submission_path)
+        shutil.rmtree(GLSettings.submission_path)
         yield self.download('zipstored')
 
     @inlineCallbacks
     def test_post_download_zipdeflated_with_files_removed_due_to_whatever(self):
-        shutil.rmtree(GLSetting.submission_path)
+        shutil.rmtree(GLSettings.submission_path)
         yield self.download('zipdeflated')

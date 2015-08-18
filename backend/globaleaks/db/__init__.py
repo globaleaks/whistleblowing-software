@@ -9,7 +9,7 @@ import os
 from twisted.internet.defer import succeed, inlineCallbacks
 from storm.exceptions import OperationalError
 from globaleaks.utils.utility import log
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks import models
 
 from globaleaks.db.datainit import init_appdata, init_db, load_appdata
@@ -27,11 +27,11 @@ def create_tables_transaction(store):
     @return: None, create the right table at the first start, and initialized
     the node.
     """
-    if not os.access(GLSetting.db_schema_file, os.R_OK):
-        log.err("Unable to access %s" % GLSetting.db_schema_file)
+    if not os.access(GLSettings.db_schema_file, os.R_OK):
+        log.err("Unable to access %s" % GLSettings.db_schema_file)
         raise Exception("Unable to access db schema file")
 
-    with open(GLSetting.db_schema_file) as f:
+    with open(GLSettings.db_schema_file) as f:
         create_queries = ''.join(f.readlines()).split(';')
         for create_query in create_queries:
             try:
@@ -49,8 +49,8 @@ def create_tables(create_node=True):
     appdata_dict = load_appdata()
 
     db_exists = False
-    if GLSetting.db_type == 'sqlite':
-        db_path = GLSetting.db_uri.replace('sqlite:', '').split('?', 1)[0]
+    if GLSettings.db_type == 'sqlite':
+        db_path = GLSettings.db_uri.replace('sqlite:', '').split('?', 1)[0]
         if os.path.exists(db_path):
             db_exists = True
 
@@ -67,49 +67,49 @@ def create_tables(create_node=True):
 
         node_dict = {
             'name': u"",
-            'description': dict({GLSetting.defaults.language: u""}),
-            'presentation': dict({GLSetting.defaults.language: u""}),
-            'footer': dict({GLSetting.defaults.language: u""}),
-            'context_selector_label': dict({GLSetting.defaults.language: u""}),
-            'security_awareness_title': dict({GLSetting.defaults.language: u""}),
-            'security_awareness_text': dict({GLSetting.defaults.language: u""}),
-            'whistleblowing_question': dict({GLSetting.defaults.language: u""}),
-            'whistleblowing_button': dict({GLSetting.defaults.language: u""}),
+            'description': dict({GLSettings.defaults.language: u""}),
+            'presentation': dict({GLSettings.defaults.language: u""}),
+            'footer': dict({GLSettings.defaults.language: u""}),
+            'context_selector_label': dict({GLSettings.defaults.language: u""}),
+            'security_awareness_title': dict({GLSettings.defaults.language: u""}),
+            'security_awareness_text': dict({GLSettings.defaults.language: u""}),
+            'whistleblowing_question': dict({GLSettings.defaults.language: u""}),
+            'whistleblowing_button': dict({GLSettings.defaults.language: u""}),
             'hidden_service': u"",
             'public_site': u"",
             'email': u"",
             'receipt_regexp': u"[0-9]{16}",
             # advanced settings
-            'maximum_filesize': GLSetting.defaults.maximum_filesize,
-            'maximum_namesize': GLSetting.defaults.maximum_namesize,
-            'maximum_textsize': GLSetting.defaults.maximum_textsize,
-            'tor2web_admin': GLSetting.defaults.tor2web_admin,
-            'tor2web_submission': GLSetting.defaults.tor2web_submission,
-            'tor2web_receiver': GLSetting.defaults.tor2web_receiver,
-            'tor2web_unauth': GLSetting.defaults.tor2web_unauth,
-            'submission_minimum_delay' : GLSetting.defaults.submission_minimum_delay,
-            'submission_maximum_ttl' : GLSetting.defaults.submission_maximum_ttl,
+            'maximum_filesize': GLSettings.defaults.maximum_filesize,
+            'maximum_namesize': GLSettings.defaults.maximum_namesize,
+            'maximum_textsize': GLSettings.defaults.maximum_textsize,
+            'tor2web_admin': GLSettings.defaults.tor2web_admin,
+            'tor2web_submission': GLSettings.defaults.tor2web_submission,
+            'tor2web_receiver': GLSettings.defaults.tor2web_receiver,
+            'tor2web_unauth': GLSettings.defaults.tor2web_unauth,
+            'submission_minimum_delay' : GLSettings.defaults.submission_minimum_delay,
+            'submission_maximum_ttl' : GLSettings.defaults.submission_maximum_ttl,
             'can_postpone_expiration': False,  # disabled by default
             'can_delete_submission': False,  # disabled too
             'ahmia': False,  # disabled too
-            'allow_unencrypted': GLSetting.defaults.allow_unencrypted,
-            'allow_iframes_inclusion': GLSetting.defaults.allow_iframes_inclusion,
-            'exception_email': GLSetting.defaults.exception_email,
-            'default_language': GLSetting.defaults.language,
-            'default_timezone': GLSetting.defaults.timezone,
-            'admin_language': GLSetting.defaults.language,
-            'admin_timezone': GLSetting.defaults.timezone,
+            'allow_unencrypted': GLSettings.defaults.allow_unencrypted,
+            'allow_iframes_inclusion': GLSettings.defaults.allow_iframes_inclusion,
+            'exception_email': GLSettings.defaults.exception_email,
+            'default_language': GLSettings.defaults.language,
+            'default_timezone': GLSettings.defaults.timezone,
+            'admin_language': GLSettings.defaults.language,
+            'admin_timezone': GLSettings.defaults.timezone,
             'disable_privacy_badge': False,
             'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
             'enable_custom_privacy_badge': False,
             'disable_key_code_hint': False,
-            'custom_privacy_badge_tor': dict({GLSetting.defaults.language: u""}),
-            'custom_privacy_badge_none': dict({GLSetting.defaults.language: u""}),
-            'header_title_homepage': dict({GLSetting.defaults.language: u""}),
-            'header_title_submissionpage': dict({GLSetting.defaults.language: u""}),
-            'header_title_receiptpage': dict({GLSetting.defaults.language: u""}),
-            'landing_page': GLSetting.defaults.landing_page,
+            'custom_privacy_badge_tor': dict({GLSettings.defaults.language: u""}),
+            'custom_privacy_badge_none': dict({GLSettings.defaults.language: u""}),
+            'header_title_homepage': dict({GLSettings.defaults.language: u""}),
+            'header_title_submissionpage': dict({GLSettings.defaults.language: u""}),
+            'header_title_receiptpage': dict({GLSettings.defaults.language: u""}),
+            'landing_page': GLSettings.defaults.landing_page,
             'show_contexts_in_alphabetical_order': False
         }
 
@@ -164,22 +164,22 @@ def check_db_files():
     """
     This function checks the DB version and executes eventually the DB update scripts
     """
-    for (path, _, files) in os.walk(GLSetting.gldb_path):
+    for (path, _, files) in os.walk(GLSettings.gldb_path):
 
         try:
             starting_ver, _ = find_current_db_version(path, files)
 
             print "Database version detected: %d" % starting_ver
 
-            if starting_ver < GLSetting.db_version:
+            if starting_ver < GLSettings.db_version:
                 print "Performing update of Database from version %d to version %d" % \
-                      (starting_ver, GLSetting.db_version)
+                      (starting_ver, GLSettings.db_version)
                 try:
                     from globaleaks.db import updater_manager
-                    updater_manager.perform_version_update(starting_ver, GLSetting.db_version)
-                    print "GlobaLeaks database version %d: update complete!" % GLSetting.db_version
+                    updater_manager.perform_version_update(starting_ver, GLSettings.db_version)
+                    print "GlobaLeaks database version %d: update complete!" % GLSettings.db_version
                 except Exception:
-                    print "GlobaLeaks database version %d: update failure :(" % GLSetting.db_version
+                    print "GlobaLeaks database version %d: update failure :(" % GLSettings.db_version
                     print "Verbose exception traceback:"
                     _, _, exc_traceback = sys.exc_info()
                     traceback.print_tb(exc_traceback)
@@ -210,13 +210,13 @@ def get_tracked_files(store):
 @inlineCallbacks
 def clean_untracked_files(res):
     """
-    removes files in GLSetting.submission_path that are not
+    removes files in GLSettings.submission_path that are not
     tracked by InternalFile/ReceiverFile.
     """
     tracked_files = yield get_tracked_files()
-    for filesystem_file in os.listdir(GLSetting.submission_path):
+    for filesystem_file in os.listdir(GLSettings.submission_path):
         if filesystem_file not in tracked_files:
-            file_to_remove = os.path.join(GLSetting.submission_path, filesystem_file)
+            file_to_remove = os.path.join(GLSettings.submission_path, filesystem_file)
             try:
                 os.remove(file_to_remove)
             except OSError:

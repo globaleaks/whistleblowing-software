@@ -23,7 +23,7 @@ from twisted.python import util
 from twisted.python.failure import Failure
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 
 
 def uuid4():
@@ -35,17 +35,17 @@ def uuid4():
     this is the regexp that has to be matched, and if a special
     debug option is enabled here, the UUIDv4 is not randomic
     """
-    if len(GLSetting.debug_option_UUID_human) > 1:
+    if len(GLSettings.debug_option_UUID_human) > 1:
 
-        GLSetting.debug_UUID_human_counter += 1
-        str_padding = 8 - len(GLSetting.debug_option_UUID_human)
-        int_padding = 12 - len("%d" % GLSetting.debug_UUID_human_counter)
+        GLSettings.debug_UUID_human_counter += 1
+        str_padding = 8 - len(GLSettings.debug_option_UUID_human)
+        int_padding = 12 - len("%d" % GLSettings.debug_UUID_human_counter)
 
         Huuidv4 = "%s%s-0000-0000-0000-%s%d" % (
-            GLSetting.debug_option_UUID_human,
+            GLSettings.debug_option_UUID_human,
             str_padding * "0",
             int_padding * "0",
-            GLSetting.debug_UUID_human_counter
+            GLSettings.debug_UUID_human_counter
         )
         return unicode(Huuidv4)
     else:
@@ -179,19 +179,19 @@ class Logger(object):
             traceback.print_exception(exc_type, exc_value, exc_traceback)
 
     def info(self, msg):
-        if GLSetting.loglevel and GLSetting.loglevel <= logging.INFO:
+        if GLSettings.loglevel and GLSettings.loglevel <= logging.INFO:
             print "[-] %s" % self._str(msg)
 
     def err(self, msg):
-        if GLSetting.loglevel:
+        if GLSettings.loglevel:
             twlog.err("[!] %s" % self._str(msg))
 
     def debug(self, msg):
-        if GLSetting.loglevel and GLSetting.loglevel <= logging.DEBUG:
+        if GLSettings.loglevel and GLSettings.loglevel <= logging.DEBUG:
             print "[D] %s" % self._str(msg)
 
     def msg(self, msg):
-        if GLSetting.loglevel:
+        if GLSettings.loglevel:
             twlog.msg("[ ] %s" % self._str(msg))
 
     def start_logging(self):
@@ -199,13 +199,13 @@ class Logger(object):
         If configured enables logserver
         """
         twlog.startLogging(sys.stdout)
-        if GLSetting.logfile:
-            name = os.path.basename(GLSetting.logfile)
-            directory = os.path.dirname(GLSetting.logfile)
+        if GLSettings.logfile:
+            name = os.path.basename(GLSettings.logfile)
+            directory = os.path.dirname(GLSettings.logfile)
 
             logfile = twlogfile.LogFile(name, directory,
-                                        rotateLength=GLSetting.log_file_size,
-                                        maxRotatedFiles=GLSetting.maximum_rotated_log_files)
+                                        rotateLength=GLSettings.log_file_size,
+                                        maxRotatedFiles=GLSettings.maximum_rotated_log_files)
             twlog.addObserver(GLLogObserver(logfile).emit)
 
 log = Logger()
@@ -258,8 +258,8 @@ def datetime_now():
     """
     now = datetime.utcnow()
 
-    if GLSetting.debug_option_in_the_future:
-        now += timedelta(seconds=GLSetting.debug_option_in_the_future)
+    if GLSettings.debug_option_in_the_future:
+        now += timedelta(seconds=GLSettings.debug_option_in_the_future)
 
     return now
 
@@ -280,8 +280,8 @@ def utc_past_date(seconds=0, minutes=0, hours=0):
     """
     now = datetime.utcnow()
 
-    if GLSetting.debug_option_in_the_future:
-        now += timedelta(seconds=GLSetting.debug_option_in_the_future)
+    if GLSettings.debug_option_in_the_future:
+        now += timedelta(seconds=GLSettings.debug_option_in_the_future)
 
     return utc_dynamic_date(now) - \
            timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
@@ -298,8 +298,8 @@ def utc_future_date(seconds=0, minutes=0, hours=0):
     """
     now = datetime.utcnow()
 
-    if GLSetting.debug_option_in_the_future:
-        now += timedelta(seconds=GLSetting.debug_option_in_the_future)
+    if GLSettings.debug_option_in_the_future:
+        now += timedelta(seconds=GLSettings.debug_option_in_the_future)
 
     return utc_dynamic_date(now, seconds, minutes, hours)
 
@@ -314,8 +314,8 @@ def get_future_epoch(seconds=0):
     """
     basic_future = int(time.time()) - time.timezone + seconds
 
-    if GLSetting.debug_option_in_the_future:
-        basic_future += GLSetting.debug_option_in_the_future
+    if GLSettings.debug_option_in_the_future:
+        basic_future += GLSettings.debug_option_in_the_future
 
     return basic_future
 
@@ -339,8 +339,8 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
     check = check_date + timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
     now = datetime_now()
 
-    if GLSetting.debug_option_in_the_future:
-        now += timedelta(seconds=GLSetting.debug_option_in_the_future)
+    if GLSettings.debug_option_in_the_future:
+        now += timedelta(seconds=GLSettings.debug_option_in_the_future)
 
     return now > check
 

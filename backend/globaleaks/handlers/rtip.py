@@ -20,7 +20,7 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
     datetime_to_ISO8601, datetime_to_pretty_str
 
 from globaleaks.utils.structures import Rosetta
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.models import Node, Notification, Comment, Message, \
     ReceiverFile, ReceiverTip, EventLogs
 from globaleaks.rest import errors
@@ -148,7 +148,7 @@ def db_access_tip(store, user_id, tip_id):
 
 def db_delete_itip(store, itip):
     for ifile in itip.internalfiles:
-        abspath = os.path.join(GLSetting.submission_path, ifile.file_path)
+        abspath = os.path.join(GLSettings.submission_path, ifile.file_path)
 
         if os.path.isfile(abspath):
             log.debug("Removing internalfile %s" % abspath)
@@ -164,7 +164,7 @@ def db_delete_itip(store, itip):
             if rfile.file_path == ifile.file_path:
                 continue
 
-            abspath = os.path.join(GLSetting.submission_path, rfile.file_path)
+            abspath = os.path.join(GLSettings.submission_path, rfile.file_path)
 
             if os.path.isfile(abspath):
                 log.debug("Removing receiverfile %s" % abspath)

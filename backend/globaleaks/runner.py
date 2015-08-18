@@ -16,7 +16,7 @@ from globaleaks.jobs import session_management_sched, statistics_sched, \
     notification_sched, delivery_sched, cleaning_sched, \
     pgp_check_sched, mailflush_sched
 
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now
 
 
@@ -31,22 +31,22 @@ def start_asynchronous():
     #  - second argument is the function that starts the schedule
     #  - third argument is the schedule period in seconds
     session_management = session_management_sched.SessionManagementSchedule()
-    reactor.callLater(0, session_management.start, GLSetting.session_management_delta)
+    reactor.callLater(0, session_management.start, GLSettings.session_management_delta)
 
     anomaly = statistics_sched.AnomaliesSchedule()
-    reactor.callLater(0, anomaly.start, GLSetting.anomaly_delta)
+    reactor.callLater(0, anomaly.start, GLSettings.anomaly_delta)
 
     resources_check = statistics_sched.ResourcesCheckSchedule()
-    reactor.callLater(0, resources_check.start, GLSetting.anomaly_delta)
+    reactor.callLater(0, resources_check.start, GLSettings.anomaly_delta)
 
     delivery = delivery_sched.DeliverySchedule()
-    reactor.callLater(10, delivery.start, GLSetting.delivery_delta)
+    reactor.callLater(10, delivery.start, GLSettings.delivery_delta)
 
     notification = notification_sched.NotificationSchedule()
-    reactor.callLater(20, notification.start, GLSetting.notification_delta)
+    reactor.callLater(20, notification.start, GLSettings.notification_delta)
 
     mailflush = mailflush_sched.MailflushSchedule()
-    reactor.callLater(40, mailflush.start, GLSetting.mailflush_delta)
+    reactor.callLater(40, mailflush.start, GLSettings.mailflush_delta)
 
     # The Tip cleaning scheduler need to be executed every day at midnight
     current_time = datetime_now()
@@ -68,11 +68,11 @@ def start_asynchronous():
 
 
 def globaleaks_start():
-    GLSetting.fix_file_permissions()
-    GLSetting.drop_privileges()
-    GLSetting.check_directories()
+    GLSettings.fix_file_permissions()
+    GLSettings.drop_privileges()
+    GLSettings.check_directories()
 
-    if not GLSetting.accepted_hosts:
+    if not GLSettings.accepted_hosts:
         log.err("Missing a list of hosts usable to contact GLBackend, abort")
         return False
 
@@ -88,12 +88,12 @@ def globaleaks_start():
         tor_configured_hosts = yield apply_cli_options()
 
         log.msg("GLBackend is now running")
-        for ip in GLSetting.bind_addresses:
-            log.msg("Visit http://%s:%d to interact with me" % (ip, GLSetting.bind_port))
+        for ip in GLSettings.bind_addresses:
+            log.msg("Visit http://%s:%d to interact with me" % (ip, GLSettings.bind_port))
 
-        for host in GLSetting.accepted_hosts:
-            if host not in GLSetting.bind_addresses:
-                log.msg("Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port))
+        for host in GLSettings.accepted_hosts:
+            if host not in GLSettings.bind_addresses:
+                log.msg("Visit http://%s:%d to interact with me" % (host, GLSettings.bind_port))
 
         if tor_configured_hosts:
             for other in tor_configured_hosts:

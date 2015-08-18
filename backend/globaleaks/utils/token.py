@@ -14,7 +14,7 @@ from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 from globaleaks.utils.tempobj import TempObj
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 
 
 # needed in order to allow UT override
@@ -63,13 +63,13 @@ class Token(TempObj):
         self.kind = token_kind
 
         # both 'validity' variables need to be expressed in seconds
-        self.start_validity_secs = GLSetting.memory_copy.submission_minimum_delay
-        self.end_validity_secs = GLSetting.memory_copy.submission_maximum_ttl
+        self.start_validity_secs = GLSettings.memory_copy.submission_minimum_delay
+        self.end_validity_secs = GLSettings.memory_copy.submission_maximum_ttl
 
         # Remind: this is just for developers, because if a clean house
         # is a sign of a waste life, a Token object without shortcut
         # is a sign of a psycho life. (vecnish!)
-        if GLSetting.devel_mode:
+        if GLSettings.devel_mode:
             self.start_validity_secs = 0
 
         self.remaining_allowed_attempts = Token.MAXIMUM_ATTEMPTS_PER_TOKEN

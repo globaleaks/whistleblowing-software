@@ -6,7 +6,7 @@ from twisted.internet import task
 from globaleaks import anomaly
 from globaleaks.handlers.admin.statistics import get_anomaly_history
 from globaleaks.jobs.statistics_sched import StatisticsSchedule
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 from globaleaks.tests.test_anomaly import pollute_events_for_testing
 
@@ -30,9 +30,9 @@ class TestStatistics(helpers.TestGL):
 
         anomaly.compute_activity_level()
 
-        anomdet = GLSetting.RecentAnomaliesQ.values()[0]
-        self.assertEqual(len(GLSetting.RecentAnomaliesQ.keys()), 1)
-        original_when = GLSetting.RecentAnomaliesQ.keys()[0]
+        anomdet = GLSettings.RecentAnomaliesQ.values()[0]
+        self.assertEqual(len(GLSettings.RecentAnomaliesQ.keys()), 1)
+        original_when = GLSettings.RecentAnomaliesQ.keys()[0]
 
         self.assertTrue(isinstance(anomdet, list))
         self.assertTrue(len(anomdet), 2)

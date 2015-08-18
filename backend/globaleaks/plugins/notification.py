@@ -13,7 +13,7 @@ from globaleaks.utils.mailutils import sendmail, MIME_mail_build
 from globaleaks.utils.templating import Templating
 from globaleaks.plugins.base import Notification
 from globaleaks.security import GLBPGP
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 
 
 class MailNotification(Notification):
@@ -113,8 +113,8 @@ class MailNotification(Notification):
 
         receiver_mail = event.receiver_info['mail_address']
 
-        message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
-                                  GLSetting.memory_copy.notif_source_email,
+        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
+                                  GLSettings.memory_copy.notif_source_email,
                                   event.receiver_info['name'],
                                   receiver_mail,
                                   title,
@@ -130,17 +130,17 @@ class MailNotification(Notification):
         This function just wrap the sendmail call, using the system memory variables.
         """
         log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
-                  (GLSetting.memory_copy.notif_server,
-                   GLSetting.memory_copy.notif_port,
-                   to_address[0], GLSetting.memory_copy.notif_security))
+                  (GLSettings.memory_copy.notif_server,
+                   GLSettings.memory_copy.notif_port,
+                   to_address[0], GLSettings.memory_copy.notif_security))
 
-        return sendmail(authentication_username=GLSetting.memory_copy.notif_username,
-                        authentication_password=GLSetting.memory_copy.notif_password,
+        return sendmail(authentication_username=GLSettings.memory_copy.notif_username,
+                        authentication_password=GLSettings.memory_copy.notif_password,
                         from_address=from_address,
                         to_address=to_address,
                         message_file=message_file,
-                        smtp_host=GLSetting.memory_copy.notif_server,
-                        smtp_port=GLSetting.memory_copy.notif_port,
-                        security=GLSetting.memory_copy.notif_security,
+                        smtp_host=GLSettings.memory_copy.notif_server,
+                        smtp_port=GLSettings.memory_copy.notif_port,
+                        security=GLSettings.memory_copy.notif_security,
                         event=event)
 

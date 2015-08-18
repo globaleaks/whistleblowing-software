@@ -1,4 +1,4 @@
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.utils.tempobj import TempObj
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
@@ -152,7 +152,7 @@ def update_RecentEventQ(expired_event):
     """
     date = datetime_to_ISO8601(expired_event.creation_date)[:-8]
 
-    GLSetting.RecentEventQ.append(
+    GLSettings.RecentEventQ.append(
         dict({
             'id': expired_event.event_id,
             'creation_date': date,
@@ -194,7 +194,7 @@ class EventTrack(TempObj):
                          EventTrackQueue.queue,
                          self.event_id,
                          # seconds of validity:
-                         GLSetting.anomaly_delta,
+                         GLSettings.anomaly_delta,
                          reactor_override)
 
         self.expireCallbacks.append(self.synthesis)

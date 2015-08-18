@@ -10,7 +10,7 @@ import operator
 
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc, And
-from globaleaks.settings import transact_ro, transact, GLSetting
+from globaleaks.settings import transact_ro, transact, GLSettings
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, \
     authenticated
@@ -190,7 +190,7 @@ class AnomaliesCollection(BaseHandler):
     """
     This Handler returns the list of the triggered anomalies based on
     activity monitored in a timedelta (is considered anomalous if they
-    reach the thresholds defined in GLSettings)
+    reach the thresholds defined in GLSettingss)
     """
     @transport_security_check("admin")
     @authenticated("admin")
@@ -199,7 +199,7 @@ class AnomaliesCollection(BaseHandler):
         Anomalies history is track in Alarm, but is also stored in the
         DB in order to provide a good history.
         """
-        self.finish(GLSetting.RecentAnomaliesQ)
+        self.finish(GLSettings.RecentAnomaliesQ)
 
 
 class AnomalyHistoryCollection(BaseHandler):
@@ -222,7 +222,7 @@ class AnomalyHistoryCollection(BaseHandler):
 class StatsCollection(BaseHandler):
     """
     This Handler returns the list of the stats, stats is the aggregated
-    amount of activities recorded in the delta defined in GLSettings
+    amount of activities recorded in the delta defined in GLSettingss
     /admin/stats
     """
     @transport_security_check("admin")
@@ -272,7 +272,7 @@ class RecentEventsCollection(BaseHandler):
         # the current 30 seconds
         templist += EventTrackQueue.take_current_snapshot()
         # the already stocked by side, until Stats dump them in 1hour
-        templist += GLSetting.RecentEventQ
+        templist += GLSettings.RecentEventQ
 
         templist.sort(key=operator.itemgetter('id'))
 
