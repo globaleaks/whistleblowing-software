@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks import models, FIRST_DATABASE_VERSION_SUPPORTED
 
 from globaleaks.db.migrations.update_11_12 import Replacer1112, Node_v_11, Context_v_11
@@ -83,12 +83,12 @@ def perform_version_update(starting_ver, ending_ver):
         while starting_ver < ending_ver:
             if not starting_ver:
                 old_db_file = os.path.abspath(os.path.join(
-                    GLSetting.gldb_path, 'glbackend.db'))
+                    GLSettings.gldb_path, 'glbackend.db'))
             else:
                 old_db_file = os.path.abspath(os.path.join(
-                    GLSetting.gldb_path, 'glbackend-%d.db' % starting_ver))
+                    GLSettings.gldb_path, 'glbackend-%d.db' % starting_ver))
 
-            new_db_file = os.path.abspath(os.path.join(GLSetting.gldb_path, 'glbackend-%d.db' % (starting_ver + 1)))
+            new_db_file = os.path.abspath(os.path.join(GLSettings.gldb_path, 'glbackend-%d.db' % (starting_ver + 1)))
             
             to_delete_on_fail.append(new_db_file)
             to_delete_on_success.append(old_db_file)

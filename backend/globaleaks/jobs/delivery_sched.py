@@ -16,7 +16,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
                               ReceiverFile
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.utils.mailutils import send_exception_email
 from globaleaks.utils.utility import log
 from globaleaks.security import GLBPGP, GLSecureFile
@@ -137,7 +137,7 @@ def receiverfile_planning(store):
                 'status': u'processing',
                 'path': ifile.file_path,
                 'size': ifile.size,
-                'receiver': admin_serialize_receiver(receiver, GLSetting.memory_copy.default_language)
+                'receiver': admin_serialize_receiver(receiver, GLSettings.memory_copy.default_language)
             })
 
     return receiverfiles_maps
@@ -161,11 +161,11 @@ def fsops_pgp_encrypt(fpath, recipient_pgp):
     try:
         gpoj.load_key(recipient_pgp['pgp_key_public'])
 
-        filepath = os.path.join(GLSetting.submission_path, fpath)
+        filepath = os.path.join(GLSettings.submission_path, fpath)
 
         with GLSecureFile(filepath) as f:
             encrypted_file_path, encrypted_file_size = \
-                gpoj.encrypt_file(recipient_pgp['pgp_key_fingerprint'], filepath, f, GLSetting.submission_path)
+                gpoj.encrypt_file(recipient_pgp['pgp_key_fingerprint'], filepath, f, GLSettings.submission_path)
     except:
         raise
 
@@ -185,7 +185,7 @@ def process_files(receiverfiles_maps):
     for ifile_id, receiverfiles_map in receiverfiles_maps.iteritems():
         ifile_path = receiverfiles_map['ifile_path']
         ifile_name = os.path.basename(ifile_path).split('.')[0]
-        plain_path = os.path.join(GLSetting.submission_path, "%s.plain" % ifile_name)
+        plain_path = os.path.join(GLSettings.submission_path, "%s.plain" % ifile_name)
 
         receiverfiles_map['plaintext_file_needed'] = False
         for rcounter, rfileinfo in enumerate(receiverfiles_map['rfiles']):
@@ -205,7 +205,7 @@ def process_files(receiverfiles_maps):
                             rcounter, rfileinfo['receiver']['name'], rfileinfo['path'], excep)
                     )
                     rfileinfo['status'] = u'unavailable'
-            elif GLSetting.memory_copy.allow_unencrypted:
+            elif GLSettings.memory_copy.allow_unencrypted:
                 receiverfiles_map['plaintext_file_needed'] = True
                 rfileinfo['status'] = u'reference'
                 rfileinfo['path'] = plain_path
@@ -247,7 +247,7 @@ def process_files(receiverfiles_maps):
 
         # Remove the AES file key
         try:
-            os.remove(os.path.join(GLSetting.ramdisk_path, ("%s%s" % (GLSetting.AES_keyfile_prefix, ifile_name))))
+            os.remove(os.path.join(GLSettings.ramdisk_path, ("%s%s" % (GLSettings.AES_keyfile_prefix, ifile_name))))
         except OSError as ose:
             log.err("Unable to remove keyfile associated with %s: %s" % (ifile_path, ose.message))
 

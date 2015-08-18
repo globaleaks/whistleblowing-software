@@ -15,7 +15,7 @@ from twisted.internet import defer
 from globaleaks import models, event
 from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.settings import GLSetting, transact_ro
+from globaleaks.settings import GLSettings, transact_ro
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import log, datetime_now, is_expired, \
     datetime_to_ISO8601, bytes_to_pretty_str
@@ -24,7 +24,7 @@ from globaleaks.utils.utility import log, datetime_now, is_expired, \
 def update_AnomalyQ(event_matrix, alarm_level):
     date = datetime_now()
 
-    GLSetting.RecentAnomaliesQ.update({
+    GLSettings.RecentAnomaliesQ.update({
         date: [event_matrix, alarm_level]
     })
 
@@ -52,7 +52,7 @@ def compute_activity_level():
 
     if len(requests_timing) > 2:
         log.info("In latest %d seconds: worst RTT %f, best %f" %
-                 (GLSetting.anomaly_delta,
+                 (GLSettings.anomaly_delta,
                   round(max(requests_timing), 2),
                   round(min(requests_timing), 2)))
 
@@ -275,8 +275,8 @@ class Alarm(object):
             template = notif.admin_anomaly_mail_template
             if admin_user.language in template:
                 localized_template = template[admin_user.language]
-            elif GLSetting.memory_copy.default_language in template:
-                localized_template = template[GLSetting.memory_copy.default_language]
+            elif GLSettings.memory_copy.default_language in template:
+                localized_template = template[GLSettings.memory_copy.default_language]
             else:
                 raise Exception("Cannot find any language for admin notification")
             return localized_template
@@ -299,8 +299,8 @@ class Alarm(object):
                                 Alarm.stress_levels['disk_space'])
             if admin_user.language in template:
                 localized_template = template[admin_user.language]
-            elif GLSetting.memory_copy.default_language in template:
-                localized_template = template[GLSetting.memory_copy.default_language]
+            elif GLSettings.memory_copy.default_language in template:
+                localized_template = template[GLSettings.memory_copy.default_language]
             else:
                 raise Exception("Cannot find any language for Admin disk alarm (level %d)" %
                                 Alarm.stress_levels['disk_space'])
@@ -316,8 +316,8 @@ class Alarm(object):
             template = notif.admin_anomaly_activities
             if admin_user.language in template:
                 localized_template = template[admin_user.language]
-            elif GLSetting.memory_copy.default_language in template:
-                localized_template = template[GLSetting.memory_copy.default_language]
+            elif GLSettings.memory_copy.default_language in template:
+                localized_template = template[GLSettings.memory_copy.default_language]
             else:
                 raise Exception("Cannot find any language for admin notification")
             return localized_template
@@ -366,7 +366,7 @@ class Alarm(object):
             # lucky, no stress activities recorded: no mail needed
             defer.returnValue(None)
 
-        if GLSetting.memory_copy.disable_admin_notification_emails:
+        if GLSettings.memory_copy.disable_admin_notification_emails:
             # event_matrix is {} if we are here only for disk
             log.debug("Anomaly to be reported %s, but Admin has Notification disabled" %
                       "[%s]" % event_matrix if event_matrix else "")
@@ -428,8 +428,8 @@ class Alarm(object):
                 content,
                 message_title[where + len(keyword):])
 
-        message = MIME_mail_build(GLSetting.memory_copy.notif_source_email,
-                                  GLSetting.memory_copy.notif_source_email,
+        message = MIME_mail_build(GLSettings.memory_copy.notif_source_email,
+                                  GLSettings.memory_copy.notif_source_email,
                                   admin_email,
                                   admin_email,
                                   message_title,
@@ -438,8 +438,8 @@ class Alarm(object):
         log.debug('Alarm Email generated for Admin (%s): connecting to [%s:%d], '
                   'the next mail should be in %d minutes' %
                   (event_matrix,
-                   GLSetting.memory_copy.notif_server,
-                   GLSetting.memory_copy.notif_port,
+                   GLSettings.memory_copy.notif_server,
+                   GLSettings.memory_copy.notif_port,
                    do_not_stress_admin_with_more_than_an_email_every_minutes))
 
         defer.returnValue({
@@ -452,14 +452,14 @@ class Alarm(object):
     @defer.inlineCallbacks
     def send_anomaly_email(admin_email, message):
         Alarm.last_alarm_email = datetime_now()
-        yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
-                       authentication_password=GLSetting.memory_copy.notif_password,
-                       from_address=GLSetting.memory_copy.notif_source_email,
+        yield sendmail(authentication_username=GLSettings.memory_copy.notif_username,
+                       authentication_password=GLSettings.memory_copy.notif_password,
+                       from_address=GLSettings.memory_copy.notif_source_email,
                        to_address=admin_email,
                        message_file=message,
-                       smtp_host=GLSetting.memory_copy.notif_server,
-                       smtp_port=GLSetting.memory_copy.notif_port,
-                       security=GLSetting.memory_copy.notif_security,
+                       smtp_host=GLSettings.memory_copy.notif_server,
+                       smtp_port=GLSettings.memory_copy.notif_port,
+                       security=GLSettings.memory_copy.notif_security,
                        event=None)
 
 
@@ -483,7 +483,7 @@ class Alarm(object):
         disk_space = 0
         disk_message = ""
         accept_submissions = True
-        old_accept_submissions = GLSetting.memory_copy.accept_submissions
+        old_accept_submissions = GLSettings.memory_copy.accept_submissions
 
         for c in get_disk_anomaly_conditions(free_workdir_bytes,
                                              total_workdir_bytes,
@@ -497,9 +497,9 @@ class Alarm(object):
                                          free_ramdisk_bytes,
                                          total_ramdisk_bytes)
 
-                if disk_space <= GLSetting.disk_alarm_threshold:
+                if disk_space <= GLSettings.disk_alarm_threshold:
                     log.debug("Disk Alarm level %d suppressed (disk alarm threshold set to %d)" % (
-                        disk_space, GLSetting.disk_alarm_threshold))
+                        disk_space, GLSettings.disk_alarm_threshold))
                     # No alarm to be concerned, then
                     disk_space = 0
                 else:
@@ -526,9 +526,9 @@ class Alarm(object):
         Alarm.stress_levels['disk_space'] = disk_space
         Alarm.stress_levels['disk_message'] = disk_message
 
-        GLSetting.memory_copy.accept_submissions = accept_submissions
+        GLSettings.memory_copy.accept_submissions = accept_submissions
 
-        if old_accept_submissions != GLSetting.memory_copy.accept_submissions:
+        if old_accept_submissions != GLSettings.memory_copy.accept_submissions:
             log.info("Switching disk space availability from: %s to %s" % (
                 "True" if old_accept_submissions else "False",
                 "False" if old_accept_submissions else "True"))

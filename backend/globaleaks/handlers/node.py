@@ -14,7 +14,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.utils.utility import datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta, get_localized_values
-from globaleaks.settings import transact_ro, GLSetting
+from globaleaks.settings import transact_ro, GLSettings
 from globaleaks.rest.apicache import GLApiCache
 
 
@@ -63,12 +63,12 @@ def anon_serialize_node(store, language):
         'maximum_namesize': node.maximum_namesize,
         'maximum_textsize': node.maximum_textsize,
         'maximum_filesize': node.maximum_filesize,
-        'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
-        'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
-        'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
-        'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
-        'submission_minimum_delay': 0 if GLSetting.devel_mode else GLSetting.memory_copy.submission_minimum_delay,
-        'submission_maximum_ttl': GLSetting.memory_copy.submission_maximum_ttl,
+        'tor2web_admin': GLSettings.memory_copy.tor2web_admin,
+        'tor2web_submission': GLSettings.memory_copy.tor2web_submission,
+        'tor2web_receiver': GLSettings.memory_copy.tor2web_receiver,
+        'tor2web_unauth': GLSettings.memory_copy.tor2web_unauth,
+        'submission_minimum_delay': 0 if GLSettings.devel_mode else GLSettings.memory_copy.submission_minimum_delay,
+        'submission_maximum_ttl': GLSettings.memory_copy.submission_maximum_ttl,
         'ahmia': node.ahmia,
         'can_postpone_expiration': node.can_postpone_expiration,
         'can_delete_submission': node.can_delete_submission,
@@ -85,7 +85,7 @@ def anon_serialize_node(store, language):
         'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
         'landing_page': node.landing_page,
         'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
-        'accept_submissions': GLSetting.memory_copy.accept_submissions,
+        'accept_submissions': GLSettings.memory_copy.accept_submissions,
     }
 
     return get_localized_values(ret_dict, node, node.localized_strings, language)
@@ -285,7 +285,7 @@ class NodeInstance(BaseHandler):
         ret = yield GLApiCache.get('node', self.request.language,
                                    anon_serialize_node, self.request.language)
 
-        ret['custom_homepage'] = os.path.isfile(os.path.join(GLSetting.static_path,
+        ret['custom_homepage'] = os.path.isfile(os.path.join(GLSettings.static_path,
                                                              "custom_homepage.html"))
 
         self.finish(ret)

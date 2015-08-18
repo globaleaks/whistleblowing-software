@@ -8,7 +8,7 @@ from globaleaks.tests import helpers
 from globaleaks.security import get_salt, hash_password, check_password, change_password, check_password_format, \
     SALT_LENGTH, \
     directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, crypto_backend
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.rest import errors
 
 
@@ -95,17 +95,17 @@ class TestFilesystemAccess(helpers.TestGL):
         self.assertRaises(Exception, directory_traversal_check, 'invalid/relative/trusted/path', "valid.txt")
 
     def test_directory_traversal_check_blocked(self):
-        self.assertRaises(errors.DirectoryTraversalError, directory_traversal_check, GLSetting.static_path,
+        self.assertRaises(errors.DirectoryTraversalError, directory_traversal_check, GLSettings.static_path,
                           "/etc/passwd")
 
     def test_directory_traversal_check_allowed(self):
-        valid_access = os.path.join(GLSetting.static_path, "valid.txt")
-        directory_traversal_check(GLSetting.static_path, valid_access)
+        valid_access = os.path.join(GLSettings.static_path, "valid.txt")
+        directory_traversal_check(GLSettings.static_path, valid_access)
 
 
 class TestGLSecureFiles(helpers.TestGL):
     def test_temporary_file(self):
-        a = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+        a = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
         antani = "0123456789" * 10000
         a.write(antani)
         self.assertTrue(antani == a.read())
@@ -113,14 +113,14 @@ class TestGLSecureFiles(helpers.TestGL):
         self.assertFalse(os.path.exists(a.filepath))
 
     def test_temporary_file_write_after_read(self):
-        a = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+        a = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
         antani = "0123456789" * 10000
         a.write(antani)
         self.assertTrue(antani == a.read())
         self.assertRaises(AssertionError, a.write, antani)
 
     def test_temporary_file_avoid_delete(self):
-        a = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+        a = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
         a.avoid_delete()
         antani = "0123456789" * 10000
         a.write(antani)
@@ -130,7 +130,7 @@ class TestGLSecureFiles(helpers.TestGL):
         self.assertTrue(antani == b.read())
 
     def test_temporary_file_lost_key_due_to_eventual_bug_or_reboot(self):
-        a = GLSecureTemporaryFile(GLSetting.tmp_upload_path)
+        a = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
         a.avoid_delete()
         antani = "0123456789" * 10000
         a.write(antani)

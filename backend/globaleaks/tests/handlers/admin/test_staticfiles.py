@@ -6,7 +6,7 @@ import os
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.handlers.admin import staticfiles
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 
 
 class TestStaticFileInstance(helpers.TestHandler):
@@ -23,7 +23,7 @@ class TestStaticFileInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_file_delete_it(self):
-        realpath = os.path.join(GLSetting.static_path, self.fakeFile['filename'])
+        realpath = os.path.join(GLSettings.static_path, self.fakeFile['filename'])
         dumped_file = yield staticfiles.dump_static_file(self.fakeFile, realpath)
         self.assertTrue('filelocation' in dumped_file)
 
@@ -150,7 +150,7 @@ class TestStaticFileList(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get_list_with_one_custom_file(self):
-        realpath = os.path.join(GLSetting.static_path, self.fakeFile['filename'])
+        realpath = os.path.join(GLSettings.static_path, self.fakeFile['filename'])
         dumped_file = yield staticfiles.dump_static_file(self.fakeFile, realpath)
         self.assertTrue('filelocation' in dumped_file)
 

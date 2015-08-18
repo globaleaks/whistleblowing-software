@@ -15,19 +15,19 @@ from twisted.internet import defer
 
 from globaleaks.anomaly import Alarm, compute_activity_level
 from globaleaks.jobs.base import GLJob
-from globaleaks.settings import GLSetting, transact
+from globaleaks.settings import GLSettings, transact
 from globaleaks.models import Stats, Anomalies
 from globaleaks.utils.utility import log, datetime_now, datetime_null
 
 
 def get_workingdir_space():
-    statvfs = os.statvfs(GLSetting.working_path)
+    statvfs = os.statvfs(GLSettings.working_path)
     free_bytes = statvfs.f_frsize * statvfs.f_bavail
     total_bytes = statvfs.f_frsize * statvfs.f_blocks
     return free_bytes, total_bytes
 
 def get_ramdisk_space():
-    statvfs = os.statvfs(GLSetting.ramdisk_path)
+    statvfs = os.statvfs(GLSettings.ramdisk_path)
     free_bytes = statvfs.f_frsize * statvfs.f_bavail
     total_bytes = statvfs.f_frsize * statvfs.f_blocks
     return free_bytes, total_bytes
@@ -70,19 +70,19 @@ class AnomaliesSchedule(GLJob):
 
 def get_anomalies():
     anomalies = []
-    for when, anomaly_blob in dict(GLSetting.RecentAnomaliesQ).iteritems():
+    for when, anomaly_blob in dict(GLSettings.RecentAnomaliesQ).iteritems():
         anomalies.append(
             [when, anomaly_blob[0], anomaly_blob[1]]
         )
     return anomalies
 
 def clean_anomalies():
-    GLSetting.RecentAnomaliesQ = {}
+    GLSettings.RecentAnomaliesQ = {}
 
 def get_statistics():
     statsummary = {}
 
-    for descblob in GLSetting.RecentEventQ:
+    for descblob in GLSettings.RecentEventQ:
         if 'event' not in descblob:
             continue
 
@@ -117,8 +117,8 @@ class StatisticsSchedule(GLJob):
 
     @classmethod
     def reset(cls):
-        GLSetting.RecentEventQ = []
-        GLSetting.RecentAnomaliesQ = {}
+        GLSettings.RecentEventQ = []
+        GLSettings.RecentAnomaliesQ = {}
 
     @defer.inlineCallbacks
     def operation(self):

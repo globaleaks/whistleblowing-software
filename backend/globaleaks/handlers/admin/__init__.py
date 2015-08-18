@@ -21,7 +21,7 @@ from globaleaks.handlers.node import anon_serialize_step
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.security import GLBPGP
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.third_party import rstr
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log, datetime_now, datetime_null, datetime_to_ISO8601, uuid4
@@ -42,7 +42,7 @@ def db_admin_serialize_node(store, language):
     # Contexts and Receivers relationship
     configured  = store.find(models.ReceiverContext).count() > 0
 
-    custom_homepage = os.path.isfile(os.path.join(GLSetting.static_path, "custom_homepage.html"))
+    custom_homepage = os.path.isfile(os.path.join(GLSettings.static_path, "custom_homepage.html"))
 
     ret_dict = {
         'name': node.name,
@@ -50,7 +50,7 @@ def db_admin_serialize_node(store, language):
         'hidden_service': node.hidden_service,
         'public_site': node.public_site,
         'email': node.email,
-        'version': GLSetting.version_string,
+        'version': GLSettings.version_string,
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': node.languages_enabled,
         'default_language' : node.default_language,
@@ -59,12 +59,12 @@ def db_admin_serialize_node(store, language):
         'maximum_namesize': node.maximum_namesize,
         'maximum_textsize': node.maximum_textsize,
         'exception_email': node.exception_email,
-        'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
-        'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
-        'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
-        'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
-        'submission_minimum_delay' : GLSetting.memory_copy.submission_minimum_delay,
-        'submission_maximum_ttl' : GLSetting.memory_copy.submission_maximum_ttl,
+        'tor2web_admin': GLSettings.memory_copy.tor2web_admin,
+        'tor2web_submission': GLSettings.memory_copy.tor2web_submission,
+        'tor2web_receiver': GLSettings.memory_copy.tor2web_receiver,
+        'tor2web_unauth': GLSettings.memory_copy.tor2web_unauth,
+        'submission_minimum_delay' : GLSettings.memory_copy.submission_minimum_delay,
+        'submission_maximum_ttl' : GLSettings.memory_copy.submission_maximum_ttl,
         'can_postpone_expiration': node.can_postpone_expiration,
         'can_delete_submission': node.can_delete_submission,
         'ahmia': node.ahmia,
@@ -603,8 +603,8 @@ def create_random_receiver_portrait(receiver_uuid):
     """
     try:
         shutil.copy(
-            os.path.join(GLSetting.static_source, "default-profile-picture.png"),
-            os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
+            os.path.join(GLSettings.static_source, "default-profile-picture.png"),
+            os.path.join(GLSettings.static_path, "%s.png" % receiver_uuid)
         )
     except Exception as excep:
         log.err("Unable to copy default receiver portrait in a new receiver! %s" % excep.message)
@@ -620,10 +620,10 @@ def db_create_receiver(store, request, language):
     fill_localized_keys(request, models.Receiver.localized_strings, language)
 
     password = request['password']
-    if len(password) and password != GLSetting.default_password:
+    if len(password) and password != GLSettings.default_password:
         security.check_password_format(password)
     else:
-        password = GLSetting.default_password
+        password = GLSettings.default_password
 
     receiver_salt = security.get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
     receiver_password = security.hash_password(password, receiver_salt)
@@ -714,8 +714,8 @@ def update_receiver(store, receiver_id, request, language):
     # The various options related in manage PGP keys are used here.
     pgp_options_parse(receiver, request)
 
-    receiver.user.language = request.get('language', GLSetting.memory_copy.default_language)
-    receiver.user.timezone = request.get('timezone', GLSetting.memory_copy.default_timezone)
+    receiver.user.language = request.get('language', GLSettings.memory_copy.default_language)
+    receiver.user.timezone = request.get('timezone', GLSettings.memory_copy.default_timezone)
 
     password = request['password']
     if len(password):
@@ -751,7 +751,7 @@ def delete_receiver(store, receiver_id):
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    portrait = os.path.join(GLSetting.static_path, "%s.png" % receiver_id)
+    portrait = os.path.join(GLSettings.static_path, "%s.png" % receiver_id)
 
     if os.path.exists(portrait):
         os.remove(portrait)

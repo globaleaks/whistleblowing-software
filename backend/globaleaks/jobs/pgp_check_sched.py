@@ -18,7 +18,7 @@ from globaleaks.handlers.admin import admin_serialize_user, \
 from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import Receiver
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, GLSettings
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import datetime_now, datetime_null
 from globaleaks.utils.templating import Templating
@@ -42,7 +42,7 @@ class PGPCheckSchedule(GLJob):
 
             if rcvr.pgp_key_public and rcvr.pgp_key_expiration != datetime_null():
                if rcvr.pgp_key_expiration < datetime_now():
-                   expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSetting.memory_copy.default_language))
+                   expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSettings.memory_copy.default_language))
                    if node_desc['allow_unencrypted']:
                        # The PGP key status should be downgraded only if the node
                        # accept non PGP mails/files to be sent/stored.
@@ -50,7 +50,7 @@ class PGPCheckSchedule(GLJob):
                        # will remain enabled and mail won't be sent by regular flow.
                        rcvr.pgp_key_status = u'disabled'
                elif rcvr.pgp_key_expiration < datetime_now() - timedelta(days=15):
-                   expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSetting.memory_copy.default_language))
+                   expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSettings.memory_copy.default_language))
 
         return expired_or_expiring
 
@@ -70,21 +70,21 @@ class PGPCheckSchedule(GLJob):
             notification_settings['admin_pgp_alert_mail_title'], fakeevent)
 
         to_address = node_desc['email']
-        message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
-                                  GLSetting.memory_copy.notif_source_email,
+        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
+                                  GLSettings.memory_copy.notif_source_email,
                                   to_address,
                                   to_address,
                                   title,
                                   body)
 
-        yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
-                       authentication_password=GLSetting.memory_copy.notif_password,
-                       from_address=GLSetting.memory_copy.notif_source_email,
+        yield sendmail(authentication_username=GLSettings.memory_copy.notif_username,
+                       authentication_password=GLSettings.memory_copy.notif_password,
+                       from_address=GLSettings.memory_copy.notif_source_email,
                        to_address=to_address,
                        message_file=message,
-                       smtp_host=GLSetting.memory_copy.notif_server,
-                       smtp_port=GLSetting.memory_copy.notif_port,
-                       security=GLSetting.memory_copy.notif_security,
+                       smtp_host=GLSettings.memory_copy.notif_server,
+                       smtp_port=GLSettings.memory_copy.notif_port,
+                       security=GLSettings.memory_copy.notif_security,
                        event=None)
 
     @inlineCallbacks
@@ -103,21 +103,21 @@ class PGPCheckSchedule(GLJob):
             notification_settings['pgp_alert_mail_title'], fakeevent)
 
         to_address = receiver_desc['mail_address']
-        message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
-                                  GLSetting.memory_copy.notif_source_email,
+        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
+                                  GLSettings.memory_copy.notif_source_email,
                                   to_address,
                                   to_address,
                                   title,
                                   body)
 
-        yield sendmail(authentication_username=GLSetting.memory_copy.notif_username,
-                       authentication_password=GLSetting.memory_copy.notif_password,
-                       from_address=GLSetting.memory_copy.notif_source_email,
+        yield sendmail(authentication_username=GLSettings.memory_copy.notif_username,
+                       authentication_password=GLSettings.memory_copy.notif_password,
+                       from_address=GLSettings.memory_copy.notif_source_email,
                        to_address=to_address,
                        message_file=message,
-                       smtp_host=GLSetting.memory_copy.notif_server,
-                       smtp_port=GLSetting.memory_copy.notif_port,
-                       security=GLSetting.memory_copy.notif_security,
+                       smtp_host=GLSettings.memory_copy.notif_server,
+                       smtp_port=GLSettings.memory_copy.notif_port,
+                       security=GLSettings.memory_copy.notif_security,
                        event=None)
 
     @inlineCallbacks
@@ -131,10 +131,10 @@ class PGPCheckSchedule(GLJob):
         notification_settings = yield get_notification(admin_user['language'])
 
         if expired_or_expiring:
-            if not GLSetting.memory_copy.disable_admin_notification_emails:
+            if not GLSettings.memory_copy.disable_admin_notification_emails:
                 yield self.send_admin_pgp_alerts(node_desc, admin_user, notification_settings, expired_or_expiring)
 
             for receiver_desc in expired_or_expiring:
-                if not GLSetting.memory_copy.disable_receiver_notification_emails:
+                if not GLSettings.memory_copy.disable_receiver_notification_emails:
                     yield self.send_pgp_alerts(node_desc, receiver_desc, notification_settings)
 

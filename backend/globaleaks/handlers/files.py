@@ -12,7 +12,7 @@ import shutil
 import os
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.handlers.rtip import db_access_tip
@@ -105,7 +105,7 @@ def dump_file_fs(uploaded_file):
     @return: the uploaded_file dict, removed the old path (is moved) and updated
             with the key 'encrypted_path', pointing to the AES encrypted file
     """
-    encrypted_destination = os.path.join(GLSetting.submission_path,
+    encrypted_destination = os.path.join(GLSettings.submission_path,
                                          os.path.basename(uploaded_file['body_filepath']))
 
     log.debug("Moving encrypted bytes %d from file [%s] %s => %s" %
@@ -288,7 +288,7 @@ class Download(BaseHandler):
         self.set_header('Content-Length', rfile['size'])
         self.set_header('Content-Disposition', 'attachment; filename=\"%s\"' % rfile['name'])
 
-        filelocation = os.path.join(GLSetting.submission_path, rfile['path'])
+        filelocation = os.path.join(GLSettings.submission_path, rfile['path'])
 
         self.write_file(filelocation)
 

@@ -6,7 +6,7 @@ from zipfile import ZipFile
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db.datainit import load_appdata
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 from globaleaks.utils.zipstream import ZipStream, get_compression_opts
 
@@ -16,7 +16,7 @@ class TestCollection(helpers.TestGL):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestGL.setUp(self)
-        self.test_collection_file = os.path.join(GLSetting.working_path, 'test.collection')
+        self.test_collection_file = os.path.join(GLSettings.working_path, 'test.collection')
 
         for k in self.internationalized_text:
             self.files.append({'name': self.internationalized_text[k].encode('utf8'), 'buf': self.internationalized_text[k].encode('utf-8')})

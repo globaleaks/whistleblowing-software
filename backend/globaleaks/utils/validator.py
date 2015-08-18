@@ -13,7 +13,7 @@
 #                dictionary validator
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSettings
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log
 
@@ -29,9 +29,9 @@ def shorttext_v(_self, _attr, value):
     if not isinstance(value, unicode):
         raise errors.InvalidInputFormat("Name expected unicode (%s)" % value)
 
-    if len(value) > GLSetting.memory_copy.maximum_namesize:
+    if len(value) > GLSettings.memory_copy.maximum_namesize:
         raise errors.InvalidInputFormat("Name length need to be < of %d"
-                                        % GLSetting.memory_copy.maximum_namesize)
+                                        % GLSettings.memory_copy.maximum_namesize)
 
     return value
 
@@ -51,10 +51,10 @@ def longtext_v(_self, attr, value):
         raise errors.InvalidInputFormat("attr %s: Text expected unicode (%s)" %
                                         ( attr, value ))
 
-    if len(value) > GLSetting.memory_copy.maximum_textsize:
+    if len(value) > GLSettings.memory_copy.maximum_textsize:
         raise errors.InvalidInputFormat("Text unicode in %s " \
                                         "overcomes length " \
-                                        "limit %d" % (attr, GLSetting.memory_copy.maximum_textsize))
+                                        "limit %d" % (attr, GLSettings.memory_copy.maximum_textsize))
 
     return value
 
@@ -75,10 +75,10 @@ def dict_v(_self, attr, value):
             subvalue = unicode(subvalue)
 
         if isinstance(subvalue, unicode):
-            if len(subvalue) > GLSetting.memory_copy.maximum_textsize:
+            if len(subvalue) > GLSettings.memory_copy.maximum_textsize:
                 raise errors.InvalidInputFormat("In dict %s the key %s" \
                                                 "overcome length limit of %d" % (attr, key,
-                                                                                 GLSetting.memory_copy.maximum_textsize))
+                                                                                 GLSettings.memory_copy.maximum_textsize))
 
         if isinstance(subvalue, dict):
             dict_v(_self, attr, subvalue)

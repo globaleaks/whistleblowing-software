@@ -24,7 +24,7 @@ from globaleaks.handlers.authentication import transport_security_check, unauthe
 from globaleaks.utils.token import Token, TokenList
 from globaleaks.rest import errors, requests
 from globaleaks.security import hash_password, sha256
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, GLSettings
 from globaleaks.third_party import rstr
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
 
@@ -39,7 +39,7 @@ def _db_get_archived_questionnaire_schema(store, hash, type, language):
         aqs = store.find(ArchivedSchema,
                          ArchivedSchema.hash == hash,
                          ArchivedSchema.type == type,
-                         ArchivedSchema.language == unicode(GLSetting.memory_copy.default_language)).one()
+                         ArchivedSchema.language == unicode(GLSettings.memory_copy.default_language)).one()
 
     if not aqs:
         log.err("Unable to find questionnaire schema with hash %s" % hash)
@@ -73,7 +73,7 @@ def db_serialize_questionnaire_answers_recursively(answers):
 
 
 def db_serialize_questionnaire_answers(store, internaltip):
-    questionnaire = db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, GLSetting.memory_copy.default_language)
+    questionnaire = db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, GLSettings.memory_copy.default_language)
 
     answers_ids = []
     for s in questionnaire:
@@ -146,7 +146,7 @@ def db_archive_questionnaire_schema(store, submission):
     if (store.find(ArchivedSchema, 
                    ArchivedSchema.hash == submission.questionnaire_hash).count() <= 0):
 
-        for lang in GLSetting.memory_copy.languages_enabled:
+        for lang in GLSettings.memory_copy.languages_enabled:
             aqs = ArchivedSchema()
             aqs.hash = submission.questionnaire_hash
             aqs.type = u'questionnaire'
@@ -191,7 +191,7 @@ def db_create_whistleblower_tip(store, internaltip):
 
     node = store.find(Node).one()
 
-    receipt = unicode(rstr.xeger(GLSetting.receipt_regexp))
+    receipt = unicode(rstr.xeger(GLSettings.receipt_regexp))
 
     wbtip.receipt_hash = hash_password(receipt, node.receipt_salt)
     wbtip.access_counter = 0
@@ -233,7 +233,7 @@ def import_receivers(store, submission, receiver_id_list):
             raise errors.InvalidInputFormat("forged receiver selection, you fuzzer! <:")
 
         try:
-            if not GLSetting.memory_copy.allow_unencrypted and \
+            if not GLSettings.memory_copy.allow_unencrypted and \
                             receiver.pgp_key_status != u'enabled':
                 log.err("Encrypted only submissions are supported. Cannot select [%s]" % receiver.id)
                 continue
@@ -259,7 +259,7 @@ def verify_fields_recursively(fields, wb_fields):
             raise errors.SubmissionValidationFailure("missing required field (no value provided): %s" % f)
 
         if isinstance(wb_fields[f]['value'], unicode):
-            if len(wb_fields[f]['value']) > GLSetting.memory_copy.maximum_textsize:
+            if len(wb_fields[f]['value']) > GLSettings.memory_copy.maximum_textsize:
                 raise errors.InvalidInputFormat("field value overcomes size limitation")
 
         indexed_fields = {}
@@ -308,7 +308,7 @@ def db_create_submission(store, token_id, request, t2w, language):
     submission.tor2web = t2w
 
     try:
-        questionnaire = db_get_context_steps(store, context.id, GLSetting.memory_copy.default_language)
+        questionnaire = db_get_context_steps(store, context.id, GLSettings.memory_copy.default_language)
         questionnaire_hash = sha256(json.dumps(questionnaire))
 
         submission.questionnaire_hash = questionnaire_hash
@@ -381,7 +381,7 @@ class SubmissionCreate(BaseHandler):
         submission will require some actions to be performed before the
         submission can be concluded (e.g. hashcash and captchas).
         """
-        if not GLSetting.memory_copy.accept_submissions:
+        if not GLSettings.memory_copy.accept_submissions:
             raise errors.SubmissionDisabled
 
         request = self.validate_message(self.request.body, requests.SubmissionDesc)
