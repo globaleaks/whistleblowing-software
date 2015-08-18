@@ -185,11 +185,6 @@
   left: -40px;
 }
 
-#AnomaliesThresholdsSummary, #AnomaliesHistoryTable, #StatsInfoTable {
-  margin-top: 20px;
-  font-size: 10px;
-}
-
 .hour {
   text-align: left;
 }
