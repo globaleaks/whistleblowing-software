@@ -14,6 +14,23 @@ body {
   margin-bottom: 60px;
 }
 
+a, a:hover, a:active, a:focus {
+  outline: 0;
+}
+
+input, textarea, select {
+  padding-bottom: 10px;
+}
+
+table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+th {
+  color: #428bca;
+}
+
 .title1, .title2, .title3 {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -31,19 +48,6 @@ body {
 
 .title3 {
   font-size: 20px;
-}
-
-input, textarea, select {
-  padding-bottom: 10px;
-}
-
-table {
-  table-layout: fixed;
-  word-wrap: break-word;
-}
-
-th {
-  color: #428bca;
 }
 
 #HeaderBox {
@@ -344,6 +348,10 @@ th {
 
 .container-fluid {
   padding: 60px;
+}
+
+.text-gray {
+  color: #AAA;
 }
 
 .text-red {

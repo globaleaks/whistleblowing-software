@@ -67,12 +67,16 @@
               <input data-ng-model="field.required" type="checkbox">
               <label data-translate>Required</label>
             </div>
-            <div class="form-group" data-ng-if="field.type === 'fileupload'">
+            <div class="form-group">
               <div data-ng-switch="" on="typeSwitch(field.type)">
                 <input data-ng-model="field.multi_entry" value="{{field.multi_entry}}" type="checkbox">
                 <label data-ng-switch-when="fileupload" data-translate>Accept multiple file uploads</label>
                 <label data-ng-switch-default data-translate>Accept multiple answers for the field</label>
               </div>
+            </div>
+            <div class="form-group" data-ng-if="field.multi_entry">
+              <label data-translate>Hint shown on entry add button</label>
+              <input name="multi_entry_hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.multi_entry_hint" value="{{field.multi_entry_hint}}" type="text">
             </div>
             <div class="form-group" data-ng-if="field.fieldgroup_id === '' && field.type !== 'fieldgroup' && field.type !== 'fileupload'">
               <div>
@@ -86,13 +90,17 @@
                 <label data-translate>Enable statistics for this field</label>
               </div>
             </div>
-            <div class="form-group" data-ng-show="!field.is_template">
+            <div class="form-group">
               <label data-translate>Vertical order (Y)</label>
-              <input class="form-control" data-ng-model="field.y" value="{{field.y}}" type="number" min="0" max="99">
+              <input class="form-control" data-ng-model="field.y" data-ng-model-options='{debounce: 500}' value="{{field.y}}" type="number" min="0" max="99">
             </div>
-            <div class="form-group" data-ng-show="!field.is_template">
+            <div class="form-group">
               <label data-translate>Horizontal order (X)</label>
-              <input class="form-control" data-ng-model="field.x" value="{{field.x}}" type="number" min="0" max="99">
+              <input class="form-control" data-ng-model="field.x" data-ng-model-options='{debounce: 500}' value="{{field.x}}" type="number" min="0" max="99">
+            </div>
+            <div class="form-group">
+              <label data-translate>Width</label>
+              <input class="form-control" data-ng-model="field.width" value="{{field.width}}" type="number" min="0" max="12">
             </div>
           </div>
           <div class="col-md-6">
@@ -121,22 +129,24 @@
             </div>
             <div class="form-group" data-ng-show="field.type == 'fieldgroup' && composable_fields">
               <label data-translate>Fields Composition</label>
-              <div class="selectionList">
-                <div data-ng-repeat="f in composable_fields | orderBy:'y'">
-                  <div class="row" data-ng-show="f.id != field.id && (!f.fieldgroup_id || f.fieldgroup_id == field.id)">
-                    <span class="col-md-1" data-ng-click="toggle_field(f, field)">
-                      <span data-ng-show="isSelected(f)">
-                        <i class="glyphicon glyphicon-check"></i>
+              <div class="selectionList" data-ng-init="rows = getFieldsRows(composable_fields)">
+                <div data-ng-repeat="row in rows">
+                  <div data-ng-repeat="f in row | orderBy:'x'">
+                    <div class="row" data-ng-show="f.id != field.id && (!f.fieldgroup_id || f.fieldgroup_id == field.id)">
+                      <span class="col-md-1" data-ng-click="toggle_field(f, field)">
+                        <span data-ng-show="isSelected(f)">
+                          <i class="glyphicon glyphicon-check"></i>
+                        </span>
+                        <span data-ng-show="!isSelected(f)">
+                          <i class="glyphicon glyphicon-unchecked"></i>
+                        </span>
                       </span>
-                      <span data-ng-show="!isSelected(f)">
-                        <i class="glyphicon glyphicon-unchecked"></i>
+                      <span class="col-md-9">{{f.label}}</span>
+                      <span class="col-md-2" data-ng-show="f.fieldgroup_id == field.id">
+                        <a data-ng-click="moveUp($event, f)"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                        <a data-ng-click="moveDown($event, f)"><i class="glyphicon glyphicon-chevron-down"></i></a>
                       </span>
-                    </span>
-                    <span class="col-md-9">{{f.label}}</span>
-                    <span class="col-md-2" data-ng-show="f.fieldgroup_id == field.id">
-                      <a data-ng-click="moveUp($event, f)"><i class="glyphicon glyphicon-chevron-up"></i></a>
-                      <a data-ng-click="moveDown($event, f)"><i class="glyphicon glyphicon-chevron-down"></i></a>
-                    </span>
+                    </div>
                   </div>
                 </div>
               </div>

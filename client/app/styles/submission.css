@@ -31,13 +31,18 @@
   background-color: #f2dede;
 }
 
-.submissionField {
-  padding-bottom: 15px;
+.fieldRow {
+  margin-bottom: 25px;
+}
+
+.fieldEntryLabel:after {
+    content:'';
+    display:block;
+    clear: both;
 }
 
 .submissionFieldInput {
   padding-left: 10px;
-  margin-bottom: 25px;
 }
 
 #ReceiverSelectionBoxBig .receiverCardTitle {

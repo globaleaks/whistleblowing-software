@@ -298,39 +298,41 @@ CREATE TABLE whistleblowertip (
 CREATE TABLE applicationdata (
     id TEXT NOT NULL,
     version INTEGER NOT NULL,
-    fields BLOB,
+    fields BLOB NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE anomalies (
     id TEXT NOT NULL,
-    content BLOB,
+    content BLOB NOT NULL,
     date TEXT NOT NULL,
     alarm INTEGER NOT NULL,
-    events BLOB,
+    events BLOB NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE stats (
     id TEXT NOT NULL,
     start TEXT NOT NULL,
-    free_disk_space INTEGER,
-    summary BLOB,
+    free_disk_space INTEGER NOT NULL,
+    summary BLOB NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE field (
     id TEXT NOT NULL,
     label TEXT NOT NULL,
-    description TEXT NOT NULL DEFAULT '',
+    description TEXT NOT NULL,
     hint TEXT NOT NULL DEFAULT '',
     multi_entry INTEGER NOT NULL DEFAULT 0,
-    required INTEGER,
-    preview INTEGER,
+    multi_entry_hint BLOB NOT NULL,
+    required INTEGER NOT NULL DEFAULT 0,
+    preview INTEGER NOT NULL,
     stats_enabled INTEGER NOT NULL DEFAULT 0,
     is_template INTEGER NOT NULL DEFAULT 0,
     x INTEGER NOT NULL DEFAULT 0,
     y INTEGER NOT NULL DEFAULT 0,
+    width INTEGER NOT NULL DEFAULT 0 CHECK (width >= 0 AND width <= 12),
     type TEXT NOT NULL CHECK (type IN ('inputbox',
                                        'textarea',
                                        'selectbox',
