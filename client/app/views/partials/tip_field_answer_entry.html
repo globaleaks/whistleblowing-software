@@ -1,0 +1,26 @@
+<div data-ng-switch="" on="field.type" class="nested">
+  <span data-ng-switch-when="inputbox" class="preformatted">{{entry['value']}}</span>
+
+  <span data-ng-switch-when="textarea" class="preformatted">{{entry['value']}}</span>
+
+  <span data-ng-switch-when="selectbox" class="preformatted">{{entry['value']}}</span>
+
+  <span data-ng-switch-when="checkbox">
+    <ul data-ng-repeat="(k, v) in entry">
+      <div data-ng-repeat="option in field.options">
+        <li data-ng-if="k == option.id && v == 'True'">
+          <span>{{option.label}}</span>
+        </li>
+      </div>
+    </ul>
+  </span>
+
+  <span data-ng-switch-when="tos">
+    <span data-ng-if="entry['value'] == 'True'" data-translate>Accepted</span>
+    <span data-ng-if="entry['value'] == 'False'" data-translate>Not accepted</span>
+  </span>
+
+  <span data-ng-switch-when="fieldgroup" data-ng-init="fieldsRoot=field.children; fieldAnswers=entry">
+    <div data-ng-include="'views/partials/tip_fields.html'"></div>
+  </span>
+</div>
