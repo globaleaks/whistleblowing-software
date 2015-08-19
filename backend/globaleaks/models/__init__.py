@@ -652,9 +652,11 @@ class Field(Model):
     description = JSON(validator=longlocal_v)
     hint = JSON(validator=longlocal_v)
 
-    multi_entry = Bool(default=False)
     required = Bool(default=False)
     preview = Bool(default=False)
+
+    multi_entry = Bool(default=False)
+    multi_entry_hint = JSON(validator=shortlocal_v, default=u"")
 
     # This is set if the field should be duplicated for collecting statistics
     # when encryption is enabled.
@@ -666,6 +668,8 @@ class Field(Model):
 
     x = Int(default=0)
     y = Int(default=0)
+
+    width = Int(default = 0)
 
     type = Unicode(default=u'inputbox')
     # Supported field types:
@@ -682,8 +686,8 @@ class Field(Model):
     # * fieldgroup
 
     unicode_keys = ['type']
-    int_keys = ['x', 'y']
-    localized_strings = ['label', 'description', 'hint']
+    int_keys = ['x', 'y', 'width']
+    localized_strings = ['label', 'description', 'hint', 'multi_entry_hint']
     bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled', 'is_template']
 
     def delete(self, store):

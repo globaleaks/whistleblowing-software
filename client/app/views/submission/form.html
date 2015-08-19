@@ -1,18 +1,17 @@
-<fieldset data-ng-init="toplevel = (field === undefined) ? true : false; rows = (field === undefined) ? getFieldsRows(step.children) : getFieldsRows(field.children)">
-  <div data-ng-repeat="row in rows" style="clear:both">
-    <div data-ng-form="submissionField" data-ng-repeat="field in row | orderBy:'x'" data-ng-controller="SubmissionFieldCtrl" class="submissionField pull-left">
-      <div data-ng-init="fieldId  = $parent.fieldId ? $parent.fieldId + '-' + $index : 'field-' + $index" ng-class="getClass($parent.$index, $index, toplevel)">
+<div data-ng-init="toplevel = (field === undefined) ? true : false; rows = (field === undefined) ? getFieldsRows(step.children) : getFieldsRows(field.children)">
+  <div data-ng-repeat="row in rows" class="fieldsRow row">
+    <div data-ng-form="submissionField" data-ng-repeat="field in row | orderBy:'x'" data-ng-controller="SubmissionFieldCtrl">
+      <div data-ng-init="fieldId  = $parent.fieldId ? $parent.fieldId + '-' + $index : 'field-' + $index" data-ng-class="getClass($parent.$index, $index, toplevel, row.length, field)">
         <div id="{{::fieldId}}" data-ng-form="f" data-ng-init="initAnswers(submission._submission.answers, entry, field.id, toplevel)">
           <div class="form-group">
             <div>
-              <label data-ng-if="toplevel">
-                <span data-ng-if="fields.length > 1" class="fieldIndex">{{$index + 1}}</span>
+              <label>
+                <span data-ng-if="toplevel && fields.length > 1" class="fieldIndex">{{$index + 1}}</span>
                 <span class="fieldLabel">{{::field.label}}</span>
+                <a href="" data-ng-show="field.hint" data-content="field.hint" popover="{{::field.hint}}" popover-placement="right" popover-trigger="mouseenter">
+                  <i class="glyphicon glyphicon-question-sign"></i>
+                </a>
               </label>
-              <label data-ng-if="!toplevel">{{::field.label}}</label>
-              <a href="" data-ng-show="field.hint" data-content="field.hint" popover="{{::field.hint}}" popover-placement="right" popover-trigger="mouseenter">
-                <i class="glyphicon glyphicon-question-sign"></i>
-              </a>
               <span class="text-red"
                  data-ng-if="field.required"
                  popover="{{'This field is mandatory' | translate}}"
@@ -20,13 +19,45 @@
                  popover-trigger="mouseenter">*</span>
             </div>
             <div class="FieldDescription">{{::field.description}}</div>
-            <div data-ng-if="toplevel">
-              <div data-ng-repeat="entry in submission._submission.answers[field.id]" class="col-md-12">
+            <div data-ng-if="toplevel" class="submissionFieldInput">
+              <div data-ng-repeat="entry in submission._submission.answers[field.id]">
+                <div class="fieldEntryLabel" data-ng-if="submission._submission.answers[field.id].length > 1">
+                  <span class="pull-left">
+                    <label class="text-gray">
+                      <span>#{{$index}}</span>
+                    </span>
+                  </span>
+                  <span class="pull-right">
+                    <span class="text-red" href="" popover="{{'Remove' | translate}}" popover-placement="right" popover-trigger="mouseenter" data-ng-click="remove(submission._submission.answers[field.id], $index)">
+                      <i class="glyphicon glyphicon-remove"></i>
+                    </span>
+                  </span>
+                </div>
                 <div data-ng-include="'views/submission/form_field_input.html'"></div>
               </div>
+              <div data-ng-if="field.multi_entry" class="pull-right">
+                <a data-ng-if="toplevel" data-ng-click="submission._submission.answers[field.id].push({})" popover="{{field.multi_entry_hint}}" popover-placement="right" popover-trigger="mouseenter">
+                  <i class="btn btn-lg glyphicon glyphicon-plus"></i>
+                </a>
+                <a data-ng-if="!toplevel" data-ng-click="entry[field.id].push({})" popover="{{field.multi_entry_hint}}" popover-placement="right" popover-trigger="mouseenter">
+                  <i class="btn btn-lg glyphicon glyphicon-plus"></i>
+                </a>
+              </div>
             </div>
-            <div data-ng-if="!toplevel">
-              <div data-ng-repeat="entry in entry[field.id]" class="col-md-12">
+            <div data-ng-if="!toplevel" class="submissionFieldInput">
+              <div data-ng-repeat="entry in entry[field.id]">
+                <div class="fieldEntryLabel" data-ng-if="entry[field.id].length > 1">
+                  <span class="pull-left">
+                    <label class="text-gray">
+                      <span>#{{$index}}</span>
+                    </span>
+                  </span>
+                  <span class="pullRight">
+                    <span class="text-red" href="" popover="{{'Remove' | translate}}" popover-placement="right" popover-trigger="mouseenter" data-ng-click="remove(submission._submission.answers[field.id], $index)">
+                      <i class="glyphicon glyphicon-remove"></i>
+                    </span>
+                  </span>
+                </div>
                 <div data-ng-include="'views/submission/form_field_input.html'"></div>
               </div>
             </div>
@@ -35,4 +66,4 @@
       </div>
     </div>
   </div>
-</fieldset>
+</div>

@@ -108,31 +108,6 @@ GLClient.controller('SubmissionCtrl',
     return $scope.selection;
   };
 
-  $scope.getFieldsRows = function(fields) {
-    if (fields.length <= 0)
-      return [];
-
-    var fields = $filter('orderBy')(fields, 'y');
-
-    var current_row = fields[0].y;
-
-    var rows = [];
-
-    var row = [];
-    rows.push(row);
-
-    angular.forEach(fields, function (field) {
-      if(field.y > current_row) {
-        current_row = field.y;
-        row = [];
-        rows.push(row);
-      }
-      row.push(field);
-    });
-
-    return rows;
-  };
-
   $scope.initAnswers = function(answers, entry, field_id, toplevel) {
     if (toplevel) {
       answers[field_id] = [{}];
@@ -263,12 +238,22 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
     $scope.upload_callbacks.push(upload_callback);
   }
 
-  $scope.getClass = function(stepIndex, fieldIndex, toplevel) {
+  $scope.getClass = function(stepIndex, fieldIndex, toplevel, row_length, field) {
+    var ret = "";
+
     if (toplevel) {
-      return "submission-step" + stepIndex + "-field" + fieldIndex;
-    } else {
-      return "";
+      ret += "submission-step" + stepIndex + "-field" + fieldIndex + " ";
     }
+
+    if (field.width !== 0) {
+      n = field.width;
+    } else {
+      n = (row_length > 12) ? 1 : (12 / row_length);
+    }
+
+    ret += "col-md-" + n;
+
+    return ret;
   };
 
   $scope.validateRequiredCheckbox = function(field) {

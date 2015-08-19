@@ -19,7 +19,7 @@
               placeholder="{{::field.placeholder}}"></textarea>
   </div>
   <div data-ng-switch-when="selectbox">
-    <select id="{{::fieldId}}-input" name="input" class="form-control" data-ng-model="entry['0']" data-ng-required="field.required">
+    <select id="{{::fieldId}}-input" name="input" class="form-control" data-ng-model="entry['value']" data-ng-required="field.required">
       <option data-ng-repeat="option in field.options" id="{{::fieldId}}-input-option-{{$index}}" value="{{::option.label}}">{{::option.label}}</option>
     </select>
   </div>
