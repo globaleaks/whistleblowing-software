@@ -191,6 +191,7 @@ def anon_serialize_field(store, field, language):
         'attrs': attrs,
         'x': field.x,
         'y': field.y,
+        'width': field.width,
         'activated_by': activated_by,
         'options': options,
         'children': fields,
