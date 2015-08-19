@@ -640,6 +640,7 @@ angular.module('GLServices', ['ngResource']).
           field.is_template = false;
           field.hint = '';
           field.multi_entry = false;
+          field.multi_entry_hint = '';
           field.required = false;
           field.preview = false;
           field.stats_enabled = false;
@@ -647,6 +648,7 @@ angular.module('GLServices', ['ngResource']).
           field.options = [];
           field.x = 0;
           field.y = 0;
+          field.width = 0;
           field.children = [];
           field.fieldgroup_id = '';
           field.step_id = step_id;
@@ -818,9 +820,9 @@ angular.module('GLServices', ['ngResource']).
           scope.pwdHasNumber = true;
         }
 
-        if (scope.$eval(password) === undefined ||
-          scope.$eval(password) === '' ||
-          scope.$eval(password) === scope.$eval(check_password)) {
+        if (((scope.$eval(password) === undefined || scope.$eval(password) === '') &&
+             (scope.$eval(check_password) === undefined || scope.$eval(check_password === ''))) ||
+            (scope.$eval(password) === scope.$eval(check_password))) {
           scope.mismatch_password = false;
         } else {
           scope.mismatch_password = true;

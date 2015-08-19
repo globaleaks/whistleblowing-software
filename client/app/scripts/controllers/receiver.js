@@ -64,7 +64,7 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'changeP
       if ($scope.preferences.pgp_key_remove === undefined) {
         $scope.preferences.pgp_key_remove = false;
       }
-      if ($scope.preferences.pgp_key_public =n== undefined) {
+      if ($scope.preferences.pgp_key_public === undefined) {
         $scope.preferences.pgp_key_public = '';
       }
 
