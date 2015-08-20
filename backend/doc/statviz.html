@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<head>
+	<script src="d3.min.js"></script>
+	<script src="jquery.js"></script>
+
+    <style>
+        .axis text {
+            font: 10px sans-serif;
+        }
+        .axis line, .axis path {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2;
+            shape-rendering: crispEdges;
+        }
+        path {
+            stroke-width: 2;
+            fill: none;
+        }
+        .dot {
+            fill: white;
+            stroke-width: 2px;
+        }
+        .blue { stroke: steelblue; background-color: steelblue }
+        .red { stroke: red; background-color: red; }
+        .violet { stroke: violet; background-color: violet; }
+
+        .linetest { stroke: green; stroke-width: 0.2;}
+
+        /* pie below */
+        circle, path {
+            cursor: pointer;
+        }
+        #topbar {
+          width: 100%;
+          background-color: floralwhite;
+          color: blue;
+          text-align: center;
+          font-size: 16px;
+        }
+        circle {
+            fill: none;
+            pointer-events: all;
+        }
+
+        h2 {
+            background-color: bisque;
+        }
+        .linklist ul {
+            border-top: solid burlywood 3px;
+            border-left: solid burlywood 3px;
+            border-right: solid burlywood 3px;
+        }
+
+        #container {
+            float: left;
+            clear: both;
+            width: 100%;
+        }
+        #testavail {
+            border: dotted;
+            border-color: #55a892;
+            width: 30%;
+            float:left;
+        }
+        #representation {
+            border: solid;
+            border-color: #62c462;
+            width: 60%;
+            float: right;
+        }
+        .graphlink {
+            color: darkblue;
+            font-size: 18px;
+            margin-left: 24px;
+        }
+        .smallinfo {
+            margin-left: 3px;
+            font-size: 10px;
+            color: black;
+        }
+        #infobox {
+            background-color: mistyrose;
+            text-align: left;
+            margin: 2%;
+            padding: 2%;
+            width: 90%;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        function initgraph() {
+
+            $("#colorlegend").hide();
+
+            var margin = {top: 30, right: 20, bottom: 30, left: 50},
+                    width = 600 - margin.left - margin.right,
+                    height = 270 - margin.top - margin.bottom;
+
+            var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse;
+
+            var x = d3.time.scale().range([0, width]);
+            var y = d3.scale.linear().range([height, 0]);
+
+            var xAxis = d3.svg.axis().scale(x)
+                    .orient("bottom").ticks(5);
+
+            var yAxis = d3.svg.axis().scale(y)
+                    .orient("left").ticks(5);
+
+            var increment = 0;
+            var valueline = d3.svg.line()
+                    .x(function(d) {
+                        return x(parseDate(d.submission_date));
+                    })
+                    .y(function(d) {
+                        increment++;
+                        return y(increment);
+                    });
+
+            var svg = d3.select("#supporterflow")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            d3.json("http://127.0.0.1:8082/S/current", function(value) {
+
+                // Scale the range of the data
+                x.domain(d3.extent(value, function(elem, numb) {
+                    // I can used numb to compute the 160 below
+                    // console.log(numb + ' ' + parseDate(elem.submission_date));
+                    return parseDate(elem.submission_date);
+                }));
+                y.domain([0, 350]);
+
+                svg.append("path")      // Add the valueline path.
+                        .attr("class", "blue")
+                        .attr("d", valueline(value));
+
+                $.each(value, function(numb, elem) {
+
+                    svg.append("line")
+                            .attr("class", "linetest")
+                            .attr("x1", x(parseDate(elem.submission_date)) )
+                            .attr("y1", y(numb) )
+                            .attr("x2", x(parseDate(elem.submission_date)) )
+                            .attr("y2", 1);
+
+                    console.log(numb);
+                    console.log(elem);
+                });
+
+                svg.append("g")         // Add the X Axis
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(0," + height + ")")
+                        .call(xAxis);
+
+                svg.append("g")         // Add the Y Axis
+                        .attr("class", "y axis")
+                        .call(yAxis);
+            });
+        }
+    </script>
+
+</head>
+
+<body onload="initgraph();">
+
+  <h1>Execution stats</h1>
+
+  <div id="supporterflow"></div>
+
+
+</body>
+</html>
