@@ -76,6 +76,11 @@ describe('GET /contexts', function(){
                         return done(err);
                       } else {
 
+                        /* here get implemented some random file upload */
+
+
+                        /* and submission get completed here */
+
                         // console.log(res.headers);
                         // console.log(res.body);
                         var token = res.body;
@@ -89,7 +94,7 @@ describe('GET /contexts', function(){
                         sbms.graph_captcha_answer = 'unicode';
                         sbms.wb_steps = [];
                         sbms.answers = {};
-                        sbms.receivers = contexts[(i -1)].receivers;
+                        sbms.receivers = contexts[(i-1)].receivers;
 
                         app
                           .put('/submission/' + token.id)
