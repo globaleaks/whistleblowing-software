@@ -1,11 +1,11 @@
-<div class="addFieldFromTemplate" data-ng-if="admin.field_templates.length > 0">
+<div class="addFieldFromTemplate" data-ng-if="(field.step.id !== '' || field.fieldgroup_id !== '') && admin.field_templates.length > 0">
   <div class="editorTitle" data-translate>Add field from template</div>
   <div class="form-inline">
     <div class="form-group">
       <div class="input-group">
-        <select class="form-control" data-ng-model="template_id" data-ng-options="field.id as field.label for field in admin.field_templates" class="form-control"></select>
+        <select class="form-control" data-ng-model="template_id" data-ng-options="field.id as field.label for field in admin.field_templates | omit:'id == field.id'" class="form-control"></select>
         <span class="input-group-btn keybutton">
-          <button data-ng-click="add_field_from_template(template_id, step)" class="btn btn-primary"
+          <button data-ng-click="add_field_from_template(template_id)" class="btn btn-primary"
                   data-ng-disabled="template_id === undefined" type="submit">
             <i class="glyphicon glyphicon-plus-sign"></i>
             <span data-translate>Add</span>

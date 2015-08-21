@@ -632,10 +632,11 @@ angular.module('GLServices', ['ngResource']).
           }
         }
 
-        self.new_field = function(step_id) {
+        self.new_field = function(step_id, fieldgroup_id) {
           var field = new adminFieldResource();
+          field.descriptor_id = '';
           field.label = '';
-          field.type = '';
+          field.type = 'inputbox';
           field.description = '';
           field.is_template = false;
           field.hint = '';
@@ -650,26 +651,27 @@ angular.module('GLServices', ['ngResource']).
           field.y = 0;
           field.width = 0;
           field.children = [];
-          field.fieldgroup_id = '';
+          field.fieldgroup_id = fieldgroup_id;
           field.step_id = step_id;
+          field.template_id = '';
           return field;
         };
 
-        self.new_field_from_template = function(template_id, step_id) {
-          var field = new adminFieldResource();
-          field.step_id = step_id;
+        self.new_field_from_template = function(template_id, step_id, fieldgroup_id) {
+          var field = self.new_field(step_id, fieldgroup_id);
           field.template_id = template_id;
-          return field.$save();
+          return field;
         };
 
-        self.new_field_template = function () {
+        self.new_field_template = function (fieldgroup_id) {
           var field = new adminFieldTemplateResource();
           field.label = '';
-          field.type = '';
+          field.type = 'inputbox';
           field.description = '';
           field.is_template = true;
           field.hint = '';
           field.multi_entry = false;
+          field.multi_entry_hint = '';
           field.required = false;
           field.preview = false;
           field.stats_enabled = false;
@@ -677,9 +679,11 @@ angular.module('GLServices', ['ngResource']).
           field.options = [];
           field.x = 0;
           field.y = 0;
+          field.width = 0;
           field.children = [];
-          field.fieldgroup_id = '';
+          field.fieldgroup_id = fieldgroup_id;
           field.step_id = '';
+          field.template_id = '';
           return field;
         };
 

@@ -1,30 +1,9 @@
 GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
                     function($scope, $filter) {
 
-    $scope.composable_fields = [];
-    $scope.admin.field_templates.$promise
-      .then(function(fields) {
-        $scope.fields = fields;
-        angular.forEach(fields, function(field, index) {
-          $scope.composable_fields.push(field);
-          if (field.type === 'fieldgroup') {
-            angular.forEach(field.children, function(field_c, index_c) {
-              $scope.composable_fields.push(field_c);
-            });
-          }
-        });
-
-      });
-
-    $scope.moveFieldUp = function(field) {
-      field.y -= 1;
-      $scope.save_field(field, false);
-    };
-
-    $scope.moveFieldDown = function(field) {
-      field.y += 1;
-      $scope.save_field(field, false);
-    };
+    $scope.admin.field_templates.$promise.then(function(fields) {
+      $scope.fields = fields;
+    });
 
     $scope.deleteFromList = function(list, elem) {
       var idx = list.indexOf(elem);
@@ -78,6 +57,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
 
 GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
   function($scope, $modal) {
+    $scope.editable = $scope.field.is_template || $scope.field.template_id == '';
     $scope.editing = false;
     $scope.field_group_toggled = false;
 
@@ -143,6 +123,10 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
         return false;
     }
 
+    $scope.addField = function(field) {
+      $scope.field.children.push(field);
+    };
+
     $scope.addOption = function (field) {
       new_option = {
         'id': '',
@@ -181,6 +165,38 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       }
     };
 
+    $scope.new_field = {};
+
+    $scope.add_field = function() {
+      var field = $scope.admin.new_field('', $scope.field.id);
+      field.label = $scope.new_field.label;
+      field.type = $scope.new_field.type;
+      field.attrs = $scope.admin.get_field_attrs(field.type);
+      field.y = $scope.newItemOrder($scope.field.children, 'y');
+
+      field.is_template = $scope.field.is_template;
+
+      field.$save(function(new_field){
+        $scope.addField(new_field);
+        $scope.new_field = {};
+      });
+    };
+
+    $scope.add_field_from_template = function(template_id) {
+      var field = $scope.admin.new_field_from_template(template_id, '', $scope.field.id);
+
+      if ($scope.$parent.field) {
+        field.is_template = $scope.$parent.field.is_template;
+        field.y = $scope.newItemOrder($scope.$parent.field.children, 'y');
+      } else {
+        field.y = $scope.newItemOrder($scope.step.children, 'y');
+      }
+
+      field.$save(function(new_field){
+        $scope.field.children.push(new_field);
+      });
+    };
+
     $scope.$watch('field.type', function (newVal, oldVal) {
       if (newVal && newVal !== oldVal) {
         $scope.field.options = [];
@@ -188,6 +204,10 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       }
     });
 
+    $scope.fields_rows = $scope.getFieldsRows($scope.field.children);
+    $scope.$watch('field.children', function (newVal, oldVal) {
+      $scope.fields_rows = $scope.getFieldsRows($scope.field.children);
+    });
   }
 ]);
 
@@ -196,7 +216,8 @@ GLClient.controller('AdminFieldTemplatesAddCtrl', ['$scope',
     $scope.new_field = {};
 
     $scope.add_field = function() {
-      var field = $scope.admin.new_field_template($scope.new_field);
+      var field = $scope.admin.new_field_template($scope.field ? $scope.field.id : '');
+      field.is_template = true;
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
       field.attrs = $scope.admin.get_field_attrs(field.type);

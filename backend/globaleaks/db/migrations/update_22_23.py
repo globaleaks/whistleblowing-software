@@ -333,9 +333,23 @@ class Replacer2223(TableReplacer):
                 db_update_fieldattr(self.store_new, old_obj.id, {'name': u'agreement_statement', 'type':u'localized', 'value':'{"en": ""}'})
 
             for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'template_id':
+                    # simply skip so to inizialize to NULL
+                    continue
+
+                if v.name == 'width':
+                    new_obj.width = 0
+                    continue
+
+                if v.name == 'multi_entry_hint':
+                    new_obj.multi_entry_hint = {'en': ''}
+                    continue
+
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
+            print "bbb"
             self.store_new.add(new_obj)
+            print "aaaa"
 
         self.store_new.commit()
 

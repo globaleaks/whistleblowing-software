@@ -76,10 +76,6 @@
   vertical-align: bottom;
 }
 
-.configItemLast {
-   margin-bottom: 30px;
- }
-
 .fileDetails {
   margin: 0 0 10px 20px;
 }
@@ -94,8 +90,8 @@
   padding: 20px;
 }
 
-.stepBox {
-  padding: 0 5px 10px 5px;
+.stepEditor, .fieldEditor {
+  padding-top: 20px;
 }
 
 /** END **/

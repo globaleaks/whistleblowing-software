@@ -56,13 +56,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       }
     };
 
-    $scope.add_field_from_template = function(template_id, step) {
-      $scope.admin.new_field_from_template(template_id, step.id).then(function(field){
-        step.children = step.children || [];
-        step.children.push(field);
-      });
-    };
-   
     $scope.addField = function(field) {
       $scope.step.children.push(field);
     };
@@ -130,7 +123,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     $scope.new_field = {};
 
     $scope.add_field = function() {
-      var field = $scope.admin.new_field($scope.step.id);
+      var field = $scope.admin.new_field($scope.step.id, '');
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
       field.attrs = $scope.admin.get_field_attrs(field.type);
@@ -140,28 +133,21 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
         $scope.addField(new_field);
         $scope.new_field = {};
       });
-
     };
 
-    $scope.composable_fields = [];
-    angular.forEach($scope.step.children, function(field, index) {
-      $scope.composable_fields.push(field);
-      if (field.type === 'fieldgroup') {
-        angular.forEach(field.children, function(field_c, index_c) {
-          $scope.composable_fields.push(field_c);
-       });
-      }
-    });
+    $scope.add_field_from_template = function(template_id) {
+      var field = $scope.admin.new_field_from_template(template_id, $scope.step.id, '');
+      field.y = $scope.newItemOrder($scope.step.children, 'y');
 
-    $scope.moveFieldUp = function(field) {
-      field.y -= 1;
-      $scope.save_field(field);
+      field.$save(function(new_field){
+        $scope.step.children.push(new_field);
+      });
     };
 
-    $scope.moveFieldDown = function(field) {
-      field.y += 1;
-      $scope.save_field(field);
-    };
+    $scope.fields_rows = $scope.getFieldsRows($scope.step.children);
+    $scope.$watch('step', function (newVal, oldVal) {
+      $scope.fields_rows = $scope.getFieldsRows($scope.step.children);
+    }, true);
 
   }
 ]);
