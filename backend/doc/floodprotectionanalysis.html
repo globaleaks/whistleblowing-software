@@ -43,6 +43,16 @@
             pointer-events: all;
         }
 
+        h1, h2, h3, h4 {
+            font-family: fantasy;
+        }
+        h1, h2 {
+            margin: 0.5em;
+            padding: 0.5em;
+            border-bottom: blue;
+            border-bottom-left-radius: 5px;
+            border-left: double blue;
+        }
         h2 {
             background-color: bisque;
         }
@@ -172,29 +182,34 @@
 <h1>Anti-flood research and development</h1>
 <h2>Experiments and python code for GlobaLeaks package</h2>
 
+<div class="authorship">
+    <div class="authorentry">
+        Code and paper: Claudio Agosti - vecna@globaleaks.org
+    </div>
+    <div class="authorentry">
+        Revision: Giovanni Pellerano - evilaliv3@globaleaks.org
+    </div>
+</div>
+
 <div id="introduction" class="paragraph">
-  <small> TODO what is globaleaks </small>
+    <p><b>GlobaLeaks</b>: is an application written in Python that listed on a Tor Hidden service</p>
 
 <p>
-GlobaLeaks is an application with various features prone to be DoSsed by attackers/spammers. 
+GlobaLeaks is an application with various features prone to be DoSsed by attackers/spammers.
+</p>
 
 <ul>
-<li>
-<b>submission is the procedure that permits to an anonymous user (hopefully, a w
-  histleblower) to create an entry in the database, and trigger some notification and o
-  ther CPU intensive operation like cryptography with public key for the recipients. 
-</li>
-<li>
-    * **comment** is a text added by an anonymous user (the potential whistleblower tha
-    t has performed the submission), authenticated in a previously created submission.
-</li>
-<li>
+    <li>
+        <b>Submission</b>: is the procedure that permits to an anonymous user (hopefully, a whistleblower) to create an entry in the database, and trigger some notification and other CPU intensive operation like cryptography with public key for the recipients. <span class="techdets">Write actively on the database, and trigger notification for receivers</span>.
+    </li>
+    <li>
+        <b>Comment</b>: is a text added by an anonymous user (the potential whistleblower that has performed the submission), authenticated in a previously created submission. <span class="techdets">Write actively on the database</span>.
+    </li>
+    <li>
+        <b>File upload</b>: is the operation, potentially Disk exhausting, performed by an anonymous user. this may happen during the submission or the in subsequent comment phases. <span class="techdets">Write actively on the database and on the disk, if end to end encryption is enabled or not, the disk impact can be higher (no end2end means that every file get encrypted for the PGP key of receivers, keeping one copy per receiver, multiplying the disk space required per file)</span>.
+    </li>
+</ul>
 
-      * **file upload** is the operation, potentially Disk exhausting, performed by an an
-      onymous user. this may happen during the submission or the in subsequent comment phas
-      es.
-</li>
-      </p>
 </div>
 
 <h3>Current status</h3>

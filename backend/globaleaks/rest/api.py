@@ -11,6 +11,7 @@ from globaleaks.handlers import exception, \
                                 files, authentication, admin, \
                                 collection, langfiles, css, wizard
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
+from globaleaks.handlers import exporter
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 field_regexp = uuid_regexp
@@ -113,4 +114,10 @@ spec = [
 
     ## This Handler should remain the last one as it works like a last resort catch 'em all
     (r'/([a-zA-Z0-9_\-\/\.]*)', BaseStaticFileHandler, {'path': GLSettings.glclient_path})
+]
+
+
+statistics_specification =  [
+    (r'/S/current', exporter.CurrentStats),
+    (r'/S/reportevent/(\w+)', exporter.ReportEvent)
 ]
