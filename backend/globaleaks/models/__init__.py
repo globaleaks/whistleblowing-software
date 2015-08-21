@@ -84,35 +84,40 @@ class BaseModel(Storm):
         cls_localized_keys = getattr(self, "localized_strings")
 
         for k in cls_unicode_keys:
-            value = unicode(values[k])
-            setattr(self, k, value)
+            if k in values and values[k] is not None:
+                value = unicode(values[k])
+                setattr(self, k, value)
 
         for k in cls_int_keys:
-            value = int(values[k])
-            setattr(self, k, value)
+            if k in values and values[k] is not None:
+                value = int(values[k])
+                setattr(self, k, value)
 
         for k in cls_json_keys:
-            value = values[k]
-            setattr(self, k, value)
+            if k in values and values[k] is not None:
+                value = values[k]
+                setattr(self, k, value)
 
         for k in cls_bool_keys:
-            if values[k] == u'true':
-                value = True
-            elif values[k] == u'false':
-                value = False
-            else:
-                value = bool(values[k])
-            setattr(self, k, value)
+            if k in values and values[k] is not None:
+                if values[k] == u'true':
+                    value = True
+                elif values[k] == u'false':
+                    value = False
+                else:
+                    value = bool(values[k])
+                setattr(self, k, value)
 
         for k in cls_localized_keys:
-            value = values[k]
-            previous = getattr(self, k)
+            if k in values and values[k] is not None:
+                value = values[k]
+                previous = getattr(self, k)
 
-            if previous and isinstance(previous, dict):
-                previous.update(value)
-                setattr(self, k, previous)
-            else:
-                setattr(self, k, value)
+                if previous and isinstance(previous, dict):
+                    previous.update(value)
+                    setattr(self, k, previous)
+                else:
+                    setattr(self, k, value)
 
     def __repr___(self):
         values = ['{}={}'.format(value, getattr(self, attr)) for attr in self._public_attrs]
@@ -648,6 +653,10 @@ class EventLogs(Model):
 
 
 class Field(Model):
+    x = Int(default=0)
+    y = Int(default=0)
+    width = Int(default = 0)
+
     label = JSON(validator=longlocal_v)
     description = JSON(validator=longlocal_v)
     hint = JSON(validator=longlocal_v)
@@ -666,10 +675,9 @@ class Field(Model):
     # new steps.
     is_template = Bool(default=False)
 
-    x = Int(default=0)
-    y = Int(default=0)
-
-    width = Int(default = 0)
+    # This reference when != NULL means that the field is referencing a
+    # field template
+    template_id = Unicode(validator=shorttext_v)
 
     type = Unicode(default=u'inputbox')
     # Supported field types:
@@ -685,7 +693,7 @@ class Field(Model):
     # * date
     # * fieldgroup
 
-    unicode_keys = ['type']
+    unicode_keys = ['template_id', 'type']
     int_keys = ['x', 'y', 'width']
     localized_strings = ['label', 'description', 'hint', 'multi_entry_hint']
     bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled', 'is_template']
@@ -694,7 +702,6 @@ class Field(Model):
         for child in self.children:
             child.delete(store)
         store.remove(self)
-
 
     def copy(self, store, is_template):
         obj_copy = self.__class__()
@@ -904,6 +911,8 @@ class FieldAnswerGroupFieldAnswer(BaseModel):
     fieldanswergroup_id = Unicode()
     fieldanswer_id = Unicode()
 
+
+Field.template = Reference(Field.template_id, Field.id)
 
 Field.options = ReferenceSet(
     Field.id,

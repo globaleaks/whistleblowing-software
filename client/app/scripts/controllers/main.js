@@ -150,7 +150,11 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       return content_types.indexOf(content_type) > -1;
     };
 
-    $scope.getOrderProperty = function(elem) {
+    $scope.getXOrderProperty = function(elem) {
+      return 'x';
+    }
+
+    $scope.getYOrderProperty = function(elem) {
       var key = 'presentation_order';
       if (elem[key] === undefined)
           key = 'y';
@@ -158,14 +162,28 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     }
 
     $scope.moveUp = function(event, elem) {
-      var key = $scope.getOrderProperty(elem);
+      var key = $scope.getYOrderProperty(elem);
       elem[key] -= 1;
 
       event.stopPropagation();
     }
 
     $scope.moveDown = function(event, elem) {
-      var key = $scope.getOrderProperty(elem);
+      var key = $scope.getYOrderProperty(elem);
+      elem[key] += 1;
+
+      event.stopPropagation();
+    }
+
+    $scope.moveLeft = function(event, elem) {
+      var key = $scope.getXOrderProperty(elem);
+      elem[key] -= 1;
+
+      event.stopPropagation();
+    }
+
+    $scope.moveRight = function(event, elem) {
+      var key = $scope.getXOrderProperty(elem);
       elem[key] += 1;
 
       event.stopPropagation();
@@ -175,7 +193,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       if (elements.length <= 0)
           return;
 
-      var key = $scope.getOrderProperty(elements[0]);
+      var key = $scope.getYOrderProperty(elements[0]);
       if (elements.length) {
         var i = 0;
         var elements = $filter('orderBy')(elements, key);

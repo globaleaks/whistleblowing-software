@@ -1,5 +1,4 @@
 GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
-
   $scope.$on('flow::fileAdded', function (event, $flow, flowFile) {
     $scope.uploads.push(flowFile);
 
@@ -8,7 +7,5 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
       flowFile.error_msg = "This file exceeds the maximum upload size for this server.";
       event.preventDefault();
     }
-
   });
-
 }]);

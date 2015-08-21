@@ -304,7 +304,6 @@ CREATE TABLE applicationdata (
 
 CREATE TABLE anomalies (
     id TEXT NOT NULL,
-    content BLOB NOT NULL,
     date TEXT NOT NULL,
     alarm INTEGER NOT NULL,
     events BLOB NOT NULL,
@@ -330,6 +329,7 @@ CREATE TABLE field (
     preview INTEGER NOT NULL,
     stats_enabled INTEGER NOT NULL DEFAULT 0,
     is_template INTEGER NOT NULL DEFAULT 0,
+    template_id TEXT,
     x INTEGER NOT NULL DEFAULT 0,
     y INTEGER NOT NULL DEFAULT 0,
     width INTEGER NOT NULL DEFAULT 0 CHECK (width >= 0 AND width <= 12),
@@ -345,6 +345,7 @@ CREATE TABLE field (
                                        'date',
                                        'email',
                                        'fieldgroup')),
+    FOREIGN KEY (template_id) REFERENCES field(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 

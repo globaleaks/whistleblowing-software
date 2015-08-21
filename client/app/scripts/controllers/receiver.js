@@ -11,13 +11,11 @@ GLClient.controller('ReceiverFirstLoginCtrl', ['$scope', '$rootScope', '$locatio
         "preferences.password", "preferences.check_password");
 
     $scope.pass_save = function () {
-
       // avoid changing any PGP setting
       $scope.preferences.pgp_key_remove = false;
       $scope.preferences.pgp_key_public = '';
 
       $scope.preferences.$update(function () {
-
         if (!$rootScope.successes) {
           $rootScope.successes = [];
         }
