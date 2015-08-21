@@ -44,6 +44,7 @@ def save_anomalies(store, anomalies_list):
         newanom.alarm = alarm_raised
         newanom.date = anomaly_date
         newanom.events = anomaly_desc
+        log.debug("adding new anomaly in to the record: %s, %s, %s" % (alarm_raised, anomaly_date, anomaly_desc))
         store.add(newanom)
 
     if anomalies_counter:

@@ -304,7 +304,6 @@ CREATE TABLE applicationdata (
 
 CREATE TABLE anomalies (
     id TEXT NOT NULL,
-    content BLOB NOT NULL,
     date TEXT NOT NULL,
     alarm INTEGER NOT NULL,
     events BLOB NOT NULL,
