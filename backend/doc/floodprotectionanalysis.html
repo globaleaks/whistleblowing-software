@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<head>
+	<script src="d3.min.js"></script>
+	<script src="jquery.js"></script>
+
+    <style>
+        .axis text {
+            font: 10px sans-serif;
+        }
+        .axis line, .axis path {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2;
+            shape-rendering: crispEdges;
+        }
+        path {
+            stroke-width: 2;
+            fill: none;
+        }
+        .dot {
+            fill: white;
+            stroke-width: 2px;
+        }
+        .blue { stroke: steelblue; background-color: steelblue }
+        .red { stroke: red; background-color: red; }
+        .violet { stroke: violet; background-color: violet; }
+
+        .linetest { stroke: green; stroke-width: 0.2;}
+
+        /* pie below */
+        circle, path {
+            cursor: pointer;
+        }
+        #topbar {
+          width: 100%;
+          background-color: floralwhite;
+          color: blue;
+          text-align: center;
+          font-size: 16px;
+        }
+        circle {
+            fill: none;
+            pointer-events: all;
+        }
+
+        h2 {
+            background-color: bisque;
+        }
+        .linklist ul {
+            border-top: solid burlywood 3px;
+            border-left: solid burlywood 3px;
+            border-right: solid burlywood 3px;
+        }
+
+        #container {
+            float: left;
+            clear: both;
+            width: 100%;
+        }
+        #testavail {
+            border: dotted;
+            border-color: #55a892;
+            width: 30%;
+            float:left;
+        }
+        #representation {
+            border: solid;
+            border-color: #62c462;
+            width: 60%;
+            float: right;
+        }
+        .graphlink {
+            color: darkblue;
+            font-size: 18px;
+            margin-left: 24px;
+        }
+        .smallinfo {
+            margin-left: 3px;
+            font-size: 10px;
+            color: black;
+        }
+        #infobox {
+            background-color: mistyrose;
+            text-align: left;
+            margin: 2%;
+            padding: 2%;
+            width: 90%;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        function initgraph() {
+
+            $("#colorlegend").hide();
+
+            var margin = {top: 30, right: 20, bottom: 30, left: 50},
+                    width = 600 - margin.left - margin.right,
+                    height = 270 - margin.top - margin.bottom;
+
+            var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse;
+
+            var x = d3.time.scale().range([0, width]);
+            var y = d3.scale.linear().range([height, 0]);
+
+            var xAxis = d3.svg.axis().scale(x)
+                    .orient("bottom").ticks(5);
+
+            var yAxis = d3.svg.axis().scale(y)
+                    .orient("left").ticks(5);
+
+            var increment = 0;
+            var valueline = d3.svg.line()
+                    .x(function(d) {
+                        return x(parseDate(d.submission_date));
+                    })
+                    .y(function(d) {
+                        increment++;
+                        return y(increment);
+                    });
+
+            var svg = d3.select("#supporterflow")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            d3.json("http://127.0.0.1:8082/S/current", function(value) {
+
+                // Scale the range of the data
+                x.domain(d3.extent(value, function(elem, numb) {
+                    // I can used numb to compute the 160 below
+                    // console.log(numb + ' ' + parseDate(elem.submission_date));
+                    return parseDate(elem.submission_date);
+                }));
+                y.domain([0, 350]);
+
+                svg.append("path")      // Add the valueline path.
+                        .attr("class", "blue")
+                        .attr("d", valueline(value));
+
+                $.each(value, function(numb, elem) {
+
+                    svg.append("line")
+                            .attr("class", "linetest")
+                            .attr("x1", x(parseDate(elem.submission_date)) )
+                            .attr("y1", y(numb) )
+                            .attr("x2", x(parseDate(elem.submission_date)) )
+                            .attr("y2", 1);
+
+                    console.log(numb);
+                    console.log(elem);
+                });
+
+                svg.append("g")         // Add the X Axis
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(0," + height + ")")
+                        .call(xAxis);
+
+                svg.append("g")         // Add the Y Axis
+                        .attr("class", "y axis")
+                        .call(yAxis);
+            });
+        }
+    </script>
+
+</head>
+
+<body onload="initgraph();">
+
+<h1>Anti-flood research and development</h1>
+<h2>Experiments and python code for GlobaLeaks package</h2>
+
+<div id="introduction" class="paragraph">
+  <small> TODO what is globaleaks </small>
+
+<p>
+GlobaLeaks is an application with various features prone to be DoSsed by attackers/spammers. 
+
+<ul>
+<li>
+<b>submission is the procedure that permits to an anonymous user (hopefully, a w
+  histleblower) to create an entry in the database, and trigger some notification and o
+  ther CPU intensive operation like cryptography with public key for the recipients. 
+</li>
+<li>
+    * **comment** is a text added by an anonymous user (the potential whistleblower tha
+    t has performed the submission), authenticated in a previously created submission.
+</li>
+<li>
+
+      * **file upload** is the operation, potentially Disk exhausting, performed by an an
+      onymous user. this may happen during the submission or the in subsequent comment phas
+      es.
+</li>
+      </p>
+</div>
+
+<h3>Current status</h3>
+
+<div class="paragraph">
+  <p>Anti flood protection has been introduced in the stable version of GlobaLeaks in Q1 2015, now in Q3 2015 we are performing some stress test, to measure the effectiveness of the adopted solutions.</p>
+  <p></p>
+</div>
+
+
+<div class="smallinfo">Follow the description of the technologies planned, and their current status of implementation </div>
+
+<h4>Graphical Captcha</h4>
+<pre>
+Graphical Captcha are to be shown to the whistleblower when the system is under attack.
+When a whistleblower is making a new submission, and he want to finalize it, it will be asked to insert an appropriate Captcha to confirm the action
+</pre>
+<div class="detail"><span class="status">Status of the implementation:</span> Not yet implemented, is important implement this captcha keeping in account the 
+</div>
+
+<h4>Human Captcha</h4>
+<pre>
+Human Captcha are to be shown to the whistleblower when the system is under attack.
+When a whistleblower is making a new submission, and he want to finalize it, it will be asked to insert mathematical computation in order to demonstrate that the whistleblower is a human.
+</pre>
+<div class="detail"><span class="status">Status of the implementation:</span>
+</div>
+
+
+<h4>Delay over New Submission</h4>
+<pre>
+When the system detects that there is an attack going on, it adds a delay on the submission finalization API in order to slow down the attack. If the system is under attack, the GLClient is notified that the system is under attack, and the user is warned that he will need to wait for X seconds (es: 60-90s) 
+</pre>
+<div class="detail"><span class="status">Status of the implementation:</span>
+</div>
+
+<h4>Rate limit on Tip operations</h4>
+<pre>
+The operations done by the Whistleblower over a single Tip are few and the interaction are highly delayed in the normal operation.  By applying a Rate Limiting on the amount of actions that a Whistleblower can operate over a Tip within a given time period, it’s possible to prevent the attacks based on thousands of file uploading and comments posting actions.
+</pre>
+<div class="detail"><span class="status">Status of the implementation:</span>
+</div>
+
+<h4>Per recipient notification limits</h4>
+<pre>
+The effect of a submission flood is badly perceived by the receiving Journos because of the tons of email received.  We can collect statistics on the notification sent on recipient basis and just avoid sending more than Y new notification if there are more than X/time on a certain defined period. 
+</pre>
+<div class="detail"><span class="status">Status of the implementation:</span>
+</div>
+
+<h4>Make it easier to delete multiple Tips</h4>
+<pre>
+Once a flood will enter into the system, the Tip List shown to the receiver will become dirty and difficult to be used. By enabling the receivers to select a set of Tips and to mark them for deletion will enable the Receiver to self-clean the fake-tips. 
+</pre>
+<div class="detail"><span class="status">Status of the implementation:</span>
+</div>
+
+<h4>Proof of Work Antispam with <a href="http://www.uri.edu/webservices/howTo/hashCash.html">HashCash</a>
+</h4>
+<pre>
+Another parallel approach to minimize the use of automated SpamBot is to move part of computation power on the client-side by using HashCash. That way each client submitting an interaction will have to compute a certain amount of work with their CPU, introducing a slow delay between each action.
+</pre>
+<div class="detail"><span class="status">Status of the implementation:</span>
+</div>
+
+<h4>Caching of Public API</h4>
+<pre>
+If the attackers want to exhaust the computational resources of the node by parallely making tons of request to public APIs, triggering CPU computation, DB I/O and RAM use, we may use this prevention feature to reduce the impact of attack.
+</pre>
+<div class="detail"><span class="status">Status of the implementation:</span>
+</div>
+
+<h4>Auditing and alerting of Flood
+</h4>
+<pre>
+The flood detection and protection system must properly log every event of flood detection and alert the admin
+</pre>
+<div class="detail"><span class="status">Status of the implementation:</span>
+</div>
+
+
+
+<hr />
+
+<h1>Execution stats</h1>
+
+<div id="supporterflow">
+</div>
+
+
+</body>
+</html>

@@ -46,11 +46,9 @@ describe('GET /contexts', function(){
           /* is not a .push because is already a list */
           contexts = res.body;
 
-          for (var i=0; i < contexts.length; i++) {
+          for (i=0; i < contexts.length ; i++) {
 
-            var tokens = [];
-
-            for(k = 0; k < 3; k++ ) {
+            for(k = 0; k < 40; k++ ) {
 
                   var new_submission = {};
                   new_submission.context_id = contexts[i].id;
@@ -60,15 +58,9 @@ describe('GET /contexts', function(){
                   new_submission.human_captcha_answer = 0;
                   new_submission.proof_of_work = 0;
 
-                  //console.log(k);
-                  //console.log(new_submission);
-                  //console.log(contexts_ids[i]);
-
                   app
                     .post('/submission')
                     .send(new_submission)
-                    .set('X-XSRF-TOKEN', 'antani')
-                    .set('cookie', 'XSRF-TOKEN=antani')
                     .expect('Content-Type', 'application/json')
                     .expect(201)
                     .end(function(err, res) {
@@ -78,17 +70,18 @@ describe('GET /contexts', function(){
 
                         /* here get implemented some random file upload */
 
-
                         /* and submission get completed here */
 
                         // console.log(res.headers);
-                        // console.log(res.body);
                         var token = res.body;
-                        /* validate_mandatory_headers(res.headers); */
+
+                        validate_mandatory_headers(res.headers);
 
                         var sbms = {};
                         // sbms.graph_captcha = false;
-                        sbms.context_id = new_submission.context_id;
+                        // console.log(token);
+
+                        sbms.context_id = token.context_id;
                         sbms.human_captcha_answer = 0;
                         sbms.proof_of_work = 0;
                         sbms.graph_captcha_answer = 'unicode';
@@ -97,10 +90,9 @@ describe('GET /contexts', function(){
                         sbms.receivers = contexts[(i-1)].receivers;
 
                         app
-                          .put('/submission/' + token.id)
+                          .put('/submission/' + token.token_id)
                           .send(sbms)
-                          .set('X-XSRF-TOKEN', 'antani')
-                          .set('cookie', 'XSRF-TOKEN=antani')
+                          .set('Gl-Language', 'en')
                           .expect('Content-Type', 'application/json')
                           .expect(202)
                           .end(function(err, res) {
@@ -119,6 +111,7 @@ describe('GET /contexts', function(){
             }
 
           }
+
 
 
         }
