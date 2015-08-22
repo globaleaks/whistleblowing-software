@@ -13,11 +13,11 @@
   </div>
   <div data-ng-include="'views/submission/form_field_input.html'"></div>
 </div>
-<div data-ng-if="field.multi_entry && field.type != 'fileupload'" class="pull-right">
-  <a data-ng-if="toplevel" data-ng-click="entries.push({})" popover="{{field.multi_entry_hint}}" popover-placement="right" popover-trigger="mouseenter">
+<div data-ng-if="::field.multi_entry && field.type != 'fileupload'" class="pull-right">
+  <a data-ng-if="::toplevel" data-ng-click="entries.push({})" popover="{{::field.multi_entry_hint}}" popover-placement="right" popover-trigger="mouseenter">
     <i class="btn btn-lg glyphicon glyphicon-plus"></i>
   </a>
-  <a data-ng-if="!toplevel" data-ng-click="entries.push({})" popover="{{field.multi_entry_hint}}" popover-placement="right" popover-trigger="mouseenter">
+  <a data-ng-if="::!toplevel" data-ng-click="entries.push({})" popover="{{::field.multi_entry_hint}}" popover-placement="right" popover-trigger="mouseenter">
     <i class="btn btn-lg glyphicon glyphicon-plus"></i>
   </a>
 </div>
