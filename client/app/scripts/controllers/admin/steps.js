@@ -97,7 +97,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
 
     $scope.save_step = function(step) {
       var updated_step = new $scope.admin.step(step);
-      return updated_step.$update();
+      return $scope.update(updated_step);
     };
 
     $scope.stepDeleteDialog = function(e, step){
@@ -143,11 +143,5 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
         $scope.step.children.push(new_field);
       });
     };
-
-    $scope.fields_rows = $scope.getFieldsRows($scope.step.children);
-    $scope.$watch('step', function (newVal, oldVal) {
-      $scope.fields_rows = $scope.getFieldsRows($scope.step.children);
-    }, true);
-
   }
 ]);

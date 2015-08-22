@@ -6,14 +6,14 @@
       </span>
     </span>
     <span class="pull-right">
-      <span class="text-red" href="" popover="{{'Remove' | translate}}" popover-placement="right" popover-trigger="mouseenter" data-ng-click="remove(submission._submission.answers[field.id], $index)">
+      <span class="text-red" href="" popover="{{'Remove' | translate}}" popover-placement="right" popover-trigger="mouseenter" data-ng-click="remove(entries, $index)">
         <i class="glyphicon glyphicon-remove"></i>
       </span>
     </span>
   </div>
   <div data-ng-include="'views/submission/form_field_input.html'"></div>
 </div>
-<div data-ng-if="field.multi_entry" class="pull-right">
+<div data-ng-if="field.multi_entry && field.type != 'fileupload'" class="pull-right">
   <a data-ng-if="toplevel" data-ng-click="entries.push({})" popover="{{field.multi_entry_hint}}" popover-placement="right" popover-trigger="mouseenter">
     <i class="btn btn-lg glyphicon glyphicon-plus"></i>
   </a>
