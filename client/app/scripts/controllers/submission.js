@@ -211,10 +211,10 @@ GLClient.controller('SubmissionCtrl',
   });
 
 }]).
-controller('SubmissionStepCtrl', ['$scope', function($scope) {
+controller('SubmissionStepCtrl', ['$scope', '$filter', function($scope, $filter) {
   $scope.uploads = [];
 }]).
-controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
+controller('SubmissionFieldCtrl', ['$scope', '$filter', function ($scope, $filter) {
   if ($scope.field.type === 'fileupload') {
     $scope.field.value = {};
     $scope.upload_callbacks = [];

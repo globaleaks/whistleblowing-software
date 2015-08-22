@@ -548,16 +548,16 @@ angular.module('GLServices', ['ngResource']).
         adminNodeResource = $resource('admin/node', {}, {update: {method: 'PUT'}}),
         adminNotificationResource = $resource('admin/notification', {}, {update: {method: 'PUT'}});
 
-      adminNodeResource.prototype.toString = function() { return "Admin Node"; };
-      adminContextsResource.prototype.toString = function() { return "Admin Contexts"; };
-      adminContextResource.prototype.toString = function() { return "Admin Context"; };
-      adminStepResource.prototype.toString = function() { return "Admin Step"; };
-      adminFieldResource.prototype.toString = function() { return "Admin Field"; };
-      adminFieldTemplateResource.prototype.toString = function() { return "Admin Field Template"; };
-      adminFieldTemplatesResource.prototype.toString = function() { return "Admin Field Templates"; };
-      adminReceiversResource.prototype.toString = function() { return "Admin Receivers"; };
-      adminReceiverResource.prototype.toString = function() { return "Admin Receiver"; };
-      adminNotificationResource.prototype.toString = function() { return "Admin Notification"; };
+      adminNodeResource.prototype.toString = function() { return "node"; };
+      adminContextsResource.prototype.toString = function() { return "contexts"; };
+      adminContextResource.prototype.toString = function() { return "context"; };
+      adminStepResource.prototype.toString = function() { return "step"; };
+      adminFieldResource.prototype.toString = function() { return "field"; };
+      adminFieldTemplateResource.prototype.toString = function() { return "field emplate"; };
+      adminFieldTemplatesResource.prototype.toString = function() { return "field templates"; };
+      adminReceiversResource.prototype.toString = function() { return "receivers"; };
+      adminReceiverResource.prototype.toString = function() { return "receiver"; };
+      adminNotificationResource.prototype.toString = function() { return "notification settings"; };
 
       self.node = adminNodeResource.get();
       self.context = adminContextResource;

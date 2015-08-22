@@ -204,6 +204,10 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       }
     }
 
+    $scope.minY = function(arr) {
+      return $filter('min')($filter('map')(arr, 'y'));
+    }
+
     $scope.closeAlert = function(list, index) {
       list.splice(index, 1);
     };
@@ -304,6 +308,10 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       });
     };
 
+    $scope.orderByY = function(row) {
+      return row[0].y;
+    };
+
     $scope.remove = function(array, index){
       array.splice(index, 1);
     }
@@ -354,27 +362,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
          e.preventDefault();
          $rootScope.$broadcast("REFRESH");
        }
-    }
-
-    $scope.getFieldsRows = function(fields) {
-      if (fields.length <= 0)
-        return [];
-
-      var fields = $filter('orderBy')(fields, 'y');
-
-      var current_row = fields[0].y;
-
-      var rows = [[]];
-
-      angular.forEach(fields, function (field) {
-        if(field.y > current_row) {
-          current_row = field.y;
-          rows.push([]);
-        }
-        rows[rows.length - 1].push(field);
-      });
-
-      return rows;
     }
 
     init();

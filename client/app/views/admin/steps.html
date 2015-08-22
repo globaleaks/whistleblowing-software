@@ -126,10 +126,8 @@
             <div id="FieldsEditBox" class="form-group" data-ng-if="step.children.length > 0">
               <label data-translate>Configured fields:</label>
               <div class="configuredFields">
-                <div data-ng-repeat="row in step.children | groupBy:'y'">
-                  <div data-ng-repeat="field in row | orderBy:'x'">
-                    <div data-ng-include="'views/admin/fields.html'"></div>
-                  </div>
+                <div data-ng-repeat="field in step.children | orderBy:['y', 'x']">
+                  <div data-ng-include="'views/admin/fields.html'"></div>
                 </div>
               </div>
             </div>

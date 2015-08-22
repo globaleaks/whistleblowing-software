@@ -12,23 +12,6 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
       }
     };
 
-    $scope.toggle_field = function(field, field_group) {
-      $scope.field_group_toggled = true;
-      if (field_group.children && field_group.children.indexOf(field) !== -1) {
-        // Remove it from the fieldgroup 
-        field.fieldgroup_id = '';
-        $scope.admin.field_templates.push(field);
-        $scope.deleteFromList(field_group.children, field);
-      } else {
-        // Add it to the fieldgroup 
-        field.fieldgroup_id = field_group.id;
-        field_group.children = field_group.children || [];
-        field_group.children.push(field);
-        $scope.admin.field_templates = $filter('filter')($scope.admin.field_templates, 
-                                                         {id: '!'+field.id}, true);
-      }
-    };
-
     $scope.save_all = function () {
       angular.forEach($scope.admin.field_templates, function (field, key) {
         $scope.save_field(field, true);
@@ -59,7 +42,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
   function($scope, $modal) {
     $scope.editable = $scope.field.is_template || $scope.field.template_id == '';
     $scope.editing = false;
-    $scope.field_group_toggled = false;
 
     $scope.toggleEditing = function (e) {
       $scope.editing = $scope.editing ^ 1;
@@ -154,15 +136,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       } else {
         updated_field = new $scope.admin.field(field);
       }
-
-      if ($scope.field_group_toggled) {
-         $scope.field_group_toggled = false;
-         if (!called_from_save_all) {
-           $scope.save_all();
-         }
-      } else {
-        $scope.update(updated_field);
-      }
     };
 
     $scope.new_field = {};
@@ -202,11 +175,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
         $scope.field.options = [];
         $scope.field.attrs = $scope.admin.get_field_attrs($scope.field.type);
       }
-    });
-
-    $scope.fields_rows = $scope.getFieldsRows($scope.field.children);
-    $scope.$watch('field.children', function (newVal, oldVal) {
-      $scope.fields_rows = $scope.getFieldsRows($scope.field.children);
     });
   }
 ]);
