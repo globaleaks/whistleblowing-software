@@ -108,14 +108,6 @@ GLClient.controller('SubmissionCtrl',
     return $scope.selection;
   };
 
-  $scope.initAnswers = function(answers, entry, field_id, toplevel) {
-    if (toplevel) {
-      answers[field_id] = [{}];
-    } else {
-      entry[field_id] = [{}];
-    }
-  }
-
   $scope.goToStep = function(index) {
     $scope.selection = index;
   };
@@ -148,6 +140,14 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
+  $scope.getAnswersEntries = function(entry, field_id) {
+    if (entry === undefined) {
+      return $scope.submission._submission.answers[field_id];
+    } else {
+      return entry[field_id];
+    }
+  }
+
   $scope.fileupload_url = function() {
     if (!$scope.submission) {
       return;
@@ -160,11 +160,13 @@ GLClient.controller('SubmissionCtrl',
     var sum = 0;
 
     angular.forEach(uploads, function(flow, key) {
-      sum += flow.files.length;
+      if (flow != undefined) {
+        sum += flow.files.length;
+      }
     });
 
     return sum;
-  }
+  };
 
   $scope.isUploading = function(uploads) {
     angular.forEach(uploads, function(flow, key) {
@@ -174,7 +176,7 @@ GLClient.controller('SubmissionCtrl',
     });
 
     return false;
-  }
+  };
 
   $scope.remainingUploadTime = function(uploads) {
     var sum = 0;
@@ -188,7 +190,7 @@ GLClient.controller('SubmissionCtrl',
     });
 
     return sum;
-  }
+  };
 
   $scope.uploadProgress = function(uploads) {
     var sum = 0;
@@ -204,7 +206,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     return sum / n;
-  }
+  };
 
   $scope.prepareSubmission = function(context, receivers_ids) {
     $scope.submission.create(context.id, receivers_ids, function () {

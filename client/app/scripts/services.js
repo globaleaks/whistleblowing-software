@@ -248,12 +248,10 @@ angular.module('GLServices', ['ngResource']).
       self.context = undefined;
       self.receivers = [];
       self.receivers_selected = {};
-      self.uploading = false;
       self.done = false;
 
       self.isDisabled = function() {
-        return (self.uploading ||
-                self.count_selected_receivers() == 0 ||
+        return (self.count_selected_receivers() == 0 ||
                 self.wait ||
                 self.done);
       }
@@ -320,6 +318,27 @@ angular.module('GLServices', ['ngResource']).
         }
       }
 
+      self.prepare_answers_structure = function(steps) {
+        var answers = {};
+        var prepare_answers_structure_recursively = function(field) {
+          if (field.type == 'fieldgroup') {
+            angular.forEach(field.children, function(field) {
+              answers[field.id] = prepare_answers_structure_recursively(field);
+            });
+          } else {
+            return [{}];
+          }
+        }
+
+        var answers = {};
+        angular.forEach(steps, function(step) {
+          angular.forEach(step.children, function(field) {
+            answers[field.id] = prepare_answers_structure_recursively(field);
+          });
+        });
+        return answers;
+      }
+
       /**
        * @name Submission.create
        * @description
@@ -332,13 +351,14 @@ angular.module('GLServices', ['ngResource']).
         self._submission = new submissionResource({
           context_id: self.context.id,
           answers: {},
-          receivers: [],
+          receivers: self.prepare_answers_structure(self.context.steps),
           human_captcha_answer: 0,
           graph_captcha_answer: "",
           proof_of_work: 0,
         });
 
         self._submission.$save(function(submissionID){
+          self._submission.answers = self.prepare_answers_structure(self.context.steps);
           if (cb) {
             cb();
           }
