@@ -703,27 +703,6 @@ class Field(Model):
             child.delete(store)
         store.remove(self)
 
-    def copy(self, store, is_template):
-        obj_copy = self.__class__()
-        obj_copy.label = copy.deepcopy(self.label)
-        obj_copy.description = copy.deepcopy(self.description)
-        obj_copy.hint = copy.deepcopy(self.hint)
-        obj_copy.multi_entry = self.multi_entry
-        obj_copy.required = self.required
-        obj_copy.stats_enabled = self.stats_enabled
-        obj_copy.is_template = is_template
-        obj_copy.x = self.x
-        obj_copy.y = self.y
-        obj_copy.type = self.type
-        for child in self.children:
-            child_copy = child.copy(store, is_template)
-            obj_copy.children.add(child_copy)
-        for opt in self.options:
-            opt_copy = opt.copy(store)
-            obj_copy.options.add(opt_copy)
-        store.add(obj_copy)
-        return obj_copy
-
 
 class FieldAttr(Model):
     field_id = Unicode()
@@ -770,13 +749,6 @@ class FieldOption(Model):
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_points']
     localized_strings = ['label']
-
-    def copy(self, store):
-        obj_copy = self.__class__()
-        obj_copy.field_id = self.field_id
-        obj_copy.presentation_order = self.presentation_order
-        obj_copy.label = copy.deepcopy(self.label)
-        return obj_copy
 
 
 class OptionActivateField(BaseModel):
