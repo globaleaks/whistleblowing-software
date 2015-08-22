@@ -1,4 +1,4 @@
-<div data-ng-switch="" on="field.type" class="submissionFieldInput" data-ng-class="{'has-error': f.input.$error.required}">
+<div data-ng-switch="" on="::field.type" class="submissionFieldInput" data-ng-class="{'has-error': f.input.$error.required}">
   <div data-ng-switch-when="inputbox">
     <input id="{{::fieldId}}-input"
            name="input"
@@ -20,11 +20,11 @@
   </div>
   <div data-ng-switch-when="selectbox">
     <select id="{{::fieldId}}-input" name="input" class="form-control" data-ng-model="entry['value']" data-ng-required="field.required">
-      <option data-ng-repeat="option in field.options" id="{{::fieldId}}-input-option-{{$index}}" value="{{::option.label}}">{{::option.label}}</option>
+      <option data-ng-repeat="option in ::field.options" id="{{::fieldId}}-input-option-{{$index}}" value="{{::option.label}}">{{::option.label}}</option>
     </select>
   </div>
   <div data-ng-switch-when="checkbox">
-    <div data-ng-repeat="option in field.options"; field.required_check = !validateRequiredCheckbox(field)">
+    <div data-ng-repeat="option in ::field.options"; field.required_check = !validateRequiredCheckbox(field)">
       <div class="checkbox">
         <label>
           <input id="{{::fieldId}}-input"

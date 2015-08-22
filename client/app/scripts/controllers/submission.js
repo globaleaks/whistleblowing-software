@@ -156,6 +156,56 @@ GLClient.controller('SubmissionCtrl',
     return 'submission/' + $scope.submission._submission.id + '/file';
   };
 
+  $scope.uploadedFiles = function(uploads) {
+    var sum = 0;
+
+    angular.forEach(uploads, function(flow, key) {
+      sum += flow.files.length;
+    });
+
+    return sum;
+  }
+
+  $scope.isUploading = function(uploads) {
+    angular.forEach(uploads, function(flow, key) {
+      if(flow.isUploading()) {
+        return true;
+      }
+    });
+
+    return false;
+  }
+
+  $scope.remainingUploadTime = function(uploads) {
+    var sum = 0;
+
+    angular.forEach(uploads, function(flow, key) {
+      var x = flow.timeRemaining();
+      if (x == 'Infinity') {
+        return 'Infinity';
+      }
+      sum += x;
+    });
+
+    return sum;
+  }
+
+  $scope.uploadProgress = function(uploads) {
+    var sum = 0;
+    var n = 0;
+
+    angular.forEach(uploads, function(flow, key) {
+      sum += flow.progress();
+      n += 1;
+    });
+
+    if (n == 0 || sum == 0) {
+      return 1;
+    }
+
+    return sum / n;
+  }
+
   $scope.prepareSubmission = function(context, receivers_ids) {
     $scope.submission.create(context.id, receivers_ids, function () {
       startCountdown();
@@ -212,32 +262,9 @@ GLClient.controller('SubmissionCtrl',
 
 }]).
 controller('SubmissionStepCtrl', ['$scope', '$filter', function($scope, $filter) {
-  $scope.uploads = [];
+  $scope.uploads = {};
 }]).
 controller('SubmissionFieldCtrl', ['$scope', '$filter', function ($scope, $filter) {
-  if ($scope.field.type === 'fileupload') {
-    $scope.field.value = {};
-    $scope.upload_callbacks = [];
-
-    var upload_callback = function(e, data) {
-      var uploading = false;
-
-      $scope.uploads.forEach(function (u) {
-        if (!u.done) {
-          uploading = true;
-        }
-
-        // TODO: https://github.com/globaleaks/GlobaLeaks/issues/1239
-
-      });
-
-      $scope.submission.uploading = uploading;
-
-    };
-
-    $scope.upload_callbacks.push(upload_callback);
-  }
-
   $scope.getClass = function(stepIndex, fieldIndex, toplevel, row_length, field) {
     var ret = "";
 

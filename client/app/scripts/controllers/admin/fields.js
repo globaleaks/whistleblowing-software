@@ -136,6 +136,8 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       } else {
         updated_field = new $scope.admin.field(field);
       }
+
+      $scope.update(updated_field);
     };
 
     $scope.new_field = {};
@@ -148,6 +150,10 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       field.y = $scope.newItemOrder($scope.field.children, 'y');
 
       field.is_template = $scope.field.is_template;
+
+      if (field.type == 'fileupload') {
+        field.multi_entry = true;
+      }
 
       field.$save(function(new_field){
         $scope.addField(new_field);
