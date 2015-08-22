@@ -1,6 +1,6 @@
 GLClient.controller('StatusCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', 'Authentication', 'Tip', 'WBTip', 'ReceiverPreferences',
-  function($scope, $rootScope, $location, $route, $routeParams, $http, Authentication, Tip, WBTip, ReceiverPreferences) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$modal', '$http', 'Authentication', 'Tip', 'WBTip', 'ReceiverPreferences',
+  function($scope, $rootScope, $location, $route, $routeParams, $modal, $http, Authentication, Tip, WBTip, ReceiverPreferences) {
 
     $scope.tip_id = $routeParams.tip_id;
     $scope.session = Authentication.id;
