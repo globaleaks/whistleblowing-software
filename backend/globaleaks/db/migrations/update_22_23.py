@@ -371,11 +371,9 @@ class Replacer2223(TableReplacer):
                     if 'clause' in old_obj.attrs:
                         db_update_fieldattr(self.store_new, old_obj.field_id, {'name': u'clause', 'type': u'localized', 'value': old_obj.attrs['clause']})
                         skip_add = True
-                        break
                     if 'agreement_statement' in old_obj.attrs:
-                        db_update_fieldattr(self.store_new, old_obj.field_id, {'name': u'clause', 'type': u'localized', 'value': old_obj.attrs['agreement_statement']})
+                        db_update_fieldattr(self.store_new, old_obj.field_id, {'name': u'agreement_statement', 'type': u'localized', 'value': old_obj.attrs['agreement_statement']})
                         skip_add = True
-                        break
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
