@@ -3,6 +3,7 @@
 """
 Utilities and basic TestCases.
 """
+
 from __future__ import with_statement
 
 import copy
@@ -17,17 +18,18 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 
-
-# Monkeypathing for unit testing  in order to
+# Monkeypatching for unit testing  in order to
 # prevent mail activities
 from globaleaks.utils import mailutils
 
 from globaleaks.utils.structures import fill_localized_keys
 
+import sys
+reload(sys)
+sys.getdefaultencoding()
 
 def sendmail_mock(**args):
     return defer.succeed(None)
-
 
 mailutils.sendmail = sendmail_mock
 

@@ -347,9 +347,7 @@ class Replacer2223(TableReplacer):
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
-            print "bbb"
             self.store_new.add(new_obj)
-            print "aaaa"
 
         self.store_new.commit()
 
