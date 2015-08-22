@@ -19,13 +19,6 @@
           </button>
         </form>
       </div>
-      <br />
-      <a class="input-small" data-ng-click="show_new_files = !show_new_files" data-ng-init="show_new_files = false" data-ng-show="!show_new_files">
-        <span data-translate>show only files not yet downloaded</span>
-      </a>
-      <a class="input-small" data-ng-click="show_new_files = !show_new_files" data-ng-show="show_new_files">
-        <span data-translate>show all the files</span>
-      </a>
       <br /><br />
       <div class="table-container">
         <table class="table table-striped" id="fileList">
@@ -49,7 +42,7 @@
             </tr>
           </thead>
           <tbody id="fileListBody">
-            <tr id="file-{{$index}}" data-ng-repeat="file in tip.files" data-ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
+            <tr id="file-{{$index}}" data-ng-repeat="file in tip.files">
               <td>
                 <span>{{::file.name}}</span>
               </td>
