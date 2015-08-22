@@ -6,7 +6,7 @@
   </div>
   <div data-ng-if="::!toplevel">
     <div data-ng-repeat="row in ::fields | groupBy:'y' | toArray:true | orderBy:minY" class="fieldsRow row">
-        <div data-ng-repeat="field in ::row | orderBy:'x'" data-ng-class="getClass($parent.$index, $index, toplevel, row.length, field)">
+      <div data-ng-repeat="field in ::row | orderBy:'x'" data-ng-class="getClass($parent.$index, $index, toplevel, row.length, field)">
         <div id="field-{{field.id}}" data-ng-include="'views/submission/form_field.html'"></div>
       </div>
     </div>

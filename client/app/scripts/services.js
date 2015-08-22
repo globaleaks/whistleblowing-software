@@ -319,15 +319,17 @@ angular.module('GLServices', ['ngResource']).
       }
 
       self.prepare_answers_structure = function(steps) {
-        var answers = {};
         var prepare_answers_structure_recursively = function(field) {
+          var answer = {};
           if (field.type == 'fieldgroup') {
             angular.forEach(field.children, function(field) {
-              answers[field.id] = prepare_answers_structure_recursively(field);
+              answer[field.id] = prepare_answers_structure_recursively(field);
             });
           } else {
             return [{}];
           }
+
+          return [answer];
         }
 
         var answers = {};
@@ -336,6 +338,7 @@ angular.module('GLServices', ['ngResource']).
             answers[field.id] = prepare_answers_structure_recursively(field);
           });
         });
+
         return answers;
       }
 
