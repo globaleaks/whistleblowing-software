@@ -454,7 +454,7 @@ class Alarm(object):
         Alarm.last_alarm_email = datetime_now()
         yield sendmail(authentication_username=GLSettings.memory_copy.notif_username,
                        authentication_password=GLSettings.memory_copy.notif_password,
-                       from_address=GLSettings.memory_copy.notif_source_email,
+                       from_address=GLSettings.memory_copy.notif_username,
                        to_address=admin_email,
                        message_file=message,
                        smtp_host=GLSettings.memory_copy.notif_server,
