@@ -3,22 +3,32 @@ import SimpleHTTPServer
 import BaseHTTPServer
 
 
+class MyHanlder(SimpleHTTPServer.SimpleHTTPRequestHandler):
+
+    def do_GET(self):
+
+        print self.requestline
+        if self.requestline.startswith('GET /currentCSV'):
+            import requests
+            res = requests.get('http://127.0.0.1:8082/S/current')
+            print res.text
+            self.wfile.write(res.text)
+
+        f = self.send_head()
+        if f:
+            try:
+                self.copyfile(f, self.wfile)
+            finally:
+                f.close()
+
+
 
 if __name__ == '__main__':
     HandlerClass = SimpleHTTPServer.SimpleHTTPRequestHandler
-    ServerClass = BaseHTTPServer.HTTPServer
-    BaseHTTPServer.test(HandlerClass, ServerClass)
+    MyServerClass = BaseHTTPServer.HTTPServer
+    BaseHTTPServer.test(MyHanlder, MyServerClass)
 
    
-"""
-class StatVizServer(SimpleHTTPServer):
-    pass
-    594     HandlerClass.protocol_version = protocol
-    595     httpd = ServerClass(server_address, HandlerClass)
-    596 
-    597     sa = httpd.socket.getsockname()
-    598     print "Serving HTTP on", sa[0], "port", sa[1], "..."
-    599     httpd.serve_forever()
-"""
+
 
 
