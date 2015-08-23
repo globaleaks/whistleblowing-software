@@ -56,7 +56,7 @@ def get_stats(store, week_delta):
     current_week = now.isocalendar()[1]
 
     lower_bound = iso_to_gregorian(looked_year, looked_week, 1)
-    upper_bound = iso_to_gregorian(looked_year, looked_week, 7)
+    upper_bound = iso_to_gregorian(looked_year, looked_week + 1, 1)
 
     hourlyentries = store.find(Stats, And(Stats.start >= lower_bound, Stats.start <= upper_bound))
 
@@ -65,7 +65,6 @@ def get_stats(store, week_delta):
 
     # Loop over the DB stats to fill the appropriate heatmap
     for hourdata in hourlyentries:
-
         # .weekday() return be 0..6
         stats_day = int(hourdata.start.weekday())
         stats_hour = int(hourdata.start.isoformat()[11:13])
@@ -88,7 +87,6 @@ def get_stats(store, week_delta):
     if week_entries == (7 * 24):
         return {
             'complete': True,
-            'associated_date': datetime_to_ISO8601(target_week),
             'heatmap': weekmap_to_heatmap(week_map)
         }
 
@@ -128,7 +126,6 @@ def get_stats(store, week_delta):
 
     return {
         'complete': False,
-        'associated_date': datetime_to_ISO8601(target_week),
         'heatmap': weekmap_to_heatmap(week_map)
     }
 
@@ -157,7 +154,7 @@ def get_anomaly_history(store, limit):
     anomaly_history = []
     for _, anomaly in enumerate(anomalies):
         anomaly_entry = dict({
-            'when': anomaly.date,
+            'date': datetime_to_ISO8601(anomaly.date),
             'alarm': anomaly.alarm,
             'events': [],
         })
