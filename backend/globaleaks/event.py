@@ -143,25 +143,6 @@ outcoming_event_monitored = [
 ]
 
 
-def update_RecentEventQ(expired_event):
-    """
-    Called by synthesis in anomaly.py, when an Event expire.
-    This mean that we have not the event for 59:30 minutes or
-    less, but only the serialisation in memory.
-    This is not show anyway.
-    """
-    date = datetime_to_ISO8601(expired_event.creation_date)[:-8]
-
-    GLSettings.RecentEventQ.append(
-        dict({
-            'id': expired_event.event_id,
-            'creation_date': date,
-            'event':  expired_event.event_type,
-            'duration': round(expired_event.request_time, 1),
-        })
-    )
-
-
 class EventTrack(TempObj):
     """
     Every event that is kept in memory, is a temporary object.
@@ -202,9 +183,16 @@ class EventTrack(TempObj):
     def synthesis(self):
         """
         This is a callback append to the expireCallbacks, and
-        just make a synthesis of the Event in the Recent
+        just make a synthesis of the Event in the RecentEventQ
         """
-        update_RecentEventQ(self)
+        GLSettings.RecentEventQ.append(
+            dict({
+                'id': self.event_id,
+                'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
+                'event':  self.event_type,
+                'duration': round(self.request_time, 1),
+            })
+        )
 
     def __repr__(self):
         return "%s" % self.serialize_event()

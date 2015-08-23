@@ -323,14 +323,14 @@ class MailflushSchedule(GLJob):
     # sorry for the double negation, we are sleeping two seconds below.
     skip_sleep = False
 
-    def ping_mail_flush(self, notification_settings, receivers_syntesis):
+    def ping_mail_flush(self, notification_settings, receivers_synthesis):
         """
         TODO This function should be implemented as a clean and testable plugin in the
         way defined in plugin/base.py and plugin/notification.py, and/or is the opportunity
         to review these classes, at the moment is a simplified version that just create a
         ping email and send it via sendmail.
         """
-        for _, data in receivers_syntesis.iteritems():
+        for _, data in receivers_synthesis.iteritems():
 
             receiver_dict, winks = data
 

@@ -137,11 +137,11 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
       heatMap.append("title").text(function(d) {
           // if strings are updated here remember to update client/translation.html to push them on transifex
           if (d.valid === -1) {
-              return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('no stats available for this hour.');
+              return $filter('translate')('Missing data') + ':\n' + $filter('translate')('no stats available for this hour.');
           } else if (d.valid === -2) {
-              return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('no stats available for the future.');
+              return $filter('translate')('Missing data') + ':\n' + $filter('translate')('no stats available for the future.');
           } else if (d.valid === -3) {
-              return $filter('translate')('Missing data') + ':\n\t' + $filter('translate')('no stats available for current hour; check activities page.');
+              return $filter('translate')('Missing data') + ':\n' + $filter('translate')('no stats available for current hour; check activities page.');
           } else {
               return $filter('translate')('Activities') + ': ' + d.value;
           }
@@ -171,7 +171,6 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
 
     $scope.show_stats = function(stats) {
       show_data(stats.heatmap);
-      $scope.when = stats.associated_date;
       $scope.complete = stats.complete;
     };
 

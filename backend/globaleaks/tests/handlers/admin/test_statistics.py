@@ -12,7 +12,7 @@ from globaleaks.tests.test_anomaly import pollute_events_for_testing
 from globaleaks.utils.utility import datetime_now
 
 anomaly.reactor = task.Clock()
-StatisticsSchedule.collection_start_datetime = datetime_now()
+StatisticsSchedule.collection_start_time = datetime_now()
 
 
 class TestAnomaliesCollection(helpers.TestHandler):
