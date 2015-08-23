@@ -5,6 +5,7 @@ Join the chat on IRC [irc.oftc.net channel #globaleaks](https://irc.lc/OFTC/glob
 GlobaLeaks is a project aimed at creating a free software whistleblowing framework.
 
 [EN] GlobaLeaks Project is hiring talented developers! [Apply here](http://logioshermes.org/open-call-for-globaleaks-developers/)
+
 [IT] Il Progetto GlobaLeaks sta cercando sviluppatori! [Fai application qui!](http://logioshermes.org/cerchiamo-sviluppatori-per-software-libero-globaleaks/)
 
 To learn how to setup your own GlobaLeaks platform, look at [Globaleaks wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
