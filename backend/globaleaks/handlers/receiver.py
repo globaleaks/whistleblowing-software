@@ -153,6 +153,7 @@ def get_receivertip_list(store, receiver_id, language):
             'file_counter': rfiles_n,
             'comment_counter': rtip.internaltip.comments.count(),
             'message_counter': message_counter,
+            'tor2web': rtip.internaltip.tor2web,
             'preview_schema': db_get_archived_preview_schema(store, rtip.internaltip.questionnaire_hash, language),
             'preview': rtip.internaltip.preview
         })

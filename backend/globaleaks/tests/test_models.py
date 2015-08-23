@@ -239,23 +239,23 @@ class TestField(helpers.TestGL):
 
     @inlineCallbacks
     def test_add_field(self):
-        field_id = yield helpers.create_dummy_field()
+        field_id = yield self.create_dummy_field()
         yield self.assert_model_exists(models.Field, field_id)
 
-        field_id = yield helpers.create_dummy_field(type='checkbox')
+        field_id = yield self.create_dummy_field(type='checkbox')
         yield self.assert_model_exists(models.Field, field_id)
 
     @inlineCallbacks
     def test_add_field_group(self):
-        field1_id = yield helpers.create_dummy_field(
+        field1_id = yield self.create_dummy_field(
             label={"en": "the first testable field"},
             type='checkbox'
         )
-        field2_id = yield helpers.create_dummy_field(
+        field2_id = yield self.create_dummy_field(
             label={"en": "the second testable field"},
             type='inputbox'
         )
-        fieldgroup_id = yield helpers.create_dummy_field(
+        fieldgroup_id = yield self.create_dummy_field(
             label={"en": "a testable group of fields."},
             type='fieldgroup',
             x=1, y=2,
@@ -313,18 +313,6 @@ class TestStep(helpers.TestGL):
         step.children.add(field)
         return step.id
 
-    @transact
-    def copy_field_template(self, store, field_id, context_id, step_id):
-        field = models.Field.get(store, field_id)
-        step = models.Step.get(store, step_id)
-        max_value = 0
-        for child in step.children:
-            if child.y > max_value:
-                max_value = child.y
-        new_field = field.copy(store, False)
-        new_field.y = max_value + 1
-        step.children.add(new_field)
-
     @inlineCallbacks
     def test_new(self):
         # tabula rasa elettrificata
@@ -339,16 +327,6 @@ class TestStep(helpers.TestGL):
 
         # creation of another step binded to the same context and different
         # fieldgroup shall succeed.
-        second_fieldgroup = yield helpers.create_dummy_field(type='fieldgroup')
+        second_fieldgroup = yield self.create_dummy_field(type='fieldgroup')
         step2 = yield self.create_step(self.context_id, second_fieldgroup)
         yield self.assert_model_exists(models.Step, step2)
-
-    @inlineCallbacks
-    def test_new_copy_field_template(self):
-        steps = yield transact(lambda store: store.find(models.Step).is_empty())()
-        self.assertTrue(steps)
-
-        step = yield self.create_step(self.context_id, self.generalities_id)
-        yield self.assert_model_exists(models.Step, step)
-
-        self.copy_field_template(self.generalities_id, self.context_id, step)

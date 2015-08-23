@@ -333,6 +333,18 @@ class Replacer2223(TableReplacer):
                 db_update_fieldattr(self.store_new, old_obj.id, {'name': u'agreement_statement', 'type':u'localized', 'value':'{"en": ""}'})
 
             for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'template_id':
+                    # simply skip so to inizialize to NULL
+                    continue
+
+                if v.name == 'width':
+                    new_obj.width = 0
+                    continue
+
+                if v.name == 'multi_entry_hint':
+                    new_obj.multi_entry_hint = {'en': ''}
+                    continue
+
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
@@ -359,11 +371,9 @@ class Replacer2223(TableReplacer):
                     if 'clause' in old_obj.attrs:
                         db_update_fieldattr(self.store_new, old_obj.field_id, {'name': u'clause', 'type': u'localized', 'value': old_obj.attrs['clause']})
                         skip_add = True
-                        break
                     if 'agreement_statement' in old_obj.attrs:
-                        db_update_fieldattr(self.store_new, old_obj.field_id, {'name': u'clause', 'type': u'localized', 'value': old_obj.attrs['agreement_statement']})
+                        db_update_fieldattr(self.store_new, old_obj.field_id, {'name': u'agreement_statement', 'type': u'localized', 'value': old_obj.attrs['agreement_statement']})
                         skip_add = True
-                        break
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))

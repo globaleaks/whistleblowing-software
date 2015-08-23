@@ -48,7 +48,7 @@
             </thead>
             <tbody>
               <tr data-ng-repeat="anomaly in anomalies">
-                <td class="col-md-2">{{anomaly.when | date:'dd-MM-yyyy HH:mm'}}</td>
+                <td class="col-md-2">{{anomaly.date | date:'dd-MM-yyyy HH:mm'}}</td>
                 <td class="col-md-1">{{anomaly.alarm}}</td>
                 <td class="col-md-2">
                   <span data-ng-repeat="single_event in anomaly.events">

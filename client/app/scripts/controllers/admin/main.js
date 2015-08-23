@@ -102,6 +102,10 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
     };
 
     $scope.newItemOrder = function(objects, key) {
+      if (objects.length == 0) {
+        return 0;
+      }
+
       var max = 0;
       angular.forEach(objects, function(object) {
         if (object[key] > max) {

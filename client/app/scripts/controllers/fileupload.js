@@ -1,14 +1,15 @@
 GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
+  $scope.disabled = false
 
-  $scope.$on('flow::fileAdded', function (event, $flow, flowFile) {
-    $scope.uploads.push(flowFile);
-
-    if (flowFile.size > $scope.node.maximum_filesize * 1024 * 1024) {
-      flowFile.error = true;
-      flowFile.error_msg = "This file exceeds the maximum upload size for this server.";
+  $scope.onFileAdded = function($event, $file, $flow) {
+    if ($file.size > $scope.node.maximum_filesize * 1024 * 1024) {
+      $file.error = true;
+      $file.error_msg = "This file exceeds the maximum upload size for this server.";
       event.preventDefault();
+    } else {
+      if ($scope.field !== undefined && !$scope.field.multi_entry) {
+        $scope.disabled = true;
+      }
     }
-
-  });
-
+  };
 }]);

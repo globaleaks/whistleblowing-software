@@ -248,12 +248,10 @@ angular.module('GLServices', ['ngResource']).
       self.context = undefined;
       self.receivers = [];
       self.receivers_selected = {};
-      self.uploading = false;
       self.done = false;
 
       self.isDisabled = function() {
-        return (self.uploading ||
-                self.count_selected_receivers() == 0 ||
+        return (self.count_selected_receivers() == 0 ||
                 self.wait ||
                 self.done);
       }
@@ -320,6 +318,30 @@ angular.module('GLServices', ['ngResource']).
         }
       }
 
+      self.prepare_answers_structure = function(steps) {
+        var prepare_answers_structure_recursively = function(field) {
+          var answer = {};
+          if (field.type == 'fieldgroup') {
+            angular.forEach(field.children, function(field) {
+              answer[field.id] = prepare_answers_structure_recursively(field);
+            });
+          } else {
+            return [{}];
+          }
+
+          return [answer];
+        }
+
+        var answers = {};
+        angular.forEach(steps, function(step) {
+          angular.forEach(step.children, function(field) {
+            answers[field.id] = prepare_answers_structure_recursively(field);
+          });
+        });
+
+        return answers;
+      }
+
       /**
        * @name Submission.create
        * @description
@@ -332,13 +354,14 @@ angular.module('GLServices', ['ngResource']).
         self._submission = new submissionResource({
           context_id: self.context.id,
           answers: {},
-          receivers: [],
+          receivers: self.prepare_answers_structure(self.context.steps),
           human_captcha_answer: 0,
           graph_captcha_answer: "",
           proof_of_work: 0,
         });
 
         self._submission.$save(function(submissionID){
+          self._submission.answers = self.prepare_answers_structure(self.context.steps);
           if (cb) {
             cb();
           }
@@ -548,16 +571,16 @@ angular.module('GLServices', ['ngResource']).
         adminNodeResource = $resource('admin/node', {}, {update: {method: 'PUT'}}),
         adminNotificationResource = $resource('admin/notification', {}, {update: {method: 'PUT'}});
 
-      adminNodeResource.prototype.toString = function() { return "Admin Node"; };
-      adminContextsResource.prototype.toString = function() { return "Admin Contexts"; };
-      adminContextResource.prototype.toString = function() { return "Admin Context"; };
-      adminStepResource.prototype.toString = function() { return "Admin Step"; };
-      adminFieldResource.prototype.toString = function() { return "Admin Field"; };
-      adminFieldTemplateResource.prototype.toString = function() { return "Admin Field Template"; };
-      adminFieldTemplatesResource.prototype.toString = function() { return "Admin Field Templates"; };
-      adminReceiversResource.prototype.toString = function() { return "Admin Receivers"; };
-      adminReceiverResource.prototype.toString = function() { return "Admin Receiver"; };
-      adminNotificationResource.prototype.toString = function() { return "Admin Notification"; };
+      adminNodeResource.prototype.toString = function() { return "node"; };
+      adminContextsResource.prototype.toString = function() { return "contexts"; };
+      adminContextResource.prototype.toString = function() { return "context"; };
+      adminStepResource.prototype.toString = function() { return "step"; };
+      adminFieldResource.prototype.toString = function() { return "field"; };
+      adminFieldTemplateResource.prototype.toString = function() { return "field emplate"; };
+      adminFieldTemplatesResource.prototype.toString = function() { return "field templates"; };
+      adminReceiversResource.prototype.toString = function() { return "receivers"; };
+      adminReceiverResource.prototype.toString = function() { return "receiver"; };
+      adminNotificationResource.prototype.toString = function() { return "notification settings"; };
 
       self.node = adminNodeResource.get();
       self.context = adminContextResource;
@@ -632,10 +655,11 @@ angular.module('GLServices', ['ngResource']).
           }
         }
 
-        self.new_field = function(step_id) {
+        self.new_field = function(step_id, fieldgroup_id) {
           var field = new adminFieldResource();
+          field.descriptor_id = '';
           field.label = '';
-          field.type = '';
+          field.type = 'inputbox';
           field.description = '';
           field.is_template = false;
           field.hint = '';
@@ -650,26 +674,27 @@ angular.module('GLServices', ['ngResource']).
           field.y = 0;
           field.width = 0;
           field.children = [];
-          field.fieldgroup_id = '';
+          field.fieldgroup_id = fieldgroup_id;
           field.step_id = step_id;
+          field.template_id = '';
           return field;
         };
 
-        self.new_field_from_template = function(template_id, step_id) {
-          var field = new adminFieldResource();
-          field.step_id = step_id;
+        self.new_field_from_template = function(template_id, step_id, fieldgroup_id) {
+          var field = self.new_field(step_id, fieldgroup_id);
           field.template_id = template_id;
-          return field.$save();
+          return field;
         };
 
-        self.new_field_template = function () {
+        self.new_field_template = function (fieldgroup_id) {
           var field = new adminFieldTemplateResource();
           field.label = '';
-          field.type = '';
+          field.type = 'inputbox';
           field.description = '';
           field.is_template = true;
           field.hint = '';
           field.multi_entry = false;
+          field.multi_entry_hint = '';
           field.required = false;
           field.preview = false;
           field.stats_enabled = false;
@@ -677,9 +702,11 @@ angular.module('GLServices', ['ngResource']).
           field.options = [];
           field.x = 0;
           field.y = 0;
+          field.width = 0;
           field.children = [];
-          field.fieldgroup_id = '';
+          field.fieldgroup_id = fieldgroup_id;
           field.step_id = '';
+          field.template_id = '';
           return field;
         };
 

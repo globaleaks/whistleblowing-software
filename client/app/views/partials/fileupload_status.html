@@ -1,60 +1,62 @@
-<div class="uploadingBox" data-ng-if="uploads.length && !(hideUploadWhenFinished && !$flow.isUploading())">
+<div class="uploadingBox" data-ng-if="uploadedFiles(uploads) && !(hideUploadWhenFinished && !isUploading())">
   <div id="FileUploadsHeader">
     <div data-translate>Uploading files...</div>
   </div>
   <div id="FileUpoloadsInfo">
-    <div data-ng-show="$flow.isUploading() && $flow.timeRemaining() != 'Infinity'">
-      <span data-translate>Estimated upload time:</span> <span>{{$flow.timeRemaining()}} </span><span data-translate>seconds</span>
+    <div data-ng-show="isUploading(uploads)">
+      <span data-translate>Estimated upload time:</span> <span>{{remainingUploadTime(uploads)}} </span><span data-translate>seconds</span>
     </div>
-    <div data-ng-show="!$flow.isUploading()">
+    <div data-ng-show="!isUploading(uploads)">
       <span data-translate>File uploads completed</span>
     </div>
-    <div class="progress progress-striped" data-ng-class="{active: $flow.isUploading()}">
-      <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: ($flow.progress() * 100) + '%'}"></div>
+    <div class="progress progress-striped" data-ng-class="{active: isUploading(uploads)}">
+      <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (uploadProgress(uploads) * 100) + '%'}"></div>
     </div>
   </div>
-  <div data-ng-repeat="file in uploads" data-ng-hide="hideUploadWhenFinished === true && file.isComplete()">
-    <div class="fileUploadBox">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="filePreview">
-            <div class="imgPreview">
-              <img flow-img="file" data-ng-if="show_file_preview(file.file.type)" />
-            </div>
-            <div class="fileUploadProgress">
-              <div class="fileUploadProgressOverlay"></div>
-              <div class="fileUploadIcon" data-ng-show="file.error">
-                <i class="glyphicon glyphicon-ban-circle"></i>
+  <div data-ng-repeat="flow in uploads" flow-name="flow">
+    <div data-ng-repeat="file in flow.files" data-ng-hide="hideUploadWhenFinished === true && file.isComplete()">
+      <div class="fileUploadBox">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="filePreview">
+              <div class="imgPreview">
+                <img flow-img="file" data-ng-if="show_file_preview(file.file.type)" />
               </div>
-              <div class="fileUploadIcon" data-ng-show="!file.error && !file.isComplete()">
-                <i class="glyphicon glyphicon-time"></i>
+              <div class="fileUploadProgress">
+                <div class="fileUploadProgressOverlay"></div>
+                <div class="fileUploadIcon" data-ng-show="file.error">
+                  <i class="glyphicon glyphicon-ban-circle"></i>
+                </div>
+                <div class="fileUploadIcon" data-ng-show="!file.error && !file.isComplete()">
+                  <i class="glyphicon glyphicon-time"></i>
+                </div>
+                <div class="fileUploadIcon" data-ng-show="!file.error && file.isComplete()">
+                  <i class="glyphicon glyphicon-ok"></i>
+                </div>
+                <div class="progress progress-striped fileuploadprogress" data-ng-class="{active: file.isUploading()}" data-ng-show="file.isUploading()">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': (uploadProgress() * 100) + 'px'}"></div>
+                </div>
               </div>
-              <div class="fileUploadIcon" data-ng-show="!file.error && file.isComplete()">
-                <i class="glyphicon glyphicon-ok"></i>
-              </div>
-              <div class="progress progress-striped fileuploadprogress" data-ng-class="{active: file.isUploading()}" data-ng-show="file.isUploading()">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-offset-1 col-md-7 fileDetails">
-          <div>
-            <label class="fileName">{{file.name}}</label>
-          </div>
-          <div>
-            <label class="fileSize">
-              <span data-translate>Size</span>:<span>{{file.size | prettyBytes }}</span>
-            </label>
-          </div>
-          <br />
-          <div data-ng-hide="file.error">
-            <div data-ng-repeat="option in file.value">
-              <textarea class="form-control msd-elastic" data-ng-model="option.value" placeholder="{{option['attrs']['name']}}"></textarea>
             </div>
           </div>
-          <div data-ng-show="file.error && file.error_msg">
-            <span data-translate class="text-red">{{file.error_msg}}</span>
+          <div class="col-md-offset-1 col-md-7 fileDetails">
+            <div>
+              <label class="fileName">{{file.name}}</label>
+            </div>
+            <div>
+              <label class="fileSize">
+                <span data-translate>Size</span>:<span>{{file.size | prettyBytes }}</span>
+              </label>
+            </div>
+            <br />
+            <div data-ng-hide="file.error">
+              <div data-ng-repeat="option in file.value">
+                <textarea class="form-control msd-elastic" data-ng-model="option.value" placeholder="{{option['attrs']['name']}}"></textarea>
+              </div>
+            </div>
+            <div data-ng-show="file.error && file.error_msg">
+              <span data-translate class="text-red">{{file.error_msg}}</span>
+            </div>
           </div>
         </div>
       </div>

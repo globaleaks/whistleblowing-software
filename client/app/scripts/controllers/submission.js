@@ -108,14 +108,6 @@ GLClient.controller('SubmissionCtrl',
     return $scope.selection;
   };
 
-  $scope.initAnswers = function(answers, entry, field_id, toplevel) {
-    if (toplevel) {
-      answers[field_id] = [{}];
-    } else {
-      entry[field_id] = [{}];
-    }
-  }
-
   $scope.goToStep = function(index) {
     $scope.selection = index;
   };
@@ -148,12 +140,72 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
+  $scope.getAnswersEntries = function(entry, field_id) {
+    if (entry === undefined) {
+      return $scope.submission._submission.answers[field_id];
+    } else {
+      return entry[field_id];
+    }
+  }
+
   $scope.fileupload_url = function() {
     if (!$scope.submission) {
       return;
     }
 
     return 'submission/' + $scope.submission._submission.id + '/file';
+  };
+
+  $scope.uploadedFiles = function(uploads) {
+    var sum = 0;
+
+    angular.forEach(uploads, function(flow, key) {
+      if (flow != undefined) {
+        sum += flow.files.length;
+      }
+    });
+
+    return sum;
+  };
+
+  $scope.isUploading = function(uploads) {
+    angular.forEach(uploads, function(flow, key) {
+      if(flow.isUploading()) {
+        return true;
+      }
+    });
+
+    return false;
+  };
+
+  $scope.remainingUploadTime = function(uploads) {
+    var sum = 0;
+
+    angular.forEach(uploads, function(flow, key) {
+      var x = flow.timeRemaining();
+      if (x == 'Infinity') {
+        return 'Infinity';
+      }
+      sum += x;
+    });
+
+    return sum;
+  };
+
+  $scope.uploadProgress = function(uploads) {
+    var sum = 0;
+    var n = 0;
+
+    angular.forEach(uploads, function(flow, key) {
+      sum += flow.progress();
+      n += 1;
+    });
+
+    if (n == 0 || sum == 0) {
+      return 1;
+    }
+
+    return sum / n;
   };
 
   $scope.prepareSubmission = function(context, receivers_ids) {
@@ -211,33 +263,10 @@ GLClient.controller('SubmissionCtrl',
   });
 
 }]).
-controller('SubmissionStepCtrl', ['$scope', function($scope) {
-  $scope.uploads = [];
+controller('SubmissionStepCtrl', ['$scope', '$filter', function($scope, $filter) {
+  $scope.uploads = {};
 }]).
-controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
-  if ($scope.field.type === 'fileupload') {
-    $scope.field.value = {};
-    $scope.upload_callbacks = [];
-
-    var upload_callback = function(e, data) {
-      var uploading = false;
-
-      $scope.uploads.forEach(function (u) {
-        if (!u.done) {
-          uploading = true;
-        }
-
-        // TODO: https://github.com/globaleaks/GlobaLeaks/issues/1239
-
-      });
-
-      $scope.submission.uploading = uploading;
-
-    };
-
-    $scope.upload_callbacks.push(upload_callback);
-  }
-
+controller('SubmissionFieldCtrl', ['$scope', '$filter', function ($scope, $filter) {
   $scope.getClass = function(stepIndex, fieldIndex, toplevel, row_length, field) {
     var ret = "";
 

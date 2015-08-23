@@ -52,23 +52,6 @@ def save_anomalies(store, anomalies_list):
                   anomalies_counter)
 
 
-class AnomaliesSchedule(GLJob):
-    """
-    This class check for Anomalies, using the Alarm() object
-    implemented in anomaly.py
-    """
-    name = "Anomalies"
-
-    @defer.inlineCallbacks
-    def operation(self):
-        """
-        Every X seconds is checked if anomalies are happening
-        from anonymous interaction (submission/file/comments/whatever flood)
-        If the alarm has been raise, logs in the DB the event.
-        """
-        yield compute_activity_level()
-
-
 def get_anomalies():
     anomalies = []
     for when, anomaly_blob in dict(GLSettings.RecentAnomaliesQ).iteritems():
@@ -76,9 +59,6 @@ def get_anomalies():
             [when, anomaly_blob[0], anomaly_blob[1]]
         )
     return anomalies
-
-def clean_anomalies():
-    GLSettings.RecentAnomaliesQ = {}
 
 def get_statistics():
     statsummary = {}
@@ -104,16 +84,34 @@ def save_statistics(store, start, end, activity_collection):
         log.debug("save_statistics: Saved statistics %s collected from %s to %s" %
                   (activity_collection, start, end))
 
+
+class AnomaliesSchedule(GLJob):
+    """/
+    This class check for Anomalies, using the Alarm() object
+    implemented in anomaly.py
+    """
+    name = "Anomalies"
+
+    @defer.inlineCallbacks
+    def operation(self):
+        """
+        Every X seconds is checked if anomalies are happening
+        from anonymous interaction (submission/file/comments/whatever flood)
+        If the alarm has been raise, logs in the DB the event.
+        """
+        yield compute_activity_level()
+
+
 class StatisticsSchedule(GLJob):
     """
     Statistics just flush two temporary queue and store them
     in the database.
     """
     name = "Statistics Sched"
-    collection_start_datetime = datetime_null()
+    collection_start_time = datetime_now()
 
     def __init__(self):
-        self.collection_start_datetime = datetime_now()
+        self.collection_start_time = datetime_now()
         GLJob.__init__(self)
 
     @classmethod
@@ -126,21 +124,20 @@ class StatisticsSchedule(GLJob):
         """
         executed every 60 minutes
         """
-
-        # ------- Anomalies section ------
+        # ------- BEGIN Anomalies section -------
         anomalies_to_save = get_anomalies()
         yield save_anomalies(anomalies_to_save)
-        clean_anomalies()
-        # ------- END of Anomalies section ------
+        # ------- END Anomalies section ---------
 
+        # ------- BEGIN Stats section -----------
         current_time = datetime_now()
         statistic_summary = get_statistics()
-
-        yield save_statistics(StatisticsSchedule.collection_start_datetime,
+        yield save_statistics(self.collection_start_time,
                               current_time, statistic_summary)
+        # ------- END Stats section -------------
 
-        StatisticsSchedule.reset()
-        StatisticsSchedule.collection_start_datetime = current_time
+        self.reset()
+        self.collection_start_time = current_time
 
         log.debug("Saved stats and time updated, keys saved %d" %
                   len(statistic_summary.keys()))

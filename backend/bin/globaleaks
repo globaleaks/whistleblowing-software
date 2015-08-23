@@ -79,6 +79,10 @@ def pip_version_check(path):
         print "2) Installing missing requirements using rm -rf /tmp/pip-build-root/ && pip install -r /usr/share/globaleaks/glbackend/requirements.txt"
         quit(-1)
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 sys.excepthook = None
 
 this_directory = os.path.dirname(__file__)

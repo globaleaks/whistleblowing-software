@@ -1,11 +1,14 @@
 <div id="field-{{$index}}" class="fieldBox"
   data-ng-init="editing=false" data-ng-controller="AdminFieldEditorCtrl">
   <div data-ng-form="editField">
-    <div class="configItem configField"  data-ng-class="{'configItemLast': $last}">
+    <div class="configItem configField">
       <div class="editorHeader" data-ng-click="toggleEditing($event)">
         <div class="row">
           <span class="col-md-7">
-            <span class="fieldIndex badge">{{$index + 1}}</span>
+            <span class="fieldIndex badge" data-ng-if="field.step_id !== '' || field.fieldgroup_id !== ''">
+              <span data-translate>Row</span><span>: {{field.y}}</span>
+              <span data-translate>Column</span><span>: {{field.x}}</span>
+            </span>
             <span class="fieldLabel">{{field.label}}</span>
           </span>
           <span class="col-md-5">
@@ -33,35 +36,42 @@
                 popover-trigger="mouseenter">
                 <span data-translate>Delete</span>
               </button>
-              <span data-ng-if="fields.length > 1 && !field.is_template">
-                <a class="editorHeaderButton" data-ng-click="moveUp($event, field)" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+              <span data-ng-if="field.step.id !== '' || field.fieldgroup_id !== ''">
+                <button class="editorHeaderButton btn btn-xs btn-primary" data-ng-click="moveLeft($event, field)" popover="{{'Move left' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                  <i class="glyphicon glyphicon-menu-left"></i>
+                </button>
+                <button class="editorHeaderButton btn btn-xs btn-primary" data-ng-click="moveRight($event, field)" popover="{{'Move right' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                  <i class="glyphicon glyphicon-menu-right"></i>
+                </button>
+                <button class="editorHeaderButton btn btn-xs btn-primary" data-ng-click="moveUp($event, field)" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-menu-up"></i>
-                </a>
-                <a class="editorHeaderButton" data-ng-click="moveDown($event, field)" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                </button>
+                <button class="editorHeaderButton btn btn-xs btn-primary" data-ng-click="moveDown($event, field)" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-menu-down"></i>
-                </a>
+                </button>
               </span>
             </span>
           </span>
         </div>
       </div>
       <div class="fieldEditor" data-ng-if="editing">
+        <hr />
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <label data-translate>Name</label>
-              <input name="label" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.label" value="{{field.label}}" type="text" required>
+              <input name="label" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.label" data-ng-disabled="!editable" value="{{field.label}}" type="text" required>
               <div class="text-red" data-ng-show="editField.label.$error.required">
                 <span data-translate>This field is mandatory</span>
               </div>
             </div>
             <div class="form-group">
               <label data-translate>Hint</label>
-              <input name="hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.hint" value="{{field.hint}}" type="text">
+              <input name="hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.hint" data-ng-disabled="!editable" value="{{field.hint}}" type="text">
             </div>
             <div class="form-group">
               <label data-translate>Description</label>
-              <textarea name="description" class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.description">{{field.description}}</textarea>
+              <textarea name="description" class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.description" data-ng-disabled="!editable">{{field.description}}</textarea>
             </div>
             <div class="form-group">
               <input data-ng-model="field.required" type="checkbox">
@@ -75,8 +85,8 @@
               </div>
             </div>
             <div class="form-group" data-ng-if="field.multi_entry">
-              <label data-translate>Hint shown on entry add button</label>
-              <input name="multi_entry_hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.multi_entry_hint" value="{{field.multi_entry_hint}}" type="text">
+              <label data-translate>Hint shown on the button for adding an additional answer</label>
+              <input name="multi_entry_hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.multi_entry_hint" value="{{field.multi_entry_hint}}" type="text" data-ng-disabled="!editable" >
             </div>
             <div class="form-group" data-ng-if="field.fieldgroup_id === '' && field.type !== 'fieldgroup' && field.type !== 'fileupload'">
               <div>
@@ -91,14 +101,6 @@
               </div>
             </div>
             <div class="form-group">
-              <label data-translate>Vertical order (Y)</label>
-              <input class="form-control" data-ng-model="field.y" data-ng-model-options='{debounce: 500}' value="{{field.y}}" type="number" min="0" max="99">
-            </div>
-            <div class="form-group">
-              <label data-translate>Horizontal order (X)</label>
-              <input class="form-control" data-ng-model="field.x" data-ng-model-options='{debounce: 500}' value="{{field.x}}" type="number" min="0" max="99">
-            </div>
-            <div class="form-group">
               <label data-translate>Width</label>
               <input class="form-control" data-ng-model="field.width" value="{{field.width}}" type="number" min="0" max="12">
             </div>
@@ -106,7 +108,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label data-translate>Type</label>
-              <select name="type" class="form-control" data-ng-model="field.type" required>
+              <select name="type" class="form-control" data-ng-model="field.type" required data-ng-disabled="!editable">
                 <option value="inputbox" data-translate>Text</option>
                 <option value="textarea" data-translate>Text area</option>
                 <option value="selectbox" data-translate>Select box</option>
@@ -127,30 +129,6 @@
                 <span data-translate>This field is mandatory</span>
               </div>
             </div>
-            <div class="form-group" data-ng-show="field.type == 'fieldgroup' && composable_fields">
-              <label data-translate>Fields Composition</label>
-              <div class="selectionList" data-ng-init="rows = getFieldsRows(composable_fields)">
-                <div data-ng-repeat="row in rows">
-                  <div data-ng-repeat="f in row | orderBy:'x'">
-                    <div class="row" data-ng-show="f.id != field.id && (!f.fieldgroup_id || f.fieldgroup_id == field.id)">
-                      <span class="col-md-1" data-ng-click="toggle_field(f, field)">
-                        <span data-ng-show="isSelected(f)">
-                          <i class="glyphicon glyphicon-check"></i>
-                        </span>
-                        <span data-ng-show="!isSelected(f)">
-                          <i class="glyphicon glyphicon-unchecked"></i>
-                        </span>
-                      </span>
-                      <span class="col-md-9">{{f.label}}</span>
-                      <span class="col-md-2" data-ng-show="f.fieldgroup_id == field.id">
-                        <a data-ng-click="moveUp($event, f)"><i class="glyphicon glyphicon-chevron-up"></i></a>
-                        <a data-ng-click="moveDown($event, f)"><i class="glyphicon glyphicon-chevron-down"></i></a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div class="form-group" data-ng-if="shouldShowOptions(field)">
               <label data-translate>Options</label>
               <div data-ng-switch="" on="typeSwitch(field.type)">
@@ -160,7 +138,7 @@
                       <div class="form-group">
                         <label data-translate>Minimum number of input characters</label>
                         <div>
-                          <input ng-model="field.attrs.min_len.value" type="text" value="{{field.attrs.min_len.value}}" class="form-control" />
+                          <input ng-model="field.attrs.min_len.value" type="text" value="{{field.attrs.min_len.value}}" class="form-control" data-ng-disabled="!editable" />
                         </div>
                       </div>
                       <div class="form-group">
@@ -169,13 +147,13 @@
                           <span>(<span data-translate>-1 = unlimited</span>)</span>
                         </label>
                         <div>
-                          <input ng-model="field.attrs.max_len.value" type="text" value="{{field.attrs.max_len.value}}" class="form-control" />
+                          <input ng-model="field.attrs.max_len.value" type="text" value="{{field.attrs.max_len.value}}" class="form-control" data-ng-disabled="!editable" />
                         </div>
                       </div>
                       <div class="form-group">
                         <label data-translate>Regular expression validator</label>
                         <div>
-                          <input ng-model="field.attrs.regexp.value" type="text" value="{{field.attrs.regexp.value}}" class="form-control" />
+                          <input ng-model="field.attrs.regexp.value" type="text" value="{{field.attrs.regexp.value}}" class="form-control" data-ng-disabled="!editable" />
                         </div>
                       </div>
                     </div>
@@ -184,12 +162,12 @@
                     <div class="row">
                       <div class="form-group">
                         <label data-translate>Agreement Text</label>
-                        <textarea ng-model="field.attrs.agreement_statement.value" maxlength="{{node.maximum_textsize}}" class="form-control">{{field.attrs.agreement_statement.value}}</textarea>
+                        <textarea ng-model="field.attrs.agreement_statement.value" maxlength="{{node.maximum_textsize}}" class="form-control" data-ng-disabled="!editable">{{field.attrs.agreement_statement.value}}</textarea>
                       </div>
                       <div class="form-group">
                         <label data-translate>Clause</label>
                         <div>
-                          <input ng-model="field.attrs.clause.value" type="text" value="{{field.attrs.clause.value}}" class="form-control" />
+                          <input ng-model="field.attrs.clause.value" type="text" value="{{field.attrs.clause.value}}" class="form-control" data-ng-disabled="!editable" />
                         </div>
                       </div>
                     </div>
@@ -199,7 +177,7 @@
                       <div class="form-inline">
                         <div class="form-group">
                           <div class="input-group">
-                            <input class="form-control" data-ng-model="option.label" placeholder="{{'Name' | translate }}" value="{{option.label}}" type="text" required />
+                            <input class="form-control" data-ng-model="option.label" placeholder="{{'Name' | translate }}" value="{{option.label}}" type="text" required data-ng-disabled="!editable" />
                             <span class="input-group-btn">
                               <a class="btn" data-ng-click="delOption(field, option)">
                                 <i class="glyphicon glyphicon-remove"></i>
@@ -229,8 +207,30 @@
             </div>
           </div>
         </div>
+        <div class="row adminConfigSection" data-ng-if="field.type === 'fieldgroup' && editable">
+          <div class="col-md-12">
+            <div class="editorTitle">
+              <span data-translate>Add new field</span>
+            </div>
+            <div data-ng-include="'views/admin/add_field.html'"></div>
+          </div>
+        </div>
+        <div class="row adminConfigSection" data-ng-if="field.type === 'fieldgroup' && editable">
+          <div id="FieldsAddBox" class="col-md-12" data-ng-include="'views/admin/add_field_from_template.html'"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group" data-ng-if="field.children.length > 0">
+              <div class="editorTitle" data-translate>Configured fields:</div>
+              <div class="configuredFields">
+                <div data-ng-repeat="field in field.children | orderBy:['y', 'x']">
+                  <div data-ng-include="'views/admin/fields.html'"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="clearfix" data-ng-if="$index % 2 == 1 || $last"></div>
+<div>
