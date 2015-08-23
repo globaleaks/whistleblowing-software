@@ -31,31 +31,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       }
     };
 
-    $scope.save_all = function () {
-      angular.forEach($scope.step.children, function (field, key) {
-        $scope.save_field(field);
-      });
-    };
- 
-    $scope.toggle_field = function(field, field_group) {
-      $scope.field_group_toggled = true;
-      if (field_group.children && field_group.children.indexOf(field) !== -1) {
-        // Remove it from the fieldgroup 
-        field.fieldgroup_id = '';
-        field.step_id = $scope.step.id;
-        $scope.step.children = $scope.step.children || [];
-        $scope.step.children.push(field);
-        $scope.deleteFromList(field_group.children, field);
-      } else {
-        // Add it to the fieldgroup 
-        field.step_id = '';
-        field.fieldgroup_id = field_group.id;
-        field_group.children = field_group.children || [];
-        field_group.children.push(field);
-        $scope.deleteFromList($scope.step.children, field);
-      }
-    };
-
     $scope.addField = function(field) {
       $scope.step.children.push(field);
     };
@@ -84,15 +59,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       }, function(){
         $scope.deleteStep(step);
       });
-    };
-
-    $scope.save_field = function(field) {
-      var updated_field = new $scope.admin.field(field);
-      if ($scope.field_group_toggled) {
-        $scope.field_group_toggled = false;
-        $scope.save_all();
-      }
-      return updated_field.$update();
     };
 
     $scope.save_step = function(step) {
@@ -143,5 +109,25 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
         $scope.step.children.push(new_field);
       });
     };
+
+    $scope.moveUpAndSave = function(event, elem) {
+      $scope.moveUp(event, elem);
+      $scope.save_step(elem);
+    }
+
+    $scope.moveDownAndSave = function(event, elem) {
+      $scope.moveDown(event, elem);
+      $scope.save_step(elem);
+    }
+
+    $scope.moveLeftAndSave = function(event, elem) {
+      $scope.moveLeft(event, elem);
+      $scope.save_step(elem);
+    }
+
+    $scope.moveRightAndSave = function(event, elem) {
+      $scope.moveRight(event, elem);
+      $scope.save_step(elem);
+    }
   }
 ]);

@@ -44,6 +44,16 @@ GLClient.controller('AdminContextsCtrl',
     });
   };
 
+  $scope.moveUpAndSave = function(event, elem) {
+    $scope.moveUp(event, elem);
+    $scope.save_context(elem);
+  }
+
+  $scope.moveDownAndSave = function(event, elem) {
+    $scope.moveDown(event, elem);
+    $scope.save_context(elem);
+  }
+
 }]);
 
 GLClient.controller('AdminContextEditorCtrl', ['$scope',
