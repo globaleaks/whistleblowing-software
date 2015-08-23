@@ -214,6 +214,10 @@ GLSettings.parser.add_option("--XXX", type='string',
     help="hardcore debug only options: check NOTES.md file",
     dest="xxx")
 
+GLSettings.parser.add_option("-S", "--stats", action='store_true',
+    help="Statistics enabled, dump via JSON all the timings [DON'T DOIT!]",
+    dest="json_stats")
+
 GLSettings.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software (spoiler: %s)" % GLSettings.version_string,
     dest="version")
