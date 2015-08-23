@@ -8,7 +8,8 @@ from globaleaks.jobs.statistics_sched import AnomaliesSchedule, StatisticsSchedu
 from globaleaks.models import Stats
 from globaleaks.settings import transact_ro
 from globaleaks.tests import helpers
-from globaleaks.tests.test_anomaly import pollute_events_for_testing_and_perform_synthesis
+from globaleaks.tests.test_anomaly import pollute_events_for_testing, \
+    pollute_events_for_testing_and_perform_synthesis
 from globaleaks.utils.utility import datetime_now
 
 anomaly.reactor = task.Clock()
@@ -20,9 +21,8 @@ class TestAnomaliesCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        pollute_events_for_testing_and_perform_synthesis(10)
+        pollute_events_for_testing(50)
         yield AnomaliesSchedule().operation()
-        yield StatisticsSchedule().operation()
 
         handler = self.request({}, role='admin')
         yield handler.get()
