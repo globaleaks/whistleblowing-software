@@ -171,6 +171,7 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
 
     $scope.show_stats = function(stats) {
       show_data(stats.heatmap);
+      $scope.week = stats.week;
       $scope.complete = stats.complete;
     };
 
