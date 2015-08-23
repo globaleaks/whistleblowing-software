@@ -156,7 +156,7 @@ def get_anomaly_history(store, limit):
     anomaly_history = []
     for _, anomaly in enumerate(anomalies):
         anomaly_entry = dict({
-            'date': anomaly.date, #datetime_to_ISO8601(anomaly.date),
+            'date': datetime_to_ISO8601(anomaly.date),
             'alarm': anomaly.alarm,
             'events': [],
         })

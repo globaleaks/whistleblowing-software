@@ -193,10 +193,10 @@ class Alarm(object):
         'successful_logins': 20,
         'uploaded_files': 10,
         'appended_files': 10,
-        'wb_comments': 4,
-        'wb_messages': 4,
-        'receiver_comments': 6,
-        'receiver_messages': 6
+        'wb_comments': 20,
+        'wb_messages': 20,
+        'receiver_comments': 30,
+        'receiver_messages': 30
     }
 
     # the level of the alarm in 30 seconds

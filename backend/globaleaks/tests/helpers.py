@@ -18,15 +18,14 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 
-# Monkeypatching for unit testing  in order to
-# prevent mail activities
-from globaleaks.utils import mailutils
-
-from globaleaks.utils.structures import fill_localized_keys
-
 import sys
 reload(sys)
 sys.getdefaultencoding()
+
+
+# Monkeypatching for unit testing  in order to
+# prevent mail activities
+from globaleaks.utils import mailutils
 
 def sendmail_mock(**args):
     return defer.succeed(None)
@@ -50,7 +49,7 @@ from globaleaks.settings import GLSettings, transact, transact_ro
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.third_party import rstr
 from globaleaks.utils import token
-from globaleaks.utils.token import Token
+from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, log
 
 from . import TEST_DIR
@@ -485,8 +484,8 @@ class TestGLWithPopulatedDB(TestGL):
         yield update_context(self.dummyContext['id'], copy.deepcopy(self.dummyContext), 'en')
 
     def perform_submission_start(self):
-        self.dummyToken = Token(token_kind='submission',
-                                context_id=self.dummyContext['id'])
+        self.dummyToken = token.Token(token_kind='submission',
+                                      context_id=self.dummyContext['id'])
 
     @inlineCallbacks
     def perform_submission_uploads(self):
@@ -563,8 +562,11 @@ class TestHandler(TestGLWithPopulatedDB):
             # !!!
             # Here we are making the assumption that every time write() get's
             # called it contains *all* of the response message.
+            #RequestHandler.finish(cls, response)
+
             if response:
                 self.responses.append(response)
+
 
         self._handler.write = mock_write
         # we make the assumption that we will always use call finish on write.
