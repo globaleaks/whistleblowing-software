@@ -1,3 +1,15 @@
+Changes in version 2.60.101 - 2015-08-24
+    o Minor UI fixes
+    o Improve error resiliency of file management with a retry mechanism
+    o Add monitoring of Jobs time
+    o Add monitoring of Handlers time
+    o Add clientside exception notification
+    o Implement multi entry fields
+    o Implement horizontal fields ordering
+    o Archive questionnaire datastructure on submit
+    o Serialize questionnaire answers in structured relationl DB in order
+      to allow search and statistics
+
 Changes in version 2.60.100 - 2015-08-13
     o Minor UI fixes
 
