@@ -69,13 +69,13 @@ class CleaningSchedule(GLJob):
 
         itip_id_list = []
         for itip in subjects:
-            itip_id_list.append(itip.id)
+            itip_id_list.append(unicode(itip.id))
 
         return itip_id_list
 
     @transact
-    def perform_cleaning(self, itip_id, store):
-        itip = store.find(InternalTip, InternalTip.id == itip_id)
+    def perform_cleaning(self, store, itip_id):
+        itip = store.find(InternalTip, InternalTip.id == itip_id).one()
         db_delete_itip(store, itip)
 
     @transact
@@ -95,9 +95,8 @@ class CleaningSchedule(GLJob):
         GLSettings.exceptions_email_count = 0
 
         itip_list_id = yield self.get_cleaning_map()
-        if itip_list_id:
-            for itip_id in itip_list_id:
-                yield self.perform_cleaning(itip_id)
+        for itip_id in itip_list_id:
+            yield self.perform_cleaning(itip_id)
 
         yield self.perform_stats_cleaning()
         yield ExpiringRTipEvent().process_events()

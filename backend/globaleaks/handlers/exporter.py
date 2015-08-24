@@ -43,10 +43,12 @@ def add_measured_event(method, uri, secs_elapsed, event_id, start_time):
     else:
         return
 
+    import datetime
+    start_time_string = str(datetime.datetime.fromtimestamp(start_time))
+
     log.debug("add_measured_event %s %s %d %d = %s, start time %s" %
               (method, uri, secs_elapsed,
-               event_id, event_type, start_time))
-    print type(start_time)
+               event_id, event_type, start_time_string))
 
     assert event_type in EventTypeCounter.keys(), "Invalid event_type %s not in %s" % \
                                                   (event_type, EventTypeCounter.keys())
@@ -55,7 +57,7 @@ def add_measured_event(method, uri, secs_elapsed, event_id, start_time):
         'event_type' : event_type,
         'millisecs_elapsed': round(secs_elapsed * 1000, 2),
         'event_counter': EventTypeCounter[event_type],
-        'start_time': start_time
+        'start_time': start_time_string
     }
 
     EventTypeCounter[event_type] += 1
