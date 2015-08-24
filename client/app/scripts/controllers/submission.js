@@ -156,58 +156,6 @@ GLClient.controller('SubmissionCtrl',
     return 'submission/' + $scope.submission._submission.id + '/file';
   };
 
-  $scope.uploadedFiles = function(uploads) {
-    var sum = 0;
-
-    angular.forEach(uploads, function(flow, key) {
-      if (flow != undefined) {
-        sum += flow.files.length;
-      }
-    });
-
-    return sum;
-  };
-
-  $scope.isUploading = function(uploads) {
-    angular.forEach(uploads, function(flow, key) {
-      if(flow.isUploading()) {
-        return true;
-      }
-    });
-
-    return false;
-  };
-
-  $scope.remainingUploadTime = function(uploads) {
-    var sum = 0;
-
-    angular.forEach(uploads, function(flow, key) {
-      var x = flow.timeRemaining();
-      if (x == 'Infinity') {
-        return 'Infinity';
-      }
-      sum += x;
-    });
-
-    return sum;
-  };
-
-  $scope.uploadProgress = function(uploads) {
-    var sum = 0;
-    var n = 0;
-
-    angular.forEach(uploads, function(flow, key) {
-      sum += flow.progress();
-      n += 1;
-    });
-
-    if (n == 0 || sum == 0) {
-      return 1;
-    }
-
-    return sum / n;
-  };
-
   $scope.prepareSubmission = function(context, receivers_ids) {
     $scope.submission.create(context.id, receivers_ids, function () {
       startCountdown();

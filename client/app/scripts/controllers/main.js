@@ -325,6 +325,71 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       $route.reload();
     };
 
+
+    //////////////////////////////////////////////////////////////////
+    // FIXME: this functions are in common between submission.js and
+    // status.js so for this reasuns are currently pu here.
+    //////////////////////////////////////////////////////////////////
+
+
+    $scope.uploadedFiles = function(uploads) {
+      var sum = 0;
+
+      angular.forEach(uploads, function(flow, key) {
+        if (flow != undefined) {
+          sum += flow.files.length;
+        }
+      });
+
+      console.log(sum);
+
+      return sum;
+    };
+
+    $scope.isUploading = function(uploads) {
+      angular.forEach(uploads, function(flow, key) {
+        if(flow.isUploading()) {
+          console.log(true);
+          return true;
+        }
+      });
+
+      return false;
+    };
+
+    $scope.remainingUploadTime = function(uploads) {
+      var sum = 0;
+
+      angular.forEach(uploads, function(flow, key) {
+        var x = flow.timeRemaining();
+        if (x == 'Infinity') {
+          return 'Infinity';
+        }
+        sum += x;
+      });
+
+      return sum;
+    };
+
+    $scope.uploadProgress = function(uploads) {
+      var sum = 0;
+      var n = 0;
+
+      angular.forEach(uploads, function(flow, key) {
+        sum += flow.progress();
+        n += 1;
+      });
+
+      if (n == 0 || sum == 0) {
+        return 1;
+      }
+
+      return sum / n;
+    };
+
+  //////////////////////////////////////////////////////////////////
+
+
     $scope.$on( "$routeChangeStart", function(event, next, current) {
       $scope.route_check();
     });
