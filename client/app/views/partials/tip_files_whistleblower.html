@@ -31,7 +31,7 @@
             </tr>
           </thead>
           <tbody id="fileListBody">
-            <tr id="file-{{$index}}" data-ng-repeat="file in tip.files | orderBy:'creation_date'" data-ng-if="!file.isUploading()">
+            <tr id="file-{{$index}}" data-ng-repeat="file in tip.files | orderBy:'creation_date'">
               <td>
                 <span>{{::file.name}}</span>
               </td>
@@ -45,30 +45,34 @@
                 <span>{{::file.size | prettyBytes }}</span>
               </td>
             </tr>
-            <tr id="file-{{$index}}" data-ng-repeat="file in uploads">
-              <td>
-                <span>{{::file.name}}</span>
-              </td>
-              <td>
-                <span>{{today() | date:'dd-MM-yyyy'}}</span>
-              </td>
-              <td>
-                <span>{{::file.file.type}}</span>
-              </td>
-              <td>
-                <span>{{::file.size | prettyBytes }}</span>
-              </td>
+            <tr data-ng-repeat="file in uploads['tip_page']['files']">
+              <span data-ng-if="!file.isUploading()">
+                <td>
+                  <span>{{::file.name}}</span>
+                </td>
+                <td>
+                  <span>{{today() | date:'dd-MM-yyyy'}}</span>
+                </td>
+                <td>
+                  <span>{{::file.file.type}}</span>
+                </td>
+                <td>
+                  <span>{{::file.size | prettyBytes }}</span>
+                </td>
+              </span>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div data-ng-hide="tip.files.length || uploads">
+    <div data-ng-hide="tip.files.length || uploads['tip_page']['files'].length">
       <span data-translate>No files have been uploaded!</span>
     </div>
     <br />
     <div data-ng-init="fileupload_mode = 'multiple'" data-ng-include="'views/partials/fileupload_button.html'"></div>
     <br />
-    <div data-ng-include="'views/partials/fileupload_status.html'"></div>
+    <div class="row">
+      <div class="col-md-6" data-ng-include="'views/partials/fileupload_status.html'"></div>
+    </div>
   </div>
 </div>

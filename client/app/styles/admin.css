@@ -4,6 +4,11 @@
   margin-bottom: 25px;
 }
 
+.actionButton {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
 .configItem {
   background-color: #FCFCFC;
   box-shadow: 2px 1px 5px #888888;
@@ -14,7 +19,7 @@
   margin-bottom: 5px;
 }
 
-#StepAddBox, #StepsEditBox,#FieldsEditBox {
+#StepAddBox, #StepsEditBox,#FieldsEditBox, #ContextAdvancedSettingsBox {
   margin-top: 30px;
 }
 
@@ -68,7 +73,8 @@
   font-weight: bold;
 }
 
-.addField {
+.addField, .addFieldFromTemplate {
+  clear: both;
   margin-bottom: 10px;
 }
 
@@ -100,7 +106,7 @@
   background-color: rgb(252, 252, 252);
 }
 
-.editorHeaderTitle, .editorHeaderButtons {
+.editorHeaderTitle {
   letter-spacing: -1px;
   line-height: 1;
   display: block;
@@ -113,6 +119,10 @@
 
 .editorTitle {
   font-size: 18px;
+}
+
+.fieldOption {
+  margin-bottom: 10px;
 }
 
 .imageUpload .profile {
@@ -203,9 +213,4 @@ text.axis-workweek {
 
 text.axis-worktime {
   fill: #000;
-}
-
-.editorHeaderButton {
-  margin-left: 5px;
-  margin-right: 0px;
 }

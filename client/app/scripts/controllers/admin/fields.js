@@ -1,6 +1,5 @@
 GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
                     function($scope, $filter) {
-
     $scope.admin.field_templates.$promise.then(function(fields) {
       $scope.fields = fields;
     });
@@ -10,12 +9,6 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
       if (idx !== -1) {
         list.splice(idx, 1);
       }
-    };
-
-    $scope.save_all = function () {
-      angular.forEach($scope.admin.field_templates, function (field, key) {
-        $scope.save_field(field, true);
-      });
     };
 
     $scope.addField = function(new_field) {
@@ -127,7 +120,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       field.options.splice(index, 1);
     };
 
-    $scope.save_field = function(field, called_from_save_all) {
+    $scope.save_field = function(field) {
       $scope.assignUniqueOrderIndex(field.options);
 
       var updated_field;
@@ -139,6 +132,26 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
 
       $scope.update(updated_field);
     };
+
+    $scope.moveUpAndSave = function(event, elem) {
+      $scope.moveUp(event, elem);
+      $scope.save_field(elem);
+    }
+
+    $scope.moveDownAndSave = function(event, elem) {
+      $scope.moveDown(event, elem);
+      $scope.save_field(elem);
+    }
+
+    $scope.moveLeftAndSave = function(event, elem) {
+      $scope.moveLeft(event, elem);
+      $scope.save_field(elem);
+    }
+
+    $scope.moveRightAndSave = function(event, elem) {
+      $scope.moveRight(event, elem);
+      $scope.save_field(elem);
+    }
 
     $scope.new_field = {};
 

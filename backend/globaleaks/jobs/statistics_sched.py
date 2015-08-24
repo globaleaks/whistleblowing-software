@@ -95,9 +95,8 @@ class AnomaliesSchedule(GLJob):
     @defer.inlineCallbacks
     def operation(self):
         """
-        Every X seconds is checked if anomalies are happening
-        from anonymous interaction (submission/file/comments/whatever flood)
-        If the alarm has been raise, logs in the DB the event.
+        The routine periodically checks is checked if the system is having some anomalies
+        If the alarm has been raises, it is logged in the db.
         """
         yield compute_activity_level()
 

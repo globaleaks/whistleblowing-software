@@ -1,12 +1,10 @@
 exports.config = {
-  seleniumAddress: 'http://localhost:4444/wd/hub',
-
   framework: 'jasmine2',
 
   baseUrl: 'http://127.0.0.1:8082/',
 
   troubleshoot: true,
-  directConnect: true,
+  directConnect: false,
 
   specs: [
     'test-init.js',
@@ -20,7 +18,7 @@ exports.config = {
   ],
 
   capabilities: {
-    'browserName': 'firefox'
+    'browserName': 'chrome'
   },
 
   jasmineNodeOpts: {

@@ -12,7 +12,7 @@ from globaleaks.jobs import delivery_sched
 from globaleaks.utils.token import Token
 
 
-class TTip(helpers.TestGL):
+class TestTip(helpers.TestGL):
     # filled in setup
     context_desc = None
     receiver1_desc = receiver2_desc = None
@@ -26,8 +26,6 @@ class TTip(helpers.TestGL):
         'content': '',
     }
 
-
-class TestTipInstance(TTip):
     @inlineCallbacks
     def setup_tip_environment(self):
         self.context_desc = yield admin.create_context(self.dummyContext, 'en')
@@ -372,7 +370,7 @@ class TestTipInstance(TTip):
                 self.assertEqual(recv['message_counter'], 2)
 
     @inlineCallbacks
-    def test_full_receiver_wb_workflow(self):
+    def do_full_receiver_wb_workflow(self):
         yield self.setup_tip_environment()
         yield self.wb_auth_with_receipt()
         yield self.wb_auth_with_bad_receipt()
@@ -401,3 +399,9 @@ class TestTipInstance(TTip):
         # end of test
         yield self.receiver2_fail_in_delete_internal_tip()
         yield self.receiver1_delete_tip()
+
+
+class TestTipInstance(TestTip):
+    @inlineCallbacks
+    def test_full_receiver_wb_workflow(self):
+        yield self.do_full_receiver_wb_workflow()

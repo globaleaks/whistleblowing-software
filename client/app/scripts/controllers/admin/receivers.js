@@ -1,7 +1,6 @@
 GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', function($scope, $modal) {
 
   $scope.save_receiver = function(receiver, cb) {
-
     if (receiver.pgp_key_remove === true) {
       receiver.pgp_key_public = '';
     }
@@ -45,6 +44,16 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', function($scope, 
 
     e.stopPropagation();
   };
+
+  $scope.moveUpAndSave = function(event, elem) {
+    $scope.moveUp(event, elem);
+    $scope.save_receiver(elem);
+  }
+
+  $scope.moveDownAndSave = function(event, elem) {
+    $scope.moveDown(event, elem);
+    $scope.save_receiver(elem);
+  }
 
 }]);
 

@@ -8,7 +8,8 @@ from globaleaks.jobs.statistics_sched import AnomaliesSchedule, StatisticsSchedu
 from globaleaks.models import Stats
 from globaleaks.settings import transact_ro
 from globaleaks.tests import helpers
-from globaleaks.tests.test_anomaly import pollute_events_for_testing
+from globaleaks.tests.test_anomaly import pollute_events_for_testing, \
+    pollute_events_for_testing_and_perform_synthesis
 from globaleaks.utils.utility import datetime_now
 
 anomaly.reactor = task.Clock()
@@ -47,7 +48,7 @@ class TestStatsCollection(helpers.TestHandler):
         self.assertEqual(len(self.responses[0]), 3)
         self.assertEqual(len(self.responses[0]['heatmap']), 7 * 24)
 
-        pollute_events_for_testing(50)
+        pollute_events_for_testing_and_perform_synthesis(10)
 
         yield AnomaliesSchedule().operation()
         yield StatisticsSchedule().operation()
@@ -60,7 +61,7 @@ class TestStatsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_delete(self):
-        pollute_events_for_testing(50)
+        pollute_events_for_testing_and_perform_synthesis(10)
         yield AnomaliesSchedule().operation()
         yield StatisticsSchedule().operation()
 
@@ -82,7 +83,7 @@ class TestAnomHistCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        pollute_events_for_testing(50)
+        pollute_events_for_testing_and_perform_synthesis(10)
         yield AnomaliesSchedule().operation()
         yield StatisticsSchedule().operation()
 
@@ -94,7 +95,7 @@ class TestAnomHistCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_delete(self):
-        pollute_events_for_testing(50)
+        pollute_events_for_testing_and_perform_synthesis(10)
         yield AnomaliesSchedule().operation()
         yield StatisticsSchedule().operation()
 
@@ -124,7 +125,7 @@ class TestRecentEventsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        pollute_events_for_testing(3)
+        pollute_events_for_testing_and_perform_synthesis(3)
         yield StatisticsSchedule().operation()
 
         handler = self.request({}, role='admin')

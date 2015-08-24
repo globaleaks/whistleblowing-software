@@ -5,7 +5,7 @@
       <div class="col-md-12">
         <span data-translate>Stats of the week:</span>
         <a data-ng-click="decrement_week()"><span class="glyphicon glyphicon-chevron-left"></span></a>
-        <span>{{when | weekNumber}} {{when | date: 'yyyy'}}</span>
+        <span>{{week | weekNumber}} {{date | date: 'yyyy'}}</span>
         <a data-ng-click="increment_week()"><span class="glyphicon glyphicon-chevron-right"></span></a>
       </div>
 
