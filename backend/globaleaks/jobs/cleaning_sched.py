@@ -6,17 +6,17 @@
 # Implementation of the cleaning operations (delete incomplete submission,
 # delete expired tips, etc)
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import admin
 from globaleaks.handlers.rtip import db_delete_itip
 from globaleaks.jobs.base import GLJob
 from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, db_save_events_on_db
-from globaleaks.models import InternalTip, InternalFile, Receiver, ReceiverTip, ReceiverFile, Stats
+from globaleaks.models import InternalTip, Receiver, ReceiverTip, Stats
 from globaleaks.plugins.base import Event
 from globaleaks.settings import transact, transact_ro, GLSettings
-from globaleaks.utils.utility import log, datetime_to_ISO8601, ISO8601_to_datetime, utc_dynamic_date, datetime_now
+from globaleaks.utils.utility import log, datetime_now
 
 
 __all__ = ['CleaningSchedule']
@@ -62,11 +62,24 @@ class ExpiringRTipEvent(EventLogger):
 class CleaningSchedule(GLJob):
     name = "Cleaning"
 
-    @transact
-    def perform_cleaning(self, store):
-        for itip in store.find(InternalTip, InternalTip.expiration_date < datetime_now()):
-            db_delete_itip(store, itip)
+    @transact_ro
+    def get_cleaning_map(self, store):
+        subjects = store.find(InternalTip, InternalTip.expiration_date < datetime_now())
+        log.info("Removal of %d InternalTips starts soon" % subjects.count())
 
+        itip_id_list = []
+        for itip in subjects:
+            itip_id_list.append(itip.id)
+
+        return itip_id_list
+
+    @transact
+    def perform_cleaning(self, itip_id, store):
+        itip = store.find(InternalTip, InternalTip.id == itip_id)
+        db_delete_itip(store, itip)
+
+    @transact
+    def perform_stats_cleaning(self, store):
         # delete stats older than 3 months
         store.find(Stats, Stats.start < datetime_now() - timedelta(3*(365/12))).remove()
 
@@ -81,5 +94,10 @@ class CleaningSchedule(GLJob):
         GLSettings.exceptions = {}
         GLSettings.exceptions_email_count = 0
 
-        yield self.perform_cleaning()
+        itip_list_id = yield self.get_cleaning_map()
+        if itip_list_id:
+            for itip_id in itip_list_id:
+                yield self.perform_cleaning(itip_id)
+
+        yield self.perform_stats_cleaning()
         yield ExpiringRTipEvent().process_events()

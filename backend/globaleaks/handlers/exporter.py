@@ -29,7 +29,7 @@ EventTypeCounter = {
     'comment': 1,
 }
 
-def add_measured_event(method, uri, secs_elapsed, event_id):
+def add_measured_event(method, uri, secs_elapsed, event_id, start_time):
 
     # This is an hack of the event tracking, just has to keep in account
     # also some periodic scheduled event like Delivery phases
@@ -43,8 +43,10 @@ def add_measured_event(method, uri, secs_elapsed, event_id):
     else:
         return
 
-    log.debug("add_measured_event %s %s %d %d = %s" %
-              (method, uri, secs_elapsed, event_id, event_type))
+    log.debug("add_measured_event %s %s %d %d = %s, start time %s" %
+              (method, uri, secs_elapsed,
+               event_id, event_type, start_time))
+    print type(start_time)
 
     assert event_type in EventTypeCounter.keys(), "Invalid event_type %s not in %s" % \
                                                   (event_type, EventTypeCounter.keys())
@@ -52,7 +54,8 @@ def add_measured_event(method, uri, secs_elapsed, event_id):
         'event_id': event_id,
         'event_type' : event_type,
         'millisecs_elapsed': round(secs_elapsed * 1000, 2),
-        'event_counter': EventTypeCounter[event_type]
+        'event_counter': EventTypeCounter[event_type],
+        'start_time': start_time
     }
 
     EventTypeCounter[event_type] += 1
@@ -84,7 +87,7 @@ class ReportEvent(BaseHandler):
     def get(self, eventstring):
 
         print "Now received notice of", eventstring
-        add_measured_event(None, None, 0, eventstring)
+        add_measured_event(None, None, 0, eventstring, self.start_time)
 
         if not GLSettings.json_stats:
             self.set_status(405)

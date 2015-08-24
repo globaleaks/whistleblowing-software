@@ -324,7 +324,7 @@ GlobaLeaks is an application with various features prone to be DoSsed by attacke
         <b>File upload</b>: is the operation, potentially Disk exhausting, performed by an anonymous user. this may happen during the submission or the in subsequent comment phases. <span class="techdets">Write actively on the database and on the disk, if end to end encryption is enabled or not, the disk impact can be higher (no end2end means that every file get encrypted for the PGP key of receivers, keeping one copy per receiver, multiplying the disk space required per file)</span>.
     </li>
     <li>
-        <b>Logins</b>: is the operation, potentially Disk exhausting, performed by an anonymous user. this may happen during the submission or the in subsequent comment phases. <span class="techdets">Write actively on the database and on the disk, if end to end encryption is enabled or not, the disk impact can be higher (no end2end means that every file get encrypted for the PGP key of receivers, keeping one copy per receiver, multiplying the disk space required per file)</span>.
+        <b>Login</b>: is the operation, potentially locking database, bruteforcing password, can be performed by an anonymous user (using the receipt obtained at the end of every submission, or looking for previously existing receipts).
     </li>
 </ul>
 

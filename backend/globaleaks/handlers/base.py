@@ -551,7 +551,7 @@ class BaseHandler(RequestHandler):
         if GLSettings.json_stats:
             from globaleaks.handlers.exporter import add_measured_event
             add_measured_event(self.request.method, self.request.uri,
-                               current_run_time, self.req_id)
+                               current_run_time, self.req_id, self.start_time)
 
 
     def handler_request_logging_begin(self):
