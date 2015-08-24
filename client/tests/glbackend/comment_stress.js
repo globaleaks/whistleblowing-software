@@ -27,24 +27,22 @@ describe('COMMENT -- hardcoded receipt', function(){
           {
             console.log (res.body.session_id);
 
-            for(var i = 0; i < 100; i++) {
+            for(var i = 0; i < 100; i++)
+            {
 
+                var comment_content = {"content":"AUTOMATIC COMMENT VIA comment_stress.js"};
 
-            var comment_content = {"content":"AUTOMATIC COMMENT VIA comment_stress.js"};
-
-            app
-               .post('/wbtip/comments')
-                    .set('X-Session',res.body.session_id)
-                    .send(comment_content)
-                    .expect('Content-Type', 'application/json')
-                    .expect(201)
-                    .end(function(err, res) {
-                      if (err) {
-                        return done(err);
-                      } else {
-                          console.log("done " + i);
-                      }
-                    });
+                app
+                   .post('/wbtip/comments')
+                        .set('X-Session',res.body.session_id)
+                        .send(comment_content)
+                        .expect('Content-Type', 'application/json')
+                        .expect(201)
+                        .end(function(err, res) {
+                          if (err) {
+                            return done(err);
+                          }
+                        });
             }
 
         }

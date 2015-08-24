@@ -10,9 +10,7 @@ var host = 'http://127.0.0.1:8082';
 
 var app = request(host);
 
-var contexts = [], contexts_ids = [];
-
-var wb_keycodes  = [];
+var contexts = [];
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
@@ -48,7 +46,7 @@ describe('GET /contexts', function(){
 
           for (i=0; i < contexts.length ; i++) {
 
-            for(k = 0; k < 40; k++ ) {
+            for(k = 0; k < 4; k++ ) {
 
                   var new_submission = {};
                   new_submission.context_id = contexts[i].id;
@@ -78,8 +76,6 @@ describe('GET /contexts', function(){
                         validate_mandatory_headers(res.headers);
 
                         var sbms = {};
-                        // sbms.graph_captcha = false;
-                        // console.log(token);
 
                         sbms.context_id = token.context_id;
                         sbms.human_captcha_answer = 0;
@@ -100,8 +96,8 @@ describe('GET /contexts', function(){
                               console.log("Error triggered, check the logs");
                               return done(err);
                             } else {
-                              console.log("Submission done");
-                              done();
+                              console.log("Submission done, receipt: " +  res.body.receipt);
+                              // done();
                             }
                           });
 
@@ -111,6 +107,7 @@ describe('GET /contexts', function(){
             }
 
           }
+          done();
 
 
 
