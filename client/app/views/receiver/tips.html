@@ -181,11 +181,11 @@
           <td>{{::tip.comment_counter}}</td>
           <td>{{::tip.message_counter}}</td>
           <td>
-            <span data-ng-if="!tip.tor2web"
+            <span data-ng-if="tip.tor2web"
                   class="btn-warning"
                   popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
                   data-translate>HTTPS</span>
-            <span data-ng-if="tip.tor2web"
+            <span data-ng-if="!tip.tor2web"
                   class="btn-success"
                   popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
                   data-translate>Tor</span>
