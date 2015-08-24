@@ -175,10 +175,6 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <label data-translate>Presentation Order</label>
-                    <input class="form-control" data-ng-model="receiver.presentation_order" value="{{receiver.presentation_order}}" type="number" min="0" max="99">
-                  </div>
-                  <div class="form-group">
                     <label data-translate>Language</label>
                     <select class="form-control" data-ng-model="receiver.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
                   </div>
