@@ -224,12 +224,6 @@ AdminContextDesc = {
     'reset_steps': bool
 }
 
-AdminContextFieldTemplateCopyDesc = {
-    'template_id': uuid_regexp,
-    'context_id': uuid_regexp,
-    'step_id': uuid_regexp_or_empty
-}
-
 AdminReceiverDesc = {
     'name': unicode,
     'description': unicode,
@@ -415,6 +409,7 @@ FieldOptionDesc = {
 }
 
 FieldDesc = {
+    'template_id': uuid_regexp_or_empty,
     'step_id': uuid_regexp_or_empty,
     'fieldgroup_id': uuid_regexp_or_empty,
     'label': unicode,
@@ -432,30 +427,7 @@ FieldDesc = {
     'attrs': dict,
     'options': [FieldOptionDesc],
     'children': list,
-    'is_template': bool
-}
-
-FieldTemplateDesc = {
-    'fieldgroup_id': uuid_regexp_or_empty,
-    'label': unicode,
-    'description': unicode,
-    'hint': unicode,
-    'multi_entry': bool,
-    'x': int,
-    'y': int,
-    'required': bool,
-    'preview': bool,
-    'stats_enabled': bool,
-    'type': field_type,
-    'attrs': dict,
-    'options': list,
-    'children': list,
-    'is_template': bool
-}
-
-FieldFromTemplateDesc = {
-    'step_id': uuid_regexp_or_empty,
-    'template_id': uuid_regexp
+    'is_template': bool,
 }
 
 WizardStepDesc = {

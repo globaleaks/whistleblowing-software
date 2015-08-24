@@ -1,4 +1,3 @@
-
 <div id="ContextSelectorBox" data-ng-show="context_id == undefined && contexts_selectable && contexts.length > 1" class="form-inline">
   <label id="ContextSelectorLabel">{{::node.context_selector_label}}</label>
   <select id="ContextSelectorPick" class="form-control" data-ng-options="context as context.name for context in contexts | orderBy:contextsOrderPredicate" data-ng-model="selected_context"></select>
@@ -6,7 +5,7 @@
 
 <div id="ContextDescription">{{::submission.context.description}}</div>
 
-<form name="submissionForm" novalidate ng-if="submission.context" flow-init="{target: fileupload_url, headers: get_auth_headers()}" flow-files-submitted="$flow.upload()">
+<form name="submissionForm" novalidate ng-if="submission.context">
   <div data-ng-if="submission.context.steps.length == 1" data-ng-include="'views/submission/main_vertical.html'"></div>
   <div data-ng-if="submission.context.steps.length > 1" data-ng-include="'views/submission/main_horizontal.html'"></div>
 </form>

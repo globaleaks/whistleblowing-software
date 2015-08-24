@@ -70,6 +70,8 @@ storm.databases.sqlite.create_from_uri = SQLite
 # XXX. END MONKEYPATCH
 
 verbosity_dict = {
+    # do not exist anything above DEBUG, so is used a -1)
+    'TIMEDEBUG': (logging.DEBUG - 1),
     'DEBUG': logging.DEBUG,
     'INFO': logging.INFO,
     'WARNING': logging.WARNING,
@@ -265,6 +267,7 @@ class GLSettingssClass(object):
         self.devel_mode = False
         self.developer_name = ''
         self.skip_wizard = False
+        self.json_stats = False
         self.glc_path = None
 
         # Number of failed login enough to generate an alarm
@@ -515,6 +518,9 @@ class GLSettingssClass(object):
 
         if self.cmdline_options.skip_wizard:
             self.skip_wizard = True
+
+        if self.cmdline_options.json_stats:
+            self.json_stats = True
 
         if self.cmdline_options.glc_path:
             self.set_glc_path(self.cmdline_options.glc_path)

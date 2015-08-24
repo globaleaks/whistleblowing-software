@@ -53,11 +53,8 @@ class TestFieldCreate(helpers.TestHandler):
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             step_id = yield get_step_id(context['id'])
 
-            values = {
-                'template_id': field_template['id'],
-                'context_id': '',
-                'step_id': step_id
-            }
+            values = self.get_dummy_field()
+            values['template_id'] = field_template['id']
 
             handler = self.request(values, role='admin')
             yield handler.post()
@@ -195,7 +192,9 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             """
             Create a new field, the get it back using the receieved id.
             """
-            field = yield create_field(self.get_dummy_field(), 'en')
+            values = self.get_dummy_field()
+            values['is_template'] = True
+            field = yield create_field(values, 'en')
 
             handler = self.request(role='admin')
             yield handler.get(field['id'])

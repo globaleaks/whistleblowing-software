@@ -3,6 +3,7 @@
 """
 Utilities and basic TestCases.
 """
+
 from __future__ import with_statement
 
 import copy
@@ -17,15 +18,18 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 
-
-# Monkeypathing for unit testing  in order to
+# Monkeypatching for unit testing  in order to
 # prevent mail activities
 from globaleaks.utils import mailutils
 
+from globaleaks.utils.structures import fill_localized_keys
+
+import sys
+reload(sys)
+sys.getdefaultencoding()
 
 def sendmail_mock(**args):
     return defer.succeed(None)
-
 
 mailutils.sendmail = sendmail_mock
 
@@ -116,6 +120,8 @@ def import_fixture(store, fixture):
     with open(os.path.join(FIXTURES_PATH, fixture)) as f:
         data = json.loads(f.read())
         for mock in data:
+            if mock['class'] == 'Field' and mock['fields']['template_id'] == '':
+                del mock['fields']['template_id']
             mock_class = getattr(models, mock['class'])
             db_forge_obj(store, mock_class, mock['fields'])
 
@@ -227,8 +233,9 @@ class TestGL(unittest.TestCase):
         return new_r
 
     def get_dummy_field(self):
-        dummy_f = {
-            'is_template': True,
+        return {
+            'is_template': False,
+            'template_id': '',
             'step_id': '',
             'fieldgroup_id': '',
             'label': u'antani',
@@ -237,6 +244,7 @@ class TestGL(unittest.TestCase):
             'description': u"field description",
             'hint': u'field hint',
             'multi_entry': False,
+            'multi_entry_hint': '',
             'stats_enabled': False,
             'required': False,
             'attrs': {},
@@ -244,9 +252,20 @@ class TestGL(unittest.TestCase):
             'children': [],
             'y': 1,
             'x': 1,
+            'width': 0
         }
 
-        return dummy_f
+    @transact
+    def create_dummy_field(self, store, **custom_attrs):
+        field = self.get_dummy_field()
+
+        field['template_id'] = None
+
+        fill_localized_keys(field, models.Field.localized_strings, 'en')
+
+        field.update(custom_attrs)
+
+        return models.Field.new(store, field).id
 
     def fill_random_field_recursively(self, answers, field, value=None):
         # FIXME: currently the function consider:
@@ -687,6 +706,7 @@ class MockDict():
             {
                 'id': u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
                 'is_template': True,
+                'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
                 'label': u'Field 222',
@@ -695,6 +715,7 @@ class MockDict():
                 'description': u'field description',
                 'hint': u'field hint',
                 'multi_entry': False,
+                'multi_entry_hint': '',
                 'stats_enabled': False,
                 'required': True,  # <- first field is special,
                 'children': {},    # it's marked as required!!!
@@ -706,6 +727,7 @@ class MockDict():
             {
                 'id': u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
                 'is_template': True,
+                'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
                 'label': u'Field 2',
@@ -714,6 +736,7 @@ class MockDict():
                 'description': 'description',
                 'hint': u'field hint',
                 'multi_entry': False,
+                'multi_entry_hint': '',
                 'stats_enabled': False,
                 'required': False,
                 'children': {},
@@ -726,6 +749,7 @@ class MockDict():
                 'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
                 'is_template': True,
                 'step_id': '',
+                'template_id': '',
                 'fieldgroup_id': '',
                 'label': u'Generalities',
                 'type': u'fieldgroup',
@@ -733,6 +757,7 @@ class MockDict():
                 'description': u'field description',
                 'hint': u'field hint',
                 'multi_entry': False,
+                'multi_entry_hint': '',
                 'stats_enabled': False,
                 'required': False,
                 'children': {},
@@ -744,6 +769,7 @@ class MockDict():
             {
                 'id': u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
                 'is_template': True,
+                'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
                 'label': u'Name',
@@ -752,6 +778,7 @@ class MockDict():
                 'description': u'field description',
                 'hint': u'field hint',
                 'multi_entry': False,
+                'multi_entry_hint': '',
                 'stats_enabled': False,
                 'required': False,
                 'children': {},
@@ -763,6 +790,7 @@ class MockDict():
             {
                 'id': u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
                 'is_template': True,
+                'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
                 'label': u'Surname',
@@ -771,6 +799,7 @@ class MockDict():
                 'description': u'field description',
                 'hint': u'field hint',
                 'multi_entry': False,
+                'multi_entry_hint': '',
                 'stats_enabled': False,
                 'required': False,
                 'children': {},
@@ -782,6 +811,7 @@ class MockDict():
             {
                 'id': u'7e1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
                 'is_template': True,
+                'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
                 'label': u'Gender',
@@ -790,6 +820,7 @@ class MockDict():
                 'description': u'field description',
                 'hint': u'field hint',
                 'multi_entry': False,
+                'multi_entry_hint': '',
                 'stats_enabled': False,
                 'required': False,
                 'children': {},
@@ -933,24 +964,3 @@ def do_appdata_init(store):
         appdata.version = source['version']
         appdata.fields = source['fields']
         store.add(appdata)
-
-
-@transact
-def create_dummy_field(store, **custom_attrs):
-    attrs = {
-        'label': {'en': 'test label'},
-        'description': {'en': 'test description'},
-        'hint': {'en': 'test hint'},
-        'is_template': False,
-        'multi_entry': False,
-        'type': 'fieldgroup',
-        'options': [],
-        'required': False,
-        'preview': False,
-        'stats_enabled': True,
-        'x': 0,
-        'y': 0
-    }
-
-    attrs.update(custom_attrs)
-    return models.Field.new(store, attrs).id

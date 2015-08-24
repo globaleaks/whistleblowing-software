@@ -79,6 +79,10 @@ def pip_version_check(path):
         print "2) Installing missing requirements using rm -rf /tmp/pip-build-root/ && pip install -r /usr/share/globaleaks/glbackend/requirements.txt"
         quit(-1)
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 sys.excepthook = None
 
 this_directory = os.path.dirname(__file__)
@@ -213,6 +217,10 @@ GLSettings.parser.add_option("-R", "--ramdisk", type="string",
 GLSettings.parser.add_option("--XXX", type='string',
     help="hardcore debug only options: check NOTES.md file",
     dest="xxx")
+
+GLSettings.parser.add_option("-S", "--stats", action='store_true',
+    help="Statistics enabled, dump via JSON all the timings [DON'T DOIT!]",
+    dest="json_stats")
 
 GLSettings.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software (spoiler: %s)" % GLSettings.version_string,

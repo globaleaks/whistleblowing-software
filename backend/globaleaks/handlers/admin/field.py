@@ -57,6 +57,14 @@ def associate_field(store, field, step=None, fieldgroup=None):
         if field.is_template != fieldgroup.is_template:
             raise errors.InvalidInputFormat("Cannot associate field templates with fields")
 
+        ancestors = set(fieldtree_ancestors(store, field.id))
+
+        if field.id in [field.template_id, fieldgroup.id] or \
+           field.template_id == fieldgroup.id or \
+           field.template_id in ancestors or \
+           fieldgroup.id in ancestors:
+             raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
+
         fieldgroup.children.add(field)
 
 
@@ -142,38 +150,33 @@ def db_update_fieldattrs(store, field_id, field_attrs, language):
 
 def field_integrity_check(store, field):
     """
-    Verify the congruence of step_id, fieldgroup_id and is_template attrs in field dict
+    Preliminar validations of field descriptor in relation to:
+    - step_id
+    - fieldgroup_id
+    - is_template
 
     :param field: the field dict to be validated
     """
-    is_template = field['is_template']
-    step_id = field.get('step_id')
-    fieldgroup_id = field.get('fieldgroup_id')
-
     step = None
     fieldgroup = None
 
-    if not is_template and \
-       (step_id == '' or step_id is None) and \
-       (fieldgroup_id == '' or fieldgroup_id is None):
+    if field['is_template'] == '' and (field['step_id'] == '' and field['fieldgroup_id'] == ''):
         raise errors.InvalidInputFormat("Each field should be a template or be associated to a step/fieldgroup")
 
-    if not is_template:
-        if (step_id == '' or step_id is None) and \
-            (fieldgroup_id == '' or fieldgroup_id is None):
-            raise errors.InvalidInputFormat("Cannot associate a field to both a step and a fieldgroup")
+    if field['is_template'] != '' and (field['step_id'] != '' and field['fieldgroup_id'] != ''):
+        raise errors.InvalidInputFormat("Cannot associate a field to both a step and a fieldgroup")
 
-    if step_id:
-        step = store.find(models.Step, models.Step.id == step_id).one()
+    if field['step_id'] != '':
+        step = store.find(models.Step, models.Step.id == field['step_id']).one()
         if not step:
             raise errors.StepIdNotFound
 
-    if fieldgroup_id:
-        fieldgroup = store.find(models.Field, models.Field.id == fieldgroup_id).one()
+    if field['fieldgroup_id'] != '':
+        fieldgroup = store.find(models.Field, models.Field.id == field['fieldgroup_id']).one()
         if not fieldgroup:
             raise errors.FieldIdNotFound
 
-    return is_template, step, fieldgroup
+    return field['is_template'], step, fieldgroup
 
 
 def db_create_field(store, field, language):
@@ -188,40 +191,18 @@ def db_create_field(store, field, language):
     _, step, fieldgroup = field_integrity_check(store, field)
 
     fill_localized_keys(field, models.Field.localized_strings, language)
+
+    if field['template_id'] == '':
+        field['template_id'] = None
+
     f = models.Field.new(store, field)
-    db_update_fieldattrs(store, f.id, field['attrs'], language)
-    db_update_fieldoptions(store, f.id, field['options'], language)
 
-    associate_field(store, f, step, fieldgroup)
+    if field['template_id'] is None:
+        db_update_fieldattrs(store, f.id, field['attrs'], language)
+        db_update_fieldoptions(store, f.id, field['options'], language)
 
-    ancestors = set(fieldtree_ancestors(store, f.id))
-
-    for child in field['children']:
-        if child['id'] == f.id or child['id'] in ancestors:
-            raise errors.InvalidInputFormat
-
-        db_update_field(store, child['id'], child, language)
-
-    return f
-
-
-def db_create_field_from_template(store, field, language):
-    """
-    Create and add a new field to the store starting from a template,
-    then return the new serialized object.
-
-    :param store: the store on which perform queries.
-    :param field: the field definition dict
-    :param language: the language of the field definition dict
-    :return: a serialization of the object
-    """
-    _, step, fieldgroup = field_integrity_check(store, field)
-
-    template = store.find(models.Field, models.Field.id == field['template_id']).one()
-    if not template:
-        raise errors.InvalidInputFormat("The specified template id %s does not exist" %
-                                        field.get('template_id'))
-    f = template.copy(store, False)
+        for child in field['children']:
+            db_update_field(store, child['id'], child, language)
 
     associate_field(store, f, step, fieldgroup)
 
@@ -238,62 +219,69 @@ def create_field(store, field, language):
     return anon_serialize_field(store, f, language)
 
 
-@transact
-def create_field_from_template(store, field, language):
-    """
-    Transaction that perform db_create_field_from_template
-    """
-    f = db_create_field_from_template(store, field, language)
-
-    return anon_serialize_field(store, f, language)
-
-
 def db_update_field(store, field_id, field, language):
     _, step, fieldgroup = field_integrity_check(store, field)
 
     fill_localized_keys(field, models.Field.localized_strings, language)
 
+    if field['template_id'] == '':
+        field['template_id'] = None
+
+    f = models.Field.get(store, field_id)
+    if not f:
+        raise errors.FieldIdNotFound
+
     try:
-        f = models.Field.get(store, field_id)
-        if not f:
-            raise errors.FieldIdNotFound
+        if field['template_id'] is None:
+            # children handling:
+            #  - old children are cleared
+            #  - new provided childrens are evaluated and added
+            children = field['children']
+            if len(children) and f.type != 'fieldgroup':
+                raise errors.InvalidInputFormat("children can be associated only to fields of type fieldgroup")
 
-        f.update(field)
+            ancestors = set(fieldtree_ancestors(store, f.id))
 
-        # children handling:
-        #  - old children are cleared
-        #  - new provided childrens are evaluated and added
-        children = field['children']
-        if len(children) and f.type != 'fieldgroup':
-            raise errors.InvalidInputFormat("children can be associated only to fields of type fieldgroup")
+            f.children.clear()
+            for child in children:
+                if child['id'] == f.id or child['id'] in ancestors:
+                     raise errors.FieldIdNotFound
 
-        ancestors = set(fieldtree_ancestors(store, f.id))
+                c = db_update_field(store, child['id'], child, language)
 
-        f.children.clear()
-        for child in children:
-            if child['id'] == f.id or child['id'] in ancestors:
-                raise errors.FieldIdNotFound
+                # remove current step/field fieldgroup/field association
+                disassociate_field(store, c.id)
 
-            c = db_update_field(store, child['id'], child, language)
+                f.children.add(c)
 
-            # remove current step/field fieldgroup/field association
-            disassociate_field(store, c.id)
+            db_update_fieldattrs(store, f.id, field['attrs'], language)
+            db_update_fieldoptions(store, f.id, field['options'], language)
 
-            f.children.add(c)
+            # full update
+            f.update(field)
 
-        db_update_fieldattrs(store, f.id, field['attrs'], language)
-        db_update_fieldoptions(store, f.id, field['options'], language)
+        else:
+            # partial update
+            partial_update = {
+              'x': field['x'],
+              'y': field['y'],
+              'width': field['width'],
+              'stats_enabled': field['stats_enabled'],
+              'multi_entry': field['multi_entry'],
+              'required': field['required']
+            }
+
+            f.update(partial_update)
 
         # remove current step/field fieldgroup/field association
         disassociate_field(store, field_id)
 
         associate_field(store, f, step, fieldgroup)
-
-        return f
-
     except Exception as dberror:
         log.err('Unable to update field: {e}'.format(e=dberror))
         raise errors.InvalidInputFormat(dberror)
+
+    return f
 
 
 @transact
@@ -315,7 +303,7 @@ def update_field(store, field_id, field, language):
 
 
 @transact_ro
-def get_field(store, field_id, is_template, language):
+def get_field(store, field_id, language):
     """
     Serialize a specified field
 
@@ -326,7 +314,7 @@ def get_field(store, field_id, is_template, language):
     :return: the currently configured field.
     :rtype: dict
     """
-    field = store.find(models.Field, And(models.Field.id == field_id, models.Field.is_template == is_template)).one()
+    field = store.find(models.Field, models.Field.id == field_id).one()
     if not field:
         raise errors.FieldIdNotFound
 
@@ -334,7 +322,7 @@ def get_field(store, field_id, is_template, language):
 
 
 @transact
-def delete_field(store, field_id, is_template):
+def delete_field(store, field_id):
     """
     Delete the field object corresponding to field_id
 
@@ -346,7 +334,7 @@ def delete_field(store, field_id, is_template):
     :param is_template: a boolean specifying if the requested field needs to be a template
     :raises FieldIdNotFound: if no such field is found.
     """
-    field = store.find(models.Field, And(models.Field.id == field_id, models.Field.is_template == is_template)).one()
+    field = store.find(models.Field, models.Field.id == field_id).one()
     if not field:
         raise errors.FieldIdNotFound
 
@@ -365,7 +353,8 @@ def fieldtree_ancestors(store, field_id):
     for parent in parents:
         if parent.parent_id != field_id:
             yield parent.parent_id
-            for grandpa in fieldtree_ancestors(store, parent.parent_id): yield grandpa
+            for grandpa in fieldtree_ancestors(store, parent.parent_id):
+                yield grandpa
 
 
 @transact_ro
@@ -441,6 +430,9 @@ def update_step(store, step_id, request, language):
 
         step.update(request)
 
+        for child in request['children']:
+            db_update_field(store, child['id'], child, language)
+
     except Exception as dberror:
         log.err('Unable to update step: {e}'.format(e=dberror))
         raise errors.InvalidInputFormat(dberror)
@@ -510,10 +502,7 @@ class FieldTemplateCreate(BaseHandler):
 
         """
         request = self.validate_message(self.request.body,
-                                        requests.FieldTemplateDesc)
-
-        # enforce difference between /admin/field and /admin/fieldtemplate
-        request['is_template'] = True
+                                        requests.FieldDesc)
 
         response = yield create_field(request, self.request.language)
 
@@ -534,7 +523,7 @@ class FieldTemplateInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        response = yield get_field(field_id, True, self.request.language)
+        response = yield get_field(field_id, self.request.language)
         self.set_status(200)
         self.finish(response)
 
@@ -551,10 +540,7 @@ class FieldTemplateInstance(BaseHandler):
         :raises InvalidInputFormat: if validation fails.
         """
         request = self.validate_message(self.request.body,
-                                        requests.FieldTemplateDesc)
-
-        # enforce difference between /admin/field and /admin/fieldtemplate
-        request['is_template'] = True
+                                        requests.FieldDesc)
 
         response = yield update_field(field_id, request, self.request.language)
         self.set_status(202) # Updated
@@ -570,7 +556,7 @@ class FieldTemplateInstance(BaseHandler):
         :param field_id:
         :raises FieldIdNotFound: if there is no field with such id.
         """
-        yield delete_field(field_id, True)
+        yield delete_field(field_id)
         self.set_status(200)
 
 
@@ -591,29 +577,11 @@ class FieldCreate(BaseHandler):
         :rtype: FieldDesc
         :raises InvalidInputFormat: if validation fails.
         """
-        try:
-            tmp = json.loads(self.request.body)
-        except ValueError:
-            raise errors.InvalidInputFormat("Invalid JSON format")
+        request = self.validate_message(self.request.body,
+                                        requests.FieldDesc)
 
-        if isinstance(tmp, dict) and 'template_id' in tmp:
-            request = self.validate_message(self.request.body,
-                                            requests.FieldFromTemplateDesc)
+        response = yield create_field(request, self.request.language)
 
-            # enforce difference between /admin/field and /admin/fieldtemplate
-            request['is_template'] = False
-            response = yield create_field_from_template(request, self.request.language)
-
-        else:
-            request = self.validate_message(self.request.body,
-                                            requests.FieldDesc)
-
-            # enforce difference between /admin/field and /admin/fieldtemplate
-            request['is_template'] = False
-            response = yield create_field(request, self.request.language)
-
-        # get the updated list of contexts, and update the cache
-        public_contexts_list = yield get_public_context_list(self.request.language)
         GLApiCache.invalidate('contexts')
 
         self.set_status(201)
@@ -639,10 +607,8 @@ class FieldInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        response = yield get_field(field_id, False, self.request.language)
+        response = yield get_field(field_id, self.request.language)
 
-        # get the updated list of contexts, and update the cache
-        public_contexts_list = yield get_public_context_list(self.request.language)
         GLApiCache.invalidate('contexts')
 
         self.set_status(200)
@@ -664,13 +630,9 @@ class FieldInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.FieldDesc)
 
-        # enforce difference between /admin/field and /admin/fieldtemplate
-        request['is_template'] = False
-
         response = yield update_field(field_id, request, self.request.language)
 
         # get the updated list of contexts, and update the cache
-        public_contexts_list = yield get_public_context_list(self.request.language)
         GLApiCache.invalidate('contexts')
 
         self.set_status(202) # Updated
@@ -687,10 +649,9 @@ class FieldInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        yield delete_field(field_id, False)
+        yield delete_field(field_id)
 
         # get the updated list of contexts, and update the cache
-        public_contexts_list = yield get_public_context_list(self.request.language)
         GLApiCache.invalidate('contexts')
 
         self.set_status(200)

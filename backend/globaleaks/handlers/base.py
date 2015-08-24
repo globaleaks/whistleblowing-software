@@ -535,15 +535,17 @@ class BaseHandler(RequestHandler):
     def handler_time_analysis_end(self):
         current_run_time = time.time() - self.start_time
 
-        if GLSettings.devel_mode:
-            threshold = 4 * self.handler_exec_time_threshold
-        else:
-            threshold = self.handler_exec_time_threshold
-
-        if current_run_time > threshold:
-            error = "Handler [%s] exceeded exec threshold (of %d secs) with an execution time of %.2f seconds" % (self.name, threshold, current_run_time)
+        if current_run_time > self.handler_exec_time_threshold:
+            error = "Handler [%s] exceeded exec threshold (of %d secs) with an execution time of %.2f seconds" % \
+                    (self.name, self.handler_exec_time_threshold, current_run_time)
             log.err(error)
             send_exception_email(error)
+
+        if GLSettings.json_stats:
+            from globaleaks.handlers.exporter import add_measured_event
+            add_measured_event(self.request.method, self.request.uri,
+                               current_run_time, self.req_id)
+
 
     def handler_request_logging_begin(self):
         if GLSettings.devel_mode and GLSettings.http_log >= 0:

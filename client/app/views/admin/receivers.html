@@ -49,7 +49,7 @@
       </div>
       <div class="receiverList" data-ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'">
         <form id="receiver-{{$index}}" name="editReceiver" data-ng-controller="AdminReceiverEditorCtrl" novalidate>
-          <div class="configItem receiverItem" data-ng-class="{'configItemLast': $last}">
+          <div class="configItem receiverItem">
             <div class="editorHeader row" data-ng-click="toggleEditing($event)">
               <span class="col-md-7 editorHeaderTitle">
                 <span>{{receiver.name}}</span>
@@ -80,12 +80,12 @@
                     <span data-translate>Delete</span>
                   </button>
                   <span data-ng-if="receivers.length > 1">
-                    <a class="editorHeaderButton" data-ng-click="moveUp($event, receiver)" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                    <button class="editorHeaderButton btn btn-xs btn-primary" data-ng-click="moveUp($event, receiver)" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                       <i class="glyphicon glyphicon-menu-up"></i>
-                    </a>
-                    <a class="editorHeaderButton" data-ng-click="moveDown($event, receiver)" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                    </button>
+                    <button class="editorHeaderButton btn btn-xs btn-primary" data-ng-click="moveDown($event, receiver)" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                       <i class="glyphicon glyphicon-menu-down"></i>
-                    </a>
+                    </button>
                   </span>
                 </span>
               </span>

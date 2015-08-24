@@ -12,7 +12,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models, LANGUAGES_SUPPORTED
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
-from globaleaks.utils.utility import datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.settings import transact_ro, GLSettings
 from globaleaks.rest.apicache import GLApiCache
@@ -155,7 +154,12 @@ def anon_serialize_field(store, field, language):
     # this code is inspired by:
     #  - https://www.youtube.com/watch?v=KtNsUgKgj9g
 
-    options = [anon_serialize_option(o, language) for o in field.options]
+    if field.template:
+        f_to_serialize = field.template
+    else:
+        f_to_serialize = field
+
+    options = [anon_serialize_option(o, language) for o in f_to_serialize.options]
 
     sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
     step_id = sf.step_id if sf else ''
@@ -164,11 +168,11 @@ def anon_serialize_field(store, field, language):
     fieldgroup_id = ff.parent_id if ff else ''
 
     fields = []
-    for f in field.children:
+    for f in f_to_serialize.children:
         fields.append(anon_serialize_field(store, f, language))
 
     attrs = {}
-    for attr in store.find(models.FieldAttr, models.FieldAttr.field_id == field.id):
+    for attr in store.find(models.FieldAttr, models.FieldAttr.field_id == f_to_serialize.id):
         attrs[attr.name] = {}
         attrs[attr.name]['type'] = attr.type
         attrs[attr.name]['value'] = attr.value
@@ -180,10 +184,11 @@ def anon_serialize_field(store, field, language):
 
     ret_dict = {
         'id': field.id,
-        'type': field.type,
+        'type': f_to_serialize.type,
         'is_template': field.is_template,
-        'fieldgroup_id': fieldgroup_id,
+        'template_id': field.template.id if field.template else '',
         'step_id': step_id,
+        'fieldgroup_id': fieldgroup_id,
         'multi_entry': field.multi_entry,
         'required': field.required,
         'preview': field.preview,
@@ -194,11 +199,10 @@ def anon_serialize_field(store, field, language):
         'width': field.width,
         'activated_by': activated_by,
         'options': options,
-        'children': fields,
-        'value': {} if (field.type == 'checkbox') else ''
+        'children': fields
     }
 
-    return get_localized_values(ret_dict, field, field.localized_strings, language)
+    return get_localized_values(ret_dict, f_to_serialize, field.localized_strings, language)
 
 
 def anon_serialize_step(store, step, language):

@@ -1,6 +1,7 @@
 'use strict';
 
 var GLClient = angular.module('GLClient', [
+    'angular.filter',
     'ngAria',
     'ngRoute',
     'ui.bootstrap',
@@ -251,6 +252,22 @@ extendExceptionHandler.$inject = ['$delegate', '$injector', '$window', 'stacktra
 
 function extendExceptionHandler($delegate, $injector, $window, stacktraceService) {
     return function(exception, cause) {
+
+        var $rootScope = $injector.get('$rootScope');
+
+        if ($rootScope.exceptions_count == undefined) {
+          $rootScope.exceptions_count = 0;
+        }
+
+        $rootScope.exceptions_count += 1;
+
+        if ($rootScope.exceptions_count >= 3) {
+          // Give each client the ability to forward only the first 3 exceptions
+          // scattered; this is also important to avoid looping exceptions to
+          // cause looping POST requests.
+          return;
+        }
+
         $delegate(exception, cause);
 
         var errorMessage = exception.toString();

@@ -61,6 +61,7 @@ var fields = [
   {
     id: '',
     is_template: false,
+    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Field 1',
@@ -69,17 +70,20 @@ var fields = [
     description: 'field description',
     hint: 'field hint',
     multi_entry: false,
+    multi_entry_hint: '',
     stats_enabled: false,
     required: true,
     attrs: {},
     options: [],
     children: [],
     y: 1,
-    x: 0
+    x: 0,
+    width: 0
   },
   {
     id: '',
     is_template: false,
+    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Field 2',
@@ -88,17 +92,20 @@ var fields = [
     description: 'description',
     hint: 'field hint',
     multi_entry: false,
+    multi_entry_hint: '',
     stats_enabled: false,
     required: false,
     attrs: {},
     options: [],
     children: [],
     y: 2,
-    x: 0
+    x: 0,
+    width: 0
   },
   {
     id: '',
     is_template: false,
+    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Field 3',
@@ -107,17 +114,20 @@ var fields = [
     description: 'description',
     hint: 'field hint',
     multi_entry: false,
+    multi_entry_hint: '',
     stats_enabled: false,
     required: false,
     attrs: {},
     options: [],
     children: [],
     y: 3,
-    x: 0
+    x: 0,
+    width: 0
   },
   {
     id: '',
     is_template: false,
+    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Name',
@@ -126,17 +136,20 @@ var fields = [
     description: 'field description',
     hint: 'field hint',
     multi_entry: false,
+    multi_entry_hint: '',
     stats_enabled: false,
     required: false,
     attrs: {},
     options: [],
     children: [],
     y: 4,
-    x: 0
+    x: 0,
+    width: 0
   },
   {
     id: '',
     is_template: false,
+    template_id: '',
     step_id: '',
     fieldgroup_id: '',
     label: 'Surname',
@@ -145,13 +158,15 @@ var fields = [
     description: 'field description',
     hint: 'field hint',
     multi_entry: false,
+    multi_entry_hint: '',
     stats_enabled: false,
     required: false,
     attrs: {},
     options: [],
     children: [],
     y: 5,
-    x: 0
+    x: 0,
+    width: 0
   }
 ]
 
