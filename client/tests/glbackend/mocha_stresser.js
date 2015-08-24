@@ -32,7 +32,7 @@ var validate_mandatory_headers = function(headers) {
   }
 };
 
-describe('GET /contexts', function(){
+describe('Iteration...', function(){
   it(' Getting Context(s)', function(done){
     app
       .get('/contexts')
@@ -45,6 +45,7 @@ describe('GET /contexts', function(){
 
           /* is not a .push because is already a list */
           contexts = res.body;
+          console.log("Generating " + contexts.length * 40 + " submissions...");
 
           for (i=0; i < contexts.length ; i++) {
 
@@ -71,7 +72,6 @@ describe('GET /contexts', function(){
                         /* here get implemented
                         some random file upload
 
-
                          Accept-Language: en-US,en;q=0.5
                          Accept-Encoding: gzip, deflate
                          DNT: 1
@@ -88,17 +88,22 @@ describe('GET /contexts', function(){
                         /* and submission get completed here */
 
                         // console.log(res.headers);
-                        var token = res.body;
-
-
-                        validate_mandatory_headers(res.headers);
-
                         var sbms = {};
+                        var token = res.body;
+                          validate_mandatory_headers(res.headers);
+
+                        if (token.human_captcha !== false) {
+                            var xx = Number(token.human_captcha.charAt(0)) + Number(token.human_captcha.charAt(4));
+                            sbms.human_captcha_answer = xx;
+                        }
+                        else {
+                            sbms.human_captcha_answer = 0;
+                            console.log("Normal");
+                        }
+
                         // sbms.graph_captcha = false;
-                        // console.log(token);
 
                         sbms.context_id = token.context_id;
-                        sbms.human_captcha_answer = 0;
                         sbms.proof_of_work = 0;
                         sbms.graph_captcha_answer = 'unicode';
                         sbms.wb_steps = [];
@@ -113,11 +118,12 @@ describe('GET /contexts', function(){
                           .expect(202)
                           .end(function(err, res) {
                             if (err) {
-                              console.log("Error triggered, check the logs");
+                              // console.log("Error triggered, check the logs");
                               return done(err);
                             } else {
-                              console.log("Submission done");
-                              done();
+                              // console.log("Submission done");
+                              console.log(res.body.receipt);
+                              // done();
                             }
                           });
 
