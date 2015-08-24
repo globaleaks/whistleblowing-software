@@ -341,15 +341,12 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         }
       });
 
-      console.log(sum);
-
       return sum;
     };
 
     $scope.isUploading = function(uploads) {
       angular.forEach(uploads, function(flow, key) {
         if(flow.isUploading()) {
-          console.log(true);
           return true;
         }
       });
