@@ -6,7 +6,7 @@ GLClient.controller('StatusCtrl',
     $scope.session = Authentication.id;
     $scope.target_file = '#';
 
-    $scope.uploads = [];
+    $scope.uploads = {};
     $scope.hideUploadWhenFinished = true;
 
     $scope.getFields = function(field) {
