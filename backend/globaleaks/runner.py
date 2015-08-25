@@ -51,6 +51,9 @@ def start_asynchronous():
     # The Tip cleaning scheduler need to be executed every day at midnight
     current_time = datetime_now()
     delay = (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
+    # Temporary -- testing the new cleaning
+    print "REMIND: you are testing the cleaning sched now, remove for final commit -- runner.py:55"
+    delay = 2
     clean = cleaning_sched.CleaningSchedule()
     reactor.callLater(delay, clean.start, 3600 * 24)
 

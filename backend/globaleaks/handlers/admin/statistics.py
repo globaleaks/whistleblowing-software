@@ -87,6 +87,7 @@ def get_stats(store, week_delta):
     if week_entries == (7 * 24):
         return {
             'complete': True,
+            'week': datetime_to_ISO8601(target_week),
             'heatmap': weekmap_to_heatmap(week_map)
         }
 
@@ -126,6 +127,7 @@ def get_stats(store, week_delta):
 
     return {
         'complete': False,
+        'week': datetime_to_ISO8601(target_week),
         'heatmap': weekmap_to_heatmap(week_map)
     }
 

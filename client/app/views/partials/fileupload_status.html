@@ -1,4 +1,4 @@
-<div class="uploadingBox" data-ng-if="uploadedFiles(uploads) && !(hideUploadWhenFinished && !isUploading())">
+<div class="uploadingBox" data-ng-if="uploadedFiles(uploads) && (isUploading() || !hideUploadWhenFinished)">
   <div id="FileUploadsHeader">
     <div data-translate>Uploading files...</div>
   </div>

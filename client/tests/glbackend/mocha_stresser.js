@@ -30,7 +30,7 @@ var validate_mandatory_headers = function(headers) {
   }
 };
 
-describe('GET /contexts', function(){
+describe('Iteration...', function(){
   it(' Getting Context(s)', function(done){
     app
       .get('/contexts')
@@ -43,6 +43,7 @@ describe('GET /contexts', function(){
 
           /* is not a .push because is already a list */
           contexts = res.body;
+          console.log("Generating " + contexts.length * 40 + " submissions...");
 
           for (i=0; i < contexts.length ; i++) {
 
@@ -66,8 +67,25 @@ describe('GET /contexts', function(){
                         return done(err);
                       } else {
 
-                        // console.log(res.headers);
                         var token = res.body;
+                        /* here get implemented
+                        some random file upload
+
+                         Accept-Language: en-US,en;q=0.5
+                         Accept-Encoding: gzip, deflate
+                         DNT: 1
+                         GL-Language: en
+                         Content-Length: 1276
+                         Content-Type: multipart/form-data; boundary=---------------------------9469237647089023971398185979
+                         Connection: keep-alive
+                         Pragma: no-cache
+                         Cache-Control: no-cache
+
+                         console.log(fileupbody);
+
+                        */
+
+                        /* and submission get completed here */
 
                         /*
                         var boundary = '---------------------------1111111111111111111111111111';
@@ -80,9 +98,18 @@ describe('GET /contexts', function(){
                         validate_mandatory_headers(res.headers);
 
                         var sbms = {};
+                        if (token.human_captcha !== false) {
+                            var xx = Number(token.human_captcha.charAt(0)) + Number(token.human_captcha.charAt(4));
+                            sbms.human_captcha_answer = xx;
+                        }
+                        else {
+                            sbms.human_captcha_answer = 0;
+                            console.log("Normal");
+                        }
+
+                        // sbms.graph_captcha = false;
 
                         sbms.context_id = token.context_id;
-                        sbms.human_captcha_answer = 0;
                         sbms.proof_of_work = 0;
                         sbms.graph_captcha_answer = 'unicode';
                         sbms.wb_steps = [];
@@ -97,11 +124,11 @@ describe('GET /contexts', function(){
                           .expect(202)
                           .end(function(err, res) {
                             if (err) {
-                              console.log("Error triggered, check the logs");
+                              // console.log("Error triggered, check the logs");
                               return done(err);
                             } else {
                               console.log("Submission done, receipt: " +  res.body.receipt);
-                              // done();
+                              done();
                             }
                           });
 
@@ -109,7 +136,6 @@ describe('GET /contexts', function(){
                     });
             }
           }
-
 
         }
       });

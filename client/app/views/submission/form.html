@@ -1,13 +1,17 @@
 <div data-ng-init="toplevel = (field === undefined) ? true : false; fields = (field === undefined) ? step.children : field.children">
   <div data-ng-if="::toplevel">
     <div data-ng-repeat="field in fields | orderBy:['y', 'x']">
-      <div id="field-{{field.id}}" data-ng-include="'views/submission/form_field.html'"></div>
+      <div data-ng-init="fieldId = 'field-' + $index">
+        <div data-ng-include="'views/submission/form_field.html'"></div>
+      </div>
     </div>
   </div>
   <div data-ng-if="::!toplevel">
     <div data-ng-repeat="row in ::fields | groupBy:'y' | toArray:true | orderBy:minY" class="fieldsRow row">
       <div data-ng-repeat="field in ::row | orderBy:'x'" data-ng-class="getClass($parent.$index, $index, toplevel, row.length, field)">
-        <div id="field-{{field.id}}" data-ng-include="'views/submission/form_field.html'"></div>
+        <div data-ng-init="fieldId = fieldId + '-' + $parent.$index + '-' + $index">
+          <div data-ng-include="'views/submission/form_field.html'"></div>
+        </div>
       </div>
     </div>
   </div>

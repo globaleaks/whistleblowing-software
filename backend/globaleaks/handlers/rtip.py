@@ -173,6 +173,7 @@ def db_delete_itip(store, itip):
                 except OSError as excep:
                     log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
 
+    log.debug("Removing from InternalTip DB (%s)" % itip.id)
     store.remove(itip)
 
 

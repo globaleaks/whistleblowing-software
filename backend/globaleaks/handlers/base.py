@@ -533,18 +533,25 @@ class BaseHandler(RequestHandler):
         self.start_time = time.time()
 
     def handler_time_analysis_end(self):
+        """
+        If the software is running with the option -S --stats (GLSetting.json_stats)
+        then we are doing performance testing, having our mailbox spammed is not important,
+        so we just skip to report the anomaly.
+        """
         current_run_time = time.time() - self.start_time
 
         if current_run_time > self.handler_exec_time_threshold:
             error = "Handler [%s] exceeded exec threshold (of %d secs) with an execution time of %.2f seconds" % \
                     (self.name, self.handler_exec_time_threshold, current_run_time)
             log.err(error)
-            send_exception_email(error)
+
+            if not GLSettings.json_stats:
+                send_exception_email(error)
 
         if GLSettings.json_stats:
             from globaleaks.handlers.exporter import add_measured_event
             add_measured_event(self.request.method, self.request.uri,
-                               current_run_time, self.req_id)
+                               current_run_time, self.req_id, self.start_time)
 
 
     def handler_request_logging_begin(self):

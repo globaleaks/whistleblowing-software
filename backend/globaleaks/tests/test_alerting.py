@@ -9,6 +9,7 @@ from globaleaks.jobs.statistics_sched import StatisticsSchedule
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 from globaleaks.tests.test_anomaly import pollute_events_for_testing
+from globaleaks.utils.utility import datetime_to_ISO8601
 
 anomaly.reactor = task.Clock()
 
@@ -32,7 +33,7 @@ class TestStatistics(helpers.TestGL):
 
         anomdet = GLSettings.RecentAnomaliesQ.values()[0]
         self.assertEqual(len(GLSettings.RecentAnomaliesQ.keys()), 1)
-        original_when = GLSettings.RecentAnomaliesQ.keys()[0]
+        original_date = datetime_to_ISO8601(GLSettings.RecentAnomaliesQ.keys()[0])
 
         self.assertTrue(isinstance(anomdet, list))
         self.assertTrue(len(anomdet), 2)
@@ -50,4 +51,4 @@ class TestStatistics(helpers.TestGL):
 
         # now if we get our anomalies, we expect the same 10, right ?
         AH = yield get_anomaly_history(limit=10)
-        self.assertEqual(original_when, AH[0]['when'])
+        self.assertEqual(original_date, AH[0]['date'])

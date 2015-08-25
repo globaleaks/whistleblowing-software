@@ -109,7 +109,7 @@ GLSettings.parser.add_option("-n", "--nodaemon", action='store_true',
     dest="nodaemon", default=GLSettings.nodaemon)
 
 GLSettings.parser.add_option("-l", "--loglevel", type="choice",
-    choices=['CRITICAL', 'ERROR', 'INFO', 'DEBUG'],
+    choices=['CRITICAL', 'ERROR', 'INFO', 'DEBUG', 'TIMEDEBUG'],
     help="set log level [default: %default]",
     dest="loglevel", default=GLSettings.loglevel)
 

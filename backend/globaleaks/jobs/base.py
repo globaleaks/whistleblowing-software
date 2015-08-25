@@ -65,7 +65,7 @@ class GLJob(task.LoopingCall):
 
         if self.name == 'Delivery':
             from globaleaks.handlers.exporter import add_measured_event
-            add_measured_event(None, None, current_run_time, self.iterations)
+            add_measured_event(None, None, current_run_time, self.iterations, self.start_time)
 
     @defer.inlineCallbacks
     def _operation(self):
