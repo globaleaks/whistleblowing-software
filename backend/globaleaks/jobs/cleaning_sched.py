@@ -65,12 +65,13 @@ class CleaningSchedule(GLJob):
     @transact_ro
     def get_cleaning_map(self, store):
         subjects = store.find(InternalTip, InternalTip.expiration_date < datetime_now())
-        log.info("Removal of %d InternalTips starts soon" % subjects.count())
 
         itip_id_list = []
         for itip in subjects:
             itip_id_list.append(unicode(itip.id))
 
+        if itip_id_list:
+            log.info("Removal of %d InternalTips starts soon" % subjects.count())
         return itip_id_list
 
     @transact

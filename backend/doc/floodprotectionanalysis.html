@@ -417,6 +417,78 @@ The flood detection and protection system must properly log every event of flood
 <div id="supporterflow">
 </div>
 
+<hr />
+
+<h1>Practical limitation and vulnerability found</h1>
+
+<div id="confessions">
+    <h4>Non-Atomic operations</h4>
+    <p><i>transaction are blocking operation over the database, when a transaction takes long time, all the DB operation remain in queue. DB operation are performed by Handler (executed ad user time) and Scheduler (executed periodically)</i>.</p>
+    <p>
+        The delivery schedule was processing the removal of the tip in a single transact, and this would take a lots of time to be completed. during the stress test, the database is resulted corrupted when globaLeaks has been stopped forcefully during such delete operation.
+        Permit a robust deletion of the Tip is essential to free a node that get flooded. Now the operation has been done atomic, and also large removal can be approached., and also large removal can be approached.
+    </p>
+    <p>Generally speaking, having one subtask that may last for less than one seconds or for hours became troublesome when potentially the attacker can forcefully bring your system in this condition.</p>
+    <pre>
+2015-08-25 10:17:43+0200 '[!] Warning: [[Job Notification]] is taking more than 545 minutes to execute'
+2015-08-25 10:18:52+0200 '[!] Warning: [[Job Delivery]] is taking more than 480 minutes to execute'
+2015-08-25 10:20:00+0200 '[!] Warning: [[Job PGP Check]] is taking more than 500 minutes to execute'
+2015-08-25 10:20:00+0200 '[!] Warning: [[Job Statistics Sched]] is taking more than 500 minutes to execute'
+    </pre>
+    <p>
+        In the cases above, we have no visibility on the reasons of this blocking, if the queue is grown up during the iteration, or the percentage of work executed so far. In such condition, is impossible having an answer from any HTTP handlers (admin authentication, new submissions)
+    </p>
+    <p><b>Scheduled operation are an essential part in the anti-DoS scenario:</b> all the activities resource intensive has to be done in these scheduled event, so the resource usage do not depend directly from user interation. If you left an anonymous user send you applicative command that trigger email, disk encryption or other tasks, you are prone to Applicative Denial of Service.</p>
+
+    <h4>Memory usage</h4>
+    <p>Lefting a stress tester that perform 30~40 submission every 30 seconds, without triggering the anomaly (because at the moment is capped as 50 in 30secs), bring the test boxes (Intel i7 with 8gb of Ram) to fill 95% of memory and 600 Mb of swap. The output of <b>pmap</b> below is heavily reduced for space reasons, only the entry using more memory has been kept.</p>
+    <pre>
+11121:   python bin/globaleaks -z vecna -n -d -S -l DEBUG --disable-mail-notification
+Address           Kbytes     RSS   Dirty Mode  Mapping
+00000000022bc000 1260216 1245568 1245524 rw---   [ anon ]
+00007f8134021000   82944   82944   82944 rw---   [ anon ]
+00007f8139122000  958976  958976  958976 rw---   [ anon ]
+00007f81739a3000 1118464 1078156 1078144 rw---   [ anon ]
+00007f81b7de4000  262144  259376  259376 rw---   [ anon ]
+---------------- ------- ------- -------
+total kB         4694212 4433416 4427260
+    </pre>
+    <p>Giving SIGINT to such process do not let the process close, remain strucki (<i>strace display a blocking futex() operation</i>), require SIGKILL to be interrupted.</p>
+    <pre>
+checking file: workingdir/db/glbackend-23.db
+Context                                   2
+Receivers                                 2
+Users                                     3
+InternalTips                              51014
+ReceiverTips                              102028
+Comments                                  0
+Messages                                  0
+InternalFile                              0
+ReceiverFile                              0
+WhistleblowerTips                         51014
+ReceiverContext                           4
+InternalTipReceiver                       102028
+Notification                              1
+ApplicationData                           1
+Node                                      1
+Stats                                     4
+    </pre>
+    <p>The Node database result unable to perform any operation after the restart.</p>
+    <p>As developer trick, GlobaLeaks started with option --XXX 9999999,, makes GlobaLeaks run with 9999999 seconds in the future, this cause the expiration of many Tips</p>
+    <pre>
+2015-08-25 12:06:34+0200 [-] Removal of 13302 InternalTips starts soon
+2015-08-25 12:06:34+0200 [D] Removing from InternalTip DB (b26456c0-7789-4e47-807a-39490dc126fb)
+2015-08-25 12:06:37+0200 [D] Removing from InternalTip DB (971fd46a-3494-475f-a42b-a22655a152a6)
+[...]
+2015-08-25 12:06:46+0200 [D] Removing from InternalTip DB (763a01ba-c792-4e4b-a1bb-669d48411252)
+2015-08-25 12:06:47+0200 [D] Notification: found 54537 Tip(s) to be handled
+    </pre>
+    <p>After the Notification schedule, any operation in the DB get denied because is a non-atomic operation, and deny all the DB operation (read only, too). Forcing cleaning operation when the DB is blocked, cause the irrecuperable condition of:</p>
+    <pre>
+DatabaseError: database disk image is malformed
+    </pre>
+</div>
+
 
 </body>
 </html>
