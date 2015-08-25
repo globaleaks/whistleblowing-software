@@ -46,7 +46,7 @@ describe('GET /contexts', function(){
 
           for (i=0; i < contexts.length ; i++) {
 
-            for(k = 0; k < 4; k++ ) {
+            for(k = 0; k < 200; k++ ) {
 
                   var new_submission = {};
                   new_submission.context_id = contexts[i].id;
@@ -66,28 +66,16 @@ describe('GET /contexts', function(){
                         return done(err);
                       } else {
 
-                        /* here get implemented
-                        some random file upload
-
-
-                         Accept-Language: en-US,en;q=0.5
-                         Accept-Encoding: gzip, deflate
-                         DNT: 1
-                         GL-Language: en
-                         Content-Length: 1276
-                         Content-Type: multipart/form-data; boundary=---------------------------9469237647089023971398185979
-                         Connection: keep-alive
-                         Pragma: no-cache
-                         Cache-Control: no-cache
-
-                         console.log(fileupbody);
-
-                        */
-                        /* and submission get completed here */
-
                         // console.log(res.headers);
                         var token = res.body;
 
+                        /*
+                        var boundary = '---------------------------1111111111111111111111111111';
+                        var fileupload = "";
+                        app
+                          .put('/submission/' + token.token_id + '/file')
+                          .set('Content-Type', 'multipart/form-data; boundary=---------------------------1111111111111111111111111111')
+                        */
 
                         validate_mandatory_headers(res.headers);
 
@@ -119,12 +107,8 @@ describe('GET /contexts', function(){
 
                       }
                     });
-
             }
-
           }
-          done();
-
 
 
         }
