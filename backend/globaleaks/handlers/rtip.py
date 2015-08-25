@@ -146,7 +146,7 @@ def db_access_tip(store, user_id, tip_id):
     return rtip
 
 
-def db_delete_itip(store, itip):
+def db_delete_itip(store, itip, itip_number=0):
     for ifile in itip.internalfiles:
         abspath = os.path.join(GLSettings.submission_path, ifile.file_path)
 
@@ -173,7 +173,12 @@ def db_delete_itip(store, itip):
                 except OSError as excep:
                     log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
 
-    log.debug("Removing from InternalTip DB (%s)" % itip.id)
+    if itip_number:
+        log.debug("Removing from Cleaning operation InternalTip (%s) N# %d" %
+                  (itip.id, itip_number) )
+    else:
+        log.debug("Removing InternalTip as commanded by Receiver (%s)" % itip.id)
+
     store.remove(itip)
 
 
@@ -181,7 +186,7 @@ def db_delete_rtip(store, rtip):
     return db_delete_itip(store, rtip.internaltip)
 
 
-def db_postpone_expiration_date(store, rtip):
+def db_postpone_expiration_date(rtip):
     rtip.internaltip.expiration_date = \
         utc_future_date(seconds=rtip.internaltip.context.tip_timetolive)
 
@@ -219,7 +224,7 @@ def postpone_expiration_date(store, user_id, tip_id):
        "True" if rtip.receiver.can_postpone_expiration else "False"
     ))
 
-    db_postpone_expiration_date(store, rtip)
+    db_postpone_expiration_date(rtip)
 
     log.debug(" [%s] in %s has postponed expiration time to %s" % (
         rtip.receiver.name,

@@ -123,7 +123,7 @@ describe('Iteration...', function(){
                             } else {
                               // console.log("Submission done");
                               console.log(res.body.receipt);
-                              // done();
+                              done();
                             }
                           });
 

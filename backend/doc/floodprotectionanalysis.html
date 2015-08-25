@@ -117,13 +117,19 @@
 
     <script type="text/javascript">
 
-        function dotspaint() {
+        function seriesofgraphpaint()
+        {
+            dotspaint("#submissiononly", "/80plus80submission.csv");
+            dotspaint("#deliveryandsub", "/tokenanddelivery.csv");
+            dotspaint("#commentflow", "/comments.csv");
+            dotspaint("#research", "/_laststats.csv");
+        }
 
-            console.log("Sono dentro doc!");
+        function dotspaint(target_id, source_filename) {
 
-            var margin = {top: 20, right: 20, bottom: 30, left: 40},
-                    width = 960 - margin.left - margin.right,
-                    height = 500 - margin.top - margin.bottom;
+            var margin = {top: 20, right: 20, bottom: 30, left: 80},
+                    width = 1460 - margin.left - margin.right,
+                    height = 800 - margin.top - margin.bottom;
 
             var x = d3.scale.linear()
                     .range([0, width]);
@@ -141,25 +147,25 @@
                     .scale(y)
                     .orient("left");
 
-            var svg = d3.select("body").append("svg")
+            var svg = d3.select(target_id).append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
                     .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-            d3.csv("/currentCSV", function(error, data) {
+            d3.csv(source_filename, function(error, data) {
 
                 if (error) throw error;
 
                 console.log(data);
 
                 data.forEach(function(d) {
-                    d.sepalLength = +d.sepalLength;
-                    d.sepalWidth = +d.sepalWidth;
+                    d.number =+ d.number;
+                    d.millisec =+ d.millisec;
                 });
 
-                x.domain(d3.extent(data, function(d) { return d.sepalWidth; })).nice();
-                y.domain(d3.extent(data, function(d) { return d.sepalLength; })).nice();
+                x.domain(d3.extent(data, function(d) { return d.number; })).nice();
+                y.domain(d3.extent(data, function(d) { return d.millisec; })).nice();
 
                 svg.append("g")
                         .attr("class", "x axis")
@@ -170,7 +176,7 @@
                         .attr("x", width)
                         .attr("y", -6)
                         .style("text-anchor", "end")
-                        .text("Sepal Width (cm)");
+                        .text("Event ID");
 
                 svg.append("g")
                         .attr("class", "y axis")
@@ -181,16 +187,16 @@
                         .attr("y", 6)
                         .attr("dy", ".71em")
                         .style("text-anchor", "end")
-                        .text("Sepal Length (cm)");
+                        .text("Milliseconds of execution (Ms)");
 
                 svg.selectAll(".dot")
                         .data(data)
                         .enter().append("circle")
                         .attr("class", "dot")
                         .attr("r", 3.5)
-                        .attr("cx", function(d) { return x(d.sepalWidth); })
-                        .attr("cy", function(d) { return y(d.sepalLength); })
-                        .style("fill", function(d) { return color(d.species); });
+                        .attr("cx", function(d) { return x(d.number); })
+                        .attr("cy", function(d) { return y(d.millisec); })
+                        .style("fill", function(d) { return color(d.type); });
 
                 var legend = svg.selectAll(".legend")
                         .data(color.domain())
@@ -292,7 +298,7 @@
 
 </head>
 
-<body onload="dotspaint();">
+<body onload="seriesofgraphpaint();">
 
 <h1>Anti-flood research and development</h1>
 <h2>Experiments and python code for GlobaLeaks package</h2>
@@ -412,12 +418,31 @@ The flood detection and protection system must properly log every event of flood
 
 <hr />
 
-<h1>Execution stats</h1>
+<h1>Timing execution stats</h1>
+<h3>In order to investigated on the queue developed under stress testing, a modified version of GlobaLeaks has been used. The patch export via CSV some timings stats.</h3>
 
-<div id="supporterflow">
+<p>Follow an example of 80 submission started in nearly the same time, using the stress testing script mocha_stress.js</p>
+<p>Is executed for two times, and you see in the "x" the incremental number of the request, and in the "y" line the milliseconds of duration.</p>
+
+<div id="submissiononly">
+</div>
+
+<p>Here instead also the token is present, it display the fact that Token is a CPU-less intensive operation, answered indipendentely from the Database load. The queue display that more submission are in queue, and more time they require to get processed once per time.</p>
+
+<div id="deliveryandsub">
+</div>
+
+<p>In the following graph, the pattern spot is the same having comments in queue, in a specific Receiver Tip.</p>
+
+<div id="commentflow">
 </div>
 
 <hr />
+
+<h1>&lt;Research&gt;</h1>
+<div id="research"></div>
+<h1>&lt;/Research&gt;</h1>
+
 
 <h1>Practical limitation and vulnerability found</h1>
 
