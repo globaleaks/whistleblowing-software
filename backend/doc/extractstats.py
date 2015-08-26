@@ -8,11 +8,11 @@ class MyHanlder(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def do_GET(self):
 
         print self.requestline
-        if self.requestline.startswith('GET /currentCSV'):
+        if self.requestline.startswith('GET /_laststats.csv'):
             import requests
             res = requests.get('http://127.0.0.1:8082/S/current')
             print "Overwriting %d" % len(res.text)
-            with file('laststats.csv', 'w+') as fp:
+            with file('_laststats.csv', 'w+') as fp:
                 fp.write(res.text)
             self.wfile.write(res.text)
 

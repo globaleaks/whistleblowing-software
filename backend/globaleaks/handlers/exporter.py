@@ -7,26 +7,18 @@
 # research and development. The API Below are enabled only if the system runs in
 # development mode.
 
-from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.files import download_all_files, serialize_receiver_file
-from globaleaks.handlers.authentication import transport_security_check, authenticated
-from globaleaks.handlers import admin
 from globaleaks.rest import errors
-from globaleaks.settings import transact_ro
-from globaleaks.plugins.base import Event
-from globaleaks.jobs.notification_sched import serialize_receivertip
-from globaleaks.models import ReceiverTip, ReceiverFile
-from globaleaks.utils.zipstream import ZipStream, get_compression_opts
 from globaleaks.utils.utility import log
-from globaleaks.utils.templating import Templating
 from globaleaks.settings import GLSettings
+import datetime
 
 CurrentStatQueue = []
 EventTypeCounter = {
-    'submission': 1,
-    'delivery': 1,
-    'comment': 1,
+    'submission': 0,
+    'delivery': 0,
+    'comment': 0,
+    'token': 0,
 }
 
 def add_measured_event(method, uri, secs_elapsed, event_id, start_time):
@@ -36,14 +28,15 @@ def add_measured_event(method, uri, secs_elapsed, event_id, start_time):
 
     if method == 'PUT' and uri.startswith('/submission'):
         event_type = 'submission'
-    elif method == 'POST' and uri == '/wbtips/comments':
+    elif method == 'POST' and uri.startswith('/submission'):
+        event_type = 'token'
+    elif method == 'POST' and uri == '/wbtip/comments':
         event_type = 'comment'
     elif method == None and uri == None:
         event_type = 'delivery'
     else:
         return
 
-    import datetime
     start_time_string = str(datetime.datetime.fromtimestamp(start_time))
 
     log.debug("add_measured_event %s %s %d %d = %s, start time %s" %
