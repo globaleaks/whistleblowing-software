@@ -6,6 +6,6 @@
 <div id="ContextDescription">{{::submission.context.description}}</div>
 
 <form name="submissionForm" novalidate ng-if="submission.context">
-  <div data-ng-if="submission.context.steps.length == 1" data-ng-include="'views/submission/main_vertical.html'"></div>
-  <div data-ng-if="submission.context.steps.length > 1" data-ng-include="'views/submission/main_horizontal.html'"></div>
+  <div data-ng-if="submission.context.steps_arrangement == 'vertical'" data-ng-include="'views/submission/main_vertical.html'"></div>
+  <div data-ng-if="submission.context.steps_arrangement == 'horizontal'" data-ng-include="'views/submission/main_horizontal.html'"></div>
 </form>
