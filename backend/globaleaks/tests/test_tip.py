@@ -4,7 +4,7 @@ import re
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.settings import GLSettings
+from globaleaks.settings import GLSettings, transact_ro
 from globaleaks.tests import helpers
 from globaleaks.rest import errors, requests
 from globaleaks.handlers import admin, submission, authentication, receiver, rtip, wbtip
@@ -25,6 +25,12 @@ class TestTip(helpers.TestGL):
     commentCreation = {
         'content': '',
     }
+
+    @transact_ro
+    def get_count_of_itip_using_archived_schema(self, store, hash):
+        for a in store.find(models.ArchivedSchema, models.ArchivedSchema.hash == hash):
+            print a.language
+        return store.find(models.ArchivedSchema, models.ArchivedSchema.hash == hash).count()
 
     @inlineCallbacks
     def setup_tip_environment(self):
@@ -56,6 +62,8 @@ class TestTip(helpers.TestGL):
 
         self.rtip1_id = tips_receiver_1[0]['id']
         self.rtip2_id = tips_receiver_2[0]['id']
+        self.rtip1_questionnaire_hash = tips_receiver_1[0]['questionnaire_hash']
+        self.rtip1_questionnaire_hash = tips_receiver_2[0]['questionnaire_hash']
 
     @inlineCallbacks
     def wb_auth_with_receipt(self):
@@ -233,11 +241,13 @@ class TestTip(helpers.TestGL):
 
     @inlineCallbacks
     def receiver1_delete_tip(self):
-
         yield rtip.delete_rtip(self.receiver1_desc['id'], self.rtip1_id)
 
         self.assertFailure(rtip.get_tip(self.receiver1_desc['id'], self.rtip1_id, 'en'),
                            errors.TipIdNotFound)
+
+        count = yield self.get_count_of_itip_using_archived_schema(self.rtip1_questionnaire_hash)
+        self.assertEqual(count, 0)
 
     @inlineCallbacks
     def check_wb_messages_expected(self, expected_msgs):
