@@ -514,6 +514,29 @@ DatabaseError: database disk image is malformed
     </pre>
 </div>
 
+<h3>Solution</h3>
+<div>
+  in mailflush_sched.py, line 195:
+  <pre>
+storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)
+  </pre>
+
+  <pre>
+184 @transact_ro
+185 def load_complete_events(store, event_number=GLSettings.notification_limit):
+186     """
+189     event_number represent the amount of event that can be returned by the function,
+190     events to be notified are taken in account later.
+191     """
+192     node_desc = db_admin_serialize_node(store, GLSettings.defaults.language)
+193 
+194     event_list = []
+195     storedevnts = store.find(EventLogs, EventLogs.mail_sent == False).limit(event_number)
+196     storedevnts.order_by(Asc(EventLogs.creation_date))
+  </pre>
+
+</div>
+
 
 </body>
 </html>

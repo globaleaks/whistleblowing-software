@@ -184,15 +184,14 @@ def mark_event_as_sent(store, event_id):
 @transact_ro
 def load_complete_events(store, event_number=GLSettings.notification_limit):
     """
-    _complete_ is explicit because do not serialize, but make an OD() of the description.
-
+    This function do not serialize, but make an OD() of the description.
     event_number represent the amount of event that can be returned by the function,
-    event to be notified are taken in account later.
+    events to be notified are taken in account later.
     """
     node_desc = db_admin_serialize_node(store, GLSettings.defaults.language)
 
     event_list = []
-    storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)
+    storedevnts = store.find(EventLogs, EventLogs.mail_sent == False).limit(event_number)
     storedevnts.order_by(Asc(EventLogs.creation_date))
 
     debug_event_counter = {}
