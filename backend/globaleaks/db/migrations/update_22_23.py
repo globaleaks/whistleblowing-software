@@ -2,6 +2,7 @@
 
 import copy
 import json
+import os
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
 
@@ -12,6 +13,7 @@ from globaleaks.handlers.submission import db_save_questionnaire_answers, \
 from globaleaks.models import Model, ArchivedSchema
 from globaleaks.security import sha256
 from globaleaks.settings import GLSettings
+from globaleaks.third_party.rstr import xeger
 
 
 class InternalFile_v_22(Model):
@@ -272,6 +274,10 @@ class Replacer2223(TableReplacer):
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'processing_attempts':
                     new_obj.processing_attempts = 0
+                    continue
+
+                if v.name == 'file_path':
+                    new_obj.file_path = os.path.join(GLSettings.submission_path, "%s.aes" % xeger(r'[A-Za-z0-9]{16}'))
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
