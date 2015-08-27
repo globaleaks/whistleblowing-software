@@ -31,7 +31,13 @@ from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
+<<<<<<< HEAD
 from globaleaks.utils.utility import log, datetime_now, deferred_sleep
+=======
+from globaleaks.utils.monitor import ResourceMonitor
+from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, \
+    datetime_now, datetime_null, deferred_sleep
+>>>>>>> devel
 
 
 HANDLER_EXEC_TIME_THRESHOLD = 30
@@ -116,15 +122,19 @@ class GLHTTPConnection(HTTPConnection):
 class BaseHandler(RequestHandler):
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
 
-    start_time = 0
+    start_time = datetime_null()
 
     def __init__(self, application, request, **kwargs):
+        super(BaseHandler, self).__init__(application, request, **kwargs)
+
         self.name = type(self).__name__
 
         GLSettings.http_requests_counter += 1
         self.req_id = GLSettings.http_requests_counter
 
-        super(BaseHandler, self).__init__(application, request, **kwargs)
+        self.handler_time_analysis_begin()
+        self.handler_request_logging_begin()
+
 
     def set_default_headers(self):
         """
@@ -341,9 +351,6 @@ class BaseHandler(RequestHandler):
         """
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
-
-        self.handler_time_analysis_begin()
-        self.handler_request_logging_begin()
 
     def on_finish(self):
         """
