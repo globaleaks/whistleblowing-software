@@ -254,7 +254,7 @@ class Alarm(object):
         Admin notification is disable or if another Anomaly has been
         raised in the last 15 minutes, email is not send.
         """
-        do_not_stress_admin_with_more_than_an_email_every_minutes = 15
+        do_not_stress_admin_with_more_than_an_email_every_minutes = 120
 
         @transact_ro
         def _get_node_admin_email(store):
@@ -428,7 +428,7 @@ class Alarm(object):
                 content,
                 message_title[where + len(keyword):])
 
-        message = MIME_mail_build(GLSettings.memory_copy.notif_source_email,
+        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
                                   GLSettings.memory_copy.notif_source_email,
                                   admin_email,
                                   admin_email,

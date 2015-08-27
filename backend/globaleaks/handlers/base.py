@@ -31,13 +31,10 @@ from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
-<<<<<<< HEAD
 from globaleaks.utils.utility import log, datetime_now, deferred_sleep
-=======
 from globaleaks.utils.monitor import ResourceMonitor
 from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, \
     datetime_now, datetime_null, deferred_sleep
->>>>>>> devel
 
 
 HANDLER_EXEC_TIME_THRESHOLD = 30

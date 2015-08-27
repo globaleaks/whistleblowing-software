@@ -286,7 +286,7 @@ def mail_exception_handler(etype, value, tback):
     send_exception_email(mail_body)
 
 
-def send_exception_email(mail_body):
+def send_exception_email(mail_body, mail_reason="GlobaLeaks Exception"):
     if (GLSettings.exceptions_email_count >= GLSettings.exceptions_email_hourly_limit):
        return
 
@@ -313,13 +313,13 @@ def send_exception_email(mail_body):
     GLSettings.exceptions_email_count += 1
 
     try:
-        mail_subject = subject = "Globaleaks Exception %s" % __version__
+        mail_subject = subject = "%s %s" % (mail_reason, __version__)
         if GLSettings.devel_mode:
-            mail_subject +=  " [%s ]" % GLSettings.developer_name
+            mail_subject +=  " [%s]" % GLSettings.developer_name
 
         message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
                                   GLSettings.memory_copy.notif_source_email,
-                                  "Admin",
+                                  GLSettings.memory_copy.exception_email,
                                   GLSettings.memory_copy.exception_email,
                                   mail_subject,
                                   mail_body)
