@@ -9,7 +9,24 @@
     </div>
     <div class="form-group">
       <label data-translate>Type</label>
-      <select name="type" class="form-control" data-ng-model="new_field.type" required data-ng-include="'views/partials/fields_types.html'"></select>
+      <select name="type" class="form-control" data-ng-model="new_field.type" required>
+        <option value="inputbox" data-translate>Single-line text input</option>
+        <option value="textarea" data-translate>Multi-line text input</option>
+        <option value="selectbox" data-translate>Selection box</option>
+        <option value="checkbox" data-translate>Checkbox</option>
+        <option value="fileupload" data-translate>File Upload</option>
+        <option value="tos" data-translate>Terms of Service</option>
+        <option value="number" data-translate>Number</option>
+        <option value="email" data-translate>Email address</option>
+        <option value="date" data-translate>Date</option>
+        <option value="fieldgroup" data-translate>Field Group</option>
+        <!--
+          Options commented out in stable release as not yet implemented
+          <option value="modal" data-translate>Time Interval</option>
+          <option value="modal" data-translate>Modal Window</option>
+          <option value="dialog" data-translate>Dialog Window</option>
+        -->
+      </select>
       <div class="text-red" data-ng-show="newField.type.$error.required">
         <span data-translate>This field is mandatory</span>
       </div>

@@ -232,6 +232,9 @@ def db_update_field(store, field_id, field, language):
         raise errors.FieldIdNotFound
 
     try:
+        # make not possible to change field type
+        field['type'] = f.type
+
         if field['template_id'] is None:
             # children handling:
             #  - old children are cleared

@@ -4,14 +4,43 @@
     <div class="configItem configField">
       <div class="editorHeader" data-ng-click="toggleEditing($event)">
         <div class="row">
-          <span class="col-md-7">
-            <span class="fieldIndex badge" data-ng-if="field.step_id !== '' || field.fieldgroup_id !== ''">
+          <span class="col-md-6">
+            <span class="fieldIndex label label-default label-as-badge" data-ng-if="field.step_id !== '' || field.fieldgroup_id !== ''">
               <span data-translate>Row</span><span>: {{field.y}}</span>
               <span data-translate>Column</span><span>: {{field.x}}</span>
             </span>
-            <span class="fieldLabel">{{field.label}}</span>
+            <span class="fieldType label label-primary label-as-badge">
+              <span data-translate>Type</span><span>:</span>
+              <span data-ng-switch="" on="field.type">
+                <span data-ng-switch-when="inputbox" data-translate>Single-line text input</span>
+                <span data-ng-switch-when="textarea" data-translate>Multi-line text input</span>
+                <span data-ng-switch-when="selectbox" data-translate>Selection box</span>
+                <span data-ng-switch-when="checkbox" data-translate>Checkbox</span>
+                <span data-ng-switch-when="fileupload" data-translate>File Upload</span>
+                <span data-ng-switch-when="tos" data-translate>Terms of Service</span>
+                <span data-ng-switch-when="number" data-translate>Number</span>
+                <span data-ng-switch-when="email" data-translate>Email address</span>
+                <span data-ng-switch-when="date" data-translate>Date</span>
+                <span data-ng-switch-when="fieldgroup" data-translate>Field Group</span>
+              </span>
+            </span>
+            <span data-ng-if="field.preview" class="badge alert-info">
+              <span popover="{{'Preview' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-list-alt"></i></span>
+            </span>
+            <span data-ng-if="field.multi_entry" class="badge alert-warning">
+              <span data-ng-switch="" on="field.type">
+                <span data-ng-switch-when="fileupload" popover="{{'Accept multiple file uploads' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-option-horizontal"></i></span>
+                <span data-ng-switch-default popover="{{'Accept multiple answers for the field' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-option-horizontal"></i></span>
+              </span>
+            </span>
+            <span data-ng-if="field.stats_enabled" class="badge alert-success">
+              <span popover="{{'Required' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-stats"></i></span>
+            </span>
+            <span data-ng-if="field.required" class="badge alert-danger">
+              <span popover="{{'Required' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-asterisk"></i></span>
+            </span>
           </span>
-          <span class="col-md-5">
+          <span class="col-md-6">
             <span class="pull-right">
               <button class="actionButton btn btn-xs btn-default"
                 data-ng-show="!editing"
@@ -51,6 +80,11 @@
                 </button>
               </span>
             </span>
+          </span>
+        </div>
+        <div class="row">
+          <span class="col-md-12">
+            <div class="fieldLabel">{{field.label}}</div>
           </span>
         </div>
       </div>
@@ -111,13 +145,6 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group">
-              <label data-translate>Type</label>
-              <select name="type" class="form-control" data-ng-model="field.type" required data-ng-disabled="!editable" data-ng-include="'views/partials/fields_types.html'"></select>
-              <div class="text-red" data-ng-show="editField.type.$error.required">
-                <span data-translate>This field is mandatory</span>
-              </div>
-            </div>
             <div class="form-group" data-ng-if="shouldShowOptions(field)">
               <label data-translate>Options</label>
               <div data-ng-switch="" on="typeSwitch(field.type)">
