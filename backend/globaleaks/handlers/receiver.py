@@ -182,7 +182,7 @@ def perform_tips_operation(store, receiver_id, operation, rtips_ids):
             raise errors.ForbiddenOperation
 
         for rtip in rtips:
-            db_postpone_expiration_date(store, rtip)
+            db_postpone_expiration_date(rtip)
 
     elif operation == 'delete':
         can_delete_submission =  node.can_delete_submission or receiver.can_delete_submission
