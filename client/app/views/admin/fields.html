@@ -107,34 +107,28 @@
               <label data-translate>Description</label>
               <textarea name="description" class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.description" data-ng-disabled="!editable">{{field.description}}</textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group" data-ng-if="::fieldIsMarkableRequired">
               <input data-ng-model="field.required" type="checkbox">
               <label data-translate>Required</label>
             </div>
-            <!--
-            <div class="form-group">
+            <div class="form-group" data-ng-if="::fieldIsMarkableMultiEntry">
               <div data-ng-switch="" on="typeSwitch(field.type)">
                 <input data-ng-model="field.multi_entry" value="{{field.multi_entry}}" type="checkbox">
                 <label data-ng-switch-when="fileupload" data-translate>Accept multiple file uploads</label>
                 <label data-ng-switch-default data-translate>Accept multiple answers for the field</label>
               </div>
             </div>
-            -->
             <div class="form-group" data-ng-if="field.multi_entry">
               <label data-translate>Hint shown on the button for adding an additional answer</label>
               <input name="multi_entry_hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.multi_entry_hint" value="{{field.multi_entry_hint}}" type="text" data-ng-disabled="!editable" >
             </div>
-            <div class="form-group" data-ng-if="field.fieldgroup_id === '' && field.type !== 'fieldgroup' && field.type !== 'fileupload'">
-              <div>
-                <input data-ng-model="field.preview" value="{{field.preview}}" type="checkbox">
-                <label data-translate>Preview</label>
-              </div>
+            <div class="form-group" data-ng-if="::fieldIsMarkableSubjectToPreview">
+              <input data-ng-model="field.preview" value="{{field.preview}}" type="checkbox">
+              <label data-translate>Preview</label>
             </div>
-            <div class="form-group">
-              <div>
-                <input data-ng-model="field.stats_enabled" value="{{field.stats_enabled}}" type="checkbox">
-                <label data-translate>Enable statistics for this field</label>
-              </div>
+            <div class="form-group" data-ng-if="::fieldIsMarkableSubjectToStats">
+              <input data-ng-model="field.stats_enabled" value="{{field.stats_enabled}}" type="checkbox">
+              <label data-translate>Enable statistics for this field</label>
             </div>
             <div class="form-group">
               <label>
@@ -191,10 +185,10 @@
                   <div data-ng-switch-when="checkbox_or_selectbox">
                     <div class="fieldOption" data-ng-repeat="option in field.options | orderBy:'presentation_order'">
                       <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                           <input class="form-control" data-ng-model="option.label" placeholder="{{'Name' | translate }}" value="{{option.label}}" type="text" required data-ng-disabled="!editable" />
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                           <button class="actionButton btn btn-xs btn-danger" data-ng-click="delOption(field, option)">
                             <i class="glyphicon glyphicon-remove"></i>
                           </button>

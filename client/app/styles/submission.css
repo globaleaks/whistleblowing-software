@@ -31,14 +31,26 @@
   background-color: #f2dede;
 }
 
-.fieldRow {
-  margin-bottom: 25px;
+.fieldsRow {
+  margin-bottom: 15px;
 }
 
-.fieldEntryLabel:after {
-    content:'';
-    display:block;
-    clear: both;
+.fieldAnswerEntry {
+  margin-top: 15px;
+}
+
+.fieldAnswerEntryFirst {
+  margin-top: 0px;
+}
+
+.fieldAnswerEntryLast {
+  margin-bottom: 10px;
+}
+
+.fieldAnswerEntryLabel:after {
+  content:'';
+  display:block;
+  clear: both;
 }
 
 .submissionFieldInput {
