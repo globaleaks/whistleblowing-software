@@ -191,8 +191,10 @@ def load_complete_events(store, event_number=GLSettings.notification_limit):
     node_desc = db_admin_serialize_node(store, GLSettings.defaults.language)
 
     event_list = []
-    storedevnts = store.find(EventLogs, EventLogs.mail_sent == False).limit(event_number)
-    storedevnts.order_by(Asc(EventLogs.creation_date))
+    totaleventinqueue = store.find(EventLogs, EventLogs.mail_sent == False).count()
+    storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)[:event_number * 3]
+    #storedevnts.order_by(Asc(EventLogs.creation_date))
+    # Cannot be done .order_by in a spliced array, and [:event_number * 3] is that.
 
     debug_event_counter = {}
     for i, stev in enumerate(storedevnts):
@@ -230,7 +232,12 @@ def load_complete_events(store, event_number=GLSettings.notification_limit):
         event_list.append(eventcomplete)
 
     if debug_event_counter:
-        log.debug("load_complete_events: %s" % debug_event_counter)
+        if totaleventinqueue > (event_number * 3):
+            log.debug("load_complete_events: %s from %d Events" %
+                      ( debug_event_counter, totaleventinqueue ) )
+        else:
+            log.debug("load_complete_events: %s from %d Events, with a protection limit of %d" %
+                      ( debug_event_counter, totaleventinqueue, event_number * 3 ) )
 
     return event_list
 

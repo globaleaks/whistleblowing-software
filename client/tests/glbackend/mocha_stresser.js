@@ -41,13 +41,14 @@ describe('Iteration...', function(){
           return done(err);
         } else {
 
+          submission_number = 150;
           /* is not a .push because is already a list */
           contexts = res.body;
-          console.log("Generating " + contexts.length * 40 + " submissions...");
+          console.log("Generating " + contexts.length * submission_number + " submissions...");
 
           for (i=0; i < contexts.length ; i++) {
 
-            for(k = 0; k < 200; k++ ) {
+            for(k = 0; k < submission_number ; k++ ) {
 
                   var new_submission = {};
                   new_submission.context_id = contexts[i].id;
@@ -124,7 +125,7 @@ describe('Iteration...', function(){
                           .expect(202)
                           .end(function(err, res) {
                             if (err) {
-                              // console.log("Error triggered, check the logs");
+                              console.log("Error triggered, check the logs " + err);
                               return done(err);
                             } else {
                               console.log("Submission done, receipt: " +  res.body.receipt);

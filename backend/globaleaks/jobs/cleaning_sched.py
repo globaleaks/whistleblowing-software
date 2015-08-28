@@ -13,7 +13,7 @@ from globaleaks.handlers import admin
 from globaleaks.handlers.rtip import db_delete_itip
 from globaleaks.jobs.base import GLJob
 from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, db_save_events_on_db
-from globaleaks.models import InternalTip, Receiver, ReceiverTip, Stats
+from globaleaks.models import InternalTip, Receiver, ReceiverTip, Stats, EventLogs
 from globaleaks.plugins.base import Event
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.utils.utility import log, datetime_now
@@ -84,6 +84,13 @@ class CleaningSchedule(GLJob):
         # delete stats older than 3 months
         store.find(Stats, Stats.start < datetime_now() - timedelta(3*(365/12))).remove()
 
+    @transact
+    def clean_notified_events(self, store):
+        eventcnt = store.find(EventLogs, EventLogs.mail_sent == True).count()
+        if eventcnt:
+            log.debug("Cleaning %d EventLogs of mail already sent" % eventcnt)
+            store.find(EventLogs, EventLogs.mail_sent == True).remove()
+
     @inlineCallbacks
     def operation(self):
         """
@@ -101,3 +108,5 @@ class CleaningSchedule(GLJob):
 
         yield self.perform_stats_cleaning()
         yield ExpiringRTipEvent().process_events()
+
+        yield self.clean_notified_events()

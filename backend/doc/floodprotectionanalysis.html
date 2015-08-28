@@ -517,23 +517,24 @@ DatabaseError: database disk image is malformed
 <h3>Solution</h3>
 <div>
   in mailflush_sched.py, line 195:
-  <pre>
-storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)
-  </pre>
 
-  <pre>
-184 @transact_ro
-185 def load_complete_events(store, event_number=GLSettings.notification_limit):
-186     """
-189     event_number represent the amount of event that can be returned by the function,
-190     events to be notified are taken in account later.
-191     """
-192     node_desc = db_admin_serialize_node(store, GLSettings.defaults.language)
-193 
-194     event_list = []
-195     storedevnts = store.find(EventLogs, EventLogs.mail_sent == False).limit(event_number)
-196     storedevnts.order_by(Asc(EventLogs.creation_date))
-  </pre>
+<pre>
+storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)
+storedevnts.order_by(Asc(EventLogs.creation_date))
+</pre>
+
+    Now that section of code has been changed with a query limitation (event_number has a default value of 30, considering that many messages are optiizely don't sent, then we
+    pick the first 90th event.) This is enough to avoid the load of the operation block the backend.
+<pre>
+@transact_ro
+def load_complete_events(store, event_number=GLSettings.notification_limit):
+    """
+    event_number represent the amount of event that can be returned by the function,
+    events to be notified are taken in account later.
+    """
+    event_list = []
+    storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)[:event_number * 3]
+</pre>
 
 </div>
 

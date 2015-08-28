@@ -39,9 +39,9 @@ def add_measured_event(method, uri, secs_elapsed, event_id, start_time):
 
     start_time_string = str(datetime.datetime.fromtimestamp(start_time))
 
-    log.debug("add_measured_event %s %s %d %d = %s, start time %s" %
-              (method, uri, secs_elapsed,
-               event_id, event_type, start_time_string))
+    # log.debug("add_measured_event %s %s %d %d = %s, start time %s" %
+    #           (method, uri, secs_elapsed,
+    #            event_id, event_type, start_time_string))
 
     assert event_type in EventTypeCounter.keys(), "Invalid event_type %s not in %s" % \
                                                   (event_type, EventTypeCounter.keys())
@@ -73,7 +73,6 @@ class CurrentStats(BaseHandler):
             this_event = "%d,%d,%s" % (i, event['millisecs_elapsed'], event['event_type'])
             ret_csv += this_event + "\n"
             last_i = i
-        log.debug("CurrentStats rolled %d events, %s" % (last_i, EventTypeCounter) )
         self.finish(ret_csv)
 
 
