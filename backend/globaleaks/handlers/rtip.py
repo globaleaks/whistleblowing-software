@@ -22,7 +22,7 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.models import Node, Notification, Comment, Message, \
-    ReceiverFile, ReceiverTip, EventLogs
+    ReceiverFile, ReceiverTip, EventLogs,  InternalTip, ArchivedSchema
 from globaleaks.rest import errors
 
 
@@ -180,6 +180,9 @@ def db_delete_itip(store, itip, itip_number=0):
         log.debug("Removing InternalTip as commanded by Receiver (%s)" % itip.id)
 
     store.remove(itip)
+
+    if store.find(InternalTip, InternalTip.questionnaire_hash == itip.questionnaire_hash).count() == 0:
+        store.find(ArchivedSchema, ArchivedSchema.hash == itip.questionnaire_hash).remove()
 
 
 def db_delete_rtip(store, rtip):

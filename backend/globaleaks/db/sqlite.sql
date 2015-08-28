@@ -399,7 +399,7 @@ CREATE TABLE fieldanswer (
     internaltip_id TEXT NOT NULL,
     key TEXT NOT NULL,
     is_leaf INTEGER NOT NULL,
-    value BLOB NOT NULL,
+    value TEXT NOT NULL,
     PRIMARY KEY (id)
 );
 

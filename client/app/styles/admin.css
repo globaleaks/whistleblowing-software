@@ -92,6 +92,10 @@
   margin-bottom: 20px;
 }
 
+.fieldLabel {
+  margin-top: 20px;
+}
+
 .stepEditorHeader, .fieldEditorHeader {
   padding: 20px;
 }

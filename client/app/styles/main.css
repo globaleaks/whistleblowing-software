@@ -361,3 +361,9 @@ th {
 #ReceiverToolbar {
   margin-bottom: 20px;
 }
+
+.label-as-badge {
+  margin-left: 0px;
+  margin-right: 3px;
+  border-radius: 1em;
+}

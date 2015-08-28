@@ -54,3 +54,9 @@
   padding-right: 15px;
   padding-left: 0;
 }
+
+.label-as-badge {
+  margin-left: 3px;
+  margin-right: 0px;
+  border-radius: 1em;
+}
