@@ -40,8 +40,8 @@
       </div>
     </div>
   </div>
-  <div data-ng-switch-when="tos" data-ng-click="entry['value'] = !entry['value']">
-    <div class="form-group preformatted">{{::field.attrs.clause.value}}</div>
+  <div data-ng-switch-when="tos">
+    <div class="form-group preformatted" data-ng-click="entry['value'] = !entry['value']">{{::field.attrs.clause.value}}</div>
     <div class="checkbox" data-ng-class="{'has-error': f['input-' + $index].$error.required}">
       <label>
         <input id="{{::fieldId + '-input-' + $index}}"
