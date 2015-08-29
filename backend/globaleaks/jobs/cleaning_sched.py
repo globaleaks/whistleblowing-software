@@ -104,7 +104,7 @@ class CleaningSchedule(GLJob):
 
         itip_list_id = yield self.get_cleaning_map()
         for i, itip_id in enumerate(itip_list_id):
-            yield self.perform_cleaning(itip_id, i)
+            yield self.perform_cleaning(itip_id, i + 1)
 
         yield self.perform_stats_cleaning()
         yield ExpiringRTipEvent().process_events()

@@ -258,6 +258,7 @@ class GLSettingssClass(object):
         self.socks_port = 9050
 
         self.notification_limit = 30
+        self.jobs_operation_limit = 20
 
         self.user = getpass.getuser()
         self.group = getpass.getuser()

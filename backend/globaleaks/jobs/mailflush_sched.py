@@ -18,7 +18,7 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.plugins import notification
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
-from globaleaks.utils.utility import deferred_sleep, log, datetime_to_ISO8601, datetime_now
+from globaleaks.utils.utility import deferred_sleep, log, datetime_now
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.tempobj import TempObj
 
@@ -268,6 +268,11 @@ def filter_notification_event(notifque):
     # not files_event_by_tip contains N keys with an empty list,
     # I'm looping two times because dict has random ordering
     for ne in notifque:
+
+        if GLSettings.memory_copy.disable_receiver_notification_emails:
+            orm_id_to_be_skipped.append(ne['orm_id'])
+            continue
+
         if ne['trigger'] != u'File':
             _tmp_list.append(ne)
             continue
@@ -277,9 +282,14 @@ def filter_notification_event(notifque):
         else:
             _tmp_list.append(ne)
 
+
     if len(orm_id_to_be_skipped):
-        log.debug("Filtering function: Marked %d Files notification to be suppressed as part of the submission" %
-                  len(orm_id_to_be_skipped))
+        if GLSettings.memory_copy.disable_receiver_notification_emails:
+            log.debug("All the %d mails will be marked as Sent because Admin has disable notification" %
+                      len(orm_id_to_be_skipped))
+        else:
+            log.debug("Filtering function: Marked %d Files notification to be suppressed as part of the submission" %
+                      len(orm_id_to_be_skipped))
 
     for ne in _tmp_list:
         receiver_id = ne['receiver_info']['id']
@@ -316,7 +326,7 @@ def filter_notification_event(notifque):
 
         return_filtered_list.append(ne)
 
-    log.debug("Notification filtering completed passing from #%d to #%d events" %
+    log.debug("Mails filtering completed passing from #%d to #%d events" %
               (len(notifque), len(return_filtered_list)))
 
     # return the new list of event and the list of Storm.id
@@ -381,9 +391,6 @@ class MailflushSchedule(GLJob):
 
     @inlineCallbacks
     def operation(self):
-        if GLSettings.memory_copy.disable_receiver_notification_emails:
-            log.debug("MailFlush: Receiver(s) Notification disabled by Admin")
-            return
 
         queue_events = yield load_complete_events()
 

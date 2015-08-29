@@ -88,7 +88,16 @@ def receiverfile_planning(store):
     """
     receiverfiles_maps = {}
 
-    ifiles = store.find(InternalFile, InternalFile.new == True)
+    ifilescnt = store.find(InternalFile, InternalFile.new == True).count()
+    ifiles = store.find(InternalFile, InternalFile.new == True)[:GLSettings.jobs_operation_limit]
+
+    if ifilescnt > GLSettings.jobs_operation_limit:
+        log.debug("Delivery iterating over %d InternalFile from a Queue of %d" % (
+            GLSettings.jobs_operation_limit, ifilescnt ))
+    elif ifilescnt:
+        log.debug("Delivery iterating over %d InternalFile" % ifilescnt)
+    else:
+        pass # 0 files to be processed
 
     for ifile in ifiles:
         if (ifile.processing_attempts >= INTERNALFILES_HANDLE_RETRY_MAX):
@@ -154,7 +163,6 @@ def fsops_pgp_encrypt(fpath, recipient_pgp):
     anyhow a simpler dict can be used.
 
     required keys are checked on top
-
     """
     gpoj = GLBPGP()
 
@@ -254,8 +262,8 @@ def process_files(receiverfiles_maps):
 
 @transact
 def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
+
     for ifile_id, receiverfiles_map in receiverfiles_maps.iteritems():
-        ifile = None
         try:
             ifile = store.find(InternalFile,
                                InternalFile.id == ifile_id).one()
@@ -269,13 +277,12 @@ def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
         ifile.new = False
 
         for rf in receiverfiles_map['rfiles']:
-            rfile = None
             try:
                 rfile = store.find(ReceiverFile,
                                    ReceiverFile.id == rf['id']).one()
 
             except Exception as excep:
-                log.err("Error in find %s: %s" % (file_path, excep.message))
+                log.err("Inconsistency!? ReceiverFile %s :%s" % (rf, excep.message))
                 continue
 
             if rfile is None:

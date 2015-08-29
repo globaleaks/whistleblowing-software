@@ -467,7 +467,7 @@ The flood detection and protection system must properly log every event of flood
 
     <h4>Memory usage</h4>
     <p>Lefting a stress tester that perform 30~40 submission every 30 seconds, without triggering the anomaly (because at the moment is capped as 50 in 30secs), bring the test boxes (Intel i7 with 8gb of Ram) to fill 95% of memory and 600 Mb of swap. The output of <b>pmap</b> below is heavily reduced for space reasons, only the entry using more memory has been kept.</p>
-    <pre>
+<pre>
 11121:   python bin/globaleaks -z vecna -n -d -S -l DEBUG --disable-mail-notification
 Address           Kbytes     RSS   Dirty Mode  Mapping
 00000000022bc000 1260216 1245568 1245524 rw---   [ anon ]
@@ -477,9 +477,9 @@ Address           Kbytes     RSS   Dirty Mode  Mapping
 00007f81b7de4000  262144  259376  259376 rw---   [ anon ]
 ---------------- ------- ------- -------
 total kB         4694212 4433416 4427260
-    </pre>
+</pre>
     <p>Giving SIGINT to such process do not let the process close, remain strucki (<i>strace display a blocking futex() operation</i>), require SIGKILL to be interrupted.</p>
-    <pre>
+<pre>
 checking file: workingdir/db/glbackend-23.db
 Context                                   2
 Receivers                                 2
@@ -497,7 +497,7 @@ Notification                              1
 ApplicationData                           1
 Node                                      1
 Stats                                     4
-    </pre>
+</pre>
     <p>The Node database result unable to perform any operation after the restart.</p>
     <p>As developer trick, GlobaLeaks started with option --XXX 9999999,, makes GlobaLeaks run with 9999999 seconds in the future, this cause the expiration of many Tips</p>
     <pre>
@@ -538,6 +538,7 @@ def load_complete_events(store, event_number=GLSettings.notification_limit):
 
 </div>
 
+<p>This approach has solved the deadlock.</p>
 
 </body>
 </html>

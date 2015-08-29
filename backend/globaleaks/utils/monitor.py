@@ -32,4 +32,4 @@ class ResourceMonitor(task.LoopingCall):
             error = "Warning: [%s] is taking more than %d seconds to execute" % (self.resource_name, self.elapsed_time)
 
         log.err(error)
-        send_exception_email(error, "Timing analysis")
+        send_exception_email(error, mail_reason="Job Time Exceeded")
