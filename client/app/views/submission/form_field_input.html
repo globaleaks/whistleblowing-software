@@ -1,7 +1,7 @@
-<div data-ng-switch="" on="::field.type" class="submissionFieldInput" data-ng-class="{'has-error': f.input.$error.required}">
-  <div data-ng-switch-when="inputbox">
+<div data-ng-form="f" data-ng-init="state = {}" data-ng-switch="" on="::field.type" class="submissionFieldInput">
+  <div data-ng-switch-when="inputbox" data-ng-class="{'has-error': f['input-' + $index].$error.required}">
     <input id="{{::fieldId + '-input-' + $index}}"
-           name="input"
+           name="{{'input-' + $index}}"
            class="form-control"
            data-ng-model="entry['value']"
            maxlength="{{::node.maximum_namesize}}"
@@ -9,29 +9,30 @@
            placeholder="{{::field.placeholder}}"
            type="text" />
   </div>
-  <div data-ng-switch-when="textarea">
+  <div data-ng-switch-when="textarea" data-ng-class="{'has-error': f['input-' + $index].$error.required}">
     <textarea id="{{::fieldId + '-input-' + $index}}"
-              name="input"
+              name="{{'input-' + $index}}"
               class="form-control msd-elastic"
               data-ng-model="entry['value']"
               maxlength="{{::node.maximum_textsize}}"
               data-ng-required="field.required"
               placeholder="{{::field.placeholder}}"></textarea>
   </div>
-  <div data-ng-switch-when="selectbox">
-    <select id="{{::fieldId + '-input-' + $index}}" name="input" class="form-control" data-ng-model="entry['value']" data-ng-required="field.required">
+  <div data-ng-switch-when="selectbox" data-ng-class="{'has-error': f['input-' + $index].$error.required}">
+    <select id="{{::fieldId + '-input-' + $index}}" name="{{'input-' +  $index}}" class="form-control" data-ng-model="entry['value']" data-ng-required="field.required">
       <option data-ng-repeat="option in ::field.options" id="{{::fieldId}}-input-option-{{$index}}" value="{{::option.label}}">{{::option.label}}</option>
     </select>
   </div>
   <div data-ng-switch-when="checkbox">
-    <div data-ng-repeat="option in ::field.options"; field.required_check = !validateRequiredCheckbox(field)">
-      <div class="checkbox">
-        <label>
+    <div data-ng-repeat="option in ::field.options">
+      <div class="checkbox" data-ng-class="{'has-error': state.required_check}">
+        <label data-ng-class="{'has-error': f['input-' + $parent.$index + '-option-' + $index].$error.required}">
           <input id="{{::fieldId + '-input-' + $index}}"
-                 name="input"
+                 name="{{'input-' + $parent.$index + '-option-' + $index}}"
+                 data-ng-init="state.required_check = !validateRequiredCheckbox(field, entry)"
                  data-ng-model="entry[option.id]"
-                 data-ng-required="field.required_check"
-                 data-ng-change="field.required_check = !validateRequiredCheckbox(field)"
+                 data-ng-required="state.required_check"
+                 data-ng-change="state.required_check = !validateRequiredCheckbox(field, entry)"
                  placeholder="{{::field.placeholder || 'false'}}"
                  type="checkbox" />
           <span>{{::option.label}}</span>
@@ -40,11 +41,11 @@
     </div>
   </div>
   <div data-ng-switch-when="tos">
-    <div class="form-group preformatted">{{::field.attrs.clause.value}}</div>
-    <div class="checkbox">
+    <div class="form-group preformatted" data-ng-click="entry['value'] = !entry['value']">{{::field.attrs.clause.value}}</div>
+    <div class="checkbox" data-ng-class="{'has-error': f['input-' + $index].$error.required}">
       <label>
         <input id="{{::fieldId + '-input-' + $index}}"
-               name="input"
+               name="{{'input-' + $index}}"
                data-ng-model="entry['value']"
                data-ng-required="field.required"
                value="{{field.value}}"

@@ -1,9 +1,9 @@
-<div data-ng-repeat="entry in getAnswersEntries(entry, field.id)">
-  <div class="fieldEntryLabel" data-ng-if="$first && !$last">
+<div class="fieldAnswerEntry" data-ng-repeat="entry in entries" data-ng-class="{'fieldAnserEntryFirst': $first, 'fieldAnswerEntryLast': $last}">
+  <div class="fieldAnswerEntryLabel" data-ng-if="entries.length  > 1">
     <span class="pull-left">
       <label class="text-gray">
-        <span>#{{$index}}</span>
-      </span>
+        <span>#{{$index + 1}}</span>
+      </label>
     </span>
     <span class="pull-right">
       <span class="text-red" href="" popover="{{'Remove' | translate}}" popover-placement="right" popover-trigger="mouseenter" data-ng-click="remove(entries, $index)">
@@ -13,13 +13,9 @@
   </div>
   <div data-ng-include="'views/submission/form_field_input.html'"></div>
 </div>
-<!--
 <div data-ng-if="::field.multi_entry && field.type != 'fileupload'" class="pull-right">
-  <a data-ng-if="::toplevel" data-ng-click="entries.push({})" popover="{{::field.multi_entry_hint}}" popover-placement="right" popover-trigger="mouseenter">
-    <i class="btn btn-lg glyphicon glyphicon-plus"></i>
-  </a>
-  <a data-ng-if="::!toplevel" data-ng-click="entries.push({})" popover="{{::field.multi_entry_hint}}" popover-placement="right" popover-trigger="mouseenter">
-    <i class="btn btn-lg glyphicon glyphicon-plus"></i>
-  </a>
+  <button class="btn btn-primary" data-ng-click="addAnswerEntry(entries, field.id)">
+    <i class="glyphicon glyphicon-plus"></i>
+    <span>{{::field.multi_entry_hint}}</span>
+  </button>
 </div>
---!>

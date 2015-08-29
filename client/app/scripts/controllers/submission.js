@@ -140,14 +140,6 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
-  $scope.getAnswersEntries = function(entry, field_id) {
-    if (entry === undefined) {
-      return $scope.submission._submission.answers[field_id];
-    } else {
-      return entry[field_id];
-    }
-  }
-
   $scope.fileupload_url = function() {
     if (!$scope.submission) {
       return;
@@ -213,8 +205,26 @@ GLClient.controller('SubmissionCtrl',
 }]).
 controller('SubmissionStepCtrl', ['$scope', '$filter', function($scope, $filter) {
   $scope.uploads = {};
+  $scope.fieldsLevel = -1;
+  $scope.fields = $scope.step.children;
 }]).
 controller('SubmissionFieldCtrl', ['$scope', '$filter', function ($scope, $filter) {
+  $scope.getAnswersEntries = function(entry) {
+    if (entry === undefined) {
+      return $scope.submission._submission.answers[$scope.field.id];
+    } else {
+      return entry[$scope.field.id];
+    }
+  }
+
+  $scope.addAnswerEntry = function(entries, field_id) {
+    entries.push(angular.copy($scope.submission.empty_answers[field_id]));
+  }
+
+  $scope.fieldsLevel= $scope.fieldsLevel + 1;
+  $scope.fields = $scope.field.children;
+
+  $scope.entries = $scope.getAnswersEntries($scope.entry, $scope.field.id);
   $scope.getClass = function(stepIndex, fieldIndex, toplevel, row_length, field) {
     var ret = "";
 
@@ -233,17 +243,18 @@ controller('SubmissionFieldCtrl', ['$scope', '$filter', function ($scope, $filte
     return ret;
   };
 
-  $scope.validateRequiredCheckbox = function(field) {
+  $scope.validateRequiredCheckbox = function(field, entry) {
     if (!field.required) {
       return true;
     }
 
     var ret = false;
-    angular.forEach(field.value, function (value) {
-      if (value.value && value.value === true) {
-        ret |= true;
+    for (var i =0; i<field.options.length; i++) {
+      if (entry[field.options[i].id] && entry[field.options[i].id] === true) {
+        ret = true;
+        break;
       }
-    });
+    };
 
     return ret;
   };
