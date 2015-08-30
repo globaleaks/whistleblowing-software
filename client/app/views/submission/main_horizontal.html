@@ -1,5 +1,5 @@
 <div class="tabbable tabs-below">
-  <ul class="nav nav-tabs">
+  <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs">
     <li data-ng-if="!skip_first_step" data-ng-class="{active: selection==0, disabled: uploading}">
       <a id="step-0-link" href="javascript:void(0)" data-ng-click="goToStep(0)" data-ng-disabled="uploading">
         1 - <span data-translate>Receiver selection</span>
@@ -14,8 +14,7 @@
     </li>
   </ul>
 
-  <div class="tab-content">
-
+  <div id="SubmissionTabsContentBox" class="tab-content">
     <div data-ng-if="receivers_selectable && submission.context.show_receivers">
       <div id="step-0" data-ng-show="selection == 0" data-ng-include="'views/submission/receiver_selection.html'"></div>
     </div>
