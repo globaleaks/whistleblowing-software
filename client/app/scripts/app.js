@@ -156,18 +156,6 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Login',
         header_subtitle: ''
       }).
-      when('/embedded/submission', {
-        templateUrl: 'views/embedded/submission.html',
-        controller: 'EmbeddedSubmissionCtrl',
-        header_title: '',
-        header_subtitle: ''
-      }).
-      when('/embedded/receipt', {
-        templateUrl: 'views/embedded/receipt.html',
-        controller: 'EmbeddedReceiptCtrl',
-        header_title: '',
-        header_subtitle: ''
-      }).
       when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
