@@ -134,11 +134,11 @@
   z-index: 1;
 }
 
-#SubmissionReceipt {
+#Receipt {
   padding-bottom: 20px;
 }
 
-#SubmissionReceiptButton {
+#ReceiptButton {
   font-size: 16px;
 }
 
