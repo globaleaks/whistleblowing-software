@@ -7,6 +7,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $rootScope.language = $location.search().lang;
 
+    $rootScope.embedded = $location.search().embedded || false;
+
     var iframeCheck = function() {
       try {
         return window.self !== window.top;
