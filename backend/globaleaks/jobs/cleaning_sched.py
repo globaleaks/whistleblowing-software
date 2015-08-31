@@ -47,7 +47,7 @@ class ExpiringRTipEvent(EventLogger):
                                                      rtip.internaltip.context,
                                                      self.language)
 
-        expiring_tip_desc = serialize_receivertip(rtip, self.language)
+        expiring_tip_desc = serialize_receivertip(store, rtip, self.language)
 
         self.events.append(Event(type=self.template_type,
                                  trigger=self.trigger,
