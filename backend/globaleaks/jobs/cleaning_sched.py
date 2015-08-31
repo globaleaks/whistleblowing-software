@@ -37,7 +37,7 @@ class ExpiringRTipEvent(EventLogger):
 
         db_save_events_on_db(store, self.events)
 
-        log.debug("Notification: generated %d notification events of type %s" %
+        log.debug("Cleaning: generated %d notification events of type %s" %
                   (len(self.events), self.trigger))
 
     def process_event(self, store, rtip):
