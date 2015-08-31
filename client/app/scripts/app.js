@@ -31,7 +31,7 @@ var GLClient = angular.module('GLClient', [
         header_subtitle: ''
       }).
       when('/receipt', {
-        templateUrl: 'views/submission/receipt.html',
+        templateUrl: 'views/receipt.html',
         controller: 'ReceiptController',
         header_title: '',
         header_subtitle: ''
@@ -156,18 +156,6 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Login',
         header_subtitle: ''
       }).
-      when('/embedded/submission', {
-        templateUrl: 'views/embedded/submission.html',
-        controller: 'EmbeddedSubmissionCtrl',
-        header_title: '',
-        header_subtitle: ''
-      }).
-      when('/embedded/receipt', {
-        templateUrl: 'views/embedded/receipt.html',
-        controller: 'EmbeddedReceiptCtrl',
-        header_title: '',
-        header_subtitle: ''
-      }).
       when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
@@ -216,8 +204,7 @@ var GLClient = angular.module('GLClient', [
     });
 }).
   config(exceptionConfig).
-  run(['$http', '$rootScope', function ($http, $rootScope) {
-
+  run(['$http', '$rootScope', '$location', function ($http, $rootScope, $location) {
      $rootScope.successes = [];
      $rootScope.errors = [];
      $rootScope.loginInProgress = false;
@@ -228,6 +215,21 @@ var GLClient = angular.module('GLClient', [
     };
 
     $http.defaults.transformRequest.push(globaleaksRequestInterceptor);
+
+    // register listener to watch route changes
+    $rootScope.$on("$routeChangeStart", function(event, next, current) {
+      if ($location.path().startsWith("/embedded/")) {
+        var path = $location.path();
+        var search = $location.search();
+
+        if (Object.keys(search).length === 0) {
+          $location.path(path.replace("/embedded/", "/"));
+          $location.search("embedded=true");
+        } else {
+          $location.url($location.url().replace("/embedded/", "/") + "&embedded=true");
+        }
+      }
+    });
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         if (current.$$route) {

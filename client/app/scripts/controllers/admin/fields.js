@@ -61,23 +61,21 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       e.stopPropagation();
     };
 
-
-    $scope.isSelected = function (field) {
-      // XXX this very inefficient as it cycles infinitely on the f in
-      // admin.fields | filter:filterSelf ng-repeat even when you are not using
-      // a field group.
-      if (!$scope.field.children) {
-        return false; 
-      }
-      return $scope.field.children.indexOf(field) !== -1;
+    $scope.isMarkableRequired = function(field) {
+      return (['fieldgroup', 'fileupload'].indexOf(field.type) === -1);
     };
 
-    function tokenize(input) {
-      var result = input.replace(/[^-a-zA-Z0-9,&\s]+/ig, '');
-      result = result.replace(/-/gi, "_");
-      result = result.replace(/\s/gi, "-");
-      return result;
-    }
+    $scope.isMarkableMultiEntry = function(field) {
+      return (['checkbox', 'selectbox', 'tos'].indexOf(field.type) === -1);
+    };
+
+    $scope.isMarkableSubjectToStats = function(field) {
+      return (['inputbox', 'textarea', 'fieldgroup'].indexOf(field.type) === -1);
+    };
+
+    $scope.isMarkableSubjectToPreview = function(field) {
+      return (['fieldgroup', 'fileupload'].indexOf(field.type) === -1);
+    };
 
     $scope.typeSwitch = function (type) {
       if (['inputbox', 'textarea'].indexOf(type) !== -1) {
@@ -189,12 +187,10 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       });
     };
 
-    $scope.$watch('field.type', function (newVal, oldVal) {
-      if (newVal && newVal !== oldVal) {
-        $scope.field.options = [];
-        $scope.field.attrs = $scope.admin.get_field_attrs($scope.field.type);
-      }
-    });
+    $scope.fieldIsMarkableRequired = $scope.isMarkableRequired($scope.field);
+    $scope.fieldIsMarkableMultiEntry = $scope.isMarkableMultiEntry($scope.field);
+    $scope.fieldIsMarkableSubjectToStats = $scope.isMarkableSubjectToStats($scope.field);
+    $scope.fieldIsMarkableSubjectToPreview = $scope.isMarkableSubjectToPreview($scope.field);
   }
 ]);
 

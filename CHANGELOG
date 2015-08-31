@@ -1,3 +1,11 @@
+Changes in version 2.60.105 - 2015-08-28
+    o DB migration fixes
+    o Minor UI fixes
+
+    The following is the comprehensive list of closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1374
+    - https://github.com/globaleaks/GlobaLeaks/issues/1375
+
 Changes in version 2.60.104 - 2015-08-27
     o Minor UI fixes
 

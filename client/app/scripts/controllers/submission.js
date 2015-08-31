@@ -140,14 +140,6 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
-  $scope.getAnswersEntries = function(entry, field_id) {
-    if (entry === undefined) {
-      return $scope.submission._submission.answers[field_id];
-    } else {
-      return entry[field_id];
-    }
-  }
-
   $scope.fileupload_url = function() {
     if (!$scope.submission) {
       return;
@@ -213,8 +205,26 @@ GLClient.controller('SubmissionCtrl',
 }]).
 controller('SubmissionStepCtrl', ['$scope', '$filter', function($scope, $filter) {
   $scope.uploads = {};
+  $scope.fieldsLevel = -1;
+  $scope.fields = $scope.step.children;
 }]).
 controller('SubmissionFieldCtrl', ['$scope', '$filter', function ($scope, $filter) {
+  $scope.getAnswersEntries = function(entry) {
+    if (entry === undefined) {
+      return $scope.submission._submission.answers[$scope.field.id];
+    } else {
+      return entry[$scope.field.id];
+    }
+  }
+
+  $scope.addAnswerEntry = function(entries, field_id) {
+    entries.push(angular.copy($scope.submission.empty_answers[field_id]));
+  }
+
+  $scope.fieldsLevel= $scope.fieldsLevel + 1;
+  $scope.fields = $scope.field.children;
+
+  $scope.entries = $scope.getAnswersEntries($scope.entry, $scope.field.id);
   $scope.getClass = function(stepIndex, fieldIndex, toplevel, row_length, field) {
     var ret = "";
 
@@ -233,37 +243,28 @@ controller('SubmissionFieldCtrl', ['$scope', '$filter', function ($scope, $filte
     return ret;
   };
 
-  $scope.validateRequiredCheckbox = function(field) {
+  $scope.status = {
+    opened: false
+  };
+
+  $scope.open = function($event) {
+    $scope.status.opened = true;
+  };
+
+  $scope.validateRequiredCheckbox = function(field, entry) {
     if (!field.required) {
       return true;
     }
 
     var ret = false;
-    angular.forEach(field.value, function (value) {
-      if (value.value && value.value === true) {
-        ret |= true;
+    for (var i =0; i<field.options.length; i++) {
+      if (entry[field.options[i].id] && entry[field.options[i].id] === true) {
+        ret = true;
+        break;
       }
-    });
+    };
 
     return ret;
   };
 
-}]).
-controller('ReceiptController', ['$scope', '$location', 'Authentication', 'WhistleblowerTip',
-  function($scope, $location, Authentication, WhistleblowerTip) {
-    var format_keycode = function(keycode) {
-      var ret = keycode;
-      if (keycode && keycode.length === 16) {
-        ret =  keycode.substr(0, 4) + ' ' +
-               keycode.substr(4, 4) + ' ' +
-               keycode.substr(8, 4) + ' ' +
-               keycode.substr(12, 4);
-      }
-
-      return ret;
-
-    };
-
-    $scope.keycode = format_keycode(Authentication.keycode);
-    $scope.formatted_keycode = format_keycode($scope.keycode);
 }]);

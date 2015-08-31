@@ -1,9 +1,9 @@
 <div data-ng-controller="SubmissionFieldCtrl">
-  <div id="{{::fieldId}}" data-ng-form="f">
+  <div id="{{::fieldId}}">
     <div class="form-group">
       <div>
         <label>
-          <span data-ng-if="::toplevel && fields.length > 1" class="fieldIndex">{{::$index + 1}}</span>
+          <span data-ng-if="::fieldsLevel == 0" class="fieldIndex">{{::$index + 1}}</span>
           <span class="fieldLabel">{{::field.label}}</span>
           <a href="" data-ng-show="::field.hint" data-content="::field.hint" popover="{{::field.hint}}" popover-placement="right" popover-trigger="mouseenter">
             <i class="glyphicon glyphicon-question-sign"></i>
