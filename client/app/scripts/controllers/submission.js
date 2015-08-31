@@ -243,6 +243,14 @@ controller('SubmissionFieldCtrl', ['$scope', '$filter', function ($scope, $filte
     return ret;
   };
 
+  $scope.status = {
+    opened: false
+  };
+
+  $scope.open = function($event) {
+    $scope.status.opened = true;
+  };
+
   $scope.validateRequiredCheckbox = function(field, entry) {
     if (!field.required) {
       return true;

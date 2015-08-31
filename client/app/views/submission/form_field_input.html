@@ -40,6 +40,25 @@
       </div>
     </div>
   </div>
+  <div data-ng-switch-when="date" data-ng-class="{'has-error': f['input-' + $index].$error.required || f['input-' + $index].$invalid}">
+    <div class="input-group">
+      <input id="{{::fieldId + '-input-' + $index}}"
+             name="{{'input-' + $index}}"
+             class="form-control"
+             data-ng-model="entry['value']"
+             maxlength="{{::node.maximum_namesize}}"
+             data-ng-required="field.required"
+             placeholder="{{::field.placeholder}}"
+             type="text"
+             datepicker-popup=""
+             is-open="status.opened"
+             datepicker-ng-pattern="^(\d{4})-(\d{2})-(\d{2})$"
+             show-button-bar="false" />
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </div>
+  </div>
   <div data-ng-switch-when="tos">
     <div class="form-group preformatted" data-ng-click="entry['value'] = !entry['value']">{{::field.attrs.clause.value}}</div>
     <div class="checkbox" data-ng-class="{'has-error': f['input-' + $index].$error.required}">
