@@ -1,40 +1,42 @@
-<div class="row" data-ng-if="receivers_selectable && submission.context.show_receivers">
-  <div id="step-0" class="col-md-12">
-    <label data-translate>Receiver selection</label>
-    <div class="row">
-      <div class="col-md-12" data-ng-include="'views/submission/receiver_selection.html'"></div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12" data-ng-controller="SubmissionStepCtrl" data-ng-repeat="step in submission.context.steps">
-    <label>{{::step.label}}</label>
-    <div id="step-1">
-      <div>
-        <div class="col-md-12">
-          <p class="stepDescription">{{::step.description}}</p>
-        </div>
-      </div>
-      <div>
-        <div class="col-md-7">
-          <div data-ng-include="'views/submission/form.html'"></div>
-        </div>
-        <div class="col-md-offset-1 col-md-4">
-          <div data-ng-include="'views/partials/fileupload_status.html'"></div>
-        </div>
+<div id="SubmissionTabsContentBox">
+  <div class="row" data-ng-if="receivers_selectable && submission.context.show_receivers">
+    <div id="step-0" class="col-md-12">
+      <label data-translate>Receiver selection</label>
+      <div class="row">
+         <div class="col-md-12" data-ng-include="'views/submission/receiver_selection.html'"></div>
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <div id="SubmitBox">
-      <button id="SubmitButton" class="btn btn-success" data-ng-click="submission.submit()" data-ng-disabled="submission.isDisabled() || isUploading() || submissionForm.$invalid" type="submit">
-        <i data-ng-show="submission.wait" id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
-        <i data-ng-hide="submission.wait" id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
-        <span data-translate>Submit</span>
-        <span data-ng-show="submission.wait">({{submission.countdown}})</span>
-      </button>
+  <div class="row">
+     <div class="col-md-12" data-ng-controller="SubmissionStepCtrl" data-ng-repeat="step in submission.context.steps">
+      <label>{{::step.label}}</label>
+      <div id="step-1">
+        <div>
+          <div class="col-md-12">
+            <p class="stepDescription">{{::step.description}}</p>
+          </div>
+         </div>
+        <div>
+          <div class="col-md-7">
+            <div data-ng-include="'views/submission/form.html'"></div>
+           </div>
+           <div class="col-md-offset-1 col-md-4">
+             <div data-ng-include="'views/partials/fileupload_status.html'"></div>
+           </div>
+         </div>
+       </div>
+    </div>
+   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="SubmitBox">
+         <button id="SubmitButton" class="btn btn-success" data-ng-click="submission.submit()" data-ng-disabled="submission.isDisabled() || isUploading() || submissionForm.$invalid" type="submit">
+          <i data-ng-show="submission.wait" id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
+          <i data-ng-hide="submission.wait" id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
+          <span data-translate>Submit</span>
+          <span data-ng-show="submission.wait">({{submission.countdown}})</span>
+         </button>
+      </div>
     </div>
   </div>
 </div>

@@ -9,6 +9,8 @@
     </ul>
   </span>
 
+  <span data-ng-switch-when="date">{{entry['value'] | date:'dd-MM-yyyy'}}</span>
+
   <span data-ng-switch-when="tos">
     <span data-ng-if="entry['value'] == 'True'" data-translate>Accepted</span>
     <span data-ng-if="entry['value'] == 'False'" data-translate>Not accepted</span>

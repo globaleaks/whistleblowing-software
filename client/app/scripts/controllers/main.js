@@ -7,6 +7,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $rootScope.language = $location.search().lang;
 
+    $rootScope.embedded = $location.search().embedded == 'true' ? true : false;
+
     var iframeCheck = function() {
       try {
         return window.self !== window.top;
@@ -58,7 +60,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     $scope.isLoginPage = function () {
       var path = $location.path();
       return (path === '/login' ||
-              path === '/admin');
+              path === '/admin' ||
+              path === '/receipt');
     };
 
     $scope.isAWhistleblowerPage = function() {
@@ -67,8 +70,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
               path === '/start' ||
               path === '/submission' ||
               path === '/receipt' ||
-              path === '/embedded/submission' ||
-              path === '/embedded/receipt' ||
               path === '/status');
     }
 
@@ -110,7 +111,11 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         } else if ($location.path() === '/submission') {
           $scope.ht = $rootScope.node.header_title_submissionpage;
         } else if ($location.path() === '/receipt') {
-          $scope.ht = $rootScope.node.header_title_receiptpage;
+          if (Authentication.keycode) {
+            $scope.ht = $rootScope.node.header_title_receiptpage;
+          } else {
+            $scope.ht = $filter('translate')("Login");
+          }
         } else {
           $scope.ht = $filter('translate')($scope.header_title);
         }
