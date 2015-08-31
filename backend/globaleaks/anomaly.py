@@ -386,10 +386,11 @@ class Alarm(object):
                       "[%s]" % event_matrix if event_matrix else "")
             defer.returnValue(None)
 
-        if Alarm.last_alarm_email or not emergency_notification:
+        if Alarm.last_alarm_email and not emergency_notification:
             if not is_expired(Alarm.last_alarm_email,
                               minutes=do_not_stress_admin_with_more_than_an_email_every_minutes):
-                log.debug("Alert email want be sent, but the threshold of %d minutes is not yet reached since %s" % (
+                log.debug("Alert [%s] want be sent, but the threshold of %d minutes still unexpired %s" % (
+                    Alarm.stress_levels,
                     do_not_stress_admin_with_more_than_an_email_every_minutes,
                     datetime_to_ISO8601(Alarm.last_alarm_email)))
                 defer.returnValue(None)
@@ -512,8 +513,8 @@ class Alarm(object):
                                          total_ramdisk_bytes)
 
                 if disk_space <= GLSettings.disk_alarm_threshold:
-                    log.debug("Disk Alarm level %d suppressed (disk alarm threshold set to %d)" % (
-                        disk_space, GLSettings.disk_alarm_threshold))
+                    # log.debug("Disk Alarm level %d suppressed (disk alarm threshold set to %d)" % (
+                    #     disk_space, GLSettings.disk_alarm_threshold))
                     # No alarm to be concerned, then
                     disk_space = 0
                 else:

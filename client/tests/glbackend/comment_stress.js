@@ -13,7 +13,7 @@ var app = request(host);
 describe('COMMENT -- hardcoded receipt', function(){
   it(' COMMENT spam -- hardcoded receipt', function(done){
 
-    var auth_wb = {"username": "wb", "password": "4573056041452529", "role":"wb"};
+    var auth_wb = {"username": "wb", "password": "4499194939746752", "role":"wb"};
     app
         .post ('/authentication')
         .send(auth_wb)

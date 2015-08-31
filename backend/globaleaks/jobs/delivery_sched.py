@@ -112,10 +112,12 @@ def receiverfile_planning(store):
             log.err("Failed to handle receiverfiles creation for ifile %s (retry %d/%d)" %
                     (ifile.id, ifile.processing_attempts, INTERNALFILES_HANDLE_RETRY_MAX))
 
-        ifile.processing_attempts = ifile.processing_attempts + 1
-
-        log.debug("Starting handling receiverfiles creation for ifile %s ()retry %d/%d)" %
+        
+        if ifile.processing_attempts:
+            log.debug("Starting handling receiverfiles creation for ifile %s retry %d/%d" %
                   (ifile.id, ifile.processing_attempts, INTERNALFILES_HANDLE_RETRY_MAX))
+
+        ifile.processing_attempts = ifile.processing_attempts + 1
 
         for receiver in ifile.internaltip.receivers:
             rtrf = store.find(ReceiverTip, ReceiverTip.internaltip_id == ifile.internaltip_id,
