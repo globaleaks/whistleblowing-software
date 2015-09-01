@@ -299,10 +299,27 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-saucelabs');
 
+  var readDynamicStrings = function() {
+    var filecontent = grunt.file.read('app/data/dynamic_strings.json'),
+
+    ret = {};
+    ret['mapping'] = JSON.parse(filecontent);
+    ret['inverse_mapping'] = {}
+    console.log(ret['mapping']);
+    for (var key in ret['mapping']) {
+      ret['inverse_mapping'][(ret['mapping'][key])] = key;
+    };
+
+    return ret;
+  }
+
   var path = require('path'),
     superagent = require('superagent'),
     fs = require('fs'),
-    Gettext = require("node-gettext")
+    Gettext = require("node-gettext"),
+    dynamic_strings = readDynamicStrings();
+
+  console.log(dynamic_strings);
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
     var rm_rf = function(dir) {
@@ -541,18 +558,27 @@ module.exports = function(grunt) {
 
     gt.addTextdomain("en");
 
+    function addString(str) {
+      if (str in dynamic_strings['mapping']) {
+        str = dynamic_strings['mapping'][str];
+        gt.setTranslation("en", "", str, str);
+      } else {
+        gt.setTranslation("en", "", str, str);
+      }
+
+      translationStringCount += 1;
+    };
+
     function extractPotFromHTMLFile(filepath) {
       var filecontent = grunt.file.read(filepath),
         result;
 
-      while ( (result = translationStringRegexpHTML1.exec(filecontent)) ) {
-        gt.setTranslation("en", "", result[1], result[1]);
-        translationStringCount += 1;
+      while (result = translationStringRegexpHTML1.exec(filecontent)) {
+        addString(result[1]);
       }
 
-      while ( (result = translationStringRegexpHTML2.exec(filecontent)) ) {
-        gt.setTranslation("en", "", result[1], result[1]);
-        translationStringCount += 1;
+      while (result = translationStringRegexpHTML2.exec(filecontent)) {
+        addString(result[1]);
       }
 
     };
@@ -561,9 +587,8 @@ module.exports = function(grunt) {
       var filecontent = grunt.file.read(filepath),
         result;
 
-      while ( (result = translationStringRegexpJSON.exec(filecontent)) ) {
-        gt.setTranslation("en", "", result[1], result[1]);
-        translationStringCount += 1;
+      while (result = translationStringRegexpJSON.exec(filecontent)) {
+        addString(result[1]);
       }
     };
 
@@ -573,11 +598,9 @@ module.exports = function(grunt) {
           result;
 
       for (var i=0; i<lines.length; i++){
-
         // we skip adding empty strings and variable only strings
         if (lines[i] != '' && !lines[i].match(/^%[a-zA-Z0-9]+%/g)) {
-          gt.setTranslation("en", "", lines[i], lines[i]);
-          translationStringCount += 1;
+          addString(lines[i]);
         }
       }
     };
@@ -606,7 +629,6 @@ module.exports = function(grunt) {
     console.log("Written " + translationStringCount + " string to pot/en.po.");
 
     updateTxSource(done);
-
   });
 
   grunt.registerTask('makeTranslations', function() {
@@ -614,6 +636,14 @@ module.exports = function(grunt) {
       gt = new Gettext(),
       strings,
       fileContents = fs.readFileSync("pot/en.po");
+
+    function addTranslation(translations, key, value) {
+      if (key in dynamic_strings['inverse_mapping']) {
+        key = dynamic_strings['inverse_mapping'][key];
+      }
+
+      translations[key] = value;
+    };
 
     fetchTxTranslations(function(supported_languages){
 
@@ -626,10 +656,8 @@ module.exports = function(grunt) {
           output;
 
         strings.forEach(function(string){
-
           gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
-          translations[string] = str_unescape(gt.dgettext(lang_code, str_escape(string)));
-
+          addTranslation(translations, string, str_unescape(gt.dgettext(lang_code, str_escape(string))));
         });
 
         output = JSON.stringify(translations);
