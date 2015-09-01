@@ -131,13 +131,15 @@ def update_receiver_settings(store, receiver_id, request, language):
 
 @transact_ro
 def get_receivertip_list(store, receiver_id, language):
-    node = store.find(Node).one()
 
-    rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
+    # TODO implement the proper paging!!
+    rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)[:100]
 
     rtip_summary_list = []
 
     for rtip in rtiplist:
+        # TODO this store find in a potentially long loop is bad, is easier store in
+        # InternalTip the file counter number...
         rfiles_n = store.find(ReceiverFile,
                               (ReceiverFile.internaltip_id == rtip.internaltip.id,
                                ReceiverFile.receiver_id == receiver_id)).count()

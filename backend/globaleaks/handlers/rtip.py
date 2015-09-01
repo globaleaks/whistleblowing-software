@@ -108,10 +108,19 @@ def db_get_tip_receiver(store, user_id, tip_id, language):
     rtip = db_access_tip(store, user_id, tip_id)
 
     notif = store.find(Notification).one()
+
+
     if not notif.send_email_for_every_event:
         # Events related to this tip and for which the email have been sent can be removed
+        test = store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
+                                  EventLogs.mail_sent == True))
+        print "CURIOUS: is still useful this thing ? ", test.count()
+        test.remove()
+        """
+        original code:
         store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
                                   EventLogs.mail_sent == True)).remove()
+        """
 
     tip_desc = receiver_serialize_tip(store, rtip.internaltip, language)
 
@@ -430,6 +439,9 @@ def get_receiver_list_receiver(store, user_id, tip_id, language):
     rtip = db_access_tip(store, user_id, tip_id)
 
     receiver_list = []
+    # Improvement TODO, instead of looping over rtip, that can be A LOTS, we
+    # can just iterate over receiver, and then remove the receiver not present
+    # in the specific InternalTip
     for rtip in rtip.internaltip.receivertips:
         receiver_desc = {
             "pgp_key_status": rtip.receiver.pgp_key_status,
