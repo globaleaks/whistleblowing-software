@@ -389,11 +389,12 @@ class Alarm(object):
         if Alarm.last_alarm_email and not emergency_notification:
             if not is_expired(Alarm.last_alarm_email,
                               minutes=do_not_stress_admin_with_more_than_an_email_every_minutes):
+                defer.returnValue(None)
+                # This is skipped then:
                 log.debug("Alert [%s] want be sent, but the threshold of %d minutes still unexpired %s" % (
                     Alarm.stress_levels,
                     do_not_stress_admin_with_more_than_an_email_every_minutes,
                     datetime_to_ISO8601(Alarm.last_alarm_email)))
-                defer.returnValue(None)
 
         admin_email = yield _get_node_admin_email()
         admin_language = yield _get_admin_user_language()
