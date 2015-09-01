@@ -305,7 +305,6 @@ module.exports = function(grunt) {
     ret = {};
     ret['mapping'] = JSON.parse(filecontent);
     ret['inverse_mapping'] = {}
-    console.log(ret['mapping']);
     for (var key in ret['mapping']) {
       ret['inverse_mapping'][(ret['mapping'][key])] = key;
     };
@@ -318,8 +317,6 @@ module.exports = function(grunt) {
     fs = require('fs'),
     Gettext = require("node-gettext"),
     dynamic_strings = readDynamicStrings();
-
-  console.log(dynamic_strings);
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
     var rm_rf = function(dir) {
