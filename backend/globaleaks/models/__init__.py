@@ -120,7 +120,7 @@ class BaseModel(Storm):
                     setattr(self, k, value)
 
     def __repr___(self):
-        values = ['{}={}'.format(value, getattr(self, attr)) for attr in self._public_attrs]
+        values = ['{}={}'.format(attr, getattr(self, attr)) for attr in self._public_attrs]
         return '<%s model with values %s>' % (self.__name__, ', '.join(values))
 
     def __setattr__(self, name, value):
