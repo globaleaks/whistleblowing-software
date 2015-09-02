@@ -293,6 +293,10 @@ def send_exception_email(mail_body, mail_reason="GlobaLeaks Exception"):
     if isinstance(mail_body, str) or isinstance(mail_body, unicode):
         mail_body = bytes(mail_body)
 
+    if mail_reason.endswith("Exceeded"):
+        log.debug("Skipping email [%s] because switch -S is present" % mail_reason)
+        return
+
     if not hasattr(GLSettings.memory_copy, 'notif_source_name') or \
         not hasattr(GLSettings.memory_copy, 'notif_source_email') or \
         not hasattr(GLSettings.memory_copy, 'exception_email'):
@@ -304,7 +308,7 @@ def send_exception_email(mail_body, mail_reason="GlobaLeaks Exception"):
     if sha256_hash in GLSettings.exceptions:
         GLSettings.exceptions[sha256_hash] += 1
         if GLSettings.exceptions[sha256_hash] > 5:
-            # if the threashold has been exceeded
+            # if the threshold has been exceeded
             log.err("exception mail suppressed for exception (%s) [reason: threshold exceeded]" % sha256_hash)
             return
     else:
@@ -313,7 +317,7 @@ def send_exception_email(mail_body, mail_reason="GlobaLeaks Exception"):
     GLSettings.exceptions_email_count += 1
 
     try:
-        mail_subject = subject = "%s %s" % (mail_reason, __version__)
+        mail_subject = "%s %s" % (mail_reason, __version__)
         if GLSettings.devel_mode:
             mail_subject +=  " [%s]" % GLSettings.developer_name
 
