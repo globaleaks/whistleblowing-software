@@ -514,31 +514,110 @@ DatabaseError: database disk image is malformed
     </pre>
 </div>
 
-<h3>Solution</h3>
-<div>
-  in mailflush_sched.py, line 195:
-
-<pre>
-storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)
-storedevnts.order_by(Asc(EventLogs.creation_date))
-</pre>
-
+<h3>Solutions to transact deadlocks</h3>
+<div class="solution_one">
+    in mailflush_sched.py, line 195:
+    <pre>
+        storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)
+        storedevnts.order_by(Asc(EventLogs.creation_date))
+    </pre>
     Now that section of code has been changed with a query limitation (event_number has a default value of 30, considering that many messages are optiizely don't sent, then we
     pick the first 90th event.) This is enough to avoid the load of the operation block the backend.
-<pre>
-@transact_ro
-def load_complete_events(store, event_number=GLSettings.notification_limit):
-    """
-    event_number represent the amount of event that can be returned by the function,
-    events to be notified are taken in account later.
-    """
-    event_list = []
-    storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)[:event_number * 3]
-</pre>
+    <pre>
+        @transact_ro
+        def load_complete_events(store, event_number=GLSettings.notification_limit):
+            """
+            event_number represent the amount of event that can be returned by the function,
+            events to be notified are taken in account later.
+            """
+            event_list = []
+            storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)[:event_number * 3]
+    </pre>
+    This has solved the deadlock, and the same approach, applied to Delivery and Notification, permit to create smaller transact every time.
 
+    <hr>
+    Additional costs realized in this review, has been the JSON serialisation/deserialisation happening. In general, since this exprience, we have to approach a review of the code aiming for two improvements:
+    <ul>
+        <li>Remove nested transact.</li>
+        <li>Never do trasnact with a load directly influenced from the anonymous user interacting with the node-</li>
+    </ul>
 </div>
 
 <p>This approach has solved the deadlock.</p>
+
+<h3>Solution on huge mass of nev Event management</h3>
+
+<div class="solution_two">
+    When a massive flood happen, a certain threshold can be spot
+
+    <pre>
+        2015-09-01 10:29:08+0200 [ ] Check documentation in https://github.com/globaleaks/GlobaLeaks/wiki/ for special enhancement
+        2015-09-01 10:29:28+0200 '[!] Waves of new Tip received, notification suspended completely for all the 121570 Tip (Threshold 200)'
+        2015-09-01 10:29:35+0200 [D] Removing from Cleaning operation InternalTip (e5dcefeb-c46b-4a0b-8033-a83e726fedb4) N# 1
+        2015-09-01 10:29:43+0200 [D] Saved stats and time updated, keys saved 0
+    </pre>
+    This is a new <b>Anomaly</b> raised for the Node Administrator, because she has to be notified that Notification get completely suspended, so can update the Receiver about it.
+    At the moment the Admin do not get informations beside the Event, but probably, Context(s) involved and number of Event suppressed has to be added in the communication.
+</div>
+
+
+<h1>To be investigated</h1>
+<p>Event ExpiringTip has not to be generated</p>
+<pre>
+    2015-09-01 13:01:43+0200 [D] Maximum number of notification event reach (Mailflush) 30, after 30
+    2015-09-01 13:01:43+0200 [D] load_complete_events: {u'ExpiringTip': 30} from 2398 Events
+    2015-09-01 13:01:44+0200 [D] Filtering function: iterating over 0 Tip
+    2015-09-01 13:01:44+0200 [D] All the 30 mails will be marked as Sent because Admin has disable notification
+    2015-09-01 13:01:44+0200 [D] Mails filtering completed passing from #30 to #0 events
+    2015-09-01 13:01:44+0200 [D] Marked event [ExpiringTip] as sent
+    2015-09-01 13:01:44+0200 [D] Marked event [ExpiringTip] as sent
+    2015-09-01 13:01:44+0200 [D] Marked event [ExpiringTip] as sent
+</pre>
+
+<p>If a long delete of Tip from the cleaning sched is running, you can't perform other active operation like delete Context, found this exception after:</p>
+
+<pre>
+2015-09-02 14:57:54+0200 [-] Removal of 42740 InternalTips starts soon
+2015-09-02 14:57:54+0200 "[!] Exception while performing scheduled operation CleaningSchedule: 'NoneType' object has no attribute 'internalfiles'"
+2015-09-02 14:57:54+0200 '[!] Exception raised and handled by globaleaks_exception_handler'
+2015-09-02 14:57:54+0200 '[!] AttributeError Attribute not found.
+ 
+ Traceback (most recent call last):
+ 
+   File "/home/zz/Dev/GlobaLeaks/backend/globaleaks/jobs/base.py", line 75, in _operation
+     yield self.operation()
+ 
+   File "/home/zz/.local/lib/python2.7/site-packages/twisted/internet/defer.py", line 1097, in _inlineCallbacks
+     result = result.throwExceptionIntoGenerator(g)
+ 
+   File "/home/zz/.local/lib/python2.7/site-packages/twisted/python/failure.py", line 389, in throwExceptionIntoGenerator
+     return g.throw(self.type, self.value, self.tb)
+ 
+   File "/home/zz/Dev/GlobaLeaks/backend/globaleaks/jobs/cleaning_sched.py", line 107, in operation
+     yield self.perform_cleaning(itip_id, i + 1)
+ 
+   File "/home/zz/.local/lib/python2.7/site-packages/twisted/python/threadpool.py", line 191, in _worker
+     result = context.call(ctx, function, *args, **kwargs)
+ 
+   File "/home/zz/.local/lib/python2.7/site-packages/twisted/python/context.py", line 118, in callWithContext
+     return self.currentContext().callWithContext(ctx, func, *args, **kw)
+ 
+   File "/home/zz/.local/lib/python2.7/site-packages/twisted/python/context.py", line 81, in callWithContext
+     return func(*args,**kw)
+ 
+   File "/home/zz/Dev/GlobaLeaks/backend/globaleaks/settings.py", line 819, in _wrap
+     result = function(self.instance, self.store, *args, **kwargs)
+ 
+   File "/home/zz/Dev/GlobaLeaks/backend/globaleaks/jobs/cleaning_sched.py", line 80, in perform_cleaning
+     db_delete_itip(store, itip, tip_id_number)
+ 
+   File "/home/zz/Dev/GlobaLeaks/backend/globaleaks/handlers/rtip.py", line 159, in db_delete_itip
+     for ifile in itip.internalfiles:
+ 
+ AttributeError: \'NoneType\' object has no attribute \'internalfiles\'
+</pre>
+
+
 
 </body>
 </html>
