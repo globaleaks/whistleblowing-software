@@ -2,6 +2,12 @@
   <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed">
     <div>
       <span data-translate>Submission</span>
+      <span data-ng-if="tip.label"
+            class="SubmissionAssignLabel">{{::tip.label}}
+      </span>
+      <span data-ng-if="!tip.label" id="SubmissionAssignLabel" data-translate>
+            Assign a label
+      </span>
       <span class="pull-right">
         <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
         <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>

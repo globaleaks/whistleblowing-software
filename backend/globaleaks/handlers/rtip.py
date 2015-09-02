@@ -31,6 +31,7 @@ def receiver_serialize_tip(store, internaltip, language):
         'id': internaltip.id,
         'context_id': internaltip.context.id,
         'show_receivers': internaltip.context.show_receivers,
+        # Question: this is serialization is for Receivers, the Receiver are hidden just for Viz
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
         'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
@@ -109,18 +110,13 @@ def db_get_tip_receiver(store, user_id, tip_id, language):
 
     notif = store.find(Notification).one()
 
-
     if not notif.send_email_for_every_event:
-        # Events related to this tip and for which the email have been sent can be removed
-        test = store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
-                                  EventLogs.mail_sent == True))
-        print "CURIOUS: is still useful this thing ? ", test.count()
-        test.remove()
-        """
-        original code:
-        store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
-                                  EventLogs.mail_sent == True)).remove()
-        """
+        # If Receiver is accessing this Tip, Events related can be removed before
+        # Notification is sent. This is a Twitter/Facebook -like behavior.
+        store.find(EventLogs, EventLogs.receivertip_id == tip_id).remove()
+        # Note - before the check was:
+        # store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
+        #                          EventLogs.mail_sent == True)).remove()
 
     tip_desc = receiver_serialize_tip(store, rtip.internaltip, language)
 
@@ -245,6 +241,13 @@ def postpone_expiration_date(store, user_id, tip_id):
 
 
 @transact
+def assign_rtip_label(store, user_id, tip_id, label_content):
+    rtip = db_access_tip(store, user_id, tip_id)
+    log.debug("Updating ReceiverTip label from [%s] to %s" % (rtip.label, label_content))
+    rtip.label = unicode(label_content)
+
+
+@transact
 def get_tip(store, user_id, tip_id, language):
     db_increment_receiver_access_count(store, user_id, tip_id)
     answer = db_get_tip_receiver(store, user_id, tip_id, language)
@@ -359,9 +362,10 @@ class RTipInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.TipOpsDesc)
 
-        if request['operation']:
-            if request['operation'] == 'postpone':
-                yield postpone_expiration_date(self.current_user.user_id, tip_id)
+        if request['operation'] == 'postpone':
+            yield postpone_expiration_date(self.current_user.user_id, tip_id)
+        if request['operation'] == 'label':
+            yield assign_rtip_label(self.current_user.user_id, tip_id, request['label'])
 
         self.set_status(202)  # Updated
         self.finish()

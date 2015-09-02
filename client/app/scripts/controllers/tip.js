@@ -16,11 +16,20 @@ TipOperationsCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance',
          $route.reload();
        });
      } else if ($scope.operation === 'delete') {
+         console.log("ok, forging hardcode 'label' ");
+         return $http({method: 'PUT', url: '/rtip/' + tip.id, data:{'operation': 'label', 'label' : 'ciaociaoXX'   }}).
+             success(function(data, status, headers, config){
+                 console.log("XXX");
+                 $route.reload();
+             });
+         /* this is just a test because I've some trouble in make the element <span> became an <input> */
+     } /* else if ($scope.operation === 'delete') {
        return $http({method: 'DELETE', url: '/rtip/' + tip.id, data:{}}).
              success(function(data, status, headers, config){
                $location.url('/receiver/tips');
                $route.reload();
              });
-     }
+     } */
   };
+
 }];
