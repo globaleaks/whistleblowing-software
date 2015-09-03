@@ -109,7 +109,7 @@ GLSettings.parser.add_option("-n", "--nodaemon", action='store_true',
     dest="nodaemon", default=GLSettings.nodaemon)
 
 GLSettings.parser.add_option("-l", "--loglevel", type="choice",
-    choices=['CRITICAL', 'ERROR', 'INFO', 'DEBUG'],
+    choices=['CRITICAL', 'ERROR', 'INFO', 'DEBUG', 'TIMEDEBUG'],
     help="set log level [default: %default]",
     dest="loglevel", default=GLSettings.loglevel)
 
@@ -217,6 +217,10 @@ GLSettings.parser.add_option("-R", "--ramdisk", type="string",
 GLSettings.parser.add_option("--XXX", type='string',
     help="hardcore debug only options: check NOTES.md file",
     dest="xxx")
+
+GLSettings.parser.add_option("-S", "--stats", action='store_true',
+    help="Statistics enabled, dump via JSON all the timings [DON'T DOIT!]",
+    dest="json_stats")
 
 GLSettings.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software (spoiler: %s)" % GLSettings.version_string,
