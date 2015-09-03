@@ -11,6 +11,15 @@
   font-size: 18;
 }
 
+#SubmissionAssignLabel {
+  font-size: 0.8em;
+  color: blueviolet;
+  text-underline-mode: 0.3em;
+  vertical-align: middle;
+  padding-left: 2em;
+
+}
+
 .receiverCards {
   position: relative;
 }

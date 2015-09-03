@@ -77,7 +77,11 @@ class CleaningSchedule(GLJob):
     @transact
     def perform_cleaning(self, store, itip_id, tip_id_number):
         itip = store.find(InternalTip, InternalTip.id == itip_id).one()
-        db_delete_itip(store, itip, tip_id_number)
+        # Is happen that itip was NoneType, so, we are managing this condition
+        if itip:
+            db_delete_itip(store, itip, tip_id_number)
+        else:
+            log.err("DB Inconsistency ? InternalTip to be deleted %s is None" % itip_id)
 
     @transact
     def perform_stats_cleaning(self, store):
