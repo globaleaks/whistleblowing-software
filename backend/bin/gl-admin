@@ -94,8 +94,21 @@ def do_safexport(dbfile, export_print):
     appdata = source_store.find(models.ApplicationData)
     ctxrcvr = source_store.find(models.ReceiverContext)
     tiprcvr = source_store.find(models.ReceiverInternalTip)
+    eventlogs = source_store.find(models.EventLogs)
+    fields = source_store.find(models.Field)
+    fieldattr = source_store.find(models.FieldAttr)
+    optionactfield = source_store.find(models.OptionActivateField)
+    fieldansw = source_store.find(models.FieldAnswer)
+    fieldoption= source_store.find(models.FieldOption)
+    fieldanswgroup= source_store.find(models.FieldAnswerGroup)
+    archivedsch = source_store.find(models.ArchivedSchema)
+    steps = source_store.find(models.Step)
+    anomalies = source_store.find(models.Anomalies)
 
     if export_print:
+        funny_print("Notification", "%s" % notification.count())
+        funny_print("Node", "%s" % node.count())
+        print "__________________________________________"
         funny_print("Context", "%s" % contexts.count())
         funny_print("Receivers", "%s" % receivers.count())
         funny_print("Users", "%s" % users.count())
@@ -108,10 +121,19 @@ def do_safexport(dbfile, export_print):
         funny_print("WhistleblowerTips", "%s" % wbtips.count())
         funny_print("ReceiverContext", "%s" % ctxrcvr.count())
         funny_print("InternalTipReceiver", "%s" % tiprcvr.count())
-        funny_print("Notification", "%s" % notification.count())
         funny_print("ApplicationData", "%s" % appdata.count())
-        funny_print("Node", "%s" % node.count())
         funny_print("Stats", "%s" % stats.count())
+        funny_print("EventLogs", "%s" % eventlogs.count())
+        funny_print("Steps", "%s" % steps.count())
+        funny_print("Anomalies", "%s" % anomalies.count())
+        print "__________________________________________"
+        funny_print("Fields", "%s" % fields.count())
+        funny_print("FieldAttr", "%s" % fieldattr.count())
+        funny_print("OptionActivateField", "%s" % optionactfield.count())
+        funny_print("FieldAnswer", "%s" % fieldansw.count())
+        funny_print("FieldOption", "%s" % fieldoption.count())
+        funny_print("FieldAnswerGroup", "%s" % fieldanswgroup.count())
+        funny_print("ArchivedSchema", "%s" % archivedsch.count())
         return
 
     # export
