@@ -243,7 +243,10 @@ def postpone_expiration_date(store, user_id, tip_id):
 @transact
 def assign_rtip_label(store, user_id, tip_id, label_content):
     rtip = db_access_tip(store, user_id, tip_id)
-    log.debug("Updating ReceiverTip label from [%s] to %s" % (rtip.label, label_content))
+    if rtip.label:
+        log.debug("Updating ReceiverTip label from '%s' to '%s'" % (rtip.label, label_content))
+    else:
+        log.debug("Assigning ReceiverTip label '%s'" % label_content)
     rtip.label = unicode(label_content)
 
 
