@@ -87,8 +87,19 @@ class StepIdNotFound(GLException):
     status_code = 404 # Not Found
 
 
-# UNUSED ERROR CODE 16 17 18 HERE!
+class InvalidModelInput(GLException):
+    """
+    This error is used when a Model validation fails
+    """
+    error_code = 16
+    status_code = 406 # Not Acceptable
 
+    def __init__(self, wrong_source):
+        self.reason = "Invalid Model Input [%s]" % wrong_source
+        self.arguments = [wrong_source]
+
+
+# UNUSED ERROR CODE 17 18 HERE!
 
 class DatabaseIntegrityError(GLException):
     """

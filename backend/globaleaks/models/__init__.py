@@ -271,7 +271,7 @@ class ReceiverTip(Model):
     access_counter = Int(default=0)
     notification_date = DateTime()
 
-    label = Unicode(validator=shortlocal_v, default=u"")
+    label = Unicode(default=u"")
 
     new = Int(default=True)
 

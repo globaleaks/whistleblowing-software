@@ -27,10 +27,10 @@ def shorttext_v(_self, _attr, value):
         value = unicode(value)
 
     if not isinstance(value, unicode):
-        raise errors.InvalidInputFormat("Name expected unicode (%s)" % value)
+        raise errors.InvalidModelInput("Name expected unicode (%s)" % value)
 
     if len(value) > GLSettings.memory_copy.maximum_namesize:
-        raise errors.InvalidInputFormat("Name length need to be < of %d"
+        raise errors.InvalidModelInput("Name length need to be < of %d"
                                         % GLSettings.memory_copy.maximum_namesize)
 
     return value
@@ -48,11 +48,11 @@ def longtext_v(_self, attr, value):
         value = unicode(value)
 
     if not isinstance(value, unicode):
-        raise errors.InvalidInputFormat("attr %s: Text expected unicode (%s)" %
+        raise errors.InvalidModelInput("attr %s: Text expected unicode (%s)" %
                                         ( attr, value ))
 
     if len(value) > GLSettings.memory_copy.maximum_textsize:
-        raise errors.InvalidInputFormat("Text unicode in %s " \
+        raise errors.InvalidModelInput("Text unicode in %s " \
                                         "overcomes length " \
                                         "limit %d" % (attr, GLSettings.memory_copy.maximum_textsize))
 
@@ -68,7 +68,7 @@ def dict_v(_self, attr, value):
         return {}
 
     if not isinstance(value, dict):
-        raise errors.InvalidInputFormat("(%s) dict expected" % attr)
+        raise errors.InvalidModelInput("(%s) dict expected" % attr)
 
     for key, subvalue in value.iteritems():
         if isinstance(subvalue, str):
@@ -76,7 +76,7 @@ def dict_v(_self, attr, value):
 
         if isinstance(subvalue, unicode):
             if len(subvalue) > GLSettings.memory_copy.maximum_textsize:
-                raise errors.InvalidInputFormat("In dict %s the key %s" \
+                raise errors.InvalidModelInput("In dict %s the key %s" \
                                                 "overcome length limit of %d" % (attr, key,
                                                                                  GLSettings.memory_copy.maximum_textsize))
 
@@ -106,7 +106,8 @@ def shortlocal_v(_self, attr, value):
             del value[unicode(k)]
         except KeyError:
             pass
-        log.debug("(%s) Invalid language code in %s, ignoring it" % (k, attr))
+        log.debug("shortlocal validation: (%s) Invalid language code in %s, skipped" %
+                  (k, attr))
 
     for lang, text in value.iteritems():
         shorttext_v(None, None, text)
@@ -130,7 +131,8 @@ def longlocal_v(_self, attr, value):
             del value[unicode(k)]
         except KeyError:
             pass
-        log.debug("(%s) Invalid language code in %s, ignoring it" % (k, attr))
+        log.debug("longlocal validation: (%s) Invalid language code in %s, skipped" %
+                  (k, attr))
 
     for lang, text in value.iteritems():
         longtext_v(None, attr, text)

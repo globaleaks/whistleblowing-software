@@ -23,4 +23,5 @@ TipOperationsCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance',
              });
      }
   };
+
 }];
