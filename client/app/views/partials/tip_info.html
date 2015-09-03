@@ -2,12 +2,34 @@
   <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed">
     <div>
       <span data-translate>Submission</span>
+
+      <span data-ng-if="tip.label" class="LabelAssigned">
+        {{::tip.label}}
+        <i class="glyphicon glyphicon-tag"></i>
+      </span>
+
       <span class="pull-right">
         <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
         <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
       </span>
     </div>
   </div>
+
+  <!-- note: was my intention put the content of this div on the left of the previous
+      "Submission" div, but che data-ng-click collapse was catching my clicks -->
+  <div data-ng-if="!tip.label">
+
+      <span id="SubmissionAssignLabel">
+        <i class="glyphicon glyphicon-tag"></i>
+
+        <a class="LabelMissing" data-ng-click="tip.updateLabel(tip.new_label)">
+          <span data-translate>Assign a Label</span>
+        </a>
+        <input type="text" value="Assign a Label" data-ng-model="tip.new_label" />
+      </span>
+
+  </div>
+
   <div class="TipPageSectionContent" data-ng-show="!collapsed">
     <div class="row">
       <span class="col-md-4">
@@ -38,11 +60,11 @@
       </span>
       <span class="col-md-8">
         <span data-ng-if="tip.tor2web"
-              class="btn-warning"
+              class="btn-warning ConnectionKind"
               popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
               data-translate>HTTPS</span>
         <span data-ng-if="!tip.tor2web"
-              class="btn-success"
+              class="btn-success ConnectionKind"
               popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
               data-translate>Tor</span>
       </span>
