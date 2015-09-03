@@ -30,7 +30,7 @@
          <div data-ng-switch-when="whistleblower" class="alert alert-info">
           <div class="row">
             <div class="col-md-6">
-              <div data-translate>Whistleblower</div>
+              <div data-translate class="WbNameInMessages">Whistleblower</div>
             </div>
             <div class="pull-right" style="margin-right:20px">
               <div>{{::message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
@@ -41,7 +41,7 @@
         <div data-ng-switch-when="receiver" class="alert alert-success">
           <div class="row">
             <div class="col-md-6">
-              <div>{{::message.author}}</div>
+              <div class="WbNameInMessages">{{::message.author}}</div>
             </div>
             <div class="pull-right" style="margin-right:20px">
               <div>{{::message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
