@@ -89,6 +89,18 @@
             </span>
           </th>
           <th>
+            <span ng-click="sortKey = 'label'; sortReverse = !sortReverse"
+               popover="{{'Label' | translate}}"
+               popover-placement=""
+               popover-trigger="mouseenter">
+              <i class="glyphicon glyphicon-tag"></i>
+              <span class="btn btn-xs" ng-show="sortKey == 'label'">
+                 <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                 <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+              </span>
+            </span>
+          </th>
+          <th>
             <span ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse"
                popover="{{'Submission Date' | translate}}"
                popover-placement="top"
@@ -175,6 +187,7 @@
             </span>
           </td>
           <td data-ng-if="contexts.length > 1">{{::tip.context_name}}</td>
+          <td>{{::tip.label}}</td>
           <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>{{::tip.file_counter}}</td>

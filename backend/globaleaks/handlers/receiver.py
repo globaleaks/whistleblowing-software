@@ -158,7 +158,8 @@ def get_receivertip_list(store, receiver_id, language):
             'tor2web': rtip.internaltip.tor2web,
             'questionnaire_hash': rtip.internaltip.questionnaire_hash,
             'preview_schema': db_get_archived_preview_schema(store, rtip.internaltip.questionnaire_hash, language),
-            'preview': rtip.internaltip.preview
+            'preview': rtip.internaltip.preview,
+            'label': rtip.label,
         })
 
         mo = Rosetta(rtip.internaltip.context.localized_strings)
