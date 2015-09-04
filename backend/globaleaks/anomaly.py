@@ -235,9 +235,6 @@ class Alarm(object):
         if Alarm.stress_levels['activity'] >= 1:
             self.difficulty_dict['human_captcha'] = True
 
-        if Alarm.stress_levels['disk_space'] >= 1:
-            self.difficulty_dict['human_captcha'] = True
-
         log.debug("get_token_difficulty in %s is: HC:%s, GC:%s, PoW:%s" % (
             self.current_time,
             "Y" if self.difficulty_dict['human_captcha'] else "N",
