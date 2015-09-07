@@ -40,7 +40,7 @@ class TokenCreate(BaseHandler):
 
         token = Token(request['type'])
 
-        self.set_status(201)  # Created
+        self.set_status(201) # Created
         self.finish(token.serialize())
 
 

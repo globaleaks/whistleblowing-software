@@ -73,7 +73,7 @@ describe('globaLeaks process', function() {
 
   it('should be able to submit a tip (1)', function() {
     perform_submission().then(function() {
-      element(by.id('SubmissionReceiptButton')).click().then(function() {
+      element(by.id('ReceiptButton')).click().then(function() {
         expect(browser.getLocationAbsUrl()).toContain('/status');
       });
     });
@@ -81,15 +81,15 @@ describe('globaLeaks process', function() {
 
   it('should be able to submit a tip (2)', function() {
     perform_submission().then(function() {
-      element(by.id('SubmissionReceiptButton')).click().then(function() {
+      element(by.id('ReceiptButton')).click().then(function() {
         expect(browser.getLocationAbsUrl()).toContain('/status');
       });
     });
   });
 
-  it('should be able to submit a tip (2)', function() {
+  it('should be able to submit a tip (3)', function() {
     perform_submission().then(function() {
-      element(by.id('SubmissionReceiptButton')).click().then(function() {
+      element(by.id('ReceiptButton')).click().then(function() {
         expect(browser.getLocationAbsUrl()).toContain('/status');
       });
     });
