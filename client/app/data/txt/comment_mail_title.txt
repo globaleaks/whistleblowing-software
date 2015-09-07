@@ -1,1 +1,1 @@
-[Tip %TipNum%] New comment
+New comment
