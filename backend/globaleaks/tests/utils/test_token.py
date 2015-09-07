@@ -7,6 +7,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import anomaly, event
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
+from globaleaks.tests.test_anomaly import pollute_events_for_testing
 from globaleaks.utils.token import Token, TokenList
 
 class TestToken(helpers.TestGL):
@@ -15,39 +16,30 @@ class TestToken(helpers.TestGL):
     to check the handler testing, see in
     test_anomalies
     """
+    pollute_events_for_testing()
 
     shared_alarm_obj = anomaly.Alarm()
     stress_indicator = [ 'graph_captcha', 'human_captcha', 'proof_of_work' ]
 
-    def test_token_obj_zero_stress(self):
+    @inlineCallbacks
+    def setUp(self):
+        yield helpers.TestGL.setUp(self)
 
         # This is at the beginning
         event.EventTrackQueue.reset()
 
-        # Token submission
-        st = Token('submission', context_id="ignored")
-        st.set_difficulty(TestToken.shared_alarm_obj.get_token_difficulty())
+        pollute_events_for_testing()
+        yield anomaly.compute_activity_level()
+
+    def test_token(self):
+        st = Token('submission')
 
         for indicator in TestToken.stress_indicator:
             self.assertFalse(getattr(st, indicator), indicator)
 
-        st_dict = st.serialize_token()
-        self.assertEqual(st_dict['remaining_allowed_attempts'], Token.MAXIMUM_ATTEMPTS_PER_TOKEN)
+        st_dict = st.serialize()
 
-
-    def test_token_obj_level1_stress(self):
-
-        mock_high_difficulty = {
-            'human_captcha': True,
-            'graph_captcha': True,
-            'proof_of_work': True,
-        }
-
-        # Token submission
-        st = Token('submission', context_id='ignored')
-        st.set_difficulty(mock_high_difficulty)
-
-        st_dict = st.serialize_token()
+        self.assertEqual(st_dict['remaining_uses'], Token.MAX_USES)
 
         if st.graph_captcha:
             self.assertTrue(st.graph_captcha.has_key('answer'))
@@ -57,38 +49,18 @@ class TestToken(helpers.TestGL):
             self.assertTrue(st.human_captcha.has_key('answer'))
             self.assertTrue(isinstance(st.human_captcha['answer'], unicode))
 
-        self.assertEqual(st_dict['remaining_allowed_attempts'], Token.MAXIMUM_ATTEMPTS_PER_TOKEN)
-
     @inlineCallbacks
     def test_token_create_and_get_upload_expire(self):
-        # This is at the beginning
-        event.EventTrackQueue.reset()
-
         file_list = []
 
         token_collection = []
         for i in xrange(20):
-            st = Token('submission', context_id='ignored')
-            st.set_difficulty(TestToken.shared_alarm_obj.get_token_difficulty())
+            st = Token('submission')
 
             token_collection.append(st)
 
         for t in token_collection:
             token = TokenList.get(t.id)
-
-            difficulty = {
-                'human_captcha': True,
-                'graph_captcha': False,
-                'proof_of_work': False,
-            }
-
-            token.set_difficulty(difficulty)
-
-            self.assertRaises(
-                errors.TokenFailure,
-                token.validate, {'human_captcha_answer': 0}
-            )
-
 
             yield self.emulate_file_upload(token, 3)
 
@@ -106,36 +78,36 @@ class TestToken(helpers.TestGL):
             for f in file_list:
                 self.assertFalse(os.path.exists(f))
 
-    def test_token_validate(self):
-        # This is at the beginning
-        event.EventTrackQueue.reset()
+    def test_token_update_right_answer(self):
+        token = Token('submission')
 
-        token = Token('submission', context_id='ignored')
-
-        difficulty = {
-            'human_captcha': True,
-            'graph_captcha': False,
-            'proof_of_work': False,
-        }
-
-        token.set_difficulty(difficulty)
-
-        token = TokenList.get(token.token_id)
-        token.human_captcha = { 'answer': 1 }
-        token.remaining_allowed_attempts = 1
+        token.human_captcha = {'question': '1 + 0','answer': 1}
 
         # validate with right value: OK
-        token.validate({'human_captcha_answer': 1})
+        token.update({'human_captcha_answer': 1})
 
-        # validate with wrong value: FAIL
-        self.assertRaises(
-            errors.TokenFailure,
-            token.validate, {'human_captcha_answer': 0}
-        )
+        # verify that the challenge is changed
+        self.assertFalse(token.human_captcha)
+
+    def test_token_update_wrong_answer(self):
+        token = Token('submission')
+
+        token.human_captcha = {'question': 'XXX','answer': 1}
+
+        token.update({'human_captcha_answer': 0})
+
+        # verify that the challenge is changed
+        self.assertNotEqual(token.human_captcha['question'], 'XXX')
+
+    def test_token_uses_limit(self):
+        token = Token('submission')
+
+        for i in range(0, token.MAX_USES):
+            token.use()
 
         # validate with right value but with no additional
         # attemps available: FAIL
         self.assertRaises(
             errors.TokenFailure,
-            token.validate, {'human_captcha_answer': 1}
+            token.use
         )

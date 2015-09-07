@@ -103,7 +103,6 @@ def authenticated(role):
             If is logged with the right account, is accepted
             If is logged with the wrong account, is rejected with a special message
             """
-
             if not cls.current_user:
                 raise errors.NotAuthenticated
 

@@ -1,5 +1,5 @@
 <div id="TipInfoBox" class="TipPageSection" data-ng-init="collapsed = false">
-  <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed">
+  <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss($event)">
     <div>
       <span data-translate>Submission</span><span data-ng-if="::role == 'receiver'">:</span>
       <span data-ng-if="::role == 'receiver'">
@@ -9,11 +9,11 @@
           <i class="glyphicon glyphicon-tag"></i>
         </span>
 
-        <span data-ng-if="role == 'receiver' && !tip.label || showEditLabelInput" class="form-inline">
+        <span data-ng-if="showEditLabelInput" class="form-inline">
           <div class="form-group">
             <span id="AssignLabelInput" class="input-group">
               <input type="text" class="form-control" placeholder="{{'Label' | translate}}" data-ng-click="eventDismiss($event)" data-ng-model="tip.label" />
-              <span class="input-group-addon" data-ng-click="updateLabel($event, tip.label)"
+              <span class="input-group-addon" data-ng-click="updateLabel($event, tip.label)""
                    popover="{{'Assign a label to the submission' | translate}}" popover-placement="right" popover-trigger="mouseenter">
                 <i class="glyphicon glyphicon-tag"></i>
               </span>

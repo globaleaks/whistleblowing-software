@@ -1,5 +1,5 @@
 <div id="TipQuestionnaireAnswersBox" class="TipPageSection" data-ng-init="collapsed = false">
-  <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed">
+  <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss($event)">
     <div>
       <span data-translate>Questionnaire Answers</span>
       <span class="pull-right">

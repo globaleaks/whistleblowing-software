@@ -13,8 +13,7 @@ from globaleaks.rest import errors
 from globaleaks.models import InternalTip
 from globaleaks.utils.token import Token
 from globaleaks.handlers.admin import get_context_steps
-from globaleaks.handlers.submission import create_whistleblower_tip, \
-    SubmissionCreate, SubmissionInstance
+from globaleaks.handlers.submission import create_whistleblower_tip, SubmissionInstance
 
 # and here, our protagonist character:
 from globaleaks.handlers.submission import create_submission
@@ -33,15 +32,15 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
     @inlineCallbacks
     def create_submission(self, request):
-        token = Token('submission', request['context_id'])
-        output = yield create_submission(token.token_id, request, True, 'en')
+        token = Token('submission')
+        output = yield create_submission(token.id, request, True, 'en')
         returnValue(output)
 
     @inlineCallbacks
     def create_submission_with_files(self, request):
-        token = Token('submission', request['context_id'])
+        token = Token('submission')
         yield self.emulate_file_upload(token, 3)
-        output = yield create_submission(token.token_id, request, False, 'en')
+        output = yield create_submission(token.id, request, False, 'en')
         returnValue(output)
 
     @inlineCallbacks
@@ -118,31 +117,13 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertTrue('answers' in wb_tip)
 
 
-class Test_SubmissionCreate(helpers.TestHandlerWithPopulatedDB):
-    _handler = SubmissionCreate
-
-    @inlineCallbacks
-    def test_post(self):
-        handler = self.request(
-            {
-              'context_id': self.dummyContext['id'],
-              'receivers': [],
-              'answers': {},
-              'human_captcha_answer': 0,
-              'graph_captcha_answer': '',
-              'proof_of_work': 0,
-            }
-        )
-        yield handler.post()
-
-
 class Test_SubmissionInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = SubmissionInstance
 
     @inlineCallbacks
     def test_put(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        token = Token('submission', self.dummyContext['id'])
+        token = Token('submission')
 
         handler = self.request(self.submission_desc)
-        yield handler.put(token.token_id)
+        yield handler.put(token.id)
