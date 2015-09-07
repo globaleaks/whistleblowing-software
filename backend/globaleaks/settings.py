@@ -555,7 +555,7 @@ class GLSettingssClass(object):
                   # at least two byte needed, so you can skip this option
                   GLSettings.debug_option_UUID_human = hardcore_opts[1]
 
-                   if len(GLSettings.debug_option_UUID_human) > 8:
+                  if len(GLSettings.debug_option_UUID_human) > 8:
                       GLSettings.debug_option_UUID_human = GLSettings.debug_option_UUID_human[:8]
 
                   print "→ \033[1;31mUsing", GLSettings.debug_option_UUID_human, \

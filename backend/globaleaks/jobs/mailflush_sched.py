@@ -182,25 +182,23 @@ def mark_event_as_sent(store, event_id):
 
 
 @transact_ro
-def load_complete_events(store, event_number=GLSettings.notification_limit):
+def load_complete_events(store, events_limit=GLSettings.notification_limit):
     """
     This function do not serialize, but make an OD() of the description.
-    event_number represent the amount of event that can be returned by the function,
+    events_limit represent the amount of event that can be returned by the function,
     events to be notified are taken in account later.
     """
     node_desc = db_admin_serialize_node(store, GLSettings.defaults.language)
 
     event_list = []
     totaleventinqueue = store.find(EventLogs, EventLogs.mail_sent == False).count()
-    storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)[:event_number * 3]
-    #storedevnts.order_by(Asc(EventLogs.creation_date))
-    # Cannot be done .order_by in a spliced array, and [:event_number * 3] is that.
+    storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)[:events_limit * 3]
 
     debug_event_counter = {}
     for i, stev in enumerate(storedevnts):
-        if len(event_list) == event_number:
+        if len(event_list) == events_limit:
             log.debug("Maximum number of notification event reach (Mailflush) %d, after %d" %
-                      (event_number, i))
+                      (events_limit, i))
             break
 
         debug_event_counter.setdefault(stev.event_reference['kind'], 0)
@@ -232,12 +230,12 @@ def load_complete_events(store, event_number=GLSettings.notification_limit):
         event_list.append(eventcomplete)
 
     if debug_event_counter:
-        if totaleventinqueue > (event_number * 3):
+        if totaleventinqueue > (events_limit * 3):
             log.debug("load_complete_events: %s from %d Events" %
-                      ( debug_event_counter, totaleventinqueue ) )
+                      (debug_event_counter, totaleventinqueue ))
         else:
             log.debug("load_complete_events: %s from %d Events, with a protection limit of %d" %
-                      ( debug_event_counter, totaleventinqueue, event_number * 3 ) )
+                      (debug_event_counter, totaleventinqueue, events_limit * 3 ))
 
     return event_list
 

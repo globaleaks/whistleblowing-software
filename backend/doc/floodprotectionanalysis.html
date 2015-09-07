@@ -521,17 +521,17 @@ DatabaseError: database disk image is malformed
         storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)
         storedevnts.order_by(Asc(EventLogs.creation_date))
     </pre>
-    Now that section of code has been changed with a query limitation (event_number has a default value of 30, considering that many messages are optiizely don't sent, then we
-    pick the first 90th event.) This is enough to avoid the load of the operation block the backend.
+    Now that section of code has been changed with a query limitation (events_limit has a default value of 30, considering that many messages probably will be aggregated, then we
+    pick the first 90 events). This is enough to avoid the load of the operation block the backend.
     <pre>
         @transact_ro
-        def load_complete_events(store, event_number=GLSettings.notification_limit):
+        def load_complete_events(store, events_limit=GLSettings.notification_limit):
             """
             event_number represent the amount of event that can be returned by the function,
             events to be notified are taken in account later.
             """
             event_list = []
-            storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)[:event_number * 3]
+            storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)[:events_limit * 3]
     </pre>
     This has solved the deadlock, and the same approach, applied to Delivery and Notification, permit to create smaller transact every time.
 

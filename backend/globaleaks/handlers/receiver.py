@@ -131,9 +131,7 @@ def update_receiver_settings(store, receiver_id, request, language):
 
 @transact_ro
 def get_receivertip_list(store, receiver_id, language):
-
-    # TODO implement the proper paging!!
-    rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)[:100]
+    rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
 
     rtip_summary_list = []
 

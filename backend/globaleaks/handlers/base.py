@@ -27,7 +27,6 @@ from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
 
 from globaleaks.event import outcoming_event_monitored, EventTrack
-from globaleaks.handlers.exporter import add_measured_event
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
