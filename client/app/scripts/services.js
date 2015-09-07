@@ -364,15 +364,15 @@ angular.module('GLServices', ['ngResource']).
         self.answers = ret[0];
         self.empty_answers = ret[1];
 
+        self._submission = new submissionResource({
+          context_id: self.context.id,
+          receivers: [],
+          answers: angular.copy(self.answers)
+        });
+
         self._token = new tokenResource({'type': 'submission'}).$save(function(token) {
           self._token = token;
-
-          self._submission = new submissionResource({
-            token_id: self._token.id,
-            context_id: self.context.id,
-            receivers: [],
-            answers: angular.copy(self.answers),
-          });
+          self._submission.token_id = self._token.id;
 
           if (cb) {
             cb();
