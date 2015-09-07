@@ -8,6 +8,8 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
 
     $scope.email_regexp = CONSTANTS.email_regexp;
 
+    $scope.step = 1;
+
     var finished = false;
 
     $scope.open_modal_allow_unencrypted = function() {
@@ -40,9 +42,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
         };
 
         $http.post('admin/wizard', $scope.wizard).success(function(response) {
-          /* needed in order to reload node variables */
-          $rootScope.$broadcast("REFRESH");
-          $location.path("/admin/landing");
+          $rootScope.reload("/admin/landing");
         });
       }
     };
