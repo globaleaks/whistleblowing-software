@@ -9,6 +9,8 @@ GLClient.controller('StatusCtrl',
     $scope.uploads = {};
     $scope.hideUploadWhenFinished = true;
 
+    $scope.showEditLabelInput = false;
+
     $scope.getFields = function(field) {
       var ret = [];
       var fields;
@@ -71,7 +73,6 @@ GLClient.controller('StatusCtrl',
       });
 
     } else if (Authentication.role === 'receiver') {
-
       $scope.preferences = ReceiverPreferences.get();
     
       var TipID = {tip_id: $scope.tip_id};
@@ -103,6 +104,17 @@ GLClient.controller('StatusCtrl',
         $location.path('/login');
         $location.search(search);
       }
+    }
+
+    $scope.editLabel = function(event) {
+      $scope.showEditLabelInput = true;
+      event.stopPropagation();
+    }
+
+    $scope.updateLabel = function(event, label) {
+      $scope.tip.updateLabel(label);
+      $scope.showEditLabelInput = false;
+      event.stopPropagation();
     }
 
     $scope.newComment = function() {
