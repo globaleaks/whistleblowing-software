@@ -81,7 +81,14 @@ module.exports = function(grunt) {
         'tmp/globaleaks.html',
       ],
       options: {
-        dest: 'tmp'
+        dest: 'tmp',
+        flow: {
+          steps: {
+            js: ['concat'], // we avoid to minify intentionally! #1417 !
+            css: ['concat', 'cssmin']
+          },
+          post: {}
+        }
       }
     },
 
@@ -286,7 +293,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-line-remover');
   grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-mocha-phantomjs');
@@ -781,7 +787,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'uglify', 'string-replace', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'manifest', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('test-browserchecks', ['copy:unittests', 'mocha_phantomjs']);
   grunt.registerTask('test-browserchecks-saucelabs', ['copy:unittests', 'connect', 'saucelabs-mocha']);
