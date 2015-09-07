@@ -13,9 +13,14 @@ GLClient.controller('SubmissionCtrl',
   $scope.problemModal = undefined;
 
   $scope.problemSolved = function() {
-    $scope.submission._submission.human_captcha = false;
-    $scope.problemToBeSolved = false;
     $scope.problemModal = undefined;
+    $scope.submission._token.$update(function(token) {
+      $scope.submission._token = token;
+      $scope.problemToBeSolved = $scope.submission._token.human_captcha !== false;
+      if ($scope.problemToBeSolved) {
+        $scope.openProblemDialog($scope.submission);
+      }
+    });
   }
 
   $scope.openProblemDialog = function(submission){
@@ -31,6 +36,9 @@ GLClient.controller('SubmissionCtrl',
         resolve: {
           object: function () {
             return submission;
+          },
+          problemSolved: function() {
+            return $scope.problemSolved;
           }
         }
 
@@ -40,6 +48,7 @@ GLClient.controller('SubmissionCtrl',
        function(result) { $scope.problemSolved($scope.submission); },
        function(result) { }
     );
+
   };
 
   if ($scope.receivers_ids) {
@@ -72,7 +81,7 @@ GLClient.controller('SubmissionCtrl',
   var startCountdown = function() {
     $scope.submission.wait = true;
 
-    $scope.submission.countdown = $scope.submission._submission.start_validity_secs;
+    $scope.submission.countdown = $scope.submission._token.start_validity_secs;
 
     var countDown = function () {
       $scope.submission.countdown -= 1;
@@ -145,14 +154,14 @@ GLClient.controller('SubmissionCtrl',
       return;
     }
 
-    return 'submission/' + $scope.submission._submission.id + '/file';
+    return 'submission/' + $scope.submission._token.id + '/file';
   };
 
   $scope.prepareSubmission = function(context, receivers_ids) {
     $scope.submission.create(context.id, receivers_ids, function () {
       startCountdown();
 
-      $scope.problemToBeSolved = $scope.submission._submission.human_captcha !== false;
+      $scope.problemToBeSolved = $scope.submission._token.human_captcha !== false;
 
       if ($scope.problemToBeSolved) {
         $scope.openProblemDialog($scope.submission);

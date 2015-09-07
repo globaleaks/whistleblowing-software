@@ -10,6 +10,8 @@ from random import randint
 from datetime import datetime, timedelta
 
 import os
+from globaleaks.anomaly import Alarm
+
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.third_party import rstr
 from globaleaks.rest import errors
@@ -45,9 +47,9 @@ class TokenList:
 
 
 class Token(TempObj):
-    MAXIMUM_ATTEMPTS_PER_TOKEN = 3
+    MAX_USES = 30
 
-    def __init__(self, token_kind, context_id):
+    def __init__(self, token_kind, uses = MAX_USES):
         """
         token_kind assumes currently only value 'submission.
 
@@ -72,28 +74,22 @@ class Token(TempObj):
         if GLSettings.devel_mode:
             self.start_validity_secs = 0
 
-        self.remaining_allowed_attempts = Token.MAXIMUM_ATTEMPTS_PER_TOKEN
+        self.remaining_uses = uses
+
+        self.generate_token_challenge()
 
         # creation_date of token assignment
         self.creation_date = datetime.utcnow()
 
-        # in the future, difficulty can be trimmed on context basis too
-        self.context_associated = context_id
-
         # to keep track of the file uploaded associated
         self.uploaded_files = []
 
-        self.token_id = rstr.xeger(r'[A-Za-z0-9]{42}')
-
-        # initialization
-        self.human_captcha = False
-        self.graph_captcha = False
-        self.proof_of_work = False
+        self.id = rstr.xeger(r'[A-Za-z0-9]{42}')
 
         TempObj.__init__(self,
                          TokenList.token_dict,
                          # token ID:
-                         self.token_id,
+                         self.id,
                          # seconds of validity:
                          self.start_validity_secs + self.end_validity_secs,
                          reactor)
@@ -121,35 +117,38 @@ class Token(TempObj):
             if getattr(self, a):
                 test_desc = "%s[H:%s]" % (test_desc, getattr(self, a)['question'])
 
-        token_string = "Token %s for %s [%s]" % (self.token_id, self.kind, test_desc)
+        token_string = "Token %s for %s [%s]" % (self.id, self.kind, test_desc)
 
         return token_string
 
-    def serialize_token(self):
-
+    def serialize(self):
         return {
-            'token_id': self.token_id,
+            'id': self.id,
             'creation_date': datetime_to_ISO8601(self.creation_date),
             'start_validity_secs': self.start_validity_secs,
             'end_validity_secs': self.end_validity_secs,
-            'remaining_allowed_attempts': self.remaining_allowed_attempts,
-            'context_id': self.context_associated,
+            'remaining_uses': self.remaining_uses,
             'type': self.kind,
             'graph_captcha': self.graph_captcha['question'] if self.graph_captcha else False,
             'human_captcha': self.human_captcha['question'] if self.human_captcha else False,
             'proof_of_work': self.proof_of_work['question'] if self.proof_of_work else False,
+            'human_captcha_answer': 0,
+            'graph_captcha_answer': '',
+            'proof_of_work': 0
         }
 
-    def set_difficulty(self, challenges_dict):
-        """
-        @challenges_dict: arrive directly from anomaly.Alarm.get_token_difficulty
-            and in a future enhancement we can implement set_difficult in
-            FileToken or SubmissionToken and here the shared element.
-        """
+    def generate_token_challenge(self, challenges_dict = None):
+        # initialization
+        self.human_captcha = False
+        self.graph_captcha = False
+        self.proof_of_work = False
 
-        if challenges_dict['human_captcha']:
-            random_a = randint(1, 10)
-            random_b = randint(1, 10)
+        if challenges_dict is None:
+            challenges_dict = Alarm().get_token_difficulty()
+
+        if challenges_dict['human_captcha'] or True:
+            random_a = randint(0, 99)
+            random_b = randint(0, 99)
 
             self.human_captcha = {
                 'question': u"%d + %d" % (random_a, random_b),
@@ -168,7 +167,6 @@ class Token(TempObj):
         """
         This timedelta check verify that the current time fits between
         the start validity time and the end vality time.
-
         """
         now = datetime_now()
         start = (self.creation_date + timedelta(seconds=self.start_validity_secs))
@@ -177,7 +175,6 @@ class Token(TempObj):
                       (self.start_validity_secs, start, now))
             raise errors.TokenFailure("Too early to use this token")
 
-
         # This will never happen after integration of self expiring objects.
         end = (self.creation_date + timedelta(self.end_validity_secs) )
         if now > end:
@@ -185,68 +182,65 @@ class Token(TempObj):
                       (self.end_validity_secs, start, now))
             raise errors.TokenFailure("Too late to use this token")
 
-            # If the code reach here, the time delta is good.
+        # If the code reach here, the time delta is good.
 
     def human_captcha_check(self, resolved_human_captcha):
-        if not self.human_captcha:
-            return
-
         if int(self.human_captcha['answer']) != int(resolved_human_captcha):
             log.debug("Failed human captcha: expected %s got %s" % (
                 (self.human_captcha['answer'], resolved_human_captcha)
             ))
-            raise errors.TokenFailure("Failed human captcha")
-        else:
-            log.debug("Successful human captcha resolution: %s" %
-                      resolved_human_captcha)
+            return True
+
+        log.debug("Successful human captcha resolution: %s" %
+                  resolved_human_captcha)
+
+        # mark the captcha as solved
+        self.human_captcha = False
+
+        return False
 
     def graph_captcha_check(self, resolved_graph_captcha):
-        if not self.graph_captcha:
-            return
-
-        if self.graph_captcha['answer'] != resolved_graph_captcha:
-            log.debug("Failed graph captcha: expected %s got %s" % (
-                (self.graph_captcha['answer'], resolved_graph_captcha)
-            ))
-            raise errors.TokenFailure("Failed graphical captcha")
-        else:
-            log.debug("Successful graphical captcha resolution: %s" %
-                      resolved_graph_captcha)
+        return False
 
     def proof_of_work_check(self, resolved_proof_of_work):
-        pass
+        return False
 
-    def validate(self, request):
-        """
-        @request is the submission;
-          it contains the *_solution fields.
-          if some fields are currently missing, it's because they are
-          not yet implemented.
-        """
+    def validity_checks(self):
+        self.timedelta_check()
 
-        self.remaining_allowed_attempts -= 1
-        log.debug("Token allows other %d attempts" % self.remaining_allowed_attempts)
+        if self.remaining_uses <= 0:
+            raise errors.TokenFailure("Token is no more valid.")
 
-        # any of these can raise an exception if check fail
-        try:
-            self.timedelta_check()
+    def update(self, request):
+        self.validity_checks()
 
-            if self.remaining_allowed_attempts < -1:
-                raise errors.TokenFailure("Exhausted Token usage")
+        error = False
 
-            if self.human_captcha is not False:
-                self.human_captcha_check(request['human_captcha_answer'])
+        if self.human_captcha is not False:
+            error |= self.human_captcha_check(request['human_captcha_answer'])
 
-            if self.graph_captcha is not False:
-                raise errors.TokenFailure("Graphical Captcha! NotYetImplemented")
+        # Raise an exception if, by mistake, we ask for something not yet supported
+        if not error and self.graph_captcha is not False:
+            raise errors.TokenFailure("Graphical Captcha error! NotYetImplemented")
 
-            # Raise an exception if, by mistake, we ask for something not yet supported
-            if self.proof_of_work is not False:
-                raise errors.TokenFailure("Proof of Work! NotYetImplemented")
+        # Raise an exception if, by mistake, we ask for something not yet supported
+        if not error and self.proof_of_work is not False:
+            raise errors.TokenFailure("Proof of Work error! NotYetImplemented")
 
-        except Exception:
-            log.debug("Error triggered in Token validation, remaining attempts %d => %d" % (
-                self.remaining_allowed_attempts, self.remaining_allowed_attempts - 1))
-            raise
+        if error:
+            # change questions!
+            self.generate_token_challenge()
 
-        # if the code flow reach here, the token is validated
+        return error
+
+    def use(self):
+        self.validity_checks()
+
+        if self.human_captcha is not False or \
+           self.graph_captcha is not False or \
+           self.proof_of_work is not False:
+             raise errors.TokenFailure("Token still require user action to be used.")
+
+        self.remaining_uses -= 1
+        if self.remaining_uses <= 0:
+            TokenList.delete(self.id)

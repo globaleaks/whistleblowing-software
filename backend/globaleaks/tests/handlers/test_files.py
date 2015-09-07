@@ -19,7 +19,7 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
                                       context_id=self.dummyContext['id'])
 
         handler = self.request(body=self.get_dummy_file())
-        yield handler.post(self.dummyToken.token_id)
+        yield handler.post(self.dummyToken.id)
 
     @inlineCallbacks
     def test_post_file_and_verify_deletion_after_token_expiration(self):
@@ -28,7 +28,7 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
 
         for i in range(0, 3):
             handler = self.request(body=self.get_dummy_file())
-            yield handler.post(self.dummyToken.token_id)
+            yield handler.post(self.dummyToken.id)
 
         for f in self.dummyToken.uploaded_files:
             self.assertTrue(os.path.exists(f['encrypted_path']))
