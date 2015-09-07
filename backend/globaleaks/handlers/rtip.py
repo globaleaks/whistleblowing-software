@@ -108,10 +108,14 @@ def db_get_tip_receiver(store, user_id, tip_id, language):
     rtip = db_access_tip(store, user_id, tip_id)
 
     notif = store.find(Notification).one()
+
     if not notif.send_email_for_every_event:
-        # Events related to this tip and for which the email have been sent can be removed
-        store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
-                                  EventLogs.mail_sent == True)).remove()
+        # If Receiver is accessing this Tip, Events related can be removed before
+        # Notification is sent. This is a Twitter/Facebook -like behavior.
+        store.find(EventLogs, EventLogs.receivertip_id == tip_id).remove()
+        # Note - before the check was:
+        # store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
+        #                          EventLogs.mail_sent == True)).remove()
 
     tip_desc = receiver_serialize_tip(store, rtip.internaltip, language)
 
@@ -146,7 +150,7 @@ def db_access_tip(store, user_id, tip_id):
     return rtip
 
 
-def db_delete_itip(store, itip):
+def db_delete_itip(store, itip, itip_number=0):
     for ifile in itip.internalfiles:
         abspath = os.path.join(GLSettings.submission_path, ifile.file_path)
 
@@ -173,6 +177,12 @@ def db_delete_itip(store, itip):
                 except OSError as excep:
                     log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
 
+    if itip_number:
+        log.debug("Removing from Cleaning operation InternalTip (%s) N# %d" %
+                  (itip.id, itip_number) )
+    else:
+        log.debug("Removing InternalTip as commanded by Receiver (%s)" % itip.id)
+
     store.remove(itip)
 
     if store.find(InternalTip, InternalTip.questionnaire_hash == itip.questionnaire_hash).count() == 0:
@@ -183,7 +193,7 @@ def db_delete_rtip(store, rtip):
     return db_delete_itip(store, rtip.internaltip)
 
 
-def db_postpone_expiration_date(store, rtip):
+def db_postpone_expiration_date(rtip):
     rtip.internaltip.expiration_date = \
         utc_future_date(seconds=rtip.internaltip.context.tip_timetolive)
 
@@ -221,12 +231,22 @@ def postpone_expiration_date(store, user_id, tip_id):
        "True" if rtip.receiver.can_postpone_expiration else "False"
     ))
 
-    db_postpone_expiration_date(store, rtip)
+    db_postpone_expiration_date(rtip)
 
     log.debug(" [%s] in %s has postponed expiration time to %s" % (
         rtip.receiver.name,
         datetime_to_pretty_str(datetime_now()),
         datetime_to_pretty_str(rtip.internaltip.expiration_date)))
+
+
+@transact
+def assign_rtip_label(store, user_id, tip_id, label_content):
+    rtip = db_access_tip(store, user_id, tip_id)
+    if rtip.label:
+        log.debug("Updating ReceiverTip label from '%s' to '%s'" % (rtip.label, label_content))
+    else:
+        log.debug("Assigning ReceiverTip label '%s'" % label_content)
+    rtip.label = unicode(label_content)
 
 
 @transact
@@ -344,9 +364,10 @@ class RTipInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.TipOpsDesc)
 
-        if request['operation']:
-            if request['operation'] == 'postpone':
-                yield postpone_expiration_date(self.current_user.user_id, tip_id)
+        if request['operation'] == 'postpone':
+            yield postpone_expiration_date(self.current_user.user_id, tip_id)
+        if request['operation'] == 'label':
+            yield assign_rtip_label(self.current_user.user_id, tip_id, request['label'])
 
         self.set_status(202)  # Updated
         self.finish()
@@ -424,6 +445,9 @@ def get_receiver_list_receiver(store, user_id, tip_id, language):
     rtip = db_access_tip(store, user_id, tip_id)
 
     receiver_list = []
+    # Improvement TODO, instead of looping over rtip, that can be A LOTS, we
+    # can just iterate over receiver, and then remove the receiver not present
+    # in the specific InternalTip
     for rtip in rtip.internaltip.receivertips:
         receiver_desc = {
             "pgp_key_status": rtip.receiver.pgp_key_status,

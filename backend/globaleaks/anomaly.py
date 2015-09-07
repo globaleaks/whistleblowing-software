@@ -173,6 +173,7 @@ class Alarm(object):
         'disk_space': 0,
         'disk_message': None,
         'activity': 0,
+        'notification': [],
     }
 
     # _DISK_ALARM express the number of files upload (at maximum size) that can be stored
@@ -224,7 +225,8 @@ class Alarm(object):
         Alarm.stress_levels = {
             'disk_space': 0,
             'disk_message': None,
-            'activity': 0
+            'activity': 0,
+            'notification': [],
         }
 
     def get_token_difficulty(self):
@@ -251,7 +253,9 @@ class Alarm(object):
         Admin notification is disable or if another Anomaly has been
         raised in the last 15 minutes, email is not send.
         """
-        do_not_stress_admin_with_more_than_an_email_every_minutes = 15
+        do_not_stress_admin_with_more_than_an_email_every_minutes = 120
+        # if emergency is set to True, the previous time check is ignored.
+        emergency_notification = False
 
         @transact_ro
         def _get_node_admin_email(store):
@@ -263,7 +267,7 @@ class Alarm(object):
             admin_user = store.find(models.User, models.User.username == u'admin').one()
             return admin_user.language
 
-        # THE THREE FUNCTIONS BELOW ARE POORLY UNOPTIMAL,
+        # THE THREE FUNCTIONS BELOW ARE POORLY SUBOPTIMAL,
         # AND THIS IS BAD: REFACTOR TO BE DONE ON THIS SUBJECT
         @transact_ro
         def _get_message_template(store):
@@ -345,11 +349,19 @@ class Alarm(object):
         def _total_disk_space():
             return "%s" % bytes_to_pretty_str(Alarm.latest_measured_totalspace)
 
+        def _notification_suppressed():
+            if Alarm.stress_levels['notification'] == []:
+                return u''
+            emergency_notification = True
+            return "** %s **" % Alarm.stress_levels['notification']
+
+
         KeyWordTemplate = {
             "%AnomalyDetailDisk%": _disk_anomaly_detail,
             "%AnomalyDetailActivities%": _activities_anomaly_detail,
             "%ActivityAlarmLevel%": _activity_alarm_level,
             "%ActivityDump%": _activity_dump,
+            "%NotificationSuppressed%": _notification_suppressed,
             "%NodeName%": _node_name,
             "%FreeMemory%": _free_disk_space,
             "%TotalMemory%": _total_disk_space,
@@ -359,7 +371,9 @@ class Alarm(object):
         # Independently from the event_matrix, the status of the stress level can
         # be in non-0 value.
         # Here start the Anomaly Notification code, before checking if we have to send email
-        if not (Alarm.stress_levels['activity'] or Alarm.stress_levels['disk_space']):
+        if not (Alarm.stress_levels['activity'] or
+                    Alarm.stress_levels['disk_space'] or
+                    Alarm.stress_levels['notification']):
             # lucky, no stress activities recorded: no mail needed
             defer.returnValue(None)
 
@@ -369,13 +383,15 @@ class Alarm(object):
                       "[%s]" % event_matrix if event_matrix else "")
             defer.returnValue(None)
 
-        if Alarm.last_alarm_email:
+        if Alarm.last_alarm_email and not emergency_notification:
             if not is_expired(Alarm.last_alarm_email,
                               minutes=do_not_stress_admin_with_more_than_an_email_every_minutes):
-                log.debug("Alert email want be sent, but the threshold of %d minutes is not yet reached since %s" % (
+                defer.returnValue(None)
+                # This is skipped then:
+                log.debug("Alert [%s] want be sent, but the threshold of %d minutes still unexpired %s" % (
+                    Alarm.stress_levels,
                     do_not_stress_admin_with_more_than_an_email_every_minutes,
                     datetime_to_ISO8601(Alarm.last_alarm_email)))
-                defer.returnValue(None)
 
         admin_email = yield _get_node_admin_email()
         admin_language = yield _get_admin_user_language()
@@ -425,7 +441,7 @@ class Alarm(object):
                 content,
                 message_title[where + len(keyword):])
 
-        message = MIME_mail_build(GLSettings.memory_copy.notif_source_email,
+        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
                                   GLSettings.memory_copy.notif_source_email,
                                   admin_email,
                                   admin_email,
@@ -451,7 +467,7 @@ class Alarm(object):
         Alarm.last_alarm_email = datetime_now()
         yield sendmail(authentication_username=GLSettings.memory_copy.notif_username,
                        authentication_password=GLSettings.memory_copy.notif_password,
-                       from_address=GLSettings.memory_copy.notif_source_email,
+                       from_address=GLSettings.memory_copy.notif_username,
                        to_address=admin_email,
                        message_file=message,
                        smtp_host=GLSettings.memory_copy.notif_server,
@@ -495,8 +511,8 @@ class Alarm(object):
                                          total_ramdisk_bytes)
 
                 if disk_space <= GLSettings.disk_alarm_threshold:
-                    log.debug("Disk Alarm level %d suppressed (disk alarm threshold set to %d)" % (
-                        disk_space, GLSettings.disk_alarm_threshold))
+                    # log.debug("Disk Alarm level %d suppressed (disk alarm threshold set to %d)" % (
+                    #     disk_space, GLSettings.disk_alarm_threshold))
                     # No alarm to be concerned, then
                     disk_space = 0
                 else:

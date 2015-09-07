@@ -1,13 +1,33 @@
 <div id="TipInfoBox" class="TipPageSection" data-ng-init="collapsed = false">
-  <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed">
+  <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss($event)">
     <div>
-      <span data-translate>Submission</span>
+      <span data-translate>Submission</span><span data-ng-if="::role == 'receiver'">:</span>
+      <span data-ng-if="::role == 'receiver'">
+        <span data-ng-if="tip.label && !showEditLabelInput" class="TipLabel" data-ng-click="editLabel($event)"
+              popover="{{'Assign a label to the submission' | translate}}" popover-placement="right" popover-trigger="mouseenter">
+          <span>{{::tip.label}}</span>
+          <i class="glyphicon glyphicon-tag"></i>
+        </span>
+
+        <span data-ng-if="showEditLabelInput" class="form-inline">
+          <div class="form-group">
+            <span id="AssignLabelInput" class="input-group">
+              <input type="text" class="form-control" placeholder="{{'Label' | translate}}" data-ng-click="eventDismiss($event)" data-ng-model="tip.label" />
+              <span class="input-group-addon" data-ng-click="updateLabel($event, tip.label)""
+                   popover="{{'Assign a label to the submission' | translate}}" popover-placement="right" popover-trigger="mouseenter">
+                <i class="glyphicon glyphicon-tag"></i>
+              </span>
+            </span>
+          </div>
+        </span>
+      </span>
       <span class="pull-right">
         <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
         <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
       </span>
     </div>
   </div>
+
   <div class="TipPageSectionContent" data-ng-show="!collapsed">
     <div class="row">
       <span class="col-md-4">
@@ -38,11 +58,11 @@
       </span>
       <span class="col-md-8">
         <span data-ng-if="tip.tor2web"
-              class="btn-warning"
+              class="btn-warning ConnectionKind"
               popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
               data-translate>HTTPS</span>
         <span data-ng-if="!tip.tor2web"
-              class="btn-success"
+              class="btn-success ConnectionKind"
               popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
               data-translate>Tor</span>
       </span>

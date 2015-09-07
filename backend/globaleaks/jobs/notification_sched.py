@@ -17,6 +17,7 @@ from globaleaks.plugins.base import Event
 from globaleaks.settings import transact, GLSettings
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.models import EventLogs
+from globaleaks.anomaly import Alarm
 
 
 def serialize_receivertip(store, rtip, language):
@@ -106,10 +107,37 @@ class EventLogger(object):
 
     @transact
     def process_events(self, store):
-        _elems = store.find(self.model, self.model.new == True)
+        """
+        :return:
+            0  = No event has been processed
+           -1  = Threshold reach, emergency mode.
+           >0  = Some elements to be notified has been processed
+        """
 
-        log.debug("Notification: found %d %s(s) to be handled" %
-                  (_elems.count(), self.trigger))
+        _elemscount = store.find(self.model, self.model.new == True).count()
+
+        if _elemscount > (GLSettings.jobs_operation_limit * 10):
+            # If this situation happen, we are facing a shitload of problem.
+            # The reasonable option is that the entire Notification get skipped for this specific Trigger
+            # all the events are marked as "new = False" and "chi si è visto si è visto"!
+            # plus, the Admin get notified about it with an email.
+            log.err("Waves of new %s received, notification suspended completely for all the %d %s (Threshold %d)" %
+                     ( self.trigger, _elemscount,
+                       self.trigger, (GLSettings.jobs_operation_limit * 10) ))
+            store.find(self.model, self.model.new == True).set(new=False)
+            return -1
+
+        _elems = store.find(self.model, self.model.new == True)[:GLSettings.jobs_operation_limit]
+
+        if _elemscount > GLSettings.jobs_operation_limit:
+            log.info("Notification: Processing %d new event from a Queue of %d: %s(s) to be handled" %
+                      (_elems.count(), _elemscount, self.trigger))
+        elif _elemscount:
+            log.debug("Notification: Processing %d new event: %s(s) to be handled" %
+                      (_elems.count(), self.trigger))
+        else:
+            # No element to be processed
+            return 0
 
         for e in _elems:
             # Mark event as handled as first step;
@@ -119,10 +147,11 @@ class EventLogger(object):
             e.new = False
             self.process_event(store, e)
 
-        if len(self.events):
-            db_save_events_on_db(store, self.events)
-            log.debug("Notification: generated %d notification events of type %s" %
-                      (len(self.events), self.trigger))
+        db_save_events_on_db(store, self.events)
+        log.debug("Notification: generated %d notification events of type %s" %
+                  (len(self.events), self.trigger))
+
+        return _elems.count()
 
 
 class TipEventLogger(EventLogger):
@@ -243,7 +272,22 @@ class NotificationSchedule(GLJob):
 
     @inlineCallbacks
     def operation(self):
-        yield TipEventLogger().process_events()
-        yield CommentEventLogger().process_events()
-        yield MessageEventLogger().process_events()
-        yield FileEventLogger().process_events()
+
+        tip_mngd = yield TipEventLogger().process_events()
+        if tip_mngd == -1:
+            Alarm.stress_levels['notification'].append('Tip')
+
+        comment_mngd = yield CommentEventLogger().process_events()
+        if comment_mngd == -1:
+            Alarm.stress_levels['notification'].append('Comment')
+
+        messages_mngd = yield MessageEventLogger().process_events()
+        if messages_mngd == -1:
+            Alarm.stress_levels['notification'].append('Message')
+
+        file_mngs = yield FileEventLogger().process_events()
+        if file_mngs == -1:
+            Alarm.stress_levels['notification'].append('File')
+
+
+

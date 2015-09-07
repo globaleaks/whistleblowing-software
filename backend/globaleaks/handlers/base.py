@@ -17,9 +17,7 @@ import types
 
 from StringIO import StringIO
 
-from cryptography.hazmat.primitives.constant_time import bytes_eq
-
-from twisted.internet import fdesc, task
+from twisted.internet import fdesc
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
 
@@ -33,6 +31,7 @@ from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
+from globaleaks.utils.utility import log, datetime_now, deferred_sleep
 from globaleaks.utils.monitor import ResourceMonitor
 from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, \
     datetime_now, datetime_null, deferred_sleep
@@ -126,9 +125,9 @@ class BaseHandler(RequestHandler):
         super(BaseHandler, self).__init__(application, request, **kwargs)
 
         self.name = type(self).__name__
-        self.req_id = GLSettings.http_requests_counter
 
         GLSettings.http_requests_counter += 1
+        self.req_id = GLSettings.http_requests_counter
 
         self.handler_time_analysis_begin()
         self.handler_request_logging_begin()
@@ -171,7 +170,12 @@ class BaseHandler(RequestHandler):
         if not lang:
             # before was used the Client language. but shall be unsupported
             # lang = self.request.headers.get('Accepted-Language', None)
-            lang = GLSettings.memory_copy.default_language
+
+            if hasattr(GLSettings.memory_copy, 'default_language') and GLSettings.memory_copy.default_language:
+                lang = GLSettings.memory_copy.default_language
+            else:
+                # May happen is not yet initialized and here is requested
+                lang = "en"
 
         self.request.language = lang
 
@@ -533,12 +537,24 @@ class BaseHandler(RequestHandler):
         self.start_time = time.time()
 
     def handler_time_analysis_end(self):
+        """
+        If the software is running with the option -S --stats (GLSetting.timing_stats)
+        then we are doing performance testing, having our mailbox spammed is not important,
+        so we just skip to report the anomaly.
+        """
         current_run_time = time.time() - self.start_time
 
         if current_run_time > self.handler_exec_time_threshold:
-            error = "Handler [%s] exceeded exec threshold with an execution time of %.2f seconds" % (self.name, current_run_time)
+            error = "Handler [%s] exceeded exec threshold (of %d secs) with an execution time of %.2f seconds" % \
+                    (self.name, self.handler_exec_time_threshold, current_run_time)
             log.err(error)
-            send_exception_email(error)
+
+            send_exception_email(error, mail_reason="Handler Time Exceeded")
+
+        if GLSettings.timing_stats:
+            add_measured_event(self.request.method, self.request.uri,
+                               current_run_time, self.req_id, self.start_time)
+
 
     def handler_request_logging_begin(self):
         if GLSettings.devel_mode and GLSettings.http_log >= 0:
@@ -549,7 +565,7 @@ class BaseHandler(RequestHandler):
 
                 content += self.request.method + " " + self.request.full_url() + "\n\n"
 
-                content += "headers:\n"
+                content += "request-headers:\n"
                 for k, v in self.request.headers.get_all():
                     content += "%s: %s\n" % (k, v)
 
@@ -560,7 +576,7 @@ class BaseHandler(RequestHandler):
                     body = self.request.body
 
                 if len(body):
-                    content += "\nbody:\n" + body + "\n"
+                    content += "\nrequest-body:\n" + body + "\n"
 
                 self.do_verbose_log(content)
 
@@ -580,12 +596,12 @@ class BaseHandler(RequestHandler):
                 content += ("<" * 15) + "\n\n"
                 content += "status code: " + str(self._status_code) + "\n\n"
 
-                content += "headers:\n"
+                content += "response-headers:\n"
                 for k, v in self._headers.iteritems():
                     content += "%s: %s\n" % (k, v)
 
                 if self._write_buffer is not None:
-                    content += "\nbody: " + str(self._write_buffer) + "\n"
+                    content += "\nresponse-body: " + str(self._write_buffer) + "\n"
 
                 self.do_verbose_log(content)
             except Exception as excep:

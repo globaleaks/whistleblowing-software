@@ -17,7 +17,7 @@ hidden_service_regexp_or_empty    = r'^http://[0-9a-z]{16}\.onion$$|^$'
 https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^homepage$|^submissionpage$'
-tip_operation_regexp              = r'^postpone$'
+tip_operation_regexp              = r'^postpone$|^label$'
 token_type_regexp                 = r'^submission$'
 field_type                        = (r'^('
                                      'inputbox|'
@@ -109,6 +109,7 @@ CommentDesc = {
 
 TipOpsDesc = {
     'operation': tip_operation_regexp,
+    'label': unicode,
 }
 
 StepDesc = {

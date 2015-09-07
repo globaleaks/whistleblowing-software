@@ -25,7 +25,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.get(rtip_desc['rtip_id'])
 
     @inlineCallbacks
-    def test_put(self):
+    def test_put_postpone(self):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             self.responses = []
@@ -41,6 +41,31 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             handler.current_user.user_id = rtip_desc['receiver_id']
             yield handler.put(rtip_desc['rtip_id'])
             self.assertEqual(handler.get_status(), 202)
+
+
+    @inlineCallbacks
+    def test_put_label(self):
+        rtips_desc = yield self.get_rtips()
+        for i, rtip_desc in enumerate(rtips_desc):
+            self.responses = []
+
+            handler = self.request(role='receiver')
+            handler.current_user.user_id = rtip_desc['receiver_id']
+            yield handler.get(rtip_desc['rtip_id'])
+            self.assertEqual(handler.get_status(), 200)
+
+            self.responses[0]['operation'] = 'label'
+            assigned_label = 'ArandomLABEL %d' % i
+            self.responses[0]['label'] = assigned_label
+
+            handler = self.request(self.responses[0], role='receiver')
+            handler.current_user.user_id = rtip_desc['receiver_id']
+            yield handler.put(rtip_desc['rtip_id'])
+
+            self.assertEqual(handler.get_status(), 202)
+            yield handler.get(rtip_desc['rtip_id'])
+            self.assertEqual(self.responses[1]['label'], assigned_label)
+
 
     @inlineCallbacks
     def test_delete_delete(self):

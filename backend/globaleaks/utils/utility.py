@@ -190,6 +190,11 @@ class Logger(object):
         if GLSettings.loglevel and GLSettings.loglevel <= logging.DEBUG:
             print "[D] %s" % self._str(msg)
 
+    def time_debug(self, msg):
+        # read the command in settings.py near 'verbosity_dict'
+        if GLSettings.loglevel and GLSettings.loglevel <= (logging.DEBUG - 1):
+            print "[T] %s" % self._str(msg)
+
     def msg(self, msg):
         if GLSettings.loglevel:
             twlog.msg("[ ] %s" % self._str(msg))

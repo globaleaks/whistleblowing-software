@@ -414,10 +414,10 @@ angular.module('GLServices', ['ngResource']).
       fn(self);
     };
 }]).
-  factory('Tip', ['$resource', '$q',
-          function($resource, $q) {
+  factory('Tip', ['$http', '$resource', '$q',
+          function($http, $resource, $q) {
 
-    var tipResource = $resource('rtip/:tip_id', {tip_id: '@id'}, {update: {method: 'PUT'}});
+    var tipResource = $resource('rtip/:tip_id', {tip_id: '@tip_id'}, {update: {method: 'PUT'}});
     var receiversResource = $resource('rtip/:tip_id/receivers', {tip_id: '@tip_id'}, {});
     var commentsResource = $resource('rtip/:tip_id/comments', {tip_id: '@tip_id'}, {});
     var messageResource = $resource('rtip/:tip_id/messages', {tip_id: '@tip_id'}, {});
@@ -445,6 +445,11 @@ angular.module('GLServices', ['ngResource']).
             m.$save(function(newMessage) {
               tip.messages.unshift(newMessage);
             });
+          };
+
+          tip.updateLabel = function(label) {
+            return $http({method: 'PUT', url: '/rtip/' + tip.id, data:{'operation': 'label', 'label' : label}});
+
           };
 
           fn(tip);
