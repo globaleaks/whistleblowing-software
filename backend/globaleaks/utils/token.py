@@ -146,7 +146,7 @@ class Token(TempObj):
         if challenges_dict is None:
             challenges_dict = Alarm().get_token_difficulty()
 
-        if challenges_dict['human_captcha'] or True:
+        if challenges_dict['human_captcha']:
             random_a = randint(0, 99)
             random_b = randint(0, 99)
 
