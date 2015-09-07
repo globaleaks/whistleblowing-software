@@ -222,6 +222,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     };
 
     var init = function () {
+      var deferred = $q.defer();
+
       $scope.logo = 'static/globaleaks_logo.png?' + $scope.randomFluff();
       $scope.build_stylesheet = "styles.css?" + $scope.randomFluff();
 
@@ -304,9 +306,12 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
         $q.all([q1.$promise, q2.$promise]).then(function() {
           $scope.started = true;
+          deferred.resolve();
         });
 
       });
+
+      return deferred.promise;
 
     };
 
@@ -325,15 +330,19 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       array.splice(index, 1);
     }
 
-    $scope.reload = function() {
+    $rootScope.reload = function(new_path) {
       $scope.started = false;
       $rootScope.successes = [];
       $rootScope.errors = [];
       GLCache.removeAll();
-      init();
-      $route.reload();
-    };
+      init().then(function() {
+        $route.reload();
 
+        if (new_path) {
+          $location.path(new_path).replace();
+        }
+      });
+    };
 
     //////////////////////////////////////////////////////////////////
     // FIXME: this functions are in common between submission.js and

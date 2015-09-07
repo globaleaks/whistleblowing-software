@@ -1,23 +1,10 @@
-GLClient.controller('LoginCtrl', ['$scope', '$routeParams',
-  function($scope, $routeParams) {
-    var src = $routeParams.src;
+GLClient.controller('LoginCtrl', ['$scope', '$location', function($scope, $location) {
+  $scope.loginUsername = "";
+  $scope.loginPassword = "";
 
-    $scope.loginUsername = "";
-    $scope.loginPassword = "";
+  if ($location.path() === '/admin') {
+    $scope.loginRole = "admin";
+  } else {
     $scope.loginRole = "receiver";
-
-    if (src && src.indexOf("/admin") != -1) {
-      $scope.loginUsername = "admin";
-      $scope.loginRole = "admin";
-    }
-
-    $scope.$watch("loginUsername", function(){
-      if ($scope.loginUsername === "admin") {
-        $scope.loginRole = "admin";
-      } else {
-        $scope.loginRole = "receiver";
-      }
-      $scope.loginPassword = "";
-    });
-
+  }
 }]);
