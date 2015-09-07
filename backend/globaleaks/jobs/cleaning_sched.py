@@ -6,17 +6,17 @@
 # Implementation of the cleaning operations (delete incomplete submission,
 # delete expired tips, etc)
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import admin
 from globaleaks.handlers.rtip import db_delete_itip
 from globaleaks.jobs.base import GLJob
 from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, db_save_events_on_db
-from globaleaks.models import InternalTip, InternalFile, Receiver, ReceiverTip, ReceiverFile, Stats
+from globaleaks.models import InternalTip, Receiver, ReceiverTip, Stats, EventLogs
 from globaleaks.plugins.base import Event
 from globaleaks.settings import transact, transact_ro, GLSettings
-from globaleaks.utils.utility import log, datetime_to_ISO8601, ISO8601_to_datetime, utc_dynamic_date, datetime_now
+from globaleaks.utils.utility import log, datetime_now
 
 
 __all__ = ['CleaningSchedule']
@@ -37,7 +37,7 @@ class ExpiringRTipEvent(EventLogger):
 
         db_save_events_on_db(store, self.events)
 
-        log.debug("Notification: generated %d notification events of type %s" %
+        log.debug("Cleaning: generated %d notification events of type %s" %
                   (len(self.events), self.trigger))
 
     def process_event(self, store, rtip):
@@ -47,7 +47,7 @@ class ExpiringRTipEvent(EventLogger):
                                                      rtip.internaltip.context,
                                                      self.language)
 
-        expiring_tip_desc = serialize_receivertip(rtip, self.language)
+        expiring_tip_desc = serialize_receivertip(store, rtip, self.language)
 
         self.events.append(Event(type=self.template_type,
                                  trigger=self.trigger,
@@ -62,13 +62,38 @@ class ExpiringRTipEvent(EventLogger):
 class CleaningSchedule(GLJob):
     name = "Cleaning"
 
-    @transact
-    def perform_cleaning(self, store):
-        for itip in store.find(InternalTip, InternalTip.expiration_date < datetime_now()):
-            db_delete_itip(store, itip)
+    @transact_ro
+    def get_cleaning_map(self, store):
+        subjects = store.find(InternalTip, InternalTip.expiration_date < datetime_now())
 
+        itip_id_list = []
+        for itip in subjects:
+            itip_id_list.append(unicode(itip.id))
+
+        if itip_id_list:
+            log.info("Removal of %d InternalTips starts soon" % subjects.count())
+        return itip_id_list
+
+    @transact
+    def perform_cleaning(self, store, itip_id, tip_id_number):
+        itip = store.find(InternalTip, InternalTip.id == itip_id).one()
+        # Is happen that itip was NoneType, so, we are managing this condition
+        if itip:
+            db_delete_itip(store, itip, tip_id_number)
+        else:
+            log.err("DB Inconsistency ? InternalTip to be deleted %s is None" % itip_id)
+
+    @transact
+    def perform_stats_cleaning(self, store):
         # delete stats older than 3 months
         store.find(Stats, Stats.start < datetime_now() - timedelta(3*(365/12))).remove()
+
+    @transact
+    def clean_notified_events(self, store):
+        eventcnt = store.find(EventLogs, EventLogs.mail_sent == True).count()
+        if eventcnt:
+            log.debug("Cleaning %d EventLogs of mail already sent" % eventcnt)
+            store.find(EventLogs, EventLogs.mail_sent == True).remove()
 
     @inlineCallbacks
     def operation(self):
@@ -81,5 +106,11 @@ class CleaningSchedule(GLJob):
         GLSettings.exceptions = {}
         GLSettings.exceptions_email_count = 0
 
-        yield self.perform_cleaning()
+        itip_list_id = yield self.get_cleaning_map()
+        for i, itip_id in enumerate(itip_list_id):
+            yield self.perform_cleaning(itip_id, i + 1)
+
+        yield self.perform_stats_cleaning()
         yield ExpiringRTipEvent().process_events()
+
+        yield self.clean_notified_events()

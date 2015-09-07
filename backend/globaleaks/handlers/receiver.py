@@ -131,13 +131,13 @@ def update_receiver_settings(store, receiver_id, request, language):
 
 @transact_ro
 def get_receivertip_list(store, receiver_id, language):
-    node = store.find(Node).one()
-
     rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
 
     rtip_summary_list = []
 
     for rtip in rtiplist:
+        # TODO this store find in a potentially long loop is bad, is easier store in
+        # InternalTip the file counter number...
         rfiles_n = store.find(ReceiverFile,
                               (ReceiverFile.internaltip_id == rtip.internaltip.id,
                                ReceiverFile.receiver_id == receiver_id)).count()
@@ -156,7 +156,8 @@ def get_receivertip_list(store, receiver_id, language):
             'tor2web': rtip.internaltip.tor2web,
             'questionnaire_hash': rtip.internaltip.questionnaire_hash,
             'preview_schema': db_get_archived_preview_schema(store, rtip.internaltip.questionnaire_hash, language),
-            'preview': rtip.internaltip.preview
+            'preview': rtip.internaltip.preview,
+            'label': rtip.label,
         })
 
         mo = Rosetta(rtip.internaltip.context.localized_strings)
@@ -183,7 +184,7 @@ def perform_tips_operation(store, receiver_id, operation, rtips_ids):
             raise errors.ForbiddenOperation
 
         for rtip in rtips:
-            db_postpone_expiration_date(store, rtip)
+            db_postpone_expiration_date(rtip)
 
     elif operation == 'delete':
         can_delete_submission =  node.can_delete_submission or receiver.can_delete_submission

@@ -8,7 +8,25 @@
 }
 
 #ContextIntroductionBox {
-  font-size: 18;
+  font-size: 18px;
+}
+
+.TipLabel {
+  color: blueviolet;
+}
+
+.WbNameInMessages {
+  font-weight: bold;
+}
+
+.ReceiverNameInMessages {
+  font-weight: bold;
+}
+
+.ConnectionKind {
+  padding: 0.3em;
+  font-weight: bold;
+  border-radius: 4px;
 }
 
 .receiverCards {

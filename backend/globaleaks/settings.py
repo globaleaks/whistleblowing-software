@@ -70,6 +70,8 @@ storm.databases.sqlite.create_from_uri = SQLite
 # XXX. END MONKEYPATCH
 
 verbosity_dict = {
+    # do not exist anything above DEBUG, so is used a -1)
+    'TIMEDEBUG': (logging.DEBUG - 1),
     'DEBUG': logging.DEBUG,
     'INFO': logging.INFO,
     'WARNING': logging.WARNING,
@@ -256,6 +258,7 @@ class GLSettingssClass(object):
         self.socks_port = 9050
 
         self.notification_limit = 30
+        self.jobs_operation_limit = 20
 
         self.user = getpass.getuser()
         self.group = getpass.getuser()
@@ -265,6 +268,7 @@ class GLSettingssClass(object):
         self.devel_mode = False
         self.developer_name = ''
         self.skip_wizard = False
+        self.timing_stats = False
         self.glc_path = None
 
         # Number of failed login enough to generate an alarm
@@ -529,36 +533,40 @@ class GLSettingssClass(object):
             print "Invalid directory of GLCLient: %s: index.html not found" % self.glclient_path
             quit(-1)
 
-        # hardcore extremely dangerous --XXX option trigger
-        # one,two,three
-        if self.cmdline_options.xxx:
-            print "\033[1;33mHardcore dangerous hazardous radioactive --XXX option used!\033[0m"
-            hardcore_opts = self.cmdline_options.xxx.split(',')
-            if len(hardcore_opts):
-                try:
-                    GLSettings.debug_option_in_the_future = int(hardcore_opts[0])
-                except ValueError:
-                    print "Invalid number of seconds provided:", hardcore_opts[0]
-                    quit(-1)
-                print "→ \033[1;31mUsing", GLSettings.debug_option_in_the_future, \
-                    "seconds in the future\033[0m"
+        if self.devel_mode:
+          if self.cmdline_options.timing_stats:
+              self.timing_stats = True
 
-            if len(hardcore_opts) > 1 and len(hardcore_opts[1]) > 1:
-                # at least two byte needed, so you can skip this option
-                GLSettings.debug_option_UUID_human = hardcore_opts[1]
+          # hardcore extremely dangerous --XXX option trigger
+          # one,two,three
+          if self.cmdline_options.xxx:
+              print "\033[1;33mHardcore dangerous hazardous radioactive --XXX option used!\033[0m"
+              hardcore_opts = self.cmdline_options.xxx.split(',')
+              if len(hardcore_opts):
+                  try:
+                      GLSettings.debug_option_in_the_future = int(hardcore_opts[0])
+                  except ValueError:
+                      print "Invalid number of seconds provided:", hardcore_opts[0]
+                      quit(-1)
+                  print "→ \033[1;31mUsing", GLSettings.debug_option_in_the_future, \
+                      "seconds in the future\033[0m"
 
-                if len(GLSettings.debug_option_UUID_human) > 8:
-                    GLSettings.debug_option_UUID_human = GLSettings.debug_option_UUID_human[:8]
+              if len(hardcore_opts) > 1 and len(hardcore_opts[1]) > 1:
+                  # at least two byte needed, so you can skip this option
+                  GLSettings.debug_option_UUID_human = hardcore_opts[1]
 
-                print "→ \033[1;31mUsing", GLSettings.debug_option_UUID_human, \
-                    "to generate human readable UUIDv4\033[0m"
+                  if len(GLSettings.debug_option_UUID_human) > 8:
+                      GLSettings.debug_option_UUID_human = GLSettings.debug_option_UUID_human[:8]
 
-            if len(hardcore_opts) > 2 and len(hardcore_opts[2]) > 1:
-                self.debug_option_mlockall = True
-                print "→ \033[1;31mUsing mlockall(2) system call to prevent GlobaLeaks swap\033[0m"
-                self.avoid_globaleaks_swap()
+                  print "→ \033[1;31mUsing", GLSettings.debug_option_UUID_human, \
+                      "to generate human readable UUIDv4\033[0m"
 
-            print "\n"
+              if len(hardcore_opts) > 2 and len(hardcore_opts[2]) > 1:
+                  self.debug_option_mlockall = True
+                  print "→ \033[1;31mUsing mlockall(2) system call to prevent GlobaLeaks swap\033[0m"
+                  self.avoid_globaleaks_swap()
+
+              print "\n"
 
     def validate_port(self, inquiry_port):
         if inquiry_port >= 65535 or inquiry_port < 0:
@@ -694,7 +702,6 @@ class GLSettingssClass(object):
                 os.rmdir(os.path.join(root, name))
 
     def drop_privileges(self):
-
         if os.getgid() != self.gid:
             try:
                 print "switching group privileges since %d to %d" % (os.getgid(), self.gid)

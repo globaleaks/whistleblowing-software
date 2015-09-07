@@ -37,10 +37,10 @@ class GLJob(task.LoopingCall):
         self.start_time = time.time()
 
         if self.mean_time != -1:
-            log.debug("Starting job [%s] expecting an execution time of %.2f [low: %.2f, high: %.2f]" %
+            log.time_debug("Starting job [%s] expecting an execution time of %.2f [low: %.2f, high: %.2f]" %
                       (self.name, self.mean_time, self.low_time, self.high_time))
         else:
-            log.debug("Starting job [%s]" % self.name)
+            log.time_debug("Starting job [%s]" % self.name)
 
     def stats_collection_end(self):
         if self.monitor is not None:
@@ -59,9 +59,13 @@ class GLJob(task.LoopingCall):
         if self.high_time == -1 or current_run_time > self.high_time:
             self.high_time = current_run_time
 
-        log.debug("Ended job [%s] with an execution time of %.2f seconds" % (self.name, current_run_time))
+        log.time_debug("Ended job [%s] with an execution time of %.2f seconds" % (self.name, current_run_time))
 
         self.iterations += 1
+
+        if self.name == 'Delivery':
+            from globaleaks.handlers.exporter import add_measured_event
+            add_measured_event(None, None, current_run_time, self.iterations, self.start_time)
 
     @defer.inlineCallbacks
     def _operation(self):
@@ -72,7 +76,7 @@ class GLJob(task.LoopingCall):
 
             self.stats_collection_end()
         except Exception as e:
-            log.err("Exception while performin scheduled operation %s: %s" % \
+            log.err("Exception while performing scheduled operation %s: %s" % \
                     (type(self).__name__, e))
 
             try:
