@@ -8,7 +8,7 @@ from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSettings
 from globaleaks.handlers import exception, \
                                 node, submission, rtip, wbtip, receiver, \
-                                files, authentication, admin, \
+                                files, authentication, admin, token, \
                                 collection, langfiles, css, wizard
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 
@@ -47,8 +47,11 @@ spec = [
     # Fake file hosting the Ahmia.fi descriptor
     (r'/description.json', node.AhmiaDescriptionHandler),
 
+    ## Token Handlers ##
+    (r'/token', token.TokenCreate),
+    (r'/token/' + token_string, token.TokenInstance),
+
     ## Submission Handlers ##
-    (r'/submission', submission.SubmissionCreate),
     (r'/submission/' + token_string, submission.SubmissionInstance),
     (r'/submission/' + token_string + '/file', files.FileInstance),
 

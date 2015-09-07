@@ -2,18 +2,18 @@
   <div class="modal-title" data-translate>Are you human?</div>
 </div>
 <div class="modal-body">
-  <div id="HumanCaptcha" data-ng-if="object._submission.human_captcha" >
+  <div id="HumanCaptcha" data-ng-if="object._token.human_captcha">
     <div class="alert alert-warning">
       <div data-translate>We do not discriminate based on race and gender, but we do against computers :)</div>
       <br />
       <div>
         <span data-translate>Just to prove you are human, please answer the following math challenge:</span>
-        <span>{{object._submission.human_captcha}}</span>
+        <span>{{object._token.human_captcha}}</span>
       </div>
       <br />
       <div class="form-group" style="width: 100%; text-align: center">
         <div class="col-xs-4">
-          <input id="human_captcha_answer" class="form-control" ng-model="object._submission.human_captcha_answer" type="number" />
+          <input id="human_captcha_answer" class="form-control" ng-model="object._token.human_captcha_answer" type="number" />
         </div>
       </div>
       <br />

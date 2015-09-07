@@ -280,21 +280,16 @@ def db_create_submission(store, token_id, request, t2w, language):
     # the .get method raise an exception if the token is invalid
     token = TokenList.get(token_id)
 
-    if not token.context_associated == request['context_id']:
-        raise errors.InvalidInputFormat("Token context does not match the one specified in submission payload")
-
-    token.validate(request)
-
-    TokenList.delete(token_id)
+    token.use()
 
     answers = request['answers']
 
-    context = store.find(Context, Context.id == token.context_associated).one()
+    context = store.find(Context, Context.id == request['context_id']).one()
     if not context:
         # this can happen only if the context is removed
         # between submission POST and PUT.. :) that's why is better just
         # ignore this check, take che cached and wait the reference below fault
-        log.err("Context requested: [%s] not found!" % token.context_associated)
+        log.err("Context requested: [%s] not found!" % request['context_id'])
         raise errors.ContextIdNotFound
 
     submission = InternalTip()
@@ -361,53 +356,10 @@ def create_submission(store, token_id, request, t2w, language):
     return db_create_submission(store, token_id, request, t2w, language)
 
 
-class SubmissionCreate(BaseHandler):
-    """
-    This class Request a token to create a submission.
-    We keep the naming with "Create" suffix for internal globaleaks convention,
-    but this handler do not interact with Database, InternalTip, Submissions, etc.
-    """
-
-    @transport_security_check('wb')
-    @unauthenticated
-    def post(self):
-        """
-        Request: None
-        Response: SubmissionDesc (Token)
-        Errors: ContextIdNotFound, InvalidInputFormat, SubmissionValidationFailure
-
-        This API create a Token, a temporary memory only object able to keep
-        track of the submission. If the system is under stress, complete the
-        submission will require some actions to be performed before the
-        submission can be concluded (e.g. hashcash and captchas).
-        """
-        if not GLSettings.memory_copy.accept_submissions:
-            raise errors.SubmissionDisabled
-
-        request = self.validate_message(self.request.body, requests.SubmissionDesc)
-
-        token = Token('submission', request['context_id'])
-        token.set_difficulty(Alarm().get_token_difficulty())
-        token_answer = token.serialize_token()
-
-        token_answer.update({'id': token_answer['token_id']})
-        token_answer.update({'context_id': request['context_id']})
-        token_answer.update({'receivers': []})
-        token_answer.update({'answers': {}})
-        token_answer.update({'human_captcha_answer': 0})
-        token_answer.update({'graph_captcha_answer': ""})
-        token_answer.update({'proof_of_work': 0})
-
-        self.set_status(201)  # Created
-        self.finish(token_answer)
-
-
 class SubmissionInstance(BaseHandler):
     """
     This is the interface for create, populate and complete a submission.
-    Relay in the client-server update and exchange of the submissionStatus message.
     """
-
     @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
