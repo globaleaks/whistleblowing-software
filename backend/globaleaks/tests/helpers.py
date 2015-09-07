@@ -484,8 +484,7 @@ class TestGLWithPopulatedDB(TestGL):
         yield update_context(self.dummyContext['id'], copy.deepcopy(self.dummyContext), 'en')
 
     def perform_submission_start(self):
-        self.dummyToken = token.Token(token_kind='submission',
-                                      context_id=self.dummyContext['id'])
+        self.dummyToken = token.Token(token_kind='submission')
 
     @inlineCallbacks
     def perform_submission_uploads(self):
@@ -497,7 +496,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
 
-        self.dummySubmission = yield create_submission(self.dummyToken.token_id,
+        self.dummySubmission = yield create_submission(self.dummyToken.id,
                                                        self.dummySubmission, 
                                                        True, 'en')
 

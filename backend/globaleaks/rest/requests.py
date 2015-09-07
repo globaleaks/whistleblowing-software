@@ -18,6 +18,7 @@ https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^homepage$|^submissionpage$'
 tip_operation_regexp              = r'^postpone$|^label$'
+token_type_regexp                 = r'^submission$'
 field_type                        = (r'^('
                                      'inputbox|'
                                      'textarea|'
@@ -61,13 +62,20 @@ WBStepDesc = {
     'children': list
 }
 
-SubmissionDesc = {
-    'context_id': uuid_regexp,
-    'receivers': [uuid_regexp],
-    'answers': dict,
+TokenReqDesc = {
+    'type': token_type_regexp
+}
+
+TokenAnswerDesc = {
     'human_captcha_answer': int,
     'graph_captcha_answer': unicode,
     'proof_of_work': int
+}
+
+SubmissionDesc = {
+    'context_id': uuid_regexp,
+    'receivers': [uuid_regexp],
+    'answers': dict
 }
 
 ReceiverReceiverDesc = {

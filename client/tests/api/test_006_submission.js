@@ -18,6 +18,7 @@ var receivers_ids = new Array();
 var contexts = new Array();
 var contexts_ids = new Array();
 var submissions = new Array();
+var submission_tokens = new Array();
 var files = new Array();
 var wb_keycodes  = new Array();
 
@@ -83,7 +84,6 @@ describe('GET /contexts', function(){
         if (err) {
           return done(err);
         } else {
-
           validate_mandatory_headers(res.headers);
 
           if (res.body.length != population_order) {
@@ -117,7 +117,6 @@ describe('GET /receivers', function(){
         if (err) {
           return done(err);
         } else {
-
           validate_mandatory_headers(res.headers);
 
           if (res.body.length != population_order) {
@@ -141,22 +140,14 @@ describe('GET /receivers', function(){
   })
 })
 
-describe('POST /submission', function(){
+describe('POST /token', function(){
   for (var i=0; i<submission_population_order; i++) {
     (function (i) {
       it('responds with ', function(done){
-
-        var new_submission = {};
-        new_submission.context_id = contexts_ids[i];
-        new_submission.receivers = receivers_ids;
-        new_submission.answers = fill_answers(contexts[i].steps);
-        new_submission.human_captcha_answer = 0;
-        new_submission.graph_captcha_answer = "";
-        new_submission.proof_of_work = 0;
-
+        var new_submission_token = {'type': 'submission'};
         app
-          .post('/submission')
-          .send(new_submission)
+          .post('/token')
+          .send(new_submission_token)
           .expect('Content-Type', 'application/json')
           .expect(201)
           .end(function(err, res) {
@@ -165,37 +156,65 @@ describe('POST /submission', function(){
             } else {
 
               validate_mandatory_headers(res.headers);
-              submissions.push(res.body);
+              submission_tokens.push(res.body);
 
               done();
             }
           });
-
       })
     })(i);
 
   }
 })
 
-describe('POST /submission/submission_id', function(){
+describe('PUT /token/token_id', function(){
   for (var i=0; i<submission_population_order; i++) {
     (function (i) {
-
       it('responds with ', function(done){
+        if(submission_tokens[i].human_captcha) {
+          submission_tokens[i].human_captcha_answer = eval(submission_tokens[i].human_captcha);
+          app
+            .put('/token/' + submission_tokens[i].id)
+            .send(submission_tokens[i])
+            .expect('Content-Type', 'application/json')
+            .expect(202)
+            .end(function(err, res) {
+              if (err) {
+                return done(err);
+              } else {
+                validate_mandatory_headers(res.headers);
+                submission_tokens[i] = res.body;
 
-        submissions[i].receivers = receivers_ids;
-        submissions[i].answers = fill_answers(contexts[i].steps);
+                done();
+              }
+            });
+        } else {
+          done();
+        }
+      })
+    })(i);
+  }
+})
+
+describe('PUT /submission/submission_id', function(){
+  for (var i=0; i<submission_population_order; i++) {
+    (function (i) {
+      it('responds with ', function(done){
+        var new_submission = {};
+        new_submission.id = submission_tokens[i].id;
+        new_submission.context_id = contexts_ids[i];
+        new_submission.receivers = receivers_ids;
+        new_submission.answers = fill_answers(contexts[i].steps);
 
         app
-          .put('/submission/' + submissions[i].id)
-          .send(submissions[i])
+          .put('/submission/' + submission_tokens[i].id)
+          .send(new_submission)
           .expect('Content-Type', 'application/json')
           .expect(202)
           .end(function(err, res) {
             if (err) {
               return done(err);
             } else {
-
               validate_mandatory_headers(res.headers);
 
               submissions.push(res.body);
@@ -205,7 +224,6 @@ describe('POST /submission/submission_id', function(){
               done();
             }
           });
-
       })
     })(i);
   }
@@ -222,7 +240,6 @@ for (var i=0; i<1; i++){
           .send(credentials)
           .expect(401)
           .end(function (err, res) {
-
             if (err) {
               return done(err);
             }
@@ -242,7 +259,6 @@ for (var i=0; i<1; i++){
           .send(credentials)
           .expect(200)
           .end(function (err, res) {
-
             if (err) {
               return done(err);
             }

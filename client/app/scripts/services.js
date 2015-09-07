@@ -221,6 +221,12 @@ angular.module('GLServices', ['ngResource']).
   // submission requests to the backend
   factory('Submission', ['$q', '$resource', '$filter', '$location', '$rootScope', 'Authentication',
   function($q, $resource, $filter, $location, $rootScope, Authentication) {
+    var tokenResource = $resource('token/:token_id/',
+        {token_id: '@id'},
+        {
+          update: {method: 'PUT'}
+        }
+    );
 
     var submissionResource = $resource('submission/:token_id/',
         {token_id: '@token_id'},
@@ -358,17 +364,16 @@ angular.module('GLServices', ['ngResource']).
         self.answers = ret[0];
         self.empty_answers = ret[1];
 
-        self._submission = new submissionResource({
-          context_id: self.context.id,
-          receivers: [],
-          answers: angular.copy(self.answers),
-          human_captcha_answer: 0,
-          graph_captcha_answer: "",
-          proof_of_work: 0,
-        });
+        self._token = new tokenResource({'type': 'submission'}).$save(function(token) {
+          self._token = token;
 
-        self._submission.$save(function(submissionID){
-          self._submission.answers = angular.copy(self.answers);
+          self._submission = new submissionResource({
+            token_id: self._token.id,
+            context_id: self.context.id,
+            receivers: [],
+            answers: angular.copy(self.answers),
+          });
+
           if (cb) {
             cb();
           }

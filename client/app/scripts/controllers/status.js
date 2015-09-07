@@ -80,6 +80,8 @@ GLClient.controller('StatusCtrl',
 
         $scope.tip = tip;
 
+        $scope.showEditLabelInput = $scope.tip.label == '';
+
         $scope.tip_unencrypted = false;
         angular.forEach(tip.receivers, function(receiver){
           if (receiver.pgp_key_status === 'disabled' && receiver.receiver_id !== tip.receiver_id) {

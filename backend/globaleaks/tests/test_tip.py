@@ -50,10 +50,9 @@ class TestTip(helpers.TestGL):
 
         dummySubmissionDict = yield self.get_dummy_submission(self.context_desc['id'])
 
-        token = Token(token_kind='submission',
-                      context_id=self.context_desc['id'])
+        token = Token(token_kind='submission')
 
-        self.submission_desc = yield submission.create_submission(token.token_id, dummySubmissionDict, False, 'en')
+        self.submission_desc = yield submission.create_submission(token.id, dummySubmissionDict, False, 'en')
 
         self.assertEqual(self.submission_desc['answers'], dummySubmissionDict['answers'])
 
