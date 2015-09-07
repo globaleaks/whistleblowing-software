@@ -442,10 +442,8 @@ angular.module('GLServices', ['ngResource']).
             });
           };
 
-          tip.updateLabel = function(content) {
-            /* this make the view refresh */
-            tip.label = content;
-            return $http({method: 'PUT', url: '/rtip/' + tip.id, data:{'operation': 'label', 'label' : content  }});
+          tip.updateLabel = function(label) {
+            return $http({method: 'PUT', url: '/rtip/' + tip.id, data:{'operation': 'label', 'label' : label}});
 
           };
 

@@ -11,18 +11,8 @@
   font-size: 18px;
 }
 
-#SubmissionAssignLabel {
-  font-size: 0.8em;
-  vertical-align: middle;
-}
-
-.LabelAssigned {
+.TipLabel {
   color: blueviolet;
-}
-
-.LabelMissing {
-  color: steelblue;
-  text-decoration: underline;
 }
 
 .WbNameInMessages {

@@ -39,6 +39,10 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       );
     };
 
+    $scope.eventDismiss = function(event) {
+      event.stopPropagation();
+    }
+
     $scope.go = function (hash) {
       $location.path(hash);
     }
