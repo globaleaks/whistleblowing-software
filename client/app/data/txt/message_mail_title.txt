@@ -1,1 +1,1 @@
-[Tip %TipNum%] New message
+New message

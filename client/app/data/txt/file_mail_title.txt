@@ -1,1 +1,1 @@
-[Tip %TipNum%] New attachment
+New attachment
