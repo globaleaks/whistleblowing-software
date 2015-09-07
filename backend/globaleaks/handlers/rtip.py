@@ -31,7 +31,6 @@ def receiver_serialize_tip(store, internaltip, language):
         'id': internaltip.id,
         'context_id': internaltip.context.id,
         'show_receivers': internaltip.context.show_receivers,
-        # Question: this is serialization is for Receivers, the Receiver are hidden just for Viz
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
         'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
