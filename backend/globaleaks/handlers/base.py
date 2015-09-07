@@ -27,6 +27,7 @@ from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
 
 from globaleaks.event import outcoming_event_monitored, EventTrack
+from globaleaks.handlers.exporter import add_measured_event
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
@@ -538,7 +539,7 @@ class BaseHandler(RequestHandler):
 
     def handler_time_analysis_end(self):
         """
-        If the software is running with the option -S --stats (GLSetting.json_stats)
+        If the software is running with the option -S --stats (GLSetting.timing_stats)
         then we are doing performance testing, having our mailbox spammed is not important,
         so we just skip to report the anomaly.
         """
@@ -549,11 +550,9 @@ class BaseHandler(RequestHandler):
                     (self.name, self.handler_exec_time_threshold, current_run_time)
             log.err(error)
 
-            if not GLSettings.json_stats:
-                send_exception_email(error, mail_reason="Handler Time Exceeded")
+            send_exception_email(error, mail_reason="Handler Time Exceeded")
 
-        if GLSettings.json_stats:
-            from globaleaks.handlers.exporter import add_measured_event
+        if GLSettings.timing_stats:
             add_measured_event(self.request.method, self.request.uri,
                                current_run_time, self.req_id, self.start_time)
 

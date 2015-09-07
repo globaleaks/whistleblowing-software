@@ -198,10 +198,6 @@ GLSettings.parser.add_option("-k", "--kill", type="int",
     help="signal to send to the current globaleaks process (if exists) [default: don't kill]",
     dest="kill", default=0)
 
-GLSettings.parser.add_option("-z", "--devel-mode", type='string',
-    help="hack some configs, specify your name to receive personalized exceptions' [default: %default]",
-    dest="developer_name")
-
 GLSettings.parser.add_option("-x", "--skip-wizard", action='store_true',
     help="skip globaleaks installation wizard' [default: False]",
     dest="skip_wizard")
@@ -214,13 +210,17 @@ GLSettings.parser.add_option("-R", "--ramdisk", type="string",
     help="optionally specify a path used as ramdisk storage [default: absent]",
     dest="ramdisk")
 
+GLSettings.parser.add_option("-z", "--devel-mode", type='string',
+    help="hack some configs, specify your name to receive personalized exceptions' [default: %default]",
+    dest="developer_name")
+
 GLSettings.parser.add_option("--XXX", type='string',
-    help="hardcore debug only options: check NOTES.md file",
+    help="hardcore debug only options: check NOTES.md file [AVAILABLE ONLY IN DEVEL MODE]",
     dest="xxx")
 
 GLSettings.parser.add_option("-S", "--stats", action='store_true',
-    help="Statistics enabled, dump via JSON all the timings [DON'T DOIT!]",
-    dest="json_stats")
+    help="Statistics enabled, dump verbose debugging timing infos [AVAILABLE ONLY IN DEVEL MODE]",
+    dest="timing_stats")
 
 GLSettings.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software (spoiler: %s)" % GLSettings.version_string,

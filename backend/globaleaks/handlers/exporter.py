@@ -22,10 +22,8 @@ EventTypeCounter = {
 }
 
 def add_measured_event(method, uri, secs_elapsed, event_id, start_time):
-
     # This is an hack of the event tracking, just has to keep in account
     # also some periodic scheduled event like Delivery phases
-
     if method == 'PUT' and uri.startswith('/submission'):
         event_type = 'submission'
     elif method == 'POST' and uri.startswith('/submission'):
@@ -58,10 +56,8 @@ def add_measured_event(method, uri, secs_elapsed, event_id, start_time):
 
 
 class CurrentStats(BaseHandler):
-
     def get(self):
-
-        if not GLSettings.json_stats:
+        if not GLSettings.timing_stats:
             raise errors.InvalidInputFormat("Enable only with -S --stats cmdline switch")
 
         self.set_status(200)
@@ -77,13 +73,11 @@ class CurrentStats(BaseHandler):
 
 
 class ReportEvent(BaseHandler):
-
     def get(self, eventstring):
-
         print "Now received notice of", eventstring
         add_measured_event(None, None, 0, eventstring, self.start_time)
 
-        if not GLSettings.json_stats:
+        if not GLSettings.timing_stats:
             self.set_status(405)
             self.finish()
         else:
