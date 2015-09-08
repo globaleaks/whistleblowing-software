@@ -18,7 +18,7 @@ from globaleaks.rest import errors
 from globaleaks.utils.utility import log
 
 
-def shorttext_v(_self, _attr, value):
+def shorttext_v(_self, attr, value):
     """
     Validator for 'name' element, receiver, context, node, and few others
         are here checked
@@ -27,10 +27,10 @@ def shorttext_v(_self, _attr, value):
         value = unicode(value)
 
     if not isinstance(value, unicode):
-        raise errors.InvalidModelInput("Name expected unicode (%s)" % value)
+        raise errors.InvalidModelInput("shorttext_v: expected unicode (%s:%s)" % (attr, value))
 
     if len(value) > GLSettings.memory_copy.maximum_namesize:
-        raise errors.InvalidModelInput("Name length need to be < of %d"
+        raise errors.InvalidModelInput("shorttext_v: length need to be < of %d"
                                         % GLSettings.memory_copy.maximum_namesize)
 
     return value
@@ -48,11 +48,11 @@ def longtext_v(_self, attr, value):
         value = unicode(value)
 
     if not isinstance(value, unicode):
-        raise errors.InvalidModelInput("attr %s: Text expected unicode (%s)" %
-                                        ( attr, value ))
+        raise errors.InvalidModelInput("longtext_v: expected unicode (%s:%s)" %
+                                       (attr, value))
 
     if len(value) > GLSettings.memory_copy.maximum_textsize:
-        raise errors.InvalidModelInput("Text unicode in %s " \
+        raise errors.InvalidModelInput("longtext_v: unicode text in %s " \
                                         "overcomes length " \
                                         "limit %d" % (attr, GLSettings.memory_copy.maximum_textsize))
 
@@ -68,7 +68,7 @@ def dict_v(_self, attr, value):
         return {}
 
     if not isinstance(value, dict):
-        raise errors.InvalidModelInput("(%s) dict expected" % attr)
+        raise errors.InvalidModelInput("dict_v: expected dict (%s)" % attr)
 
     for key, subvalue in value.iteritems():
         if isinstance(subvalue, str):
@@ -76,8 +76,8 @@ def dict_v(_self, attr, value):
 
         if isinstance(subvalue, unicode):
             if len(subvalue) > GLSettings.memory_copy.maximum_textsize:
-                raise errors.InvalidModelInput("In dict %s the key %s" \
-                                                "overcome length limit of %d" % (attr, key,
+                raise errors.InvalidModelInput("dict_v: text for key %s in %s" \
+                                                "overcome length limit of %d" % (key, attr,
                                                                                  GLSettings.memory_copy.maximum_textsize))
 
         if isinstance(subvalue, dict):
@@ -106,7 +106,7 @@ def shortlocal_v(_self, attr, value):
             del value[unicode(k)]
         except KeyError:
             pass
-        log.debug("shortlocal validation: (%s) Invalid language code in %s, skipped" %
+        log.debug("shortlocal_v: (%s) Invalid language code in %s, skipped" %
                   (k, attr))
 
     for lang, text in value.iteritems():
@@ -131,7 +131,7 @@ def longlocal_v(_self, attr, value):
             del value[unicode(k)]
         except KeyError:
             pass
-        log.debug("longlocal validation: (%s) Invalid language code in %s, skipped" %
+        log.debug("longlocal_v: (%s) Invalid language code in %s, skipped" %
                   (k, attr))
 
     for lang, text in value.iteritems():

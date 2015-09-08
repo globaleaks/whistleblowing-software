@@ -37,7 +37,8 @@ from globaleaks import db, models, security, anomaly, event
 from globaleaks.db.datainit import load_appdata, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLHTTPConnection, BaseHandler
-from globaleaks.handlers.admin import create_context, get_context, update_context, create_receiver, db_get_context_steps
+from globaleaks.handlers.admin import create_context, get_context, update_context, \
+    create_receiver, db_get_context_steps
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.rtip import receiver_serialize_tip
 from globaleaks.handlers.wbtip import wb_serialize_tip
@@ -670,7 +671,12 @@ class MockDict():
             'timezone': 0,
             'language': u'en',
             'password_change_needed': False,
-            'password_change_date': datetime_null()
+            'password_change_date': datetime_null(),
+            'pgp_key_info': u'',
+            'pgp_key_fingerprint': u'',
+            'pgp_key_status': u'disabled',
+            'pgp_key_public': u'',
+            'pgp_key_expiration': u'1970-01-01 00:00:00.000000'
         }
 
         self.dummyReceiver = {
@@ -688,20 +694,17 @@ class MockDict():
             'tip_notification': True,
             'ping_notification': True,
             'tip_expiration_threshold': 72,
+            'presentation_order': 0,
+            'timezone': 0,
+            'language': u'en',
+            'configuration': 'default',
             'pgp_key_info': u'',
             'pgp_key_fingerprint': u'',
             'pgp_key_status': u'disabled',
             'pgp_key_public': u'',
-            'pgp_key_expiration': u'',
-            'pgp_key_remove': False,
-            'presentation_order': 0,
-            'timezone': 0,
-            'language': u'en',
-            'configuration': 'default'
+            'pgp_key_expiration': u'1970-01-01 00:00:00.000000',
+            'pgp_key_remove': False
         }
-
-        self.dummyReceiverPGP = copy.deepcopy(self.dummyReceiver)
-        self.dummyReceiverPGP['pgp_key_public'] = VALID_PGP_KEY1
 
         self.dummyFieldTemplates = [
             {

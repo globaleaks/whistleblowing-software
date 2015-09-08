@@ -189,12 +189,12 @@ def admin_serialize_receiver(receiver, language):
         'state': receiver.user.state,
         'configuration': receiver.configuration,
         'contexts': [c.id for c in receiver.contexts],
-        'pgp_key_info': receiver.pgp_key_info,
-        'pgp_key_public': receiver.pgp_key_public,
+        'pgp_key_info': receiver.user.pgp_key_info,
+        'pgp_key_public': receiver.user.pgp_key_public,
         'pgp_key_remove': False,
-        'pgp_key_fingerprint': receiver.pgp_key_fingerprint,
-        'pgp_key_expiration': datetime_to_ISO8601(receiver.pgp_key_expiration),
-        'pgp_key_status': receiver.pgp_key_status,
+        'pgp_key_fingerprint': receiver.user.pgp_key_fingerprint,
+        'pgp_key_expiration': datetime_to_ISO8601(receiver.user.pgp_key_expiration),
+        'pgp_key_status': receiver.user.pgp_key_status,
         'tip_notification': receiver.tip_notification,
         'ping_notification': receiver.ping_notification,
         'presentation_order': receiver.presentation_order,
@@ -648,7 +648,7 @@ def db_create_receiver(store, request, language):
     receiver_user = models.User(receiver_user_dict)
 
     # The various options related in manage PGP keys are used here.
-    pgp_options_parse(receiver, request)
+    parse_pgp_options(receiver_user, request)
 
     # Set receiver.id = receiver.user.username = receiver.user.id
     receiver.id = receiver_user.username = receiver_user.id
@@ -712,7 +712,7 @@ def update_receiver(store, receiver_id, request, language):
     receiver.user.mail_address = request['mail_address']
 
     # The various options related in manage PGP keys are used here.
-    pgp_options_parse(receiver, request)
+    parse_pgp_options(receiver.user, request)
 
     receiver.user.language = request.get('language', GLSettings.memory_copy.default_language)
     receiver.user.timezone = request.get('timezone', GLSettings.memory_copy.default_timezone)
@@ -759,47 +759,28 @@ def delete_receiver(store, receiver_id):
     store.remove(receiver.user)
 
 
-def pgp_options_parse(receiver, request):
+def parse_pgp_options(user, request):
     """
-    This is called in a @transact, when receiver update prefs and
-    when admin configure a new key (at the moment, Admin GUI do not
-    permit to sets preferences, but still the same function is
-    used.
+    This is called in a @transact, when an users update their preferences or
+    when admins configure keys on their behalf.
 
-    @param receiver: the Storm object
-    @param request: the Dict receiver by the Internets
+    @param user: the user ORM object
+    @param request: the dictionary containing the pgp infos to be parsed
     @return: None
-
-    This function is called in create_recever and update_receiver
-    and is used to manage the PGP options forced by the administrator
-
-    This is needed also because no one of these fields are
-    *enforced* by unicode_keys or bool_keys in models.Receiver
-
-    PGP management, here are check'd these actions:
-    1) Proposed a new PGP key, is imported to check validity, and
-       stored in Storm DB if not error raise
-    2) Removal of the present key
-
-    Further improvement: update the keys using keyserver
     """
-
     new_pgp_key = request.get('pgp_key_public', None)
     remove_key = request.get('pgp_key_remove', False)
 
     # the default
-    receiver.pgp_key_status = u'disabled'
+    user.pgp_key_status = u'disabled'
 
     if remove_key:
-        log.debug("User %s %s request to remove PGP key (%s)" %
-                  (receiver.name, receiver.user.username, receiver.pgp_key_fingerprint))
-
         # In all the cases below, the key is marked disabled as request
-        receiver.pgp_key_status = u'disabled'
-        receiver.pgp_key_info = None
-        receiver.pgp_key_public = None
-        receiver.pgp_key_fingerprint = None
-        receiver.pgp_key_expiration = datetime_null()
+        user.pgp_key_status = u'disabled'
+        user.pgp_key_info = None
+        user.pgp_key_public = None
+        user.pgp_key_fingerprint = None
+        user.pgp_key_expiration = datetime_null()
 
     if new_pgp_key:
         gnob = GLBPGP()
@@ -809,11 +790,11 @@ def pgp_options_parse(receiver, request):
 
             log.debug("PGP Key imported: %s" % result['fingerprint'])
 
-            receiver.pgp_key_status = u'enabled'
-            receiver.pgp_key_info = result['info']
-            receiver.pgp_key_public = new_pgp_key
-            receiver.pgp_key_fingerprint = result['fingerprint']
-            receiver.pgp_key_expiration = result['expiration']
+            user.pgp_key_status = u'enabled'
+            user.pgp_key_info = result['info']
+            user.pgp_key_public = new_pgp_key
+            user.pgp_key_fingerprint = result['fingerprint']
+            user.pgp_key_expiration = result['expiration']
 
         except:
             raise

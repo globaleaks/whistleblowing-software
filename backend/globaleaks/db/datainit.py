@@ -13,6 +13,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.security import get_salt, hash_password
 from globaleaks.third_party import rstr
+from globaleaks.utils.utility import datetime_null
 
 
 def load_appdata():
@@ -86,6 +87,11 @@ def init_db(store, result, node_dict, appdata_dict):
         'language': u"en",
         'timezone': 0,
         'password_change_needed': False,
+        'pgp_key_status': 'disabled',
+        'pgp_key_info': '',
+        'pgp_key_fingerprint': '',
+        'pgp_key_public': '',
+        'pgp_key_expiration': datetime_null()
     }
 
     admin = models.User(admin_dict)

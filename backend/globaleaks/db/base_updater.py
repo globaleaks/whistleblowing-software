@@ -235,7 +235,9 @@ class TableReplacer(object):
 
             # Storm internals simply reversed
             for _, v in new_obj._storm_columns.iteritems():
-                setattr(new_obj, v.name, getattr(old_obj, v.name))
+                old_value = getattr(old_obj, v.name)
+                if old_value is not None:
+                    setattr(new_obj, v.name, old_value)
 
             self.store_new.add(new_obj)
 
@@ -249,7 +251,9 @@ class TableReplacer(object):
 
         # Storm internals simply reversed
         for _, v in new_obj._storm_columns.iteritems():
-            setattr(new_obj, v.name, getattr(old_obj, v.name))
+            old_value = getattr(old_obj, v.name)
+            if old_value is not None:
+                setattr(new_obj, v.name, old_value)
 
         self.store_new.add(new_obj)
         self.store_new.commit()
@@ -387,3 +391,33 @@ class TableReplacer(object):
             return
 
         self._perform_copy_list("EventLogs")
+
+    def migrate_FieldAnswer(self):
+        """
+        FieldAnswer has been created between 22 and 23!
+        """
+        if self.start_ver < 23:
+            return
+
+    def migrate_FieldAnswerGroupFieldAnswer(self):
+        """
+        FieldAnswerGroup has been created between 22 and 23!
+        """
+        if self.start_ver < 23:
+            return
+
+    def migrate_FieldAnswerGroupFieldAnswer(self):
+        """
+        FieldGroupFieldAnswer has been created between 22 and 23!
+        """
+        if self.start_ver < 23:
+            return
+
+    def migrate_ArchivedSchema(self):
+        """
+        ArchivedSchema has been created between 22 and 23!
+        """
+        if self.start_ver < 23:
+            return
+
+        self._perform_copy_list("ArchivedSchema")

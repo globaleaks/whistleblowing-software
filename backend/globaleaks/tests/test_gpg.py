@@ -33,7 +33,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
         self.receiver_only_update['password'] = self.dummyReceiver_1['password']
         self.receiver_only_update['old_password'] = self.dummyReceiver_1['password']
         self.receiver_only_update['pgp_key_public'] = unicode(VALID_PGP_KEY1)
-        self.receiver_only_update['pgp_key_status'] = None # Test, this field is ignored and set
+        self.receiver_only_update['pgp_key_status'] = u'disabled' # Test, this field is ignored and set
         self.receiver_only_update['pgp_key_remove'] = False
         handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
         yield handler.put()
@@ -50,7 +50,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
         self.receiver_only_update['password'] = self.dummyReceiver_1['password']
         self.receiver_only_update['old_password'] = self.dummyReceiver_1['password']
         self.receiver_only_update['pgp_key_public'] = unicode(VALID_PGP_KEY1)
-        self.receiver_only_update['pgp_key_status'] = None # Test, this field is ignored and set
+        self.receiver_only_update['pgp_key_status'] = u'disabled' # Test, this field is ignored and set
         self.receiver_only_update['pgp_key_remove'] = False
         handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
         yield handler.put()
@@ -73,7 +73,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
         self.receiver_only_update['password'] = self.dummyReceiver_1['password']
         self.receiver_only_update['old_password'] = self.dummyReceiver_1['password']
         self.receiver_only_update['pgp_key_public'] = unicode(VALID_PGP_KEY1).replace('A', 'B')
-        self.receiver_only_update['pgp_key_status'] = None # Test, this field is ignored and set
+        self.receiver_only_update['pgp_key_status'] = u'disabled' # Test, this field is ignored and set
         self.receiver_only_update['pgp_key_remove'] = False
         handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
         yield self.assertFailure(handler.put(), errors.PGPKeyInvalid)

@@ -440,13 +440,9 @@ def get_receiver_list_receiver(store, user_id, tip_id, language):
     rtip = db_access_tip(store, user_id, tip_id)
 
     receiver_list = []
-    # Improvement TODO, instead of looping over rtip, that can be A LOTS, we
-    # can just iterate over receiver, and then remove the receiver not present
-    # in the specific InternalTip
     for rtip in rtip.internaltip.receivertips:
         receiver_desc = {
-            "pgp_key_status": rtip.receiver.pgp_key_status,
-            "can_delete_submission": rtip.receiver.can_delete_submission,
+            "pgp_key_status": rtip.receiver.user.pgp_key_status,
             "name": unicode(rtip.receiver.name),
             "receiver_id": unicode(rtip.receiver.id),
             "access_counter": rtip.access_counter,
