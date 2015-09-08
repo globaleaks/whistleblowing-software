@@ -34,9 +34,6 @@ class TestToken(helpers.TestGL):
     def test_token(self):
         st = Token('submission')
 
-        for indicator in TestToken.stress_indicator:
-            self.assertFalse(getattr(st, indicator), indicator)
-
         st_dict = st.serialize()
 
         self.assertEqual(st_dict['remaining_uses'], Token.MAX_USES)
