@@ -99,6 +99,11 @@ class TestToken(helpers.TestGL):
     def test_token_uses_limit(self):
         token = Token('submission')
 
+        token.human_captcha = {'question': '1 + 0','answer': 1}
+
+        # validate with right value: OK
+        token.update({'human_captcha_answer': 1})
+
         for i in range(0, token.MAX_USES):
             token.use()
 
