@@ -212,6 +212,11 @@ GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
       title:"Admin Notification Templates",
       template:"views/admin/mail/tab3.html",
       ctrl: TabCtrl
+    },
+    {
+      title:"Exception Notification",
+      template:"views/admin/mail/tab4.html",
+      ctrl: TabCtrl
     }
   ];
 }]);

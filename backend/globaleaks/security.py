@@ -504,3 +504,50 @@ class GLBPGP(object):
             shutil.rmtree(self.pgph.gnupghome)
         except Exception as excep:
             log.err("Unable to clean temporary PGP environment: %s: %s" % (self.pgph.gnupghome, excep))
+
+def parse_pgp_options(user, request):
+    """
+    This is called in a @transact, when an users update their preferences or
+    when admins configure keys on their behalf.
+
+    @param user: the user ORM object
+    @param request: the dictionary containing the pgp infos to be parsed
+    @return: None
+    """
+    new_pgp_key = request.get('pgp_key_public', None)
+    remove_key = request.get('pgp_key_remove', False)
+
+    # the default
+    user.pgp_key_status = u'disabled'
+
+    if remove_key:
+        # In all the cases below, the key is marked disabled as request
+        user.pgp_key_status = u'disabled'
+        user.pgp_key_info = None
+        user.pgp_key_public = None
+        user.pgp_key_fingerprint = None
+        user.pgp_key_expiration = None
+
+    if new_pgp_key:
+        gnob = GLBPGP()
+
+        try:
+            result = gnob.load_key(new_pgp_key)
+
+            log.debug("PGP Key imported: %s" % result['fingerprint'])
+
+            user.pgp_key_status = u'enabled'
+            user.pgp_key_info = result['info']
+            user.pgp_key_public = new_pgp_key
+            user.pgp_key_fingerprint = result['fingerprint']
+            user.pgp_key_expiration = result['expiration']
+
+        except:
+            raise
+
+        finally:
+            # the finally statement is always called also if
+            # except contains a return or a raise
+            gnob.destroy_environment()
+
+

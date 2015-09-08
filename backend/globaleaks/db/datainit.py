@@ -127,7 +127,6 @@ def db_update_memory_variables(store):
         GLSettings.memory_copy.allow_unencrypted = node.allow_unencrypted
         GLSettings.memory_copy.allow_iframes_inclusion = node.allow_iframes_inclusion
 
-        GLSettings.memory_copy.exception_email = node.exception_email
         GLSettings.memory_copy.default_language = node.default_language
         GLSettings.memory_copy.default_timezone = node.default_timezone
         GLSettings.memory_copy.languages_enabled  = node.languages_enabled
@@ -153,6 +152,13 @@ def db_update_memory_variables(store):
         GLSettings.memory_copy.notif_source_name = notif.source_name
         GLSettings.memory_copy.notif_source_email = notif.source_email
         GLSettings.memory_copy.notif_uses_tor = notif.torify
+
+        GLSettings.memory_copy.exception_email_address = notif.exception_email_address
+        GLSettings.memory_copy.exception_email_pgp_key_info = notif.exception_email_pgp_key_info
+        GLSettings.memory_copy.exception_email_pgp_key_fingerprint = notif.exception_email_pgp_key_fingerprint
+        GLSettings.memory_copy.exception_email_pgp_key_public = notif.exception_email_pgp_key_public
+        GLSettings.memory_copy.exception_email_pgp_key_expiration = notif.exception_email_pgp_key_expiration
+        GLSettings.memory_copy.exception_email_pgp_key_status = notif.exception_email_pgp_key_status
 
         if GLSettings.disable_mail_notification:
             GLSettings.memory_copy.disable_receiver_notification_emails = True

@@ -32,7 +32,7 @@ from txsocksx.client import SOCKS5ClientEndpoint
 from globaleaks import __version__
 from globaleaks.utils.utility import log
 from globaleaks.settings import GLSettings
-from globaleaks.security import sha256
+from globaleaks.security import GLBPGP, sha256
 
 
 # Relevant errors from http://tools.ietf.org/html/rfc4954
@@ -299,7 +299,7 @@ def send_exception_email(mail_body, mail_reason="GlobaLeaks Exception"):
 
     if not hasattr(GLSettings.memory_copy, 'notif_source_name') or \
         not hasattr(GLSettings.memory_copy, 'notif_source_email') or \
-        not hasattr(GLSettings.memory_copy, 'exception_email'):
+        not hasattr(GLSettings.memory_copy, 'exception_email_address'):
         log.err("Error: Cannot send mail exception before complete initialization.")
         return
 
@@ -321,17 +321,35 @@ def send_exception_email(mail_body, mail_reason="GlobaLeaks Exception"):
         if GLSettings.devel_mode:
             mail_subject +=  " [%s]" % GLSettings.developer_name
 
+        # If the receiver has encryption enabled (for notification), encrypt the mail body
+        if GLSettings.memory_copy.exception_email_pgp_key_status == u'enabled':
+            gpob = GLBPGP()
+            try:
+                gpob.load_key(GLSettings.memory_copy.exception_email_pgp_key_public)
+                mail_body = gpob.encrypt_message(GLSettings.memory_copy.exception_email_pgp_key_fingerprint, mail_body)
+            except Exception as excep:
+                # If exception emails are configured to be subject to encryption an the key
+                # expires the only thing to do is to disable the email.
+                # TODO: evaluate if notificate an alert in plaintext to the exception email
+                #       this could be done simply here replacing the email subject and body.
+                log.err("Error while encrypting exception email: %s" % str(excep))
+                return None
+            finally:
+                # the finally statement is always called also if
+                # except contains a return or a raise
+                gpob.destroy_environment()
+
         message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
                                   GLSettings.memory_copy.notif_source_email,
-                                  GLSettings.memory_copy.exception_email,
-                                  GLSettings.memory_copy.exception_email,
+                                  GLSettings.memory_copy.exception_email_address,
+                                  GLSettings.memory_copy.exception_email_address,
                                   mail_subject,
                                   mail_body)
 
         sendmail(authentication_username=GLSettings.memory_copy.notif_username,
                  authentication_password=GLSettings.memory_copy.notif_password,
                  from_address=GLSettings.memory_copy.notif_username,
-                 to_address=GLSettings.memory_copy.exception_email,
+                 to_address=GLSettings.memory_copy.exception_email_address,
                  message_file=message,
                  smtp_host=GLSettings.memory_copy.notif_server,
                  smtp_port=GLSettings.memory_copy.notif_port,

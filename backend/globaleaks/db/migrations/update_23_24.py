@@ -11,6 +11,55 @@ from globaleaks.models import Model
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_null
 
+
+class Node_v_23(Model):
+    __storm_table__ = 'node'
+    name = Unicode()
+    public_site = Unicode()
+    hidden_service = Unicode()
+    email = Unicode()
+    receipt_salt = Unicode()
+    languages_enabled = JSON()
+    default_language = Unicode()
+    default_timezone = Int()
+    description = JSON()
+    presentation = JSON()
+    footer = JSON()
+    security_awareness_title = JSON()
+    security_awareness_text = JSON()
+    context_selector_label = JSON()
+    maximum_namesize = Int()
+    maximum_textsize = Int()
+    maximum_filesize = Int()
+    tor2web_admin = Bool()
+    tor2web_submission = Bool()
+    tor2web_receiver = Bool()
+    tor2web_unauth = Bool()
+    allow_unencrypted = Bool()
+    allow_iframes_inclusion = Bool()
+    submission_minimum_delay = Int()
+    submission_maximum_ttl = Int()
+    can_postpone_expiration = Bool()
+    can_delete_submission = Bool()
+    ahmia = Bool()
+    wizard_done = Bool()
+    disable_privacy_badge = Bool()
+    disable_security_awareness_badge = Bool()
+    disable_security_awareness_questions = Bool()
+    disable_key_code_hint = Bool()
+    whistleblowing_question = JSON()
+    whistleblowing_button = JSON()
+    enable_custom_privacy_badge = Bool()
+    custom_privacy_badge_tor = JSON()
+    custom_privacy_badge_none = JSON()
+    header_title_homepage = JSON()
+    header_title_submissionpage = JSON()
+    header_title_receiptpage = JSON()
+    landing_page = Unicode()
+    show_contexts_in_alphabetical_order = Bool()
+    exception_email = Unicode()
+
+
 class User_v_23(Model):
     __storm_table__ = 'user'
     creation_date = DateTime()
@@ -25,6 +74,49 @@ class User_v_23(Model):
     timezone = Int()
     password_change_needed = Bool()
     password_change_date = DateTime()
+
+
+class Notification_v_23(Model):
+    __storm_table__ = 'notification'
+    server = Unicode()
+    port = Int()
+    username = Unicode()
+    password = Unicode()
+    source_name = Unicode()
+    source_email = Unicode()
+    security = Unicode()
+    torify = Int()
+    admin_pgp_alert_mail_title = JSON()
+    admin_pgp_alert_mail_template = JSON()
+    admin_anomaly_mail_template = JSON()
+    admin_anomaly_mail_title = JSON()
+    admin_anomaly_disk_low = JSON()
+    admin_anomaly_disk_medium = JSON()
+    admin_anomaly_disk_high = JSON()
+    admin_anomaly_activities = JSON()
+    tip_mail_template = JSON()
+    tip_mail_title = JSON()
+    file_mail_template = JSON()
+    file_mail_title = JSON()
+    comment_mail_template = JSON()
+    comment_mail_title = JSON()
+    message_mail_template = JSON()
+    message_mail_title = JSON()
+    tip_expiration_mail_template = JSON()
+    tip_expiration_mail_title = JSON()
+    pgp_alert_mail_title = JSON()
+    pgp_alert_mail_template = JSON()
+    receiver_notification_limit_reached_mail_template = JSON()
+    receiver_notification_limit_reached_mail_title = JSON()
+    zip_description = JSON()
+    ping_mail_template = JSON()
+    ping_mail_title = JSON()
+    notification_digest_mail_title = JSON()
+    disable_admin_notification_emails = Bool()
+    disable_receivers_notification_emails = Bool()
+    send_email_for_every_event = Bool()
+    notification_threshold_per_hour = Int()
+    notification_suspension_time = Int()
 
 
 class Receiver_v_23(Model):
@@ -50,6 +142,44 @@ Receiver_v_23.user = Reference(Receiver_v_23.id, User_v_23.id)
 
 
 class Replacer2324(TableReplacer):
+    def migrate_Notification(self):
+        print "%s Notification migration assistant:" % self.std_fancy
+
+        old_node = self.store_old.find(self.get_right_model("Node", 23)).one()
+
+        old_notification = self.store_old.find(self.get_right_model("Notification", 23)).one()
+        new_notification = self.get_right_model("Notification", 24)()
+
+        for _, v in new_notification._storm_columns.iteritems():
+            if v.name == 'exception_email_address':
+                old_notification.exception_email_address = old_node.exception_email
+                continue
+
+            if v.name == 'exception_email_pgp_key_status':
+                old_notification.exception_email_pgp_key_status = 'disabled'
+                continue
+
+            if v.name == 'exception_email_pgp_key_info':
+                old_notification.exception_email_pgp_key_info = ''
+                continue
+
+            if v.name == 'exception_email_pgp_key_fingerprint':
+                old_notification.exception_email_pgp_key_fingerprint = ''
+                continue
+
+            if v.name == 'exception_email_pgp_key_public':
+                old_notification.exception_email_pgp_key_public = ''
+                continue
+
+            if v.name == 'exception_email_pgp_key_expiration':
+                old_notification.exception_email_pgp_key_expiration = datetime_null()
+                continue
+
+            setattr(new_notification, v.name, getattr(old_notification, v.name))
+
+        self.store_new.add(new_notification)
+        self.store_new.commit()
+
     def migrate_Receiver(self):
         print "%s Receiver migration assistant" % self.std_fancy
 

@@ -79,7 +79,6 @@ class MailNotification(Notification):
 
 
     def do_notify(self, event):
-
         if event.type == 'digest':
             body = event.tip_info['body']
             title = event.tip_info['title']
@@ -92,7 +91,6 @@ class MailNotification(Notification):
 
         # If the receiver has encryption enabled (for notification), encrypt the mail body
         if event.receiver_info['pgp_key_status'] == u'enabled':
-
             gpob = GLBPGP()
             try:
                 gpob.load_key(event.receiver_info['pgp_key_public'])

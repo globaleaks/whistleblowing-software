@@ -201,7 +201,6 @@ class GLSettingssClass(object):
         self.defaults.maximum_textsize = 4096
         self.defaults.maximum_filesize = 30  # expressed in megabytes
         self.defaults.maximum_requestsize = 4  # expressed in megabytes
-        self.defaults.exception_email = u"globaleaks-stackexception@lists.globaleaks.org"
 
         self.defaults.submission_minimum_delay = 10
         self.defaults.submission_maximum_ttl = 10800

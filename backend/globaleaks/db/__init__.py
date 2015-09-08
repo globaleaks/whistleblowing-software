@@ -94,7 +94,6 @@ def create_tables(create_node=True):
             'ahmia': False,  # disabled too
             'allow_unencrypted': GLSettings.defaults.allow_unencrypted,
             'allow_iframes_inclusion': GLSettings.defaults.allow_iframes_inclusion,
-            'exception_email': GLSettings.defaults.exception_email,
             'default_language': GLSettings.defaults.language,
             'default_timezone': GLSettings.defaults.timezone,
             'admin_language': GLSettings.defaults.language,

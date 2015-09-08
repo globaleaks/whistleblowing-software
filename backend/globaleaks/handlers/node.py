@@ -16,7 +16,6 @@ from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.settings import transact_ro, GLSettings
 from globaleaks.rest.apicache import GLApiCache
 
-
 @transact_ro
 def anon_serialize_ahmia(store, language):
     """
