@@ -20,16 +20,16 @@ from globaleaks.db.migrations.update_20_21 import Replacer2021, Node_v_20, Notif
 from globaleaks.db.migrations.update_21_22 import Replacer2122, Context_v_21, InternalTip_v_21
 from globaleaks.db.migrations.update_22_23 import Replacer2223, InternalFile_v_22, Comment_v_22, Context_v_22, \
     Field_v_22, FieldOption_v_22, Notification_v_22, Anomalies_v_22, InternalTip_v_22
-from globaleaks.db.migrations.update_23_24 import Replacer2324, User_v_23, Receiver_v_23
+from globaleaks.db.migrations.update_23_24 import Replacer2324, User_v_23, Receiver_v_23, Node_v_23, Notification_v_23
 
 
 table_history = {
-    'Node': [Node_v_11, Node_v_12, Node_v_13, Node_v_14, Node_v_16, None, Node_v_17, Node_v_18, Node_v_19, Node_v_20, models.Node, None, None, None],
+    'Node': [Node_v_11, Node_v_12, Node_v_13, Node_v_14, Node_v_16, None, Node_v_17, Node_v_18, Node_v_19, Node_v_20, Node_v_23, None, None, models.Node],
     'User': [User_v_14, None, None, None, User_v_20, None, None, None, None, None, User_v_23, None, None, models.User],
     'Context': [Context_v_11, Context_v_12, Context_v_13, Context_v_14, Context_v_19, None, None, None, None, Context_v_20, Context_v_21, Context_v_22, models.Context, None],
     'Receiver': [Receiver_v_14, None, None, None, Receiver_v_15, Receiver_v_16, Receiver_v_19, None, None, Receiver_v_20, Receiver_v_23, None, None, models.Receiver],
     'ReceiverFile': [ReceiverFile_v_19, None, None, None, None, None, None, None, None, models.ReceiverFile, None, None, None, None],
-    'Notification': [Notification_v_14, None, None, None, Notification_v_15, Notification_v_16, Notification_v_19, None, None, Notification_v_20, Notification_v_22, None, models.Notification, None],
+    'Notification': [Notification_v_14, None, None, None, Notification_v_15, Notification_v_16, Notification_v_19, None, None, Notification_v_20, Notification_v_22, None, Notification_v_23, models.Notification],
     'Comment': [Comment_v_14, None, None, None, Comment_v_19, None, None, None, None, Comment_v_22, None, None, models.Comment, None],
     'InternalTip': [InternalTip_v_14, None, None, None, InternalTip_v_19, None, None, None, None, InternalTip_v_20, InternalTip_v_21, InternalTip_v_22, models.InternalTip, None],
     'InternalFile': [InternalFile_v_19, None, None, None, None, None, None, None, None, InternalFile_v_22, None, None, models.InternalFile, None],

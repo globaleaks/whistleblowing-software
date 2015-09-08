@@ -148,7 +148,6 @@ AdminNodeDesc = {
     'tor2web_unauth': bool,
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
-    'exception_email': email_regexp,
     'ahmia': bool,
     'allow_unencrypted': bool,
     'allow_iframes_inclusion': bool,
@@ -213,6 +212,13 @@ AdminNotificationDesc = {
     'notification_threshold_per_hour': int,
     'notification_suspension_time': int,
     'reset_templates': bool,
+    'exception_email_address': email_regexp,
+    'exception_email_pgp_key_fingerprint': unicode,
+    'exception_email_pgp_key_expiration': unicode,
+    'exception_email_pgp_key_info': unicode,
+    'exception_email_pgp_key_public': unicode,
+    'exception_email_pgp_key_status': unicode,
+    'exception_email_pgp_key_remove': bool
 }
 
 AdminContextDesc = {

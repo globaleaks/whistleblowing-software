@@ -145,7 +145,6 @@ CREATE TABLE node (
     can_delete_submission INTEGER NOT NULL,
     ahmia INTEGER NOT NULL,
     wizard_done INTEGER NOT NULL,
-    exception_email TEXT NOT NULL,
     allow_unencrypted INTEGER NOT NULL,
     allow_iframes_inclusion INTEGER NOT NULL,
     disable_privacy_badge INTEGER NOT NULL,
@@ -204,6 +203,12 @@ CREATE TABLE notification (
     disable_admin_notification_emails INTEGER NOT NULL,
     disable_receivers_notification_emails INTEGER NOT NULL,
     send_email_for_every_event INTEGER NOT NULL,
+    exception_email_address TEXT NOT NULL,
+    exception_email_pgp_key_status TEXT NOT NULL CHECK (exception_email_pgp_key_status IN ('disabled', 'enabled')) DEFAULT 'disabled',
+    exception_email_pgp_key_info TEXT,
+    exception_email_pgp_key_fingerprint TEXT,
+    exception_email_pgp_key_public TEXT,
+    exception_email_pgp_key_expiration INTEGER,
     PRIMARY KEY (id)
 );
 

@@ -924,7 +924,6 @@ class MockDict():
             'tor2web_unauth': True,
             'can_postpone_expiration': False,
             'can_delete_submission': False,
-            'exception_email': GLSettings.defaults.exception_email,
             'ahmia': False,
             'allow_unencrypted': True,
             'allow_iframes_inclusion': False,

@@ -5,9 +5,56 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.models import Notification
 from globaleaks.rest import requests
+from globaleaks.security import GLBPGP
 from globaleaks.settings import transact, transact_ro
+from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 
+
+def parse_pgp_options(notification, request):
+    """
+    This is called in a @transact, when an users update their preferences or
+    when admins configure keys on their behalf.
+
+    @param user: the user ORM object
+    @param request: the dictionary containing the pgp infos to be parsed
+    @return: None
+    """
+    new_pgp_key = request.get('exception_email_pgp_key_public', None)
+    remove_key = request.get('exception_email_pgp_key_remove', False)
+
+    # the default
+    notification.exception_email_pgp_key_status = u'disabled'
+
+    if remove_key:
+        # In all the cases below, the key is marked disabled as request
+        notification.exception_email_pgp_key_status = u'disabled'
+        notification.exception_email_pgp_key_info = None
+        notification.exception_email_pgp_key_public = None
+        notification.exception_email_pgp_key_fingerprint = None
+        notification.exception_email_pgp_key_expiration = None
+
+    elif new_pgp_key:
+        gnob = GLBPGP()
+
+        try:
+            result = gnob.load_key(new_pgp_key)
+
+            log.debug("PGP Key imported: %s" % result['fingerprint'])
+
+            notification.exception_email_pgp_key_status = u'enabled'
+            notification.exception_email_pgp_key_info = result['info']
+            notification.exception_email_pgp_key_public = new_pgp_key
+            notification.exception_email_pgp_key_fingerprint = result['fingerprint']
+            notification.exception_email_pgp_key_expiration = result['expiration']
+
+        except:
+            raise
+
+        finally:
+            # the finally statement is always called also if
+            # except contains a return or a raise
+            gnob.destroy_environment()
 
 def admin_serialize_notification(notif, language):
     ret_dict = {
@@ -23,7 +70,14 @@ def admin_serialize_notification(notif, language):
         'send_email_for_every_event': notif.send_email_for_every_event,
         'reset_templates': False,
         'notification_threshold_per_hour': notif.notification_threshold_per_hour,
-        'notification_suspension_time': notif.notification_suspension_time
+        'notification_suspension_time': notif.notification_suspension_time,
+        'exception_email_address': notif.exception_email_address,
+        'exception_email_pgp_key_info': notif.exception_email_pgp_key_info,
+        'exception_email_pgp_key_fingerprint': notif.exception_email_pgp_key_fingerprint,
+        'exception_email_pgp_key_public': notif.exception_email_pgp_key_public,
+        'exception_email_pgp_key_expiration': datetime_to_ISO8601(notif.exception_email_pgp_key_expiration),
+        'exception_email_pgp_key_status': notif.exception_email_pgp_key_status,
+        'exception_email_pgp_key_remove': False
     }
 
     return get_localized_values(ret_dict, notif, notif.localized_strings, language)
@@ -47,6 +101,8 @@ def update_notification(store, request, language):
             request[k] = appdata_dict['templates'][k]
 
     notif.update(request)
+
+    parse_pgp_options(notif, request)
 
     db_update_memory_variables(store)
 

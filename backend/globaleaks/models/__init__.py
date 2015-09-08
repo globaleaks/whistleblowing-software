@@ -188,14 +188,10 @@ class User(Model):
     pgp_key_status = Unicode() # 'disabled', 'enabled'
     # END of PGP key fields
 
-    unicode_keys = [ 'username', 'password', 'salt', 'role',
-                     'state', 'language', 'mail_address',
-                     'pgp_key_info', 'pgp_key_fingerprint',
-                     'pgp_key_public', 'pgp_key_status' ]
+    unicode_keys = ['username', 'password', 'salt', 'role',
+                    'state', 'language', 'mail_address']
 
-    int_keys = [ 'timezone', 'password_change_needed' ]
-
-    datetime_keys = [ 'pgp_key_expiration' ]
+    int_keys = ['timezone', 'password_change_needed']
 
 
 class Context(Model):
@@ -456,17 +452,14 @@ class Node(Model):
 
     show_contexts_in_alphabetical_order = Bool(default=False)
 
-    exception_email = Unicode()
-
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
-                    'exception_email', 'default_language',
-                    'landing_page']
+                    'default_language', 'landing_page']
 
     int_keys = ['maximum_namesize', 'maximum_textsize',
                 'maximum_filesize', 'default_timezone',
                 'show_contexts_in_alphabetical_order',
                 'submission_minimum_delay',
-                'submission_maximum_ttl' ]
+                'submission_maximum_ttl']
 
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                  'tor2web_unauth', 'can_postpone_expiration',
@@ -534,7 +527,6 @@ class Notification(Model):
     receiver_notification_limit_reached_mail_title = JSON(validator=longlocal_v)
     zip_description = JSON(validator=longlocal_v)
 
-    # Experimental Receiver template
     ping_mail_template = JSON(validator=longlocal_v)
     ping_mail_title = JSON(validator=longlocal_v)
     notification_digest_mail_title = JSON(validator=longlocal_v)
@@ -546,13 +538,21 @@ class Notification(Model):
     notification_threshold_per_hour = Int(default=20)
     notification_suspension_time=Int(default=(2 * 3600))
 
+    exception_email_address = Unicode(validator=shorttext_v, default=u"globaleaks-stackexception@lists.globaleaks.org")
+    exception_email_pgp_key_info = Unicode()
+    exception_email_pgp_key_fingerprint = Unicode()
+    exception_email_pgp_key_public = Unicode()
+    exception_email_pgp_key_expiration = DateTime()
+    exception_email_pgp_key_status = Unicode()
+
     unicode_keys = [
         'server',
         'username',
         'password',
         'source_name',
         'source_email',
-        'security'
+        'security',
+        'exception_email_address'
     ]
 
     localized_strings = [
@@ -587,7 +587,7 @@ class Notification(Model):
     int_keys = [
         'port',
         'notification_threshold_per_hour',
-        'notification_suspension_time'
+        'notification_suspension_time',
     ]
 
     bool_keys = [

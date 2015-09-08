@@ -58,7 +58,6 @@ def db_admin_serialize_node(store, language):
         'maximum_filesize': node.maximum_filesize,
         'maximum_namesize': node.maximum_namesize,
         'maximum_textsize': node.maximum_textsize,
-        'exception_email': node.exception_email,
         'tor2web_admin': GLSettings.memory_copy.tor2web_admin,
         'tor2web_submission': GLSettings.memory_copy.tor2web_submission,
         'tor2web_receiver': GLSettings.memory_copy.tor2web_receiver,
@@ -782,7 +781,7 @@ def parse_pgp_options(user, request):
         user.pgp_key_fingerprint = None
         user.pgp_key_expiration = None
 
-    if new_pgp_key:
+    elif new_pgp_key:
         gnob = GLBPGP()
 
         try:
