@@ -45,7 +45,7 @@ class BaseModel(Storm):
     localized_strings = []
     int_keys = []
     bool_keys = []
-    json_keys = []
+    datetime_keys = []
 
     def __init__(self, values=None):
         self.update(values)
@@ -80,7 +80,7 @@ class BaseModel(Storm):
         cls_unicode_keys = getattr(self, "unicode_keys")
         cls_int_keys = getattr(self, "int_keys")
         cls_bool_keys = getattr(self, "bool_keys")
-        cls_json_keys = getattr(self, "json_keys")
+        cls_datetime_keys = getattr(self, "datetime_keys")
         cls_localized_keys = getattr(self, "localized_strings")
 
         for k in cls_unicode_keys:
@@ -93,7 +93,7 @@ class BaseModel(Storm):
                 value = int(values[k])
                 setattr(self, k, value)
 
-        for k in cls_json_keys:
+        for k in cls_datetime_keys:
             if k in values and values[k] is not None:
                 value = values[k]
                 setattr(self, k, value)
@@ -180,9 +180,22 @@ class User(Model):
     # roles: 'admin', u'receiver'
     # states: 'disabled', 'enabled'
 
+    # BEGIN of PGP key fields
+    pgp_key_info = Unicode()
+    pgp_key_fingerprint = Unicode()
+    pgp_key_public = Unicode()
+    pgp_key_expiration = DateTime()
+    pgp_key_status = Unicode() # 'disabled', 'enabled'
+    # END of PGP key fields
+
     unicode_keys = [ 'username', 'password', 'salt', 'role',
-                     'state', 'language', 'mail_address']
+                     'state', 'language', 'mail_address',
+                     'pgp_key_info', 'pgp_key_fingerprint',
+                     'pgp_key_public', 'pgp_key_status' ]
+
     int_keys = [ 'timezone', 'password_change_needed' ]
+
+    datetime_keys = [ 'pgp_key_expiration' ]
 
 
 class Context(Model):
@@ -596,15 +609,6 @@ class Receiver(Model):
 
     configuration = Unicode()
     # configurations: 'default', 'forcefully_selected', 'unselectable'
-
-    # of PGP key fields
-    pgp_key_info = Unicode()
-    pgp_key_fingerprint = Unicode()
-    pgp_key_public = Unicode()
-    pgp_key_expiration = DateTime()
-
-    pgp_key_status = Unicode()
-    # pgp_statuses: 'disabled', 'enabled'
 
     # Can be changed by the user itself
     ping_mail_address = Unicode()

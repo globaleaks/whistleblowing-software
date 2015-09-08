@@ -110,6 +110,7 @@ class DatabaseIntegrityError(GLException):
     status_code = 404 # Not Found
 
     def __init__(self, dberror):
+        self.reason = "%s" % dberror
         self.arguments = [dberror]
 
 class ReceiverIdNotFound(GLException):

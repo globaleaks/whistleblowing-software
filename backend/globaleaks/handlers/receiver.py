@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import And, In
 
-from globaleaks.handlers.admin import pgp_options_parse
+from globaleaks.handlers.admin import parse_pgp_options
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.node import get_public_receiver_list, anon_serialize_node
@@ -30,12 +30,12 @@ def receiver_serialize_receiver(receiver, node, language):
         'can_postpone_expiration': node.can_postpone_expiration or receiver.can_postpone_expiration,
         'can_delete_submission': node.can_delete_submission or receiver.can_delete_submission,
         'username': receiver.user.username,
-        'pgp_key_info': receiver.pgp_key_info,
-        'pgp_key_fingerprint': receiver.pgp_key_fingerprint,
+        'pgp_key_info': receiver.user.pgp_key_info,
+        'pgp_key_fingerprint': receiver.user.pgp_key_fingerprint,
         'pgp_key_remove': False,
-        'pgp_key_public': receiver.pgp_key_public,
-        'pgp_key_expiration': datetime_to_ISO8601(receiver.pgp_key_expiration),
-        'pgp_key_status': receiver.pgp_key_status,
+        'pgp_key_public': receiver.user.pgp_key_public,
+        'pgp_key_expiration': datetime_to_ISO8601(receiver.user.pgp_key_expiration),
+        'pgp_key_status': receiver.user.pgp_key_status,
         'tip_notification': receiver.tip_notification,
         'ping_notification': receiver.ping_notification,
         'mail_address': receiver.user.mail_address,
@@ -122,7 +122,7 @@ def update_receiver_settings(store, receiver_id, request, language):
     receiver.tip_notification = request['tip_notification']
     receiver.ping_notification = request['ping_notification']
 
-    pgp_options_parse(receiver, request)
+    parse_pgp_options(receiver.user, request)
 
     node = store.find(Node).one()
 

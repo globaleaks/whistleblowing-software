@@ -229,7 +229,7 @@ def get_receiver_list_wb(store, wb_tip_id, language):
         receiver_desc = {
             "name": rtip.receiver.name,
             "id": rtip.receiver.id,
-            "pgp_key_status": rtip.receiver.pgp_key_status,
+            "pgp_key_status": rtip.receiver.user.pgp_key_status,
             "access_counter": rtip.access_counter,
             "message_counter": message_counter,
             "creation_date": datetime_to_ISO8601(datetime_now()),

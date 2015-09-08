@@ -12,7 +12,6 @@ from globaleaks.tests import helpers
 
 
 class TestFixtures(helpers.TestGL):
-
     @inlineCallbacks
     def test_import_fixture(self):
         """

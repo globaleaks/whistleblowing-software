@@ -51,7 +51,12 @@ class TestModels(helpers.TestGL):
 
         receiver = models.Receiver(r)
         receiver.user = receiver_user
-        receiver.pgp_key_status = u'disabled'
+        receiver.user.pgp_key_status = u'disabled'
+        receiver.user.pgp_key_expiration = "1970-01-01 00:00:00.000000"
+        receiver.user.pgp_key_fingerprint = ""
+        receiver.user.pgp_key_info = ""
+        receiver.user.pgp_key_public = ""
+
         receiver.mail_address = self.dummyReceiver_1['mail_address']
 
         store.add(receiver)
@@ -102,8 +107,19 @@ class TestModels(helpers.TestGL):
 
         receiver1.user = receiver_user1
         receiver2.user = receiver_user2
-        receiver1.pgp_key_status = u'disabled'
-        receiver2.pgp_key_status = u'disabled'
+
+        receiver1.user.pgp_key_status = u'disabled'
+        receiver1.user.pgp_key_expiration = "1970-01-01 00:00:00.000000"
+        receiver1.user.pgp_key_fingerprint = ""
+        receiver1.user.pgp_key_info = ""
+        receiver1.user.pgp_key_public = ""
+
+        receiver2.user.pgp_key_status = u'disabled'
+        receiver2.user.pgp_key_expiration = "1970-01-01 00:00:00.000000"
+        receiver2.user.pgp_key_fingerprint = ""
+        receiver2.user.pgp_key_info = ""
+        receiver2.user.pgp_key_public = ""
+
         receiver1.mail_address = 'x@x.it'
         receiver2.mail_address = 'x@x.it'
 
@@ -128,7 +144,11 @@ class TestModels(helpers.TestGL):
 
         receiver = models.Receiver(r)
         receiver.user = receiver_user
-        receiver.pgp_key_status = u'disabled'
+        receiver.user.pgp_key_status = u'disabled'
+        receiver.user.pgp_key_expiration = "1970-01-01 00:00:00.000000"
+        receiver.user.pgp_key_fingerprint = ""
+        receiver.user.pgp_key_info = ""
+        receiver.user.pgp_key_public = ""
         receiver.mail_address = u'y@y.it'
 
         context1 = models.Context(c)
