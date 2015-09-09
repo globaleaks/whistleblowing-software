@@ -31,8 +31,10 @@ def wb_serialize_tip(store, internaltip, language):
         'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
         'answers': db_serialize_questionnaire_answers(store, internaltip),
         'tor2web': internaltip.tor2web,
-        'enable_comments': internaltip.context.enable_comments,
-        'enable_private_messages': internaltip.context.enable_private_messages
+        'enable_comments': internaltip.enable_comments,
+        'enable_messages': internaltip.enable_messages,
+        'enable_two_way_communication': internaltip.enable_two_way_communication,
+        'enable_attachments': internaltip.enable_attachments
     }
 
     # context_name and context_description are localized fields

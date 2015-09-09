@@ -302,6 +302,11 @@ def db_create_submission(store, token_id, request, t2w, language):
     # security level adopted by the whistleblower
     submission.tor2web = t2w
 
+    submission.enable_comments = context.enable_comments
+    submission.enable_messages = context.enable_messages
+    submission.enable_two_way_communication = context.enable_two_way_communication
+    submission.enable_attachments = context.enable_attachments
+
     try:
         questionnaire = db_get_context_steps(store, context.id, GLSettings.memory_copy.default_language)
         questionnaire_hash = sha256(json.dumps(questionnaire))
