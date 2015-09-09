@@ -947,6 +947,7 @@ class MockDict():
             'header_title_homepage': u'',
             'header_title_submissionpage': u'',
             'header_title_receiptpage': u'',
+            'header_title_tippage': u'',
             'landing_page': u'homepage',
             'context_selector_label': u'',
             'show_contexts_in_alphabetical_order': False,

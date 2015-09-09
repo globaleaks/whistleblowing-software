@@ -110,6 +110,7 @@
       "header_title_homepage": {"en": ""},
       "header_title_submissionpage": {"en": ""},
       "header_title_receiptpage": {"en": ""},
+      "header_title_tippage": {"en": ""},
       "landing_page": "homepage",
       "submission_minimum_delay": 0,
       "submission_maximum_ttl": 0

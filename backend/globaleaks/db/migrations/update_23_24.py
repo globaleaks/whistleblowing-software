@@ -7,9 +7,10 @@ import os
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
 
 from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import datetime_null
+from globaleaks.utils.utility import datetime_null, every_language
 
 
 class Node_v_23(Model):
@@ -173,6 +174,28 @@ class Field_v_23(Model):
 
 
 class Replacer2324(TableReplacer):
+    def migrate_Node(self):
+        print "%s Node migration assistant: header_title_tippage" % self.std_fancy
+
+        appdata_dict = load_appdata()
+
+        old_node = self.store_old.find(self.get_right_model("Node", 23)).one()
+        new_node = self.get_right_model("Node", 24)()
+
+        for _, v in new_node._storm_columns.iteritems():
+            if v.name == 'header_title_tippage':
+                # check needed to preserve funtionality if appdata will be altered in the future
+                if v.name in appdata_dict['node']:
+                    new_node.header_title_tippage = appdata_dict['node']['header_title_tippage']
+                else:
+                    new_node.header_title_tippage = every_language("")
+                continue
+
+            setattr(new_node, v.name, getattr(old_node, v.name))
+
+        self.store_new.add(new_node)
+        self.store_new.commit()
+
     def migrate_Notification(self):
         print "%s Notification migration assistant:" % self.std_fancy
 

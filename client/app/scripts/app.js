@@ -45,7 +45,8 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/whistleblower/tip.html',
         controller: 'TipCtrl',
         header_title: 'Whistleblower Interface',
-        header_subtitle: 'Tip Status Page'
+        header_title: '',
+        header_subtitle: ''
       }).
       when('/receiver/firstlogin', {
         templateUrl: 'views/receiver/firstlogin.html',
@@ -220,7 +221,7 @@ var GLClient = angular.module('GLClient', [
       var path = $location.path();
       var embedded = '/embedded/';
 
-      if ($location.path().substr(0, embedded.length) === embedded) {
+      if (path.substr(0, embedded.length) === embedded) {
         $rootScope.embedded = true;
         var search = $location.search();
         if (Object.keys(search).length === 0) {

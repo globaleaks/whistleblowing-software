@@ -157,6 +157,7 @@ CREATE TABLE node (
     header_title_homepage BLOB NOT NULL,
     header_title_submissionpage BLOB NOT NULL,
     header_title_receiptpage BLOB NOT NULL,
+    header_title_tippage BLOB NOT NULL,
     landing_page TEXT NOT NULL CHECK (landing_page IN ('homepage', 'submissionpage')),
     show_contexts_in_alphabetical_order INTEGER NOT NULL,
     PRIMARY KEY (id)
