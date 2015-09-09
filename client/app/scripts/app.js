@@ -218,10 +218,12 @@ var GLClient = angular.module('GLClient', [
 
     // register listener to watch route changes
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
-      if ($location.path().startsWith("/embedded/")) {
-        var path = $location.path();
-        var search = $location.search();
+      var path = $location.path();
+      var embedded = '/embedded/';
 
+      if ($location.path().substr(0, embedded.length) === embedded) {
+        $rootScope.embedded = true;
+        var search = $location.search();
         if (Object.keys(search).length === 0) {
           $location.path(path.replace("/embedded/", "/"));
           $location.search("embedded=true");
