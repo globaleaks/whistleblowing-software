@@ -179,8 +179,7 @@ def anon_serialize_field(store, field, language):
         if attr.type == u'localized':
             get_localized_values(attrs[attr.name], attrs[attr.name], ['value'], language)
 
-    activated_by = field.activated_by.one()
-    activated_by = activated_by.id if activated_by else ''
+    activated_by_options = [activation.option_id for activation in field.activated_by_options]
 
     ret_dict = {
         'id': field.id,

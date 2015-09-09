@@ -380,12 +380,19 @@ CREATE TABLE fieldoption (
 );
 
 CREATE TABLE optionactivatefield (
-    field_option_id TEXT NOT NULL,
+    option_id TEXT NOT NULL,
     field_id TEXT NOT NULL,
-    UNIQUE (field_id),
-    FOREIGN KEY (field_option_id) REFERENCES fieldoption(id) ON DELETE CASCADE,
+    FOREIGN KEY (option_id) REFERENCES fieldoption(id) ON DELETE CASCADE,
     FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
-    PRIMARY KEY (field_option_id, field_id)
+    PRIMARY KEY (option_id, field_id
+);
+
+CREATE TABLE optionactivatestep (
+    option_id TEXT NOT NULL,
+    step_id TEXT NOT NULL,
+    FOREIGN KEY (option_id) REFERENCES fieldoption(id) ON DELETE CASCADE,
+    FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
+    PRIMARY KEY (option_id, step_id)
 );
 
 CREATE TABLE step (

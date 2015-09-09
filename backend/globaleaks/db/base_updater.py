@@ -345,6 +345,24 @@ class TableReplacer(object):
 
         self._perform_copy_list("FieldOption")
 
+    def migrate_OptionActivateField(self):
+        """
+        OptionActivateField has been created between 23 and 24!
+        """
+        if self.start_ver < 24:
+            return
+
+        self._perform_copy_list("OptionActivateField")
+
+    def migrate_OptionActivateStep(self):
+        """
+        OptionActivateStep has been created between 23 and 24!
+        """
+        if self.start_ver < 24:
+            return
+
+        self._perform_copy_list("OptionActivateStep")
+
     def migrate_FieldField(self):
         """
         FieldField has been created between 14 and 15!
@@ -375,7 +393,7 @@ class TableReplacer(object):
     def migrate_Anomalies(self):
         """
         Anomalies has been created between 14 and 15!
-        should be dropped before 22
+        should be dropped before 23
         """
         if self.start_ver < 23:
             return

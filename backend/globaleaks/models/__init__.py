@@ -756,12 +756,21 @@ class FieldOption(Model):
 
 
 class OptionActivateField(BaseModel):
-    __storm_primary__ = 'field_option_id', 'field_id'
+    __storm_primary__ = 'option_id', 'field_id'
 
-    field_option_id = Unicode()
+    option_id = Unicode()
     field_id = Unicode()
 
-    unicode_keys = ['field_option_id', 'field_id']
+    unicode_keys = ['option_id', 'field_id']
+
+
+class OptionActivateStep(BaseModel):
+    __storm_primary__ = 'option_id', 'step_id'
+
+    option_id = Unicode()
+    step_id = Unicode()
+
+    unicode_keys = ['option_id', 'step_id']
 
 
 class FieldAnswer(Model):
@@ -908,10 +917,17 @@ Field.children = ReferenceSet(
 
 Field.attrs = ReferenceSet(Field.id, FieldAttr.field_id)
 
-Field.activated_by = ReferenceSet(
+Field.activated_by_options = ReferenceSet(
     Field.id,
     OptionActivateField.field_id,
-    OptionActivateField.field_option_id,
+    OptionActivateField.option_id,
+    FieldOption.id
+)
+
+Step.activated_by_options = ReferenceSet(
+    Step.id,
+    OptionActivateStep.step_id,
+    OptionActivateStep.option_id,
     FieldOption.id
 )
 
@@ -919,9 +935,16 @@ FieldOption.field = Reference(FieldOption.field_id, Field.id)
 
 FieldOption.activated_fields = ReferenceSet(
     FieldOption.id,
-    OptionActivateField.field_option_id,
+    OptionActivateField.option_id,
     OptionActivateField.field_id,
     Field.id
+)
+
+FieldOption.activated_steps = ReferenceSet(
+    FieldOption.id,
+    OptionActivateStep.option_id,
+    OptionActivateStep.step_id,
+    Step.id
 )
 
 FieldAnswer.groups = ReferenceSet(FieldAnswer.id, FieldAnswerGroup.fieldanswer_id)
@@ -1056,6 +1079,7 @@ Receiver.contexts = ReferenceSet(
 
 models_list = [Node, User, Context, Receiver, ReceiverContext,
                Field, FieldOption, FieldField, Step, StepField,
+               OptionActivateField, OptionActivateStep,
                InternalTip, ReceiverTip, WhistleblowerTip, Comment, Message,
                InternalFile, ReceiverFile, Notification,
                Stats, Anomalies, ApplicationData, EventLogs]
