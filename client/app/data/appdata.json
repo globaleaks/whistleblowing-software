@@ -30,6 +30,15 @@
     },
     "header_title_tippage": {
       "en": "Tip Status Page"
+    },
+    "widget_comments_title": {
+      "en": "Additional Information"
+    },
+    "widget_messages_title": {
+      "en": "Private Messages"
+    },
+    "widget_files_title": {
+      "en": "Files"
     }
   },
   "fields" : [

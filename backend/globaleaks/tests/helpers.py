@@ -955,6 +955,9 @@ class MockDict():
             'show_contexts_in_alphabetical_order': False,
             'submission_minimum_delay': 123,
             'submission_maximum_ttl': 1111,
+            'widget_comments_title': '',
+            'widget_messages_title': '',
+            'widget_files_title': ''
         }
 
 

@@ -210,6 +210,30 @@ class Replacer2324(TableReplacer):
                     new_node.header_title_tippage = every_language("")
                 continue
 
+            if v.name == 'widget_comments_title':
+                # check needed to preserve funtionality if appdata will be altered in the future
+                if v.name in appdata_dict['node']:
+                    new_node.widget_comments_title = appdata_dict['node']['widget_comments_title']
+                else:
+                    new_node.widget_comments_title = every_language("")
+                continue
+
+            if v.name == 'widget_messages_title':
+                # check needed to preserve funtionality if appdata will be altered in the future
+                if v.name in appdata_dict['node']:
+                    new_node.widget_messages_title = appdata_dict['node']['widget_messages_title']
+                else:
+                    new_node.widget_messages_title = every_language("")
+                continue
+
+            if v.name == 'widget_files_title':
+                # check needed to preserve funtionality if appdata will be altered in the future
+                if v.name in appdata_dict['node']:
+                    new_node.widget_files_title = appdata_dict['node']['widget_files_title']
+                else:
+                    new_node.widget_files_title = every_language("")
+                continue
+
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)

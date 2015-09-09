@@ -204,7 +204,7 @@ class Context(Model):
     select_all_receivers = Bool(default=False)
     enable_comments = Bool(default=True)
     enable_messages = Bool(default=False)
-    enable_attachments = Int(default=True)
+    enable_attachments = Bool(default=True)
     enable_two_way_communication = Bool(default=True)
 
     tip_timetolive = Int()
@@ -235,7 +235,9 @@ class Context(Model):
 
     bool_keys = [ 'select_all_receivers',
                   'show_small_cards', 'show_receivers',
-                  'enable_comments', 'enable_messages' ]
+                  'enable_comments', 'enable_messages',
+                  'enable_two_way_communication',
+                  'enable_attachments']
 
 
 class InternalTip(Model):
@@ -266,7 +268,7 @@ class InternalTip(Model):
 
     enable_comments = Bool(default=True)
     enable_messages = Bool(default=False)
-    enable_attachments = Int(default=True)
+    enable_attachments = Bool(default=True)
     enable_two_way_communication = Bool(default=True)
 
     new = Int(default=True)
@@ -456,6 +458,10 @@ class Node(Model):
     header_title_receiptpage = JSON(validator=longlocal_v)
     header_title_tippage = JSON(validator=longlocal_v)
 
+    widget_comments_title = JSON(validator=shortlocal_v)
+    widget_messages_title = JSON(validator=shortlocal_v)
+    widget_files_title = JSON(validator=shortlocal_v)
+
     landing_page = Unicode()
 
     show_contexts_in_alphabetical_order = Bool(default=False)
@@ -486,7 +492,10 @@ class Node(Model):
                          'custom_privacy_badge_tor', 'custom_privacy_badge_none',
                          'header_title_homepage', 'header_title_submissionpage',
                          'header_title_receiptpage', 'header_title_tippage',
-                         'context_selector_label']
+                         'context_selector_label',
+                         'widget_comments_title',
+                         'widget_messages_title',
+                         'widget_files_title']
 
 
 class Notification(Model):

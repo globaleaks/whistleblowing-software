@@ -261,6 +261,7 @@ class BaseHandler(RequestHandler):
             keys_to_strip = []
             for key, value in jmessage.iteritems():
                 if key not in message_template:
+                    print key
                     # strip whatever is not validated
                     #
                     # reminder: it's not possible to raise an exception for the
