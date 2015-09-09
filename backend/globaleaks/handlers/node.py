@@ -135,7 +135,8 @@ def anon_serialize_option(option, language):
         'id': option.id,
         'presentation_order': option.presentation_order,
         'score_points': option.score_points,
-        'activated_fields': [field.id for field in option.activated_fields]
+        'activated_fields': [field.id for field in option.activated_fields],
+        'activated_steps': [step.id for step in option.activated_steps]
     }
 
     return get_localized_values(ret_dict, option, option.localized_strings, language)
@@ -196,7 +197,8 @@ def anon_serialize_field(store, field, language):
         'x': field.x,
         'y': field.y,
         'width': field.width,
-        'activated_by': activated_by,
+        'activated_by_score': field.activated_by_score,
+        'activated_by_options': activated_by_options,
         'options': options,
         'children': fields
     }

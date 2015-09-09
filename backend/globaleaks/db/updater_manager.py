@@ -20,7 +20,8 @@ from globaleaks.db.migrations.update_20_21 import Replacer2021, Node_v_20, Notif
 from globaleaks.db.migrations.update_21_22 import Replacer2122, Context_v_21, InternalTip_v_21
 from globaleaks.db.migrations.update_22_23 import Replacer2223, InternalFile_v_22, Comment_v_22, Context_v_22, \
     Field_v_22, FieldOption_v_22, Notification_v_22, Anomalies_v_22, InternalTip_v_22
-from globaleaks.db.migrations.update_23_24 import Replacer2324, User_v_23, Receiver_v_23, Node_v_23, Notification_v_23
+from globaleaks.db.migrations.update_23_24 import Replacer2324, User_v_23, Receiver_v_23, Node_v_23, Notification_v_23, \
+    InternalTip_v_23, Field_v_23
 
 
 table_history = {
@@ -31,7 +32,7 @@ table_history = {
     'ReceiverFile': [ReceiverFile_v_19, None, None, None, None, None, None, None, None, models.ReceiverFile, None, None, None, None],
     'Notification': [Notification_v_14, None, None, None, Notification_v_15, Notification_v_16, Notification_v_19, None, None, Notification_v_20, Notification_v_22, None, Notification_v_23, models.Notification],
     'Comment': [Comment_v_14, None, None, None, Comment_v_19, None, None, None, None, Comment_v_22, None, None, models.Comment, None],
-    'InternalTip': [InternalTip_v_14, None, None, None, InternalTip_v_19, None, None, None, None, InternalTip_v_20, InternalTip_v_21, InternalTip_v_22, models.InternalTip, None],
+    'InternalTip': [InternalTip_v_14, None, None, None, InternalTip_v_19, None, None, None, None, InternalTip_v_20, InternalTip_v_21, InternalTip_v_22, InternalTip_v_23, models.InternalTip],
     'InternalFile': [InternalFile_v_19, None, None, None, None, None, None, None, None, InternalFile_v_22, None, None, models.InternalFile, None],
     'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None, None, None, None, None, None],
     'ReceiverTip': [ReceiverTip_v_19, None, None, None, None, None, None, None, None, models.ReceiverTip, None, None, None, None],
@@ -40,7 +41,7 @@ table_history = {
     'Message': [Message_v_19, None, None, None, None, None, None, None, None, models.Message, None, None, None, None],
     'Stats': [Stats_v_14, None, None, None, Stats_v_16, None, models.Stats, None, None, None, None, None, None, None],
     'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Field': [Field_v_20, None, None, None, None, None, None, None, None, None, Field_v_22, None, models.Field, None],
+    'Field': [Field_v_20, None, None, None, None, None, None, None, None, None, Field_v_22, None, Field_v_23, models.Field],
     'FieldAttr': [models.FieldAttr, None, None, None, None, None, None, None, None, None, None, None, None, None],
     'FieldOption': [FieldOption_v_20, None, None, None, None, None, None, None, None, None, FieldOption_v_22, None, models.FieldOption, None],
     'OptionActivateField': [models.OptionActivateField, None, None, None, None, None, None, None, None, None, None, None, None, None],
