@@ -142,6 +142,22 @@ class Receiver_v_23(Model):
 Receiver_v_23.user = Reference(Receiver_v_23.id, User_v_23.id)
 
 
+class Context_v_23(Model):
+    __storm_table__ = 'context'
+    show_small_cards = Bool()
+    show_receivers = Bool()
+    maximum_selectable_receivers = Int()
+    select_all_receivers = Bool()
+    enable_comments = Bool()
+    enable_private_messages = Bool()
+    tip_timetolive = Int()
+    name = JSON()
+    description = JSON()
+    steps_arrangement = Unicode()
+    show_receivers_in_alphabetical_order = Bool()
+    presentation_order = Int()
+
+
 class InternalTip_v_23(Model):
     __storm_table__ = 'internaltip'
     creation_date = DateTime()
@@ -153,6 +169,9 @@ class InternalTip_v_23(Model):
     expiration_date = DateTime()
     last_activity = DateTime()
     new = Int()
+
+
+InternalTip_v_23.context = Reference(InternalTip_v_23.context_id, Context_v_23.id)
 
 
 class Field_v_23(Model):
@@ -310,6 +329,38 @@ class Replacer2324(TableReplacer):
         self.store_new.add(new_admin)
         self.store_new.commit()
 
+
+    def migrate_Context(self):
+        print "%s Context migration assistant" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("Context", 23))
+
+        for old_obj in old_objs:
+            new_obj = self.get_right_model("Context", 24)()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'enable_messages':
+                    new_obj.enable_messages = old_obj.enable_private_messages
+                    continue
+
+                if v.name == 'enable_comments':
+                    new_obj.enable_comments = old_obj.enable_comments
+                    continue
+
+                if v.name == 'enable_two_way_communication':
+                    new_obj.enable_two_way_communication = old_obj.enable_private_messages or old_obj.enable_comments
+                    continue
+
+                if v.name == 'enable_attachments':
+                    new_obj.enable_attachments = True
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy
 
@@ -321,6 +372,22 @@ class Replacer2324(TableReplacer):
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'total_score':
                     new_obj.total_score = 0
+                    continue
+
+                if v.name == 'enable_messages':
+                    new_obj.enable_messages = old_obj.context.enable_private_messages
+                    continue
+
+                if v.name == 'enable_comments':
+                    new_obj.enable_comments = old_obj.context.enable_comments
+                    continue
+
+                if v.name == 'enable_two_way_communication':
+                    new_obj.enable_two_way_communication = old_obj.context.enable_private_messages or old_obj.context.enable_comments
+                    continue
+
+                if v.name == 'enable_attachments':
+                    new_obj.enable_attachments = True
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))

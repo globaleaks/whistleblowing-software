@@ -636,7 +636,7 @@ angular.module('GLServices', ['ngResource']).
           context.show_small_cards = false;
           context.show_receivers = true;
           context.enable_comments = true;
-          context.enable_private_messages = false;
+          context.enable_messages = false;
           context.presentation_order = 0;
           context.show_receivers_in_alphabetical_order = false;
           context.steps_arrangement = 'horizontal';

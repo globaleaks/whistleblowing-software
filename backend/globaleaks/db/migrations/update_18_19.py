@@ -58,7 +58,6 @@ class Node_v_18(Model):
 
 
 class Replacer1819(TableReplacer):
-
     def migrate_Node(self):
         print "%s Node migration assistant: header_title_receiptpage" % self.std_fancy
 

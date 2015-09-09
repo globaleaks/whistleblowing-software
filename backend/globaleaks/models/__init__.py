@@ -203,7 +203,9 @@ class Context(Model):
     maximum_selectable_receivers = Int(default=0)
     select_all_receivers = Bool(default=False)
     enable_comments = Bool(default=True)
-    enable_private_messages = Bool(default=False)
+    enable_messages = Bool(default=False)
+    enable_attachments = Int(default=True)
+    enable_two_way_communication = Bool(default=True)
 
     tip_timetolive = Int()
 
@@ -233,7 +235,7 @@ class Context(Model):
 
     bool_keys = [ 'select_all_receivers',
                   'show_small_cards', 'show_receivers',
-                  'enable_comments', 'enable_private_messages' ]
+                  'enable_comments', 'enable_messages' ]
 
 
 class InternalTip(Model):
@@ -261,6 +263,11 @@ class InternalTip(Model):
     tor2web = Bool(default=False)
     total_score = Int(default=0)
     expiration_date = DateTime()
+
+    enable_comments = Bool(default=True)
+    enable_messages = Bool(default=False)
+    enable_attachments = Int(default=True)
+    enable_two_way_communication = Bool(default=True)
 
     new = Int(default=True)
 
