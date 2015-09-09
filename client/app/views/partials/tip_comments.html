@@ -1,7 +1,7 @@
 <div id="TipCommunicationComments" class="TipPageSection" data-ng-init="collapsed = false">
   <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss($event)">
     <div>
-      <span data-translate>Additional Information</span>
+      <span>{{node.widget_comments_title}}</span>
       <span class="pull-right">
         <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
         <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
@@ -15,7 +15,7 @@
     <br />
     <a id="comment-action-send" class="btn btn-success" data-ng-click="newComment()" data-ng-disabled="!tip.newCommentContent || tip.newCommentContent == ''">
       <i class="glyphicon glyphicon-comment"></i>
-      <span data-translate>Add Additional Information</span>
+      <span data-translate>Send</span>
     </a>
     <br /><br />
     <div data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true">

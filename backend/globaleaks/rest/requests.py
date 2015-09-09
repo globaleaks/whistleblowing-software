@@ -170,7 +170,10 @@ AdminNodeDesc = {
     'context_selector_label': unicode,
     'submission_minimum_delay': int,
     'submission_maximum_ttl': int,
-    'show_contexts_in_alphabetical_order': bool
+    'show_contexts_in_alphabetical_order': bool,
+    'widget_comments_title': unicode,
+    'widget_messages_title': unicode,
+    'widget_files_title': unicode
 }
 
 AdminNotificationDesc = {
@@ -300,7 +303,10 @@ NodeDesc = {
     'disable_key_code_hint': bool,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_tor': unicode,
-    'custom_privacy_badge_none': unicode
+    'custom_privacy_badge_none': unicode,
+    'widget_comments_title': unicode,
+    'widget_messages_title': unicode,
+    'widget_files_title': unicode
 }
 
 TipOverviewDesc = {
