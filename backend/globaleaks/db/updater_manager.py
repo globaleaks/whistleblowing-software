@@ -43,6 +43,8 @@ table_history = {
     'Field': [Field_v_20, None, None, None, None, None, None, None, None, None, Field_v_22, None, models.Field, None],
     'FieldAttr': [models.FieldAttr, None, None, None, None, None, None, None, None, None, None, None, None, None],
     'FieldOption': [FieldOption_v_20, None, None, None, None, None, None, None, None, None, FieldOption_v_22, None, models.FieldOption, None],
+    'OptionActivateField': [models.OptionActivateField, None, None, None, None, None, None, None, None, None, None, None, None, None],
+    'OptionActivateStep': [models.OptionActivateStep, None, None, None, None, None, None, None, None, None, None, None, None, None],
     'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None, None, None, None, None],
     'Step': [Step_v_20, None, None, None, None, None, None, None, None, None, models.Step, None, None, None],
     'StepField': [models.StepField, None, None, None, None, None, None, None, None, None, None, None, None, None],
