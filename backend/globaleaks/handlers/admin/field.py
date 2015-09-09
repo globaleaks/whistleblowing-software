@@ -99,7 +99,7 @@ def db_update_fieldoption(store, fieldoption_id, option, language):
     for activated_field in option['activated_fields']:
         o.activated_fields.add(store.find(models.Field, models.Field.id == activated_field))
 
-    for activated_field in option['activated_steps']:
+    for activated_step in option['activated_steps']:
         o.activated_steps.add(store.find(models.Step, models.Step.id == activated_step))
 
     return o.id

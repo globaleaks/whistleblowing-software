@@ -259,8 +259,8 @@ class InternalTip(Model):
     preview = JSON()
     progressive = Int(default=0)
     tor2web = Bool(default=False)
+    total_score = Int(default=0)
     expiration_date = DateTime()
-    last_activity = DateTime(default_factory=datetime_null)
 
     new = Int(default=True)
 
@@ -679,6 +679,8 @@ class Field(Model):
     # new steps.
     is_template = Bool(default=False)
 
+    activated_by_score = Int(default=0)
+
     # This reference when != NULL means that the field is referencing a
     # field template
     template_id = Unicode(validator=shorttext_v)
@@ -698,7 +700,7 @@ class Field(Model):
     # * fieldgroup
 
     unicode_keys = ['template_id', 'type']
-    int_keys = ['x', 'y', 'width']
+    int_keys = ['x', 'y', 'width', 'activated_by_score']
     localized_strings = ['label', 'description', 'hint', 'multi_entry_hint']
     bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled', 'is_template']
 

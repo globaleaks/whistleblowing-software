@@ -141,6 +141,37 @@ class Receiver_v_23(Model):
 Receiver_v_23.user = Reference(Receiver_v_23.id, User_v_23.id)
 
 
+class InternalTip_v_23(Model):
+    __storm_table__ = 'internaltip'
+    creation_date = DateTime()
+    context_id = Unicode()
+    questionnaire_hash = Unicode()
+    preview = JSON()
+    progressive = Int()
+    tor2web = Bool()
+    expiration_date = DateTime()
+    last_activity = DateTime()
+    new = Int()
+
+
+class Field_v_23(Model):
+    __storm_table__ = 'field'
+    x = Int()
+    y = Int()
+    width = Int()
+    label = JSON()
+    description = JSON()
+    hint = JSON()
+    required = Bool()
+    preview = Bool()
+    multi_entry = Bool()
+    multi_entry_hint = JSON()
+    stats_enabled = Bool()
+    is_template = Bool()
+    template_id = Unicode()
+    type = Unicode()
+
+
 class Replacer2324(TableReplacer):
     def migrate_Notification(self):
         print "%s Notification migration assistant:" % self.std_fancy
@@ -256,3 +287,44 @@ class Replacer2324(TableReplacer):
         self.store_new.add(new_admin)
         self.store_new.commit()
 
+    def migrate_InternalTip(self):
+        print "%s InternalTip migration assistant" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("InternalTip", 23))
+
+        for old_obj in old_objs:
+            new_obj = self.get_right_model("InternalTip", 24)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'total_score':
+                    new_obj.total_score = 0
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_Field(self):
+        print "%s Field migration assistant" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("Field", 23))
+
+        for old_obj in old_objs:
+            new_obj = self.get_right_model("Field", 24)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'activated_by_score':
+                    new_obj.activated_by_score = 0
+                    continue
+
+                # Optiuonal refereences should be threated in a special manner
+                if v.name == 'template_id' and old_obj.template_id is None:
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()

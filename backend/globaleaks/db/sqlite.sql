@@ -107,7 +107,7 @@ CREATE TABLE internaltip (
     preview BLOB NOT NULL,
     progressive INTEGER NOT NULL,
     tor2web INTEGER NOT NULL,
-    last_activity TEXT,
+    total_score INTEGER NOT NULL,
     context_id TEXT NOT NULL,
     new INTEGER NOT NULL,
     FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
@@ -335,6 +335,7 @@ CREATE TABLE field (
     stats_enabled INTEGER NOT NULL DEFAULT 0,
     is_template INTEGER NOT NULL DEFAULT 0,
     template_id TEXT,
+    activated_by_score INTEGER NOT NULL DEFAULT 0,
     x INTEGER NOT NULL DEFAULT 0,
     y INTEGER NOT NULL DEFAULT 0,
     width INTEGER NOT NULL DEFAULT 0 CHECK (width >= 0 AND width <= 12),
@@ -384,7 +385,7 @@ CREATE TABLE optionactivatefield (
     field_id TEXT NOT NULL,
     FOREIGN KEY (option_id) REFERENCES fieldoption(id) ON DELETE CASCADE,
     FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
-    PRIMARY KEY (option_id, field_id
+    PRIMARY KEY (option_id, field_id)
 );
 
 CREATE TABLE optionactivatestep (
