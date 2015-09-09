@@ -27,6 +27,9 @@
     },
     "header_title_receiptpage": {
       "en": "Submission successfully completed!"
+    },
+    "header_title_tippage": {
+      "en": "Tip Status Page"
     }
   },
   "fields" : [

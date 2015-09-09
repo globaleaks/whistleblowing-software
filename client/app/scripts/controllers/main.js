@@ -110,16 +110,20 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.set_title = function () {
       if ($rootScope.node) {
-        if ($location.path() === '/') {
+        var path = $location.path();
+        var statuspage = '/status'
+        if (path === '/') {
           $scope.ht = $rootScope.node.header_title_homepage;
-        } else if ($location.path() === '/submission') {
+        } else if (path === '/submission') {
           $scope.ht = $rootScope.node.header_title_submissionpage;
-        } else if ($location.path() === '/receipt') {
+        } else if (path === '/receipt') {
           if (Authentication.keycode) {
             $scope.ht = $rootScope.node.header_title_receiptpage;
           } else {
             $scope.ht = $filter('translate')("Login");
           }
+        } else if (path.substr(0, statuspage.length) === statuspage) {
+          $scope.ht = $rootScope.node.header_title_tippage;
         } else {
           $scope.ht = $filter('translate')($scope.header_title);
         }

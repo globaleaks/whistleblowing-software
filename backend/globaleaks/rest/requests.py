@@ -165,6 +165,7 @@ AdminNodeDesc = {
     'header_title_homepage': unicode,
     'header_title_submissionpage': unicode,
     'header_title_receiptpage': unicode,
+    'header_title_tippage': unicode,
     'landing_page': landing_page_regexp,
     'context_selector_label': unicode,
     'submission_minimum_delay': int,

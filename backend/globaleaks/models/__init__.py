@@ -447,6 +447,7 @@ class Node(Model):
     header_title_homepage = JSON(validator=longlocal_v)
     header_title_submissionpage = JSON(validator=longlocal_v)
     header_title_receiptpage = JSON(validator=longlocal_v)
+    header_title_tippage = JSON(validator=longlocal_v)
 
     landing_page = Unicode()
 
@@ -477,7 +478,8 @@ class Node(Model):
                          'whistleblowing_button',
                          'custom_privacy_badge_tor', 'custom_privacy_badge_none',
                          'header_title_homepage', 'header_title_submissionpage',
-                         'header_title_receiptpage', 'context_selector_label']
+                         'header_title_receiptpage', 'header_title_tippage',
+                         'context_selector_label']
 
 
 class Notification(Model):

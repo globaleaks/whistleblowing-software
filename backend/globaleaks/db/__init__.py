@@ -108,6 +108,7 @@ def create_tables(create_node=True):
             'header_title_homepage': dict({GLSettings.defaults.language: u""}),
             'header_title_submissionpage': dict({GLSettings.defaults.language: u""}),
             'header_title_receiptpage': dict({GLSettings.defaults.language: u""}),
+            'header_title_tippage': dict({GLSettings.defaults.language: u""}),
             'landing_page': GLSettings.defaults.landing_page,
             'show_contexts_in_alphabetical_order': False
         }
