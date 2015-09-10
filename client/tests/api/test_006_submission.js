@@ -42,17 +42,13 @@ var validate_mandatory_headers = function(headers) {
 
 var valid_login = function(i) {
   return {
-    'username': '',
-    'password': wb_keycodes[i],
-    'role': 'wb'
+    'receipt': wb_keycodes[i]
   }
 }
 
 var invalid_login = function(i) {
   return {
-    'username': '',
-    'password': 'antani',
-    'role': 'wb'
+    'receipt': 'antani'
   }
 }
 
@@ -231,11 +227,11 @@ for (var i=0; i<submission_population_order; i++) {
 // full test on first submission only
 for (var i=0; i<1; i++){
   (function (i) {
-    describe('POST /authentication', function () {
+    describe('POST /receiptauth', function () {
       it('responds 401 on invalid wb login', function (done) {
         var credentials = invalid_login(i);
         app
-          .post('/authentication')
+          .post('/receiptauth')
           .send(credentials)
           .expect(401)
           .end(function (err, res) {
@@ -250,11 +246,11 @@ for (var i=0; i<1; i++){
       })
     })
 
-    describe('POST /authentication', function () {
+    describe('POST /receiptauth', function () {
       it('responds 200 on valid wb login', function (done) {
         var credentials = valid_login(i);
         app
-          .post('/authentication')
+          .post('/receiptauth')
           .send(credentials)
           .expect(200)
           .end(function (err, res) {
@@ -274,11 +270,11 @@ for (var i=0; i<1; i++){
 
 for (var i=1; i<submission_population_order; i++){
   (function (i) {
-    describe('POST /authentication', function () {
+    describe('POST /receiptauth', function () {
       it('responds 200 on valid wb login', function (done) {
         var credentials = valid_login(i);
         app
-          .post('/authentication')
+          .post('/receiptauth')
           .send(credentials)
           .expect(200)
           .end(function (err, res) {

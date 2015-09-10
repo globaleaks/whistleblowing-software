@@ -35,8 +35,9 @@ spec = [
     (r'/login', base.BaseRedirectHandler, {'url': '/#/login'}),
     (r'/admin', base.BaseRedirectHandler, {'url': '/#/admin'}),
 
-    ## Authentication Handler ##
+    ## Authentication Handlers ##
     (r'/authentication', authentication.AuthenticationHandler),
+    (r'/receiptauth', authentication.ReceiptAuthHandler),
 
     ## Main Public Handlers ##
     (r'/node', node.NodeInstance),

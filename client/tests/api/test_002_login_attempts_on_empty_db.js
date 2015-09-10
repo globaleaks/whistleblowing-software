@@ -14,14 +14,12 @@ var authentication;
 
 var invalid_admin_login = {
   'username': 'admin',
-  'password': 'antani',
-  'role': 'admin'
+  'password': 'antani'
 }
 
 var valid_admin_login = {
   'username': 'admin',
-  'password': 'globaleaks',
-  'role': 'admin'
+  'password': 'globaleaks'
 }
 
 var validate_mandatory_headers = function(headers) {

@@ -40,7 +40,6 @@ describe('Iteration...', function(){
         if (err) {
           return done(err);
         } else {
-
           submission_number = 150;
           /* is not a .push because is already a list */
           contexts = res.body;
@@ -109,7 +108,6 @@ describe('Iteration...', function(){
                     });
             }
           }
-
         }
       });
   })

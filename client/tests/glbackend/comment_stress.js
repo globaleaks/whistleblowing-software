@@ -12,10 +12,9 @@ var app = request(host);
 
 describe('COMMENT -- hardcoded receipt', function(){
   it(' COMMENT spam -- hardcoded receipt', function(done){
-
-    var auth_wb = {"username": "wb", "password": "3508607111818246", "role":"wb"};
+    var auth_wb = {"receipt": "3508607111818246"};
     app
-        .post ('/authentication')
+        .post ('/receiptauth')
         .send(auth_wb)
         .expect ('Content-Type', 'application/json')
         .expect (200)
@@ -47,7 +46,6 @@ describe('COMMENT -- hardcoded receipt', function(){
                     });
                     done();
             }
-
         }
       });
   })

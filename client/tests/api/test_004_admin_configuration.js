@@ -24,8 +24,7 @@ var node;
 
 var valid_admin_login = {
   'username': 'admin',
-  'password': 'globaleaks',
-  'role': 'admin'
+  'password': 'globaleaks'
 }
 
 var receiver = {
