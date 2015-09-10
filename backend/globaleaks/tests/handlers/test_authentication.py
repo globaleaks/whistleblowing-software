@@ -256,7 +256,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         })
-        GLSettings.memory_copy.tor2web_submission = True
+        GLSettings.memory_copy.torweb_whistleblower = True
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSettings.sessions.keys()), 1)
@@ -266,7 +266,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
-        GLSettings.memory_copy.tor2web_submission = False
+        GLSettings.memory_copy.torweb_whistleblower = False
         self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks

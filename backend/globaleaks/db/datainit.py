@@ -119,7 +119,7 @@ def db_update_memory_variables(store):
         GLSettings.memory_copy.maximum_textsize = node.maximum_textsize
 
         GLSettings.memory_copy.tor2web_admin = node.tor2web_admin
-        GLSettings.memory_copy.tor2web_submission = node.tor2web_submission
+        GLSettings.memory_copy.torweb_whistleblower = node.torweb_whistleblower
         GLSettings.memory_copy.tor2web_receiver = node.tor2web_receiver
         GLSettings.memory_copy.tor2web_unauth = node.tor2web_unauth
 

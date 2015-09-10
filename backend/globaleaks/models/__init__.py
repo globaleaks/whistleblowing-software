@@ -435,7 +435,7 @@ class Node(Model):
     maximum_textsize = Int()
     maximum_filesize = Int()
     tor2web_admin = Bool()
-    tor2web_submission = Bool()
+    torweb_whistleblower = Bool()
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
     allow_unencrypted = Bool()
@@ -484,7 +484,7 @@ class Node(Model):
                 'submission_minimum_delay',
                 'submission_maximum_ttl']
 
-    bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
+    bool_keys = ['tor2web_admin', 'tor2web_receiver', 'torweb_whistleblower',
                  'tor2web_unauth', 'can_postpone_expiration',
                  'can_delete_submission', 'ahmia', 'allow_unencrypted',
                  'allow_iframes_inclusion',

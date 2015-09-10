@@ -20,7 +20,7 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
     };
 
     $scope.goToSubmission = function () {
-      if (!$scope.anonymous && !$scope.node.tor2web_submission) {
+      if (!$scope.anonymous && !$scope.node.torweb_whistleblower) {
         return;
       }
       // Before showing the security awareness panel

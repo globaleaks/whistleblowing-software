@@ -192,7 +192,7 @@ class GLSettingssClass(object):
         # - if the admin performs the wizard via Tor the permission is set to False
         self.defaults.tor2web_admin = True
 
-        self.defaults.tor2web_submission = False
+        self.defaults.torweb_whistleblower = False
         self.defaults.tor2web_receiver = False
         self.defaults.tor2web_unauth = True
         self.defaults.allow_unencrypted = False

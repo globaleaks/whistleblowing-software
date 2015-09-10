@@ -59,7 +59,7 @@ def db_admin_serialize_node(store, language):
         'maximum_namesize': node.maximum_namesize,
         'maximum_textsize': node.maximum_textsize,
         'tor2web_admin': GLSettings.memory_copy.tor2web_admin,
-        'tor2web_submission': GLSettings.memory_copy.tor2web_submission,
+        'torweb_whistleblower': GLSettings.memory_copy.torweb_whistleblower,
         'tor2web_receiver': GLSettings.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSettings.memory_copy.tor2web_unauth,
         'submission_minimum_delay' : GLSettings.memory_copy.submission_minimum_delay,
