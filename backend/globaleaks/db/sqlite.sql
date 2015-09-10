@@ -6,7 +6,7 @@ CREATE TABLE user (
     username TEXT NOT NULL,
     password TEXT NOT NULL,
     salt TEXT NOT NULL,
-    role TEXT NOT NULL CHECK (role IN ('admin', 'receiver')),
+    role TEXT NOT NULL CHECK (role IN ('admin', 'receiver', 'custodian')),
     state TEXT NOT NULL CHECK (state IN ('disabled', 'enabled')),
     name TEXT NOT NULL,
     description BLOB NOT NULL,

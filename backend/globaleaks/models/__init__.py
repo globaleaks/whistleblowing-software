@@ -183,7 +183,7 @@ class User(Model):
     password_change_needed = Bool(default=True)
     password_change_date = DateTime(default_factory=datetime_null)
 
-    # roles: 'admin', u'receiver'
+    # roles: 'admin', 'receiver', 'custodian'
     # states: 'disabled', 'enabled'
 
     # BEGIN of PGP key fields
