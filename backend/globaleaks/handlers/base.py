@@ -552,6 +552,7 @@ class BaseHandler(RequestHandler):
             send_exception_email(error, mail_reason="Handler Time Exceeded")
 
         if GLSettings.timing_stats:
+            from globaleaks.handlers.exporter import add_measured_event
             add_measured_event(self.request.method, self.request.uri,
                                current_run_time, self.req_id, self.start_time)
 
