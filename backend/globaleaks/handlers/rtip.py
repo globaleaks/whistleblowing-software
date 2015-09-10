@@ -138,7 +138,7 @@ def db_increment_receiver_access_count(store, user_id, tip_id):
     rtip.last_access = datetime_now()
 
     log.debug("Tip %s access granted to user %s (%d)" %
-              (rtip.id, rtip.receiver.name, rtip.access_counter))
+              (rtip.id, rtip.receiver.user.name, rtip.access_counter))
 
     return rtip.access_counter
 
@@ -231,7 +231,7 @@ def postpone_expiration_date(store, user_id, tip_id):
     db_postpone_expiration_date(rtip)
 
     log.debug(" [%s] in %s has postponed expiration time to %s" % (
-        rtip.receiver.name,
+        rtip.receiver.user.name,
         datetime_to_pretty_str(datetime_now()),
         datetime_to_pretty_str(rtip.internaltip.expiration_date)))
 
@@ -274,7 +274,7 @@ def create_comment_receiver(store, user_id, tip_id, request):
     comment = Comment()
     comment.content = request['content']
     comment.internaltip_id = rtip.internaltip.id
-    comment.author = rtip.receiver.name
+    comment.author = rtip.receiver.user.name
     comment.type = u'receiver'
 
     rtip.internaltip.comments.add(comment)
@@ -315,7 +315,7 @@ def create_message_receiver(store, user_id, tip_id, request):
     msg = Message()
     msg.content = request['content']
     msg.receivertip_id = rtip.id
-    msg.author = rtip.receiver.name
+    msg.author = rtip.receiver.user.name
     msg.visualized = False
     msg.type = u'receiver'
 
@@ -445,7 +445,7 @@ def get_receiver_list_receiver(store, user_id, tip_id, language):
     for rtip in rtip.internaltip.receivertips:
         receiver_desc = {
             "pgp_key_status": rtip.receiver.user.pgp_key_status,
-            "name": unicode(rtip.receiver.name),
+            "name": unicode(rtip.receiver.user.name),
             "receiver_id": unicode(rtip.receiver.id),
             "access_counter": rtip.access_counter,
         }

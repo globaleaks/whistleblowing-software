@@ -165,9 +165,15 @@ class User(Model):
     This model keeps track of globaleaks users.
     """
     creation_date = DateTime(default_factory=datetime_now)
+
     username = Unicode(validator=shorttext_v)
+
     password = Unicode()
     salt = Unicode()
+
+    name = Unicode(validator=shorttext_v)
+    description = JSON(validator=longlocal_v)
+
     role = Unicode()
     state = Unicode()
     last_login = DateTime(default_factory=datetime_null)
@@ -189,14 +195,17 @@ class User(Model):
     # END of PGP key fields
 
     unicode_keys = ['username', 'password', 'salt', 'role',
-                    'state', 'language', 'mail_address']
+                    'state', 'language', 'mail_address',
+                    'name']
+
+    localized_strings = ['description']
 
     int_keys = ['timezone', 'password_change_needed']
 
 
 class Context(Model):
     """
-    This model keeps track of specific contexts settings.
+    This model keeps track of contexts settings.
     """
     show_small_cards = Bool(default=False)
     show_receivers = Bool(default=True)
@@ -617,14 +626,8 @@ class Notification(Model):
 
 class Receiver(Model):
     """
-    name, description, password and notification_fields, can be changed
-    by Receiver itself
+    This model keeps track of receivers settings.
     """
-    name = Unicode(validator=shorttext_v)
-
-    # localization strings
-    description = JSON(validator=longlocal_v)
-
     configuration = Unicode()
     # configurations: 'default', 'forcefully_selected', 'unselectable'
 
@@ -647,9 +650,7 @@ class Receiver(Model):
 
     presentation_order = Int(default=0)
 
-    unicode_keys = ['name', 'configuration', 'ping_mail_address']
-
-    localized_strings = ['description']
+    unicode_keys = ['configuration', 'ping_mail_address']
 
     int_keys = ['presentation_order', 'tip_expiration_threshold']
 

@@ -239,7 +239,7 @@ def anon_serialize_receiver(receiver, language):
     :return: a serializtion of the object
     """
     ret_dict = {
-        'name': receiver.name,
+        'name': receiver.user.name,
         'id': receiver.id,
         'state': receiver.user.state,
         'configuration': receiver.configuration,
@@ -247,6 +247,9 @@ def anon_serialize_receiver(receiver, language):
         'pgp_key_status': receiver.user.pgp_key_status,
         'contexts': [c.id for c in receiver.contexts]
     }
+
+    # description and eventually other localized strings should be taken from user model
+    get_localized_values(ret_dict, receiver.user, ['description'], language)
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
 

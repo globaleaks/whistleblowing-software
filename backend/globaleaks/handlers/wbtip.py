@@ -229,7 +229,7 @@ def get_receiver_list_wb(store, wb_tip_id, language):
                                      Message.receivertip_id == rtip.id).count()
 
         receiver_desc = {
-            "name": rtip.receiver.name,
+            "name": rtip.receiver.user.name,
             "id": rtip.receiver.id,
             "pgp_key_status": rtip.receiver.user.pgp_key_status,
             "access_counter": rtip.access_counter,
@@ -333,7 +333,7 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
     try:
         store.add(msg)
     except DatabaseError as dberror:
-        log.err("Unable to add WB message from %s: %s" % (rtip.receiver.name, dberror))
+        log.err("Unable to add WB message from %s: %s" % (rtip.receiver.user.name, dberror))
         raise dberror
 
     return wb_serialize_message(msg)

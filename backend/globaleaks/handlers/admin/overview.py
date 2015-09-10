@@ -47,7 +47,7 @@ def collect_tip_overview(store, language):
                 'notification_date': datetime_to_ISO8601(rtip.notification_date),
                 'receiver_id': rtip.receiver.id,
                 'receiver_username': rtip.receiver.user.username,
-                'receiver_name': rtip.receiver.name,
+                'receiver_name': rtip.receiver.user.name,
                 # last_access censored willingly
             })
 
@@ -88,7 +88,7 @@ def collect_users_overview(store):
         # all public of private infos are stripped, because know between the Admin resources
         user_description = {
             'id': receiver.id,
-            'name': receiver.name,
+            'name': receiver.user.name,
             'receiverfiles': [],
             'receivertips': [],
             'pgp_key_status': receiver.user.pgp_key_status,

@@ -26,7 +26,7 @@ from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 def receiver_serialize_receiver(receiver, node, language):
     ret_dict = {
         'id': receiver.id,
-        'name': receiver.name,
+        'name': receiver.user.name,
         'can_postpone_expiration': node.can_postpone_expiration or receiver.can_postpone_expiration,
         'can_delete_submission': node.can_delete_submission or receiver.can_delete_submission,
         'username': receiver.user.username,
@@ -50,6 +50,9 @@ def receiver_serialize_receiver(receiver, node, language):
 
     for context in receiver.contexts:
         ret_dict['contexts'].append(context.id)
+
+    # description and eventually other localized strings should be taken from user model
+    get_localized_values(ret_dict, receiver.user, ['description'], language)
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
 
@@ -90,7 +93,6 @@ def update_receiver_settings(store, receiver_id, request, language):
         by UI to be modified right now.
     """
     receiver = store.find(Receiver, Receiver.id == receiver_id).one()
-    receiver.description[language] = request['description']
 
     if not receiver:
         raise errors.ReceiverIdNotFound
