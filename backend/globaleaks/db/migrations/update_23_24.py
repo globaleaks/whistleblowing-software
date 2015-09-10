@@ -287,6 +287,14 @@ class Replacer2324(TableReplacer):
             new_receiver = self.get_right_model("Receiver", 24)()
 
             for _, v in new_user._storm_columns.iteritems():
+                if v.name == 'name':
+                    new_user.name = old_receiver.name
+                    continue
+
+                if v.name == 'description':
+                    new_user.description = old_receiver.description
+                    continue
+
                 if v.name == 'pgp_key_status':
                     new_user.pgp_key_status = old_receiver.pgp_key_status
                     continue
@@ -328,6 +336,14 @@ class Replacer2324(TableReplacer):
 
         new_admin = self.get_right_model("User", 24)()
         for _, v in new_admin._storm_columns.iteritems():
+            if v.name == 'name':
+                new_admin.name = u'Admin'
+                continue
+
+            if v.name == 'description':
+                new_admin.description = {'en': ''}
+                continue
+
             if v.name == 'pgp_key_status':
                 new_admin.pgp_key_status = 'disabled'
                 continue

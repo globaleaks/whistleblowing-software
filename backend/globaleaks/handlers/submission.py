@@ -243,7 +243,7 @@ def import_receivers(store, submission, receiver_id_list):
             continue
 
         log.debug("+receiver [%s] In tip (%s) #%d" % \
-                  (receiver.name, submission.id, submission.receivers.count() ))
+                  (receiver.user.name, submission.id, submission.receivers.count() ))
     if submission.receivers.count() == 0:
         log.err("Receivers required to be selected, not empty")
         raise errors.SubmissionValidationFailure("needed at least one receiver selected [2]")

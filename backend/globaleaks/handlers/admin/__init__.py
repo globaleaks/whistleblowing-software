@@ -180,7 +180,7 @@ def admin_serialize_receiver(receiver, language):
     """
     ret_dict = {
         'id': receiver.id,
-        'name': receiver.name,
+        'name': receiver.user.name,
         'can_delete_submission': receiver.can_delete_submission,
         'can_postpone_expiration': receiver.can_postpone_expiration,
         'username': receiver.user.username,
@@ -204,6 +204,9 @@ def admin_serialize_receiver(receiver, language):
         'tip_expiration_threshold': receiver.tip_expiration_threshold,
         'password_change_needed': receiver.user.password_change_needed,
     }
+
+    # description and eventually other localized strings should be taken from user model
+    get_localized_values(ret_dict, receiver.user, ['description'], language)
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
 
@@ -618,6 +621,7 @@ def db_create_receiver(store, request, language):
     Returns:
         (dict) the configured receiver
     """
+    fill_localized_keys(request, models.User.localized_strings, language)
     fill_localized_keys(request, models.Receiver.localized_strings, language)
 
     password = request['password']
@@ -640,6 +644,8 @@ def db_create_receiver(store, request, language):
         'salt': receiver_salt,
         'role': u'receiver',
         'state': u'enabled',
+        'name': request['name'],
+        'description': request['description'],
         'language': u'en',
         'timezone': 0,
         'password_change_needed': True,
@@ -706,7 +712,11 @@ def update_receiver(store, receiver_id, request, language):
     if not receiver:
         raise errors.ReceiverIdNotFound
 
+    fill_localized_keys(request, models.User.localized_strings, language)
     fill_localized_keys(request, models.Receiver.localized_strings, language)
+
+    receiver.user.name = request['name']
+    receiver.user.description = request['description']
 
     receiver.user.state = request['state']
     receiver.user.password_change_needed = request['password_change_needed']

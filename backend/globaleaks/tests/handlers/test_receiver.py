@@ -17,6 +17,10 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
 
         rcvrs = yield admin.get_receiver_list('en')
         for rcvr in rcvrs:
+            # respondes should be resetted in order to have index 0
+            # be the current receiver in the loop
+            self.responses = []
+
             handler = self.request(role='receiver')
             handler.current_user.user_id = rcvr['id']
 
@@ -28,6 +32,10 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
 
         rcvrs = yield admin.get_receiver_list('en')
         for rcvr in rcvrs:
+            # respondes should be resetted in order to have index 0
+            # be the current receiver in the loop
+            self.responses = []
+
             handler = self.request(role='receiver')
             handler.current_user.user_id = rcvr['id']
 
@@ -43,11 +51,16 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
 
         rcvrs = yield admin.get_receiver_list('en')
         for rcvr in rcvrs:
+            # respondes should be resetted in order to have index 0
+            # be the current receiver in the loop
+            self.responses = []
+
             handler = self.request(role='receiver')
             handler.current_user.user_id = rcvr['id']
 
             yield handler.get()
 
+            print self.responses[0]['name'] 
             self.responses[0]['pgp_key_remove'] = True
 
             handler = self.request(self.responses[0], role='receiver')
@@ -60,6 +73,10 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
 
         rcvrs = yield admin.get_receiver_list('en')
         for rcvr in rcvrs:
+            # respondes should be resetted in order to have index 0
+            # be the current receiver in the loop
+            self.responses = []
+
             handler = self.request(role='receiver')
             handler.current_user.user_id = rcvr['id']
 

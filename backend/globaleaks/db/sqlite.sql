@@ -8,6 +8,8 @@ CREATE TABLE user (
     salt TEXT NOT NULL,
     role TEXT NOT NULL CHECK (role IN ('admin', 'receiver')),
     state TEXT NOT NULL CHECK (state IN ('disabled', 'enabled')),
+    name TEXT NOT NULL,
+    description BLOB NOT NULL,
     last_login TEXT NOT NULL,
     mail_address TEXT NOT NULL,
     language TEXT NOT NULL,
@@ -20,6 +22,7 @@ CREATE TABLE user (
     pgp_key_public TEXT,
     pgp_key_expiration INTEGER,
     UNIQUE (username),
+    UNIQUE(name),
     PRIMARY KEY (id)
 );
 
@@ -227,14 +230,11 @@ CREATE TABLE receiver (
     configuration TEXT NOT NULL CHECK (configuration IN ('default', 'forcefully_selected', 'unselectable')),
     can_delete_submission INTEGER NOT NULL,
     can_postpone_expiration INTEGER NOT NULL,
-    description BLOB NOT NULL,
-    name TEXT NOT NULL,
     tip_notification INTEGER NOT NULL,
     ping_notification INTEGER NOT NULL,
     ping_mail_address TEXT NOT NULL,
     tip_expiration_threshold INTEGER NOT NULL,
     presentation_order INTEGER,
-    UNIQUE(name),
     FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );

@@ -83,6 +83,8 @@ def init_db(store, result, node_dict, appdata_dict):
         'salt': admin_salt,
         'role': u'admin',
         'state': u'enabled',
+        'name': u'Admin',
+        'description': {},
         'mail_address': u'',
         'language': u"en",
         'timezone': 0,

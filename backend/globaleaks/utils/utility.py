@@ -51,6 +51,13 @@ def uuid4():
     else:
         return unicode(UUID(bytes=os.urandom(16), version=4))
 
+def sum_dicts(*dicts):
+    ret = {}
+    for d in dicts:
+        for k, v in d.items():
+            ret[k] = v
+    return dict(ret)
+
 def every_language(default_text):
     return_dict = {}
 

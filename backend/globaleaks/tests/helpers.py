@@ -51,7 +51,7 @@ from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.third_party import rstr
 from globaleaks.utils import token
 from globaleaks.utils.structures import fill_localized_keys
-from globaleaks.utils.utility import datetime_null, log
+from globaleaks.utils.utility import sum_dicts, datetime_null, log
 
 from . import TEST_DIR
 
@@ -218,19 +218,20 @@ class TestGL(unittest.TestCase):
 
     def get_dummy_receiver_user(self, descpattern):
         new_ru = dict(MockDict().dummyReceiverUser)
-        new_ru['username'] = new_ru['mail_address'] = \
+        new_ru['username'] = new_ru['name'] = new_ru['mail_address'] = \
             unicode("%s@%s.xxx" % (descpattern, descpattern))
+        new_ru['description'] = u""
+        new_ru['password'] = VALID_PASSWORD1
+        new_ru['state'] = u'enabled'
+
         return new_ru
 
     def get_dummy_receiver(self, descpattern):
+        new_ru = self.get_dummy_receiver_user(descpattern)
         new_r = dict(MockDict().dummyReceiver)
-        new_r['name'] = new_r['username'] = \
-            new_r['mail_address'] = unicode('%s@%s.xxx' % (descpattern, descpattern))
-        new_r['password'] = VALID_PASSWORD1
-        # localized dict required in desc
-        new_r['description'] = unicode('am I ignored ? %s' % descpattern)
-        new_r['state'] = u'enabled'
-        return new_r
+        new_r['ping_mail_address'] = unicode('%s@%s.xxx' % (descpattern, descpattern))
+
+        return sum_dicts(new_r, new_ru)
 
     def get_dummy_field(self):
         return {
@@ -667,11 +668,13 @@ class MockDict():
             'salt': VALID_SALT1,
             'role': u'receiver',
             'state': u'enabled',
-            'last_login': datetime_null(),
+            'name': u'Generic User',
+            'description': u'King MockDummy Generic User',
+            'last_login': u'1970-01-01 00:00:00.000000',
             'timezone': 0,
             'language': u'en',
             'password_change_needed': False,
-            'password_change_date': datetime_null(),
+            'password_change_date': u'1970-01-01 00:00:00.000000',
             'pgp_key_info': u'',
             'pgp_key_fingerprint': u'',
             'pgp_key_status': u'disabled',

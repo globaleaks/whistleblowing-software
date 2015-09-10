@@ -266,10 +266,18 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(self.responses[0]['id'], self.dummyReceiver_1['id'])
 
     @inlineCallbacks
-    def test_put_change_password(self):
+    def test_put_change_name(self):
         self.dummyReceiver_1['context_id'] = ''
         self.dummyReceiver_1['name'] = u'new unique name %d' % random.randint(1, 10000)
-        self.dummyReceiver_1['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
+
+        handler = self.request(self.dummyReceiver_1, role='admin')
+        yield handler.put(self.dummyReceiver_1['id'])
+        self.assertEqual(self.responses[0]['name'], self.dummyReceiver_1['name'])
+
+    @inlineCallbacks
+    def test_put_change_valid_password(self):
+        self.dummyReceiver_1['context_id'] = ''
+        self.dummyReceiver_1['name'] = u'trick to verify the update is accepted'
         self.dummyReceiver_1['password'] = u'12345678antani'
 
         for attrname in Receiver.localized_strings:
@@ -280,18 +288,16 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(self.responses[0]['name'], self.dummyReceiver_1['name'])
 
     @inlineCallbacks
-    def test_put_with_password_empty(self):
+    def test_put_change_invalid_password(self):
         self.dummyReceiver_1['context_id'] = ''
-        self.dummyReceiver_1['name'] = u'new unique name %d' % random.randint(1, 10000)
-        self.dummyReceiver_1['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
-        self.dummyReceiver_1['password'] = u""
+        self.dummyReceiver_1['name'] = u'trick to verify the update is accepted'
+        self.dummyReceiver_1['password'] = u'toosimplepassword'
 
         for attrname in Receiver.localized_strings:
             self.dummyReceiver_1[attrname] = stuff
 
         handler = self.request(self.dummyReceiver_1, role='admin')
-        yield handler.put(self.dummyReceiver_1['id'])
-        self.assertEqual(self.responses[0]['name'], self.dummyReceiver_1['name'])
+        yield self.assertFailure(handler.put(self.dummyReceiver_1['id']), InvalidInputFormat)
 
     @inlineCallbacks
     def test_put_invalid_context_id(self):

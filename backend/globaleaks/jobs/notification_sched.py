@@ -222,7 +222,7 @@ class CommentEventLogger(EventLogger):
                   (comment.author, comment.internaltip.receivers.count()))
 
         for receiver in comment.internaltip.receivers:
-            if comment.type == u'receiver' and comment.author == receiver.name:
+            if comment.type == u'receiver' and comment.author == receiver.user.name:
                 log.debug("Receiver is the Author (%s): skipped" % receiver.user.username)
                 return
 

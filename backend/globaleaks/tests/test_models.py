@@ -38,17 +38,17 @@ class TestModels(helpers.TestGL):
 
     @transact
     def receiver_add(self, store):
-        r = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
-        receiver_user = models.User(self.dummyReceiverUser_1)
+        u = self.localization_set(self.dummyReceiverUser_1, models.User, 'en')
+        receiver_user = models.User(u)
         receiver_user.last_login = self.dummyReceiverUser_1['last_login']
         receiver_user.password_change_date = self.dummyReceiverUser_1['password_change_date']
         receiver_user.mail_address = self.dummyReceiverUser_1['mail_address']
-
         receiver_user.username = str(
             self.receiver_inc) + self.dummyReceiver_1['mail_address']
         receiver_user.password = self.dummyReceiverUser_1['password']
         store.add(receiver_user)
 
+        r = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
         receiver = models.Receiver(r)
         receiver.user = receiver_user
         receiver.user.pgp_key_status = u'disabled'
@@ -80,21 +80,20 @@ class TestModels(helpers.TestGL):
 
     @transact
     def create_context_with_receivers(self, store):
-        c = self.localization_set(self.dummyContext, models.Context, 'en')
-        r1 = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
-        r2 = self.localization_set(self.dummyReceiver_2, models.Receiver, 'en')
-
-        receiver_user1 = models.User(self.dummyReceiverUser_1)
+        u1 = self.localization_set(self.dummyReceiverUser_1, models.User, 'en')
+        receiver_user1 = models.User(u1)
         receiver_user1.last_login = self.dummyReceiverUser_1['last_login']
         receiver_user1.password_change_date = self.dummyReceiverUser_1['password_change_date']
 
-        receiver_user2 = models.User(self.dummyReceiverUser_2)
+        u2 = self.localization_set(self.dummyReceiverUser_2, models.User, 'en')
+        receiver_user2 = models.User(u2)
         receiver_user2.last_login = self.dummyReceiverUser_2['last_login']
         receiver_user2.password_change_date = self.dummyReceiverUser_2['password_change_date']
 
         store.add(receiver_user1)
         store.add(receiver_user2)
 
+        c = self.localization_set(self.dummyContext, models.Context, 'en')
         context = models.Context(c)
 
         context.tip_timetolive = 1000
@@ -102,6 +101,8 @@ class TestModels(helpers.TestGL):
             context.submission_disclaimer = \
             context.submission_introduction = {'en': 'Localized76w'}
 
+        r1 = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
+        r2 = self.localization_set(self.dummyReceiver_2, models.Receiver, 'en')
         receiver1 = models.Receiver(r1)
         receiver2 = models.Receiver(r2)
 
@@ -135,7 +136,8 @@ class TestModels(helpers.TestGL):
         c = self.localization_set(self.dummyContext, models.Context, 'en')
         r = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
 
-        receiver_user = models.User(self.dummyReceiverUser_1)
+        u = self.localization_set(self.dummyReceiverUser_1, models.User, 'en')
+        receiver_user = models.User(u)
         receiver_user.last_login = self.dummyReceiverUser_1['last_login']
         receiver_user.password_change_date = self.dummyReceiverUser_1['password_change_date']
         # Avoid receivers with the same username!
