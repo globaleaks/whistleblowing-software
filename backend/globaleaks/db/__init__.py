@@ -84,7 +84,7 @@ def create_tables(create_node=True):
             'maximum_namesize': GLSettings.defaults.maximum_namesize,
             'maximum_textsize': GLSettings.defaults.maximum_textsize,
             'tor2web_admin': GLSettings.defaults.tor2web_admin,
-            'tor2web_submission': GLSettings.defaults.tor2web_submission,
+            'torweb_whistleblower': GLSettings.defaults.torweb_whistleblower,
             'tor2web_receiver': GLSettings.defaults.tor2web_receiver,
             'tor2web_unauth': GLSettings.defaults.tor2web_unauth,
             'submission_minimum_delay' : GLSettings.defaults.submission_minimum_delay,

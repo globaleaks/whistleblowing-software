@@ -7,13 +7,13 @@
 
   <div id="WhistleblowerBox" class="row">
     <div data-ng-show="node.configured">
-      <div id="WhistleblowerSubmitBoxButtonDisabled" class="row" data-ng-show="!node.tor2web_submission && !anonymous">
+      <div id="WhistleblowerSubmitBoxButtonDisabled" class="row" data-ng-show="!node.torweb_whistleblower && !anonymous">
         <button class="btn btn-danger" disable="disabled">
           <i class="glyphicon glyphicon-ban-circle"></i>
           <span data-translate>Whistleblowing disabled</span>
         </button>
       </div>
-      <div class="row" data-ng-show="!node.tor2web_submission && !anonymous">
+      <div class="row" data-ng-show="!node.torweb_whistleblower && !anonymous">
         <p class="text-red">
           <span data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</span>
         </p>
@@ -23,7 +23,7 @@
           <span data-translate>Server temporarly unusable due to resource exhaustion; advise the Admin if you can.</span>
         </p>
       </div>
-      <div class="row" data-ng-show="(node.tor2web_submission || anonymous) && node.accept_submissions">
+      <div class="row" data-ng-show="(node.torweb_whistleblower || anonymous) && node.accept_submissions">
         <div id="WhistleblowerSubmitBox">
           <div id="WhistleblowerSubmitBoxHeader">
             <span>{{::node.whistleblowing_question}}</span>

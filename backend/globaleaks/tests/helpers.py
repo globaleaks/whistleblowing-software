@@ -926,7 +926,7 @@ class MockDict():
             'maximum_namesize': GLSettings.defaults.maximum_namesize,
             'maximum_textsize': GLSettings.defaults.maximum_textsize,
             'tor2web_admin': True,
-            'tor2web_submission': True,
+            'torweb_whistleblower': True,
             'tor2web_receiver': True,
             'tor2web_unauth': True,
             'can_postpone_expiration': False,

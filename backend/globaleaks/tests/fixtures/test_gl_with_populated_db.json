@@ -96,7 +96,7 @@
       },
       "tor2web_unauth": true,
       "maximum_filesize": 30,
-      "tor2web_submission": false,
+      "torweb_whistleblower": false,
       "public_site": "",
       "hidden_service": "",
       "context_selector_label": {"en": ""},
