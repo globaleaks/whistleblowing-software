@@ -48,10 +48,14 @@ FileDesc = {
     'date': DateType
 }
 
+
 AuthDesc = {
     'username': unicode,
     'password': unicode,
-    'role': unicode
+}
+
+ReceiptAuthDesc = {
+    'receipt': unicode
 }
 
 WBStepDesc = {

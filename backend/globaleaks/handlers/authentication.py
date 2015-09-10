@@ -24,7 +24,6 @@ reactor_override = None
 
 class GLSession(tempobj.TempObj):
     def __init__(self, user_id, user_role, user_status):
-        self.user_role = user_role
         self.user_id = user_id
         self.user_role = user_role
         self.user_status = user_status
@@ -55,7 +54,7 @@ def random_login_delay():
            | 8 <= x <= 42    | random(x, 42)  |
            | x > 42          | 42             |
             ----------------------------------
-        """
+    """
     failed_attempts = GLSettings.failed_login_attempts
 
     if failed_attempts >= 5:
@@ -95,7 +94,6 @@ def authenticated(role):
     a http 412 error.
     Otherwise, update the current session and then fire :param:`method`.
     """
-
     def wrapper(method_handler):
         def call_handler(cls, *args, **kwargs):
             """
@@ -124,7 +122,6 @@ def unauthenticated(method_handler):
     Decorator for unauthenticated requests.
     If the user is logged in an authenticated sessions it does refresh the session.
     """
-
     def call_handler(cls, *args, **kwargs):
         if cls.current_user:
             update_session(cls.current_user)
@@ -164,7 +161,6 @@ def transport_security_check(wrapped_handler_role):
     Tor and Tor2web has two different protection level, and some operation
     maybe forbidden if in Tor2web, return 417 (Expectation Fail)
     """
-
     def wrapper(method_handler):
         def call_handler(cls, *args, **kwargs):
             """
@@ -176,14 +172,14 @@ def transport_security_check(wrapped_handler_role):
 
             assert wrapped_handler_role in tor2web_roles
 
-            are_we_tor2web = get_tor2web_header(cls.request.headers)
+            using_tor2web = get_tor2web_header(cls.request.headers)
 
-            if are_we_tor2web and not accept_tor2web(wrapped_handler_role):
+            if using_tor2web and not accept_tor2web(wrapped_handler_role):
                 log.err("Denied request on Tor2web for role %s and resource '%s'" %
                         (wrapped_handler_role, cls.request.uri))
                 raise errors.TorNetworkRequired
 
-            if are_we_tor2web:
+            if using_tor2web:
                 log.debug("Accepted request on Tor2web for role '%s' and resource '%s'" %
                           (wrapped_handler_role, cls.request.uri))
 
@@ -195,7 +191,7 @@ def transport_security_check(wrapped_handler_role):
 
 
 @transact_ro  # read only transact; manual commit on success needed
-def login_wb(store, receipt):
+def login_wb(store, receipt, using_tor2web):
     """
     Login wb return the WhistleblowerTip.id
     """
@@ -206,56 +202,60 @@ def login_wb(store, receipt):
 
     if not wb_tip:
         log.debug("Whistleblower login: Invalid receipt")
-        return None, None, None
+        GLSettings.failed_login_attempts += 1
+        raise errors.InvalidAuthentication
+
+    if using_tor2web and not accept_tor2web('wb'):
+        log.err("Denied login request on Tor2web for role 'wb'")
+        raise errors.TorNetworkRequired
+    else:
+        log.debug("Accepted login request on Tor2web for role 'wb'")
 
     log.debug("Whistleblower login: Valid receipt")
     wb_tip.last_access = utility.datetime_now()
     store.commit()  # the transact was read only! on success we apply the commit()
-    return wb_tip.id, 'enabled', False
+    return wb_tip.id
 
 
 @transact_ro  # read only transact; manual commit on success needed
-def login(store, username, password, role):
+def login(store, username, password, using_tor2web):
     """
     login returns a tuple (user_id, state, pcn)
     """
     user = store.find(User, And(User.username == username,
-                                User.role == role,
                                 User.state != u'disabled')).one()
 
     if not user or not security.check_password(password,  user.password, user.salt):
-        log.debug("Login: Invalid credentials (%s)" % role)
-        return None, None, None
+        log.debug("Login: Invalid credentials")
+        GLSettings.failed_login_attempts += 1
+        raise errors.InvalidAuthentication
 
-    log.debug("Login: Success (%s)" % role)
+    if using_tor2web and not accept_tor2web(user.role):
+        log.err("Denied login request on Tor2web for role '%s'" % user.role)
+        raise errors.TorNetworkRequired
+    else:
+        log.debug("Accepted login request on Tor2web for role '%s'" % user.role)
+
+    log.debug("Login: Success (%s)" % user.role)
     user.last_login = utility.datetime_now()
     store.commit()  # the transact was read only! on success we apply the commit()
-    return user.id, user.state, user.password_change_needed
+    return user.id, user.state, user.role, user.password_change_needed
 
 
 class AuthenticationHandler(BaseHandler):
     """
-    Login handler
+    Login handler for admins and receivers
     """
     session_id = None
 
     def generate_session(self, user_id, role, status):
-        """
-        Args:
-            role: can be either 'admin', 'wb' or 'receiver'
-
-            user_id: will be in the case of the receiver the receiver.id in the
-                case of an admin it will be set to 'admin', in the case of the
-                'wb' it will be the whistleblower id.
-        """
         session = GLSession(user_id, role, status)
         self.session_id = session.id
         return session
 
     @authenticated('*')
     def get(self):
-        if self.current_user and \
-                        self.current_user.id not in GLSettings.sessions:
+        if self.current_user and self.current_user.id not in GLSettings.sessions:
             raise errors.NotAuthenticated
 
         auth_answer = {
@@ -273,39 +273,22 @@ class AuthenticationHandler(BaseHandler):
     @inlineCallbacks
     def post(self):
         """
-        This is the /login handler expecting login/password/role,
+        Login
         """
         request = self.validate_message(self.request.body, requests.AuthDesc)
 
         username = request['username']
         password = request['password']
-        role = request['role']
 
         delay = random_login_delay()
         if delay:
             yield utility.deferred_sleep(delay)
 
-        if role not in ['admin', 'wb', 'receiver']:
-            raise errors.InvalidAuthentication
+        using_tor2web = get_tor2web_header(self.request.headers)
 
-        if get_tor2web_header(self.request.headers):
-            if not accept_tor2web(role):
-                log.err("Denied login request on Tor2web for role '%s'" % role)
-                raise errors.TorNetworkRequired
-            else:
-                log.debug("Accepted login request on Tor2web for role '%s'" % role)
-
-        if role == 'receiver' or role == 'admin':
-            user_id, status, pcn = yield login(username, password, role)
-
-        elif role == 'wb':
-            user_id, status, pcn = yield login_wb(password)
+        user_id, status, role, pcn = yield login(username, password, using_tor2web)
 
         yield self.uniform_answers_delay()
-
-        if user_id is None:
-            GLSettings.failed_login_attempts += 1
-            raise errors.InvalidAuthentication
 
         session = self.generate_session(user_id, role, status)
 
@@ -323,7 +306,7 @@ class AuthenticationHandler(BaseHandler):
     @authenticated('*')
     def delete(self):
         """
-        Logout the user.
+        Logout
         """
         if self.current_user:
             try:
@@ -333,3 +316,36 @@ class AuthenticationHandler(BaseHandler):
 
         self.set_status(200)
         self.finish()
+
+
+class ReceiptAuthHandler(AuthenticationHandler):
+    @unauthenticated
+    @inlineCallbacks
+    def post(self):
+        """
+        Login
+        """
+        request = self.validate_message(self.request.body, requests.ReceiptAuthDesc)
+
+        receipt = request['receipt']
+
+        delay = random_login_delay()
+        if delay:
+            yield utility.deferred_sleep(delay)
+
+        using_tor2web = get_tor2web_header(self.request.headers)
+
+        user_id = yield login_wb(receipt, using_tor2web)
+
+        yield self.uniform_answers_delay()
+
+        session = self.generate_session(user_id, 'wb', 'Enabled')
+
+        auth_answer = {
+            'role': 'wb',
+            'session_id': session.id,
+            'user_id': session.user_id,
+            'session_expiration': int(GLSettings.sessions[session.id].getTime()),
+        }
+
+        self.write(auth_answer)

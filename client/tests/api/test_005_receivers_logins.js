@@ -14,8 +14,7 @@ var authentication;
 var valid_login;
 var invalid_login = {
   'username': 'invalid',
-  'password': 'login',
-  'role': 'receiver'
+  'password': 'login'
 }
 
 var population_order = 3;
@@ -55,8 +54,7 @@ describe('GET /receivers', function () {
 
         valid_login = {
           'username': receiver_id,
-          'password': 'ringobongos3cur1ty',
-          'role': 'receiver'
+          'password': 'ringobongos3cur1ty'
         }
 
         done();

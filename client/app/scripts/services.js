@@ -10,57 +10,69 @@ angular.module('GLServices', ['ngResource']).
         $rootScope.login = function(username, password, role, cb) {
           $rootScope.loginInProgress = true;
 
-          return $http.post('authentication', {'username': username,
-                                                'password': password,
-                                                'role': role}).
-            success(function(response) {
-              self.id = response.session_id;
-              self.user_id = response.user_id;
-              self.username = username;
-              self.role = response.role;
-              self.session = response.session;
-              self.state = response.state;
-              self.password_change_needed = response.password_change_needed;
+          var success_fn = function(response) {
+            self.id = response.session_id;
+            self.user_id = response.user_id;
+            self.username = username;
+            self.role = response.role;
+            self.session = response.session;
+            self.state = response.state;
+            self.password_change_needed = response.password_change_needed;
 
-              self.homepage = '';
-              self.auth_landing_page = '';
+            self.homepage = '';
+            self.auth_landing_page = '';
 
-              if (self.role === 'admin') {
-                  self.homepage = '#/admin/landing';
-                  self.auth_landing_page = '/admin/landing';
-              }
-              if (self.role === 'receiver') {
-                self.homepage = '#/receiver/tips';
-                if (self.password_change_needed) {
-                    self.auth_landing_page = '/receiver/firstlogin';
-                } else {
-                    self.auth_landing_page = '/receiver/tips';
-                }
-                $rootScope.preferences = ReceiverPreferences.get();
-              }
-              if (self.role === 'wb') {
-                self.auth_landing_page = '/status';
-              }
+            if (self.role === 'admin') {
+              self.homepage = '#/admin/landing';
+              self.auth_landing_page = '/admin/landing';
+            }
 
-              // reset login state before returning
-              $rootScope.loginInProgress = false;
-
-              if (cb){
-                return cb(response);
-              }
-
-              if ($routeParams.src) {
-                $location.path($routeParams.src);
-
+            if (self.role === 'receiver') {
+              self.homepage = '#/receiver/tips';
+              if (self.password_change_needed) {
+                  self.auth_landing_page = '/receiver/firstlogin';
               } else {
-                $location.path(self.auth_landing_page);
+                  self.auth_landing_page = '/receiver/tips';
               }
+              $rootScope.preferences = ReceiverPreferences.get();
+            }
 
-              $location.search('');
-          }).
-          error(function(response) {
+            if (self.role === 'wb') {
+              self.auth_landing_page = '/status';
+            }
+
+            // reset login state before returning
             $rootScope.loginInProgress = false;
-          });
+
+            if (cb){
+              return cb(response);
+            }
+
+            if ($routeParams.src) {
+              $location.path($routeParams.src);
+            } else {
+              $location.path(self.auth_landing_page);
+            }
+
+            $location.search('');
+          }
+
+          if (role == 'wb') {
+            return $http.post('receiptauth', {'receipt': password}).
+            success(success_fn).
+            error(function(response) {
+              $rootScope.loginInProgress = false;
+            });
+          } else {
+            return $http.post('authentication',
+                              {'username': username,
+                               'password': password,
+                               'role': role}).
+            success(success_fn).
+            error(function(response) {
+              $rootScope.loginInProgress = false;
+            });
+          }
         };
 
         self.logout_performed = function () {
@@ -89,9 +101,13 @@ angular.module('GLServices', ['ngResource']).
           // we use $http['delete'] in place of $http.delete due to
           // the magical IE7/IE8 that do not allow delete as identifier
           // https://github.com/globaleaks/GlobaLeaks/issues/943
-          $http['delete']('authentication').then(self.logout_performed,
-                                                 self.logout_performed);
-
+          if (self.role == 'wb') {
+            $http['delete']('receiptauth').then(self.logout_performed,
+                                                   self.logout_performed);
+          } else {
+            $http['delete']('authentication').then(self.logout_performed,
+                                                   self.logout_performed);
+          }
         };
 
         self.get_auth_headers = function() {
