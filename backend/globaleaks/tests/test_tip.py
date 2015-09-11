@@ -67,15 +67,10 @@ class TestTip(helpers.TestGL):
     @inlineCallbacks
     def wb_auth_with_receipt(self):
         if not self.wb_tip_id:
-            self.wb_tip_id, _, _ = yield authentication.login_wb(self.submission_desc['receipt'])
+            self.wb_tip_id = yield authentication.login_wb(self.submission_desc['receipt'], False)
             # is the self.current_user.user_id
 
         self.assertTrue(re.match(requests.uuid_regexp, self.wb_tip_id))
-
-    @inlineCallbacks
-    def wb_auth_with_bad_receipt(self):
-        retval, _, _ = yield authentication.login_wb(u"fakereceipt123")
-        self.assertFalse(retval)
 
     @inlineCallbacks
     def wb_retrive_tip_data(self):
@@ -85,10 +80,10 @@ class TestTip(helpers.TestGL):
 
     @inlineCallbacks
     def access_receivers_tip(self):
-        auth1, _, _ = yield authentication.login(self.receiver1_desc['id'], helpers.VALID_PASSWORD1, u'receiver')
+        auth1, _, _, _ = yield authentication.login(self.receiver1_desc['id'], helpers.VALID_PASSWORD1, False)
         self.assertEqual(auth1, self.receiver1_desc['id'])
 
-        auth2, _, _ = yield authentication.login(self.receiver2_desc['id'], helpers.VALID_PASSWORD1, u'receiver')
+        auth2, _, _, _ = yield authentication.login(self.receiver2_desc['id'], helpers.VALID_PASSWORD1, False)
         self.assertEqual(auth2, self.receiver2_desc['id'])
 
         for i in range(1, 2):
@@ -102,7 +97,7 @@ class TestTip(helpers.TestGL):
             self.assertEqual(self.receiver2_data['access_counter'], i)
 
     @inlineCallbacks
-    def strong_receiver_auth(self):
+    def verify_other_receivers_could_not_access_the_the_same_tip(self):
         """
         Test that an authenticated Receiver1 can't access to the Tip generated for Rcvr2
         """
@@ -250,7 +245,6 @@ class TestTip(helpers.TestGL):
 
     @inlineCallbacks
     def check_wb_messages_expected(self, expected_msgs):
-
         x = yield wbtip.get_messages_content(self.wb_tip_id, self.receiver1_desc['id'])
         self.assertEqual(len(x), expected_msgs)
 
@@ -272,9 +266,7 @@ class TestTip(helpers.TestGL):
 
     @inlineCallbacks
     def do_wb_messages(self):
-
         before = yield wbtip.get_receiver_list_wb(self.wb_tip_id, 'en')
-
 
         # the direct message has been sent to the receiver 1, and receiver 1
         # is on the element [0] of the list.
@@ -382,10 +374,9 @@ class TestTip(helpers.TestGL):
     def do_full_receiver_wb_workflow(self):
         yield self.setup_tip_environment()
         yield self.wb_auth_with_receipt()
-        yield self.wb_auth_with_bad_receipt()
         yield self.wb_retrive_tip_data()
         yield self.access_receivers_tip()
-        yield self.strong_receiver_auth()
+        yield self.verify_other_receivers_could_not_access_the_the_same_tip()
 
         # test of direct messages
         yield self.check_wb_messages_expected(0)
