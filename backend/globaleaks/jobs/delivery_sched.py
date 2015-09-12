@@ -9,18 +9,17 @@
 #
 # Call also the FileProcess working point, in order to verify which
 # kind of file has been submitted.
-import sys
 
 import os
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.jobs.base import GLJob
-from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
+from globaleaks.models import InternalFile, ReceiverTip, \
                               ReceiverFile
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.utils.mailutils import send_exception_email
 from globaleaks.utils.utility import log
 from globaleaks.security import GLBPGP, GLSecureFile
-from globaleaks.handlers.admin import admin_serialize_receiver
+from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 
 
 __all__ = ['DeliverySchedule']
@@ -100,7 +99,7 @@ def receiverfile_planning(store):
         pass # 0 files to be processed
 
     for ifile in ifiles:
-        if (ifile.processing_attempts >= INTERNALFILES_HANDLE_RETRY_MAX):
+        if ifile.processing_attempts >= INTERNALFILES_HANDLE_RETRY_MAX:
             ifile.new = False
             error = "Failed to handle receiverfiles creation for ifilee %s (%d retries)" % \
                     (ifile.id, INTERNALFILES_HANDLE_RETRY_MAX)
@@ -108,7 +107,7 @@ def receiverfile_planning(store):
             send_exception_email(error)
             continue
 
-        elif (ifile.processing_attempts >= 1):
+        elif ifile.processing_attempts >= 1:
             log.err("Failed to handle receiverfiles creation for ifile %s (retry %d/%d)" %
                     (ifile.id, ifile.processing_attempts, INTERNALFILES_HANDLE_RETRY_MAX))
 

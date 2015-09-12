@@ -6,8 +6,9 @@ import os
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.rest import errors
 from globaleaks.security import GLBPGP
-from globaleaks.handlers import receiver, submission
-from globaleaks.handlers.admin import create_receiver, create_context, get_context_list
+from globaleaks.handlers import submission
+from globaleaks.handlers.admin import receiver
+from globaleaks.handlers.admin.context import create_context, get_context_list
 from globaleaks.settings import GLSettings
 from globaleaks.jobs.delivery_sched import DeliverySchedule, get_files_by_itip, get_receiverfile_by_itip
 from globaleaks.plugins.base import Event
@@ -20,66 +21,7 @@ PGPROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
 class TestPGP(TestHandlerWithPopulatedDB):
     _handler = receiver.ReceiverInstance
 
-    @inlineCallbacks
-    def test_get(self):
-        handler = self.request(self.dummyReceiver_1, role='receiver', user_id=self.dummyReceiver_1['id'])
-        yield handler.get()
-        self.assertEqual(self.responses[0]['pgp_key_info'], None)
-
-    @inlineCallbacks
-    def test_default_encryption_enable(self):
-        self.receiver_only_update = dict(MockDict().dummyReceiver)
-
-        self.receiver_only_update['password'] = self.dummyReceiver_1['password']
-        self.receiver_only_update['old_password'] = self.dummyReceiver_1['password']
-        self.receiver_only_update['pgp_key_public'] = unicode(VALID_PGP_KEY1)
-        self.receiver_only_update['pgp_key_status'] = u'disabled' # Test, this field is ignored and set
-        self.receiver_only_update['pgp_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
-        yield handler.put()
-        self.assertEqual(self.responses[0]['pgp_key_fingerprint'],
-                         u'CF4A22020873A76D1DCB68D32B25551568E49345')
-        self.assertEqual(self.responses[0]['pgp_key_status'], u'enabled')
-
-        self.receiver_only_update['pgp_key_public'] = unicode(VALID_PGP_KEY2)
-
-    @inlineCallbacks
-    def test_handler_update_key(self):
-        self.receiver_only_update = dict(MockDict().dummyReceiver)
-
-        self.receiver_only_update['password'] = self.dummyReceiver_1['password']
-        self.receiver_only_update['old_password'] = self.dummyReceiver_1['password']
-        self.receiver_only_update['pgp_key_public'] = unicode(VALID_PGP_KEY1)
-        self.receiver_only_update['pgp_key_status'] = u'disabled' # Test, this field is ignored and set
-        self.receiver_only_update['pgp_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
-        yield handler.put()
-        self.assertEqual(self.responses[0]['pgp_key_fingerprint'],
-            u'CF4A22020873A76D1DCB68D32B25551568E49345')
-        self.assertEqual(self.responses[0]['pgp_key_status'], u'enabled')
-
-        self.receiver_only_update['pgp_key_public'] = unicode(VALID_PGP_KEY2)
-        self.receiver_only_update['pgp_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
-        yield handler.put()
-        self.assertEqual(self.responses[1]['pgp_key_fingerprint'],
-            u'7106D296DA80BCF21A3D93056097CE44FED083C9')
-        # and the key has been updated!
-
-    @inlineCallbacks
-    def test_load_malformed_key(self):
-        self.receiver_only_update = dict(MockDict().dummyReceiver)
-
-        self.receiver_only_update['password'] = self.dummyReceiver_1['password']
-        self.receiver_only_update['old_password'] = self.dummyReceiver_1['password']
-        self.receiver_only_update['pgp_key_public'] = unicode(VALID_PGP_KEY1).replace('A', 'B')
-        self.receiver_only_update['pgp_key_status'] = u'disabled' # Test, this field is ignored and set
-        self.receiver_only_update['pgp_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver_1['id'])
-        yield self.assertFailure(handler.put(), errors.PGPKeyInvalid)
-
     def test_encrypt_message(self):
-
         dummy_template = "In %EventTime% you've got a crush for Taryn Southern, yay!! \
                          more info on: https://www.youtube.com/watch?v=C7JZ4F3zJdY \
                          and know that you're not alone!"
@@ -118,7 +60,6 @@ class TestPGP(TestHandlerWithPopulatedDB):
         pgpobj.destroy_environment()
 
     def test_encrypt_file(self):
-
         # setup the PGP key before
         GLSettings.pgproot = PGPROOT
 
@@ -168,14 +109,14 @@ class TestPGP(TestHandlerWithPopulatedDB):
         yanr['name'] = u"Receiver1"
         yanr['pgp_key_public'] = unicode(VALID_PGP_KEY1)
         yanr['contexts'] = [ new_context_output['id']]
-        yanr_output = yield create_receiver(yanr, 'en')
+        yanr_output = yield receiver.create_receiver(yanr, 'en')
         self.receiver_assertions(yanr, yanr_output)
 
         asdr = dict(MockDict().dummyReceiver)
         asdr['name'] = u"Receiver2"
         asdr['pgp_key_public'] = unicode(VALID_PGP_KEY1)
         asdr['contexts'] = [ new_context_output['id']]
-        asdr_output = yield create_receiver(asdr, 'en')
+        asdr_output = yield receiver.create_receiver(asdr, 'en')
         self.receiver_assertions(asdr, asdr_output)
 
         new_subm = dict(MockDict().dummySubmission)

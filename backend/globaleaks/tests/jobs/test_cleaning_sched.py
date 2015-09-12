@@ -47,7 +47,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 class TipCleaning(TestCleaning):
     @inlineCallbacks
     def postpone_tip_expiration(self):
-        recv_desc = yield admin.get_receiver_list('en')
+        recv_desc = yield admin.receiver.get_receiver_list('en')
         self.assertEqual(len(recv_desc), 2)
         rtip_desc = yield receiver.get_receivertip_list(recv_desc[0]['id'], 'en')
         self.assertEqual(len(rtip_desc), 1)

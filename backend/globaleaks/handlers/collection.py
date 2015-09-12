@@ -68,7 +68,7 @@ def get_receiver_from_rtip(store, rtip_id, language):
         log.err("Download of a Zip file without ReceiverTip associated!")
         raise errors.TipIdNotFound
 
-    return admin.admin_serialize_receiver(rtip.receiver, language)
+    return admin.receiver.admin_serialize_receiver(rtip.receiver, language)
 
 
 class CollectionStreamer(object):
@@ -94,11 +94,11 @@ class CollectionDownload(BaseHandler):
 
         opts = get_compression_opts(compression)
 
-        node_dict = yield admin.admin_serialize_node(self.request.language)
+        node_dict = yield admin.node.admin_serialize_node(self.request.language)
         receiver_dict = yield get_receiver_from_rtip(rtip_id, self.request.language)
         rtip_dict = yield get_rtip_info(rtip_id, self.request.language)
         collection_tip_dict = yield get_collection_info(rtip_id)
-        context_dict = yield admin.get_context(rtip_dict['context_id'], 'en')
+        context_dict = yield admin.context.get_context(rtip_dict['context_id'], 'en')
         notif_dict = yield admin.notification.get_notification(self.request.language)
 
         mock_event = Event(

@@ -14,7 +14,7 @@ describe('adming configure node', function() {
     // grant tor2web permissions
     element(by.cssContainingText("a", "Tor2web Settings")).click();
     element(by.model('admin.node.tor2web_receiver')).click();
-    element(by.model('admin.node.torweb_whistleblower')).click();
+    element(by.model('admin.node.tor2web_whistleblower')).click();
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {

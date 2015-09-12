@@ -84,7 +84,7 @@ def create_tables(create_node=True):
             'maximum_namesize': GLSettings.defaults.maximum_namesize,
             'maximum_textsize': GLSettings.defaults.maximum_textsize,
             'tor2web_admin': GLSettings.defaults.tor2web_admin,
-            'torweb_whistleblower': GLSettings.defaults.torweb_whistleblower,
+            'tor2web_whistleblower': GLSettings.defaults.tor2web_whistleblower,
             'tor2web_receiver': GLSettings.defaults.tor2web_receiver,
             'tor2web_unauth': GLSettings.defaults.tor2web_unauth,
             'submission_minimum_delay' : GLSettings.defaults.submission_minimum_delay,
@@ -94,6 +94,7 @@ def create_tables(create_node=True):
             'ahmia': False,  # disabled too
             'allow_unencrypted': GLSettings.defaults.allow_unencrypted,
             'allow_iframes_inclusion': GLSettings.defaults.allow_iframes_inclusion,
+            'languages_enabled': GLSettings.defaults.languages_enabled,
             'default_language': GLSettings.defaults.language,
             'default_timezone': GLSettings.defaults.timezone,
             'admin_language': GLSettings.defaults.language,

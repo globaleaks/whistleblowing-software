@@ -435,7 +435,7 @@ class Node(Model):
     maximum_textsize = Int()
     maximum_filesize = Int()
     tor2web_admin = Bool()
-    torweb_whistleblower = Bool()
+    tor2web_whistleblower = Bool()
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
     allow_unencrypted = Bool()
@@ -484,7 +484,7 @@ class Node(Model):
                 'submission_minimum_delay',
                 'submission_maximum_ttl']
 
-    bool_keys = ['tor2web_admin', 'tor2web_receiver', 'torweb_whistleblower',
+    bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_whistleblower',
                  'tor2web_unauth', 'can_postpone_expiration',
                  'can_delete_submission', 'ahmia', 'allow_unencrypted',
                  'allow_iframes_inclusion',
@@ -624,6 +624,15 @@ class Notification(Model):
     ]
 
 
+class Admin(Model):
+    """
+    This model keeps track of admins settings.
+    """
+    # currently admin do not need special settings but
+    # but the model is anyhow needed in order to allow the grouping
+    pass
+
+
 class Receiver(Model):
     """
     This model keeps track of receivers settings.
@@ -660,6 +669,15 @@ class Receiver(Model):
         'tip_notification',
         'ping_notification'
     ]
+
+
+class Custodian(Model):
+    """
+    This model keeps track of receivers settings.
+    """
+    # currently custodians do not need special settings but
+    # but the model is anyhow needed in order to allow the grouping
+    pass
 
 
 class EventLogs(Model):
@@ -995,7 +1013,9 @@ Context.steps = ReferenceSet(Context.id, Step.context_id)
 
 Step.context = Reference(Step.context_id, Context.id)
 
+Admin.user = Reference(Admin.id, User.id)
 Receiver.user = Reference(Receiver.id, User.id)
+Custodian.user = Reference(Custodian.id, User.id)
 
 Receiver.internaltips = ReferenceSet(
     Receiver.id,

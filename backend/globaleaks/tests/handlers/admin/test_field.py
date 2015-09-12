@@ -7,8 +7,8 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import admin
 from globaleaks.handlers.node import anon_serialize_field
-from globaleaks.handlers.admin import create_context
-from globaleaks.handlers.admin.field import create_field, create_step
+from globaleaks.handlers.admin.context import create_context
+from globaleaks.handlers.admin.field import create_field
 from globaleaks import models
 from globaleaks.rest import errors
 from globaleaks.settings import transact, transact_ro
@@ -72,16 +72,6 @@ class TestFieldInstance(helpers.TestHandler):
         def _get_children(self, store, field_id):
             field = models.Field.get(store, field_id)
             return [child.id for child in field.children]
-
-        @inlineCallbacks
-        def assert_is_child(self, child_id, field_id):
-            children = yield self._get_children(field_id)
-            self.assertIn(child_id, children)
-
-        @inlineCallbacks
-        def assert_is_not_child(self, child_id, field_id):
-            children = yield self._get_children(field_id)
-            self.assertNotIn(child_id, children)
 
         @inlineCallbacks
         def test_get(self):
@@ -178,16 +168,6 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             return [child.id for child in field.children]
 
         @inlineCallbacks
-        def assert_is_child(self, child_id, field_id):
-            children = yield self._get_children(field_id)
-            self.assertIn(child_id, children)
-
-        @inlineCallbacks
-        def assert_is_not_child(self, child_id, field_id):
-            children = yield self._get_children(field_id)
-            self.assertNotIn(child_id, children)
-
-        @inlineCallbacks
         def test_get(self):
             """
             Create a new field, the get it back using the receieved id.
@@ -258,8 +238,9 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             self.responses[2]['children'] = [sex_field]
             handler = self.request(self.responses[2], role='admin')
             self.assertFailure(handler.put(name_field_id), errors.InvalidInputFormat)
-            yield self.assert_is_not_child(name_field_id, sex_field_id)
 
+            children = yield self._get_children(sex_field_id)
+            self.assertNotIn(name_field_id, children)
 
         @inlineCallbacks
         def test_delete(self):
@@ -302,75 +283,3 @@ class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
             for field in fields:
                 for child in field['children']:
                     self.assertNotIn(child, ids)
-
-class TestStepCreate(helpers.TestHandler):
-        _handler = admin.field.StepCreate
-
-        @inlineCallbacks
-        def test_post(self):
-            """
-            Attempt to create a new step via a post request.
-            """
-            context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            step = copy.deepcopy(self.dummySteps[0])
-            step['context_id'] = context['id']
-            handler = self.request(step, role='admin')
-            yield handler.post()
-            self.assertEqual(len(self.responses), 1)
-
-            resp, = self.responses
-            self.assertIn('id', resp)
-            self.assertNotEqual(resp.get('context_id'), None)
-
-
-class TestStepInstance(helpers.TestHandler):
-        _handler = admin.field.StepInstance
-
-        @inlineCallbacks
-        def test_get(self):
-            """
-            Create a new step, then get it back using the received id.
-            """
-            context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            step = copy.deepcopy(self.dummySteps[0])
-            step['context_id'] = context['id']
-            step = yield create_step(step, 'en')
-
-            handler = self.request(role='admin')
-            yield handler.get(step['id'])
-            self.assertEqual(len(self.responses), 1)
-            self.assertEqual(step['id'], self.responses[0]['id'])
-
-        @inlineCallbacks
-        def test_put(self):
-            """
-            Attempt to update a step, changing it presentation order
-            """
-            context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            step = copy.deepcopy(self.dummySteps[0])
-            step['context_id'] = context['id']
-            step = yield create_step(step, 'en')
-
-            step['presentation_order'] = 666
-
-            handler = self.request(step, role='admin')
-            yield handler.put(step['id'])
-            self.assertEqual(len(self.responses), 1)
-            self.assertEqual(step['id'], self.responses[0]['id'])
-            self.assertEqual(self.responses[0]['presentation_order'], 666)
-
-        @inlineCallbacks
-        def test_delete(self):
-            """
-            Create a new step, then attempt to delete it.
-            """
-            context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            step = copy.deepcopy(self.dummySteps[0])
-            step['context_id'] = context['id']
-            step = yield create_step(step, 'en')
-
-            handler = self.request(role='admin')
-            yield handler.delete(step['id'])
-            self.assertEqual(handler.get_status(), 200)
-            # second deletion operation should fail
-            self.assertFailure(handler.delete(step['id']), errors.StepIdNotFound)

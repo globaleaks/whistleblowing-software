@@ -143,7 +143,7 @@ def get_tor2web_header(request_headers):
 
 def accept_tor2web(role):
     if role == 'wb':
-        return GLSettings.memory_copy.torweb_whistleblower
+        return GLSettings.memory_copy.tor2web_whistleblower
 
     elif role == 'receiver':
         return GLSettings.memory_copy.tor2web_receiver

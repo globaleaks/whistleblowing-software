@@ -8,13 +8,12 @@ from globaleaks import anomaly, event
 from globaleaks.settings import GLSettings, transact_ro
 from globaleaks.tests import helpers
 from globaleaks.jobs import delivery_sched
-from globaleaks.handlers import authentication, wbtip
-from globaleaks.handlers.admin import create_receiver
+from globaleaks.handlers import authentication, wbtip, token
+from globaleaks.handlers.admin.context import get_context_steps
+from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.rest import errors
 from globaleaks.models import InternalTip
 from globaleaks.utils.token import Token
-from globaleaks.handlers.admin import get_context_steps
-from globaleaks.handlers import token
 from globaleaks.tests.test_anomaly import pollute_events_for_testing
 
 class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):

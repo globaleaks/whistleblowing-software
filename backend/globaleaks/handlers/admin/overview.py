@@ -9,10 +9,10 @@ import os
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.settings import transact_ro, GLSettings
-from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks import models
+from globaleaks.settings import transact_ro, GLSettings
+from globaleaks.handlers.authentication import authenticated, transport_security_check
+from globaleaks.handlers.base import BaseHandler
 
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta

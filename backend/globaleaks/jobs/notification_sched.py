@@ -98,7 +98,7 @@ class EventLogger(object):
         else:
             raise Exception("self.trigger of unexpected kind ? %s" % self.trigger)
 
-        receiver_desc = admin.admin_serialize_receiver(receiver, self.language)
+        receiver_desc = admin.receiver.admin_serialize_receiver(receiver, self.language)
 
         return (receiver.tip_notification, receiver_desc)
 
@@ -161,9 +161,9 @@ class TipEventLogger(EventLogger):
     def process_event(self, store, rtip):
         tip_desc = serialize_receivertip(store, rtip, self.language)
 
-        context_desc = admin.admin_serialize_context(store,
-                                                     rtip.internaltip.context,
-                                                     self.language)
+        context_desc = admin.context.admin_serialize_context(store,
+                                                             rtip.internaltip.context,
+                                                             self.language)
 
         do_mail, receiver_desc = self.import_receiver(rtip.receiver)
 
@@ -190,9 +190,9 @@ class MessageEventLogger(EventLogger):
 
         tip_desc = serialize_receivertip(store, message.receivertip, self.language)
 
-        context_desc = admin.admin_serialize_context(store,
-                                                     message.receivertip.internaltip.context,
-                                                     self.language)
+        context_desc = admin.context.admin_serialize_context(store,
+                                                             message.receivertip.internaltip.context,
+                                                             self.language)
 
         do_mail, receiver_desc = self.import_receiver(message.receivertip.receiver)
 
@@ -213,9 +213,9 @@ class CommentEventLogger(EventLogger):
     def process_event(self, store, comment):
         comment_desc = rtip.receiver_serialize_comment(comment)
 
-        context_desc = admin.admin_serialize_context(store,
-                                                     comment.internaltip.context,
-                                                     self.language)
+        context_desc = admin.context.admin_serialize_context(store,
+                                                             comment.internaltip.context,
+                                                             self.language)
 
         # for every comment, iterate on the associated receiver(s)
         log.debug("Comments from %s - Receiver(s) %d" % \
@@ -249,9 +249,9 @@ class FileEventLogger(EventLogger):
     model = models.ReceiverFile
 
     def process_event(self, store, rfile):
-        context_desc = admin.admin_serialize_context(store,
-                                                     rfile.internalfile.internaltip.context,
-                                                     self.language)
+        context_desc = admin.context.admin_serialize_context(store,
+                                                             rfile.internalfile.internaltip.context,
+                                                             self.language)
 
         tip_desc = serialize_receivertip(store, rfile.receivertip, self.language)
         file_desc = serialize_internalfile(rfile.internalfile, rfile.id)
@@ -272,7 +272,6 @@ class NotificationSchedule(GLJob):
 
     @inlineCallbacks
     def operation(self):
-
         tip_mngd = yield TipEventLogger().process_events()
         if tip_mngd == -1:
             Alarm.stress_levels['notification'].append('Tip')

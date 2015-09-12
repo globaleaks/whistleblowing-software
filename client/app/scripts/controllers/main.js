@@ -143,7 +143,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
         if ($location.path() === '/submission' &&
             $scope.anonymous === false &&
-            $rootScope.node.torweb_whistleblower === false) {
+            $rootScope.node.tor2web_whistleblower === false) {
           $location.path("/");
         }
 
