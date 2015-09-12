@@ -10,7 +10,6 @@ from storm.variables import EnumVariable, IntVariable, RawStrVariable, PickleVar
 from storm.variables import UnicodeVariable, JSONVariable
 
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
-from globaleaks.db.datainit import db_update_memory_variables
 from globaleaks.settings import GLSettings
 
 def variableToSQL(var, db_type):
@@ -417,7 +416,7 @@ class TableReplacer(object):
         if self.start_ver < 23:
             return
 
-    def migrate_FieldAnswerGroupFieldAnswer(self):
+    def migrate_FieldAnswerGroup(self):
         """
         FieldAnswerGroup has been created between 22 and 23!
         """

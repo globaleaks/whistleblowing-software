@@ -4,8 +4,9 @@
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.admin import db_create_context, db_create_receiver, \
-        db_update_node
+from globaleaks.handlers.admin.context import db_create_context
+from globaleaks.handlers.admin.receiver import db_create_receiver
+from globaleaks.handlers.admin.node import db_update_node
 from globaleaks.handlers.node import anon_serialize_node
 from globaleaks.rest import requests
 from globaleaks.rest.apicache import GLApiCache

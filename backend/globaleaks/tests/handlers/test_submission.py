@@ -8,11 +8,12 @@ from globaleaks.settings import GLSettings, transact_ro
 from globaleaks.tests import helpers
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import authentication, wbtip
-from globaleaks.handlers.admin import create_receiver
+from globaleaks.handlers.admin.context import get_context_steps
+from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.rest import errors
 from globaleaks.models import InternalTip
 from globaleaks.utils.token import Token
-from globaleaks.handlers.submission import SubmissionCreate, SubmissionInstance
+from globaleaks.handlers.submission import create_whistleblower_tip, SubmissionInstance
 
 # and here, our protagonist character:
 from globaleaks.handlers.submission import create_submission
@@ -62,7 +63,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission_with_files(self.submission_desc)
 
-        wb_access_id, _, _ = yield authentication.login_wb(self.submission_desc['receipt'])
+        wb_access_id = yield authentication.login_wb(self.submission_desc['receipt'], False)
 
         # remind: return a tuple (serzialized_itip, wb_itip)
         wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
@@ -111,7 +112,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
-        wb_access_id, _, _ = yield authentication.login_wb(self.submission_desc['receipt'])
+        wb_access_id = yield authentication.login_wb(self.submission_desc['receipt'], False)
 
         wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
 

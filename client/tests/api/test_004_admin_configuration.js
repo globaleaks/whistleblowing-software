@@ -263,6 +263,7 @@ describe('GET /admin/node', function () {
 
         /* adding various keys needed next POST */
         node['allow_unencrypted'] = true;
+        node['languages_enabled'] = ['en', 'it'];
 
         done();
       });

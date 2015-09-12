@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
 
-import copy
 import json
+
 import os
-
-from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
-
+from storm.locals import Int, Bool, Unicode, DateTime, JSON, ReferenceSet
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.handlers.admin.field import db_update_fieldattr
 from globaleaks.handlers.submission import db_save_questionnaire_answers, \

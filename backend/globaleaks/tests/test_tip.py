@@ -8,7 +8,6 @@ from globaleaks.settings import GLSettings, transact_ro
 from globaleaks.tests import helpers
 from globaleaks.rest import errors, requests
 from globaleaks.handlers import admin, submission, authentication, receiver, rtip, wbtip
-from globaleaks.jobs import delivery_sched
 from globaleaks.utils.token import Token
 
 
@@ -28,13 +27,11 @@ class TestTip(helpers.TestGL):
 
     @transact_ro
     def get_count_of_itip_using_archived_schema(self, store, hash):
-        for a in store.find(models.ArchivedSchema, models.ArchivedSchema.hash == hash):
-            print a.language
         return store.find(models.ArchivedSchema, models.ArchivedSchema.hash == hash).count()
 
     @inlineCallbacks
     def setup_tip_environment(self):
-        self.context_desc = yield admin.create_context(self.dummyContext, 'en')
+        self.context_desc = yield admin.context.create_context(self.dummyContext, 'en')
 
         self.dummyReceiver_1['contexts'] = self.dummyReceiver_2['contexts'] = [self.context_desc['id']]
         self.dummyReceiver_1['can_postpone_expiration'] = False
@@ -42,8 +39,8 @@ class TestTip(helpers.TestGL):
         self.dummyReceiver_1['can_delete_submission'] = True
         self.dummyReceiver_2['can_delete_submission'] = False
 
-        self.receiver1_desc = yield admin.create_receiver(self.dummyReceiver_1, 'en')
-        self.receiver2_desc = yield admin.create_receiver(self.dummyReceiver_2, 'en')
+        self.receiver1_desc = yield admin.receiver.create_receiver(self.dummyReceiver_1, 'en')
+        self.receiver2_desc = yield admin.receiver.create_receiver(self.dummyReceiver_2, 'en')
 
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['id']])
         self.assertEqual(self.receiver2_desc['contexts'], [ self.context_desc['id']])
@@ -187,7 +184,7 @@ class TestTip(helpers.TestGL):
         creation_date : 2013-10-31T21:22:14.481809
         expiration_date : 2014-05-19T21:22:14.481711
         """
-        context_list = yield admin.get_context_list('en')
+        context_list = yield admin.context.get_context_list('en')
         self.assertTrue(isinstance(context_list, list))
         self.assertEqual(len(context_list), 1)
 
@@ -197,7 +194,7 @@ class TestTip(helpers.TestGL):
 
     @inlineCallbacks
     def update_node_properties(self):
-        node_desc = yield admin.admin_serialize_node('en')
+        node_desc = yield admin.node.admin_serialize_node('en')
         self.assertEqual(node_desc['can_postpone_expiration'], False)
         node_desc['can_postpone_expiration'] = True
 
@@ -205,7 +202,7 @@ class TestTip(helpers.TestGL):
         for attrname in models.Node.localized_strings:
             node_desc[attrname] = stuff
 
-        node_desc = yield admin.update_node(node_desc, True, 'en')
+        node_desc = yield admin.node.update_node(node_desc, True, 'en')
         self.assertEqual(node_desc['can_postpone_expiration'], True)
 
     @inlineCallbacks

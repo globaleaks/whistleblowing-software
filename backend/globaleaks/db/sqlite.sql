@@ -145,7 +145,7 @@ CREATE TABLE node (
     maximum_textsize INTEGER NOT NULL,
     maximum_filesize INTEGER NOT NULL,
     tor2web_admin INTEGER NOT NULL,
-    torweb_whistleblower INTEGER NOT NULL,
+    tor2web_whistleblower INTEGER NOT NULL,
     tor2web_receiver INTEGER NOT NULL,
     tor2web_unauth INTEGER NOT NULL,
     submission_minimum_delay INTEGER NOT NULL,

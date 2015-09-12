@@ -1,15 +1,10 @@
 # -*- encoding: utf-8 -*-
 
-import copy
-import json
-import os
-
-from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
+from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model
-from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_null, every_language
 
 
@@ -202,6 +197,10 @@ class Replacer2324(TableReplacer):
         new_node = self.get_right_model("Node", 24)()
 
         for _, v in new_node._storm_columns.iteritems():
+            if v.name == 'tor2web_whistleblower':
+                new_node.tor2web_whistleblower = old_node.tor2web_submission
+                continue
+
             if v.name == 'header_title_tippage':
                 # check needed to preserve funtionality if appdata will be altered in the future
                 if v.name in appdata_dict['node']:

@@ -8,13 +8,13 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import And, In
 
-from globaleaks.handlers.admin import parse_pgp_options
+from globaleaks.handlers.admin.user import db_update_user, parse_pgp_options
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.node import get_public_receiver_list, anon_serialize_node
+from globaleaks.handlers.node import get_public_receiver_list
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
 from globaleaks.handlers.submission import db_get_archived_preview_schema
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message, Node
+from globaleaks.models import User, Receiver, ReceiverTip, ReceiverFile, Message, Node
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.security import change_password
@@ -86,33 +86,54 @@ def get_receiver_settings(store, receiver_id, language):
     return receiver_serialize_receiver(receiver, node, language)
 
 
-@transact
-def update_receiver_settings(store, receiver_id, request, language):
+def db_update_user(store, user_id, request, language):
     """
-    TODO: remind that 'description' is imported, but is not permitted
-        by UI to be modified right now.
+    Updates the specified user.
+    This version of the function is specific for the receiver that with comparison
+    the admin can change only few things:
+      - preferred language
+      - preferred timezone
+      - the password (with old password check)
+      - pgp key
+    raises: globaleaks.errors.ReceiverIdNotFound` if the receiver does not exist.
     """
-    receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+    user = User.get(store, user_id)
 
-    if not receiver:
-        raise errors.ReceiverIdNotFound
+    if not user:
+        raise errors.UserIdNotFound
 
-    receiver.user.language = request.get('language', GLSettings.memory_copy.default_language)
-    receiver.user.timezone = request.get('timezone', GLSettings.memory_copy.default_timezone)
+    user.language = request.get('language', GLSettings.memory_copy.default_language)
+    user.timezone = request.get('timezone', GLSettings.memory_copy.default_timezone)
 
     new_password = request['password']
     old_password = request['old_password']
 
     if len(new_password) and len(old_password):
-        receiver.user.password = change_password(receiver.user.password,
-                                                 old_password,
-                                                 new_password,
-                                                 receiver.user.salt)
+        user.password = change_password(user.password,
+                                        old_password,
+                                        new_password,
+                                        user.salt)
 
-        if receiver.user.password_change_needed:
-            receiver.user.password_change_needed = False
+        if user.password_change_needed:
+            user.password_change_needed = False
 
-        receiver.user.password_change_date = datetime_now()
+        user.password_change_date = datetime_now()
+
+    # The various options related in manage PGP keys are used here.
+    parse_pgp_options(user, request)
+
+    return user
+
+
+
+@transact
+def update_receiver_settings(store, receiver_id, request, language):
+    db_update_user(store, receiver_id, request, language)
+
+    receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+
+    if not receiver:
+        raise errors.ReceiverIdNotFound
 
     ping_mail_address = request['ping_mail_address']
 
@@ -123,8 +144,6 @@ def update_receiver_settings(store, receiver_id, request, language):
 
     receiver.tip_notification = request['tip_notification']
     receiver.ping_notification = request['ping_notification']
-
-    parse_pgp_options(receiver.user, request)
 
     node = store.find(Node).one()
 
@@ -178,7 +197,7 @@ def perform_tips_operation(store, receiver_id, operation, rtips_ids):
     receiver = store.find(Receiver, Receiver.id == receiver_id).one()
 
     rtips = store.find(ReceiverTip, And(ReceiverTip.receiver_id == receiver_id,
-                                        In(ReceiverTip.id, (rtips_ids))))
+                                        In(ReceiverTip.id, rtips_ids)))
 
     if operation == 'postpone':
         can_postpone_expiration = node.can_postpone_expiration or receiver.can_postpone_expiration

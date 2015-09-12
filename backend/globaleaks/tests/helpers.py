@@ -37,8 +37,8 @@ from globaleaks import db, models, security, anomaly, event
 from globaleaks.db.datainit import load_appdata, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLHTTPConnection, BaseHandler
-from globaleaks.handlers.admin import create_context, get_context, update_context, \
-    create_receiver, db_get_context_steps
+from globaleaks.handlers.admin.context import create_context, get_context, update_context, db_get_context_steps
+from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.rtip import receiver_serialize_tip
 from globaleaks.handlers.wbtip import wb_serialize_tip
@@ -145,6 +145,9 @@ class TestGL(unittest.TestCase):
         GLSettings.scheduler_threadpool = FakeThreadPool()
         GLSettings.sessions = {}
         GLSettings.failed_login_attempts = 0
+
+        # Simulate two languages enabled that is somehow the most common configuration
+        GLSettings.defaults.languages_enabled = ['en', 'it']
 
         if os.path.isdir('/dev/shm'):
             GLSettings.working_path = '/dev/shm/globaleaks'
@@ -579,7 +582,7 @@ class TestHandler(TestGLWithPopulatedDB):
         # we need to reset GLApiCache to keep each test independent
         GLApiCache.invalidate()
 
-    def request(self, jbody=None, role=None, user_id=None, headers=None, body='',
+    def request(self, jbody=None, user_id=None, role=None, headers=None, body='',
                 remote_ip='0.0.0.0', method='MOCK', kwargs={}):
 
         """
@@ -594,22 +597,19 @@ class TestHandler(TestGLWithPopulatedDB):
             body:
                 The body of the request as a string
 
-            role:
-                If we should perform authentication role can be either "admin",
-                "receiver" or "wb"
-
             user_id:
-                If when performing authentication the session should be bound
+                when simulating authentication the session should be bound
                 to a certain user_id.
+
+            role:
+                when simulating authentication the session should be bound
+                to a certain role.
 
             method:
                 HTTP method, e.g. "GET" or "POST"
 
             uri:
                 URL to fetch
-
-            role:
-                the role
 
             headers:
                 (dict or :class:`cyclone.httputil.HTTPHeaders` instance) HTTP
@@ -640,9 +640,10 @@ class TestHandler(TestGLWithPopulatedDB):
 
         handler = self._handler(application, request, **kwargs)
 
-        if role:
+        if role is not None:
             session = authentication.GLSession(user_id, role, 'enabled')
             handler.request.headers['X-Session'] = session.id
+
         return handler
 
 
@@ -926,7 +927,7 @@ class MockDict():
             'maximum_namesize': GLSettings.defaults.maximum_namesize,
             'maximum_textsize': GLSettings.defaults.maximum_textsize,
             'tor2web_admin': True,
-            'torweb_whistleblower': True,
+            'tor2web_whistleblower': True,
             'tor2web_receiver': True,
             'tor2web_unauth': True,
             'can_postpone_expiration': False,

@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 
-from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
+from storm.locals import Int, Bool, Unicode, DateTime, JSON
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.models import BaseModel, Model
+from globaleaks.models import Model
 
 class Context_v_21(Model):
     __storm_table__ = 'context'

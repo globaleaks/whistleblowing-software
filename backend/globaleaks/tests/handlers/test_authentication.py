@@ -206,7 +206,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         for i in xrange(0, failed_login):
             yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
-        receiver_status = yield admin.get_receiver(self.dummyReceiver_1['id'], 'en')
+        receiver_status = yield admin.receiver.get_receiver(self.dummyReceiver_1['id'], 'en')
         self.assertEqual(GLSettings.failed_login_attempts, failed_login)
 
     @inlineCallbacks
@@ -227,7 +227,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         for i in xrange(0, failed_login):
             yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
-        receiver_status = yield admin.get_receiver(self.dummyReceiver_1['id'], 'en')
+        receiver_status = yield admin.receiver.get_receiver(self.dummyReceiver_1['id'], 'en')
 
         self.assertEqual(GLSettings.failed_login_attempts, failed_login)
 
@@ -256,7 +256,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         })
-        GLSettings.memory_copy.torweb_whistleblower = True
+        GLSettings.memory_copy.tor2web_whistleblower = True
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSettings.sessions.keys()), 1)
@@ -266,7 +266,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
-        GLSettings.memory_copy.torweb_whistleblower = False
+        GLSettings.memory_copy.tor2web_whistleblower = False
         self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks

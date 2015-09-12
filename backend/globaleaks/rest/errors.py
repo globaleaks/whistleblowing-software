@@ -99,30 +99,53 @@ class InvalidModelInput(GLException):
         self.arguments = [wrong_source]
 
 
-# UNUSED ERROR CODE 17 18 HERE!
-
 class DatabaseIntegrityError(GLException):
     """
     A query on the database resulted in an integrity error
     """
     reasone = "A query on the database resulted in an integrity error"
-    error_code = 19
+    error_code = 17
     status_code = 404 # Not Found
 
     def __init__(self, dberror):
         self.reason = "%s" % dberror
         self.arguments = [dberror]
 
-class ReceiverIdNotFound(GLException):
+
+class UserIdNotFound(GLException):
     """
-    The receiver id requested do not exists in the database.
+    Unable to find a user with the specified id.
     """
-    reason = "No Receiver was found for the specified id"
+    reason = "Unable to find a user with the specified id."
+    error_code = 18
+    status_code = 404 # Not Found
+
+
+class AdminIdNotFound(GLException):
+    """
+    Unable to find an admin with the specified id.
+    """
+    reason = "Unable to find an admin with the specified id."
+    error_code = 19
+    status_code = 404 # Not Found
+
+
+class CustodianIdNotFound(GLException):
+    """
+    Unable to find a custodian with the specified id.
+    """
+    reason = "Unable to find a custodian with the specified id."
     error_code = 20
     status_code = 404 # Not Found
 
 
-# UNUSED ERROR CODE 21 HERE!
+class ReceiverIdNotFound(GLException):
+    """
+    Unable to find a receiver with the specified id.
+    """
+    reason = "Unable to find a receiver with the specified id."
+    error_code = 21
+    status_code = 404 # Not Found
 
 
 class SubmissionValidationFailure(GLException):

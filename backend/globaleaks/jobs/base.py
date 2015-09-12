@@ -6,7 +6,7 @@
 import sys
 import time
 
-from twisted.internet import task, defer, reactor
+from twisted.internet import task, defer
 from twisted.python.failure import Failure
 
 from globaleaks.handlers.base import TimingStatsHandler

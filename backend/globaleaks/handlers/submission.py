@@ -146,6 +146,9 @@ def db_archive_questionnaire_schema(store, submission):
     if (store.find(ArchivedSchema, 
                    ArchivedSchema.hash == submission.questionnaire_hash).count() <= 0):
 
+        # FIXME: this activity is really expensive ad should be optimize.
+        #        specifically the routine cause the first submission that happen after
+        #        a questionnaire change to be particularly slow.
         for lang in GLSettings.memory_copy.languages_enabled:
             aqs = ArchivedSchema()
             aqs.hash = submission.questionnaire_hash

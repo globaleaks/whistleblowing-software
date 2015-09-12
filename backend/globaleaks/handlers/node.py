@@ -62,7 +62,7 @@ def anon_serialize_node(store, language):
         'maximum_textsize': node.maximum_textsize,
         'maximum_filesize': node.maximum_filesize,
         'tor2web_admin': GLSettings.memory_copy.tor2web_admin,
-        'torweb_whistleblower': GLSettings.memory_copy.torweb_whistleblower,
+        'tor2web_whistleblower': GLSettings.memory_copy.tor2web_whistleblower,
         'tor2web_receiver': GLSettings.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSettings.memory_copy.tor2web_unauth,
         'submission_minimum_delay': 0 if GLSettings.devel_mode else GLSettings.memory_copy.submission_minimum_delay,
