@@ -1,5 +1,4 @@
-from __future__ import unicode_literals
-
+# -*- coding: utf-8 -*-
 import datetime
 
 from storm.properties import Property

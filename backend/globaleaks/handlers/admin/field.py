@@ -1,9 +1,9 @@
 # -*- coding: UTF-8
-"""
-Implementation of the code executed when an HTTP client reach /admin/fields URI.
-"""
-from __future__ import unicode_literals
-
+#
+#   /admin/field
+#   *****
+# Implementation of the code executed on handler /admin/field
+#
 import copy
 import json
 

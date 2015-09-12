@@ -1,7 +1,7 @@
+# -*- coding: utf-8 -*-
 """
 Testandi ipsos testes.
 """
-from __future__ import unicode_literals
 
 import json
 
