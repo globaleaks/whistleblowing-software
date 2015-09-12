@@ -3,13 +3,14 @@
 set -e
 
 if [ "$GLTEST" = "unit" ]; then
+
   echo "Running Mocha testes for API"
   cd $TRAVIS_BUILD_DIR/backend
   coverage run setup.py test
   coveralls || true
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis
   sleep 5
-  $TRAVIS_BUILD_DIR/client/node_modules/mocha/bin/mocha -R list $TRAVIS_BUILD_DIR/client/tests/api/test_00* --timeout 30000
+  $TRAVIS_BUILD_DIR/client/node_modules/mocha/bin/mocha -R list $TRAVIS_BUILD_DIR/client/tests/api/test_00* --timeout 10000
 
 elif [ "$GLTEST" = "browserchecks" ]; then
 
