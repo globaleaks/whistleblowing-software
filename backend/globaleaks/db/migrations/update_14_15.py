@@ -327,7 +327,6 @@ class Replacer1415(TableReplacer):
                             field_dict['label'][l] = old_context.localized_fields[l][f]['name']
                             field_dict['hint'][l] = old_context.localized_fields[l][f]['hint']
 
-                    continue
                     field = db_forge_obj(self.store_new, self.get_right_model("Field", 15), field_dict)
 
                     if field_dict['type'] in ['selectbox', 'checkbox'] and 'options' in old_context.unique_fields[f]:
