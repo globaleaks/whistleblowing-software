@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-from __future__ import unicode_literals
-
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 # override GLSettings

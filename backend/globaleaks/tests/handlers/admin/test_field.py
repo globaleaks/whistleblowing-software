@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import copy
 
 from twisted.internet.defer import inlineCallbacks
@@ -206,11 +204,11 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             """
             Update the field tree with nasty stuff, like cyclic graphs, inexisting ids.
             """
-            generalities_fieldgroup_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
-            sex_field_id = '98891164-1a0b-5b80-8b8b-93b73b815156'
-            surname_field_id = '25521164-1d0f-5f80-8e8c-93f73e815156'
-            name_field_id = '25521164-0d0f-4f80-9e9c-93f72e815105'
-            invalid_id = '00000000-1d0f-5f80-8e8c-93f700000000'
+            generalities_fieldgroup_id = u'37242164-1b1f-1110-1e1c-b1f12e815105'
+            sex_field_id = u'98891164-1a0b-5b80-8b8b-93b73b815156'
+            surname_field_id = u'25521164-1d0f-5f80-8e8c-93f73e815156'
+            name_field_id = u'25521164-0d0f-4f80-9e9c-93f72e815105'
+            invalid_id = u'00000000-1d0f-5f80-8e8c-93f700000000'
 
             handler = self.request(role='admin')
             yield handler.get(generalities_fieldgroup_id)

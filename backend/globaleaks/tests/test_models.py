@@ -1,5 +1,4 @@
-from __future__ import unicode_literals
-
+# -*- coding: utf-8 -*-
 from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
@@ -237,11 +236,11 @@ class TestField(helpers.TestGL):
     def setUp(self):
         yield super(TestField, self).setUp()
 
-        self.birthdate_id = '27121164-0d0f-4180-9e9c-b1f72e815105'
-        self.name_id = '25521164-0d0f-4f80-9e9c-93f72e815105'
-        self.surname_id = '25521164-1d0f-5f80-8e8c-93f73e815156'
-        self.sex_id = '98891164-1a0b-5b80-8b8b-93b73b815156'
-        self.generalities_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
+        self.birthdate_id = u'27121164-0d0f-4180-9e9c-b1f72e815105'
+        self.name_id = u'25521164-0d0f-4f80-9e9c-93f72e815105'
+        self.surname_id = u'25521164-1d0f-5f80-8e8c-93f73e815156'
+        self.sex_id = u'98891164-1a0b-5b80-8b8b-93b73b815156'
+        self.generalities_id = u'37242164-1b1f-1110-1e1c-b1f12e815105'
 
     @transact
     def field_delete(self, store, field_id):
@@ -313,8 +312,8 @@ class TestStep(helpers.TestGL):
     fixtures = ['fields.json', "test_gl_with_populated_db.json"]
     step_number = 1
 
-    generalities_id = '37242164-1b1f-1110-1e1c-b1f12e815105'
-    context_id = '34948a37-201e-44e0-bede-67212f1b7ee6'
+    generalities_id = u'37242164-1b1f-1110-1e1c-b1f12e815105'
+    context_id = u'34948a37-201e-44e0-bede-67212f1b7ee6'
 
     create_node = False
 

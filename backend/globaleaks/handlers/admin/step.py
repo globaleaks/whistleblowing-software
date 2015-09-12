@@ -1,8 +1,8 @@
 # -*- coding: UTF-8
 #
-#   admin
+#   /admin/step
 #   *****
-# Implementation of the code executed when an HTTP client reach /admin/* URI
+# Implementation of the code executed on handler /admin/step
 #
 import copy
 
